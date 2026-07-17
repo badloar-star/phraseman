@@ -96,7 +96,7 @@ function parseJudgeReply(raw) {
  * On ANY parse/shape failure of the model reply ⇒ ok:false, reason:'incoherent' (fail-closed).
  */
 async function judgeExplanation(params) {
-    const { text, lang, apiKey, studyTarget = 'en' } = params;
+    const { text, phraseEn, lang, apiKey, studyTarget = 'en' } = params;
     const heuristic = heuristicPreFilter(text, lang);
     if (heuristic) {
         // Obvious garbage — reject without spending a judge call.
@@ -109,7 +109,7 @@ async function judgeExplanation(params) {
             model: JUDGE_MODEL,
             messages: [
                 { role: 'system', content: explain_prompts_1.JUDGE_SYSTEM_PROMPT },
-                { role: 'user', content: (0, explain_prompts_1.buildJudgeUserPrompt)(text, lang, studyTarget) },
+                { role: 'user', content: (0, explain_prompts_1.buildJudgeUserPrompt)(text, lang, studyTarget, phraseEn) },
             ],
             maxTokens: JUDGE_MAX_TOKENS,
             temperature: JUDGE_TEMPERATURE,

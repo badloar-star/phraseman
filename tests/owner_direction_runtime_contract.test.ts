@@ -160,8 +160,6 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_feature_flags.ts': 1,
       'app/services/arena_hill.ts': 1,
       'app/shards_shop.tsx': 1,
-      // Dev-only bounded QA scroll locator; production boost countdowns use visible wall time.
-      'app/streak_stats.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
       'app/visible_wall_clock.ts': 3,
@@ -174,7 +172,6 @@ describe('owner runtime direction contract', () => {
       'components/energy_countdown_clock.ts': 3,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
-      'components/LeagueChatPanel.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
       'components/paywall/PaywallPriceUrgency.tsx': 1,
       'contexts/MatchmakingContext.tsx': 2,
@@ -264,8 +261,6 @@ describe('owner runtime direction contract', () => {
       'app/arena_results.tsx': 1,
       'app/daily_phrase_system.ts': 1,
       'app/firestore_friend_requests.ts': 2,
-      'app/firestore_help_board.ts': 3,
-      'app/firestore_league_chat.ts': 1,
       'app/firestore_leagues.ts': 2,
       'app/league_group_boosts.ts': 2,
       'app/remote_config_client.ts': 1,
@@ -273,7 +268,7 @@ describe('owner runtime direction contract', () => {
       'app/services/arena_db.ts': 5,
       'app/services/arena_invites.ts': 2,
       'app/services/arena_pulse.ts': 1,
-      'app/services/arena_rooms_live.ts': 4,
+      'app/services/arena_rooms_live.ts': 3,
       'app/services/league_chest_rewards.ts': 3,
       'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
@@ -382,14 +377,6 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('}, [cooldownUntil]);');
     expect(source).not.toContain('}, [cooldownUntil, tick]);');
     expect(source).not.toContain('setInterval(() => setTick((n) => n + 1), 320)');
-  });
-
-  it('keeps league chat undo-hide countdown at visible-second cadence', () => {
-    const source = read('components/LeagueChatPanel.tsx');
-
-    expect(source).toContain('const id = setInterval(() => setHideTimerNow(Date.now()), 1000)');
-    expect(source).toContain('return () => clearInterval(id);');
-    expect(source).not.toContain('setInterval(() => setHideTimerNow(Date.now()), 250)');
   });
 
   it('keeps arena acceptance and rematch countdowns at visible-second cadence', () => {
@@ -670,7 +657,6 @@ describe('owner runtime direction contract', () => {
       'app/app_health.ts': 1,
       'app/firebase.ts': 1,
       'app/firestore_friend_requests.ts': 1,
-      'app/firestore_help_board.ts': 1,
       'app/friends_screen.tsx': 1,
       'app/shards_shop.tsx': 3,
       'app/streak_wager.ts': 1,
@@ -897,7 +883,6 @@ describe('owner runtime direction contract', () => {
     const explainPhrase = read('functions/src/explain_phrase.ts');
     const explainChoice = read('functions/src/explain_choice.ts');
     const explainQuiz = read('functions/src/explain_quiz.ts');
-    const helpBoard = read('functions/src/help_board.ts');
     const statsInsights = read('functions/src/stats_insights.ts');
 
     expect(explainBudget).toContain('export async function reserveExplainBudget');
@@ -912,12 +897,6 @@ describe('owner runtime direction contract', () => {
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'provider_failed');");
     }
-
-    expect(helpBoard).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
-    expect(helpBoard).toContain('budgetReservation = await reserveExplainBudget(');
-    expect(helpBoard).toContain("await refundExplainBudgetReservation(budgetReservation, 'help_board_provider_failed');");
-    expect(helpBoard).toContain("await refundExplainBudgetReservation(budgetReservation, 'help_board_compass_skip_offtopic');");
-    expect(helpBoard).toContain('await refundExplainBudgetReservation(budgetReservation, `help_board_output_${verdict.reason}`);');
 
     expect(statsInsights).toContain('const budgetReservedAtMs = Date.now();');
     expect(statsInsights).toContain('await enforceGlobalBudget(jobCfg.globalDailyCap);');

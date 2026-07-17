@@ -678,3 +678,55 @@ commit и exact dependency-aware next task.
 - все 11 V2 docs, оба плана и AGENTS protocol сохранены docs-only commit и присутствуют в clean pilot worktree;
 - exact next implementation — umbrella Phase 01 / Task 1.1 identity and versioning; Content Studio Task 1 идёт только после 1.1A–1.4;
 - UI, mass generation, production rollout и legacy retirement сейчас запрещены порядком зависимостей.
+## 14.32 — Server-owned scoring policy wiring (2026-07-17)
+
+### Mission (one paragraph)
+Orbit V2 continues the approved Learning V2 pilot: keep progress server-authoritative, bind every result to the immutable Season/Episode/Activity/Template/Policy pins, award performance stars only from a trusted evaluator, and preserve the separation between earned access, purchased access boosts, and learning evidence. This section records the completed policy-resolution seam and the exact next executable task; it does not mark Phase 02 complete.
+
+### Full phase/task status
+
+| Phase/task | Status | Evidence / remaining work |
+|---|---|---|
+| 02.1 pure reducer/gate policy | Completed/provisional | Existing focused policy and adversarial suites remain green. |
+| 02.2–02.3 Content Studio + account-scoped local persistence | Completed bounded slices | Existing focused tests green; release/runtime integration remains later. |
+| 02.4 server progress event | Partial, hardened | Auth/generation/tombstone binding, canonical scope hash, immutable pin checks, idempotency, evidence/projection transaction and real emulator proof are present. The positive star path is allowed only with a trusted server resolution. |
+| 02.4 server score resolver | Partial/provisional | `server_score_resolver.ts` and `server_score_policy_evaluator.ts` now hash-pin result, activity, slot, compatibility key, template and scoring policy; forged client candidate stars are ignored. |
+| 02.5 Access Boost purchase | Existing bounded callable slice | Existing adapter/callable/production tests pass; exact Phase 02 emulator/rules inclusion and final gate review remain open. |
+| 02.6 rules/emulator gate | Partial | Authoring rules emulator: 1 suite / 425 tests PASS. Progress emulator: 1 suite / 2 tests PASS. Access-boost emulator gate still needs explicit final inclusion in the Phase 02 packet. |
+| 03+ runtime, voice modes, Speaking Club, curriculum, Content Studio generator, 32-episode pilot | Not started as implementation gate | Must follow reference-evidence/UI approvals and remain modular/server-delivery compatible. |
+
+### Changes in this task
+
+- Added `functions/src/learning_v2/server_score_policy_evaluator.ts` and its tests.
+- The resolver extracts the exact activity and star-slot relationship from the already pinned immutable Episode, verifies the immutable template identity/hash, then requires a code-owned evaluator for the exact scoring policy reference.
+- Added the optional `scoringTemplates` + `scoringPolicies` fallback to `firestore_progress_event_store.ts`; an explicit trusted Functions callback still has priority.
+- Missing executable policy fails closed with `v2_server_score_policy_missing`; no client-supplied candidate stars, policy ref, or slot metadata can award stars.
+
+### Verification
+
+- Policy evaluator + resolver + progress/store packet: **4 suites / 20 tests PASS** (latest command includes policy evaluator, server resolver, progress event and Firestore store tests).
+- Full progress packet: **8 suites / 35 tests PASS**.
+- Live Firestore/Storage progress emulator: **1 suite / 2 tests PASS**.
+- Authoring rules emulator: **1 suite / 425 tests PASS**.
+- Generator DAG slice: **1 suite / 5 tests PASS**.
+- Access callable bounded packet: **3 suites / 19 tests PASS**.
+- `git diff --check`: PASS (only normal CRLF conversion warnings).
+- Full Functions build remains blocked by pre-existing unrelated missing modules/exports; no new errors are attributed to this scorer seam.
+
+### Open blocker / exact next executable task
+
+The decision registry currently stores policy descriptors, not executable scoring formulas. Therefore production positive star awards remain intentionally fail-closed until a reviewed, code-owned evaluator catalog is registered for each pilot scoring policy and covered by an immutable policy-ref integration test. The next task is: create that catalog seam and its RED/GREEN tests, then run the complete Phase 02 access-boost + progress emulator packet. Files: `functions/src/learning_v2/server_score_policy_catalog.ts`, focused tests, and the callable/store wiring only. Acceptance: exact policy hash/version lookup, deterministic score for every pilot result code, unknown policy rejection, no client-field influence, replay stability, and no earned/purchased star leakage into LearningEvidence. Do not begin UI/runtime work or claim Phase 02 complete before this gate.
+
+### Startup commands for the next session
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+Get-Content docs/v2/HANDOVER.md -Tail 180
+Push-Location functions
+npx jest --config jest.config.js --runTestsByPath src/learning_v2/server_score_policy_evaluator.test.ts src/learning_v2/server_score_resolver.test.ts src/learning_v2/progress_event.test.ts src/learning_v2/firestore_progress_event_store.test.ts --runInBand --no-cache
+npm run test:emulator:v2-progress
+npm run test:emulator:v2-authoring-rules
+Pop-Location
+```
+
+No commit, push, deploy, or production OpenAI API use was performed. Preserve all existing dirty/untracked user changes and generated `functions/lib` output.

@@ -15,7 +15,7 @@ import { getPlanById, type PersonalPlanId, type PlanMinutesChoice } from './pers
 import { activatePersonalPlan, readPersonalPlanState } from './personal_plan_state';
 import { getPersonalPlanArt } from './personal_plan_art';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
-import { readPendingPersonalPlanActivation } from './personal_plan_activation';
+import { queuePendingPersonalPlanActivation, readPendingPersonalPlanActivation } from './personal_plan_activation';
 import { usePremium } from '../components/PremiumContext';
 import { canActivatePlan } from './compass/compass_access';
 import {
@@ -389,6 +389,12 @@ export default function PersonalPlanSetupScreen() {
     // а не активируем план бесплатно. Раньше прямой вход с главной активировал
     // план без оплаты — гейт был только в онбординге.
     if (!canActivatePlan({ hasPremiumAccess })) {
+      await queuePendingPersonalPlanActivation({
+        planId,
+        minutesPerDay: selectedMinutes,
+        startDayIndex: 1,
+        source: 'unknown',
+      });
       router.push({ pathname: '/premium_modal', params: { context: 'personal_plan' } } as any);
       return;
     }

@@ -193,7 +193,6 @@ describe('OpenAI runtime cost controls', () => {
       'stats_insights_billing',
       'compass_billing',
       'league_compass_daily_billing',
-      'help_board_compass_billing',
       'choice_explain_billing',
       'quiz_explain_billing',
       'mistake_explain_billing',

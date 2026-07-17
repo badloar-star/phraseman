@@ -50,6 +50,7 @@ const RAW_TARGET_SENSITIVE_PATTERNS = [
   /^theory_sections_seen_\d+$/,
   /^prep_drill_perfect_\d+$/,
   /^unlocked_lessons$/,
+  /^legacy_free_lesson_(?:cap|migration)_v1$/,
   /^premium_course_level$/,
   /^lesson_unlock_repair_v3$/,
   /^last_opened_lesson$/,
@@ -351,12 +352,24 @@ export function statsDailyBreakdownKey(studyTarget?: RuntimeStudyTarget): string
   return scopedOrLegacyKey('stats_daily_breakdown_v1', 'target_stats', studyTarget);
 }
 
+export function statsPrimaryMetricKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('stats_primary_metric_v1', 'target_stats', studyTarget);
+}
+
 export function achievementStateKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('achievements_v1', 'achievements', studyTarget);
 }
 
 export function unlockedLessonsKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('unlocked_lessons', 'lesson_progress', studyTarget);
+}
+
+export function legacyFreeLessonCapKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('legacy_free_lesson_cap_v1', 'lesson_progress', studyTarget);
+}
+
+export function legacyFreeLessonMigrationKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('legacy_free_lesson_migration_v1', 'lesson_progress', studyTarget);
 }
 
 export function premiumCourseLevelKey(studyTarget?: RuntimeStudyTarget): string {

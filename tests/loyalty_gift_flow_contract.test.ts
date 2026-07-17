@@ -6,9 +6,9 @@ const loyaltyGiftSource = fs.readFileSync(path.join(process.cwd(), 'app', 'loyal
 const modalSource = fs.readFileSync(path.join(process.cwd(), 'components', 'LoyaltyGiftModal.tsx'), 'utf8');
 
 describe('loyalty gift 3-day flow contract', () => {
-  it('keeps the 3-day loyalty gift offer enabled in the root flow', () => {
-    expect(layoutSource).toContain('const LOYALTY_UPDATE_MODAL_ENABLED = true;');
-    expect(layoutSource).not.toContain('const LOYALTY_UPDATE_MODAL_ENABLED = false;');
+  it('keeps the 3-day loyalty gift offer disabled in the root flow', () => {
+    expect(layoutSource).toContain('const LOYALTY_UPDATE_MODAL_ENABLED = false;');
+    expect(layoutSource).toContain('if (!LOYALTY_UPDATE_MODAL_ENABLED) return;');
   });
 
   it('claims the gift through startLoyaltyGift and refreshes premium access immediately', () => {

@@ -1450,6 +1450,7 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
+export { adminGrantAccess, adminSetUserBan } from './admin_access_controls';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
 export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
@@ -1474,6 +1475,20 @@ export {
   agentOfficeSetKillSwitch,
   agentOfficeTelegramWebhook,
 } from './agent_office';
+export {
+  agentManagerCreateInboxTask,
+  agentManagerCreateTask,
+  agentManagerInitializeRoster,
+  agentManagerIssueExecutionJob,
+  agentManagerListAgents,
+  agentManagerListRunbooks,
+  agentManagerListTasks,
+  agentManagerRunAnalyticsWorker,
+  agentManagerRunBoundedExecutionWorker,
+  agentManagerRunReportTriageWorker,
+  agentManagerTelegramPublishApproval,
+  agentManagerTransitionTask,
+} from './agent_manager';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
 export {
   adminListAppMessages,
@@ -1483,6 +1498,11 @@ export {
   adminDeleteAppMessage,
   adminCleanupExpiredAppMessages,
 } from './admin_app_messages';
+export {
+  adminListGlobalBroadcasts,
+  adminPublishGlobalBroadcast,
+  adminDeactivateGlobalBroadcasts,
+} from './admin_global_broadcast';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs, adminUpdateArenaConvergenceConfig } from './admin_content_factory';
 export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
 export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';

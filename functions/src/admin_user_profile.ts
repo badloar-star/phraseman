@@ -344,6 +344,27 @@ export const adminSearchUsers = onCall(
 
 interface AdapterResult { rows: Row[]; error?: unknown; degradedReason?: string; }
 
+async function readRecentUserSubcollection(
+  db: FirebaseFirestore.Firestore,
+  uid: string,
+  collectionName: string,
+  timeField = 'ts',
+  limit = SOURCE_LIMIT,
+): Promise<AdapterResult> {
+  const collection = db.collection('users').doc(uid).collection(collectionName);
+  try {
+    const snapshot = await collection.orderBy(timeField, 'desc').limit(limit).get();
+    return { rows: snapshot.docs.map(withId) };
+  } catch (orderedError) {
+    try {
+      const snapshot = await collection.limit(limit).get();
+      return { rows: snapshot.docs.map(withId).sort((left, right) => millis(right[timeField]) - millis(left[timeField])), degradedReason: `ordered query unavailable: ${orderedError instanceof Error ? orderedError.message : String(orderedError)}` };
+    } catch (error) {
+      return { rows: [], error };
+    }
+  }
+}
+
 async function readRecentByField(
   db: FirebaseFirestore.Firestore,
   collectionName: string,
@@ -421,7 +442,7 @@ export const adminGetUserProfile = onCall(
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
 
-    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
       db.collection('leaderboard').doc(uid).get().catch(() => null),
       db.collection('arena_profiles').doc(uid).get().catch(() => null),
       db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null as unknown })).catch((error: unknown) => ({ snap: null, error })),
@@ -431,6 +452,7 @@ export const adminGetUserProfile = onCall(
       readRecentByField(db, 'user_reports', 'reporterUid', uid),
       readRecentByField(db, 'revenuecat_premium_events', 'uid', uid, 'eventTimestampMs'),
       readRecentByField(db, 'revenuecat_shard_transactions', 'uid', uid),
+      readRecentUserSubcollection(db, uid, 'shard_rewards'),
       readRecentByField(db, 'community_pack_purchases', 'buyerStableId', uid),
       readRecentByField(db, 'community_pack_purchases', 'sellerStableId', uid),
       readRecentByField(db, 'referral_attributions', 'referrerStableId', uid),
@@ -457,6 +479,7 @@ export const adminGetUserProfile = onCall(
       reportsBy: adapterSource('user_reports_by', reportsBy, ['id', 'reportedUid', 'reportedName', 'reason', 'category', 'status', 'createdAt'], ['reportedName', 'reason', 'category', 'status']),
       premiumEvents: adapterSource('revenuecat_premium_events', premiumEvents, ['id', 'eventType', 'type', 'productId', 'periodType', 'price', 'currency', 'createdAt', 'eventTimestampMs'], ['eventType', 'type', 'productId', 'periodType', 'currency']),
       shardTransactions: adapterSource('revenuecat_shard_transactions', shardTransactions, ['id', 'type', 'amount', 'productId', 'createdAt'], ['type', 'productId']),
+      adminRewardHistory: adapterSource('users_shard_rewards', adminRewardHistory, ['id', 'ts', 'reason', 'amount', 'rewardType', 'label', 'adminEmail', 'comment'], ['reason', 'rewardType', 'label', 'comment']),
       ugcBuys: adapterSource('community_pack_purchases_buyer', ugcBuys, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
       ugcSells: adapterSource('community_pack_purchases_seller', ugcSells, ['id', 'packId', 'packTitle', 'status', 'priceShards', 'price', 'createdAt'], ['packId', 'packTitle', 'status']),
       referrals: adapterSource('referral_attributions', referralsBy, ['id', 'status', 'createdAt', 'qualifiedAt', 'rewardedAt'], ['status']),
@@ -477,7 +500,7 @@ export const adminGetUserProfile = onCall(
         identity: { summary, banned: banSnap?.exists === true, ban: banSnap?.exists ? projectRows([withId(banSnap)], ['id', 'reason', 'bannedAt', 'bannedBy'])[0] : null },
         learning,
         competition: { leaderboard: sources.leaderboard, arena: sources.arena, percentileStats: sources.percentileStats },
-        money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, referrals: sources.referrals, invitedBy: sources.invitedBy },
+        money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, adminRewardHistory: sources.adminRewardHistory, referrals: sources.referrals, invitedBy: sources.invitedBy },
         community: { ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
         moderation: { errorReports: sources.errorReports, reportsAgainst: sources.reportsAgainst, reportsBy: sources.reportsBy },
         diagnostics: { sourceStates: sources },

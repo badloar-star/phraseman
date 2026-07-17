@@ -33,148 +33,271 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGrantReward = void 0;
+exports.adminGrantReward = exports.ADMIN_GRANT_REWARD_TYPES = void 0;
+exports.normalizeAdminGrantRewardInput = normalizeAdminGrantRewardInput;
+exports.adminGrantRewardFingerprint = adminGrantRewardFingerprint;
+exports.buildAdminRewardMutation = buildAdminRewardMutation;
+exports.assertAdminRewardReplay = assertAdminRewardReplay;
 /**
- * adminGrantReward — Cloud Function для типизированной выдачи наград из админки.
+ * Guarded individual reward grants for Admin v2 and the legacy admin fallback.
  *
- * Архитектура (см. app/cloud_sync.ts: SYNC_KEYS):
- *   - shards               → пишем в users/{uid}.shards (+ shard_log + shard_rewards)
- *   - xp_boost_2x_24h/48h  → пишем JSON в users/{uid}.gift_xp_multiplier (синкается в AsyncStorage 'gift_xp_multiplier')
- *   - chain_shield_1/3     → пишем JSON в users/{uid}.chain_shield (синкается в AsyncStorage 'chain_shield')
- *   - arena_extra_5        → инкрементим users/{uid}.arena_extra_plays_today (приложение читает из AsyncStorage)
- *
- * Доступ: request.auth.token.admin === true (custom claim, ставится скриптом scripts/set_admin_claim.js).
- *
- * Эффект: запись в users/{uid}/shard_rewards/{auto} + поля юзера (аудит/история; стартовая модалка снята).
+ * The callable owns validation, role enforcement, idempotency, the user mutation,
+ * the inbox reward row and the audit record. The browser never writes these
+ * collections directly.
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
+const audit_contract_1 = require("./admin/audit_contract");
+const permissions_1 = require("./admin/permissions");
+const roles_1 = require("./admin/roles");
 const callable_options_1 = require("./callable_options");
 const REGION = 'us-central1';
-const ALLOWED_TYPES = new Set([
+const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
+const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
+const SHARDS_MIN = 1;
+const SHARDS_MAX = 10000;
+exports.ADMIN_GRANT_REWARD_TYPES = [
     'shards',
     'xp_boost_2x_24h',
     'xp_boost_2x_48h',
     'chain_shield_1',
     'chain_shield_3',
     'arena_extra_5',
-]);
-const SHARDS_MIN = 1;
-const SHARDS_MAX = 10000;
-function todayStrUtc() {
-    return new Date().toISOString().split('T')[0];
+];
+function isRecord(value) {
+    return typeof value === 'object' && value !== null && !Array.isArray(value);
+}
+function text(value, max) {
+    return typeof value === 'string' ? value.trim().slice(0, max) : '';
+}
+function finiteNumber(value, fallback = 0) {
+    const parsed = typeof value === 'number' ? value : Number(value);
+    return Number.isFinite(parsed) ? parsed : fallback;
+}
+function rewardType(value) {
+    const candidate = text(value, 40);
+    if (!exports.ADMIN_GRANT_REWARD_TYPES.includes(candidate)) {
+        throw new https_1.HttpsError('invalid-argument', 'unsupported reward type');
+    }
+    return candidate;
+}
+function normalizeAdminGrantRewardInput(data) {
+    if (!isRecord(data))
+        throw new https_1.HttpsError('invalid-argument', 'reward command required');
+    const uid = text(data.uid, 161);
+    const type = rewardType(data.type);
+    const rawAmount = finiteNumber(data.amount, 0);
+    const amount = type === 'shards' ? Math.floor(rawAmount) : 0;
+    const reason = text(data.reason, 500);
+    const comment = text(data.comment, 200);
+    const idempotencyKey = text(data.idempotencyKey, 161);
+    const requestId = text(data.requestId, 161);
+    if (!UID_RE.test(uid))
+        throw new https_1.HttpsError('invalid-argument', 'uid is invalid');
+    if (type === 'shards' && (amount < SHARDS_MIN || amount > SHARDS_MAX)) {
+        throw new https_1.HttpsError('invalid-argument', `shards amount must be ${SHARDS_MIN}..${SHARDS_MAX}`);
+    }
+    if (!reason)
+        throw new https_1.HttpsError('invalid-argument', 'reason is required');
+    if (!TOKEN_RE.test(idempotencyKey) || !TOKEN_RE.test(requestId)) {
+        throw new https_1.HttpsError('invalid-argument', 'idempotencyKey and requestId are required');
+    }
+    return Object.freeze({ uid, type, amount, reason, comment, idempotencyKey, requestId });
+}
+function adminGrantRewardFingerprint(input) {
+    return JSON.stringify({
+        action: 'grant_reward',
+        uid: input.uid,
+        type: input.type,
+        amount: input.amount,
+        reason: input.reason,
+        comment: input.comment,
+    });
+}
+function utcDate(nowMs) {
+    return new Date(nowMs).toISOString().slice(0, 10);
+}
+function buildAdminRewardMutation(user, type, amount, nowMs) {
+    const updates = { updatedAt: nowMs };
+    let shardLog = null;
+    let label = '';
+    let shardsAmount = 0;
+    let before = {};
+    let after = {};
+    if (type === 'shards') {
+        const previous = finiteNumber(user.shards, 0);
+        const next = previous + amount;
+        updates.shards = next;
+        updates.shards_updated_at_ms = nowMs;
+        updates.shards_updated_op = 'earn';
+        updates.shards_updated_reason = 'admin_grant';
+        shardLog = {
+            ts: new Date(nowMs).toISOString(),
+            type: 'earn',
+            amount,
+            reason: 'admin_grant',
+            balanceBefore: previous,
+            balanceAfter: next,
+        };
+        label = `+${amount} осколков знаний`;
+        shardsAmount = amount;
+        before = { shards: previous };
+        after = { shards: next };
+    }
+    if (type === 'xp_boost_2x_24h' || type === 'xp_boost_2x_48h') {
+        const hours = type === 'xp_boost_2x_24h' ? 24 : 48;
+        const previous = text(user.gift_xp_multiplier, 2000) || null;
+        const next = JSON.stringify({ multiplier: 2, expiresAt: nowMs + hours * 3600000 });
+        updates.gift_xp_multiplier = next;
+        label = `x2 XP на ${hours} часов`;
+        before = { gift_xp_multiplier: previous };
+        after = { gift_xp_multiplier: next };
+    }
+    if (type === 'chain_shield_1' || type === 'chain_shield_3') {
+        const days = type === 'chain_shield_1' ? 1 : 3;
+        let existingDays = 0;
+        try {
+            const parsed = JSON.parse(text(user.chain_shield, 2000));
+            existingDays = Math.max(0, Math.floor(finiteNumber(parsed?.daysLeft, 0)));
+        }
+        catch {
+            existingDays = 0;
+        }
+        const previous = text(user.chain_shield, 2000) || null;
+        const next = JSON.stringify({ daysLeft: existingDays + days, grantedAt: utcDate(nowMs) });
+        updates.chain_shield = next;
+        label = `Щит серии на ${days} ${days === 1 ? 'день' : 'дня'}`;
+        before = { chain_shield: previous };
+        after = { chain_shield: next };
+    }
+    if (type === 'arena_extra_5') {
+        const previousRaw = isRecord(user.arena_extra_plays_today) ? user.arena_extra_plays_today : {};
+        const today = utcDate(nowMs);
+        const previous = previousRaw.date === today ? Math.max(0, Math.floor(finiteNumber(previousRaw.n, 0))) : 0;
+        const next = { date: today, n: previous + 5 };
+        updates.arena_extra_plays_today = next;
+        label = '+5 рейтинговых игр сегодня';
+        before = { arena_extra_plays_today: previousRaw };
+        after = { arena_extra_plays_today: next };
+    }
+    return Object.freeze({
+        updates: Object.freeze(updates),
+        shardLog: shardLog ? Object.freeze(shardLog) : null,
+        label,
+        shardsAmount,
+        before: Object.freeze(before),
+        after: Object.freeze(after),
+    });
+}
+function requireRewardWriter(request) {
+    const actorUid = text(request.auth?.uid, 160);
+    const token = request.auth?.token;
+    if (!actorUid || token?.admin !== true || !(0, roles_1.hasAdminRole)(token.adminRole)) {
+        throw new https_1.HttpsError('permission-denied', 'Admin role required');
+    }
+    const role = token.adminRole;
+    if (!(0, permissions_1.hasPermission)(role, 'users.write'))
+        throw new https_1.HttpsError('permission-denied', 'Role cannot use users.write');
+    return { actorUid, actorEmail: text(token.email, 320) || actorUid, role };
+}
+function assertAdminRewardReplay(operation, fingerprint, actorUid) {
+    if (operation.action !== 'grant_reward') {
+        throw new https_1.HttpsError('already-exists', 'idempotencyKey belongs to another admin action');
+    }
+    if (operation.requestFingerprint !== fingerprint) {
+        throw new https_1.HttpsError('already-exists', 'idempotencyKey reused for another reward command');
+    }
+    if (operation.actorUid && operation.actorUid !== actorUid) {
+        throw new https_1.HttpsError('permission-denied', 'admin operation belongs to another actor');
+    }
+}
+function replayResult(operation) {
+    const result = isRecord(operation.result) ? operation.result : {};
+    return {
+        ok: true,
+        replayed: true,
+        type: text(result.type, 40),
+        amount: Math.max(0, Math.floor(finiteNumber(result.amount, 0))),
+        label: text(result.label, 200),
+        rewardId: text(result.rewardId, 200),
+        auditId: text(operation.auditId, 200),
+    };
 }
 exports.adminGrantReward = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
-    if (!request.auth?.token?.admin) {
-        throw new https_1.HttpsError('permission-denied', 'Admin only');
-    }
-    const uid = String(request.data?.uid ?? '').trim();
-    const type = String(request.data?.type ?? '').trim();
-    const amountRaw = request.data?.amount;
-    const amount = Number.isFinite(Number(amountRaw)) ? Math.floor(Number(amountRaw)) : 0;
-    const comment = String(request.data?.comment ?? '').trim().slice(0, 200);
-    if (!uid) {
-        throw new https_1.HttpsError('invalid-argument', 'uid required');
-    }
-    if (!ALLOWED_TYPES.has(type)) {
-        throw new https_1.HttpsError('invalid-argument', `type must be one of: ${Array.from(ALLOWED_TYPES).join(', ')}`);
-    }
-    if (type === 'shards') {
-        if (amount < SHARDS_MIN || amount > SHARDS_MAX) {
-            throw new https_1.HttpsError('invalid-argument', `shards amount must be ${SHARDS_MIN}..${SHARDS_MAX}`);
-        }
-    }
+    const actor = requireRewardWriter(request);
+    const input = normalizeAdminGrantRewardInput(request.data);
     const db = admin.firestore();
-    const userRef = db.collection('users').doc(uid);
-    const adminEmail = String(request.auth?.token?.email ?? '');
-    const grantedAtIso = new Date().toISOString();
+    const userRef = db.collection('users').doc(input.uid);
+    const rewardRef = userRef.collection('shard_rewards').doc(`admin_${input.idempotencyKey}`);
+    const shardLogRef = userRef.collection('shard_log').doc(`admin_${input.idempotencyKey}`);
+    const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+    const fingerprint = adminGrantRewardFingerprint(input);
+    const nowMs = Date.now();
+    const nowIso = new Date(nowMs).toISOString();
     return db.runTransaction(async (tx) => {
-        const userSnap = await tx.get(userRef);
-        if (!userSnap.exists) {
-            throw new https_1.HttpsError('not-found', `User ${uid} not found`);
+        const operationSnapshot = await tx.get(operationRef);
+        if (operationSnapshot.exists) {
+            const operation = operationSnapshot.data() ?? {};
+            assertAdminRewardReplay(operation, fingerprint, actor.actorUid);
+            return replayResult(operation);
         }
-        const u = userSnap.data() ?? {};
-        let shardsAmount = 0;
-        let humanLabel = '';
-        const updates = { updatedAt: Date.now() };
-        if (type === 'shards') {
-            const before = Number(u.shards) || 0;
-            const after = before + amount;
-            updates['shards'] = after;
-            updates['shards_updated_at_ms'] = Date.now();
-            updates['shards_updated_op'] = 'earn';
-            updates['shards_updated_reason'] = 'admin_grant';
-            shardsAmount = amount;
-            humanLabel = `+${amount} 💎`;
-            const shardLogRef = userRef.collection('shard_log').doc();
-            tx.set(shardLogRef, {
-                ts: grantedAtIso,
-                type: 'earn',
-                amount,
-                reason: 'admin_grant',
-                balanceBefore: before,
-                balanceAfter: after,
-                adminEmail,
-                comment: comment || null,
+        const userSnapshot = await tx.get(userRef);
+        if (!userSnapshot.exists)
+            throw new https_1.HttpsError('not-found', `User ${input.uid} not found`);
+        const mutation = buildAdminRewardMutation(userSnapshot.data() ?? {}, input.type, input.amount, nowMs);
+        const result = {
+            type: input.type,
+            amount: mutation.shardsAmount,
+            label: mutation.label,
+            rewardId: rewardRef.id,
+        };
+        const audit = (0, audit_contract_1.createAuditRecord)({
+            action: 'grant_reward',
+            actorUid: actor.actorUid,
+            role: actor.role,
+            entity: { collection: 'users', id: input.uid },
+            reason: input.reason,
+            before: mutation.before,
+            after: { ...mutation.after, rewardType: input.type, rewardId: rewardRef.id },
+            rollbackReference: null,
+            requestId: input.requestId,
+            timestamp: nowIso,
+        });
+        tx.update(userRef, mutation.updates);
+        if (mutation.shardLog) {
+            tx.create(shardLogRef, {
+                ...mutation.shardLog,
+                targetUid: input.uid,
+                adminEmail: actor.actorEmail,
+                adminUid: actor.actorUid,
+                comment: input.comment || null,
+                operationId: input.idempotencyKey,
             });
         }
-        if (type === 'xp_boost_2x_24h' || type === 'xp_boost_2x_48h') {
-            const hours = type === 'xp_boost_2x_24h' ? 24 : 48;
-            const expiresAt = Date.now() + hours * 3600000;
-            updates['gift_xp_multiplier'] = JSON.stringify({ multiplier: 2, expiresAt });
-            humanLabel = `🔥 x2 XP / ${hours}h`;
-        }
-        if (type === 'chain_shield_1' || type === 'chain_shield_3') {
-            const days = type === 'chain_shield_1' ? 1 : 3;
-            const today = todayStrUtc();
-            let raw = u['chain_shield'];
-            let existingDays = 0;
-            try {
-                if (typeof raw === 'string' && raw) {
-                    const parsed = JSON.parse(raw);
-                    existingDays = typeof parsed?.daysLeft === 'number' ? parsed.daysLeft : 0;
-                }
-            }
-            catch {
-                existingDays = 0;
-            }
-            updates['chain_shield'] = JSON.stringify({ daysLeft: existingDays + days, grantedAt: today });
-            humanLabel = `🛡️ Щит цепочки / ${days}д`;
-        }
-        if (type === 'arena_extra_5') {
-            const today = todayStrUtc();
-            const cur = u['arena_extra_plays_today'] ?? {};
-            const sameDay = cur?.date === today;
-            const next = (sameDay ? Number(cur.n) || 0 : 0) + 5;
-            updates['arena_extra_plays_today'] = { date: today, n: next };
-            humanLabel = `🎟️ +5 рейтинг-игр сегодня`;
-        }
-        tx.update(userRef, updates);
-        const rewardRef = userRef.collection('shard_rewards').doc();
-        tx.set(rewardRef, {
-            ts: grantedAtIso,
+        tx.create(rewardRef, {
+            ts: nowIso,
             reason: 'admin_grant',
-            amount: shardsAmount,
-            rewardType: type,
-            adminEmail,
-            comment: comment || null,
-            label: humanLabel,
+            amount: mutation.shardsAmount,
+            rewardType: input.type,
+            adminEmail: actor.actorEmail,
+            adminUid: actor.actorUid,
+            comment: input.comment || null,
+            label: mutation.label,
+            operationId: input.idempotencyKey,
             seen: false,
         });
-        const auditRef = db.collection('admin_log').doc();
-        tx.set(auditRef, {
-            ts: grantedAtIso,
-            adminEmail,
+        tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
+        tx.create(operationRef, {
+            operationId: input.idempotencyKey,
             action: 'grant_reward',
-            uid,
-            details: {
-                type,
-                amount: shardsAmount,
-                comment: comment || null,
-                label: humanLabel,
-            },
+            requestFingerprint: fingerprint,
+            actorUid: actor.actorUid,
+            auditId: auditRef.id,
+            result,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
-        return { ok: true, type, amount: shardsAmount, label: humanLabel };
+        return { ok: true, replayed: false, auditId: auditRef.id, ...result };
     });
 });
 //# sourceMappingURL=admin_grant.js.map

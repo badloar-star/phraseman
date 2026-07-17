@@ -237,7 +237,7 @@ describe('explainPhrase — cache short-circuits (0 AI calls)', () => {
 });
 describe('explainPhrase — full miss path', () => {
     it('generate → judge ok ⇒ writeReady, returns generated text, writes one billing doc with both token sets', async () => {
-        mockOpenAiChat.mockResolvedValue(genReply('Это значит пожелать удачи. Например: перед экзаменом.', 120, 60));
+        mockOpenAiChat.mockResolvedValue(genReply('Фраза "break a leg" значит пожелать удачи. Например: перед экзаменом.', 120, 60));
         mockJudge.mockResolvedValue(verdict(true, 'ok', 15, 4));
         const res = await callExplain({ phraseEn: PHRASE, phraseMeaning: MEANING, lang: 'ru' });
         expect(mockOpenAiChat).toHaveBeenCalledTimes(1);
@@ -256,7 +256,10 @@ describe('explainPhrase — full miss path', () => {
             judgeCompletionTokens: 4,
             verdict: 'ok',
             published: true,
+            judgeMaskedStudyFragments: 1,
         });
+        expect(billingDocs()[0].judgeWrongScriptRatio).toBeGreaterThan(0);
+        expect(billingDocs()[0].judgeWrongScriptRatio).toBeLessThan(0.4);
     });
     it('judge ok:FALSE writes rejected evidence and returns only fallback to the live caller', async () => {
         mockOpenAiChat.mockResolvedValue(genReply('Сырой непроверенный текст объяснения фразы.'));

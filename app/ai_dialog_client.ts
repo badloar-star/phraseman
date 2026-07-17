@@ -9,8 +9,6 @@ import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import {
   aiOffline,
   AiOfflineError,
-  aiErrorToast,
-  aiGlobalBudgetToast,
   AI_GLOBAL_BUDGET_ERROR_CODE,
 } from './ai_kill_switch_copy';
 
@@ -104,7 +102,8 @@ export function classifyPremiumDialogError(error: unknown): PremiumDialogErrorKi
     text.includes('dialog_provider_failed') ||
     text.includes('dialog_empty_reply') ||
     text.includes('unavailable') ||
-    text.includes('deadline-exceeded')
+    text.includes('deadline-exceeded') ||
+    text.includes('functions/internal')
   ) {
     return 'provider_unavailable';
   }
@@ -152,12 +151,17 @@ export function getPremiumDialogErrorMessage(
         tr: 'Bugünkü diyalog limiti doldu. Yarın tekrar dene.',
         pl: 'Dzisiejszy limit dialogów został wyczerpany. Spróbuj jutro.',
       });
-    case 'global_budget': {
-      // Глобальный бюджет ИИ иссяк (на всех). Забавная плашка вместо сухого
-      // «сервис недоступен» — тот же набор, что и в разборе ошибок.
-      const budget = aiGlobalBudgetToast(lang);
-      return `${budget.title}\n\n${budget.message}`;
-    }
+    case 'global_budget':
+      return triLang(lang, {
+        ru: 'Сервис диалогов временно недоступен.\n\nДостигнут общий лимит сервиса. Попробуй позже.',
+        uk: 'Сервіс діалогів тимчасово недоступний.\n\nДосягнуто загального ліміту сервісу. Спробуй пізніше.',
+        es: 'El servicio de diálogos no está disponible temporalmente.\n\nSe alcanzó el límite general del servicio. Inténtalo más tarde.',
+        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nO limite geral do serviço foi atingido. Tente mais tarde.',
+        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nDịch vụ đã đạt giới hạn chung. Hãy thử lại sau.',
+        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nBatas umum layanan telah tercapai. Coba lagi nanti.',
+        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nHizmetin genel sınırına ulaşıldı. Daha sonra tekrar dene.',
+        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nOsiągnięto ogólny limit usługi. Spróbuj później.',
+      });
     case 'rate_limited':
       return triLang(lang, {
         ru: 'Слишком много сообщений подряд. Подожди немного и попробуй ещё раз.',
@@ -192,15 +196,39 @@ export function getPremiumDialogErrorMessage(
         pl: 'Dialogi AI są dostępne tylko od 16 lat. Ten tryb jest teraz zablokowany ze względów bezpieczeństwa.',
       });
     case 'provider_unavailable':
+      return triLang(lang, {
+        ru: 'Сервис диалогов временно недоступен.\n\nСообщение не отправлено. Попробуй ещё раз через минуту.',
+        uk: 'Сервіс діалогів тимчасово недоступний.\n\nПовідомлення не надіслано. Спробуй ще раз за хвилину.',
+        es: 'El servicio de diálogos no está disponible temporalmente.\n\nEl mensaje no se envió. Inténtalo de nuevo en un minuto.',
+        'pt-BR': 'O serviço de diálogos está temporariamente indisponível.\n\nA mensagem não foi enviada. Tente novamente em um minuto.',
+        vi: 'Dịch vụ hội thoại tạm thời không khả dụng.\n\nTin nhắn chưa được gửi. Hãy thử lại sau một phút.',
+        id: 'Layanan dialog untuk sementara tidak tersedia.\n\nPesan belum terkirim. Coba lagi dalam satu menit.',
+        tr: 'Diyalog hizmeti geçici olarak kullanılamıyor.\n\nMesaj gönderilmedi. Bir dakika sonra tekrar dene.',
+        pl: 'Usługa dialogów jest chwilowo niedostępna.\n\nWiadomość nie została wysłana. Spróbuj ponownie za minutę.',
+      });
     case 'network':
+      return triLang(lang, {
+        ru: 'Не удалось связаться с сервером.\n\nПроверь интернет-соединение и попробуй ещё раз.',
+        uk: 'Не вдалося зв’язатися із сервером.\n\nПеревір інтернет-з’єднання та спробуй ще раз.',
+        es: 'No se pudo conectar con el servidor.\n\nComprueba tu conexión a internet e inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível conectar ao servidor.\n\nVerifique sua conexão com a internet e tente novamente.',
+        vi: 'Không thể kết nối với máy chủ.\n\nHãy kiểm tra kết nối mạng rồi thử lại.',
+        id: 'Tidak dapat terhubung ke server.\n\nPeriksa koneksi internet lalu coba lagi.',
+        tr: 'Sunucuya bağlanılamadı.\n\nİnternet bağlantını kontrol edip tekrar dene.',
+        pl: 'Nie udało się połączyć z serwerem.\n\nSprawdź połączenie z internetem i spróbuj ponownie.',
+      });
     case 'unknown':
-    default: {
-      // ИИ не ответил / связь оборвалась / непонятный сбой. Забавная плашка
-      // вместо сухого текста — тот же набор, что и в разборе ошибок; зовёт
-      // «попробуй ещё раз», и кнопка «Повторить» для этих видов доступна.
-      const copy = aiErrorToast(lang);
-      return `${copy.title}\n\n${copy.message}`;
-    }
+    default:
+      return triLang(lang, {
+        ru: 'Не удалось отправить сообщение.\n\nПопробуй ещё раз. Если ошибка повторится, вернись позже.',
+        uk: 'Не вдалося надіслати повідомлення.\n\nСпробуй ще раз. Якщо помилка повториться, повернися пізніше.',
+        es: 'No se pudo enviar el mensaje.\n\nInténtalo de nuevo. Si el error se repite, vuelve más tarde.',
+        'pt-BR': 'Não foi possível enviar a mensagem.\n\nTente novamente. Se o erro continuar, volte mais tarde.',
+        vi: 'Không thể gửi tin nhắn.\n\nHãy thử lại. Nếu lỗi lặp lại, hãy quay lại sau.',
+        id: 'Pesan tidak dapat dikirim.\n\nCoba lagi. Jika kesalahan berulang, kembali nanti.',
+        tr: 'Mesaj gönderilemedi.\n\nTekrar dene. Hata tekrarlanırsa daha sonra geri dön.',
+        pl: 'Nie udało się wysłać wiadomości.\n\nSpróbuj ponownie. Jeśli błąd się powtórzy, wróć później.',
+      });
   }
 }
 

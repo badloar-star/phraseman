@@ -57,7 +57,10 @@
   }
 
   function showConsentBanner() {
+    var old = document.getElementById('pm-cookie-consent');
+    if (old) old.remove();
     var bar = document.createElement('div');
+    bar.id = 'pm-cookie-consent';
     bar.setAttribute('role', 'dialog');
     bar.setAttribute('aria-label', 'Согласие на куки');
     bar.style.cssText = 'position:fixed;left:12px;right:12px;bottom:12px;z-index:9999;'
@@ -80,7 +83,12 @@
     no.style.cssText = 'padding:9px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.2);'
       + 'cursor:pointer;background:none;color:#a4a5ae;font:600 13.5px Inter,system-ui,sans-serif';
     ok.addEventListener('click', function () { writeConsent('yes'); bar.remove(); initMetaPixel(); });
-    no.addEventListener('click', function () { writeConsent('no'); bar.remove(); });
+    no.addEventListener('click', function () {
+      var pixelWasActive = !!window.fbq;
+      writeConsent('no');
+      bar.remove();
+      if (pixelWasActive) location.reload();
+    });
     bar.appendChild(text);
     bar.appendChild(ok);
     bar.appendChild(no);
@@ -97,9 +105,34 @@
     else document.addEventListener('DOMContentLoaded', showConsentBanner);
   }
 
+  window.KnowlyCookieSettings = function () {
+    if (document.body) showConsentBanner();
+    else document.addEventListener('DOMContentLoaded', showConsentBanner, { once: true });
+  };
+
+  function addCookieSettingsLinks() {
+    var footers = document.querySelectorAll('footer p, footer .km-footer-links');
+    footers.forEach(function (footer) {
+      if (footer.querySelector('[data-cookie-settings]')) return;
+      var link = document.createElement('a');
+      link.href = '#cookie-settings';
+      link.setAttribute('data-cookie-settings', '');
+      link.textContent = 'Настройки cookies';
+      link.addEventListener('click', function (event) {
+        event.preventDefault();
+        window.KnowlyCookieSettings();
+      });
+      if (footer.tagName === 'P') footer.appendChild(document.createTextNode(' · '));
+      footer.appendChild(link);
+    });
+  }
+
   try {
     if (!/bot|crawl|spider|headless|lighthouse|preview/i.test(navigator.userAgent || '')) bootMetaPixel();
   } catch (_) { /* noop */ }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', addCookieSettingsLinks);
+  else addCookieSettingsLinks();
 
   var endpoint = cfg.statsEndpoint;
   if (!endpoint) return;

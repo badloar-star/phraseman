@@ -44,12 +44,13 @@ jest.mock('expo-web-browser', () => ({
 
 // ── Native Google sign-in: return a fake credential with an idToken. ──
 const googleSignInImpl = jest.fn<Promise<any>, any[]>(async () => ({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } }));
+const googleHasPlayServicesImpl = jest.fn<Promise<boolean>, any[]>(async () => true);
 jest.mock(
   '@react-native-google-signin/google-signin',
   () => ({
     GoogleSignin: {
       configure: jest.fn(),
-      hasPlayServices: jest.fn(async () => true),
+      hasPlayServices: (...args: unknown[]) => googleHasPlayServicesImpl(...(args as [])),
       signIn: (...args: unknown[]) => googleSignInImpl(...(args as [])),
       signOut: jest.fn(async () => {}),
     },
@@ -204,6 +205,8 @@ beforeEach(() => {
   require('@react-native-async-storage/async-storage').__reset();
   googleSignInImpl.mockClear();
   googleSignInImpl.mockResolvedValue({ type: 'success', data: { idToken: 'fake-google-id-token', user: { email: 'u@example.com', name: 'Test User' } } });
+  googleHasPlayServicesImpl.mockClear();
+  googleHasPlayServicesImpl.mockResolvedValue(true);
   appleSignInImpl.mockClear();
   appleSignInImpl.mockResolvedValue({
     identityToken: 'fake-apple-id-token',
@@ -212,10 +215,19 @@ beforeEach(() => {
   });
 });
 
-function loadAuthProvider(initialStorage?: Record<string, string>): typeof import('../app/auth_provider') {
+let lastLoadedAuthProviderStorage: { getItem: (key: string) => Promise<string | null> };
+
+function loadAuthProvider(
+  initialStorage?: Record<string, string>,
+  platformOS?: 'ios' | 'android',
+): typeof import('../app/auth_provider') {
   let mod!: typeof import('../app/auth_provider');
   jest.isolateModules(() => {
+    if (platformOS) {
+      require('react-native').Platform.OS = platformOS;
+    }
     const storage = require('@react-native-async-storage/async-storage');
+    lastLoadedAuthProviderStorage = storage;
     for (const [key, value] of Object.entries(initialStorage ?? {})) {
       void storage.setItem(key, value);
     }
@@ -223,6 +235,14 @@ function loadAuthProvider(initialStorage?: Record<string, string>): typeof impor
   });
   return mod;
 }
+
+test('keeps Google sign-in visible when the Android Play Services preflight is temporarily unavailable', async () => {
+  googleHasPlayServicesImpl.mockResolvedValueOnce(false);
+
+  const { isGoogleSignInAvailable } = loadAuthProvider(undefined, 'android');
+
+  await expect(isGoogleSignInAvailable()).resolves.toBe(true);
+});
 
 test('sign-in over an anonymous user tries linkWithCredential FIRST (does not destroy the anon uid)', async () => {
   const { signInWithProvider } = loadAuthProvider();
@@ -506,6 +526,55 @@ test('returning account on an empty device skips pointless local upload and acco
   expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
   expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+test('an enqueue failure still exits locally but reports that server deletion was not accepted', async () => {
+  authState.isAnonymous = false;
+  enqueueCloudDeletion.mockRejectedValueOnce(new Error('offline'));
+  const authProvider = loadAuthProvider();
+
+  const result = await authProvider.deleteAccountAndWipe();
+
+  expect(result).toEqual({ ok: false, reason: 'cloud_delete_not_enqueued' });
+  expect(authState.calls).toContain('signout');
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(await lastLoadedAuthProviderStorage.getItem('account_delete_pending_auth_v1')).toContain('provider-uid-1');
+});
+
+test('remote account deletion wipes this device without creating another deletion request', async () => {
+  authState.isAnonymous = false;
+  const authProvider = loadAuthProvider() as typeof import('../app/auth_provider') & {
+    handleAccountDeletedOnAnotherDevice: () => Promise<void>;
+  };
+
+  await authProvider.handleAccountDeletedOnAnotherDevice();
+
+  expect(enqueueCloudDeletion).not.toHaveBeenCalled();
+  expect(authState.calls).toContain('signout');
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(clearStableId).toHaveBeenCalledTimes(1);
+  expect(await lastLoadedAuthProviderStorage.getItem('remote_account_deleted_notice_v1')).toBe('1');
+});
+
+test('the initiating device suppresses its own remote-deletion marker until local exit finishes', async () => {
+  authState.isAnonymous = false;
+  let resolveEnqueue!: (value: { ok: true; jobId: string; status: 'queued'; created: true }) => void;
+  enqueueCloudDeletion.mockImplementationOnce(() => new Promise((resolve) => {
+    resolveEnqueue = resolve;
+  }));
+  const authProvider = loadAuthProvider();
+
+  const deletion = authProvider.deleteAccountAndWipe();
+  for (let i = 0; i < 5 && enqueueCloudDeletion.mock.calls.length === 0; i += 1) {
+    await Promise.resolve();
+  }
+  expect(authProvider.isLocalAccountDeletionInProgress()).toBe(true);
+
+  resolveEnqueue({ ok: true, jobId: 'job-1', status: 'queued', created: true });
+  await deletion;
+
+  expect(authProvider.isLocalAccountDeletionInProgress()).toBe(false);
 });
 
 test('account data without XP is still preserved before a remote account swap', async () => {

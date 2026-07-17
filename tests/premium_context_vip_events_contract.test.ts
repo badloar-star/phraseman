@@ -30,8 +30,27 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('introFullAccessEndsAt');
     expect(source).toContain('getIntroFullAccessState');
     // Доступ собирается из real/vip/intro и подарка лояльности (loyaltyState.active).
-    expect(source).toContain('setHasPremiumAccess(realPremium || vip || introState.active || loyaltyState.active)');
+    expect(source).toContain('setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || loyaltyState.active)');
     expect(source).toContain("onAppEvent('intro_full_access_changed'");
+  });
+
+  it('treats non-store tester_no_limits as Premium while tester_no_premium still wins', () => {
+    expect(source).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    expect(source).toContain("noLimitsRaw === 'true' && !IS_STORE_RELEASE");
+    expect(source).toContain('const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);');
+    expect(source).toContain('const effectiveVip = !noPremiumTester && vip;');
+    expect(source).toContain('setIsPremium(effectivePremium)');
+  });
+
+  it('does not let the optimistic premium event bypass tester precedence or the store fuse', () => {
+    const start = source.indexOf("onAppEvent('premium_activated'");
+    expect(start).toBeGreaterThan(-1);
+    const body = source.slice(start, source.indexOf("onAppEvent('vip_activated'", start));
+
+    expect(body).toContain("AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])");
+    expect(body).toContain('activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)');
+    expect(body.indexOf('activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)'))
+      .toBeLessThan(body.indexOf('setIsPremium(true)'));
   });
 
   it('exposes loyalty gift as a separate derived access source', () => {

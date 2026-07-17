@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = void 0;
+exports.adminGetArenaConvergenceStatus = exports.adminGetContentFactoryRolloutMetrics = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = void 0;
 exports.parseContentFactoryJobDetailRequest = parseContentFactoryJobDetailRequest;
 exports.parseContentFactoryUnitPreviewRequest = parseContentFactoryUnitPreviewRequest;
 exports.parseContentFactoryWorkspaceRequest = parseContentFactoryWorkspaceRequest;
@@ -46,6 +46,12 @@ const permissions_1 = require("./admin/permissions");
 const course_release_contract_1 = require("./content_factory/course_release_contract");
 const release_surface_delivery_1 = require("./content_factory/release_surface_delivery");
 const language_release_1 = require("./language_release");
+const rollout_metrics_1 = require("./content_factory/rollout_metrics");
+const content_factory_budget_1 = require("./content_factory/content_factory_budget");
+const openai_jobs_config_1 = require("./openai_jobs_config");
+const arena_shadow_convergence_1 = require("./content_factory/arena_shadow_convergence");
+const surface_convergence_policy_1 = require("./content_factory/surface_convergence_policy");
+const arena_timing_observability_1 = require("./content_factory/arena_timing_observability");
 const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
@@ -183,21 +189,79 @@ exports.adminGetContentFactoryWorkspace = (0, https_1.onCall)({ region: REGION, 
     requireContentReader(request);
     const input = parseContentFactoryWorkspaceRequest(request.data);
     const db = admin.firestore();
+    const workspaceQuery = (collection) => {
+        let query = db.collection(collection);
+        if (input.studyTarget)
+            query = query.where('studyTarget', '==', input.studyTarget);
+        if (input.learnerSourceLocale)
+            query = query.where('learnerSourceLocale', '==', input.learnerSourceLocale);
+        return query;
+    };
     const [catalogsSnap, releasesSnap, historySnap, registriesSnap] = await Promise.all([
-        db.collection('content_factory_catalog').limit(input.limit).get(),
-        db.collection('content_factory_releases').limit(input.limit).get(),
-        db.collection('content_factory_release_history').limit(input.limit).get(),
+        workspaceQuery('content_factory_catalog').limit(input.limit).get(),
+        workspaceQuery('content_factory_releases').limit(input.limit).get(),
+        workspaceQuery('content_factory_release_history').limit(input.limit).get(),
         db.collection('content_factory_source_registry').limit(input.limit).get(),
     ]);
-    const matchesIdentity = (item) => ((!input.studyTarget || item.studyTarget === input.studyTarget)
-        && (!input.learnerSourceLocale || item.learnerSourceLocale === input.learnerSourceLocale || item.sourceLocale === input.learnerSourceLocale));
     const sortNewest = (items) => items.sort((left, right) => String(right.timestamp ?? right.createdAt ?? right.sealedAt ?? '').localeCompare(String(left.timestamp ?? left.createdAt ?? left.sealedAt ?? '')));
     return {
         ok: true,
-        catalogs: catalogsSnap.docs.map(withId).filter(matchesIdentity),
-        releases: sortNewest(releasesSnap.docs.map(withId).filter(matchesIdentity)),
-        history: sortNewest(historySnap.docs.map(withId).filter(matchesIdentity)),
+        catalogs: catalogsSnap.docs.map(withId),
+        releases: sortNewest(releasesSnap.docs.map(withId)),
+        history: sortNewest(historySnap.docs.map(withId)),
         sourceRegistries: registriesSnap.docs.map(withId),
     };
+});
+exports.adminGetContentFactoryRolloutMetrics = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+    requireContentReader(request);
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const day = new Date(nowMs).toISOString().slice(0, 10);
+    const [stagesSnap, unitsSnap, jobsSnap, budgetSnap, jobConfig] = await Promise.all([
+        db.collection('content_factory_stages').orderBy('updatedAt', 'desc').limit(101).get(),
+        db.collection('content_factory_job_units').orderBy('startedAtMs', 'desc').limit(101).get(),
+        db.collection('content_factory_jobs').orderBy('createdAt', 'desc').limit(101).get(),
+        db.collection(content_factory_budget_1.CONTENT_FACTORY_BUDGET_COLLECTION).doc(day).get(),
+        (0, openai_jobs_config_1.resolveJobConfig)(db, 'content_factory'),
+    ]);
+    const reservedUnits = Number(budgetSnap.data()?.generationCount ?? 0);
+    const stageDocs = stagesSnap.docs.slice(0, 100).map(withId);
+    const unitDocs = unitsSnap.docs.slice(0, 100).map(withId);
+    const jobDocs = jobsSnap.docs.slice(0, 100).map(withId);
+    return { ok: true, metrics: (0, rollout_metrics_1.deriveContentFactoryRolloutMetricsFromDocuments)({ nowMs, stageDocs, unitDocs, jobDocs, truncation: { stages: stagesSnap.size > 100, units: unitsSnap.size > 100, jobs: jobsSnap.size > 100 }, budgetCapUnits: jobConfig.globalDailyCap, budgetReservedUnits: Number.isSafeInteger(reservedUnits) && reservedUnits >= 0 ? reservedUnits : 0 }) };
+});
+exports.adminGetArenaConvergenceStatus = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+    requireContentReader(request);
+    const requestedLimit = Number(request.data?.limit ?? 100);
+    const limit = Number.isSafeInteger(requestedLimit) ? Math.max(1, Math.min(500, requestedLimit)) : 100;
+    const cursor = String(request.data?.cursor ?? '').trim();
+    if (cursor && !/^[a-f0-9]{64}$/.test(cursor))
+        throw new https_1.HttpsError('invalid-argument', 'arena_convergence_cursor_invalid');
+    const db = admin.firestore();
+    const configRef = db.collection('content_factory_config').doc('surface_convergence');
+    const configSnapshot = await configRef.get();
+    const config = configSnapshot.exists ? configSnapshot.data() ?? (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)() : (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)();
+    const arena = isRecord(config.arena) ? config.arena : (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)().arena;
+    let currentReceiptsQuery = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').where('comparatorVersion', '==', String(arena.comparatorVersion)).where('configRevision', '==', Number(arena.revision)).orderBy(admin.firestore.FieldPath.documentId()).limit(limit + 1);
+    if (cursor)
+        currentReceiptsQuery = currentReceiptsQuery.startAfter(cursor);
+    const historyLimit = 100;
+    const historyQuery = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').orderBy(admin.firestore.FieldPath.documentId()).limit(historyLimit + 1);
+    const currentUnitsQuery = db.collection('content_factory_job_units').where('surface', '==', 'arena').where('engineRequested', '==', 'shadow').where('configRevision', '==', Number(arena.revision)).where('comparatorVersion', '==', String(arena.comparatorVersion)).limit(501);
+    const timingFromDay = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const timingQuery = db.collection(arena_timing_observability_1.ARENA_TIMING_ROLLUP_COLLECTION).where('day', '>=', timingFromDay).orderBy('day').limit(1001);
+    const [receiptsSnapshot, historySnapshot, arenaUnitsSnapshot, timingSnapshot] = await Promise.all([currentReceiptsQuery.get(), historyQuery.get(), currentUnitsQuery.get(), timingQuery.get()]);
+    const docs = receiptsSnapshot.docs.slice(0, limit);
+    const receiptValues = docs.map((doc) => doc.data());
+    const expectedUnits = arenaUnitsSnapshot.docs.slice(0, 500).map((doc) => doc.data());
+    const expectedShadowUnitCount = expectedUnits.length;
+    const expectedLocalePairs = Array.isArray(arena.requiredLocalePairs) ? arena.requiredLocalePairs.map(String) : [];
+    const isPartial = receiptsSnapshot.size > limit || arenaUnitsSnapshot.size > 500;
+    const metrics = (0, arena_shadow_convergence_1.summarizeArenaConvergenceReceipts)(receiptValues, { limit, expectedComparatorVersion: String(arena.comparatorVersion), expectedConfigRevision: Number(arena.revision), expectedShadowUnitCount, isPartial, expectedLocalePairs });
+    const historyValues = historySnapshot.docs.slice(0, historyLimit).map((doc) => doc.data());
+    const groups = (0, arena_shadow_convergence_1.groupArenaConvergenceReceipts)(historyValues, historyLimit).map((group) => ({ comparatorVersion: group.comparatorVersion, configRevision: group.configRevision, metrics: (0, arena_shadow_convergence_1.summarizeArenaConvergenceReceipts)(group.receipts, { limit: historyLimit, expectedComparatorVersion: group.comparatorVersion, expectedConfigRevision: group.configRevision, isPartial: historySnapshot.size > historyLimit }) }));
+    const timingIsPartial = timingSnapshot.size > 1000;
+    const timing = (0, arena_timing_observability_1.summarizeArenaTiming)(timingSnapshot.docs.slice(0, 1000).map((doc) => doc.data()), timingIsPartial);
+    return { ok: true, arena, metrics, groups, timing, isPartial, historyIsPartial: historySnapshot.size > historyLimit, nextCursor: receiptsSnapshot.size > limit ? docs.at(-1)?.id ?? null : null, samples: { receipts: docs.length, expectedShadowUnits: expectedShadowUnitCount, unitScanTruncated: arenaUnitsSnapshot.size > 500, timingAggregates: Math.min(timingSnapshot.size, 1000), timingScanTruncated: timingIsPartial } };
 });
 //# sourceMappingURL=admin_content_factory_read.js.map

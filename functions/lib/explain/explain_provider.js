@@ -39,7 +39,7 @@ function isRetryableFetchError(error) {
  * status + a truncated body (same shape as premium_dialog) — never leaks the full provider body.
  */
 async function openAiChat(params) {
-    const { apiKey, model, messages, maxTokens, temperature, responseFormat } = params;
+    const { apiKey, model, messages, maxTokens, temperature, responseFormat, beforeRequest } = params;
     const body = {
         model,
         messages,
@@ -51,6 +51,7 @@ async function openAiChat(params) {
     let response = null;
     let lastError = null;
     for (let attempt = 1; attempt <= OPENAI_CHAT_MAX_ATTEMPTS; attempt += 1) {
+        await beforeRequest?.(attempt);
         try {
             response = await fetch(OPENAI_CHAT_URL, {
                 method: 'POST',

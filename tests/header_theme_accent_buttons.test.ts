@@ -13,13 +13,11 @@ describe('header accent buttons (vector icons)', () => {
   const videoSource = () => read(path.join('components', 'LingmanVideosButton.tsx'));
   const inboxSource = () => read(path.join('components', 'AppMessagesInbox.tsx'));
   const notificationSource = () => read(path.join('components', 'NotificationCenterButton.tsx'));
-  const chatHubSource = () => read(path.join('components', 'CommunityChatHubButton.tsx'));
   const homeSource = () => read(path.join('app', '(tabs)', 'home.tsx'));
 
-  test('video, notifications and Help Board buttons use vector Ionicons, not per-theme assets', () => {
+  test('video and notification buttons use vector Ionicons, not per-theme assets', () => {
     expect(videoSource()).toContain('play-circle-outline');
     expect(notificationSource()).toContain('notifications-outline');
-    expect(chatHubSource()).toContain('chatbubble-ellipses-outline');
   });
 
   test('no header button references the old per-theme image assets', () => {
@@ -34,8 +32,8 @@ describe('header accent buttons (vector icons)', () => {
     expect(files.filter((f) => f.startsWith('message-button-'))).toHaveLength(0);
   });
 
-  test('video, notifications and chat buttons keep the same visual box (48x46 / 44x38)', () => {
-    for (const source of [videoSource(), notificationSource(), chatHubSource()]) {
+  test('video and notification buttons keep the same visual box (48x46 / 44x38)', () => {
+    for (const source of [videoSource(), notificationSource()]) {
       expect(source).toContain('width: 48');
       expect(source).toContain('height: 46');
       expect(source).toContain('width: 44');
@@ -52,35 +50,12 @@ describe('header accent buttons (vector icons)', () => {
     expect(videoSource()).not.toContain('backgroundColor: chrome.accent');
   });
 
-  test('Help Board button remains separate while team messages move into notifications', () => {
+  test('the home header keeps only the active video and notification entry points', () => {
     const home = homeSource();
-    const chatHub = chatHubSource();
 
     expect(home).not.toContain('<AppMessagesInbox />');
-    expect(home).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(home).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
     expect(notificationSource()).toContain('mode="notification-center"');
-    expect(home).toContain('<CommunityChatHubButton />');
-    expect(chatHub).toContain('home-help-board-button');
-    expect(chatHub).toContain('community-chat-hub-fullscreen');
-    expect(chatHub).toContain('HelpBoardPanel');
-    expect(chatHub).not.toContain('LeagueChatPanel');
-    expect(chatHub).not.toContain("renderTab('league'");
-    expect(chatHub).not.toContain("router.push('/league_screen?openChat=1')");
-  });
-
-  test('Help Board fullscreen keeps its close control in the left corner', () => {
-    const chatHub = chatHubSource();
-    const headerStart = chatHub.indexOf('<View style={styles.header}>');
-    const contentStart = chatHub.indexOf('<View style={styles.content}>');
-    const header = chatHub.slice(headerStart, contentStart);
-
-    expect(headerStart).toBeGreaterThanOrEqual(0);
-    expect(contentStart).toBeGreaterThan(headerStart);
-    expect(header).toContain('accessibilityLabel={copy.close}');
-    expect(header).toContain('style={[styles.headerTitle');
-    expect(header).toContain('hitSlop={8}');
-    expect(header.indexOf('accessibilityLabel={copy.close}')).toBeLessThan(
-      header.indexOf('style={[styles.headerTitle'),
-    );
+    expect(home).not.toContain('CommunityChatHubButton');
   });
 });

@@ -743,17 +743,25 @@ describe('Admin v2 paywall analytics category contract', () => {
     expect(core).toContain('resetAllAdminChartZoom()');
   });
 
-  test('preserves legacy analytics workspaces and hydrates them even when a chart mount fails', () => {
+  test('preserves legacy analytics workspaces and hydrates only the selected detailed report', () => {
     expect(analyticsView).toContain('export function captureLegacyAnalyticsWorkspaces');
     expect(analyticsView).toContain('export function restoreLegacyAnalyticsWorkspaces');
     expect(core).toContain('captureLegacyAnalyticsWorkspaces(target)');
     expect(core).toContain('restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces)');
-    expect(core).toMatch(/try\s*\{[\s\S]*mountPaywallAnalyticsChartsWhenCurrent[\s\S]*\}\s*finally\s*\{[\s\S]*globalThis\.loadProductAnalytics\?\.\(\)[\s\S]*globalThis\.loadSubscriptionAnalytics\?\.\(\)/);
+    expect(core).toContain('syncAnalyticsReportVisibility(target)');
+    expect(core).toContain("if (state.activeAnalyticsReport === 'product') globalThis.loadProductAnalytics?.()");
+    expect(core).toContain("if (state.activeAnalyticsReport === 'subscriptions') globalThis.loadSubscriptionAnalytics?.()");
+    expect(core).toContain("if (state.activeAnalyticsReport === 'exports') globalThis.initializeMonthlyDecisionPack?.()");
+    expect(core).not.toContain(`globalThis.loadProductAnalytics?.();
+        globalThis.loadSubscriptionAnalytics?.();
+        globalThis.initializeMonthlyDecisionPack?.();`);
     expect(core).not.toMatch(/globalThis\.load(?:Product|Subscription)Analytics\?\.\(true\)/);
   });
 
   test('keeps series toggles local instead of replacing the full analytics page', () => {
-    const toggleBranch = core.match(/if \(action === 'toggle-analytics-series'\) \{([\s\S]*?)\n  \}\n  if \(action === 'load-analytics-trends'\)/)?.[1] || '';
+    const start = core.indexOf("if (action === 'toggle-analytics-series')");
+    const end = core.indexOf("if (action === 'load-analytics-trends')", start);
+    const toggleBranch = start >= 0 && end > start ? core.slice(start, end) : '';
     expect(toggleBranch).toContain('toggleVisibleSeries');
     expect(toggleBranch).toContain('mountPaywallAnalyticsChartsWhenCurrent');
     expect(toggleBranch).not.toContain('renderCurrentPage');

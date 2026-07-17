@@ -84,7 +84,6 @@ import { oskolokImageForPackShards } from '../oskolok';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import CommunityChatHubButton from '../../components/CommunityChatHubButton';
 import LingmanVideosButton from '../../components/LingmanVideosButton';
 import NotificationCenterButton from '../../components/NotificationCenterButton';
 import PlayerProfileModal, { type PlayerInfo } from '../../components/PlayerProfileModal';
@@ -1043,6 +1042,7 @@ export default function HomeScreen() {
             refreshWeekMarkers();
             loadData();
         });
+        const streakSeededSub = onAppEvent('streak_seeded', () => { loadData(); });
         return () => {
             mountedRef.current = false;
             sub.remove();
@@ -1061,6 +1061,7 @@ export default function HomeScreen() {
             reviveOfferSub.remove();
             freezeUpdatedSub.remove();
             revivedSub.remove();
+            streakSeededSub.remove();
             deferredReadyTaskRef.current?.cancel?.();
             deferredReadyTaskRef.current = null;
             deferredReloadTaskRef.current?.cancel?.();
@@ -2365,9 +2366,7 @@ export default function HomeScreen() {
         const homeFeatureTipA11y = currentHomeFeatureTip
             ? `${currentHomeFeatureTip.title}. ${currentHomeFeatureTip.body}`
             : '';
-        const experimentalStatusStreakWidth = eliteStatsCompact ? 74 : 86;
-        const experimentalStatusTopRowHeight = eliteStatsCompact ? 72 : 86;
-        const experimentalStatusWeekDotSize = eliteStatsCompact ? 28 : 31;
+        const experimentalStatusWeekDotSize = eliteStatsCompact ? 24 : 28;
         const experimentalStatusLevelLabel = triLang(lang, {
             ru: 'Уровень',
             uk: 'Рівень',
@@ -2382,75 +2381,103 @@ export default function HomeScreen() {
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
             }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: eliteStatsCompact ? 10 : 14 }}>
-                <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
+              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: eliteStatsCompact ? 10 : 12 }}>
+                <TouchableOpacity
+                  testID="home-streak-status-panel"
+                  activeOpacity={0.82}
+                  onPress={(event) => {
                     event.stopPropagation?.();
                     hapticTap();
-                    nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ flexShrink: 0 }}>
-                  <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
+                    nav.push('/streak_stats');
+                  }}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`}
+                  style={{
+                    width: eliteStatsCompact ? 86 : 96,
+                    minHeight: eliteStatsCompact ? 138 : 148,
+                    flexShrink: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: eliteStatsCompact ? 5 : 7,
+                  }}
+                >
+                  <View style={{
+                    width: eliteStatsCompact ? 68 : 76,
+                    height: eliteStatsCompact ? 68 : 76,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}>
+                    <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStatsCompact ? 64 : 72}/>
+                    {streakAtRisk && !freezeActive ? (
+                      <Pressable
+                        testID="home-streak-freeze-shield"
+                        accessibilityRole="button"
+                        accessibilityLabel={triLang(lang, {
+                          ru: 'Защитить серию',
+                          uk: 'Захистити серію',
+                          es: 'Proteger la racha',
+                          'pt-BR': 'Proteger a sequência',
+                          vi: 'Bảo vệ chuỗi',
+                          id: 'Lindungi rangkaian',
+                          tr: 'Seriyi koru',
+                          pl: 'Chroń serię',
+                        })}
+                        hitSlop={8}
+                        onPress={(event) => {
+                          event.stopPropagation?.();
+                          hapticTap();
+                          void handleFreezeStreak();
+                        }}
+                        style={({ pressed }) => ({
+                          position: 'absolute',
+                          right: -7,
+                          top: -7,
+                          width: 44,
+                          height: 44,
+                          borderRadius: 16,
+                          overflow: 'hidden',
+                          borderWidth: 0,
+                          opacity: pressed ? 0.82 : 1,
+                          transform: [{ scale: pressed ? 0.96 : 1 }],
+                        })}
+                      >
+                        <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 16 }}>
+                          <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={30}/>
+                        </LinearGradient>
+                      </Pressable>
+                    ) : null}
+                  </View>
+                  <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center' }}>
+                    <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 22 : 25, fontWeight: '800', lineHeight: eliteStatsCompact ? 26 : 30, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
+                      {displayStreak} {homeStreakDaysLabel}
+                    </Animated.Text>
+                  </View>
                 </TouchableOpacity>
 
-                <View style={{ flex: 1, minWidth: 0, paddingRight: eliteStatsCompact ? 0 : 2 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 9 }}>
-                    <View style={{
-                    borderRadius: 999,
-                    paddingHorizontal: 10,
-                    paddingVertical: 4,
-                    backgroundColor: isPaperHomeTheme ? 'rgba(64,102,190,0.12)' : 'rgba(125,174,255,0.16)',
-                    borderWidth: 0,
-                    borderColor: 'transparent',
-                }}>
-                      <Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 13 : 15, fontWeight: '900', lineHeight: eliteStatsCompact ? 17 : 19 }} numberOfLines={1}>
-                        {experimentalStatusLevelLabel} {level}
-                      </Text>
-                    </View>
-                  </View>
+                <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, justifyContent: 'space-between', paddingVertical: eliteStatsCompact ? 3 : 5 }}>
+                  <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
+                    {experimentalStatusLevelLabel} {level}
+                  </Text>
 
                   <View style={{
-                    height: 12,
+                    height: 18,
                     borderRadius: 999,
                     overflow: 'hidden',
                     backgroundColor: isPaperHomeTheme ? homeThemeTrackBg : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.09)',
-                    borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
-                }}>
+                    borderWidth: 0,
+                  }}>
                     <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.correct] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
                       <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
                         <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
                       </Animated.View>
                     </LinearGradient>
                   </View>
-                </View>
 
-                <TouchableOpacity activeOpacity={0.82} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/streak_stats');
-                }} accessibilityRole="button" accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`} style={{
-                    width: experimentalStatusStreakWidth,
-                    minHeight: experimentalStatusTopRowHeight,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    flexShrink: 0,
-                    borderRadius: 18,
-                }}>
-                  <Animated.Text allowFontScaling={false} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 34 : 42, fontWeight: '900', lineHeight: eliteStatsCompact ? 38 : 46, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }} numberOfLines={1}>
-                    {displayStreak}
-                  </Animated.Text>
-                  <Text allowFontScaling={false} style={{ color: homeThemePanelAccent, fontSize: eliteStatsCompact ? 12 : 14, fontWeight: '900', lineHeight: eliteStatsCompact ? 13 : 15, textAlign: 'center', textTransform: 'lowercase' }} numberOfLines={2}>
-                    {homeStreakDaysLabel}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-
-              <View style={{ height: 1, backgroundColor: isPaperHomeTheme ? 'rgba(50,72,110,0.12)' : 'rgba(255,255,255,0.10)', marginTop: 19, marginBottom: 18 }}/>
-
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: eliteStatsCompact ? 2 : 5 }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: eliteStatsCompact ? 0 : 2 }}>
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
-                  return (<View key={i} style={{ alignItems: 'center', gap: 6, minWidth: experimentalStatusWeekDotSize + 5 }}>
+                      return (<View key={i} style={{ width: experimentalStatusWeekDotSize, flexShrink: 1, alignItems: 'center', gap: 4 }}>
                     <View style={{
                     width: experimentalStatusWeekDotSize,
                     height: experimentalStatusWeekDotSize,
@@ -2462,15 +2489,17 @@ export default function HomeScreen() {
                     borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked ? 0 : 1),
                     borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
                 }}>
-                      {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 16 : 18, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 16 : 18} color={weekDotTheme.checkColor}/>)}
+                          {renderWeekMarkerContent(marker, experimentalStatusWeekDotSize, eliteStatsCompact ? 14 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 14 : 16} color={weekDotTheme.checkColor}/>)}
                     </View>
                     {/* Метка дня («Пн», «Ср»…) не обрезается в многоточие: ширина по
                         содержимому + разрешаем не сжимать (numberOfLines убран). */}
-                    <Text allowFontScaling={false} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 11 : 13, fontWeight: '900', lineHeight: eliteStatsCompact ? 14 : 16, textAlign: 'center' }}>
+                    <Text maxFontSizeMultiplier={1} style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : homeThemePanelText, homeThemePanelMuted), fontSize: eliteStatsCompact ? 10 : 11, fontWeight: '900', lineHeight: eliteStatsCompact ? 12 : 14, textAlign: 'center' }}>
                       {d}
                     </Text>
                   </View>);
                 })}
+                  </View>
+                </View>
               </View>
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
@@ -2520,7 +2549,6 @@ export default function HomeScreen() {
                   </View>
                 )}
                 <LingmanVideosButton />
-                <CommunityChatHubButton />
                 <NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />
               </View>
               {/* Анимация начисления осколков */}
@@ -2539,7 +2567,7 @@ export default function HomeScreen() {
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 196 : 210) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 184 : 196) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
@@ -2815,7 +2843,7 @@ export default function HomeScreen() {
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
           {/* ЗАМОРОЗКА ЦЕПОЧКИ — для всех когда цепочка под угрозой */}
-          {streakAtRisk && !freezeActive && (<TouchableOpacity activeOpacity={0.88} onPress={handleFreezeStreak} style={{
+          {false && streakAtRisk && !freezeActive && (<TouchableOpacity activeOpacity={0.88} onPress={handleFreezeStreak} style={{
                         marginHorizontal: 16,
                         marginBottom: 12,
                         borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 16,

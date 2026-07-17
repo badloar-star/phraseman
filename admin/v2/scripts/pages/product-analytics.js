@@ -35,6 +35,60 @@
     if (element) element.textContent = value;
   }
 
+  window.renderLearningOutcomes = function renderLearningOutcomes(data, dataThroughMs) {
+    const root = document.getElementById('product-analytics-learning-outcomes');
+    if (!root) return;
+    const review = data?.review || {};
+    const sessions = data?.reviewSessions || {};
+    const delays = Array.isArray(data?.delayBuckets) ? data.delayBuckets : [];
+    const transitions = Array.isArray(data?.masteryTransitions) ? data.masteryTransitions : [];
+    const content = Array.isArray(data?.contentDiagnostics) ? data.contentDiagnostics : [];
+    const weekly = Array.isArray(data?.weeklyEffectiveLearners) ? data.weeklyEffectiveLearners : [];
+    const latestCompleteWeek = weekly.find((row) => row?.is_complete_week === true);
+    const watermark = Number(dataThroughMs) > 0 ? new Date(Number(dataThroughMs)).toLocaleString('ru-RU') : 'ещё нет завершённой ежедневной выгрузки';
+    root.innerHTML =
+      '<div class="notice">Единица измерения — экземпляр приложения с разрешённой аналитикой, не уникальный человек. Mastered означает правильное вспоминание после фактической паузы 7+ дней; durable mastered — 30+ дней. Watermark: ' + esc(watermark) + '.</div>' +
+      '<div class="an2-grid" style="margin:12px 0">' +
+        language.metricCard('Точность первого ответа', percent(review.first_answer_accuracy), number(review.persisted_answers) + ' успешно сохранённых ответов; выборка ' + number(review.consented_app_instances) + ' экземпляров приложения.') +
+        language.metricCard('Delayed recall ≥24 ч', percent(review.delayed_recall_accuracy), 'Только ответы после реально измеренной паузы, а не будущего интервала SRS.') +
+        language.metricCard('Завершение review-сессий', percent(sessions.completion_rate), number(sessions.completes) + ' завершено, ' + number(sessions.abandons) + ' прервано из ' + number(sessions.starts) + ' стартов.') +
+        language.metricCard('Weekly Effective Learners', latestCompleteWeek ? percent(latestCompleteWeek.weekly_effective_learner_rate) : '–', latestCompleteWeek ? number(latestCompleteWeek.weekly_effective_learners) + ' из ' + number(latestCompleteWeek.active_consented_app_instances) + ' активных экземпляров; последняя завершённая неделя UTC с понедельника.' : 'Нет завершённой недели, полностью покрытой выбранным периодом и watermark.') +
+      '</div>' +
+      '<h4>Точность по фактической паузе</h4><div style="overflow:auto">' + table([
+        ['Пауза', 'Фактическое время с предыдущего показа.'], ['Ответы', 'Успешно сохранённые ответы.'], ['Верные', 'Правильные ответы.'], ['Точность', 'Верные / все ответы.'], ['Выборка', 'Экземпляры приложения с согласием.'],
+      ], delays.map((row) => [row.delay_bucket, number(row.answers), number(row.correct_answers), percent(row.accuracy), number(row.consented_app_instances)])) + '</div>' +
+      '<h4>Переходы знания</h4><div style="overflow:auto">' + table([
+        ['Переход', 'Evidence-based изменение состояния знания.'], ['События', 'Количество переходов.'], ['Выборка', 'Экземпляры приложения с согласием.'],
+      ], transitions.map((row) => [row.transition, number(row.events), number(row.consented_app_instances)])) + '</div>' +
+      '<h4>Диагностика контента</h4><div style="overflow:auto">' + table([
+        ['Группа', 'Урок либо suppressed_small_sample для групп меньше пяти экземпляров.'], ['Ответы', 'Количество ответов.'], ['Точность', 'Верные / все ответы.'], ['Выборка', 'Минимум пять для отдельного урока.'],
+      ], content.map((row) => [row.diagnostic_group, number(row.answers), percent(row.accuracy), number(row.consented_app_instances)])) + '</div>' +
+      '<h4>Weekly Effective Learners по неделям UTC</h4><div style="overflow:auto">' + table([
+        ['Неделя', 'Понедельник, UTC.'], ['Статус', 'Полностью ли неделя покрыта выбранным диапазоном и watermark.'], ['Активные', 'Экземпляры со значимой учебной активностью.'], ['WEL', 'Два учебных дня и хотя бы один верный delayed recall ≥24 ч.'], ['Доля', 'WEL / активные экземпляры.'], ['Delayed successes', 'Количество верных отложенных вспоминаний.'],
+      ], weekly.map((row) => [row.week_start_utc, row.is_complete_week === true ? 'Завершённая неделя' : 'Неполная неделя', number(row.active_consented_app_instances), number(row.weekly_effective_learners), percent(row.weekly_effective_learner_rate), number(row.delayed_success_count)])) + '</div>' +
+      '<div class="notice warning" style="margin-top:12px">Корреляция между контентом и результатом не доказывает причинность. Решения о причинном эффекте требуют эксперимента или последовательного rollout по версиям.</div>';
+  };
+
+  window.renderExperimentsAndReliability = function renderExperimentsAndReliability(experiments, reliability) {
+    const experimentsRoot = document.getElementById('product-analytics-experiments');
+    const reliabilityRoot = document.getElementById('product-analytics-reliability');
+    const exposures = Array.isArray(experiments?.exposures) ? experiments.exposures : [];
+    const adoption = Array.isArray(reliability?.releaseAdoption) ? reliability.releaseAdoption : [];
+    const failures = Array.isArray(reliability?.operationFailures) ? reliability.operationFailures : [];
+    if (experimentsRoot) experimentsRoot.innerHTML =
+      '<div class="notice warning">Экспозиция показывает фактический показ варианта, но сама по себе не доказывает эффект. Автоматический победитель отключён. Серверная выручка по вариантам недоступна без governed cross-source join.</div><div style="overflow:auto">' + table([
+        ['Эксперимент', 'Неизменяемый ID паспорта.'], ['Версия', 'Версия определения.'], ['Вариант', 'Фактически показанный вариант.'], ['Контроль', 'Заранее заданная контрольная группа.'], ['Показы', 'Уникальные exposure ID.'], ['Выборка', 'Экземпляры приложения с согласием.'],
+      ], exposures.map((row) => [row.experiment_id, number(row.definition_version), row.variant_id, row.control_variant_id, number(row.exposures), number(row.consented_app_instances)])) + '</div>';
+    if (reliabilityRoot) reliabilityRoot.innerHTML =
+      '<div class="notice warning">Crash-free users, crash-free sessions и ANR недоступны: официальный aggregate export Crashlytics не подключён. Отсутствие записанных ошибок не означает 100% стабильность.</div>' +
+      '<h4>Принятие версий</h4><div style="overflow:auto">' + table([
+        ['Версия', 'Версия приложения.'], ['Сборка', 'Номер сборки.'], ['Платформа', 'iOS или Android.'], ['Установки', 'Экземпляры приложения с согласием.'], ['Сессии', 'Наблюдаемые consented-сессии.'],
+      ], adoption.map((row) => [row.app_version, row.build_number, row.platform, number(row.consented_app_instances), number(row.consented_sessions)])) + '</div>' +
+      '<h4>Нормализованные сбои</h4><div style="overflow:auto">' + table([
+        ['Версия', 'Версия и сборка.'], ['Функция', 'Allowlisted feature.'], ['Операция', 'Allowlisted operation.'], ['Код', 'Нормализованный код без raw error.'], ['Сбои', 'Количество событий.'], ['Затронуто', 'Consented app instances.'],
+      ], failures.map((row) => [row.app_version + ' (' + row.build_number + ')', row.feature, row.operation, row.failure_code, number(row.failures), number(row.affected_consented_app_instances)])) + '</div>';
+  };
+
   window.loadProductAnalytics = async function loadProductAnalytics(force = false) {
     if (window._productAnalyticsLoading || (window._productAnalyticsLoaded && !force)) return;
     const status = document.getElementById('product-analytics-status');
@@ -90,8 +144,16 @@
         language.explain('Источник: ежедневная выгрузка', 'Данные обновляются после ежедневной выгрузки Firebase Analytics, а не мгновенно.', 'div') + '</div>';
       if (typeof window.renderProductSessions === 'function') window.renderProductSessions(data.sessions || {});
       if (typeof window.renderLearningDiagnostics === 'function') window.renderLearningDiagnostics(data.learningDropoff || {});
+      if (typeof window.renderLearningOutcomes === 'function') window.renderLearningOutcomes(data.learningOutcomes || {}, data.dataThroughMs);
       if (typeof window.renderConversionDiagnostics === 'function') window.renderConversionDiagnostics(data.behavioralConversion || {});
-      if (typeof window.renderRetentionDiagnostics === 'function') window.renderRetentionDiagnostics(data.observedReturn || {});
+      if (typeof window.renderRetentionDiagnostics === 'function') window.renderRetentionDiagnostics(
+        data.trueRetention || {},
+        data.observedReturn || {},
+        data.activation || {},
+        data.acquisition || {},
+        quality,
+      );
+      if (typeof window.renderExperimentsAndReliability === 'function') window.renderExperimentsAndReliability(data.experiments || {}, data.reliability || {});
 
       const dataThrough = Number(data.dataThroughMs);
       const dataThroughText = Number.isFinite(dataThrough) && dataThrough > 0

@@ -221,8 +221,9 @@ describe('auth provider stable-id linking', () => {
     expect(cloudSyncSource).toContain("export type CloudRestoreResult = 'restored' | 'not_found' | 'failed'");
     expect(cloudSyncSource).toContain("type CloudRestoreAttempt = { status: CloudRestoreResult; applied: boolean }");
     expect(cloudSyncSource).toContain('return completedCloudRestoreAttempt(applied)');
-    expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(true)).applied');
-    expect(cloudSyncSource).toContain('return (await restoreAndMigrateFromCloudResult(false)).status');
+    expect(cloudSyncSource).toContain('completeLegacyLessonMigrationAfterRestore');
+    expect(cloudSyncSource).toContain('await restoreAndMigrateFromCloudResult(true)');
+    expect(cloudSyncSource).toContain('await restoreAndMigrateFromCloudResult(false, options)');
   });
 
   test('remote stable-id swap uses the full cloud sync account wipe before restore', () => {

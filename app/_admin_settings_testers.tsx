@@ -1659,6 +1659,13 @@ export default function SettingsTestersFunctions() {
     }
   };
 
+  const seedRandomStreak = async () => {
+    const randomStreakDays = Math.floor(Math.random() * 100) + 1;
+    await AsyncStorage.setItem('streak_count', String(randomStreakDays));
+    emitAppEvent('streak_seeded', { days: randomStreakDays });
+    AppInfoDialog.alert('Streak посеян', `На этом аккаунте теперь ${randomStreakDays} дней. Главная обновлена.`);
+  };
+
   // ── Friends QA: seed repeatable social data without touching unrelated user flows.
   const showAdminFriendsToast = (kind: 'success' | 'error' | 'info', text: string) => {
     emitAppEvent(
@@ -2823,6 +2830,14 @@ export default function SettingsTestersFunctions() {
               icon="add-circle-outline"
               label="Добавить 5000 XP"
               onPress={addXP}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="testers-seed-random-streak"
+              icon="flame-outline"
+              label="Seed: случайный streak"
+              sub="Поставить случайно от 1 до 100 дней — для проверки огня на главной"
+              onPress={seedRandomStreak}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow

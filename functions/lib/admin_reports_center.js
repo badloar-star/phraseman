@@ -33,8 +33,10 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminUpdateReportStatus = exports.adminListReportQueue = exports.REPORT_SOURCES = void 0;
+exports.adminUpdateReportStatus = exports.adminExportReportDocuments = exports.adminListReportQueue = exports.REPORT_SOURCES = void 0;
 exports.parseReportListRequest = parseReportListRequest;
+exports.parseReportExportRequest = parseReportExportRequest;
+exports.serializeReportDocument = serializeReportDocument;
 exports.canonicalReportLane = canonicalReportLane;
 exports.projectReportRow = projectReportRow;
 exports.matchesReportFilters = matchesReportFilters;
@@ -48,6 +50,8 @@ const roles_1 = require("./admin/roles");
 const REGION = 'us-central1';
 const MAX_LIST_LIMIT = 100;
 const MAX_FILTER_SCAN_LIMIT = 500;
+const MAX_EXPORT_REFERENCES = 100;
+const MAX_EXPORT_RESPONSE_BYTES = 4000000;
 const DEFAULT_LIST_LIMIT = 50;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
@@ -151,6 +155,69 @@ function parseReportListRequest(data) {
         throw new https_1.HttpsError('invalid-argument', 'cursor cannot be combined with report filters');
     return Object.freeze({ source, rawStatus, lane, uid, category, reportId, sinceDays, limit, cursor });
 }
+function parseReportExportRequest(data) {
+    const input = isRecord(data) ? data : {};
+    if (!Array.isArray(input.reports) || input.reports.length < 1 || input.reports.length > MAX_EXPORT_REFERENCES) {
+        throw new https_1.HttpsError('invalid-argument', `reports must contain 1..${MAX_EXPORT_REFERENCES} references`);
+    }
+    const seen = new Set();
+    const reports = input.reports.map((value) => {
+        if (!isRecord(value))
+            throw new https_1.HttpsError('invalid-argument', 'report reference must be an object');
+        const source = parseSource(value.source, false);
+        const id = cleanText(value.id, 161);
+        if (!TOKEN_RE.test(id))
+            throw new https_1.HttpsError('invalid-argument', 'report id is invalid');
+        const key = `${source}:${id}`;
+        if (seen.has(key))
+            throw new https_1.HttpsError('invalid-argument', 'duplicate report reference');
+        seen.add(key);
+        return Object.freeze({ source, id });
+    });
+    return Object.freeze({ reports: Object.freeze(reports) });
+}
+function jsonSafeValue(value, seen, depth) {
+    if (depth > 40)
+        throw new https_1.HttpsError('failed-precondition', 'report document is nested too deeply');
+    if (value === null || typeof value === 'string' || typeof value === 'boolean')
+        return value;
+    if (typeof value === 'number')
+        return Number.isFinite(value) ? value : null;
+    if (typeof value === 'bigint')
+        return value.toString();
+    if (value instanceof Date)
+        return value.toISOString();
+    if (Array.isArray(value))
+        return value.map((entry) => jsonSafeValue(entry, seen, depth + 1));
+    if (!isRecord(value))
+        return null;
+    if (seen.has(value))
+        throw new https_1.HttpsError('failed-precondition', 'report document contains a cycle');
+    seen.add(value);
+    try {
+        if (typeof value.toJSON === 'function') {
+            const jsonValue = value.toJSON();
+            if (jsonValue !== value)
+                return jsonSafeValue(jsonValue, seen, depth + 1);
+        }
+        const output = {};
+        for (const [key, entry] of Object.entries(value)) {
+            if (entry === undefined || typeof entry === 'function' || typeof entry === 'symbol')
+                continue;
+            output[key] = jsonSafeValue(entry, seen, depth + 1);
+        }
+        return output;
+    }
+    finally {
+        seen.delete(value);
+    }
+}
+function serializeReportDocument(row) {
+    const serialized = jsonSafeValue(row, new WeakSet(), 0);
+    if (!isRecord(serialized))
+        throw new https_1.HttpsError('failed-precondition', 'report document is not an object');
+    return serialized;
+}
 function normalizedStatus(source, status) {
     return cleanText(status, 40).toLowerCase() || SOURCE_CONFIG[source].defaultStatus;
 }
@@ -184,11 +251,13 @@ function projectReportRow(source, id, row) {
         createdAtMs: millis(row.createdAtMs || row.createdAt || row.serverCreatedAt),
         users: Object.freeze({
             primaryUid: primaryUid || null,
+            primaryName: cleanText(row.userName || row.reporterName, 120) || null,
             reporterUid: reporterUid || null,
             reporterName: cleanText(row.reporterName || row.userName, 120) || null,
             reportedUid: reportedUid || null,
             reportedName: cleanText(row.reportedName, 120) || null,
             authorUid: authorUid || null,
+            authorName: cleanText(row.authorName || row.userName, 120) || null,
         }),
         context: Object.freeze({
             screen: cleanText(row.screen, 100) || null,
@@ -316,6 +385,28 @@ exports.adminListReportQueue = (0, https_1.onCall)({ region: REGION, enforceAppC
         nextCursor: input.source === 'all' ? null : results[0]?.nextCursor ?? null,
         fetchedAtMs: Date.now(),
     };
+});
+exports.adminExportReportDocuments = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK, timeoutSeconds: 20, memory: '512MiB' }, async (request) => {
+    const context = requireReportPermission(request, 'reports.read');
+    const input = parseReportExportRequest(request.data);
+    if (input.reports.some(({ source }) => source === 'app_errors') && !(0, permissions_1.hasPermission)(context.role, 'diagnostics.read')) {
+        throw new https_1.HttpsError('permission-denied', 'Role cannot export app errors');
+    }
+    const db = admin.firestore();
+    const snapshots = await db.getAll(...input.reports.map(({ source, id }) => db.collection(SOURCE_CONFIG[source].collection).doc(id)));
+    const missing = input.reports.filter((_, index) => !snapshots[index]?.exists);
+    if (missing.length)
+        throw new https_1.HttpsError('failed-precondition', `${missing.length} report document(s) changed or disappeared; refresh the queue`);
+    const documents = input.reports.map(({ source, id }, index) => ({
+        source,
+        id,
+        document: serializeReportDocument((snapshots[index]?.data() ?? {})),
+    }));
+    const response = { ok: true, documents };
+    if (Buffer.byteLength(JSON.stringify(response), 'utf8') > MAX_EXPORT_RESPONSE_BYTES) {
+        throw new https_1.HttpsError('resource-exhausted', 'report export chunk is too large; narrow the filters and try again');
+    }
+    return response;
 });
 exports.adminUpdateReportStatus = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     const input = parseReportStatusUpdateRequest(request.data);

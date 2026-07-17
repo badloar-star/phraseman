@@ -37,14 +37,14 @@ describe('premium modal dispatcher contract', () => {
     const purchaseBody = purchase.slice(purchaseStart, restoreStart);
     const restoreBody = purchase.slice(restoreStart, purchase.indexOf('const handleClose = useCallback', restoreStart));
 
-    expect(purchaseBody).toContain('await initRevenueCat();');
-    expect(purchaseBody).toContain('if (!(await syncRevenueCatIdentity()))');
+    expect(purchaseBody).toContain('await initRevenueCat(isOperationAccountCurrent);');
+    expect(purchaseBody).toContain('if (!(await syncRevenueCatIdentity(isOperationAccountCurrent)))');
     expect(purchaseBody).toContain('Purchases.purchasePackage(pkg)');
     expect(purchaseBody).toContain('revenueCatPremiumMetadata(customerInfo, pkg.product.identifier)');
     expect(purchaseBody).toContain('persistStorePremiumLocally');
 
-    expect(restoreBody).toContain('await initRevenueCat();');
-    expect(restoreBody).toContain('await syncRevenueCatIdentity()');
+    expect(restoreBody).toContain('await initRevenueCat(isOperationAccountCurrent);');
+    expect(restoreBody).toContain('await syncRevenueCatIdentity(isOperationAccountCurrent)');
     expect(restoreBody).toContain('Purchases.restorePurchases()');
     expect(restoreBody).toContain('inferPremiumPlanFromProductId');
     expect(restoreBody).toContain('persistStorePremiumLocally');

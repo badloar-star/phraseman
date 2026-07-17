@@ -5,8 +5,9 @@ import Svg, { Path } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
 import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
-import { buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
+import { FREE_LESSON_LIMIT, buildSequentialFreeLessonUnlocks, lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { openPremiumPaywall } from '../paywall_navigation';
+import { lessonPurchaseContinuationParams } from '../paywall_lesson_continuation';
 import { useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -406,6 +407,7 @@ interface LessonCardProps {
     isPremium: boolean;
     DEV_CONTENT_UNLOCK: boolean;
     noLimits: boolean;
+    legacyFreeLessonCap: number;
     textPrimary: string;
     textMuted: string;
 }
@@ -420,7 +422,7 @@ const LessonCard = React.memo(function LessonCard({
     goldSurface: _gs, goldHairline, goldAntique, goldBright,
     scaleAnim, lang, f,
     openLessonPaywall, setGateModal, router, studyTarget,
-    isPremium, DEV_CONTENT_UNLOCK, noLimits,
+    isPremium, DEV_CONTENT_UNLOCK, noLimits, legacyFreeLessonCap,
     textPrimary: _tp, textMuted,
 }: LessonCardProps) {
     const lockedCardHasLightFill = false;
@@ -451,6 +453,7 @@ const LessonCard = React.memo(function LessonCard({
                 isPremium,
                 devMode: DEV_CONTENT_UNLOCK,
                 noLimits,
+                legacyFreeLessonCap,
             });
             if (access === 'available') {
                 void prefetchLessonMenuCache(num, studyTarget);
@@ -613,6 +616,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     lessonCacheTargetRef.current = lessonCacheTarget;
     const boot = lessonsUiSessionCacheByTarget[lessonCacheTarget] ?? getLessonsTabInitialState(studyTarget);
     const [noLimits, setNoLimits] = useState(() => boot?.noLimits ?? false);
+    const [legacyFreeLessonCap, setLegacyFreeLessonCap] = useState(
+        () => boot?.legacyFreeLessonCap ?? FREE_LESSON_LIMIT,
+    );
     const { hasPremiumAccess: isPremium } = usePremium();
     const dialogAccess = useFeatureAccess('ai_dialog');
     const [scores, setScores] = useState<number[]>(() => boot?.scores ?? new Array(32).fill(0));
@@ -706,6 +712,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                 return;
             examBestPctTargetRef.current = entry.target;
             setNoLimits(snapshot.noLimits);
+            setLegacyFreeLessonCap(snapshot.legacyFreeLessonCap);
             setPersistedUnlocked(snapshot.persistedUnlocked);
             setScores(snapshot.scores);
             setProgCounts(snapshot.progCounts);
@@ -764,8 +771,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             scores,
             persistedUnlocked,
             lessonCount: u.length,
+            legacyFreeLessonCap,
         });
-    }, [noLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
+    }, [legacyFreeLessonCap, noLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
     type ListItem = {
         kind: 'header';
         label: string;
@@ -823,10 +831,11 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
     const openLessonPaywall = useCallback((lessonNum: number) => {
         const doneSoFar = scores.filter(score => score > 0).length;
         openPremiumPaywall(router, {
-            context: lessonPaywallContext(lessonNum),
+            context: lessonPaywallContext(lessonNum, legacyFreeLessonCap),
             lessons_done: doneSoFar,
+            ...lessonPurchaseContinuationParams(lessonNum),
         });
-    }, [router, scores]);
+    }, [legacyFreeLessonCap, router, scores]);
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
@@ -1021,7 +1030,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                 const examLevel = lvl as CourseLevel;
                 const examLevelIdx = getCourseLevelIndex(examLevel);
                 const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
-                const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to);
+                const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to, legacyFreeLessonCap);
                 const examSourceAvailable = examContentAvailableForTarget(studyTarget);
                 const allDone = examSourceAvailable && !examPremiumRequired && (DEV_CONTENT_UNLOCK || noLimits || premiumExamAvailable || scoreReady);
                 const prevExamLevel = getPreviousCourseLevel(examLevel);
@@ -1109,7 +1118,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                         hapticTap();
                         const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
                         if (examPremiumRequired) {
-                            openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel) ? firstLessonByLevel : to);
+                            openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel, legacyFreeLessonCap) ? firstLessonByLevel : to);
                         }
                         else if (!examSourceAvailable) {
                             setGateModal({ kind: 'frenchExam', level: lvl });
@@ -1248,7 +1257,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             const lessonAccent = bg;
             const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
             const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
-            const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num);
+            const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num, legacyFreeLessonCap);
             const showLessonProgressFill = isUnlocked && progPct > 0;
             const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
             const lockedCardBaseColor = isGoldTheme
@@ -1306,6 +1315,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                 openLessonPaywall={openLessonPaywall} setGateModal={setGateModal}
                 router={router} studyTarget={studyTarget}
                 isPremium={isPremium} DEV_CONTENT_UNLOCK={DEV_CONTENT_UNLOCK} noLimits={noLimits}
+                legacyFreeLessonCap={legacyFreeLessonCap}
                 textPrimary={t.textPrimary} textMuted={t.textMuted}
             />);
         }}
@@ -1405,8 +1415,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                     onPress: () => {
                         const doneSoFar = scores.filter(score => score > 0).length;
                         openPremiumPaywall(router, {
-                            context: lessonPaywallContext(gateModal.lessonNum),
+                            context: lessonPaywallContext(gateModal.lessonNum, legacyFreeLessonCap),
                             lessons_done: doneSoFar,
+                            ...lessonPurchaseContinuationParams(gateModal.lessonNum),
                         });
                     },
                 },

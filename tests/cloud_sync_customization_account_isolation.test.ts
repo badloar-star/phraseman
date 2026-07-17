@@ -2,6 +2,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { accountLocalDataKeysForToday, wipeLocalAccountData } from '../app/cloud_sync';
 import { getAppSnapshot, patchAppSnapshot } from '../app/app_snapshot_store';
 import { CUSTOMIZATION_ACCOUNT_LOCAL_KEYS } from '../constants/customization_storage_keys';
+import {
+  legacyFreeLessonCapKey,
+  legacyFreeLessonMigrationKey,
+} from '../app/target_storage_keys';
 
 jest.mock('@react-native-async-storage/async-storage');
 
@@ -33,4 +37,21 @@ it('removes purchase recovery and spend ledger during account switch wipe', asyn
 
   CUSTOMIZATION_ACCOUNT_LOCAL_KEYS.forEach((key) => expect(store[key]).toBeUndefined());
   expect(getAppSnapshot().customization).toBeUndefined();
+});
+
+it('removes legacy lesson caps and migration markers during account switch wipe', async () => {
+  const legacyKeys = [
+    legacyFreeLessonCapKey('en'),
+    legacyFreeLessonMigrationKey('en'),
+    legacyFreeLessonCapKey('fr'),
+    legacyFreeLessonMigrationKey('fr'),
+  ];
+  legacyKeys.forEach((key) => { store[key] = 'sentinel'; });
+
+  expect(accountLocalDataKeysForToday('2026-07-13')).toEqual(
+    expect.arrayContaining(legacyKeys),
+  );
+  await wipeLocalAccountData();
+
+  legacyKeys.forEach((key) => expect(store[key]).toBeUndefined());
 });

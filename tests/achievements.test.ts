@@ -66,12 +66,19 @@ describe('achievements', () => {
     const missingEs = ids.filter(id => !ACHIEVEMENT_ES[id]);
     expect(missingEs).toEqual([]);
 
-    const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
-    const screenSource = fs.readFileSync(screenPath, 'utf8');
-    const imageBlock = screenSource.match(/export const ACHIEVEMENT_IMAGE:[\s\S]*?};/)?.[0] ?? '';
+    const imagePath = path.join(__dirname, '..', 'constants', 'achievementImageAssets.ts');
+    const imageBlock = fs.readFileSync(imagePath, 'utf8');
     const imageIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
     const missingImages = ids.filter(id => !imageIds.has(id));
     expect(missingImages).toEqual([]);
+  });
+
+  it('shares the generated image registry with compact achievement surfaces', () => {
+    const statsSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8');
+    const toastSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AchievementToast.tsx'), 'utf8');
+
+    expect(statsSource).toContain("import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets'");
+    expect(toastSource).toContain("import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets'");
   });
 
   it('renders generated achievement art immediately and keeps fallback only for image errors', () => {

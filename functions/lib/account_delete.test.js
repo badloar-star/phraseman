@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_delete_1 = require("./account_delete");
-const { accountDeleteQueryPlan, accountDeleteCollectionGroupPlan, accountDeleteCollectionGroupDocumentIdPlan, resolveStableUidForDelete, enqueueForAuthenticatedAccount, } = account_delete_1.__accountDeleteTestHooks;
+const { accountDeleteQueryPlan, accountDeleteCollectionGroupPlan, accountDeleteCollectionGroupDocumentIdPlan, resolveStableUidForDelete, enqueueForAuthenticatedAccount, removeFromFriendGiftDailyLimits, deleteCrossUserDocumentIdMatches, } = account_delete_1.__accountDeleteTestHooks;
 function makeDbStub(opts) {
     const users = opts.users ?? {};
     const authLinks = opts.authLinks ?? {};
@@ -64,13 +64,6 @@ describe('accountDelete query plan', () => {
         expect(keys.has('subscription_cancel_surveys.uid.==.stable-123')).toBe(true);
         expect(keys.has('community_packs.authorStableId.==.stable-123')).toBe(true);
         expect(keys.has('community_pack_purchases.buyerStableId.==.stable-123')).toBe(true);
-        expect(keys.has('league_chat_messages.authorUid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_topics.authorUid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_comments.authorUid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_reports.reporterUid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_votes.stableUid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_restrictions.uid.==.stable-123')).toBe(true);
-        expect(keys.has('help_board_compass_billing.uid.==.stable-123')).toBe(true);
         expect(keys.has('user_reports.reporterUid.==.stable-123')).toBe(true);
         expect(keys.has('revenuecat_premium_events.candidates.array-contains.stable-123')).toBe(true);
     });
@@ -83,12 +76,6 @@ describe('accountDelete query plan', () => {
         expect(keys.has('arena_sessions.playerIds.array-contains.auth-456')).toBe(true);
         expect(keys.has('arena_invites.fromUid.==.auth-456')).toBe(true);
         expect(keys.has('arena_room_members.authUid.==.auth-456')).toBe(true);
-        expect(keys.has('league_chat_messages.authorAuthUid.==.auth-456')).toBe(true);
-        expect(keys.has('league_chat_reports.reporterAuthUid.==.auth-456')).toBe(true);
-        expect(keys.has('help_board_topics.authorAuthUid.==.auth-456')).toBe(true);
-        expect(keys.has('help_board_comments.authorAuthUid.==.auth-456')).toBe(true);
-        expect(keys.has('help_board_reports.reporterAuthUid.==.auth-456')).toBe(true);
-        expect(keys.has('help_board_votes.authUid.==.auth-456')).toBe(true);
     });
     it('covers newer account-linked Firestore collections', () => {
         const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
@@ -173,6 +160,91 @@ describe('accountDelete stable id resolver', () => {
     });
 });
 describe('accountDelete query deletion safety', () => {
+    it('deletes reverse friend documents through concrete user paths', async () => {
+        const refs = {};
+        const userRef = {
+            collection: jest.fn((collection) => ({
+                doc: (id) => {
+                    const ref = { path: `users/peer/${collection}/${id}` };
+                    refs[ref.path] = ref;
+                    return ref;
+                },
+            })),
+        };
+        const listDocuments = jest.fn(async () => [userRef]);
+        const recursiveDelete = jest.fn(async () => { });
+        const getAll = jest.fn(async (...docRefs) => docRefs.map((ref, index) => ({
+            exists: index === 0,
+            ref,
+        })));
+        const db = {
+            collection: jest.fn((name) => {
+                expect(name).toBe('users');
+                return { listDocuments };
+            }),
+            collectionGroup: jest.fn(() => {
+                throw new Error('document-id collection-group query must not be used');
+            }),
+            getAll,
+            recursiveDelete,
+        };
+        const writer = { flush: jest.fn(async () => { }) };
+        const ctx = {
+            db,
+            writer,
+            seen: new Set(),
+            runId: 'test',
+            stableUidHash: 'stable',
+            authUidHash: 'auth',
+            startedAtMs: 0,
+            lastProgressLogDocs: 0,
+            writerClosed: false,
+        };
+        const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+        await deleteCrossUserDocumentIdMatches(db, 'stable-123', 'auth-456', ctx, stats);
+        expect(listDocuments).toHaveBeenCalledTimes(1);
+        expect(getAll).toHaveBeenCalledTimes(1);
+        expect(getAll.mock.calls[0]).toHaveLength(4);
+        expect(recursiveDelete).toHaveBeenCalledTimes(1);
+        expect(writer.flush).toHaveBeenCalledTimes(1);
+        expect(db.collectionGroup).not.toHaveBeenCalled();
+        expect(stats.queriesRun).toBe(1);
+    });
+    it('cleans dynamic gift-recipient keys with collection-scoped queries', async () => {
+        const recipientRef = { path: 'users/sender/friend_gift_daily_limits/2026-07-14' };
+        let reads = 0;
+        const get = jest.fn(async () => {
+            reads += 1;
+            return reads === 1 ? { empty: false, docs: [{ ref: recipientRef }] } : { empty: true, docs: [] };
+        });
+        const limit = jest.fn(() => ({ get }));
+        const where = jest.fn(() => ({ limit }));
+        const dailyLimits = { where };
+        const senderRef = { collection: jest.fn(() => dailyLimits) };
+        const listDocuments = jest.fn(async () => [senderRef]);
+        const update = jest.fn();
+        const commit = jest.fn(async () => { });
+        const db = {
+            collection: jest.fn((name) => {
+                expect(name).toBe('users');
+                return { listDocuments };
+            }),
+            collectionGroup: jest.fn(() => {
+                throw new Error('collection-group query must not be used for dynamic recipient keys');
+            }),
+            batch: jest.fn(() => ({ update, commit })),
+        };
+        const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+        await removeFromFriendGiftDailyLimits(db, 'recipient-stable', stats);
+        expect(listDocuments).toHaveBeenCalledTimes(1);
+        expect(senderRef.collection).toHaveBeenCalledWith('friend_gift_daily_limits');
+        expect(where).toHaveBeenCalledTimes(2);
+        expect(update).toHaveBeenCalledTimes(1);
+        expect(commit).toHaveBeenCalledTimes(1);
+        expect(db.collectionGroup).not.toHaveBeenCalled();
+        expect(stats.docsUpdated).toBe(1);
+        expect(stats.queriesRun).toBe(2);
+    });
     it('returns when all query docs were already scheduled by another delete stage', async () => {
         const ref = { path: 'stuck/doc' };
         const query = {

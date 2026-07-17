@@ -14,6 +14,8 @@ jest.mock('firebase-functions/params', () => ({
     defineSecret: () => ({ value: () => 'sk-test-key' }),
 }));
 jest.mock('firebase-admin', () => ({
+    apps: [],
+    initializeApp: jest.fn(),
     firestore: jest.fn(),
 }));
 jest.mock('./callable_options', () => ({

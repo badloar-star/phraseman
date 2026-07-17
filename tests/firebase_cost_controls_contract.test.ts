@@ -15,7 +15,6 @@ describe('Firebase cost controls', () => {
     for (const name of [
       'communityGetPackRatingSummary',
       'communitySubmitPackRating',
-      'leagueChatToggleLike',
     ]) {
       expect(indexSource).not.toContain(name);
       expect(packageJson).not.toContain(`functions:${name}`);
@@ -97,7 +96,7 @@ describe('Firebase cost controls', () => {
 
   it('keeps new web and admin/background cost controls cheap by default', () => {
     const adminPushSource = read('functions/src/admin_push_jobs.ts');
-    const helpBoardSource = read('functions/src/help_board.ts');
+    const retiredCommunitySource = read('functions/src/retired_community_features.ts');
     const siteStatsSource = read('functions/src/site_stats.ts');
     const webStatsSource = read('knowly-www/assets/stats.js');
     const startSource = read('knowly-www/assets/start.js');
@@ -105,7 +104,8 @@ describe('Firebase cost controls', () => {
 
     expect(adminPushSource).toContain("schedule: 'every 6 hours'");
     expect(adminPushSource).not.toContain("schedule: '*/30 * * * *'");
-    expect(helpBoardSource).toContain("schedule: '0 * * * *'");
+    expect(retiredCommunitySource).toContain("schedule: '0 * * * *'");
+    expect(retiredCommunitySource).toContain('async () => undefined');
     expect(siteStatsSource).toContain('const rawEvents = Array.isArray(body.events)');
     expect(webStatsSource).toContain('{ events: initialEvents }');
     expect(startSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");

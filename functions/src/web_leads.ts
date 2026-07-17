@@ -359,6 +359,7 @@ export const webLeadCapture = onRequest(
 
     const db = getFirestore();
     const answers = cleanAttribution(body.answers);
+    const marketingConsent = body.marketingConsent === true;
     const ref = db.collection(LEADS_COLLECTION).doc(emailContactDocId(email));
 
     try {
@@ -366,6 +367,7 @@ export const webLeadCapture = onRequest(
       const existing = snap.exists ? (snap.data() ?? {}) : null;
       const nowMs = Date.now();
       const lastPlanEmailMs = Number(existing?.planEmailSentAtMs) || 0;
+      const effectiveMarketingConsent = marketingConsent || existing?.marketingConsent === true;
       // Кулдаун письма: эндпоинт публичный, нельзя позволить бомбить чужой ящик.
       const shouldEmail = !suppressed && nowMs - lastPlanEmailMs > PLAN_EMAIL_COOLDOWN_MS;
 
@@ -374,7 +376,15 @@ export const webLeadCapture = onRequest(
         answers: answers ?? existing?.answers ?? null,
         utm: cleanAttribution(body.utm) ?? existing?.utm ?? null,
         page: cleanShortText(body.page, 120) || null,
-        status: suppressed ? 'unsubscribed' : String(existing?.status ?? 'active'),
+        marketingConsent: marketingConsent || existing?.marketingConsent === true,
+        ...(marketingConsent && existing?.marketingConsent !== true
+          ? { marketingConsentAtMs: nowMs, marketingConsentAt: FieldValue.serverTimestamp() }
+          : {}),
+        status: suppressed
+          ? 'unsubscribed'
+          : effectiveMarketingConsent
+            ? (existing?.status === 'marketing_not_opted_in' ? 'active' : String(existing?.status ?? 'active'))
+            : 'marketing_not_opted_in',
         ...(existing ? {} : { createdAtMs: nowMs, createdAt: FieldValue.serverTimestamp(), nudgeCount: 0 }),
         updatedAt: FieldValue.serverTimestamp(),
         updatedAtIso: new Date().toISOString(),
@@ -414,6 +424,10 @@ export const webLeadNudgeCron = onSchedule(
     let sent = 0;
     for (const doc of snap.docs) {
       const lead = doc.data();
+      if (lead.marketingConsent !== true) {
+        await doc.ref.set({ status: 'marketing_not_opted_in' }, { merge: true });
+        continue;
+      }
       const email = normalizeEmailContactEmail(lead.email);
       if (!email) continue;
       const nudgeCount = Number(lead.nudgeCount) || 0;

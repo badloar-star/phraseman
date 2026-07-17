@@ -7,6 +7,7 @@ const CLASSIFIERS = [
     { pattern: /source_registry_(?:not_found|required|missing)/i, code: 'source_missing', retryable: false },
     { pattern: /blueprint_lesson_not_found|source_coverage/i, code: 'source_coverage', retryable: false },
     { pattern: /provider_rate_limit|rate.?limit|too many requests/i, code: 'provider_rate_limit', retryable: true },
+    { pattern: /generation_stage_schema_failed/i, code: 'provider_schema', retryable: true },
     { pattern: /generated_(?:surface|lesson)_invalid|provider_schema/i, code: 'provider_schema', retryable: false },
     { pattern: /qa_failed|quality.?gate/i, code: 'qa_failed', retryable: false },
     { pattern: /daily_budget_exceeded|budget_exhausted/i, code: 'budget_exhausted', retryable: false },

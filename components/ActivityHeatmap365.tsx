@@ -8,6 +8,7 @@ import {
   Easing,
   LayoutChangeEvent,
   Modal,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -54,6 +55,8 @@ const GOALS = [100, 180, 365] as const;
 const FILTERS: Activity365Filter[] = ['all', 'lessons', 'quizzes', 'review', 'arena'];
 const YEAR_GRID_ROWS = 7;
 const YEAR_GRID_COLS = Math.ceil(WINDOW_DAYS / YEAR_GRID_ROWS);
+const COMPACT_YEAR_ROWS = 7;
+const COMPACT_YEAR_CELL = 13;
 
 const EMPTY_GOAL = {
   goal: 120,
@@ -613,7 +616,15 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   );
 }
 
-function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: boolean; scrim?: StatsCardArtScrim } = {}) {
+function ActivityHeatmap365({
+  hideNextStep = false,
+  compact = false,
+  scrim,
+}: {
+  hideNextStep?: boolean;
+  compact?: boolean;
+  scrim?: StatsCardArtScrim;
+} = {}) {
   const { theme: t, f, themeMode } = useTheme();
   const isGoldTheme = themeMode === 'gold';
   const { lang } = useLang();
@@ -624,6 +635,7 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
   const [selectedDay, setSelectedDay] = useState<Activity365Day | null>(null);
   const [reportOpen, setReportOpen] = useState(false);
   const [gridInnerW, setGridInnerW] = useState(0);
+  const compactPreviewRef = useRef<ScrollView>(null);
   // Развёрнутый вид карты — помесячно с листанием (крупные ячейки, легко попасть пальцем).
   // monthOffset: 0 = текущий месяц, отрицательные значения — назад в прошлое.
   const [monthOffset, setMonthOffset] = useState(0);
@@ -783,10 +795,59 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
     transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
   };
 
+  if (compact && !expanded) {
+    const compactPreviewRows = COMPACT_YEAR_ROWS;
+    const compactPreviewCols = YEAR_GRID_COLS;
+    const compactPreviewGap = 3;
+    const compactPreviewHeight = compactPreviewRows * COMPACT_YEAR_CELL + (compactPreviewRows - 1) * compactPreviewGap;
+    const compactPreviewWidth = compactPreviewCols * COMPACT_YEAR_CELL + (compactPreviewCols - 1) * compactPreviewGap;
+    const compactPreviewCells = Array.from({ length: compactPreviewRows * compactPreviewCols }, (_, index) => days[index] ?? null);
+
+    return (
+      <TouchableOpacity
+        testID="activity-365-map-collapsed"
+        activeOpacity={0.92}
+        onPress={() => setExpanded(true)}
+        style={{ marginTop: 2 }}
+        accessibilityRole="button"
+      >
+        <ScrollView
+          ref={compactPreviewRef}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 2 }}
+          onContentSizeChange={() => compactPreviewRef.current?.scrollToEnd({ animated: false })}
+        >
+          <View
+            style={{
+              width: compactPreviewWidth,
+              height: compactPreviewHeight,
+              flexDirection: 'column',
+              flexWrap: 'wrap',
+              gap: compactPreviewGap,
+            }}
+          >
+            {compactPreviewCells.map((day, index) => (
+              <View
+                key={day?.date ?? `compact-empty-${index}`}
+                style={{
+                  width: COMPACT_YEAR_CELL,
+                  height: COMPACT_YEAR_CELL,
+                  borderRadius: 3,
+                  backgroundColor: day ? levelColor(day.level, heatPalette) : 'transparent',
+                }}
+              />
+            ))}
+          </View>
+        </ScrollView>
+      </TouchableOpacity>
+    );
+  }
+
   return (
-    <StatsCardArtSurface testID="activity-365-card" name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} scrim={scrim} style={[styles.card, { borderColor: activityBorder }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'activity')]}>
-      {isGoldTheme && <GoldBevel radius={18} intensity="normal" />}
-      <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
+    <StatsCardArtSurface testID={compact ? 'activity-365-compact' : 'activity-365-card'} name="weekRhythm" theme={t} isGoldTheme={isGoldTheme} gradientColors={cardGradient} gradientLocations={luxuryLocations} radius={18} scrim={scrim} style={[styles.card, compact ? { padding: 0, borderWidth: 0, backgroundColor: 'transparent' } : null, { borderColor: activityBorder }, !compact && isGoldTheme ? goldShadow(2) : !compact ? statsGlowStyle(themeMode, 'activity') : null]}>
+      {isGoldTheme && !compact && <GoldBevel radius={18} intensity="normal" />}
+      {!compact ? <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
         <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'activity') }]}>
           <Ionicons name="pulse-outline" size={22} color={activeAccent} />
         </View>
@@ -823,9 +884,9 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
           <Text style={{ color: activeAccent, fontSize: f.caption - 1, fontWeight: '900' }}>{goalProgress}%</Text>
         </View>
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
-      </TouchableOpacity>
+      </TouchableOpacity> : null}
 
-      <View style={styles.metricRail}>
+      {!compact ? <View style={styles.metricRail}>
         <View style={styles.metricItem}>
           <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, {
             ru: 'Серия',
@@ -867,9 +928,9 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
           })}</Text>
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', marginTop: 2 }}>{goalProgress}%</Text>
         </View>
-      </View>
+      </View> : null}
 
-      {expanded ? (
+      {expanded && !compact ? (
         <View style={styles.filterRow}>
           <TouchableOpacity
             activeOpacity={0.72}
@@ -1019,7 +1080,7 @@ function ActivityHeatmap365({ hideNextStep = false, scrim }: { hideNextStep?: bo
 
       {/* Скрываем подсказку «что дальше», когда её уже показывает карточка
           «Баланс практики» (actionable-вариант), чтобы не дублировать нудж. */}
-      {hideNextStep ? null : (
+      {hideNextStep || compact ? null : (
       <LinearGradient colors={activityNudgeSurface} style={[styles.nextStepBar, { borderColor: activityHairline }]}>
         <Ionicons name="sparkles-outline" size={16} color={activeAccent} />
         <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : activeAccent, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>

@@ -2,9 +2,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { syncToCloud } from '../app/cloud_sync';
 import { invalidatePremiumCache, markPremiumStoreSeenNow } from '../app/premium_guard';
 import {
+  customerInfoConfirmsProductAccess,
   inferPremiumPlanFromCustomerInfo,
   inferPremiumPlanFromProductId,
   persistStorePremiumLocally,
+  revenueCatCustomerInfoHasPremiumAccess,
   revenueCatPremiumMetadata,
 } from '../app/premium_revenuecat_state';
 
@@ -65,6 +67,44 @@ describe('premium RevenueCat state sync', () => {
     });
   });
 
+  it('confirms only the product returned for the selected purchase package', () => {
+    const info = {
+      entitlements: {
+        active: {
+          other: { productIdentifier: 'unrelated_active_product' },
+          premium: { productIdentifier: 'phraseman_yearly' },
+        },
+      },
+      activeSubscriptions: ['unrelated_subscription'],
+    } as any;
+
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_yearly')).toBe(true);
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_monthly')).toBe(false);
+    expect(customerInfoConfirmsProductAccess(info, '')).toBe(false);
+  });
+
+  it('unlocks generic Premium access only for the canonical premium entitlement', () => {
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { other: { productIdentifier: 'unrelated_product' } } },
+      activeSubscriptions: ['unrelated_product'],
+    } as any)).toBe(false);
+
+    expect(revenueCatCustomerInfoHasPremiumAccess({
+      entitlements: { active: { premium: { productIdentifier: 'phraseman_yearly' } } },
+      activeSubscriptions: [],
+    } as any)).toBe(true);
+  });
+
+  it('also confirms an exact active subscription id when entitlement details are absent', () => {
+    const info = {
+      entitlements: { active: {} },
+      activeSubscriptions: ['phraseman_monthly'],
+    } as any;
+
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_monthly')).toBe(true);
+    expect(customerInfoConfirmsProductAccess(info, 'phraseman_yearly')).toBe(false);
+  });
+
   it('persists premium locally and immediately forces cloud sync', async () => {
     await persistStorePremiumLocally('yearly', {
       productId: 'premium_yearly',
@@ -113,5 +153,13 @@ describe('premium RevenueCat state sync', () => {
     expect(markPremiumStoreSeenNow).not.toHaveBeenCalled();
     expect(invalidatePremiumCache).not.toHaveBeenCalled();
     expect(syncToCloud).not.toHaveBeenCalled();
+  });
+
+  it('can skip the unrelated full cloud sync on the immediate purchase path', async () => {
+    await persistStorePremiumLocally('yearly', {}, () => true, false);
+
+    expect(syncToCloud).not.toHaveBeenCalled();
+    expect(markPremiumStoreSeenNow).toHaveBeenCalledTimes(1);
+    expect(invalidatePremiumCache).toHaveBeenCalledTimes(1);
   });
 });

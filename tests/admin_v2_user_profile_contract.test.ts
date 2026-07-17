@@ -17,7 +17,7 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-user-profile-uid');
     expect(core).toContain('Источник не прочитан');
     expect(core).toContain("if (!can('users.read'))");
-    expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] }");
+    expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [], rewardPreview: null }");
     expect(core).toContain('Поиск не выполнен');
     expect(core).toContain('admin/index.html?openUser=');
     expect(index).toContain("export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';");
@@ -51,7 +51,9 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-tooltip="Открыть защищённое управление аккаунтом"');
     expect(core).toContain('data-tooltip="Найти пользователя без загрузки всей базы"');
     const profileRenderer = core.slice(core.indexOf('function renderProfile()'), core.indexOf('function renderUsers()'));
-    expect(profileRenderer).not.toContain('button primary');
+    expect(profileRenderer).toContain('renderUserRewardWorkflow(profile)');
+    expect(profileRenderer).not.toContain('data-action="grant-user-plus"');
+    expect(profileRenderer).not.toContain('data-action="ban-user"');
     expect(server).toContain("invitedBy: sources.invitedBy");
     expect(server).toContain("sourceResult('referral_attribution_owner'");
   });
@@ -59,8 +61,18 @@ describe('Admin v2 unified user profile', () => {
   test('keeps dangerous mutations in the legacy fallback until each has a guarded command protocol', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     expect(core).toContain('Изменяющие действия пока открываются в действующем модуле');
+    expect(core).toContain('Индивидуальная выдача награды уже перенесена ниже через защищённую команду.');
     expect(core).not.toContain('data-action="delete-user"');
     expect(core).not.toContain('data-action="merge-user"');
     expect(core).not.toContain('data-action="grant-user-plus"');
+  });
+
+  test('shows the app nickname together with the canonical UUID in user-facing identity surfaces', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    expect(core).toContain('Ник:');
+    expect(core).toContain('UUID:');
+    expect(core).toContain('userIdentityLabel(');
+    expect(core).toContain('users.primaryName');
+    expect(core).toContain('users.reportedName');
   });
 });

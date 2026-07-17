@@ -42,6 +42,7 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const logger = __importStar(require("firebase-functions/logger"));
 const params_1 = require("firebase-functions/params");
+const revenuecat_financial_normalization_1 = require("./revenuecat_financial_normalization");
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = (0, params_1.defineSecret)('REVENUECAT_WEBHOOK_AUTH');
 const SHARD_PACKS_BY_PRODUCT_ID = {
@@ -316,6 +317,8 @@ async function handlePremiumSubscriptionEvent(event, eventType, productId, res) 
                 purchasedAtMs: purchasedMs,
                 expirationAtMs: expiryMs,
                 eventTimestampMs: eventMs(event.event_timestamp_ms),
+                billingCadence: (0, revenuecat_financial_normalization_1.classifyRevenueCatBillingCadence)(event),
+                ...(0, revenuecat_financial_normalization_1.normalizeRevenueCatFinancials)(event),
                 ...revenueCatLifecycleReasonFields(event, eventType),
                 userDocExists: userSnap.exists,
                 createdAt: admin.firestore.FieldValue.serverTimestamp(),

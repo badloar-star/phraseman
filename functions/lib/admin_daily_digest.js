@@ -17,7 +17,7 @@
 // всё по createdAtMs — часть коллекций тогда молча вернёт пусто. Поэтому у
 // каждого источника указано СВОЁ поле (см. loadDigestSources): created_at у
 // users, eventTimestampMs у RevenueCat, day-строка у paywall_funnel,
-// receivedAtMs у почты, createdAt(число) у help_board/league_chat и т.д.
+// receivedAtMs у почты и другие схемы дат по источникам.
 //
 // Архитектура: чистые aggregateDigestFacts / buildDigestPrompt (unit-тестируемы)
 // отделены от I/O (loadDigestSources / runAdminDailyDigest). Модель и kill-switch —
@@ -251,8 +251,6 @@ function aggregateDigestFacts(rows, windowHours = 24) {
         { name: 'Жалобы «непонятно объяснили»', total: q.explainReports.length, note: topReasonNote(q.explainReports) },
         { name: 'Обращения с сайта', total: q.websiteInbox.length, note: redactDigestUserText(q.websiteInbox[0]?.topic, 40) },
         { name: 'Письма в почту поддержки', total: q.supportInbox.length, note: redactDigestUserText(q.supportInbox[0]?.subject, 60) },
-        { name: 'Новые темы на доске помощи', total: q.helpBoard.length, note: redactDigestUserText(q.helpBoard[0]?.title, 60) },
-        { name: 'Очередь модерации чата лиг', total: q.leagueModeration.length, note: '' },
     ].filter((l) => l.total > 0);
     const c = rows.community;
     const shardsSpent = c.packPurchases.reduce((sum, p) => sum + (Number(p.priceShards) || 0), 0);
@@ -328,7 +326,7 @@ const DIGEST_COMPARISON_DEFINITIONS = Object.freeze([
     { id: 'user_ideas', label: 'Новые идеи пользователей', sourceIds: ['user_ideas'], read: (f) => f.ideas.total },
     { id: 'referrals', label: 'Новые реферальные связи', sourceIds: ['referral_attributions'], read: (f) => f.community.referrals.total },
     { id: 'community_pack_purchases', label: 'Покупки паков сообщества', sourceIds: ['community_pack_purchases'], read: (f) => f.community.packPurchases.total },
-    { id: 'moderation_backlog', label: 'Новые элементы в очередях разбора', sourceIds: ['user_reports', 'community_pack_reports', 'explain_report_entries', 'website_contact_inbox', 'support_inbox', 'help_board_topics', 'league_chat_moderation_queue'], read: (f) => f.queues.reduce((sum, row) => sum + row.total, 0) },
+    { id: 'moderation_backlog', label: 'Новые элементы в очередях разбора', sourceIds: ['user_reports', 'community_pack_reports', 'explain_report_entries', 'website_contact_inbox', 'support_inbox'], read: (f) => f.queues.reduce((sum, row) => sum + row.total, 0) },
 ]);
 function buildDigestComparisons(current, previous, coverage = []) {
     return DIGEST_COMPARISON_DEFINITIONS.map((definition) => {
@@ -521,7 +519,6 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
         user_ideas: 'Идеи пользователей', user_reports: 'Жалобы на пользователей',
         community_pack_reports: 'Жалобы на паки сообщества', explain_report_entries: 'Отзывы об объяснениях',
         website_contact_inbox: 'Обращения с сайта', support_inbox: 'Почта поддержки',
-        help_board_topics: 'Доска помощи', league_chat_moderation_queue: 'Модерация чата лиг',
         referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества',
         promo_redemptions: 'Активации промокодов', vip_survey_responses: 'Ответы на опрос Plus',
         community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Комнаты Арены',
@@ -657,7 +654,7 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
             return [];
         }
     };
-    const [reports, cancels, appErrors, safety, newUsers, purchases, paywallPurchases, ideas, userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration, referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,] = await Promise.all([
+    const [reports, cancels, appErrors, safety, newUsers, purchases, paywallPurchases, ideas, userReports, packReports, explainReports, websiteInbox, supportInbox, referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,] = await Promise.all([
         // — Основные (у всех есть числовой createdAtMs) —
         byMs('error_reports', 'createdAtMs', (d) => {
             const x = d.data();
@@ -692,8 +689,6 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
         byMs('explain_report_entries', 'createdAtMs', (d) => ({ reason: d.data().reason })),
         loadWebsiteInbox(),
         byMs('support_inbox', 'receivedAtMs', (d) => ({ subject: d.data().subject })),
-        byMs('help_board_topics', 'createdAt', (d) => ({ title: d.data().title })), // createdAt здесь числовое (Date.now())
-        byMs('league_chat_moderation_queue', 'createdAt', (d) => ({ status: d.data().status })), // createdAt числовое
         // — Community / маркетинг (разные поля времени) —
         loadReferrals(), // referral_attributions.createdAt = Timestamp
         byMs('community_pack_purchases', 'createdAt', (d) => ({ packId: d.data().packId, priceShards: d.data().priceShards })), // createdAt числовое
@@ -709,7 +704,7 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
         sourceCoverage: sourceCoverage.sort((a, b) => a.label.localeCompare(b.label, 'ru')),
         reports, cancels, appErrors, safety,
         newUsers, purchases, paywallPurchases, ideas,
-        queues: { userReports, packReports, explainReports, websiteInbox, supportInbox, helpBoard, leagueModeration },
+        queues: { userReports, packReports, explainReports, websiteInbox, supportInbox },
         community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
     };
 }

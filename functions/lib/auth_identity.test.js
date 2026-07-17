@@ -8,6 +8,7 @@ function makeDbStub(initial = {}) {
         leaderboard: { ...(initial.leaderboard ?? {}) },
         league_groups: { ...(initial.league_groups ?? {}) },
         identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
+        account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
     };
     const sets = [];
     const snapFor = (id, data) => ({
@@ -276,6 +277,22 @@ describe('resolveStableUidForAuth', () => {
         const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-2');
         expect(stableUid).toBe('stable-visible');
     });
+    it('falls back to the live provider-owned document when its canonical target is missing', async () => {
+        const { db } = makeDbStub({
+            users: {
+                'stable-hidden': {
+                    firebaseAuthUid: 'google-auth-orphan',
+                    linkedAuth: { providerUid: 'google-auth-orphan' },
+                    identityHidden: true,
+                    canonicalStableId: 'stable-missing',
+                    progress: { user_total_xp: '500' },
+                    updatedAt: 333,
+                },
+            },
+        });
+        const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, 'google-auth-orphan');
+        expect(stableUid).toBe('stable-hidden');
+    });
     it('falls back to direct auth uid when no owner is resolvable', async () => {
         const { db } = makeDbStub({
             users: {
@@ -388,6 +405,18 @@ describe('ensureStableLinkForAuth', () => {
             },
             updatedAt: 1777000000000,
         });
+    });
+    it('does not recreate identity documents for an auth session marked for account deletion', async () => {
+        const { db, sets } = makeDbStub({
+            account_deletion_auth_markers: {
+                'deleted-auth': { status: 'pending' },
+            },
+        });
+        await expect((0, auth_identity_1.ensureStableLinkForAuth)(db, 'deleted-auth', 'deleted-auth', 'google.com')).rejects.toMatchObject({
+            code: 'failed-precondition',
+            message: 'account_delete_pending',
+        });
+        expect(sets).toEqual([]);
     });
 });
 //# sourceMappingURL=auth_identity.test.js.map

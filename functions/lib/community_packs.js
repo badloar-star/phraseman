@@ -42,11 +42,44 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
+const flashcard_registry_mutations_1 = require("./content_factory/flashcard_registry_mutations");
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
 const COMMUNITY_PURCHASES = 'community_pack_purchases';
 const COMMUNITY_RATINGS = 'community_pack_ratings';
 const SELLER_INBOX = 'community_seller_inbox';
+const FLASHCARD_SEMANTIC_KEYS = 'content_factory_flashcard_semantic_keys';
+const FLASHCARD_REGISTRY_CONFIG = 'flashcard_semantic_registry';
+async function syncFlashcardRegistryPackMutation(tx, db, previous, next) {
+    const plan = (0, flashcard_registry_mutations_1.planFlashcardRegistryPackMutation)(previous, next).filter((item) => item.addSources.length || item.removeSources.length);
+    if (!plan.length)
+        return;
+    const configRef = db.collection('content_factory_config').doc(FLASHCARD_REGISTRY_CONFIG);
+    const [configSnapshot, ...snapshots] = await Promise.all([
+        tx.get(configRef),
+        ...plan.map((item) => tx.get(db.collection(FLASHCARD_SEMANTIC_KEYS).doc(item.docId))),
+    ]);
+    const config = configSnapshot.data() ?? {};
+    const currentGeneration = Number.isSafeInteger(Number(config.catalogGeneration)) ? Number(config.catalogGeneration) : 0;
+    const registryIsVerified = config.mode === 'registry'
+        && config.manifestComplete === true
+        && Number(config.verifiedGeneration) === currentGeneration;
+    for (let index = 0; index < plan.length; index += 1) {
+        const mutation = plan[index];
+        const ref = snapshots[index].ref;
+        const current = snapshots[index].data() ?? {};
+        if (snapshots[index].exists && (current.partitionKey !== mutation.partitionKey || current.canonicalKey !== mutation.canonicalKey))
+            throw new https_1.HttpsError('aborted', 'flashcard_registry_hash_collision');
+        const next = (0, flashcard_registry_mutations_1.applyFlashcardRegistryDocumentMutation)(snapshots[index].exists ? { docId: mutation.docId, partitionKey: String(current.partitionKey), canonicalKey: String(current.canonicalKey), sources: Array.isArray(current.sources) ? current.sources : [] } : null, mutation);
+        if (next)
+            tx.set(ref, { ...next, updatedAt: Date.now() }, { merge: true });
+        else if (snapshots[index].exists)
+            tx.delete(ref);
+    }
+    tx.set(configRef, registryIsVerified
+        ? { catalogGeneration: currentGeneration + 1, verifiedGeneration: currentGeneration + 1, manifestComplete: true, updatedAt: Date.now() }
+        : { catalogGeneration: currentGeneration + 1, manifestComplete: false, updatedAt: Date.now() }, { merge: true });
+}
 /** Снят с витрины по требованию модерации; автор может доработать и снова отправить на ревью. */
 const LISTING_ADMIN_REVISION = 'admin_revision_required';
 /** Мягкое удаление: не в маркете; покупатели сохраняют доступ к карточкам через CF. */
@@ -98,6 +131,16 @@ const UGC_CARD_BACK_KEYS = new Set([
     'community_29_rainbow_foil',
     'community_30_slate_minimal',
 ]);
+function preserveExistingRichCardFields(existing, incoming) {
+    const byId = new Map((Array.isArray(existing) ? existing : []).filter((item) => !!item && typeof item === 'object' && !Array.isArray(item)).map((item) => [String(item.id ?? ''), item]));
+    return incoming.map((card) => {
+        const prior = byId.get(card.id);
+        if (!prior)
+            return card;
+        const sourceReferences = card.sourceReferences?.length ? card.sourceReferences : Array.isArray(prior.sourceReferences) ? prior.sourceReferences.map(String).filter(Boolean) : undefined;
+        return { ...card, richSchemaVersion: card.richSchemaVersion ?? (Number(prior.richSchemaVersion) === 1 ? 1 : undefined), exampleTarget: card.exampleTarget || String(prior.exampleTarget ?? '').trim() || undefined, exampleSource: card.exampleSource || String(prior.exampleSource ?? '').trim() || undefined, note: card.note || String(prior.note ?? '').trim() || undefined, sourceReferences };
+    });
+}
 function normalizeCommunityPackStudyTarget(raw) {
     return raw === 'fr' ? 'fr' : 'en';
 }
@@ -198,6 +241,11 @@ function normalizeSubmissionPayload(raw) {
                 ...(sourceLocales.tr ? { tr: sourceLocales.tr } : {}),
                 ...(sourceLocales.pl ? { pl: sourceLocales.pl } : {}),
             },
+            ...(Number(c.richSchemaVersion) === 1 ? { richSchemaVersion: 1 } : {}),
+            ...(String(c.exampleTarget ?? '').trim() ? { exampleTarget: String(c.exampleTarget).trim().slice(0, CARD_FIELD_MAX) } : {}),
+            ...(String(c.exampleSource ?? '').trim() ? { exampleSource: String(c.exampleSource).trim().slice(0, CARD_FIELD_MAX) } : {}),
+            ...(String(c.note ?? '').trim() ? { note: String(c.note).trim().slice(0, CARD_FIELD_MAX) } : {}),
+            ...(Array.isArray(c.sourceReferences) ? { sourceReferences: [...new Set(c.sourceReferences.map(String).map((value) => value.trim().slice(0, 500)).filter(Boolean))].slice(0, 50) } : {}),
         };
     });
     let cardThemeKey = String(raw.cardThemeKey ?? 'neon_lime').trim();
@@ -333,6 +381,8 @@ exports.communitySubmitPackForReview = (0, https_1.onCall)({ enforceAppCheck: ca
                 cardBackKey: pd.cardBackKey ?? null,
                 studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget),
             };
+            if (st === 'published')
+                await syncFlashcardRegistryPackMutation(tx, db, { id: updatePackId, studyTarget: normalizeCommunityPackStudyTarget(pd.studyTarget), cards: Array.isArray(pd.cards) ? pd.cards : [] }, null);
             tx.set(subRef, {
                 status: 'pending',
                 authorStableId,
@@ -413,11 +463,16 @@ exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: cal
         };
         const editTargetEarly = String(d.editTargetPackId ?? '').trim();
         let editPackExistsForRestore = false;
+        let editPackForRestore = null;
         if (editTargetEarly && (action === 'reject' || action === 'request_changes')) {
             const ps = await tx.get(db.collection(COMMUNITY_PACKS).doc(editTargetEarly));
             editPackExistsForRestore = ps.exists;
+            editPackForRestore = ps.exists ? ps.data() : null;
         }
         if (action === 'reject') {
+            if (editTargetEarly && editPackExistsForRestore) {
+                await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
+            }
             tx.update(subRef, {
                 status: 'rejected',
                 reviewedAt: now,
@@ -431,6 +486,9 @@ exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: cal
             return;
         }
         if (action === 'request_changes') {
+            if (editTargetEarly && editPackExistsForRestore) {
+                await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTargetEarly, studyTarget: normalizeCommunityPackStudyTarget(editPackForRestore?.studyTarget), cards: Array.isArray(editPackForRestore?.cards) ? editPackForRestore.cards : [] });
+            }
             tx.update(subRef, {
                 status: 'needs_revision',
                 reviewedAt: now,
@@ -461,6 +519,8 @@ exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: cal
             if (existingStudyTarget !== normalizeCommunityPackStudyTarget(payload.studyTarget)) {
                 throw new https_1.HttpsError('failed-precondition', 'Cannot change pack study target');
             }
+            const cardsWithRichFallback = preserveExistingRichCardFields(existing.cards, payload.cards);
+            await syncFlashcardRegistryPackMutation(tx, db, null, { id: editTarget, studyTarget: existingStudyTarget, cards: cardsWithRichFallback });
             tx.set(packRef, {
                 ...existing,
                 listingStatus: 'published',
@@ -484,8 +544,8 @@ exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: cal
                 descriptionTr: (payload.descriptionTr ?? '').trim() || null,
                 descriptionPl: (payload.descriptionPl ?? '').trim() || null,
                 priceShards: Math.floor(Number(payload.priceShards)),
-                cards: payload.cards,
-                cardCount: payload.cards.length,
+                cards: cardsWithRichFallback,
+                cardCount: cardsWithRichFallback.length,
                 cardThemeKey: themeKey,
                 cardBackKey,
                 updatedAt: now,
@@ -505,6 +565,7 @@ exports.communityModerateSubmission = (0, https_1.onCall)({ enforceAppCheck: cal
         if (packSnap.exists) {
             throw new https_1.HttpsError('already-exists', 'Published pack already exists for this id');
         }
+        await syncFlashcardRegistryPackMutation(tx, db, null, { id: submissionId, studyTarget: normalizeCommunityPackStudyTarget(payload.studyTarget), cards: payload.cards });
         tx.set(packRef, {
             listingStatus: 'published',
             authorStableId: d.authorStableId ?? null,
@@ -627,6 +688,8 @@ exports.communityAdminModeratePack = (0, https_1.onCall)({ region: 'us-central1'
                 if (st === 'update_pending') {
                     throw new https_1.HttpsError('failed-precondition', 'У набора уже висит заявка на правку в очереди — обработайте её во вкладке заявок.');
                 }
+                if (st === 'published')
+                    await syncFlashcardRegistryPackMutation(tx, db, { id: packId, studyTarget, cards: Array.isArray(pack.cards) ? pack.cards : [] }, null);
                 tx.update(packRef, patchAdminMessage({
                     listingStatus: LISTING_ADMIN_REVISION,
                     updatedAt: now,
@@ -639,6 +702,8 @@ exports.communityAdminModeratePack = (0, https_1.onCall)({ region: 'us-central1'
             if (st === 'update_pending') {
                 throw new https_1.HttpsError('failed-precondition', 'У набора висит заявка на правку в очереди — сначала заявки.');
             }
+            if (st === 'published')
+                await syncFlashcardRegistryPackMutation(tx, db, { id: packId, studyTarget, cards: Array.isArray(pack.cards) ? pack.cards : [] }, null);
             tx.update(packRef, patchAdminMessage({
                 listingStatus: LISTING_ADMIN_REMOVED,
                 updatedAt: now,

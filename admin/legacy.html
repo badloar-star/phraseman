@@ -32882,11 +32882,16 @@
     if (comment === null) return;
 
     try {
+      const commandNonce = globalThis.crypto?.randomUUID?.()
+        || `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
       const result = await fn({
         uid,
         type: reward.value,
         amount,
         comment: comment || '',
+        reason: String(comment || '').trim() || 'Ручная выдача награды из старой админки',
+        idempotencyKey: `legacy-reward-${commandNonce}`,
+        requestId: `legacy-reward-request-${commandNonce}`,
       });
       const r = result?.data || {};
       if (reward.value === 'shards' && r.amount > 0) {

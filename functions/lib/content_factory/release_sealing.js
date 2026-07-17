@@ -6,7 +6,8 @@ function buildCourseRelease(input, now = new Date().toISOString()) {
     const complete = course_release_contract_1.CANONICAL_RELEASE_SURFACES.every((surface) => input.unitStates[surface] === 'succeeded');
     if (!complete || input.reviewStatus !== 'approved' || !input.reviewerId.trim())
         throw new Error('course_release_not_sealable');
-    return (0, course_release_contract_1.assertCourseRelease)({
+    const artifacts = Object.freeze(Object.fromEntries(course_release_contract_1.CANONICAL_RELEASE_SURFACES.map((surface) => [surface, Object.freeze({ ...input.artifacts[surface] })])));
+    const release = (0, course_release_contract_1.assertCourseRelease)({
         releaseId: input.releaseId,
         studyTarget: input.studyTarget,
         learnerSourceLocale: input.learnerSourceLocale,
@@ -17,7 +18,8 @@ function buildCourseRelease(input, now = new Date().toISOString()) {
         contentVersion: input.contentVersion,
         createdAt: now,
         minAppVersion: input.minAppVersion,
-        artifacts: input.artifacts,
+        artifacts,
     });
+    return Object.freeze(release);
 }
 //# sourceMappingURL=release_sealing.js.map

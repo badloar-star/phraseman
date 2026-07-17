@@ -83,6 +83,11 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const listAppMessagesCallable = httpsCallable(functionsUs, 'adminListAppMessages');
   const createAppMessageCallable = httpsCallable(functionsUs, 'adminCreateAppMessage');
   const setAppMessageActiveCallable = httpsCallable(functionsUs, 'adminSetAppMessageActive');
+  const listGlobalBroadcastsCallable = httpsCallable(functionsUs, 'adminListGlobalBroadcasts');
+  const publishGlobalBroadcastCallable = httpsCallable(functionsUs, 'adminPublishGlobalBroadcast');
+  const deactivateGlobalBroadcastsCallable = httpsCallable(functionsUs, 'adminDeactivateGlobalBroadcasts');
+  const grantAccessCallable = httpsCallable(functionsUs, 'adminGrantAccess');
+  const setUserBanCallable = httpsCallable(functionsUs, 'adminSetUserBan');
   const promoCodeUpsertCallable = httpsCallable(functionsUs, 'promoCodeUpsert');
   const promoCodeBatchUpsertCallable = httpsCallable(functionsUs, 'promoCodeBatchUpsert');
   const getDailyBriefingCallable = httpsCallable(functionsUs, 'adminGetDailyBriefing');
@@ -98,6 +103,13 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const agentOfficeListRecommendationsCallable = httpsCallable(functionsUs, 'agentOfficeListRecommendations');
   const agentOfficeDecideRecommendationCallable = httpsCallable(functionsUs, 'agentOfficeDecideRecommendation');
   const agentOfficeListAuditEventsCallable = httpsCallable(functionsUs, 'agentOfficeListAuditEvents');
+  const agentManagerCreateTaskCallable = httpsCallable(functionsUs, 'agentManagerCreateTask');
+  const agentManagerCreateInboxTaskCallable = httpsCallable(functionsUs, 'agentManagerCreateInboxTask');
+  const agentManagerListTasksCallable = httpsCallable(functionsUs, 'agentManagerListTasks');
+  const agentManagerListAgentsCallable = httpsCallable(functionsUs, 'agentManagerListAgents');
+  const agentManagerListRunbooksCallable = httpsCallable(functionsUs, 'agentManagerListRunbooks');
+  const agentManagerTransitionTaskCallable = httpsCallable(functionsUs, 'agentManagerTransitionTask');
+  const agentManagerInitializeRosterCallable = httpsCallable(functionsUs, 'agentManagerInitializeRoster');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
@@ -176,7 +188,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     listPromoCodes: async (input) => unwrap(await listPromoCodesCallable(input)),
     listAppMessages: async (input) => unwrap(await listAppMessagesCallable(input)),
     createAppMessage: async (input) => unwrap(await createAppMessageCallable(input)),
-    setAppMessageActive: async (input) => unwrap(await setAppMessageActiveCallable(input)),
+        setAppMessageActive: async (input) => unwrap(await setAppMessageActiveCallable(input)),
+        listGlobalBroadcasts: async (input) => unwrap(await listGlobalBroadcastsCallable(input)),
+        publishGlobalBroadcast: async (input) => unwrap(await publishGlobalBroadcastCallable(input)),
+        deactivateGlobalBroadcasts: async (input) => unwrap(await deactivateGlobalBroadcastsCallable(input)),
+    grantAccess: async (input) => unwrap(await grantAccessCallable(input)),
+    setUserBan: async (input) => unwrap(await setUserBanCallable(input)),
     promoCodeUpsert: async (input) => unwrap(await promoCodeUpsertCallable(input)),
     promoCodeBatchUpsert: async (input) => unwrap(await promoCodeBatchUpsertCallable(input)),
     getDailyBriefing: async () => unwrap(await getDailyBriefingCallable({})),
@@ -192,5 +209,12 @@ export async function createFirebaseAdminActions({ onAuth }) {
     listAgentOfficeRecommendations: async (input) => unwrap(await agentOfficeListRecommendationsCallable(input)),
     decideAgentOfficeRecommendation: async (input) => unwrap(await agentOfficeDecideRecommendationCallable(input)),
     listAgentOfficeAuditEvents: async (input) => unwrap(await agentOfficeListAuditEventsCallable(input)),
+    createAgentManagerTask: async (input) => unwrap(await agentManagerCreateTaskCallable(input)),
+    createAgentManagerInboxTask: async (input) => unwrap(await agentManagerCreateInboxTaskCallable(input)),
+    listAgentManagerTasks: async (input) => unwrap(await agentManagerListTasksCallable(input)),
+    listAgentManagerAgents: async (input) => unwrap(await agentManagerListAgentsCallable(input)),
+    listAgentManagerRunbooks: async () => unwrap(await agentManagerListRunbooksCallable({})),
+    transitionAgentManagerTask: async (input) => unwrap(await agentManagerTransitionTaskCallable(input)),
+    initializeAgentManagerRoster: async () => unwrap(await agentManagerInitializeRosterCallable({})),
   });
 }

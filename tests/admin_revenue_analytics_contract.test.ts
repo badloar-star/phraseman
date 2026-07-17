@@ -508,10 +508,9 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('#ar-detail-panel');
   });
 
-  it('unifies daily phrases, clubs, and league chat sections', () => {
+  it('unifies daily phrases and clubs sections', () => {
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-daily-phrases');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-clubs');
-    expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #tab-league-chat');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #dp-summary');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #clubs-wrap');
     expect(adminHtml).toContain('body[data-admin-skin="onboarding"] #league-chest-archive');
@@ -523,16 +522,6 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('PERSONAL_TRAININGS_MANIFEST');
     expect(adminHtml).not.toContain('pt-summary');
     expect(adminHtml).not.toContain('pt-card');
-    expect(adminHtml).toContain('#tab-league-chat .lc-mode-btn.active');
-    expect(adminHtml).toContain('applyCleanLeagueChatChrome');
-    expect(adminHtml).toContain('lc-status-pill');
-    expect(adminHtml).toContain('League chat loaded');
-    expect(adminHtml).toContain('Loading league chat...');
-    expect(adminHtml).toContain('Review queue');
-    expect(adminHtml).toContain('Auto-blocked');
-    expect(adminHtml).toContain('Open room');
-    expect(adminHtml).toContain('Resolve report');
-    expect(adminHtml).toContain('Clear restriction');
     expect(adminHtml).toContain('applyCleanClubsChrome');
     expect(adminHtml).toContain('club-clean-table');
     expect(adminHtml).toContain('club-count-pill');
@@ -563,8 +552,6 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml.lastIndexOf('<div class="label">Future queue</div>')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderDailyPhrases = function renderDailyPhrases()'));
     expect(adminHtml.lastIndexOf('window.renderClubsPanel = renderClubsPanel = function renderClubsPanel()')).toBeGreaterThan(adminHtml.indexOf('function renderClubsPanel()'));
     expect(adminHtml.lastIndexOf('Loading clubs...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadClubsData = async function loadClubsData(force)'));
-    expect(adminHtml.lastIndexOf('window.renderLeagueChatAdmin = function renderLeagueChatAdmin()')).toBeGreaterThan(adminHtml.indexOf('window.renderLeagueChatAdmin = function()'));
-    expect(adminHtml.lastIndexOf('Loading league chat...')).toBeGreaterThan(adminHtml.lastIndexOf('window.loadLeagueChatAdmin = async function loadLeagueChatAdmin(force = false)'));
     expect(adminHtml.lastIndexOf('window.openDailyPhraseEditor = function openDailyPhraseEditor(id)')).toBeGreaterThan(adminHtml.indexOf('window.openDailyPhraseEditor = function openDailyPhraseEditor(id)'));
     expect(adminHtml.lastIndexOf('English is required')).toBeGreaterThan(adminHtml.lastIndexOf('window.saveDailyPhraseEditor = async function saveDailyPhraseEditor()'));
   });

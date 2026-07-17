@@ -79,6 +79,8 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number; missedDays?: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
+  /** DEV/admin: вручную посеяно число дней streak — главная перечитывает локальное состояние. */
+  streak_seeded: { days: number };
   /** Активное пари аннулировано (например, после revive или потери цепочки). */
   wager_lost: { reason: 'revive' | 'streak_broken' };
   streak_freeze_updated: { active: boolean };

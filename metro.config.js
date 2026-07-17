@@ -14,8 +14,9 @@ const blockList = Array.isArray(existingBlockList)
 
 const escapePathForRegex = (filePath) =>
   filePath
+    .replace(/\\/g, '/')
     .replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    .replace(/[/\\]/g, '[/\\\\]');
+    .replace(/\//g, '[/\\\\]');
 
 const ignoredRootFolders = [
   '.claude',
@@ -31,6 +32,7 @@ const ignoredRootFolders = [
   '.planning',
   '.vscode',
   '.well-known',
+  '.worktrees',
   'admin',
   'builds',
   'docs',

@@ -14,6 +14,31 @@ describe('Language Factory protected reads', () => {
         expect((0, admin_content_factory_read_1.parseContentFactoryWorkspaceRequest)({})).toEqual({ studyTarget: '', learnerSourceLocale: '', limit: 50 });
         expect(() => (0, admin_content_factory_read_1.parseContentFactoryWorkspaceRequest)({ studyTarget: 'French' })).toThrow(https_1.HttpsError);
     });
+    it('keeps rollout metric reads authoritative and bounded in the callable source', () => {
+        const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+        expect(source).toContain("collection('content_factory_stages').orderBy('updatedAt', 'desc').limit(101)");
+        expect(source).toContain("collection('content_factory_job_units').orderBy('startedAtMs', 'desc').limit(101)");
+        expect(source).toContain("collection('content_factory_jobs').orderBy('createdAt', 'desc').limit(101)");
+        expect(source).toContain('truncation: { stages: stagesSnap.size > 100');
+        expect(source).toContain('requireContentReader(request');
+        expect(source).toContain("resolveJobConfig(db, 'content_factory')");
+        expect(source).toContain('CONTENT_FACTORY_BUDGET_COLLECTION');
+        expect(source).toContain('budgetCapUnits: jobConfig.globalDailyCap');
+    });
+    it('filters expected Arena shadow units before the bounded readiness read', () => {
+        const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+        expect(source).toContain("where('surface', '==', 'arena').where('engineRequested', '==', 'shadow').where('configRevision', '==', Number(arena.revision)).where('comparatorVersion', '==', String(arena.comparatorVersion)).limit(501)");
+        expect(source).toContain("collection('content_factory_surface_comparisons').where('surface', '==', 'arena').where('comparatorVersion', '==', String(arena.comparatorVersion)).where('configRevision', '==', Number(arena.revision))");
+        expect(source).toContain('const historyLimit = 100');
+        expect(source).toContain('Array.isArray(arena.requiredLocalePairs)');
+        expect(source).not.toContain("where('surface', '==', 'arena').limit(501)");
+    });
+    it('applies workspace identity filters before the read limit', () => {
+        const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
+        expect(source).toContain("query.where('studyTarget', '==', input.studyTarget)");
+        expect(source).toContain("query.where('learnerSourceLocale', '==', input.learnerSourceLocale)");
+        expect(source).toContain("workspaceQuery('content_factory_releases').limit(input.limit).get()");
+    });
     it('sorts units by lesson and canonical surface and preserves the review state', () => {
         const detail = (0, admin_content_factory_read_1.buildContentFactoryJobDetail)({
             jobId: 'job-1',

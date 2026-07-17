@@ -37,7 +37,25 @@ describe('ai dialog callable error mapping', () => {
   it('maps provider failures separately from network failures', () => {
     expect(classifyPremiumDialogError({ code: 'functions/unavailable', message: 'dialog_provider_failed' }))
       .toBe('provider_unavailable');
+    expect(classifyPremiumDialogError({ code: 'functions/internal', message: 'INTERNAL' }))
+      .toBe('provider_unavailable');
     expect(classifyPremiumDialogError(new Error('network request failed'))).toBe('network');
+  });
+
+  it('describes infrastructure failures honestly instead of showing fictional stories', () => {
+    const provider = getPremiumDialogErrorMessage(
+      { code: 'functions/unavailable', message: 'dialog_provider_failed' },
+      { lang: 'uk' },
+    );
+    const network = getPremiumDialogErrorMessage(new Error('network request failed'), { lang: 'uk' });
+    const unknown = getPremiumDialogErrorMessage(new Error('unexpected failure'), { lang: 'uk' });
+
+    expect(provider).toContain('Сервіс діалогів тимчасово недоступний');
+    expect(network).toContain('Не вдалося зв’язатися із сервером');
+    expect(unknown).toContain('Не вдалося надіслати повідомлення');
+    for (const message of [provider, network, unknown]) {
+      expect(message).not.toMatch(/луна|місяць|гора|посилк|кур’єр/i);
+    }
   });
 
   it('maps server age restriction instead of calling it a network failure', () => {

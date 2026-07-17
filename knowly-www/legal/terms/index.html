@@ -54,9 +54,8 @@
         <p>If you use the App on behalf of another person, including a child or minor, you confirm that you have authority to accept these Terms for that person and are responsible for that person's use.</p>
 
         <h2>1. Eligibility and minors</h2>
-        <p>Phraseman is a general-audience educational app intended for users aged 16 and over. You must be at least 16 years old to create an account or use the App. When you first use the App, we ask for your year of birth to apply this requirement; if you indicate that you are under 16, we do not let you continue.</p>
-        <p>If you registered before this requirement was introduced and indicate that you are between 13 and 15, we may instead limit your account to a restricted mode in which AI chat, public, social, community, multiplayer, and purchase features are disabled.</p>
-        <p>We do not knowingly allow children under 13 to use the App. If you are a parent or guardian and believe a child under 16 is using the App contrary to these Terms, contact support.phraseman@gmail.com and we will take appropriate action.</p>
+        <p>Phraseman is a general-audience educational app intended for users aged 16 and over. We ask for a year of birth, rather than a full date of birth, to help apply this requirement and record age-consent metadata.</p>
+        <p>We do not knowingly allow children under 13 to use the App. If you are a parent or guardian and believe a child has provided personal data through the App, contact support.phraseman@gmail.com and we will take appropriate action.</p>
 
         <h2>2. Limited license</h2>
         <p>Knowly grants you a limited, personal, non-exclusive, non-transferable, revocable license to install and use the App for personal, non-commercial educational and entertainment purposes, subject to these Terms and applicable app store rules.</p>
@@ -84,8 +83,9 @@
 
         <h2>7. Purchases, subscriptions, premium, and billing</h2>
         <p>The App may offer premium subscriptions, free trials, Shards packs, and other in-app purchases. Billing is handled by the Apple App Store or Google Play. Knowly does not receive your payment card details.</p>
-        <p>Subscriptions renew automatically unless cancelled through the applicable store before the renewal deadline. Trial eligibility, pricing, taxes, renewal terms, renewal notices, payment authorization, cancellation rules, refund rules, and chargebacks are controlled by the store purchase flow and applicable store terms.</p>
-        <p>RevenueCat is used to verify subscriptions, purchases, receipts, and entitlements. We may grant, revoke, restore, correct, or adjust in-app entitlements based on store receipts, RevenueCat events, refunds, chargebacks, billing issues, fraud review, account deletion, technical corrections, or legal requirements.</p>
+        <p>Website purchases may instead be processed by Stripe or PayPal. Their checkout pages collect your payment credentials under their own terms and privacy policies. The website collects the email and order details needed to confirm payment, deliver an activation code or Premium access, provide support, and meet accounting or legal obligations.</p>
+        <p>Subscriptions renew automatically unless cancelled through the applicable store or payment provider before the renewal deadline. Trial eligibility, pricing, taxes, renewal terms, renewal notices, payment authorization, cancellation rules, refund rules, and chargebacks are controlled by the applicable checkout flow and provider terms.</p>
+        <p>RevenueCat is used to verify in-app subscriptions, purchases, receipts, and entitlements. We may grant, revoke, restore, correct, or adjust entitlements based on store receipts, payment-provider events, refunds, chargebacks, billing issues, fraud review, account deletion, technical corrections, or legal requirements.</p>
         <p>Prices, offers, free trials, eligibility, entitlements, and availability may change. Free or promotional access may be modified, limited, or discontinued where permitted by law.</p>
 
         <h2>8. Shards and virtual items</h2>
@@ -93,9 +93,9 @@
         <p>Knowly may change earning/spending rules, prices, caps, grants, rewards, platform fees, exchange rates inside the App, item availability, and feature availability. We may deny, reverse, remove, expire, or adjust Shards, rewards, purchases, grants, or virtual items for refunds, chargebacks, fraud, bugs, abuse, moderation, legal compliance, account deletion, or technical corrections.</p>
 
         <h2>9. Refunds and cancellation</h2>
-        <p>Refunds are handled by the Apple App Store or Google Play unless applicable law requires otherwise. Knowly generally cannot process store refunds directly.</p>
-        <p>To cancel subscriptions:<br />- Apple: Settings -&gt; [your name] -&gt; Subscriptions<br />- Google: Play Store -&gt; Subscriptions</p>
-        <p>Refunds, chargebacks, billing reversals, failed payments, or store adjustments may cause premium access, Shards, rewards, or other entitlements to be removed, reversed, limited, or adjusted. If you are in the EU/UK or another jurisdiction with withdrawal or consumer rights, those rights may depend on the type of digital content/service and the consent/acknowledgment shown in the store purchase flow. Mandatory consumer rights remain unaffected.</p>
+        <p>Refunds for App Store or Google Play purchases are handled by the relevant store unless applicable law requires otherwise. Knowly generally cannot process store refunds directly. Website-payment questions, including Stripe or PayPal purchases, can be sent to support.phraseman@gmail.com; mandatory consumer rights remain unaffected.</p>
+        <p>To cancel subscriptions:<br />- Apple: Settings -&gt; [your name] -&gt; Subscriptions<br />- Google: Play Store -&gt; Subscriptions<br />- Stripe or PayPal: use the cancellation route shown in the provider checkout or contact support.phraseman@gmail.com if you need help identifying it.</p>
+        <p>Refunds, chargebacks, billing reversals, failed payments, or store adjustments may cause premium access, Shards, rewards, or other entitlements to be removed, reversed, limited, or adjusted. If you are in the EU/UK or another jurisdiction with withdrawal or consumer rights, those rights may depend on the type of digital content/service and the consent/acknowledgment shown in the relevant purchase flow. Mandatory consumer rights remain unaffected.</p>
 
         <h2>10. Referrals, invites, gifts, surveys, and rewards</h2>
         <p>Referral codes, friend codes, gifts, activity likes, polls, surveys, rewards, bonus grants, and invite features are provided at Knowly's discretion. We may set eligibility rules, caps, cooldowns, anti-abuse checks, reward amounts, reward timing, verification steps, and expiration rules.</p>
@@ -178,6 +178,8 @@
       </div>
     </footer>
   </div>
+  <script src="/assets/site-config.js" defer></script>
+  <script src="/assets/stats.js" defer></script>
   <script src="/assets/site.js" defer></script>
 </body>
 </html>

@@ -37,14 +37,14 @@ describe('lesson completion soft upsell behavior', () => {
     expect(sameLessonSoftUpsellIdentity(captured, identity({ studyTarget: 'fr' }))).toBe(false);
   });
 
-  it('emits only canonical first-completion candidates for lessons 1 and 8', () => {
+  it('emits only canonical first-completion candidates for lessons 1 and the runtime free boundary', () => {
     const first = identity();
     expect(candidateAfterLessonGrant({ status: 'granted', captured: first, current: first, mounted: true, accountGenerationCurrent: true })).toEqual({ trigger: 'first_lesson', value: 1, studyTarget: 'en' });
-    const boundary = identity({ lessonId: 8 });
-    expect(candidateAfterLessonGrant({ status: 'granted', captured: boundary, current: boundary, mounted: true, accountGenerationCurrent: true })).toEqual({ trigger: 'free_lessons_complete', value: 8, studyTarget: 'en' });
+    const boundary = identity({ lessonId: 3 });
+    expect(candidateAfterLessonGrant({ status: 'granted', captured: boundary, current: boundary, mounted: true, accountGenerationCurrent: true, freeLessonLimit: 3 })).toEqual({ trigger: 'free_lessons_complete', value: 3, studyTarget: 'en' });
     expect(candidateAfterLessonGrant({ status: 'already_granted', captured: first, current: first, mounted: true, accountGenerationCurrent: true })).toBeNull();
-    const ninth = identity({ lessonId: 9 });
-    expect(candidateAfterLessonGrant({ status: 'granted', captured: ninth, current: ninth, mounted: true, accountGenerationCurrent: true })).toBeNull();
+    const fourth = identity({ lessonId: 4 });
+    expect(candidateAfterLessonGrant({ status: 'granted', captured: fourth, current: fourth, mounted: true, accountGenerationCurrent: true, freeLessonLimit: 3 })).toBeNull();
   });
 
   it('gates rendering on the completed sequence', () => {

@@ -1,10 +1,15 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getVerifiedPremiumStatus } from './premium_guard';
-import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import {
+  isLegacyLessonGrandfatheredOpen,
+  lessonPaywallContext,
+  requiresPremiumForLesson,
+} from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
 import { isLessonUnlockedByEarnedProgress, isLessonUnlockedByPremiumCourse } from './lesson_lock_system';
 import type { RuntimeStudyTarget } from './target_storage_keys';
 import { markNextNavigationAsReplace } from './navigation_back';
 import { openPremiumPaywall } from './paywall_navigation';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 
 export type LessonRuntimeGate = 'available' | 'premium_required' | 'level_required' | 'progress_required';
 
@@ -12,11 +17,13 @@ export async function resolveLessonRuntimeGate(
   lessonId: number,
   studyTarget?: RuntimeStudyTarget,
 ): Promise<LessonRuntimeGate> {
-  const noLimitsRaw = await AsyncStorage.getItem('tester_no_limits').catch(() => null);
-  if (noLimitsRaw === 'true') return 'available';
+  if (await isTesterNoLimitsActive()) return 'available';
+
+  const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+  if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) return 'available';
 
   const premium = await getVerifiedPremiumStatus().catch(() => false);
-  if (!premium && requiresPremiumForLesson(lessonId)) return 'premium_required';
+  if (!premium && requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) return 'premium_required';
   if (premium && !(await isLessonUnlockedByPremiumCourse(lessonId, studyTarget))) return 'level_required';
   if (!premium && !(await isLessonUnlockedByEarnedProgress(lessonId, studyTarget))) return 'progress_required';
   return 'available';
@@ -48,6 +55,7 @@ export function openLessonPremiumPaywall(
   openPremiumPaywall(router, {
     context: lessonPaywallContext(lessonId),
     lessons_done: Math.max(0, lessonId - 1),
+    ...lessonPurchaseContinuationParams(lessonId),
   }, 'replace');
 }
 

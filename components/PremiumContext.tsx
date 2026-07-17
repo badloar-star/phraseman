@@ -35,6 +35,8 @@ interface PremiumContextValue {
   isPremium: boolean;
   isVip: boolean;
   hasPremiumAccess: boolean;
+  /** True after the first local/cloud entitlement check has completed. */
+  accessResolved: boolean;
   isIntroFullAccess: boolean;
   introFullAccessEndsAt: number | null;
   /**
@@ -51,6 +53,7 @@ const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
   isVip: false,
   hasPremiumAccess: false,
+  accessResolved: false,
   isIntroFullAccess: false,
   introFullAccessEndsAt: null,
   trialEligible: false,
@@ -138,6 +141,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [hasPremiumAccess, setHasPremiumAccess] = useState(
     () => FORCE_PREMIUM || snapshotPremiumActive() || snapshotVipActive(),
   );
+  const [accessResolved, setAccessResolved] = useState(false);
   const [isIntroFullAccess, setIsIntroFullAccess] = useState(false);
   const [introFullAccessEndsAt, setIntroFullAccessEndsAt] = useState<number | null>(null);
   const [trialEligible, setTrialEligible] = useState(false);
@@ -185,8 +189,12 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     }
     // Тестер «Снять премиум» гасит и intro-доступ (3 дня) — иначе он
     // переживал бы снятие и hasPremiumAccess оставался true.
-    const noPremiumTester =
-      (await AsyncStorage.getItem('tester_no_premium').catch(() => null)) === 'true';
+    const testerEntries = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
+      .catch(() => [] as [string, string | null][]);
+    const testerValues = Object.fromEntries(testerEntries);
+    const noPremiumTester = testerValues.tester_no_premium === 'true';
+    const noLimitsRaw = testerValues.tester_no_limits;
+    const testerNoLimits = !noPremiumTester && noLimitsRaw === 'true' && !IS_STORE_RELEASE;
     const introState = noPremiumTester
       ? { active: false, endsAt: null }
       : await getIntroFullAccessState();
@@ -195,12 +203,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const loyaltyState = noPremiumTester
       ? { active: false }
       : await getLoyaltyGiftState().catch(() => ({ active: false }));
-    setIsPremium(realPremium);
-    setIsVip(vip);
+    const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
+    const effectiveVip = !noPremiumTester && vip;
+    setIsPremium(effectivePremium);
+    setIsVip(effectiveVip);
     setIsIntroFullAccess(introState.active);
     setIntroFullAccessEndsAt(introState.endsAt);
-    setHasPremiumAccess(realPremium || vip || introState.active || loyaltyState.active);
-    if (realPremium) {
+    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || loyaltyState.active);
+    if (effectivePremium) {
       setTrialEligible(false);
     } else {
       void reloadTrialEligible();
@@ -208,7 +218,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   }, [reloadTrialEligible]);
   const reload = useCallback(async () => {
     reloadRunnerRef.current ??= createCoalescedAsyncRunner(runReload);
-    await reloadRunnerRef.current();
+    try {
+      await reloadRunnerRef.current();
+    } finally {
+      // A false entitlement is actionable only after we have checked both the
+      // local cache and the cloud-backed fallback at least once. Direct-entry
+      // premium screens use this to avoid a first-frame paywall redirect.
+      setAccessResolved(true);
+    }
   }, [runReload]);
 
   const runReloadAfterCloudRefresh = useCallback(async () => {
@@ -232,6 +249,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // Login/merge can swap the canonical stable_id; restart the admin-grant listener on the new users/{stable_id}.
   useEffect(() => {
     const sub = onAppEvent('auth_provider_linked', () => {
+      setAccessResolved(false);
       vipSnapshotStateRef.current = null;
       setPremiumListenerRevision((v) => v + 1);
       void reloadAfterCloudRefresh();
@@ -416,18 +434,31 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // Instant update on purchase — set true immediately, reload only syncs cache
   useEffect(() => {
     const sub = onAppEvent('premium_activated', () => {
-      setIsPremium(true);
-      setHasPremiumAccess(true);
-      setTrialEligible(false);
-      invalidatePremiumCache();
-      void import('../app/lesson_lock_system')
-        .then(m => m.getPremiumCourseLevel())
-        .catch(() => {});
-      // Sync cache in background — but don\'t let it override our true state
-      // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
-      void reload();
-      emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip });
+      void (async () => {
+        const activationTesterEntries = await AsyncStorage.multiGet(['tester_no_premium', 'tester_no_limits'])
+          .catch(() => [] as [string, string | null][]);
+        const activationTesterValues = Object.fromEntries(activationTesterEntries);
+        const activationNoPremium = activationTesterValues.tester_no_premium === 'true';
+        const activationNoLimits = activationTesterValues.tester_no_limits === 'true';
+        if (activationNoPremium || (activationNoLimits && IS_STORE_RELEASE)) {
+          invalidatePremiumCache();
+          await reload();
+          return;
+        }
+
+        setIsPremium(true);
+        setHasPremiumAccess(true);
+        setTrialEligible(false);
+        invalidatePremiumCache();
+        void import('../app/lesson_lock_system')
+          .then(m => m.getPremiumCourseLevel())
+          .catch(() => {});
+        // Sync cache in background — but don\'t let it override our true state
+        // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
+        void reload();
+        emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
+        void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip });
+      })();
     });
     return () => sub.remove();
   }, [reload]);
@@ -473,6 +504,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setIsPremium(false);
       setIsVip(false);
       setHasPremiumAccess(false);
+      setAccessResolved(true);
       setIsIntroFullAccess(false);
       setIntroFullAccessEndsAt(null);
       setTrialEligible(false);
@@ -511,8 +543,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   // во все usePremium()-потребители по всему приложению (home, arena, inbox, friends…),
   // умножая работу на каждом тике premium/VIP.
   const contextValue = useMemo<PremiumContextValue>(
-    () => ({ isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
-    [isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
+    () => ({ isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),
+    [isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload],
   );
 
   return (

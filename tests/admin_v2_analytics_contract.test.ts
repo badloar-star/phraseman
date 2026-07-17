@@ -37,6 +37,35 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain('aria-live="polite"');
   });
 
+  test('uses a compact report switcher instead of a long in-page analytics scroll', () => {
+    expect(view).toContain('id="analytics-report-select"');
+    expect(view).toContain('data-action="select-analytics-report"');
+    expect(view).toContain('data-analytics-report-panel');
+    expect(view).toContain('Обзор');
+    expect(view).toContain('Продукт и обучение');
+    expect(view).toContain('Подписки');
+    expect(view).toContain('Экспорт и качество');
+    expect(view).not.toContain('aria-label="Разделы аналитики"');
+    expect(view).not.toContain('href="#product-analytics-panel"');
+    expect(core).toContain('activeAnalyticsReport');
+    expect(core).toContain('syncAnalyticsReportVisibility');
+    expect(core).toContain("state.activeAnalyticsReport === 'product'");
+    expect(core).toContain("state.activeAnalyticsReport === 'subscriptions'");
+    expect(core).toContain("state.activeAnalyticsReport === 'exports'");
+  });
+
+  test('exports the current canonical analytics report as PDF and JSON', () => {
+    expect(analyticsState).toContain('export function createCanonicalAnalyticsReport');
+    expect(analyticsState).toContain('metrics: [');
+    expect(analyticsState).toContain('sourceHealth');
+    expect(core).toContain('downloadAnalyticsReportBundle');
+    expect(core).toContain("action === 'export-analytics-report'");
+    const reportExport = read('admin/v2/scripts/admin-report-export.js');
+    expect(reportExport).toContain('export function downloadAnalyticsReportBundle');
+    expect(reportExport).toContain('application/pdf');
+    expect(reportExport).toContain('application/json');
+  });
+
   test('keeps the last good snapshot through loading and error states', () => {
     expect(core).toContain("analytics: { status: 'idle', snapshot: null, error: '' }");
     expect(core).toContain("status: 'loading'");

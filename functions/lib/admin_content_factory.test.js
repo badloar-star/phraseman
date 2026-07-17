@@ -25,6 +25,12 @@ describe('parseContentFactoryJobRequest', () => {
     it('rejects a non-versioned blueprint reference before writing a job', () => {
         expect(() => (0, admin_content_factory_1.parseContentFactoryJobRequest)({ projectId: 'fr-a1', studyTarget: 'fr', sourceLocale: 'ru', lessonIds: [1], surfaces: ['lessons'], idempotencyKey: 'job-1', blueprintVersion: 'en-v1' })).toThrow(https_1.HttpsError);
     });
+    it('pins only newly created Arena units to the resolved convergence provenance', () => {
+        const input = (0, admin_content_factory_1.parseContentFactoryJobRequest)({ projectId: 'fr-a1', studyTarget: 'fr', sourceLocale: 'ru', lessonIds: [1], surfaces: ['lessons', 'arena_questions'], idempotencyKey: 'job-routing', blueprintVersion: 'english-core-32:v1' });
+        const plan = (0, admin_content_factory_1.buildContentFactoryJobPlan)(input, 'admin-1', '2026-07-10T00:00:00.000Z', () => ({ engineRequested: 'shadow', engineResolved: 'legacy', configRevision: 4, comparatorVersion: 'arena-parity-v1' }));
+        expect(plan.units.find((unit) => unit.surface === 'arena')).toMatchObject({ engineRequested: 'shadow', engineResolved: 'legacy', configRevision: 4, comparatorVersion: 'arena-parity-v1' });
+        expect(plan.units.find((unit) => unit.surface === 'lesson')).not.toHaveProperty('engineRequested');
+    });
     it('returns an actionable source coverage error before creating a job', () => {
         const lessons = Object.fromEntries(Array.from({ length: 32 }, (_, index) => {
             const lessonId = index + 1;

@@ -10,10 +10,6 @@ import { resolveAllMistakeTokens, resolvePhraseMistakeToken } from './mistake_to
 import {
   aiOffline,
   isAiOfflineError,
-  aiOfflineToast,
-  aiErrorToast,
-  aiGlobalBudgetToast,
-  isAiGlobalBudgetError,
 } from './ai_kill_switch_copy';
 import type { AiMistakeCardState } from '../components/AiMistakeCard';
 import { hapticTap } from '../hooks/use-haptics';
@@ -172,21 +168,13 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
           setAiMistakeState('limit');
           return;
         }
-        // Automatic failures also stay quiet, but never hide the local fallback.
+        // Automatic failures stay visible as an honest retryable error.
         if (!withHaptic) {
           setAiMistakeState('error');
           setAiMistakeText(null);
           return;
         }
-        // Глобальный бюджет иссяк — свой набор текстов («Свет мигнул на весь
-        // квартал»). Кладём готовый текст, карточка в state='error' его покажет.
-        // Прочие ошибки — карточка сама возьмёт aiErrorToast (aiMistakeText=null).
-        if (isAiGlobalBudgetError(error)) {
-          const budget = aiGlobalBudgetToast(interfaceLang);
-          setAiMistakeText(`${budget.title}\n${budget.message}`);
-        } else {
-          setAiMistakeText(null);
-        }
+        setAiMistakeText(null);
         setAiMistakeState('error');
       }
     },
@@ -210,17 +198,10 @@ export function useMistakeExplain(input: UseMistakeExplainInput): UseMistakeExpl
       setEli5State('ready');
     } catch (error) {
       if (phraseKeyRef.current !== requestKey) return;
-      // ELI5 открывается по нажатию (ручной вызов) — вместо сухой «ошибки»
-      // показываем забавную заглушку прямо в модалке. Рубильник, глобальный
-      // бюджет ИИ и прочие ошибки дают разные наборы текстов.
-      const copy =
-        aiOffline() || isAiOfflineError(error)
-          ? aiOfflineToast(interfaceLang, 'explain')
-          : isAiGlobalBudgetError(error)
-            ? aiGlobalBudgetToast(interfaceLang)
-            : aiErrorToast(interfaceLang);
-      setEli5Text(`${copy.title}\n\n${copy.message}`);
-      setEli5State('ready');
+      // Ошибка сети или сервера не является объяснением. Оставляем модалку
+      // в retryable error-state; её локализованный UI уже содержит кнопку повтора.
+      setEli5Text(null);
+      setEli5State('error');
       return;
     } finally {
       eli5InFlightRef.current = false;

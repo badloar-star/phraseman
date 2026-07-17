@@ -3,7 +3,7 @@ import React, { createContext, useCallback, useContext, useEffect, useMemo, useR
 import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
-import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from '../app/premium_guard';
 import { formatTimeUntilRecovery, getRecoveryIntervalMs, secondsUntilEnergyFull } from '../app/energy_system';
 import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from '../app/boons/boon_effects_energy';
@@ -11,6 +11,7 @@ import { createCoalescedAsyncRunner } from '../app/app_resume_policy';
 import { scheduleEnergyFullNotification, cancelEnergyFullNotification } from '../app/notifications';
 import type { Lang } from '../constants/i18n';
 import { energyCountdownClock } from './energy_countdown_clock';
+import { getMaxEnergy as getConfiguredBaseEnergy } from '../app/remote_flags';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -42,7 +43,7 @@ export interface EnergyContextValue {
   energy: number;            // 0-maxEnergy (base only, without bonus)
   bonusEnergy: number;       // 0-N extra energy from gifts (expires next day)
   bonusExpiresAt: number;    // epoch ms when bonus expires (0 if no bonus)
-  maxEnergy: number;         // динамически: 5-10 в зависимости от уровня
+  maxEnergy: number;         // динамически: 5-6 в зависимости от уровня
   recoveryIntervalMs: number;// current +1 energy recovery interval
   recoveryEndsAtMs: number;
   timeUntilNextMs: number;   // ms until +1 energy (0 if full or unlimited)
@@ -53,6 +54,7 @@ export interface EnergyContextValue {
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
   spendAmount: (n: number) => Promise<boolean>;
   reload: () => Promise<void>;       // force re-read (call after tester toggle)
+  refillToMax: (isCurrent?: () => boolean) => Promise<boolean>; // immediate account-safe Premium refill
   /** First AsyncStorage load finished — safe to gate screens on real energy+bonus (not defaults). */
   energyReady: boolean;
 }
@@ -71,6 +73,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   spendOne: async () => true,
   spendAmount: async () => true,
   reload: async () => {},
+  refillToMax: async () => true,
   energyReady: false,
 });
 
@@ -115,17 +118,16 @@ export function useEnergyCountdown(options: { visible?: boolean } = {}): { timeU
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 async function readUnlimited(): Promise<boolean> {
-  const [tester, noLimits] = await Promise.all([
+  const [tester, noLimits, isPremium] = await Promise.all([
     AsyncStorage.getItem('tester_energy_disabled'),
-    AsyncStorage.getItem('tester_no_limits'),
+    isTesterNoLimitsActive(),
+    getVerifiedPremiumStatus(),
   ]);
-  // getVerifiedPremiumStatus handles: tester_no_limits, __DEV__, RevenueCat
-  const isPremium = await getVerifiedPremiumStatus();
   // Weekly Boon «окно без энергии»: в активный вечерний час энергия не тратится у всех.
   // EnergyContext.spendOne — основной путь траты (не energy_system.spendEnergy),
   // поэтому окно ОБЯЗАНО проверяться здесь, иначе бонус не работает.
   if (isEnergyFreeWindowActive()) return true;
-  return isPremium || tester === 'true' || noLimits === 'true';
+  return isPremium || tester === 'true' || noLimits;
 }
 
 async function readRecoveryIntervalMs(): Promise<number> {
@@ -183,7 +185,7 @@ async function readDynMax(): Promise<number> {
   try {
     const xpRaw = await AsyncStorage.getItem('user_total_xp');
     const xp = parseInt(xpRaw || '0') || 0;
-    return getMaxEnergyForLevel(getLevelFromXP(xp));
+    return getMaxEnergyForLevel(getLevelFromXP(xp), getConfiguredBaseEnergy());
   } catch {
     return MAX_ENERGY;
   }
@@ -513,16 +515,59 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // ── Force reload (call after tester toggle in settings) ────────────────────
   const reload = useCallback(async () => { await load(); }, [load]);
 
+  // Confirmed Premium must feel immediate: update refs/UI/peek first, then persist
+  // the same full state locally. No Firebase work and no animation timer is added.
+  const refillToMax = useCallback(async (
+    isCurrent: () => boolean = () => true,
+  ): Promise<boolean> => {
+    if (!isCurrent()) return false;
+    const freshDynMax = await readDynMax();
+    if (!isCurrent()) return false;
+    dynMaxRef.current = freshDynMax;
+    restoreTimersRef.current.forEach(timer => clearTimeout(timer));
+    restoreTimersRef.current = [];
+    setRestoringPremium(false);
+
+    const fullEnergy = Math.max(1, Math.floor(freshDynMax));
+    const now = Date.now();
+    const state: StoredEnergy = { current: fullEnergy, lastRecoveryTime: now };
+    energyRef.current = fullEnergy;
+    lastRecoveryRef.current = now;
+    isUnlimitedRef.current = true;
+    setEnergy(fullEnergy);
+    setMaxEnergy(fullEnergy);
+    setIsUnlimited(true);
+    setTimeUntilNextMs(0);
+    setRecoveryEndsAtMs(0);
+    setEnergyReady(true);
+    writePeekEnergy(fullEnergy, fullEnergy);
+
+    let persisted = false;
+    for (let attempt = 0; attempt < 2 && isCurrent(); attempt += 1) {
+      try {
+        await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
+        persisted = true;
+        break;
+      } catch {
+        // One immediate retry covers a transient native-storage failure without
+        // adding a timer, listener, or background worker.
+      }
+    }
+    if (!persisted || !isCurrent()) return false;
+    await cancelEnergyFullNotification().catch(() => {});
+    return isCurrent();
+  }, []);
+
   const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
 
   const value = useMemo<EnergyContextValue>(() => ({
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, reload, energyReady,
+    spendOne, spendAmount, reload, refillToMax, energyReady,
   }), [
     energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, recoveryEndsAtMs,
     timeUntilNextMs, formattedTime, isUnlimited, restoringPremium,
-    spendOne, spendAmount, reload, energyReady,
+    spendOne, spendAmount, reload, refillToMax, energyReady,
   ]);
 
   return (

@@ -167,7 +167,7 @@ Reviewer output must validate against this shape before it is accepted:
 ### Task 1.5: Legacy smoke test
 
 - [ ] Run automated one-lesson/one-surface, all legacy selections, three-lesson, injected partial-failure, retry, and idempotent-replay scenarios with a deterministic fake provider.
-- [ ] Exercise one realistic lesson prompt packet through Codex model routing and store only the sanitized artifact/receipt; do not invoke the deployed callable.
+- [ ] Exercise the current legacy lesson/quiz/flashcard/arena prompt shapes through deterministic fixture/fake-provider smoke; realistic Codex-routed language samples begin in Release 3 after versioned stage prompts exist.
 - [ ] Confirm terminal progress equals persisted units and every error is actionable.
 - [ ] Complete Executor, independent operational review, and Advisor gates.
 
@@ -390,7 +390,7 @@ Reviewer output must validate against this shape before it is accepted:
 
 ### Task 7.3: Canary rollout
 
-- [ ] Release to internal/staging first, then one lesson/topic, then three, then a bounded batch.
+- [ ] If deployment is explicitly requested, release to a confirmed internal/staging project first, then one lesson/topic, then three, then a bounded batch. Otherwise produce a rollout-readiness/canary plan and do not deploy.
 - [ ] Monitor failure categories, attempts per accepted artifact, QA score, operator correction rate, latency, and spend.
 - [ ] Define stop conditions: any hard linguistic error, wrong answer, unexplained source drift, error-rate regression, or budget anomaly.
 - [ ] Obtain final Advisor `APPROVED` decision before declaring the platform complete.

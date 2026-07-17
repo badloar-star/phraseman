@@ -15,7 +15,7 @@ describe('social and arena optimistic UI contracts', () => {
     expect(friends).toContain('[previousFriend, ...prev]');
   });
 
-  it('keeps profile friend actions and arena invite/chat/rematch optimistic', () => {
+  it('keeps profile friend actions and arena invite/rematch optimistic', () => {
     const profile = read('components/PlayerProfileModal.tsx');
     expect(profile).toContain('friendRequestSentUids');
     expect(profile).toContain('next.delete(targetUid)');
@@ -24,12 +24,6 @@ describe('social and arena optimistic UI contracts', () => {
     const lobby = read('app/arena_lobby.tsx');
     expect(lobby).toContain('arenaInvitedFriendUids');
     expect(lobby).toContain('next.delete(friendStableUid)');
-
-    const room = read('app/arena_room.tsx');
-    expect(room).toContain('type OptimisticArenaRoomChatMessage');
-    expect(room).toContain("localStatus: 'sending'");
-    expect(room).toContain("localStatus: 'failed'");
-    expect(room).toContain('visibleChatMessages');
 
     const results = read('app/arena_results.tsx');
     expect(results).toContain('optimisticRematchOffer');

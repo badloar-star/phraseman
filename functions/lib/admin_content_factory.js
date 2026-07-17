@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminListContentFactoryJobs = exports.adminCreateContentGenerationJob = void 0;
+exports.adminListContentFactoryJobs = exports.adminUpdateArenaConvergenceConfig = exports.adminCreateContentGenerationJob = exports.SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS = void 0;
 exports.parseContentFactoryJobRequest = parseContentFactoryJobRequest;
 exports.assertContentFactorySourceCoverage = assertContentFactorySourceCoverage;
 exports.storedGenerationPlanFingerprint = storedGenerationPlanFingerprint;
@@ -48,8 +48,11 @@ const job_service_1 = require("./content_factory/job_service");
 const source_registry_1 = require("./content_factory/source_registry");
 const course_release_contract_1 = require("./content_factory/course_release_contract");
 const generation_plan_1 = require("./content_factory/generation_plan");
+const surface_convergence_policy_1 = require("./content_factory/surface_convergence_policy");
+const surface_convergence_repository_1 = require("./content_factory/surface_convergence_repository");
 const REGION = 'us-central1';
 const SURFACES = ['lessons', 'vocabulary', 'drills', 'quizzes', 'cards', 'arena_questions'];
+exports.SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS = Object.freeze(['en', 'fr']);
 function isRecord(value) {
     return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -77,7 +80,7 @@ function parseContentFactoryJobRequest(data) {
     if (Object.values(result).some((value) => typeof value === 'string' && !value)) {
         throw new https_1.HttpsError('invalid-argument', 'project, language, locale, operation and blueprint are required');
     }
-    if (!/^[A-Za-z0-9._-]{1,160}$/.test(result.projectId) || !/^[A-Za-z0-9._-]{1,160}$/.test(result.idempotencyKey) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.sourceLocale) || new Set(lessonIds).size !== lessonIds.length) {
+    if (!/^[A-Za-z0-9._-]{1,160}$/.test(result.projectId) || !/^[A-Za-z0-9._-]{1,160}$/.test(result.idempotencyKey) || !exports.SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS.includes(result.studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(result.sourceLocale) || new Set(lessonIds).size !== lessonIds.length) {
         throw new https_1.HttpsError('invalid-argument', 'invalid content factory identity or duplicate lesson');
     }
     try {
@@ -101,8 +104,8 @@ function storedGenerationPlanFingerprint(value) {
         return '';
     return (0, generation_plan_1.generationPlanFingerprint)(value.lessonIds.map(Number), value.surfaces.map(String));
 }
-function buildContentFactoryJobPlan(input, actorUid, now = new Date().toISOString()) {
-    const units = (0, job_service_1.splitGenerationJob)({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces });
+function buildContentFactoryJobPlan(input, actorUid, now = new Date().toISOString(), arenaRoutingForUnit) {
+    const units = (0, job_service_1.splitGenerationJob)({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces }).map((unit) => unit.surface === 'arena' && arenaRoutingForUnit ? Object.freeze({ ...unit, ...arenaRoutingForUnit(unit.unitId) }) : unit);
     const base = (0, contracts_1.createGenerationJob)({ ...input, requestedBy: actorUid, now });
     const plannedSurfaces = new Set(units.map((unit) => unit.surface));
     const releaseCandidate = course_release_contract_1.CANONICAL_RELEASE_SURFACES.every((surface) => plannedSurfaces.has(surface));
@@ -124,7 +127,10 @@ exports.adminCreateContentGenerationJob = (0, https_1.onCall)({ region: REGION, 
     const input = parseContentFactoryJobRequest(request.data);
     const db = admin.firestore();
     const sourceReference = (0, source_registry_1.parseSourceRegistryReference)(input.blueprintVersion);
-    const registrySnap = await db.collection('content_factory_source_registry').doc((0, source_registry_1.sourceRegistryDocId)(sourceReference.blueprintId, sourceReference.version)).get();
+    const [registrySnap, convergenceConfigSnap] = await Promise.all([
+        db.collection('content_factory_source_registry').doc((0, source_registry_1.sourceRegistryDocId)(sourceReference.blueprintId, sourceReference.version)).get(),
+        db.collection('content_factory_config').doc('surface_convergence').get(),
+    ]);
     if (!registrySnap.exists)
         throw new https_1.HttpsError('not-found', 'source_registry_not_found');
     const registry = registrySnap.data();
@@ -132,7 +138,10 @@ exports.adminCreateContentGenerationJob = (0, https_1.onCall)({ region: REGION, 
     if (!registryValidation.ok)
         throw new https_1.HttpsError('failed-precondition', 'source_registry_invalid', { errors: registryValidation.errors });
     assertContentFactorySourceCoverage(registry, input.lessonIds);
-    const plan = buildContentFactoryJobPlan(input, actorUid);
+    const plan = buildContentFactoryJobPlan(input, actorUid, new Date().toISOString(), (unitId) => {
+        const resolved = (0, surface_convergence_policy_1.resolveArenaEnginePolicy)({ config: convergenceConfigSnap.exists ? convergenceConfigSnap.data() : undefined, unit: { id: unitId, isNew: true, engineRequested: convergenceConfigSnap.data()?.arena?.mode ?? 'legacy' } });
+        return { engineRequested: resolved.engineRequested, engineResolved: resolved.engineResolved, configRevision: resolved.configRevision, comparatorVersion: resolved.comparatorVersion };
+    });
     const job = plan.job;
     const jobRef = db.collection('content_factory_jobs').doc(job.idempotencyKey);
     return db.runTransaction(async (tx) => {
@@ -153,11 +162,32 @@ exports.adminCreateContentGenerationJob = (0, https_1.onCall)({ region: REGION, 
             entity: { collection: 'content_factory_jobs', id: job.idempotencyKey },
             reason: 'Language Factory generation job created',
             requestId: String(request.data && isRecord(request.data) ? request.data.requestId ?? '' : ''),
+            before: null,
+            after: { state: job.state, plannedUnitCount: plan.units.length },
             timestamp: new Date().toISOString(),
             operationId: job.idempotencyKey,
         });
         return { ok: true, jobId: job.idempotencyKey, state: job.state, replayed: false };
     });
+});
+exports.adminUpdateArenaConvergenceConfig = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+    if (!request.auth?.token?.admin)
+        throw new https_1.HttpsError('permission-denied', 'Admin only');
+    const role = roleFromToken(request.auth.token);
+    if (!role || !(0, permissions_1.hasPermission)(role, 'content.publish'))
+        throw new https_1.HttpsError('permission-denied', 'Role cannot change Arena routing');
+    const mode = String(request.data?.mode ?? '');
+    const expectedRevision = Number(request.data?.expectedRevision);
+    const disabledReason = String(request.data?.disabledReason ?? '').trim();
+    const requiredLocalePairs = Array.isArray(request.data?.requiredLocalePairs) ? request.data.requiredLocalePairs.map(String) : [];
+    if (!['legacy', 'shadow'].includes(mode) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 0 || (mode === 'legacy' && !disabledReason) || (mode === 'shadow' && requiredLocalePairs.length === 0))
+        throw new https_1.HttpsError('invalid-argument', 'arena_convergence_update_invalid');
+    try {
+        return await (0, surface_convergence_repository_1.updateArenaConvergenceConfig)(admin.firestore(), { expectedRevision, mode: mode, actorUid: request.auth.uid, role, requiredLocalePairs: mode === 'shadow' ? requiredLocalePairs : undefined, disabledReason, requestId: String(request.data?.requestId ?? ''), nowIso: new Date().toISOString(), serverTimestamp: admin.firestore.FieldValue.serverTimestamp() });
+    }
+    catch (error) {
+        throw new https_1.HttpsError('aborted', error instanceof Error ? error.message : 'surface_convergence_update_failed');
+    }
 });
 exports.adminListContentFactoryJobs = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     if (!request.auth?.token?.admin)

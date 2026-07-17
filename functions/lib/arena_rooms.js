@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.arenaRoomChatSend = exports.arenaRoomClose = exports.arenaRoomKick = exports.arenaRoomSetReady = exports.arenaRoomLeave = exports.arenaRoomJoin = exports.arenaPulsePublish = exports.arenaRoomRecordRun = exports.arenaRoomCreate = void 0;
+exports.arenaRoomClose = exports.arenaRoomKick = exports.arenaRoomSetReady = exports.arenaRoomLeave = exports.arenaRoomJoin = exports.arenaPulsePublish = exports.arenaRoomRecordRun = exports.arenaRoomCreate = void 0;
 const admin = __importStar(require("firebase-admin"));
 const crypto = __importStar(require("node:crypto"));
 const https_1 = require("firebase-functions/v2/https");
@@ -45,8 +45,6 @@ const QUESTIONS_PER_ROOM = 10;
 const ROOM_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const MAX_SCORE_PER_QUESTION = 195;
 const MAX_ROOM_MEMBERS = 20;
-const CHAT_MSG_MAX_LEN = 300;
-const CHAT_RATE_MS = 5000;
 const FALLBACK_ROOM_QUESTIONS = [
     {
         id: 'room_fallback_1',
@@ -419,51 +417,5 @@ exports.arenaRoomClose = (0, https_1.onCall)({ region: REGION, enforceAppCheck: 
     membersSnap.docs.forEach(d => batch.set(d.ref, { active: false, ready: false }, { merge: true }));
     await batch.commit();
     return { ok: true };
-});
-// ─── arenaRoomChatSend — отправить сообщение в чат комнаты ──────────────────
-exports.arenaRoomChatSend = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
-    if (!request.auth?.uid)
-        throw new https_1.HttpsError('unauthenticated', 'auth_required');
-    const db = admin.firestore();
-    const authUid = request.auth.uid;
-    const stableUid = await resolveStableUid(db, authUid);
-    await assertNotBanned(db, stableUid);
-    const code = cleanCode(request.data?.code);
-    if (!code)
-        throw new https_1.HttpsError('invalid-argument', 'code_required');
-    const text = cleanText(request.data?.text, '', CHAT_MSG_MAX_LEN).trim();
-    if (!text)
-        throw new https_1.HttpsError('invalid-argument', 'text_required');
-    // Проверяем что пользователь активный участник
-    const memberRef = db.collection('arena_room_members').doc(`${code}_${authUid}`);
-    const memberSnap = await memberRef.get();
-    if (!memberSnap.exists || !memberSnap.data()?.active) {
-        throw new https_1.HttpsError('permission-denied', 'not_a_member');
-    }
-    // Rate limit: не чаще раз в 5 секунд
-    const rateLimitRef = db.collection('arena_room_chat_rate').doc(authUid);
-    const now = Date.now();
-    const rateSnap = await rateLimitRef.get();
-    if (rateSnap.exists && now - readInt(rateSnap.data()?.lastSendAt, 0) < CHAT_RATE_MS) {
-        throw new https_1.HttpsError('resource-exhausted', 'rate_limited');
-    }
-    await rateLimitRef.set({ lastSendAt: now }, { merge: true });
-    // Простая блокировка ссылок
-    const linkRe = /https?:\/\/|t\.me\/|discord\.gg\//i;
-    if (linkRe.test(text))
-        throw new https_1.HttpsError('invalid-argument', 'links_not_allowed');
-    const memberData = memberSnap.data();
-    const msgRef = db.collection('arena_room_chat').doc(code).collection('messages').doc();
-    await msgRef.set({
-        code,
-        authorUid: authUid,
-        authorStableUid: stableUid,
-        authorName: memberData.userName || cleanName(request.data?.userName),
-        authorAvatar: memberData.userAvatar || '',
-        text,
-        createdAt: now,
-        status: 'visible',
-    });
-    return { ok: true, id: msgRef.id };
 });
 //# sourceMappingURL=arena_rooms.js.map

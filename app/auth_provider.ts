@@ -300,21 +300,14 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
 
 /**
  * Доступен ли Google Sign-In на текущем устройстве.
- * Требует EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID и установленный Google Play Services (Android).
+ * Проверяет только наличие встроенного модуля и Web Client ID. На Android
+ * Play Services проверяются после нажатия (с системным диалогом обновления) в
+ * runGoogleNativeSignIn: временный сбой preflight не должен убирать все точки входа.
  */
 export async function isGoogleSignInAvailable(): Promise<boolean> {
   const mod = getGoogleSignin();
   if (!mod) return false;
   if (!process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID) return false;
-  if (Platform.OS === 'android') {
-    try {
-      configureGoogleSignin();
-      const has = await mod.GoogleSignin.hasPlayServices({ showPlayServicesUpdateDialog: false });
-      return !!has;
-    } catch {
-      return false;
-    }
-  }
   return true;
 }
 
@@ -354,6 +347,12 @@ async function tryRestoreAccountSwitchBackup(
 
 const ACCOUNT_DELETE_PENDING_AUTH_KEY = 'account_delete_pending_auth_v1';
 const ACCOUNT_DELETE_PENDING_AUTH_TTL_MS = 7 * 24 * 60 * 60_000;
+const REMOTE_ACCOUNT_DELETED_NOTICE_KEY = 'remote_account_deleted_notice_v1';
+let localAccountDeletionInProgress = false;
+
+export function isLocalAccountDeletionInProgress(): boolean {
+  return localAccountDeletionInProgress;
+}
 
 interface AccountDeletePendingAuthLock {
   providerUid: string;
@@ -1468,10 +1467,14 @@ export type DeleteAccountResult =
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
+  localAccountDeletionInProgress = true;
+  try {
   const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
   const pendingDeleteStableId = await getStableId().catch(() => null);
+  let cloudDeleteEnqueued = false;
   try {
     const ack = await enqueueCloudDeletion(pendingDeleteStableId);
+    cloudDeleteEnqueued = true;
     logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);
@@ -1532,7 +1535,64 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
   beginAccountGeneration(await getStableId().catch(() => null));
 
   logAuthEvent('auth_account_deleted', { cloudDeleted: 0 });
+  if (!cloudDeleteEnqueued) return { ok: false, reason: 'cloud_delete_not_enqueued' };
   return { ok: true, cloudDeleted: false };
+  } finally {
+    localAccountDeletionInProgress = false;
+  }
+}
+
+/** Clears a device whose still-signed-in provider account was deleted elsewhere. */
+export async function handleAccountDeletedOnAnotherDevice(): Promise<void> {
+  invalidateAccountGeneration();
+  await Promise.all([
+    waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+    quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
+  ]).catch((e) => {
+    if (__DEV__) console.warn('[auth_provider] remote account delete: transition drain failed', e);
+  });
+
+  try {
+    await signOutCurrentProvider();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] remote account delete: signOut failed', e);
+    try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+  }
+  try {
+    await wipeLocalAccountData();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] remote account delete: wipe failed', e);
+  }
+  try {
+    await AsyncStorage.clear();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] remote account delete: AsyncStorage.clear failed', e);
+  }
+  try {
+    await clearStableId();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] remote account delete: clearStableId failed', e);
+  }
+  await AsyncStorage.setItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY, '1').catch(() => {});
+
+  if (CLOUD_SYNC_ENABLED) {
+    try {
+      try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+      await ensureAnonUser();
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] remote account delete: ensureAnonUser failed', e);
+    }
+  }
+  invalidatePremiumCache();
+  beginAccountGeneration(await getStableId().catch(() => null));
+  logAuthEvent('auth_account_deleted_on_another_device');
+}
+
+export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
+  const value = await AsyncStorage.getItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(() => null);
+  if (value !== '1') return false;
+  await AsyncStorage.removeItem(REMOTE_ACCOUNT_DELETED_NOTICE_KEY).catch(() => {});
+  return true;
 }
 
 /**

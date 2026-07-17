@@ -22,9 +22,11 @@ import WeeklyBoonDetailModal from './WeeklyBoonDetailModal';
 interface TodaysBoonStripProps {
   /** Доп. отступ сверху (по умолчанию 14, как у pulse-hint в карточке статистики). */
   marginTop?: number;
+  /** Встраивает строку бонуса в общую градиентную поверхность статистики. */
+  embedded?: boolean;
 }
 
-export default function TodaysBoonStrip({ marginTop = 14 }: TodaysBoonStripProps) {
+export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: TodaysBoonStripProps) {
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const [primary, setPrimary] = useState<BoonId | null>(() => getTodaysBoons().primary);
@@ -89,10 +91,9 @@ export default function TodaysBoonStrip({ marginTop = 14 }: TodaysBoonStripProps
         accessibilityLabel={copy.title}
         activeOpacity={0.85}
         onPress={openDetail}
-        style={[styles.strip, {
+        style={[styles.strip, embedded ? styles.embedded : {
           marginTop,
           backgroundColor: `${t.accent}14`,
-          borderColor: `${t.accent}33`,
         }]}
       >
         <View
@@ -147,6 +148,15 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     borderRadius: 14,
     borderWidth: 0,
+  },
+  embedded: {
+    marginTop: 0,
+    minHeight: 62,
+    paddingHorizontal: 0,
+    paddingTop: 0,
+    paddingBottom: 8,
+    backgroundColor: 'transparent',
+    borderRadius: 0,
   },
   iconFrame: {
     width: 42,

@@ -17,8 +17,6 @@ const EMPTY_ROWS = {
         explainReports: [],
         websiteInbox: [],
         supportInbox: [],
-        helpBoard: [],
-        leagueModeration: [],
     },
     community: {
         referrals: [],

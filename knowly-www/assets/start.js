@@ -328,13 +328,19 @@
   }
 
   /* Огонь-и-забыли: письмо с планом шлёт сервер, страницу не блокируем. */
-  function submitLead(email) {
+  function submitLead(email, marketingConsent) {
     try {
       var endpoint = cfg().leadEndpoint;
       if (!endpoint) return;
       fetch(endpoint, {
         method: 'POST',
-        body: JSON.stringify({ email: email, answers: state.answers, utm: readUtm(), page: location.pathname }),
+        body: JSON.stringify({
+          email: email,
+          answers: state.answers,
+          utm: readUtm(),
+          page: location.pathname,
+          marketingConsent: !!marketingConsent,
+        }),
         keepalive: true,
       }).catch(function () {});
     } catch (_) { /* noop */ }
@@ -345,6 +351,9 @@
       id: 'qlead-email', type: 'email', autocomplete: 'email', placeholder: 'you@example.com',
     });
     if (savedLeadEmail()) emailInput.value = savedLeadEmail();
+    var marketingConsent = h('input', {
+      id: 'qlead-marketing-consent', type: 'checkbox', name: 'marketingConsent', value: 'yes',
+    });
     var errBox = h('div', { class: 'qerr', role: 'alert' });
 
     function goNext() { go(state.step + 1); }
@@ -358,7 +367,7 @@
         return;
       }
       rememberLeadEmail(email);
-      submitLead(email);
+      submitLead(email, marketingConsent.checked);
       track('lead_submit');
       fbq('track', 'Lead');
       goNext();
@@ -376,13 +385,17 @@
           emailInput,
         ]),
       ]),
+      h('label', { class: 'qlead-consent', for: 'qlead-marketing-consent' }, [
+        marketingConsent,
+        h('span', {}, ['Можно присылать мне до двух писем с полезными материалами и предложениями Phraseman. Согласие необязательно; его можно отозвать в один клик.']),
+      ]),
       errBox,
       h('button', { class: 'btn-gold', type: 'button', onclick: submit }, ['Прислать план и продолжить →']),
       h('button', {
         class: 'qskip-link', type: 'button',
         onclick: function () { track('lead_skip'); goNext(); },
       }, ['Продолжить без письма →']),
-      h('p', { class: 'qsecure' }, ['Никакого спама: план и максимум пара полезных писем. Отписка — в один клик из любого письма.']),
+      h('p', { class: 'qsecure' }, ['План придёт по вашему запросу. Дополнительные письма — только если вы отметите согласие выше.']),
       backButton(),
     ]);
   }

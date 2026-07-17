@@ -1,7 +1,7 @@
 # Global Codex Executor/Advisor Model Router
 
 **Date:** 2026-07-10
-**Status:** Approved design; implementation pending final spec review
+**Status:** Disabled by explicit user request on 2026-07-14. Do not reinstall or re-enable without a new explicit request.
 
 ## Purpose
 

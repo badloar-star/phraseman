@@ -32,12 +32,14 @@ import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeature
 import { logMistake } from './mistake_log';
 import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
-import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
-import { getVerifiedPremiumStatus } from './premium_guard';
+import { getCourseLevelIndex, getFirstLessonForLevel, getLastLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
 import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { usePremium } from '../components/PremiumContext';
-import { lessonPaywallContext } from './monetization_policy';
+import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { levelExamKey, storageStudyTarget } from './target_storage_keys';
 import { examContentAvailableForTarget, frenchExamGateCopy } from './exam_target_gate';
@@ -614,14 +616,17 @@ export default function LevelExam() {
         }
         return;
       }
-      const noLimits = await AsyncStorage.getItem('tester_no_limits');
-      if (noLimits === 'true') {
+      const noLimits = await isTesterNoLimitsActive();
+      if (noLimits) {
         if (!cancelled) setAccessState('allowed');
         return;
       }
 
+      const examLevel = lvl as CourseLevel;
+      const lastLessonForLevel = getLastLessonForLevel(examLevel);
+      const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
       const premiumNow = await getVerifiedPremiumStatus();
-      if (!premiumNow) {
+      if (!premiumNow && requiresPremiumForLesson(lastLessonForLevel, legacyFreeLessonCap)) {
         if (!cancelled) {
           setAccessBlockKind('premium');
           setBlockedText(triLang(lang, {
@@ -639,8 +644,12 @@ export default function LevelExam() {
         return;
       }
 
+      if (!premiumNow) {
+        if (!cancelled) setAccessState('allowed');
+        return;
+      }
+
       const reachedLevel = await getPremiumCourseLevel(studyTarget);
-      const examLevel = lvl as CourseLevel;
       if (getCourseLevelIndex(examLevel) <= getCourseLevelIndex(reachedLevel)) {
         if (!cancelled) setAccessState('allowed');
         return;
@@ -813,8 +822,8 @@ export default function LevelExam() {
     const correct = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
     const pct = Math.round(correct / total * 100);
     // Без ограничений: засчитываем сдачу и открытия, но % и награды «за идеал» — по фактическому счёту
-    const noLimits = await AsyncStorage.getItem('tester_no_limits');
-    const passed = noLimits === 'true' || pct >= PASS_PCT;
+    const noLimits = await isTesterNoLimitsActive();
+    const passed = noLimits || pct >= PASS_PCT;
     try {
       const attemptNumber = await recordLevelExamAttempt(lvl, studyTarget);
       setExamAttemptNumber(attemptNumber);
@@ -952,11 +961,13 @@ export default function LevelExam() {
                 onPress={() => {
                   hapticTap();
                   if (accessBlockKind === 'premium') {
+                    const firstLessonForLevel = getFirstLessonForLevel(lvl as CourseLevel);
                     router.push({
                       pathname: '/premium_modal',
                       params: {
-                        context: lessonPaywallContext(getFirstLessonForLevel(lvl as CourseLevel)),
+                        context: lessonPaywallContext(firstLessonForLevel),
                         lessons_done: '0',
+                        ...lessonPurchaseContinuationParams(firstLessonForLevel),
                       },
                     } as any);
                   } else {

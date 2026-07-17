@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ACCOUNT_DELETE_TOMBSTONES = exports.ACCOUNT_DELETE_JOBS = void 0;
+exports.ACCOUNT_DELETE_AUTH_MARKERS = exports.ACCOUNT_DELETE_TOMBSTONES = exports.ACCOUNT_DELETE_JOBS = void 0;
 exports.accountDeleteJobId = accountDeleteJobId;
 exports.enqueueAccountDeletionJob = enqueueAccountDeletionJob;
 exports.processAccountDeletionJob = processAccountDeletionJob;
@@ -42,6 +42,7 @@ const crypto_1 = require("crypto");
 const https_1 = require("firebase-functions/v2/https");
 exports.ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
 exports.ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
+exports.ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers';
 const ACCOUNT_DELETE_JOB_LEASE_MS = 10 * 60000;
 const ACCOUNT_DELETE_JOB_MAX_ATTEMPTS = 8;
 const ACCOUNT_DELETE_JOB_INITIAL_BACKOFF_MS = 30000;
@@ -62,8 +63,18 @@ async function enqueueAccountDeletionJob(db, authUid, stableUid, nowMs = Date.no
     const jobId = accountDeleteJobId(authUid);
     const ref = db.collection(exports.ACCOUNT_DELETE_JOBS).doc(jobId);
     const tombstoneRef = db.collection(exports.ACCOUNT_DELETE_TOMBSTONES).doc(stableUid);
+    const authMarkerRef = db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
     return db.runTransaction(async (tx) => {
         const snapshot = await tx.get(ref);
+        tx.set(authMarkerRef, {
+            jobId,
+            status: 'pending',
+            authUidHash: sha256(authUid),
+            stableUidHash: sha256(stableUid),
+            updatedAtMs: nowMs,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
         tx.set(tombstoneRef, {
             jobId,
             status: 'pending',
@@ -192,6 +203,13 @@ async function processAccountDeletionJob(db, jobId, execute, nowMs = Date.now())
             ...stats,
         }, { merge: true });
         batch.set(db.collection(exports.ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {
+            status: 'completed',
+            completedAtMs: nowMs,
+            retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,
+            updatedAtMs: nowMs,
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+        batch.set(db.collection(exports.ACCOUNT_DELETE_AUTH_MARKERS).doc(claimed.authUid), {
             status: 'completed',
             completedAtMs: nowMs,
             retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,

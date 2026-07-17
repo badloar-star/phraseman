@@ -41,6 +41,34 @@ describe('admin reports center contracts', () => {
         expect(JSON.stringify(row)).not.toContain('secret');
         expect(JSON.stringify(row)).not.toContain('token');
     });
+    test('accepts only an ordered bounded list of export references', () => {
+        expect((0, admin_reports_center_1.parseReportExportRequest)({ reports: [
+                { source: 'error_reports', id: 'error-2' },
+                { source: 'user_reports', id: 'user-1' },
+            ] })).toEqual({ reports: [
+                { source: 'error_reports', id: 'error-2' },
+                { source: 'user_reports', id: 'user-1' },
+            ] });
+        expect(() => (0, admin_reports_center_1.parseReportExportRequest)({ reports: [] })).toThrow(https_1.HttpsError);
+        expect(() => (0, admin_reports_center_1.parseReportExportRequest)({ reports: [{ source: 'unknown', id: 'report-1' }] })).toThrow(https_1.HttpsError);
+        expect(() => (0, admin_reports_center_1.parseReportExportRequest)({ reports: [{ source: 'error_reports', id: '../escape' }] })).toThrow(https_1.HttpsError);
+        expect(() => (0, admin_reports_center_1.parseReportExportRequest)({ reports: Array.from({ length: 101 }, (_, index) => ({ source: 'error_reports', id: `r-${index}` })) })).toThrow(https_1.HttpsError);
+    });
+    test('serializes the complete report document without truncating user text', () => {
+        const longComment = 'длинный комментарий '.repeat(800);
+        const serialized = (0, admin_reports_center_1.serializeReportDocument)({
+            copyText: 'полный текст для разбора',
+            comment: longComment,
+            userLanguage: 'ru',
+            nested: { userAnswer: 'answer', values: [1, true, null] },
+        });
+        expect(serialized).toEqual({
+            copyText: 'полный текст для разбора',
+            comment: longComment,
+            userLanguage: 'ru',
+            nested: { userAnswer: 'answer', values: [1, true, null] },
+        });
+    });
     test('preserves the community pack author link used by current report documents', () => {
         const row = (0, admin_reports_center_1.projectReportRow)('community_pack_reports', 'pack-report-1', {
             status: 'new', reason: 'copyright', reporterUid: 'reporter-1', authorStableId: 'author-1', packId: 'pack-1',

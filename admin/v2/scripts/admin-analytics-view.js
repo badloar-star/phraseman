@@ -54,6 +54,13 @@ function escapeHtml(value) {
 
 const language = window.AdminAnalyticsLanguage;
 
+const ANALYTICS_REPORTS = Object.freeze([
+  { id: 'overview', label: 'Обзор', description: 'Главные метрики, состояние источников и основной график.' },
+  { id: 'product', label: 'Продукт и обучение', description: 'Экраны, сессии, уроки и качество обучения.' },
+  { id: 'subscriptions', label: 'Подписки', description: 'RevenueCat, продления, возвраты и подписочные разрезы.' },
+  { id: 'exports', label: 'Экспорт и качество', description: 'Пакет данных, источники и диагностические подробности.' },
+]);
+
 function number(value, available = true) {
   const parsed = Number(value);
   return available && Number.isFinite(parsed) ? parsed.toLocaleString('ru-RU') : '—';
@@ -98,6 +105,38 @@ function metric(label, value, note, available = true) {
 
 function skeletonMetrics() {
   return `<div class="analytics-summary-grid analytics-skeleton" aria-hidden="true">${Array.from({ length: 4 }, () => '<div class="metric analytics-metric"><span></span><strong></strong><small></small></div>').join('')}</div>`;
+}
+
+function reportOption(report, activeReport) {
+  return `<option value="${escapeHtml(report.id)}"${report.id === activeReport ? ' selected' : ''}>${escapeHtml(report.label)}</option>`;
+}
+
+function compactSnapshotMetrics(snapshot) {
+  const access = snapshot?.access || {};
+  const store = snapshot?.storeActivity || {};
+  const funnel = snapshot?.funnelSignals || {};
+  const events = funnel.events || {};
+  return `<section class="analytics-canonical-strip" aria-label="Ключевые показатели выбранного периода">
+    ${metric('Активные доступы', access.activeAccessTotal, 'Текущий Plus-доступ по всем категориям', sourceAvailable(snapshot, 'users'))}
+    ${metric('Начальные покупки', store.newPurchases, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
+    ${metric('Продления', store.renewals, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
+    ${metric('Показы paywall', events.shown, 'Поведенческие события приложения', sourceAvailable(snapshot, 'paywall_funnel'))}
+  </section>`;
+}
+
+function snapshotSummaryPanel(snapshot) {
+  if (!snapshot) return skeletonMetrics();
+  return `<section id="analytics-snapshot" class="analytics-report-panel" aria-labelledby="analytics-snapshot-title">
+    <div class="section-heading"><div><h2 id="analytics-snapshot-title">Снимок периода</h2><p>Только самые важные числа сверху. Подробные разрезы лежат в выбранных отчётах ниже.</p></div></div>
+    ${compactSnapshotMetrics(snapshot)}
+  </section>`;
+}
+
+function reportShell(id, activeReport, title, description, body) {
+  return `<section id="${escapeHtml(id)}" class="analytics-report-panel" data-analytics-report-panel="${escapeHtml(id)}"${id === activeReport ? '' : ' hidden'} aria-labelledby="analytics-report-${escapeHtml(id)}-title">
+    <div class="section-heading"><div><h2 id="analytics-report-${escapeHtml(id)}-title">${escapeHtml(title)}</h2><p>${escapeHtml(description)}</p></div></div>
+    ${body}
+  </section>`;
 }
 
 function stateNotice(model) {
@@ -185,6 +224,8 @@ export function renderAdminAnalytics(model) {
   const loading = model.status === 'loading';
   const controlsDisabled = Boolean(model.controlsDisabled || !model.authorized || model.busy || loading);
   const snapshot = model.snapshot;
+  const activeReport = ANALYTICS_REPORTS.some((report) => report.id === model.activeReport) ? model.activeReport : 'overview';
+  const activeReportMeta = ANALYTICS_REPORTS.find((report) => report.id === activeReport) || ANALYTICS_REPORTS[0];
   const paywallCategory = renderPaywallAnalyticsCategory({
     ...(model.analyticsTrends || {}),
     authorized: model.authorized,
@@ -193,8 +234,13 @@ export function renderAdminAnalytics(model) {
     draft: model.analyticsTrendsDraft,
     onToggleSeries: model.onToggleAnalyticsSeries,
   });
-  return `<header class="page-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Серверные показатели с отдельным состоянием каждого источника и честными определениями.</p></div><div class="analytics-toolbar"><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
+  const exportDisabled = !snapshot || !model.authorized || model.busy ? ' disabled' : '';
+  return `<header class="page-header analytics-canonical-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Единый центр отчётов: один период, один главный график, понятные источники и экспорт для анализа.</p></div><div class="analytics-toolbar"><label for="analytics-report-select">Отчёт</label><select id="analytics-report-select" data-action="select-analytics-report"${controlsDisabled ? ' disabled' : ''}>${ANALYTICS_REPORTS.map((report) => reportOption(report, activeReport)).join('')}</select><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button" data-action="export-analytics-report" type="button" title="Скачать текущий аналитический отчёт в PDF и JSON"${exportDisabled}>Скачать отчёт</button><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
+    <section class="analytics-report-switcher" aria-label="Выбранный аналитический отчёт"><div><strong>${escapeHtml(activeReportMeta.label)}</strong><small>${escapeHtml(activeReportMeta.description)}</small></div><div class="analytics-report-tabs" role="tablist" aria-label="Типы аналитики">${ANALYTICS_REPORTS.map((report) => `<button class="button small ${report.id === activeReport ? 'primary' : 'ghost'}" data-action="select-analytics-report" data-analytics-report="${escapeHtml(report.id)}" type="button" role="tab" aria-selected="${report.id === activeReport ? 'true' : 'false'}" title="Показать отчёт: ${escapeHtml(report.label)}">${escapeHtml(report.label)}</button>`).join('')}</div></section>
     <div class="analytics-status" aria-live="polite">${stateNotice(model)}${snapshot ? `<small>Снимок: ${escapeHtml(dateTime(snapshot.generatedAtMs))} · период ${escapeHtml(snapshot.rangeDays)} дней · ${escapeHtml(snapshot.definitionVersion || '')}</small>` : ''}</div>
-    ${snapshot ? `${accessSection(snapshot)}${storeSection(snapshot)}${funnelSection(snapshot)}${activitySection(snapshot)}${sourceSection(snapshot)}` : skeletonMetrics()}
-    ${paywallCategory}`;
+    ${snapshotSummaryPanel(snapshot)}
+    ${reportShell('overview', activeReport, 'Обзор', 'Главный график и короткая воронка без длинного скролла.', paywallCategory)}
+    ${reportShell('product', activeReport, 'Продукт и обучение', 'Детальная продуктовая аналитика загружается только здесь.', '<div class="analytics-empty">Ниже откроется существующий продуктовый отчёт. Остальные тяжёлые разделы скрыты.</div>')}
+    ${reportShell('subscriptions', activeReport, 'Подписки', 'Подписочный отчёт и денежные разрезы RevenueCat.', '<div class="analytics-empty">Ниже откроется существующий отчёт подписок. Остальные тяжёлые разделы скрыты.</div>')}
+    ${reportShell('exports', activeReport, 'Экспорт и качество', 'Источник, полнота данных и monthly decision pack без удаления старой функции.', `${sourceSection(snapshot || {})}<div class="analytics-empty">Ниже доступен старый ZIP-пакет; новая кнопка сверху скачивает PDF+JSON текущего отчёта.</div>`)}`;
 }

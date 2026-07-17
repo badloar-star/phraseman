@@ -43,7 +43,7 @@ test('returns true when tester_no_limits is enabled', async () => {
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 
-test('tester_no_premium overrides __DEV__ default (strip premium in dev)', async () => {
+test('tester_no_premium remains the explicit QA kill switch in dev', async () => {
   (globalThis as any).__DEV__ = true;
   asyncStore.tester_no_premium = 'true';
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
@@ -52,12 +52,24 @@ test('tester_no_premium overrides __DEV__ default (strip premium in dev)', async
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 
-test('__DEV__ without tester_no_premium is treated as premium', async () => {
+test('tester_no_premium wins when tester_no_limits is also enabled', async () => {
   (globalThis as any).__DEV__ = true;
+  asyncStore.tester_no_premium = 'true';
+  asyncStore.tester_no_limits = 'true';
+  const { getVerifiedPremiumStatus } = require('../app/premium_guard');
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(getCustomerInfo).not.toHaveBeenCalled();
+});
+
+test('__DEV__ does not preserve a stale premium_active flag without a store plan', async () => {
+  (globalThis as any).__DEV__ = true;
+  asyncStore.premium_active = 'true';
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
-  expect(result).toBe(true);
-  expect(getCustomerInfo).not.toHaveBeenCalled();
+  expect(result).toBe(false);
+  expect(asyncStore.premium_active).toBe('false');
+  // Initial verification plus the existing post-cloud-refresh recheck.
+  expect(getCustomerInfo).toHaveBeenCalledTimes(2);
 });
 
 test('admin override gives VIP access without making real Premium active', async () => {
@@ -140,6 +152,18 @@ test('admin_grant ignored when admin explicitly revoked (override false)', async
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(false);
+});
+
+test('an unrelated RevenueCat entitlement or subscription does not unlock Premium', async () => {
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: { other: { productIdentifier: 'unrelated_product' } } },
+    activeSubscriptions: ['unrelated_product'],
+  });
+
+  const { getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  expect(asyncStore.premium_active).not.toBe('true');
 });
 
 test('intro full access grants premium-level access without making real Premium active', async () => {

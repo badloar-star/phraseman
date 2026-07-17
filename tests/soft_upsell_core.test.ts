@@ -55,7 +55,7 @@ describe('soft upsell policy', () => {
 
   test.each([
     ['first_lesson', 1, 'first_lesson_success', 'personal_plan'],
-    ['free_lessons_complete', 8, 'free_lessons_complete', 'paywall'],
+    ['free_lessons_complete', 3, 'free_lessons_complete', 'paywall'],
     ['weekly_review', 1, 'weekly_review', 'paywall'],
     ['second_ai_dialogue', 2, 'dialog_repeat_success', 'paywall'],
     ['streak_milestone', 7, 'streak_milestone', 'paywall'],
@@ -88,7 +88,7 @@ describe('soft upsell policy', () => {
       candidate('streak_milestone', 14),
       candidate('weekly_review', 1),
       candidate('second_ai_dialogue', 2),
-      candidate('free_lessons_complete', 8),
+      candidate('free_lessons_complete', 3),
     ];
     const enabled = Object.fromEntries(SOFT_UPSELL_TRIGGERS.map(trigger => [trigger, true]));
     expect(decideSoftUpsell(input({ candidates, enabled }))).toMatchObject({
@@ -98,7 +98,7 @@ describe('soft upsell policy', () => {
   });
 
   test.each([
-    ['free_lessons_complete', 8, 'second_ai_dialogue', 2],
+    ['free_lessons_complete', 3, 'second_ai_dialogue', 2],
     ['second_ai_dialogue', 2, 'weekly_review', 1],
     ['weekly_review', 1, 'streak_milestone', 30],
     ['streak_milestone', 7, 'first_lesson', 1],
@@ -134,7 +134,7 @@ describe('soft upsell policy', () => {
 
   test.each([
     ['first_lesson', 0], ['first_lesson', 2],
-    ['free_lessons_complete', 7], ['free_lessons_complete', 9],
+    ['free_lessons_complete', 0], ['free_lessons_complete', 33],
     ['second_ai_dialogue', 1], ['second_ai_dialogue', 3],
     ['weekly_review', 2], ['repeated_training', 2],
     ['streak_milestone', 6], ['streak_milestone', 8], ['streak_milestone', 31],

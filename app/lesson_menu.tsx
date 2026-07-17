@@ -38,8 +38,14 @@ import { perfScreenMount } from './perf-monitor';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
 import { isLessonFinishedOnce } from './mastery';
-import { getVerifiedPremiumStatus } from './premium_guard';
-import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { getVerifiedPremiumStatus, isTesterNoLimitsActive } from './premium_guard';
+import {
+  isLegacyLessonGrandfatheredOpen,
+  lessonPaywallContext,
+  requiresPremiumForLesson,
+} from './monetization_policy';
+import { readLegacyFreeLessonCap } from './legacy_free_lesson_access';
+import { lessonPurchaseContinuationParams } from './paywall_lesson_continuation';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { getLessonScreenPrimed, primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -377,6 +383,7 @@ export default function LessonMenu() {
       params: {
         context: lessonPaywallContext(lessonId),
         lessons_done: String(Math.max(0, lessonId - 1)),
+        ...lessonPurchaseContinuationParams(lessonId),
       },
     } as any);
   }, [lockStateLoaded, isLessonLocked, lockReason, lessonId, router]);
@@ -452,8 +459,16 @@ export default function LessonMenu() {
     };
     (async () => {
       try {
-        const noLimits = await AsyncStorage.getItem('tester_no_limits');
-        if (noLimits === 'true') {
+        const noLimits = await isTesterNoLimitsActive();
+        if (noLimits) {
+          setIsLessonLocked(false);
+          setLockReason('progress');
+          setLockInfoQuiet(null);
+          return;
+        }
+
+        const legacyFreeLessonCap = await readLegacyFreeLessonCap(studyTarget);
+        if (isLegacyLessonGrandfatheredOpen(lessonId, legacyFreeLessonCap)) {
           setIsLessonLocked(false);
           setLockReason('progress');
           setLockInfoQuiet(null);
@@ -462,7 +477,7 @@ export default function LessonMenu() {
 
         const premiumNow = await getVerifiedPremiumStatus();
 
-        if (!premiumNow && requiresPremiumForLesson(lessonId)) {
+        if (!premiumNow && requiresPremiumForLesson(lessonId, legacyFreeLessonCap)) {
           setIsLessonLocked(true);
           setLockReason('premium');
           setLockInfoQuiet(await getLessonLockInfo(lessonId, studyTarget));
@@ -1186,6 +1201,7 @@ export default function LessonMenu() {
                   params: {
                     context: lessonPaywallContext(lessonId),
                     lessons_done: String(Math.max(0, lessonId - 1)),
+                    ...lessonPurchaseContinuationParams(lessonId),
                   },
                 } as any);
               } else if (lockReason === 'level' && prevLevel) {

@@ -37,7 +37,6 @@ exports.friendLookupUser = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
-const auth_identity_1 = require("./auth_identity");
 const NAME_INDEX = 'name_index';
 function sanitizeString(value, max) {
     return String(value ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -176,11 +175,10 @@ exports.friendLookupUser = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_O
     if (!request.auth?.uid)
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
-    // Поиск — это ЧТЕНИЕ. Не требуем, чтобы у ищущего уже был известный аккаунт: на
-    // холодном старте (аккаунт ещё не создан / auth не долинковался) requireKnownIdentity
-    // бросал failed-precondition → клиент показывал «не найден», хотя цель существует.
-    // Достаточно, что запрос аутентифицирован (проверено выше). Ошибку резолва глушим.
-    await (0, auth_identity_1.resolveStableUidForAuth)(db, request.auth.uid, request.data?.stableId).catch(() => null);
+    // Поиск — только публичное чтение. Проверенного Firebase Auth выше достаточно:
+    // stableId ищущего не участвует ни в запросе, ни в ответе. Не запускаем перед
+    // name_index отдельную цепочку account-deletion/auth_links/users, иначе холодный
+    // первый запрос ждёт несколько лишних последовательных Firestore round trips.
     const { name, nameLower } = normalizeNameQuery(request.data?.query);
     if (name.length < 2 || name.length > 32) {
         throw new https_1.HttpsError('invalid-argument', 'query_length');

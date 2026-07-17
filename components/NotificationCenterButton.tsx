@@ -10,7 +10,6 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
-import { openCommunityHub } from '../app/community_hub_deeplink';
 import { claimReportReplyShardsOptimistically } from '../app/app_messages';
 import {
   countUnreadNotifications,
@@ -87,13 +86,6 @@ function notificationLabel(type: UserNotificationType, lang: Lang): string {
       return triLang(lang, { ru: 'отправил(а) вам подарок', uk: 'надіслав(ла) вам подарунок', es: 'te envió un regalo', 'pt-BR': 'enviou um presente', vi: 'đã gửi quà cho bạn', id: 'mengirimimu hadiah', tr: 'sana hediye gönderdi', pl: 'wysłał(a) ci prezent' });
     case 'friend_gift_thanks':
       return triLang(lang, { ru: 'поблагодарил(а) за подарок', uk: 'подякував(ла) за подарунок', es: 'agradeció tu regalo', 'pt-BR': 'agradeceu o presente', vi: 'đã cảm ơn món quà', id: 'berterima kasih atas hadiah', tr: 'hediye için teşekkür etti', pl: 'podziękował(a) za prezent' });
-    case 'help_board_comment':
-      return triLang(lang, { ru: 'прокомментировал(а) вашу тему', uk: 'прокоментував(ла) вашу тему', es: 'comentó tu tema', 'pt-BR': 'comentou seu tema', vi: 'đã bình luận chủ đề của bạn', id: 'mengomentari topikmu', tr: 'konunu yorumladı', pl: 'skomentował(a) twój temat' });
-    case 'help_board_reply':
-    case 'league_chat_reply':
-      return triLang(lang, { ru: 'ответил(а) на ваше сообщение', uk: 'відповів(ла) на ваше повідомлення', es: 'respondió a tu mensaje', 'pt-BR': 'respondeu sua mensagem', vi: 'đã trả lời tin nhắn của bạn', id: 'membalas pesanmu', tr: 'mesajına yanıt verdi', pl: 'odpowiedział(a) na twoją wiadomość' });
-    case 'help_board_like':
-      return triLang(lang, { ru: 'оценил(а) ваше сообщение', uk: 'оцінив(ла) ваше повідомлення', es: 'valoró tu mensaje', 'pt-BR': 'avaliou sua mensagem', vi: 'đã đánh giá tin nhắn của bạn', id: 'menilai pesanmu', tr: 'mesajını beğendi', pl: 'ocenił(a) twoją wiadomość' });
     case 'report_reply':
       return reportReplyCopy(lang).reportReply;
     default:
@@ -108,10 +100,6 @@ function notificationIcon(type: UserNotificationType): keyof typeof Ionicons.gly
     case 'activity_like': return 'heart';
     case 'friend_gift_received': return 'gift-outline';
     case 'friend_gift_thanks': return 'happy-outline';
-    case 'help_board_comment': return 'chatbubble-ellipses-outline';
-    case 'help_board_reply': return 'arrow-undo-outline';
-    case 'help_board_like': return 'thumbs-up-outline';
-    case 'league_chat_reply': return 'arrow-undo-outline';
     case 'report_reply': return 'chatbox-ellipses-outline';
     default: return 'notifications-outline';
   }
@@ -264,10 +252,6 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
     setVisible(false);
     const nav = row.nav;
     if (!nav) return;
-    if (nav.kind === 'help_board' && nav.topicId) {
-      openCommunityHub({ tab: 'help', topicId: nav.topicId, commentId: nav.commentId || undefined });
-      return;
-    }
     router.push('/(tabs)/friends' as any);
   }, []);
 

@@ -9,8 +9,11 @@ import {
   ARENA_DAILY_MAX,
   getDailyArenaCount,
   getDailyArenaMaxToday,
+  getDailyArenaPlaysLeft,
+  refundDailyArenaPlays,
 } from '../app/arena_daily_limit';
 import { logEvent } from '../app/firebase';
+import { applyRemoteConfigSnapshot, __resetRemoteFlagsForTest } from '../app/remote_flags';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/firebase', () => ({ logEvent: jest.fn() }));
@@ -19,6 +22,7 @@ const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetRemoteFlagsForTest();
   Object.keys(mockStorage).forEach((key) => delete mockStorage[key]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((key: string) =>
     Promise.resolve(mockStorage[key] ?? null),
@@ -48,6 +52,16 @@ describe('arena_access_gate', () => {
       availableEnergy: 3,
       countDaily: true,
     })).resolves.toEqual({ ok: false, reason: 'daily_limit' });
+  });
+
+  it('grants every purchased refill slot even when the base daily limit is lower', async () => {
+    const today = new Date().toISOString().slice(0, 10);
+    applyRemoteConfigSnapshot({ numbers: { arena_daily_max: 3 } });
+    mockStorage.arena_daily_limit_v1 = JSON.stringify({ date: today, count: 3 });
+
+    await refundDailyArenaPlays(5);
+
+    await expect(getDailyArenaPlaysLeft()).resolves.toBe(5);
   });
 
   it('blocks non-premium entry without energy', async () => {

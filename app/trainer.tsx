@@ -33,12 +33,16 @@ import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 import { lessonNameForStudyTarget } from './lesson_titles_for_study_target';
 import { isStudyTargetSourceUiLang, type StudyTargetLang } from './study_target_lang_dev';
 import { getCachedTrainerPracticeSnapshot, prefetchTrainerPracticeSnapshot } from './trainer_practice_prefetch';
+import { buildPracticeHallTrend, practiceHallDurationMinutes, selectPracticeHallQueue } from './trainer_practice_hall';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../constants/compassTheme';
 import { trainerThemeIconSource, type TrainerThemeIconKind } from '../constants/trainerThemeIcons';
 import type { ThemeMode } from '../constants/theme';
 import { safeRouterBack } from './navigation_back';
+import { startReservedTrainerSession } from './trainer_session_navigation';
+import { getVerifiedPremiumStatus } from './premium_guard';
 import ErrorBoundary from '../components/ErrorBoundary';
+import PracticeHallTrendChart from '../components/PracticeHallTrendChart';
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session';
 type PlannedCopy = { ru: string; uk: string; es: string } & Partial<Record<PlannedInterfaceLang, string>>;
 interface SectionInfo {
@@ -571,6 +575,7 @@ function TrainerScreenInner() {
     const sourceLocale = isStudyTargetSourceUiLang(lang) ? lang : 'ru';
     const prefetchedPractice = getCachedTrainerPracticeSnapshot(studyTarget, sourceLocale);
     const initialDataReadyRef = useRef(prefetchedPractice != null);
+    const trainerSessionStartLockRef = useRef(false);
     const [dashboard, setDashboard] = useState<TrainerDashboard>(() => prefetchedPractice?.dashboard ?? EMPTY_TRAINER_DASHBOARD);
     const [initialDataReady, setInitialDataReady] = useState(() => initialDataReadyRef.current);
     const [loadError, setLoadError] = useState(false);
@@ -579,6 +584,8 @@ function TrainerScreenInner() {
     const [analytics, setAnalytics] = useState<PhraseAnalyticsResult | null>(() => prefetchedPractice?.analytics ?? null);
     const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(() => prefetchedPractice?.resolvedPersonalTrainings ?? null);
     const [analyticsTab, setAnalyticsTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
+    const [detailsOpen, setDetailsOpen] = useState(false);
+    const [activityDays, setActivityDays] = useState(() => prefetchedPractice?.activityDays ?? []);
     const personalPracticeCoachEnabled = personalPracticeCoachEnabledForTarget(studyTarget);
     const trainerSessionEnabled = trainerSessionContentAvailableForTarget(studyTarget);
     const trainerGateCopy = frenchTrainerGateCopy(lang);
@@ -594,6 +601,7 @@ function TrainerScreenInner() {
             setHasPremium(snapshot.hasPremium);
             setAnalytics(prev => (jsonEqualQuiet(prev, snapshot.analytics) ? prev : snapshot.analytics));
             setResolvedPersonalTrainings(prev => (jsonEqualQuiet(prev, snapshot.resolvedPersonalTrainings) ? prev : snapshot.resolvedPersonalTrainings));
+            setActivityDays(prev => (jsonEqualQuiet(prev, snapshot.activityDays) ? prev : snapshot.activityDays));
             initialDataReadyRef.current = true;
             setInitialDataReady(true);
             setLoadError(false);
@@ -607,6 +615,9 @@ function TrainerScreenInner() {
     }, [sourceLocale, studyTarget]);
     useFocusEffect(useCallback(() => { void loadData(); }, [loadData]));
     const total = dashboard?.totalDue ?? 0;
+    const practiceHallQueue = useMemo(() => selectPracticeHallQueue(dashboard), [dashboard]);
+    const practiceHallSection = useMemo(() => SECTIONS.find((section) => section.queue === practiceHallQueue) ?? null, [practiceHallQueue]);
+    const practiceHallDuration = useMemo(() => practiceHallDurationMinutes(total), [total]);
     const nextOption = useMemo(() => (dashboard.nextQueue === 'words' ? PRACTICE_OPTIONS[1] : PRACTICE_OPTIONS[0]), [dashboard]);
     const trainerRadius = isCompassTheme ? 10 : 18;
     const trainerSmallRadius = isCompassTheme ? 7 : 14;
@@ -627,31 +638,49 @@ function TrainerScreenInner() {
         totalMistakes: 0,
         windowDays: 30,
     };
+    const personalTrainings = useMemo(() => {
+        if (!personalPracticeCoachEnabled) return [];
+        const seen = new Set<string>();
+        return shownAnalytics.categoryStats.flatMap((stat) => {
+            const priority = stat.priorityScore ?? stat.weaknessScore;
+            const diagnosisId = (priority >= 55 || (stat.pct >= 15 && (stat.recoveryScore ?? 0) < 25))
+                ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings)
+                : null;
+            const training = getDiagnosisTraining(diagnosisId);
+            if (!diagnosisId || !training || seen.has(diagnosisId)) return [];
+            seen.add(diagnosisId);
+            return [{ diagnosisId, training, stat }];
+        }).slice(0, 2);
+    }, [personalPracticeCoachEnabled, resolvedPersonalTrainings, shownAnalytics.categoryStats]);
+    const practiceHallTrend = useMemo(() => buildPracticeHallTrend(activityDays), [activityDays]);
     const hasAnalyticsMistakes = shownAnalytics.totalMistakes > 0;
     const showTrainerModePlusBadge = !hasPremium && !isFeatureFreeForEveryone('trainer_modes');
     const openPremium = useCallback((context = 'trainer') => {
         hapticTap();
         router.push({ pathname: '/premium_modal', params: { context } } as any);
     }, [router]);
-    const startSmartMix = useCallback(() => {
+    const openTrainerSession = useCallback(async (route: RoutePath) => {
+        await startReservedTrainerSession({
+            route,
+            router,
+            studyTarget,
+            premiumAccess: () => hasPremium ? Promise.resolve(true) : getVerifiedPremiumStatus(),
+            lock: trainerSessionStartLockRef,
+        });
+    }, [hasPremium, router, studyTarget]);
+    const startSmartMix = useCallback(async () => {
         hapticTap();
-        if (total <= 0)
+        if (total <= 0 || !practiceHallSection)
             return;
-        const targetQueue = dashboard.nextQueue && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
-            ? dashboard.nextQueue
-            : SECTIONS.find(section => (dashboard.due[section.queue] ?? 0) > 0)?.queue;
-        const section = SECTIONS.find(item => item.queue === targetQueue);
-        if (!section)
-            return;
-        router.push(section.route as any);
-    }, [dashboard, router, total]);
+        await openTrainerSession(practiceHallSection.route);
+    }, [openTrainerSession, practiceHallSection, total]);
     const startQueue = useCallback(async (section: SectionInfo) => {
         const count = dashboard?.due[section.queue] ?? 0;
         hapticTap();
         if (count <= 0)
             return;
-        router.push(section.route as any);
-    }, [dashboard, router]);
+        await openTrainerSession(section.route);
+    }, [dashboard, openTrainerSession]);
     const startPracticeOption = useCallback(async (option: PracticeOption) => {
         const recommendedQueue = dashboard.nextQueue && option.queues.includes(dashboard.nextQueue) && (dashboard.due[dashboard.nextQueue] ?? 0) > 0
             ? dashboard.nextQueue
@@ -679,7 +708,7 @@ function TrainerScreenInner() {
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.h2 }]}>
                     {triLang(lang, {
-                      ru: 'Моя практика', uk: 'Моя практика', es: 'Mi práctica',
+                      ru: 'Зал практики', uk: 'Зал практики', es: 'Sala de práctica',
                       'pt-BR': 'Minha prática', vi: 'Luyện tập của tôi', id: 'Latihanku',
                       tr: 'Pratiğim', pl: 'Moja praktyka',
                     })}
@@ -720,9 +749,9 @@ function TrainerScreenInner() {
             <View style={{ flex: 1 }}>
               <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.h2 }]}>
                 {triLang(lang, {
-            ru: 'Моя практика',
-            uk: 'Моя практика',
-            es: 'Mi práctica',
+            ru: 'Зал практики',
+            uk: 'Зал практики',
+            es: 'Sala de práctica',
             'pt-BR': "Minha prática",
             vi: "Luyện tập của tôi",
             id: "Latihanku",
@@ -735,9 +764,9 @@ function TrainerScreenInner() {
               screen="trainer"
               dataId="trainer_dashboard"
               dataText={triLang(lang, {
-                ru: 'Экран Моя практика',
-                uk: 'Екран Моя практика',
-                es: 'Pantalla Mi práctica',
+                ru: 'Экран Зал практики',
+                uk: 'Екран Зал практики',
+                es: 'Pantalla Sala de práctica',
                 'pt-BR': 'Tela Minha prática',
                 vi: 'Màn hình Luyện tập của tôi',
                 id: 'Layar Latihanku',
@@ -755,10 +784,6 @@ function TrainerScreenInner() {
 
           <BouncyWrap>
           <ScrollView decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" contentContainerStyle={{ padding: 16, gap: 12, paddingBottom: 30 }} showsVerticalScrollIndicator={false} onScroll={onBouncyScroll} scrollEventThrottle={16}>
-            {null}
-
-            {null}
-
             {!trainerSessionEnabled && (<View style={[styles.card, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderWidth: 0, borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.cardIcon}>
@@ -774,89 +799,39 @@ function TrainerScreenInner() {
                 </View>
               </View>)}
 
-            {PRACTICE_OPTIONS.map(option => {
-            const count = option.queues.reduce((sum, queue) => sum + (dashboard.due[queue] ?? 0), 0);
-            const empty = count === 0 || !trainerSessionEnabled;
-            const isNext = option.queues.includes(dashboard.nextQueue as TrainerQueue);
-            const optionAccent = isCompassTheme
-                ? (option.id === 'context' ? COMPASS_RICH.champagne : COMPASS_RICH.peach)
-                : isGoldTheme
-                ? option.id === 'context' ? GOLD_RICH.metalGold : GOLD_RICH.champagne
-                :
-                    option.accent;
-            const optionAccentBorder = isCompassTheme
-                ? (isNext ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
-                : isGoldTheme
-                ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                :
-                    optionAccent + '55';
-            return (<TouchableOpacity key={option.id} accessibilityRole="button" accessibilityLabel={optionTitle(option, lang)} onPress={() => { if (trainerSessionEnabled) void startPracticeOption(option); }} activeOpacity={empty ? 1 : 0.86} style={[
-                    styles.card,
-                    isCompassTheme && styles.compassClip,
-                    isCompassTheme && compassShadow(isNext ? 2 : 1),
-                    {
-                        backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.92)' : t.bgCard,
-                        borderColor: isCompassTheme
-                            ? (isNext ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
-                            : isGoldTheme
-                            ? (isNext ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                            :
-                                isNext ? option.accent : 'transparent',
-                        borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (isNext ? 1 : 0),
-                        borderRadius: trainerRadius,
-                        opacity: empty ? 0.62 : 1,
-                    },
-                ]}>
-                  {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} selected={isNext} quiet={!isNext} physical /> : null}
-                  <View style={styles.cardIcon}>
-                    <TrainerThemeIcon kind={option.iconKind} themeMode={themeMode}/>
-                  </View>
-                  <View style={{ flex: 1 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                      <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>
-                        {optionTitle(option, lang)}
-                      </Text>
-                      {showTrainerModePlusBadge ? <PlusBadge themeMode={themeMode} size="xs" /> : null}
-                      {isNext && option.id !== 'context' ? (<View style={[styles.nextBadge, { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.washStrong : option.accent + '22', borderRadius: trainerPillRadius, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent' }]}>
-                          <Text style={{ color: optionAccent, fontSize: f.label, fontWeight: '900' }}>
-                            {triLang(lang, {
-                        ru: 'лучший старт',
-                        uk: 'кращий старт',
-                        es: 'mejor inicio',
-                        'pt-BR': "melhor início",
-                        vi: "bắt đầu tốt nhất",
-                        id: "awal terbaik",
-                        tr: "en iyi başlangıç",
-                        pl: "najlepszy start",
-                    })}
-                          </Text>
-                        </View>) : null}
-                    </View>
-                    <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={2}>
-                      {empty
-                    ? triLang(lang, {
-                        ru: 'Сейчас нечего повторять.',
-                        uk: 'Зараз нічого повторювати.',
-                        es: 'Nada que repasar ahora.',
-                        'pt-BR': "Nada para revisar agora.",
-                        vi: "Hiện chưa có gì để ôn.",
-                        id: "Belum ada yang perlu diulas.",
-                        tr: "Şu an tekrar edecek bir şey yok.",
-                        pl: "Nie ma teraz nic do powtórki.",
-                    })
-                    : optionSubtitle(option, lang)}
-                    </Text>
-                  </View>
-                  <View style={[styles.countBadge, { backgroundColor: empty ? trainerRowBg : isCompassTheme ? COMPASS_RICH.washStrong : isGoldTheme ? GOLD_RICH.wash : option.accent + '22', borderColor: empty ? trainerBorder : optionAccentBorder, borderWidth: (isCompassTheme || isGoldTheme) ? StyleSheet.hairlineWidth : (empty ? 0 : 1), borderRadius: isCompassTheme ? 9 : 23 }]}>
-                    <Text style={[styles.countNum, { color: empty ? t.textMuted : optionAccent, fontSize: f.numMd }]}>
-                      {count}
-                    </Text>
-                  </View>
-                </TouchableOpacity>);
-        })}
+            <View style={[styles.hero, { backgroundColor: 'transparent', borderColor: trainerBorder, borderWidth: trainerBorderWidth }]}>
+              <LinearGradient colors={total > 0 ? [`${t.accent}42`, trainerCardBg, trainerCardBg] : [trainerRowBg, trainerCardBg]} locations={[0, 0.42, 1]} style={StyleSheet.absoluteFillObject} />
+              <View style={[styles.heroGlow, { backgroundColor: `${t.accent}18` }]} />
+              <View style={styles.heroTopRow}>
+                <View style={[styles.heroIcon, { backgroundColor: total > 0 ? t.accent : trainerRowBg }]}>
+                  <Ionicons name={total > 0 ? 'sparkles-outline' : 'checkmark-circle-outline'} size={28} color={total > 0 ? t.correctText : t.textMuted} />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 0.6 }}>{triLang(lang, { ru: 'СЕГОДНЯ В ПРАКТИКЕ', uk: 'СЬОГОДНІ В ПРАКТИЦІ', es: 'PRÁCTICA DE HOY', 'pt-BR': 'PRÁTICA DE HOJE', vi: 'LUYỆN TẬP HÔM NAY', id: 'LATIHAN HARI INI', tr: 'BUGÜNKÜ PRATİK', pl: 'DZISIEJSZA PRAKTYKA' })}</Text>
+                  <Text style={[styles.heroCount, { color: t.textPrimary, fontSize: f.numLg }]}>{total} {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów' })}</Text>
+                  <Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]}>{total > 0 ? triLang(lang, { ru: 'Твои ошибки уже собраны в одну короткую практику.', uk: 'Твої помилки вже зібрані в одну коротку практику.', es: 'Tus errores ya están reunidos en una práctica corta.', 'pt-BR': 'Seus erros já estão reunidos em uma prática curta.', vi: 'Các lỗi của bạn đã được gom vào một bài luyện ngắn.', id: 'Kesalahanmu sudah dikumpulkan dalam latihan singkat.', tr: 'Hataların kısa bir çalışmada toplandı.', pl: 'Twoje błędy są już zebrane w krótkiej praktyce.' }) : triLang(lang, { ru: 'Сейчас в очереди нет ошибок. Новые появятся после следующей практики.', uk: 'Зараз у черзі немає помилок. Нові з’являться після наступної практики.', es: 'Ahora no hay errores en la cola. Los nuevos aparecerán después de practicar.', 'pt-BR': 'Não há erros na fila agora. Novos aparecerão após a próxima prática.', vi: 'Hiện không có lỗi nào trong hàng đợi. Lỗi mới sẽ xuất hiện sau lần luyện tiếp theo.', id: 'Saat ini tidak ada kesalahan di antrean. Kesalahan baru muncul setelah latihan berikutnya.', tr: 'Şu anda kuyrukta hata yok. Yeni hatalar sonraki çalışmadan sonra görünür.', pl: 'W kolejce nie ma teraz błędów. Nowe pojawią się po kolejnej praktyce.' })}</Text>
+                </View>
+              </View>
+              <TouchableOpacity accessibilityRole="button" accessibilityLabel={triLang(lang, { ru: 'Начать практику ошибок', uk: 'Почати практику помилок', es: 'Empezar práctica de errores', 'pt-BR': 'Iniciar prática de erros', vi: 'Bắt đầu luyện lỗi', id: 'Mulai latihan kesalahan', tr: 'Hata pratiğine başla', pl: 'Rozpocznij praktykę błędów' })} onPress={() => { if (trainerSessionEnabled) void startSmartMix(); }} disabled={total <= 0 || !trainerSessionEnabled} style={[styles.primaryBtn, { backgroundColor: total > 0 && trainerSessionEnabled ? t.accent : trainerRowBg }]}>
+                <Ionicons name="arrow-forward" size={19} color={t.correctText} /><Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '900' }}>{triLang(lang, { ru: 'Начать практику', uk: 'Почати практику', es: 'Empezar práctica', 'pt-BR': 'Começar prática', vi: 'Bắt đầu luyện tập', id: 'Mulai latihan', tr: 'Pratiğe başla', pl: 'Rozpocznij praktykę' })}{total > 0 ? ` · ${practiceHallDuration} ${triLang(lang, { ru: 'мин', uk: 'хв', es: 'min', 'pt-BR': 'min', vi: 'phút', id: 'mnt', tr: 'dk', pl: 'min' })}` : ''}</Text>
+              </TouchableOpacity>
+            </View>
+
+            {personalTrainings.map(({ diagnosisId, training, stat }, index) => (<TouchableOpacity key={diagnosisId} accessibilityRole="button" onPress={() => { hapticTap(); router.push({ pathname: '/problem_coach', params: { microDiagnosisId: diagnosisId, category: stat.category } } as any); }} activeOpacity={0.86} style={[styles.card, { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: trainerRadius }]}>
+              <View style={[styles.trainingIcon, { backgroundColor: index === 0 ? `${t.accent}20` : `${t.textMuted}18` }]}><Ionicons name={index === 0 ? 'sparkles-outline' : 'layers-outline'} size={22} color={index === 0 ? t.accent : t.textSecond} /></View>
+              <View style={{ flex: 1 }}><Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{triLang(lang, training.shortTitle ?? training.title)}</Text><Text style={[styles.cardSub, { color: t.textMuted, fontSize: f.caption }]}>{triLang(lang, { ru: 'Персональная тренировка по повторяющейся ошибке.', uk: 'Персональне тренування за повторюваною помилкою.', es: 'Entrenamiento personal para un error repetido.', 'pt-BR': 'Treino pessoal para um erro recorrente.', vi: 'Bài luyện cá nhân cho lỗi lặp lại.', id: 'Latihan pribadi untuk kesalahan berulang.', tr: 'Tekrarlayan hata için kişisel çalışma.', pl: 'Osobisty trening na powtarzający się błąd.' })}</Text></View>
+              <Ionicons name="chevron-forward" size={20} color={t.textMuted} />
+            </TouchableOpacity>))}
+
+            <View style={[styles.resultsBlock, { backgroundColor: trainerCardBg, borderColor: trainerBorder, borderWidth: trainerBorderWidth, borderRadius: trainerRadius }]}>
+              <Text style={[styles.sectionTitle, { color: t.textPrimary, fontSize: f.bodyLg }]}>{triLang(lang, { ru: 'Твои результаты', uk: 'Твої результати', es: 'Tus resultados', 'pt-BR': 'Seus resultados', vi: 'Kết quả của bạn', id: 'Hasilmu', tr: 'Sonuçların', pl: 'Twoje wyniki' })}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.caption }}>{practiceHallTrend.length > 0 ? triLang(lang, { ru: 'Тяни график одним пальцем, а двумя меняй масштаб.', uk: 'Тягни графік одним пальцем, а двома змінюй масштаб.', es: 'Arrastra con un dedo y cambia la escala con dos.', 'pt-BR': 'Arraste com um dedo e altere a escala com dois.', vi: 'Kéo bằng một ngón và đổi tỷ lệ bằng hai ngón.', id: 'Geser dengan satu jari, ubah skala dengan dua jari.', tr: 'Tek parmakla sürükle, iki parmakla ölçeği değiştir.', pl: 'Przeciągaj jednym palcem, a skalę zmieniaj dwoma.' }) : triLang(lang, { ru: 'Данных о недавней практике пока нет.', uk: 'Даних про недавню практику поки немає.', es: 'Aún no hay datos de práctica reciente.', 'pt-BR': 'Ainda não há dados de prática recente.', vi: 'Chưa có dữ liệu luyện tập gần đây.', id: 'Belum ada data latihan terbaru.', tr: 'Yakın pratik verisi henüz yok.', pl: 'Nie ma jeszcze danych o ostatniej praktyce.' })}</Text>
+              <PracticeHallTrendChart points={practiceHallTrend} accent={t.accent} text={t.textPrimary} muted={t.textMuted} surface={trainerRowBg} onSurface={t.textPrimary} accessibilityLabel={triLang(lang, { ru: 'Интерактивный график практики: проведи пальцем по датам или измени масштаб двумя пальцами', uk: 'Інтерактивний графік практики: проведи пальцем по датах або зміни масштаб двома пальцями', es: 'Gráfico interactivo: desliza por las fechas o cambia la escala con dos dedos', 'pt-BR': 'Gráfico interativo: deslize pelas datas ou altere a escala com dois dedos', vi: 'Biểu đồ tương tác: vuốt theo ngày hoặc đổi tỷ lệ bằng hai ngón tay', id: 'Grafik interaktif: geser tanggal atau ubah skala dengan dua jari', tr: 'Etkileşimli grafik: tarihlerde kaydır veya iki parmakla ölçeği değiştir', pl: 'Interaktywny wykres: przesuwaj po datach lub zmieniaj skalę dwoma palcami' })} />
+              <TouchableOpacity accessibilityRole="button" onPress={() => { hapticTap(); setDetailsOpen((open) => !open); }} style={styles.secondaryLink}><Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{detailsOpen ? triLang(lang, { ru: 'Скрыть подробности', uk: 'Сховати подробиці', es: 'Ocultar detalles', 'pt-BR': 'Ocultar detalhes', vi: 'Ẩn chi tiết', id: 'Sembunyikan detail', tr: 'Ayrıntıları gizle', pl: 'Ukryj szczegóły' }) : triLang(lang, { ru: 'Показать подробности', uk: 'Показати подробиці', es: 'Mostrar detalles', 'pt-BR': 'Mostrar detalhes', vi: 'Xem chi tiết', id: 'Tampilkan detail', tr: 'Ayrıntıları göster', pl: 'Pokaż szczegóły' })}</Text><Ionicons name={detailsOpen ? 'chevron-up' : 'chevron-down'} size={18} color={t.textMuted} /></TouchableOpacity>
+            </View>
 
             {/* ── Аналитика ошибок inline ── */}
-            {hasPremium ? (
+            {detailsOpen && hasPremium ? (
             <View style={[styles.analyticsBlock, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairline : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#FACC1533', borderWidth: 0, borderRadius: trainerRadius }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={trainerRadius} quiet physical /> : null}
                 <View style={styles.analyticsHeader}>
@@ -1012,9 +987,9 @@ function TrainerScreenInner() {
                       </View>))}
                   </View>)}
               </View>
-            ) : (
+            ) : detailsOpen ? (
               <WeeklyReviewCard active={trainerRuntimeActive} isPremium={false} studyTarget={studyTarget} stableLayout />
-            )}
+            ) : null}
 
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, isCompassTheme && styles.compassClip, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : isGoldTheme ? 'rgba(8,8,6,0.94)' : '#1a1a2e', borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : isGoldTheme ? GOLD_RICH.hairlineQuiet : '#4A9EFF44', borderRadius: isCompassTheme ? 9 : 14 }]}>
                 {isCompassTheme ? <CompassTrainerSurface radius={9} quiet physical /> : null}
@@ -1061,7 +1036,11 @@ const styles = StyleSheet.create({
     hero: {
         borderRadius: 18,
         padding: 16,
+        overflow: 'hidden',
     },
+    heroGlow: { position: 'absolute', width: 210, height: 210, right: -92, top: -128, borderRadius: 105 },
+    heroTopRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+    heroCount: { fontWeight: '900' },
     heroIcon: {
         width: 52,
         height: 52,
@@ -1071,7 +1050,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     primaryBtn: {
-        minHeight: 48,
+        minHeight: 52,
         borderRadius: 14,
         marginTop: 16,
         alignItems: 'center',
@@ -1080,6 +1059,9 @@ const styles = StyleSheet.create({
         gap: 8,
     },
     sectionTitle: { fontWeight: '900', marginTop: 4 },
+    resultsBlock: { padding: 14, gap: 10 },
+    trainingIcon: { width: 52, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
+    secondaryLink: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingTop: 4 },
     card: {
         flexDirection: 'row',
         alignItems: 'center',

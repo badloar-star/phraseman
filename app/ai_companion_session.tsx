@@ -62,7 +62,7 @@ interface UiMessage {
 
 export default function AiCompanionSession() {
   const { theme: t, f } = useTheme();
-  const { hasPremiumAccess } = usePremium();
+  const { hasPremiumAccess, accessResolved } = usePremium();
   // Доступ к «ИИ-диалогам» с учётом «Пульта» (см. ai_dialog_session.tsx).
   const dialogAccess = useFeatureAccess('ai_dialog');
   const { studyTarget } = useStudyTarget();
@@ -73,10 +73,10 @@ export default function AiCompanionSession() {
   const frenchGateCopy = frenchAiDialogGateCopy(lang);
 
   useEffect(() => {
-    if (!aiDialogGateOpen || dialogAccess) return;
+    if (!accessResolved || !aiDialogGateOpen || dialogAccess) return;
     void trackEvent('paywall_shown', { context: 'dialog_limit', source: 'ai_companion_direct_entry' });
     router.replace({ pathname: '/premium_modal', params: { context: 'dialog_limit' } } as never);
-  }, [aiDialogGateOpen, dialogAccess, router]);
+  }, [accessResolved, aiDialogGateOpen, dialogAccess, router]);
 
   // Приветствие собеседника присутствует с первого кадра (ленивый инициализатор),
   // а не ставится эффектом — иначе при гонке/двойном маунте первой реплики нет.
@@ -124,6 +124,7 @@ export default function AiCompanionSession() {
     async (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || sending) return;
+      if (!accessResolved) return;
       hapticTap();
 
       if (!dialogAccess) {
@@ -152,7 +153,7 @@ export default function AiCompanionSession() {
         setSending(false);
       }
     },
-    [sending, messages.length, hasPremiumAccess, dialogAccess, userTurns, buildHistory, sendToTheo, router, lang],
+    [sending, hasPremiumAccess, accessResolved, dialogAccess, userTurns, buildHistory, sendToTheo, router, lang],
   );
 
   // Приветствие уже в начальном состоянии. Здесь — только телеметрия старта (раз).

@@ -229,11 +229,13 @@ export function projectReportRow(source: ReportSource, id: string, row: Row): Ro
     createdAtMs: millis(row.createdAtMs || row.createdAt || row.serverCreatedAt),
     users: Object.freeze({
       primaryUid: primaryUid || null,
+      primaryName: cleanText(row.userName || row.reporterName, 120) || null,
       reporterUid: reporterUid || null,
       reporterName: cleanText(row.reporterName || row.userName, 120) || null,
       reportedUid: reportedUid || null,
       reportedName: cleanText(row.reportedName, 120) || null,
       authorUid: authorUid || null,
+      authorName: cleanText(row.authorName || row.userName, 120) || null,
     }),
     context: Object.freeze({
       screen: cleanText(row.screen, 100) || null,

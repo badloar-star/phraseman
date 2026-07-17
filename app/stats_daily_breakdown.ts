@@ -334,10 +334,12 @@ export async function devRandomizeLifetimePathDailyMetrics(dayCount: number): Pr
  * Слова и фразы, выученные за последние 7 дней (включая сегодня) и за 7 дней до них.
  * Для строки «+N слов и +M фраз за неделю» в карточке недели на экране статистики.
  */
-export async function loadWeeklyLearnedCounts(): Promise<{ words7: number; phrases7: number }> {
+export async function loadWeeklyLearnedCounts(
+  studyTarget?: RuntimeStudyTarget,
+): Promise<{ words7: number; phrases7: number }> {
   let store: Store = {};
   try {
-    store = parseStore(await AsyncStorage.getItem(STORAGE_KEY));
+    store = parseStore(await AsyncStorage.getItem(statsDailyBreakdownKey(studyTarget)));
   } catch {
     store = {};
   }

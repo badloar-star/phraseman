@@ -32,16 +32,18 @@ export function candidateAfterLessonGrant(input: {
   current: LessonSoftUpsellIdentity;
   mounted: boolean;
   accountGenerationCurrent: boolean;
+  freeLessonLimit?: number;
 }): SoftUpsellCandidate | null {
   if (input.status !== 'granted' || !input.mounted || !input.accountGenerationCurrent) return null;
   if (!input.captured.accountScope || !sameLessonSoftUpsellIdentity(input.captured, input.current)) return null;
   if (input.captured.lessonId === 1) {
     return { trigger: 'first_lesson', value: 1, studyTarget: input.captured.studyTarget };
   }
-  if (input.captured.lessonId === FREE_LESSON_LIMIT) {
+  const freeLessonLimit = input.freeLessonLimit ?? FREE_LESSON_LIMIT;
+  if (input.captured.lessonId === freeLessonLimit) {
     return {
       trigger: 'free_lessons_complete',
-      value: FREE_LESSON_LIMIT,
+      value: freeLessonLimit,
       studyTarget: input.captured.studyTarget,
     };
   }

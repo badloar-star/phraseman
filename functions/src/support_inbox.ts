@@ -47,7 +47,8 @@ import {
 
 const REGION = 'us-central1';
 export const GMAIL_SUPPORT_APP_PASSWORD = defineSecret('GMAIL_SUPPORT_APP_PASSWORD');
-const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
+/** Existing production secret; exported only for a server-side Agent Manager worker binding. */
+export const SUPPORT_OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 
 // ── Константы ─────────────────────────────────────────────────────────────────
 export const SUPPORT_MAILBOX = 'support.phraseman@gmail.com';
@@ -805,6 +806,53 @@ async function saveGeneratedSupportDraft(
   });
 }
 
+export type AgentManagerSupportDraftOutcome = Readonly<{
+  kind: 'stored' | 'stale' | 'unavailable';
+  outputHash: string | null;
+}>;
+
+/**
+ * Server-only seam for Agent Manager. It writes one draft only while the
+ * source message is still new and untouched; it never sends mail or changes
+ * the inbox status.
+ */
+export async function generateAgentManagerSupportDraft(input: Readonly<{
+  db: FirebaseFirestore.Firestore;
+  sourceDocumentId: string;
+  apiKey: string;
+  requestId: string;
+  finalize?: (tx: FirebaseFirestore.Transaction, outputHash: string) => Promise<boolean>;
+}>): Promise<AgentManagerSupportDraftOutcome> {
+  if (!/^m_[a-f0-9]{64}$/.test(input.sourceDocumentId)) return Object.freeze({ kind: 'unavailable', outputHash: null });
+  const ref = input.db.collection(INBOX_COLLECTION).doc(input.sourceDocumentId);
+  const initial = await ref.get();
+  if (!initial.exists) return Object.freeze({ kind: 'stale', outputHash: null });
+  const source = initial.data() as SupportInboxDoc;
+  const expectedRevision = Number(source.draftRevision ?? 0);
+  if (source.status !== 'new' || String(source.draftReply ?? '').trim() || !Number.isInteger(expectedRevision) || expectedRevision < 0 || !hasUsableBody(source)) {
+    return Object.freeze({ kind: 'stale', outputHash: null });
+  }
+  const cfg = await resolveJobConfig(input.db, 'support');
+  try { assertJobEnabled(cfg, 'support'); } catch { return Object.freeze({ kind: 'unavailable', outputHash: null }); }
+  const draft = await generateDraftForDoc(input.apiKey, cfg.model, source);
+  const outputHash = createHash('sha256').update(`agent-manager-support-draft-v1:${draft}`, 'utf8').digest('hex');
+  const stored = await input.db.runTransaction(async (tx) => {
+    const current = await tx.get(ref);
+    const data = current.exists ? current.data() as SupportInboxDoc : null;
+    if (!data || data.status !== 'new' || String(data.draftReply ?? '').trim() || Number(data.draftRevision ?? 0) !== expectedRevision) return false;
+    if (input.finalize && !(await input.finalize(tx, outputHash))) return false;
+    const now = new Date().toISOString();
+    tx.set(ref, { draftReply: draft, draftLang: '', draftRevision: expectedRevision + 1, draftUpdatedAt: now }, { merge: true });
+    writeSupportAudit(tx, input.db, {
+      action: 'support.draft.generate', actor: { actorUid: 'agent_manager_execution_worker', role: 'admin' }, entityId: input.sourceDocumentId,
+      requestId: input.requestId, beforeState: `draft:${expectedRevision}`, afterState: `draft:${expectedRevision + 1}`,
+      reason: 'Agent Manager prepared a support reply draft for manual review', metadata: { draftRevision: expectedRevision + 1, origin: 'agent_manager' }, timestamp: now,
+    });
+    return true;
+  });
+  return Object.freeze({ kind: stored ? 'stored' : 'stale', outputHash: stored ? outputHash : null });
+}
+
 function readAppPassword(): string {
   const pass = String(GMAIL_SUPPORT_APP_PASSWORD.value() || process.env.GMAIL_SUPPORT_APP_PASSWORD || '').trim();
   if (!pass) throw new HttpsError('failed-precondition', 'GMAIL_SUPPORT_APP_PASSWORD not configured');
@@ -813,7 +861,7 @@ function readAppPassword(): string {
 
 function readOpenAiKey(): string {
   // Do NOT clamp the secret — project-scoped keys can be long; truncation breaks auth.
-  const key = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+  const key = String(SUPPORT_OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
   if (!key) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
   return key;
 }
@@ -905,7 +953,7 @@ export const adminSupportList = onCall(
 );
 
 export const adminSupportGenerateReply = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] },
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [SUPPORT_OPENAI_API_KEY] },
   async (request) => {
     const actor = requireSupportPermission(request, 'support.draft.write');
     const apiKey = readOpenAiKey();

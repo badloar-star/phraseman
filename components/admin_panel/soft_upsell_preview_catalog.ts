@@ -32,18 +32,18 @@ export const SOFT_UPSELL_ADMIN_PREVIEWS: readonly SoftUpsellAdminPreview[] = Obj
   {
     id: 'free-lessons-complete',
     icon: 'school-outline',
-    adminLabel: 'После восьмого бесплатного урока',
+    adminLabel: 'После третьего бесплатного урока',
     adminDescription: 'Бесплатная часть завершена → Plus',
     title: 'Бесплатная часть завершена',
     body: 'Открой полный учебный путь и продолжай без остановки.',
     ctaLabel: 'Открыть Plus',
     opportunity: {
       trigger: 'free_lessons_complete',
-      value: 8,
+      value: 3,
       studyTarget: 'en',
       context: 'free_lessons_complete',
       destination: 'paywall',
-      milestoneId: 'free_lessons_complete:8:en',
+      milestoneId: 'free_lessons_complete:3:en',
     },
   },
   {

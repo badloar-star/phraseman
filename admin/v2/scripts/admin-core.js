@@ -1,5 +1,5 @@
 import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
-import { completeAnalyticsLoad } from './admin-analytics-state.js';
+import { completeAnalyticsLoad, createCanonicalAnalyticsReport } from './admin-analytics-state.js';
 import {
   captureLegacyAnalyticsWorkspaces,
   classifyAnalyticsRefreshResults,
@@ -26,6 +26,7 @@ import {
   resetAllAdminChartZoom,
   updatePaywallAnalyticsLiveRegion,
 } from './admin-analytics-trends-view.js';
+import { downloadAnalyticsReportBundle } from './admin-report-export.js';
 import { destroyAdminChart, destroyAdminCharts } from './components/admin-time-series-chart.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 import { specificGuidanceForControl } from './admin-guidance.js';
@@ -60,6 +61,7 @@ export const ADMIN_SECTIONS = Object.freeze([
 const PAGES = Object.freeze({
   overview: { title: 'Обзор', description: 'Сигналы, требующие решения сегодня, и последние управленческие действия.' },
   'agent-office': { title: 'Стратегические решения', description: 'Рекомендации агентов с доказательствами, сроком актуальности и ручным подтверждением.' },
+  'agent-manager': { title: 'Менеджер агентов', description: 'Постановка задач, очередь, согласования, результаты и регламенты в одном месте.' },
   'control-panel': { title: 'Пульт управления', description: 'Главные рычаги старой админки, сгруппированные по безопасным рабочим процессам.' },
   application: { title: 'Приложение', description: 'Обновления, баннеры, технические работы и конфигурация приложения.' },
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
@@ -165,6 +167,12 @@ const LESSON_LOCK_COUNT = 32;
 const APP_MESSAGE_LANGUAGES = Object.freeze([
   { key: 'ru', label: 'RU' }, { key: 'uk', label: 'UK' }, { key: 'es', label: 'ES' }, { key: 'ptBr', label: 'PT-BR' },
   { key: 'vi', label: 'VI' }, { key: 'id', label: 'ID' }, { key: 'tr', label: 'TR' }, { key: 'pl', label: 'PL' },
+]);
+const GLOBAL_BROADCAST_REWARDS = Object.freeze([
+  { key: 'none', label: 'Без подарка' }, { key: 'shards', label: 'Осколки знаний' },
+  { key: 'xp_boost_2x_24h', label: 'x2 XP на 24 часа' }, { key: 'xp_boost_2x_48h', label: 'x2 XP на 48 часов' },
+  { key: 'chain_shield_1', label: 'Щит цепочки на 1 день' }, { key: 'chain_shield_3', label: 'Щит цепочки на 3 дня' },
+  { key: 'arena_extra_5', label: '+5 рейтинговых игр' },
 ]);
 
 function clampChoice(value, allowed, fallback) {
@@ -311,6 +319,7 @@ const state = {
   generation: null,
   support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
   analytics: { status: 'idle', snapshot: null, error: '' },
+  activeAnalyticsReport: 'overview',
   analyticsTrends: createAnalyticsTrendScopesState(),
   analyticsTrendsDraft: defaultAnalyticsTrendsDraft(),
   budget: null,
@@ -326,6 +335,8 @@ const state = {
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, error: '' },
   agentOffice: { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 },
+  agentManager: { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 },
+  broadcasts: { state: 'idle', items: [], preview: null, error: '' },
 };
 
 let actions = null;
@@ -342,6 +353,12 @@ const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 
 export function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
+}
+
+function userIdentityLabel(name, uid) {
+  const cleanUid = String(uid ?? '').trim();
+  const cleanName = String(name ?? '').trim();
+  return cleanName ? `${cleanName} · ${cleanUid}` : cleanUid;
 }
 
 function id(prefix) {
@@ -534,7 +551,7 @@ function navCounterForRoute(route) {
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
   if (!nav) return;
-  const parentRoutes = { campaigns: 'application', 'agent-office': 'overview' };
+  const parentRoutes = { campaigns: 'application', 'agent-office': 'overview', 'agent-manager': 'overview' };
   const activeRoute = parentRoutes[state.route] || state.route;
   nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span>${navCounterForRoute(section.route)}</button>`).join('');
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
@@ -681,6 +698,48 @@ function renderAgentOfficeCenter() {
   }).join('') || '<div class="notice warning">Для выбранного дела нет действующей рекомендации.</div>';
   const auditRows = agentOffice.auditEvents.map((event) => `<div class="list-row"><div><strong>${escapeHtml(event.eventType)}</strong><small>${escapeHtml(dateTime(event.occurredAtMs))} · ${escapeHtml(event.decision || 'системное событие')}</small></div><span class="badge">${escapeHtml(event.scope || 'audit')}</span></div>`).join('') || emptyState('В безопасной проекции нет событий аудита.');
   return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<section class="card section"><div class="card-header"><div><h2>Дела, требующие решения</h2><p>Только серверные проекции: без исходных документов, секретов и прямой записи Firestore из браузера.</p></div><span class="badge">обновлено ${escapeHtml(dateTime(agentOffice.fetchedAtMs))}</span></div><div class="card-body">${caseRows}</div></section>${item ? `<section class="card section"><div class="card-header"><div><h2>${escapeHtml(item.summary)}</h2><p>Статус: ${escapeHtml(agentOfficeStatusLabel(item.status))} · уверенность: ${escapeHtml(String(Math.round(Number(item.confidence?.score || 0) * 100)))}%</p></div><span class="badge ${agentOfficeBadge(item.status)}">${escapeHtml(agentOfficeStatusLabel(item.status))}</span></div><div class="card-body"><p>${escapeHtml(item.confidence?.basis || 'Объяснение уверенности не предоставлено.')}</p><h3>Свежесть источников</h3><ul>${sourceHealth || '<li>Источники не указаны.</li>'}</ul><div class="actions"><button class="button" data-action="open-agent-office-audit" type="button" title="Показать безопасную проекцию журнала этого дела">${agentOffice.showAudit ? 'Скрыть аудит' : 'Показать аудит'}</button><a class="button ghost" href="#diagnostics" title="Открыть общий защищённый журнал диагностики">Полный журнал</a></div></div></section>${recommendationRows}${agentOffice.showAudit ? `<section class="card section"><div class="card-header"><div><h2>Аудит дела</h2><p>Журнал показывает факт решения и его область без чувствительных данных.</p></div></div><div class="card-body">${auditRows}</div></section>` : ''}` : '<div class="notice" role="status">Выберите дело, чтобы увидеть объяснение, доказательства и доступную рекомендацию.</div>'}`;
+}
+
+function agentManagerStatusLabel(status) {
+  return ({ planned: 'План', awaiting_approval: 'Ждёт согласования', queued: 'В очереди', in_progress: 'В работе', needs_review: 'Нужна проверка', completed: 'Готово', archived: 'Архив', cancelled: 'Отменено', failed: 'Ошибка' })[String(status)] || 'Неизвестно';
+}
+
+function agentManagerNextAction(status) {
+  return ({ planned: ['awaiting_approval', 'На согласование'], awaiting_approval: ['queued', 'Одобрить очередь'], queued: ['in_progress', 'Отметить начало'] })[String(status)] || null;
+}
+
+function renderAgentManagerWorkspace() {
+  const manager = state.agentManager;
+  const owner = state.authorized && state.adminRole === 'owner';
+  const disabled = owner && !state.busy ? '' : ' disabled';
+  const header = pageHeader(PAGES['agent-manager'], 'Офис агентов / Менеджер', `<button class="button" data-action="load-agent-manager" type="button"${disabled} title="Обновить состав, очередь и регламенты через сервер">Обновить</button>`);
+  if (!owner) return `${header}<div class="notice warning" role="alert"><strong>Нужна роль владельца.</strong><br>Менеджер показывает только безопасные серверные проекции.</div>`;
+  if (manager.state === 'loading') return `${header}<div class="notice" role="status">Загружаю агентов, очередь и регламенты…</div>`;
+  if (manager.state === 'error') return `${header}<div class="notice danger" role="alert"><strong>Менеджер агентов не загрузился.</strong><br>${escapeHtml(manager.error || 'Сервер не вернул очередь.')}<div class="actions section"><button class="button" data-action="load-agent-manager" type="button">Повторить</button></div></div>`;
+  const tasks = Array.isArray(manager.tasks) ? manager.tasks : [];
+  const agents = Array.isArray(manager.agents) ? manager.agents : [];
+  const runbooks = Array.isArray(manager.runbooks) ? manager.runbooks : [];
+  const active = tasks.filter((task) => ['queued', 'in_progress', 'needs_review'].includes(String(task.status)));
+  const pending = tasks.filter((task) => ['planned', 'awaiting_approval'].includes(String(task.status)));
+  const history = tasks.filter((task) => ['completed', 'cancelled', 'failed', 'archived'].includes(String(task.status)));
+  const byAgent = new Map(active.map((task) => [String(task.assignedAgentId || 'manager'), task]));
+  const agentRows = agents.map((agent) => {
+    const task = byAgent.get(String(agent.agentId));
+    return `<article class="agent-manager-role"><div><strong>${escapeHtml(agent.label || agent.agentId)}</strong><small>${escapeHtml(task?.title || (agent.enabled ? 'Свободен' : 'На паузе'))}</small></div><span class="badge ${agent.enabled ? (task ? 'warning' : 'success') : 'danger'}">${escapeHtml(task ? agentManagerStatusLabel(task.status) : (agent.enabled ? 'готов' : 'пауза'))}</span></article>`;
+  }).join('') || `<div class="notice">Команда ещё не зарегистрирована. <button class="button small" data-action="initialize-agent-manager-roster" type="button">Собрать команду</button></div>`;
+  const taskRows = (items, emptyText) => items.map((task) => {
+    const next = agentManagerNextAction(task.status);
+    const action = next ? `<button class="button small" data-action="transition-agent-manager-task" data-agent-manager-task-id="${escapeHtml(task.taskId)}" data-agent-manager-next-status="${escapeHtml(next[0])}" data-agent-manager-revision="${escapeHtml(task.revision)}" type="button">${escapeHtml(next[1])}</button>` : '';
+    return `<article class="list-row"><div><strong>${escapeHtml(task.title)}</strong><small>${escapeHtml(agentManagerStatusLabel(task.status))} · ${escapeHtml(task.assignedAgentId || 'manager')} · ${escapeHtml(task.priority || 'normal')}</small><small>${escapeHtml(task.brief || '')}</small></div><div class="actions"><span class="badge ${badgeClass(task.status)}">${escapeHtml(agentManagerStatusLabel(task.status))}</span>${action}</div></article>`;
+  }).join('') || emptyState(emptyText);
+  const runbookRows = runbooks.map((runbook) => `<article class="list-row"><div><strong>${escapeHtml(runbook.title || 'Регламент')}</strong><small>${escapeHtml(runbook.summary || '')}</small></div><span class="badge">FAQ</span></article>`).join('') || emptyState('Регламенты пока недоступны.');
+  return `${header}
+    <section class="agent-manager-operations section" aria-label="Состояние офиса агентов"><div class="agent-manager-kpis"><article><span>Активная очередь</span><strong>${active.length}</strong><small>в работе или на проверке</small></article><article><span>Ждут решения</span><strong>${pending.length}</strong><small>требуют ручного согласования</small></article><article><span>История</span><strong>${history.length}</strong><small>готовые и архивные задачи</small></article></div><div class="agent-manager-roster"><div><h2>Кто чем занят</h2><p>Выполнение не запускается автоматически.</p></div><div class="agent-manager-role-list">${agentRows}</div></div></section>
+    <section class="card section"><div class="card-header"><div><h2>Поручить менеджеру</h2><p>Задача сначала попадёт в план. Письма, production и код этот экран не запускает.</p></div></div><div class="card-body fields"><div class="field"><label for="agent-manager-title">Что нужно сделать</label><input id="agent-manager-title" maxlength="140" placeholder="Например: проверить рост ошибок после релиза"></div><div class="field"><label for="agent-manager-brief">Контекст и ожидаемый результат</label><textarea id="agent-manager-brief" maxlength="4000" placeholder="Что проверить, ограничения и ожидаемый результат"></textarea></div><div class="field"><label for="agent-manager-priority">Приоритет</label><select id="agent-manager-priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="critical">Критический</option><option value="low">Низкий</option></select></div><div class="field"><label for="agent-manager-scope">Разрешённая область</label><select id="agent-manager-scope"><option value="analysis_only">Только анализ</option><option value="support_draft">Черновик ответа поддержки</option><option value="code_prepare">Подготовка кода без запуска</option><option value="content_prepare">Подготовка контента без публикации</option></select></div><div class="actions"><button class="button primary" data-action="create-agent-manager-task" type="button"${disabled}>Передать менеджеру</button><a class="button ghost" href="#support">Почта</a><a class="button ghost" href="#report-center">Репорты</a></div></div></section>
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Очередь и решения</h2><p>Задачи, которым нужно ваше действие.</p></div><span class="badge warning">${pending.length}</span></div><div class="card-body">${taskRows(pending, 'Нет задач, ожидающих решения.')}</div></section><section class="card"><div class="card-header"><div><h2>Исполнители</h2><p>Реальный состав и текущая занятость.</p></div></div><div class="card-body">${agentRows}</div></section></div>
+    <section class="card section"><div class="card-header"><div><h2>Активная очередь</h2><p>Согласованные задачи в работе и на проверке.</p></div></div><div class="card-body">${taskRows(active, 'Активных задач сейчас нет.')}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>История и архив</h2><p>Завершённые, отменённые и архивные задачи.</p></div></div><div class="card-body">${taskRows(history, 'История пока пуста.')}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>Регламенты и FAQ</h2><p>Без секретов, персональных данных и прямого доступа к Firestore.</p></div></div><div class="card-body">${runbookRows}</div></section>`;
 }
 
 function remoteConfigBranch(branch) {
@@ -901,6 +960,35 @@ function renderAppMessageTranslations(draft, locked) {
   }).join('');
 }
 
+function buildGlobalBroadcastPreview() {
+  const title = readTextInput('global-broadcast-title-ru', 160);
+  const message = readTextInput('global-broadcast-message-ru', 2000);
+  const reason = readTextInput('global-broadcast-reason', 500);
+  if (!title || !message || !reason) throw new Error('Заполните заголовок, текст и причину.');
+  const rewardType = String(document.getElementById('global-broadcast-reward-type')?.value || 'none');
+  const rewardAmount = Math.max(0, Math.floor(Number(document.getElementById('global-broadcast-reward-amount')?.value || 0)));
+  return { payload: { rewardType, rewardAmount, titles: { ru: title }, messages: { ru: message } }, reason, summary: `Все пользователи · ${title}`, operation: { idempotencyKey: id('global-broadcast-publish'), requestId: id('global-broadcast-request') } };
+}
+
+function sameGlobalBroadcastPayload(left, right) {
+  return JSON.stringify(left || {}) === JSON.stringify(right || {});
+}
+
+function renderGlobalBroadcastPanel() {
+  if (!can('campaigns.read')) return '';
+  const broadcast = state.broadcasts;
+  const items = Array.isArray(broadcast.items) ? broadcast.items : [];
+  const preview = broadcast.preview;
+  const history = broadcast.state === 'loading' ? emptyState('Загрузка рассылок…') : broadcast.state === 'error' ? `<div class="notice danger">${escapeHtml(broadcast.error)}</div>` : items.length ? `<div class="data-list">${items.map((item) => `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без заголовка')}</strong><small>${escapeHtml(item.messageRu || '')}</small></div><span class="badge ${item.active ? 'success' : ''}">${item.active ? 'Активно' : 'Выключено'}</span></article>`).join('')}</div>` : emptyState('История рассылок пуста.');
+  return `<section class="card section"><div class="card-header"><div><h2>Глобальная рассылка</h2><p>Preview → подтверждение → атомарная публикация с audit и idempotency.</p></div><button class="button" data-action="load-global-broadcasts" type="button">Обновить</button></div><div class="card-body"><div class="field"><label for="global-broadcast-title-ru">Заголовок</label><input id="global-broadcast-title-ru" maxlength="160"></div><div class="field full"><label for="global-broadcast-message-ru">Текст</label><textarea id="global-broadcast-message-ru" maxlength="2000"></textarea></div><div class="field"><label for="global-broadcast-reward-type">Подарок</label><select id="global-broadcast-reward-type">${GLOBAL_BROADCAST_REWARDS.map((item) => `<option value="${item.key}">${item.label}</option>`).join('')}</select></div><div class="field"><label for="global-broadcast-reward-amount">Количество осколков</label><input id="global-broadcast-reward-amount" type="number" min="0" max="1000" value="0"></div><div class="field"><label for="global-broadcast-reason">Причина</label><textarea id="global-broadcast-reason" maxlength="500"></textarea></div>${preview ? `<div class="notice warning">${escapeHtml(preview.summary)}</div>` : ''}<div class="actions end"><button class="button primary" data-action="preview-global-broadcast" type="button">Предпросмотр</button>${preview ? '<button class="button primary" data-action="publish-global-broadcast" type="button">Опубликовать</button>' : ''}<button class="button danger" data-action="deactivate-global-broadcasts" type="button"${items.some((item) => item.active) ? '' : ' disabled'}>Выключить активные</button></div><h3>История</h3>${history}</div></section>`;
+}
+
+async function loadGlobalBroadcasts() {
+  state.broadcasts = { ...state.broadcasts, state: 'loading' }; renderCurrentPage();
+  try { const result = await actions.listGlobalBroadcasts({ limit: 50 }); state.broadcasts = { ...state.broadcasts, state: 'ready', items: Array.isArray(result?.items) ? result.items : [], error: '' }; renderCurrentPage(); return result; }
+  catch (error) { state.broadcasts = { ...state.broadcasts, state: 'error', error: errorMessage(error) }; renderCurrentPage(); throw error; }
+}
+
 function renderCampaigns() {
   const campaignState = state.campaigns;
   const draft = campaignState.preview?.payload || {};
@@ -919,6 +1007,7 @@ function renderCampaigns() {
   const options = Array.from({ length: 6 }, (_, index) => `<div class="field"><label for="app-message-poll-option-${index + 1}">Вариант ${index + 1}</label><input id="app-message-poll-option-${index + 1}" maxlength="160" value="${escapeHtml(draft?.translations?.ru?.pollOptions?.[index] || '')}" placeholder="${index < 2 ? 'Обязательно для опроса' : 'Необязательно'}"${locked ? ' disabled' : ''}></div>`).join('');
   const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
   return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
+    ${renderGlobalBroadcastPanel()}
     <div class="notice"><strong>Новая версия: создание сообщения и управление его показом.</strong> Редактирование и удаление будут перенесены следующим безопасным срезом после политики сохранения голосов. До этого старый модуль остаётся доступен для этих двух операций.</div>
     <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">нравится и не нравится</span></article></section>
     <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное сообщение для входящих или опрос. Черновик никому не показывается; активное сообщение появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Рабочая кампания</span></div><div class="card-body">
@@ -967,7 +1056,7 @@ function renderUserSearchResults() {
   if (state.users.searchState === 'error') return `<div class="notice danger section"><strong>Поиск не выполнен</strong><br>${escapeHtml(state.users.searchErrors.join(' · ') || 'Серверные источники поиска недоступны.')}</div>`;
   if (!state.users.searched) return emptyState('Введите UID, точное имя или почту. Общий список пользователей не сканируется.');
   if (!items.length) return emptyState('Совпадений не найдено. Проверьте точное имя, UID или почту.');
-  return `${state.users.searchState === 'partial' ? `<div class="notice warning section">Результаты частичные: ${escapeHtml(state.users.searchErrors.join(' · ') || 'один из источников поиска недоступен')}</div>` : ''}<div class="user-search-results">${items.map((user) => `<button type="button" class="user-result${state.users.profile?.canonicalUid === user.uid ? ' selected' : ''}" data-user-profile-uid="${escapeHtml(user.uid)}" title="Открыть единый профиль"><span class="user-avatar">${escapeHtml(String(user.name || '?').slice(0, 1).toUpperCase())}</span><span><strong>${escapeHtml(user.name || user.uid)}</strong><small>${escapeHtml(user.email || user.uid)} · ${Number(user.xp || 0).toLocaleString('ru-RU')} XP</small></span><span class="badge ${user.banned ? 'danger' : user.banState === 'unknown' ? 'warning' : user.premiumPlan ? 'success' : ''}">${user.banned ? 'Заблокирован' : user.banState === 'unknown' ? 'Статус неизвестен' : user.premiumPlan ? 'Plus' : 'Free'}</span></button>`).join('')}</div>`;
+  return `${state.users.searchState === 'partial' ? `<div class="notice warning section">Результаты частичные: ${escapeHtml(state.users.searchErrors.join(' · ') || 'один из источников поиска недоступен')}</div>` : ''}<div class="user-search-results">${items.map((user) => `<button type="button" class="user-result${state.users.profile?.canonicalUid === user.uid ? ' selected' : ''}" data-user-profile-uid="${escapeHtml(user.uid)}" title="Открыть единый профиль"><span class="user-avatar">${escapeHtml(String(user.name || '?').slice(0, 1).toUpperCase())}</span><span><strong>${escapeHtml(user.name || user.uid)}</strong><small>Ник: ${escapeHtml(user.name || 'не указан')}</small><small>UUID: <code>${escapeHtml(user.uid)}</code> · ${escapeHtml(user.email || 'почта не указана')} · ${Number(user.xp || 0).toLocaleString('ru-RU')} XP</small></span><span class="badge ${user.banned ? 'danger' : user.banState === 'unknown' ? 'warning' : user.premiumPlan ? 'success' : ''}">${user.banned ? 'Заблокирован' : user.banState === 'unknown' ? 'Статус неизвестен' : user.premiumPlan ? 'Plus' : 'Free'}</span></button>`).join('')}</div>`;
 }
 
 function renderProfile() {
@@ -986,7 +1075,7 @@ function renderProfile() {
   return `<div class="profile-workspace">
     ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
     <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(identityReasonLabel(profile.identity?.reason || 'requested'))}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(legacyUrl)}" target="_blank" rel="noopener" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
-    <div class="notice warning">Изменяющие действия пока открываются в действующем модуле: имя, XP, streak, Plus, осколки, награды, merge, сбросы, предупреждение, бан и удаление. Для каждого будет отдельный защищённый протокол с причиной, подтверждением и аудитом.</div>
+    ${renderAdminAccessControls(profile.canonicalUid, summary)}
     <div class="profile-section-grid">
       <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
       <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
@@ -997,6 +1086,21 @@ function renderProfile() {
       <section class="card profile-section diagnostics-section"><div class="card-header"><div><h3>7. Диагностика источников</h3><p>Пустой источник не равен ошибке чтения.</p></div><div class="actions"><span class="badge ${failed ? 'danger' : 'success'}">Ошибок: ${failed}</span><span class="badge ${partial ? 'warning' : ''}">Частично: ${partial}</span></div></div><div class="source-health-grid">${Object.entries(sourceStates).map(([name, source]) => `<div><span>${escapeHtml(name)}</span>${sourceBadge(source)}<small>${Number(source?.count || 0)} записей · ${escapeHtml(dateTime(source?.fetchedAtMs))}</small></div>`).join('')}</div></section>
     </div>
   </div>`;
+}
+
+let adminAccessPreview = null;
+function accessRequestId(prefix) { return id(`request-${prefix}`); }
+function buildAccessPreview(kind) {
+  const uid = String(state.users.profile?.canonicalUid || '').trim();
+  const reason = readTextInput('admin-access-reason', 500);
+  const durationDays = Math.max(0, Math.min(3650, Math.floor(Number(document.getElementById('admin-access-days')?.value || 0))));
+  if (!uid || !reason) throw new Error('Укажите причину операции.');
+  return { uid, kind, durationDays, reason, requestId: accessRequestId(kind), idempotencyKey: id(`admin-${kind}`) };
+}
+function renderAdminAccessControls(uid, summary) {
+  if (!can('money.manual_access.write') && !can('community.moderate')) return '';
+  const preview = adminAccessPreview;
+  return `<section class="card profile-section admin-access-controls"><div class="card-header"><div><h3>Управление доступом и блокировкой</h3><p>Каждая операция проходит preview → подтверждение → серверную транзакцию и аудит.</p></div></div><div class="form-grid"><div class="field"><label for="admin-access-days">Срок доступа, дней (0 = бессрочно)</label><input id="admin-access-days" type="number" min="0" max="3650" value="30"></div><div class="field"><label for="admin-access-reason">Причина</label><input id="admin-access-reason" type="text" maxlength="500" placeholder="Причина операции"></div></div><div class="actions"><button class="button" data-action="preview-admin-premium" type="button"${can('money.manual_access.write') ? '' : ' disabled'}>Preview Premium</button><button class="button" data-action="preview-admin-vip" type="button"${can('money.manual_access.write') ? '' : ' disabled'}>Preview VIP</button><button class="button danger" data-action="preview-admin-ban" type="button"${can('community.moderate') ? '' : ' disabled'}>${summary.banned ? 'Preview разблокировки' : 'Preview бана'}</button></div>${preview && preview.uid === uid ? `<div class="notice warning"><strong>Проверка операции:</strong> ${escapeHtml(preview.label)}<br>Причина: ${escapeHtml(preview.reason)}<div class="actions"><button class="button primary" data-action="publish-admin-access" type="button">Подтвердить</button><button class="button" data-action="discard-admin-access" type="button">Отмена</button></div></div>` : ''}</section>`;
 }
 
 function renderUsers() {
@@ -1687,9 +1791,37 @@ function renderAnalytics() {
     busy: state.busy,
     analyticsTrends: trendModel,
     analyticsTrendsDraft: state.analyticsTrendsDraft,
+    activeReport: state.activeAnalyticsReport,
     onToggleAnalyticsSeries: trendModel.onToggleSeries,
   });
   return `${summary}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
+}
+
+function syncAnalyticsReportVisibility(root = document) {
+  if (!root || typeof root.querySelector !== 'function') return;
+  const active = state.activeAnalyticsReport || 'overview';
+  const workspaceReport = {
+    'product-analytics-panel': 'product',
+    'subscription-analytics-panel': 'subscriptions',
+    'monthly-decision-pack-panel': 'exports',
+  };
+  Object.entries(workspaceReport).forEach(([id, report]) => {
+    const panel = root.querySelector(`#${id}`);
+    if (panel) panel.hidden = active !== report;
+  });
+  root.querySelectorAll('[data-analytics-report-panel]').forEach((panel) => {
+    const report = panel.getAttribute('data-analytics-report-panel') || 'overview';
+    panel.hidden = report !== active;
+  });
+}
+
+function selectAnalyticsReport(reportId) {
+  const next = ['overview', 'product', 'subscriptions', 'exports'].includes(String(reportId))
+    ? String(reportId)
+    : 'overview';
+  if (state.activeAnalyticsReport === next) return;
+  state.activeAnalyticsReport = next;
+  renderCurrentPage();
 }
 
 function renderAssetStudio() {
@@ -1934,7 +2066,8 @@ function renderReportQueue() {
         const replyId = `report-reply-${String(item.source).replace(/[^A-Za-z0-9_-]/g, '-')}-${String(item.id).replace(/[^A-Za-z0-9_-]/g, '-')}`;
         const replyDraft = reports.replyDrafts?.[replyKey] || {};
         const replySupported = item.source !== 'app_errors' && item.rawStatus !== 'answered';
-        const userButtons = [...new Set([users.primaryUid, users.reporterUid, users.reportedUid, users.authorUid].filter(Boolean))].map((uid) => `<button class="button ghost small" data-report-user-uid="${escapeHtml(uid)}" type="button" title="Открыть единый профиль ${escapeHtml(uid)}">Профиль · ${escapeHtml(String(uid).slice(0, 14))}</button>`).join('');
+        const reportUsers = [[users.primaryName, users.primaryUid], [users.reporterName, users.reporterUid], [users.reportedName, users.reportedUid], [users.authorName, users.authorUid]].filter(([, uid]) => uid);
+        const userButtons = [...new Map(reportUsers.map(([name, uid]) => [uid, name])).entries()].map(([uid, name]) => `<button class="button ghost small" data-report-user-uid="${escapeHtml(uid)}" type="button" title="Открыть единый профиль ${escapeHtml(userIdentityLabel(name, uid))}">Профиль · ${escapeHtml(userIdentityLabel(name, String(uid).slice(0, 14)))}</button>`).join('');
         return `<article class="report-card tone-${reportToneClass(item.lane)}" data-report-lane="${escapeHtml(item.lane)}"><header><div><div class="report-source">${escapeHtml(REPORT_SOURCE_LABELS[item.source] || 'Неизвестный источник')} · <code>${escapeHtml(item.id)}</code></div><h3>${escapeHtml(item.summary || '(без описания)')}</h3><small>${escapeHtml(item.category || context.feature || context.screen || 'без категории')} · ${escapeHtml(dateTime(item.createdAtMs))}</small></div><div class="actions"><span class="badge">Ключ источника: <code>${escapeHtml(item.source)}</code></span><span class="badge">Исходный статус: ${escapeHtml(item.rawStatus)}</span><span class="badge ${item.lane === 'resolved' || item.lane === 'answered' ? 'success' : item.lane === 'escalated' ? 'danger' : 'warning'}">${escapeHtml(REPORT_LANE_LABELS[item.lane] || 'Неизвестное состояние')}</span></div></header>
           ${userButtons ? `<div class="actions report-users">${userButtons}</div>` : ''}
           <div class="report-context">${Object.entries(context).filter(([, value]) => value).map(([key, value]) => `<span><b>${escapeHtml(contextFieldLabel(key))}:</b> ${escapeHtml(value)}</span>`).join('')}</div>
@@ -1963,7 +2096,7 @@ function renderCurrentPage() {
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, 'arena-question-pool': renderArenaQuestionPoolPage, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, 'arena-question-pool': renderArenaQuestionPoolPage, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -1973,6 +2106,7 @@ function renderCurrentPage() {
   }
   if (state.route === 'analytics') {
     restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces);
+    syncAnalyticsReportVisibility(target);
   }
   target.querySelectorAll('a[href^="../../admin/index.html"]').forEach((link) => {
     const href = link.getAttribute('href') || '';
@@ -1988,15 +2122,17 @@ function renderCurrentPage() {
     queueMicrotask(() => {
       if (capturedRenderGeneration !== renderGeneration || state.route !== 'analytics') return;
       try {
-        mountPaywallAnalyticsChartsWhenCurrent(
-          target,
-          descriptors,
-          () => capturedRenderGeneration === renderGeneration && state.route === 'analytics',
-        );
+        if (state.activeAnalyticsReport === 'overview') {
+          mountPaywallAnalyticsChartsWhenCurrent(
+            target,
+            descriptors,
+            () => capturedRenderGeneration === renderGeneration && state.route === 'analytics',
+          );
+        }
       } finally {
-        globalThis.loadProductAnalytics?.();
-        globalThis.loadSubscriptionAnalytics?.();
-        globalThis.initializeMonthlyDecisionPack?.();
+        if (state.activeAnalyticsReport === 'product') globalThis.loadProductAnalytics?.();
+        if (state.activeAnalyticsReport === 'subscriptions') globalThis.loadSubscriptionAnalytics?.();
+        if (state.activeAnalyticsReport === 'exports') globalThis.initializeMonthlyDecisionPack?.();
       }
     });
   }
@@ -2939,6 +3075,58 @@ async function loadAgentOffice(caseId = state.agentOffice.selectedCaseId) {
   }
 }
 
+async function loadAgentManager() {
+  const authGeneration = state.authGeneration;
+  state.agentManager = { ...state.agentManager, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const [tasksResult, agentsResult, runbooksResult] = await Promise.all([
+      actions.listAgentManagerTasks({ limit: 100 }),
+      actions.listAgentManagerAgents({ limit: 100 }),
+      actions.listAgentManagerRunbooks(),
+    ]);
+    if (authGeneration !== state.authGeneration || state.adminRole !== 'owner') return STALE_AUTH_RESULT;
+    state.agentManager = {
+      state: 'ready', tasks: Array.isArray(tasksResult?.items) ? tasksResult.items : [],
+      agents: Array.isArray(agentsResult?.items) ? agentsResult.items : [],
+      runbooks: Array.isArray(runbooksResult?.items) ? runbooksResult.items : [],
+      error: '', fetchedAtMs: Date.now(),
+    };
+    return state.agentManager;
+  } catch (error) {
+    if (authGeneration === state.authGeneration) state.agentManager = { ...state.agentManager, state: 'error', error: errorMessage(error) };
+    throw error;
+  } finally {
+    if (state.route === 'agent-manager' && authGeneration === state.authGeneration) renderCurrentPage();
+  }
+}
+
+async function createAgentManagerTask() {
+  const title = String(document.getElementById('agent-manager-title')?.value || '').trim();
+  const brief = String(document.getElementById('agent-manager-brief')?.value || '').trim();
+  const priority = String(document.getElementById('agent-manager-priority')?.value || 'normal');
+  const allowedScope = String(document.getElementById('agent-manager-scope')?.value || 'analysis_only');
+  if (title.length < 3 || brief.length < 10) return setMessage('Укажите задачу и контекст: минимум 3 и 10 символов.', 'warning');
+  if (!globalThis.confirm(`Передать менеджеру задачу «${title}»?\n\nОна будет только запланирована. Для запуска потребуется отдельное согласование.`)) return;
+  return runBusy(async () => {
+    await actions.createAgentManagerTask({ taskId: id('manager-task'), title, brief, priority, deadlineAtMs: null, allowedScope, sourceLinks: [] });
+    await loadAgentManager();
+  }, 'Задача передана менеджеру и записана в журнал. Она ещё не запущена.');
+}
+
+async function transitionAgentManagerTask(target) {
+  const taskId = String(target.getAttribute('data-agent-manager-task-id') || '');
+  const status = String(target.getAttribute('data-agent-manager-next-status') || '');
+  const expectedRevision = Number(target.getAttribute('data-agent-manager-revision') || 0);
+  const task = state.agentManager.tasks.find((item) => String(item.taskId) === taskId);
+  if (!task || !taskId || !status || !Number.isSafeInteger(expectedRevision) || expectedRevision < 1) return setMessage('Задача устарела. Обновите очередь.', 'warning');
+  if (!globalThis.confirm(`Перевести задачу «${task.title}» в статус «${agentManagerStatusLabel(status)}»?`)) return;
+  return runBusy(async () => {
+    await actions.transitionAgentManagerTask({ taskId, expectedRevision, status });
+    await loadAgentManager();
+  }, 'Статус задачи обновлён и добавлен в аудит.');
+}
+
 async function decideAgentOfficeRecommendation(target) {
   const agentCase = state.agentOffice.item;
   const recommendationId = String(target.getAttribute('data-agent-office-recommendation-id') || '');
@@ -3185,6 +3373,40 @@ async function handleAction(action, target) {
       state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters });
     }, 'Пул вопросов Арены обновлён.');
   }
+  if (action === 'select-analytics-report') {
+    selectAnalyticsReport(target.getAttribute('data-analytics-report') || document.getElementById('analytics-report-select')?.value || 'overview');
+    return;
+  }
+  if (action === 'export-analytics-report') {
+    try {
+      const report = createCanonicalAnalyticsReport({
+        snapshot: state.analytics.snapshot,
+        analyticsTrends: paywallAnalyticsModel(),
+        activeReport: state.activeAnalyticsReport,
+        rangeDays: state.analytics.rangeDays,
+      });
+      const result = downloadAnalyticsReportBundle(report);
+      setMessage(`Отчёт скачан: ${result.pdfFilename} и ${result.jsonFilename}. Метрик: ${result.metrics}.`, 'success');
+    } catch (error) {
+      setMessage(errorMessage(error), 'warning');
+    }
+    return;
+  }
+  if (action === 'load-global-broadcasts') return runBusy(loadGlobalBroadcasts, 'Статус рассылок обновлён.');
+  if (action === 'preview-global-broadcast') { try { state.broadcasts.preview = buildGlobalBroadcastPreview(); setMessage('Предпросмотр рассылки готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); } renderCurrentPage(); return; }
+  if (action === 'publish-global-broadcast') {
+    const preview = state.broadcasts.preview;
+    if (!preview) return setMessage('Сначала соберите предпросмотр.', 'warning');
+    let current; try { current = buildGlobalBroadcastPreview(); } catch (error) { return setMessage(errorMessage(error), 'warning'); }
+    if (!sameGlobalBroadcastPayload(current.payload, preview.payload) || current.reason !== preview.reason) return setMessage('Данные изменились после предпросмотра. Соберите новый предпросмотр.', 'warning');
+    if (!globalThis.confirm(`Опубликовать глобальную рассылку?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    return runBusy(async () => { await actions.publishGlobalBroadcast({ ...preview.payload, reason: preview.reason, ...preview.operation }); state.broadcasts.preview = null; await loadGlobalBroadcasts(); }, 'Глобальная рассылка опубликована.');
+  }
+  if (action === 'deactivate-global-broadcasts') {
+    const reason = readTextInput('global-broadcast-reason', 500);
+    if (!reason || !globalThis.confirm(`Выключить активные рассылки?\n\nПричина: ${reason}`)) return;
+    return runBusy(async () => { await actions.deactivateGlobalBroadcasts({ reason, idempotencyKey: id('global-broadcast-deactivate'), requestId: id('global-broadcast-deactivate-request') }); await loadGlobalBroadcasts(); }, 'Активные рассылки выключены.');
+  }
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
   if (action === 'preview-app-message') {
     try { state.campaigns.preview = buildAppMessagePreview(); setMessage('Предпросмотр сообщения готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
@@ -3275,6 +3497,10 @@ async function handleAction(action, target) {
     return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
   }
   if (action === 'load-agent-office') return runBusy(() => loadAgentOffice(), 'Стратегические решения загружены через серверную проекцию.');
+  if (action === 'load-agent-manager') return runBusy(() => loadAgentManager(), 'Менеджер агентов и очередь загружены через серверную проекцию.');
+  if (action === 'initialize-agent-manager-roster') return runBusy(async () => { await actions.initializeAgentManagerRoster(); await loadAgentManager(); }, 'Реестр агентов создан. Выполнение задач требует отдельного согласования.');
+  if (action === 'create-agent-manager-task') return createAgentManagerTask();
+  if (action === 'transition-agent-manager-task') return transitionAgentManagerTask(target);
   if (action === 'open-agent-office-case') {
     const caseId = String(target.getAttribute('data-agent-office-case-id') || '');
     if (!caseId) return;
@@ -3376,6 +3602,30 @@ async function handleAction(action, target) {
         throw error;
       }
     }, 'Поиск завершён.');
+  }
+  if (action === 'preview-admin-premium' || action === 'preview-admin-vip') {
+    try { const kind = action.endsWith('vip') ? 'vip' : 'premium'; const payload = buildAccessPreview(kind); adminAccessPreview = { ...payload, label: `Выдача ${kind === 'vip' ? 'VIP' : 'Premium'} на ${payload.durationDays || 'бессрочно'} дней` }; setMessage('Предпросмотр готов. Проверьте причину и подтвердите операцию.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-admin-ban') {
+    try { const uid = String(state.users.profile?.canonicalUid || '').trim(); const reason = readTextInput('admin-access-reason', 500); if (!uid || !reason) throw new Error('Укажите причину операции.'); const banned = state.users.profile?.summary?.banned !== true; adminAccessPreview = { uid, banned, reason, label: banned ? 'Блокировка пользователя' : 'Разблокировка пользователя', requestId: accessRequestId('ban'), idempotencyKey: id('admin-ban') }; setMessage('Предпросмотр готов. Проверьте причину и подтвердите операцию.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-admin-access') { adminAccessPreview = null; renderCurrentPage(); return; }
+  if (action === 'publish-admin-access') {
+    const preview = adminAccessPreview;
+    if (!preview) return setMessage('Сначала подготовьте preview.', 'warning');
+    const reason = readTextInput('admin-access-reason', 500);
+    if (reason !== preview.reason) { adminAccessPreview = null; renderCurrentPage(); return setMessage('Причина изменилась после preview. Подготовьте его заново.', 'warning'); }
+    if (!globalThis.confirm(`${preview.label}?\n\nПричина: ${preview.reason}`)) return;
+    return runBusy(async () => {
+      if (preview.kind) await actions.grantAccess(preview);
+      else await actions.setUserBan(preview);
+      adminAccessPreview = null;
+      await loadAdminUserProfile(preview.uid);
+    }, 'Операция подтверждена сервером и записана в аудит.');
   }
   if (action === 'reload-user-profile') {
     const uid = String(state.users.profile?.canonicalUid || '').trim();
@@ -4000,6 +4250,7 @@ export function setAdminActions(nextActions) {
   actions = nextActions;
   actionsReady = true;
   if (state.authorized && state.route === 'content' && can('content.read') && ['idle', 'error'].includes(state.contentStages.capabilitiesState)) { state.contentStages = { ...state.contentStages, capabilitiesState: 'idle' }; void ensureContentCapabilities().then(renderCurrentPage); }
+  if (state.authorized && state.route === 'agent-manager' && state.adminRole === 'owner' && ['idle', 'error'].includes(state.agentManager.state)) void loadAgentManager().catch(() => {});
   maybeLoadOperationalBriefing();
   maybeLoadOverviewAnalyticsTrends();
 }
@@ -4022,6 +4273,7 @@ export function setAuthState(auth) {
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
     state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
     state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
+    state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -4037,6 +4289,8 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
   if (!state.authorized || !can('briefing.read')) state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
+  if (!state.authorized || state.adminRole !== 'owner') state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 };
+  if (!state.authorized || !can('campaigns.read')) state.broadcasts = { state: 'idle', items: [], preview: null, error: '' };
   renderCurrentPage();
   if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
   maybeLoadOperationalBriefing();
@@ -4060,6 +4314,9 @@ export function renderRoute(route, capabilityId = '') {
     renderCurrentPage();
     void loadArenaQuestionPool({ actions, filters }).then((model) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = model; renderCurrentPage(); } }).catch((error) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'error', error: errorMessage(error) }; renderCurrentPage(); } });
   }
+  if (actionsReady && state.route === 'agent-manager' && state.authorized && state.adminRole === 'owner' && ['idle', 'error'].includes(state.agentManager.state)) {
+    void loadAgentManager().catch(() => {});
+  }
   maybeLoadOperationalBriefing();
   maybeLoadOverviewAnalyticsTrends();
 }
@@ -4073,6 +4330,10 @@ function handleContentStudioInput(event) {
 
 function handleAnalyticsTrendsControlChange(event) {
   const id = String(event.target?.id || '');
+  if (id === 'analytics-report-select') {
+    selectAnalyticsReport(event.target.value || 'overview');
+    return;
+  }
   if (!id.startsWith('analytics-trends-')) return;
   updateAnalyticsTrendsDraftFromControls();
 }

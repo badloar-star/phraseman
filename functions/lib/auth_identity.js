@@ -46,6 +46,7 @@ const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const email_contacts_1 = require("./email_contacts");
+const account_delete_job_1 = require("./account_delete_job");
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
 const LEADERBOARD = 'leaderboard';
@@ -54,6 +55,12 @@ const CLEANUP_CANDIDATES = 'identity_cleanup_candidates';
 const IDENTITY_CLEANUP_THROTTLE_MS = 6 * 60 * 60 * 1000;
 function shouldRepairIdentityLinks(options) {
     return options?.repairLinks !== false;
+}
+async function assertAccountDeletionNotPending(db, authUid) {
+    const marker = await db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get().catch(() => null);
+    if (marker?.exists) {
+        throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+    }
 }
 function readHeaderValue(value) {
     if (Array.isArray(value))
@@ -190,7 +197,7 @@ function pickBestStableIdentityCandidate(candidates) {
     });
     return list[0]?.id ?? null;
 }
-function collectStableIdentityCandidates(docs, authUid) {
+function collectStableIdentityCandidates(docs, authUid, liveCanonicalIds) {
     const out = new Map();
     for (const doc of docs) {
         const data = doc.data() ?? {};
@@ -198,7 +205,9 @@ function collectStableIdentityCandidates(docs, authUid) {
         const hidden = data.identityHidden === true;
         const linkedAuth = data.linkedAuth;
         const candidate = {
-            id: hidden && canonicalStableId ? canonicalStableId : doc.id,
+            id: hidden && canonicalStableId && (!liveCanonicalIds || liveCanonicalIds.has(canonicalStableId))
+                ? canonicalStableId
+                : doc.id,
             hidden,
             hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
             xp: readProgressXp(data),
@@ -225,7 +234,26 @@ async function findStableUidForProviderAuth(db, authUid) {
     }
     if (docs.length === 0)
         return null;
-    const candidatesById = collectStableIdentityCandidates(docs, authUid);
+    // A hidden identity may point at a canonical document that was deleted or was
+    // never created after an interrupted merge. Never return that dead id: the
+    // live provider-owned document is safer than routing the caller to an empty
+    // profile. Canonical documents already present in the provider queries cost no
+    // extra reads; only out-of-query pointers need a targeted existence check.
+    const liveCanonicalIds = new Set(docs.map((doc) => doc.id));
+    const canonicalIdsToCheck = new Set();
+    for (const doc of docs) {
+        const data = doc.data() ?? {};
+        const canonicalStableId = normalizeStableId(data.canonicalStableId);
+        if (data.identityHidden === true && canonicalStableId && !liveCanonicalIds.has(canonicalStableId)) {
+            canonicalIdsToCheck.add(canonicalStableId);
+        }
+    }
+    await Promise.all([...canonicalIdsToCheck].map(async (canonicalStableId) => {
+        const snap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
+        if (snap?.exists)
+            liveCanonicalIds.add(canonicalStableId);
+    }));
+    const candidatesById = collectStableIdentityCandidates(docs, authUid, liveCanonicalIds);
     return pickBestStableIdentityCandidate(candidatesById.values());
 }
 async function findLiveAuthLinkAnchor(db, authUid) {
@@ -319,6 +347,7 @@ async function assertStableOwner(db, authUid, stableId, options) {
  * merge'ом — чтобы не затирать provider/email существующего провайдерского линка.
  */
 async function ensureAuthLinkDoc(db, authUid, stableId, provider, metadata) {
+    await assertAccountDeletionNotPending(db, authUid);
     const linkRef = db.collection(AUTH_LINKS).doc(authUid);
     const linkSnap = await linkRef.get().catch(() => null);
     const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
@@ -390,6 +419,7 @@ async function ensureProviderLinkedAuth(db, stableId, authUid, provider, metadat
     });
 }
 async function linkStableAuthUid(db, stableId, authUid) {
+    await assertAccountDeletionNotPending(db, authUid);
     const now = Date.now();
     const userRef = db.collection(USERS).doc(stableId);
     const userSnap = await userRef.get().catch(() => null);
@@ -732,6 +762,7 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
     return stats;
 }
 async function resolveStableUidForAuth(db, authUid, requestedStableId, options) {
+    await assertAccountDeletionNotPending(db, authUid);
     const stableId = normalizeStableId(requestedStableId);
     const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
     if (authLinkAnchor) {

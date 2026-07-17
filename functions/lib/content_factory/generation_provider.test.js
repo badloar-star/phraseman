@@ -30,7 +30,12 @@ describe('generation provider seam', () => {
         const quiz = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'quiz' });
         const flashcard = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'flashcard' });
         const arena = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'arena' });
-        expect([quiz.surface, flashcard.surface, arena.surface]).toEqual(['quiz', 'flashcard', 'arena']);
+        expect([quiz.artifact.surface, flashcard.artifact.surface, arena.artifact.surface]).toEqual(['quiz', 'flashcard', 'arena']);
+        expect([quiz.qa.status, flashcard.qa.status, arena.qa.status]).toEqual(['passed', 'passed', 'passed']);
+    });
+    it('blocks a legacy surface when deterministic QA finds duplicate or ambiguous answers', async () => {
+        const provider = { generate: async () => JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1', prompt: 'Выберите', answer: 'Oui', options: ['Oui', 'Non'] }, { id: 'q1', prompt: 'Ещё раз', answer: 'Oui', options: ['Oui', 'Non'] }] }) };
+        await expect((0, generation_provider_1.generateSurfaceUnit)({ provider, model: 'fake', surface: 'quiz', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] })).rejects.toThrow('generated_surface_qa_failed');
     });
 });
 //# sourceMappingURL=generation_provider.test.js.map

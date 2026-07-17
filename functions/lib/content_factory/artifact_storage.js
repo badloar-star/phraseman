@@ -65,6 +65,7 @@ async function writeImmutableObject(bucket, objectPath, payload) {
     const objectGeneration = String(metadata.generation ?? '').trim();
     if (!objectGeneration)
         throw new Error('artifact_generation_missing');
-    return Object.freeze({ objectPath, contentHash, objectGeneration, byteSize: Number(metadata.size ?? bytes.byteLength) });
+    const finalizationKey = (0, node_crypto_1.createHash)('sha256').update(`${objectPath}\n${objectGeneration}\n${contentHash}`).digest('hex');
+    return Object.freeze({ objectPath, contentHash, objectGeneration, byteSize: Number(metadata.size ?? bytes.byteLength), referenceState: 'pending_commit', finalizationKey });
 }
 //# sourceMappingURL=artifact_storage.js.map

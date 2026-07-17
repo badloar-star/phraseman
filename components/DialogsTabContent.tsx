@@ -34,7 +34,7 @@ import { triLang } from '../constants/i18n';
 import { getLevelFromXP } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import { useLang } from './LangContext';
-import { useFeatureAccess } from './PremiumContext';
+import { useFeatureAccess, usePremium } from './PremiumContext';
 import PlusBadge from './PlusBadge';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -72,6 +72,7 @@ export default function DialogsTabContent({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const dialogAccess = useFeatureAccess('ai_dialog');
+  const { accessResolved } = usePremium();
   const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const impressionFiredRef = useRef(false);
@@ -143,6 +144,7 @@ export default function DialogsTabContent({
 
   const openCourseScenario = useCallback(
     (scenario: DialogScenario) => {
+      if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
@@ -172,11 +174,12 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [aiDialogGateOpen, dialogAccess, frenchGateCopy, reachedLevel, router],
+    [accessResolved, aiDialogGateOpen, dialogAccess, frenchGateCopy, reachedLevel, router],
   );
 
   const openChallengeScenario = useCallback(
     (scenario: DialogScenario) => {
+      if (!accessResolved) return;
       hapticTap();
       if (!aiDialogGateOpen) {
         Alert.alert(frenchGateCopy.title, frenchGateCopy.body, [{ text: frenchGateCopy.action }]);
@@ -225,7 +228,7 @@ export default function DialogsTabContent({
       }
       router.push({ pathname: '/ai_dialog_session', params: { scenarioId: scenario.id } } as never);
     },
-    [accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, router],
+    [accessResolved, accountLevel, aiDialogGateOpen, dialogAccess, frenchGateCopy, lang, router],
   );
 
   // ── View-model для активной вкладки ───────────────────────────────────────
@@ -864,6 +867,7 @@ export default function DialogsTabContent({
           })}
           activeOpacity={0.86}
           onPress={() => {
+            if (!accessResolved) return;
             hapticTap();
             void trackAiDialogEvent('paywall_shown', { context: 'dialog_locked_level' });
             router.push({ pathname: '/premium_modal', params: { context: 'dialog_locked_level' } } as never);

@@ -34,8 +34,8 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminGrantReward = exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportResolveReplyDelivery = exports.adminSupportCancelReplyBatch = exports.adminSupportDispatchReplyBatch = exports.adminSupportPrepareReplyBatch = exports.adminSupportCancelReply = exports.adminSupportSendReply = exports.adminSupportDispatchReply = exports.adminSupportPrepareReply = exports.adminSupportGenerateReply = exports.adminSupportList = exports.adminSupportPull = exports.adminRunAssetJob = exports.adminCreateAssetJob = exports.adminListAssetJobs = exports.adminGetDailyBriefing = exports.adminOpenDailyDigest = exports.adminGenerateDailyDigest = exports.friendSendGift = exports.premiumExpiryCron = exports.syncFriendActivityMirrorCron = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionAborted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.gmailSupportPullCron = exports.premiumExpiryReminderCron = exports.reEngagePushCron = exports.cleanupExpiredAppMessagesCron = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = void 0;
-exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.adminRollbackCourseRelease = exports.adminActivateCourseRelease = exports.adminSealCourseRelease = exports.adminReviewCourseGeneration = exports.CONTENT_FACTORY_OPENAI_API_KEY = exports.adminRunContentGenerationUnit = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = exports.adminListContentFactoryJobs = exports.adminCreateContentGenerationJob = exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = exports.adminCreateAppMessage = exports.adminListAppMessages = exports.adminPublishRemoteConfig = exports.adminGetRemoteConfigWorkspace = exports.adminListOpsLog = exports.adminListAuditLog = exports.adminUpdateReportStatus = exports.adminListReportQueue = exports.adminGetUserProfile = exports.adminSearchUsers = exports.adminGetAnalyticsSnapshot = exports.adminSubscriptionAnalytics = exports.adminProductAnalytics = exports.openAiBudgetDashboard = exports.adminListPromoCodes = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = void 0;
-exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = void 0;
+exports.adminPublishGlobalBroadcast = exports.adminListGlobalBroadcasts = exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = exports.adminCreateAppMessage = exports.adminListAppMessages = exports.adminPublishRemoteConfig = exports.adminGetRemoteConfigWorkspace = exports.agentManagerTransitionTask = exports.agentManagerTelegramPublishApproval = exports.agentManagerRunReportTriageWorker = exports.agentManagerRunBoundedExecutionWorker = exports.agentManagerRunAnalyticsWorker = exports.agentManagerListTasks = exports.agentManagerListRunbooks = exports.agentManagerListAgents = exports.agentManagerIssueExecutionJob = exports.agentManagerInitializeRoster = exports.agentManagerCreateTask = exports.agentManagerCreateInboxTask = exports.agentOfficeTelegramWebhook = exports.agentOfficeSetKillSwitch = exports.agentOfficeListTasks = exports.agentOfficeListRecommendations = exports.agentOfficeListCases = exports.agentOfficeListAuditEvents = exports.agentOfficeGetControl = exports.agentOfficeGetCase = exports.agentOfficeDecideRecommendation = exports.adminListOpsLog = exports.adminListAuditLog = exports.adminUpdateReportStatus = exports.adminListReportQueue = exports.adminExportReportDocuments = exports.adminGetUserProfile = exports.adminSearchUsers = exports.adminGetAnalyticsTrends = exports.adminGetAnalyticsSnapshot = exports.adminMonthlyDecisionPack = exports.adminSubscriptionAnalytics = exports.adminProductAnalytics = exports.openAiBudgetDashboard = exports.adminListPromoCodes = exports.promoCodeBatchUpsert = exports.promoCodeUpsert = exports.promoCodeRedeem = exports.adminSetUserBan = exports.adminGrantAccess = void 0;
+exports.webLeadNudgeCron = exports.webLeadCapture = exports.webPrices = exports.webOrderStatus = exports.paypalOrderCapture = exports.paypalOrderCreate = exports.stripeWebhook = exports.webCheckoutCreate = exports.adminPushJobsCron = exports.adminPushJobCreated = exports.revenueCatShardsWebhook = exports.siteStatsTrack = exports.submitWebsiteContact = exports.dailyPhraseSetSaved = exports.emailUnsubscribe = exports.adminEmailContactsBackfill = exports.adminEmailBroadcast = exports.adminTranslateMessage = exports.openAiJobsConfig = exports.openAiDialogQuotaConfig = exports.openAiDialogModelConfig = exports.adminRollbackCourseRelease = exports.adminActivateCourseRelease = exports.adminSealCourseRelease = exports.adminReviewCourseGeneration = exports.CONTENT_FACTORY_OPENAI_API_KEY = exports.adminRunContentGenerationUnit = exports.adminGetArenaConvergenceStatus = exports.adminGetContentFactoryRolloutMetrics = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = exports.CONTENT_STAGE_OPENAI_API_KEY = exports.adminRunContentStage = exports.adminEditContentStageArtifact = exports.adminCreateContentStageBulkPlan = exports.adminReviewContentStage = exports.adminPreviewContentStage = exports.adminGetContentStageCapabilities = exports.adminListContentStageDependencies = exports.adminListContentStages = exports.adminControlContentStage = exports.adminCreateContentStage = exports.adminUpdateArenaConvergenceConfig = exports.adminListContentFactoryJobs = exports.adminCreateContentGenerationJob = exports.adminDeactivateGlobalBroadcasts = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -43,6 +43,7 @@ const xp_levels_1 = require("./xp_levels");
 const arena_rank_progression_1 = require("./arena_rank_progression");
 const arena_season_1 = require("./arena_season");
 const arena_season_config_1 = require("./arena_season_config");
+const arena_timing_observability_1 = require("./content_factory/arena_timing_observability");
 admin.initializeApp();
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -61,8 +62,6 @@ const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./suppo
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage, leagueChatDeleteMessage } = require('./league_chat');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -98,7 +97,7 @@ const { friendLikeActivity, friendUnlikeActivity } = require('./friend_activity_
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { friendSendGift, friendThankGift, friendGetActiveQuest, friendClaimQuestReward, } = require('./friend_gifts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish, arenaRoomJoin, arenaRoomLeave, arenaRoomSetReady, arenaRoomKick, arenaRoomClose, arenaRoomChatSend, } = require('./arena_rooms');
+const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish, arenaRoomJoin, arenaRoomLeave, arenaRoomSetReady, arenaRoomKick, arenaRoomClose, } = require('./arena_rooms');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -129,8 +128,6 @@ const { explainChoice } = require('./explain_choice');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { helpBoardCreateTopic, helpBoardAddComment, helpBoardVote, helpBoardReport, helpBoardDeleteMyTopic, helpBoardDeleteCompassAnswer, helpBoardAdminModerate, helpBoardGenerateCompassForTopic, helpBoardCompassRetryCron, } = require('./help_board');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainMistake } = require('./mistake_explain');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitExplainReport } = require('./explain/explain_reports');
@@ -151,17 +148,11 @@ const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require(
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { notifyOnFriendRequestCreated, notifyOnFriendAccepted, userNotificationsCleanupCron, } = require('./user_notifications');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_events');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { adminAlertOnUserReport, adminAlertOnCriticalError, adminAlertOnContentReport, adminAlertContentReportDigest, adminAlertOnCancelSurvey, adminAlertOnUgcRefund, adminAlertOnConfigWritten, } = require('./admin_alerts');
-exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
-exports.leagueChatSendMessage = leagueChatSendMessage;
-exports.leagueChatReportMessage = leagueChatReportMessage;
-exports.leagueChatDeleteMessage = leagueChatDeleteMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
@@ -203,7 +194,6 @@ exports.arenaRoomLeave = arenaRoomLeave;
 exports.arenaRoomSetReady = arenaRoomSetReady;
 exports.arenaRoomKick = arenaRoomKick;
 exports.arenaRoomClose = arenaRoomClose;
-exports.arenaRoomChatSend = arenaRoomChatSend;
 exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
 exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
 exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
@@ -228,15 +218,6 @@ exports.statsInsightsGenerate = statsInsightsGenerate;
 exports.explainPhrase = explainPhrase;
 exports.explainChoice = explainChoice;
 exports.explainQuiz = explainQuiz;
-exports.helpBoardCreateTopic = helpBoardCreateTopic;
-exports.helpBoardAddComment = helpBoardAddComment;
-exports.helpBoardVote = helpBoardVote;
-exports.helpBoardReport = helpBoardReport;
-exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
-exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
-exports.helpBoardAdminModerate = helpBoardAdminModerate;
-exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
-exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
 exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
 exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
 exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
@@ -266,8 +247,6 @@ exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
-exports.compassChatDailyCron = compassChatDailyCron;
-exports.compassChatRunNow = compassChatRunNow;
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 function progressTotalXpCf(progress) {
     const raw = progress?.user_total_xp;
@@ -705,6 +684,7 @@ exports.onAnswerSubmitted = functions.firestore.onDocumentUpdated('session_playe
     const playerRef = event.data.after.ref;
     const db = admin.firestore();
     const sessionId = after.sessionId;
+    const eventRecordedAtMs = event.data?.after.updateTime?.toMillis();
     await db.runTransaction(async (tx) => {
         const playerSnap = await tx.get(playerRef);
         if (!playerSnap.exists)
@@ -727,10 +707,20 @@ exports.onAnswerSubmitted = functions.firestore.onDocumentUpdated('session_playe
             previousCorrectStreak += 1;
         }
         const hasAnyCorrectBefore = previousAnswers.some((a) => a?.isCorrect);
+        const sessionSnap = await tx.get(db.collection('arena_sessions').doc(sessionId));
         const questionSnap = await tx.get(db.collection('arena_questions').doc(lastAnswer.questionId));
         const correct = questionSnap.exists ? questionSnap.data()?.correct : undefined;
         if (!correct)
             return;
+        const hasStableEventTime = Number.isFinite(eventRecordedAtMs) && Number(eventRecordedAtMs) > 0;
+        const timingNowMs = hasStableEventTime ? Number(eventRecordedAtMs) : Date.now();
+        const questionStartedAt = Number(sessionSnap.data()?.questionStartedAt);
+        const hasServerStart = hasStableEventTime && Number.isFinite(questionStartedAt) && questionStartedAt > 0 && questionStartedAt <= timingNowMs;
+        const observedTimeMs = hasServerStart ? timingNowMs - questionStartedAt : typeof pending.timeMs === 'number' ? pending.timeMs : 0;
+        const timingIdentity = { questionId: lastAnswer.questionId, difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, nowMs: timingNowMs };
+        const timingRef = db.collection(arena_timing_observability_1.ARENA_TIMING_COLLECTION).doc((0, arena_timing_observability_1.arenaTimingDocumentId)(timingIdentity));
+        const timingRollupRef = db.collection(arena_timing_observability_1.ARENA_TIMING_ROLLUP_COLLECTION).doc((0, arena_timing_observability_1.arenaTimingRollupDocumentId)(timingIdentity));
+        const [timingSnap, timingRollupSnap] = await Promise.all([tx.get(timingRef), tx.get(timingRollupRef)]);
         const { isCorrect, points, bonus } = (0, arena_scoring_1.calculateArenaPoints)((pending.answer ?? null), correct, typeof pending.timeMs === 'number' ? pending.timeMs : 0, {
             previousCorrectStreak,
             hasAnyCorrectBefore,
@@ -742,10 +732,14 @@ exports.onAnswerSubmitted = functions.firestore.onDocumentUpdated('session_playe
             bonus,
             serverScored: true,
         };
+        const timingAggregate = (0, arena_timing_observability_1.applyArenaTimingEvent)(timingSnap.exists ? timingSnap.data() : null, { questionId: lastAnswer.questionId, difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, timeMs: observedTimeMs, timingSource: hasServerStart ? 'server_observed' : 'client_bounded', isCorrect, timedOut: pending.answer == null, nowMs: timingNowMs });
+        const timingRollup = (0, arena_timing_observability_1.applyArenaTimingEvent)(timingRollupSnap.exists ? timingRollupSnap.data() : null, { questionId: '__all__', difficulty: questionSnap.data()?.difficulty, deviceClass: pending.deviceClass, timeMs: observedTimeMs, timingSource: hasServerStart ? 'server_observed' : 'client_bounded', isCorrect, timedOut: pending.answer == null, nowMs: timingNowMs });
         tx.update(playerRef, {
             answers,
             score: admin.firestore.FieldValue.increment(points),
         });
+        tx.set(timingRef, timingAggregate);
+        tx.set(timingRollupRef, timingRollup);
     });
     await onPlayerAnswered(sessionId, lastAnswer.questionId);
 });
@@ -1284,6 +1278,9 @@ Object.defineProperty(exports, "adminDraftReportReply", { enumerable: true, get:
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });
+var admin_access_controls_1 = require("./admin_access_controls");
+Object.defineProperty(exports, "adminGrantAccess", { enumerable: true, get: function () { return admin_access_controls_1.adminGrantAccess; } });
+Object.defineProperty(exports, "adminSetUserBan", { enumerable: true, get: function () { return admin_access_controls_1.adminSetUserBan; } });
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
 var promo_codes_1 = require("./promo_codes");
 Object.defineProperty(exports, "promoCodeRedeem", { enumerable: true, get: function () { return promo_codes_1.promoCodeRedeem; } });
@@ -1296,18 +1293,46 @@ var admin_product_analytics_1 = require("./admin_product_analytics");
 Object.defineProperty(exports, "adminProductAnalytics", { enumerable: true, get: function () { return admin_product_analytics_1.adminProductAnalytics; } });
 var admin_subscription_analytics_1 = require("./admin_subscription_analytics");
 Object.defineProperty(exports, "adminSubscriptionAnalytics", { enumerable: true, get: function () { return admin_subscription_analytics_1.adminSubscriptionAnalytics; } });
+var admin_monthly_decision_pack_1 = require("./admin_monthly_decision_pack");
+Object.defineProperty(exports, "adminMonthlyDecisionPack", { enumerable: true, get: function () { return admin_monthly_decision_pack_1.adminMonthlyDecisionPack; } });
 var admin_analytics_1 = require("./admin_analytics");
 Object.defineProperty(exports, "adminGetAnalyticsSnapshot", { enumerable: true, get: function () { return admin_analytics_1.adminGetAnalyticsSnapshot; } });
+var admin_analytics_trends_1 = require("./admin_analytics_trends");
+Object.defineProperty(exports, "adminGetAnalyticsTrends", { enumerable: true, get: function () { return admin_analytics_trends_1.adminGetAnalyticsTrends; } });
 var admin_user_profile_1 = require("./admin_user_profile");
 Object.defineProperty(exports, "adminSearchUsers", { enumerable: true, get: function () { return admin_user_profile_1.adminSearchUsers; } });
 Object.defineProperty(exports, "adminGetUserProfile", { enumerable: true, get: function () { return admin_user_profile_1.adminGetUserProfile; } });
 var admin_reports_center_1 = require("./admin_reports_center");
+Object.defineProperty(exports, "adminExportReportDocuments", { enumerable: true, get: function () { return admin_reports_center_1.adminExportReportDocuments; } });
 Object.defineProperty(exports, "adminListReportQueue", { enumerable: true, get: function () { return admin_reports_center_1.adminListReportQueue; } });
 Object.defineProperty(exports, "adminUpdateReportStatus", { enumerable: true, get: function () { return admin_reports_center_1.adminUpdateReportStatus; } });
 var admin_audit_log_1 = require("./admin_audit_log");
 Object.defineProperty(exports, "adminListAuditLog", { enumerable: true, get: function () { return admin_audit_log_1.adminListAuditLog; } });
 var admin_ops_log_1 = require("./admin_ops_log");
 Object.defineProperty(exports, "adminListOpsLog", { enumerable: true, get: function () { return admin_ops_log_1.adminListOpsLog; } });
+var agent_office_1 = require("./agent_office");
+Object.defineProperty(exports, "agentOfficeDecideRecommendation", { enumerable: true, get: function () { return agent_office_1.agentOfficeDecideRecommendation; } });
+Object.defineProperty(exports, "agentOfficeGetCase", { enumerable: true, get: function () { return agent_office_1.agentOfficeGetCase; } });
+Object.defineProperty(exports, "agentOfficeGetControl", { enumerable: true, get: function () { return agent_office_1.agentOfficeGetControl; } });
+Object.defineProperty(exports, "agentOfficeListAuditEvents", { enumerable: true, get: function () { return agent_office_1.agentOfficeListAuditEvents; } });
+Object.defineProperty(exports, "agentOfficeListCases", { enumerable: true, get: function () { return agent_office_1.agentOfficeListCases; } });
+Object.defineProperty(exports, "agentOfficeListRecommendations", { enumerable: true, get: function () { return agent_office_1.agentOfficeListRecommendations; } });
+Object.defineProperty(exports, "agentOfficeListTasks", { enumerable: true, get: function () { return agent_office_1.agentOfficeListTasks; } });
+Object.defineProperty(exports, "agentOfficeSetKillSwitch", { enumerable: true, get: function () { return agent_office_1.agentOfficeSetKillSwitch; } });
+Object.defineProperty(exports, "agentOfficeTelegramWebhook", { enumerable: true, get: function () { return agent_office_1.agentOfficeTelegramWebhook; } });
+var agent_manager_1 = require("./agent_manager");
+Object.defineProperty(exports, "agentManagerCreateInboxTask", { enumerable: true, get: function () { return agent_manager_1.agentManagerCreateInboxTask; } });
+Object.defineProperty(exports, "agentManagerCreateTask", { enumerable: true, get: function () { return agent_manager_1.agentManagerCreateTask; } });
+Object.defineProperty(exports, "agentManagerInitializeRoster", { enumerable: true, get: function () { return agent_manager_1.agentManagerInitializeRoster; } });
+Object.defineProperty(exports, "agentManagerIssueExecutionJob", { enumerable: true, get: function () { return agent_manager_1.agentManagerIssueExecutionJob; } });
+Object.defineProperty(exports, "agentManagerListAgents", { enumerable: true, get: function () { return agent_manager_1.agentManagerListAgents; } });
+Object.defineProperty(exports, "agentManagerListRunbooks", { enumerable: true, get: function () { return agent_manager_1.agentManagerListRunbooks; } });
+Object.defineProperty(exports, "agentManagerListTasks", { enumerable: true, get: function () { return agent_manager_1.agentManagerListTasks; } });
+Object.defineProperty(exports, "agentManagerRunAnalyticsWorker", { enumerable: true, get: function () { return agent_manager_1.agentManagerRunAnalyticsWorker; } });
+Object.defineProperty(exports, "agentManagerRunBoundedExecutionWorker", { enumerable: true, get: function () { return agent_manager_1.agentManagerRunBoundedExecutionWorker; } });
+Object.defineProperty(exports, "agentManagerRunReportTriageWorker", { enumerable: true, get: function () { return agent_manager_1.agentManagerRunReportTriageWorker; } });
+Object.defineProperty(exports, "agentManagerTelegramPublishApproval", { enumerable: true, get: function () { return agent_manager_1.agentManagerTelegramPublishApproval; } });
+Object.defineProperty(exports, "agentManagerTransitionTask", { enumerable: true, get: function () { return agent_manager_1.agentManagerTransitionTask; } });
 var admin_remote_config_1 = require("./admin_remote_config");
 Object.defineProperty(exports, "adminGetRemoteConfigWorkspace", { enumerable: true, get: function () { return admin_remote_config_1.adminGetRemoteConfigWorkspace; } });
 Object.defineProperty(exports, "adminPublishRemoteConfig", { enumerable: true, get: function () { return admin_remote_config_1.adminPublishRemoteConfig; } });
@@ -1318,13 +1343,35 @@ Object.defineProperty(exports, "adminSetAppMessageActive", { enumerable: true, g
 Object.defineProperty(exports, "adminUpdateAppMessage", { enumerable: true, get: function () { return admin_app_messages_1.adminUpdateAppMessage; } });
 Object.defineProperty(exports, "adminDeleteAppMessage", { enumerable: true, get: function () { return admin_app_messages_1.adminDeleteAppMessage; } });
 Object.defineProperty(exports, "adminCleanupExpiredAppMessages", { enumerable: true, get: function () { return admin_app_messages_1.adminCleanupExpiredAppMessages; } });
+var admin_global_broadcast_1 = require("./admin_global_broadcast");
+Object.defineProperty(exports, "adminListGlobalBroadcasts", { enumerable: true, get: function () { return admin_global_broadcast_1.adminListGlobalBroadcasts; } });
+Object.defineProperty(exports, "adminPublishGlobalBroadcast", { enumerable: true, get: function () { return admin_global_broadcast_1.adminPublishGlobalBroadcast; } });
+Object.defineProperty(exports, "adminDeactivateGlobalBroadcasts", { enumerable: true, get: function () { return admin_global_broadcast_1.adminDeactivateGlobalBroadcasts; } });
 var admin_content_factory_1 = require("./admin_content_factory");
 Object.defineProperty(exports, "adminCreateContentGenerationJob", { enumerable: true, get: function () { return admin_content_factory_1.adminCreateContentGenerationJob; } });
 Object.defineProperty(exports, "adminListContentFactoryJobs", { enumerable: true, get: function () { return admin_content_factory_1.adminListContentFactoryJobs; } });
+Object.defineProperty(exports, "adminUpdateArenaConvergenceConfig", { enumerable: true, get: function () { return admin_content_factory_1.adminUpdateArenaConvergenceConfig; } });
+var admin_content_stages_1 = require("./admin_content_stages");
+Object.defineProperty(exports, "adminCreateContentStage", { enumerable: true, get: function () { return admin_content_stages_1.adminCreateContentStage; } });
+Object.defineProperty(exports, "adminControlContentStage", { enumerable: true, get: function () { return admin_content_stages_1.adminControlContentStage; } });
+Object.defineProperty(exports, "adminListContentStages", { enumerable: true, get: function () { return admin_content_stages_1.adminListContentStages; } });
+Object.defineProperty(exports, "adminListContentStageDependencies", { enumerable: true, get: function () { return admin_content_stages_1.adminListContentStageDependencies; } });
+Object.defineProperty(exports, "adminGetContentStageCapabilities", { enumerable: true, get: function () { return admin_content_stages_1.adminGetContentStageCapabilities; } });
+Object.defineProperty(exports, "adminPreviewContentStage", { enumerable: true, get: function () { return admin_content_stages_1.adminPreviewContentStage; } });
+Object.defineProperty(exports, "adminReviewContentStage", { enumerable: true, get: function () { return admin_content_stages_1.adminReviewContentStage; } });
+var admin_content_stage_bulk_1 = require("./admin_content_stage_bulk");
+Object.defineProperty(exports, "adminCreateContentStageBulkPlan", { enumerable: true, get: function () { return admin_content_stage_bulk_1.adminCreateContentStageBulkPlan; } });
+var admin_content_stage_edits_1 = require("./admin_content_stage_edits");
+Object.defineProperty(exports, "adminEditContentStageArtifact", { enumerable: true, get: function () { return admin_content_stage_edits_1.adminEditContentStageArtifact; } });
+var content_stage_worker_1 = require("./content_stage_worker");
+Object.defineProperty(exports, "adminRunContentStage", { enumerable: true, get: function () { return content_stage_worker_1.adminRunContentStage; } });
+Object.defineProperty(exports, "CONTENT_STAGE_OPENAI_API_KEY", { enumerable: true, get: function () { return content_stage_worker_1.CONTENT_STAGE_OPENAI_API_KEY; } });
 var admin_content_factory_read_1 = require("./admin_content_factory_read");
 Object.defineProperty(exports, "adminGetContentFactoryJobDetail", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryJobDetail; } });
 Object.defineProperty(exports, "adminGetContentFactoryUnitPreview", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryUnitPreview; } });
 Object.defineProperty(exports, "adminGetContentFactoryWorkspace", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryWorkspace; } });
+Object.defineProperty(exports, "adminGetContentFactoryRolloutMetrics", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetContentFactoryRolloutMetrics; } });
+Object.defineProperty(exports, "adminGetArenaConvergenceStatus", { enumerable: true, get: function () { return admin_content_factory_read_1.adminGetArenaConvergenceStatus; } });
 var content_factory_worker_1 = require("./content_factory_worker");
 Object.defineProperty(exports, "adminRunContentGenerationUnit", { enumerable: true, get: function () { return content_factory_worker_1.adminRunContentGenerationUnit; } });
 Object.defineProperty(exports, "CONTENT_FACTORY_OPENAI_API_KEY", { enumerable: true, get: function () { return content_factory_worker_1.CONTENT_FACTORY_OPENAI_API_KEY; } });

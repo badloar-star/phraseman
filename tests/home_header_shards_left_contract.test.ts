@@ -14,7 +14,7 @@ describe('home header shard placement', () => {
     expect(shards).toBeGreaterThanOrEqual(0);
     expect(profile).toBeGreaterThan(shards);
     expect(header).toContain('<LingmanVideosButton />');
-    expect(header).toContain('<CommunityChatHubButton />');
-    expect(header).toContain('<NotificationCenterButton isHomeTabActive={activeIdx === 0} homeFocusTick={focusTick} />');
+    expect(header).not.toContain('CommunityChatHubButton');
+    expect(header).toContain('<NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />');
   });
 });

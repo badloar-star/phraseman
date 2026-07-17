@@ -35,6 +35,7 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminRunContentGenerationUnit = exports.CONTENT_FACTORY_OPENAI_API_KEY = void 0;
 exports.parseGenerationUnitRequest = parseGenerationUnitRequest;
+const node_crypto_1 = require("node:crypto");
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const params_1 = require("firebase-functions/params");
@@ -49,6 +50,11 @@ const generation_checkpoint_1 = require("./content_factory/generation_checkpoint
 const content_factory_budget_1 = require("./content_factory/content_factory_budget");
 const job_progress_1 = require("./content_factory/job_progress");
 const generation_errors_1 = require("./content_factory/generation_errors");
+const generation_audit_1 = require("./content_factory/generation_audit");
+const generation_execution_1 = require("./content_factory/generation_execution");
+const artifact_retention_1 = require("./content_factory/artifact_retention");
+const arena_shadow_convergence_1 = require("./content_factory/arena_shadow_convergence");
+const surface_convergence_repository_1 = require("./content_factory/surface_convergence_repository");
 const REGION = 'us-central1';
 exports.CONTENT_FACTORY_OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 const SURFACES = ['lesson', 'quiz', 'flashcard', 'arena'];
@@ -92,6 +98,7 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
     const role = roleFromToken(request.auth.token);
     if (!role || !(0, permissions_1.hasPermission)(role, 'content.draft.write'))
         throw new https_1.HttpsError('permission-denied', 'Role cannot generate content');
+    const actorUid = request.auth.uid;
     const input = parseGenerationUnitRequest(request.data);
     const db = admin.firestore();
     const jobRef = db.collection('content_factory_jobs').doc(input.jobId);
@@ -107,6 +114,7 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
     if (!studyTarget || !learnerSourceLocale || !blueprintVersion)
         throw new https_1.HttpsError('failed-precondition', 'generation_job_identity_missing');
     const nowMs = Date.now();
+    const requestedLeaseToken = (0, node_crypto_1.randomUUID)();
     const checkpoint = await db.runTransaction(async (tx) => {
         const current = await tx.get(unitRef);
         const currentData = current.data() ?? {};
@@ -119,17 +127,22 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
             }
         }
         const action = (0, generation_checkpoint_1.chooseGenerationCheckpointAction)(currentData, nowMs);
-        if (action.action === 'replay' || action.action === 'resume')
-            return { ...action, attempt: Number(currentData.attempts ?? 0) };
+        const routing = { engineRequested: String(currentData.engineRequested ?? 'legacy'), engineResolved: String(currentData.engineResolved ?? 'legacy'), configRevision: Number(currentData.configRevision ?? 0), comparatorVersion: String(currentData.comparatorVersion ?? '') };
+        if (action.action === 'replay')
+            return { ...action, attempt: Number(currentData.attempts ?? 0), leaseToken: '', ...routing };
         if (action.action === 'busy')
             throw new https_1.HttpsError('aborted', 'generation_unit_already_running');
+        if (action.action === 'resume') {
+            const attempt = Number(currentData.attempts ?? 0);
+            tx.set(unitRef, { state: 'running', leaseToken: requestedLeaseToken, leaseExpiresAtMs: nowMs + GENERATION_LEASE_MS }, { merge: true });
+            return { ...action, attempt, leaseToken: requestedLeaseToken, ...routing };
+        }
         const attempt = Number(currentData.attempts ?? 0) + 1;
-        tx.set(unitRef, { unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, surface: input.surface, lessonId: input.lessonId, state: 'running', attempts: attempt, startedAt: admin.firestore.FieldValue.serverTimestamp(), startedAtMs: nowMs, leaseExpiresAtMs: nowMs + GENERATION_LEASE_MS }, { merge: true });
-        return { action: 'generate', attempt };
+        tx.set(unitRef, { unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, surface: input.surface, lessonId: input.lessonId, state: 'running', attempts: attempt, leaseToken: requestedLeaseToken, startedAt: admin.firestore.FieldValue.serverTimestamp(), startedAtMs: nowMs, leaseExpiresAtMs: nowMs + GENERATION_LEASE_MS }, { merge: true });
+        return { action: 'generate', attempt, leaseToken: requestedLeaseToken, ...routing };
     });
     if (checkpoint.action === 'replay')
         return { ok: true, unitId, state: 'succeeded', replayed: true };
-    let checkpointWritten = checkpoint.action === 'resume';
     try {
         let sourceReference;
         try {
@@ -155,50 +168,108 @@ exports.adminRunContentGenerationUnit = (0, https_1.onCall)({ region: REGION, en
             const apiKey = String(exports.CONTENT_FACTORY_OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
             if (!apiKey)
                 throw new https_1.HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
-            await (0, content_factory_budget_1.reserveContentFactoryBudget)(db, `${unitId}:attempt:${checkpoint.attempt}`, config.globalDailyCap);
-            const provider = (0, generation_provider_1.createOpenAiGenerationProvider)(apiKey);
+            const provider = (0, generation_provider_1.createOpenAiGenerationProvider)(apiKey, { beforeProviderRequest: async (requestIndex) => { await (0, content_factory_budget_1.reserveContentFactoryBudget)(db, `${unitId}:attempt:${checkpoint.attempt}:provider-request:${requestIndex}`, config.globalDailyCap); } });
             if (input.surface === 'lesson') {
                 const generated = await (0, generation_provider_1.generateLessonUnit)({ provider, model: config.model, studyTarget, sourceLocale: learnerSourceLocale, blueprintVersion: registry.version, blueprintHash: registry.blueprintHash, topic: blueprintLesson.topic, sourcePhrases: blueprintLesson.sourcePhrases, vocabularyFocus: blueprintLesson.vocabularyFocus, drills: blueprintLesson.drills, sourceEvidence: registry.evidence, lessonId: input.lessonId });
                 payload = generated.artifact;
-                qaReceipt = generated.qa;
+                const providerRequests = provider.getProviderRequestCount?.() ?? 1;
+                qaReceipt = { ...generated.qa, providerRequests: { requestedUnits: providerRequests, usedUnits: providerRequests, refundedUnits: 0, unit: 'provider_requests' }, operatorCorrection: { status: 'unavailable_not_collected' } };
             }
             else {
-                payload = await (0, generation_provider_1.generateSurfaceUnit)({ provider, model: config.model, surface: input.surface, studyTarget, sourceLocale: learnerSourceLocale, lessonId: input.lessonId, topic: blueprintLesson.topic, sourcePhrases: blueprintLesson.sourcePhrases });
+                const generated = await (0, generation_provider_1.generateSurfaceUnit)({ provider, model: config.model, surface: input.surface, studyTarget, sourceLocale: learnerSourceLocale, lessonId: input.lessonId, topic: blueprintLesson.topic, sourcePhrases: blueprintLesson.sourcePhrases });
+                const providerRequests = provider.getProviderRequestCount?.() ?? 1;
+                payload = generated.artifact;
+                qaReceipt = { ...generated.qa, providerRequests: { requestedUnits: providerRequests, usedUnits: providerRequests, refundedUnits: 0, unit: 'provider_requests' }, operatorCorrection: { status: 'unavailable_not_collected' } };
             }
-            await unitRef.set({ state: 'generated', generatedPayload: payload, qaReceipt, generatedAt: admin.firestore.FieldValue.serverTimestamp(), leaseExpiresAtMs: admin.firestore.FieldValue.delete() }, { merge: true });
-            checkpointWritten = true;
+            const checkpointPersisted = await (0, generation_execution_1.runGuardedGenerationTransaction)({
+                lease: checkpoint, allowedStates: ['running'],
+                runTransaction: (handler) => db.runTransaction(handler),
+                read: async (tx) => { const current = await tx.get(unitRef); return { current: current.exists ? current.data() ?? {} : null, context: undefined }; },
+                commit: (tx) => { tx.set(unitRef, { state: 'generated', generatedPayload: payload, qaReceipt, generatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true }); },
+            });
+            if (!checkpointPersisted)
+                return { ok: true, unitId, state: 'superseded', discarded: true };
         }
         const bucket = admin.storage().bucket();
         const receipt = await (0, artifact_storage_1.writeImmutableArtifact)(bucket, { releaseId, surface: input.surface, lessonId: input.lessonId, payload });
-        await db.runTransaction(async (tx) => {
-            const [currentUnitSnap, currentJobSnap] = await Promise.all([tx.get(unitRef), tx.get(jobRef)]);
-            if (!currentJobSnap.exists)
-                throw new https_1.HttpsError('data-loss', 'generation_job_missing_during_completion');
-            const currentUnit = currentUnitSnap.data() ?? {};
-            const currentJob = currentJobSnap.data() ?? {};
-            let transition;
+        let shadowReceipt = null;
+        let shadowComparisonState = 'not_requested';
+        if (input.surface === 'arena' && checkpoint.engineRequested === 'shadow' && checkpoint.engineResolved === 'legacy') {
+            shadowComparisonState = 'unavailable';
             try {
-                transition = (0, job_progress_1.applyUnitProgressTransition)(readJobProgress(currentJob), { next: 'succeeded', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
+                const candidate = (0, arena_shadow_convergence_1.buildArenaShadowComparison)({ unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, lessonId: input.lessonId, attempt: checkpoint.attempt, legacyArtifact: payload, legacyArtifactHash: receipt.contentHash, qaOutcome: String(qaReceipt.status ?? 'unknown'), evidenceIds: registry.evidence.map((item) => item.evidenceId), configRevision: checkpoint.configRevision });
+                if (candidate.providerRequestsAdded !== 0)
+                    throw new Error('arena_shadow_provider_request_violation');
+                await (0, surface_convergence_repository_1.persistArenaComparisonReceipt)(db, candidate, admin.firestore.FieldValue.serverTimestamp());
+                shadowReceipt = candidate;
+                shadowComparisonState = 'recorded';
             }
             catch {
-                throw new https_1.HttpsError('data-loss', 'content_factory_progress_invalid');
+                shadowReceipt = null;
             }
-            tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, qaReceipt, failureCounted: transition.failureCounted, generatedPayload: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
-            const nextJobState = transition.jobState === 'needs_review' && currentJob.releaseCandidate !== true ? 'partial' : transition.jobState;
-            tx.set(jobRef, { state: nextJobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
-        });
+        }
+        const orphanCandidate = () => (0, artifact_retention_1.buildArtifactOrphanCandidate)(receipt, { entityCollection: 'content_factory_job_units', entityId: unitId, attempt: checkpoint.attempt, detectedAtMs: Date.now() });
+        const recordOrphan = async () => { const orphan = orphanCandidate(); await db.collection('content_factory_artifact_orphans').doc(orphan.candidateId).set(orphan, { merge: false }); };
+        const committed = await (0, generation_execution_1.runGuardedGenerationTransaction)({
+            lease: checkpoint, allowedStates: ['running', 'generated'],
+            runTransaction: (handler) => db.runTransaction(handler),
+            read: async (tx) => {
+                const [currentUnitSnap, currentJobSnap] = await Promise.all([tx.get(unitRef), tx.get(jobRef)]);
+                if (!currentJobSnap.exists)
+                    throw new https_1.HttpsError('data-loss', 'generation_job_missing_during_completion');
+                return { current: currentUnitSnap.exists ? currentUnitSnap.data() ?? {} : null, context: currentJobSnap.data() ?? {} };
+            },
+            commit: (tx, currentUnit, currentJob) => {
+                let transition;
+                try {
+                    transition = (0, job_progress_1.applyUnitProgressTransition)(readJobProgress(currentJob), { next: 'succeeded', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
+                }
+                catch {
+                    throw new https_1.HttpsError('data-loss', 'content_factory_progress_invalid');
+                }
+                const currentRouting = currentUnit;
+                tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, artifactReferenceState: 'committed', artifactFinalizationKey: receipt.finalizationKey, qaReceipt, failureCounted: transition.failureCounted, engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion, shadowComparisonState, ...(shadowReceipt ? { shadowComparisonId: shadowReceipt.documentId, shadowEligible: shadowReceipt.eligible } : {}), generatedPayload: admin.firestore.FieldValue.delete(), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                const nextJobState = transition.jobState === 'needs_review' && currentJob.releaseCandidate !== true ? 'partial' : transition.jobState;
+                const audit = (0, generation_audit_1.buildGenerationTerminalAudit)({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'succeeded', errorCategory: null, before: { state: currentUnit.state ?? null }, after: { state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash } });
+                tx.set(jobRef, { state: nextJobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                tx.create(db.collection('admin_log').doc(audit.operationId), audit);
+            },
+        }).catch(async (error) => { await recordOrphan(); throw error; });
+        if (!committed) {
+            await recordOrphan();
+            return { ok: true, unitId, state: 'superseded', discarded: true };
+        }
         return { ok: true, unitId, state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash };
     }
     catch (error) {
         const failure = (0, generation_errors_1.buildGenerationFailureRecord)(error, checkpoint.attempt);
-        await db.runTransaction(async (tx) => {
-            const [currentUnitSnap, currentJobSnap] = await Promise.all([tx.get(unitRef), tx.get(jobRef)]);
-            const currentUnit = currentUnitSnap.data() ?? {};
-            const currentJob = currentJobSnap.data() ?? {};
-            const transition = (0, job_progress_1.applyUnitProgressTransition)(readJobProgress(currentJob), { next: 'failed', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
-            tx.set(unitRef, { unitId, state: checkpointWritten ? 'generated' : 'failed', failureCounted: transition.failureCounted, errorCode: failure.code, errorMessage: failure.message, retryable: failure.retryable, attemptHistory: admin.firestore.FieldValue.arrayUnion(failure), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
-            tx.set(jobRef, { state: transition.jobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
-        }).catch((progressError) => console.error('content factory failure progress update failed', unitId, progressError));
+        let failureShadowReceiptId = null;
+        if (input.surface === 'arena' && checkpoint.engineRequested === 'shadow' && checkpoint.engineResolved === 'legacy') {
+            try {
+                const candidate = (0, arena_shadow_convergence_1.buildArenaShadowFailureComparison)({ unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, lessonId: input.lessonId, attempt: checkpoint.attempt, configRevision: checkpoint.configRevision, error: { category: failure.code, retryable: failure.retryable } });
+                await (0, surface_convergence_repository_1.persistArenaComparisonReceipt)(db, candidate, admin.firestore.FieldValue.serverTimestamp());
+                failureShadowReceiptId = candidate.documentId;
+            }
+            catch {
+                failureShadowReceiptId = null;
+            }
+        }
+        await (0, generation_execution_1.runGuardedGenerationTransaction)({
+            lease: checkpoint, allowedStates: ['running', 'generated'],
+            runTransaction: (handler) => db.runTransaction(handler),
+            read: async (tx) => {
+                const [currentUnitSnap, currentJobSnap] = await Promise.all([tx.get(unitRef), tx.get(jobRef)]);
+                return { current: currentUnitSnap.exists ? currentUnitSnap.data() ?? {} : null, context: currentJobSnap.data() ?? {} };
+            },
+            commit: (tx, currentUnit, currentJob) => {
+                const transition = (0, job_progress_1.applyUnitProgressTransition)(readJobProgress(currentJob), { next: 'failed', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
+                const terminalState = 'failed';
+                const audit = (0, generation_audit_1.buildGenerationTerminalAudit)({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'failed', errorCategory: failure.code, before: { state: currentUnit.state ?? null }, after: { state: terminalState, errorCode: failure.code } });
+                tx.set(unitRef, { unitId, state: terminalState, failureCounted: transition.failureCounted, errorCode: failure.code, errorMessage: failure.message, retryable: failure.retryable, attemptHistory: admin.firestore.FieldValue.arrayUnion(failure), ...(checkpoint.engineRequested === 'shadow' ? { shadowComparisonState: failureShadowReceiptId ? 'recorded' : 'unavailable', ...(failureShadowReceiptId ? { shadowComparisonId: failureShadowReceiptId, shadowEligible: true } : {}) } : {}), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                tx.set(jobRef, { state: transition.jobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+                tx.create(db.collection('admin_log').doc(audit.operationId), audit);
+            },
+        });
         throw error instanceof https_1.HttpsError ? error : new https_1.HttpsError('unavailable', 'content_generation_failed');
     }
 });

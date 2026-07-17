@@ -186,6 +186,8 @@ ${renderLegalBlocks(sections)}
       </div>
     </footer>
   </div>
+  <script src="/assets/site-config.js" defer></script>
+  <script src="/assets/stats.js" defer></script>
   <script src="/assets/site.js" defer></script>
 </body>
 </html>
@@ -273,6 +275,8 @@ function dataDeletionPage({ date }) {
       </div>
     </footer>
   </div>
+  <script src="/assets/site-config.js" defer></script>
+  <script src="/assets/stats.js" defer></script>
   <script src="/assets/site.js" defer></script>
 </body>
 </html>

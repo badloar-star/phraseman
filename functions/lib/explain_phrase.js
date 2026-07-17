@@ -115,6 +115,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
+    minInstances: 1,
     maxInstances: 20,
     secrets: [OPENAI_API_KEY],
 }, async (request) => {
@@ -218,6 +219,7 @@ exports.explainPhrase = (0, https_1.onCall)({
     }
     // 7. Sanitize (level 2) → AI judge (level 3, a SEPARATE cheap call, fail-closed).
     const sanitized = (0, explain_gates_1.sanitizeExplanationOutput)(gen.text);
+    const judgeLanguageSample = (0, explain_prompts_1.buildJudgeOutputLanguageSample)(sanitized);
     const judgeText = sanitized;
     const verdict = await (0, explain_judge_1.judgeExplanation)({ text: judgeText, phraseEn, lang, apiKey, studyTarget });
     // 8. Verdict gates the SHARED CACHE only. The live (trigger) caller always receives the generated
@@ -251,6 +253,8 @@ exports.explainPhrase = (0, https_1.onCall)({
         genCompletionTokens: gen.completionTokens,
         judgePromptTokens: verdict.promptTokens,
         judgeCompletionTokens: verdict.completionTokens,
+        judgeWrongScriptRatio: (0, explain_gates_1.wrongScriptRatio)(sanitized, lang),
+        judgeMaskedStudyFragments: judgeLanguageSample.maskedFragmentCount,
         verdict: verdict.reason,
         published: verdict.ok,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),

@@ -1,4 +1,5 @@
 import { computeFrenchPhraseAnalytics } from './french_phrase_analytics';
+import { loadActivity365Analytics, type Activity365Day } from './activity_365_analytics';
 import { ensureFrenchRemotePersonalPractice } from './french_personal_practice_remote_runtime';
 import { computePhraseAnalytics, type PhraseAnalyticsResult } from './phrase_analytics';
 import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
@@ -18,6 +19,7 @@ export interface TrainerPracticeSnapshot {
   hasPremium: boolean;
   analytics: PhraseAnalyticsResult | null;
   resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
+  activityDays: Activity365Day[];
   createdAt: number;
 }
 
@@ -85,12 +87,14 @@ export async function prefetchTrainerPracticeSnapshot({
     personalPracticeCoachEnabledForTarget(studyTarget)
       ? loadResolvedPersonalTrainings({ studyTarget, sourceLocale: normalizedSourceLocale }).catch(() => null)
       : Promise.resolve(null),
-  ]).then(([dashboard, hasPremium, analytics, resolvedPersonalTrainings]) => {
+    loadActivity365Analytics(studyTarget).then((activity) => activity.days).catch(() => []),
+  ]).then(([dashboard, hasPremium, analytics, resolvedPersonalTrainings, activityDays]) => {
     const snapshot: TrainerPracticeSnapshot = {
       dashboard,
       hasPremium,
       analytics,
       resolvedPersonalTrainings,
+      activityDays,
       createdAt: Date.now(),
     };
     snapshotCache.set(cacheKey, snapshot);

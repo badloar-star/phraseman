@@ -454,6 +454,7 @@ exports.explainMistake = (0, https_1.onCall)({
     enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
+    minInstances: 1,
     maxInstances: 20,
     secrets: [OPENAI_API_KEY],
 }, async (request) => {

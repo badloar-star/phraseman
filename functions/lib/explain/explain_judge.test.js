@@ -49,6 +49,23 @@ describe('judgeExplanation — heuristic short-circuit (0 judge tokens)', () => 
         expect(verdict.ok).toBe(true);
         expect(verdict.reason).toBe('ok');
     });
+    it('sends the source phrase and a quote-masked language sample to the AI judge', async () => {
+        mockOpenAiChat.mockResolvedValue(chatReply('{"ok":true,"reason":"ok"}'));
+        const text = 'Фраза "It is not funny" означает, что тебе не смешно.';
+        await (0, explain_judge_1.judgeExplanation)({
+            text,
+            phraseEn: 'It is not funny',
+            lang: 'ru',
+            apiKey: API_KEY,
+        });
+        const userMessage = mockOpenAiChat.mock.calls[0][0].messages[1].content;
+        const payloadJson = userMessage.match(/<<<UNTRUSTED_DATA_JSON\n([^\n]+)\nUNTRUSTED_DATA_JSON>>>/)?.[1];
+        expect(payloadJson).toBeDefined();
+        const payload = JSON.parse(payloadJson);
+        expect(payload.studyPhrase).toBe('It is not funny');
+        expect(payload.explanation).toBe(text);
+        expect(payload.outputLanguageSample).toContain('Фраза [STUDY_LANGUAGE_FRAGMENT] означает, что тебе не смешно.');
+    });
 });
 describe('judgeExplanation — JSON parsing', () => {
     it('parses a clean ok:true verdict and carries judge token usage', async () => {

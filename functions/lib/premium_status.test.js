@@ -139,13 +139,20 @@ describe('premium_status — серверный источник правды п
                                 },
                             };
                         },
-                        where(_field, _op, value) {
+                        where(field, _op, value) {
                             return {
-                                limit(_n) {
+                                limit(n) {
                                     return {
                                         async get() {
                                             const docs = Object.entries(users)
-                                                .filter(([, data]) => data.firebaseAuthUid === value)
+                                                .filter(([, data]) => {
+                                                if (field === 'firebaseAuthUid')
+                                                    return data.firebaseAuthUid === value;
+                                                if (field === 'canonicalStableId')
+                                                    return data.canonicalStableId === value;
+                                                return false;
+                                            })
+                                                .slice(0, n)
                                                 .map(([id, data]) => ({ id, data: () => data }));
                                             return { docs };
                                         },
@@ -173,6 +180,116 @@ describe('premium_status — серверный источник правды п
                 stable_2: { progress: { vip_active: 'true', vip_until: String(FUTURE) } },
             }, { auth_2: { stable_id: 'stable_2' } });
             await expect((0, premium_status_1.resolvePremiumAccess)(db, 'auth_2', NOW, 'auth_2')).resolves.toBe(true);
+        });
+        it('finds an active admin VIP on an owned hidden alias after auth_links moved to canonical', async () => {
+            const users = {
+                stable_3: {
+                    firebaseAuthUid: 'auth_3',
+                    linkedAuth: { providerUid: 'auth_3' },
+                    progress: {},
+                },
+            };
+            // Production had more provider-owned duplicates than the defensive by-auth
+            // lookup limit. The hidden VIP alias was therefore absent from those first
+            // five results even though it belonged to the same signed-in account.
+            for (let i = 0; i < 5; i += 1) {
+                users[`duplicate_${i}`] = { firebaseAuthUid: 'auth_3', progress: {} };
+            }
+            users.vip_alias = {
+                identityHidden: true,
+                canonicalStableId: 'stable_3',
+                firebaseAuthUid: 'auth_3',
+                progress: {
+                    vip_active: 'true',
+                    vip_plan: 'admin_vip',
+                    vip_until: String(FUTURE),
+                    vip_admin_override: 'true',
+                },
+            };
+            const db = fakeDb(users, { auth_3: { stable_id: 'stable_3' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'stable_3', NOW, 'auth_3')).resolves.toBe(true);
+        });
+        it('keeps owned hidden-alias access when the alias is inside the normal lookup window', async () => {
+            const db = fakeDb({
+                stable_3b: { firebaseAuthUid: 'auth_3b', progress: {} },
+                vip_alias_3b: {
+                    identityHidden: true,
+                    canonicalStableId: 'stable_3b',
+                    firebaseAuthUid: 'auth_3b',
+                    progress: {
+                        vip_active: 'true',
+                        vip_until: '0',
+                        vip_admin_override: 'true',
+                    },
+                },
+            }, { auth_3b: { stable_id: 'stable_3b' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'stable_3b', NOW, 'auth_3b')).resolves.toBe(true);
+        });
+        it('does not inherit VIP from a hidden alias owned by another auth uid', async () => {
+            const users = {
+                stable_4: { firebaseAuthUid: 'auth_4', progress: {} },
+                foreign_alias: {
+                    identityHidden: true,
+                    canonicalStableId: 'stable_4',
+                    firebaseAuthUid: 'different_auth',
+                    progress: {
+                        vip_active: 'true',
+                        vip_until: String(FUTURE),
+                        vip_admin_override: 'true',
+                    },
+                },
+            };
+            for (let i = 0; i < 4; i += 1) {
+                users[`owned_duplicate_${i}`] = { firebaseAuthUid: 'auth_4', progress: {} };
+            }
+            const db = fakeDb(users, { auth_4: { stable_id: 'stable_4' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'stable_4', NOW, 'auth_4')).resolves.toBe(false);
+        });
+        it('does not resurrect a canonical VIP that was explicitly revoked', async () => {
+            const users = {
+                stable_5: {
+                    firebaseAuthUid: 'auth_5',
+                    progress: { vip_active: 'false', vip_admin_override: 'false', vip_until: String(PAST) },
+                },
+                stale_alias: {
+                    identityHidden: true,
+                    canonicalStableId: 'stable_5',
+                    firebaseAuthUid: 'auth_5',
+                    progress: {
+                        vip_active: 'true',
+                        vip_until: String(FUTURE),
+                        vip_admin_override: 'true',
+                    },
+                },
+            };
+            for (let i = 0; i < 4; i += 1) {
+                users[`revoked_duplicate_${i}`] = { firebaseAuthUid: 'auth_5', progress: {} };
+            }
+            const db = fakeDb(users, { auth_5: { stable_id: 'stable_5' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'stable_5', NOW, 'auth_5')).resolves.toBe(false);
+        });
+        it('treats a canonical legacy admin revoke as authoritative over a stale VIP alias', async () => {
+            const db = fakeDb({
+                stable_6: {
+                    firebaseAuthUid: 'auth_6',
+                    progress: {
+                        admin_premium_override: 'false',
+                        premium_plan: 'admin_grant',
+                        premium_expiry: '0',
+                    },
+                },
+                stale_legacy_alias: {
+                    identityHidden: true,
+                    canonicalStableId: 'stable_6',
+                    firebaseAuthUid: 'auth_6',
+                    progress: {
+                        vip_active: 'true',
+                        vip_until: String(FUTURE),
+                        vip_admin_override: 'true',
+                    },
+                },
+            }, { auth_6: { stable_id: 'stable_6' } });
+            await expect((0, premium_status_1.resolvePremiumAccess)(db, 'stable_6', NOW, 'auth_6')).resolves.toBe(false);
         });
     });
 });

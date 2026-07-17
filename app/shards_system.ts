@@ -21,7 +21,7 @@ import { isCurrentAccountGeneration, withAccountTransitionLock, type AccountGene
 import { SHARD_SPEND_OP_LEDGER_KEY } from '../constants/customization_storage_keys';
 
 export type ShardSpendReason =
-  | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
+  | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–6)
   | 'streak_freeze'  // -X Заморозка цепочки
   | 'streak_revive'  // -X Восстановление потерянной цепочки (≤24ч после обнуления)
   | 'wager_bet'      // -X Ставка в турнире

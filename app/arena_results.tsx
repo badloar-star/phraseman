@@ -2610,15 +2610,15 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
                   onPress={handleYes}
                   activeOpacity={0.88}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
-                    {variant.btnYes} ?
+                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
+                        {variant.btnYes}
                   </Text>
                 </TouchableOpacity>
               </View>
             </>
           ) : (
             <>
-              <Text style={{ fontSize: 52, marginBottom: 12 }} numberOfLines={1}>??</Text>
+                  <Text style={{ fontSize: 52, marginBottom: 12 }} numberOfLines={1}>🙏</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Спасибо!',

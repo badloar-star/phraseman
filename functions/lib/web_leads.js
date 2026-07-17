@@ -345,12 +345,14 @@ exports.webLeadCapture = (0, https_1.onRequest)({
     }
     const db = (0, firestore_1.getFirestore)();
     const answers = cleanAttribution(body.answers);
+    const marketingConsent = body.marketingConsent === true;
     const ref = db.collection(LEADS_COLLECTION).doc((0, email_contacts_1.emailContactDocId)(email));
     try {
         const [snap, suppressed] = await Promise.all([ref.get(), isSuppressed(db, email)]);
         const existing = snap.exists ? (snap.data() ?? {}) : null;
         const nowMs = Date.now();
         const lastPlanEmailMs = Number(existing?.planEmailSentAtMs) || 0;
+        const effectiveMarketingConsent = marketingConsent || existing?.marketingConsent === true;
         // Кулдаун письма: эндпоинт публичный, нельзя позволить бомбить чужой ящик.
         const shouldEmail = !suppressed && nowMs - lastPlanEmailMs > PLAN_EMAIL_COOLDOWN_MS;
         await ref.set({
@@ -358,7 +360,15 @@ exports.webLeadCapture = (0, https_1.onRequest)({
             answers: answers ?? existing?.answers ?? null,
             utm: cleanAttribution(body.utm) ?? existing?.utm ?? null,
             page: cleanShortText(body.page, 120) || null,
-            status: suppressed ? 'unsubscribed' : String(existing?.status ?? 'active'),
+            marketingConsent: marketingConsent || existing?.marketingConsent === true,
+            ...(marketingConsent && existing?.marketingConsent !== true
+                ? { marketingConsentAtMs: nowMs, marketingConsentAt: firestore_1.FieldValue.serverTimestamp() }
+                : {}),
+            status: suppressed
+                ? 'unsubscribed'
+                : effectiveMarketingConsent
+                    ? (existing?.status === 'marketing_not_opted_in' ? 'active' : String(existing?.status ?? 'active'))
+                    : 'marketing_not_opted_in',
             ...(existing ? {} : { createdAtMs: nowMs, createdAt: firestore_1.FieldValue.serverTimestamp(), nudgeCount: 0 }),
             updatedAt: firestore_1.FieldValue.serverTimestamp(),
             updatedAtIso: new Date().toISOString(),
@@ -391,6 +401,10 @@ exports.webLeadNudgeCron = (0, scheduler_1.onSchedule)({ schedule: '17 */6 * * *
     let sent = 0;
     for (const doc of snap.docs) {
         const lead = doc.data();
+        if (lead.marketingConsent !== true) {
+            await doc.ref.set({ status: 'marketing_not_opted_in' }, { merge: true });
+            continue;
+        }
         const email = (0, email_contacts_1.normalizeEmailContactEmail)(lead.email);
         if (!email)
             continue;

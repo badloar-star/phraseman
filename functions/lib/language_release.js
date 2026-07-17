@@ -128,7 +128,7 @@ exports.adminActivateCourseRelease = (0, https_1.onCall)({ region: REGION, enfor
             throw new https_1.HttpsError('failed-precondition', 'catalog_changed_reload_before_activation');
         const nextRevision = revision + 1;
         const nextActive = { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, blueprintId: release.blueprintId, blueprintHash: release.blueprintHash };
-        const audit = { action: 'content_factory.course_release.activate', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease ?? null }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
+        const audit = { action: 'content_factory.course_release.activate', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease ?? null }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
         tx.set(catalogRef, { studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, revision: nextRevision, activeRelease: nextActive, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
         tx.create(historyRef, audit);
         tx.create(auditRef, audit);
@@ -182,7 +182,7 @@ exports.adminRollbackCourseRelease = (0, https_1.onCall)({ region: REGION, enfor
             throw new https_1.HttpsError('failed-precondition', 'catalog_changed_reload_before_rollback');
         const nextRevision = revision + 1;
         const nextActive = { releaseId: release.releaseId, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, blueprintId: release.blueprintId, blueprintHash: release.blueprintHash };
-        const audit = { action: 'content_factory.course_release.rollback', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
+        const audit = { action: 'content_factory.course_release.rollback', actorUid: request.auth?.uid, role, entity: { collection: 'content_factory_catalog', id: catalogId }, studyTarget: release.studyTarget, learnerSourceLocale: release.learnerSourceLocale, reason: input.reason, requestId: input.requestId, before: { revision, activeRelease: catalog.activeRelease }, after: { revision: nextRevision, activeRelease: nextActive }, rollbackReference: historyRef.id, operationId: input.idempotencyKey, timestamp: new Date().toISOString() };
         tx.set(catalogRef, { revision: nextRevision, activeRelease: nextActive, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
         tx.create(historyRef, audit);
         tx.create(auditRef, audit);

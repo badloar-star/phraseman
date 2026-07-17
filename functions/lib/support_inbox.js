@@ -50,7 +50,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportResolveReplyDelivery = exports.adminSupportCancelReplyBatch = exports.adminSupportDispatchReplyBatch = exports.adminSupportPrepareReplyBatch = exports.adminSupportCancelReply = exports.adminSupportSendReply = exports.adminSupportDispatchReply = exports.adminSupportPrepareReply = exports.adminSupportGenerateReply = exports.adminSupportList = exports.adminSupportPull = exports.SUPPORT_REPLY_BATCH_CONFIRMATION_TTL_MS = exports.SUPPORT_IMAP_FAILED_UID_LIMIT = exports.SUPPORT_IMAP_BACKFILL_LIMIT = exports.SUPPORT_IMAP_OVERLAP = exports.SUPPORT_IMAP_BATCH_LIMIT = exports.SUPPORT_REPLY_BATCH_LIMIT = exports.GENERATE_BATCH_LIMIT = exports.BODY_MAX_CHARS = exports.SUPPORT_CONFIG_DOC = exports.INBOX_COLLECTION = exports.SUPPORT_MAILBOX = exports.GMAIL_SUPPORT_APP_PASSWORD = void 0;
+exports.adminSupportSetStatus = exports.adminSupportSaveSignature = exports.adminSupportResolveReplyDelivery = exports.adminSupportCancelReplyBatch = exports.adminSupportDispatchReplyBatch = exports.adminSupportPrepareReplyBatch = exports.adminSupportCancelReply = exports.adminSupportSendReply = exports.adminSupportDispatchReply = exports.adminSupportPrepareReply = exports.adminSupportGenerateReply = exports.adminSupportList = exports.adminSupportPull = exports.SUPPORT_REPLY_BATCH_CONFIRMATION_TTL_MS = exports.SUPPORT_IMAP_FAILED_UID_LIMIT = exports.SUPPORT_IMAP_BACKFILL_LIMIT = exports.SUPPORT_IMAP_OVERLAP = exports.SUPPORT_IMAP_BATCH_LIMIT = exports.SUPPORT_REPLY_BATCH_LIMIT = exports.GENERATE_BATCH_LIMIT = exports.BODY_MAX_CHARS = exports.SUPPORT_CONFIG_DOC = exports.INBOX_COLLECTION = exports.SUPPORT_MAILBOX = exports.SUPPORT_OPENAI_API_KEY = exports.GMAIL_SUPPORT_APP_PASSWORD = void 0;
 exports.truncateBody = truncateBody;
 exports.docIdForMessageId = docIdForMessageId;
 exports.legacyDocIdForMessageId = legacyDocIdForMessageId;
@@ -72,6 +72,7 @@ exports.buildReplyPrompt = buildReplyPrompt;
 exports.sanitizeSupportMailHeader = sanitizeSupportMailHeader;
 exports.runSupportInboxPull = runSupportInboxPull;
 exports.supportRequestFingerprint = supportRequestFingerprint;
+exports.generateAgentManagerSupportDraft = generateAgentManagerSupportDraft;
 exports.runSupportReplyDispatchSweeper = runSupportReplyDispatchSweeper;
 exports.runSupportInboxPullCron = runSupportInboxPullCron;
 const admin = __importStar(require("firebase-admin"));
@@ -87,7 +88,8 @@ const roles_1 = require("./admin/roles");
 const support_reply_delivery_1 = require("./support_reply_delivery");
 const REGION = 'us-central1';
 exports.GMAIL_SUPPORT_APP_PASSWORD = (0, params_1.defineSecret)('GMAIL_SUPPORT_APP_PASSWORD');
-const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
+/** Existing production secret; exported only for a server-side Agent Manager worker binding. */
+exports.SUPPORT_OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 // ── Константы ─────────────────────────────────────────────────────────────────
 exports.SUPPORT_MAILBOX = 'support.phraseman@gmail.com';
 exports.INBOX_COLLECTION = 'support_inbox';
@@ -625,6 +627,50 @@ async function saveGeneratedSupportDraft(db, messageDocId, draftReply, actor, re
         return nextRevision;
     });
 }
+/**
+ * Server-only seam for Agent Manager. It writes one draft only while the
+ * source message is still new and untouched; it never sends mail or changes
+ * the inbox status.
+ */
+async function generateAgentManagerSupportDraft(input) {
+    if (!/^m_[a-f0-9]{64}$/.test(input.sourceDocumentId))
+        return Object.freeze({ kind: 'unavailable', outputHash: null });
+    const ref = input.db.collection(exports.INBOX_COLLECTION).doc(input.sourceDocumentId);
+    const initial = await ref.get();
+    if (!initial.exists)
+        return Object.freeze({ kind: 'stale', outputHash: null });
+    const source = initial.data();
+    const expectedRevision = Number(source.draftRevision ?? 0);
+    if (source.status !== 'new' || String(source.draftReply ?? '').trim() || !Number.isInteger(expectedRevision) || expectedRevision < 0 || !hasUsableBody(source)) {
+        return Object.freeze({ kind: 'stale', outputHash: null });
+    }
+    const cfg = await (0, openai_jobs_config_1.resolveJobConfig)(input.db, 'support');
+    try {
+        (0, openai_jobs_config_1.assertJobEnabled)(cfg, 'support');
+    }
+    catch {
+        return Object.freeze({ kind: 'unavailable', outputHash: null });
+    }
+    const draft = await generateDraftForDoc(input.apiKey, cfg.model, source);
+    const outputHash = (0, crypto_1.createHash)('sha256').update(`agent-manager-support-draft-v1:${draft}`, 'utf8').digest('hex');
+    const stored = await input.db.runTransaction(async (tx) => {
+        const current = await tx.get(ref);
+        const data = current.exists ? current.data() : null;
+        if (!data || data.status !== 'new' || String(data.draftReply ?? '').trim() || Number(data.draftRevision ?? 0) !== expectedRevision)
+            return false;
+        if (input.finalize && !(await input.finalize(tx, outputHash)))
+            return false;
+        const now = new Date().toISOString();
+        tx.set(ref, { draftReply: draft, draftLang: '', draftRevision: expectedRevision + 1, draftUpdatedAt: now }, { merge: true });
+        writeSupportAudit(tx, input.db, {
+            action: 'support.draft.generate', actor: { actorUid: 'agent_manager_execution_worker', role: 'admin' }, entityId: input.sourceDocumentId,
+            requestId: input.requestId, beforeState: `draft:${expectedRevision}`, afterState: `draft:${expectedRevision + 1}`,
+            reason: 'Agent Manager prepared a support reply draft for manual review', metadata: { draftRevision: expectedRevision + 1, origin: 'agent_manager' }, timestamp: now,
+        });
+        return true;
+    });
+    return Object.freeze({ kind: stored ? 'stored' : 'stale', outputHash: stored ? outputHash : null });
+}
 function readAppPassword() {
     const pass = String(exports.GMAIL_SUPPORT_APP_PASSWORD.value() || process.env.GMAIL_SUPPORT_APP_PASSWORD || '').trim();
     if (!pass)
@@ -633,7 +679,7 @@ function readAppPassword() {
 }
 function readOpenAiKey() {
     // Do NOT clamp the secret — project-scoped keys can be long; truncation breaks auth.
-    const key = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    const key = String(exports.SUPPORT_OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
     if (!key)
         throw new https_1.HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
     return key;
@@ -718,7 +764,7 @@ exports.adminSupportList = (0, https_1.onCall)({ region: REGION, enforceAppCheck
         pendingBatches,
     };
 });
-exports.adminSupportGenerateReply = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] }, async (request) => {
+exports.adminSupportGenerateReply = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK, secrets: [exports.SUPPORT_OPENAI_API_KEY] }, async (request) => {
     const actor = requireSupportPermission(request, 'support.draft.write');
     const apiKey = readOpenAiKey();
     const db = admin.firestore();

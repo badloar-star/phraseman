@@ -204,4 +204,34 @@ export class TelegramBotApiTransport {
       clearTimeout(timeout);
     }
   }
+
+  async sendMessage(input: Readonly<{
+    chatId: string;
+    text: string;
+    replyMarkup: Readonly<{ inline_keyboard: readonly (readonly Readonly<{ text: 'Approve' | 'Reject'; callback_data: string }>[])[] }>;
+  }>): Promise<void> {
+    if (!/^-?[1-9][0-9]{0,19}$/.test(input.chatId) || !input.text || input.text.length > 4096 || /[\u0000\u007f]/.test(input.text)) {
+      throw new Error('telegram_message_invalid');
+    }
+    const buttons = input.replyMarkup.inline_keyboard;
+    const approve = buttons[0] && /^((?:ao1|am1)):a:[A-Za-z0-9_-]{32,43}$/.exec(buttons[0][0]?.callback_data ?? '');
+    const reject = buttons[0] && /^((?:ao1|am1)):r:[A-Za-z0-9_-]{32,43}$/.exec(buttons[0][1]?.callback_data ?? '');
+    if (buttons.length !== 1 || buttons[0].length !== 2 || buttons[0][0].text !== 'Approve' || buttons[0][1].text !== 'Reject'
+      || !approve || !reject || approve[1] !== reject[1]) throw new Error('telegram_message_invalid');
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5_000);
+    try {
+      const response = await this.fetchImpl(`https://api.telegram.org/bot${this.botToken}/sendMessage`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: input.chatId, text: input.text, reply_markup: input.replyMarkup }), signal: controller.signal,
+      });
+      const payload = await response.json().catch(() => null) as { ok?: unknown } | null;
+      if (!response.ok || payload?.ok !== true) throw new Error('telegram_api_failed');
+    } catch (error) {
+      if (error instanceof Error && error.message === 'telegram_api_failed') throw error;
+      throw new Error('telegram_api_failed');
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
 }

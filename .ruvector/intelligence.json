@@ -14,6 +14,7 @@
     "session_count": 0,
     "last_session": 0
   },
+  "embeddingProvenance": null,
   "activeTrajectories": {
     "traj_1783673657065_cnqg8b31t": {
       "id": "traj_1783673657065_cnqg8b31t",
@@ -22,6 +23,14 @@
       "file": null,
       "steps": [],
       "startTime": 1783673657066
+    },
+    "traj_1784012919511_47ygtanxf": {
+      "id": "traj_1784012919511_47ygtanxf",
+      "context": "phraseman-approved-aura-mockup-2026-07-14: Open the latest approved Phraseman avatar aura mockup with all approved aura concepts",
+      "agent": "browser-session",
+      "file": null,
+      "steps": [],
+      "startTime": 1784012919511
     }
   }
 }

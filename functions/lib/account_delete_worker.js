@@ -59,11 +59,12 @@ exports.accountDeleteWorker = (0, firestore_1.onDocumentWritten)(exports.ACCOUNT
 });
 async function sweepAccountDeletionJobs(db, nowMs = Date.now()) {
     const jobs = db.collection(account_delete_job_1.ACCOUNT_DELETE_JOBS);
-    const [due, stranded, expired, expiredTombstones] = await Promise.all([
+    const [due, stranded, expired, expiredTombstones, expiredAuthMarkers] = await Promise.all([
         jobs.where('nextAttemptAtMs', '<=', nowMs).limit(20).get(),
         jobs.where('leaseUntilMs', '<=', nowMs).limit(20).get(),
         jobs.where('retentionUntilMs', '<=', nowMs).limit(50).get(),
         db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
+        db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).where('retentionUntilMs', '<=', nowMs).limit(50).get(),
     ]);
     const expiredIds = new Set(expired.docs.map((doc) => doc.id));
     const terminalStatuses = new Set(['completed', 'failed']);
@@ -85,7 +86,9 @@ async function sweepAccountDeletionJobs(db, nowMs = Date.now()) {
         batch.delete(doc.ref);
     for (const doc of expiredTombstones.docs)
         batch.delete(doc.ref);
-    if (recoverable.size + expired.size + expiredTombstones.size > 0)
+    for (const doc of expiredAuthMarkers.docs)
+        batch.delete(doc.ref);
+    if (recoverable.size + expired.size + expiredTombstones.size + expiredAuthMarkers.size > 0)
         await batch.commit();
 }
 exports.accountDeleteRetryCron = (0, scheduler_1.onSchedule)(exports.ACCOUNT_DELETE_RETRY_OPTIONS, async () => {

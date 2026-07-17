@@ -6,6 +6,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   '': 'overview',
   overview: 'overview',
   'agent-office': 'agent-office',
+  'agent-manager': 'agent-manager',
   'control-panel': 'control-panel',
   app: 'application',
   application: 'application',
@@ -37,7 +38,7 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
 });
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'control-panel', 'admin-settings', 'agent-office']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'control-panel', 'admin-settings', 'agent-office', 'agent-manager']);
 
 function routeFromLocation() {
   const capabilityRoute = resolveCapabilityHash(globalThis.location.hash);

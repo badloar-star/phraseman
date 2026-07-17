@@ -38,7 +38,6 @@ const TARGET_IDS = [
   'surface:components-certificatenamemodal:card:1',
   'surface:components-certificatenamemodal:primarybtn:1',
   'surface:components-certificatenamemodal:ribbon:1',
-  'surface:components-helpboardpanel:helpboardpanel:2',
   'surface:components-playerprofilemodal:player-profile-add-friend:1',
   'surface:components-playerprofilemodal:playerprofilemodalbody:1',
   'surface:components-playerprofilemodal:playerprofilemodalbody:2',

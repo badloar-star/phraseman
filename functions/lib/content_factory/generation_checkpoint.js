@@ -15,7 +15,7 @@ function chooseGenerationCheckpointAction(data, nowMs) {
         return Object.freeze({ action: 'generate' });
     if (data.state === 'succeeded')
         return Object.freeze({ action: 'replay' });
-    if (data.state === 'generated' && isRecord(data.generatedPayload) && isRecord(data.qaReceipt) && data.qaReceipt.status === 'passed') {
+    if ((data.state === 'generated' || data.state === 'failed') && isRecord(data.generatedPayload) && isRecord(data.qaReceipt) && data.qaReceipt.status === 'passed') {
         return Object.freeze({ action: 'resume', payload: data.generatedPayload, qaReceipt: data.qaReceipt });
     }
     if (data.state === 'running' && Number.isFinite(Number(data.leaseExpiresAtMs)) && Number(data.leaseExpiresAtMs) > nowMs)

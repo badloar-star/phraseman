@@ -41,10 +41,11 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const permissions_1 = require("./admin/permissions");
 const admin_subscription_analytics_core_1 = require("./admin_subscription_analytics_core");
+const admin_revenue_analytics_core_1 = require("./admin_revenue_analytics_core");
 const REGION = 'us-central1';
 const PAGE_SIZE = 500;
 const DOCUMENT_CAP = 5000;
-const SUPPORTED_DAYS = new Set([7, 28, 90]);
+const SUPPORTED_DAYS = new Set([7, 28, 90, 365]);
 const SUPPORTED_STORES = new Set(['APP_STORE', 'PLAY_STORE', 'STRIPE', 'AMAZON', 'PROMOTIONAL']);
 function clampSubscriptionAnalyticsDays(value) {
     const parsed = Math.round(Number(value));
@@ -112,18 +113,28 @@ exports.adminSubscriptionAnalytics = (0, https_1.onCall)({
         return true;
     });
     const metrics = (0, admin_subscription_analytics_core_1.aggregateSubscriptionAnalytics)(filtered, reachedCap, { fromMs });
+    const revenue = (0, admin_revenue_analytics_core_1.aggregateServerRevenueAnalytics)(filtered, {
+        watermarkMs: metrics.dataThroughMs ?? undefined,
+        fromMs,
+        truncated: reachedCap,
+    });
     return {
         cohortDefinition: 'revenuecat_production_webhook_events',
         rangeDays,
         store,
         productId: productId || 'all',
         metrics,
+        revenue,
         limitations: [
             'reasons_available_for_new_webhook_events_only',
             'historical_cancel_reason_not_stored',
             'historical_expiration_reason_not_stored',
             'no_screen_subscription_join',
             'cancellation_is_not_entitlement_end',
+            'historical_financial_fields_are_not_backfilled',
+            'final_store_proceeds_not_imported',
+            'arpu_unavailable_without_aligned_population_denominator',
+            'subscription_chain_ltv_is_not_customer_ltv',
         ],
         generatedAtMs: Date.now(),
         dataThroughMs: metrics.dataThroughMs,

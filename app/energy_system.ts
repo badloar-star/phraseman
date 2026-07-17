@@ -5,6 +5,7 @@ import { isFeatureFreeForEveryone } from './feature_gates';
 import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 import { getMaxEnergy, getEnergyRecoveryIntervalMs } from './remote_flags';
 import { isEnergyFreeWindowActive, readBoonEnergyOverrideMs } from './boons/boon_effects_energy';
+import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 
 export interface EnergyState {
   current: number;
@@ -46,13 +47,24 @@ function MAX_ENERGY_VALUE(): number {
   return getMaxEnergy();
 }
 
+/** Same local level-aware base capacity used by EnergyContext; no network read. */
+async function readLevelAwareBaseMaxEnergy(): Promise<number> {
+  try {
+    const xpRaw = await AsyncStorage.getItem('user_total_xp');
+    const xp = Math.max(0, parseInt(xpRaw || '0', 10) || 0);
+    return getMaxEnergyForLevel(getLevelFromXP(xp), MAX_ENERGY_VALUE());
+  } catch {
+    return MAX_ENERGY_VALUE();
+  }
+}
+
 /**
  * Эффективный потолок энергии = базовый максимум + активные бонусные слоты подарка.
  * Используется везде, где раньше стоял голый MAX_ENERGY_VALUE(), чтобы подарочные
  * слоты реально давали запас и восстанавливались, а после полуночи срезались.
  */
 export async function getEffectiveMaxEnergyValue(): Promise<number> {
-  const base = MAX_ENERGY_VALUE();
+  const base = await readLevelAwareBaseMaxEnergy();
   const bonus = await readBonusEnergyExtra();
   return base + bonus;
 }
@@ -140,7 +152,7 @@ export async function getEnergyState(): Promise<EnergyState> {
     if (!stored) {
       // Инициализация: первый раз у пользователя
       const initialState: EnergyState = {
-        ...DEFAULT_STATE,
+        current: await getEffectiveMaxEnergyValue(),
         lastRecoveryTime: Date.now(),
       };
       await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(initialState));
@@ -266,7 +278,7 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
 export async function resetEnergyToMax(): Promise<EnergyState> {
   try {
     const state: EnergyState = {
-      current: MAX_ENERGY_VALUE(),
+      current: await getEffectiveMaxEnergyValue(),
       lastRecoveryTime: Date.now(),
     };
 

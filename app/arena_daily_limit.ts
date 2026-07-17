@@ -103,13 +103,17 @@ export async function incrementDailyArenaPlay(): Promise<void> {
   await AsyncStorage.setItem(KEY, JSON.stringify({ date: rec.date, count: rec.count + 1 }));
 }
 
-/** Вернуть до `slots` рейтинг-попыток за сегодня (уменьшает count, не ниже 0). */
+/**
+ * Добавить ровно `slots` купленных рейтинг-попыток до полуночи.
+ *
+ * Важно: уменьшение `count` здесь неверно. Если базовый дневной максимум равен
+ * трём, сброс count с 3 до 0 открывает только три матча, хотя пользователь купил
+ * пять. Дополнительные попытки должны расширять сегодняшний максимум.
+ */
 export async function refundDailyArenaPlays(slots: number): Promise<void> {
   const n = Math.floor(slots);
   if (!Number.isFinite(n) || n <= 0) return;
-  const rec = await readRecord();
-  const next = Math.max(0, rec.count - n);
-  await AsyncStorage.setItem(KEY, JSON.stringify({ date: rec.date, count: next }));
+  await addArenaPlaysBonusForToday(n);
 }
 
 export async function hasDailyArenaPlaysLeft(): Promise<boolean> {

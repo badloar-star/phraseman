@@ -3,7 +3,7 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.60",
+    "version": "1.5.63",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -70,7 +70,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 100,
+      "versionCode": 103,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -122,7 +122,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "100",
+      "buildNumber": "103",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [
@@ -130,11 +130,11 @@
       ],
       "googleServicesFile": "./GoogleService-Info.plist",
       "entitlements": {
-        "com.apple.security.application-groups": ["group.app.phraseman.widget"]
+        "com.apple.security.application-groups": ["group.app.phraseman.widget"],
+        "com.apple.developer.devicecheck.appattest-environment": "production"
       },
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false,
-        "NSPhotoLibraryUsageDescription": "Phraseman may access photos only if you explicitly choose an image in the app."
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "web": {

@@ -16,6 +16,8 @@ describe('immutable cloud artifact storage', () => {
     };
     const receipt = await writeImmutableArtifact(bucket, { releaseId: 'r1', surface: 'lesson', lessonId: 1, payload: { hello: 'world' } });
     expect(receipt.objectGeneration).toBe('g42');
+    expect(receipt).toMatchObject({ referenceState: 'pending_commit' });
+    expect(receipt.finalizationKey).toMatch(/^[a-f0-9]{64}$/);
     expect(saved).toContain('course-releases/r1/lesson/1.json:');
   });
 
@@ -38,6 +40,6 @@ describe('immutable cloud artifact storage', () => {
     const payload = { units: [{ lessonId: 1 }] };
     const contentHash = createHash('sha256').update(serializeArtifactPayload(payload)).digest('hex');
     const bucket: ArtifactBucketLike = { file: () => ({ async exists() { return [true]; }, async save() { throw new Error('must not overwrite'); }, async getMetadata() { return [{ generation: 'g9', size: '26', metadata: { contentHash } }]; } }) };
-    await expect(writeImmutableObject(bucket, 'course-releases/r1/lesson/index.json', payload)).resolves.toMatchObject({ contentHash, objectGeneration: 'g9' });
+    await expect(writeImmutableObject(bucket, 'course-releases/r1/lesson/index.json', payload)).resolves.toMatchObject({ contentHash, objectGeneration: 'g9', referenceState: 'pending_commit', finalizationKey: expect.stringMatching(/^[a-f0-9]{64}$/) });
   });
 });

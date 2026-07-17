@@ -4,6 +4,7 @@ import { HttpsError } from 'firebase-functions/v2/https';
 
 export const ACCOUNT_DELETE_JOBS = 'account_deletion_jobs';
 export const ACCOUNT_DELETE_TOMBSTONES = 'account_deletion_tombstones';
+export const ACCOUNT_DELETE_AUTH_MARKERS = 'account_deletion_auth_markers';
 
 export type AccountDeleteJobStatus = 'queued' | 'running' | 'completed' | 'failed';
 
@@ -70,9 +71,19 @@ export async function enqueueAccountDeletionJob(
   const jobId = accountDeleteJobId(authUid);
   const ref = db.collection(ACCOUNT_DELETE_JOBS).doc(jobId);
   const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableUid);
+  const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
 
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(ref);
+    tx.set(authMarkerRef, {
+      jobId,
+      status: 'pending',
+      authUidHash: sha256(authUid),
+      stableUidHash: sha256(stableUid),
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
     tx.set(tombstoneRef, {
       jobId,
       status: 'pending',
@@ -208,6 +219,13 @@ export async function processAccountDeletionJob(
       ...stats,
     }, { merge: true });
     batch.set(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(claimed.stableUid), {
+      status: 'completed',
+      completedAtMs: nowMs,
+      retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,
+      updatedAtMs: nowMs,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+    }, { merge: true });
+    batch.set(db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(claimed.authUid), {
       status: 'completed',
       completedAtMs: nowMs,
       retentionUntilMs: nowMs + ACCOUNT_DELETE_JOB_AUDIT_RETENTION_MS,

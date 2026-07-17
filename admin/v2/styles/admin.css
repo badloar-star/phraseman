@@ -411,6 +411,10 @@ svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width:
 .columns { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(300px, 1fr); gap: 16px; }
 .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .actions.end { justify-content: flex-end; }
+.agent-office-decision-controls { display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: start; margin: 16px 0; padding-top: 14px; border-top: 1px solid var(--line); }
+.agent-office-decision-approve, .agent-office-decision-reject { display: grid; gap: 7px; }
+.agent-office-decision-reject { padding-left: 14px; border-left: 3px solid var(--danger); }
+.agent-office-decision-reject small { max-width: 20rem; color: var(--danger); }
 
 .notice { padding: 13px 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-soft); color: #566176; font-size: 13px; line-height: 1.55; }
 .notice.warning { border-color: #ead28f; background: var(--warning-soft); color: #735010; }
@@ -709,6 +713,8 @@ th { color: var(--muted); font-size: 11px; letter-spacing: 0.03em; text-transfor
   .page-header { display: block; }
   .page-header > .actions { margin-top: 15px; }
   .factory-layout, .columns, .preview-layout, .toolbar-grid, .report-filters, .report-status-controls, .report-card > header, .report-reply-grid { grid-template-columns: 1fr; }
+  .agent-office-decision-controls { display: grid; grid-template-columns: 1fr; }
+  .agent-office-decision-reject { padding: 14px 0 0; border-left: 0; border-top: 3px solid var(--danger); }
   .report-reply-grid .full { grid-column: auto; }
   .factory-steps { position: static; grid-template-columns: repeat(4, minmax(68px, 1fr)); overflow: auto; }
   .factory-step { display: flex; min-height: 48px; padding: 9px; }

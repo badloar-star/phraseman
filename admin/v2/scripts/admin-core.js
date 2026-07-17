@@ -32,6 +32,7 @@ import { specificGuidanceForControl } from './admin-guidance.js';
 import { renderContentGeneratorShell } from './content-factory/renderers.js';
 import { createContentFactoryState } from './content-factory/state.js';
 import { loadApprovedDependencies, loadContentCapabilities, loadContentStagesPage, readContentStageForm as readStudioStageForm } from './content-factory/controller.js';
+import { buildAgentOfficeDecisionConfirmation, buildAgentOfficeDecisionRequest, decisionAvailability } from './admin-agent-office.mjs';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -56,6 +57,7 @@ export const ADMIN_SECTIONS = Object.freeze([
 
 const PAGES = Object.freeze({
   overview: { title: 'Обзор', description: 'Сигналы, требующие решения сегодня, и последние управленческие действия.' },
+  'agent-office': { title: 'Стратегические решения', description: 'Рекомендации агентов с доказательствами, сроком актуальности и ручным подтверждением.' },
   'control-panel': { title: 'Пульт управления', description: 'Главные рычаги старой админки, сгруппированные по безопасным рабочим процессам.' },
   application: { title: 'Приложение', description: 'Обновления, баннеры, технические работы и конфигурация приложения.' },
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
@@ -319,6 +321,7 @@ const state = {
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, error: '' },
+  agentOffice: { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 },
 };
 
 let actions = null;
@@ -527,7 +530,7 @@ function navCounterForRoute(route) {
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
   if (!nav) return;
-  const parentRoutes = { campaigns: 'application' };
+  const parentRoutes = { campaigns: 'application', 'agent-office': 'overview' };
   const activeRoute = parentRoutes[state.route] || state.route;
   nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span>${navCounterForRoute(section.route)}</button>`).join('');
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
@@ -630,7 +633,50 @@ function renderOverview() {
     ${renderOverviewOperationalState(view)}
     ${renderOverviewPaymentSummary(overviewAnalyticsModel())}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>
-    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
+    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами">Стратегические решения</a><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
+}
+
+function agentOfficeStatusLabel(status) {
+  return ({ observed: 'Наблюдается', investigating: 'Проверяется', awaiting_decision: 'Ждёт решения', approved: 'Одобрено', executing: 'В работе', verifying: 'Проверяется результат', completed: 'Завершено', cancelled: 'Отменено', insufficient_data: 'Недостаточно данных' })[String(status)] || 'Неизвестно';
+}
+
+function agentOfficeFreshness(observedAtMs) {
+  const age = Date.now() - Number(observedAtMs || 0);
+  if (!Number.isFinite(age) || age < 0) return 'время неизвестно';
+  if (age <= 60 * 60 * 1000) return 'свежее меньше часа';
+  if (age <= 24 * 60 * 60 * 1000) return 'свежее меньше суток';
+  return 'данные старше суток';
+}
+
+function agentOfficeBadge(status) {
+  if (['cancelled', 'insufficient_data'].includes(String(status))) return 'warning';
+  if (['awaiting_decision'].includes(String(status))) return 'danger';
+  if (['approved', 'completed'].includes(String(status))) return 'success';
+  if (['high', 'critical'].includes(String(status))) return 'danger';
+  if (String(status) === 'medium') return 'warning';
+  if (String(status) === 'low') return 'success';
+  return '';
+}
+
+function renderAgentOfficeCenter() {
+  const agentOffice = state.agentOffice;
+  const readable = state.authorized && can('briefing.read');
+  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><button class="button primary" data-action="load-agent-office" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить дела и рекомендации через защищённые серверные callable">${agentOffice.state === 'idle' ? 'Загрузить решения' : 'Обновить решения'}</button>`;
+  if (!readable) return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice warning" role="alert"><strong>Нет доступа к стратегическим решениям.</strong><br>Для чтения нужен серверный доступ briefing.read. Решения, данные и журналы не загружаются в браузер без этой проверки.</div>`;
+  if (agentOffice.state === 'loading') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice" role="status" aria-live="polite">Загружаю дела, рекомендации и безопасную проекцию журнала…</div>`;
+  if (agentOffice.state === 'error') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice danger" role="alert"><strong>Стратегические решения не загружены.</strong><br>${escapeHtml(agentOffice.error || 'Сервер не вернул безопасную проекцию данных.')}<div class="actions section"><button class="button" data-action="load-agent-office" type="button" title="Повторить серверное чтение дел и рекомендаций">Повторить</button></div></div>`;
+  if (agentOffice.state === 'empty') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice" role="status"><strong>Открытых стратегических решений нет.</strong><br>Нули не подставляются: появившиеся дела будут прочитаны только через серверную проекцию.</div>`;
+  const item = agentOffice.item;
+  const caseRows = agentOffice.cases.map((agentCase) => `<div class="list-row"><div><strong>${escapeHtml(agentCase.summary || agentCase.caseId)}</strong><small>Статус: ${escapeHtml(agentOfficeStatusLabel(agentCase.status))} · обновлено ${escapeHtml(dateTime(agentCase.updatedAtMs))}</small></div><button class="button small" data-action="open-agent-office-case" data-agent-office-case-id="${escapeHtml(agentCase.caseId)}" type="button" title="Открыть доказательства и рекомендацию этого дела">Открыть</button></div>`).join('') || emptyState('Дела в безопасной проекции отсутствуют.');
+  const sourceHealth = Array.isArray(item?.sourceHealth) ? item.sourceHealth.map((source) => `<li><strong>${escapeHtml(source.source)}</strong> — ${escapeHtml(source.state)}; ${escapeHtml(agentOfficeFreshness(source.observedAtMs))}</li>`).join('') : '';
+  const recommendationRows = agentOffice.recommendations.map((recommendation) => {
+    const decisionState = decisionAvailability({ authorized: state.authorized, role: state.adminRole, busy: state.busy, agentCase: item, recommendation });
+    const canDecide = decisionState.enabled;
+    const evidence = Array.isArray(recommendation.evidence) ? recommendation.evidence.map((evidenceItem) => `<li class="agent-office-evidence-freshness">${escapeHtml(evidenceItem.summary)}<small>${escapeHtml(agentOfficeFreshness(evidenceItem.observedAtMs))}; ссылка на источник: ${escapeHtml(evidenceItem.sourceRef)}</small></li>`).join('') : '';
+    return `<article class="card section"><div class="card-header"><div><h2>Рекомендация: ${escapeHtml(recommendation.actionType)}</h2><p>Риск: ${escapeHtml(recommendation.risk?.level || 'неизвестно')} · ${escapeHtml(recommendation.risk?.summary || 'объяснение не предоставлено')}</p></div><span class="badge ${agentOfficeBadge(recommendation.risk?.level)}">до ${escapeHtml(dateTime(recommendation.validUntilMs))}</span></div><div class="card-body"><p><strong>Стоимость:</strong> ${escapeHtml(recommendation.cost?.summary || 'не указана')} · <strong>Откат:</strong> ${escapeHtml(recommendation.rollback?.plan || 'не указан')}</p><h3>Доказательства</h3><ul>${evidence || '<li>Доказательства отсутствуют — решение недоступно.</li>'}</ul><div class="field section"><label for="agent-office-reason-${escapeHtml(recommendation.recommendationId)}">Причина решения</label><textarea id="agent-office-reason-${escapeHtml(recommendation.recommendationId)}" maxlength="500" placeholder="Почему одобряем или отклоняем эту подготовительную рекомендацию"${canDecide ? '' : ' disabled'}></textarea></div><div class="agent-office-decision-controls"><div class="agent-office-decision-approve"><button class="button primary" data-action="decide-agent-office-recommendation" data-agent-office-decision="approve" data-agent-office-recommendation-id="${escapeHtml(recommendation.recommendationId)}" type="button"${canDecide ? '' : ' disabled'} title="Одобрить только подготовительное действие после явного подтверждения">Одобрить подготовку</button></div><div class="agent-office-decision-reject"><small>Опасное действие: требует отдельного подтверждения.</small><button class="button danger" data-action="decide-agent-office-recommendation" data-agent-office-decision="decline" data-agent-office-recommendation-id="${escapeHtml(recommendation.recommendationId)}" type="button"${canDecide ? '' : ' disabled'} title="Отклонить после явного подтверждения; задача не будет запущена">Отклонить</button></div></div><small>Область действия: prepare_only. Это решение не запускает задачу, Telegram или внешний эффект.</small></div></article>`;
+  }).join('') || '<div class="notice warning">Для выбранного дела нет действующей рекомендации.</div>';
+  const auditRows = agentOffice.auditEvents.map((event) => `<div class="list-row"><div><strong>${escapeHtml(event.eventType)}</strong><small>${escapeHtml(dateTime(event.occurredAtMs))} · ${escapeHtml(event.decision || 'системное событие')}</small></div><span class="badge">${escapeHtml(event.scope || 'audit')}</span></div>`).join('') || emptyState('В безопасной проекции нет событий аудита.');
+  return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<section class="card section"><div class="card-header"><div><h2>Дела, требующие решения</h2><p>Только серверные проекции: без исходных документов, секретов и прямой записи Firestore из браузера.</p></div><span class="badge">обновлено ${escapeHtml(dateTime(agentOffice.fetchedAtMs))}</span></div><div class="card-body">${caseRows}</div></section>${item ? `<section class="card section"><div class="card-header"><div><h2>${escapeHtml(item.summary)}</h2><p>Статус: ${escapeHtml(agentOfficeStatusLabel(item.status))} · уверенность: ${escapeHtml(String(Math.round(Number(item.confidence?.score || 0) * 100)))}%</p></div><span class="badge ${agentOfficeBadge(item.status)}">${escapeHtml(agentOfficeStatusLabel(item.status))}</span></div><div class="card-body"><p>${escapeHtml(item.confidence?.basis || 'Объяснение уверенности не предоставлено.')}</p><h3>Свежесть источников</h3><ul>${sourceHealth || '<li>Источники не указаны.</li>'}</ul><div class="actions"><button class="button" data-action="open-agent-office-audit" type="button" title="Показать безопасную проекцию журнала этого дела">${agentOffice.showAudit ? 'Скрыть аудит' : 'Показать аудит'}</button><a class="button ghost" href="#diagnostics" title="Открыть общий защищённый журнал диагностики">Полный журнал</a></div></div></section>${recommendationRows}${agentOffice.showAudit ? `<section class="card section"><div class="card-header"><div><h2>Аудит дела</h2><p>Журнал показывает факт решения и его область без чувствительных данных.</p></div></div><div class="card-body">${auditRows}</div></section>` : ''}` : '<div class="notice" role="status">Выберите дело, чтобы увидеть объяснение, доказательства и доступную рекомендацию.</div>'}`;
 }
 
 function remoteConfigBranch(branch) {
@@ -1909,7 +1955,7 @@ function renderCurrentPage() {
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -2843,6 +2889,68 @@ async function loadAuditLog(append = false) {
   }
 }
 
+async function loadAgentOffice(caseId = state.agentOffice.selectedCaseId) {
+  const authGeneration = state.authGeneration;
+  state.agentOffice = { ...state.agentOffice, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const casesResult = await actions.listAgentOfficeCases({ limit: 50, cursor: '' });
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    const cases = Array.isArray(casesResult?.items) ? casesResult.items : [];
+    const selectedCaseId = cases.some((item) => String(item.caseId) === String(caseId))
+      ? String(caseId)
+      : String(cases[0]?.caseId || '');
+    if (!selectedCaseId) {
+      state.agentOffice = { ...state.agentOffice, state: 'empty', cases, selectedCaseId: '', item: null, recommendations: [], auditEvents: [], fetchedAtMs: Date.now(), error: '' };
+      return state.agentOffice;
+    }
+    const [caseResult, recommendationsResult, auditResult] = await Promise.all([
+      actions.getAgentOfficeCase({ caseId: selectedCaseId }),
+      actions.listAgentOfficeRecommendations({ caseId: selectedCaseId, limit: 50, cursor: '' }),
+      can('diagnostics.read') ? actions.listAgentOfficeAuditEvents({ caseId: selectedCaseId, limit: 50, cursor: '' }) : Promise.resolve({ items: [] }),
+    ]);
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    state.agentOffice = {
+      ...state.agentOffice,
+      state: 'ready',
+      cases,
+      selectedCaseId,
+      item: caseResult?.item || null,
+      recommendations: Array.isArray(recommendationsResult?.items) ? recommendationsResult.items : [],
+      auditEvents: Array.isArray(auditResult?.items) ? auditResult.items : [],
+      fetchedAtMs: Date.now(),
+      error: '',
+    };
+    return state.agentOffice;
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    state.agentOffice = { ...state.agentOffice, state: 'error', error: errorMessage(error) };
+    throw error;
+  } finally {
+    if (state.route === 'agent-office' && authGeneration === state.authGeneration) renderCurrentPage();
+  }
+}
+
+async function decideAgentOfficeRecommendation(target) {
+  const agentCase = state.agentOffice.item;
+  const recommendationId = String(target.getAttribute('data-agent-office-recommendation-id') || '');
+  const decision = String(target.getAttribute('data-agent-office-decision') || '');
+  const recommendation = state.agentOffice.recommendations.find((item) => String(item.recommendationId) === recommendationId);
+  const reason = String(document.getElementById(`agent-office-reason-${recommendationId}`)?.value || '').trim();
+  const availability = decisionAvailability({ authorized: state.authorized, role: state.adminRole, busy: state.busy, agentCase, recommendation });
+  const request = buildAgentOfficeDecisionRequest({ availability, agentCase, recommendation, decision, reason, idempotencyKey: id('agent-office-decision') });
+  if (!request.ok) {
+    const messages = { owner_required: 'Решение может принять только владелец с серверной проверкой роли.', reason_required: 'Укажите краткую причину решения (минимум 5 символов).', decision_invalid: 'Недопустимый тип решения.', idempotency_invalid: 'Не удалось подготовить безопасный ключ операции.', stale: 'Рекомендация устарела. Обновите стратегические решения.' };
+    return setMessage(messages[request.reason] || 'Решение сейчас недоступно. Обновите стратегические решения.', 'warning');
+  }
+  const confirmation = buildAgentOfficeDecisionConfirmation({ agentCase, recommendation, decision, reason });
+  if (!globalThis.confirm(confirmation)) return;
+  return runBusy(async () => {
+    await actions.decideAgentOfficeRecommendation(request.value);
+    await loadAgentOffice(agentCase.caseId);
+  }, decision === 'approve' ? 'Подготовительная рекомендация одобрена и записана в аудит. Задача не запускалась.' : 'Рекомендация отклонена и записана в аудит.');
+}
+
 async function loadOpsLog() {
   const authGeneration = state.authGeneration;
   state.ops = { ...state.ops, state: 'loading', error: '' };
@@ -3143,6 +3251,18 @@ async function handleAction(action, target) {
     if (!state.reports.nextCursor) return;
     return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
   }
+  if (action === 'load-agent-office') return runBusy(() => loadAgentOffice(), 'Стратегические решения загружены через серверную проекцию.');
+  if (action === 'open-agent-office-case') {
+    const caseId = String(target.getAttribute('data-agent-office-case-id') || '');
+    if (!caseId) return;
+    return runBusy(() => loadAgentOffice(caseId), 'Дело и его доказательства загружены.');
+  }
+  if (action === 'open-agent-office-audit') {
+    state.agentOffice = { ...state.agentOffice, showAudit: !state.agentOffice.showAudit };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'decide-agent-office-recommendation') return decideAgentOfficeRecommendation(target);
   if (action === 'load-audit-log') {
     state.audit = {
       ...state.audit,
@@ -3862,6 +3982,7 @@ export function setAuthState(auth) {
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
     state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
+    state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -3876,6 +3997,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
+  if (!state.authorized || !can('briefing.read')) state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
   renderCurrentPage();
   if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
   maybeLoadOperationalBriefing();

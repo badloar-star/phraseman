@@ -127,7 +127,7 @@ function parseJudgeReply(raw: string): { ok: boolean; reason: JudgeReason } | nu
  * On ANY parse/shape failure of the model reply ⇒ ok:false, reason:'incoherent' (fail-closed).
  */
 export async function judgeExplanation(params: JudgeParams): Promise<JudgeVerdict> {
-  const { text, lang, apiKey, studyTarget = 'en' } = params;
+  const { text, phraseEn, lang, apiKey, studyTarget = 'en' } = params;
 
   const heuristic = heuristicPreFilter(text, lang);
   if (heuristic) {
@@ -142,7 +142,7 @@ export async function judgeExplanation(params: JudgeParams): Promise<JudgeVerdic
       model: JUDGE_MODEL,
       messages: [
         { role: 'system', content: JUDGE_SYSTEM_PROMPT },
-        { role: 'user', content: buildJudgeUserPrompt(text, lang, studyTarget) },
+        { role: 'user', content: buildJudgeUserPrompt(text, lang, studyTarget, phraseEn) },
       ],
       maxTokens: JUDGE_MAX_TOKENS,
       temperature: JUDGE_TEMPERATURE,

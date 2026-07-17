@@ -10,6 +10,7 @@ function makeDbStub(initial: Store = {}) {
     leaderboard: { ...(initial.leaderboard ?? {}) },
     league_groups: { ...(initial.league_groups ?? {}) },
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
+    account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
   };
   const sets: { path: string; data: DocData; options: unknown }[] = [];
 
@@ -332,6 +333,25 @@ describe('resolveStableUidForAuth', () => {
     expect(stableUid).toBe('stable-visible');
   });
 
+  it('falls back to the live provider-owned document when its canonical target is missing', async () => {
+    const { db } = makeDbStub({
+      users: {
+        'stable-hidden': {
+          firebaseAuthUid: 'google-auth-orphan',
+          linkedAuth: { providerUid: 'google-auth-orphan' },
+          identityHidden: true,
+          canonicalStableId: 'stable-missing',
+          progress: { user_total_xp: '500' },
+          updatedAt: 333,
+        },
+      },
+    });
+
+    const stableUid = await resolveStableUidForAuth(db as any, 'google-auth-orphan');
+
+    expect(stableUid).toBe('stable-hidden');
+  });
+
   it('falls back to direct auth uid when no owner is resolvable', async () => {
     const { db } = makeDbStub({
       users: {
@@ -460,5 +480,21 @@ describe('ensureStableLinkForAuth', () => {
       },
       updatedAt: 1_777_000_000_000,
     });
+  });
+
+  it('does not recreate identity documents for an auth session marked for account deletion', async () => {
+    const { db, sets } = makeDbStub({
+      account_deletion_auth_markers: {
+        'deleted-auth': { status: 'pending' },
+      },
+    });
+
+    await expect(
+      ensureStableLinkForAuth(db as any, 'deleted-auth', 'deleted-auth', 'google.com'),
+    ).rejects.toMatchObject({
+      code: 'failed-precondition',
+      message: 'account_delete_pending',
+    });
+    expect(sets).toEqual([]);
   });
 });

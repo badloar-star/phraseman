@@ -2,6 +2,10 @@ import * as admin from 'firebase-admin';
 import { onRequest } from 'firebase-functions/v2/https';
 import * as logger from 'firebase-functions/logger';
 import { defineSecret } from 'firebase-functions/params';
+import {
+  classifyRevenueCatBillingCadence,
+  normalizeRevenueCatFinancials,
+} from './revenuecat_financial_normalization';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -54,6 +58,13 @@ type RevenueCatWebhookBody = {
     period_type?: string;
     cancel_reason?: string;
     expiration_reason?: string;
+    currency?: string;
+    price?: number;
+    price_in_purchased_currency?: number;
+    tax_percentage?: number;
+    commission_percentage?: number;
+    renewal_number?: number;
+    is_trial_conversion?: boolean;
     entitlement_id?: string;
     entitlement_ids?: unknown[];
     presented_offering_id?: string;
@@ -339,6 +350,8 @@ async function handlePremiumSubscriptionEvent(
         purchasedAtMs: purchasedMs,
         expirationAtMs: expiryMs,
         eventTimestampMs: eventMs(event.event_timestamp_ms),
+        billingCadence: classifyRevenueCatBillingCadence(event),
+        ...normalizeRevenueCatFinancials(event),
         ...revenueCatLifecycleReasonFields(event, eventType),
         userDocExists: userSnap.exists,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),

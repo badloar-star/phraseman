@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { upsertEmailContact } from './email_contacts';
+import { ACCOUNT_DELETE_AUTH_MARKERS } from './account_delete_job';
 
 const USERS = 'users';
 const AUTH_LINKS = 'auth_links';
@@ -47,6 +48,16 @@ type AuthLinkMetadata = {
 
 function shouldRepairIdentityLinks(options?: ResolveStableUidForAuthOptions): boolean {
   return options?.repairLinks !== false;
+}
+
+async function assertAccountDeletionNotPending(
+  db: admin.firestore.Firestore,
+  authUid: string,
+): Promise<void> {
+  const marker = await db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get().catch(() => null);
+  if (marker?.exists) {
+    throw new HttpsError('failed-precondition', 'account_delete_pending');
+  }
 }
 
 function readHeaderValue(value: unknown): string {
@@ -189,6 +200,7 @@ function pickBestStableIdentityCandidate(
 function collectStableIdentityCandidates(
   docs: Array<{ id: string; data: () => FirebaseFirestore.DocumentData | undefined }>,
   authUid: string,
+  liveCanonicalIds?: ReadonlySet<string>,
 ): Map<string, StableIdentityCandidate> {
   const out = new Map<string, StableIdentityCandidate>();
   for (const doc of docs) {
@@ -197,7 +209,9 @@ function collectStableIdentityCandidates(
     const hidden = data.identityHidden === true;
     const linkedAuth = data.linkedAuth as { providerUid?: unknown } | undefined;
     const candidate: StableIdentityCandidate = {
-      id: hidden && canonicalStableId ? canonicalStableId : doc.id,
+      id: hidden && canonicalStableId && (!liveCanonicalIds || liveCanonicalIds.has(canonicalStableId))
+        ? canonicalStableId
+        : doc.id,
       hidden,
       hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
       xp: readProgressXp(data),
@@ -230,7 +244,26 @@ async function findStableUidForProviderAuth(
 
   if (docs.length === 0) return null;
 
-  const candidatesById = collectStableIdentityCandidates(docs, authUid);
+  // A hidden identity may point at a canonical document that was deleted or was
+  // never created after an interrupted merge. Never return that dead id: the
+  // live provider-owned document is safer than routing the caller to an empty
+  // profile. Canonical documents already present in the provider queries cost no
+  // extra reads; only out-of-query pointers need a targeted existence check.
+  const liveCanonicalIds = new Set(docs.map((doc) => doc.id));
+  const canonicalIdsToCheck = new Set<string>();
+  for (const doc of docs) {
+    const data = doc.data() ?? {};
+    const canonicalStableId = normalizeStableId(data.canonicalStableId);
+    if (data.identityHidden === true && canonicalStableId && !liveCanonicalIds.has(canonicalStableId)) {
+      canonicalIdsToCheck.add(canonicalStableId);
+    }
+  }
+  await Promise.all([...canonicalIdsToCheck].map(async (canonicalStableId) => {
+    const snap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
+    if (snap?.exists) liveCanonicalIds.add(canonicalStableId);
+  }));
+
+  const candidatesById = collectStableIdentityCandidates(docs, authUid, liveCanonicalIds);
   return pickBestStableIdentityCandidate(candidatesById.values());
 }
 
@@ -341,6 +374,7 @@ export async function ensureAuthLinkDoc(
   provider?: AuthProvider | null,
   metadata?: AuthLinkMetadata,
 ): Promise<void> {
+  await assertAccountDeletionNotPending(db, authUid);
   const linkRef = db.collection(AUTH_LINKS).doc(authUid);
   const linkSnap = await linkRef.get().catch(() => null);
   const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
@@ -425,6 +459,7 @@ export async function linkStableAuthUid(
   stableId: string,
   authUid: string,
 ): Promise<void> {
+  await assertAccountDeletionNotPending(db, authUid);
   const now = Date.now();
   const userRef = db.collection(USERS).doc(stableId);
   const userSnap = await userRef.get().catch(() => null);
@@ -836,6 +871,7 @@ export async function resolveStableUidForAuth(
   requestedStableId?: unknown,
   options?: ResolveStableUidForAuthOptions,
 ): Promise<string> {
+  await assertAccountDeletionNotPending(db, authUid);
   const stableId = normalizeStableId(requestedStableId);
   const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
   if (authLinkAnchor) {

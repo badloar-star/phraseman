@@ -6,7 +6,8 @@ describe('admin subscription analytics callable contract', () => {
   it('normalizes range and store filters', () => {
     expect(clampSubscriptionAnalyticsDays(7)).toBe(7);
     expect(clampSubscriptionAnalyticsDays(90)).toBe(90);
-    expect(clampSubscriptionAnalyticsDays(365)).toBe(28);
+    expect(clampSubscriptionAnalyticsDays(365)).toBe(365);
+    expect(clampSubscriptionAnalyticsDays(366)).toBe(28);
     expect(normalizeSubscriptionStore('APP_STORE')).toBe('APP_STORE');
     expect(normalizeSubscriptionStore('bad')).toBe('all');
   });
@@ -18,6 +19,10 @@ describe('admin subscription analytics callable contract', () => {
     expect(source).toContain('historical_cancel_reason_not_stored');
     expect(source).toContain('historical_expiration_reason_not_stored');
     expect(source).toContain('no_screen_subscription_join');
+    expect(source).toContain('historical_financial_fields_are_not_backfilled');
+    expect(source).toContain('final_store_proceeds_not_imported');
+    expect(source).toContain('subscription_chain_ltv_is_not_customer_ltv');
+    expect(source).toContain('aggregateServerRevenueAnalytics');
     expect(source).not.toContain('uid: row.uid');
     expect(source).not.toContain('transactionId: row.transactionId');
   });

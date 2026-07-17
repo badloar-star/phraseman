@@ -41,9 +41,33 @@ export function parseArenaPoolMutationRequest(data: unknown, needsReason: boolea
   return Object.freeze({ questionId, expectedRevision, reason });
 }
 
-function publicQuestion(id: string, value: ArenaPoolQuestion) {
-  const { id: _storedId, objectPath: _objectPath, ...safe } = value as ArenaPoolQuestion & { objectPath?: unknown };
-  return Object.freeze({ id, ...safe });
+export function publicArenaPoolQuestion(id: string, value: ArenaPoolQuestion): Readonly<Record<string, unknown>> {
+  return Object.freeze({
+    id,
+    studyTarget: value.studyTarget,
+    learnerSourceLocale: value.learnerSourceLocale,
+    level: value.level,
+    availability: value.availability,
+    skillTag: value.skillTag,
+    difficulty: value.difficulty,
+    rand: value.rand,
+    question: value.question,
+    options: Object.freeze([...value.options]),
+    correct: value.correct,
+    correctIndex: value.correctIndex,
+    sourceStageId: value.sourceStageId,
+    artifactId: value.artifactId,
+    contentHash: value.contentHash,
+    topicArtifactId: value.topicArtifactId,
+    revision: value.revision,
+    publishedAtMs: value.publishedAtMs,
+    publishedBy: value.publishedBy,
+    ...(value.removedAtMs !== undefined ? { removedAtMs: value.removedAtMs } : {}),
+    ...(value.removedBy !== undefined ? { removedBy: value.removedBy } : {}),
+    ...(value.removalReason !== undefined ? { removalReason: value.removalReason } : {}),
+    ...(value.restoredAtMs !== undefined ? { restoredAtMs: value.restoredAtMs } : {}),
+    ...(value.restoredBy !== undefined ? { restoredBy: value.restoredBy } : {}),
+  });
 }
 
 export const adminListArenaQuestionPool = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
@@ -52,7 +76,7 @@ export const adminListArenaQuestionPool = onCall({ region: REGION, enforceAppChe
   if (input.availability) query = query.where('availability', '==', input.availability);
   if (input.topicArtifactId) query = query.where('topicArtifactId', '==', input.topicArtifactId);
   const snapshot = await query.orderBy('publishedAtMs', 'desc').limit(input.limit).get();
-  return { questions: snapshot.docs.map((doc) => publicQuestion(doc.id, doc.data() as ArenaPoolQuestion)) };
+  return { questions: snapshot.docs.map((doc) => publicArenaPoolQuestion(doc.id, doc.data() as ArenaPoolQuestion)) };
 });
 
 export const adminPublishArenaQuestionBatch = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
@@ -60,8 +84,7 @@ export const adminPublishArenaQuestionBatch = onCall({ region: REGION, enforceAp
   const stageSnapshot = await stageRef.get(); if (!stageSnapshot.exists) throw new HttpsError('not-found', 'arena_pool_stage_not_found'); const stage = stageSnapshot.data() ?? {};
   if (stage.kind !== 'arena_questions' || stage.state !== 'approved' || stage.arenaDraftSealed !== true || contentStageReviewFingerprint(input.stageId, stage) !== input.expectedReviewFingerprint) throw new HttpsError('failed-precondition', 'arena_pool_stage_not_publishable');
   try {
-    const result = await publishArenaQuestionBatch({ bucket: admin.storage().bucket(), stage: { artifactId: String(stage.artifactId ?? ''), kind: 'arena_questions', state: String(stage.state ?? ''), count: Number(stage.count ?? 0), objectPath: String(stage.objectPath ?? ''), contentHash: String(stage.contentHash ?? ''), objectGeneration: String(stage.objectGeneration ?? ''), groundingReceipt: stage.groundingReceipt }, requestId: String(stage.requestId ?? ''), actorId: request.auth!.uid, nowMs: Date.now(), repository: firestoreArenaQuestionPoolRepository(db) });
-    await db.collection('admin_log').add({ action: 'arena_question_pool.publish', actorUid: request.auth!.uid, role, entity: { collection: 'content_factory_stages', id: input.stageId }, reason: 'Approved Arena batch published to runtime pool', before: null, after: { published: result.published, idempotent: result.idempotent, questionCount: result.questionIds.length }, timestamp: new Date().toISOString() });
+    const result = await publishArenaQuestionBatch({ bucket: admin.storage().bucket(), stage: { artifactId: String(stage.artifactId ?? ''), kind: 'arena_questions', state: String(stage.state ?? ''), count: Number(stage.count ?? 0), objectPath: String(stage.objectPath ?? ''), contentHash: String(stage.contentHash ?? ''), objectGeneration: String(stage.objectGeneration ?? ''), groundingReceipt: stage.groundingReceipt }, stageId: input.stageId, expectedReviewFingerprint: input.expectedReviewFingerprint, requestId: String(stage.requestId ?? ''), actorId: request.auth!.uid, actorRole: role, nowMs: Date.now(), repository: firestoreArenaQuestionPoolRepository(db) });
     return { ok: true, ...result };
   } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_pool_publish_failed'); }
 });

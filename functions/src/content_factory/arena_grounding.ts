@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { validateArenaQuestionBatchArtifact, validateArenaTopicArtifact } from './arena_artifacts';
+import { validateArenaQuestionBatchArtifact, validateArenaQuestionReplacementArtifact, validateArenaTopicArtifact } from './arena_artifacts';
 
 export interface ArenaGroundingFileLike { getMetadata(): Promise<unknown>; download(options?: Record<string, unknown>): Promise<[Buffer]> }
 export interface ArenaGroundingBucketLike { file(path: string): ArenaGroundingFileLike }
@@ -27,4 +27,15 @@ export async function loadArenaQuestionBatchForReview(bucket: ArenaGroundingBuck
   const artifact = await verified(bucket, stage, 'arena_batch'); const errors = validateArenaQuestionBatchArtifact(artifact, { count: stage.count, grounding: verifiedGrounding });
   if (errors.length) throw new Error(`arena_batch_artifact_invalid:${errors.join(',')}`);
   return Object.freeze({ artifactId: stage.artifactId, contentHash: stage.contentHash, topicArtifactId: String(verifiedGrounding.topicArtifactId), topic: Object.freeze({ ...record(verifiedGrounding.topic)! }), items: Object.freeze([...(artifact.items as unknown[])]) });
+}
+
+export async function loadArenaQuestionReplacementForReview(bucket: ArenaGroundingBucketLike, stage: { readonly artifactId: string; readonly kind: 'arena_question_replacement'; readonly state: string; readonly objectPath: string; readonly contentHash: string; readonly objectGeneration: string; readonly groundingReceipt: unknown }, options: { readonly allowNeedsReview?: boolean } = {}) {
+  if (stage.state !== 'approved' && !(options.allowNeedsReview && stage.state === 'needs_review')) throw new Error('arena_replacement_not_reviewable');
+  const grounding = record(stage.groundingReceipt);
+  if (!grounding || !record(grounding.topic) || !record(grounding.originalQuestion) || !String(grounding.batchArtifactId ?? '') || !String(grounding.topicArtifactId ?? '') || !String(grounding.replacementForQuestionId ?? '')) throw new Error('arena_replacement_grounding_required');
+  const artifact = await verified(bucket, stage, 'arena_replacement');
+  const errors = validateArenaQuestionReplacementArtifact(artifact, { grounding });
+  if (errors.length) throw new Error(`arena_replacement_artifact_invalid:${errors.join(',')}`);
+  const result = record(artifact.result)!;
+  return Object.freeze({ artifactId: stage.artifactId, contentHash: stage.contentHash, batchArtifactId: String(grounding.batchArtifactId), topicArtifactId: String(grounding.topicArtifactId), replacementForQuestionId: String(result.replacementForQuestionId), originalQuestion: Object.freeze({ ...record(grounding.originalQuestion)! }), topic: Object.freeze({ ...record(grounding.topic)! }), item: Object.freeze({ ...record(result.item)! }) });
 }

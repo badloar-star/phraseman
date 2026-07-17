@@ -4,7 +4,7 @@ import { type GenerationStageKind } from './stage_contracts';
 const kinds: readonly GenerationStageKind[] = [
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
   'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement',
-  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions',
+  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement',
 ];
 
 describe('server-authoritative stage capability matrix', () => {
@@ -19,6 +19,7 @@ describe('server-authoritative stage capability matrix', () => {
     ['quiz_questions', 10, 'B2', ['quiz_topic']],
     ['flashcard_items', 20, 'C1', ['flashcard_pack_idea']],
     ['arena_questions', 10, 'B1', ['arena_topic']],
+    ['arena_question_replacement', 1, 'B1', ['arena_questions']],
   ] as const)('accepts preserved R1-R9 combination %s', (kind, count, cefr, prerequisites) => {
     expect(() => assertStageCapabilityRequest({ kind, count, cefr, studyTarget: 'en', sourceLocale: 'ru', prerequisiteKinds: prerequisites })).not.toThrow();
   });

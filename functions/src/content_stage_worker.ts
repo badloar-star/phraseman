@@ -29,8 +29,9 @@ import { flashcardSemanticKey } from './content_factory/flashcard_artifacts';
 import { flashcardRegistryDocumentId } from './content_factory/flashcard_semantic_registry';
 import { flashcardLedgerDocumentId, parseFlashcardPackLedger, previousFlashcardKeys, type FlashcardPackLedger } from './content_factory/flashcard_pack_ledger';
 import { createFlashcardPartialCheckpoint, mergeFlashcardPartialCheckpoint, parseFlashcardPartialCheckpoint, type FlashcardPartialCheckpoint } from './content_factory/flashcard_partial_checkpoint';
-import { loadApprovedArenaTopic, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
+import { loadApprovedArenaTopic, loadArenaQuestionBatchForReview, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
 import { arenaLedgerDocumentId, parseArenaQuestionLedger, previousArenaQuestionKeys } from './content_factory/arena_question_ledger';
+import { arenaQuestionSemanticKey } from './content_factory/arena_artifacts';
 import { buildGenerationTerminalAudit } from './content_factory/generation_audit';
 import { runGuardedGenerationTransaction } from './content_factory/generation_execution';
 import { buildArtifactOrphanCandidate } from './content_factory/artifact_retention';
@@ -170,7 +171,7 @@ export function resolveContentStageCount(kind: GenerationStageKind, requestedCou
   if (kind === 'lesson_phrases') return 50;
   if (kind === 'quiz_questions' || kind === 'challenge_questions') return 10;
   if (kind === 'arena_questions') return 10;
-  if (kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement') return 1;
+  if (kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement' || kind === 'arena_question_replacement') return 1;
   if (kind === 'flashcard_item_replacement') return 1;
   if (kind === 'flashcard_items' && (!Number.isSafeInteger(requestedCount) || requestedCount < 1 || requestedCount > 20)) throw new Error('flashcard_batch_count_must_be_1_to_20');
   if (kind === 'lesson_vocabulary' || kind === 'lesson_irregular_verbs' || kind === 'lesson_prepositions') return Array.isArray(grounding?.acceptedCandidates) ? grounding.acceptedCandidates.length : 0;
@@ -396,6 +397,25 @@ export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: EN
       const ledger = parseQuestionBatchLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, batch.topicArtifactId); const originalKey = questionSemanticKey(originalQuestion);
       grounding = Object.freeze({ batchArtifactId: batch.artifactId, topicArtifactId: batch.topicArtifactId, replacementForQuestionId, originalQuestion, topic: batch.topic, previousQuestionKeys: previousQuestionKeys(ledger).filter((key) => key !== originalKey) });
       resolvedCount = resolveContentStageCount(String(stage.kind) as GenerationStageKind, resolvedCount, grounding);
+    }
+    if (stage.kind === 'arena_question_replacement') {
+      const prerequisiteStageIds = Array.isArray(stage.prerequisiteStageIds) ? stage.prerequisiteStageIds.map(String) : [];
+      if (prerequisiteStageIds.length !== 1) throw new HttpsError('failed-precondition', 'arena_replacement_batch_required');
+      const batchSnapshot = await db.collection('content_factory_stages').doc(prerequisiteStageIds[0]).get();
+      if (!batchSnapshot.exists) throw new HttpsError('failed-precondition', 'arena_replacement_batch_missing');
+      const batchStage = batchSnapshot.data() ?? {};
+      if (batchStage.kind !== 'arena_questions') throw new HttpsError('failed-precondition', 'arena_replacement_batch_kind_invalid');
+      let batch: Awaited<ReturnType<typeof loadArenaQuestionBatchForReview>>;
+      try { batch = await loadArenaQuestionBatchForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(batchStage.artifactId ?? ''), kind: 'arena_questions', state: String(batchStage.state ?? ''), count: Number(batchStage.resolvedCount ?? batchStage.count), objectPath: String(batchStage.objectPath ?? ''), contentHash: String(batchStage.contentHash ?? ''), objectGeneration: String(batchStage.objectGeneration ?? ''), groundingReceipt: batchStage.groundingReceipt }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_grounding_invalid'); }
+      const locale = typeof batch.topic.localeContract === 'object' && batch.topic.localeContract !== null ? batch.topic.localeContract as Record<string, unknown> : {};
+      if (String(stage.studyTarget ?? '') !== String(locale.studyTarget ?? '') || String(stage.sourceLocale ?? '') !== String(locale.learnerSourceLocale ?? '') || String(stage.cefr ?? '') !== String(batch.topic.level ?? '')) throw new HttpsError('failed-precondition', 'arena_replacement_identity_mismatch');
+      const replacementForQuestionId = String(stage.replacementForQuestionId ?? ''); const originalQuestion = batch.items.find((value) => typeof value === 'object' && value !== null && String((value as Record<string, unknown>).id ?? '') === replacementForQuestionId);
+      if (!originalQuestion) throw new HttpsError('failed-precondition', 'arena_replacement_original_missing');
+      const ledgerSnapshot = await db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), batch.topicArtifactId)).get();
+      const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, batch.topicArtifactId);
+      const originalKey = arenaQuestionSemanticKey(originalQuestion);
+      grounding = Object.freeze({ batchArtifactId: batch.artifactId, topicArtifactId: batch.topicArtifactId, replacementForQuestionId, originalQuestion, topic: batch.topic, previousQuestionKeys: previousArenaQuestionKeys(ledger).filter((key) => key !== originalKey) });
+      resolvedCount = resolveContentStageCount('arena_question_replacement', resolvedCount, grounding);
     }
     const config = await resolveJobConfig(db, 'content_factory');
     assertJobEnabled(config, 'content_factory');

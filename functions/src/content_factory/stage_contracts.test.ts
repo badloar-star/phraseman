@@ -3,7 +3,7 @@ import { createGenerationStageUnit, type GenerationStageKind } from './stage_con
 describe('versioned content generation stages', () => {
   it.each<GenerationStageKind>([
     'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
-    'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions',
+    'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement',
   ])('creates an immutable, independently addressable %s unit', (kind) => {
     const unit = createGenerationStageUnit({
       requestId: 'request-1', kind, studyTarget: 'fr', sourceLocale: 'ru', scopeId: 'lesson-1',

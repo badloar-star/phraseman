@@ -82,6 +82,13 @@ describe('admin independent content stage callables', () => {
     expect(() => parseContentStageCreateRequest({ requestId: 'request-arena', kind: 'arena_questions', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Fast city', scopeId: 'city-a2', count: 9, revision: 1, prerequisiteStageIds: ['topic-stage'] })).toThrow('stage_capability_count_unsupported');
   });
 
+  it('accepts only a bounded Arena replacement identity backed by an approved Arena batch', () => {
+    const input = parseContentStageCreateRequest({ requestId: 'request-arena', kind: 'arena_question_replacement', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Replace one question', scopeId: 'city-a2.replace.a1', count: 1, revision: 1, prerequisiteStageIds: ['batch-stage'], replacementForQuestionId: 'a1' });
+    const plan = stagePlanFromStoredPrerequisites(input, [{ stageId: 'batch-stage', requestId: 'request-arena', kind: 'arena_questions', artifactId: 'batch-artifact', state: 'approved', studyTarget: 'en', sourceLocale: 'ru', scopeId: 'city-a2.replace.a1' }]);
+    expect(plan.unit).toMatchObject({ kind: 'arena_question_replacement', count: 1, prerequisiteArtifactIds: ['batch-artifact'], promptVersion: 'v2' });
+    expect(() => parseContentStageCreateRequest({ ...input, count: 2 })).toThrow('stage_capability_count_unsupported');
+  });
+
   it('rejects an approved prerequisite from another language or scope', () => {
     const input = parseContentStageCreateRequest({ requestId: 'request-1', kind: 'quiz_questions', studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity', scopeId: 'topic-1', count: 10, revision: 1, prerequisiteStageIds: ['topic-stage'] });
     expect(() => stagePlanFromStoredPrerequisites(input, [{ stageId: 'topic-stage', requestId: 'request-1', kind: 'quiz_topic', artifactId: 'topic-artifact', state: 'approved', studyTarget: 'de', sourceLocale: 'ru', scopeId: 'topic-1' }])).toThrow('generation_stage_prerequisite_identity_mismatch');

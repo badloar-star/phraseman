@@ -5,7 +5,7 @@ describe('versioned stage prompt registry', () => {
   const context = buildPromptContext({ studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity and introductions', count: 10, approvedArtifactIds: ['phrases-1'], exemplarIds: ['gold-1'], previousContentFingerprints: ['a'.repeat(64)] });
 
   it('has a dedicated versioned definition for every independent stage', () => {
-    for (const kind of ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions'] as const) {
+    for (const kind of ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement'] as const) {
       const definition = promptDefinitionFor(kind, 'v1');
       expect(definition.kind).toBe(kind);
       expect(definition.version).toBe('v1');

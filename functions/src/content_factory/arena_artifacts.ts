@@ -70,3 +70,18 @@ export function validateArenaQuestionBatchArtifact(artifact: unknown, expected: 
   if (distribution) for (const difficulty of ['easy', 'medium', 'hard']) if (output.items.filter((value) => record(value)?.difficulty === difficulty).length !== Number(distribution[difficulty])) errors.push('arena_difficulty_distribution_mismatch');
   return [...new Set(errors)];
 }
+
+export function validateArenaQuestionReplacementArtifact(artifact: unknown, expected: { readonly grounding: unknown }): string[] {
+  const output = record(artifact); const result = record(output?.result); const grounding = record(expected.grounding);
+  if (!output || output.stage !== 'arena_question_replacement' || !result) return ['arena_replacement_artifact_invalid'];
+  if (!grounding || !record(grounding.topic) || !record(grounding.originalQuestion) || !text(grounding.replacementForQuestionId)) return ['arena_replacement_grounding_required'];
+  const item = record(result.item); const errors: string[] = [];
+  if (text(result.replacementForQuestionId) !== text(grounding.replacementForQuestionId)) errors.push('arena_replacement_identity_mismatch');
+  if (text(item?.id) !== text(grounding.replacementForQuestionId)) errors.push('arena_replacement_item_id_mismatch');
+  const batchErrors = validateArenaQuestionBatchArtifact({ stage: 'arena_questions', items: item ? Array.from({ length: 10 }, (_, index) => ({ ...item, id: index === 0 ? item.id : `${text(item.id)}-copy-${index}` })) : [] }, { count: 10, grounding: { ...grounding, previousQuestionKeys: [] } });
+  const allowedItemErrors = new Set(['arena_semantic_duplicate', 'arena_correct_position_distribution_invalid', 'arena_correct_position_run_too_long', 'arena_difficulty_distribution_mismatch']);
+  errors.push(...batchErrors.filter((error) => !allowedItemErrors.has(error)));
+  const semanticKey = arenaQuestionSemanticKey(item);
+  if (semanticKey === arenaQuestionSemanticKey(grounding.originalQuestion) || (Array.isArray(grounding.previousQuestionKeys) && grounding.previousQuestionKeys.map(String).includes(semanticKey))) errors.push('arena_replacement_duplicate');
+  return [...new Set(errors)];
+}

@@ -3,10 +3,12 @@ import {
   arenaLedgerDocumentId,
   arenaLedgerCoverage,
   assertArenaBatchApprovalIdempotent,
+  approveArenaQuestionReplacement,
   parseArenaQuestionLedger,
   planArenaWholeBatchRetry,
   previousArenaQuestionKeys,
   rollbackArenaQuestionBatch,
+  rollbackArenaQuestionReplacement,
 } from './arena_question_ledger';
 
 const question = (id: string, skillTag: string, difficulty: 'easy' | 'medium' | 'hard', suffix = id) => ({
@@ -69,5 +71,16 @@ describe('arena question ledger', () => {
     const ledger = parseArenaQuestionLedger(null, 'arena-topic-1');
     expect(planArenaWholeBatchRetry(ledger, 'batch-1')).toEqual({ stage: 'arena_questions', batchArtifactId: 'batch-1', topicArtifactId: 'arena-topic-1', count: 10 });
     expect(ledger).toEqual({ topicArtifactId: 'arena-topic-1', revision: 0, batches: {} });
+  });
+
+  it('parses pre-replacement ledgers and restores only the active replacement', () => {
+    const base = approveArenaQuestionBatch(parseArenaQuestionLedger(null, 'arena-topic-1'), { batchArtifactId: 'batch-1', items: batch('base') }).ledger;
+    const legacy = { topicArtifactId: base.topicArtifactId, revision: base.revision, batches: Object.fromEntries(Object.entries(base.batches).map(([artifactId, entry]) => [artifactId, { contentHash: entry.contentHash, items: entry.items }])) };
+    const parsed = parseArenaQuestionLedger(legacy, 'arena-topic-1');
+    const replacement = { ...batch('replacement')[0], id: 'base-0' };
+    const approved = approveArenaQuestionReplacement(parsed, { batchArtifactId: 'batch-1', questionId: 'base-0', replacementArtifactId: 'replacement-1', replacement });
+    expect(approved.ledger.batches['batch-1'].items.slice(1)).toEqual(parsed.batches['batch-1'].items.slice(1));
+    const rolledBack = rollbackArenaQuestionReplacement(approved.ledger, { batchArtifactId: 'batch-1', questionId: 'base-0', replacementArtifactId: 'replacement-1' });
+    expect(rolledBack.ledger.batches['batch-1'].items).toEqual(parsed.batches['batch-1'].items);
   });
 });

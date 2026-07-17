@@ -41,6 +41,7 @@ const STAGE_TASKS: Readonly<Record<GenerationStageKind, string>> = Object.freeze
   flashcard_item_replacement: 'Replace exactly one flashcard without changing accepted cards.',
   arena_topic: 'Create one competitive arena topic proposal with timing and fairness constraints.',
   arena_questions: 'Create the requested number of concise arena questions with exactly four unique options.',
+  arena_question_replacement: 'Replace exactly one Arena question without changing the approved batch.',
 });
 
 const ITEM_STAGES = new Set<GenerationStageKind>(['lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'quiz_questions', 'challenge_questions', 'flashcard_items', 'arena_questions']);
@@ -137,6 +138,11 @@ DEFINITIONS.set('arena_questions:v2', Object.freeze({
   kind: 'arena_questions', version: 'v2',
   task: 'Create exactly ten short Arena questions grounded in the approved Arena topic, optimized for answer speed and competitive fairness rather than quiz-style explanation depth. Each item needs level, allowed type, source-language task and question, exactly four unique target-language options, both correctIndex and the byte-identical correct string, a concise source-language rule, approved skillTag, difficulty, expectedAnswerTimeMs and sourceReferences. One answer must be unambiguously correct; never emit option labels, rand, per-question timeout, or scoring fields.',
   outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: 'arena_questions' }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'level', 'type', 'task', 'question', 'options', 'correctIndex', 'correct', 'rule', 'skillTag', 'difficulty', 'expectedAnswerTimeMs', 'sourceReferences'] } } } }),
+}));
+DEFINITIONS.set('arena_question_replacement:v2', Object.freeze({
+  kind: 'arena_question_replacement', version: 'v2',
+  task: 'Create exactly one replacement for grounding.originalQuestion. Preserve its stable question ID, approved Arena topic, CEFR level, locale contract and four-option runtime shape. Avoid every supplied semantic key. Do not emit rand, per-question timeout, scoring, storage paths, or any fields outside the Arena item contract.',
+  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: 'arena_question_replacement' }, result: { type: 'object', additionalProperties: false, required: ['replacementForQuestionId', 'item'] } } }),
 }));
 DEFINITIONS.set('arena_questions:v3', Object.freeze({
   kind: 'arena_questions', version: 'v3',

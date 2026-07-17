@@ -106,10 +106,13 @@
       "collectionGroup": "arena_questions",
       "queryScope": "COLLECTION",
       "fields": [
+        { "fieldPath": "studyTarget", "order": "ASCENDING" },
+        { "fieldPath": "learnerSourceLocale", "order": "ASCENDING" },
         {
           "fieldPath": "level",
           "order": "ASCENDING"
         },
+        { "fieldPath": "availability", "order": "ASCENDING" },
         {
           "fieldPath": "rand",
           "order": "ASCENDING"

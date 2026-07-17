@@ -33,6 +33,8 @@ import { renderContentGeneratorShell } from './content-factory/renderers.js';
 import { createContentFactoryState } from './content-factory/state.js';
 import { loadApprovedDependencies, loadContentCapabilities, loadContentStagesPage, readContentStageForm as readStudioStageForm } from './content-factory/controller.js';
 import { buildAgentOfficeDecisionConfirmation, buildAgentOfficeDecisionRequest, decisionAvailability } from './admin-agent-office.mjs';
+import { createArenaQuestionPoolState, loadArenaQuestionPool, publishArenaQuestionBatch, readArenaQuestionPoolFilters, removeArenaPoolQuestion, restoreArenaPoolQuestion } from './arena-question-pool-controller.js';
+import { renderArenaQuestionPool } from './pages/arena-question-pool.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -63,6 +65,7 @@ const PAGES = Object.freeze({
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
   money: { title: 'Деньги', description: 'Подписки, платежи, промокоды и подтверждённые показатели выручки.' },
   content: { title: 'Контент', description: 'Уроки, языковые пакеты и безопасная фабрика новых языков.' },
+  'arena-question-pool': { title: 'Пул вопросов Арены', description: 'Опубликованные вопросы для матчей, их проверка и обратимое снятие из выдачи.' },
   community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние Арены.' },
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
@@ -304,6 +307,7 @@ const state = {
   preview: null,
   workspace: null,
   contentStages: createContentFactoryState(),
+  arenaQuestionPool: createArenaQuestionPoolState(),
   generation: null,
   support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
   analytics: { status: 'idle', snapshot: null, error: '' },
@@ -1186,10 +1190,14 @@ function renderFactoryPublish() {
 
 function renderContent() {
   const panel = state.factoryStep === 1 ? renderFactoryCreate() : state.factoryStep === 2 ? renderFactoryGeneration() : state.factoryStep === 3 ? renderFactoryReview() : renderFactoryPublish();
-  return `${pageHeader(PAGES.content, 'Фабрика языков', '<a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
+  return `${pageHeader(PAGES.content, 'Фабрика языков', '<button class="button" data-action="open-arena-question-pool" type="button" title="Открыть Content → Arena → Pool для опубликованных вопросов Арены">Пул Арены</button><a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
     ${renderContentGeneratorShell({ ...state.contentStages, stages: state.contentStages.items, canWrite: can('content.draft.write'), canPublish: can('content.publish') })}
     <details class="section"><summary>Совместимый генератор полного языкового пакета</summary>
     <div class="factory-layout">${renderFactorySteps()}${panel}</div></details>`;
+}
+
+function renderArenaQuestionPoolPage() {
+  return `${pageHeader(PAGES['arena-question-pool'], 'Content → Arena → Pool', '<button class="button" data-action="open-content-arena-generator" type="button" title="Вернуться к созданию и проверке пачек Арены">К Арена</button>')}${renderArenaQuestionPool({ model: state.arenaQuestionPool, approvedStages: state.contentStages.items, escapeHtml, canPublish: can('content.publish') })}`;
 }
 
 function renderCommunity() {
@@ -1955,7 +1963,7 @@ function renderCurrentPage() {
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, 'arena-question-pool': renderArenaQuestionPoolPage, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
@@ -3162,6 +3170,21 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  if (action === 'open-arena-question-pool') { globalThis.location.hash = 'arena-question-pool'; return; }
+  if (action === 'open-content-arena-generator') {
+    state.contentStages = { ...state.contentStages, selectedGenerator: 'arena', kind: 'arena_questions', count: 10 };
+    globalThis.location.hash = 'content';
+    return;
+  }
+  if (action === 'load-arena-question-pool' || action === 'apply-arena-question-pool-filters') {
+    let filters;
+    try { filters = readArenaQuestionPoolFilters(document); } catch (error) { return setMessage(errorMessage(error), 'warning'); }
+    return runBusy(async () => {
+      state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'loading', error: '', filters };
+      renderCurrentPage();
+      state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters });
+    }, 'Пул вопросов Арены обновлён.');
+  }
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
   if (action === 'preview-app-message') {
     try { state.campaigns.preview = buildAppMessagePreview(); setMessage('Предпросмотр сообщения готов.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
@@ -3750,6 +3773,22 @@ async function handleClick(event) {
     document.body.classList.remove('nav-open');
     return;
   }
+  const arenaPublishStageId = target.getAttribute('data-arena-pool-publish-stage');
+  if (arenaPublishStageId) return runBusy(async () => {
+    const result = await publishArenaQuestionBatch({ actions, stageId: arenaPublishStageId, expectedReviewFingerprint: String(target.getAttribute('data-arena-pool-fingerprint') || ''), arenaDraftSealed: target.getAttribute('data-arena-pool-sealed') === 'true' });
+    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
+  }, 'Одобренная пачка добавлена в пул Арены.');
+  const arenaRemoveQuestionId = target.getAttribute('data-arena-pool-remove-question');
+  if (arenaRemoveQuestionId) return runBusy(async () => {
+    const reason = String(document.getElementById(String(target.getAttribute('data-arena-pool-reason-id') || ''))?.value || '').trim();
+    const result = await removeArenaPoolQuestion({ actions, questionId: arenaRemoveQuestionId, expectedRevision: Number(target.getAttribute('data-arena-pool-revision')), reason });
+    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
+  }, 'Вопрос снят с выдачи матчей и сохранён для возможного восстановления.');
+  const arenaRestoreQuestionId = target.getAttribute('data-arena-pool-restore-question');
+  if (arenaRestoreQuestionId) return runBusy(async () => {
+    const result = await restoreArenaPoolQuestion({ actions, questionId: arenaRestoreQuestionId, expectedRevision: Number(target.getAttribute('data-arena-pool-revision')) });
+    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
+  }, 'Вопрос возвращён в выдачу матчей.');
   const contentMode = target.getAttribute('data-content-create-mode');
   if (contentMode) {
     state.contentStages = { ...state.contentStages, mode: contentMode === 'range' ? 'range' : 'single', selectedKinds: contentMode === 'range' ? ['lesson_outline'] : [state.contentStages.kind || 'lesson_outline'], dependencies: [], selectedDependencyIds: [] };
@@ -4014,6 +4053,12 @@ export function renderRoute(route, capabilityId = '') {
   renderCurrentPage();
   if (actionsReady && state.route === 'content' && state.authorized && can('content.read') && state.contentStages.capabilitiesState === 'idle') {
     void ensureContentCapabilities().then(renderCurrentPage);
+  }
+  if (actionsReady && state.route === 'arena-question-pool' && state.authorized && can('content.read') && ['idle', 'error'].includes(state.arenaQuestionPool.state)) {
+    const filters = state.arenaQuestionPool.filters;
+    state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'loading', error: '' };
+    renderCurrentPage();
+    void loadArenaQuestionPool({ actions, filters }).then((model) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = model; renderCurrentPage(); } }).catch((error) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'error', error: errorMessage(error) }; renderCurrentPage(); } });
   }
   maybeLoadOperationalBriefing();
   maybeLoadOverviewAnalyticsTrends();

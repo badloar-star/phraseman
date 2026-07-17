@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { validateArenaQuestionBatchArtifact, validateArenaTopicArtifact } from './arena_artifacts';
+import { validateArenaQuestionBatchArtifact, validateArenaQuestionReplacementArtifact, validateArenaTopicArtifact } from './arena_artifacts';
 import { validateDerivedLessonArtifact } from './derived_lesson_artifacts';
 import { validateFlashcardItemsArtifact, validateFlashcardPackIdeaArtifact, validateFlashcardReplacementArtifact } from './flashcard_artifacts';
 import { validateLessonStageArtifact } from './lesson_artifacts';
@@ -81,6 +81,11 @@ function validate(kind: GenerationStageKind, stage: Readonly<Record<string, unkn
     case 'arena_questions': {
       const topic = { level: items[0]?.level, skillTags: [...new Set(items.map((item) => String(item.skillTag)))], allowedTypes: [...new Set(items.map((item) => String(item.type)))], difficultyDistribution: distribution(items), taskMaxChars: 120, questionMaxChars: 180, optionMaxChars: 80, ruleMaxChars: 500 };
       return validateArenaQuestionBatchArtifact(candidate, { count: Number(stage.count), grounding: { topic, previousQuestionKeys: [] } });
+    }
+    case 'arena_question_replacement': {
+      const result = record(base) && record(base.result) ? base.result : {};
+      const originalQuestion = record(result.item) ? result.item : {};
+      return validateArenaQuestionReplacementArtifact(candidate, { grounding: { replacementForQuestionId: result.replacementForQuestionId, originalQuestion, topic: { skillTags: [originalQuestion.skillTag] }, previousQuestionKeys: [] } });
     }
   }
 }

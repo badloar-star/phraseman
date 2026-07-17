@@ -1,4 +1,4 @@
-import * as admin from 'firebase-admin';
+﻿import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions/v2';
 import { calculateArenaPoints } from './arena_scoring';
 import { getLevelFromXP } from './xp_levels';
@@ -1505,6 +1505,7 @@ export {
 } from './admin_global_broadcast';
 export { adminCreateContentGenerationJob, adminListContentFactoryJobs, adminUpdateArenaConvergenceConfig } from './admin_content_factory';
 export { adminCreateContentStage, adminControlContentStage, adminListContentStages, adminListContentStageDependencies, adminGetContentStageCapabilities, adminPreviewContentStage, adminReviewContentStage } from './admin_content_stages';
+export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';
 export { adminCreateContentStageBulkPlan } from './admin_content_stage_bulk';
 export { adminEditContentStageArtifact } from './admin_content_stage_edits';
 export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';

@@ -5,7 +5,7 @@ import { validateDerivedLessonArtifact } from './derived_lesson_artifacts';
 import { validateTheoryArtifact } from './theory_generation';
 import { validateQuestionBatchArtifact, validateQuestionReplacementArtifact, validateTopicArtifact } from './quiz_challenge_artifacts';
 import { validateFlashcardItemsArtifact, validateFlashcardPackIdeaArtifact, validateFlashcardReplacementArtifact } from './flashcard_artifacts';
-import { validateArenaQuestionBatchArtifact, validateArenaTopicArtifact } from './arena_artifacts';
+import { validateArenaQuestionBatchArtifact, validateArenaQuestionReplacementArtifact, validateArenaTopicArtifact } from './arena_artifacts';
 
 const ARENA_QUESTION_VALIDATOR_VERSIONS = Object.freeze(['v2', 'v3', 'v4', 'v5']);
 export function productionValidatorSupports(kind: string, version: string): boolean {
@@ -84,6 +84,7 @@ function parseAndValidate(raw: string, packet: StagePromptPacket): { artifact?: 
   if (packet.kind === 'flashcard_items' && ['v2', 'v3'].includes(packet.promptVersion)) errors.push(...validateFlashcardItemsArtifact(artifact, { count: packet.context.count, grounding: packet.grounding }));
   if (packet.kind === 'flashcard_item_replacement' && ['v2', 'v3'].includes(packet.promptVersion)) errors.push(...validateFlashcardReplacementArtifact(artifact, { grounding: packet.grounding }));
   if (packet.kind === 'arena_topic' && packet.promptVersion === 'v2') errors.push(...validateArenaTopicArtifact(artifact, { cefr: packet.context.cefr, studyTarget: packet.context.studyTarget, sourceLocale: packet.context.sourceLocale }));
+  if (packet.kind === 'arena_question_replacement' && packet.promptVersion === 'v2') errors.push(...validateArenaQuestionReplacementArtifact(artifact, { grounding: packet.grounding }));
   if (productionValidatorSupports(packet.kind, packet.promptVersion)) errors.push(...validateArenaQuestionBatchArtifact(artifact, { count: packet.context.count, grounding: packet.grounding }));
   const candidate = Object.freeze({ ...artifact });
   return errors.length ? { candidate, errors } : { artifact: candidate, candidate, errors: [] };

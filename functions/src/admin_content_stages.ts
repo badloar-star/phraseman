@@ -20,8 +20,8 @@ import { loadFlashcardBatchForReview, loadFlashcardReplacementForReview, type Fl
 import { approveFlashcardBatch, approveFlashcardReplacement, flashcardLedgerDocumentId, parseFlashcardPackLedger, rollbackFlashcardBatch, rollbackFlashcardReplacement } from './content_factory/flashcard_pack_ledger';
 import { flashcardSemanticKey } from './content_factory/flashcard_artifacts';
 import { flashcardRegistryDocumentId } from './content_factory/flashcard_semantic_registry';
-import { loadArenaQuestionBatchForReview, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
-import { approveArenaQuestionBatch, arenaLedgerCoverage, arenaLedgerDocumentId, parseArenaQuestionLedger, rollbackArenaQuestionBatch } from './content_factory/arena_question_ledger';
+import { loadArenaQuestionBatchForReview, loadArenaQuestionReplacementForReview, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
+import { approveArenaQuestionBatch, approveArenaQuestionReplacement, arenaLedgerCoverage, arenaLedgerDocumentId, parseArenaQuestionLedger, rollbackArenaQuestionBatch, rollbackArenaQuestionReplacement } from './content_factory/arena_question_ledger';
 import { buildArenaRuntimeDraft } from './content_factory/arena_stage_consumer_adapter';
 import { assertStageCapabilityRequest, generationStageCapabilities, stageCapability, stageLanguagePolicy } from './content_factory/stage_capabilities';
 import { dependencyCatalogItems, parseDependencyCatalogRequest } from './content_factory/dependency_catalog';
@@ -31,7 +31,7 @@ const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
-const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions'];
+const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement'];
 const CREATE_FIELDS = new Set(['requestId', 'kind', 'studyTarget', 'sourceLocale', 'cefr', 'objective', 'scopeId', 'count', 'revision', 'prerequisiteStageIds', 'replacementForQuestionId', 'replacementForCardId']);
 const DERIVED_LESSON_KINDS = new Set<GenerationStageKind>(['lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory']);
 
@@ -120,7 +120,7 @@ export function parseContentStageCreateRequest(data: unknown): ContentStageCreat
   } catch (error) {
     throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'stage_capability_invalid');
   }
-  const replacementKind = kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement';
+  const replacementKind = kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement' || kind === 'arena_question_replacement';
   if ((replacementKind && (!TOKEN_RE.test(replacementForQuestionId) || count !== 1)) || (!replacementKind && replacementForQuestionId)) throw new HttpsError('invalid-argument', 'question_replacement_identity_invalid');
   const cardReplacementKind = kind === 'flashcard_item_replacement';
   if ((cardReplacementKind && (!TOKEN_RE.test(replacementForCardId) || count !== 1)) || (!cardReplacementKind && replacementForCardId)) throw new HttpsError('invalid-argument', 'flashcard_replacement_identity_invalid');
@@ -315,6 +315,7 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
   let flashcardBatch: Awaited<ReturnType<typeof loadFlashcardBatchForReview>> | null = null;
   let flashcardReplacement: Awaited<ReturnType<typeof loadFlashcardReplacementForReview>> | null = null;
   let arenaBatch: Awaited<ReturnType<typeof loadArenaQuestionBatchForReview>> | null = null;
+  let arenaReplacement: Awaited<ReturnType<typeof loadArenaQuestionReplacementForReview>> | null = null;
   let arenaRuntimeDraft: ReturnType<typeof buildArenaRuntimeDraft> | null = null;
   if (input.status === 'approved' && preliminary.kind === 'lesson_phrases') {
     try {
@@ -339,6 +340,9 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
   if (input.status === 'approved' && preliminary.kind === 'arena_questions') {
     try { arenaBatch = await loadArenaQuestionBatchForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: 'arena_questions', state: String(preliminary.state ?? ''), count: 10, objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_batch_review_invalid'); }
     try { arenaRuntimeDraft = buildArenaRuntimeDraft({ requestId: String(preliminary.requestId ?? ''), topicArtifactId: arenaBatch.topicArtifactId, topic: arenaBatch.topic, batches: [{ artifactId: arenaBatch.artifactId, items: arenaBatch.items }] }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_runtime_draft_invalid'); }
+  }
+  if (preliminary.kind === 'arena_question_replacement') {
+    try { arenaReplacement = await loadArenaQuestionReplacementForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: 'arena_question_replacement', state: String(preliminary.state ?? ''), objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_review_invalid'); }
   }
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(stageRef);
@@ -498,6 +502,30 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
         } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_batch_ledger_invalid'); }
       } else {
         const rolledBack = rollbackArenaQuestionBatch(ledger, String(stage.artifactId)); tx.set(ledgerRef, rolledBack); updates.arenaLedgerRevision = rolledBack.revision; updates.arenaCoverage = arenaLedgerCoverage(rolledBack); updates.arenaDraftSealed = false;
+      }
+    }
+    if (stage.kind === 'arena_question_replacement') {
+      if (!arenaReplacement || arenaReplacement.artifactId !== stage.artifactId || arenaReplacement.contentHash !== stage.contentHash) throw new HttpsError('aborted', 'arena_replacement_review_changed');
+      const ledgerRef = db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), arenaReplacement.topicArtifactId));
+      const ledgerSnapshot = await tx.get(ledgerRef); const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, arenaReplacement.topicArtifactId);
+      if (input.status === 'approved') {
+        try {
+          const replaced = approveArenaQuestionReplacement(ledger, { batchArtifactId: arenaReplacement.batchArtifactId, questionId: arenaReplacement.replacementForQuestionId, replacementArtifactId: String(stage.artifactId), replacement: arenaReplacement.item });
+          const supersededRef = replaced.supersededReplacementArtifactId ? db.collection('content_factory_stages').doc(stageIdFromArtifactId(replaced.supersededReplacementArtifactId)) : null;
+          const supersededSnapshot = supersededRef ? await tx.get(supersededRef) : null;
+          tx.set(ledgerRef, replaced.ledger);
+          if (supersededSnapshot?.exists) tx.update(supersededSnapshot.ref, { state: 'superseded', supersededByArtifactId: stage.artifactId, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
+          updates.arenaLedgerRevision = replaced.ledger.revision; updates.replacedQuestionId = arenaReplacement.replacementForQuestionId; updates.activeReplacementArtifactId = stage.artifactId;
+        } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_ledger_invalid'); }
+      } else if (stage.state === 'approved') {
+        try {
+          const restored = rollbackArenaQuestionReplacement(ledger, { batchArtifactId: arenaReplacement.batchArtifactId, questionId: arenaReplacement.replacementForQuestionId, replacementArtifactId: String(stage.artifactId) });
+          const restoredRef = restored.restoredReplacementArtifactId ? db.collection('content_factory_stages').doc(stageIdFromArtifactId(restored.restoredReplacementArtifactId)) : null;
+          const restoredSnapshot = restoredRef ? await tx.get(restoredRef) : null;
+          tx.set(ledgerRef, restored.ledger);
+          if (restoredSnapshot?.exists) tx.update(restoredSnapshot.ref, { state: 'approved', restoredAfterRollbackArtifactId: stage.artifactId, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
+          updates.arenaLedgerRevision = restored.ledger.revision; updates.activeReplacementArtifactId = restored.restoredReplacementArtifactId;
+        } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_rollback_invalid'); }
       }
     }
     tx.update(stageRef, updates);

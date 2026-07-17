@@ -57,6 +57,7 @@ export const generationStageCapabilities: Readonly<Record<GenerationStageKind, S
   flashcard_item_replacement: capability('flashcard_item_replacement', { count: fixed(1), prerequisiteKinds: ['flashcard_items'], scopeType: 'pack', editableFields: ['item'], publicationPolicy: 'standard', runtimeConsumer: true }),
   arena_topic: capability('arena_topic', { cefr: ARENA_LEVELS, count: fixed(1), prerequisiteKinds: [], scopeType: 'arena', editableFields: ['title', 'idea', 'runtimePolicy'] }),
   arena_questions: capability('arena_questions', { cefr: ARENA_LEVELS, count: fixed(10), prerequisiteKinds: ['arena_topic'], scopeType: 'arena', editableFields: ['items'] }),
+  arena_question_replacement: capability('arena_question_replacement', { cefr: ARENA_LEVELS, count: fixed(1), prerequisiteKinds: ['arena_questions'], scopeType: 'arena', editableFields: ['item'] }),
 });
 
 export function stageCapability(kind: GenerationStageKind): StageCapability {

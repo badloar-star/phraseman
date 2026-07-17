@@ -31,7 +31,7 @@ describe('independent content stage worker', () => {
     expect(receipt).toMatchObject({ topicArtifactId: 'arena-topic-1', topic: { topicId: 'city' }, previousQuestionKeys: ['old'] });
   });
 
-  it.each(['quiz_question_replacement', 'challenge_question_replacement'] as const)('forces %s to one result', (kind) => {
+  it.each(['quiz_question_replacement', 'challenge_question_replacement', 'arena_question_replacement'] as const)('forces %s to one result', (kind) => {
     expect(resolveContentStageCount(kind, 99)).toBe(1);
   });
 

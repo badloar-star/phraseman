@@ -14,6 +14,7 @@ describe('independent generation stage planning', () => {
     ['flashcard_items', ['flashcard_pack_idea']],
     ['flashcard_item_replacement', ['flashcard_items']],
     ['arena_questions', ['arena_topic']],
+    ['arena_question_replacement', ['arena_questions']],
   ] as const)('%s requires only approved %j', (kind, prerequisites) => {
     expect(requiredPrerequisiteKinds(kind)).toEqual(prerequisites);
   });
@@ -47,5 +48,11 @@ describe('independent generation stage planning', () => {
     const base = { requestId: 'r', kind: 'arena_questions' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'arena', schemaVersion: 2, promptVersion: 'v2', qaPolicy: 'arena-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'arena_topic' as const, artifactId: 'topic', state: 'approved' as const }] };
     expect(buildGenerationStagePlan({ ...base, count: 10 }).unit.count).toBe(10);
     expect(() => buildGenerationStagePlan({ ...base, count: 9 })).toThrow('stage_capability_count_unsupported');
+  });
+
+  it('requires exactly one approved Arena batch for a replacement', () => {
+    const base = { requestId: 'r', kind: 'arena_question_replacement' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'arena.replace.a1', schemaVersion: 2, promptVersion: 'v2', qaPolicy: 'arena-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'arena_questions' as const, artifactId: 'batch', state: 'approved' as const }] };
+    expect(buildGenerationStagePlan({ ...base, count: 1 }).unit.count).toBe(1);
+    expect(() => buildGenerationStagePlan({ ...base, count: 2 })).toThrow('stage_capability_count_unsupported');
   });
 });

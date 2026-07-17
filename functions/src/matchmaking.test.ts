@@ -189,6 +189,18 @@ describe('matchmaking cost controls', () => {
   });
 });
 
+describe('ranked Arena runtime-pool transaction contract', () => {
+  test('uses only the active en/ru level pool and commits player history with the session', () => {
+    const source = readFileSync(path.join(process.cwd(), 'src', 'matchmaking.ts'), 'utf8');
+    expect(source).toContain(".where('studyTarget', '==', 'en')");
+    expect(source).toContain(".where('learnerSourceLocale', '==', 'ru')");
+    expect(source).toContain(".where('availability', '==', 'active')");
+    expect(source).toContain("db.collection('arena_question_history').doc(player.userId)");
+    expect(source).toContain('mergeArenaQuestionHistory(previous, selection.ids)');
+    expect(source).toContain('selectArenaPoolQuestions(rows');
+  });
+});
+
 // ─── Content-dedup of arena questions ─────────────────────────────────────────
 // Регрессия бага «в разборе вопросов Арены 3–7 одинаковые»: банк arena_questions
 // содержит документы с разными id и полностью одинаковым содержанием. Выбор вопросов

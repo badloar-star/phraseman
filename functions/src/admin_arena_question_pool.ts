@@ -1,0 +1,81 @@
+import * as admin from 'firebase-admin';
+import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { ENFORCE_APP_CHECK } from './callable_options';
+import { hasPermission } from './admin/permissions';
+import { hasAdminRole, type AdminRole } from './admin/roles';
+import { contentStageReviewFingerprint } from './content_factory/review_fingerprint';
+import { firestoreArenaQuestionPoolRepository, publishArenaQuestionBatch, type ArenaPoolQuestion } from './arena_question_pool';
+
+const REGION = 'us-central1';
+const ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
+const HASH_RE = /^[a-f0-9]{64}$/;
+
+function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
+function requirePermission(request: { auth?: { token?: Record<string, unknown> } }, permission: 'content.read' | 'content.publish'): AdminRole {
+  if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
+  const role = hasAdminRole(request.auth.token.adminRole) ? request.auth.token.adminRole : null;
+  if (!role || !hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
+  return role;
+}
+
+export interface ArenaPoolListRequest { readonly limit: number; readonly level: string; readonly availability: '' | 'active' | 'removed'; readonly topicArtifactId: string; }
+export function parseArenaPoolListRequest(data: unknown): ArenaPoolListRequest {
+  if (!isRecord(data) || Object.keys(data).some((key) => !['limit', 'level', 'availability', 'topicArtifactId'].includes(key))) throw new HttpsError('invalid-argument', 'arena_pool_list_invalid');
+  const limit = data.limit === undefined ? 50 : Number(data.limit);
+  const level = String(data.level ?? '').trim(); const availability = String(data.availability ?? '').trim() as ArenaPoolListRequest['availability']; const topicArtifactId = String(data.topicArtifactId ?? '').trim();
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > 100 || (level && !/^[A-C][1-2]$/.test(level)) || !['', 'active', 'removed'].includes(availability) || (topicArtifactId && !ID_RE.test(topicArtifactId))) throw new HttpsError('invalid-argument', 'arena_pool_list_invalid');
+  return Object.freeze({ limit, level, availability, topicArtifactId });
+}
+
+export function parseArenaPoolPublishRequest(data: unknown): { readonly stageId: string; readonly expectedReviewFingerprint: string } {
+  if (!isRecord(data) || Object.keys(data).some((key) => !['stageId', 'expectedReviewFingerprint'].includes(key))) throw new HttpsError('invalid-argument', 'arena_pool_publish_invalid');
+  const stageId = String(data.stageId ?? '').trim(); const expectedReviewFingerprint = String(data.expectedReviewFingerprint ?? '').trim();
+  if (!ID_RE.test(stageId) || !HASH_RE.test(expectedReviewFingerprint)) throw new HttpsError('invalid-argument', 'arena_pool_publish_invalid');
+  return Object.freeze({ stageId, expectedReviewFingerprint });
+}
+
+export function parseArenaPoolMutationRequest(data: unknown, needsReason: boolean): { readonly questionId: string; readonly expectedRevision: number; readonly reason: string } {
+  if (!isRecord(data) || Object.keys(data).some((key) => !['questionId', 'expectedRevision', 'reason'].includes(key))) throw new HttpsError('invalid-argument', 'arena_pool_mutation_invalid');
+  const questionId = String(data.questionId ?? '').trim(); const expectedRevision = Number(data.expectedRevision); const reason = String(data.reason ?? '').trim();
+  if (!ID_RE.test(questionId) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 1 || expectedRevision > 1_000_000 || (needsReason && (!reason || reason.length > 500)) || (!needsReason && reason)) throw new HttpsError('invalid-argument', 'arena_pool_mutation_invalid');
+  return Object.freeze({ questionId, expectedRevision, reason });
+}
+
+function publicQuestion(id: string, value: ArenaPoolQuestion) {
+  const { id: _storedId, objectPath: _objectPath, ...safe } = value as ArenaPoolQuestion & { objectPath?: unknown };
+  return Object.freeze({ id, ...safe });
+}
+
+export const adminListArenaQuestionPool = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  requirePermission(request, 'content.read'); const input = parseArenaPoolListRequest(request.data); let query: FirebaseFirestore.Query = admin.firestore().collection('arena_questions');
+  if (input.level) query = query.where('level', '==', input.level);
+  if (input.availability) query = query.where('availability', '==', input.availability);
+  if (input.topicArtifactId) query = query.where('topicArtifactId', '==', input.topicArtifactId);
+  const snapshot = await query.orderBy('publishedAtMs', 'desc').limit(input.limit).get();
+  return { questions: snapshot.docs.map((doc) => publicQuestion(doc.id, doc.data() as ArenaPoolQuestion)) };
+});
+
+export const adminPublishArenaQuestionBatch = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+  const role = requirePermission(request, 'content.publish'); const input = parseArenaPoolPublishRequest(request.data); const db = admin.firestore(); const stageRef = db.collection('content_factory_stages').doc(input.stageId);
+  const stageSnapshot = await stageRef.get(); if (!stageSnapshot.exists) throw new HttpsError('not-found', 'arena_pool_stage_not_found'); const stage = stageSnapshot.data() ?? {};
+  if (stage.kind !== 'arena_questions' || stage.state !== 'approved' || stage.arenaDraftSealed !== true || contentStageReviewFingerprint(input.stageId, stage) !== input.expectedReviewFingerprint) throw new HttpsError('failed-precondition', 'arena_pool_stage_not_publishable');
+  try {
+    const result = await publishArenaQuestionBatch({ bucket: admin.storage().bucket(), stage: { artifactId: String(stage.artifactId ?? ''), kind: 'arena_questions', state: String(stage.state ?? ''), count: Number(stage.count ?? 0), objectPath: String(stage.objectPath ?? ''), contentHash: String(stage.contentHash ?? ''), objectGeneration: String(stage.objectGeneration ?? ''), groundingReceipt: stage.groundingReceipt }, requestId: String(stage.requestId ?? ''), actorId: request.auth!.uid, nowMs: Date.now(), repository: firestoreArenaQuestionPoolRepository(db) });
+    await db.collection('admin_log').add({ action: 'arena_question_pool.publish', actorUid: request.auth!.uid, role, entity: { collection: 'content_factory_stages', id: input.stageId }, reason: 'Approved Arena batch published to runtime pool', before: null, after: { published: result.published, idempotent: result.idempotent, questionCount: result.questionIds.length }, timestamp: new Date().toISOString() });
+    return { ok: true, ...result };
+  } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_pool_publish_failed'); }
+});
+
+async function mutateArenaPoolQuestion(request: Parameters<typeof adminListArenaQuestionPool.run>[0], mode: 'remove' | 'restore') {
+  const role = requirePermission(request, 'content.publish'); const input = parseArenaPoolMutationRequest(request.data, mode === 'remove'); const db = admin.firestore(); const ref = db.collection('arena_questions').doc(input.questionId);
+  return db.runTransaction(async (tx) => {
+    const snapshot = await tx.get(ref); if (!snapshot.exists) throw new HttpsError('not-found', 'arena_pool_question_not_found'); const current = snapshot.data() as ArenaPoolQuestion;
+    if (current.revision !== input.expectedRevision) throw new HttpsError('aborted', 'arena_pool_question_revision_stale');
+    const nowMs = Date.now(); const next = mode === 'remove' ? { availability: 'removed' as const, removalReason: input.reason, removedAtMs: nowMs, removedBy: request.auth!.uid, revision: current.revision + 1 } : { availability: 'active' as const, restoredAtMs: nowMs, restoredBy: request.auth!.uid, revision: current.revision + 1 };
+    tx.update(ref, next); const auditRef = db.collection('admin_log').doc(); tx.create(auditRef, { action: `arena_question_pool.${mode}`, actorUid: request.auth!.uid, role, entity: { collection: 'arena_questions', id: input.questionId }, reason: mode === 'remove' ? input.reason : 'Arena question restored', before: { availability: current.availability, revision: current.revision }, after: { availability: next.availability, revision: next.revision }, timestamp: new Date().toISOString() });
+    return { ok: true, questionId: input.questionId, revision: next.revision };
+  });
+}
+
+export const adminRemoveArenaPoolQuestion = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, (request) => mutateArenaPoolQuestion(request, 'remove'));
+export const adminRestoreArenaPoolQuestion = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, (request) => mutateArenaPoolQuestion(request, 'restore'));

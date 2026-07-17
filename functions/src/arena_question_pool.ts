@@ -18,6 +18,8 @@ export interface ArenaPoolQuestion {
   readonly artifactId: string;
   readonly contentHash: string;
   readonly topicArtifactId: string;
+  /** Optimistic-concurrency revision for administrative remove/restore actions. */
+  readonly revision: number;
   readonly publishedAtMs: number;
   readonly publishedBy: string;
   readonly removedAtMs?: number;
@@ -89,7 +91,7 @@ export async function publishArenaQuestionBatch(input: {
     return Object.freeze({
       id: question.id, studyTarget: 'en', learnerSourceLocale: 'ru', level: question.level, availability: 'active', skillTag, difficulty: question.difficulty, rand: question.rand,
       question: question.question, options: question.options, correct: question.correct, correctIndex: question.correctIndex,
-      sourceStageId, artifactId: batch.artifactId, contentHash: input.stage.contentHash, topicArtifactId: batch.topicArtifactId, publishedAtMs: input.nowMs, publishedBy: actorId,
+      sourceStageId, artifactId: batch.artifactId, contentHash: input.stage.contentHash, topicArtifactId: batch.topicArtifactId, revision: 1, publishedAtMs: input.nowMs, publishedBy: actorId,
     });
   });
   for (const question of questions) await input.repository.put(question);
@@ -101,12 +103,12 @@ export async function removeArenaPoolQuestion(input: { readonly repository: Aren
   if (!current) throw new Error('arena_pool_question_not_found');
   if (!reason) throw new Error('arena_pool_removal_reason_required');
   if (!Number.isSafeInteger(input.nowMs)) throw new Error('arena_pool_mutation_input_invalid');
-  await input.repository.put(Object.freeze({ ...current, availability: 'removed', removalReason: reason, removedAtMs: input.nowMs, removedBy: actorId }));
+  await input.repository.put(Object.freeze({ ...current, availability: 'removed', removalReason: reason, removedAtMs: input.nowMs, removedBy: actorId, revision: current.revision + 1 }));
 }
 
 export async function restoreArenaPoolQuestion(input: { readonly repository: ArenaQuestionPoolRepository; readonly id: string; readonly actorId: string; readonly nowMs: number }): Promise<void> {
   const actorId = ensureActor(input.actorId); const current = await input.repository.get(input.id);
   if (!current) throw new Error('arena_pool_question_not_found');
   if (!Number.isSafeInteger(input.nowMs)) throw new Error('arena_pool_mutation_input_invalid');
-  await input.repository.put(Object.freeze({ ...current, availability: 'active', restoredAtMs: input.nowMs, restoredBy: actorId }));
+  await input.repository.put(Object.freeze({ ...current, availability: 'active', restoredAtMs: input.nowMs, restoredBy: actorId, revision: current.revision + 1 }));
 }

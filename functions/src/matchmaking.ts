@@ -6,6 +6,8 @@ import {
 import { expireStaleAcceptanceSessions } from './arena_pregame';
 import { cleanupStaleArenaSessions, advanceStuckQuestionSessions, cleanupExpiredArenaRooms } from './arena_cleanup';
 import { getLevelFromXP } from './xp_levels';
+import { selectArenaPoolQuestions, type ArenaQuestionPoolRow } from './arena_question_pool_selection';
+import { mergeArenaQuestionHistory } from './arena_question_history';
 
 const db = admin.firestore();
 
@@ -286,8 +288,6 @@ async function createSession(
 
   const rankTier = highestRankTierFromPlayers(playersNorm);
   const questionLevel = RANK_TO_QUESTION_LEVEL[rankTier];
-  const questions = await pickQuestions(questionLevel, RANKED_QUESTIONS_PER_MATCH);
-
   const sessionRef = db.collection('arena_sessions').doc();
   const sessionId = sessionRef.id;
 
@@ -299,7 +299,7 @@ async function createSession(
     state: 'acceptance',
     rankTier,
     playerIds: playersNorm.map(p => p.userId),
-    questions,
+    questions: [],
     currentQuestionIndex: 0,
     questionStartedAt: null,
     questionTimeoutMs: QUESTION_TIMEOUT_MS,
@@ -339,6 +339,26 @@ async function createSession(
       }
     }
 
+    // The runtime pool is deliberately queried inside this transaction: the same
+    // commit that creates the session also reads and advances each player's
+    // recent-question history. A removed question can never enter a new session.
+    const poolQuery = db.collection('arena_questions')
+      .where('studyTarget', '==', 'en')
+      .where('learnerSourceLocale', '==', 'ru')
+      .where('level', '==', questionLevel)
+      .where('availability', '==', 'active')
+      .orderBy('rand')
+      .limit(100);
+    const [poolSnapshot, ...historySnapshots] = await Promise.all([
+      tx.get(poolQuery),
+      ...playersNorm.map((player) => tx.get(db.collection('arena_question_history').doc(player.userId))),
+    ]);
+    const rows = shuffleArray(poolSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as ArenaQuestionPoolRow)));
+    const recentIds = new Set(historySnapshots.flatMap((snapshot) => Array.isArray(snapshot.data()?.questionIds) ? snapshot.data()!.questionIds.map(String) : []));
+    const selection = selectArenaPoolQuestions(rows, { studyTarget: 'en', learnerSourceLocale: 'ru', level: questionLevel, count: RANKED_QUESTIONS_PER_MATCH, excludedIds: recentIds });
+    if (selection.ids.length !== RANKED_QUESTIONS_PER_MATCH || new Set(selection.ids).size !== RANKED_QUESTIONS_PER_MATCH) throw new Error(`Insufficient active arena pool for level ${questionLevel}`);
+    session.questions = [...selection.ids];
+
     tx.set(sessionRef, session);
 
     for (const player of playersNorm) {
@@ -359,6 +379,8 @@ async function createSession(
         sessionId,
         matchedAt,
       });
+      const previous = Array.isArray(historySnapshots[playersNorm.indexOf(player)].data()?.questionIds) ? historySnapshots[playersNorm.indexOf(player)].data()!.questionIds.map(String) : [];
+      tx.set(db.collection('arena_question_history').doc(player.userId), { questionIds: mergeArenaQuestionHistory(previous, selection.ids), updatedAtMs: now, lastSessionId: sessionId }, { merge: true });
     }
   });
 

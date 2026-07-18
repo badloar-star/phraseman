@@ -164,3 +164,19 @@ export function streakWeeklyExperienceLabel(lang: Lang): string {
 export function streakWeeklyExperienceHint(lang: Lang): string {
   return STREAK_WEEKLY_EXPERIENCE_HINT_BY_LANG[lang];
 }
+
+const STREAK_CHART_SCRUB_HINT_BY_LANG: Record<Lang, string> = {
+  ru: 'зажми график — покажу значения',
+  uk: 'затисни графік — покажу значення',
+  es: 'mantén el gráfico y verás los valores',
+  'pt-BR': 'segure o gráfico para ver os valores',
+  vi: 'giữ biểu đồ để xem giá trị',
+  id: 'tahan grafik untuk melihat nilai',
+  tr: 'değerleri görmek için grafiği basılı tut',
+  pl: 'przytrzymaj wykres, aby zobaczyć wartości',
+};
+
+/** Одноразовая подсказка под графиком недели: гаснет после первого скраба. */
+export function streakChartScrubHint(lang: Lang): string {
+  return STREAK_CHART_SCRUB_HINT_BY_LANG[lang];
+}

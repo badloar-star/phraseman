@@ -315,7 +315,7 @@ type HomeMenuIconAlign = {
     x: number;
     y: number;
 };
-type HomeMenuIconAlignKey = 'lesson' | 'quizes' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
+type HomeMenuIconAlignKey = 'lesson' | 'cards' | 'dayTasks' | 'league' | 'test' | 'practice' | 'dialogs';
 const HOME_MENU_ICON_ALIGNMENT: Partial<Record<ThemeMode, Partial<Record<HomeMenuIconAlignKey, HomeMenuIconAlign>>>> = {
 };
 type LightSketchMenuImageProps = Omit<React.ComponentProps<typeof Image>, 'style'> & {
@@ -348,7 +348,7 @@ function LightSketchMenuImage({ width, height, lighten, align, ...props }: Light
     void lighten;
     return <Image {...props} style={imageStyle as any}/>;
 }
-function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number, arenaBonus = 0, totalOverride?: number): {
+function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId: number, totalOverride?: number): {
     leagueName: string;
     progress: number;
     goal: number;
@@ -360,8 +360,7 @@ function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId
         return null;
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
-    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0)
-        + Math.max(0, Math.floor(Number(arenaBonus) || 0));
+    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
     const leader = sorted[0];
     return {
         leagueName,
@@ -547,7 +546,24 @@ export default function HomeScreen() {
             tr: 'gün',
             pl: 'dzień',
         })
-        : s.home.streakDays;
+        : triLang(lang, {
+            ru: (() => {
+                const remainder100 = Math.abs(displayStreak) % 100;
+                const remainder10 = Math.abs(displayStreak) % 10;
+                return remainder100 >= 11 && remainder100 <= 14
+                    ? 'дней'
+                    : remainder10 >= 2 && remainder10 <= 4
+                        ? 'дня'
+                        : 'дней';
+            })(),
+            uk: s.home.streakDays,
+            es: s.home.streakDays,
+            'pt-BR': s.home.streakDays,
+            vi: s.home.streakDays,
+            id: s.home.streakDays,
+            tr: s.home.streakDays,
+            pl: s.home.streakDays,
+        });
     const streakScaleAnim = useRef(new Animated.Value(1)).current;
     const [totalXP, setTotalXP] = useState(() => initialTotalXP);
     const [homeStatsReady, setHomeStatsReady] = useState(() => !!((homeStatsLoadedOnce && hh) || appSnapshot.profile || appSnapshot.progress));
@@ -1762,7 +1778,7 @@ export default function HomeScreen() {
                         id: "Liga mingguan",
                         tr: "Haftalık lig",
                         pl: "Liga tygodnia",
-                    }), leagueState.leagueId, matchingFreshBonus?.arenaBonus ?? 0, matchingFreshBonus?.progress)
+                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints)
                     : null;
                 setHomeLeagueRaceVisible(showLeagueRace);
                 setEngineLeague(league);
@@ -1984,16 +2000,14 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 lessons, 2 arena, 3 friends, 4 settings — см. app/(tabs)/_layout.tsx */
+    /** Индексы табов: 0 home, 1 lessons, 2 friends, 3 settings — см. app/(tabs)/_layout.tsx */
     const TAB_IDX: Record<string, number> = {
         '/(tabs)/lessons': 1,
         lessons: 1,
-        '/(tabs)/arena': 2,
-        arena: 2,
-        '/(tabs)/friends': 3,
-        friends: 3,
-        '/(tabs)/settings': 4,
-        settings: 4,
+        '/(tabs)/friends': 2,
+        friends: 2,
+        '/(tabs)/settings': 3,
+        settings: 3,
     };
     const go = (path: string) => {
         hapticTap();
@@ -2193,16 +2207,6 @@ export default function HomeScreen() {
                     tr: "32 ders",
                     pl: "32 lekcje",
                 }), path: 'lessons' },
-            { key: 'quizzes', iconKey: 'quizes' as const, testID: 'home-quick-quizzes', img: menuImages.quizes, label: s.tabs.quizzes, sub: triLang(lang, {
-                    ru: '3 уровня',
-                    uk: '3 рівні',
-                    es: '3 niveles de dificultad',
-                    'pt-BR': "3 níveis de dificuldade",
-                    vi: "3 mức độ khó",
-                    id: "3 tingkat kesulitan",
-                    tr: "3 zorluk seviyesi",
-                    pl: "3 poziomy trudności",
-                }), path: '/quizzes_screen' },
             { key: 'flashcards', iconKey: 'cards' as const, testID: 'home-quick-flashcards', img: menuImages.cards, label: s.tabs.flashcards, sub: triLang(lang, {
                     ru: 'Свои фразы',
                     uk: 'Свої фрази',
@@ -2447,10 +2451,13 @@ export default function HomeScreen() {
                       </Pressable>
                     ) : null}
                   </View>
-                  <View style={{ flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center' }}>
+                  <View style={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
                     <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 22 : 25, fontWeight: '800', lineHeight: eliteStatsCompact ? 26 : 30, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
-                      {displayStreak} {homeStreakDaysLabel}
+                      {displayStreak}
                     </Animated.Text>
+                    <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, textAlign: 'center', includeFontPadding: false }}>
+                      {homeStreakDaysLabel}
+                    </Text>
                   </View>
                 </TouchableOpacity>
 
@@ -2618,21 +2625,19 @@ export default function HomeScreen() {
                       </View>
                     </View>
 
-                    <View style={{ alignItems: 'flex-end', width: eliteStreakColumnWidth, flexShrink: 0 }}>
-                      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 5, width: '100%' }}>
-                        <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStreakValueSize, fontWeight: '900', lineHeight: eliteStreakValueSize + 5, transform: [{ scale: streakScaleAnim }], minWidth: eliteStreakColumnWidth - eliteStreakIconBox - 7, textAlign: 'right', includeFontPadding: false }} numberOfLines={1}>
-                          {displayStreak}
-                        </Animated.Text>
-                        <View style={[{
+                    <View style={{ alignItems: 'center', width: eliteStreakColumnWidth, flexShrink: 0 }}>
+                      <View style={[{
                     width: eliteStreakIconBox,
                     height: eliteStreakIconBox,
                     alignItems: 'center',
                     justifyContent: 'center',
                 }, homeStreakIconFrameStyle]}>
-                          <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
-                        </View>
+                        <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
                       </View>
-                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'right', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={2}>
+                      <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStreakValueSize, fontWeight: '900', lineHeight: eliteStreakValueSize + 5, transform: [{ scale: streakScaleAnim }], textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
+                        {displayStreak}
+                      </Animated.Text>
+                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'center', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1}>
                         {homeStreakDaysLabel}
                       </Text>
                     </View>
@@ -2757,19 +2762,17 @@ export default function HomeScreen() {
                     </View>
                   </View>
                 </View>
-                <View style={{ alignItems: 'flex-end', marginLeft: 12 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
-                    <View style={[{
+                <View style={{ alignItems: 'center', marginLeft: 12 }}>
+                  <View style={[{
                         width: homeLargeStreakIconBox,
                         height: homeLargeStreakIconBox,
                         alignItems: 'center',
                         justifyContent: 'center',
                     }, homeStreakIconFrameStyle]}>
                       <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeLargeStreakIconSize}/>
-                    </View>
                   </View>
-                  <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'right' }} numberOfLines={2}>{homeStreakDaysLabel}</Text>
+                  <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
+                  <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'center' }} numberOfLines={1}>{homeStreakDaysLabel}</Text>
                 </View>
               </View>
 

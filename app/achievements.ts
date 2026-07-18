@@ -1122,7 +1122,7 @@ export function achievementDescForLang(a: Achievement, lang: Lang): string {
 
 // Список достижений пополняется без миграции: новые id подхватываются loadAchievementStates().
 
-export const ALL_ACHIEVEMENTS: Achievement[] = [
+const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
   // Серии (streak) — streak_count: дни подряд с начислением XP (см. updateStreakOnActivity)
   {
     id:'streak_3', icon:'🔥', category:'streak', xp:30,
@@ -1874,6 +1874,13 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   { id:'gem_all_obsidian', icon:'🏆', category:'medal', xp:2200, nameRu:'Все обсидианы', nameUk:'Усі обсидіани', descRu:'Собери обсидиановую медаль по A1, A2, B1 и B2.', descUk:'Збери обсидіанову медаль за A1, A2, B1 і B2.', secret:true },
   { id:'gem_all_mythic', icon:'👑', category:'medal', xp:4000, nameRu:'Все мифики', nameUk:'Усі міфіки', descRu:'Собери мифическую медаль по A1, A2, B1 и B2.', descUk:'Збери міфічну медаль за A1, A2, B1 і B2.', secret:true },
 ];
+
+export const isRetiredQuizArenaAchievement = (achievement: Pick<Achievement, 'id'>): boolean =>
+  achievement.id.startsWith('quiz_') || achievement.id.startsWith('arena_');
+
+export const ALL_ACHIEVEMENTS: Achievement[] = ACHIEVEMENTS_WITH_RETIRED_FEATURES.filter(
+  (achievement) => !isRetiredQuizArenaAchievement(achievement),
+);
 
 // AsyncStorage
 

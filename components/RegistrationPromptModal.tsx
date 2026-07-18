@@ -13,8 +13,8 @@
 //   • Эмитим событие auth_provider_linked (для обновления UI Settings).
 // ════════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, Modal, View, Text, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
+import React, { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { AccessibilityInfo, ActivityIndicator, Modal, View, Text, Pressable, StyleSheet, Platform, Linking, ScrollView, useWindowDimensions } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from './SafeLinearGradient';
@@ -37,10 +37,9 @@ import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config'
 import { triLang } from '../constants/i18n';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { createAuthPromptAttemptLifecycle } from './auth_prompt_attempt_lifecycle';
 
-// H-ENTER: верхняя граница на весь провайдер-вход, чтобы кнопки модалки (включая
-// «Позже»/закрытие) не залипли навсегда, если сеть оборвалась после выбора аккаунта.
-const SIGN_IN_OVERALL_TIMEOUT_MS = 45_000;
+const SIGN_IN_SLOW_THRESHOLD_MS = 45_000;
 
 function waitForAuthPromptBusyFrame(): Promise<void> {
   return new Promise((resolve) => {
@@ -56,7 +55,7 @@ interface Props {
   visible: boolean;
   /** Контекст показа — для аналитики. 'home_banner' — открыт из persistent
    *  баннера на Home для незалогиненных юзеров с XP ≥ 1000. */
-  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner';
+  context: 'lesson1' | 'settings' | 'onboarding' | 'dev' | 'home_banner' | 'startup_recovery';
   /** Кастомный заголовок (опц., иначе используется дефолт под контекст). */
   title?: string;
   /** Кастомный подзаголовок (опц.). */
@@ -81,15 +80,59 @@ function RegistrationPromptModal({
   const [appleAvail, setAppleAvail] = useState(false);
   const [googleAvail, setGoogleAvail] = useState(false);
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
+  const [signInSlow, setSignInSlow] = useState(false);
   const [inlineError, setInlineError] = useState<string | null>(null);
+  const attemptLifecycleRef = useRef<ReturnType<typeof createAuthPromptAttemptLifecycle> | null>(null);
+  const slowTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  if (attemptLifecycleRef.current === null) {
+    attemptLifecycleRef.current = createAuthPromptAttemptLifecycle(visible);
+  }
+  const attemptLifecycle = attemptLifecycleRef.current;
+
+  const clearSlowTimer = useCallback(() => {
+    if (slowTimerRef.current !== null) {
+      clearTimeout(slowTimerRef.current);
+      slowTimerRef.current = null;
+    }
+  }, []);
+
+  const isAttemptCurrent = useCallback(
+    (attemptToken: number) => attemptLifecycle.isCurrent(attemptToken),
+    [attemptLifecycle],
+  );
 
   useEffect(() => {
-    if (!visible) return;
+    attemptLifecycle.mount();
+    return () => {
+      attemptLifecycle.unmount();
+      clearSlowTimer();
+    };
+  }, [attemptLifecycle, clearSlowTimer]);
+
+  useLayoutEffect(() => {
+    attemptLifecycle.setVisible(visible);
+  }, [attemptLifecycle, visible]);
+
+  useEffect(() => {
+    if (!visible) {
+      clearSlowTimer();
+      setLoadingProvider(null);
+      setSignInSlow(false);
+      return;
+    }
     setInlineError(null);
-    isAppleSignInAvailable().then(setAppleAvail);
-    isGoogleSignInAvailable().then(setGoogleAvail);
+    let active = true;
+    void isAppleSignInAvailable().then((available) => {
+      if (active) setAppleAvail(available);
+    });
+    void isGoogleSignInAvailable().then((available) => {
+      if (active) setGoogleAvail(available);
+    });
     logEvent('auth_prompt_view', { context });
-  }, [visible, context]);
+    return () => {
+      active = false;
+    };
+  }, [visible, context, clearSlowTimer]);
 
   const showInlineError = useCallback((title: string, message: string) => {
     setInlineError(`${title}\n${message}`);
@@ -104,48 +147,64 @@ function RegistrationPromptModal({
     ru:
       context === 'lesson1'
         ? 'Сохрани свой прогресс!'
+        : context === 'startup_recovery'
+        ? 'Восстанови свой аккаунт'
         : context === 'onboarding'
         ? 'Быстрый старт'
         : 'Войти или зарегистрироваться',
     uk:
       context === 'lesson1'
         ? 'Збережи свій прогрес!'
+        : context === 'startup_recovery'
+        ? 'Віднови свій акаунт'
         : context === 'onboarding'
         ? 'Швидкий старт'
         : 'Війти або зареєструватись',
     es:
       context === 'lesson1'
         ? '¡Guarda tu progreso!'
+        : context === 'startup_recovery'
+        ? 'Recupera tu cuenta'
         : context === 'onboarding'
         ? 'Inicio rápido'
         : 'Iniciar sesión o registrarse',
     'pt-BR':
       context === 'lesson1'
         ? 'Salve seu progresso!'
+        : context === 'startup_recovery'
+        ? 'Recupere sua conta'
         : context === 'onboarding'
         ? 'Início rápido'
         : 'Entrar ou cadastrar-se',
     vi:
       context === 'lesson1'
         ? 'Lưu tiến trình của bạn!'
+        : context === 'startup_recovery'
+        ? 'Khôi phục tài khoản'
         : context === 'onboarding'
         ? 'Bắt đầu nhanh'
         : 'Đăng nhập hoặc đăng ký',
     id:
       context === 'lesson1'
         ? 'Simpan progresmu!'
+        : context === 'startup_recovery'
+        ? 'Pulihkan akunmu'
         : context === 'onboarding'
         ? 'Mulai cepat'
         : 'Masuk atau daftar',
     tr:
       context === 'lesson1'
         ? 'İlerlemeni kaydet!'
+        : context === 'startup_recovery'
+        ? 'Hesabını geri yükle'
         : context === 'onboarding'
         ? 'Hızlı başlangıç'
         : 'Giriş yap veya kaydol',
     pl:
       context === 'lesson1'
         ? 'Zapisz swoje postępy!'
+        : context === 'startup_recovery'
+        ? 'Odzyskaj konto'
         : context === 'onboarding'
         ? 'Szybki start'
         : 'Zaloguj się lub zarejestruj',
@@ -155,48 +214,64 @@ function RegistrationPromptModal({
     ru:
       context === 'lesson1'
         ? 'Один клик через Google — и твой прогресс в безопасности. Сменишь телефон? Прогресс с тобой. Удалишь приложение? Восстановим в один тап.'
+        : context === 'startup_recovery'
+        ? 'Войди тем же способом и в тот же аккаунт Google или Apple, который был привязан раньше. После входа мы безопасно восстановим облачный прогресс; данные на этом устройстве пока сохранены.'
         : context === 'onboarding'
         ? 'Вход можно пропустить. Но если сменить телефон или случайно удалить приложение, есть риск потерять прогресс.'
         : 'Быстрый вход через Google или Apple. Прогресс синхронизируется между устройствами.',
     uk:
       context === 'lesson1'
         ? 'Один тап через Google — і твій прогрес у безпеці. Заміниш телефон? Прогрес з тобою. Видалиш додаток? Відновимо одним кліком.'
+        : context === 'startup_recovery'
+        ? 'Увійди тим самим способом і в той самий акаунт Google або Apple, який було прив’язано раніше. Після входу ми безпечно відновимо хмарний прогрес; дані на цьому пристрої поки збережені.'
         : context === 'onboarding'
         ? 'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.'
         : 'Швидкий вхід через Google або Apple. Прогрес синхронізується між пристроями.',
     es:
       context === 'lesson1'
         ? 'Con un toque en Google, tu progreso queda a salvo. ¿Cambias de móvil? Va contigo. ¿Desinstalas la app? Recupéralo con un solo toque.'
+        : context === 'startup_recovery'
+        ? 'Inicia sesión del mismo modo y con la misma cuenta de Google o Apple que vinculaste antes. Después restauraremos tu progreso de forma segura; los datos de este dispositivo siguen guardados.'
         : context === 'onboarding'
         ? 'Puedes seguir sin iniciar sesión, pero si eliminas la app sin vincular tu cuenta, podrías perder el progreso. Puedes vincularla más tarde en Ajustes.'
         : 'Acceso rápido con Google o Apple. El progreso se sincroniza entre dispositivos.',
     'pt-BR':
       context === 'lesson1'
         ? 'Com um toque no Google, seu progresso fica seguro. Vai trocar de celular? Ele vai com você. Desinstalou o app? Recupere com um toque.'
+        : context === 'startup_recovery'
+        ? 'Entre do mesmo jeito e com a mesma conta Google ou Apple vinculada antes. Depois, restauraremos seu progresso com segurança; os dados deste dispositivo continuam salvos.'
         : context === 'onboarding'
         ? 'Você pode continuar sem entrar, mas se apagar o app sem vincular a conta, pode perder o progresso. Dá para vincular depois em Ajustes.'
         : 'Entrada rápida com Google ou Apple. O progresso sincroniza entre dispositivos.',
     vi:
       context === 'lesson1'
         ? 'Chỉ một lần chạm qua Google là tiến trình của bạn được an toàn. Đổi điện thoại? Tiến trình đi theo bạn. Xóa ứng dụng? Khôi phục chỉ với một lần chạm.'
+        : context === 'startup_recovery'
+        ? 'Hãy đăng nhập bằng đúng cách và đúng tài khoản Google hoặc Apple đã liên kết trước đây. Sau đó, tiến độ đám mây sẽ được khôi phục an toàn; dữ liệu trên thiết bị này vẫn được giữ.'
         : context === 'onboarding'
         ? 'Bạn có thể tiếp tục không đăng nhập, nhưng nếu xóa ứng dụng khi chưa liên kết tài khoản, tiến trình có thể bị mất. Bạn có thể liên kết sau trong Cài đặt.'
         : 'Đăng nhập nhanh bằng Google hoặc Apple. Tiến trình sẽ được đồng bộ giữa các thiết bị.',
     id:
       context === 'lesson1'
         ? 'Sekali ketuk lewat Google, progresmu aman. Ganti ponsel? Progres ikut. Hapus aplikasi? Pulihkan dengan satu ketukan.'
+        : context === 'startup_recovery'
+        ? 'Masuk dengan cara dan akun Google atau Apple yang sama seperti yang pernah ditautkan. Setelah itu progres cloud akan dipulihkan dengan aman; data di perangkat ini tetap tersimpan.'
         : context === 'onboarding'
         ? 'Kamu bisa lanjut tanpa masuk, tetapi jika aplikasi dihapus tanpa menautkan akun, progres bisa hilang. Akun bisa ditautkan nanti di Pengaturan.'
         : 'Masuk cepat lewat Google atau Apple. Progres disinkronkan antarperangkat.',
     tr:
       context === 'lesson1'
         ? 'Google ile tek dokunuşta ilerlemen güvende kalır. Telefon değiştirirsen yanında gelir. Uygulamayı silersen tek dokunuşla geri yükleriz.'
+        : context === 'startup_recovery'
+        ? 'Daha önce bağladığın aynı yöntemle ve aynı Google veya Apple hesabıyla giriş yap. Ardından bulut ilerlemeni güvenle geri yükleyeceğiz; bu cihazdaki veriler korunuyor.'
         : context === 'onboarding'
         ? 'Giriş yapmadan devam edebilirsin, ama hesabını bağlamadan uygulamayı silersen ilerlemeni kaybedebilirsin. Hesabı daha sonra Ayarlar’dan bağlayabilirsin.'
         : 'Google veya Apple ile hızlı giriş. İlerleme cihazlar arasında eşitlenir.',
     pl:
       context === 'lesson1'
         ? 'Jedno kliknięcie przez Google i twoje postępy są bezpieczne. Zmieniasz telefon? Idą z tobą. Usuniesz aplikację? Odzyskamy je jednym kliknięciem.'
+        : context === 'startup_recovery'
+        ? 'Zaloguj się w ten sam sposób i na to samo konto Google lub Apple, które było wcześniej połączone. Potem bezpiecznie przywrócimy postęp z chmury; dane na tym urządzeniu są zachowane.'
         : context === 'onboarding'
         ? 'Możesz kontynuować bez logowania, ale jeśli usuniesz aplikację bez połączenia konta, możesz stracić postępy. Konto można połączyć później w Ustawieniach.'
         : 'Szybkie logowanie przez Google lub Apple. Postępy synchronizują się między urządzeniami.',
@@ -223,6 +298,28 @@ function RegistrationPromptModal({
     tr: 'Giriş yapılıyor... birkaç saniye bekle',
     pl: 'Logowanie... poczekaj kilka sekund',
   });
+  const signInSlowLabel = triLang(lang, {
+    ru: 'Вход занимает больше времени. Можно безопасно закрыть это окно — попытка продолжится.',
+    uk: 'Вхід триває довше. Це вікно можна безпечно закрити — спроба продовжиться.',
+    es: 'El acceso tarda más de lo normal. Puedes cerrar esta ventana; el intento continuará.',
+    'pt-BR': 'A entrada está demorando. Você pode fechar esta janela; a tentativa continuará.',
+    vi: 'Đăng nhập đang lâu hơn bình thường. Bạn có thể đóng cửa sổ này; lần thử vẫn tiếp tục.',
+    id: 'Proses masuk lebih lama. Jendela ini boleh ditutup; proses akan tetap berjalan.',
+    tr: 'Giriş normalden uzun sürüyor. Bu pencereyi kapatabilirsin; deneme devam eder.',
+    pl: 'Logowanie trwa dłużej. Możesz zamknąć to okno; próba będzie kontynuowana.',
+  });
+  const labelLaterAccessibility = signInSlow
+    ? triLang(lang, {
+        ru: 'Закрыть окно. Вход продолжится в фоне.',
+        uk: 'Закрити вікно. Вхід продовжиться у фоні.',
+        es: 'Cerrar la ventana. El acceso continuará en segundo plano.',
+        'pt-BR': 'Fechar a janela. A entrada continuará em segundo plano.',
+        vi: 'Đóng cửa sổ. Quá trình đăng nhập sẽ tiếp tục trong nền.',
+        id: 'Tutup jendela. Proses masuk akan dilanjutkan di latar belakang.',
+        tr: 'Pencereyi kapat. Giriş arka planda devam edecek.',
+        pl: 'Zamknij okno. Logowanie będzie kontynuowane w tle.',
+      })
+    : labelLater;
   const labelPrivacy = triLang(lang, {
     ru: 'Твой email остаётся у тебя — никакого спама.',
     uk: 'Твій email залишається в тебе — жодного спаму.',
@@ -237,20 +334,30 @@ function RegistrationPromptModal({
   const handleSignIn = useCallback(
     async (provider: AuthProviderId) => {
       if (loadingProvider !== null) return;
+      const attemptToken = attemptLifecycle.startAttempt();
+      if (attemptToken === null) return;
       setLoadingProvider(provider);
+      setSignInSlow(false);
+      clearSlowTimer();
+      slowTimerRef.current = setTimeout(() => {
+        slowTimerRef.current = null;
+        if (isAttemptCurrent(attemptToken)) {
+          setSignInSlow(true);
+          void AccessibilityInfo.announceForAccessibility(signInSlowLabel);
+        }
+      }, SIGN_IN_SLOW_THRESHOLD_MS);
       logEvent('auth_prompt_click', { context, provider });
       if (__DEV__) console.log('[RegistrationPromptModal] handleSignIn start, provider=', provider);
       try {
         await waitForAuthPromptBusyFrame();
-        // H-ENTER: общий таймаут на весь вход (см. SIGN_IN_OVERALL_TIMEOUT_MS).
-        // Без него зависший Firestore-await внутри signInWithProvider навсегда запирал
-        // модалку (loadingProvider не сбрасывался → все кнопки disabled).
-        const result = await Promise.race([
-          signInWithProvider(provider),
-          new Promise<never>((_, reject) =>
-            setTimeout(() => reject(new Error('signin_deadline-exceeded')), SIGN_IN_OVERALL_TIMEOUT_MS),
-          ),
-        ]);
+        if (!isAttemptCurrent(attemptToken)) return;
+        // Firebase credential mutations cannot be cancelled. Keep this modal busy
+        // until the original task settles so a second picker cannot race it.
+        const result = await signInWithProvider(provider, {
+          requireCurrentStableIdOwnership: context === 'startup_recovery',
+        });
+        if (!isAttemptCurrent(attemptToken)) return;
+        clearSlowTimer();
         if (__DEV__) console.log('[RegistrationPromptModal] signInWithProvider returned', result);
 
         if (result.result === 'cancelled') {
@@ -288,6 +395,22 @@ function RegistrationPromptModal({
         }
         if (result.result === 'error') {
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
+          if (result.error === 'recovery_provider_mismatch') {
+            showInlineError(
+              triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
+              triLang(lang, {
+                ru: 'Выбранный аккаунт не связан с этим прогрессом. Попробуй тот Google- или Apple-аккаунт, которым ты пользовался раньше. Локальные данные не изменены.',
+                uk: 'Вибраний акаунт не пов’язаний із цим прогресом. Спробуй той Google- або Apple-акаунт, яким користувався раніше. Локальні дані не змінено.',
+                es: 'La cuenta elegida no está vinculada a este progreso. Prueba la cuenta de Google o Apple que usabas antes. Los datos locales no cambiaron.',
+                'pt-BR': 'A conta escolhida não está vinculada a este progresso. Tente a conta Google ou Apple que você usava antes. Os dados locais não foram alterados.',
+                vi: 'Tài khoản đã chọn không liên kết với tiến độ này. Hãy thử tài khoản Google hoặc Apple bạn đã dùng trước đây. Dữ liệu trên máy không thay đổi.',
+                id: 'Akun yang dipilih tidak tertaut ke progres ini. Coba akun Google atau Apple yang pernah digunakan. Data lokal tidak berubah.',
+                tr: 'Seçilen hesap bu ilerlemeye bağlı değil. Daha önce kullandığın Google veya Apple hesabını dene. Yerel veriler değişmedi.',
+                pl: 'Wybrane konto nie jest połączone z tym postępem. Spróbuj konta Google lub Apple używanego wcześniej. Dane lokalne nie zostały zmienione.',
+              }),
+            );
+            return;
+          }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
             showInlineError(
               triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
@@ -337,15 +460,21 @@ function RegistrationPromptModal({
           return;
         }
 
-        // success — сохраняем что показали, закрываем, эмитим событие
+        // Provider mutation is complete. Keep finalization non-dismissible while
+        // the idempotent marker commit starts; a hidden/unmounted attempt never
+        // starts a new storage write or UI/event continuation.
+        if (!isAttemptCurrent(attemptToken)) return;
+        setSignInSlow(false);
         await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+        if (!isAttemptCurrent(attemptToken)) return;
         emitAppEvent('auth_provider_linked');
         onSignedIn?.(result);
         onClose();
       } catch (e: any) {
+        if (!isAttemptCurrent(attemptToken)) return;
+        clearSlowTimer();
         if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
-        // Сюда же попадает срабатывание общего таймаута (signin_deadline-exceeded).
         const detail = String(e?.message ?? e ?? 'unknown');
         showInlineError(
           triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
@@ -361,11 +490,26 @@ function RegistrationPromptModal({
           })}\n\n${detail.slice(0, 200)}`,
         );
       } finally {
-        // H-ENTER: блокировка кнопок снимается ВСЕГДА (включая «Позже»/закрытие).
-        setLoadingProvider(null);
+        if (isAttemptCurrent(attemptToken)) {
+          clearSlowTimer();
+          setLoadingProvider(null);
+          setSignInSlow(false);
+        }
+        attemptLifecycle.completeAttempt(attemptToken);
       }
     },
-    [context, lang, loadingProvider, onClose, onSignedIn, showInlineError],
+    [
+      attemptLifecycle,
+      clearSlowTimer,
+      context,
+      isAttemptCurrent,
+      lang,
+      loadingProvider,
+      onClose,
+      onSignedIn,
+      showInlineError,
+      signInSlowLabel,
+    ],
   );
 
   // Аварийная кнопка для DEV: полный wipe identity-state (Keychain stable_id +
@@ -390,11 +534,19 @@ function RegistrationPromptModal({
   }, [showInlineError]);
 
   const handleLater = useCallback(async () => {
-    if (loadingProvider !== null) return;
+    if (loadingProvider !== null && !signInSlow) return;
     logEvent('auth_prompt_dismissed', { context });
-    await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+    if (loadingProvider !== null) {
+      attemptLifecycle.invalidateActiveAttempt();
+      clearSlowTimer();
+      onClose();
+      return;
+    }
+    if (context !== 'startup_recovery') {
+      await AsyncStorage.setItem(AUTH_PROMPT_SHOWN_KEY, '1').catch(() => {});
+    }
     onClose();
-  }, [context, loadingProvider, onClose]);
+  }, [attemptLifecycle, clearSlowTimer, context, loadingProvider, onClose, signInSlow]);
 
   return (
     <Modal
@@ -468,8 +620,11 @@ function RegistrationPromptModal({
 
           {loadingProvider !== null && (
             <View
-              testID="auth-prompt-busy"
+              testID={signInSlow ? 'auth-prompt-slow' : 'auth-prompt-busy'}
               accessibilityRole="progressbar"
+              accessibilityLabel={signInSlow ? signInSlowLabel : signInBusyLabel}
+              accessibilityLiveRegion="polite"
+              accessibilityState={{ busy: true }}
               style={[
                 styles.busyPanel,
                 {
@@ -480,7 +635,7 @@ function RegistrationPromptModal({
             >
               <ActivityIndicator size="small" color={t.accent} />
               <Text style={[styles.busyText, { color: t.textSecond, fontSize: f.caption }]}>
-                {signInBusyLabel}
+                {signInSlow ? signInSlowLabel : signInBusyLabel}
               </Text>
             </View>
           )}
@@ -506,7 +661,7 @@ function RegistrationPromptModal({
             </Text>
           )}
 
-          {__DEV__ && (
+          {__DEV__ && context !== 'startup_recovery' && (
             <Pressable
               onPress={handleResetAndRetry}
               disabled={loadingProvider !== null}
@@ -532,7 +687,10 @@ function RegistrationPromptModal({
 
           <Pressable
             onPress={handleLater}
-            disabled={loadingProvider !== null}
+            disabled={loadingProvider !== null && !signInSlow}
+            accessibilityRole="button"
+            accessibilityLabel={labelLaterAccessibility}
+            accessibilityState={{ disabled: loadingProvider !== null && !signInSlow }}
             style={[
               styles.laterButton,
               isCompassTheme && {

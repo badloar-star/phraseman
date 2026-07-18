@@ -7,10 +7,25 @@ globalThis.window = {
   },
 };
 
-const [{ renderAdminAnalytics }, { completeAnalyticsLoad }] = await Promise.all([
+const [{ renderAdminAnalytics }, { assessPaywallIntegrityCompatibility, completeAnalyticsLoad }] = await Promise.all([
   import('../admin/v2/scripts/admin-analytics-view.js'),
   import('../admin/v2/scripts/admin-analytics-state.js'),
 ]);
+
+test('blocks paywall integrity comparison when the trend request has a different window or filters', () => {
+  assert.deepEqual(assessPaywallIntegrityCompatibility(
+    { rangeDays: 28 },
+    { data: { request: { scope: 'paywall', presetDays: 28, filters: {} } } },
+  ), { compatible: true, reason: null });
+  assert.deepEqual(assessPaywallIntegrityCompatibility(
+    { rangeDays: 28 },
+    { data: { request: { scope: 'paywall', presetDays: 7, filters: {} } } },
+  ), { compatible: false, reason: 'window_or_filter_mismatch' });
+  assert.deepEqual(assessPaywallIntegrityCompatibility(
+    { rangeDays: 28 },
+    { data: { request: { scope: 'paywall', presetDays: 28, filters: { variant: 'a' } } } },
+  ), { compatible: false, reason: 'window_or_filter_mismatch' });
+});
 
 function emptySource() {
   return { state: 'empty', count: 0, truncated: false, latestAtMs: null, errorCode: null };
@@ -26,8 +41,8 @@ test('renders an unavailable funnel ratio as an em dash', () => {
       storeActivity: {}, shardActivity: {}, funnelSignals: { events: {}, purchaseSignalRate: null }, appActivity: {},
     },
   });
-  assert.match(html, /<strong>—<\/strong><small>Завершённые покупки относительно показов экрана оплаты<\/small>/);
-  assert.doesNotMatch(html, /<strong>0\.0%<\/strong><small>Завершённые покупки относительно показов экрана оплаты<\/small>/);
+  assert.match(html, /<strong>—<\/strong>/);
+  assert.doesNotMatch(html, /<strong>0\.0%<\/strong>/);
 });
 
 test('preserves the last good snapshot when the callable returns an error snapshot', () => {

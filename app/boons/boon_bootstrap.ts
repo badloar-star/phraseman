@@ -9,13 +9,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayKey } from '../daily_tasks';
 import { emitAppEvent } from '../events';
-import { addArenaPlaysBonusForToday } from '../arena_daily_limit';
 import { getPackGiftTrial, setRandomPackGiftTrial48h } from '../flashcards/pack_trial_gift';
 import { applyMonthlyPremiumFreezeAllowance } from '../premium_freeze_allowance';
 import { isStreakFreezeActiveToday, parseStreakFreeze } from '../streak_freeze';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
 import { getTodaysBoons } from './boon_engine';
 import { applyTurboRegenOverride } from './boon_effects_energy';
+import { grantBoonReward } from './boon_rewards';
 
 /** Сколько доп. попыток арены даёт «Турнирная суббота». */
 export const ARENA_SATURDAY_BONUS_PLAYS = 5;
@@ -74,7 +74,8 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
 /** Arena-суббота: +N попыток арены (функция СУММИРУЕТ → строгий date-guard). */
 async function applyArenaSaturday(todayKey: string): Promise<void> {
   if (!(await notGrantedToday('arena_saturday', todayKey))) return;
-  await addArenaPlaysBonusForToday(ARENA_SATURDAY_BONUS_PLAYS);
+  // Keep already-scheduled legacy boon days valuable after the retired mode disappeared.
+  await grantBoonReward({ shards: ARENA_SATURDAY_BONUS_PLAYS }, 'legacy_arena_saturday');
   await markGrantedToday('arena_saturday', todayKey);
 }
 

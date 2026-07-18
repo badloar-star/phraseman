@@ -41,7 +41,7 @@ describe('activity 365 analytics', () => {
       breakdown[key] = {
         words_learned: day,
         phrases_learned: day + 1,
-        quizzes_completed: day % 2,
+        lessons_completed: day % 2,
       };
     }
     delete statsMap['2026-05-05'];
@@ -186,8 +186,8 @@ describe('activity 365 analytics', () => {
       },
       fgDaily: {},
       breakdown: {
-        '2026-05-09': { quizzes_completed: 0, arena_wins: 2, arena_losses: 1 },
-        '2026-05-10': { quizzes_completed: 4, arena_wins: 0, arena_losses: 0 },
+        '2026-05-09': { lessons_completed: 2, flashcards_saved: 1 },
+        '2026-05-10': { lessons_completed: 4, flashcards_saved: 3 },
       },
       goal: 180,
       now: new Date('2026-05-10T12:00:00Z'),
@@ -196,10 +196,10 @@ describe('activity 365 analytics', () => {
     const yesterday = analytics.days.find(day => day.date === '2026-05-09')!;
     const today = analytics.days.find(day => day.date === '2026-05-10')!;
 
-    expect(valueForFilter(yesterday, 'arena')).toBe(3);
-    expect(valueForFilter(today, 'quizzes')).toBe(4);
-    expect(levelForFilter(analytics.days, today, 'quizzes')).toBeGreaterThan(0);
-    expect(levelForFilter(analytics.days, yesterday, 'quizzes')).toBe(0);
+    expect(valueForFilter(yesterday, 'review')).toBe(1);
+    expect(valueForFilter(today, 'lessons')).toBe(4);
+    expect(levelForFilter(analytics.days, today, 'lessons')).toBeGreaterThan(0);
+    expect(levelForFilter(analytics.days, yesterday, 'review')).toBeGreaterThan(0);
   });
 
   it('keeps the monthly calendar on observed months instead of future padding months', () => {

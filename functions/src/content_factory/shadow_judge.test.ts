@@ -1,7 +1,7 @@
 import { disabledShadowJudgeReceipt, runShadowJudge } from './shadow_judge';
 import type { StageGenerationProvider } from './stage_runner';
 
-const evidence = { kind: 'arena_questions' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', artifact: { stage: 'arena_questions', items: [{ question: 'Where is it?', options: ['Here', 'There', 'Later', 'Never'] }] }, contentHash: 'a'.repeat(64), groundingHash: 'b'.repeat(64), qaStatus: 'passed', qaErrors: [] };
+const evidence = { kind: 'challenge_questions' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', artifact: { stage: 'challenge_questions', items: [{ question: 'Where is it?', options: ['Here', 'There', 'Later', 'Never'] }] }, contentHash: 'a'.repeat(64), groundingHash: 'b'.repeat(64), qaStatus: 'passed', qaErrors: [] };
 const output = (patch: Record<string, unknown> = {}) => JSON.stringify({ recommendation: 'pass', confidence: 0.96, dimensions: { grammar: 'pass', naturalness: 'pass', semanticAlignment: 'pass', answerUniqueness: 'pass', cefr: 'pass', locale: 'pass', grounding: 'pass' }, issues: [], ...patch });
 
 describe('shadow content judge', () => {

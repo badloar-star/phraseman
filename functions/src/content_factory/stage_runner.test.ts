@@ -3,19 +3,19 @@ import { buildStagePromptPacket } from './prompt_registry';
 import { buildPromptContext } from './prompt_context';
 
 describe('generation stage runner', () => {
-  const packet = buildStagePromptPacket('quiz_questions', 'v1', buildPromptContext({ studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity', count: 2, approvedArtifactIds: [], exemplarIds: [], previousContentFingerprints: [] }));
+  const packet = buildStagePromptPacket('challenge_questions', 'v1', buildPromptContext({ studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Identity', count: 2, approvedArtifactIds: [], exemplarIds: [], previousContentFingerprints: [] }));
 
   it('accepts structured output with exact identity and count', async () => {
-    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'quiz_questions', items: [{ id: 'q1' }, { id: 'q2' }] }) };
+    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }) };
     const result = await runGenerationStage({ provider, model: 'fake', packet });
-    expect(result.artifact).toMatchObject({ stage: 'quiz_questions' });
+    expect(result.artifact).toMatchObject({ stage: 'challenge_questions' });
     expect(result.attempts).toBe(1);
     expect(result.receipt).toMatchObject({ status: 'passed', promptHash: packet.promptHash, contextHash: packet.contextHash, schemaHash: packet.schemaHash, validation: { serverValidated: true, errors: [] } });
   });
 
   it('repairs only the invalid JSON at most twice using validation errors', async () => {
     const prompts: string[] = [];
-    const responses = ['{"stage":"quiz_questions","items":[]}', '{"stage":"quiz_questions","items":[{"id":"q1"}]}', '{"stage":"quiz_questions","items":[{"id":"q1"},{"id":"q2"}]}'];
+    const responses = ['{"stage":"challenge_questions","items":[]}', '{"stage":"challenge_questions","items":[{"id":"q1"}]}', '{"stage":"challenge_questions","items":[{"id":"q1"},{"id":"q2"}]}'];
     const provider: StageGenerationProvider = { generate: async ({ prompt }) => { prompts.push(prompt); return responses.shift() ?? '{}'; } };
     const result = await runGenerationStage({ provider, model: 'fake', packet });
     expect(result.attempts).toBe(3);
@@ -34,13 +34,13 @@ describe('generation stage runner', () => {
     await expect(runGenerationStage({ provider, model: 'gpt-4.1-mini', packet, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
     expect(formats[0]).toMatchObject({ type: 'json_schema', json_schema: { strict: false, schema: packet.outputSchema } });
     formats.length = 0;
-    await runGenerationStage({ provider: { generate: async (input) => { formats.push(input.responseFormat); return JSON.stringify({ stage: 'quiz_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); } }, model: 'unknown-model', packet, maxRepairs: 0 });
+    await runGenerationStage({ provider: { generate: async (input) => { formats.push(input.responseFormat); return JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); } }, model: 'unknown-model', packet, maxRepairs: 0 });
     expect(formats[0]).toEqual({ type: 'json_object' });
   });
 
   it('accounts every provider request and records policy evidence', async () => {
     const reserved: number[] = [];
-    const responses = ['{}', JSON.stringify({ stage: 'quiz_questions', items: [{ id: 'q1' }, { id: 'q2' }] })];
+    const responses = ['{}', JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] })];
     const result = await runGenerationStage({ provider: { generate: async () => responses.shift()! }, model: 'fake', packet, maxRepairs: 1, beforeProviderCall: async (callIndex) => { reserved.push(callIndex); } });
     expect(reserved).toEqual([1, 2]);
     expect(result.receipt).toMatchObject({ providerRequests: { requestedUnits: 2, usedUnits: 2, refundedUnits: 0 }, policyVersion: 'content-stage-policy-r9a-v1', operatorCorrection: { status: 'unavailable_not_collected' } });
@@ -51,7 +51,7 @@ describe('generation stage runner', () => {
     let count = 0;
     const provider: StageGenerationProvider = {
       getProviderRequestCount: () => count,
-      generate: async () => { count += 3; return JSON.stringify({ stage: 'quiz_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); },
+      generate: async () => { count += 3; return JSON.stringify({ stage: 'challenge_questions', items: [{ id: 'q1' }, { id: 'q2' }] }); },
     };
     const result = await runGenerationStage({ provider, model: 'fake', packet, maxRepairs: 0 });
     expect(result.receipt.providerRequests).toMatchObject({ requestedUnits: 3, usedUnits: 3, refundedUnits: 0, unit: 'provider_requests' });
@@ -91,15 +91,4 @@ describe('generation stage runner', () => {
     await expect(runGenerationStage({ provider, model: 'fake', packet: flashcardPacket, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
   });
 
-  it('fails a v2 Arena batch that only satisfies generic item count', async () => {
-    const arenaPacket = buildStagePromptPacket('arena_questions', 'v2', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Fast city', count: 10, approvedArtifactIds: ['topic-1'], exemplarIds: [], previousContentFingerprints: [] }), { topic: { level: 'A2', skillTags: ['city'], allowedTypes: ['translate'], difficultyDistribution: { easy: 3, medium: 4, hard: 3 }, taskMaxChars: 120, questionMaxChars: 180, optionMaxChars: 80, ruleMaxChars: 500 } });
-    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'arena_questions', items: Array.from({ length: 10 }, (_, index) => ({ id: `a${index}` })) }) };
-    await expect(runGenerationStage({ provider, model: 'fake', packet: arenaPacket, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
-  });
-
-  it('keeps the non-active Arena v5 candidate behind the production validator', async () => {
-    const arenaPacket = buildStagePromptPacket('arena_questions', 'v5', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'Fast city', count: 10, approvedArtifactIds: ['topic-1'], exemplarIds: [], previousContentFingerprints: [] }), { topic: { level: 'A2', skillTags: ['city'], allowedTypes: ['translate'], difficultyDistribution: { easy: 3, medium: 4, hard: 3 }, taskMaxChars: 120, questionMaxChars: 180, optionMaxChars: 80, ruleMaxChars: 500 } });
-    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'arena_questions', items: Array.from({ length: 10 }, (_, index) => ({ id: `a${index}` })) }) };
-    await expect(runGenerationStage({ provider, model: 'fake', packet: arenaPacket, maxRepairs: 0 })).rejects.toThrow('generation_stage_schema_failed');
-  });
 });

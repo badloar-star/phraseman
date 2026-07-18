@@ -28,4 +28,12 @@ describe('Agent Office Telegram production wrapper contract', () => {
     expect(replyIndex).toBeGreaterThan(decisionIndex);
     expect(tokenValueIndex).toBeGreaterThan(replyIndex);
   });
+
+  test('routes ao1 and am1 through their exact token roots, repositories, ledgers and cores', () => {
+    expect(source).toContain("callbackNamespace === 'ao1'");
+    expect(source).toContain('telegramApprovalTokenPath(tokenIdHash)');
+    expect(source).toContain('managerTelegramTokenPath(tokenIdHash)');
+    expect(source).toContain('new TelegramApprovalCore(new AgentOfficeLedger');
+    expect(source).toContain('new AgentManagerTelegramApprovalCore(new AgentManagerLedger');
+  });
 });

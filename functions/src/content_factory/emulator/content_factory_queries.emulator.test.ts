@@ -11,15 +11,15 @@ test('cursor pages have no gaps or duplicates and filters run before limit', asy
   const requestId = `paging-${process.pid}`;
   const batch = db.batch();
   for (let index = 0; index < 205; index += 1) {
-    const id = `${requestId}:quiz_topic:${String(index).padStart(3, '0')}:r1`;
-    batch.set(db.collection('content_factory_stages').doc(id), { requestId, kind: index % 2 ? 'quiz_topic' : 'lesson_outline', state: 'approved', studyTarget: 'fr', sourceLocale: 'ru' });
+    const id = `${requestId}:challenge_topic:${String(index).padStart(3, '0')}:r1`;
+    batch.set(db.collection('content_factory_stages').doc(id), { requestId, kind: index % 2 ? 'challenge_topic' : 'lesson_outline', state: 'approved', studyTarget: 'fr', sourceLocale: 'ru' });
   }
   await batch.commit();
 
   const ids: string[] = [];
   let cursor = '';
   do {
-    const input = parseContentStageListRequest({ requestId, kind: 'quiz_topic', studyTarget: 'fr', sourceLocale: 'ru', limit: 40, cursor });
+    const input = parseContentStageListRequest({ requestId, kind: 'challenge_topic', studyTarget: 'fr', sourceLocale: 'ru', limit: 40, cursor });
     const snapshot = await buildContentStageListQuery(db, input).get();
     const docs = snapshot.docs.slice(0, input.limit);
     ids.push(...docs.map((doc) => doc.id));
@@ -37,13 +37,13 @@ test('approved dependency pages never leak wrong state, request or language', as
   const batch = db.batch();
   for (let index = 0; index < 205; index += 1) {
     const valid = index % 2 === 0;
-    const id = `${requestId}:quiz_topic:${String(index).padStart(3, '0')}:r1`;
-    batch.set(db.collection('content_factory_stages').doc(id), { requestId: valid ? requestId : `${requestId}-other`, kind: 'quiz_topic', state: index % 4 === 3 ? 'rejected' : 'approved', studyTarget: index % 6 === 5 ? 'fr' : 'en', sourceLocale: 'ru', scopeId: `topic-${index}`, revision: 1, artifactId: `artifact-${index}`, contentHash: 'a'.repeat(64) });
+    const id = `${requestId}:challenge_topic:${String(index).padStart(3, '0')}:r1`;
+    batch.set(db.collection('content_factory_stages').doc(id), { requestId: valid ? requestId : `${requestId}-other`, kind: 'challenge_topic', state: index % 4 === 3 ? 'rejected' : 'approved', studyTarget: index % 6 === 5 ? 'fr' : 'en', sourceLocale: 'ru', scopeId: `topic-${index}`, revision: 1, artifactId: `artifact-${index}`, contentHash: 'a'.repeat(64) });
   }
   await batch.commit();
   const ids: string[] = []; let cursor = '';
   do {
-    const input = parseDependencyCatalogRequest({ requestId, studyTarget: 'en', sourceLocale: 'ru', consumerKind: 'quiz_questions', limit: 17, cursor });
+    const input = parseDependencyCatalogRequest({ requestId, studyTarget: 'en', sourceLocale: 'ru', consumerKind: 'challenge_questions', limit: 17, cursor });
     const snapshot = await buildContentStageDependencyQuery(db, input).get();
     const page = dependencyCatalogItems(snapshot.docs.map((doc) => ({ id: doc.id, data: doc.data() })), input.limit);
     ids.push(...page.items.map((item) => item.stageId)); cursor = page.nextCursor;

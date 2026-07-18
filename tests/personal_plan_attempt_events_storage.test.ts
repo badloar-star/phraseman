@@ -11,6 +11,12 @@ import {
   createPlanAttemptEvent,
   type PlanExerciseBlock,
 } from '../app/personal_plan_engine_contracts';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 const block: PlanExerciseBlock = {
   id: 'gavan_day1_block',
@@ -29,6 +35,8 @@ const block: PlanExerciseBlock = {
 describe('personal plan attempt event storage', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('stable-a');
   });
 
   it('stores and lists attempt events by planInstanceId only', async () => {
@@ -118,5 +126,28 @@ describe('personal plan attempt event storage', () => {
 
     await expect(appendPersonalPlanAttemptEvent(invalid)).rejects.toThrow('missing_plan_instance_id');
     expect(await listPersonalPlanAttemptEvents('instance_missing')).toEqual([]);
+  });
+
+  it('rejects a queued account-A append after account generation changes', async () => {
+    const event = createPlanAttemptEvent(block, {
+      id: 'stale_attempt',
+      planInstanceId: 'instance_a',
+      result: 'wrong',
+      contentUnitId: 'unit_1',
+    });
+    let release!: () => void;
+    const blocker = withAccountTransitionLock(
+      () => new Promise<void>((resolve) => { release = resolve; }),
+    );
+    await Promise.resolve();
+
+    const append = appendPersonalPlanAttemptEvent(event);
+    invalidateAccountGeneration();
+    beginAccountGeneration('stable-b');
+    release();
+    await blocker;
+
+    await expect(append).rejects.toThrow('stale_account_generation');
+    expect(await AsyncStorage.getItem(personalPlanAttemptEventsStorageKey())).toBeNull();
   });
 });

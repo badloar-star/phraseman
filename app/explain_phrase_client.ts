@@ -11,6 +11,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
+import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainPhraseInFlight = new Map<string, Promise<ExplainPhraseResponse>>();
@@ -53,10 +54,14 @@ export interface ExplainPhraseResponse {
 
 /** Запросить объяснение фразы. App Check инициализируется первым (как в ai_dialog_client). */
 export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<ExplainPhraseResponse> {
+  const key = explainPhraseRequestKey(req);
+  const localCached = await readExplainLocalCache({ kind: 'phrase', key });
+  if (localCached?.status === 'ok') {
+    return { ok: true, text: localCached.text, status: 'ok', fromCache: true };
+  }
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
-  const key = explainPhraseRequestKey(req);
   const existing = explainPhraseInFlight.get(key);
   if (existing) return existing;
 
@@ -67,6 +72,12 @@ export async function callExplainPhrase(req: ExplainPhraseRequest): Promise<Expl
       'explainPhrase',
     );
     const res = await withExplainCallableTimeout(fn(req), 'explainPhrase');
+    if (res.data.status === 'ok') {
+      void writeExplainLocalCache({ kind: 'phrase', key }, {
+        text: res.data.text,
+        status: res.data.status,
+      });
+    }
     return res.data;
   })().finally(() => {
     explainPhraseInFlight.delete(key);

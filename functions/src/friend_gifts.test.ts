@@ -258,7 +258,7 @@ test('friendSendGift rejects reusing an idempotency key for a different gift', a
   await sendGift({ idempotencyKey: 'fg_test_1234567890' });
 
   await expect(sendGift({
-    giftId: 'arena_extra_5',
+    giftId: 'xp_boost_2x_24h',
     idempotencyKey: 'fg_test_1234567890',
   })).rejects.toMatchObject({
     code: 'already-exists',
@@ -292,12 +292,25 @@ test('friendThankGift rejects reusing an idempotency key for another thanks gift
   await thankGift({ idempotencyKey: 'fgt_test_1234567890' });
 
   await expect(thankGift({
-    giftId: 'arena_extra_5',
+    giftId: 'xp_boost_2x_24h',
     idempotencyKey: 'fgt_test_1234567890',
   })).rejects.toMatchObject({
     code: 'already-exists',
     message: 'Idempotency key already used for another friend gift thanks',
   });
+});
+
+test('friend gift callables reject the retired Arena gift before any mutation', async () => {
+  await expect(sendGift({ giftId: 'arena_extra_5' })).rejects.toMatchObject({
+    code: 'invalid-argument',
+    message: 'Unsupported gift id',
+  });
+  await expect(thankGift({ giftId: 'arena_extra_5' })).rejects.toMatchObject({
+    code: 'invalid-argument',
+    message: 'Valid sender, friend and gift required',
+  });
+  expect(docs.get('users/sender')).toMatchObject({ shards: 100 });
+  expect(docs.get('users/recipient')).not.toHaveProperty('arena_extra_plays_today');
 });
 
 test('friendSendGift does not start another quest while either user has an active quest', async () => {

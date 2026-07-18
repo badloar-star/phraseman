@@ -57,7 +57,6 @@ const GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
 const ENERGY_OVERRIDE_KEY = 'league_chest_energy_override_v1';
 const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
 const STREAK_SHIELD_KEY = 'chain_shield';
-const ARENA_DAILY_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
 const PACK_TRIAL_GIFT_KEY = 'flashcard_pack_trial_gift_v1';
 const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
 const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
@@ -231,12 +230,6 @@ function buildLeagueRewardDrops(params) {
         rarity: 'rare',
         amount: 1,
     });
-    addIf('arena_plays', 0.20, {
-        id: 'league_arena_plays_5',
-        kind: 'arena_plays',
-        rarity: 'common',
-        amount: 5,
-    });
     addIf('bonus_shards', 0.15, {
         id: 'league_bonus_shards',
         kind: 'shards',
@@ -313,15 +306,6 @@ function buildRewardProgressPatch(params) {
         patch[STREAK_SHIELD_KEY] = next;
         progressPatch[STREAK_SHIELD_KEY] = next;
     }
-    const arenaPlays = drops
-        .filter((drop) => drop.kind === 'arena_plays')
-        .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 5)), 0);
-    if (arenaPlays > 0) {
-        const cur = parseJsonObject(getExistingField(user, ARENA_DAILY_GIFT_BONUS_KEY));
-        const sameDay = cur.date === today;
-        const extra = sameDay ? Math.max(0, readInt(cur.extra, 0)) : 0;
-        progressPatch[ARENA_DAILY_GIFT_BONUS_KEY] = JSON.stringify({ date: today, extra: extra + arenaPlays });
-    }
     if (drops.some((drop) => drop.kind === 'pack_trial_48h')) {
         progressPatch[PACK_TRIAL_GIFT_KEY] = JSON.stringify({ packId: 'league_bonus_voucher', expiresAt: now + PACK_TRIAL_MS });
     }
@@ -366,18 +350,16 @@ exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION, enforceAppCheck
     const lbRef = db.collection('leaderboard').doc(stableUid);
     const claimRef = db.collection('league_chest_claims').doc(claimDocId(stableUid, weekId, groupId));
     const eventRef = db.collection('league_chest_events').doc(eventDocId(weekId, groupId));
-    const arenaEventRef = db.collection('arena_club_events').doc(`${safeId(weekId)}_${safeId(groupId)}`);
     const userRef = db.collection('users').doc(stableUid);
     const now = Date.now();
     const expiresAt = now + MS_WEEK;
     return db.runTransaction(async (tx) => {
-        const [groupSnap, lbSnap, claimSnap, userSnap, eventSnap, arenaEventSnap] = await Promise.all([
+        const [groupSnap, lbSnap, claimSnap, userSnap, eventSnap] = await Promise.all([
             tx.get(groupRef),
             tx.get(lbRef),
             tx.get(claimRef),
             tx.get(userRef),
             tx.get(eventRef),
-            tx.get(arenaEventRef),
         ]);
         if (claimSnap.exists) {
             const claim = claimSnap.data() || {};
@@ -430,9 +412,7 @@ exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION, enforceAppCheck
         }
         const goal = getLeagueChestGoal(leagueId);
         const leaguePoints = members.reduce((sum, m) => sum + m.points, 0);
-        const arenaEvent = arenaEventSnap.data() || {};
-        const arenaBonus = Math.max(0, readInt(arenaEvent.totalPoints, 0));
-        const totalPoints = leaguePoints + arenaBonus;
+        const totalPoints = leaguePoints;
         if (totalPoints < goal) {
             return { ok: true, claimed: false, status: 'not_ready', progress: totalPoints, goal };
         }
@@ -476,7 +456,6 @@ exports.leagueChestClaim = (0, https_1.onCall)({ region: REGION, enforceAppCheck
                 goal,
                 memberCount: members.length,
                 leaguePoints,
-                arenaBonus,
                 updatedAt: now,
             }, { merge: true });
             tx.set(crownRef, {

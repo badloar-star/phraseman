@@ -51,6 +51,7 @@ export class TelegramApprovalCore {
 
   async handle(verifiedUpdateValue: unknown, serverStateValue: unknown) {
     const update = parseVerifiedTelegramApprovalUpdate(verifiedUpdateValue);
+    if (update.callbackNamespace !== 'ao1') throw new HttpsError('invalid-argument', 'Agent Office Telegram namespace is invalid');
     const state = parseServerState(serverStateValue);
     const command = parseTelegramApprovalCommand(update.commandText);
     const actor = requireAgentOfficeOwner(state.ownerAuth);

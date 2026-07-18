@@ -1,4 +1,4 @@
-export const CANONICAL_RELEASE_SURFACES = ['lesson', 'quiz', 'flashcard', 'arena'] as const;
+export const CANONICAL_RELEASE_SURFACES = ['lesson', 'flashcard'] as const;
 export type CanonicalReleaseSurface = (typeof CANONICAL_RELEASE_SURFACES)[number];
 
 const CODE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
@@ -54,6 +54,10 @@ export function validateCourseRelease(value: unknown): { ok: boolean; errors: st
   if (!isRecord(value.artifacts)) {
     errors.push('artifacts_required');
     return { ok: false, errors };
+  }
+  const supportedSurfaces = new Set<string>(CANONICAL_RELEASE_SURFACES);
+  if (Object.keys(value.artifacts).some((surface) => !supportedSurfaces.has(surface))) {
+    errors.push('artifact_surface_unsupported');
   }
   for (const surface of CANONICAL_RELEASE_SURFACES) {
     const artifact = value.artifacts[surface];

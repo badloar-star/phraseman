@@ -1542,6 +1542,31 @@ export default function SettingsMain() {
                   setSwitchAccountStage('wiping');
                   const res = await signOutAndWipeForAccountSwitch();
                   setSwitchAccountStage('idle');
+                  if (!res.ok && res.reason === 'pending_shard_spend') {
+                    Alert.alert(
+                      L(
+                        'Покупка ещё синхронизируется',
+                        'Покупка ще синхронізується',
+                        'La compra aún se está sincronizando',
+                        'A compra ainda está sincronizando',
+                        'Giao dịch mua vẫn đang đồng bộ',
+                        'Pembelian masih disinkronkan',
+                        'Satın alma hâlâ eşitleniyor',
+                        'Zakup nadal się synchronizuje',
+                      ),
+                      L(
+                        'Смена аккаунта отменена: незавершённое списание осколков нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
+                        'Зміну акаунту скасовано: незавершене списання осколків не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'El cambio de cuenta se canceló: un gasto de fragmentos pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
+                        'A troca de conta foi cancelada: um gasto de fragmentos pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
+                        'Đã hủy đổi tài khoản: khoản trừ mảnh đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
+                        'Pergantian akun dibatalkan: pengeluaran shard yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
+                        'Hesap değişimi iptal edildi: bekleyen parça harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
+                        'Zmiana konta została anulowana: oczekującego wydatku odłamków nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
+                      ),
+                    );
+                    return;
+                  }
                   if (!res.ok && res.reason === 'sync_failed') {
                     // Прогресс не доехал до облака — switch отменён, данные целы.
                     // Даём выбор: повторить при сети или явно сменить без сохранения.
@@ -1569,10 +1594,33 @@ export default function SettingsMain() {
                             setSwitchAccountStage('wiping');
                             const forced = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
                             setSwitchAccountStage('idle');
-                            if (forced.ok) {
-                              setLinkedAuth(null);
-                              setAuthPromptVisible(true);
+                            if (!forced.ok) {
+                              showInfoAlert(
+                                L(
+                                  'Смена аккаунта отменена',
+                                  'Зміну акаунту скасовано',
+                                  'Cambio de cuenta cancelado',
+                                  'Troca de conta cancelada',
+                                  'Đã hủy đổi tài khoản',
+                                  'Pergantian akun dibatalkan',
+                                  'Hesap değişimi iptal edildi',
+                                  'Zmiana konta anulowana',
+                                ),
+                                L(
+                                  'Защитная проверка не разрешила удалить локальные данные. Всё осталось на месте — попробуй снова позже.',
+                                  'Захисна перевірка не дозволила видалити локальні дані. Усе залишилося на місці — спробуй ще раз пізніше.',
+                                  'La comprobación de seguridad no permitió borrar los datos locales. Todo sigue en su lugar; inténtalo más tarde.',
+                                  'A verificação de segurança não permitiu apagar os dados locais. Tudo continua no lugar; tente novamente mais tarde.',
+                                  'Kiểm tra an toàn không cho phép xóa dữ liệu cục bộ. Mọi thứ vẫn nguyên; hãy thử lại sau.',
+                                  'Pemeriksaan keamanan tidak mengizinkan penghapusan data lokal. Semuanya tetap aman; coba lagi nanti.',
+                                  'Güvenlik kontrolü yerel verilerin silinmesine izin vermedi. Her şey yerinde kaldı; daha sonra tekrar dene.',
+                                  'Kontrola bezpieczeństwa nie zezwoliła na usunięcie danych lokalnych. Wszystko pozostało na miejscu; spróbuj ponownie później.',
+                                ),
+                              );
+                              return;
                             }
+                            setLinkedAuth(null);
+                            setAuthPromptVisible(true);
                           },
                         },
                       ],

@@ -155,6 +155,20 @@ describe('weekly_review quota replay helpers', () => {
     });
 });
 describe('weekly_review Plus-only preflight ordering', () => {
+    it('accepts five real mistakes even when conservative category classification finds no weak category', async () => {
+        const briefing = baseBriefing();
+        briefing.mistakes.last30.mistakes = 5;
+        briefing.mistakes.weakCategories = [];
+        const result = await runWeeklyReviewPreflight({ authUid: 'auth-eligible', rawBriefing: briefing, db: {} }, {
+            requireAuth: (uid) => uid,
+            sanitize: (raw) => raw,
+            resolveStableUid: async () => 'stable-eligible',
+            resolvePremium: async () => true,
+            rejectFree: () => { throw new Error('unexpected_free'); },
+        });
+        expect(result.stableUid).toBe('stable-eligible');
+        expect(result.briefing.mistakes.weakCategories).toEqual([]);
+    });
     it('rejects Free before config, replay, rate, lease, budget, provider, or billing', async () => {
         const trace = [];
         await expect(runWeeklyReviewPreflight({ authUid: 'auth-free', rawBriefing: baseBriefing(), db: {} }, {

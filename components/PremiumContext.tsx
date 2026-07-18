@@ -24,7 +24,7 @@ import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
 import { resolvePremiumPackages } from '../app/revenuecat_init';
 import { processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
-import { ensureAnonUser, ensureStableAuthLinkForStableId, restoreFromCloud } from '../app/cloud_sync';
+import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
 import { getLoyaltyGiftState } from '../app/loyalty_gift';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
@@ -314,7 +314,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       try {
         const uid = await ensureAnonUser();
         if (cancelled || !uid) return;
-        await ensureStableAuthLinkForStableId(uid).catch(() => false);
+        const stableLink = await ensureStableAuthLinkForStableIdDetailed(uid).catch(() => null);
+        if (cancelled) return;
+        // A stable-owner mismatch cannot heal through repeated anonymous retries.
+        // Wait for the startup provider-recovery flow to emit auth_provider_linked,
+        // which increments premiumListenerRevision and restarts this effect.
+        if (stableLink?.failure === 'stable_id_mismatch') return;
+        if (!stableLink?.ok || stableLink.stableUid !== uid) {
+          scheduleRetry();
+          return;
+        }
 
         unsubscribe = db.collection('users').doc(uid).onSnapshot(
           (snap) => {
@@ -348,7 +357,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 setHasPremiumAccess(true);
                 emitAppEvent('vip_activated');
                 emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
               } else {
                 const premiumNow = isPremiumRef.current;
                 setIsVip(false);
@@ -356,7 +365,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
                 void reloadTrialEligible();
                 emitAppEvent('vip_deactivated');
                 emitAppEvent('premium_access_changed', { active: premiumNow, source: premiumNow ? 'premium' : 'none' });
-                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium: premiumNow });
+                void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium: premiumNow }).catch(() => {});
               }
             })();
           },
@@ -457,7 +466,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
         void reload();
         emitAppEvent('premium_access_changed', { active: true, source: 'premium' });
-        void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip });
+        void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: true, isVip }).catch(() => {});
       })();
     });
     return () => sub.remove();
@@ -472,7 +481,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setTrialEligible(false);
       invalidatePremiumCache();
       void reload();
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
     });
     const onDeactivated = onAppEvent('vip_deactivated', () => {
       setIsVip(false);
@@ -480,7 +489,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       invalidatePremiumCache();
       void reloadTrialEligible();
       void reload();
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: false, isPremium }).catch(() => {});
     });
     return () => {
       onActivated.remove();
@@ -534,13 +543,13 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         .catch(() => {});
       void reload();
       emitAppEvent('premium_access_changed', { active: isVip, source: isVip ? 'vip' : 'none' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: false, isVip });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isPremium: false, isVip }).catch(() => {});
     });
     return () => sub.remove();
   }, [isVip, reload]);
 
   // H-VIPCHURN: мемоизируем value, иначе любой ре-рендер провайдера слал новую ссылку
-  // во все usePremium()-потребители по всему приложению (home, arena, inbox, friends…),
+  // во все usePremium()-потребители по всему приложению (home, inbox, friends…),
   // умножая работу на каждом тике premium/VIP.
   const contextValue = useMemo<PremiumContextValue>(
     () => ({ isPremium, isVip, hasPremiumAccess, accessResolved, isIntroFullAccess, introFullAccessEndsAt, trialEligible, reload }),

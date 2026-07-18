@@ -30,21 +30,15 @@ const STAGE_TASKS: Readonly<Record<GenerationStageKind, string>> = Object.freeze
   lesson_irregular_verbs: 'Classify irregular verbs extracted only from approved lesson phrases.',
   lesson_prepositions: 'Classify prepositions extracted only from approved lesson phrases.',
   lesson_theory: 'Create evidence-backed theory from approved phrases and retrieved gold exemplars.',
-  quiz_topic: 'Create one editable quiz topic proposal with learning promise and coverage constraints.',
-  quiz_questions: 'Create the requested number of quiz questions with one correct answer, three distractors and explanations.',
   challenge_topic: 'Create one editable challenge topic proposal with novelty and difficulty constraints.',
   challenge_questions: 'Create the requested number of challenge questions with answers and explanations.',
-  quiz_question_replacement: 'Replace exactly one quiz question without changing the accepted batch.',
   challenge_question_replacement: 'Replace exactly one challenge question without changing the accepted batch.',
   flashcard_pack_idea: 'Create one editable flashcard pack idea with audience, promise and exclusions.',
   flashcard_items: 'Create the requested number of flashcards grounded in the accepted pack idea.',
   flashcard_item_replacement: 'Replace exactly one flashcard without changing accepted cards.',
-  arena_topic: 'Create one competitive arena topic proposal with timing and fairness constraints.',
-  arena_questions: 'Create the requested number of concise arena questions with exactly four unique options.',
-  arena_question_replacement: 'Replace exactly one Arena question without changing the approved batch.',
 });
 
-const ITEM_STAGES = new Set<GenerationStageKind>(['lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'quiz_questions', 'challenge_questions', 'flashcard_items', 'arena_questions']);
+const ITEM_STAGES = new Set<GenerationStageKind>(['lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'challenge_questions', 'flashcard_items']);
 
 function schemaFor(kind: GenerationStageKind): Readonly<Record<string, unknown>> {
   const required = ITEM_STAGES.has(kind) ? ['stage', 'items'] : ['stage', 'result'];
@@ -95,15 +89,24 @@ for (const kind of ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'le
   }));
 }
 
-for (const kind of ['quiz_topic', 'challenge_topic'] as const) {
-  DEFINITIONS.set(`${kind}:v2`, Object.freeze({ kind, version: 'v2', task: `Create one editable ${kind === 'quiz_topic' ? 'quiz' : 'challenge'} topic proposal from the requested languages, CEFR and optional administrator guidance. Return title, learningPromise, skillTags, inclusions, exclusions and an exact ten-question difficultyDistribution.`, outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: kind }, result: { type: 'object', additionalProperties: false, required: ['topicId', 'title', 'learningPromise', 'skillTags', 'inclusions', 'exclusions', 'difficultyDistribution'] } } }) }));
-}
-for (const kind of ['quiz_questions', 'challenge_questions'] as const) {
-  DEFINITIONS.set(`${kind}:v2`, Object.freeze({ kind, version: 'v2', task: 'Create exactly ten unique questions grounded in the approved topic. Each item needs a source-language prompt, exactly four unique target-language choices, one correctIndex, four source-language optionExplanations aligned by choice index, approved skillTag, difficulty and sourcePhraseIds when applicable. Distractors must be plausible but unambiguously wrong.', outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: kind }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'prompt', 'choices', 'correctIndex', 'optionExplanations', 'skillTag', 'difficulty', 'sourcePhraseIds'] } } } }) }));
-}
-for (const kind of ['quiz_question_replacement', 'challenge_question_replacement'] as const) {
-  DEFINITIONS.set(`${kind}:v2`, Object.freeze({ kind, version: 'v2', task: 'Create exactly one replacement for grounding.originalQuestion. It must test the same approved topic skill without copying any previous semantic key. Return replacementForQuestionId and one complete item with four choices and four aligned option explanations.', outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: kind }, result: { type: 'object', additionalProperties: false, required: ['replacementForQuestionId', 'item'] } } }) }));
-}
+DEFINITIONS.set('challenge_topic:v2', Object.freeze({
+  kind: 'challenge_topic',
+  version: 'v2',
+  task: 'Create one editable challenge topic proposal from the requested languages, CEFR and optional administrator guidance. Return title, learningPromise, skillTags, inclusions, exclusions and an exact ten-question difficultyDistribution.',
+  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: 'challenge_topic' }, result: { type: 'object', additionalProperties: false, required: ['topicId', 'title', 'learningPromise', 'skillTags', 'inclusions', 'exclusions', 'difficultyDistribution'] } } }),
+}));
+DEFINITIONS.set('challenge_questions:v2', Object.freeze({
+  kind: 'challenge_questions',
+  version: 'v2',
+  task: 'Create exactly ten unique questions grounded in the approved topic. Each item needs a source-language prompt, exactly four unique target-language choices, one correctIndex, four source-language optionExplanations aligned by choice index, approved skillTag, difficulty and sourcePhraseIds when applicable. Distractors must be plausible but unambiguously wrong.',
+  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: 'challenge_questions' }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'prompt', 'choices', 'correctIndex', 'optionExplanations', 'skillTag', 'difficulty', 'sourcePhraseIds'] } } } }),
+}));
+DEFINITIONS.set('challenge_question_replacement:v2', Object.freeze({
+  kind: 'challenge_question_replacement',
+  version: 'v2',
+  task: 'Create exactly one replacement for grounding.originalQuestion. It must test the same approved topic skill without copying any previous semantic key. Return replacementForQuestionId and one complete item with four choices and four aligned option explanations.',
+  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: 'challenge_question_replacement' }, result: { type: 'object', additionalProperties: false, required: ['replacementForQuestionId', 'item'] } } }),
+}));
 
 DEFINITIONS.set('flashcard_pack_idea:v2', Object.freeze({
   kind: 'flashcard_pack_idea', version: 'v2',
@@ -127,37 +130,6 @@ for (const kind of ['flashcard_pack_idea', 'flashcard_items', 'flashcard_item_re
     ? 'Keep the proposal idiomatic for the source-language administrator and make its promise concrete.'
     : 'Every standalone front and back must be self-contained, with no omitted or implicit referent. Regression rule: reject incomplete “Could you show me on the map?” and use a complete form such as “Could you show me where it is on the map?”. The source translation must be idiomatic rather than a structural calque. Regression rule: prefer natural “У вас есть эта модель меньшего размера?” over calqued “У вас есть это в меньшем размере?”. Target and source examples must preserve exactly the same meaning as the standalone card.';
   DEFINITIONS.set(`${kind}:v3`, Object.freeze({ ...previous, version: 'v3', task: `${previous.task} Quality iteration v3: ${qualityRule}` }));
-}
-
-DEFINITIONS.set('arena_topic:v2', Object.freeze({
-  kind: 'arena_topic', version: 'v2',
-  task: 'Create one editable Arena topic for fast, fair competition. Return level A1-B2, skillTags, inclusions, exclusions, allowedTypes, exact ten-question difficultyDistribution, text limits, targetAnswerTimeMs, runtimePolicy with questionsPerMatch=10 and questionTimeoutMs=40000, localeContract, and explicit fairnessRules. The model must not control rand or scoring.',
-  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: 'arena_topic' }, result: { type: 'object', additionalProperties: false, required: ['topicId', 'title', 'learningPromise', 'level', 'skillTags', 'inclusions', 'exclusions', 'allowedTypes', 'difficultyDistribution', 'taskMaxChars', 'questionMaxChars', 'optionMaxChars', 'ruleMaxChars', 'targetAnswerTimeMs', 'runtimePolicy', 'localeContract', 'fairnessRules'] } } }),
-}));
-DEFINITIONS.set('arena_questions:v2', Object.freeze({
-  kind: 'arena_questions', version: 'v2',
-  task: 'Create exactly ten short Arena questions grounded in the approved Arena topic, optimized for answer speed and competitive fairness rather than quiz-style explanation depth. Each item needs level, allowed type, source-language task and question, exactly four unique target-language options, both correctIndex and the byte-identical correct string, a concise source-language rule, approved skillTag, difficulty, expectedAnswerTimeMs and sourceReferences. One answer must be unambiguously correct; never emit option labels, rand, per-question timeout, or scoring fields.',
-  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: 'arena_questions' }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'level', 'type', 'task', 'question', 'options', 'correctIndex', 'correct', 'rule', 'skillTag', 'difficulty', 'expectedAnswerTimeMs', 'sourceReferences'] } } } }),
-}));
-DEFINITIONS.set('arena_question_replacement:v2', Object.freeze({
-  kind: 'arena_question_replacement', version: 'v2',
-  task: 'Create exactly one replacement for grounding.originalQuestion. Preserve its stable question ID, approved Arena topic, CEFR level, locale contract and four-option runtime shape. Avoid every supplied semantic key. Do not emit rand, per-question timeout, scoring, storage paths, or any fields outside the Arena item contract.',
-  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'result'], properties: { stage: { const: 'arena_question_replacement' }, result: { type: 'object', additionalProperties: false, required: ['replacementForQuestionId', 'item'] } } }),
-}));
-DEFINITIONS.set('arena_questions:v3', Object.freeze({
-  kind: 'arena_questions', version: 'v3',
-  task: 'Create exactly ten short Arena questions grounded in the approved Arena topic, optimized for answer speed and competitive fairness. Place each correctIndex 0, 1, 2, and 3 exactly 2 or 3 times, with no run longer than two identical correctIndex values; use a deterministic varied placement plan before writing items. Each item needs level, allowed type, source-language task and question, exactly four unique target-language options, both correctIndex and the byte-identical correct string, a concise source-language rule, approved skillTag, difficulty, expectedAnswerTimeMs and sourceReferences. There must be exactly one valid answer. Every distractor must be a plausible grammatical near-miss containing one meaningful A2 error that the rule can identify; reject random word salad, multiple-error nonsense, obscure vocabulary, and alternatives that are also valid. Keep vocabulary and structures inside A2 grammar scope. Never emit option labels, rand, per-question timeout, or scoring fields.',
-  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: 'arena_questions' }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'level', 'type', 'task', 'question', 'options', 'correctIndex', 'correct', 'rule', 'skillTag', 'difficulty', 'expectedAnswerTimeMs', 'sourceReferences'] } } } }),
-}));
-DEFINITIONS.set('arena_questions:v4', Object.freeze({
-  kind: 'arena_questions', version: 'v4',
-  task: 'Create exactly ten short Arena questions grounded in the approved Arena topic, optimized for answer speed and competitive fairness. Place each correctIndex 0, 1, 2, and 3 exactly 2 or 3 times, with no run longer than two identical correctIndex values; use a deterministic varied placement plan before writing items. Each item needs level, allowed type, source-language task and question, exactly four unique target-language options, both correctIndex and the byte-identical correct string, a concise source-language rule, approved skillTag, difficulty, expectedAnswerTimeMs and sourceReferences. There must be exactly one valid answer. Every option, including every distractor, must be natural, idiomatic, meaningful English that a person could genuinely say or read in the stated situation; never create word salad, broken syntax, impossible collocations, or contextless nonsense merely to make an answer wrong. Distractors should be plausible semantic competitors or natural-looking A2 learner near-misses, and the rule must explain the distinction. Keep vocabulary and structures inside A2 grammar scope. Calibrate difficulty honestly: easy is direct phrase recognition, medium requires one contextual or grammar distinction, and hard requires a short A2 context plus two or more plausible competitors or a subtle A2 tense/preposition/collocation distinction; hard must not be a one-word lookup with obviously unrelated choices. Never emit option labels, rand, per-question timeout, or scoring fields.',
-  outputSchema: Object.freeze({ type: 'object', additionalProperties: false, required: ['stage', 'items'], properties: { stage: { const: 'arena_questions' }, items: { type: 'array', minItems: 10, maxItems: 10, items: { type: 'object', additionalProperties: false, required: ['id', 'level', 'type', 'task', 'question', 'options', 'correctIndex', 'correct', 'rule', 'skillTag', 'difficulty', 'expectedAnswerTimeMs', 'sourceReferences'] } } } }),
-}));
-{
-  const previous = DEFINITIONS.get('arena_questions:v4');
-  if (!previous) throw new Error('arena_questions_v4_prompt_missing');
-  DEFINITIONS.set('arena_questions:v5', Object.freeze({ ...previous, version: 'v5', task: `${previous.task} Candidate quality iteration v5: preserve every R3-R6 regression invariant and fail generation when a requested item would violate naturalness, answer uniqueness, CEFR, locale direction, grounding, or the fixed Arena runtime contract.` }));
 }
 
 function stableJson(value: unknown): string {

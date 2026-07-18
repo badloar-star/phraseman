@@ -5,7 +5,6 @@ import { ensureAnonUser } from '../cloud_sync';
 import { replaceShardsBalanceLocal } from '../shards_system';
 import { emitAppEvent } from '../events';
 import { LEAGUE_RACE_MIN_PARTICIPANTS } from '../league_race_visibility';
-import { addArenaPlaysBonusForClaimDayOnce } from '../arena_daily_limit';
 import { setPackGiftTrial48hOnce } from '../flashcards/pack_trial_gift';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from '../flashcards/marketplace';
 import type { RuntimeStudyTarget } from '../target_storage_keys';
@@ -662,7 +661,8 @@ async function applyLocalRewardPack(
     if (drop.kind === 'gold_theme') {
       await unlockLeagueGoldThemeReward('league_chest');
     } else if (drop.kind === 'arena_plays') {
-      await addArenaPlaysBonusForClaimDayOnce(rewardAmount(drop) || 5, `${claimEffectId ?? 'league_chest'}:${drop.id}:arena_plays`, claimedAtMs);
+      // The Arena feature is retired. Keep the chest claim idempotent while
+      // intentionally skipping its former Arena-only reward.
     } else if (drop.kind === 'pack_trial_48h') {
       const trial = await setPackGiftTrial48hOnce(studyTarget, `${claimEffectId ?? 'league_chest'}:${drop.id}:pack_trial_48h`, drop.expiresAt);
       if (trial) await primeMarketplaceBuiltCardsCacheFromAccessibleStorage(studyTarget);

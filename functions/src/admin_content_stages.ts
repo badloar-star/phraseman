@@ -14,15 +14,12 @@ import { contentStageObjectPathFromHash, flashcardKeysFromPublishedPacks } from 
 import { lessonLedgerDocumentId, loadApprovedLessonGrounding, lessonIdFromScopeId, type GroundingBucketLike } from './content_factory/prerequisite_grounding';
 import { parseLessonLedger } from './content_factory/dedupe_ledger';
 import { planLessonPhraseLedgerReview } from './content_factory/lesson_review_planner';
-import { loadQuestionBatchForReview, loadQuestionReplacementForReview, type StudioGroundingBucketLike } from './content_factory/quiz_challenge_grounding';
+import { loadQuestionBatchForReview, loadQuestionReplacementForReview, type StudioGroundingBucketLike } from './content_factory/question_grounding';
 import { approveQuestionBatch, approveQuestionReplacement, parseQuestionBatchLedger, questionLedgerDocumentId, rollbackQuestionBatch, rollbackQuestionReplacement } from './content_factory/question_batch_ledger';
 import { loadFlashcardBatchForReview, loadFlashcardReplacementForReview, type FlashcardGroundingBucketLike } from './content_factory/flashcard_grounding';
 import { approveFlashcardBatch, approveFlashcardReplacement, flashcardLedgerDocumentId, parseFlashcardPackLedger, rollbackFlashcardBatch, rollbackFlashcardReplacement } from './content_factory/flashcard_pack_ledger';
 import { flashcardSemanticKey } from './content_factory/flashcard_artifacts';
 import { flashcardRegistryDocumentId } from './content_factory/flashcard_semantic_registry';
-import { loadArenaQuestionBatchForReview, loadArenaQuestionReplacementForReview, type ArenaGroundingBucketLike } from './content_factory/arena_grounding';
-import { approveArenaQuestionBatch, approveArenaQuestionReplacement, arenaLedgerCoverage, arenaLedgerDocumentId, parseArenaQuestionLedger, rollbackArenaQuestionBatch, rollbackArenaQuestionReplacement } from './content_factory/arena_question_ledger';
-import { buildArenaRuntimeDraft } from './content_factory/arena_stage_consumer_adapter';
 import { assertStageCapabilityRequest, generationStageCapabilities, stageCapability, stageLanguagePolicy } from './content_factory/stage_capabilities';
 import { dependencyCatalogItems, parseDependencyCatalogRequest } from './content_factory/dependency_catalog';
 import { contentStageReviewFingerprint } from './content_factory/review_fingerprint';
@@ -31,7 +28,7 @@ const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const STAGE_ID_RE = /^[A-Za-z0-9._:-]{1,500}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
-const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement'];
+const KINDS: readonly GenerationStageKind[] = ['lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory', 'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement'];
 const CREATE_FIELDS = new Set(['requestId', 'kind', 'studyTarget', 'sourceLocale', 'cefr', 'objective', 'scopeId', 'count', 'revision', 'prerequisiteStageIds', 'replacementForQuestionId', 'replacementForCardId']);
 const DERIVED_LESSON_KINDS = new Set<GenerationStageKind>(['lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory']);
 
@@ -120,7 +117,7 @@ export function parseContentStageCreateRequest(data: unknown): ContentStageCreat
   } catch (error) {
     throw new HttpsError('invalid-argument', error instanceof Error ? error.message : 'stage_capability_invalid');
   }
-  const replacementKind = kind === 'quiz_question_replacement' || kind === 'challenge_question_replacement' || kind === 'arena_question_replacement';
+  const replacementKind = kind === 'challenge_question_replacement';
   if ((replacementKind && (!TOKEN_RE.test(replacementForQuestionId) || count !== 1)) || (!replacementKind && replacementForQuestionId)) throw new HttpsError('invalid-argument', 'question_replacement_identity_invalid');
   const cardReplacementKind = kind === 'flashcard_item_replacement';
   if ((cardReplacementKind && (!TOKEN_RE.test(replacementForCardId) || count !== 1)) || (!cardReplacementKind && replacementForCardId)) throw new HttpsError('invalid-argument', 'flashcard_replacement_identity_invalid');
@@ -314,9 +311,6 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
   let questionReplacement: Awaited<ReturnType<typeof loadQuestionReplacementForReview>> | null = null;
   let flashcardBatch: Awaited<ReturnType<typeof loadFlashcardBatchForReview>> | null = null;
   let flashcardReplacement: Awaited<ReturnType<typeof loadFlashcardReplacementForReview>> | null = null;
-  let arenaBatch: Awaited<ReturnType<typeof loadArenaQuestionBatchForReview>> | null = null;
-  let arenaReplacement: Awaited<ReturnType<typeof loadArenaQuestionReplacementForReview>> | null = null;
-  let arenaRuntimeDraft: ReturnType<typeof buildArenaRuntimeDraft> | null = null;
   if (input.status === 'approved' && preliminary.kind === 'lesson_phrases') {
     try {
       phraseGrounding = await loadApprovedLessonGrounding(admin.storage().bucket() as unknown as GroundingBucketLike, {
@@ -325,10 +319,10 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
     } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'lesson_phrase_grounding_invalid'); }
     if (phraseGrounding.extraction.state !== 'ready') throw new HttpsError('failed-precondition', 'lesson_extraction_review_required');
   }
-  if (input.status === 'approved' && (preliminary.kind === 'quiz_questions' || preliminary.kind === 'challenge_questions')) {
+  if (input.status === 'approved' && preliminary.kind === 'challenge_questions') {
     try { questionBatch = await loadQuestionBatchForReview(admin.storage().bucket() as unknown as StudioGroundingBucketLike, { stageId: input.stageId, artifactId: String(preliminary.artifactId ?? ''), kind: preliminary.kind, state: String(preliminary.state ?? ''), objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'question_batch_review_invalid'); }
   }
-  if (preliminary.kind === 'quiz_question_replacement' || preliminary.kind === 'challenge_question_replacement') {
+  if (preliminary.kind === 'challenge_question_replacement') {
     try { questionReplacement = await loadQuestionReplacementForReview(admin.storage().bucket() as unknown as StudioGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: preliminary.kind, state: String(preliminary.state ?? ''), objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'question_replacement_review_invalid'); }
   }
   if (input.status === 'approved' && preliminary.kind === 'flashcard_items') {
@@ -336,13 +330,6 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
   }
   if (preliminary.kind === 'flashcard_item_replacement') {
     try { flashcardReplacement = await loadFlashcardReplacementForReview(admin.storage().bucket() as unknown as FlashcardGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: 'flashcard_item_replacement', state: String(preliminary.state ?? ''), objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'flashcard_replacement_review_invalid'); }
-  }
-  if (input.status === 'approved' && preliminary.kind === 'arena_questions') {
-    try { arenaBatch = await loadArenaQuestionBatchForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: 'arena_questions', state: String(preliminary.state ?? ''), count: 10, objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_batch_review_invalid'); }
-    try { arenaRuntimeDraft = buildArenaRuntimeDraft({ requestId: String(preliminary.requestId ?? ''), topicArtifactId: arenaBatch.topicArtifactId, topic: arenaBatch.topic, batches: [{ artifactId: arenaBatch.artifactId, items: arenaBatch.items }] }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_runtime_draft_invalid'); }
-  }
-  if (preliminary.kind === 'arena_question_replacement') {
-    try { arenaReplacement = await loadArenaQuestionReplacementForReview(admin.storage().bucket() as unknown as ArenaGroundingBucketLike, { artifactId: String(preliminary.artifactId ?? ''), kind: 'arena_question_replacement', state: String(preliminary.state ?? ''), objectPath: String(preliminary.objectPath ?? ''), contentHash: String(preliminary.contentHash ?? ''), objectGeneration: String(preliminary.objectGeneration ?? ''), groundingReceipt: preliminary.groundingReceipt }, { allowNeedsReview: true }); } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_review_invalid'); }
   }
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(stageRef);
@@ -390,7 +377,7 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
       }
       tx.set(ledgerRef, nextLedger);
     }
-    if (stage.kind === 'quiz_questions' || stage.kind === 'challenge_questions') {
+    if (stage.kind === 'challenge_questions') {
       const topicArtifactIds = Array.isArray(stage.prerequisiteArtifactIds) ? stage.prerequisiteArtifactIds.map(String) : [];
       if (topicArtifactIds.length !== 1) throw new HttpsError('failed-precondition', 'question_topic_artifact_required');
       const ledgerRef = db.collection('content_factory_question_ledgers').doc(questionLedgerDocumentId(String(stage.requestId ?? ''), topicArtifactIds[0]));
@@ -413,7 +400,7 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
         updates.questionLedgerRevision = rolledBack.revision;
       }
     }
-    if (stage.kind === 'quiz_question_replacement' || stage.kind === 'challenge_question_replacement') {
+    if (stage.kind === 'challenge_question_replacement') {
       if (!questionReplacement || questionReplacement.artifactId !== stage.artifactId || questionReplacement.contentHash !== stage.contentHash) throw new HttpsError('aborted', 'question_replacement_review_changed');
       const ledgerRef = db.collection('content_factory_question_ledgers').doc(questionLedgerDocumentId(String(stage.requestId ?? ''), questionReplacement.topicArtifactId));
       const ledgerSnapshot = await tx.get(ledgerRef); const ledger = parseQuestionBatchLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, questionReplacement.topicArtifactId);
@@ -486,46 +473,6 @@ export const adminReviewContentStage = onCall({ region: REGION, enforceAppCheck:
           if (restoredSnapshot?.exists) tx.update(restoredSnapshot.ref, { state: 'approved', restoredAfterRollbackArtifactId: stage.artifactId, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
           updates.flashcardLedgerRevision = restored.ledger.revision; updates.activeReplacementArtifactId = restored.restoredReplacementArtifactId;
         } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'flashcard_replacement_rollback_invalid'); }
-      }
-    }
-    if (stage.kind === 'arena_questions') {
-      const topicArtifactIds = Array.isArray(stage.prerequisiteArtifactIds) ? stage.prerequisiteArtifactIds.map(String) : [];
-      if (topicArtifactIds.length !== 1) throw new HttpsError('failed-precondition', 'arena_topic_artifact_required');
-      const ledgerRef = db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), topicArtifactIds[0]));
-      const ledgerSnapshot = await tx.get(ledgerRef); const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, topicArtifactIds[0]);
-      if (input.status === 'approved') {
-        if (!arenaBatch || !arenaRuntimeDraft || arenaBatch.artifactId !== stage.artifactId || arenaBatch.contentHash !== stage.contentHash || arenaBatch.topicArtifactId !== topicArtifactIds[0]) throw new HttpsError('aborted', 'arena_batch_review_changed');
-        try {
-          const approved = approveArenaQuestionBatch(ledger, { batchArtifactId: String(stage.artifactId), items: arenaBatch.items });
-          tx.set(ledgerRef, approved.ledger);
-          updates.arenaLedgerRevision = approved.ledger.revision; updates.arenaCoverage = arenaLedgerCoverage(approved.ledger); updates.arenaDraftSealed = true; updates.arenaRuntimeDraftHash = arenaRuntimeDraft.contentHash; updates.arenaRuntimeQuestionCount = arenaRuntimeDraft.questionCount;
-        } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_batch_ledger_invalid'); }
-      } else {
-        const rolledBack = rollbackArenaQuestionBatch(ledger, String(stage.artifactId)); tx.set(ledgerRef, rolledBack); updates.arenaLedgerRevision = rolledBack.revision; updates.arenaCoverage = arenaLedgerCoverage(rolledBack); updates.arenaDraftSealed = false;
-      }
-    }
-    if (stage.kind === 'arena_question_replacement') {
-      if (!arenaReplacement || arenaReplacement.artifactId !== stage.artifactId || arenaReplacement.contentHash !== stage.contentHash) throw new HttpsError('aborted', 'arena_replacement_review_changed');
-      const ledgerRef = db.collection('content_factory_arena_ledgers').doc(arenaLedgerDocumentId(String(stage.requestId ?? ''), arenaReplacement.topicArtifactId));
-      const ledgerSnapshot = await tx.get(ledgerRef); const ledger = parseArenaQuestionLedger(ledgerSnapshot.exists ? ledgerSnapshot.data() : undefined, arenaReplacement.topicArtifactId);
-      if (input.status === 'approved') {
-        try {
-          const replaced = approveArenaQuestionReplacement(ledger, { batchArtifactId: arenaReplacement.batchArtifactId, questionId: arenaReplacement.replacementForQuestionId, replacementArtifactId: String(stage.artifactId), replacement: arenaReplacement.item });
-          const supersededRef = replaced.supersededReplacementArtifactId ? db.collection('content_factory_stages').doc(stageIdFromArtifactId(replaced.supersededReplacementArtifactId)) : null;
-          const supersededSnapshot = supersededRef ? await tx.get(supersededRef) : null;
-          tx.set(ledgerRef, replaced.ledger);
-          if (supersededSnapshot?.exists) tx.update(supersededSnapshot.ref, { state: 'superseded', supersededByArtifactId: stage.artifactId, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
-          updates.arenaLedgerRevision = replaced.ledger.revision; updates.replacedQuestionId = arenaReplacement.replacementForQuestionId; updates.activeReplacementArtifactId = stage.artifactId;
-        } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_ledger_invalid'); }
-      } else if (stage.state === 'approved') {
-        try {
-          const restored = rollbackArenaQuestionReplacement(ledger, { batchArtifactId: arenaReplacement.batchArtifactId, questionId: arenaReplacement.replacementForQuestionId, replacementArtifactId: String(stage.artifactId) });
-          const restoredRef = restored.restoredReplacementArtifactId ? db.collection('content_factory_stages').doc(stageIdFromArtifactId(restored.restoredReplacementArtifactId)) : null;
-          const restoredSnapshot = restoredRef ? await tx.get(restoredRef) : null;
-          tx.set(ledgerRef, restored.ledger);
-          if (restoredSnapshot?.exists) tx.update(restoredSnapshot.ref, { state: 'approved', restoredAfterRollbackArtifactId: stage.artifactId, updatedAt: admin.firestore.FieldValue.serverTimestamp() });
-          updates.arenaLedgerRevision = restored.ledger.revision; updates.activeReplacementArtifactId = restored.restoredReplacementArtifactId;
-        } catch (error) { throw new HttpsError('failed-precondition', error instanceof Error ? error.message : 'arena_replacement_rollback_invalid'); }
       }
     }
     tx.update(stageRef, updates);

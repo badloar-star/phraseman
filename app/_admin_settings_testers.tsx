@@ -75,8 +75,6 @@ import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import ConsentReverifyHost from '../components/ConsentReverifyHost';
 import NoEnergyModal from '../components/NoEnergyModal';
-import ArenaLimitModal from '../components/ArenaLimitModal';
-import QuizTimeoutModal from '../components/QuizTimeoutModal';
 import UserWarningModal from '../components/UserWarningModal';
 import ReportUserModal from '../components/ReportUserModal';
 import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
@@ -92,10 +90,7 @@ import MedalToast from '../components/MedalToast';
 import type { MedalTier } from './medal_utils';
 import { ENABLE_DEV_TOOLS, STORE_URL } from './config';
 import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
-import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
-import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { aiDialogContentAvailableForTarget, frenchAiDialogGateCopy } from './ai_dialog_target_gate';
-import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
 import {
   requestNotificationPermissionWithFallback,
@@ -422,12 +417,7 @@ const ADMIN_GLOBAL_BROADCAST_PREVIEW: GlobalBroadcastModalPayload = {
 /** Превью пейволлов: label — кнопка, sub — подсказка, что смотреть; params — как в проде. */
 const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<string, string> }[] = [
   {
-    label: '⚔️ Арена',
-    sub: 'ArenaLimitModal + энергия в лобби. Заголовок, подзаголовок, 3 плюса, сравнение (⚔️)',
-    params: { context: 'arena' },
-  },
-  {
-    label: '⚡ Нет энергии (урок / квиз / Лингман)',
+    label: '⚡ Нет энергии (урок / Лингман)',
     sub: 'NoEnergyModal → Premium. HERO, выгоды, строка сравнения (⚡)',
     params: { context: 'no_energy' },
   },
@@ -440,26 +430,6 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     label: '🎓 Курс после 3 уроков',
     sub: 'course_after_lesson3 — актуальный course lock после бесплатного старта',
     params: { context: 'course_after_lesson3', lessons_done: '3' },
-  },
-  {
-    label: '⚡ Квизы — лимит',
-    sub: 'Таб/экран квизов без попыток',
-    params: { context: 'quiz_limit' },
-  },
-  {
-    label: '🧠 Квиз — следующий уровень',
-    sub: 'level=medium',
-    params: { context: 'quiz_level', level: 'medium' },
-  },
-  {
-    label: '🔥 Квизы — Medium',
-    sub: 'Залоченный уровень',
-    params: { context: 'quiz_medium' },
-  },
-  {
-    label: '💜 Квизы — Hard',
-    sub: 'Тот же HERO, другой копирайт',
-    params: { context: 'quiz_hard' },
   },
   {
     label: '📚 Карточки — 20/20',
@@ -730,8 +700,6 @@ export default function SettingsTestersFunctions() {
     withBackHome?: boolean;
   } | null>(null);
   const closeNoEnergyPreview = () => setNoEnergyPreview(null);
-  const [arenaLimitMode, setArenaLimitMode] = useState<'matchmaking' | 'invite' | null>(null);
-  const [quizTimeoutHardMode, setQuizTimeoutHardMode] = useState<boolean | null>(null);
   const [userWarningVisible, setUserWarningVisible] = useState(false);
   const [reportUserPreviewVisible, setReportUserPreviewVisible] = useState(false);
   const [profileCardCrownPreview, setProfileCardCrownPreview] = useState<PlayerInfo | null>(null);
@@ -759,8 +727,6 @@ export default function SettingsTestersFunctions() {
   const [leagueBonusAvailablePreview, setLeagueBonusAvailablePreview] = useState<LeagueBonusAvailability | null>(null);
   const [qaChecks, setQaChecks] = useState<Record<string, boolean>>({
     noEnergy: false,
-    arenaLimit: false,
-    quizTimeout: false,
     userWarning: false,
     shardsEarned: false,
     reportModal: false,
@@ -770,7 +736,6 @@ export default function SettingsTestersFunctions() {
     releaseNotes: false,
     globalBroadcast: false,
     vipSurvey: false,
-    matchFoundToast: false,
   });
 
   // Preview-флаги для активных soft-monetization сценариев.
@@ -1112,7 +1077,7 @@ export default function SettingsTestersFunctions() {
       await markVipCelebrationPending(grantAt);
       emitAppEvent('vip_activated');
       emitAppEvent('premium_access_changed', { active: true, source: 'vip' });
-      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true });
+      void syncPublicProfileSnapshot({ reason: 'entitlement_change', isVip: true, isPremium: true }).catch(() => {});
 
       const uid = await ensureAnonUser().catch(() => null);
       if (uid) {
@@ -1264,7 +1229,7 @@ export default function SettingsTestersFunctions() {
       pl: 'Skrót QA trenera French jest zablokowany do czasu danych source-gated.',
     }));
   };
-  const openTrainerQaRoute = async (route: '/trainer' | '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session') => {
+  const openTrainerQaRoute = async (route: '/trainer' | '/trainer_words_session' | '/trainer_phrases_session') => {
     if (!trainerQaRouteGateOpen) {
       emitFrenchTrainerQaBlockedToast();
       router.push('/trainer' as any);
@@ -1326,7 +1291,6 @@ export default function SettingsTestersFunctions() {
       setStatsInsightsSeedBusy(false);
     }
   };
-  const { showMatchFoundForTesterPreview } = useMatchmakingContext();
 
   const triggerGlobalLevelUp = async (level: number) => {
     const queueRaw = await AsyncStorage.getItem('pending_level_up_queue');
@@ -1354,12 +1318,6 @@ export default function SettingsTestersFunctions() {
 }),
     });
     markQa('shardsEarned');
-  };
-
-  const triggerMatchFoundToastPreview = () => {
-    // Сразу status=found, без Firestore: dev-бот есть только при __DEV__ / DEV_MODE.
-    showMatchFoundForTesterPreview();
-    markQa('matchFoundToast');
   };
 
   const showDailyTaskRewardToastPreview = (previewThemeMode: ThemeMode) => {
@@ -1410,14 +1368,6 @@ export default function SettingsTestersFunctions() {
       case 'noEnergy':
         setNoEnergyPreview({});
         markQa('noEnergy');
-        break;
-      case 'arenaLimit':
-        setArenaLimitMode('matchmaking');
-        markQa('arenaLimit');
-        break;
-      case 'quizTimeout':
-        setQuizTimeoutHardMode(false);
-        markQa('quizTimeout');
         break;
       case 'userWarning':
         setUserWarningVisible(true);
@@ -1493,9 +1443,6 @@ export default function SettingsTestersFunctions() {
         break;
       case 'vipSurvey':
         showVipSurveyNotificationPreview();
-        break;
-      case 'matchFoundToast':
-        void triggerMatchFoundToastPreview();
         break;
       default:
         break;
@@ -2644,15 +2591,11 @@ export default function SettingsTestersFunctions() {
               {([
                 ['⚡ Энергия / доступ', [
                   ['no_energy', 'Нет энергии'],
-                  ['quiz_limit', 'Лимит квизов'],
                   ['flashcard_limit', 'Лимит карточек'],
                   ['trainer_limit', 'Лимит тренера'],
                   ['dialog_limit', 'Лимит диалогов'],
                 ]],
-                ['📚 Уроки / квизы', [
-                  ['quiz_hard', 'Сложный квиз'],
-                  ['quiz_medium', 'Средний квиз'],
-                  ['quiz_level', 'Квиз уровня'],
+                ['📚 Практика', [
                   ['trainer', 'Тренер'],
                   ['smart_trainer', 'Умный тренер'],
                   ['speaking', 'Говорение'],
@@ -2661,7 +2604,6 @@ export default function SettingsTestersFunctions() {
                   ['streak', 'Серия'],
                   ['level_up', 'Новый уровень'],
                   ['mastery', 'Мастерство'],
-                  ['arena', 'Арена'],
                   ['club', 'Клуб'],
                 ]],
                 ['📊 Аналитика / план', [
@@ -3023,14 +2965,6 @@ export default function SettingsTestersFunctions() {
                 </TouchableOpacity>
               </View>
             </View>
-            <ButtonRow icon="play-circle-outline" label="🏆 Результаты арены — Победа"
-              sub="mockMyScore=500 > mockOppScore=300"
-              onPress={() => router.push({ pathname: '/arena_results', params: { sessionId: 'bot_test_win', userId: 'tester', mockMyScore: '500', mockOppScore: '300', mockOppName: 'Бот', opponentForfeited: '0' } } as any)}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="close-circle-outline" label="💔 Результаты арены — Поражение"
-              sub="mockMyScore=200 < mockOppScore=500"
-              onPress={() => router.push({ pathname: '/arena_results', params: { sessionId: 'bot_test_loss', userId: 'tester', mockMyScore: '200', mockOppScore: '500', mockOppName: 'Бот', opponentForfeited: '0' } } as any)}
-              t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="trophy-outline" label="🏆 Финал недели — Лига"
               sub="Показать результат лиги"
               onPress={triggerEndOfWeek}
@@ -3457,13 +3391,6 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
-              icon="shield-checkmark-outline"
-              label="Arena practice session"
-              sub="/trainer_arena_session — актуальная сессия арены без давления"
-              onPress={() => openTrainerQaRoute('/trainer_arena_session')}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
               icon="add-circle-outline"
               label="🧪 Legacy /review: засеять 15 SRS ошибок"
               sub="active_recall + mistake_log для старого /review trainerMode"
@@ -3842,31 +3769,15 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="diamond-outline" label="⚡ NoEnergy + осколки (превью)"
               sub="Принудительно показать кнопку «Восстановить за 💎» даже при полном баке"
-              onPress={() => { setNoEnergyPreview({ qaForceShardCta: true, paywallContext: 'quiz_limit' }); markQa('noEnergy'); }}
+              onPress={() => { setNoEnergyPreview({ qaForceShardCta: true, paywallContext: 'no_energy' }); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="school-outline" label="⚡ NoEnergy — экзамен (8 ⚡)"
               sub="Как у Лингмана: «Недостаточно энергии», порог 8 + восстановление за осколки (превью)"
               onPress={() => { setNoEnergyPreview({ minRequired: 8, paywallContext: 'no_energy', qaForceShardCta: true }); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="home-outline" label="⚡ NoEnergy — кнопка «На главную»"
-              sub="Как при входе в квиз без энергии (onBackHome)"
-              onPress={() => { setNoEnergyPreview({ withBackHome: true, paywallContext: 'quiz_limit' }); markQa('noEnergy'); }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="trophy-outline" label="⚔️ ArenaLimitModal — Matchmaking"
-              sub="Лимит матчей в арене"
-              onPress={() => { setArenaLimitMode('matchmaking'); markQa('arenaLimit'); }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="link-outline" label="⚔️ ArenaLimitModal — Invite"
-              sub="Лимит приглашений в арене"
-              onPress={() => { setArenaLimitMode('invite'); markQa('arenaLimit'); }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="timer-outline" label="⏰ QuizTimeoutModal — Normal"
-              sub="Таймаут квиза (обычный)"
-              onPress={() => { setQuizTimeoutHardMode(false); markQa('quizTimeout'); }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="alert-circle-outline" label="⏰ QuizTimeoutModal — Hard"
-              sub="Таймаут квиза (hardMode)"
-              onPress={() => { setQuizTimeoutHardMode(true); markQa('quizTimeout'); }}
+              sub="Как при входе в урок без энергии (onBackHome)"
+              onPress={() => { setNoEnergyPreview({ withBackHome: true, paywallContext: 'no_energy' }); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="warning-outline" label="⚠️ UserWarningModal"
               sub="Системное предупреждение пользователю"
@@ -3958,10 +3869,6 @@ export default function SettingsTestersFunctions() {
               sub="Preview-only: активная broadcast-модалка без claim, cloud-write и награды"
               onPress={() => { setGlobalBroadcastPreview(ADMIN_GLOBAL_BROADCAST_PREVIEW); markQa('globalBroadcast'); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="people-outline" label="⚔️ MatchFoundToast mock"
-              sub="status=found без сети (релиз и dev)"
-              onPress={triggerMatchFoundToastPreview}
-              t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
 
@@ -3969,8 +3876,6 @@ export default function SettingsTestersFunctions() {
             open={openSection === 'qa_checklist'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             {([
               ['noEnergy', 'NoEnergyModal'],
-              ['arenaLimit', 'ArenaLimitModal'],
-              ['quizTimeout', 'QuizTimeoutModal'],
               ['userWarning', 'UserWarningModal'],
               ['shardsEarned', 'ShardsEarnedModal / GlobalShardsEarnedHost'],
               ['reportModal', 'ReportUserModal preview'],
@@ -3980,7 +3885,6 @@ export default function SettingsTestersFunctions() {
               ['releaseNotes', 'ReleaseNotesModal'],
               ['globalBroadcast', 'GlobalBroadcastModal preview-only'],
               ['vipSurvey', 'VIP survey test notification'],
-              ['matchFoundToast', 'MatchFoundToast'],
             ] as const).map(([key, label]) => (
               <TouchableOpacity
                 key={key}
@@ -4010,8 +3914,6 @@ export default function SettingsTestersFunctions() {
               sub="Очистить статус проверки"
               onPress={() => setQaChecks({
                 noEnergy: false,
-                arenaLimit: false,
-                quizTimeout: false,
                 userWarning: false,
                 shardsEarned: false,
                 reportModal: false,
@@ -4021,7 +3923,6 @@ export default function SettingsTestersFunctions() {
                 releaseNotes: false,
                 globalBroadcast: false,
                 vipSurvey: false,
-                matchFoundToast: false,
               })}
               t={t}
               f={f}
@@ -4181,17 +4082,6 @@ export default function SettingsTestersFunctions() {
         studyTarget={studyTarget}
         previewOnly
         initialTasks={dailyPlanPreviewTasks}
-      />
-      <ArenaLimitModal
-        visible={arenaLimitMode !== null}
-        mode={arenaLimitMode ?? 'matchmaking'}
-        playsUsed={5}
-        onClose={() => setArenaLimitMode(null)}
-      />
-      <QuizTimeoutModal
-        visible={quizTimeoutHardMode !== null}
-        hardMode={quizTimeoutHardMode ?? false}
-        onClose={() => setQuizTimeoutHardMode(null)}
       />
       <UserWarningModal
         visible={userWarningVisible}

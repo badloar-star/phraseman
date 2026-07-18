@@ -1,6 +1,6 @@
 import type { Lang } from '../../constants/i18n';
 
-export type TodayDestinationId = 'lessons' | 'arena' | 'plan' | 'practice' | 'quizzes' | 'flashcards' | 'daily_tasks';
+export type TodayDestinationId = 'lessons' | 'plan' | 'practice' | 'flashcards' | 'daily_tasks';
 
 export type TodayLocalizedCopy = Readonly<Record<Lang, string>>;
 

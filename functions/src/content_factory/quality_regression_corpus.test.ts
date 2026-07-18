@@ -13,13 +13,13 @@ describe('prompt regression corpus', () => {
 
   it('accepts every golden case and rejects every red-team case with expected hard failures', () => {
     const report = runPromptRegression(PROMPT_REGRESSION_CASES);
-    expect(report.summary).toEqual({ total: PROMPT_REGRESSION_CASES.length, goldenAccepted: 4, goldenRejected: 0, redTeamRejected: PROMPT_REGRESSION_CASES.length - 4, redTeamAccepted: 0, regressions: 0, candidateFailures: 0 });
+    expect(report.summary).toEqual({ total: PROMPT_REGRESSION_CASES.length, goldenAccepted: 3, goldenRejected: 0, redTeamRejected: PROMPT_REGRESSION_CASES.length - 3, redTeamAccepted: 0, regressions: 0, candidateFailures: 0 });
     expect(report.passed).toBe(true);
     for (const result of report.results) expect(result.actualFailures).toEqual(expect.arrayContaining(result.expectedFailures));
   });
 
   it('contains all named R3-R6 regression families', () => {
     const failures = new Set(PROMPT_REGRESSION_CASES.flatMap((item) => item.expectedFailures));
-    for (const category of ['incomplete_phrase', 'source_calque', 'grammar_invalid', 'word_salad', 'hard_too_weak', 'ambiguous_answer', 'correct_index_mismatch', 'locale_drift', 'cefr_drift', 'semantic_duplicate', 'arena_runtime_invalid', 'invented_grounding']) expect(failures).toContain(category);
+    for (const category of ['incomplete_phrase', 'source_calque', 'grammar_invalid', 'word_salad', 'hard_too_weak', 'ambiguous_answer', 'correct_index_mismatch', 'locale_drift', 'cefr_drift', 'semantic_duplicate', 'invented_grounding']) expect(failures).toContain(category);
   });
 });

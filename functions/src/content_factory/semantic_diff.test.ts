@@ -2,12 +2,12 @@ import { semanticDiff } from './semantic_diff';
 
 describe('stage-aware semantic diff', () => {
   test.each([
-    ['quiz_topic', { title: 'Travel', idea: 'Stations' }, { title: 'Travel safely', idea: 'Stations' }, 'title'],
+    ['challenge_topic', { title: 'Travel', idea: 'Stations' }, { title: 'Travel safely', idea: 'Stations' }, 'title'],
     ['lesson_theory', { rules: [{ id: 'r1', rule: 'Use a.' }] }, { rules: [{ id: 'r1', rule: 'Use an before vowels.' }] }, 'rules.r1.rule'],
     ['lesson_phrases', { items: [{ id: 'p1', targetText: 'Hello', translation: 'Привет' }] }, { items: [{ id: 'p1', targetText: 'Hi', translation: 'Привет' }] }, 'items.p1.targetText'],
-    ['quiz_questions', { items: [{ id: 'q1', options: ['A', 'B'], correctIndex: 0 }] }, { items: [{ id: 'q1', options: ['A', 'C'], correctIndex: 1 }] }, 'items.q1.correctIndex'],
+    ['challenge_questions', { items: [{ id: 'q1', options: ['A', 'B'], correctIndex: 0 }] }, { items: [{ id: 'q1', options: ['A', 'C'], correctIndex: 1 }] }, 'items.q1.correctIndex'],
     ['flashcard_items', { items: [{ id: 'c1', front: 'A', back: 'Б' }] }, { items: [{ id: 'c1', front: 'A!', back: 'Б' }] }, 'items.c1.front'],
-    ['arena_questions', { items: [{ id: 'a1', question: 'Q', options: ['A', 'B'], correctIndex: 0 }] }, { items: [{ id: 'a1', question: 'Q2', options: ['A', 'B'], correctIndex: 0 }] }, 'items.a1.question'],
+    ['challenge_questions', { items: [{ id: 'a1', question: 'Q', options: ['A', 'B'], correctIndex: 0 }] }, { items: [{ id: 'a1', question: 'Q2', options: ['A', 'B'], correctIndex: 0 }] }, 'items.a1.question'],
   ] as const)('reports semantic paths for %s', (kind, before, after, expectedPath) => {
     expect(semanticDiff(kind, before, after).details).toEqual(expect.arrayContaining([expect.objectContaining({ path: expectedPath, type: 'changed' })]));
   });

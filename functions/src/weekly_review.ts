@@ -838,7 +838,10 @@ async function runWeeklyReviewPreflight(
 ): Promise<{ authUid: string; stableUid: string; briefing: WeeklyReviewBriefing }> {
   const authUid = dependencies.requireAuth(input.authUid);
   const briefing = dependencies.sanitize(input.rawBriefing);
-  if (briefing.mistakes.last30.mistakes < 5 || briefing.mistakes.weakCategories.length === 0) {
+  // The client eligibility contract is the five-error threshold. Weak categories are
+  // useful evidence when present, but category classification is intentionally
+  // conservative and must not turn an otherwise eligible review into a dead end.
+  if (briefing.mistakes.last30.mistakes < 5) {
     throw new HttpsError('failed-precondition', 'weekly_review_insufficient_data');
   }
   const stableUid = await dependencies.resolveStableUid(input.db, authUid);

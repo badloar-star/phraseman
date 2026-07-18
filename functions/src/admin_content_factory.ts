@@ -8,11 +8,9 @@ import { splitGenerationJob, type GenerationUnit } from './content_factory/job_s
 import { inspectSourceRegistryCoverage, parseSourceRegistryReference, sourceRegistryDocId, validateSourceRegistry, type SourceRegistry } from './content_factory/source_registry';
 import { CANONICAL_RELEASE_SURFACES } from './content_factory/course_release_contract';
 import { generationPlanFingerprint } from './content_factory/generation_plan';
-import { resolveArenaEnginePolicy } from './content_factory/surface_convergence_policy';
-import { updateArenaConvergenceConfig } from './content_factory/surface_convergence_repository';
 
 const REGION = 'us-central1';
-const SURFACES: readonly FactorySurface[] = ['lessons', 'vocabulary', 'drills', 'quizzes', 'cards', 'arena_questions'];
+const SURFACES: readonly FactorySurface[] = ['lessons', 'vocabulary', 'drills', 'cards'];
 export const SUPPORTED_CONTENT_FACTORY_STUDY_TARGETS = Object.freeze(['en', 'fr'] as const);
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -78,8 +76,8 @@ export function storedGenerationPlanFingerprint(value: Record<string, unknown>):
   return generationPlanFingerprint(value.lessonIds.map(Number), value.surfaces.map(String) as FactorySurface[]);
 }
 
-export function buildContentFactoryJobPlan(input: ContentFactoryJobRequest, actorUid: string, now = new Date().toISOString(), arenaRoutingForUnit?: (unitId: string) => { readonly engineRequested: string; readonly engineResolved: string; readonly configRevision: number; readonly comparatorVersion: string }): ContentFactoryJobPlan {
-  const units = splitGenerationJob({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces }).map((unit) => unit.surface === 'arena' && arenaRoutingForUnit ? Object.freeze({ ...unit, ...arenaRoutingForUnit(unit.unitId) }) : unit);
+export function buildContentFactoryJobPlan(input: ContentFactoryJobRequest, actorUid: string, now = new Date().toISOString()): ContentFactoryJobPlan {
+  const units = splitGenerationJob({ jobId: input.idempotencyKey, studyTarget: input.studyTarget, learnerSourceLocale: input.sourceLocale, lessonIds: input.lessonIds, surfaces: input.surfaces });
   const base = createGenerationJob({ ...input, requestedBy: actorUid, now });
   const plannedSurfaces = new Set(units.map((unit) => unit.surface));
   const releaseCandidate = CANONICAL_RELEASE_SURFACES.every((surface) => plannedSurfaces.has(surface));
@@ -102,19 +100,15 @@ export const adminCreateContentGenerationJob = onCall(
     const input = parseContentFactoryJobRequest(request.data);
       const db = admin.firestore();
       const sourceReference = parseSourceRegistryReference(input.blueprintVersion);
-      const [registrySnap, convergenceConfigSnap] = await Promise.all([
-        db.collection('content_factory_source_registry').doc(sourceRegistryDocId(sourceReference.blueprintId, sourceReference.version)).get(),
-        db.collection('content_factory_config').doc('surface_convergence').get(),
-      ]);
+      const registrySnap = await db.collection('content_factory_source_registry')
+        .doc(sourceRegistryDocId(sourceReference.blueprintId, sourceReference.version))
+        .get();
       if (!registrySnap.exists) throw new HttpsError('not-found', 'source_registry_not_found');
       const registry = registrySnap.data() as SourceRegistry;
       const registryValidation = validateSourceRegistry(registry);
       if (!registryValidation.ok) throw new HttpsError('failed-precondition', 'source_registry_invalid', { errors: registryValidation.errors });
       assertContentFactorySourceCoverage(registry, input.lessonIds);
-      const plan = buildContentFactoryJobPlan(input, actorUid, new Date().toISOString(), (unitId) => {
-        const resolved = resolveArenaEnginePolicy({ config: convergenceConfigSnap.exists ? convergenceConfigSnap.data() : undefined, unit: { id: unitId, isNew: true, engineRequested: convergenceConfigSnap.data()?.arena?.mode ?? 'legacy' } });
-        return { engineRequested: resolved.engineRequested, engineResolved: resolved.engineResolved, configRevision: resolved.configRevision, comparatorVersion: resolved.comparatorVersion };
-      });
+      const plan = buildContentFactoryJobPlan(input, actorUid, new Date().toISOString());
       const job = plan.job;
       const jobRef = db.collection('content_factory_jobs').doc(job.idempotencyKey);
     return db.runTransaction(async (tx) => {
@@ -142,22 +136,6 @@ export const adminCreateContentGenerationJob = onCall(
       });
       return { ok: true, jobId: job.idempotencyKey, state: job.state, replayed: false };
     });
-  },
-);
-
-export const adminUpdateArenaConvergenceConfig = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
-  async (request) => {
-    if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-    const role = roleFromToken(request.auth.token as Record<string, unknown>);
-    if (!role || !hasPermission(role, 'content.publish')) throw new HttpsError('permission-denied', 'Role cannot change Arena routing');
-    const mode = String(request.data?.mode ?? '');
-    const expectedRevision = Number(request.data?.expectedRevision);
-    const disabledReason = String(request.data?.disabledReason ?? '').trim();
-    const requiredLocalePairs = Array.isArray(request.data?.requiredLocalePairs) ? request.data.requiredLocalePairs.map(String) : [];
-    if (!['legacy', 'shadow'].includes(mode) || !Number.isSafeInteger(expectedRevision) || expectedRevision < 0 || (mode === 'legacy' && !disabledReason) || (mode === 'shadow' && requiredLocalePairs.length === 0)) throw new HttpsError('invalid-argument', 'arena_convergence_update_invalid');
-    try { return await updateArenaConvergenceConfig(admin.firestore(), { expectedRevision, mode: mode as 'legacy' | 'shadow', actorUid: request.auth.uid, role, requiredLocalePairs: mode === 'shadow' ? requiredLocalePairs : undefined, disabledReason, requestId: String(request.data?.requestId ?? ''), nowIso: new Date().toISOString(), serverTimestamp: admin.firestore.FieldValue.serverTimestamp() }); }
-    catch (error) { throw new HttpsError('aborted', error instanceof Error ? error.message : 'surface_convergence_update_failed'); }
   },
 );
 

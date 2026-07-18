@@ -42,6 +42,8 @@ const types_1 = require("./types");
 const arena_pregame_1 = require("./arena_pregame");
 const arena_cleanup_1 = require("./arena_cleanup");
 const xp_levels_1 = require("./xp_levels");
+const arena_question_pool_selection_1 = require("./arena_question_pool_selection");
+const arena_question_history_1 = require("./arena_question_history");
 const db = admin.firestore();
 /** Публичный агрегат для UI лобби: live-док, обновляется на каждом изменении очереди (CF). */
 const APP_META_MATCHMAKING = 'app_meta/matchmaking_searching';
@@ -275,7 +277,6 @@ async function createSession(players, size) {
     const playersNorm = players.map(p => ({ ...p, userId: queueUserId(p) }));
     const rankTier = highestRankTierFromPlayers(playersNorm);
     const questionLevel = types_1.RANK_TO_QUESTION_LEVEL[rankTier];
-    const questions = await pickQuestions(questionLevel, RANKED_QUESTIONS_PER_MATCH);
     const sessionRef = db.collection('arena_sessions').doc();
     const sessionId = sessionRef.id;
     const now = Date.now();
@@ -286,7 +287,7 @@ async function createSession(players, size) {
         state: 'acceptance',
         rankTier,
         playerIds: playersNorm.map(p => p.userId),
-        questions,
+        questions: [],
         currentQuestionIndex: 0,
         questionStartedAt: null,
         questionTimeoutMs: QUESTION_TIMEOUT_MS,
@@ -321,6 +322,26 @@ async function createSession(players, size) {
                 throw new Error(`Player ${player.userId} already matched — abort`);
             }
         }
+        // The runtime pool is deliberately queried inside this transaction: the same
+        // commit that creates the session also reads and advances each player's
+        // recent-question history. A removed question can never enter a new session.
+        const poolQuery = db.collection('arena_questions')
+            .where('studyTarget', '==', 'en')
+            .where('learnerSourceLocale', '==', 'ru')
+            .where('level', '==', questionLevel)
+            .where('availability', '==', 'active')
+            .orderBy('rand')
+            .limit(100);
+        const [poolSnapshot, ...historySnapshots] = await Promise.all([
+            tx.get(poolQuery),
+            ...playersNorm.map((player) => tx.get(db.collection('arena_question_history').doc(player.userId))),
+        ]);
+        const rows = shuffleArray(poolSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        const recentIds = new Set(historySnapshots.flatMap((snapshot) => Array.isArray(snapshot.data()?.questionIds) ? snapshot.data().questionIds.map(String) : []));
+        const selection = (0, arena_question_pool_selection_1.selectArenaPoolQuestions)(rows, { studyTarget: 'en', learnerSourceLocale: 'ru', level: questionLevel, count: RANKED_QUESTIONS_PER_MATCH, excludedIds: recentIds });
+        if (selection.ids.length !== RANKED_QUESTIONS_PER_MATCH || new Set(selection.ids).size !== RANKED_QUESTIONS_PER_MATCH)
+            throw new Error(`Insufficient active arena pool for level ${questionLevel}`);
+        session.questions = [...selection.ids];
         tx.set(sessionRef, session);
         for (const player of playersNorm) {
             const playerDoc = db.collection('session_players').doc(`${sessionId}_${player.userId}`);
@@ -340,6 +361,8 @@ async function createSession(players, size) {
                 sessionId,
                 matchedAt,
             });
+            const previous = Array.isArray(historySnapshots[playersNorm.indexOf(player)].data()?.questionIds) ? historySnapshots[playersNorm.indexOf(player)].data().questionIds.map(String) : [];
+            tx.set(db.collection('arena_question_history').doc(player.userId), { questionIds: (0, arena_question_history_1.mergeArenaQuestionHistory)(previous, selection.ids), updatedAtMs: now, lastSessionId: sessionId }, { merge: true });
         }
     });
     // Send push notifications to players who provided a token
@@ -404,51 +427,6 @@ function dedupByContent(docs) {
     }
     return out;
 }
-async function pickQuestions(level, count) {
-    // Assign a random float [0,1) to each question at upload time (field: rand).
-    // We pick a random pivot and fetch count*4 docs starting from it;
-    // if not enough, wrap around from 0. This gives uniform random coverage
-    // across the full question bank instead of always returning the first N docs.
-    const pivot = Math.random();
-    const [snapA, snapB] = await Promise.all([
-        db.collection('arena_questions')
-            .where('level', '==', level)
-            .where('rand', '>=', pivot)
-            .orderBy('rand')
-            .limit(count * 4)
-            .get(),
-        db.collection('arena_questions')
-            .where('level', '==', level)
-            .where('rand', '<', pivot)
-            .orderBy('rand')
-            .limit(count * 4)
-            .get(),
-    ]);
-    let docs = [
-        ...snapA.docs,
-        ...snapB.docs,
-    ];
-    // Страховка: документы БЕЗ поля `rand` Firestore не возвращает в rand-запросе
-    // (исторически так было у всего банка A1 → bronze-матчи падали). Если набралось
-    // меньше нужного — добираем простым запросом по level без rand-фильтра.
-    // Backfill rand (scripts/backfill_rand_a1_firestore.mjs) устраняет саму причину.
-    // Дедуп по content-ключу ниже гарантирует, что merge двух наборов не создаст повтор.
-    if (docs.length < count * 2) {
-        const plain = await db.collection('arena_questions')
-            .where('level', '==', level)
-            .limit(count * 4)
-            .get();
-        docs = [...docs, ...plain.docs];
-    }
-    // Дедуп по СМЫСЛУ вопроса — фикс «одинаковые вопросы 3–7 в разборе матча».
-    const uniqueIds = dedupByContent(docs).map(d => d.id);
-    const out = shuffleArray(uniqueIds).slice(0, count);
-    if (out.length < count) {
-        console.error(`pickQuestions: insufficient unique ids for level=${level} need=${count} got=${out.length}`);
-        throw new Error(`Insufficient arena_questions for level ${level} (need ${count}, got ${out.length})`);
-    }
-    return out;
-}
 /**
  * Один додатковий id для тай-брейку (нічия після основних 10 питань).
  * Повертає null, якщо в банку не знайшлося варіанта поза exclude.
@@ -458,13 +436,19 @@ async function pickOneQuestionExcluding(level, exclude) {
     const limit = 48;
     const [snapA, snapB] = await Promise.all([
         db.collection('arena_questions')
+            .where('studyTarget', '==', 'en')
+            .where('learnerSourceLocale', '==', 'ru')
             .where('level', '==', level)
+            .where('availability', '==', 'active')
             .where('rand', '>=', pivot)
             .orderBy('rand')
             .limit(limit)
             .get(),
         db.collection('arena_questions')
+            .where('studyTarget', '==', 'en')
+            .where('learnerSourceLocale', '==', 'ru')
             .where('level', '==', level)
+            .where('availability', '==', 'active')
             .where('rand', '<', pivot)
             .orderBy('rand')
             .limit(limit)

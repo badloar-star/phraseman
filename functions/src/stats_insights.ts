@@ -102,8 +102,6 @@ interface StatsInsightsBriefing {
   lifetime: {
     words: number;
     phrases: number;
-    quizzes: number;
-    arenaWins: number;
     daysActive: number;
   };
   // Optional weak-spot hint from mistake analytics — lets the AI name a topic
@@ -203,8 +201,6 @@ function sanitizeBriefing(raw: unknown): StatsInsightsBriefing {
     lifetime: {
       words: clampInt(l.words, 0, 100000000),
       phrases: clampInt(l.phrases, 0, 100000000),
-      quizzes: clampInt(l.quizzes, 0, 100000000),
-      arenaWins: clampInt(l.arenaWins, 0, 100000000),
       daysActive: clampInt(l.daysActive, 0, 100000),
     },
     weakCategories,
@@ -429,7 +425,7 @@ THE FIVE BLOCKS (write a note for each):
 - "rhythm": this week — active7/7 days, xp7 XP, minutes7 minutes, best day. Comment on the weekly pattern.
 - "year": activeDays active days this year, currentStreak / longestStreak, bestMonth, goalPct% toward the yearly goal. Comment on the long-term picture.
 - "percentiles": how the learner ranks vs others (totalXp%, week%, daily7% — each may be null/absent). If all null, give a neutral encouraging line about focusing on their own pace. Otherwise highlight the best ranking.
-- "lifetime": all-time totals — words, phrases, quizzes, arenaWins, daysActive. Celebrate the biggest non-zero number; if mostly zero, encourage a first milestone.
+- "lifetime": all-time totals — words, phrases, daysActive. Celebrate the biggest non-zero number; if mostly zero, encourage a first milestone.
 
 If weakCategories is non-empty, you MAY weave ONE concrete "what to pull up" suggestion (the category label) into the "balance" or "rhythm" note. Never suggest a topic that is not in weakCategories.
 

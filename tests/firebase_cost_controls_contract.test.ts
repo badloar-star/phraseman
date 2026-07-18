@@ -165,7 +165,7 @@ describe('Firebase cost controls', () => {
     expect(publicProfileSource).toContain("PUBLIC_PROFILE_SNAPSHOT_CACHE_KEY = 'public_profile_snapshot_v1'");
     expect(publicProfileSource).toContain('PUBLIC_PROFILE_XP_TTL_MS = 24 * 60 * 60 * 1000');
     expect(publicProfileSource).toContain("collection('public_profiles').doc(stableId).set");
-    expect(publicProfileSource).toContain("collection('arena_profiles').doc(arenaAuth).set");
+    expect(publicProfileSource).not.toContain("collection('arena_profiles')");
     expect(publicProfileSource).toContain('displayHash');
     expect(xpSource).toMatch(/syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'daily_xp'/);
     expect(avatarSource).toMatch(/syncPublicProfileSnapshot\(\{[\s\S]*?reason: 'display_change'/);

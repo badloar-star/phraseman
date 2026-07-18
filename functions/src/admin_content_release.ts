@@ -141,7 +141,7 @@ export const adminSealCourseRelease = onCall(
       const surfaceUnits = units.filter((unit) => unit.surface === surface);
       if (!surfaceUnits.length || surfaceUnits.some((unit) => unit.state !== 'succeeded')) throw new HttpsError('failed-precondition', `surface_incomplete:${surface}`);
       const indexPath = `course-releases/${releaseId}/${surface}/index.json`;
-      const index = { releaseId, studyTarget, learnerSourceLocale, surface, units: surfaceUnits.map((unit) => ({ lessonId: Number(unit.lessonId), objectPath: String(unit.objectPath), contentHash: String(unit.contentHash), objectGeneration: String(unit.objectGeneration), ...(surface === 'arena' ? { engineResolved: String(unit.engineResolved ?? 'legacy'), configRevision: Number(unit.configRevision ?? 0), comparatorVersion: String(unit.comparatorVersion ?? '') } : {}) })).sort((a, b) => a.lessonId - b.lessonId) };
+      const index = { releaseId, studyTarget, learnerSourceLocale, surface, units: surfaceUnits.map((unit) => ({ lessonId: Number(unit.lessonId), objectPath: String(unit.objectPath), contentHash: String(unit.contentHash), objectGeneration: String(unit.objectGeneration) })).sort((a, b) => a.lessonId - b.lessonId) };
       const receipt = await writeImmutableObject(bucket, indexPath, index);
       artifacts[surface] = { releaseId, studyTarget, learnerSourceLocale, surface, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, entryIndex: receipt.objectPath };
     }

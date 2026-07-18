@@ -247,7 +247,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Защищённые: закрывает ЮЗЕР (сундук с осколками / крупное окно / user-dismissed уведомление).
   // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
-    'onboardingWelcome',
+    'onboardingWelcome', 'authRecovery',
     'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
     'introFullAccess', 'loyaltyGift', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
@@ -301,7 +301,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
 // ════════════════════════════════════════════════════════════════════════════
 describe('OverlayArbiter native-modal handoff gap', () => {
   it('isNativeModal: нативные модалки — да, тосты/in-place — нет', () => {
-    for (const k of ['onboardingWelcome', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
+    for (const k of ['onboardingWelcome', 'authRecovery', 'update', 'notifNudge', 'introFullAccess', 'loyaltyGift', 'levelUp', 'perfectWeekReward', 'premiumCelebration', 'arenaRoomConfirm', 'collectibleDrop', 'arenaSeasonResult', 'entitlementExpired', 'referralWelcome'] as OverlayKey[]) {
       // arenaRoomConfirm = ThemedChoiceModal = нативный <Modal> → нужен handoff-зазор.
       expect(isNativeModal(k)).toBe(true);
     }

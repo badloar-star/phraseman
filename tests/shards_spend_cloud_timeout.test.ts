@@ -37,14 +37,23 @@ jest.mock('../app/lifetime_profile_stats', () => ({
 jest.mock('../app/storage_mutex', () => ({
   withStorageLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
 }));
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: jest.fn(() => ({ generation: 1, stableId: 'u1', phase: 'active' })),
+  isCurrentAccountGeneration: jest.fn(
+    (token: { generation: number; stableId: string }, owner?: string) =>
+      token.generation === 1 && token.stableId === 'u1' && (!owner || owner === 'u1'),
+  ),
+  withAccountTransitionLock: jest.fn(async (fn: () => Promise<unknown>) => fn()),
+}));
 jest.mock('../app/achievements', () => ({ checkAchievements: jest.fn() }));
 // Офлайн-очередь мокаем: проверяем, что зависшая операция ставится в неё для сверки.
-const enqueueShardDelta = jest.fn(async () => undefined);
+const enqueueShardDelta = jest.fn(async () => true);
+const removeShardDeltas = jest.fn(async () => true);
 jest.mock('../app/shards_delta_queue', () => ({
   enqueueShardDelta,
   newShardOpId: jest.fn(() => 'op-timeout-12345678'),
   readShardDeltaQueue: jest.fn(async () => []),
-  removeShardDeltas: jest.fn(async () => undefined),
+  removeShardDeltas,
 }));
 
 import { getShardsBalance, spendShards } from '../app/shards_system';
@@ -90,5 +99,34 @@ describe('spendShards when Firebase is unreachable (blocked region)', () => {
     expect(enqueueShardDelta).toHaveBeenCalledWith(
       expect.objectContaining({ opId: 'op-timeout-12345678', delta: 30, type: 'spend' }),
     );
+  }, 30000);
+
+  it('does not enqueue or debit when unavailable cloud meets insufficient local balance', async () => {
+    mockStorage.shards_balance = '10';
+
+    const spendPromise = spendShards(30, 'card_pack');
+    await jest.advanceTimersByTimeAsync(7000);
+
+    await expect(spendPromise).resolves.toBe(false);
+    await expect(getShardsBalance()).resolves.toBe(10);
+    expect(enqueueShardDelta).not.toHaveBeenCalled();
+  }, 30000);
+
+  it('cancels only the exact queued spend when the local debit cannot be committed', async () => {
+    mockStorage.shards_balance = '50';
+    (AsyncStorage.multiSet as jest.Mock).mockRejectedValueOnce(new Error('disk unavailable'));
+
+    const spendPromise = spendShards(30, 'card_pack');
+    await jest.advanceTimersByTimeAsync(7000);
+
+    await expect(spendPromise).resolves.toBe(false);
+    expect(enqueueShardDelta).toHaveBeenCalledWith(
+      expect.objectContaining({
+        opId: 'op-timeout-12345678',
+        ownerStableId: 'u1',
+        type: 'spend',
+      }),
+    );
+    expect(removeShardDeltas).toHaveBeenCalledWith('u1', ['op-timeout-12345678']);
   }, 30000);
 });

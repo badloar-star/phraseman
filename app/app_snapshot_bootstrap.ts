@@ -4,12 +4,10 @@ import {
   USER_AVATAR_AURA_KEY,
 } from '../constants/customization_storage_keys';
 import { getLevelFromXP } from '../constants/theme';
-import { ARENA_RATING_SCREEN_CACHE_KEY, sanitizeArenaProfileForRating, sanitizeArenaRatingHistory } from './arena_rating_cache';
 import {
   APP_SNAPSHOT_RESOURCE_LIMITS,
   limitArray,
   patchAppSnapshot,
-  type AppSnapshotArena,
   type AppSnapshotFriends,
   type AppSnapshotProfile,
   type AppSnapshotProgress,
@@ -157,22 +155,6 @@ async function primeFriendsSnapshot(now: number): Promise<AppSnapshotFriends | n
   };
 }
 
-async function primeArenaSnapshot(now: number): Promise<AppSnapshotArena | null> {
-  const raw = await AsyncStorage.getItem(ARENA_RATING_SCREEN_CACHE_KEY).catch(() => null);
-  if (!raw) return null;
-  try {
-    const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown[]; ts?: unknown };
-    return {
-      source: 'storage',
-      updatedAt: Number(parsed.ts) || now,
-      profile: sanitizeArenaProfileForRating(parsed.profile),
-      historyCount: sanitizeArenaRatingHistory(parsed.history).length,
-    };
-  } catch {
-    return null;
-  }
-}
-
 export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarget): Promise<void> {
   const now = Date.now();
   const lastOpenedKey = lastOpenedLessonKey(studyTarget);
@@ -185,15 +167,13 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
   ];
-  const [pairs, friends, arena] = await Promise.all([
+  const [pairs, friends] = await Promise.all([
     AsyncStorage.multiGet(keys).catch(() => [] as [string, string | null][]),
     primeFriendsSnapshot(now),
-    primeArenaSnapshot(now),
     hydrateUserSettingsFromStorage().catch(() => {}),
-  ]).then(async ([storagePairs, friendsSnapshot, arenaSnapshot]) => [
+  ]).then(async ([storagePairs, friendsSnapshot]) => [
     storagePairs,
     friendsSnapshot,
-    arenaSnapshot,
   ] as const);
 
   const values = mapPairs(pairs);
@@ -212,7 +192,6 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     },
     settings: buildSettingsSnapshot(values, now),
     ...(friends ? { friends } : {}),
-    ...(arena ? { arena } : {}),
     primedAt: now,
   });
 }

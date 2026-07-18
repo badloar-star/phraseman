@@ -3,6 +3,10 @@ import { logger } from 'firebase-functions';
 import { defineJsonSecret, defineString } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 import { ADMIN_ALERT_BOT_TOKEN } from '../admin_alerts';
+import { FirestoreAgentManagerRepository } from '../agent_manager/firestore_repository';
+import { AgentManagerLedger } from '../agent_manager/ledger';
+import { AgentManagerTelegramApprovalCore } from '../agent_manager/telegram_approvals';
+import { managerTelegramTokenPath } from '../agent_manager/telegram_contracts';
 import { FirestoreAgentOfficeRepository } from './firestore_repository';
 import { AgentOfficeLedger } from './ledger';
 import { TelegramApprovalCore } from './telegram_approvals';
@@ -33,11 +37,19 @@ export const AGENT_OFFICE_TELEGRAM_ENABLED = defineString(
 const handler = createAgentOfficeTelegramWebhookHandler({
   isEnabled: () => AGENT_OFFICE_TELEGRAM_ENABLED.value() === 'true',
   loadConfig: () => AGENT_OFFICE_TELEGRAM_CONFIG.value(),
-  loadTokenByHash: async (tokenIdHash) => {
-    const snapshot = await admin.firestore().doc(telegramApprovalTokenPath(tokenIdHash)).get();
+  loadTokenByHash: async (callbackNamespace, tokenIdHash) => {
+    const tokenPath = callbackNamespace === 'ao1'
+      ? telegramApprovalTokenPath(tokenIdHash)
+      : managerTelegramTokenPath(tokenIdHash);
+    const snapshot = await admin.firestore().doc(tokenPath).get();
     return snapshot.exists ? snapshot.data() ?? null : null;
   },
   handleApproval: async (update, state) => {
+    if (update.callbackNamespace === 'am1') {
+      const repository = new FirestoreAgentManagerRepository(admin.firestore());
+      const core = new AgentManagerTelegramApprovalCore(new AgentManagerLedger(repository));
+      return core.handle(update, state);
+    }
     const repository = new FirestoreAgentOfficeRepository(admin.firestore());
     const core = new TelegramApprovalCore(new AgentOfficeLedger(repository));
     return core.handle(update, state);

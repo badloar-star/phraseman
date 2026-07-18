@@ -23,19 +23,19 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks exactly twelve proven native capabilities as guarded', () => {
+  test('marks only V2-allowed native capabilities as guarded', () => {
     const registry = loadRegistry();
     const native = registry.filter((capability) => capability.nativeRoute);
-    expect(registry).toHaveLength(59);
+    // The registry intentionally has 52 capabilities: 47 legacy tabs plus five
+    // standalone legacy pages, represented without duplicate tab entries.
+    expect(registry).toHaveLength(52);
     expect(native.map(({ id, nativeRoute }) => [id, nativeRoute]).sort()).toEqual([
       ['analytics', 'analytics'],
       ['app-messages', 'campaigns'],
       ['asset-studio', 'asset-studio'],
-      ['audit', 'diagnostics'],
       ['daily-digest', 'daily-briefing'],
       ['gmail-support', 'support'],
       ['openai-budget', 'diagnostics'],
-      ['ops-log', 'diagnostics'],
       ['promo-codes', 'money'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
@@ -77,6 +77,18 @@ describe('Admin v2 native capability routing', () => {
   test('keeps standalone analytics bookmarks inside the full native analytics page', () => {
     for (const hash of ['#product', '#/product', '#subscriptions', '#/subscriptions', '#monthly', '#/monthly']) {
       expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'analytics', capabilityId: '' });
+    }
+  });
+
+  test('fails closed to the overview for every excluded V2 capability and Arena entry point', () => {
+    for (const hash of [
+      '#arena-ranks', '#arena-live', '#arena-bets', '#arena-rooms', '#community:arena-live',
+      '#arena-question-pool', '#content:arena-question-pool', '#content:arena-generator', '#content:arena-shadow',
+      '#french-quizzes', '#content:daily-phrases',
+      '#content:compass', '#mod-queue', '#community:mod-queue', '#audit', '#audit-log', '#ops-log',
+      '#archive', '#changelog-0608',
+    ]) {
+      expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'overview', capabilityId: '' });
     }
   });
 

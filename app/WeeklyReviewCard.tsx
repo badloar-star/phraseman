@@ -128,7 +128,7 @@ export default function WeeklyReviewCard({ active, isPremium, studyTarget, stabl
       : state.status === 'cooldown'
         ? copy.nextUpdate
         : state.status === 'offline' || state.status === 'error'
-          ? copy.unavailable
+          ? review ? copy.unavailableWithCache : copy.unavailable
           : ready ? copy.enough : copy.collecting;
   return (
     <CardShell embedded={embedded} style={slotStyle} backgroundColor={t.bgCard} borderColor={t.border}>

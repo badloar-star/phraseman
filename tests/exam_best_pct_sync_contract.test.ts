@@ -23,7 +23,9 @@ describe('zero-cost exam best-pct sync wiring', () => {
 
   test('boot coordinators pass only synchronous safety guards', () => {
     const source = read('app/_layout.tsx');
-    expect(source.match(/restoreFromCloudDetailed\(coldExamBestPctRestoreOptions\)/g)).toHaveLength(2);
+    expect(source.match(/restoreFromCloudWithRecoveryDetails\(coldExamBestPctRestoreOptions\)/g)).toHaveLength(1);
+    expect(source).toContain('restore: restoreCloudForBoot');
+    expect(source).toContain('return restoreCloudForBoot()');
     expect(source).toContain("AppState.currentState === 'active'");
     expect(source).toContain('isExamBestPctColdRestoreTabSafe()');
   });

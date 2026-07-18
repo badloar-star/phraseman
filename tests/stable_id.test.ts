@@ -34,6 +34,14 @@ function clearAll() {
 beforeEach(() => {
   jest.resetModules();
   clearAll();
+  const AS = require('@react-native-async-storage/async-storage');
+  AS.getItem.mockReset().mockImplementation(async (k: string) => asyncStore[k] ?? null);
+  AS.setItem.mockReset().mockImplementation(async (k: string, v: string) => { asyncStore[k] = v; });
+  AS.removeItem.mockReset().mockImplementation(async (k: string) => { delete asyncStore[k]; });
+  const SS = require('expo-secure-store');
+  SS.getItemAsync.mockReset().mockImplementation(async (k: string) => secureStore[k] ?? null);
+  SS.setItemAsync.mockReset().mockImplementation(async (k: string, v: string) => { secureStore[k] = v; });
+  SS.deleteItemAsync.mockReset().mockImplementation(async (k: string) => { delete secureStore[k]; });
 });
 
 test('generates a UUID on first launch', async () => {
@@ -174,9 +182,100 @@ test('failed clear remains transitioning and invalidates captured work', async (
   const captured = generation.captureAccountGeneration();
   SS.deleteItemAsync.mockRejectedValue(new Error('secure delete failed'));
   AS.removeItem.mockRejectedValueOnce(new Error('async delete failed'));
-  await clearStableId();
+  await expect(clearStableId()).rejects.toThrow('secure delete failed');
   expect(generation.isCurrentAccountGeneration(captured)).toBe(false);
   expect(generation.captureAccountGeneration().phase).toBe('transitioning');
+});
+
+test('prepared deletion guard makes a concurrent set wait and reject instead of resurrecting identity', async () => {
+  const SS = require('expo-secure-store');
+  const quarantine = require('../app/account_delete_quarantine');
+  const stable = require('../app/stable_id');
+  const deletedId = await stable.getStableId();
+  const createdAt = Date.now();
+  const lock = {
+    operationId: 'delete-op-race',
+    providerUid: 'provider-race',
+    stableId: deletedId,
+    source: 'local',
+    phase: 'prepared',
+    createdAt,
+    expiresAt: createdAt + 60_000,
+  };
+  await expect(quarantine.persistAccountDeletePendingAuthLock(lock)).resolves.toBe(true);
+
+  let release!: () => void;
+  SS.deleteItemAsync.mockImplementationOnce(() => new Promise<void>((resolve) => { release = resolve; }));
+  const clearing = stable.clearStableId();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  const setting = stable.setStableId('foreign-after-delete');
+
+  release();
+  await expect(clearing).resolves.toBeUndefined();
+  await expect(setting).rejects.toThrow('account_delete_identity_quarantined');
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+  expect(JSON.parse(secureStore['account_delete_pending_auth_v2']).phase).toBe('prepared');
+});
+
+test('strict clear drains a paused stable-id load before verifying every storage layer empty', async () => {
+  const SS = require('expo-secure-store');
+  secureStore['phraseman_stable_uid'] = 'stale-loading-account';
+  let release!: () => void;
+  const originalGet = SS.getItemAsync.getMockImplementation();
+  let paused = false;
+  SS.getItemAsync.mockImplementation((key: string, ...args: unknown[]) => {
+    if (key === 'phraseman_stable_uid' && !paused) {
+      paused = true;
+      return new Promise<string | null>((resolve) => {
+        release = () => resolve('stale-loading-account');
+      });
+    }
+    return originalGet(key, ...args);
+  });
+  const stable = require('../app/stable_id');
+  const loading = stable.getStableId();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  const clearing = stable.clearStableId();
+  const beforeRelease = await Promise.race([clearing.then(() => 'cleared'), Promise.resolve('pending')]);
+  expect(beforeRelease).toBe('pending');
+
+  release();
+  await expect(loading).rejects.toThrow('stable_id_read_superseded');
+  await expect(clearing).resolves.toBeUndefined();
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+  expect(stable.peekStableId()).toBeNull();
+});
+
+test('paused load then set then clear cannot orphan a late identity write', async () => {
+  const SS = require('expo-secure-store');
+  secureStore['phraseman_stable_uid'] = 'account-a';
+  let release!: () => void;
+  const baseGet = SS.getItemAsync.getMockImplementation();
+  let paused = false;
+  SS.getItemAsync.mockImplementation((key: string, ...args: unknown[]) => {
+    if (key === 'phraseman_stable_uid' && !paused) {
+      paused = true;
+      return new Promise<string | null>((resolve) => {
+        release = () => resolve('account-a');
+      });
+    }
+    return baseGet(key, ...args);
+  });
+  const stable = require('../app/stable_id');
+  const loadingA = stable.getStableId();
+  await new Promise<void>((resolve) => setImmediate(resolve));
+  const settingC = stable.setStableId('account-c');
+  const clearing = stable.clearStableId();
+
+  release();
+  await expect(loadingA).rejects.toThrow('stable_id_read_superseded');
+  await expect(settingC).resolves.toBeUndefined();
+  await expect(clearing).resolves.toBeUndefined();
+  expect(secureStore['phraseman_stable_uid']).toBeUndefined();
+  expect(asyncStore['phraseman_stable_uid_cache']).toBeUndefined();
+  expect(stable.peekStableId()).toBeNull();
 });
 
 test.each(['set', 'clear', 'reset'] as const)(
@@ -184,18 +283,29 @@ test.each(['set', 'clear', 'reset'] as const)(
   async (mutation) => {
     const SS = require('expo-secure-store');
     let release!: () => void;
-    SS.getItemAsync.mockImplementationOnce(() => new Promise<string | null>((resolve) => {
-      release = () => resolve('stale-account');
-    }));
+    const baseGet = SS.getItemAsync.getMockImplementation();
+    let paused = false;
+    SS.getItemAsync.mockImplementation((key: string, ...args: unknown[]) => {
+      if (key === 'phraseman_stable_uid' && !paused) {
+        paused = true;
+        return new Promise<string | null>((resolve) => {
+          release = () => resolve('stale-account');
+        });
+      }
+      return baseGet(key, ...args);
+    });
     const stable = require('../app/stable_id');
     const generation = require('../app/account_generation');
     const pending = stable.getStableId();
+    await new Promise<void>((resolve) => setImmediate(resolve));
 
-    if (mutation === 'set') await stable.setStableId('new-account');
-    else if (mutation === 'clear') await stable.clearStableId();
+    let mutationPromise: Promise<void> | null = null;
+    if (mutation === 'set') mutationPromise = stable.setStableId('new-account');
+    else if (mutation === 'clear') mutationPromise = stable.clearStableId();
     else stable._resetStableIdCache();
 
     release();
+    await mutationPromise;
     await expect(pending).rejects.toThrow('stable_id_read_superseded');
     expect(generation.captureAccountGeneration().stableId).not.toBe('stale-account');
     expect(stable.peekStableId()).not.toBe('stale-account');
@@ -215,6 +325,7 @@ test('getStableId waits behind a pending identity set and resolves the new accou
   const reading = stable.getStableId();
   const beforeRelease = await Promise.race([reading.then(() => 'resolved'), Promise.resolve('pending')]);
   expect(beforeRelease).toBe('pending');
+  await new Promise<void>((resolve) => setImmediate(resolve));
   release();
   await setting;
   await expect(reading).resolves.toBe('new-account');
@@ -234,6 +345,7 @@ test('getStableId waits behind pending clear and never reactivates the deleted i
   const reading = stable.getStableId();
   const beforeRelease = await Promise.race([reading.then(() => 'resolved'), Promise.resolve('pending')]);
   expect(beforeRelease).toBe('pending');
+  await new Promise<void>((resolve) => setImmediate(resolve));
   release();
   await clearing;
   await expect(reading).resolves.not.toBe(oldId);

@@ -79,6 +79,14 @@ export type TaskType =
   | 'arena_rank_promoted'   // повысить ранг (уровень/лигу вверх) в рейтинговой Арене за день
   | 'invite_friend';        // отправить приглашение другу (экран «Пригласить друга», Share без отмены)
 
+const RETIRED_QUIZ_ARENA_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'quiz_hard', 'quiz_score', 'quiz_easy', 'quiz_medium', 'quiz_perfect', 'quiz_hard_perfect',
+  'trainer_arena', 'arena_play', 'arena_win', 'arena_plays_wins_combo', 'arena_rank_promoted',
+]);
+
+export const isRetiredQuizArenaTaskType = (type: TaskType): boolean =>
+  RETIRED_QUIZ_ARENA_TASK_TYPES.has(type);
+
 /** Типы заданий, которые считаются «про Арену» (лимит 1 на день в DAILY_SETS_*). */
 export function isArenaDailyTaskType(type: TaskType): boolean {
   return (
@@ -2058,12 +2066,31 @@ export async function pruneDatedDailyTasksStorageKeys(retainKeys: readonly strin
 }
 
 // Синхронная версия — без уровня, используется только внутри getTodayTasksSafe
+const SAFE_DECOMMISSION_REPLACEMENT_IDS = [
+  'da1', 'ta1', 'rs1', 'da2', 'ta2', 'da3', 'ta3', 'da4', 'ta4', 'da5', 'ta5', 'da6',
+] as const;
+
+function replaceRetiredQuizArenaTasks(tasks: readonly DailyTask[]): DailyTask[] {
+  const usedIds = new Set(tasks.filter((task) => !isRetiredQuizArenaTaskType(task.type)).map((task) => task.id));
+  const replacements = SAFE_DECOMMISSION_REPLACEMENT_IDS
+    .map((id) => ALL_TASKS.find((task) => task.id === id))
+    .filter((task): task is DailyTask => Boolean(task) && !isRetiredQuizArenaTaskType(task.type));
+
+  return tasks.map((task) => {
+    if (!isRetiredQuizArenaTaskType(task.type)) return task;
+    const replacement = replacements.find((candidate) => !usedIds.has(candidate.id));
+    if (!replacement) throw new Error('daily_task_decommission_replacement_exhausted');
+    usedIds.add(replacement.id);
+    return replacement;
+  });
+}
+
 const getTodayTasksByLevel = (playerLevel: number): DailyTask[] => {
   const sets = getSetsForPlayerLevel(playerLevel);
   const dayOfMonth = new Date().getDate();
   const setIdx = (dayOfMonth - 1) % sets.length;
   const ids = sets[setIdx];
-  return ids.map(id => ALL_TASKS.find(t => t.id === id)!).filter(Boolean);
+  return replaceRetiredQuizArenaTasks(ids.map(id => ALL_TASKS.find(t => t.id)!).filter(Boolean));
 };
 
 // Оставляем для обратной совместимости (используется в паре мест)
@@ -2712,7 +2739,7 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
     const adminTasks = adminOverride.taskIds
       .map((id) => ALL_TASKS.find((t) => t.id === id))
       .filter((t): t is DailyTask => Boolean(t));
-    return filterDailyTasksForStudyTarget(adminTasks, studyTarget);
+    return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(adminTasks), studyTarget);
   }
   // Выбираем набор заданий по тиру уровня игрока
   const baseTasks = getTodayTasksByLevel(playerLevel);
@@ -2761,7 +2788,7 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
 
   // 3. Replace verb_learned when too few verbs remain.
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
-  if (!hasVerbTask) return filterDailyTasksForStudyTarget(result, studyTarget);
+  if (!hasVerbTask) return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget);
 
   const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
   const learned: Record<string, number> = raw ? JSON.parse(raw) : {};
@@ -2778,7 +2805,7 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
     return (fallbackId ? ALL_TASKS.find(t => t.id === fallbackId) : undefined) ?? task;
   });
 
-  return filterDailyTasksForStudyTarget(result, studyTarget);
+  return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget);
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';

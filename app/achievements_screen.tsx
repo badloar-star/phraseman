@@ -58,8 +58,6 @@ import {
   flashcardsOwnedPacksKey,
   lessonPassCountKey,
   lessonProgressKey,
-  quizAchievementCounterKey,
-  quizPerfectStreakKey,
   shareAchievementCounterKey,
   trainerAchievementCorrectCountKey,
   trainerAchievementPerfectSessionCountKey,
@@ -109,13 +107,8 @@ interface AchievementStats {
   level: number;
   weeklyXP: number;
   recallCorrect: number;
-  arenaWins: number;
   shards: number;
   shardsSpent: number;
-  quizSessions: number;
-  quizHard: number;
-  quizHardPerfect: number;
-  quizPerfectStreak: number;
   comboBest: number;
   dailyAllStreak: number;
   dailyNoRerollStreak: number;
@@ -148,13 +141,8 @@ const emptyAchievementStats = (): AchievementStats => ({
   level: 1,
   weeklyXP: 0,
   recallCorrect: 0,
-  arenaWins: 0,
   shards: 0,
   shardsSpent: 0,
-  quizSessions: 0,
-  quizHard: 0,
-  quizHardPerfect: 0,
-  quizPerfectStreak: 0,
   comboBest: 0,
   dailyAllStreak: 0,
   dailyNoRerollStreak: 0,
@@ -185,24 +173,6 @@ const readJsonStringListLength = (raw: string | null): number => {
     const parsed = raw ? JSON.parse(raw) : [];
     return Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string').length : 0;
   } catch { return 0; }
-};
-
-const readQuizAchievementCounterAcrossTargets = async (
-  rawEnglishKey: 'achievement_quiz_total_count' | 'quiz_hard_count' | 'achievement_quiz_hard_perfect_count',
-): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => quizAchievementCounterKey(rawEnglishKey, studyTarget)),
-  );
-  const total = rows.reduce((sum, [, raw]) => sum + (parseInt(raw || '0', 10) || 0), 0);
-  return String(total);
-};
-
-const readQuizPerfectStreakAcrossTargets = async (): Promise<string> => {
-  const rows = await AsyncStorage.multiGet(
-    ACHIEVEMENT_PROGRESS_TARGETS.map((studyTarget) => quizPerfectStreakKey(studyTarget)),
-  );
-  const best = rows.reduce((max, [, raw]) => Math.max(max, readJsonStreak(raw)), 0);
-  return String(best);
 };
 
 const readComboBestAcrossTargets = async (): Promise<string> => {
@@ -280,8 +250,7 @@ const readDailyTaskStreakAcrossTargets = async (
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
     const [
-      streakRaw, loginRaw, xpRaw, recallRaw, trainerRaw, arenaWinsRaw, shardsRaw, shardsSpentRaw,
-      quizSessionsRaw, quizHardRaw, quizHardPerfectRaw, quizPerfectStreakRaw, comboBestRaw,
+      streakRaw, loginRaw, xpRaw, recallRaw, trainerRaw, shardsRaw, shardsSpentRaw, comboBestRaw,
       dailyAllStreakRaw, dailyNoRerollRaw, dailyPhraseReadsRaw, dailyPhraseSavesRaw,
       flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
        leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw,
@@ -293,13 +262,8 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       AsyncStorage.getItem('user_total_xp'),
       readTrainerPracticeCorrectAcrossTargets(),
       '0',
-      AsyncStorage.getItem('achievement_arena_win_count'),
       AsyncStorage.getItem('shards_balance'),
       AsyncStorage.getItem('achievement_shards_spent_total'),
-      readQuizAchievementCounterAcrossTargets('achievement_quiz_total_count'),
-      readQuizAchievementCounterAcrossTargets('quiz_hard_count'),
-      readQuizAchievementCounterAcrossTargets('achievement_quiz_hard_perfect_count'),
-      readQuizPerfectStreakAcrossTargets(),
       readComboBestAcrossTargets(),
       readDailyTaskStreakAcrossTargets(dailyTasksAchievementAllDoneStreakKey),
       readDailyTaskStreakAcrossTargets(dailyTasksAchievementNoRerollStreakKey),
@@ -330,7 +294,6 @@ async function loadAchievementStats(): Promise<AchievementStats> {
     const level = getLevelFromXP(xp);
     const weeklyXP = Math.max(parseInt(weeklyRaw || '0') || 0, parseInt(weeklyPeakRaw || '0') || 0);
     const recallCorrect = Math.max(parseInt(recallRaw || '0') || 0, parseInt(trainerRaw || '0') || 0);
-    const arenaWins = parseInt(arenaWinsRaw || '0') || 0;
     const shards = parseInt(shardsRaw || '0') || 0;
     const shardsSpent = parseInt(shardsSpentRaw || '0') || 0;
     let loginDays = 0;
@@ -422,13 +385,8 @@ async function loadAchievementStats(): Promise<AchievementStats> {
       level,
       weeklyXP,
       recallCorrect,
-      arenaWins,
       shards,
       shardsSpent,
-      quizSessions: parseInt(quizSessionsRaw || '0') || 0,
-      quizHard: parseInt(quizHardRaw || '0') || 0,
-      quizHardPerfect: parseInt(quizHardPerfectRaw || '0') || 0,
-      quizPerfectStreak: readJsonStreak(quizPerfectStreakRaw),
       comboBest: parseInt(comboBestRaw || '0') || 0,
       dailyAllStreak: readJsonStreak(dailyAllStreakRaw),
       dailyNoRerollStreak: readJsonStreak(dailyNoRerollRaw),
@@ -486,11 +444,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   if (id === 'trainer_1000_correct') return [Math.min(stats.recallCorrect, 1000), 1000];
   if (id === 'trainer_2500_correct') return [Math.min(stats.recallCorrect, 2500), 2500];
   if (id === 'trainer_10000_correct') return [Math.min(stats.recallCorrect, 10000), 10000];
-  if (id === 'arena_first_win') return [Math.min(stats.arenaWins, 1), 1];
-  if (id === 'arena_10_wins') return [Math.min(stats.arenaWins, 10), 10];
-  if (id === 'arena_25_wins') return [Math.min(stats.arenaWins, 25), 25];
-  if (id === 'arena_50_wins') return [Math.min(stats.arenaWins, 50), 50];
-  if (id === 'arena_100_wins') return [Math.min(stats.arenaWins, 100), 100];
   if (id.startsWith('shards_spent_')) {
     const n = parseInt(id.replace('shards_spent_', ''));
     if (!isNaN(n)) return [Math.min(stats.shardsSpent, n), n];
@@ -499,15 +452,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
     const n = parseInt(id.replace('shards_', ''));
     if (!isNaN(n)) return [Math.min(stats.shards, n), n];
   }
-  if (id.startsWith('quiz_') && id.endsWith('_completed')) {
-    const n = parseInt(id.replace('quiz_', '').replace('_completed', ''));
-    if (!isNaN(n)) return [Math.min(stats.quizSessions, n), n];
-  }
-  if (id === 'quiz_hard_10') return [Math.min(stats.quizHard, 10), 10];
-  if (id === 'quiz_hard_25') return [Math.min(stats.quizHard, 25), 25];
-  if (id === 'quiz_hard_perfect_3') return [Math.min(stats.quizHardPerfect, 3), 3];
-  if (id === 'quiz_hard_perfect_10') return [Math.min(stats.quizHardPerfect, 10), 10];
-  if (id === 'quiz_perfect_7_days') return [Math.min(stats.quizPerfectStreak, 7), 7];
   if (id.startsWith('combo_')) {
     const n = parseInt(id.replace('combo_', ''));
     if (!isNaN(n)) return [Math.min(stats.comboBest, n), n];
@@ -552,25 +496,6 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
 }
 
 /** Квизовые достижения доступны всем; Premium-подсказка для них отключена. */
-const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
-  'quiz_medium',
-  'quiz_hard',
-  'quiz_all_levels',
-  'quiz_perfect_medium',
-  'quiz_perfect',
-  'quiz_triple_perfect',
-  'quiz_speed_demon',
-  'quiz_hard_10',
-  'quiz_hard_25',
-  'quiz_hard_perfect_3',
-  'quiz_hard_perfect_10',
-  'quiz_all_levels_perfect_same_day',
-]);
-
-export function achievementNeedsPremiumQuiz(id: string): boolean {
-  return false;
-}
-
 // Лейбл уровня для медалей (gem_*)
 const GEM_LEVEL_LABEL: Record<string, string> = {
   gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1', gem_a1_obsidian: 'A1', gem_a1_mythic: 'A1',
@@ -614,15 +539,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   xp_100000:                        require('../assets/images/achievements/xp_100000.webp'),
   wager_win:                        require('../assets/images/achievements/wager_win.webp'),
   personal_best:                    require('../assets/images/achievements/personal_best.webp'),
-  quiz_first:                       require('../assets/images/achievements/quiz_first.webp'),
-  quiz_medium:                      require('../assets/images/achievements/quiz_medium.webp'),
-  quiz_hard:                        require('../assets/images/achievements/quiz_hard.webp'),
-  quiz_all_levels:                  require('../assets/images/achievements/quiz_all_levels.webp'),
-  quiz_perfect_easy:                require('../assets/images/achievements/quiz_perfect_easy.webp'),
-  quiz_perfect:                     require('../assets/images/achievements/quiz_perfect.webp'),
-  quiz_perfect_medium:              require('../assets/images/achievements/quiz_perfect_medium.webp'),
-  quiz_triple_perfect:              require('../assets/images/achievements/quiz_triple_perfect.webp'),
-  quiz_speed_demon:                 require('../assets/images/achievements/quiz_speed_demon.webp'),
   combo_3:                          require('../assets/images/achievements/combo_3.webp'),
   combo_10:                         require('../assets/images/achievements/combo_10.webp'),
   combo_20:                         require('../assets/images/achievements/combo_20.webp'),
@@ -654,8 +570,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   flashcards_sources_4:             require('../assets/images/achievements/flashcards_sources_4.webp'),
   recall_first:                     require('../assets/images/achievements/recall_first.webp'),
   recall_50:                        require('../assets/images/achievements/recall_50.webp'),
-  arena_first_win:                  require('../assets/images/achievements/arena_first_win.webp'),
-  arena_10_wins:                    require('../assets/images/achievements/arena_10_wins.webp'),
   shards_100:                       require('../assets/images/achievements/shards_100.webp'),
   shards_spent_100:                 require('../assets/images/achievements/shards_spent_100.webp'),
   energy_refill_first:              require('../assets/images/achievements/energy_refill_first.webp'),
@@ -699,11 +613,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   social_gift_10:                   require('../assets/images/achievements/social_gift_10.webp'),
   social_like_received:             require('../assets/images/achievements/social_like_received.webp'),
   social_likes_5:                   require('../assets/images/achievements/social_likes_5.webp'),
-  arena_streak_5:                   require('../assets/images/achievements/arena_streak_5.webp'),
-  arena_streak_10:                  require('../assets/images/achievements/arena_streak_10.webp'),
-  arena_duel_friend:                require('../assets/images/achievements/arena_duel_friend.webp'),
-  arena_wager_win:                  require('../assets/images/achievements/arena_wager_win.webp'),
-  arena_wager_5:                    require('../assets/images/achievements/arena_wager_5.webp'),
   trainer_session:                  require('../assets/images/achievements/trainer_session.webp'),
   trainer_100_correct:              require('../assets/images/achievements/trainer_100_correct.webp'),
   trainer_7_days:                   require('../assets/images/achievements/trainer_7_days.webp'),
@@ -716,8 +625,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   share_achievement:                require('../assets/images/achievements/share_achievement.webp'),
   level_50:                         require('../assets/images/achievements/level_50.webp'),
   xp_75000:                         require('../assets/images/achievements/xp_75000.webp'),
-  quiz_10_completed:                require('../assets/images/achievements/quiz_10_completed.webp'),
-  arena_streak_freeze:              require('../assets/images/achievements/arena_streak_freeze.webp'),
   wager_win_3:                      require('../assets/images/achievements/wager_win_3.webp'),
   streak_150:                       require('../assets/images/achievements/streak_150.webp'),
   streak_250:                       require('../assets/images/achievements/streak_250.webp'),
@@ -743,15 +650,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   weekly_xp_5000:                   require('../assets/images/achievements/weekly_xp_5000.webp'),
   weekly_xp_10000:                  require('../assets/images/achievements/weekly_xp_10000.webp'),
   wager_win_10:                     require('../assets/images/achievements/wager_win_10.webp'),
-  quiz_25_completed:                require('../assets/images/achievements/quiz_25_completed.webp'),
-  quiz_50_completed:                require('../assets/images/achievements/quiz_50_completed.webp'),
-  quiz_100_completed:               require('../assets/images/achievements/quiz_100_completed.webp'),
-  quiz_hard_10:                     require('../assets/images/achievements/quiz_hard_10.webp'),
-  quiz_hard_25:                     require('../assets/images/achievements/quiz_hard_25.webp'),
-  quiz_hard_perfect_3:              require('../assets/images/achievements/quiz_hard_perfect_3.webp'),
-  quiz_hard_perfect_10:             require('../assets/images/achievements/quiz_hard_perfect_10.webp'),
-  quiz_perfect_7_days:              require('../assets/images/achievements/quiz_perfect_7_days.webp'),
-  quiz_all_levels_perfect_same_day: require('../assets/images/achievements/quiz_all_levels_perfect_same_day.webp'),
   combo_150:                        require('../assets/images/achievements/combo_150.webp'),
   combo_250:                        require('../assets/images/achievements/combo_250.webp'),
   combo_500:                        require('../assets/images/achievements/combo_500.webp'),
@@ -772,13 +670,6 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   flashcards_flip_1000:             require('../assets/images/achievements/flashcards_flip_1000.webp'),
   flashcards_view_14_days:          require('../assets/images/achievements/flashcards_view_14_days.webp'),
   flashcards_view_30_days:          require('../assets/images/achievements/flashcards_view_30_days.webp'),
-  arena_25_wins:                    require('../assets/images/achievements/arena_25_wins.webp'),
-  arena_50_wins:                    require('../assets/images/achievements/arena_50_wins.webp'),
-  arena_100_wins:                   require('../assets/images/achievements/arena_100_wins.webp'),
-  arena_streak_15:                  require('../assets/images/achievements/arena_streak_15.webp'),
-  arena_streak_25:                  require('../assets/images/achievements/arena_streak_25.webp'),
-  arena_wager_10:                   require('../assets/images/achievements/arena_wager_10.webp'),
-  arena_wager_25:                   require('../assets/images/achievements/arena_wager_25.webp'),
   shards_250:                       require('../assets/images/achievements/shards_250.webp'),
   shards_500:                       require('../assets/images/achievements/shards_500.webp'),
   shards_1000:                      require('../assets/images/achievements/shards_1000.webp'),
@@ -841,15 +732,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   xp_100000:          'trophy',
   wager_win:          'dice',
   personal_best:      'trending-up',
-  quiz_first:          'help-circle',
-  quiz_medium:         'flame',
-  quiz_hard:           'skull',
-  quiz_all_levels:     'albums',
-  quiz_perfect_easy:   'checkmark-circle',
-  quiz_perfect:        'aperture',
-  quiz_perfect_medium: 'radio-button-on',
-  quiz_triple_perfect: 'star',
-  quiz_speed_demon:    'flash',
   combo_3:            'git-merge',
   combo_10:           'radio-button-on',
   combo_20:           'shield',
@@ -881,8 +763,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   flashcards_sources_4: 'git-network',
   recall_first:       'bulb',
   recall_50:          'library',
-  arena_first_win:    'trophy',
-  arena_10_wins:      'shield-checkmark',
   shards_100:         'diamond',
   shards_spent_100:   'diamond-outline',
   energy_refill_first: 'flash',
@@ -908,7 +788,6 @@ export const CAT_COLOR: Record<string, string> = {
   streak:  '#FF6B35',
   lessons: '#3B82F6',
   xp:      '#F59E0B',
-  quiz:    '#8B5CF6',
   combo:   '#EC4899',
   special: '#10B981',
   medal:   '#E11D48',
@@ -920,7 +799,6 @@ const CAT_ICON: Record<string, any> = {
   streak:  'flame',
   lessons: 'book',
   xp:      'star',
-  quiz:    'help-circle',
   combo:   'flash',
   special: 'rocket',
   medal:   'diamond',
@@ -929,7 +807,6 @@ const CAT_ICON_IMAGE: Record<string, any> = {
   streak:  require('../assets/images/achievement_categories/achievement-category-streak.webp'),
   lessons: require('../assets/images/achievement_categories/achievement-category-lessons.webp'),
   xp:      require('../assets/images/achievement_categories/achievement-category-xp.webp'),
-  quiz:    require('../assets/images/achievements/quiz_all_levels.webp'),
   combo:   require('../assets/images/achievement_categories/achievement-category-combo.webp'),
   special: require('../assets/images/achievement_categories/achievement-category-special.webp'),
   medal:   require('../assets/images/achievements/gem_all_complete.webp'),
@@ -967,7 +844,7 @@ const CAT_LABEL_PL: Record<string, string> = {
   quiz: 'Quizy', combo: 'Serie', special: 'Specjalne', medal: 'Medale',
 };
 
-const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
+const CATEGORIES = ['streak', 'lessons', 'xp', 'combo', 'special', 'medal'] as const;
 const ACHIEVEMENT_DATE_LOCALES: Record<Lang, string> = {
   ru: 'ru-RU',
   uk: 'uk-UA',
@@ -1591,7 +1468,7 @@ function AchievementModal({
                 <TapScale
                   onPress={() => {
                     onClose();
-                    router.push('/quizzes_screen' as any);
+                    router.push('/home' as any);
                   }}
                   style={{
                     backgroundColor: isDark ? '#6D28D9' : '#7C3AED',

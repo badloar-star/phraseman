@@ -52,6 +52,19 @@ describe('OpenAI runtime cost controls', () => {
     }
   });
 
+  test('Explain clients serve completed local answers before reaching a callable', () => {
+    const phrase = read('app/explain_phrase_client.ts');
+    const mistake = read('app/ai_mistake_explain_client.ts');
+
+    for (const source of [phrase, mistake]) {
+      expect(source).toContain("from './explain_local_cache'");
+      expect(source).toContain('readExplainLocalCache');
+      expect(source).toContain('writeExplainLocalCache');
+      expect(source.indexOf('const localCached = await readExplainLocalCache'))
+        .toBeLessThan(source.indexOf('const fn = httpsCallable'));
+    }
+  });
+
   test('explain callable clients time out stalled requests so retry can recover', () => {
     const timeout = read('app/explain_callable_timeout.ts');
     expect(timeout).toContain('ExplainCallableTimeoutError');

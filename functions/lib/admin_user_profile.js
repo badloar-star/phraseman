@@ -460,9 +460,8 @@ exports.adminGetUserProfile = (0, https_1.onCall)({ region: REGION, enforceAppCh
     const identity = resolveCanonicalStableId({ requestedUid, user: requestedUser, authLink: authLinkSnap?.exists ? authLinkSnap.data() : null, existingUserIds: new Set(users.keys()) });
     const canonicalUser = users.get(identity.canonicalUid) ?? requestedUser;
     const uid = identity.canonicalUid;
-    const [leaderboardSnap, arenaSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
+    const [leaderboardSnap, banRead, statsSnap, errorReports, reportsAgainst, reportsBy, premiumEvents, shardTransactions, adminRewardHistory, ugcBuys, ugcSells, referralsBy, invitedByRead] = await Promise.all([
         db.collection('leaderboard').doc(uid).get().catch(() => null),
-        db.collection('arena_profiles').doc(uid).get().catch(() => null),
         db.collection('banned_users').doc(uid).get().then((snap) => ({ snap, error: null })).catch((error) => ({ snap: null, error })),
         db.collection('leaderboard_stats').doc('global').get().catch(() => null),
         readRecentByField(db, 'error_reports', 'uid', uid),
@@ -491,7 +490,6 @@ exports.adminGetUserProfile = (0, https_1.onCall)({ region: REGION, enforceAppCh
     };
     const sources = {
         leaderboard: directSource('leaderboard', leaderboardSnap, ['id', 'name', 'points', 'weekPoints', 'streak', 'daily7xp', 'daily7time_ms', 'updatedAt', 'dailyAnalyticsUpdatedAt']),
-        arena: directSource('arena_profiles', arenaSnap, ['id', 'name', 'xp', 'rank', 'tier', 'wins', 'losses', 'updatedAt']),
         percentileStats: directSource('leaderboard_stats', statsSnap, ['totalUsers', 'updatedAt']),
         errorReports: adapterSource('error_reports', errorReports, ['id', 'screen', 'category', 'status', 'fixed', 'dataId', 'comment', 'createdAt'], ['screen', 'category', 'status', 'dataId', 'comment']),
         reportsAgainst: adapterSource('user_reports_against', reportsAgainst, ['id', 'reporterUid', 'reporterName', 'reason', 'category', 'status', 'createdAt'], ['reporterName', 'reason', 'category', 'status']),
@@ -518,7 +516,7 @@ exports.adminGetUserProfile = (0, https_1.onCall)({ region: REGION, enforceAppCh
         sections: {
             identity: { summary, banned: banSnap?.exists === true, ban: banSnap?.exists ? projectRows([withId(banSnap)], ['id', 'reason', 'bannedAt', 'bannedBy'])[0] : null },
             learning,
-            competition: { leaderboard: sources.leaderboard, arena: sources.arena, percentileStats: sources.percentileStats },
+            competition: { leaderboard: sources.leaderboard, percentileStats: sources.percentileStats },
             money: { premiumEvents: sources.premiumEvents, shardTransactions: sources.shardTransactions, adminRewardHistory: sources.adminRewardHistory, referrals: sources.referrals, invitedBy: sources.invitedBy },
             community: { ugcBuys: sources.ugcBuys, ugcSells: sources.ugcSells },
             moderation: { errorReports: sources.errorReports, reportsAgainst: sources.reportsAgainst, reportsBy: sources.reportsBy },

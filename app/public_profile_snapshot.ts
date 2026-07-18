@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser, ensureStableAuthLinkForStableId } from './cloud_sync';
-import { ensureArenaAuthUid } from './user_id_policy';
+import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed } from './cloud_sync';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
@@ -98,7 +97,7 @@ function stableStringify(value: Record<string, unknown>): string {
   }, {}));
 }
 
-export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<void> {
+async function syncPublicProfileSnapshotUnsafe(input: SnapshotInput): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || isJestRuntime()) return;
   const db = getFirestore();
   if (!db) return;
@@ -160,7 +159,7 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
   const legendNoParsed = Math.floor(Number(rawLegendNo));
   const profileCardLegendNo = Number.isFinite(legendNoParsed) && legendNoParsed > 0 ? legendNoParsed : null;
 
-  // Блоки статистики уровней II+ («Выучено»/«Арена»/«Путь») — денормализуем в публичный
+  // Блоки статистики уровней II+ («Выучено»/«Путь») — денормализуем в публичный
   // профиль из локального lifetime-кэша, чтобы ЧУЖИЕ карточки могли их показать.
   // Кэш освежается экраном статистики и модалом собственной карточки; если его ещё
   // нет — поля не пишем (карточка у других просто не покажет строку, без вранья).
@@ -171,8 +170,6 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     ? {
         cardWordsLearned: Math.max(0, Math.floor(lifetimeStats.wordsLearned)),
         cardPhrasesLearned: Math.max(0, Math.floor(lifetimeStats.phrasesLearned)),
-        cardArenaWins: Math.max(0, Math.floor(lifetimeStats.arenaWins)),
-        cardArenaMatches: Math.max(0, Math.floor(lifetimeStats.arenaWins + lifetimeStats.arenaLosses)),
         cardAppDays: Math.max(0, Math.floor(lifetimeStats.appDaysUnion)),
         cardLongestStreak: Math.max(0, Math.floor(lifetimeStats.longestStreakDays)),
       }
@@ -212,7 +209,8 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
 
   const stableId = await ensureAnonUser();
   if (!stableId) return;
-  await ensureStableAuthLinkForStableId(stableId).catch(() => false);
+  const stableLink = await ensureStableAuthLinkForStableIdDetailed(stableId);
+  if (!stableLink.ok || stableLink.stableUid !== stableId) return;
 
   try {
     const banDoc = await db.collection('banned_users').doc(stableId).get();
@@ -253,27 +251,6 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
 
   await db.collection('public_profiles').doc(stableId).set(publicPayload, { merge: true });
 
-  try {
-    const arenaAuth = await ensureArenaAuthUid();
-    if (arenaAuth) {
-      await db.collection('arena_profiles').doc(arenaAuth).set({
-        courseTotalXp: totalXp,
-        courseAvatar: avatar,
-        courseFrame: frame,
-        courseAura: aura,
-        courseIsPremium: isPremium,
-        courseIsVip: isVip,
-        courseIsLifetime: isLifetime,
-        courseProfileCardLevel: profileCardLevel,
-        courseProfileCardTheme: profileCardTheme,
-        courseProfileCardMotion: profileCardMotion,
-        courseProfileCardPublicFocus: profileCardPublicFocus,
-        courseDisplayAt: now,
-        mirrorStableId: stableId,
-      }, { merge: true });
-    }
-  } catch {}
-
   await writeSnapshotCache({
     displayHash,
     isPremium,
@@ -281,6 +258,11 @@ export async function syncPublicProfileSnapshot(input: SnapshotInput): Promise<v
     isLifetime,
     xpSyncedAt: input.reason === 'daily_xp' ? now : cache.xpSyncedAt,
   });
+}
+
+/** Public profile mirroring is best-effort and must never reject into UI event handlers. */
+export function syncPublicProfileSnapshot(input: SnapshotInput): Promise<void> {
+  return syncPublicProfileSnapshotUnsafe(input).catch(() => {});
 }
 
 export default function __RouteShim() { return null; }

@@ -169,7 +169,7 @@ async function persistVipResult(result: SubmitVipSurveyResponse): Promise<void> 
     reason: 'entitlement_change',
     isVip: active,
     isPremium: active,
-  });
+  }).catch(() => {});
 }
 
 export async function submitVipSurveyFromApp(params: {

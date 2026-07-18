@@ -60,6 +60,15 @@ describe('Admin v2 page settings', () => {
     expect(core).toContain("data-action=\"reset-admin-settings\"");
   });
 
+  test('keeps one fixed local save bar with draft state and browser-local leave protection', () => {
+    expect(core).toContain('adminSettingsDirty');
+    expect(core).toContain('settings-draft-status');
+    expect(core).toContain('command-save-bar');
+    expect(core).toContain('Есть несохранённые изменения');
+    expect(core).toContain('globalThis.confirm');
+    expect(core).toContain('beforeunload');
+  });
+
   test('wires every non-visual setting into real runtime behavior', () => {
     expect(core).toContain('filterOverviewDecisionRows');
     expect(core).toContain('importantAlertsOnly');

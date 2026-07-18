@@ -24,7 +24,12 @@ function safeTaskProjection(value: Record<string, unknown>) {
 
 function message(projection: ReturnType<typeof safeTaskProjection>) {
   if (!projection) throw new Error('manager_task_projection_invalid');
-  return `Phraseman: задача ожидает согласования\nКод: ${projection.taskDigest}\nОбласть: ${projection.allowedScope}\nПриоритет: ${projection.priority}\nРевизия: ${projection.revision}\n\nОдобрение только поставит задачу в очередь. Выполнение не запускается автоматически.`;
+  const approvalEffect = projection.allowedScope === 'code_prepare'
+    ? 'После одобрения задачу сможет забрать только привязанный локальный Codex runner. Результат потребует ручной проверки.'
+    : projection.allowedScope === 'content_prepare'
+      ? 'После одобрения задача попадёт в очередь для ручной подготовки. Результат потребует ручной проверки.'
+      : 'После одобрения задача попадёт в очередь соответствующего серверного обработчика. Результат потребует ручной проверки.';
+  return `Phraseman: задача ожидает согласования\nКод: ${projection.taskDigest}\nОбласть: ${projection.allowedScope}\nПриоритет: ${projection.priority}\nРевизия: ${projection.revision}\n\n${approvalEffect}`;
 }
 
 /** Creates short-lived Manager approval capabilities only after a task reaches awaiting_approval. */

@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGetArenaConvergenceStatus = exports.adminGetContentFactoryRolloutMetrics = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = void 0;
+exports.adminGetContentFactoryRolloutMetrics = exports.adminGetContentFactoryWorkspace = exports.adminGetContentFactoryUnitPreview = exports.adminGetContentFactoryJobDetail = void 0;
 exports.parseContentFactoryJobDetailRequest = parseContentFactoryJobDetailRequest;
 exports.parseContentFactoryUnitPreviewRequest = parseContentFactoryUnitPreviewRequest;
 exports.parseContentFactoryWorkspaceRequest = parseContentFactoryWorkspaceRequest;
@@ -49,9 +49,6 @@ const language_release_1 = require("./language_release");
 const rollout_metrics_1 = require("./content_factory/rollout_metrics");
 const content_factory_budget_1 = require("./content_factory/content_factory_budget");
 const openai_jobs_config_1 = require("./openai_jobs_config");
-const arena_shadow_convergence_1 = require("./content_factory/arena_shadow_convergence");
-const surface_convergence_policy_1 = require("./content_factory/surface_convergence_policy");
-const arena_timing_observability_1 = require("./content_factory/arena_timing_observability");
 const REGION = 'us-central1';
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
@@ -229,39 +226,5 @@ exports.adminGetContentFactoryRolloutMetrics = (0, https_1.onCall)({ region: REG
     const unitDocs = unitsSnap.docs.slice(0, 100).map(withId);
     const jobDocs = jobsSnap.docs.slice(0, 100).map(withId);
     return { ok: true, metrics: (0, rollout_metrics_1.deriveContentFactoryRolloutMetricsFromDocuments)({ nowMs, stageDocs, unitDocs, jobDocs, truncation: { stages: stagesSnap.size > 100, units: unitsSnap.size > 100, jobs: jobsSnap.size > 100 }, budgetCapUnits: jobConfig.globalDailyCap, budgetReservedUnits: Number.isSafeInteger(reservedUnits) && reservedUnits >= 0 ? reservedUnits : 0 }) };
-});
-exports.adminGetArenaConvergenceStatus = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
-    requireContentReader(request);
-    const requestedLimit = Number(request.data?.limit ?? 100);
-    const limit = Number.isSafeInteger(requestedLimit) ? Math.max(1, Math.min(500, requestedLimit)) : 100;
-    const cursor = String(request.data?.cursor ?? '').trim();
-    if (cursor && !/^[a-f0-9]{64}$/.test(cursor))
-        throw new https_1.HttpsError('invalid-argument', 'arena_convergence_cursor_invalid');
-    const db = admin.firestore();
-    const configRef = db.collection('content_factory_config').doc('surface_convergence');
-    const configSnapshot = await configRef.get();
-    const config = configSnapshot.exists ? configSnapshot.data() ?? (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)() : (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)();
-    const arena = isRecord(config.arena) ? config.arena : (0, surface_convergence_policy_1.defaultSurfaceConvergenceConfig)().arena;
-    let currentReceiptsQuery = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').where('comparatorVersion', '==', String(arena.comparatorVersion)).where('configRevision', '==', Number(arena.revision)).orderBy(admin.firestore.FieldPath.documentId()).limit(limit + 1);
-    if (cursor)
-        currentReceiptsQuery = currentReceiptsQuery.startAfter(cursor);
-    const historyLimit = 100;
-    const historyQuery = db.collection('content_factory_surface_comparisons').where('surface', '==', 'arena').orderBy(admin.firestore.FieldPath.documentId()).limit(historyLimit + 1);
-    const currentUnitsQuery = db.collection('content_factory_job_units').where('surface', '==', 'arena').where('engineRequested', '==', 'shadow').where('configRevision', '==', Number(arena.revision)).where('comparatorVersion', '==', String(arena.comparatorVersion)).limit(501);
-    const timingFromDay = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-    const timingQuery = db.collection(arena_timing_observability_1.ARENA_TIMING_ROLLUP_COLLECTION).where('day', '>=', timingFromDay).orderBy('day').limit(1001);
-    const [receiptsSnapshot, historySnapshot, arenaUnitsSnapshot, timingSnapshot] = await Promise.all([currentReceiptsQuery.get(), historyQuery.get(), currentUnitsQuery.get(), timingQuery.get()]);
-    const docs = receiptsSnapshot.docs.slice(0, limit);
-    const receiptValues = docs.map((doc) => doc.data());
-    const expectedUnits = arenaUnitsSnapshot.docs.slice(0, 500).map((doc) => doc.data());
-    const expectedShadowUnitCount = expectedUnits.length;
-    const expectedLocalePairs = Array.isArray(arena.requiredLocalePairs) ? arena.requiredLocalePairs.map(String) : [];
-    const isPartial = receiptsSnapshot.size > limit || arenaUnitsSnapshot.size > 500;
-    const metrics = (0, arena_shadow_convergence_1.summarizeArenaConvergenceReceipts)(receiptValues, { limit, expectedComparatorVersion: String(arena.comparatorVersion), expectedConfigRevision: Number(arena.revision), expectedShadowUnitCount, isPartial, expectedLocalePairs });
-    const historyValues = historySnapshot.docs.slice(0, historyLimit).map((doc) => doc.data());
-    const groups = (0, arena_shadow_convergence_1.groupArenaConvergenceReceipts)(historyValues, historyLimit).map((group) => ({ comparatorVersion: group.comparatorVersion, configRevision: group.configRevision, metrics: (0, arena_shadow_convergence_1.summarizeArenaConvergenceReceipts)(group.receipts, { limit: historyLimit, expectedComparatorVersion: group.comparatorVersion, expectedConfigRevision: group.configRevision, isPartial: historySnapshot.size > historyLimit }) }));
-    const timingIsPartial = timingSnapshot.size > 1000;
-    const timing = (0, arena_timing_observability_1.summarizeArenaTiming)(timingSnapshot.docs.slice(0, 1000).map((doc) => doc.data()), timingIsPartial);
-    return { ok: true, arena, metrics, groups, timing, isPartial, historyIsPartial: historySnapshot.size > historyLimit, nextCursor: receiptsSnapshot.size > limit ? docs.at(-1)?.id ?? null : null, samples: { receipts: docs.length, expectedShadowUnits: expectedShadowUnitCount, unitScanTruncated: arenaUnitsSnapshot.size > 500, timingAggregates: Math.min(timingSnapshot.size, 1000), timingScanTruncated: timingIsPartial } };
 });
 //# sourceMappingURL=admin_content_factory_read.js.map

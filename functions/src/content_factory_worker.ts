@@ -18,12 +18,10 @@ import { buildGenerationFailureRecord } from './content_factory/generation_error
 import { buildGenerationTerminalAudit } from './content_factory/generation_audit';
 import { runGuardedGenerationTransaction } from './content_factory/generation_execution';
 import { buildArtifactOrphanCandidate } from './content_factory/artifact_retention';
-import { buildArenaShadowComparison, buildArenaShadowFailureComparison } from './content_factory/arena_shadow_convergence';
-import { persistArenaComparisonReceipt } from './content_factory/surface_convergence_repository';
 
 const REGION = 'us-central1';
 export const CONTENT_FACTORY_OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
-const SURFACES = ['lesson', 'quiz', 'flashcard', 'arena'] as const;
+const SURFACES = ['lesson', 'flashcard'] as const;
 const GENERATION_LEASE_MS = 10 * 60 * 1000;
 type UnitSurface = (typeof SURFACES)[number];
 
@@ -153,18 +151,6 @@ export const adminRunContentGenerationUnit = onCall(
       }
       const bucket = admin.storage().bucket();
       const receipt = await writeImmutableArtifact(bucket as unknown as ArtifactBucketLike, { releaseId, surface: input.surface as CanonicalReleaseSurface, lessonId: input.lessonId, payload });
-      let shadowReceipt: ReturnType<typeof buildArenaShadowComparison> | null = null;
-      let shadowComparisonState: 'not_requested' | 'recorded' | 'unavailable' = 'not_requested';
-      if (input.surface === 'arena' && checkpoint.engineRequested === 'shadow' && checkpoint.engineResolved === 'legacy') {
-        shadowComparisonState = 'unavailable';
-        try {
-          const candidate = buildArenaShadowComparison({ unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, lessonId: input.lessonId, attempt: checkpoint.attempt, legacyArtifact: payload, legacyArtifactHash: receipt.contentHash, qaOutcome: String(qaReceipt.status ?? 'unknown'), evidenceIds: registry.evidence.map((item) => item.evidenceId), configRevision: checkpoint.configRevision });
-          if (candidate.providerRequestsAdded !== 0) throw new Error('arena_shadow_provider_request_violation');
-          await persistArenaComparisonReceipt(db, candidate, admin.firestore.FieldValue.serverTimestamp());
-          shadowReceipt = candidate;
-          shadowComparisonState = 'recorded';
-        } catch { shadowReceipt = null; }
-      }
       const orphanCandidate = () => buildArtifactOrphanCandidate(receipt, { entityCollection: 'content_factory_job_units', entityId: unitId, attempt: checkpoint.attempt, detectedAtMs: Date.now() });
       const recordOrphan = async () => { const orphan = orphanCandidate(); await db.collection('content_factory_artifact_orphans').doc(orphan.candidateId).set(orphan, { merge: false }); };
       const committed = await runGuardedGenerationTransaction({
@@ -179,7 +165,7 @@ export const adminRunContentGenerationUnit = onCall(
         let transition;
         try { transition = applyUnitProgressTransition(readJobProgress(currentJob), { next: 'succeeded', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true }); } catch { throw new HttpsError('data-loss', 'content_factory_progress_invalid'); }
         const currentRouting = currentUnit as unknown as Record<string, unknown>;
-        tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, artifactReferenceState: 'committed', artifactFinalizationKey: receipt.finalizationKey, qaReceipt, failureCounted: transition.failureCounted, engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion, shadowComparisonState, ...(shadowReceipt ? { shadowComparisonId: shadowReceipt.documentId, shadowEligible: shadowReceipt.eligible } : {}), generatedPayload: admin.firestore.FieldValue.delete(), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+        tx.set(unitRef, { unitId, state: 'succeeded', releaseId, objectPath: receipt.objectPath, contentHash: receipt.contentHash, objectGeneration: receipt.objectGeneration, byteSize: receipt.byteSize, artifactReferenceState: 'committed', artifactFinalizationKey: receipt.finalizationKey, qaReceipt, failureCounted: transition.failureCounted, engineRequested: currentRouting.engineRequested ?? checkpoint.engineRequested, engineResolved: currentRouting.engineResolved ?? checkpoint.engineResolved, configRevision: currentRouting.configRevision ?? checkpoint.configRevision, comparatorVersion: currentRouting.comparatorVersion ?? checkpoint.comparatorVersion, generatedPayload: admin.firestore.FieldValue.delete(), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), completedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
         const nextJobState = transition.jobState === 'needs_review' && currentJob.releaseCandidate !== true ? 'partial' : transition.jobState;
         const audit = buildGenerationTerminalAudit({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'succeeded', errorCategory: null, before: { state: currentUnit.state ?? null }, after: { state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash } });
         tx.set(jobRef, { state: nextJobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
@@ -193,13 +179,6 @@ export const adminRunContentGenerationUnit = onCall(
       return { ok: true, unitId, state: 'succeeded', objectPath: receipt.objectPath, contentHash: receipt.contentHash };
     } catch (error) {
       const failure = buildGenerationFailureRecord(error, checkpoint.attempt);
-      let failureShadowReceiptId: string | null = null;
-      if (input.surface === 'arena' && checkpoint.engineRequested === 'shadow' && checkpoint.engineResolved === 'legacy') {
-        try {
-          const candidate = buildArenaShadowFailureComparison({ unitId, jobId: input.jobId, studyTarget, learnerSourceLocale, lessonId: input.lessonId, attempt: checkpoint.attempt, configRevision: checkpoint.configRevision, error: { category: failure.code, retryable: failure.retryable } });
-          await persistArenaComparisonReceipt(db, candidate, admin.firestore.FieldValue.serverTimestamp()); failureShadowReceiptId = candidate.documentId;
-        } catch { failureShadowReceiptId = null; }
-      }
       await runGuardedGenerationTransaction({
         lease: checkpoint, allowedStates: ['running', 'generated'],
         runTransaction: (handler: (transaction: admin.firestore.Transaction) => Promise<boolean>) => db.runTransaction(handler),
@@ -211,7 +190,7 @@ export const adminRunContentGenerationUnit = onCall(
           const transition = applyUnitProgressTransition(readJobProgress(currentJob), { next: 'failed', wasSucceeded: currentUnit.state === 'succeeded', failureCounted: currentUnit.failureCounted === true });
           const terminalState = 'failed';
           const audit = buildGenerationTerminalAudit({ actorUid, role, entity: { collection: 'content_factory_job_units', id: unitId }, attempt: checkpoint.attempt, leaseToken: checkpoint.leaseToken, outcome: 'failed', errorCategory: failure.code, before: { state: currentUnit.state ?? null }, after: { state: terminalState, errorCode: failure.code } });
-          tx.set(unitRef, { unitId, state: terminalState, failureCounted: transition.failureCounted, errorCode: failure.code, errorMessage: failure.message, retryable: failure.retryable, attemptHistory: admin.firestore.FieldValue.arrayUnion(failure), ...(checkpoint.engineRequested === 'shadow' ? { shadowComparisonState: failureShadowReceiptId ? 'recorded' : 'unavailable', ...(failureShadowReceiptId ? { shadowComparisonId: failureShadowReceiptId, shadowEligible: true } : {}) } : {}), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
+          tx.set(unitRef, { unitId, state: terminalState, failureCounted: transition.failureCounted, errorCode: failure.code, errorMessage: failure.message, retryable: failure.retryable, attemptHistory: admin.firestore.FieldValue.arrayUnion(failure), leaseToken: admin.firestore.FieldValue.delete(), leaseExpiresAtMs: admin.firestore.FieldValue.delete(), failedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
           tx.set(jobRef, { state: transition.jobState, progress: transition.progress, lastUnitId: unitId, updatedAt: admin.firestore.FieldValue.serverTimestamp() }, { merge: true });
           tx.create(db.collection('admin_log').doc(audit.operationId), audit);
         },

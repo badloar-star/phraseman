@@ -3,7 +3,7 @@ import { createGenerationStageUnit, type GenerationStageKind } from './stage_con
 describe('versioned content generation stages', () => {
   it.each<GenerationStageKind>([
     'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
-    'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement',
+    'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
   ])('creates an immutable, independently addressable %s unit', (kind) => {
     const unit = createGenerationStageUnit({
       requestId: 'request-1', kind, studyTarget: 'fr', sourceLocale: 'ru', scopeId: 'lesson-1',
@@ -18,6 +18,6 @@ describe('versioned content generation stages', () => {
   });
 
   it('rejects invalid counts and unversioned contracts', () => {
-    expect(() => createGenerationStageUnit({ requestId: 'r', kind: 'quiz_questions', studyTarget: 'fr', sourceLocale: 'ru', scopeId: 'topic-1', schemaVersion: 0, promptVersion: '', count: 0, prerequisiteArtifactIds: [], qaPolicy: '', revision: 0 })).toThrow('generation_stage_invalid');
+    expect(() => createGenerationStageUnit({ requestId: 'r', kind: 'challenge_questions', studyTarget: 'fr', sourceLocale: 'ru', scopeId: 'topic-1', schemaVersion: 0, promptVersion: '', count: 0, prerequisiteArtifactIds: [], qaPolicy: '', revision: 0 })).toThrow('generation_stage_invalid');
   });
 });

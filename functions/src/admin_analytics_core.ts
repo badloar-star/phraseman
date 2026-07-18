@@ -13,6 +13,7 @@ export type AccessKind =
 export interface AnalyticsUserRow {
   readonly id: string;
   readonly identityHidden?: boolean;
+  readonly analyticsConsent?: unknown;
   readonly progress?: Record<string, unknown> | null;
 }
 
@@ -40,6 +41,101 @@ export interface ShardTransactionRow {
 export interface FunnelEventRow {
   readonly step?: unknown;
   readonly dev?: unknown;
+}
+
+export type FunnelIntegrityStatus = 'ready' | 'blocked' | 'unavailable';
+export type FunnelIntegrityReason = 'aggregate_series_mismatch' | 'source_unavailable' | null;
+
+export interface FunnelIntegrityInput {
+  readonly aggregate: {
+    readonly shown: number;
+    readonly ctaClick: number;
+    readonly trialStarted: number;
+    readonly purchaseCompleted: number;
+  };
+  readonly series: {
+    readonly shown: number | null;
+    readonly ctaClick: number | null;
+    readonly trialStarted: number | null;
+    readonly purchaseCompleted: number | null;
+  };
+  readonly sourceState: string;
+}
+
+export interface FunnelIntegrityResult {
+  readonly status: FunnelIntegrityStatus;
+  readonly reason: FunnelIntegrityReason;
+  readonly aggregateTotal: number;
+  readonly seriesTotal: number | null;
+}
+
+export type PurchaseSignalReconciliationStatus = 'observational' | 'unavailable';
+export type PurchaseSignalReconciliationReason = 'different_coverage_and_identity' | 'source_incomplete_or_unavailable';
+
+export interface PurchaseSignalReconciliationInput {
+  readonly clientPurchaseSignals: number;
+  readonly confirmedPurchaseEvents: number;
+  readonly clientSourceState: string;
+  readonly storeSourceState: string;
+}
+
+export interface PurchaseSignalReconciliationResult {
+  readonly status: PurchaseSignalReconciliationStatus;
+  readonly reason: PurchaseSignalReconciliationReason;
+  readonly clientPurchaseSignals: number;
+  readonly confirmedPurchaseEvents: number;
+  readonly exactAttributionAvailable: false;
+  readonly conversionRate: null;
+}
+
+/**
+ * These sources have intentionally different coverage: client funnel signals
+ * require analytics consent, while RevenueCat events are store confirmations.
+ * Keep both visible for delivery diagnostics, never turn their ratio into a
+ * conversion or a purchase attribution claim.
+ */
+export function assessPurchaseSignalReconciliation(
+  input: PurchaseSignalReconciliationInput,
+): PurchaseSignalReconciliationResult {
+  const sourceIncomplete = ['error', 'partial', 'unavailable'].includes(input.clientSourceState)
+    || ['error', 'partial', 'unavailable'].includes(input.storeSourceState);
+  return {
+    status: sourceIncomplete ? 'unavailable' : 'observational',
+    reason: sourceIncomplete ? 'source_incomplete_or_unavailable' : 'different_coverage_and_identity',
+    clientPurchaseSignals: input.clientPurchaseSignals,
+    confirmedPurchaseEvents: input.confirmedPurchaseEvents,
+    exactAttributionAvailable: false,
+    conversionRate: null,
+  };
+}
+
+/**
+ * Keeps an aggregate funnel and its day-series honest. The figures are only
+ * decision-ready when they describe the same non-error source window.
+ */
+export function assessFunnelIntegrity(input: FunnelIntegrityInput): FunnelIntegrityResult {
+  const aggregateTotal = input.aggregate.shown
+    + input.aggregate.ctaClick
+    + input.aggregate.trialStarted
+    + input.aggregate.purchaseCompleted;
+  const seriesValues = [
+    input.series.shown,
+    input.series.ctaClick,
+    input.series.trialStarted,
+    input.series.purchaseCompleted,
+  ];
+  const sourceUnavailable = input.sourceState === 'error'
+    || input.sourceState === 'partial'
+    || input.sourceState === 'unavailable'
+    || seriesValues.some((value) => value === null);
+  if (sourceUnavailable) {
+    return { status: 'unavailable', reason: 'source_unavailable', aggregateTotal, seriesTotal: null };
+  }
+  const seriesTotal = seriesValues.reduce<number>((sum, value) => sum + (value ?? 0), 0);
+  if (aggregateTotal !== seriesTotal) {
+    return { status: 'blocked', reason: 'aggregate_series_mismatch', aggregateTotal, seriesTotal };
+  }
+  return { status: 'ready', reason: null, aggregateTotal, seriesTotal };
 }
 
 function text(value: unknown): string {
@@ -72,6 +168,39 @@ function trueFlag(value: unknown): boolean {
 
 function falseFlag(value: unknown): boolean {
   return ['false', '0', 'no'].includes(lower(value));
+}
+
+export function aggregateAnalyticsConsent(rows: readonly AnalyticsUserRow[]): {
+  observedUsers: number;
+  granted: number;
+  denied: number;
+  unset: number;
+  grantedRate: number | null;
+  hiddenUsersExcluded: number;
+} {
+  let granted = 0;
+  let denied = 0;
+  let unset = 0;
+  let hiddenUsersExcluded = 0;
+  for (const row of rows) {
+    if (row.identityHidden === true) {
+      hiddenUsersExcluded += 1;
+      continue;
+    }
+    const consent = lower(row.analyticsConsent);
+    if (consent === 'granted') granted += 1;
+    else if (consent === 'denied') denied += 1;
+    else unset += 1;
+  }
+  const observedUsers = granted + denied + unset;
+  return {
+    observedUsers,
+    granted,
+    denied,
+    unset,
+    grantedRate: observedUsers > 0 ? granted / observedUsers : null,
+    hiddenUsersExcluded,
+  };
 }
 
 function activeUntil(value: unknown, nowMs: number): boolean {
@@ -201,6 +330,8 @@ function productionEnvironment(value: unknown): 'production' | 'sandbox' | 'unkn
 export function aggregateRevenueCatPeriod(rows: readonly RevenueCatEventRow[]): {
   productionEvents: number;
   newPurchases: number;
+  initialSubscriptionEvents: number;
+  nonRenewingPurchaseEvents: number;
   renewals: number;
   trialStarts: number;
   refunds: number;
@@ -213,6 +344,8 @@ export function aggregateRevenueCatPeriod(rows: readonly RevenueCatEventRow[]): 
   const excluded = { sandbox: 0, unknownEnvironment: 0, duplicates: 0 };
   let productionEvents = 0;
   let newPurchases = 0;
+  let initialSubscriptionEvents = 0;
+  let nonRenewingPurchaseEvents = 0;
   let renewals = 0;
   let trialStarts = 0;
   let refunds = 0;
@@ -228,13 +361,26 @@ export function aggregateRevenueCatPeriod(rows: readonly RevenueCatEventRow[]): 
     const eventType = upper(row.eventType) || 'UNKNOWN';
     const periodType = upper(row.periodType);
     byType[eventType] = (byType[eventType] ?? 0) + 1;
+    if (eventType === 'INITIAL_PURCHASE') initialSubscriptionEvents += 1;
+    if (eventType === 'NON_RENEWING_PURCHASE') nonRenewingPurchaseEvents += 1;
     if (eventType === 'INITIAL_PURCHASE' || eventType === 'NON_RENEWING_PURCHASE') newPurchases += 1;
     if (eventType === 'RENEWAL') renewals += 1;
     if (eventType === 'REFUND') refunds += 1;
     if (periodType === 'TRIAL') trialLifecycleEvents += 1;
     if (eventType === 'INITIAL_PURCHASE' && periodType === 'TRIAL') trialStarts += 1;
   });
-  return { productionEvents, newPurchases, renewals, trialStarts, refunds, trialLifecycleEvents, byType, excluded };
+  return {
+    productionEvents,
+    newPurchases,
+    initialSubscriptionEvents,
+    nonRenewingPurchaseEvents,
+    renewals,
+    trialStarts,
+    refunds,
+    trialLifecycleEvents,
+    byType,
+    excluded,
+  };
 }
 
 export function aggregateShardPeriod(rows: readonly ShardTransactionRow[]): {

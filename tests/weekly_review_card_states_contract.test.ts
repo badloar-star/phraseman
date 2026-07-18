@@ -11,6 +11,12 @@ describe('WeeklyReviewCard V2 states', () => {
     expect(card.indexOf('if (!isPremium) {')).toBeLessThan(card.indexOf('if (!state) return <LoadingCard'));
   });
 
+  it('never claims a previous review exists unless the card actually has cached review content', () => {
+    expect(copy).toContain('unavailableWithCache');
+    expect(card).toContain('review ? copy.unavailableWithCache : copy.unavailable');
+    expect(copy).toContain('Сейчас обновить не удалось. Попробуй позже.');
+  });
+
   it('renders Free as one paywall-opening value surface without AI controls or metrics', () => {
     expect(card).toContain('<FreeReviewTeaser');
     expect(card).toContain('onPress={onPaywall}');

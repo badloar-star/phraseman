@@ -8,7 +8,6 @@ import type { Lang } from '../constants/i18n';
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhraseForTarget } from './daily_phrase_system';
-import { reserveArenaGameEntry } from './arena_access_gate';
 import { scheduleAfterRootNavigationReady } from './paywall_navigation';
 import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } from './weekly_xp';
 import { getStoredStudyTarget } from './study_target';
@@ -2206,17 +2205,8 @@ export const setupNotificationTapHandler = (
       if (!data?.type) return;
       switch (data.type) {
         case 'arena_match':
-          if (data.sessionId && data.userId) {
-            void (async () => {
-              await reserveArenaGameEntry(String(data.sessionId), 'notification');
-              scheduleNav(() => {
-                router.push({
-                  pathname: '/arena_game' as any,
-                  params: { sessionId: data.sessionId, userId: data.userId },
-                });
-              });
-            })();
-          }
+          // Compatibility for notifications already queued before Arena was retired.
+          navTabHome();
           break;
         case 'streak_warning':
         case 'reminder':

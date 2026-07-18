@@ -30,10 +30,8 @@ export const LEGACY_ROUTE_MAP = Object.freeze({
   'asset-studio': 'asset-studio',
   community: 'community',
   reports: 'community',
-  arena: 'community',
   diagnostics: 'diagnostics',
   health: 'diagnostics',
-  'audit-log': 'diagnostics',
   'openai-budget': 'diagnostics',
 });
 

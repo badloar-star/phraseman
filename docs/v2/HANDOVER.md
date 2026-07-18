@@ -730,3 +730,75 @@ Pop-Location
 ```
 
 No commit, push, deploy, or production OpenAI API use was performed. Preserve all existing dirty/untracked user changes and generated `functions/lib` output.
+
+## 14.33 — Quiz/Arena retirement leak closure (2026-07-18)
+
+### Mission
+
+Закрыть только оставшиеся живые Quiz/Arena-зависимости после утверждённого retirement: убрать сетевые запросы, возвращаемые lifetime-поля, публичные карточные поля, UI и генераторные ожидания, сохранив остальные статистические блоки, generic challenges, исторические ключи/tombstones и account-deletion cleanup. Это maintenance-приложение к Learning V2, а не разрешение на удаление других legacy-функций и не изменение очередности основных V2 фаз.
+
+### Full phase/task status
+
+| Phase/task | Status | Evidence / remaining work |
+|---|---|---|
+| Learning V2 Phase 01–02 | Unchanged from §14.32 | Эта сессия не меняла V2 identity, progress, access, policy или authoring contracts. |
+| Learning V2 Phase 03+ | Not started / unchanged | Runtime/UI/curriculum/release порядок не расширялся. |
+| Quiz/Arena live stats/query retirement | Completed, provisional pending fresh review | Полный decommission contract: 1 suite / 11 tests PASS; статические живые совпадения в ограниченном контуре отсутствуют. |
+| Public profile and player-card retirement | Completed, provisional pending fresh review | `public_profiles` продолжает синхронизировать слова/фразы/дни; `arena_profiles` больше не читается и не пишется. |
+| Stats Insights client/server contract | Completed, provisional pending fresh review | Client 1/4 PASS; Functions insights 1/20 PASS; retired untrusted fields отбрасываются. |
+| Product analytics / Content Factory stale expectations | Completed | Registry + activity + Gustav packet: 3 suites / 23 tests PASS; Functions insights + worker packet: 2 suites / 23 tests PASS. |
+| Release/deploy/migration | Not performed | По задаче запрещены deploy, push, commit и destructive cleanup; старые Firestore-поля физически не мигрировались. |
+
+### Changed files and purpose
+
+- `app/stats_daily_breakdown.ts`: удалены активный Firestore/Arena history query и dev-only retired totals; исторические daily metric keys оставлены для чтения старого локального состояния.
+- `app/lifetime_profile_stats.ts`: удалены Quiz aggregation и Arena profile query/returned fields; остальные lifetime totals сохранены.
+- `app/streak_stats.tsx`: удалены только Quiz/Arena lifetime rows и dev chart seeds.
+- `app/public_profile_snapshot.ts`: удалены `cardArena*` payload и запись зеркала в `arena_profiles`; текущий stable-link fail-closed wrapper сохранён.
+- `components/PlayerProfileModal.tsx`: удалены чтение `arena_profiles`, Arena win-rate/rank/season UI и соответствующее состояние; leaderboard XP, friendship, profile-card и локальные multiplier paths сохранены.
+- `app/stats_insights_client.ts`, `functions/src/stats_insights.ts`: lifetime briefing теперь содержит только words/phrases/daysActive; prompt/local copy не упоминают Quiz/Arena.
+- `admin/v2/scripts/admin-capabilities.js`: удалены только stale Quiz/Arena capability denylist fragments.
+- `tests/quiz_arena_decommission_contract.test.ts`, `tests/gustav_quiz_target_isolation.test.ts`, `tests/activity_365_analytics.test.ts`, `tests/product_analytics_screen_registry.test.ts`, `tests/stats_insights_client_copy.test.ts`, `tests/firebase_cost_controls_contract.test.ts`, `functions/src/stats_insights.test.ts`, `functions/src/content_factory_worker.test.ts`: обновлены focused guards под утверждённый retired contract с сохранением historical storage compatibility.
+
+### RED / GREEN evidence
+
+- RED: `tests/quiz_arena_decommission_contract.test.ts -t "does not query..."` сначала упал на Firestore import/query, затем на `cardArenaWins`.
+- RED: `tests/stats_insights_client_copy.test.ts` не компилировался, пока client briefing требовал `quizzes`/`arenaWins`.
+- RED: старые registry/worker expectations требовали `/arena_game` и `surface: 'quiz'`, хотя production уже fail-closed.
+- GREEN:
+  - `npx jest tests/quiz_arena_decommission_contract.test.ts --runInBand` → 1 suite / 11 tests PASS.
+  - root stats design packet (`stats_selected_design_contract`, `stats_surface_composition`, `stats_learning_insights`, `stats_primary_metric`, `stats_year_preview_contract`) → 5 suites / 25 tests PASS.
+  - `npx jest tests/stats_insights_client_copy.test.ts --runInBand` → 1/4 PASS.
+  - `npx jest tests/product_analytics_screen_registry.test.ts tests/gustav_quiz_target_isolation.test.ts tests/activity_365_analytics.test.ts --runInBand` → 3/23 PASS.
+  - Functions `npx jest src/stats_insights.test.ts src/content_factory_worker.test.ts --runInBand` → 2/23 PASS; final insights-only rerun → 1/20 PASS.
+  - `npx jest tests/streak_stats_practice_balance.test.ts tests/streak_stats_i18n.test.ts --runInBand` → 2/32 PASS.
+  - Focused public profile cost contract and PlayerProfileModal close contract → each selected test PASS.
+  - `node --check admin/v2/scripts/admin-capabilities.js` and scoped `git diff --check` → PASS (CRLF warnings only).
+  - Scoped static `rg` for active queries/returned fields → `NO_ACTIVE_RETIREMENT_MATCHES`.
+
+### Failed checks, residual uncertainty, and preserved state
+
+- Focused TypeScript project no longer reports missing retired Quiz/Arena fields. It still fails on pre-existing unrelated errors in `account_delete_quarantine.ts`, `daily_tasks.ts`, current `streak_stats.tsx` nullable values, and `ActivityHeatmap365.tsx`.
+- Full `player_profile_modal_close.test.ts` has one unrelated failure in `app/club_screen.tsx` (expects two `streak: currentUserStreak` occurrences, current file has one); the modal close test itself passes.
+- Broad `firebase_cost_controls_contract.test.ts` remains stale in unrelated deleted community/Arena files and admin/App Check expectations; the directly affected public-profile assertion was updated and its selected test passes.
+- `startup_cloud_identity_recovery.test.ts` is blocked at compile time by the unrelated `daily_tasks.ts` nullable error.
+- Existing stored `cardArena*` fields are not migrated/deleted; the live client no longer writes or reads them. Historical account-deletion paths, rules tombstones, daily metric keys and target storage helpers remain intact.
+- Worktree: `C:\appsprojects\phraseman`; branch `codex/release-integrated-20260715`; HEAD `d0df1b05fbb27bee54b486a23b28d77823faae8b`; upstream none; merge-base with `origin/main` was not resolved. The worktree was already heavily dirty; unrelated tracked/untracked user changes were preserved.
+- No commit, push, deploy, release, rollback, destructive cleanup, Firestore write, or project OpenAI API use was performed.
+
+### Exact next executable task
+
+Fresh read-only critical review of only the files listed above. Acceptance: confirm no active Quiz/Arena Firestore read/write or returned lifetime field remains; confirm generic challenges, historical deletion/tombstones and non-retired profile/stats behavior remain; rerun the full 11-test decommission contract, the 5-suite stats design packet, the 3-suite registry/activity packet, and the 2-suite Functions packet. Expected result: all deterministic retirement gates PASS; unrelated baseline failures remain explicitly separate. Do not deploy, push, commit, migrate old documents, or broaden cleanup without owner authorization.
+
+### Startup commands
+
+```powershell
+Set-Location C:\appsprojects\phraseman
+git status --short
+npx jest tests/quiz_arena_decommission_contract.test.ts --runInBand
+npx jest tests/stats_selected_design_contract.test.ts tests/stats_surface_composition.test.ts tests/stats_learning_insights.test.ts tests/stats_primary_metric.test.ts tests/stats_year_preview_contract.test.ts --runInBand
+npx jest tests/product_analytics_screen_registry.test.ts tests/gustav_quiz_target_isolation.test.ts tests/activity_365_analytics.test.ts tests/stats_insights_client_copy.test.ts --runInBand
+Push-Location functions
+npx jest src/stats_insights.test.ts src/content_factory_worker.test.ts --runInBand
+Pop-Location
+```

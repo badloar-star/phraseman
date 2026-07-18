@@ -15,7 +15,11 @@ describe('Agent Manager Telegram publication trigger', () => {
   test('publishes only manager-prefixed, short-lived approval capabilities without task content', () => {
     expect(source).toContain('am1:a:${approveNonce}');
   expect(source).toContain('am1:r:${rejectNonce}');
-  expect(source).toContain('Одобрение только поставит задачу в очередь. Выполнение не запускается автоматически.');
+  expect(source).toContain("projection.allowedScope === 'code_prepare'");
+  expect(source).toContain("projection.allowedScope === 'content_prepare'");
+  expect(source).toContain('только привязанный локальный Codex runner');
+  expect(source).toContain('серверного обработчика');
+  expect(source).toContain('очередь для ручной подготовки');
     expect(source).toContain('MANAGER_TELEGRAM_TOKEN_TTL_MS');
     expect(source).toContain('taskDigest');
     expect(source).not.toContain('value.title');

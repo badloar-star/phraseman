@@ -66,7 +66,7 @@ export interface DigestSourceRows {
     websiteInbox: Array<{ topic?: string; message?: string }>;
     supportInbox: Array<{ subject?: string }>;
   };
-  /** Активность сообщества/маркетинга за 24ч (рефералы, покупки контента, промо, паки, опрос, арена). */
+  /** Активность сообщества/маркетинга за 24ч (рефералы, покупки контента, промо, паки, опрос). */
   community: {
     /** referral_attributions: новые привязки рефералов (+ статус). */
     referrals: Array<{ status?: string }>;
@@ -78,8 +78,6 @@ export interface DigestSourceRows {
     surveyResponses: Array<{ uid?: string }>;
     /** community_pack_submissions: новые паки, поданные на модерацию. */
     packSubmissions: Array<{ title?: string; submissionKind?: string }>;
-    /** arena_rooms_live: созданные кастомные комнаты арены (эфемерны, TTL 24ч). */
-    arenaRooms: Array<{ title?: string }>;
   };
 }
 
@@ -233,14 +231,13 @@ export interface DigestFacts {
   };
   // Новые идеи с содержимым — чтобы ИИ оценил, на что стоит обратить внимание.
   ideas: { total: number; byCategory: Record<string, number>; items: DigestIdea[] };
-  // Активность сообщества/маркетинга за сутки (рефералы, UGC-покупки, промо, паки, опрос, арена).
+  // Активность сообщества/маркетинга за сутки (рефералы, UGC-покупки, промо, паки, опрос).
   community: {
     referrals: { total: number; byStatus: Record<string, number> };
     packPurchases: { total: number; shardsSpent: number };
     promoRedemptions: { total: number; byCode: Record<string, number> };
     surveyResponses: { total: number };
     packSubmissions: { total: number; titles: string[] };
-    arenaRooms: { total: number };
   };
   // Прочие очереди — компактные строки «раздел: сколько накопилось».
   queues: DigestQueueLine[];
@@ -371,7 +368,6 @@ export function aggregateDigestFacts(rows: DigestSourceRows, windowHours = 24): 
       total: c.packSubmissions.length,
       titles: c.packSubmissions.slice(0, 5).map((s) => clip(s.title, 80)).filter((t) => t.length > 0),
     },
-    arenaRooms: { total: c.arenaRooms.length },
   };
 
   return {
@@ -493,8 +489,7 @@ export function isDigestEmpty(facts: DigestFacts): boolean {
     facts.community.packPurchases.total === 0 &&
     facts.community.promoRedemptions.total === 0 &&
     facts.community.surveyResponses.total === 0 &&
-    facts.community.packSubmissions.total === 0 &&
-    facts.community.arenaRooms.total === 0
+    facts.community.packSubmissions.total === 0
   );
 }
 
@@ -665,7 +660,7 @@ export async function loadDigestSources(
     website_contact_inbox: 'Обращения с сайта', support_inbox: 'Почта поддержки',
     referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества',
     promo_redemptions: 'Активации промокодов', vip_survey_responses: 'Ответы на опрос Plus',
-    community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Комнаты Арены',
+    community_pack_submissions: 'Паки на модерации',
   };
   const recordCoverage = (sourceId: string, status: DigestSourceCoverage['status'], rowCount: number, error?: unknown) => {
     sourceCoverage.push({
@@ -806,7 +801,7 @@ export async function loadDigestSources(
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
     userReports, packReports, explainReports, websiteInbox, supportInbox,
-    referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,
+    referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions,
   ] = await Promise.all([
     // — Основные (у всех есть числовой createdAtMs) —
     byMs('error_reports', 'createdAtMs', (d) => {
@@ -851,7 +846,6 @@ export async function loadDigestSources(
       const x = d.data();
       return { title: (x.payload?.titleRu as string) || (x.payload?.titleEs as string) || (x.title as string), submissionKind: x.submissionKind as string };
     }),
-    byMs('arena_rooms_live', 'createdAt', (d) => ({ title: d.data().title as string })), // createdAt числовое, TTL 24ч
   ]);
 
   return {
@@ -859,7 +853,7 @@ export async function loadDigestSources(
     reports, cancels, appErrors, safety,
     newUsers, purchases, paywallPurchases, ideas,
     queues: { userReports, packReports, explainReports, websiteInbox, supportInbox },
-    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
+    community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions },
   };
 }
 

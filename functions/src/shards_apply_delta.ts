@@ -25,8 +25,13 @@ import * as admin from 'firebase-admin';
 import { onCall, HttpsError } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
+import {
+  ACCOUNT_DELETE_AUTH_MARKERS,
+  ACCOUNT_DELETE_TOMBSTONES,
+} from './account_delete_job';
 
-const REWARD_CLAIMS_COLLECTION = 'reward_claims';
+const SHARD_OPERATION_RECEIPTS_COLLECTION = 'shard_operation_receipts';
+const AUTH_LINKS_COLLECTION = 'auth_links';
 const OP_ID_RE = /^[A-Za-z0-9_-]{8,80}$/;
 const REASON_MAX_LEN = 64;
 
@@ -48,6 +53,7 @@ function readUpdatedAtMs(value: unknown): number | null {
 
 export type ShardsApplyDeltaInput = {
   opId: string;
+  ownerStableId: string;
   delta: number;
   type: 'earn' | 'spend';
   reason: string;
@@ -75,22 +81,79 @@ export function validateShardsApplyDeltaInput(data: unknown):
   if (!OP_ID_RE.test(opId)) {
     return { ok: false, message: 'opId must match [A-Za-z0-9_-]{8,80}' };
   }
+  const ownerStableId = typeof d.ownerStableId === 'string' ? d.ownerStableId : '';
+  if (
+    !ownerStableId
+    || ownerStableId !== ownerStableId.trim()
+    || ownerStableId.length > 200
+    || /[\/\s]/.test(ownerStableId)
+  ) {
+    return { ok: false, message: 'ownerStableId is required' };
+  }
   const type = d.type;
   if (type !== 'earn' && type !== 'spend') {
     return { ok: false, message: "type must be 'earn' or 'spend'" };
   }
-  const deltaRaw = Math.trunc(Number(d.delta));
-  if (!Number.isFinite(deltaRaw) || deltaRaw <= 0) {
+  const deltaRaw = d.delta;
+  if (typeof deltaRaw !== 'number' || !Number.isSafeInteger(deltaRaw) || deltaRaw <= 0) {
     return { ok: false, message: 'delta must be a positive integer (magnitude)' };
   }
   if (type === 'earn' && deltaRaw > MAX_EARN_DELTA_PER_OP) {
     return { ok: false, message: `earn delta exceeds per-op cap (${MAX_EARN_DELTA_PER_OP})` };
   }
-  const reason = typeof d.reason === 'string' ? d.reason.trim().slice(0, REASON_MAX_LEN) : '';
+  const reason = typeof d.reason === 'string' ? d.reason : '';
+  if (!reason || reason !== reason.trim() || reason.length > REASON_MAX_LEN) {
+    return { ok: false, message: `reason must be 1-${REASON_MAX_LEN} trimmed characters` };
+  }
   return {
     ok: true,
-    value: { opId, delta: deltaRaw, type, reason: reason || 'unknown' },
+    value: { opId, ownerStableId, delta: deltaRaw, type, reason },
   };
+}
+
+export function shardOwnerMatchesResolvedIdentity(
+  resolvedStableId: string | null | undefined,
+  ownerStableId: string,
+): boolean {
+  return typeof resolvedStableId === 'string'
+    && resolvedStableId.length > 0
+    && resolvedStableId === ownerStableId;
+}
+
+export function shardReceiptMatchesOperation(
+  receiptData: unknown,
+  operation: {
+    opId: string;
+    type: 'earn' | 'spend';
+    reason: string;
+    signedDelta: number;
+  },
+): boolean {
+  const receipt = (receiptData ?? {}) as Record<string, unknown>;
+  return receipt.opId === operation.opId
+    && receipt.type === operation.type
+    && receipt.reason === operation.reason
+    && receipt.delta === operation.signedDelta;
+}
+
+export function shardTransactionOwnerMatchesIdentity(input: {
+  authUid: string;
+  ownerStableId: string;
+  authLinkExists: boolean;
+  authLinkStableId: unknown;
+  ownerUserExists: boolean;
+  ownerUserFirebaseAuthUid: unknown;
+}): boolean {
+  if (!input.ownerUserExists) return false;
+  if (input.authLinkExists) {
+    return typeof input.authLinkStableId === 'string'
+      && input.authLinkStableId === input.ownerStableId;
+  }
+  return input.ownerStableId === input.authUid
+    || (
+      typeof input.ownerUserFirebaseAuthUid === 'string'
+      && input.ownerUserFirebaseAuthUid === input.authUid
+    );
 }
 
 /**
@@ -134,24 +197,73 @@ export const shardsApplyDelta = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
   if (!validated.ok) {
     throw new HttpsError('invalid-argument', validated.message);
   }
-  const { opId, delta, type, reason } = validated.value;
+  const { opId, ownerStableId, delta, type, reason } = validated.value;
 
   const db = admin.firestore();
   // Тот же документ, под которым клиент хранит осколки (getCanonicalUserId ===
   // stableId). Без проброса stableId сервер для юзеров с релинком (анон→Google,
   // мердж) писал бы в ДРУГОЙ документ — см. коммент в daily_tasks_shards.ts.
-  const uid = await resolveStableUidForAuth(db, request.auth.uid, request.data?.stableId);
+  const authUid = request.auth.uid;
+  const resolvedStableId = await resolveStableUidForAuth(
+    db,
+    authUid,
+    undefined,
+    { repairLinks: false, requireKnownIdentity: true },
+  );
+  if (!shardOwnerMatchesResolvedIdentity(resolvedStableId, ownerStableId)) {
+    throw new HttpsError('permission-denied', 'Shard operation owner mismatch');
+  }
+  const uid = ownerStableId;
 
   const userRef = db.collection('users').doc(uid);
-  const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`shard_op_${opId}`);
+  const receiptRef = userRef.collection(SHARD_OPERATION_RECEIPTS_COLLECTION).doc(opId);
+  const authLinkRef = db.collection(AUTH_LINKS_COLLECTION).doc(authUid);
+  const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+  const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(uid);
   const signedDelta = type === 'earn' ? delta : -delta;
 
   const result = await db.runTransaction(async (tx): Promise<ShardsApplyDeltaResult> => {
-    const [claimSnap, userSnap] = await Promise.all([tx.get(claimRef), tx.get(userRef)]);
+    const [
+      authMarkerSnap,
+      tombstoneSnap,
+      authLinkSnap,
+      receiptSnap,
+      userSnap,
+    ] = await Promise.all([
+      tx.get(authMarkerRef),
+      tx.get(tombstoneRef),
+      tx.get(authLinkRef),
+      tx.get(receiptRef),
+      tx.get(userRef),
+    ]);
+    if (authMarkerSnap.exists || tombstoneSnap.exists) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
+    if (!shardTransactionOwnerMatchesIdentity({
+      authUid,
+      ownerStableId,
+      authLinkExists: authLinkSnap.exists,
+      authLinkStableId: authLinkSnap.data()?.stable_id,
+      ownerUserExists: userSnap.exists,
+      ownerUserFirebaseAuthUid: userSnap.data()?.firebaseAuthUid,
+    })) {
+      throw new HttpsError('permission-denied', 'Shard operation owner changed');
+    }
     const currentBalance = readShardBalance(userSnap.data()?.shards);
     const prevUpdatedAtMs = readUpdatedAtMs(userSnap.data()?.shards_updated_at_ms);
 
-    const outcome = computeShardsDeltaOutcome(claimSnap.exists, currentBalance, signedDelta);
+    if (
+      receiptSnap.exists
+      && !shardReceiptMatchesOperation(receiptSnap.data(), {
+        opId,
+        type,
+        reason,
+        signedDelta,
+      })
+    ) {
+      throw new HttpsError('failed-precondition', 'shard_operation_conflict');
+    }
+    const outcome = computeShardsDeltaOutcome(receiptSnap.exists, currentBalance, signedDelta);
 
     if (!outcome.write) {
       // Идемпотентный повтор (alreadyApplied) ИЛИ spend без средств (insufficient):
@@ -166,7 +278,7 @@ export const shardsApplyDelta = onCall(HOT_CALLABLE_OPTIONS, async (request) => 
     }
 
     const shardsUpdatedAtMs = Date.now();
-    tx.set(claimRef, {
+    tx.set(receiptRef, {
       source: 'shards_apply_delta',
       opId,
       type,

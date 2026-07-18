@@ -1,13 +1,12 @@
 import { PROMPT_REGRESSION_CASES, promptRegressionManifest, regressionHash, type PromptRegressionCase, type RegressionFailure } from './quality_regression_corpus';
-import { validateTopicArtifact } from './quiz_challenge_artifacts';
-import { validateArenaTopicArtifact } from './arena_artifacts';
+import { validateTopicArtifact } from './question_artifacts';
 
 const hasCyrillic = (value: string) => /[А-Яа-яЁё]/.test(value); const hasLatin = (value: string) => /[A-Za-z]/.test(value);
-export const QUALITY_REGRESSION_POLICY = Object.freeze({ version: 'prompt-regression-score-v1', rules: Object.freeze(['production_schema', 'production_arena_runtime', 'incomplete_phrase', 'source_calque', 'versioned_grammar_patterns', 'word_salad_patterns', 'hard_prompt_density', 'single_valid_answer', 'answer_index_identity', 'ru_en_script_direction', 'declared_cefr_identity', 'semantic_key_uniqueness', 'grounding_membership']) });
+export const QUALITY_REGRESSION_POLICY = Object.freeze({ version: 'prompt-regression-score-v1', rules: Object.freeze(['production_schema', 'incomplete_phrase', 'source_calque', 'versioned_grammar_patterns', 'word_salad_patterns', 'hard_prompt_density', 'single_valid_answer', 'answer_index_identity', 'ru_en_script_direction', 'declared_cefr_identity', 'semantic_key_uniqueness', 'grounding_membership']) });
 export function scorePromptRegressionCase(item: PromptRegressionCase) {
   const failures = new Set<RegressionFailure>(); const texts = item.texts ?? []; const questions = item.questions ?? [];
-  if (!texts.length && !questions.length && !item.semanticKeys?.length && item.arenaQuestionTimeoutMs === undefined) {
-    const productionErrors = item.stageKind === 'quiz_topic' || item.stageKind === 'challenge_topic' ? validateTopicArtifact({}, { kind: item.stageKind, cefr: item.expectedCefr }) : ['regression_fixture_shape_invalid'];
+  if (!texts.length && !questions.length && !item.semanticKeys?.length) {
+    const productionErrors = item.stageKind === 'challenge_topic' ? validateTopicArtifact({}, { kind: item.stageKind, cefr: item.expectedCefr }) : ['regression_fixture_shape_invalid'];
     if (productionErrors.length) failures.add('schema_invalid');
   }
   if (texts.some((pair) => pair.target.trim().toLowerCase() === 'could you show me on the map?')) failures.add('incomplete_phrase');
@@ -20,10 +19,6 @@ export function scorePromptRegressionCase(item: PromptRegressionCase) {
   if (item.sourceLocale === 'ru' && texts.some((pair) => !hasCyrillic(pair.source) || hasCyrillic(pair.target) || !hasLatin(pair.target))) failures.add('locale_drift');
   if (item.declaredCefr !== item.expectedCefr) failures.add('cefr_drift');
   const keys = item.semanticKeys ?? []; if (new Set(keys.map((key) => key.trim().toLowerCase())).size !== keys.length) failures.add('semantic_duplicate');
-  if (item.arenaQuestionTimeoutMs !== undefined) {
-    const arenaTopic = { stage: 'arena_topic', result: { topicId: 'regression-topic', title: 'Regression topic', learningPromise: 'Answer practical prompts quickly.', level: 'A2', skillTags: ['requests'], inclusions: ['requests'], exclusions: ['trivia'], allowedTypes: ['translate'], difficultyDistribution: { easy: 3, medium: 4, hard: 3 }, taskMaxChars: 120, questionMaxChars: 180, optionMaxChars: 80, ruleMaxChars: 500, targetAnswerTimeMs: 8000, runtimePolicy: { questionsPerMatch: 10, questionTimeoutMs: item.arenaQuestionTimeoutMs, scoringPolicy: 'arena-scoring-v1' }, localeContract: { studyTarget: item.studyTarget, learnerSourceLocale: item.sourceLocale }, fairnessRules: ['one answer'] } };
-    if (validateArenaTopicArtifact(arenaTopic, { cefr: item.expectedCefr, studyTarget: item.studyTarget, sourceLocale: item.sourceLocale }).includes('arena_topic_runtime_timeout_must_be_40000')) failures.add('arena_runtime_invalid');
-  }
   const allowed = new Set(item.allowedSourceReferences ?? []); if ((item.sourceReferences ?? []).some((reference) => !allowed.has(reference))) failures.add('invented_grounding');
   return Object.freeze({ id: item.id, expectation: item.expectation, expectedFailures: Object.freeze([...item.expectedFailures].sort()), actualFailures: Object.freeze([...failures].sort()), accepted: failures.size === 0 });
 }

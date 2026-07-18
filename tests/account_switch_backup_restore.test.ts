@@ -1,5 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from '../app/account_switch_backup_restore';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(),
@@ -26,6 +32,8 @@ function makeBackup(overrides: Partial<Record<string, unknown>> = {}): string {
 
 beforeEach(() => {
   (AsyncStorage as unknown as { __reset: () => void }).__reset();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('stable-A');
   jest.clearAllMocks();
   (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-A');
 });
@@ -43,6 +51,16 @@ describe('restoreAccountSwitchEmergencyBackupIfSafe', () => {
 
     expect(res).toEqual({ status: 'restored', restoredKeys: 1, skippedExisting: 1 });
     expect(await AsyncStorage.getItem('xp_total')).toBe('900');
+    expect(await AsyncStorage.getItem('streak_count')).toBe('7');
+    expect(await AsyncStorage.getItem(BACKUP_KEY)).toBeNull();
+  });
+
+  it('restores the owner-bound version 2 backup payload', async () => {
+    await AsyncStorage.setItem(BACKUP_KEY, makeBackup({ version: 2 }));
+
+    const res = await restoreAccountSwitchEmergencyBackupIfSafe();
+
+    expect(res).toEqual({ status: 'restored', restoredKeys: 2, skippedExisting: 0 });
     expect(await AsyncStorage.getItem('streak_count')).toBe('7');
     expect(await AsyncStorage.getItem(BACKUP_KEY)).toBeNull();
   });
@@ -110,5 +128,46 @@ describe('restoreAccountSwitchEmergencyBackupIfSafe', () => {
     expect(res).toEqual({ status: 'stale_generation' });
     expect(await AsyncStorage.getItem('streak_count')).toBeNull();
     expect(await AsyncStorage.getItem(BACKUP_KEY)).not.toBeNull();
+  });
+
+  it('serializes backup restoration with the account transition lock', async () => {
+    await AsyncStorage.setItem(BACKUP_KEY, makeBackup());
+    let release!: () => void;
+    const blocker = withAccountTransitionLock(
+      () => new Promise<void>((resolve) => { release = resolve; }),
+    );
+    await Promise.resolve();
+
+    const restoring = restoreAccountSwitchEmergencyBackupIfSafe();
+    await new Promise<void>((resolve) => setImmediate(resolve));
+
+    expect(await AsyncStorage.getItem('streak_count')).toBeNull();
+
+    release();
+    await blocker;
+    await expect(restoring).resolves.toEqual({
+      status: 'restored',
+      restoredKeys: 2,
+      skippedExisting: 0,
+    });
+  });
+
+  it('preserves the backup when its captured generation becomes stale in the lock queue', async () => {
+    await AsyncStorage.setItem(BACKUP_KEY, makeBackup());
+    const originalBackup = await AsyncStorage.getItem(BACKUP_KEY);
+    let release!: () => void;
+    const blocker = withAccountTransitionLock(
+      () => new Promise<void>((resolve) => { release = resolve; }),
+    );
+    await Promise.resolve();
+
+    const restoring = restoreAccountSwitchEmergencyBackupIfSafe();
+    invalidateAccountGeneration();
+    release();
+    await blocker;
+
+    await expect(restoring).resolves.toEqual({ status: 'stale_generation' });
+    expect(await AsyncStorage.getItem('streak_count')).toBeNull();
+    expect(await AsyncStorage.getItem(BACKUP_KEY)).toBe(originalBackup);
   });
 });

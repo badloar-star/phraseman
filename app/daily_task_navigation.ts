@@ -15,9 +15,8 @@ import { lessonSupportContentAvailableForTarget } from './lesson_support_target_
 import { getVerifiedPremiumStatus } from './premium_guard';
 import type { TrainerSessionRoute } from './trainer_session';
 import { startReservedTrainerSession } from './trainer_session_navigation';
-import { frenchQuizGateCopy, quizContentAvailableForTarget } from './quiz_target_gate';
 import { frenchTrainerGateCopy, trainerSessionContentAvailableForTarget } from './trainer_target_gate';
-import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
+import { lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget, type VocabularyGateSurface } from './vocabulary_target_gate';
 
 type DailyTaskRouter = {
@@ -56,25 +55,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     }
     await primeLessonScreenFromStorage(lessonId, studyTarget);
     router.push({ pathname: '/lesson1', params: { id: lessonId } });
-  };
-
-  const openQuizOrFrenchGate = async (level: 'easy' | 'medium' | 'hard') => {
-    if (!quizContentAvailableForTarget(studyTarget)) {
-      const copy = frenchQuizGateCopy(lang);
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: copy.title,
-        messageUk: copy.title,
-        messageEs: 'French quizzes are still behind source gate.',
-      });
-      router.replace('/quizzes_screen' as any);
-      return;
-    }
-    await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level);
-    // push (не replace): экран заданий дейликов должен остаться в стеке, чтобы «назад»
-    // из квиза возвращал на список заданий, а не проваливался на экран под ним.
-    // (quizzes_screen — это Stack.Screen, а не вкладка таб-бара — см. app/_layout.tsx.)
-    router.push('/quizzes_screen');
   };
 
   const openDiagnosticOrFrenchGate = () => {
@@ -186,20 +166,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'words_learned':
       openVocabularyOrFrenchGate('lesson_words', { pathname: '/lesson_words', params: { id: lessonId } });
       break;
-    case 'quiz_hard':
-      await openQuizOrFrenchGate('hard');
-      break;
-    case 'quiz_score':
-    case 'quiz_perfect':
-    case 'quiz_easy':
-      await openQuizOrFrenchGate('easy');
-      break;
-    case 'quiz_medium':
-      await openQuizOrFrenchGate('medium');
-      break;
-    case 'quiz_hard_perfect':
-      await openQuizOrFrenchGate('hard');
-      break;
     case 'open_theory':
       if (!lessonSupportContentAvailableForTarget(studyTarget, 'lesson_theory', lessonId)) {
         emitAppEvent('action_toast', {
@@ -229,9 +195,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'trainer_phrases':
       await openTrainerOrFrenchGate('/trainer_phrases_session');
       break;
-    case 'trainer_arena':
-      await openTrainerOrFrenchGate('/trainer_arena_session');
-      break;
     case 'daily_phrase_read':
     case 'daily_phrase_save':
       openDailyPhraseOrFrenchGate();
@@ -245,15 +208,6 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       } else {
         router.push('/settings_invite_friend' as any);
       }
-      break;
-    case 'arena_play':
-    case 'arena_win':
-    case 'arena_rank_promoted':
-    case 'arena_plays_wins_combo':
-      router.replace({
-        pathname: '/(tabs)/arena' as any,
-        params: { autoSearch: '1', playAgainTs: String(Date.now()) },
-      });
       break;
     default:
       await openLessonOrFrenchGate();

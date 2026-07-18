@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "admin-content-factory-readiness.v1",
+  "deploymentAuthorized": false,
+  "targetProject": null,
+  "targetEnvironment": null,
+  "callableAllowlist": [],
+  "previousRelease": null,
+  "candidateRelease": null,
+  "expectedCatalogRevision": null,
+  "metricsBaseline": null,
+  "thresholds": {
+    "maxErrorRate": null,
+    "maxP95LatencyMs": null,
+    "maxAttemptsPerAcceptedArtifact": null,
+    "maxBudgetCapUtilization": null
+  },
+  "stopConditions": [
+    "hard_linguistic_error_or_wrong_answer",
+    "source_or_artifact_hash_drift",
+    "authorization_or_audit_failure",
+    "duplicate_publish_or_activation",
+    "accepted_draft_loss",
+    "error_rate_regression",
+    "p95_latency_regression",
+    "retry_amplification",
+    "budget_anomaly",
+    "unexpected_external_request"
+  ],
+  "rollback": {
+    "targetReleaseId": null,
+    "expectedCurrentReleaseId": null,
+    "expectedRevision": null,
+    "requestId": null,
+    "idempotencyKey": null,
+    "reason": null
+  },
+  "evidenceHashes": {},
+  "advisorDecision": null,
+  "notes": "Template only. No deployment has been performed. All null fields require explicit confirmation."
+}

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const account_delete_1 = require("./account_delete");
-const { accountDeleteQueryPlan, accountDeleteCollectionGroupPlan, accountDeleteCollectionGroupDocumentIdPlan, resolveStableUidForDelete, enqueueForAuthenticatedAccount, removeFromFriendGiftDailyLimits, deleteCrossUserDocumentIdMatches, } = account_delete_1.__accountDeleteTestHooks;
+const { accountDeleteQueryPlan, accountDeleteCollectionGroupPlan, accountDeleteCollectionGroupDocumentIdPlan, accountDeleteDirectDocumentPlan, resolveStableUidForDelete, enqueueForAuthenticatedAccount, removeFromFriendGiftDailyLimits, deleteCrossUserDocumentIdMatches, deleteArenaSeasonEntries, } = account_delete_1.__accountDeleteTestHooks;
 function makeDbStub(opts) {
     const users = opts.users ?? {};
     const authLinks = opts.authLinks ?? {};
@@ -76,6 +76,22 @@ describe('accountDelete query plan', () => {
         expect(keys.has('arena_sessions.playerIds.array-contains.auth-456')).toBe(true);
         expect(keys.has('arena_invites.fromUid.==.auth-456')).toBe(true);
         expect(keys.has('arena_room_members.authUid.==.auth-456')).toBe(true);
+    });
+    it('keeps historical Arena identity records in the account-deletion plan after runtime retirement', () => {
+        const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
+        const keys = new Set(plan.map((x) => `${x.collection}.${x.field}.${x.op}.${x.value}`));
+        expect(keys.has('arena_hill_player_wins.stableUid.==.stable-123')).toBe(true);
+        expect(keys.has('arena_hill_thrones.previousChampionUid.==.stable-123')).toBe(true);
+        expect(keys.has('arena_hill_throne_rewards.championUid.==.stable-123')).toBe(true);
+        expect(keys.has('arena_hill_throne_rewards.championAuthUid.==.auth-456')).toBe(true);
+        expect(keys.has('arena_season_claims.uid.==.stable-123')).toBe(true);
+        expect(keys.has('arena_season_claims.uid.==.auth-456')).toBe(true);
+    });
+    it('keeps direct Arena question history documents in the account-deletion plan', () => {
+        const plan = accountDeleteDirectDocumentPlan('stable-123', 'auth-456');
+        const keys = new Set(plan.map((x) => `${x.collection}.${x.id}`));
+        expect(keys.has('arena_question_history.stable-123')).toBe(true);
+        expect(keys.has('arena_question_history.auth-456')).toBe(true);
     });
     it('covers newer account-linked Firestore collections', () => {
         const plan = accountDeleteQueryPlan('stable-123', 'auth-456');
@@ -160,6 +176,46 @@ describe('accountDelete stable id resolver', () => {
     });
 });
 describe('accountDelete query deletion safety', () => {
+    it('deletes each historical Arena season entry by stable and auth document id', async () => {
+        const seasonRefs = ['2025-Q4', '2026-Q1'].map((seasonId) => ({
+            id: seasonId,
+            collection: jest.fn((collection) => ({
+                doc: (id) => ({ path: `arena_season_leaderboard/${seasonId}/${collection}/${id}` }),
+            })),
+        }));
+        const listDocuments = jest.fn(async () => seasonRefs);
+        const recursiveDelete = jest.fn(async (_ref) => { });
+        const db = {
+            collection: jest.fn((name) => {
+                expect(name).toBe('arena_season_leaderboard');
+                return { listDocuments };
+            }),
+            recursiveDelete,
+        };
+        const writer = { flush: jest.fn(async () => { }) };
+        const ctx = {
+            db,
+            writer,
+            seen: new Set(),
+            runId: 'test',
+            stableUidHash: 'stable',
+            authUidHash: 'auth',
+            startedAtMs: 0,
+            lastProgressLogDocs: 0,
+            writerClosed: false,
+        };
+        const stats = { docsDeleted: 0, docsUpdated: 0, queriesRun: 0, authDeleted: false };
+        await deleteArenaSeasonEntries(db, 'stable-123', 'auth-456', ctx, stats);
+        expect(listDocuments).toHaveBeenCalledTimes(1);
+        expect(recursiveDelete.mock.calls.map(([ref]) => ref.path)).toEqual([
+            'arena_season_leaderboard/2025-Q4/entries/stable-123',
+            'arena_season_leaderboard/2025-Q4/entries/auth-456',
+            'arena_season_leaderboard/2026-Q1/entries/stable-123',
+            'arena_season_leaderboard/2026-Q1/entries/auth-456',
+        ]);
+        expect(writer.flush).toHaveBeenCalledTimes(1);
+        expect(stats.queriesRun).toBe(1);
+    });
     it('deletes reverse friend documents through concrete user paths', async () => {
         const refs = {};
         const userRef = {

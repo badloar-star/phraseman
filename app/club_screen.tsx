@@ -47,7 +47,6 @@ import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId 
 import { getTitleString } from '../constants/titles';
 
 import { getMyWeekPoints } from './hall_of_fame_utils';
-import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
 import { getXPProgress, getLevelFromXP, screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { monoIcon } from '../constants/monoIcon';
@@ -59,7 +58,6 @@ import {
 } from './rank_change';
 import RankChangeBanner from '../components/RankChangeBanner';
 import { actionToastTri, emitAppEvent, onAppEvent } from './events';
-import { subscribeMyArenaClubWarEvent } from './services/arena_club_wars';
 import {
   LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
   LEAGUE_CROWN_NICK_COLOR,
@@ -431,18 +429,10 @@ export default function ClubScreen() {
     });
     return () => sub.remove();
   }, []);
+  // Arena is optional while its feature set is being retired. The league screen
+  // keeps its local data and rewards available without the live arena listener.
   useEffect(() => {
-    let cancelled = false;
-    let unsub: (() => void) | null = null;
-    void ensureAnonUser().then((stableUid) => {
-      if (cancelled || !stableUid) return;
-      setArenaClubStableUid(stableUid);
-      unsub = subscribeMyArenaClubWarEvent(stableUid, setArenaClubEvent);
-    });
-    return () => {
-      cancelled = true;
-      unsub?.();
-    };
+    setArenaClubEvent(null);
   }, []);
 
   useEffect(() => {

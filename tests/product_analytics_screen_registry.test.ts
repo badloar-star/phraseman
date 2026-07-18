@@ -7,7 +7,6 @@ describe('product analytics screen registry', () => {
     ['/(tabs)/home', 'home'],
     ['/lesson1', 'lesson'],
     ['/lesson/12', 'lesson'],
-    ['/arena_game', 'arena_game'],
     ['/friends/secret-user-id', 'friend_profile'],
     ['/manage_subscription', 'manage_subscription'],
   ])('maps %s to %s without leaking parameters', (pathname, expected) => {
@@ -20,6 +19,8 @@ describe('product analytics screen registry', () => {
   });
 
   it('maps unknown and malformed routes to a fixed value', () => {
+    expect(productAnalyticsScreenId('/arena_game')).toBe('unknown_screen');
+    expect(productAnalyticsScreenId('/quizzes')).toBe('unknown_screen');
     expect(productAnalyticsScreenId('/private/new-screen/secret')).toBe('unknown_screen');
     expect(productAnalyticsScreenId('https://evil.example/path')).toBe('unknown_screen');
     expect(productAnalyticsScreenId(null)).toBe('unknown_screen');

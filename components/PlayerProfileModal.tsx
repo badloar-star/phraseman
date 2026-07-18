@@ -41,9 +41,7 @@ import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
-import { arenaTierLabel } from '../app/arena_rating';
-import type { RankTier } from '../app/types/arena';
-import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
+import { getCurrentMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
@@ -130,11 +128,6 @@ interface Props {
   onClose: () => void;
 }
 
-const RANK_TIER_EMOJIS: Record<string, string> = {
-  bronze: '🥉', silver: '🥈', gold: '🥇', platinum: '💎',
-  diamond: '👑', master: '🔥', grandmaster: '⚡', legend: '🌟',
-};
-
 // Синяя «дорогая» палитра Pro-плашки (зеркало celebrationContent.ts → pro.main).
 const PRO_BADGE_BLUE = '#38BDF8';
 const PRO_BADGE_TEXT = '#04101f';
@@ -196,8 +189,6 @@ function getProfileCardVisual(snapshot: ProfileCardSnapshot): ProfileCardVisual 
 type ProfileCardStats = {
   wordsLearned: number | null;
   phrasesLearned: number | null;
-  arenaWins: number | null;
-  arenaMatches: number | null;
   appDays: number | null;
   longestStreak: number | null;
   legendNo: number | null;
@@ -228,8 +219,6 @@ type BodyProps = {
   shimmerAnim: Animated.Value;
   onBackdropPress: () => void;
   onClose: () => void;
-  duelRank: { tier: string; level: string; xp: number } | null;
-  seasonBadge: { seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null;
   multipliers: MultiplierBreakdown | null;
   onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
 };
@@ -243,8 +232,6 @@ function PlayerProfileModalBody({
   shimmerAnim,
   onBackdropPress,
   onClose,
-  duelRank,
-  seasonBadge,
   multipliers,
   onFriendRequestToast,
 }: BodyProps) {
@@ -444,8 +431,6 @@ function PlayerProfileModalBody({
           setCardStats({
             wordsLearned: s.wordsLearned,
             phrasesLearned: s.phrasesLearned,
-            arenaWins: s.arenaWins,
-            arenaMatches: s.arenaWins + s.arenaLosses,
             appDays: s.appDaysUnion,
             longestStreak: s.longestStreakDays,
             legendNo,
@@ -474,8 +459,6 @@ function PlayerProfileModalBody({
           setCardStats({
             wordsLearned: readPublicCardStatNumber(d.cardWordsLearned),
             phrasesLearned: readPublicCardStatNumber(d.cardPhrasesLearned),
-            arenaWins: readPublicCardStatNumber(d.cardArenaWins),
-            arenaMatches: readPublicCardStatNumber(d.cardArenaMatches),
             appDays: readPublicCardStatNumber(d.cardAppDays),
             longestStreak: readPublicCardStatNumber(d.cardLongestStreak),
             legendNo: readPublicCardStatNumber(d.profileCardLegendNo),
@@ -1379,32 +1362,6 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {displayCardLevel >= 3 && cardStats && cardStats.arenaWins !== null && (
-          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <Ionicons name="podium" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
-            <View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {cardStats.arenaWins.toLocaleString()} · {
-                  cardStats.arenaMatches && cardStats.arenaMatches > 0
-                    ? `${Math.round((cardStats.arenaWins / cardStats.arenaMatches) * 100)}%`
-                    : '—'
-                }
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {triLang(lang as Lang, {
-                  ru: 'арена: победы · винрейт',
-                  uk: 'арена: перемоги · вінрейт',
-                  es: 'arena: victorias · % de victorias',
-                  'pt-BR': 'arena: vitórias · % de vitórias',
-                  vi: 'đấu trường: thắng · tỷ lệ thắng',
-                  id: 'arena: menang · rasio menang',
-                  tr: 'arena: galibiyet · kazanma %',
-                  pl: 'arena: wygrane · % wygranych',
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
         {displayCardLevel >= 4 && cardStats && cardStats.appDays !== null && (
           <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
             <Ionicons name="compass" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
@@ -1614,50 +1571,6 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
-        {duelRank && (
-          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <Text style={{ fontSize: f.numLg }}>{RANK_TIER_EMOJIS[duelRank.tier] ?? '⚔️'}</Text>
-            <View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {arenaTierLabel(duelRank.tier as RankTier, lang as Lang)} {duelRank.level} · {duelRank.xp} XP
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {triLang(lang as Lang, {
-                  ru: 'Ранг арены',
-                  uk: 'Ранг арени',
-                  es: 'Rango en la arena',
-                  'pt-BR': "Rank na Arena",
-                  vi: "Hạng Đấu trường",
-                  id: "Peringkat arena",
-                  tr: "Arena rütbesi",
-                  pl: "Ranking na Arenie",
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
-        {seasonBadge && (
-          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <Text style={{ fontSize: f.numLg }}>
-              {seasonBadge.tier === 'champion' ? '🏆' : seasonBadge.tier === 'top10' ? '🥇' : '⭐'}
-            </Text>
-            <View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang as Lang, {
-                  ru: seasonBadge.tier === 'champion' ? 'Чемпион сезона' : seasonBadge.tier === 'top10' ? 'Топ-10 сезона' : 'Топ-100 сезона',
-                  uk: seasonBadge.tier === 'champion' ? 'Чемпіон сезону' : seasonBadge.tier === 'top10' ? 'Топ-10 сезону' : 'Топ-100 сезону',
-                  es: seasonBadge.tier === 'champion' ? 'Campeón de temporada' : seasonBadge.tier === 'top10' ? 'Top 10 de temporada' : 'Top 100 de temporada',
-                  'pt-BR': seasonBadge.tier === 'champion' ? 'Campeão da temporada' : seasonBadge.tier === 'top10' ? 'Top 10 da temporada' : 'Top 100 da temporada',
-                  vi: seasonBadge.tier === 'champion' ? 'Quán quân mùa' : seasonBadge.tier === 'top10' ? 'Top 10 mùa' : 'Top 100 mùa',
-                  id: seasonBadge.tier === 'champion' ? 'Juara musim' : seasonBadge.tier === 'top10' ? 'Top 10 musim' : 'Top 100 musim',
-                  tr: seasonBadge.tier === 'champion' ? 'Sezon şampiyonu' : seasonBadge.tier === 'top10' ? 'Sezon ilk 10' : 'Sezon ilk 100',
-                  pl: seasonBadge.tier === 'champion' ? 'Mistrz sezonu' : seasonBadge.tier === 'top10' ? 'Top 10 sezonu' : 'Top 100 sezonu',
-                })}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>{seasonBadge.seasonId}</Text>
-            </View>
-          </View>
-        )}
         </ScrollView>
         {isMe && previewLevel !== null && (
           // Панель превью: карточка выше уже преобразилась в выбранный уровень —
@@ -1798,8 +1711,6 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const fadeAnim  = useRef(new Animated.Value(0)).current;
   const shimmerAnim = useRef(new Animated.Value(0)).current;
 
-  const [duelRank, setDuelRank] = useState<{ tier: string; level: string; xp: number } | null>(null);
-  const [seasonBadge, setSeasonBadge] = useState<{ seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null>(null);
   const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(null);
   const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
   const [friendToast, setFriendToast] = useState<string | null>(null);
@@ -1829,8 +1740,6 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     if (player) return;
     slideAnim.setValue(500);
     fadeAnim.setValue(0);
-    setDuelRank(null);
-    setSeasonBadge(null);
     setMultipliers(null);
     setResolvedTotalXp(null);
     setFriendToast(null);
@@ -1845,8 +1754,6 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   useEffect(() => {
     if (!player) return;
 
-    setDuelRank(null);
-    setSeasonBadge(null);
     setMultipliers(null);
     const initialTotalXp = Number.isFinite(Number(player.totalXp))
       ? Math.max(0, Math.floor(Number(player.totalXp)))
@@ -1875,11 +1782,8 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       }
       if (player.uid) {
         const lbDocIds = Array.from(new Set([player.friendUid, player.uid].filter(Boolean) as string[]));
-        Promise.all([
-          firestore().collection('arena_profiles').doc(player.uid).get(),
-          Promise.all(lbDocIds.map((id) => firestore().collection('leaderboard').doc(id).get().catch(() => null))),
-        ])
-          .then(([arenaSnap, lbSnaps]) => {
+        Promise.all(lbDocIds.map((id) => firestore().collection('leaderboard').doc(id).get().catch(() => null)))
+          .then((lbSnaps) => {
             if (cancelled) return;
             let bestTotalXp = initialTotalXp;
             for (const lbSnap of lbSnaps) {
@@ -1889,35 +1793,6 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
                 if (Number.isFinite(lbTotal) && lbTotal >= 0) {
                   bestTotalXp = Math.max(bestTotalXp ?? 0, Math.floor(lbTotal));
                 }
-              }
-            }
-            if (arenaSnap.exists) {
-              const d = arenaSnap.data() as {
-                rank?: { tier: string; level: string };
-                xp?: number;
-                courseTotalXp?: number;
-                courseProfileCardLevel?: number;
-                stats?: { matchesPlayed?: number };
-                multipliers?: unknown;
-                seasonBadge?: { seasonId: string; tier: 'champion' | 'top10' | 'top100' } | null;
-              };
-              if (Number.isFinite(Number(d.courseTotalXp)) && Number(d.courseTotalXp) >= 0) {
-                bestTotalXp = Math.max(bestTotalXp ?? 0, Math.floor(Number(d.courseTotalXp)));
-              }
-              const mp = d.stats?.matchesPlayed;
-              const hasPlayedAtLeastOne =
-                typeof mp === 'number'
-                  ? mp >= 1
-                  : (d.stats === undefined ? (d.xp ?? 0) > 0 : false);
-              if (hasPlayedAtLeastOne && d?.rank) {
-                setDuelRank({ tier: d.rank.tier, level: d.rank.level, xp: d.xp ?? 0 });
-              }
-              if (d?.seasonBadge?.seasonId) {
-                setSeasonBadge(d.seasonBadge);
-              }
-              if (!player.isMe && d?.multipliers) {
-                const norm = normalizeArenaMultipliersFirestore(d.multipliers);
-                if (norm) setMultipliers(norm);
               }
             }
             if (bestTotalXp !== null) setResolvedTotalXp(bestTotalXp);
@@ -1959,8 +1834,6 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
             shimmerAnim={shimmerAnim}
             onBackdropPress={handleClose}
             onClose={handleClose}
-            duelRank={duelRank}
-            seasonBadge={seasonBadge}
             multipliers={multipliers}
             onFriendRequestToast={showFriendRequestToast}
           />

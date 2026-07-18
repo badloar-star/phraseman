@@ -18,24 +18,16 @@ describe('generation provider seam', () => {
         const provider = { generate: async () => '{"bad":true}' };
         await expect((0, generation_provider_1.generateLessonUnit)({ provider, model: 'fake', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, blueprintVersion: 'v1', blueprintHash: 'a'.repeat(64), topic: 'identity', sourcePhrases: ['I am ready'], vocabularyFocus: ['be'], drills: [], sourceEvidence: [{ evidenceId: 'e1', kind: 'official_curriculum', authority: 'A', url: 'https://example.com', retrievedAt: '2026-07-10', claim: 'A' }] })).rejects.toThrow('generated_lesson_invalid');
     });
-    it('generates quiz/card/arena units through the same provider seam', async () => {
-        const provider = { generate: async ({ prompt }) => {
-                if (prompt.includes('surface=flashcard'))
-                    return JSON.stringify({ lessonId: 1, surface: 'flashcard', items: [{ id: 'c1', front: 'Je suis', back: 'Я есть' }] });
-                if (prompt.includes('surface=arena'))
-                    return JSON.stringify({ lessonId: 1, surface: 'arena', items: [{ id: 'a1', prompt: 'Как сказать?', answer: 'Je suis', options: ['Je suis', 'Tu es', 'Il est', 'Nous sommes'] }] });
-                return JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1', prompt: 'Как сказать?', answer: 'Je suis', options: ['Je suis', 'Tu es'] }] });
-            } };
+    it('generates a flashcard unit through the injected provider seam', async () => {
+        const provider = { generate: async () => JSON.stringify({ lessonId: 1, surface: 'flashcard', items: [{ id: 'c1', front: 'Je suis', back: 'Я есть' }] }) };
         const common = { provider, model: 'fake', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] };
-        const quiz = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'quiz' });
         const flashcard = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'flashcard' });
-        const arena = await (0, generation_provider_1.generateSurfaceUnit)({ ...common, surface: 'arena' });
-        expect([quiz.artifact.surface, flashcard.artifact.surface, arena.artifact.surface]).toEqual(['quiz', 'flashcard', 'arena']);
-        expect([quiz.qa.status, flashcard.qa.status, arena.qa.status]).toEqual(['passed', 'passed', 'passed']);
+        expect(flashcard.artifact.surface).toBe('flashcard');
+        expect(flashcard.qa.status).toBe('passed');
     });
-    it('blocks a legacy surface when deterministic QA finds duplicate or ambiguous answers', async () => {
-        const provider = { generate: async () => JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1', prompt: 'Выберите', answer: 'Oui', options: ['Oui', 'Non'] }, { id: 'q1', prompt: 'Ещё раз', answer: 'Oui', options: ['Oui', 'Non'] }] }) };
-        await expect((0, generation_provider_1.generateSurfaceUnit)({ provider, model: 'fake', surface: 'quiz', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] })).rejects.toThrow('generated_surface_qa_failed');
+    it('fails closed when the provider returns a retired surface', async () => {
+        const provider = { generate: async () => JSON.stringify({ lessonId: 1, surface: 'quiz', items: [{ id: 'q1' }] }) };
+        await expect((0, generation_provider_1.generateSurfaceUnit)({ provider, model: 'fake', surface: 'flashcard', studyTarget: 'fr', sourceLocale: 'ru', lessonId: 1, topic: 'identity', sourcePhrases: ['I am ready'] })).rejects.toThrow('generated_surface_invalid');
     });
 });
 //# sourceMappingURL=generation_provider.test.js.map

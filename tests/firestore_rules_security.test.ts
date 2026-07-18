@@ -290,9 +290,12 @@ describe('firestore.rules security baseline', () => {
     expect(functionsIndex).toContain('exports.leagueSyncMyBoost = leagueSyncMyBoost;');
   });
 
-  test('catch-all rule is deny-all', () => {
-    expect(rules).toContain('match /{document=**} {');
-    expect(rules).toContain('allow read, write: if false;');
+  test('catch-all permits only admins and retains a terminal deny fallback', () => {
+    const catchAllBlock = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAllBlock).not.toBeNull();
+    expect(catchAllBlock![0]).toMatch(
+      /allow read, write: if isAdmin\(\)[\s\S]*?;\s*allow read, write: if false;/,
+    );
   });
 
   test('app diagnostics collections are server/admin-write only with admin read', () => {
@@ -330,22 +333,22 @@ describe('firestore.rules security baseline', () => {
     expect(campaignsBlock![0]).not.toContain('request.auth != null');
   });
 
-  test('arena_rooms updates are field-restricted', () => {
-    expect(rules).toContain('match /arena_rooms/{roomId} {');
-    expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
+  test('arena_rooms is decommissioned and denies all client access', () => {
+    const arenaRoomsBlock = rules.match(/match \/arena_rooms\/\{roomId\} \{[\s\S]*?\n    \}/);
+    expect(arenaRoomsBlock).not.toBeNull();
+    expect(arenaRoomsBlock![0]).toContain('allow read, write: if false;');
   });
 
-  test('arena_questions runtime pool is client-readable but never client-writable', () => {
+  test('arena_questions runtime pool is decommissioned and denies all client access', () => {
     const arenaQuestionsBlock = rules.match(/match \/arena_questions\/\{qId\} \{[\s\S]*?\n    \}/);
     expect(arenaQuestionsBlock).not.toBeNull();
-    expect(arenaQuestionsBlock![0]).toContain('allow read:  if request.auth != null;');
-    expect(arenaQuestionsBlock![0]).toContain('allow write: if false;');
+    expect(arenaQuestionsBlock![0]).toContain('allow read, write: if false;');
   });
 
-  test('arena_invites allows only status updates from participants', () => {
-    expect(rules).toContain('match /arena_invites/{inviteId} {');
-    expect(rules).toContain(".hasOnly(['status']);");
-    expect(rules).toContain('canonicalUserMatchesAuth(resource.data.friendStableUid)');
+  test('arena_invites legacy flow is decommissioned and denies all client access', () => {
+    const arenaInvitesBlock = rules.match(/match \/arena_invites\/\{inviteId\} \{[\s\S]*?\n    \}/);
+    expect(arenaInvitesBlock).not.toBeNull();
+    expect(arenaInvitesBlock![0]).toContain('allow read, write: if false;');
   });
 
   test('friend activity my_events keeps client reads but restricts writes to admins/server', () => {
@@ -497,7 +500,7 @@ describe('firestore.rules friend system (Phase 1)', () => {
     const matches = [...rules.matchAll(/match \/[^\s]+ \{/g)];
     const lastMatch = matches[matches.length - 1];
     expect(lastMatch).toBeDefined();
-    expect(lastMatch![0]).toContain('match /{document=**}');
+    expect(lastMatch![0]).toContain('match /{collection}/{document=**}');
   });
 
   test('existing rules untouched — users, leaderboard, banned_users, auth_links blocks still present', () => {
@@ -505,6 +508,16 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toContain('match /leaderboard/{userId} {');
     expect(rules).toContain('match /banned_users/{docId} {');
     expect(rules).toContain('match /auth_links/{providerUid} {');
+  });
+
+  test('shard operation receipts are server-only without changing legitimate reward_claim writes', () => {
+    const receiptBlock = rules.match(/match \/shard_operation_receipts\/\{opId\} \{[\s\S]*?\n      \}/);
+    expect(receiptBlock).not.toBeNull();
+    expect(receiptBlock![0]).toContain('allow read, write: if false;');
+
+    const rewardClaimsBlock = rules.match(/match \/reward_claims\/\{claimId\} \{[\s\S]*?\n      \}/);
+    expect(rewardClaimsBlock).not.toBeNull();
+    expect(rewardClaimsBlock![0]).toContain('allow read, create: if userDocOwnerMatchesAuth(userId);');
   });
 });
 
@@ -567,8 +580,8 @@ describe('firestore.rules Explain like I\'m five (Phase 5)', () => {
     expect(block![0]).not.toContain('request.auth != null');
   });
 
-  test('explain blocks sit at ROOT level, before the deny-all catch-all', () => {
-    const catchAllIdx = rules.indexOf('match /{document=**} {');
+  test('explain blocks sit at ROOT level, before the admin-gated catch-all', () => {
+    const catchAllIdx = rules.indexOf('match /{collection}/{document=**} {');
     expect(catchAllIdx).toBeGreaterThan(-1);
     for (const collection of [
       'phrase_explanations',

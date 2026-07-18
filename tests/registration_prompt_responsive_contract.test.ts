@@ -31,12 +31,14 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     expect(src).toContain("width: '100%'");
   });
 
-  it('shows a visible busy state and locks dismissal during provider sign-in', () => {
+  it('shows an accessible busy state and allows truthful close only after the slow threshold', () => {
     const src = source();
 
     expect(src).toContain('ActivityIndicator');
-    expect(src).toContain('testID="auth-prompt-busy"');
+    expect(src).toContain("testID={signInSlow ? 'auth-prompt-slow' : 'auth-prompt-busy'}");
     expect(src).toContain('accessibilityRole="progressbar"');
+    expect(src).toContain('accessibilityLiveRegion="polite"');
+    expect(src).toContain('AccessibilityInfo.announceForAccessibility(signInSlowLabel)');
     expect(src).toContain('signInBusyLabel');
     expect(src).toContain('waitForAuthPromptBusyFrame');
     expect(src).toContain('disabled={loadingProvider !== null}');
@@ -49,7 +51,10 @@ describe('RegistrationPromptModal responsive layout contract', () => {
     const laterStart = src.indexOf('const handleLater = useCallback');
     expect(laterStart).toBeGreaterThan(-1);
     const laterBody = src.slice(laterStart, src.indexOf('return (', laterStart));
-    expect(laterBody).toContain('if (loadingProvider !== null) return;');
-    expect(laterBody).toContain('[context, loadingProvider, onClose]');
+    expect(laterBody).toContain('if (loadingProvider !== null && !signInSlow) return;');
+    expect(laterBody).toContain('attemptLifecycle.invalidateActiveAttempt()');
+    expect(laterBody).toContain('clearSlowTimer()');
+    expect(src).toContain('disabled={loadingProvider !== null && !signInSlow}');
+    expect(src).toContain('accessibilityRole="button"');
   });
 });

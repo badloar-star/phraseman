@@ -9,10 +9,8 @@ export function resolveStageGenerationPolicy(kind: GenerationStageKind, model: s
     lesson_theory: 12000,
     lesson_phrases: 16000,
     lesson_outline: 6000,
-    quiz_topic: 3000,
     challenge_topic: 3000,
     flashcard_pack_idea: 3000,
-    arena_topic: 3000,
   };
   const maxTokens = limits[kind] ?? 8000;
   const temperature = kind === 'lesson_theory' || kind === 'lesson_phrases' ? 0.1 : 0.2;

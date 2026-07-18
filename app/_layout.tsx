@@ -59,13 +59,20 @@ import OfflineBanner from '../components/OfflineBanner';
 import PromoBanner from '../components/PromoBanner';
 import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
+import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
-import { ensureAnonUser, ensureStableAuthLink, restoreFromCloudDetailed, syncToCloud } from './cloud_sync';
+import {
+  ensureAnonUser,
+  ensureStableAuthLink,
+  restoreFromCloudWithRecoveryDetails,
+  syncToCloud,
+  type CloudRestoreFailureReason,
+} from './cloud_sync';
 import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
@@ -79,7 +86,6 @@ import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
-import { prefetchArenaRatingCache } from './arena_rating_cache';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
 import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
@@ -88,14 +94,10 @@ import { incrementSessionCount } from './review_utils';
 import { checkForUpdate, UpdateInfo } from './update_check';
 import { registerXP, migrateXPFormulaV2 } from './xp_manager';
 import { flushPendingProgressEvents } from './progress_events_client';
-import { flushPendingBotArenaMatch } from './arena_bot_profile_write';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
-import { MatchmakingProvider } from '../contexts/MatchmakingContext';
-import MatchFoundToast from '../components/MatchFoundToast';
 import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
 import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
-import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
@@ -113,6 +115,7 @@ import {
   consumeRemoteAccountDeletionNotice,
   handleAccountDeletedOnAnotherDevice,
   isLocalAccountDeletionInProgress,
+  resumePendingAccountDeleteLocalExit,
 } from './auth_provider';
 import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_monitor';
 import { getCanonicalUserId } from './user_id_policy';
@@ -1365,6 +1368,8 @@ function AppContent() {
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
+  const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
+  const startupAuthRecoveryOfferedRef = useRef(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const [dailyPlanModalDue, setDailyPlanModalDue] = useState(false);
   const { setLang, lang } = useLang();
@@ -1421,12 +1426,13 @@ function AppContent() {
     void showRemoteAccountDeletionNotice();
   }, [showRemoteAccountDeletionNotice]);
 
-  useEffect(() => startRemoteAccountDeletionMonitor(() => {
-    if (isLocalAccountDeletionInProgress()) return;
-    void handleAccountDeletedOnAnotherDevice().then(() => {
-      emitAppEvent('account_deleted');
-      return showRemoteAccountDeletionNotice();
-    });
+  useEffect(() => startRemoteAccountDeletionMonitor(async () => {
+    if (isLocalAccountDeletionInProgress()) return false;
+    const result = await handleAccountDeletedOnAnotherDevice();
+    if (!result.ok) return false;
+    emitAppEvent('account_deleted');
+    await showRemoteAccountDeletionNotice();
+    return true;
   }), [showRemoteAccountDeletionNotice]);
   const navigationPathSignature = buildNavigationPathSignature(pathname, globalSearchParams);
   const currentDevUtilityRoute = isDevUtilityRoutePath(pathname) || isDevOnlyRuntimeRoutePath(pathname);
@@ -1887,8 +1893,10 @@ function AppContent() {
   }, []);
 
   useEffect(() => {
-    // Startup must reveal the first screen quickly; optional warmups continue below.
-    const safetyTimer = setTimeout(() => setReady(true), 1200);
+    // The normal reveal timer is armed only after crash-recovery proves that no
+    // deleted account identity/data can reappear beneath the startup shell.
+    let safetyTimer: ReturnType<typeof setTimeout> | null = null;
+    let accountDeleteRecoveryRetryTimer: ReturnType<typeof setTimeout> | null = null;
 
     // Remote Config: ссылку на отписку держим в scope эффекта.
     // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
@@ -1899,7 +1907,14 @@ function AppContent() {
     // Гидратация облака запускается рано (в bootstrap) и используется здесь,
     // чтобы остальной runHeavyInit ждал её завершения, а не дублировал.
     let cloudHydratePromise: Promise<BootCloudRestoreOutcome> | null = null;
+    let bootRestoreFailureReason: CloudRestoreFailureReason | null = null;
     let contentDeliveryMigrationPromise: Promise<void> | null = null;
+    const restoreCloudForBoot = async () => {
+      await ensureAnonUser();
+      const result = await restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions);
+      bootRestoreFailureReason = result.failureReason;
+      return result.status;
+    };
     const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
       if (!contentDeliveryMigrationPromise) {
         contentDeliveryMigrationPromise = (async () => {
@@ -1980,10 +1995,7 @@ function AppContent() {
       // Отслеживаем успех restore; boot-sync пускаем только если restore удался ЛИБО
       // локально реально есть прогресс (как в login-ветках auth_provider).
       const bootCoordinator = createBootCloudRestoreCoordinator({
-        restore: async () => {
-          await ensureAnonUser();
-          return restoreFromCloudDetailed(coldExamBestPctRestoreOptions);
-        },
+        restore: restoreCloudForBoot,
         hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
         onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
       });
@@ -2010,7 +2022,6 @@ function AppContent() {
           const { resumePendingShardGrants } = await import('./shards_pending_grants');
           await resumePendingShardGrants().catch(() => {});
         })();
-        prefetchArenaRatingCache();
         // .catch: единственный незащищённый await в цепочке — его сбой молча
         // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
         const freshShards = await AsyncStorage.getItem('shards_balance').catch(() => null);
@@ -2026,12 +2037,6 @@ function AppContent() {
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks(studyTarget).catch(() => {});
         await flushPendingProgressEvents().catch(() => {});
-        // ARENA-005: добиваем зависшую запись результата бот-матча даже если игрок больше не
-        // открывал экран результатов арены — иначе показанные «+50 XP / повышение ранга» молча
-        // теряются при провале фоновой записи.
-        getCanonicalUserId()
-          .then((uid) => flushPendingBotArenaMatch(uid))
-          .catch(() => {});
         // Хвост C: не пушим в облако, если restore НЕ удался И локально нет осмысленного
         // прогресса — иначе пустые дефолты затрут реальный облачный аккаунт (переустановка).
         if (bootRestoreOutcome.shouldSync) {
@@ -2041,19 +2046,45 @@ function AppContent() {
             console.warn('[_layout] boot syncToCloud skipped — restore failed and no local progress (protect cloud from blank overwrite)');
           }
           // Переустановка + упавший restore: юзер видит нулевой прогресс без
-          // единого объяснения («всё пропало!»). Говорим, что прогресс цел и
-          // подтянется при сети — тихий провал превращаем в понятный сигнал.
-          emitAppEvent('action_toast', {
+          // единого объяснения («всё пропало!»). Ошибку безопасной идентификации
+          // не называем отсутствием интернета; локальные данные не трогаем.
+          if (bootRestoreFailureReason === 'provider_reauth_required') {
+            if (!startupAuthRecoveryOfferedRef.current) {
+              startupAuthRecoveryOfferedRef.current = true;
+              setStartupAuthRecoveryVisible(true);
+            }
+          } else {
+            const secureIdentityUnavailable =
+              bootRestoreFailureReason === 'app_check_unavailable'
+              || bootRestoreFailureReason === 'identity_unavailable';
+            emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Не удалось загрузить прогресс. Проверь интернет — он подтянется автоматически.',
-            messageUk: 'Не вдалося завантажити прогрес. Перевір інтернет — він підтягнеться автоматично.',
-            messageEs: 'No pudimos cargar tu progreso. Revisa tu conexión: se cargará automáticamente.',
-            messagePtBr: 'Não foi possível carregar seu progresso. Verifique a internet — ele será carregado automaticamente.',
-            messageVi: 'Không tải được tiến độ. Kiểm tra internet — nó sẽ tự tải lại.',
-            messageId: 'Tidak bisa memuat progres. Periksa internet — akan dimuat otomatis.',
-            messageTr: 'İlerleme yüklenemedi. İnterneti kontrol et — otomatik yüklenecek.',
-            messagePl: 'Nie udało się wczytać postępu. Sprawdź internet — wczyta się automatycznie.',
-          });
+            messageRu: secureIdentityUnavailable
+              ? 'Не удалось безопасно подтвердить аккаунт для восстановления. Локальный прогресс сохранён; попытка повторится автоматически.'
+              : 'Облако сейчас недоступно. Локальный прогресс сохранён; восстановление повторится автоматически.',
+            messageUk: secureIdentityUnavailable
+              ? 'Не вдалося безпечно підтвердити акаунт для відновлення. Локальний прогрес збережено; спроба повториться автоматично.'
+              : 'Хмара зараз недоступна. Локальний прогрес збережено; відновлення повториться автоматично.',
+            messageEs: secureIdentityUnavailable
+              ? 'No pudimos verificar tu cuenta de forma segura para restaurarla. Tu progreso local está guardado y se reintentará automáticamente.'
+              : 'La nube no está disponible ahora. Tu progreso local está guardado y la restauración se reintentará automáticamente.',
+            messagePtBr: secureIdentityUnavailable
+              ? 'Não foi possível verificar sua conta com segurança para restaurar. Seu progresso local está salvo e a tentativa será repetida automaticamente.'
+              : 'A nuvem está indisponível no momento. Seu progresso local está salvo e a restauração será repetida automaticamente.',
+            messageVi: secureIdentityUnavailable
+              ? 'Không thể xác minh tài khoản an toàn để khôi phục. Tiến độ trên máy vẫn được giữ và ứng dụng sẽ tự thử lại.'
+              : 'Đám mây hiện không khả dụng. Tiến độ trên máy vẫn được giữ và ứng dụng sẽ tự khôi phục lại.',
+            messageId: secureIdentityUnavailable
+              ? 'Akun belum dapat diverifikasi dengan aman untuk pemulihan. Progres lokal tetap tersimpan dan akan dicoba lagi otomatis.'
+              : 'Cloud sedang tidak tersedia. Progres lokal tetap tersimpan dan pemulihan akan dicoba lagi otomatis.',
+            messageTr: secureIdentityUnavailable
+              ? 'Hesap geri yükleme için güvenli biçimde doğrulanamadı. Yerel ilerleme korundu; otomatik olarak yeniden denenecek.'
+              : 'Bulut şu anda kullanılamıyor. Yerel ilerleme korundu; geri yükleme otomatik olarak yeniden denenecek.',
+            messagePl: secureIdentityUnavailable
+              ? 'Nie udało się bezpiecznie potwierdzić konta do przywrócenia. Lokalny postęp jest zachowany; próba zostanie ponowiona automatycznie.'
+              : 'Chmura jest teraz niedostępna. Lokalny postęp jest zachowany; przywracanie zostanie ponowione automatycznie.',
+            });
+          }
         }
         await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
@@ -2112,6 +2143,16 @@ function AppContent() {
     };
 
     const bootstrap = async () => {
+      const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
+      if (effectDisposed) return;
+      if (!pendingDeleteRecovered) {
+        accountDeleteRecoveryRetryTimer = setTimeout(() => {
+          accountDeleteRecoveryRetryTimer = null;
+          void bootstrap();
+        }, 1_500);
+        return;
+      }
+      safetyTimer = setTimeout(() => setReady(true), 1200);
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
       const forceOnboardingForQA =
@@ -2128,8 +2169,7 @@ function AppContent() {
         const bootCoordinator = createBootCloudRestoreCoordinator({
           restore: async () => {
             await appCheckWarmup;
-            await ensureAnonUser();
-            return restoreFromCloudDetailed(coldExamBestPctRestoreOptions);
+            return restoreCloudForBoot();
           },
           hasLocalAccountData: () => hasMeaningfulLocalAccountData(),
           onHydrated: () => emitAppEvent('cloud_profile_hydrated'),
@@ -2187,20 +2227,6 @@ function AppContent() {
                 clearTimeout(t);
                 if (!error && details?.installReferrer) {
                   const ir = String(details.installReferrer);
-                  const duelMatch = ir.match(/^duel_([A-Za-z0-9]+)$/);
-                  if (duelMatch) {
-                    const roomId = duelMatch[1];
-                    AsyncStorage.getItem('user_name')
-                      .then((name) => {
-                        if (name?.trim()) return AsyncStorage.setItem('onboarding_done', '1');
-                        return undefined;
-                      })
-                      .then(() => {
-                        setPendingRoute(`/arena_join?roomId=${roomId}`);
-                      })
-                      .finally(() => resolve(true));
-                    return;
-                  }
                   const refM = ir.match(/(?:^|[&])ref=([A-Z0-9]{4,12})/i);
                   if (refM?.[1]) {
                     void import('./referral_bootstrap')
@@ -2236,7 +2262,7 @@ function AppContent() {
       void iconFontsReady.catch(() => {});
       void preloadPrimaryTabImages().catch(() => {});
 
-      clearTimeout(safetyTimer);
+      if (safetyTimer) clearTimeout(safetyTimer);
       setReady(true);
       setTimeout(flushPending, 280);
       if (shouldPrimeLessonsAfterReveal) {
@@ -2280,7 +2306,8 @@ function AppContent() {
     });
     return () => {
       effectDisposed = true;
-      clearTimeout(safetyTimer);
+      if (safetyTimer) clearTimeout(safetyTimer);
+      if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
       sub.remove();
       subShards.remove();
@@ -2732,7 +2759,7 @@ function AppContent() {
 
 
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > releaseNotes > broadcast > notifNudge > introFullAccess >
+  // Приоритет: update > authRecovery > releaseNotes > broadcast > notifNudge > introFullAccess >
   // loyaltyGift > dailyPlan > levelUp.
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
   // introFullAccess / loyaltyGift — нативные <Modal statusBarTranslucent>: их обязательно
@@ -2743,6 +2770,7 @@ function AppContent() {
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
+  const startupAuthRecoveryModalVisible = useOverlayVisible('authRecovery', startupAuthRecoveryVisible);
   const introFullAccessModalVisible = useOverlayVisible('introFullAccess', introFullAccessModal !== null);
   const loyaltyGiftModalVisible = useOverlayVisible('loyaltyGift', loyaltyGiftModal !== null);
   // ⚠️ Модалка «задания дня при первом входе» ОТКЛЮЧЕНА (DailyTasksFirstVisitModal в проде
@@ -2885,22 +2913,10 @@ function AppContent() {
       <Stack.Screen name="terms_screen" />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_video_player" />
-      {/* Realtime-исключения из freezeOnBlur: живой матч/комната/лобби-поиск должны
-          продолжать реагировать (onSnapshot соперника, matchmaking), даже когда поверх
-          запушен другой экран. Экзамен ниже — та же причина (60-мин таймер). */}
-      <Stack.Screen name="arena_game" options={{ animation: 'none', freezeOnBlur: false }} />
-      <Stack.Screen name="arena_lobby" options={{ animation: 'none', freezeOnBlur: false }} />
-      <Stack.Screen name="arena_results" />
-      <Stack.Screen name="arena_join" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="arena_room" options={{ freezeOnBlur: false }} />
-      <Stack.Screen name="arena_rating" />
-      <Stack.Screen name="arena_leaderboard" />
-      <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
       <Stack.Screen name="trainer_plan_session" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="trainer_phrases_session" />
-      <Stack.Screen name="trainer_arena_session" />
       <Stack.Screen name="phrase_analytics_screen" />
       <Stack.Screen name="problem_coach" />
     </Stack>
@@ -2937,6 +2953,13 @@ function AppContent() {
         />
       </Animated.View>
     )}
+
+    <RegistrationPromptModal
+      visible={appOverlaysEnabled && startupAuthRecoveryModalVisible}
+      context="startup_recovery"
+      onClose={() => setStartupAuthRecoveryVisible(false)}
+      onSignedIn={() => setStartupAuthRecoveryVisible(false)}
+    />
 
     <NotificationPermissionModal
       visible={appOverlaysEnabled && notifNudgeModalVisible}
@@ -3162,14 +3185,11 @@ export default function RootLayout() {
           <PremiumProvider>
             <EnergyProvider>
               <AchievementProvider>
-                <MatchmakingProvider>
-                  <OverlayArbiterProvider>
+                <OverlayArbiterProvider>
                     <AppContent />
                     <AchievementToast />
                     <DailyTaskRewardToast />
                     <ActionToast />
-                    <ArenaFriendInviteHost />
-                    <MatchFoundToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
                     <EntitlementExpiredHost />
@@ -3183,8 +3203,7 @@ export default function RootLayout() {
                     <StreakRiskToastHost />
                     <BillingIssueToastHost />
                     <ThemedBlockingAlertHost />
-                  </OverlayArbiterProvider>
-                </MatchmakingProvider>
+                </OverlayArbiterProvider>
               </AchievementProvider>
             </EnergyProvider>
           </PremiumProvider>

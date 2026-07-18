@@ -1,5 +1,6 @@
 import { HttpsError } from 'firebase-functions/v2/https';
 import { requireAgentOfficeOwner, type AgentOfficeAuth } from '../agent_office/auth';
+import { parseAgentOfficeControl } from '../agent_office/contracts';
 import {
   assertManagerTaskTransition,
   agentIdentifier,
@@ -12,6 +13,9 @@ import {
 } from './contracts';
 import { managerTelegramDecisionId, managerTelegramTokenPath, parseManagerTelegramToken, type ManagerTelegramDecision, type ManagerTelegramToken } from './telegram_contracts';
 import { parseExecutionJob } from './execution_contracts';
+import { buildLocalRunnerCodePrepareJob } from './local_runner_transport';
+
+const GLOBAL_CONTROL_PATH = 'agent_office_control/global';
 
 export interface AgentManagerDocument { readonly id: string; readonly data: Record<string, unknown>; }
 export interface AgentManagerQuery { readonly collection: 'agent_manager_agents' | 'agent_manager_tasks' | 'agent_manager_task_events'; readonly orderBy: 'updatedAtMs' | 'occurredAtMs'; readonly limit: number; }
@@ -42,6 +46,19 @@ function exact(input: Record<string, unknown>, keys: readonly string[], label: s
 function id(value: unknown, label: string): string { if (typeof value !== 'string' || !/^[A-Za-z][A-Za-z0-9._:-]{2,159}$/.test(value)) fail(`${label} is invalid`); return value; }
 function integer(value: unknown, label: string, min = 0): number { if (typeof value !== 'number' || !Number.isSafeInteger(value) || value < min) fail(`${label} is invalid`); return value; }
 function status(value: unknown): ManagerTaskStatus { const all: readonly ManagerTaskStatus[] = ['draft', 'planned', 'awaiting_approval', 'queued', 'in_progress', 'needs_review', 'completed', 'archived', 'cancelled', 'failed']; if (typeof value !== 'string' || !all.includes(value as ManagerTaskStatus)) fail('status is invalid'); return value as ManagerTaskStatus; }
+
+function requireReadyGlobalControl(document: AgentManagerDocument | null): number {
+  if (!document) throw new HttpsError('failed-precondition', 'Agent Manager global control is unavailable');
+  let control: ReturnType<typeof parseAgentOfficeControl>;
+  try { control = parseAgentOfficeControl(document.data); } catch { throw new HttpsError('failed-precondition', 'Agent Manager global control is unavailable'); }
+  if (control.killSwitchEnabled) throw new HttpsError('failed-precondition', 'Agent Manager global kill switch is enabled');
+  return control.revision;
+}
+
+function createLocalRunnerJobIfRequired(transaction: AgentManagerTransaction, task: PersistedTask, nowMs: number): void {
+  if (task.status !== 'queued' || task.allowedScope !== 'code_prepare') return;
+  transaction.create(`agent_manager_execution_jobs/${task.taskId}__r${task.revision}`, buildLocalRunnerCodePrepareJob(task.taskId, task.revision, nowMs));
+}
 
 function parsePersistedTask(value: unknown): PersistedTask {
   const input = row(value, 'manager task record');
@@ -168,6 +185,12 @@ const RUNBOOK_PROJECTIONS: readonly ManagerRunbookProjection[] = Object.freeze([
 export class AgentManagerLedger {
   constructor(private readonly repository: AgentManagerRepository, private readonly now: () => number = Date.now) {}
 
+  async requireGlobalControlReady(auth: AgentOfficeAuth | null | undefined) {
+    requireAgentOfficeOwner(auth);
+    const revision = requireReadyGlobalControl(await this.repository.get(GLOBAL_CONTROL_PATH));
+    return Object.freeze({ ok: true as const, revision });
+  }
+
   async initializeRoster(auth: AgentOfficeAuth | null | undefined) {
     requireAgentOfficeOwner(auth); const nowMs = this.now();
     return this.repository.runTransaction(async (transaction) => {
@@ -263,6 +286,9 @@ export class AgentManagerLedger {
       assertManagerTaskTransition(current.status, input.status);
       if (current.status === 'in_progress' && input.status === 'needs_review' && !input.result) throw new HttpsError('failed-precondition', 'task result is required');
       if (current.status === 'needs_review' && input.status === 'completed' && !current.result) throw new HttpsError('failed-precondition', 'task result is required');
+      if (current.status === 'awaiting_approval' && input.status === 'queued') {
+        requireReadyGlobalControl(await transaction.get(GLOBAL_CONTROL_PATH));
+      }
       const assignedAgentId = current.status === 'planned' && input.status === 'awaiting_approval' ? specialistFor(current.allowedScope) : current.assignedAgentId;
       if (current.status === 'planned' && input.status === 'awaiting_approval') {
         const agent = await transaction.get(`agent_manager_agents/${assignedAgentId}`);
@@ -280,6 +306,7 @@ export class AgentManagerLedger {
           taskRevision: next.revision, approvedByUid: actor.actorUid, approvedAtMs: nowMs,
           fromStatus: current.status, toStatus: next.status, piiClass: 'none',
         });
+        createLocalRunnerJobIfRequired(transaction, next, nowMs);
       }
       transaction.create(`agent_manager_task_events/${next.taskId}__r${next.revision}`, event(next, 'task_transitioned', nowMs, actor.actorUid, current.status));
       return Object.freeze({ ok: true as const, item: projectTask(next) });
@@ -292,6 +319,7 @@ export class AgentManagerLedger {
     if (!/^[a-f0-9]{64}$/.test(guard.updateIdHash) || token.permittedDecision !== guard.decision) fail('manager Telegram decision guard is invalid');
     const tokenPath = managerTelegramTokenPath(token.tokenIdHash);
     return this.repository.runTransaction(async (transaction) => {
+      const controlDocument = await transaction.get(GLOBAL_CONTROL_PATH);
       const tokenDocument = await transaction.get(tokenPath);
       if (!tokenDocument) throw new HttpsError('not-found', 'manager Telegram token not found');
       const persisted = parseManagerTelegramToken(tokenDocument.data);
@@ -307,6 +335,7 @@ export class AgentManagerLedger {
       if (!taskDocument) throw new HttpsError('not-found', 'manager task not found');
       const current = parsePersistedTask(taskDocument.data);
       if (current.revision !== persisted.expectedRevision || current.status !== 'awaiting_approval') throw new HttpsError('failed-precondition', 'manager Telegram task is stale');
+      requireReadyGlobalControl(controlDocument);
       const nextStatus = guard.decision === 'approve' ? 'queued' : 'cancelled';
       const next: PersistedTask = Object.freeze({ ...current, status: nextStatus, revision: current.revision + 1, updatedAtMs: nowMs });
       const decisionId = managerTelegramDecisionId(persisted.tokenIdHash);
@@ -317,6 +346,7 @@ export class AgentManagerLedger {
         decision: guard.decision, origin: 'telegram', updateIdHash: guard.updateIdHash, piiClass: 'none',
       });
       transaction.create(`agent_manager_task_events/${next.taskId}__r${next.revision}`, event(next, 'task_transitioned', nowMs, actor.actorUid, current.status));
+      createLocalRunnerJobIfRequired(transaction, next, nowMs);
       transaction.update(tokenPath, { status: 'consumed', consumedAtMs: nowMs, consumedDecisionId: decisionId, consumedUpdateIdHash: guard.updateIdHash });
       return Object.freeze({ ok: true as const, idempotent: false as const, decision: guard.decision, item: projectTask(next) });
     });

@@ -12,7 +12,9 @@ describe('Admin v2 tonal container system', () => {
     expect(styles).toContain('border-bottom: 0;');
     expect(styles).toContain('.list-row {');
     expect(styles).toContain('.tonal-row,');
-    expect(styles).toContain('.capability-grid { display: grid;');
+    expect(styles).toContain('.tonal-row,');
+    expect(styles).not.toContain('.capability-grid');
+    expect(core).not.toContain('renderCapabilityHub');
     expect(styles).not.toContain('gap: 1px; padding: 1px; background: var(--line);');
     expect(styles).not.toContain('border-bottom: 1px solid #edf0f3;');
     expect(styles).not.toContain('border-top: 1px solid #edf0f3;');

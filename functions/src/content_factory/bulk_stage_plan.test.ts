@@ -18,8 +18,8 @@ describe('bounded server bulk stage plan', () => {
   });
 
   test('normalizes explicit scopes and kind order for an identical fingerprint', () => {
-    const a = buildBulkStagePlan(parseBulkStagePlanRequest({ ...base, lessonRange: undefined, scopes: ['topic-2', 'topic-1'], kinds: ['quiz_topic', 'challenge_topic'] }), []);
-    const b = buildBulkStagePlan(parseBulkStagePlanRequest({ ...base, lessonRange: undefined, scopes: ['topic-1', 'topic-2'], kinds: ['challenge_topic', 'quiz_topic'] }), []);
+    const a = buildBulkStagePlan(parseBulkStagePlanRequest({ ...base, lessonRange: undefined, scopes: ['topic-2', 'topic-1'], kinds: ['challenge_topic'] }), []);
+    const b = buildBulkStagePlan(parseBulkStagePlanRequest({ ...base, lessonRange: undefined, scopes: ['topic-1', 'topic-2'], kinds: ['challenge_topic'] }), []);
     expect(a.planFingerprint).toBe(b.planFingerprint);
     expect(a.units.map((unit) => unit.stageId)).toEqual(b.units.map((unit) => unit.stageId));
   });

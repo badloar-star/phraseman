@@ -7,12 +7,13 @@ const SURFACE_MAP = Object.freeze({
     lessons: 'lesson',
     vocabulary: 'lesson',
     drills: 'lesson',
-    quizzes: 'quiz',
     cards: 'flashcard',
-    arena_questions: 'arena',
 });
 function canonicalizeFactorySurfaces(surfaces) {
-    return Object.freeze([...new Set(surfaces.map((surface) => SURFACE_MAP[surface]).filter(Boolean))]);
+    const canonical = surfaces
+        .map((surface) => SURFACE_MAP[surface])
+        .filter((surface) => surface !== undefined);
+    return Object.freeze([...new Set(canonical)]);
 }
 function countLegacyGenerationUnits(lessonIds, surfaces) {
     return lessonIds.length * canonicalizeFactorySurfaces(surfaces).length;

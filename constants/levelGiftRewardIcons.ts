@@ -74,7 +74,7 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
 };
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
-  arena_extra_5: require('../assets/images/level_gift_reward_icons/arena_extra_5.webp'),
+  arena_extra_5: require('../assets/images/level_gift_reward_icons/shards_6.webp'),
   chain_shield_1: require('../assets/images/level_gift_reward_icons/chain_shield_1.webp'),
   chain_shield_3: require('../assets/images/level_gift_reward_icons/chain_shield_3.webp'),
   choice_3_level: require('../assets/images/level_gift_reward_icons/choice_3_level.webp'),

@@ -6,9 +6,11 @@ import { hasPermission } from './admin/permissions';
 import {
   ANALYTICS_DEFINITION_VERSION,
   aggregateActiveAccess,
+  aggregateAnalyticsConsent,
   aggregateFunnelSignals,
   aggregateRevenueCatPeriod,
   aggregateShardPeriod,
+  assessPurchaseSignalReconciliation,
   type AnalyticsUserRow,
   type FunnelEventRow,
   type RevenueCatEventRow,
@@ -185,9 +187,16 @@ export const adminGetAnalyticsSnapshot = onCall(
     };
     const state = analyticsSnapshotState(Object.values(sources));
     const access = aggregateActiveAccess(users.rows as unknown as AnalyticsUserRow[], generatedAtMs);
+    const analyticsConsent = aggregateAnalyticsConsent(users.rows as unknown as AnalyticsUserRow[]);
     const storeActivity = aggregateRevenueCatPeriod(premium.rows as unknown as RevenueCatEventRow[]);
     const shardActivity = aggregateShardPeriod(shards.rows as unknown as ShardTransactionRow[]);
     const funnelSignals = aggregateFunnelSignals(funnel.rows as unknown as FunnelEventRow[]);
+    const purchaseSignalReconciliation = assessPurchaseSignalReconciliation({
+      clientPurchaseSignals: funnelSignals.events.purchaseCompleted,
+      confirmedPurchaseEvents: storeActivity.newPurchases,
+      clientSourceState: sources.paywall_funnel.state,
+      storeSourceState: sources.revenuecat_premium_events.state,
+    });
 
     return {
       definitionVersion: ANALYTICS_DEFINITION_VERSION,
@@ -198,9 +207,11 @@ export const adminGetAnalyticsSnapshot = onCall(
       state,
       sources,
       access,
+      analyticsConsent,
       storeActivity,
       shardActivity,
       funnelSignals,
+      purchaseSignalReconciliation,
       appActivity: countBy(activity.rows, 'action'),
       quality: {
         incomplete: Object.values(sources).some((source) => source.state === 'error' || source.state === 'partial'),

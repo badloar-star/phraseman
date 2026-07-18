@@ -70,7 +70,7 @@ export async function generateLessonUnit(input: {
 export async function generateSurfaceUnit(input: {
   provider: GenerationProvider;
   model: string;
-  surface: 'quiz' | 'flashcard' | 'arena';
+  surface: 'flashcard';
   studyTarget: string;
   sourceLocale: string;
   lessonId: number;

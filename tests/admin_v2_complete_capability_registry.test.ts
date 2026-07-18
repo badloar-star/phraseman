@@ -11,7 +11,9 @@ describe('Admin v2 complete capability registry', () => {
     const legacyTabIds = [...legacy.matchAll(/<div id="tab-([^"]+)"/g)].map((match) => match[1]).sort();
     const registeredTabIds = [...registry.matchAll(/legacyTab: '([^']+)'/g)].map((match) => match[1]).sort();
 
-    expect(legacyTabIds).toHaveLength(54);
+    // `tab-*` markup contains 47 legacy tabs. The complete 52-entry registry
+    // additionally tracks five standalone legacy pages through `legacyPage`.
+    expect(legacyTabIds).toHaveLength(47);
     expect(new Set(registeredTabIds).size).toBe(registeredTabIds.length);
     expect(registeredTabIds).toEqual(legacyTabIds);
     for (const route of ['overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics']) {

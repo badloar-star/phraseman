@@ -19,7 +19,7 @@ function briefing(overrides: Partial<StatsInsightsBriefing> = {}): StatsInsights
     rhythm: { active7: 4, xp7: 320, minutes7: 84, bestDay: 'среда' },
     year: { activeDays: 40, currentStreak: 5, longestStreak: 9, bestMonth: 'май', goalPct: 12 },
     percentiles: { totalXp: 72, week: 51, daily7: null },
-    lifetime: { words: 120, phrases: 18, quizzes: 7, arenaWins: 2, daysActive: 12 },
+    lifetime: { words: 120, phrases: 18, daysActive: 12 },
     weakCategories: [],
     ...overrides,
   };
@@ -35,6 +35,8 @@ describe('stats insights client copy', () => {
     expect(notes.balance).toContain('4 активных');
     expect(notes.balance).toContain('21 мин');
     expect(notes.balance).not.toMatch(/баланс|балл/i);
+    expect(notes.lifetime).toContain('138 слов/фраз');
+    expect(notes.lifetime).not.toMatch(/квиз|арен/i);
   });
 
   it('drops stale cached balance notes with internal score wording', async () => {

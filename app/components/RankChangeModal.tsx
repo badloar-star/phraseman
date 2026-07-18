@@ -13,8 +13,16 @@ import {
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import { useModalBackdropFade } from '../../hooks/useModalBackdropFade';
-import { getRankImage, getRankImageDisplayScale } from '../../hooks/use-arena-rank';
-import type { RankTier } from '../types/arena';
+
+const LEGACY_RANK_IMAGE = require('../../assets/images/levels/zoloto.webp');
+
+function getLegacyRankImage(): number {
+  return LEGACY_RANK_IMAGE;
+}
+
+function getLegacyRankImageDisplayScale(): number {
+  return 1;
+}
 import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
@@ -257,7 +265,7 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
     tr: TIER_LABELS_TR[tier] ?? tier,
     pl: TIER_LABELS_PL[tier] ?? tier,
   });
-  const rankImage = getRankImage(tier as any, level);
+  const rankImage = getLegacyRankImage();
 
   // Палитра под исход
   const haloColor   = promoted ? tierColor : '#777';
@@ -476,7 +484,7 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                             style={[
                               s.rankImg,
                               {
-                                transform: [{ scale: getRankImageDisplayScale(tier as RankTier, level) }],
+                                transform: [{ scale: getLegacyRankImageDisplayScale() }],
                               },
                             ]}
                             contentFit="contain"

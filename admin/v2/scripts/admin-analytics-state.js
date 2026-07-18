@@ -34,6 +34,72 @@ function pointList(series) {
   }));
 }
 
+function seriesTotal(trends, metricId) {
+  const series = firstSeries(trends, metricId);
+  const state = safeState(series?.status || trends?.status || 'unavailable');
+  if (!series || state === 'error' || state === 'partial' || state === 'unavailable') return null;
+  const points = Array.isArray(series.points) ? series.points : [];
+  const values = points.map((point) => numberOrNull(point?.value));
+  if (values.some((value) => value === null)) return null;
+  return values.reduce((sum, value) => sum + (value || 0), 0);
+}
+
+export function assessPaywallIntegrityCompatibility(snapshot, trends) {
+  const request = trends?.data?.request || trends?.request || {};
+  const snapshotDays = Number(snapshot?.rangeDays);
+  const presetDays = Number(request.presetDays);
+  const filters = request.filters && typeof request.filters === 'object' ? request.filters : {};
+  const compatible = request.scope === 'paywall'
+    && Number.isFinite(snapshotDays)
+    && presetDays === snapshotDays
+    && Object.keys(filters).length === 0;
+  return {
+    compatible,
+    reason: compatible ? null : 'window_or_filter_mismatch',
+  };
+}
+
+function paywallIntegrity(snapshot, trends) {
+  const events = snapshot?.funnelSignals?.events || {};
+  const aggregateTotal = ['shown', 'ctaClick', 'trialStarted', 'purchaseCompleted']
+    .reduce((sum, key) => sum + (Number(events[key]) || 0), 0);
+  const seriesTotalValue = [
+    seriesTotal(trends, 'paywall.shown.v1'),
+    seriesTotal(trends, 'paywall.cta_click.v1'),
+    seriesTotal(trends, 'paywall.trial_started.v1'),
+    seriesTotal(trends, 'paywall.purchase_completed.v1'),
+  ].reduce((sum, value) => sum === null || value === null ? null : sum + value, 0);
+  const sourceState = safeState(snapshot?.sources?.paywall_funnel?.state || 'unavailable');
+  const compatibility = assessPaywallIntegrityCompatibility(snapshot, trends);
+  if (!compatibility.compatible) {
+    return { status: 'unavailable', reason: compatibility.reason, aggregateTotal, seriesTotal: null };
+  }
+  if (sourceState === 'error' || sourceState === 'partial' || sourceState === 'unavailable' || seriesTotalValue === null) {
+    return { status: 'unavailable', reason: 'source_unavailable', aggregateTotal, seriesTotal: null };
+  }
+  if (aggregateTotal !== seriesTotalValue) {
+    return { status: 'blocked', reason: 'aggregate_series_mismatch', aggregateTotal, seriesTotal: seriesTotalValue };
+  }
+  return { status: 'ready', reason: null, aggregateTotal, seriesTotal: seriesTotalValue };
+}
+
+function purchaseSignalReconciliation(snapshot) {
+  const reconciliation = snapshot?.purchaseSignalReconciliation;
+  if (reconciliation && typeof reconciliation === 'object') return reconciliation;
+  const clientState = safeState(snapshot?.sources?.paywall_funnel?.state || 'unavailable');
+  const storeState = safeState(snapshot?.sources?.revenuecat_premium_events?.state || 'unavailable');
+  const unavailable = ['error', 'partial', 'unavailable'].includes(clientState)
+    || ['error', 'partial', 'unavailable'].includes(storeState);
+  return {
+    status: unavailable ? 'unavailable' : 'observational',
+    reason: unavailable ? 'source_incomplete_or_unavailable' : 'different_coverage_and_identity',
+    clientPurchaseSignals: Number(snapshot?.funnelSignals?.events?.purchaseCompleted) || 0,
+    confirmedPurchaseEvents: Number(snapshot?.storeActivity?.newPurchases) || 0,
+    exactAttributionAvailable: false,
+    conversionRate: null,
+  };
+}
+
 function registryMetric(id, label, value, unit, source, definition, state = 'ready', points = []) {
   return {
     id: String(id),
@@ -124,10 +190,16 @@ export function createCanonicalAnalyticsReport(input = {}) {
     activeReport: String(input.activeReport || 'overview'),
     request: rangeRequest(snapshot, trends, input.rangeDays),
     sourceHealth: sourceHealth(snapshot, trends),
+    integrity: {
+      paywallIntegrity: paywallIntegrity(snapshot, trends),
+      purchaseSignalReconciliation: purchaseSignalReconciliation(snapshot),
+    },
     metrics: [
       registryMetric('access.active.total', 'Активные доступы', access.activeAccessTotal, 'count', 'adminGetAnalyticsSnapshot.users', 'Current active access categories.', snapshot?.sources?.users?.state),
       registryMetric('access.store_backed.total', 'Оплачено через магазин', access.storeBackedTotal, 'count', 'adminGetAnalyticsSnapshot.users', 'Store-backed active access.', snapshot?.sources?.users?.state),
-      registryMetric('store.new_purchases.total', 'Начальные покупки', store.newPurchases, 'count', 'adminGetAnalyticsSnapshot.revenuecat_premium_events', 'Confirmed initial purchases in the selected period.', snapshot?.sources?.revenuecat_premium_events?.state),
+      registryMetric('store.purchase_events.total', 'Подтверждённые покупки RevenueCat', store.newPurchases, 'count', 'adminGetAnalyticsSnapshot.revenuecat_premium_events', 'Initial subscription and non-renewing purchase events in the selected period.', snapshot?.sources?.revenuecat_premium_events?.state),
+      registryMetric('store.initial_subscription_events.total', 'Начало подписки', store.initialSubscriptionEvents, 'count', 'adminGetAnalyticsSnapshot.revenuecat_premium_events', 'RevenueCat INITIAL_PURCHASE events; includes trial starts.', snapshot?.sources?.revenuecat_premium_events?.state),
+      registryMetric('store.non_renewing_purchase_events.total', 'Разовые покупки', store.nonRenewingPurchaseEvents, 'count', 'adminGetAnalyticsSnapshot.revenuecat_premium_events', 'RevenueCat NON_RENEWING_PURCHASE events.', snapshot?.sources?.revenuecat_premium_events?.state),
       registryMetric('store.renewals.total', 'Продления', store.renewals, 'count', 'adminGetAnalyticsSnapshot.revenuecat_premium_events', 'Confirmed renewals in the selected period.', snapshot?.sources?.revenuecat_premium_events?.state),
       registryMetric('paywall.shown.total', 'Показы paywall', events.shown, 'count', 'adminGetAnalyticsSnapshot.paywall_funnel', 'Paywall shown events, not unique users.', snapshot?.sources?.paywall_funnel?.state),
       registryMetric('paywall.purchase_signal.total', 'Сигналы покупки', events.purchaseCompleted, 'count', 'adminGetAnalyticsSnapshot.paywall_funnel', 'Client-side purchase-completed signal, not store confirmation.', snapshot?.sources?.paywall_funnel?.state),

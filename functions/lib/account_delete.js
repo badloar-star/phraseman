@@ -37,6 +37,7 @@ exports.__accountDeleteTestHooks = exports.accountDeleteMine = exports.accountDe
 exports.accountDeleteQueryPlan = accountDeleteQueryPlan;
 exports.accountDeleteCollectionGroupPlan = accountDeleteCollectionGroupPlan;
 exports.accountDeleteCollectionGroupDocumentIdPlan = accountDeleteCollectionGroupDocumentIdPlan;
+exports.accountDeleteDirectDocumentPlan = accountDeleteDirectDocumentPlan;
 exports.executeAccountDeletion = executeAccountDeletion;
 exports.enqueueForAuthenticatedAccount = enqueueForAuthenticatedAccount;
 const admin = __importStar(require("firebase-admin"));
@@ -90,6 +91,11 @@ const FIELD_QUERY_SPECS = [
     { collection: 'arena_hill_attempts', field: 'stableUid', values: 'stable' },
     { collection: 'arena_hill_thrones', field: 'championUid', values: 'stable' },
     { collection: 'arena_hill_thrones', field: 'championAuthUid', values: 'auth' },
+    { collection: 'arena_hill_thrones', field: 'previousChampionUid', values: 'stable' },
+    { collection: 'arena_hill_player_wins', field: 'stableUid', values: 'stable' },
+    { collection: 'arena_hill_throne_rewards', field: 'championUid', values: 'stable' },
+    { collection: 'arena_hill_throne_rewards', field: 'championAuthUid', values: 'auth' },
+    { collection: 'arena_season_claims', field: 'uid', values: 'both' },
     { collection: 'arena_club_contributions', field: 'arenaUid', values: 'auth' },
     { collection: 'arena_club_contributions', field: 'stableUid', values: 'stable' },
     { collection: 'user_reports', field: 'reportedUid', values: 'both' },
@@ -145,6 +151,19 @@ const COLLECTION_GROUP_DOCUMENT_ID_SPECS = [
     { collectionGroup: 'friends', values: 'both' },
     { collectionGroup: 'friend_requests', values: 'both' },
 ];
+const DIRECT_DOCUMENT_SPECS = [
+    { collection: 'users', values: 'both' },
+    { collection: 'public_profiles', values: 'both' },
+    { collection: 'leaderboard', values: 'both' },
+    { collection: 'arena_profiles', values: 'both' },
+    { collection: 'arena_question_history', values: 'both' },
+    { collection: 'matchmaking_queue', values: 'both' },
+    { collection: 'shard_survey_rate_limits', values: 'both' },
+    { collection: 'user_consents', values: 'both' },
+    { collection: 'referral_owners', values: 'both' },
+    { collection: 'referral_attributions', values: 'both' },
+    { collection: 'auth_links', values: 'both' },
+];
 function cleanId(value) {
     return String(value ?? '').trim().slice(0, MAX_ID_LEN);
 }
@@ -178,6 +197,15 @@ function accountDeleteCollectionGroupDocumentIdPlan(stableUid, authUid) {
     for (const spec of COLLECTION_GROUP_DOCUMENT_ID_SPECS) {
         for (const value of queryValues({ collection: spec.collectionGroup, field: '__name__', values: spec.values }, stableUid, authUid)) {
             out.push({ collectionGroup: spec.collectionGroup, value });
+        }
+    }
+    return out;
+}
+function accountDeleteDirectDocumentPlan(stableUid, authUid) {
+    const out = [];
+    for (const spec of DIRECT_DOCUMENT_SPECS) {
+        for (const id of queryValues({ collection: spec.collection, field: '__name__', values: spec.values }, stableUid, authUid)) {
+            out.push({ collection: spec.collection, id });
         }
     }
     return out;
@@ -327,23 +355,8 @@ async function deleteQuery(query, ctx, stats) {
     }
 }
 async function deleteDirectDocs(db, stableUid, authUid, ctx) {
-    const ids = Array.from(new Set([stableUid, authUid].filter(Boolean)));
-    const directCollections = [
-        'users',
-        'public_profiles',
-        'leaderboard',
-        'arena_profiles',
-        'matchmaking_queue',
-        'shard_survey_rate_limits',
-        'user_consents',
-        'referral_owners',
-        'referral_attributions',
-        'auth_links',
-    ];
-    for (const collection of directCollections) {
-        for (const id of ids) {
-            await deleteDocTree(ctx, db.collection(collection).doc(id));
-        }
+    for (const spec of accountDeleteDirectDocumentPlan(stableUid, authUid)) {
+        await deleteDocTree(ctx, db.collection(spec.collection).doc(spec.id));
     }
 }
 async function deleteFieldMatches(db, stableUid, authUid, ctx, stats) {
@@ -459,6 +472,22 @@ async function removeFromFriendGiftDailyLimits(db, stableUid, stats) {
         }));
     }
 }
+async function deleteArenaSeasonEntries(db, stableUid, authUid, ctx, stats) {
+    const ids = Array.from(new Set([stableUid, authUid].filter(Boolean)));
+    stats.queriesRun += 1;
+    const seasonRefs = await db.collection('arena_season_leaderboard').listDocuments();
+    let scheduledDeletes = 0;
+    for (const seasonRef of seasonRefs) {
+        for (const id of ids) {
+            if (await deleteDocTree(ctx, seasonRef.collection('entries').doc(id))) {
+                scheduledDeletes += 1;
+            }
+        }
+    }
+    if (scheduledDeletes > 0 && typeof ctx.writer.flush === 'function') {
+        await ctx.writer.flush();
+    }
+}
 async function removeFromLeagueGroups(db, stableUid, stats) {
     const path = new admin.firestore.FieldPath('members', stableUid, 'uid');
     for (;;) {
@@ -533,6 +562,7 @@ async function executeAccountDeletion(db, stableUid, authUid) {
         accountDeleteLog(ctx, 'start', stats, { emailCount: emails.length });
         await runDeleteStage(ctx, stats, 'direct_docs', () => deleteDirectDocs(db, stableUid, authUid, ctx));
         await runDeleteStage(ctx, stats, 'arena_sessions_and_match_history', () => deleteArenaSessionsAndMatchHistory(db, stableUid, authUid, ctx, stats));
+        await runDeleteStage(ctx, stats, 'arena_season_entries', () => deleteArenaSeasonEntries(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'field_matches', () => deleteFieldMatches(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'collection_group_matches', () => deleteCollectionGroupMatches(db, stableUid, authUid, ctx, stats));
         await runDeleteStage(ctx, stats, 'email_matches', () => deleteEmailMatches(db, emails, ctx, stats));
@@ -627,13 +657,16 @@ exports.__accountDeleteTestHooks = {
     accountDeleteQueryPlan,
     accountDeleteCollectionGroupPlan,
     accountDeleteCollectionGroupDocumentIdPlan,
+    accountDeleteDirectDocumentPlan,
     FIELD_QUERY_SPECS,
     COLLECTION_GROUP_QUERY_SPECS,
     COLLECTION_GROUP_DOCUMENT_ID_SPECS,
+    DIRECT_DOCUMENT_SPECS,
     resolveStableUidForDelete,
     enqueueForAuthenticatedAccount,
     removeFromFriendGiftDailyLimits,
     deleteCrossUserDocumentIdMatches,
+    deleteArenaSeasonEntries,
     deleteQuery,
     ACCOUNT_DELETE_OPTIONS,
 };

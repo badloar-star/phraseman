@@ -216,6 +216,17 @@ describe('agent-manager bounded execution worker', () => {
     expect(repository.documents.get('agent_manager_execution_jobs/support__r3')?.data).toMatchObject({ state: 'queued', attempts: 0 });
   });
 
+  test('never leases or mutates a code_prepare job reserved for the paired local runner', async () => {
+    const repository = seeded();
+    repository.documents.set(`agent_manager_tasks/${TASK_ID}`, { id: TASK_ID, data: task({ allowedScope: 'code_prepare', assignedAgentId: 'developer' }) });
+    repository.documents.set(`agent_manager_execution_jobs/${JOB_ID}`, { id: JOB_ID, data: job({ scope: 'code_prepare', handlerVersion: 'code-prepare-v1' }) });
+    const originalJob = structuredClone(repository.documents.get(`agent_manager_execution_jobs/${JOB_ID}`)?.data);
+
+    await expect(executeOneAgentManagerJob(repository, JOB_ID, NOW)).resolves.toEqual({ jobId: JOB_ID, outcome: 'skipped' });
+    expect(repository.documents.get(`agent_manager_execution_jobs/${JOB_ID}`)?.data).toEqual(originalJob);
+    expect(repository.documents.get(`agent_manager_tasks/${TASK_ID}`)?.data).toMatchObject({ status: 'queued', revision: 3, result: null });
+  });
+
   test('uses a scope-bound server query before applying the batch limit', () => {
     const source = require('node:fs').readFileSync(__dirname + '/execution_worker.ts', 'utf8');
     expect(source).toContain("where('scope', '==', scope).where('state', 'in', ['queued', 'leased'])");

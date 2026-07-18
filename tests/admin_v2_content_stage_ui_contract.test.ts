@@ -24,13 +24,10 @@ describe('Admin v2 independent content stage shell', () => {
     expect(page).toContain('Теневой AI-судья — только рекомендация');
     expect(page).toContain('Судья не может одобрить или опубликовать материал');
     expect(page).toContain('judgeReceipt');
-    expect(page).toContain('Фактическое время ответов · privacy-safe');
-    expect(page).toContain('authoritativeQuestionTimeoutMs');
-    expect(page).toContain('Авторитетный лимит остаётся');
   });
 
-  test('offers all five independent generators and every lesson-derived stage', () => {
-    for (const label of ['Уроки', 'Квизы', 'Вызовы', 'Карточки', 'Арена', 'План урока', 'Фразы', 'Словарь', 'Неправильные глаголы', 'Предлоги', 'Теория']) expect(page).toContain(label);
+  test('offers all V2 independent generators and every lesson-derived stage', () => {
+    for (const label of ['Уроки', 'Квизы', 'Вызовы', 'Карточки', 'План урока', 'Фразы', 'Словарь', 'Неправильные глаголы', 'Предлоги', 'Теория']) expect(page).toContain(label);
     expect(core).toContain("import { renderContentGeneratorShell } from './content-factory/renderers.js'");
     expect(core).toContain("if (action === 'create-content-stage')");
     expect(core).toContain("if (action === 'load-content-stages')");
@@ -104,31 +101,9 @@ describe('Admin v2 independent content stage shell', () => {
     expect(page).toContain('Сохранено карточек');
   });
 
-  test('creates exact-ten Arena batches without presenting them as Quiz', () => {
-    expect(page).toContain('data-create-arena-batch=');
-    expect(page).toContain('10 вопросов Арены');
-    expect(page).toContain('40 секунд на вопрос');
-    expect(page).toContain('скорость и честность');
-    expect(controller).toContain('capability?.count?.fixed');
-    expect(core).toContain('prerequisiteArenaTopicStageId');
-    expect(core).toContain("kind: 'arena_questions'");
-  });
-
-  test('shows Arena-only shadow evidence and an immediate permission-gated legacy kill switch', () => {
-    expect(page).toContain('Arena · сближение генераторов');
-    expect(page).toContain('data-action="load-arena-convergence"');
-    expect(page).toContain('data-action="enable-arena-shadow"');
-    expect(page).toContain('data-action="stop-arena-convergence"');
-    expect(page).toContain('Новые задания: legacy');
-    expect(page).not.toContain('data-action="enable-arena-stage"');
-    expect(state).toContain("arenaConvergence: { state: 'idle'");
-    expect(state).toContain('groups: []');
-    expect(firebase).toContain("adminGetArenaConvergenceStatus");
-    expect(firebase).toContain("adminUpdateArenaConvergenceConfig");
-    expect(core).toContain("if (action === 'stop-arena-convergence')");
-    expect(core).toContain("if (action === 'enable-arena-shadow')");
-    expect(core).toContain('getArenaConvergenceStatus({ limit: 500 })');
-    expect(core).toContain('requiredLocalePairs');
-    expect(page).toContain('Успешные QA-артефакты');
+  test('does not surface Arena in the mounted full-package generator', () => {
+    expect(core).not.toContain("['arena_questions', 'Вопросы Арены']");
+    expect(core).not.toContain('и Арена.</div>');
+    expect(core).not.toContain('уроки, квиз, карточки и Арена');
   });
 });

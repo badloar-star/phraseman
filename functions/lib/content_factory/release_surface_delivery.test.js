@@ -10,29 +10,21 @@ describe('course release surface delivery', () => {
     });
     it('resolves only a byte-addressed unit from the exact release index', () => {
         const unit = (0, release_surface_delivery_1.resolveIndexedCourseUnit)({ releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', units: [{ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' }] }, { releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', lessonId: 2 });
-        expect(unit).toEqual({ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2', engineResolved: 'legacy', configRevision: 0, comparatorVersion: '' });
+        expect(unit).toEqual({ lessonId: 2, objectPath: 'course-releases/fr-ru-r1/lesson/2.json', contentHash: hash, objectGeneration: 'g2' });
     });
     it('resolves a complete surface bundle in lesson order without losing identity', () => {
-        const request = (0, release_surface_delivery_1.parseCourseSurfaceBundleRequest)({ studyTarget: 'de', learnerSourceLocale: 'ru', releaseId: 'de-ru-r1', surface: 'quiz' });
+        const request = (0, release_surface_delivery_1.parseCourseSurfaceBundleRequest)({ studyTarget: 'de', learnerSourceLocale: 'ru', releaseId: 'de-ru-r1', surface: 'flashcard' });
         const units = (0, release_surface_delivery_1.resolveIndexedCourseUnits)({
             ...request,
             units: [
-                { lessonId: 2, objectPath: 'course-releases/de-ru-r1/quiz/2.json', contentHash: hash, objectGeneration: 'g2' },
-                { lessonId: 1, objectPath: 'course-releases/de-ru-r1/quiz/1.json', contentHash: hash, objectGeneration: 'g1' },
+                { lessonId: 2, objectPath: 'course-releases/de-ru-r1/flashcard/2.json', contentHash: hash, objectGeneration: 'g2' },
+                { lessonId: 1, objectPath: 'course-releases/de-ru-r1/flashcard/1.json', contentHash: hash, objectGeneration: 'g1' },
             ],
         }, request);
         expect(units.map((unit) => unit.lessonId)).toEqual([1, 2]);
     });
-    it('pins index reads to stored engine provenance and defaults old entries to legacy', () => {
-        const request = (0, release_surface_delivery_1.parseCourseSurfaceBundleRequest)({ studyTarget: 'en', learnerSourceLocale: 'ru', releaseId: 'en-ru-r1', surface: 'arena' });
-        const units = (0, release_surface_delivery_1.resolveIndexedCourseUnits)({ ...request, units: [
-                { lessonId: 1, objectPath: 'course-releases/en-ru-r1/arena/1.json', contentHash: hash, objectGeneration: 'g1' },
-                { lessonId: 2, objectPath: 'course-releases/en-ru-r1/arena/2.json', contentHash: hash, objectGeneration: 'g2', engineResolved: 'stage', configRevision: 4, comparatorVersion: 'arena-parity-v1' },
-            ] }, request);
-        expect(units).toEqual([
-            expect.objectContaining({ lessonId: 1, engineResolved: 'legacy', configRevision: 0 }),
-            expect.objectContaining({ lessonId: 2, engineResolved: 'stage', configRevision: 4, comparatorVersion: 'arena-parity-v1' }),
-        ]);
+    it('rejects a surface outside the current release contract', () => {
+        expect(() => (0, release_surface_delivery_1.parseCourseSurfaceBundleRequest)({ studyTarget: 'en', learnerSourceLocale: 'ru', releaseId: 'en-ru-r1', surface: 'retired' })).toThrow('course_surface_request_invalid');
     });
     it('rejects mixed identity, duplicate lesson entries and unsafe paths', () => {
         const request = { releaseId: 'fr-ru-r1', studyTarget: 'fr', learnerSourceLocale: 'ru', surface: 'lesson', lessonId: 2 };

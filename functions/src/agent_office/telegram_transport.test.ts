@@ -177,7 +177,7 @@ describe('Agent Office Telegram webhook transport', () => {
     const handler = createAgentOfficeTelegramWebhookHandler({
       isEnabled: () => true,
       loadConfig: () => runtimeConfig(),
-      loadTokenByHash: async (hash) => { calls.tokenHashes.push(hash); return token; },
+      loadTokenByHash: async (namespace, hash) => { expect(namespace).toBe('ao1'); calls.tokenHashes.push(hash); return token; },
       handleApproval: async (update, state) => {
         calls.approval += 1;
         expect(update).toMatchObject({ verification: 'verified', userId: '70000001', chatId: '70000001', commandText: `/authorize ${NONCE}` });
@@ -195,6 +195,64 @@ describe('Agent Office Telegram webhook transport', () => {
     expect(calls.tokenHashes).toEqual([telegramApprovalTokenHash(NONCE)]);
     expect(calls.replies).toEqual([{ id: 'callback-query-12345678', text: 'Решение принято.' }]);
     expect(JSON.stringify(calls.replies)).not.toMatch(/owner-uid|70000001|case-1|rec-1|AAAA/);
+  });
+
+  test('routes an exact am1 callback to the manager token root and returns a fixed rejection acknowledgement', async () => {
+    const { createAgentOfficeTelegramWebhookHandler, telegramApprovalTokenHash } = await import('./telegram_transport');
+    const calls = { tokenArgs: [] as unknown[][], approvalNamespaces: [] as unknown[], replies: [] as Array<{ id: string; text: string }> };
+    const managerToken = { schemaVersion: 1, tokenIdHash: telegramApprovalTokenHash(NONCE) };
+    const handler = createAgentOfficeTelegramWebhookHandler({
+      isEnabled: () => true,
+      loadConfig: () => runtimeConfig(),
+      loadTokenByHash: async (...args: unknown[]) => { calls.tokenArgs.push(args); return managerToken; },
+      handleApproval: async (update) => {
+        calls.approvalNamespaces.push((update as unknown as { callbackNamespace?: unknown }).callbackNamespace);
+        return { ok: true, idempotent: false, decision: 'reject' as const };
+      },
+      answerCallbackQuery: async (id, text) => { calls.replies.push({ id, text }); },
+    });
+    const response = new ResponseRecorder();
+    const body = rawUpdate({
+      callback_query: {
+        id: 'callback-query-12345678',
+        from: { id: 70_000_001, is_bot: false },
+        message: { message_id: 10, chat: { id: 70_000_001, type: 'private' } },
+        data: `am1:r:${NONCE}`,
+      },
+    });
+
+    await handler(request(body), response);
+
+    expect(response).toMatchObject({ statusCode: 200, body: 'ok' });
+    expect(calls.tokenArgs).toEqual([['am1', telegramApprovalTokenHash(NONCE)]]);
+    expect(calls.approvalNamespaces).toEqual(['am1']);
+    expect(calls.replies).toEqual([{ id: 'callback-query-12345678', text: 'Manager task rejected.' }]);
+  });
+
+  test('rejects an unknown callback namespace before token lookup', async () => {
+    const { createAgentOfficeTelegramWebhookHandler } = await import('./telegram_transport');
+    let tokenReads = 0;
+    const handler = createAgentOfficeTelegramWebhookHandler({
+      isEnabled: () => true,
+      loadConfig: () => runtimeConfig(),
+      loadTokenByHash: async () => { tokenReads += 1; return tokenDocument(); },
+      handleApproval: async () => { throw new Error('must not run'); },
+      answerCallbackQuery: async () => { throw new Error('must not run'); },
+    });
+    const response = new ResponseRecorder();
+    const body = rawUpdate({
+      callback_query: {
+        id: 'callback-query-12345678',
+        from: { id: 70_000_001, is_bot: false },
+        message: { message_id: 10, chat: { id: 70_000_001, type: 'private' } },
+        data: `ax1:a:${NONCE}`,
+      },
+    });
+
+    await handler(request(body), response);
+
+    expect(response).toMatchObject({ statusCode: 400, body: 'invalid_update' });
+    expect(tokenReads).toBe(0);
   });
 
   test('does not call Telegram for denied approval state', async () => {

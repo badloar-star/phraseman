@@ -17,7 +17,7 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-user-profile-uid');
     expect(core).toContain('Источник не прочитан');
     expect(core).toContain("if (!can('users.read'))");
-    expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [], rewardPreview: null }");
+    expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] }");
     expect(core).toContain('Поиск не выполнен');
     expect(core).toContain('admin/index.html?openUser=');
     expect(index).toContain("export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';");
@@ -51,17 +51,23 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain('data-tooltip="Открыть защищённое управление аккаунтом"');
     expect(core).toContain('data-tooltip="Найти пользователя без загрузки всей базы"');
     const profileRenderer = core.slice(core.indexOf('function renderProfile()'), core.indexOf('function renderUsers()'));
-    expect(profileRenderer).toContain('renderUserRewardWorkflow(profile)');
+    expect(profileRenderer).toContain('renderAdminAccessControls(profile.canonicalUid, summary)');
     expect(profileRenderer).not.toContain('data-action="grant-user-plus"');
     expect(profileRenderer).not.toContain('data-action="ban-user"');
     expect(server).toContain("invitedBy: sources.invitedBy");
     expect(server).toContain("sourceResult('referral_attribution_owner'");
   });
 
-  test('keeps dangerous mutations in the legacy fallback until each has a guarded command protocol', () => {
+  test('uses the guarded V2 preview, confirm, server transaction and audit protocol for access changes', () => {
     const core = read('admin/v2/scripts/admin-core.js');
-    expect(core).toContain('Изменяющие действия пока открываются в действующем модуле');
-    expect(core).toContain('Индивидуальная выдача награды уже перенесена ниже через защищённую команду.');
+    expect(core).toContain('preview-admin-premium');
+    expect(core).toContain('preview-admin-vip');
+    expect(core).toContain('preview-admin-ban');
+    expect(core).toContain('publish-admin-access');
+    expect(core).toContain('preview → подтверждение → серверную транзакцию и аудит');
+    expect(core).toContain('await actions.grantAccess(preview)');
+    expect(core).toContain('await actions.setUserBan(preview)');
+    expect(core).toContain('if (!globalThis.confirm(');
     expect(core).not.toContain('data-action="delete-user"');
     expect(core).not.toContain('data-action="merge-user"');
     expect(core).not.toContain('data-action="grant-user-plus"');

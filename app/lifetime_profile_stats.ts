@@ -2,29 +2,18 @@
  * Сводные «за всё время» метрики для экрана статистики.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import { readCustomCards } from './flashcards/storage';
 import { getForegroundDailyMsMap } from './foreground_usage_ms';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureArenaAuthUid } from './user_id_policy';
-import type { ArenaProfile } from './types/arena';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import {
   diagnosticLastKey,
   lessonProgressKey,
   lessonWordsKey,
-  quizAchievementCounterKey,
-  quizLifetimeCounterKey,
   type RuntimeStudyTarget,
 } from './target_storage_keys';
 
 const WORD_REQUIRED = 3;
 const MIN_ACTIVE_MS = 60_000;
-
-const K_QUIZ_EASY = 'lifetime_quiz_easy_v1';
-const K_QUIZ_MEDIUM = 'lifetime_quiz_medium_v1';
-const K_QUIZ_HARD = 'lifetime_quiz_hard_v1';
-const K_QUIZ_MIGRATED = 'lifetime_quiz_counters_migrated_v1';
 
 const K_DAILY_CLAIMS = 'lifetime_daily_tasks_claimed_v1';
 
@@ -49,35 +38,6 @@ async function incCounter(key: string, delta: number): Promise<void> {
   try {
     const cur = await readCounter(key);
     await AsyncStorage.setItem(key, String(cur + Math.floor(delta)));
-  } catch {
-    /* ignore */
-  }
-}
-
-/** Одно полное прохождение квиза (лёгкий / средний / сложный). */
-export async function bumpQuizSessionCompleted(
-  level: 'easy' | 'medium' | 'hard' | null | undefined,
-  studyTarget?: RuntimeStudyTarget,
-): Promise<void> {
-  if (!level || (level !== 'easy' && level !== 'medium' && level !== 'hard')) return;
-  const key = level === 'easy' ? K_QUIZ_EASY : level === 'medium' ? K_QUIZ_MEDIUM : K_QUIZ_HARD;
-  await incCounter(quizLifetimeCounterKey(key, studyTarget), 1);
-  await bumpStatsDaily('quizzes_completed', 1, studyTarget);
-}
-
-async function ensureQuizCountersMigrated(): Promise<void> {
-  try {
-    if (await AsyncStorage.getItem(K_QUIZ_MIGRATED)) return;
-    const legacy = parseIntSafe(
-      await AsyncStorage.getItem(quizAchievementCounterKey('quiz_hard_count', 'en')),
-      0,
-    );
-    if (legacy > 0) {
-      const hardKey = quizLifetimeCounterKey(K_QUIZ_HARD, 'en');
-      const cur = await readCounter(hardKey);
-      if (cur < legacy) await AsyncStorage.setItem(hardKey, String(legacy));
-    }
-    await AsyncStorage.setItem(K_QUIZ_MIGRATED, '1');
   } catch {
     /* ignore */
   }
@@ -162,39 +122,10 @@ async function countLearnedWordsTotal(): Promise<number> {
   return sum;
 }
 
-async function readQuizLifetimeCounterAcrossTargets(
-  rawEnglishKey: 'lifetime_quiz_easy_v1' | 'lifetime_quiz_medium_v1' | 'lifetime_quiz_hard_v1',
-): Promise<number> {
-  const rows = await AsyncStorage.multiGet(
-    LIFETIME_STATS_TARGETS.map(studyTarget => quizLifetimeCounterKey(rawEnglishKey, studyTarget)),
-  );
-  return rows.reduce((sum, [, raw]) => sum + parseIntSafe(raw, 0), 0);
-}
-
-async function loadArenaWinsLosses(): Promise<{ wins: number; losses: number }> {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return { wins: 0, losses: 0 };
-  try {
-    const uid = await ensureArenaAuthUid();
-    if (!uid) return { wins: 0, losses: 0 };
-    const snap = await firestore().collection('arena_profiles').doc(uid).get();
-    if (!snap.exists) return { wins: 0, losses: 0 };
-    const data = snap.data() as ArenaProfile;
-    const played = data.stats?.matchesPlayed ?? 0;
-    const won = data.stats?.matchesWon ?? 0;
-    const losses = Math.max(0, played - won);
-    return { wins: won, losses };
-  } catch {
-    return { wins: 0, losses: 0 };
-  }
-}
-
 export type LifetimeProfileStats = {
   wordsLearned: number;
   flashcardsSaved: number;
   phrasesLearned: number;
-  quizzesTotal: number;
-  arenaWins: number;
-  arenaLosses: number;
   englishLevel: string | null;
   dailyTasksClaimed: number;
   shardsEarned: number;
@@ -212,9 +143,6 @@ function isLifetimeProfileStatsSnapshot(o: unknown): o is LifetimeProfileStats {
     'wordsLearned',
     'flashcardsSaved',
     'phrasesLearned',
-    'quizzesTotal',
-    'arenaWins',
-    'arenaLosses',
     'dailyTasksClaimed',
     'shardsEarned',
     'shardsSpent',
@@ -250,7 +178,6 @@ async function persistLifetimeProfileStatsCache(s: LifetimeProfileStats): Promis
 }
 
 export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> {
-  await ensureQuizCountersMigrated();
   const readAllCustomCards = async () => {
     const lists = await Promise.all(LIFETIME_STATS_TARGETS.map(studyTarget => readCustomCards(studyTarget)));
     return lists.flat();
@@ -263,13 +190,9 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     fgDaily,
     flashCards,
     phrasesLearned,
-    quizzesE,
-    quizzesM,
-    quizzesH,
     dailyClaims,
     shardsE,
     shardsS,
-    arena,
   ] = await Promise.all([
     countLearnedWordsTotal(),
     AsyncStorage.getItem(diagnosticLastKey('en')),
@@ -277,13 +200,9 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     getForegroundDailyMsMap(),
     readAllCustomCards(),
     countPhrasesLearnedFromLessonProgress(),
-    readQuizLifetimeCounterAcrossTargets(K_QUIZ_EASY),
-    readQuizLifetimeCounterAcrossTargets(K_QUIZ_MEDIUM),
-    readQuizLifetimeCounterAcrossTargets(K_QUIZ_HARD),
     readCounter(K_DAILY_CLAIMS),
     readCounter(K_SHARDS_EARNED),
     readCounter(K_SHARDS_SPENT),
-    loadArenaWinsLosses(),
   ]);
   let diagnosticLevel: string | null = null;
   if (diagnosticLastRaw) {
@@ -318,9 +237,6 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     wordsLearned,
     flashcardsSaved: flashCards.length,
     phrasesLearned,
-    quizzesTotal: quizzesE + quizzesM + quizzesH,
-    arenaWins: arena.wins,
-    arenaLosses: arena.losses,
     englishLevel: diagnosticLevel,
     dailyTasksClaimed: dailyClaims,
     shardsEarned: shardsE,
@@ -338,8 +254,8 @@ function devRand(min: number, max: number): number {
 }
 
 /**
- * DEV-сид для «За всё время»: заполняет lifetime-счётчики (квизы, осколки,
- * задания) и кладёт выученные слова/фразы в lessonWordsKey/lessonProgressKey,
+ * DEV-сид для «За всё время»: заполняет lifetime-счётчики (осколки, задания)
+ * и кладёт выученные слова/фразы в lessonWordsKey/lessonProgressKey,
  * чтобы countLearnedWordsTotal/countPhrasesLearnedFromLessonProgress вернули
  * ненулевые значения. Нужен, чтобы ИИ-разбор увидел полный lifetime-блок.
  *
@@ -371,10 +287,6 @@ export async function devSeedLifetimeStatsScenario(studyTarget?: RuntimeStudyTar
 
   // Lifetime-счётчики.
   entries.push(
-    [K_QUIZ_EASY, String(devRand(10, 40))],
-    [K_QUIZ_MEDIUM, String(devRand(5, 25))],
-    [K_QUIZ_HARD, String(devRand(2, 12))],
-    [K_QUIZ_MIGRATED, 'true'],
     [K_DAILY_CLAIMS, String(devRand(4, 20))],
     [K_SHARDS_EARNED, String(devRand(200, 1500))],
     [K_SHARDS_SPENT, String(devRand(50, 800))],

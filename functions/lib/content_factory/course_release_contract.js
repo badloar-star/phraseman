@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CANONICAL_RELEASE_SURFACES = void 0;
 exports.validateCourseRelease = validateCourseRelease;
 exports.assertCourseRelease = assertCourseRelease;
-exports.CANONICAL_RELEASE_SURFACES = ['lesson', 'quiz', 'flashcard', 'arena'];
+exports.CANONICAL_RELEASE_SURFACES = ['lesson', 'flashcard'];
 const CODE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const HASH_RE = /^[a-f0-9]{64}$/i;
@@ -40,6 +40,10 @@ function validateCourseRelease(value) {
     if (!isRecord(value.artifacts)) {
         errors.push('artifacts_required');
         return { ok: false, errors };
+    }
+    const supportedSurfaces = new Set(exports.CANONICAL_RELEASE_SURFACES);
+    if (Object.keys(value.artifacts).some((surface) => !supportedSurfaces.has(surface))) {
+        errors.push('artifact_surface_unsupported');
     }
     for (const surface of exports.CANONICAL_RELEASE_SURFACES) {
         const artifact = value.artifacts[surface];

@@ -109,6 +109,8 @@ describe('admin analytics period event definitions', () => {
       { id: 'trial', environment: 'PRODUCTION', eventType: 'INITIAL_PURCHASE', periodType: 'TRIAL' },
     ]);
     expect(result.newPurchases).toBe(2);
+    expect(result.initialSubscriptionEvents).toBe(1);
+    expect(result.nonRenewingPurchaseEvents).toBe(1);
     expect(result.renewals).toBe(1);
     expect(result.trialStarts).toBe(1);
     expect(result.refunds).toBe(1);

@@ -1,4 +1,4 @@
-import { capabilitiesForRoute, capabilityById, capabilityUrl } from './admin-capabilities.js';
+import { ADMIN_CAPABILITY_REGISTRY, capabilityById, capabilityUrl } from './admin-capabilities.js';
 import { completeAnalyticsLoad, createCanonicalAnalyticsReport } from './admin-analytics-state.js';
 import {
   captureLegacyAnalyticsWorkspaces,
@@ -34,8 +34,21 @@ import { renderContentGeneratorShell } from './content-factory/renderers.js';
 import { createContentFactoryState } from './content-factory/state.js';
 import { loadApprovedDependencies, loadContentCapabilities, loadContentStagesPage, readContentStageForm as readStudioStageForm } from './content-factory/controller.js';
 import { buildAgentOfficeDecisionConfirmation, buildAgentOfficeDecisionRequest, decisionAvailability } from './admin-agent-office.mjs';
-import { createArenaQuestionPoolState, loadArenaQuestionPool, publishArenaQuestionBatch, readArenaQuestionPoolFilters, removeArenaPoolQuestion, restoreArenaPoolQuestion } from './arena-question-pool-controller.js';
-import { renderArenaQuestionPool } from './pages/arena-question-pool.js';
+import { buildSearchIndex, createQueryCancellation, searchIndex } from './admin-v2-global-search.js';
+import { createFavoritesStore } from './admin-v2-favorites.js';
+import { createOverviewCache } from './admin-overview-cache.js';
+import {
+  DASHBOARD_WIDGET_REGISTRY,
+  deriveAdminBrowserPreferenceScope,
+  drainLegacyDashboardWidgetPreferences,
+  isValidAdminBrowserPreferenceScope,
+  migrateDashboardWidgetPreferences,
+  normalizeFirebaseUid,
+  readDashboardWidgetPreferences,
+  resetDashboardWidgetPreferences,
+  sanitizeDashboardWidgetVisibility,
+  writeDashboardWidgetPreferences,
+} from './admin-v2-dashboard-widgets.js';
 
 const ICONS = {
   overview: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 13h6V4H4v9Zm0 7h6v-4H4v4Zm10 0h6v-9h-6v9Zm0-16v4h6V4h-6Z"/></svg>',
@@ -47,6 +60,25 @@ const ICONS = {
   diagnostics: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 3 4 6v5c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>',
   empty: '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8m-8 4h5"/></svg>',
 };
+
+const AGENT_MANAGER_PAIRING_BRIDGE_URL = 'http://127.0.0.1:43817/v1/agent-manager/pairing';
+const globalSearchCancellation = createQueryCancellation();
+let globalSearchIndex = [];
+let globalSearchTimer = null;
+let globalSearchSelectedIndex = 0;
+let globalSearchReturnFocus = null;
+let mobileNavReturnFocus = null;
+const MOBILE_NAV_BACKGROUND_REGION_IDS = Object.freeze(['breadcrumbs', 'admin-workspace-actions', 'global-message', 'app']);
+const mobileNavBackgroundAttributes = new WeakMap();
+let mobileNavToggleAttributes = null;
+let dashboardWidgetsScope = null;
+let dashboardWidgetsDraft = [];
+let savedDashboardWidgetIds = [];
+let pendingLegacyDashboardWidgetIds = null;
+let favoritesStore = createFavoritesStore({ storage: dashboardWidgetStorage(), scope: null, isAllowedId: isFavoriteNavigationId });
+let favoritesScopeState = 'session';
+const overviewCache = createOverviewCache();
+let overviewCacheScope = null;
 
 export const ADMIN_SECTIONS = Object.freeze([
   { route: 'overview', label: 'Обзор', title: 'Ежедневный обзор' },
@@ -67,7 +99,6 @@ const PAGES = Object.freeze({
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
   money: { title: 'Деньги', description: 'Подписки, платежи, промокоды и подтверждённые показатели выручки.' },
   content: { title: 'Контент', description: 'Уроки, языковые пакеты и безопасная фабрика новых языков.' },
-  'arena-question-pool': { title: 'Пул вопросов Арены', description: 'Опубликованные вопросы для матчей, их проверка и обратимое снятие из выдачи.' },
   community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние Арены.' },
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
@@ -132,9 +163,7 @@ const FACTORY_STEPS = Object.freeze([
 
 const SURFACE_LABELS = Object.freeze({
   lesson: 'Урок, словарь и упражнения',
-  quiz: 'Квиз',
   flashcard: 'Карточки',
-  arena: 'Арена',
 });
 
 const PREMIUM_ACCESS_FEATURES = Object.freeze([
@@ -150,16 +179,12 @@ const PREMIUM_ACCESS_FEATURES = Object.freeze([
   { key: 'gate_themes_premium', label: 'Темы оформления' },
   { key: 'gate_avatar_auras_premium', label: 'Ауры аватара' },
   { key: 'gate_mastery_premium', label: 'Мастерство / повтор урока' },
-  { key: 'gate_quizzes_premium', label: 'Квизы сверх лимита' },
-  { key: 'gate_arena_premium', label: 'Арена сверх лимита' },
   { key: 'gate_energy_premium', label: 'Энергия' },
 ]);
 
 const PREMIUM_ACCESS_LIMITS = Object.freeze([
   { key: 'free_lesson_limit', label: 'Бесплатных уроков', def: 8, min: 1, max: 32 },
-  { key: 'free_daily_quiz_limit', label: 'Квизов в день', def: 3, min: 0, max: 999 },
   { key: 'free_trainer_sessions_per_day', label: 'Сессий тренажёра/день', def: 2, min: 0, max: 99 },
-  { key: 'arena_daily_max', label: 'Матчей Арены/день', def: 5, min: 0, max: 999 },
   { key: 'max_energy', label: 'Максимум энергии', def: 5, min: 1, max: 99 },
 ]);
 
@@ -172,7 +197,6 @@ const GLOBAL_BROADCAST_REWARDS = Object.freeze([
   { key: 'none', label: 'Без подарка' }, { key: 'shards', label: 'Осколки знаний' },
   { key: 'xp_boost_2x_24h', label: 'x2 XP на 24 часа' }, { key: 'xp_boost_2x_48h', label: 'x2 XP на 48 часов' },
   { key: 'chain_shield_1', label: 'Щит цепочки на 1 день' }, { key: 'chain_shield_3', label: 'Щит цепочки на 3 дня' },
-  { key: 'arena_extra_5', label: '+5 рейтинговых игр' },
 ]);
 
 function clampChoice(value, allowed, fallback) {
@@ -231,7 +255,8 @@ function loadAdminUiSettings() {
 
 function saveAdminUiSettings(settings) {
   const normalized = normalizeAdminUiSettings(settings);
-  globalThis.localStorage?.setItem(ADMIN_V2_SETTINGS_STORAGE_KEY, JSON.stringify(normalized));
+  try { globalThis.localStorage?.setItem(ADMIN_V2_SETTINGS_STORAGE_KEY, JSON.stringify(normalized)); }
+  catch {}
   return normalized;
 }
 
@@ -281,6 +306,22 @@ function defaultReportState(settings = DEFAULT_ADMIN_UI_SETTINGS) {
 }
 
 const initialAdminUiSettings = loadAdminUiSettings();
+let savedAdminUiSettings = initialAdminUiSettings;
+
+function adminSettingsDirty() {
+  return JSON.stringify(normalizeAdminUiSettings(state.adminSettings)) !== JSON.stringify(savedAdminUiSettings)
+    || JSON.stringify(dashboardWidgetsDraft) !== JSON.stringify(savedDashboardWidgetIds);
+}
+
+function renderAdminSettingsSaveBar() {
+  const dirty = adminSettingsDirty();
+  return `<div class="command-save-bar" role="region" aria-label="Сохранение настроек"><span id="settings-draft-status" role="status">${dirty ? 'Есть несохранённые изменения. Они действуют только в этом браузере до сохранения.' : 'Настройки сохранены только в текущем браузере.'}</span><div class="actions"><button class="button danger" data-action="reset-admin-settings" type="button" title="Вернуть стандартные локальные настройки после подтверждения">Сбросить</button><button class="button primary" data-action="save-admin-settings" type="button" title="Сохранить настройки в этом браузере"${dirty ? '' : ' disabled'}>Сохранить</button></div></div>`;
+}
+
+function confirmAdminSettingsNavigation(nextRoute) {
+  if (state.route !== 'admin-settings' || nextRoute === 'admin-settings' || !adminSettingsDirty()) return true;
+  return globalThis.confirm('Есть несохранённые настройки этой админки. Перейти без сохранения?');
+}
 
 function defaultAnalyticsTrendsDraft() {
   return {
@@ -301,6 +342,7 @@ const state = {
   authorized: false,
   authReady: false,
   adminEmail: '',
+  adminUid: null,
   adminRole: '',
   authGeneration: 0,
   adminSettings: initialAdminUiSettings,
@@ -315,7 +357,6 @@ const state = {
   preview: null,
   workspace: null,
   contentStages: createContentFactoryState(),
-  arenaQuestionPool: createArenaQuestionPoolState(),
   generation: null,
   support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
   analytics: { status: 'idle', snapshot: null, error: '' },
@@ -335,7 +376,7 @@ const state = {
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, error: '' },
   agentOffice: { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 },
-  agentManager: { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 },
+  agentManager: { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 },
   broadcasts: { state: 'idle', items: [], preview: null, error: '' },
 };
 
@@ -344,12 +385,14 @@ let actionsReady = false;
 let initialized = false;
 let reportFilterTimer = 0;
 let reportRequestId = 0;
+let overviewBriefingRefreshInFlight = false;
 let adminAutoRefreshTimer = 0;
 let adminInteractionSeen = false;
 let lastCriticalSoundSignature = '';
 let renderGeneration = 0;
 const analyticsTrendRequestGeneration = { overview: 0, paywall: 0 };
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
+const QUIET_CACHE_RESULT = Symbol('quiet-cache-result');
 
 export function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
@@ -438,12 +481,6 @@ function emptyState(message) {
   return `<div class="empty-state">${ICONS.empty}<div>${escapeHtml(message)}</div></div>`;
 }
 
-function renderCapabilityHub(route) {
-  const capabilities = capabilitiesForRoute(route);
-  if (!capabilities.length) return '';
-  return `<section class="card section capability-hub"><div class="card-header"><div><h2>Все рабочие инструменты раздела</h2><p>${capabilities.length} ${capabilities.length === 1 ? 'модуль' : capabilities.length < 5 ? 'модуля' : 'модулей'} из действующей админки, сгруппированные без потери функций.</p></div><span class="badge">Полный реестр</span></div><div class="capability-grid">${capabilities.map((capability) => `<button class="capability-item" type="button" data-capability-id="${escapeHtml(capability.id)}" title="Открыть ${escapeHtml(capability.label)}"><span><strong>${escapeHtml(capability.label)}</strong><small>${escapeHtml(capability.description)}</small></span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>`).join('')}</div></section>`;
-}
-
 function renderCapabilityWorkspace(capability) {
   const url = capabilityUrl(capability);
   return `${pageHeader(PAGES[capability.route] ?? PAGES.overview, capability.label, `<button class="button" data-action="close-capability" type="button" title="Вернуться к разделу">К списку инструментов</button>`)}
@@ -458,16 +495,42 @@ function settingsCheckbox(id, label, checked, title) {
   return `<label class="check settings-check" title="${escapeHtml(title)}"><input id="${id}" data-admin-setting="${id.replace('admin-setting-', '')}" type="checkbox"${checked ? ' checked' : ''}><span>${escapeHtml(label)}</span></label>`;
 }
 
+const DASHBOARD_WIDGET_COPY = Object.freeze({
+  operational_state: { label: 'Оперативный статус', description: 'Критические сигналы и полнота оперативного снимка.' },
+  payment_summary: { label: 'Сводка оплат', description: 'Ключевые показатели оплат на главной странице.' },
+  decision_queue: { label: 'Очередь решений', description: 'Подтверждённые приоритеты с понятным следующим действием.' },
+  quick_links: { label: 'Быстрые переходы', description: 'Частые рабочие задачи на главной странице.' },
+});
+
+function renderDashboardWidgetSettings() {
+  const visibleIds = visibleDashboardWidgetIds();
+  const rows = DASHBOARD_WIDGET_REGISTRY.map((widget) => {
+    const copy = DASHBOARD_WIDGET_COPY[widget.id] || { label: widget.id, description: '' };
+    const forced = widget.critical === true || widget.notice === true;
+    const allowed = !widget.permission || can(widget.permission);
+    const inputId = `settings-dashboard-widget-${widget.id}`;
+    const descriptionId = `${inputId}-description`;
+    const explanation = !allowed
+      ? 'Недоступно с текущими правами.'
+      : forced
+        ? 'Этот блок всегда показан: он содержит критические сигналы или обязательные рабочие переходы.'
+        : copy.description;
+    return `<div class="field full"><label class="check settings-check" for="${inputId}"><input id="${inputId}" data-dashboard-widget-id="${widget.id}" type="checkbox"${visibleIds.includes(widget.id) ? ' checked' : ''}${forced || !allowed ? ' disabled' : ''} aria-describedby="${forced ? descriptionId : ''}"><span>${escapeHtml(copy.label)}</span></label><small id="${descriptionId}" class="hint">${escapeHtml(explanation)}</small></div>`;
+  }).join('');
+  return `<section id="settings-dashboard-widgets" class="card settings-panel" data-admin-settings-panel="dashboard-widgets" tabindex="-1"><div class="card-header"><div><h2>Виджеты главной страницы</h2><p>Выберите необязательные блоки. Критические сигналы и рабочие переходы остаются видимыми.</p></div><span class="badge">Только этот браузер</span></div><div class="card-body fields">${rows}</div></section>`;
+}
+
 function renderAdminSettings() {
   const settings = state.adminSettings;
   const accentOptions = Object.entries(ADMIN_ACCENT_PRESETS).map(([key, preset]) => [key, preset.label]);
   const startPageOptions = Object.entries(PAGES).filter(([route]) => ADMIN_SECTIONS.some((section) => section.route === route) || route === 'report-center' || route === 'daily-briefing').map(([route, page]) => [route, page.title]);
   const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => [value, label]);
-  return `${pageHeader(PAGES['admin-settings'], 'Админка / Страница', '<button class="button" data-action="reset-admin-settings" type="button" title="Вернуть стандартные настройки этой админки">Сбросить</button><button class="button primary" data-action="save-admin-settings" type="button" title="Сохранить настройки в этом браузере">Сохранить</button>')}
+  return `${pageHeader(PAGES['admin-settings'], 'Админка / Страница')}
     <section class="card section"><div class="card-header"><div><h2>Настройки только этой панели</h2><p>Хранятся локально в браузере администратора и не меняют приложение для пользователей.</p></div><span class="badge">localStorage</span></div><div class="card-body">
       <nav class="settings-tabs" aria-label="Разделы настроек админки">
         <button type="button" data-settings-target="settings-appearance" title="Перейти к теме, акценту и плотности">Внешний вид</button>
         <button type="button" data-settings-target="settings-workflow" title="Перейти к рабочему режиму">Рабочий режим</button>
+        <button type="button" data-settings-target="settings-dashboard-widgets" title="Перейти к виджетам главной страницы">Главная страница</button>
         <button type="button" data-settings-target="settings-reports" title="Перейти к дефолтам центра репортов">Центр репортов</button>
         <button type="button" data-settings-target="settings-alerts" title="Перейти к алертам интерфейса">Уведомления</button>
         <button type="button" data-settings-target="settings-safety" title="Перейти к защитным правилам">Безопасность</button>
@@ -489,6 +552,7 @@ function renderAdminSettings() {
         ${settingsCheckbox('admin-setting-expandedAdvancedActions', 'Расширенные действия раскрыты по умолчанию', settings.expandedAdvancedActions, 'Показывать дополнительные действия без ручного раскрытия')}
         <details class="settings-advanced-disclosure"${settings.expandedAdvancedActions ? ' open' : ''}><summary>Предпросмотр расширенного блока</summary><p>Такие блоки в очередях и инструментах будут сразу раскрыты, если настройка включена.</p></details>
       </div></section>
+      ${renderDashboardWidgetSettings()}
       <section id="settings-reports" class="card settings-panel" data-admin-settings-panel="reports" tabindex="-1"><div class="card-header"><div><h2>Центр репортов</h2><p>Дефолты очереди, чтобы открытые обращения сразу были выше шума.</p></div></div><div class="card-body fields">
         ${settingsSelect('admin-setting-defaultSinceDays', 'Период по умолчанию', settings.defaultSinceDays, [[1, '24 часа'], [7, '7 дней'], [30, '30 дней'], [90, '90 дней']], 'Выбрать период, который центр репортов ставит при первом открытии')}
         ${settingsSelect('admin-setting-defaultSource', 'Источник по умолчанию', settings.defaultSource, sourceOptions, 'Выбрать источник репортов при первом открытии')}
@@ -508,11 +572,84 @@ function renderAdminSettings() {
         ${settingsCheckbox('admin-setting-collapseDangerousActions', 'Опасные действия держать свернутыми', settings.collapseDangerousActions, 'Скрывать destructive-действия до явного раскрытия')}
         <details class="settings-danger-disclosure"${settings.collapseDangerousActions ? '' : ' open'}><summary>Опасные действия</summary><p>Функции не удаляются и не прячутся навсегда: они остаются доступны после явного раскрытия.</p></details>
       </div></section>
-    </div>`;
+    </div>${renderAdminSettingsSaveBar()}`;
 }
 
 function can(permission) {
   return state.authorized && (ADMIN_ROLE_PERMISSIONS[state.adminRole]?.has(permission) ?? false);
+}
+
+function dashboardWidgetOptions() {
+  return { can, excludedIds: new Set() };
+}
+
+function dashboardWidgetStorage() {
+  try { return globalThis.localStorage; }
+  catch { return null; }
+}
+
+function hydrateDashboardWidgetDraft({ scope = null, fallbackVisibleIds = null } = {}) {
+  dashboardWidgetsScope = isValidAdminBrowserPreferenceScope(scope) ? scope : null;
+  dashboardWidgetsDraft = Array.isArray(fallbackVisibleIds)
+    ? sanitizeDashboardWidgetVisibility(fallbackVisibleIds, dashboardWidgetOptions())
+    : readDashboardWidgetPreferences({
+      storage: dashboardWidgetsScope ? dashboardWidgetStorage() : null,
+      scope: dashboardWidgetsScope,
+      ...dashboardWidgetOptions(),
+    });
+  savedDashboardWidgetIds = [...dashboardWidgetsDraft];
+}
+
+async function establishDashboardWidgetScope({ authGeneration, uid, legacyVisibleIds }) {
+  favoritesScopeState = 'loading';
+  renderGlobalSearchFavorites();
+  const scope = await deriveAdminBrowserPreferenceScope(uid);
+  if (authGeneration !== state.authGeneration || !state.authorized || uid !== state.adminUid) return;
+  if (!scope) {
+    favoritesScopeState = 'session';
+    renderGlobalSearchFavorites();
+    return;
+  }
+  hydrateOverviewBriefingFromCache(scope);
+  if (favoritesStore.getScope() !== scope) {
+    const sessionFavoriteIds = favoritesStore.load();
+    favoritesStore.setScope(scope);
+    if (sessionFavoriteIds.length) favoritesStore.replace(sessionFavoriteIds);
+    else favoritesStore.load();
+  }
+  favoritesScopeState = 'ready';
+  dashboardWidgetsScope = scope;
+  dashboardWidgetsDraft = Array.isArray(legacyVisibleIds)
+    ? migrateDashboardWidgetPreferences({
+      storage: dashboardWidgetStorage(),
+      scope,
+      visibleIds: legacyVisibleIds,
+      ...dashboardWidgetOptions(),
+    })
+    : readDashboardWidgetPreferences({
+      storage: dashboardWidgetStorage(),
+      scope,
+      ...dashboardWidgetOptions(),
+    });
+  savedDashboardWidgetIds = [...dashboardWidgetsDraft];
+  pendingLegacyDashboardWidgetIds = null;
+  renderCurrentPage();
+}
+
+function hydrateOverviewBriefingFromCache(scope) {
+  overviewCacheScope = scope;
+  const cached = overviewCache.peek(scope);
+  if (!cached) return;
+  state.briefing = { ...cached.value, state: cached.isStale ? 'stale' : cached.state, error: cached.error || '' };
+}
+
+function visibleDashboardWidgetIds() {
+  if (!state.authorized) return [];
+  return sanitizeDashboardWidgetVisibility(dashboardWidgetsDraft, dashboardWidgetOptions());
+}
+
+function isDashboardWidgetVisible(id) {
+  return visibleDashboardWidgetIds().includes(id);
 }
 
 function disabledWhenUnauthorized(permission = '') {
@@ -548,12 +685,260 @@ function navCounterForRoute(route) {
   return `<span class="nav-counter" aria-label="${escapeHtml(label)}">${value > 99 ? '99+' : escapeHtml(value)}</span>`;
 }
 
+const CANONICAL_LEFT_NAV_ITEMS = Object.freeze([
+  { id: 'users', route: 'users', label: 'Пользователи' },
+  { id: 'gmail-support', route: 'support', label: 'Почта поддержки' },
+  { id: 'reports', route: 'report-center', label: 'Центр репортов' },
+  { id: 'app-messages', route: 'campaigns', label: 'Кампании' },
+]);
+const CANONICAL_LEFT_NAV_ITEM_IDS = new Set(CANONICAL_LEFT_NAV_ITEMS.map((item) => item.id));
+const CANONICAL_LEFT_NAV_PARENT_ROUTES = Object.freeze({ users: 'users', 'gmail-support': 'users', reports: 'users', 'app-messages': 'application' });
+const ADMIN_UTILITY_NAV_ITEMS = Object.freeze([
+  { id: 'control-panel', route: 'control-panel', label: 'Пульт управления' },
+]);
+
+function buildVisibleNavigationSearchIndex(groups, routeFor, utilityItems = []) {
+  const visible = [
+    ...ADMIN_SECTIONS.map((section) => ({ id: `section-${section.route}`, label: section.label, description: section.title, route: section.route })),
+    ...groups.flatMap((group) => group.capabilities.map((capability) => ({
+      id: capability.id,
+      label: capability.label,
+      description: capability.description || '',
+      route: routeFor(capability),
+      nativeRoute: routeFor(capability),
+      legacyStatus: routeFor(capability) ? 'native' : 'legacy',
+      permission: capability.permission || '',
+      excluded: !routeFor(capability),
+    }))),
+    ...utilityItems.map((item) => {
+      const capability = capabilityById(item.id);
+      return {
+        id: item.id,
+        label: item.label,
+        description: capability?.description || '',
+        route: item.route,
+        nativeRoute: item.route,
+        legacyStatus: 'native',
+        permission: capability?.permission || '',
+        excluded: false,
+      };
+    }),
+  ];
+  return buildSearchIndex(visible, { can: (permission) => can(permission) });
+}
+
+function isFavoriteNavigationId(id) {
+  return typeof id === 'string' && globalSearchIndex.some((entry) => entry.id === id);
+}
+
+function favoriteNavigationEntries() {
+  const byId = new Map(globalSearchIndex.map((entry) => [entry.id, entry]));
+  return favoritesStore.load().map((id) => byId.get(id)).filter(Boolean);
+}
+
+function renderGlobalSearchFavorites() {
+  const list = document.getElementById('global-search-favorites-list');
+  if (!list) return;
+  const favorites = favoriteNavigationEntries();
+  const scopeNotice = favoritesStore.getScope() ? '' : `<p role="status">${favoritesScopeState === 'loading' ? 'Закрепления сохраняются только в этом сеансе, пока загружаются личные настройки.' : 'Закрепления сохраняются только в этом сеансе.'}</p>`;
+  list.innerHTML = `${scopeNotice}${favorites.length
+    ? favorites.map((entry) => `<div><button class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" type="button"><strong>${escapeHtml(entry.label)}</strong></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="Открепить ${escapeHtml(entry.label)}" title="Открепить ${escapeHtml(entry.label)}">Открепить</button></div>`).join('')
+    : '<p>Пока нет закреплённых разделов.</p>'}`;
+}
+
+function renderGlobalSearchResults(query) {
+  const list = document.getElementById('global-search-results');
+  if (!list) return;
+  const results = searchIndex(globalSearchIndex, query);
+  globalSearchSelectedIndex = Math.min(globalSearchSelectedIndex, Math.max(results.length - 1, 0));
+  list.innerHTML = results.length ? results.map((entry, index) => {
+    const favorite = favoritesStore.load().includes(entry.id);
+    return `<div><button id="global-search-result-${index}" class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" role="option" aria-selected="${index === globalSearchSelectedIndex ? 'true' : 'false'}" type="button"><strong>${escapeHtml(entry.label)}</strong><small>${escapeHtml(entry.description)}</small></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}" title="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}">${favorite ? 'Открепить' : 'Закрепить'}</button></div>`;
+  }).join('') : '<div class="empty-state">Ничего не найдено.</div>';
+}
+
+function isRestorableGlobalSearchFocus(element) {
+  return element instanceof HTMLElement
+    && element.isConnected
+    && !element.hidden
+    && element.getClientRects().length > 0
+    && !element.matches(':disabled')
+    && !element.inert
+    && !element.closest('[aria-hidden="true"], [inert]');
+}
+
+function restoreGlobalSearchFocus() {
+  const returnFocus = globalSearchReturnFocus;
+  globalSearchReturnFocus = null;
+  const toggle = document.getElementById('mobile-nav-toggle');
+  const launcher = document.getElementById('global-search-launcher');
+  const fallbacks = document.body.classList.contains('nav-open') ? [toggle, launcher] : [launcher, toggle];
+  const target = [returnFocus, ...fallbacks].find(isRestorableGlobalSearchFocus);
+  target?.focus({ preventScroll: true });
+}
+
+function ensureGlobalSearchUi() {
+  const actions = document.querySelector('.topbar-actions');
+  if (actions && !document.getElementById('global-search-launcher')) actions.insertAdjacentHTML('afterbegin', '<button id="global-search-launcher" class="button small" type="button" title="Найти раздел или инструмент; Ctrl/Cmd+K">Поиск</button>');
+  const root = document.getElementById('dialog-root');
+  if (!root || document.getElementById('global-search-dialog')) return;
+  root.insertAdjacentHTML('beforeend', '<dialog id="global-search-dialog" aria-label="Поиск разделов и инструментов"><form method="dialog"><div class="card-header"><div><h2>Поиск</h2><p>Только видимые разделы и инструменты админки.</p></div><button class="button" value="cancel" type="submit" title="Закрыть поиск">Закрыть</button></div><div class="card-body"><section id="global-search-favorites" aria-labelledby="global-search-favorites-title"><h3 id="global-search-favorites-title">Закреплённые разделы</h3><div id="global-search-favorites-list"></div></section><label for="global-search-input">Найти раздел или инструмент</label><input id="global-search-input" type="search" autocomplete="off"><div id="global-search-results" role="listbox" aria-label="Результаты поиска"></div></div></form></dialog>');
+  const dialog = document.getElementById('global-search-dialog');
+  const input = document.getElementById('global-search-input');
+  input?.addEventListener('input', () => {
+    const token = globalSearchCancellation.nextToken();
+    globalThis.clearTimeout(globalSearchTimer);
+    globalSearchTimer = globalThis.setTimeout(() => {
+      if (globalSearchCancellation.isCurrent(token)) renderGlobalSearchResults(input.value);
+    }, 220);
+  });
+  dialog?.addEventListener('close', restoreGlobalSearchFocus);
+  renderGlobalSearchFavorites();
+}
+
+function openGlobalSearch() {
+  ensureGlobalSearchUi();
+  const dialog = document.getElementById('global-search-dialog');
+  const input = document.getElementById('global-search-input');
+  if (!(dialog instanceof HTMLDialogElement) || dialog.open) return;
+  globalSearchReturnFocus = document.activeElement;
+  globalSearchSelectedIndex = 0;
+  input.value = '';
+  renderGlobalSearchFavorites();
+  renderGlobalSearchResults('');
+  dialog.showModal();
+  input.focus();
+}
+
+function moveGlobalSearchSelection(delta) {
+  const results = [...document.querySelectorAll('#global-search-results [data-global-search-route]')];
+  if (!results.length) return;
+  globalSearchSelectedIndex = (globalSearchSelectedIndex + delta + results.length) % results.length;
+  results.forEach((item, index) => item.setAttribute('aria-selected', String(index === globalSearchSelectedIndex)));
+  results[globalSearchSelectedIndex].focus();
+}
+
+function selectGlobalSearchResult(index) {
+  const results = [...document.querySelectorAll('#global-search-results [data-global-search-route]')];
+  if (!results.length) return;
+  globalSearchSelectedIndex = Math.min(Math.max(index, 0), results.length - 1);
+  results.forEach((item, position) => item.setAttribute('aria-selected', String(position === globalSearchSelectedIndex)));
+  results[globalSearchSelectedIndex].focus();
+}
+
+function mobileNavFocusableElements() {
+  const drawer = document.querySelector('.sidebar');
+  if (!drawer) return [];
+  return [...drawer.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])')]
+    .filter((element) => element instanceof HTMLElement && !element.closest('[aria-hidden="true"]'));
+}
+
+function setMobileNavBackgroundInert(open) {
+  MOBILE_NAV_BACKGROUND_REGION_IDS
+    .map((id) => document.getElementById(id))
+    .filter((target) => target instanceof HTMLElement)
+    .forEach((target) => {
+      if (open) {
+        if (!mobileNavBackgroundAttributes.has(target)) {
+          mobileNavBackgroundAttributes.set(target, { inert: target.inert, ariaHidden: target.getAttribute('aria-hidden') });
+        }
+        target.inert = true;
+        target.setAttribute('aria-hidden', 'true');
+        return;
+      }
+      const previous = mobileNavBackgroundAttributes.get(target);
+      if (!previous) return;
+      target.inert = previous.inert;
+      if (previous.ariaHidden === null) target.removeAttribute('aria-hidden');
+      else target.setAttribute('aria-hidden', previous.ariaHidden);
+      mobileNavBackgroundAttributes.delete(target);
+    });
+}
+
+function focusFirstMobileNavControl() {
+  mobileNavFocusableElements()[0]?.focus({ preventScroll: true });
+}
+
+function trapMobileNavFocus(event) {
+  if (event.key !== 'Tab' || !document.body.classList.contains('nav-open')) return;
+  const focusable = mobileNavFocusableElements();
+  if (!focusable.length) return;
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+  const active = document.activeElement;
+  if (event.shiftKey && (active === first || !focusable.includes(active))) {
+    event.preventDefault();
+    last.focus({ preventScroll: true });
+  } else if (!event.shiftKey && (active === last || !focusable.includes(active))) {
+    event.preventDefault();
+    first.focus({ preventScroll: true });
+  }
+}
+
+function setMobileNavOpen(open, { restoreFocus = true } = {}) {
+  const toggle = document.getElementById('mobile-nav-toggle');
+  if (!toggle) return;
+  if (open) {
+    mobileNavReturnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : toggle;
+    if (!mobileNavToggleAttributes) {
+      mobileNavToggleAttributes = { ariaLabel: toggle.getAttribute('aria-label'), title: toggle.getAttribute('title') };
+    }
+  }
+  document.body.classList.toggle('nav-open', open);
+  toggle.setAttribute('aria-expanded', String(open));
+  toggle.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+  toggle.setAttribute('title', open ? 'Закрыть меню' : 'Открыть меню');
+  setMobileNavBackgroundInert(open);
+  if (open) focusFirstMobileNavControl();
+  if (!open) {
+    if (mobileNavToggleAttributes) {
+      if (mobileNavToggleAttributes.ariaLabel === null) toggle.removeAttribute('aria-label');
+      else toggle.setAttribute('aria-label', mobileNavToggleAttributes.ariaLabel);
+      if (mobileNavToggleAttributes.title === null) toggle.removeAttribute('title');
+      else toggle.setAttribute('title', mobileNavToggleAttributes.title);
+      mobileNavToggleAttributes = null;
+    }
+    if (restoreFocus) mobileNavReturnFocus?.focus({ preventScroll: true });
+    mobileNavReturnFocus = null;
+  }
+}
+
+function closeMobileNav(options) {
+  setMobileNavOpen(false, options);
+}
+
 function renderNavigation() {
   const nav = document.getElementById('primary-nav');
-  if (!nav) return;
-  const parentRoutes = { campaigns: 'application', 'agent-office': 'overview', 'agent-manager': 'overview' };
+  const utilityNav = document.getElementById('utility-nav');
+  if (!nav || !utilityNav) return;
+  const groups = ADMIN_SECTIONS.map((section) => {
+    const capabilities = ADMIN_CAPABILITY_REGISTRY.filter((capability) => capability.route === section.route && capability.id !== 'control-panel' && capabilityById(capability.id) && !CANONICAL_LEFT_NAV_ITEM_IDS.has(capability.id));
+    if (section.route !== 'money') return { ...section, capabilities };
+    const analytics = capabilities.find((capability) => capability.id === 'analytics');
+    const reports = analytics ? [['today', 'Сегодня'], ['growth', 'Рост'], ['money', 'Деньги'], ['learning', 'Обучение']]
+      .map(([id, label]) => ({ ...analytics, id: `analytics-${id}`, label, nativeRoute: id })) : [];
+    return { ...section, capabilities: [...reports, ...capabilities.filter((capability) => capability.id !== 'analytics')] };
+  });
+  const groupsWithCanonicalItems = groups.map((group) => ({ ...group, capabilities: [...CANONICAL_LEFT_NAV_ITEMS.filter((item) => CANONICAL_LEFT_NAV_PARENT_ROUTES[item.id] === group.route && capabilityById(item.id)), ...group.capabilities] }));
+  const routeFor = (capability) => CANONICAL_LEFT_NAV_ITEM_IDS.has(capability.id) ? capability.route : capability.id === 'control-panel' ? 'control-panel' : capability.nativeRoute;
+  globalSearchIndex = buildVisibleNavigationSearchIndex(groupsWithCanonicalItems, routeFor, ADMIN_UTILITY_NAV_ITEMS);
+  if (document.getElementById('global-search-dialog')?.open) {
+    renderGlobalSearchFavorites();
+    renderGlobalSearchResults(document.getElementById('global-search-input')?.value || '');
+  }
+  const isActive = (capability) => state.selectedCapabilityId === capability.id
+    || state.route === routeFor(capability)
+    || (String(capability.id).startsWith('analytics-') && routeFor(capability) === ({ overview: 'today', product: 'growth', subscriptions: 'money', exports: 'learning' }[state.activeAnalyticsReport] || ''));
+  const renderItem = (capability) => {
+    const route = routeFor(capability);
+    const label = `${capability.label}${route ? '' : ' · старая версия'}`;
+    if (!route) return `<a class="nav-button nav-fallback" href="${escapeHtml(capabilityUrl(capability))}" target="_blank" rel="noopener" title="Открыть ${escapeHtml(capability.label)} в старой админке"><span>${escapeHtml(label)}</span></a>`;
+    return `<button class="nav-button" type="button" data-route="${route}" aria-current="${isActive(capability) ? 'page' : 'false'}" title="${escapeHtml(capability.label)}"><span>${escapeHtml(label)}</span></button>`;
+  };
+  nav.innerHTML = groupsWithCanonicalItems.map((group) => `<details class="nav-group"${group.capabilities.some(isActive) || state.route === group.route ? ' open' : ''}><summary>${ICONS[group.route]}<span>${escapeHtml(group.label)}</span></summary><div class="nav-group-items">${group.capabilities.map(renderItem).join('')}</div></details>`).join('');
+  utilityNav.innerHTML = ADMIN_UTILITY_NAV_ITEMS.map(renderItem).join('');
+  const parentRoutes = { campaigns: 'application', support: 'users', analytics: 'money', 'daily-briefing': 'overview', 'report-center': 'users', 'asset-studio': 'content', 'control-panel': 'overview', 'agent-office': 'overview', 'agent-manager': 'overview' };
   const activeRoute = parentRoutes[state.route] || state.route;
-  nav.innerHTML = ADMIN_SECTIONS.map((section) => `<button class="nav-button" type="button" data-route="${section.route}" aria-current="${activeRoute === section.route ? 'page' : 'false'}" title="${escapeHtml(section.title)}">${ICONS[section.route]}<span>${escapeHtml(section.label)}</span>${navCounterForRoute(section.route)}</button>`).join('');
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
   const page = PAGES[state.route] ?? PAGES.overview;
   const breadcrumbs = document.getElementById('breadcrumbs');
@@ -651,10 +1036,10 @@ function renderOverview() {
   const view = buildOperationalSnapshot(state.briefing);
   const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить снимок</button><a class="button" href="#daily-briefing" title="Открыть подробный ежедневный брифинг">Подробный брифинг</a><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
   return `${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
-    ${renderOverviewOperationalState(view)}
-    ${renderOverviewPaymentSummary(overviewAnalyticsModel())}
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>
-    <section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами">Стратегические решения</a><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section></div>`;
+    ${isDashboardWidgetVisible('operational_state') ? renderOverviewOperationalState(view) : ''}
+    ${isDashboardWidgetVisible('payment_summary') ? renderOverviewPaymentSummary(overviewAnalyticsModel()) : ''}
+    <div class="columns section">${isDashboardWidgetVisible('decision_queue') ? `<section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>` : ''}
+    ${isDashboardWidgetVisible('quick_links') ? `<section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами">Стратегические решения</a><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section>` : ''}</div>`;
 }
 
 function agentOfficeStatusLabel(status) {
@@ -734,7 +1119,8 @@ function renderAgentManagerWorkspace() {
   }).join('') || emptyState(emptyText);
   const runbookRows = runbooks.map((runbook) => `<article class="list-row"><div><strong>${escapeHtml(runbook.title || 'Регламент')}</strong><small>${escapeHtml(runbook.summary || '')}</small></div><span class="badge">FAQ</span></article>`).join('') || emptyState('Регламенты пока недоступны.');
   return `${header}
-    <section class="agent-manager-operations section" aria-label="Состояние офиса агентов"><div class="agent-manager-kpis"><article><span>Активная очередь</span><strong>${active.length}</strong><small>в работе или на проверке</small></article><article><span>Ждут решения</span><strong>${pending.length}</strong><small>требуют ручного согласования</small></article><article><span>История</span><strong>${history.length}</strong><small>готовые и архивные задачи</small></article></div><div class="agent-manager-roster"><div><h2>Кто чем занят</h2><p>Выполнение не запускается автоматически.</p></div><div class="agent-manager-role-list">${agentRows}</div></div></section>
+    <section class="agent-manager-operations section" aria-label="Состояние офиса агентов"><div class="agent-manager-kpis"><article><span>Активная очередь</span><strong>${active.length}</strong><small>в работе или на проверке</small></article><article><span>Ждут решения</span><strong>${pending.length}</strong><small>требуют ручного согласования</small></article><article><span>История</span><strong>${history.length}</strong><small>готовые и архивные задачи</small></article></div><div class="agent-manager-roster"><div><h2>Кто чем занят</h2><p>Подтверждённые задачи кода забирает подключённый Codex на этом ПК. Он готовит изменения только для ручной проверки.</p></div><div class="agent-manager-role-list">${agentRows}</div></div></section>
+    <section class="card section" aria-label="Подключение локального исполнителя"><div class="card-header"><div><h2>Локальный Codex</h2><p>Подключается один раз. После этого подтверждённые задачи разработки запускаются автоматически на этом компьютере.</p></div><button class="button" data-action="create-agent-manager-local-runner-pairing" type="button"${disabled}>Подключить этот ПК</button></div>${manager.pairing ? `<div class="notice"><strong>Код подключения создан.</strong><br>Он действует до ${escapeHtml(new Date(Number(manager.pairing.expiresAtMs)).toLocaleTimeString('ru-RU'))}. Codex подключает этот ПК автоматически; код не сохраняется в админке.</div>` : ''}</section>
     <section class="card section"><div class="card-header"><div><h2>Поручить менеджеру</h2><p>Задача сначала попадёт в план. Письма, production и код этот экран не запускает.</p></div></div><div class="card-body fields"><div class="field"><label for="agent-manager-title">Что нужно сделать</label><input id="agent-manager-title" maxlength="140" placeholder="Например: проверить рост ошибок после релиза"></div><div class="field"><label for="agent-manager-brief">Контекст и ожидаемый результат</label><textarea id="agent-manager-brief" maxlength="4000" placeholder="Что проверить, ограничения и ожидаемый результат"></textarea></div><div class="field"><label for="agent-manager-priority">Приоритет</label><select id="agent-manager-priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="critical">Критический</option><option value="low">Низкий</option></select></div><div class="field"><label for="agent-manager-scope">Разрешённая область</label><select id="agent-manager-scope"><option value="analysis_only">Только анализ</option><option value="support_draft">Черновик ответа поддержки</option><option value="code_prepare">Подготовка кода без запуска</option><option value="content_prepare">Подготовка контента без публикации</option></select></div><div class="actions"><button class="button primary" data-action="create-agent-manager-task" type="button"${disabled}>Передать менеджеру</button><a class="button ghost" href="#support">Почта</a><a class="button ghost" href="#report-center">Репорты</a></div></div></section>
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Очередь и решения</h2><p>Задачи, которым нужно ваше действие.</p></div><span class="badge warning">${pending.length}</span></div><div class="card-body">${taskRows(pending, 'Нет задач, ожидающих решения.')}</div></section><section class="card"><div class="card-header"><div><h2>Исполнители</h2><p>Реальный состав и текущая занятость.</p></div></div><div class="card-body">${agentRows}</div></section></div>
     <section class="card section"><div class="card-header"><div><h2>Активная очередь</h2><p>Согласованные задачи в работе и на проверке.</p></div></div><div class="card-body">${taskRows(active, 'Активных задач сейчас нет.')}</div></section>
@@ -998,11 +1384,21 @@ function renderCampaigns() {
   const activeCount = items.filter((item) => item.active !== false && Number(item.expiresAtMs || 0) > now).length;
   const reads = items.reduce((sum, item) => sum + Number(item.readCount || 0), 0);
   const reactions = items.reduce((sum, item) => sum + Number(item.likeCount || 0) + Number(item.dislikeCount || 0), 0);
+  const listStatus = campaignState.state === 'loading'
+    ? 'Загружаю сообщения…'
+    : campaignState.state === 'error'
+      ? 'Не удалось загрузить сообщения.'
+      : !items.length
+        ? 'Сообщений пока нет.'
+        : `Сообщений в списке: ${items.length}.`;
   const list = campaignState.state === 'loading' ? emptyState('Загрузка сообщений…') : campaignState.state === 'error' ? `<div class="notice danger">${escapeHtml(campaignState.error)}</div>` : !items.length ? emptyState('Сообщений пока нет. Создайте черновик и проверьте предпросмотр.') : `<div class="data-list">${items.map((item) => {
     const expired = Number(item.expiresAtMs || 0) > 0 && Number(item.expiresAtMs) <= now;
     const active = item.active !== false && !expired;
     const nextActive = item.active === false;
-    return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(item.kind === 'poll' ? 'Опрос' : 'Сообщение')} · ${escapeHtml(audienceLabel(item.audience || 'all'))} · приоритет ${Number(item.priority || 0)} · до ${escapeHtml(dateTime(item.expiresAtMs))}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${expired ? 'Истекло' : active ? 'Активно' : 'Черновик / выключено'}</span><button class="button small" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired ? ' disabled' : ''} title="Включить или выключить сообщение через серверную команду с причиной и журнал действий">${nextActive ? 'Включить' : 'Выключить'}</button></div></article>`;
+    const campaignStatus = expired ? 'Срок показа истёк' : active ? 'Активна' : 'Черновик / выключена';
+    const expiryStatus = expired ? `истёк ${dateTime(item.expiresAtMs)}` : `до ${dateTime(item.expiresAtMs)}`;
+    const killSwitchStatus = item.active === false ? 'Показ выключен' : expired ? 'Показ остановлен после окончания срока' : 'Показ включён';
+    return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(item.kind === 'poll' ? 'Опрос' : 'Сообщение')} · ${escapeHtml(audienceLabel(item.audience || 'all'))} · приоритет ${Number(item.priority || 0)}</small><small>Статус: ${campaignStatus} · Срок показа: ${expiryStatus} · Выключатель показа: ${killSwitchStatus}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${campaignStatus}</span><button class="button small" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired ? ' disabled' : ''} title="Включить или выключить сообщение через серверную команду с причиной и журнал действий" aria-label="${nextActive ? 'Включить показ' : 'Выключить показ'}: ${escapeHtml(item.titleRu || 'Без темы')}">${nextActive ? 'Включить' : 'Выключить'}</button></div></article>`;
   }).join('')}</div>`;
   const options = Array.from({ length: 6 }, (_, index) => `<div class="field"><label for="app-message-poll-option-${index + 1}">Вариант ${index + 1}</label><input id="app-message-poll-option-${index + 1}" maxlength="160" value="${escapeHtml(draft?.translations?.ru?.pollOptions?.[index] || '')}" placeholder="${index < 2 ? 'Обязательно для опроса' : 'Необязательно'}"${locked ? ' disabled' : ''}></div>`).join('');
   const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
@@ -1013,10 +1409,10 @@ function renderCampaigns() {
     <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное сообщение для входящих или опрос. Черновик никому не показывается; активное сообщение появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Рабочая кампания</span></div><div class="card-body">
       <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Черновик / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема на русском</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст на русском</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса на русском</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и условие остановки"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
       <details class="section"><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
-      ${campaignState.preview ? `<div class="notice warning section"><strong>Предпросмотр кампании</strong><br>${escapeHtml(campaignState.preview.summary)}<div class="code-preview section">${campaignState.preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
+      ${campaignState.preview ? `<div class="notice warning section"><strong>Предпросмотр не опубликован</strong><br>Пользователи ещё не видят это сообщение. ${escapeHtml(campaignState.preview.summary)}<div class="code-preview section">${campaignState.preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
       <div class="actions end section">${campaignState.preview ? '<button class="button" data-action="discard-app-message-preview" type="button" title="Отменить предпросмотр без записи в рабочее приложение">Изменить ещё</button>' : ''}<button class="button ${campaignState.preview ? '' : 'primary'}" data-action="preview-app-message" type="button"${locked ? ' disabled' : ''} title="Сначала показать точное сообщение, аудиторию и срок без записи в рабочее приложение">Предпросмотр</button>${campaignState.preview ? `<button class="button primary" data-action="publish-app-message" type="button"${locked ? ' disabled' : ''} title="Создать сообщение через серверную команду с указанной причиной, защитой от повторной отправки и записью в журнал">Опубликовать</button>` : ''}</div>
     </div></section>
-    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div>${list}</div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div><div class="hint section" role="status" aria-live="polite">${listStatus}</div>${list}</div></section>`;
 }
 
 function dateTime(value) {
@@ -1079,7 +1475,7 @@ function renderProfile() {
     <div class="profile-section-grid">
       <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
       <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
-      <section class="card profile-section"><div class="card-header"><div><h3>3. Рейтинг и Арена</h3><p>Отдельные серверные источники.</p></div></div>${renderSourceBlock('Leaderboard', competition.leaderboard)}${renderSourceBlock('Арена', competition.arena)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>3. Рейтинг</h3><p>Отдельный серверный источник.</p></div></div>${renderSourceBlock('Leaderboard', competition.leaderboard)}</section>
       <section class="card profile-section"><div class="card-header"><div><h3>4. Деньги и доступ</h3><p>Plus, осколки, покупки и рефералы.</p></div><span class="badge ${summary.premiumPlan ? 'success' : ''}">${escapeHtml(summary.premiumPlan || 'Free')}</span></div><div class="profile-metrics compact"><div><strong>${Number(summary.shards || 0)}</strong><small>осколков</small></div><div><strong>${Number(money.premiumEvents?.count || 0)}</strong><small>Plus-событий</small></div><div><strong>${Number(money.referrals?.count || 0)}</strong><small>приглашено</small></div></div>${renderSourceBlock('Платёжные события', money.premiumEvents)}${renderSourceBlock('Осколки', money.shardTransactions)}</section>
       <section class="card profile-section"><div class="card-header"><div><h3>5. Комьюнити</h3><p>Чат и пользовательские покупки.</p></div></div>${renderSourceBlock('Сообщения', community.chatMessages)}${renderSourceBlock('Покупки наборов', community.ugcBuys)}${renderSourceBlock('Продажи наборов', community.ugcSells)}</section>
       <section class="card profile-section"><div class="card-header"><div><h3>6. Модерация и репорты</h3><p>Жалобы от пользователя и на него не смешиваются.</p></div></div>${renderSourceBlock('Репорты приложения', moderation.errorReports)}${renderSourceBlock('Жалобы на пользователя', moderation.reportsAgainst)}${renderSourceBlock('Жалобы пользователя', moderation.reportsBy)}</section>
@@ -1186,11 +1582,11 @@ function renderFactoryCreate() {
         <div class="field full"><span class="fieldset-label">Что подготовить</span><div class="checkbox-grid">
           ${[
             ['lessons', 'Фразы урока'], ['vocabulary', 'Словарь'], ['drills', 'Упражнения и части речи'],
-            ['quizzes', 'Квизы'], ['cards', 'Карточки'], ['arena_questions', 'Вопросы Арены'],
+            ['cards', 'Карточки'],
           ].map(([value, label]) => `<label class="check"><input type="checkbox" name="factory-surface" value="${value}" checked><span>${label}</span></label>`).join('')}
         </div></div>
       </div>
-      <div class="notice section">Полный пакет публикуется только со всеми четырьмя рабочими поверхностями: урок, квиз, карточки и Арена. Словарь и упражнения входят в артефакт урока.</div>
+      <div class="notice section">Полный пакет публикуется только с рабочими поверхностями урока и карточек. Словарь и упражнения входят в артефакт урока.</div>
       <div class="actions end section"><button class="button" data-action="load-factory-jobs" type="button" title="Открыть существующие задания"${disabledWhenUnauthorized('content.read')}>Мои черновики</button><button class="button primary" data-action="create-factory-job" type="button" title="Создать черновик без публикации"${disabledWhenUnauthorized('content.draft.write')}>Создать черновик</button></div>
     </div></section>`;
 }
@@ -1223,7 +1619,7 @@ function renderFactoryGeneration() {
         <div class="section"><div class="actions" style="justify-content:space-between"><span class="hint">Готово ${completed} из ${total}</span><span class="badge ${badgeClass(job.state)}">${escapeHtml(statusLabel(job.state))}</span></div><div class="progress" aria-label="Прогресс ${percent}%"><span style="width:${percent}%"></span></div></div>
         ${state.generation ? `<div class="notice ${state.generation.failed ? 'warning' : ''} section" role="status">Обработано в этом запуске: ${state.generation.done}/${state.generation.total}. Ошибок: ${state.generation.failed}.${state.generation.errors?.length ? `<br>${state.generation.errors.map((message) => escapeHtml(message)).join('<br>')}` : ''}</div>` : ''}
         ${incomplete && !pending ? '<div class="notice warning section" role="alert">Есть ошибки, которые нельзя повторить без изменения входных данных. Откройте причину в карточке операции.</div>' : ''}
-        ${!incomplete && !releaseCandidate ? '<div class="notice success section">Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.</div>' : ''}
+        ${!incomplete && !releaseCandidate ? '<div class="notice success section">Черновик готов; для публикационной проверки нужны урок, квиз и карточки.</div>' : ''}
         <div class="actions end section"><button class="button" data-action="back-to-factory-jobs" type="button">Другой черновик</button>${pending ? `<button class="button primary" data-action="run-factory-generation" type="button" title="Сгенерировать или продолжить оставшиеся части"${disabledWhenUnauthorized('content.draft.write')}>${state.generation ? 'Продолжить генерацию' : 'Запустить генерацию'}</button>` : incomplete || !releaseCandidate ? '' : `<button class="button primary" data-factory-step="3" type="button">Перейти к проверке</button>`}</div>
         <div class="unit-grid section">${units.map((unit) => `<article class="unit-card"><div class="actions" style="justify-content:space-between"><strong>Урок ${Number(unit.lessonId)} · ${escapeHtml(SURFACE_LABELS[unit.surface] ?? unit.surface)}</strong><span class="badge ${badgeClass(unit.state)}">${escapeHtml(statusLabel(unit.state))}</span></div>${unit.errorCode ? `<div class="notice danger" role="alert"><strong>${escapeHtml(unit.errorCode)}</strong><br>${escapeHtml(unit.errorMessage || 'Причина не указана.')}<br><small>${unit.retryable ? 'Можно безопасно повторить.' : 'Повтор без изменения входных данных заблокирован.'} · попыток: ${Array.isArray(unit.attemptHistory) ? unit.attemptHistory.length : Number(unit.attempts || 0)}</small></div>` : ''}<div class="actions"><button class="button small" data-preview-unit="${escapeHtml(unit.id ?? unit.unitId)}" type="button" title="Проверить неизменяемый файл и открыть содержимое"${unit.state === 'succeeded' && can('content.read') ? '' : ' disabled'}>Предпросмотр</button>${unit.state !== 'succeeded' && unit.retryable === true ? `<button class="button small" data-retry-factory-unit="${escapeHtml(unit.id ?? unit.unitId)}" type="button" title="Повторить только эту временно неудачную операцию"${disabledWhenUnauthorized('content.draft.write')}>Повторить</button>` : ''}</div></article>`).join('')}</div>
       `}
@@ -1243,7 +1639,7 @@ function renderFactoryReview() {
   return `<section class="card factory-panel"><div class="card-header"><div><h2>Проверка качества и источников</h2><p>Решение доступно только после фактического предпросмотра. Сервер повторно проверит все юниты, хеш шаблона и реестр источников.</p></div><span class="badge">Этап 3 из 4</span></div>
     <div class="card-body">
       ${!detail ? `<div class="notice warning">Сначала выберите черновик на втором этапе.</div><div class="actions end section"><button class="button primary" data-factory-step="2" type="button">Выбрать черновик</button></div>` : `
-        ${!releaseCandidate ? '<div class="notice warning">Черновик готов; для публикационной проверки нужны урок, квиз, карточки и Арена.</div>' : ''}
+        ${!releaseCandidate ? '<div class="notice warning">Черновик готов; для публикационной проверки нужны урок, квиз и карточки.</div>' : ''}
         <div class="actions" style="justify-content:space-between"><div><strong>${escapeHtml(detail.job.studyTarget)} · ${escapeHtml(detail.jobId)}</strong><div class="hint">Готовых частей: ${detail.units.filter((unit) => unit.state === 'succeeded').length}/${detail.units.length}</div></div>${review ? `<span class="badge ${badgeClass(review.status)}">${escapeHtml(statusLabel(review.status))}</span>` : '<span class="badge">Решения ещё нет</span>'}</div>
         <div class="section">${renderPreview()}</div>
         <div class="field full section"><label for="factory-review-reason">Комментарий проверяющего</label><textarea id="factory-review-reason" maxlength="500" placeholder="Что проверено: язык, соответствие источникам, структура, варианты ответов…">${escapeHtml(review?.reason ?? '')}</textarea></div>
@@ -1292,22 +1688,41 @@ function renderFactoryPublish() {
     </div></section>`;
 }
 
-function renderContent() {
-  const panel = state.factoryStep === 1 ? renderFactoryCreate() : state.factoryStep === 2 ? renderFactoryGeneration() : state.factoryStep === 3 ? renderFactoryReview() : renderFactoryPublish();
-  return `${pageHeader(PAGES.content, 'Фабрика языков', '<button class="button" data-action="open-arena-question-pool" type="button" title="Открыть Content → Arena → Pool для опубликованных вопросов Арены">Пул Арены</button><a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
-    ${renderContentGeneratorShell({ ...state.contentStages, stages: state.contentStages.items, canWrite: can('content.draft.write'), canPublish: can('content.publish') })}
-    <details class="section"><summary>Совместимый генератор полного языкового пакета</summary>
-    <div class="factory-layout">${renderFactorySteps()}${panel}</div></details>`;
+function v2ContentStages() {
+  const capabilities = state.contentStages.capabilities;
+  const allowedCapabilities = Object.fromEntries(Object.entries(capabilities?.capabilities || {})
+    .filter(([kind]) => isSupportedContentKind(kind)));
+  return {
+    ...state.contentStages,
+    selectedGenerator: ['lessons', 'challenges', 'flashcards'].includes(state.contentStages.selectedGenerator) ? state.contentStages.selectedGenerator : 'lessons',
+    kind: isSupportedContentKind(state.contentStages.kind) ? state.contentStages.kind : 'lesson_outline',
+    selectedKinds: (state.contentStages.selectedKinds || []).filter((kind) => isSupportedContentKind(kind)),
+    capabilities: capabilities ? { ...capabilities, capabilities: allowedCapabilities } : capabilities,
+  };
 }
 
-function renderArenaQuestionPoolPage() {
-  return `${pageHeader(PAGES['arena-question-pool'], 'Content → Arena → Pool', '<button class="button" data-action="open-content-arena-generator" type="button" title="Вернуться к созданию и проверке пачек Арены">К Арена</button>')}${renderArenaQuestionPool({ model: state.arenaQuestionPool, approvedStages: state.contentStages.items, escapeHtml, canPublish: can('content.publish') })}`;
+const SUPPORTED_CONTENT_STAGE_KINDS = new Set([
+  'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
+  'challenge_topic', 'challenge_questions', 'challenge_question_replacement',
+  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
+]);
+
+function isSupportedContentKind(kind) {
+  return SUPPORTED_CONTENT_STAGE_KINDS.has(String(kind || ''));
+}
+
+function renderContent() {
+  const panel = state.factoryStep === 1 ? renderFactoryCreate() : state.factoryStep === 2 ? renderFactoryGeneration() : state.factoryStep === 3 ? renderFactoryReview() : renderFactoryPublish();
+  return `${pageHeader(PAGES.content, 'Фабрика языков', '<a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
+    ${renderContentGeneratorShell({ ...v2ContentStages(), stages: state.contentStages.items.filter((stage) => isSupportedContentKind(stage.kind)), canWrite: can('content.draft.write'), canPublish: can('content.publish') })}
+    <details class="section"><summary>Совместимый генератор полного языкового пакета</summary>
+    <div class="factory-layout">${renderFactorySteps()}${panel}</div></details>`;
 }
 
 function renderCommunity() {
   return `${pageHeader(PAGES.community, 'Комьюнити', '<a class="button primary" href="../../admin/index.html#reports" title="Открыть рабочую очередь жалоб">Открыть очередь</a>')}
     <div class="notice">Пустая очередь не считается подтверждённым хорошим состоянием, пока источник не загружен.</div>
-    <section class="metrics section">${['Жалобы без ответа', 'Контент на модерации', 'Инциденты Арены', 'Сообщения чата'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>`;
+    <section class="metrics section">${['Жалобы без ответа', 'Сообщения чата'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>`;
 }
 
 const SOURCE_LABELS = Object.freeze({
@@ -1503,28 +1918,34 @@ function renderDiagnostics() {
     ${view.state === 'stale' ? '<div class="notice warning"><strong>Диагностика устарела.</strong> Снимок старше 36 часов.</div>' : ''}
     <section class="metrics section">${metrics.join('')}</section>
     <section class="card section"><div class="card-header"><div><h2>Состояние источников</h2><p>Для каждого источника отдельно показаны полнота, время проверки и последнее событие.</p></div><span class="badge ${badgeClass(view.state)}">${escapeHtml(view.stateLabel)}</span></div><div class="card-body">${renderDiagnosticsSourceHealth(view)}</div></section>
-    ${renderAuditLogPanel()}
-    ${renderOpsLogPanel()}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section></div>`;
 }
 
 function renderSupport() {
+  const supportPage = { ...PAGES.support, title: 'Входящие / Поддержка' };
   const items = state.support.items;
   const pending = state.support.pendingReply;
   const pendingIsBatch = Boolean(pending?.batchId);
   const filter = state.support.filter || 'new';
   const filtered = items.filter((item) => filter === 'all' || String(item.status || 'new') === filter).slice(0, 50);
+  const listStatus = state.support.loaded ? `Писем в списке: ${filtered.length}.` : 'Загружаю входящие…';
+  const emptyMessage = ({
+    new: 'Новых писем нет.',
+    answered: 'Отвеченных писем нет.',
+    archived: 'В архиве писем нет.',
+    all: 'Во входящих писем нет.',
+  })[filter] || 'Во входящих писем нет.';
   const count = (status) => items.filter((item) => String(item.status || 'new') === status).length;
   const humanCount = items.filter((item) => item.mailCategory === 'human' || item.mailCategory === 'user').length;
   const readyDrafts = items.filter((item) => String(item.status || 'new') === 'new' && String(item.draftReply || '').trim()).length;
   const statusName = (status) => ({ new: 'Новое', answered: 'Отвечено', archived: 'Архив' })[status] ?? status;
   const headerAction = `<div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized()}>Обновить</button><button class="button primary" data-action="pull-support" type="button"${disabledWhenUnauthorized()}>Проверить Gmail</button></div>`;
-  return `${pageHeader(PAGES.support, 'Пользователи / Почта', headerAction)}
+  return `${pageHeader(supportPage, 'Пользователи / Поддержка', headerAction)}
     <div class="notice">Письма людей не удаляются и не скрываются системным фильтром. Категория показывается отдельно, а в список возвращаются все статусы.</div>
     <section class="metrics section"><article class="card metric"><label>Всего загружено</label><strong>${state.support.loaded ? items.length : '—'}</strong><span class="badge">до 500</span></article><article class="card metric"><label>Новые</label><strong>${state.support.loaded ? count('new') : '—'}</strong><span class="badge warning">нужен ответ</span></article><article class="card metric"><label>Письма людей</label><strong>${state.support.loaded ? humanCount : '—'}</strong><span class="badge">не скрываются</span></article><article class="card metric"><label>Отвечено</label><strong>${state.support.loaded ? count('answered') : '—'}</strong><span class="badge success">готово</span></article></section>
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Черновики можно редактировать перед отправкой.</p></div><div class="actions"><button class="button small" data-support-filter="new" type="button">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button">Все</button></div></div>
-      <div class="card-body"><div class="actions"><button class="button" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && !state.busy && !pending ? '' : ' disabled'} title="Сгенерировать черновики для новых писем без ответа">Сгенерировать черновики</button><button class="button" data-action="prepare-support-reply-batch" type="button"${state.authorized && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Сначала будет создан точный запечатанный список до 200 писем">Подготовить пакет (${readyDrafts})</button><span class="hint">Показано: ${filtered.length} из ${items.length}</span></div>
-      ${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState('В этом фильтре писем нет.') : `<div class="support-list section">${filtered.map((item) => {
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Черновики можно редактировать перед отправкой.</p></div><div class="actions"><button class="button small" data-support-filter="new" type="button" aria-pressed="${filter === 'new' ? 'true' : 'false'}">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button" aria-pressed="${filter === 'answered' ? 'true' : 'false'}">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button" aria-pressed="${filter === 'archived' ? 'true' : 'false'}">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button" aria-pressed="${filter === 'all' ? 'true' : 'false'}">Все</button></div></div>
+      <div class="card-body"><div class="actions"><button class="button" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && !state.busy && !pending ? '' : ' disabled'} title="Сгенерировать черновики для новых писем без ответа">Сгенерировать черновики</button><button class="button" data-action="prepare-support-reply-batch" type="button"${state.authorized && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Сначала будет создан точный запечатанный список до 200 писем">Подготовить пакет (${readyDrafts})</button><span class="hint">Показано: ${filtered.length} из ${items.length}</span></div><div class="hint" role="status" aria-live="polite">${listStatus}</div>
+      ${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState(emptyMessage) : `<div class="support-list section">${filtered.map((item) => {
         const messageId = escapeHtml(item.id);
         const status = String(item.status || 'new');
         const when = item.receivedAtMs ? new Date(Number(item.receivedAtMs)).toLocaleString('ru-RU') : String(item.receivedAtIso || item.receivedAt || '');
@@ -1782,6 +2203,9 @@ function maybeLoadOverviewAnalyticsTrends() {
 }
 
 function renderAnalytics() {
+  const aliases = { today: 'overview', growth: 'product', money: 'subscriptions', learning: 'exports' };
+  const requested = aliases[String(globalThis.location?.hash || '').replace(/^#/, '').trim().toLowerCase()];
+  if (requested && state.activeAnalyticsReport !== requested) state.activeAnalyticsReport = requested;
   const trendModel = paywallAnalyticsModel();
   const summary = renderAdminAnalytics({
     ...state.analytics,
@@ -1816,9 +2240,9 @@ function syncAnalyticsReportVisibility(root = document) {
 }
 
 function selectAnalyticsReport(reportId) {
-  const next = ['overview', 'product', 'subscriptions', 'exports'].includes(String(reportId))
-    ? String(reportId)
-    : 'overview';
+  const aliases = { today: 'overview', growth: 'product', money: 'subscriptions', learning: 'exports' };
+  const requested = aliases[String(reportId)] || String(reportId);
+  const next = ['overview', 'product', 'subscriptions', 'exports'].includes(requested) ? requested : 'overview';
   if (state.activeAnalyticsReport === next) return;
   state.activeAnalyticsReport = next;
   renderCurrentPage();
@@ -1836,11 +2260,11 @@ function renderAssetStudio() {
     <div class="columns section">
       <section class="card"><div class="card-header"><div><h2>Новое задание на изображение</h2><p>Сформируйте черновик генерации: тип, место использования, путь сохранения и описание.</p></div></div><div class="card-body">
         <div class="fields">
-          <div class="field"><label for="asset-kind">Тип изображения</label><select id="asset-kind"><option value="generic">Обычное изображение</option><option value="onboarding_icon">Значок первого запуска</option><option value="quiz_level_card">Карточка уровня квиза</option><option value="background">Фон</option></select></div>
+          <div class="field"><label for="asset-kind">Тип изображения</label><select id="asset-kind"><option value="generic">Обычное изображение</option><option value="onboarding_icon">Значок первого запуска</option><option value="background">Фон</option></select></div>
           <div class="field"><label for="asset-count">Количество вариантов</label><input id="asset-count" type="number" min="1" max="4" value="1"></div>
           <div class="field"><label for="asset-title">Название</label><input id="asset-title" maxlength="120" placeholder="Например: Карточка «Кино», лёгкий уровень"></div>
-          <div class="field"><label for="asset-slot">Ключ места использования</label><input id="asset-slot" maxlength="120" placeholder="quiz-card-easy-cinema"></div>
-          <div class="field full"><label for="asset-target">Путь сохранения</label><input id="asset-target" maxlength="240" placeholder="assets/images/quizzes/level_cards/quiz-card-easy-cinema.webp"></div>
+          <div class="field"><label for="asset-slot">Ключ места использования</label><input id="asset-slot" maxlength="120" placeholder="lesson-card-a1"></div>
+          <div class="field full"><label for="asset-target">Путь сохранения</label><input id="asset-target" maxlength="240" placeholder="assets/images/lessons/lesson-card-a1.webp"></div>
           <div class="field"><label for="asset-quality">Качество</label><select id="asset-quality"><option value="low">Низкое — быстрый черновик</option><option value="medium">Среднее — рабочий вариант</option><option value="high">Высокое — финальный вариант</option></select></div>
           <div class="field"><label for="asset-size">Размер</label><select id="asset-size"><option value="1024x1024">1024×1024</option></select></div>
           <div class="field full"><label for="asset-prompt">Описание изображения</label><textarea id="asset-prompt" maxlength="4000" placeholder="Опишите изображение, укажите отсутствие надписей, качество для приложения и прозрачный фон, если он нужен."></textarea></div>
@@ -1995,7 +2419,7 @@ function contextFieldLabel(value) {
 }
 
 function assetKindLabel(value) {
-  return ({ generic: 'Обычное изображение', onboarding_icon: 'Значок первого запуска', quiz_level_card: 'Карточка уровня квиза', background: 'Фон' })[String(value)] || 'Другой тип изображения';
+  return ({ generic: 'Обычное изображение', onboarding_icon: 'Значок первого запуска', background: 'Фон' })[String(value)] || 'Другой тип изображения';
 }
 
 function platformLabel(value) {
@@ -2093,16 +2517,17 @@ function renderCurrentPage() {
   const capturedRenderGeneration = renderGeneration;
   const target = document.getElementById('app');
   if (!target) return;
+  if (target.dataset) target.dataset.route = state.route;
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, 'arena-question-pool': renderArenaQuestionPoolPage, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
   const capability = capabilityById(state.selectedCapabilityId);
   if (capability && capability.route === state.route && !capability.nativeRoute) {
     target.innerHTML = renderCapabilityWorkspace(capability);
   } else {
     const page = (renderers[state.route] ?? renderOverview)();
-    target.innerHTML = `${page}${ADMIN_SECTIONS.some((section) => section.route === state.route) ? renderCapabilityHub(state.route) : ''}`;
+    target.innerHTML = page;
   }
   if (state.route === 'analytics') {
     restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces);
@@ -2211,12 +2636,15 @@ async function loadJobDetail(jobId) {
 function maybeLoadOperationalBriefing() {
   if (!actions || !can('briefing.read')) return;
   if (!['overview', 'diagnostics'].includes(state.route)) return;
-  if (state.briefing.state !== 'idle') return;
-  void loadDailyBriefing(false)
+  if (!['idle', 'stale'].includes(state.briefing.state) || overviewBriefingRefreshInFlight) return;
+  const quiet = state.briefing.state === 'stale' && Boolean(state.briefing.digest);
+  overviewBriefingRefreshInFlight = true;
+  void loadDailyBriefing(false, { quiet })
     .then((result) => {
-      if (result !== STALE_AUTH_RESULT) renderCurrentPage();
+      if (result !== STALE_AUTH_RESULT && result !== QUIET_CACHE_RESULT) renderCurrentPage();
     })
-    .catch(() => renderCurrentPage());
+    .catch(() => renderCurrentPage())
+    .finally(() => { overviewBriefingRefreshInFlight = false; });
 }
 
 function applySupportListResult(result) {
@@ -2392,7 +2820,7 @@ function buildPremiumAccessPreview() {
   const details = [
     `Free lessons: ${lessonAccess.free.join(', ') || 'нет'}.`,
     `Plus lessons: ${lessonAccess.plus.join(', ') || 'нет'}.`,
-    `Limits: уроки ${numbers.free_lesson_limit}; квизы ${numbers.free_daily_quiz_limit}/день; тренажёр ${numbers.free_trainer_sessions_per_day}/день; арена ${numbers.arena_daily_max}/день; энергия ${numbers.max_energy}.`,
+    `Limits: уроки ${numbers.free_lesson_limit}; тренажёр ${numbers.free_trainer_sessions_per_day}/день; энергия ${numbers.max_energy}.`,
     `Free feature gates: ${PREMIUM_ACCESS_FEATURES.filter((feature) => bools[feature.key] === false).map((feature) => feature.label).join(', ') || 'нет'}.`,
     'Условие остановки: восстановить значения из истории Remote Config или собрать новый preview с прежними лимитами.',
   ];
@@ -2787,33 +3215,6 @@ async function loadContentFactoryReadiness() {
   }
 }
 
-async function loadArenaConvergence() {
-  state.contentStages = { ...state.contentStages, arenaConvergence: { ...state.contentStages.arenaConvergence, state: 'loading', error: '' } };
-  renderCurrentPage();
-  try {
-    const result = await actions.getArenaConvergenceStatus({ limit: 500 });
-    state.contentStages = { ...state.contentStages, arenaConvergence: { state: 'ready', arena: result?.arena ?? null, metrics: result?.metrics ?? null, timing: result?.timing ?? null, groups: Array.isArray(result?.groups) ? result.groups : [], isPartial: result?.isPartial === true, historyIsPartial: result?.historyIsPartial === true, nextCursor: result?.nextCursor ?? null, error: '' } };
-  } catch (error) {
-    state.contentStages = { ...state.contentStages, arenaConvergence: { ...state.contentStages.arenaConvergence, state: 'error', error: errorMessage(error) } };
-  }
-}
-
-async function updateArenaConvergence(mode) {
-  const current = state.contentStages.arenaConvergence?.arena;
-  if (!current) await loadArenaConvergence();
-  const arena = state.contentStages.arenaConvergence?.arena;
-  if (!arena) throw new Error('Сначала загрузите текущий режим Arena.');
-  const requiredLocalePairs = Array.isArray(arena.requiredLocalePairs) ? [...arena.requiredLocalePairs] : [];
-  if (mode === 'shadow') {
-    const studyTarget = String(document.getElementById('content-stage-target')?.value ?? state.contentStages.studyTarget ?? '').trim();
-    const sourceLocale = String(document.getElementById('content-stage-source')?.value ?? state.contentStages.sourceLocale ?? '').trim();
-    if (!/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(studyTarget) || !/^[a-z]{2,12}(?:-[A-Z]{2})?$/.test(sourceLocale)) throw new Error('Укажите изучаемый язык и язык объяснений перед включением Arena shadow.');
-    requiredLocalePairs.push(`${studyTarget}:${sourceLocale}`);
-  }
-  await actions.updateArenaConvergenceConfig({ mode, expectedRevision: Number(arena.revision), requiredLocalePairs: [...new Set(requiredLocalePairs)].sort(), disabledReason: mode === 'legacy' ? 'operator_kill_switch' : '', requestId: id('arena-convergence') });
-  await loadArenaConvergence();
-}
-
 async function retryFactoryUnit(unitId) {
   const unit = (state.detail?.units ?? []).find((item) => String(item.id ?? item.unitId) === String(unitId));
   if (!unit) throw new Error('Операция генерации не найдена.');
@@ -2836,10 +3237,14 @@ async function loadAdminUserProfile(uid) {
   }
 }
 
-async function loadDailyBriefing(generate = false) {
+async function loadDailyBriefing(generate = false, { quiet = false } = {}) {
   const authGeneration = state.authGeneration;
-  state.briefing = { ...state.briefing, state: 'loading', error: '' };
-  renderCurrentPage();
+  const quietRefresh = quiet && Boolean(state.briefing.digest);
+  if (!quietRefresh) {
+    const loading = overviewCacheScope ? overviewCache.markLoading(overviewCacheScope) : null;
+    state.briefing = loading ? { ...loading.value, state: 'loading', error: '' } : { ...state.briefing, state: 'loading', error: '' };
+    renderCurrentPage();
+  }
   try {
     let generationResult = null;
     if (generate) {
@@ -2848,18 +3253,26 @@ async function loadDailyBriefing(generate = false) {
     }
     const result = await actions.getDailyBriefing();
     if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
-    state.briefing = {
+    const nextBriefing = {
       state: String(result?.state || (result?.digest ? 'ready' : 'empty')),
       digest: result?.digest || null,
       fetchedAtMs: Number(result?.fetchedAtMs || Date.now()),
       error: '',
       generationOutcome: generate ? (generationResult?.preservedExisting ? 'preserved' : 'generated') : '',
     };
+    const cached = overviewCacheScope ? overviewCache.write(overviewCacheScope, nextBriefing) : null;
+    if (cached?.changed === false) {
+      state.briefing = { ...cached.value, state: 'ready', error: '' };
+      if (quietRefresh) return QUIET_CACHE_RESULT;
+      return generationResult || result;
+    }
+    state.briefing = nextBriefing;
     return generationResult || result;
   } catch (error) {
     if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
     if (authStillValid(authGeneration, 'briefing.read')) {
-      state.briefing = { ...state.briefing, state: 'error', error: errorMessage(error) };
+      const cached = overviewCacheScope ? overviewCache.markError(overviewCacheScope, errorMessage(error)) : null;
+      state.briefing = cached ? { ...cached.value, state: 'error', error: cached.error } : { ...state.briefing, state: 'error', error: errorMessage(error) };
     }
     throw error;
   }
@@ -2890,6 +3303,7 @@ async function loadReportQueue(append = false) {
       nextCursor: String(result?.nextCursor || ''),
       error: '',
     };
+    renderCurrentPage();
   } catch (error) {
     if (!authStillValid(authGeneration, 'reports.read') || requestId !== reportRequestId) return STALE_AUTH_RESULT;
     if (authStillValid(authGeneration, 'reports.read')) {
@@ -2902,9 +3316,9 @@ async function loadReportQueue(append = false) {
 function scheduleAdminAutoRefresh() {
   globalThis.clearTimeout(adminAutoRefreshTimer);
   const seconds = Number(state.adminSettings.autoRefreshSeconds || 0);
-  if (!seconds || state.busy || state.route !== 'report-center' || !state.authorized || !can('reports.read')) return;
+  if (!seconds || state.busy || state.reports.state === 'loading' || state.route !== 'report-center' || !state.authorized || !can('reports.read')) return;
   adminAutoRefreshTimer = globalThis.setTimeout(() => {
-    if (state.busy || state.route !== 'report-center' || !can('reports.read')) return;
+    if (state.busy || state.reports.state === 'loading' || state.route !== 'report-center' || !can('reports.read')) return;
     void loadReportQueue(false).catch((error) => {
       setMessage(`Автообновление репортов не удалось: ${errorMessage(error)}`, 'warning');
       renderCurrentPage();
@@ -2996,6 +3410,15 @@ function resetEphemeralSectionFilters(nextRoute = state.route) {
 function handleAdminSettingsChange(event) {
   const target = event.target;
   if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+  const widgetId = String(target.dataset.dashboardWidgetId || '');
+  if (widgetId) {
+    const visibleIds = new Set(visibleDashboardWidgetIds());
+    if (target.checked) visibleIds.add(widgetId);
+    else visibleIds.delete(widgetId);
+    dashboardWidgetsDraft = sanitizeDashboardWidgetVisibility([...visibleIds], dashboardWidgetOptions());
+    renderCurrentPage();
+    return;
+  }
   const key = String(target.dataset.adminSetting || '');
   if (!key) return;
   state.adminSettings = normalizeAdminUiSettings({ ...state.adminSettings, [key]: parseAdminSettingValue(target) });
@@ -3090,6 +3513,7 @@ async function loadAgentManager() {
       state: 'ready', tasks: Array.isArray(tasksResult?.items) ? tasksResult.items : [],
       agents: Array.isArray(agentsResult?.items) ? agentsResult.items : [],
       runbooks: Array.isArray(runbooksResult?.items) ? runbooksResult.items : [],
+      pairing: state.agentManager.pairing,
       error: '', fetchedAtMs: Date.now(),
     };
     return state.agentManager;
@@ -3112,6 +3536,43 @@ async function createAgentManagerTask() {
     await actions.createAgentManagerTask({ taskId: id('manager-task'), title, brief, priority, deadlineAtMs: null, allowedScope, sourceLinks: [] });
     await loadAgentManager();
   }, 'Задача передана менеджеру и записана в журнал. Она ещё не запущена.');
+}
+
+function agentManagerPairingPacket(pairing) {
+  return Object.freeze({
+    pairingId: pairing.pairingId,
+    pairingCode: pairing.code,
+    expiresAtMs: pairing.expiresAtMs,
+    exchangeUrl: 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/agentManagerLocalRunnerExchangePairing',
+    claimUrl: 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/agentManagerLocalRunnerClaim',
+    submitUrl: 'https://us-central1-phraseman-ea0b3.cloudfunctions.net/agentManagerLocalRunnerSubmit',
+  });
+}
+
+async function deliverAgentManagerPairingToLocalBridge(pairing) {
+  const response = await fetch(AGENT_MANAGER_PAIRING_BRIDGE_URL, {
+    method: 'POST',
+    credentials: 'omit',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify(agentManagerPairingPacket(pairing)),
+  });
+  if (!response.ok) throw new Error('Локальный Codex пока не готов принять подключение.');
+}
+
+async function createAgentManagerLocalRunnerPairing() {
+  return runBusy(async () => {
+    const pairing = await actions.createAgentManagerLocalRunnerPairing();
+    if (!pairing?.pairingId || !pairing?.code || !Number.isFinite(Number(pairing?.expiresAtMs))) throw new Error('Сервер не вернул код подключения.');
+    state.agentManager = { ...state.agentManager, pairing: { expiresAtMs: Number(pairing.expiresAtMs) } };
+    renderCurrentPage();
+    try {
+      await deliverAgentManagerPairingToLocalBridge(pairing);
+    } catch {
+      if (globalThis.navigator?.clipboard?.writeText) {
+        await globalThis.navigator.clipboard.writeText(JSON.stringify(agentManagerPairingPacket(pairing))).catch(() => {});
+      }
+    }
+  }, 'Код подключения создан. Этот ПК будет подключён к очереди без доступа к секретам приложения.');
 }
 
 async function transitionAgentManagerTask(target) {
@@ -3358,21 +3819,7 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
-  if (action === 'open-arena-question-pool') { globalThis.location.hash = 'arena-question-pool'; return; }
-  if (action === 'open-content-arena-generator') {
-    state.contentStages = { ...state.contentStages, selectedGenerator: 'arena', kind: 'arena_questions', count: 10 };
-    globalThis.location.hash = 'content';
-    return;
-  }
-  if (action === 'load-arena-question-pool' || action === 'apply-arena-question-pool-filters') {
-    let filters;
-    try { filters = readArenaQuestionPoolFilters(document); } catch (error) { return setMessage(errorMessage(error), 'warning'); }
-    return runBusy(async () => {
-      state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'loading', error: '', filters };
-      renderCurrentPage();
-      state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters });
-    }, 'Пул вопросов Арены обновлён.');
-  }
+  if (['load-audit-log', 'load-audit-next', 'load-ops-log', 'copy-ops-snapshot'].includes(action)) return;
   if (action === 'select-analytics-report') {
     selectAnalyticsReport(target.getAttribute('data-analytics-report') || document.getElementById('analytics-report-select')?.value || 'overview');
     return;
@@ -3472,6 +3919,14 @@ async function handleAction(action, target) {
   });
   if (action === 'save-admin-settings') {
     state.adminSettings = saveAdminUiSettings(state.adminSettings);
+    savedAdminUiSettings = state.adminSettings;
+    dashboardWidgetsDraft = writeDashboardWidgetPreferences({
+      storage: dashboardWidgetStorage(),
+      scope: dashboardWidgetsScope,
+      visibleIds: dashboardWidgetsDraft,
+      ...dashboardWidgetOptions(),
+    });
+    savedDashboardWidgetIds = dashboardWidgetsDraft;
     applyAdminUiSettings(state.adminSettings);
     state.reports = { ...state.reports, source: state.reports.source || state.adminSettings.defaultSource, lane: state.reports.lane || state.adminSettings.defaultLane, sinceDays: Number(state.reports.sinceDays || state.adminSettings.defaultSinceDays) };
     setMessage('Настройки админки сохранены в этом браузере.', 'success');
@@ -3481,7 +3936,14 @@ async function handleAction(action, target) {
   if (action === 'reset-admin-settings') {
     if (!globalThis.confirm('Сбросить личные настройки Admin v2 к стандартному виду?')) return;
     try { globalThis.localStorage?.removeItem(ADMIN_V2_SETTINGS_STORAGE_KEY); } catch {}
+    dashboardWidgetsDraft = resetDashboardWidgetPreferences({
+      storage: dashboardWidgetStorage(),
+      scope: dashboardWidgetsScope,
+      ...dashboardWidgetOptions(),
+    });
+    savedDashboardWidgetIds = dashboardWidgetsDraft;
     state.adminSettings = normalizeAdminUiSettings({});
+    savedAdminUiSettings = state.adminSettings;
     state.reports = defaultReportState(state.adminSettings);
     applyAdminUiSettings(state.adminSettings);
     setMessage('Настройки админки сброшены.', 'success');
@@ -3500,6 +3962,7 @@ async function handleAction(action, target) {
   if (action === 'load-agent-manager') return runBusy(() => loadAgentManager(), 'Менеджер агентов и очередь загружены через серверную проекцию.');
   if (action === 'initialize-agent-manager-roster') return runBusy(async () => { await actions.initializeAgentManagerRoster(); await loadAgentManager(); }, 'Реестр агентов создан. Выполнение задач требует отдельного согласования.');
   if (action === 'create-agent-manager-task') return createAgentManagerTask();
+  if (action === 'create-agent-manager-local-runner-pairing') return createAgentManagerLocalRunnerPairing();
   if (action === 'transition-agent-manager-task') return transitionAgentManagerTask(target);
   if (action === 'open-agent-office-case') {
     const caseId = String(target.getAttribute('data-agent-office-case-id') || '');
@@ -3697,9 +4160,6 @@ async function handleAction(action, target) {
   if (action === 'load-content-stages') return runBusy(() => loadContentStages(), 'Очередь независимых стадий обновлена.');
   if (action === 'load-more-content-stages') return runBusy(() => loadContentStages(state.contentStages.requestId, true), 'Следующая страница стадий загружена.');
   if (action === 'load-content-readiness') return runBusy(loadContentFactoryReadiness, 'Метрики готовности обновлены. Deployment не выполнялся.');
-  if (action === 'load-arena-convergence') return runBusy(loadArenaConvergence, 'Режим и shadow-доказательства Arena обновлены.');
-  if (action === 'enable-arena-shadow') return runBusy(() => updateArenaConvergence('shadow'), 'Arena shadow включён. Генератор остался legacy.');
-  if (action === 'stop-arena-convergence') return runBusy(() => updateArenaConvergence('legacy'), 'Новые задания Arena немедленно возвращены в legacy.');
   if (action === 'load-content-dependencies' || action === 'load-more-content-dependencies') {
     const studyTarget = String(document.getElementById('content-studio-target')?.value || '').trim();
     const sourceLocale = String(document.getElementById('content-studio-source')?.value || '').trim();
@@ -3723,7 +4183,7 @@ async function handleAction(action, target) {
     const kinds = [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value));
     const studyTarget = String(document.getElementById('content-studio-target')?.value || '').trim(); const sourceLocale = String(document.getElementById('content-studio-source')?.value || '').trim(); const cefr = String(document.getElementById('content-studio-cefr')?.value || '').trim(); const objective = String(document.getElementById('content-studio-objective')?.value || '').trim();
     const start = Number(document.getElementById('content-range-start')?.value || 0); const end = Number(document.getElementById('content-range-end')?.value || 0);
-    if (!kinds.length || !objective || !Number.isInteger(start) || !Number.isInteger(end) || start < 1 || end < start || end > 32) return setMessage('Проверьте разделы, учебную цель и диапазон 1–32.', 'warning');
+    if (!kinds.length || kinds.some(isRetiredContentKind) || !objective || !Number.isInteger(start) || !Number.isInteger(end) || start < 1 || end < start || end > 32) return setMessage('Проверьте разделы, учебную цель и диапазон 1–32.', 'warning');
     const requestId = state.contentStages.requestId || id('content-stages');
     return runBusy(async () => {
       const result = await actions.createContentStageBulkPlan({ requestId, idempotencyKey: id('content-bulk'), studyTarget, sourceLocale, cefr, objective, kinds, lessonRange: { start, end }, dependencyPolicy: 'approved_only' });
@@ -3748,6 +4208,7 @@ async function handleAction(action, target) {
   if (action === 'create-content-stage') {
     let input;
     try { input = readContentStageForm(); } catch (error) { setMessage(errorMessage(error), 'warning'); return; }
+    if (isRetiredContentKind(input.kind)) return setMessage('Этот тип контента недоступен в Admin V2.', 'warning');
     return runBusy(async () => {
       state.contentStages = { ...state.contentStages, requestId: input.requestId, kind: input.kind, studyTarget: input.studyTarget, sourceLocale: input.sourceLocale, cefr: input.cefr, objective: input.objective, scopeId: input.scopeId, count: input.count, prerequisiteStageIds: input.prerequisiteStageIds.join(', ') };
       await actions.createContentStage(input);
@@ -4016,29 +4477,27 @@ async function handleClick(event) {
   adminInteractionSeen = true;
   const target = event.target instanceof Element ? event.target.closest('button, a') : null;
   if (!target) return;
+  if (target.id === 'global-search-launcher') { openGlobalSearch(); return; }
+  const favoriteId = target.getAttribute('data-global-search-favorite-id');
+  if (favoriteId) {
+    favoritesStore.toggle(favoriteId);
+    renderGlobalSearchFavorites();
+    renderGlobalSearchResults(document.getElementById('global-search-input')?.value || '');
+    return;
+  }
+  const searchRoute = target.getAttribute('data-global-search-route');
+  if (searchRoute) {
+    document.getElementById('global-search-dialog')?.close();
+    globalThis.location.hash = searchRoute;
+    return;
+  }
   const route = target.getAttribute('data-route');
   if (route) {
     event.preventDefault();
     globalThis.location.hash = route;
-    document.body.classList.remove('nav-open');
+    closeMobileNav();
     return;
   }
-  const arenaPublishStageId = target.getAttribute('data-arena-pool-publish-stage');
-  if (arenaPublishStageId) return runBusy(async () => {
-    const result = await publishArenaQuestionBatch({ actions, stageId: arenaPublishStageId, expectedReviewFingerprint: String(target.getAttribute('data-arena-pool-fingerprint') || ''), arenaDraftSealed: target.getAttribute('data-arena-pool-sealed') === 'true' });
-    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
-  }, 'Одобренная пачка добавлена в пул Арены.');
-  const arenaRemoveQuestionId = target.getAttribute('data-arena-pool-remove-question');
-  if (arenaRemoveQuestionId) return runBusy(async () => {
-    const reason = String(document.getElementById(String(target.getAttribute('data-arena-pool-reason-id') || ''))?.value || '').trim();
-    const result = await removeArenaPoolQuestion({ actions, questionId: arenaRemoveQuestionId, expectedRevision: Number(target.getAttribute('data-arena-pool-revision')), reason });
-    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
-  }, 'Вопрос снят с выдачи матчей и сохранён для возможного восстановления.');
-  const arenaRestoreQuestionId = target.getAttribute('data-arena-pool-restore-question');
-  if (arenaRestoreQuestionId) return runBusy(async () => {
-    const result = await restoreArenaPoolQuestion({ actions, questionId: arenaRestoreQuestionId, expectedRevision: Number(target.getAttribute('data-arena-pool-revision')) });
-    if (result) state.arenaQuestionPool = await loadArenaQuestionPool({ actions, filters: state.arenaQuestionPool.filters });
-  }, 'Вопрос возвращён в выдачу матчей.');
   const contentMode = target.getAttribute('data-content-create-mode');
   if (contentMode) {
     state.contentStages = { ...state.contentStages, mode: contentMode === 'range' ? 'range' : 'single', selectedKinds: contentMode === 'range' ? ['lesson_outline'] : [state.contentStages.kind || 'lesson_outline'], dependencies: [], selectedDependencyIds: [] };
@@ -4047,6 +4506,7 @@ async function handleClick(event) {
   }
   const studioKind = target.getAttribute('data-studio-kind');
   if (studioKind) {
+    if (isRetiredContentKind(studioKind)) return;
     if (state.contentStages.mode === 'range') {
       const selectedKinds = [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value));
       state.contentStages = { ...state.contentStages, selectedKinds };
@@ -4097,8 +4557,7 @@ async function handleClick(event) {
   const prerequisiteTopicStageId = target.getAttribute('data-prerequisite-stage-id');
   if (questionBatchKind && prerequisiteTopicStageId) return runBusy(async () => {
     const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisiteTopicStageId);
-    const expectedTopicKind = questionBatchKind === 'quiz_questions' ? 'quiz_topic' : 'challenge_topic';
-    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== expectedTopicKind) throw new Error('Сначала одобрите выбранную тему.');
+    if (questionBatchKind !== 'challenge_questions' || !sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'challenge_topic') throw new Error('Сначала одобрите выбранную тему вызова.');
     const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === questionBatchKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
     const revision = Math.max(0, ...existingRevisions) + 1;
     await actions.createContentStage({ requestId: sourceStage.requestId, kind: questionBatchKind, studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 10, revision, prerequisiteStageIds: [prerequisiteTopicStageId] });
@@ -4116,24 +4575,12 @@ async function handleClick(event) {
     state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'flashcards', kind: 'flashcard_items', count: 10, revision };
     await loadContentStages(sourceStage.requestId);
   }, 'Новая независимая пачка из 10 карточек создана.');
-  const arenaBatchKind = target.getAttribute('data-create-arena-batch');
-  const prerequisiteArenaTopicStageId = target.getAttribute('data-prerequisite-stage-id');
-  if (arenaBatchKind && prerequisiteArenaTopicStageId) return runBusy(async () => {
-    const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === prerequisiteArenaTopicStageId);
-    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'arena_topic') throw new Error('Сначала одобрите тему Арены.');
-    const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === 'arena_questions' && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
-    const revision = Math.max(0, ...existingRevisions) + 1;
-    await actions.createContentStage({ requestId: sourceStage.requestId, kind: 'arena_questions', studyTarget: sourceStage.studyTarget, sourceLocale: sourceStage.sourceLocale, cefr: sourceStage.cefr, objective: sourceStage.objective, scopeId: sourceStage.scopeId, count: 10, revision, prerequisiteStageIds: [prerequisiteArenaTopicStageId] });
-    state.contentStages = { ...state.contentStages, requestId: sourceStage.requestId, selectedGenerator: 'arena', kind: 'arena_questions', count: 10, revision };
-    await loadContentStages(sourceStage.requestId);
-  }, 'Новая независимая пачка из 10 вопросов Арены создана.');
   const replacementKind = target.getAttribute('data-create-question-replacement');
   const replacementBatchStageId = target.getAttribute('data-batch-stage-id');
   const replacementForQuestionId = target.getAttribute('data-question-id');
   if (replacementKind && replacementBatchStageId && replacementForQuestionId) return runBusy(async () => {
     const sourceStage = (state.contentStages.items || []).find((stage) => String(stage.stageId || stage.id) === replacementBatchStageId);
-    const expectedBatchKind = replacementKind === 'quiz_question_replacement' ? 'quiz_questions' : 'challenge_questions';
-    if (!sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== expectedBatchKind) throw new Error('Заменять вопрос можно только в одобренной пачке.');
+    if (replacementKind !== 'challenge_question_replacement' || !sourceStage || sourceStage.state !== 'approved' || sourceStage.kind !== 'challenge_questions') throw new Error('Заменять вопрос можно только в одобренной пачке вызова.');
     if (!/^[A-Za-z0-9._-]{1,160}$/.test(replacementForQuestionId)) throw new Error('У вопроса небезопасный идентификатор.');
     const existingRevisions = (state.contentStages.items || []).filter((stage) => stage.kind === replacementKind && stage.scopeId === sourceStage.scopeId).map((stage) => Number(stage.revision || 0));
     const revision = Math.max(0, ...existingRevisions) + 1;
@@ -4256,11 +4703,51 @@ export function setAdminActions(nextActions) {
 }
 
 export function setAuthState(auth) {
+  const previousDashboardScope = dashboardWidgetsScope;
+  const previousUid = state.adminUid;
+  const nextAuthorized = auth.authorized === true;
+  const nextUid = nextAuthorized ? normalizeFirebaseUid(auth.uid) : null;
+  const accountChanged = !nextAuthorized || !nextUid || previousUid !== nextUid;
+  if (!nextAuthorized || !nextUid || previousUid !== nextUid) pendingLegacyDashboardWidgetIds = null;
+  if (accountChanged) {
+    if (overviewCacheScope) overviewCache.clear(overviewCacheScope);
+    overviewCacheScope = null;
+    favoritesStore.clear();
+    favoritesStore.setScope(null);
+    favoritesScopeState = 'session';
+  }
+  if (previousDashboardScope && (!nextAuthorized || !nextUid || previousUid !== nextUid)) {
+    resetDashboardWidgetPreferences({
+      storage: dashboardWidgetStorage(),
+      scope: previousDashboardScope,
+      ...dashboardWidgetOptions(),
+    });
+  }
+  dashboardWidgetsScope = null;
+  dashboardWidgetsDraft = [];
+  savedDashboardWidgetIds = [];
   state.authGeneration += 1;
   state.authReady = true;
-  state.authorized = auth.authorized === true;
+  state.authorized = nextAuthorized;
   state.adminEmail = String(auth.email ?? '');
+  state.adminUid = state.authorized ? normalizeFirebaseUid(auth.uid) : null;
   state.adminRole = String(auth.role ?? '');
+  const legacy = drainLegacyDashboardWidgetPreferences({
+    storage: dashboardWidgetStorage(),
+    legacyScope: state.authorized && state.adminEmail ? `admin:${state.adminEmail}` : null,
+    ...dashboardWidgetOptions(),
+  });
+  if (Array.isArray(legacy.visibleIds)) pendingLegacyDashboardWidgetIds = legacy.visibleIds;
+  const fallbackVisibleIds = legacy.visibleIds ?? pendingLegacyDashboardWidgetIds;
+  if (state.authorized) {
+    hydrateDashboardWidgetDraft({ fallbackVisibleIds });
+    const authGeneration = state.authGeneration;
+    void establishDashboardWidgetScope({
+      authGeneration,
+      uid: state.adminUid,
+      legacyVisibleIds: fallbackVisibleIds,
+    });
+  }
   if (!state.authorized) {
     state.detail = null;
     state.preview = null;
@@ -4273,7 +4760,7 @@ export function setAuthState(auth) {
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
     state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
     state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
-    state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 };
+    state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
@@ -4289,7 +4776,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
   if (!state.authorized || !can('briefing.read')) state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
-  if (!state.authorized || state.adminRole !== 'owner') state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], error: '', fetchedAtMs: 0 };
+  if (!state.authorized || state.adminRole !== 'owner') state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 };
   if (!state.authorized || !can('campaigns.read')) state.broadcasts = { state: 'idle', items: [], preview: null, error: '' };
   renderCurrentPage();
   if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
@@ -4299,6 +4786,10 @@ export function setAuthState(auth) {
 
 export function renderRoute(route, capabilityId = '') {
   const requestedRoute = route === 'overview' && !globalThis.location.hash && PAGES[state.adminSettings.startPage] ? state.adminSettings.startPage : route;
+  if (!confirmAdminSettingsNavigation(requestedRoute)) {
+    if (globalThis.location?.hash !== `#${state.route}`) globalThis.history?.replaceState?.(globalThis.history.state, '', `#${state.route}`);
+    return;
+  }
   const previousRoute = state.route;
   state.route = PAGES[requestedRoute] ? requestedRoute : 'overview';
   if (!state.adminSettings.rememberSectionFilters && previousRoute !== state.route) resetEphemeralSectionFilters(state.route);
@@ -4307,12 +4798,6 @@ export function renderRoute(route, capabilityId = '') {
   renderCurrentPage();
   if (actionsReady && state.route === 'content' && state.authorized && can('content.read') && state.contentStages.capabilitiesState === 'idle') {
     void ensureContentCapabilities().then(renderCurrentPage);
-  }
-  if (actionsReady && state.route === 'arena-question-pool' && state.authorized && can('content.read') && ['idle', 'error'].includes(state.arenaQuestionPool.state)) {
-    const filters = state.arenaQuestionPool.filters;
-    state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'loading', error: '' };
-    renderCurrentPage();
-    void loadArenaQuestionPool({ actions, filters }).then((model) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = model; renderCurrentPage(); } }).catch((error) => { if (state.route === 'arena-question-pool') { state.arenaQuestionPool = { ...state.arenaQuestionPool, state: 'error', error: errorMessage(error) }; renderCurrentPage(); } });
   }
   if (actionsReady && state.route === 'agent-manager' && state.authorized && state.adminRole === 'owner' && ['idle', 'error'].includes(state.agentManager.state)) {
     void loadAgentManager().catch(() => {});
@@ -4343,6 +4828,7 @@ function handleContentStudioChange(event) {
   if (!(target instanceof HTMLInputElement)) return;
   const studioKind = target.getAttribute('data-studio-kind');
   if (studioKind) {
+    if (isRetiredContentKind(studioKind)) return;
     if (state.contentStages.mode === 'range') state.contentStages = { ...state.contentStages, selectedKinds: [...document.querySelectorAll('[data-studio-kind]:checked')].map((input) => String(input.value)) };
     else { state.contentStages = { ...state.contentStages, kind: studioKind, selectedKinds: [studioKind], dependencies: [], selectedDependencyIds: [] }; renderCurrentPage(); }
     return;
@@ -4364,12 +4850,76 @@ export function initAdminUi() {
   document.addEventListener('input', handleContentStudioInput);
   document.addEventListener('input', handleAnalyticsTrendsControlChange);
   document.addEventListener('keydown', (event) => {
+    const target = event.target;
+    const editable = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable;
+    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      openGlobalSearch();
+      return;
+    }
+    if (event.key === '/' && !editable) {
+      event.preventDefault();
+      openGlobalSearch();
+      return;
+    }
+    const dialog = document.getElementById('global-search-dialog');
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'Escape') {
+      event.preventDefault();
+      dialog.close();
+      return;
+    }
+    if (event.key === 'Escape' && document.body.classList.contains('nav-open')) {
+      event.preventDefault();
+      closeMobileNav();
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'Tab') return;
+    if (event.key === 'Tab' && document.body.classList.contains('nav-open')) {
+      trapMobileNavFocus(event);
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'ArrowDown') {
+      event.preventDefault();
+      moveGlobalSearchSelection(1);
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'ArrowUp') {
+      event.preventDefault();
+      moveGlobalSearchSelection(-1);
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'Home') {
+      event.preventDefault();
+      selectGlobalSearchResult(0);
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'End') {
+      event.preventDefault();
+      selectGlobalSearchResult(document.querySelectorAll('#global-search-results [data-global-search-route]').length - 1);
+      return;
+    }
+    if (dialog instanceof HTMLDialogElement && dialog.open && event.key === 'Enter') {
+      const selected = document.querySelectorAll('#global-search-results [data-global-search-route]')[globalSearchSelectedIndex];
+      if (selected) selected.click();
+      return;
+    }
     if (event.key === 'Enter' && event.target instanceof HTMLInputElement && event.target.id === 'user-search') {
       event.preventDefault();
       document.querySelector('[data-action="search-admin-users"]')?.click();
     }
   });
-  document.getElementById('mobile-nav-toggle')?.addEventListener('click', () => document.body.classList.toggle('nav-open'));
+  globalThis.addEventListener?.('beforeunload', (event) => {
+    if (!adminSettingsDirty()) return;
+    event.preventDefault();
+    event.returnValue = '';
+  });
+  document.getElementById('mobile-nav-toggle')?.addEventListener('click', () => setMobileNavOpen(!document.body.classList.contains('nav-open')));
+  document.getElementById('mobile-nav-backdrop')?.addEventListener('click', closeMobileNav);
+  const mobileNavMedia = globalThis.matchMedia?.('(max-width: 760px)');
+  mobileNavMedia?.addEventListener?.('change', (event) => {
+    if (!event.matches) closeMobileNav({ restoreFocus: false });
+  });
+  ensureGlobalSearchUi();
   renderCurrentPage();
 }
 

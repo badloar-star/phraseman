@@ -20,11 +20,6 @@
         "node_modules/@expo/vector-icons/build/vendor/react-native-vector-icons/Fonts/MaterialIcons.ttf",
         "assets/fonts/*.ttf",
         "assets/images/achievement_categories/*",
-        "assets/images/arena_actions/*",
-        "assets/images/arena/*",
-        "assets/images/arena_match/*",
-        "assets/images/arena_ranks/**/*",
-        "assets/images/arena_tickets/*",
         "assets/images/achievements/*",
         "assets/images/avatars/*",
         "assets/images/daily_task_icons/**/*",
@@ -51,10 +46,6 @@
         "assets/images/level_gift_reward_icons/*",
         "assets/images/messages/*",
         "assets/images/onboarding/*",
-        "assets/images/quizzes/level_cards/*",
-        "assets/images/quizzes/level_logos/*",
-        "assets/images/quizzes/theme_cards/*",
-        "assets/images/quizzes/theme_logos/*",
         "assets/images/reward_modals/*",
         "assets/images/settings/*",
         "assets/images/shards/*",
@@ -86,11 +77,6 @@
               "scheme": "https",
               "host": "knowlyapps.com",
               "pathPrefix": "/phraseman/invite"
-            },
-            {
-              "scheme": "https",
-              "host": "knowlyapps.com",
-              "pathPrefix": "/phraseman/duel"
             }
           ],
           "category": [

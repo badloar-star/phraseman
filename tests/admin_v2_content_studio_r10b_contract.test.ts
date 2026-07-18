@@ -42,7 +42,7 @@ describe('Admin Content Studio R10B contracts', () => {
   });
 
   test('renders stage-specific review, correct answers, immutable edit and semantic diff', () => {
-    for (const token of ['lesson_phrases','lesson_theory','quiz_questions','flashcard_items','arena_questions','correct-option','distractor-option','semantic-diff','Технические данные JSON','Автоматические проверки пройдены']) expect(renderers).toContain(token);
+    for (const token of ['lesson_phrases','lesson_theory','challenge_questions','flashcard_items','correct-option','distractor-option','semantic-diff','Технические данные JSON','Автоматические проверки пройдены']) expect(renderers).toContain(token);
     expect(core).toContain('actions.editContentStageArtifact');
     expect(core).toContain('expectedBaseReviewFingerprint');
     expect(renderers).toContain('Исходная версия не изменится');

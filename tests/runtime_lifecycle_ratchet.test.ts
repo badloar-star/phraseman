@@ -91,7 +91,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   },
   'components/AiTypingBubble.tsx': runtime('Typing animation requires focused foreground runtime.', ['typingRuntimeActive && !reduceMotion', 'stop()']),
   'components/AppMessagesInbox.tsx': guarded('Inbox motion uses navigation focus and AppState.'),
-  'components/ArenaLimitModal.tsx': owned('Limit modal motion follows its visible prop.', ['if (visible) {', '.stop()']),
   'components/AvatarAura.tsx': guarded('Reference implementation uses screen focus and AppState.'),
   'components/BoonActivatedModal.tsx': owned('Activated boon motion follows visibility and stops on cleanup.', ['if (!visible) {', '.stop()']),
   'components/BoonChestModal.tsx': owned('Boon chest unmounts when hidden and stops running motion.', ['if (!visible) return null', '.stop()']),

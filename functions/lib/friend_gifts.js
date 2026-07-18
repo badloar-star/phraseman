@@ -68,19 +68,6 @@ const FRIEND_QUEST_REWARD_SHARDS = 10;
 const FRIEND_QUEST_REWARD_XP = 1000;
 const FRIEND_QUEST_DURATION_MS = DAY_MS;
 const GIFT_CATALOG = {
-    arena_extra_5: {
-        id: 'arena_extra_5',
-        costShards: 5,
-        label: '+5 rating games today',
-        labelRu: '+5 рейтинг-игр',
-        labelUk: '+5 рейтинг-ігор',
-        labelEs: '+5 partidas Arena',
-        labelPtBr: '+5 partidas ranqueadas',
-        labelVi: '+5 trận xếp hạng',
-        labelId: '+5 game peringkat',
-        labelTr: '+5 sıralama oyunu',
-        labelPl: '+5 gier rankingowych',
-    },
     chain_shield_1: {
         id: 'chain_shield_1',
         costShards: 8,
@@ -272,19 +259,6 @@ function isActiveQuestMeta(data, now) {
 function buildRecipientGiftPatch(giftId, recipientData) {
     const now = Date.now();
     const today = todayStrUtc();
-    if (giftId === 'arena_extra_5') {
-        const cur = parseJsonObject(getExistingField(recipientData, 'arena_daily_gift_bonus_v1'));
-        const sameDay = cur.date === today;
-        const extra = sameDay && typeof cur.extra === 'number' && Number.isFinite(cur.extra)
-            ? Math.max(0, Math.floor(cur.extra))
-            : 0;
-        const next = JSON.stringify({ date: today, extra: extra + 5 });
-        return {
-            arena_extra_plays_today: { date: today, n: extra + 5 },
-            progress: { arena_daily_gift_bonus_v1: next },
-            updatedAt: now,
-        };
-    }
     if (giftId === 'chain_shield_1') {
         const cur = parseJsonObject(getExistingField(recipientData, 'chain_shield'));
         const daysLeft = typeof cur.daysLeft === 'number' && Number.isFinite(cur.daysLeft)

@@ -20,7 +20,7 @@ export class AgentManagerTelegramApprovalCore {
 
   async handle(verifiedUpdateValue: unknown, state: ServerState) {
     const update = parseVerifiedTelegramApprovalUpdate(verifiedUpdateValue);
-    if (!update.commandText.startsWith('/manager-')) throw new HttpsError('invalid-argument', 'manager Telegram command is invalid');
+    if (update.callbackNamespace !== 'am1') throw new HttpsError('invalid-argument', 'manager Telegram namespace is invalid');
     const command = parseTelegramApprovalCommand(update.commandText);
     const decision = command.verb === 'authorize' ? 'approve' as const : 'reject' as const;
     const actor = requireAgentOfficeOwner(state.ownerAuth);
@@ -29,6 +29,7 @@ export class AgentManagerTelegramApprovalCore {
     if (token.tokenIdHash !== managerTelegramTokenHash(command.nonce) || token.ownerUid !== actor.actorUid || token.telegramChatId !== update.chatId || token.telegramUserId !== update.userId || token.permittedDecision !== decision) fail('manager Telegram token binding mismatch');
     const nowMs = this.now();
     if (token.issuedAtMs > nowMs || token.validUntilMs <= nowMs || token.status === 'revoked') throw new HttpsError('failed-precondition', 'manager Telegram token is unavailable');
+    await this.ledger.requireGlobalControlReady(state.ownerAuth);
     return this.ledger.decideTelegramTask(state.ownerAuth, { token, decision, updateIdHash: sha256(update.updateId) });
   }
 }

@@ -9,7 +9,7 @@ const db = app.firestore();
 jest.setTimeout(60_000);
 
 test('concurrent human approval and judge commit cannot produce approved stage with unseen judge evidence', async () => {
-  const stageId = 'r12c-stage'; const stageRef = db.collection('content_factory_stages').doc(stageId); const stage = { state: 'needs_review', revision: 2, kind: 'arena_questions', contentHash: 'a'.repeat(64), qaReceipt: { status: 'passed' } };
+  const stageId = 'r12c-stage'; const stageRef = db.collection('content_factory_stages').doc(stageId); const stage = { state: 'needs_review', revision: 2, kind: 'challenge_questions', contentHash: 'a'.repeat(64), qaReceipt: { status: 'passed' } };
   await stageRef.set(stage); const expectedReviewFingerprint = contentStageReviewFingerprint(stageId, stage);
   const approve = db.runTransaction(async (tx) => { const snapshot = await tx.get(stageRef); const current = snapshot.data() ?? {}; if (current.state !== 'needs_review' || contentStageReviewFingerprint(stageId, current) !== expectedReviewFingerprint) return false; tx.update(stageRef, { state: 'approved', reviewedAtMs: Date.now() }); return true; });
   const judge = commitShadowJudgeReceipt(db, { stageId, contentHash: stage.contentHash, expectedRevision: 2, expectedReviewFingerprint, receipt: { status: 'advisory_pass', authority: 'advisory_only', requiresHumanReview: true }, updatedAt: admin.firestore.FieldValue.serverTimestamp() });

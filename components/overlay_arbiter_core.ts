@@ -1,5 +1,6 @@
 export type OverlayKey =
   | 'onboardingWelcome'
+  | 'authRecovery'
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
@@ -45,6 +46,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   // арбитр welcome держит единственный слот первым, остальные ждут очереди.
   'onboardingWelcome',
   'update',
+  'authRecovery',
   'releaseNotes',
   'broadcast',
   'leagueBonusAvailable',
@@ -143,6 +145,7 @@ export const FORCE_EVICTABLE_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>
 // ════════════════════════════════════════════════════════════════════════════
 export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'onboardingWelcome',
+  'authRecovery',
   'update',
   'releaseNotes',
   'broadcast',
@@ -197,6 +200,7 @@ export function isForceEvictable(key: OverlayKey | null): boolean {
 
 export const EMPTY_OVERLAY_WANTS: WantsMap = {
   onboardingWelcome: false,
+  authRecovery: false,
   update: false,
   releaseNotes: false,
   broadcast: false,

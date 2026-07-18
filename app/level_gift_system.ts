@@ -17,7 +17,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InteractionManager } from 'react-native';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { CUSTOM_AVATAR_GIFT_OWNED_KEY } from '../constants/customization_storage_keys';
-import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { addEnergy } from './energy_system';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
@@ -1358,7 +1357,8 @@ const applyGiftUnlocked = async (
         break;
       }
       case 'arena_extra_5': {
-        await addArenaPlaysBonusForToday(5);
+        // Old inventories remain claimable after the retired mode disappeared.
+        await grantLevelGiftShards(5, opts?.accountToken);
         break;
       }
       case 'club_boost_free': {

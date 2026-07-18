@@ -1,6 +1,5 @@
 import { useRef, useSyncExternalStore } from 'react';
 import type { FriendEntry, FriendRequestEntry } from './firestore_friend_requests';
-import type { ArenaProfile } from './types/arena';
 import type { CustomizationSnapshot } from './customization_snapshot';
 
 export const APP_SNAPSHOT_RESOURCE_LIMITS = {
@@ -65,11 +64,6 @@ export interface AppSnapshotFriends extends AppSnapshotMeta {
   profiles: Record<string, AppSnapshotFriendProfile>;
 }
 
-export interface AppSnapshotArena extends AppSnapshotMeta {
-  profile: ArenaProfile | null;
-  historyCount: number;
-}
-
 export interface AppSnapshotSettings extends AppSnapshotMeta {
   autoCheck: boolean;
   voiceOut: boolean;
@@ -87,7 +81,6 @@ export interface AppSnapshot {
   progress?: AppSnapshotProgress;
   lessons?: AppSnapshotLessons;
   friends?: AppSnapshotFriends;
-  arena?: AppSnapshotArena;
   settings?: AppSnapshotSettings;
   customization?: CustomizationSnapshot;
   primedAt?: number;

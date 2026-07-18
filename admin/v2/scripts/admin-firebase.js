@@ -20,6 +20,33 @@ async function resolveFirebaseConfig() {
   return config;
 }
 
+export function observeAdminAuthState({ auth, subscribe, onAuth }) {
+  let observerGeneration = 0;
+  return subscribe(auth, async (user) => {
+    const generation = ++observerGeneration;
+    if (!user) {
+      onAuth({ authorized: false, email: '', role: '', uid: '' });
+      return;
+    }
+    const isCurrentUser = () => {
+      try {
+        return generation === observerGeneration && auth.currentUser?.uid === user.uid;
+      } catch {
+        return false;
+      }
+    };
+    try {
+      const token = await user.getIdTokenResult(true);
+      if (!isCurrentUser()) return;
+      const role = typeof token.claims.adminRole === 'string' ? token.claims.adminRole : '';
+      onAuth({ authorized: token.claims.admin === true && Boolean(role), email: user.email ?? '', role, uid: user.uid });
+    } catch {
+      if (!isCurrentUser()) return;
+      onAuth({ authorized: false, email: user.email ?? '', role: '', uid: user.uid });
+    }
+  });
+}
+
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
   const auth = getAuth(app);
@@ -33,8 +60,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const getFactoryUnitPreviewCallable = httpsCallable(functionsUs, 'adminGetContentFactoryUnitPreview');
   const getFactoryWorkspaceCallable = httpsCallable(functionsUs, 'adminGetContentFactoryWorkspace');
   const getFactoryRolloutMetricsCallable = httpsCallable(functionsUs, 'adminGetContentFactoryRolloutMetrics');
-  const getArenaConvergenceStatusCallable = httpsCallable(functionsUs, 'adminGetArenaConvergenceStatus');
-  const updateArenaConvergenceConfigCallable = httpsCallable(functionsUs, 'adminUpdateArenaConvergenceConfig');
   const runFactoryUnitCallable = httpsCallable(functionsUs, 'adminRunContentGenerationUnit');
   const reviewFactoryJobCallable = httpsCallable(functionsUs, 'adminReviewCourseGeneration');
   const sealFactoryReleaseCallable = httpsCallable(functionsUs, 'adminSealCourseRelease');
@@ -50,10 +75,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const runContentStageCallable = httpsCallable(functionsUs, 'adminRunContentStage');
   const previewContentStageCallable = httpsCallable(functionsUs, 'adminPreviewContentStage');
   const reviewContentStageCallable = httpsCallable(functionsUs, 'adminReviewContentStage');
-  const listArenaQuestionPoolCallable = httpsCallable(functionsUs, 'adminListArenaQuestionPool');
-  const publishArenaQuestionBatchCallable = httpsCallable(functionsUs, 'adminPublishArenaQuestionBatch');
-  const removeArenaPoolQuestionCallable = httpsCallable(functionsUs, 'adminRemoveArenaPoolQuestion');
-  const restoreArenaPoolQuestionCallable = httpsCallable(functionsUs, 'adminRestoreArenaPoolQuestion');
   const supportListCallable = httpsCallable(functionsUs, 'adminSupportList');
   const supportPullCallable = httpsCallable(functionsUs, 'adminSupportPull');
   const supportGenerateReplyCallable = httpsCallable(functionsUs, 'adminSupportGenerateReply');
@@ -110,25 +131,14 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const agentManagerListRunbooksCallable = httpsCallable(functionsUs, 'agentManagerListRunbooks');
   const agentManagerTransitionTaskCallable = httpsCallable(functionsUs, 'agentManagerTransitionTask');
   const agentManagerInitializeRosterCallable = httpsCallable(functionsUs, 'agentManagerInitializeRoster');
+  const agentManagerLocalRunnerCreatePairingCallable = httpsCallable(functionsUs, 'agentManagerLocalRunnerCreatePairing');
 
   async function loadOpenAiBudgetDashboard() {
     const result = await openAiBudgetCallable({ rangeDays: 30 });
     return renderOpenAiBudgetContract(unwrap(result));
   }
 
-  onAuthStateChanged(auth, async (user) => {
-    if (!user) {
-      onAuth({ authorized: false, email: '', role: '' });
-      return;
-    }
-    try {
-      const token = await user.getIdTokenResult(true);
-      const role = typeof token.claims.adminRole === 'string' ? token.claims.adminRole : '';
-      onAuth({ authorized: token.claims.admin === true && Boolean(role), email: user.email ?? '', role });
-    } catch {
-      onAuth({ authorized: false, email: user.email ?? '', role: '' });
-    }
-  });
+  observeAdminAuthState({ auth, subscribe: onAuthStateChanged, onAuth });
 
   return Object.freeze({
     signIn: () => signInWithPopup(auth, provider),
@@ -139,8 +149,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
     previewFactoryUnit: async (input) => unwrap(await getFactoryUnitPreviewCallable(input)),
     getFactoryWorkspace: async (input) => unwrap(await getFactoryWorkspaceCallable(input)),
     getFactoryRolloutMetrics: async () => unwrap(await getFactoryRolloutMetricsCallable({})),
-    getArenaConvergenceStatus: async (input = {}) => unwrap(await getArenaConvergenceStatusCallable(input)),
-    updateArenaConvergenceConfig: async (input) => unwrap(await updateArenaConvergenceConfigCallable(input)),
     runFactoryUnit: async (input) => unwrap(await runFactoryUnitCallable(input)),
     reviewFactoryJob: async (input) => unwrap(await reviewFactoryJobCallable(input)),
     sealFactoryRelease: async (input) => unwrap(await sealFactoryReleaseCallable(input)),
@@ -156,10 +164,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
     runContentStage: async (input) => unwrap(await runContentStageCallable(input)),
     previewContentStage: async (input) => unwrap(await previewContentStageCallable(input)),
     reviewContentStage: async (input) => unwrap(await reviewContentStageCallable(input)),
-    adminListArenaQuestionPool: async (input) => unwrap(await listArenaQuestionPoolCallable(input)),
-    adminPublishArenaQuestionBatch: async (input) => unwrap(await publishArenaQuestionBatchCallable(input)),
-    adminRemoveArenaPoolQuestion: async (input) => unwrap(await removeArenaPoolQuestionCallable(input)),
-    adminRestoreArenaPoolQuestion: async (input) => unwrap(await restoreArenaPoolQuestionCallable(input)),
     loadSupport: async (input) => unwrap(await supportListCallable(input)),
     pullSupport: async (input) => unwrap(await supportPullCallable(input)),
     generateSupportReply: async (input) => unwrap(await supportGenerateReplyCallable(input)),
@@ -216,5 +220,6 @@ export async function createFirebaseAdminActions({ onAuth }) {
     listAgentManagerRunbooks: async () => unwrap(await agentManagerListRunbooksCallable({})),
     transitionAgentManagerTask: async (input) => unwrap(await agentManagerTransitionTaskCallable(input)),
     initializeAgentManagerRoster: async () => unwrap(await agentManagerInitializeRosterCallable({})),
+    createAgentManagerLocalRunnerPairing: async () => unwrap(await agentManagerLocalRunnerCreatePairingCallable({})),
   });
 }

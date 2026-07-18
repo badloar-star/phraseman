@@ -24,7 +24,7 @@ describe('exact review fingerprint', () => {
   });
 
   test('binds stored stage identity, immutable receipt and QA evidence', () => {
-    const stage = { kind: 'quiz_topic', revision: 1, artifactId: 'a1', objectPath: 'p', objectGeneration: '1', contentHash: 'a'.repeat(64), groundingReceipt: { hash: 'g1' }, qaReceipt: { status: 'passed' }, promptVersion: 'v2', schemaVersion: 2 };
+    const stage = { kind: 'challenge_topic', revision: 1, artifactId: 'a1', objectPath: 'p', objectGeneration: '1', contentHash: 'a'.repeat(64), groundingReceipt: { hash: 'g1' }, qaReceipt: { status: 'passed' }, promptVersion: 'v2', schemaVersion: 2 };
     expect(contentStageReviewFingerprint('s1', { ...stage, qaReceipt: { status: 'failed' } })).not.toBe(contentStageReviewFingerprint('s1', stage));
     expect(contentStageReviewFingerprint('s2', stage)).not.toBe(contentStageReviewFingerprint('s1', stage));
   });

@@ -156,18 +156,8 @@ export function openPersonalPlanTask(
     return;
   }
   if (destination.type === 'quiz') {
-    go({
-      pathname: '/quizzes_screen',
-      params: {
-        planQuizId: destination.quizId,
-        planQuizLevel: destination.level,
-        ...(destination.thematicCategoryId ? { planQuizThematicCategoryId: destination.thematicCategoryId } : {}),
-        planTaskId: task.id,
-        ...(planInstanceId ? { planInstanceId } : {}),
-        planId: plan.id,
-        planDayIndex: String(day.dayIndex),
-      },
-    } as any);
+    // Compatibility for persisted plans created before quiz tasks were retired.
+    go('/home' as any);
     return;
   }
   if (destination.type === 'trainer') {

@@ -37,7 +37,7 @@ function queuedEvent(value: unknown): QueuedTaskEvent | null {
 }
 
 function executionScope(value: unknown): ExecutionJobScope | null {
-  return value === 'support_draft' || value === 'analysis_only' || value === 'report_triage' || value === 'code_prepare' ? value : null;
+  return value === 'support_draft' || value === 'analysis_only' || value === 'report_triage' ? value : null;
 }
 
 function taskMatchesQueuedEvent(value: unknown, event: QueuedTaskEvent): ExecutionJobScope | null {

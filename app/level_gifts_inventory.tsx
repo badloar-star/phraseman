@@ -11,6 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import LevelGiftDualModal from '../components/LevelGiftDualModal';
 import LevelGiftModal from '../components/LevelGiftModal';
+import TodaysBoonStrip from '../components/TodaysBoonStrip';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -38,6 +39,7 @@ import {
   loadActiveLevelGiftInventory,
   type ActiveLevelGiftInventoryItem,
 } from './level_gift_active_inventory';
+import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_manager';
 
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
@@ -109,18 +111,21 @@ export default function LevelGiftsInventoryScreen() {
   const { theme: t, f, themeMode } = useTheme();
   const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache(studyTarget));
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
+  const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
   const emptyGiftSurface = [giftTone(t.accent, '26'), t.bgCard, t.bgPrimary] as [string, string, string];
 
   const loadData = useCallback(async () => {
-    const [nextItems, nextActiveItems, nameRaw] = await Promise.all([
+    const [nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw] = await Promise.all([
       loadPendingLevelGiftInventory(studyTarget),
       loadActiveLevelGiftInventory(lang, Date.now(), studyTarget),
+      getCurrentMultiplierBreakdown(),
       AsyncStorage.getItem('user_name'),
     ]);
     setItems(nextItems);
     setActiveItems(nextActiveItems);
+    setMultiplierBreakdown(nextMultiplierBreakdown);
     setUserName(nameRaw || '');
   }, [lang, studyTarget]);
 
@@ -168,22 +173,56 @@ export default function LevelGiftsInventoryScreen() {
           </View>
 
           <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ padding: 16, gap: 12 }} showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
+            <View testID="level-gifts-bonus-of-day" style={{ gap: 8 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
+                {triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}
+              </Text>
+              <TodaysBoonStrip marginTop={0} />
+            </View>
+            <View testID="level-gifts-active-multipliers" style={{ gap: 8 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
+                {triLang(lang, { ru: 'Активные множители', uk: 'Активні множники', es: 'Multiplicadores activos', 'pt-BR': 'Multiplicadores ativos', vi: 'Hệ số đang hoạt động', id: 'Pengali aktif', tr: 'Aktif çarpanlar', pl: 'Aktywne mnożniki' })}
+              </Text>
+              <LinearGradient colors={[giftTone(t.accent, '24'), t.bgCard, t.bgSurface]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 18, padding: 14, gap: 8 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
+                    {triLang(lang, { ru: 'Опыт за занятия', uk: 'Досвід за заняття', es: 'XP por práctica', 'pt-BR': 'XP por prática', vi: 'XP mỗi buổi học', id: 'XP per latihan', tr: 'Çalışma XP’si', pl: 'XP za naukę' })}
+                  </Text>
+                  <Text style={{ color: t.accent, fontSize: f.h2, fontWeight: '900' }}>×{(multiplierBreakdown?.total ?? 1).toFixed(2)}</Text>
+                </View>
+                {[
+                  { key: 'streak', label: triLang(lang, { ru: 'Серия', uk: 'Серія', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Rangkaian', tr: 'Seri', pl: 'Seria' }), value: multiplierBreakdown?.streakM ?? 1 },
+                  { key: 'club', label: triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga', 'pt-BR': 'Liga', vi: 'Giải đấu', id: 'Liga', tr: 'Lig', pl: 'Liga' }), value: multiplierBreakdown?.clubM ?? 1 },
+                  { key: 'gift', label: triLang(lang, { ru: 'Подарок', uk: 'Подарунок', es: 'Regalo', 'pt-BR': 'Presente', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediye', pl: 'Prezent' }), value: multiplierBreakdown?.giftM ?? 1 },
+                  { key: 'league', label: triLang(lang, { ru: 'Буст лиги', uk: 'Буст ліги', es: 'Impulso de liga', 'pt-BR': 'Impulso de liga', vi: 'Tăng lực giải đấu', id: 'Dorongan liga', tr: 'Lig güçlendirmesi', pl: 'Wzmocnienie ligi' }), value: multiplierBreakdown?.leagueBoostM ?? 1 },
+                  { key: 'group', label: triLang(lang, { ru: 'Общий буст', uk: 'Спільний буст', es: 'Impulso común', 'pt-BR': 'Impulso comum', vi: 'Tăng lực chung', id: 'Dorongan bersama', tr: 'Ortak güçlendirme', pl: 'Wspólne wzmocnienie' }), value: multiplierBreakdown?.leagueGroupBoostM ?? 1 },
+                  { key: 'comeback', label: triLang(lang, { ru: 'Возврат', uk: 'Повернення', es: 'Retorno', 'pt-BR': 'Retorno', vi: 'Quay lại', id: 'Kembali', tr: 'Geri dönüş', pl: 'Powrót' }), value: multiplierBreakdown?.comebackM ?? 1 },
+                  { key: 'chest', label: triLang(lang, { ru: 'Сундук лиги', uk: 'Скриня ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' }), value: multiplierBreakdown?.leagueChestM ?? 1 },
+                ].filter((item) => item.value > 1).map((item) => (
+                  <View key={item.key} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{item.label}</Text>
+                    <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '900' }}>+{Math.round((item.value - 1) * 100)}%</Text>
+                  </View>
+                ))}
+                {(multiplierBreakdown?.boonXpContribution ?? 0) > 0 ? (
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>{triLang(lang, { ru: 'Бонус дня', uk: 'Бонус дня', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Ưu đãi hôm nay', id: 'Bonus hari ini', tr: 'Günün bonusu', pl: 'Bonus dnia' })}</Text>
+                    <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '900' }}>+{Math.round((multiplierBreakdown?.boonXpContribution ?? 0) * 100)}%</Text>
+                  </View>
+                ) : null}
+                {(multiplierBreakdown?.total ?? 1) <= 1 ? (
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: f.sub + 4 }}>
+                    {triLang(lang, { ru: 'Сейчас дополнительных множителей нет', uk: 'Зараз додаткових множників немає', es: 'Ahora no hay multiplicadores extra', 'pt-BR': 'Não há multiplicadores extras agora', vi: 'Hiện chưa có hệ số thêm', id: 'Belum ada pengali tambahan', tr: 'Şu anda ek çarpan yok', pl: 'Brak dodatkowych mnożników' })}
+                  </Text>
+                ) : null}
+              </LinearGradient>
+            </View>
+            <View testID="level-gifts-inventory" style={{ gap: 10 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
+                {triLang(lang, { ru: 'Подарки', uk: 'Подарунки', es: 'Regalos', 'pt-BR': 'Presentes', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediyeler', pl: 'Prezenty' })}
+              </Text>
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 2 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-                    {triLang(lang, {
-                      ru: 'Активные сейчас',
-                      uk: 'Активні зараз',
-                      es: 'Activos ahora',
-                      'pt-BR': 'Ativos agora',
-                      vi: 'Đang hoạt động',
-                      id: 'Sedang aktif',
-                      tr: 'Şu an aktif',
-                      pl: 'Aktywne teraz',
-                    })}
-                  </Text>
-                </View>
                 {activeItems.map((gift) => {
                   const chipStyle = {
                     flexDirection: 'row' as const,
@@ -420,6 +459,7 @@ export default function LevelGiftsInventoryScreen() {
                 );
               })
             )}
+            </View>
             <View style={{ height: 8 }} />
           </BouncyScrollView>
         </ContentWrap>

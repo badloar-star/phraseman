@@ -60,18 +60,12 @@ type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
-let deferredArenaScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
 function loadLessonsScreen(): TabScreenComponent {
   deferredLessonsScreen ??= (require('./lessons') as DeferredTabModule).default;
   return deferredLessonsScreen;
-}
-
-function loadArenaScreen(): TabScreenComponent {
-  deferredArenaScreen ??= (require('./arena') as DeferredTabModule).default;
-  return deferredArenaScreen;
 }
 
 function loadFriendsScreen(): TabScreenComponent {
@@ -87,9 +81,8 @@ function loadSettingsScreen(): TabScreenComponent {
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
-    case 2: return loadArenaScreen();
-    case 3: return loadFriendsScreen();
-    case 4: return loadSettingsScreen();
+    case 2: return loadFriendsScreen();
+    case 3: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -288,22 +281,20 @@ type TabDef = {
   active: IconName;
 };
 
-/** Суффиксы путей пяти основных табов (список уроков — `lessons.tsx`, не `index.tsx`). */
-const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/arena', '/friends', '/settings'] as const;
+/** Суффиксы путей четырёх основных табов (список уроков — `lessons.tsx`, не `index.tsx`). */
+const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/lessons': 1,
-  '/arena': 2,
-  '/friends': 3,
-  '/settings': 4,
+  '/friends': 2,
+  '/settings': 3,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
   1: '/(tabs)/lessons',
-  2: '/(tabs)/arena',
-  3: '/(tabs)/friends',
-  4: '/(tabs)/settings',
+  2: '/(tabs)/friends',
+  3: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -335,7 +326,7 @@ const BACKGROUND_TAB_PREMOUNT_FALLBACK_MS = 1600;
 const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
-const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 4, 3, 2] as const;
+const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
 // native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
 const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
@@ -358,9 +349,8 @@ const TAB_DARK_ACTIVE_BORDER_ALPHA = 0.32;
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
   lessons: 1,
-  arena: 2,
-  friends: 3,
-  settings: 4,
+  friends: 2,
+  settings: 3,
 };
 
 /**
@@ -387,7 +377,7 @@ function tabIdxFromRouter(pathnameRaw: string, segments: readonly string[]): num
   return tabIdxFromPathname(pathnameRaw);
 }
 
-/** Синхронно с URL — чтобы при заходе на /(tabs)/arena не было кадра с activeIdx=0 и лишней анимации TabSlider. */
+/** Синхронно с URL — чтобы прямой вход в таб не давал кадр с activeIdx=0. */
 function tabIdxFromPathname(pathnameRaw: string): number | null {
   const p = pathnameRaw.replace(/\/$/, '');
   if (p === '' || p === '/') return PATHNAME_TO_IDX['/home'];
@@ -407,11 +397,10 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
   return idx === tabIdx;
 }
 
-// Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов (home..settings).
+// Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
 const TABS: TabDef[] = [
   { key: 'home',     icon: 'home-outline',     active: 'home' },
   { key: 'index',    icon: 'book-outline',     active: 'book' },
-  { key: 'arena',    icon: 'flash-outline',    active: 'flash' },
   { key: 'friends',  icon: 'people-outline',   active: 'people' },
   { key: 'settings', icon: 'settings-outline', active: 'settings' },
 ];
@@ -976,9 +965,8 @@ export default function TabLayout() {
           isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
         />
       ) : placeholder('ph-index'),
-      show(2) ? <TabPane key="arena" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadArenaScreen} /></TabPane> : placeholder('ph-arena'),
-      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 

@@ -30,14 +30,9 @@ export type PremiumHeroArt = {
 };
 
 export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
-  arena: { accent: '#58D6FF', accent2: '#A7FF4F', shardAmount: 180 },
   no_energy: { accent: '#FFE86A', accent2: '#64B4FF', shardAmount: 80 },
   course_after_lesson3: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
   lesson_b1: { accent: '#38BDF8', accent2: '#FACC15', shardAmount: 180 },
-  quiz_limit: { accent: '#C8FF00', accent2: '#66E6FF', shardAmount: 80 },
-  quiz_level: { accent: '#7DD3FC', accent2: '#A78BFA', shardAmount: 180 },
-  quiz_medium: { accent: '#FDBA74', accent2: '#C8FF00', shardAmount: 180 },
-  quiz_hard: { accent: '#C084FC', accent2: '#FF6BB5', shardAmount: 420 },
   flashcard_limit: { accent: '#8BD3FF', accent2: '#FDE68A', shardAmount: 80 },
   flashcard_training: { accent: '#8BD3FF', accent2: '#A78BFA', shardAmount: 180 },
   flashcard_autoplay: { accent: '#FDE68A', accent2: '#60A5FA', shardAmount: 180 },
@@ -151,22 +146,13 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleUk: 'Безкоштовний акаунт — одна мова. З Plus вивчай кілька мов одразу: у кожної свій план, свій прогрес і свої досягнення, нічого не змішується.',
     subtitleEs: 'La cuenta gratis incluye un idioma. Con Plus aprende varios a la vez: cada idioma tiene su propio plan, progreso y logros.',
   },
-  arena: {
-    titleRu: 'Больше дуэлей на Арене каждый день',
-    titleUk: 'Більше дуелей на Арені щодня',
-    titleEs: 'Más partidas en la Arena cada día',
-    subtitleRu: 'Plus снимает дневной лимит матчей — сражайся в дуэлях, крепи стратегию и рост без ощущения «всё, хватит на сегодня».',
-    subtitleUk: 'Plus знімає денний ліміт матчів — воюй вживу, вдосконалюй стратегію і ріст без «на сьогодні досить».',
-    subtitleEs:
-      'Plus quita el límite diario de partidas: compite cada día, fortalece tu estrategia y tu progreso sin el «ya está bien por hoy».',
-  },
   no_energy: {
     titleRu: 'Останови паузы из-за энергии',
     titleUk: 'Зупини паузи через енергію',
     titleEs: 'Evita pausas por energía',
-    subtitleRu: 'С Plus — безлимитная энергия: уроки, квизы и финальный экзамен без таймера ожидания, ритм только твой.',
-    subtitleUk: 'З Plus — безлімітна енергія: уроки, квізи та фінальний іспит без таймера — ритм лише твій.',
-    subtitleEs: 'Con Plus tienes energía ilimitada: lecciones, quizzes y examen final sin temporizadores de espera, a tu ritmo.',
+    subtitleRu: 'С Plus — безлимитная энергия: уроки, тренажёр и финальный экзамен без таймера ожидания, ритм только твой.',
+    subtitleUk: 'З Plus — безлімітна енергія: уроки, тренажер та фінальний іспит без таймера — ритм лише твій.',
+    subtitleEs: 'Con Plus tienes energía ilimitada: lecciones, entrenador y examen final sin temporizadores de espera, a tu ritmo.',
   },
   streak: {
     titleRu: 'Не теряй серию, которую уже построил',
@@ -178,38 +164,6 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_COPY,
   lesson_b1: LESSON_B1_COPY,
-  quiz_limit: {
-    titleRu: 'Не останавливай прогресс из-за лимитов',
-    titleUk: 'Не зупиняй прогрес через ліміти',
-    titleEs: 'No frenes tu progreso por los límites',
-    subtitleRu: 'С Plus учись без пауз и держи ежедневный темп.',
-    subtitleUk: 'З Plus навчайся без пауз і тримай щоденний темп.',
-    subtitleEs: 'Con Plus estudia sin frenos y mantén tu ritmo diario.',
-  },
-  quiz_level: {
-    titleRu: 'Больше квизов каждый день',
-    titleUk: 'Більше квізів щодня',
-    titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступен 1 квиз в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступний 1 квіз на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 1 cuestionario al día. Plus quita el límite diario para que puedas practicar sin pausas.',
-  },
-  quiz_medium: {
-    titleRu: 'Больше квизов каждый день',
-    titleUk: 'Більше квізів щодня',
-    titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступен 1 квиз в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступний 1 квіз на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 1 cuestionario al día. Plus quita el límite diario para que puedas practicar sin pausas.',
-  },
-  quiz_hard: {
-    titleRu: 'Больше квизов каждый день',
-    titleUk: 'Більше квізів щодня',
-    titleEs: 'Más cuestionarios cada día',
-    subtitleRu: 'В бесплатной версии доступен 1 квиз в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-    subtitleUk: 'У безкоштовній версії доступний 1 квіз на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
-    subtitleEs: 'La versión gratis incluye 1 cuestionario al día. Plus quita el límite diario para que puedas practicar sin pausas.',
-  },
   flashcard_limit: {
     titleRu: 'Твоя база карточек не должна иметь лимит',
     titleUk: 'Твоя база карток не повинна мати ліміт',
@@ -318,19 +272,10 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Учись быстрее с Plus',
     titleUk: 'Навчайся швидше з Plus',
     titleEs: 'Aprende más rápido con Plus',
-    subtitleRu: 'Больше практики без стоп-экранов: диалоги, квизы и уроки открыты, когда есть силы учиться.',
-    subtitleUk: 'Більше практики без стоп-екранів: діалоги, квізи й уроки відкриті, коли є сили вчитися.',
-    subtitleEs: 'Más práctica sin pantallas de bloqueo: diálogos, quizzes y lecciones cuando tengas energía.',
+    subtitleRu: 'Больше практики без стоп-экранов: диалоги, тренировки и уроки открыты, когда есть силы учиться.',
+    subtitleUk: 'Більше практики без стоп-екранів: діалоги, тренування й уроки відкриті, коли є сили вчитися.',
+    subtitleEs: 'Más práctica sin pantallas de bloqueo: diálogos, entrenamiento y lecciones cuando tengas energía.',
   },
-};
-
-PAYWALL_COPY.quiz_limit = {
-  titleRu: 'Лимит квизов на сегодня исчерпан',
-  titleUk: 'Ліміт квізів на сьогодні вичерпано',
-  titleEs: 'Ya usaste tu cuestionario gratis de hoy',
-  subtitleRu: 'В бесплатной версии доступен 1 квиз в день. Plus снимает дневной лимит, чтобы можно было тренироваться без пауз.',
-  subtitleUk: 'У безкоштовній версії доступний 1 квіз на день. Plus знімає денний ліміт, щоб можна було тренуватися без пауз.',
-  subtitleEs: 'La versión gratis incluye 1 cuestionario al día. Plus quita el límite diario para que puedas practicar sin pausas.',
 };
 
 PAYWALL_COPY.personal_plan = {
@@ -449,9 +394,9 @@ PAYWALL_COPY.avatar_aura = {
   titleRu: 'Выделись аурой вокруг аватара',
   titleUk: 'Виділися аурою навколо аватара',
   titleEs: 'Destaca con un aura en tu avatar',
-  subtitleRu: 'Премиум-аура подсвечивает твой аватар в лигах, на Арене и у друзей. Тебя видно сразу — в списках, дуэлях и чатах.',
-  subtitleUk: 'Преміум-аура підсвічує твій аватар у лігах, на Арені та в друзів. Тебе видно одразу — у списках, дуелях і чатах.',
-  subtitleEs: 'El aura premium ilumina tu avatar en ligas, la Arena y entre amigos. Se te ve al instante: en listas, duelos y chats.',
+  subtitleRu: 'Премиум-аура подсвечивает твой аватар в лигах и у друзей. Тебя видно сразу — в списках и чатах.',
+  subtitleUk: 'Преміум-аура підсвічує твій аватар у лігах та в друзів. Тебе видно одразу — у списках і чатах.',
+  subtitleEs: 'El aura premium ilumina tu avatar en ligas y entre amigos. Se te ve al instante en listas y chats.',
 };
 
 export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlannedHeroCopy>> & { generic: PremiumPlannedHeroCopy } = {
@@ -465,68 +410,18 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
       pl: 'Darmowe konto obejmuje jeden język. Z Plus ucz się kilku naraz: każdy język ma własny plan, postęp i osiągnięcia.',
     },
   },
-  arena: {
-    title: { 'pt-BR': 'Mais duelos na Arena todos os dias', vi: 'Thêm trận đấu Arena mỗi ngày', id: 'Lebih banyak duel Arena setiap hari', tr: 'Her gün daha fazla Arena düellosu', pl: 'Więcej pojedynków na Arenie każdego dnia' },
-    subtitle: {
-      'pt-BR': 'Plus remove o limite diário de partidas: compita todos os dias, fortaleça sua estratégia e avance sem sentir “por hoje chega”.',
-      vi: 'Plus bỏ giới hạn trận hằng ngày: thi đấu mỗi ngày, tăng chiến thuật và tiến bộ mà không bị chặn giữa nhịp.',
-      id: 'Plus menghapus batas pertandingan harian: bertanding tiap hari, perkuat strategi, dan berkembang tanpa rasa “cukup untuk hari ini”.',
-      tr: 'Plus günlük maç sınırını kaldırır: her gün yarış, stratejini güçlendir ve “bugünlük bu kadar” hissi olmadan ilerle.',
-      pl: 'Plus usuwa dzienny limit meczów: rywalizuj codziennie, wzmacniaj strategię i rośnij bez wrażenia “na dziś koniec”.',
-    },
-  },
   no_energy: {
-    title: { 'pt-BR': 'Pare as pausas por falta de energia', vi: 'Dừng những lần nghỉ vì hết năng lượng', id: 'Hentikan jeda karena energi habis', tr: 'Enerji yüzünden verilen araları durdur', pl: 'Zatrzymaj przerwy przez energię' },
+    title: { 'pt-BR': 'Pare as pausas por falta de energia', vi: 'Dừng những lần nghỉ vì hết năng lượng', id: 'Hentikan jeda akibat energi habis', tr: 'Enerji yüzünden verilen araları durdur', pl: 'Zatrzymaj przerwy przez energię' },
     subtitle: {
-      'pt-BR': 'Com Plus, energia ilimitada: lições, quizzes e exame final sem temporizador de espera, no seu ritmo.',
-      vi: 'Với Plus, năng lượng không giới hạn: bài học, quiz và bài kiểm tra cuối không cần chờ, theo nhịp của bạn.',
-      id: 'Dengan Plus, energi tanpa batas: pelajaran, kuis, dan ujian akhir tanpa timer tunggu, sesuai ritmemu.',
-      tr: 'Plus ile sınırsız enerji: dersler, quizler ve final sınavı bekleme sayacı olmadan, senin ritminde.',
-      pl: 'Z Plus energia jest bez limitu: lekcje, quizy i egzamin końcowy bez czekania, w twoim rytmie.',
+      'pt-BR': 'Com Plus, energia ilimitada: lições, prática e exame final sem temporizador de espera, no seu ritmo.',
+      vi: 'Với Plus, năng lượng không giới hạn: bài học, luyện tập và bài kiểm tra cuối không cần chờ, theo nhịp của bạn.',
+      id: 'Dengan Plus, energi tanpa batas: pelajaran, latihan, dan ujian akhir tanpa timer tunggu, sesuai ritmemu.',
+      tr: 'Plus ile sınırsız enerji: dersler, pratik ve final sınavı bekleme sayacı olmadan, senin ritminde.',
+      pl: 'Z Plus energia jest bez limitu: lekcje, praktyka i egzamin końcowy bez czekania, w twoim rytmie.',
     },
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_PLANNED_COPY,
   lesson_b1: LESSON_B1_PLANNED_COPY,
-  quiz_limit: {
-    title: { 'pt-BR': 'O limite de quizzes de hoje acabou', vi: 'Đã hết lượt quiz hôm nay', id: 'Batas kuis hari ini habis', tr: 'Bugünkü quiz sınırı doldu', pl: 'Dzisiejszy limit quizów został wykorzystany' },
-    subtitle: {
-      'pt-BR': 'A versão grátis inclui 1 quiz por dia. Plus remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 1 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 1 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 1 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 1 quiz dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
-    },
-  },
-  quiz_level: {
-    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
-    subtitle: {
-      'pt-BR': 'A versão grátis inclui 1 quiz por dia. Plus remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 1 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 1 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 1 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 1 quiz dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
-    },
-  },
-  quiz_medium: {
-    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
-    subtitle: {
-      'pt-BR': 'A versão grátis inclui 1 quiz por dia. Plus remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 1 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 1 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 1 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 1 quiz dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
-    },
-  },
-  quiz_hard: {
-    title: { 'pt-BR': 'Mais quizzes todos os dias', vi: 'Thêm quiz mỗi ngày', id: 'Lebih banyak kuis setiap hari', tr: 'Her gün daha fazla quiz', pl: 'Więcej quizów każdego dnia' },
-    subtitle: {
-      'pt-BR': 'A versão grátis inclui 1 quiz por dia. Plus remove o limite diário para você praticar sem pausas.',
-      vi: 'Bản miễn phí có 1 quiz mỗi ngày. Plus bỏ giới hạn hằng ngày để bạn luyện tập không bị ngắt quãng.',
-      id: 'Versi gratis mencakup 1 kuis per hari. Plus menghapus batas harian agar kamu bisa berlatih tanpa jeda.',
-      tr: 'Ücretsiz sürüm günde 1 quiz içerir. Plus günlük sınırı kaldırır, böylece ara vermeden pratik yapabilirsin.',
-      pl: 'Wersja darmowa obejmuje 1 quiz dziennie. Plus usuwa limit dzienny, aby można było ćwiczyć bez przerw.',
-    },
-  },
   flashcard_limit: {
     title: { 'pt-BR': 'Sua base de cartões não deve ter limite', vi: 'Kho thẻ của bạn không nên có giới hạn', id: 'Koleksi kartumu tidak perlu dibatasi', tr: 'Kart arşivin sınırlı olmamalı', pl: 'Twoja baza fiszek nie powinna mieć limitu' },
     subtitle: {
@@ -542,7 +437,7 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     subtitle: {
       'pt-BR': 'Plus protege seu ritmo: estude sem pausas e não volte atrás por um dia perdido.',
       vi: 'Plus bảo vệ nhịp học: học không gián đoạn và không bị tụt lại vì một ngày bỏ lỡ.',
-      id: 'Plus melindungi ritmemu: belajar tanpa jeda dan tidak mundur karena satu hari terlewat.',
+      id: 'Plus melindungi ritmemu: belajar tanpa jeda dan tidak mundur akibat satu hari terlewat.',
       tr: 'Plus ritmini korur: ara vermeden çalış ve tek bir kaçırılan gün yüzünden geri düşme.',
       pl: 'Plus chroni twój rytm: ucz się bez przerw i nie cofaj się przez jeden opuszczony dzień.',
     },
@@ -669,11 +564,11 @@ PAYWALL_PLANNED_COPY.personal_plan = {
     pl: 'Włącz swój plan osobisty',
   },
   subtitle: {
-    'pt-BR': 'Plus libera tarefas diárias: lições, frases reais, revisão e quizzes alinhados ao seu objetivo.',
-    vi: 'Plus mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và quiz theo mục tiêu của bạn.',
-    id: 'Plus membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan kuis sesuai tujuanmu.',
-    tr: 'Plus günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun quizler.',
-    pl: 'Plus otwiera codzienne zadania: lekcje, żywe frazy, powtórki i quizy pod twój cel.',
+    'pt-BR': 'Plus libera tarefas diárias: lições, frases reais, revisão e prática alinhadas ao seu objetivo.',
+    vi: 'Plus mở nhiệm vụ hằng ngày: bài học, câu thật, ôn tập và luyện tập theo mục tiêu của bạn.',
+    id: 'Plus membuka tugas harian: pelajaran, frasa nyata, pengulangan, dan latihan sesuai tujuanmu.',
+    tr: 'Plus günlük görevleri açar: dersler, gerçek ifadeler, tekrar ve hedefe uygun pratik.',
+    pl: 'Plus otwiera codzienne zadania: lekcje, żywe frazy, powtórki i praktykę pod twój cel.',
   },
 };
 
@@ -937,11 +832,11 @@ PAYWALL_PLANNED_COPY.avatar_aura = {
     pl: 'Wyróżnij się aurą wokół awatara',
   },
   subtitle: {
-    'pt-BR': 'A aura premium ilumina seu avatar nas ligas, na Arena e entre amigos. Você é visto na hora: em listas, duelos e chats.',
-    vi: 'Hào quang cao cấp làm avatar của bạn nổi bật trong giải đấu, Đấu trường và giữa bạn bè. Bạn được chú ý ngay — trong danh sách, trận đấu và trò chuyện.',
-    id: 'Aura premium menyorot avatarmu di liga, Arena, dan di antara teman. Kamu langsung terlihat: di daftar, duel, dan obrolan.',
-    tr: 'Premium aura, liglerde, Arena’da ve arkadaşlar arasında avatarını aydınlatır. Listelerde, düellolarda ve sohbetlerde hemen fark edilirsin.',
-    pl: 'Premium aura podświetla twój awatar w ligach, na Arenie i wśród znajomych. Widać cię od razu: na listach, w pojedynkach i czatach.',
+    'pt-BR': 'A aura premium ilumina seu avatar nas ligas e entre amigos. Você é visto na hora em listas e chats.',
+    vi: 'Hào quang cao cấp làm avatar của bạn nổi bật trong giải đấu và giữa bạn bè. Bạn được chú ý ngay trong danh sách và trò chuyện.',
+    id: 'Aura premium menyorot avatarmu di liga dan di antara teman. Kamu langsung terlihat di daftar dan obrolan.',
+    tr: 'Premium aura, liglerde ve arkadaşlar arasında avatarını aydınlatır. Listelerde ve sohbetlerde hemen fark edilirsin.',
+    pl: 'Premium aura podświetla twój awatar w ligach i wśród znajomych. Widać cię od razu na listach i czatach.',
   },
 };
 
@@ -1060,14 +955,9 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'У каждого языка свой план и прогресс', uk: 'У кожної мови свій план і прогрес', es: 'Cada idioma con su plan y progreso', 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
     { ru: 'Переключайся между языками в один тап', uk: 'Перемикайся між мовами одним дотиком', es: 'Cambia de idioma con un toque', 'pt-BR': 'Troque de idioma com um toque', vi: 'Chuyển ngôn ngữ chỉ với một chạm', id: 'Berpindah bahasa dengan satu ketukan', tr: 'Tek dokunuşla diller arasında geç', pl: 'Przełączaj języki jednym dotknięciem' },
   ],
-  arena: [
-    { ru: 'Дневной потолок матчей снимается', uk: 'Денну межу матчів знято', es: 'Se quita el techo diario de partidas', 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
-    { ru: 'Дуэли без ощущения «на сегодня всё»', uk: 'Дуелі без «на сьогодні вже досить»', es: 'Duelos sin el «ya basta por hoy»', 'pt-BR': 'Duelos sem “por hoje chega”', vi: 'Đấu mà không bị “hôm nay đủ rồi”', id: 'Duel tanpa rasa “cukup hari ini”', tr: '“Bugünlük yeter” hissi olmadan düello', pl: 'Pojedynki bez “na dziś wystarczy”' },
-    { ru: 'Темп и мотивация в тренировках сильнее', uk: 'Темп і мотивація в тренуваннях сильніші', es: 'Ritmo y motivación en el entrenamiento', 'pt-BR': 'Mais ritmo e motivação nos treinos', vi: 'Nhịp và động lực luyện tập mạnh hơn', id: 'Ritme dan motivasi latihan lebih kuat', tr: 'Antrenmanda daha güçlü tempo ve motivasyon', pl: 'Silniejsze tempo i motywacja w treningu' },
-  ],
   no_energy: [
     { ru: 'Свободные занятия без таймера', uk: 'Вільні заняття без таймера', es: 'Sesiones sin temporizador de espera', 'pt-BR': 'Estudo livre sem temporizador', vi: 'Học tự do không cần chờ timer', id: 'Sesi bebas tanpa timer tunggu', tr: 'Bekleme sayacı olmadan serbest çalışma', pl: 'Swobodna nauka bez timera' },
-    { ru: 'Урок, квиз и финальный экзамен без вынужденных пауз', uk: 'Урок, квіз і фінальний іспит без вимушених пауз', es: 'Lección, quiz y examen sin pausas forzadas', 'pt-BR': 'Lição, quiz e exame final sem pausas forçadas', vi: 'Bài học, quiz và bài cuối không bị dừng ép buộc', id: 'Pelajaran, kuis, dan ujian akhir tanpa jeda paksa', tr: 'Ders, quiz ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, quiz i egzamin bez wymuszonych przerw' },
+    { ru: 'Урок, тренировка и финальный экзамен без вынужденных пауз', uk: 'Урок, тренування і фінальний іспит без вимушених пауз', es: 'Lección, práctica y examen sin pausas forzadas', 'pt-BR': 'Lição, prática e exame final sem pausas forçadas', vi: 'Bài học, luyện tập và bài cuối không bị dừng ép buộc', id: 'Pelajaran, latihan, dan ujian akhir tanpa jeda paksa', tr: 'Ders, pratik ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, praktyka i egzamin bez wymuszonych przerw' },
     { ru: 'День не обрывается на самом интересном', uk: 'День не обривається на найцікавішому', es: 'El día no se corta justo cuando empieza', 'pt-BR': 'O dia não para bem na melhor hora', vi: 'Buổi học không dừng đúng lúc đang vào guồng', id: 'Hari belajar tidak berhenti saat mulai seru', tr: 'Gün tam hızlanmışken kesilmez', pl: 'Dzień nie urywa się w najciekawszym momencie' },
   ],
   course_after_lesson3: [
@@ -1080,26 +970,6 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
     { ru: 'Никаких барьеров — просто учись дальше в своё удовольствие', uk: 'Жодних бар\'єрів — просто навчайся далі із задоволенням', es: 'Sin barreras — sigue aprendiendo a tu gusto', 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
     { ru: 'Следующие уровни открываются через экзамены', uk: 'Наступні рівні відкриваються через екзамени', es: 'Los siguientes niveles se abren con exámenes', 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
-  quiz_limit: [
-    { ru: 'Без лимита попыток и остановок', uk: 'Без ліміту спроб і зупинок', es: 'Sin límite de intentos ni frenos', 'pt-BR': 'Sem limite de tentativas nem pausas', vi: 'Không giới hạn lượt thử và không bị dừng', id: 'Tanpa batas percobaan dan hambatan', tr: 'Deneme ve duraklama sınırı yok', pl: 'Bez limitu prób i zatrzymań' },
-    { ru: 'Регулярный учебный ритм каждый день', uk: 'Регулярний навчальний ритм щодня', es: 'Ritmo de estudio estable cada día', 'pt-BR': 'Ritmo de estudo regular todos os dias', vi: 'Nhịp học đều đặn mỗi ngày', id: 'Ritme belajar teratur setiap hari', tr: 'Her gün düzenli öğrenme ritmi', pl: 'Regularny rytm nauki każdego dnia' },
-    { ru: 'Больше XP и пользы сессий', uk: 'Більше XP і користі від сесій', es: 'Más XP y valor en cada sesión', 'pt-BR': 'Mais XP e mais valor por sessão', vi: 'Thêm XP và giá trị từ mỗi phiên', id: 'Lebih banyak XP dan manfaat sesi', tr: 'Oturumlardan daha fazla XP ve fayda', pl: 'Więcej XP i korzyści z sesji' },
-  ],
-  quiz_level: [
-    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
-  quiz_medium: [
-    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
-  quiz_hard: [
-    { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
   flashcard_limit: [
     { ru: 'Безлимит на личную базу карточек', uk: 'Безліміт на особисту базу карток', es: 'Tu colección de tarjetas sin límite', 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
     { ru: 'Храни все важные фразы', uk: 'Зберігай всі важливі фрази', es: 'Guarda todas tus frases clave', 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
@@ -1107,7 +977,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   streak: [
     { ru: 'Защита серии даже при пропуске', uk: 'Захист серії навіть при пропуску', es: 'Protege tu racha aunque faltes un día', 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
-    { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía', 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda karena energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
+    { ru: 'Без пауз из-за энергии', uk: 'Без пауз через енергію', es: 'Sin pausas por energía', 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda akibat energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
     { ru: 'Серия не ломает твой темп', uk: 'Серія не ламає твій темп', es: 'La racha no rompe tu ritmo', 'pt-BR': 'A sequência não quebra seu ritmo', vi: 'Chuỗi ngày không phá nhịp học của bạn', id: 'Runtutan tidak merusak ritmemu', tr: 'Seri temponu bozmaz', pl: 'Seria nie łamie twojego tempa' },
   ],
   theme: [
@@ -1168,15 +1038,9 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
 };
 
-CONTEXT_BENEFITS.quiz_limit = [
-  { ru: 'Без дневного лимита на квизы', uk: 'Без денного ліміту на квізи', es: 'Sin límite diario de cuestionarios', 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-  { ru: 'Больше практики в удобном ритме', uk: 'Більше практики у зручному ритмі', es: 'Más práctica a tu ritmo', 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-  { ru: 'Больше практики и XP каждый день', uk: 'Більше практики та XP щодня', es: 'Más práctica y XP cada día', 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-];
-
 CONTEXT_BENEFITS.personal_plan = [
   { ru: 'Персональный план с заданиями на каждый день', uk: 'Персональний план із завданнями на кожен день', es: 'Plan personal con tareas diarias', 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
-  { ru: 'Уроки, фразы, повторение и отдельные квизы плана', uk: 'Уроки, фрази, повторення й окремі квізи плану', es: 'Lecciones, frases, repaso y quizzes del plan', 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
+  { ru: 'Уроки, фразы, повторение и отдельные проверки плана', uk: 'Уроки, фрази, повторення й окремі перевірки плану', es: 'Lecciones, frases, repaso y prácticas del plan', 'pt-BR': 'Lições, frases, revisão e práticas do plano', vi: 'Bài học, câu, ôn tập và luyện tập của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan latihan rencana', tr: 'Dersler, ifadeler, tekrar ve plan pratikleri', pl: 'Lekcje, frazy, powtórki i ćwiczenia planu' },
   { ru: 'Все нужные материалы открываются без лишних пауз', uk: 'Усі потрібні матеріали відкриваються без зайвих пауз', es: 'Materiales necesarios sin pausas extra', 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
 ];
 
@@ -1193,7 +1057,7 @@ CONTEXT_BENEFITS.weekly_review = [
 ];
 
 CONTEXT_BENEFITS.avatar_aura = [
-  { ru: 'Аура вокруг аватара — виден в лигах и дуэлях', uk: 'Аура навколо аватара — тебе видно в лігах і дуелях', es: 'Aura en tu avatar: visible en ligas y duelos', 'pt-BR': 'Aura no avatar: visível em ligas e duelos', vi: 'Hào quang quanh avatar — nổi bật trong giải và trận đấu', id: 'Aura di avatar: terlihat di liga dan duel', tr: 'Avatarında aura — liglerde ve düellolarda görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i pojedynkach' },
+  { ru: 'Аура вокруг аватара — виден в лигах и списках', uk: 'Аура навколо аватара — тебе видно в лігах і списках', es: 'Aura en tu avatar: visible en ligas y listas', 'pt-BR': 'Aura no avatar: visível em ligas e listas', vi: 'Hào quang quanh avatar — nổi bật trong giải và danh sách', id: 'Aura di avatar: terlihat di liga dan daftar', tr: 'Avatarında aura — liglerde ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i na listach' },
   { ru: 'Уникальный стиль профиля, который замечают', uk: 'Унікальний стиль профілю, який помічають', es: 'Un estilo de perfil que se nota', 'pt-BR': 'Um estilo de perfil que chama atenção', vi: 'Phong cách hồ sơ độc đáo, ai cũng chú ý', id: 'Gaya profil unik yang diperhatikan', tr: 'Fark edilen benzersiz profil stili', pl: 'Wyjątkowy styl profilu, który się zauważa' },
   { ru: 'Работает везде: лидерборды, друзья, чаты', uk: 'Працює всюди: лідерборди, друзі, чати', es: 'Funciona en todas partes: rankings, amigos, chats', 'pt-BR': 'Funciona em tudo: rankings, amigos, chats', vi: 'Hiện ở mọi nơi: bảng xếp hạng, bạn bè, trò chuyện', id: 'Berlaku di mana saja: papan peringkat, teman, obrolan', tr: 'Her yerde çalışır: sıralamalar, arkadaşlar, sohbetler', pl: 'Działa wszędzie: rankingi, znajomi, czaty' },
 ];
@@ -1212,7 +1076,7 @@ CONTEXT_BENEFITS.dialog_limit = [
 
 CONTEXT_BENEFITS.intro_ended = [
   { ru: 'Полный доступ возвращается целиком', uk: 'Повний доступ повертається повністю', es: 'Recuperas el acceso completo entero', 'pt-BR': 'O acesso completo volta inteiro', vi: 'Toàn bộ quyền truy cập đầy đủ trở lại', id: 'Akses penuh kembali seutuhnya', tr: 'Tam erişim eksiksiz geri gelir', pl: 'Pełny dostęp wraca w całości' },
-  { ru: 'Уроки, квизы и тренажёр без пауз и лимитов', uk: 'Уроки, квізи і тренажер без пауз і лімітів', es: 'Lecciones, quizzes y entrenador sin pausas ni límites', 'pt-BR': 'Lições, quizzes e treinador sem pausas nem limites', vi: 'Bài học, quiz và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, kuis, dan trainer tanpa jeda dan batas', tr: 'Dersler, quizler ve antrenör arasız ve sınırsız', pl: 'Lekcje, quizy i trener bez przerw i limitów' },
+  { ru: 'Уроки, практика и тренажёр без пауз и лимитов', uk: 'Уроки, практика і тренажер без пауз і лімітів', es: 'Lecciones, práctica y entrenador sin pausas ni límites', 'pt-BR': 'Lições, prática e treinador sem pausas nem limites', vi: 'Bài học, luyện tập và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, latihan, dan trainer tanpa jeda dan batas', tr: 'Dersler, pratik ve antrenör arasız ve sınırsız', pl: 'Lekcje, praktyka i trener bez przerw i limitów' },
   { ru: 'Сохрани темп, набранный за пробный период', uk: 'Збережи темп, набраний за пробний період', es: 'Mantén el ritmo que lograste en la prueba', 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
 ];
 
@@ -1236,7 +1100,7 @@ CONTEXT_BENEFITS.premium_expired = [
 
 CONTEXT_BENEFITS.vip_expired = [
   { ru: 'Продолжай со всем, что открыл Plus', uk: 'Продовжуй з усім, що відкрив Plus', es: 'Continúa con todo lo de Plus', 'pt-BR': 'Continue com tudo do Plus', vi: 'Tiếp tục với mọi thứ Plus đã mở', id: 'Lanjut dengan semua dari Plus', tr: 'Plus’ın açtığı her şeyle devam et', pl: 'Kontynuuj ze wszystkim z Plus' },
-  { ru: 'Без лимитов на уроки, квизы и практику', uk: 'Без лімітів на уроки, квізи і практику', es: 'Sin límites en lecciones, quizzes y práctica', 'pt-BR': 'Sem limites em lições, quizzes e prática', vi: 'Không giới hạn bài học, quiz và luyện tập', id: 'Tanpa batas pelajaran, kuis, dan latihan', tr: 'Derslerde, quizlerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje, quizy i praktykę' },
+  { ru: 'Без лимитов на уроки и практику', uk: 'Без лімітів на уроки і практику', es: 'Sin límites en lecciones y práctica', 'pt-BR': 'Sem limites em lições e prática', vi: 'Không giới hạn bài học và luyện tập', id: 'Tanpa batas pelajaran dan latihan', tr: 'Derslerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje i praktykę' },
   { ru: 'Путь без пауз и дневных потолков', uk: 'Шлях без пауз і денних стель', es: 'Camino sin pausas ni techos diarios', 'pt-BR': 'Caminho sem pausas nem tetos diários', vi: 'Lộ trình không dừng và không trần mỗi ngày', id: 'Jalur tanpa jeda dan plafon harian', tr: 'Ara ve günlük tavan olmadan yol', pl: 'Droga bez pauz i dziennych sufitów' },
 ];
 
@@ -1288,14 +1152,9 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Cada idioma com seu plano e progresso', vi: 'Mỗi ngôn ngữ có kế hoạch và tiến độ riêng', id: 'Tiap bahasa punya rencana dan progres sendiri', tr: 'Her dilin kendi planı ve ilerlemesi', pl: 'Każdy język ma własny plan i postęp' },
     { 'pt-BR': 'Troque de idioma com um toque', vi: 'Chuyển ngôn ngữ chỉ với một chạm', id: 'Berpindah bahasa dengan satu ketukan', tr: 'Tek dokunuşla diller arasında geç', pl: 'Przełączaj języki jednym dotknięciem' },
   ],
-  arena: [
-    { 'pt-BR': 'O teto diário de partidas é removido', vi: 'Gỡ giới hạn trận hằng ngày', id: 'Batas pertandingan harian dihapus', tr: 'Günlük maç tavanı kalkar', pl: 'Dzienny limit meczów znika' },
-    { 'pt-BR': 'Duelos sem “por hoje chega”', vi: 'Đấu mà không bị “hôm nay đủ rồi”', id: 'Duel tanpa rasa “cukup hari ini”', tr: '“Bugünlük yeter” hissi olmadan düello', pl: 'Pojedynki bez “na dziś wystarczy”' },
-    { 'pt-BR': 'Mais ritmo e motivação nos treinos', vi: 'Nhịp và động lực luyện tập mạnh hơn', id: 'Ritme dan motivasi latihan lebih kuat', tr: 'Antrenmanda daha güçlü tempo ve motivasyon', pl: 'Silniejsze tempo i motywacja w treningu' },
-  ],
   no_energy: [
     { 'pt-BR': 'Estudo livre sem temporizador', vi: 'Học tự do không cần chờ timer', id: 'Sesi bebas tanpa timer tunggu', tr: 'Bekleme sayacı olmadan serbest çalışma', pl: 'Swobodna nauka bez timera' },
-    { 'pt-BR': 'Lição, quiz e exame final sem pausas forçadas', vi: 'Bài học, quiz và bài cuối không bị dừng ép buộc', id: 'Pelajaran, kuis, dan ujian akhir tanpa jeda paksa', tr: 'Ders, quiz ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, quiz i egzamin bez wymuszonych przerw' },
+    { 'pt-BR': 'Lição, prática e exame final sem pausas forçadas', vi: 'Bài học, luyện tập và bài cuối không bị dừng ép buộc', id: 'Pelajaran, latihan, dan ujian akhir tanpa jeda paksa', tr: 'Ders, pratik ve final sınavı zorunlu ara olmadan', pl: 'Lekcja, praktyka i egzamin bez wymuszonych przerw' },
     { 'pt-BR': 'Ritmo diário estável sem travar', vi: 'Nhịp học hằng ngày ổn định hơn', id: 'Ritme harian stabil tanpa terhenti', tr: 'Aksamadan istikrarlı günlük ritim', pl: 'Stabilny rytm dnia bez zrywów' },
   ],
   course_after_lesson3: [
@@ -1308,26 +1167,6 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
     { 'pt-BR': 'Sem barreiras — continue estudando no seu ritmo', vi: 'Không rào cản — cứ học tiếp theo nhịp của bạn', id: 'Tanpa hambatan — lanjut belajar dengan nyaman', tr: 'Engel yok — keyifle devam et', pl: 'Bez barier — ucz się dalej swoim tempem' },
     { 'pt-BR': 'Os próximos níveis abrem com exames', vi: 'Cấp tiếp theo mở qua bài kiểm tra', id: 'Level berikutnya terbuka lewat ujian', tr: 'Sonraki seviyeler sınavlarla açılır', pl: 'Kolejne poziomy otwierają się przez egzaminy' },
   ],
-  quiz_limit: [
-    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
-  quiz_level: [
-    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
-  quiz_medium: [
-    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
-  quiz_hard: [
-    { 'pt-BR': 'Sem limite diário de quizzes', vi: 'Không giới hạn quiz mỗi ngày', id: 'Tanpa batas kuis harian', tr: 'Günlük quiz sınırı yok', pl: 'Bez dziennego limitu quizów' },
-    { 'pt-BR': 'Mais prática no seu ritmo', vi: 'Luyện tập nhiều hơn theo nhịp của bạn', id: 'Lebih banyak latihan sesuai ritmemu', tr: 'Kendi ritminde daha fazla pratik', pl: 'Więcej praktyki we własnym rytmie' },
-    { 'pt-BR': 'Mais prática e XP todos os dias', vi: 'Thêm luyện tập và XP mỗi ngày', id: 'Lebih banyak latihan dan XP tiap hari', tr: 'Her gün daha fazla pratik ve XP', pl: 'Więcej praktyki i XP każdego dnia' },
-  ],
   flashcard_limit: [
     { 'pt-BR': 'Sem limite para sua base de cartões', vi: 'Không giới hạn kho thẻ cá nhân', id: 'Tanpa batas untuk koleksi kartu pribadi', tr: 'Kişisel kart arşivinde sınır yok', pl: 'Bez limitu własnej bazy fiszek' },
     { 'pt-BR': 'Guarde todas as frases importantes', vi: 'Lưu mọi cụm từ quan trọng', id: 'Simpan semua frasa penting', tr: 'Tüm önemli ifadeleri sakla', pl: 'Przechowuj wszystkie ważne frazy' },
@@ -1335,7 +1174,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   ],
   streak: [
     { 'pt-BR': 'Proteção de sequência mesmo se faltar um dia', vi: 'Bảo vệ chuỗi kể cả khi bỏ lỡ một ngày', id: 'Perlindungan streak meski terlewat sehari', tr: 'Bir gün kaçsa bile seri koruması', pl: 'Ochrona serii nawet przy pominięciu dnia' },
-    { 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda karena energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
+    { 'pt-BR': 'Sem pausas por falta de energia', vi: 'Không bị nghỉ vì hết năng lượng', id: 'Tanpa jeda akibat energi', tr: 'Enerji yüzünden ara yok', pl: 'Bez przerw przez energię' },
     { 'pt-BR': 'A sequência não quebra seu ritmo', vi: 'Chuỗi ngày không phá nhịp học của bạn', id: 'Runtutan tidak merusak ritmemu', tr: 'Seri temponu bozmaz', pl: 'Seria nie łamie twojego tempa' },
   ],
   theme: [
@@ -1398,7 +1237,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
 
 CONTEXT_BENEFITS_PLANNED.personal_plan = [
   { 'pt-BR': 'Plano pessoal com tarefas diárias', vi: 'Kế hoạch cá nhân với nhiệm vụ hằng ngày', id: 'Rencana personal dengan tugas harian', tr: 'Günlük görevli kişisel plan', pl: 'Plan osobisty z codziennymi zadaniami' },
-  { 'pt-BR': 'Lições, frases, revisão e quizzes do plano', vi: 'Bài học, câu, ôn tập và quiz của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan kuis rencana', tr: 'Dersler, ifadeler, tekrar ve plan quizleri', pl: 'Lekcje, frazy, powtórki i quizy planu' },
+  { 'pt-BR': 'Lições, frases, revisão e práticas do plano', vi: 'Bài học, câu, ôn tập và luyện tập của kế hoạch', id: 'Pelajaran, frasa, pengulangan, dan latihan rencana', tr: 'Dersler, ifadeler, tekrar ve plan pratikleri', pl: 'Lekcje, frazy, powtórki i ćwiczenia planu' },
   { 'pt-BR': 'Materiais necessários sem pausas extras', vi: 'Tài liệu cần thiết không bị dừng thêm', id: 'Materi yang dibutuhkan tanpa jeda ekstra', tr: 'Gerekli materyaller ekstra duraklama olmadan', pl: 'Potrzebne materiały bez dodatkowych przerw' },
 ];
 
@@ -1415,7 +1254,7 @@ CONTEXT_BENEFITS_PLANNED.weekly_review = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.avatar_aura = [
-  { 'pt-BR': 'Aura no avatar: visível em ligas e duelos', vi: 'Hào quang quanh avatar — nổi bật trong giải và trận đấu', id: 'Aura di avatar: terlihat di liga dan duel', tr: 'Avatarında aura — liglerde ve düellolarda görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i pojedynkach' },
+  { 'pt-BR': 'Aura no avatar: visível em ligas e listas', vi: 'Hào quang quanh avatar — nổi bật trong giải và danh sách', id: 'Aura di avatar: terlihat di liga dan daftar', tr: 'Avatarında aura — liglerde ve listelerde görünürsün', pl: 'Aura wokół awatara — widoczny w ligach i na listach' },
   { 'pt-BR': 'Um estilo de perfil que chama atenção', vi: 'Phong cách hồ sơ độc đáo, ai cũng chú ý', id: 'Gaya profil unik yang diperhatikan', tr: 'Fark edilen benzersiz profil stili', pl: 'Wyjątkowy styl profilu, który się zauważa' },
   { 'pt-BR': 'Funciona em tudo: rankings, amigos, chats', vi: 'Hiện ở mọi nơi: bảng xếp hạng, bạn bè, trò chuyện', id: 'Berlaku di mana saja: papan peringkat, teman, obrolan', tr: 'Her yerde çalışır: sıralamalar, arkadaşlar, sohbetler', pl: 'Działa wszędzie: rankingi, znajomi, czaty' },
 ];
@@ -1434,7 +1273,7 @@ CONTEXT_BENEFITS_PLANNED.dialog_limit = [
 
 CONTEXT_BENEFITS_PLANNED.intro_ended = [
   { 'pt-BR': 'O acesso completo volta inteiro', vi: 'Toàn bộ quyền truy cập đầy đủ trở lại', id: 'Akses penuh kembali seutuhnya', tr: 'Tam erişim eksiksiz geri gelir', pl: 'Pełny dostęp wraca w całości' },
-  { 'pt-BR': 'Lições, quizzes e treinador sem pausas nem limites', vi: 'Bài học, quiz và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, kuis, dan trainer tanpa jeda dan batas', tr: 'Dersler, quizler ve antrenör arasız ve sınırsız', pl: 'Lekcje, quizy i trener bez przerw i limitów' },
+  { 'pt-BR': 'Lições, prática e treinador sem pausas nem limites', vi: 'Bài học, luyện tập và huấn luyện không dừng, không giới hạn', id: 'Pelajaran, latihan, dan trainer tanpa jeda dan batas', tr: 'Dersler, pratik ve antrenör arasız ve sınırsız', pl: 'Lekcje, praktyka i trener bez przerw i limitów' },
   { 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
 ];
 
@@ -1458,7 +1297,7 @@ CONTEXT_BENEFITS_PLANNED.premium_expired = [
 
 CONTEXT_BENEFITS_PLANNED.vip_expired = [
   { 'pt-BR': 'Continue com tudo do Plus', vi: 'Tiếp tục với mọi thứ Plus đã mở', id: 'Lanjut dengan semua dari Plus', tr: 'Plus’ın açtığı her şeyle devam et', pl: 'Kontynuuj ze wszystkim z Plus' },
-  { 'pt-BR': 'Sem limites em lições, quizzes e prática', vi: 'Không giới hạn bài học, quiz và luyện tập', id: 'Tanpa batas pelajaran, kuis, dan latihan', tr: 'Derslerde, quizlerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje, quizy i praktykę' },
+  { 'pt-BR': 'Sem limites em lições e prática', vi: 'Không giới hạn bài học và luyện tập', id: 'Tanpa batas pelajaran dan latihan', tr: 'Derslerde ve pratikte sınır yok', pl: 'Bez limitów na lekcje i praktykę' },
   { 'pt-BR': 'Caminho sem pausas nem tetos diários', vi: 'Lộ trình không dừng và không trần mỗi ngày', id: 'Jalur tanpa jeda dan plafon harian', tr: 'Ara ve günlük tavan olmadan yol', pl: 'Droga bez pauz i dziennych sufitów' },
 ];
 

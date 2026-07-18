@@ -7,7 +7,6 @@ import type { ThemeMode } from '../constants/theme';
  */
 export type HomeMenuImageSet = {
   lesson: ImageSourcePropType;
-  quizes: ImageSourcePropType;
   cards: ImageSourcePropType;
   dayTasks: ImageSourcePropType;
   league: ImageSourcePropType;
@@ -16,7 +15,6 @@ export type HomeMenuImageSet = {
   dialogs: ImageSourcePropType;
   exam: ImageSourcePropType;
   shop: ImageSourcePropType;
-  arena: ImageSourcePropType;
   heroMap: ImageSourcePropType;
 };
 
@@ -24,7 +22,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   if (themeMode === 'minimalDark') {
     return {
       lesson: require('../assets/images/home_menu/home-minimal-dark-lessons.webp'),
-      quizes: require('../assets/images/home_menu/home-minimal-dark-quizzes.webp'),
       cards: require('../assets/images/home_menu/home-minimal-dark-cards.webp'),
       dayTasks: require('../assets/images/home_menu/home-minimal-dark-daily-tasks.webp'),
       league: require('../assets/images/home_menu/home-minimal-dark-league.webp'),
@@ -33,14 +30,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/home-minimal-dark-dialogs.webp'),
       exam: require('../assets/images/levels/exam-minimal-dark.webp'),
       shop: require('../assets/images/levels/shop fog.webp'),
-      arena: require('../assets/images/levels/arena fog.webp'),
       heroMap: require('../assets/images/levels/her man fog.webp'),
     };
   }
   if (themeMode === 'business') {
     return {
       lesson: require('../assets/images/home_menu/business/home-business-lessons-lite.avif'),
-      quizes: require('../assets/images/home_menu/business/home-business-quizzes-lite.avif'),
       cards: require('../assets/images/home_menu/business/home-business-cards-lite.avif'),
       dayTasks: require('../assets/images/home_menu/business/home-business-daily-tasks-lite.avif'),
       league: require('../assets/images/home_menu/business/home-business-league-lite.avif'),
@@ -49,14 +44,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/business/home-business-dialogs-lite.avif'),
       exam: require('../assets/images/home_menu/business/home-business-exam-lite.avif'),
       shop: require('../assets/images/home_menu/business/home-business-shop-lite.avif'),
-      arena: require('../assets/images/home_menu/business/home-business-arena-lite.avif'),
       heroMap: require('../assets/images/home_menu/business/home-business-hero-map-lite.avif'),
     };
   }
   if (themeMode === 'businessLight') {
     return {
       lesson: require('../assets/images/home_menu/businessLight/home-businessLight-lessons-lite.avif'),
-      quizes: require('../assets/images/home_menu/businessLight/home-businessLight-quizzes-lite.avif'),
       cards: require('../assets/images/home_menu/businessLight/home-businessLight-cards-lite.avif'),
       dayTasks: require('../assets/images/home_menu/businessLight/home-businessLight-daily-tasks-lite.avif'),
       league: require('../assets/images/home_menu/businessLight/home-businessLight-league-lite.avif'),
@@ -65,14 +58,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/businessLight/home-businessLight-dialogs-lite.avif'),
       exam: require('../assets/images/home_menu/businessLight/home-businessLight-exam-lite.avif'),
       shop: require('../assets/images/home_menu/businessLight/home-businessLight-shop-lite.avif'),
-      arena: require('../assets/images/home_menu/businessLight/home-businessLight-arena-lite.avif'),
       heroMap: require('../assets/images/home_menu/businessLight/home-businessLight-hero-map-lite.avif'),
     };
   }
   if (themeMode === 'midnight') {
     return {
       lesson: require('../assets/images/home_menu/midnight/home-midnight-lessons.webp'),
-      quizes: require('../assets/images/home_menu/midnight/home-midnight-quizzes.webp'),
       cards: require('../assets/images/home_menu/midnight/home-midnight-cards.webp'),
       dayTasks: require('../assets/images/home_menu/midnight/home-midnight-daily-tasks.webp'),
       league: require('../assets/images/home_menu/midnight/home-midnight-league.webp'),
@@ -81,14 +72,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/midnight/home-midnight-dialogs.webp'),
       exam: require('../assets/images/home_menu/midnight/home-midnight-exam.webp'),
       shop: require('../assets/images/home_menu/midnight/home-midnight-shop.webp'),
-      arena: require('../assets/images/home_menu/midnight/home-midnight-arena.webp'),
       heroMap: require('../assets/images/home_menu/midnight/home-midnight-hero-map.webp'),
     };
   }
   if (themeMode === 'ember') {
     return {
       lesson: require('../assets/images/home_menu/ember/home-ember-lessons.webp'),
-      quizes: require('../assets/images/home_menu/ember/home-ember-quizzes.webp'),
       cards: require('../assets/images/home_menu/ember/home-ember-cards.webp'),
       dayTasks: require('../assets/images/home_menu/ember/home-ember-daily-tasks.webp'),
       league: require('../assets/images/home_menu/ember/home-ember-league.webp'),
@@ -97,14 +86,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/ember/home-ember-dialogs.webp'),
       exam: require('../assets/images/home_menu/ember/home-ember-exam.webp'),
       shop: require('../assets/images/home_menu/ember/home-ember-shop.webp'),
-      arena: require('../assets/images/home_menu/ember/home-ember-arena.webp'),
       heroMap: require('../assets/images/home_menu/ember/home-ember-hero-map.webp'),
     };
   }
   if (themeMode === 'aurora') {
     return {
       lesson: require('../assets/images/home_menu/aurora/home-aurora-lessons.webp'),
-      quizes: require('../assets/images/home_menu/aurora/home-aurora-quizzes.webp'),
       cards: require('../assets/images/home_menu/aurora/home-aurora-cards.webp'),
       dayTasks: require('../assets/images/home_menu/aurora/home-aurora-daily-tasks.webp'),
       league: require('../assets/images/home_menu/aurora/home-aurora-league.webp'),
@@ -113,14 +100,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/aurora/home-aurora-dialogs.webp'),
       exam: require('../assets/images/home_menu/aurora/home-aurora-exam.webp'),
       shop: require('../assets/images/home_menu/aurora/home-aurora-shop.webp'),
-      arena: require('../assets/images/home_menu/aurora/home-aurora-arena.webp'),
       heroMap: require('../assets/images/home_menu/aurora/home-aurora-hero-map.webp'),
     };
   }
   if (themeMode === 'volt') {
     return {
       lesson: require('../assets/images/home_menu/volt/home-volt-lessons.webp'),
-      quizes: require('../assets/images/home_menu/volt/home-volt-quizzes.webp'),
       cards: require('../assets/images/home_menu/volt/home-volt-cards.webp'),
       dayTasks: require('../assets/images/home_menu/volt/home-volt-daily-tasks.webp'),
       league: require('../assets/images/home_menu/volt/home-volt-league.webp'),
@@ -129,14 +114,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/volt/home-volt-dialogs.webp'),
       exam: require('../assets/images/home_menu/volt/home-volt-exam.webp'),
       shop: require('../assets/images/home_menu/volt/home-volt-shop.webp'),
-      arena: require('../assets/images/home_menu/volt/home-volt-arena.webp'),
       heroMap: require('../assets/images/home_menu/volt/home-volt-hero-map.webp'),
     };
   }
   if (themeMode === 'gold') {
     return {
       lesson: require('../assets/images/home_menu/gold/home-gold-lessons.webp'),
-      quizes: require('../assets/images/home_menu/gold/home-gold-quizzes.webp'),
       cards: require('../assets/images/home_menu/gold/home-gold-cards.webp'),
       dayTasks: require('../assets/images/home_menu/gold/home-gold-daily-tasks.webp'),
       league: require('../assets/images/home_menu/gold/home-gold-league.webp'),
@@ -145,14 +128,12 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/gold/home-gold-dialogs.webp'),
       exam: require('../assets/images/home_menu/gold/home-gold-exam.webp'),
       shop: require('../assets/images/home_menu/gold/home-gold-shop.webp'),
-      arena: require('../assets/images/home_menu/gold/home-gold-arena.webp'),
       heroMap: require('../assets/images/home_menu/gold/home-gold-hero-map.webp'),
     };
   }
   if (themeMode === 'coral') {
     return {
       lesson: require('../assets/images/home_menu/home-coral-lessons.webp'),
-      quizes: require('../assets/images/home_menu/home-coral-quizzes.webp'),
       cards: require('../assets/images/home_menu/home-coral-cards.webp'),
       dayTasks: require('../assets/images/home_menu/home-coral-daily-tasks.webp'),
       league: require('../assets/images/home_menu/home-coral-league.webp'),
@@ -161,13 +142,11 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       dialogs: require('../assets/images/home_menu/home-coral-dialogs.webp'),
       exam: require('../assets/images/levels/exam-coral.webp'),
       shop: require('../assets/images/levels/SHOP CORAL.webp'),
-      arena: require('../assets/images/levels/ARENA CORAL.webp'),
       heroMap: require('../assets/images/levels/hero map ocean.webp'),
     };
   }
   return {
     lesson: require('../assets/images/home_menu/home-forest-lessons.webp'),
-    quizes: require('../assets/images/home_menu/home-forest-quizzes.webp'),
     cards: require('../assets/images/home_menu/home-forest-cards.webp'),
     dayTasks: require('../assets/images/home_menu/home-forest-daily-tasks.webp'),
     league: require('../assets/images/home_menu/home-forest-league.webp'),
@@ -176,7 +155,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     dialogs: require('../assets/images/home_menu/home-forest-dialogs.webp'),
     exam: require('../assets/images/levels/exam-dark.webp'),
     shop: require('../assets/images/levels/SHOP FOREST.webp'),
-    arena: require('../assets/images/levels/ARENA FOREST.webp'),
     heroMap: require('../assets/images/levels/her man foret.webp'),
   };
 }

@@ -3,6 +3,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { withExplainCallableTimeout } from './explain_callable_timeout';
 import { aiOffline, AiOfflineError } from './ai_kill_switch_copy';
+import { readExplainLocalCache, writeExplainLocalCache } from './explain_local_cache';
 
 const FUNCTIONS_REGION = 'us-central1';
 const explainMistakeInFlight = new Map<string, Promise<ExplainMistakeResponse>>();
@@ -58,10 +59,21 @@ function explainMistakeRequestKey(req: ExplainMistakeRequest): string {
 }
 
 export async function callExplainMistake(req: ExplainMistakeRequest): Promise<ExplainMistakeResponse> {
+  const key = explainMistakeRequestKey(req);
+  const localCached = await readExplainLocalCache({ kind: 'mistake', key });
+  if (localCached?.status === 'ok') {
+    return {
+      ok: true,
+      text: localCached.text,
+      remainingQuota: 0,
+      model: 'local-cache',
+      fromCache: true,
+      variant: req.variant ?? 'full',
+    };
+  }
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
-  const key = explainMistakeRequestKey(req);
   const existing = explainMistakeInFlight.get(key);
   if (existing) return existing;
 
@@ -72,6 +84,12 @@ export async function callExplainMistake(req: ExplainMistakeRequest): Promise<Ex
       'explainMistake',
     );
     const res = await withExplainCallableTimeout(fn(req), 'explainMistake');
+    if (res.data.ok && res.data.text.trim()) {
+      void writeExplainLocalCache({ kind: 'mistake', key }, {
+        text: res.data.text,
+        status: 'ok',
+      });
+    }
     return res.data;
   })().finally(() => {
     explainMistakeInFlight.delete(key);

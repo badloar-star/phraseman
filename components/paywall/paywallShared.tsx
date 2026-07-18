@@ -184,13 +184,8 @@ export const PaywallBackground = React.forwardRef<PaywallBackgroundHandle, {
 // ── глиф контекста (SVG-иконки Ionicons вместо эмодзи-зоопарка) ──────────────
 const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphMap>> = {
   no_energy: 'flash',
-  arena: 'trophy',
   course_after_lesson3: 'book',
   lesson_b1: 'book',
-  quiz_limit: 'extension-puzzle',
-  quiz_level: 'extension-puzzle',
-  quiz_medium: 'extension-puzzle',
-  quiz_hard: 'flame',
   flashcard_limit: 'albums',
   flashcard_training: 'school',
   flashcard_autoplay: 'play-circle',

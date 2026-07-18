@@ -1,0 +1,217 @@
+﻿app/manage_subscription.tsx:6:// и сумму (из RevenueCat customerInfo), список включённого, карточку «Перейти
+app/manage_subscription.tsx:10:// Данные о подписке — авторитетно из стора (Purchases.getCustomerInfo). Никаких
+app/manage_subscription.tsx:29:import { initRevenueCat, resolvePremiumPackages, syncRevenueCatIdentity } from './revenuecat_init';
+app/manage_subscription.tsx:34:  revenueCatPremiumMetadata,
+app/manage_subscription.tsx:105:function getStoreManageUrl(): string {
+app/manage_subscription.tsx:111:function formatDate(ms: number | null, lang: Lang): string | null {
+app/manage_subscription.tsx:121:function normalizeStoredPremiumPlan(plan: unknown): PremiumStorePlan | null {
+app/manage_subscription.tsx:129:function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStorePlan | null {
+app/manage_subscription.tsx:167:        await initRevenueCat();
+app/manage_subscription.tsx:168:        await syncRevenueCatIdentity();
+app/manage_subscription.tsx:170:          Purchases.getCustomerInfo(),
+app/manage_subscription.tsx:180:        const o = await Purchases.getOfferings();
+app/manage_subscription.tsx:192:  const metadata = info ? revenueCatPremiumMetadata(info) : {};
+app/manage_subscription.tsx:214:      const latestInfo = await Purchases.getCustomerInfo();
+app/manage_subscription.tsx:218:        const latestMeta = revenueCatPremiumMetadata(latestInfo);
+app/manage_subscription.tsx:232:      const { customerInfo } = await Purchases.purchasePackage(yearlyPkg, opts as any);
+app/manage_subscription.tsx:233:      const meta = revenueCatPremiumMetadata(customerInfo, yearlyPkg.product.identifier);
+functions/src/premium_status.ts:8:// документа, куда вебхуки RevenueCat/Telegram пишут факт оплаты по верному ID.
+functions/src/premium_status.ts:25:function cleanStr(value: unknown): string {
+functions/src/premium_status.ts:29:function cleanPlan(value: unknown): string {
+functions/src/premium_status.ts:33:function hasMeaningfulPlan(plan: string): boolean {
+functions/src/premium_status.ts:37:function isStorePremiumPlan(plan: string): boolean {
+functions/src/premium_status.ts:44:function isTruthyFlag(value: unknown): boolean {
+functions/src/premium_status.ts:49:function isFalsyFlag(value: unknown): boolean {
+functions/src/premium_status.ts:54:function cleanMs(value: unknown): number {
+functions/src/premium_status.ts:60:export function parseProgressMs(value: unknown): number {
+functions/src/premium_status.ts:78:/** Store-премиум (RevenueCat monthly/yearly/annual/lifetime). expiry<=0 = бессрочный активный. */
+functions/src/premium_status.ts:79:function isStorePremiumActive(progress: ProgressLike, now: number): boolean {
+functions/src/premium_status.ts:102:function isAdminGrantActive(progress: ProgressLike, now: number): boolean {
+functions/src/premium_status.ts:114:export function isVipActive(progress: ProgressLike, now: number = Date.now()): boolean {
+functions/src/premium_status.ts:151:export function isGiftAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
+functions/src/premium_status.ts:175:function hasVipEntitlementShape(progress: ProgressLike): boolean {
+functions/src/premium_status.ts:180:function userDocOwnedByAuth(data: FirebaseFirestore.DocumentData, authUid: string): boolean {
+functions/src/premium_status.ts:198:async function resolveOwnedHiddenAliasAccess(
+functions/src/premium_status.ts:220:export function isPremiumAccessActive(progress: ProgressLike, now: number = Date.now()): boolean {
+functions/src/premium_status.ts:231:export async function resolvePremiumAccess(
+functions/src/premium_status.ts:325:export function isLifetimePlanActive(progress: ProgressLike, now: number = Date.now()): boolean {
+functions/src/premium_status.ts:336:export async function resolveIsLifetimePlan(
+app/premium_guard.ts:7:import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
+app/premium_guard.ts:11:const CACHE_TTL_MS  = 5 * 60 * 1000; // 5 minutes — avoid hammering RevenueCat
+app/premium_guard.ts:28:export function invalidatePremiumCache(): void {
+app/premium_guard.ts:47:export async function forcePremiumActive(): Promise<boolean> {
+app/premium_guard.ts:58:export async function isTesterNoLimitsActive(): Promise<boolean> {
+app/premium_guard.ts:75:export async function isLifetimePlanLocal(): Promise<boolean> {
+app/premium_guard.ts:82: * RevenueCat sandbox can lag for a few seconds, so this gives the local
+app/premium_guard.ts:85:export async function markPremiumStoreSeenNow(): Promise<void> {
+app/premium_guard.ts:94:export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
+app/premium_guard.ts:146:        Purchases.getCustomerInfo(),
+app/premium_guard.ts:150:        const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
+app/premium_guard.ts:161:        // state is represented by store plan + RC expiry metadata. If RevenueCat
+app/premium_guard.ts:208:  // RevenueCat НЕ ОТВЕТИЛ (таймаут 8с или исключение) — в Expo Go или при сбое сети.
+app/premium_guard.ts:230:export async function getVerifiedVipStatus(): Promise<boolean> {
+app/premium_guard.ts:287:export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
+app/premium_guard.ts:333:export async function getVerifiedPremiumStatus(): Promise<boolean> {
+app/premium_guard.ts:337:function cacheReal(result: boolean): boolean {
+app/premium_guard.ts:343:function cacheVip(result: boolean): boolean {
+app/premium_guard.ts:349:function cacheAccess(result: boolean): boolean {
+app/premium_guard.ts:355:async function refreshPremiumAccessFromCloudIfNeeded(): Promise<boolean> {
+functions/src/revenuecat_shards.ts:6:  classifyRevenueCatBillingCadence,
+functions/src/revenuecat_shards.ts:7:  normalizeRevenueCatFinancials,
+functions/src/revenuecat_shards.ts:42:type RevenueCatWebhookBody = {
+functions/src/revenuecat_shards.ts:73:    // after Purchases.logIn). RevenueCat sends the donor and recipient id lists.
+functions/src/revenuecat_shards.ts:79:type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
+functions/src/revenuecat_shards.ts:81:function cleanId(raw: unknown): string {
+functions/src/revenuecat_shards.ts:85:function normalizeLifecycleReason(raw: unknown): string {
+functions/src/revenuecat_shards.ts:91:function revenueCatLifecycleReasonFields(
+functions/src/revenuecat_shards.ts:92:  event: RevenueCatEvent,
+functions/src/revenuecat_shards.ts:106:function isRevenueCatAnonymousId(raw: unknown): boolean {
+functions/src/revenuecat_shards.ts:111:function stableCandidateUserIds(candidates: string[]): string[] {
+functions/src/revenuecat_shards.ts:112:  return candidates.filter((id) => id && !isRevenueCatAnonymousId(id));
+functions/src/revenuecat_shards.ts:115:function prioritizeUserCandidates(candidates: string[]): string[] {
+functions/src/revenuecat_shards.ts:117:  const anonymous = candidates.filter(isRevenueCatAnonymousId);
+functions/src/revenuecat_shards.ts:121:function subscriberAttributeValue(raw: unknown): string {
+functions/src/revenuecat_shards.ts:128:function addCandidate(out: Set<string>, raw: unknown): void {
+functions/src/revenuecat_shards.ts:133:function authMatches(header: string | undefined, expected: string): boolean {
+functions/src/revenuecat_shards.ts:139:function parseShards(raw: unknown): number {
+functions/src/revenuecat_shards.ts:145:function candidateUserIds(event: RevenueCatEvent): string[] {
+functions/src/revenuecat_shards.ts:158:function entitlementIds(event: RevenueCatEvent): string[] {
+functions/src/revenuecat_shards.ts:169:function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
+functions/src/revenuecat_shards.ts:179:function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' {
+functions/src/revenuecat_shards.ts:194:export function shouldDeactivateOnInactiveEvent(eventType: string, plan: string): boolean {
+functions/src/revenuecat_shards.ts:199:function eventMs(raw: unknown): number | null {
+functions/src/revenuecat_shards.ts:206: * Sandbox-события RevenueCat (TestFlight, sandbox-аккаунты App Store, Play Console
+functions/src/revenuecat_shards.ts:217:export function isSandboxEvent(event: RevenueCatEvent): boolean {
+functions/src/revenuecat_shards.ts:221:async function findExistingUserRef(
+functions/src/revenuecat_shards.ts:244:async function handlePremiumSubscriptionEvent(
+functions/src/revenuecat_shards.ts:245:  event: RevenueCatEvent,
+functions/src/revenuecat_shards.ts:353:        billingCadence: classifyRevenueCatBillingCadence(event),
+functions/src/revenuecat_shards.ts:354:        ...normalizeRevenueCatFinancials(event),
+functions/src/revenuecat_shards.ts:355:        ...revenueCatLifecycleReasonFields(event, eventType),
+functions/src/revenuecat_shards.ts:382:async function handleShardPurchaseEvent(
+functions/src/revenuecat_shards.ts:383:  event: RevenueCatEvent,
+functions/src/revenuecat_shards.ts:459:        revenueCatTransactionId: transactionId,
+functions/src/revenuecat_shards.ts:485:async function handleShardRefundEvent(
+functions/src/revenuecat_shards.ts:486:  event: RevenueCatEvent,
+functions/src/revenuecat_shards.ts:593:        revenueCatOriginalTransactionId: originalTxId,
+functions/src/revenuecat_shards.ts:594:        revenueCatRefundEventId: eventId,
+functions/src/revenuecat_shards.ts:612://    Purchases.logIn(stable_id), premium landed on users/{$RCAnonymousID}. After
+functions/src/revenuecat_shards.ts:613://    login RevenueCat fires TRANSFER with transferred_from (anon ids) → transferred_to
+functions/src/revenuecat_shards.ts:632:function idList(raw: unknown): string[] {
+functions/src/revenuecat_shards.ts:642:export function transferTargetIds(event: RevenueCatEvent): string[] {
+functions/src/revenuecat_shards.ts:647:export function transferSourceIds(event: RevenueCatEvent): string[] {
+functions/src/revenuecat_shards.ts:652:function readDonorPremiumBlock(progress: Record<string, unknown>, now: number): Record<string, string> | null {
+functions/src/revenuecat_shards.ts:656:  // до Purchases.logIn) возвращал null → доступ исчезал у реального аккаунта после логина.
+functions/src/revenuecat_shards.ts:677:async function handleTransferEvent(event: RevenueCatEvent, eventType: string, res: any): Promise<void> {
+functions/src/revenuecat_shards.ts:752:export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REVENUECAT_WEBHOOK_AUTH] }, async (req, res) => {
+functions/src/revenuecat_shards.ts:758:  const body = req.body as RevenueCatWebhookBody;
+functions/src/revenuecat_shards.ts:805:export const __revenueCatWebhookTestHooks = {
+functions/src/revenuecat_shards.ts:807:  isRevenueCatAnonymousId,
+functions/src/revenuecat_shards.ts:814:  revenueCatLifecycleReasonFields,
+app/revenuecat_init.ts:11:  revenueCatCustomerInfoHasPremiumAccess,
+app/revenuecat_init.ts:12:  revenueCatPremiumMetadata,
+app/revenuecat_init.ts:22:// Мгновенная доставка премиума: RevenueCat шлёт CustomerInfo при покупке/RENEWAL/
+app/revenuecat_init.ts:32: * появляется в Offering только после того, как продукт заведён в RevenueCat
+app/revenuecat_init.ts:36:export function resolvePremiumPackages(
+app/revenuecat_init.ts:60:function trimKey(raw: unknown): string {
+app/revenuecat_init.ts:65: * RevenueCat public keys are platform-specific. Using Android (`goog_`) on iOS (or vice versa)
+app/revenuecat_init.ts:68: * public key from RevenueCat (prefix `appl_`), not the Google Play key.
+app/revenuecat_init.ts:70:function matchPlatformRevenueCatKey(key: string): boolean {
+app/revenuecat_init.ts:82:function resolveRevenueCatPublicApiKey(): string {
+app/revenuecat_init.ts:100:  if (!matchPlatformRevenueCatKey(key)) {
+app/revenuecat_init.ts:103:        ? 'Проверь Expo/EAS: переменная EXPO_PUBLIC_RC_IOS должна быть iOS public key (префикс appl_) из RevenueCat, не goog_.'
+app/revenuecat_init.ts:105:    if (__DEV__) console.error('[RevenueCat]', hint, 'Сейчас ключ не подходит платформе — инициализация пропущена.');
+app/revenuecat_init.ts:118:let revenueCatLoggingConfigured = false;
+app/revenuecat_init.ts:122:function configureRevenueCatLogging(): void {
+app/revenuecat_init.ts:123:  if (revenueCatLoggingConfigured) return;
+app/revenuecat_init.ts:124:  revenueCatLoggingConfigured = true;
+app/revenuecat_init.ts:128:      Purchases.setLogHandler(() => {});
+app/revenuecat_init.ts:129:      void Purchases.setLogLevel(LOG_LEVEL.ERROR).catch(() => {});
+app/revenuecat_init.ts:133:    void Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.WARN : LOG_LEVEL.ERROR).catch(() => {});
+app/revenuecat_init.ts:135:    // RevenueCat native module can be absent in Expo Go; init already no-ops there.
+app/revenuecat_init.ts:140: * Безопасная инициализация RevenueCat.
+app/revenuecat_init.ts:146:export async function initRevenueCat(isCurrent?: () => boolean): Promise<void> {
+app/revenuecat_init.ts:151:  await syncRevenueCatIdentity(isCurrent);
+app/revenuecat_init.ts:154:function isRevenueCatAnonymousId(raw: unknown): boolean {
+app/revenuecat_init.ts:159:export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): Promise<boolean> {
+app/revenuecat_init.ts:165:  if (!(await Purchases.isConfigured().catch(() => false))) return false;
+app/revenuecat_init.ts:177:  const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
+app/revenuecat_init.ts:182:    const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
+app/revenuecat_init.ts:190:  if (currentAppUserId && currentAppUserId !== canonicalUserId && isRevenueCatAnonymousId(currentAppUserId)) {
+app/revenuecat_init.ts:194:  await Purchases.setAttributes(attributes).catch(() => {});
+app/revenuecat_init.ts:197:  if (revenueCatCustomerInfoHasPremiumAccess(loginCustomerInfo as any)) {
+app/revenuecat_init.ts:198:    const metadata = revenueCatPremiumMetadata(loginCustomerInfo as any);
+app/revenuecat_init.ts:213:  const syncedAppUserId = await Purchases.getAppUserID().catch(() => '');
+app/revenuecat_init.ts:225: * Применяет CustomerInfo, пришедший пушем от RevenueCat (покупка/RENEWAL/restore).
+app/revenuecat_init.ts:232:async function applyPushedCustomerInfo(
+app/revenuecat_init.ts:241:    if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
+app/revenuecat_init.ts:242:      const metadata = revenueCatPremiumMetadata(info as any);
+app/revenuecat_init.ts:256:    if (__DEV__) console.warn('[RevenueCat] applyPushedCustomerInfo error:', e);
+app/revenuecat_init.ts:260:async function readCurrentRevenueCatCustomerInfo(
+app/revenuecat_init.ts:266:  const appUserIdBefore = await Purchases.getAppUserID().catch(() => '');
+app/revenuecat_init.ts:268:  const currentInfo = await Purchases.getCustomerInfo().catch(() => null);
+app/revenuecat_init.ts:270:  const appUserIdAfter = await Purchases.getAppUserID().catch(() => '');
+app/revenuecat_init.ts:275:async function _doInit(): Promise<void> {
+app/revenuecat_init.ts:276:  configureRevenueCatLogging();
+app/revenuecat_init.ts:278:  const RC_API_KEY = resolveRevenueCatPublicApiKey();
+app/revenuecat_init.ts:282:        '[RevenueCat] Публичный ключ не задан для',
+app/revenuecat_init.ts:291:    if (!(await Purchases.isConfigured())) {
+app/revenuecat_init.ts:295:      Purchases.configure({ apiKey: RC_API_KEY });
+app/revenuecat_init.ts:299:    const identityReady = await syncRevenueCatIdentity(isInitAccountCurrent);
+app/revenuecat_init.ts:304:        Purchases.addCustomerInfoUpdateListener(() => {
+app/revenuecat_init.ts:308:            const currentInfo = await readCurrentRevenueCatCustomerInfo(isEventAccountCurrent);
+app/revenuecat_init.ts:317:        if (__DEV__) console.warn('[RevenueCat] addCustomerInfoUpdateListener failed:', e);
+app/revenuecat_init.ts:328:      Purchases.getCustomerInfo(),
+app/revenuecat_init.ts:335:      if (revenueCatCustomerInfoHasPremiumAccess(info as any)) {
+app/revenuecat_init.ts:352:          if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
+app/revenuecat_init.ts:354:          const metadata = revenueCatPremiumMetadata(info as any);
+app/revenuecat_init.ts:392:    if (__DEV__) console.warn('[RevenueCat] init error:', e);
+app/auth_provider.ts:69:export const APPLE_ANDROID_MISSING_SERVICE_ID = 'apple_android_missing_service_id';
+app/auth_provider.ts:71:function readExpoExtraString(key: string): string | undefined {
+app/auth_provider.ts:77:function scheduleReferralApplyAfterLink(): void {
+app/auth_provider.ts:81:async function syncRevenueCatAfterAuthLink(isCurrent: () => boolean = () => true): Promise<void> {
+app/auth_provider.ts:84:    .then((m) => m.syncRevenueCatIdentity(isCurrent))
+app/auth_provider.ts:99:async function stampAnonOwnershipBeforeSignIn(localStableId: string): Promise<void> {
+app/auth_provider.ts:117:// стороны, а RevenueCat App User ID переустанавливается на canonical stable_id,
+app/auth_provider.ts:150:function emitAuthProviderLinked(): void {
+app/auth_provider.ts:201:function getAppleAndroidServiceId(): string | null {
+app/auth_provider.ts:209:function getAppleAndroidRedirectUri(): string {
+app/auth_provider.ts:217:function getAppleAndroidAppCallbackUri(): string {
+app/auth_provider.ts:225:function parseAppleOAuthRedirectUrl(url: string): { idToken?: string; error?: string; state?: string; userJson?: string } {
+app/auth_provider.ts:256:function configureGoogleSignin(): boolean {
+app/auth_provider.ts:293:export async function isAppleSignInAvailable(): Promise<boolean> {
+app/auth_provider.ts:316:export async function isGoogleSignInAvailable(): Promise<boolean> {
+app/auth_provider.ts:343:async function tryRestoreAccountSwitchBackup(
+app/auth_provider.ts:362:export function isLocalAccountDeletionInProgress(): boolean {
+app/auth_provider.ts:373:function cleanAccountDeleteLockId(raw: string | null | undefined): string | null {
+app/auth_provider.ts:378:async function markAccountDeletePendingAuth(providerUidRaw: string | null | undefined, stableIdRaw: string | null | undefined): Promise<void> {
+app/auth_provider.ts:396:async function readAccountDeletePendingAuth(providerUidRaw: string): Promise<AccountDeletePendingAuthLock | null> {
+app/auth_provider.ts:429:async function clearAccountDeletePendingAuth(): Promise<void> {
+app/auth_provider.ts:433:async function restoreAnonymousIdentityAfterPendingDelete(localStableId: string): Promise<void> {
+app/auth_provider.ts:468:function coerceFirebaseMetaTime(raw: unknown, defaultTime: number): number {
+app/auth_provider.ts:480:function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
+app/auth_provider.ts:521:export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
+app/auth_provider.ts:569:function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
+app/auth_provider.ts:579:async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
+app/auth_provider.ts:661:async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
+app/auth_provider.ts:701:async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
+app/auth_provider.ts:806:function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detail: string): void {
+app/auth_provider.ts:826:async function rejectRecoveryProviderMismatch(
+app/auth_provider.ts:838:export async function signInWithProvider(
+app/auth_provider.ts:876:async function runSignInWithProvider(
+app/auth_provider.ts:1205:      // stable_id уже поменялся: RevenueCat должен смотреть на новый canonical id
+app/auth_provider.ts:1207:      const revenueCatSync = syncRevenueCatAfterAuthLink();
+app/auth_provider.ts:1211:        revenueCatSync,
+app/auth_provider.ts:1277:        await syncRevenueCatAfterAuthLink();
+app/auth_provider.ts:1297:    await syncRevenueCatAfterAuthLink();
+app/auth_provider.ts:1335:function scheduleSameStablePostAuthRefresh(stage: 'linked_restore' | 'created_restore'): void {
+app/auth_provider.ts:1354:    await syncRevenueCatAfterAuthLink(isCurrent);
+app/auth_provider.ts:1369:async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): Promise<void> {
+app/auth_provider.ts:1421:export async function signOutAndWipeForAccountSwitch(
+app/auth_provider.ts:1514:export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
+app/auth_provider.ts:1591:export async function handleAccountDeletedOnAnotherDevice(): Promise<void> {
+app/auth_provider.ts:1636:export async function consumeRemoteAccountDeletionNotice(): Promise<boolean> {
+app/auth_provider.ts:1651:export async function signOutCurrentProvider(): Promise<void> {
+app/auth_provider.ts:1695:export const AUTH_PROMPT_SHOWN_KEY = 'auth_prompt_shown_v1';
+app/auth_provider.ts:1698:export const AUTH_ONBOARDING_DONE_KEY = 'auth_onboarding_done_v1';
+app/auth_provider.ts:1703:export function logAuthEvent(name: string, params?: Record<string, string | number>) {

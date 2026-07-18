@@ -1,6 +1,5 @@
 const STATIC_SCREEN_NAMES = [
-  'achievements_screen', 'arena_game', 'arena_join', 'arena_leaderboard', 'arena_lobby',
-  'arena_rating', 'arena_results', 'arena_room', 'avatar_select', 'club_screen',
+  'achievements_screen', 'avatar_select', 'club_screen',
   'collectibles_screen', 'community_pack_create', 'daily_tasks_screen', 'diagnostic_test', 'exam', 'flashcards',
   'flashcards_audio', 'flashcards_collection', 'flashcards_swipe', 'hint', 'language_welcome',
   'league_screen', 'lesson_complete', 'lesson_help', 'lesson_irregular_verbs', 'lesson_menu',
@@ -9,10 +8,10 @@ const STATIC_SCREEN_NAMES = [
   'personal_plan', 'personal_plan_complete', 'personal_plan_dev', 'personal_plan_exercise_transition',
   'personal_plan_runtime_dev', 'personal_plan_stats_screen', 'personal_plan_task_done',
   'personal_plan_thank_you', 'personal_plan_theory', 'phrase_analytics_screen', 'premium_modal',
-  'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry', 'quizzes_screen',
+  'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
   'referral_code_entry', 'referrals', 'review', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
-  'top_helpers', 'trainer', 'trainer_arena_session', 'trainer_phrases_session',
+  'top_helpers', 'trainer', 'trainer_phrases_session',
   'trainer_plan_session', 'trainer_words_session',
 ] as const;
 
@@ -20,7 +19,6 @@ const EXACT_SCREEN_IDS: Readonly<Record<string, string>> = Object.freeze({
   '/': 'root',
   '/home': 'home',
   '/lessons': 'lessons',
-  '/quizzes': 'quizzes',
   '/friends': 'friends',
   ...Object.fromEntries(STATIC_SCREEN_NAMES.map((name) => [`/${name}`, name])),
 });

@@ -1,8 +1,8 @@
 import { parseArtifactEditRequest, prepareArtifactEdit } from './artifact_edit';
 
-const stage = { stageId: 'req:quiz_questions:topic-1:r1', requestId: 'req', kind: 'quiz_questions' as const, scopeId: 'topic-1', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', count: 10, revision: 1, artifactId: 'artifact:req:quiz_questions:topic-1:r1' };
+const stage = { stageId: 'req:challenge_questions:topic-1:r1', requestId: 'req', kind: 'challenge_questions' as const, scopeId: 'topic-1', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', count: 10, revision: 1, artifactId: 'artifact:req:challenge_questions:topic-1:r1' };
 const item = (index: number) => ({ id: `q${index}`, prompt: `Question ${index}?`, choices: ['A', 'B', 'C', 'D'], correctIndex: 0, optionExplanations: ['a', 'b', 'c', 'd'], difficulty: index < 4 ? 'easy' : index < 8 ? 'medium' : 'hard', skillTag: 'travel', sourcePhraseIds: ['p1'] });
-const baseArtifact = { stage: 'quiz_questions', items: Array.from({ length: 10 }, (_, index) => item(index)) };
+const baseArtifact = { stage: 'challenge_questions', items: Array.from({ length: 10 }, (_, index) => item(index)) };
 
 describe('immutable artifact edit contract', () => {
   test('parses a bounded exact-base edit request', () => {
@@ -15,7 +15,7 @@ describe('immutable artifact edit contract', () => {
     const candidate = structuredClone(baseArtifact);
     candidate.items[0].prompt = 'Corrected question?';
     const prepared = prepareArtifactEdit(stage, baseArtifact, candidate, 'edit-1');
-    expect(prepared).toMatchObject({ baseStageId: stage.stageId, newStageId: 'req:quiz_questions:topic-1:r2', newArtifactId: 'artifact:req:quiz_questions:topic-1:r2', revision: 2 });
+    expect(prepared).toMatchObject({ baseStageId: stage.stageId, newStageId: 'req:challenge_questions:topic-1:r2', newArtifactId: 'artifact:req:challenge_questions:topic-1:r2', revision: 2 });
     expect(prepared.objectPath).toMatch(/^content-factory-stages\/[a-f0-9]{64}\/r2\/a1-[a-f0-9]{64}\.json$/);
     expect(prepared.diff.summary.changed).toBeGreaterThan(0);
     expect(baseArtifact.items[0].prompt).toBe('Question 0?');
@@ -27,7 +27,7 @@ describe('immutable artifact edit contract', () => {
     expect(() => prepareArtifactEdit(stage, baseArtifact, { ...baseArtifact, items: baseArtifact.items.slice(1) }, 'edit-1')).toThrow('artifact_edit_item_identity_changed');
     const invalidRef = structuredClone(baseArtifact); invalidRef.items[0].sourcePhraseIds = ['unapproved'];
     expect(() => prepareArtifactEdit(stage, baseArtifact, invalidRef, 'edit-1')).toThrow('artifact_edit_reference_not_approved');
-    expect(() => prepareArtifactEdit(stage, baseArtifact, { ...baseArtifact, stage: 'arena_questions' }, 'edit-1')).toThrow('artifact_edit_stage_identity_changed');
+    expect(() => prepareArtifactEdit(stage, baseArtifact, { ...baseArtifact, stage: 'flashcard_items' }, 'edit-1')).toThrow('artifact_edit_stage_identity_changed');
   });
 
   test('rejects no-op edits', () => {

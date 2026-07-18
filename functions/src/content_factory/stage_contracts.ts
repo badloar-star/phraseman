@@ -5,18 +5,12 @@ export type GenerationStageKind =
   | 'lesson_irregular_verbs'
   | 'lesson_prepositions'
   | 'lesson_theory'
-  | 'quiz_topic'
-  | 'quiz_questions'
   | 'challenge_topic'
   | 'challenge_questions'
-  | 'quiz_question_replacement'
   | 'challenge_question_replacement'
   | 'flashcard_pack_idea'
   | 'flashcard_items'
-  | 'flashcard_item_replacement'
-  | 'arena_topic'
-  | 'arena_questions'
-  | 'arena_question_replacement';
+  | 'flashcard_item_replacement';
 
 export type GenerationStageState = 'queued' | 'running' | 'paused' | 'needs_review' | 'approved' | 'rejected' | 'failed' | 'cancelled' | 'superseded';
 
@@ -42,7 +36,7 @@ const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
 export const GENERATION_STAGE_KINDS: readonly GenerationStageKind[] = Object.freeze([
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
-  'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions', 'arena_question_replacement',
+  'challenge_topic', 'challenge_questions', 'challenge_question_replacement', 'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
 ]);
 
 export function createGenerationStageUnit(input: Omit<GenerationStageUnit, 'stageId' | 'artifactId' | 'idempotencyKey' | 'state'>): GenerationStageUnit {

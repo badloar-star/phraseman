@@ -9,7 +9,6 @@ import {
   Platform,
   ScrollView,
   Keyboard,
-  StyleSheet,
   type GestureResponderEvent,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
@@ -56,7 +55,7 @@ async function reloadAfterAccountDelete(): Promise<void> {
  * Единое окно подтверждения удаления аккаунта (Настройки, FAQ и т.д.).
  */
 function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isCompassTheme = false;
   const L = useCallback((copy: DeleteAccountCopy) => triLang(lang, {
@@ -124,31 +123,6 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
     deleteInFlightRef.current = true;
     doHaptic();
     setDeleting(true);
-    onRequestClose();
-    emitAppEvent('account_deleted');
-    void enqueueThemedBlockingInfoAlert(
-      L({
-        ru: 'Аккаунт удаляется',
-        uk: 'Акаунт видаляється',
-        es: 'Eliminando cuenta',
-        'pt-BR': 'Excluindo conta',
-        vi: 'Đang xóa tài khoản',
-        id: 'Menghapus akun',
-        tr: 'Hesap siliniyor',
-        pl: 'Usuwanie konta',
-      }),
-      L({
-        ru: 'Выход с этого телефона начался. Отправляем серверу запрос на удаление данных.',
-        uk: 'Вихід на цьому телефоні розпочато. Надсилаємо серверу запит на видалення даних.',
-        es: 'Se inició el cierre de sesión en este teléfono. Estamos enviando al servidor la solicitud para eliminar los datos.',
-        'pt-BR': 'O encerramento da sessão neste telefone começou. Estamos enviando ao servidor a solicitação para excluir os dados.',
-        vi: 'Quá trình đăng xuất trên điện thoại này đã bắt đầu. Đang gửi yêu cầu xóa dữ liệu đến máy chủ.',
-        id: 'Proses keluar di ponsel ini telah dimulai. Permintaan penghapusan data sedang dikirim ke server.',
-        tr: 'Bu telefondaki oturumu kapatma işlemi başladı. Veri silme isteği sunucuya gönderiliyor.',
-        pl: 'Rozpoczęto wylogowywanie na tym telefonie. Wysyłamy do serwera żądanie usunięcia danych.',
-      }),
-      'OK',
-    );
     try {
       const res = await deleteAccountAndWipe();
       if (!res.ok) {
@@ -163,20 +137,56 @@ function DeleteAccountConfirmModal({ visible, onRequestClose }: Props) {
             tr: 'Hata',
             pl: 'Błąd',
           }),
-          L({
-            ru: 'Локальные данные на этом телефоне очищены. Сервер не подтвердил получение запроса. Проверь интернет. Если вход через тот же Google или Apple ещё доступен, войди снова — приложение автоматически повторит запрос.',
-            uk: 'Локальні дані на цьому телефоні очищено. Сервер не підтвердив отримання запиту. Перевірте інтернет. Якщо вхід через той самий Google або Apple ще доступний, увійдіть знову — застосунок автоматично повторить запит.',
-            es: 'Se borraron los datos locales de este teléfono, pero el servidor no confirmó la solicitud. Revisa Internet. Si aún puedes entrar con la misma cuenta de Google o Apple, vuelve a iniciar sesión y la aplicación repetirá la solicitud automáticamente.',
-            'pt-BR': 'Os dados locais deste telefone foram apagados, mas o servidor não confirmou a solicitação. Verifique a Internet. Se ainda for possível entrar com a mesma conta Google ou Apple, entre novamente e o aplicativo repetirá a solicitação automaticamente.',
-            vi: 'Dữ liệu cục bộ trên điện thoại này đã được xóa, nhưng máy chủ chưa xác nhận yêu cầu. Hãy kiểm tra Internet. Nếu vẫn có thể đăng nhập bằng cùng tài khoản Google hoặc Apple, hãy đăng nhập lại để ứng dụng tự động gửi lại yêu cầu.',
-            id: 'Data lokal di ponsel ini telah dibersihkan, tetapi server belum mengonfirmasi permintaan. Periksa internet. Jika masih bisa masuk dengan akun Google atau Apple yang sama, masuk kembali agar aplikasi otomatis mengulangi permintaan.',
-            tr: 'Bu telefondaki yerel veriler temizlendi ancak sunucu isteği aldığını doğrulamadı. İnterneti kontrol et. Aynı Google veya Apple hesabıyla giriş hâlâ mümkünse yeniden giriş yap; uygulama isteği otomatik olarak tekrarlar.',
-            pl: 'Dane lokalne na tym telefonie zostały wyczyszczone, ale serwer nie potwierdził otrzymania żądania. Sprawdź internet. Jeśli nadal możesz zalogować się przez to samo konto Google lub Apple, zaloguj się ponownie, a aplikacja automatycznie ponowi żądanie.',
+          res.reason === 'pending_guard_persist_failed'
+            ? L({
+            ru: 'Не удалось безопасно подготовить удаление. Аккаунт и данные не изменены. Освободи место на устройстве или перезапусти телефон и попробуй снова.',
+            uk: 'Не вдалося безпечно підготувати видалення. Акаунт і дані не змінено. Звільніть місце на пристрої або перезапустіть телефон і спробуйте знову.',
+            es: 'No pudimos preparar la eliminación de forma segura. La cuenta y los datos no cambiaron. Libera espacio o reinicia el teléfono e inténtalo de nuevo.',
+            'pt-BR': 'Não foi possível preparar a exclusão com segurança. A conta e os dados não foram alterados. Libere espaço ou reinicie o telefone e tente novamente.',
+            vi: 'Không thể chuẩn bị xóa một cách an toàn. Tài khoản và dữ liệu chưa thay đổi. Hãy giải phóng dung lượng hoặc khởi động lại điện thoại rồi thử lại.',
+            id: 'Penghapusan belum dapat disiapkan dengan aman. Akun dan data tidak berubah. Kosongkan ruang atau mulai ulang ponsel lalu coba lagi.',
+            tr: 'Silme işlemi güvenli biçimde hazırlanamadı. Hesap ve veriler değişmedi. Yer aç veya telefonu yeniden başlatıp tekrar dene.',
+            pl: 'Nie udało się bezpiecznie przygotować usunięcia. Konto i dane nie zostały zmienione. Zwolnij miejsce lub uruchom telefon ponownie i spróbuj jeszcze raz.',
+          })
+            : L({
+            ru: 'Безопасный локальный выход не завершён. Аккаунт остаётся в режиме защиты; перезапусти приложение и повтори попытку.',
+            uk: 'Безпечний локальний вихід не завершено. Акаунт залишається в захищеному режимі; перезапустіть застосунок і повторіть спробу.',
+            es: 'La salida local segura no terminó. La cuenta permanece protegida; reinicia la aplicación e inténtalo de nuevo.',
+            'pt-BR': 'A saída local segura não foi concluída. A conta permanece protegida; reinicie o aplicativo e tente novamente.',
+            vi: 'Quá trình thoát an toàn trên thiết bị chưa hoàn tất. Tài khoản vẫn được bảo vệ; hãy khởi động lại ứng dụng và thử lại.',
+            id: 'Proses keluar lokal yang aman belum selesai. Akun tetap dilindungi; mulai ulang aplikasi lalu coba lagi.',
+            tr: 'Güvenli yerel çıkış tamamlanmadı. Hesap korumalı durumda; uygulamayı yeniden başlatıp tekrar dene.',
+            pl: 'Bezpieczne lokalne wyjście nie zostało ukończone. Konto pozostaje chronione; uruchom aplikację ponownie i spróbuj jeszcze raz.',
           }),
         );
         deleteInFlightRef.current = false;
         return;
       }
+      onRequestClose();
+      emitAppEvent('account_deleted');
+      void enqueueThemedBlockingInfoAlert(
+        L({
+          ru: 'Аккаунт удаляется',
+          uk: 'Акаунт видаляється',
+          es: 'Eliminando cuenta',
+          'pt-BR': 'Excluindo conta',
+          vi: 'Đang xóa tài khoản',
+          id: 'Menghapus akun',
+          tr: 'Hesap siliniyor',
+          pl: 'Usuwanie konta',
+        }),
+        L({
+          ru: 'Безопасный выход с этого телефона завершён. Удаление поставлено в очередь и при необходимости повторится автоматически.',
+          uk: 'Безпечний вихід на цьому телефоні завершено. Видалення поставлено в чергу й за потреби повториться автоматично.',
+          es: 'La salida segura de este teléfono terminó. La eliminación quedó en cola y se reintentará automáticamente si hace falta.',
+          'pt-BR': 'A saída segura deste telefone foi concluída. A exclusão ficou na fila e será repetida automaticamente se necessário.',
+          vi: 'Đã thoát an toàn khỏi điện thoại này. Yêu cầu xóa đã được xếp hàng và sẽ tự thử lại nếu cần.',
+          id: 'Proses keluar aman dari ponsel ini selesai. Penghapusan telah masuk antrean dan akan dicoba lagi otomatis bila perlu.',
+          tr: 'Bu telefondaki güvenli çıkış tamamlandı. Silme işlemi kuyruğa alındı ve gerekirse otomatik olarak yeniden denenecek.',
+          pl: 'Bezpieczne wyjście z tego telefonu zostało zakończone. Usunięcie trafiło do kolejki i w razie potrzeby zostanie automatycznie ponowione.',
+        }),
+        'OK',
+      );
       void reloadAfterAccountDelete();
     } catch {
       showInfoAlert(

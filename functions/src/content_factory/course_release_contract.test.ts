@@ -10,13 +10,23 @@ const release: CourseRelease = {
 };
 
 describe('canonical immutable course release', () => {
-  it('accepts one release containing all four identity-bound surfaces', () => {
+  it('accepts one release containing every supported identity-bound surface', () => {
     expect(validateCourseRelease(release)).toEqual({ ok: true, errors: [] });
   });
 
   it('rejects mixed target/source/release artifacts and blueprint confusion', () => {
     expect(validateCourseRelease({ ...release, blueprintLocale: 'ru' }).errors).toContain('blueprint_locale_must_be_en');
-    expect(validateCourseRelease({ ...release, artifacts: { ...release.artifacts, arena: { ...release.artifacts.arena, studyTarget: 'es' } } }).errors).toContain('artifact_identity_mismatch');
-    expect(validateCourseRelease({ ...release, artifacts: { ...release.artifacts, quiz: { ...release.artifacts.quiz, contentHash: 'bad' } } }).errors).toContain('artifact_hash_invalid');
+    expect(validateCourseRelease({ ...release, artifacts: { ...release.artifacts, lesson: { ...release.artifacts.lesson, studyTarget: 'es' } } }).errors).toContain('artifact_identity_mismatch');
+    expect(validateCourseRelease({ ...release, artifacts: { ...release.artifacts, flashcard: { ...release.artifacts.flashcard, contentHash: 'bad' } } }).errors).toContain('artifact_hash_invalid');
+  });
+
+  it('rejects artifacts for surfaces outside the current release contract', () => {
+    expect(validateCourseRelease({
+      ...release,
+      artifacts: {
+        ...release.artifacts,
+        retired: { ...release.artifacts.lesson, surface: 'retired' },
+      },
+    }).errors).toContain('artifact_surface_unsupported');
   });
 });

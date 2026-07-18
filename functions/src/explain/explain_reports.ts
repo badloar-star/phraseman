@@ -36,10 +36,6 @@ import {
   MISTAKE_COLLECTION,
   mistakeHashFor,
 } from './mistake_explain_cache';
-import {
-  QUIZ_COLLECTION,
-  quizHashFor,
-} from './quiz_explain_cache';
 import { resolvePromptLangKeySoft } from './explain_prompts';
 
 const REGION = 'us-central1';
@@ -78,13 +74,9 @@ export type ReportReason = (typeof REPORT_REASONS)[number];
  *  - 'mistake' → разбор ошибки (упражнение «Собери фразу»), кэш mistake_explanations,
  *               ключ = mistakeHashFor(targetEn, userAnswer, langKey) — учитывает И целевую
  *               фразу, И конкретный неправильный ответ.
- *  - 'quiz'    → ИИ-разбор тематического квиза, кэш quiz_explanations,
- *               ключ = quizHashFor(correctEn=phraseEn, allChoices, langKey) — учитывает правильный
- *               ответ И весь набор вариантов (порядок не важен: набор сортируется). Поэтому
- *               для 'quiz' клиент ОБЯЗАН прислать `choices` (все варианты вопроса).
  * Дефолт 'phrase' — старые клиенты без поля шлют жалобу на объяснение фразы как раньше.
  */
-export const REPORT_KINDS = ['phrase', 'mistake', 'quiz'] as const;
+export const REPORT_KINDS = ['phrase', 'mistake'] as const;
 export type ReportKind = (typeof REPORT_KINDS)[number];
 
 /** kind строго из enum; чужое/пустое → 'phrase' (обратная совместимость со старыми клиентами). */
@@ -140,16 +132,6 @@ export const submitExplainReport = onCall({
   // Для разбора ошибки kind='mistake' нужен и неправильный ответ — кэш per-(target,userAnswer,lang).
   const userAnswer = String(request.data?.userAnswer ?? '').trim();
   if (kind === 'mistake' && !userAnswer) throw new HttpsError('invalid-argument', 'user_answer_required');
-  // Для квиза kind='quiz' нужен весь набор вариантов — кэш per-(correct, option-set, lang).
-  // Сервер сам нормализует/сортирует набор внутри quizHashFor; порядок от клиента не важен.
-  const rawChoices = Array.isArray(request.data?.choices) ? request.data.choices : [];
-  const quizChoices = rawChoices
-    .map((c: unknown) => String(c ?? '').trim())
-    .filter((c: string) => Boolean(c))
-    .slice(0, 12);
-  if (kind === 'quiz' && quizChoices.length < 2) {
-    throw new HttpsError('invalid-argument', 'choices_required');
-  }
   // Язык объяснения, на которое жалуются. Кэш per-(…,lang) — репорт должен бить в
   // ТОТ ЖЕ док, что генерация. Тот же резолвер (unknown → ru), хэш всё равно считает сервер.
   const lang = String(request.data?.lang ?? '').trim();
@@ -163,18 +145,13 @@ export const submitExplainReport = onCall({
   // Хэш ВСЕГДА выводится сервером — любой клиентский 'hash' игнорируется.
   //  - phrase:  phraseHashFor(phraseEn, langKey)            в phrase_explanations
   //  - mistake: mistakeHashFor(phraseEn=target, userAnswer, langKey) в mistake_explanations
-  //  - quiz:    quizHashFor(phraseEn=correct, quizChoices, langKey) в quiz_explanations
   const langKey = resolvePromptLangKeySoft(lang);
   const cacheCollection = kind === 'mistake'
     ? MISTAKE_COLLECTION
-    : kind === 'quiz'
-      ? QUIZ_COLLECTION
-      : EXPLAIN_COLLECTION;
+    : EXPLAIN_COLLECTION;
   const cacheHash = kind === 'mistake'
     ? mistakeHashFor(phraseEn, userAnswer, langKey)
-    : kind === 'quiz'
-      ? quizHashFor(phraseEn, quizChoices, langKey)
-      : phraseHashFor(phraseEn, langKey);
+    : phraseHashFor(phraseEn, langKey);
   const now = Date.now();
 
   const rateRef = db.collection(REPORT_RATE_COLLECTION).doc(rateDocId(authUid, stableUid));
@@ -210,20 +187,10 @@ export const submitExplainReport = onCall({
     const reportCount = isNewReporter ? prevReports + 1 : prevReports;
     const cache = cacheSnap.data() || {};
     const cacheStatus = String(cache.status ?? '');
-    // Текст объяснения хранится в разных полях: фраза → 'text', разбор ошибки → 'full',
-    // квиз → 'confirm' (разбор правильного) + карта 'options' (по варианту). Для админки
-    // склеиваем квиз-батч в один читаемый блок.
+    // Текст объяснения хранится в разных полях: фраза → 'text', разбор ошибки → 'full'.
     let rawCacheText: unknown;
     if (kind === 'mistake') {
       rawCacheText = cache.full;
-    } else if (kind === 'quiz') {
-      const confirm = typeof cache.confirm === 'string' ? cache.confirm : '';
-      const optionsMap = cache.options && typeof cache.options === 'object'
-        ? (cache.options as Record<string, unknown>)
-        : {};
-      const optionLines = Object.entries(optionsMap)
-        .map(([opt, line]) => `${opt}: ${String(line ?? '')}`);
-      rawCacheText = [confirm, ...optionLines].filter(Boolean).join('\n');
     } else {
       rawCacheText = cache.text;
     }
@@ -247,10 +214,7 @@ export const submitExplainReport = onCall({
       kind,
       cacheCollection,
       phraseEn: phraseEn.slice(0, 200),
-      // userAnswer пишем для разбора ошибки и квиза — чтобы админ видел КОНКРЕТНЫЙ выбранный ответ.
-      userAnswer: (kind === 'mistake' || kind === 'quiz') && userAnswer ? userAnswer.slice(0, 200) : null,
-      // choices пишем только для квиза — весь набор вариантов (для контекста админа; хэш считает сервер).
-      choices: kind === 'quiz' ? quizChoices.map((c: string) => c.slice(0, 200)) : null,
+      userAnswer: kind === 'mistake' && userAnswer ? userAnswer.slice(0, 200) : null,
       lang: langKey,
       reason,
       comment,
@@ -271,7 +235,7 @@ export const submitExplainReport = onCall({
       kind,
       cacheCollection,
       phraseEn: phraseEn.slice(0, 200),
-      userAnswer: (kind === 'mistake' || kind === 'quiz') && userAnswer ? userAnswer.slice(0, 200) : null,
+      userAnswer: kind === 'mistake' && userAnswer ? userAnswer.slice(0, 200) : null,
       lang: langKey,
       reportCount,
       reporters,

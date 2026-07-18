@@ -51,9 +51,9 @@ describe('statistics tonal hierarchy contract', () => {
     expect(lifetimeTotals).toContain('scrim="stats"');
     expect(lifetimeTotals).not.toContain('scrim="strong"');
     expect(screen).toContain("scrim={freezeActive ? 'strong' : 'stats'}");
-    expect(screen).toContain('<ActivityHeatmap365 hideNextStep={trainerPracticeDue >= STATS_TRAINER_ACTION_MIN_DUE} scrim="stats"/>');
-    expect(heatmap).toContain('scrim?: StatsCardArtScrim');
-    expect(heatmap).toContain('scrim={scrim}');
+    expect(screen).toContain('<ActivityHeatmap365/>');
+    expect(heatmap).not.toContain('StatsCardArtSurface');
+    expect(heatmap).not.toContain('scrim?: StatsCardArtScrim');
   });
 
   it('keeps the statistics gifts header action borderless and separated by tonal fill', () => {
@@ -85,15 +85,15 @@ describe('statistics tonal hierarchy contract', () => {
     expect(cardSurface).not.toContain('filter: blur');
   });
 
-  it('gives the yearly activity internals stronger tonal containers instead of flat matching surfaces', () => {
+  it('keeps the yearly activity map as one tonal surface without a detached month header', () => {
     const heatmap = fs.readFileSync(path.join(ROOT, 'components', 'ActivityHeatmap365.tsx'), 'utf8');
 
     expect(heatmap).toContain('const activityMapSurface =');
-    expect(heatmap).toContain('const activityGoalSurface =');
     expect(heatmap).toContain('const activityNudgeSurface =');
-    expect(heatmap).toContain('colors={activityMapSurface}');
-    expect(heatmap).toContain('colors={activityGoalSurface}');
-    expect(heatmap).toContain('colors={activityNudgeSurface}');
+    expect(heatmap).toContain('styles.yearMapSurface');
+    expect(heatmap).not.toContain('activityGoalSurface');
+    expect(heatmap).not.toContain('styles.yearHeaderSurface');
+    expect(heatmap).not.toContain('styles.monthLabels');
     expect(heatmap).not.toContain("backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface");
     expect(heatmap).not.toContain('backgroundColor: quietPanel');
   });

@@ -67,9 +67,9 @@ export async function runR7FakeProviderMatrix(input: { readonly supportedTargets
   for (let attempt = 1; attempt <= 3; attempt += 1) { try { await rateHarness.generate('en', 4, 'rate'); break; } catch (error) { rateClassification = error instanceof Error && (error.name === 'provider_rate_limit' || error.message === 'provider_rate_limit') ? 'provider_rate_limit' : 'provider_error'; if (attempt === 3) throw error; const delay = attempt * 100; backoffMs.push(delay); nowMs += delay; } }
   pass('R7-RATE', { attempts: rateAttempts, retryCap: 3, backoffMs, classification: rateClassification, boundedRetryProved: rateAttempts === 3 && backoffMs.join(',') === '100,200' });
 
-  const schemaResponses = ['{"stage":"quiz_topic"}', JSON.stringify({ stage: 'quiz_topic', result: { topicId: 'city', title: 'City', learningPromise: 'Practice city English.', level: 'A2', skillTags: ['city'], inclusions: ['travel'], exclusions: ['trivia'], difficultyDistribution: { easy: 3, medium: 4, hard: 3 }, fairnessRules: ['one answer'] } })];
+  const schemaResponses = ['{"stage":"challenge_topic"}', JSON.stringify({ stage: 'challenge_topic', result: { topicId: 'city', title: 'City', learningPromise: 'Practice city English.', level: 'A2', skillTags: ['city'], inclusions: ['travel'], exclusions: ['trivia'], difficultyDistribution: { easy: 3, medium: 4, hard: 3 }, fairnessRules: ['one answer'] } })];
   const schemaProvider: StageGenerationProvider = { generate: async () => schemaResponses.shift() ?? '{}' };
-  const schemaPacket = buildStagePromptPacket('quiz_topic', 'v2', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'City', count: 1, approvedArtifactIds: [], exemplarIds: [], previousContentFingerprints: [] }));
+  const schemaPacket = buildStagePromptPacket('challenge_topic', 'v2', buildPromptContext({ studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', objective: 'City', count: 1, approvedArtifactIds: [], exemplarIds: [], previousContentFingerprints: [] }));
   const schemaResult = await runGenerationStage({ provider: schemaProvider, model: 'fake-r7', packet: schemaPacket, maxRepairs: 2 });
   pass('R7-SCHEMA', { attempts: schemaResult.attempts, repairedToValid: schemaResult.attempts === 2, maxRepairs: 2 });
 

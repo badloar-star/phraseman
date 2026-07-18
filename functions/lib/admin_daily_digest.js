@@ -263,7 +263,6 @@ function aggregateDigestFacts(rows, windowHours = 24) {
             total: c.packSubmissions.length,
             titles: c.packSubmissions.slice(0, 5).map((s) => clip(s.title, 80)).filter((t) => t.length > 0),
         },
-        arenaRooms: { total: c.arenaRooms.length },
     };
     return {
         windowHours,
@@ -370,8 +369,7 @@ function isDigestEmpty(facts) {
         facts.community.packPurchases.total === 0 &&
         facts.community.promoRedemptions.total === 0 &&
         facts.community.surveyResponses.total === 0 &&
-        facts.community.packSubmissions.total === 0 &&
-        facts.community.arenaRooms.total === 0);
+        facts.community.packSubmissions.total === 0);
 }
 const DIGEST_SYSTEM_PROMPT = [
     'Ты — старший продуктовый и операционный аналитик Phraseman, приложения для изучения языков.',
@@ -521,7 +519,7 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
         website_contact_inbox: 'Обращения с сайта', support_inbox: 'Почта поддержки',
         referral_attributions: 'Реферальные связи', community_pack_purchases: 'Покупки паков сообщества',
         promo_redemptions: 'Активации промокодов', vip_survey_responses: 'Ответы на опрос Plus',
-        community_pack_submissions: 'Паки на модерации', arena_rooms_live: 'Комнаты Арены',
+        community_pack_submissions: 'Паки на модерации',
     };
     const recordCoverage = (sourceId, status, rowCount, error) => {
         sourceCoverage.push({
@@ -654,7 +652,7 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
             return [];
         }
     };
-    const [reports, cancels, appErrors, safety, newUsers, purchases, paywallPurchases, ideas, userReports, packReports, explainReports, websiteInbox, supportInbox, referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms,] = await Promise.all([
+    const [reports, cancels, appErrors, safety, newUsers, purchases, paywallPurchases, ideas, userReports, packReports, explainReports, websiteInbox, supportInbox, referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions,] = await Promise.all([
         // — Основные (у всех есть числовой createdAtMs) —
         byMs('error_reports', 'createdAtMs', (d) => {
             const x = d.data();
@@ -698,14 +696,13 @@ async function loadDigestSources(db, since, until = Date.now(), limitPer = 1000)
             const x = d.data();
             return { title: x.payload?.titleRu || x.payload?.titleEs || x.title, submissionKind: x.submissionKind };
         }),
-        byMs('arena_rooms_live', 'createdAt', (d) => ({ title: d.data().title })), // createdAt числовое, TTL 24ч
     ]);
     return {
         sourceCoverage: sourceCoverage.sort((a, b) => a.label.localeCompare(b.label, 'ru')),
         reports, cancels, appErrors, safety,
         newUsers, purchases, paywallPurchases, ideas,
         queues: { userReports, packReports, explainReports, websiteInbox, supportInbox },
-        community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions, arenaRooms },
+        community: { referrals, packPurchases, promoRedemptions, surveyResponses, packSubmissions },
     };
 }
 /** UTC день-ключ (YYYY-MM-DD) — один документ дайджеста на сутки. */

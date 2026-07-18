@@ -29,7 +29,7 @@ describe('Admin v2 trustworthy analytics contract', () => {
   test('has one primary refresh action, a labeled bounded period and accessible status', () => {
     expect(view.match(/data-action="load-analytics"/g)).toHaveLength(1);
     expect(view).toContain('class="button primary"');
-    expect(view).toContain('title="Обновить серверный снимок аналитики"');
+    expect(view).toContain('title="Обновить серверный снимок аналитики, сохраняя последний подтверждённый результат на экране"');
     expect(view).toContain('for="analytics-range"');
     expect(view).toContain('value="7"');
     expect(view).toContain('value="28"');
@@ -41,10 +41,12 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(view).toContain('id="analytics-report-select"');
     expect(view).toContain('data-action="select-analytics-report"');
     expect(view).toContain('data-analytics-report-panel');
-    expect(view).toContain('Обзор');
-    expect(view).toContain('Продукт и обучение');
-    expect(view).toContain('Подписки');
-    expect(view).toContain('Экспорт и качество');
+    expect(view).toContain('Сегодня');
+    expect(view).toContain('Рост');
+    expect(view).toContain('Деньги');
+    expect(view).toContain('Обучение');
+    expect(view).toContain('Что показывает:');
+    expect(view).toContain('Какое решение принять:');
     expect(view).not.toContain('aria-label="Разделы аналитики"');
     expect(view).not.toContain('href="#product-analytics-panel"');
     expect(core).toContain('activeAnalyticsReport');
@@ -52,6 +54,30 @@ describe('Admin v2 trustworthy analytics contract', () => {
     expect(core).toContain("state.activeAnalyticsReport === 'product'");
     expect(core).toContain("state.activeAnalyticsReport === 'subscriptions'");
     expect(core).toContain("state.activeAnalyticsReport === 'exports'");
+  });
+
+  test('maps every visible analytics deep link to one real decision report', () => {
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
+
+    expect(capabilities).toContain("'today', '/today'");
+    expect(capabilities).toContain("'growth', '/growth'");
+    expect(capabilities).toContain("'money', '/money'");
+    expect(capabilities).toContain("'learning', '/learning'");
+    expect(core).toContain("today: 'overview'");
+    expect(core).toContain("growth: 'product'");
+    expect(core).toContain("money: 'subscriptions'");
+    expect(core).toContain("learning: 'exports'");
+    expect(core).toContain("['today', 'Сегодня']");
+    expect(core).toContain("['growth', 'Рост']");
+    expect(core).toContain("['money', 'Деньги']");
+    expect(core).toContain("['learning', 'Обучение']");
+    expect(view).toContain("reportShell('overview'");
+    expect(view).toContain("reportShell('product'");
+    expect(view).toContain("reportShell('subscriptions'");
+    expect(view).toContain("reportShell('exports'");
+    expect(view).not.toContain('старый ZIP');
+    expect(view).not.toContain('ZIP-пакет');
+    expect(view).not.toContain('новая кнопка сверху скачивает');
   });
 
   test('exports the current canonical analytics report as PDF and JSON', () => {

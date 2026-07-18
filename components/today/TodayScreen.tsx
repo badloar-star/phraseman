@@ -78,10 +78,8 @@ function destinationForTask(task: TodayTask): TodayDestinationId {
 
 function routeForDestination(destinationId: TodayDestinationId): TodayRoute {
   switch (destinationId) {
-    case 'arena': return { pathname: '/(tabs)/arena' };
     case 'plan': return { pathname: '/personal_plan' };
     case 'practice': return { pathname: '/trainer' };
-    case 'quizzes': return { pathname: '/quizzes_screen' };
     case 'flashcards': return { pathname: '/flashcards_swipe' };
     case 'daily_tasks': return { pathname: '/daily_tasks_screen' };
     default: return { pathname: '/(tabs)/lessons' };
@@ -199,10 +197,9 @@ export default function TodayScreen() {
           } : null,
           practiceDue: snapshot.trainer?.totalDue ?? 0,
           flashcardCount: 0,
-          arenaPlaysLeft: 0,
           dailyTasksRemaining: 0,
           dailyTasksTotal: 0,
-          availableDestinations: new Set<TodayDestinationId>(['lessons', 'arena', 'plan', 'practice', 'quizzes', 'flashcards', 'daily_tasks']),
+          availableDestinations: new Set<TodayDestinationId>(['lessons', 'plan', 'practice', 'flashcards', 'daily_tasks']),
         },
         locale: lang,
         nowMs: now.getTime(),

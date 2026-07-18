@@ -36,8 +36,10 @@ describe('admin premium delivery contract', () => {
     const listenerStart = premiumContext.indexOf('Live VIP grants/revokes from admin/index.html');
     const listenerBody = premiumContext.slice(listenerStart, premiumContext.indexOf('// Reload when app comes to foreground', listenerStart));
 
-    expect(listenerBody).toContain('ensureStableAuthLinkForStableId');
-    expect(listenerBody.indexOf('ensureStableAuthLinkForStableId(uid)')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
+    expect(listenerBody).toContain('ensureStableAuthLinkForStableIdDetailed');
+    expect(listenerBody.indexOf('ensureStableAuthLinkForStableIdDetailed(uid)')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
+    expect(listenerBody).toContain("stableLink?.failure === 'stable_id_mismatch'");
+    expect(listenerBody.indexOf('stableLink.stableUid !== uid')).toBeLessThan(listenerBody.indexOf('.onSnapshot('));
     expect(listenerBody).toContain('scheduleRetry');
     expect(listenerBody).toContain('2_500');
   });

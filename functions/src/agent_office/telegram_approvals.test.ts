@@ -153,6 +153,7 @@ function tokenDocument(contentHash: string, overrides: Record<string, unknown> =
 function verifiedUpdate(overrides: Record<string, unknown> = {}) {
   return {
     verification: 'verified',
+    callbackNamespace: 'ao1',
     updateId: UPDATE_ID,
     callbackQueryId: 'callback-query-12345678',
     chatId: '70000001',

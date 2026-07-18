@@ -79,6 +79,20 @@ function queuedCodeJob(value: unknown): ExecutionJob | null {
   } catch { return null; }
 }
 
+export function buildLocalRunnerCodePrepareJob(taskIdValue: unknown, taskRevisionValue: unknown, nowMsValue: unknown): Record<string, unknown> {
+  const taskId = identifier(taskIdValue, 'taskId');
+  const taskRevision = positiveInteger(taskRevisionValue, 'taskRevision');
+  if (taskRevision < 1) fail('taskRevision is invalid');
+  const nowMs = positiveInteger(nowMsValue, 'nowMs');
+  const idempotencyKey = `exec:${hash(`${taskId}:r${taskRevision}`)}`;
+  return parseExecutionJob({
+    schemaVersion: 1, taskId, taskRevision, scope: 'code_prepare', handlerVersion: 'code-prepare-v1',
+    state: 'queued', attempts: 0, maxAttempts: 2, leaseUntilMs: null,
+    idempotencyKey, idempotencyKeyHash: hash(idempotencyKey), createdAtMs: nowMs, updatedAtMs: nowMs,
+    leasedAtMs: null, finishedAtMs: null, outputRef: null, outputHash: null,
+  }) as unknown as Record<string, unknown>;
+}
+
 function queuedCodeTask(value: unknown, job: ExecutionJob): Readonly<{ taskId: string; revision: number; title: string; brief: string }> | null {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const task = value as Record<string, unknown>;

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { questionSemanticKey } from './quiz_challenge_artifacts';
+import { questionSemanticKey } from './question_artifacts';
 
 export interface LedgerQuestion { readonly id: string; readonly semanticKey: string; readonly skillTag: string; readonly difficulty: string }
 export interface QuestionReplacementRevision { readonly artifactId: string; readonly item: LedgerQuestion }

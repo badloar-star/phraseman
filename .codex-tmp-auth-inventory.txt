@@ -1,0 +1,30 @@
+Auth quarantine inventory (read-only, 2026-07-18):
+- ensureAnonUser(): explicit isAccountDeleteIdentityQuarantined() before getCanonicalUserId()/ensureAnonAuthReady. Covered by tests/account_delete_quarantine_behavior.test.ts :: "blocks identity generation, anonymous binding, stable-link calls, and sync writes for the still-signed-in deleted provider".
+- ensureStableAuthLinkForStableIdDetailed(): explicit quarantine before auth UID/callable. Covered indirectly by same quarantine behavior + tests/auth_provider_stable_link.test.ts server-link contracts. Gap: no direct source contract proving quarantine check remains before callable in this export.
+- ensureStableAuthLink(): delegates ensureAnonUser; quarantine inherited. No direct test of wrapper.
+- mergeStableAccountsViaServer(): callable on caller-supplied stable IDs, no quarantine check. Gap: direct export can invoke authMergeStableAccounts while pending-delete quarantine; callers currently rely on provider flow ordering.
+- syncToCloud()/runSyncNow()/doSyncToCloud(): identity/write path reaches ensureAnonUser first; quarantine therefore blocks before users/{uid}.set. Covered by quarantine behavior and cloud_sync_account_race_contract.test.ts generation-bound write tests. Gap: no explicit pending-quarantine -> no set assertion in race contract.
+- restoreFromCloud(), restoreFromCloudDetailed(), restoreFromCloudWithRecoveryDetails(), restoreAndMigrateFromCloud(), migrateLocalProgressToCloud(): restore implementation calls ensureAnonUser before users read and stable-link; covered by tests/startup_cloud_identity_recovery.test.ts and cloud_restore_attempt.test.ts. Gap: no direct restart-quarantine restore test.
+- forceSyncToCloud(): calls ensureAnonUser before users write; no explicit quarantine-specific test (only race/generation contracts).
+- quiesceSyncBeforeStableIdSwap()/quiesceCloudSyncForAccountTransition(): no identity or Firestore access; quarantine N/A.
+- saveAccountSwitchEmergencyBackup(): calls getCanonicalUserId() directly then writes AsyncStorage backup, without quarantine check. Gap: pending-delete path can still read canonical identity/write backup marker; no quarantine test.
+- deleteCloudData(): calls getCanonicalUserId() BEFORE ensureAnonUser(); ensureAnonUser returns null under quarantine but canonical lookup already happened, then callable accountDeleteMine is still attempted. Gap/P1: deletion callable should have explicit deletion-path semantics; no quarantine guard contract for this export.
+- startCloudDeletionEnqueue()/enqueueCloudDeletion(): no identity lookup; intentionally deletion recovery callable. Quarantine N/A; covered by account_delete_enqueue_deadline.test.ts and account_delete_flow_contract.test.ts.
+
+Provider sign-in ordering (app/auth_provider.ts): runSignInWithProvider starts anonPreparation=ensureAnonUser() before native picker; after credential mutation (linkWithCredential or signInWithCredential), it immediately reads readAccountDeletePendingAuth(firebaseProviderUid) at lines 1009-1022, before auth_links lookup at 1024. tests/auth_provider_stable_link.test.ts :: "provider sign-in refuses same-provider re-login while account deletion is still pending" and tests/account_delete_flow_contract.test.ts :: "blocks immediate same-provider re-login until background deletion is settled" assert ordering. Note: pending check is after signInWithCredential (required current contract), so provider auth mutation has already occurred; quarantine is enforced before auth_links/stable-link work, not before credential sign-in.
+
+Stale assertion: tests/cloud_sync_account_race_contract.test.ts only checks generation capture/current guards around docRef.set and LAST_SYNC_SNAPSHOT_KEY plus enqueue/invalidate/drain order. It does NOT assert account_delete quarantine before getCanonicalUserId, ensureAnonUser, restore/read, or any Firestore write/callable.
+
+Suggested max-12 RED tests (names only; do not implement):
+1. cloud sync blocks users write when account-delete quarantine is active
+2. forceSyncToCloud blocks users write when account-delete quarantine is active
+3. restoreFromCloud blocks users read when account-delete quarantine is active
+4. restoreFromCloudDetailed blocks stable-link callable when account-delete quarantine is active
+5. saveAccountSwitchEmergencyBackup skips canonical identity lookup while quarantined
+6. deleteCloudData has explicit pending-delete quarantine/deletion semantics before canonical lookup
+7. mergeStableAccountsViaServer refuses callable during account-delete quarantine
+8. ensureStableAuthLinkForStableIdDetailed checks quarantine before auth UID wait/callable
+9. migrateLocalProgressToCloud inherits quarantine before restore
+10. provider sign-in checks pending-delete immediately after credential sign-in and before auth_links lookup
+11. provider sign-in does not call authEnsureStableLink after pending-delete quarantine
+12. cloud_sync_account_race_contract asserts quarantine before every identity creation/write path

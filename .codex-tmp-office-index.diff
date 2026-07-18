@@ -1,0 +1,371 @@
+﻿diff --git a/firestore.rules b/firestore.rules
+index 826b7c881..e934c9385 100644
+--- a/firestore.rules
++++ b/firestore.rules
+@@ -4,7 +4,9 @@ service cloud.firestore {
+ 
+     // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     function isOwner(uid) {
+-      return request.auth != null && request.auth.uid == uid;
++      return request.auth != null
++        && request.auth.uid == uid
++        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid));
+     }
+ 
+     function isAdmin() {
+@@ -15,6 +17,7 @@ service cloud.firestore {
+ 
+     function stableUserMatchesAuth(stableUid) {
+       return request.auth != null
++        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+         && exists(/databases/$(database)/documents/users/$(stableUid))
+         && get(/databases/$(database)/documents/users/$(stableUid)).data.keys().hasAny(['firebaseAuthUid'])
+         && get(/databases/$(database)/documents/users/$(stableUid)).data.firebaseAuthUid == request.auth.uid;
+@@ -22,6 +25,7 @@ service cloud.firestore {
+ 
+     function authLinkMapsToUser(userId) {
+       return request.auth != null
++        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+         && exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
+         && get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id == userId;
+     }
+@@ -48,12 +52,17 @@ service cloud.firestore {
+     // закрыты (эта ветка ложна, если документ существует).
+     function userDocMissing(userId) {
+       return request.auth != null
++        && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+         && !exists(/databases/$(database)/documents/users/$(userId));
+     }
+ 
+     function accountDeletionNotPending(userId) {
+       return isAdmin()
+-        || !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId));
++        || (
++          request.auth != null
++          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
++          && !exists(/databases/$(database)/documents/account_deletion_tombstones/$(userId))
++        );
+     }
+ 
+     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
+@@ -1017,6 +1026,7 @@ service cloud.firestore {
+         || isOwner(userId)
+         || (
+           request.auth != null
++          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid))
+           && request.resource.data.keys().hasAny(['firebaseAuthUid'])
+           && request.resource.data.firebaseAuthUid is string
+           && request.resource.data.firebaseAuthUid == request.auth.uid
+@@ -1060,6 +1070,11 @@ service cloud.firestore {
+       allow read, write: if false;
+     }
+ 
++    match /account_deletion_auth_markers/{authUid} {
++      allow read: if request.auth != null && request.auth.uid == authUid;
++      allow write: if false;
++    }
++
+     match /users/{userId} {
+       // read: владелец/админ ИЛИ документа ещё нет (пустое чтение безопасно и
+       // не валит клиентскую транзакцию входа на новом localStableId — см.
+@@ -1669,90 +1684,15 @@ service cloud.firestore {
+       allow create, update, delete: if isAdmin();
+     }
+ 
+-    // League chat UGC: live weekly room messages, moderation queue, reports.
+-    match /league_chat_messages/{messageId} {
+-      // Член комнаты (есть запись в league_chat_members/{uid}/rooms/{groupId}).
+-      function isLeagueChatRoomMember() {
+-        return request.auth != null
+-          && exists(/databases/$(database)/documents/league_chat_members/$(request.auth.uid)/rooms/$(resource.data.groupId));
+-      }
+-      allow read: if isAdmin() || isLeagueChatRoomMember();
+-      allow create: if isAdmin();
+-      // Участник комнаты может менять ТОЛЬКО агрегаты вовлечения (счётчики реакций
+-      // и голосов опроса) + updatedAt. Текст/статус/автор/модерация — неприкосновенны.
+-      // Значения меняются через increment(±1) на клиенте; объём злоупотребления
+-      // ограничен (счётчик ±1 за тап, троттлинг на клиенте).
+-      allow update: if isAdmin()
+-        || (
+-          isLeagueChatRoomMember()
+-          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactions', 'pollVotes', 'updatedAt'])
+-        );
+-      allow delete: if isAdmin();
+-    }
+-
+-    match /league_chat_moderation_queue/{itemId} {
+-      allow create: if false;
+-      allow read, update, delete: if isAdmin();
+-    }
+-
+-    match /league_chat_reports/{reportId} {
+-      allow create: if false;
+-      allow read, update, delete: if isAdmin();
+-    }
+-
+-    match /league_chat_bans/{userId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /league_chat_members/{authUid}/rooms/{groupId} {
+-      allow read: if isAdmin() || (request.auth != null && request.auth.uid == authUid);
+-      allow create, update, delete: if false;
+-    }
+-
+-    // Help Board UGC: public Q&A boards partitioned by study language + UI/community language.
+-    // Clients read only visible topics/comments. Creation, votes, reports, moderation,
+-    // Compass billing, and rate limits go through Cloud Functions/Admin SDK.
+-    match /help_board_topics/{topicId} {
+-      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
+-      allow create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_comments/{commentId} {
+-      allow read: if request.auth != null && (isAdmin() || resource.data.status == 'visible');
+-      allow create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_votes/{voteId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_reports/{reportId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_moderation_queue/{itemId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_rate_limits/{userId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_restrictions/{userId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+-    match /help_board_compass_billing/{entryId} {
+-      allow read, create, update, delete: if isAdmin();
+-    }
+-
+     // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+     // Doc id = providerUid (Google sub / Apple sub).
+     // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}
+     // Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ stable_id Ð¸ Ð¿Ð¾Ð´Ñ‚ÑÐ½ÑƒÑ‚ÑŒ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ.
+     match /auth_links/{providerUid} {
+       function ownsAuthLinkDoc() {
+-        return request.auth != null && request.auth.uid == providerUid;
++        return request.auth != null
++          && request.auth.uid == providerUid
++          && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid));
+       }
+ 
+       function stableIdOwnedByThisAuth(stableId) {
+@@ -1933,26 +1873,6 @@ service cloud.firestore {
+       allow create, update, delete: if isAdmin();
+     }
+ 
+-    // ── Arena room chat ────────────────────────────────────────────────────────
+-    // Сообщения пишет только Cloud Function (после rate-limit + фильтрации).
+-    // Клиент читает только видимые сообщения (status==visible) своей комнаты.
+-    match /arena_room_chat/{roomCode}/messages/{msgId} {
+-      // Read scoped to VISIBLE messages for members of THIS room (member doc id is
+-      // `${roomCode}_${authUid}`). Previously any signed-in user could read every
+-      // room's chat — including moderation-hidden messages — by guessing room codes
+-      // (IDOR). The client query already filters status=='visible'.
+-      allow read: if isAdmin() || (request.auth != null
+-        && resource.data.status == 'visible'
+-        && exists(/databases/$(database)/documents/arena_room_members/$(roomCode + '_' + request.auth.uid)));
+-      allow create, update, delete: if isAdmin();
+-    }
+-
+-    // Rate-limit счётчики чата комнаты — только CF.
+-    match /arena_room_chat_rate/{authUid} {
+-      allow read: if request.auth != null && request.auth.uid == authUid;
+-      allow create, update, delete: if isAdmin();
+-    }
+-
+     match /arena_pulse_events/{eventId} {
+       allow read: if request.auth != null;
+       allow create, update, delete: if isAdmin();
+@@ -2087,8 +2007,51 @@ service cloud.firestore {
+     }
+ 
+     // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+-    match /{document=**} {
+-      allow read, write: if isAdmin();
++    // Agent Office is a server-owned control ledger. Canonical records are
++    // reachable only through role-checked Cloud Functions using Admin SDK.
++    match /agent_cases/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_recommendations/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_approvals/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_tasks/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_audit_events/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_office_control/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_telegram_tokens/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_telegram_issuance_receipts/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_telegram_publication_receipts/{document=**} {
++      allow read, write: if false;
++    }
++    match /agent_observation_receipts/{document=**} {
++      allow read, write: if false;
++    }
++
++    match /{collection}/{document=**} {
++      allow read, write: if isAdmin()
++        && collection != 'agent_cases'
++        && collection != 'agent_recommendations'
++        && collection != 'agent_approvals'
++        && collection != 'agent_tasks'
++        && collection != 'agent_audit_events'
++        && collection != 'agent_office_control'
++        && collection != 'agent_telegram_tokens'
++            && collection != 'agent_telegram_issuance_receipts'
++            && collection != 'agent_telegram_publication_receipts'
++            && collection != 'agent_observation_receipts';
+       allow read, write: if false;
+     }
+   }
+diff --git a/functions/src/index.ts b/functions/src/index.ts
+index a3f5f342a..675b33bc2 100644
+--- a/functions/src/index.ts
++++ b/functions/src/index.ts
+@@ -38,8 +38,6 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
+   processLobbyAfterChoice: (sessionId: string) => Promise<void>;
+ };
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+-const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage, leagueChatDeleteMessage } = require('./league_chat');
+-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identity');
+@@ -94,7 +92,6 @@ const {
+   arenaRoomSetReady,
+   arenaRoomKick,
+   arenaRoomClose,
+-  arenaRoomChatSend,
+ } = require('./arena_rooms');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
+@@ -131,18 +128,6 @@ const { explainChoice } = require('./explain_choice');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { explainQuiz } = require('./explain_quiz');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+-const {
+-  helpBoardCreateTopic,
+-  helpBoardAddComment,
+-  helpBoardVote,
+-  helpBoardReport,
+-  helpBoardDeleteMyTopic,
+-  helpBoardDeleteCompassAnswer,
+-  helpBoardAdminModerate,
+-  helpBoardGenerateCompassForTopic,
+-  helpBoardCompassRetryCron,
+-} = require('./help_board');
+-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { explainMistake } = require('./mistake_explain');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { submitExplainReport } = require('./explain/explain_reports');
+@@ -163,8 +148,6 @@ const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require(
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+ const { leagueFinalizeCron } = require('./league_finalize_cron');
+ // eslint-disable-next-line @typescript-eslint/no-var-requires
+-const { compassChatDailyCron, compassChatRunNow } = require('./compass_chat_cron');
+-// eslint-disable-next-line @typescript-eslint/no-var-requires
+ const {
+   notifyOnFriendRequestCreated,
+   notifyOnFriendAccepted,
+@@ -183,10 +166,6 @@ const {
+   adminAlertOnConfigWritten,
+ } = require('./admin_alerts');
+ 
+-exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
+-exports.leagueChatSendMessage = leagueChatSendMessage;
+-exports.leagueChatReportMessage = leagueChatReportMessage;
+-exports.leagueChatDeleteMessage = leagueChatDeleteMessage;
+ exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
+ exports.leagueUpdateMyMember = leagueUpdateMyMember;
+ exports.leagueSyncMyBoost = leagueSyncMyBoost;
+@@ -228,7 +207,6 @@ exports.arenaRoomLeave = arenaRoomLeave;
+ exports.arenaRoomSetReady = arenaRoomSetReady;
+ exports.arenaRoomKick = arenaRoomKick;
+ exports.arenaRoomClose = arenaRoomClose;
+-exports.arenaRoomChatSend = arenaRoomChatSend;
+ exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
+ exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
+ exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
+@@ -253,15 +231,6 @@ exports.statsInsightsGenerate = statsInsightsGenerate;
+ exports.explainPhrase = explainPhrase;
+ exports.explainChoice = explainChoice;
+ exports.explainQuiz = explainQuiz;
+-exports.helpBoardCreateTopic = helpBoardCreateTopic;
+-exports.helpBoardAddComment = helpBoardAddComment;
+-exports.helpBoardVote = helpBoardVote;
+-exports.helpBoardReport = helpBoardReport;
+-exports.helpBoardDeleteMyTopic = helpBoardDeleteMyTopic;
+-exports.helpBoardDeleteCompassAnswer = helpBoardDeleteCompassAnswer;
+-exports.helpBoardAdminModerate = helpBoardAdminModerate;
+-exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopic;
+-exports.helpBoardCompassRetryCron = helpBoardCompassRetryCron;
+ exports.notifyOnFriendRequestCreated = notifyOnFriendRequestCreated;
+ exports.notifyOnFriendAccepted = notifyOnFriendAccepted;
+ exports.userNotificationsCleanupCron = userNotificationsCleanupCron;
+@@ -291,8 +260,6 @@ exports.submitUserIdea = submitUserIdea;
+ exports.adminDecideUserIdea = adminDecideUserIdea;
+ exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
+ exports.leagueFinalizeCron = leagueFinalizeCron;
+-exports.compassChatDailyCron = compassChatDailyCron;
+-exports.compassChatRunNow = compassChatRunNow;
+ 
+ const PRIVATE_DUEL_QUESTION_COUNT = 10;
+ 
+@@ -1493,11 +1460,22 @@ export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
+ export { adminGetAnalyticsSnapshot } from './admin_analytics';
+ export { adminGetAnalyticsTrends } from './admin_analytics_trends';
+ export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
+-export { adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
++export { adminExportReportDocuments, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+ export { adminListAuditLog } from './admin_audit_log';
+ export { adminListOpsLog } from './admin_ops_log';
++export {
++  agentOfficeDecideRecommendation,
++  agentOfficeGetCase,
++  agentOfficeGetControl,
++  agentOfficeListAuditEvents,
++  agentOfficeListCases,
++  agentOfficeListRecommendations,
++  agentOfficeListTasks,
++  agentOfficeSetKillSwitch,
++  agentOfficeTelegramPublishRecommendation,
++  agentOfficeTelegramWebhook,
++} from './agent_office';
+ export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+-export { adminGetLandingExperimentReport } from './admin_landing_experiment';
+ export {
+   adminListAppMessages,
+   adminCreateAppMessage,
+@@ -1526,7 +1504,6 @@ export { dailyPhraseSetSaved } from './daily_phrases';
+ export { submitWebsiteContact } from './website_contact';
+ 
+ export { siteStatsTrack } from './site_stats';
+-export { webLandingExperimentConfig } from './web_landing_experiment';
+ 
+ export { revenueCatShardsWebhook } from './revenuecat_shards';
+ 

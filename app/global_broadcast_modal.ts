@@ -3,7 +3,6 @@ import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { addShardsRaw, loadShardsFromCloud } from './shards_system';
-import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
@@ -323,7 +322,9 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload, studyT
       await grantClubGiftFreeBoostFromLevel();
       return;
     case 'arena_extra_5':
-      await addArenaPlaysBonusForToday(5);
+      // Preserve queued legacy broadcasts with an equal-size neutral reward.
+      await addShardsRaw(5, 'global_broadcast_modal');
+      await loadShardsFromCloud().catch(() => {});
       return;
     case 'wager_discount_25':
       await AsyncStorage.setItem(WAGER_DISCOUNT_KEY, '0.25');

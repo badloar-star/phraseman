@@ -12,6 +12,12 @@ import {
   createPlanAttemptEvent,
   type PlanExerciseBlock,
 } from '../app/personal_plan_engine_contracts';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+  withAccountTransitionLock,
+} from '../app/account_generation';
 
 const block: PlanExerciseBlock = {
   id: 'gavan_day1_block',
@@ -47,6 +53,8 @@ function recoveryActions() {
 describe('personal plan recovery applied action registry', () => {
   beforeEach(async () => {
     await AsyncStorage.clear();
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('stable-a');
   });
 
   it('stores applied action ids by plan instance', async () => {
@@ -133,5 +141,22 @@ describe('personal plan recovery applied action registry', () => {
 
     expect(raw).toContain('action_1');
     expect(personalPlanRecoveryAppliedActionsStorageKey()).toBe('personal_plan_recovery_applied_actions_v1');
+  });
+
+  it('rejects a queued account-A registry write after account generation changes', async () => {
+    let release!: () => void;
+    const blocker = withAccountTransitionLock(
+      () => new Promise<void>((resolve) => { release = resolve; }),
+    );
+    await Promise.resolve();
+
+    const write = addAppliedPlanRecoveryActionIds('instance_a', ['action-a']);
+    invalidateAccountGeneration();
+    beginAccountGeneration('stable-b');
+    release();
+    await blocker;
+
+    await expect(write).rejects.toThrow('stale_account_generation');
+    expect(await AsyncStorage.getItem(personalPlanRecoveryAppliedActionsStorageKey())).toBeNull();
   });
 });

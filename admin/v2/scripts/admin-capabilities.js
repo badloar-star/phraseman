@@ -41,7 +41,6 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'community-packs', route: 'content', label: 'Пакеты сообщества', description: 'Проверка и публикация пользовательских пакетов.', legacyTab: 'community-packs' },
   { id: 'card-packs', route: 'content', label: 'Наборы карточек', description: 'Содержимое и управление наборами карточек.', legacyTab: 'card-packs' },
   { id: 'daily-phrases', route: 'content', label: 'Фразы дня', description: 'Фразы, расписание и публикация.', legacyTab: 'daily-phrases' },
-  { id: 'french-quizzes', route: 'content', label: 'Французские квизы', description: 'Предпросмотр, черновик, публикация и откат.', legacyTab: 'french-quizzes' },
   { id: 'asset-studio', route: 'content', label: 'Студия изображений', description: 'Создание изображений через безопасные серверные задания.' },
   { id: 'explain-reports', route: 'content', label: 'Репорты объяснений', description: 'Ошибки и отзывы по объяснениям.', legacyTab: 'explain-reports' },
   { id: 'explain-cache', route: 'content', label: 'Кэш объяснений', description: 'Проверка и обслуживание готовых объяснений.', legacyTab: 'explain-cache' },
@@ -51,10 +50,6 @@ const RAW_ADMIN_CAPABILITY_REGISTRY = [
   { id: 'mod-queue', route: 'community', label: 'Очередь модерации', description: 'Пользовательский контент, ожидающий решения.', legacyTab: 'mod-queue' },
   { id: 'helpers-board', route: 'community', label: 'Топ помощников', description: 'Лидеры помощи и подтверждённые ответы.', legacyTab: 'helpers-board' },
   { id: 'clubs', route: 'community', label: 'Клубы и лиги', description: 'Клубы, участники и управление лигами.', legacyTab: 'clubs' },
-  { id: 'arena-ranks', route: 'community', label: 'Рейтинг Арены', description: 'Лидеры и ранги Арены.', legacyTab: 'arena-ranks' },
-  { id: 'arena-live', route: 'community', label: 'Арена в реальном времени', description: 'Активные матчи и состояние очередей.', legacyTab: 'arena-live' },
-  { id: 'arena-bets', route: 'community', label: 'Ставки Арены', description: 'Ставки, статусы и спорные случаи.', legacyTab: 'arena-bets' },
-  { id: 'arena-rooms', route: 'community', label: 'Комнаты Арены', description: 'Комнаты, игроки и состояние матчей.', legacyTab: 'arena-rooms' },
   { id: 'ban-list', route: 'community', label: 'Блокировки', description: 'Заблокированные пользователи и причины.', legacyTab: 'ban-list' },
 
   { id: 'app-health', route: 'diagnostics', label: 'Состояние приложения', description: 'Сигналы здоровья и свежесть источников.', legacyTab: 'app-health' },
@@ -75,8 +70,6 @@ export const NATIVE_CAPABILITY_ROUTES = Object.freeze({
   analytics: 'analytics',
   'openai-budget': 'diagnostics',
   'promo-codes': 'money',
-  audit: 'diagnostics',
-  'ops-log': 'diagnostics',
 });
 
 const NATIVE_PAGE_HASHES = new Set([
@@ -88,6 +81,26 @@ const ANALYTICS_BOOKMARK_HASHES = new Set([
   'product', '/product',
   'subscriptions', '/subscriptions',
   'monthly', '/monthly',
+  'today', '/today',
+  'growth', '/growth',
+  'money', '/money',
+  'learning', '/learning',
+]);
+
+// These legacy capabilities stay intact outside Admin v2, but are deliberately
+// retired from this shell so they cannot reappear through menu generation or a
+// deep link. Keep the decision in the registry layer rather than deleting a
+// legacy route or its backend contract.
+export const EXCLUDED_V2_CAPABILITY_IDS = new Set([
+  'daily-phrases', 'compass', 'mod-queue',
+  'audit', 'ops-log', 'archive', 'changelog-0608',
+]);
+
+const EXCLUDED_V2_HASH_SEGMENTS = new Set([
+  ...EXCLUDED_V2_CAPABILITY_IDS,
+  'audit-log',
+  'arena-ranks', 'arena-live', 'arena-bets', 'arena-rooms',
+  'arena-question-pool', 'arena-generator', 'arena-shadow', 'french-quizzes',
 ]);
 
 export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGISTRY.map((capability) => {
@@ -100,11 +113,12 @@ export const ADMIN_CAPABILITY_REGISTRY = Object.freeze(RAW_ADMIN_CAPABILITY_REGI
 }));
 
 export function capabilitiesForRoute(route) {
-  return ADMIN_CAPABILITY_REGISTRY.filter((capability) => capability.route === route);
+  return ADMIN_CAPABILITY_REGISTRY.filter((capability) => capability.route === route && !EXCLUDED_V2_CAPABILITY_IDS.has(capability.id));
 }
 
 export function capabilityById(id) {
-  return ADMIN_CAPABILITY_REGISTRY.find((capability) => capability.id === id) ?? null;
+  const capability = ADMIN_CAPABILITY_REGISTRY.find((entry) => entry.id === id) ?? null;
+  return capability && !EXCLUDED_V2_CAPABILITY_IDS.has(capability.id) ? capability : null;
 }
 
 export function resolveCapabilityHash(rawHash) {
@@ -115,6 +129,9 @@ export function resolveCapabilityHash(rawHash) {
     return { resolved: true, route: 'analytics', capabilityId: '' };
   }
   const [requestedRoute, requestedCapabilityId = ''] = requested.split(':');
+  if (EXCLUDED_V2_HASH_SEGMENTS.has(requestedRoute) || EXCLUDED_V2_HASH_SEGMENTS.has(requestedCapabilityId)) {
+    return { resolved: true, route: 'overview', capabilityId: '' };
+  }
   if (!requestedCapabilityId && NATIVE_PAGE_HASHES.has(requestedRoute)) {
     return { resolved: false, route: requestedRoute, capabilityId: '' };
   }

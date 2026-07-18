@@ -34,7 +34,6 @@ const EMPTY_ROWS: DigestSourceRows = {
     promoRedemptions: [],
     surveyResponses: [],
     packSubmissions: [],
-    arenaRooms: [],
   },
 };
 
@@ -205,7 +204,7 @@ describe('aggregateDigestFacts', () => {
     expect(isDigestEmpty(facts)).toBe(false);
   });
 
-  test('community: рефералы/покупки-паков/промо/опрос/сабмишены/арена считаются и делают дайджест непустым', () => {
+  test('community: рефералы/покупки-паков/промо/опрос/сабмишены считаются и делают дайджест непустым', () => {
     const facts = aggregateDigestFacts({
       ...EMPTY_ROWS,
       community: {
@@ -214,7 +213,6 @@ describe('aggregateDigestFacts', () => {
         promoRedemptions: [{ code: 'SUMMER' }, { code: 'SUMMER' }, { code: 'WELCOME' }],
         surveyResponses: [{ uid: 'u1' }],
         packSubmissions: [{ title: 'Идиомы делового английского', submissionKind: 'new' }],
-        arenaRooms: [{ title: 'Дуэль' }, { title: 'Блиц' }],
       },
     });
     expect(facts.community.referrals.total).toBe(3);
@@ -224,7 +222,6 @@ describe('aggregateDigestFacts', () => {
     expect(facts.community.promoRedemptions.byCode).toEqual({ SUMMER: 2, WELCOME: 1 });
     expect(facts.community.surveyResponses.total).toBe(1);
     expect(facts.community.packSubmissions.titles).toContain('Идиомы делового английского');
-    expect(facts.community.arenaRooms.total).toBe(2);
     expect(isDigestEmpty(facts)).toBe(false);
   });
 

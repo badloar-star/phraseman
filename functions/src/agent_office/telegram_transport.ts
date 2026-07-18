@@ -6,6 +6,7 @@ import {
   parseTelegramApprovalRuntimeConfig,
   parseTelegramCallbackUpdate,
   telegramApprovalTokenHash,
+  type TelegramCallbackNamespace,
   type VerifiedTelegramApprovalUpdate,
 } from './telegram_contracts';
 
@@ -24,13 +25,13 @@ interface TelegramWebhookResponse {
 interface TelegramApprovalResult {
   readonly ok: true;
   readonly idempotent: boolean;
-  readonly decision: 'approve' | 'decline';
+  readonly decision: 'approve' | 'decline' | 'reject';
 }
 
 interface TelegramWebhookDependencies {
   readonly isEnabled: () => boolean;
   readonly loadConfig: () => unknown;
-  readonly loadTokenByHash: (tokenIdHash: string) => Promise<Record<string, unknown> | null>;
+  readonly loadTokenByHash: (callbackNamespace: TelegramCallbackNamespace, tokenIdHash: string) => Promise<Record<string, unknown> | null>;
   readonly handleApproval: (
     update: VerifiedTelegramApprovalUpdate,
     state: Readonly<{
@@ -126,7 +127,7 @@ export function createAgentOfficeTelegramWebhookHandler(dependencies: TelegramWe
     const tokenIdHash = telegramApprovalTokenHash(command.nonce);
     let token: Record<string, unknown> | null;
     try {
-      token = await dependencies.loadTokenByHash(tokenIdHash);
+      token = await dependencies.loadTokenByHash(update.callbackNamespace, tokenIdHash);
     } catch {
       dependencies.log?.('state_unavailable', 'token_read');
       send(response, 500, 'retry');
@@ -161,11 +162,17 @@ export function createAgentOfficeTelegramWebhookHandler(dependencies: TelegramWe
       return;
     }
 
-    const acknowledgement = result.idempotent
-      ? 'Решение уже обработано.'
-      : result.decision === 'decline'
-        ? 'Рекомендация отклонена.'
-        : 'Решение принято.';
+    const acknowledgement = update.callbackNamespace === 'am1'
+      ? result.idempotent
+        ? 'Manager decision already processed.'
+        : result.decision === 'reject'
+          ? 'Manager task rejected.'
+          : 'Manager task approved.'
+      : result.idempotent
+        ? 'Решение уже обработано.'
+        : result.decision === 'decline'
+          ? 'Рекомендация отклонена.'
+          : 'Решение принято.';
     try {
       await dependencies.answerCallbackQuery(update.callbackQueryId, acknowledgement);
     } catch {

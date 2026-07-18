@@ -174,33 +174,7 @@ async function computeLeaderboardStats() {
         daily7xpVals.push(0);
         daily7timeMsVals.push(0);
     }
-    // ── 2. Читаем arena_profiles (xp) ────────────────────────────────────────────
-    const arenaXpVals = [];
-    let lastArenaDoc = null;
-    while (true) {
-        let q = db.collection('arena_profiles')
-            .where('xp', '>', 0)
-            .orderBy('xp')
-            .limit(500);
-        if (lastArenaDoc)
-            q = q.startAfter(lastArenaDoc);
-        const snap = await q.get();
-        if (snap.empty)
-            break;
-        for (const doc of snap.docs) {
-            const d = doc.data();
-            const mp = d.stats?.matchesPlayed ?? 0;
-            if (mp < 1)
-                continue;
-            const axp = typeof d.xp === 'number' ? d.xp : 0;
-            if (axp > 0)
-                arenaXpVals.push(axp);
-        }
-        lastArenaDoc = snap.docs[snap.docs.length - 1] ?? null;
-        if (snap.size < 500)
-            break;
-    }
-    // ── 3. Строим таблицы порогов ─────────────────────────────────────────────────
+    // ── 2. Строим таблицы порогов ─────────────────────────────────────────────────
     const stats = {
         totalUsers: xpVals.length,
         updatedAt: Date.now(),
@@ -210,11 +184,9 @@ async function computeLeaderboardStats() {
         weekXpThresholds: buildPercentileThresholds(weekXpVals),
         daily7xpThresholds: buildPercentileThresholds(daily7xpVals),
         daily7timeMsThresholds: buildPercentileThresholds(daily7timeMsVals),
-        arenaXpThresholds: buildPercentileThresholds(arenaXpVals),
     };
     await db.collection('leaderboard_stats').doc('global').set(stats);
     console.log(`[computeLeaderboardStats] done. minSampleXp=${MIN_PERCENTILE_SAMPLE_XP}, xpUsers=${xpVals.length}, ` +
-        `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}, ` +
-        `arenaXp=${arenaXpVals.length}`);
+        `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}`);
 }
 //# sourceMappingURL=compute_leaderboard_stats.js.map

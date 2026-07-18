@@ -22,9 +22,12 @@ describe('cloud sync account-transition race contract', () => {
       authProviderSource.indexOf('export async function deleteAccountAndWipe()'),
       authProviderSource.indexOf('export async function signOutCurrentProvider()'),
     );
-    expect(deleteFlow.indexOf('enqueueCloudDeletion(')).toBeGreaterThanOrEqual(0);
+    expect(deleteFlow.indexOf('startCloudDeletionEnqueue(')).toBeGreaterThanOrEqual(0);
+    expect(deleteFlow.indexOf('await cloudDeleteEnqueueOperation.dispatchSettled')).toBeGreaterThan(
+      deleteFlow.indexOf('startCloudDeletionEnqueue('),
+    );
     expect(deleteFlow.indexOf('invalidateAccountGeneration()')).toBeGreaterThan(
-      deleteFlow.indexOf('enqueueCloudDeletion('),
+      deleteFlow.indexOf('startCloudDeletionEnqueue('),
     );
     expect(deleteFlow.indexOf('waitForRestoreApplicationIdleWithDeadline(')).toBeGreaterThan(
       deleteFlow.indexOf('invalidateAccountGeneration()'),

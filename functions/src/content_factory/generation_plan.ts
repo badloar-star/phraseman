@@ -1,17 +1,18 @@
 import type { FactorySurface } from './contracts';
 import type { CanonicalReleaseSurface } from './course_release_contract';
 
-const SURFACE_MAP: Readonly<Record<FactorySurface, CanonicalReleaseSurface>> = Object.freeze({
+const SURFACE_MAP: Readonly<Partial<Record<FactorySurface, CanonicalReleaseSurface>>> = Object.freeze({
   lessons: 'lesson',
   vocabulary: 'lesson',
   drills: 'lesson',
-  quizzes: 'quiz',
   cards: 'flashcard',
-  arena_questions: 'arena',
 });
 
 export function canonicalizeFactorySurfaces(surfaces: readonly FactorySurface[]): readonly CanonicalReleaseSurface[] {
-  return Object.freeze([...new Set(surfaces.map((surface) => SURFACE_MAP[surface]).filter(Boolean))]);
+  const canonical = surfaces
+    .map((surface) => SURFACE_MAP[surface])
+    .filter((surface): surface is CanonicalReleaseSurface => surface !== undefined);
+  return Object.freeze([...new Set(canonical)]);
 }
 
 export function countLegacyGenerationUnits(lessonIds: readonly number[], surfaces: readonly FactorySurface[]): number {

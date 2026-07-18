@@ -9424,26 +9424,6 @@
     </div>
 
     <div class="h-sec">
-      <div class="h-sec-title">Arena - Top</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Топ-рейтинг игроков арены — таблица лидеров по победам и очкам.</div>
-    </div>
-
-    <div class="h-sec">
-      <div class="h-sec-title">Arena - Live</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Активные матчи арены прямо сейчас. Видно кто играет, на каком вопросе, счёт.</div>
-    </div>
-
-    <div class="h-sec">
-      <div class="h-sec-title">Arena bets</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Ставки в арене — кто на кого поставил, результаты, выплаты осколков.</div>
-    </div>
-
-    <div class="h-sec">
-      <div class="h-sec-title">Rooms</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Игровые комнаты арены: история комнат, участники, итоги матчей.</div>
-    </div>
-
-    <div class="h-sec">
       <div class="h-sec-title">Referrals</div>
       <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Реферальная программа: кто кого пригласил, сколько бонусов начислено, статистика по цепочкам приглашений.</div>
     </div>
@@ -9535,12 +9515,7 @@
   <div class="tab" onclick="switchTab('community-packs')" data-i18n-es="Comunidad">Community</div>
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
-  <div class="tab" onclick="switchTab('french-quizzes')" title="French quiz pack preview, draft publish, and rollback workflow">French quizzes</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
-  <div class="tab" onclick="switchTab('arena-ranks')" data-i18n-es="Arena - Top">Arena - Top</div>
-  <div class="tab" onclick="switchTab('arena-live')" data-i18n-es="Arena - Live">Arena - Live</div>
-  <div class="tab" onclick="switchTab('arena-bets')" data-i18n-es="Apuestas Arena">Arena bets</div>
-  <div class="tab" onclick="switchTab('arena-rooms')" data-i18n-es="Salas">Rooms</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
@@ -12059,50 +12034,6 @@
   </div>
 </div>
 
-<!-- ARENA RANKS TAB -->
-<div id="tab-arena-ranks" class="reports-tab">
-  <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
-    <button type="button" onclick="loadArenaRanksData(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <input type="text" id="ar-search" aria-label="Search arena ranks by name, UID, or rank" placeholder="🔍 Имя, UID, ранг..." data-i18n-es="🔍 Nombre, UID, rango..." oninput="renderArenaRanksTable()"
-      style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="ar-only-active" onchange="renderArenaRanksTable()" /> <span data-i18n-es="solo con partidas">только с матчами</span>
-    </label>
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="ar-hide-placeholder" checked onchange="renderArenaRanksTable()" /> <span data-i18n-es="ocultar «Jugador»/sin nombre">скрыть «Игрок»/без имени</span>
-    </label>
-    <button type="button" onclick="cleanupArenaPlaceholders()" data-i18n-es="🧹 Sin partidas" style="background:#2a1a1a;border:1px solid #5c1a1a;color:#fca5a5">🧹 Без матчей</button>
-    <button type="button" onclick="resyncArenaNamesFromUsers()" data-i18n-es="🔁 Nombres desde users" style="background:#1a2a3a;border:1px solid #14305c;color:#60a5fa">🔁 Имена из users</button>
-    <button type="button" onclick="purgeAllArenaPlaceholders()" aria-label="Delete all placeholder arena players" title="Danger: deletes all placeholder arena players" data-i18n-es="🔥 Eliminar TODOS los «Jugador»" style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5;font-weight:700">🔥 Удалить ВСЕХ «Игрок»</button>
-    <span class="reports-count" id="ar-status"></span>
-  </div>
-  <div id="ar-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
-  <p data-i18n-es="Fuente: arena_profiles (xp = ranking de arena). Ordenado por xp descendente. El apodo se actualiza al cambiar el nombre en ajustes y después de cada partida (Cloud Function). Haz clic en una fila para abrir la ficha del jugador en Usuarios." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    <span data-i18n-es="Fuente:">Источник:</span> <code style="color:#a78bfa" data-i18n-es="arena_profiles">arena_profiles</code> (<span data-i18n-es="xp = ranking de arena">xp = арена-рейтинг</span>). <span data-i18n-es="Ordenado por xp descendente.">Сортировка по убыванию</span> <code data-i18n-es="xp">xp</code>.
-    <span data-i18n-es="El apodo se">Ник</span> <strong data-i18n-es="actualiza">обновляется</strong> <span data-i18n-es="al cambiar el nombre en ajustes y después de cada partida (Cloud Function).">при смене имени в настройках и после каждого матча (Cloud Function).</span>
-    <span data-i18n-es="Haz clic en una fila para abrir la ficha del jugador en Usuarios.">Клик по строке открывает карточку игрока на вкладке «Пользователи».</span>
-  </p>
-  <div id="ar-loading" class="loading" data-i18n-es="⏳ Cargando…" style="display:none;padding:0 24px">⏳ Загрузка…</div>
-  <div id="ar-error" class="error" style="display:none;padding:0 24px 16px"></div>
-  <div class="table-wrap" style="padding:0 24px 12px">
-    <table id="ar-table" style="display:none">
-      <thead>
-        <tr>
-          <th style="width:48px">#</th>
-          <th data-i18n-es="Jugador">Игрок</th>
-          <th data-i18n-es="Rango">Ранг</th>
-          <th data-i18n-es="Arena XP">Arena XP</th>
-          <th data-i18n-es="Partidas">Матчей</th>
-          <th data-i18n-es="WR">WR</th>
-          <th data-i18n-es="Racha">Серия</th>
-          <th data-i18n-es="Actualizado">Обновлён</th>
-        </tr>
-      </thead>
-      <tbody id="ar-tbody"></tbody>
-    </table>
-  </div>
-</div>
-
 <!-- CARD PACKS TAB -->
 <div id="tab-card-packs" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
@@ -12185,97 +12116,6 @@
     </table>
     <div id="dp-empty" class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div>
   </div>
-</div>
-
-<!-- FRENCH QUIZZES TAB -->
-<div id="tab-french-quizzes" class="reports-tab" aria-labelledby="fq-title" data-gustav-admin-surface="french-standard-quizzes">
-  <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
-    <button type="button" id="fq-preview-btn" onclick="renderFrenchQuizzesAdmin()" title="Refresh gate status and preview one reviewed French quiz row">Preview rows</button>
-    <button type="button" id="fq-draft-btn" onclick="frenchQuizAdminCreateDraft()" title="Create a guarded publication draft. This does not activate the pack." style="background:#4ade80;border:1px solid #22c55e;color:#07110A;font-weight:900">Create publication draft</button>
-    <button type="button" id="fq-approval-btn" onclick="frenchQuizAdminRequestApproval()" title="Check whether activation approval can be requested. It remains blocked while gates hold.">Check activation approval</button>
-    <button type="button" id="fq-rollback-btn" onclick="frenchQuizAdminCreateRollback()" title="Create a rollback draft after confirmation. This does not delete historical payloads." style="background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5">Rollback draft</button>
-  </div>
-  <div style="padding:0 24px 12px;max-width:1180px">
-    <h2 id="fq-title" style="margin:4px 0 8px;color:#fff;font-size:20px">French quizzes</h2>
-    <p style="margin:0;color:#aaa;font-size:13px;line-height:1.55">
-      Standard French quiz pack control surface. Use preview first, create a draft only after gates are green, and keep activation locked until the final production-readiness gate passes.
-      <code style="color:#a78bfa">activationApproved=false</code>
-    </p>
-  </div>
-  <div id="fq-status" style="padding:0 24px 12px"></div>
-  <div id="fq-preview" style="padding:0 24px 12px"></div>
-  <div id="fr-language-pack-readiness" data-gustav-admin-surface="official_fr_course_pack_status fr_llm_reviewer_queue_status fr_admin_diagnostics" style="padding:0 24px 12px;max-width:1180px">
-    <div class="report-card" style="margin:0;border-radius:8px">
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
-        <div>
-          <strong style="color:#fff">French language pack readiness</strong>
-          <div style="margin-top:4px;color:#999;font-size:12px;line-height:1.45">
-            Read-only status for studyTarget=fr. sourceLocale=ru|uk stays explicit. course-packs/fr upload, reviewer import, runtime downloads and activation stay closed.
-          </div>
-        </div>
-        <button type="button" onclick="renderFrenchLanguagePackReadiness()" title="Refresh the read-only Gustav French language-pack readiness panel without writing admin state">Refresh readiness</button>
-      </div>
-      <div id="fr-language-pack-readiness-status" style="margin-top:12px"></div>
-    </div>
-  </div>
-  <pre id="fq-output" class="reports-empty" style="margin:0 24px 32px;white-space:pre-wrap;max-width:1180px">Open the tab to load French quiz gate state.</pre>
-</div>
-
-<!-- ARENA LIVE TAB -->
-<div id="tab-arena-bets" class="reports-tab">
-  <div style="padding:24px;display:grid;grid-template-columns:minmax(320px,520px);gap:16px;max-width:620px">
-    <div style="background:#101018;border:1px solid #2a2a3a;border-radius:12px;padding:18px">
-      <div data-i18n-es="Apuestas en la arena" style="font-size:18px;font-weight:900;color:#fff;margin-bottom:6px">Ставки на арене</div>
-      <div id="ase-wager-status" data-i18n-es="Cargando..." style="font-size:13px;color:#888;margin-bottom:16px">Загрузка...</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button id="ase-wager-on" type="button" onclick="saveArenaWagerFeature(true)" data-i18n-es="Activar" style="min-width:130px;background:#0f2a1a;border:1px solid #14532d;color:#4ade80;border-radius:10px;padding:12px 18px;font-size:16px;font-weight:900;cursor:pointer">Включить</button>
-        <button id="ase-wager-off" type="button" onclick="saveArenaWagerFeature(false)" data-i18n-es="Desactivar" style="min-width:130px;background:#3b0a0a;border:1px solid #7f1d1d;color:#fca5a5;border-radius:10px;padding:12px 18px;font-size:16px;font-weight:900;cursor:pointer">Выключить</button>
-      </div>
-    </div>
-    <button type="button" onclick="loadArenaBetsFeature(true)" data-i18n-es="Actualizar estado" style="grid-column:1/-1;justify-self:start;background:#1a2a3a;border:1px solid #14305c;color:#60a5fa;border-radius:10px;padding:10px 16px;font-size:14px;font-weight:800;cursor:pointer">Обновить состояние</button>
-  </div>
-  </div>
-
-<div id="tab-arena-live" class="reports-tab">
-  <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
-    <button type="button" onclick="loadArenaLive(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="al-live" onchange="arenaLiveToggleAuto(this.checked)" /> <span>🔴 Live (авто 5с)</span>
-    </label>
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="al-only-stuck" onchange="renderArenaLive()" /> <span data-i18n-es="solo atascadas (>5 min)">только зависшие (>5 мин)</span>
-    </label>
-    <span style="font-size:12px;color:#666" data-i18n-es="searching: —">searching: <code id="al-meta-count" style="color:#a78bfa">—</code></span>
-    <span class="reports-count" id="al-count"></span>
-  </div>
-  <p data-i18n-es="Fuentes: matchmaking_queue (cola), arena_sessions (state ≠ finished/aborted), arena_rooms (status=waiting), app_meta/matchmaking_searching (contador). Force-finish cambia la sesión a finished con abortedByAdmin=true, desbloqueando jugadores atascados. Delete elimina por completo la entrada de cola / sala. ⚠️ No tocar partidas activas: solo las que tengan updatedAt con más de 10-15 minutos." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:1100px;line-height:1.5">
-    <span data-i18n-es="Fuentes:">Источники:</span> <code style="color:#a78bfa" data-i18n-es="matchmaking_queue">matchmaking_queue</code> (<span data-i18n-es="cola">очередь</span>), <code style="color:#a78bfa" data-i18n-es="arena_sessions">arena_sessions</code> (<span data-i18n-es="state ≠ finished/aborted">state ≠ finished/aborted</span>), <code style="color:#a78bfa" data-i18n-es="arena_rooms">arena_rooms</code> (<span data-i18n-es="status=waiting">status=waiting</span>), <code style="color:#a78bfa" data-i18n-es="app_meta/matchmaking_searching">app_meta/matchmaking_searching</code> (<span data-i18n-es="contador">счётчик</span>).
-    <span data-i18n-es="«Force-finish» cambia la sesión a">«Force-finish» переводит сессию в</span> <code data-i18n-es="finished">finished</code> <span data-i18n-es="con">с</span> <code data-i18n-es="abortedByAdmin=true">abortedByAdmin=true</code> — <span data-i18n-es="esto desbloquea jugadores atascados. «Delete» elimina por completo la entrada de cola / sala.">это разлочит зависших игроков. «Delete» удаляет запись очереди / комнаты целиком.</span>
-    <br><strong data-i18n-es="⚠️ No tocar partidas activas">⚠️ Не трогать активные матчи</strong> — <span data-i18n-es="solo las que tengan updatedAt con más de 10-15 minutos.">только те где</span> <code data-i18n-es="updatedAt">updatedAt</code> <span data-i18n-es="older than 10-15 minutes">старше 10–15 минут.</span>
-  </p>
-  <div id="al-summary" style="padding:0 24px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px"></div>
-  <div id="al-content" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
-</div>
-
-<!-- ARENA ROOMS TAB -->
-<div id="tab-arena-rooms" class="reports-tab">
-  <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
-    <button type="button" onclick="loadArenaRooms(true)" data-i18n-es="🔄 Actualizar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <input type="text" id="arr-search" placeholder="🔍 Код, хост, название…" data-i18n-es="🔍 Código, host, nombre…" oninput="renderArenaRooms()"
-      style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:220px;font-size:13px" />
-    <label style="font-size:12px;color:#aaa;display:flex;align-items:center;gap:6px;cursor:pointer">
-      <input type="checkbox" id="arr-only-active" onchange="renderArenaRooms()" checked /> <span data-i18n-es="solo activas">только активные</span>
-    </label>
-    <span class="reports-count" id="arr-count"></span>
-  </div>
-  <p data-i18n-es="Fuente: arena_rooms_live. Cerrar cambia la sala a estado closed y desactiva a todos los participantes. Eliminar borra el documento completo. Participantes: desde arena_room_members. ⚠️ No tocar salas con partida activa." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:1100px;line-height:1.5">
-    <span data-i18n-es="Fuente:">Источник:</span> <code style="color:#a78bfa" data-i18n-es="arena_rooms_live">arena_rooms_live</code>.
-    <span data-i18n-es="«Cerrar» cambia la sala a estado">«Закрыть» переводит комнату в статус</span> <code data-i18n-es="closed">closed</code> <span data-i18n-es="y desactiva a todos los participantes.">и деактивирует всех участников.</span>
-    <span data-i18n-es="«Eliminar» borra el documento completo. Participantes: desde">«Удалить» удаляет документ целиком. Участники — из</span> <code data-i18n-es="arena_room_members">arena_room_members</code>.
-    <strong data-i18n-es="⚠️ No tocar salas con partida activa.">⚠️ Не трогать комнаты с активной игрой.</strong>
-  </p>
-  <div id="arr-summary" style="padding:0 24px 12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px"></div>
-  <div id="ar-content" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div></div>
 </div>
 
 <!-- REFERRALS TAB -->
@@ -13199,23 +13039,12 @@
       <div class="stat-card" style="border-color:#422006"><div class="label" data-i18n-es="🤖 Android Plus">🤖 Android Plus</div><div class="value" id="a-and-prem" style="color:#fbbf24">—</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="❓ Plataforma desc.">❓ Платформа неизв.</div><div class="value" id="a-unk-plat">—</div></div>
     </div>
-    <!-- Арена -->
-    <div id="a-arena-section" style="display:none">
-      <div data-i18n-es="⚔️ Arena" style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">⚔️ Арена</div>
-      <div class="stats" style="padding-top:0; margin-bottom:16px">
-        <div class="stat-card" style="border-color:#3a1a5c"><div class="label" data-i18n-es="⚔️ Jugadores en Arena">⚔️ Игроков в Арене</div><div class="value" id="a-arena-players" style="color:#a78bfa">—</div></div>
-        <div class="stat-card" style="border-color:#3a1a5c"><div class="label" data-i18n-es="🎮 Partidas jugadas">🎮 Матчей сыграно</div><div class="value" id="a-arena-matches" style="color:#818cf8">—</div></div>
-        <div class="stat-card" style="border-color:#3a1a5c"><div class="label" data-i18n-es="📊 Win Rate medio">📊 Средний Win Rate</div><div class="value" id="a-arena-wr" style="color:#4ade80">—</div></div>
-        <div class="stat-card" style="border-color:#3a1a5c"><div class="label" data-i18n-es="🌟 Rango máximo">🌟 Высший ранг</div><div class="value" id="a-arena-top" style="color:#fbbf24;font-size:16px">—</div></div>
-      </div>
-    </div>
     <!-- Общая статистика -->
     <div data-i18n-es="📊 General" style="font-size:10px; color:#555; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px">📊 Общее</div>
     <div class="stats" style="padding-top:0">
       <div class="stat-card"><div class="label" data-i18n-es="XP medio / día">Среднее XP / день</div><div class="value" id="a-xpday">—</div><div class="sub" data-i18n-es="estimación por nivel">оценка по уровню</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Logros medios">Сред. достижений</div><div class="value" id="a-ach">—</div><div class="sub" data-i18n-es="por usuario">на пользователя</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Tarjetas medias">Сред. карточек</div><div class="value" id="a-fc">—</div><div class="sub" data-i18n-es="guardadas">сохранено</div></div>
-      <div class="stat-card"><div class="label" data-i18n-es="Quizzes hoy">Квизы сегодня</div><div class="value" id="a-quiz">—</div><div class="sub" data-i18n-es="preguntas totales">вопросов суммарно</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Conocen nivel">Знают уровень</div><div class="value" id="a-tested">—</div><div class="sub" data-i18n-es="hicieron test">прошли тест</div></div>
       <div class="stat-card"><div class="label" data-i18n-es="Con Plus">С Plus</div><div class="value" id="a-prem-pct">—</div><div class="sub" data-i18n-es="porcentaje">процент</div></div>
       <div class="stat-card" style="border-color:#1a3a2a"><div class="label" data-i18n-es="💎 Fragmentos totales">💎 Всего осколков</div><div class="value" id="a-shards-total" style="color:#34d399">—</div><div class="sub" id="a-shards-avg" data-i18n-es="media por usuario">ср. на польз.</div></div>
@@ -13363,25 +13192,23 @@
 
 <script src="french-daily-phrases-workflow.js"></script>
 <script src="french-daily-phrases-admin.js"></script>
-<script src="french-quizzes-workflow.js"></script>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
-  // Arena rank config (mirrors app/types/arena.ts)
-  const RANK_TIERS = ['bronze','silver','gold','platinum','diamond','master','grandmaster','legend'];
-  const RANK_EMOJIS = {bronze:'🥉',silver:'🥈',gold:'🥇',platinum:'💎',diamond:'👑',master:'🔥',grandmaster:'⚡',legend:'🌟'};
-  const RANK_NAMES_RU = {bronze:'Бронза',silver:'Серебро',gold:'Золото',platinum:'Платина',diamond:'Алмаз',master:'Мастер',grandmaster:'Грандмастер',legend:'Легенда'};
-  let _arenaProfiles = {}; // uid -> ArenaProfile
+  async function resolveFirebaseConfig() {
+    const injected = globalThis.PHR_MAN_FIREBASE_CONFIG;
+    if (injected && typeof injected === 'object') return injected;
+    const response = await fetch('/__/firebase/init.json', { cache: 'no-store', credentials: 'same-origin' });
+    if (!response.ok) throw new Error('firebase_hosting_config_unavailable');
+    const config = await response.json();
+    if (!config || typeof config !== 'object' || !config.projectId) throw new Error('firebase_hosting_config_invalid');
+    return config;
+  }
 
-  const app = initializeApp({
-    apiKey: "AIzaSyBxO_8xe9-HV-wFSMO4abkCHvZX8zb-T7s",
-    authDomain: "phraseman-ea0b3.firebaseapp.com",
-    projectId: "phraseman-ea0b3",
-    storageBucket: "phraseman-ea0b3.firebasestorage.app",
-  });
+  const app = initializeApp(await resolveFirebaseConfig());
   const db = getFirestore(app);
   const auth = getAuth(app);
   const functionsUs = getFunctions(app, 'us-central1');
@@ -13577,8 +13404,6 @@
       () => window.loadUgcPurchases?.(false),
       () => window.loadCardPacks?.(false),
       () => window.loadDailyPhrases?.(false),
-      () => window.loadArenaLive?.(false),
-      () => window.loadArenaRooms?.(false),
       () => window.loadPushJobs?.(),
     ];
     let index = 0;
@@ -14192,56 +14017,6 @@
   function toSafeNumber(v, defaultValue = 0) {
     const n = typeof v === 'number' ? v : Number(v);
     return Number.isFinite(n) ? n : defaultValue;
-  }
-  /** Статистика матчей из arena_profiles (часто отсутствует у «только multipliers» профилей). */
-  function arenaStatPlayed(ap) { return toSafeNumber(ap?.stats?.matchesPlayed, 0); }
-  function arenaStatWon(ap) { return toSafeNumber(ap?.stats?.matchesWon, 0); }
-  /**
-   * Топ-10: сначала по победам среди игроков с matchesPlayed>0; иначе — по XP профиля (с пояснением).
-   */
-  function buildArenaTop10Block(arenaAll) {
-    if (!arenaAll || !arenaAll.length) {
-      return '<div style="color:#555;font-size:12px">Нет данных</div>';
-    }
-    let list = arenaAll.filter((ap) => arenaStatPlayed(ap) > 0)
-      .sort((a, b) => arenaStatWon(b) - arenaStatWon(a))
-      .slice(0, 10);
-    let note = '';
-    if (list.length === 0) {
-      list = [...arenaAll]
-        .sort((a, b) => toSafeNumber(b.xp, 0) - toSafeNumber(a.xp, 0))
-        .slice(0, 10);
-      note = '<div style="font-size:11px;color:#888;margin:0 0 10px 0;line-height:1.45">В <code>stats</code> нет сыгранных матчей (только ранг/XP или multipliers). Показан топ по <strong>XP</strong> в профиле арены.</div>';
-    }
-    const rows = list.map((ap, i) => {
-      const uid = Object.keys(_arenaProfiles).find((k) => _arenaProfiles[k] === ap) || '?';
-      const u = (window._users || []).find((x) => x.uid === uid);
-      const name = u ? escapeHtml(u.name) : escapeHtml(ap.displayName || uid.slice(0, 10));
-      const w = arenaStatWon(ap);
-      const p = arenaStatPlayed(ap);
-      const wr = p ? Math.round((w / p) * 100) : 0;
-      const wrColor = wr >= 60 ? '#4ade80' : wr >= 40 ? '#fbbf24' : '#f87171';
-      const tier = ap.rank?.tier || 'bronze';
-      const xpVal = toSafeNumber(ap.xp, 0);
-      if (p === 0) {
-        return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #1e1e28">
-            <span style="color:#555;font-size:12px;width:18px;text-align:right">${i + 1}</span>
-            <span style="font-size:14px">${RANK_EMOJIS[tier] || '🥉'}</span>
-            <span style="flex:1;font-weight:600;color:#e0e0e0;font-size:13px">${name}</span>
-            <span style="color:#a78bfa;font-size:13px;font-weight:700">${xpVal} XP</span>
-            <span style="color:#666;font-size:12px">0 матчей</span>
-          </div>`;
-      }
-      return `<div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid #1e1e28">
-            <span style="color:#555;font-size:12px;width:18px;text-align:right">${i + 1}</span>
-            <span style="font-size:14px">${RANK_EMOJIS[tier] || '🥉'}</span>
-            <span style="flex:1;font-weight:600;color:#e0e0e0;font-size:13px">${name}</span>
-            <span style="color:#4ade80;font-size:13px;font-weight:700">${w}W</span>
-            <span style="color:#888;font-size:12px">${p} матчей</span>
-            <span style="color:${wrColor};font-size:12px;font-weight:700;min-width:38px;text-align:right">${wr}%</span>
-          </div>`;
-    }).join('');
-    return note + rows;
   }
   function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -15436,537 +15211,6 @@
     }
   };
 
-  let _arenaRanksCache = null; // [{ uid, displayName, tier, level, stars, xp, played, won, wr, streak, bestStreak, updatedAt }]
-  window._arenaRanksLoaded = false;
-
-  function arenaRankIndex(tier, level) {
-    const ti = RANK_TIERS.indexOf(tier);
-    const li = ['I','II','III'].indexOf(level);
-    return Math.max(0, ti) * 3 + Math.max(0, li);
-  }
-
-  function fmtArenaUpdated(ts) {
-    if (!ts) return '<span style="color:#444">—</span>';
-    try {
-      const d = new Date(typeof ts === 'number' ? ts : Number(ts));
-      if (isNaN(d.getTime())) return '<span style="color:#444">—</span>';
-      const today = new Date();
-      const sameDay = d.toDateString() === today.toDateString();
-      const tStr = d.toTimeString().slice(0,5);
-      if (sameDay) return `<span style="color:#888">сегодня ${tStr}</span>`;
-      return `<span style="color:#888">${d.toISOString().slice(0,10)} ${tStr}</span>`;
-    } catch { return '<span style="color:#444">—</span>'; }
-  }
-
-  window.loadArenaRanksData = async function loadArenaRanksData(force) {
-    const st = document.getElementById('ar-status');
-    const loading = document.getElementById('ar-loading');
-    const errEl = document.getElementById('ar-error');
-    const table = document.getElementById('ar-table');
-    if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
-    if (st) st.textContent = '⏳ Загрузка...';
-    if (loading) loading.style.display = 'block';
-    if (table) table.style.display = 'none';
-
-    try {
-      // Используем уже загруженный кэш с вкладки «Пользователи», если он свежий
-      // (после loadUsers _arenaProfiles обновляется). force обходит кэш.
-      const haveProfiles = !force && _arenaProfiles && Object.keys(_arenaProfiles).length > 0;
-      if (!haveProfiles) {
-        const snap = await getDocs(collection(db, 'arena_profiles'));
-        _arenaProfiles = {};
-        snap.forEach(d => { _arenaProfiles[d.id] = d.data() || {}; });
-      }
-
-      const rows = Object.entries(_arenaProfiles).map(([uid, ap]) => {
-        const tier  = ap?.rank?.tier || 'bronze';
-        const level = ap?.rank?.level || 'I';
-        const stars = Number(ap?.rank?.stars || 0);
-        const played = Number(ap?.stats?.matchesPlayed || 0);
-        const won    = Number(ap?.stats?.matchesWon || 0);
-        const wr = played ? Math.round(won/played*100) : null;
-        return {
-          uid,
-          displayName: (ap?.displayName || '').toString().trim() || '—',
-          tier, level, stars,
-          xp: Number(ap?.xp || 0),
-          rankIdx: arenaRankIndex(tier, level),
-          played,
-          won,
-          wr,
-          streak: Number(ap?.stats?.winStreak || 0),
-          bestStreak: Number(ap?.stats?.bestWinStreak || 0),
-          updatedAt: ap?.updatedAt || 0,
-        };
-      });
-
-      rows.sort((a, b) => {
-        if (b.xp !== a.xp) return b.xp - a.xp;
-        if (b.rankIdx !== a.rankIdx) return b.rankIdx - a.rankIdx;
-        return (b.played - a.played);
-      });
-
-      _arenaRanksCache = rows;
-      window._arenaRanksLoaded = true;
-
-      // Сводка
-      const summary = document.getElementById('ar-summary');
-      if (summary) {
-        const total = rows.length;
-        const active = rows.filter(r => r.played > 0).length;
-        const totalMatches = rows.reduce((s,r) => s + r.played, 0);
-        const top = rows.find(r => r.played > 0);
-        const topLabel = top
-          ? `${RANK_EMOJIS[top.tier]||''} ${RANK_NAMES_RU[top.tier]||top.tier} ${top.level} · ${escapeHtml(top.displayName)}`
-          : '—';
-        summary.innerHTML = `
-          <div class="stat-card"><div class="label">Профилей всего</div><div class="value" style="color:#a78bfa">${total}</div></div>
-          <div class="stat-card"><div class="label">Сыграли ≥1 матча</div><div class="value" style="color:#34d399">${active}</div></div>
-          <div class="stat-card"><div class="label">Матчей всего</div><div class="value" style="color:#60a5fa">${totalMatches.toLocaleString()}</div></div>
-          <div class="stat-card" style="grid-column: span 2"><div class="label">Высший ранг</div><div class="value" style="font-size:14px;line-height:1.4;color:#fbbf24">${topLabel}</div></div>
-        `;
-      }
-
-      if (loading) loading.style.display = 'none';
-      if (table) table.style.display = '';
-      renderArenaRanksTable();
-    } catch (e) {
-      if (loading) loading.style.display = 'none';
-      if (errEl) {
-        errEl.style.display = 'block';
-        errEl.style.color = '#f87171';
-        errEl.innerHTML = `Не удалось загрузить <code>arena_profiles</code>: ${escapeHtml(e?.message || String(e))}`;
-      }
-      if (st) st.textContent = '';
-    }
-  };
-
-  window.renderArenaRanksTable = function renderArenaRanksTable() {
-    const tbody = document.getElementById('ar-tbody');
-    const st = document.getElementById('ar-status');
-    if (!tbody || !_arenaRanksCache) return;
-
-    const q = (document.getElementById('ar-search')?.value || '').trim().toLowerCase();
-    const onlyActive = !!document.getElementById('ar-only-active')?.checked;
-    const hidePlaceholder = !!document.getElementById('ar-hide-placeholder')?.checked;
-
-    let rows = _arenaRanksCache;
-    if (onlyActive) rows = rows.filter(r => r.played > 0);
-    if (hidePlaceholder) {
-      rows = rows.filter(r => {
-        const dn = (r.displayName || '').trim();
-        return dn && dn !== '—' && dn !== 'Игрок' && dn !== 'Гравець';
-      });
-    }
-    if (q) {
-      rows = rows.filter(r => {
-        const tierName = (RANK_NAMES_RU[r.tier] || r.tier || '').toLowerCase();
-        return r.uid.toLowerCase().includes(q)
-          || (r.displayName || '').toLowerCase().includes(q)
-          || tierName.includes(q)
-          || (`${r.level}`.toLowerCase().includes(q));
-      });
-    }
-
-    const top = rows.slice(0, 200);
-    if (st) st.textContent = `Показано ${top.length} из ${rows.length}`;
-
-    tbody.innerHTML = top.map((r, i) => {
-      const place = i + 1;
-      const placeColor = place === 1 ? '#fbbf24' : place === 2 ? '#cbd5e1' : place === 3 ? '#fb923c' : '#888';
-      const placeWeight = place <= 3 ? '800' : '600';
-      const wrColor = r.wr === null ? '#666' : r.wr >= 60 ? '#4ade80' : r.wr >= 40 ? '#fbbf24' : '#f87171';
-      const stars = [0,1,2].map(i => `<span style="opacity:${i<r.stars?1:0.25}">⭐</span>`).join('');
-      const rankBadge = `${RANK_EMOJIS[r.tier]||''} ${RANK_NAMES_RU[r.tier]||r.tier} ${r.level}`;
-      const streakLabel = r.streak > 0 ? `🔥 ${r.streak}` : (r.bestStreak ? `<span style="color:#666">best ${r.bestStreak}</span>` : '—');
-      return `
-        <tr onclick="openUserFromArenaRanks('${r.uid.replace(/'/g, "\\'")}')" style="cursor:pointer">
-          <td style="color:${placeColor};font-weight:${placeWeight};text-align:center">#${place}</td>
-          <td>
-            <div class="name-cell">
-              <div>
-                <div class="name">${escapeHtml(r.displayName)}</div>
-                <div class="uid-small">${r.uid.slice(0,16)}…</div>
-              </div>
-            </div>
-          </td>
-          <td>
-            <div style="font-weight:700;color:#e0e0e0">${rankBadge}</div>
-            <div style="font-size:11px;line-height:1;margin-top:2px">${stars}</div>
-          </td>
-          <td style="font-weight:700;color:#a78bfa">${(r.xp||0).toLocaleString()}</td>
-          <td>${r.played}</td>
-          <td style="color:${wrColor};font-weight:700">${r.wr === null ? '—' : r.wr + '%'}</td>
-          <td>${streakLabel}</td>
-          <td style="font-size:11px">${fmtArenaUpdated(r.updatedAt)}</td>
-        </tr>
-      `;
-    }).join('');
-  };
-
-  // Удаление профайлов arena_profiles с плейсхолдерным именем («Игрок» / «Гравець» / пустое)
-  // и без сыгранных матчей. Профайлы с matchesPlayed > 0 не трогаем — их нужно «оживить»
-  // через resyncArenaNamesFromUsers (см. ниже).
-  window.cleanupArenaPlaceholders = async function cleanupArenaPlaceholders() {
-    if (!_arenaRanksCache || _arenaRanksCache.length === 0) {
-      showToast('Сначала загрузи список (🔄 Обновить)', 'err');
-      return;
-    }
-    const isPlaceholder = (r) => {
-      const dn = (r.displayName || '').trim();
-      return !dn || dn === '—' || dn === 'Игрок' || dn === 'Гравець';
-    };
-    const toDelete = _arenaRanksCache.filter(r => isPlaceholder(r) && r.played === 0);
-    const toKeep = _arenaRanksCache.filter(r => isPlaceholder(r) && r.played > 0);
-
-    if (toDelete.length === 0) {
-      const msg = toKeep.length > 0
-        ? `Нечего удалять. Найдено ${toKeep.length} плейсхолдеров с matchesPlayed > 0 — их можно «оживить» через 🔁 Подтянуть имена из users.`
-        : 'Нечего удалять — плейсхолдеров не найдено.';
-      showToast(msg);
-      return;
-    }
-    const ok = await showConfirmModal({
-      title: '🧹 Удалить arena_profiles?',
-      desc:
-        `Найдено ${toDelete.length} профайлов с пустым именем / "Игрок" / "Гравець" и matchesPlayed = 0.\n` +
-        (toKeep.length > 0 ? `\n⚠️ Пропускаем ${toKeep.length} плейсхолдеров с matchesPlayed > 0 — их сначала надо «оживить» (🔁).\n` : '') +
-        `\nУдалятся документы из коллекции arena_profiles (батчами по 400). Сами users/{uid} НЕ трогаем — у юзера просто пропадёт прогресс арены и он создастся заново при следующем матче.`,
-      confirmLabel: `Удалить ${toDelete.length}`, danger: true,
-    });
-    if (!ok) return;
-
-    let done = 0, errors = 0;
-    const BATCH = 400;
-    for (let i = 0; i < toDelete.length; i += BATCH) {
-      const slice = toDelete.slice(i, i + BATCH);
-      const batch = writeBatch(db);
-      slice.forEach(r => batch.delete(doc(db, 'arena_profiles', r.uid)));
-      try {
-        await batch.commit();
-        done += slice.length;
-      } catch (e) {
-        errors += slice.length;
-        console.error('arena_profiles batch delete failed', e);
-      }
-    }
-    const deletedUids = new Set(toDelete.slice(0, done).map(r => r.uid));
-    _arenaRanksCache = _arenaRanksCache.filter(r => !deletedUids.has(r.uid));
-    if (window._arenaProfiles) {
-      for (const uid of deletedUids) delete window._arenaProfiles[uid];
-    }
-    logAction('arena_profiles_cleanup', '_bulk', { deleted: done, errors, kept: toKeep.length });
-    renderArenaRanksTable();
-    showToast(`🧹 Удалено ${done}${errors ? ` (ошибок: ${errors})` : ''}`);
-  };
-
-  // Обновляет displayName в arena_profiles, подтягивая users/{uid}.progress.user_name.
-  // Используется когда плейсхолдер «Игрок» застрял в профайле, но у юзера в users
-  // уже нормальный ник (например, после смены имени до Cloud-функции guard'а).
-  window.resyncArenaNamesFromUsers = async function resyncArenaNamesFromUsers() {
-    if (!_arenaRanksCache || _arenaRanksCache.length === 0) {
-      showToast('Сначала загрузи список (🔄 Обновить)', 'err');
-      return;
-    }
-    const isPlaceholder = (r) => {
-      const dn = (r.displayName || '').trim();
-      return !dn || dn === '—' || dn === 'Игрок' || dn === 'Гравець';
-    };
-    const candidates = _arenaRanksCache.filter(isPlaceholder);
-    if (candidates.length === 0) { showToast('Плейсхолдеров не найдено'); return; }
-
-    const ok = await showConfirmModal({
-      title: '🔁 Подтянуть имена из users?',
-      desc:
-        `Найдено ${candidates.length} профайлов с пустым именем / "Игрок".\n` +
-        `Для каждого прочитаем users/{uid}.progress.user_name и, если там НЕ пусто и НЕ "Игрок", обновим arena_profiles.{uid}.displayName.\n` +
-        `Если в users тоже пусто — оставим как есть (потом можно удалить через 🧹).`,
-      confirmLabel: 'Запустить',
-    });
-    if (!ok) return;
-
-    let updated = 0, skipped = 0, errors = 0;
-    const CHUNK = 25;
-    for (let i = 0; i < candidates.length; i += CHUNK) {
-      const slice = candidates.slice(i, i + CHUNK);
-      await Promise.all(slice.map(async (r) => {
-        try {
-          const snap = await getDoc(doc(db, 'users', r.uid));
-          const nm = String(snap.data()?.progress?.user_name || '').trim();
-          if (!nm || nm === 'Игрок' || nm === 'Гравець') { skipped += 1; return; }
-          await updateDoc(doc(db, 'arena_profiles', r.uid), { displayName: nm });
-          if (window._arenaProfiles?.[r.uid]) window._arenaProfiles[r.uid].displayName = nm;
-          const cached = _arenaRanksCache.find(x => x.uid === r.uid);
-          if (cached) cached.displayName = nm;
-          updated += 1;
-        } catch (e) {
-          errors += 1;
-          console.error('resync', r.uid, e);
-        }
-      }));
-    }
-    logAction('arena_profiles_resync', '_bulk', { updated, skipped, errors });
-    renderArenaRanksTable();
-    showToast(`🔁 Обновлено ${updated}${skipped ? ` · пропущено ${skipped}` : ''}${errors ? ` · ошибок ${errors}` : ''}`);
-  };
-
-  // Жёсткая чистка тест-аккаунтов: удаляет arena_profiles + leaderboard + users
-  // (если в users.progress.user_name тоже плейсхолдер). Игнорирует matchesPlayed.
-  // Использовать когда ты сам наплодил тестовых акков с боя в арене и хочешь убрать
-  // их из топ-100 в самом приложении (не только в админке).
-  window.purgeAllArenaPlaceholders = async function purgeAllArenaPlaceholders() {
-    if (!_arenaRanksCache || _arenaRanksCache.length === 0) {
-      showToast('Сначала загрузи список (🔄 Обновить)', 'err');
-      return;
-    }
-    const isPlaceholder = (dn) => {
-      const t = String(dn || '').trim();
-      return !t || t === '—' || t === 'Игрок' || t === 'Гравець';
-    };
-    const candidates = _arenaRanksCache.filter(r => isPlaceholder(r.displayName));
-    if (candidates.length === 0) { showToast('Плейсхолдеров не найдено'); return; }
-
-    const ok = await showConfirmModal({
-      title: '🔥 Удалить ВСЕХ «Игрок» / «Гравець»?',
-      desc:
-        `Найдено ${candidates.length} профайлов с плейсхолдер-именем (включая с сыгранными матчами).\n\n` +
-        `Алгоритм для каждого UID:\n` +
-        `  1. Прочитаю users/{uid}.progress.user_name.\n` +
-        `  2. Если там тоже плейсхолдер ИЛИ users не существует → удаляю users/{uid} + leaderboard/{uid} + arena_profiles/{uid}.\n` +
-        `  3. Если в users есть нормальное имя → arena_profiles УДАЛЯЮ, users НЕ трогаю (юзер реальный, просто сломанный профайл арены — пересоздастся при следующем матче).\n\n` +
-        `⚠️ ОПЕРАЦИЯ НЕОБРАТИМАЯ. Используй только для тест-аккаунтов.`,
-      confirmLabel: `🔥 Удалить ${candidates.length}`, danger: true,
-    });
-    if (!ok) return;
-
-    let deletedFull = 0;     // arena_profiles + users + leaderboard
-    let deletedArenaOnly = 0; // только arena_profiles, users реальный
-    let errors = 0;
-    const CHUNK = 20;
-
-    for (let i = 0; i < candidates.length; i += CHUNK) {
-      const slice = candidates.slice(i, i + CHUNK);
-      // Сначала параллельно читаем users/{uid}.progress.user_name
-      const userInfos = await Promise.all(slice.map(async (r) => {
-        try {
-          const snap = await getDoc(doc(db, 'users', r.uid));
-          if (!snap.exists()) return { uid: r.uid, hasUser: false, isPlaceholder: true };
-          const nm = String(snap.data()?.progress?.user_name || '').trim();
-          return { uid: r.uid, hasUser: true, isPlaceholder: isPlaceholder(nm) };
-        } catch (e) {
-          console.error('purge read', r.uid, e);
-          return { uid: r.uid, hasUser: false, isPlaceholder: true, _err: true };
-        }
-      }));
-
-      const batch = writeBatch(db);
-      for (const info of userInfos) {
-        batch.delete(doc(db, 'arena_profiles', info.uid));
-        if (info.isPlaceholder) {
-          batch.delete(doc(db, 'leaderboard', info.uid));
-          if (info.hasUser) batch.delete(doc(db, 'users', info.uid));
-        }
-      }
-      try {
-        await batch.commit();
-        for (const info of userInfos) {
-          if (info.isPlaceholder) deletedFull += 1;
-          else deletedArenaOnly += 1;
-        }
-      } catch (e) {
-        errors += slice.length;
-        console.error('purge batch failed', e);
-      }
-    }
-
-    // Чистим локальный кэш и обновляем UI
-    const purgedUids = new Set(candidates.slice(0, deletedFull + deletedArenaOnly).map(r => r.uid));
-    _arenaRanksCache = _arenaRanksCache.filter(r => !purgedUids.has(r.uid));
-    if (window._arenaProfiles) {
-      for (const uid of purgedUids) delete window._arenaProfiles[uid];
-    }
-    if (window._users) {
-      window._users = window._users.filter(u => !(purgedUids.has(u.uid) && u.name && isPlaceholder(u.name)));
-    }
-    logAction('arena_profiles_purge', '_bulk', {
-      total: candidates.length,
-      deletedFull, deletedArenaOnly, errors,
-    });
-    renderArenaRanksTable();
-    showToast(`🔥 Полностью удалено ${deletedFull}, только arena_profiles ${deletedArenaOnly}${errors ? `, ошибок ${errors}` : ''}`);
-  };
-
-  function applyCleanArenaRanksChrome() {
-    const tab = document.getElementById('tab-arena-ranks');
-    if (!tab) return;
-    const refresh = tab.querySelector('button[onclick*="loadArenaRanksData"]');
-    if (refresh) {
-      refresh.textContent = 'Refresh';
-      refresh.setAttribute('data-i18n-es', 'Refresh');
-    }
-    const search = document.getElementById('ar-search');
-    if (search && tab.contains(search)) {
-      search.placeholder = 'Name, UID, rank...';
-      search.setAttribute('data-i18n-es', 'Name, UID, rank...');
-    }
-    const labels = tab.querySelectorAll('label[style*="cursor:pointer"] span');
-    if (labels[0]) labels[0].textContent = 'Has matches';
-    if (labels[1]) labels[1].textContent = 'Hide placeholders';
-    const cleanup = tab.querySelector('button[onclick*="cleanupArenaPlaceholders"]');
-    if (cleanup) cleanup.textContent = 'Remove empty profiles';
-    const resync = tab.querySelector('button[onclick*="resyncArenaNamesFromUsers"]');
-    if (resync) resync.textContent = 'Sync names from users';
-    const purge = tab.querySelector('button[onclick*="purgeAllArenaPlaceholders"]');
-    if (purge) purge.textContent = 'Purge placeholders';
-    const info = tab.querySelector('p');
-    if (info) {
-      info.innerHTML = 'Source: <code>arena_profiles</code>. Sorted by Arena XP. Click a row to open the user profile after Users are loaded.';
-    }
-    const loading = document.getElementById('ar-loading');
-    if (loading && tab.contains(loading) && /Ã|Ð|Cargando/.test(loading.textContent || '')) loading.textContent = 'Loading arena ranks...';
-  }
-
-  window.loadArenaRanksData = async function loadArenaRanksData(force) {
-    applyCleanArenaRanksChrome();
-    const st = document.getElementById('ar-status');
-    const loading = document.getElementById('ar-loading');
-    const errEl = document.getElementById('ar-error');
-    const table = document.getElementById('ar-table');
-    if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
-    if (st) st.textContent = 'Loading...';
-    if (loading) {
-      loading.textContent = 'Loading arena ranks...';
-      loading.style.display = 'block';
-    }
-    if (table) table.style.display = 'none';
-
-    try {
-      const haveProfiles = !force && _arenaProfiles && Object.keys(_arenaProfiles).length > 0;
-      if (!haveProfiles) {
-        const snap = await getDocs(collection(db, 'arena_profiles'));
-        _arenaProfiles = {};
-        snap.forEach(d => { _arenaProfiles[d.id] = d.data() || {}; });
-      }
-      const rows = Object.entries(_arenaProfiles).map(([uid, ap]) => {
-        const tier = ap?.rank?.tier || 'bronze';
-        const level = ap?.rank?.level || 'I';
-        const stars = Number(ap?.rank?.stars || 0);
-        const played = Number(ap?.stats?.matchesPlayed || 0);
-        const won = Number(ap?.stats?.matchesWon || 0);
-        const wr = played ? Math.round(won / played * 100) : null;
-        return {
-          uid,
-          displayName: (ap?.displayName || '').toString().trim() || '-',
-          tier, level, stars,
-          xp: Number(ap?.xp || 0),
-          rankIdx: arenaRankIndex(tier, level),
-          played,
-          won,
-          wr,
-          streak: Number(ap?.stats?.winStreak || 0),
-          bestStreak: Number(ap?.stats?.bestWinStreak || 0),
-          updatedAt: ap?.updatedAt || 0,
-        };
-      });
-      rows.sort((a, b) => {
-        if (b.xp !== a.xp) return b.xp - a.xp;
-        if (b.rankIdx !== a.rankIdx) return b.rankIdx - a.rankIdx;
-        return b.played - a.played;
-      });
-      _arenaRanksCache = rows;
-      window._arenaRanksLoaded = true;
-      if (loading) loading.style.display = 'none';
-      if (table) table.style.display = '';
-      renderArenaRanksTable();
-    } catch (e) {
-      if (loading) loading.style.display = 'none';
-      if (errEl) {
-        errEl.style.display = 'block';
-        errEl.textContent = 'Could not load arena_profiles: ' + (e?.message || String(e));
-      }
-      if (st) st.textContent = '';
-    }
-  };
-
-  window.renderArenaRanksTable = function renderArenaRanksTable() {
-    applyCleanArenaRanksChrome();
-    const tbody = document.getElementById('ar-tbody');
-    const st = document.getElementById('ar-status');
-    const summary = document.getElementById('ar-summary');
-    if (!tbody || !_arenaRanksCache) return;
-
-    const q = (document.getElementById('ar-search')?.value || '').trim().toLowerCase();
-    const onlyActive = !!document.getElementById('ar-only-active')?.checked;
-    const hidePlaceholder = !!document.getElementById('ar-hide-placeholder')?.checked;
-
-    let rows = _arenaRanksCache;
-    if (onlyActive) rows = rows.filter(r => r.played > 0);
-    if (hidePlaceholder) {
-      rows = rows.filter(r => {
-        const dn = (r.displayName || '').trim();
-        return dn && dn !== '-' && dn !== '—' && dn !== 'Игрок' && dn !== 'Гравець';
-      });
-    }
-    if (q) {
-      rows = rows.filter(r => {
-        const tierName = (RANK_NAMES_RU[r.tier] || r.tier || '').toLowerCase();
-        return r.uid.toLowerCase().includes(q)
-          || (r.displayName || '').toLowerCase().includes(q)
-          || tierName.includes(q)
-          || (`${r.level}`.toLowerCase().includes(q));
-      });
-    }
-
-    const total = _arenaRanksCache.length;
-    const active = _arenaRanksCache.filter(r => r.played > 0).length;
-    const totalMatches = _arenaRanksCache.reduce((s, r) => s + r.played, 0);
-    const topActive = _arenaRanksCache.find(r => r.played > 0);
-    if (summary) {
-      summary.innerHTML = [
-        `<div class="stat-card"><div class="label">Arena profiles</div><div class="value">${total}</div></div>`,
-        `<div class="stat-card"><div class="label">With matches</div><div class="value">${active}</div></div>`,
-        `<div class="stat-card"><div class="label">Total matches</div><div class="value">${totalMatches.toLocaleString()}</div></div>`,
-        `<div class="stat-card"><div class="label">Top active</div><div class="value" style="font-size:14px;line-height:1.35">${topActive ? escapeHtml(topActive.displayName) : '-'}</div></div>`,
-      ].join('');
-    }
-
-    const top = rows.slice(0, 200);
-    if (st) st.textContent = `Showing ${top.length} of ${rows.length}`;
-    tbody.innerHTML = top.map((r, i) => {
-      const place = i + 1;
-      const stars = [0,1,2].map(idx => `<span style="opacity:${idx < r.stars ? 1 : 0.25}">*</span>`).join('');
-      const rankBadge = `${RANK_NAMES_RU[r.tier] || r.tier} ${r.level}`;
-      const streakLabel = r.streak > 0 ? `${r.streak} current` : (r.bestStreak ? `best ${r.bestStreak}` : '-');
-      return `<tr class="arena-rank-row" onclick="openUserFromArenaRanks('${r.uid.replace(/'/g, "\\'")}')" style="cursor:pointer">
-        <td class="arena-rank-place">#${place}</td>
-        <td class="arena-rank-user"><div class="arena-rank-name">${escapeHtml(r.displayName)}</div><div class="arena-rank-uid">${escapeHtml(r.uid.slice(0, 16))}...</div></td>
-        <td><span class="arena-rank-pill">${escapeHtml(rankBadge)}</span><div class="arena-rank-muted">${stars}</div></td>
-        <td><strong>${(r.xp || 0).toLocaleString()}</strong></td>
-        <td>${r.played}</td>
-        <td>${r.wr === null ? '-' : r.wr + '%'}</td>
-        <td>${escapeHtml(streakLabel)}</td>
-        <td class="arena-rank-muted">${fmtArenaUpdated(r.updatedAt).replace(/<[^>]*>/g, '')}</td>
-      </tr>`;
-    }).join('');
-  };
-
-  window.openUserFromArenaRanksOld = window.openUserFromArenaRanksOld || function noopOpenArenaRankOld() {};
-
-  // Множители (как в app)
-  window.openUserFromArenaRanks = function openUserFromArenaRanks(uid) {
-    if (typeof window.openDetail !== 'function') return;
-    if (!window._users || !window._users.length) {
-      showToast('Load Users first, then open the arena profile row again.', 'err');
-      return;
-    }
-    const u = window._users.find(x => x.uid === uid);
-    if (!u) {
-      showToast('User is not in the current Users snapshot. Refresh Users and try again.', 'err');
-      return;
-    }
-    window.openDetail(u.uid);
-  };
-
   function streakMult(s) { return s>=30?1.8:s>=14?1.6:s>=7?1.4:s>=3?1.2:1; }
   function leagueMult(leagueId) { return 1 + (leagueId||0)*0.1; }
   function lessonDiffMult(lessonNum) { if(!lessonNum||lessonNum<1) return 1; return 1+(lessonNum-1)*0.05; }
@@ -16022,11 +15266,6 @@
     try {
       // Вспомогательные коллекции — в try/catch, чтобы не валили список.
       const _bannedUids = new Set();
-      _arenaProfiles = {};
-      try {
-        const arenaSnap = await getDocs(collection(db, 'arena_profiles'));
-        arenaSnap.forEach(doc => { _arenaProfiles[doc.id] = doc.data(); });
-      } catch (e) { console.warn('arena_profiles skipped', e); }
       try {
         const bannedSnap = await getDocs(collection(db, 'banned_users'));
         bannedSnap.forEach(doc => _bannedUids.add(doc.id));
@@ -17273,111 +16512,6 @@
     return { mults, total };
   }
 
-  function parseQuizProgress(dailyTasks) {
-    // daily_tasks_progress: массив [{ taskId, current, completed, claimed }]
-    const q = { easy: 0, medium: 0, hard: 0 };
-    if(!dailyTasks) return q;
-    // Может прийти как массив или как строка
-    const arr = Array.isArray(dailyTasks) ? dailyTasks : null;
-    if(!arr) return q;
-    for (const item of arr) {
-      if(!item || !item.taskId) continue;
-      const id = item.taskId;
-      const prog = item.current || 0;
-      if(id.startsWith('qe')) q.easy += prog;
-      else if(id.startsWith('qm')) q.medium += prog;
-      else if(id.startsWith('qh')) q.hard += prog;
-    }
-    return q;
-  }
-
-  function arenaSection(uid) {
-    const ap = _arenaProfiles[uid];
-    if (!ap) return `<div class="dsec"><h3>⚔️ Арена</h3><div style="color:#555;font-size:12px;padding:4px 0">Профиль не создан — игрок ещё не участвовал в Арене</div></div>`;
-    const tier = ap.rank?.tier || 'bronze';
-    const level = ap.rank?.level || 'I';
-    const stars = ap.rank?.stars ?? 0;
-    const played = ap.stats?.matchesPlayed || 0;
-    const won = ap.stats?.matchesWon || 0;
-    const lost = played - won;
-    const wr = played ? Math.round(won/played*100) : null;
-    const streak = ap.stats?.winStreak || 0;
-    const bestStreak = ap.stats?.bestWinStreak || 0;
-    const totalScore = ap.stats?.totalScore || 0;
-    const rankName = `${RANK_EMOJIS[tier]||''} ${RANK_NAMES_RU[tier]||tier} ${level}`;
-    const starsHtml = [0,1,2].map(i=>`<span style="opacity:${i<stars?1:0.2}">⭐</span>`).join('');
-    const wrColor = wr===null?'#888':wr>=60?'#4ade80':wr>=40?'#fbbf24':'#f87171';
-    return `<div class="dsec">
-      <h3>⚔️ Арена</h3>
-      <div class="drow"><span class="k">Ранг</span><span class="v">${rankName} ${starsHtml}</span></div>
-      <div class="drow"><span class="k">Arena XP</span><span class="v">${(ap.xp||0).toLocaleString()}</span></div>
-      <div class="drow"><span class="k">Матчей сыграно</span><span class="v">${played}</span></div>
-      <div class="drow"><span class="k">Победы / Поражения</span><span class="v"><span style="color:#4ade80;font-weight:700">${won}W</span> / <span style="color:#f87171;font-weight:700">${lost}L</span></span></div>
-      <div class="drow"><span class="k">Win Rate</span><span class="v" style="color:${wrColor};font-weight:700">${wr!==null?wr+'%':'—'}</span></div>
-      <div class="drow"><span class="k">Текущая серия побед</span><span class="v">${streak > 0 ? '🔥 '+streak : streak}</span></div>
-      <div class="drow"><span class="k">Лучшая серия побед</span><span class="v">${bestStreak||'—'}</span></div>
-      <div class="drow"><span class="k">Суммарный счёт</span><span class="v">${totalScore.toLocaleString()}</span></div>
-    </div>`;
-  }
-
-  function arenaServerResultsSection(u) {
-    // Server-authoritative arena match outcome snapshots (new flow)
-    setTimeout(() => loadArenaServerResults(u.uid), 0);
-    return `<div class="dsec" id="arena-server-results-section">
-      <h3>🧾 Арена — серверные результаты</h3>
-      <div style="font-size:11px;color:#666;margin-bottom:8px">
-        Источник: <code>arena_session_results</code> (новый authoritative-поток)
-      </div>
-      <div id="arena-server-results-content">
-        <div style="color:#555;font-size:12px">⏳ Загрузка...</div>
-      </div>
-    </div>`;
-  }
-
-  async function loadArenaServerResults(uid) {
-    const el = document.getElementById('arena-server-results-content');
-    if (!el) return;
-    try {
-      const snap = await getDocs(query(
-        collection(db, 'arena_session_results'),
-        where('userId', '==', uid),
-        orderBy('updatedAt', 'desc'),
-        limit(15),
-      ));
-      if (snap.empty) {
-        el.innerHTML = '<div style="color:#555;font-size:12px">Нет данных (ещё нет завершённых матчей в новом потоке).</div>';
-        return;
-      }
-      const rows = snap.docs.map(d => {
-        const x = d.data() || {};
-        const won = !!x.won;
-        const rankChanged = !!x.rankChanged;
-        const promoted = !!x.promoted;
-        const streakShard = !!x.rankUpStreakShardAwarded;
-        const beforeRank = `${RANK_NAMES_RU[x.oldTier] || x.oldTier || '—'} ${x.oldLevel || ''}`.trim();
-        const afterRank = `${RANK_NAMES_RU[x.newTier] || x.newTier || '—'} ${x.newLevel || ''}`.trim();
-        return `
-          <div style="padding:10px 0;border-top:1px solid #2a2a2a">
-            <div class="drow"><span class="k">Session</span><span class="v" style="font-family:monospace;font-size:10px">${x.sessionId || d.id}</span></div>
-            <div class="drow"><span class="k">Итог</span><span class="v">${won ? '<span style="color:#4ade80;font-weight:700">Победа</span>' : '<span style="color:#f87171;font-weight:700">Поражение</span>'}</span></div>
-            <div class="drow"><span class="k">XP</span><span class="v">+${x.xpGained ?? 0}</span></div>
-            <div class="drow"><span class="k">Ранг</span><span class="v">${beforeRank} → ${afterRank}</span></div>
-            <div class="drow"><span class="k">Звёзды</span><span class="v">${x.oldStars ?? 0} → ${x.newStars ?? 0}</span></div>
-            <div class="drow"><span class="k">Флаги</span><span class="v">
-              ${rankChanged ? '📈 rank changed' : '—'}
-              ${promoted ? ' · 🚀 promoted' : ''}
-              ${streakShard ? ' · 💎 streak shard' : ''}
-            </span></div>
-            <div class="drow"><span class="k">Обновлён</span><span class="v">${fdate(x.updatedAt)}</span></div>
-          </div>
-        `;
-      }).join('');
-      el.innerHTML = rows;
-    } catch (e) {
-      el.innerHTML = `<div style="color:#f87171;font-size:12px">Ошибка загрузки: ${escapeHtml(e.message || String(e))}</div>`;
-    }
-  }
-
   function shardsSection(u) {
     // Render placeholder; real data loaded async via loadShardLog()
     setTimeout(() => loadShardLog(u.uid), 0);
@@ -17952,9 +17086,6 @@
       ? `<div class="mult-tags">${mults.map(m=>`<span class="mult-tag ${m.cls}">${m.label}</span>`).join('')}</div><div style="margin-top:8px;font-size:12px;color:#a78bfa;font-weight:700">Итоговый: ×${total.toFixed(2)}</div>`
       : '<span style="color:#555;font-size:12px">нет активных</span>';
 
-    // Quiz progress today
-    const quiz = parseQuizProgress(u.dailyTasks);
-
     // Daily tasks stats
     let tasksTotal = 0, tasksDone = 0;
     if(Array.isArray(u.dailyTasks)) {
@@ -18034,15 +17165,11 @@
         <div class="drow"><span class="k">Очки недели</span><span class="v">${weekPts}</span></div>`)}
       ${acc('gameplay', '⚡ Геймплей и настройки', `
         <div style="margin-bottom:8px">${multsHtml}</div>
-        <div class="drow"><span class="k">🌱 Квиз лёгкий</span><span class="v">${quiz.easy > 0 ? quiz.easy+' вопр.' : '—'}</span></div>
-        <div class="drow"><span class="k">⚔️ Квиз средний</span><span class="v">${quiz.medium > 0 ? quiz.medium+' вопр.' : '—'}</span></div>
-        <div class="drow"><span class="k">💀 Квиз сложный</span><span class="v">${quiz.hard > 0 ? quiz.hard+' вопр.' : '—'}</span></div>
         <div class="drow"><span class="k">Дневные задания</span><span class="v">${tasksTotal ? tasksDone+' / '+tasksTotal : '—'}</span></div>
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Speech Rate</span><span class="v">${u.settings.speechRate||1.0}x</span></div>`)}
-      ${acc('arena', '🥇 Arena', `${arenaSection(u.uid)}${arenaServerResultsSection(u)}`)}
       ${acc('system', '🖥️ Система', `
         <div class="drow"><span class="k">UID</span><span class="v" style="font-size:10px;font-family:monospace">${escapeHtml(u.uid)}</span></div>
         <div class="drow"><span class="k">Версия приложения</span><span class="v">${escapeHtml(u.appVersion||'—')}</span></div>
@@ -18269,8 +17396,6 @@
   window.switchTab = function(tab, opts) {
     const options = opts || {};
     if (typeof adminCloseBlockingShellOverlays === 'function') adminCloseBlockingShellOverlays();
-    // Stop arena-live auto-refresh when navigating away (avoid background polling).
-    if (tab !== 'arena-live' && typeof window.arenaLiveStopAuto === 'function') window.arenaLiveStopAuto();
     const tabSearch = document.getElementById('admin-tab-search');
     if (tabSearch && tabSearch.value) {
       tabSearch.value = '';
@@ -18322,8 +17447,6 @@
     document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
     document.getElementById('tab-community-packs').classList.toggle('active',tab==='community-packs');
     document.getElementById('tab-clubs').classList.toggle('active',tab==='clubs');
-    const arRanksTab = document.getElementById('tab-arena-ranks');
-    if (arRanksTab) arRanksTab.classList.toggle('active', tab === 'arena-ranks');
     const refTab = document.getElementById('tab-referrals');
     if (refTab) refTab.classList.toggle('active', tab === 'referrals');
     const banTab = document.getElementById('tab-ban-list');
@@ -18360,14 +17483,6 @@
     if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
     const dpTabEl = document.getElementById('tab-daily-phrases');
     if (dpTabEl) dpTabEl.classList.toggle('active', tab === 'daily-phrases');
-    const fqTabEl = document.getElementById('tab-french-quizzes');
-    if (fqTabEl) fqTabEl.classList.toggle('active', tab === 'french-quizzes');
-    const arenaLiveTabEl = document.getElementById('tab-arena-live');
-    if (arenaLiveTabEl) arenaLiveTabEl.classList.toggle('active', tab === 'arena-live');
-    const arenaBetsTabEl = document.getElementById('tab-arena-bets');
-    if (arenaBetsTabEl) arenaBetsTabEl.classList.toggle('active', tab === 'arena-bets');
-    const arenaRoomsTabEl = document.getElementById('tab-arena-rooms');
-    if (arenaRoomsTabEl) arenaRoomsTabEl.classList.toggle('active', tab === 'arena-rooms');
     const sb = document.getElementById('stats-bar');
     if (sb) {
       if (tab === 'users' && window._users && window._users.length) sb.style.display = 'block';
@@ -18466,9 +17581,6 @@
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
     }
-    if (tab === 'arena-ranks' && !window._arenaRanksLoaded && typeof window.loadArenaRanksData === 'function') {
-      void window.loadArenaRanksData(false);
-    }
     if (tab === 'referrals' && !window._referralsLoaded && typeof window.loadReferralsData === 'function') {
       void window.loadReferralsData(false);
     }
@@ -18514,15 +17626,6 @@
     if (tab === 'ugc-purchases' && !window._ugcPurchasesLoaded && typeof window.loadUgcPurchases === 'function') {
       void window.loadUgcPurchases(false);
     }
-    if (tab === 'arena-live' && !window._arenaLiveLoaded && typeof window.loadArenaLive === 'function') {
-      void window.loadArenaLive(false);
-    }
-    if (tab === 'arena-bets' && !window._arenaBetsLoaded && typeof window.loadArenaBetsFeature === 'function') {
-      void window.loadArenaBetsFeature(false);
-    }
-    if (tab === 'arena-rooms' && !window._arenaRoomsLoaded && typeof window.loadArenaRooms === 'function') {
-      void window.loadArenaRooms(false);
-    }
     if (tab === 'card-packs' && !window._cardPacksLoaded && typeof window.loadCardPacks === 'function') {
       void window.loadCardPacks(false);
     }
@@ -18532,9 +17635,6 @@
     if (tab === 'daily-phrases' && typeof window.renderFrenchDailyPhrasesAdmin === 'function') {
       window.renderFrenchDailyPhrasesAdmin();
     }
-    if (tab === 'french-quizzes' && typeof window.renderFrenchQuizzesAdmin === 'function') {
-      window.renderFrenchQuizzesAdmin();
-    }
     const pushTab = document.getElementById('tab-push-notify');
     if (pushTab) pushTab.classList.toggle('active', tab === 'push-notify');
     if (tab === 'push-notify' && !window._pushJobsLoaded && typeof window.loadPushJobs === 'function') {
@@ -18543,355 +17643,6 @@
     try {
       if (options.markSeen !== false && typeof markAdminTabSeenForBadges === 'function') markAdminTabSeenForBadges(tab);
     } catch (_) { /* noop */ }
-  };
-
-  const FRENCH_QUIZZES_ADMIN_EVIDENCE = Object.freeze({
-    progress: Object.freeze({
-      summary: Object.freeze({
-        totalRows: 840,
-        acceptedRows: 840,
-        rejectedRows: 0,
-        sourceLocales: ['ru', 'uk'],
-      }),
-    }),
-    finalGate: Object.freeze({
-      status: 'HOLD_NOT_PRODUCTION_READY',
-      productionReady: false,
-      activationApproved: false,
-      gates: Object.freeze([
-        Object.freeze({ gateId: 'content_hard_audit', status: 'PASS' }),
-        Object.freeze({ gateId: 'semantic_smell_audit', status: 'PASS' }),
-        Object.freeze({ gateId: 'llm_review_decisions', status: 'PASS' }),
-        Object.freeze({ gateId: 'runtime_full_sentence_adapter', status: 'PASS' }),
-        Object.freeze({ gateId: 'server_pack_dryrun_validation', status: 'PASS' }),
-        Object.freeze({ gateId: 'server_pack_upload_rehearsal', status: 'PASS' }),
-        Object.freeze({ gateId: 'rollback_runtime_off_switch', status: 'PASS' }),
-        Object.freeze({ gateId: 'admin_workflow_map', status: 'PASS' }),
-        Object.freeze({ gateId: 'admin_workflow_handlers', status: 'PASS' }),
-        Object.freeze({ gateId: 'admin_surface_wiring', status: 'PASS' }),
-        Object.freeze({ gateId: 'admin_preview_publish_rollback', status: 'HOLD', blocker: 'HOLD_ADMIN_IMPLEMENTATION_REQUIRED' }),
-        Object.freeze({ gateId: 'rollback_activation_governance', status: 'HOLD', blocker: 'HOLD_ADMIN_ROLLBACK_WORKFLOW_REQUIRED' }),
-      ]),
-    }),
-  });
-
-  const FRENCH_QUIZZES_ADMIN_SAMPLE_ROW = Object.freeze({
-    entryId: 'fr-standard-quiz-preview-row',
-    questionId: 'fr-standard-quiz-preview-question',
-    studyTarget: 'fr',
-    surface: 'quiz',
-    sourcePrompt_ru: 'Preview sample: choose the natural French sentence.',
-    sourcePrompt_uk: 'Preview sample: choose the natural French sentence.',
-    choices: Object.freeze(['Je veux un cafe.', 'Je suis un cafe.', 'J ai un cafe.', 'Je vais un cafe.']),
-    correct: 0,
-    answer: 'Je veux un cafe.',
-    explanations_ru: Object.freeze([
-      'Correct preview choice: vouloir can take a direct object.',
-      'Incorrect: etre does not express wanting a coffee.',
-      'Incorrect: avoir changes the meaning to having a coffee.',
-      'Incorrect: aller does not take the noun this way.',
-    ]),
-    explanations_uk: Object.freeze([
-      'Correct preview choice: vouloir can take a direct object.',
-      'Incorrect: etre does not express wanting a coffee.',
-      'Incorrect: avoir changes the meaning to having a coffee.',
-      'Incorrect: aller does not take the noun this way.',
-    ]),
-    officialSourceCoverage: Object.freeze([
-      Object.freeze({ sourceId: 'larousse-vouloir', label: 'Larousse: vouloir', url: 'https://www.larousse.fr/dictionnaires/francais/vouloir/' }),
-    ]),
-  });
-
-  const FRENCH_LANGUAGE_PACK_READINESS = Object.freeze({
-    studyTarget: 'fr',
-    sourceStudyTarget: 'en',
-    sourceLocales: Object.freeze(['ru', 'uk']),
-    activationApproved: false,
-    readyForApply: false,
-    serverUploadAllowed: false,
-    firebaseUploadAllowed: false,
-    reviewerDecisionImportAllowed: false,
-    runtimeDownloadsEnabled: false,
-    storageMigrationAllowed: false,
-    cloudSyncMigrationAllowed: false,
-    officialCoursePackStatus: Object.freeze({
-      surfaceId: 'official_fr_course_pack_status',
-      serverPaths: Object.freeze([
-        'course-packs/fr/ru/lesson/fr-lessons-core32-v1.pending/',
-        'course-packs/fr/uk/lesson/fr-lessons-core32-v1.pending/',
-      ]),
-      serverUploadAllowed: false,
-      runtimeDownloadsEnabled: false,
-      activationApproved: false,
-    }),
-    llmReviewerQueueStatus: Object.freeze({
-      surfaceId: 'fr_llm_reviewer_queue_status',
-      requestArtifact: 'fr_lesson_llm_review_requests',
-      decisionArtifact: 'fr_lesson_llm_review reviewer_decision',
-      totalRows: 1600,
-      acceptedRows: 870,
-      pendingOrMissingDecisionRows: 337,
-      regenerationRows: 303,
-      skippedRows: 90,
-      sourceLocaleRows: Object.freeze([
-        Object.freeze({ sourceLocale: 'ru', rows: 800, reviewerDecisionImportAllowed: false }),
-        Object.freeze({ sourceLocale: 'uk', rows: 800, reviewerDecisionImportAllowed: false }),
-      ]),
-    }),
-    diagnostics: Object.freeze({
-      surfaceId: 'fr_admin_diagnostics',
-      runtimeReadiness: 'HOLD_RUNTIME_DELIVERY_NOT_READY',
-      storageCloudIsolation: 'PASS_ISOLATION_READY_GLOBAL_FRENCH_HOLD',
-      serverDelivery: 'HOLD_SERVER_PAYLOADS_NOT_READY',
-      audioReadiness: 'HOLD_AUDIO_FILES_MISSING audio checksum status pending',
-      sourceLocaleRequired: true,
-    }),
-    sections: Object.freeze([
-      Object.freeze({ id: 'core_lessons_32', label: 'Core lessons', scope: '32 lessons x 50 phrases', status: 'HOLD', reason: 'LLM trusted-source review, audio, server payloads and runtime delivery still pending.' }),
-      Object.freeze({ id: 'lesson_theory_intro_vocab', label: 'Theory, intro, vocabulary', scope: '32 lesson-native theory/intro/vocab surfaces', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Local French surface is mapped; production waits for global delivery gates.' }),
-      Object.freeze({ id: 'vocabulary_word_training', label: 'Vocabulary word training', scope: 'French-native lesson vocabulary, not English row copy', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Tracked through theory/vocab/intro parity gate.' }),
-      Object.freeze({ id: 'preposition_drills', label: 'Preposition drills', scope: 'French preposition practice bank', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Grammar drill bridge is ready locally.' }),
-      Object.freeze({ id: 'conjugation_drills', label: 'Conjugation drills', scope: 'French conjugation and verb-pattern practice', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'French equivalent of English irregular/preposition-style drills is isolated.' }),
-      Object.freeze({ id: 'standard_quiz_banks', label: 'Standard quizzes', scope: 'French-native questions, distractors and explanations', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Quiz bank surface exists; activation remains closed.' }),
-      Object.freeze({ id: 'arena_questions', label: 'Arena questions', scope: 'French arena parity questions', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Arena bridge is ready locally.' }),
-      Object.freeze({ id: 'personal_practice', label: 'Personal practice', scope: 'Active recall/trainer/server pack declaration', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Problem coach and native diagnosis bank remain future holds.' }),
-      Object.freeze({ id: 'flashcards', label: 'Flashcards', scope: 'French flashcard surface', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Surface bridge is ready locally.' }),
-      Object.freeze({ id: 'collectibles', label: 'Collectible cards', scope: 'French collectible candidate bridge', status: 'PASS_CANDIDATE_GLOBAL_FRENCH_HOLD', reason: 'Candidate bridge only; no production activation.' }),
-      Object.freeze({ id: 'daily_phrases', label: 'Daily phrases', scope: 'French daily phrase surface', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Daily phrase workflow remains separate from official course-pack activation.' }),
-      Object.freeze({ id: 'ai_prompts', label: 'AI prompts', scope: 'mistake explain, weekly review, stats, premium dialog and quiz explanations', status: 'PASS_SURFACE_READY_GLOBAL_FRENCH_HOLD', reason: 'Prompt/cache language contract is explicit for studyTarget=fr.' }),
-      Object.freeze({ id: 'admin_surfaces', label: 'Admin surfaces', scope: 'course-pack status, LLM reviewer queue, diagnostics', status: 'HOLD', reason: 'This read-only surface proves sourceLocale=ru|uk; writes and activation remain closed.' }),
-      Object.freeze({ id: 'server_runtime_storage_cloud', label: 'Server/runtime/storage/cloud', scope: 'downloadable packs and isolation gates', status: 'HOLD', reason: 'No upload, runtime download or storage/cloud migration is allowed yet.' }),
-    ]),
-  });
-
-  function frenchQuizAdminApi() {
-    return window.PhrasemanFrenchQuizzesWorkflow;
-  }
-
-  function frenchQuizAdminEvidence() {
-    return window.FRENCH_QUIZZES_ADMIN_EVIDENCE || FRENCH_QUIZZES_ADMIN_EVIDENCE;
-  }
-
-  function frenchQuizAdminSampleRow() {
-    return window.FRENCH_QUIZZES_ADMIN_SAMPLE_ROW || FRENCH_QUIZZES_ADMIN_SAMPLE_ROW;
-  }
-
-  function frenchQuizAdminEscape(value) {
-    return String(value == null ? '' : value).replace(/[&<>"']/g, (ch) => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      '"': '&quot;',
-      "'": '&#39;',
-    }[ch]));
-  }
-
-  function frenchQuizAdminWriteOutput(payload) {
-    const output = document.getElementById('fq-output');
-    if (!output) return;
-    output.textContent = typeof payload === 'string' ? payload : JSON.stringify(payload, null, 2);
-  }
-
-  function frenchLanguagePackReadinessModel() {
-    return window.FRENCH_LANGUAGE_PACK_READINESS || FRENCH_LANGUAGE_PACK_READINESS;
-  }
-
-  window.renderFrenchLanguagePackReadiness = function renderFrenchLanguagePackReadiness() {
-    const target = document.getElementById('fr-language-pack-readiness-status');
-    if (!target) return;
-    const model = frenchLanguagePackReadinessModel();
-    const rows = model.sections.map((section) => {
-      const ok = String(section.status || '').startsWith('PASS');
-      const color = ok ? '#4ade80' : '#fbbf24';
-      return `<div style="display:grid;grid-template-columns:minmax(160px,230px) minmax(120px,210px) 1fr;gap:10px;border-top:1px solid #242838;padding:9px 0;align-items:start">
-        <strong style="color:#e5e7eb">${frenchQuizAdminEscape(section.label)}</strong>
-        <span style="color:${color};font-weight:800">${frenchQuizAdminEscape(section.status)}</span>
-        <span style="color:#aaa;line-height:1.45">${frenchQuizAdminEscape(section.scope)}<br><span style="color:#777">${frenchQuizAdminEscape(section.reason)}</span></span>
-      </div>`;
-    }).join('');
-    const reviewerRows = model.llmReviewerQueueStatus.sourceLocaleRows.map((row) =>
-      `<span style="display:inline-block;margin-right:8px;color:#aaa">sourceLocale=${frenchQuizAdminEscape(row.sourceLocale)} rows=${Number(row.rows || 0)} reviewerDecisionImportAllowed=${row.reviewerDecisionImportAllowed ? 'true' : 'false'}</span>`
-    ).join('');
-    target.innerHTML = `<div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <span style="color:#aaa">studyTarget=${frenchQuizAdminEscape(model.studyTarget)}</span>
-      <span style="color:#aaa">sourceLocale=${frenchQuizAdminEscape(model.sourceLocales.join('|'))}</span>
-      <span style="color:#fbbf24">activationApproved=${model.activationApproved ? 'true' : 'false'}</span>
-      <span style="color:#fbbf24">serverUploadAllowed=${model.serverUploadAllowed ? 'true' : 'false'}</span>
-      <span style="color:#fbbf24">runtimeDownloadsEnabled=${model.runtimeDownloadsEnabled ? 'true' : 'false'}</span>
-      <span style="color:#fbbf24">reviewerDecisionImportAllowed=${model.reviewerDecisionImportAllowed ? 'true' : 'false'}</span>
-    </div>
-    <div style="color:#999;font-size:12px;line-height:1.5;margin-bottom:10px">
-      Official pack paths: ${model.officialCoursePackStatus.serverPaths.map(frenchQuizAdminEscape).join(' | ')}<br>
-      LLM queue: ${frenchQuizAdminEscape(model.llmReviewerQueueStatus.decisionArtifact)}; total=${Number(model.llmReviewerQueueStatus.totalRows || 0)}, accepted=${Number(model.llmReviewerQueueStatus.acceptedRows || 0)}, missing=${Number(model.llmReviewerQueueStatus.pendingOrMissingDecisionRows || 0)}, regenerate=${Number(model.llmReviewerQueueStatus.regenerationRows || 0)}, skipped=${Number(model.llmReviewerQueueStatus.skippedRows || 0)}<br>
-      ${reviewerRows}<br>
-      Diagnostics: runtime readiness=${frenchQuizAdminEscape(model.diagnostics.runtimeReadiness)}, storage/cloud isolation=${frenchQuizAdminEscape(model.diagnostics.storageCloudIsolation)}, server delivery=${frenchQuizAdminEscape(model.diagnostics.serverDelivery)}, audio=${frenchQuizAdminEscape(model.diagnostics.audioReadiness)}
-    </div>
-    ${rows}`;
-  };
-
-  function frenchQuizAdminDocRef(writePath) {
-    const segments = String(writePath || '').split('/').filter(Boolean);
-    if (!segments.length || segments.length % 2 !== 0 || segments.some((part) => part === '.' || part === '..')) {
-      throw new Error('Unsafe or invalid Firestore document path for French quiz admin write.');
-    }
-    return doc(db, ...segments);
-  }
-
-  async function frenchQuizAdminCommitDraft(draft, action) {
-    if (!draft || !draft.writePath) throw new Error('Draft writePath is required.');
-    if (draft.activationApproved !== false || draft.productionReady !== false) {
-      throw new Error('French quiz admin drafts must keep activationApproved=false and productionReady=false.');
-    }
-    const adminEmail = auth.currentUser?.email || 'unknown';
-    const nowIso = new Date().toISOString();
-    const batch = writeBatch(db);
-    batch.set(frenchQuizAdminDocRef(draft.writePath), {
-      ...draft,
-      updatedAt: nowIso,
-      updatedBy: adminEmail,
-      committedFrom: 'admin/index.html#french-quizzes',
-    }, { merge: false });
-    batch.set(doc(collection(db, 'admin_log')), {
-      action,
-      targetUid: 'content/fr/quiz',
-      details: {
-        writePath: draft.writePath,
-        contentVersion: draft.contentVersion || draft.currentContentVersion || null,
-        previousContentVersion: draft.previousContentVersion || null,
-        activationApproved: false,
-        productionReady: false,
-        auditEvent: draft.auditEvent || null,
-      },
-      adminEmail,
-      ts: nowIso,
-    });
-    await batch.commit();
-    return {
-      ...draft,
-      committed: true,
-      committedAt: nowIso,
-      committedBy: adminEmail,
-      activationApproved: false,
-      productionReady: false,
-    };
-  }
-
-  window.renderFrenchQuizzesAdmin = function renderFrenchQuizzesAdmin() {
-    const api = frenchQuizAdminApi();
-    const statusEl = document.getElementById('fq-status');
-    const previewEl = document.getElementById('fq-preview');
-    if (!statusEl || !previewEl) return;
-    renderFrenchLanguagePackReadiness();
-    if (!api) {
-      statusEl.innerHTML = '<div class="reports-empty">French quiz workflow module is not loaded.</div>';
-      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: 'workflow_module_missing' });
-      return;
-    }
-    const evidence = frenchQuizAdminEvidence();
-    const status = api.buildStatusModel(evidence);
-    const gates = ((evidence.finalGate && evidence.finalGate.gates) || []);
-    const gateRows = gates.map((gate) => {
-      const ok = gate.status === 'PASS';
-      const color = ok ? '#4ade80' : '#fbbf24';
-      const blocker = gate.blocker ? ` <span style="color:#777">${frenchQuizAdminEscape(gate.blocker)}</span>` : '';
-      return `<div style="display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid #242838;padding:7px 0">
-        <strong style="width:58px;color:${color}">${frenchQuizAdminEscape(gate.status)}</strong>
-        <span style="color:#e5e7eb">${frenchQuizAdminEscape(gate.gateId)}${blocker}</span>
-      </div>`;
-    }).join('');
-    statusEl.innerHTML = `<div class="report-card" style="max-width:1180px;margin:0;border-radius:8px">
-      <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px">
-        <strong style="color:#fff">Status: ${frenchQuizAdminEscape(status.status)}</strong>
-        <span style="color:#aaa">Rows: ${Number(status.summary.totalRows || 0)}</span>
-        <span style="color:#aaa">Accepted: ${Number(status.summary.acceptedRows || 0)}</span>
-        <span style="color:#fbbf24">Production ready: ${status.productionReady ? 'true' : 'false'}</span>
-        <span style="color:#fbbf24">Activation approved: ${status.activationApproved ? 'true' : 'false'}</span>
-      </div>
-      ${gateRows}
-    </div>`;
-
-    const preview = api.buildRowPreview(frenchQuizAdminSampleRow(), 'ru');
-    const choices = preview.choices.map((choice, index) => {
-      const mark = index === preview.correct ? 'correct' : 'option';
-      return `<li><strong>${mark}</strong>: ${frenchQuizAdminEscape(choice)}<br><span style="color:#999">${frenchQuizAdminEscape(preview.explanations[index])}</span></li>`;
-    }).join('');
-    previewEl.innerHTML = `<div class="report-card" style="max-width:1180px;margin:0;border-radius:8px">
-      <strong style="color:#fff">Preview row</strong>
-      <div style="margin-top:8px;color:#ddd">${frenchQuizAdminEscape(preview.prompt)}</div>
-      <ol style="margin:10px 0 0 20px;color:#ddd;line-height:1.55">${choices}</ol>
-      <div style="margin-top:10px;color:#999">Evidence: ${frenchQuizAdminEscape((preview.sourceEvidence[0] && preview.sourceEvidence[0].label) || 'source evidence required')}</div>
-    </div>`;
-    frenchQuizAdminWriteOutput({
-      status: status.status,
-      productionReady: false,
-      activationApproved: false,
-      blockedGates: status.blockedGates,
-    });
-  };
-
-  window.frenchQuizAdminCreateDraft = async function frenchQuizAdminCreateDraft() {
-    const api = frenchQuizAdminApi();
-    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
-    const ok = window.confirm('Create a guarded French quiz publication draft? This writes only adminContentDrafts and keeps activationApproved=false.');
-    if (!ok) return frenchQuizAdminWriteOutput({ status: 'cancelled', activationApproved: false });
-    try {
-      const draft = api.createPublicationDraft({
-        evidence: frenchQuizAdminEvidence(),
-        permissions: ['content_publish_draft'],
-        owner: 'admin-ui',
-        reason: 'French standard quiz production-readiness draft review.',
-        contentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
-        sourceLocales: ['ru', 'uk'],
-        rolloutPercent: 0,
-      });
-      const committed = await frenchQuizAdminCommitDraft(draft, 'french_quiz_publication_draft');
-      frenchQuizAdminWriteOutput(committed);
-      if (typeof showToast === 'function') showToast('French quiz publication draft created.');
-    } catch (error) {
-      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
-      if (typeof showToast === 'function') showToast('French quiz draft failed: ' + (error && error.message ? error.message : String(error)), 'err');
-    }
-  };
-
-  window.frenchQuizAdminRequestApproval = function frenchQuizAdminRequestApproval() {
-    const api = frenchQuizAdminApi();
-    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
-    try {
-      const result = api.requestActivationApproval({
-        evidence: frenchQuizAdminEvidence(),
-        permissions: ['content_publish'],
-        owner: 'admin-ui',
-        reason: 'Check whether French quiz activation can be requested.',
-        contentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
-        confirmText: 'REQUEST FRENCH QUIZ ACTIVATION',
-      });
-      frenchQuizAdminWriteOutput({ ...result, activationApproved: false });
-    } catch (error) {
-      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
-    }
-  };
-
-  window.frenchQuizAdminCreateRollback = async function frenchQuizAdminCreateRollback() {
-    const api = frenchQuizAdminApi();
-    if (!api) return frenchQuizAdminWriteOutput({ status: 'HOLD', error: 'workflow_module_missing', activationApproved: false });
-    const ok = window.confirm('Create a rollback draft for French quizzes? This does not delete historical payloads.');
-    if (!ok) return frenchQuizAdminWriteOutput({ status: 'cancelled', activationApproved: false });
-    try {
-      const draft = api.createRollbackDraft({
-        permissions: ['content_rollback'],
-        owner: 'admin-ui',
-        reason: 'French standard quiz rollback rehearsal.',
-        currentContentVersion: 'fr-standard-quizzes-2026-07-04-candidate-v1',
-        previousContentVersion: 'fr-standard-quizzes-disabled-baseline',
-        confirmText: 'ROLL BACK FRENCH QUIZZES',
-      });
-      const committed = await frenchQuizAdminCommitDraft(draft, 'french_quiz_rollback_draft');
-      frenchQuizAdminWriteOutput(committed);
-      if (typeof showToast === 'function') showToast('French quiz rollback draft created.');
-    } catch (error) {
-      frenchQuizAdminWriteOutput({ status: 'HOLD', activationApproved: false, error: error && error.message ? error.message : String(error) });
-      if (typeof showToast === 'function') showToast('French quiz rollback draft failed: ' + (error && error.message ? error.message : String(error)), 'err');
-    }
   };
 
   function normalizeAdminTabSearch(value) {
@@ -20422,108 +19173,6 @@
     setupAdminTextCleanup();
     setupAdminStateCompaction();
   }
-
-  window._arenaBetsLoaded = false;
-  function aseEl(id) { return document.getElementById(id); }
-
-  // ── COMMUNITY PACKS (UGC moderation) ─────────────────────────────────────────
-  function applyCleanArenaBetsChrome() {
-    const tab = document.getElementById('tab-arena-bets');
-    if (!tab) return;
-    const shell = tab.querySelector(':scope > div:first-child');
-    if (shell) shell.classList.add('arena-bets-shell');
-    const card = shell?.querySelector(':scope > div:first-child');
-    if (card) {
-      card.classList.add('arena-bets-card');
-      const title = card.querySelector('[data-i18n-es="Apuestas en la arena"]');
-      if (title) {
-        title.classList.add('arena-bets-title');
-        title.textContent = 'Ranked wagers';
-        title.setAttribute('data-i18n-es', 'Ranked wagers');
-      }
-      if (!card.querySelector('.arena-bets-desc')) {
-        const desc = document.createElement('div');
-        desc.className = 'arena-bets-desc';
-        desc.textContent = 'Feature flag for wager mode in ranked Arena matches. Changes are stored in app_meta/arena_feature_flags.';
-        const status = document.getElementById('ase-wager-status');
-        if (status) card.insertBefore(desc, status);
-      }
-      const actions = card.querySelector('div[style*="display:flex"]');
-      if (actions) actions.classList.add('arena-bets-actions');
-    }
-    const onBtn = document.getElementById('ase-wager-on');
-    if (onBtn) {
-      onBtn.textContent = 'Enable';
-      onBtn.setAttribute('data-i18n-es', 'Enable');
-    }
-    const offBtn = document.getElementById('ase-wager-off');
-    if (offBtn) {
-      offBtn.textContent = 'Disable';
-      offBtn.setAttribute('data-i18n-es', 'Disable');
-    }
-    const refresh = shell?.querySelector('button[onclick*="loadArenaBetsFeature"]');
-    if (refresh) {
-      refresh.textContent = 'Refresh status';
-      refresh.setAttribute('data-i18n-es', 'Refresh status');
-    }
-  }
-
-  function renderArenaWagerFeature(data) {
-    applyCleanArenaBetsChrome();
-    const active = data?.rankedWagerEnabled === true;
-    const status = aseEl('ase-wager-status');
-    if (status) {
-      status.textContent = active ? 'Enabled' : 'Disabled';
-      status.dataset.state = active ? 'enabled' : 'disabled';
-    }
-    const onBtn = aseEl('ase-wager-on');
-    const offBtn = aseEl('ase-wager-off');
-    if (onBtn) onBtn.disabled = active;
-    if (offBtn) offBtn.disabled = !active;
-  }
-
-  window.loadArenaBetsFeature = async function loadArenaBetsFeature(force) {
-    applyCleanArenaBetsChrome();
-    const wagerStatus = aseEl('ase-wager-status');
-    if (wagerStatus) {
-      wagerStatus.textContent = 'Loading...';
-      wagerStatus.dataset.state = 'loading';
-    }
-    try {
-      const flagsSnap = await getDoc(doc(db, 'app_meta', 'arena_feature_flags'));
-      renderArenaWagerFeature(flagsSnap.exists() ? flagsSnap.data() : null);
-      window._arenaBetsLoaded = true;
-      if (force) showToast('Arena wager status loaded');
-    } catch (e) {
-      showToast('Arena wager load failed: ' + (e?.message || e), 'err');
-    }
-  };
-
-  window.saveArenaWagerFeature = async function saveArenaWagerFeature(active) {
-    applyCleanArenaBetsChrome();
-    const ok = await showConfirmModal({
-      title: active ? 'Enable ranked wagers?' : 'Disable ranked wagers?',
-      desc: 'This updates app_meta/arena_feature_flags and changes wager availability for Arena ranked matches.',
-      confirmLabel: active ? 'Enable' : 'Disable',
-      danger: !active,
-    });
-    if (!ok) return;
-    const payload = {
-      rankedWagerEnabled: !!active,
-      updatedAt: Date.now(),
-      updatedBy: auth.currentUser?.email || auth.currentUser?.uid || 'admin',
-    };
-    try {
-      await setDoc(doc(db, 'app_meta', 'arena_feature_flags'), payload, { merge: true });
-      renderArenaWagerFeature(payload);
-      window._arenaBetsLoaded = true;
-      if (typeof logAction === 'function') logAction(active ? 'arena_wager_enable' : 'arena_wager_disable', 'app_meta/arena_feature_flags', payload);
-      showToast(active ? 'Ranked wagers enabled' : 'Ranked wagers disabled');
-    } catch (e) {
-      showToast('Arena wager save failed: ' + (e?.message || e), 'err');
-    }
-  };
-
 
   let _communitySubmissionsCache = [];
   let _communityActivePacksCache = [];
@@ -23383,9 +22032,6 @@
       }
       return;
     }
-    // Арена: один раз в начале — иначе два `const arenaN` (core / full) дают TDZ ReferenceError
-    const arenaAll = Object.values(_arenaProfiles);
-    const arenaN = arenaAll.length;
     const usersWithStats = users.filter(u => u.userStats);
     function mergeUserStatRecords(userList, field) {
       const o = {};
@@ -23456,13 +22102,6 @@
     // Среднее карточек
     const avgFc = (users.reduce((s,u) => s+u.flashcards, 0) / n).toFixed(1);
 
-    // Квизы сегодня (суммарно)
-    let totalQuiz = 0;
-    users.forEach(u => {
-      const q = parseQuizProgress(u.dailyTasks);
-      totalQuiz += q.easy + q.medium + q.hard;
-    });
-
     // Прошли тест
     const testedN = users.filter(u => u.placementLevel).length;
 
@@ -23490,7 +22129,6 @@
     document.getElementById('a-xpday').textContent = avgXPDay.toLocaleString();
     document.getElementById('a-ach').textContent = avgAch;
     document.getElementById('a-fc').textContent = avgFc;
-    document.getElementById('a-quiz').textContent = totalQuiz || '—';
     document.getElementById('a-tested').textContent = testedN + ' / ' + n;
     document.getElementById('a-prem-pct').textContent = premPct + '%';
     document.getElementById('a-shards-total').textContent = totalShards.toLocaleString();
@@ -23510,7 +22148,6 @@
       const xpBuckets = {'0-500':0,'500-2k':0,'2k-5k':0,'5k-10k':0,'10k+':0};
       const versions = {};
       const onboarding = {'✅ Завершён': 0, '❌ Не завершён': 0};
-      let quizEasyTotal=0, quizMedTotal=0, quizHardTotal=0;
       let tasksAllDone=0, tasksSomeDone=0, tasksNoneDone=0;
       users.forEach(u => {
         if(u.xp<500) xpBuckets['0-500']++;
@@ -23521,8 +22158,6 @@
         const v = u.appVersion || '—';
         versions[v] = (versions[v] || 0) + 1;
         if (u.onboarding) onboarding['✅ Завершён']++; else onboarding['❌ Не завершён']++;
-        const q = parseQuizProgress(u.dailyTasks);
-        quizEasyTotal += q.easy; quizMedTotal += q.medium; quizHardTotal += q.hard;
         const arr = Array.isArray(u.dailyTasks) ? u.dailyTasks : [];
         const done = arr.filter(t => t && t.completed).length;
         const total = arr.length || 3;
@@ -23530,32 +22165,13 @@
         else if (done >= total) tasksAllDone++;
         else tasksSomeDone++;
       });
-      const quizData = { '🌱 Лёгкий': quizEasyTotal, '⚔️ Средний': quizMedTotal, '💀 Сложный': quizHardTotal };
       const dailyTasksDist = {'Все выполнены': tasksAllDone, 'Частично': tasksSomeDone, 'Не выполнено': tasksNoneDone};
       const platforms = {'📱 iOS': iosTotal, '🤖 Android': andTotal, '❓ Неизвестно': unkPlat};
-
-      // Arena core (arenaAll / arenaN уже вычислены в начале renderAnalytics)
-      const rankDist = {};
-      RANK_TIERS.forEach(t => { rankDist[RANK_EMOJIS[t]+' '+RANK_NAMES_RU[t]] = 0; });
-      arenaAll.forEach(ap => {
-        const t = ap.rank?.tier||'bronze';
-        const k = RANK_EMOJIS[t]+' '+RANK_NAMES_RU[t];
-        if(k in rankDist) rankDist[k]++;
-      });
-
-      const top10Html = arenaN === 0
-        ? '<div style="color:#555;font-size:12px">Нет данных</div>'
-        : buildArenaTop10Block(arenaAll);
 
       document.getElementById('analytics-grid').innerHTML = `
         <div class="chart-card">
           <h3>📱 Платформа</h3>
           ${coreBarChart(platforms,Math.max(...Object.values(platforms),1),'#60a5fa')}
-        </div>
-        <div class="chart-card">
-          <h3>🎯 Квизы сегодня (все пользователи)</h3>
-          ${coreBarChart(quizData,Math.max(...Object.values(quizData),1),'#60a5fa')}
-          <div style="font-size:11px;color:#555;margin-top:8px">Суммарно вопросов: ${quizEasyTotal+quizMedTotal+quizHardTotal||'—'}</div>
         </div>
         <div class="chart-card">
           <h3>✅ Ежедневные задания (сегодня)</h3>
@@ -23572,14 +22188,6 @@
         <div class="chart-card">
           <h3>📦 Версии приложения</h3>
           ${coreBarChart(versions,Math.max(...Object.values(versions),1),'#34d399')}
-        </div>
-        <div class="chart-card">
-          <h3>⚔️ Арена — ранговое распределение <span style="font-size:10px;color:#555">(${arenaN} игроков)</span></h3>
-          ${arenaN > 0 ? coreBarChart(rankDist, Math.max(...Object.values(rankDist),1), '#a78bfa', arenaN) : '<div style="color:#555;font-size:12px">Нет данных</div>'}
-        </div>
-        <div class="chart-card" style="grid-column:span 2">
-          <h3>🏆 Топ-10 игроков Арены (по победам)</h3>
-          ${top10Html}
         </div>
         <div class="chart-card">
           <h3>🛍️ Магазин осколков <span style="font-size:10px;color:#555">(визиты экрана)</span></h3>
@@ -23807,16 +22415,6 @@
       leagues[ln] = (leagues[ln]||0)+1;
     });
 
-    // Quiz today aggregate (easy/medium/hard across all users)
-    let quizEasyTotal=0, quizMedTotal=0, quizHardTotal=0;
-    users.forEach(u => {
-      const q = parseQuizProgress(u.dailyTasks);
-      quizEasyTotal += q.easy;
-      quizMedTotal += q.medium;
-      quizHardTotal += q.hard;
-    });
-    const quizData = { '🌱 Лёгкий': quizEasyTotal, '⚔️ Средний': quizMedTotal, '💀 Сложный': quizHardTotal };
-
     // App version distribution
     const versions = {};
     users.forEach(u => { const v = u.appVersion||'—'; versions[v]=(versions[v]||0)+1; });
@@ -23884,56 +22482,6 @@
       else if(cnt<=30) arBuckets['11-30']++;
       else if(cnt<=50) arBuckets['31-50']++;
       else arBuckets['50+']++;
-    });
-
-    // ── Арена (arenaAll / arenaN уже в начале renderAnalytics) ─────────────────
-    let arenaPlayed=0, arenaWon=0;
-    arenaAll.forEach(ap => {
-      arenaPlayed += ap.stats?.matchesPlayed||0;
-      arenaWon += ap.stats?.matchesWon||0;
-    });
-    const arenaAvgWR = arenaPlayed ? Math.round(arenaWon/arenaPlayed*100) : null;
-
-    // Arena summary cards
-    document.getElementById('a-arena-section').style.display='block';
-    document.getElementById('a-arena-players').textContent = arenaN;
-    document.getElementById('a-arena-matches').textContent = arenaPlayed;
-    document.getElementById('a-arena-wr').textContent = arenaAvgWR !== null ? arenaAvgWR+'%' : '—';
-    const topRank = RANK_TIERS.slice().reverse().find(t => arenaAll.some(ap=>ap.rank?.tier===t));
-    document.getElementById('a-arena-top').textContent = topRank ? RANK_EMOJIS[topRank]+' '+RANK_NAMES_RU[topRank] : '—';
-
-    // Ранговое распределение
-    const rankDist = {};
-    RANK_TIERS.forEach(t => { rankDist[RANK_EMOJIS[t]+' '+RANK_NAMES_RU[t]] = 0; });
-    arenaAll.forEach(ap => {
-      const t = ap.rank?.tier||'bronze';
-      const k = RANK_EMOJIS[t]+' '+RANK_NAMES_RU[t];
-      if(k in rankDist) rankDist[k]++;
-    });
-
-    // WR buckets
-    const arenaWRBuckets = {'Нет игр':0,'<30%':0,'30-49%':0,'50-64%':0,'65-79%':0,'80%+':0};
-    arenaAll.forEach(ap => {
-      const p = ap.stats?.matchesPlayed||0;
-      const w = ap.stats?.matchesWon||0;
-      if(!p) { arenaWRBuckets['Нет игр']++; return; }
-      const wr = w/p*100;
-      if(wr<30) arenaWRBuckets['<30%']++;
-      else if(wr<50) arenaWRBuckets['30-49%']++;
-      else if(wr<65) arenaWRBuckets['50-64%']++;
-      else if(wr<80) arenaWRBuckets['65-79%']++;
-      else arenaWRBuckets['80%+']++;
-    });
-
-    // Матчей сыграно buckets
-    const arenaMatchBuckets = {'0':0,'1-5':0,'6-20':0,'21-50':0,'50+':0};
-    arenaAll.forEach(ap => {
-      const p = ap.stats?.matchesPlayed||0;
-      if(p===0) arenaMatchBuckets['0']++;
-      else if(p<=5) arenaMatchBuckets['1-5']++;
-      else if(p<=20) arenaMatchBuckets['6-20']++;
-      else if(p<=50) arenaMatchBuckets['21-50']++;
-      else arenaMatchBuckets['50+']++;
     });
 
     // ── Новые метрики из user_stats_v1 ──────────────────────────────────────────
@@ -24081,11 +22629,6 @@
         ${Object.keys(leagues).length ? barChart(leagues, Math.max(...Object.values(leagues)), '#fbbf24') : '<div style="color:#555;font-size:12px">Нет данных</div>'}
       </div>
       <div class="chart-card">
-        <h3>🎯 Квизы сегодня (все пользователи)</h3>
-        ${barChart(quizData, Math.max(...Object.values(quizData), 1), '#60a5fa')}
-        <div style="font-size:11px;color:#555;margin-top:8px">Суммарно вопросов: ${quizEasyTotal+quizMedTotal+quizHardTotal||'—'}</div>
-      </div>
-      <div class="chart-card">
         <h3>📊 Распределение по уровням (Lvl 1-50)</h3>
         ${barChart(lvlBuckets, Math.max(...Object.values(lvlBuckets)), '#a78bfa')}
       </div>
@@ -24169,29 +22712,6 @@
         <div style="color:#555;font-size:13px;padding:16px">Данные появятся после обновления приложения (user_stats_v1)</div>
       </div>
       `}
-      ${arenaN > 0 ? `
-      <div class="chart-card">
-        <h3>⚔️ Арена — ранговое распределение <span style="font-size:10px;color:#555">(${arenaN} игроков)</span></h3>
-        ${barChart(rankDist, Math.max(...Object.values(rankDist),1), '#a78bfa', arenaN)}
-      </div>
-      <div class="chart-card">
-        <h3>📊 Арена — Win Rate игроков</h3>
-        ${barChart(arenaWRBuckets, Math.max(...Object.values(arenaWRBuckets),1), '#4ade80', arenaN)}
-      </div>
-      <div class="chart-card">
-        <h3>🎮 Арена — Активность (матчей сыграно)</h3>
-        ${barChart(arenaMatchBuckets, Math.max(...Object.values(arenaMatchBuckets),1), '#60a5fa', arenaN)}
-      </div>
-      ` : `
-      <div class="chart-card">
-        <h3>⚔️ Арена</h3>
-        <div style="color:#555;font-size:13px;padding:16px">Нет данных — игроки ещё не участвовали в Арене</div>
-      </div>
-      `}
-      ${arenaN > 0 ? `<div class="chart-card" style="grid-column:span 2">
-        <h3>🏆 Топ-10 игроков Арены (по победам)</h3>
-        ${buildArenaTop10Block(arenaAll)}
-      </div>` : ''}
       <div class="chart-card" style="grid-column:1/-1">
         <h3>📚 Уроки — сколько пользователей прошли каждый урок</h3>
         ${lessonRows}
@@ -29990,38 +28510,6 @@
     document.getElementById('ar-detail-panel').style.display = 'none';
   };
 
-  // View members of an arena room (arena_room_members, keyed by room code).
-  window.arViewMembers = async function(roomId) {
-    const room = (window._arRooms || []).find(r => r.id === roomId);
-    const code = room ? (room.code || room.id) : roomId;
-    const body = document.getElementById('ar-detail-body');
-    if (!body) return;
-    body.innerHTML = '<div style="color:#888;padding:14px">Загрузка участников…</div>';
-    document.getElementById('ar-detail-overlay').style.display = 'block';
-    document.getElementById('ar-detail-panel').style.display = 'block';
-    try {
-      let snap;
-      try {
-        snap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), orderBy('joinedAt', 'desc'), limit(50)));
-      } catch (_) {
-        snap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), limit(50)));
-      }
-      const members = snap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
-      const active = members.filter(m => m.active).length;
-      body.innerHTML = `
-        <div style="font-size:16px;font-weight:700;color:#f4f4f5;margin-bottom:4px">Участники комнаты</div>
-        <div style="font-size:12px;color:#888;margin-bottom:12px">code: <code>${escapeHtml(String(code))}</code> · всего ${members.length} · активных ${active}</div>
-        ${members.length ? members.map(m => `
-          <div class="u360-list-item"><div class="u360-li-top">
-            <span>${escapeHtml(m.name || m.userName || m.uid || m.authUid || '—')}</span>
-            ${m.active ? '<span class="u360-pill p-resolved">active</span>' : '<span class="u360-pill p-deleted">left</span>'}
-          </div><div style="color:#7e8494">uid …${escapeHtml(String(m.uid || m.authUid || '—').slice(-8))}${m.joinedAt ? ' · ' + escapeHtml(String(m.joinedAt).replace('T',' ').slice(0,19)) : ''}</div></div>
-        `).join('') : '<div class="u360-empty">Участников нет</div>'}`;
-    } catch (e) {
-      body.innerHTML = `<div style="color:#f87171;padding:14px">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
-    }
-  };
-
   // ── Audit Log ─────────────────────────────────────────────────────────────────
   let _auditAll = [];
   const ACTION_LABELS = {
@@ -31946,18 +30434,6 @@
           ms('referrals') > 0
             ? adminCount('referrals_new', query(collection(db, 'referral_attributions'), where('createdAt', '>', ms('referrals'))))
             : adminCount('referrals', query(collection(db, 'referral_attributions'), limit(999))),
-          ms('arena-live') > 0
-            ? adminCount('arena_queue_new', query(collection(db, 'matchmaking_queue'), where('joinedAt', '>', ms('arena-live'))))
-            : adminCount('arena_queue', query(collection(db, 'matchmaking_queue'), limit(999))),
-          ms('arena-live') > 0
-            ? adminCount('arena_sessions_new', query(collection(db, 'arena_sessions'), where('createdAt', '>', ms('arena-live'))))
-            : adminCount('arena_sessions', query(collection(db, 'arena_sessions'), limit(999))),
-          ms('arena-live') > 0
-            ? adminCount('arena_rooms_new', query(collection(db, 'arena_rooms'), where('createdAt', '>', ms('arena-live'))))
-            : adminCount('arena_rooms', query(collection(db, 'arena_rooms'), limit(999))),
-          ms('arena-ranks') > 0
-            ? adminCount('arena_profiles_new', query(collection(db, 'arena_profiles'), where('updatedAt', '>', ms('arena-ranks'))))
-            : adminCount('arena_profiles', query(collection(db, 'arena_profiles'), limit(999))),
           adminCount('app_errors_new', query(collection(db, 'app_errors'), where('status', '==', 'new'))),
           adminCount('app_errors_reviewed', query(collection(db, 'app_errors'), where('status', '==', 'reviewed'))),
           ms('push-notify') > 0
@@ -35827,605 +34303,6 @@
     }
   };
 
-  let _arenaLive = { queue: [], sessions: [], rooms: [], metaCount: 0, errors: [], cleanupRunning: false };
-  const ARENA_STUCK_MS      = 5  * 60_000; // 5 мин  — порог «зависшее» (подсветка)
-  const ARENA_STALE_QUEUE_MS = 30 * 60_000; // 30 мин — автоудаление из очереди
-  const ARENA_STALE_ROOM_MS  = 30 * 60_000; // 30 мин — автоудаление комнаты
-  const ARENA_STALE_SES_MS   = 60 * 60_000; // 1 час  — автофорс-финиш сессии
-
-  async function _alAutoCleanup(adminEmail) {
-    const now = Date.now();
-    const staleQueue    = _arenaLive.queue.filter(q => { const t = Number(q.joinedAt)||0; return t && (now - t) > ARENA_STALE_QUEUE_MS; });
-    const staleRooms    = _arenaLive.rooms.filter(r => { const t = Number(r.createdAt)||0; return t && (now - t) > ARENA_STALE_ROOM_MS; });
-    const staleSessions = _arenaLive.sessions.filter(s => {
-      const t = Number(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt) || 0;
-      return t && (now - t) > ARENA_STALE_SES_MS;
-    });
-    if (!staleQueue.length && !staleRooms.length && !staleSessions.length) return 0;
-    await Promise.all([
-      ...staleQueue.map(q => deleteDoc(doc(db, 'matchmaking_queue', q.id))
-        .then(() => logAction('arena_queue_delete', q.id, { auto: true })).catch(() => {})),
-      ...staleRooms.map(r => deleteDoc(doc(db, 'arena_rooms', r.id))
-        .then(() => logAction('arena_room_delete', r.id, { auto: true })).catch(() => {})),
-      ...staleSessions.map(s => updateDoc(doc(db, 'arena_sessions', s.id), {
-          state: 'finished', abortedByAdmin: true,
-          adminAbortedBy: adminEmail, adminAbortedAt: new Date().toISOString(),
-        }).then(() => logAction('arena_force_finish', s.id, { auto: true, previousState: s.state })).catch(() => {})),
-    ]);
-    const dQ = new Set(staleQueue.map(q => q.id));
-    const dR = new Set(staleRooms.map(r => r.id));
-    const dS = new Set(staleSessions.map(s => s.id));
-    _arenaLive.queue    = _arenaLive.queue.filter(q => !dQ.has(q.id));
-    _arenaLive.rooms    = _arenaLive.rooms.filter(r => !dR.has(r.id));
-    _arenaLive.sessions = _arenaLive.sessions.filter(s => !dS.has(s.id));
-    return staleQueue.length + staleRooms.length + staleSessions.length;
-  }
-
-  function _alTimeout(label, ms) {
-    return new Promise((_, reject) => {
-      setTimeout(() => reject(new Error(label + ' timeout')), ms);
-    });
-  }
-
-  async function _alSafeGetDocs(label, ref, errors) {
-    try {
-      return await Promise.race([getDocs(ref), _alTimeout(label, 15000)]);
-    } catch (e) {
-      errors.push(label + ': ' + (e?.message || String(e)));
-      return { docs: [] };
-    }
-  }
-
-  async function _alSafeGetDoc(label, ref, errors) {
-    try {
-      return await Promise.race([getDoc(ref), _alTimeout(label, 15000)]);
-    } catch (e) {
-      errors.push(label + ': ' + (e?.message || String(e)));
-      return null;
-    }
-  }
-
-  function _alRunCleanupInBackground(adminEmail) {
-    if (_arenaLive.cleanupRunning) return;
-    _arenaLive.cleanupRunning = true;
-    _alAutoCleanup(adminEmail)
-      .then((cleaned) => {
-        if (cleaned > 0) {
-          renderArenaLive();
-          showToast(`Автоочистка: удалено ${cleaned} устаревших записей`);
-        }
-      })
-      .catch((e) => {
-        console.warn('arena live cleanup', e);
-        showToast('Arena cleanup: ' + (e?.message || String(e)), 'err');
-      })
-      .finally(() => { _arenaLive.cleanupRunning = false; });
-  }
-
-  window.loadArenaLive = async function loadArenaLive(force) {
-    if (!force && window._arenaLiveLoaded) return;
-    const content = document.getElementById('al-content');
-    if (!content) return;
-    content.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
-    try {
-      const adminEmail = (auth?.currentUser?.email) || '';
-      const errors = [];
-      const [queueSnap, sessionsSnap, roomsSnap, metaSnap] = await Promise.all([
-        _alSafeGetDocs('matchmaking_queue', query(collection(db, 'matchmaking_queue'), limit(200)), errors),
-        _alSafeGetDocs('arena_sessions', query(collection(db, 'arena_sessions'), limit(300)), errors),
-        _alSafeGetDocs('arena_rooms', query(collection(db, 'arena_rooms'), limit(150)), errors),
-        _alSafeGetDoc('app_meta/matchmaking_searching', doc(db, 'app_meta', 'matchmaking_searching'), errors),
-      ]);
-      _arenaLive.queue = queueSnap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
-      _arenaLive.sessions = sessionsSnap.docs
-        .map(d => ({ id: d.id, ...(d.data() || {}) }))
-        .filter(s => s.state !== 'finished' && s.state !== 'aborted');
-      _arenaLive.rooms = roomsSnap.docs
-        .map(d => ({ id: d.id, ...(d.data() || {}) }))
-        .filter(r => r.status === 'waiting');
-      _arenaLive.metaCount = metaSnap?.exists?.() ? (metaSnap.data()?.count ?? 0) : 0;
-      _arenaLive.errors = errors;
-      window._arenaLiveLoaded = true;
-      renderArenaLive();
-      _alRunCleanupInBackground(adminEmail);
-    } catch (e) {
-      content.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
-    }
-  };
-
-  function _alFmtAge(ts) {
-    if (!ts) return '—';
-    const t = typeof ts === 'number' ? ts : Date.parse(ts);
-    if (!t || Number.isNaN(t)) return '—';
-    const ms = Date.now() - t;
-    if (ms < 0) return 'будущее';
-    if (ms < 60_000) return Math.round(ms / 1000) + 'с';
-    if (ms < 3_600_000) return Math.round(ms / 60_000) + 'м';
-    return Math.round(ms / 3_600_000) + 'ч ' + Math.round((ms % 3_600_000) / 60_000) + 'м';
-  }
-  function _alIsStuck(ts) {
-    if (!ts) return false;
-    const t = typeof ts === 'number' ? ts : Date.parse(ts);
-    if (!t || Number.isNaN(t)) return false;
-    return (Date.now() - t) > ARENA_STUCK_MS;
-  }
-
-  window.renderArenaLive = function renderArenaLive() {
-    const content = document.getElementById('al-content');
-    const cnt = document.getElementById('al-count');
-    const summary = document.getElementById('al-summary');
-    const metaEl = document.getElementById('al-meta-count');
-    const onlyStuck = !!document.getElementById('al-only-stuck')?.checked;
-    if (metaEl) metaEl.textContent = String(_arenaLive.metaCount);
-
-    let queue = _arenaLive.queue.slice();
-    let sessions = _arenaLive.sessions.slice();
-    let rooms = _arenaLive.rooms.slice();
-    if (onlyStuck) {
-      queue = queue.filter(q => _alIsStuck(q.joinedAt));
-      sessions = sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt));
-      rooms = rooms.filter(r => _alIsStuck(r.createdAt));
-    }
-    queue.sort((a, b) => (Number(a.joinedAt) || 0) - (Number(b.joinedAt) || 0));
-    sessions.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
-    rooms.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
-
-    summary.innerHTML = [
-      `<div class="stat-card" style="border-color:#3a1a5c"><div class="label">⏳ В очереди</div><div class="value" style="color:#a78bfa">${_arenaLive.queue.length}</div></div>`,
-      `<div class="stat-card" style="border-color:#3a1a5c"><div class="label">🎮 Активных сессий</div><div class="value" style="color:#818cf8">${_arenaLive.sessions.length}</div></div>`,
-      `<div class="stat-card" style="border-color:#3a1a5c"><div class="label">🚪 Приватных комнат</div><div class="value" style="color:#fbbf24">${_arenaLive.rooms.length}</div></div>`,
-      `<div class="stat-card" style="border-color:#3a1a5c"><div class="label">📡 app_meta count</div><div class="value" style="color:#34d399">${_arenaLive.metaCount}</div></div>`,
-      `<div class="stat-card" style="border-color:#3b1a1a"><div class="label">⚠️ Зависших (>5м)</div><div class="value" style="color:#f87171">${
-        _arenaLive.queue.filter(q => _alIsStuck(q.joinedAt)).length +
-        _arenaLive.sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt)).length +
-        _arenaLive.rooms.filter(r => _alIsStuck(r.createdAt)).length
-      }</div></div>`,
-    ].join('');
-
-    if (cnt) cnt.textContent = `${queue.length}q / ${sessions.length}s / ${rooms.length}r`;
-
-    const queueHtml = `<h3 style="font-size:13px;color:#a78bfa;margin:18px 0 10px;font-weight:700">⏳ Matchmaking queue (${queue.length})</h3>` + (
-      queue.length === 0
-        ? '<div class="reports-empty" style="padding:14px">Очередь пуста</div>'
-        : queue.map(q => {
-            const stuck = _alIsStuck(q.joinedAt);
-            return `<div class="report-card" style="${stuck ? 'border-color:#7f1d1d' : ''}">
-              <div class="rc-left">
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
-                  <span style="font-weight:700;color:#fff;font-size:13px">${escapeHtml(q.displayName || '?')}</span>
-                  <span style="font-size:11px;color:#555;font-family:monospace">${escapeHtml(q.id)}</span>
-                  <span style="background:#3a1a5c;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">rank ${escapeHtml(q.rankTier || '?')}${q.rankIndex !== undefined ? ' #'+q.rankIndex : ''}</span>
-                  <span style="background:#1a3a5c;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">size ${q.size || '?'}</span>
-                  ${q.sessionId ? `<span style="background:#14532d;color:#4ade80;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">matched → ${escapeHtml(q.sessionId)}</span>` : ''}
-                  ${q.searchRange ? `<span style="background:#1f1f2e;color:#aaa;padding:2px 8px;border-radius:4px;font-size:11px">±${q.searchRange}</span>` : ''}
-                </div>
-                <div style="font-size:11px;color:${stuck ? '#f87171' : '#666'}">⏱ В очереди: ${_alFmtAge(q.joinedAt)}${stuck ? ' (зависло!)' : ''}</div>
-              </div>
-              <div class="rc-right">
-                <button onclick="alDeleteQueue('${escapeHtml(q.id)}')" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5;padding:5px 10px;font-size:11px;border-radius:6px">🗑 Удалить</button>
-                <button onclick="openDetailFromBanList('${escapeHtml(q.id)}')" style="background:#2a2a3a;color:#aaa;padding:5px 10px;font-size:11px;border-radius:6px;margin-top:4px">📋 Профиль</button>
-              </div>
-            </div>`;
-          }).join('')
-    );
-
-    const sessionsHtml = `<h3 style="font-size:13px;color:#a78bfa;margin:24px 0 10px;font-weight:700">🎮 Active sessions (${sessions.length})</h3>` + (
-      sessions.length === 0
-        ? '<div class="reports-empty" style="padding:14px">Нет активных сессий</div>'
-        : sessions.map(s => {
-            const refTs = s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt;
-            const stuck = _alIsStuck(refTs);
-            const stateColor = s.state === 'question' ? '#4ade80' : s.state === 'countdown' ? '#fbbf24' : s.state === 'acceptance' ? '#fb923c' : '#a78bfa';
-            return `<div class="report-card" style="${stuck ? 'border-color:#7f1d1d' : ''}">
-              <div class="rc-left">
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
-                  <span style="font-weight:700;color:#fff;font-size:13px;font-family:monospace">${escapeHtml(s.id.slice(0, 24))}</span>
-                  <span style="background:${stateColor}22;color:${stateColor};padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">${escapeHtml(s.state || '?')}</span>
-                  <span style="background:#1a3a5c;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">${escapeHtml(s.type || '?')}</span>
-                  <span style="background:#3a1a5c;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">size ${s.size || '?'}</span>
-                  <span style="background:#1f1f2e;color:#aaa;padding:2px 8px;border-radius:4px;font-size:11px">Q ${s.currentQuestionIndex ?? 0}/${(s.questions || []).length}</span>
-                </div>
-                <div style="font-size:11px;color:${stuck ? '#f87171' : '#666'}">⏱ ${_alFmtAge(refTs)}${stuck ? ' (зависло!)' : ''} · created ${_alFmtAge(s.createdAt)}</div>
-                <div style="font-size:10px;color:#555;font-family:monospace;margin-top:2px">players: ${(s.playerIds || []).map(p => escapeHtml(p.slice(0, 8))).join(', ')}</div>
-              </div>
-              <div class="rc-right">
-                <button onclick="alForceFinish('${escapeHtml(s.id)}')" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5;padding:5px 10px;font-size:11px;border-radius:6px">🛑 Force-finish</button>
-              </div>
-            </div>`;
-          }).join('')
-    );
-
-    const roomsHtml = `<h3 style="font-size:13px;color:#a78bfa;margin:24px 0 10px;font-weight:700">🚪 Private rooms (${rooms.length})</h3>` + (
-      rooms.length === 0
-        ? '<div class="reports-empty" style="padding:14px">Пустых комнат нет</div>'
-        : rooms.map(r => {
-            const stuck = _alIsStuck(r.createdAt);
-            return `<div class="report-card" style="${stuck ? 'border-color:#7f1d1d' : ''}">
-              <div class="rc-left">
-                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
-                  <span style="font-weight:700;color:#fbbf24;font-size:14px;font-family:monospace">${escapeHtml(r.code || r.id)}</span>
-                  <span style="background:#1a3a5c;color:#60a5fa;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">${escapeHtml(r.status || '?')}</span>
-                  <span style="background:#3a1a5c;color:#c084fc;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">size ${r.size || '?'}</span>
-                </div>
-                <div style="font-size:11px;color:#888">host: <code style="color:#aaa">${escapeHtml(r.hostName || r.hostId || '?')}</code></div>
-                <div style="font-size:11px;color:${stuck ? '#f87171' : '#666'}">⏱ ${_alFmtAge(r.createdAt)}${stuck ? ' (зависло!)' : ''}</div>
-              </div>
-              <div class="rc-right">
-                <button onclick="alDeleteRoom('${escapeHtml(r.id)}')" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5;padding:5px 10px;font-size:11px;border-radius:6px">🗑 Удалить</button>
-              </div>
-            </div>`;
-          }).join('')
-    );
-
-    const errorsHtml = _arenaLive.errors?.length
-      ? `<div class="reports-empty" style="padding:12px;margin:8px 0 14px;border-color:#7f1d1d;color:#fca5a5">⚠️ Частичная загрузка: ${_arenaLive.errors.map(escapeHtml).join('<br>')}</div>`
-      : '';
-    content.innerHTML = errorsHtml + queueHtml + sessionsHtml + roomsHtml;
-  };
-
-  window.alDeleteQueue = async function alDeleteQueue(uid) {
-    const ok = await showConfirmModal({
-      title: '🗑 Удалить из очереди?',
-      desc: `matchmaking_queue/${escapeHtml(uid)}\nЗависший игрок сможет снова нажать «Найти матч».`,
-      confirmLabel: 'Удалить', danger: true,
-    });
-    if (!ok) return;
-    try {
-      await deleteDoc(doc(db, 'matchmaking_queue', uid));
-      _arenaLive.queue = _arenaLive.queue.filter(q => q.id !== uid);
-      logAction('arena_queue_delete', uid, {});
-      renderArenaLive();
-      showToast('🗑 Запись очереди удалена');
-    } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.alDeleteRoom = async function alDeleteRoom(roomId) {
-    const ok = await showConfirmModal({
-      title: '🗑 Удалить комнату?',
-      desc: `arena_rooms/${escapeHtml(roomId)}\nХост увидит сообщение что комната истекла.`,
-      confirmLabel: 'Удалить', danger: true,
-    });
-    if (!ok) return;
-    try {
-      await deleteDoc(doc(db, 'arena_rooms', roomId));
-      _arenaLive.rooms = _arenaLive.rooms.filter(r => r.id !== roomId);
-      logAction('arena_room_delete', roomId, {});
-      renderArenaLive();
-      showToast('🗑 Комната удалена');
-    } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.alForceFinish = async function alForceFinish(sessionId) {
-    const s = _arenaLive.sessions.find(x => x.id === sessionId);
-    const ok = await showConfirmModal({
-      title: '🛑 Принудительно завершить сессию?',
-      desc: `arena_sessions/${escapeHtml(sessionId)}\nstate → finished, abortedByAdmin=true.\nИгроки будут разлочены, но XP/рейтинг не начислятся (Cloud Function onArenaSessionFinished увидит abortedByAdmin и пропустит).\n\nИспользовать только для зависших матчей старше 10–15 минут.`,
-      confirmLabel: 'Force-finish', danger: true,
-    });
-    if (!ok) return;
-    try {
-      const adminEmail = (auth?.currentUser?.email) || '';
-      await updateDoc(doc(db, 'arena_sessions', sessionId), {
-        state: 'finished',
-        abortedByAdmin: true,
-        adminAbortedBy: adminEmail,
-        adminAbortedAt: new Date().toISOString(),
-      });
-      logAction('arena_force_finish', sessionId, { previousState: s?.state, players: (s?.playerIds || []).join(',') });
-      _arenaLive.sessions = _arenaLive.sessions.filter(x => x.id !== sessionId);
-      renderArenaLive();
-      showToast('🛑 Сессия принудительно завершена');
-    } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
-  };
-
-  window.alCleanupAllStuck = async function alCleanupAllStuck() {
-    const stuckQueue    = _arenaLive.queue.filter(q => _alIsStuck(q.joinedAt));
-    const stuckSessions = _arenaLive.sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt));
-    const stuckRooms    = _arenaLive.rooms.filter(r => _alIsStuck(r.createdAt));
-    const total = stuckQueue.length + stuckSessions.length + stuckRooms.length;
-    if (total === 0) { showToast('Нет зависших для очистки'); return; }
-    const ok = await showConfirmModal({
-      title: '🧹 Очистить все зависшие?',
-      desc: `Будет удалено:\n• ${stuckQueue.length} записей очереди\n• ${stuckSessions.length} сессий (Force-finish)\n• ${stuckRooms.length} комнат\n\nТолько объекты старше 5 минут.`,
-      confirmLabel: `Очистить ${total}`, danger: true,
-    });
-    if (!ok) return;
-    const adminEmail = (auth?.currentUser?.email) || '';
-    let errors = 0;
-    await Promise.all([
-      ...stuckQueue.map(q => deleteDoc(doc(db, 'matchmaking_queue', q.id))
-        .then(() => { logAction('arena_queue_delete', q.id, { bulk: true }); })
-        .catch(() => { errors++; })),
-      ...stuckRooms.map(r => deleteDoc(doc(db, 'arena_rooms', r.id))
-        .then(() => { logAction('arena_room_delete', r.id, { bulk: true }); })
-        .catch(() => { errors++; })),
-      ...stuckSessions.map(s => updateDoc(doc(db, 'arena_sessions', s.id), {
-          state: 'finished', abortedByAdmin: true,
-          adminAbortedBy: adminEmail, adminAbortedAt: new Date().toISOString(),
-        })
-        .then(() => { logAction('arena_force_finish', s.id, { bulk: true, previousState: s.state }); })
-        .catch(() => { errors++; })),
-    ]);
-    const deletedQIds = new Set(stuckQueue.map(q => q.id));
-    const deletedRIds = new Set(stuckRooms.map(r => r.id));
-    const deletedSIds = new Set(stuckSessions.map(s => s.id));
-    _arenaLive.queue    = _arenaLive.queue.filter(q => !deletedQIds.has(q.id));
-    _arenaLive.rooms    = _arenaLive.rooms.filter(r => !deletedRIds.has(r.id));
-    _arenaLive.sessions = _arenaLive.sessions.filter(s => !deletedSIds.has(s.id));
-    renderArenaLive();
-    showToast(errors ? `🧹 Готово, ошибок: ${errors}` : `🧹 Очищено ${total} объектов`);
-  };
-
-  function applyCleanArenaLiveChrome() {
-    const tab = document.getElementById('tab-arena-live');
-    if (!tab) return;
-    const refresh = tab.querySelector('button[onclick*="loadArenaLive"]');
-    if (refresh) {
-      refresh.textContent = 'Refresh';
-      refresh.setAttribute('data-i18n-es', 'Refresh');
-    }
-    const cleanup = tab.querySelector('button[onclick*="alCleanupAllStuck"]');
-    if (cleanup) {
-      cleanup.textContent = 'Clean stuck';
-      cleanup.setAttribute('data-i18n-es', 'Clean stuck');
-    }
-    const stuckLabel = tab.querySelector('label[style*="cursor:pointer"] span');
-    if (stuckLabel) stuckLabel.textContent = 'Only stuck (>5 min)';
-    const info = tab.querySelector('p');
-    if (info) {
-      info.innerHTML = 'Sources: <code>matchmaking_queue</code>, <code>arena_sessions</code>, <code>arena_rooms</code>, and <code>app_meta/matchmaking_searching</code>. Use cleanup only for objects that are clearly stuck.';
-    }
-    const empty = document.querySelector('#al-content .reports-empty');
-    if (empty && /Ã|Ð|Abre/.test(empty.textContent || '')) empty.textContent = 'Open the tab to load arena live state.';
-  }
-
-  window.loadArenaLive = async function loadArenaLive(force) {
-    applyCleanArenaLiveChrome();
-    if (!force && window._arenaLiveLoaded) return;
-    const content = document.getElementById('al-content');
-    if (!content) return;
-    content.innerHTML = '<div class="reports-empty">Loading arena live state...</div>';
-    try {
-      const adminEmail = (auth?.currentUser?.email) || '';
-      const errors = [];
-      const [queueSnap, sessionsSnap, roomsSnap, metaSnap] = await Promise.all([
-        _alSafeGetDocs('matchmaking_queue', query(collection(db, 'matchmaking_queue'), limit(200)), errors),
-        _alSafeGetDocs('arena_sessions', query(collection(db, 'arena_sessions'), limit(300)), errors),
-        _alSafeGetDocs('arena_rooms', query(collection(db, 'arena_rooms'), limit(150)), errors),
-        _alSafeGetDoc('app_meta/matchmaking_searching', doc(db, 'app_meta', 'matchmaking_searching'), errors),
-      ]);
-      _arenaLive.queue = queueSnap.docs.map(d => ({ id: d.id, ...(d.data() || {}) }));
-      _arenaLive.sessions = sessionsSnap.docs
-        .map(d => ({ id: d.id, ...(d.data() || {}) }))
-        .filter(s => s.state !== 'finished' && s.state !== 'aborted');
-      _arenaLive.rooms = roomsSnap.docs
-        .map(d => ({ id: d.id, ...(d.data() || {}) }))
-        .filter(r => r.status === 'waiting');
-      _arenaLive.metaCount = metaSnap?.exists?.() ? (metaSnap.data()?.count ?? 0) : 0;
-      _arenaLive.errors = errors;
-      window._arenaLiveLoaded = true;
-      renderArenaLive();
-      _alRunCleanupInBackground(adminEmail);
-    } catch (e) {
-      content.innerHTML = `<div class="reports-empty">Error: ${escapeHtml(e.message)}</div>`;
-    }
-  };
-
-  // Auto-refresh ("Live") for arena-live: polls every 5s while enabled and the
-  // tab is active. Cleared on toggle-off and when leaving the tab.
-  window.arenaLiveToggleAuto = function(on) {
-    if (window._arenaLiveAutoTimer) { clearInterval(window._arenaLiveAutoTimer); window._arenaLiveAutoTimer = null; }
-    if (on) {
-      window._arenaLiveAutoTimer = setInterval(() => {
-        const tabActive = document.getElementById('tab-arena-live')?.classList.contains('active');
-        if (!tabActive) { window.arenaLiveStopAuto(); const cb = document.getElementById('al-live'); if (cb) cb.checked = false; return; }
-        if (typeof loadArenaLive === 'function') loadArenaLive(true);
-      }, 5000);
-    }
-  };
-  window.arenaLiveStopAuto = function() {
-    if (window._arenaLiveAutoTimer) { clearInterval(window._arenaLiveAutoTimer); window._arenaLiveAutoTimer = null; }
-  };
-
-  window.renderArenaLive = function renderArenaLive() {
-    applyCleanArenaLiveChrome();
-    const content = document.getElementById('al-content');
-    const cnt = document.getElementById('al-count');
-    const summary = document.getElementById('al-summary');
-    const metaEl = document.getElementById('al-meta-count');
-    const onlyStuck = !!document.getElementById('al-only-stuck')?.checked;
-    if (!content || !summary) return;
-    if (metaEl) metaEl.textContent = String(_arenaLive.metaCount);
-
-    let queue = _arenaLive.queue.slice();
-    let sessions = _arenaLive.sessions.slice();
-    let rooms = _arenaLive.rooms.slice();
-    if (onlyStuck) {
-      queue = queue.filter(q => _alIsStuck(q.joinedAt));
-      sessions = sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt));
-      rooms = rooms.filter(r => _alIsStuck(r.createdAt));
-    }
-    queue.sort((a, b) => (Number(a.joinedAt) || 0) - (Number(b.joinedAt) || 0));
-    sessions.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
-    rooms.sort((a, b) => (Number(b.createdAt) || 0) - (Number(a.createdAt) || 0));
-
-    const stuckCount =
-      _arenaLive.queue.filter(q => _alIsStuck(q.joinedAt)).length +
-      _arenaLive.sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt)).length +
-      _arenaLive.rooms.filter(r => _alIsStuck(r.createdAt)).length;
-
-    summary.innerHTML = [
-      `<div class="stat-card"><div class="label">Queue</div><div class="value">${_arenaLive.queue.length}</div></div>`,
-      `<div class="stat-card"><div class="label">Active sessions</div><div class="value">${_arenaLive.sessions.length}</div></div>`,
-      `<div class="stat-card"><div class="label">Waiting rooms</div><div class="value">${_arenaLive.rooms.length}</div></div>`,
-      `<div class="stat-card"><div class="label">App meta count</div><div class="value">${_arenaLive.metaCount}</div></div>`,
-      `<div class="stat-card"><div class="label">Stuck over 5m</div><div class="value">${stuckCount}</div></div>`,
-    ].join('');
-    if (cnt) cnt.textContent = `${queue.length} queue / ${sessions.length} sessions / ${rooms.length} rooms`;
-
-    const section = (title, count, body) => `<div class="arena-live-section-title">${title} (${count})</div>${body}`;
-    const empty = text => `<div class="reports-empty" style="padding:14px">${text}</div>`;
-    const stuckPill = stuck => stuck ? '<span class="arena-pill is-stuck">stuck</span>' : '';
-
-    const queueHtml = section('Matchmaking queue', queue.length, queue.length ? queue.map(q => {
-      const stuck = _alIsStuck(q.joinedAt);
-      return `<div class="report-card arena-live-card ${stuck ? 'is-stuck' : ''}">
-        <div class="rc-left">
-          <div class="arena-live-title">
-            <span>${escapeHtml(q.displayName || 'Unknown user')}</span>
-            <span class="arena-pill">rank ${escapeHtml(q.rankTier || '?')}${q.rankIndex !== undefined ? ' #' + escapeHtml(String(q.rankIndex)) : ''}</span>
-            <span class="arena-pill">size ${escapeHtml(String(q.size || '?'))}</span>
-            ${q.sessionId ? `<span class="arena-pill">matched</span>` : ''}
-            ${stuckPill(stuck)}
-          </div>
-          <div class="arena-live-meta"><code>${escapeHtml(q.id)}</code>${q.sessionId ? ` - session: <code>${escapeHtml(q.sessionId)}</code>` : ''}</div>
-          <div class="arena-live-sub">In queue: ${_alFmtAge(q.joinedAt)}</div>
-        </div>
-        <div class="rc-right arena-live-actions">
-          <button type="button" onclick="alDeleteQueue('${escapeHtml(q.id)}')">Remove</button>
-          <button type="button" onclick="openDetailFromBanList('${escapeHtml(q.id)}')">Profile</button>
-        </div>
-      </div>`;
-    }).join('') : empty('Queue is empty.'));
-
-    const sessionsHtml = section('Active sessions', sessions.length, sessions.length ? sessions.map(s => {
-      const refTs = s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt;
-      const stuck = _alIsStuck(refTs);
-      return `<div class="report-card arena-live-card ${stuck ? 'is-stuck' : ''}">
-        <div class="rc-left">
-          <div class="arena-live-title">
-            <span><code>${escapeHtml(s.id.slice(0, 24))}</code></span>
-            <span class="arena-pill">${escapeHtml(s.state || 'unknown')}</span>
-            <span class="arena-pill">${escapeHtml(s.type || 'session')}</span>
-            <span class="arena-pill">size ${escapeHtml(String(s.size || '?'))}</span>
-            <span class="arena-pill">Q ${escapeHtml(String(s.currentQuestionIndex ?? 0))}/${escapeHtml(String((s.questions || []).length))}</span>
-            ${stuckPill(stuck)}
-          </div>
-          <div class="arena-live-meta">Players: ${(s.playerIds || []).map(p => `<code>${escapeHtml(String(p).slice(0, 10))}</code>`).join(', ') || '-'}</div>
-          <div class="arena-live-sub">Current state age: ${_alFmtAge(refTs)} - created: ${_alFmtAge(s.createdAt)}</div>
-        </div>
-        <div class="rc-right arena-live-actions">
-          <button type="button" onclick="alForceFinish('${escapeHtml(s.id)}')">Force finish</button>
-        </div>
-      </div>`;
-    }).join('') : empty('No active sessions.'));
-
-    const roomsHtml = section('Private rooms', rooms.length, rooms.length ? rooms.map(r => {
-      const stuck = _alIsStuck(r.createdAt);
-      return `<div class="report-card arena-live-card ${stuck ? 'is-stuck' : ''}">
-        <div class="rc-left">
-          <div class="arena-live-title">
-            <span><code>${escapeHtml(r.code || r.id)}</code></span>
-            <span class="arena-pill">${escapeHtml(r.status || 'unknown')}</span>
-            <span class="arena-pill">size ${escapeHtml(String(r.size || '?'))}</span>
-            ${stuckPill(stuck)}
-          </div>
-          <div class="arena-live-meta">Host: <code>${escapeHtml(r.hostName || r.hostId || '?')}</code></div>
-          <div class="arena-live-sub">Created: ${_alFmtAge(r.createdAt)}</div>
-        </div>
-        <div class="rc-right arena-live-actions">
-          <button type="button" onclick="alDeleteRoom('${escapeHtml(r.id)}')">Remove</button>
-        </div>
-      </div>`;
-    }).join('') : empty('No waiting private rooms.'));
-
-    const errorsHtml = _arenaLive.errors?.length
-      ? `<div class="reports-empty" style="padding:12px;margin:8px 0 14px">Partial load: ${_arenaLive.errors.map(escapeHtml).join('<br>')}</div>`
-      : '';
-    content.innerHTML = errorsHtml + queueHtml + sessionsHtml + roomsHtml;
-  };
-
-  window.alDeleteQueue = async function alDeleteQueue(uid) {
-    const ok = await showConfirmModal({
-      title: 'Remove from matchmaking queue?',
-      desc: `matchmaking_queue/${escapeHtml(uid)}\nThe user can press Find match again after this queue entry is removed.`,
-      confirmLabel: 'Remove',
-      danger: true,
-    });
-    if (!ok) return;
-    try {
-      await deleteDoc(doc(db, 'matchmaking_queue', uid));
-      _arenaLive.queue = _arenaLive.queue.filter(q => q.id !== uid);
-      logAction('arena_queue_delete', uid, {});
-      renderArenaLive();
-      showToast('Queue entry removed');
-    } catch (e) { showToast('Error: ' + e.message, 'err'); }
-  };
-
-  window.alDeleteRoom = async function alDeleteRoom(roomId) {
-    const ok = await showConfirmModal({
-      title: 'Remove waiting arena room?',
-      desc: `arena_rooms/${escapeHtml(roomId)}\nUse this only for stale waiting rooms.`,
-      confirmLabel: 'Remove',
-      danger: true,
-    });
-    if (!ok) return;
-    try {
-      await deleteDoc(doc(db, 'arena_rooms', roomId));
-      _arenaLive.rooms = _arenaLive.rooms.filter(r => r.id !== roomId);
-      logAction('arena_room_delete', roomId, {});
-      renderArenaLive();
-      showToast('Arena room removed');
-    } catch (e) { showToast('Error: ' + e.message, 'err'); }
-  };
-
-  window.alForceFinish = async function alForceFinish(sessionId) {
-    const s = _arenaLive.sessions.find(x => x.id === sessionId);
-    const ok = await showConfirmModal({
-      title: 'Force finish arena session?',
-      desc: `arena_sessions/${escapeHtml(sessionId)}\nSets state to finished and abortedByAdmin=true. Use only for clearly stuck sessions; players unlock and no XP/rating is awarded.`,
-      confirmLabel: 'Force finish',
-      danger: true,
-    });
-    if (!ok) return;
-    try {
-      const adminEmail = (auth?.currentUser?.email) || '';
-      await updateDoc(doc(db, 'arena_sessions', sessionId), {
-        state: 'finished',
-        abortedByAdmin: true,
-        adminAbortedBy: adminEmail,
-        adminAbortedAt: new Date().toISOString(),
-      });
-      logAction('arena_force_finish', sessionId, { previousState: s?.state, players: (s?.playerIds || []).join(',') });
-      _arenaLive.sessions = _arenaLive.sessions.filter(x => x.id !== sessionId);
-      renderArenaLive();
-      showToast('Arena session force-finished');
-    } catch (e) { showToast('Error: ' + e.message, 'err'); }
-  };
-
-  window.alCleanupAllStuck = async function alCleanupAllStuck() {
-    const stuckQueue = _arenaLive.queue.filter(q => _alIsStuck(q.joinedAt));
-    const stuckSessions = _arenaLive.sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt));
-    const stuckRooms = _arenaLive.rooms.filter(r => _alIsStuck(r.createdAt));
-    const total = stuckQueue.length + stuckSessions.length + stuckRooms.length;
-    if (total === 0) { showToast('No stuck arena objects to clean'); return; }
-    const ok = await showConfirmModal({
-      title: 'Clean all stuck arena objects?',
-      desc: `This will remove ${stuckQueue.length} queue entries, force-finish ${stuckSessions.length} sessions, and remove ${stuckRooms.length} waiting rooms. Only objects older than 5 minutes are included.`,
-      confirmLabel: `Clean ${total}`,
-      danger: true,
-    });
-    if (!ok) return;
-    const adminEmail = (auth?.currentUser?.email) || '';
-    let errors = 0;
-    await Promise.all([
-      ...stuckQueue.map(q => deleteDoc(doc(db, 'matchmaking_queue', q.id)).then(() => logAction('arena_queue_delete', q.id, { bulk: true })).catch(() => { errors++; })),
-      ...stuckRooms.map(r => deleteDoc(doc(db, 'arena_rooms', r.id)).then(() => logAction('arena_room_delete', r.id, { bulk: true })).catch(() => { errors++; })),
-      ...stuckSessions.map(s => updateDoc(doc(db, 'arena_sessions', s.id), {
-        state: 'finished', abortedByAdmin: true, adminAbortedBy: adminEmail, adminAbortedAt: new Date().toISOString(),
-      }).then(() => logAction('arena_force_finish', s.id, { bulk: true, previousState: s.state })).catch(() => { errors++; })),
-    ]);
-    const deletedQIds = new Set(stuckQueue.map(q => q.id));
-    const deletedRIds = new Set(stuckRooms.map(r => r.id));
-    const deletedSIds = new Set(stuckSessions.map(s => s.id));
-    _arenaLive.queue = _arenaLive.queue.filter(q => !deletedQIds.has(q.id));
-    _arenaLive.rooms = _arenaLive.rooms.filter(r => !deletedRIds.has(r.id));
-    _arenaLive.sessions = _arenaLive.sessions.filter(s => !deletedSIds.has(s.id));
-    renderArenaLive();
-    showToast(errors ? `Arena cleanup finished with ${errors} errors` : `Cleaned ${total} arena objects`);
-  };
-
-  // ── User daily analytics modal ────────────────────────────────────────────
   window.openUserAnalytics = async function openUserAnalytics(uid, userName) {
     const overlay = document.getElementById('user-analytics-overlay');
     const title   = document.getElementById('ua-title');
@@ -37107,259 +34984,6 @@
   }
 
   enableLocalAdminVisualTest();
-
-  // ── Arena Rooms Tab ─────────────────────────────────────────────────────────
-  {
-    let _arRooms = [];
-
-    function arFmt(ts) {
-      if (!ts) return '—';
-      const t = typeof ts === 'number' ? ts : Date.parse(ts);
-      if (!t || isNaN(t)) return '—';
-      const ms = Date.now() - t;
-      if (ms < 0) return 'только что';
-      if (ms < 60_000) return Math.round(ms / 1000) + 'с назад';
-      if (ms < 3_600_000) return Math.round(ms / 60_000) + 'м назад';
-      if (ms < 86_400_000) return Math.round(ms / 3_600_000) + 'ч назад';
-      return Math.round(ms / 86_400_000) + 'д назад';
-    }
-
-    function arIsExpired(room) {
-      const exp = Number(room.expiresAt) || 0;
-      return exp > 0 && exp < Date.now();
-    }
-
-    window.loadArenaRooms = async function loadArenaRooms(force) {
-      if (!force && window._arenaRoomsLoaded) return;
-      const content = document.getElementById('ar-content');
-      if (!content) return;
-      content.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
-      try {
-        const snap = await getDocs(query(collection(db, 'arena_rooms_live'), orderBy('createdAt', 'desc'), limit(200)));
-        _arRooms = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        window._arenaRoomsLoaded = true;
-        renderArenaRooms();
-      } catch (e) {
-        content.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
-      }
-    };
-
-    window.renderArenaRooms = function renderArenaRooms() {
-      const content = document.getElementById('ar-content');
-      const cnt = document.getElementById('arr-count');
-      const summary = document.getElementById('arr-summary');
-      const search = document.getElementById('arr-search')?.value || '';
-      const onlyActive = !!document.getElementById('arr-only-active')?.checked;
-
-      const q = search.trim().toLowerCase();
-      const list = _arRooms.filter(r => {
-        if (onlyActive && (r.status === 'closed' || arIsExpired(r))) return false;
-        if (!q) return true;
-        return (r.code || '').toLowerCase().includes(q)
-          || (r.ownerName || '').toLowerCase().includes(q)
-          || (r.title || '').toLowerCase().includes(q)
-          || (r.ownerUid || '').toLowerCase().includes(q);
-      });
-
-      const total = _arRooms.length;
-      const active = _arRooms.filter(r => r.status !== 'closed' && !arIsExpired(r)).length;
-      const closed = _arRooms.filter(r => r.status === 'closed').length;
-      const expired = _arRooms.filter(r => arIsExpired(r) && r.status !== 'closed').length;
-
-      if (summary) summary.innerHTML = [
-        `<div class="stat-card" style="border-color:#3a2a6e"><div class="label">Всего</div><div class="value" style="color:#a78bfa">${total}</div></div>`,
-        `<div class="stat-card" style="border-color:#14532d"><div class="label">✅ Активных</div><div class="value" style="color:#4ade80">${active}</div></div>`,
-        `<div class="stat-card" style="border-color:#7f1d1d"><div class="label">🚫 Закрытых</div><div class="value" style="color:#f87171">${closed}</div></div>`,
-        `<div class="stat-card" style="border-color:#3a2a00"><div class="label">⏳ Истёкших</div><div class="value" style="color:#fbbf24">${expired}</div></div>`,
-      ].join('');
-
-      if (cnt) cnt.textContent = `${list.length} комнат`;
-
-      if (!list.length) {
-        content.innerHTML = '<div class="reports-empty">Нет комнат по заданным фильтрам.</div>';
-        return;
-      }
-
-      content.innerHTML = list.map(r => {
-        const isActive = r.status !== 'closed' && !arIsExpired(r);
-        const statusColor = r.status === 'closed' ? '#f87171' : arIsExpired(r) ? '#fbbf24' : '#4ade80';
-        const statusLabel = r.status === 'closed' ? '🚫 Закрыта' : arIsExpired(r) ? '⏳ Истекла' : '✅ Активна';
-        const exp = Number(r.expiresAt) || 0;
-        const expStr = exp ? new Date(exp).toLocaleString('ru') : '—';
-        const code = escapeHtml(r.code || r.id);
-        return `<div class="report-card" style="${isActive ? '' : 'opacity:0.65;'}">
-          <div class="rc-left" style="flex:1">
-            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">
-              <span style="font-weight:800;color:#fff;font-size:14px;font-family:monospace">${code}</span>
-              <span style="background:${isActive ? '#14532d' : '#2a1a1a'};color:${statusColor};padding:2px 8px;border-radius:4px;font-size:11px;font-weight:700">${statusLabel}</span>
-              <span style="font-size:12px;color:#888">${arFmt(r.createdAt)}</span>
-            </div>
-            <div style="font-size:13px;color:#ccc;margin-bottom:4px">
-              <strong>Хост:</strong> ${escapeHtml(r.ownerName || '?')}
-              <span style="font-family:monospace;color:#666;font-size:11px">${escapeHtml(r.ownerUid || '')}</span>
-            </div>
-            <div style="font-size:12px;color:#888">
-              ${r.title ? `<strong>Название:</strong> ${escapeHtml(r.title)} · ` : ''}
-              <strong>Сыграно:</strong> ${r.playCount || 0} · <strong>Истекает:</strong> ${expStr}
-            </div>
-          </div>
-          <div class="rc-actions">
-            ${isActive ? `<button type="button" onclick="arCloseRoom(${JSON.stringify(r.code || r.id)})" style="background:#7f1d1d;border:1px solid #f87171;color:#fca5a5;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-weight:700">🚫 Закрыть</button>` : ''}
-            <button type="button" onclick="arDeleteRoom(${JSON.stringify(r.id)})" style="background:#2a1a1a;border:1px solid #555;color:#f87171;border-radius:8px;padding:7px 14px;font-size:12px;cursor:pointer;font-weight:600;margin-left:6px">🗑 Удалить</button>
-          </div>
-        </div>`;
-      }).join('');
-    };
-
-  }
-
-    function applyCleanArenaRoomsChrome() {
-      const tab = document.getElementById('tab-arena-rooms');
-      if (!tab) return;
-      const refresh = tab.querySelector('button[onclick*="loadArenaRooms"]');
-      if (refresh) {
-        refresh.textContent = 'Refresh';
-        refresh.setAttribute('data-i18n-es', 'Refresh');
-      }
-      const search = document.getElementById('arr-search');
-      if (search) {
-        search.placeholder = 'Code, host, room title...';
-        search.setAttribute('data-i18n-es', 'Code, host, room title...');
-      }
-      const activeLabel = tab.querySelector('label[style*="cursor:pointer"] span');
-      if (activeLabel) activeLabel.textContent = 'Active only';
-      const info = tab.querySelector('p');
-      if (info) {
-        info.innerHTML = 'Source: <code>arena_rooms_live</code>. Closing sets the room to closed and deactivates active members in <code>arena_room_members</code>. Delete removes the room document.';
-      }
-      const empty = document.querySelector('#ar-content .reports-empty');
-      if (empty && /Ã|Ð|Abre/.test(empty.textContent || '')) empty.textContent = 'Open the tab to load arena rooms.';
-    }
-
-    window.loadArenaRooms = async function loadArenaRooms(force) {
-      applyCleanArenaRoomsChrome();
-      if (!force && window._arenaRoomsLoaded) return;
-      const content = document.getElementById('ar-content');
-      if (!content) return;
-      content.innerHTML = '<div class="reports-empty">Loading arena rooms...</div>';
-      try {
-        const snap = await getDocs(query(collection(db, 'arena_rooms_live'), orderBy('createdAt', 'desc'), limit(200)));
-        _arRooms = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-        window._arenaRoomsLoaded = true;
-        renderArenaRooms();
-      } catch (e) {
-        content.innerHTML = `<div class="reports-empty">Error: ${escapeHtml(e.message)}</div>`;
-      }
-    };
-
-    window.renderArenaRooms = function renderArenaRooms() {
-      applyCleanArenaRoomsChrome();
-      const content = document.getElementById('ar-content');
-      const cnt = document.getElementById('arr-count');
-      const summary = document.getElementById('arr-summary');
-      const search = document.getElementById('arr-search')?.value || '';
-      const onlyActive = !!document.getElementById('arr-only-active')?.checked;
-      if (!content) return;
-
-      const q = search.trim().toLowerCase();
-      const list = _arRooms.filter(r => {
-        if (onlyActive && (r.status === 'closed' || arIsExpired(r))) return false;
-        if (!q) return true;
-        return (r.code || '').toLowerCase().includes(q)
-          || (r.ownerName || '').toLowerCase().includes(q)
-          || (r.title || '').toLowerCase().includes(q)
-          || (r.ownerUid || '').toLowerCase().includes(q);
-      });
-
-      const total = _arRooms.length;
-      const active = _arRooms.filter(r => r.status !== 'closed' && !arIsExpired(r)).length;
-      const closed = _arRooms.filter(r => r.status === 'closed').length;
-      const expired = _arRooms.filter(r => arIsExpired(r) && r.status !== 'closed').length;
-
-      if (summary) summary.innerHTML = [
-        `<div class="stat-card"><div class="label">Total rooms</div><div class="value">${total}</div></div>`,
-        `<div class="stat-card"><div class="label">Active</div><div class="value">${active}</div></div>`,
-        `<div class="stat-card"><div class="label">Closed</div><div class="value">${closed}</div></div>`,
-        `<div class="stat-card"><div class="label">Expired</div><div class="value">${expired}</div></div>`,
-      ].join('');
-
-      if (cnt) cnt.textContent = `${list.length} rooms`;
-      if (!list.length) {
-        content.innerHTML = '<div class="reports-empty">No arena rooms for this filter.</div>';
-        return;
-      }
-
-      content.innerHTML = list.map(r => {
-        const isActive = r.status !== 'closed' && !arIsExpired(r);
-        const statusLabel = r.status === 'closed' ? 'closed' : arIsExpired(r) ? 'expired' : 'active';
-        const exp = Number(r.expiresAt) || 0;
-        const expStr = exp ? new Date(exp).toLocaleString('en-US') : '-';
-        const code = escapeHtml(r.code || r.id);
-        return `<div class="report-card arena-room-card ${isActive ? '' : 'is-muted'}">
-          <div class="rc-left">
-            <div class="arena-room-title">
-              <code>${code}</code>
-              <span class="arena-room-pill ${isActive ? 'is-active' : ''}">${statusLabel}</span>
-              <span class="arena-room-pill">${Number(r.playCount) || 0} plays</span>
-            </div>
-            <div class="arena-room-meta">
-              Host: ${escapeHtml(r.ownerName || 'Unknown')} ${r.ownerUid ? `<code>${escapeHtml(r.ownerUid)}</code>` : ''}
-            </div>
-            <div class="arena-room-sub">
-              ${r.title ? `Title: ${escapeHtml(r.title)} - ` : ''}Created: ${arFmt(r.createdAt)} - Expires: ${escapeHtml(expStr)}
-            </div>
-          </div>
-          <div class="rc-right arena-room-actions">
-            <button type="button" onclick="arViewMembers(${JSON.stringify(r.id)})">👥 Участники</button>
-            ${isActive ? `<button type="button" onclick="arCloseRoom(${JSON.stringify(r.code || r.id)})">Close</button>` : ''}
-            <button type="button" onclick="arDeleteRoom(${JSON.stringify(r.id)})">Delete</button>
-          </div>
-        </div>`;
-      }).join('');
-    };
-
-    window.arCloseRoom = async function arCloseRoom(code) {
-      const ok = await showConfirmModal({
-        title: 'Close arena room?',
-        desc: `Room: ${code}\nThis sets status=closed and deactivates active room members.`,
-        confirmLabel: 'Close room',
-        danger: true,
-      });
-      if (!ok) return;
-      try {
-        await updateDoc(doc(db, 'arena_rooms_live', code), { status: 'closed', closedAt: Date.now() });
-        const membSnap = await getDocs(query(collection(db, 'arena_room_members'), where('code', '==', code), where('active', '==', true)));
-        if (!membSnap.empty) {
-          const b = writeBatch(db);
-          membSnap.docs.forEach(d => b.update(d.ref, { active: false, ready: false }));
-          await b.commit();
-        }
-        showToast(`Arena room ${code} closed`, 'success');
-        const room = _arRooms.find(r => r.code === code || r.id === code);
-        if (room) room.status = 'closed';
-        renderArenaRooms();
-      } catch (e) {
-        showToast(`Error: ${e.message}`, 'err');
-      }
-    };
-
-    window.arDeleteRoom = async function arDeleteRoom(id) {
-      const ok = await showConfirmModal({
-        title: 'Delete arena room?',
-        desc: `arena_rooms_live/${id}\nThis removes the room document. Use only for stale or invalid rooms.`,
-        confirmLabel: 'Delete',
-        danger: true,
-      });
-      if (!ok) return;
-      try {
-        await deleteDoc(doc(db, 'arena_rooms_live', id));
-        _arRooms = _arRooms.filter(r => r.id !== id);
-        showToast('Arena room deleted', 'success');
-        renderArenaRooms();
-      } catch (e) {
-        showToast(`Error: ${e.message}`, 'err');
-      }
-    };
 
   // init: onAuthStateChanged + startAdminApp
 </script>

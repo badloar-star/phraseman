@@ -88,7 +88,7 @@ function usageFromDoc(collectionName, feature, snap) {
     const model = text(data.model, 80) || 'gpt-4o-mini';
     // Разные фичи пишут токены в РАЗНЫХ полях. Три схемы:
     //  A) promptTokens/completionTokens        — dialog, weekly, stats, mistake, speaking, league-cron
-    //  B) genPromptTokens/genCompletionTokens + judgePromptTokens/judgeCompletionTokens — explain, choice, quiz, compass
+    //  B) genPromptTokens/genCompletionTokens + judgePromptTokens/judgeCompletionTokens — explain, choice, compass
     // Суммируем все варианты — отсутствующие поля дают 0, поэтому одна формула
     // корректно покрывает все 11 billing-коллекций без спец-веток на коллекцию.
     const inputTokens = num(data.promptTokens) + num(data.genPromptTokens) + num(data.judgePromptTokens);
@@ -226,7 +226,6 @@ exports.openAiBudgetDashboard = (0, https_1.onCall)({ region: REGION, enforceApp
         { collection: 'compass_billing', feature: 'Компас (daily, legacy)' },
         { collection: 'league_compass_daily_billing', feature: 'Компас лиги (cron)' },
         { collection: 'choice_explain_billing', feature: 'Объяснение выбора' },
-        { collection: 'quiz_explain_billing', feature: 'Объяснение квиза' },
         { collection: 'mistake_explain_billing', feature: 'Объяснение ошибки' },
         { collection: 'speaking_club_billing', feature: 'Разговорный клуб' },
     ];

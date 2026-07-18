@@ -16,6 +16,18 @@ const SERVER_ONLY_COLLECTIONS = [
   'agent_office_control',
   'agent_telegram_tokens',
   'agent_observation_receipts',
+  'agent_manager_agents',
+  'agent_manager_tasks',
+  'agent_manager_task_events',
+  'agent_manager_approvals',
+  'agent_manager_execution_jobs',
+  'agent_manager_inbox_links',
+  'agent_manager_telegram_tokens',
+  'agent_manager_telegram_publication_receipts',
+  'agent_manager_local_runner_pairings',
+  'agent_manager_local_runner_capabilities',
+  'agent_manager_local_runner_leases',
+  'agent_manager_support_draft_operations',
 ] as const;
 
 describe('Agent Office Firestore client denial contract', () => {

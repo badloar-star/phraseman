@@ -13,9 +13,9 @@ const item = (index: number) => ({ id: `q${index}`, prompt: `Question ${index}?`
 
 test('concurrent edit replay creates one immutable revision, correction event and audit', async () => {
   const requestId = `edit-race-${process.pid}`;
-  const stageId = `${requestId}:quiz_questions:topic-1:r1`;
-  const baseArtifact = { stage: 'quiz_questions', items: Array.from({ length: 10 }, (_, index) => item(index)) };
-  const base = { stageId, requestId, kind: 'quiz_questions' as const, scopeId: 'topic-1', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', count: 10, revision: 1, artifactId: `artifact:${stageId}`, state: 'approved', objectPath: 'base.json', objectGeneration: '1', contentHash: 'a'.repeat(64), qaReceipt: { status: 'passed' }, groundingReceipt: { hash: 'g' }, judgeReceipt: { status: 'advisory_pass', contentHash: 'a'.repeat(64) }, judgeUpdatedAt: 123 };
+  const stageId = `${requestId}:challenge_questions:topic-1:r1`;
+  const baseArtifact = { stage: 'challenge_questions', items: Array.from({ length: 10 }, (_, index) => item(index)) };
+  const base = { stageId, requestId, kind: 'challenge_questions' as const, scopeId: 'topic-1', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', count: 10, revision: 1, artifactId: `artifact:${stageId}`, state: 'approved', objectPath: 'base.json', objectGeneration: '1', contentHash: 'a'.repeat(64), qaReceipt: { status: 'passed' }, groundingReceipt: { hash: 'g' }, judgeReceipt: { status: 'advisory_pass', contentHash: 'a'.repeat(64) }, judgeUpdatedAt: 123 };
   await db.collection('content_factory_stages').doc(stageId).set(base);
   const fingerprint = contentStageReviewFingerprint(stageId, base);
   const candidate = structuredClone(baseArtifact); candidate.items[0].prompt = 'Corrected question?';

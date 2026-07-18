@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.REVENUECAT_GRACE_MS = exports.ANALYTICS_DEFINITION_VERSION = void 0;
+exports.assessPurchaseSignalReconciliation = assessPurchaseSignalReconciliation;
+exports.assessFunnelIntegrity = assessFunnelIntegrity;
+exports.aggregateAnalyticsConsent = aggregateAnalyticsConsent;
 exports.classifyActiveAccess = classifyActiveAccess;
 exports.aggregateActiveAccess = aggregateActiveAccess;
 exports.aggregateRevenueCatPeriod = aggregateRevenueCatPeriod;
@@ -8,6 +11,52 @@ exports.aggregateShardPeriod = aggregateShardPeriod;
 exports.aggregateFunnelSignals = aggregateFunnelSignals;
 exports.ANALYTICS_DEFINITION_VERSION = 'admin_v2_trustworthy_v1';
 exports.REVENUECAT_GRACE_MS = 72 * 60 * 60 * 1000;
+/**
+ * These sources have intentionally different coverage: client funnel signals
+ * require analytics consent, while RevenueCat events are store confirmations.
+ * Keep both visible for delivery diagnostics, never turn their ratio into a
+ * conversion or a purchase attribution claim.
+ */
+function assessPurchaseSignalReconciliation(input) {
+    const sourceIncomplete = ['error', 'partial', 'unavailable'].includes(input.clientSourceState)
+        || ['error', 'partial', 'unavailable'].includes(input.storeSourceState);
+    return {
+        status: sourceIncomplete ? 'unavailable' : 'observational',
+        reason: sourceIncomplete ? 'source_incomplete_or_unavailable' : 'different_coverage_and_identity',
+        clientPurchaseSignals: input.clientPurchaseSignals,
+        confirmedPurchaseEvents: input.confirmedPurchaseEvents,
+        exactAttributionAvailable: false,
+        conversionRate: null,
+    };
+}
+/**
+ * Keeps an aggregate funnel and its day-series honest. The figures are only
+ * decision-ready when they describe the same non-error source window.
+ */
+function assessFunnelIntegrity(input) {
+    const aggregateTotal = input.aggregate.shown
+        + input.aggregate.ctaClick
+        + input.aggregate.trialStarted
+        + input.aggregate.purchaseCompleted;
+    const seriesValues = [
+        input.series.shown,
+        input.series.ctaClick,
+        input.series.trialStarted,
+        input.series.purchaseCompleted,
+    ];
+    const sourceUnavailable = input.sourceState === 'error'
+        || input.sourceState === 'partial'
+        || input.sourceState === 'unavailable'
+        || seriesValues.some((value) => value === null);
+    if (sourceUnavailable) {
+        return { status: 'unavailable', reason: 'source_unavailable', aggregateTotal, seriesTotal: null };
+    }
+    const seriesTotal = seriesValues.reduce((sum, value) => sum + (value ?? 0), 0);
+    if (aggregateTotal !== seriesTotal) {
+        return { status: 'blocked', reason: 'aggregate_series_mismatch', aggregateTotal, seriesTotal };
+    }
+    return { status: 'ready', reason: null, aggregateTotal, seriesTotal };
+}
 function text(value) {
     return String(value ?? '').trim();
 }
@@ -37,6 +86,34 @@ function trueFlag(value) {
 }
 function falseFlag(value) {
     return ['false', '0', 'no'].includes(lower(value));
+}
+function aggregateAnalyticsConsent(rows) {
+    let granted = 0;
+    let denied = 0;
+    let unset = 0;
+    let hiddenUsersExcluded = 0;
+    for (const row of rows) {
+        if (row.identityHidden === true) {
+            hiddenUsersExcluded += 1;
+            continue;
+        }
+        const consent = lower(row.analyticsConsent);
+        if (consent === 'granted')
+            granted += 1;
+        else if (consent === 'denied')
+            denied += 1;
+        else
+            unset += 1;
+    }
+    const observedUsers = granted + denied + unset;
+    return {
+        observedUsers,
+        granted,
+        denied,
+        unset,
+        grantedRate: observedUsers > 0 ? granted / observedUsers : null,
+        hiddenUsersExcluded,
+    };
 }
 function activeUntil(value, nowMs) {
     const until = millis(value);
@@ -161,6 +238,8 @@ function aggregateRevenueCatPeriod(rows) {
     const excluded = { sandbox: 0, unknownEnvironment: 0, duplicates: 0 };
     let productionEvents = 0;
     let newPurchases = 0;
+    let initialSubscriptionEvents = 0;
+    let nonRenewingPurchaseEvents = 0;
     let renewals = 0;
     let trialStarts = 0;
     let refunds = 0;
@@ -185,6 +264,10 @@ function aggregateRevenueCatPeriod(rows) {
         const eventType = upper(row.eventType) || 'UNKNOWN';
         const periodType = upper(row.periodType);
         byType[eventType] = (byType[eventType] ?? 0) + 1;
+        if (eventType === 'INITIAL_PURCHASE')
+            initialSubscriptionEvents += 1;
+        if (eventType === 'NON_RENEWING_PURCHASE')
+            nonRenewingPurchaseEvents += 1;
         if (eventType === 'INITIAL_PURCHASE' || eventType === 'NON_RENEWING_PURCHASE')
             newPurchases += 1;
         if (eventType === 'RENEWAL')
@@ -196,7 +279,18 @@ function aggregateRevenueCatPeriod(rows) {
         if (eventType === 'INITIAL_PURCHASE' && periodType === 'TRIAL')
             trialStarts += 1;
     });
-    return { productionEvents, newPurchases, renewals, trialStarts, refunds, trialLifecycleEvents, byType, excluded };
+    return {
+        productionEvents,
+        newPurchases,
+        initialSubscriptionEvents,
+        nonRenewingPurchaseEvents,
+        renewals,
+        trialStarts,
+        refunds,
+        trialLifecycleEvents,
+        byType,
+        excluded,
+    };
 }
 function aggregateShardPeriod(rows) {
     const seen = new Set();

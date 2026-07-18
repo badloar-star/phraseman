@@ -82,7 +82,7 @@ describe('agent-manager execution outbox', () => {
     expect([...repo.documents.keys()]).toEqual(['agent_manager_tasks/task-001']);
   });
 
-  test('creates a local-only execution job for an approved code_prepare task', async () => {
+  test('excludes code_prepare from the generic execution outbox', async () => {
     const repo = new MemoryOutboxRepository();
     repo.documents.set('agent_manager_tasks/task-001', {
       id: 'task-001', data: queuedTask({ allowedScope: 'code_prepare' }),
@@ -94,10 +94,8 @@ describe('agent-manager execution outbox', () => {
       2_000_000_000_000,
     );
 
-    expect(result).toEqual({ created: true, jobId: 'task-001__r3' });
-    expect(repo.documents.get('agent_manager_execution_jobs/task-001__r3')?.data).toMatchObject({
-      scope: 'code_prepare', state: 'queued', handlerVersion: 'code-prepare-v1',
-    });
+    expect(result).toEqual({ created: false, jobId: null });
+    expect([...repo.documents.keys()]).toEqual(['agent_manager_tasks/task-001']);
   });
 
   test('trigger source is an event-only Firestore handler with no worker or side-effect APIs', () => {

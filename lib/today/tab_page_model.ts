@@ -1,10 +1,10 @@
-export const LOGICAL_TAB_IDS = ['home', 'lessons', 'arena', 'friends', 'settings'] as const;
+export const LOGICAL_TAB_IDS = ['home', 'lessons', 'friends', 'settings'] as const;
 export const PHYSICAL_PAGE_IDS = ['today', ...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
-export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4 | 5;
+export type LogicalTabIndex = 0 | 1 | 2 | 3;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
 export type TabRuntimeOwnerId = PhysicalPageId;
 
 function assertIntegerInRange(value: number, max: number, label: string): void {

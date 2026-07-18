@@ -534,7 +534,7 @@ exports.premiumDialogSend = (0, https_1.onCall)({
     enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK_OPENAI,
     timeoutSeconds: 30,
     memory: '512MiB',
-    minInstances: 1,
+    minInstances: 0,
     maxInstances: 20,
     secrets: [OPENAI_API_KEY, admin_alerts_1.ADMIN_ALERT_BOT_TOKEN],
 }, async (request) => {

@@ -121,6 +121,7 @@ async function claimJob(repository: ExecutionWorkerRepository, jobId: string, no
       transaction.update(jobPath(jobId), terminalJobUpdate('cancelled', nowMs));
       return 'cancelled';
     }
+    if (job.scope === 'code_prepare') return null;
     if (!isClaimable(job, nowMs)) return null;
     if (job.attempts >= job.maxAttempts) {
       transaction.update(jobPath(jobId), terminalJobUpdate('failed', nowMs));

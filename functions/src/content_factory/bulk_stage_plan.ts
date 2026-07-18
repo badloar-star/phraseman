@@ -8,8 +8,8 @@ const LOCALE_RE = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
 const FIELDS = new Set(['requestId', 'idempotencyKey', 'studyTarget', 'sourceLocale', 'cefr', 'objective', 'kinds', 'lessonRange', 'scopes', 'dependencyPolicy']);
 const KINDS = new Set<GenerationStageKind>([
   'lesson_outline', 'lesson_phrases', 'lesson_vocabulary', 'lesson_irregular_verbs', 'lesson_prepositions', 'lesson_theory',
-  'quiz_topic', 'quiz_questions', 'challenge_topic', 'challenge_questions', 'quiz_question_replacement', 'challenge_question_replacement',
-  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement', 'arena_topic', 'arena_questions',
+  'challenge_topic', 'challenge_questions', 'challenge_question_replacement',
+  'flashcard_pack_idea', 'flashcard_items', 'flashcard_item_replacement',
 ]);
 
 function record(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }

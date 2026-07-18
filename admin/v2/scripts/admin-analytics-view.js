@@ -55,10 +55,10 @@ function escapeHtml(value) {
 const language = window.AdminAnalyticsLanguage;
 
 const ANALYTICS_REPORTS = Object.freeze([
-  { id: 'overview', label: 'Обзор', description: 'Главные метрики, состояние источников и основной график.' },
-  { id: 'product', label: 'Продукт и обучение', description: 'Экраны, сессии, уроки и качество обучения.' },
-  { id: 'subscriptions', label: 'Подписки', description: 'RevenueCat, продления, возвраты и подписочные разрезы.' },
-  { id: 'exports', label: 'Экспорт и качество', description: 'Пакет данных, источники и диагностические подробности.' },
+  { id: 'overview', label: 'Сегодня', description: 'Что показывает: текущие сигналы оплаты и источники. Решение: есть ли проблема, требующая действия сегодня.' },
+  { id: 'product', label: 'Рост', description: 'Что показывает: активацию и возвращаемость. Решение: где проверить путь пользователя и удержание.' },
+  { id: 'subscriptions', label: 'Деньги', description: 'Что показывает: подтверждённые подписки и возвраты. Решение: нужно ли разбирать выручку или возвраты.' },
+  { id: 'exports', label: 'Обучение', description: 'Что показывает: качество данных обучения и покрытие. Решение: достаточно ли данных для продуктового вывода.' },
 ]);
 
 function number(value, available = true) {
@@ -118,7 +118,7 @@ function compactSnapshotMetrics(snapshot) {
   const events = funnel.events || {};
   return `<section class="analytics-canonical-strip" aria-label="Ключевые показатели выбранного периода">
     ${metric('Активные доступы', access.activeAccessTotal, 'Текущий Plus-доступ по всем категориям', sourceAvailable(snapshot, 'users'))}
-    ${metric('Начальные покупки', store.newPurchases, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
+    ${metric('Покупки RevenueCat', store.newPurchases, 'Начало подписки и разовые покупки за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
     ${metric('Продления', store.renewals, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
     ${metric('Показы paywall', events.shown, 'Поведенческие события приложения', sourceAvailable(snapshot, 'paywall_funnel'))}
   </section>`;
@@ -179,7 +179,8 @@ function storeSection(snapshot) {
   const shardAvailable = sourceAvailable(snapshot, 'revenuecat_shard_transactions');
   return `<section class="card section" aria-labelledby="analytics-store-title"><div class="card-header"><div><h2 id="analytics-store-title">События магазина</h2><p>Только подтверждённые рабочие события RevenueCat за выбранный период. Это история уведомлений магазина, а не текущие доступы пользователей.</p></div><span class="badge ${sourceTone(snapshot?.sources?.revenuecat_premium_events?.state)}">${escapeHtml(sourceLabel(snapshot?.sources?.revenuecat_premium_events?.state))}</span></div><div class="card-body">
     <div class="analytics-summary-grid">
-      ${metric('Начальные покупки', store.newPurchases, 'Первая подписка или разовая покупка', premiumAvailable)}
+      ${metric('Начало подписки', store.initialSubscriptionEvents, 'События INITIAL_PURCHASE; включают старт пробного периода', premiumAvailable)}
+      ${metric('Разовые покупки', store.nonRenewingPurchaseEvents, 'События NON_RENEWING_PURCHASE', premiumAvailable)}
       ${metric('Продления', store.renewals, 'Подписка успешно продлена', premiumAvailable)}
       ${metric('Начало пробного периода', store.trialStarts, 'Первая покупка с пробным периодом', premiumAvailable)}
       ${metric('Возвраты', store.refunds, 'Магазин подтвердил возврат', premiumAvailable)}
@@ -199,7 +200,7 @@ function funnelSection(snapshot) {
       ${metric('Нажатия главной кнопки', events.ctaClick, 'Сколько раз нажали кнопку покупки', available)}
       ${metric('Сигналы пробного периода', events.trialStarted, 'Сигнал приложения, ещё не подтверждение магазина', available)}
       ${metric('Сигналы завершённой покупки', events.purchaseCompleted, 'Сигнал приложения, ещё не подтверждение магазина', available)}
-      <article class="metric analytics-metric"><label>Доля завершённых покупок</label><strong>${escapeHtml(percent(funnel.purchaseSignalRate, available))}</strong><small>Завершённые покупки относительно показов экрана оплаты</small></article>
+      <article class="metric analytics-metric"><label>Сигналы завершения на 100 показов</label><strong>${escapeHtml(percent(funnel.purchaseSignalRate, available))}</strong><small>Не конверсия пользователей и не подтверждённые покупки: отношение событий приложения к показам paywall</small></article>
     </div>
   </div></section>`;
 }
@@ -219,6 +220,63 @@ function sourceSection(snapshot) {
       return `<section class="card section" aria-labelledby="analytics-source-title"><div class="card-header"><div><h2 id="analytics-source-title">Качество источников</h2><p>Полнота и свежесть проверяются отдельно. Усечённый источник нельзя считать точным.</p></div></div><div class="card-body"><div class="analytics-source-grid">${rows.map(([key, source]) => `<article><div><strong>${escapeHtml(labels[key] || 'Неизвестный источник данных')}</strong><span class="badge ${sourceTone(source?.state)}">${escapeHtml(sourceLabel(source?.state))}</span></div>${labels[key] ? '' : `<small class="muted">Технический ключ: <code>${escapeHtml(key)}</code></small>`}<dl><dt>Строк</dt><dd>${escapeHtml(number(source?.count))}</dd><dt>Данные до</dt><dd>${escapeHtml(dateTime(source?.latestAtMs))}</dd><dt>Полнота</dt><dd>${escapeHtml(sourceCompleteness(source))}</dd>${source?.errorCode ? `<dt>Код ошибки</dt><dd><code>${escapeHtml(source.errorCode)}</code></dd>` : ''}</dl></article>`).join('')}</div></div></section>`;
 }
 
+function integritySection(snapshot, trends) {
+  const events = snapshot?.funnelSignals?.events || {};
+  const ids = ['paywall.shown.v1', 'paywall.cta_click.v1', 'paywall.trial_started.v1', 'paywall.purchase_completed.v1'];
+  const sections = trends?.data?.sections || {};
+  const allSeries = [
+    ...(Array.isArray(sections.behavioralPaywall?.series) ? sections.behavioralPaywall.series : []),
+  ];
+  const totals = ids.map((id) => {
+    const series = allSeries.find((item) => String(item?.metricId || '') === id);
+    if (!series || ['error', 'partial', 'unavailable'].includes(String(series.status || ''))) return null;
+    const values = (Array.isArray(series.points) ? series.points : []).map((point) => Number(point?.value));
+    return values.every(Number.isFinite) ? values.reduce((sum, value) => sum + value, 0) : null;
+  });
+  const aggregateTotal = ['shown', 'ctaClick', 'trialStarted', 'purchaseCompleted']
+    .reduce((sum, key) => sum + (Number(events[key]) || 0), 0);
+  const seriesTotal = totals.some((value) => value === null) ? null : totals.reduce((sum, value) => sum + value, 0);
+  const request = trends?.data?.request || trends?.request || {};
+  const filters = request.filters && typeof request.filters === 'object' ? request.filters : {};
+  const compatibleWindow = request.scope === 'paywall'
+    && Number(request.presetDays) === Number(snapshot?.rangeDays)
+    && Object.keys(filters).length === 0;
+  const sourceFailed = !compatibleWindow || ['error', 'partial', 'unavailable'].includes(String(snapshot?.sources?.paywall_funnel?.state || 'unavailable'));
+  const blocked = !sourceFailed && seriesTotal !== null && aggregateTotal !== seriesTotal;
+  const status = sourceFailed || seriesTotal === null ? 'unavailable' : blocked ? 'blocked' : 'ready';
+  const copy = status === 'ready'
+    ? ['Данные согласованы', 'Сумма дневных значений совпадает со сводкой. Поведенческий paywall-фаннел можно использовать как сигнал, но не как подтверждение денег.']
+    : status === 'blocked'
+      ? ['Нельзя принимать решение по paywall', 'Сводка и дневной ряд расходятся. Не выбирайте вариант paywall и не считайте конверсию, пока источник не будет сверён.']
+      : ['Paywall-фаннел недоступен для решения', compatibleWindow ? 'Нет полного ряда или источник завершился ошибкой. Отсутствие данных не означает нулевую конверсию.' : 'Сводка и график относятся к разным периодам или фильтрам. Не сравнивайте их до загрузки одного и того же среза.'];
+  const tone = status === 'ready' ? 'success' : status === 'blocked' ? 'danger' : 'warning';
+  return `<section class="card section" aria-labelledby="analytics-integrity-title"><div class="card-header"><div><h2 id="analytics-integrity-title">Проверка пригодности данных</h2><p>Сверка итоговой воронки и дневного ряда перед продуктовым решением.</p></div><span class="badge ${tone}">${escapeHtml(copy[0])}</span></div><div class="card-body"><p>${escapeHtml(copy[1])}</p><dl class="analytics-integrity-values"><dt>Сумма сводки</dt><dd>${escapeHtml(number(aggregateTotal))}</dd><dt>Сумма дневного ряда</dt><dd>${seriesTotal === null ? '—' : escapeHtml(number(seriesTotal))}</dd></dl></div></section>`;
+}
+
+function purchaseReconciliationSection(snapshot) {
+  const reconciliation = snapshot?.purchaseSignalReconciliation || {};
+  const unavailable = reconciliation.status === 'unavailable';
+  const clientSignals = reconciliation.clientPurchaseSignals ?? snapshot?.funnelSignals?.events?.purchaseCompleted;
+  const confirmedPurchases = reconciliation.confirmedPurchaseEvents ?? snapshot?.storeActivity?.newPurchases;
+  const title = unavailable ? 'Сверка покупок недоступна' : 'Не сравнивать как конверсию';
+  const description = unavailable
+    ? 'Один из источников неполный или недоступен. Отсутствие данных не означает нулевые покупки.'
+    : 'Сигналы приложения собираются только при согласии на аналитику, а RevenueCat подтверждает покупки магазина. У источников разное покрытие и нет связки по конкретному человеку.';
+  return `<section class="card section" aria-labelledby="analytics-purchase-reconciliation-title"><div class="card-header"><div><h2 id="analytics-purchase-reconciliation-title">Сверка сигналов покупки</h2><p>Контроль доставки событий, а не атрибуция оплаты или выручки.</p></div><span class="badge ${unavailable ? 'warning' : 'neutral'}">${escapeHtml(title)}</span></div><div class="card-body"><div class="analytics-summary-grid">${metric('Сигналы покупки в приложении', clientSignals, 'Не уникальные пользователи; только consent-based события', !unavailable)}${metric('Подтверждённые покупки RevenueCat', confirmedPurchases, 'Production events покупки за выбранный период', !unavailable)}</div><p class="muted">${escapeHtml(description)}</p></div></section>`;
+}
+
+function renderConsentCoverageOnly(snapshot) {
+  const consent = snapshot?.analyticsConsent || {};
+  const observedUsers = Number(consent.observedUsers);
+  const grantedRate = Number(consent.grantedRate);
+  const available = Number.isFinite(observedUsers) && observedUsers > 0;
+  return `<section class="card section" aria-labelledby="analytics-consent-coverage-title"><div class="card-header"><div><h2 id="analytics-consent-coverage-title">Покрытие согласия на аналитику</h2><p>Поведенческие отчёты включают только людей, давших явное согласие. Эта карточка не измеряет установки и не раскрывает пользователей.</p></div></div><div class="card-body"><div class="analytics-summary-grid"><article class="metric analytics-metric"><label>Доля согласившихся на аналитику</label><strong>${escapeHtml(percent(grantedRate, available))}</strong><small>От наблюдаемых пользовательских записей</small></article>${metric('Согласились', consent.granted, 'Можно включать в consent-based продуктовые отчёты', available)}${metric('Отказались', consent.denied, 'Не попадают в поведенческую продуктовую аналитику', available)}${metric('Ещё не выбрали', consent.unset, 'До выбора считаются без согласия', available)}</div><p class="muted">Проверено записей: ${escapeHtml(number(consent.observedUsers, available))}. Скрытых из агрегата: ${escapeHtml(number(consent.hiddenUsersExcluded, available))}.</p></div></section>`;
+}
+
+function consentCoverageSection(snapshot) {
+  return `${purchaseReconciliationSection(snapshot)}${renderConsentCoverageOnly(snapshot)}`;
+}
+
 export function renderAdminAnalytics(model) {
   const rangeDays = Number(model.rangeDays || model.snapshot?.rangeDays || 28);
   const loading = model.status === 'loading';
@@ -234,13 +292,12 @@ export function renderAdminAnalytics(model) {
     draft: model.analyticsTrendsDraft,
     onToggleSeries: model.onToggleAnalyticsSeries,
   });
-  const exportDisabled = !snapshot || !model.authorized || model.busy ? ' disabled' : '';
-  return `<header class="page-header analytics-canonical-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Единый центр отчётов: один период, один главный график, понятные источники и экспорт для анализа.</p></div><div class="analytics-toolbar"><label for="analytics-report-select">Отчёт</label><select id="analytics-report-select" data-action="select-analytics-report"${controlsDisabled ? ' disabled' : ''}>${ANALYTICS_REPORTS.map((report) => reportOption(report, activeReport)).join('')}</select><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button" data-action="export-analytics-report" type="button" title="Скачать текущий аналитический отчёт в PDF и JSON"${exportDisabled}>Скачать отчёт</button><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
+  return `<header class="page-header analytics-canonical-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Четыре отчёта для ежедневного решения; источник и свежесть данных показаны рядом с результатом.</p></div><div class="analytics-toolbar"><label for="analytics-report-select">Отчёт</label><select id="analytics-report-select" data-action="select-analytics-report"${controlsDisabled ? ' disabled' : ''}>${ANALYTICS_REPORTS.map((report) => reportOption(report, activeReport)).join('')}</select><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики, сохраняя последний подтверждённый результат на экране"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
     <section class="analytics-report-switcher" aria-label="Выбранный аналитический отчёт"><div><strong>${escapeHtml(activeReportMeta.label)}</strong><small>${escapeHtml(activeReportMeta.description)}</small></div><div class="analytics-report-tabs" role="tablist" aria-label="Типы аналитики">${ANALYTICS_REPORTS.map((report) => `<button class="button small ${report.id === activeReport ? 'primary' : 'ghost'}" data-action="select-analytics-report" data-analytics-report="${escapeHtml(report.id)}" type="button" role="tab" aria-selected="${report.id === activeReport ? 'true' : 'false'}" title="Показать отчёт: ${escapeHtml(report.label)}">${escapeHtml(report.label)}</button>`).join('')}</div></section>
     <div class="analytics-status" aria-live="polite">${stateNotice(model)}${snapshot ? `<small>Снимок: ${escapeHtml(dateTime(snapshot.generatedAtMs))} · период ${escapeHtml(snapshot.rangeDays)} дней · ${escapeHtml(snapshot.definitionVersion || '')}</small>` : ''}</div>
     ${snapshotSummaryPanel(snapshot)}
-    ${reportShell('overview', activeReport, 'Обзор', 'Главный график и короткая воронка без длинного скролла.', paywallCategory)}
-    ${reportShell('product', activeReport, 'Продукт и обучение', 'Детальная продуктовая аналитика загружается только здесь.', '<div class="analytics-empty">Ниже откроется существующий продуктовый отчёт. Остальные тяжёлые разделы скрыты.</div>')}
-    ${reportShell('subscriptions', activeReport, 'Подписки', 'Подписочный отчёт и денежные разрезы RevenueCat.', '<div class="analytics-empty">Ниже откроется существующий отчёт подписок. Остальные тяжёлые разделы скрыты.</div>')}
-    ${reportShell('exports', activeReport, 'Экспорт и качество', 'Источник, полнота данных и monthly decision pack без удаления старой функции.', `${sourceSection(snapshot || {})}<div class="analytics-empty">Ниже доступен старый ZIP-пакет; новая кнопка сверху скачивает PDF+JSON текущего отчёта.</div>`)}`;
+    ${reportShell('overview', activeReport, 'Сегодня', 'Что показывает: текущие сигналы оплаты и источники. Какое решение принять: есть ли проблема, требующая действия сегодня.', paywallCategory)}
+    ${reportShell('product', activeReport, 'Рост', 'Что показывает: активацию, возвращаемость и продуктовые изменения. Какое решение принять: что улучшать в следующем цикле.', '<div class="analytics-empty">Ниже откроется существующий продуктовый отчёт. Остальные тяжёлые разделы скрыты.</div>')}
+    ${reportShell('subscriptions', activeReport, 'Деньги', 'Что показывает: подписки и денежные разрезы RevenueCat. Какое решение принять: где требуется действие по выручке или возвратам.', '<div class="analytics-empty">Ниже откроется существующий отчёт подписок. Остальные тяжёлые разделы скрыты.</div>')}
+    ${reportShell('exports', activeReport, 'Обучение', 'Что показывает: полноту и качество данных для отчёта об обучении. Какое решение принять: можно ли доверять данным перед продуктовым решением.', `${integritySection(snapshot || {}, model.analyticsTrends || {})}${consentCoverageSection(snapshot || {})}${sourceSection(snapshot || {})}`)}`;
 }

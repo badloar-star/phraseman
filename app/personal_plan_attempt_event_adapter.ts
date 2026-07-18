@@ -5,10 +5,21 @@ import {
   type PlanExerciseBlock,
   type PlanRecoveryCandidate,
 } from './personal_plan_engine_contracts';
-import type {
-  PlanQuizChoiceDraft,
-  PlanQuizItemDraft,
-} from './personal_plan_quiz_types';
+type PlanQuizChoiceDraft = {
+  id: string;
+  text: string;
+  isCorrect: boolean;
+  explanationRequirement?: {
+    target: string;
+  };
+};
+
+type PlanQuizItemDraft = {
+  id: string;
+  sourcePhraseId: string;
+  skill: string;
+  choices: PlanQuizChoiceDraft[];
+};
 
 export type PlanAttemptEventAdapterIssueCode =
   | 'block_type_mismatch'

@@ -9,14 +9,9 @@
  * PREMIUM_CONTEXT_VALUES — `satisfies` ниже гарантирует, что списки не разойдутся.
  */
 export type PremiumContext =
-  | 'arena'
   | 'no_energy'
   | 'course_after_lesson3'
   | 'lesson_b1'
-  | 'quiz_limit'
-  | 'quiz_level'
-  | 'quiz_medium'
-  | 'quiz_hard'
   | 'flashcard_limit'
   | 'flashcard_training'
   | 'flashcard_autoplay'
@@ -58,23 +53,18 @@ export type PremiumContext =
   | 'notification_upsell'
   /** Добавление второго и последующих языков обучения (фри = 1 язык). */
   | 'language_add'
-  /** Дневной free-лимит ИИ-разборов (choice/quiz/phrase/mistake) исчерпан. */
+  /** Дневной free-лимит ИИ-разборов учебных ответов исчерпан. */
   | 'ai_explain'
   /** Недельный обзор: free видит тизер, полный разбор и план — в Plus. */
   | 'weekly_review'
-  /** Премиум-аура вокруг аватара (лиги/Арена/друзья). */
+  /** Премиум-аура вокруг аватара (лиги, друзья и списки сообщества). */
   | 'avatar_aura'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
-  'arena',
   'no_energy',
   'course_after_lesson3',
   'lesson_b1',
-  'quiz_limit',
-  'quiz_level',
-  'quiz_medium',
-  'quiz_hard',
   'flashcard_limit',
   'flashcard_training',
   'flashcard_autoplay',

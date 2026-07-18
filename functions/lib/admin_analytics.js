@@ -183,9 +183,16 @@ exports.adminGetAnalyticsSnapshot = (0, https_1.onCall)({ region: REGION, enforc
     };
     const state = analyticsSnapshotState(Object.values(sources));
     const access = (0, admin_analytics_core_1.aggregateActiveAccess)(users.rows, generatedAtMs);
+    const analyticsConsent = (0, admin_analytics_core_1.aggregateAnalyticsConsent)(users.rows);
     const storeActivity = (0, admin_analytics_core_1.aggregateRevenueCatPeriod)(premium.rows);
     const shardActivity = (0, admin_analytics_core_1.aggregateShardPeriod)(shards.rows);
     const funnelSignals = (0, admin_analytics_core_1.aggregateFunnelSignals)(funnel.rows);
+    const purchaseSignalReconciliation = (0, admin_analytics_core_1.assessPurchaseSignalReconciliation)({
+        clientPurchaseSignals: funnelSignals.events.purchaseCompleted,
+        confirmedPurchaseEvents: storeActivity.newPurchases,
+        clientSourceState: sources.paywall_funnel.state,
+        storeSourceState: sources.revenuecat_premium_events.state,
+    });
     return {
         definitionVersion: admin_analytics_core_1.ANALYTICS_DEFINITION_VERSION,
         generatedAtMs,
@@ -195,9 +202,11 @@ exports.adminGetAnalyticsSnapshot = (0, https_1.onCall)({ region: REGION, enforc
         state,
         sources,
         access,
+        analyticsConsent,
         storeActivity,
         shardActivity,
         funnelSignals,
+        purchaseSignalReconciliation,
         appActivity: countBy(activity.rows, 'action'),
         quality: {
             incomplete: Object.values(sources).some((source) => source.state === 'error' || source.state === 'partial'),

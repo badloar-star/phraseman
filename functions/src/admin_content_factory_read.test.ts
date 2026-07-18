@@ -32,13 +32,9 @@ describe('Language Factory protected reads', () => {
     expect(source).toContain('budgetCapUnits: jobConfig.globalDailyCap');
   });
 
-  it('filters expected Arena shadow units before the bounded readiness read', () => {
+  it('has no retired shadow-readiness surface queries', () => {
     const source = require('node:fs').readFileSync(__filename.replace(/admin_content_factory_read\.test\.ts$/, 'admin_content_factory_read.ts'), 'utf8');
-    expect(source).toContain("where('surface', '==', 'arena').where('engineRequested', '==', 'shadow').where('configRevision', '==', Number(arena.revision)).where('comparatorVersion', '==', String(arena.comparatorVersion)).limit(501)");
-    expect(source).toContain("collection('content_factory_surface_comparisons').where('surface', '==', 'arena').where('comparatorVersion', '==', String(arena.comparatorVersion)).where('configRevision', '==', Number(arena.revision))");
-    expect(source).toContain('const historyLimit = 100');
-    expect(source).toContain('Array.isArray(arena.requiredLocalePairs)');
-    expect(source).not.toContain("where('surface', '==', 'arena').limit(501)");
+    expect(source).not.toMatch(/surface_comparisons|engineRequested|comparatorVersion/i);
   });
 
   it('applies workspace identity filters before the read limit', () => {
@@ -53,15 +49,15 @@ describe('Language Factory protected reads', () => {
       jobId: 'job-1',
       job: { studyTarget: 'fr', learnerSourceLocale: 'ru', state: 'needs_review' },
       units: [
-        { unitId: 'arena-2', lessonId: 2, surface: 'arena' },
-        { unitId: 'quiz-1', lessonId: 1, surface: 'quiz' },
+        { unitId: 'flashcard-2', lessonId: 2, surface: 'flashcard' },
+        { unitId: 'flashcard-1', lessonId: 1, surface: 'flashcard' },
         { unitId: 'lesson-1', lessonId: 1, surface: 'lesson' },
       ],
       review: { status: 'approved', reason: 'checked' },
       release: null,
       catalog: { revision: 3 },
     });
-    expect(detail.units.map((unit) => unit.unitId)).toEqual(['lesson-1', 'quiz-1', 'arena-2']);
+    expect(detail.units.map((unit) => unit.unitId)).toEqual(['lesson-1', 'flashcard-1', 'flashcard-2']);
     expect(detail.units.every((unit) => Array.isArray(unit.attemptHistory))).toBe(true);
     expect(detail.review).toEqual({ status: 'approved', reason: 'checked' });
     expect(detail.catalog).toEqual({ revision: 3 });

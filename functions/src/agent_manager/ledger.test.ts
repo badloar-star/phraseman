@@ -62,6 +62,14 @@ function createInput(overrides: Record<string, unknown> = {}) {
   };
 }
 
+function seedReadyGlobalControl(repo: MemoryRepository, overrides: Record<string, unknown> = {}): void {
+  repo.documents.set('agent_office_control/global', { id: 'global', data: {
+    schemaVersion: 1, controlId: 'global', killSwitchEnabled: false, revision: 7,
+    lastChangedAtMs: 1_999_999_999_000, lastChangedByUid: 'owner-uid',
+    lastIdempotencyKeyHash: 'a'.repeat(64), lastPayloadHash: 'b'.repeat(64), ...overrides,
+  } });
+}
+
 describe('Agent Manager task ledger', () => {
   test('initializes the bounded specialist roster without credentials or execution settings', async () => {
     const repo = new MemoryRepository(true);
@@ -103,6 +111,7 @@ describe('Agent Manager task ledger', () => {
 
   test('requires an explicit owner-approved lifecycle and exact revision before entering the queue', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
     await ledger.createTask(OWNER, createInput());
@@ -118,6 +127,41 @@ describe('Agent Manager task ledger', () => {
     });
   });
 
+  test.each([
+    ['missing', null],
+    ['enabled', { killSwitchEnabled: true }],
+    ['malformed', { revision: 'bad' }],
+  ])('fails closed before a manual queue transition when global control is %s', async (_label, controlOverrides) => {
+    const repo = new MemoryRepository();
+    if (controlOverrides) seedReadyGlobalControl(repo, controlOverrides);
+    const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
+    await ledger.initializeRoster(OWNER);
+    await ledger.createTask(OWNER, createInput({ allowedScope: 'code_prepare' }));
+    await ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 1, status: 'awaiting_approval' });
+    const writesBeforeQueue = repo.writes.length;
+
+    await expect(ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 2, status: 'queued' }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(repo.documents.get('agent_manager_tasks/task-001')?.data).toMatchObject({ status: 'awaiting_approval', revision: 2 });
+    expect(repo.documents.has('agent_manager_approvals/task-001__r3')).toBe(false);
+    expect(repo.writes).toHaveLength(writesBeforeQueue);
+  });
+
+  test('creates a local-runner-only code_prepare job atomically with manual approval', async () => {
+    const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
+    const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
+    await ledger.initializeRoster(OWNER);
+    await ledger.createTask(OWNER, createInput({ allowedScope: 'code_prepare' }));
+    await ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 1, status: 'awaiting_approval' });
+
+    await ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 2, status: 'queued' });
+
+    expect(repo.documents.get('agent_manager_execution_jobs/task-001__r3')?.data).toMatchObject({
+      taskId: 'task-001', taskRevision: 3, scope: 'code_prepare', handlerVersion: 'code-prepare-v1', state: 'queued', attempts: 0,
+    });
+  });
+
   test('refuses to assign a plan until the specialist roster is initialized', async () => {
     const repo = new MemoryRepository();
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
@@ -128,6 +172,7 @@ describe('Agent Manager task ledger', () => {
 
   test('requires a bounded specialist result before review and completion', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
     await ledger.createTask(OWNER, createInput());
@@ -204,9 +249,10 @@ describe('Agent Manager task ledger', () => {
 
   test('atomically consumes a verified Telegram approval and queues only the bound task revision', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
-    await ledger.createTask(OWNER, createInput());
+    await ledger.createTask(OWNER, createInput({ allowedScope: 'code_prepare' }));
     await ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 1, status: 'awaiting_approval' });
     const nonce = 'n'.repeat(32); const tokenIdHash = managerTelegramTokenHash(nonce);
     repo.documents.set(`agent_manager_telegram_tokens/${tokenIdHash}`, { id: tokenIdHash, data: {
@@ -219,11 +265,19 @@ describe('Agent Manager task ledger', () => {
 
     expect(result).toMatchObject({ ok: true, idempotent: false, decision: 'approve', item: { status: 'queued', revision: 3 } });
     expect(repo.documents.get(`agent_manager_telegram_tokens/${tokenIdHash}`)?.data).toMatchObject({ status: 'consumed', consumedUpdateIdHash: 'e'.repeat(64) });
+    expect(repo.documents.get('agent_manager_execution_jobs/task-001__r3')?.data).toMatchObject({ scope: 'code_prepare', state: 'queued', handlerVersion: 'code-prepare-v1' });
     expect(JSON.stringify(repo.documents.get(`agent_manager_approvals/${repo.documents.get(`agent_manager_telegram_tokens/${tokenIdHash}`)?.data.consumedDecisionId}`)?.data)).not.toMatch(/nonce|token|secret/i);
+
+    const consumedToken = repo.documents.get(`agent_manager_telegram_tokens/${tokenIdHash}`)!.data;
+    await expect(ledger.decideTelegramTask(OWNER, { token: consumedToken as never, decision: 'approve', updateIdHash: 'e'.repeat(64) }))
+      .resolves.toMatchObject({ ok: true, idempotent: true, decision: 'approve', item: { status: 'queued', revision: 3 } });
+    await expect(ledger.decideTelegramTask(OWNER, { token: consumedToken as never, decision: 'approve', updateIdHash: 'f'.repeat(64) }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
   });
 
   test('Telegram rejection atomically cancels only the token-bound task', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
     await ledger.createTask(OWNER, createInput());
@@ -241,8 +295,32 @@ describe('Agent Manager task ledger', () => {
     expect(repo.documents.get(`agent_manager_approvals/${repo.documents.get(`agent_manager_telegram_tokens/${tokenIdHash}`)?.data.consumedDecisionId}`)?.data).toMatchObject({ decision: 'reject', toStatus: 'cancelled', origin: 'telegram' });
   });
 
+  test('rechecks global control inside the Telegram approval transaction before queueing', async () => {
+    const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo, { killSwitchEnabled: true });
+    const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
+    await ledger.initializeRoster(OWNER);
+    await ledger.createTask(OWNER, createInput({ allowedScope: 'code_prepare' }));
+    await ledger.transitionTask(OWNER, { taskId: 'task-001', expectedRevision: 1, status: 'awaiting_approval' });
+    const tokenIdHash = managerTelegramTokenHash('g'.repeat(32));
+    const token = {
+      schemaVersion: 1, tokenIdHash, status: 'active', ownerUid: 'owner-uid', telegramChatId: '70000001', telegramUserId: '70000001',
+      taskId: 'task-001', expectedRevision: 2, permittedDecision: 'approve', projectionHash: '9'.repeat(64),
+      issuedAtMs: 1_999_999_999_000, validUntilMs: 2_000_000_000_500, consumedAtMs: null, consumedDecisionId: null, consumedUpdateIdHash: null,
+    };
+    repo.documents.set(`agent_manager_telegram_tokens/${tokenIdHash}`, { id: tokenIdHash, data: token });
+    const writesBeforeDecision = repo.writes.length;
+
+    await expect(ledger.decideTelegramTask(OWNER, { token: token as never, decision: 'approve', updateIdHash: '8'.repeat(64) }))
+      .rejects.toMatchObject({ code: 'failed-precondition' });
+    expect(repo.documents.get('agent_manager_tasks/task-001')?.data).toMatchObject({ status: 'awaiting_approval', revision: 2 });
+    expect(repo.documents.get(`agent_manager_telegram_tokens/${tokenIdHash}`)?.data).toMatchObject({ status: 'active' });
+    expect(repo.writes).toHaveLength(writesBeforeDecision);
+  });
+
   test('projects only a bounded execution preparation status for the task queue', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
     await ledger.createTask(OWNER, createInput());
@@ -269,6 +347,7 @@ describe('Agent Manager task ledger', () => {
 
   test('retains a cancelled execution status after a queued task advances one manual revision', async () => {
     const repo = new MemoryRepository();
+    seedReadyGlobalControl(repo);
     const ledger = new AgentManagerLedger(repo, () => 2_000_000_000_000);
     await ledger.initializeRoster(OWNER);
     await ledger.createTask(OWNER, createInput());

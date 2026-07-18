@@ -14,9 +14,11 @@ export const MAX_TELEGRAM_APPROVAL_TTL_MS = 10 * 60 * 1000;
 export const MAX_TELEGRAM_WEBHOOK_BODY_BYTES = 16 * 1024;
 
 export type TelegramApprovalVerb = 'authorize' | 'reject';
+export type TelegramCallbackNamespace = 'ao1' | 'am1';
 
 export interface VerifiedTelegramApprovalUpdate {
   readonly verification: 'verified';
+  readonly callbackNamespace: TelegramCallbackNamespace;
   readonly updateId: string;
   readonly callbackQueryId: string;
   readonly chatId: string;
@@ -108,8 +110,9 @@ export function parseTelegramApprovalCommand(value: unknown): ParsedTelegramAppr
 
 export function parseVerifiedTelegramApprovalUpdate(value: unknown): VerifiedTelegramApprovalUpdate {
   const input = row(value, 'verified Telegram update');
-  assertExactKeys(input, ['verification', 'updateId', 'callbackQueryId', 'chatId', 'userId', 'commandText'], 'verified Telegram update');
+  assertExactKeys(input, ['verification', 'callbackNamespace', 'updateId', 'callbackQueryId', 'chatId', 'userId', 'commandText'], 'verified Telegram update');
   if (input.verification !== 'verified') throw new HttpsError('permission-denied', 'Telegram identity is not verified');
+  if (input.callbackNamespace !== 'ao1' && input.callbackNamespace !== 'am1') invalid('verified Telegram update.callbackNamespace is invalid');
   const updateId = telegramId(input.updateId, 'verified Telegram update.updateId', false);
   if (typeof input.callbackQueryId !== 'string' || !/^[A-Za-z0-9_-]{8,160}$/.test(input.callbackQueryId)) {
     invalid('verified Telegram update.callbackQueryId is invalid');
@@ -117,6 +120,7 @@ export function parseVerifiedTelegramApprovalUpdate(value: unknown): VerifiedTel
   parseTelegramApprovalCommand(input.commandText);
   return Object.freeze({
     verification: 'verified',
+    callbackNamespace: input.callbackNamespace,
     updateId,
     callbackQueryId: input.callbackQueryId,
     chatId: telegramId(input.chatId, 'verified Telegram update.chatId', true),
@@ -136,16 +140,17 @@ export function parseTelegramCallbackUpdate(value: unknown): VerifiedTelegramApp
   if (chat.type !== 'private') throw new HttpsError('permission-denied', 'Telegram approval chat must be private');
   if (typeof callback.id !== 'string' || !/^[A-Za-z0-9_-]{8,160}$/.test(callback.id)) invalid('Telegram callback id is invalid');
   if (typeof callback.data !== 'string' || callback.data.length > 64) invalid('Telegram callback data is invalid');
-  const match = /^ao1:(a|r):([A-Za-z0-9_-]{32,43})$/.exec(callback.data);
+  const match = /^(ao1|am1):(a|r):([A-Za-z0-9_-]{32,43})$/.exec(callback.data);
   if (!match) invalid('Telegram callback data is invalid');
-  const verb: TelegramApprovalVerb = match[1] === 'a' ? 'authorize' : 'reject';
+  const verb: TelegramApprovalVerb = match[2] === 'a' ? 'authorize' : 'reject';
   return Object.freeze({
     verification: 'verified',
+    callbackNamespace: match[1] as TelegramCallbackNamespace,
     updateId,
     callbackQueryId: callback.id,
     chatId: telegramId(chat.id, 'Telegram update.callback_query.message.chat.id', true),
     userId: telegramId(from.id, 'Telegram update.callback_query.from.id', false),
-    commandText: `/${verb} ${match[2]}`,
+    commandText: `/${verb} ${match[3]}`,
   });
 }
 

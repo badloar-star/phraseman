@@ -738,45 +738,6 @@
       }
     },
     {
-      "file": "app/streak_stats.tsx",
-      "ownerName": "StreakStats",
-      "ownerPath": "StreakStats",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "View",
-        "StatsPremiumBlur",
-        "StatsCardArtSurface",
-        "ScrollView",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "09a4585be5130aae84fd7273d2816cc758a683bd75861c7de5481330670818a3",
-      "count": 2,
-      "lineHints": [
-        3806,
-        3839
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/club_screen.tsx",
       "ownerName": "ClubScreen",
       "ownerPath": "ClubScreen",
@@ -2624,7 +2585,7 @@
       "fingerprint": "2c9f5694ce14229bbd7325ddec499e10da3970d670bdc01e842f93e74289a54a",
       "count": 1,
       "lineHints": [
-        2448
+        2442
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3869,46 +3830,6 @@
       }
     },
     {
-      "file": "app/streak_stats.tsx",
-      "ownerName": "StreakStats",
-      "ownerPath": "StreakStats",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "Reanimated.ScrollView",
-        "View",
-        "View",
-        "StatsPremiumBlur",
-        "StatsCardArtSurface",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "471cbc4ce69f67b828864068723f17cc8f97a47c5f19161e79ca7c48056d60b7",
-      "count": 2,
-      "lineHints": [
-        3790,
-        3823
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/HelpBoardPanel.tsx",
       "ownerName": "HelpBoardPanel",
       "ownerPath": "HelpBoardPanel",
@@ -4049,8 +3970,8 @@
       "fingerprint": "48968e7e9dc00df77e6fc954b8cd783abf7ccf4b5513942f8bd3bf9c498a9a91",
       "count": 2,
       "lineHints": [
-        2404,
-        2445
+        2398,
+        2439
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4420,7 +4341,7 @@
       "fingerprint": "4f271fa7f78e9dc1bec9235d7d571c0b855776272f12f2285670a4bc5cda8809",
       "count": 1,
       "lineHints": [
-        895
+        898
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5495,9 +5416,9 @@
       "fingerprint": "66be378825ebbb1d81bebf607233f632a11897c333c918f4e55dec74ed14f888",
       "count": 3,
       "lineHints": [
-        2434,
-        2458,
-        2501
+        2428,
+        2452,
+        2495
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7945,7 +7866,7 @@
       "fingerprint": "9a7e3c7f3e6121111c37e8fd13d8fd44135cb4218e8c73422ecb8e91abcd1cdf",
       "count": 1,
       "lineHints": [
-        888
+        891
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8372,38 +8293,6 @@
       }
     },
     {
-      "file": "app/streak_stats.tsx",
-      "ownerName": "StreakStats",
-      "ownerPath": "StreakStats",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a6298b4bd99d4384652cca1af86d151d8d71a735dcab70d5cea4a8646145c3d7",
-      "count": 1,
-      "lineHints": [
-        3220
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/PlayerProfileModal.tsx",
       "ownerName": "PlayerProfileModalBody",
       "ownerPath": "PlayerProfileModalBody",
@@ -8649,7 +8538,7 @@
       "fingerprint": "aa2f99ae8febb312d4692782f4b5afcc57e91d1480cc3e45b32643565ae26b35",
       "count": 1,
       "lineHints": [
-        2010
+        2004
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8709,7 +8598,7 @@
       "fingerprint": "aadea2107270a910a8dfc10010c92587a5fbb304ab2f540626576815ebb9c472",
       "count": 1,
       "lineHints": [
-        893
+        896
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9781,7 +9670,7 @@
       "fingerprint": "bfc06b47b0e81d515c932024e7fa27dfe84f33ca3b04d97f44ca61243e4b2a6b",
       "count": 1,
       "lineHints": [
-        1431
+        1425
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9848,7 +9737,7 @@
       "fingerprint": "c1b00bda0c34ef1221b2f67657f41b208cc4760fb8bb3a54e2f03604c6ad460e",
       "count": 1,
       "lineHints": [
-        810
+        813
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10376,7 +10265,7 @@
       "fingerprint": "ce270859a69d7059071eb2b6de65a22d9d5ba7765e92a52fc7ae03a72636ac9c",
       "count": 1,
       "lineHints": [
-        1611
+        1605
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10951,35 +10840,6 @@
       "count": 1,
       "lineHints": [
         188
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/stats/StatBars.tsx",
-      "ownerName": "StatBars",
-      "ownerPath": "StatBars",
-      "ancestorPath": [
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "df15aab0d03e310064bb934c3af6d8d186051971110a29eb678b08b1fc60fb58",
-      "count": 1,
-      "lineHints": [
-        150
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -11974,34 +11834,6 @@
       }
     },
     {
-      "file": "components/stats/StatBars.tsx",
-      "ownerName": "StatBars",
-      "ownerPath": "StatBars",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "f5b7f9834d9ab9a5811b840b6806d8ad9220164a4b6e8d0402a7f460354ea377",
-      "count": 1,
-      "lineHints": [
-        136
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/home.tsx",
       "ownerName": "renderNewHome",
       "ownerPath": "HomeScreen>renderNewHome",
@@ -12245,40 +12077,6 @@
       "lineHints": [
         3759,
         3770
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/streak_stats.tsx",
-      "ownerName": "StreakStats",
-      "ownerPath": "StreakStats",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "View",
-        "View",
-        "TouchableOpacity",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "fafabf8ccd43e7cffb0d53f89164db01a5d0f854dd650863b2b2e4f261a03409",
-      "count": 2,
-      "lineHints": [
-        3251,
-        3278
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

@@ -56,6 +56,8 @@ import { statsAccent, statsBorder, statsGlowStyle, statsHairline, statsPageField
 import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../constants/streakIconAssets';
 import GoldBevel from '../components/GoldBevel';
 import PlusBadge from '../components/PlusBadge';
+import { FlowText } from '../components/text-integrity/FlowText';
+import { AdaptiveLabel } from '../components/text-integrity/AdaptiveLabel';
 import { buildStatsLearningInsights, type StatsLearningInsights } from './stats_learning_insights';
 import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
@@ -3696,9 +3698,10 @@ export default function StreakStats() {
         >
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
         </TapScale>
-        <Text
+        <FlowText
+          testID="stats-header-title"
+          provenance="authored"
           style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
-          numberOfLines={1}
         >
           {triLang(lang, {
             ru: 'Твои результаты',
@@ -3710,7 +3713,7 @@ export default function StreakStats() {
             tr: "Sonuçların",
             pl: "Twoje wyniki",
         })}
-        </Text>
+        </FlowText>
         </View>
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
         {false && (<TouchableOpacity testID="legacy-stats-header-achievements" accessibilityHint={triLang(lang, {
@@ -3727,7 +3730,7 @@ export default function StreakStats() {
             router.push('/achievements_screen' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
           <Ionicons name="trophy-outline" size={19} color={t.textSecond}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
+          <FlowText testID="legacy-stats-header-achievements-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
             {triLang(lang, {
             ru: ruAchievementRewardPhrase(achievementCount),
             uk: ukAchievementRewardPhrase(achievementCount),
@@ -3738,7 +3741,7 @@ export default function StreakStats() {
             tr: achievementCount > 0 ? `${achievementCount} başarı` : 'Başarılar',
             pl: plAchievementPhrase(achievementCount),
         })}
-          </Text>
+          </FlowText>
         </TouchableOpacity>)}
         <TouchableOpacity testID="stats-header-gifts" accessibilityHint={triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
@@ -3754,7 +3757,7 @@ export default function StreakStats() {
             router.push('/level_gifts_inventory' as any);
         }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.washStrong : statsSoftBg(themeMode, 'multipliers', 'strong')) : (isGoldTheme ? GOLD_RICH.blackPiano : statsSoftBg(themeMode, 'multipliers', 'quiet')), borderWidth: 0 }}>
           <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers')) : t.textMuted}/>
-          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }} numberOfLines={1}>
+          <FlowText testID="stats-header-gifts-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
             {triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
@@ -3765,7 +3768,7 @@ export default function StreakStats() {
             tr: pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler',
             pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
         })}
-          </Text>
+          </FlowText>
         </TouchableOpacity>
         </View>
       </View>
@@ -4115,8 +4118,9 @@ export default function StreakStats() {
                             : totalStreak >= 3 ? { days: 7, m: 1.4 }
                             : { days: 3, m: 1.2 };
                         if (nextTier) {
-                            const left = nextTier.days - totalStreak;
-                            const projected = `×${(total + (nextTier.m - streakM)).toFixed(2).replace(/0$/, '')}`;
+                            const tier = nextTier as { days: number; m: number };
+                            const left = tier.days - totalStreak;
+                            const projected = `×${(total + (tier.m - streakM)).toFixed(2).replace(/0$/, '')}`;
                             return triLang(lang, {
                                 ru: `Ещё ${left} ${pluralRu(left, 'день', 'дня', 'дней')} серии — и бонус вырастет до ${projected}`,
                                 uk: `Ще ${left} ${pluralRu(left, 'день', 'дні', 'днів')} серії — і бонус зросте до ${projected}`,
@@ -4226,17 +4230,17 @@ export default function StreakStats() {
             const visibleDaily7XpPercentile = visiblePercentile(percentiles.daily7xp, myXp7 > 0);
             const visibleDaily7TimePercentile = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
             if (visibleXpPercentile !== null)
-                pItems.push({ icon: 'trophy-outline', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), percent: visibleXpPercentile, label: triLang(lang, {
+                pItems.push({ icon: 'trophy-outline', color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'), percent: visibleXpPercentile as number, label: triLang(lang, {
                         ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP',
                     }) });
             // «Опыт за неделю» (календарная) убран: для пользователя дублировал
             // «Опыт за 7 дней», а по понедельникам выглядел сломанным нулём.
             if (visibleDaily7XpPercentile !== null)
-                pItems.push({ icon: 'trending-up-outline', color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'), percent: visibleDaily7XpPercentile, label: triLang(lang, {
+                pItems.push({ icon: 'trending-up-outline', color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'), percent: visibleDaily7XpPercentile as number, label: triLang(lang, {
                         ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni',
                     }) });
             if (visibleDaily7TimePercentile !== null)
-                pItems.push({ icon: 'time-outline', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), percent: visibleDaily7TimePercentile, label: triLang(lang, {
+                pItems.push({ icon: 'time-outline', color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'), percent: visibleDaily7TimePercentile as number, label: triLang(lang, {
                         ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni',
                     }) });
             if (pItems.length === 0)
@@ -4434,14 +4438,14 @@ export default function StreakStats() {
                             const ptsLabel = formatActivityBarPoints(d.points, lang);
                             return (<View key={i} style={{ width: 26, alignItems: 'center', gap: 2 }}>
                           <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
-                            <Text style={{
+                            <AdaptiveLabel testID={`stats-lifetime-chart-value-xp-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                     color: d.points > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1}>
+                                }}>
                               {ptsLabel}
-                            </Text>
+                            </AdaptiveLabel>
                           </View>
                           <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', height: CHART_H }}>
                             <View style={{
@@ -4450,11 +4454,11 @@ export default function StreakStats() {
                                     opacity: d.active ? 1 : 0.35,
                                 }}/>
                           </View>
-                          <Text style={{
+                          <AdaptiveLabel testID={`stats-lifetime-chart-day-xp-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                     color: isToday ? t.textPrimary : t.textMuted,
                                     fontSize: 8, fontWeight: isToday ? '800' : '400',
                                     lineHeight: 11,
-                                }} numberOfLines={1}>{d.shortLabel}</Text>
+                                }}>{d.shortLabel}</AdaptiveLabel>
                           <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
                         </View>);
                         })
@@ -4467,14 +4471,14 @@ export default function StreakStats() {
                             const timeLabel = formatTimeBarMs(d.ms, lang);
                             return (<View key={`t-${i}`} style={{ width: 26, alignItems: 'center', gap: 2 }}>
                           <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
-                            <Text style={{
+                            <AdaptiveLabel testID={`stats-lifetime-chart-value-time-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                     color: d.ms > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
                                     fontSize: 7,
                                     fontWeight: '700',
                                     textAlign: 'center',
-                                }} numberOfLines={1}>
+                                }}>
                               {timeLabel}
-                            </Text>
+                            </AdaptiveLabel>
                           </View>
                           <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', height: CHART_H }}>
                             <View style={{
@@ -4483,11 +4487,11 @@ export default function StreakStats() {
                                     opacity: d.active ? 1 : 0.35,
                                 }}/>
                           </View>
-                          <Text style={{
+                          <AdaptiveLabel testID={`stats-lifetime-chart-day-time-${d.date}`} provenance="authored" availableWidth={26} compactLineLimit={1} style={{
                                     color: isToday ? t.textPrimary : t.textMuted,
                                     fontSize: 8, fontWeight: isToday ? '800' : '400',
                                     lineHeight: 11,
-                                }} numberOfLines={1}>{d.shortLabel}</Text>
+                                }}>{d.shortLabel}</AdaptiveLabel>
                           <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
                         </View>);
                         })}

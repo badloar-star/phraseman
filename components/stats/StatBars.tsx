@@ -8,6 +8,7 @@ import Reanimated, {
   withSpring,
   cancelAnimation,
 } from 'react-native-reanimated';
+import { AdaptiveLabel } from '../text-integrity/AdaptiveLabel';
 
 export type StatBar = {
   /** Уникальный ключ (например дата дня). */
@@ -185,6 +186,10 @@ export function StatBars({
   const bubbleX = useSharedValue(0);
 
   const gap = ROW_GAP;
+  const columnCount = bars.length;
+  const columnWidth = columnCount > 0 && rowWidth > 0
+    ? Math.max(1, (rowWidth - gap * (columnCount - 1)) / columnCount)
+    : 1;
 
   const scrubResponder = useMemo(() => {
     if (!scrubEnabled) return null;
@@ -244,9 +249,9 @@ export function StatBars({
     <View key={bar.key} style={styles.col}>
       {!scrubEnabled ? (
         bar.topLabel ? (
-          <Text style={[styles.topLabel, { color: bar.highlight ? topLabelColor : topLabelMutedColor }]} numberOfLines={1}>
+          <AdaptiveLabel testID={`stat-bar-top-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.topLabel, { color: bar.highlight ? topLabelColor : topLabelMutedColor }]}>
             {bar.topLabel}
-          </Text>
+          </AdaptiveLabel>
         ) : <View style={{ height: 12 }} />
       ) : null}
       <Bar
@@ -261,9 +266,9 @@ export function StatBars({
         pressedColor={scrubEnabled ? scrubHighlightColor : undefined}
       />
       <View style={styles.bottomWrap}>
-        <Text style={[styles.bottomLabel, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]} numberOfLines={1}>
+        <AdaptiveLabel testID={`stat-bar-bottom-${bar.key}`} provenance="authored" availableWidth={columnWidth} compactLineLimit={1} style={[styles.bottomLabel, { color: bar.highlight ? bottomLabelColor : bottomLabelMutedColor, fontWeight: bar.highlight ? '900' : '700' }]}>
           {bar.bottomLabel}
-        </Text>
+        </AdaptiveLabel>
         {bar.highlight && todayDotColor ? (
           <View style={[styles.todayDot, { backgroundColor: todayDotColor }]} />
         ) : <View style={{ height: 4, marginTop: 3 }} />}

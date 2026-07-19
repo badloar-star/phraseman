@@ -1,15 +1,17 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
+import { Animated, AppState, Easing, StyleSheet, Text, View, type ViewStyle } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { triLang, type Lang } from '../../constants/i18n';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
 /**
- * Hero-статус Лиги: моё место, зона и отрыв до следующего места.
- * Моушн строго конечный (count-up 620мс, одноразовый блик эмблемы, одноразовая
- * заливка прогресс-бара) — без withRepeat/loop/setInterval, как требует
- * tests/league_club_hub_contract.test.ts и Performance Bible.
+ * Hero-статус Лиги: эмблема по центру (крупная, живая), моё место с сиянием,
+ * зона и отрыв до следующего места.
+ * Моушн: входные пружины и count-up — конечные; idle float эмблемы и пульс
+ * сияния цифры — циклы, загаженные useIsScreenFocused + AppState по паттерну
+ * components/AvatarAura.tsx (файл зарегистрирован в runtime_lifecycle_ratchet).
  */
 
 export type LeagueHeroZone = 'promotion' | 'safe' | 'relegation';
@@ -27,6 +29,7 @@ interface LeagueHeroStatusProps {
   myRank: number;
   zone: LeagueHeroZone | null;
   gap: LeagueHeroGap | null;
+  style?: ViewStyle;
 }
 
 function participantsLabel(lang: Lang, count: number): string {
@@ -55,10 +58,10 @@ function participantsLabel(lang: Lang, count: number): string {
 
 function zoneLabel(zone: LeagueHeroZone, lang: Lang): string {
   if (zone === 'promotion') {
-    return triLang(lang, { ru: 'Зона повышения', uk: 'Зона підвищення', es: 'Zona de ascenso', 'pt-BR': 'Zona de promoção', vi: 'Vùng thăng hạng', id: 'Zona promosi', tr: 'Yükselme bölgesi', pl: 'Strefa awansu' });
+    return triLang(lang, { ru: '▲ Зона повышения', uk: '▲ Зона підвищення', es: '▲ Zona de ascenso', 'pt-BR': '▲ Zona de promoção', vi: '▲ Vùng thăng hạng', id: '▲ Zona promosi', tr: '▲ Yükselme bölgesi', pl: '▲ Strefa awansu' });
   }
   if (zone === 'relegation') {
-    return triLang(lang, { ru: 'Зона вылета', uk: 'Зона вильоту', es: 'Zona de descenso', 'pt-BR': 'Zona de queda', vi: 'Vùng xuống hạng', id: 'Zona degradasi', tr: 'Düşme bölgesi', pl: 'Strefa spadku' });
+    return triLang(lang, { ru: '▼ Зона вылета', uk: '▼ Зона вильоту', es: '▼ Zona de descenso', 'pt-BR': '▼ Zona de queda', vi: '▼ Vùng xuống hạng', id: '▼ Zona degradasi', tr: '▼ Düşme bölgesi', pl: '▼ Strefa spadku' });
   }
   return triLang(lang, { ru: 'Безопасная зона', uk: 'Безпечна зона', es: 'Zona segura', 'pt-BR': 'Zona segura', vi: 'Vùng an toàn', id: 'Zona aman', tr: 'Güvenli bölge', pl: 'Bezpieczna strefa' });
 }
@@ -117,24 +120,86 @@ function useCountUp(target: number, reduceMotion: boolean): number {
   return value;
 }
 
-function LeagueHeroStatusComponent({ lang, palette, leagueName, participantCount, leagueIcon, myRank, zone, gap }: LeagueHeroStatusProps) {
+function LeagueHeroStatusComponent({ lang, palette, leagueName, participantCount, leagueIcon, myRank, zone, gap, style }: LeagueHeroStatusProps) {
   const reduceMotion = useReduceMotion();
+  const isFocused = useIsScreenFocused();
   const rankDisplay = useCountUp(myRank, reduceMotion);
 
-  // Одноразовый блик через эмблему (900мс, один прогон за маунт — не цикл).
-  const sheenX = useRef(new Animated.Value(-84)).current;
+  // Входные пружины (конечные, один раз за маунт).
+  const iconScale = useRef(new Animated.Value(0.55)).current;
+  const rankScale = useRef(new Animated.Value(0.6)).current;
   useEffect(() => {
-    if (reduceMotion) return undefined;
+    if (reduceMotion) {
+      iconScale.setValue(1);
+      rankScale.setValue(1);
+      return;
+    }
+    Animated.spring(iconScale, { toValue: 1, friction: 6, tension: 80, delay: 140, useNativeDriver: true }).start();
+    Animated.spring(rankScale, { toValue: 1, friction: 7, tension: 90, delay: 240, useNativeDriver: true }).start();
+  }, [reduceMotion, iconScale, rankScale]);
+
+  // Блик через эмблему: конечный прогон при маунте и при каждом возврате фокуса.
+  const sheenX = useRef(new Animated.Value(-110)).current;
+  useEffect(() => {
+    if (reduceMotion || !isFocused) return undefined;
+    sheenX.setValue(-110);
     const anim = Animated.timing(sheenX, {
-      toValue: 84,
-      duration: 900,
-      delay: 620,
+      toValue: 110,
+      duration: 950,
+      delay: 650,
       easing: Easing.out(Easing.quad),
       useNativeDriver: true,
     });
     anim.start();
     return () => anim.stop();
-  }, [reduceMotion, sheenX]);
+  }, [reduceMotion, isFocused, sheenX]);
+
+  // Idle-циклы: левитация эмблемы + пульс сияния цифры.
+  // Гард по паттерну AvatarAura: только в фокусе и на переднем плане.
+  const floatY = useRef(new Animated.Value(0)).current;
+  const glowPhase = useRef(new Animated.Value(0)).current;
+  const shouldAnimate = !reduceMotion && isFocused;
+  useEffect(() => {
+    if (!shouldAnimate) {
+      floatY.setValue(0);
+      glowPhase.setValue(0);
+      return undefined;
+    }
+    let floatLoop: Animated.CompositeAnimation | null = null;
+    let glowLoop: Animated.CompositeAnimation | null = null;
+    const start = () => {
+      if (floatLoop || glowLoop) return;
+      floatY.setValue(0);
+      glowPhase.setValue(0);
+      floatLoop = Animated.loop(Animated.sequence([
+        Animated.timing(floatY, { toValue: -4, duration: 1300, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        Animated.timing(floatY, { toValue: 0, duration: 1300, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+      ]));
+      glowLoop = Animated.loop(Animated.sequence([
+        Animated.timing(glowPhase, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        Animated.timing(glowPhase, { toValue: 0, duration: 1100, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+      ]));
+      floatLoop.start();
+      glowLoop.start();
+    };
+    const stop = () => {
+      floatLoop?.stop();
+      glowLoop?.stop();
+      floatLoop = null;
+      glowLoop = null;
+    };
+
+    // Анимируем только на переднем плане — в фоне нет смысла перерисовывать.
+    if (AppState.currentState === 'active') start();
+    const appSub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') start();
+      else stop();
+    });
+    return () => {
+      appSub.remove();
+      stop();
+    };
+  }, [shouldAnimate, floatY, glowPhase]);
 
   // Одноразовая заливка прогресс-бара до ratio (700мс).
   const fillAnim = useRef(new Animated.Value(0)).current;
@@ -156,6 +221,9 @@ function LeagueHeroStatusComponent({ lang, palette, leagueName, participantCount
   }, [fillAnim, gap?.ratio, reduceMotion]);
   const fillWidth = fillAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] });
 
+  const glowOpacity = glowPhase.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.34] });
+  const glowScale = glowPhase.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1.07] });
+
   const badge = zone === 'promotion'
     ? { bg: palette.accent, text: palette.accentText }
     : zone === 'relegation'
@@ -169,34 +237,51 @@ function LeagueHeroStatusComponent({ lang, palette, leagueName, participantCount
   return (
     <Reanimated.View
       entering={reduceMotion ? undefined : FadeInUp.delay(80).duration(260)}
-      style={[styles.shell, { backgroundColor: palette.surface }]}
+      style={[styles.shell, { backgroundColor: palette.surface }, style]}
       testID="league-hero-status"
       accessibilityLabel={`${a11y}${zone ? `, ${zoneLabel(zone, lang)}` : ''}`}
     >
-      <View style={styles.topRow}>
-        <View style={[styles.emblem, { borderColor: 'rgba(255,212,59,0.35)', backgroundColor: palette.elevated }]}>
-          {leagueIcon}
-          {!reduceMotion ? (
-            <Animated.View
-              pointerEvents="none"
-              style={[styles.sheen, { transform: [{ translateX: sheenX }, { rotate: '18deg' }] }]}
-            />
-          ) : null}
-        </View>
-        <View style={styles.titleWrap}>
-          <Text numberOfLines={1} style={[styles.name, { color: palette.text }]}>{leagueName}</Text>
-          <Text style={[styles.sub, { color: palette.muted }]}>{participantsLabel(lang, participantCount)}</Text>
-        </View>
+      <View style={styles.iconStage}>
+        <Animated.View style={{ transform: [{ translateY: floatY }] }}>
+          <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+            <View style={styles.iconClip}>
+              {leagueIcon}
+              {!reduceMotion ? (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[styles.sheen, { transform: [{ translateX: sheenX }, { rotate: '18deg' }] }]}
+                />
+              ) : null}
+            </View>
+          </Animated.View>
+        </Animated.View>
+      </View>
+
+      <View style={styles.titleWrap}>
+        <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8} style={[styles.name, { color: palette.text }]}>{leagueName}</Text>
+        <Text style={[styles.sub, { color: palette.muted }]}>{participantsLabel(lang, participantCount)}</Text>
       </View>
 
       {myRank > 0 ? (
-        <View style={styles.rankRow}>
-          <Text testID="league-hero-rank" style={[styles.rank, { color: palette.warning }]}>{rankDisplay}</Text>
-          {zone ? (
-            <View style={[styles.zoneBadge, { backgroundColor: badge.bg }]}>
-              <Text style={[styles.zoneText, { color: badge.text }]}>{zoneLabel(zone, lang)}</Text>
-            </View>
-          ) : null}
+        <View style={styles.rankStage}>
+          <Animated.View
+            pointerEvents="none"
+            style={[styles.rankGlow, { backgroundColor: palette.warning, opacity: glowOpacity, transform: [{ scale: glowScale }] }]}
+          />
+          <Animated.Text
+            testID="league-hero-rank"
+            style={[styles.rank, { color: palette.warning, textShadowColor: palette.warning, transform: [{ scale: rankScale }] }]}
+          >
+            {rankDisplay}
+          </Animated.Text>
+        </View>
+      ) : null}
+
+      {zone ? (
+        <View style={styles.zoneWrap}>
+          <View style={[styles.zoneBadge, { backgroundColor: badge.bg }]}>
+            <Text style={[styles.zoneText, { color: badge.text }]}>{zoneLabel(zone, lang)}</Text>
+          </View>
         </View>
       ) : null}
 
@@ -218,36 +303,47 @@ function LeagueHeroStatusComponent({ lang, palette, leagueName, participantCount
 export const LeagueHeroStatus = memo(LeagueHeroStatusComponent);
 
 const styles = StyleSheet.create({
-  shell: { borderRadius: 26, padding: 18, gap: 15, overflow: 'hidden' },
-  topRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
-  emblem: {
-    width: 66,
-    height: 66,
-    borderRadius: 22,
-    borderWidth: 1,
+  shell: { borderRadius: 26, padding: 18, paddingTop: 20, gap: 8, overflow: 'hidden' },
+  iconStage: { alignItems: 'center', marginBottom: 2 },
+  iconClip: {
+    width: 110,
+    height: 110,
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
-    flexShrink: 0,
   },
   sheen: {
     position: 'absolute',
-    top: -18,
-    bottom: -18,
-    width: 20,
-    backgroundColor: 'rgba(255,255,255,0.26)',
+    top: -22,
+    bottom: -22,
+    width: 22,
+    backgroundColor: 'rgba(255,255,255,0.3)',
   },
-  titleWrap: { flex: 1, minWidth: 0 },
-  name: { fontSize: 20, lineHeight: 25, fontWeight: '900', letterSpacing: -0.2 },
-  sub: { fontSize: 12, fontWeight: '700', marginTop: 3 },
-  rankRow: { flexDirection: 'row', alignItems: 'center', gap: 14, minHeight: 58 },
-  rank: { fontSize: 56, lineHeight: 58, fontWeight: '900', letterSpacing: -1.5 },
-  zoneBadge: { borderRadius: 999, paddingHorizontal: 12, paddingVertical: 7 },
+  titleWrap: { alignItems: 'center' },
+  name: { fontSize: 21, lineHeight: 26, fontWeight: '900', letterSpacing: -0.2, textAlign: 'center' },
+  sub: { fontSize: 12, fontWeight: '700', marginTop: 3, textAlign: 'center' },
+  rankStage: { alignItems: 'center', justifyContent: 'center', minHeight: 92, marginTop: 2 },
+  rankGlow: {
+    position: 'absolute',
+    width: 138,
+    height: 78,
+    borderRadius: 39,
+  },
+  rank: {
+    fontSize: 76,
+    lineHeight: 82,
+    fontWeight: '900',
+    letterSpacing: -2,
+    textShadowOffset: { width: 0, height: 0 },
+    textShadowRadius: 18,
+  },
+  zoneWrap: { alignItems: 'center', marginTop: 2 },
+  zoneBadge: { borderRadius: 999, paddingHorizontal: 13, paddingVertical: 7 },
   zoneText: { fontSize: 12, fontWeight: '900' },
-  gapWrap: { gap: 7 },
+  gapWrap: { gap: 7, marginTop: 6 },
   gapLabelRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   gapLabel: { fontSize: 11, fontWeight: '800' },
   gapValue: { fontSize: 12, fontWeight: '900' },
-  track: { height: 9, borderRadius: 6, overflow: 'hidden' },
+  track: { height: 12, borderRadius: 6, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 6 },
 });

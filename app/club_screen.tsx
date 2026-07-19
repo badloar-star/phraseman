@@ -1424,11 +1424,12 @@ export default function ClubScreen() {
         )}
 
         <LeagueHeroStatus
+          style={{ marginTop: 12, marginBottom: 12 }}
           lang={lang}
           palette={hubPalette}
           leagueName={leagueNameForLang(myLeague, lang)}
           participantCount={publicSortedGroup.length}
-          leagueIcon={<LeagueIcon league={myLeague} size={50} active alignContent={false} themeMode={themeMode} />}
+          leagueIcon={<LeagueIcon league={myLeague} size={96} active alignContent={false} themeMode={themeMode} />}
           myRank={myLeagueRank}
           zone={myLeagueZone}
           gap={myLeagueGap}
@@ -1468,9 +1469,6 @@ export default function ClubScreen() {
                 ru: 'Участники клуба', uk: 'Учасники клубу', es: 'Miembros del club', 'pt-BR': 'Membros do clube',
                 vi: 'Thành viên câu lạc bộ', id: 'Anggota klub', tr: 'Kulüp üyeleri', pl: 'Członkowie klubu',
               })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-              {publicSortedGroup.length.toLocaleString()} · {leagueRoomXp.toLocaleString()} XP
             </Text>
             {showEmptyParticipants ? (
               <Text style={{ color: t.textGhost, fontSize: f.sub, paddingVertical: 16, textAlign: 'center' }}>

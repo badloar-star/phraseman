@@ -103,6 +103,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
   'components/LingmanVideosButton.tsx': guarded('Unread pulse uses navigation focus and AppState.'),
+  'components/league/LeagueHeroStatus.tsx': guarded('League hero icon float and rank glow loops use screen focus and AppState.'),
   'components/MatchFoundToast.tsx': owned('Toast loops follow visible state and stop through the shared loop registry.', ['if (!visible', 'loopsRef.current.forEach']),
   'components/NoEnergyModal.tsx': owned('No-energy motion follows modalVisible and stops on cleanup.', ['if (!modalVisible)', 'running.forEach']),
   'components/PlayerProfileModal.tsx': owned('Profile shimmer exists only while a player is present.', ['if (!player)', 'return () => loop.stop()']),

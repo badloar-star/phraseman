@@ -35,7 +35,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
     <Reanimated.View entering={reduceMotion ? undefined : FadeInUp.delay(120).duration(240)} style={[styles.shell, { backgroundColor: model.canClaim ? palette.accent : palette.surface }]} testID="league-bonus-mission">
       <View style={styles.headingRow}>
         <View style={styles.headingText}>
-          <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
+          <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
         </View>
         <Image source={giftImage as ImageSource} style={styles.gift} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
       </View>
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   shell: { borderRadius: 26, padding: 17, gap: 11, overflow: 'hidden' },
   headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48 },
   headingText: { flex: 1, minWidth: 0 },
-  eyebrow: { fontSize: 11, fontWeight: '900', letterSpacing: 0.8 },
+  eyebrow: { fontSize: 13, fontWeight: '900', letterSpacing: 0.8 },
   gift: { width: 70, height: 70 },
   track: { height: 12, borderRadius: 6, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 6 },

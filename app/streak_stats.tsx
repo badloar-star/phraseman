@@ -1039,7 +1039,7 @@ let wagerCardWarm: {
     stakes: number[];
 } | null = null;
 
-function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, autoOpenPicker = false }: {
+function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, pickerOnly = false, onPickerClose }: {
     lang: Lang;
     t: any;
     f: any;
@@ -1049,18 +1049,21 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     /** Скрыть CTA «принять пари» (новичок без серии); активное пари и результат показываются всегда. */
     hideCta?: boolean;
     /**
-     * Лист открыт действием «Пари на серию»: когда нет активного пари и нет
-     * результата, сразу раскрыть выбор ставки, минуя промежуточную CTA-карту.
-     * При переходе в false (лист закрыт) подбор ставки тоже закрывается.
+     * Режим «только пикер»: CTA-карточка не рендерится — только модал выбора
+     * ставки и связанные подтверждения. «Пари на серию» из hero открывает
+     * размещение ставки сразу, без промежуточных экранов.
      */
-    autoOpenPicker?: boolean;
+    pickerOnly?: boolean;
+    /** pickerOnly: пикер и все подтверждения закрыты — родитель может размонтировать. */
+    onPickerClose?: () => void;
 }) {
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
     const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
     const [wager, setWager] = useState<WagerState | null>(() => wagerCardWarm?.wager ?? null);
     const [loading, setLoading] = useState(() => wagerCardWarm == null);
-    const [modalOpen, setModalOpen] = useState(false);
+    // pickerOnly: компонент монтируется уже с открытым пикером (hero «Пари на серию»).
+    const [modalOpen, setModalOpen] = useState(() => pickerOnly);
     const [placing, setPlacing] = useState(false);
     const [selectedTier, setSelectedTier] = useState(0);
     const [shardsWager, setShardsWager] = useState(() => wagerCardWarm?.shards ?? 0);
@@ -1110,24 +1113,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         };
     }, [reload]);
     const clampTierIdx = (i: number) => Math.max(0, Math.min(i, WAGER_TIERS.length - 1));
-    // Лист «Пари на серию» открывается из hero: промежуточную CTA-карточку
-    // пропускаем — при отсутствии активного пари и результата сразу раскрываем
-    // выбор ставки. Повторно не дёргаем, пока лист не переоткрыт.
-    const autoOpenedRef = useRef(false);
+    // pickerOnly: когда закрыты и пикер, и подтверждения — сообщаем родителю,
+    // чтобы он размонтировал компонент. Смотрим на все три состояния, иначе
+    // подтверждение/магазин схлопнулись бы вместе с пикером.
     useEffect(() => {
-        if (!autoOpenPicker) {
-            autoOpenedRef.current = false;
-            if (modalOpen) setModalOpen(false);
-            return;
+        if (pickerOnly && !loading && !modalOpen && !wagerNeedShards && !wagerConfirm) {
+            onPickerClose?.();
         }
-        if (autoOpenedRef.current || loading) return;
-        const showsResult = wager != null && !wager.active && wager.result !== 'pending';
-        const showsActive = wager?.active === true;
-        if (!showsResult && !showsActive && !hideCta) {
-            autoOpenedRef.current = true;
-            setModalOpen(true);
-        }
-    }, [autoOpenPicker, loading, wager, hideCta, modalOpen]);
+    }, [pickerOnly, loading, modalOpen, wagerNeedShards, wagerConfirm, onPickerClose]);
     const closeWagerModal = useCallback(() => {
         setModalOpen(false);
         wagerSheetY.setValue(0);
@@ -1411,47 +1404,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
       </StatsCardArtSurface>);
     }
     // ── Кнопка → открывает модал ────────────────────────────────────────────────
-    if (hideCta)
+    if (hideCta && !pickerOnly)
         return null;
     const sel = WAGER_TIERS[clampTierIdx(selectedTier)];
     const effectiveBetShards = effectiveWagerStakes[clampTierIdx(selectedTier)] ?? sel.betShards;
     const canAfford = shardsWager >= effectiveBetShards;
-    return (<>
-      <TouchableOpacity testID="wager-open" onPress={() => setModalOpen(true)} activeOpacity={0.86}>
-        <StatsCardArtSurface testID="wager-open-card" name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} scrim="stats" style={[{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: wagerBorder, flexDirection: 'row', alignItems: 'flex-start', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
-          <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: wagerSoftBg, alignItems: 'center', justifyContent: 'center' }}>
-            <Ionicons name="dice-outline" size={22} color={wagerAccent}/>
-          </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
-              {triLang(lang, {
-            ru: 'Пари',
-            uk: 'Парі',
-            es: 'Apuesta',
-            'pt-BR': "Aposta",
-            vi: "Cược",
-            id: "Taruhan",
-            tr: "Bahis",
-            pl: "Zakład",
-        })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
-              {triLang(lang, {
-            ru: 'Поставь осколки — удержи серию и забери в 4 раза больше',
-            uk: 'Постав уламки — утримай серію й забери вчетверо більше',
-            es: 'Aporta fragmentos: mantén la racha y cobra la recompensa',
-            'pt-BR': "Aposte fragmentos: mantenha a sequência e receba a recompensa",
-            vi: "Đặt mảnh: giữ chuỗi và nhận thưởng",
-            id: "Setorkan fragmen: jaga rangkaian dan ambil hadiah",
-            tr: "Parça yatır: seriyi koru ve ödülü al",
-            pl: "Wpłać odłamki: utrzymaj serię i odbierz nagrodę",
-        })}
-            </Text>
-          </View>
-          <Ionicons name="chevron-forward" size={18} color={t.textGhost} style={{ marginTop: 13 }}/>
-        </StatsCardArtSurface>
-      </TouchableOpacity>
-
+    // Модалы выбора ставки и подтверждений — общие для CTA- и pickerOnly-режимов.
+    const pickerModals = (<>
       {/* Модал выбора ставки */}
       <Modal visible={modalOpen} transparent animationType="slide" onRequestClose={closeWagerModal}>
         <View style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'flex-end' }}>
@@ -1924,6 +1883,47 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             setWagerConfirm(false);
             void doPlace();
         }}/>
+    </>);
+    // pickerOnly: размещение ставки открывается сразу из hero («Пари на серию»), CTA-карточки нет.
+    if (pickerOnly)
+        return pickerModals;
+    return (<>
+      <TouchableOpacity testID="wager-open" onPress={() => setModalOpen(true)} activeOpacity={0.86}>
+        <StatsCardArtSurface testID="wager-open-card" name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={22} scrim="stats" style={[{ borderRadius: 22, padding: 14, borderWidth: 0, borderColor: wagerBorder, flexDirection: 'row', alignItems: 'flex-start', gap: 12, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
+          <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: wagerSoftBg, alignItems: 'center', justifyContent: 'center' }}>
+            <Ionicons name="dice-outline" size={22} color={wagerAccent}/>
+          </View>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
+              {triLang(lang, {
+            ru: 'Пари',
+            uk: 'Парі',
+            es: 'Apuesta',
+            'pt-BR': "Aposta",
+            vi: "Cược",
+            id: "Taruhan",
+            tr: "Bahis",
+            pl: "Zakład",
+        })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
+              {triLang(lang, {
+            ru: 'Поставь осколки — удержи серию и забери в 4 раза больше',
+            uk: 'Постав уламки — утримай серію й забери вчетверо більше',
+            es: 'Aporta fragmentos: mantén la racha y cobra la recompensa',
+            'pt-BR': "Aposte fragmentos: mantenha a sequência e receba a recompensa",
+            vi: "Đặt mảnh: giữ chuỗi và nhận thưởng",
+            id: "Setorkan fragmen: jaga rangkaian dan ambil hadiah",
+            tr: "Parça yatır: seriyi koru ve ödülü al",
+            pl: "Wpłać odłamki: utrzymaj serię i odbierz nagrodę",
+        })}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color={t.textGhost} style={{ marginTop: 13 }}/>
+        </StatsCardArtSurface>
+      </TouchableOpacity>
+
+      {pickerModals}
     </>);
 }
 /** Цепочка дней, неделя, заморозка, перцентиль цепочки — вынесено для порядка блоков на экране. */
@@ -3186,6 +3186,7 @@ export default function StreakStats() {
     const [bonusOpen, setBonusOpen] = useState(false);
     const [seriesOpen, setSeriesOpen] = useState(false);
     const [wagerOpen, setWagerOpen] = useState(false);
+    const [wagerPickerOpen, setWagerPickerOpen] = useState(false);
     const [comparisonOpen, setComparisonOpen] = useState(true);
     const [primaryMetric, setPrimaryMetric] = useState<StatsPrimaryMetric>(DEFAULT_STATS_PRIMARY_METRIC);
     const FREEZE_COST_SHARDS = 10;
@@ -3787,7 +3788,13 @@ export default function StreakStats() {
             onReviveStreak={handleReviveStreak}
             onOpenWager={() => {
               hapticTap();
-              setWagerOpen(true);
+              // Нет активного пари и результата — сразу окно размещения ставки;
+              // иначе — лист с активной/результатной карточкой.
+              void loadWager().then((currentWager) => {
+                const hasCard = !!currentWager && (currentWager.active || currentWager.result !== 'pending');
+                if (hasCard) setWagerOpen(true);
+                else setWagerPickerOpen(true);
+              });
             }}
             freezeShardCost={FREEZE_COST_SHARDS}
           />
@@ -3925,11 +3932,17 @@ export default function StreakStats() {
                 </TouchableOpacity>
               </View>
               <ScrollView showsVerticalScrollIndicator={false}>
-                <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3} autoOpenPicker={wagerOpen}/>
+                <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3}/>
               </ScrollView>
             </Pressable>
           </Pressable>
         </Modal>
+
+        {/* «Пари на серию» без активного пари: окно размещения ставки открывается
+            сразу, без промежуточного листа с CTA-карточкой. */}
+        {wagerPickerOpen ? (
+          <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3} pickerOnly onPickerClose={() => setWagerPickerOpen(false)}/>
+        ) : null}
 
         {false && (<React.Fragment>
         <TouchableOpacity testID="stats-series-protection-toggle" activeOpacity={0.84} onPress={() => {

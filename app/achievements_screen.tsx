@@ -12,7 +12,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
-import PlusBadge from '../components/PlusBadge';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TapScale from '../components/TapScale';
 import ContentWrap from '../components/ContentWrap';
@@ -36,10 +35,8 @@ import { getNearestLockedAchievements } from './achievement_nearest';
 import type { NearestAchievementItem } from './achievement_nearest';
 import { triLang, type Lang } from '../constants/i18n';
 import { getLevelFromXP, type ThemeMode } from '../constants/theme';
-import { monoIcon } from '../constants/monoIcon';
 import { hapticSuccess } from '../hooks/use-haptics';
-import { STORE_URL, DEV_CONTENT_UNLOCK, ENABLE_DEV_TOOLS } from './config';
-import { usePremium } from '../components/PremiumContext';
+import { STORE_URL, ENABLE_DEV_TOOLS } from './config';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
 import {
@@ -495,21 +492,7 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
-/** Квизы Medium/Hard без Premium недоступны — эти ачивки открываются с подпиской. */
-const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
-  'quiz_medium',
-  'quiz_hard',
-  'quiz_all_levels',
-  'quiz_perfect_medium',
-  'quiz_perfect',
-  'quiz_triple_perfect',
-  'quiz_speed_demon',
-]);
-
-export function achievementNeedsPremiumQuiz(id: string): boolean {
-  return PREMIUM_QUIZ_ACHIEVEMENT_IDS.has(id);
-}
-
+/** Квизовые достижения доступны всем; Premium-подсказка для них отключена. */
 // Лейбл уровня для медалей (gem_*)
 const GEM_LEVEL_LABEL: Record<string, string> = {
   gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1', gem_a1_obsidian: 'A1', gem_a1_mythic: 'A1',
@@ -957,8 +940,6 @@ type GridCellProps = {
   shieldW: number;
   shieldOuter: number;
   onSelect: (achievement: Achievement) => void;
-  /** Показать legacy-метку Premium; для квизов отключена. */
-  showPremiumQuizGate: boolean;
   revealLockedDetails: boolean;
   themeMode: ThemeMode;
 };
@@ -977,7 +958,6 @@ const AchievementGridCell = memo(function AchievementGridCell({
   shieldW,
   shieldOuter,
   onSelect,
-  showPremiumQuizGate,
   revealLockedDetails,
   themeMode,
 }: GridCellProps) {
@@ -996,35 +976,9 @@ const AchievementGridCell = memo(function AchievementGridCell({
         alignItems: 'center',
         width: shieldOuter,
         gap: 5,
-        paddingBottom: showPremiumQuizGate ? 12 : 0,
       }}
     >
       <View style={{ position: 'relative' }}>
-        {showPremiumQuizGate && (
-          <View
-            pointerEvents="none"
-            style={{
-              position: 'absolute',
-              bottom: -2,
-              left: 0,
-              right: 0,
-              alignItems: 'center',
-              zIndex: 5,
-            }}
-          >
-            <View
-              style={{
-                alignItems: 'center',
-              }}
-            >
-              <PlusBadge
-                themeMode={themeMode}
-                size="xs"
-                label={triLang(lang, { ru: 'Plus', uk: 'Plus', es: 'Plus', 'pt-BR': 'Plus', vi: 'Plus', id: 'Plus', tr: 'Plus', pl: 'Plus' })}
-              />
-            </View>
-          </View>
-        )}
         {unlocked && hasPendingShardReward(state) && (
           <View
             style={{
@@ -1360,7 +1314,7 @@ const NearestAchievementsBlock = memo(function NearestAchievementsBlock({
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, themeMode, onClose, onShardClaimed, isPremium, revealLockedDetails, studyTarget,
+  achievement, state, stats, t, f, isDark, themeMode, onClose, onShardClaimed, revealLockedDetails, studyTarget,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
@@ -1370,11 +1324,9 @@ function AchievementModal({
   themeMode: ThemeMode;
   onClose: () => void;
   onShardClaimed: (achievementId: string) => void;
-  isPremium: boolean;
   revealLockedDetails: boolean;
   studyTarget: RuntimeStudyTarget;
 }) {
-  const router = useRouter();
   const shardClaimTapGuardRef = useRef(false);
   const { lang } = useLang();
   const { width: screenW, height: screenH } = useWindowDimensions();
@@ -1390,11 +1342,6 @@ function AchievementModal({
     : null;
   const progPct  = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
 
-  const showPremiumQuizCta =
-    !unlocked &&
-    achievementNeedsPremiumQuiz(achievement.id) &&
-    !isPremium &&
-    !DEV_CONTENT_UNLOCK;
   const modalWidth = Math.min(560, Math.max(220, screenW - 32));
   const modalMaxHeight = Math.max(240, screenH - 48);
   const modalPad = screenW < 360 ? 18 : 24;
@@ -1456,47 +1403,6 @@ function AchievementModal({
                 pl: 'Odblokuj, aby zobaczyć',
               })}
             </Text>
-
-            {showPremiumQuizCta && (
-              <View style={{
-                width: '100%',
-                backgroundColor: (isDark ? '#6D28D9' : '#7C3AED') + '22',
-                borderRadius: 14,
-                padding: 14,
-                gap: 10,
-                borderWidth: 0,
-                borderColor: (isDark ? '#A78BFA' : '#7C3AED') + '44',
-              }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, {
-                    ru: 'Достижения по вызовам считаются по обычным правилам. Открой вызовы и продолжай серию.',
-                    uk: 'Квізові досягнення рахуються за звичайними правилами. Відкрий квізи й продовжуй серію.',
-                    es: 'Los logros de cuestionarios cuentan con las reglas normales. Abre los cuestionarios y continúa la racha.',
-                    'pt-BR': 'As conquistas de quizzes contam pelas regras normais. Abra os quizzes e continue a sequência.',
-                    vi: 'Thành tích quiz được tính theo quy tắc thông thường. Mở quiz và tiếp tục chuỗi.',
-                    id: 'Pencapaian kuis dihitung dengan aturan biasa. Buka kuis dan lanjutkan rentetanmu.',
-                    tr: 'Quiz başarımları normal kurallarla sayılır. Quizleri aç ve seriyi sürdür.',
-                    pl: 'Osiągnięcia quizowe liczą się według zwykłych zasad. Otwórz quizy i kontynuuj serię.',
-                  })}
-                </Text>
-                <TapScale
-                  onPress={() => {
-                    onClose();
-                    router.push('/home' as any);
-                  }}
-                  style={{
-                    backgroundColor: isDark ? '#6D28D9' : '#7C3AED',
-                    borderRadius: 12,
-                    paddingVertical: 12,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ color: monoIcon(themeMode, '#FEF3C7'), fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Открыть вызовы', uk: 'Відкрити квізи', es: 'Abrir cuestionarios', 'pt-BR': 'Abrir quizzes', vi: 'Mở quiz', id: 'Buka kuis', tr: 'Quizleri aç', pl: 'Otwórz quizy' })}
-                  </Text>
-                </TapScale>
-              </View>
-            )}
 
             {/* Date unlocked */}
             {unlocked && state?.unlockedAt && (
@@ -1619,7 +1525,6 @@ type AccordionSectionProps = {
   f: any;
   isDark: boolean;
   gold: string;
-  premiumQuizHintDisabled: boolean;
   onSelect: (a: Achievement) => void;
   revealLockedDetails: boolean;
   themeMode: ThemeMode;
@@ -1637,7 +1542,6 @@ const AccordionSection = memo(function AccordionSection({
   f,
   isDark,
   gold,
-  premiumQuizHintDisabled,
   onSelect,
   revealLockedDetails,
   themeMode,
@@ -1725,11 +1629,6 @@ const AccordionSection = memo(function AccordionSection({
                   onSelect={onSelect}
                   revealLockedDetails={revealLockedDetails}
                   themeMode={themeMode}
-                  showPremiumQuizGate={
-                    !premiumQuizHintDisabled &&
-                    !stateMap.get(a.id)?.unlockedAt &&
-                    achievementNeedsPremiumQuiz(a.id)
-                  }
                 />
               ))}
             </View>
@@ -1746,10 +1645,8 @@ export default function AchievementsScreen() {
   const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang }        = useLang();
   const { studyTarget } = useStudyTarget();
-  const { hasPremiumAccess: isPremium }   = usePremium();
   const { width: screenW } = useWindowDimensions();
   const gold            = t.gold;
-  const premiumQuizHintDisabled = isPremium || DEV_CONTENT_UNLOCK;
   const gridMetrics = useMemo(() => getAchievementGridMetrics(screenW), [screenW]);
   const isUK = lang === 'uk';
 
@@ -1902,7 +1799,6 @@ export default function AchievementsScreen() {
               f={f}
               isDark={isDark}
               gold={gold}
-              premiumQuizHintDisabled={premiumQuizHintDisabled}
               onSelect={onSelectAchievement}
               revealLockedDetails={showAllAchievements}
               themeMode={themeMode}
@@ -1963,7 +1859,6 @@ export default function AchievementsScreen() {
           themeMode={themeMode}
           onClose={() => setSelected(null)}
           onShardClaimed={onShardClaimedUpdate}
-          isPremium={isPremium}
           revealLockedDetails={showAllAchievements}
           studyTarget={studyTarget}
         />

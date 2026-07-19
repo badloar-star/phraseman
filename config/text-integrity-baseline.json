@@ -1299,40 +1299,6 @@
       }
     },
     {
-      "file": "app/trainer.tsx",
-      "ownerName": "TrainerScreenInner",
-      "ownerPath": "TrainerScreenInner",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "ScrollView",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "4",
-      "testID": null,
-      "fingerprint": "19ef5cf92b2ba5ddacb9344766aba03fb5fd9f9f551646d6a8abfebf13e345da",
-      "count": 1,
-      "lineHints": [
-        769
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/ai_dialog_session.tsx",
       "ownerName": "AiDialogSession",
       "ownerPath": "AiDialogSession",
@@ -6412,44 +6378,6 @@
       }
     },
     {
-      "file": "app/trainer.tsx",
-      "ownerName": "TrainerScreenInner",
-      "ownerPath": "TrainerScreenInner",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "ScrollView",
-        "StatsPremiumBlur",
-        "View",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "7a37300b9c904481db08621d5ca8cb3bdc2ea14391065faa55dd937f0bc46409",
-      "count": 2,
-      "lineHints": [
-        980,
-        996
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/DialogsTabContent.tsx",
       "ownerName": "renderHero",
       "ownerPath": "DialogsTabContent>renderHero",
@@ -8151,33 +8079,6 @@
       }
     },
     {
-      "file": "app/trainer.tsx",
-      "ownerName": "InlineCategoryRow",
-      "ownerPath": "InlineCategoryRow",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a409ede42ad7a205e4c66b8743dcc3e65b5c490cbbdd970badec291f3346ae13",
-      "count": 1,
-      "lineHints": [
-        527
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/PlayerProfileModal.tsx",
       "ownerName": "PlayerProfileModalBody",
       "ownerPath": "PlayerProfileModalBody",
@@ -8231,42 +8132,6 @@
       "count": 1,
       "lineHints": [
         1352
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/trainer.tsx",
-      "ownerName": "TrainerScreenInner",
-      "ownerPath": "TrainerScreenInner",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "ScrollView",
-        "StatsPremiumBlur",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "a942d85dbebc0f8fa4ba16d759f5110c5aad18335bcbd0805a8c394c1cb5c8a5",
-      "count": 1,
-      "lineHints": [
-        966
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9013,34 +8878,6 @@
       "count": 1,
       "lineHints": [
         114
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/trainer.tsx",
-      "ownerName": "InlineCategoryRow",
-      "ownerPath": "InlineCategoryRow",
-      "ancestorPath": [
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "b56404b9120d66b8f539b99b06dcaac8466db369ffef8900a54dd593eb20db32",
-      "count": 1,
-      "lineHints": [
-        529
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10912,40 +10749,6 @@
       "count": 1,
       "lineHints": [
         1846
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "app/trainer.tsx",
-      "ownerName": "TrainerScreenInner",
-      "ownerPath": "TrainerScreenInner",
-      "ancestorPath": [
-        "ScreenGradient",
-        "SafeAreaView",
-        "ContentWrap",
-        "Reanimated.View",
-        "BouncyWrap",
-        "ScrollView",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "e18bf85e16d8109c30a9d1c7a580ce1b1567198bb5216d60b53519d0e88d26ab",
-      "count": 1,
-      "lineHints": [
-        833
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

@@ -1,4 +1,5 @@
-import type { TrainerDashboard, TrainerQueue } from './trainer_store';
+import { getCachedDueItems, getDueItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
+import type { RuntimeSourceLocale, RuntimeStudyTarget } from './target_storage_keys';
 
 const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words', 'arena'];
 
@@ -47,4 +48,47 @@ export function visiblePracticeHallTrendWindow(
 ): PracticeHallTrendPoint[] {
   const start = clampPracticeHallTrendOffset(points.length, rangeDays, offset);
   return points.slice(start, start + rangeDays);
+}
+
+/**
+ * Сессия фраз обслуживает обе фразовые очереди: уроковые «phrases» и быстрые
+ * «arena» (их ключ — тоже фраза, режимы word_bank/fill_gap одинаковы). Это же
+ * объединение показывает счётчик «Фразы · n» на экране практики.
+ */
+export const PHRASE_SESSION_LIMIT = 15;
+export const WORD_SESSION_LIMIT = 20;
+
+/** Объединяет фразовые очереди в одну колоду по компаратору getDueItems. */
+export function mergePhraseSessionItems(
+  phraseItems: readonly TrainerItem[],
+  arenaItems: readonly TrainerItem[],
+  limit = PHRASE_SESSION_LIMIT,
+): TrainerItem[] {
+  return [...phraseItems, ...arenaItems]
+    .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
+    .slice(0, limit);
+}
+
+export async function getPhraseSessionItems(
+  limit = PHRASE_SESSION_LIMIT,
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): Promise<TrainerItem[]> {
+  const [phraseItems, arenaItems] = await Promise.all([
+    getDueItems('phrases', limit, studyTarget, sourceLocale),
+    getDueItems('arena', limit, studyTarget, sourceLocale),
+  ]);
+  return mergePhraseSessionItems(phraseItems, arenaItems, limit);
+}
+
+export function getCachedPhraseSessionItems(
+  limit = PHRASE_SESSION_LIMIT,
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): TrainerItem[] {
+  return mergePhraseSessionItems(
+    getCachedDueItems('phrases', limit, studyTarget, sourceLocale),
+    getCachedDueItems('arena', limit, studyTarget, sourceLocale),
+    limit,
+  );
 }

@@ -19,6 +19,9 @@ interface TrainerSessionReportProps {
   accent: string;
   onDone: () => void;
   onPracticeMore?: () => void;
+  /** Цепочка микса: «Дальше: Слова · n» — переход в следующую непустую очередь. */
+  nextLabel?: string;
+  onNext?: () => void;
 }
 
 export default function TrainerSessionReport({
@@ -28,6 +31,8 @@ export default function TrainerSessionReport({
   accent,
   onDone,
   onPracticeMore,
+  nextLabel,
+  onNext,
 }: TrainerSessionReportProps) {
   const { theme: t, f } = useTheme();
   const isCompassTheme = false;
@@ -115,7 +120,7 @@ export default function TrainerSessionReport({
             pl: 'utrwalone',
           })}
           value={String(correct)}
-          color={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'}
+          color={isCompassTheme ? COMPASS_RICH.champagne : t.correct}
         />
         <Metric
           label={triLang(lang, {
@@ -129,12 +134,19 @@ export default function TrainerSessionReport({
             pl: 'wróci',
           })}
           value={String(wrong)}
-          color={isCompassTheme ? COMPASS_RICH.peach : '#FB7185'}
+          color={isCompassTheme ? COMPASS_RICH.peach : t.wrong}
         />
       </View>
 
       <View style={styles.actions}>
-        {onPracticeMore && !isEmpty ? (
+        {onNext && nextLabel ? (
+          <DuoPressable onPress={onNext} wrapStyle={styles.actionButtonWrap} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '22', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+            {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+            <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>
+              {nextLabel}
+            </Text>
+          </DuoPressable>
+        ) : onPracticeMore && !isEmpty ? (
           <DuoPressable onPress={onPracticeMore} wrapStyle={styles.actionButtonWrap} style={[styles.secondaryBtn, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.wash : accent + '22', borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
             {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
             <Text style={{ color: reportAccent, fontSize: f.sub, fontWeight: '900' }}>

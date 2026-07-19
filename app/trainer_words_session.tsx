@@ -40,6 +40,7 @@ import {
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
+import { getCachedPhraseSessionItems, PHRASE_SESSION_LIMIT } from './trainer_practice_hall';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
@@ -451,6 +452,22 @@ export default function TrainerWordsSession() {
   }
 
   if (done) {
+    // Цепочка микса: после слов предлагаем фразы (включая арену), если они ещё ждут.
+    const phrasesChain = planTrainerContext.taskId
+      ? []
+      : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
+    const nextLabel = phrasesChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Фразы',
+        uk: 'Далі: Фрази',
+        es: 'Siguiente: Frases',
+        'pt-BR': 'A seguir: Frases',
+        vi: 'Tiếp: Cụm từ',
+        id: 'Lanjut: Frasa',
+        tr: 'Sıradaki: İfadeler',
+        pl: 'Dalej: Frazy',
+      })} · ${phrasesChain.length}`
+      : undefined;
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -463,6 +480,8 @@ export default function TrainerWordsSession() {
               accent="#4A9EFF"
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
+              nextLabel={nextLabel}
+              onNext={nextLabel ? () => { hapticTap(); router.replace('/trainer_phrases_session' as any); } : undefined}
             />
           </ContentWrap>
         </SafeAreaView>

@@ -40,12 +40,17 @@ import { useCorrectSound } from '../hooks/use-correct-sound';
 import { useSpeakAnswer } from '../hooks/use-speak-answer';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import {
-  getDueItems,
+  getCachedDueItems,
   getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
+import {
+  getPhraseSessionItems,
+  PHRASE_SESSION_LIMIT,
+  WORD_SESSION_LIMIT,
+} from './trainer_practice_hall';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
 import {
@@ -551,7 +556,7 @@ export default function TrainerPhrasesSession() {
               planTrainerContext.requiredItems,
               studyTarget,
             )
-          : await getDueItems('phrases', 15, studyTarget, sourceLocale);
+          : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
         setDeck(buildDeck(items));
@@ -575,7 +580,7 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, 'phrases', answeredCorrectly, studyTarget);
+    await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
     const updates: { type: TaskType; increment: number }[] = [];
     if (!dailySessionTracked.current) {
       dailySessionTracked.current = true;
@@ -583,7 +588,7 @@ export default function TrainerPhrasesSession() {
     }
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
-      updates.push({ type: 'trainer_phrases', increment: 1 });
+      updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
       checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
     }
 
@@ -636,8 +641,8 @@ export default function TrainerPhrasesSession() {
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
             {copy.body}
           </Text>
-          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#40C080', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
-            <Text style={{ color: '#07110A', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: t.correct, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -645,6 +650,22 @@ export default function TrainerPhrasesSession() {
   }
 
   if (done) {
+    // Цепочка микса: после фраз (и арены) предлагаем слова, если они ещё ждут.
+    const wordsChain = planTrainerContext.taskId
+      ? []
+      : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
+    const nextLabel = wordsChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Слова',
+        uk: 'Далі: Слова',
+        es: 'Siguiente: Palabras',
+        'pt-BR': 'A seguir: Palavras',
+        vi: 'Tiếp: Từ vựng',
+        id: 'Lanjut: Kata',
+        tr: 'Sıradaki: Kelimeler',
+        pl: 'Dalej: Słowa',
+      })} · ${wordsChain.length}`
+      : undefined;
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -654,9 +675,11 @@ export default function TrainerPhrasesSession() {
               correct={correct}
               wrong={wrong}
               total={deck.length || correct + wrong}
-              accent="#40C080"
+              accent={t.correct}
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
+              nextLabel={nextLabel}
+              onNext={nextLabel ? () => { hapticTap(); router.replace('/trainer_words_session' as any); } : undefined}
             />
           </ContentWrap>
         </SafeAreaView>
@@ -726,7 +749,7 @@ export default function TrainerPhrasesSession() {
           {/* Прогресс */}
           <GradientProgressBar
             progress={deck.length > 0 ? current / deck.length : 0}
-            accent={isCompassTheme ? COMPASS_RICH.champagne : '#40C080'}
+            accent={isCompassTheme ? COMPASS_RICH.champagne : t.correct}
             style={styles.progressBar}
           />
 

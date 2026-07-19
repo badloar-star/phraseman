@@ -814,7 +814,6 @@ export default function HomeScreen() {
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
     const [homeLeagueCrownCount, setHomeLeagueCrownCount] = useState(() => hh?.homeLeagueCrownCount ?? 0);
-    const [homeLeagueRaceVisible, setHomeLeagueRaceVisible] = useState(() => hh?.homeLeagueRaceVisible ?? false);
     const [homeLeagueChest, setHomeLeagueChest] = useState<{
         leagueName: string;
         progress: number;
@@ -1693,7 +1692,6 @@ export default function HomeScreen() {
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
                 lastLessonScore: snapLastLessonScore,
-                homeLeagueRaceVisible,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
                 homeLeagueChest,
@@ -1780,16 +1778,13 @@ export default function HomeScreen() {
                         pl: "Liga tygodnia",
                     }), leagueState.leagueId, matchingFreshBonus?.leaguePoints)
                     : null;
-                setHomeLeagueRaceVisible(showLeagueRace);
                 setEngineLeague(league);
                 setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
                 patchHomeScreenHydration({
-                    homeLeagueRaceVisible: showLeagueRace,
                     ...(nextHomeLeagueChest ? { homeLeagueChest: nextHomeLeagueChest } : {}), // null не затирает кэш — иначе карточка Лиги «пропадает» с главной
                 }, studyTarget);
             }
             else {
-                setHomeLeagueRaceVisible(false);
                 setHomeLeagueChest((prev) => prev);
             }
             if (leaguePending && mountedRef.current) {

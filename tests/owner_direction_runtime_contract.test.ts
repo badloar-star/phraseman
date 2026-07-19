@@ -32,7 +32,8 @@ describe('owner runtime direction contract', () => {
   it('keeps startup fast: first UI is not blocked by cloud/network warmups', () => {
     const source = read('app/_layout.tsx');
 
-    expect(source).toContain('const safetyTimer = setTimeout(() => setReady(true), 1200)');
+    // safetyTimer объявляется через let в области эффекта и взводится внутри bootstrap.
+    expect(source).toContain('safetyTimer = setTimeout(() => setReady(true), 1200)');
     expect(source).toContain('const appCheckWarmup = Promise.race');
     expect(source).toContain('new Promise<void>((resolve) => setTimeout(resolve, 1200))');
     expect(source).toContain('const startupLocalHydration = Promise.all');
@@ -40,7 +41,11 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('InteractionManager.runAfterInteractions');
     expect(source).toContain('runHeavyInitRef.current?.()');
 
-    expect(source.indexOf('await restoreFromCloud();')).toBeLessThan(
+    // Boot-гидратация (restore через bootCoordinator) строго предшествует boot-syncToCloud:
+    // sync пушится только внутри hydrate.then и только при shouldSync.
+    expect(source).toContain('const hydrate = cloudHydratePromise ?? bootCoordinator.run();');
+    expect(source).toContain('if (bootRestoreOutcome.shouldSync) {');
+    expect(source.indexOf('const hydrate = cloudHydratePromise ?? bootCoordinator.run();')).toBeLessThan(
       source.indexOf('await syncToCloud().catch'),
     );
   });
@@ -99,7 +104,6 @@ describe('owner runtime direction contract', () => {
 
   it('keeps immediate forceNow cloud sync call sites owner-reviewed', () => {
     const allowlist: Record<string, number> = {
-      'app/arena_battle_pass_store.ts': 1,
       // Two account-boundary syncs are deliberate: pre-swap preservation and
       // post-link recovery after RevenueCat/auth restoration.
       'app/auth_provider.ts': 2,
@@ -130,13 +134,18 @@ describe('owner runtime direction contract', () => {
 
   it('keeps non-critical avatar cosmetic sync deferred and profile-card purchase sync immediate', () => {
     const avatarSource = read('app/avatar_select.tsx');
+    const customizationService = read('app/customization_service.ts');
     const profileCardSource = read('components/PlayerProfileModal.tsx');
 
     expect(avatarSource).toContain('const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000');
     expect(avatarSource).toContain('syncToCloud({ deferMs: AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS })');
-    expect(avatarSource).toContain("await persistAvatar(nextAvatar, nextOwned, cost > 0 ? 'immediate' : 'deferred')");
-    expect(avatarSource).toContain("syncAvatarDisplayToCloud('deferred')");
-    expect(avatarSource).toContain("syncAvatarDisplayToCloud(purchasedAura ? 'immediate' : 'deferred')");
+    expect(avatarSource).toContain("if (mode === 'immediate') void syncToCloud({ forceNow: true })");
+    expect(avatarSource).toContain('syncCloud: syncAvatarDisplayToCloud');
+    // Явное действие пользователя (применить/купить) — немедленный sync.
+    expect(avatarSource).toContain("cloudSyncMode: 'immediate'");
+    // Режим по умолчанию и сброс к уровневому аватару остаются отложенными (deferred).
+    expect(customizationService).toContain("await deps.syncCloud(input.cloudSyncMode ?? 'deferred')");
+    expect(customizationService).toContain("cloudSyncMode: 'deferred'");
 
     expect(profileCardSource).not.toContain('PROFILE_CARD_DISPLAY_CLOUD_SYNC_DEFER_MS');
     expect(profileCardSource).toContain('syncToCloud({ forceNow: true })');
@@ -146,25 +155,17 @@ describe('owner runtime direction contract', () => {
 
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
     const allowlist: Record<string, number> = {
-      'app/(tabs)/quizzes.tsx': 1,
-      'app/arena_game.tsx': 1,
-      // One idle-hint tick remains; elapsed search UI uses the shared visible wall clock.
-      'app/arena_lobby.tsx': 1,
-      'app/arena_results.tsx': 1,
+      // Arena-файлы и matchmaking удалены вместе с фичей — их тики ушли из кода.
       'app/club_screen.tsx': 1,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
-      'app/services/arena_db.ts': 2,
-      'app/services/arena_feature_flags.ts': 1,
-      'app/services/arena_hill.ts': 1,
       'app/shards_shop.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
       'app/visible_wall_clock.ts': 3,
       'components/ActiveBoostBar.tsx': 1,
-      'components/ArenaDuelEmojiReact.tsx': 1,
       // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
@@ -174,11 +175,6 @@ describe('owner runtime direction contract', () => {
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
       'components/paywall/PaywallPriceUrgency.tsx': 1,
-      'contexts/MatchmakingContext.tsx': 2,
-      'hooks/use-arena-mock.ts': 2,
-      'hooks/use-arena-room-run.ts': 2,
-      'hooks/use-arena-session.ts': 3,
-      'hooks/use-matchmaking.ts': 1,
     };
     const found: Record<string, number> = {};
 
@@ -255,24 +251,18 @@ describe('owner runtime direction contract', () => {
 
   it('keeps Firestore onSnapshot call sites owner-reviewed so live listeners stay intentional', () => {
     const allowlist: Record<string, number> = {
+      // Arena listeners удалены вместе с фичей; монитор удаления аккаунта —
+      // новый intentional live-listener.
       'app/app_messages.ts': 3,
-      'app/arena_friend_room_guest.ts': 1,
-      'app/arena_lobby.tsx': 1,
-      'app/arena_results.tsx': 1,
       'app/daily_phrase_system.ts': 1,
       'app/firestore_friend_requests.ts': 2,
       'app/firestore_leagues.ts': 2,
       'app/league_group_boosts.ts': 2,
+      'app/remote_account_deletion_monitor.ts': 1,
       'app/remote_config_client.ts': 1,
-      'app/services/arena_club_wars.ts': 2,
-      'app/services/arena_db.ts': 5,
-      'app/services/arena_invites.ts': 2,
-      'app/services/arena_pulse.ts': 1,
-      'app/services/arena_rooms_live.ts': 3,
       'app/services/league_chest_rewards.ts': 3,
       'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
-      'hooks/use-arena-rank.ts': 1,
     };
     const found: Record<string, number> = {};
 
@@ -286,26 +276,6 @@ describe('owner runtime direction contract', () => {
     }
 
     expect(found).toEqual(allowlist);
-  });
-
-  it('keeps private arena room question timer on visible-second cadence with exact timeout', () => {
-    const source = read('hooks/use-arena-room-run.ts');
-
-    expect(source).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(source).toContain('const questionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)');
-    expect(source).toContain('const lastShownSecRef = useRef<number | null>(null)');
-    expect(source).toContain('lastShownSecRef.current = null');
-    expect(source).toContain('const updateVisibleTimeLeft = () => {');
-    expect(source).toContain('const displaySec = Math.ceil(left / 1000) || 0');
-    expect(source).toContain('if (lastShownSecRef.current !== displaySec)');
-    expect(source).toContain('lastShownSecRef.current = displaySec');
-    expect(source).toContain('setTimeLeft(left)');
-    expect(source).toContain('const finishNoAnswer = () => {');
-    expect(source).toContain('lastShownSecRef.current = 0');
-    expect(source).toContain('setTimeLeft(0)');
-    expect(source).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(source).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
-    expect(source).not.toContain('}, 250);');
   });
 
   it('keeps boost countdown timer idle when there are no active boosts', () => {
@@ -366,29 +336,6 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('const HEARTBEAT_MS = 60_000');
   });
 
-  it('keeps arena emoji cooldown timer from recreating sub-second intervals', () => {
-    const source = read('components/ArenaDuelEmojiReact.tsx');
-
-    expect(source).toContain('const remainingMs = cooldownUntil - Date.now()');
-    expect(source).toContain('const intervalId = setInterval(update, 1000)');
-    expect(source).toContain('const doneId = setTimeout(update, remainingMs + 50)');
-    expect(source).toContain('clearInterval(intervalId)');
-    expect(source).toContain('clearTimeout(doneId)');
-    expect(source).toContain('}, [cooldownUntil]);');
-    expect(source).not.toContain('}, [cooldownUntil, tick]);');
-    expect(source).not.toContain('setInterval(() => setTick((n) => n + 1), 320)');
-  });
-
-  it('keeps arena acceptance and rematch countdowns at visible-second cadence', () => {
-    const game = read('app/arena_game.tsx');
-    const results = read('app/arena_results.tsx');
-
-    expect(game).toContain('const id = setInterval(() => setAcceptTimeTick((n) => n + 1), 1000)');
-    expect(game).not.toContain('setInterval(() => setAcceptTimeTick((n) => n + 1), 500)');
-    expect(results).toContain('const id = setInterval(tick, 1000)');
-    expect(results).not.toContain('const id = setInterval(tick, 500)');
-  });
-
   it('keeps Home Theo typewriter on a frame-friendly cadence', () => {
     const source = read('components/HomeTheoAdvisorCard.tsx');
 
@@ -408,31 +355,6 @@ describe('owner runtime direction contract', () => {
     expect(source).toContain('setTimer(formatCountdown(remainingMs))');
     expect(source).toContain('void getUrgencyState().then((s) => {');
     expect(source).not.toContain('setInterval(async () =>');
-  });
-
-  it('keeps matchmaking elapsed timers on a once-per-second cadence', () => {
-    const context = read('contexts/MatchmakingContext.tsx');
-    const legacyHook = read('hooks/use-matchmaking.ts');
-
-    expect(context).toContain('const ELAPSE_TICK_MS     = 1000');
-    expect(context).not.toContain('const ELAPSE_TICK_MS     = 200');
-    expect(legacyHook).toContain('const MATCHMAKING_ELAPSE_TICK_MS = 1000');
-    expect(legacyHook).toContain('}, MATCHMAKING_ELAPSE_TICK_MS);');
-    expect(legacyHook).not.toContain('}, 100);');
-  });
-
-  it('keeps arena question timers on visible-second cadence with exact timeout callbacks', () => {
-    const realArena = read('hooks/use-arena-session.ts');
-    const mockArena = read('hooks/use-arena-mock.ts');
-
-    expect(realArena).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(mockArena).toContain('const QUESTION_UI_TICK_MS = 1000');
-    expect(realArena).toContain('questionTimerRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(mockArena).toContain('intervalRef.current = setInterval(updateVisibleTimeLeft, QUESTION_UI_TICK_MS)');
-    expect(realArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, timeoutDelayMs + 50)');
-    expect(mockArena).toContain('questionTimeoutRef.current = setTimeout(finishNoAnswer, QUESTION_TIME_MS + 50)');
-    expect(realArena).not.toContain('}, 100);');
-    expect(mockArena).not.toContain('}, 100);');
   });
 
   it('keeps streak stats boost countdowns on one shared visible wall clock', () => {
@@ -763,7 +685,7 @@ describe('owner runtime direction contract', () => {
     expect(shardsSystem).toContain('if (currentMeta && currentMeta.updatedAtMs > serverUpdatedAtMs) return;');
     expect(shardsSystem).toContain('await persistLocalBalance(n, meta)');
     expect(shardsSystem).toContain('const mirrorServerShardBalanceLocal = async (');
-    expect(shardsSystem).toContain('await mirrorServerShardBalanceLocal(cloudApplied.balance, meta);');
+    expect(shardsSystem).toContain('const mirrorOutcome = await mirrorServerShardBalanceLocal(');
     expect(shardsSystem).not.toContain('await persistLocalBalance(cloudApplied.balance, meta)');
     expect(shardsSystem).not.toContain('setShardsBalanceMemory(cloudApplied.balance)');
 
@@ -803,8 +725,6 @@ describe('owner runtime direction contract', () => {
     const leagueGroupsServer = read('functions/src/league_groups.ts');
     const activityLikeServer = read('functions/src/friend_activity_likes.ts');
     const leagueBoostsClient = read('app/league_group_boosts.ts');
-    const arenaBotServer = read('functions/src/arena_bot_match.ts');
-    const arenaBotClient = read('app/arena_bot_profile_write.ts');
     const weeklyReviewServer = read('functions/src/weekly_review.ts');
     const statsInsightsServer = read('functions/src/stats_insights.ts');
 
@@ -851,13 +771,6 @@ describe('owner runtime direction contract', () => {
     expect(activityLikeServer).toContain("throw new HttpsError('resource-exhausted', 'Daily activity like limit reached');");
     expect(leagueBoostsClient).toContain('const next = res.idempotentReplay');
 
-    expect(arenaBotServer).toContain("const historyRef = profileRef.collection('match_history').doc(sessionId);");
-    expect(arenaBotServer).toContain('if (historySnap.exists) {');
-    expect(arenaBotServer).toContain('return replayBotMatchResult(historySnap.data() ?? {}, data);');
-    expect(arenaBotServer).toContain('idempotentReplay: true');
-    expect(arenaBotServer).toContain('sessionId,');
-    expect(arenaBotClient).toContain('idempotentReplay?: boolean;');
-
     expect(weeklyReviewServer).toContain('lastBriefingHash: params.briefingHash');
     expect(weeklyReviewServer).toContain('lastReview: params.review');
     expect(weeklyReviewServer).toContain('const replay = await readReplayOrAssertWindowOpen(stableUid, briefingHash, briefing.lang);');
@@ -882,7 +795,6 @@ describe('owner runtime direction contract', () => {
     const explainBudget = read('functions/src/explain/explain_budget.ts');
     const explainPhrase = read('functions/src/explain_phrase.ts');
     const explainChoice = read('functions/src/explain_choice.ts');
-    const explainQuiz = read('functions/src/explain_quiz.ts');
     const statsInsights = read('functions/src/stats_insights.ts');
 
     expect(explainBudget).toContain('export async function reserveExplainBudget');
@@ -891,7 +803,7 @@ describe('owner runtime direction contract', () => {
     expect(explainBudget).toContain('async function refundGlobalBudget');
     expect(explainBudget).toContain('if (reservation.userReserved && !reservation.globalReserved)');
 
-    for (const source of [explainPhrase, explainChoice, explainQuiz]) {
+    for (const source of [explainPhrase, explainChoice]) {
       expect(source).toContain('let budgetReservation: ExplainBudgetReservation | null = null');
       expect(source).toContain('budgetReservation = await reserveExplainBudget(');
       expect(source).toContain("await refundExplainBudgetReservation(budgetReservation, 'lock_not_claimed');");
@@ -911,7 +823,6 @@ describe('owner runtime direction contract', () => {
     const leagueChest = read('functions/src/league_chest.ts');
     const collectibles = read('functions/src/collectibles.ts');
     const profileCard = read('functions/src/profile_card_upgrade.ts');
-    const seasonRewards = read('functions/src/arena_season_rewards.ts');
     const promoCodes = read('functions/src/promo_codes.ts');
     const revenueCat = read('functions/src/revenuecat_shards.ts');
 
@@ -932,9 +843,6 @@ describe('owner runtime direction contract', () => {
     expect(profileCard).toContain('if (expectedLevel !== null && currentLevel > expectedLevel) {');
     expect(profileCard).toContain('return { ok: true, alreadyApplied: true, level: currentLevel, balance, spent: 0 };');
 
-    expect(seasonRewards).toContain('const claimRef = db.collection(\'arena_season_claims\').doc(`${seasonId}_${uid}`);');
-    expect(seasonRewards).toContain('if (claim.claimed) return { alreadyClaimed: true, rewards: [] };');
-
     expect(promoCodes).toContain('const redemptionRef = userRef.collection(PROMO_REDEMPTIONS).doc(code);');
     expect(promoCodes).toContain('alreadyRedeemed: redemptionSnap.exists');
 
@@ -947,7 +855,6 @@ describe('owner runtime direction contract', () => {
     const layout = read('app/_layout.tsx');
     const clubScreen = read('app/club_screen.tsx');
     const leagueClient = read('app/services/league_chest_rewards.ts');
-    const arenaLimit = read('app/arena_daily_limit.ts');
     const packTrial = read('app/flashcards/pack_trial_gift.ts');
 
     expect(clubScreen).toContain('const CLUB_REMOTE_REFRESH_MS = 45_000;');
@@ -955,12 +862,10 @@ describe('owner runtime direction contract', () => {
     expect(layout).toContain('while (leagueBonusAvailableReservedThisSession.size > LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS)');
     expect(leagueClient).toContain('LOCAL_REWARD_EFFECT_KEY_PREFIX');
     expect(leagueClient).toContain('_xp_boost');
-    expect(leagueClient).toContain('addArenaPlaysBonusForClaimDayOnce');
     expect(leagueClient).toContain('setPackGiftTrial48hOnce');
     expect(leagueClient).not.toContain("return { claimed: true };\n  }\n  await AsyncStorage.setItem(pendingClaimKey, '1')");
     expect(clubScreen).toContain('hasLeagueChestClaimOrPending');
     expect(clubScreen).toContain('leagueChestReplayModalKeyRef');
-    expect(arenaLimit).toContain('export async function addArenaPlaysBonusForClaimDayOnce');
     expect(packTrial).toContain('expiresAtOverride');
   });
 

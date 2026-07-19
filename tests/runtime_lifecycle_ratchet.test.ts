@@ -58,14 +58,11 @@ const runtime = (reason: string, requiredTokens: string[] = []): MotionReview =>
 });
 
 const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
-  'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(activeIdx === 0)', '!homeRuntimeActive']),
-  'app/(tabs)/quizzes.tsx': guarded('Quiz card pulse already uses screen focus and AppState.'),
+  'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(isHomeOwner)', '!homeRuntimeActive']),
   'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
   'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },
   'app/_anim_demo_lab.tsx': { owner: 'dev_only', reason: 'Development-only animation laboratory.' },
   'app/_layout.tsx': owned('Root overlay motion runs only while its overlay is visible.', ['if (!visible) return', 'pulseLoop.stop()']),
-  'app/arena_game.tsx': runtime('Live game motion requires focused foreground runtime.', ['!arenaGameRuntimeActive || phase !== \'premeet\'', 'cancelAnimation(premeetScale)']),
-  'app/arena_lobby.tsx': runtime('Lobby motion is owned by the visible Arena tab and foreground.', ['useRuntimeActive(arenaTabVisible)', '!lobbyRuntimeActive', 'ctaLoop.stop()']),
   'app/club_screen.tsx': {
     owner: 'owner_prop',
     reason: 'League icon pulse requires its pulse prop and the production motion flag.',
@@ -104,7 +101,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
   'components/LingmanVideosButton.tsx': guarded('Unread pulse uses navigation focus and AppState.'),
   'components/league/LeagueHeroStatus.tsx': guarded('League hero icon float and rank glow loops use screen focus and AppState.'),
-  'components/MatchFoundToast.tsx': owned('Toast loops follow visible state and stop through the shared loop registry.', ['if (!visible', 'loopsRef.current.forEach']),
   'components/NoEnergyModal.tsx': owned('No-energy motion follows modalVisible and stops on cleanup.', ['if (!modalVisible)', 'running.forEach']),
   'components/PlayerProfileModal.tsx': owned('Profile shimmer exists only while a player is present.', ['if (!player)', 'return () => loop.stop()']),
   'components/PremiumCelebrationModal.tsx': owned('Celebration motion is visible-only and cancels Reanimated values while hidden.', ['if (!visible)', 'cancelAnimation(ringSpin)']),
@@ -121,9 +117,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/WeeklyBoonDetailModal.tsx': owned('Boon detail float follows visibility and stops on cleanup.', ['if (!visible)', 'floatLoop.current?.stop()']),
   'components/onboarding_aha/SpeechBeat.tsx': guarded('Microphone pulse uses screen focus and AppState.'),
   'components/onboarding_aha/TypewriterText.tsx': guarded('Cursor loop uses screen focus and AppState.'),
+  'components/paywall/PaywallMotion.tsx': guarded('Paywall motion loops use screen focus and AppState.'),
   'components/premium_celebration/AuroraBackground.tsx': owned('Aurora receives an explicit active owner prop and cancels both worklets.', ['if (!active)', 'cancelAnimation(drift)', 'cancelAnimation(breathe)']),
   'components/reward_v2/RewardCardV2.tsx': runtime('Reward halo requires focused foreground runtime without replaying its entrance.', ['!rewardRuntimeActive', 'entrancePlayedRef.current', 'haloLoop.stop()']),
   'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
+  'components/today/TodayAmbientCompass.tsx': runtime('Compass breath/drift loops require focused foreground runtime and respect reduced motion.', ['if (active && !reduceMotion)', 'cancelAnimation(breath)']),
 };
 
 describe('runtime lifecycle ratchet', () => {

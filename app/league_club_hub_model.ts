@@ -1,6 +1,5 @@
 import type { GroupMember } from './league_engine';
 import type { LeagueGroupBoostState } from './league_group_boosts';
-import { leaguePublicName } from './league_public_name';
 
 export type LeagueBonusMissionState = 'locked' | 'active' | 'almost_ready' | 'ready' | 'claimed';
 
@@ -49,33 +48,4 @@ export function buildLeagueBonusMissionModel(input: LeagueBonusMissionInput): Le
       .sort((a, b) => b.points - a.points)
       .slice(0, 3),
   };
-}
-
-export interface LeaguePodiumMember {
-  place: 1 | 2 | 3;
-  uid?: string;
-  botId?: string;
-  name: string;
-  points: number;
-  avatar?: string;
-  frame?: string;
-  aura?: string;
-  isMe: boolean;
-}
-
-export function buildLeaguePodium(members: GroupMember[]): LeaguePodiumMember[] {
-  return [...members]
-    .sort((a, b) => b.points - a.points)
-    .slice(0, 3)
-    .map((member, index) => ({
-      uid: member.uid,
-      botId: member.botId,
-      name: leaguePublicName(member.name, member.uid ?? member.botId ?? member.name),
-      points: member.points,
-      avatar: member.avatar,
-      frame: member.frame,
-      aura: member.aura,
-      isMe: member.isMe,
-      place: (index + 1) as 1 | 2 | 3,
-    }));
 }

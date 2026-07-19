@@ -13,24 +13,20 @@ describe('league club hub composition', () => {
     expect(mission).toContain('onLikeBoost');
   });
 
-  it('separates the top three and keeps participant profile actions', () => {
-    const podium = read('components/league/LeaguePodium.tsx');
+  it('keeps the hero status above participant rows with profile actions', () => {
+    const hero = read('components/league/LeagueHeroStatus.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
-    expect(podium).toContain('orderedPodium.map');
-    expect(podium).toContain('onOpenProfile');
-    expect(podium).toContain('accessibilityLabel');
-    expect(podium).not.toContain('firstPerson');
-    expect(podium).not.toContain('firstAvatar');
+    expect(hero).toContain('testID="league-hero-status"');
     expect(row).toContain('GroupMember');
     expect(row).toContain('onOpenProfile');
     expect(row).toContain('member.isMe');
+    expect(row).toContain('accessibilityLabel');
   });
 
   it('keeps motion finite and bright surfaces readable', () => {
     const files = [
       'LeagueQuickStats.tsx',
       'LeagueBonusMission.tsx',
-      'LeaguePodium.tsx',
       'LeagueLeaderboardRow.tsx',
     ].map((name) => read(`components/league/${name}`)).join('\n');
     expect(files).not.toContain('withRepeat(');
@@ -55,19 +51,17 @@ describe('league club hub composition', () => {
     expect(screen).toContain('keyExtractor={leagueMemberKeyExtractor}');
   });
 
-  it('shows active league identity in the header and podium art', () => {
+  it('shows active league identity in the header and hero art', () => {
     const screen = read('app/club_screen.tsx');
-    const podium = read('components/league/LeaguePodium.tsx');
+    const hero = read('components/league/LeagueHeroStatus.tsx');
 
     expect(screen).toContain('{leagueNameForLang(myLeague, lang)}');
     expect(screen).not.toContain('Liga de la semana');
     expect(screen).toContain('leagueIcon={<LeagueIcon');
     expect(screen).toContain('league={myLeague}');
     expect(screen).toContain('alignContent={false}');
-    expect(podium).toContain('leagueIcon: React.ReactNode');
-    expect(podium).toContain('testID="league-current-heraldry"');
-    expect(podium).not.toContain('<Ionicons name="trophy" size={24}');
-    expect(podium).toContain('<Ionicons name="trophy" size={12}');
+    expect(hero).toContain('leagueIcon: React.ReactNode');
+    expect(hero).toContain('testID="league-hero-status"');
   });
 
   it('keeps promotion direction without the textual transition pill', () => {

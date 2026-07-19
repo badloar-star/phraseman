@@ -1,7 +1,4 @@
-import {
-  buildLeagueBonusMissionModel,
-  buildLeaguePodium,
-} from '../app/league_club_hub_model';
+import { buildLeagueBonusMissionModel } from '../app/league_club_hub_model';
 import type { GroupMember } from '../app/league_engine';
 
 const members: GroupMember[] = [
@@ -27,12 +24,4 @@ describe('league club hub model', () => {
     expect(model.remainingXp).toBe(0);
   });
 
-  it('returns only real podium members and marks the current user', () => {
-    expect(buildLeaguePodium(members.slice(0, 2))).toHaveLength(2);
-    expect(buildLeaguePodium(members)[1]).toMatchObject({
-      place: 2,
-      isMe: true,
-      name: 'Me',
-    });
-  });
 });

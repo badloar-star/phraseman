@@ -48,14 +48,20 @@ describe('league bonus themed gift images', () => {
     expect(patterns).toContain('assets/images/shards/*');
   });
 
-  it('keeps the league screen bonus icon visible while chest art is loading', () => {
+  it('keeps the league screen bonus gift art visible in the mission card', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8');
-    const component = source.match(/function LeagueBonusGiftImageWithFallback\([\s\S]*?\n}\n\nfunction LeagueIcon/)?.[0] ?? '';
+    const mission = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueBonusMission.tsx'), 'utf8');
 
-    expect(component).toContain('!loaded || !source');
-    expect(component).toContain('name="gift"');
-    expect(component).toContain('onLoad={() => setLoaded(true)}');
-    expect(component).toContain('onError={() => setLoaded(false)}');
+    // Бандленый тематический сундук резолвится по теме и передаётся прямо в карточку
+    // миссии (локальный require — сетевой загрузки нет, placeholder-swap не нужен).
+    expect(source).toContain('const leagueBonusGiftImage = getLeagueBonusGiftImage(themeMode)');
+    expect(source).toContain('giftImage={leagueBonusGiftImage}');
+    expect(mission).toContain('giftImage: ImageSourcePropType');
+    expect(mission).toContain('<Image source={giftImage as ImageSource}');
+    expect(mission).toContain('contentFit="contain"');
+    expect(mission).toContain('accessibilityLabel');
+    // Подарочная иконография по-прежнему присутствует в бонусном UI (CTA-кнопка).
+    expect(mission).toContain('name="gift"');
   });
 
   it('keeps the home league bonus plate background visible and uncropped', () => {

@@ -1039,7 +1039,7 @@ let wagerCardWarm: {
     stakes: number[];
 } | null = null;
 
-function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false }: {
+function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, autoOpenPicker = false }: {
     lang: Lang;
     t: any;
     f: any;
@@ -1048,6 +1048,12 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
     themeMode: ThemeMode;
     /** Скрыть CTA «принять пари» (новичок без серии); активное пари и результат показываются всегда. */
     hideCta?: boolean;
+    /**
+     * Лист открыт действием «Пари на серию»: когда нет активного пари и нет
+     * результата, сразу раскрыть выбор ставки, минуя промежуточную CTA-карту.
+     * При переходе в false (лист закрыт) подбор ставки тоже закрывается.
+     */
+    autoOpenPicker?: boolean;
 }) {
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
@@ -1104,6 +1110,24 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         };
     }, [reload]);
     const clampTierIdx = (i: number) => Math.max(0, Math.min(i, WAGER_TIERS.length - 1));
+    // Лист «Пари на серию» открывается из hero: промежуточную CTA-карточку
+    // пропускаем — при отсутствии активного пари и результата сразу раскрываем
+    // выбор ставки. Повторно не дёргаем, пока лист не переоткрыт.
+    const autoOpenedRef = useRef(false);
+    useEffect(() => {
+        if (!autoOpenPicker) {
+            autoOpenedRef.current = false;
+            if (modalOpen) setModalOpen(false);
+            return;
+        }
+        if (autoOpenedRef.current || loading) return;
+        const showsResult = wager != null && !wager.active && wager.result !== 'pending';
+        const showsActive = wager?.active === true;
+        if (!showsResult && !showsActive && !hideCta) {
+            autoOpenedRef.current = true;
+            setModalOpen(true);
+        }
+    }, [autoOpenPicker, loading, wager, hideCta, modalOpen]);
     const closeWagerModal = useCallback(() => {
         setModalOpen(false);
         wagerSheetY.setValue(0);
@@ -3901,7 +3925,7 @@ export default function StreakStats() {
                 </TouchableOpacity>
               </View>
               <ScrollView showsVerticalScrollIndicator={false}>
-                <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3}/>
+                <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} isGoldTheme={isGoldTheme} themeMode={themeMode} hideCta={totalStreak < 3} autoOpenPicker={wagerOpen}/>
               </ScrollView>
             </Pressable>
           </Pressable>

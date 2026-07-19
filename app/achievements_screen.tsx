@@ -495,7 +495,21 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
-/** Квизовые достижения доступны всем; Premium-подсказка для них отключена. */
+/** Квизы Medium/Hard без Premium недоступны — эти ачивки открываются с подпиской. */
+const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
+  'quiz_medium',
+  'quiz_hard',
+  'quiz_all_levels',
+  'quiz_perfect_medium',
+  'quiz_perfect',
+  'quiz_triple_perfect',
+  'quiz_speed_demon',
+]);
+
+export function achievementNeedsPremiumQuiz(id: string): boolean {
+  return PREMIUM_QUIZ_ACHIEVEMENT_IDS.has(id);
+}
+
 // Лейбл уровня для медалей (gem_*)
 const GEM_LEVEL_LABEL: Record<string, string> = {
   gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1', gem_a1_obsidian: 'A1', gem_a1_mythic: 'A1',

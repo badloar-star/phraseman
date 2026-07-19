@@ -11620,33 +11620,6 @@
       }
     },
     {
-      "file": "app/trainer_session_report.tsx",
-      "ownerName": "Metric",
-      "ownerPath": "Metric",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "f786f851673085e1592ee12682970d667f11b310d19ad36b485dc2e1c0457bb0",
-      "count": 1,
-      "lineHints": [
-        177
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/ArenaRankProgressBar.tsx",
       "ownerName": "ArenaRankProgressBar",
       "ownerPath": "ArenaRankProgressBar",

@@ -28,9 +28,9 @@ import CompassDepthSurface from '../components/CompassDepthSurface';
 import GradientProgressBar from '../components/GradientProgressBar';
 import { TrainerLoadingView, TrainerErrorView } from '../components/TrainerLoadStates';
 import { triLang, type Lang } from '../constants/i18n';
-import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
@@ -99,12 +99,15 @@ interface SwipeCardProps {
   isTop: boolean;
   swipeOutRef: React.MutableRefObject<((dir: 'right' | 'left') => void) | null>;
   themeMode: ThemeMode;
+  /** Озвучка слова — принадлежит экрану (карточка размонтируется на следующем). */
+  onSpeakWord: () => void;
 }
 
-function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardProps) {
+function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }: SwipeCardProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const position = useRef(new Animated.ValueXY()).current;
 
   const rotate = position.x.interpolate({
@@ -193,45 +196,75 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode }: SwipeCardPr
       {...(isTop ? panResponder.panHandlers : {})}
     >
       {isCompassTheme ? <CompassDepthSurface radius={12} selected /> : null}
-      {/* Верно оверлей */}
-      <Animated.View style={[styles.decisionLabel, styles.correctLabel, { opacity: correctOpacity }]}>
-        <Text style={styles.decisionText}>✓ {triLang(lang, {
-          ru: 'ВЕРНО',
-          uk: 'ВІРНО',
-          es: 'CORRECTO',
-          'pt-BR': 'CORRETO',
-          vi: 'ĐÚNG',
-          id: 'BENAR',
-          tr: 'DOĞRU',
-          pl: 'POPRAWNIE',
+      {/* Озвучка — всегда справа вверху */}
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={triLang(lang, {
+          ru: 'Озвучить слово',
+          uk: 'Озвучити слово',
+          es: 'Escuchar la palabra',
+          'pt-BR': 'Ouvir a palavra',
+          vi: 'Nghe từ',
+          id: 'Dengar kata',
+          tr: 'Kelimeyi dinle',
+          pl: 'Posłuchaj słowa',
+        })}
+        onPress={onSpeakWord}
+        style={[styles.sayBtn, { backgroundColor: statsThemeSoftBg(themeMode, 'normal') }]}
+      >
+        <Ionicons name="volume-high" size={16} color={accent} />
+      </TouchableOpacity>
+
+      {/* Штамп «Знаю» — виден при свайпе вправо ещё до отлёта карточки */}
+      <Animated.View style={[styles.stamp, { left: 20, transform: [{ rotate: '-12deg' }], backgroundColor: t.correctBg, opacity: correctOpacity }]}>
+        <Text style={[styles.stampText, { color: t.correct }]}>{triLang(lang, {
+          ru: 'Знаю',
+          uk: 'Знаю',
+          es: 'Lo sé',
+          'pt-BR': 'Eu sei',
+          vi: 'Biết',
+          id: 'Tahu',
+          tr: 'Biliyorum',
+          pl: 'Wiem',
         })}</Text>
       </Animated.View>
 
-      {/* Неверно оверлей */}
-      <Animated.View style={[styles.decisionLabel, styles.wrongLabel, { opacity: wrongOpacity }]}>
-        <Text style={styles.decisionText}>✗ {triLang(lang, {
-          ru: 'НЕВЕРНО',
-          uk: 'НЕВІРНО',
-          es: 'INCORRECTO',
-          'pt-BR': 'INCORRETO',
-          vi: 'SAI',
-          id: 'SALAH',
-          tr: 'YANLIŞ',
-          pl: 'NIEPOPRAWNIE',
+      {/* Штамп «Не знаю» — при свайпе влево */}
+      <Animated.View style={[styles.stamp, { right: 20, transform: [{ rotate: '12deg' }], backgroundColor: t.wrongBg, opacity: wrongOpacity }]}>
+        <Text style={[styles.stampText, { color: t.wrong }]}>{triLang(lang, {
+          ru: 'Не знаю',
+          uk: 'Не знаю',
+          es: 'No lo sé',
+          'pt-BR': 'Não sei',
+          vi: 'Không biết',
+          id: 'Tidak tahu',
+          tr: 'Bilmiyorum',
+          pl: 'Nie wiem',
         })}</Text>
       </Animated.View>
 
       {/* Слово */}
-      <Text style={[styles.wordEn, { color: t.textPrimary, fontSize: f.h1 }]}>
+      <Text style={[styles.wordEn, { color: t.textPrimary, fontSize: Math.round(f.h1 * 1.3), letterSpacing: -0.4 }]}>
         {card.item.key}
       </Text>
 
-      {/* Разделитель */}
-      <View style={[styles.divider, { backgroundColor: t.border }]} />
-
       {/* Перевод (верный или ложный) */}
-      <Text style={[styles.wordRu, { color: t.textMuted, fontSize: f.bodyLg }]}>
+      <Text style={[styles.wordRu, { color: t.textMuted, fontSize: f.caption }]}>
         {card.shownTranslation}
+      </Text>
+
+      {/* Подсказка управления */}
+      <Text style={[styles.cardHint, { color: t.textGhost }]}>
+        {triLang(lang, {
+          ru: 'Свайп или кнопки',
+          uk: 'Свайп або кнопки',
+          es: 'Desliza o usa botones',
+          'pt-BR': 'Deslize ou use botões',
+          vi: 'Vuốt hoặc dùng nút',
+          id: 'Geser atau pakai tombol',
+          tr: 'Kayır veya düğmeleri kullan',
+          pl: 'Przesuń lub użyj przycisków',
+        })}
       </Text>
 
     </Animated.View>
@@ -244,6 +277,7 @@ export default function TrainerWordsSession() {
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -264,6 +298,7 @@ export default function TrainerWordsSession() {
   const allItemsRef = useRef<TrainerItem[]>([]);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
+  const sessionStartRef = useRef(0);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -352,6 +387,7 @@ export default function TrainerWordsSession() {
           }),
         );
         if (cancelled) return;
+        sessionStartRef.current = Date.now();
         setDeck(cards);
         setLoading(false);
       } catch {
@@ -443,8 +479,8 @@ export default function TrainerWordsSession() {
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 22 }}>
             {copy.body}
           </Text>
-          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: '#4A9EFF', borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
-            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
+          <TouchableOpacity onPress={() => router.replace('/trainer' as any)} style={{ marginTop: 22, backgroundColor: t.correct, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 12 }}>
+            <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900' }}>{copy.action}</Text>
           </TouchableOpacity>
         </SafeAreaView>
       </ScreenGradient>
@@ -477,7 +513,8 @@ export default function TrainerWordsSession() {
               correct={correct}
               wrong={wrong}
               total={deck.length || correct + wrong}
-              accent="#4A9EFF"
+              accent={accent}
+              durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
@@ -511,12 +548,20 @@ export default function TrainerWordsSession() {
             </View>
           </View>
 
-          {/* Прогресс-бар */}
-          <GradientProgressBar
-            progress={deck.length > 0 ? current / deck.length : 0}
-            accent={isCompassTheme ? COMPASS_RICH.champagne : '#4A9EFF'}
-            style={styles.progressBar}
-          />
+          {/* Прогресс: тонкая полоса + чип-счётчик */}
+          <View style={styles.progressRow}>
+            <GradientProgressBar
+              progress={deck.length > 0 ? current / deck.length : 0}
+              accent={accent}
+              height={6}
+              style={styles.progressBarFlex}
+            />
+            <View style={[styles.countChip, { backgroundColor: t.bgSurface }]}>
+              <Text style={{ color: t.textMuted, fontSize: f.label - 1, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                {deck.length > 0 ? Math.min(current + 1, deck.length) : 0} / {deck.length}
+              </Text>
+            </View>
+          </View>
 
           {/* Стек карточек */}
           <View style={styles.deckContainer}>
@@ -534,70 +579,48 @@ export default function TrainerWordsSession() {
                 isTop
                 swipeOutRef={swipeOutRef}
                 themeMode={themeMode}
+                onSpeakWord={() => { hapticTap(); void speakAnswer(deck[current].item.key, studyTarget); }}
               />
             )}
           </View>
 
-          {/* Кнопки */}
-          <View style={styles.buttons}>
+          {/* Кнопки ✕ / ✓ */}
+          <View style={styles.buttonsRow}>
             <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Не помню', uk: 'Не пам’ятаю', es: 'No recuerdo', 'pt-BR': 'Não lembro',
+                vi: 'Không nhớ', id: 'Tidak ingat', tr: 'Hatırlamıyorum', pl: 'Nie pamiętam',
+              })}
               onPress={() => handleButton('left')}
-              style={[
-                styles.btn,
-                !isCompassTheme && styles.btnWrong,
-                isCompassTheme && compassShadow(1),
-                {
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : '#E05050' + '22',
-                  borderRadius: isCompassTheme ? 9 : 18,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
-                },
-              ]}
+              style={[styles.roundBtn, { backgroundColor: t.wrongBg }]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-              <Ionicons name="close" size={32} color={isCompassTheme ? COMPASS_RICH.peach : monoIcon(themeMode, '#E05050', MONO_ICON.muted)} />
-              <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.peach : '#E05050', fontSize: f.caption }]}>
-                {triLang(lang, {
-                  ru: 'Мимо',
-                  uk: 'Повз',
-                  es: 'Incorrecto',
-                  'pt-BR': 'Incorreto',
-                  vi: 'Sai',
-                  id: 'Salah',
-                  tr: 'Yanlış',
-                  pl: 'Niepoprawnie',
-                })}
-              </Text>
+              <Ionicons name="close" size={30} color={t.wrong} />
             </TouchableOpacity>
-
             <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Помню', uk: 'Пам’ятаю', es: 'Recuerdo', 'pt-BR': 'Lembro',
+                vi: 'Nhớ', id: 'Ingat', tr: 'Hatırlıyorum', pl: 'Pamiętam',
+              })}
               onPress={() => handleButton('right')}
-              style={[
-                styles.btn,
-                !isCompassTheme && styles.btnCorrect,
-                isCompassTheme && compassShadow(1),
-                {
-                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : '#40C080' + '22',
-                  borderRadius: isCompassTheme ? 9 : 18,
-                  overflow: isCompassTheme ? 'hidden' : 'visible',
-                },
-              ]}
+              style={[styles.roundBtn, { backgroundColor: t.correctBg }]}
             >
-              {isCompassTheme ? <CompassDepthSurface radius={9} selected /> : null}
-              <Ionicons name="checkmark" size={32} color={isCompassTheme ? COMPASS_RICH.champagne : monoIcon(themeMode, '#40C080')} />
-              <Text style={[styles.btnLabel, { color: isCompassTheme ? COMPASS_RICH.champagne : '#40C080', fontSize: f.caption }]}>
-                {triLang(lang, {
-                  ru: 'Верно',
-                  uk: 'Вірно',
-                  es: 'Correcto',
-                  'pt-BR': 'Correto',
-                  vi: 'Đúng',
-                  id: 'Benar',
-                  tr: 'Doğru',
-                  pl: 'Poprawnie',
-                })}
-              </Text>
+              <Ionicons name="checkmark" size={30} color={t.correct} />
             </TouchableOpacity>
           </View>
+          <Text style={[styles.buttonsCaption, { color: t.textGhost }]}>
+            {triLang(lang, {
+              ru: 'не помню · помню',
+              uk: 'не пам’ятаю · пам’ятаю',
+              es: 'no recuerdo · recuerdo',
+              'pt-BR': 'não lembro · lembro',
+              vi: 'không nhớ · nhớ',
+              id: 'tidak ingat · ingat',
+              tr: 'hatırlamıyorum · hatırlıyorum',
+              pl: 'nie pamiętam · pamiętam',
+            })}
+          </Text>
 
         </ContentWrap>
       </SafeAreaView>
@@ -618,22 +641,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
-  progressBar: {
-    marginHorizontal: 16,
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 9,
+    paddingHorizontal: 16,
     marginBottom: 8,
+  },
+  progressBarFlex: { flex: 1 },
+  countChip: {
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
   },
   deckContainer: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: 8,
+    marginHorizontal: 16,
   },
   card: {
     position: 'absolute',
-    width: SCREEN_W - 48,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 12,
     borderRadius: 24,
-    padding: 32,
+    padding: 22,
     alignItems: 'center',
+    justifyContent: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18,
@@ -641,43 +676,63 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   cardBack: {
-    position: 'absolute',
-    transform: [{ scale: 0.96 }, { translateY: 12 }],
-    opacity: 0.6,
+    transform: [{ scale: 0.93 }, { translateY: 8 }],
+    opacity: 0.55,
   },
-  wordEn: { fontWeight: '900', textAlign: 'center', marginBottom: 16 },
-  divider: { width: 48, height: 1, marginBottom: 16 },
-  wordRu: { fontWeight: '600', textAlign: 'center', marginBottom: 24 },
-  hint: { textAlign: 'center', lineHeight: 18 },
-  decisionLabel: {
+  sayBtn: {
     position: 'absolute',
-    top: 24,
-    paddingHorizontal: 14,
+    top: 16,
+    right: 16,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stamp: {
+    position: 'absolute',
+    top: 26,
+    paddingHorizontal: 13,
     paddingVertical: 6,
     borderRadius: 10,
     borderWidth: 0,
   },
-  correctLabel: { right: 20, borderColor: '#40C080', transform: [{ rotate: '15deg' }] },
-  wrongLabel:   { left: 20,  borderColor: '#E05050', transform: [{ rotate: '-15deg' }] },
-  decisionText: { fontSize: 16, fontWeight: '900' },
-  buttons: {
-    flexDirection: 'row',
-    gap: 16,
-    paddingHorizontal: 24,
-    paddingBottom: 24,
-    paddingTop: 12,
+  stampText: {
+    fontSize: 14,
+    fontWeight: '900',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
   },
-  btn: {
-    flex: 1,
+  wordEn: { fontWeight: '900', textAlign: 'center' },
+  wordRu: { fontWeight: '600', textAlign: 'center', marginTop: 6 },
+  cardHint: {
+    position: 'absolute',
+    bottom: 16,
+    fontSize: 10,
+    fontWeight: '700',
+    letterSpacing: 0.6,
+    textTransform: 'uppercase',
+  },
+  buttonsRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 22,
+    paddingTop: 6,
+    paddingBottom: 12,
+  },
+  roundBtn: {
+    width: 62,
+    height: 62,
+    borderRadius: 31,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: 4,
-    borderRadius: 18,
-    paddingVertical: 14,
   },
-  btnWrong:   { backgroundColor: '#E05050' + '22' },
-  btnCorrect: { backgroundColor: '#40C080' + '22' },
-  btnLabel: { fontWeight: '700' },
+  buttonsCaption: {
+    textAlign: 'center',
+    fontSize: 10,
+    fontWeight: '700',
+    paddingBottom: 12,
+  },
   doneContainer: {
     flex: 1,
     alignItems: 'center',

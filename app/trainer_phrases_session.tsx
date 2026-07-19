@@ -6,6 +6,14 @@
 //   fill_gap   — вставь пропущенное слово (то слово где была ошибка)
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Reanimated, {
+  FadeInDown,
+  ZoomInDown,
+  useSharedValue,
+  useAnimatedStyle,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 import {
   Animated,
   ScrollView,
@@ -33,6 +41,7 @@ import GradientProgressBar from '../components/GradientProgressBar';
 import { triLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
+import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import DuoPressable from '../components/DuoPressable';
 import { useWordFlash } from '../hooks/use-word-flash';
@@ -138,10 +147,13 @@ interface WordBankProps {
 function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
+  const answerSoftBg = statsThemeSoftBg(themeMode, 'strong');
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
-  const [bank, setBank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
+  // Банк неизменен: взятые плитки не исчезают, а гаснут (opacity .18) — видно, что уже в ответе.
+  const [bank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
   const shakeAnim = useRef(new Animated.Value(0)).current;
@@ -149,16 +161,15 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
 
   const correctTokens = tokenizeRecallPhrase(item.key);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
+  const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
 
   const tapBank = (tile: WordBankTile) => {
-    if (feedback !== 'none') return;
+    if (feedback !== 'none' || usedSlots.has(tile.slot)) return;
     setSelected(s => [...s, tile]);
-    setBank(b => b.filter(t => t.slot !== tile.slot));
   };
 
   const tapSelected = (tile: WordBankTile) => {
     if (feedback !== 'none') return;
-    setBank(b => [...b, tile].sort((a, b) => a.slot - b.slot));
     setSelected(s => s.filter(t => t.slot !== tile.slot));
   };
 
@@ -183,41 +194,54 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
       setTimeout(() => {
         setFeedback('none');
         setSelected([]);
-        setBank(shuffleWordBankTiles(item.key));
         onResult(false);
       }, 1200);
     }
   };
 
-  const borderColor = feedback === 'correct' ? '#40C080' : feedback === 'wrong' ? '#E05050' : t.border;
+  const zoneBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface;
+  const checkBtnBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : canCheck ? (isCompassTheme ? COMPASS_RICH.champagne : accent) : t.bgSurface;
+  const checkBtnColor = feedback === 'correct'
+    ? t.correct
+    : feedback === 'wrong'
+      ? t.wrong
+      : canCheck ? (isCompassTheme ? COMPASS_RICH.textDark : t.correctText) : t.textMuted;
 
   return (
-    <View style={{ flex: 1, gap: 16 }}>
-      {/* Перевод — задание */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 9 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+    <View style={{ flex: 1, gap: 14 }}>
+      {/* Перевод — карточка-задание */}
+      <View style={[styles.promptCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
         {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
-        <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
+        <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
           {triLang(lang, {
-            ru: 'Составь фразу:',
-            uk: 'Склади фразу:',
-            es: 'Forma la frase:',
-            'pt-BR': 'Monte a frase:',
-            vi: 'Sắp xếp câu:',
-            id: 'Susun frasa:',
-            tr: 'Cümleyi kur:',
-            pl: 'Ułóż frazę:',
+            ru: 'Составь фразу',
+            uk: 'Склади фразу',
+            es: 'Forma la frase',
+            'pt-BR': 'Monte a frase',
+            vi: 'Sắp xếp câu',
+            id: 'Susun frasa',
+            tr: 'Cümleyi kur',
+            pl: 'Ułóż frazę',
           })}
         </Text>
-        <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.body }]}>
+        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: Math.round(f.bodyLg * 1.35), marginTop: 5 }}>
           {trainerTranslationForLang(item, lang)}
         </Text>
       </View>
 
-      {/* Область сборки */}
+      {/* Зона ответа — отдельная поверхность; плитки влетают с пружинкой */}
       <Animated.View style={[
-        styles.assemblyBox,
+        styles.answerZone,
         isCompassTheme && compassShadow(2),
-        { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? (feedback === 'correct' ? COMPASS_RICH.hairlineStrong : feedback === 'wrong' ? COMPASS_RICH.copper : COMPASS_RICH.hairline) : borderColor, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' ? 0 : 1.5), borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
+        { backgroundColor: zoneBg, borderWidth: 0, borderRadius: isCompassTheme ? 10 : 18, overflow: isCompassTheme ? 'hidden' : 'visible', transform: [{ translateX: shakeAnim }] },
       ]}>
         {isCompassTheme ? <CompassDepthSurface radius={10} selected={feedback !== 'none'} quiet={feedback === 'none'} /> : null}
         {selected.length === 0
@@ -235,39 +259,43 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
             </Text>
           : <View style={styles.tilesRow}>
               {selected.map(tile => (
-                <TouchableOpacity
-                  key={tile.slot}
-                  onPress={() => tapSelected(tile)}
-                  style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : borderColor + '22', borderRadius: isCompassTheme ? 8 : 10, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
-                >
-                  {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-                  <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body }]}>{tile.text}</Text>
-                </TouchableOpacity>
+                <Reanimated.View key={tile.slot} entering={ZoomInDown.springify().damping(15).stiffness(170)}>
+                  <TouchableOpacity
+                    onPress={() => tapSelected(tile)}
+                    style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : answerSoftBg, borderRadius: isCompassTheme ? 8 : 11, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
+                  >
+                    {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
+                    <Text style={[styles.tileText, { color: t.textPrimary, fontSize: f.body, fontWeight: '800' }]}>{tile.text}</Text>
+                  </TouchableOpacity>
+                </Reanimated.View>
               ))}
             </View>
         }
       </Animated.View>
 
-      {/* Банк слов */}
+      {/* Банк слов — использованные гаснут, а не исчезают */}
       <View style={styles.tilesRow}>
         {bank.map(tile => {
+          const used = usedSlots.has(tile.slot);
           const tileKey = `${tile.slot}`;
           const on = flashKey === tileKey;
           return (
             <DuoPressable
               key={tile.slot}
               withHaptic={false}
+              disabled={used || feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
               style={[
                 styles.tile,
                 isCompassTheme && compassShadow(1),
                 {
-                  backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard),
-                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
+                  backgroundColor: on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface2),
+                  borderColor: 'transparent',
                   borderWidth: 0,
-                  borderRadius: isCompassTheme ? 8 : 10,
+                  borderRadius: isCompassTheme ? 8 : 11,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
+                  opacity: used ? 0.18 : 1,
                 },
               ]}
               onPress={() => {
@@ -277,37 +305,41 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
               }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-              <Text style={[styles.tileText, { color: on ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
+              <Text style={[styles.tileText, { color: on ? t.correctText : t.textPrimary, fontSize: f.body, fontWeight: on ? '700' : '600' }]}>{tile.text}</Text>
             </DuoPressable>
           );
         })}
       </View>
 
-          {/* Кнопка проверки */}
+          {/* Кнопка проверки: при верном ответе сама становится зелёной «Верно!» */}
           <TouchableOpacity
             onPress={check}
             disabled={!canCheck || feedback !== 'none'}
             style={[styles.checkBtn, {
-              backgroundColor: isCompassTheme ? (canCheck ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalSoft) : canCheck ? '#4A9EFF' : t.bgSurface,
+              backgroundColor: checkBtnBg,
               borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairline : 'transparent',
-              borderRadius: isCompassTheme ? 9 : 16,
+              borderRadius: isCompassTheme ? 9 : 14,
               overflow: isCompassTheme ? 'hidden' : 'visible',
-              opacity: canCheck ? 1 : 0.4,
+              opacity: canCheck || feedback !== 'none' ? 1 : 0.4,
+              marginTop: 'auto',
             }]}
           >
             {isCompassTheme ? <CompassDepthSurface radius={9} cream={canCheck} quiet={!canCheck} /> : null}
-        <Text style={[styles.checkBtnText, { fontSize: f.body }]}>
-          {triLang(lang, {
-            ru: 'Проверить',
-            uk: 'Перевірити',
-            es: 'Comprobar',
-            'pt-BR': 'Verificar',
-            vi: 'Kiểm tra',
-            id: 'Periksa',
-            tr: 'Kontrol et',
-            pl: 'Sprawdź',
-          })}
+        <Text style={[styles.checkBtnText, { color: checkBtnColor, fontSize: f.body }]}>
+          {feedback === 'correct'
+            ? triLang(lang, { ru: 'Верно!', uk: 'Вірно!', es: '¡Correcto!', 'pt-BR': 'Correto!', vi: 'Đúng rồi!', id: 'Benar!', tr: 'Doğru!', pl: 'Poprawnie!' })
+            : feedback === 'wrong'
+              ? triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto', 'pt-BR': 'Incorreto', vi: 'Sai rồi', id: 'Salah', tr: 'Yanlış', pl: 'Niepoprawnie' })
+              : triLang(lang, {
+                ru: 'Проверить',
+                uk: 'Перевірити',
+                es: 'Comprobar',
+                'pt-BR': 'Verificar',
+                vi: 'Kiểm tra',
+                id: 'Periksa',
+                tr: 'Kontrol et',
+                pl: 'Sprawdź',
+              })}
         </Text>
       </TouchableOpacity>
 
@@ -324,10 +356,9 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         onPass={({ score }) => {
           void trackEvent('speaking_attempt_passed', { source: 'trainer', score });
           if (feedback !== 'none') return; // карточка уже оценена — не вмешиваемся
-          // Заполняем поле ответа каноническими словами (как setSelectedWords в уроке)
-          // и очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
+          // Заполняем поле ответа каноническими словами (слоты совпадают с банком,
+          // поэтому все плитки банка гаснут как использованные).
           setSelected(correctTokens.map((text, slot) => ({ slot, text })));
-          setBank([]);
           // Верный устный ответ = правильная фраза, поэтому засчитываем сразу, не
           // дожидаясь асинхронного selected (иначе check() прочитал бы старое состояние).
           setFeedback('correct');
@@ -352,6 +383,7 @@ interface FillGapProps {
 function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const { playCorrect } = useCorrectSound();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -366,8 +398,15 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const shakeX = useSharedValue(0);
+  const shakeStyle = useAnimatedStyle(() => ({ transform: [{ translateX: shakeX.value }] }));
 
-  const phraseWithGap = item.key.replace(new RegExp(`\\b${errorWord}\\b`, 'i'), '___');
+  // Фраза крупно; пропуск — светящийся слот ровно на месте слова с ошибкой.
+  const phraseWords = useMemo(() => item.key.split(' '), [item.key]);
+  const gapIndex = useMemo(() => {
+    const target = normalizeFillGapToken(errorWord);
+    return phraseWords.findIndex((word) => normalizeFillGapToken(word) === target);
+  }, [phraseWords, errorWord]);
 
   const pick = (opt: string) => {
     if (feedback !== 'none') return;
@@ -380,6 +419,12 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
       void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
     } else {
       hapticError();
+      shakeX.value = withSequence(
+        withTiming(-5, { duration: 55 }),
+        withTiming(5, { duration: 55 }),
+        withTiming(-3, { duration: 55 }),
+        withTiming(0, { duration: 55 }),
+      );
       setTimeout(() => {
         setChosen(null);
         setFeedback('none');
@@ -388,44 +433,56 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     }
   };
 
-  return (
-    <View style={{ flex: 1, gap: 16 }}>
-      {/* Перевод */}
-      <View style={[styles.translationBox, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', borderWidth: 0, borderRadius: isCompassTheme ? 10 : 16, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
-        {isCompassTheme ? <CompassDepthSurface radius={10} selected /> : null}
-        <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
-          {triLang(lang, {
-            ru: 'Вставь пропущенное слово:',
-            uk: 'Встав пропущене слово:',
-            es: 'Elige la palabra que falta:',
-            'pt-BR': 'Escolha a palavra que falta:',
-            vi: 'Chọn từ còn thiếu:',
-            id: 'Pilih kata yang hilang:',
-            tr: 'Eksik kelimeyi seç:',
-            pl: 'Wybierz brakujące słowo:',
-          })}
-        </Text>
-        <Text style={[styles.translationHint, { color: t.textMuted, fontSize: f.caption }]}>
-          {trainerTranslationForLang(item, lang)}
-        </Text>
-        <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.bodyLg }]}>
-          {phraseWithGap}
-        </Text>
-      </View>
+  const gapBg = feedback === 'correct'
+    ? t.correctBg
+    : feedback === 'wrong'
+      ? t.wrongBg
+      : statsThemeSoftBg(themeMode, 'normal');
+  const gapColor = feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : accent;
+  const phraseFontSize = Math.round(f.bodyLg * 1.2);
 
-      {/* Варианты */}
-      <View style={{ gap: 10 }}>
+  return (
+    <View style={{ flex: 1, gap: 14 }}>
+      {/* Фраза крупно, пропуск светится; при ошибке — мягкая тряска */}
+      <Reanimated.View style={shakeStyle}>
+        <View style={[styles.gapCard, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard, borderWidth: 0, borderRadius: isCompassTheme ? 9 : 20, overflow: isCompassTheme ? 'hidden' : 'visible' }]}>
+          {isCompassTheme ? <CompassDepthSurface radius={9} quiet /> : null}
+          <Text style={[styles.promptTag, { color: t.textGhost, fontSize: f.label - 1 }]}>
+            {triLang(lang, {
+              ru: 'Вставь пропущенное слово',
+              uk: 'Встав пропущене слово',
+              es: 'Elige la palabra que falta',
+              'pt-BR': 'Escolha a palavra que falta',
+              vi: 'Chọn từ còn thiếu',
+              id: 'Pilih kata yang hilang',
+              tr: 'Eksik kelimeyi seç',
+              pl: 'Wybierz brakujące słowo',
+            })}
+          </Text>
+          <View style={styles.phraseWrap}>
+            {phraseWords.map((word, index) => (index === gapIndex ? (
+              <View key={`gap-${index}`} style={[styles.gapSlot, { backgroundColor: gapBg }]}>
+                <Text style={{ color: gapColor, fontSize: f.bodyLg, fontWeight: '900' }}>{chosen ?? '?'}</Text>
+              </View>
+            ) : (
+              <Text key={`w-${index}`} style={{ color: t.textPrimary, fontSize: phraseFontSize, fontWeight: '800', lineHeight: Math.round(phraseFontSize * 1.6) }}>{word}</Text>
+            )))}
+          </View>
+        </View>
+      </Reanimated.View>
+
+      {/* Варианты 2×2 */}
+      <View style={styles.chipsGrid}>
         {options.map(opt => {
           const isChosen = chosen === opt;
           const isCorrect = opt.toLowerCase() === errorWord.toLowerCase();
           const on = flashKey === opt;
-          let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgCard);
-          let bc = on ? t.accent : (isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border);
-          let tc = on ? (t.correctText ?? '#fff') : t.textPrimary;
+          let bg = on ? t.accent : (isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface2);
+          let tc = on ? t.correctText : t.textPrimary;
           let opacity = 1;
-          if (isChosen && feedback === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
-          if (isChosen && feedback === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : t.wrongBg; bc = isCompassTheme ? COMPASS_RICH.copper : t.wrong; tc = isCompassTheme ? COMPASS_RICH.peach : t.wrong; }
-          if (!isChosen && feedback !== 'none' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; bc = isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
+          if (isChosen && feedback === 'correct') { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
+          if (isChosen && feedback === 'wrong')   { bg = isCompassTheme ? COMPASS_RICH.copperWash : t.wrongBg; tc = isCompassTheme ? COMPASS_RICH.peach : t.wrong; }
+          if (!isChosen && feedback !== 'none' && isCorrect) { bg = isCompassTheme ? COMPASS_RICH.washStrong : t.correctBg; tc = isCompassTheme ? COMPASS_RICH.champagne : t.correct; }
           if (feedback !== 'none' && !isChosen && !isCorrect) opacity = 0.58;
           return (
             <DuoPressable
@@ -434,14 +491,14 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
               disabled={feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
+              wrapStyle={styles.chipWrap}
               style={[
-                styles.optionBtn,
+                styles.chip,
                 isCompassTheme && compassShadow(feedback === 'none' ? 1 : 2),
                 {
                   backgroundColor: bg,
-                  borderColor: bc,
-                  borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : (feedback === 'none' && !on ? 0 : 1.5),
-                  borderRadius: isCompassTheme ? 9 : 14,
+                  borderWidth: 0,
+                  borderRadius: isCompassTheme ? 9 : 13,
                   overflow: isCompassTheme ? 'hidden' : 'visible',
                   opacity,
                 },
@@ -454,11 +511,23 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
               }}
             >
               {isCompassTheme ? <CompassDepthSurface radius={9} selected={feedback !== 'none' && (isChosen || isCorrect)} quiet={feedback === 'none'} /> : null}
-              <Text style={[styles.optionText, { color: tc, fontSize: f.body, fontWeight: on ? '700' : '700' }]}>{opt}</Text>
+              <Text style={{ color: tc, fontSize: f.body, fontWeight: '800' }}>{opt}</Text>
             </DuoPressable>
           );
         })}
       </View>
+
+      {/* Микро-подсказка после ответа: честные данные — фраза целиком + её перевод.
+          Поля «объяснение правила» в TrainerItem нет — ничего не выдумываем. */}
+      {feedback !== 'none' ? (
+        <Reanimated.View entering={FadeInDown.duration(220)} style={[styles.noteRow, { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, marginTop: 'auto' }]}>
+          <Ionicons name="bulb-outline" size={16} color={accent} />
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{item.key}</Text>
+            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{trainerTranslationForLang(item, lang)}</Text>
+          </View>
+        </Reanimated.View>
+      ) : null}
     </View>
   );
 }
@@ -469,6 +538,7 @@ export default function TrainerPhrasesSession() {
   const params = useLocalSearchParams<TrainerPlanTaskRouteParams>();
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
+  const accent = statsThemeAccent(themeMode);
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -491,6 +561,7 @@ export default function TrainerPhrasesSession() {
   const [reloadKey, setReloadKey] = useState(0);
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
+  const sessionStartRef = useRef(0);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -559,6 +630,7 @@ export default function TrainerPhrasesSession() {
           : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
+        sessionStartRef.current = Date.now();
         setDeck(buildDeck(items));
         setLoading(false);
       } catch {
@@ -675,7 +747,8 @@ export default function TrainerPhrasesSession() {
               correct={correct}
               wrong={wrong}
               total={deck.length || correct + wrong}
-              accent={t.correct}
+              accent={accent}
+              durationMs={sessionStartRef.current > 0 ? Date.now() - sessionStartRef.current : undefined}
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
@@ -688,27 +761,6 @@ export default function TrainerPhrasesSession() {
   }
 
   const card = deck[current];
-  const modeLabel = card?.mode === 'fill_gap'
-    ? triLang(lang, {
-      ru: 'Заполни пропуск',
-      uk: 'Заповни пропуск',
-      es: 'Completa',
-      'pt-BR': 'Complete',
-      vi: 'Điền từ',
-      id: 'Lengkapi',
-      tr: 'Tamamla',
-      pl: 'Uzupełnij',
-    })
-    : triLang(lang, {
-      ru: 'Составь фразу',
-      uk: 'Склади фразу',
-      es: 'Forma la frase',
-      'pt-BR': 'Monte a frase',
-      vi: 'Sắp xếp câu',
-      id: 'Susun frasa',
-      tr: 'Cümleyi kur',
-      pl: 'Ułóż frazę',
-    });
 
   return (
     <ScreenGradient>
@@ -746,16 +798,19 @@ export default function TrainerPhrasesSession() {
             ) : null}
           </View>
 
-          {/* Прогресс */}
-          <GradientProgressBar
-            progress={deck.length > 0 ? current / deck.length : 0}
-            accent={isCompassTheme ? COMPASS_RICH.champagne : t.correct}
-            style={styles.progressBar}
-          />
-
-          {/* Лейбл режима */}
-          <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-            <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '600' }}>{modeLabel}</Text>
+          {/* Прогресс: тонкая полоса + чип-счётчик */}
+          <View style={styles.progressRow}>
+            <GradientProgressBar
+              progress={deck.length > 0 ? current / deck.length : 0}
+              accent={isCompassTheme ? COMPASS_RICH.champagne : accent}
+              height={6}
+              style={styles.progressBarFlex}
+            />
+            <View style={[styles.countChip, { backgroundColor: t.bgSurface }]}>
+              <Text style={{ color: t.textMuted, fontSize: f.label - 1, fontWeight: '900', fontVariant: ['tabular-nums'] }}>
+                {deck.length > 0 ? Math.min(current + 1, deck.length) : 0} / {deck.length}
+              </Text>
+            </View>
           </View>
 
           <BouncyScrollView
@@ -785,21 +840,75 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   headerTitle: { fontWeight: '700' },
-  progressBar: { marginHorizontal: 16 },
-  translationBox: {
-    borderRadius: 16,
-    padding: 16,
-    gap: 6,
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 9,
+    paddingHorizontal: 16,
+    marginBottom: 4,
   },
-  translationText: { fontWeight: '600' },
-  translationHint: { fontWeight: '600', lineHeight: 19 },
-  translationMain: { fontWeight: '700', lineHeight: 24 },
-  assemblyBox: {
-    minHeight: 72,
-    borderRadius: 16,
+  progressBarFlex: { flex: 1 },
+  countChip: {
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
+  promptCard: {
+    borderRadius: 20,
+    paddingVertical: 15,
+    paddingHorizontal: 16,
+  },
+  promptTag: {
+    fontWeight: '800',
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+  },
+  answerZone: {
+    minHeight: 96,
+    borderRadius: 18,
     padding: 12,
+    justifyContent: 'center',
+  },
+  gapCard: {
+    borderRadius: 20,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    gap: 12,
+  },
+  phraseWrap: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    columnGap: 7,
+    rowGap: 8,
+  },
+  gapSlot: {
+    minWidth: 64,
+    height: 32,
+    borderRadius: 9,
+    paddingHorizontal: 10,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  chipsGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 9,
+  },
+  chipWrap: { flexBasis: '47%', flexGrow: 1 },
+  chip: {
+    height: 46,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  noteRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 14,
+    paddingVertical: 11,
+    paddingHorizontal: 14,
   },
   tilesRow: {
     flexDirection: 'row',
@@ -807,25 +916,20 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   tile: {
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
+    borderRadius: 11,
+    height: 38,
+    paddingHorizontal: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   tileText: { fontWeight: '600' },
   checkBtn: {
-    borderRadius: 16,
-    paddingVertical: 14,
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  checkBtnText: { color: '#fff', fontWeight: '800' },
-  optionBtn: {
     borderRadius: 14,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
+    minHeight: 48,
     alignItems: 'center',
+    justifyContent: 'center',
   },
-  optionText: { fontWeight: '700' },
+  checkBtnText: { fontWeight: '800' },
   doneContainer: {
     flex: 1,
     alignItems: 'center',

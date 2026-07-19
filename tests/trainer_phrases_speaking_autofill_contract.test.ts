@@ -31,8 +31,11 @@ describe('trainer phrases speaking auto-fill contract', () => {
     expect(onPassBody).toContain(
       'setSelected(correctTokens.map((text, slot) => ({ slot, text })))',
     );
-    // И очищаем банк, чтобы ручная сборка не конфликтовала с подставленным ответом.
-    expect(onPassBody).toContain('setBank([])');
+    // Ручная сборка не конфликтует с подставленным ответом: слоты selected совпадают
+    // со слотами банка, поэтому все плитки гаснут (opacity .18) и отключаются,
+    // а банк не стирается — редизайн word_bank (использованные плитки видны).
+    expect(source).toContain("disabled={used || feedback !== 'none'}");
+    expect(source).toContain('opacity: used ? 0.18 : 1');
   });
 
   it('grades the phrase immediately so the user does not assemble by hand', () => {

@@ -483,33 +483,6 @@
       }
     },
     {
-      "file": "components/ActivityHeatmap365.tsx",
-      "ownerName": "StatPill",
-      "ownerPath": "StatPill",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "2",
-      "testID": null,
-      "fingerprint": "08907f2868f925b3465f6409ac73e36d4a1be5208dadeb102909e7319d8b3478",
-      "count": 1,
-      "lineHints": [
-        331
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/personal_plan.tsx",
       "ownerName": "PersonalPlanScreen",
       "ownerPath": "PersonalPlanScreen",
@@ -2235,37 +2208,6 @@
       }
     },
     {
-      "file": "components/ActivityHeatmap365.tsx",
-      "ownerName": "ActivityHeatmap365",
-      "ownerPath": "ActivityHeatmap365",
-      "ancestorPath": [
-        "StatsCardArtSurface",
-        "Animated.View",
-        "View",
-        "LinearGradient",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "25eff1ba0d60b8a97aea8950ac258f0f27555605167735ea1213d2a9759e54f9",
-      "count": 2,
-      "lineHints": [
-        1114,
-        1135
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/ExplainButton.tsx",
       "ownerName": "ExplainButton",
       "ownerPath": "ExplainButton",
@@ -2585,7 +2527,7 @@
       "fingerprint": "2c9f5694ce14229bbd7325ddec499e10da3970d670bdc01e842f93e74289a54a",
       "count": 1,
       "lineHints": [
-        2442
+        2431
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -2854,36 +2796,6 @@
       "count": 1,
       "lineHints": [
         196
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/ActivityHeatmap365.tsx",
-      "ownerName": "ActivityHeatmap365",
-      "ownerPath": "ActivityHeatmap365",
-      "ancestorPath": [
-        "StatsCardArtSurface",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "315647ec13b6491edfb0a0ce53345ae1cbe37516293486e58cd59a15c3eb813b",
-      "count": 2,
-      "lineHints": [
-        846,
-        906
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3425,33 +3337,6 @@
       }
     },
     {
-      "file": "components/ActivityHeatmap365.tsx",
-      "ownerName": "StatPill",
-      "ownerPath": "StatPill",
-      "ancestorPath": [
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "3bb0e2f498bccb0d57ee607df3b920efbe2e7c1a1ea695eda3ef4f660861c173",
-      "count": 1,
-      "lineHints": [
-        332
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "app/(tabs)/home.tsx",
       "ownerName": "HomeScreen",
       "ownerPath": "HomeScreen",
@@ -3970,8 +3855,8 @@
       "fingerprint": "48968e7e9dc00df77e6fc954b8cd783abf7ccf4b5513942f8bd3bf9c498a9a91",
       "count": 2,
       "lineHints": [
-        2398,
-        2439
+        2387,
+        2428
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -4341,7 +4226,7 @@
       "fingerprint": "4f271fa7f78e9dc1bec9235d7d571c0b855776272f12f2285670a4bc5cda8809",
       "count": 1,
       "lineHints": [
-        898
+        887
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5416,9 +5301,9 @@
       "fingerprint": "66be378825ebbb1d81bebf607233f632a11897c333c918f4e55dec74ed14f888",
       "count": 3,
       "lineHints": [
-        2428,
-        2452,
-        2495
+        2417,
+        2441,
+        2484
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -7866,7 +7751,7 @@
       "fingerprint": "9a7e3c7f3e6121111c37e8fd13d8fd44135cb4218e8c73422ecb8e91abcd1cdf",
       "count": 1,
       "lineHints": [
-        891
+        880
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8538,7 +8423,7 @@
       "fingerprint": "aa2f99ae8febb312d4692782f4b5afcc57e91d1480cc3e45b32643565ae26b35",
       "count": 1,
       "lineHints": [
-        2004
+        1993
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -8598,7 +8483,7 @@
       "fingerprint": "aadea2107270a910a8dfc10010c92587a5fbb304ab2f540626576815ebb9c472",
       "count": 1,
       "lineHints": [
-        896
+        885
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9670,7 +9555,7 @@
       "fingerprint": "bfc06b47b0e81d515c932024e7fa27dfe84f33ca3b04d97f44ca61243e4b2a6b",
       "count": 1,
       "lineHints": [
-        1425
+        1414
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -9737,7 +9622,7 @@
       "fingerprint": "c1b00bda0c34ef1221b2f67657f41b208cc4760fb8bb3a54e2f03604c6ad460e",
       "count": 1,
       "lineHints": [
-        813
+        802
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10265,7 +10150,7 @@
       "fingerprint": "ce270859a69d7059071eb2b6de65a22d9d5ba7765e92a52fc7ae03a72636ac9c",
       "count": 1,
       "lineHints": [
-        1605
+        1594
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10506,36 +10391,6 @@
       "count": 1,
       "lineHints": [
         2619
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
-      "file": "components/ActivityHeatmap365.tsx",
-      "ownerName": "ActivityHeatmap365",
-      "ownerPath": "ActivityHeatmap365",
-      "ancestorPath": [
-        "StatsCardArtSurface",
-        "TouchableOpacity",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "d72c6166db57a6aabb0e0cb8e7232c0b5574a303ee38625fbda324086b144e34",
-      "count": 2,
-      "lineHints": [
-        798,
-        801
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

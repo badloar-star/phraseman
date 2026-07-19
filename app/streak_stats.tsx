@@ -115,17 +115,6 @@ function pluralRu(n: number, one: string, few: string, many: string): string {
         return few;
     return many;
 }
-// При нуле — просто «Достижения»: «0 достижений» в шапке первого дня демотивирует
-// (симметрично с ruGiftPhrase ниже).
-function ruAchievementRewardPhrase(total: number): string {
-    return total > 0 ? `${total} ${pluralRu(total, 'достижение', 'достижения', 'достижений')}` : 'Достижения';
-}
-function ukAchievementRewardPhrase(total: number): string {
-    return total > 0 ? `${total} ${pluralRu(total, 'досягнення', 'досягнення', 'досягнень')}` : 'Досягнення';
-}
-function plAchievementPhrase(total: number): string {
-    return total > 0 ? `${total} ${pluralRu(total, 'osiągnięcie', 'osiągnięcia', 'osiągnięć')}` : 'Osiągnięcia';
-}
 function ruGiftPhrase(total: number): string {
     return total > 0 ? `${total} ${pluralRu(total, 'подарок', 'подарка', 'подарков')}` : 'Подарки';
 }
@@ -2614,7 +2603,8 @@ function StreakHeroCard({
     freezeShardCost,
 }: StreakHeroCardProps) {
     const tone = 'streak' as const;
-    const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, tone);
+    // BUG 4: вся карточка — от главного акцента темы (единый hue).
+    const accent = isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode);
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const streakCaption = triLang(lang, {
         ru: pluralRu(totalStreak, 'день подряд', 'дня подряд', 'дней подряд'),
@@ -2665,7 +2655,7 @@ function StreakHeroCard({
                                 borderRadius: 13,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                backgroundColor: day.active ? accent : (isGoldTheme ? GOLD_RICH.bronzeWash : t.bgSurface2),
+                                backgroundColor: day.active ? accent : (isGoldTheme ? GOLD_RICH.bronzeWash : statsThemeSoftBg(themeMode, 'quiet')),
                                 borderWidth: day.isToday ? 2 : 0,
                                 borderColor: t.textPrimary,
                             }}>
@@ -2729,7 +2719,8 @@ type XpLevelCardProps = StatsSectionThemeProps & {
 function XpLevelCard({ t, f, lang, themeMode, isGoldTheme, totalXP, weekXP }: XpLevelCardProps) {
     const [expanded, setExpanded] = useState(false);
     const tone = 'multipliers' as const;
-    const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, tone);
+    // BUG 4: вся карточка — от главного акцента темы (единый hue).
+    const accent = isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode);
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const safeTotal = Math.max(0, Math.floor(totalXP));
     const safeWeek = Math.max(0, Math.floor(weekXP));
@@ -2777,7 +2768,7 @@ function XpLevelCard({ t, f, lang, themeMode, isGoldTheme, totalXP, weekXP }: Xp
                     <Text style={{ color: t.textMuted, fontSize: f.bodyLg, fontWeight: '800' }}>XP</Text>
                 </View>
                 <View style={{ marginTop: 10 }}>
-                    <AnimatedFillBar ratio={inLevel / needed} color={accent} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : t.bgSurface2} height={12} delayMs={200} />
+                    <AnimatedFillBar ratio={inLevel / needed} color={accent} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsThemeSoftBg(themeMode, 'quiet')} height={12} delayMs={200} />
                 </View>
             </Pressable>
             {expanded ? (
@@ -2820,7 +2811,8 @@ function WeekAnalyticsCard({
     metric: StatsPrimaryMetric;
     onSelectMetric: (metric: StatsPrimaryMetric) => void;
 }) {
-    const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'practiceBalance');
+    // BUG 4: главный акцент темы — единый hue для графика, сегментов и скраб-пузыря.
+    const accent = isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode);
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const [scrubHintSeen, setScrubHintSeen] = useState(true);
     useEffect(() => {
@@ -2890,15 +2882,15 @@ function WeekAnalyticsCard({
           <Text style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.h1, fontWeight: '900' }}>
             {heading}
           </Text>
-          <View testID="stats-primary-metric-selector" style={{ flexDirection: 'row', borderRadius: 12, padding: 3, backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'practiceBalance', 'quiet') }}>
+          <View testID="stats-primary-metric-selector" style={{ flexDirection: 'row', borderRadius: 12, padding: 3, backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : statsThemeSoftBg(themeMode, 'quiet') }}>
             {WEEK_SEGMENT_METRICS.map((option) => {
               const selected = option === metric;
               return (
                 <TouchableOpacity key={option} testID={`stats-primary-metric-${option}`} activeOpacity={0.82} onPress={() => {
                     hapticTap();
                     onSelectMetric(option);
-                }} style={{ borderRadius: 9, paddingHorizontal: 10, paddingVertical: 6, backgroundColor: selected ? t.bgCard : 'transparent' }}>
-                  <Text style={{ color: selected ? t.textPrimary : t.textMuted, fontSize: f.label, fontWeight: selected ? '800' : '600' }}>
+                }} style={{ borderRadius: 9, paddingHorizontal: 10, paddingVertical: 6, backgroundColor: selected ? accent : 'transparent' }}>
+                  <Text style={{ color: selected ? t.bgCard : t.textMuted, fontSize: f.label, fontWeight: selected ? '800' : '600' }}>
                     {triLang(lang, PRIMARY_METRIC_COPY[option])}
                   </Text>
                 </TouchableOpacity>
@@ -2918,7 +2910,7 @@ function WeekAnalyticsCard({
               bars={weeklyBars}
               accent={accent}
               accentSoft={isGoldTheme ? GOLD_RICH.paleGold : accent + 'CC'}
-              inactiveColor={statsSoftBg(themeMode, 'practiceBalance', 'quiet')}
+              inactiveColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsThemeSoftBg(themeMode, 'quiet')}
               todayDotColor={accent}
               height={96}
               topLabelColor={t.textPrimary}
@@ -2926,10 +2918,10 @@ function WeekAnalyticsCard({
               bottomLabelColor={t.textPrimary}
               bottomLabelMutedColor={t.textMuted}
               scrubEnabled
-              scrubHighlightColor={t.textPrimary}
+              scrubHighlightColor={accent}
               scrubBubbleBg={t.bgCard}
               scrubBubbleBorder={isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance')}
-              scrubValueColor={t.textPrimary}
+              scrubValueColor={accent}
               scrubCaptionColor={t.textMuted}
               onScrubStart={dismissScrubHint}
             />
@@ -2977,7 +2969,8 @@ type AllMetricsFoldCardProps = StatsSectionThemeProps & {
 function AllMetricsFoldCard({ t, f, lang, themeMode, isGoldTheme, insights, totalStreak, bestStreak }: AllMetricsFoldCardProps) {
     const [open, setOpen] = useState(false);
     const tone = 'weekRhythm' as const;
-    const accent = isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, tone);
+    // BUG 4: вся карточка — от главного акцента темы (единый hue).
+    const accent = isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode);
     const cardRadius = statsSurfaceRadius(themeMode, isGoldTheme ? 16 : 22);
     const tileBg = isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2;
     const currentXp = Math.max(0, insights.weekComparison.currentXp);
@@ -3714,36 +3707,9 @@ export default function StreakStats() {
             pl: "Twoje wyniki",
         })}
         </FlowText>
-        </View>
-        <View style={{ flexDirection: 'row', gap: 10, marginTop: 12 }}>
-        {false && (<TouchableOpacity testID="legacy-stats-header-achievements" accessibilityHint={triLang(lang, {
-            ru: ruAchievementRewardPhrase(achievementCount),
-            uk: ukAchievementRewardPhrase(achievementCount),
-            es: achievementCount > 0 ? `${achievementCount} logro${achievementCount === 1 ? '' : 's'}` : 'Logros',
-            'pt-BR': achievementCount > 0 ? `${achievementCount} conquista${achievementCount === 1 ? '' : 's'}` : 'Conquistas',
-            vi: achievementCount > 0 ? `${achievementCount} thành tích` : 'Thành tích',
-            id: achievementCount > 0 ? `${achievementCount} pencapaian` : 'Pencapaian',
-            tr: achievementCount > 0 ? `${achievementCount} başarı` : 'Başarılar',
-            pl: plAchievementPhrase(achievementCount),
-        })} activeOpacity={0.82} onPress={() => {
-            hapticTap();
-            router.push('/achievements_screen' as any);
-        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: t.bgCard, borderWidth: 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'archiveMap') }}>
-          <Ionicons name="trophy-outline" size={19} color={t.textSecond}/>
-          <FlowText testID="legacy-stats-header-achievements-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
-            {triLang(lang, {
-            ru: ruAchievementRewardPhrase(achievementCount),
-            uk: ukAchievementRewardPhrase(achievementCount),
-            es: achievementCount > 0 ? `${achievementCount} logro${achievementCount === 1 ? '' : 's'}` : 'Logros',
-            'pt-BR': achievementCount > 0 ? `${achievementCount} conquista${achievementCount === 1 ? '' : 's'}` : 'Conquistas',
-            vi: achievementCount > 0 ? `${achievementCount} thành tích` : 'Thành tích',
-            id: achievementCount > 0 ? `${achievementCount} pencapaian` : 'Pencapaian',
-            tr: achievementCount > 0 ? `${achievementCount} başarı` : 'Başarılar',
-            pl: plAchievementPhrase(achievementCount),
-        })}
-          </FlowText>
-        </TouchableOpacity>)}
-        <TouchableOpacity testID="stats-header-gifts" accessibilityHint={triLang(lang, {
+        <TouchableOpacity
+          testID="stats-header-gifts"
+          accessibilityHint={triLang(lang, {
             ru: ruGiftPhrase(pendingGiftCount),
             uk: ukGiftPhrase(pendingGiftCount),
             es: pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
@@ -3752,23 +3718,21 @@ export default function StreakStats() {
             id: pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah',
             tr: pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler',
             pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
-        })} activeOpacity={0.82} onPress={() => {
+          })}
+          activeOpacity={0.82}
+          onPress={() => {
             hapticTap();
             router.push('/level_gifts_inventory' as any);
-        }} style={{ flex: 1, minHeight: 48, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 15, paddingHorizontal: 12, paddingVertical: 11, backgroundColor: pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.washStrong : statsSoftBg(themeMode, 'multipliers', 'strong')) : (isGoldTheme ? GOLD_RICH.blackPiano : statsSoftBg(themeMode, 'multipliers', 'quiet')), borderWidth: 0 }}>
-          <Ionicons name="gift-outline" size={19} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers')) : t.textMuted}/>
-          <FlowText testID="stats-header-gifts-label" provenance="authored" style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', flexShrink: 1, textAlign: 'center' }}>
-            {triLang(lang, {
-            ru: ruGiftPhrase(pendingGiftCount),
-            uk: ukGiftPhrase(pendingGiftCount),
-            es: pendingGiftCount > 0 ? `${pendingGiftCount} regalo${pendingGiftCount === 1 ? '' : 's'}` : 'Regalos',
-            'pt-BR': pendingGiftCount > 0 ? `${pendingGiftCount} presente${pendingGiftCount === 1 ? '' : 's'}` : 'Presentes',
-            vi: pendingGiftCount > 0 ? `${pendingGiftCount} quà` : 'Quà',
-            id: pendingGiftCount > 0 ? `${pendingGiftCount} hadiah` : 'Hadiah',
-            tr: pendingGiftCount > 0 ? `${pendingGiftCount} hediye` : 'Hediyeler',
-            pl: pendingGiftCount > 0 ? `${pendingGiftCount} ${pendingGiftCount === 1 ? 'prezent' : 'prezentów'}` : 'Prezenty',
-        })}
-          </FlowText>
+          }}
+          style={[{ width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', marginLeft: 10, overflow: 'hidden', borderWidth: 0 }, isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'streak')]}
+        >
+          <LinearGradient colors={statsCardGradient(t)} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
+          <Ionicons name="gift-outline" size={20} color={pendingGiftCount > 0 ? (isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode)) : t.textMuted}/>
+          {pendingGiftCount > 0 ? (
+            <View style={{ position: 'absolute', top: 4, right: 4, minWidth: 16, height: 16, borderRadius: 8, paddingHorizontal: 4, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode) }}>
+              <Text style={{ color: t.bgCard, fontSize: 9, fontWeight: '900' }}>{pendingGiftCount}</Text>
+            </View>
+          ) : null}
         </TouchableOpacity>
         </View>
       </View>
@@ -3906,7 +3870,7 @@ export default function StreakStats() {
                       const topN = Math.max(1, 100 - bestItem.percent);
                       return (
                         <View style={{ marginBottom: 14, gap: 2 }}>
-                          <Text style={{ color: bestItem.color, fontSize: f.numLg, fontWeight: '900' }}>
+                          <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode), fontSize: f.numLg, fontWeight: '900' }}>
                             {`${triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{bestItem.label}</Text>

@@ -17,6 +17,10 @@ import {
   type Activity365Analytics,
   type Activity365Day,
 } from '../app/activity_365_analytics';
+import { GOLD_RICH } from '../constants/goldTheme';
+import { statsThemeAccent } from '../constants/statsThemeChrome';
+import type { ThemeMode } from '../constants/theme';
+import { FlowText } from './text-integrity/FlowText';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -143,16 +147,20 @@ function monthComparisonSummary(
   }, { activeDays: 0, xp: 0, minutes: 0 });
 }
 
-function heatPalette(theme: any, themeMode: string): readonly string[] {
+function heatPalette(themeMode: ThemeMode): readonly string[] {
+  // BUG 2: palette[0] (пустые дни) обязан быть виден на фоне поверхности —
+  // раньше он совпадал с цветом фона, и годовая сетка выглядела «пустой».
+  // BUG 4: вся рампа — от главного акцента темы (единый hue), gold — из GOLD_RICH.
   if (themeMode === 'gold') {
-    return ['#29241D', '#6D5529', '#A77B35', '#D4A954', '#F6D98A'];
+    return [GOLD_RICH.bronzeWashStrong, GOLD_RICH.agedGold, GOLD_RICH.antiqueGold, GOLD_RICH.metalGold, GOLD_RICH.champagne];
   }
+  const accent = statsThemeAccent(themeMode);
   return [
-    theme.bgSurface2,
-    withAlpha(theme.accent, 0.22),
-    withAlpha(theme.accent, 0.42),
-    withAlpha(theme.accent, 0.7),
-    theme.accent,
+    withAlpha(accent, 0.1),
+    withAlpha(accent, 0.28),
+    withAlpha(accent, 0.5),
+    withAlpha(accent, 0.75),
+    accent,
   ];
 }
 
@@ -167,7 +175,7 @@ function CanonicalYearHeatmap({
 }) {
   const { theme: t, f, themeMode } = useTheme();
   const { width } = useWindowDimensions();
-  const palette = heatPalette(t, themeMode);
+  const palette = heatPalette(themeMode);
   const activityMapSurface = themeMode === 'gold'
     ? ['#211D17', '#15120E']
     : [withAlpha(t.bgSurface2, 0.98), withAlpha(t.bgCard, 0.94)];
@@ -236,7 +244,7 @@ function CompactHistoryHeatmap({
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { width } = useWindowDimensions();
-  const palette = heatPalette(t, themeMode);
+  const palette = heatPalette(themeMode);
   const observedDays = days.filter((day) => !day.future);
   const columns = 7;
   const gap = 5;
@@ -315,12 +323,13 @@ function MonthSelector({
       >
         <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
       </TouchableOpacity>
-      <Text
+      <FlowText
+        testID="activity-365-month-selector-label"
+        provenance="authored"
         style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}
-        numberOfLines={1}
       >
         {monthKey ? formatMonth(monthKey, lang, true) : '—'}
-      </Text>
+      </FlowText>
       <TouchableOpacity
         accessibilityRole="button"
         accessibilityLabel="Следующий месяц"
@@ -355,7 +364,7 @@ function MonthExplorerModal({
   const [selectedDay, setSelectedDay] = useState<Activity365Day | null>(null);
   const [monthAKey, setMonthAKey] = useState<string | null>(null);
   const [monthBKey, setMonthBKey] = useState<string | null>(null);
-  const palette = heatPalette(t, themeMode);
+  const palette = heatPalette(themeMode);
   const currentIndex = monthKey ? monthKeys.indexOf(monthKey) : -1;
   const latestMonth = monthKeys[monthKeys.length - 1] ?? null;
   const previousMonth = monthKeys[Math.max(0, monthKeys.length - 2)] ?? latestMonth;
@@ -423,12 +432,13 @@ function MonthExplorerModal({
           >
             <Ionicons name="chevron-back" size={22} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text
+          <FlowText
+            testID="activity-365-month-modal-title"
+            provenance="authored"
             style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}
-            numberOfLines={1}
           >
             {monthKey ? formatMonth(monthKey, lang, true) : ''}
-          </Text>
+          </FlowText>
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel="Следующий месяц"
@@ -672,6 +682,11 @@ function ActivityHeatmap365() {
 
 const styles = StyleSheet.create({
   yearMapSurface: {
+    alignSelf: 'flex-start',
+    borderRadius: 16,
+    padding: 8,
+  },
+  compactHistorySurface: {
     alignSelf: 'flex-start',
     borderRadius: 16,
     padding: 8,

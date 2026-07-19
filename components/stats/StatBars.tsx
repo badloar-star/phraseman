@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { View, Text, StyleSheet, PanResponder, type ViewStyle } from 'react-native';
 import Reanimated, {
   useSharedValue,
@@ -66,6 +66,8 @@ const STUMP_H = 8;
 const BUBBLE_W = 96;
 const BUBBLE_ZONE_H = 42;
 const ROW_GAP = 7;
+/** Горизонтальный паддинг styles.row — учитываем в геометрии hit-тестинга скраба. */
+const ROW_PAD = 2;
 
 function Bar({
   bar,
@@ -188,24 +190,48 @@ export function StatBars({
   const gap = ROW_GAP;
   const columnCount = bars.length;
   const columnWidth = columnCount > 0 && rowWidth > 0
-    ? Math.max(1, (rowWidth - gap * (columnCount - 1)) / columnCount)
+    ? Math.max(1, (rowWidth - ROW_PAD * 2 - gap * (columnCount - 1)) / columnCount)
     : 1;
+
+  // BUG FIX (hit-testing): в RN locationX считается относительно touch target
+  // (дочерней колонки под пальцем), а не responder-вью, поэтому любой тап давал
+  // x≈0 и всегда выбирался первый столбик. Считаем x как pageX минус оконная
+  // позиция строки (measureInWindow) и выбираем ближайший центр колонки.
+  const rowRef = useRef<View | null>(null);
+  const rowPageXRef = useRef(0);
+  const measureRow = useCallback(() => {
+    const node = rowRef.current as unknown as {
+      measureInWindow?: (cb: (x: number) => void) => void;
+    } | null;
+    if (node && typeof node.measureInWindow === 'function') {
+      node.measureInWindow((x: number) => {
+        rowPageXRef.current = x;
+      });
+    }
+  }, []);
 
   const scrubResponder = useMemo(() => {
     if (!scrubEnabled) return null;
+    const colW = bars.length > 0 && rowWidth > 0
+      ? Math.max(1, (rowWidth - ROW_PAD * 2 - gap * (bars.length - 1)) / bars.length)
+      : 1;
+    const centerForIndex = (i: number): number => ROW_PAD + i * (colW + gap) + colW / 2;
     const indexForX = (x: number): number => {
       const n = bars.length;
-      if (n === 0 || rowWidth <= 0) return 0;
-      const colW = (rowWidth - gap * (n - 1)) / n;
-      if (colW <= 0) return 0;
-      return Math.max(0, Math.min(n - 1, Math.floor(x / (colW + gap))));
+      if (n === 0) return 0;
+      let best = 0;
+      let bestDist = Infinity;
+      for (let i = 0; i < n; i++) {
+        const d = Math.abs(x - centerForIndex(i));
+        if (d < bestDist) {
+          bestDist = d;
+          best = i;
+        }
+      }
+      return best;
     };
-    const centerForIndex = (i: number): number => {
-      const n = bars.length;
-      const colW = (rowWidth - gap * (n - 1)) / n;
-      return i * (colW + gap) + colW / 2;
-    };
-    const handleScrub = (x: number) => {
+    const handleScrub = (pageX: number) => {
+      const x = pageX - rowPageXRef.current;
       const idx = indexForX(x);
       const center = centerForIndex(idx);
       const clamped = Math.max(BUBBLE_W / 2, Math.min(Math.max(BUBBLE_W / 2, rowWidth - BUBBLE_W / 2), center));
@@ -232,13 +258,17 @@ export function StatBars({
       onMoveShouldSetPanResponder: () => true,
       // Вертикальный скролл экрана забирает жест себе — пузырь при этом гасим.
       onPanResponderTerminationRequest: () => true,
-      onPanResponderGrant: (evt) => handleScrub(evt.nativeEvent.locationX),
-      onPanResponderMove: (evt) => handleScrub(evt.nativeEvent.locationX),
+      onPanResponderGrant: (evt) => {
+        // Перемеряем позицию строки (асинхронно) — пригодится для move-событий.
+        measureRow();
+        handleScrub(evt.nativeEvent.pageX);
+      },
+      onPanResponderMove: (evt) => handleScrub(evt.nativeEvent.pageX),
       onPanResponderRelease: endScrub,
       onPanResponderTerminate: endScrub,
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scrubEnabled, rowWidth, bars.length, gap, onScrubStart]);
+  }, [scrubEnabled, rowWidth, bars.length, gap, onScrubStart, measureRow]);
 
   const bubbleStyle = useAnimatedStyle(() => ({
     opacity: bubbleOpacity.value,
@@ -303,7 +333,12 @@ export function StatBars({
           </Text>
         </Reanimated.View>
       </View>
-      <View style={styles.row} {...(scrubResponder?.panHandlers ?? {})}>
+      <View
+        ref={rowRef}
+        style={styles.row}
+        onLayout={measureRow}
+        {...(scrubResponder?.panHandlers ?? {})}
+      >
         {columns}
       </View>
     </View>

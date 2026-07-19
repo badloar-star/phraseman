@@ -8,7 +8,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated, {
   FadeInDown,
-  ZoomInDown,
+  FadeInUp,
   useSharedValue,
   useAnimatedStyle,
   withSequence,
@@ -121,6 +121,15 @@ function normalizeFillGapToken(value?: string): string {
   return (value ?? '').toLowerCase().replace(/^[.!?,;:"()[\]{}]+|[.!?,;:"()[\]{}]+$/g, '').trim();
 }
 
+/**
+ * Плиткой банка становится только токен с буквой или цифрой (unicode-aware):
+ * чистая пунктуация («—», «–», «/», «…») — не слово, она остаётся частью
+ * фразы-дисплея, но не плитка и не требуется для проверки ответа.
+ */
+function isMeaningfulBankToken(text: string): boolean {
+  return /[\p{L}\p{N}]/u.test(text);
+}
+
 function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): readonly string[] | undefined {
   if (!item.lessonId || !errorWord) return undefined;
   const phrase = getLessonData(item.lessonId).find(row => row.english.trim() === item.key.trim());
@@ -153,15 +162,41 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
   // Банк неизменен: взятые плитки не исчезают, а гаснут (opacity .18) — видно, что уже в ответе.
-  const [bank] = useState<WordBankTile[]>(() => shuffleWordBankTiles(item.key));
+  // Пунктуационные токены («—», «/») отфильтрованы; слоты переупорядочены 0..n-1,
+  // чтобы selected и speaking-autofill совпадали с банком по слотам.
+  const [bank] = useState<WordBankTile[]>(() => {
+    const shuffled = shuffleWordBankTiles(item.key);
+    const meaningful = shuffled.filter((tile) => isMeaningfulBankToken(tile.text));
+    const source = meaningful.length > 0 ? meaningful : shuffled;
+    return source.map((tile, index) => ({ ...tile, slot: index }));
+  });
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
-  const correctTokens = tokenizeRecallPhrase(item.key);
+  const correctTokens = useMemo(() => {
+    const all = tokenizeRecallPhrase(item.key);
+    const meaningful = all.filter(isMeaningfulBankToken);
+    return meaningful.length > 0 ? meaningful : all;
+  }, [item.key]);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
   const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
+  // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
+  const promptText = useMemo(() => {
+    const translation = trainerTranslationForLang(item, lang).trim();
+    if (translation) return translation;
+    return triLang(lang, {
+      ru: 'Собери английскую фразу из слов',
+      uk: 'Склади англійську фразу зі слів',
+      es: 'Forma la frase en inglés',
+      'pt-BR': 'Monte a frase em inglês',
+      vi: 'Sắp xếp câu tiếng Anh',
+      id: 'Susun frasa bahasa Inggris',
+      tr: 'İngilizce cümleyi kur',
+      pl: 'Ułóż angielską frazę',
+    });
+  }, [item, lang]);
 
   const tapBank = (tile: WordBankTile) => {
     if (feedback !== 'none' || usedSlots.has(tile.slot)) return;
@@ -233,7 +268,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
           })}
         </Text>
         <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', lineHeight: Math.round(f.bodyLg * 1.35), marginTop: 5 }}>
-          {trainerTranslationForLang(item, lang)}
+          {promptText}
         </Text>
       </View>
 
@@ -259,7 +294,8 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
             </Text>
           : <View style={styles.tilesRow}>
               {selected.map(tile => (
-                <Reanimated.View key={tile.slot} entering={ZoomInDown.springify().damping(15).stiffness(170)}>
+                // Влёт снизу с пружинкой — как в макете (bTileIn: translateY +16 → 0, fade).
+                <Reanimated.View key={tile.slot} entering={FadeInUp.springify().damping(12).stiffness(180)}>
                   <TouchableOpacity
                     onPress={() => tapSelected(tile)}
                     style={[styles.tile, isCompassTheme && compassShadow(1), { backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : answerSoftBg, borderRadius: isCompassTheme ? 8 : 11, overflow: isCompassTheme ? 'hidden' : 'visible' }]}
@@ -524,7 +560,9 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
           <Ionicons name="bulb-outline" size={16} color={accent} />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{item.key}</Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{trainerTranslationForLang(item, lang)}</Text>
+            {trainerTranslationForLang(item, lang).trim() ? (
+              <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{trainerTranslationForLang(item, lang)}</Text>
+            ) : null}
           </View>
         </Reanimated.View>
       ) : null}

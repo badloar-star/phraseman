@@ -215,31 +215,31 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef, themeMode, onSpeakWord }
         <Ionicons name="volume-high" size={16} color={accent} />
       </TouchableOpacity>
 
-      {/* Штамп «Знаю» — виден при свайпе вправо ещё до отлёта карточки */}
+      {/* Штамп «Правильно» — виден при свайпе вправо ещё до отлёта карточки */}
       <Animated.View style={[styles.stamp, { left: 20, transform: [{ rotate: '-12deg' }], backgroundColor: t.correctBg, opacity: correctOpacity }]}>
         <Text style={[styles.stampText, { color: t.correct }]}>{triLang(lang, {
-          ru: 'Знаю',
-          uk: 'Знаю',
-          es: 'Lo sé',
-          'pt-BR': 'Eu sei',
-          vi: 'Biết',
-          id: 'Tahu',
-          tr: 'Biliyorum',
-          pl: 'Wiem',
+          ru: 'Правильно',
+          uk: 'Правильно',
+          es: 'Correcto',
+          'pt-BR': 'Correto',
+          vi: 'Đúng',
+          id: 'Benar',
+          tr: 'Doğru',
+          pl: 'Dobrze',
         })}</Text>
       </Animated.View>
 
-      {/* Штамп «Не знаю» — при свайпе влево */}
+      {/* Штамп «Неправильно» — при свайпе влево */}
       <Animated.View style={[styles.stamp, { right: 20, transform: [{ rotate: '12deg' }], backgroundColor: t.wrongBg, opacity: wrongOpacity }]}>
         <Text style={[styles.stampText, { color: t.wrong }]}>{triLang(lang, {
-          ru: 'Не знаю',
-          uk: 'Не знаю',
-          es: 'No lo sé',
-          'pt-BR': 'Não sei',
-          vi: 'Không biết',
-          id: 'Tidak tahu',
-          tr: 'Bilmiyorum',
-          pl: 'Nie wiem',
+          ru: 'Неправильно',
+          uk: 'Неправильно',
+          es: 'Incorrecto',
+          'pt-BR': 'Incorreto',
+          vi: 'Sai',
+          id: 'Salah',
+          tr: 'Yanlış',
+          pl: 'Źle',
         })}</Text>
       </Animated.View>
 
@@ -589,8 +589,8 @@ export default function TrainerWordsSession() {
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
-                ru: 'Не помню', uk: 'Не пам’ятаю', es: 'No recuerdo', 'pt-BR': 'Não lembro',
-                vi: 'Không nhớ', id: 'Tidak ingat', tr: 'Hatırlamıyorum', pl: 'Nie pamiętam',
+                ru: 'Неправильно', uk: 'Неправильно', es: 'Incorrecto', 'pt-BR': 'Incorreto',
+                vi: 'Sai', id: 'Salah', tr: 'Yanlış', pl: 'Źle',
               })}
               onPress={() => handleButton('left')}
               style={[styles.roundBtn, { backgroundColor: t.wrongBg }]}
@@ -600,8 +600,8 @@ export default function TrainerWordsSession() {
             <TouchableOpacity
               accessibilityRole="button"
               accessibilityLabel={triLang(lang, {
-                ru: 'Помню', uk: 'Пам’ятаю', es: 'Recuerdo', 'pt-BR': 'Lembro',
-                vi: 'Nhớ', id: 'Ingat', tr: 'Hatırlıyorum', pl: 'Pamiętam',
+                ru: 'Правильно', uk: 'Правильно', es: 'Correcto', 'pt-BR': 'Correto',
+                vi: 'Đúng', id: 'Benar', tr: 'Doğru', pl: 'Dobrze',
               })}
               onPress={() => handleButton('right')}
               style={[styles.roundBtn, { backgroundColor: t.correctBg }]}
@@ -611,14 +611,14 @@ export default function TrainerWordsSession() {
           </View>
           <Text style={[styles.buttonsCaption, { color: t.textGhost }]}>
             {triLang(lang, {
-              ru: 'не помню · помню',
-              uk: 'не пам’ятаю · пам’ятаю',
-              es: 'no recuerdo · recuerdo',
-              'pt-BR': 'não lembro · lembro',
-              vi: 'không nhớ · nhớ',
-              id: 'tidak ingat · ingat',
-              tr: 'hatırlamıyorum · hatırlıyorum',
-              pl: 'nie pamiętam · pamiętam',
+              ru: 'неправильно · правильно',
+              uk: 'неправильно · правильно',
+              es: 'incorrecto · correcto',
+              'pt-BR': 'incorreto · correto',
+              vi: 'sai · đúng',
+              id: 'salah · benar',
+              tr: 'yanlış · doğru',
+              pl: 'źle · dobrze',
             })}
           </Text>
 

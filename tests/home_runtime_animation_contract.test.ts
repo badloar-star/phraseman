@@ -12,11 +12,10 @@ describe('Home runtime animation ownership', () => {
     expect(source).toContain('if (!homeStatsReady || !homeRuntimeActive)');
   });
 
-  it('passes explicit activity ownership to WeeklyReviewCard', () => {
-    const trainer = read('app/trainer.tsx');
+  it('keeps WeeklyReviewCard activity ownership explicit', () => {
+    // Карточка снята с экрана практики (редизайн «Моя практика»), но компонент
+    // сохраняет контракт: активность всегда приходит явным пропом, без фоновых циклов.
     const weekly = read('app/WeeklyReviewCard.tsx');
-    expect(trainer).toContain('const trainerRuntimeActive = useRuntimeActive()');
-    expect(trainer).toContain('<WeeklyReviewCard active={trainerRuntimeActive}');
     expect(weekly).toContain('active: boolean');
     expect(weekly).not.toContain('Animated.timing(sweep');
     expect(weekly).not.toContain('Animated.loop');

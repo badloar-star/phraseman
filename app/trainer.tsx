@@ -18,12 +18,10 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
-import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { clearTrainerStore, devSeedTrainer, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
 import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
 import { type PhraseAnalyticsResult, type WordCategoryStat, } from './phrase_analytics';
-import WeeklyReviewCard from './WeeklyReviewCard';
 import { getDiagnosisTraining } from './diagnosis_trainings';
 import type { ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
@@ -190,7 +188,7 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
  * Если персональные тренировки доступны и для категории есть диагноз — ведёт
  * в /problem_coach, иначе — на полный экран аналитики.
  */
-function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack, delayMs = 0 }: {
+function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack }: {
     stat: WordCategoryStat;
     windowDays: number;
     lang: Lang;
@@ -202,7 +200,6 @@ function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTr
     accent: string;
     softBg: string;
     ringTrack: string;
-    delayMs?: number;
 }) {
     const diagnosisId = personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
     const openWeakSpot = () => {
@@ -217,55 +214,41 @@ function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTr
         router.push('/phrase_analytics_screen' as any);
     };
     return (
-      <Reanimated.View entering={FadeInDown.delay(delayMs).duration(320)}>
-        <TouchableOpacity accessibilityRole="button" onPress={openWeakSpot} activeOpacity={0.86} style={[styles.weakCard, { backgroundColor: t.bgCard }]}>
-          <StatScoreRing
-            progress={stat.pct}
-            centerValue={`${stat.pct}%`}
-            accent={accent}
-            trackColor={ringTrack}
-            size={58}
-            strokeWidth={6}
-            centerColor={t.textPrimary}
-            subColor={t.textMuted}
-            centerTextStyle={{ fontSize: 14, lineHeight: 17 }}
-          />
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={[styles.weakLabel, { color: t.textGhost, fontSize: f.label - 1 }]}>
-              {triLang(lang, {
-                ru: 'Слабое место',
-                uk: 'Слабке місце',
-                es: 'Punto débil',
-                'pt-BR': 'Ponto fraco',
-                vi: 'Điểm yếu',
-                id: 'Titik lemah',
-                tr: 'Zayıf nokta',
-                pl: 'Słaby punkt',
-              })}
-            </Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', marginTop: 3 }}>
-              {trainerCategoryLabel(stat.category, lang)}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>
-              {errorsShareWindowText(windowDays, lang)}
-            </Text>
-          </View>
-          <View style={[styles.ghostBtn, { backgroundColor: softBg }]}>
-            <Text style={{ color: accent, fontSize: f.caption, fontWeight: '800' }}>
-              {triLang(lang, {
-                ru: 'Тренировать',
-                uk: 'Тренувати',
-                es: 'Entrenar',
-                'pt-BR': 'Treinar',
-                vi: 'Luyện ngay',
-                id: 'Latih',
-                tr: 'Çalış',
-                pl: 'Trenuj',
-              })}
-            </Text>
-          </View>
-        </TouchableOpacity>
-      </Reanimated.View>
+      <TouchableOpacity accessibilityRole="button" onPress={openWeakSpot} activeOpacity={0.86} style={[styles.weakCard, { backgroundColor: t.bgCard }]}>
+        <StatScoreRing
+          progress={stat.pct}
+          centerValue={`${stat.pct}%`}
+          accent={accent}
+          trackColor={ringTrack}
+          size={58}
+          strokeWidth={6}
+          centerColor={t.textPrimary}
+          subColor={t.textMuted}
+          centerTextStyle={{ fontSize: 14, lineHeight: 17 }}
+        />
+        <View style={{ flex: 1, minWidth: 0 }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+            {trainerCategoryLabel(stat.category, lang)}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>
+            {errorsShareWindowText(windowDays, lang)}
+          </Text>
+        </View>
+        <View style={[styles.ghostBtn, { backgroundColor: softBg }]}>
+          <Text style={{ color: accent, fontSize: f.caption, fontWeight: '800' }}>
+            {triLang(lang, {
+              ru: 'Тренировать',
+              uk: 'Тренувати',
+              es: 'Entrenar',
+              'pt-BR': 'Treinar',
+              vi: 'Luyện ngay',
+              id: 'Latih',
+              tr: 'Çalış',
+              pl: 'Trenuj',
+            })}
+          </Text>
+        </View>
+      </TouchableOpacity>
     );
 }
 
@@ -283,7 +266,6 @@ function jsonEqualQuiet<T>(a: T, b: T): boolean {
     }
 }
 function TrainerScreenInner() {
-    const trainerRuntimeActive = useRuntimeActive();
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';
@@ -346,30 +328,11 @@ function TrainerScreenInner() {
         totalMistakes: 0,
         windowDays: 30,
     };
-    const personalTrainings = useMemo(() => {
-        if (!personalPracticeCoachEnabled) return [];
-        const seen = new Set<string>();
-        return shownAnalytics.categoryStats.flatMap((stat) => {
-            const priority = stat.priorityScore ?? stat.weaknessScore;
-            const diagnosisId = (priority >= 55 || (stat.pct >= 15 && (stat.recoveryScore ?? 0) < 25))
-                ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings)
-                : null;
-            const training = getDiagnosisTraining(diagnosisId);
-            if (!diagnosisId || !training || seen.has(diagnosisId)) return [];
-            seen.add(diagnosisId);
-            return [{ diagnosisId, training, stat }];
-        }).slice(0, 2);
-    }, [personalPracticeCoachEnabled, resolvedPersonalTrainings, shownAnalytics.categoryStats]);
-    // Одно главное слабое место — категория с максимальным приоритетом, бесплатно и без аккордеона.
-    const weakSpotStat = useMemo(() => {
-        let best: WordCategoryStat | null = null;
-        for (const stat of shownAnalytics.categoryStats) {
-            const score = stat.priorityScore ?? stat.weaknessScore;
-            if (!best || score > (best.priorityScore ?? best.weaknessScore)) best = stat;
-        }
-        return best;
-    }, [shownAnalytics.categoryStats]);
-    const showWeakSpot = shownAnalytics.totalMistakes > 0 && weakSpotStat != null;
+    // Слабые места — до трёх категорий с максимальным приоритетом, бесплатно и без аккордеона.
+    const weakSpotStats = useMemo(() => [...shownAnalytics.categoryStats]
+        .sort((a, b) => (b.priorityScore ?? b.weaknessScore) - (a.priorityScore ?? a.weaknessScore))
+        .slice(0, 3), [shownAnalytics.categoryStats]);
+    const showWeakSpots = shownAnalytics.totalMistakes > 0 && weakSpotStats.length > 0;
     // Ритм недели: последние 7 наблюдаемых дней активности (future-плейсхолдеры не показываем).
     const weekBars = useMemo((): StatBar[] => {
         const days = activityDays.filter((day) => !day.future).slice(-7);
@@ -571,22 +534,31 @@ function TrainerScreenInner() {
               ))}
             </Reanimated.View>
 
-            {/* Слабое место — бесплатно и сразу, без премиум-стены. */}
-            {showWeakSpot && weakSpotStat ? (
-              <WeakSpotCard
-                stat={weakSpotStat}
-                windowDays={shownAnalytics.windowDays}
-                lang={lang}
-                t={t}
-                f={f}
-                router={router}
-                resolvedPersonalTrainings={resolvedPersonalTrainings}
-                personalTrainingEnabled={personalPracticeCoachEnabled}
-                accent={accent}
-                softBg={accentSoftBg}
-                ringTrack={quietSoftBg}
-                delayMs={180}
-              />
+            {/* Слабые места — бесплатно и сразу, без премиум-стены. */}
+            {showWeakSpots ? (
+              <Reanimated.View entering={FadeInDown.delay(180).duration(320)} style={{ gap: 8 }}>
+                <Text style={[styles.weakLabel, { color: t.textGhost, fontSize: f.label - 1 }]}>
+                  {weakSpotStats.length > 1
+                    ? triLang(lang, { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Các điểm yếu', id: 'Titik-titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe punkty' })
+                    : triLang(lang, { ru: 'Слабое место', uk: 'Слабке місце', es: 'Punto débil', 'pt-BR': 'Ponto fraco', vi: 'Điểm yếu', id: 'Titik lemah', tr: 'Zayıf nokta', pl: 'Słaby punkt' })}
+                </Text>
+                {weakSpotStats.map((stat) => (
+                  <WeakSpotCard
+                    key={stat.category}
+                    stat={stat}
+                    windowDays={shownAnalytics.windowDays}
+                    lang={lang}
+                    t={t}
+                    f={f}
+                    router={router}
+                    resolvedPersonalTrainings={resolvedPersonalTrainings}
+                    personalTrainingEnabled={personalPracticeCoachEnabled}
+                    accent={accent}
+                    softBg={accentSoftBg}
+                    ringTrack={quietSoftBg}
+                  />
+                ))}
+              </Reanimated.View>
             ) : null}
 
             {/* Ритм недели: значения только по зажатию (scrub), как на экране статистики. */}
@@ -613,27 +585,6 @@ function TrainerScreenInner() {
                   scrubValueColor={accent}
                   scrubCaptionColor={t.textMuted}
                 />
-              </Reanimated.View>
-            ) : null}
-
-            {/* Персональные тренировки по повторяющимся ошибкам. */}
-            {personalTrainings.length > 0 ? (
-              <Reanimated.View entering={FadeInDown.delay(320).duration(320)} style={{ gap: 8 }}>
-                {personalTrainings.map(({ diagnosisId, training, stat }) => (<TouchableOpacity key={diagnosisId} accessibilityRole="button" onPress={() => { hapticTap(); router.push({ pathname: '/problem_coach', params: { microDiagnosisId: diagnosisId, category: stat.category } } as any); }} activeOpacity={0.86} style={[styles.queueRow, { backgroundColor: quietSoftBg }]}>
-                  <View style={[styles.queueIcon, { backgroundColor: accentSoftBg }]}><Ionicons name="sparkles-outline" size={18} color={accent}/></View>
-                  <View style={{ flex: 1, minWidth: 0 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{triLang(lang, training.shortTitle ?? training.title)}</Text>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{triLang(lang, { ru: 'персональная · по вашим ошибкам', uk: 'персональне · за вашими помилками', es: 'personal · por tus errores', 'pt-BR': 'pessoal · pelos seus erros', vi: 'cá nhân · theo lỗi của bạn', id: 'pribadi · dari kesalahanmu', tr: 'kişisel · hatalarına göre', pl: 'osobiste · wg twoich błędów' })}</Text>
-                  </View>
-                  <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
-                </TouchableOpacity>))}
-              </Reanimated.View>
-            ) : null}
-
-            {/* Еженедельный AI-разбор — только для премиума; бесплатным не показываем стену. */}
-            {hasPremium ? (
-              <Reanimated.View entering={FadeInDown.delay(360).duration(320)}>
-                <WeeklyReviewCard active={trainerRuntimeActive} isPremium={true} studyTarget={studyTarget} stableLayout />
               </Reanimated.View>
             ) : null}
 

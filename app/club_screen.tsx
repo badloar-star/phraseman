@@ -72,6 +72,7 @@ import {
   type LeagueChestRewardDrop,
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
+import { visibleWallClock } from './visible_wall_clock';
 import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
@@ -95,12 +96,10 @@ import {
 import { hasClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
   buildLeagueBonusMissionModel,
-  buildLeaguePodium,
-  type LeaguePodiumMember,
 } from './league_club_hub_model';
 import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
-import { LeaguePodium } from '../components/league/LeaguePodium';
+import { LeagueHeroStatus, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/LeagueHeroStatus';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
 
@@ -196,6 +195,37 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
     tr: `Bu ay yükselme daha basit: haftada ${xp} XP kazan, sonraki lige geç.`,
     pl: `W tym miesiącu awans jest prostszy: zdobądź ${xp} XP w tygodniu i przejdź do następnej ligi.`,
   });
+}
+
+/** Конец текущей ISO-недели лиги (понедельник 00:00 UTC, как getWeekId). */
+function leagueWeekEndsAtUtcMs(now: number): number {
+  const d = new Date(now);
+  const dayStartUtc = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  const dow = new Date(dayStartUtc).getUTCDay() || 7;
+  return dayStartUtc + (8 - dow) * 86_400_000;
+}
+
+function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean } {
+  const left = Math.max(0, msLeft);
+  const days = Math.floor(left / 86_400_000);
+  const hours = Math.floor((left % 86_400_000) / 3_600_000);
+  const mins = Math.floor((left % 3_600_000) / 60_000);
+  const units = triLang(lang, {
+    ru: { d: 'д', h: 'ч', m: 'мин' },
+    uk: { d: 'д', h: 'г', m: 'хв' },
+    es: { d: 'd', h: 'h', m: 'min' },
+    'pt-BR': { d: 'd', h: 'h', m: 'min' },
+    vi: { d: 'n', h: 'g', m: 'ph' },
+    id: { d: 'h', h: 'j', m: 'mnt' },
+    tr: { d: 'g', h: 's', m: 'dk' },
+    pl: { d: 'd', h: 'g', m: 'min' },
+  });
+  const text = days >= 1
+    ? `${days} ${units.d} ${hours} ${units.h}`
+    : hours >= 1
+      ? `${hours} ${units.h} ${mins} ${units.m}`
+      : `${Math.max(1, mins)} ${units.m}`;
+  return { text, urgent: days < 1 };
 }
 
 // ── League icon renderer ──────────────────────────────────────────────────────
@@ -392,6 +422,7 @@ export default function ClubScreen() {
   const [leagueBonusAdminPreview, setLeagueBonusAdminPreview] = useState<LeagueBonusAdminPreview | null>(null);
   const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
   const [groupBoostTimeLeft, setGroupBoostTimeLeft] = useState('');
+  const [weekCountdown, setWeekCountdown] = useState(() => formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(Date.now()) - Date.now()));
   const [groupBoostConfirmVisible, setGroupBoostConfirmVisible] = useState(false);
   // Подарок уровня «Буст клуба бесплатно»: следующая активация не списывает осколки.
   const [freeBoostGiftReady, setFreeBoostGiftReady] = useState(false);
@@ -747,6 +778,20 @@ export default function ClubScreen() {
     const id = setInterval(update, 1000);
     return () => clearInterval(id);
   }, [activeGroupBoost?.expiresAt]);
+
+  // Таймер недели: общий visible wall clock (1 Гц), текст меняется максимум раз в минуту,
+  // подписка живёт только пока экран в фокусе — новых setInterval не создаём.
+  useFocusEffect(
+    useCallback(() => {
+      const update = (now: number) => {
+        const next = formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(now) - now);
+        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent ? prev : next));
+      };
+      update(Date.now());
+      const unsubscribe = visibleWallClock.subscribe(update);
+      return () => unsubscribe();
+    }, [lang]),
+  );
 
   const myLeague = LEAGUES[myLeagueId] ?? LEAGUES[0];
 
@@ -1133,7 +1178,38 @@ export default function ClubScreen() {
       buyerName: leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid),
     } : null,
   }), [activeGroupBoost, leagueChestClaimed, leagueChestGoal, leagueChestProgress, leagueChestReady, myLeagueChestContribution, publicSortedGroup]);
-  const hubPodium = useMemo(() => buildLeaguePodium(publicSortedGroup), [publicSortedGroup]);
+  // ── Hero-статус: моё место, зона и отрыв до следующего места ────────────────
+  const myLeagueRank = useMemo(() => {
+    const idx = sortedGroup.findIndex((m) => m.isMe);
+    return idx >= 0 ? idx + 1 : 0;
+  }, [sortedGroup]);
+  const myLeagueZone = useMemo<LeagueHeroZone | null>(() => {
+    if (myLeagueRank <= 0) return null;
+    if (leagueXpPromotionMode) {
+      const me = sortedGroup[myLeagueRank - 1];
+      const myPts = Math.max(0, Math.floor(Number(me?.points) || 0));
+      return myLeagueId < LEAGUES.length - 1 && myPts >= leagueXpPromotionThreshold ? 'promotion' : 'safe';
+    }
+    if (promotionCutoff > 0 && myLeagueRank <= promotionCutoff) return 'promotion';
+    if (sortedGroup.length >= 2 && myLeagueRank - 1 >= relegationStartIndex) return 'relegation';
+    return 'safe';
+  }, [leagueXpPromotionMode, leagueXpPromotionThreshold, myLeagueId, myLeagueRank, promotionCutoff, relegationStartIndex, sortedGroup]);
+  const myLeagueGap = useMemo<LeagueHeroGap | null>(() => {
+    if (myLeagueRank <= 0 || sortedGroup.length < 2) return null;
+    const myPts = Math.max(0, Math.floor(Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
+    if (myLeagueRank === 1) {
+      const secondPts = Math.max(0, Math.floor(Number(sortedGroup[1]?.points) || 0));
+      return { kind: 'leader', xpAhead: Math.max(0, myPts - secondPts), ratio: 1 };
+    }
+    const abovePts = Math.max(0, Math.floor(Number(sortedGroup[myLeagueRank - 2]?.points) || 0));
+    return {
+      kind: 'to_rank',
+      targetRank: myLeagueRank - 1,
+      xpNeeded: Math.max(1, abovePts - myPts + 1),
+      ratio: abovePts > 0 ? Math.min(1, myPts / abovePts) : 1,
+    };
+  }, [myLeagueRank, sortedGroup]);
+  const leagueBonusPct = useMemo(() => Math.max(0, Number(String(myLeague.tagRU).match(/([+-]?\d+)%/)?.[1] ?? '0') || 0), [myLeague.tagRU]);
 
   const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
     if (!member.uid) return false;
@@ -1287,14 +1363,17 @@ export default function ClubScreen() {
         >
           <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TapScale>
-        <Text
-          numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.72}
-          style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}
-        >
-          {leagueNameForLang(myLeague, lang)}
-        </Text>
+        <View style={{ flex: 1 }} />
+        {leagueBonusPct > 0 ? (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: 'rgba(71,200,112,0.14)', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+            <Ionicons name="flash" size={12} color={monoIcon(themeMode, '#47C870')} />
+            <Text style={{ color: monoIcon(themeMode, '#47C870'), fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
+          </View>
+        ) : null}
+        <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? 'rgba(255,91,108,0.14)' : 'rgba(255,212,59,0.12)', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
+          <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B')} />
+          <Text style={{ color: weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B'), fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
+        </View>
       </View>
 
       <BouncyWrap>
@@ -1344,26 +1423,15 @@ export default function ClubScreen() {
           </View>
         )}
 
-        <LeaguePodium
-          podium={hubPodium}
+        <LeagueHeroStatus
           lang={lang}
           palette={hubPalette}
+          leagueName={leagueNameForLang(myLeague, lang)}
+          participantCount={publicSortedGroup.length}
           leagueIcon={<LeagueIcon league={myLeague} size={50} active alignContent={false} themeMode={themeMode} />}
-          renderAvatar={(member: LeaguePodiumMember, size: number) => {
-            const fullMember = publicSortedGroup.find((candidate) => (
-              (member.uid && candidate.uid === member.uid)
-              || (member.botId && candidate.botId === member.botId)
-            ));
-            return fullMember ? renderLeagueMemberAvatar(fullMember, size) : null;
-          }}
-          hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
-          onOpenProfile={(member: LeaguePodiumMember) => {
-            const fullMember = publicSortedGroup.find((candidate) => (
-              (member.uid && candidate.uid === member.uid)
-              || (member.botId && candidate.botId === member.botId)
-            ));
-            if (fullMember) openLeagueMemberProfile(fullMember);
-          }}
+          myRank={myLeagueRank}
+          zone={myLeagueZone}
+          gap={myLeagueGap}
         />
 
         {rankDelta && (

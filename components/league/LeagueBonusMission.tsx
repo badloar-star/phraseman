@@ -27,12 +27,6 @@ interface LeagueBonusMissionProps {
   onOpenRank: () => void;
 }
 
-function missionMessage(model: LeagueBonusMissionModel, lang: Lang): string {
-  if (model.state === 'claimed') return triLang(lang, { ru: 'Награда получена — миссия недели выполнена', uk: 'Нагороду отримано — місію тижня виконано', es: 'Premio recogido: misión completada', 'pt-BR': 'Prêmio coletado: missão concluída', vi: 'Đã nhận thưởng — nhiệm vụ hoàn thành', id: 'Hadiah diambil — misi selesai', tr: 'Ödül alındı — görev tamamlandı', pl: 'Nagroda odebrana — misja ukończona' });
-  if (model.state === 'ready') return triLang(lang, { ru: 'Сундук готов. Заберите общую награду', uk: 'Скриня готова. Заберіть спільну нагороду', es: 'El cofre está listo', 'pt-BR': 'O baú está pronto', vi: 'Rương đã sẵn sàng', id: 'Peti sudah siap', tr: 'Sandık hazır', pl: 'Skrzynia jest gotowa' });
-  return triLang(lang, { ru: `Осталось ${model.remainingXp.toLocaleString()} XP до сундука`, uk: `Залишилося ${model.remainingXp.toLocaleString()} XP до скрині`, es: `Faltan ${model.remainingXp.toLocaleString()} XP`, 'pt-BR': `Faltam ${model.remainingXp.toLocaleString()} XP`, vi: `Còn ${model.remainingXp.toLocaleString()} XP`, id: `Kurang ${model.remainingXp.toLocaleString()} XP`, tr: `${model.remainingXp.toLocaleString()} XP kaldı`, pl: `Zostało ${model.remainingXp.toLocaleString()} XP` });
-}
-
 function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank }: LeagueBonusMissionProps) {
   const reduceMotion = useReduceMotion();
   const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
@@ -42,7 +36,6 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
       <View style={styles.headingRow}>
         <View style={styles.headingText}>
           <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.muted }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
-          <Text style={[styles.title, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'Бонус-лига', uk: 'Бонус-ліга', es: 'Liga de bonus', 'pt-BR': 'Liga de bônus', vi: 'Giải thưởng chung', id: 'Liga bonus', tr: 'Bonus ligi', pl: 'Liga bonusowa' })}</Text>
         </View>
         <Image source={giftImage as ImageSource} style={styles.gift} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
       </View>
@@ -54,7 +47,6 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
         <Text style={[styles.progressValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.progress.toLocaleString()} / {model.goal.toLocaleString()} XP</Text>
         <Text style={[styles.percent, { color: model.canClaim ? palette.accentText : palette.muted }]}>{model.percent}%</Text>
       </View>
-      <Text style={[styles.message, { color: model.canClaim ? palette.accentText : palette.muted }]}>{missionMessage(model, lang)}</Text>
 
       <View style={styles.teamRow}>
         <View style={styles.avatars}>{model.topContributors.map((member, index) => <View key={member.uid ?? member.botId ?? `${member.name}-${index}`} accessibilityLabel={`${leaguePublicName(member.name, member.uid ?? member.botId ?? member.name)}, ${member.points} XP`} style={[styles.avatarSlot, { marginLeft: index === 0 ? 0 : -8, borderColor: model.canClaim ? palette.accent : palette.surface }]}>{renderContributorAvatar(member, 34)}</View>)}</View>
@@ -110,17 +102,15 @@ export const LeagueBonusMission = memo(LeagueBonusMissionComponent);
 
 const styles = StyleSheet.create({
   shell: { borderRadius: 26, padding: 17, gap: 11, overflow: 'hidden' },
-  headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 64 },
+  headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48 },
   headingText: { flex: 1, minWidth: 0 },
   eyebrow: { fontSize: 11, fontWeight: '900', letterSpacing: 0.8 },
-  title: { fontSize: 23, lineHeight: 28, fontWeight: '900' },
   gift: { width: 70, height: 70 },
   track: { height: 12, borderRadius: 6, overflow: 'hidden' },
   fill: { height: '100%', borderRadius: 6 },
   progressMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   progressValue: { fontSize: 15, fontWeight: '900' },
   percent: { fontSize: 13, fontWeight: '800' },
-  message: { fontSize: 13, lineHeight: 18, fontWeight: '700' },
   teamRow: { minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },
   avatars: { flexDirection: 'row', alignItems: 'center' },
   avatarSlot: { width: 38, height: 38, borderRadius: 19, borderWidth: 2, overflow: 'hidden', alignItems: 'center', justifyContent: 'center' },

@@ -45,9 +45,9 @@ describe('league club hub composition', () => {
     const screen = read('app/club_screen.tsx');
     expect(screen).toContain('leaguePublicName');
     expect(screen).toContain('<LeagueBonusMission');
-    expect(screen).toContain('<LeaguePodium');
+    expect(screen).toContain('<LeagueHeroStatus');
     expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeGreaterThan(-1);
-    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeaguePodium'));
+    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeagueHeroStatus'));
     expect(screen).not.toContain('<LeagueActivityPreview');
     expect(screen).not.toContain('leaguePreviewPanResponder');
     expect(screen).not.toContain('league-current-icon');

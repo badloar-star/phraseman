@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { getStreakFreezeCostShards } from '../remote_flags';
@@ -1782,10 +1782,10 @@ export default function HomeScreen() {
                     : null;
                 setHomeLeagueRaceVisible(showLeagueRace);
                 setEngineLeague(league);
-                setHomeLeagueChest(nextHomeLeagueChest);
+                setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
                 patchHomeScreenHydration({
                     homeLeagueRaceVisible: showLeagueRace,
-                    homeLeagueChest: nextHomeLeagueChest,
+                    ...(nextHomeLeagueChest ? { homeLeagueChest: nextHomeLeagueChest } : {}), // null не затирает кэш — иначе карточка Лиги «пропадает» с главной
                 }, studyTarget);
             }
             else {

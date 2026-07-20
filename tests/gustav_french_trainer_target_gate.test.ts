@@ -64,7 +64,6 @@ describe('Gustav French trainer target gate', () => {
       'app/trainer.tsx',
       'app/trainer_words_session.tsx',
       'app/trainer_phrases_session.tsx',
-      'app/trainer_arena_session.tsx',
       'app/review.tsx',
     ];
 

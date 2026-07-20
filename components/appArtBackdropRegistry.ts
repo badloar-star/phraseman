@@ -72,7 +72,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   trainer_plan_session: 'lessonPractice',
   trainer_words_session: 'lessonPractice',
   trainer_phrases_session: 'lessonPractice',
-  trainer_arena_session: 'arena',
   problem_coach: 'lessonPractice',
   arena_game: 'arenaMatch',
   arena_lobby: 'arena',

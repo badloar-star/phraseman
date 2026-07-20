@@ -22,11 +22,12 @@ describe('personal plan completion target-aware stats contract', () => {
       ['app/lesson1.tsx', 'studyTarget: studyTargetRef.current'],
       ['app/flashcards_swipe.tsx', 'studyTarget,'],
       ['app/review.tsx', 'studyTarget,'],
-      ['app/(tabs)/quizzes.tsx', 'studyTarget,'],
+      // app/(tabs)/quizzes.tsx удалён из репо — entry point больше не существует.
       ['app/trainer_plan_task_route.ts', 'studyTarget,'],
       ['app/trainer_words_session.tsx', 'markTrainerPlanTaskCompleted(planTrainerContext, studyTarget)'],
+      // Арена-задания плана завершаются из фразовой сессии (merged plan-очередь).
       ['app/trainer_phrases_session.tsx', 'markTrainerPlanTaskCompleted(planTrainerContext, studyTarget)'],
-      ['app/trainer_arena_session.tsx', 'markTrainerPlanTaskCompleted(planTrainerContext, studyTarget)'],
+      ['app/trainer_phrases_session.tsx', "'arena',"],
     ];
 
     for (const [relativePath, expectedSnippet] of expectations) {

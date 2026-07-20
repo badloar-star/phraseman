@@ -130,14 +130,14 @@ describe('legacy trainer entrypoint reservation', () => {
     const router = { push: jest.fn() };
     const lock = { current: false };
     const firstPress = startReservedTrainerSession({
-      route: '/trainer_arena_session',
+      route: '/trainer_phrases_session',
       router,
       studyTarget: 'en',
       premiumAccess: false,
       lock,
     });
     const secondPress = startReservedTrainerSession({
-      route: '/trainer_arena_session',
+      route: '/trainer_phrases_session',
       router,
       studyTarget: 'en',
       premiumAccess: false,

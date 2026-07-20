@@ -18,9 +18,10 @@ import {
 } from './trainer_plan_task_route';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 
-function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' | '/trainer_arena_session' {
+// Арена обслуживается фразовой сессией (trainerSessionPhrase подставляет
+// correct в маркер пропуска) — отдельного роута '/trainer_arena_session' нет.
+function routeForQueue(queue: TrainerQueue): '/trainer_words_session' | '/trainer_phrases_session' {
   if (queue === 'words') return '/trainer_words_session';
-  if (queue === 'arena') return '/trainer_arena_session';
   return '/trainer_phrases_session';
 }
 

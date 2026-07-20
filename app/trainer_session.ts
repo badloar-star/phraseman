@@ -13,8 +13,7 @@ const ENTRY_TTL_MS = 2 * 60 * 1000;
 
 export type TrainerSessionRoute =
   | '/trainer_words_session'
-  | '/trainer_phrases_session'
-  | '/trainer_arena_session';
+  | '/trainer_phrases_session';
 
 interface TrainerSessionEntry {
   route: TrainerSessionRoute;

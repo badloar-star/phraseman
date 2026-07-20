@@ -59,6 +59,7 @@ import {
   buildSessionWordBank,
   buildTrainerSessionDeck,
   getPhraseSessionItems,
+  mergePhraseSessionItems,
   normalizeGapToken,
   PHRASE_SESSION_LIMIT,
   sessionMeaningfulTokens,
@@ -626,14 +627,28 @@ export default function TrainerPhrasesSession() {
         }
         setAccessReady(true);
         await ensureFrenchRemotePersonalPractice(sourceLocale);
+        // Plan-контекст: фразовая сессия обслуживает и арену плана — грузим обе
+        // plan-очереди и объединяем тем же компаратором, что и свободную практику.
         const items = planTrainerContext.taskId
-          ? await getTrainerPremiumItemsForPlanQueue(
-              planTrainerContext.planInstanceId,
-              planTrainerContext.mode,
-              'phrases',
-              planTrainerContext.requiredItems,
-              studyTarget,
-            )
+          ? await (async () => {
+              const [planPhrases, planArena] = await Promise.all([
+                getTrainerPremiumItemsForPlanQueue(
+                  planTrainerContext.planInstanceId,
+                  planTrainerContext.mode,
+                  'phrases',
+                  planTrainerContext.requiredItems,
+                  studyTarget,
+                ),
+                getTrainerPremiumItemsForPlanQueue(
+                  planTrainerContext.planInstanceId,
+                  planTrainerContext.mode,
+                  'arena',
+                  planTrainerContext.requiredItems,
+                  studyTarget,
+                ),
+              ]);
+              return mergePhraseSessionItems(planPhrases, planArena, planTrainerContext.requiredItems);
+            })()
           : await getPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }

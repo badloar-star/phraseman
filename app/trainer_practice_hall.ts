@@ -1,5 +1,6 @@
 import { getCachedDueItems, getDueItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
 import type { RuntimeSourceLocale, RuntimeStudyTarget } from './target_storage_keys';
+import { shuffleWordBankTiles, tokenizeRecallPhrase, type WordBankTile } from './review_evaluator';
 
 const PRACTICE_HALL_FALLBACK_ORDER: readonly TrainerQueue[] = ['phrases', 'words', 'arena'];
 
@@ -91,4 +92,98 @@ export function getCachedPhraseSessionItems(
     getCachedDueItems('arena', limit, studyTarget, sourceLocale),
     limit,
   );
+}
+
+// ── Фраза айтема для сессии ──────────────────────────────────────────────────
+// У арены key — текст вопроса С МАРКЕРОМ пропуска («___», «—», «–», «…», «__»),
+// а правильное слово лежит в arenaQuestion.correct. Для слово-банка и fill_gap
+// нужна полная естественная фраза — собираем её заменой первого маркера.
+
+/** Маркер пропуска — отдельный токен из подчёркиваний, тире или многоточия. */
+const ARENA_GAP_TOKEN = /^(?:_{2,}|[—–]{1,2}|…|\.{3})$/;
+
+export interface TrainerSessionPhrase {
+  /** Полная естественная фраза (для арены — с подставленным правильным словом). */
+  phrase: string;
+  /** Слово-пропуск для fill_gap; '' — режим недоступен (честный word_bank). */
+  errorWord: string;
+}
+
+export function trainerSessionPhrase(
+  item: Pick<TrainerItem, 'key' | 'queue' | 'errorWord' | 'arenaQuestion'>,
+): TrainerSessionPhrase {
+  if (item.queue === 'arena' && item.arenaQuestion) {
+    const correct = item.arenaQuestion.correct.trim();
+    const tokens = item.key.split(/\s+/).filter(Boolean);
+    const markerIndex = tokens.findIndex((token) => ARENA_GAP_TOKEN.test(token));
+    if (correct && markerIndex >= 0) {
+      const phrase = [...tokens.slice(0, markerIndex), correct, ...tokens.slice(markerIndex + 1)].join(' ');
+      return { phrase, errorWord: correct };
+    }
+    // Маркер не найден — не додумываем: фраза как есть, fill_gap не назначается.
+    return { phrase: item.key, errorWord: '' };
+  }
+  return { phrase: item.key, errorWord: item.errorWord ?? '' };
+}
+
+/** Краевая пунктуация не участвует в сравнении слов; внутренние знаки (don't, mother-in-law) целы. */
+export function normalizeGapToken(value?: string): string {
+  return (value ?? '').toLowerCase().replace(/^[.!?,;:"()[\]{}]+|[.!?,;:"()[\]{}]+$/g, '').trim();
+}
+
+/** Индекс токена-пропуска во фразе; -1 — слово не найдено (fill_gap нельзя назначать). */
+export function trainerGapTokenIndex(phrase: string, errorWord: string): number {
+  const target = normalizeGapToken(errorWord);
+  if (!target) return -1;
+  return phrase.split(' ').findIndex((word) => normalizeGapToken(word) === target);
+}
+
+/**
+ * Плиткой банка становится только токен с буквой или цифрой (unicode-aware):
+ * чистая пунктуация («—», «–», «/», «…») остаётся частью фразы-дисплея,
+ * но не плитка и не требуется для проверки ответа.
+ */
+export function isMeaningfulBankToken(text: string): boolean {
+  return /[\p{L}\p{N}]/u.test(text);
+}
+
+/** Токены фразы для проверки сборки; фолбэк — исходный набор, если фильтр выкосил всё. */
+export function sessionMeaningfulTokens(phrase: string): string[] {
+  const all = tokenizeRecallPhrase(phrase);
+  const meaningful = all.filter(isMeaningfulBankToken);
+  return meaningful.length > 0 ? meaningful : all;
+}
+
+/**
+ * Банк плиток фразы: без пунктуационных плиток; слоты переупорядочены 0..n-1,
+ * чтобы selected и speaking-autofill совпадали с банком по слотам.
+ */
+export function buildSessionWordBank(phrase: string): WordBankTile[] {
+  const shuffled = shuffleWordBankTiles(phrase);
+  const meaningful = shuffled.filter((tile) => isMeaningfulBankToken(tile.text));
+  const source = meaningful.length > 0 ? meaningful : shuffled;
+  return source.map((tile, index) => ({ ...tile, slot: index }));
+}
+
+export type SessionMode = 'word_bank' | 'fill_gap';
+
+export interface SessionCard {
+  item: TrainerItem;
+  mode: SessionMode;
+}
+
+/**
+ * Колода сессии: чередуем fill_gap и word_bank. fill_gap назначается ТОЛЬКО
+ * когда слово-пропуск реально находится во фразе — иначе честный word_bank
+ * полной фразы (никакой тихой поломки слота).
+ */
+export function buildTrainerSessionDeck(items: TrainerItem[]): SessionCard[] {
+  const deck: SessionCard[] = [];
+  items.forEach((item, i) => {
+    const { phrase, errorWord } = trainerSessionPhrase(item);
+    const canFillGap = Boolean(errorWord) && trainerGapTokenIndex(phrase, errorWord) >= 0;
+    const mode: SessionMode = canFillGap && i % 2 === 0 ? 'fill_gap' : 'word_bank';
+    deck.push({ item, mode });
+  });
+  return deck;
 }

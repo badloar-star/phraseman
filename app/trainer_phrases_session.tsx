@@ -56,17 +56,20 @@ import {
   type TrainerItem,
 } from './trainer_store';
 import {
+  buildSessionWordBank,
+  buildTrainerSessionDeck,
   getPhraseSessionItems,
+  normalizeGapToken,
   PHRASE_SESSION_LIMIT,
+  sessionMeaningfulTokens,
+  trainerGapTokenIndex,
+  trainerSessionPhrase,
   WORD_SESSION_LIMIT,
+  type SessionCard,
 } from './trainer_practice_hall';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { checkAchievements } from './achievements';
-import {
-  shuffleWordBankTiles,
-  tokenizeRecallPhrase,
-  type WordBankTile,
-} from './review_evaluator';
+import { type WordBankTile } from './review_evaluator';
 import { getLessonData } from './lesson_data_all';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
@@ -84,13 +87,6 @@ import {
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
 
-type SessionMode = 'word_bank' | 'fill_gap';
-
-interface SessionCard {
-  item: TrainerItem;
-  mode: SessionMode;
-}
-
 const TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS = 700;
 
 function wait(ms: number): Promise<void> {
@@ -106,38 +102,14 @@ async function waitForPhraseAnswerFeedback(
   ]);
 }
 
-function buildDeck(items: TrainerItem[]): SessionCard[] {
-  const deck: SessionCard[] = [];
-  items.forEach((item, i) => {
-    // Если есть errorWord — чередуем word_bank и fill_gap; иначе всегда word_bank
-    const hasFillGap = !!item.errorWord;
-    const mode: SessionMode = hasFillGap && i % 2 === 0 ? 'fill_gap' : 'word_bank';
-    deck.push({ item, mode });
-  });
-  return deck;
-}
-
-function normalizeFillGapToken(value?: string): string {
-  return (value ?? '').toLowerCase().replace(/^[.!?,;:"()[\]{}]+|[.!?,;:"()[\]{}]+$/g, '').trim();
-}
-
-/**
- * Плиткой банка становится только токен с буквой или цифрой (unicode-aware):
- * чистая пунктуация («—», «–», «/», «…») — не слово, она остаётся частью
- * фразы-дисплея, но не плитка и не требуется для проверки ответа.
- */
-function isMeaningfulBankToken(text: string): boolean {
-  return /[\p{L}\p{N}]/u.test(text);
-}
-
 function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): readonly string[] | undefined {
   if (!item.lessonId || !errorWord) return undefined;
   const phrase = getLessonData(item.lessonId).find(row => row.english.trim() === item.key.trim());
   const rows: readonly LessonWord[] = phrase?.wordsEn ?? phrase?.words ?? [];
-  const errorKey = normalizeFillGapToken(errorWord);
+  const errorKey = normalizeGapToken(errorWord);
   const row = rows.find(word => {
-    const correct = normalizeFillGapToken(word.correct || word.text);
-    const text = normalizeFillGapToken(word.text);
+    const correct = normalizeGapToken(word.correct || word.text);
+    const text = normalizeGapToken(word.text);
     return correct === errorKey || text === errorKey;
   });
   return row?.distractors;
@@ -161,25 +133,19 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { playCorrect } = useCorrectSound();
+  // Фраза для сессии: у арены key — вопрос с маркером пропуска, полная фраза
+  // собирается подстановкой arenaQuestion.correct (trainerSessionPhrase).
+  const { phrase } = trainerSessionPhrase(item);
   // Банк неизменен: взятые плитки не исчезают, а гаснут (opacity .18) — видно, что уже в ответе.
   // Пунктуационные токены («—», «/») отфильтрованы; слоты переупорядочены 0..n-1,
   // чтобы selected и speaking-autofill совпадали с банком по слотам.
-  const [bank] = useState<WordBankTile[]>(() => {
-    const shuffled = shuffleWordBankTiles(item.key);
-    const meaningful = shuffled.filter((tile) => isMeaningfulBankToken(tile.text));
-    const source = meaningful.length > 0 ? meaningful : shuffled;
-    return source.map((tile, index) => ({ ...tile, slot: index }));
-  });
+  const [bank] = useState<WordBankTile[]>(() => buildSessionWordBank(phrase));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
-  const correctTokens = useMemo(() => {
-    const all = tokenizeRecallPhrase(item.key);
-    const meaningful = all.filter(isMeaningfulBankToken);
-    return meaningful.length > 0 ? meaningful : all;
-  }, [item.key]);
+  const correctTokens = useMemo(() => sessionMeaningfulTokens(phrase), [phrase]);
   const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;
   const usedSlots = useMemo(() => new Set(selected.map(tile => tile.slot)), [selected]);
   // Перевод-задание: у арены перевода нет — честно показываем нейтральную формулировку.
@@ -217,7 +183,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+      void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
     } else {
       hapticError();
       Animated.sequence([
@@ -400,7 +366,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
           setFeedback('correct');
           hapticSuccess();
           playCorrect();
-          void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+          void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
         }}
       />
     </View>
@@ -424,13 +390,18 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const { flashKey, flash } = useWordFlash();
-  const errorWord = item.errorWord ?? '';
+  // У арены errorWord = arenaQuestion.correct, phrase — с подставленным словом;
+  // дистракторы — авторские arenaQuestion.options (buildTrainerFillGapOptions сам
+  // убирает correct, дедуплицирует и шафлит).
+  const { phrase, errorWord } = trainerSessionPhrase(item);
   const [options] = useState(() => buildTrainerFillGapOptions({
     correctWord: errorWord,
-    phrase: item.key,
+    phrase,
     category: item.category,
     grammarTag: item.grammarTag,
-    sourceDistractors: lessonSourceDistractorsForItem(item, errorWord),
+    sourceDistractors: item.queue === 'arena' && item.arenaQuestion
+      ? item.arenaQuestion.options
+      : lessonSourceDistractorsForItem(item, errorWord),
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
@@ -438,11 +409,9 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   const shakeStyle = useAnimatedStyle(() => ({ transform: [{ translateX: shakeX.value }] }));
 
   // Фраза крупно; пропуск — светящийся слот ровно на месте слова с ошибкой.
-  const phraseWords = useMemo(() => item.key.split(' '), [item.key]);
-  const gapIndex = useMemo(() => {
-    const target = normalizeFillGapToken(errorWord);
-    return phraseWords.findIndex((word) => normalizeFillGapToken(word) === target);
-  }, [phraseWords, errorWord]);
+  // buildTrainerSessionDeck гарантирует gapIndex >= 0 для fill_gap; -1 — фолбэк без слота.
+  const phraseWords = useMemo(() => phrase.split(' '), [phrase]);
+  const gapIndex = useMemo(() => trainerGapTokenIndex(phrase, errorWord), [phrase, errorWord]);
 
   const pick = (opt: string) => {
     if (feedback !== 'none') return;
@@ -452,7 +421,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(item.key, studyTarget)).then(() => onResult(true));
+      void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
     } else {
       hapticError();
       shakeX.value = withSequence(
@@ -559,7 +528,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
         <Reanimated.View entering={FadeInDown.duration(220)} style={[styles.noteRow, { backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalSoft : t.bgSurface, marginTop: 'auto' }]}>
           <Ionicons name="bulb-outline" size={16} color={accent} />
           <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{item.key}</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.caption - 1, fontWeight: '700' }}>{phrase}</Text>
             {trainerTranslationForLang(item, lang).trim() ? (
               <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>{trainerTranslationForLang(item, lang)}</Text>
             ) : null}
@@ -669,7 +638,7 @@ export default function TrainerPhrasesSession() {
         if (cancelled) return;
         if (items.length === 0) { setDone(true); setLoading(false); return; }
         sessionStartRef.current = Date.now();
-        setDeck(buildDeck(items));
+        setDeck(buildTrainerSessionDeck(items));
         setLoading(false);
       } catch {
         // Сбой загрузки колоды → экран ошибки с retry вместо вечного лоадера.
@@ -825,7 +794,7 @@ export default function TrainerPhrasesSession() {
               <ReportErrorButton
                 screen="trainer_phrases"
                 dataId={`trainer_phrase_${card.item.key ?? 'unknown'}`}
-                dataText={`${card.item.key}\n${trainerTranslationForLang(card.item, lang)}`}
+                dataText={`${trainerSessionPhrase(card.item).phrase}\n${trainerTranslationForLang(card.item, lang)}`}
                 variant="icon-flag"
                 accessibilityLabel="Сообщить об ошибке во фразе"
                 style={[

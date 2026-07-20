@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { browserLocalPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 function unwrap(result) {
@@ -50,6 +50,7 @@ export function observeAdminAuthState({ auth, subscribe, onAuth }) {
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
   const auth = getAuth(app);
+  await setPersistence(auth, browserLocalPersistence);
   const functionsUs = getFunctions(app, 'us-central1');
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });

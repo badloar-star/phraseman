@@ -174,7 +174,6 @@ describe('owner runtime direction contract', () => {
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
-      'components/paywall/PaywallPriceUrgency.tsx': 1,
     };
     const found: Record<string, number> = {};
 
@@ -347,14 +346,14 @@ describe('owner runtime direction contract', () => {
     expect(source).not.toContain('Math.max(10, Math.min(TYPE_MS');
   });
 
-  it('keeps paywall urgency countdown from reading storage every second', () => {
+  it('keeps paywall urgency countdown static, without per-second ticking or storage polling', () => {
     const source = read('components/paywall/PaywallPriceUrgency.tsx');
 
-    expect(source).toContain('const endsAt = Date.now() + Math.max(0, urgency.remainingMs)');
-    expect(source).toContain('const updateFromClock = () => {');
-    expect(source).toContain('setTimer(formatCountdown(remainingMs))');
-    expect(source).toContain('void getUrgencyState().then((s) => {');
-    expect(source).not.toContain('setInterval(async () =>');
+    // Статичная дата конца окна старой цены: вычисляется один раз из remainingMs,
+    // без живого тикающего таймера и без перечитывания storage каждую секунду.
+    expect(source).toContain('const raiseDate = formatRaiseDate(new Date(Date.now() + Math.max(0, urgency.remainingMs)), lang)');
+    expect(source).not.toContain('setInterval(');
+    expect(source).not.toContain('getUrgencyState().then');
   });
 
   it('keeps streak stats boost countdowns on one shared visible wall clock', () => {

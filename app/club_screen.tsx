@@ -21,6 +21,15 @@ import VipGreenUserName from '../components/VipGreenUserName';
 import LeagueCrownName from '../components/LeagueCrownName';
 import ProfileCardBadge from '../components/ProfileCardBadge';
 import AvatarView from '../components/AvatarView';
+
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
@@ -99,7 +108,10 @@ import {
 } from './league_club_hub_model';
 import { leaguePublicName } from './league_public_name';
 import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
-import { LeagueHeroStatus, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/LeagueHeroStatus';
+import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
+import { LeagueMyPositionBar } from '../components/league/LeagueMyPositionBar';
+import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
+import { participantsLabel, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
 
@@ -128,7 +140,6 @@ function buildLeagueChestPreviewRewards(isCrownWinner: boolean): LeagueChestRewa
   return isCrownWinner
     ? [
       ...base,
-      { id: 'preview_league_arena_plays', kind: 'arena_plays', rarity: 'common', amount: 5 },
       { id: 'preview_league_bonus_shards', kind: 'shards', rarity: 'rare', amount: 18 },
     ]
     : base;
@@ -808,6 +819,7 @@ export default function ClubScreen() {
     })),
     [sortedGroup],
   );
+  const publicListGroup = useMemo(() => publicSortedGroup.slice(3), [publicSortedGroup]);
   const currentUserStreak = sortedGroup.find((p) => p.isMe)?.streak ?? null;
   const showEmptyParticipants = shouldShowLeagueEmptyParticipants({
     localLeagueHydrated,
@@ -1211,6 +1223,41 @@ export default function ClubScreen() {
   }, [myLeagueRank, sortedGroup]);
   const leagueBonusPct = useMemo(() => Math.max(0, Number(String(myLeague.tagRU).match(/([+-]?\d+)%/)?.[1] ?? '0') || 0), [myLeague.tagRU]);
 
+  const raceFeedItems = useMemo<LeagueRaceFeedItem[]>(() => {
+    const items: LeagueRaceFeedItem[] = [];
+    const fmtXp = (v: number) => Math.max(0, Math.floor(Number(v) || 0)).toLocaleString();
+    if (myLeagueRank > 1) {
+      const ahead = sortedGroup[myLeagueRank - 2];
+      if (ahead) {
+        const name = leaguePublicName(ahead.name, ahead.uid ?? ahead.botId ?? ahead.name);
+        const gapXp = fmtXp((Number(ahead.points) || 0) - (Number(sortedGroup[myLeagueRank - 1]?.points) || 0));
+        items.push({ key: 'ahead', emoji: '🏃', trend: 'up', text: triLang(lang, {
+          ru: `${name} впереди на ${gapXp} XP`, uk: `${name} попереду на ${gapXp} XP`, es: `${name} te lleva ${gapXp} XP`, 'pt-BR': `${name} está ${gapXp} XP à frente`,
+          vi: `${name} dẫn trước ${gapXp} XP`, id: `${name} di depan ${gapXp} XP`, tr: `${name} ${gapXp} XP önde`, pl: `${name} z przodu o ${gapXp} XP`,
+        }) });
+      }
+    }
+    if (myLeagueRank > 0 && myLeagueRank < sortedGroup.length) {
+      const behind = sortedGroup[myLeagueRank];
+      if (behind) {
+        const name = leaguePublicName(behind.name, behind.uid ?? behind.botId ?? behind.name);
+        const gapXp = fmtXp((Number(sortedGroup[myLeagueRank - 1]?.points) || 0) - (Number(behind.points) || 0));
+        items.push({ key: 'behind', emoji: '👀', trend: 'down', text: triLang(lang, {
+          ru: `${name} дышит в спину — до вас ${gapXp} XP`, uk: `${name} за спиною — до вас ${gapXp} XP`, es: `${name} te pisa los talones: a ${gapXp} XP`, 'pt-BR': `${name} colando: a ${gapXp} XP de você`,
+          vi: `${name} bám sát: cách bạn ${gapXp} XP`, id: `${name} membuntuti: ${gapXp} XP di belakangmu`, tr: `${name} ensende: ${gapXp} XP geride`, pl: `${name} depcze po piętach: ${gapXp} XP za tobą`,
+        }) });
+      }
+    }
+    if (activeGroupBoost) {
+      const buyer = leaguePublicName(activeGroupBoost.buyerName, activeGroupBoost.buyerUid);
+      items.push({ key: 'boost', emoji: '⚡', trend: 'heart', text: triLang(lang, {
+        ru: `${buyer} включил буст ×2 · ♥ ${groupBoostLikeTotal}`, uk: `${buyer} увімкнув буст ×2 · ♥ ${groupBoostLikeTotal}`, es: `${buyer} activó el boost ×2 · ♥ ${groupBoostLikeTotal}`, 'pt-BR': `${buyer} ativou o boost ×2 · ♥ ${groupBoostLikeTotal}`,
+        vi: `${buyer} đã bật tăng tốc ×2 · ♥ ${groupBoostLikeTotal}`, id: `${buyer} mengaktifkan boost ×2 · ♥ ${groupBoostLikeTotal}`, tr: `${buyer} ×2 desteği açtı · ♥ ${groupBoostLikeTotal}`, pl: `${buyer} włączył boost ×2 · ♥ ${groupBoostLikeTotal}`,
+      }) });
+    }
+    return items.slice(0, 3);
+  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang]);
+
   const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
     if (!member.uid) return false;
     return member.uid === leagueCrownWinnerUid
@@ -1293,7 +1340,7 @@ export default function ClubScreen() {
         ? <VipGreenUserName text={displayName} fontSize={f.body} />
         : p.isPremium
           ? <PremiumGoldUserName text={displayName} fontSize={f.body} />
-          : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600' }}>{displayName}</Text>;
+          : <Text style={{ color: p.isMe ? t.textPrimary : t.textSecond, fontSize: f.body, fontWeight: p.isMe ? '800' : '600', ...((p.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }}>{displayName}</Text>;
     return (
       <View style={{ minWidth: 0, maxWidth: '100%', overflow: 'hidden' }}>
         <View style={{ flexShrink: 1, minWidth: 0, overflow: 'hidden' }}>{name}</View>
@@ -1303,22 +1350,28 @@ export default function ClubScreen() {
   }, [f.body, hasLeagueCrownForMember, leagueCrownsByUid, t.textPrimary, t.textSecond]);
 
   const scrollToLeagueRank = useCallback(() => {
-    contentScrollRef.current?.scrollToEnd({ animated: true });
-  }, []);
+    const idx = myLeagueRank - 4;
+    if (idx <= 0) {
+      contentScrollRef.current?.scrollToOffset({ offset: 0, animated: true });
+      return;
+    }
+    contentScrollRef.current?.scrollToIndex({ index: idx, animated: true, viewPosition: 0.5 });
+  }, [myLeagueRank]);
 
   const renderLeagueMember = useCallback(({ item, index }: { item: GroupMember; index: number }) => {
+    const absIndex = index + 3;
     const hasXpPromotion = leagueXpPromotionMode
       && myLeagueId < LEAGUES.length - 1
       && Math.max(0, Math.floor(Number(item.points) || 0)) >= leagueXpPromotionThreshold;
-    const zone: LeagueLeaderboardZone = hasXpPromotion || (promotionCutoff > 0 && index < promotionCutoff)
+    const zone: LeagueLeaderboardZone = hasXpPromotion || (promotionCutoff > 0 && absIndex < promotionCutoff)
       ? 'promotion'
-      : index >= relegationStartIndex
+      : absIndex >= relegationStartIndex
         ? 'relegation'
         : 'safe';
     const row = (
       <LeagueLeaderboardRow
         member={item}
-        index={index}
+        index={absIndex}
         lang={lang}
         palette={hubPalette}
         zone={zone}
@@ -1379,7 +1432,7 @@ export default function ClubScreen() {
       <BouncyWrap>
       <Reanimated.FlatList<GroupMember>
         ref={contentScrollRef as any}
-        data={publicSortedGroup}
+        data={publicListGroup}
         keyExtractor={leagueMemberKeyExtractor}
         renderItem={renderLeagueMember}
         initialNumToRender={12}
@@ -1395,9 +1448,10 @@ export default function ClubScreen() {
         contentContainerStyle={{
           paddingHorizontal: 16,
           paddingTop: 16,
-          paddingBottom: 16,
+          paddingBottom: 120,
         }}
         onScroll={onAnimatedScroll}
+        onScrollToIndexFailed={() => contentScrollRef.current?.scrollToEnd({ animated: true })}
         scrollEventThrottle={16}
         ListHeaderComponent={(<>
 
@@ -1423,16 +1477,17 @@ export default function ClubScreen() {
           </View>
         )}
 
-        <LeagueHeroStatus
-          style={{ marginTop: 12, marginBottom: 12 }}
+        <LeagueArenaScene
           lang={lang}
           palette={hubPalette}
           leagueName={leagueNameForLang(myLeague, lang)}
-          participantCount={publicSortedGroup.length}
-          leagueIcon={<LeagueIcon league={myLeague} size={96} active alignContent={false} themeMode={themeMode} />}
-          myRank={myLeagueRank}
-          zone={myLeagueZone}
-          gap={myLeagueGap}
+          participantLabel={participantsLabel(lang, publicSortedGroup.length)}
+          leagueIcon={<LeagueIcon league={myLeague} size={84} active alignContent={false} themeMode={themeMode} />}
+          topMembers={publicSortedGroup.slice(0, 3)}
+          renderAvatar={renderLeagueMemberAvatar}
+          hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
+          onOpenProfile={openLeagueMemberProfile}
+          chestReady={leagueChestReady}
         />
 
         {rankDelta && (
@@ -1463,6 +1518,9 @@ export default function ClubScreen() {
               onOpenRank={scrollToLeagueRank}
             />
           )}
+          {leagueRaceVisible && (
+            <LeagueRaceFeed lang={lang} palette={hubPalette} items={raceFeedItems} />
+          )}
           <View style={{ marginTop: 6, marginBottom: 2, gap: 3 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
               {triLang(lang, {
@@ -1483,6 +1541,17 @@ export default function ClubScreen() {
         </>)}
       />
       </BouncyWrap>
+      {localLeagueHydrated && myLeagueRank > 0 ? (
+        <LeagueMyPositionBar
+          lang={lang}
+          palette={hubPalette}
+          myRank={myLeagueRank}
+          zone={myLeagueZone}
+          gap={myLeagueGap}
+          avatar={renderLeagueMemberAvatar((sortedGroup.find((p) => p.isMe) ?? { name: userName, points: myLeagueRoomXp, isMe: true }) as GroupMember, 40)}
+          onPress={scrollToLeagueRank}
+        />
+      ) : null}
       </Reanimated.View>
 
       </ContentWrap>

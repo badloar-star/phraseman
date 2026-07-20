@@ -9,6 +9,7 @@ import type { GroupMember } from '../../app/league_engine';
 import type { LeagueBonusMissionModel } from '../../app/league_club_hub_model';
 import { leaguePublicName } from '../../app/league_public_name';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { LeagueChestRing } from './LeagueChestRing';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
 interface LeagueBonusMissionProps {
@@ -37,12 +38,20 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
         <View style={styles.headingText}>
           <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
         </View>
-        <Image source={giftImage as ImageSource} style={styles.gift} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
+        <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: model.goal, now: model.progress }}>
+          <LeagueChestRing
+            percent={model.percent}
+            size={78}
+            strokeWidth={6}
+            trackColor={model.canClaim ? 'rgba(7,17,10,0.18)' : palette.elevated}
+            fillColor={model.canClaim ? palette.accentText : palette.warning}
+            testID="league-chest-ring"
+          >
+            <Image source={giftImage as ImageSource} style={{ width: 44, height: 44 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
+          </LeagueChestRing>
+        </View>
       </View>
 
-      <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: model.goal, now: model.progress }} style={[styles.track, { backgroundColor: model.canClaim ? 'rgba(7,17,10,0.18)' : palette.elevated }]}>
-        <View style={[styles.fill, { width: `${model.percent}%`, backgroundColor: model.canClaim ? palette.accentText : palette.accent }]} />
-      </View>
       <View style={styles.progressMeta}>
         <Text style={[styles.progressValue, { color: model.canClaim ? palette.accentText : palette.text }]}>{model.progress.toLocaleString()} / {model.goal.toLocaleString()} XP</Text>
         <Text style={[styles.percent, { color: model.canClaim ? palette.accentText : palette.muted }]}>{model.percent}%</Text>
@@ -105,9 +114,6 @@ const styles = StyleSheet.create({
   headingRow: { flexDirection: 'row', alignItems: 'center', minHeight: 48 },
   headingText: { flex: 1, minWidth: 0 },
   eyebrow: { fontSize: 13, fontWeight: '900', letterSpacing: 0.8 },
-  gift: { width: 70, height: 70 },
-  track: { height: 12, borderRadius: 6, overflow: 'hidden' },
-  fill: { height: '100%', borderRadius: 6 },
   progressMeta: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   progressValue: { fontSize: 15, fontWeight: '900' },
   percent: { fontSize: 13, fontWeight: '800' },

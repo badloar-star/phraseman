@@ -17,20 +17,18 @@ describe('current league icon content alignment', () => {
     expect(screenSource).toContain('translateY: safeContentOffset.y');
   });
 
-  it('renders the active league heraldry in a fixed hero icon slot', () => {
+  it('renders the active league heraldry in the arena emblem slot', () => {
     const screenSource = fs.readFileSync(path.join(process.cwd(), 'app', 'club_screen.tsx'), 'utf8');
-    const heroSource = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueHeroStatus.tsx'), 'utf8');
+    const sceneSource = fs.readFileSync(path.join(process.cwd(), 'components', 'league', 'LeagueArenaScene.tsx'), 'utf8');
 
     expect(screenSource).toContain('leagueIcon={<LeagueIcon');
     expect(screenSource).toContain('league={myLeague}');
-    expect(screenSource).toContain('size={96}');
+    expect(screenSource).toContain('size={84}');
     expect(screenSource).toContain('alignContent={false}');
-    expect(heroSource).toContain('leagueIcon: React.ReactNode');
-    expect(heroSource).toContain('testID="league-hero-status"');
-    expect(heroSource).toContain('iconClip: {');
-    expect(heroSource).toContain('width: 110');
-    expect(heroSource).toContain('height: 110');
-    expect(heroSource).toContain('{leagueIcon}');
+    expect(sceneSource).toContain('leagueIcon: React.ReactNode');
+    expect(sceneSource).toContain('testID="league-arena-emblem"');
+    expect(sceneSource).toContain('emblemSlot');
+    expect(sceneSource).toContain('{leagueIcon}');
     expect(screenSource).not.toContain('CLUB_LEAGUE_PREVIEW_CARD_ASPECT_RATIO');
     expect(screenSource).not.toContain('previewLeagueCardImage');
   });

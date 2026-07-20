@@ -13,10 +13,12 @@ describe('league club hub composition', () => {
     expect(mission).toContain('onLikeBoost');
   });
 
-  it('keeps the hero status above participant rows with profile actions', () => {
-    const hero = read('components/league/LeagueHeroStatus.tsx');
+  it('keeps the arena scene and my-position bar above participant rows with profile actions', () => {
+    const scene = read('components/league/LeagueArenaScene.tsx');
+    const bar = read('components/league/LeagueMyPositionBar.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
-    expect(hero).toContain('testID="league-hero-status"');
+    expect(scene).toContain('testID="league-arena-scene"');
+    expect(bar).toContain('testID="league-my-position-bar"');
     expect(row).toContain('GroupMember');
     expect(row).toContain('onOpenProfile');
     expect(row).toContain('member.isMe');
@@ -41,9 +43,9 @@ describe('league club hub composition', () => {
     const screen = read('app/club_screen.tsx');
     expect(screen).toContain('leaguePublicName');
     expect(screen).toContain('<LeagueBonusMission');
-    expect(screen).toContain('<LeagueHeroStatus');
+    expect(screen).toContain('<LeagueArenaScene');
     expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeGreaterThan(-1);
-    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeagueHeroStatus'));
+    expect(screen.indexOf('testID="league-xp-promotion-banner"')).toBeLessThan(screen.indexOf('<LeagueArenaScene'));
     expect(screen).not.toContain('<LeagueActivityPreview');
     expect(screen).not.toContain('leaguePreviewPanResponder');
     expect(screen).not.toContain('league-current-icon');
@@ -51,17 +53,17 @@ describe('league club hub composition', () => {
     expect(screen).toContain('keyExtractor={leagueMemberKeyExtractor}');
   });
 
-  it('shows active league identity in the header and hero art', () => {
+  it('shows active league identity in the header and arena art', () => {
     const screen = read('app/club_screen.tsx');
-    const hero = read('components/league/LeagueHeroStatus.tsx');
+    const scene = read('components/league/LeagueArenaScene.tsx');
 
     expect(screen).toContain('{leagueNameForLang(myLeague, lang)}');
     expect(screen).not.toContain('Liga de la semana');
     expect(screen).toContain('leagueIcon={<LeagueIcon');
     expect(screen).toContain('league={myLeague}');
     expect(screen).toContain('alignContent={false}');
-    expect(hero).toContain('leagueIcon: React.ReactNode');
-    expect(hero).toContain('testID="league-hero-status"');
+    expect(scene).toContain('leagueIcon: React.ReactNode');
+    expect(scene).toContain('testID="league-arena-scene"');
   });
 
   it('keeps promotion direction without the textual transition pill', () => {
@@ -77,7 +79,8 @@ describe('league club hub composition', () => {
     const screen = read('app/club_screen.tsx');
     const row = read('components/league/LeagueLeaderboardRow.tsx');
     const mission = read('components/league/LeagueBonusMission.tsx');
-    expect(screen).toContain('data={publicSortedGroup}');
+    expect(screen).toContain('data={publicListGroup}');
+    expect(screen).toContain('const publicListGroup = useMemo(() => publicSortedGroup.slice(3), [publicSortedGroup]);');
     expect(screen).toContain('name: leaguePublicName(member.name');
     expect(row).toContain('const displayName = leaguePublicName');
     expect(mission).toContain('leaguePublicName(model.boost.buyerName');

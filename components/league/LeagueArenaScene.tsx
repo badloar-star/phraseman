@@ -2,6 +2,7 @@ import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, AppState, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
 import Reanimated, { FadeInUp } from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
+import Svg, { Defs, LinearGradient as SvgLinearGradient, Polygon, Stop } from 'react-native-svg';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { GroupMember } from '../../app/league_engine';
 import { leaguePublicName } from '../../app/league_public_name';
@@ -46,6 +47,37 @@ const CONFETTI_DOTS = [
   { left: '80%', color: '#47C870', delay: 700 },
   { left: '90%', color: '#FF8FA3', delay: 1800 },
 ] as const;
+
+// ── Луч прожектора: конус (узкий верх → широкий низ) с градиентным затуханием ─
+const BEAM_W = 150;
+const BEAM_H = 290;
+
+function ArenaBeam({ rotate, opacity, side }: {
+  rotate: Animated.AnimatedInterpolation<string>;
+  opacity: Animated.AnimatedInterpolation<number>;
+  side: 'left' | 'right';
+}) {
+  return (
+    <Animated.View
+      pointerEvents="none"
+      style={[styles.beamPivot, side === 'left' ? { left: '9%' } : { right: '9%' }, { opacity, transform: [{ rotate }] }]}
+    >
+      <Svg width={BEAM_W} height={BEAM_H}>
+        <Defs>
+          <SvgLinearGradient id={`arenaBeam-${side}`} x1="0" y1="0" x2="0" y2="1">
+            <Stop offset="0" stopColor="#FFF6CF" stopOpacity="0.5" />
+            <Stop offset="0.55" stopColor="#FFF6CF" stopOpacity="0.14" />
+            <Stop offset="1" stopColor="#FFF6CF" stopOpacity="0" />
+          </SvgLinearGradient>
+        </Defs>
+        <Polygon
+          points={`${BEAM_W / 2 - 11},0 ${BEAM_W / 2 + 11},0 ${BEAM_W},${BEAM_H} 0,${BEAM_H}`}
+          fill={`url(#arenaBeam-${side})`}
+        />
+      </Svg>
+    </Animated.View>
+  );
+}
 
 function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel, leagueIcon, topMembers, renderAvatar, hasCrown, onOpenProfile, chestReady }: LeagueArenaSceneProps) {
   const reduceMotion = useReduceMotion();
@@ -139,8 +171,8 @@ function LeagueArenaSceneComponent({ lang, palette, leagueName, participantLabel
     >
       {!reduceMotion ? (
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-          <Animated.View style={[styles.beam, styles.beamL, { opacity: beamLOpacity, transform: [{ rotate: beamLRotate }] }]} />
-          <Animated.View style={[styles.beam, styles.beamR, { opacity: beamROpacity, transform: [{ rotate: beamRRotate }] }]} />
+          <ArenaBeam side="left" rotate={beamLRotate} opacity={beamLOpacity} />
+          <ArenaBeam side="right" rotate={beamRRotate} opacity={beamROpacity} />
         </View>
       ) : null}
 
@@ -221,15 +253,13 @@ export const LeagueArenaScene = memo(LeagueArenaSceneComponent);
 
 const styles = StyleSheet.create({
   stage: { paddingTop: 6, paddingBottom: 4, overflow: 'hidden' },
-  beam: {
+  beamPivot: {
     position: 'absolute',
-    top: -46,
-    width: 130,
-    height: 300,
-    backgroundColor: 'rgba(255,244,200,0.1)',
+    top: -16,
+    width: BEAM_W,
+    height: BEAM_H,
+    transformOrigin: 'top center',
   },
-  beamL: { left: '8%', transform: [{ rotate: '-13deg' }] },
-  beamR: { right: '8%', transform: [{ rotate: '13deg' }] },
   confettiDot: { position: 'absolute', top: 0, width: 6, height: 9, borderRadius: 2 },
   emblemSlot: { alignSelf: 'center', alignItems: 'center', justifyContent: 'center' },
   leagueName: { fontSize: 16, fontWeight: '900', textAlign: 'center', marginTop: 8 },

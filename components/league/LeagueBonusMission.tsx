@@ -26,9 +26,10 @@ interface LeagueBonusMissionProps {
   boostLikeBusy: boolean;
   boostTimeLeft: string;
   onOpenRank: () => void;
+  onChestPress: () => void;
 }
 
-function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank }: LeagueBonusMissionProps) {
+function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderContributorAvatar, onClaim, onBoost, onOpenBoostBuyer, onLikeBoost, boostLiked, boostLikeBusy, boostTimeLeft, onOpenRank, onChestPress }: LeagueBonusMissionProps) {
   const reduceMotion = useReduceMotion();
   const claimLabel = triLang(lang, { ru: 'Забрать бонус', uk: 'Забрати бонус', es: 'Recoger bono', 'pt-BR': 'Coletar bônus', vi: 'Nhận phần thưởng', id: 'Ambil bonus', tr: 'Bonusu al', pl: 'Odbierz bonus' });
 
@@ -38,6 +39,13 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
         <View style={styles.headingText}>
           <Text style={[styles.eyebrow, { color: model.canClaim ? palette.accentText : palette.text }]}>{triLang(lang, { ru: 'ОБЩАЯ ЦЕЛЬ НЕДЕЛИ', uk: 'СПІЛЬНА ЦІЛЬ ТИЖНЯ', es: 'META COMÚN', 'pt-BR': 'META COMUM', vi: 'MỤC TIÊU CHUNG', id: 'TARGET BERSAMA', tr: 'ORTAK HEDEF', pl: 'WSPÓLNY CEL' })}</Text>
         </View>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, { ru: 'Показать, что в сундуке', uk: 'Показати, що у скрині', es: 'Mostrar el contenido del cofre', 'pt-BR': 'Mostrar o que há no baú', vi: 'Xem bên trong rương', id: 'Lihat isi peti', tr: 'Sandığın içini göster', pl: 'Pokaż zawartość skrzyni' })}
+          onPress={onChestPress}
+          testID="league-chest-press"
+          style={({ pressed }) => [{ opacity: pressed ? 0.85 : 1 }]}
+        >
         <View accessibilityRole="progressbar" accessibilityValue={{ min: 0, max: model.goal, now: model.progress }}>
           <LeagueChestRing
             percent={model.percent}
@@ -50,6 +58,7 @@ function LeagueBonusMissionComponent({ model, lang, palette, giftImage, renderCo
             <Image source={giftImage as ImageSource} style={{ width: 44, height: 44 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: 'Сундук Бонус-лиги', uk: 'Скриня Бонус-ліги', es: 'Cofre de liga', 'pt-BR': 'Baú da liga', vi: 'Rương giải đấu', id: 'Peti liga', tr: 'Lig sandığı', pl: 'Skrzynia ligi' })} />
           </LeagueChestRing>
         </View>
+        </Pressable>
       </View>
 
       <View style={styles.progressMeta}>

@@ -111,6 +111,7 @@ import { LeagueBonusMission } from '../components/league/LeagueBonusMission';
 import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
 import { LeagueMyPositionBar } from '../components/league/LeagueMyPositionBar';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
+import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
 import { participantsLabel, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
@@ -429,6 +430,7 @@ export default function ClubScreen() {
   const [arenaClubStableUid, setArenaClubStableUid] = useState('');
   const [leagueGroupMeta, setLeagueGroupMeta] = useState<{ weekId: string; groupId: string; leagueId: number } | null>(null);
   const [leagueChestClaimed, setLeagueChestClaimed] = useState(false);
+  const [chestTeaserVisible, setChestTeaserVisible] = useState(false);
   const [leagueChestClaiming, setLeagueChestClaiming] = useState(false);
   const [leagueBonusAdminPreview, setLeagueBonusAdminPreview] = useState<LeagueBonusAdminPreview | null>(null);
   const [activeGroupBoost, setActiveGroupBoost] = useState<LeagueGroupBoostState | null>(null);
@@ -1222,6 +1224,8 @@ export default function ClubScreen() {
     };
   }, [myLeagueRank, sortedGroup]);
   const leagueBonusPct = useMemo(() => Math.max(0, Number(String(myLeague.tagRU).match(/([+-]?\d+)%/)?.[1] ?? '0') || 0), [myLeague.tagRU]);
+  // Тизер «что в сундуке»: лидеру недели показываем расширенный набор силуэтов.
+  const chestTeaserRarities = useMemo(() => buildLeagueChestPreviewRewards(myLeagueRank === 1).map((r) => r.rarity), [myLeagueRank]);
 
   const raceFeedItems = useMemo<LeagueRaceFeedItem[]>(() => {
     const items: LeagueRaceFeedItem[] = [];
@@ -1516,6 +1520,8 @@ export default function ClubScreen() {
               boostLikeBusy={groupBoostLikeBusy}
               boostTimeLeft={groupBoostTimeLeft}
               onOpenRank={scrollToLeagueRank}
+              onChestPress={() => setChestTeaserVisible(true)}
+              onChestPress={() => { void claimLeagueChestReward(); }}
             />
           )}
           {leagueRaceVisible && (
@@ -1685,6 +1691,17 @@ export default function ClubScreen() {
           if (!groupBoostBuying) setGroupBoostConfirmVisible(false);
         }}
         onConfirm={() => { void performBuyGroupBoost(); }}
+      />
+
+      <LeagueChestTeaserModal
+        visible={chestTeaserVisible}
+        lang={lang}
+        palette={hubPalette}
+        remainingXp={hubBonusMissionModel.remainingXp}
+        canClaim={hubBonusMissionModel.canClaim}
+        rarities={chestTeaserRarities}
+        onClaim={() => { setChestTeaserVisible(false); void claimLeagueChestReward(); }}
+        onClose={() => setChestTeaserVisible(false)}
       />
 
       <LeagueChestOpenModal

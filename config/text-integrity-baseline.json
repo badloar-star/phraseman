@@ -698,8 +698,8 @@
       "fingerprint": "09849a6450f5f32265802f9c10c2268f94c853e6cd42b7c75ac4485b9681a57c",
       "count": 2,
       "lineHints": [
-        1213,
-        1216
+        1447,
+        1450
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -3007,7 +3007,7 @@
       "fingerprint": "36999e5cbfd7312688c3a1f9e737ff522cdb41aa2186ae399bb508fd53c26633",
       "count": 1,
       "lineHints": [
-        576
+        590
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -5707,39 +5707,6 @@
       }
     },
     {
-      "file": "app/(tabs)/lessons.tsx",
-      "ownerName": "LessonsTab",
-      "ownerPath": "LessonsTab",
-      "ancestorPath": [
-        "ScreenGradient",
-        "View",
-        "BouncyWrap",
-        "Animated.FlatList",
-        "View",
-        "View",
-        "View",
-        "Text"
-      ],
-      "tag": "Text",
-      "kind": "truncation",
-      "prop": "numberOfLines",
-      "value": "1",
-      "testID": null,
-      "fingerprint": "70e9a124ea84bb872e9e3236436e7d2d253b0308b7ca5d389e3258e4eb32d148",
-      "count": 1,
-      "lineHints": [
-        979
-      ],
-      "intendedMode": "temporary-exception",
-      "owner": "text-integrity-migration",
-      "reason": "Legacy raw truncation frozen pending semantic migration",
-      "expiryMilestone": "text-integrity-residual-closeout",
-      "exception": {
-        "approvedBy": "text-integrity-design-2026-07-10",
-        "scope": "legacy-baseline-only"
-      }
-    },
-    {
       "file": "components/DailyPhraseCard.tsx",
       "ownerName": "DailyPhraseCard",
       "ownerPath": "DailyPhraseCard",
@@ -7097,7 +7064,7 @@
       "fingerprint": "891acc92baf0de29892ccde2154700d91332230771dda14c29a412178c81c76d",
       "count": 1,
       "lineHints": [
-        348
+        360
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",
@@ -10841,7 +10808,7 @@
       "fingerprint": "e33870c6d2bc552e0fb25b931dab6714bcac96a51af75dea0b106c2e8243b68e",
       "count": 1,
       "lineHints": [
-        838
+        1275
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

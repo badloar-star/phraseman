@@ -1,7 +1,17 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
+import Reanimated, {
+  FadeInDown,
+  useSharedValue,
+  useAnimatedStyle,
+  useAnimatedProps,
+  withDelay,
+  withTiming,
+  cancelAnimation,
+  Easing,
+} from 'react-native-reanimated';
 import { Image } from 'expo-image';
-import Svg, { Path } from 'react-native-svg';
+import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Path, Stop } from 'react-native-svg';
 import TapScale from '../../components/TapScale';
 import { useRouter } from 'expo-router';
 import { useFeatureAccess, usePremium } from '../../components/PremiumContext';
@@ -593,6 +603,192 @@ const LessonCard = React.memo(function LessonCard({
 // ── Главный компонент ─────────────────────────────────────────────────────────
 type LessonsTabProps = { overlayIdentityEpoch?: number };
 
+// ── Глава-аккордеон ──────────────────────────────────────────────────────────
+const AnimatedChapterCircle = Reanimated.createAnimatedComponent(Circle);
+
+/**
+ * Кольцо прогресса главы. viewBox с запасом под stroke+linecap (r=19, stroke=5,
+ * холст 48 — дуга и её круглые концы НЕ обрезаются по краям). Дуга рисуется
+ * конечной анимацией ~1с при появлении, без циклов.
+ */
+function ChapterProgressRing({ pct, locked, accent, trackColor, textColor, lockColor, delayMs = 0 }: {
+    pct: number;
+    locked: boolean;
+    accent: string;
+    trackColor: string;
+    textColor: string;
+    lockColor: string;
+    delayMs?: number;
+}) {
+    const size = 48;
+    const strokeWidth = 5;
+    const radius = 19;
+    const center = size / 2;
+    const circumference = 2 * Math.PI * radius;
+    const clamped = Math.max(0, Math.min(1, pct));
+    const fill = useSharedValue(0);
+    useEffect(() => {
+        fill.value = 0;
+        fill.value = withDelay(250 + delayMs, withTiming(clamped, { duration: 1000, easing: Easing.out(Easing.cubic) }));
+        return () => cancelAnimation(fill);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [clamped, delayMs]);
+    const animatedProps = useAnimatedProps(() => ({ strokeDashoffset: circumference * (1 - fill.value) }));
+    return (
+      <View style={{ width: size, height: size, flexShrink: 0 }}>
+        <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} style={{ position: 'absolute', left: 0, top: 0 }}>
+          <Defs>
+            <SvgLinearGradient id={`chapterRingGrad-${delayMs}`} x1="0" y1="0" x2="1" y2="1">
+              <Stop offset="0" stopColor={accent} stopOpacity={0.72} />
+              <Stop offset="1" stopColor={accent} />
+            </SvgLinearGradient>
+          </Defs>
+          <Circle cx={center} cy={center} r={radius} stroke={trackColor} strokeWidth={strokeWidth} fill="none" />
+          {!locked ? (
+            <AnimatedChapterCircle
+              cx={center}
+              cy={center}
+              r={radius}
+              stroke={`url(#chapterRingGrad-${delayMs})`}
+              strokeWidth={strokeWidth}
+              strokeLinecap="round"
+              fill="none"
+              strokeDasharray={circumference}
+              animatedProps={animatedProps}
+              transform={`rotate(-90 ${center} ${center})`}
+            />
+          ) : null}
+        </Svg>
+        <View style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center' }}>
+          {locked
+            ? <Ionicons name="lock-closed" size={13} color={lockColor} />
+            : <Text style={{ color: textColor, fontSize: 10, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{Math.round(clamped * 100)}%</Text>}
+        </View>
+      </View>
+    );
+}
+
+/** Единое славянское правило множественного числа (ru/uk/pl): 1 — one, 2-4 — few, остальные — many. */
+function pluralSlavic(n: number, one: string, few: string, many: string): string {
+    const abs = Math.abs(n) % 100;
+    const last = abs % 10;
+    if (last === 1 && abs !== 11) return one;
+    if (last >= 2 && last <= 4 && (abs < 12 || abs > 14)) return few;
+    return many;
+}
+
+function chapterLessonsWord(count: number, lang: Lang): string {
+    switch (lang) {
+        case 'uk': return pluralSlavic(count, 'урок', 'уроки', 'уроків');
+        case 'es': return count === 1 ? 'lección' : 'lecciones';
+        case 'pt-BR': return count === 1 ? 'lição' : 'lições';
+        case 'vi': return 'bài học';
+        case 'id': return 'pelajaran';
+        case 'tr': return 'ders';
+        case 'pl': return pluralSlavic(count, 'lekcja', 'lekcje', 'lekcji');
+        default: return pluralSlavic(count, 'урок', 'урока', 'уроков');
+    }
+}
+
+/** «8 уроков · идёт урок 7» для текущей главы, иначе «10 уроков · уроки 9–18». */
+function chapterStatusLine(from: number, to: number, currentLessonNum: number | null, lang: Lang): string {
+    const count = to - from + 1;
+    const countPart = `${count} ${chapterLessonsWord(count, lang)}`;
+    if (currentLessonNum != null && currentLessonNum >= from && currentLessonNum <= to) {
+        const current = triLang(lang, {
+            ru: `идёт урок ${currentLessonNum}`,
+            uk: `йде урок ${currentLessonNum}`,
+            es: `lección ${currentLessonNum} en curso`,
+            'pt-BR': `lição ${currentLessonNum} em andamento`,
+            vi: `đang học bài ${currentLessonNum}`,
+            id: `pelajaran ${currentLessonNum} berjalan`,
+            tr: `${currentLessonNum}. ders sürüyor`,
+            pl: `lekcja ${currentLessonNum} w toku`,
+        });
+        return `${countPart} · ${current}`;
+    }
+    const range = triLang(lang, {
+        ru: `уроки ${from}–${to}`,
+        uk: `уроки ${from}–${to}`,
+        es: `lecciones ${from}–${to}`,
+        'pt-BR': `lições ${from}–${to}`,
+        vi: `bài ${from}–${to}`,
+        id: `pelajaran ${from}–${to}`,
+        tr: `dersler ${from}–${to}`,
+        pl: `lekcje ${from}–${to}`,
+    });
+    return `${countPart} · ${range}`;
+}
+
+/**
+ * Карточка главы-аккордеона: шапка (кольцо + название + статус + Plus-чип +
+ * шеврон) и плавно раскрываемое тело с текущими плашками уроков и экзаменом.
+ * Раскрытие — конечная Reanimated-анимация высоты по замеренному контенту.
+ */
+function ChapterCard({ title, statusLine, pct, lockedPlus, expanded, onToggle, accent, isGoldTheme, t, f, themeMode, delayMs = 0, children }: {
+    title: string;
+    statusLine: string;
+    pct: number;
+    lockedPlus: boolean;
+    expanded: boolean;
+    onToggle: () => void;
+    accent: string;
+    isGoldTheme: boolean;
+    t: ReturnType<typeof useTheme>['theme'];
+    f: ReturnType<typeof useTheme>['f'];
+    themeMode: ThemeMode;
+    delayMs?: number;
+    children: React.ReactNode;
+}) {
+    const progress = useSharedValue(expanded ? 1 : 0);
+    const [contentH, setContentH] = useState(0);
+    useEffect(() => {
+        progress.value = withTiming(expanded ? 1 : 0, { duration: 320, easing: Easing.out(Easing.cubic) });
+    }, [expanded, progress]);
+    const bodyStyle = useAnimatedStyle(() => ({
+        height: contentH === 0 ? (expanded ? undefined : 0) : progress.value * contentH,
+        opacity: progress.value,
+    }));
+    const chevronStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${progress.value * 180}deg` }] }));
+    const cardColors = isGoldTheme ? goldCardGradient('muted') : [t.bgSurface2, t.bgSurface, t.bgCard];
+    return (
+      <Reanimated.View entering={FadeInDown.delay(delayMs).duration(320)} style={{ borderRadius: 20, overflow: 'hidden', borderWidth: 0 }}>
+        <LinearGradient colors={cardColors as any} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
+        {isGoldTheme ? <GoldBevel radius={20} intensity="quiet" /> : null}
+        <TouchableOpacity
+          accessibilityRole="button"
+          accessibilityState={{ expanded }}
+          accessibilityLabel={`${title}. ${statusLine}`}
+          onPress={() => { hapticTap(); onToggle(); }}
+          activeOpacity={0.82}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 13, paddingHorizontal: 14 }}
+        >
+          <ChapterProgressRing pct={pct} locked={lockedPlus} accent={accent} trackColor={t.bgSurface} textColor={t.textPrimary} lockColor={t.textMuted} delayMs={delayMs} />
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
+              {title}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.label - 1, fontWeight: '700', marginTop: 2 }}>
+              {statusLine}
+            </Text>
+          </View>
+          {lockedPlus ? <PlusBadge themeMode={themeMode} size="xs" /> : null}
+          <Reanimated.View style={[{ width: 26, height: 26, borderRadius: 9, backgroundColor: expanded ? `${accent}24` : t.bgSurface, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }, chevronStyle]}>
+            <Ionicons name="chevron-down" size={13} color={expanded ? accent : t.textMuted} />
+          </Reanimated.View>
+        </TouchableOpacity>
+        <Reanimated.View style={[{ overflow: 'hidden' }, bodyStyle]}>
+          <View
+            onLayout={(e) => { const h = e.nativeEvent.layout.height; if (h > 0 && Math.abs(h - contentH) > 1) setContentH(h); }}
+            style={{ paddingBottom: 10 }}
+          >
+            {children}
+          </View>
+        </Reanimated.View>
+      </Reanimated.View>
+    );
+}
+
 export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch = 0 }: LessonsTabProps = {}) {
     void _overlayIdentityEpoch;
     const tabContentBottomPad = useTabContentBottomPad();
@@ -775,51 +971,41 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         });
     }, [legacyFreeLessonCap, noLimits, isPremium, persistedUnlocked, premiumReachableLevelIndex, scores]);
     type ListItem = {
-        kind: 'header';
-        label: string;
-        color: string;
-    } | {
-        kind: 'lesson';
-        index: number;
-        name: string;
-    } | {
-        kind: 'exam';
-        level: string;
+        kind: 'chapter';
+        level: CourseLevel;
+        from: number;
+        to: number;
     } | {
         kind: 'attestation';
     };
+    // Список сгруппирован в главы-аккордеоны (A1/A2/B1/B2 по COURSE_LEVEL_RANGES);
+    // аттестация — вне глав, внизу списка, как раньше.
     const listData: ListItem[] = useMemo(() => {
-        const data: ListItem[] = [];
-        const HEADERS: [
-            number,
-            string,
-            string
-        ][] = [
-            [1, 'A1', bookPalette(1, themeMode)],
-            [9, 'A2', bookPalette(9, themeMode)],
-            [19, 'B1', bookPalette(19, themeMode)],
-            [29, 'B2', bookPalette(29, themeMode)],
-        ];
-        lessons.forEach((name, idx) => {
-            const num = idx + 1;
-            const hdr = HEADERS.find(([n]) => n === num);
-            if (hdr)
-                data.push({ kind: 'header', label: hdr[1], color: hdr[2] });
-            data.push({ kind: 'lesson', index: idx, name });
-            if (num === 8 || num === 18 || num === 28) {
-                const lvl = num <= 8 ? 'A1' : num <= 18 ? 'A2' : num <= 28 ? 'B1' : 'B2';
-                data.push({ kind: 'exam', level: lvl });
-            }
-            if (num === 32) {
-                data.push({ kind: 'attestation' });
-            }
+        const chapters: ListItem[] = (Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]).map((level) => {
+            const [from, to] = COURSE_LEVEL_RANGES[level];
+            return { kind: 'chapter', level, from, to };
         });
-        return data;
-    }, [lessons, themeMode]);
+        return [...chapters, { kind: 'attestation' }];
+    }, []);
     const currentLessonNum = useMemo(() => {
         const idx = unlockedLessons.findIndex((unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50);
         return idx >= 0 ? idx + 1 : null;
     }, [progCounts, unlockedLessons]);
+    // Текущая глава раскрыта по умолчанию; остальные — по тапу, независимо друг от друга.
+    const currentChapterLevel = currentLessonNum != null ? getCourseLevelForLesson(currentLessonNum) : null;
+    const [openChapters, setOpenChapters] = useState<ReadonlySet<string>>(() => new Set<string>([currentChapterLevel ?? 'A1']));
+    useEffect(() => {
+        if (!currentChapterLevel) return;
+        setOpenChapters((prev) => (prev.has(currentChapterLevel) ? prev : new Set([...prev, currentChapterLevel])));
+    }, [currentChapterLevel]);
+    const toggleChapter = useCallback((level: string) => {
+        setOpenChapters((prev) => {
+            const next = new Set(prev);
+            if (next.has(level)) next.delete(level);
+            else next.add(level);
+            return next;
+        });
+    }, []);
     // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
     const itemAnims = useMemo(() => listData.map(() => null), [listData]);
     const handleLessonsScroll = useCallback((e: any) => {
@@ -836,6 +1022,242 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             ...lessonPurchaseContinuationParams(lessonNum),
         });
     }, [legacyFreeLessonCap, router, scores]);
+    // ── Exam card: рендерится внутри своей главы, визуал без изменений ──
+    const renderExamCard = (lvl: string): React.ReactNode => {
+    const themeExamMeta = EXAM_META_BY_THEME[themeMode] ?? EXAM_META_SKETCH;
+    const sketchMeta = themeExamMeta[lvl];
+    const goldLevel = goldCefrAccent(lvl);
+    const meta = isGoldTheme
+        ? { bg: goldSurface, accent: goldLevel.accent }
+        :
+            sketchMeta;
+    const [from, to] = lvl === 'A1' ? [1, 8] : lvl === 'A2' ? [9, 18] : lvl === 'B1' ? [19, 28] : [29, 32];
+    const scoreReady = scores.slice(from - 1, to).every(s => s >= 4.5);
+    const examLevel = lvl as CourseLevel;
+    const examLevelIdx = getCourseLevelIndex(examLevel);
+    const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
+    const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to, legacyFreeLessonCap);
+    const examSourceAvailable = examContentAvailableForTarget(studyTarget);
+    const allDone = examSourceAvailable && !examPremiumRequired && (DEV_CONTENT_UNLOCK || noLimits || premiumExamAvailable || scoreReady);
+    const prevExamLevel = getPreviousCourseLevel(examLevel);
+    const result = examResults[lvl];
+    const isB2 = lvl === 'B2';
+    const currentTargetStateBestPct = examBestPctTargetRef.current === lessonCacheTarget
+        ? (examBestPcts[lvl] ?? 0)
+        : 0;
+    const overlayBestPct = studyTarget === 'en' || studyTarget === 'fr'
+        ? peekCurrentExamBestPct(studyTarget, examLevel)
+        : 0;
+    const examMedal = getExamMedalTier(Math.max(currentTargetStateBestPct, overlayBestPct));
+    const examPass = examPassCounts[lvl] ?? 0;
+    const examDots = getEarnedDots(examMedal, examPass);
+    const label = triLang(lang, {
+        ru: isB2 ? 'Экзамен' : `Экзамен ${lvl}`,
+        uk: isB2 ? 'Екзамен' : `Залік ${lvl}`,
+        es: isB2 ? 'Examen' : `Examen de ${lvl}`,
+        'pt-BR': isB2 ? 'Exame' : `Exame ${lvl}`,
+        vi: isB2 ? 'Bài kiểm tra' : `Bài kiểm tra ${lvl}`,
+        id: isB2 ? 'Ujian' : `Ujian ${lvl}`,
+        tr: isB2 ? 'Sınav' : `${lvl} sınavı`,
+        pl: isB2 ? 'Egzamin' : `Egzamin ${lvl}`,
+    });
+    const subLine = result
+        ? (result.passed
+            ? triLang(lang, {
+                ru: `✅ Сдан — ${result.pct}%`,
+                uk: `✅ Здано — ${result.pct}%`,
+                es: `✅ Superado — ${result.pct}%`,
+                'pt-BR': `✅ Aprovado — ${result.pct}%`,
+                vi: `✅ Đã vượt qua — ${result.pct}%`,
+                id: `✅ Lulus — ${result.pct}%`,
+                tr: `✅ Geçildi — ${result.pct}%`,
+                pl: `✅ Zdane — ${result.pct}%`,
+            })
+            : `✗ ${result.pct}%`)
+        : !examSourceAvailable
+            ? frenchExamGateCopy('level', lang).title
+        : allDone
+            ? triLang(lang, {
+                ru: 'Нажми чтобы начать',
+                uk: 'Натисни щоб почати',
+                es: 'Toca para empezar',
+                'pt-BR': 'Toque para começar',
+                vi: 'Nhấn để bắt đầu',
+                id: 'Ketuk untuk mulai',
+                tr: 'Başlamak için dokun',
+                pl: 'Dotknij, aby rozpocząć',
+            })
+            : examPremiumRequired
+                ? triLang(lang, {
+                    ru: 'Откроется с Plus',
+                    uk: 'Відкриється з Plus',
+                    es: 'Se abre con Plus',
+                    'pt-BR': 'Abre com Plus',
+                    vi: 'Mở với Plus',
+                    id: 'Terbuka dengan Plus',
+                    tr: 'Plus ile açılır',
+                    pl: 'Otwiera się z Plus',
+                })
+                : isPremium && prevExamLevel
+                    ? triLang(lang, {
+                        ru: `Сначала зачёт ${prevExamLevel}`,
+                        uk: `Спочатку залік ${prevExamLevel}`,
+                        es: `Primero el examen ${prevExamLevel}`,
+                        'pt-BR': `Primeiro o exame ${prevExamLevel}`,
+                        vi: `Trước tiên là bài kiểm tra ${prevExamLevel}`,
+                        id: `Ujian ${prevExamLevel} dulu`,
+                        tr: `Önce ${prevExamLevel} sınavı`,
+                        pl: `Najpierw egzamin ${prevExamLevel}`,
+                    })
+                    : triLang(lang, {
+                        ru: `Завершите все уроки ${lvl} на 4.5+`,
+                        uk: `Завершіть усі уроки ${lvl} на 4.5+`,
+                        es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
+                        'pt-BR': `Conclua todas as lições ${lvl} com 4,5+`,
+                        vi: `Hoàn thành tất cả bài học ${lvl} với 4.5+`,
+                        id: `Selesaikan semua pelajaran ${lvl} dengan 4,5+`,
+                        tr: `${lvl} seviyesindeki tüm dersleri 4.5+ ile tamamla`,
+                        pl: `Ukończ wszystkie lekcje ${lvl} na 4,5+`,
+                    });
+    return (<Animated.View key={`e-${lvl}`} style={{ marginTop: 8, transform: [{ scale: 1 }], ...(isGoldTheme ? goldShadow(allDone ? 2 : 1) : {}), ...({}) }}>
+    <TouchableOpacity activeOpacity={0.82} onPress={() => {
+            hapticTap();
+            const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
+            if (examPremiumRequired) {
+                openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel, legacyFreeLessonCap) ? firstLessonByLevel : to);
+            }
+            else if (!examSourceAvailable) {
+                setGateModal({ kind: 'frenchExam', level: lvl });
+            }
+            else if (allDone) {
+                router.push({ pathname: '/level_exam', params: { level: lvl } });
+            }
+            else if (isPremium && prevExamLevel) {
+                setGateModal({ kind: 'levelGate', level: lvl, prevLevel: prevExamLevel });
+            }
+            else {
+                setGateModal({ kind: 'exam', level: lvl });
+            }
+        }} style={{
+            minHeight: 78,
+            marginHorizontal: isGoldTheme ? 14 : 0,
+            borderRadius: isGoldTheme ? 14 : 0,
+            borderWidth: isGoldTheme ? 1 : 0,
+            borderColor: isGoldTheme
+                ? (allDone ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
+                :
+                    'transparent',
+            flexDirection: 'row',
+            backgroundColor: meta.bg,
+            opacity: allDone ? 1 : isPremium ? 0.38 : 0.5,
+            overflow: 'hidden',
+        }}>
+      {isGoldTheme && (<LinearGradient colors={allDone ? goldLevel.card : goldCardGradient('muted')} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>)}
+      {false}
+      {false}
+      {isGoldTheme && <GoldBevel radius={14} intensity={allDone ? 'strong' : 'quiet'}/>}
+      <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 20, gap: 4 }}>
+        <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : meta.accent + '30' }}/>
+        <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineDark : meta.accent + '30' }}/>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          {result?.passed
+            ? <Ionicons name="checkmark-circle" size={isB2 ? 26 : 22} color={meta.accent}/>
+            : allDone || isPremium
+                ? <LessonExamThemeIcon themeMode={themeMode} size={isB2 ? 34 : 30} label={label}/>
+                : <Ionicons name="lock-closed-outline" size={isB2 ? 26 : 22} color={meta.accent}/>}
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: meta.accent, fontSize: isB2 ? f.h2 : f.bodyLg, fontWeight: '800' }} maxFontSizeMultiplier={1}>
+              {label}
+            </Text>
+            <Text style={{ color: meta.accent + 'AA', fontSize: f.sub, marginTop: 1 }} maxFontSizeMultiplier={1}>
+              {subLine}
+            </Text>
+          </View>
+          {examDots.length > 0 && <MedalDots dots={examDots}/>}
+          {allDone && <Ionicons name="chevron-forward" size={16} color={meta.accent + '80'}/>}
+        </View>
+      </View>
+    </TouchableOpacity>
+  </Animated.View>);
+    };
+
+    // ── Lesson book: плашка урока как есть (рендер внутри карточки главы) ──
+    const renderLessonCard = ({ index, name }: { index: number; name: string }): React.ReactNode => {
+const num = index + 1;
+const isUnlocked = unlockedLessons[index];
+const bg = bookPalette(num, themeMode);
+const darkBg = darkenHexCached(bg, 0.42);
+const progPct = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
+const isComplete = progPct >= 100;
+const isCurrent = currentLessonNum === num;
+const lessonLevel = getCourseLevelForLesson(num);
+const lessonGoldLevel = goldCefrAccent(lessonLevel);
+const lessonAccent = bg;
+const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
+const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
+const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num, legacyFreeLessonCap);
+const showLessonProgressFill = isUnlocked && progPct > 0;
+const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
+const lockedCardBaseColor = isGoldTheme
+    ? goldSurface
+    : isCoralTheme
+        ? darkenHexCached(bg, 0.23)
+        : darkenHexCached(bg, 0.28);
+const cardLayerStyle = {
+    position: 'absolute' as const,
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    borderRadius: cardRadius,
+    overflow: 'hidden' as const,
+};
+const lessonTextColor = isGoldTheme
+    ? (isUnlocked ? t.textPrimary : 'rgba(247,241,228,0.44)')
+    :
+        !isUnlocked
+            ? isCoralTheme
+                ? 'rgba(255,248,244,0.44)'
+                : levelLockedByExam
+                ? 'rgba(255,255,255,0.42)'
+                : 'rgba(255,255,255,0.35)'
+            : isCoralTheme
+                ? '#FFF8F4'
+                : 'rgba(255,255,255,0.97)';
+const lessonMetaColor = isGoldTheme
+    ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
+    :
+        !isUnlocked
+            ? isCoralTheme
+                ? 'rgba(255,214,204,0.34)'
+                : levelLockedByExam
+                ? 'rgba(255,255,255,0.30)'
+                : 'rgba(255,255,255,0.30)'
+            : isCoralTheme
+                ? 'rgba(255,214,204,0.72)'
+                : LESSON_CARD_OPEN_META_TEXT;
+return (<LessonCard key={`l-${num}`}
+    num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
+    progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}
+    lessonLevel={lessonLevel} lessonGoldLevel={lessonGoldLevel}
+    lessonAccent={lessonAccent} prevLessonLevel={prevLessonLevel}
+    levelLockedByExam={levelLockedByExam} premiumRequired={premiumRequired}
+    showLessonProgressFill={showLessonProgressFill}
+    cardRadius={cardRadius} lockedCardBaseColor={lockedCardBaseColor}
+    cardLayerStyle={cardLayerStyle}
+    lessonTextColor={lessonTextColor} lessonMetaColor={lessonMetaColor}
+    isGoldTheme={isGoldTheme} isCoralTheme={isCoralTheme} themeMode={themeMode}
+    goldSurface={goldSurface} goldHairline={goldHairline}
+    goldAntique={goldAntique} goldBright={goldBright}
+    scaleAnim={null} lang={lang} f={f}
+    openLessonPaywall={openLessonPaywall} setGateModal={setGateModal}
+    router={router} studyTarget={studyTarget}
+    isPremium={isPremium} DEV_CONTENT_UNLOCK={DEV_CONTENT_UNLOCK} noLimits={noLimits}
+    legacyFreeLessonCap={legacyFreeLessonCap}
+    textPrimary={t.textPrimary} textMuted={t.textMuted}
+/>);
+    };
+
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
@@ -938,7 +1360,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         alwaysBounceVertical
         overScrollMode="always"
         data={listData}
-        keyExtractor={(item, index) => item.kind === 'lesson' ? `l-${(item as any).index + 1}` : item.kind === 'header' ? `h-${(item as any).label}-${index}` : item.kind === 'exam' ? `e-${(item as any).level}` : 'attestation'}
+        keyExtractor={(item) => item.kind === 'chapter' ? `chap-${item.level}` : 'attestation'}
         initialNumToRender={12}
         windowSize={5}
         maxToRenderPerBatch={8}
@@ -967,213 +1389,6 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         </>}
         renderItem={({ item, index: i }) => {
             const scaleAnim = itemAnims[i];
-            // ── CEFR divider ─────────────────────────────────────────────
-            if (item.kind === 'header') {
-                const isPremiumLevel = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && item.label !== 'A1';
-                const goldLevel = goldCefrAccent(item.label);
-                const headerAccent = isGoldTheme ? goldLevel.accent : item.color;
-                const headerWash = isGoldTheme
-                    ? goldLevel.wash
-                    :
-                        item.color + '33';
-                const headerLineColor = isGoldTheme
-                    ? GOLD_RICH.hairlineQuiet
-                    :
-                        item.color + '30';
-                if (USE_ELITE_LESSONS_MAP) {
-                    return (<View key={`h-${item.label}`} style={{ paddingHorizontal: 18, paddingTop: 18, paddingBottom: 7 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                    <View style={{ width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: headerWash, borderWidth: isGoldTheme ? 1 : 1.5, borderColor: headerAccent }}>
-                      <Text style={{ color: headerAccent, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8 }}>
-                        {item.label}
-                      </Text>
-                    </View>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: screenTitleColor, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-                        {triLang(lang, {
-                            ru: `Глава ${item.label}`,
-                            uk: `Глава ${item.label}`,
-                            es: `Capítulo ${item.label}`,
-                            'pt-BR': `Capítulo ${item.label}`,
-                            vi: `Chương ${item.label}`,
-                            id: `Bab ${item.label}`,
-                            tr: `Bölüm ${item.label}`,
-                            pl: `Rozdział ${item.label}`,
-                        })}
-                      </Text>
-                    </View>
-                    {isPremiumLevel && <Ionicons name="lock-closed" size={14} color={headerAccent} style={{ opacity: 0.75 }}/>}
-                  </View>
-                </View>);
-                }
-                return (<View key={`h-${item.label}`} style={{ paddingLeft: 22, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: headerAccent }}/>
-                <Text style={{ color: headerAccent, fontSize: f.label, fontWeight: '800', letterSpacing: 1.4 }}>
-                  {item.label}
-                </Text>
-                {isPremiumLevel && (<Ionicons name="lock-closed" size={12} color={headerAccent} style={{ opacity: 0.7 }}/>)}
-                <View style={{ flex: 1, height: 0.5, backgroundColor: headerLineColor }}/>
-              </View>);
-            }
-            // ── Exam card ────────────────────────────────────────────────
-            if (item.kind === 'exam') {
-                const { level: lvl } = item;
-                const themeExamMeta = EXAM_META_BY_THEME[themeMode] ?? EXAM_META_SKETCH;
-                const sketchMeta = themeExamMeta[lvl];
-                const goldLevel = goldCefrAccent(lvl);
-                const meta = isGoldTheme
-                    ? { bg: goldSurface, accent: goldLevel.accent }
-                    :
-                        sketchMeta;
-                const [from, to] = lvl === 'A1' ? [1, 8] : lvl === 'A2' ? [9, 18] : lvl === 'B1' ? [19, 28] : [29, 32];
-                const scoreReady = scores.slice(from - 1, to).every(s => s >= 4.5);
-                const examLevel = lvl as CourseLevel;
-                const examLevelIdx = getCourseLevelIndex(examLevel);
-                const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
-                const examPremiumRequired = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && requiresPremiumForLesson(to, legacyFreeLessonCap);
-                const examSourceAvailable = examContentAvailableForTarget(studyTarget);
-                const allDone = examSourceAvailable && !examPremiumRequired && (DEV_CONTENT_UNLOCK || noLimits || premiumExamAvailable || scoreReady);
-                const prevExamLevel = getPreviousCourseLevel(examLevel);
-                const result = examResults[lvl];
-                const isB2 = lvl === 'B2';
-                const currentTargetStateBestPct = examBestPctTargetRef.current === lessonCacheTarget
-                    ? (examBestPcts[lvl] ?? 0)
-                    : 0;
-                const overlayBestPct = studyTarget === 'en' || studyTarget === 'fr'
-                    ? peekCurrentExamBestPct(studyTarget, examLevel)
-                    : 0;
-                const examMedal = getExamMedalTier(Math.max(currentTargetStateBestPct, overlayBestPct));
-                const examPass = examPassCounts[lvl] ?? 0;
-                const examDots = getEarnedDots(examMedal, examPass);
-                const label = triLang(lang, {
-                    ru: isB2 ? 'Экзамен' : `Экзамен ${lvl}`,
-                    uk: isB2 ? 'Екзамен' : `Залік ${lvl}`,
-                    es: isB2 ? 'Examen' : `Examen de ${lvl}`,
-                    'pt-BR': isB2 ? 'Exame' : `Exame ${lvl}`,
-                    vi: isB2 ? 'Bài kiểm tra' : `Bài kiểm tra ${lvl}`,
-                    id: isB2 ? 'Ujian' : `Ujian ${lvl}`,
-                    tr: isB2 ? 'Sınav' : `${lvl} sınavı`,
-                    pl: isB2 ? 'Egzamin' : `Egzamin ${lvl}`,
-                });
-                const subLine = result
-                    ? (result.passed
-                        ? triLang(lang, {
-                            ru: `✅ Сдан — ${result.pct}%`,
-                            uk: `✅ Здано — ${result.pct}%`,
-                            es: `✅ Superado — ${result.pct}%`,
-                            'pt-BR': `✅ Aprovado — ${result.pct}%`,
-                            vi: `✅ Đã vượt qua — ${result.pct}%`,
-                            id: `✅ Lulus — ${result.pct}%`,
-                            tr: `✅ Geçildi — ${result.pct}%`,
-                            pl: `✅ Zdane — ${result.pct}%`,
-                        })
-                        : `✗ ${result.pct}%`)
-                    : !examSourceAvailable
-                        ? frenchExamGateCopy('level', lang).title
-                    : allDone
-                        ? triLang(lang, {
-                            ru: 'Нажми чтобы начать',
-                            uk: 'Натисни щоб почати',
-                            es: 'Toca para empezar',
-                            'pt-BR': 'Toque para começar',
-                            vi: 'Nhấn để bắt đầu',
-                            id: 'Ketuk untuk mulai',
-                            tr: 'Başlamak için dokun',
-                            pl: 'Dotknij, aby rozpocząć',
-                        })
-                        : examPremiumRequired
-                            ? triLang(lang, {
-                                ru: 'Откроется с Plus',
-                                uk: 'Відкриється з Plus',
-                                es: 'Se abre con Plus',
-                                'pt-BR': 'Abre com Plus',
-                                vi: 'Mở với Plus',
-                                id: 'Terbuka dengan Plus',
-                                tr: 'Plus ile açılır',
-                                pl: 'Otwiera się z Plus',
-                            })
-                            : isPremium && prevExamLevel
-                                ? triLang(lang, {
-                                    ru: `Сначала зачёт ${prevExamLevel}`,
-                                    uk: `Спочатку залік ${prevExamLevel}`,
-                                    es: `Primero el examen ${prevExamLevel}`,
-                                    'pt-BR': `Primeiro o exame ${prevExamLevel}`,
-                                    vi: `Trước tiên là bài kiểm tra ${prevExamLevel}`,
-                                    id: `Ujian ${prevExamLevel} dulu`,
-                                    tr: `Önce ${prevExamLevel} sınavı`,
-                                    pl: `Najpierw egzamin ${prevExamLevel}`,
-                                })
-                                : triLang(lang, {
-                                    ru: `Завершите все уроки ${lvl} на 4.5+`,
-                                    uk: `Завершіть усі уроки ${lvl} на 4.5+`,
-                                    es: `Completa todas las lecciones de ${lvl} con nota mínima de 4,5`,
-                                    'pt-BR': `Conclua todas as lições ${lvl} com 4,5+`,
-                                    vi: `Hoàn thành tất cả bài học ${lvl} với 4.5+`,
-                                    id: `Selesaikan semua pelajaran ${lvl} dengan 4,5+`,
-                                    tr: `${lvl} seviyesindeki tüm dersleri 4.5+ ile tamamla`,
-                                    pl: `Ukończ wszystkie lekcje ${lvl} na 4,5+`,
-                                });
-                return (<Animated.View key={`e-${lvl}`} style={{ marginTop: 8, transform: [{ scale: scaleAnim ?? 1 }], ...(isGoldTheme ? goldShadow(allDone ? 2 : 1) : {}), ...({}) }}>
-                <TouchableOpacity activeOpacity={0.82} onPress={() => {
-                        hapticTap();
-                        const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
-                        if (examPremiumRequired) {
-                            openLessonPaywall(requiresPremiumForLesson(firstLessonByLevel, legacyFreeLessonCap) ? firstLessonByLevel : to);
-                        }
-                        else if (!examSourceAvailable) {
-                            setGateModal({ kind: 'frenchExam', level: lvl });
-                        }
-                        else if (allDone) {
-                            router.push({ pathname: '/level_exam', params: { level: lvl } });
-                        }
-                        else if (isPremium && prevExamLevel) {
-                            setGateModal({ kind: 'levelGate', level: lvl, prevLevel: prevExamLevel });
-                        }
-                        else {
-                            setGateModal({ kind: 'exam', level: lvl });
-                        }
-                    }} style={{
-                        minHeight: 78,
-                        marginHorizontal: isGoldTheme ? 14 : 0,
-                        borderRadius: isGoldTheme ? 14 : 0,
-                        borderWidth: isGoldTheme ? 1 : 0,
-                        borderColor: isGoldTheme
-                            ? (allDone ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet)
-                            :
-                                'transparent',
-                        flexDirection: 'row',
-                        backgroundColor: meta.bg,
-                        opacity: allDone ? 1 : isPremium ? 0.38 : 0.5,
-                        overflow: 'hidden',
-                    }}>
-                  {isGoldTheme && (<LinearGradient colors={allDone ? goldLevel.card : goldCardGradient('muted')} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }}/>)}
-                  {false}
-                  {false}
-                  {isGoldTheme && <GoldBevel radius={14} intensity={allDone ? 'strong' : 'quiet'}/>}
-                  <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 20, gap: 4 }}>
-                    <View style={{ position: 'absolute', top: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineStrong : meta.accent + '30' }}/>
-                    <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: isGoldTheme ? 1 : 1.5, backgroundColor: isGoldTheme ? GOLD_RICH.hairlineDark : meta.accent + '30' }}/>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                      {result?.passed
-                        ? <Ionicons name="checkmark-circle" size={isB2 ? 26 : 22} color={meta.accent}/>
-                        : allDone || isPremium
-                            ? <LessonExamThemeIcon themeMode={themeMode} size={isB2 ? 34 : 30} label={label}/>
-                            : <Ionicons name="lock-closed-outline" size={isB2 ? 26 : 22} color={meta.accent}/>}
-                      <View style={{ flex: 1 }}>
-                        <Text style={{ color: meta.accent, fontSize: isB2 ? f.h2 : f.bodyLg, fontWeight: '800' }} maxFontSizeMultiplier={1}>
-                          {label}
-                        </Text>
-                        <Text style={{ color: meta.accent + 'AA', fontSize: f.sub, marginTop: 1 }} maxFontSizeMultiplier={1}>
-                          {subLine}
-                        </Text>
-                      </View>
-                      {examDots.length > 0 && <MedalDots dots={examDots}/>}
-                      {allDone && <Ionicons name="chevron-forward" size={16} color={meta.accent + '80'}/>}
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              </Animated.View>);
-            }
             if (item.kind === 'attestation') {
                 const attestationAccent = isGoldTheme
                     ? goldBright
@@ -1243,81 +1458,42 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                 </TouchableOpacity>
               </Animated.View>);
             }
-            // ── Lesson book ──────────────────────────────────────────────
-            const { index, name } = item;
-            const num = index + 1;
-            const isUnlocked = unlockedLessons[index];
-            const bg = bookPalette(num, themeMode);
-            const darkBg = darkenHexCached(bg, 0.42);
-            const progPct = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
-            const isComplete = progPct >= 100;
-            const isCurrent = currentLessonNum === num;
-            const lessonLevel = getCourseLevelForLesson(num);
-            const lessonGoldLevel = goldCefrAccent(lessonLevel);
-            const lessonAccent = bg;
-            const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
-            const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
-            const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num, legacyFreeLessonCap);
-            const showLessonProgressFill = isUnlocked && progPct > 0;
-            const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
-            const lockedCardBaseColor = isGoldTheme
-                ? goldSurface
-                : isCoralTheme
-                    ? darkenHexCached(bg, 0.23)
-                    : darkenHexCached(bg, 0.28);
-            const cardLayerStyle = {
-                position: 'absolute' as const,
-                left: 0,
-                top: 0,
-                right: 0,
-                bottom: 0,
-                borderRadius: cardRadius,
-                overflow: 'hidden' as const,
-            };
-            const lessonTextColor = isGoldTheme
-                ? (isUnlocked ? t.textPrimary : 'rgba(247,241,228,0.44)')
-                :
-                    !isUnlocked
-                        ? isCoralTheme
-                            ? 'rgba(255,248,244,0.44)'
-                            : levelLockedByExam
-                            ? 'rgba(255,255,255,0.42)'
-                            : 'rgba(255,255,255,0.35)'
-                        : isCoralTheme
-                            ? '#FFF8F4'
-                            : 'rgba(255,255,255,0.97)';
-            const lessonMetaColor = isGoldTheme
-                ? (isUnlocked ? t.textMuted : 'rgba(184,173,146,0.36)')
-                :
-                    !isUnlocked
-                        ? isCoralTheme
-                            ? 'rgba(255,214,204,0.34)'
-                            : levelLockedByExam
-                            ? 'rgba(255,255,255,0.30)'
-                            : 'rgba(255,255,255,0.30)'
-                        : isCoralTheme
-                            ? 'rgba(255,214,204,0.72)'
-                            : LESSON_CARD_OPEN_META_TEXT;
-            return (<LessonCard key={`l-${num}`}
-                num={num} name={name} isUnlocked={isUnlocked} bg={bg} darkBg={darkBg}
-                progPct={progPct} isComplete={isComplete} isCurrent={isCurrent}
-                lessonLevel={lessonLevel} lessonGoldLevel={lessonGoldLevel}
-                lessonAccent={lessonAccent} prevLessonLevel={prevLessonLevel}
-                levelLockedByExam={levelLockedByExam} premiumRequired={premiumRequired}
-                showLessonProgressFill={showLessonProgressFill}
-                cardRadius={cardRadius} lockedCardBaseColor={lockedCardBaseColor}
-                cardLayerStyle={cardLayerStyle}
-                lessonTextColor={lessonTextColor} lessonMetaColor={lessonMetaColor}
-                isGoldTheme={isGoldTheme} isCoralTheme={isCoralTheme} themeMode={themeMode}
-                goldSurface={goldSurface} goldHairline={goldHairline}
-                goldAntique={goldAntique} goldBright={goldBright}
-                scaleAnim={scaleAnim} lang={lang} f={f}
-                openLessonPaywall={openLessonPaywall} setGateModal={setGateModal}
-                router={router} studyTarget={studyTarget}
-                isPremium={isPremium} DEV_CONTENT_UNLOCK={DEV_CONTENT_UNLOCK} noLimits={noLimits}
-                legacyFreeLessonCap={legacyFreeLessonCap}
-                textPrimary={t.textPrimary} textMuted={t.textMuted}
-            />);
+            // ── Глава-аккордеон ──────────────────────────────────────────────
+            const { level: chapterLevel, from: chapFrom, to: chapTo } = item;
+            const chapterAccent = isGoldTheme ? goldCefrAccent(chapterLevel).accent : t.accent;
+            const chapterPremiumLocked = !isPremium && !DEV_CONTENT_UNLOCK && !noLimits && chapterLevel !== 'A1';
+            const chapterCounts = progCounts.slice(chapFrom - 1, chapTo);
+            const chapterDone = chapterCounts.filter((count) => (count ?? 0) >= 50).length;
+            const chapterPct = chapterCounts.length > 0 ? chapterDone / chapterCounts.length : 0;
+            const chapterIndex = (Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]).indexOf(chapterLevel);
+            return (<View key={`chap-${chapterLevel}`} style={{ marginTop: chapterIndex === 0 ? 6 : 10, marginHorizontal: 14 }}>
+              <ChapterCard
+                title={triLang(lang, {
+                    ru: `Глава ${chapterLevel}`,
+                    uk: `Глава ${chapterLevel}`,
+                    es: `Capítulo ${chapterLevel}`,
+                    'pt-BR': `Capítulo ${chapterLevel}`,
+                    vi: `Chương ${chapterLevel}`,
+                    id: `Bab ${chapterLevel}`,
+                    tr: `Bölüm ${chapterLevel}`,
+                    pl: `Rozdział ${chapterLevel}`,
+                })}
+                statusLine={chapterStatusLine(chapFrom, chapTo, currentLessonNum, lang)}
+                pct={chapterPct}
+                lockedPlus={chapterPremiumLocked}
+                expanded={openChapters.has(chapterLevel)}
+                onToggle={() => toggleChapter(chapterLevel)}
+                accent={chapterAccent}
+                isGoldTheme={isGoldTheme}
+                t={t}
+                f={f}
+                themeMode={themeMode}
+                delayMs={60 + Math.max(0, chapterIndex) * 50}
+              >
+                {lessons.slice(chapFrom - 1, chapTo).map((name, offset) => renderLessonCard({ index: chapFrom - 1 + offset, name }))}
+                {chapterLevel !== 'B2' ? renderExamCard(chapterLevel) : null}
+              </ChapterCard>
+            </View>);
         }}
       />
       </BouncyWrap>
@@ -1413,6 +1589,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                     label: triLang(lang, { ru: 'Получить Plus', uk: 'Отримати Plus', es: 'Obtener Plus', 'pt-BR': 'Obter Plus', vi: 'Nhận Plus', id: 'Dapatkan Plus', tr: 'Plus al', pl: 'Zdobądź Plus' }),
                     variant: 'primary' as const,
                     onPress: () => {
+                        // ThemedChoiceModal больше не зовёт onRequestClose за нас —
+                        // закрытие гейта здесь же, одним действием.
+                        setGateModal(null);
                         const doneSoFar = scores.filter(score => score > 0).length;
                         openPremiumPaywall(router, {
                             context: lessonPaywallContext(gateModal.lessonNum, legacyFreeLessonCap),
@@ -1424,9 +1603,9 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
                 {
                     label: triLang(lang, { ru: 'Пока нет', uk: 'Поки ні', es: 'Ahora no', 'pt-BR': 'Agora não', vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdilik hayır', pl: 'Jeszcze nie' }),
                     variant: 'secondary' as const,
-                    onPress: () => { },
+                    onPress: () => { setGateModal(null); },
                 },
             ]
-            : [{ label: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }), onPress: () => { } }]} onRequestClose={() => setGateModal(null)}/>
+            : [{ label: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' }), onPress: () => { setGateModal(null); } }]} onRequestClose={() => setGateModal(null)}/>
     </>);
 }

@@ -1,3 +1,3 @@
 Retry requested after verified 404 on production.
-Triggered again on 2026-07-21 after user-confirmed 404.
-Run the one-time English test release workflow and do not report success until both live URLs pass.
+Triggered after the master-side verified deploy workflow was installed.
+Required success criteria: live public test, live admin analytics page, and Firebase deployment completed without skipped steps.

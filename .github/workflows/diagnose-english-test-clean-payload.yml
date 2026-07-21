@@ -20,10 +20,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 1
-      - name: Print transport and decoded archive diagnostics
+      - name: Write transport and decoded archive diagnostics
         shell: bash
         run: |
-          python3 - <<'PY'
+          python3 - <<'PY' | tee payload-diagnostics.txt
           from pathlib import Path
           import base64, gzip, hashlib
           path=Path('.release/english-test-clean.b64')
@@ -46,3 +46,9 @@ jobs:
           except Exception as exc:
               print('base64_ok=false error=',repr(exc))
           PY
+      - name: Upload diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-clean-payload-diagnostics-${{ github.run_attempt }}
+          path: payload-diagnostics.txt
+          retention-days: 2

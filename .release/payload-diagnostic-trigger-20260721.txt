@@ -1,0 +1,1 @@
+Trigger payload diagnostic after adding the default-branch diagnostic workflow.

@@ -1,0 +1,50 @@
+name: Repair English test release transport chunk
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: write
+
+jobs:
+  repair-transport-byte:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-full-audit' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          token: ${{ github.token }}
+      - name: Restore the audited Base64 transport byte
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('.release/english-test/part-005')
+          text = path.read_text(encoding='utf-8')
+          assert len(text) == 16000, len(text)
+          assert text[3967] == 'Q', text[3967]
+          fixed = text[:3967] + 'V' + text[3968:]
+          path.write_text(fixed, encoding='utf-8')
+          PY
+          cat .release/english-test/part-* > /tmp/repaired-release.b64
+          base64 --decode /tmp/repaired-release.b64 > /tmp/repaired-release.tar.xz
+          echo "d7682645609959b249516fb22c656639b6451af6264e736111e64c296fc106f1  /tmp/repaired-release.tar.xz" | sha256sum --check --strict
+          xz --test /tmp/repaired-release.tar.xz
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .release/english-test/part-005
+          git commit -m "fix(release): restore audited English test payload byte"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}

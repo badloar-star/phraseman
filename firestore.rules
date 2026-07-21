@@ -2246,6 +2246,41 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
+    // Все записи — только через Cloud Functions (Admin SDK). Клиенты читают
+    // комнаты/сезон/банк/ботов; задания отдаёт только сервер по seed.
+    match /tournamentSchedule/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /tournamentRooms/{roomId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /tournamentTasks/{taskId} {
+      allow read, write: if false;
+    }
+    match /tournamentSeasons/{weekId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+      match /entries/{uid} {
+        allow read: if request.auth != null;
+        allow write: if false;
+      }
+    }
+    match /tournamentBank/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /botProfiles/{botId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+    match /users/{uid}/reward_claims/{claimId} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

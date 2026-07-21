@@ -73,6 +73,8 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
+import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
+import { ensureInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -489,39 +491,36 @@ function profileFromArenaDoc(uid: string, data: Record<string, unknown>): Friend
   });
 }
 
+/** Конвертация batch-ответа сервера в локальный FriendProfile (поля normalizePublicFriendProfile). */
+function profileFromBatchRecord(rec: FriendProfileBatchRecord): FriendProfile {
+  return normalizePublicFriendProfile({
+    uid: rec.uid,
+    name: rec.displayName,
+    totalXp: rec.totalXp,
+    weeklyXp: 0,
+    streak: 0,
+    isPremium: rec.isPremium,
+    isVip: rec.isVip,
+    isLifetime: rec.isLifetime,
+    avatar: rec.avatar,
+    frame: rec.frame,
+    aura: rec.aura,
+    profileCardLevel: rec.profileCardLevel,
+    profileCardTheme: undefined,
+    profileCardMotion: undefined,
+    profileCardPublicFocus: undefined,
+  });
+}
+
 async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
   try {
-    const db = getDb();
-    if (!db) return null;
-    let profile: FriendProfile | null = null;
-
-    const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
-    if (leaderboardSnap.exists) {
-      profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(uid, leaderboardSnap.data() ?? {}));
-    }
-    if (!profile || profile.totalXp <= 0) {
-      const byAuthSnap = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
-      const byAuthDoc = byAuthSnap.docs?.[0];
-      if (byAuthDoc) {
-        profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(byAuthDoc.id, byAuthDoc.data() ?? {}));
-      }
-    }
-
-    if (!profile || profile.totalXp <= 0) {
-      const arenaByStableSnap = await db.collection('arena_profiles').where('mirrorStableId', '==', uid).limit(1).get();
-      const arenaByStableDoc = arenaByStableSnap.docs?.[0];
-      if (arenaByStableDoc) {
-        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaByStableDoc.data() ?? {}));
-      }
-    }
-
-    if (!profile || profile.totalXp <= 0) {
-      const arenaSnap = await db.collection('arena_profiles').doc(uid).get();
-      if (arenaSnap.exists) {
-        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaSnap.data() ?? {}));
-      }
-    }
-
+    // Пачечный серверный путь (1 callable вместо 4-RTT цепочки); legacy-цепочка
+    // (leaderboard → arena_profiles) теперь выполняется внутри friendsGetProfiles.
+    // TODO(legacy-fallback): для IS_EXPO_GO/CLOUD_SYNC_ENABLED=false старая цепочка
+    // видна в git-истории при необходимости.
+    const map = await fetchFriendProfilesBatch([uid]);
+    const rec = map[uid];
+    const profile = rec ? profileFromBatchRecord(rec) : null;
     if (!profile && __DEV__) console.warn('[friendProfile] public profile missing for uid:', uid);
     return profile;
   } catch (e) {
@@ -579,7 +578,11 @@ async function loadProfiles(
 
   if (toFetch.length > 0) {
     await ensureAnonUser();
-    const fetched = await mapWithConcurrency(toFetch, 6, (uid) => fetchFriendProfileFromFirestore(uid));
+    const batchMap = await fetchFriendProfilesBatch(toFetch);
+    const fetched = toFetch.map((uid) => {
+      const rec = batchMap[uid];
+      return rec ? profileFromBatchRecord(rec) : null;
+    });
     const fetchedProfiles = fetched.filter((p): p is FriendProfile => p !== null);
     const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid));
     const newEntries: Record<string, ProfileCacheEntry> = {};
@@ -2108,21 +2111,15 @@ export default function FriendsTabScreen() {
 
   const syncMyInviteCode = useCallback(async (isCancelled: () => boolean = () => false) => {
     const stopped = () => !mountedRef.current || isCancelled();
-    // Retry up to 5 times with 3s delay — Auth may not be ready immediately on cold launch.
-    for (let attempt = 0; attempt < 5; attempt++) {
-      const code = await ensureMyInviteCodeForFriends('');
-      if (stopped()) return;
-      if (code) {
-        setMyCode(code);
-        setFriendCodeLoadError(false);
-        return;
-      }
-      if (attempt < 4) {
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        if (stopped()) return;
-      }
+    // Ретрай/бэкофф живёт внутри синглтона (dedupe с referrals.tsx — один сетевой проход).
+    const code = await ensureInviteCodeShared();
+    if (stopped()) return;
+    if (code) {
+      setMyCode(code);
+      setFriendCodeLoadError(false);
+    } else {
+      setFriendCodeLoadError(true);
     }
-    if (!stopped()) setFriendCodeLoadError(true);
   }, []);
 
   const retryFriendCode = useCallback(() => {
@@ -2228,10 +2225,13 @@ export default function FriendsTabScreen() {
     if (!friendsTabVisible) return;
     const cancelled = { current: false };
     void startFriendsTabSwrPrime();
-    void pollIncomingFriendGifts(cancelled);
-    void refreshFriendQuest(cancelled);
-    void refreshReferralState();
-    return () => { cancelled.current = true; };
+    // Подарки/квесты/рефералка — после первого кадра списка, не залпом с подписками.
+    const task = InteractionManager.runAfterInteractions(() => {
+      void pollIncomingFriendGifts(cancelled);
+      void refreshFriendQuest(cancelled);
+      void refreshReferralState();
+    });
+    return () => { cancelled.current = true; task.cancel(); };
   }, [friendsTabVisible, focusTick, pollIncomingFriendGifts, refreshFriendQuest, refreshReferralState]);
 
   // Реф-код один раз создаётся и НАВСЕГДА закрепляется за аккаунтом в AsyncStorage
@@ -2256,24 +2256,10 @@ export default function FriendsTabScreen() {
   useEffect(() => {
     if (!referralEnabled || referralCode) return;
     let cancelled = false;
-    let attempt = 0;
-    const tick = async () => {
-      if (cancelled) return;
-      attempt += 1;
-      try {
-        await generateReferralCode(myProfile?.name ?? 'User');
-        const rc = await getReferralCode();
-        if (!cancelled && rc && rc.trim().length >= 4) {
-          setReferralCode(rc.trim().toUpperCase());
-          return;
-        }
-      } catch { /* ещё не готово — повторим */ }
-      if (!cancelled && attempt < 5) {
-        timer = setTimeout(() => { void tick(); }, 1500 * attempt);
-      }
-    };
-    let timer = setTimeout(() => { void tick(); }, 1500);
-    return () => { cancelled = true; clearTimeout(timer); };
+    void ensureInviteCodeShared(myProfile?.name ?? 'User').then(code => {
+      if (!cancelled && code) setReferralCode(code);
+    });
+    return () => { cancelled = true; };
   }, [referralEnabled, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
@@ -2331,9 +2317,24 @@ export default function FriendsTabScreen() {
       const uid = await ensureAnonUser();
       if (!uid || cancelled) return;
 
-      const authLinkReady = await ensureFriendRequestViewerAuthLink(uid);
-      if (!authLinkReady || cancelled) return;
-
+      // Подписки стартуют СРАЗУ: auth-link выполняется внутри subscribe* (там же retry
+      // холодной гонки). Внешний await гарантированно задерживал первый снапшот до 15 с.
+      // При permission-denied subscribe* вернёт onError — перезапускаем после явного линка.
+      const resubscribeAfterLink = () => {
+        void ensureFriendRequestViewerAuthLink(uid).then(ok => {
+          if (!ok || cancelled) return;
+          unsubFriends();
+          unsubFriends = subscribeToFriends((data, meta) => {
+            if (cancelled) return;
+            const fromCache = meta?.fromCache === true;
+            if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
+            setFriends(data);
+            if (data.length > 0) {
+              void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+            }
+          });
+        });
+      };
       unsubFriends = subscribeToFriends((data, meta) => {
         if (cancelled) return;
         const fromCache = meta?.fromCache === true;
@@ -2341,6 +2342,10 @@ export default function FriendsTabScreen() {
         setFriends(data);
         if (data.length > 0) {
           void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+        }
+      }, err => {
+        if (String((err as { code?: string })?.code ?? '').includes('permission-denied')) {
+          resubscribeAfterLink();
         }
       });
 

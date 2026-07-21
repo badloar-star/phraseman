@@ -458,7 +458,7 @@ export async function markRefereeQualified(
   });
 }
 
-async function assertAuthStableLink(
+export async function assertAuthStableLink(
   db: admin.firestore.Firestore,
   authUid: string,
   clientStableId: string,

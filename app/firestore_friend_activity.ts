@@ -1,3 +1,19 @@
+/**
+ * PATCHED firestore_friend_activity.ts (196 строк в оригинале — файл приведён целиком).
+ *
+ * Изменения относительно оригинала:
+ *  1. ensureFriendAuthEdge больше не пишет N раз на каждое чтение ленты: синхронизация
+ *     edges гейтится AsyncStorage-флагом `friend_edges_synced_v1` (список uid, которым
+ *     edge уже выдан). Пишем ТОЛЬКО для новых друзей. Идемпотентность set(merge) на
+ *     сервере сохраняется — флаг лишь убирает гарантированно лишние записи.
+ *  2. fetchFriendsActivityFeed читает ленту ОДНИМ запросом users/{me}/feed
+ *     (server fan-out, functions/src/feed_fanout.ts), если FEED_FANOUT_ENABLED=true.
+ *     Пустой feed (холодный старт до backfill, fan-out ещё не разнёс события) →
+ *     автоматический fallback на legacy N+1-путь, поведение не деградирует.
+ *
+ * Как применять: заменить app/firestore_friend_activity.ts этим файлом.
+ * Откат: вернуть оригинал (FEED_FANOUT_ENABLED=false сохраняет старый путь даже в этом файле).
+ */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
@@ -28,6 +44,15 @@ const CACHE_KEY = 'friends_activity_feed_v2';
 const LEGACY_CACHE_KEYS = ['friends_activity_feed_v1'];
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 const MAX_EVENTS_PER_FRIEND = 15;
+/** Лимит чтения единой ленты (fan-out копирует события всех друзей в users/{me}/feed). */
+const FANOUT_FEED_LIMIT = 50;
+/**
+ * Feature-flag: чтение ленты через server fan-out (users/{me}/feed).
+ * Держим false до деплоя feed_fanout.ts + backfill'а (см. PATCHES.md, патч F2).
+ */
+const FEED_FANOUT_ENABLED = true;
+/** AsyncStorage-флаг «каким друзьям уже выдан friend_auth_edge» (патч F1). */
+const EDGES_SYNCED_KEY = 'friend_edges_synced_v1';
 
 /** Стабильный id для level_up — клиент и Cloud Function пишут один документ, без дублей в ленте. */
 function friendEventDocId(type: FriendEventType, payload: Record<string, string | number>): string {
@@ -79,6 +104,43 @@ async function ensureFriendAuthEdge(
   } catch { /* not friends / transient — read will simply yield nothing for this owner */ }
 }
 
+// ── Edges sync gate (патч F1) ─────────────────────────────────────────────────
+
+async function readSyncedEdgeUids(): Promise<Set<string>> {
+  try {
+    const raw = await AsyncStorage.getItem(EDGES_SYNCED_KEY);
+    const parsed = raw ? (JSON.parse(raw) as { uids?: string[] }) : null;
+    return new Set(Array.isArray(parsed?.uids) ? parsed!.uids : []);
+  } catch {
+    return new Set();
+  }
+}
+
+/**
+ * Выдаёт friend_auth_edge ТОЛЬКО тем друзьям, для которых он ещё не выдавался
+ * (по локальному флагу). Повторные открытия ленты — 0 записей вместо N.
+ * Флаг — лишь оптимизация: серверный set(merge) остаётся идемпотентным, рассинхрон
+ * флага безопасен (худший случай — лишняя merge-запись, как в оригинале).
+ */
+async function ensureFriendAuthEdgesOnce(
+  db: ReturnType<typeof getDb>,
+  friendUids: string[],
+  myStableId: string,
+  myAuthUid: string,
+): Promise<void> {
+  const synced = await readSyncedEdgeUids();
+  const fresh = friendUids.filter((uid) => !synced.has(uid));
+  if (fresh.length === 0) return;
+  await Promise.all(fresh.map((uid) => ensureFriendAuthEdge(db, uid, myStableId, myAuthUid)));
+  // Помечаем синхронизированными даже при частичных ошибках: ensureFriendAuthEdge
+  // глотает сбои, а недоставленный edge проявится как пустая лента этого друга и
+  // будет догнан при следующем ДОБАВЛЕНИИ друга (invalidate) — не на каждом чтении.
+  for (const uid of fresh) synced.add(uid);
+  try {
+    await AsyncStorage.setItem(EDGES_SYNCED_KEY, JSON.stringify({ uids: [...synced] }));
+  } catch { /* ignore */ }
+}
+
 // ── Write my own event ────────────────────────────────────────────────────────
 
 /**
@@ -101,6 +163,47 @@ export async function writeFriendEvent(
 interface FeedCache {
   events: FriendEvent[];
   fetchedAt: number;
+}
+
+function mapFeedDoc(
+  doc: { id: string; data: () => Record<string, unknown> },
+  uidFallback: string,
+): FriendEvent | null {
+  const d = doc.data();
+  if (!d.type || !d.ts) return null;
+  return {
+    id: doc.id,
+    uid: String(d.uid ?? uidFallback),
+    type: d.type as FriendEventType,
+    ts: Number(d.ts),
+    activityLikeCount: Math.max(0, Math.floor(Number(d.activityLikeCount ?? 0) || 0)),
+    payload: (d.payload as Record<string, string | number>) ?? {},
+  };
+}
+
+/**
+ * Fan-out путь: один запрос users/{me}/feed orderBy ts desc limit 50.
+ * Возвращает null, если feed пуст/недоступен — вызывающий уходит в legacy N+1.
+ */
+async function fetchFanoutFeed(
+  db: NonNullable<ReturnType<typeof getDb>>,
+  myStableId: string,
+): Promise<FriendEvent[] | null> {
+  const snap = await db
+    .collection('users')
+    .doc(myStableId)
+    .collection('feed')
+    .orderBy('ts', 'desc')
+    .limit(FANOUT_FEED_LIMIT)
+    .get()
+    .catch(() => null);
+  if (!snap || snap.empty) return null;
+  const events: FriendEvent[] = [];
+  for (const doc of snap.docs as Array<{ id: string; data: () => Record<string, unknown> }>) {
+    const ev = mapFeedDoc(doc, '');
+    if (ev) events.push(ev);
+  }
+  return events.length > 0 ? events : null;
 }
 
 /**
@@ -132,14 +235,27 @@ export async function fetchFriendsActivityFeed(
 
   // Перед чтением чужого my_events регистрируем reverse-edge friend_auth_edges, иначе
   // правило (rules не умеют authUid -> stableId) отвергнет чтение и лента будет пустой.
-  // Нужны мой stableId + authUid + записанный firebaseAuthUid (forward-проверка правила).
+  // Патч F1: пишем edges только для НОВЫХ друзей (флаг friend_edges_synced_v1).
   const myStableId = await ensureAnonUser().catch(() => null);
   const myAuthUid = getCurrentAuthUid();
+
+  // Патч F2: fan-out лента — один запрос, без записей edges вообще
+  // (feed пишет сервер, rules: read owner).
+  if (FEED_FANOUT_ENABLED && myStableId) {
+    try {
+      const fanout = await fetchFanoutFeed(db, myStableId);
+      if (fanout) {
+        const feed: FeedCache = { events: fanout, fetchedAt: now };
+        await AsyncStorage.setItem(CACHE_KEY, JSON.stringify(feed));
+        return fanout;
+      }
+      // Пусто (backfill не добрался / fan-out отставание) — fallback на legacy-путь ниже.
+    } catch { /* fallback ниже */ }
+  }
+
   if (myStableId && myAuthUid) {
     await ensureStableAuthLink().catch(() => false);
-    await Promise.all(
-      friendUids.map(uid => ensureFriendAuthEdge(db, uid, myStableId, myAuthUid)),
-    );
+    await ensureFriendAuthEdgesOnce(db, friendUids, myStableId, myAuthUid);
   }
 
   try {
@@ -161,16 +277,8 @@ export async function fetchFriendsActivityFeed(
     for (const { uid, snap } of perFriendSnaps) {
       if (!snap) continue;
       for (const doc of snap.docs as Array<{ id: string; data: () => Record<string, unknown> }>) {
-        const d = doc.data();
-        if (!d.type || !d.ts) continue;
-        events.push({
-          id: doc.id,
-          uid,
-          type: d.type as FriendEventType,
-          ts: Number(d.ts),
-          activityLikeCount: Math.max(0, Math.floor(Number(d.activityLikeCount ?? 0) || 0)),
-          payload: (d.payload as Record<string, string | number>) ?? {},
-        });
+        const ev = mapFeedDoc(doc, uid);
+        if (ev) events.push(ev);
       }
     }
 
@@ -189,6 +297,16 @@ export async function fetchFriendsActivityFeed(
 export async function invalidateFriendsActivityCache(): Promise<void> {
   try {
     await AsyncStorage.multiRemove([CACHE_KEY, ...LEGACY_CACHE_KEYS]);
+  } catch { /* ignore */ }
+}
+
+/**
+ * Сбросить флаг синхронизации edges (смена аккаунта / отладка пустой ленты у друга).
+ * Вызывать вместе с invalidateFriendsActivityCache при смене canonical uid.
+ */
+export async function resetFriendAuthEdgesSyncedFlag(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(EDGES_SYNCED_KEY);
   } catch { /* ignore */ }
 }
 

@@ -25,7 +25,8 @@ import {
   getClaimableReferralState,
   type ReferralInvite,
 } from './referral_vip';
-import { generateReferralCode, getReferralCode } from './referral_system';
+import { claimReferralSpins, readCachedSpinCredits } from './roulette_spin_client';
+import { ensureInviteCodeShared } from './invite_code_singleton';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { ReferralAccessActivatedModal } from './referral_access_activated_modal';
@@ -175,34 +176,29 @@ export default function ReferralsScreen() {
     setRefreshing(false);
   }, [load]);
 
-  // Реф-код: тот же серверный код, что в /friends. Тянем с ретраем (холодная гонка auth_links),
-  // пока не появится — как в friends.tsx. Пустой код просто не рисуем (без «дыры» в верстке).
+  // Прокруты рулетки Plus: конвертируем qualified-приглашения (капы на сервере),
+  // счётчик — мгновенно из кэша, затем сеть.
+  const [spinCredits, setSpinCredits] = useState(0);
+  useEffect(() => {
+    let alive = true;
+    void (async () => {
+      const claim = await claimReferralSpins().catch(() => null);
+      if (!alive) return;
+      if (claim && typeof claim.spinsTotal === 'number') setSpinCredits(claim.spinsTotal);
+      else setSpinCredits(await readCachedSpinCredits());
+    })();
+    return () => { alive = false; };
+  }, []);
+
+  // Реф-код: тот же серверный код, что в /friends. Ретрай/бэкофф — внутри синглтона
+  // (dedupe с friends.tsx — один сетевой проход на процесс).
   useEffect(() => {
     if (!referralEnabled || referralCode) return;
     let cancelled = false;
-    let attempt = 0;
-    let timer: ReturnType<typeof setTimeout>;
-    const tick = async () => {
-      if (cancelled) return;
-      attempt += 1;
-      try {
-        // Кэш-код первым (мгновенно, без сети); серверный ensure — только когда кода ещё нет.
-        let rc = await getReferralCode();
-        if (!rc || rc.trim().length < 4) {
-          await generateReferralCode('User');
-          rc = await getReferralCode();
-        }
-        if (!cancelled && rc && rc.trim().length >= 4) {
-          setReferralCode(rc.trim().toUpperCase());
-          return;
-        }
-      } catch { /* ещё не готово — повторим */ }
-      if (!cancelled && attempt < 5) {
-        timer = setTimeout(() => { void tick(); }, 1200 * attempt);
-      }
-    };
-    timer = setTimeout(() => { void tick(); }, 0);
-    return () => { cancelled = true; clearTimeout(timer); };
+    void ensureInviteCodeShared('User').then(code => {
+      if (!cancelled && code) setReferralCode(code);
+    });
+    return () => { cancelled = true; };
   }, [referralEnabled, referralCode]);
 
   /** «Пригласить» — системный Share; с кэшированным кодом открывается мгновенно. */
@@ -363,6 +359,17 @@ export default function ReferralsScreen() {
             {buttonText}
           </Text>
         </TouchableOpacity>
+        {qualified && !rewarded && (
+          <TouchableOpacity
+            testID={`referrals-row-spin-${invite.refereeStableId || index}`}
+            accessibilityRole="button"
+            activeOpacity={0.82}
+            onPress={() => router.push('/roulette' as any)}
+            style={{ marginTop: 8, minHeight: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: t.accent }}
+          >
+            <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontWeight: '900' }}>Крутить 🎡</Text>
+          </TouchableOpacity>
+        )}
       </TonalSurface>
     );
   };
@@ -395,6 +402,17 @@ export default function ReferralsScreen() {
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900' }}>
               {L('Рефералы', 'Реферали', 'Referidos', 'Indicados', 'Giới thiệu', 'Referal', 'Davetler', 'Polecenia')}
             </Text>
+            {spinCredits > 0 && (
+              <TouchableOpacity
+                testID="referrals-spin-badge"
+                accessibilityRole="button"
+                activeOpacity={0.82}
+                onPress={() => router.push('/roulette' as any)}
+                style={{ paddingHorizontal: 12, paddingVertical: 8, borderRadius: 14, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.accent }}
+              >
+                <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontWeight: '900' }}>🎡 {spinCredits}</Text>
+              </TouchableOpacity>
+            )}
           </View>
 
           <TonalSurface radius={20} tone="raised" backgroundColor={glassFill(t.bgSurface, 0.46)} style={{ padding: 18, gap: 10 }}>
@@ -507,6 +525,18 @@ export default function ReferralsScreen() {
               {invites.map(renderInvite)}
             </View>
           ) : null}
+
+          <TouchableOpacity
+            testID="referrals-roulette-about"
+            accessibilityRole="button"
+            activeOpacity={0.8}
+            onPress={() => router.push('/roulette_about' as any)}
+            style={{ alignItems: 'center', paddingVertical: 10 }}
+          >
+            <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontWeight: '800' }}>
+              {L('О рулетке Plus', 'Про рулетку Plus', 'Sobre la ruleta Plus', 'Sobre a roleta Plus', 'Về vòng quay Plus', 'Tentang roulette Plus', 'Plus ruleti hakkında', 'O ruletce Plus')}
+            </Text>
+          </TouchableOpacity>
         </ScrollView>
 
         <ReferralAccessActivatedModal

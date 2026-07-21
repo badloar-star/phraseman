@@ -1,4 +1,4 @@
-name: Deploy live English Level Test
+name: Deploy verified English Level Test
 
 on:
   pull_request:
@@ -11,30 +11,31 @@ permissions:
   id-token: write
 
 concurrency:
-  group: english-level-test-live-production
+  group: english-level-test-verified-production
   cancel-in-progress: false
 
 jobs:
   deploy:
     if: >-
       github.actor != 'github-actions[bot]' &&
-      github.event.pull_request.head.ref == 'agent/english-test-live-deploy' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-production' &&
       github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
     timeout-minutes: 55
     env:
       FIREBASE_PROJECT_ID: phraseman-ea0b3
-      RELEASE_SHA256: a752ee8af401486948184d422e69c012f90f52eceddd6e8cf69f96669b93a26e
+      RELEASE_B64_SHA256: 335c947387febafa6afa9c9968ed272ecaafe2de26e6ab61f5ea75beb8a8b8a1
+      RELEASE_ARCHIVE_SHA256: 222b6805ff21bc19151b49d3884775c2272ee38f6aa7c23b12f00455a613e653
 
     steps:
-      - name: Check out payload branch
+      - name: Check out immutable release payload
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 1
           path: payload
 
-      - name: Check out current master
+      - name: Check out current production source
         uses: actions/checkout@v4
         with:
           ref: master
@@ -47,55 +48,73 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Reconstruct and apply reviewed release
+      - name: Verify and materialise reviewed release
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
-          test -s ../payload/.english-test-live/manifest.json
-          test "$(find ../payload/.english-test-live -maxdepth 1 -type f -name 'payload.part*' | wc -l | tr -d ' ')" = '8'
-          cat ../payload/.english-test-live/payload.part* > "$RUNNER_TEMP/english-test-live.b64"
-          base64 --decode "$RUNNER_TEMP/english-test-live.b64" > "$RUNNER_TEMP/english-test-live.tar.xz"
-          echo "$RELEASE_SHA256  $RUNNER_TEMP/english-test-live.tar.xz" | sha256sum --check --strict
-          xz --test "$RUNNER_TEMP/english-test-live.tar.xz"
-          tar -tJf "$RUNNER_TEMP/english-test-live.tar.xz" > "$RUNNER_TEMP/english-test-live-files.txt"
-          sed -n '1,120p' "$RUNNER_TEMP/english-test-live-files.txt"
-          tar -xJf "$RUNNER_TEMP/english-test-live.tar.xz" -C .
-          node scripts/apply_english_test_live_release.mjs
-          node scripts/sync-legal-html.mjs
+          test -s ../payload/.release/english-test-clean.b64
+          echo "$RELEASE_B64_SHA256  ../payload/.release/english-test-clean.b64" | sha256sum --check --strict
+          base64 --decode ../payload/.release/english-test-clean.b64 > "$RUNNER_TEMP/english-test-clean.tar.gz"
+          echo "$RELEASE_ARCHIVE_SHA256  $RUNNER_TEMP/english-test-clean.tar.gz" | sha256sum --check --strict
+          gzip --test "$RUNNER_TEMP/english-test-clean.tar.gz"
+          tar -tzf "$RUNNER_TEMP/english-test-clean.tar.gz" > "$RUNNER_TEMP/english-test-clean-files.txt"
+          sed -n '1,160p' "$RUNNER_TEMP/english-test-clean-files.txt"
+          tar -xzf "$RUNNER_TEMP/english-test-clean.tar.gz" -C .
+          test -s content/english-test/questions.en.json
           test -s knowly-www/english-level-test/index.html
           test -s admin/v2/english-test.html
           test -s functions-english-test/index.js
-          test -s functions-english-test/questions.en.json
 
-      - name: Validate public test, bank, admin and backend
+      - name: Generate and install deterministic integration
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
+          node scripts/generate_english_test_assets.mjs
+          node scripts/install_english_test_release.mjs
+          node scripts/install_english_test_release.mjs
+
+      - name: Validate question bank, public test, certificate, admin and backend
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check knowly-www/english-level-test/engine.js
           node --check knowly-www/english-level-test/app.js
-          node --check admin/v2/scripts/pages/english-test-standalone.js
           node --check functions-english-test/index.js
+          node --check functions-english-test/engine.js
+          node --check scripts/generate_english_test_assets.mjs
+          node --check scripts/install_english_test_release.mjs
+          node --test tests/english_test_release.test.mjs
           python3 - <<'PY'
           import hashlib, json
           from collections import Counter
-          public = open('knowly-www/english-level-test/questions.en.json', 'rb').read()
-          server = open('functions-english-test/questions.en.json', 'rb').read()
-          assert public == server
-          bank = json.loads(public)
+          canonical = open('content/english-test/questions.en.json', 'rb').read()
+          server = open('functions-english-test/questions.json', 'rb').read()
+          bank = json.loads(canonical)
+          generated = json.loads(server)
+          assert bank == generated
           assert bank['bankVersion'] == '2026-07-21.8'
           assert len(bank['questions']) == 240
           assert len({q['id'] for q in bank['questions']}) == 240
           assert Counter(q['level'] for q in bank['questions']) == Counter({'A1':40,'A2':40,'B1':40,'B2':40,'C1':40,'C2':40})
           assert Counter(q['correctIndex'] for q in bank['questions']) == Counter({0:60,1:60,2:60,3:60})
           assert all(len(q['options']) == 4 and 0 <= q['correctIndex'] <= 3 for q in bank['questions'])
-          print('Question bank SHA-256:', hashlib.sha256(public).hexdigest())
+          print('Question bank SHA-256:', hashlib.sha256(canonical).hexdigest())
           PY
-          npm install --prefix functions-english-test --ignore-scripts
-          npm test --prefix functions-english-test
-          npm audit --prefix functions-english-test --omit=dev
 
-      - name: Discover Firebase credential
+      - name: Install, load and audit isolated Functions codebase
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix functions-english-test --package-lock-only --ignore-scripts
+          npm ci --prefix functions-english-test --omit=dev --ignore-scripts
+          node -e "const f=require('./functions-english-test');if(!f.englishTestApi||!f.adminEnglishTestAnalytics||!f.finalizeStaleEnglishTests||!f.cleanupEnglishTestAnalytics)process.exit(1)"
+          npm audit --prefix functions-english-test --omit=dev --audit-level=moderate
+
+      - name: Discover Firebase deployment credential
         id: firebase-auth
         env:
           REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
@@ -172,26 +191,26 @@ jobs:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
 
-      - name: Deploy Functions and both Hosting targets
+      - name: Deploy isolated Functions, Firestore index and both Hosting targets
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
-          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,hosting:knowlywww,hosting:admin' --non-interactive)
+          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,firestore:indexes,hosting:knowlywww,hosting:admin' --non-interactive --force)
           if [[ "${{ steps.firebase-auth.outputs.mode }}" == 'token' ]]; then
             args+=(--token "$FIREBASE_DEPLOY_TOKEN")
           fi
           npx --yes firebase-tools@15.24.0 "${args[@]}"
 
-      - name: Verify production pages and API
+      - name: Verify production test, certificate UI, admin and API
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
           verify_page() {
             local url="$1" marker="$2"
-            for attempt in $(seq 1 18); do
-              code="$(curl --silent --show-error --location --max-time 25 --output /tmp/page.html --write-out '%{http_code}' "$url" || true)"
+            for attempt in $(seq 1 24); do
+              code="$(curl --silent --show-error --location --max-time 25 --header 'Cache-Control: no-cache' --output /tmp/page.html --write-out '%{http_code}' "$url?release=$GITHUB_RUN_ID" || true)"
               if [[ "$code" == '200' ]] && grep --fixed-strings --quiet "$marker" /tmp/page.html; then
                 echo "Verified: $url"
                 return 0
@@ -201,29 +220,27 @@ jobs:
             done
             return 1
           }
-          verify_page 'https://knowlyapps.web.app/english-level-test/' 'Насколько <em>естественно</em> звучит ваш английский?'
-          verify_page 'https://knowlyapps.com/english-level-test/' 'Насколько <em>естественно</em> звучит ваш английский?'
-          verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'English Level Test'
-          code="$(curl --silent --show-error --request OPTIONS --header 'Origin: https://knowlyapps.com' --output /tmp/api.txt --write-out '%{http_code}' 'https://knowlyapps.com/api/english-test')"
-          test "$code" = '204'
-          echo 'Verified routed English-test API.'
+          verify_page 'https://knowlyapps.com/english-level-test/' 'Получить сертификат'
+          verify_page 'https://knowlyapps.web.app/english-level-test/' 'Насколько <em>естественно</em>'
+          verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'Диагностика всех вопросов'
+          verify_page 'https://phraseman-ea0b3.web.app/v2/' 'English Test'
+          curl -fsS -X POST 'https://knowlyapps.com/api/english-test' \
+            -H 'Content-Type: application/json' \
+            --data '{"action":"landing","bankVersion":"2026-07-21.8","eventId":"production-smoke-'"$GITHUB_RUN_ID"'"}' | grep -Fq '"ok":true'
 
-      - name: Commit verified production source to master
+      - name: Commit the exact verified production source to master
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
           rm -rf functions-english-test/node_modules
-          rm -f .github/workflows/deploy-live-english-test.yml
-          rm -f .github/workflows/english-level-test-pr15-release.yml
-          rm -f .github/workflows/export-english-test-pr15-chunks.yml
-          rm -f .github/workflows/export-english-test-pr15-history.yml
-          printf 'deployed_at=%s\nrelease_sha256=%s\nworkflow_run=%s\n' "$(date -u +%FT%TZ)" "$RELEASE_SHA256" "$GITHUB_RUN_ID" > .english-test-live-release
+          find .github/workflows -maxdepth 1 -type f -iname '*english*test*' ! -name 'deploy-english-test-production.yml' -delete
+          printf 'deployed_at=%s\nrelease_archive_sha256=%s\nworkflow_run=%s\n' "$(date -u +%FT%TZ)" "$RELEASE_ARCHIVE_SHA256" "$GITHUB_RUN_ID" > .english-test-production-release
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
           git diff --cached --check
-          git commit -m 'feat(web): deploy English level test and analytics [skip ci]'
+          git commit -m 'feat(web): deploy verified English level test [skip ci]'
           git pull --rebase origin master
           git push origin HEAD:master
 
@@ -231,11 +248,10 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v4
         with:
-          name: english-test-live-deploy-diagnostics-${{ github.run_attempt }}
+          name: english-test-verified-deploy-diagnostics-${{ github.run_attempt }}
           path: |
-            ${{ runner.temp }}/english-test-live-files.txt
+            ${{ runner.temp }}/english-test-clean-files.txt
             /tmp/page.html
-            /tmp/api.txt
             production/firebase-debug.log
           if-no-files-found: ignore
           retention-days: 3

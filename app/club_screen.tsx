@@ -112,9 +112,12 @@ import { LeagueArenaScene } from '../components/league/LeagueArenaScene';
 import { LeagueMyPositionBar } from '../components/league/LeagueMyPositionBar';
 import { LeagueRaceFeed, type LeagueRaceFeedItem } from '../components/league/LeagueRaceFeed';
 import { LeagueChestTeaserModal } from '../components/league/LeagueChestTeaserModal';
+import { LeagueHotHoursChip } from '../components/league/LeagueHotHoursChip';
+import { isLeagueHotHoursActive, leagueWeekEndsAtUtcMs, LEAGUE_HOT_HOURS_WINDOW_MS } from './league_hot_hours';
 import { participantsLabel, type LeagueHeroGap, type LeagueHeroZone } from '../components/league/leagueStatusShared';
 import { LeagueLeaderboardRow, type LeagueLeaderboardZone } from '../components/league/LeagueLeaderboardRow';
 import type { LeagueHubPalette } from '../components/league/leagueHubPalette';
+import { getTodayKey, updateTaskProgress } from './daily_tasks';
 
 // v2 — bumped после фикса race на signInAnonymously + остановки резервной записи
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
@@ -209,15 +212,8 @@ function leagueXpPromotionBannerText(lang: Lang, threshold: number): string {
   });
 }
 
-/** Конец текущей ISO-недели лиги (понедельник 00:00 UTC, как getWeekId). */
-function leagueWeekEndsAtUtcMs(now: number): number {
-  const d = new Date(now);
-  const dayStartUtc = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
-  const dow = new Date(dayStartUtc).getUTCDay() || 7;
-  return dayStartUtc + (8 - dow) * 86_400_000;
-}
 
-function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean } {
+function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; urgent: boolean; hot: boolean } {
   const left = Math.max(0, msLeft);
   const days = Math.floor(left / 86_400_000);
   const hours = Math.floor((left % 86_400_000) / 3_600_000);
@@ -237,7 +233,7 @@ function formatLeagueWeekCountdown(lang: Lang, msLeft: number): { text: string; 
     : hours >= 1
       ? `${hours} ${units.h} ${mins} ${units.m}`
       : `${Math.max(1, mins)} ${units.m}`;
-  return { text, urgent: days < 1 };
+  return { text, urgent: days < 1, hot: left > 0 && left <= LEAGUE_HOT_HOURS_WINDOW_MS };
 }
 
 // ── League icon renderer ──────────────────────────────────────────────────────
@@ -444,6 +440,22 @@ export default function ClubScreen() {
     void hasClubGiftFreeBoostFromLevel().then((v) => {
       if (isMountedRef.current) setFreeBoostGiftReady(v);
     }).catch(() => {});
+  }, []);
+  // club_attend: первый заход в спикинг-клуб за день (гард по UTC-дню, как у daily tasks).
+  useEffect(() => {
+    void (async () => {
+      try {
+        const guardKey = 'daily_club_attend_seen_v1';
+        const today = getTodayKey();
+        if ((await AsyncStorage.getItem(guardKey)) === today) return;
+        await AsyncStorage.setItem(guardKey, today);
+        await updateTaskProgress('club_attend', 1, studyTarget);
+      } catch {
+        // best-effort — заход в клуб не должен зависеть от задания
+      }
+    })();
+    // Считаем один раз за монтирование экрана; дневной гард внутри.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [groupBoostBuying, setGroupBoostBuying] = useState(false);
   const [groupBoostLikeBusy, setGroupBoostLikeBusy] = useState(false);
@@ -798,7 +810,7 @@ export default function ClubScreen() {
     useCallback(() => {
       const update = (now: number) => {
         const next = formatLeagueWeekCountdown(lang ?? 'ru', leagueWeekEndsAtUtcMs(now) - now);
-        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent ? prev : next));
+        setWeekCountdown((prev) => (prev.text === next.text && prev.urgent === next.urgent && prev.hot === next.hot ? prev : next));
       };
       update(Date.now());
       const unsubscribe = visibleWallClock.subscribe(update);
@@ -920,37 +932,37 @@ export default function ClubScreen() {
           ru: hasGold
             ? `Бонус лиги открыт: ${rewardCount} подарков, среди них Gold`
             : hasGoldDuplicate
-              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал осколками`
+              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал монетами`
               : `Бонус лиги открыт: выпало ${rewardCount} подарков`,
           uk: hasGold
             ? `Бонус ліги відкрито: ${rewardCount} подарунків, серед них Gold`
             : hasGoldDuplicate
-              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став уламками`
+              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став монетами`
               : `Бонус ліги відкрито: випало ${rewardCount} подарунків`,
           es: hasGold
             ? `Bono de liga abierto: ${rewardCount} regalos, incluido Gold`
             : hasGoldDuplicate
-              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en fragmentos`
+              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en monedas`
               : `Bono de liga abierto: cayeron ${rewardCount} regalos`,
           'pt-BR': hasGold
             ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo Gold`
             : hasGoldDuplicate
-              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou fragmentos`
+              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou monedas`
               : `Bônus da liga aberto: caíram ${rewardCount} presentes`,
           vi: hasGold
             ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có Gold`
             : hasGoldDuplicate
-              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành mảnh`
+              ? `Đã mở thưởng giải đấu: ${rewardCount} quà, Gold trùng đã đổi thành xu`
               : `Đã mở thưởng giải đấu: nhận ${rewardCount} quà`,
           id: hasGold
             ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk Gold`
             : hasGoldDuplicate
-              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi pecahan`
+              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi koin`
               : `Bonus liga dibuka: mendapat ${rewardCount} hadiah`,
           tr: hasGold
             ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde Gold var`
             : hasGoldDuplicate
-              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold parçalara dönüştü`
+              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold jetona dönüştü`
               : `Lig bonusu açıldı: ${rewardCount} hediye düştü`,
           pl: hasGold
             ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym Gold`
@@ -1089,7 +1101,7 @@ export default function ClubScreen() {
     // активация бесплатна, баланс не трогаем.
     const giftVoucher = await hasClubGiftFreeBoostFromLevel().catch(() => false);
     if (!giftVoucher && previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
-      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} монет`, 'error');
       return;
     }
     const optimisticBoost = makeOptimisticGroupBoost();
@@ -1125,7 +1137,7 @@ export default function ClubScreen() {
       if (res.reason === 'active') {
         showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
       } else if (res.reason === 'not_enough_shards') {
-        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} осколков`, 'error');
+        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} монет`, 'error');
       } else if (res.reason === 'no_current_group') {
         showLeagueToast('Сначала обнови лигу недели и попробуй снова.', 'info');
       } else {
@@ -1230,6 +1242,18 @@ export default function ClubScreen() {
   const raceFeedItems = useMemo<LeagueRaceFeedItem[]>(() => {
     const items: LeagueRaceFeedItem[] = [];
     const fmtXp = (v: number) => Math.max(0, Math.floor(Number(v) || 0)).toLocaleString();
+    if (weekCountdown.hot) {
+      items.push({ key: 'hot', emoji: '🔥', trend: 'up', text: triLang(lang, {
+        ru: 'Горячие 2 часа: зона вылета получает ×2 XP',
+        uk: 'Спекотні 2 години: зона вильоту отримує ×2 XP',
+        es: '2 horas calientes: la zona de descenso gana ×2 XP',
+        'pt-BR': '2 horas quentes: a zona de queda ganha ×2 XP',
+        vi: '2 giờ nóng: vùng xuống hạng nhận ×2 XP',
+        id: '2 jam panas: zona degradasi dapat ×2 XP',
+        tr: 'Sıcak 2 saat: düşme bölgesi ×2 XP kazanır',
+        pl: 'Gorące 2 godziny: strefa spadku zgarnia ×2 XP',
+      }) });
+    }
     if (myLeagueRank > 1) {
       const ahead = sortedGroup[myLeagueRank - 2];
       if (ahead) {
@@ -1260,7 +1284,7 @@ export default function ClubScreen() {
       }) });
     }
     return items.slice(0, 3);
-  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang]);
+  }, [sortedGroup, myLeagueRank, activeGroupBoost, groupBoostLikeTotal, lang, weekCountdown.hot]);
 
   const hasLeagueCrownForMember = useCallback((member: Pick<GroupMember, 'uid'>): boolean => {
     if (!member.uid) return false;
@@ -1427,10 +1451,14 @@ export default function ClubScreen() {
             <Text style={{ color: monoIcon(themeMode, '#47C870'), fontSize: f.caption, fontWeight: '900' }}>+{leagueBonusPct}% XP</Text>
           </View>
         ) : null}
+        {weekCountdown.hot ? (
+          <LeagueHotHoursChip text={weekCountdown.text} palette={hubPalette} />
+        ) : (
         <View testID="league-week-countdown" style={{ flexDirection: 'row', alignItems: 'center', gap: 5, backgroundColor: weekCountdown.urgent ? 'rgba(255,91,108,0.14)' : 'rgba(255,212,59,0.12)', borderRadius: 999, paddingHorizontal: 10, paddingVertical: 6 }}>
           <Ionicons name="hourglass-outline" size={12} color={weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B')} />
           <Text style={{ color: weekCountdown.urgent ? monoIcon(themeMode, '#FF5B6C') : monoIcon(themeMode, '#FFD43B'), fontSize: f.caption, fontWeight: '900' }}>{weekCountdown.text}</Text>
         </View>
+        )}
       </View>
 
       <BouncyWrap>
@@ -1521,7 +1549,6 @@ export default function ClubScreen() {
               boostTimeLeft={groupBoostTimeLeft}
               onOpenRank={scrollToLeagueRank}
               onChestPress={() => setChestTeaserVisible(true)}
-              onChestPress={() => { void claimLeagueChestReward(); }}
             />
           )}
           {leagueRaceVisible && (

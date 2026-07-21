@@ -5,6 +5,7 @@ import { ensureAnonUser, markCloudSyncPending } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
+import { getLeagueHotHoursMultiplier } from './league_hot_hours';
 import { DebugLogger } from './debug-logger';
 import { addOrUpdateScore, streakMultiplier } from './hall_of_fame_utils';
 import { loadLeagueState } from './league_engine';
@@ -77,6 +78,10 @@ export function normalizeArenaMultipliersFirestore(raw: unknown): MultiplierBrea
     // Старые arena_profiles этих полей не хранят — дефолтим к нейтральным.
     leagueChestM: typeof m.leagueChestM === 'number' ? m.leagueChestM : 1,
     boonXpContribution: typeof m.boonXpContribution === 'number' ? m.boonXpContribution : 0,
+    // Старые arena_profiles без cardM — бонус карточки нейтрален.
+    cardM: typeof m.cardM === 'number' ? m.cardM : 1,
+    // Старые arena_profiles без hotHoursM — горячие часы нейтральны.
+    hotHoursM: typeof m.hotHoursM === 'number' ? m.hotHoursM : 1,
     total: typeof m.total === 'number' ? m.total : 1,
   };
 }
@@ -170,6 +175,17 @@ function sanitizeLocalXpAmount(amount: number): number {
 function sanitizeLocalXpMultiplier(multiplier: number): number {
   if (!Number.isFinite(multiplier)) return 1;
   return Math.max(1, Math.min(MAX_LOCAL_XP_MULTIPLIER, multiplier));
+}
+
+/**
+ * Фаза 1 бонусов карточки: постоянный XP-буст +2% (×1.02) для уровня карточки II+.
+ * Значение зеркалит PROFILE_CARD_XP_BOOST, а ключ — PROFILE_CARD_LEVEL_KEY из
+ * app/profile_card_system.ts — модуль НЕ импортируем сюда, чтобы не поймать цикл
+ * импортов через shards_system/events (паттерн 'streak_count'/'comeback_active').
+ */
+async function readProfileCardXpMultiplier(): Promise<number> {
+  const raw = await storageGetString('profile_card_level');
+  return parseInt(raw || '0') >= 2 ? 1.02 : 1;
 }
 
 function patchProfileXpSnapshot(totalXp: number): void {
@@ -337,6 +353,8 @@ export const registerXP = async (
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
       const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+      // Горячие 2 часа: ×2 для зоны вылета в конце недели (локальный кэш лиги, без сети).
+      const hotHoursM = await getLeagueHotHoursMultiplier();
       const leagueChestM = options?.skipLeagueChestMultiplier
         ? 1
         : await consumeLeagueChestXpOverrideMultiplier();
@@ -345,8 +363,12 @@ export const registerXP = async (
       // Аддитивный вклад в ту же формулу, что и остальные множители.
       const boonXpContribution = boonXpMultiplierContribution();
 
+      // З) Фаза 1: постоянный XP-буст карточки уровня II+ (×1.02) — как остальные
+      // множители, только для заработанного XP (внутри if isEarnedXP).
+      const cardM = await readProfileCardXpMultiplier();
+
       totalMultiplier = sanitizeLocalXpMultiplier(
-        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution,
+        1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1),
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
@@ -356,7 +378,7 @@ export const registerXP = async (
         ensureAnonUser().then((uid: string | null) => {
           if (!uid) return;
           db.collection('arena_profiles').doc(uid).set({
-            multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, total: totalMultiplier, updatedAt: Date.now() },
+            multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, cardM, hotHoursM, total: totalMultiplier, updatedAt: Date.now() },
           }, { merge: true }).catch(() => {});
         }).catch(() => {});
       } catch (e) {
@@ -645,13 +667,16 @@ export const getCurrentMultiplier = async (): Promise<number> => {
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    // Горячие 2 часа: тот же вклад, что registerXP добавляет при начислении.
+    const hotHoursM = await getLeagueHotHoursMultiplier();
     // H13: ранее UI занижал множитель — не учитывал leagueChestM и boonXpContribution,
-    // которые registerXP уже добавляет к финальной формуле. Используем peek (НЕ consume),
     // иначе UI прожжёт одноразовый league chest бонус.
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
     const boonXpContribution = boonXpMultiplierContribution();
+    // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
+    const cardM = await readProfileCardXpMultiplier();
 
-    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
+    return 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
   } catch {
     return 1;
   }
@@ -668,6 +693,10 @@ export interface MultiplierBreakdown {
   leagueChestM: number;
   /** Аддитивный вклад weekly boons (двойной четверг / ранняя пташка). */
   boonXpContribution: number;
+  /** Фаза 1: постоянный XP-буст карточки II+ (×1.02), иначе нейтральная 1. */
+  cardM: number;
+  /** «Горячие 2 часа» лиги: ×2 для зоны вылета в конце недели, иначе 1. */
+  hotHoursM: number;
   total: number;
 }
 
@@ -682,12 +711,15 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
     const leagueGroupBoostM = await getLeagueGroupBoostMultiplier();
+    const hotHoursM = await getLeagueHotHoursMultiplier();
     const leagueChestM = await peekLeagueChestXpOverrideMultiplier();
     const boonXpContribution = boonXpMultiplierContribution();
-    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution;
-    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, total };
+    // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
+    const cardM = await readProfileCardXpMultiplier();
+    const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
+    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, hotHoursM, total };
   } catch {
-    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, total: 1 };
+    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1 };
   }
 };
 

@@ -230,7 +230,10 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     }
 
     const currentBalance = readShardBalance(userSnap.data()?.shards);
-    const reward = config.rewardShards;
+    // Новая экономика (план 2026-07-20, §7): опросы больше не дают монет
+    // (награда — звёзды или отсутствует). Конфиг опроса и его валидация
+    // сохранены; серверная выплата принудительно 0, баланс не меняется.
+    const reward = 0;
     const newBalance = currentBalance + reward;
     const shardsUpdatedAtMs = nowMs;
 

@@ -142,7 +142,7 @@ describe('rollCollectibleDrop', () => {
     }
   });
 
-  test('закрытие реального сета из каталога даёт секретку и 15 осколков', () => {
+  test('закрытие реального сета из каталога даёт секретку, но 0 монет (новая экономика)', () => {
     // Берём реальный set01_animals: все, кроме одной карточки, уже собраны.
     const { COLLECTIBLE_SET_CARD_IDS, COLLECTIBLE_SECRET_BY_SET, COLLECTIBLE_POOL } =
       require('./collectibles_catalog');
@@ -160,7 +160,8 @@ describe('rollCollectibleDrop', () => {
       expect(res.card.id).toBe(missing);
       expect(res.setCompleted).toBe(true);
       expect(res.secretCardId).toBe(COLLECTIBLE_SECRET_BY_SET[setId]);
-      expect(res.bonusShards).toBe(15);
+      // План 2026-07-20 §7: бонус за сет обнулён, секретная карточка сохранена.
+      expect(res.bonusShards).toBe(0);
     }
   });
 

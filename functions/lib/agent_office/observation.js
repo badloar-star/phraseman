@@ -34,6 +34,11 @@ function sourceState(input) {
 /** Converts existing callable health contracts without inferring zero from unavailable data. */
 function normalizeSourceHealth(source, input, observedAtMs) {
     const state = sourceState(input);
+    const count = typeof input.count === 'number'
+        && Number.isSafeInteger(input.count) && input.count >= 0
+        ? input.count
+        : null;
+    const truncated = typeof input.truncated === 'boolean' ? input.truncated : null;
     const sourceObservedAtMs = typeof input.observedAtMs === 'number'
         && Number.isSafeInteger(input.observedAtMs) && input.observedAtMs >= 0
         ? input.observedAtMs
@@ -41,6 +46,8 @@ function normalizeSourceHealth(source, input, observedAtMs) {
     return Object.freeze({
         source: text(source, 'unknown_source', 80),
         state,
+        count,
+        truncated,
         observedAtMs: sourceObservedAtMs,
         insufficientEvidence: !hasSufficientReceipt(input),
     });

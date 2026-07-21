@@ -1,5 +1,6 @@
 export {
   agentOfficeDecideRecommendation,
+  agentOfficeGetAggregateHealth,
   agentOfficeGetCase,
   agentOfficeGetControl,
   agentOfficeListAuditEvents,

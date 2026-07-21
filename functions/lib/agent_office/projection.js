@@ -1,18 +1,73 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.projectAgentAggregateHealth = projectAgentAggregateHealth;
 exports.projectAgentCase = projectAgentCase;
 exports.projectAgentRecommendation = projectAgentRecommendation;
 exports.projectAgentTask = projectAgentTask;
 exports.projectAgentAuditEvent = projectAgentAuditEvent;
 exports.projectAgentOfficeControl = projectAgentOfficeControl;
+const https_1 = require("firebase-functions/v2/https");
 const contracts_1 = require("./contracts");
 const REDACTED_OPAQUE_REF = `redacted:sha256:${'0'.repeat(64)}`;
+const AGGREGATE_HEALTH_SOURCES = ['analytics', 'reports', 'audit'];
+const AGGREGATE_HEALTH_STATES = ['ready', 'empty', 'error', 'truncated'];
 function redactText(value) {
     if (typeof value !== 'string')
         return value;
     return value
         .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[redacted-email]')
         .replace(/\+?\d[\d\s().-]{7,}\d/g, '[redacted-phone]');
+}
+function invalidAggregateHealth(reason) {
+    throw new https_1.HttpsError('data-loss', `Agent Office aggregate health is unavailable: ${reason}`);
+}
+/**
+ * Closed projection for aggregate Add-to-Plan hydration. The observation
+ * receipt may contain internal fields, but this boundary emits only exact,
+ * allowlisted source-health tuples in canonical source order.
+ */
+function projectAgentAggregateHealth(raw) {
+    if (!Array.isArray(raw.sourceHealth) || raw.sourceHealth.length !== AGGREGATE_HEALTH_SOURCES.length) {
+        invalidAggregateHealth('exact source-health set required');
+    }
+    const bySource = new Map();
+    for (const candidate of raw.sourceHealth) {
+        if (!(0, contracts_1.isRecord)(candidate))
+            invalidAggregateHealth('source-health tuple required');
+        const source = candidate.source;
+        if (typeof source !== 'string'
+            || !AGGREGATE_HEALTH_SOURCES.includes(source)
+            || bySource.has(source)) {
+            invalidAggregateHealth('unique allowlisted source required');
+        }
+        const state = candidate.state;
+        if (typeof state !== 'string' || !AGGREGATE_HEALTH_STATES.includes(state)) {
+            invalidAggregateHealth('allowlisted state required');
+        }
+        const count = candidate.count;
+        if (typeof count !== 'number' || !Number.isSafeInteger(count) || count < 0) {
+            invalidAggregateHealth('non-negative safe count required');
+        }
+        const truncated = candidate.truncated;
+        if (typeof truncated !== 'boolean' || (state === 'truncated') !== truncated) {
+            invalidAggregateHealth('explicit coherent truncation receipt required');
+        }
+        const observedAtMs = candidate.observedAtMs;
+        if (typeof observedAtMs !== 'number' || !Number.isSafeInteger(observedAtMs) || observedAtMs <= 0) {
+            invalidAggregateHealth('positive safe observation timestamp required');
+        }
+        bySource.set(source, Object.freeze({
+            source: source,
+            state: state,
+            count,
+            truncated,
+            observedAtMs,
+        }));
+    }
+    if (!AGGREGATE_HEALTH_SOURCES.every((source) => bySource.has(source))) {
+        invalidAggregateHealth('exact source-health set required');
+    }
+    return Object.freeze(AGGREGATE_HEALTH_SOURCES.map((source) => bySource.get(source)));
 }
 function projectAgentCase(id, raw) {
     const confidence = raw.confidence;

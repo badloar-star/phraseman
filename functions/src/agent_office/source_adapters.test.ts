@@ -201,9 +201,9 @@ describe('Agent Office trusted internal source adapters', () => {
     );
 
     expect(result.receipt.sourceHealth).toEqual([
-      { source: 'analytics', state: 'ready', observedAtMs: 2_700 },
-      { source: 'reports', state: 'ready', observedAtMs: 2_800 },
-      { source: 'audit', state: 'empty', observedAtMs: 2_900 },
+      { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 2_700 },
+      { source: 'reports', state: 'ready', count: 3, truncated: false, observedAtMs: 2_800 },
+      { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 2_900 },
     ]);
   });
 
@@ -226,7 +226,15 @@ describe('Agent Office trusted internal source adapters', () => {
     expect(result.receipt).toMatchObject({
       outcome: 'no_action',
       reason: 'no_observation',
-      sourceHealth: expect.arrayContaining([{ source: 'reports', state: 'empty', observedAtMs: 2_000 }]),
+      sourceHealth: expect.arrayContaining([
+        expect.objectContaining({
+          source: 'reports',
+          state: 'empty',
+          count: 0,
+          truncated: false,
+          observedAtMs: 2_000,
+        }),
+      ]),
     });
   });
 

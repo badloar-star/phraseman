@@ -15,7 +15,12 @@ describe('Agent Office W2 observation adapters', () => {
     ['truncated', { state: 'ready', count: 100, truncated: true }, 'truncated', true],
   ])('preserves %s source state without converting it into a zero', (_name, input, state, insufficient) => {
     expect(normalizeSourceHealth('reports', input, 2_000)).toEqual({
-      source: 'reports', state, observedAtMs: 2_000, insufficientEvidence: insufficient,
+      source: 'reports',
+      state,
+      count: input.count,
+      truncated: typeof input.truncated === 'boolean' ? input.truncated : null,
+      observedAtMs: 2_000,
+      insufficientEvidence: insufficient,
     });
   });
 
@@ -45,9 +50,9 @@ describe('Agent Office W2 observation adapters', () => {
     });
 
     expect(observation.sourceHealth).toEqual([
-      { source: 'analytics', state: 'ready', observedAtMs: 4_700, insufficientEvidence: false },
-      { source: 'reports', state: 'empty', observedAtMs: 4_800, insufficientEvidence: false },
-      { source: 'audit', state: 'empty', observedAtMs: 4_900, insufficientEvidence: false },
+      { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 4_700, insufficientEvidence: false },
+      { source: 'reports', state: 'empty', count: 0, truncated: false, observedAtMs: 4_800, insufficientEvidence: false },
+      { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 4_900, insufficientEvidence: false },
     ]);
     expect(observation.evidenceSufficient).toBe(true);
   });

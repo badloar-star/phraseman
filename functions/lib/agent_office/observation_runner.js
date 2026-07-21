@@ -67,6 +67,8 @@ async function runAgentOfficeObservation(repository, input, now = Date.now) {
             sourceHealth: Object.freeze(observation.sourceHealth.map((source) => Object.freeze({
                 source: source.source,
                 state: source.state,
+                count: source.count,
+                truncated: source.truncated,
                 observedAtMs: source.observedAtMs,
             }))),
             draft: draftAllowed && recommendation ? Object.freeze({

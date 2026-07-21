@@ -147,9 +147,9 @@ describe('Agent Office internal observation runner', () => {
     const result = await runner.runAgentOfficeObservation(repository, sufficientInput(), () => 3_000);
 
     expect(result.receipt.sourceHealth).toEqual([
-      { source: 'analytics', state: 'ready', observedAtMs: 1_700 },
-      { source: 'reports', state: 'ready', observedAtMs: 1_800 },
-      { source: 'audit', state: 'empty', observedAtMs: 1_900 },
+      { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 1_700 },
+      { source: 'reports', state: 'ready', count: 3, truncated: false, observedAtMs: 1_800 },
+      { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1_900 },
     ]);
   });
 

@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.agentOfficeTelegramWebhook = exports.AGENT_OFFICE_TELEGRAM_ENABLED = exports.AGENT_OFFICE_TELEGRAM_CONFIG = exports.agentOfficeSetKillSwitch = exports.agentOfficeListTasks = exports.agentOfficeListRecommendations = exports.agentOfficeListCases = exports.agentOfficeListAuditEvents = exports.agentOfficeGetControl = exports.agentOfficeGetCase = exports.agentOfficeDecideRecommendation = void 0;
+exports.agentOfficeTelegramWebhook = exports.AGENT_OFFICE_TELEGRAM_ENABLED = exports.AGENT_OFFICE_TELEGRAM_CONFIG = exports.agentOfficeSetKillSwitch = exports.agentOfficeListTasks = exports.agentOfficeListRecommendations = exports.agentOfficeListCases = exports.agentOfficeListAuditEvents = exports.agentOfficeGetControl = exports.agentOfficeGetCase = exports.agentOfficeGetAggregateHealth = exports.agentOfficeDecideRecommendation = void 0;
 var callables_1 = require("./callables");
 Object.defineProperty(exports, "agentOfficeDecideRecommendation", { enumerable: true, get: function () { return callables_1.agentOfficeDecideRecommendation; } });
+Object.defineProperty(exports, "agentOfficeGetAggregateHealth", { enumerable: true, get: function () { return callables_1.agentOfficeGetAggregateHealth; } });
 Object.defineProperty(exports, "agentOfficeGetCase", { enumerable: true, get: function () { return callables_1.agentOfficeGetCase; } });
 Object.defineProperty(exports, "agentOfficeGetControl", { enumerable: true, get: function () { return callables_1.agentOfficeGetControl; } });
 Object.defineProperty(exports, "agentOfficeListAuditEvents", { enumerable: true, get: function () { return callables_1.agentOfficeListAuditEvents; } });

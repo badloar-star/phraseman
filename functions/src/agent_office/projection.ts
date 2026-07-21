@@ -1,4 +1,6 @@
+import { HttpsError } from 'firebase-functions/v2/https';
 import {
+  isRecord,
   isSafeOpaqueRef,
   parseAgentAuditEvent,
   parseAgentCase,
@@ -14,6 +16,18 @@ import {
 
 type Row = Record<string, unknown>;
 const REDACTED_OPAQUE_REF = `redacted:sha256:${'0'.repeat(64)}`;
+const AGGREGATE_HEALTH_SOURCES = ['analytics', 'reports', 'audit'] as const;
+const AGGREGATE_HEALTH_STATES = ['ready', 'empty', 'error', 'truncated'] as const;
+
+export type AgentAggregateHealthSource = (typeof AGGREGATE_HEALTH_SOURCES)[number];
+export type AgentAggregateHealthState = (typeof AGGREGATE_HEALTH_STATES)[number];
+export type AgentAggregateHealthItem = Readonly<{
+  source: AgentAggregateHealthSource;
+  state: AgentAggregateHealthState;
+  count: number;
+  truncated: boolean;
+  observedAtMs: number;
+}>;
 
 export type SafeAgentRecommendation = Omit<AgentRecommendation, 'evidence'> & Readonly<{
   evidence: readonly Readonly<{
@@ -28,6 +42,58 @@ function redactText(value: unknown): unknown {
   return value
     .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[redacted-email]')
     .replace(/\+?\d[\d\s().-]{7,}\d/g, '[redacted-phone]');
+}
+
+function invalidAggregateHealth(reason: string): never {
+  throw new HttpsError('data-loss', `Agent Office aggregate health is unavailable: ${reason}`);
+}
+
+/**
+ * Closed projection for aggregate Add-to-Plan hydration. The observation
+ * receipt may contain internal fields, but this boundary emits only exact,
+ * allowlisted source-health tuples in canonical source order.
+ */
+export function projectAgentAggregateHealth(raw: Row): readonly AgentAggregateHealthItem[] {
+  if (!Array.isArray(raw.sourceHealth) || raw.sourceHealth.length !== AGGREGATE_HEALTH_SOURCES.length) {
+    invalidAggregateHealth('exact source-health set required');
+  }
+  const bySource = new Map<AgentAggregateHealthSource, AgentAggregateHealthItem>();
+  for (const candidate of raw.sourceHealth) {
+    if (!isRecord(candidate)) invalidAggregateHealth('source-health tuple required');
+    const source = candidate.source;
+    if (typeof source !== 'string'
+      || !(AGGREGATE_HEALTH_SOURCES as readonly string[]).includes(source)
+      || bySource.has(source as AgentAggregateHealthSource)) {
+      invalidAggregateHealth('unique allowlisted source required');
+    }
+    const state = candidate.state;
+    if (typeof state !== 'string' || !(AGGREGATE_HEALTH_STATES as readonly string[]).includes(state)) {
+      invalidAggregateHealth('allowlisted state required');
+    }
+    const count = candidate.count;
+    if (typeof count !== 'number' || !Number.isSafeInteger(count) || count < 0) {
+      invalidAggregateHealth('non-negative safe count required');
+    }
+    const truncated = candidate.truncated;
+    if (typeof truncated !== 'boolean' || (state === 'truncated') !== truncated) {
+      invalidAggregateHealth('explicit coherent truncation receipt required');
+    }
+    const observedAtMs = candidate.observedAtMs;
+    if (typeof observedAtMs !== 'number' || !Number.isSafeInteger(observedAtMs) || observedAtMs <= 0) {
+      invalidAggregateHealth('positive safe observation timestamp required');
+    }
+    bySource.set(source as AgentAggregateHealthSource, Object.freeze({
+      source: source as AgentAggregateHealthSource,
+      state: state as AgentAggregateHealthState,
+      count,
+      truncated,
+      observedAtMs,
+    }));
+  }
+  if (!AGGREGATE_HEALTH_SOURCES.every((source) => bySource.has(source))) {
+    invalidAggregateHealth('exact source-health set required');
+  }
+  return Object.freeze(AGGREGATE_HEALTH_SOURCES.map((source) => bySource.get(source)!));
 }
 
 export function projectAgentCase(id: string, raw: Row): AgentCase {

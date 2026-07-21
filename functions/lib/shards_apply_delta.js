@@ -13,13 +13,12 @@
 // Фикс: единственная точка записи баланса — этот callable под Admin SDK
 // (обходит rules), внутри runTransaction. Идемпотентность по opId
 // (клиентский uuid операции) — повтор при ретрае/офлайн-очереди не удваивает
-// дельту. Маркер: users/{uid}/reward_claims/shard_op_{opId}.
+// дельту. Маркер: users/{uid}/shard_operation_receipts/{opId}.
 //
-// Объём (решение владельца 2026-07-04): «атомарность + идемпотентность». Сумму
-// по-прежнему считает клиент (как и раньше) — сервер её НЕ ревалидирует по
-// каталогу наград. Анти-фарм здесь ограничен санити-капом на earn: тампер-
-// клиент не сможет прислать delta:99999 одним вызовом. Полная серверная
-// валидация наград по reason — отдельный проект (не входит в K3).
+// P0-B1 (2026-07-18): earn принимается только по серверному каталогу
+// reason + amount. В той же транзакции расходуется ограниченный суточный
+// бюджет владельца: отдельно по источнику и общий. Spend остаётся без такого
+// ограничения, потому что только уменьшает баланс.
 // ═══════════════════════════════════════════════════════════════════════════
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -57,19 +56,20 @@ var __importStar = (this && this.__importStar) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.shardsApplyDelta = void 0;
 exports.validateShardsApplyDeltaInput = validateShardsApplyDeltaInput;
+exports.shardOwnerMatchesResolvedIdentity = shardOwnerMatchesResolvedIdentity;
+exports.shardReceiptMatchesOperation = shardReceiptMatchesOperation;
+exports.shardTransactionOwnerMatchesIdentity = shardTransactionOwnerMatchesIdentity;
 exports.computeShardsDeltaOutcome = computeShardsDeltaOutcome;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
-const REWARD_CLAIMS_COLLECTION = 'reward_claims';
-const OP_ID_RE = /^[A-Za-z0-9_-]{8,80}$/;
+const shard_reward_catalog_1 = require("./shard_reward_catalog");
+const account_delete_job_1 = require("./account_delete_job");
+const SHARD_OPERATION_RECEIPTS_COLLECTION = 'shard_operation_receipts';
+const AUTH_LINKS_COLLECTION = 'auth_links';
+const OP_ID_RE = /^[A-Za-z0-9_:-]{8,80}$/;
 const REASON_MAX_LEN = 64;
-// Санити-кап на ОДНУ earn-операцию. Крупнейшее легальное разовое начисление —
-// покупка осколков в магазине (пакеты) + арена-пропуск; берём заведомо больший
-// потолок, чтобы не резать легальные пути, но отсечь delta:99999 от тампера.
-// Списание (spend) не капим: оно только уменьшает баланс, фарма не даёт.
-const MAX_EARN_DELTA_PER_OP = 5000;
 function readShardBalance(value) {
     const n = Math.trunc(Number(value));
     return Number.isFinite(n) && n >= 0 ? n : 0;
@@ -86,30 +86,63 @@ function validateShardsApplyDeltaInput(data) {
     const d = (data ?? {});
     const opId = typeof d.opId === 'string' ? d.opId : '';
     if (!OP_ID_RE.test(opId)) {
-        return { ok: false, message: 'opId must match [A-Za-z0-9_-]{8,80}' };
+        return { ok: false, message: 'opId must match [A-Za-z0-9_:-]{8,80}' };
+    }
+    const ownerStableId = typeof d.ownerStableId === 'string' ? d.ownerStableId : '';
+    if (!ownerStableId
+        || ownerStableId !== ownerStableId.trim()
+        || ownerStableId.length > 200
+        || /[\/\s]/.test(ownerStableId)) {
+        return { ok: false, message: 'ownerStableId is required' };
     }
     const type = d.type;
     if (type !== 'earn' && type !== 'spend') {
         return { ok: false, message: "type must be 'earn' or 'spend'" };
     }
-    const deltaRaw = Math.trunc(Number(d.delta));
-    if (!Number.isFinite(deltaRaw) || deltaRaw <= 0) {
+    const deltaRaw = d.delta;
+    if (typeof deltaRaw !== 'number' || !Number.isSafeInteger(deltaRaw) || deltaRaw <= 0) {
         return { ok: false, message: 'delta must be a positive integer (magnitude)' };
     }
-    if (type === 'earn' && deltaRaw > MAX_EARN_DELTA_PER_OP) {
-        return { ok: false, message: `earn delta exceeds per-op cap (${MAX_EARN_DELTA_PER_OP})` };
+    const reason = typeof d.reason === 'string' ? d.reason : '';
+    if (!reason || reason !== reason.trim() || reason.length > REASON_MAX_LEN) {
+        return { ok: false, message: `reason must be 1-${REASON_MAX_LEN} trimmed characters` };
     }
-    const reason = typeof d.reason === 'string' ? d.reason.trim().slice(0, REASON_MAX_LEN) : '';
+    if (type === 'earn' && (0, shard_reward_catalog_1.resolveShardEarnPolicy)(reason, deltaRaw) === null) {
+        return { ok: false, message: 'earn reason/amount is not in the server catalog' };
+    }
     return {
         ok: true,
-        value: { opId, delta: deltaRaw, type, reason: reason || 'unknown' },
+        value: { opId, ownerStableId, delta: deltaRaw, type, reason },
     };
+}
+function shardOwnerMatchesResolvedIdentity(resolvedStableId, ownerStableId) {
+    return typeof resolvedStableId === 'string'
+        && resolvedStableId.length > 0
+        && resolvedStableId === ownerStableId;
+}
+function shardReceiptMatchesOperation(receiptData, operation) {
+    const receipt = (receiptData ?? {});
+    return receipt.opId === operation.opId
+        && receipt.type === operation.type
+        && receipt.reason === operation.reason
+        && receipt.delta === operation.signedDelta;
+}
+function shardTransactionOwnerMatchesIdentity(input) {
+    if (!input.ownerUserExists)
+        return false;
+    if (input.authLinkExists) {
+        return typeof input.authLinkStableId === 'string'
+            && input.authLinkStableId === input.ownerStableId;
+    }
+    return input.ownerStableId === input.authUid
+        || (typeof input.ownerUserFirebaseAuthUid === 'string'
+            && input.ownerUserFirebaseAuthUid === input.authUid);
 }
 /**
  * Чистое ядро транзакции — вычисляет исход по текущему состоянию. Экспортируется
  * для юнит-тестов (идемпотентность / spend-guard) без Firestore-харнесса.
  *
- * @param claimExists   маркер reward_claims/shard_op_{opId} уже записан?
+ * @param claimExists   серверный receipt shard_operation_receipts/{opId} уже записан?
  * @param currentBalance текущий серверный баланс.
  * @param signedDelta    дельта со знаком (earn: +, spend: −).
  */
@@ -141,20 +174,76 @@ exports.shardsApplyDelta = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_O
     if (!validated.ok) {
         throw new https_1.HttpsError('invalid-argument', validated.message);
     }
-    const { opId, delta, type, reason } = validated.value;
+    const { opId, ownerStableId, delta, type, reason } = validated.value;
+    const earnPolicy = type === 'earn' ? (0, shard_reward_catalog_1.resolveShardEarnPolicy)(reason, delta) : null;
+    if (type === 'earn' && earnPolicy === null) {
+        throw new https_1.HttpsError('invalid-argument', 'earn reason/amount is not in the server catalog');
+    }
     const db = admin.firestore();
     // Тот же документ, под которым клиент хранит осколки (getCanonicalUserId ===
     // stableId). Без проброса stableId сервер для юзеров с релинком (анон→Google,
     // мердж) писал бы в ДРУГОЙ документ — см. коммент в daily_tasks_shards.ts.
-    const uid = await (0, auth_identity_1.resolveStableUidForAuth)(db, request.auth.uid, request.data?.stableId);
+    const authUid = request.auth.uid;
+    const resolvedStableId = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, undefined, { repairLinks: false, requireKnownIdentity: true });
+    if (!shardOwnerMatchesResolvedIdentity(resolvedStableId, ownerStableId)) {
+        throw new https_1.HttpsError('permission-denied', 'Shard operation owner mismatch');
+    }
+    const uid = ownerStableId;
     const userRef = db.collection('users').doc(uid);
-    const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(`shard_op_${opId}`);
-    const signedDelta = type === 'earn' ? delta : -delta;
+    const receiptRef = userRef.collection(SHARD_OPERATION_RECEIPTS_COLLECTION).doc(opId);
+    const earnDayKey = (0, shard_reward_catalog_1.utcShardEarnDayKey)(Date.now());
+    const earnCounterRef = userRef
+        .collection(shard_reward_catalog_1.SHARD_EARN_DAILY_COUNTERS_COLLECTION)
+        .doc(earnDayKey);
+    const authLinkRef = db.collection(AUTH_LINKS_COLLECTION).doc(authUid);
+    const authMarkerRef = db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+    const tombstoneRef = db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(uid);
+    // Earn amount comes from the server policy after the client value has been
+    // matched exactly. Spend deliberately keeps its existing client magnitude.
+    const signedDelta = earnPolicy?.amount ?? -delta;
     const result = await db.runTransaction(async (tx) => {
-        const [claimSnap, userSnap] = await Promise.all([tx.get(claimRef), tx.get(userRef)]);
+        const [authMarkerSnap, tombstoneSnap, authLinkSnap, receiptSnap, userSnap,] = await Promise.all([
+            tx.get(authMarkerRef),
+            tx.get(tombstoneRef),
+            tx.get(authLinkRef),
+            tx.get(receiptRef),
+            tx.get(userRef),
+        ]);
+        if (authMarkerSnap.exists || tombstoneSnap.exists) {
+            throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+        }
+        if (!shardTransactionOwnerMatchesIdentity({
+            authUid,
+            ownerStableId,
+            authLinkExists: authLinkSnap.exists,
+            authLinkStableId: authLinkSnap.data()?.stable_id,
+            ownerUserExists: userSnap.exists,
+            ownerUserFirebaseAuthUid: userSnap.data()?.firebaseAuthUid,
+        })) {
+            throw new https_1.HttpsError('permission-denied', 'Shard operation owner changed');
+        }
         const currentBalance = readShardBalance(userSnap.data()?.shards);
         const prevUpdatedAtMs = readUpdatedAtMs(userSnap.data()?.shards_updated_at_ms);
-        const outcome = computeShardsDeltaOutcome(claimSnap.exists, currentBalance, signedDelta);
+        if (receiptSnap.exists
+            && !shardReceiptMatchesOperation(receiptSnap.data(), {
+                opId,
+                type,
+                reason,
+                signedDelta,
+            })) {
+            throw new https_1.HttpsError('failed-precondition', 'shard_operation_conflict');
+        }
+        if (receiptSnap.exists) {
+            const replayOutcome = computeShardsDeltaOutcome(true, currentBalance, signedDelta);
+            return {
+                ok: true,
+                alreadyApplied: replayOutcome.alreadyApplied,
+                insufficient: false,
+                balance: replayOutcome.balance,
+                shardsUpdatedAtMs: prevUpdatedAtMs,
+            };
+        }
+        const outcome = computeShardsDeltaOutcome(false, currentBalance, signedDelta);
         if (!outcome.write) {
             // Идемпотентный повтор (alreadyApplied) ИЛИ spend без средств (insufficient):
             // ничего не пишем — ни маркер, ни баланс.
@@ -166,8 +255,18 @@ exports.shardsApplyDelta = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_O
                 shardsUpdatedAtMs: prevUpdatedAtMs,
             };
         }
+        let nextEarnCounter = null;
+        if (earnPolicy !== null) {
+            const earnCounterSnap = await tx.get(earnCounterRef);
+            const currentEarnCounter = (0, shard_reward_catalog_1.normalizeShardEarnDailyCounter)(earnDayKey, earnCounterSnap.data());
+            const budget = (0, shard_reward_catalog_1.applyShardEarnBudget)(currentEarnCounter, earnPolicy, false);
+            if (!budget.allowed) {
+                throw new https_1.HttpsError('resource-exhausted', 'shard_earn_daily_limit');
+            }
+            nextEarnCounter = budget.counter;
+        }
         const shardsUpdatedAtMs = Date.now();
-        tx.set(claimRef, {
+        tx.set(receiptRef, {
             source: 'shards_apply_delta',
             opId,
             type,
@@ -176,6 +275,14 @@ exports.shardsApplyDelta = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_O
             balanceAfter: outcome.balance,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
         });
+        if (nextEarnCounter !== null) {
+            tx.set(earnCounterRef, {
+                dayKey: nextEarnCounter.dayKey,
+                totalEarned: nextEarnCounter.totalEarned,
+                bySource: nextEarnCounter.bySource,
+                updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            });
+        }
         tx.set(userRef, {
             shards: outcome.balance,
             shards_updated_at_ms: shardsUpdatedAtMs,

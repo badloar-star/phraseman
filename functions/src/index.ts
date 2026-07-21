@@ -116,6 +116,16 @@ const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDel
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  getCoinExchangeQuote,
+  getCoinExchangeHistory,
+  exchangeCoinsForStars,
+  adminSetCoinExchangeRate,
+  recalcCoinExchangeRate,
+  adminGetCoinExchangeCenter,
+  claimCoinMigration,
+} = require('./coin_exchange');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
@@ -224,6 +234,13 @@ exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
 exports.shardsApplyDelta = shardsApplyDelta;
+exports.getCoinExchangeQuote = getCoinExchangeQuote;
+exports.getCoinExchangeHistory = getCoinExchangeHistory;
+exports.exchangeCoinsForStars = exchangeCoinsForStars;
+exports.adminSetCoinExchangeRate = adminSetCoinExchangeRate;
+exports.recalcCoinExchangeRate = recalcCoinExchangeRate;
+exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
+exports.claimCoinMigration = claimCoinMigration;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminDecideUserIdea = adminDecideUserIdea;
@@ -362,12 +379,16 @@ export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
 export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 export { adminGetAnalyticsSnapshot } from './admin_analytics';
 export { adminGetAnalyticsTrends } from './admin_analytics_trends';
+export { adminGetDirectorDigest } from './admin_director_digest';
+export { adminGenerateDirectorDigestAudio } from './admin_director_digest_audio';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
 export { adminExportReportDocuments, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
+export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
 export {
   agentOfficeDecideRecommendation,
+  agentOfficeGetAggregateHealth,
   agentOfficeGetCase,
   agentOfficeGetControl,
   agentOfficeListAuditEvents,
@@ -397,6 +418,8 @@ export {
   agentManagerTransitionTask,
 } from './agent_manager';
 export { adminGetRemoteConfigWorkspace, adminPublishRemoteConfig } from './admin_remote_config';
+export { adminGetPaywallAbWorkspace, adminPublishPaywallAb } from './admin_paywall_ab';
+export { adminGetPaywallVariantStats } from './admin_paywall_variant_stats';
 export {
   adminListAppMessages,
   adminCreateAppMessage,
@@ -440,3 +463,14 @@ export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
 export { webLeadCapture, webLeadNudgeCron } from './web_leads';
+
+// ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
+export {
+  tournamentCreateRooms,
+  tournamentJoin,
+  tournamentFillBots,
+  tournamentSubmitAnswers,
+  tournamentFinalize,
+  tournamentClaimReward,
+} from './tournaments';
+export { adminSeedBotProfiles } from './tournament_bots';

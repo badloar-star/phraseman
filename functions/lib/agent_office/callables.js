@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.agentOfficeSetKillSwitch = exports.agentOfficeGetControl = exports.agentOfficeListAuditEvents = exports.agentOfficeListTasks = exports.agentOfficeDecideRecommendation = exports.agentOfficeListRecommendations = exports.agentOfficeGetCase = exports.agentOfficeListCases = void 0;
+exports.agentOfficeSetKillSwitch = exports.agentOfficeGetControl = exports.agentOfficeListAuditEvents = exports.agentOfficeListTasks = exports.agentOfficeDecideRecommendation = exports.agentOfficeListRecommendations = exports.agentOfficeGetAggregateHealth = exports.agentOfficeGetCase = exports.agentOfficeListCases = void 0;
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("../callable_options");
@@ -55,6 +55,7 @@ function auth(request) {
 }
 exports.agentOfficeListCases = (0, https_1.onCall)(OPTIONS, async (request) => ledger().listCases(auth(request), request.data));
 exports.agentOfficeGetCase = (0, https_1.onCall)(OPTIONS, async (request) => ledger().getCase(auth(request), request.data));
+exports.agentOfficeGetAggregateHealth = (0, https_1.onCall)(OPTIONS, async (request) => ledger().getAggregateHealth(auth(request)));
 exports.agentOfficeListRecommendations = (0, https_1.onCall)(OPTIONS, async (request) => ledger().listRecommendations(auth(request), request.data));
 exports.agentOfficeDecideRecommendation = (0, https_1.onCall)(OPTIONS, async (request) => ledger().decideRecommendation(auth(request), request.data));
 exports.agentOfficeListTasks = (0, https_1.onCall)(OPTIONS, async (request) => ledger().listTasks(auth(request), request.data));

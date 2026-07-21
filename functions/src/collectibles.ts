@@ -64,7 +64,9 @@ export const COLLECTIBLES_DROP_DEFAULTS: CollectiblesDropConfig = {
   dailyAttemptCap: 24,
   pityEpicAt: 15,
   pityLegendaryAt: 35,
-  setBonusShards: 15,
+  // Новая экономика (план 2026-07-20, §7): бонус за сбор сета не даёт монет.
+  // Поле конфига сохранено (мёртвая структура); gameplay-начисление = 0.
+  setBonusShards: 0,
 };
 
 // Активности без дропа вовсе (произношение / диалог с Компасом): шанс = 0.

@@ -126,9 +126,9 @@ describe('Agent Office internal observation runner', () => {
         repository.seed('agent_office_control/global', VALID_CONTROL);
         const result = await runner.runAgentOfficeObservation(repository, sufficientInput(), () => 3000);
         expect(result.receipt.sourceHealth).toEqual([
-            { source: 'analytics', state: 'ready', observedAtMs: 1700 },
-            { source: 'reports', state: 'ready', observedAtMs: 1800 },
-            { source: 'audit', state: 'empty', observedAtMs: 1900 },
+            { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 1700 },
+            { source: 'reports', state: 'ready', count: 3, truncated: false, observedAtMs: 1800 },
+            { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1900 },
         ]);
     });
     test.each([

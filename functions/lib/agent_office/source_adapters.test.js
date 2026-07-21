@@ -199,9 +199,9 @@ describe('Agent Office trusted internal source adapters', () => {
         audit.fetchedAtMs = 2900;
         const result = await adapters.runAgentOfficeObservationFromInternalSources(repo, collectors({ analytics, reports, audit }), () => 3000);
         expect(result.receipt.sourceHealth).toEqual([
-            { source: 'analytics', state: 'ready', observedAtMs: 2700 },
-            { source: 'reports', state: 'ready', observedAtMs: 2800 },
-            { source: 'audit', state: 'empty', observedAtMs: 2900 },
+            { source: 'analytics', state: 'ready', count: 1, truncated: false, observedAtMs: 2700 },
+            { source: 'reports', state: 'ready', count: 3, truncated: false, observedAtMs: 2800 },
+            { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 2900 },
         ]);
     });
     test('accepts the report center complete-empty shape and derives an empty receipt', async () => {
@@ -222,7 +222,15 @@ describe('Agent Office trusted internal source adapters', () => {
         expect(result.receipt).toMatchObject({
             outcome: 'no_action',
             reason: 'no_observation',
-            sourceHealth: expect.arrayContaining([{ source: 'reports', state: 'empty', observedAtMs: 2000 }]),
+            sourceHealth: expect.arrayContaining([
+                expect.objectContaining({
+                    source: 'reports',
+                    state: 'empty',
+                    count: 0,
+                    truncated: false,
+                    observedAtMs: 2000,
+                }),
+            ]),
         });
     });
     test.each([

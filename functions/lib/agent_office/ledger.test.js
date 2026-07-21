@@ -399,5 +399,61 @@ describe('Agent Office safe list/get ledger', () => {
         expect(second.items.map((item) => item.caseId)).toEqual(['case-3']);
         expect(second.nextCursor).toBeNull();
     });
+    test('returns the latest aggregate health only to an owner with briefing access', async () => {
+        const repo = new MemoryRepository();
+        repo.seed('agent_observation_receipts/older', {
+            observedAtMs: 1000,
+            sourceHealth: [
+                { source: 'analytics', state: 'empty', count: 0, truncated: false, observedAtMs: 900 },
+                { source: 'reports', state: 'empty', count: 0, truncated: false, observedAtMs: 900 },
+                { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 900 },
+            ],
+        });
+        repo.seed('agent_observation_receipts/latest-private-id', {
+            observedAtMs: 2000,
+            caseId: 'case-private',
+            recommendationId: 'recommendation-private',
+            actorUid: 'owner-private-uid',
+            summary: 'private prose private@example.com',
+            evidence: [{ sourceRef: SAFE_SOURCE_REF }],
+            sourceHealth: [
+                { source: 'reports', state: 'ready', count: 4, truncated: false, observedAtMs: 1800 },
+                { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1900 },
+                { source: 'analytics', state: 'ready', count: 6, truncated: false, observedAtMs: 1700 },
+            ],
+        });
+        const ledger = new ledger_1.AgentOfficeLedger(repo, () => 3000);
+        const result = await ledger.getAggregateHealth(OWNER);
+        expect(result).toEqual({
+            ok: true,
+            items: [
+                { source: 'analytics', state: 'ready', count: 6, truncated: false, observedAtMs: 1700 },
+                { source: 'reports', state: 'ready', count: 4, truncated: false, observedAtMs: 1800 },
+                { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1900 },
+            ],
+        });
+        expect(JSON.stringify(result)).not.toMatch(/caseId|recommendationId|sourceRef|uid|email|summary|prose|evidence|private/i);
+    });
+    test.each([
+        ['missing admin claim', { uid: 'owner-uid', token: { adminRole: 'owner' } }],
+        ['non-owner with briefing.read', { uid: 'analyst-uid', token: { admin: true, adminRole: 'analyst' } }],
+    ])('rejects aggregate-health reads for %s', async (_label, caller) => {
+        const repo = new MemoryRepository();
+        const ledger = new ledger_1.AgentOfficeLedger(repo);
+        await expect(ledger.getAggregateHealth(caller)).rejects.toMatchObject({ code: 'permission-denied' });
+    });
+    test('fails closed when the latest aggregate-health receipt lacks counts', async () => {
+        const repo = new MemoryRepository();
+        repo.seed('agent_observation_receipts/latest', {
+            observedAtMs: 2000,
+            sourceHealth: [
+                { source: 'analytics', state: 'ready', truncated: false, observedAtMs: 1700 },
+                { source: 'reports', state: 'ready', count: 4, truncated: false, observedAtMs: 1800 },
+                { source: 'audit', state: 'empty', count: 0, truncated: false, observedAtMs: 1900 },
+            ],
+        });
+        const ledger = new ledger_1.AgentOfficeLedger(repo);
+        await expect(ledger.getAggregateHealth(OWNER)).rejects.toBeInstanceOf(https_1.HttpsError);
+    });
 });
 //# sourceMappingURL=ledger.test.js.map

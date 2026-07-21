@@ -58,7 +58,10 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const DAY_KEY_RE = /^\d{4}-\d{2}-\d{2}$/;
-const DAILY_TASKS_SHARD_AMOUNT = 1;
+// Новая экономика (план 2026-07-20, §7): «все 3 дневных задания» больше не
+// даёт монет — награда переехала в звёзды. Callable и claim-маркер сохранены
+// (мёртвый, но безвредный путь): claim пишет amount 0 и не меняет баланс.
+const DAILY_TASKS_SHARD_AMOUNT = 0;
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 const DAY_MS = 24 * 60 * 60 * 1000;
 function readShardBalance(value) {

@@ -30,6 +30,7 @@ import {
 } from './contracts';
 import {
   projectAgentAuditEvent,
+  projectAgentAggregateHealth,
   projectAgentCase,
   projectAgentOfficeControl,
   projectAgentRecommendation,
@@ -52,8 +53,8 @@ export interface AgentOfficeCursor {
 }
 
 export interface AgentOfficeQuery {
-  readonly collection: 'agent_cases' | 'agent_recommendations' | 'agent_tasks' | 'agent_audit_events';
-  readonly orderBy: 'updatedAtMs' | 'revision' | 'createdAtMs' | 'occurredAtMs';
+  readonly collection: 'agent_cases' | 'agent_recommendations' | 'agent_tasks' | 'agent_audit_events' | 'agent_observation_receipts';
+  readonly orderBy: 'updatedAtMs' | 'revision' | 'createdAtMs' | 'occurredAtMs' | 'observedAtMs';
   readonly limit: number;
   readonly caseId?: string;
   readonly cursor?: AgentOfficeCursor;
@@ -303,6 +304,22 @@ export class AgentOfficeLedger {
     const document = await this.repository.get(`agent_cases/${caseId}`);
     if (!document) throw new HttpsError('not-found', 'Agent case not found');
     return Object.freeze({ ok: true as const, item: projectAgentCase(document.id, document.data) });
+  }
+
+  async getAggregateHealth(auth: AgentOfficeAuth | null | undefined) {
+    requireAgentOfficeReader(auth, 'briefing.read');
+    requireAgentOfficeOwner(auth);
+    const rows = await this.repository.query({
+      collection: 'agent_observation_receipts',
+      orderBy: 'observedAtMs',
+      limit: 1,
+    });
+    const latest = rows[0];
+    if (!latest) throw new HttpsError('failed-precondition', 'Agent Office aggregate health is unavailable');
+    return Object.freeze({
+      ok: true as const,
+      items: projectAgentAggregateHealth(latest.data),
+    });
   }
 
   async listRecommendations(auth: AgentOfficeAuth | null | undefined, value: unknown) {

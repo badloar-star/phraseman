@@ -37,6 +37,8 @@ export interface AgentObservationReceipt {
   readonly sourceHealth: readonly {
     readonly source: string;
     readonly state: 'ready' | 'empty' | 'partial' | 'error' | 'truncated';
+    readonly count: number | null;
+    readonly truncated: boolean | null;
     readonly observedAtMs: number;
   }[];
   readonly draft: Readonly<{
@@ -114,6 +116,8 @@ export async function runAgentOfficeObservation(
       sourceHealth: Object.freeze(observation.sourceHealth.map((source) => Object.freeze({
         source: source.source,
         state: source.state,
+        count: source.count,
+        truncated: source.truncated,
         observedAtMs: source.observedAtMs,
       }))),
       draft: draftAllowed && recommendation ? Object.freeze({

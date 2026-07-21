@@ -1,0 +1,401 @@
+// ═══════════════════════════════════════════════════════════════════════════
+// coin_exchange_core.ts — чистая математика и валидация биржи «монеты → звёзды».
+//
+// Никакого Firestore/админ-SDK здесь нет: модуль детерминирован и покрывается
+// юнит-тестами без харнесса. Используется из coin_exchange.ts (callables +
+// scheduled recalc).
+//
+// Формула курса (обычными словами):
+// - Спрос за сутки = сколько монет реально обменяли за прошедшие UTC-сутки
+//   (volumeCoins из economy_exchange_history/{date}).
+// - demandRatio = вчерашний объём / baselineDailyCoins (ожидаемый дневной объём).
+// - Спрос ВЫШЕ базы (ratio > 1): курс растёт на (min(ratio, 2) − 1) ×
+//   maxDailyChangePct процентов от текущего курса — то есть максимум +10%/сутки,
+//   даже если спрос превысил базу более чем вдвое.
+// - Спрос НИЖЕ базы (ratio ≤ 1, включая нулевой объём): курс НЕ падает в ноль,
+//   а плавно дрейфует обратно к baseRate — шаг в сторону базы, ограниченный
+//   тем же maxDailyChangePct от текущего курса (решение 6C плана).
+// - Итог округляется до целых звёзд и жёстко зажимается в коридор
+//   [corridorMin, corridorMax].
+// ═══════════════════════════════════════════════════════════════════════════
+
+export const EXCHANGE_DOC_PATH = 'economy/exchange';
+export const EXCHANGE_HISTORY_COLLECTION = 'economy_exchange_history';
+export const COIN_EXCHANGE_TRADES_COLLECTION = 'coin_exchange_trades';
+export const V2_STAR_JOURNAL_SUBCOLLECTION = 'v2_star_journal';
+
+/** Топ-уровневые поля users/{uid}, которые пишет ТОЛЬКО сервер (как shards). */
+export const V2_ACCESS_STARS_FIELD = 'v2_access_stars';
+export const V2_ACCESS_STARS_UPDATED_AT_MS_FIELD = 'v2_access_stars_updated_at_ms';
+
+export type CoinExchangeConfig = Readonly<{
+  baseRate: number;
+  currentRate: number;
+  corridorMin: number;
+  corridorMax: number;
+  maxDailyChangePct: number;
+  /** Ожидаемый «нормальный» дневной объём обменов в монетах (база спроса). */
+  baselineDailyCoins: number;
+}>;
+
+export const DEFAULT_COIN_EXCHANGE_CONFIG: CoinExchangeConfig = Object.freeze({
+  baseRate: 80,
+  currentRate: 80,
+  corridorMin: 60,
+  corridorMax: 100,
+  maxDailyChangePct: 10,
+  baselineDailyCoins: 500,
+});
+
+function readPositiveInt(value: unknown, fallback: number): number {
+  const n = Math.trunc(Number(value));
+  return Number.isSafeInteger(n) && n > 0 ? n : fallback;
+}
+
+function readNonNegativeInt(value: unknown, fallback: number): number {
+  const n = Math.trunc(Number(value));
+  return Number.isSafeInteger(n) && n >= 0 ? n : fallback;
+}
+
+/**
+ * Толерантное чтение конфигурации из economy/exchange. Отсутствующие/битые
+ * поля заменяются дефолтами; коридор гарантированно min < max; currentRate
+ * зажимается в коридор, чтобы гонка записи не выдала нерабочий курс.
+ */
+export function normalizeCoinExchangeConfig(raw: unknown): CoinExchangeConfig {
+  const row = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+  const baseRate = readPositiveInt(row.baseRate, DEFAULT_COIN_EXCHANGE_CONFIG.baseRate);
+  let corridorMin = readPositiveInt(row.corridorMin, DEFAULT_COIN_EXCHANGE_CONFIG.corridorMin);
+  let corridorMax = readPositiveInt(row.corridorMax, DEFAULT_COIN_EXCHANGE_CONFIG.corridorMax);
+  if (corridorMin >= corridorMax) {
+    corridorMin = DEFAULT_COIN_EXCHANGE_CONFIG.corridorMin;
+    corridorMax = DEFAULT_COIN_EXCHANGE_CONFIG.corridorMax;
+  }
+  const maxDailyChangePct = Math.min(
+    100,
+    readPositiveInt(row.maxDailyChangePct, DEFAULT_COIN_EXCHANGE_CONFIG.maxDailyChangePct),
+  );
+  const baselineDailyCoins = readNonNegativeInt(
+    row.baselineDailyCoins,
+    DEFAULT_COIN_EXCHANGE_CONFIG.baselineDailyCoins,
+  );
+  const currentRateRaw = readPositiveInt(row.currentRate, baseRate);
+  const currentRate = Math.min(corridorMax, Math.max(corridorMin, currentRateRaw));
+  return Object.freeze({
+    baseRate,
+    currentRate,
+    corridorMin,
+    corridorMax,
+    maxDailyChangePct,
+    baselineDailyCoins,
+  });
+}
+
+export function clampRateToCorridor(rate: number, corridorMin: number, corridorMax: number): number {
+  return Math.min(corridorMax, Math.max(corridorMin, Math.round(rate)));
+}
+
+export type RecalcInput = Readonly<{
+  config: CoinExchangeConfig;
+  /** Монет, обменянных за прошедшие UTC-сутки (0 — спроса не было). */
+  yesterdayVolumeCoins: number;
+}>;
+
+export type RecalcResult = Readonly<{
+  nextRate: number;
+  demandRatio: number;
+  /** 'demand_up' — курс вырос по спросу; 'drift_to_base' — возврат к базе; 'flat'. */
+  direction: 'demand_up' | 'drift_to_base' | 'flat';
+}>;
+
+/**
+ * Детерминированный пересчёт суточного курса. См. шапку файла за формулой.
+ */
+export function computeNextExchangeRate(input: RecalcInput): RecalcResult {
+  const cfg = input.config;
+  const volume = Math.max(0, Math.trunc(Number(input.yesterdayVolumeCoins) || 0));
+  const demandRatio = cfg.baselineDailyCoins > 0 ? volume / cfg.baselineDailyCoins : 0;
+  const maxStep = cfg.currentRate * (cfg.maxDailyChangePct / 100);
+
+  let next: number;
+  let direction: RecalcResult['direction'];
+  if (demandRatio > 1) {
+    // Спрос выше базы: рост пропорционален превышению, жёсткий потолок +maxDailyChangePct.
+    const growthPct = Math.min(demandRatio, 2) - 1; // ∈ (0, 1]
+    next = cfg.currentRate * (1 + growthPct * (cfg.maxDailyChangePct / 100));
+    direction = 'demand_up';
+  } else {
+    // Спрос ниже базы (в т.ч. ноль): дрейф к базовой цене шагом ≤ maxDailyChangePct.
+    const gap = cfg.baseRate - cfg.currentRate;
+    const step = Math.min(Math.abs(gap), maxStep);
+    next = cfg.currentRate + Math.sign(gap) * step;
+    direction = step > 0 ? 'drift_to_base' : 'flat';
+  }
+
+  const nextRate = clampRateToCorridor(next, cfg.corridorMin, cfg.corridorMax);
+  return Object.freeze({ nextRate, demandRatio, direction });
+}
+
+// ── Валидация входов callables ──────────────────────────────────────────────
+
+const IDEMPOTENCY_KEY_RE = /^[A-Za-z0-9_:-]{8,80}$/;
+const ADMIN_REASON_MAX_LEN = 200;
+const MAX_COINS_PER_TRADE = 100000;
+const HISTORY_DAYS_DEFAULT = 14;
+const HISTORY_DAYS_MAX = 90;
+
+export type ValidationResult<T> =
+  | { ok: true; value: T }
+  | { ok: false; message: string };
+
+/** Сумма обмена: строго положительный целый int, с разумным потолком. */
+export function validateExchangeCoinsAmount(value: unknown): ValidationResult<number> {
+  if (typeof value !== 'number' || !Number.isSafeInteger(value) || value <= 0) {
+    return { ok: false, message: 'coins must be a positive integer' };
+  }
+  if (value > MAX_COINS_PER_TRADE) {
+    return { ok: false, message: `coins must be <= ${MAX_COINS_PER_TRADE}` };
+  }
+  return { ok: true, value };
+}
+
+export function validateExchangeIdempotencyKey(value: unknown): ValidationResult<string> {
+  const key = typeof value === 'string' ? value : '';
+  if (!IDEMPOTENCY_KEY_RE.test(key)) {
+    return { ok: false, message: 'idempotencyKey must match [A-Za-z0-9_:-]{8,80}' };
+  }
+  return { ok: true, value: key };
+}
+
+export function validateExchangeHistoryDays(value: unknown): number {
+  const n = Math.trunc(Number(value));
+  if (!Number.isSafeInteger(n) || n <= 0) return HISTORY_DAYS_DEFAULT;
+  return Math.min(n, HISTORY_DAYS_MAX);
+}
+
+export type AdminSetRateInput = Readonly<{ rate: number; reason: string }>;
+
+export function validateAdminSetRateInput(
+  data: unknown,
+  corridorMin: number,
+  corridorMax: number,
+): ValidationResult<AdminSetRateInput> {
+  const d = (data ?? {}) as Record<string, unknown>;
+  const rate = d.rate;
+  if (typeof rate !== 'number' || !Number.isSafeInteger(rate) || rate <= 0) {
+    return { ok: false, message: 'rate must be a positive integer' };
+  }
+  if (rate < corridorMin || rate > corridorMax) {
+    return { ok: false, message: `rate must be within corridor [${corridorMin}, ${corridorMax}]` };
+  }
+  const reason = typeof d.reason === 'string' ? d.reason.trim() : '';
+  if (!reason || reason.length > ADMIN_REASON_MAX_LEN) {
+    return { ok: false, message: `reason must be 1-${ADMIN_REASON_MAX_LEN} trimmed characters` };
+  }
+  return { ok: true, value: Object.freeze({ rate, reason }) };
+}
+
+// ── Чистое ядро транзакции обмена ───────────────────────────────────────────
+
+export function readNonNegativeBalance(value: unknown): number {
+  const n = Math.trunc(Number(value));
+  return Number.isFinite(n) && n >= 0 ? n : 0;
+}
+
+export type ExchangeOutcome =
+  | Readonly<{ kind: 'replay'; starsGranted: number; rateUsed: number }>
+  | Readonly<{ kind: 'insufficient'; balance: number }>
+  | Readonly<{
+    kind: 'write';
+    coins: number;
+    starsGranted: number;
+    rateUsed: number;
+    nextCoinBalance: number;
+    nextStarBalance: number;
+  }>;
+
+/**
+ * Чистое ядро обмена: по текущему состоянию вычисляет исход.
+ * replay — trade с тем же idempotencyKey уже записан (возвращаем прежний
+ * результат, ничего не списываем повторно). insufficient — не хватает монет.
+ */
+export function computeExchangeOutcome(input: {
+  existingTrade: unknown;
+  coinBalance: number;
+  starBalance: number;
+  coins: number;
+  rate: number;
+}): ExchangeOutcome {
+  if (input.existingTrade) {
+    const t = input.existingTrade as Record<string, unknown>;
+    return Object.freeze({
+      kind: 'replay',
+      starsGranted: readNonNegativeBalance(t.stars),
+      rateUsed: readNonNegativeBalance(t.rate),
+    });
+  }
+  const balance = readNonNegativeBalance(input.coinBalance);
+  if (balance < input.coins) {
+    return Object.freeze({ kind: 'insufficient', balance });
+  }
+  const starsGranted = input.coins * input.rate;
+  return Object.freeze({
+    kind: 'write',
+    coins: input.coins,
+    starsGranted,
+    rateUsed: input.rate,
+    nextCoinBalance: balance - input.coins,
+    nextStarBalance: readNonNegativeBalance(input.starBalance) + starsGranted,
+  });
+}
+
+/** UTC-ключ суток YYYY-MM-DD — тот же формат, что utcShardEarnDayKey. */
+export function utcExchangeDayKey(nowMs: number): string {
+  const date = new Date(nowMs);
+  if (!Number.isFinite(date.getTime())) throw new Error('invalid_exchange_timestamp');
+  return date.toISOString().slice(0, 10);
+}
+
+/** Предыдущие UTC-сутки (для scheduled recalc). */
+export function previousUtcExchangeDayKey(nowMs: number): string {
+  return utcExchangeDayKey(nowMs - 24 * 60 * 60 * 1000);
+}
+
+/** Следующий пересчёт: ежедневно в 04:17 UTC (off-peak минута). */
+export const RECALC_SCHEDULE = '17 4 * * *';
+export const RECALC_TIMEZONE = 'UTC';
+
+export function computeNextRecalcAtMs(nowMs: number): number {
+  const d = new Date(nowMs);
+  const next = new Date(Date.UTC(
+    d.getUTCFullYear(),
+    d.getUTCMonth(),
+    d.getUTCDate(),
+    4,
+    17,
+    0,
+    0,
+  ));
+  if (next.getTime() <= nowMs) {
+    next.setUTCDate(next.getUTCDate() + 1);
+  }
+  return next.getTime();
+}
+
+// ── Проекции для adminGetCoinExchangeCenter (Центр монет Admin V2) ─────────
+
+export type CoinCenterHistoryPoint = Readonly<{
+  date: string;
+  rate: number;
+  volumeCoins: number;
+  volumeStars: number;
+  source: 'auto' | 'manual';
+}>;
+
+/** Проекция строки economy_exchange_history для Центра монет. */
+export function projectCoinCenterHistoryPoint(
+  docId: string,
+  raw: unknown,
+): CoinCenterHistoryPoint {
+  const d = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+  return Object.freeze({
+    date: typeof d.date === 'string' && d.date ? d.date : docId,
+    rate: readNonNegativeBalance(d.rate),
+    volumeCoins: readNonNegativeBalance(d.volumeCoins),
+    volumeStars: readNonNegativeBalance(d.volumeStars),
+    source: d.reason === 'manual' ? 'manual' : 'auto',
+  });
+}
+
+export type CoinTradeStats24h = Readonly<{
+  volumeCoins: number;
+  volumeStars: number;
+  trades: number;
+  uniqueUsers: number;
+}>;
+
+/** Агрегация сделок за окно (уже отфильтрованных по времени запросом). */
+export function aggregateCoinTradeStats(
+  rows: ReadonlyArray<Record<string, unknown>>,
+): CoinTradeStats24h {
+  const users = new Set<string>();
+  let volumeCoins = 0;
+  let volumeStars = 0;
+  let trades = 0;
+  for (const row of rows) {
+    trades += 1;
+    volumeCoins += readNonNegativeBalance(row.coins);
+    volumeStars += readNonNegativeBalance(row.stars);
+    if (typeof row.uid === 'string' && row.uid) users.add(row.uid);
+  }
+  return Object.freeze({ volumeCoins, volumeStars, trades, uniqueUsers: users.size });
+}
+
+export type CoinCenterManualOverride = Readonly<{
+  rate: number;
+  reason: string;
+  author: string;
+  atMs: number;
+}>;
+
+function readIsoMs(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value) && value > 0) return value;
+  if (typeof value === 'string') {
+    const ms = Date.parse(value);
+    if (Number.isFinite(ms)) return ms;
+  }
+  return 0;
+}
+
+/**
+ * manualOverride из economy/exchange → формат карточки Центра монет
+ * ({ rate, reason, author, atMs } | null).
+ */
+export function normalizeCoinCenterManualOverride(raw: unknown): CoinCenterManualOverride | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const d = raw as Record<string, unknown>;
+  const rate = readNonNegativeBalance(d.rate);
+  if (rate <= 0) return null;
+  return Object.freeze({
+    rate,
+    reason: typeof d.reason === 'string' ? d.reason : '',
+    author: typeof d.byUid === 'string' ? d.byUid : '',
+    atMs: readIsoMs(d.at),
+  });
+}
+
+/** Строка аудита admin_log (action coin_exchange_set_rate) → элемент списка overrides. */
+export function projectCoinCenterOverrideAudit(raw: unknown): CoinCenterManualOverride | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const d = raw as Record<string, unknown>;
+  const after = d.after && typeof d.after === 'object' ? d.after as Record<string, unknown> : {};
+  const rate = readNonNegativeBalance(after.currentRate);
+  if (rate <= 0) return null;
+  return Object.freeze({
+    rate,
+    reason: typeof d.reason === 'string' ? d.reason : '',
+    author: typeof d.actorUid === 'string' ? d.actorUid : '',
+    atMs: readIsoMs(d.timestamp),
+  });
+}
+
+// ── Миграция осколков → монет (решение владельца 2026-07-21) ────────────────
+//
+// Конвертация НЕ 1:1: 20 осколков = 1 монета, округление ВВЕРХ, минимум
+// 1 монета любому с балансом > 0. Старый баланс осколков полностью
+// поглощается конвертацией (заменяется начисленными монетами).
+// Планируемый backfill для пользователей, которые не открывают приложение,
+// обязан переиспользовать именно эту чистую функцию (batch-скрипт — отдельное
+// решение владельца, сейчас НЕ запускается).
+
+export const COIN_MIGRATION_RATE = 20;
+export const COIN_MIGRATIONS_COLLECTION = 'coin_migrations';
+export const COIN_MIGRATION_FLAG_FIELD = 'coins_migration_v1';
+export const COIN_MIGRATION_RECORD_FIELD = 'coins_migration_v1_record';
+
+/** shardsBefore → coinsGranted. Чистая функция миграции 20:1, ceil, min 1. */
+export function computeCoinMigration(shardsBefore: number): number {
+  const balance = readNonNegativeBalance(shardsBefore);
+  if (balance <= 0) return 0;
+  return Math.max(1, Math.ceil(balance / COIN_MIGRATION_RATE));
+}

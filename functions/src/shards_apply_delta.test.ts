@@ -13,15 +13,36 @@ import { join } from 'path';
 // валидацию входа и вычисление исхода транзакции (идемпотентность / spend-guard).
 
 describe('validateShardsApplyDeltaInput', () => {
+  // Новая экономика (план 2026-07-20, §7): client-initiated earn полностью
+  // отключён (каталог обнулён), поэтому базовый валидный op — spend.
   const base = {
     opId: 'abcd1234efgh',
     ownerStableId: 'stable-owner-a',
     delta: 1,
-    type: 'earn' as const,
-    reason: 'lesson_first',
+    type: 'spend' as const,
+    reason: 'card_pack',
   };
 
-  it('accepts a well-formed earn op', () => {
+  it('rejects every client-initiated earn op (coins are purchase-only now)', () => {
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'lesson_first',
+    }).ok).toBe(false);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'global_broadcast_modal',
+      delta: 30,
+    }).ok).toBe(false);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'achievement:streak_7',
+    }).ok).toBe(false);
+  });
+
+  it('accepts a well-formed spend op', () => {
     const r = validateShardsApplyDeltaInput(base);
     expect(r.ok).toBe(true);
     if (r.ok) {
@@ -29,15 +50,53 @@ describe('validateShardsApplyDeltaInput', () => {
         opId: 'abcd1234efgh',
         ownerStableId: 'stable-owner-a',
         delta: 1,
-        type: 'earn',
-        reason: 'lesson_first',
+        type: 'spend',
+        reason: 'card_pack',
       });
     }
+  });
+
+  it('accepts an exact legacy customization opId without accepting paths or whitespace', () => {
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      opId: 'customization:legacy-intent-1234',
+    }).ok).toBe(true);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      opId: 'customization/legacy-intent-1234',
+    }).ok).toBe(false);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      opId: 'customization legacy-intent-1234',
+    }).ok).toBe(false);
   });
 
   it('accepts a spend op', () => {
     const r = validateShardsApplyDeltaInput({ ...base, type: 'spend', reason: 'card_pack' });
     expect(r.ok).toBe(true);
+  });
+
+  it('rejects unknown earn reasons even before the zeroed catalog lookup', () => {
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'unknown_dynamic_reward',
+    }).ok).toBe(false);
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'earn',
+      reason: 'global_broadcast_modal',
+      delta: 29,
+    }).ok).toBe(false);
+  });
+
+  it('leaves spend amount and reason behavior unchanged', () => {
+    expect(validateShardsApplyDeltaInput({
+      ...base,
+      type: 'spend',
+      reason: 'future_shop_item',
+      delta: 99999,
+    }).ok).toBe(true);
   });
 
   it('rejects a too-short opId (idempotency key must be robust)', () => {
@@ -124,6 +183,24 @@ describe('shardsApplyDelta owner boundary', () => {
     expect(transactionSource).toContain('tx.get(userRef)');
     expect(transactionSource).toContain("'account_delete_pending'");
     expect(transactionSource).toContain("'Shard operation owner changed'");
+  });
+
+  it('reads a fresh earn counter only after receipt and owner checks, then writes it atomically', () => {
+    const source = readFileSync(join(__dirname, 'shards_apply_delta.ts'), 'utf8');
+    const transactionSource = source.slice(source.indexOf('db.runTransaction'));
+    const receiptRead = transactionSource.indexOf('tx.get(receiptRef)');
+    const receiptOutcome = transactionSource.indexOf('receiptSnap.exists');
+    const counterRead = transactionSource.indexOf('tx.get(earnCounterRef)');
+    const receiptWrite = transactionSource.indexOf('tx.set(receiptRef');
+    const counterWrite = transactionSource.indexOf('tx.set(earnCounterRef');
+    const balanceWrite = transactionSource.indexOf('tx.set(userRef');
+
+    expect(receiptRead).toBeGreaterThan(-1);
+    expect(receiptOutcome).toBeGreaterThan(receiptRead);
+    expect(counterRead).toBeGreaterThan(receiptOutcome);
+    expect(receiptWrite).toBeGreaterThan(counterRead);
+    expect(counterWrite).toBeGreaterThan(counterRead);
+    expect(balanceWrite).toBeGreaterThan(counterRead);
   });
 
   it('stores idempotency only in the dedicated server receipt namespace', () => {

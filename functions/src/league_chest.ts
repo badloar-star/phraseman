@@ -6,11 +6,15 @@ const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
 const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
 const MIN_RACE_PARTICIPANTS = 10;
-const BASE_SHARDS_MIN = 15;
-const BASE_SHARDS_MAX = 35;
-const GOLD_DUPLICATE_SHARDS = 25;
-const AURA_DUPLICATE_SHARDS = 10;
-const AVATAR_DUPLICATE_SHARDS = 12;
+// Новая экономика (план 2026-07-20, §7): сундук лиги больше не даёт монет —
+// все shard-дропы обнулены (косметика/титулы сундука сохранены). Структура
+// дропов не удалена: sumShardDrops складывает нули, а guard-ы shardReward > 0
+// ниже просто не срабатывают.
+const BASE_SHARDS_MIN = 0;
+const BASE_SHARDS_MAX = 0;
+const GOLD_DUPLICATE_SHARDS = 0;
+const AURA_DUPLICATE_SHARDS = 0;
+const AVATAR_DUPLICATE_SHARDS = 0;
 const ENERGY_MS = 5 * 60 * 1000;
 const LEAGUE_CHEST_BASE_GOAL = 200_000;
 const LEAGUE_CHEST_GOAL_STEP = 20_000;

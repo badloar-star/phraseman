@@ -201,6 +201,22 @@ class AgentOfficeLedger {
             throw new https_1.HttpsError('not-found', 'Agent case not found');
         return Object.freeze({ ok: true, item: (0, projection_1.projectAgentCase)(document.id, document.data) });
     }
+    async getAggregateHealth(auth) {
+        (0, auth_1.requireAgentOfficeReader)(auth, 'briefing.read');
+        (0, auth_1.requireAgentOfficeOwner)(auth);
+        const rows = await this.repository.query({
+            collection: 'agent_observation_receipts',
+            orderBy: 'observedAtMs',
+            limit: 1,
+        });
+        const latest = rows[0];
+        if (!latest)
+            throw new https_1.HttpsError('failed-precondition', 'Agent Office aggregate health is unavailable');
+        return Object.freeze({
+            ok: true,
+            items: (0, projection_1.projectAgentAggregateHealth)(latest.data),
+        });
+    }
     async listRecommendations(auth, value) {
         (0, auth_1.requireAgentOfficeReader)(auth, 'briefing.read');
         const input = parseCaseListInput(value, false);

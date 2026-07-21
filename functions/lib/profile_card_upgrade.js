@@ -63,6 +63,71 @@ const auth_identity_1 = require("./auth_identity");
 const PROFILE_CARD_MAX_LEVEL = 5;
 const PROFILE_CARD_LEGEND_LEVEL = 5;
 const PROFILE_CARD_LEGEND_COUNTER_DOC = 'profile_card_legends';
+// Фаза 4: «праздник легенды» — каждому другу свежей Легенды +5 💠.
+const LEGEND_FRIEND_GIFT_SHARDS = 5;
+const LEGEND_FRIEND_GIFT_REASON = 'legend_celebration_gift';
+/**
+ * «Праздник легенды»: после СВЕЖЕЙ выдачи уровня V каждому другу +5 💠 и анонс
+ * в ленту друзей. Начисление — теми же маркерами, что остальная серверная логика
+ * осколков (shards + shards_updated_* + shard_log), чтобы клиенты друзей штатно
+ * подтянули баланс через loadShardsFromCloud. Анонс — стабильным doc id
+ * 'legend_celebration' в users/{uid}/my_events (повторная запись перезаписывает тот
+ * же документ — дублей в ленте нет); тип 'achievement' лента уже рендерит на всех
+ * 8 языках («{имя} получил достижение 👑 «Легенда №N»») без правок клиента.
+ * Вызывается ПОСЛЕ коммита транзакции уровня, best-effort: сбой праздника логируется
+ * и НЕ роняет выданный апгрейд. Идемпотентность обеспечена вызывающим — функция
+ * стартует только при !alreadyApplied (свежая выдача, повторы отсекаются транзакцией).
+ */
+async function celebrateNewLegend(db, uid, legendNo) {
+    try {
+        const friendsSnap = await db.collection('users').doc(uid).collection('friends').get();
+        const nowMs = Date.now();
+        const nowIso = new Date(nowMs).toISOString();
+        await Promise.all(friendsSnap.docs.map(async (friendDoc) => {
+            const friendUid = friendDoc.id;
+            try {
+                const friendRef = db.collection('users').doc(friendUid);
+                await db.runTransaction(async (tx) => {
+                    const snap = await tx.get(friendRef);
+                    const before = readShardBalance(snap.data()?.shards);
+                    const after = before + LEGEND_FRIEND_GIFT_SHARDS;
+                    tx.set(friendRef, {
+                        shards: after,
+                        shards_updated_at_ms: nowMs,
+                        shards_updated_op: 'earn',
+                        shards_updated_reason: LEGEND_FRIEND_GIFT_REASON,
+                        updatedAt: nowMs,
+                    }, { merge: true });
+                    tx.set(friendRef.collection('shard_log').doc(), {
+                        ts: nowIso,
+                        type: 'earn',
+                        amount: LEGEND_FRIEND_GIFT_SHARDS,
+                        reason: LEGEND_FRIEND_GIFT_REASON,
+                        balanceBefore: before,
+                        balanceAfter: after,
+                        legendUid: uid,
+                        legendNo,
+                    });
+                });
+            }
+            catch (error) {
+                console.error(JSON.stringify({ event: 'legend_celebration_gift_failed', uid, friendUid, legendNo, error: String(error) }));
+            }
+        }));
+        await db.collection('users').doc(uid).collection('my_events').doc('legend_celebration').set({
+            type: 'achievement',
+            uid,
+            ts: nowMs,
+            payload: { icon: '👑', nameRu: `Легенда №${legendNo}` },
+        }).catch((error) => {
+            console.error(JSON.stringify({ event: 'legend_celebration_feed_failed', uid, legendNo, error: String(error) }));
+        });
+        console.log(JSON.stringify({ event: 'legend_celebration_done', uid, legendNo, friends: friendsSnap.docs.length }));
+    }
+    catch (error) {
+        console.error(JSON.stringify({ event: 'legend_celebration_failed', uid, legendNo, error: String(error) }));
+    }
+}
 /**
  * Стоимость ПЕРЕХОДА на уровень N (индекс = целевой уровень). Должна совпадать с
  * клиентской таблицей PROFILE_CARD_LEVEL_COSTS в app/profile_card_system.ts
@@ -165,6 +230,11 @@ exports.profileCardUpgrade = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE
             ...(nextLevel === PROFILE_CARD_LEGEND_LEVEL && legendNo !== null ? { legendNo } : {}),
         };
     });
+    // Фаза 4: «праздник легенды» — только при СВЕЖЕЙ выдаче V (не идемпотентный повтор):
+    // alreadyApplied/не-V/ошибки праздника отсекаются внутри. После коммита, best-effort.
+    if (result.ok && !result.alreadyApplied && result.level === PROFILE_CARD_LEGEND_LEVEL && result.legendNo) {
+        await celebrateNewLegend(db, uid, result.legendNo);
+    }
     return result;
 });
 //# sourceMappingURL=profile_card_upgrade.js.map

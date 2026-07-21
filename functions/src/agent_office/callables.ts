@@ -23,6 +23,7 @@ function auth(request: { auth?: { uid?: string; token?: Record<string, unknown> 
 
 export const agentOfficeListCases = onCall(OPTIONS, async (request) => ledger().listCases(auth(request), request.data));
 export const agentOfficeGetCase = onCall(OPTIONS, async (request) => ledger().getCase(auth(request), request.data));
+export const agentOfficeGetAggregateHealth = onCall(OPTIONS, async (request) => ledger().getAggregateHealth(auth(request)));
 export const agentOfficeListRecommendations = onCall(OPTIONS, async (request) => ledger().listRecommendations(auth(request), request.data));
 export const agentOfficeDecideRecommendation = onCall(OPTIONS, async (request) => ledger().decideRecommendation(auth(request), request.data));
 export const agentOfficeListTasks = onCall(OPTIONS, async (request) => ledger().listTasks(auth(request), request.data));

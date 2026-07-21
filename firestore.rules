@@ -87,6 +87,12 @@ service cloud.firestore {
           'shards_updated_op',
           'shards_updated_reason',
           'shards_admin_override_at',
+          // V2 кошелёк access-звёзд (биржа монет→звёзд) — пишет только сервер.
+          'v2_access_stars',
+          'v2_access_stars_updated_at_ms',
+          // Разовая миграция осколков→монет 20:1 — пишет только сервер.
+          'coins_migration_v1',
+          'coins_migration_v1_record',
         ]);
     }
 
@@ -107,6 +113,12 @@ service cloud.firestore {
           'shards_updated_op',
           'shards_updated_reason',
           'shards_admin_override_at',
+          // V2 кошелёк access-звёзд (биржа монет→звёзд) — пишет только сервер.
+          'v2_access_stars',
+          'v2_access_stars_updated_at_ms',
+          // Разовая миграция осколков→монет 20:1 — пишет только сервер.
+          'coins_migration_v1',
+          'coins_migration_v1_record',
         ]);
     }
 
@@ -1125,6 +1137,16 @@ service cloud.firestore {
         allow read, write: if false;
       }
 
+      // UTC-day anti-farm budgets for shardsApplyDelta. Admin SDK only.
+      match /shard_earn_daily_counters/{dayKey} {
+        allow read, write: if false;
+      }
+
+      // Append-only журнал V2 access-звёзд (биржа монет→звёзд). Только Admin SDK.
+      match /v2_star_journal/{entryId} {
+        allow read, write: if false;
+      }
+
       // Маркеры активации промокодов. Пишет ТОЛЬКО сервер (promoCodeRedeem, Admin SDK).
       // Владелец может прочитать (приложение видит, что код уже активирован), но не
       // создавать/менять — иначе обход «один код на юзера» и самовыдача премиума.
@@ -1403,13 +1425,14 @@ service cloud.firestore {
     // Клиент только создаёт компактные события фиксированной формы; читает админ.
     match /paywall_funnel/{docId} {
       allow create: if request.auth != null
-        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
+        && request.resource.data.keys().hasOnly(['step', 'variant', 'context', 'plan', 'obColor', 'price', 'day', 'ts', 'uidh', 'dev', 'expireAt'])
         && request.resource.data.step in ['shown', 'cta_click', 'trial_started', 'purchase_completed', 'purchase_failed', 'purchase_cancelled', 'restore_completed', 'close']
-        && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C']
+        && request.resource.data.variant in ['v1', 'v2', 'A', 'B', 'C', 'D', 'E', 'F', 'G']
         && request.resource.data.context is string
         && request.resource.data.context.size() <= 40
         && (request.resource.data.plan == null || request.resource.data.plan in ['monthly', 'yearly', 'lifetime'])
         && (request.resource.data.obColor == null || request.resource.data.obColor in ['blue', 'green', 'main'])
+        && (request.resource.data.price == null || (request.resource.data.price is string && request.resource.data.price.size() <= 24))
         && request.resource.data.day is string
         && request.resource.data.day.size() == 10
         && (request.resource.data.ts is int || request.resource.data.ts is float)
@@ -2017,6 +2040,21 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
+    // Биржа «монеты → звёзды»: курс, история и журнал сделок — строго серверные.
+    match /economy/{document=**} {
+      allow read, write: if false;
+    }
+    match /economy_exchange_history/{document=**} {
+      allow read, write: if false;
+    }
+    match /coin_exchange_trades/{document=**} {
+      allow read, write: if false;
+    }
+    // Журнал разовой миграции осколков→монет — строго серверный.
+    match /coin_migrations/{document=**} {
+      allow read, write: if false;
+    }
+
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
         && collection != 'agent_cases'
@@ -2039,6 +2077,10 @@ service cloud.firestore {
         && collection != 'agent_manager_local_runner_capabilities'
         && collection != 'agent_manager_local_runner_leases'
         && collection != 'agent_manager_support_draft_operations'
+        && collection != 'economy'
+        && collection != 'economy_exchange_history'
+        && collection != 'coin_exchange_trades'
+        && collection != 'coin_migrations'
         // Retired Quiz/Arena collections remain sealed even for browser admins.
         // Firestore overlapping matches are OR-combined, so every retired root
         // must also be excluded from this legacy compatibility catch-all.

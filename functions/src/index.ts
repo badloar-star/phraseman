@@ -489,6 +489,8 @@ export { finalizeLearningV2AccessPurchase } from './learning_v2_access_productio
 // ── Рулетка Plus (спин-кредиты → дни VIP) и claim qualified-приглашений в прокруты ──
 export { referralSpin } from './referral_spin';
 export { referralClaimSpin } from './referral_claim_spin';
+// DEV-кнопка «+1 прокрут» (гейт remote_config, лимит 10/сутки) — только для тестовых сборок.
+export { referralDevGrantSpin } from './referral_dev_grant';
 
 // ── Fan-out ленты активности друзей (users/{uid}/my_events → users/{friendUid}/feed) ──
 export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';

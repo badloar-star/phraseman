@@ -26,7 +26,7 @@ import {
   getClaimableReferralState,
   type ReferralInvite,
 } from './referral_vip';
-import { claimReferralSpins, readCachedSpinCredits } from './roulette_spin_client';
+import { claimReferralSpins, devGrantReferralSpin, readCachedSpinCredits } from './roulette_spin_client';
 import { ensureInviteCodeShared } from './invite_code_singleton';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
@@ -190,6 +190,28 @@ export default function ReferralsScreen() {
     })();
     return () => { alive = false; };
   }, []);
+
+  // DEV: кнопка «+1 прокрут» (только __DEV__; гейт/лимит 10-в-сутки — на сервере).
+  const [devGrantBusy, setDevGrantBusy] = useState(false);
+  const onDevGrantSpin = useCallback(async () => {
+    if (devGrantBusy) return;
+    setDevGrantBusy(true);
+    try {
+      const res = await devGrantReferralSpin();
+      if (res.ok) {
+        setSpinCredits(res.spinsTotal);
+        setMessage('+1 прокрут (dev)');
+      } else if (res.reason === 'daily_limit') {
+        setMessage('DEV: лимит 10 прокрутов в сутки исчерпан');
+      } else if (res.reason === 'disabled') {
+        setMessage('DEV: выдача прокрутов выключена (remote_config)');
+      } else {
+        setMessage(`DEV: не удалось выдать прокрут (${res.code ?? 'error'})`);
+      }
+    } finally {
+      setDevGrantBusy(false);
+    }
+  }, [devGrantBusy]);
 
   // Реф-код: тот же серверный код, что в /friends. Ретрай/бэкофф — внутри синглтона
   // (dedupe с friends.tsx — один сетевой проход на процесс).
@@ -526,6 +548,20 @@ export default function ReferralsScreen() {
                     {L(`Прокрутов: ${spinCredits}`, `Прокрутів: ${spinCredits}`, `Giros: ${spinCredits}`, `Giros: ${spinCredits}`, `Lượt quay: ${spinCredits}`, `Putaran: ${spinCredits}`, `Çevirme: ${spinCredits}`, `Zakrecenia: ${spinCredits}`)}
                   </Text>
                 </View>
+                {__DEV__ && (
+                  <TouchableOpacity
+                    testID="referrals-roulette-dev-grant"
+                    accessibilityRole="button"
+                    activeOpacity={0.8}
+                    disabled={devGrantBusy}
+                    onPress={() => void onDevGrantSpin()}
+                    style={{ minHeight: 32, paddingHorizontal: 10, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.accent, opacity: devGrantBusy ? 0.6 : 1 }}
+                  >
+                    {devGrantBusy
+                      ? <ActivityIndicator size="small" color={t.accent} />
+                      : <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontWeight: '900' }}>DEV +1</Text>}
+                  </TouchableOpacity>
+                )}
               </View>
               <TouchableOpacity
                 testID="referrals-roulette-spin"

@@ -147,5 +147,37 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
   return { ok: false, reason: 'error', code: callableErrorCode(lastError) ?? 'network' };
 }
 
+// ── DEV: +1 прокрут (кнопка видна только в dev-сборке; гейт/лимит — на сервере) ──
+
+export type DevGrantOutcome =
+  | { ok: true; spinsTotal: number }
+  | { ok: false; reason: 'disabled' | 'daily_limit' | 'no_user' | 'error'; code?: string };
+
+/**
+ * DEV-выдача +1 спин-кредита (functions/src/referral_dev_grant.ts).
+ * Серверный гейт remote_config/app.numbers.referral_dev_grant_enabled и лимит 10/сутки.
+ */
+export async function devGrantReferralSpin(): Promise<DevGrantOutcome> {
+  if (!isReferralCloudEnabled()) return { ok: false, reason: 'error', code: 'cloud_disabled' };
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return { ok: false, reason: 'no_user' };
+  try {
+    await initFirebaseAppCheckIfAvailable().catch(() => {});
+    const fn = callable<{ stableId: string }, { ok?: boolean; spinsTotal: number }>('referralDevGrantSpin');
+    const res = await fn({ stableId });
+    const spinsTotal = Math.max(0, Math.floor(Number(res.data?.spinsTotal ?? 0)));
+    await AsyncStorage.setItem(SPIN_CREDITS_CACHE_KEY, String(spinsTotal)).catch(() => {});
+    return { ok: true, spinsTotal };
+  } catch (e) {
+    const code = callableErrorCode(e);
+    const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
+    if (code === 'failed-precondition') {
+      if (msg.includes('DEV_GRANT_DAILY_LIMIT')) return { ok: false, reason: 'daily_limit', code };
+      if (msg.includes('DEV_GRANT_DISABLED')) return { ok: false, reason: 'disabled', code };
+    }
+    return { ok: false, reason: 'error', code: code ?? 'unknown' };
+  }
+}
+
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

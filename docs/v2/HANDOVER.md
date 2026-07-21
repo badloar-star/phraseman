@@ -802,3 +802,58 @@ Push-Location functions
 npx jest src/stats_insights.test.ts src/content_factory_worker.test.ts --runInBand
 Pop-Location
 ```
+
+## 14.34 — Economy redesign: Coins/Stars exchange contract (2026-07-20, docs only)
+
+### Mission (one paragraph)
+
+Владелец утвердил новую экономику Phraseman (`docs/plans/2026-07-20-coins-stars-economy-plan.ru.md`): валюта «Осколки» переименована в «Монеты» (миграция 1:1), access stars стали расходуемым кошельком (урок/экзамен открывается один раз явным действием «Открыть за N звёзд», повторы бесплатны), начисление звёзд — per-exercise (3/2/1 по ошибкам, идеальный повтор +1, кап 10/сутки), Access Boost упразднён и заменён серверной односторонней биржей «монеты → звёзды» с динамическим суточным курсом в коридоре 60–100 (±10%/сутки), энергия полностью удалена из обучения. Эта сессия — docs-only: переработан нормативный контракт `docs/v2/05-stars-progress-and-mastery.md`; код, тесты и прочие документы не менялись.
+
+### Full phase/task status
+
+| Phase/task | Status | Evidence / remaining work |
+|---|---|---|
+| Нормативный V2-контракт экономики (doc 05) | Обновлён | §1–2 (роли ресурсов), §3.4/3.6 (per-exercise начисление, HYP-V2-009), §5.1/5.3/5.5/5.6 (spend-on-unlock, цены HYP-V2-010, миграция), §6 [SUPERSEDED Access Boost] + §6Б (биржа, HYP-V2-011) + §6В (энергия удалена), §7–12 (snapshot, offline, UI, edge cases, тесты, acceptance). |
+| HYP-V2-004/005/006 | Частично superseded, не удалены | HYP-V2-004: критерии 3/2/1 пересмотрены в HYP-V2-009; HYP-V2-005: cumulative curve superseded ценами HYP-V2-010 (target 500 сохранён); HYP-V2-006: Access Boost superseded биржей HYP-V2-011; добавлен HYP-V2-012 (кап повторов 10/сутки). DecisionRegistry в doc 08 и реестр гипотез в doc 07 пока НЕ обновлены — отдельная docs-задача. |
+| Реализация (сервер, приложение, Admin V2) | Не начата | См. exact next tasks ниже. |
+| Learning V2 Phase 01–02 | Unchanged | Эта сессия не меняла identity/progress/evidence код. |
+
+### Changes in this session (docs only)
+
+- `docs/v2/05-stars-progress-and-mastery.md`: экономическая модель переписана под план 2026-07-20; все заменённые части помечены `[SUPERSEDED 2026-07-20]`, текст Access Boost сохранён как историческая норма и источник миграционных инвариантов. Добавлены: §3.6 per-exercise начисление и Duolingo error-flow (shake+вибрация ≤300 мс, без «провала урока»); §5.6 миграция (проекция→кошелёк, Access Boost→биржа с сохранением серверных записей, shards→coins 1:1); §6Б биржа с API-контрактом `getCoinExchangeQuote`/`getCoinExchangeHistory`/`exchangeCoinsForStars`/`adminSetCoinExchangeRate`, серверными инвариантами и cloud paths; §6Б.5 серверная операция unlock; §6В удаление энергии из обучения.
+- `docs/v2/HANDOVER.md`: эта запись.
+
+### Verification
+
+- Docs-only сессия: тесты не запускались (изменены только .md файлы). Код, тесты, конфиги, `docs/v2/07` и `docs/v2/08` намеренно не тронуты.
+
+### Contradictions / открытые вопросы для решения владельца
+
+1. Точные цены unlock уроков/экзаменов не зафиксированы ни в плане, ни в doc 05 (ориентир 30/50 при 8 заданиях) — фиксировать после утверждения числа заданий в уроке V2.
+2. Минимальная оценка для зачёта урока при открытии следующего — открытый вопрос плана №3; doc 05 сохраняет local minimum 14/15/16/17 как `HYP-V2-005`.
+3. Энергия в соревновательных режимах (арена): удалить полностью или оставить локально — открытый вопрос плана №4; doc 05 назначает только «удалена из обучения».
+4. Старая cumulative таблица порогов и `evaluateGate` сохранены как superseded; при реализации миграции нужно решение владельца о стартовом балансе кошелька (план предлагает = зафиксированной проекции).
+5. Реестр гипотез (doc 07 §0) и DecisionRegistry schema (doc 08 §6.2) ещё ссылаются на HYP-V2-004/005/006 без новых HYP-V2-009–012 — требуется отдельное docs-обновление (в этой сессии не выполнялось, чтобы не трогать другие docs).
+
+### Exact next executable tasks (implementation)
+
+1. **Server exchange engine** (`functions/`): `v2_economy` collections, callables `getCoinExchangeQuote`, `getCoinExchangeHistory`, `exchangeCoinsForStars` (идемпотентность `coin_exchange_{opId}`, transaction), scheduled суточный пересчёт курса (±10%, коридор 60–100, дрейф к базе, audit), `adminSetCoinExchangeRate` с audit log. RED/GREEN: `functions/src/v2_coin_exchange.test.ts`, `v2_coin_exchange_rate_job.test.ts`. Acceptance: односторонность, коридор, идемпотентность, no client-side rate.
+2. **Server star wallet + unlock** (`functions/`): `v2_star_wallet`, `v2_star_journal` (per-exercise grants, кап 10/сутки), callable unlock «Открыть за N звёзд» с проверкой условий §5.1. Тесты: `v2_star_unlock.test.ts`, `v2_star_journal.test.ts`.
+3. **Shards→Coins migration 1:1**: балансы, ledger, RevenueCat offering/product IDs, UI/локали/аналитика rename; `accessStarsEarned` проекция → стартовый баланс `accessStarsWallet`; Access Boost записи заморозить (grandfathered, без новых).
+4. **App exchange screen («Биржа»)**: quote/history UI, обмен по `opId`, обязательный disclaimer «Монеты ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание»; карта с «Открыть за N звёзд» и балансом кошелька.
+5. **Admin V2 coin center**: ручной override курса с reason+audit, просмотр истории курса/объёмов; перед изменениями Admin UI прочитать `docs/design/ADMIN_UI_BIBLE.md`.
+6. **Reward catalog changes**: обнулить все монетные earn-источники кроме +1 монеты за подтверждённый полезный репорт (таблица §7 плана); серверные дневные капы на монеты удалить, капы только на звёзды.
+7. **Asset wiring**: 5 иконок монет (тёмное золото/гравировка/зелёная эмаль) — «wire first, generate second»: static `require()` слоты, обрезка метки «AI生成», webp q~70, VoiceOver/TalkBack тексты.
+8. **Docs follow-up**: обновить реестр гипотез в `docs/v2/07` и DecisionRegistry в `docs/v2/08` записями HYP-V2-009–012 с пометками superseded для HYP-V2-004/005/006.
+
+### Startup commands for the next session
+
+```powershell
+Set-Location C:\appsprojects\phraseman
+git status --short --branch
+Get-Content docs/plans/2026-07-20-coins-stars-economy-plan.ru.md
+Get-Content docs/v2/05-stars-progress-and-mastery.md   # §1, 3.6, 5.6, 6Б, 6В
+Get-Content docs/v2/HANDOVER.md -Tail 90
+```
+
+No commit, push, deploy, code change, test run, Firestore write, or OpenAI API use was performed in this docs-only session. All dirty/untracked user changes preserved.

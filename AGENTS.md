@@ -1,5 +1,9 @@
 # Project Rules
 
+## Admin V2 Boundary
+
+- Admin V2 at `/v2/` is the sole Admin surface. Future agents may inspect old admin files read-only as historical reference when the owner explicitly requests comparison or prompt/behavior research, but must never modify, import, link to, route to, call, copy runtime code from, or use old admin files as fallback. All implementation and verification must target Admin V2; preserve old admin files untouched for user-managed deletion.
+
 ## Admin UI Bible
 
 - Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
@@ -63,11 +67,12 @@
 
 ## Codex OpenAI API Firewall
 
-- Codex sessions must not use the project OpenAI API key for local chat, responses, reviews, research, judging, phrase/content generation, image generation, transcription, embeddings, experiments, or batch analysis.
+- Codex sessions must not use any project-supplied or user-billed OpenAI API key for local chat, responses, reviews, research, judging, phrase/content generation, image generation, transcription, embeddings, experiments, or batch analysis.
+- Built-in Codex product capabilities that do not read or spend a project/user API credential are explicitly allowed. This includes image generation through Codex's built-in `image_gen`/DALL-E capability. Built-in image generation must still follow the `Codex Bulk Image Safety` rules above.
 - The only OpenAI API use allowed from Codex is TTS/voiceover generation through `/v1/audio/speech`, and only after an explicit user request for audio plus the existing spend guard (`PHRASEMAN_ALLOW_OPENAI_DEV_SPEND=1`) and a narrow batch plan.
 - Local Codex TTS scripts must read `OPENAI_TTS_API_KEY`, not the generic `OPENAI_API_KEY`. Do not add `OPENAI_API_KEY` back to `.env.local` for Codex convenience.
 - Production/user Phraseman sessions may continue to use Firebase/Cloud Functions secrets such as `OPENAI_API_KEY`; this firewall is for local Codex/dev sessions and scripts.
-- If a task seems to need OpenAI chat/responses/images/transcription from Codex, stop and report that the project firewall forbids it. Use local code, existing files, Firestore billing logs, official docs, or ask the user for an exported report instead.
+- If a task would require a project/user OpenAI API credential for chat, responses, images, or transcription, stop and report that the project firewall forbids that API spend. Do not block an equivalent built-in Codex capability that uses no project/user API credential.
 
 ## New Theme / Per-Theme Asset Hygiene
 
@@ -114,6 +119,22 @@
 - After CapCut is fully closed, create a timestamped backup of the current project folder or every file that will be changed before making edits.
 - After edits, mirror native draft changes consistently across root draft files and `Timelines/<draft-id>/draft_content.json`, then run structural gates before reopening or reporting completion.
 - Do not leave the user responsible for closing CapCut unless the close operation fails or the user explicitly asks to keep it open.
+
+## CapCut Russian Text Wrapping Invariant
+
+- CapCut must never be trusted to wrap Russian (Cyrillic) on-screen text automatically: it may split a word in the middle.
+- Before any Russian text is inserted or replaced in a CapCut draft, add explicit manual line breaks at spaces or clear phrase boundaries so every rendered line fits its text box. Never insert a break inside a word.
+- Balance those manual lines: prefer meaningful two- or three-word groups and avoid a final one-word column whenever it can be joined to the preceding line without exceeding the safe width. A safe break must not become visually unnatural merely to avoid CapCut auto-wrap.
+- Verify every affected Russian text element after the draft change (structurally and, when possible, in CapCut preview). If a line still cannot fit, shorten or rephrase it only with the user's authorization; do not permit mid-word wrapping.
+
+## CapCut Timeline Structural-Analysis Protocol
+
+- Before changing native CapCut timing, build and inspect a complete inventory of every populated track: segment start/end, material name/path, media type, text role, audio role, and phase membership. Do not infer phase boundaries from segment counts alone.
+- Treat every material whose name/path identifies an advertisement, for example `REKLAMA`, `AD`, or an explicitly supplied sponsor clip, as an immutable barrier. Preserve its source and target duration exactly; no phrase audio or phrase text may overlap the barrier. Move the entire barrier and all later elements together when an earlier lesson interval grows.
+- A timing change must preserve each segment's existing track, ordering, media identity, z-order, transform, and animation. It may change only start/duration values explicitly authorised by the user. Never create accidental parallel/stacked text lanes.
+- When expanding a phrase cycle, map every timeline track from ordered anchors: phrase boundaries, every advertisement barrier start/end, first/second lesson phase boundary, and outro. Shift all phase-two text, audio, video, overlays, counters, CTA, and background segments as one intact block after the final adjusted anchor.
+- Before writing, run a dry simulation that proves: no two text segments overlap on the same track; no language text/audio overlaps an ad barrier; every advertised segment duration is unchanged; all later phase-two track offsets are identical; and every native mirror will receive byte-identical JSON.
+- If a preview reveals a structural regression, close CapCut, restore the last known-good timestamped backup first, then investigate the inventory and repair from that baseline. Never stack another timing edit over the broken draft.
 
 ## Lingman Named Pipeline
 

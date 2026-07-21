@@ -1,13 +1,15 @@
 # Phraseman V2: звёзды результата, LearningEvidence и доступ
 
-**Статус:** нормативная спецификация пилота из 32 эпизодов  
-**Область:** earned performance, typed learning evidence, earned/purchased access, ворота эпизодов, локальный и облачный прогресс, shards purchase, offline, идемпотентность и честность интерфейса
+**Статус:** нормативная спецификация пилота из 32 эпизодов; экономическая модель переработана 2026-07-20 по утверждённому плану `docs/plans/2026-07-20-coins-stars-economy-plan.ru.md`  
+**Область:** earned performance, typed learning evidence, расходуемый (spendable) access-star кошелёк, ворота эпизодов, локальный и облачный прогресс, монеты (coins, бывшие shards) purchase, биржа «монеты → звёзды», offline, идемпотентность и честность интерфейса
+
+> **Ревизия 2026-07-20 (новая экономика).** Валюта «Осколки» (shards) переименована в **«Монеты» (coins)** с миграцией балансов 1:1. Access stars стали **расходуемым ресурсом**: урок/экзамен открывается за фиксированную цену в звёздах один раз явным действием пользователя, повторы открытого — бесплатны. Начисление звёзд — **за каждое задание** (per-exercise), с бонусом +1 за идеальный повтор и дневным серверным капом. **Access Boost за shards упразднён** и заменён серверной односторонней **биржей «монеты → звёзды»** с динамическим дневным курсом. **Энергия полностью удалена из обучения.** Инвариант сохранён: ни монеты, ни купленные/нафармленные звёзды не доказывают mastery и не повышают оценку — знание подтверждает только `LearningEvidence`. Разделы и параметры, заменённые этой ревизией, помечены **[SUPERSEDED 2026-07-20]** и оставлены для истории и миграции.
 
 ## 1. Решение в одном абзаце
 
-V2 разделяет три домена. `performanceStarsEarned` отражают лучший reward/performance result конкретного activity slot, но никогда сами по себе не доказывают mastery. `accessStarsEarned` — детерминированная, воспроизводимая проекция тех же earned-performance deltas для открытия пути, а не второй независимо записываемый источник истины. `LearningEvidence` хранит типизированные observations по objective и construct. `accessStarsPurchased` — отдельный gate-scoped Access Boost за осколки после обязательной учебной работы. Покупка не меняет `LearningEvidence`, voice evidence, checkpoint, достижения, лиги или заявления об уровне.
+V2 разделяет домены. `performanceStarsEarned` отражают лучший reward/performance result конкретного activity slot, но никогда сами по себе не доказывают mastery. `accessStarsWallet` — расходуемый кошелёк заработанных звёзд доступа: пополняется per-exercise начислениями (и обменом монет на бирже) и тратится на разовое открытие уроков/экзаменов; ранее существовавшая read-only cumulative проекция `accessStarsEarned` заменена этим кошельком (см. §5.6 о миграции). `LearningEvidence` хранит типизированные observations по objective и construct. Монеты — единственная денежная валюта, покупаются только за реальные деньги (плюс +1 монета за подтверждённый полезный репорт) и обмениваются на звёзды только через серверную биржу (§6Б). Покупка и обмен не меняют `LearningEvidence`, voice evidence, checkpoint, достижения, лиги или заявления об уровне.
 
-Все числовые решения этого документа имеют claim label `PRODUCT_HYPOTHESIS`: performance-star budget (`HYP-V2-004`), two-loop/gate curve и target (`HYP-V2-005`), цена/caps/eligibility boost (`HYP-V2-006`). [07-migration-analytics-testing.md](./07-migration-analytics-testing.md#0-реестр-гипотез-и-числовых-решений) — governance map гипотез и пилотных решений; единственный machine-readable schema/source `DecisionRegistry` задан в [08-admin-content-studio-and-mode-authoring.md §6.2](./08-admin-content-studio-and-mode-authoring.md#62-immutable-decision-registry-artifact).
+Все числовые решения этого документа имеют claim label `PRODUCT_HYPOTHESIS`: performance-star budget (`HYP-V2-004`; per-exercise критерии 3/2/1 и правила повторов пересмотрены в `HYP-V2-009`), two-loop/gate curve и target (`HYP-V2-005`; spendable-цены открытия пересмотрены в `HYP-V2-010`), цена/caps/eligibility Access Boost (`HYP-V2-006` — **superseded**, заменён биржей `HYP-V2-011`), дневной кап повторных +1 (`HYP-V2-012`). [07-migration-analytics-testing.md](./07-migration-analytics-testing.md#0-реестр-гипотез-и-числовых-решений) — governance map гипотез и пилотных решений; единственный machine-readable schema/source `DecisionRegistry` задан в [08-admin-content-studio-and-mode-authoring.md §6.2](./08-admin-content-studio-and-mode-authoring.md#62-immutable-decision-registry-artifact).
 
 ## 2. Почему нельзя оставить одну сущность `stars`
 
@@ -22,8 +24,10 @@ V2 разделяет три домена. `performanceStarsEarned` отража
 | Сущность | Источник | Назначение | Можно купить | Можно потратить |
 |---|---|---|---|---|
 | `performanceStarsEarned` | лучший валидный reward/performance result activity/star slot | мотивация, видимый результат, recovery ranking | нет | нет |
-| `accessStarsEarned` | derived projection 1:1 из earned-performance delta | cumulative gates карты | нет | нет |
-| `accessStarsPurchased` | server-priced Access Boost за shards | закрывает дефицит только конкретных ворот | да | применяется один раз к gate |
+| `accessStarsWallet` | per-exercise earned deltas + биржа монет (server-authoritative) | разовое открытие уроков/экзаменов за фиксированную цену | через биржу монет (косвенно) | да, spend-on-unlock |
+| ~~`accessStarsEarned`~~ | ~~derived projection 1:1 из earned-performance delta~~ | **[SUPERSEDED 2026-07-20]** read-only cumulative проекция заменена расходуемым кошельком; старые значения мигрируют в `accessStarsWallet` (§5.6) | — | — |
+| ~~`accessStarsPurchased`~~ | ~~server-priced Access Boost за shards~~ | **[SUPERSEDED 2026-07-20]** Access Boost упразднён; его роль выполняет биржа «монеты → звёзды» (§6Б). Серверные записи сохраняются для истории | — | — |
+| `coinsBalance` (бывшие shards) | покупка пакетов 30/80/180/420; +1 монета за подтверждённый полезный репорт | магазин (косметика, удобства), обмен на звёзды через биржу | да (единственная денежная валюта) | да |
 | `LearningEvidence` | валидное наблюдение по objective/construct/support/context/input/time | independent/durable learning decisions и review | нет | нет |
 | `voiceBadge` (derived) | наличие resolved assessed spoken evidence с microphone route, calibration и provenance | честная индикация полученного spoken evidence | нет | нет |
 
@@ -413,13 +417,13 @@ Delayed — phase/timing dimension, а не отдельный construct: пол
 nextBestPerformance = Math.max(previousBestPerformance, candidatePerformanceStars);
 performanceStarsDelta = nextBestPerformance - previousBestPerformance;
 episodePerformanceStars = sum(bestPerformanceStarsByStarSlot);
-accessStarsEarnedDelta = performanceStarsDelta; // derived projection of the same event
 ```
 
 Следствия:
 
-- одинаковый или худший replay не даёт delta;
-- новая лучшая попытка даёт только разницу;
+- одинаковый или худший replay не даёт новой performance delta (best не ухудшается), но пополнение `accessStarsWallet` за повторы следует отдельным правилам §3.6, а не best-per-slot;
+- **[SUPERSEDED 2026-07-20]** прежняя derived-проекция `accessStarsEarnedDelta = performanceStarsDelta` отменена: кошелёк пополняется per-exercise начислениями §3.6 и записями биржи §6Б, а не проекцией best-per-slot;
+- новая лучшая попытка даёт только разницу в `bestPerformanceStars`;
 - earned performance stars никогда не уменьшаются;
 - удаление activity из нового release не удаляет уже записанные performance results или immutable `LearningEvidence`;
 - copy edit переносит прогресс через тот же `progressCompatibilityKey`;
@@ -441,6 +445,28 @@ Voice runtime возвращает только canonical `V2ActivityResult` и 
 - typed fallback не создаёт `voiceEvidence`;
 - accessibility alternative может заработать performance/access stars по своей объективной policy, но создаёт `LearningNonAssessment{assessmentStatus:'not_assessed_accessibility'}` для неизмеренного spoken/listening construct; objective projection получает `status:'not_assessed', reason:'accessibility'`.
 
+### 3.6 Per-exercise начисление звёзд в кошелёк (HYP-V2-009, ревизия 2026-07-20)
+
+Начисление звёзд в `accessStarsWallet` происходит **за каждое задание (exercise/activity slot)**, а не за урок целиком. Оценка качества одного задания — 1–3 звезды по числу ошибок до правильного ответа:
+
+| Прохождение задания | Оценка | Начисление в кошелёк |
+|---|---:|---:|
+| Первое, идеально (правильно с первой попытки) | 3 | +3 |
+| Первое, одна ошибка | 2 | +2 |
+| Первое, 2+ ошибок, задание завершено | 1 | +1 |
+| Повтор, идеально без единой ошибки | 3 | **+1 ровно один раз** за конкретное задание |
+| Повтор с любой ошибкой | 1–2 | +0 |
+
+Нормативные правила:
+
+- бонуса «за полный повтор урока» **нет** — начисляется только per-exercise +1 за идеальный повтор конкретного задания;
+- **дневной потолок повторных +1: максимум 10 бонусных звёзд в сутки на аккаунт** (`HYP-V2-012`), серверный журнал (`users/{stableUid}/v2_star_journal/...`), server-enforced; после исчерпания капа идеальные повторы продолжают работать учебно, но не пополняют кошелёк;
+- механика ошибок — как в онбординге / Duolingo: «провала урока» нет. Ошибка → короткая shake-анимация + вибрация (≤300 мс) → разбор/коррекция → пользователь выбирает или произносит правильный ответ → поток продолжается;
+- UX-гибрид: во время урока после задания кратко (0,8–1 с) показываются 1–3 мини-звезды качества, вверху тихо обновляется счётчик качества урока; это **не** пополнение кошелька в реальном времени — итоговое начисление показывается на финальном экране («Качество: 21/24», «За улучшение результатов: +3», «Всего начислено: +N»);
+- per-exercise earned stars — это reward/access ресурс: они **не** создают и не изменяют `LearningEvidence`, не доказывают mastery, не входят в checkpoint projection и не дают денежной/соревновательной выгоды;
+- универсальная семантика критериев §3.2 (completion/quality/transfer) остаётся описанием качества `bestPerformanceStars` на slot; критерии 3/2/1 по числу ошибок являются утверждённой конкретизацией для per-exercise кошелька (`HYP-V2-009`), детальный mapping на versioned scoring policy фиксируется в DecisionRegistry;
+- начисление идемпотентно: один зачтённый exercise completion/идеальный повтор пополняет кошелёк ровно один раз; журнал начислений per-exercise — server-authoritative, клиентский `max/union` merge к балансу не применяется.
+
 ## 4. Два прохода без механического повтора
 
 Следующий эпизод требует завершить два разных loop предыдущего (`HYP-V2-005`):
@@ -454,16 +480,16 @@ Voice runtime возвращает только canonical `V2ActivityResult` и 
 
 ### 5.1 Условия открытия
 
-Эпизод 1 открыт всегда. Для открытия эпизода `n`, где `n=2..32`, одновременно нужны:
+Эпизод 1 открыт всегда. **Первый урок каждой новой главы бесплатен** (решение 4A плана 2026-07-20). Для открытия эпизода `n`, где `n=2..32`, одновременно нужны:
 
 1. обязательные nodes обоих loop эпизода `n-1` завершены;
 2. в предыдущем эпизоде достигнут локальный earned-performance minimum;
-3. cumulative `accessStarsEarned` достигли порога либо дефицит полностью закрыт разрешённым Access Boost;
+3. **[пересмотрено 2026-07-20]** эпизод открыт явным действием пользователя «Открыть за N звёзд»: фиксированная цена в звёздах списывается из `accessStarsWallet` один раз, unlock навсегда; при нехватке звёзд пользователь может заработать их повторами/другими активностями либо обменять монеты на бирже (§6Б). Прежняя модель «cumulative `accessStarsEarned` ≥ порога либо дефицит закрыт Access Boost» **[SUPERSEDED 2026-07-20]**;
 4. если предыдущий эпизод — checkpoint 8, 16 или 24, checkpoint реально сдан;
 5. capability fallback завершён, если основной input недоступен;
 6. gate не был ранее открыт или grandfathered.
 
-Купленный boost не заменяет пункты 1, 2, 4 и 5.
+Потраченные звёзды и обмен монет не заменяют пункты 1, 2, 4 и 5.
 
 ### 5.2 Локальный minimum
 
@@ -476,16 +502,26 @@ Voice runtime возвращает только canonical `V2ActivityResult` и 
 
 Порог растёт по главам, но остаётся ниже perfect. Пользователь не обязан выбивать 24/24, однако один completion без качества недостаточен. Minima относятся к `HYP-V2-005`, а не к mastery standard.
 
-### 5.3 Плавная cumulative curve
+### 5.3 Цены открытия эпизодов (HYP-V2-010) и superseded cumulative curve
 
-Для целевого эпизода `n`:
+**Ревизия 2026-07-20.** Cumulative threshold curve ниже **[SUPERSEDED 2026-07-20]**: расходуемый кошелёк заменяет read-only проекцию. Новая модель — фиксированная цена открытия каждого урока/экзамена в звёздах, списываемая один раз явным действием пользователя:
+
+- цены «кусаются»: идеальное первое прохождение урока даёт ориентировочно ~80% цены следующего, поэтому нужны повторы или другие активности;
+- **числа цен намеренно НЕ фиксируются** до утверждения числа заданий в уроке V2 (текущий ориентир при 8 заданиях: следующий урок ≈ 30 звёзд, экзамен ≈ 50 — это `PRODUCT_HYPOTHESIS` `HYP-V2-010`, не решение);
+- повторные прохождения уже открытых уроков/экзаменов бесплатны;
+- цены публикуются в immutable release/DecisionRegistry и одинаково читаются клиентом, сервером и admin validator; списание выполняет только серверная идемпотентная операция unlock (§6Б.5), клиентскую цену нельзя подменить.
+
+Прежняя формула (оставлена для истории и миграционной сверки, не является действующей нормой):
 
 ```ts
+// [SUPERSEDED 2026-07-20] — read-only cumulative модель, заменена spend-on-unlock
 ratio(n) = 0.55 + 0.10 * ((n - 2) / 30);
 requiredAccess(n) = Math.ceil(24 * (n - 1) * ratio(n));
 ```
 
 Доля плавно растёт от 55% до 65%. Формула линейная, не экспоненциальная; она не создаёт резкий скачок на границе главы. В release хранится уже рассчитанная таблица, а формула используется валидатором для проверки, чтобы клиент и сервер не разошлись из-за округления. Вся curve относится к `HYP-V2-005`.
+
+Таблица порогов старой cumulative модели — **[SUPERSEDED 2026-07-20]**, оставлена только как база миграции §5.6:
 
 | Открыть эпизод | Порог | Открыть эпизод | Порог | Открыть эпизод | Порог |
 |---:|---:|---:|---:|---:|---:|
@@ -501,7 +537,7 @@ requiredAccess(n) = Math.ceil(24 * (n - 1) * ratio(n));
 | 11 | 140 | 22 | 311 | — | — |
 | 12 | 154 | 23 | 328 | — | — |
 
-Финальный сезонный performance target после эпизода 32 — `500 earned performance stars` из 768 возможных и пройденный checkpoint 32. Это achievement/access-fairness target `HYP-V2-005`, не durable mastery claim. Purchased access в 500 не входит; durable mastery выводится только из D+N `LearningEvidence`.
+Финальный сезонный performance target после эпизода 32 — `500 earned performance stars` из 768 возможных и пройденный checkpoint 32. Это achievement/access-fairness target `HYP-V2-005`, не durable mastery claim. Потраченные на unlock звёзды и обменянные монеты в 500 не входят: target считается только из earned `bestPerformanceStars`; durable mastery выводится только из D+N `LearningEvidence`.
 
 ### 5.4 Route reachability до публикации
 
@@ -517,15 +553,17 @@ export interface EpisodeRouteReachability {
 }
 ```
 
-Для каждой route валидатор учитывает общий `starSlotId`, starless nodes, route-specific scoring cap и недоступные constructs. Release блокируется, если хотя бы одна обязательная route не может без покупки boost:
+Для каждой route валидатор учитывает общий `starSlotId`, starless nodes, route-specific scoring cap и недоступные constructs. Release блокируется, если хотя бы одна обязательная route не может без обмена монет:
 
 - выполнить local minimum своего эпизода;
-- накопить cumulative threshold каждого следующего gate;
+- заработать достаточно звёзд для цены открытия каждого следующего gate разумным числом первых прохождений и идеальных повторов (в пределах дневного капа);
 - завершить mandatory loops и checkpoint через заявленный alternate contract.
 
-Access Boost не является исправлением недостижимой accessibility route. Если route намеренно не оценивает spoken/listening construct, это отражается через `LearningNonAssessment`, но эквивалентные completion/performance/access slots всё равно должны оставлять gate достижимым.
+Обмен монет на бирже не является исправлением недостижимой accessibility route. Если route намеренно не оценивает spoken/listening construct, это отражается через `LearningNonAssessment`, но эквивалентные completion/performance/access slots всё равно должны оставлять gate достижимым.
 
 ### 5.5 Gate evaluator
+
+**Ревизия 2026-07-20.** Gate evaluator упрощён: вместо сравнения cumulative earned + boost с порогом сервер проверяет факт разового unlock (spend-on-unlock). База `basis: 'grandfathered' | 'earned_spend'`; отдельного `earned_plus_boost` больше нет.
 
 ```ts
 export interface GateInput {
@@ -534,9 +572,6 @@ export interface GateInput {
   requiredLoopsComplete: boolean;
   priorEpisodePerformanceEarned: number;
   localMinimum: number;
-  cumulativeAccessEarned: number;
-  requiredCumulativeAccess: number;
-  purchasedAccessAppliedToThisGate: number;
   checkpointDecision: 'not_required' | V2CheckpointDecision['status'];
 }
 
@@ -556,22 +591,25 @@ export function evaluateGate(input: GateInput) {
   ) {
     return { allowed: false, reason: 'checkpoint' as const };
   }
-
-  const accessForThisGate =
-    input.cumulativeAccessEarned + input.purchasedAccessAppliedToThisGate;
-
-  return accessForThisGate >= input.requiredCumulativeAccess
-    ? {
-        allowed: true,
-        basis: input.purchasedAccessAppliedToThisGate > 0
-          ? 'earned_plus_boost' as const
-          : 'earned' as const,
-      }
-    : { allowed: false, reason: 'cumulative_access' as const };
+  // Звёздная часть выполняется отдельным серверным unlock:
+  // пользователь нажимает «Открыть за N звёзд», сервер идемпотентно
+  // списывает N из accessStarsWallet и пишет GateUnlockReceipt (§6Б.5).
+  return { allowed: false, reason: 'unlock_payment_required' as const };
 }
 ```
 
-## 6. Access Boost за shards
+Прежний `GateInput` с полями `cumulativeAccessEarned`, `requiredCumulativeAccess`, `purchasedAccessAppliedToThisGate` и basis `earned`/`earned_plus_boost` — **[SUPERSEDED 2026-07-20]**, оставлен в git-истории и используется миграцией §5.6.
+
+### 5.6 Миграция старой access-модели (2026-07-20)
+
+1. **`accessStarsEarned` (read-only cumulative проекция) → `accessStarsWallet`.** При миграции каждому аккаунту начисляется стартовый баланс кошелька, равный зафиксированной cumulative проекции на момент миграции; дальнейшее пополнение — только по §3.6 и §6Б. Значения проекции сохраняются в миграционной записи для аудита.
+2. **Access Boost (3 shards/звезда, cap 3/gate, 3/chapter, 12/season) → биржа.** Механика superseded и больше не предлагается. Уже применённые boost-разблокировки остаются grandfathered unlock; серверные записи `v2_access_ledger` и `v2_gate_receipts` сохраняются для истории и не удаляются. Новых записей Access Boost не создаётся.
+3. **Shards → Coins 1:1.** Балансы, ledger и RevenueCat-история мигрируют 1:1; user-facing название меняется в UI, локалях, аналитике и Admin V2; offering `shards` переименовывается в `coins`, product IDs пересогласуются со сторами.
+4. **Уже открытые gate никогда не закрываются задним числом** — инвариант сохраняется для обеих моделей.
+
+## 6. Access Boost за shards — [SUPERSEDED 2026-07-20]
+
+> Весь раздел 6 (pilot policy, quote/purchase callable, ledger) отменён как действующая норма: Access Boost заменён серверной биржей «монеты → звёзды» (§6Б). Текст ниже сохранён для истории и как источник миграционных инвариантов (server-priced, idempotent, account-scoped), которые биржа и unlock-операция обязаны унаследовать. Новые реализации Access Boost запрещены.
 
 ### 6.1 Pilot policy
 
@@ -711,6 +749,85 @@ users/{stableUid}/reward_claims/v2_access_{opId}
 
 Если rollback удаляет уже оплаченный gate или release fault сделал покупку бесполезной, компенсация создаётся отдельной идемпотентной server operation. Если пользователь позже сам добрал performance stars, автоматического refund нет: unlock уже был предоставлен, и это явно показывается перед подтверждением.
 
+## 6Б. Биржа «монеты → звёзды» (HYP-V2-011, ревизия 2026-07-20)
+
+### 6Б.1 Правила биржи
+
+- Обмен **строго односторонний**: монеты → звёзды. Обратного обмена, передачи между игроками и вывода денег **нет**.
+- Курс **глобальный и динамический**: пересчитывается сервером **один раз в сутки** по совокупному спросу (объёму обменов) за прошедшие 24 часа.
+- **Коридор курса объявлен заранее**: по умолчанию `1 монета = 60–100 звёзд`. Курс никогда не выходит за коридор.
+- Максимальное изменение курса — **±10% в сутки**.
+- При падении спроса курс плавно дрейфует обратно к базовой цене.
+- Биржа доступна **всем пользователям сразу**, без учебных предусловий.
+- На экране биржи обязателен постоянный disclaimer: **«Монеты ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание»**.
+- Реализация **строго server-authoritative**: курс, журнал обменов, идемпотентность и защита от манипуляций живут только на сервере. Клиент курс не вычисляет и не предсказывает.
+- Обменянные звёзды пополняют `accessStarsWallet` и неотличимы от заработанных при трате на unlock, но: они не входят в season target 500 earned stars, не создают `LearningEvidence`, не влияют на checkpoint, mastery, достижения, лиги и сертификаты.
+
+### 6Б.2 Клиентский API-контракт
+
+```ts
+// Текущий курс и коридор. Читается клиентом при открытии экрана биржи.
+getCoinExchangeQuote() → {
+  rate: number;          // звёзд за 1 монету, текущий серверный курс
+  corridorMin: number;   // по умолчанию 60
+  corridorMax: number;   // по умолчанию 100
+  nextRecalcAt: string;  // ISO-время следующего суточного пересчёта
+}
+
+// История курса для графика на экране биржи.
+getCoinExchangeHistory({ days: number }) → {
+  points: Array<{ date: string; rate: number; volume: number }>;
+  // volume — совокупный объём обменов (монеты) за сутки date
+}
+
+// Идемпотентный обмен. Сервер применяет курс на момент транзакции.
+exchangeCoinsForStars({ coins: number, opId: string }) → {
+  starsGranted: number;
+  rateUsed: number;
+}
+
+// Ручное переопределение курса администратором (Admin V2), аудируется.
+adminSetCoinExchangeRate({ rate: number, reason: string }) → {
+  rate: number;          // подтверждённый новый курс
+  overriddenAt: string;
+}
+```
+
+### 6Б.3 Серверные инварианты
+
+- `exchangeCoinsForStars` внутри одной Firestore transaction: проверка Auth/App Check, canonical stable UID, `opId` идемпотентность (`coin_exchange_{opId}`), повторное чтение authoritative курса и баланса монет, атомарное списание монет и зачисление звёзд в `accessStarsWallet`, запись receipt; повтор того же `opId` возвращает тот же receipt без повторного списания.
+- Суточный пересчёт курса — server-only scheduled job: читает агрегированный спрос за 24 часа, ограничивает дельту ±10%, зажимает в коридор, при падающем спросе дрейфует к базовому курсу; каждый пересчёт пишет аудируемую запись.
+- `adminSetCoinExchangeRate` требует admin-роли, пишет audit log (`actor, rate, reason, at`), курс обязан оставаться внутри объявленного коридора либо коридор меняется отдельным аудируемым действием с предварительным анонсом.
+- Обмен — money-adjacent операция и разрешённое исключение из ordinary local-first optimistic mutations: требует сети, не оптимистичен; потерянный ответ повторяется тем же `opId`.
+- Защита от манипуляций: объём спроса считается только из подтверждённых серверных receipts; один аккаунт не может двигать курс (агрегация, anti-wash ограничения — `HYP-V2-011`).
+
+### 6Б.4 Cloud paths
+
+```text
+users/{stableUid}/v2_coin_exchange_ledger/{opId}
+users/{stableUid}/reward_claims/coin_exchange_{opId}
+v2_economy/exchange_rate_current
+v2_economy/exchange_rate_history/{date}
+v2_economy/exchange_rate_admin_overrides/{overrideId}
+users/{stableUid}/v2_star_wallet/meta          // authoritative баланс accessStarsWallet
+users/{stableUid}/v2_star_journal/{entryId}    // per-exercise начисления и кап повторов
+```
+
+### 6Б.5 Серверная операция unlock «Открыть за N звёзд»
+
+Отдельная идемпотентная callable, наследующая инварианты упразднённого `purchaseV2AccessBoost` (server-priced, account-scoped, idempotent):
+
+1. проверяет Auth/App Check и canonical stable UID;
+2. читает immutable release policy: цена эпизода/экзамена, `gateId`, policy version;
+3. повторно вычисляет обязательные условия §5.1 (loops, local minimum, checkpoint) — потраченные звёзды их не заменяют;
+4. атомарно в одной transaction: проверяет `opId`, достаточность `accessStarsWallet`, списывает ровно N звёзд, пишет `GateUnlockReceipt{basis:'earned_spend'}` и wallet ledger entry;
+5. возвращает authoritative баланс кошелька и тот же receipt при повторе `opId`;
+6. unlock навсегда; повторы открытого эпизода бесплатны; уже открытый gate не закрывается задним числом.
+
+### 6В. Энергия удалена из обучения (2026-07-20)
+
+Энергия **полностью удалена из обычного обучения**: ни один урок, повтор, экзамен, checkpoint или gate V2 не проверяет и не расходует энергию. Legacy `EnergyContext` подлежит выводу из эксплуатации отдельной задачей (включая решение о судьбе энергии в соревновательных режимах — открытый вопрос плана №4); этот документ не назначает энергии никакой роли.
+
 ## 7. Progress snapshot и canonical attempt projection
 
 ### 7.1 Account-scoped local keys
@@ -806,14 +923,14 @@ export interface V2ProgressSnapshot {
 }
 ```
 
-В части learning progress source of truth ограничен `bestPerformanceStars` и bounded hash-aware ссылками на canonical attempts/evidence. Slot хранит только один `bestPerformanceAttemptRef`; node identity сохраняется в `nodeOutcomes`; evidence index хранит максимум один best assessed и один latest non-assessment ref на объявленный tuple `nodeId + objectiveId + skillId + construct + phase + targetKind + targetId`, закодированный только общим collision-free `letk1` builder. `checkpointEvidenceIndex` — bounded projection тех же refs только на requirements опубликованного checkpoint contract; он не может создавать новые evidence или выходить за cardinality контракта. `accessStarsEarned`, completion, loop status, quality band, checkpoint decision и voice badge — только derived selectors над этими refs и pinned content/policy; независимо записываемых slot booleans или access totals нет. Полный attempt count относится к cloud analytics/ledger, а не восстанавливается из bounded first-frame snapshot.
+В части learning progress source of truth ограничен `bestPerformanceStars` и bounded hash-aware ссылками на canonical attempts/evidence. Slot хранит только один `bestPerformanceAttemptRef`; node identity сохраняется в `nodeOutcomes`; evidence index хранит максимум один best assessed и один latest non-assessment ref на объявленный tuple `nodeId + objectiveId + skillId + construct + phase + targetKind + targetId`, закодированный только общим collision-free `letk1` builder. `checkpointEvidenceIndex` — bounded projection тех же refs только на requirements опубликованного checkpoint contract; он не может создавать новые evidence или выходить за cardinality контракта. `accessStarsWallet` — server-authoritative баланс (§6Б.4), а не derived selector: клиент хранит только последний server-acknowledged баланс и pending операции; completion, loop status, quality band, checkpoint decision и voice badge — derived selectors над refs и pinned content/policy. Полный attempt count относится к cloud analytics/ledger, а не восстанавливается из bounded first-frame snapshot.
 
 ```text
 episodePerformanceStars = sum(slot.bestPerformanceStars)
-cumulativeAccessEarned  = sum(all prior slot.bestPerformanceStars)
 voiceBadge              = exists(resolved assessed spoken evidence with valid provenance)
 loopComplete            = evaluate required node outcomes from nodeOutcomes
 checkpointDecision      = evaluate checkpoint contract from checkpointEvidenceIndex
+accessStarsWallet       = authoritative server balance + acknowledged receipts (не derived)
 ```
 
 Размер `slots`, `nodeOutcomes`, `learningEvidenceIndex` и `checkpointEvidenceIndex` ограничен IDs/tuples опубликованного season bundle; неизвестный key отклоняется. Полная append-only attempt/evidence history остаётся в cloud ledger. Локальный outbox содержит только pending events и после acknowledgement компактизируется в bounded snapshot. Первый кадр может использовать дополнительный bounded derived cache с `projectionVersion` и fingerprint набора refs; при несовпадении hash/fingerprint cache отбрасывается. Purchased boost остаётся отдельным server receipt в `gates` и не входит в эти projections.
@@ -837,7 +954,7 @@ Reducer принимает sanitized hash-free `V2AttemptEventBody` из док�
 1. проверяет account generation;
 2. валидирует canonical `V2AttemptEventBody`, вычисляет body hash, создаёт `CanonicalAttemptRef`, а затем отдельно хэширует каждый learning body и добавляет нехэшируемый `V2AttemptEvent` envelope в account-scoped outbox;
 3. проверяет `0..N` learning refs на exact source attempt, hash, declared tuple, combined uniqueness и cardinality, после чего обновляет bounded best slot ref, `nodeOutcomes`, `learningEvidenceIndex` и `checkpointEvidenceIndex`, а `bestPerformanceStars` — через `max`;
-4. выводит `accessStarsEarnedDelta = performanceStarsDelta`, не записывая отдельный access source;
+4. формирует per-exercise записи начисления звёзд по §3.6 в account-scoped outbox для серверного журнала; локально кошелёк не пополняется без server acknowledgement, кроме явно показанного pending состояния;
 5. пересчитывает derived loop/gate/badge/checkpoint selectors;
 6. сохраняет snapshot и outbox вместе;
 7. обновляет memory cache и UI немедленно;
@@ -879,23 +996,23 @@ nodeOutcomes[nodeId] = selectBestAcceptedNodeOutcome(nodeId)
 learningEvidenceIndex[buildLearningEvidenceTupleKey({nodeId,objectiveId,skillId,construct,phase,targetKind,targetId})] = selectBoundedBestAndLatestRefs()
 checkpointEvidenceIndex[checkpointId::tuple] = projectDeclaredCheckpointRequirements()
 bestPerformanceStars = derive from slot.bestPerformanceAttemptRef
-accessStarsEarned = sum(merged slot.bestPerformanceStars)
+accessStarsWallet = server journal merge: per-exercise grants (кап повторов 10/сутки) + exchange receipts − unlock spends
 voiceBadge = derive from resolved assessed spoken evidence
 unlockedGates = union of authoritative GateUnlockReceipt
 ```
 
 Одинаковый key с разным hash — conflict/quarantine, а не last-write-wins. Envelope не имеет общего hash: server не сравнивает и не дедуплицирует его как единый blob; identity/integrity доказываются attempt body ref и каждым learning body ref отдельно. Ref с неизвестным release/content/policy hash не участвует в projections до верификации. Tie-break для bounded best/latest ref задаёт один versioned deterministic reducer; client clock не может сам победить. Boolean OR для completion, checkpoint или voice запрещён: эти состояния пересчитываются из canonical refs и pinned contracts. После cloud acknowledgement соответствующий pending outbox event удаляется; replay не увеличивает first-frame snapshot.
 
-Purchased access и shards balance никогда не объединяются клиентским `max/union`: для них побеждает server receipt.
+Баланс монет, курс биржи, обмен и unlock-списания никогда не объединяются клиентским `max/union`: для них побеждает server receipt и серверный журнал. Per-exercise earned начисления, заработанные offline, отправляются outbox-событиями и признаются кошельком только после server acknowledgement с применением дневного капа; клиентский баланс до ack — pending-отображение, не тратится.
 
 Outbox не обрезает неподтверждённые учебные события. После acknowledgement события компактизируются в snapshot. При аномальном росте можно приостановить необязательную telemetry, но нельзя терять learning progress.
 
 ### 8.4 Offline semantics
 
-- earned progress, stars, loop completion и уже известные gates работают offline;
-- новый earned gate открывается локально и позже объединяется монотонно;
-- Access Boost offline недоступен, потому что требует authoritative shards transaction;
-- ранее купленный и синхронизированный gate остаётся доступен offline;
+- earned progress, loop completion и уже известные gates работают offline;
+- per-exercise earned звёзды фиксируются offline как pending-начисления и подтверждаются серверным журналом при sync (с дневным капом); трата их до acknowledgement запрещена;
+- обмен монет и unlock «Открыть за N звёзд» offline недоступны, потому что требуют authoritative серверной транзакции;
+- ранее открытый и синхронизированный урок остаётся доступен offline, повторы бесплатны;
 - checkpoint без обязательного AI/network режима работает offline на детерминированном пакете;
 - AI Speaking Club не является единственным обязательным путём core progression;
 - account switch сначала закрывает/инвалидирует старое поколение, затем меняет namespace;
@@ -915,26 +1032,32 @@ Outbox не обрезает неподтверждённые учебные с�
 
 На карте:
 
-- `Ваши звёзды доступа: X`;
-- `Для эпизода нужно: Y`;
+- `Баланс звёзд: X`;
+- `Открыть за N звёзд` — цена следующего эпизода, явная кнопка;
 - локальный статус предыдущего эпизода `Z/24`;
 - незавершённый loop или checkpoint как отдельная причина;
-- конкретную бесплатную CTA: `Улучшить 2 слабых задания`;
-- Access Boost только после двух честных блокировок и review explanation.
+- конкретную бесплатную CTA при нехватке звёзд: `Заработать ещё: идеальные повторы (осталось K из 10 сегодня)`;
+- ссылку на биржу: `Обменять монеты на звёзды`.
 
-На confirmation:
+На экране биржи:
+
+- текущий курс, коридор (по умолчанию 60–100), время следующего пересчёта и история курса;
+- обязательный постоянный текст: `Монеты ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание`;
+- обмен только монеты → звёзды, без обратного направления.
+
+На confirmation unlock:
 
 ```text
-Не хватает 2 звёзд доступа.
-Access Boost откроет этот эпизод за 6 осколков.
-Он не засчитывает владение материалом и не влияет на checkpoint.
+Открыть этот эпизод за 30 звёзд?
+Звёзды спишутся один раз, повторы урока будут бесплатны.
+Открытие не засчитывает владение материалом и не влияет на checkpoint.
 ```
 
 ### 9.2 Визуальное разделение
 
 - earned performance: золотая/основная звезда результата;
-- earned access: derived-счётчик пути, полученный из earned performance;
-- purchased boost: отдельный символ/контур и подпись `Boost`, не золотая performance-звезда;
+- access wallet: отдельный счётчик-кошелёк звёзд с понятной подписью «баланс», не путать с performance-звёздами slot;
+- монеты: отдельный символ монеты (тёмное золото, гравировка маскота, зелёная эмаль); 5 состояний иконки по балансу, число рядом — главный индикатор;
 - voice evidence: микрофон/волна плюс текст, не цвет alone;
 - на lime/neon surface используется только тёмный foreground;
 - screen reader произносит тип звезды и назначение, а не просто `две звезды`;
@@ -944,7 +1067,8 @@ Access Boost откроет этот эпизод за 6 осколков.
 
 | Ситуация | Нормативное поведение |
 |---|---|
-| Replay того же ответа | `best=max`, повторной delta нет |
+| Replay того же ответа | `best=max`, новой performance delta нет; идеальный повтор даёт +1 в кошелёк один раз (§3.6), повтор с ошибкой — +0 |
+| Идеальные повторы сверх капа | более 10 бонусных +1/сутки не начисляются; учебный эффект и `bestPerformanceStars` работают как обычно |
 | Две альтернативные ветки | общий `starSlotId`, учитывается один лучший результат |
 | Новый scorer строже | старый best не отзывается; новая policy version применяется только к новым попыткам |
 | Copy edit release | progress переносится по совместимому key |
@@ -953,20 +1077,21 @@ Access Boost откроет этот эпизод за 6 осколков.
 | Typed fallback | content completion возможен, voice evidence не выдаётся |
 | Accessibility alternative | равный путь completion/performance/access; отдельный diagnostic получает `not_assessed_accessibility`, objective state — `not_assessed/accessibility` |
 | Delayed probe доставлен вне pinned window | `not_assessed_for_window` → `not_assessed/outside_window`; не failure, не delayed evidence и не mastery |
-| Gate уже открыт, curve повысилась | unlock не отзывается |
-| Дефицит больше трёх | boost не продаётся, предлагается review |
-| Два устройства покупают gate | transaction + `opId`; один receipt, один spend |
-| Purchase commit прошёл, ответ потерян | повтор того же `opId` возвращает receipt |
-| Shards потрачены на другом устройстве | stale quote/insufficient, без partial write |
-| Gate удалён faulty release | server refund operation |
-| Пользователь добрал stars после boost | gate остаётся открыт, автоматического refund нет |
+| Gate уже открыт, цена/курс изменились | unlock не отзывается |
+| Не хватает звёзд на unlock | бесплатный путь (повторы, другие активности) + биржа монет; продажи «частичного доступа» нет |
+| Два устройства открывают один gate / обменивают монеты | transaction + `opId`; один receipt, одно списание |
+| Commit прошёл, ответ потерян | повтор того же `opId` возвращает receipt |
+| Курс изменился между quote и обменом | сервер применяет authoritative курс на момент транзакции; курс вне коридора или дельта >±10%/сутки отклоняется |
+| Попытка обратного обмена звёзд в монеты | не существует как операция; клиентская попытка отклоняется |
+| Gate удалён faulty release | server refund operation (звёзды возвращаются в кошелёк) |
+| Пользователь заработал больше звёзд после unlock | unlock остаётся, автоматического refund нет |
 | Account switch во время sync | stale generation отбрасывается до storage/memory commit |
-| Клиент подменил цену | сервер повторно вычисляет цену и отвергает mismatch |
-| Клиент подменил earned stars | не использовать performance stars для денежных выплат, лиг, mastery или сертификата; competitive claims требуют отдельной server-validated evidence |
+| Клиент подменил цену/курс | сервер повторно вычисляет цену и курс и отвергает mismatch |
+| Клиент подменил earned stars | не использовать performance stars для денежных выплат, лиг, mastery или сертификата; кошелёк подтверждается серверным журналом; competitive claims требуют отдельной server-validated evidence |
 | Clock rollback | gate не зависит от client clock; время информационное |
 | Legacy `best_score` | сохраняет legacy evidence/access, не создаёт V2 performance stars или `LearningEvidence` |
 
-Модифицированный offline-клиент нельзя сделать криптографически доверенным без server scoring всех попыток. Поэтому earned performance stars являются личным reward/progress signal и не дают денежной/соревновательной выгоды. Всё money-adjacent — shards spend, boost receipt, refund — остаётся server-authoritative.
+Модифицированный offline-клиент нельзя сделать криптографически доверенным без server scoring всех попыток. Поэтому earned performance stars являются личным reward/progress signal и не дают денежной/соревновательной выгоды. Всё money-adjacent — баланс монет, курс биржи, обмен, unlock-списания, refund, серверный журнал per-exercise начислений и дневной кап — остаётся server-authoritative.
 
 ## 11. Focused tests
 
@@ -986,13 +1111,13 @@ tests/v2_checkpoint_projection.test.ts
 Обязательные assertions:
 
 - максимум 3 stars/slot и 24/episode;
-- все 31 thresholds равны таблице;
-- curve строго монотонна и не экспоненциальна;
-- replay с тем же/худшим результатом даёт delta 0;
-- purchased access не меняет performance/access earned/`LearningEvidence`/voice/checkpoint;
-- checkpoint игнорирует purchased boost;
+- **[обновлено 2026-07-20]** per-exercise начисление: первое прохождение 3/2/1 по числу ошибок; идеальный повтор +1 ровно один раз; повтор с ошибкой +0; бонуса за полный повтор урока нет; дневной кап повторных +1 = 10/сутки/аккаунт;
+- прежняя cumulative таблица порогов не используется gate evaluator; цены unlock читаются из immutable release policy;
+- replay с тем же/худшим результатом даёт performance delta 0;
+- потраченные/обменянные звёзды не меняют performance earned/`LearningEvidence`/voice/checkpoint и не входят в season target 500;
+- checkpoint игнорирует трату звёзд и обмен монет;
 - локальные minimum 14/15/16/17 применяются к правильным диапазонам;
-- primary и каждая accessibility route имеют достаточный `maxReachablePerformanceStars` для local/cumulative gates без boost;
+- primary и каждая accessibility route имеют достаточный `maxReachablePerformanceStars` для local minimum и заработка цен unlock без обмена монет;
 - typed fallback не создаёт voice/spoken evidence, captioned route не создаёт listening evidence;
 - accessibility route пишет отдельный `LearningNonAssessment(not_assessed_accessibility)`, а objective state становится `not_assessed/accessibility`;
 - uncertain/invalid не ухудшают best, не создают `LearningEvidence` и остаются отдельным non-assessment diagnostic;
@@ -1018,12 +1143,16 @@ tests/v2_progress_offline_restore.test.ts
 ### 11.3 Server economy
 
 ```text
-functions/src/v2_access_purchase.test.ts
-functions/src/v2_access_refund.test.ts
+functions/src/v2_coin_exchange.test.ts          // quote/history/exchange/admin override
+functions/src/v2_coin_exchange_rate_job.test.ts // суточный пересчёт: ±10%, коридор, дрейф к базе
+functions/src/v2_star_unlock.test.ts            // «Открыть за N звёзд»
+functions/src/v2_star_journal.test.ts           // per-exercise grants и дневной кап 10/сутки
 functions/src/v2_progress.test.ts
+// legacy: functions/src/v2_access_purchase.test.ts / v2_access_refund.test.ts — [SUPERSEDED 2026-07-20]
+// сохраняются как регрессионные guards grandfathered Access Boost записей, новых покупок не создают
 ```
 
-Проверить quote expiry, price mismatch, deficit `0`, deficit `>3`, gate/chapter/season caps, незавершённый loop, local minimum, checkpoint, insufficient balance, concurrent transaction, same-op replay, owner mismatch, stale release/policy и idempotent refund.
+Проверить: коридор курса 60–100 и дельта ≤±10%/сутки; дрейф к базовому курсу при падающем спросе; односторонность обмена (обратного API нет); admin override с аудитом и только внутри коридора; `opId` идемпотентность обмена и unlock; price/rate mismatch; insufficient coin/star balance; concurrent transaction; same-op replay; owner mismatch; stale release/policy; дневной кап повторных +1 (10/сутки) с серверным журналом; unlock требует выполнения §5.1 условий и не заменяет их; idempotent refund в кошелёк.
 
 ### 11.4 Existing regression guards
 
@@ -1041,14 +1170,17 @@ tests/cloud_sync_account_race_contract.test.ts
 
 ## 12. Acceptance criteria пилота
 
-- snapshot хранит только `bestPerformanceStars`, canonical attempt/evidence refs и bounded checkpoint projection этих же refs как learning source of truth; access, completion, loops, checkpoint decision и voice badge воспроизводимо выводятся и не имеют независимой write-команды;
+- snapshot хранит только `bestPerformanceStars`, canonical attempt/evidence refs и bounded checkpoint projection этих же refs как learning source of truth; completion, loops, checkpoint decision и voice badge воспроизводимо выводятся и не имеют независимой write-команды; `accessStarsWallet` — server-authoritative баланс с журналом, не derived selector;
 - canonical integrity chain не циклична: hash-free attempt body → attempt ref → hash-free learning bodies → learning refs; `V2AttemptEvent` envelope не хэшируется целиком;
-- купленная сущность нигде не попадает в `LearningEvidence`, mastery, checkpoint, voice, achievement или league;
-- все ворота вычисляются одинаково client/server/admin validator;
-- primary и каждая accessibility route доказуемо могут достичь своих local/cumulative gates без Access Boost;
-- Access Boost никогда не является первым или единственным способом продолжить;
-- purchase atomic, server-priced, account-scoped и idempotent;
-- offline earned progress переживает restart и последующий merge;
+- монеты и обменянные звёзды нигде не попадают в `LearningEvidence`, mastery, checkpoint, voice, achievement, league или season target 500;
+- урок/экзамен открывается только явным действием «Открыть за N звёзд»; списание разовое, unlock навсегда, повторы бесплатны;
+- биржа строго односторонняя (монеты → звёзды), курс server-authoritative в коридоре 60–100 с дельтой ≤±10%/сутки и обязательным disclaimer на экране;
+- все ворота и цены вычисляются одинаково client/server/admin validator;
+- primary и каждая accessibility route доказуемо могут достичь своих local minimum и заработать цены unlock без обмена монет;
+- бесплатный путь заработка звёзд всегда существует; обмен монет никогда не является первым или единственным способом продолжить;
+- обмен и unlock atomic, server-priced, account-scoped и idempotent;
+- offline earned progress переживает restart и последующий merge; pending-начисления подтверждаются серверным журналом с дневным капом;
 - ни один технический voice failure не превращается в учебную ошибку;
+- энергия не участвует ни в одном учебном сценарии;
 - legacy progress остаётся нетронутым и не создаёт фиктивных V2 performance stars или `LearningEvidence`;
-- UI в каждом месте ясно называет тип звезды и последствия действия.
+- UI в каждом месте ясно называет тип звезды/монеты и последствия действия.

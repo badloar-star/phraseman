@@ -50,5 +50,12 @@ export const POSITION_OF_PRIZE: readonly number[] = (() => {
   return pos;
 })();
 
+/**
+ * Показывать ли шансы (%/бары) в пользовательских экранах рулетки.
+ * Выключено по решению владельца (шансы — только в админке);
+ * включить обратно — одна строка: true. Экраны читают этот флаг.
+ */
+export const SHOW_SPIN_ODDS = false;
+
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

@@ -15,7 +15,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { CINEMA, cinemaAlpha, isCinemaMode } from '../constants/cinemaThemes';
-import { ROULETTE_PRIZES } from './roulette_prizes';
+import { ROULETTE_PRIZES, SHOW_SPIN_ODDS } from './roulette_prizes';
 
 const STEPS: readonly { title: string; text: string }[] = [
   { title: 'Пригласи друга', text: 'Поделись своей ссылкой или кодом из раздела «Рефералы».' },
@@ -27,7 +27,7 @@ const RULES: readonly string[] = [
   'Прокрут начисляется за каждое засчитанное приглашение.',
   'Не более 3 прокрутов в день и 30 в месяц.',
   'Выигрыш суммируется с текущим сроком Plus.',
-  'Результат определяет сервер — шансы одинаковы для всех.',
+  'Результат определяет сервер.',
 ];
 
 export default function RouletteAboutScreen() {
@@ -113,10 +113,10 @@ export default function RouletteAboutScreen() {
           ))}
         </View>
 
-        {/* Призы и шансы */}
+        {/* Призы */}
         <View style={[styles.card, { backgroundColor: t.accentBg, borderColor: t.border }]}>
           <Text style={[styles.cardTitle, { color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily }]}>
-            Призы и шансы
+            Призы
           </Text>
           {ROULETTE_PRIZES.map((p) => (
             <View key={p.index} style={styles.prizeRow}>
@@ -126,12 +126,16 @@ export default function RouletteAboutScreen() {
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontFamily: ds.fontFamily, fontWeight: '700', width: 74 }}>
                 {p.label}
               </Text>
-              <View style={[styles.prizeBarTrack, { backgroundColor: t.border }]}>
-                <View style={[styles.prizeBarFill, { backgroundColor: t.accent, width: `${Math.max(2, p.weight)}%` }]} />
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '400', width: 52, textAlign: 'right' }}>
-                {p.weight}%
-              </Text>
+              {SHOW_SPIN_ODDS && (
+                <>
+                  <View style={[styles.prizeBarTrack, { backgroundColor: t.border }]}>
+                    <View style={[styles.prizeBarFill, { backgroundColor: t.accent, width: `${Math.max(2, p.weight)}%` }]} />
+                  </View>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '400', width: 52, textAlign: 'right' }}>
+                    {p.weight}%
+                  </Text>
+                </>
+              )}
             </View>
           ))}
         </View>

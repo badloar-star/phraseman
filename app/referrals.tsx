@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
+  Image,
   RefreshControl,
   ScrollView,
   Share,
@@ -502,6 +503,55 @@ export default function ReferralsScreen() {
             </TonalSurface>
           ) : null}
 
+          {/* Постоянный вход в рулетку Plus — виден всегда, независимо от числа прокрутов */}
+          {referralEnabled && (
+            <TonalSurface
+              testID="referrals-roulette-hero"
+              radius={20}
+              tone="raised"
+              backgroundColor={glassFill(t.bgSurface, 0.46)}
+              style={{ padding: 18, gap: 12 }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', height: 64 }}>
+                <Image source={require('../assets/roulette/card-7d.jpg')} style={{ width: 92, height: 61, borderRadius: 10, borderWidth: 1, borderColor: t.border }} resizeMode="cover" />
+                <Image source={require('../assets/roulette/card-1y.jpg')} style={{ width: 92, height: 61, borderRadius: 10, borderWidth: 1, borderColor: t.border, marginLeft: -22 }} resizeMode="cover" />
+                <Image source={require('../assets/roulette/card-3m.jpg')} style={{ width: 92, height: 61, borderRadius: 10, borderWidth: 1, borderColor: t.border, marginLeft: -22 }} resizeMode="cover" />
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2 ?? 22, fontWeight: '900' }}>
+                  {L('Рулетка Plus', 'Рулетка Plus', 'Ruleta Plus', 'Roleta Plus', 'Vòng quay Plus', 'Roulette Plus', 'Plus Ruleti', 'Ruletka Plus')}
+                </Text>
+                <View style={{ paddingHorizontal: 12, paddingVertical: 6, borderRadius: 12, backgroundColor: t.bgSurface, borderWidth: 1, borderColor: spinCredits > 0 ? t.accent : t.border }}>
+                  <Text style={{ color: spinCredits > 0 ? t.accent : t.textSecond, fontSize: f.sub ?? 13, fontWeight: '900' }}>
+                    {L(`Прокрутов: ${spinCredits}`, `Прокрутів: ${spinCredits}`, `Giros: ${spinCredits}`, `Giros: ${spinCredits}`, `Lượt quay: ${spinCredits}`, `Putaran: ${spinCredits}`, `Çevirme: ${spinCredits}`, `Zakrecenia: ${spinCredits}`)}
+                  </Text>
+                </View>
+              </View>
+              <TouchableOpacity
+                testID="referrals-roulette-spin"
+                accessibilityRole="button"
+                activeOpacity={0.84}
+                onPress={() => router.push('/roulette' as any)}
+                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.accent }}
+              >
+                <Text style={{ color: t.correctText, fontSize: f.body ?? 16, fontWeight: '900' }}>
+                  {L('Крутить 🎡', 'Крутити 🎡', 'Girar 🎡', 'Girar 🎡', 'Quay 🎡', 'Putar 🎡', 'Çevir 🎡', 'Zakręć 🎡')}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                testID="referrals-roulette-about"
+                accessibilityRole="button"
+                activeOpacity={0.8}
+                onPress={() => router.push('/roulette_about' as any)}
+                style={{ alignItems: 'center', paddingVertical: 4 }}
+              >
+                <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontWeight: '800' }}>
+                  {L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
+                </Text>
+              </TouchableOpacity>
+            </TonalSurface>
+          )}
+
           {message && (
             <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface }}>
               <Text testID="referrals-feedback" style={{ color: t.textPrimary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '800' }}>{message}</Text>
@@ -525,18 +575,6 @@ export default function ReferralsScreen() {
               {invites.map(renderInvite)}
             </View>
           ) : null}
-
-          <TouchableOpacity
-            testID="referrals-roulette-about"
-            accessibilityRole="button"
-            activeOpacity={0.8}
-            onPress={() => router.push('/roulette_about' as any)}
-            style={{ alignItems: 'center', paddingVertical: 10 }}
-          >
-            <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontWeight: '800' }}>
-              {L('О рулетке Plus', 'Про рулетку Plus', 'Sobre la ruleta Plus', 'Sobre a roleta Plus', 'Về vòng quay Plus', 'Tentang roulette Plus', 'Plus ruleti hakkında', 'O ruletce Plus')}
-            </Text>
-          </TouchableOpacity>
         </ScrollView>
 
         <ReferralAccessActivatedModal

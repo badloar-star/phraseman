@@ -44,7 +44,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { readCachedSpinCredits, spinReferralRoulette } from './roulette_spin_client';
 import type { SpinOutcome } from './roulette_spin_client';
-import { POSITION_OF_PRIZE, ROULETTE_PRIZES, TAPE_CYCLE } from './roulette_prizes';
+import { POSITION_OF_PRIZE, ROULETTE_PRIZES, SHOW_SPIN_ODDS, TAPE_CYCLE } from './roulette_prizes';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
 
@@ -391,16 +391,20 @@ export default function RouletteScreen() {
                   <Text style={{ color: t.textPrimary, fontSize: f.sub, fontFamily: ds.fontFamily, fontWeight: '700', width: 74 }}>
                     {p.label}
                   </Text>
-                  <View style={[styles.prizeBarTrack, { backgroundColor: t.border }]}>
-                    <View style={[styles.prizeBarFill, { backgroundColor: t.accent, width: `${Math.max(2, p.weight)}%` }]} />
-                  </View>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '400', width: 52, textAlign: 'right' }}>
-                    {p.weight}%
-                  </Text>
+                  {SHOW_SPIN_ODDS && (
+                    <>
+                      <View style={[styles.prizeBarTrack, { backgroundColor: t.border }]}>
+                        <View style={[styles.prizeBarFill, { backgroundColor: t.accent, width: `${Math.max(2, p.weight)}%` }]} />
+                      </View>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '400', width: 52, textAlign: 'right' }}>
+                        {p.weight}%
+                      </Text>
+                    </>
+                  )}
                 </View>
               ))}
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontFamily: ds.fontFamily, fontWeight: '400', marginTop: 10, textAlign: 'center' }}>
-                Шансы честные · результат определяет сервер
+                {SHOW_SPIN_ODDS ? 'Шансы честные · результат определяет сервер' : 'Результат определяет сервер'}
               </Text>
             </View>
           )}

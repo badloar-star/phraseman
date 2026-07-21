@@ -12,6 +12,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  id-token: write
 
 concurrency:
   group: english-level-test-production-release
@@ -27,32 +28,50 @@ jobs:
     timeout-minutes: 45
     env:
       FIREBASE_PROJECT_ID: phraseman-ea0b3
-      FIREBASE_SA_PRIMARY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 }}
-      FIREBASE_SA_ALT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHR_MAN_EA0B3 }}
-      FIREBASE_SA_GENERIC: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      GOOGLE_CREDENTIALS_SECRET: ${{ secrets.GOOGLE_CREDENTIALS }}
-      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-      FIREBASE_TOKEN_SECRET: ${{ secrets.FIREBASE_TOKEN }}
 
     steps:
       - name: Check out audited release branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
+          fetch-depth: 1
           token: ${{ github.token }}
 
       - name: Reconstruct immutable release payload
         shell: bash
         run: |
-          set -euo pipefail
+          set -euxo pipefail
           test "$(find .release/english-test -maxdepth 1 -type f -name 'part-*' | wc -l | tr -d ' ')" = "10"
-          for n in $(seq 0 9); do part=$(printf '%03d' "$n"); test -s ".release/english-test/part-$part"; done
+          for n in $(seq 0 9); do
+            part=$(printf '%03d' "$n")
+            test -s ".release/english-test/part-$part"
+            wc -c ".release/english-test/part-$part"
+            sha256sum ".release/english-test/part-$part"
+          done
           cat .release/english-test/part-* > /tmp/english-test-release.b64
+          wc -c /tmp/english-test-release.b64
           base64 --decode /tmp/english-test-release.b64 > /tmp/english-test-release.tar.xz
-          echo "d7682645609959b249516fb22c656639b6451af6264e736111e64c296fc106f1  /tmp/english-test-release.tar.xz" | sha256sum --check --strict
+          actual_sha="$(sha256sum /tmp/english-test-release.tar.xz | awk '{print $1}')"
+          echo "Reconstructed archive SHA-256: $actual_sha"
+          test "$actual_sha" = "d7682645609959b249516fb22c656639b6451af6264e736111e64c296fc106f1"
+          xz --test /tmp/english-test-release.tar.xz
+          tar -tvJf /tmp/english-test-release.tar.xz > /tmp/english-test-release-files.txt
+          sed -n '1,60p' /tmp/english-test-release-files.txt
           tar -xJf /tmp/english-test-release.tar.xz -C .
+          test -s scripts/apply_english_test_release.mjs
           node scripts/apply_english_test_release.mjs
+
+      - name: Upload payload diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-release-payload-${{ github.run_attempt }}
+          path: |
+            /tmp/english-test-release.b64
+            /tmp/english-test-release.tar.xz
+            /tmp/english-test-release-files.txt
+          if-no-files-found: ignore
+          retention-days: 1
 
       - name: Validate bank, adaptive engine, browser and admin contracts
         shell: bash
@@ -86,36 +105,116 @@ jobs:
           npm --prefix functions run build
           npm --prefix functions test -- --runTestsByPath src/english_test_analytics.test.ts src/english_test_scoring.test.ts --runInBand
 
-      - name: Configure Firebase authentication
-        id: firebase-auth
+      - name: Replace bootstrap payload with reviewed source
         shell: bash
         run: |
           set -euo pipefail
-          service_account=""
-          for candidate in "$FIREBASE_SA_PRIMARY" "$FIREBASE_SA_ALT" "$FIREBASE_SA_GENERIC" "$GOOGLE_CREDENTIALS_SECRET" "$GCP_SERVICE_ACCOUNT_KEY"; do
-            if [ -n "$candidate" ]; then service_account="$candidate"; break; fi
-          done
-          if [ -n "$service_account" ]; then
-            if printf '%s' "$service_account" | grep -q '^[[:space:]]*{'; then
-              printf '%s' "$service_account" > "$RUNNER_TEMP/firebase-service-account.json"
-            else
-              printf '%s' "$service_account" | base64 --decode > "$RUNNER_TEMP/firebase-service-account.json"
-            fi
-            python3 - <<'PY'
-          import json, os
-          path = os.path.join(os.environ['RUNNER_TEMP'], 'firebase-service-account.json')
-          data = json.load(open(path, encoding='utf-8'))
-          assert data.get('type') == 'service_account'
-          assert data.get('project_id') == 'phraseman-ea0b3'
+          rm -rf .release/english-test
+          rm -f .github/workflows/apply-english-test-release.yml
+          rm -f .release/english-test-pr-trigger
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "feat(web): add audited English level test"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
+
+      - name: Discover Firebase deployment credential
+        id: firebase-auth
+        env:
+          REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
+          REPO_VARS_JSON: ${{ toJSON(vars) }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64
+          import json
+          import os
+          import re
+          import sys
+          from pathlib import Path
+
+          def read_json_env(name):
+              raw = os.environ.get(name, '').strip()
+              if not raw:
+                  return {}
+              try:
+                  data = json.loads(raw)
+              except json.JSONDecodeError:
+                  return {}
+              return data if isinstance(data, dict) else {}
+
+          secrets = read_json_env('REPO_SECRETS_JSON')
+          variables = read_json_env('REPO_VARS_JSON')
+          relevant = sorted(
+              key for key, value in secrets.items()
+              if value and re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|CLOUD|WORKLOAD|SERVICE_ACCOUNT', key, re.I)
+          )
+          print('Non-empty cloud/deploy secret keys:', ', '.join(relevant) if relevant else '(none)')
+
+          def decoded_candidates(value):
+              yield value
+              compact = ''.join(value.split())
+              try:
+                  decoded = base64.b64decode(compact, validate=True).decode('utf-8')
+              except Exception:
+                  return
+              yield decoded
+
+          cred_path = Path(os.environ['RUNNER_TEMP']) / 'firebase-deployment-credential.json'
+          for key, value in secrets.items():
+              if not value:
+                  continue
+              for candidate in decoded_candidates(str(value)):
+                  try:
+                      data = json.loads(candidate)
+                  except Exception:
+                      continue
+                  if not isinstance(data, dict):
+                      continue
+                  cred_type = data.get('type')
+                  project = data.get('project_id') or data.get('quota_project_id')
+                  if cred_type in {'service_account', 'external_account', 'authorized_user'} and (not project or project == 'phraseman-ea0b3'):
+                      cred_path.write_text(candidate, encoding='utf-8')
+                      with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env_file:
+                          env_file.write(f'GOOGLE_APPLICATION_CREDENTIALS={cred_path}\n')
+                      with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out_file:
+                          out_file.write('mode=adc\n')
+                      print(f'Using Google credential from secret {key} ({cred_type}).')
+                      sys.exit(0)
+
+          for key, value in secrets.items():
+              if value and re.search(r'FIREBASE.*TOKEN|TOKEN.*FIREBASE', key, re.I):
+                  print(f'::add-mask::{value}')
+                  with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env_file:
+                      env_file.write(f'FIREBASE_DEPLOY_TOKEN={value}\n')
+                  with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out_file:
+                      out_file.write('mode=token\n')
+                  print(f'Using Firebase CI token from secret {key}.')
+                  sys.exit(0)
+
+          merged = {**variables, **secrets}
+          provider = next((str(v) for k, v in merged.items() if v and re.search(r'WORKLOAD.*IDENTITY.*PROVIDER|WIF.*PROVIDER', k, re.I)), '')
+          account = next((str(v) for k, v in merged.items() if v and re.search(r'(WORKLOAD|WIF|DEPLOY).*SERVICE.*ACCOUNT|SERVICE.*ACCOUNT.*EMAIL', k, re.I)), '')
+          if provider and account:
+              with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env_file:
+                  env_file.write(f'WIF_PROVIDER={provider}\nWIF_SERVICE_ACCOUNT={account}\n')
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out_file:
+                  out_file.write('mode=wif\n')
+              print('Using Workload Identity Federation configuration.')
+              sys.exit(0)
+
+          print('No Firebase/Google deployment credential exists in repository secrets or variables.', file=sys.stderr)
+          sys.exit(31)
           PY
-            echo "mode=service-account" >> "$GITHUB_OUTPUT"
-            echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/firebase-service-account.json" >> "$GITHUB_ENV"
-          elif [ -n "$FIREBASE_TOKEN_SECRET" ]; then
-            echo "mode=token" >> "$GITHUB_OUTPUT"
-          else
-            echo "No Firebase deployment credential is configured in repository secrets." >&2
-            exit 31
-          fi
+
+      - name: Authenticate with Google through Workload Identity
+        if: steps.firebase-auth.outputs.mode == 'wif'
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
 
       - name: Deploy bounded Firebase resources
         shell: bash
@@ -123,7 +222,7 @@ jobs:
           set -euo pipefail
           only="functions:siteStatsTrack,functions:finalizeStaleEnglishTests,functions:cleanupEnglishTestAnalytics,firestore:indexes,hosting:knowlywww,hosting:admin"
           if [ "${{ steps.firebase-auth.outputs.mode }}" = "token" ]; then
-            npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive --token "$FIREBASE_TOKEN_SECRET"
+            npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive --token "$FIREBASE_DEPLOY_TOKEN"
           else
             npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive
           fi
@@ -148,17 +247,3 @@ jobs:
           verify_page "https://knowlyapps.web.app/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
           verify_page "https://knowlyapps.com/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
           verify_page "https://phraseman-ea0b3.web.app/v2/" "Аналитика Phraseman"
-
-      - name: Replace bootstrap payload with reviewed source
-        shell: bash
-        run: |
-          set -euo pipefail
-          rm -rf .release/english-test
-          rm -f .github/workflows/apply-english-test-release.yml
-          rm -f .release/english-test-pr-trigger
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --check
-          git commit -m "feat(web): deploy audited English level test"
-          git push origin HEAD:${{ github.event.pull_request.head.ref }}

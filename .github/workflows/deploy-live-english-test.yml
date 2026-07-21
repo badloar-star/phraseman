@@ -28,7 +28,7 @@ jobs:
     timeout-minutes: 55
     env:
       FIREBASE_PROJECT_ID: phraseman-ea0b3
-      RELEASE_SHA256: 9ad08712f62a0da59bffbeae71312733d2569e82598e95090e7e115755a852e2
+      RELEASE_SHA256: 6415de5720874b19028f8fb5b3b1687b573523cdbd2826d31687a04c234eff2d
 
     steps:
       - name: Check out immutable payload branch
@@ -71,14 +71,14 @@ jobs:
         run: |
           set -euo pipefail
           test -s ../payload/.english-test-live/manifest.json
-          test "$(find ../payload/.english-test-live -maxdepth 1 -type f -name 'payload.part*' | wc -l | tr -d ' ')" = '4'
+          test "$(find ../payload/.english-test-live -maxdepth 1 -type f -name 'payload.part*' | wc -l | tr -d ' ')" = '12'
           cat ../payload/.english-test-live/payload.part* > "$RUNNER_TEMP/english-test-live-release.b64"
-          base64 --decode "$RUNNER_TEMP/english-test-live-release.b64" > "$RUNNER_TEMP/english-test-live-release.tar.gz"
-          echo "$RELEASE_SHA256  $RUNNER_TEMP/english-test-live-release.tar.gz" | sha256sum --check --strict
-          gzip --test "$RUNNER_TEMP/english-test-live-release.tar.gz"
-          tar -tzf "$RUNNER_TEMP/english-test-live-release.tar.gz" > "$RUNNER_TEMP/english-test-live-files.txt"
+          base64 --decode "$RUNNER_TEMP/english-test-live-release.b64" > "$RUNNER_TEMP/english-test-live-release.tar.xz"
+          echo "$RELEASE_SHA256  $RUNNER_TEMP/english-test-live-release.tar.xz" | sha256sum --check --strict
+          xz --test "$RUNNER_TEMP/english-test-live-release.tar.xz"
+          tar -tJf "$RUNNER_TEMP/english-test-live-release.tar.xz" > "$RUNNER_TEMP/english-test-live-files.txt"
           sed -n '1,120p' "$RUNNER_TEMP/english-test-live-files.txt"
-          tar -xzf "$RUNNER_TEMP/english-test-live-release.tar.gz" -C .
+          tar -xJf "$RUNNER_TEMP/english-test-live-release.tar.xz" -C .
           test -s knowly-www/english-level-test/index.html
           test -s knowly-www/english-level-test/app.js
           test -s knowly-www/english-level-test/questions.en.json

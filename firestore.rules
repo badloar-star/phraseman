@@ -2147,6 +2147,12 @@ service cloud.firestore {
     match /content_mode_template_lifecycle/{docId} {
       allow read, write: if false;
     }
+    match /content_mode_template_lifecycle_audit/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_lifecycle_operations/{docId} {
+      allow read, write: if false;
+    }
     match /content_season_drafts/{docId} {
       allow read, write: if false;
     }
@@ -2154,6 +2160,9 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_season_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_episode_pins/{docId} {
       allow read, write: if false;
     }
     match /content_episode_drafts/{docId} {
@@ -2165,6 +2174,12 @@ service cloud.firestore {
     match /content_episode_lifecycle/{docId} {
       allow read, write: if false;
     }
+    match /content_episode_lifecycle_audit/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_lifecycle_operations/{docId} {
+      allow read, write: if false;
+    }
     match /content_studio_review_queue/{docId} {
       allow read, write: if false;
     }
@@ -2172,6 +2187,24 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_studio_review_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_review_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_gate_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_validation_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_localization_operations/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_voice_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_episode_voice_operations/{docId} {
       allow read, write: if false;
     }
     match /content_studio_validation_receipts/{docId} {
@@ -2184,6 +2217,9 @@ service cloud.firestore {
       allow read, write: if false;
     }
     match /content_studio_preview_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_gate_receipts/{docId} {
       allow read, write: if false;
     }
     match /content_app_support_manifests/{docId} {

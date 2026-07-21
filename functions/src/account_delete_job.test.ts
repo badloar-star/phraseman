@@ -4,11 +4,13 @@ import {
   processAccountDeletionJob,
   type AccountDeleteJobDocument,
 } from './account_delete_job';
+import { createHash } from 'crypto';
 
 type StoredDoc = Record<string, unknown>;
 
 function makeDbStub(initial?: StoredDoc) {
   const docs = new Map<string, StoredDoc>();
+  const scheduledSetKeys: string[] = [];
   if (initial) docs.set(`account_deletion_jobs/${String(initial.jobId ?? 'job-1')}`, { ...initial });
 
   const applySet = (key: string, value: StoredDoc, options?: { merge?: boolean }) => {
@@ -60,7 +62,10 @@ function makeDbStub(initial?: StoredDoc) {
           if (docs.has(ref.key)) throw new Error('already-exists');
           docs.set(ref.key, { ...value });
         }),
-        set: (ref, value, options) => writes.push(() => applySet(ref.key, value, options)),
+        set: (ref, value, options) => {
+          scheduledSetKeys.push(ref.key);
+          writes.push(() => applySet(ref.key, value, options));
+        },
         update: (ref, value) => writes.push(() => {
           if (!docs.has(ref.key)) throw new Error('not-found');
           applySet(ref.key, value, { merge: true });
@@ -74,6 +79,7 @@ function makeDbStub(initial?: StoredDoc) {
   return {
     db: db as unknown as FirebaseFirestore.Firestore,
     read: () => Array.from(docs.entries()).find(([key]) => key.startsWith('account_deletion_jobs/'))?.[1] as AccountDeleteJobDocument | undefined,
+    scheduledSetKeys,
   };
 }
 
@@ -128,6 +134,27 @@ describe('account deletion job enqueue', () => {
 
     expect(result).toEqual({ jobId, status: 'completed', created: false });
     expect(read()?.status).toBe('completed');
+  });
+
+  it('reuses a scrubbed completed job only for the same stable identity', async () => {
+    const authUid = 'auth-456';
+    const stableUid = 'stable-123';
+    const jobId = accountDeleteJobId(authUid);
+    const { db, scheduledSetKeys } = makeDbStub({
+      jobId,
+      authUidHash: createHash('sha256').update(authUid).digest('hex'),
+      stableUidHash: createHash('sha256').update(stableUid).digest('hex'),
+      status: 'completed',
+      attempts: 1,
+      createdAtMs: 1_000,
+      updatedAtMs: 1_500,
+    });
+
+    await expect(enqueueAccountDeletionJob(db, authUid, stableUid, 2_000))
+      .resolves.toEqual({ jobId, status: 'completed', created: false });
+    await expect(enqueueAccountDeletionJob(db, authUid, 'stable-other', 3_000))
+      .rejects.toThrow('account_delete_job_identity_mismatch');
+    expect(scheduledSetKeys).not.toContain('account_deletion_tombstones/stable-other');
   });
 
   it('requeues a terminal failed job when the authenticated user retries deletion', async () => {

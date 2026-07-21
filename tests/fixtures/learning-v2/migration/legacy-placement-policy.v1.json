@@ -1,0 +1,476 @@
+{
+  "schemaVersion": "legacy-placement-policy-fixtures.v1",
+  "validCases": [
+    {
+      "caseId": "empty",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": null
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "start_episode_1",
+          "recognizedLegacyBoundary": 0,
+          "diagnosticProfile": "none",
+          "acknowledgesLegacyExperience": false,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-1",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 1
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "start_episode_1",
+          "recognizedLegacyBoundary": 0,
+          "diagnosticProfile": "none",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-7",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 7
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "start_episode_1",
+          "recognizedLegacyBoundary": 0,
+          "diagnosticProfile": "none",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-8",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 8
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 8,
+          "diagnosticProfile": "chapter_1",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-9",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 9
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 8,
+          "diagnosticProfile": "chapter_1",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-17",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 17
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 8,
+          "diagnosticProfile": "chapter_1",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-18",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 18
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 18,
+          "diagnosticProfile": "chapters_1_2_voice_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-19",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 19
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 18,
+          "diagnosticProfile": "chapters_1_2_voice_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-27",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 27
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 18,
+          "diagnosticProfile": "chapters_1_2_voice_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-28",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 28
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 28,
+          "diagnosticProfile": "through_chapter_3_scenario_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-29",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 29
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 28,
+          "diagnosticProfile": "through_chapter_3_scenario_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-31",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 31
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 28,
+          "diagnosticProfile": "through_chapter_3_scenario_transfer",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    },
+    {
+      "caseId": "legacy-32",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 32
+      },
+      "expected": {
+        "ok": true,
+        "recommendation": {
+          "schemaVersion": "legacy-placement-recommendation.v1",
+          "action": "offer_placement_diagnostic",
+          "recognizedLegacyBoundary": 32,
+          "diagnosticProfile": "full_can_do",
+          "acknowledgesLegacyExperience": true,
+          "effects": {
+            "writesLegacyProgress": false,
+            "writesV2Progress": false,
+            "grantsV2Stars": false,
+            "grantsV2Checkpoint": false,
+            "grantsV2LearningEvidence": false
+          }
+        }
+      }
+    }
+  ],
+  "invalidCases": [
+    {
+      "caseId": "non-object",
+      "snapshot": null,
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_object_required",
+          "path": "$"
+        }
+      ]
+    },
+    {
+      "caseId": "array",
+      "snapshot": [],
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_object_required",
+          "path": "$"
+        }
+      ]
+    },
+    {
+      "caseId": "unknown-schema",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v2",
+        "highestContiguousCompletedLesson": 8
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_schema_invalid",
+          "path": "$.schemaVersion"
+        }
+      ]
+    },
+    {
+      "caseId": "unknown-field",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 8,
+        "checkpointPassed": true
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_field_unknown",
+          "path": "$.checkpointPassed"
+        }
+      ]
+    },
+    {
+      "caseId": "multiple-unknown-fields",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 8,
+        "alpha": true,
+        "checkpointPassed": true
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_field_unknown",
+          "path": "$.alpha"
+        },
+        {
+          "code": "legacy_placement_snapshot_field_unknown",
+          "path": "$.checkpointPassed"
+        }
+      ]
+    },
+    {
+      "caseId": "missing-highest-completed-lesson",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1"
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    },
+    {
+      "caseId": "lesson-zero",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 0
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    },
+    {
+      "caseId": "lesson-negative",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": -1
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    },
+    {
+      "caseId": "lesson-numeric-string",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": "8"
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    },
+    {
+      "caseId": "lesson-out-of-range",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 33
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    },
+    {
+      "caseId": "lesson-not-integer",
+      "snapshot": {
+        "schemaVersion": "legacy-placement-snapshot.v1",
+        "highestContiguousCompletedLesson": 18.5
+      },
+      "expectedIssues": [
+        {
+          "code": "legacy_placement_snapshot_lesson_invalid",
+          "path": "$.highestContiguousCompletedLesson"
+        }
+      ]
+    }
+  ],
+  "invalidRecommendation": {
+    "schemaVersion": "legacy-placement-recommendation.v1",
+    "action": "manual_review_snapshot",
+    "recognizedLegacyBoundary": null,
+    "diagnosticProfile": "none",
+    "acknowledgesLegacyExperience": false,
+    "effects": {
+      "writesLegacyProgress": false,
+      "writesV2Progress": false,
+      "grantsV2Stars": false,
+      "grantsV2Checkpoint": false,
+      "grantsV2LearningEvidence": false
+    }
+  }
+}

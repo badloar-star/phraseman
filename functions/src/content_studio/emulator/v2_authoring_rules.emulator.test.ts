@@ -33,19 +33,31 @@ const SERVER_ONLY_COLLECTIONS = [
   'content_mode_template_draft_revisions',
   'content_mode_template_versions',
   'content_mode_template_lifecycle',
+  'content_mode_template_lifecycle_audit',
+  'content_mode_template_lifecycle_operations',
   'content_season_drafts',
   'content_season_revisions',
   'content_season_lifecycle',
+  'content_season_episode_pins',
   'content_episode_drafts',
   'content_episode_revisions',
   'content_episode_lifecycle',
+  'content_episode_lifecycle_audit',
+  'content_episode_lifecycle_operations',
   'content_studio_review_queue',
   'content_studio_localization_units',
   'content_studio_review_receipts',
+  'content_studio_episode_review_operations',
+  'content_studio_gate_operations',
+  'content_studio_episode_validation_operations',
+  'content_studio_episode_localization_operations',
+  'content_studio_voice_receipts',
+  'content_studio_episode_voice_operations',
   'content_studio_validation_receipts',
   'content_studio_waivers',
   'content_studio_preview_sessions',
   'content_studio_preview_receipts',
+  'content_studio_gate_receipts',
   'content_app_support_manifests',
   // Reused server-owned Content Factory projections and ledgers.
   'content_factory_stages',
@@ -56,6 +68,9 @@ const SERVER_ONLY_COLLECTIONS = [
   'content_factory_catalog_releases',
   'content_factory_release_history',
   'admin_command_operations',
+  // Learning V2 server-owned progress ledgers; clients never write these.
+  'learning_v2_progress_operations',
+  'learning_v2_progress_attempts',
   // Existing server-owned Content Factory state.
   'content_factory_jobs',
   'content_factory_job_units',
@@ -843,6 +858,12 @@ describe('Learning V2 direct Firestore authoring security', () => {
     ),
   )('$collectionName denies direct admin $operation', async ({ collectionName, operation }) => {
     await assertFails(runDirectOperation(collectionName, operation));
+  });
+
+  test.each(['get', 'create', 'update', 'delete'] as const)('owner client cannot access nested V2 progress $0', async (operation) => {
+    const path = 'users/progress-owner/v2_progress/season-r1/episodes/episode-1/evidence/letk1-tuple';
+    const run = operation === 'get' ? getDoc(doc(adminDb, path)) : operation === 'create' ? setDoc(doc(adminDb, path), { marker: 'client' }) : operation === 'update' ? updateDoc(doc(adminDb, path), { marker: 'client' }) : deleteDoc(doc(adminDb, path));
+    await assertFails(run);
   });
 
   test('legacy direct-access inventory has 78 unique named namespaces', () => {

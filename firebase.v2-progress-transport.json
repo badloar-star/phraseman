@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "source": "functions/.codex-tmp/v2-progress-transport",
+    "runtime": "nodejs22",
+    "predeploy": "node \"$PROJECT_DIR/scripts/deploy_v2_progress_transport.mjs\" --predeploy"
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  },
+  "storage": {
+    "rules": "storage.rules"
+  },
+  "emulators": {
+    "functions": { "port": 5012 },
+    "firestore": { "port": 8088 },
+    "storage": { "port": 9198 },
+    "ui": { "enabled": false }
+  }
+}

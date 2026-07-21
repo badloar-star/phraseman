@@ -8,6 +8,7 @@ import type { DecisionRegistryRecord } from "../../../modules/learning-v2/polici
 import {
   assertExactImmutableEpisodeRevision,
   type ImmutableEpisodeRevisionResolver,
+  type ImmutableEpisodeRevisionReadContext,
 } from "./episode_revision_resolver";
 
 export interface SeasonAuthoringTransactionStore {
@@ -25,10 +26,23 @@ export interface SeasonAuthoringTransactionStore {
     expectedFingerprint: string,
     value: { readonly ownerId: string; readonly draft: SeasonDraft },
   ): Promise<void>;
+  createIfAbsent?(
+    id: string,
+    value: { readonly ownerId: string; readonly draft: SeasonDraft },
+  ): Promise<void>;
+  readonly episodeRevisionReadContext?: ImmutableEpisodeRevisionReadContext;
+  readonly decisionRegistryReadContext?: DecisionRegistryReadContext;
+}
+
+export interface DecisionRegistryReadContext {
+  get(path: string): Promise<{ readonly exists: boolean; data(): unknown }>;
 }
 
 export interface DecisionRegistryResolver {
-  resolve(ref: SeasonDraft["body"]["decisionRegistryRef"]): Promise<
+  resolve(
+    ref: SeasonDraft["body"]["decisionRegistryRef"],
+    context?: DecisionRegistryReadContext,
+  ): Promise<
     | (DecisionRegistryRecord & {
         readonly body?: { readonly decisions?: Record<string, unknown> };
       })
@@ -54,20 +68,107 @@ export class FirestoreSeasonDraftRepository {
   ): Promise<SeasonDraft> {
     return this.store.runTransaction(async (tx) => {
       const current = await tx.read(id);
-      if (!current || current.ownerId !== this.actor.ownerId)
+      if (!current) {
+        if (
+          expected.expectedRevision !== 0 ||
+          expected.expectedFingerprint !== ""
+        )
+          throw new Error("authoring_head_missing");
+        if (candidate.body.draftId !== id)
+          throw new Error("authoring_draft_id_mismatch");
+        const createResolver = tx.episodeRevisionReadContext
+          ? {
+              ...this.resolver,
+              resolve: (
+                ref: Parameters<ImmutableEpisodeRevisionResolver["resolve"]>[0],
+                ) => this.resolver.resolve(ref, tx.episodeRevisionReadContext),
+              resolveModeTemplate: this.resolver.resolveModeTemplate
+                ? (ref: Record<string, unknown>) => this.resolver.resolveModeTemplate!(ref, tx.episodeRevisionReadContext)
+                : undefined,
+            }
+          : this.resolver;
+        for (const ref of candidate.body.episodeRevisionRefs) {
+          const artifact = await assertExactImmutableEpisodeRevision(
+            createResolver,
+            ref,
+          );
+          if (
+            (artifact.body as Record<string, unknown>).seasonId !==
+            candidate.body.seasonId
+          )
+            throw new Error("season_episode_season_identity_mismatch");
+        }
+        if (candidate.body.releaseScope.kind === "full_season") {
+          const registry = await this.decisionRegistryResolver?.resolve(
+            candidate.body.decisionRegistryRef,
+            tx.decisionRegistryReadContext,
+          );
+          if (!registry) throw new Error("season_decision_registry_unresolved");
+          resolveSeasonDecisionSettings(candidate.body, registry);
+        }
+        const issues = validateSeasonComposition(candidate);
+        if (issues.length)
+          throw new Error(`season_authoring_invalid:${issues[0]}`);
+        const contentHash = hashCanonicalBody(candidate.body);
+        const next: SeasonDraft = {
+          body: candidate.body,
+          record: {
+            schemaVersion: "season-draft-record.v1",
+            draftId: candidate.body.draftId,
+            seasonId: candidate.body.seasonId,
+            revision: 1,
+            contentHash,
+            fingerprint: hashCanonicalBody({
+              draftId: candidate.body.draftId,
+              revision: 1,
+              contentHash,
+            }),
+            status: "draft",
+          },
+        };
+        if (!tx.createIfAbsent)
+          throw new Error("authoring_create_not_supported");
+        await tx.createIfAbsent(id, {
+          ownerId: this.actor.ownerId,
+          draft: next,
+        });
+        return next;
+      }
+      if (current.ownerId !== this.actor.ownerId)
         throw new Error("authoring_owner_forbidden");
       if (candidate.body.draftId !== id)
         throw new Error("authoring_draft_id_mismatch");
+      if (candidate.body.seasonId !== current?.draft.body.seasonId)
+        throw new Error("authoring_identity_mismatch");
       if (
         current.draft.record.revision !== expected.expectedRevision ||
         current.draft.record.fingerprint !== expected.expectedFingerprint
       )
         throw new Error("authoring_revision_stale");
-      for (const ref of candidate.body.episodeRevisionRefs)
-        await assertExactImmutableEpisodeRevision(this.resolver, ref);
+      const resolver = tx.episodeRevisionReadContext
+        ? {
+            ...this.resolver,
+            resolve: (
+              ref: Parameters<ImmutableEpisodeRevisionResolver["resolve"]>[0],
+              ) => this.resolver.resolve(ref, tx.episodeRevisionReadContext),
+            resolveModeTemplate: this.resolver.resolveModeTemplate
+              ? (ref: Record<string, unknown>) => this.resolver.resolveModeTemplate!(ref, tx.episodeRevisionReadContext)
+              : undefined,
+          }
+        : this.resolver;
+      for (const ref of candidate.body.episodeRevisionRefs) {
+        const artifact = await assertExactImmutableEpisodeRevision(
+          resolver,
+          ref,
+        );
+        const body = artifact.body as Record<string, unknown>;
+        if (body.seasonId !== candidate.body.seasonId)
+          throw new Error("season_episode_season_identity_mismatch");
+      }
       if (candidate.body.releaseScope.kind === "full_season") {
         const registry = await this.decisionRegistryResolver?.resolve(
           candidate.body.decisionRegistryRef,
+          tx.decisionRegistryReadContext,
         );
         if (!registry) throw new Error("season_decision_registry_unresolved");
         resolveSeasonDecisionSettings(candidate.body, registry);
@@ -80,7 +181,9 @@ export class FirestoreSeasonDraftRepository {
       const next: SeasonDraft = {
         body: candidate.body,
         record: {
-          ...candidate.record,
+          schemaVersion: "season-draft-record.v1",
+          draftId: candidate.body.draftId,
+          seasonId: candidate.body.seasonId,
           revision,
           contentHash,
           fingerprint: hashCanonicalBody({
@@ -88,6 +191,7 @@ export class FirestoreSeasonDraftRepository {
             revision,
             contentHash,
           }),
+          status: "draft",
         },
       };
       await tx.compareAndSet(

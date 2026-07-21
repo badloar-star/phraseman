@@ -21,6 +21,7 @@ const policy = {
 const baseInput = {
   operationId: 'emulator-operation-1',
   fingerprint: 'a'.repeat(64),
+  authUid: 'auth-access-emulator',
   stableId: 'uid-access-emulator',
   accountGeneration: 4,
   nowMs: 1_000,
@@ -37,7 +38,10 @@ const baseInput = {
 };
 
 async function seed(db: ReturnType<RulesTestEnvironment['authenticatedContext']> extends never ? never : any) {
-  await setDoc(doc(db, 'learning_v2_access_quotes', 'quote-emulator-1'), {
+  await setDoc(doc(db, 'auth_links', 'auth-access-emulator'), {
+    stable_id: 'uid-access-emulator',
+  });
+  await setDoc(doc(db, 'users', 'uid-access-emulator', 'v2_access_quotes', 'quote-emulator-1'), {
     quoteId: 'quote-emulator-1', stableId: 'uid-access-emulator', seasonId: 'season-emulator-1', gateId: 'gate-2',
     policyVersion: 'gate-policy-v1', releaseId: 'release-emulator-1', expiresAtMs: 2_000,
     earnedDeficit: 2, accessStarsToApply: 2, unitPriceShards: 3, totalCostShards: 6,
@@ -113,6 +117,78 @@ describe('Learning V2 Access Boost Firestore transaction', () => {
       expect(results.filter((result) => !result.replayed)).toHaveLength(1);
       expect(results.filter((result) => result.replayed)).toHaveLength(1);
       expect((await getDoc(doc(db, 'users', 'uid-access-emulator'))).data()?.shards).toBe(4);
+    });
+  });
+
+  test('retries after a commit-time provider relink and leaves zero purchase artifacts', async () => {
+    await environment.withSecurityRulesDisabled(async (context) => {
+      const db = context.firestore();
+      await seed(db);
+      let bindingReadAttempts = 0;
+      let signalFirstBindingReads!: () => void;
+      const firstBindingReads = new Promise<void>((resolve) => {
+        signalFirstBindingReads = resolve;
+      });
+      let releaseFirstAttempt!: () => void;
+      const firstAttemptMayContinue = new Promise<void>((resolve) => {
+        releaseFirstAttempt = resolve;
+      });
+      const baseRepository = makeFirestoreV2AccessRepository(db as never);
+      const repository = {
+        ...baseRepository,
+        testHooks: {
+          afterBindingReads: async () => {
+            bindingReadAttempts += 1;
+            if (bindingReadAttempts === 1) {
+              signalFirstBindingReads();
+              await firstAttemptMayContinue;
+            }
+          },
+        },
+      };
+
+      const racing = finalizeV2AccessPurchase(repository, policy, {
+        ...baseInput,
+        operationId: 'emulator-operation-relink-race',
+        fingerprint: 'd'.repeat(64),
+        request: {
+          ...baseInput.request,
+          opId: 'emulator-operation-relink-race',
+        },
+      });
+      await firstBindingReads;
+      try {
+        await setDoc(doc(db, 'auth_links', baseInput.authUid), {
+          stable_id: 'different-stable-owner',
+        });
+      } finally {
+        releaseFirstAttempt();
+      }
+
+      await expect(racing).rejects.toThrow('access_stable_identity_mismatch');
+      expect(bindingReadAttempts).toBe(2);
+      expect((await getDoc(doc(db, 'users', baseInput.stableId))).data()?.shards).toBe(10);
+      expect((await getDoc(doc(
+        db,
+        'users',
+        baseInput.stableId,
+        'v2_gate_receipts',
+        `${baseInput.request.seasonId}__${baseInput.request.gateId}`,
+      ))).data()?.unlocked).toBe(false);
+      expect((await getDoc(doc(
+        db,
+        'users',
+        baseInput.stableId,
+        'v2_access_ledger',
+        'emulator-operation-relink-race',
+      ))).exists()).toBe(false);
+      expect((await getDoc(doc(
+        db,
+        'users',
+        baseInput.stableId,
+        'v2_access_operations',
+        'emulator-operation-relink-race',
+      ))).exists()).toBe(false);
     });
   });
 });

@@ -280,6 +280,21 @@ export interface ModeTemplateArtifactBody {
   readonly voiceReleaseRequirements?: V2VoiceReleaseRequirements;
 }
 
+/** Mutable server-owned lifecycle projection for one immutable template version. */
+export interface ModeTemplateLifecycleHead {
+  readonly schemaVersion: "v2-mode-template-lifecycle.v1";
+  readonly templateId: string;
+  readonly version: number;
+  readonly contentHash: string;
+  readonly status: "approved" | "published" | "deprecated" | "archived";
+  readonly reason: string;
+  readonly replacementRef?: PublishedModeTemplateRef;
+  readonly noReplacement?: true;
+  readonly changedBy: string;
+  readonly changedAt: string;
+  readonly lifecycleRevision: number;
+}
+
 export interface V2ResolvedModeTemplate {
   readonly templateRef: PublishedModeTemplateRef;
   readonly body: ModeTemplateArtifactBody;

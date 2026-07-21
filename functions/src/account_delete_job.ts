@@ -73,7 +73,7 @@ export async function enqueueAccountDeletionJob(
 
   return db.runTransaction(async (tx) => {
     const snapshot = await tx.get(ref);
-    tx.set(tombstoneRef, {
+    const tombstone = {
       jobId,
       status: 'pending',
       authUidHash: sha256(authUid),
@@ -81,19 +81,28 @@ export async function enqueueAccountDeletionJob(
       updatedAtMs: nowMs,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    }, { merge: true });
+    };
     if (snapshot.exists) {
       const existing = snapshot.data() ?? {};
       const status = jobStatus(existing.status);
+      const identityMatches =
+        (existing.authUid === authUid && existing.stableUid === stableUid) ||
+        (
+          existing.authUid === undefined &&
+          existing.stableUid === undefined &&
+          existing.authUidHash === sha256(authUid) &&
+          existing.stableUidHash === sha256(stableUid)
+        );
+      if (!identityMatches) {
+        throw new HttpsError('failed-precondition', 'account_delete_job_identity_mismatch');
+      }
+      tx.set(tombstoneRef, tombstone, { merge: true });
       if (status === 'completed') {
         tx.set(ref, {
           updatedAtMs: nowMs,
           updatedAt: admin.firestore.FieldValue.serverTimestamp(),
         }, { merge: true });
         return { jobId, status, created: false };
-      }
-      if (existing.authUid !== authUid || existing.stableUid !== stableUid) {
-        throw new HttpsError('failed-precondition', 'account_delete_job_identity_mismatch');
       }
       if (status === 'failed') {
         tx.set(ref, {
@@ -115,6 +124,7 @@ export async function enqueueAccountDeletionJob(
       return { jobId, status, created: false };
     }
 
+    tx.set(tombstoneRef, tombstone, { merge: true });
     tx.create(ref, {
       jobId,
       authUid,

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "..",
+    "outDir": ".codex-tmp/v2-progress-transport/lib",
+    "sourceMap": false
+  },
+  "include": [
+    "src/learning_v2/emulator/progress_callable_transport_entry.ts"
+  ],
+  "exclude": [
+    "src/index.ts",
+    "src/**/*.test.ts"
+  ]
+}

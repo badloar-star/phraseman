@@ -14,12 +14,27 @@ import { assertGenerationCheckpointIdentity, chooseGenerationCheckpointAction } 
 import { reserveContentFactoryBudget } from './content_factory/content_factory_budget';
 import { applyUnitProgressTransition, type ContentFactoryProgress } from './content_factory/job_progress';
 import { buildGenerationFailureRecord } from './content_factory/generation_errors';
+import { claimNextV2Stage, finishV2StageLease, type V2StageClaimResult, type V2StageLease } from './content_factory/v2_stage_claim_adapter';
 
 const REGION = 'us-central1';
 export const CONTENT_FACTORY_OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
 const SURFACES = ['lesson', 'quiz', 'flashcard', 'arena'] as const;
 const GENERATION_LEASE_MS = 10 * 60 * 1000;
 type UnitSurface = (typeof SURFACES)[number];
+
+/**
+ * The legacy callable remains the execution surface; V2 scheduling uses the
+ * same worker through this transaction-backed adapter rather than another
+ * queue. Keeping these small wrappers here gives the scheduler one stable
+ * worker seam while preserving the existing unit endpoint contract.
+ */
+export function claimContentFactoryV2Stage(db: admin.firestore.Firestore, input: { readonly jobId: string; readonly workerId: string; readonly nowMs: number }): Promise<V2StageClaimResult> {
+  return claimNextV2Stage(db, input);
+}
+
+export function finishContentFactoryV2Stage(db: admin.firestore.Firestore, lease: V2StageLease, outcome: 'succeed' | 'fail'): Promise<boolean> {
+  return finishV2StageLease(db, lease, outcome);
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);

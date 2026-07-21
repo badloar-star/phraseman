@@ -10,6 +10,9 @@ import {
   type FinalizeDelayedCandidateInput,
   type DelayedReceiptTransaction,
 } from "./learning_v2_delayed_adapter";
+import {
+  createProgressEventAuthorization,
+} from "./learning_v2/progress_event_callable";
 
 const text = (value: unknown): string =>
   typeof value === "string" ? value.trim() : "";
@@ -35,6 +38,13 @@ export interface DelayedCallableInput {
   readonly failureReceiptId: string;
   readonly windowPolicyId: string;
 }
+
+export const V2_DELAYED_CALLABLE_OPTIONS = {
+  enforceAppCheck: true,
+  region: "us-central1",
+  timeoutSeconds: 15,
+  memory: "256MiB" as const,
+} as const;
 
 export function normalizeDelayedCallableInput(
   data: unknown,
@@ -92,17 +102,45 @@ export function normalizeDelayedCallableInput(
   });
 }
 
-function firestorePath(key: string): string {
-  if (key.startsWith("learning_v2_assignments:"))
-    return `learning_v2_assignments/${key.slice("learning_v2_assignments:".length)}`;
-  if (key.startsWith("learning_v2_launches:"))
-    return `learning_v2_launches/${key.slice("learning_v2_launches:".length)}`;
-  if (key.startsWith("learning_v2_timing_receipts:"))
-    return `learning_v2_timing_receipts/${key.slice("learning_v2_timing_receipts:".length)}`;
-  if (key.startsWith("learning_v2_failure_receipts:"))
-    return `learning_v2_failure_receipts/${key.slice("learning_v2_failure_receipts:".length)}`;
-  if (key.startsWith("learning-v2:delayed:"))
-    return `learning_v2_receipt_operations/${key.slice("learning-v2:delayed:".length).replace(/:/g, "_")}`;
+export function delayedFirestorePath(key: string): string {
+  const safe = (value: string): boolean =>
+    /^[A-Za-z0-9._-]{1,192}$/.test(value) && value !== "." && value !== "..";
+  const scoped = (prefix: string, collection: string): string | undefined => {
+    if (!key.startsWith(prefix)) return undefined;
+    const parts = key.slice(prefix.length).split(":");
+    if (parts.length !== 2 || parts.some((part) => !safe(part))) {
+      throw new Error("delayed_firestore_key_invalid");
+    }
+    return `users/${parts[0]}/${collection}/${parts[1]}`;
+  };
+  const mapped =
+    (() => {
+      if (!key.startsWith("auth_links:")) return undefined;
+      const authUid = key.slice("auth_links:".length);
+      if (!authUid || authUid.length > 128 || authUid.includes("/")) {
+        throw new Error("delayed_firestore_key_invalid");
+      }
+      return `auth_links/${authUid}`;
+    })() ??
+    (() => {
+      if (!key.startsWith("users:")) return undefined;
+      const stableId = key.slice("users:".length);
+      if (!safe(stableId)) throw new Error("delayed_firestore_key_invalid");
+      return `users/${stableId}`;
+    })() ??
+    (() => {
+      if (!key.startsWith("account_deletion_tombstones:")) return undefined;
+      const stableId = key.slice("account_deletion_tombstones:".length);
+      if (!safe(stableId)) throw new Error("delayed_firestore_key_invalid");
+      return `account_deletion_tombstones/${stableId}`;
+    })() ??
+    scoped("learning_v2_assignments:", "v2_delayed_assignments") ??
+    scoped("learning_v2_launches:", "v2_delayed_launches") ??
+    scoped("learning_v2_timing_receipts:", "v2_delayed_timing_receipts") ??
+    scoped("learning_v2_failure_receipts:", "v2_delayed_failure_receipts") ??
+    scoped("learning_v2_delayed_terminals:", "v2_delayed_attempts") ??
+    scoped("learning-v2:delayed:", "v2_delayed_operations");
+  if (mapped) return mapped;
   throw new Error("delayed_firestore_key_invalid");
 }
 
@@ -114,29 +152,42 @@ function makeRepository(db: FirebaseFirestore.Firestore) {
       db.runTransaction(async (transaction) =>
         fn({
           get: async <R>(key: string) => {
-            const snapshot = await transaction.get(db.doc(firestorePath(key)));
+            const snapshot = await transaction.get(db.doc(delayedFirestorePath(key)));
             return {
               exists: snapshot.exists,
               data: snapshot.exists ? (snapshot.data() as R) : undefined,
             };
           },
           create: (key: string, value: unknown) =>
-            transaction.create(db.doc(firestorePath(key)), value),
+            transaction.create(db.doc(delayedFirestorePath(key)), value),
         }),
       ),
   };
 }
 
 export const finalizeLearningV2DelayedCandidate = onCall(
+  V2_DELAYED_CALLABLE_OPTIONS,
   async (request: CallableRequest<unknown>) => {
     if (!request.auth?.uid)
       throw new HttpsError("unauthenticated", "auth_required");
     const input = normalizeDelayedCallableInput(request.data);
-    if (input.stableId !== request.auth.uid)
+    // Stable identity and generation are server-owned, exactly as for the
+    // regular V2 progress callable. The fields remain in the legacy request
+    // envelope for backwards compatibility, but are only accepted when they
+    // match the canonical auth anchor and current account generation.
+    const binding = await createProgressEventAuthorization(admin.firestore())(
+      request.auth.uid,
+    );
+    if (typeof binding === "string" ||
+        input.stableId !== binding.stableUid ||
+        input.accountGeneration !== binding.accountGeneration)
       throw new HttpsError("permission-denied", "stable_identity_mismatch");
     const now = Date.now();
     const adapterInput: FinalizeDelayedCandidateInput = {
       ...input,
+      authUid: request.auth.uid,
+      stableId: binding.stableUid,
+      accountGeneration: binding.accountGeneration,
       fingerprint: hashCanonicalBody({ ...input, candidate: input.candidate }),
       acceptedAtServer: new Date(now).toISOString(),
       observedDelayMs: 0,

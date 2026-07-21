@@ -1512,7 +1512,26 @@ export { adminEditContentStageArtifact } from './admin_content_stage_edits';
 export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
 export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics, adminGetArenaConvergenceStatus } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
-export { adminSaveV2EpisodeDraft, adminSaveV2SeasonDraft } from './admin_content_studio_callables';
+export {
+  adminSaveV2EpisodeDraft,
+  adminSaveV2SeasonDraft,
+  adminPublishV2ModeTemplate,
+  adminDeprecateV2ModeTemplate,
+  adminArchiveV2ModeTemplate,
+  adminValidateV2EpisodeRevision,
+  adminIssueV2EpisodeValidationReceipt,
+  adminIssueV2EpisodeLocalizationReceipt,
+  adminIssueV2EpisodeVoiceReceipt,
+  adminReviewV2EpisodeRevision,
+  adminApproveV2EpisodeRevision,
+  adminSubmitV2EpisodeRevision,
+  adminRequestV2EpisodeChanges,
+  adminArchiveV2EpisodeRevision,
+  adminIssueV2ContentGate,
+  adminApproveV2SeasonRevision,
+  adminArchiveV2SeasonRevision,
+} from './admin_content_studio_callables';
+export { adminCreateV2GenerationPlan, adminQueueV2GenerationPlan } from './admin_v2_generation';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';

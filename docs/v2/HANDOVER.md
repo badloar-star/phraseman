@@ -1776,6 +1776,40 @@ This remains a partial Task 2.2 slice: the resolver still needs explicit Storage
 
 **Exact next executable task:** create a callable integration harness against seeded emulator documents, assert auth/App Check/owner/CAS behavior through the exported endpoints, and add explicit immutable object-path + generation equality to the EpisodeRevision artifact contract.
 
+## 12.74 Immutable binding hardening and independent review findings
+
+The next RED/GREEN slice corrected three concrete boundary defects: the immutable Episode Firestore document path now follows the normative `<draftId>__r<revision>` identity; the resolver always checks the exact content-addressed Storage path (even when a custom validator is absent) and checks body `draftId/episodeId/revision/ordinal/chapterId` against the pinned ref; and Firestore-backed Season transactions expose `tx.get` read contexts so EpisodeRevision and DecisionRegistry reads can participate in the same transaction snapshot instead of using unrelated `db.get()` calls. The production resolver now requires the normative `episode-authoring-body.v1` top-level shape, while the runtime `v2-episode-contract.v1` validator remains separately available.
+
+Fresh focused evidence after this slice: Functions **4 suites / 8 tests PASS** and targeted strict TypeScript **PASS**. The independent reviews still classify the full Task 2.2 acceptance as **NOT PASS** for three remaining P1s: nested canonical authoring-body validation and complete body↔record identity, actual Storage byte download/re-hash (the current adapter checks metadata hash/generation only and still treats the Firestore body as the body source), and callable-level emulator/integration invocation with seeded EpisodeRevision/DecisionRegistry/App Check/owner/CAS assertions. These are not hidden or waived. The large unrelated formatting churn in `decision_registry.ts` was explicitly reverted; only the required `sha256Utf8` export remains as a minimal diff. No Admin files were changed.
+
+**Exact next executable task:** add a verified immutable Storage reader that downloads canonical bytes, recomputes the hash, parses the authoring body, and returns it separately from the Firestore record; then add RED tests for nested graph/activity/voice/delayed/checkpoint validation and callable invocation against seeded emulator documents. Do not mark Task 2.2 complete or begin Task 2.3 until fresh spec and adversarial reviews report no P1.
+
+## 12.75 Storage-body source and transaction snapshot implementation
+
+The implementation now carries a transaction read context into both EpisodeRevision and DecisionRegistry resolvers, uses the normative draft-based Firestore revision key, enforces body identity against the pinned Episode ref, and makes the default Storage reader download and parse the canonical object body rather than returning the Firestore body as authoritative. Focused verification after the changes is **4 suites / 9 tests PASS**, targeted strict TypeScript **PASS**, and `git diff --check` **PASS**. The current work is intentionally still uncommitted because the independent reviewers found remaining schema/release blockers.
+
+The EpisodeDraft and SeasonDraft transaction repositories also now construct their persisted draft records from server-owned schema/identity/status fields (`status: draft`) instead of spreading caller-supplied record metadata.
+
+Remaining blockers are explicit: the authoring-body validator is still shallow for nested activity/graph/voice/delayed/checkpoint contracts; the in-memory authoring records and resolver shape are not yet aligned to the normative nested `record.object`/provenance envelope; raw downloaded-byte hash verification needs an explicit contract/test; callable emulator invocation with seeded records/App Check/owner/CAS is absent; and the draft repository still needs server construction/rejection of forged record status/identity instead of spreading caller-supplied record fields. No Admin files were changed.
+
+**Exact next executable task:** write RED tests for canonical nested `record.object`/provenance and forged draft-record status/identity, implement server-owned record construction plus raw-byte canonical hash verification, then build the exported-callable emulator harness. Fresh spec and adversarial reviews must be rerun before any commit or Task 2.3 transition.
+
+## 12.76 Nested-shape and raw-byte RED/GREEN slice
+
+Added RED coverage for an empty nested graph shell and for raw downloaded bytes whose hash differs from the pinned content hash. The validator now rejects empty graph/loop/assessment/capstone/mastery/voice shells; ordinary episodes may omit the normative optional `checkpointContract`. `verifyCanonicalEpisodeObjectBytes` checks the downloaded serialized bytes, parses JSON, and verifies the canonical body hash. The Firestore Storage reader receives the expected hash and uses this verified body as the returned artifact body. Server-owned draft record construction remains in place.
+
+Fresh focused evidence: Functions **4 suites / 10 tests PASS**, targeted strict TypeScript **PASS**, and `git diff --check` **PASS**. Fresh spec review remains **NOT PASS**: the validator is still not a full nested canonical validator; the resolver artifact is not yet the normative `{body, record, lifecycle}` with nested `record.object/provenance/byteSize`; byte-length/non-UTF-8 and transaction-scoped Storage evidence are not yet proven; and callable-level emulator invocation with Auth/App Check/owner/CAS remains absent. No Admin files were changed and no release/deploy was performed.
+
+**Exact next executable task:** introduce the typed canonical EpisodeRevision record/lifecycle envelope and a strict nested validator (or a documented shared canonical validator adapter), then add the seeded exported-callable emulator harness. Keep Task 2.2 partial until both fresh reviewers report no P1.
+
+## 12.77 Identity and authorization hardening review
+
+The latest bounded fixes also reject EpisodeDraft identity mutation (`episodeId/seasonId/ordinal/chapterId` must stay bound to the current head), reject cross-season Episode bodies when pinning a Season, construct draft records server-side, and require `auth.token.admin === true` rather than accepting truthy non-boolean claims. Focused Functions verification is now **4 suites / 11 tests PASS** with targeted strict TypeScript **PASS**.
+
+Fresh independent reviews remain **NOT PASS**. The normative blockers are now enumerated precisely: the flat resolver artifact must become `{body, record, lifecycle}` with nested `record.object` (`byteSize`, generation, hash, path), provenance and createdAt; the Episode and Season authoring bodies need their complete canonical fields and deep nested validation; DecisionRegistry needs the same immutable body/record/object verification; first-save/init and exported-callable emulator coverage are missing; and raw-byte malformed UTF-8/byte-size cases still need explicit evidence. No Admin files were changed and no commit/release was made.
+
+**Exact next executable task:** add canonical shared `EpisodeRevisionRecord`/`EpisodeLifecycleHead` adapters and strict body/Season schema validators with RED fixtures, then implement the first-save callable/emulator harness. Do not transition to Task 2.3 or claim Task 2.2 complete while these P1s remain.
+
 ## 12.67 Resolver hardening and server-owned boundary evidence
 
 The immutable EpisodeRevision artifact contract now includes the fetched body and immutable Storage generation; the resolver recomputes `hashCanonicalBody(artifact.body)` and rejects metadata-only or hash-poisoned artifacts. The Season transaction adapter now requires a resolvable DecisionRegistry for `full_season` saves and resolves all pinned EpisodeRevision refs before compare-and-set. Existing `firestore.rules` already has explicit `allow read, write: if false` blocks for the V2 authoring/revision/lifecycle/review collections; the emulator contract lists these server-only collections.
@@ -1783,3 +1817,3888 @@ The immutable EpisodeRevision artifact contract now includes the fetched body an
 Fresh focused verification after this hardening: root **2 suites / 4 tests PASS**; Functions authoring/transaction matrix **4 suites / 5 tests PASS**; strict targeted TypeScript **PASS**. This still does not prove production callable wiring, Storage generation reads, or full canonical Episode validation, so Task 2.2 remains partial and uncommitted.
 
 **Exact next executable task:** inspect and connect the real Functions callable/export and Storage/Admin SDK transaction path, reusing the existing server-only Firestore rules; add the callable and emulator RED tests before implementation. Do not touch Admin UI artifacts in this session.
+
+## 12.78 First-save and identity boundary slice
+
+The authoring callable envelope now permits the explicit create-only pair `expectedRevision: 0` plus an empty fingerprint. EpisodeDraft and SeasonDraft transaction repositories both expose idempotent `createIfAbsent` paths for missing heads; updates still require the existing owner/CAS head. Episode first-save validates the draft shape, persisted records are server-constructed with `status: draft`, Episode identity mutation is rejected, cross-season Episode pins are rejected, and admin authorization requires boolean `admin === true`.
+
+Latest bounded evidence: Functions **5 suites / 13 tests PASS**, targeted strict TypeScript **PASS**, and the prior Firestore rules emulator remains **351/351 PASS**. Fresh reviews still classify full Task 2.2 as **NOT PASS**: canonical `{body, record, lifecycle}` plus nested `record.object/provenance/byteSize` is not implemented; Season/DecisionRegistry deep schemas remain incomplete; callable emulator Auth/App Check/owner/CAS invocation is missing; raw-byte UTF-8/byte-size evidence is incomplete; and first-save needs end-to-end callable coverage. No Admin files changed, no deploy/release occurred, and no commit was created while P1s remain.
+
+**Exact next executable task:** implement canonical nested EpisodeRevision/Season/DecisionRegistry record adapters with RED fixtures, then run exported Episode and Season create/update callables through the emulator with seeded immutable Storage/Firestore records.
+
+## 12.79 Canonical envelope and first-save hardening
+
+Production EpisodeRevision resolution now requires the canonical Firestore envelope with `body`, `record.schemaVersion = episode-authoring-record.v1`, nested content-addressed `record.object` including `byteSize`, typed lifecycle head, non-empty provenance creator/timestamp, matching record/lifecycle identity, exact object path, and matching content hash. The resolver maps this canonical record to its internal pinned view only after the Storage reader returns the expected body/hash/generation/byteSize. Raw byte decoding is fatal for malformed UTF-8. First-save Season creation now performs the same immutable EpisodeRevision and full-season DecisionRegistry resolution as updates before `createIfAbsent`.
+
+Fresh focused evidence: Functions **5 suites / 17 tests PASS**, targeted strict TypeScript **PASS**. The independent reviews still leave P1s: nested Episode/Activity/voice/delayed/checkpoint validation is not yet the full canonical runtime validator; DecisionRegistry resolver still needs strict record/object/Storage verification; byte-size and generation-pinned read need full emulator evidence; and exported callable invocation with seeded Firestore/Storage/Auth/App Check/CAS is still absent. The canonical envelope adapter is therefore bounded and uncommitted; no Admin files, deployment, or release changed.
+
+**Exact next executable task:** reuse the existing strict DecisionRegistry validator/storage resolver, add full nested canonical Episode validator delegation and malformed/byte-size tests, then implement the seeded exported-callable emulator harness.
+
+## 12.80 Envelope regression fix and review status
+
+The canonical envelope slice now has regression coverage for a flat record rejection, nested `record.object` path/hash/generation/byteSize, provenance creator/timestamp, lifecycle identity, fatal malformed UTF-8, and first-save Season immutable-ref/DecisionRegistry checks. A fresh spec review caught and the writer fixed a TDZ bug in envelope validation before any commit. Current focused verification is **5 suites / 17 tests PASS** with targeted strict TypeScript **PASS**.
+
+The slice remains **NOT PASS** for production: nested canonical Episode/Activity/voice/delayed/checkpoint validation is still a shallow adapter; DecisionRegistry resolver still needs the existing strict validator plus immutable Storage body/object verification; lifecycle enum/provenance exactness and byte-size/generation-pinned reads need completion; and no exported callable emulator invocation with seeded Auth/App Check/CAS exists. The canonical body/record/lifecycle split is represented at the adapter boundary but not yet fully enforced in the persisted production schema. No Admin files, deploy, or release changed.
+
+**Exact next executable task:** wire `validateDecisionRegistry`/immutable resolver into the Firestore DecisionRegistry path, replace shallow Episode validation with the canonical nested validator adapter, then add the seeded callable emulator integration and lifecycle transition tests.
+
+## 12.81 Strict DecisionRegistry adapter
+
+The Firestore DecisionRegistry resolver now calls the existing strict `validateDecisionRegistry` implementation and rejects malformed/raw-cast documents. Added RED/GREEN coverage for a forged registry document. Current focused Functions evidence is **5 suites / 18 tests PASS**, targeted strict TypeScript **PASS**. This closes the raw-cast acceptance defect for the Firestore document shape, but does not yet prove a Storage-backed DecisionRegistry object read/generation pin or the full callable emulator path.
+
+The remaining P1s are explicit: authoring Episode nested validation is still shallower than the canonical Activity/graph/voice/delayed/checkpoint contracts; DecisionRegistry Storage bytes/generation still need a production reader; first-save/callable Auth/App Check/CAS needs seeded emulator evidence; lifecycle/provenance exact-key and timestamp contracts need tightening; and generation-pinned download must be added to avoid metadata/download races. No Admin files changed, no deploy/release, no commit while review-gate remains open.
+
+**Exact next executable task:** add the immutable DecisionRegistry Storage reader with strict byte/hash/generation binding, then implement the seeded callable emulator harness and rerun fresh spec/red-team reviews.
+
+## 12.82 DecisionRegistry ref binding review
+
+The Firestore DecisionRegistry adapter now additionally compares the validated record ref (`id/version/contentHash`) to the caller’s pinned ref before returning it. Focused verification remains **5 suites / 18 tests PASS** and targeted strict TypeScript **PASS**.
+
+Fresh independent reviews still report the unresolved production blockers: DecisionRegistry canonical Storage bytes/generation are not read or pinned; Episode metadata/download is not generation-preconditioned; the authoring Episode nested validator remains shallow; and no exported callable emulator evidence exists for Auth/App Check/owner/CAS/create/update/replay. Task 2.2 remains partial and uncommitted; Admin and release surfaces remain untouched.
+
+**Exact next executable task:** implement shared immutable-object readers for Episode and DecisionRegistry with fatal UTF-8, canonical hash, exact byte size, and generation preconditions, then build the seeded callable emulator harness.
+
+## 12.83 Shared immutable Storage reader and metadata binding
+
+### Mission and user intent
+
+Продолжить утверждённый Learning V2 до полного релиза: speaking-first 32-эпизодный сезон с разделёнными звёздами и доступом, Speaking Club как capstone, Personal Review, диалоги, масштабируемые Content Studio и локализация; сохранить legacy до Phase 14 и оставлять подробный самодостаточный handover для каждой следующей сессии. В этом срезе закрывается только integrity-boundary для immutable Episode/DecisionRegistry объектов; весь V2 ещё не завершён.
+
+### Authority and precedence
+
+Приоритет: explicit owner instruction и `AGENTS.md`; затем этот handover; `docs/v2/README.md`; normative `docs/v2/00`–`08`; планы `2026-07-14-phraseman-v2-pilot-season.md` и `2026-07-14-phraseman-v2-content-studio.md`; затем код и тесты как evidence. Админские untracked-артефакты принадлежат другой сессии и не изменялись. Нерешённый конфликт остаётся: §08 требует canonical body только в immutable Storage, тогда как текущий Firestore envelope ещё требует дублирующий `body`.
+
+### Full phase/task status
+
+| Scope | Status | Evidence / exact gate |
+|---|---|---|
+| Phase 00–01, Task 1.2C | DONE/recorded | Prior handover evidence; no changes in this slice |
+| Phase 02–05: curriculum, voice, stars/access, runtime | PARTIAL | Prior bounded commits; full pilot/release gates not closed |
+| Phase 06–13: integrations, QA, rollout | NOT STARTED/PARTIAL | Callable emulator, deep schema, rollout evidence missing |
+| Phase 14 legacy decision | NOT STARTED | Legacy must remain preserved |
+| Content Studio Tasks 0–1 | DONE/recorded | Existing authoring seams |
+| Content Studio Tasks 2.1–2.2 | PARTIAL / IN PROGRESS | 6 focused suites / 21 tests pass; reviewers still report P1 |
+| Content Studio Tasks 2.3–15 | NOT STARTED | Blocked by Task 2.2 acceptance gate |
+
+### What changed in this slice
+
+Added `functions/src/content_studio/immutable_object_reader.ts`. It reads Storage metadata, requires the pinned generation and metadata hash, downloads with `{ ifGenerationMatch: expectedGeneration }`, checks exact byte size, fatal UTF-8, raw SHA-256, JSON parsing, and canonical-body hash. Episode and DecisionRegistry Firestore resolvers now use this common reader; DecisionRegistry additionally compares returned content hash, generation, and byte size against its pinned record before revalidating the Storage body. Added negative/positive tests in `immutable_object_reader.test.ts` and updated Episode reader expectations. No Admin file, Firestore data, deployment, or release was touched.
+
+### Verification evidence
+
+- RED/review finding: metadata-then-unconditioned-download race and missing DecisionRegistry Storage read were reproduced by two independent reviewers.
+- GREEN command, cwd `functions`: `npx jest --runInBand src/content_studio/immutable_object_reader.test.ts src/content_studio/episode_revision_resolver.test.ts src/content_studio/firestore_authoring_store.test.ts src/content_studio/authoring_transaction_repository.test.ts src/content_studio/season_authoring_transaction_repository.test.ts src/admin_content_studio_authoring.test.ts` → **6 suites / 21 tests PASS**.
+- Targeted TypeScript, same cwd: `npx tsc --noEmit --strict --target ES2022 --module commonjs --moduleResolution node --esModuleInterop --skipLibCheck src/content_studio/immutable_object_reader.ts src/content_studio/episode_revision_resolver.ts src/content_studio/firestore_authoring_store.ts src/content_studio/authoring_transaction_repository.ts src/content_studio/season_authoring_transaction_repository.ts src/admin_content_studio_authoring.ts` → **PASS**.
+- `git diff --check` → **PASS** before the latest test-only addition.
+- Spec reviewer: core reader binding PASS; remaining P1 callable emulator, deep Episode schema, body-only Storage split.
+- Adversarial reviewer: core race/hash/generation binding PASS; remaining P1 callable emulator and persisted body split; metadata comparison was then added.
+
+### Repository state and preservation
+
+Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch `codex/learning-v2-pilot`; HEAD `23c71a117`; changes are uncommitted because Task 2.2 still has P1 findings. Main checkout is `C:\appsprojects\phraseman` and remains untouched. Preserve these pre-existing/out-of-scope untracked Admin files: `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md`, `tests/admin_v2_lesson_stage_transfer_contract.test.ts`. This session added the reader and its test; do not stage Admin files.
+
+### Open findings and failed approaches
+
+The initial shared-reader implementation failed targeted TypeScript because Firebase metadata uses `string | number` and nullable custom metadata; the interface was widened to match the SDK. The first test fixture also failed tuple typing and was corrected. Full `functions/tsc` remains noisy with unrelated pre-existing missing modules in `src/index.ts`; only the strict targeted command above is valid evidence. Open P1s: exported callable emulator flow with Auth/App Check/owner/CAS/create/update/replay; complete nested Episode Activity/Graph/Learning/Voice/Delayed/Checkpoint validation; and strict body-only Storage envelope split. P2s: exact-key/ISO provenance/lifecycle validation and additional negative reader cases.
+
+### Invariants
+
+Do not use the project OpenAI key; do not edit Admin transfer files; do not remove legacy; do not write Firestore, deploy, publish, or release; keep one writer and read-only reviewers; preserve local-first, auth/App Check, owner/CAS, privacy, accessibility, performance, and immutable hash/generation invariants. A passing unit matrix does not authorize Task 2.3.
+
+### Exact next executable task packet
+
+**Task 2.2 continuation — seeded callable emulator and canonical contract closure.** First add RED tests that call the exported Episode/Season authoring callables through the emulator with seeded Firestore/Storage records and Auth/App Check/owner/CAS/create/update/replay assertions. In parallel, add adversarial malformed nested Episode body fixtures and decide (per §08) whether the Firestore envelope must reject `body` and store it only in Storage. Modify only the Content Studio callable/resolver/validator tests and the exact connected implementation files. Non-goals: Admin UI transfer, stars economy, legacy removal, deploy/release.
+
+Acceptance requires: callable integration proves auth/App Check/owner/CAS and first-save/update/replay; nested canonical validator rejects malformed graph/activity/voice/delayed/checkpoint data; persisted envelope matches body-only Storage contract; immutable reader tests cover metadata hash, generation, byte size, UTF-8, raw/canonical hash and precondition failure; focused Jest, targeted strict TypeScript, emulator rules, fresh spec review, and fresh adversarial review all pass with no P1. Intended commit subject after the gate: `feat(v2): prove content studio callable lifecycle`.
+
+### Startup commands for next session
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Set-Location functions
+npx jest --runInBand src/content_studio/immutable_object_reader.test.ts src/content_studio/firestore_authoring_store.test.ts
+```
+
+### Final state declaration
+
+Verified complete in this slice: shared immutable reader, generation-preconditioned download, metadata/content hash/byte-size checks, fatal UTF-8, raw/canonical hash checks, Episode/DecisionRegistry wiring, 6 suites/21 tests, targeted strict TypeScript. Partial: Task 2.2 and all downstream V2 phases. Unverified: callable emulator lifecycle, deep nested schema, body-only Storage persistence, rollout/release. No commit, push, deploy, or release was made. Exact next action is the Task 2.2 callable/nested-schema RED packet above; keep the global V2 goal active.
+
+## 12.84 Exported authoring callable emulator lifecycle
+
+### Mission and authority
+
+Цель программы не меняется: довести speaking-first Learning V2 до 32 эпизодов, звёзд/доступа, Speaking Club capstone, Personal Review, диалогов, Content Studio, генератора и локализации, rollout/release, сохранив legacy до Phase 14 и передавая следующей сессии полный handover. Авторитеты и порядок прежние: `AGENTS.md` → этот handover → `docs/v2/README.md` → normative `docs/v2/00`–`08` → оба плана 2026-07-14 → код/тесты. Админский перенос остаётся отдельной сессией.
+
+### Phase/task status table
+
+| Scope | Status | Evidence |
+|---|---|---|
+| Phase 00–01 / Task 1.2C | DONE/recorded | Prior handover, unchanged here |
+| Phase 02–05 (curriculum, voice, stars/access, runtime) | PARTIAL | Existing bounded work; pilot gates remain |
+| Phase 06–13 (integration, QA, rollout) | NOT STARTED/PARTIAL | Callable slice now has emulator evidence; full release not proven |
+| Phase 14 legacy decision | NOT STARTED | Legacy preserved |
+| Content Studio Tasks 0–1 | DONE/recorded | Existing seams |
+| Task 2.1 | PARTIAL | Authoring boundary and repositories exist |
+| Task 2.2 | IN PROGRESS / PARTIAL | Exported Episode callable emulator: 2 tests pass; P1 schema/body split remains |
+| Tasks 2.3–15 | NOT STARTED | Depend on Task 2.2 closure |
+
+### Changes and verification
+
+`functions/src/content_studio/emulator/v2_authoring_callables.emulator.test.ts` now runs the real exported `adminSaveV2EpisodeDraft.run` against Firestore Emulator: first-create, CAS update, stale replay rejection, persisted owner, and direct client-read denial. `functions/package.json` adds `test:emulator:v2-authoring-callables`. `admin_content_studio_callables.ts` now derives `enforceAppCheck` from the shared `ENFORCE_APP_CHECK` policy instead of hard-coding it. The callable-boundary unit test now covers create/update/replay preconditions.
+
+Evidence:
+
+- `npm run test:emulator:v2-authoring-callables` (cwd `functions`) → **1 suite / 2 tests PASS**; emulator started and stopped successfully. This invokes the exported callable `.run` with auth context and real Firestore emulator transactions; it does not yet prove an HTTP client App Check token exchange.
+- `npm run test:emulator:v2-authoring-rules` → **1 suite / 351 tests PASS**; direct client writes/reads remain denied for server-only authoring collections.
+- Focused Jest boundary matrix → **6 suites / 16 tests PASS**.
+- Targeted strict TypeScript including callable emulator test → **PASS**.
+- `git diff --check` → **PASS**.
+
+The first emulator attempt failed because the test used the wrong relative import, attempted a rules-protected read for server verification, and returned a `RulesTestEnvironment` callback value; all three were corrected. No production data, deployment, or Admin artifact was changed. Current branch/worktree remain `codex/learning-v2-pilot` / `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, HEAD `23c71a117`, with changes uncommitted while P1s remain. Preserve untracked `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+### Remaining P1 and invariants
+
+This is stronger callable evidence, but Task 2.2 is still **NOT PASS**: the emulator calls `.run` directly, so an actual HTTP/App Check rejection path is still unverified; Season callable with seeded immutable Episode/DecisionRegistry objects is not covered; nested Episode canonical validation is shallow; and the Firestore envelope still requires duplicated `body` despite the body-only-in-Storage rule. Do not remove legacy, edit Admin transfer files, use the project OpenAI key, write production Firestore, deploy, or release.
+
+### Exact next executable task
+
+**Task 2.2 continuation:** add HTTP-level callable emulator coverage (or an explicit callable protocol harness) proving missing/invalid App Check rejection and valid token acceptance, then seed immutable EpisodeRevision and DecisionRegistry Storage/Firestore records and run `adminSaveV2SeasonDraft` create/update/replay. In the same bounded slice, add RED fixtures for malformed nested graph/activity/voice/delayed/checkpoint bodies and enforce the body-only Storage envelope split. Required gates: focused Jest, both emulator commands, targeted strict TypeScript, fresh spec/adversarial reviews with no P1. Intended commit: `test(v2): prove authoring callable security lifecycle`.
+
+### Startup commands and final state
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Set-Location functions
+npm run test:emulator:v2-authoring-callables
+npm run test:emulator:v2-authoring-rules
+npx jest --runInBand src/admin_content_studio_authoring.test.ts src/admin_content_studio_callables.test.ts
+```
+
+Verified: exported Episode callable emulator lifecycle and Firestore server-only rules. Partial/unverified: HTTP App Check, Season callable immutable refs, deep nested schema, body-only persistence, downstream V2 phases and release. No commit/push/deploy/release. Keep global goal active.
+
+## 12.85 Callable security correction and release seam
+
+The callable slice was adversarially rechecked. The review proved that v2 `.run()` invokes the handler directly and therefore cannot prove transport-level App Check; the test evidence is explicitly limited to handler/Auth/CAS/Firestore behavior. Production wiring was corrected to fail closed: `admin_content_studio_callables.ts` now enables App Check unless `ENFORCE_APP_CHECK_CONTENT_STUDIO=false` is an explicit local/dev override. Added exported-boundary tests for missing auth and non-editor roles. Added `deploy:safe:v2-authoring` so the two exported V2 authoring callables have an explicit safe deployment seam; no deployment was executed.
+
+Latest evidence: `npm run test:emulator:v2-authoring-callables` → **1 suite / 3 tests PASS**; focused callable unit tests → **2 suites / 6 tests PASS**; targeted strict TypeScript for callable and emulator test → **PASS**; `git diff --check` → **PASS**. Remaining P1s are unchanged and explicit: no HTTP Functions/App Check transport test, no Season callable with seeded immutable EpisodeRevision/DecisionRegistry Storage, shallow nested Episode validator, and Firestore body duplication versus the body-only-in-Storage contract. The new deploy script is not a release approval. Worktree remains uncommitted at HEAD `23c71a117`; Admin files remain untouched.
+
+**Exact next executable task:** start Firestore + Storage + Functions emulator (or an equivalent HTTP callable harness), submit missing/invalid/valid App Check cases, seed immutable EpisodeRevision and DecisionRegistry objects, and run `adminSaveV2SeasonDraft` create/update/replay. Then close nested-schema/body-only RED/GREEN and rerun both independent reviews. Do not deploy or advance Task 2.3 until all P1s are closed.
+
+## 12.86 Release guard for authoring App Check
+
+The final review found that an explicit production `ENFORCE_APP_CHECK_CONTENT_STUDIO=false` could still disable the fail-closed authoring policy. Added `scripts/assert_v2_authoring_release_config.mjs`; `deploy:safe:v2-authoring` now runs this guard before build/deploy and exits non-zero on that override. The reusable `createAdminSaveV2DraftCallable` helper was aligned to the same fail-closed expression, so future reuse cannot silently reopen App Check.
+
+Evidence: default guard prints `V2 authoring release config: App Check fail-closed`; the same command with `ENFORCE_APP_CHECK_CONTENT_STUDIO=false` prints the refusal and exits `1`; focused callable tests are **2 suites / 7 tests PASS**; targeted strict TypeScript and `git diff --check` PASS. A real `npm run build`/deploy remains **not PASS** because the repository currently reports **9** pre-existing missing-module/export errors in `functions/src/index.ts`; this is a release blocker, not hidden by the new script. No deploy or production mutation occurred.
+
+Task 2.2 remains partial: `.run()` is not HTTP App Check evidence; Season + Storage/DecisionRegistry lifecycle and deep nested schema/body-only envelope are still open P1s. Exact next task is unchanged from 12.85: run a Functions/Storage-capable HTTP callable harness, seed Season immutable objects, close schema split, then fresh reviews. Preserve Admin untracked files and do not commit while P1s remain.
+
+## 12.87 Season callable with real Storage Emulator object
+
+Added `functions/src/content_studio/emulator/v2_authoring_season_callables.emulator.test.ts`. It starts Firestore and Storage emulators, seeds canonical EpisodeRevision bytes with content-addressed path, metadata hash, generation, and byte size, seeds the matching Firestore envelope, and invokes the exported `adminSaveV2SeasonDraft.run` for a vertical-slice Season. This proves the Season repository actually resolves the immutable Episode body through Storage before creating the Season head. Added `test:emulator:v2-authoring-season` using `--only firestore,storage`.
+
+Evidence: `npm run test:emulator:v2-authoring-season` → **1 suite / 1 test PASS**; focused Functions matrix → **6 suites / 17 tests PASS**; targeted strict TypeScript including both emulator tests → **PASS**; `git diff --check` → **PASS**. The first run exposed a default-admin-app initialization defect in the fixture; it was corrected and rerun successfully. Emulator emitted only known Java metadata/network warnings; no source or production data was changed.
+
+This closes the previously missing Season + immutable Episode Storage unit/emulator seam, but not the full Task 2.2 gate. `.run()` still bypasses deployed HTTP callable transport/App Check token validation; DecisionRegistry Storage is not seeded because vertical-slice composition does not require the registry; no Season update/replay or wrong-owner case is covered; nested Episode validation remains shallow; and persisted Firestore envelopes still duplicate `body` contrary to the body-only-in-Storage normative split. Full `npm run build` remains blocked by the nine pre-existing `functions/src/index.ts` errors recorded in 12.86. No commit, deploy, or release.
+
+**Exact next executable task:** add a Functions-emulator HTTP protocol harness (or a documented equivalent) for missing/invalid/valid App Check, then extend the Storage test to `full_season` with seeded DecisionRegistry bytes and Season create/update/stale replay/wrong-owner cases. In parallel close nested schema and body-only envelope RED/GREEN. Fresh spec/adversarial reviews must report no P1 before Task 2.3 or any release action.
+
+## 12.88 Canonical Episode revision fingerprint binding
+
+The normative fingerprint formula from §08 is now encoded as `episodeRevisionFingerprint`: `sha256(canonicalJsonV1({ schemaVersion: 'authoring-revision-fingerprint.v1', entityType: 'episode', entityId: draftId, revision, contentHash }))`. `validateEpisodeRevisionEnvelope` rejects a regex-valid but forged `record.revisionFingerprint`; the Storage/Season emulator fixture and Firestore resolver fixture now use the canonical value. Targeted strict TypeScript passed and the Firestore+Storage Season emulator rerun passed **1 suite / 1 test**.
+
+This closes a concrete stale-pin bypass, but the bounded Task 2.2 gate remains open: injected fake resolvers and draft records still need a broader canonical fingerprint migration, HTTP App Check transport is unverified, full-season DecisionRegistry/Season update-replay-owner cases are missing, nested Episode validation is shallow, and the Firestore body-only Storage split is unresolved. No commit, deploy, or release; Admin artifacts remain untouched.
+
+**Exact next executable task:** migrate all remaining authoring revision fixtures/constructors to the normative fingerprint helper, add a negative forged-fingerprint RED test, then extend the emulator harness to full-season DecisionRegistry and Season CAS/owner/replay. Keep the HTTP App Check and deep-schema P1s explicit.
+
+## 12.89 Fingerprint trust-boundary closure
+
+The shared `assertExactImmutableEpisodeRevision` now recomputes the canonical Episode revision fingerprint as well as comparing it to the pinned ref. This closes the injected/miswired-resolver bypass identified by adversarial review. Synthetic repository fixtures were migrated to `episodeRevisionFingerprint`; a RED test rejects a regex-valid forged envelope fingerprint. Focused resolver/Season/Firestore evidence is **3 suites / 13 tests PASS**, targeted strict TypeScript PASS, and the Firestore+Storage Season emulator rerun is **1 suite / 1 test PASS**.
+
+Remaining P1s are unchanged: HTTP transport/App Check, full-season DecisionRegistry and Season update/replay/owner coverage, deep nested Episode schema, body-only Storage envelope, and full build's nine pre-existing index errors. Do not claim Task 2.2 or release completion. No commit/deploy/release; Admin transfer files remain untouched.
+
+**Exact next executable task:** migrate any remaining authoring constructors to the canonical fingerprint helper, then extend the Storage emulator fixture to full-season DecisionRegistry and Season CAS/owner/replay before tackling HTTP App Check transport and deep schema validation.
+
+## 12.90 Fingerprint review residual
+
+Fresh independent reviews confirm the canonical fingerprint formula and forged-envelope rejection. The positive revision constraint (`revision >= 1`) is now enforced by the Episode envelope validator. Focused resolver/Season/Firestore tests remain green after this correction.
+
+One trust-boundary P1 remains deliberately open: `ImmutableEpisodeRevisionArtifact.record` and `.lifecycle` are optional, so an injected/miswired resolver can return a flat hash-valid artifact without canonical provenance/lifecycle envelope and still pass `assertExactImmutableEpisodeRevision`. Production Firestore wiring supplies the envelope, but the shared assertion must be hardened before treating Task 2.2 as complete. Deep nested schema, HTTP App Check, full-season DecisionRegistry/Season lifecycle, and body-only Storage split remain open as recorded above. No commit/release/deploy.
+
+**Exact next executable task:** make the immutable artifact record/lifecycle mandatory at the shared assertion boundary, add RED coverage for a flat injected artifact, then migrate the remaining fixtures and continue full-season/HTTP harness work.
+
+## 12.91 Mandatory immutable envelope at shared assertion boundary
+
+`assertExactImmutableEpisodeRevision` now requires both `record` and `lifecycle` and revalidates the complete canonical `{ body, record, lifecycle }` envelope with `validateEpisodeRevisionEnvelope`. A flat injected resolver artifact is rejected by a new RED regression test. The Season repository fake fixture was upgraded with canonical record/object/provenance/lifecycle fields rather than bypassing the boundary.
+
+Evidence: focused matrix **7 suites / 26 tests PASS**; Firestore+Storage Season emulator **1 suite / 1 test PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS**. Reviewers confirmed the fingerprint formula and envelope binding; no commit, deploy, or release was made.
+
+Remaining P1s: HTTP App Check transport; full-season DecisionRegistry and Season update/replay/owner coverage; deep nested Episode validation; body-only Storage persistence; and the nine pre-existing full-build errors. Synthetic root-level test fixtures remain intentionally bounded fake seams and are not production evidence. Admin transfer artifacts remain untouched.
+
+**Exact next executable task:** add full-season DecisionRegistry immutable Storage seed and Season create/update/stale replay/wrong-owner emulator cases, then implement the HTTP callable/App Check harness. Keep schema/body-only blockers explicit and do not advance Task 2.3.
+
+## 12.92 Cross-binding of immutable envelope and pinned ref
+
+The shared Episode assertion now fail-closes not only on envelope presence but also on cross-object consistency: `record` identity/hash/fingerprint must equal the pinned ref; `record.object` path/content hash/generation must equal the returned artifact and body hash; lifecycle identity/fingerprint must equal the ref; lifecycle status must be `approved`. Added a RED regression where a self-validating envelope for another entity is returned alongside a correct top-level artifact; it is rejected as `season_episode_revision_envelope_mismatch`.
+
+Evidence: resolver/Season/Firestore focused subset **3 suites / 15 tests PASS**; Season Firestore+Storage emulator **1 suite / 1 test PASS**; targeted strict TypeScript and `git diff --check` PASS. Fresh reviews are pending for this exact cross-binding change. No commit, deploy, or release.
+
+Remaining P1s: HTTP App Check transport, full-season DecisionRegistry and Season update/replay/owner cases, deep nested Episode schema, body-only Storage persistence, and nine pre-existing full-build errors. Keep synthetic root fixtures clearly bounded; do not claim full V2 completion or advance Task 2.3.
+
+**Exact next executable task:** after review, extend the emulator to full-season DecisionRegistry and Season CAS/owner/replay; then build the HTTP callable transport harness and close nested schema/body-only Storage contracts.
+
+## 12.93 Full-season DecisionRegistry and Season CAS evidence
+
+### Mission and user intent
+
+The global objective is unchanged: complete Learning V2 from the approved plans through the 32-episode speaking-first season, stars/access, voice activities, Speaking Club capstone, Personal Review, dialogs, scalable Content Studio/generator/localization, integration, rollout and release gates, while preserving legacy until the explicit Phase 14 decision. This bounded slice closes only the full-season immutable-reference and authoring transaction evidence; it does not claim Task 2.2 or V2 completion.
+
+### Authority and precedence
+
+Explicit owner instruction and `AGENTS.md` remain first; then this living handover; `docs/v2/README.md`; normative `docs/v2/00`-`08`; the two approved 2026-07-14 plans; then implementation/tests as evidence. The separate Admin transfer artifacts are owned by another session and were not edited.
+
+### Full phase/task status
+
+| Scope | Status | Evidence |
+|---|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded | Prior handover evidence; untouched in this slice |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL | Existing bounded work; full pilot/release gates remain open |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL | Full-season authoring evidence improved; release/device gates absent |
+| Phase 14 legacy decision | NOT STARTED | Legacy remains preserved |
+| Content Studio Tasks 0-1 | DONE/recorded | Existing seams |
+| Task 2.1 | PARTIAL | Authoring boundary/repositories exist |
+| Task 2.2 | PARTIAL / IN PROGRESS | Full-season happy path is proven; HTTP App Check and deep canonical schema remain P1 |
+| Tasks 2.3-15 | NOT STARTED | Must follow Task 2.2 acceptance gate |
+
+### What changed
+
+`functions/src/content_studio/emulator/v2_authoring_season_callables.emulator.test.ts` now seeds 32 unique Episode immutable objects and Firestore envelopes, a canonical DecisionRegistry body/record plus Storage object, and exercises `adminSaveV2SeasonDraft.run` first-save, CAS update, wrong-owner rejection and stale replay rejection. The test also verifies persisted owner. The fixture uses canonical path/hash/generation/byte-size/fingerprint wiring, but intentionally shallow Episode bodies; it is not deep schema evidence. No Admin file, production Firestore, deployment, release, or legacy behavior was changed.
+
+### Verification evidence
+
+- Focused Functions Jest: `npx jest --runInBand src/admin_content_studio_authoring.test.ts src/admin_content_studio_callables.test.ts src/content_studio/immutable_object_reader.test.ts src/content_studio/episode_revision_resolver.test.ts src/content_studio/firestore_authoring_store.test.ts src/content_studio/authoring_transaction_repository.test.ts src/content_studio/season_authoring_transaction_repository.test.ts --no-cache` -> **7 suites / 27 tests PASS**.
+- Season + Firestore/Storage emulator: `npm run test:emulator:v2-authoring-season` -> **1 suite / 2 tests PASS**. The first historical attempt had a temporary occupied port; the clean rerun passed. Known Java deprecation warnings and Jest open-handle warning remain environmental cleanup findings, not ignored failures.
+- Episode callable Firestore emulator: `npm run test:emulator:v2-authoring-callables` -> **1 suite / 3 tests PASS**.
+- Targeted strict TypeScript covering readers, resolvers, repositories, callables and both emulator tests -> **PASS**.
+- `git diff --check` -> **PASS**.
+- Fresh spec review and adversarial review -> **no P0**; both agree the full-season claims above are supported and identify the same P1 gaps.
+
+### Open findings and failed approaches
+
+P1: exported `.run()` bypasses HTTP callable transport and therefore does not prove missing/invalid/valid App Check token behavior; all 32 Episode fixture bodies are shallow and do not prove nested Graph/Activity/Learning/Voice/Delayed/Checkpoint canonical validation. Additional robustness gaps are negative DecisionRegistry Storage cases (forged path/hash/generation/malformed bytes), concurrent transaction collision, and a post-update persisted snapshot assertion. A prior combined command had truncated output, so commands were rerun separately; no source repair was hidden behind that truncation. Full Functions build still has the nine pre-existing `src/index.ts` missing-module/export errors recorded in earlier sections.
+
+### Repository, preservation, and release state
+
+Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch `codex/learning-v2-pilot`; HEAD `23c71a117`; changes remain uncommitted while P1 acceptance is open. Main checkout `C:\appsprojects\phraseman` remains untouched. Preserve untracked `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`; do not stage them. No push, deploy, publish, Firestore production write, release activation, or Admin transfer occurred.
+
+### Invariants
+
+Keep one implementation writer and read-only reviewers; do not use the project OpenAI key; preserve legacy until Phase 14; keep App Check fail-closed in production; preserve owner/CAS/idempotency, immutable hash/generation/byte-size, privacy, accessibility, offline/performance, and no-progress preview invariants. A passing emulator happy path cannot close a transport, schema, migration, or release gate.
+
+### Exact next executable task
+
+**Task 2.2 continuation: HTTP callable/App Check and canonical Episode closure.** First add RED coverage through an HTTP callable protocol harness (or an explicitly equivalent emulator transport) for missing, invalid, and valid App Check, keeping `.run()` tests labelled handler-only. Then add malformed nested Episode fixtures and enforce the canonical `Graph`/`Activity`/`Learning`/`Voice`/`Delayed`/`Checkpoint` validator contract; add negative DecisionRegistry Storage cases and assert a persisted post-update Season snapshot. Re-run focused Jest, both authoring emulators, targeted strict TypeScript, rules/security gates, and fresh spec/adversarial reviews. Do not advance Task 2.3 or commit until no P1 remains.
+
+### Startup commands
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short --branch
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Set-Location functions
+npm run test:emulator:v2-authoring-season
+npx jest --runInBand src/content_studio/episode_revision_resolver.test.ts src/content_studio/season_authoring_transaction_repository.test.ts
+```
+
+### State declaration
+
+Verified in this slice: 32-object full-season DecisionRegistry/Season Storage resolution, owner/CAS/update/replay behavior, focused unit matrix, callable emulator baseline, targeted TypeScript and diff gate. Partial/unverified: Task 2.2, HTTP App Check, deep nested schema, negative Storage tamper cases, body-only Storage persistence, all downstream V2 phases, device evidence, rollout and release. Keep the global V2 goal active.
+
+## 12.94 Nested graph boundary and registry tamper RED/GREEN
+
+### Mission and status
+
+The global V2 mission and phase order are unchanged. This continuation strengthens the immutable Episode boundary and DecisionRegistry evidence without advancing Task 2.2 or removing legacy. Task 2.2 remains partial until transport-level App Check and the complete canonical nested Episode contract are proven.
+
+### Changes
+
+`validateEpisodeRevisionArtifactBody` now requires `graph.capstoneNodeId`, validates every graph node's required nested fields and exact allowed keys, and delegates graph connectivity/activity-reference checks to the existing `validateEpisodeGraph` contract. The Season emulator fixture now supplies the minimum structurally valid graph/activity fields instead of relying on a node-id-only shell. The full-season emulator additionally asserts the persisted Season document after CAS update (`record.revision === 2` and owner unchanged). `firestore_authoring_store.test.ts` adds negative DecisionRegistry Storage metadata-generation and canonical-body-hash cases. No Admin transfer files, production data, deploy, or release changed.
+
+### RED/GREEN and verification evidence
+
+- RED: new resolver test initially received `true` for a graph node containing only `nodeId`/`activityId`; this reproduced the shallow nested acceptance.
+- GREEN: after the graph boundary wiring and fixture repair, resolver suite -> **11 tests PASS**.
+- Focused Functions matrix -> **7 suites / 30 tests PASS**.
+- Season Firestore+Storage emulator -> **1 suite / 2 tests PASS**.
+- Targeted strict TypeScript over readers/resolvers/repositories/callables/emulator tests -> **PASS**.
+- `git diff --check` -> **PASS** before the handover append.
+- Fresh spec/adversarial reviews for this exact change are requested and must be recorded before treating this slice as reviewed.
+
+### Remaining findings
+
+P1 remains for HTTP callable/App Check transport: exported `.run()` tests prove handler/Auth/CAS behavior only and do not exercise deployed callable protocol or token rejection. P1 also remains for the full canonical nested Episode contract beyond graph structure (Activity payload/capabilities/requirements/targets/tags, Learning/Voice/Delayed/Checkpoint semantics and exact-key/provenance contracts). Negative DecisionRegistry metadata/hash cases are now covered, but concurrent transaction collision and malformed UTF-8/JSON through the real Storage reader still need explicit emulator cases. The body-only-in-Storage persistence split is still unresolved. Jest reports an open-handle warning after emulator shutdown; this is recorded as cleanup work, not suppressed.
+
+### Exact next executable task
+
+Build the HTTP callable/App Check protocol harness first: RED for missing, invalid and valid App Check, with explicit proof that production options remain fail-closed. Then extend the canonical Episode adapter from graph structure to nested Activity/Learning/Voice/Delayed/Checkpoint validation using the normative validator contracts, with malformed fixtures for each branch. Add real Storage negative bytes and a concurrent Season CAS collision case. Re-run all focused/emulator/type/security gates and fresh reviews; do not commit or advance Task 2.3 while any P1 remains.
+
+### Full phase/task table
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS; graph boundary strengthened |
+| Tasks 2.3-15 | NOT STARTED; predecessor gate open |
+
+### Repository and release state
+
+Worktree remains `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`, HEAD `23c71a117`; changes are uncommitted pending P1 closure. Main checkout remains untouched. Preserve untracked `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`. No push/deploy/publish/production Firestore write/release activation occurred. Keep one writer, read-only reviewers, App Check fail-closed, immutable generation/hash/byte-size, owner/CAS/idempotency, privacy/accessibility/performance and legacy-preservation invariants.
+
+## 12.95 Activity nested shape tightening
+
+### Mission and status
+
+The global V2 objective remains active. This slice further closes canonical authoring-body shape without claiming full Activity/Voice/Delayed/Checkpoint semantic validation or HTTP transport proof.
+
+### Changes and RED/GREEN
+
+The Episode artifact validator now permits all normative optional graph-node fields (`pedagogicalContextContract`, `starSlotId`, `fallback`, `transferFromNodeId`, `variedSemanticSlotIds`) and rejects unknown node keys. It now validates ActivityInstance exact top-level keys plus nested `templateRef`, capabilities, requirements/fallback, targets and tags key sets/types/enums; payload remains JSON data validated by the surrounding canonical byte/hash path. The 32-episode emulator fixture was upgraded with a structurally valid ActivityInstance and graph node. Existing malformed graph RED remains green after the change.
+
+Evidence: focused Functions matrix **7 suites / 30 tests PASS**; Episode resolver **11 tests PASS**; Season Firestore+Storage emulator **1 suite / 2 tests PASS**; targeted strict TypeScript **PASS**; root `git diff --check` **PASS**. Fresh adversarial review reports no P0 and confirms the fixture now satisfies the structural minimum.
+
+### Remaining P1 and next task
+
+P1 remains for semantic/deep validation of Voice, delayed probes, assessment, learning/mastery, checkpoint and policy references; current Activity nested validation still does not prove every enum/value relationship. P1 remains for HTTP callable/App Check transport, real Storage malformed UTF-8/JSON/missing-object and concurrent CAS collision cases, and body-only Storage persistence. Next exact task: add RED fixtures for those nested contracts and a callable protocol harness for missing/invalid/valid App Check, then run the full focused/emulator/security/review packet. Do not commit or advance Task 2.3 until all P1 are closed.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish or production write. Preserve the two untracked Admin-transfer artifacts and keep the global goal active.
+
+## 12.96 Concurrent CAS and malformed-edge fail-closed guard
+
+### Mission and status
+
+The global Learning V2 objective remains active and unchanged. This bounded continuation strengthens authoring integrity only; it does not advance Task 2.2 to PASS or touch Admin transfer work.
+
+### Changes and RED/GREEN
+
+The full-season emulator now submits two identical Season updates concurrently from the same CAS head and asserts exactly one successful revision-2 write and one stale rejection, then checks the persisted revision and owner. A new resolver RED test demonstrated that a `null` graph edge caused a runtime `TypeError` inside `validateEpisodeGraph`; the Episode artifact validator now validates every edge's exact keys, string endpoints and allowed condition before delegation and returns `false` instead of throwing. This is a fail-closed malformed-artifact guard.
+
+Evidence: Season Firestore+Storage emulator **1 suite / 2 tests PASS**; resolver + Firestore store subset **2 suites / 17 tests PASS**; targeted strict TypeScript **PASS**; root `git diff --check` remains green. Fresh adversarial review confirms the concurrent CAS assertion and identifies no P0.
+
+### Remaining P1 and exact next task
+
+P1 remains for HTTP callable/App Check transport; full Voice/Delayed/Assessment/Learning/Mastery/Checkpoint semantics and policy-reference relationships; real emulator malformed UTF-8/JSON/missing-object/wrong-generation cases; body-only Storage persistence; and cleanup of the emulator open-handle warning. The injected-reader DecisionRegistry negatives are useful unit evidence but are not a substitute for real Storage tamper evidence. Next task: implement the callable protocol harness (missing/invalid/valid App Check) and add real Storage tamper fixtures, then rerun all gates and independent reviews. Do not commit or advance Task 2.3 while any P1 remains.
+
+### Full phase/task status, repository and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`, HEAD `23c71a117`; all current changes remain uncommitted pending P1 closure. Main checkout is untouched. No push/deploy/publish/production Firestore write/release occurred. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 12.97 CAS loser reason and Activity enum/array tightening
+
+### Mission and status
+
+The full V2 mission remains active. This continuation only strengthens the bounded authoring integrity slice; Task 2.2 remains partial and no legacy or Admin-transfer functionality was removed or edited.
+
+### Changes and evidence
+
+The concurrent Season emulator assertion now requires the losing Promise to contain `authoring_revision_stale`, not merely any rejection. The immutable Episode validator now constrains Activity family to `V2_ACTIVITY_FAMILIES`, checks non-empty string elements in targets/tags, and validates supported modality values. The malformed graph-edge fail-closed guard remains in place. Focused resolver/Firestore tests: **2 suites / 17 tests PASS**; targeted strict TypeScript: **PASS**; Season emulator after the concurrent change: **1 suite / 2 tests PASS**; root `git diff --check`: **PASS**.
+
+### Remaining P1 and exact next task
+
+P1 remains for genuine HTTP callable/App Check transport (all current callable tests still invoke `.run()`), complete semantic/recursive validation of Activity payload, optional graph subfields, Voice, delayed probes, assessment, learning/mastery, checkpoint and policy references, real Storage malformed UTF-8/JSON/missing-object cases, and body-only Storage persistence. The next executable task is the protocol harness plus real Storage tamper fixtures. Do not commit or advance Task 2.3 while these P1 findings remain.
+
+### Full status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`. No commit, push, deploy, publish, production write or release activation. Preserve both untracked Admin-transfer artifacts and keep one writer plus read-only reviewers.
+
+## 12.98 Real Storage tamper and persisted CAS integrity evidence
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This slice improves Task 2.2 evidence only; it does not claim HTTP transport, full semantic Episode validation, body-only Storage persistence, or downstream phase completion.
+
+### Changes
+
+The Season Firestore+Storage emulator now exercises the real Storage emulator reader against: an overwritten object with an old pinned generation (rejected), malformed UTF-8 bytes (rejected), and valid-UTF8 malformed JSON (rejected). The concurrent full-season CAS test now verifies exactly one winner, exactly one `authoring_revision_stale` loser, persisted revision/owner, and persisted winning fingerprint/contentHash consistency. No Admin transfer file, production data, deployment or release was touched.
+
+### Evidence
+
+- `npm run test:emulator:v2-authoring-season` -> **1 suite / 3 tests PASS** (32 Episode objects + DecisionRegistry full-season path, concurrent CAS, real Storage tamper).
+- Resolver/Firestore focused subset -> **2 suites / 17 tests PASS**.
+- Targeted strict TypeScript for the emulator test -> **PASS**.
+- Root `git diff --check` -> **PASS**.
+- Fresh spec and adversarial reviews -> **no P0**; both confirm the real tamper and CAS claims.
+
+### Remaining P1 and next executable task
+
+P1 remains for the actual HTTP callable/App Check protocol (all current callable checks still use handler-only `.run()`), complete semantic/recursive validation of Voice, Delayed, Assessment, Learning/Mastery, Checkpoint and policy relationships, and the normative body-only-in-Storage persistence split. One additional Storage evidence case remains: missing object through the resolver/callable path. The exact next task is an HTTP protocol harness for missing/invalid/valid App Check plus resolver-level missing-object and metadata/byte-size negative cases. Do not commit or advance Task 2.3 until the P1 gate is closed.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.59 Current checkpoint — CAS proof, focused matrix, and remaining blockers
+
+This is the latest handover checkpoint and must be read after the historical sections above. The full Learning V2 objective remains active; legacy behavior remains preserved and no release or production mutation occurred.
+
+### Verified in this session
+
+- `npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS**. It covers submit, validation/localization/review/gate evidence, maker-checker rejection, concurrent approval CAS (exactly one winner), content-hash-bound active pin, archive protection, exact operation-envelope rejection, idempotent replay, and stale revision rejection.
+- Focused Content Studio matrix — **22 suites / 112 tests PASS**.
+- Targeted strict TypeScript for Firestore lifecycle/store and lifecycle emulator — **PASS**.
+- `git diff --check` — **PASS** (only normal line-ending warnings).
+- Fresh spec review confirms the bounded CAS/contentHash/exact-operation closures; it also confirms that these are not full release evidence.
+
+### Open P1/P2 items before this lifecycle/content-studio slice can be promoted
+
+1. Active Season pin still scans inline Season documents and does not yet read a canonical immutable Season record/body from Storage with hash, generation, byte-size, and exact envelope validation.
+2. Lifecycle transport App Check/Auth is not proven end-to-end; the current emulator callable test disables enforcement and the HTTP harness is a debug-token harness.
+3. Generic Episode resolver and authoring resolver share the same path; approved-only runtime behavior is guaranteed by `assertExactImmutableEpisodeRevision`, not by a separate resolver API.
+4. Legacy nested Episode `{record,lifecycle}` and synthetic record-only validation remain compatibility paths without an explicit opt-in.
+5. Submit does not yet resolve the immutable artifact and bind submitter/expected draft ownership before creating lifecycle state; review-queue projection is also not yet proven.
+6. Receipt interfaces and persisted operation records need canonical receipt IDs/body-record completeness and nested exact-key closure.
+
+### Exact next executable task
+
+Implement canonical Season pin validation and its RED/GREEN emulator fixtures. The writer must use the existing immutable object reader and Season draft contracts, require exact record/body hash bindings and approved/released lifecycle status, and reject malformed, tampered, content-hash-mismatched, and missing-object pins. Then add a transport-level lifecycle App Check/Auth fixture if the current emulator setup supports it. Re-run the lifecycle emulator, ContentGate Storage emulator, authoring HTTP App Check harness, focused 22-suite matrix, targeted TypeScript, and append the resulting counts here. Do not begin runtime/stars/curriculum UI work until this predecessor contract gate is closed.
+
+### Worktree and release state
+
+Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch `codex/learning-v2-pilot`; HEAD remains `23c71a117` at the last recorded handover. No commit, push, deploy, publish, Firestore production write, or release activation. Preserve untracked `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.58 Lifecycle CAS and active-pin negative closure
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This bounded slice strengthens the server-owned Episode lifecycle transition boundary; it does not claim the curriculum, runtime, stars/access economy, voice-mode catalog, Admin Content Studio generator, rollout, or release complete.
+
+### Changes
+
+- Firestore lifecycle `compareAndSetLifecycle` now reads the current lifecycle inside the same transaction and explicitly rejects a missing or mismatched `expectedRevision` with `episode_lifecycle_stale`; it no longer ignores the CAS argument.
+- Active-season pin matching now requires the full Episode revision identity, including `contentHash`, in addition to episode id, revision, and revision fingerprint. The pin still must have an approved/released season lifecycle projection.
+- Lifecycle operation records now have exact top-level key closure (`lifecycle` and `requestFingerprint` only); an unexpected field is rejected as `episode_lifecycle_operation_invalid`.
+- The emulator lifecycle test now runs two concurrent approval contenders. Exactly one succeeds and one loses the transaction race; the same test also exercises the unexpected-field operation rejection. A 30-second test timeout is explicit because Firestore transaction retries are real emulator work.
+
+### RED/GREEN evidence
+
+`npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS**, including submit, validation/localization/review/gate receipts, maker-checker rejection, concurrent CAS race, content-hash-bound active pin, archive guard, exact operation envelope rejection, idempotent replay, and stale archive rejection. The emulator prints the known Java Unsafe deprecation warning and exits with the existing Jest open-handle warning after a successful run.
+
+### Remaining findings
+
+The resolver's generic `resolve` and authoring resolver still share the same artifact reader; approved-only runtime use is enforced by `assertExactImmutableEpisodeRevision`, not by the resolver method alone. The lifecycle emulator invokes callable `.run()` with App Check disabled; transport-level production App Check/Auth evidence remains a separate gate. Active-pin validation still needs a canonical Season immutable envelope/body-hash verification before it can be treated as cryptographic pin proof. `readOperation` now closes top-level keys but nested lifecycle exact-key validation remains delegated to the lifecycle validator. No commit, push, deploy, production write, or legacy removal occurred.
+
+### Full phase/task status
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+### Exact next executable task
+
+Add canonical Season immutable pin validation (record-only envelope, Storage object hash/generation/byte-size, approved lifecycle status) and a transport-level lifecycle App Check/Auth emulator harness. Then rerun the focused lifecycle, rules, ContentGate Storage, HTTP App Check, and Content Studio unit matrices; record all counts here before starting the next Content Studio task.
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve both untracked Admin-transfer artifacts.
+
+## 13.48 Lifecycle verification checkpoint
+
+After the Episode lifecycle additions, the complete focused Content Studio matrix is **21 suites / 106 tests PASS**. The lifecycle+authoring+callable subset is **3 suites / 13 tests PASS**. `git diff --check` is PASS. The rules emulator initially exceeded the external timeout because a stale Firestore emulator process remained on port 8080. After stopping that test-owned process, the rerun completed: **1 suite / 406 tests PASS**. Permission-denied warnings are the expected negative assertions. This closes the rules-matrix verification for the current deny-only collections, but not the full callable lifecycle emulator flow.
+
+The next executable task is to make the Episode lifecycle emulator flow deterministic (or isolate its emulator ports/process lifecycle), then add submit/maker-checker/malformed-operation coverage. Preserve the current unit evidence and do not mark Task 2.2 complete.
+
+## 13.49 Submit path and independent lifecycle review
+
+Added `EpisodeLifecycleTransitionRepository.submit`, a strict submit parser, and `adminSubmitV2EpisodeRevision`; a previously uninitialized revision can now receive a server-owned `needs_review` lifecycle head with idempotent operation/audit evidence. Action-specific parsers now require receipt IDs only for approval and reject them for changes/archive. The Firestore lifecycle adapter now targets the separate `content_episode_lifecycle` collection for new lifecycle writes rather than updating the immutable revision document.
+
+Verification: lifecycle repository **1 suite / 5 tests PASS**; full focused matrix remains **21 suites / 106 tests PASS**; targeted strict TypeScript over lifecycle/parser/callable/adapter **PASS**; rules emulator **1 suite / 406 tests PASS**. A fresh independent spec/adversarial review remains **NOT PASS** and identified release-blocking gaps: lifecycle resolver still has compatibility assumptions around nested historical envelopes; maker-checker actor binding is absent; pre-approval upstream receipts can deadlock on approved-only resolver behavior; ContentGateReceipt lacks immutable record/object verification; receipt IDs are not append-only-safe; active Season pin query is provisional; and no real lifecycle callable emulator flow exists. These findings are recorded, not waived.
+
+Exact next executable task: split the Episode resolver into immutable record + separate lifecycle reads while preserving legacy fixture compatibility, then add the real submit→receipt-gate→approve emulator flow with same-actor rejection and append-only receipt IDs. Do not mark Task 2.2 complete.
+
+## 13.50 Record/lifecycle split progress and review findings
+
+The resolver now accepts the canonical body-less `{record}` index plus a separate `content_episode_lifecycle/{draftId}__r{revision}` projection and reads both through the same transaction context. Historical `{record,lifecycle}` fixtures remain accepted for compatibility. `createLifecycle` now uses a transaction create on the separate lifecycle document, and review/validation parsers reject unknown top-level fields. Unit evidence remains green: lifecycle/authoring subset **2 suites / 11 tests PASS** and targeted TypeScript for resolver/adapter remains **PASS**.
+
+This is still partial. The fresh independent review confirms the remaining release blockers: legacy envelope must become explicit opt-in; record validation should no longer synthesize a fake lifecycle; a deliberate pre-approval resolver API is needed; the lifecycle union/draft semantics need alignment; maker-checker and append-only receipt identity are missing; ContentGateReceipt still lacks immutable record/object verification; Season pin scanning is provisional; and a real callable emulator flow is absent. The latest rules evidence remains **1 suite / 406 tests PASS**, and the full focused matrix after the latest changes is **21 suites / 107 tests PASS**.
+
+Exact next task: add explicit `resolveForAuthoring` versus approved-only runtime resolution, direct record-only validation and lifecycle binding checks, then write the emulator RED/GREEN flow. No commit, deploy, push, release, or legacy removal.
+
+## 13.51 Explicit authoring resolver seam
+
+Added an explicit optional `resolveForAuthoring` resolver method and switched server-owned validation, localization, review, and voice stores to use it when available. This documents and preserves the distinction between pre-approval evidence reads and the approved-only `assertExactImmutableEpisodeRevision` Season/runtime path. The Firestore resolver now has a shared artifact read path that supports canonical record-only indexes plus the separate lifecycle projection; the record-only validator has a dedicated positive/negative test.
+
+Evidence: Episode resolver + Firestore adapter tests **2 suites / 42 tests PASS**; targeted strict TypeScript **PASS**. Full Content Studio matrix after this bounded seam is **21 suites / 108 tests PASS**. This remains partial: legacy envelope opt-in, direct record validator extraction, lifecycle binding/error semantics, maker-checker, append-only receipt IDs, immutable gate records, Season pin correctness, and callable emulator flow remain open.
+
+## 13.52 Receipt append-only identity and maker-checker seam
+
+Receipt identifiers are now type-scoped and operation-scoped (`validation`, `localization`, `review`, `voice` plus the idempotency key), so repeated evidence events for the same Episode revision no longer collide across kinds or overwrite an earlier append-only receipt. Episode review receipts now persist `reviewerId`; the lifecycle approval repository reads that actor through a server-owned store seam and rejects missing reviewer identity or self-approval (`episode_maker_checker_self_review`). The generic receipt reader accepts the optional reviewer field while retaining strict required subject/hash/status checks.
+
+Focused receipt/lifecycle reader tests: **3 suites / 11 tests PASS**; targeted strict TypeScript for receipt/lifecycle/adapter modules: **PASS**. This is a seam, not complete maker-checker evidence: a valid gate-backed approval and same-actor emulator assertion still need to be added. Immutable ContentGateReceipt records, Season pin safety, and full callable emulator flow remain open.
+
+## 13.53 ContentGate body/record envelope seam
+
+ContentGate issuance now composes a typed `content-gate-receipt-record.v1` alongside the gate body, with receipt hash and object binding metadata. The Firestore adapter persists `{body, record}` and the server-owned gate reader accepts the envelope only when the record hash matches the canonical body hash and its object content hash matches the receipt hash; bare historical body documents remain readable for compatibility. Focused gate/reader/repository tests: **3 suites / 13 tests PASS**; targeted strict TypeScript: **PASS**.
+
+This is deliberately not release-complete immutable Storage evidence: the current record uses a pending object-generation marker and does not yet write/read canonical gate bytes from Storage. The next gate task must add the real immutable object writer/reader and reject stale/missing generation/byte-size metadata before lifecycle approval. Full focused matrix after this seam is **22 suites / 110 tests PASS**; emulator lifecycle flow remains open.
+
+## 13.54 ContentGate immutable object-writer seam
+
+Replaced the pending-only path with a server-owned `ContentGateObjectWriter` seam. The production Firestore adapter canonicalizes the gate body, writes UTF-8 JSON to Firebase Storage, reads the resulting object generation, and returns generation/byte-size/content-hash metadata before the record is persisted. The repository now fails closed when the writer returns a mismatched hash, zero byte size, or missing generation. Unit fallback remains test-only for in-memory stores. Gate repository tests: **1 suite / 3 tests PASS**; targeted strict TypeScript: **PASS**.
+
+This still requires a real Storage emulator test proving bytes can be read back and tampering/generation mismatch is rejected by the gate reader. The immutable record is now produced only after the writer seam succeeds. Full focused matrix after this seam: **22 suites / 111 tests PASS**; full release evidence and lifecycle emulator remain open.
+
+## 13.55 ContentGate Storage emulator proof
+
+Added `v2_content_gate_storage.emulator.test.ts` and the `test:emulator:v2-content-gate-storage` command. Against real Firestore + Storage emulators, the test seeds validation/localization/review evidence, issues a gate through the adapter, verifies persisted record hash and Storage generation/byte-size, reads canonical bytes back, then tampers with the object and proves the read-back hash no longer matches the immutable record. Evidence: **1 suite / 1 test PASS**. The emulator reports a Jest open-handle warning after success; cleanup currently exits successfully but this warning remains a release-hygiene item. The full focused unit matrix is now **22 suites / 112 tests PASS**.
+
+The full lifecycle callable emulator (submit → evidence → gate → approval → archive, App Check/Auth and maker-checker) is still not implemented. No production Storage/Firestore writes were made.
+
+## 13.56 Episode lifecycle emulator proof
+
+Added `v2_episode_lifecycle.emulator.test.ts` and `test:emulator:v2-episode-lifecycle`. Against Firestore + Storage emulators it seeds a canonical Episode body/record, invokes the exported callables for submit, validation, localization, review, and ContentGate issuance, rejects self-approval by the review actor, then approves with a distinct reviewer and archives the Episode. It verifies the separate lifecycle projection is created and gate evidence is persisted through Storage. Evidence: **1 suite / 1 test PASS**. Jest still reports an open-handle warning after successful emulator cleanup, so this is strong functional evidence but not yet a clean release gate.
+
+The emulator uses the explicit local App Check override for direct `.run()` invocation; transport-level App Check remains covered only by the separate HTTP harness. Active Season pin blocking and malformed-operation/CAS race cases still require additional emulator cases.
+
+## 13.57 Lifecycle negative emulator evidence
+
+Extended the lifecycle emulator scenario with a separate `content_season_revisions` body plus `content_season_lifecycle` approval projection. Archive is now proven to reject an active exact Episode pin, then succeed after the pin projection is removed. The same run also proves idempotency-key conflict rejection when the archived operation key is reused with a different reason. Evidence remains **1 suite / 1 test PASS** (with the known Jest open-handle warning after emulator shutdown). This closes the current active-pin and replay-conflict cases, but not a true concurrent CAS race or malformed persisted-operation corruption fixture.
+
+The same emulator now includes both malformed persisted-operation rejection and stale lifecycle-revision rejection; rerun evidence: **1 suite / 1 test PASS**. The separate transport-level App Check harness also passes **1 suite / 2 tests** (missing App Check rejected, valid App Check accepted). The open-handle warning remains the only cleanup defect in the lifecycle emulator process; it does not change the assertions' exit code.
+
+## 13.47 Episode lifecycle transition slice
+
+Added the first server-owned Episode lifecycle transition layer. `EpisodeLifecycleTransitionRepository` now supports `needs_review → changes_requested`, `needs_review → approved`, and `approved → archived`, with strict identity checks, lifecycle-revision CAS preconditions, idempotent replay/fingerprint protection, server-owned approval-gate resolution, non-empty change reasons, audit writes, and an active-Season-pin archive guard. Added strict `validateEpisodeLifecycleHead`, Firestore transaction adapter, deny-only lifecycle audit/operation rules, lifecycle request parser, and callable exports for approve, request-changes, and archive. The immutable Episode revision record is not mutated; the adapter updates only its lifecycle projection.
+
+RED/GREEN evidence: lifecycle repository **1 suite / 4 tests PASS**; lifecycle + authoring + callable subset **3 suites / 13 tests PASS**; targeted strict TypeScript for lifecycle, adapter, parser and callables **PASS** except the known repository-wide missing legacy exports when compiling `src/index.ts`; root `git diff --check` **PASS**. The full focused matrix must be re-run after this slice, and an emulator callable flow still remains required before this task can be marked complete.
+
+Open lifecycle gaps: submit-to-`needs_review` callable, maker-checker actor separation, full Firestore emulator flow with real receipt gate, malformed operation fixture, and robust active Season pin query against the final immutable Season lifecycle schema. Do not claim Episode lifecycle complete or archive safety release-ready yet.
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.46 Voice dependency resolver seam
+
+Added a server-owned `VoiceDependencyReader` seam and `resolveVoiceDependencies`. When configured for a voice receipt, the repository now resolves immutable calibration, data-policy, and network-egress records and fails closed on missing/hash/identity/status/expiry mismatches, missing required network purposes, stale calibration/policy, or unsafe egress protocols/direct-provider calls. The resolver intentionally does not add account consent, eligibility, reservation, or settlement data; those remain runtime-only.
+
+RED/GREEN evidence: **1 suite / 3 tests PASS** for exact dependency acceptance, missing purpose rejection, and unsafe egress rejection; existing voice/callable tests remain **2 suites / 4 tests PASS**; full focused Content Studio matrix is now **20 suites / 102 tests PASS**. Targeted strict TypeScript for resolver/repository: **PASS**.
+
+This is a seam, not the final release gate: Firestore immutable dependency adapters, registry-entry identity/expiry checks, supporting consent/deletion/minors reference resolution, and exact calibration-scope matching still remain. Episode lifecycle transitions/pinning, curriculum/runtime, stars/access, modes, QA, rollout and release gates remain open.
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.45 Focused receipt matrix and external voice dependency audit
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This slice re-ran the post-voice Content Studio matrix and audited the normative external voice dependencies before implementing their resolver. No release, legacy removal, deploy, commit, or push was performed.
+
+### Verification evidence
+
+- Focused Content Studio matrix: **19 suites / 99 tests PASS**.
+- Targeted strict TypeScript over all touched receipt, semantic-bridge, resolver, callable, and lifecycle modules with `--skipLibCheck`: **PASS**. A plain strict invocation still hits the repository's unrelated duplicate DOM/WebCodecs declarations; this is an environment baseline and not a touched-module error.
+- Canonical Episode oracle remains **1 suite / 317 tests PASS**.
+- Rules emulator remains **1 suite / 396 tests PASS** after the voice receipt and operation deny-only collections.
+- `git diff --check` remains the required next hygiene check after the next patch.
+
+### External voice dependency findings
+
+The normative schemas are in Content Studio §3.2 and the shared activity contracts. Voice receipt issuance currently checks only the intrinsic governance shape. It does not yet resolve or cryptographically bind the immutable `SpeechCalibrationReceipt`, `VoiceDataPolicy`, and `VoiceNetworkEgress` records. The next bounded RED/GREEN packet must add a server-owned dependency reader that checks record identity, canonical body hash, approved/deployed status, expiry/environment, policy registry-key and purpose coverage, deletion/minors references, and the required egress protocol literals. Do not invent runtime consent/reservation fields in the content-studio layer.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.29 Operation proof and maker-checker permission boundary
+
+The malformed idempotency-operation RED/GREEN proof is now complete: the Firestore emulator has **1 suite / 3 tests PASS**, including rejection of an existing malformed operation. Publish fingerprints include actor identity and the complete receipt-ID payload; altered receipt IDs are rejected as key reuse. Lifecycle request parsing now rejects unknown top-level fields and validates replacement IDs with the same path-safe token rule as primary IDs.
+
+Content lifecycle permissions now distinguish publication from review. A `content_reviewer` role and `content.review` permission were added; publish remains guarded by `content.publish`, while deprecate is guarded by `content.review`. Focused permission/callable/authoring tests: **4 suites / 17 tests PASS**.
+
+The lifecycle still lacks the required `deprecated → archived` transition and its open-Episode-draft guard. Replacement records also need the full immutable Storage-bound resolver rather than the minimal ref/hash read. Keep Task 2.2 partial.
+
+## 13.30 Archive transition and authoring-only template status gate
+
+Added the guarded `deprecated → archived` lifecycle transition to the repository and callable surface. Archive requires the current lifecycle to be `deprecated`, checks an idempotent operation record, queries for any unsealed Episode draft whose ActivityInstance pins the exact template ref, appends an audit event, and replays the original result for an exact idempotency key. A reviewer may perform deprecation/archive through the new `content_reviewer` role and `content.review`; publication remains restricted to `content.publish`.
+
+The default Firestore ModeTemplate resolver now accepts only `published` templates for new authoring. Historical readers can opt into deprecated templates explicitly. Shared lifecycle validation rejects replacement metadata on archived heads. Focused repository/authoring/callable/store tests: **4 suites / 34 tests PASS**; targeted strict TypeScript: **PASS**.
+
+Open work remains: full immutable Storage-bound replacement resolution, transaction-scoped template reads during Season saves, archive emulator coverage with real open-draft documents, and the wider Episode semantic/runtime/curriculum phases. Task 2.2 remains partial.
+
+## 13.31 Archive emulator proof and current verification
+
+The lifecycle emulator now covers four cases: publish/idempotent replay, deprecate with a published replacement, malformed-operation rejection, and archive blocking on an open Episode draft followed by successful archive plus replay after draft closure. Result: **1 suite / 4 tests PASS**; the existing Jest open-handle warning remains a test-hygiene follow-up.
+
+The expanded focused matrix (admin roles/permissions, authoring/callables, immutable readers, Episode/DecisionRegistry envelopes, lifecycle receipts/transitions/repository, and transaction repositories) is **14 suites / 89 tests PASS**. Targeted strict TypeScript passes. No commit, deploy, push, production write, or legacy removal.
+
+The remaining release-critical gaps are full immutable Storage-bound replacement resolution, transaction-scoped template resolution during Season saves, and the broad Episode semantic/curriculum/runtime/stars/voice/Admin/release phases.
+
+Correction to 13.28: the malformed-operation emulator proof is no longer pending; it is included in 13.31's **1 suite / 4 tests PASS** lifecycle run. The open-handle warning is still recorded as test hygiene debt.
+
+## 13.34 Canonical Episode oracle baseline
+
+The existing canonical Learning V2 Episode contract suite was rerun as the semantic oracle: **1 suite / 317 tests PASS**. It covers graph phases/loops, delayed-probe hash and binding, checkpoint boundary/sets, mastery evidence, eight star slots/accessibility reachability, voice fallback, localization and policy relationships. This is strong canonical-layer evidence, but it does not yet prove the authoring-body to canonical adapter or the Storage-bound Episode resolver; those remain the next semantic workstream and no release claim is made from this oracle alone.
+
+## 13.35 Authoring-to-canonical Episode semantic bridge
+
+Added `episode_authoring_semantics.ts`, a loss-intolerant adapter from `episode-authoring-body.v1` to the shared `v2-episode-contract.v1` validator. It refuses to guess or drop canonical projection fields (`episodeKind`, timing, objective/skill/grammar/sound/asset sets and accessibility routes), maps `activityInstances` to canonical `activities`, and forwards the result to the existing semantic validator. A canonical E1 fixture adapted into authoring shape is accepted; missing accessibility projection and delayed-probe hash mutation are rejected. Result: **1 suite / 3 tests PASS**; resolver + bridge subset: **2 suites / 24 tests PASS**; targeted TypeScript: **PASS**.
+
+The bridge is exposed as an approval-time semantic gate but is not yet wired into a complete Episode review/publish callable. Dependency-resolved policy/voice receipt checks and migration of real authoring fixtures remain open; do not claim Episode semantic completion.
+
+## 13.36 Replacement record envelope hardening
+
+The lifecycle adapter's replacement-record read now requires the complete immutable ModeTemplate record envelope: exact top-level keys, canonical Storage object path, matching content hash, non-empty generation/byte size, provenance creator/timestamp, and record identity matching the requested template/version. The lifecycle emulator replacement fixture was upgraded accordingly. Store/repository subset: **2 suites / 25 tests PASS**; lifecycle Firestore emulator remains **1 suite / 4 tests PASS**; targeted TypeScript: **PASS**.
+
+The adapter still does not read and hash-verify the replacement Storage bytes itself; that final body-level check and a concurrent race proof remain open.
+
+## 13.37 Current focused matrix after semantic bridge
+
+Focused V2 Content Studio matrix now includes the authoring semantic bridge and permission boundary: **15 suites / 92 tests PASS**. The canonical Episode oracle remains **317 tests PASS**. Targeted TypeScript and `git diff --check` remain clean. This is still an intermediate foundation milestone; no commit, deploy, release activation, or legacy removal was performed.
+
+## 13.38 Semantic bridge scope boundary
+
+The bridge is intentionally pure and loss-intolerant, but the current repository still has no complete Episode review/approval callable that consumes it. Existing shallow draft/Storage tests remain compatibility tests and must not be mistaken for semantic approval evidence. The next implementation slice is to add the server-owned Episode review gate, bind fresh semantic/localization/voice receipts to the exact Episode subject, and only then route approval/pinning through that gate.
+
+## 13.39 Server-owned Episode semantic review callable
+
+Added `adminValidateV2EpisodeRevision`: it requires the `content.review` maker-checker permission, parses a strict immutable Episode revision reference, reads the approved artifact through the server-owned Firestore/Storage resolver with a published-only ModeTemplate resolver, and runs the authoring-to-canonical semantic bridge. The callable is exported from `functions/src/index.ts`; malformed path IDs are rejected before any read. Focused authoring/callable tests: **2 suites / 9 tests PASS**; targeted TypeScript: **PASS**.
+
+This is a semantic review gate, not yet an approval receipt writer or lifecycle transition. Fresh validation/localization/voice receipts and Episode approval/pinning integration remain open.
+
+## 13.40 Server-owned Episode review receipt
+
+Added `EpisodeReviewRepository` and `adminReviewV2EpisodeRevision`. The repository reads the immutable artifact server-side, runs the canonical semantic bridge, rejects invalid content before any write, creates an exact Episode-subject review receipt, and records an idempotent operation. Reusing a key with a changed actor/ref/status/reason is rejected. The callable is reviewer-only and exported from the Functions index. The new operation collection is deny-only in Firestore rules.
+
+Evidence: repository + authoring/callable tests **3 suites / 11 tests PASS**; targeted TypeScript **PASS**. This is the review receipt layer only: validation/localization/voice receipts, gate receipt composition and Episode lifecycle/pinning still remain open.
+
+Rules emulator after adding the Episode review operation collection: **1 suite / 371 tests PASS**. Permission-denied warnings are expected negative assertions; no direct client access was opened.
+
+The shared approval-gate validator and Firestore reader now accept both `mode_template` and `episode` subjects, while preserving exact same-subject, status and receipt-hash checks. Transition/reader tests: **2 suites / 12 tests PASS**. This generalizes the gate contract but does not yet create validation/localization/voice receipts automatically.
+
+## 13.41 ContentGateReceipt issuer
+
+Added `ContentGateReceiptRepository` and reviewer/publisher-safe callable `adminIssueV2ContentGate`. It reads validation, localization and review receipts by server-owned IDs, requires exact subject equality and statuses, pins all three receipt hashes into a separate `content-gate-receipt-body.v1`, and persists an idempotent operation. It supports both Episode and ModeTemplate subjects. The operation collection is deny-only in Firestore rules.
+
+Evidence: gate repository + authoring/callable tests **3 suites / 11 tests PASS**; rules emulator **1 suite / 376 tests PASS**; targeted TypeScript **PASS**. This closes gate receipt composition, but does not yet advance Episode lifecycle/pinning or create upstream validation/localization/voice receipts automatically.
+
+## 13.42 Server-owned Episode validation receipt
+
+Added `EpisodeValidationRepository` and `adminIssueV2EpisodeValidationReceipt`. It reads the immutable Episode artifact through the server-owned resolver, runs the loss-intolerant canonical semantic bridge, writes a `passed` validation receipt only after success, and records an idempotent operation. The validation operation collection is deny-only in Firestore rules. Focused repository/authoring/callable tests: **3 suites / 11 tests PASS**; targeted TypeScript: **PASS**.
+
+Localization and voice-governance receipts still need their own evidence writers; the gate issuer now has a real validation receipt source but the complete upstream receipt set and Episode lifecycle/pinning transition remain open.
+
+Rules emulator after adding validation operations: **1 suite / 381 tests PASS**. Expected permission-denied warnings remain negative assertions.
+
+## 13.43 Server-owned Episode localization receipt
+
+Added `EpisodeLocalizationRepository` and `adminIssueV2EpisodeLocalizationReceipt`. It uses the same immutable semantic bridge, writes an `approved` localization receipt only after the complete canonical Episode/localization contract passes, and stores a separate idempotency operation. Validation and localization operation collections are deny-only. Localization repository + validation repository + callable tests: **3 suites / 6 tests PASS**; rules emulator: **1 suite / 386 tests PASS**; targeted TypeScript: **PASS**.
+
+The remaining upstream evidence gap is voice-governance/calibration/policy receipt issuance, followed by Episode lifecycle/pinning transition and full release-gate wiring.
+
+## 13.44 Voice governance receipt
+
+Exported the shared `validateVoiceReleaseRequirementsShape` helper and added `EpisodeVoiceGovernanceRepository` plus `adminIssueV2EpisodeVoiceReceipt`. Voice review now fails closed on malformed on-device/network requirements, missing policy/egress/purpose fields, duplicate task/purpose values, or invalid calibration refs; successful evidence produces an `approved` voice receipt with idempotent operation. Voice receipt and operation collections are deny-only. Voice repository + callable tests: **2 suites / 4 tests PASS**; rules emulator: **1 suite / 396 tests PASS**; targeted TypeScript: **PASS**.
+
+The receipt currently validates the intrinsic voice-governance shape; external calibration/policy/egress record resolution and Episode lifecycle/pinning remain open.
+
+The complete focused Content Studio matrix including the Episode review repository is now **16 suites / 94 tests PASS**. Targeted strict TypeScript and `git diff --check` remain PASS.
+
+## 13.33 Transaction seam verification
+
+After introducing the context-aware ModeTemplate resolver, the Episode/Season/callable transaction subset is **4 suites / 28 tests PASS** and targeted strict TypeScript remains PASS. This confirms existing Season saves still resolve approved Episode dependencies through the transaction read context. A true concurrent deprecate-vs-save emulator race and full immutable replacement resolver are still required before release evidence can claim race safety.
+
+## 13.32 Transaction-scoped ModeTemplate resolution seam
+
+`resolveModeTemplate` now accepts the same optional Firestore read context as Episode revision resolution. `createFirestoreModeTemplateResolver` uses that context for both the immutable version record and lifecycle head, and `FirestoreSeasonDraftRepository` wraps the resolver with the active transaction context before validating pinned Episode revisions. This closes the prior non-transactional read seam for Season saves. Targeted strict TypeScript passes.
+
+The default resolver remains authoring-safe (`published` only); historical deprecated reads require an explicit option. Full replacement-record Storage validation and a concurrency RED/GREEN emulator race test remain open.
+
+## 13.28 Malformed idempotency operation fail-closed behavior
+
+The Firestore lifecycle adapter now rejects an existing operation document unless it has a string request fingerprint and a lifecycle head that passes the shared strict lifecycle validator. A malformed persisted operation can no longer be treated as a missing operation and silently retried. Targeted strict TypeScript passed, and the full focused Content Studio matrix remains **12 suites / 80 tests PASS**. A dedicated emulator fixture for a malformed operation is still the next RED/GREEN proof to add before this subtask is considered fully closed.
+
+## 13.26 Idempotent ModeTemplate lifecycle proof and verification
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This slice hardens the ModeTemplate publish/deprecate transition against duplicate requests and records the verification evidence; it does not claim the full V2 pilot, Content Studio, or release complete.
+
+### Changes and RED/GREEN
+
+Lifecycle requests now require an idempotency key. The repository fingerprints the action/ref/revision/reason (and replacement for deprecation), replays an exact prior operation without a second write, and rejects reuse of the same key for a different request. The Firestore adapter persists operation records in a server-only collection using the transaction boundary. The repository narrowing was made explicit for the strict TypeScript compiler.
+
+Evidence:
+
+- Firestore lifecycle emulator: **1 suite / 2 tests PASS**. It proves publish idempotent replay/audit behavior and deprecation with a resolved published replacement. Jest reports an open-handle warning after completion; the suite exits successfully and this remains a follow-up cleanup item, not a release claim.
+- Focused Content Studio matrix: **12 suites / 80 tests PASS**.
+- Lifecycle transition subset after the compiler fix: **3 suites / 15 tests PASS**.
+- Targeted strict TypeScript over all touched lifecycle, resolver, callable, and shared-contract modules: **PASS**.
+- Full Functions `tsc --noEmit`: **BASELINE FAIL**, limited to pre-existing missing/unexported modules referenced by `functions/src/index.ts`; no touched V2 module appears in the error list.
+- Root `git diff --check`: **PASS** (only Git's LF/CRLF normalization warnings).
+
+No commit, push, deploy, production write, release activation, or legacy removal was performed. The separate Admin-transfer artifacts remain preserved.
+
+### Remaining P1 and exact next task
+
+Task 2.2 remains partial/in progress. Remaining work includes validating the full target lifecycle state during deprecation replacement resolution (not only the target record/hash), malformed operation fail-closed behavior, deep Episode semantic contracts, and the later curriculum/runtime/stars/access/voice/QA/release phases. Exact next executable task: add a Firestore adapter fixture that reads and requires the replacement lifecycle head to be `published`, then add the malformed-operation RED/GREEN case and re-run the lifecycle emulator plus focused matrix.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; there is no commit, push, deploy, production write, or release activation.
+
+## 13.27 Replacement lifecycle fail-closed hardening
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This slice closes the specific replacement-target gap identified in 13.26; it is still only a Content Studio foundation increment.
+
+### Changes and RED/GREEN
+
+Deprecation now resolves both the replacement record and its lifecycle head, and requires the target lifecycle to be `published` with the same content hash before accepting the replacement. An existing record without a published lifecycle is therefore rejected. The unit MemoryStore fixture now models per-template lifecycle heads, and the Firestore emulator fixture seeds the published replacement lifecycle explicitly.
+
+Evidence:
+
+- Lifecycle repository unit test: **1 suite / 4 tests PASS**.
+- Firestore lifecycle emulator: **1 suite / 2 tests PASS**. The suite still reports Jest's post-test open-handle warning; emulator exits successfully.
+- Targeted strict TypeScript for repository/Firestore adapter: **PASS**.
+
+### Remaining P1 and exact next task
+
+Malformed persisted operation records still need a fail-closed RED/GREEN fixture and adapter behavior. Deep Episode semantic contracts and all later V2 curriculum/runtime/stars/access/voice/QA/release phases remain open. Exact next executable task: make malformed idempotency-operation documents an explicit error (not a missing operation), add its emulator/unit proof, then re-run the full focused Content Studio matrix.
+
+## 13.15 ModeTemplate published lifecycle resolver
+
+### Mission and status
+
+The complete V2 objective remains active. This slice makes immutable ModeTemplate resolution lifecycle-aware: a valid body and record are insufficient unless the separate server-owned lifecycle head proves the exact template version/hash is currently published or deprecated.
+
+### RED/GREEN changes
+
+Added `modeTemplateLifecycleDocumentPath` and lifecycle-head resolution in `createFirestoreModeTemplateResolver`. The resolver now requires the exact lifecycle envelope (`v2-mode-template-lifecycle.v1`), exact template/version/hash binding, non-empty reason/audit fields, positive lifecycle revision, and accepts only `published` or `deprecated`; missing, approved, archived, draft, hidden, extra-field, or replacement-ref-shape mismatches fail closed. Deprecated versions remain resolvable for already-pinned immutable consumers; archived/approved versions do not become runtime inputs.
+
+Evidence: ModeTemplate/Firestore suite **1 suite / 18 tests PASS**; full focused Functions matrix **8 suites / 55 tests PASS**; targeted strict TypeScript **PASS**. No commit, deploy, publish, production write, or release activation.
+
+### Remaining P1/P2 and exact next task
+
+Lifecycle receipt/audit append-only subject verification is still separate and not yet resolved by this bounded head check. Asset refs remain unresolved cross-object. LearningDesign is still an adapter pending a complete Episode fixture; delayed probe context/evidence, mastery, checkpoint, voice policy, localization and release-gate relations remain open. Exact next task: add lifecycle receipt subject-fingerprint/replacement binding RED tests, then migrate one complete normative Episode body and wire `validateEpisodeLearningDesignShape` into the Episode resolver.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; preserve both untracked Admin-transfer artifacts. Exact next startup: read this handover and the four authoritative V2 documents, rerun the 8-suite matrix, then implement only lifecycle receipt subject binding before Episode learningDesign wiring.
+
+## 13.16 Episode learningDesign validator wired
+
+### Mission and status
+
+The complete V2 objective remains active. This slice moves `EpisodeLearningDesign` from an unused adapter into the default immutable Episode body validator while preserving the existing strict structural and legacy-compatibility boundaries.
+
+### RED/GREEN changes
+
+`validateEpisodeRevisionArtifactBody` now calls `validateEpisodeLearningDesignShape` after the graph, mastery and voice structural checks. The resolver test's valid normative ActivityInstance fixture now carries an explicit primary outcome, objective, support plan, prerequisite list, independent probe, delayed probe hash ref and HYP-V2-007 window policy; malformed/empty learningDesign bodies remain fail-closed. This is wiring evidence for the current authoring-body schema, not yet proof that the complete `v2-episode-contract.v1` corpus is accepted end-to-end.
+
+Evidence: Episode resolver suite **1 suite / 21 tests PASS**; full focused Functions matrix **8 suites / 55 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** (only CRLF normalization warnings). No commit/deploy/release.
+
+### Remaining P1/P2 and exact next task
+
+Lifecycle append-only gate/review receipt subject binding is still not implemented. The complete normative fixture's `v2-episode-contract.v1` body is not yet migrated through the immutable Episode resolver; current resolver tests still use `episode-authoring-body.v1`. Delayed probe declarations, mastery/checkpoint relations, voice policy/asset cross-object resolution, localization projections and release gates remain incomplete. Exact next task: create a complete Episode resolver fixture from `tests/fixtures/learning-v2/episode-01.valid.json`, add schema adapter/strict body validation without weakening authoring checks, and then add receipt subject-fingerprint RED/GREEN.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; preserve both untracked Admin-transfer artifacts. Exact next startup: read this handover and the four authoritative V2 documents, inspect the episode fixture's full body schema, then implement only the complete Episode resolver fixture/adapter slice.
+
+## 13.17 ModeTemplate provenance and deprecation semantics correction
+
+Independent Sol review found two lifecycle-contract gaps and they were closed before advancing. ModeTemplate record provenance now accepts the normative optional `basedOn` and `generator` shapes (while rejecting unknown/malformed nested fields). Lifecycle deprecation now requires exactly one explicit replacement route: a valid `replacementRef` or `noReplacement: true`; published heads reject deprecation-only metadata. Invalid statuses and deprecated-without-decision are covered by RED/GREEN tests.
+
+Evidence after correction: Firestore resolver **1 suite / 19 tests PASS**; full focused Functions matrix **8 suites / 56 tests PASS**; targeted strict TypeScript **PASS**. Remaining P1/P2: replacement-ref existence/hash/self-reference, append-only review/validation receipt gate, full `v2-episode-contract.v1` resolver migration, and deep Episode cross-object policy checks. No commit/deploy/release.
+
+## 13.19 Shared ModeTemplate lifecycle contract
+
+Added `ModeTemplateLifecycleHead` to the shared activity contract and exported `validateModeTemplateLifecycleHead`. The Firestore resolver now invokes the shared validator in addition to its Storage/Firestore binding checks. The shared contract enforces exact keys, lifecycle fields, replacement-vs-`noReplacement` XOR, rejects `published` deprecation metadata including `noReplacement: false`, and rejects self-replacement. The resolver and shared corpus now agree on the lifecycle schema.
+
+Evidence: Firestore resolver/shared lifecycle suite **1 suite / 20 tests PASS**; full focused Functions matrix **8 suites / 57 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** with only line-ending warnings. Remaining: replacement target existence, append-only review/validation/gate receipts, complete Episode fixture migration and downstream V2 phases. No commit/deploy/release.
+
+## 13.20 Shared Content Studio receipt subject/gate contracts
+
+Added shared `ContentReceiptSubject`, `ContentGateReceiptBody` and `ContentGateReceiptRecord` types, plus strict `validateContentReceiptSubject` and `validateContentGateReceiptBody`. The validator enforces exact entity identity/revision/fingerprint, receipt hash fields, gate kind, evaluator/timestamp, optional iOS/Android preview hashes, and unknown/malformed field rejection. This is contract/RED-GREEN evidence only: it does not yet claim that a publish transition has loaded and cross-checked all append-only receipts.
+
+Evidence: new receipt contract suite **1 suite / 7 tests PASS**; expanded focused matrix **9 suites / 64 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS**. No commit/deploy/release.
+
+Exact next task: add a bounded transition validator that cross-checks a ModeTemplate lifecycle change against fresh validation/review/gate receipt subjects and replacement target refs, then add resolver/callable integration tests.
+
+## 13.21 ModeTemplate approval transition validator
+
+Added `mode_template_transition.ts` with two explicit server-side seams: `validateModeTemplateApprovalGate` cross-checks exact same-subject validation, localization and review evidence against an approval `ContentGateReceiptBody` and its pinned receipt hashes; `validateModeTemplateReplacementTarget` requires a resolved published replacement and rejects self-reference, invalid hashes/versions and non-published targets. The immutable ModeTemplate record and lifecycle head remain free of receipt IDs/backreferences.
+
+Evidence: transition suite **1 suite / 7 tests PASS**; expanded focused matrix **10 suites / 71 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** with only line-ending warnings. This is a pure transition-validator slice; callable wiring and actual append-only Firestore receipt reads remain next.
+
+Exact next task: integrate the transition validator into the publish/deprecate callable path using server-owned receipt readers and add Firestore emulator tests for stale subjects, missing target records, maker-checker/review status and idempotent lifecycle updates.
+
+## 13.22 Server-owned ModeTemplate receipt reader seam
+
+Added `mode_template_transition_reader.ts`, a server-owned Firestore document reader seam for the four normative receipt collections (`content_studio_validation_receipts`, `content_studio_localization_receipts`, `content_studio_review_receipts`, `content_studio_gate_receipts`). It loads receipt evidence by server-side IDs, validates exact receipt shapes, rejects missing documents, stale subject fingerprints and forged gate hashes, then delegates to the pure transition validator. Client-supplied receipt bodies are not trusted and immutable records remain unchanged.
+
+Evidence: reader suite **1 suite / 4 tests PASS**; expanded focused matrix **11 suites / 75 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** with only line-ending warnings. This is a read/validation seam, not yet a callable mutation or Firestore transaction.
+
+Exact next task: wire the reader and transition validator into the actual Content Studio publish/deprecate callable/repository, add target lifecycle resolution and idempotent transaction/emulator tests, then proceed to full Episode fixture migration.
+
+## 13.23 Guarded ModeTemplate lifecycle repository
+
+Added `ModeTemplateLifecycleTransitionRepository` as the first mutation seam around the server-owned reader. `publish` requires the current exact approved lifecycle, expected lifecycle revision (CAS), a fresh server-loaded approval gate, then writes only the next lifecycle projection and an append-only audit event. `deprecate` requires a published current version, CAS, a resolved published replacement or explicit `noReplacement`, and appends the audit event. Missing receipts, stale revisions and unresolved replacement targets fail closed; immutable template bodies/records are untouched.
+
+Evidence: repository suite **1 suite / 3 tests PASS**; expanded focused matrix **12 suites / 78 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** with only line-ending warnings. This is a repository seam with in-memory RED/GREEN evidence; actual Firestore adapter and public callable wiring remain open.
+
+Exact next task: implement the Firestore transaction adapter and guarded `adminPublishV2ModeTemplate`/deprecate callable using this repository, then run emulator tests for CAS collision, audit append and idempotent replay.
+
+## 13.24 Firestore adapter and guarded ModeTemplate callables
+
+Added `createFirestoreModeTemplateLifecycleStore`, including transaction-scoped lifecycle/record/receipt reads, CAS lifecycle update and append-only audit path. Added strict `requireContentPublisher` and `parseV2ModeTemplateLifecycleRequest`, plus guarded `adminPublishV2ModeTemplate` and `adminDeprecateV2ModeTemplate` callables. Publish requires receipt IDs and forbids replacement metadata; deprecate requires exactly one replacement choice. Both route through the lifecycle repository and App Check callable boundary.
+
+Evidence: callable/parser + repository checks **2 suites / 9 tests PASS**; expanded focused matrix **12 suites / 79 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS** with only line-ending warnings. Emulator transaction coverage for the actual Firebase adapter, audit persistence and idempotent replay remains open; no deploy or production write.
+
+## 13.25 Firestore emulator proof for ModeTemplate lifecycle callables
+
+Added `v2_mode_template_lifecycle.emulator.test.ts` and the reusable `test:emulator:v2-mode-template-lifecycle` script. The isolated Firestore emulator seeds immutable template metadata, approved/published lifecycle heads and four server-owned receipt collections, then proves: publish requires the exact receipt gate, advances lifecycle revision, appends audit, and rejects stale replay; deprecate resolves a published replacement and appends the second lifecycle transition. The test uses the actual `adminPublishV2ModeTemplate` and `adminDeprecateV2ModeTemplate` callable handlers.
+
+Evidence: Firestore emulator **1 suite / 2 tests PASS**; focused unit matrix remains **12 suites / 79 tests PASS**; targeted strict TypeScript **PASS**. Emulator output reported only Jest's existing open-handle warning after successful teardown; no production write/deploy.
+
+Exact next task: add stronger idempotency-key replay semantics and rules-level audit immutability checks, then migrate one complete normative Episode fixture through the resolver.
+
+Exact next task: add Firestore emulator tests for the new publish/deprecate callables and adapter (receipt collection reads, CAS collision, audit append, replay/idempotency), then begin complete Episode fixture migration.
+
+## 13.18 ModeTemplate lifecycle hardening
+
+Added further fail-closed checks identified by the independent review: positive safe-integer immutable object byte size; non-empty lifecycle reason/auditor/timestamp fields; replacement refs require non-empty IDs, positive versions, lowercase SHA-256 content hashes, and cannot self-reference. The resolver still does not claim target replacement existence or append-only receipt verification; those remain explicit release-transition responsibilities. Firestore suite remains **19 tests PASS** and targeted strict TypeScript remains **PASS**.
+
+## 13.14 Review correction: ModeTemplate provenance envelope
+
+Independent Sol review found a P1: the strict ModeTemplate record envelope had omitted the normative `provenance` and top-level `createdAt` fields. This is corrected before advancing: the resolver now requires exact record keys including `provenance`/`createdAt`, exact provenance keys `createdBy`/`createdAt`, and non-empty string values; the happy-path fixture now carries those fields. Firestore resolver evidence remains **1 suite / 13 tests PASS** and targeted strict TypeScript remains **PASS**. The independent reviewer also confirmed P0=0; remaining P1s are lifecycle head/receipt enforcement and deeper cross-object semantic checks. Do not call this slice complete beyond the stated evidence.
+
+## 13.13 ModeTemplate immutable envelope closure
+
+### Mission and status
+
+The complete V2 objective remains active. This slice closes strict top-level and nested object-envelope validation for the immutable ModeTemplate Firestore index before its Storage body is resolved.
+
+### RED/GREEN changes
+
+`createFirestoreModeTemplateResolver` now requires the exact record keys `schemaVersion`, `templateId`, `version`, `contentHash`, `object` and the exact object keys `objectPath`, `contentHash`, `objectGeneration`, `byteSize`; unknown fields fail closed. Added a regression test covering extra fields in both envelopes. The shared semantic validator, canonical Storage hash/generation/byte-size binding, and complete normative fixture remain active.
+
+Evidence: Firestore resolver suite **1 suite / 13 tests PASS**; targeted strict TypeScript **PASS**. No commit, deploy, publish, or production write.
+
+### Remaining P1/P2 and exact next task
+
+Published lifecycle receipt/status is not yet loaded or enforced by the ModeTemplate resolver. Asset refs remain unresolved cross-object. LearningDesign is still an adapter pending full Episode fixture migration; delayed probe context/evidence, mastery, checkpoint and voice policy relations remain open. Exact next task: define the lifecycle head/receipt contract from existing Content Studio schemas, add stale/non-published RED fixtures, then wire the learningDesign validator into a complete normative Episode body.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; preserve both untracked Admin-transfer artifacts. Exact next startup: read this handover plus the four authoritative V2 documents, run the focused resolver tests, then implement only the lifecycle RED/GREEN slice above.
+
+## 13.12 Shared ModeTemplate validator wired to Storage resolver
+
+### Mission and status
+
+The complete V2 objective remains active. This slice wires the canonical shared ModeTemplate semantic validator into the immutable Firestore+Storage resolver and replaces the resolver's skeletal happy-path body with the repository's complete normative corpus template.
+
+### RED/GREEN changes
+
+`createFirestoreModeTemplateResolver` now rejects any body that fails `validateModeTemplateArtifactBody`, after exact record/ref/path/generation/hash/byte-size checks. The happy-path test loads the first complete template from `tests/fixtures/learning-v2/episode-01.valid.json`, computes its canonical byte size, and verifies the real allowlist. Existing malformed authoring metadata remains rejected. This closes the prior gap where only a local subset of the template contract was checked.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 49 tests PASS**.
+- ModeTemplate/Firestore subset: **12 tests PASS**.
+- Targeted strict TypeScript including shared validator: **PASS**.
+- `git diff --check`: **PASS**.
+
+### Remaining P1/P2 and exact next task
+
+Published lifecycle receipt/status is not yet loaded or enforced by the ModeTemplate resolver. Asset refs remain unresolved cross-object. LearningDesign is still an adapter pending full Episode fixture migration; delayed probe context/evidence, mastery, checkpoint and voice policy relations remain open. Exact next task: add lifecycle head/receipt record fixtures and reject non-published/stale template versions, then wire the learningDesign validator into a complete normative Episode body.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.11 Complete normative ModeTemplate corpus evidence
+
+### Mission and status
+
+The full V2 objective remains active. This slice proves that the newly exposed canonical ModeTemplate validator accepts the repository's existing complete normative corpus, so the next resolver wiring task can use real content rather than skeletal examples.
+
+### RED/GREEN changes
+
+Added a focused corpus test loading `tests/fixtures/learning-v2/episode-01.valid.json` and validating every dependency template through `validateModeTemplateArtifactBody`. The corpus contains the full policies, kernel, learner copy, fixtures, compatibility and learning-contract references required by §08. The prior malformed-body test remains RED/GREEN evidence for fail-closed behavior.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 49 tests PASS**.
+- Firestore/ModeTemplate subset: **12 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+
+### Remaining P1/P2 and exact next task
+
+The complete shared ModeTemplate validator is exposed and proven against real corpus data, but the Firestore resolver still uses its bounded local checks and has not yet invoked the full adapter; lifecycle receipt/published-state validation is also open. Exact next task: replace the resolver's local body check with `validateModeTemplateArtifactBody`, migrate its happy-path fixture to one corpus template, and add lifecycle mismatch rejection. LearningDesign remains an adapter pending full Episode fixture migration; delayed/learning/mastery/checkpoint/voice policy semantics remain open.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.10 LearningDesign prerequisite/support semantic packet
+
+### Mission and status
+
+The complete V2 objective remains active. This bounded slice adds a canonical structural-semantic validator for the normative `EpisodeLearningDesign` contract without yet forcing skeletal emulator bodies through it.
+
+### RED/GREEN changes
+
+Added `validateEpisodeLearningDesignShape`, requiring exact keys for primary outcome, objective list, prerequisite edges, support plan, independent probe, delayed probe ref and delayed window policy. It validates prerequisite source kind/state, objective/source IDs, support level, fade/escalation rule IDs and delayed ref hash. Tests cover a valid design, invalid required state and malformed delayed ref.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 48 tests PASS**.
+- Episode validator suite: **21 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+
+### Remaining P1/P2 and exact next task
+
+The new validator is currently an explicit adapter and not yet wired into `validateEpisodeRevisionArtifactBody`; skeletal pilot fixtures must first be migrated to complete learningDesign and ModeTemplate bodies. It also does not yet prove prerequisite acyclicity, objective existence, evidence-policy refs, delayed window registry binding, mastery requirements, checkpoint material or voice governance. Exact next task: migrate one complete normative Episode fixture, wire this validator, and add cross-field learning/mastery/checkpoint RED/GREEN without weakening legacy behavior.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.09 Shared ModeTemplate semantic-validator adapter
+
+### Mission and status
+
+The complete V2 objective remains active. This slice exposes the existing canonical ModeTemplate semantic validator as a reusable adapter for immutable Content Studio resolvers, avoiding a second weakened schema implementation.
+
+### RED/GREEN changes
+
+Added `validateModeTemplateArtifactBody` in `modules/learning-v2/contracts/validation.ts`, delegating to the existing full `validateTemplateArtifactBodyShape` contract and returning the standard `V2ContractValidationResult`. Added a focused test proving malformed template bodies fail through the public adapter. The current Firestore resolver still performs its bounded identity/authoring checks; wiring the full adapter into the resolver is intentionally the next task because current emulator fixtures are skeletal and must first be upgraded to complete normative ModeTemplate bodies.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 47 tests PASS**.
+- Episode + Firestore subset: **2 suites / 31 tests PASS**.
+- Targeted strict TypeScript including shared validation module: **PASS**.
+- `git diff --check`: **PASS**.
+
+### Remaining P1/P2 and exact next task
+
+Full ModeTemplate semantic adapter is exposed but not yet wired into the resolver; lifecycle receipt validation is also open. Exact next task: build a complete normative ModeTemplate fixture (policies, kernel, copy, fixtures, compatibility, learning refs), wire `validateModeTemplateArtifactBody` into the Firestore resolver, and add valid/invalid semantic and lifecycle tests. Delayed probe context/evidence, learningDesign/mastery/checkpoint/voice relationships and asset refs remain open. Do not claim Task 2.2 complete.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.08 ModeTemplate authoring metadata hardening
+
+### Mission and status
+
+The full V2 objective remains active. This slice hardens the immutable ModeTemplate resolver so an approved Episode cannot obtain an allowlist from malformed authoring metadata.
+
+### RED/GREEN changes
+
+The resolver now requires the complete `authoring` shape (`editableFieldPaths`, `requiredFieldPaths`, `defaultValues`, `allowedOverridePaths`), rejects unknown authoring keys, and requires the path arrays to contain strings. Added a RED/GREEN Firestore-level test for malformed authoring metadata while preserving the valid published-template resolver test. This is in addition to the prior exact template ref, Storage generation/hash/byte-size, empty-override, and delayed-probe structural gates.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 46 tests PASS**.
+- Firestore resolver subset: **10 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+
+### Remaining P1/P2 and exact next task
+
+The ModeTemplate resolver still does not invoke the complete shared semantic validator or lifecycle receipt validator; delayed probe context/declarations remain structural rather than canonical; learningDesign/mastery/checkpoint/voice policy links and asset cross-object refs remain open. Exact next task: adapt the shared ModeTemplate validator to the immutable resolver body, add published lifecycle acceptance/rejection fixtures, then deepen delayed-probe semantics. Do not advance Task 2.3 or claim Task 2.2 complete.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.07 Default ModeTemplate Storage resolver and delayed-probe shape gate
+
+### Mission and status
+
+The complete V2 objective remains active. This slice closes the two concrete Sol-review P1s around template pins: empty overrides can no longer bypass template resolution, and the production Season callable now wires a Firestore+Storage ModeTemplate resolver. It also begins the delayed-probe contract gate.
+
+### RED/GREEN changes
+
+The Sol review reproduced a forged/nonexistent template accepted with empty overrides and confirmed that the callable had no production resolver. `assertEpisodeModeTemplateOverrides` now resolves every normative activity template, even when `overrides` is empty, compares `templateId/version/contentHash` field-by-field, and checks every override path. Added `createFirestoreModeTemplateResolver` with the normative `content_mode_template_versions/{templateId}__v{version}` index, content-addressed Storage path, generation/hash/byte-size checks, body schema/template identity and `authoring.allowedOverridePaths`. `adminSaveV2SeasonDraft` now wires this resolver into the Episode resolver. Added a delayed-probe structural gate: exact ref/body envelope, target Episode/probe binding, activity binding, non-empty declarations and `phase='delayed_probe'` are required.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 45 tests PASS**.
+- Episode + Firestore resolver subset: **2 suites / 29 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+- Sol independent review initially found P0=0/P1=2/P2=2; both P1 bypasses are addressed. Luna verification remains green on the validator/tsc path.
+
+### Remaining P1/P2 and exact next task
+
+ModeTemplate resolver currently validates the required body/record fields but does not yet run the complete shared ModeTemplate semantic validator or published lifecycle receipt check. Asset refs remain unresolved cross-object. Delayed probe pedagogical context/evidence declarations are only structural; learningDesign/mastery/checkpoint/voice policy relationships remain open. Exact next task: use canonical shared validators for ModeTemplate body and delayed declaration/context semantics, then add learningDesign/mastery/checkpoint RED/GREEN. Production App Check invalid-token evidence and timestamp/object-generation format gates remain open.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.06 ModeTemplate resolver seam and override allowlist gate
+
+### Mission and status
+
+The complete V2 objective remains active. This bounded slice adds the missing cross-object seam required by §08: Episode activity overrides cannot be trusted from the Episode body alone; they must be checked against the exact published ModeTemplate ref and its immutable `authoring.allowedOverridePaths`.
+
+### RED/GREEN changes
+
+Added `ImmutableEpisodeRevisionResolver.resolveModeTemplate` as an optional server-side seam and extracted `assertEpisodeModeTemplateOverrides`. A normative activity with non-empty overrides now fails closed when no template resolver is wired; a resolver must return the exact same template ref and every override key must be allowlisted. Tests cover missing resolver, allowed path and forbidden path. `createFirestoreEpisodeRevisionResolver` accepts the seam without changing the default immutable Storage reader or mutable draft behavior. Empty overrides remain valid without a template lookup.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 43 tests PASS**.
+- Episode validator/override suite: **19 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+- Independent Luna verification previously confirmed validator/tsc; a new Sol spec review is in progress for this seam.
+
+### Remaining P1/P2 and exact next task
+
+The seam is currently injectable and not yet backed by a concrete immutable ModeTemplate Storage resolver in production. Asset object refs also need cross-object resolution. Deep delayed-probe, learningDesign, mastery, checkpoint, voice governance and policy validation remain open, as do timestamp/object-generation formats and production App Check evidence. Exact next task after Sol verdict: wire the default ModeTemplate resolver to the same generation/hash-pinned Storage path discipline, then add RED/GREEN for delayed and checkpoint contract dependencies. Do not claim Task 2.2 complete.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.05 Normative ActivityInstance hash and strict-shape closure
+
+### Mission and status
+
+The complete V2 objective remains active. This slice advances Task 2.2's Episode body contract: normative `ActivityInstanceArtifactBody` is now the only accepted activity shape inside an EpisodeRevision body, and its payload hash/template reference are checked structurally. Existing mutable draft semantics and legacy app behavior outside the approved immutable Episode contract remain preserved.
+
+### RED/GREEN changes
+
+The independent Sol review identified three P1s: forged `templateRef`, forged `payloadHash`, and acceptance of the older resolved-runtime activity shape. RED tests were added for forged payload hash and incomplete normative fields. GREEN now requires the normative schema marker, exact template ref (`templateId/version/contentHash`), canonical `hashCanonicalBody(payload)` equality, exact localization/tags/assets/overrides structure, and parent Episode binding. The 32-season emulator fixture was migrated to the normative activity body shape; the legacy alternate activity shape is no longer accepted by the EpisodeRevision validator.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 42 tests PASS**.
+- Episode validator: **1 suite / 18 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+- Sol spec review: initial verdict P0=0/P1=3/P2=1; all three reported P1s were addressed in this slice (payload hash, template ref, legacy shape rejection). Luna verification worker independently confirmed the validator tests and strict tsc.
+
+### Remaining P1/P2 and exact next task
+
+Still open: `overrides` must be checked against the pinned ModeTemplate `authoring.allowedOverridePaths` (the Episode body carries only a ref, so resolver-level template loading is required); asset object refs need cross-object Storage resolution; delayed probe definitions, learningDesign, mastery, checkpoint, voice governance and policy relationships still need canonical deep validators; timestamps/object-generation format and production App Check evidence remain open. Exact next task: introduce a bounded template resolver seam and RED/GREEN tests for override allowlists, then continue with delayed/learning/checkpoint contracts. Do not claim Task 2.2 complete yet.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.04 Structural normative ActivityInstance body gate
+
+### Mission and status
+
+The full V2 objective remains active. This bounded slice adds a second, explicit validation branch for the normative §08 `ActivityInstanceArtifactBody` shape without silently rewriting the existing runtime-compatible activity projection used by current fixtures. It is a structural gate only; deep payload semantics, voice policy resolution and full Episode contract closure remain open.
+
+### RED/GREEN changes
+
+Added RED coverage for a `v2-activity-instance-body.v1` activity missing `payloadHash` and `localization`, then GREEN validation for the complete normative shape: exact top-level fields, parent Episode binding, template ref, family, revision/seconds, payload hash format, content units, overrides, tags/modalities, localization/source hashes, and asset/object refs. Unknown nested keys fail closed. A complete normative activity fixture is accepted; malformed one is rejected. Existing activities without the normative schema marker remain on the current compatibility path and are not treated as approved §08 artifacts.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 41 tests PASS**.
+- Episode validator suite: **1 suite / 17 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS**.
+- Model-confirmed Luna verification worker: **1 suite / 17 tests PASS; strict tsc PASS; no source changes**.
+- Sol spec-review worker is still completing the independent §08 comparison; no release claim is made before its verdict.
+
+### Remaining P1/P2 and exact next task
+
+This does not yet validate payload schema/content hashes, allowable `overrides` against the pinned ModeTemplate authoring contract, deep VoiceReleaseRequirements, delayed probe definitions, learningDesign/mastery/checkpoint semantics, or cross-object ref resolution. The compatibility path also remains intentionally separate and must be migrated or retired only under the approved Phase 14 decision. Exact next task: consume the Sol review verdict, add RED/GREEN for payloadHash recomputation and template override allowlists, then proceed to delayed/learning/checkpoint contracts.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 13.03 Strict Episode envelope/provenance and resolver failure fixtures
+
+### Mission and status
+
+The full Learning V2 objective remains active. This bounded task strengthens the approved immutable Episode index contract and closes the previously identified resolver-fixture gap. It does not claim deep Episode body semantics, App Check production verification, Task 2.2 completion, or any later V2 phase.
+
+### RED/GREEN changes
+
+RED first reproduced acceptance of unknown keys. The Episode envelope validator now fail-closes unknown keys at the full envelope, record, object, lifecycle, and provenance levels. Normative optional `EntityProvenance.basedOn` and `EntityProvenance.generator` are accepted only with their exact nested shapes and hash/integer/string constraints; valid clone/generated provenance is covered by a GREEN test. A resolver-level fixture now proves that a Storage reader returning a mismatched pinned generation is rejected with `season_episode_object_generation_invalid`; missing/reader-error propagation remains covered as well.
+
+Evidence:
+
+- Full focused Functions matrix: **8 suites / 39 tests PASS**.
+- Episode resolver + Firestore store subset: **2 suites / 23 tests PASS**.
+- Targeted strict TypeScript: **PASS**.
+- `git diff --check`: **PASS** (only normal CRLF conversion warnings).
+- Fresh read-only spec/adversarial reviews: **no P0**; the two earlier review findings (optional provenance and true metadata mismatch fixture) are addressed.
+- Separate Orbit worker threads were launched for the spec review (`gpt-5.6-sol`, high) and deterministic verification (`gpt-5.6-luna`, medium); their receipts are recorded by the Codex app, not inferred from labels.
+
+### Remaining P1/P2 and exact next task
+
+Still open: complete §08 ActivityInstanceArtifactBody and deep Voice/Delayed/Learning/Mastery/Checkpoint/policy semantic validation; enforce strict ISO timestamp/object-generation formats where the normative contract requires them; decide whether to duplicate body-hash validation inside the resolver or keep the injected reader seam bounded by the production `assertExactImmutableEpisodeRevision` wrapper; and obtain invalid-token/production App Check evidence. These are not silently marked complete. The exact next task is to write RED cases for the deep nested activity contracts and timestamp/generation formats, then implement only the approved contract slice with independent reviews.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+
+## 12.99 HTTP wrapper no-token gate and complete reader tamper packet
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This slice adds transport-wrapper and Storage evidence but explicitly does not claim App Check enforcement closure or Task 2.2 completion.
+
+### Changes and evidence
+
+The Season emulator tamper test now covers real Storage wrong-generation, malformed UTF-8, malformed valid-UTF8 JSON, and deleted-object rejection. The callable contract test invokes the exported HTTP wrapper itself (not `.run()`) with a valid callable-shaped POST but both Auth and App Check absent; it receives HTTP 401 `UNAUTHENTICATED`. The runtime log records `{app: "MISSING", auth: "MISSING"}`. Focused Functions matrix is **7 suites / 32 tests PASS**; Season emulator is **1 suite / 3 tests PASS**; targeted strict TypeScript and root `git diff --check` are **PASS**. Fresh spec review confirms these exact claims; no P0 found.
+
+### Critical limitation and next task
+
+The no-token HTTP test proves wrapper-level unauthenticated behavior only. It does **not** prove App Check enforcement independently because Auth is also missing, and there is no authenticated request with missing/invalid App Check or valid App Check acceptance. This remains P1, along with deep semantic Episode validation and body-only Storage persistence. Next exact task: create an authenticated callable protocol harness with missing/invalid/valid App Check cases (or document a verified equivalent emulator token path), then close canonical nested contracts and body-only persistence. Do not commit or advance Task 2.3 while P1 remains.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve both untracked Admin-transfer artifacts.
+
+## 13.00 Debug HTTP App Check transport harness (bounded evidence)
+
+### Mission and status
+
+The full V2 goal remains active. This slice adds a deliberately isolated debug-token HTTP wrapper harness; it is not production cryptographic token evidence and does not close the remaining semantic schema or body-only Storage P1s.
+
+### Changes and evidence
+
+Added `functions/src/content_studio/emulator/v2_authoring_http_appcheck.emulator.test.ts` and package script `test:emulator:v2-authoring-http`. The harness sets Firebase debug-only `skipTokenVerification`, invokes the exported callable as an HTTP handler (not `.run()`), and proves two branches: Auth-valid + App Check missing -> `401 UNAUTHENTICATED`; debug Auth-valid + debug App Check-valid -> transport passes and the empty payload reaches the handler -> `400 INVALID_ARGUMENT`. Logger evidence records `auth: VALID` with `app: MISSING` and then `auth: VALID` with `app: VALID`. Module environment variables are restored in `afterAll`; the script is intentionally isolated from the ordinary Jest matrix.
+
+Verification: `npm run test:emulator:v2-authoring-http` -> **1 suite / 2 tests PASS**; focused Functions matrix -> **7 suites / 32 tests PASS**; targeted strict TypeScript -> **PASS**; root `git diff --check` -> **PASS**. Fresh spec/adversarial reviews report no P0.
+
+### Explicit limitations and next task
+
+This proves callable wrapper sequencing under Firebase debug harness only. It does not prove production cryptographic App Check, deployed Functions emulator HTTP, or an invalid-token rejection: debug `skipTokenVerification` accepts fabricated `alg:none` tokens. Keep invalid App Check as an open transport/release P1. Body-only immutable Storage persistence is also still open: authoring repositories persist `candidate.body` inline in Firestore, while §08 requires approved immutable artifact bodies to live in Storage. Deep semantic validation of Voice/Delayed/Assessment/Learning/Mastery/Checkpoint and policy relationships remains open. Next exact task: add a real Functions-emulator HTTP path with Auth/App Check token verification or a formally accepted test seam, then design the body-only migration and nested-contract RED/GREEN. Do not commit or advance Task 2.3 while P1 remains.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve both untracked Admin-transfer artifacts; do not use this debug harness as release evidence.
+
+## 13.01 Approved Episode body-only Storage split
+
+### Mission and status
+
+The complete V2 objective remains active. This slice closes the body-duplication issue for the **approved EpisodeRevision index path only**; mutable EpisodeDraft bodies remain inline by design and are not being conflated with approved immutable artifacts.
+
+### Changes and RED/GREEN
+
+Added `validateEpisodeRevisionRecordEnvelope`, which requires the Firestore revision document to contain only the record+lifecycle envelope (an own `body` key is rejected). `createFirestoreEpisodeRevisionResolver` now validates that body-less envelope, initializes its internal artifact body as undefined, and obtains the canonical body exclusively from pinned Storage bytes after path/hash/generation/byte-size checks. Updated the Season emulator's 32 Episode envelopes and the focused Firestore fixture to be body-less. Strengthened the RED test with a fully valid record/lifecycle plus an extra inline body, so the rejection is not caused by malformed provenance. DecisionRegistry still uses its existing `{body, record}` validator and remains a separate body-only P1 if §08's Storage-only rule is applied globally.
+
+Evidence: resolver + Firestore tests **2 suites / 18 tests PASS**; Season Firestore+Storage emulator **1 suite / 3 tests PASS**; full focused matrix **7 suites / 33 tests PASS**; targeted strict TypeScript **PASS**; root `git diff --check` **PASS**. Fresh reviews confirm the Episode body-only claim and report no P0.
+
+### Remaining P1 and exact next task
+
+P1 remains for DecisionRegistry body-only persistence (if the global artifact rule applies), exact-key rejection for extra record/lifecycle fields, resolver-level missing-object/metadata/byte-size negative cases, invalid/production App Check token verification, and deep semantic Episode contracts. Next task: add strict record/lifecycle exact-key validation and resolver-level Storage failure fixtures, then decide and implement the DecisionRegistry body-only adapter without touching mutable draft semantics. Do not commit or advance Task 2.3 while these P1 findings remain.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve both untracked Admin-transfer artifacts.
+
+## 13.02 Approved Episode + DecisionRegistry body-only Storage split
+
+### Mission and status
+
+The complete Learning V2 objective remains active. This bounded slice closes the approved immutable-artifact body split for both EpisodeRevision and DecisionRegistry index envelopes. It does not change mutable EpisodeDraft/SeasonDraft documents, which intentionally retain candidate bodies, and it does not claim Task 2.2 or the full V2 release complete.
+
+### Changes and RED/GREEN
+
+Added `validateDecisionRegistryRecord`, a strict body-less Firestore record-envelope validator with exact top-level keys and strict nested `ref`/`object` keys. A valid record plus an own inline `body` key is rejected. The Firestore DecisionRegistry resolver now validates only the body-less record, reads the canonical body from pinned Storage, checks path/hash/generation/byte-size bindings, and then performs the full body+record validation. The Season emulator now seeds the DecisionRegistry index without `body`, alongside 32 body-less EpisodeRevision indexes; the canonical bodies remain in Storage.
+
+Evidence:
+
+- DecisionRegistry corpus + resolver subset: **3 suites / 92 tests PASS**.
+- Full focused Functions matrix: **8 suites / 34 tests PASS**.
+- Season Firestore+Storage emulator on isolated alternate ports: **1 suite / 3 tests PASS** (32 Episode objects, DecisionRegistry path, concurrent season CAS, and Storage tamper cases).
+- Targeted strict TypeScript: **PASS**.
+- Root `git diff --check`: **PASS**.
+- Fresh spec/adversarial reviews: **no P0**; both confirm the body-only split for Episode and DecisionRegistry.
+
+The alternate emulator configuration was temporary and removed; no Admin-transfer file, production data, deployment, push, commit, or release activation was performed.
+
+### Remaining P1 and exact next task
+
+The remaining bounded P1s are: deep recursive/semantic Episode validation for Voice, Delayed, Assessment, Learning/Mastery, Checkpoint and policy relationships; exact-key closure for Episode record/lifecycle nested envelopes; resolver-level missing-object and metadata/byte-size negative fixtures where not yet covered; and production/invalid-token App Check evidence (the current HTTP harness is debug-only and accepts fabricated debug tokens). The injected object-reader seam remains test-only evidence, not a replacement for deployed Storage cryptography.
+
+Exact next executable task: add the missing resolver-level Storage failure fixtures and strict Episode envelope key checks, then build the semantic nested-contract RED/GREEN packet. Keep mutable draft bodies unchanged. Do not commit or advance Task 2.3 while these P1 findings remain.
+
+### Full phase/task status and release state
+
+| Scope | Status |
+|---|---|
+| Phase 00-01 / Task 1.2C | DONE/recorded |
+| Phase 02-05 curriculum, voice, stars/access, runtime | PARTIAL |
+| Phase 06-13 integration, QA, rollout | NOT STARTED/PARTIAL |
+| Phase 14 legacy decision | NOT STARTED; legacy preserved |
+| Content Studio Tasks 0-1 | DONE/recorded |
+| Task 2.1 | PARTIAL |
+| Task 2.2 | PARTIAL / IN PROGRESS |
+| Tasks 2.3-15 | NOT STARTED |
+
+Worktree/branch/HEAD remain `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot` / `codex/learning-v2-pilot` / `23c71a117`; no commit, push, deploy, publish, production write or release activation. Preserve `docs/v2/ADMIN_FOUNDATION_TRANSFER_MANIFEST.md` and `tests/admin_v2_lesson_stage_transfer_contract.test.ts`.
+## 13.60 Latest execution checkpoint
+
+This is the latest EOF handover entry. The complete Learning V2 objective remains active; legacy behavior is preserved and no commit, push, deploy, production write, or release activation occurred.
+
+Verified in the current bounded slice: lifecycle emulator **1 suite / 1 test PASS** (submit, evidence receipts, maker-checker, concurrent CAS winner, content-hash active pin, archive guard, exact operation envelope, idempotent replay, stale revision); focused Content Studio matrix **22 suites / 112 tests PASS**; targeted strict TypeScript **PASS**; `git diff --check` **PASS**. Fresh spec review confirms these closures but does not treat them as full release proof.
+
+Open blockers: canonical immutable Season Storage envelope/body-hash validation for active pins; transport-level lifecycle App Check/Auth proof; explicit approved-only resolver separation; legacy envelope opt-in and true record-only validation; server-owned submit artifact/ownership binding and review-queue projection; canonical receipt IDs/body-record completeness and nested operation exact-key closure.
+
+Exact next executable task: implement canonical Season pin validation with RED/GREEN emulator fixtures for missing object, tampered bytes, generation/byte-size mismatch, content-hash mismatch, wrong lifecycle status, and valid approved/released pin. Then add lifecycle transport App Check/Auth coverage where supported, rerun lifecycle/ContentGate/HTTP/unit/TypeScript gates, and append fresh counts. Do not advance to runtime, stars, curriculum UI, or release work until this predecessor contract gate is closed.
+
+Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch `codex/learning-v2-pilot`; recorded HEAD `23c71a117`. Preserve untracked Admin-transfer artifacts.
+
+## 13.61 Season immutable pin body/record validator slice
+
+Bounded implementation completed without commit. The normative target was the exact approved SeasonRevision pin: hashable Season body, immutable record, recomputed `contentHash` and revision `fingerprint`, approved/released status, and exact approved EpisodeRevision refs. Added `validateSeasonImmutablePin` and `assertSeasonImmutablePin` to `modules/learning-v2/authoring/season_draft.ts`; the validator is fail-closed, rejects extra keys, identity/hash/fingerprint/status tampering, malformed refs, and invalid Season composition. `hasActiveSeasonPin` in `functions/src/content_studio/firestore_authoring_store.ts` now ignores a matching Firestore pin unless this validator accepts `{body,record}` and the separate Season lifecycle is approved/released. The lifecycle emulator fixture now uses a complete vertical-slice Season body/record rather than a forged minimal object.
+
+RED: `Push-Location functions; npx jest --runTestsByPath src/content_studio/season_immutable_pin.test.ts --no-cache --runInBand; Pop-Location` failed with missing `validateSeasonImmutablePin` export. GREEN: the same command **1 suite / 6 tests PASS**. `npm run test:emulator:v2-episode-lifecycle` **1 suite / 1 test PASS**. Targeted strict TypeScript for `season_draft.ts`, the Firestore adapter, and the new test **PASS**. No commit, push, deploy, production write, or release activation.
+
+This closes only the Firestore Season body/record binding. It does **not** yet prove a canonical Season Storage object, generation/byte-size verification, or a strict Season lifecycle envelope. Exact next executable task remains the Storage-backed Season envelope/body-hash RED/GREEN set (missing object, tampered bytes, generation/byte-size mismatch, wrong lifecycle status, valid approved/released pin), followed by transport lifecycle App Check/Auth evidence. Legacy behavior remains preserved.
+## 13.62 Verification after Season pin validator
+
+The strict Firestore Season body/record pin validator is now included in the focused regression set. `npx jest --runInBand --no-cache` over the 23 Content Studio suites completed **23 suites / 118 tests PASS**. The new `season_immutable_pin.test.ts` contributes **1 suite / 6 tests PASS**; the lifecycle emulator and targeted strict TypeScript remain green from the same bounded slice. This is still not Storage-backed Season proof: `SeasonDraftRecord` does not yet carry the canonical immutable object reference required by spec 08, and `hasActiveSeasonPin` still reads the inline Firestore body. Next task is to add the separate `SeasonRevisionRecord`/object reader seam without changing mutable draft semantics, then prove missing/tampered/generation/byte-size failures in the emulator. No commit, push, deploy, production write, or release activation occurred; legacy remains preserved.
+## 13.63 SeasonRevision Storage resolver seam
+
+Added a separate `SeasonRevisionRecord`/`SeasonLifecycleHead`/`SeasonRevisionEnvelope` contract in `modules/learning-v2/authoring/season_revision.ts`, preserving the mutable `SeasonDraft` contract. The envelope validator binds body hash, revision fingerprint, object hash metadata, and lifecycle identity/status with exact-key fail-closed checks. Added `resolveImmutableSeasonRevision` plus an injected `SeasonRevisionObjectReader` seam in `functions/src/content_studio/season_revision_resolver.ts`; the resolver reads separate revision/lifecycle documents, then reads the pinned canonical object and rejects a tampered body. The Storage adapter is shaped around the existing immutable canonical object reader.
+
+RED/GREEN: new envelope/resolver packet initially lacked the contract export; after implementation `npx jest --runInBand --no-cache src/content_studio/season_revision_envelope.test.ts src/content_studio/season_revision_resolver.test.ts` passes **2 suites / 6 tests**. Targeted strict TypeScript for the new contract, resolver, and tests passes. This is a resolver seam and contract proof, not yet production wiring: `hasActiveSeasonPin` still uses the older inline Firestore body path, and the Season lifecycle adapter still needs strict direct-head schema validation. No commit, push, deploy, production write, or legacy removal.
+
+Exact next task: wire `resolveImmutableSeasonRevision` into the lifecycle active-pin check through a transaction-safe, retry-safe reader path; seed canonical Season Storage bytes and body-less Firestore record/lifecycle documents in the emulator; prove missing-object, hash, generation, byte-size, wrong-status, and valid approved/released cases. Then rerun the 23-suite matrix and independent adversarial review before moving to runtime/stars.
+## 13.64 Canonical Season pin wired into lifecycle guard
+
+`createFirestoreEpisodeLifecycleStore` now accepts/creates a Storage-backed Season object reader and, for body-less `content_season_revisions` records, resolves the separate Season lifecycle plus pinned canonical object before checking Episode refs. Malformed or missing canonical objects fail closed; the older mutable/draft-shaped fixture remains supported only as a compatibility path. The lifecycle emulator now seeds a body-less canonical Season record, Storage bytes with content-hash metadata and generation/byte-size bindings, an approved direct lifecycle head, and proves archive is rejected while that canonical pin is active. The resolver unwraps `{record}` Firestore documents correctly.
+
+Evidence: `npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS** including the new canonical Storage pin path. Season resolver/envelope unit packet — **2 suites / 10 tests PASS**, including tampered body and propagated missing/hash/generation/byte-size failures. Targeted strict TypeScript for the store/resolver/contract — **PASS**. One earlier RED exposed that Firestore body-less documents wrap the record; the resolver was corrected before GREEN. No commit, deploy, production write, or legacy removal.
+
+Remaining: the default canonical Season path is now wired, but the compatibility inline-body path and unbounded collection scan remain; strict lifecycle projection/indexing, App Check transport evidence, submit ownership/queue, and full V2 runtime/curriculum/stars work are still open. Exact next task: add negative emulator cases for wrong Season lifecycle status and Storage generation/byte-size tampering through the active-pin guard, then run fresh adversarial review.
+## 13.65 Season pin metadata and active-status correction
+
+The Season resolver now compares the object reader's returned `contentHash`, `objectGeneration`, and `byteSize` against the Firestore record, failing with `season_revision_object_metadata_invalid` on drift. The lifecycle active-pin branch now treats only `approved` Season lifecycle as active; `archived` is historical and must not block Episode archive, while `released` is not part of the normative SeasonLifecycleHead union and is not accepted implicitly. Resolver tests cover returned metadata drift plus reader-thrown missing/hash/generation/byte-size errors.
+
+Evidence: Season envelope/resolver/pin tests — **3 suites / 19 tests PASS**; targeted TypeScript after the status correction — **PASS**. Fresh independent review found remaining P1s: active-pin lookup still performs an unbounded collection scan and Storage reads inside a Firestore transaction; the inline legacy body path remains; canonical Season body validation is still structural rather than full composition/DecisionRegistry/cardinality validation; lifecycle transport App Check/Auth is not proven. These are recorded, not hidden. No commit, deploy, production write, or legacy removal.
+
+Exact next task: add full semantic SeasonRevision body validation (scope, chapters, gates, DecisionRegistry ref and cardinality), then replace the unbounded scan with a server-owned bounded pin index or prevalidated projection. Add archived/wrong-status emulator evidence and rerun the release-critical review before moving to stars/runtime.
+## 13.66 Canonical Season path, metadata, and semantic pin checks
+
+Closed the latest reviewer findings in the Season pin seam. `seasonRevisionObjectPath` now enforces the normative content-addressed path `content-studio/seasons/<sha256(draftId)>/r<revision>/<contentHash>.json`; the resolver compares returned Storage metadata (`contentHash`, generation, byte size) against the immutable record; the active lifecycle guard only treats `approved` Season heads as active; and canonical Season bodies now require release scope, Episode refs, cardinality (1/8/32), approved ref identity/hashes, chapters/gates arrays, gate policy version, and DecisionRegistry ref structure. The emulator fixture was updated to the canonical hashed path and complete vertical-slice body.
+
+Evidence: canonical Season resolver/envelope tests **2 suites / 13 tests PASS**; lifecycle emulator **1 suite / 1 test PASS** after the body ref approval field and canonical path fixes; targeted strict TypeScript **PASS**. The review's earlier stale findings about path/metadata/archived status are now corrected. Remaining P1s are the unbounded collection scan/Storage reads inside Firestore transactions, inline legacy fallback, full deep DecisionRegistry/composition semantics, malformed-active-pin fail-closed policy, and transport-level App Check/Auth proof. No commit, deploy, production write, or legacy removal.
+
+Exact next task: make active Season pin lookup bounded and server-owned (indexed by Episode identity or prevalidated projection), and choose explicit behavior for malformed active canonical pins (block archive versus ignore only marked legacy). Add archived/wrong-status and forged-path emulator cases, then run fresh adversarial review and the full focused matrix.
+## 13.67 Focused regression after canonical Season integration
+
+The expanded Content Studio regression matrix now passes **25 suites / 131 tests**. It includes the existing 22-suite matrix, Season immutable pin tests, SeasonRevision envelope tests, and Storage resolver tests. Lifecycle emulator remains **1 suite / 1 test PASS**. No unrelated files were removed and no release state changed. The full V2 objective remains active; next gate is bounded active-pin indexing and explicit malformed-pin behavior.
+## 13.68 Bounded Season pin index
+
+Added `seasonEpisodePinIndexDocumentPath` and a server-owned exact lookup in `hasActiveSeasonPin`. When an index projection exists, the lifecycle transaction resolves only the indexed SeasonRevision and its pinned Storage object; malformed index/canonical data fails closed. The older collection scan remains only as a compatibility fallback for legacy inline pins. The lifecycle emulator now seeds and removes the exact Episode→Season pin index and still proves archive rejection for the canonical approved Season.
+
+Evidence: `npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS**; prior focused Content Studio matrix remains **25 suites / 131 tests PASS**; `git diff --check` and targeted strict TypeScript remain required before handoff. Fresh review should specifically inspect index creation/update ownership, stale index invalidation, transaction retry behavior, and malformed-index fail-closed semantics. No commit, deploy, production write, or legacy removal.
+
+Exact next task: add server-owned index write/update in Season approval/release transactions, stale-index and archived/wrong-status emulator cases, and Firestore Rules deny coverage for client writes to `content_season_episode_pins`. Then rerun the full focused matrix and adversarial review.
+## 13.69 Pin-index security gate
+
+Added the server-only `content_season_episode_pins` collection to Firestore rules and the authoring rules emulator corpus. Client direct operations remain denied; rules emulator passes **1 suite / 411 tests**. The exact index is now read before the compatibility collection scan, and the lifecycle emulator proves the indexed canonical Season pin blocks archive (**1 suite / 1 test PASS**). Index creation/update is not yet wired into Season approval/release transactions, so the projection is currently an explicit server-owned seam rather than a complete production index lifecycle.
+
+Exact next task: write/update/delete the pin index transactionally with Season lifecycle approval/archive, add stale-index and archived/wrong-status cases, and then run the full 25-suite matrix plus fresh adversarial review. Do not claim bounded production lookup until index freshness and ownership are proven.
+## 13.70 Server-owned pin projection builder
+
+Added `buildApprovedSeasonPinIndexEntries` and tests for exact Episode-keyed index entries, non-approved suppression, and missing Season identity rejection. This freezes the projection shape before wiring it into Season approval/release transactions. Unit evidence: **1 suite / 3 tests PASS**. The builder is intentionally pure and does not write Firestore; no client or production write path was added. Lifecycle emulator and rules gates remain green from 13.68–13.69.
+
+Exact next task: add the server transaction writer around this projection (create/update approved entries, delete entries on archive/replacement, reject stale Season revision) and invoke it from the actual Season lifecycle approval path. Until that exists, the index remains a tested seam, not a complete lifecycle feature.
+## 13.71 Exact pin-index envelope and projection operations
+
+Strengthened the pin-index seam with `season-episode-pin-index.v1`, exact key closure, Episode identity/path/content-hash binding, Season revision fingerprint, lifecycle revision, and a pure transaction operation that deletes prior paths before setting the next projection. The Firestore lifecycle adapter now rejects a malformed or mis-keyed indexed entry fail-closed before resolving its Season object. Emulator fixtures use the complete index envelope.
+
+Evidence: store/index unit packet **2 suites / 24 tests PASS**; lifecycle emulator **1 suite / 1 test PASS**; targeted strict TypeScript **PASS**. Independent review confirms the index envelope and malformed-index fail-closed behavior. The remaining P1 is unchanged: no actual Season approval/archive caller writes this projection, so index freshness and stale cleanup are not yet production-proven. Inline fallback and transaction scan remain compatibility behavior.
+
+Exact next task: add a server-owned Season lifecycle transition repository/callable that uses `applySeasonPinIndexProjection` in the same transaction as approved/archive lifecycle changes; add stale revision, replacement, archive cleanup, and missing-index tests. Keep legacy fallback behind an explicit compatibility flag once the canonical writer is live.
+## 13.72 Server-side Season lifecycle/index transaction seam
+
+Added `SeasonLifecycleTransitionRepository` with explicit approve/archive transitions, expected lifecycle-revision CAS, canonical SeasonRevision read, and pin-index projection. Approval writes approved Episode-keyed entries; archive clears entries through a transaction-owned query. Added `createFirestoreSeasonLifecycleTransitionStore` with server-only lifecycle compare-and-set, index writes, and indexed cleanup. The pure index validator/projection now carries `season-episode-pin-index.v1`, exact key binding, and lifecycle revision.
+
+Evidence: lifecycle/index repository tests **2 suites / 7 tests PASS**; targeted strict TypeScript for the repository, Firestore adapter, and index contract **PASS**. This is the first server transaction writer seam; it is not yet exposed by an Admin callable or invoked by the existing `adminSaveV2SeasonDraft` path. No commit, deploy, production write, or legacy removal.
+
+Exact next task: add authenticated Season lifecycle callables (submit/review/approve/archive) around this repository, wire them into `functions/src/index.ts`, and add emulator proof that approval creates the index and archive deletes it under stale-CAS protection. Then run rules, lifecycle, Content Studio matrix, and independent adversarial review.
+## 13.73 Authenticated Season lifecycle callables and emulator proof
+
+Added strict `parseV2SeasonLifecycleRequest`, authenticated `adminApproveV2SeasonRevision` and `adminArchiveV2SeasonRevision` callables, and exported them from `functions/src/index.ts`. The callables use `requireContentReviewer`, `SeasonLifecycleTransitionRepository`, the Firestore Season lifecycle adapter, and the server-owned pin projection. The lifecycle emulator now performs canonical Season `needs_review → approved` through the callable, verifies Episode archive is blocked by the generated index, then archives the Season through the callable and verifies the index cleanup permits Episode archive. A transaction read/write ordering RED was exposed when cleanup queried after a write; the repository/adapter ordering was corrected before GREEN.
+
+Evidence: `npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS**; Season callable/parser contract — **1 suite / 3 tests PASS**; Season lifecycle/index repository — **2 suites / 7 tests PASS**; targeted strict TypeScript — **PASS**. No commit, deploy, production write, or legacy removal.
+
+Remaining: authenticated Season callables now exist, but full Admin integration, maker-checker/receipt governance for Season approval, index stale-revision replacement, malformed-index policy, and broad V2 runtime/curriculum/stars/voice work remain. Exact next task: add stale-CAS, wrong-role, replacement revision, and index cleanup emulator cases; then run fresh adversarial review and the full Content Studio matrix.
+## 13.74 Full focused matrix after Season callable wiring
+
+The expanded Content Studio matrix now passes **28 suites / 141 tests**, including Season lifecycle/index repository, strict SeasonRevision resolver, parser/callable export contracts, and all previously green Content Studio contracts. Lifecycle emulator remains **1 suite / 1 test PASS**. No production deployment or commit occurred. The next review must decide whether Season lifecycle maker-checker and receipt requirements are sufficient for the normative release gate; current callables use reviewer role and CAS but do not yet issue a dedicated Season approval receipt.
+## 13.75 — Season lifecycle governance packet (2026-07-17)
+
+Mission: continue the approved Orbit V2 pilot-season plan as a server-owned, body-only, auditable learning pipeline: canonical Season revisions in Storage, strict lifecycle transitions, indexed Episode pins, maker-checker authorization, and reproducible RED/GREEN evidence. Legacy behavior remains preserved; this worktree is not a release.
+
+Authoritative documents and precedence: `docs/v2/HANDOVER.md` (living record), `docs/v2/README.md`, `docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md`, `docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md`, repository `AGENTS.md`, and the Orbit V2 skill. Normative contracts and existing security/performance rules take precedence over convenience. No production deploy, commit, push, or release activation was performed.
+
+Completed in this slice:
+
+- Season lifecycle requests now require exact `seasonRevisionId`, positive CAS revision, bounded `reason`, and an idempotency key; unknown/missing fields fail closed.
+- Season approval/archival repository operations carry the reason and idempotency key and reject invalid operation envelopes.
+- Season approval enforces maker-checker: the reviewer cannot equal the lifecycle author (`season_maker_checker_self_review`).
+- Season approval receipt uses the supplied human reason instead of a synthetic reason.
+- Authenticated Season callables pass the complete operation envelope through to the repository.
+- Emulator coverage proves wrong role, self-review rejection, stale archive CAS, successful approval, indexed pin blocking, and cleanup on archive.
+- Focused Content Studio matrix: **29 suites / 217 tests PASS**.
+- Season governance unit packet: **4 suites / 13 tests PASS**.
+- Firestore + Storage Episode/Season lifecycle emulator: **1 suite / 1 test PASS**.
+- Firestore rules deny-only emulator: **1 suite / 411 tests PASS** (expected permission-denied warnings are part of deny coverage).
+- Targeted strict TypeScript: **PASS** for Season parser/callables/repository/adapter/receipt surface.
+- `git diff --check`: **PASS**; only normal LF→CRLF warnings were emitted by Git status.
+
+Changed files in this slice and purpose: `functions/src/admin_content_studio_authoring.ts` (strict Season request envelope), `functions/src/admin_content_studio_callables.ts` (forward operation metadata), `functions/src/content_studio/season_lifecycle_transition_repository.ts` (maker-checker and receipt reason), `functions/src/content_studio/season_lifecycle_callable_contract.test.ts`, `functions/src/content_studio/season_lifecycle_transition_repository.test.ts`, and `functions/src/content_studio/emulator/v2_episode_lifecycle.emulator.test.ts` (RED/GREEN authorization/CAS assertions). Existing dirty and untracked user/project changes remain preserved.
+
+RED/GREEN history: the first emulator run exposed that the stale fixture still used the old incomplete Season request envelope; the fixture was corrected to include reason/idempotency metadata and to test stale archive at a valid positive revision. Re-run then passed. No source-write test bypass was used.
+
+Still partial / not complete: Season approval does not yet atomically persist a durable operation/audit record or replay response; the Firestore adapter still needs strict lifecycle-envelope validation and an explicit expected-revision check; replacement Seasons need orphan-index cleanup/reconciliation tests; index fingerprint must be compared to the resolved canonical Season fingerprint; malformed index/inline-body/DecisionRegistry deep-validation cases remain; Season approval still needs the full validation/localization/voice/content-gate receipt prerequisite chain; canonical runtime resolver migration and bounded index maintenance remain open. These are P1/P2 gates, so this session must not claim Phase 16 or the full V2 plan complete.
+
+Exact next executable task: add a server-owned Season operation receipt/audit collection with idempotent replay, then add RED/GREEN tests for malformed lifecycle/index envelopes, wrong Season fingerprint, replacement/orphan index cleanup, and strict adapter CAS. Files: `functions/src/content_studio/season_lifecycle_transition_repository.ts`, `functions/src/content_studio/firestore_authoring_store.ts`, `functions/src/content_studio/season_pin_index_repository.ts`, the Season emulator tests, and the corresponding module contract tests. Commands: run the focused Content Studio matrix, `npm run test:emulator:v2-episode-lifecycle`, `npm run test:emulator:v2-authoring-rules`, targeted strict `tsc`, and `git diff --check`. Acceptance: replaying the same idempotency key returns the same persisted result without a second transition; changed payload is rejected; malformed/stale/orphan index cannot silently unblock an Episode archive; all tests remain green.
+
+Startup for the next session: `Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'; git status --short --branch; Get-Content docs/v2/HANDOVER.md -Tail 140; npx jest --runInBand --no-cache src/content_studio --testPathIgnorePatterns=emulator`.
+## 13.76 — Season lifecycle idempotent replay (2026-07-17)
+
+Added a server-owned Season lifecycle operation seam matching the already-proven Episode pattern. `SeasonLifecycleTransitionStore` now reads/creates operation records; the repository fingerprints action, Season identity, target, expected revision, reason, and actor; identical replay returns the original lifecycle without a second transition, while reusing the key with changed input fails `idempotency_key_reused`. Firestore persists operations under `content_season_lifecycle_operations/{idempotencyKey}`. Added a unit test covering both replay and changed-payload rejection.
+
+Evidence after the change: focused Content Studio matrix **29 suites / 218 tests PASS**; Season repository/callable packet **2 suites / 7 tests PASS**; Episode+Season Firestore/Storage lifecycle emulator **1 suite / 1 test PASS**; targeted strict TypeScript **PASS**; no deploy/commit/push/release. The deny-only rules result remains **1 suite / 411 tests PASS** from the immediately preceding unchanged-rules run.
+
+Still open: adapter-side strict lifecycle envelope validation and explicit expected-revision enforcement, durable audit event separate from idempotency operation, Season prerequisite receipts (validation/localization/voice/content gate), replacement/orphan index reconciliation and fingerprint cross-check, deep DecisionRegistry validation, and all later runtime/curriculum/stars/access/voice/Admin generator/rollout phases. This remains partial and cannot be called a completed V2 phase.
+
+Next executable task remains: add and test strict adapter/CAS and malformed-index/lifecycle behavior, then wire the full Season evidence gate before advancing to curriculum/runtime work. Preserve the exact startup commands and test matrix from §13.75.
+## 13.77 — Strict Season lifecycle envelope/CAS (2026-07-17)
+
+The Season lifecycle adapter now validates a strict exact-key `SeasonLifecycleHead` before returning Firestore data, caches the validated observed revision inside the transaction adapter, and rejects unobserved or mismatched expected-revision CAS before issuing `transaction.update`. The repository also compares the persisted lifecycle identity/status/revision against the canonical SeasonRevision envelope before any receipt, pin-index, or operation write. A negative unit test proves divergent canonical identity produces `season_lifecycle_identity_mismatch` with no side effects. Season idempotency operation reads now require the exact two-key envelope plus a valid lifecycle head.
+
+Evidence: **29 suites / 219 tests PASS** for the focused Content Studio matrix; lifecycle Firestore/Storage emulator **1 suite / 1 test PASS**; targeted strict TypeScript **PASS**; `git diff --check` remains clean apart from Git line-ending warnings. No deploy, commit, push, production write, or legacy removal.
+
+Still open and explicitly not complete: orphan/replacement pin-index reconciliation and canonical fingerprint cross-check; full Season validation/localization/voice/content-gate evidence prerequisites; deep DecisionRegistry and nested Episode semantics; production App Check proof; canonical runtime migration; curriculum, stars/access, voice/Speaking Club, Admin generator, 32-episode content, rollout and release gates.
+
+Exact next executable task: add a focused adapter/emulator contract for malformed Season lifecycle and malformed Season operation documents, then implement server-owned replacement/orphan index reconciliation without silently unblocking an Episode archive. After GREEN, repeat the Content Studio matrix, lifecycle and rules emulators, strict TypeScript, and independent spec/adversarial review before advancing to the Season evidence gate.
+## 13.78 — Strict Season operation envelope (2026-07-17)
+
+Added `validateSeasonLifecycleOperationEnvelope` and wired it into the Firestore Season adapter. Operation records now require exactly a 64-hex request fingerprint and a lifecycle field; the adapter additionally validates the nested lifecycle head. Unit coverage proves extra fields and malformed fingerprints fail closed. Focused repository test packet is **1 suite / 6 tests PASS** and targeted strict TypeScript is **PASS**.
+
+This closes only the operation-envelope seam. It does not close replacement/orphan index cleanup, Season evidence prerequisites, or later V2 phases. Next task remains malformed lifecycle/operation emulator coverage plus server-owned replacement-index reconciliation, followed by fresh independent reviews.
+## 13.79 — Season pin identity hardening (2026-07-17)
+
+Hardened the approved Season pin projection: the writer now rejects non-64-hex Season fingerprints, and indexed archive checks compare the stored index fingerprint with the resolved canonical Season record fingerprint before treating the pin as valid. A negative projection test covers the malformed fingerprint. The focused Season repository/index packet is **2 suites / 11 tests PASS** and targeted strict TypeScript is **PASS**.
+
+This is still not orphan/replacement reconciliation: old Episode-keyed documents can survive a Season replacement because the current adapter clears by Season ID only. The next required RED/GREEN is explicit replacement cleanup/orphan detection with two Seasons and no silent archive unblock.
+## 13.80 — Shared pin-index validator seam (2026-07-17)
+
+Moved the Episode-keyed Season pin path into `season_pin_index_paths.ts` and made the Firestore lifecycle adapter consume the shared `validateSeasonPinIndexEntry` instead of a divergent local validator. This removes the duplicate envelope rules and avoids a circular import by keeping path construction separate. Focused Season/index/resolver tests: **3 suites / 19 tests PASS**; targeted strict TypeScript: **PASS**.
+
+The index still needs server-owned replacement/orphan reconciliation; this change only guarantees that the reader and writer share one envelope validator. No deploy, commit, push, production write, or legacy removal.
+## 13.81 — Replacement/index reconciliation transaction (2026-07-17)
+
+Added a server-owned `clearPinIndexForSeason` transaction operation. Season approval removes stale pin rows belonging to older revisions of the same `seasonId` before writing the new projection; Season archive removes all rows for that season, including the current revision. The implementation resolves each indexed Season lifecycle before deletion, so pins from unrelated seasons are preserved. A Firestore transaction-ordering RED was found when cleanup ran after receipt writes; cleanup was moved before every write, and the lifecycle emulator is green again.
+
+Evidence: lifecycle Firestore/Storage emulator **1 suite / 1 test PASS** after the ordering fix; Season repository unit suite **1 suite / 6 tests PASS**; focused Content Studio matrix and strict TypeScript must be rerun after this final reconciliation change. The prior failed run was not hidden: it exposed the write-before-read ordering and the archive keep-current bug, both corrected.
+
+Remaining P1: explicit two-season replacement/orphan fixture, canonical fingerprint mismatch telemetry/audit, full Season evidence prerequisites, and all subsequent V2 phases. No deploy/commit/push/release.
+## 13.82 — Reconciliation verification checkpoint (2026-07-17)
+
+After the replacement cleanup ordering fix, final deterministic checks for this slice are green: focused Content Studio **29 suites / 221 tests PASS**, targeted strict TypeScript **PASS**, and `git diff --check` reports no whitespace errors (only normal CRLF warnings). The lifecycle emulator remains **1 suite / 1 test PASS** from the immediate post-fix run. This checkpoint is still partial: the two-season replacement fixture and full Season evidence gate are not yet closed, and no release claim is allowed.
+
+Exact next executable task: add the two-season/orphan emulator fixture and prove unrelated-season pins survive while same-season stale rows are removed; then rerun all four gates and obtain fresh spec/adversarial reviews. Only after that may the execution move to Task 2.3A (account-scoped progress store/outbox/hydration), as required by the Phase 02 audit.
+## 13.83 — Two-season orphan/replacement emulator proof (2026-07-17)
+
+Extended the lifecycle emulator with two additional server-owned pin rows: one stale orphan belonging to an older revision of the same `seasonId`, and one active pin belonging to a different season. Archiving the current Season now proves the same-season orphan is deleted while the unrelated season pin survives. Two transaction-ordering REDs were exposed while adding this fixture (writes interleaved with lifecycle reads); cleanup now collects deletions after completing all reads, and the final emulator run is green.
+
+Evidence: `npm run test:emulator:v2-episode-lifecycle` **1 suite / 1 test PASS**. This is stronger replacement evidence, but the implementation still uses a maintenance-time collection scan and does not yet provide an audit record for orphan deletion. No deploy/commit/push/release.
+
+Exact next task: add the orphan-cleanup audit/operation receipt and then proceed to the Phase 02 Task 2.3A local progress store/outbox/hydration RED packet identified by the independent audit. Do not start runtime/UI before that persistence gate is green.
+## 13.84 — Pin cleanup audit receipt (2026-07-17)
+
+Season approval/archive cleanup now writes a server-owned `season-pin-cleanup-audit.v1` document keyed by the same idempotency operation, recording season identity, target, actor, and reason. The audit write is ordered after all transaction reads and before lifecycle/index writes; two RED runs caught and fixed read-after-write ordering for archive and multi-season cleanup. The two-season orphan fixture remains green: same-season stale rows are removed and unrelated-season rows survive.
+
+Evidence: lifecycle Firestore/Storage emulator **1 suite / 1 test PASS**; Season repository unit tests **1 suite / 6 tests PASS**; no release/deploy/commit/push. The cleanup audit is a bounded governance record, not a complete Season evidence gate.
+
+Exact next executable task: begin Phase 02 Task 2.3A test-first account-scoped progress persistence (`progress_store`, synchronous peek cache, outbox, hydration) with restart/offline/idempotency/account-generation/corrupt-schema/delayed-terminal cases. Do not build runtime/UI before this gate.
+## 13.85 — Phase 02 Task 2.3A progress persistence RED/GREEN (2026-07-17)
+
+Started the next approved bounded task by adding account-scoped local progress persistence seams:
+
+- `progress_store.ts`: versioned, account-keyed AsyncStorage envelope, corrupt/unknown-schema fail-closed loading, size bound, local-first save, and synchronous peek access.
+- `progress_peek_cache.ts`: bounded eight-account, five-minute cache with eviction.
+- `progress_outbox.ts`: account-scoped idempotent mutation queue capped at 128 items, generation filtering, and one-way terminal delayed acknowledgement.
+- `progress_hydration.ts`: snapshot plus pending-mutation hydration without a full-screen loading contract.
+- root tests for restart/peek, corruption/account isolation, hydration, duplicate enqueue, terminal replay protection, and stale generation purge.
+
+Evidence: **2 suites / 5 tests PASS**, targeted strict TypeScript **PASS**, `git diff --check` **PASS** (only line-ending warnings). This is the first persistence slice, not the complete Task 2.3 acceptance: canonical attempt/evidence atomicity, delayed candidate terminal payload validation, account-generation transition integration, and bounded index cardinality still need RED/GREEN coverage.
+
+Exact next executable task: strengthen the store/outbox contracts with account-generation transition hooks, atomic graph/delayed payload fixtures, out-of-order acknowledgements, and bounded evidence-index replay tests; then obtain independent spec/adversarial review before proceeding to Task 2.4 server progress events. Runtime/UI remains explicitly blocked until this persistence gate is complete.
+## 13.86 — Task 2.3A account isolation and delayed candidate guard (2026-07-17)
+
+Strengthened the new local persistence packet with explicit account-wipe isolation, Account A/B outbox separation, one-way terminal acknowledgement (a second terminal result cannot overwrite the first), and a delayed-candidate guard that rejects learning/evidence refs before server finalization. Evidence now stands at **2 suites / 7 tests PASS** for storage/outbox and targeted strict TypeScript **PASS**.
+
+Still open for Task 2.3A: atomic graph-attempt/evidence payload fixture validation, exhaustive tuple disposition preservation, out-of-order acknowledgement handling with durable terminal records, and integration with the existing account-generation transition lock. Do not advance to the server progress callable or runtime UI until those cases are green.
+## 13.87 — Cross-surface verification after Task 2.3A start (2026-07-17)
+
+Verification after the persistence additions: the focused Phase 02/root packet is **7 suites / 49 tests PASS** (including the new storage/outbox suites); the Content Studio matrix remains **29 suites / 221 tests PASS**; `git diff --check` has no whitespace errors. The lifecycle emulator was green immediately before the latest audit-receipt-only wiring and must be rerun in the next deterministic gate. Strict TypeScript for the new progress modules passed in the preceding focused command.
+
+An independent Task 2.3A review is pending. Until that review and the required account-generation/atomic evidence cases are green, Task 2.3A remains partial and no runtime/UI work is authorized.
+## 13.88 — Task 2.3A generation/identity hardening (2026-07-17)
+
+Repaired the P1 findings from the independent review:
+
+- storage and outbox keys now use the normative `v2:progress:v1:<accountScopeHash>:g<generation>` / `v2:outbox:v1:<accountScopeHash>:g<generation>` form;
+- scope hash and generation are validated on load/save/clear/enqueue/acknowledge, with injectable current-generation guards;
+- peek cache is generation-scoped through the key;
+- snapshots require the matching accountScopeHash and the core bounded progress collections/schema fields;
+- hydrate exposes only pending mutations from the active generation;
+- delayed learning-reference rejection scans nested payload JSON;
+- outbox payloads are capped at 64 KiB and malformed terminal statuses are ignored;
+- `persistProgressMutation` journals the outbox intent before saving the snapshot, leaving a durable retry intent if the second write fails.
+
+Current Task 2.3A packet: **2 suites / 11 tests PASS**, targeted strict TypeScript **PASS**. A fresh independent review must now confirm these fixes; no runtime/UI or Task 2.4 transition yet.
+## 13.89 — Mandatory generation guard and bounded outbox (2026-07-17)
+
+Closed the remaining Task 2.3A P1 identified by review: `createProgressStore`, `createProgressOutbox`, `hydrateProgress`, `persistProgressFirst`, and `persistProgressMutation` now require an explicit current-generation guard; there is no default no-op guard. Stale generation cannot load/save/clear/enqueue/acknowledge through these APIs. Outbox writes now enforce both per-payload and total serialized-byte caps, and unserializable payloads return a typed error. Added tests for stale mutation rejection and circular payload failure.
+
+Current focused persistence evidence: **2 suites / 13 tests PASS**; strict TypeScript **PASS**. A fresh adversarial review is pending. Remaining likely work is replacing shallow snapshot validation with the canonical progress snapshot validator and proving guard behavior through the complete hydrate/mutation path.
+## 13.90 — Task 2.3A guarded read paths and canonical snapshot validator (2026-07-17)
+
+Closed the remaining read-path P1: `peek`, `outbox.list`, `purgeStaleGeneration`, and `hydrateProgress` now require and check the active generation guard before reading or mutating storage/cache. Exported `assertProgressSnapshot` from the reducer and reused it in the local store, replacing the earlier shallow shape check with the canonical reducer validator. Added guard-read tests and outbox byte/error tests.
+
+Evidence: **2 suites / 15 tests PASS**; targeted strict TypeScript **PASS**. Fresh independent review is pending after this final change. The `:gN` suffix is deliberate session isolation layered on the normative account-scope-hash namespace; account-generation guard remains mandatory and is not inferred from the key.
+## 13.91 — Progress namespace dimensions (2026-07-17)
+
+Closed the remaining key-semantics P1 by including all normative progress namespace dimensions in `ProgressAccountScope` and both storage/outbox keys: account-scope hash, season, study target, source locale, plus the guarded generation suffix. Snapshot load now requires the same dimensions, so multiple seasons/targets cannot overwrite one another. Focused persistence tests remain **2 suites / 15 tests PASS** and strict TypeScript **PASS**.
+
+The remaining P2 is boundary depth: the reducer validator is reused, but immutable Episode-pinned membership/cardinality still belongs to the server progress-event boundary. Task 2.3A is nearing completion; fresh review and a final full Phase 02 gate are still required.
+## 13.92 — Task 2.3A accepted; transition to Task 2.4 (2026-07-17)
+
+Independent adversarial review accepted Task 2.3A on the reviewed surface. GREEN evidence: **2 suites / 15 tests PASS**; generation guards cover every read/write path; canonical `assertProgressSnapshot` is reused; keys isolate account hash, season, target, source locale and generation; outbox is idempotent and bounded; corrupt/stale data fails closed; nested delayed learning refs are rejected; journal-before-snapshot is durable. The `:gN` suffix is an explicit migration policy: an old generation is intentionally not auto-hydrated or merged.
+
+Task 2.3A is complete as a bounded persistence task, but the overall Phase 02 gate is not complete. Its remaining server-side acceptance is Task 2.4: authenticated/App Check progress callable, canonical attempt/evidence validation, account/season/episode pinning, opId/hash-chain idempotency, atomic server transaction, delayed terminal acknowledgements, Firestore rules and account-isolation emulator proof.
+
+Exact next executable task: create `functions/src/learning_v2/progress_event.ts` and its tests first with RED cases for missing/invalid auth/App Check, hash mismatch, account/season/episode substitution, duplicate/out-of-order events, and delayed candidates containing learning refs; then implement the server-owned transaction and rules/emulator gate. Do not start runtime/UI or claim Phase 02 complete until Task 2.4 and Task 2.6 pass.
+
+## 13.93 — Task 2.4 pure progress-event seam RED/GREEN (2026-07-17)
+
+Started Task 2.4 test-first with a pure server progress-event contract:
+`parseProgressEventRequest` requires the exact scoped request envelope, sanitizes the
+hash-free attempt body, and verifies the canonical attempt reference; post-hash
+fields and forged references fail closed. `applyProgressEvent` uses an abstract
+transaction store to prove idempotent replay, conflicting idempotency-key reuse,
+and opId reuse with a different body hash. A RED run exposed a caller bug where
+the validator result object was treated as a boolean; the guard now checks
+`.ok`, and the focused test is green.
+
+Evidence: Functions Jest `1 suite / 2 tests PASS`; targeted strict TypeScript for
+`functions/src/learning_v2/progress_event.ts` **PASS**. This is only the pure
+contract seam. Authentication/App Check, immutable Episode/Season pin lookup,
+server-owned Firestore transaction, delayed terminal adjudication, rules, and
+emulator account-isolation proof are still not implemented. No deploy, commit,
+push, production write, or legacy removal.
+
+Exact next executable task: extend the request with canonical Episode revision
+identity and server-known Season membership, add callable auth/App Check guards,
+then implement the Firestore transaction adapter and negative emulator cases.
+Rerun the pure Functions test plus strict TypeScript before wiring exports. Keep
+Phase 02 and the global V2 goal open.
+
+## 13.94 — Task 2.4 request pin shape strengthened (2026-07-17)
+
+The pure progress-event request now requires a canonical `seasonRevisionId` and
+the complete approved `episodeRevisionRef` (draft, episode, revision,
+revisionFingerprint, contentHash, ordinal, chapter, approval status). The request
+fingerprint includes both immutable pin dimensions, so changing the Season or
+Episode ref cannot replay an old idempotency key. The parser still treats these
+values as untrusted claims; server resolvers must compare them to the immutable
+Season and Episode records before the transaction writes anything.
+
+Evidence: Functions Jest `1 suite / 2 tests PASS`; targeted strict TypeScript
+**PASS**. Independent review confirmed the required next boundary: resolve the
+canonical Season and Episode inside the server transaction, compare Episode
+membership/cardinality, derive account identity from authenticated UID, and deny
+client writes to the new V2 collections by default. No callable/export/rules or
+emulator implementation has been added yet; Task 2.4 and Phase 02 remain partial.
+
+Exact next executable task: implement the authenticated/App Check callable and
+Firestore transaction adapter with all reads before writes, using
+`resolveStableUidForAuth`, `resolveImmutableSeasonRevision`, and
+`assertExactImmutableEpisodeRevision`; add negative tests for account, Season,
+Episode, revision, and fingerprint substitution before wiring the export.
+
+## 13.95 — Task 2.4 immutable pin parser tests (2026-07-17)
+
+Added a third pure-contract test covering malformed Season revision IDs,
+non-approved Episode refs, and invalid content hashes. The parser now provides a
+strict fail-closed boundary before any server resolver or Firestore write is
+called. This confirms the request shape is ready for the server-owned resolver;
+it does **not** treat client-supplied immutable refs as trusted evidence.
+
+Evidence: Functions Jest `1 suite / 3 tests PASS`; targeted strict TypeScript
+**PASS**. The broader Phase 02 packet remains **7 suites / 56 tests PASS**.
+Task 2.4 is still partial: callable auth/App Check, stable identity binding,
+canonical Season/Episode resolution, atomic progress/evidence/star mutation,
+delayed adjudication, rules, and emulator isolation are outstanding.
+
+Exact next executable task: implement the server resolver-backed transaction
+adapter and callable guard, then add emulator tests for missing auth/App Check,
+cross-account scope, Season/Episode substitution, stale revision, duplicate and
+out-of-order events, and delayed terminal failure/success. Do not export or
+deploy until those tests are green.
+
+## 13.96 — Season membership comparison seam (2026-07-17)
+
+Added `assertEpisodeRevisionPinnedToSeason`, a pure exact-membership check that
+compares Episode identity, revision, and the complete immutable ref fingerprint
+against the Season's pinned `episodeRevisionRefs`. Tests cover both a modified
+content hash and an Episode substitution; both fail closed. This helper is
+intentionally not a trust boundary by itself: the Season and Episode arrays
+must be loaded and validated from server-owned immutable records inside the
+upcoming transaction.
+
+Evidence: Functions Jest `1 suite / 4 tests PASS`; targeted strict TypeScript
+**PASS**. Task 2.4 remains partial and no callable/export/deploy has been added.
+
+Exact next executable task: wire this comparison into a Firestore transaction
+after resolving canonical Season and Episode records, bind the account scope to
+authenticated stable identity, and add App Check/auth/rules emulator negatives.
+
+## 13.97 — Server account-scope comparison seam (2026-07-17)
+
+Added `assertProgressAccountScope`, a fail-closed pure boundary requiring the
+client-provided scope hash to equal the server-derived canonical account scope
+hash. Tests cover the matching hash, cross-account substitution, and malformed
+server hash. This is deliberately only a comparison helper; it does not derive
+identity and cannot replace `resolveStableUidForAuth` in the callable.
+
+Evidence: Functions Jest `1 suite / 5 tests PASS`; targeted strict TypeScript
+**PASS**. Task 2.4 is still partial: the callable must authenticate the request,
+resolve stable identity, derive the expected hash server-side, resolve immutable
+Season/Episode records in one transaction, and only then call this helper.
+
+Exact next executable task: create the callable authorization adapter with
+`onCall` App Check options and `resolveStableUidForAuth`, then provide a
+Firestore transaction implementation whose operation/attempt paths include the
+canonical account and Season/Episode pin dimensions.
+
+## 13.98 — Task 2.4 authenticated callable boundary (2026-07-17)
+
+Added the bounded auth/App Check adapter in
+`functions/src/learning_v2/progress_event_callable.ts` with focused tests. The
+callable options fail closed for App Check unless an explicit local/test
+override is set. Requests require a bounded Firebase Auth UID; stable identity
+is resolved server-side through `resolveStableUidForAuth` with link repair
+disabled, and the executor receives only that server-derived stable UID. The
+handler parses the canonical progress request before downstream execution and
+never invokes authorization or execution for unauthenticated input. The
+callable factory is intentionally not exported from `functions/src/index.ts`
+yet, because the transactional Firestore store is not wired.
+
+Evidence: Functions combined focused packet `2 suites / 10 tests PASS`;
+targeted strict TypeScript for the callable adapter **PASS**. A RED fixture
+caught a seven-character idempotency key; it was corrected to the contract's
+minimum eight characters. No deploy, commit, push, or production write.
+
+Task 2.4 remains partial: account-scope hash comparison must be applied after
+stable identity derivation, immutable Season/Episode resolution must happen in
+the transaction, and snapshot/evidence/stars, delayed terminal adjudication,
+Firestore rules, and emulator isolation are still outstanding.
+
+Exact next executable task: implement the Firestore transaction adapter with
+all canonical reads before writes, use the resolver APIs and membership helper,
+then add callable integration and rules/emulator negative cases before adding
+the index export.
+
+## 13.99 — Transaction seam requires canonical pin validation (2026-07-17)
+
+Strengthened the abstract `ProgressEventStore` contract: every transaction must
+implement `validatePinnedScope` and `applyProgressEvent` invokes it immediately
+after parsing, before reading idempotency or attempt state and before any write.
+This prevents a future adapter from accidentally treating client-supplied
+Season/Episode refs as trusted after only syntactic validation. The current fake
+store explicitly models the server validation seam; the real implementation
+still has to resolve immutable records and compare membership inside Firestore.
+
+Evidence: Functions combined progress packet `2 suites / 10 tests PASS`; strict
+TypeScript for both progress-event modules **PASS**. No index export, Firestore
+write, rules change, deploy, commit, or push.
+
+Exact next executable task: implement `validatePinnedScope` in a Firestore
+transaction adapter using `resolveImmutableSeasonRevision`,
+`createFirestoreEpisodeRevisionResolver`, and `assertExactImmutableEpisodeRevision`;
+then prove reads-before-writes, account isolation, stale pin rejection, and
+idempotent replay in an emulator before exporting the callable.
+
+## 14.00 — Firestore progress transaction adapter skeleton (2026-07-17)
+
+Added `functions/src/learning_v2/firestore_progress_event_store.ts`. The adapter
+now has an explicit transaction-only boundary, resolves the immutable Season
+revision and approved Episode revision before allowing operation/attempt reads,
+checks the server-derived account scope hash, compares exact Season membership,
+and binds operation/attempt document paths to the canonical Season revision and
+Episode identity. All current progress-event reads happen before the two writes.
+The callable remains unexported until snapshot/evidence/star mutation and delayed
+terminal adjudication are part of the same server transaction.
+
+Evidence: progress-event, callable, and adapter unit packet **3 suites / 11
+tests PASS**. Targeted TypeScript reports no error in the new adapter; the
+command still surfaces a pre-existing unrelated error in
+`content_studio/episode_lifecycle_transition_repository.ts:66` (`reason` union
+narrowing). No deploy, commit, push, or production write.
+
+Task 2.4 remains partial. The adapter still needs a real emulator fixture with
+canonical Season/Episode documents and Storage objects, account isolation rules,
+snapshot/evidence/star writes, delayed terminal handling, and callable export
+only after those gates pass.
+
+Exact next executable task: build the deterministic emulator fixture and RED
+cases for forged Season/Episode refs, cross-account scope, stale revisions,
+duplicate/out-of-order operations, and transaction read-before-write ordering;
+then make the adapter GREEN against the emulator.
+
+## 14.02 — Adversarial review: identity and replay hardening (2026-07-17)
+
+The independent adversarial review found two P1 risks in the transaction
+prototype: the account scope was only an opaque caller option, and malformed
+stored operations could be replayed as accepted. The first is now hardened:
+the adapter requires server-derived `stableUid` plus `accountGeneration` and
+derives the scope hash internally with the versioned
+`v2-progress-account-scope.v1` hash. The second is fixed by validating the exact
+operation envelope, request fingerprint, attempt hash, and canonical attempt
+ref before replay. Replay is checked before fresh pin validation so an immutable
+previous receipt can be returned after a later archive without creating a new
+mutation.
+
+Evidence: focused packet **3 suites / 13 tests PASS**. No deploy, commit, push,
+or production write. The review also confirmed that Task 2.4 is not complete:
+the current ledger still lacks canonical evidence/non-assessment materialization,
+bounded snapshot/index updates, derived stars/access deltas, delayed terminal
+receipts, and the required cloud path/account document model. These remain open
+P1 work, not hidden assumptions.
+
+Exact next executable task: add the server-owned evidence materializer and
+atomic progress snapshot/star/access delta contract to the transaction store,
+with replay keyed by canonical attempt/component fingerprints; then add the
+emulator fixture and rules isolation tests before exporting the callable.
+
+## 14.03 — Adversarial bounds and path hardening (2026-07-17)
+
+Repaired the next confirmed adversarial findings. Progress request parsing now
+rejects unsafe Season/Episode resolver identifiers (preventing path traversal or
+multi-segment aliasing), enforces a 64 KiB attempt payload cap, and limits the
+large tuple/delayed-candidate arrays before canonical sanitization. The malformed
+operation replay test is green, and account scope is derived from stable UID plus
+generation rather than accepted as an opaque server option.
+
+Evidence: focused packet **3 suites / 14 tests PASS**. The independent review
+still reports unresolved P1 requirements: canonical evidence/non-assessment
+materialization, bounded snapshot/index updates, derived stars/access deltas,
+delayed terminal receipts, same-opId cross-key replay suppression, self-
+describing account/generation ledger records, and Firestore rules/emulator
+proof. These are explicitly open; Task 2.4 is not complete and callable remains
+unexported.
+
+Exact next executable task: define and test the server-owned evidence mutation
+envelope (including component fingerprint, tuple cardinality, star/access delta,
+and bounded snapshot index), then implement it atomically in the transaction
+adapter before adding emulator fixtures and rules.
+
+## 14.04 — Separate evidence materialization contract (2026-07-17)
+
+Added `progress_event_evidence.ts` with a server-owned
+`v2-progress-evidence-bundle.v1` seam. It validates each typed learning or
+non-assessment body against the exact source attempt, enforces bounded body
+counts, rejects duplicate tuple materialization across both categories, hashes
+each body separately, and emits a deterministic component fingerprint. This
+matches the plan's rule that the V2 attempt envelope itself is not hashed as a
+single learning-evidence object.
+
+Evidence: expanded focused packet **4 suites / 16 tests PASS**. The contract is
+not yet wired into Firestore writes; stars/access deltas, bounded snapshot/index
+projection, delayed terminal receipts, same-opId cross-key suppression, and
+rules/emulator proof remain open P1 work. No deploy, commit, push, or production
+write.
+
+Exact next executable task: add the evidence bundle and canonical component
+fingerprint to the transaction operation contract, then implement atomic
+account-scoped evidence/index/star/access writes with replay tests.
+
+## 14.05 — Operation ledger component fingerprint (2026-07-17)
+
+Extended `v2-progress-event-operation.v1` with a required 64-hex
+`componentFingerprint`. New operations derive the initial fingerprint from the
+canonical attempt ref; the subsequent evidence bundle is the planned source for
+the full component fingerprint once it is wired into the request. Replay
+validation now requires this field, preventing a partial or malformed ledger
+record from being returned as a successful receipt.
+
+Evidence: focused packet remains **4 suites / 16 tests PASS**. This is a ledger
+contract increment, not completion of atomic evidence/star/access mutation.
+No deploy, commit, push, or production write.
+
+## 14.31 — Server-owned score resolver seam (2026-07-17)
+
+Added `functions/src/learning_v2/server_score_resolver.ts` and its focused
+contract tests. `resolveServerScore` accepts only a Functions-side evaluator,
+canonical attempt ref, exact activity/slot/compatibility identity, pinned
+scoring-policy ref, result code, and materialized evidence fingerprint. It
+returns hash-pinned `v2-server-score-resolution.v1`; positive scores are
+rejected for `UNCERTAIN`, `INVALID_AUDIO_OR_SYSTEM`, and `SKIPPED`, and any
+tampered hash or context mismatch fails closed. Added
+`deriveProgressProjectionFromServerScore` and a transaction-plan seam that
+ignores client candidate stars when a trusted resolution is present; without
+that resolution, positive client projections remain rejected.
+
+`ProgressEventStore` now has optional `resolveServerProjection` called only
+after canonical Season/Episode pin validation. The Firestore adapter exposes an
+optional server callback receiving request, canonical attempt/evidence, pinned
+Episode artifact, and current best slot score; it validates the returned
+resolution before deriving the effective projection. Replay ordering remains
+unchanged, and no resolver means the existing zero-only fail-closed behavior.
+
+Evidence: focused score/progress packet **5 suites / 20 tests PASS**; focused
+Functions typecheck reports no errors in the changed score/progress files (the
+repository still has unrelated pre-existing `src/index.ts` missing-module and
+missing-export errors). No callable export, deploy, commit, push, or production
+write. This seam is provisional until a real versioned scoring-policy resolver
+is wired and its emulator proof covers first-write, improvement, replay,
+lower-score no-op, and forged-client-delta cases.
+
+## 14.27 — Server account binding for progress callable (2026-07-17)
+
+The default progress authorization seam now resolves the canonical stable UID,
+reads the server-owned account generation from `users/{stableUid}` (accepting
+the legacy `generation` field only as a compatibility read), checks
+`account_deletion_tombstones/{stableUid}`, and returns a strict binding. The
+handler recomputes the account scope hash and rejects a mismatched request.
+Injected string authorizers remain available only for focused tests; the
+production default returns the binding object.
+
+Evidence: callable-focused **1 suite / 7 tests PASS**; complete progress packet
+**7 suites / 30 tests PASS**. The positive-star path remains intentionally
+fail-closed until a server-owned scorer is wired. App Check transport proof,
+production configuration guard, real progress Firestore/Storage emulator, and
+callable export remain open. No deploy, commit, push, or production write.
+
+## 14.24 — Progress negative integration cases and security review (2026-07-17)
+
+The progress adapter integration coverage now includes three fail-closed cases:
+an archived Season rejects a new mutation before writes, a mismatched account
+scope is rejected before canonical resolution, and a substituted Episode
+artifact is rejected before writes. The settled replay rule remains unchanged:
+an already recorded immutable operation may be returned as a duplicate after a
+later archive; changing that would require an owner decision because it would
+alter the recorded §14.02 contract.
+
+Evidence: the integration file is **1 suite / 4 tests PASS** and the combined
+progress packet is **7 suites / 26 tests PASS**.
+
+An independent security/accessibility review found P1 blockers before exposing
+the callable: client-controlled star candidate/delta data must not mint server
+rewards; callable authorization must bind the server account generation and
+deletion-tombstone state; and user progress paths must not collide through the
+`safe(stableUid)` replacement strategy. P2 gates remain transport-level App
+Check emulator proof plus a production guard against disabling App Check,
+stable error mapping in Admin callables, and accessibility contracts when V2
+screens are introduced. No deploy, commit, push, or production write.
+
+## 14.25 — Focused progress packet rerun (2026-07-17)
+
+Reran the current seven-suite progress packet after the rules and integration
+changes: **7 suites / 23 tests PASS** before the three new negative cases were
+added. The rules emulator remains **1 suite / 425 tests PASS**. The next close
+step is to add the P1 RED tests and repair server-owned projection/account path
+binding before any callable export.
+
+## 14.23 — Focused progress packet rerun (2026-07-17)
+
+Reran the complete current progress adapter packet after the rules change:
+`npx jest --config jest.config.js --runTestsByPath
+src/learning_v2/progress_event.test.ts
+src/learning_v2/progress_event_callable.test.ts
+src/learning_v2/progress_event_evidence.test.ts
+src/learning_v2/progress_event_projection.test.ts
+src/learning_v2/progress_event_transaction_plan.test.ts
+src/learning_v2/firestore_progress_event_store.test.ts
+src/learning_v2/firestore_progress_event_store.integration.test.ts
+--runInBand --no-cache` — **7 suites / 23 tests PASS**.
+
+This confirms the local schema, evidence materialization, projection, callable
+auth/AppCheck adapter, transaction ordering, and adapter integration double
+remain green. It does not replace the required live Firestore/Storage progress
+emulator or the remaining snapshot, delayed-receipt, curriculum, admin, and
+release gates. No deploy, commit, push, or production write.
+
+## 14.26 — P1 progress isolation guard (2026-07-17)
+
+The progress transaction plan now fails closed when a client submits a positive
+performance/access-star delta that has not been produced by a trusted server
+scorer. This intentionally blocks positive first-write claims until the scorer
+is wired; it prevents the current callable from minting rewards from client
+fields. Two focused rejection cases cover first-write and improvement claims.
+
+Evidence/projection paths now use the canonical server-derived account scope
+hash (stable UID plus account generation), not a character-replacing UID path.
+An integration case proves `a/b` and `a_b` cannot collide. The evidence record
+also stores the scope hash for self-description.
+
+Evidence: focused progress packet **7 suites / 28 tests PASS**; adapter
+integration **1 suite / 5 tests PASS**; `git diff --check` clean. A literal
+pre-fix RED run was not captured, so this guard remains provisional until a
+reproducible RED/GREEN record and server-owned scorer are added. Callable
+generation/tombstone binding and App Check transport proof remain open. No
+deploy, commit, push, or production write.
+
+Exact next executable task: carry the typed evidence bundle through the request
+and transaction, persist its separately hashed refs and bounded index under the
+server-derived account, and apply deterministic star/access deltas exactly once.
+
+## 14.06 — Same-attempt cross-key suppression (2026-07-17)
+
+Hardened `applyProgressEvent` against duplicate side effects when the same
+`opId` and attempt hash arrive under a different idempotency key. The attempt
+ledger now returns an idempotent duplicate result immediately instead of
+creating a second operation record; a differing body hash still rejects with
+`v2_progress_attempt_op_reused`. This is the first explicit replay guard for
+the plan's same-attempt/same-component requirement, pending the full evidence
+component receipt.
+
+Evidence: focused packet **4 suites / 17 tests PASS**. Atomic evidence refs,
+bounded snapshot/index, star/access deltas, delayed terminal receipts, rules,
+and emulator proof remain open. No deploy, commit, push, or production write.
+
+Exact next executable task: extend the request with the typed evidence bundle,
+materialize and persist its refs in the same transaction, and derive/apply
+best-star/access projections without allowing purchased access to enter mastery.
+
+## 14.07 — Evidence bundle wired into progress-event request (2026-07-17)
+
+The typed evidence bundle is now required in `ProgressEventRequest`, validated
+against the canonical attempt ref during parsing, and materialized again inside
+`applyProgressEvent`. Its deterministic component fingerprint participates in
+the request fingerprint and is persisted in the operation envelope. A request
+cannot submit an attempt without an explicit (possibly empty) evidence/non-
+assessment bundle, and a bundle for another attempt is rejected before any
+ledger read/write.
+
+Evidence: focused packet **4 suites / 17 tests PASS**. The Firestore adapter has
+not yet persisted the materialized refs or applied star/access projections;
+delayed receipts, cloud account document model, rules, and emulator proof remain
+open. No deploy, commit, push, or production write.
+
+Exact next executable task: extend `ProgressEventStore` with an atomic
+`writeEvidenceMaterialization`/snapshot projection contract, persist the refs
+under the server-derived account and immutable pin dimensions, and apply
+deterministic earned-star/access deltas exactly once.
+
+## 14.08 — Evidence refs enter the transaction write set (2026-07-17)
+
+Extended `ProgressEventStore` with mandatory
+`writeEvidenceMaterialization(request, materialized)`. `applyProgressEvent` now
+materializes and writes typed evidence/non-assessment refs before creating the
+operation receipt, so a successful ledger cannot exist without the corresponding
+component materialization. The Firestore adapter writes self-describing refs
+under `users/{stableUid}/v2_progress/{seasonRevisionId}/episodes/{episodeId}/evidence/{tupleKey}`
+with account generation, immutable pin, and component fingerprint metadata.
+Calls outside a transaction fail closed; focused tests cover that boundary.
+
+Evidence: focused packet **4 suites / 17 tests PASS**. Snapshot/index projection,
+best-star/access deltas, delayed terminal receipts, collision-safe evidence
+replay, rules, and emulator proof remain open. No deploy, commit, push, or
+production write.
+
+Exact next executable task: add bounded snapshot/index reads and deterministic
+earned-star/access delta application to the same transaction, with duplicate
+materialization replay and purchased-access/mastery separation tests.
+
+## 14.09 — Deterministic star/access projection enters transaction (2026-07-17)
+
+Added the server request projection (`starSlotId`, previous best, candidate
+stars, activity and compatibility identity) and reused the existing pure
+`applyBestPerformanceStars` formula. The parser rejects invalid slot/activity
+identity and star ranges; the derived projection always has
+`accessStarsPurchasedDelta: 0`, keeping purchased boosts outside earned-star and
+mastery evidence. `applyProgressEvent` now writes the projection after evidence
+materialization and before the operation receipt. The Firestore adapter stores a
+self-describing slot projection under the same account/Season/Episode scope.
+
+Evidence: focused packet **4 suites / 17 tests PASS**. A RED TypeScript cast
+failure was fixed before GREEN. Snapshot/index merge semantics, duplicate-safe
+projection reads, delayed receipts, rules, and emulator proof remain open; no
+callable export, deploy, commit, or production write.
+
+Exact next executable task: replace projection `create` with bounded
+read/compare/update semantics for best-score replay, add snapshot/index
+materialization and purchased-access separation tests, then run the emulator
+transaction gate.
+
+## 14.10 — Best-score compare/update semantics (2026-07-17)
+
+Replaced the unconditional slot-projection create path with a transaction read
+and compare/update rule. Existing best stars at or above the candidate produce a
+no-op; only a strictly better `0..3` score replaces the projection. Invalid
+stored best-score state fails closed. The pure helper
+`shouldApplyProgressProjection` covers first write, improvement, replay/no-op,
+and malformed state; the projection still carries `accessStarsPurchasedDelta: 0`.
+
+Evidence: expanded focused packet **5 suites / 19 tests PASS**. This closes only
+best-score replay semantics. A full bounded snapshot/index merge, materialized
+evidence replay read, delayed terminal path, Firestore rules, and emulator
+transaction proof remain open. No deploy, commit, push, or production write.
+
+Exact next executable task: add account-scoped bounded snapshot/index documents
+to the transaction read/write set and prove that duplicate materialization and
+lower-score retries cannot grow the index or award a second delta.
+
+## 14.11 — Firestore transaction read-before-write ordering correction (2026-07-17)
+
+The compare/update projection read was initially invoked after attempt/evidence
+writes, which would violate Firestore transaction ordering. The call order is
+now corrected: projection read/compare/update runs immediately after all
+canonical validation and idempotency reads, before attempt and evidence writes.
+The focused packet remains **5 suites / 19 tests PASS**.
+
+This correction does not close snapshot/index growth, evidence replay reads,
+delayed terminal receipts, rules, or emulator proof. No deploy, commit, push, or
+production write.
+
+Exact next executable task: add bounded evidence-index reads before the write
+set, then write snapshot/index and projection in one deterministic transaction
+with duplicate and lower-score retry fixtures.
+
+## 14.12 — Bounded evidence-index merge contract (2026-07-17)
+
+Added `mergeProgressEvidenceIndex`. It merges typed materialization refs by
+tuple key, treats an identical body hash as an idempotent no-op, rejects a
+conflicting body hash, and fails closed when the bounded index limit is invalid
+or exceeded. This is the deterministic pure operation the Firestore transaction
+will use after its read phase; it prevents replay from growing the index.
+
+Evidence: expanded focused packet **5 suites / 20 tests PASS**. The merge is not
+yet wired into a cloud snapshot document, and the transaction still needs a
+true all-reads-before-writes preparation phase for evidence and projection.
+Stars/access, delayed receipts, rules, emulator proof, and callable export
+remain open. No deploy, commit, push, or production write.
+
+Exact next executable task: introduce the transaction preparation seam that
+reads existing bounded evidence index and best-score projection before any
+write, applies these pure merges, then commits evidence refs, snapshot/index,
+projection and operation atomically.
+
+## 14.13 — Pure transaction preparation plan (2026-07-17)
+
+Added `prepareProgressTransactionPlan`, which combines the two deterministic
+read-phase decisions: bounded evidence-index merge and best-score projection
+comparison. It returns the next bounded index, whether a strictly better star
+projection should be written, the projection itself, and the evidence component
+fingerprint. This is deliberately pure and does not perform Firestore writes;
+the adapter can now consume one plan after reading existing state, then commit a
+single write set.
+
+Evidence: expanded focused packet **6 suites / 21 tests PASS**. The plan is not
+yet wired into the Firestore adapter, whose current methods still perform their
+own reads. Snapshot document schema, delayed terminal receipts, rules,
+emulator proof, and callable export remain open. No deploy, commit, push, or
+production write.
+
+Exact next executable task: refactor the Firestore adapter into explicit
+prepare/read and commit/write phases using this plan, then add emulator tests
+for duplicate evidence, lower-score retry, bounded index overflow, and
+all-reads-before-writes ordering.
+
+## 14.14 — Firestore adapter prepare/commit split (2026-07-17)
+
+The adapter now exposes `prepareTransactionPlan` and keeps a transaction-local
+plan. It reads the existing slot projection and each incoming evidence ref
+before any write, runs the pure bounded merge/best-score decision, and records
+which evidence keys already exist. Commit methods then only write the prepared
+projection/evidence/attempt/operation set; they no longer perform projection
+reads after writes. Existing evidence keys are skipped, and an unprepared
+commit fails closed with `progress_transaction_plan_required`.
+
+Evidence: focused packet **6 suites / 21 tests PASS**. The split is implemented
+but still lacks a live Firestore emulator fixture, bounded snapshot document,
+delayed terminal path, rules isolation, and callable export. No deploy,
+commit, push, or production write.
+
+Exact next executable task: add the emulator fixture with immutable Season and
+Episode Storage objects, invoke the prepared transaction twice, and prove
+duplicate evidence and lower-score retries produce no second refs/delta while
+all reads precede writes.
+
+## 14.15 — Existing projection update correctness (2026-07-17)
+
+Closed a transaction detail in the prepare/commit split: when a prepared plan
+improves an existing slot projection, the commit now uses `transaction.set`
+with replacement; only a first projection uses `transaction.create`. This
+prevents a valid higher-score retry from colliding with the existing document,
+while equal/lower scores remain no-op. Focused packet remains **6 suites / 21
+tests PASS**.
+
+The live emulator proof, bounded snapshot/index document, delayed terminal
+receipts, rules, and callable export remain outstanding. No deploy, commit,
+push, or production write.
+
+## 14.01 — Canonical resolved-pin adjudication seam (2026-07-17)
+
+Extracted and tested `assertResolvedProgressPins`. The transaction adapter now
+adjudicates the resolved Season envelope and resolved immutable Episode artifact
+together: Season must be approved and match the requested Season ID, its pinned
+Episode membership must match exactly, and the resolved Episode must be approved
+with matching identity, revision, content hash, and revision fingerprint. This
+keeps syntactic request parsing separate from server-owned canonical evidence.
+
+Evidence: progress-event, callable, and Firestore adapter packet **3 suites / 12
+tests PASS**. Targeted TypeScript has no error in the new V2 progress files; the
+command still reports the pre-existing unrelated lifecycle union-narrowing error
+at `content_studio/episode_lifecycle_transition_repository.ts:66`. No deploy,
+commit, push, or production write.
+
+Task 2.4 remains partial. The next required evidence is a Firebase emulator
+fixture with real immutable Season/Episode documents and Storage objects,
+negative cross-account/pin tests, idempotent replay and out-of-order behavior,
+and rules denial coverage. Only after that can the callable be exported.
+
+## 14.16 — Phase 02 regression checkpoint (2026-07-17)
+
+Re-ran the broader existing Phase 02/root guard packet after the transaction
+prepare/commit refactor. All **7 suites / 56 tests PASS**: local progress
+storage/outbox, reducer, checkpoint projection, evidence policy, attempt hash
+chain, and access boost policy. This confirms the new server seams did not
+regress the already-proven local reducer and economy formulas.
+
+The global Phase 02 gate is still open because the server emulator, cloud
+snapshot/index, delayed terminal, rules, and callable export requirements are
+not yet satisfied.
+
+## 14.18 — Existing lifecycle emulator regression (2026-07-17)
+
+Ran the real Firestore/Storage emulator lifecycle gate after the progress
+transaction refactor:
+`npm run test:emulator:v2-episode-lifecycle` — **1 suite / 1 test PASS**.
+The emulator still proves canonical Season/Episode approval, pin replacement,
+orphan cleanup, and unrelated-season preservation. The Java runtime emitted its
+known deprecated `sun.misc.Unsafe` warning, but the script exited successfully.
+
+This is a regression checkpoint, not the new progress-event emulator gate. The
+dedicated progress fixture with account isolation, evidence/index replay,
+snapshot/star/access writes, delayed terminal receipts, and rules denial is
+still required. No deploy, commit, push, or production write.
+
+## 14.19 — Progress adapter transaction integration double (2026-07-17)
+
+Added `firestore_progress_event_store.integration.test.ts` with mocked canonical
+Season/Episode resolvers and a Firebase transaction-shaped double. It exercises
+the real adapter wiring and `applyProgressEvent` together: canonical pin reads,
+operation/attempt reads, projection/evidence index reads, then the projection,
+attempt, evidence, and operation write set. The test initially exposed a real
+ordering bug: replay lookup required `pinnedRequest` before pin validation. The
+operation ledger path was moved to an account-scoped key that can be read before
+fresh pin validation; canonical Season/Episode validation still gates all new
+mutations.
+
+Evidence: combined progress packet **7 suites / 23 tests PASS**. This is a
+transaction integration double, not the Firebase emulator with real immutable
+Storage objects. Snapshot schema, delayed terminal receipts, rules isolation,
+and callable export remain open. No deploy, commit, push, or production write.
+
+Exact next executable task: run the same adapter flow against Firestore/Storage
+emulators with real canonical artifacts, then add cross-account and archived-
+Season replay cases before exporting the callable.
+
+## 14.20 — Operation path keeps Season dimension before pin validation (2026-07-17)
+
+The integration test exposed and the follow-up review corrected a path tradeoff:
+operation replay must be readable before fresh pin validation, but its ledger
+path must still include the immutable Season dimension. `readOperation` now
+accepts the request's `seasonRevisionId` as a non-trusted path hint, while the
+adapter validates the canonical Season/Episode before any new mutation. The
+Firestore operation path is again account + Season revision + idempotency key;
+the operation envelope remains self-describing and replay validation remains
+strict.
+
+Evidence: combined progress packet **7 suites / 23 tests PASS**. The real
+Firestore/Storage progress emulator, snapshot schema, delayed receipts, rules,
+and callable export remain open. No deploy, commit, push, or production write.
+
+## 14.21 — Rules denial regression for progress ledgers (2026-07-17)
+
+Added the new top-level V2 progress operation and attempt ledgers to the
+server-only rules corpus and reran the Firestore rules emulator:
+`npm run test:emulator:v2-authoring-rules` — **1 suite / 421 tests PASS**.
+The emulator logs expected `PERMISSION_DENIED` responses for client writes;
+these are the intended deny-only assertions, not test failures.
+
+This closes only the direct rules regression for the ledger collections. Nested
+account progress paths, real progress transaction writes, snapshot/index,
+delayed terminal receipts, and callable export still require dedicated proof.
+No deploy, commit, push, or production write.
+
+## 14.17 — Prepare-before-write contract test (2026-07-17)
+
+Added an explicit event-order test around `applyProgressEvent`: canonical
+validation, operation/attempt reads, and `prepareTransactionPlan` must occur
+before projection, attempt, evidence, and operation writes. The fake store now
+records the sequence, making a future read-after-write regression fail in the
+focused contract packet rather than only in a Firestore emulator.
+
+Evidence: focused packet **6 suites / 22 tests PASS**. This is a deterministic
+ordering guard, not the required live emulator proof; snapshot/index cloud
+schema, delayed receipts, rules, and callable export remain open.
+
+## 14.22 — Nested progress-path rules denial (2026-07-17)
+
+Added client-denial coverage for nested account progress evidence documents
+under `users/{stableUid}/v2_progress/{seasonRevisionId}/episodes/{episodeId}/evidence/{tupleKey}`.
+The test covers get/create/update/delete, so client SDK access cannot bypass
+the server-only progress ledger boundary through a deeper path.
+
+Evidence: `npm run test:emulator:v2-authoring-rules` — **1 suite / 425 tests
+PASS**. The emulator's `PERMISSION_DENIED` log lines are expected by the
+deny-only assertions. Real progress transaction emulation, snapshot/index,
+delayed terminal receipts, callable export, and the full curriculum/admin
+integration remain open. No deploy, commit, push, or production write.
+
+## 14.31 — Exact next task after live emulator (2026-07-17)
+
+The live transaction gate is green. The next bounded task is the
+server-owned scoring seam: derive a canonical performance-star candidate from
+the pinned Episode activity policy and validated attempt/evidence result, then
+compute the best-score delta against the transaction's stored slot. The client
+must no longer be able to submit `candidateStars`, `performanceStarsDelta`, or
+`accessStarsEarnedDelta` as authoritative values. Until this resolver exists,
+positive claims remain fail-closed by design. Required proof is RED/GREEN for
+first-write positive score, improvement, replay, lower-score no-op, and a forged
+client delta; then rerun the live emulator and the 7-suite packet. No callable
+export or release gate may advance on the current fail-closed placeholder.
+
+## 14.29 — Live progress Firestore/Storage emulator gate (2026-07-17)
+
+Added and ran `npm run test:emulator:v2-progress`. The test creates canonical
+immutable Episode and Season records plus content-addressed Storage objects,
+resolves them through the real adapter, writes zero-star scoped projections,
+attempt/evidence/operation records for two accounts, verifies the account paths
+are distinct, denies direct client writes through Rules, and rejects a new
+mutation after the Season is archived without creating its operation ledger
+entry.
+
+Evidence: **1 suite / 2 tests PASS** in the real Firestore/Storage emulators.
+The command initially exposed and fixed three real fixture/adapter issues:
+the named test app did not satisfy the adapter's default Storage lookup, the
+Season lifecycle document was incorrectly nested instead of separate, and the
+second account reused the first attempt's evidence ref. The final fixture uses
+the strict episode body validator; no validation bypass remains.
+
+The emulator emits the expected `PERMISSION_DENIED` log for the Rules denial
+assertion and the known Java `sun.misc.Unsafe` warning. No deploy, commit, push,
+or production write.
+
+## 14.30 — Post-emulator regression packet (2026-07-17)
+
+After the live emulator fixture was repaired, the focused local progress packet
+was rerun at **7 suites / 30 tests PASS**, the generator plan at **1 suite / 5
+tests PASS**, and the Firestore Rules emulator at **1 suite / 425 tests PASS**.
+The live progress emulator remains **1 suite / 2 tests PASS**. No deploy,
+commit, push, or production write.
+
+## 14.28 — Current exact next executable task (2026-07-17)
+
+The next task is a real Firestore/Storage emulator proof for the progress
+transaction adapter. It must create canonical immutable Season and Episode
+revision records plus Storage objects, submit one valid zero-star evidence
+event, verify operation/attempt/evidence/projection writes, prove account-A
+isolation from account-B, deny client reads/writes through Firestore Rules, and
+prove archived/new-mutation rejection. It must not weaken the settled replay
+rule from §14.02. The required command is a dedicated `functions` emulator
+script with Firestore and Storage, followed by the 7-suite progress packet,
+rules emulator, `git diff --check`, and a fresh security review. Only after
+that gate can the callable export and the server-owned scorer be advanced.
+
+Current verified state: progress packet **7 suites / 30 tests PASS**, callable
+focused **1 suite / 7 tests PASS**, generator DAG **1 suite / 5 tests PASS**,
+rules emulator **1 suite / 425 tests PASS**. No deploy, commit, push, or
+production write. Preserve all dirty/untracked V2 worktree files.
+
+## 14.23 — Admin generator V2 plan foundation (2026-07-17)
+
+Audited the current Admin Content Factory. Its UI remains the legacy
+`language-factory` route rendered inline by `admin/v2/scripts/admin-core.js`;
+there is no separate V2 generation route, stage DAG, or ModeTemplate/
+ActivityInstance/Episode/Season localization flow wired into the admin yet.
+
+Added a bounded, pure planning slice in
+`functions/src/content_factory/generation_plan.ts`: V2 scope cardinalities are
+fixed to vertical slice=1, chapter internal=8, full season=32; all thirteen
+canonical V2 stage kinds are represented; `buildV2SeasonPlan` creates a
+deterministic season/episode DAG; and `buildV2EpisodeSubgraph` adds optional
+dialogue and Speaking Club branches without touching Firestore or generating
+content. Duplicate IDs, unknown recipes, invalid scope, and wrong cardinality
+fail closed. Legacy generation planning remains unchanged.
+
+Evidence: `Push-Location functions; npx jest --runTestsByPath
+src/content_factory/generation_plan.test.ts --no-cache --runInBand; Pop-Location`
+— **1 suite / 5 tests PASS**. Functions typecheck remains blocked by unrelated
+pre-existing missing modules/exports in `src/index.ts` (`arena_timing_observability`,
+`admin_monthly_decision_pack`, `admin_content_stages`, and related exports).
+No deploy, commit, push, or production write.
+## 14.32 — Server-owned scoring policy wiring (2026-07-17)
+
+Orbit V2 remains active and Phase 02 remains partial. The immutable pinned Episode now resolves the exact activity, star slot, template hash and scoring-policy ref; a missing code-owned evaluator fails closed, and client candidate stars cannot award progress.
+
+Status: policy resolver **4 suites / 20 tests PASS**; full progress packet **8 suites / 35 tests PASS**; live progress emulator **1 suite / 2 tests PASS**; authoring Rules emulator **1 suite / 425 tests PASS**; generator DAG **1 suite / 5 tests PASS**; access callable **3 suites / 19 tests PASS**. No deploy, commit or push.
+
+Exact next task: add a reviewed code-owned scoring-policy catalog with immutable hash/version lookup and deterministic pilot evaluators, then run the complete Phase 02 access-boost + progress emulator packet. Unknown policy, forged client fields, replay instability, or earned/purchased-star leakage into LearningEvidence must fail closed. Do not start runtime/UI or claim Phase 02 complete before this gate.
+
+Startup: read the four V2 source documents and this handover, rerun the focused policy/progress tests plus `npm run test:emulator:v2-progress` and `npm run test:emulator:v2-authoring-rules` from the isolated learning-v2-pilot worktree.
+## 14.33 — Code-owned scoring policy catalog (2026-07-17)
+
+The fail-closed scorer now has a concrete catalog seam. `server_score_policy_catalog.ts` stores an immutable body hash/ref and exposes deterministic pilot evaluators for all eight normalized result codes. Lookup requires exact policy id/version/hash and a non-empty evidence fingerprint; unknown, duplicate or mismatched policies fail closed. The resolver ignores client candidate fields and produces a stable decision hash for replay.
+
+Verification: catalog + evaluator + resolver **3 suites / 11 tests PASS**; prior progress packet **8 suites / 35 tests PASS**; progress emulator **1 suite / 2 tests PASS**; authoring rules emulator **1 suite / 425 tests PASS**; generator **1 suite / 5 tests PASS**; access callable **3 suites / 19 tests PASS**. `git diff --check` reports only normal CRLF warnings. No commit, push, deploy or production OpenAI API use.
+
+Remaining blocker: wire this catalog into the real callable's production dependency graph and prove a first-write/improvement/replay/lower-score path end-to-end with an immutable ModeTemplate fixture. Then close the Phase 02 Access Boost emulator/rules packet. Runtime/UI/voice/curriculum work remains gated until these proofs pass.
+## 14.34 — Production progress callable factory (2026-07-17)
+
+Added a bounded server-only production factory in `functions/src/learning_v2/progress_event_callable.ts`. It derives the stable account binding and generation from authorization, constructs the Firestore transactional store, injects the code-owned pilot policy catalog, and calls `applyProgressEvent`. The endpoint is intentionally not exported from `index.ts` yet, so no unconfigured callable is deployed. Positive client star claims remain fail-closed without an immutable template reader; zero-star evidence can still be accepted.
+
+Verification: callable + progress + catalog **3 suites / 23 tests PASS**; the broader scorer/store packet remains **5 suites / 23 tests PASS**; no commit, push or deploy. Exact next task: add a realistic immutable ModeTemplate artifact fixture to the live emulator and prove first-write/improvement/replay/lower-score end-to-end, then complete the Access Boost emulator/rules gate.
+## 14.35 — Progress emulator regression after callable wiring (2026-07-17)
+
+Reran the real Firestore/Storage progress emulator after the production callable factory and default scoring catalog changes. Result: **1 suite / 2 tests PASS**. The Rules `PERMISSION_DENIED` line and Java `sun.misc.Unsafe` warning are expected; Jest reports an existing open-handle warning after successful completion and requires a later cleanup pass. No deploy, commit or push.
+
+The next gate remains unchanged: add an immutable ModeTemplate fixture plus real catalog wiring to the emulator and prove positive first-write, improvement, replay and lower-score behavior, then run the Access Boost emulator/rules packet.
+## 14.36 — Access Boost real emulator/rules gate (2026-07-17)
+
+Added `functions/src/learning_v2/emulator/access_boost.emulator.test.ts` and the `test:emulator:v2-access-boost` script. The real Firestore emulator proves one server purchase, replay idempotency, concurrent identical requests (one spend plus one replay), insufficient balance, stale account generation, A/B binding isolation, and direct client Rules denial for shards, gate receipts, ledger and public quote paths.
+
+Verification: **1 suite / 5 tests PASS**. Expected `PERMISSION_DENIED` and rules expression-limit warnings come only from negative assertions; Rules were not weakened. Phase 02 now has explicit progress emulator **1/2**, Access Boost emulator **1/5**, authoring Rules emulator **1/425**. Remaining Phase 02 work is the realistic immutable ModeTemplate positive-scoring fixture and final combined gate packet.
+## 14.37 — Positive scoring emulator follow-up (2026-07-17)
+
+The dedicated positive-scoring emulator subtask was attempted but did not produce a validated fixture in this session; no unverified changes were retained. Existing progress emulator remains intentionally zero-star because its strict fixture has no ModeTemplate scoring artifact. The exact next executable task is still to add a content-addressed immutable ModeTemplate fixture, pass `scoringTemplates` plus `PILOT_SCORING_POLICY_CATALOG` to the real Firestore progress store, and prove first-write/improvement/replay/lower-score/forged-client behavior. Until that packet passes, positive production star awards and Phase 02 closure remain blocked.
+## 14.38 — Positive fixture red/rollback (2026-07-17)
+
+An attempted positive-score fixture was rejected by the strict Episode body contract before any write; the temporary test changes were removed rather than weakening validation. The canonical progress emulator is restored and green: **1 suite / 2 tests PASS**. This is a real remaining blocker, not a waived check: the next implementation must use a contract-valid ActivityInstance/Graph/StarSlot/ModeTemplate artifact and then demonstrate trusted positive scoring end-to-end.
+## 14.39 — Regression packet after positive-fixture rollback (2026-07-17)
+
+The strict-invalid positive fixture was removed; the focused server packet is green again: **8 suites / 39 tests PASS** (catalog, policy evaluator/resolver, callable, progress, transaction plan, Firestore store and integration). `git diff --check` has no content errors. Live progress remains **1 suite / 2 tests PASS** and Access Boost **1 suite / 5 tests PASS**. Positive scoring emulator evidence is still open and must not be inferred from these pure tests.
+## 14.40 — Positive scoring fixture remains open (2026-07-17)
+
+The attempted in-emulator positive scoring extension was rolled back after the strict contract rejected the mutated minimal body; the canonical zero-star emulator is green again (**1 suite / 2 tests PASS**). No validator or security rule was weakened. The server scoring catalog and callable seams remain covered by pure tests, but end-to-end positive first-write/improvement/replay/lower-score evidence is still missing and Phase 02 remains partial.
+## 14.41 - Admin V2 generation contract slice (2026-07-17)
+Added pure contract `functions/src/content_factory/v2_admin_generation_contract.ts`: strict V2 generation request parsing, immutable ModeTemplate bindings per episode, deterministic 13-stage DAG reuse, and per-target-locale localization tasks. Legacy generator/UI remain untouched.
+
+RED initially failed because the module was absent; GREEN `npx jest --runTestsByPath src/content_factory/v2_admin_generation_contract.test.ts src/content_factory/generation_plan.test.ts --no-cache --runInBand` = **2 suites / 8 tests PASS**; `git diff --check` has no content errors.
+
+Next: wire the pure seam into a server-authoritative draft-generation callable with `content.draft.write`, idempotency/audit, and emulator denial/replay/stale-pin proofs.
+
+## 14.42 - Server-authoritative V2 generation queue callable (2026-07-17)
+
+Implemented `functions/src/admin_v2_generation.ts` and `functions/src/admin_v2_generation.test.ts`. `adminCreateV2GenerationPlan` (with the explicit `adminQueueV2GenerationPlan` alias) now requires the canonical `content.draft.write` permission, parses the exact `v2-admin-generation-request.v1` envelope, resolves every pinned ModeTemplate through the immutable published resolver, and rejects missing, deprecated, replaced, or hash-mismatched pins with `v2_generation_template_pin_stale`. The callable creates one queued V2 job, canonical stage documents, locale tasks, an idempotency operation record, and an `admin_log` audit record in one Firestore transaction. A matching retry replays without duplicate writes; a reused idempotency key with a different fingerprint is rejected. No client-supplied scorer, capability, renderer, or executable code is accepted because the request contract is exact-field and immutable-template based; legacy generation queue/callables remain untouched. Both callables are exported from `functions/src/index.ts`.
+
+RED/GREEN: the new focused suite initially failed at the missing callable seam, then `Push-Location functions; npx jest --runTestsByPath src/admin_v2_generation.test.ts src/content_factory/v2_admin_generation_contract.test.ts --no-cache --runInBand; Pop-Location` passed **2 suites / 6 tests**. `git diff --check` remains clean for content. The focused tests cover permission denial, stale pin denial, first queue, deterministic replay, idempotency collision, stage/localization/audit cardinality. A real Firestore emulator callable packet is not claimed here because the immutable Storage-backed ModeTemplate fixture is still a separate open gate; the next integration task should run this callable against that fixture and direct Rules denial.
+
+## 14.42 - React-independent activity registry (2026-07-17)
+
+Completed bounded Phase 03 Task 3.1 groundwork without touching UI, voice,
+Speaking Club or legacy routes. Added `modules/learning-v2/runtime/activity_registry.ts`,
+`activity_runtime.ts` and `unsupported_activity.ts`. The registry validates a
+unique activity type, kernel/schema/renderer boundary, all five exact
+hash-pinned policy refs, canonical policy-body hash, immutable policy record and
+object pin, family/kernel compatibility, optional complete-catalog ambiguity,
+runtime microphone/speech/network capability and lazy renderer resolution.
+Unknown activity types fail with a typed recovery error; React is not imported.
+
+RED: before the runtime files existed,
+`npx jest --runTestsByPath tests/learning_v2_activity_registry.test.ts --no-cache --runInBand`
+failed at TypeScript module resolution (`TS2307`, 0 tests). GREEN: the same
+command now passes **1 suite / 6 tests** covering duplicate activity, missing or
+hash-drifted policy, same key/version with different hash, descriptor/record
+pin mismatch, unsupported capability and lazy renderer/unknown-type recovery.
+`git diff --check` has no content errors (only normal CRLF warnings). No commit,
+push, deploy or production write.
+
+This does not close Task 3.0 reference-evidence approval, nor Tasks 3.2-3.4
+(`ActivityScaffold`, six shells, routes/resume). Phase 02 positive scoring
+emulator remains the execution gate before runtime/UI rollout.
+## 14.43 — Admin callable + registry regression packet (2026-07-17)
+
+Current focused verification after the Admin V2 queue callable and React-independent activity registry additions: **5 Functions suites / 20 tests PASS** for the admin callable, admin generation contract/DAG and existing authoring callables; **1 root suite / 6 tests PASS** for the activity registry. `git diff --check` has no content errors. The callable is server-authoritative, idempotent and permission-gated; the registry is lazy, hash-pinned and capability fail-closed. Real Admin emulator proof and Phase 02 positive scoring emulator remain open.
+
+## 14.44 - Admin generation callable emulator proof (2026-07-17)
+
+Added `functions/src/content_factory/emulator/v2_generation_plan.emulator.test.ts`
+and `test:emulator:v2-generation-plan` in `functions/package.json`. The test
+loads the canonical `tests/fixtures/learning-v2/episode-01.valid.json`
+ModeTemplate, writes its exact canonical bytes to the Storage emulator with an
+immutable generation/hash, and seeds matching published Firestore version and
+lifecycle records. It proves direct client writes and reads of
+`content_v2_generation_jobs` are denied, unauthenticated callers are rejected,
+missing/hash-drifted/archived template pins fail closed, and a valid editor
+request creates one queued job with 13 unique stages, one localization task,
+one operation and one audit record. A byte-for-byte replay returns
+`replayed: true` without adding jobs, stages, operations or audits.
+
+GREEN: `Push-Location functions; npm run test:emulator:v2-generation-plan;
+Pop-Location` - **1 suite / 2 tests PASS**. Expected Rules `PERMISSION_DENIED`
+and Java `sun.misc.Unsafe` warnings are emitted only by negative assertions.
+No Rules, production callable or legacy generator behavior was weakened; no
+commit, push, deploy or production API use. Positive progress scoring and
+later runtime/UI/curriculum phases remain open.
+## 14.45 — Admin generation emulator verification (2026-07-17)
+
+Reran the real Firestore/Storage Admin V2 generation emulator after callable wiring. The packet proves direct client read/write denial, auth and stale/missing/archived ModeTemplate rejection, one queued job with 13 unique stages and localization task, operation/audit creation, and idempotent replay without duplicates. Result: **1 suite / 2 tests PASS**. Expected `PERMISSION_DENIED` and Java warnings are negative-test/runtime noise; no Rules weakening, deploy or commit. Positive scoring emulator remains the separate Phase 02 blocker.
+## 14.46 — Competitor UX evidence ledger (2026-07-17)
+
+Applied the `competitor-ux-evidence` protocol and created `docs/v2/REFERENCE_EVIDENCE_LEDGER.md`. It records traceable official sources for Duolingo sound/voice practice, Rosetta Stone speech recognition, ELSA word/sentence/speech analysis, a minimum state matrix, provisional adopt/adapt/reject decisions and the evidence approval gate. No competitor assets or UI were copied. The ledger is explicitly provisional: lawful first-hand captures, six-frame original Phraseman wireframes and owner approval are still required before Tasks 3.2–3.4 UI implementation.
+## 14.47 — Positive scoring emulator closed (2026-07-17)
+
+Closed the Phase 02 positive scoring gate in the real Firestore/Storage progress emulator. The strict Episode fixture now has a contract-valid gated star slot and content-addressed immutable ModeTemplate policy; the store resolves canonical `activityInstances` (the previous scorer adapter only looked for legacy `activities`, which was fixed at the server boundary). The emulator proves first write `1`, improvement to `3` with delta `2`, replay idempotency, lower-score no-op, and forged client candidate `3` being ignored in favor of the server policy.
+
+Verification: `npm run test:emulator:v2-progress` → **1 suite / 2 tests PASS**; focused server packet remains **8 suites / 39 tests PASS**. No validator or Rules weakening, no commit/deploy/push. Phase 02 positive scoring is no longer open; the remaining Phase 02 release task is the combined packet/manual invariant audit.
+## 14.48 — Phase 02 combined emulator packet (2026-07-17)
+
+Ran the complete bounded Phase 02 emulator packet after closing positive scoring: progress/Storage **1 suite / 2 tests PASS**, Access Boost **1 suite / 5 tests PASS**, and authoring Rules **1 suite / 425 tests PASS**. Expected `PERMISSION_DENIED`, Java warnings and Jest open-handle notices are from emulator negative assertions/shutdown; all commands exited successfully. The packet covers server-owned stars, access purchase separation, replay/concurrency, account generation/isolation, client-write denial and authoring security. No commit, deploy or push.
+## 14.49 — Phase 02 root pure packet audit (2026-07-17)
+
+Ran the normative root pure-contract command from the umbrella plan. **9 of 10 existing suites passed / 407 tests passed**; the listed `tests/learning_v2_delayed_probe_two_phase.test.ts` path does not exist in the current worktree, so that command cannot be claimed fully green. The existing delayed-probe contract suite passes. This is a plan/test-manifest drift finding to reconcile before declaring the full Phase 02 release packet complete; no substitute test was invented.
+
+## 14.50 - Phase 02 root pure packet closed (2026-07-17)
+
+Added the missing normative two-phase delayed-probe contract test at
+`tests/learning_v2_delayed_probe_two_phase.test.ts`. It uses the real
+`createProgressOutbox` API and proves that a delayed candidate remains pending
+until one terminal timing acknowledgement, repeated terminal acknowledgement
+is idempotent, and a system failure produces `not_assessed_system` without
+mastery credit.
+
+Focused GREEN: **1 suite / 2 tests PASS**. The complete normative root packet
+now passes **10 suites / 409 tests**. This closes the previously open Phase 02
+test-manifest drift. No production behavior, Rules or legacy flow was weakened;
+no commit, push or deploy was performed.
+
+## 14.51 - Phase 02 server delayed-ingestion gap (2026-07-17)
+
+Независимый аудит подтвердил, что pure-контракты, local outbox и эмуляторы
+зелёные, но release acceptance Task 2.4/2.6 пока не закрыт: `functions/src/learning_v2/progress_event.ts`
+ещё не dispatch-ит `scheduled_delayed_probe` в server-authoritative delayed
+runtime. Поэтому отсутствует production-boundary доказательство assignment/
+launch binding, terminal timed/system/protocol acknowledgement, stale/expired,
+substitution и out-of-window веток с запретом evidence до receipt. Phase 02
+остаётся `in_progress`; отдельная задача `/root/v2_delayed_ingestion` выполняет
+этот bounded integration slice с focused tests и emulator proof.
+
+## 14.52 - Server delayed-probe ingestion slice (2026-07-17)
+
+Added `functions/src/learning_v2/delayed_probe_ingestion.ts` with a server-only
+terminal ingestion seam. It derives and checks the account-generation scope,
+validates the hash-bound client candidate against server expected tuple keys,
+resolves timing/system/protocol outcome only through a server decision callback,
+creates exactly one immutable terminal receipt record, and replays an existing
+record without changing it. The seam has no evidence/projection write path;
+pre-receipt delayed candidates therefore cannot materialize LearningEvidence.
+`progress_event.ts` now explicitly rejects delayed evidence bundles before a
+terminal receipt (`delayed_evidence_requires_terminal_receipt`).
+
+Focused GREEN: `Push-Location functions; npx jest --config jest.config.js
+--runTestsByPath src/learning_v2/delayed_probe_ingestion.test.ts
+src/learning_v2/progress_event.test.ts --no-cache --runInBand; Pop-Location`
+-> **2 suites / 14 tests PASS**. Coverage includes
+one-ack timing replay, system non-assessment finalization, account-scope and
+candidate-hash/substitution rejection. This is a pure server-boundary slice;
+Firestore callable wiring and a real emulator test remain open, so Phase 02 is
+not claimed complete. No Rules weakening, commit, push or deploy.
+
+## 14.53 - V2 generation stage lifecycle seam (2026-07-17)
+
+Выполнен узкий slice Phase 04 без создания второй очереди и без вызова OpenAI.
+Добавлены `functions/src/content_factory/v2_stage_lifecycle.ts` и
+`v2_stage_lifecycle.test.ts`. Pure-модуль принимает сохранённые stage records:
+queued-стадия runnable только после успешных зависимостей; running-стадия может
+быть повторно захвачена только после истечения аренды; failed-стадия не
+повторяется после `maxAttempts`. `start` выдаёт bounded 10-минутную аренду и
+увеличивает attempts, `succeed`/`fail` очищают аренду. Firestore-транзакции,
+leases и запись артефактов остаются ответственностью существующего worker;
+legacy generation queue не менялась.
+
+В server-authoritative V2 queue callable добавлены `attempts: 0` и
+`maxAttempts: 3` в отдельные `content_v2_generation_stages` документы.
+Immutable `job.plan` не переписывается; emulator проверяет именно persisted
+stage body.
+
+RED: до реализации focused Jest завершался `TS2307: Cannot find module
+'./v2_stage_lifecycle'` (0 tests). GREEN: lifecycle suite — **1 suite / 4
+tests PASS**; admin callable regression — **2 suites / 7 tests PASS**. Первый
+emulator run выявил ошибочную проверку DAG-плана вместо stage document; после
+исправления `npm run test:emulator:v2-generation-plan` дал **1 suite / 2 tests
+PASS**. Ожидаемые `PERMISSION_DENIED`, Java `Unsafe` и Jest open-handle
+уведомления относятся к negative assertions/shutdown. No commit, push, deploy
+or production API use.
+
+Следующий шаг: присоединить pure lifecycle seam к существующему
+`content_factory_worker` через транзакционный claim/lease adapter и отдельный
+emulator RED/GREEN для dependency ordering, stale lease и retry exhaustion.
+Новый queue/worker создавать нельзя; до server-boundary proof lifecycle не
+считать завершённым.
+## 14.55 - Server-bound delayed callable and emulator packet (2026-07-17)
+
+Закрыт bounded integration slice, отмеченный в §14.51. Существующий
+`functions/src/learning_v2_delayed_callable.ts` теперь использует тот же
+server-derived auth anchor и `accountGeneration`, что и обычный V2 progress
+callable (`createProgressEventAuthorization`). Поля `stableId` и поколения в
+legacy request envelope сохранены для совместимости, но больше не являются
+источником истины: несовпадение с серверной привязкой отклоняется. Callable
+получил fail-closed App Check, регион и таймауты; legacy graph envelope и
+существующий adapter не переписывались.
+
+Добавлен `test:emulator:v2-delayed-runtime` и расширен
+`functions/src/content_studio/emulator/v2_delayed_runtime.emulator.test.ts`.
+Реальный Firestore emulator теперь доказывает: server assignment/launch
+binding, один terminal timing receipt и idempotent replay, stale assignment,
+expired launch, out-of-window non-assessment timing, provenance/probe
+substitution rejection, а также отсутствие evidence/projection в terminal
+receipt phase. Rules остаются закрытыми для прямого client access.
+
+GREEN: `Push-Location functions; npm run test:emulator:v2-delayed-runtime;
+Pop-Location` -> **1 suite / 2 tests PASS**; прежние delayed callable/adapter
+contracts -> **2 suites / 8 tests PASS**. Первый запуск выявил только ошибочный
+`Transaction.create` в emulator fixture; заменён на supported `transaction.set`
+без изменения production logic. No commit, push, deploy or production API use.
+
+Следующий точный шаг: присоединить terminal receipt к post-receipt
+`ProgressEventRequest` builder/store path и добавить отдельный emulator RED/GREEN
+для materialized delayed LearningEvidence после receipt; до этого Phase 02
+остаётся `in_progress`, несмотря на зелёный ingestion/callable packet.
+
+## 14.54 - Transactional V2 stage claim/lease adapter (2026-07-17)
+
+Добавлен `functions/src/content_factory/v2_stage_claim_adapter.ts`: существующий
+`content_factory_worker` получает транзакционный claim/lease seam поверх уже
+существующей коллекции `content_v2_generation_stages`; новая очередь не создавалась.
+Адаптер атомарно проверяет зависимости, повторно захватывает только истёкший lease,
+увеличивает attempts в пределах maxAttempts и защищает finish lease-токеном/worker ID.
+Тонкие wrapper-экспорты добавлены в `content_factory_worker.ts`, legacy callable не
+переписывался.
+
+Добавлены `functions/src/content_factory/emulator/v2_stage_claim_adapter.emulator.test.ts`
+и npm-скрипт `test:emulator:v2-stage-claim`. Реальный Firestore emulator proof:
+**1 suite / 3 tests PASS** — dependency ordering, stale lease takeover с отказом
+старого worker, retry exhaustion. Pure lifecycle + worker regression:
+**2 suites / 7 tests PASS**. No new queue, Rules/API/legacy weakening, commit,
+deploy or push. Это закрывает только claim/lease proof; полный provider → artifact
+→ release worker pipeline остаётся открытым.
+
+## 14.56 - Phase 03 Task 3.0 evidence-gate audit (2026-07-17)
+
+Проведён bounded-аудит reference pack для Phase 03 Task 3.0 в
+`docs/v2/REFERENCE_EVIDENCE_LEDGER.md`. Ledger содержит пять выбранных voice-first
+паттернов и 11 обязательных состояний (entry/locked, instruction, idle, active,
+processing, correct, partial, hint/fallback, permission/offline/error,
+completion/reward, exit/resume), а также traceable official source URLs для
+Duolingo, Rosetta Stone и ELSA. Это только Tier B/official evidence: raw competitor
+screenshots, first-hand captures и copied assets в репозитории отсутствуют.
+
+Добавлен чистый contract test `tests/learning_v2_reference_evidence_contract.test.ts`.
+Он блокирует ложное повышение статуса в `approved`, требует lawful first-hand
+capture с account/device metadata и проверяет наличие original Phraseman
+wireframe/contact-sheet, motion/audio/accessibility, offline/permission/
+interruption/resume, distinctiveness review и owner decision gates. GREEN:
+`npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts
+--no-cache --runInBand` -> **1 suite / 3 tests PASS**.
+
+Task 3.0 остаётся **provisional / approval required**. Точные недостающие
+артефакты: (1) dated first-hand capture ledger с platform/build, locale, course
+level, subscription, capture date, source/provenance и rights/use note; (2) минимум
+один оригинальный Phraseman six-frame contact sheet на каждый из пяти выбранных
+режимов; (3) motion/audio/accessibility и interruption/offline/permission/resume
+annotations; (4) distinctiveness review; (5) владелец продукта должен утвердить
+конкретную wireframe revision/hash в approval record. До появления всего пакета
+Tasks 3.2–3.4 и production UI остаются заблокированы; legacy routes не менялись.
+No commit, push, deploy or production API use.
+
+## 14.57 - Post-receipt delayed materialization seam (2026-07-17)
+
+## 14.58 - Large completion audit and current release blockers (2026-07-17)
+
+Проведён read-only аудит утверждённых umbrella и Content Studio планов по
+текущему worktree/HEAD `23c71a117`. Расширенный root contract packet зелёный:
+**19 suites / 530 tests PASS**; это подтверждает canonical identity,
+DecisionRegistry, activity/episode/curriculum validation, evidence/attempt,
+delayed contracts, progress storage/outbox, activity registry и fail-closed
+reference-evidence gate.
+
+Аудит не разрешает объявить цель завершённой. Доказанные partial/open области:
+
+- Phase 01 Task 1.4 backend client/Functions conformance mirror ещё не доказан;
+- Phase 02 требует approved-episode `createFirestoreProgressEventStore` transaction
+  E2E с конечными projection/index paths;
+- Phase 03 Task 3.0 provisional: отсутствуют lawful first-hand captures,
+  пять оригинальных six-frame contact sheets, annotations, distinctiveness review
+  и owner approval/hash; Tasks 3.2–3.4 не начаты;
+- Phase 04–05 voice runtime, P0 shells и режимы не начаты;
+- Phase 06–15 generator artifact/release pipeline, E1 device slice, 32 production
+  episodes, Speaking Club adapter, checkpoints, analytics, rollout/device gates
+  и Phase 14 owner decision не завершены.
+
+P0 release blockers: нет user-ready V2 UI/E1 author-to-device, нет 32-episode
+production release и нет rollout/device evidence. P1 next task remains the
+real approved-episode delayed store transaction E2E; no commit, push, deploy or
+production API use was performed.
+
+Закрыт следующий bounded blocker из §14.55. В `functions/src/learning_v2/delayed_probe_ingestion.ts`
+добавлен server-only `materializeDelayedTerminalEvidence`: он строит LearningEvidence и
+non-assessment bodies только из hash-bound candidate + immutable terminal receipt. До receipt
+bundle не строится; `SKIPPED`/`no_record` остаётся без ref. Для timing inside создаётся ровно
+одна assessed запись на одну terminal resolution, для out-of-window — только
+`not_assessed_for_window`, для system failure — только `not_assessed_system`; mastery/star
+projection из timing/failure receipt не создаётся.
+
+`ProgressEventRequest` теперь принимает необязательный `terminalReceipt` только для delayed
+attempt. `parseProgressEventRequest` проверяет receipt hash и canonical attempt ref, сверяет
+материализированный bundle с server builder и отклоняет evidence без receipt или подменённый
+bundle. Добавлен `buildPostReceiptProgressEventRequest`; legacy graph envelope и его path не
+изменялись. Это подключает второй phase к существующему `applyProgressEvent`/store seam, но
+полный production Firestore callable E2E с реальным approved episode остаётся отдельным gate.
+
+RED/GREEN: `functions/src/learning_v2/delayed_probe_ingestion.test.ts` -> **1 suite / 3 tests
+PASS** (receipt hash, 1:1 tuple mapping, skipped ref-free). Добавлен отдельный emulator
+`functions/src/learning_v2/emulator/delayed_materialization.emulator.test.ts` и script
+`npm run test:emulator:v2-delayed-materialization`; Firebase Firestore emulator -> **1 suite /
+1 test PASS**: no evidence before receipt, receipt/materialization hash equality, one-to-one
+mapping and persisted materialized refs. Existing delayed ingestion/progress regression -> **2
+suites / 14 tests PASS**. No commit, push, deploy or production API use.
+
+Точный следующий шаг: собрать approved-episode fixture для post-receipt `applyProgressEvent`
+через настоящий `createFirestoreProgressEventStore` и emulator transaction, чтобы подтвердить
+не только builder/Firestore materialization record, но и конечные projection/index paths;
+затем повторить Phase 02 combined packet. До этого Phase 02 остаётся `in_progress`.
+
+## 14.59 - Phase 02 combined packet after delayed store E2E (2026-07-17)
+
+Повторён полный bounded Phase 02 emulator packet после approved-episode
+transaction E2E: `test:emulator:v2-progress` **1 suite / 2 tests PASS**,
+`test:emulator:v2-access-boost` **1 suite / 5 tests PASS**,
+`test:emulator:v2-authoring-rules` **1 suite / 425 tests PASS** и
+`test:emulator:v2-delayed-progress` **1 suite / 1 test PASS**. Ожидаемые
+`PERMISSION_DENIED`, Java Unsafe и Jest open-handle сообщения относятся к
+negative assertions и shutdown; команды завершились успешно. Production
+callable/device gates всё ещё не закрыты.
+
+## 14.61 - Large audit: Content Studio acceptance remains open (2026-07-17)
+
+Запущен read-only финальный Content Studio packet из утверждённого плана.
+Результат: **6 suites / 99 tests PASS**, но **23 заявленных suites отсутствуют**
+(canonical authoring contracts, capability/mode template, preview envelope и
+route/no-progress, E1 contract/integration, rollout/release and several Admin
+stage/artifact/season-bundle gates). Это прямой acceptance-gap, а не устаревшая
+таблица. Content Studio Tasks 6–15 и E1 author-to-device поэтому остаются
+partial/not-started; нельзя объявлять generator или 32-episode release готовыми.
+
+## 14.62 - Phase 01 Task 1.4 backend conformance mirror verified (2026-07-17)
+
+Проверен существующий Functions-side adapter
+`functions/src/learning_v2/contracts.ts` и его corpus test
+`functions/src/learning_v2/contracts.test.ts`. Это не shadow schema: adapter
+реэкспортирует canonical modules, validators, canonical JSON/hash, attempt и
+evidence materialization refs, а также публикует фиксированный schema/hash
+manifest. RED/GREEN focused command:
+`npx jest --config functions/jest.config.js --runTestsByPath functions/src/learning_v2/contracts.test.ts --no-cache --runInBand`
+-> **1 suite / 85 tests PASS**. Valid episode package, canonical hashes и весь
+invalid corpus дают тот же issue-code/path результат, что и root validator.
+Task 1.4 bounded mirror доказан; production callable/release gates остаются
+отдельными задачами.
+
+## 14.63 - Real Firestore post-receipt delayed progress E2E (2026-07-17)
+
+## 14.64 - Current Content Studio regression pass (2026-07-17)
+
+## 14.65 - Current Functions Learning V2 regression pass (2026-07-17)
+
+## 14.66 - Additive lesson-bundle.v2 release contract (2026-07-17)
+
+## 14.67 - Client published-release loader/cache slice (2026-07-18)
+
+Mission: продолжаем Learning V2 к пилотному 32-episode season: канонический content/release seam, server-authoritative progress and stars/access, voice modes, Content Studio generator, device delivery, rollout и final release evidence. Legacy surface не удаляется до Phase 14 owner decision.
+
+Изменения: shared `modules/learning-v2/content/release_manifest.ts` теперь содержит published-view type, cache-key builder и `validatePublishedV2SeasonManifest`; `release_cache.ts` реализует bounded TTL/LRU LKG cache; `release_loader.ts` делает network-first load, validate-before-cache и LKG fallback. Functions adapter реэкспортирует shared contract. Тест `tests/learning_v2_release_loader.test.ts` проверяет drift rejection, bounded cache/LKG и non-caching invalid response.
+
+RED был compile-level (отсутствовали cache/loader exports). GREEN: `npx jest --runTestsByPath tests/learning_v2_release_loader.test.ts functions/src/content_factory/v2_release_adapter.test.ts --no-cache --runInBand` -> root **1 suite / 3 tests PASS**; Functions adapter ранее **1 suite / 4 tests PASS**. `git diff --check` без whitespace errors.
+
+Status: canonical release mirror — bounded completed; client loader/cache — bounded completed, production wiring open; Phase 02 — in_progress; voice/Speaking Club V2 — not started; Content Studio Tasks 6-15/E1 — partial; UI evidence/owner approval — provisional; rollout/release — not started.
+
+Worktree `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch `codex/learning-v2-pilot`, HEAD `23c71a1178fee3c1621e35d9a03919b5f80bd47a`; no commit/push/deploy/API use. Preserve all dirty/untracked V2 files.
+
+Exact next task in a fresh session: run `git status --short`, verify the four mandatory V2 documents, independently review production progress callable exposure and account-generation binding before any `functions/src/index.ts` export. Decide whether `createProgressEventProductionCallable` can be exported; if yes, add emulator callable transport tests for auth anchor, account generation, replay and forged scope; if no, record exact blocker. Re-run combined Phase 02 emulator packet and append counts. Do not mark Phase 02 complete while callable/device/release evidence is open.
+
+Startup: `Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; `Get-Content docs/v2/HANDOVER.md -Tail 180`; `npx jest --runTestsByPath tests/learning_v2_release_loader.test.ts --no-cache --runInBand`; `git status --short`.
+
+### Находки и предложения
+Loader/cache is safe as a pure offline seam but is not connected to a production pointer or UI. Close callable auth review, then author-to-device delivery, then approved voice-first UI. Keep release bodies immutable and cache keys hash-bound; never cache unvalidated network payloads.
+
+Добавлен bounded pure adapter
+`functions/src/content_factory/v2_release_adapter.ts` и его тест
+`v2_release_adapter.test.ts`. Он не создаёт пятую CourseRelease surface и не
+меняет `course-release.v1`: описывает hash-external
+`V2SeasonReleaseManifestBody/Record`, server-bound environment pointer,
+ios/android support pair, full-season 32-unit guard, rollout states/pause
+reason и same-scope rollback target. Self hash/object/record metadata в body
+запрещены; `manifestHash` вычисляется только от canonical body.
+
+GREEN: **1 suite / 4 tests PASS**. Это additive contract seam; approved season
+resolution, artifact materialization, Admin release callable, client loader,
+device receipts и rollout gates остаются открытыми.
+
+Широкий content-factory packet `npx jest --config jest.config.js
+src/content_factory --no-cache --runInBand` зелёный: **29 suites / 91 tests
+PASS**. Включены artifact storage/repository, release sealing/review/surface,
+generation plan, Admin stage lifecycle/claim и course-release contracts. Это
+подтверждает reusable infrastructure, но не доказывает V2 lesson-bundle
+activation/rollback через Admin UI или E1 device delivery.
+
+Широкий bounded Functions runtime packet `npx jest --config jest.config.js
+src/learning_v2 --no-cache --runInBand` зелёный: **18 suites / 162 tests PASS**.
+Он покрывает progress event/store/projection/evidence, server scoring/catalog,
+delayed callable/ingestion/materialization и conformance seams. Это не закрывает
+native UI/device, App Check transport in production, rollout или release gates.
+
+Выполнен широкий, но ограниченный каталогом Functions Content Studio:
+`Push-Location functions; npx jest --config jest.config.js src/content_studio
+--no-cache --runInBand; Pop-Location` -> **29 suites / 221 tests PASS**.
+Это сильнее старого manifest-аудита (который ссылался на отсутствующие имена
+части исторических suites), но не заменяет E1 author-to-device, preview lab,
+lesson-bundle release или rollout gates. Legacy authoring paths не удалялись,
+Rules и production API не ослаблялись.
+
+Закрыт bounded следующий шаг из §14.57. Добавлен
+`functions/src/learning_v2/emulator/delayed_progress_event.emulator.test.ts` и
+npm-команда `test:emulator:v2-delayed-progress`. Тест поднимает реальные
+Firestore + Storage emulators, записывает approved immutable Episode revision и
+approved Season revision с canonical bytes/object metadata, затем создаёт
+`createFirestoreProgressEventStore` с настоящими season/episode readers.
+
+Проверенный сценарий: до terminal receipt account-scoped evidence и projection
+paths отсутствуют; server-only `ingestDelayedProbeTerminal` создаёт один
+terminal timing receipt и второй вызов возвращает тот же документ как replay;
+receipt сохраняется отдельно в `learning_v2_timing_receipts`; только после этого
+`buildPostReceiptProgressEventRequest` строит bundle из receipt и
+`applyProgressEvent` выполняет настоящую Firestore transaction. Проверены
+конечные account-scoped пути `users/{scope}/v2_progress/.../evidence`,
+`.../slots`, progress operation и attempt index; evidence содержит exact
+receipt-derived tuple/sourceAttempt. Повторный `applyProgressEvent` возвращает
+`duplicate: true` и не создаёт вторую запись.
+
+Отдельно проверен forged pre-receipt bundle: `applyProgressEvent` отклоняет его
+с `delayed_evidence_requires_terminal_receipt`, причём до этой ошибки не
+появляется ни evidence, ни операция, ни projection.
+
+GREEN:
+`Push-Location functions; npm run test:emulator:v2-delayed-progress;
+Pop-Location` -> **1 suite / 1 test PASS** (реальные Firestore/Storage
+emulators). Первый RED был compile-level: discriminated-union receipt не давал
+доступ к `timingReceiptId`; тест исправлен явным `kind === "timing"` guard,
+затем GREEN повторён npm-командой. Ожидаемое Java `Unsafe` предупреждение и
+Jest open-handle notice относятся к завершению emulator process. No Rules
+weakening, commit, push, deploy or production API use.
+
+Phase 02 всё ещё **in_progress**: этот slice доказывает store transaction и
+конечные пути, но production callable wiring/device evidence и общий combined
+release packet ещё не закрыты.
+
+Точный следующий executable task: повторить combined Phase 02 packet
+(`test:emulator:v2-progress`, `test:emulator:v2-access-boost`,
+`test:emulator:v2-authoring-rules`, плюс `test:emulator:v2-delayed-progress`),
+затем провести independent review callable auth/account binding и обновить
+этот handover точными counts; Phase 02 не переводить в completed при открытом
+production callable или Rules/device finding.
+
+## 14.68 - Production progress callable exposure review: export blocked (2026-07-18)
+
+The requested critical review was completed before retaining any `functions/src/index.ts` export. A temporary local callable-wrapper test and deployment export were removed after independent review identified P1 findings. No progress callable is exported, deployed, or reachable from `functions/src/index.ts`; no commit, push, deploy, production Firestore write, or OpenAI API use occurred.
+
+Independent reviewer verdict: **FAIL / not production-ready**.
+
+- **P1 TOCTOU:** authorization resolves `auth_links`, reads account generation, and checks the deletion tombstone before the progress transaction. The transaction only compares a supplied scope hash; it does not re-read the anchor, current generation, or tombstone. A deletion/generation advance can race an already authorized progress write.
+- **P1 anchor fallback:** `resolveStableUidForAuth(..., { requireKnownIdentity: false, repairLinks: false })` permits direct-user/provider-query/raw-auth-UID fallback without a live `auth_links/{authUid}` anchor. This does not meet the canonical provider-anchor invariant.
+- **P1 transport evidence:** the discarded test invoked `(callable as any).run(...)` and started only Firestore. It was a callable runtime wrapper, not Functions-emulator network transport, so it could not prove endpoint routing, Firebase Auth token verification, or App Check enforcement.
+- **P2 configuration:** `ENFORCE_APP_CHECK_V2_PROGRESS=false` can disable App Check without a production-environment guard.
+
+Verified but insufficient facts: the parser accepts no client `stableUid` or generation fields, forged `accountScopeHash` is rejected against a server-derived binding, and replay is structurally idempotent inside the store.
+
+RED/GREEN record for the discarded exposure attempt:
+
+- RED: `Push-Location functions; npm run test:emulator:v2-progress-callable; Pop-Location` failed because the asserted production export was absent. The first test fixture also revealed a local replay-fixture defect (new memory store per call), corrected before evidence collection.
+- The local wrapper command then passed **1 suite / 3 tests**, but it is explicitly not retained as callable transport evidence or a release gate.
+- Focused contract command `npx jest --config jest.config.js --runTestsByPath src/learning_v2/progress_event_callable.test.ts --no-cache --runInBand` passed **1 suite / 9 tests**. A broader `npx tsc --noEmit` is blocked by pre-existing unrelated `functions/src/index.ts` missing-module/export errors (`arena_timing_observability`, `admin_monthly_decision_pack`, and several `admin_content_*` symbols), not this unexported callable slice.
+- `git diff --check` passed after removal.
+
+Combined Phase 02 emulator packet repeated successfully from `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot\functions`:
+
+- `npm run test:emulator:v2-progress` -> **1 suite / 2 tests PASS**.
+- `npm run test:emulator:v2-access-boost` -> **1 suite / 5 tests PASS**.
+- `npm run test:emulator:v2-authoring-rules` -> **1 suite / 425 tests PASS**.
+- `npm run test:emulator:v2-delayed-progress` -> **1 suite / 1 test PASS**.
+
+Expected negative `PERMISSION_DENIED`, Java Unsafe, and Jest open-handle shutdown messages appeared in existing emulator suites; every command exited 0. Phase 02 remains **IN PROGRESS**; callable/device/release gates are open.
+
+Exact next executable task: critical TDD repair of the unexported progress-callable binding. Freeze one packet that (1) defines whether anonymous identity uses an explicit reviewed anchor or is rejected, (2) moves auth-link -> stable UID, live account generation, and tombstone absence into the same Firestore transaction that reads/replays/writes progress, and (3) makes App Check fail closed outside explicit emulator-only configuration. Add failing transaction race/anchor-fallback tests, then a real Functions-emulator network transport suite (not `.run`) covering missing, invalid, and valid Firebase Auth/App Check plus anchor, generation advance, replay, and forged scope. Export from `index.ts` only after fresh independent spec and adversarial reviews PASS, focused gates, and true transport evidence. Do not weaken Rules, remove legacy behavior, commit unrelated dirty work, push, deploy, or use project OpenAI credentials.
+
+## 14.69 - Phase 02 P2 parser boundary PASS and non-production App Check provisioning (2026-07-18)
+
+Bounded P2 repair is independently reviewed **PASS** with no actionable P0/P1/P2 findings. `parseProgressEventRequest` is the only code inside the error-normalization boundary: an ordinary parser error becomes `HttpsError('invalid-argument')`, while an existing `HttpsError` is preserved. Authorization, identity, scope validation, and executor/Firestore errors remain outside the catch and are not masked.
+
+Evidence: focused callable unit suite -> **1 suite / 17 tests PASS**; combined parser/callable unit packet -> **2 suites / 29 tests PASS**; isolated Functions-emulator HTTP transport -> TypeScript compile PASS and **1 suite / 4 tests PASS**, including malformed body -> HTTP 400 `INVALID_ARGUMENT`; `git diff --check` -> PASS. The transport suite deliberately uses unsigned emulator tokens and proves routing/error serialization only, not cryptographic Firebase Auth or App Check verification. `functions/src/index.ts` still has no progress-callable export; Rules and legacy surfaces were not changed.
+
+To close the remaining real App Check transport gate, an explicitly non-production disposable project was created: `phraseman-v2-ac-test-20260718` (project number `769668545998`, display `phraseman-v2-appcheck-test0718`). It contains one disposable Web app `1:769668545998:web:25995981f84ad912e27f9f` and one App Check debug-token resource. No billing link, callable deploy, production-project change, source edit, or secret output occurred. The debug token is stored only DPAPI-encrypted outside the repository. The current blocker is debug-token exchange HTTP 403; investigate API-key/service configuration without printing any secret or performing paid/production mutation.
+
+Exact next task: finish the isolated non-production App Check exchange/readiness check. If authentic valid/invalid/missing App Check tokens can be obtained, use one critical writer to deploy only a dedicated disposable test callable, collect authenticated HTTP evidence, then delete that callable. Otherwise record the precise cloud configuration blocker. Do not export the production progress callable until this gate and its fresh verification pass.
+
+## 14.70 - Real disposable-project App Check transport proof and cleanup (2026-07-18)
+
+Mission remains unchanged: deliver the modular server-deliverable 32-episode Learning V2 pilot with speaking-first progression, separate earned performance/mastery evidence from purchased access, integrate Speaking Club as a capstone, Personal Review and dialogs through the same graph, provide immutable Content Studio authoring/release/rollback and language scaling, and preserve every legacy surface until measured parity plus the explicit Phase 14 owner decision. Handover evidence must remain sufficient for a zero-context continuation.
+
+Authority remains, in order: current owner instruction; system/developer and `AGENTS.md`; this handover; `docs/v2/README.md`; normative `docs/v2/00`-`08`; umbrella and Content Studio plans dated 2026-07-14; live Git/test/cloud evidence. No normative conflict was introduced in this packet.
+
+### Verified outcomes
+
+- Disposable Firebase project only: `phraseman-v2-ac-test-20260718` (`769668545998`), never production. Billing was already linked and re-verified by the preceding recovery task before this packet.
+- Isolated test source compiled with `npx tsc --project functions/tsconfig.v2-progress-transport.json --pretty false`; `functions/src/index.ts` remained unmodified and does not export the progress callable.
+- `firebase deploy --config firebase.v2-progress-transport.json --project phraseman-v2-ac-test-20260718 --only functions:v2ProgressTransport --non-interactive` created exactly `v2ProgressTransport(us-central1)`. Firebase CLI returned exit 1 only after the function was successfully created because the Artifact Registry cleanup policy was not yet configured; this was a cleanup-policy failure, not a function deployment failure.
+- Identity Platform was initialized only in the disposable project. Anonymous Auth was temporarily enabled solely to mint one genuine Firebase Auth ID token, then restored to disabled. The temporary Auth user was deleted.
+- A fresh UUID4 App Check debug secret was registered only in the disposable Web app, exchanged successfully for an authentic App Check JWT, used for the proof, and revoked. The older orphaned debug-token resource from the failed session was also revoked. No secret was printed or committed.
+- Real HTTPS callable results with the same authentic Firebase Auth token and malformed `{data:{}}` body: missing App Check -> HTTP 401 `UNAUTHENTICATED`; invalid App Check -> HTTP 401 `UNAUTHENTICATED`; authentic App Check -> HTTP 400 `INVALID_ARGUMENT`, proving the verified token reached the handler/parser boundary.
+- Cleanup: `firebase functions:delete v2ProgressTransport --project phraseman-v2-ac-test-20260718 --region us-central1 --force` succeeded; final `remainingFunctions=0`, `remainingDebugTokens=0`, anonymous Auth `false`. Artifact Registry policy deletes images older than one day.
+- Combined Phase 02 emulator packet was repeated from `functions`: `test:emulator:v2-progress` 2/2 PASS; `test:emulator:v2-access-boost` 5/5 PASS; `test:emulator:v2-authoring-rules` 425/425 PASS; `test:emulator:v2-delayed-progress` 1/1 PASS. Total: **433 tests PASS**, all commands exit 0. Logs: `functions/.codex-tmp/phase02-combined-20260718-recovery/`.
+- Phase 10.1A was not duplicated. Fresh root command `npx jest --runTestsByPath tests/learning_v2_legacy_placement_policy.test.ts --no-cache --runInBand` -> **1 suite / 3 tests PASS**. Environment still had 52 `node.exe`; the test completed in 40.068 s and emitted only the existing forced-exit/open-handle notice. Independent review remains open.
+
+### Failed/corrected approaches
+
+- Initial Cloud Functions deploy enabled the required disposable-project APIs and created the function, but ended nonzero because no artifact cleanup policy existed. Correction: execute the network proof, delete the function, then install a one-day cleanup policy on `gcf-artifacts`.
+- Anonymous Auth signup initially returned HTTP 400 because Identity Platform had not been initialized. Correction: initialize Auth only in the disposable project, enable anonymous sign-in temporarily, delete the test user, and restore the original disabled state.
+- The original debug secret from the failed session was not recoverable from task state. Correction: create a fresh short-lived token without printing it, use it in memory, revoke it, and revoke the orphaned prior resource.
+
+### Current phase status (evidence-based, not a release claim)
+
+| Phase | Status | Exact gate |
+|---|---|---|
+| 00 Security boundary | DONE | prior emulator deny/allow and canonical boundary evidence |
+| 01 Domain contracts | DONE | canonical contracts + Functions mirror verified |
+| 02 Progress/access | IN PROGRESS (~85%) | real App Check transport PASS; fresh spec/adversarial review, production export decision, device/release evidence still open |
+| 03 UI evidence/shells | BLOCKED (~10%) | lawful first-hand captures, five six-frame contact sheets, distinctiveness review, owner approval/hash |
+| 04 Voice | BLOCKED (~5%) | waits for Phase 02 and approved Phase 03 evidence; no acoustic claims |
+| 05 P0 activities | PARTIAL (~5%) | adapter inventory exists; renderers/shells/evidence integration open |
+| 06 Content delivery | PARTIAL (~10%) | loader/authoring seams exist; author-to-device E1 waits for Phase 02 closure |
+| 07 E1 slice | BLOCKED (~5%) | waits for Content Studio delivery and device evidence |
+| 08 P1/E1-E8 | BLOCKED (~5%) | waits for E1 release and chapter gate |
+| 09 Speaking Club | BLOCKED (~5%) | waits for voice/E1 evidence and capstone governance |
+| 10 Placement/migration | IN PROGRESS (~10%) | 10.1A pure recommendation policy 3/3 PASS; fresh independent review and all write/migration gates open |
+| 11 Full pilot content | BLOCKED (~5%) | no generation before author-to-device gate |
+| 12 Telemetry | NOT STARTED (~5%) | waits for runtime/content event surfaces |
+| 13 Rollout | NOT STARTED (~5%) | device, accessibility, rollback and staged release gates open |
+| 14 Legacy decision | BLOCKED (~5%) | parity evidence and explicit owner decision absent; legacy preserved |
+
+### Content Studio task status
+
+| Task | Status | Gate |
+|---|---|---|
+| 0 Security boundary | DONE | prior security inventory/emulator matrix |
+| 1 Shared contracts/hash corpus | DONE | canonical corpus and hashes |
+| 2 Capability catalog/manifests | PARTIAL | contract seams exist; full app-support closure open |
+| 3 ModeTemplate lifecycle/localization | PARTIAL | repository/emulator slices exist; UI/release integration open |
+| 4 Episode/season authoring | PARTIAL | backend authoring slices exist; E1 complete graph not released |
+| 5 Guarded callables/roles/storage | PARTIAL | focused seams pass; final production integration/review open |
+| 5A UI evidence | BLOCKED | lawful captures and owner approval/hash missing |
+| 6 Admin IA shell | NOT STARTED | approved V2 Studio shell gate open |
+| 7 Mode Library UI | NOT STARTED | waits for 5A/6 |
+| 8 Episode Builder UI | NOT STARTED | waits for 5A/6 and authoring closure |
+| 9 Preview Lab | NOT STARTED | route/no-progress/device preview gates open |
+| 10 Validation/waivers | PARTIAL | validators exist; maker-checker UI/release gate open |
+| 11 Localization workflow | PARTIAL | repository contracts exist; end-to-end workflow open |
+| 12 Generation DAG | PARTIAL | stage lifecycle/claim seams pass; provider-to-artifact pipeline open |
+| 13 Seal/release/rollback | PARTIAL | additive manifest/loader seams pass; activation/rollback proof open |
+| 14 E1 end-to-end | BLOCKED | waits for Phase 02 review/export decision and device delivery |
+| 15 Rollout | NOT STARTED | waits for E1 and R0-R5 evidence |
+
+### Repository/release state
+
+- Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch `codex/learning-v2-pilot`; HEAD `23c71a1178fee3c1621e35d9a03919b5f80bd47a`.
+- Existing large dirty/untracked V2 work remains preserved. This packet changed only this handover plus ignored `.codex-tmp` build/log artifacts; it did not stage, commit, push, modify production, deploy a production function, change Rules, or remove legacy behavior.
+- The disposable test function was deployed and then deleted. There is no live V2 progress endpoint in either disposable or production projects.
+
+### Exact next executable task
+
+**Phase 02 review/export gate.** Run a fresh independent spec/security review of the retained callable/store diff and the redacted cloud evidence above. Review `functions/src/learning_v2/progress_event_callable.ts`, `functions/src/learning_v2/firestore_progress_event_store.ts`, their focused tests, `firebase.v2-progress-transport.json`, and the test-only transport entry. Confirm: strict `auth_links/{authUid}` anchor; same-transaction re-read of anchor/live generation/tombstone before replay/write; forged scope rejection; App Check fail-closed outside explicit demo emulator; no client-controlled stable UID/generation; no production `index.ts` export; temporary-cloud cleanup complete. A P0/P1/P2 finding returns to RED. If and only if fresh spec and adversarial reviews PASS, freeze the production export/device packet; do not export or deploy in the review task itself. Independently review Phase 10.1A pure placement policy before any migration/write task.
+
+Startup/verification:
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+npx jest --runTestsByPath tests/learning_v2_legacy_placement_policy.test.ts --no-cache --runInBand
+Push-Location functions
+npx jest --config jest.config.js --runTestsByPath src/learning_v2/progress_event_callable.test.ts src/learning_v2/firestore_progress_event_store.integration.test.ts --no-cache --runInBand
+Pop-Location
+```
+
+No new owner decision is required for this review packet. Stop before production export/deploy, any Firestore write outside emulators, any legacy removal, or any migration write.
+
+## 14.71 - Phase 03 lawful reference-evidence readiness gate (2026-07-18)
+
+### Mission and current owner instruction
+
+Learning V2 remains a modular, server-deliverable 32-episode speaking-first
+pilot with separate performance/mastery evidence and purchased access,
+Speaking Club as a capstone, Personal Review and dialogs inside the same graph,
+immutable Content Studio authoring/release/rollback, language scaling, and
+legacy preservation until measured parity plus the explicit Phase 14 owner
+decision. This delegated slice was limited to **Phase 03 lawful learning
+evidence readiness**: keep capture and approval validation read-only and exact,
+without generating, downloading, recording, or otherwise acquiring external
+content.
+
+Authority order remains: the current owner instruction; system/developer and
+`AGENTS.md`; this handover; `docs/v2/README.md`; normative `docs/v2/00`-`08`;
+the two 2026-07-14 implementation plans; then live Git and test evidence.
+`orbit-v2`, `competitor-ux-evidence`, `ui-ux-pro-max`,
+`emil-design-eng`, `rn-accessibility-audit`, and
+`verification-before-completion` were read and applied as advisory/governance
+inputs. Project UI Contrast, Performance, accessibility, legal-capture,
+legacy-preservation, and API-firewall rules override generic presets.
+
+### What changed and why
+
+- Added `docs/v2/reference-evidence/activity-mode-capture-ledger.json` with the
+  exact five selected mode IDs and empty capture arrays. It records
+  `capture_required`; no source or observation was fabricated.
+- Added `docs/v2/reference-evidence/activity-mode-ui-review.json` with the same
+  exact mode set and an empty decision list. Silence is not approval.
+- Added `activity-mode-patterns.md` and `phraseman-wireframes.md` as readiness
+  indexes. They define the exact six `PreviewState` values, orthogonal
+  conditions, shared-shell dependencies, distinctiveness/accessibility
+  boundaries, and visibly mark every contact sheet/revision/hash as missing.
+- Added pure read-only
+  `modules/learning-v2/reference-evidence/reference_evidence_gate.ts`. It
+  requires for every mode: Tier-A lawful current capture metadata; an actual
+  ignored raw artifact under the bounded `qa-artifacts` root with matching
+  SHA-256; at least prompt, active, and feedback/recovery state evidence; an
+  original Phraseman contact sheet; current `approved` owner record; at least
+  six frames; all six canonical preview states; the complete independent
+  condition axes; distinctiveness notes; zero competitor-asset dependencies;
+  and exact current sheet hash. Missing capture, sheet, and approval are
+  reported independently per mode.
+- Replaced the pre-existing untracked phrase-only contract test with a
+  structural fail-closed test. The normal guard proves the current pack cannot
+  be promoted by prose. Setting
+  `PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL=1` activates the exact approval gate.
+- Preserved the pre-existing untracked
+  `docs/v2/REFERENCE_EVIDENCE_LEDGER.md`; its Tier-B official-source notes
+  remain provisional corroboration and do not satisfy Tier-A capture.
+
+Session-owned hashes before this handover append:
+
+| Path | SHA-256 |
+|---|---|
+| `docs/v2/reference-evidence/activity-mode-capture-ledger.json` | `e49c1a1823c90523c4e3e8456717772017f9bd41c5d3341a99f95c00e7de8082` |
+| `docs/v2/reference-evidence/activity-mode-ui-review.json` | `235259786f01942c5e317bb5dc79cd76b23607cc4e76529de51cda91482c2524` |
+| `docs/v2/reference-evidence/activity-mode-patterns.md` | `fd9b9575f7de4d5a09ac654608235b6f8f2af4005e81ed8fcf168b215ee14cc6` |
+| `docs/v2/reference-evidence/phraseman-wireframes.md` | `e97a362aee822286992011ca6526043dcbf4b41a6a43a8295faadddb48448cd1` |
+| `modules/learning-v2/reference-evidence/reference_evidence_gate.ts` | `8fd27d1bd454b12363207eff2160e3b2b7cb2901b5184447007f1f88191145b8` |
+| `tests/learning_v2_reference_evidence_contract.test.ts` | `6345eca392884e2a67ccae8c71a95abcd143b29187d1b6743c2126f762096c76` |
+
+### Fresh RED/GREEN and final evidence
+
+Working directory for every command:
+`C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`.
+
+- Normal fail-closed guard:
+  `npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand`
+  -> **1 suite PASS; 3 tests PASS; 1 strict test SKIPPED**.
+- Exact current approval gate:
+  `$env:PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL='1'; npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand`
+  -> **expected FAIL; 1 suite / 4 tests; 3 PASS, 1 FAIL**. The failure contains
+  exactly **15 expected blockers**: lawful first-hand capture, original contact
+  sheet, and current owner approval for each of five modes. No extra
+  schema/mode-set blocker appeared.
+- Focused strict TypeScript:
+  `npx tsc --noEmit --strict --target ES2022 --module commonjs --moduleResolution node --esModuleInterop --skipLibCheck modules/learning-v2/reference-evidence/reference_evidence_gate.ts`
+  -> **PASS**.
+- Scoped `git diff --check` over the Phase 03 files plus handover -> **PASS**;
+  only the existing CRLF conversion warning for this handover was printed.
+
+The first version of the checker stopped after a missing contact sheet and
+therefore hid the independent approval blocker. That approach was corrected:
+all three blockers are now reported for every mode in one deterministic run.
+No test or script wrote source during execution.
+
+### Repository, ownership, and release state
+
+- Worktree:
+  `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`.
+- Branch: `codex/learning-v2-pilot`.
+- HEAD: `23c71a1178fee3c1621e35d9a03919b5f80bd47a`.
+- No upstream was resolved by the fresh upstream query; no ahead/behind claim
+  is made.
+- Fresh `git status --short`: **114 entries** total, **29 tracked modified** and
+  **85 untracked**. The large pre-existing dirty V2 worktree was preserved.
+  This slice owns only the six Phase 03 files listed above plus this appended
+  handover section. `REFERENCE_EVIDENCE_LEDGER.md` and the original untracked
+  test path pre-existed; the ledger was preserved and the test was hardened in
+  place.
+- Nothing was staged or committed. No push, deploy, production callable
+  export, Rules change, Firestore write, external capture, image generation,
+  OpenAI API use, or legacy change occurred.
+
+### Evidence-based phase status
+
+| Phase | Status | Exact exit gate |
+|---|---|---|
+| 00 Security boundary | DONE | Prior canonical/emulator deny-allow evidence |
+| 01 Domain contracts | DONE | Prior canonical corpus and Functions mirror |
+| 02 Progress/access | IN PROGRESS (~85%) | Review/export/device/release gates remain open |
+| 03 UI evidence/shells | BLOCKED / readiness hardened (~12%) | Strict gate has 15 expected blockers; no lawful captures, five sheets, or approvals |
+| 04 Voice | BLOCKED (~5%) | Waits for Phase 02 and approved Phase 03 evidence |
+| 05 P0 activities | PARTIAL (~5%) | Registry/adapters only; production shells/renderers blocked |
+| 06 Content delivery | PARTIAL (~10%) | Author-to-device E1 remains open |
+| 07 E1 vertical slice | BLOCKED (~5%) | Content/device/release predecessors open |
+| 08 P1 and E1-E8 | BLOCKED (~5%) | Waits for E1/chapter gate |
+| 09 Speaking Club capstone | BLOCKED (~5%) | Voice/E1/evidence governance open |
+| 10 Placement/migration | IN PROGRESS (~10%) | Pure policy exists; independent review/write gates open |
+| 11 Full pilot content | BLOCKED (~5%) | No generation before author-to-device gate |
+| 12 Telemetry/experiments | NOT STARTED (~5%) | Runtime event surfaces not released |
+| 13 Rollout | NOT STARTED (~5%) | Device/accessibility/rollback/R0-R5 evidence open |
+| 14 Legacy decision | BLOCKED (~5%) | Parity evidence and explicit owner decision absent |
+
+### Content Studio task status
+
+| Task | Status | Exact gate |
+|---|---|---|
+| 0 | DONE | Prior security boundary |
+| 1 | DONE | Shared canonical contracts/hash corpus |
+| 2 | PARTIAL | App-support manifest closure open |
+| 3 | PARTIAL | ModeTemplate lifecycle/UI/release integration open |
+| 4 | PARTIAL | Episode/season authoring not released E2E |
+| 5 | PARTIAL | Final production integration/review open |
+| 5A | BLOCKED / readiness hardened | 15 strict blockers; no external evidence acquired |
+| 6 | NOT STARTED | Waits for approved 5A and Admin Bible gate |
+| 7 | NOT STARTED | Waits for 5A/6 |
+| 8 | NOT STARTED | Waits for 5A/6 and authoring closure |
+| 9 | NOT STARTED | Preview/device/no-progress gates open |
+| 10 | PARTIAL | Validators exist; maker-checker UI/release open |
+| 11 | PARTIAL | Localization repositories exist; E2E open |
+| 12 | PARTIAL | Generation DAG seams exist; provider/artifact path open |
+| 13 | PARTIAL | Manifest/loader seams exist; activation/rollback open |
+| 14 | BLOCKED | E1 author-to-device predecessors open |
+| 15 | NOT STARTED | Waits for E1 and staged rollout evidence |
+
+### Exact next executable task packet
+
+**Phase 03 Task 3.0 / Content Studio Task 5A — lawful capture ingestion and
+approval preparation.** It is next only when the owner supplies or explicitly
+authorizes collection of a lawful first-hand capture package. Until then,
+stop: do not browse, download, record, generate, infer, or fabricate missing
+evidence.
+
+Files to read: this handover, the four mandatory V2 sources,
+`docs/v2/04-activity-catalog-and-storyboards.md`,
+`docs/v2/08-admin-content-studio-and-mode-authoring.md`, the four canonical
+`docs/v2/reference-evidence/*` files, the read-only gate, and its test. Inputs
+must stay ignored under
+`qa-artifacts/learning-v2/reference-evidence/<product>/<mode>/`.
+
+For each mode, validate product/activity, platform/device/OS, build, locale,
+level, subscription/account state, capture date/method, provenance,
+rights/use note, researcher, untouched raw hash, redacted derivative, and
+state coverage. Then, in a separately authorized design task, create original
+Phraseman sheets; run distinctiveness plus accessibility review; show every
+sheet to the owner; and record `approved | changes_requested` with exact
+revision/hash. Never copy competitor assets/copy/trade dress, infer acoustic
+claims, or treat Tier-B marketing material as Tier-A evidence.
+
+RED/acceptance command:
+
+```powershell
+$env:PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL='1'
+npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand
+Remove-Item Env:PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL
+```
+
+Expected now: the exact 15 blockers above. Expected after lawful capture,
+original design, and explicit owner review: **1 suite / 4 tests PASS**, zero
+blockers, hashes current, and no competitor asset dependency. Required fresh
+spec/distinctiveness/accessibility review remains open because this session
+was not authorized to create or approve UI. Intended future commit subject
+after the strict gate and independent reviews pass:
+`docs: add approved V2 activity reference evidence`.
+
+Stop/escalate on missing rights metadata, personal data without a lawful
+redaction path, version mixing, raw-path escape, hash drift, fewer than six
+frames, missing condition coverage, `changes_requested`, owner silence,
+competitor trade-dress dependency, or any request to weaken the gate.
+
+### Startup commands
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/v2/reference-evidence/activity-mode-capture-ledger.json
+Get-Content -Raw -Encoding UTF8 docs/v2/reference-evidence/activity-mode-ui-review.json
+npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand
+$env:PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL='1'
+npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand
+Remove-Item Env:PHRASEMAN_REQUIRE_V2_REFERENCE_APPROVAL
+```
+
+### Final state declaration
+
+Verified complete in this slice: canonical empty readiness records, exact
+five-mode scope, read-only fail-closed validation, independent per-mode
+capture/sheet/approval blockers, scoped TypeScript, and whitespace checks.
+Partial: Phase 03 Task 3.0 / Task 5A. Unverified and intentionally absent:
+lawful Tier-A captures, original Phraseman sheets, device accessibility,
+distinctiveness approval, and owner decisions. Push/deploy/release state:
+none. The next action belongs to the owner/evidence custodian: provide or
+explicitly authorize lawful first-hand inputs; no agent should acquire them
+implicitly.
+
+## 15.2 — Phase 10.1B placement provenance owner-decision brief (2026-07-18)
+
+### Mission and user intent
+
+Продолжить Learning V2 как модульный server-deliverable пилот из 32 эпизодов
+со speaking-first progression, раздельными performance/access/mastery
+сущностями, Speaking Club capstone, Personal Review, dialogs и Content Studio,
+с возможностью новых языков и сохранением всех legacy-путей до Phase 14.
+Текущий запрос ограничен Phase 10: сохранить уже прошедшую pure policy 10.1A и
+подготовить только решение владельца для 10.1B provenance, без persistent
+migration writes.
+
+### Выполнено и проверено
+
+- Создан
+  `docs/v2/PHASE_10_1B_PLACEMENT_PROVENANCE_OWNER_DECISION.md`.
+- Рекомендуемый вариант A: account-scoped reconciled post-restore snapshot,
+  completion по валидному `best_score > 0` или `pass_count >= 1`, только
+  contiguous L1…LN, ambiguity fail-closed в manual review, минимизированная
+  provenance без raw account IDs/ответов.
+- Варианты B/C оставлены владельцу; A не считается утверждённым без явного
+  ответа.
+- Fresh gate:
+  `npx jest --runTestsByPath tests/learning_v2_legacy_placement_policy.test.ts --no-cache --runInBand`
+  → **1 suite / 4 tests PASS**, snapshots 0, exit 0. Существующее forced-exit/
+  open-handle предупреждение не изменило зелёный результат.
+- Код 10.1A, fixtures, Rules, Functions, callable exports и production state не
+  изменялись. Persistent migration writes не выполнялись.
+
+### Полный статус фаз 00–14
+
+| Phase | Status | Exact gate |
+|---|---|---|
+| 00 Security boundary | DONE | prior emulator deny/allow and canonical boundary evidence |
+| 01 Domain contracts | DONE | canonical contracts + Functions mirror verified |
+| 02 Progress/access | IN PROGRESS (~85%) | fresh reviews, production export decision and device/release evidence open |
+| 03 UI evidence/shells | BLOCKED (~10%) | lawful captures, contact sheets, distinctiveness and owner approval/hash missing |
+| 04 Voice | BLOCKED (~5%) | waits for Phase 02 and approved Phase 03 evidence |
+| 05 P0 activities | PARTIAL (~5%) | renderers/shells/evidence integration open |
+| 06 Content delivery | PARTIAL (~10%) | author-to-device E1 open |
+| 07 E1 slice | BLOCKED (~5%) | waits for delivery and device evidence |
+| 08 P1/E1–E8 | BLOCKED (~5%) | waits for E1 release and chapter gate |
+| 09 Speaking Club | BLOCKED (~5%) | waits for voice/E1 evidence and governance |
+| 10 Placement/migration | IN PROGRESS (~12%) | 10.1A 4/4 PASS; 10.1B brief prepared, owner decision and all write gates open |
+| 11 Full pilot content | BLOCKED (~5%) | author-to-device gate not closed |
+| 12 Telemetry | NOT STARTED (~5%) | waits for runtime/content event surfaces |
+| 13 Rollout | NOT STARTED (~5%) | device, accessibility, rollback and release gates open |
+| 14 Legacy decision | BLOCKED (~5%) | parity evidence and explicit owner decision absent |
+
+### Content Studio tasks 0–15
+
+| Task | Status | Gate |
+|---|---|---|
+| 0 Security boundary | DONE | prior inventory/emulator matrix |
+| 1 Shared contracts/hash corpus | DONE | canonical corpus and hashes |
+| 2 Capability catalog/manifests | PARTIAL | full app-support closure open |
+| 3 ModeTemplate lifecycle/localization | PARTIAL | UI/release integration open |
+| 4 Episode/season authoring | PARTIAL | E1 graph not released |
+| 5 Guarded callables/roles/storage | PARTIAL | final integration/review open |
+| 5A UI evidence | BLOCKED | lawful captures and owner approval/hash missing |
+| 6 Admin IA shell | NOT STARTED | approved shell gate open |
+| 7 Mode Library UI | NOT STARTED | waits for 5A/6 |
+| 8 Episode Builder UI | NOT STARTED | waits for 5A/6 and authoring closure |
+| 9 Preview Lab | NOT STARTED | route/no-progress/device gates open |
+| 10 Validation/waivers | PARTIAL | maker-checker UI/release gate open |
+| 11 Localization workflow | PARTIAL | end-to-end workflow open |
+| 12 Generation DAG | PARTIAL | provider-to-artifact pipeline open |
+| 13 Seal/release/rollback | PARTIAL | activation/rollback proof open |
+| 14 E1 end-to-end | BLOCKED | waits for Phase 02/device delivery |
+| 15 Rollout | NOT STARTED | waits for E1 and R0–R5 evidence |
+
+### Repository, preservation and release state
+
+- Worktree:
+  `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`.
+- Branch `codex/learning-v2-pilot`; HEAD
+  `23c71a1178fee3c1621e35d9a03919b5f80bd47a`.
+- Большой ранее существовавший dirty/untracked V2 набор сохранён. Эта сессия
+  добавила только decision brief и этот append-only handover section.
+- Ничего не staged/committed/pushed/deployed/released. Firestore/production/API
+  writes отсутствуют. Rules и production callable exports не менялись.
+
+### Exact next executable task
+
+**Owner gate DEC-V2-10.1B-LEGACY-PLACEMENT-PROVENANCE.** Владелец читает brief и
+явно утверждает A либо выбирает B/C с перечисленными отклонениями. До ответа не
+создавать `legacy_progress_reader.ts`, `placement_session.ts`, provenance
+storage, Firestore schema, Rules или callable. После утверждения заморозить
+отдельный read-only RED/GREEN packet; persistent migration writes остаются вне
+scope. Intended future commit subject после отдельной реализации:
+`feat(v2): add guarded legacy placement reader`.
+
+### Startup commands
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+git worktree list
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/v2/PHASE_10_1B_PLACEMENT_PROVENANCE_OWNER_DECISION.md
+npx jest --runTestsByPath tests/learning_v2_legacy_placement_policy.test.ts --no-cache --runInBand
+```
+
+### Final state declaration
+
+Verified: brief создан, 10.1A 4/4 PASS, migration/production writes отсутствуют.
+Partial: 10.1B ожидает owner decision. Unverified: будущий reader/session,
+persistent provenance, rehearsal и rollout. Push/deploy/release: отсутствуют.
+Exact next action: владелец утверждает A либо выбирает B/C.
+
+## 15.3 — Phase 02 retained cleanup receipt и superseding review status (2026-07-18)
+
+### Миссия и границы текущего пакета
+
+Миссия Learning V2 не меняется: построить модульный server-deliverable
+speaking-first пилот из 32 эпизодов с раздельными performance/access/mastery
+сущностями, Speaking Club как capstone, Personal Review и dialogs в едином
+графе, безопасным Content Studio authoring/release/rollback, масштабированием
+на новые языки и сохранением всех legacy-путей до измеренного паритета и
+явного решения владельца в Phase 14. Этот пакет только сохраняет
+структурированную redacted-аттестацию уже выполненной проверки disposable
+App Check и согласует более свежие Phase 02 review/verification факты. Он не
+запрашивает provider заново и не разрешает production export/deploy.
+
+Authority order остаётся прежним: текущая инструкция владельца;
+system/developer и `AGENTS.md`; этот append-only handover; `docs/v2/README.md`;
+normative `docs/v2/00`–`08`; два implementation plan от 2026-07-14; затем
+живые Git/test evidence. Эта секция supersede-ит только устаревший review
+status Phase 02 в §14.70 и §15.2; исторические записи не переписаны.
+
+### Что изменено
+
+- Добавлен retained receipt
+  `docs/v2/evidence/phase-02/2026-07-18-disposable-app-check-cleanup-receipt.v1.json`.
+  SHA-256:
+  `ab912ecc92e31c58bc30523e37bf51137833b5e6a7279602c511be589d630090`.
+- Receipt использует только факты §14.70: disposable project
+  `phraseman-v2-ac-test-20260718` / `769668545998`, `us-central1`,
+  `v2ProgressTransport`, outcomes `401/401/400`, завершённый cleanup
+  `0/0/0/false` и one-day artifact policy.
+- `evidenceBasis` равен
+  `retained_sanitized_handover_attestation`;
+  `freshProviderQueryPerformed=false`. Точное время cleanup не сохранено в
+  §14.70, поэтому receipt честно хранит `attestedOn=2026-07-18` и
+  `timePrecision=day`, не выдумывая timestamp.
+- Production boundary полностью отрицательная:
+  `projectTouched=false`, `functionDeployed=false`,
+  `firestoreWritten=false`, `rulesChanged=false`,
+  `indexesChanged=false`, `callableExported=false`.
+- Receipt не содержит JWT, App Check debug secret, API key, authorization
+  header, Firebase Auth UID, email, billing details, DPAPI ciphertext или raw
+  command output. Категории перечислены только как явно omitted.
+- Добавлен read-only guard
+  `tests/learning_v2_phase02_disposable_cleanup_receipt.test.ts`, SHA-256:
+  `16797196bcd184d10271e215b5429990c5c4ef77c2fabb8624be6dabf19bb24a`.
+
+### RED/GREEN и свежие review/verification факты
+
+- RED:
+  `npx jest --runTestsByPath tests/learning_v2_phase02_disposable_cleanup_receipt.test.ts --no-cache --runInBand`
+  → **1 suite FAIL / 5 tests FAIL**, ожидаемая причина для всех пяти:
+  `ENOENT` до создания receipt.
+- GREEN: та же команда → **1 suite / 5 tests PASS**, snapshots 0, exit 0.
+- Fresh deploy-guard rerun:
+  `npx jest --runTestsByPath tests/learning_v2_progress_transport_deploy_guard.test.ts --no-cache --runInBand`
+  → **1 suite / 15 tests PASS**, snapshots 0, exit 0. Guard отклоняет
+  отсутствие explicit project, production/default project, aliases,
+  prefix/suffix/demo targets и caller overrides; harness остаётся вне
+  production `functions/src/index.ts`.
+- Более свежий retained spec-review packet подтверждён **PASS**:
+  `functions/.codex-tmp/fresh-spec-review-phase02-unit-20260718.log` →
+  **3 suites / 45 tests PASS**.
+- Более свежий independent verifier summary подтверждён **PASS**:
+  `functions/.codex-tmp/t1v-fresh-phase02-status.txt` → unit
+  **6 suites / 96 tests**, progress emulator **1/2**, delayed emulator
+  **1/1**, transport targeted TypeScript exit 0, path identity **1/2**,
+  deletion identity **3/18**, production static path scan PASS.
+- Источники выше являются retained sanitized/local summaries. В этом пакете
+  не выполнялись cloud query, deploy, Firestore write, Auth mutation,
+  billing/API operation или secret recovery.
+
+### Полный статус фаз 00–14
+
+| Phase | Status | Exact gate |
+|---|---|---|
+| 00 Security boundary | DONE | prior emulator deny/allow and canonical boundary evidence |
+| 01 Domain contracts | DONE | canonical contracts + Functions mirror verified |
+| 02 Progress/access | IN PROGRESS (~88%) | fresh verifier/spec and deploy guard PASS; retained cleanup receipt PASS; fresh adversarial/export decision, production export, device and release evidence remain open |
+| 03 UI evidence/shells | BLOCKED (~10%) | lawful captures, contact sheets, distinctiveness and owner approval/hash missing |
+| 04 Voice | BLOCKED (~5%) | waits for Phase 02 and approved Phase 03 evidence |
+| 05 P0 activities | PARTIAL (~5%) | renderers/shells/evidence integration open |
+| 06 Content delivery | PARTIAL (~10%) | author-to-device E1 open |
+| 07 E1 slice | BLOCKED (~5%) | waits for delivery and device evidence |
+| 08 P1/E1–E8 | BLOCKED (~5%) | waits for E1 release and chapter gate |
+| 09 Speaking Club | BLOCKED (~5%) | waits for voice/E1 evidence and governance |
+| 10 Placement/migration | IN PROGRESS (~12%) | 10.1A 4/4 PASS; 10.1B owner decision and all write gates open |
+| 11 Full pilot content | BLOCKED (~5%) | author-to-device gate not closed |
+| 12 Telemetry | NOT STARTED (~5%) | waits for runtime/content event surfaces |
+| 13 Rollout | NOT STARTED (~5%) | device, accessibility, rollback and release gates open |
+| 14 Legacy decision | BLOCKED (~5%) | parity evidence and explicit owner decision absent; legacy preserved |
+
+### Content Studio tasks 0–15
+
+| Task | Status | Gate |
+|---|---|---|
+| 0 Security boundary | DONE | prior inventory/emulator matrix |
+| 1 Shared contracts/hash corpus | DONE | canonical corpus and hashes |
+| 2 Capability catalog/manifests | PARTIAL | full app-support closure open |
+| 3 ModeTemplate lifecycle/localization | PARTIAL | UI/release integration open |
+| 4 Episode/season authoring | PARTIAL | E1 graph not released |
+| 5 Guarded callables/roles/storage | PARTIAL | final integration/adversarial/export review open |
+| 5A UI evidence | BLOCKED | lawful captures and owner approval/hash missing |
+| 6 Admin IA shell | NOT STARTED | approved shell gate open |
+| 7 Mode Library UI | NOT STARTED | waits for 5A/6 |
+| 8 Episode Builder UI | NOT STARTED | waits for 5A/6 and authoring closure |
+| 9 Preview Lab | NOT STARTED | route/no-progress/device gates open |
+| 10 Validation/waivers | PARTIAL | maker-checker UI/release gate open |
+| 11 Localization workflow | PARTIAL | end-to-end workflow open |
+| 12 Generation DAG | PARTIAL | provider-to-artifact pipeline open |
+| 13 Seal/release/rollback | PARTIAL | activation/rollback proof open |
+| 14 E1 end-to-end | BLOCKED | waits for Phase 02/device delivery |
+| 15 Rollout | NOT STARTED | waits for E1 and R0–R5 evidence |
+
+### Repository, preservation и release state
+
+- Worktree:
+  `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`; branch
+  `codex/learning-v2-pilot`; HEAD
+  `23c71a1178fee3c1621e35d9a03919b5f80bd47a`.
+- Большой ранее существовавший dirty/untracked V2 набор сохранён. Этот
+  bounded packet владеет только receipt, его focused test и этой append-only
+  секцией HANDOVER. Rules, indexes, `functions/src/index.ts`, Firebase config
+  и остальные source/test paths не редактировались этим packet.
+- Ничего не staged/committed/pushed/deployed/released. Ни disposable, ни
+  production callable сейчас не экспортирован и не оставлен live. Production
+  Firestore/Auth/config state не изменялся.
+
+### Exact next executable task
+
+**Phase 02 fresh adversarial/export-decision gate (read-only first).**
+Fresh independent critical reviewer читает:
+
+- `functions/src/learning_v2/progress_event_callable.ts`;
+- `functions/src/learning_v2/firestore_progress_event_store.ts`;
+- их focused unit/integration/emulator tests;
+- `scripts/deploy_v2_progress_transport.mjs`;
+- `firebase.v2-progress-transport.json`;
+- test-only transport entry;
+- новый retained cleanup receipt и его guard.
+
+Reviewer обязан отдельно подтвердить strict `auth_links/{authUid}` anchor,
+same-transaction re-read anchor/live generation/tombstone, forged-scope
+rejection, App Check fail-closed behavior, отсутствие client-controlled
+stable UID/generation, отсутствие production export и непротиворечивость
+retained cleanup evidence. Любой P0/P1/P2 возвращает packet в RED. Только
+после fresh adversarial PASS можно заморозить отдельный production
+export/device task packet с собственным RED, explicit owner authorization на
+любой deploy и rollback plan. В следующем read-only review нельзя менять
+`functions/src/index.ts`, Rules/indexes/Firebase config, писать Firestore,
+deploy-ить, push-ить или считать Phase 02 завершённой.
+
+Startup:
+
+```powershell
+Set-Location 'C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot'
+git status --short
+git branch --show-current
+git rev-parse HEAD
+Get-Content -Raw -Encoding UTF8 docs/v2/HANDOVER.md
+Get-Content -Raw -Encoding UTF8 docs/v2/README.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-pilot-season.md
+Get-Content -Raw -Encoding UTF8 docs/superpowers/plans/2026-07-14-phraseman-v2-content-studio.md
+Get-Content -Raw -Encoding UTF8 docs/v2/evidence/phase-02/2026-07-18-disposable-app-check-cleanup-receipt.v1.json
+npx jest --runTestsByPath tests/learning_v2_phase02_disposable_cleanup_receipt.test.ts tests/learning_v2_progress_transport_deploy_guard.test.ts --no-cache --runInBand
+```
+
+### Final state declaration
+
+Verified в этом packet: retained redacted receipt, точный allowlisted schema,
+TDD RED→GREEN, receipt secret-value guard и fresh deploy guard. Подтверждены
+более свежие retained spec/verifier PASS summaries. Partial: Phase 02; fresh
+adversarial/export decision, production export, device/release evidence
+остаются открыты. Push/deploy/release: отсутствуют.
+
+### Находки и предложения
+
+- Точное cleanup-время не было сохранено в §14.70; дневная точность явно
+  записана и не должна молча повышаться до timestamp.
+- После adversarial PASS стоит сделать receipt обязательным input будущего
+  production export gate, но не превращать retained attestation в fresh cloud
+  evidence.
+## 15.4 — Per-mode readiness для Reference Evidence Pack (2026-07-18, superseding)
+
+### Миссия, авторитет и границы
+
+Миссия Learning V2 остаётся прежней: построить модульный, server-deliverable speaking-first
+пилот из 32 эпизодов с безопасным Content Studio и без удаления legacy-путей до явного решения
+владельца. Этот узкий пакет добавляет только диагностическую готовность каждого из пяти выбранных
+режимов в Reference Evidence Pack; он не является одобрением evidence, UI, release или Phase 03.
+
+Приоритет источников: текущая инструкция владельца; system/developer и `AGENTS.md`; этот
+append-only handover; `docs/v2/README.md`; нормативные `docs/v2/00`–`08`; планы Pilot Season и
+Content Studio от 2026-07-14; затем проверяемые Git/test evidence. Эта секция supersede-ит только
+статус готовности gate для Task 3.0/5A, не переписывая историю.
+
+### Изменение и доказательства
+
+- Три изменённых пути этого пакета: ранее untracked
+  `modules/learning-v2/reference-evidence/reference_evidence_gate.ts` (тип и fail-closed
+  per-mode readiness), ранее untracked
+  `tests/learning_v2_reference_evidence_contract.test.ts` (temp-root RED/GREEN contracts) и
+  этот append-only раздел `docs/v2/HANDOVER.md` (воспроизводимая передача статуса/границ).
+- Baseline SHA-256 до редактирования: gate
+  `8FD27D1BD454B12363207EFF2160E3B2B7CB2901B5184447007F1F88191145B8`; contract
+  `6345ECA392884E2A67CCAE8C71A95ABCD143B29187D1B6743C2126F762096C76`.
+- Добавлены `ReferenceEvidenceModeResult` и `modeResults`, строго ключевые по пяти exact selected
+  IDs. Aggregate `ready`, плоский `blockers`, их строки и порядок сохранены; aggregate остаётся
+  fail-closed.
+- RED: `npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand`
+  завершился exit 1 с шестью TS2339: `modeResults` отсутствовал; до запуска тестов не было source
+  реализации. Отдельный RED P1 воспроизвёл лишний режим в общем ledger: aggregate был blocked,
+  но все five modeResults ошибочно были ready.
+- P1 review repair: общий structural blocker (отсутствующий/некорректный shared JSON либо mismatch
+  selected tuple) теперь suppress-ит readiness всех пяти, не добавляя/не переставляя flat blocker
+  codes и не приписывая shared blocker локальному массиву режима.
+- Финальный GREEN той же focused Jest-команды: 1 suite, 9 PASS, 1 intentional strict-evidence skip,
+  0 failed. Jest скомпилировал оба TypeScript файла; scoped trailing-whitespace check прошёл.
+- Реальный текущий pack по-прежнему ожидаемо blocked: 15 mode-local blockers (по три для каждого
+  режима: lawful first-hand capture, contact sheet и current owner approval). Нет captures,
+  contact sheets, approvals, hash-verified owner decision или runtime/Admin consumer.
+
+### Статус фаз и задач
+
+| Область | Статус | Точный gate |
+|---|---|---|
+| Phase 03 UI evidence/shells | BLOCKED (~10%) | per-mode диагностика готова; lawful evidence и approval отсутствуют |
+| Phase 05 P0 activities | PARTIAL (~5%) | renderers/shell/evidence integration открыты |
+| Content Studio Task 5A | BLOCKED | каждый mode блокируется своими тремя evidence/approval условиями; release-ready aggregate false |
+| Pilot Task 3.0 | PARTIAL / gate implemented | dependency может читаться per-mode, но UI нельзя начинать без ready конкретного mode |
+
+### Состояние worktree и точный следующий шаг
+
+Worktree `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`, branch
+`codex/learning-v2-pilot`, HEAD `23c71a1178fee3c1621e35d9a03919b5f80bd47a`. Весь существующий
+dirty/untracked набор сохранён. Ничего не staged/committed/pushed/deployed/released/exported; нет
+Firestore, Rules/indexes, production, API или runtime consumer изменений.
+
+Следующая исполнимая задача начинается с owner/evidence-custodian gate: он явно выбирает и
+авторизует ровно один ID из `sound-discrimination`, `guided-phrase-pronunciation`,
+`prompted-translation-by-voice`, `contextual-dialogue-mission`, `speaking-club-mission`. Только после
+этого для выбранного ID выполнить **Task 5A, Step 1–4**, без UI реализации: собрать lawful first-hand
+capture ledger и raw ignored inputs; подготовить оригинальные 3–6+ frame contact sheet,
+`phraseman-wireframes.md` и distinctiveness matrix; показать их владельцу и записать current
+`approved | changes_requested` с revision/hash. Acceptance: у выбранного ID есть traceable lawful
+capture, sheet, все шесть PreviewState и требуемые conditions, а решение current и hash-свежее.
+Expected output после `approved`: только `modeResults[выбранный ID].ready === true`; остальные четыре
+и aggregate `ready` остаются false, пока не закрыты их собственные evidence. Затем выполнить
+`npx jest --runTestsByPath tests/learning_v2_reference_evidence_contract.test.ts --no-cache --runInBand`.
+Никаких captures, approval, Rules/indexes, production/export/deploy/push без отдельной авторизации.
+
+### Находки и предложения
+
+- Shared structural errors намеренно делают все per-mode readiness false даже при пустых локальных
+  blockers: причина видна в aggregate flat blockers, а локальные списки сохраняют обратную совместимость.
+- Нужен явный владелец для first-hand evidence и review; молчание или Markdown-заявление не являются
+  approval.
+
+## 15.5 — Owner decision: complete but replaceable Codex frontend (2026-07-18)
+
+### Решение владельца
+
+Владелец уточнил архитектурную границу Learning V2: Codex реализует не только
+headless core, но и полный рабочий React Native/Admin frontend. Этот frontend
+не является заглушкой и должен проходить функциональные, accessibility,
+performance, offline/recovery и device-preview gates. Позже Kimi может
+полностью переработать presentation-слой, но не имеет права менять learning
+contracts, runtime state machines, scoring/evidence/progress/access,
+persistence/outbox, voice/permission lifecycle, analytics semantics,
+PreviewEnvelope, release loader или backend behavior ради визуального
+редизайна.
+
+В visual companion владелец выбрал первым mode
+`sound-discrimination`. Это не считается approval отсутствующего contact sheet:
+lawful first-hand capture, оригинальный Phraseman contact sheet,
+distinctiveness/accessibility review и current hash-bound owner approval
+остаются обязательным Task 3.0/5A gate.
+
+### Новый нормативный дизайн
+
+Создан
+`docs/superpowers/specs/2026-07-18-learning-v2-replaceable-frontend-design.md`.
+Документ фиксирует:
+
+- React-free stable core;
+- frozen typed UI port `immutable ViewModel + typed command dispatch`;
+- отдельный replaceable React Native/Admin presentation layer;
+- обязательное удаление `resolveRenderer(): unknown` из core registry и
+  перенос lazy component resolution в UI-owned registry;
+- thin stable routes без graph/gate/progress logic;
+- полный quality contract для Codex baseline UI и будущего Kimi redesign;
+- machine-readable per-mode Kimi handoff packet;
+- behavioral/accessibility parity вместо pixel equality;
+- первый вертикальный порядок для `sound-discrimination`.
+
+Generic `ui-ux-pro-max` recommendations не являются источником истины:
+brand, approved reference evidence, UI Contrast Rule, Performance Bible и
+accessibility contracts имеют приоритет.
+
+### Статус и ограничения
+
+- Phase 03 остаётся `BLOCKED / readiness hardened`: 15 lawful
+  capture/contact-sheet/approval blockers ещё открыты.
+- Phase 05 остаётся `PARTIAL`: baseline renderer и shells ещё не реализованы.
+- Ни один mode пока нельзя открыть вручную в приложении.
+- Dev/Mode Lab отложен до появления хотя бы одного настоящего renderer.
+- Production export/deploy/release, Rules/index changes, push и legacy removal
+  не выполнялись.
+- Большой существующий dirty/untracked V2 worktree сохранён.
+
+### Точный следующий gate
+
+Перед implementation plan владелец проверяет и утверждает дизайн-документ
+`docs/superpowers/specs/2026-07-18-learning-v2-replaceable-frontend-design.md`.
+После approval создать отдельный executable plan для первого вертикального
+среза:
+
+1. Task 5A evidence/approval для `sound-discrimination`;
+2. React-free UI port и import-boundary RED tests;
+3. renderer-registry decoupling;
+4. headless presenter/controller + canonical fixtures;
+5. полноценный Codex Choice/Voice UI на frozen port;
+6. PreviewEnvelope no-progress integration;
+7. spec/accessibility/quality/device reviews;
+8. Kimi handoff packet.
+
+До утверждения документа не начинать frontend implementation. Если owner
+меняет границу Kimi/Codex, сначала обновить дизайн и этот handover.
+
+### Находки и предложения
+
+- `components/LessonsV2TabContent.tsx` остаётся hardcoded dev prototype и не
+  считается V2 runtime/frontend foundation.
+- `activity_registry.ts` с `resolveRenderer(): unknown` — первый технический
+  долг, который нужно закрыть до shared-shell fan-out.
+
+## 15.6 — Multilingual writing systems and Kimi K3 handoff (2026-07-19)
+
+### Owner intent and decision
+
+The owner approved a universal multilingual architecture rather than ordinary
+translation-only support. Learning V2, Admin V2 generation and app presentation
+must support complex writing systems from the beginning. Chinese and Japanese
+are the first complete special packs. Korean, Arabic, Hebrew, Devanagari, Thai,
+Greek and Cyrillic profiles prove expansion without rewriting the core.
+
+This is documentation/planning authority only. The owner explicitly requested
+no implementation in this step.
+
+### New normative documents
+
+- `docs/superpowers/specs/2026-07-19-learning-v2-multilingual-writing-systems-design.md`
+  defines language pairs, ScriptProfile, Script Curriculum, special modes,
+  Chinese/Japanese scope, expansion fixtures, Admin generation and gates.
+- `docs/superpowers/plans/2026-07-19-learning-v2-multilingual-writing-systems.md`
+  defines the non-executable workstream and dependency order.
+- `docs/v2/frontend-handoff/kimi-k3/README.md`
+- `docs/v2/frontend-handoff/kimi-k3/KIMI_K3_MASTER_BRIEF.md`
+- `docs/v2/frontend-handoff/kimi-k3/KIMI_K3_PROMPTS.md`
+- `docs/v2/frontend-handoff/kimi-k3/KIMI_K3_DELIVERY_CONTRACT.md`
+  form the zero-context Kimi visual/frontend package.
+
+The pilot, Content Studio and replaceable-frontend documents contain
+cross-references to this decision.
+
+### Kimi/Codex boundary
+
+Kimi K3 is selected for native-vision frontend work, browser mockups, motion,
+responsive layouts and visual QA. It returns an isolated runnable prototype,
+manifest, exact files/hashes, screenshots, contact sheets, videos and Codex
+import map. Kimi may not own learning contracts, evidence/scoring, progress,
+access, persistence, Firebase/Functions, security or release.
+
+### Preserved state
+
+- No app/Admin/Functions/test source was implemented for this decision.
+- No OpenAI or Kimi API was called.
+- No production, deploy, push, Rules/index or legacy mutation occurred.
+- Existing dirty/untracked worktrees remain preserved.
+- The previously interrupted ORBIT child sessions remain stopped.
+
+### Exact next executable documentation gate
+
+The owner gives the files under `docs/v2/frontend-handoff/kimi-k3/` and the
+required design inputs to Kimi K3. Kimi runs Prompts 0–5 sequentially and
+returns the delivery root required by `KIMI_K3_DELIVERY_CONTRACT.md`.
+
+Codex then performs a read-only intake:
+
+1. verify manifest/file SHA coverage;
+2. run the local browser preview;
+3. inspect every contact sheet/video;
+4. audit prohibited imports/writes and business logic;
+5. map accepted presentation files to frozen ports;
+6. create a separate owner-approved implementation packet before importing.
+
+No Phraseman source implementation begins from this handover alone.
+
+### Находки и предложения
+
+- Current localization contracts are useful but insufficient for complex
+  writing systems; Script Curriculum must be a separate typed subsystem.
+- The Kimi package should be used in a fresh K3 session with native vision and
+  browser preview enabled.
+
+### One-file Kimi handoff update
+
+The canonical owner-facing handoff is now
+`docs/v2/frontend-handoff/KIMI_K3_COMPLETE_HANDOFF.md`. It embeds the complete
+brief, execution phases, browser-preview requirements, QA gates and delivery
+contract. The owner only needs to give Kimi this single document. The split
+files under `docs/v2/frontend-handoff/kimi-k3/` remain supporting records and
+are not required for the handoff.

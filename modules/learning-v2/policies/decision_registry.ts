@@ -296,7 +296,7 @@ const SHA256_CONSTANTS = [
 const rotateRight = (value: number, bits: number): number =>
   (value >>> bits) | (value << (32 - bits));
 
-const sha256Utf8 = (value: string): string => {
+export const sha256Utf8 = (value: string): string => {
   const message = utf8Bytes(value);
   const bitLength = message.length * 8;
   message.push(0x80);
@@ -982,6 +982,32 @@ const validateRecord = (
     valid = false;
   }
   return { record: value, valid };
+};
+
+export type DecisionRegistryRecordValidationResult =
+  | { readonly ok: true; readonly issues: readonly []; readonly value: DecisionRegistryRecord }
+  | { readonly ok: false; readonly issues: readonly DecisionRegistryIssue[] };
+
+/** Validate the Firestore index envelope without accepting an inline canonical body. */
+export const validateDecisionRegistryRecord = (
+  input: unknown,
+): DecisionRegistryRecordValidationResult => {
+  const issues: DecisionRegistryIssue[] = [];
+  if (
+    !isPlainObject(input) ||
+    Object.prototype.hasOwnProperty.call(input, 'body') ||
+    !exactKeys(input, ['schemaVersion', 'ref', 'object', 'createdAt'], '$', issues)
+  ) {
+    if (!isPlainObject(input)) issue(issues, 'decision_registry_record_invalid', '$');
+    return { ok: false, issues: sortIssues(issues) };
+  }
+  const result = validateRecord(input, issues);
+  if (!result.valid || !result.record) return { ok: false, issues: sortIssues(issues) };
+  return {
+    ok: true,
+    issues: [],
+    value: result.record as unknown as DecisionRegistryRecord,
+  };
 };
 
 export type DecisionRegistryValidationResult =

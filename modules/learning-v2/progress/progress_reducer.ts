@@ -87,7 +87,7 @@ export const createInitialProgressState = (
   updatedAt: new Date(0).toISOString(),
 });
 
-const validateSnapshot = (state: ProgressSnapshot): void => {
+export const assertProgressSnapshot = (state: ProgressSnapshot): void => {
   if (!isRecord(state) || state.schemaVersion !== "v2-progress.v1")
     throw new Error("progress_snapshot_invalid");
   if (
@@ -212,7 +212,7 @@ export const reduceProgress = (
   event: ProgressEvent,
   context: ProgressReducerContext,
 ): ProgressReduction => {
-  validateSnapshot(state);
+  assertProgressSnapshot(state);
   if (
     state.accountScopeHash !== context.expectedAccountScopeHash ||
     state.seasonId !== context.expectedSeasonId
@@ -546,7 +546,7 @@ export const reduceProgress = (
 };
 
 export const deriveAccessStarsEarned = (state: ProgressSnapshot): number => {
-  validateSnapshot(state);
+  assertProgressSnapshot(state);
   return Object.values(state.slots).reduce(
     (sum, slot) => sum + slot.bestPerformanceStars,
     0,
@@ -557,7 +557,7 @@ export const deriveRequiredLoopsComplete = (
   state: ProgressSnapshot,
   context: ProgressReducerContext,
 ): boolean => {
-  validateSnapshot(state);
+  assertProgressSnapshot(state);
   const loops = context.requiredLoopNodeIds;
   if (!loops) return false;
   if (

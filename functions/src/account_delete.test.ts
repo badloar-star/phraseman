@@ -8,6 +8,7 @@ const {
   enqueueForAuthenticatedAccount,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
+  deleteDirectDocs,
 } = __accountDeleteTestHooks;
 
 function makeDbStub(opts: {
@@ -220,6 +221,34 @@ describe('accountDelete stable id resolver', () => {
 });
 
 describe('accountDelete query deletion safety', () => {
+  it('recursively deletes the canonical stable user root that owns all V2 subcollections', async () => {
+    const recursiveDelete = jest.fn(async () => undefined);
+    const db = {
+      collection: (collection: string) => ({
+        doc: (id: string) => ({ path: `${collection}/${id}` }),
+      }),
+      recursiveDelete,
+    };
+    const ctx = {
+      db,
+      writer: { flush: jest.fn(async () => undefined) },
+      seen: new Set<string>(),
+      runId: 'test',
+      stableUidHash: 'stable',
+      authUidHash: 'auth',
+      startedAtMs: 0,
+      lastProgressLogDocs: 0,
+      writerClosed: false,
+    };
+
+    await deleteDirectDocs(db as any, 'stable-123', 'auth-456', ctx as any);
+
+    expect(recursiveDelete).toHaveBeenCalledWith(
+      expect.objectContaining({ path: 'users/stable-123' }),
+      ctx.writer,
+    );
+  });
+
   it('deletes reverse friend documents through concrete user paths', async () => {
     const refs: Record<string, { path: string }> = {};
     const userRef = {

@@ -1,5 +1,5 @@
 import { HttpsError } from "firebase-functions/v2/https";
-import { normalizeDelayedCallableInput } from "./learning_v2_delayed_callable";
+import { delayedFirestorePath, normalizeDelayedCallableInput } from "./learning_v2_delayed_callable";
 
 const valid = {
   operationId: "op-1",
@@ -39,5 +39,24 @@ describe("Learning V2 delayed callable input", () => {
     expect(() =>
       normalizeDelayedCallableInput({ ...valid, expectedTupleKeys: ["bad"] }),
     ).not.toThrow();
+  });
+
+  test("maps every account-bound delayed artifact below the stable owner root", () => {
+    expect(delayedFirestorePath("auth_links:provider-auth-1"))
+      .toBe("auth_links/provider-auth-1");
+    expect(delayedFirestorePath("users:user-1"))
+      .toBe("users/user-1");
+    expect(delayedFirestorePath("account_deletion_tombstones:user-1"))
+      .toBe("account_deletion_tombstones/user-1");
+    expect(delayedFirestorePath("learning_v2_assignments:user-1:a1"))
+      .toBe("users/user-1/v2_delayed_assignments/a1");
+    expect(delayedFirestorePath("learning_v2_launches:user-1:l1"))
+      .toBe("users/user-1/v2_delayed_launches/l1");
+    expect(delayedFirestorePath("learning_v2_timing_receipts:user-1:t1"))
+      .toBe("users/user-1/v2_delayed_timing_receipts/t1");
+    expect(delayedFirestorePath("learning_v2_failure_receipts:user-1:f1"))
+      .toBe("users/user-1/v2_delayed_failure_receipts/f1");
+    expect(delayedFirestorePath("learning-v2:delayed:user-1:op-1"))
+      .toBe("users/user-1/v2_delayed_operations/op-1");
   });
 });

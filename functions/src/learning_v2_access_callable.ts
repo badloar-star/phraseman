@@ -60,10 +60,13 @@ export const normalizeV2AccessPurchaseInput = (
 
 export const assertV2AccessStableIdentity = (
   normalized: NormalizedV2AccessCallableInput,
-  authUid: string | undefined,
+  binding: { readonly stableUid: string; readonly accountGeneration: number } | undefined,
 ): void => {
-  if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
-  if (normalized.stableId !== authUid) {
+  if (
+    !binding ||
+    normalized.stableId !== binding.stableUid ||
+    normalized.accountGeneration !== binding.accountGeneration
+  ) {
     throw new HttpsError('permission-denied', 'stable_identity_mismatch');
   }
 };
@@ -73,6 +76,9 @@ export interface V2AccessCallableDependencies {
   readonly resolvePolicy: (
     input: NormalizedV2AccessCallableInput,
   ) => Promise<AccessBoostPolicy>;
+  readonly resolveAccountBinding: (
+    authUid: string,
+  ) => Promise<{ readonly stableUid: string; readonly accountGeneration: number }>;
   readonly nowMs?: () => number;
   readonly decisionRegistryRef?: { readonly id: string; readonly version: number; readonly contentHash: string };
 }
@@ -83,7 +89,8 @@ export async function executeV2AccessPurchaseCallable(
 ): Promise<{ readonly ok: true; readonly replayed: boolean; readonly receipt: unknown }> {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const input = normalizeV2AccessPurchaseInput(request.data);
-  assertV2AccessStableIdentity(input, request.auth?.uid);
+  const binding = await dependencies.resolveAccountBinding(request.auth.uid);
+  assertV2AccessStableIdentity(input, binding);
   const nowMs = dependencies.nowMs?.() ?? Date.now();
   if (!Number.isSafeInteger(nowMs) || nowMs < 0) {
     throw new HttpsError('failed-precondition', 'server_time_invalid');
@@ -92,6 +99,7 @@ export async function executeV2AccessPurchaseCallable(
   const adapterInput: FinalizeV2AccessPurchaseInput = {
     operationId: input.operationId,
     fingerprint: hashCanonicalBody(input),
+    authUid: request.auth.uid,
     stableId: input.stableId,
     accountGeneration: input.accountGeneration,
     request: input.request,
@@ -107,7 +115,9 @@ export async function executeV2AccessPurchaseCallable(
       ? 'resource-exhausted'
       : reason.includes('replay_mismatch')
         ? 'already-exists'
-        : reason.includes('binding') || reason.includes('identity') || reason.includes('quote_') ||
+        : reason.includes('binding') || reason.includes('identity') ||
+            reason.includes('account_generation') || reason.includes('account_delete') ||
+            reason.includes('quote_') ||
             reason.includes('already_unlocked') || reason.includes('decision_registry') ||
             reason.includes('required_') || reason.includes('capability_') || reason.includes('local_') ||
             reason.includes('checkpoint') || reason.includes('deficit_')

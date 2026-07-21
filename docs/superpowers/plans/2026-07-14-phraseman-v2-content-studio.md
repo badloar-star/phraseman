@@ -1334,3 +1334,20 @@ Expected: both real internal builds consume their own platform/build-bound one-u
 Expected: all commands exit 0.
 
 - [ ] Record the phase packet with exact release IDs/hashes, screenshots at 375/768/1024/1440 px, permissions exercised, audit IDs, rollback target, commands/results, and remaining limitations.
+
+## Owner-approved multilingual Content Studio addendum — 2026-07-19
+
+Admin V2 generation must be language-profile and script-profile aware. It must
+support dedicated Language Profiles, Script Profiles, Script Curriculum,
+character/component libraries, script generation, linguistic review, preview
+and release readiness as specified in:
+
+- `docs/superpowers/specs/2026-07-19-learning-v2-multilingual-writing-systems-design.md`;
+- `docs/superpowers/plans/2026-07-19-learning-v2-multilingual-writing-systems.md`.
+
+Chinese and Japanese receive the first complete generation/review flows.
+Profile fixtures for Korean, Arabic, Hebrew, Devanagari, Thai, Greek and
+Cyrillic prove that no Latin/whitespace/LTR assumption is embedded. Generated
+language or script content remains draft-only until provenance and qualified
+linguistic review pass. This addendum does not authorise implementation,
+production generation or deployment.

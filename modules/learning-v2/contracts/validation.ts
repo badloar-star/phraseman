@@ -1,10 +1,16 @@
 import {
   V2_ACTIVITY_FAMILIES,
+  type ModeTemplateArtifactBody,
+  type ModeTemplateLifecycleHead,
   type V2ResolvedPolicyDescriptor,
   type V2ResolvedModeTemplate,
 } from "./activity";
 import type { V2CurriculumProjection } from "./curriculum";
 import type { V2CheckpointContract, V2EpisodeContract } from "./episode";
+import type {
+  ContentGateReceiptBody,
+  ContentReceiptSubject,
+} from "./content_studio";
 import { buildLearningEvidenceTupleKey } from "./evidence";
 import { V2_IDENTITY_REGEX } from "./identities";
 import {
@@ -1736,7 +1742,7 @@ const validateVersionRefShape = (
   return undefined;
 };
 
-const validateVoiceReleaseRequirementsShape = (
+export const validateVoiceReleaseRequirementsShape = (
   value: unknown,
   path: string,
 ): V2ContractIssue | undefined => {
@@ -2123,6 +2129,186 @@ const validateTemplateArtifactBodyShape = (
     );
   }
   return undefined;
+};
+
+/** Public adapter for immutable Content Studio ModeTemplate resolvers. */
+export const validateModeTemplateArtifactBody = (
+  input: unknown,
+): V2ContractValidationResult<ModeTemplateArtifactBody> => {
+  const issueResult = validateTemplateArtifactBodyShape(input, "$.template");
+  return issueResult
+    ? fail([issueResult])
+    : pass(input as ModeTemplateArtifactBody);
+};
+
+/** Shared strict validator for the mutable ModeTemplate lifecycle projection. */
+export const validateModeTemplateLifecycleHead = (
+  input: unknown,
+): V2ContractValidationResult<ModeTemplateLifecycleHead> => {
+  if (!isPlainObject(input)) return fail([issue("mode_template_lifecycle_invalid", "$")]);
+  const allowed = [
+    "schemaVersion",
+    "templateId",
+    "version",
+    "contentHash",
+    "status",
+    "reason",
+    "replacementRef",
+    "noReplacement",
+    "changedBy",
+    "changedAt",
+    "lifecycleRevision",
+  ];
+  const required = [
+    "schemaVersion",
+    "templateId",
+    "version",
+    "contentHash",
+    "status",
+    "reason",
+    "changedBy",
+    "changedAt",
+    "lifecycleRevision",
+  ];
+  if (
+    Object.keys(input).some((key) => !allowed.includes(key)) ||
+    required.some((key) => !hasOwn(input, key))
+  )
+    return fail([issue("mode_template_lifecycle_keys_invalid", "$")]);
+  if (
+    input.schemaVersion !== "v2-mode-template-lifecycle.v1" ||
+    typeof input.templateId !== "string" ||
+    input.templateId.length === 0 ||
+    !Number.isSafeInteger(input.version) ||
+    Number(input.version) < 1 ||
+    typeof input.contentHash !== "string" ||
+    !HASH_PATTERN.test(input.contentHash) ||
+    !["approved", "published", "deprecated", "archived"].includes(String(input.status)) ||
+    typeof input.reason !== "string" ||
+    input.reason.length === 0 ||
+    typeof input.changedBy !== "string" ||
+    input.changedBy.length === 0 ||
+    typeof input.changedAt !== "string" ||
+    input.changedAt.length === 0 ||
+    !Number.isSafeInteger(input.lifecycleRevision) ||
+    Number(input.lifecycleRevision) < 1
+  )
+    return fail([issue("mode_template_lifecycle_fields_invalid", "$")]);
+  const hasReplacement = hasOwn(input, "replacementRef");
+  const hasNoReplacement = hasOwn(input, "noReplacement");
+  if (hasNoReplacement && input.noReplacement !== true)
+    return fail([issue("mode_template_lifecycle_no_replacement_invalid", "$.noReplacement")]);
+  if (hasReplacement) {
+    if (!isPlainObject(input.replacementRef))
+      return fail([issue("mode_template_lifecycle_replacement_invalid", "$.replacementRef")]);
+    const replacement = input.replacementRef;
+    if (
+      Object.keys(replacement).some(
+        (key) => !["templateId", "version", "contentHash"].includes(key),
+      ) ||
+      !["templateId", "version", "contentHash"].every((key) => hasOwn(replacement, key)) ||
+      typeof replacement.templateId !== "string" ||
+      !/^[A-Za-z0-9._-]{1,160}$/.test(replacement.templateId) ||
+      !Number.isSafeInteger(replacement.version) ||
+      Number(replacement.version) < 1 ||
+      typeof replacement.contentHash !== "string" ||
+      !HASH_PATTERN.test(replacement.contentHash)
+    )
+      return fail([issue("mode_template_lifecycle_replacement_invalid", "$.replacementRef")]);
+    if (
+      replacement.templateId === input.templateId &&
+      replacement.version === input.version &&
+      replacement.contentHash === input.contentHash
+    )
+      return fail([issue("mode_template_lifecycle_replacement_self_reference", "$.replacementRef")]);
+  }
+  if (input.status === "deprecated" && hasReplacement === hasNoReplacement)
+    return fail([issue("mode_template_lifecycle_deprecation_choice_invalid", "$")]);
+  if (input.status === "published" && (hasReplacement || hasNoReplacement))
+    return fail([issue("mode_template_lifecycle_published_metadata_invalid", "$")]);
+  if (input.status === "archived" && (hasReplacement || hasNoReplacement))
+    return fail([issue("mode_template_lifecycle_archived_metadata_invalid", "$")]);
+  return pass(input as unknown as ModeTemplateLifecycleHead);
+};
+
+const CONTENT_RECEIPT_ENTITY_TYPES = new Set([
+  "mode_template",
+  "activity_instance",
+  "episode",
+  "season",
+  "release_manifest",
+]);
+
+export const validateContentReceiptSubject = (
+  input: unknown,
+): V2ContractValidationResult<ContentReceiptSubject> => {
+  if (
+    !isPlainObject(input) ||
+    Object.keys(input).length !== 4 ||
+    !["entityType", "entityId", "entityRevision", "entityFingerprint"].every((key) =>
+      hasOwn(input, key),
+    ) ||
+    !CONTENT_RECEIPT_ENTITY_TYPES.has(String(input.entityType)) ||
+    typeof input.entityId !== "string" ||
+    input.entityId.length === 0 ||
+    !Number.isSafeInteger(input.entityRevision) ||
+    Number(input.entityRevision) < 1 ||
+    typeof input.entityFingerprint !== "string" ||
+    !HASH_PATTERN.test(input.entityFingerprint)
+  )
+    return fail([issue("content_receipt_subject_invalid", "$.subject")]);
+  return pass(input as unknown as ContentReceiptSubject);
+};
+
+export const validateContentGateReceiptBody = (
+  input: unknown,
+): V2ContractValidationResult<ContentGateReceiptBody> => {
+  if (!isPlainObject(input)) return fail([issue("content_gate_receipt_invalid", "$")]);
+  const required = [
+    "schemaVersion",
+    "gateKind",
+    "subject",
+    "validationReceiptHash",
+    "localizationReceiptSetHash",
+    "reviewReceiptHash",
+    "waiverSetHash",
+    "evaluatedBy",
+    "evaluatedAt",
+  ];
+  const allowed = [...required, "devicePreviewReceiptHashes"];
+  if (
+    Object.keys(input).some((key) => !allowed.includes(key)) ||
+    required.some((key) => !hasOwn(input, key))
+  )
+    return fail([issue("content_gate_receipt_keys_invalid", "$")]);
+  const subject = validateContentReceiptSubject(input.subject);
+  if (!subject.ok) return fail(subject.issues);
+  if (
+    input.schemaVersion !== "content-gate-receipt-body.v1" ||
+    !["approval", "release_seal"].includes(String(input.gateKind)) ||
+    !["validationReceiptHash", "localizationReceiptSetHash", "reviewReceiptHash", "waiverSetHash"].every(
+      (key) => typeof input[key] === "string" && HASH_PATTERN.test(String(input[key])),
+    ) ||
+    typeof input.evaluatedBy !== "string" ||
+    input.evaluatedBy.length === 0 ||
+    typeof input.evaluatedAt !== "string" ||
+    input.evaluatedAt.length === 0
+  )
+    return fail([issue("content_gate_receipt_fields_invalid", "$")]);
+  if (hasOwn(input, "devicePreviewReceiptHashes")) {
+    const previews = input.devicePreviewReceiptHashes;
+    if (
+      !isPlainObject(previews) ||
+      Object.keys(previews).length !== 2 ||
+      !["ios", "android"].every((key) => hasOwn(previews, key)) ||
+      typeof previews.ios !== "string" ||
+      !HASH_PATTERN.test(previews.ios) ||
+      typeof previews.android !== "string" ||
+      !HASH_PATTERN.test(previews.android)
+    )
+      return fail([issue("content_gate_receipt_preview_hashes_invalid", "$.devicePreviewReceiptHashes")]);
+  }
+  return pass(input as unknown as ContentGateReceiptBody);
 };
 
 const validateEvidenceDeclarationShape = (

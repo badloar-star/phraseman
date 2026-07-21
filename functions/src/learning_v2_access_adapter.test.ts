@@ -1,4 +1,5 @@
 import {
+  firestoreV2AccessPath,
   finalizeV2AccessPurchase,
   type V2AccessPurchaseRepository,
 } from './learning_v2_access_adapter';
@@ -7,18 +8,25 @@ import type { V2AccessQuote } from '../../modules/learning-v2/contracts/access_q
 
 class MemoryRepository implements V2AccessPurchaseRepository {
   readonly values = new Map<string, unknown>();
+  readonly reads: string[] = [];
+  readonly writes: string[] = [];
   private active = false;
   async runTransaction<T>(fn: (tx: any) => Promise<T>): Promise<T> {
     if (this.active) throw new Error('transaction_collision');
     this.active = true;
     try {
       const tx = {
-        get: async <U>(key: string) => ({ exists: this.values.has(key), data: this.values.get(key) as U }),
+        get: async <U>(key: string) => {
+          this.reads.push(key);
+          return { exists: this.values.has(key), data: this.values.get(key) as U };
+        },
         create: (key: string, value: unknown) => {
           if (this.values.has(key)) throw new Error('already_exists');
+          this.writes.push(key);
           this.values.set(key, value);
         },
         update: (key: string, value: Record<string, unknown>) => {
+          this.writes.push(key);
           this.values.set(key, { ...(this.values.get(key) as Record<string, unknown>), ...value });
         },
       };
@@ -38,6 +46,7 @@ const policy: AccessBoostPolicy = {
 const input = {
   operationId: 'operation-1',
   fingerprint: 'a'.repeat(64),
+  authUid: 'provider-auth-1',
   stableId: 'user-1',
   accountGeneration: 1,
   nowMs: 1_000,
@@ -51,7 +60,8 @@ const quote: V2AccessQuote = {
   releaseId: 'release-1', expiresAtMs: 2_000, earnedDeficit: 2, accessStarsToApply: 2, unitPriceShards: 3, totalCostShards: 6,
 };
 const seed = (repo: MemoryRepository) => {
-  repo.values.set('learning-v2:access-quote:quote-1', quote);
+  repo.values.set('auth_links:provider-auth-1', { stable_id: 'user-1' });
+  repo.values.set('learning-v2:access-quote:user-1:quote-1', quote);
   repo.values.set('learning-v2:access-gate:user-1:season-1:gate-2', {
     stableId: 'user-1', accountGeneration: 1, seasonId: 'season-1', gateId: 'gate-2', releaseId: 'release-1', policyVersion: 'gate-policy-v1',
     requiredLoopsComplete: true, capabilityFallbackComplete: true, localPerformanceComplete: true, checkpointComplete: true,
@@ -61,6 +71,52 @@ const seed = (repo: MemoryRepository) => {
 };
 
 describe('V2 access purchase transaction adapter', () => {
+  it.each([
+    [
+      'provider relink',
+      () => ({ key: 'auth_links:provider-auth-1', value: { stable_id: 'different-user' } }),
+      'access_stable_identity_mismatch',
+    ],
+    [
+      'account generation change',
+      () => ({ key: 'users:user-1', value: { stableId: 'user-1', accountGeneration: 2, shards: 10 } }),
+      'access_account_generation_mismatch',
+    ],
+    [
+      'deletion tombstone',
+      () => ({ key: 'account_deletion_tombstones:user-1', value: { status: 'pending' } }),
+      'access_account_delete_pending',
+    ],
+  ])(
+    'fails closed with ordered barrier reads and zero writes after a pre-read %s',
+    async (_label, race, expectedError) => {
+      const repo = new MemoryRepository();
+      seed(repo);
+      const raced = race();
+      repo.values.set(raced.key, raced.value);
+
+      await expect(finalizeV2AccessPurchase(repo, policy, input))
+        .rejects.toThrow(expectedError);
+
+      expect(repo.reads).toEqual([
+        'auth_links:provider-auth-1',
+        'users:user-1',
+        'account_deletion_tombstones:user-1',
+      ]);
+      expect(repo.writes).toEqual([]);
+      expect(repo.values.has('learning-v2:access-receipt:user-1:operation-1')).toBe(false);
+      expect(repo.values.has('learning-v2:access-operation:user-1:operation-1')).toBe(false);
+      expect(repo.values.get('users:user-1')).toMatchObject({ shards: 10 });
+      expect(repo.values.get('learning-v2:access-gate:user-1:season-1:gate-2'))
+        .toMatchObject({ unlocked: false });
+    },
+  );
+
+  it('routes the account-bound quote below the canonical stable owner root', () => {
+    expect(firestoreV2AccessPath('learning-v2:access-quote:user-1:quote-1'))
+      .toBe('users/user-1/v2_access_quotes/quote-1');
+  });
+
   it('spends once, writes one receipt, and unlocks the scoped gate', async () => {
     const repo = new MemoryRepository(); seed(repo);
     const result = await finalizeV2AccessPurchase(repo, policy, input);
@@ -77,6 +133,27 @@ describe('V2 access purchase transaction adapter', () => {
     expect(repo.values.get('users:user-1')).toMatchObject({ shards: 4 });
   });
 
+  it('blocks replay success after a provider relink without another debit or write', async () => {
+    const repo = new MemoryRepository(); seed(repo);
+    await finalizeV2AccessPurchase(repo, policy, input);
+    repo.values.set('auth_links:provider-auth-1', {
+      stable_id: 'different-user',
+    });
+    repo.reads.length = 0;
+    repo.writes.length = 0;
+
+    await expect(finalizeV2AccessPurchase(repo, policy, input))
+      .rejects.toThrow('access_stable_identity_mismatch');
+
+    expect(repo.reads).toEqual([
+      'auth_links:provider-auth-1',
+      'users:user-1',
+      'account_deletion_tombstones:user-1',
+    ]);
+    expect(repo.writes).toEqual([]);
+    expect(repo.values.get('users:user-1')).toMatchObject({ shards: 4 });
+  });
+
   it('rejects reused operation ids with a different fingerprint', async () => {
     const repo = new MemoryRepository(); seed(repo);
     await finalizeV2AccessPurchase(repo, policy, input);
@@ -85,7 +162,7 @@ describe('V2 access purchase transaction adapter', () => {
 
   it('rejects stale account generation and insufficient balance before writes', async () => {
     const repo = new MemoryRepository(); seed(repo);
-    await expect(finalizeV2AccessPurchase(repo, policy, { ...input, accountGeneration: 2 })).rejects.toThrow('binding_mismatch');
+    await expect(finalizeV2AccessPurchase(repo, policy, { ...input, accountGeneration: 2 })).rejects.toThrow('account_generation_mismatch');
     repo.values.set('users:user-1', { stableId: 'user-1', accountGeneration: 1, shards: 1 });
     await expect(finalizeV2AccessPurchase(repo, policy, {
       ...input,

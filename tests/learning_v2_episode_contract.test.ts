@@ -15,6 +15,7 @@ import {
   validateV2LearningPackage,
 } from "../modules/learning-v2/contracts/validation";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
+import { FUNCTIONS_V2_CONTRACT_MANIFEST } from "../functions/src/learning_v2/contracts";
 
 type JsonRecord = Record<string, unknown>;
 type Mutation = {
@@ -523,6 +524,15 @@ const validCheckpoint = {
 };
 
 describe("Learning V2 Task 1.2 — canonical activity and E1 contract", () => {
+  test("publishes the same schema/hash manifest to the Functions mirror", () => {
+    expect(FUNCTIONS_V2_CONTRACT_MANIFEST).toMatchObject({
+      packageSchemaVersion: "learning-v2-contract-fixture.v1",
+      episodeSchemaVersion: "v2-episode-contract.v1",
+      curriculumSchemaVersion: "v2-curriculum-contract.v1",
+      canonicalJsonVersion: "canonical-json.v1",
+      hashAlgorithm: "sha256-utf8",
+    });
+  });
   test("exports the exact exhaustive 17-family taxonomy and no checkpoint family", () => {
     expect(V2_ACTIVITY_FAMILIES).toEqual(exactFamilies);
     expect(V2_ACTIVITY_FAMILIES).toHaveLength(17);

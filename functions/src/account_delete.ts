@@ -776,6 +776,7 @@ export const __accountDeleteTestHooks = {
   enqueueForAuthenticatedAccount,
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
+  deleteDirectDocs,
   deleteQuery,
   ACCOUNT_DELETE_OPTIONS,
 };

@@ -1,0 +1,7 @@
+Unit: PASS 6 suites / 96 tests
+Progress emulator: PASS 1 suite / 2 tests
+Delayed emulator: PASS 1 suite / 1 test
+Transport targeted TS: PASS tsc exit 0
+Path identity tests: PASS 1 suite / 2 tests (owner_root + identity/storage invocation)
+Deletion identity contract: PASS 3 suites / 18 tests
+Production static path scan: PASS no forbidden direct uid interpolation

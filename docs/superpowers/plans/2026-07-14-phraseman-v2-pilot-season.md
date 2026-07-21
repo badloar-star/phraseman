@@ -1097,3 +1097,18 @@ Every GSD phase ends with:
 - DTS-7 and guardrails can be computed;
 - accessibility, offline, account-switch, interruption and rollback matrices pass;
 - rollout decision is based on predeclared learning + reliability + operability + fairness criteria.
+
+## Owner-approved multilingual expansion addendum — 2026-07-19
+
+Learning V2 must support broad language and writing-system expansion from the
+contract layer onward. The normative design and non-executable program plan are:
+
+- `docs/superpowers/specs/2026-07-19-learning-v2-multilingual-writing-systems-design.md`;
+- `docs/superpowers/plans/2026-07-19-learning-v2-multilingual-writing-systems.md`.
+
+Chinese and Japanese are the first complete special Script Curriculum packs.
+Korean, Arabic, Hebrew, Devanagari, Thai, Greek and Cyrillic fixtures must prove
+extensibility. Existing 17 activity families do not change implicitly;
+Script Curriculum receives an exact typed boundary and construct-honest
+evidence. This addendum is planning authority only and does not authorise
+implementation or release.

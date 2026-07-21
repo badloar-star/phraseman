@@ -1,0 +1,406 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const docs = new Map();
+let autoId = 0;
+function makeRef(path) {
+    return {
+        path,
+        collection: (name) => ({
+            doc: (id) => makeRef(`${path}/${name}/${id || `auto-${++autoId}`}`),
+        }),
+    };
+}
+function deepMerge(target, source) {
+    const result = { ...target };
+    for (const [key, value] of Object.entries(source)) {
+        const existing = target[key];
+        if (value &&
+            typeof value === 'object' &&
+            !Array.isArray(value) &&
+            existing &&
+            typeof existing === 'object' &&
+            !Array.isArray(existing)) {
+            result[key] = deepMerge(existing, value);
+        }
+        else {
+            result[key] = value;
+        }
+    }
+    return result;
+}
+function buildDb() {
+    return {
+        collection: (name) => ({
+            doc: (id) => makeRef(`${name}/${id}`),
+        }),
+        runTransaction: async (fn) => {
+            const writes = [];
+            const tx = {
+                get: async (ref) => {
+                    const data = docs.get(ref.path);
+                    return { exists: data !== undefined, data: () => data };
+                },
+                set: (ref, data, opts) => {
+                    writes.push(() => {
+                        const existing = docs.get(ref.path) ?? {};
+                        docs.set(ref.path, opts?.merge ? deepMerge(existing, data) : { ...data });
+                    });
+                },
+                delete: (ref) => {
+                    writes.push(() => { docs.delete(ref.path); });
+                },
+            };
+            const result = await fn(tx);
+            writes.forEach(write => write());
+            return result;
+        },
+    };
+}
+class FakeHttpsError extends Error {
+    constructor(code, message) {
+        super(message);
+        this.code = code;
+    }
+}
+jest.mock('firebase-functions/v2/https', () => ({
+    HttpsError: FakeHttpsError,
+    onCall: (_opts, handler) => handler,
+}));
+jest.mock('firebase-admin', () => ({
+    firestore: jest.fn(() => buildDb()),
+}));
+function seedUsersAndEvent() {
+    docs.set('users/sender', {
+        firebaseAuthUid: 'auth-sender',
+        displayName: 'Sender Root',
+        progress: { user_name: 'Sender Progress' },
+    });
+    docs.set('users/target', { displayName: 'Target' });
+    docs.set('users/target/friends/sender', { createdAt: Date.now() - 2000 });
+    docs.set('users/target/my_events/event-1', {
+        uid: 'target',
+        type: 'level_up',
+        ts: Date.now() - 1000,
+        payload: { level: 3 },
+    });
+}
+async function callLike(overrides = {}) {
+    const { friendLikeActivity } = require('./friend_activity_likes');
+    return friendLikeActivity({
+        auth: { uid: 'auth-sender' },
+        data: {
+            senderStableId: 'sender',
+            targetStableId: 'target',
+            eventId: 'event-1',
+            senderDisplayName: 'Sender Name',
+            ...overrides,
+        },
+    });
+}
+/** Profile-level like from a user card: no eventId, friend or not. */
+async function callProfileLike(overrides = {}) {
+    const { friendLikeActivity } = require('./friend_activity_likes');
+    return friendLikeActivity({
+        auth: { uid: 'auth-sender' },
+        data: {
+            senderStableId: 'sender',
+            targetStableId: 'target',
+            senderDisplayName: 'Sender Name',
+            ...overrides,
+        },
+    });
+}
+async function callUnlike(overrides = {}) {
+    const { friendUnlikeActivity } = require('./friend_activity_likes');
+    return friendUnlikeActivity({
+        auth: { uid: 'auth-sender' },
+        data: {
+            senderStableId: 'sender',
+            targetStableId: 'target',
+            senderDisplayName: 'Sender Name',
+            ...overrides,
+        },
+    });
+}
+beforeEach(() => {
+    jest.useFakeTimers().setSystemTime(new Date('2026-05-14T10:00:00.000Z'));
+    jest.resetModules();
+    docs.clear();
+    autoId = 0;
+    seedUsersAndEvent();
+});
+afterEach(() => {
+    jest.useRealTimers();
+});
+describe('friendLikeActivity', () => {
+    test('increments the event counter, profile aggregate, daily limit and audit log', async () => {
+        const result = await callLike();
+        expect(result).toEqual({
+            ok: true,
+            date: '2026-05-14',
+            targetUid: 'target',
+            eventId: 'event-1',
+            activityLikeCount: 1,
+            targetActivityLikeTotal: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({
+            activityLikeCount: 1,
+            lastActivityLikeFromUid: 'sender',
+            lastActivityLikeFromName: 'Sender Name',
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({
+            total: 1,
+            lastFromUid: 'sender',
+            lastEventId: 'event-1',
+        });
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toMatchObject({
+            date: '2026-05-14',
+            targetUid: 'target',
+            eventId: 'event-1',
+        });
+        expect(docs.get('users/target/activity_likes_received/2026-05-14_sender_event-1')).toMatchObject({
+            date: '2026-05-14',
+            eventId: 'event-1',
+            fromUid: 'sender',
+            fromName: 'Sender Name',
+        });
+    });
+    test('allows likes when the target root user doc is missing but the event exists', async () => {
+        docs.delete('users/target');
+        const result = await callLike();
+        expect(result).toMatchObject({
+            ok: true,
+            targetUid: 'target',
+            eventId: 'event-1',
+            activityLikeCount: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({
+            activityLikeCount: 1,
+            lastActivityLikeFromUid: 'sender',
+        });
+    });
+    test('allows likes on legacy events whose stored uid differs from the owner path', async () => {
+        docs.set('users/target/my_events/event-1', {
+            uid: 'legacy-auth-target',
+            type: 'level_up',
+            ts: Date.now() - 1000,
+            payload: { level: 3 },
+        });
+        const result = await callLike();
+        expect(result).toMatchObject({
+            ok: true,
+            targetUid: 'target',
+            eventId: 'event-1',
+            activityLikeCount: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({
+            uid: 'target',
+            activityLikeCount: 1,
+            lastActivityLikeFromUid: 'sender',
+        });
+    });
+    test('replays a duplicate like for the same event without incrementing', async () => {
+        await callLike();
+        await expect(callLike({ eventId: 'event-1' })).resolves.toMatchObject({
+            ok: true,
+            idempotentReplay: true,
+            activityLikeCount: 1,
+            targetActivityLikeTotal: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    });
+    test('blocks a second like for a different event on the same UTC day without incrementing', async () => {
+        await callLike();
+        docs.set('users/target/my_events/event-2', {
+            uid: 'target',
+            type: 'level_up',
+            ts: Date.now() - 500,
+            payload: { level: 4 },
+        });
+        await expect(callLike({ eventId: 'event-2' })).rejects.toMatchObject({
+            code: 'resource-exhausted',
+            message: 'Daily activity like limit reached',
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+        expect(docs.get('users/target/my_events/event-2')).not.toMatchObject({ activityLikeCount: 1 });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    });
+    test('mirrors league group boost event likes into the league group document', async () => {
+        const boostEventId = 'league_group_boost_2026-20_group-1_1000';
+        docs.set(`users/target/my_events/${boostEventId}`, {
+            uid: 'target',
+            type: 'league_group_boost',
+            groupId: 'group-1',
+            activityLikeCount: 2,
+            ts: Date.now() - 1000,
+        });
+        docs.set('league_groups/group-1', {
+            weekId: '2026-20',
+            groupBoost: {
+                buyerUid: 'target',
+                likeEventId: boostEventId,
+                likeCount: 2,
+                multiplier: 2,
+            },
+        });
+        const result = await callLike({ eventId: boostEventId });
+        expect(result).toMatchObject({
+            ok: true,
+            eventId: boostEventId,
+            activityLikeCount: 3,
+        });
+        expect(docs.get(`users/target/my_events/${boostEventId}`)).toMatchObject({
+            activityLikeCount: 3,
+        });
+        expect(docs.get('league_groups/group-1')).toMatchObject({
+            groupBoost: {
+                buyerUid: 'target',
+                likeEventId: boostEventId,
+                likeCount: 3,
+                multiplier: 2,
+            },
+        });
+    });
+    test('rejects self likes before any writes', async () => {
+        docs.set('users/sender/my_events/event-1', { uid: 'sender', type: 'level_up', ts: Date.now(), payload: {} });
+        await expect(callLike({ targetStableId: 'sender' })).rejects.toMatchObject({
+            code: 'failed-precondition',
+            message: 'Self activity likes are not allowed',
+        });
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toBeUndefined();
+    });
+    test('rejects a sender stable id that is not linked to the auth user', async () => {
+        docs.set('users/sender', { firebaseAuthUid: 'other-auth' });
+        await expect(callLike()).rejects.toMatchObject({
+            code: 'permission-denied',
+            message: 'Sender does not match auth user',
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+    });
+    test('rejects likes when the sender is not a friend of the target', async () => {
+        docs.delete('users/target/friends/sender');
+        await expect(callLike()).rejects.toMatchObject({
+            code: 'failed-precondition',
+            message: 'Users are not friends',
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toBeUndefined();
+    });
+    test('rejects path-like or overlong ids as invalid arguments', async () => {
+        await expect(callLike({ eventId: 'event-1/child' })).rejects.toMatchObject({
+            code: 'invalid-argument',
+            message: 'Valid sender, target and event ids required',
+        });
+        await expect(callLike({ senderStableId: 'x'.repeat(161) })).rejects.toMatchObject({
+            code: 'invalid-argument',
+            message: 'Valid sender, target and event ids required',
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+    });
+});
+describe('friendLikeActivity profile-mode (user card)', () => {
+    test('likes any user without an event or friendship and records who liked', async () => {
+        docs.delete('users/target/friends/sender'); // not friends — profile likes are still allowed
+        const result = await callProfileLike();
+        expect(result).toMatchObject({
+            ok: true,
+            date: '2026-05-14',
+            targetUid: 'target',
+            eventId: '__profile__',
+            activityLikeCount: 1,
+            targetActivityLikeTotal: 1,
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({
+            total: 1,
+            lastFromUid: 'sender',
+            lastEventId: '__profile__',
+        });
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toMatchObject({
+            targetUid: 'target',
+            eventId: '__profile__',
+            kind: 'profile',
+        });
+        expect(docs.get('users/target/activity_likes_received/2026-05-14_sender___profile__')).toMatchObject({
+            fromUid: 'sender',
+            fromName: 'Sender Name',
+            kind: 'profile',
+        });
+        // Profile likes never touch a my_events doc.
+        expect(docs.get('users/target/my_events/__profile__')).toBeUndefined();
+    });
+    test('does not increment the event counter for a profile like', async () => {
+        await callProfileLike();
+        expect(docs.get('users/target/my_events/event-1')).not.toMatchObject({ activityLikeCount: 1 });
+    });
+    test('replays a same-day profile like idempotently', async () => {
+        await callProfileLike();
+        await expect(callProfileLike()).resolves.toMatchObject({
+            ok: true,
+            idempotentReplay: true,
+            targetActivityLikeTotal: 1,
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    });
+    test('shares the one-per-day quota with event likes', async () => {
+        await callProfileLike();
+        await expect(callLike({ eventId: 'event-1' })).rejects.toMatchObject({
+            code: 'resource-exhausted',
+        });
+    });
+    test('rejects a profile self-like before any writes', async () => {
+        await expect(callProfileLike({ targetStableId: 'sender' })).rejects.toMatchObject({
+            code: 'failed-precondition',
+            message: 'Self activity likes are not allowed',
+        });
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toBeUndefined();
+    });
+});
+describe('friendUnlikeActivity (toggle off)', () => {
+    test('removes today\'s profile like: decrements total, clears limit + received', async () => {
+        await callProfileLike();
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+        const result = await callUnlike();
+        expect(result).toMatchObject({
+            ok: true,
+            removed: true,
+            targetUid: 'target',
+            eventId: '__profile__',
+            targetActivityLikeTotal: 0,
+        });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 0 });
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toBeUndefined();
+        expect(docs.get('users/target/activity_likes_received/2026-05-14_sender___profile__')).toBeUndefined();
+    });
+    test('frees the daily quota so a different user can be liked after unliking', async () => {
+        await callProfileLike();
+        await callUnlike();
+        await expect(callProfileLike({ targetStableId: 'target2' })).resolves.toMatchObject({
+            ok: true,
+            targetUid: 'target2',
+            targetActivityLikeTotal: 1,
+        });
+    });
+    test('is a no-op when there is no matching like today', async () => {
+        const result = await callUnlike();
+        expect(result).toMatchObject({ ok: true, removed: false, targetActivityLikeTotal: 0 });
+        expect(docs.get('users/target/activity_like_stats/summary')).toBeUndefined();
+    });
+    test('will not remove a like that points at a different target today', async () => {
+        await callProfileLike(); // liked "target" today
+        const result = await callUnlike({ targetStableId: 'target2' });
+        expect(result).toMatchObject({ removed: false });
+        // Original like untouched.
+        expect(docs.get('users/sender/friend_activity_like_daily_limits/2026-05-14')).toMatchObject({ targetUid: 'target' });
+        expect(docs.get('users/target/activity_like_stats/summary')).toMatchObject({ total: 1 });
+    });
+    test('removes an event-mode like and decrements the event counter', async () => {
+        await callLike(); // event-1, friend
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 1 });
+        const result = await callUnlike({ eventId: 'event-1' });
+        expect(result).toMatchObject({ removed: true, activityLikeCount: 0, targetActivityLikeTotal: 0 });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({ activityLikeCount: 0 });
+        expect(docs.get('users/target/activity_likes_received/2026-05-14_sender_event-1')).toBeUndefined();
+    });
+});
+//# sourceMappingURL=friend_activity_likes.test.js.map

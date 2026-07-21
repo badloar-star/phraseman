@@ -13,6 +13,7 @@ describe('V2 production access callable seam', () => {
     const source = readFileSync(path.resolve(__dirname, 'learning_v2_access_production_callable.ts'), 'utf8');
     const index = readFileSync(path.resolve(__dirname, 'index.ts'), 'utf8');
     expect(source).toContain("onCall({ enforceAppCheck: true }");
+    expect(source).toContain('readProgressAccountBinding');
     expect(index).toContain("export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';");
   });
 });

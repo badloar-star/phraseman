@@ -24,6 +24,7 @@ export const ADMIN_GRANT_REWARD_TYPES = [
   'xp_boost_2x_48h',
   'chain_shield_1',
   'chain_shield_3',
+  'arena_extra_5',
 ] as const;
 
 export type AdminGrantRewardType = (typeof ADMIN_GRANT_REWARD_TYPES)[number];
@@ -166,6 +167,17 @@ export function buildAdminRewardMutation(
     label = `Щит серии на ${days} ${days === 1 ? 'день' : 'дня'}`;
     before = { chain_shield: previous };
     after = { chain_shield: next };
+  }
+
+  if (type === 'arena_extra_5') {
+    const previousRaw = isRecord(user.arena_extra_plays_today) ? user.arena_extra_plays_today : {};
+    const today = utcDate(nowMs);
+    const previous = previousRaw.date === today ? Math.max(0, Math.floor(finiteNumber(previousRaw.n, 0))) : 0;
+    const next = { date: today, n: previous + 5 };
+    updates.arena_extra_plays_today = next;
+    label = '+5 рейтинговых игр сегодня';
+    before = { arena_extra_plays_today: previousRaw };
+    after = { arena_extra_plays_today: next };
   }
 
   return Object.freeze({

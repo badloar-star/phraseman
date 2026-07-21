@@ -10,13 +10,14 @@ export interface StageCapability {
   readonly prerequisiteKinds: readonly GenerationStageKind[];
   readonly prerequisiteCardinality: Readonly<{ min: number; max: number }>;
   readonly dependencyScopePolicy: DependencyScopePolicy;
-  readonly scopeType: 'lesson' | 'topic' | 'pack';
+  readonly scopeType: 'lesson' | 'topic' | 'pack' | 'arena';
   readonly editableFields: readonly string[];
   readonly publicationPolicy: 'standard' | 'draft_only_no_consumer' | 'draft_only_rich_fields_not_supported_by_community_consumer';
   readonly runtimeConsumer: boolean;
 }
 
 const ALL_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2', 'C1', 'C2'] as const);
+const ARENA_LEVELS = Object.freeze(['A1', 'A2', 'B1', 'B2'] as const);
 const SUPPORTED_TARGETS = new Set(['en', 'fr', 'de', 'es', 'it', 'pt']);
 const SUPPORTED_SOURCES = new Set(['ru', 'en']);
 export const stageLanguagePolicy = Object.freeze({ studyTargets: Object.freeze([...SUPPORTED_TARGETS]), sourceLocales: Object.freeze([...SUPPORTED_SOURCES]), sameLanguageAllowed: false });
@@ -45,12 +46,18 @@ export const generationStageCapabilities: Readonly<Record<GenerationStageKind, S
   lesson_irregular_verbs: capability('lesson_irregular_verbs', { count: range(1, 1000), prerequisiteKinds: ['lesson_phrases'], scopeType: 'lesson', editableFields: ['items'] }),
   lesson_prepositions: capability('lesson_prepositions', { count: range(1, 1000), prerequisiteKinds: ['lesson_phrases'], scopeType: 'lesson', editableFields: ['items'] }),
   lesson_theory: capability('lesson_theory', { count: range(1, 1000), prerequisiteKinds: ['lesson_phrases'], scopeType: 'lesson', editableFields: ['rules', 'examples', 'commonMistakes', 'miniCheck'] }),
+  quiz_topic: capability('quiz_topic', { count: fixed(1), prerequisiteKinds: [], scopeType: 'topic', editableFields: ['title', 'idea', 'constraints'] }),
+  quiz_questions: capability('quiz_questions', { count: fixed(10), prerequisiteKinds: ['quiz_topic'], scopeType: 'topic', editableFields: ['items'] }),
   challenge_topic: capability('challenge_topic', { count: fixed(1), prerequisiteKinds: [], scopeType: 'topic', editableFields: ['title', 'idea', 'constraints'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
   challenge_questions: capability('challenge_questions', { count: fixed(10), prerequisiteKinds: ['challenge_topic'], scopeType: 'topic', editableFields: ['items'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
+  quiz_question_replacement: capability('quiz_question_replacement', { count: fixed(1), prerequisiteKinds: ['quiz_questions'], scopeType: 'topic', editableFields: ['item'] }),
   challenge_question_replacement: capability('challenge_question_replacement', { count: fixed(1), prerequisiteKinds: ['challenge_questions'], scopeType: 'topic', editableFields: ['item'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
   flashcard_pack_idea: capability('flashcard_pack_idea', { count: fixed(1), prerequisiteKinds: [], scopeType: 'pack', editableFields: ['title', 'idea', 'constraints'], publicationPolicy: 'draft_only_no_consumer', runtimeConsumer: false }),
   flashcard_items: capability('flashcard_items', { count: range(1, 20), prerequisiteKinds: ['flashcard_pack_idea'], dependencyScopePolicy: 'same_scope_or_lesson_phrases', scopeType: 'pack', editableFields: ['items'], publicationPolicy: 'standard', runtimeConsumer: true }),
   flashcard_item_replacement: capability('flashcard_item_replacement', { count: fixed(1), prerequisiteKinds: ['flashcard_items'], scopeType: 'pack', editableFields: ['item'], publicationPolicy: 'standard', runtimeConsumer: true }),
+  arena_topic: capability('arena_topic', { cefr: ARENA_LEVELS, count: fixed(1), prerequisiteKinds: [], scopeType: 'arena', editableFields: ['title', 'idea', 'runtimePolicy'] }),
+  arena_questions: capability('arena_questions', { cefr: ARENA_LEVELS, count: fixed(10), prerequisiteKinds: ['arena_topic'], scopeType: 'arena', editableFields: ['items'] }),
+  arena_question_replacement: capability('arena_question_replacement', { cefr: ARENA_LEVELS, count: fixed(1), prerequisiteKinds: ['arena_questions'], scopeType: 'arena', editableFields: ['item'] }),
 });
 
 export function stageCapability(kind: GenerationStageKind): StageCapability {

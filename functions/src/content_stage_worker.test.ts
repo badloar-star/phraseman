@@ -8,24 +8,30 @@ import type { StageGenerationProvider } from './content_factory/stage_runner';
 
 describe('independent content stage worker', () => {
   it('parses only a safe stage identity', () => {
-    expect(parseRunContentStageRequest({ stageId: 'request-1:challenge_questions:topic-1:r1' })).toEqual({ stageId: 'request-1:challenge_questions:topic-1:r1' });
+    expect(parseRunContentStageRequest({ stageId: 'request-1:quiz_questions:topic-1:r1' })).toEqual({ stageId: 'request-1:quiz_questions:topic-1:r1' });
     expect(() => parseRunContentStageRequest({ stageId: '../bad' })).toThrow('content_stage_run_invalid');
   });
 
   it('uses a deterministic safe immutable object path', () => {
-    expect(contentStageObjectPath('request-1:challenge_questions:topic-1:r1', 1, 1, 'lease-1')).toMatch(/^content-factory-stages\/[a-f0-9]{64}\/r1\/a1-[a-f0-9]{64}\.json$/);
+    expect(contentStageObjectPath('request-1:quiz_questions:topic-1:r1', 1, 1, 'lease-1')).toMatch(/^content-factory-stages\/[a-f0-9]{64}\/r1\/a1-[a-f0-9]{64}\.json$/);
   });
 
   it.each([1, 10, 49, 50, 51, 1000])('forces lesson phrases to 50 in the worker even for stored requested count %i', (requestedCount) => {
     expect(resolveContentStageCount('lesson_phrases', requestedCount)).toBe(50);
   });
 
-  it.each([['challenge_questions', 10]] as const)('forces %s to exact ten-item batches', (kind, expected) => {
+  it.each([['quiz_questions', 10], ['challenge_questions', 10]] as const)('forces %s to exact ten-item batches', (kind, expected) => {
     expect(resolveContentStageCount(kind, 1)).toBe(expected);
     expect(resolveContentStageCount(kind, 100)).toBe(expected);
   });
 
-  it.each(['challenge_question_replacement'] as const)('forces %s to one result', (kind) => {
+  it('forces Arena to exact ten and records its verified topic grounding', () => {
+    expect(resolveContentStageCount('arena_questions', 1)).toBe(10);
+    const receipt = contentStageGroundingReceipt({ artifactId: 'arena-topic-1', contentHash: 'a'.repeat(64), topic: { topicId: 'city', runtimePolicy: { questionTimeoutMs: 40000 } }, previousQuestionKeys: ['old'] });
+    expect(receipt).toMatchObject({ topicArtifactId: 'arena-topic-1', topic: { topicId: 'city' }, previousQuestionKeys: ['old'] });
+  });
+
+  it.each(['quiz_question_replacement', 'challenge_question_replacement', 'arena_question_replacement'] as const)('forces %s to one result', (kind) => {
     expect(resolveContentStageCount(kind, 99)).toBe(1);
   });
 
@@ -36,9 +42,9 @@ describe('independent content stage worker', () => {
   });
 
   it('runs the exact prompt packet through an injected provider', async () => {
-    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'challenge_questions', items: Array.from({ length: 10 }, (_, index) => ({ id: `q${index + 1}` })) }) };
-    const result = await generateContentStageArtifact({ provider, model: 'fake', stage: { stageId: 'request-1:challenge_questions:topic-1:r1', kind: 'challenge_questions', promptVersion: 'v1', studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Practice introductions', count: 10, approvedArtifactIds: ['topic-artifact'], exemplarIds: [], previousContentFingerprints: [], revision: 1, attempt: 1, leaseToken: 'lease-1' } });
-    expect(result.artifact).toMatchObject({ stage: 'challenge_questions' });
+    const provider: StageGenerationProvider = { generate: async () => JSON.stringify({ stage: 'quiz_questions', items: Array.from({ length: 10 }, (_, index) => ({ id: `q${index + 1}` })) }) };
+    const result = await generateContentStageArtifact({ provider, model: 'fake', stage: { stageId: 'request-1:quiz_questions:topic-1:r1', kind: 'quiz_questions', promptVersion: 'v1', studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A1', objective: 'Practice introductions', count: 10, approvedArtifactIds: ['topic-artifact'], exemplarIds: [], previousContentFingerprints: [], revision: 1, attempt: 1, leaseToken: 'lease-1' } });
+    expect(result.artifact).toMatchObject({ stage: 'quiz_questions' });
     expect(result.receipt).toMatchObject({ model: 'fake', promptVersion: 'v1' });
     expect(result.objectPath).toMatch(/^content-factory-stages\//);
   });
@@ -146,11 +152,11 @@ describe('independent content stage worker', () => {
     const first = acquireStageLease({ state: 'queued', attempts: 0 }, { nowMs: 1000, leaseMs: 60000, leaseToken: 'lease-1' });
     expect(first.action).toBe('run');
     if (first.action !== 'run') throw new Error('expected first lease');
-    const obsoletePath = contentStageObjectPath('request-1:challenge_questions:topic-1:r1', 1, first.attempt, first.leaseToken);
+    const obsoletePath = contentStageObjectPath('request-1:quiz_questions:topic-1:r1', 1, first.attempt, first.leaseToken);
     const second = acquireStageLease({ state: 'running', attempts: 1, leaseToken: 'lease-1', leaseExpiresAtMs: 1000 }, { nowMs: 2000, leaseMs: 60000, leaseToken: 'lease-2' });
     expect(second.action).toBe('run');
     if (second.action !== 'run') throw new Error('expected second lease');
-    const currentPath = contentStageObjectPath('request-1:challenge_questions:topic-1:r1', 1, second.attempt, second.leaseToken);
+    const currentPath = contentStageObjectPath('request-1:quiz_questions:topic-1:r1', 1, second.attempt, second.leaseToken);
     expect(currentPath).not.toBe(obsoletePath);
     expect(canCommitStageLease({ state: 'running', attempts: 2, leaseToken: 'lease-2' }, first)).toBe(false);
     expect(canCommitStageLease({ state: 'running', attempts: 2, leaseToken: 'lease-2' }, second)).toBe(true);

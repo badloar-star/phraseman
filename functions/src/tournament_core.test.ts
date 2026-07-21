@@ -5,6 +5,7 @@ import {
   TOURNAMENT_PRIZES,
   TOURNAMENT_STATE_CANCELLED,
   TOURNAMENT_STATES,
+  type TournamentState,
   bankContributionGems,
   canCancelTournament,
   canTransitionTournament,
@@ -144,10 +145,10 @@ describe('seeded task selection (§6)', () => {
 
 describe('state machine (§11)', () => {
   it('walks the full happy path in order', () => {
-    let state = TOURNAMENT_STATES[0];
+    let state: typeof TOURNAMENT_STATES[number] = TOURNAMENT_STATES[0];
     const visited: string[] = [state];
     while (true) {
-      const next = nextTournamentState(state as typeof TOURNAMENT_STATES[number]);
+      const next = nextTournamentState(state);
       if (!next) break;
       expect(canTransitionTournament(state, next)).toBe(true);
       visited.push(next);

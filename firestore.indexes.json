@@ -1,6 +1,20 @@
 {
   "indexes": [
     {
+      "collectionGroup": "tournamentRooms",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "state",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "startsAt",
+          "order": "ASCENDING"
+        }
+      ]
+    },
+    {
       "collectionGroup": "shard_survey_responses",
       "queryScope": "COLLECTION",
       "fields": [

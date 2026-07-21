@@ -528,7 +528,7 @@ export const tournamentSubmitAnswers = onCall(HOT_CALLABLE_OPTIONS, async (reque
   const submittedRound = nextRounds.find((r) => r.roundNo === roundNo)!;
   const allRealSubmitted = realIds.every((id) => !!submittedRound.results[id]);
 
-  let nextState = room.state;
+  let nextState: TournamentState = room.state as TournamentState;
   if (allRealSubmitted) {
     const roomCursor = { ...room, state: room.state } as TournamentRoomDoc;
     if (roundNo < 4) {
@@ -536,7 +536,7 @@ export const tournamentSubmitAnswers = onCall(HOT_CALLABLE_OPTIONS, async (reque
     } else {
       advanceState(roomCursor, 'results');
     }
-    nextState = roomCursor.state;
+    nextState = roomCursor.state as TournamentState;
   }
 
   await roomRef.set({
@@ -704,6 +704,11 @@ export const tournamentFinalize = onCall(HOT_CALLABLE_OPTIONS, async (request) =
 });
 
 // ── tournamentClaimReward (callable, идемпотентно) ──────────────────────────
+//
+// Защита от подделки claim-документа клиентом (rules на reward_claims
+// исторически позволяют владельцу create): сумма/состав приза НЕ берётся из
+// claim-документа, а пересчитывается из финализированной комнаты
+// (computePlacements + prizeForPlace). Claim-doc — только флаг идемпотентности.
 
 export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -714,29 +719,40 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
 
+  // Авторитетный источник приза — финализированная комната.
+  const roomSnap = await db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId).get();
+  if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
+  const room = readRoom(roomSnap);
+  if (room.state !== 'rewards' && room.state !== 'closed') {
+    throw new HttpsError('failed-precondition', 'room_not_finalized');
+  }
+  const { realPlacements } = computePlacements(room.players);
+  const myPlacement = realPlacements.find((p) => p.player.id === stableUid);
+  const prize = myPlacement ? prizeForPlace(myPlacement.place) : null;
+  if (!myPlacement || !prize) throw new HttpsError('not-found', 'reward_not_found');
+
   const userRef = db.collection('users').doc(stableUid);
   const claimRef = userRef.collection(TOURNAMENT_REWARD_CLAIMS_SUBCOLLECTION).doc(`tournament_${roomId}`);
   const ticketsRef = userRef.collection('inventory').doc('tickets');
 
   return db.runTransaction(async (tx) => {
     const claimSnap = await tx.get(claimRef);
-    if (!claimSnap.exists) throw new HttpsError('not-found', 'reward_not_found');
     const claim = claimSnap.data() || {};
-    if (claim.uid && claim.uid !== stableUid) {
+    if (claimSnap.exists && claim.uid && claim.uid !== stableUid) {
       throw new HttpsError('permission-denied', 'claim_owner_mismatch');
     }
     if (claim.claimed === true) {
       return {
         ok: true,
         alreadyClaimed: true,
-        place: readInt(claim.place, 0),
-        gems: readInt(claim.gems, 0),
+        place: myPlacement.place,
+        gems: prize.gems,
         claimedAtMs: readInt(claim.claimedAtMs, 0),
       };
     }
 
     const nowMs = Date.now();
-    const gems = Math.max(0, readInt(claim.gems, 0));
+    const gems = Math.max(0, prize.gems);
     if (gems > 0) {
       tx.set(userRef, {
         shards: admin.firestore.FieldValue.increment(gems),
@@ -750,30 +766,39 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
         amount: gems,
         reason: 'tournament_prize',
         roomId,
-        place: readInt(claim.place, 0),
+        place: myPlacement.place,
       });
     }
-    if (claim.ticketBack === true) {
+    if (prize.ticketBack) {
       tx.set(ticketsRef, {
         count: admin.firestore.FieldValue.increment(1),
         updatedAt: nowMs,
       }, { merge: true });
     }
-    if (claim.titleId) {
+    if (prize.titleId) {
       tx.set(userRef, {
-        tournament_title: sanitizeString(claim.titleId, 60),
+        tournament_title: sanitizeString(prize.titleId, 60),
         tournament_titles_won: admin.firestore.FieldValue.increment(1),
       }, { merge: true });
     }
-    tx.set(claimRef, { ...claim, claimed: true, claimedAtMs: nowMs });
+    tx.set(claimRef, {
+      uid: stableUid,
+      roomId,
+      place: myPlacement.place,
+      gems,
+      ticketBack: prize.ticketBack,
+      titleId: prize.titleId ?? null,
+      claimed: true,
+      claimedAtMs: nowMs,
+    }, { merge: true });
 
     return {
       ok: true,
       alreadyClaimed: false,
-      place: readInt(claim.place, 0),
+      place: myPlacement.place,
       gems,
-      ticketBack: claim.ticketBack === true,
-      titleId: claim.titleId ?? null,
+      ticketBack: prize.ticketBack,
+      titleId: prize.titleId ?? null,
       claimedAtMs: nowMs,
     };
   });

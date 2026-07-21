@@ -15,6 +15,10 @@ const rulesPath = path.join(process.cwd(), 'firestore.rules');
 describe('firestore.rules security baseline', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 
+  test('Arena runtime pool is client-readable but server-owned', () => {
+    expect(rules).toMatch(/match \/arena_questions\/\{qId\} \{[\s\S]*?allow read:\s*if request\.auth != null;[\s\S]*?allow write:\s*if false;/);
+  });
+
   test('users collection is restricted to owner/admin, including stableId auth mapping', () => {
     expect(rules).toContain('match /users/{userId} {');
     expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');

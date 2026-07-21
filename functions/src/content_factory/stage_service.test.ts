@@ -7,18 +7,22 @@ describe('independent generation stage planning', () => {
     ['lesson_irregular_verbs', ['lesson_phrases']],
     ['lesson_prepositions', ['lesson_phrases']],
     ['lesson_theory', ['lesson_phrases']],
+    ['quiz_questions', ['quiz_topic']],
     ['challenge_questions', ['challenge_topic']],
+    ['quiz_question_replacement', ['quiz_questions']],
     ['challenge_question_replacement', ['challenge_questions']],
     ['flashcard_items', ['flashcard_pack_idea']],
     ['flashcard_item_replacement', ['flashcard_items']],
+    ['arena_questions', ['arena_topic']],
+    ['arena_question_replacement', ['arena_questions']],
   ] as const)('%s requires only approved %j', (kind, prerequisites) => {
     expect(requiredPrerequisiteKinds(kind)).toEqual(prerequisites);
   });
 
   it('creates an independently retryable stage from approved prerequisite artifacts', () => {
-    const plan = buildGenerationStagePlan({ requestId: 'request-1', kind: 'challenge_questions', studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A2', scopeId: 'topic-1', schemaVersion: 1, promptVersion: 'v1', count: 10, qaPolicy: 'content-quality-v1', revision: 2, approvedPrerequisites: [{ kind: 'challenge_topic', artifactId: 'topic-artifact-1', state: 'approved' }] });
-    expect(plan.unit).toMatchObject({ kind: 'challenge_questions', count: 10, revision: 2, prerequisiteArtifactIds: ['topic-artifact-1'] });
-    expect(plan.prerequisiteKinds).toEqual(['challenge_topic']);
+    const plan = buildGenerationStagePlan({ requestId: 'request-1', kind: 'quiz_questions', studyTarget: 'fr', sourceLocale: 'ru', cefr: 'A2', scopeId: 'topic-1', schemaVersion: 1, promptVersion: 'v1', count: 10, qaPolicy: 'content-quality-v1', revision: 2, approvedPrerequisites: [{ kind: 'quiz_topic', artifactId: 'topic-artifact-1', state: 'approved' }] });
+    expect(plan.unit).toMatchObject({ kind: 'quiz_questions', count: 10, revision: 2, prerequisiteArtifactIds: ['topic-artifact-1'] });
+    expect(plan.prerequisiteKinds).toEqual(['quiz_topic']);
   });
 
   it('blocks missing or unapproved prerequisites without creating a unit', () => {
@@ -31,11 +35,24 @@ describe('independent generation stage planning', () => {
     expect(() => buildGenerationStagePlan({ requestId: 'request-1', kind: 'lesson_phrases', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'lesson-1', schemaVersion: 2, promptVersion: 'v2', count: 49, qaPolicy: 'lesson-quality-v2', revision: 1, approvedPrerequisites })).toThrow('stage_capability_count_unsupported');
   });
 
-  it('requires challenge batches to contain exactly 10 questions', () => {
-    expect(() => buildGenerationStagePlan({ requestId: 'request-1', kind: 'challenge_questions', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'topic-1', schemaVersion: 2, promptVersion: 'v2', count: 9, qaPolicy: 'question-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'challenge_topic', artifactId: 'topic-1', state: 'approved' }] })).toThrow('stage_capability_count_unsupported');
+  it.each(['quiz_questions', 'challenge_questions'] as const)('requires %s batches to contain exactly 10 questions', (kind) => {
+    const prerequisiteKind = kind === 'quiz_questions' ? 'quiz_topic' : 'challenge_topic';
+    expect(() => buildGenerationStagePlan({ requestId: 'request-1', kind, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'topic-1', schemaVersion: 2, promptVersion: 'v2', count: 9, qaPolicy: 'question-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: prerequisiteKind, artifactId: 'topic-1', state: 'approved' }] })).toThrow('stage_capability_count_unsupported');
   });
 
   it('requires a replacement stage to contain exactly one result', () => {
-    expect(() => buildGenerationStagePlan({ requestId: 'request-1', kind: 'challenge_question_replacement', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'replace-q1', schemaVersion: 2, promptVersion: 'v2', count: 2, qaPolicy: 'question-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'challenge_questions', artifactId: 'batch-1', state: 'approved' }] })).toThrow('stage_capability_count_unsupported');
+    expect(() => buildGenerationStagePlan({ requestId: 'request-1', kind: 'quiz_question_replacement', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'replace-q1', schemaVersion: 2, promptVersion: 'v2', count: 2, qaPolicy: 'question-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'quiz_questions', artifactId: 'batch-1', state: 'approved' }] })).toThrow('stage_capability_count_unsupported');
+  });
+
+  it('requires Arena batches to contain exactly ten questions', () => {
+    const base = { requestId: 'r', kind: 'arena_questions' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'arena', schemaVersion: 2, promptVersion: 'v2', qaPolicy: 'arena-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'arena_topic' as const, artifactId: 'topic', state: 'approved' as const }] };
+    expect(buildGenerationStagePlan({ ...base, count: 10 }).unit.count).toBe(10);
+    expect(() => buildGenerationStagePlan({ ...base, count: 9 })).toThrow('stage_capability_count_unsupported');
+  });
+
+  it('requires exactly one approved Arena batch for a replacement', () => {
+    const base = { requestId: 'r', kind: 'arena_question_replacement' as const, studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', scopeId: 'arena.replace.a1', schemaVersion: 2, promptVersion: 'v2', qaPolicy: 'arena-studio-quality-v2', revision: 1, approvedPrerequisites: [{ kind: 'arena_questions' as const, artifactId: 'batch', state: 'approved' as const }] };
+    expect(buildGenerationStagePlan({ ...base, count: 1 }).unit.count).toBe(1);
+    expect(() => buildGenerationStagePlan({ ...base, count: 2 })).toThrow('stage_capability_count_unsupported');
   });
 });

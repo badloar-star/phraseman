@@ -1,8 +1,9 @@
 import { createHash } from 'node:crypto';
+import { validateArenaQuestionBatchArtifact, validateArenaQuestionReplacementArtifact, validateArenaTopicArtifact } from './arena_artifacts';
 import { validateDerivedLessonArtifact } from './derived_lesson_artifacts';
 import { validateFlashcardItemsArtifact, validateFlashcardPackIdeaArtifact, validateFlashcardReplacementArtifact } from './flashcard_artifacts';
 import { validateLessonStageArtifact } from './lesson_artifacts';
-import { validateQuestionBatchArtifact, validateQuestionReplacementArtifact, validateTopicArtifact } from './question_artifacts';
+import { validateQuestionBatchArtifact, validateQuestionReplacementArtifact, validateTopicArtifact } from './quiz_challenge_artifacts';
 import { semanticDiff } from './semantic_diff';
 import { type GenerationStageKind } from './stage_contracts';
 import { validateTheoryArtifact } from './theory_generation';
@@ -60,12 +61,12 @@ function validate(kind: GenerationStageKind, stage: Readonly<Record<string, unkn
       const refs = [...collectReferences(base)];
       return validateTheoryArtifact(candidate, { allowedPhraseIds: refs.filter((id) => id.startsWith('phrase:')).map((id) => id.slice(7)), allowedExemplarFragmentIds: refs.filter((id) => id.startsWith('exemplar:')).map((id) => id.slice(9)) });
     }
-    case 'challenge_topic': return validateTopicArtifact(candidate, { kind, cefr: String(stage.cefr) });
-    case 'challenge_questions': {
+    case 'quiz_topic': case 'challenge_topic': return validateTopicArtifact(candidate, { kind, cefr: String(stage.cefr) });
+    case 'quiz_questions': case 'challenge_questions': {
       const topic = { skillTags: [...new Set(items.map((item) => String(item.skillTag)))], difficultyDistribution: distribution(items) };
       return validateQuestionBatchArtifact(candidate, { kind, count: Number(stage.count), grounding: { topic, previousQuestionKeys: [] } });
     }
-    case 'challenge_question_replacement': {
+    case 'quiz_question_replacement': case 'challenge_question_replacement': {
       const result = record(base) && record(base.result) ? base.result : {};
       const originalQuestion = record(result.item) ? result.item : {};
       return validateQuestionReplacementArtifact(candidate, { kind, grounding: { replacementForQuestionId: result.replacementForQuestionId, originalQuestion, topic: { skillTags: [originalQuestion.skillTag] }, previousQuestionKeys: [] } });
@@ -75,6 +76,16 @@ function validate(kind: GenerationStageKind, stage: Readonly<Record<string, unkn
     case 'flashcard_item_replacement': {
       const result = record(base) && record(base.result) ? base.result : {};
       return validateFlashcardReplacementArtifact(candidate, { grounding: { replacementForCardId: result.replacementForCardId, originalCard: result.item, previousCardKeys: [], lessonCardKeys: [], publishedCardKeys: [] } });
+    }
+    case 'arena_topic': return validateArenaTopicArtifact(candidate, { cefr: String(stage.cefr), studyTarget: String(stage.studyTarget), sourceLocale: String(stage.sourceLocale) });
+    case 'arena_questions': {
+      const topic = { level: items[0]?.level, skillTags: [...new Set(items.map((item) => String(item.skillTag)))], allowedTypes: [...new Set(items.map((item) => String(item.type)))], difficultyDistribution: distribution(items), taskMaxChars: 120, questionMaxChars: 180, optionMaxChars: 80, ruleMaxChars: 500 };
+      return validateArenaQuestionBatchArtifact(candidate, { count: Number(stage.count), grounding: { topic, previousQuestionKeys: [] } });
+    }
+    case 'arena_question_replacement': {
+      const result = record(base) && record(base.result) ? base.result : {};
+      const originalQuestion = record(result.item) ? result.item : {};
+      return validateArenaQuestionReplacementArtifact(candidate, { grounding: { replacementForQuestionId: result.replacementForQuestionId, originalQuestion, topic: { skillTags: [originalQuestion.skillTag] }, previousQuestionKeys: [] } });
     }
   }
 }

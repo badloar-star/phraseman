@@ -474,3 +474,10 @@ export {
   tournamentClaimReward,
 } from './tournaments';
 export { adminSeedBotProfiles } from './tournament_bots';
+
+// ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
+export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { explainQuiz } = require('./explain_quiz');
+exports.explainQuiz = explainQuiz;

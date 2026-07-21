@@ -2128,6 +2128,7 @@ service cloud.firestore {
         && collection != 'arena_pulse_events'
         && collection != 'quiz_explanations'
         && collection != 'quiz_explain_billing';
+    }
     // Legacy browser-admin compatibility. These rules mirror only operations
     // that admin/legacy.html performs directly; do not replace them with a
     // recursive or prefix-wide admin grant.

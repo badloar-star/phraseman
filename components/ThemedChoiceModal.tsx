@@ -77,36 +77,67 @@ function ThemedChoiceModal({
             >
               {message}
             </Text>
-            <View style={{ gap: 10, zIndex: 10 }}>
+            <View style={{ gap: 4, zIndex: 10 }}>
               {choices.map((c, i) => {
                 const primary = c.variant !== 'secondary';
+                // Единый стандарт: второе действие — центрированная текстовая
+                // кнопка под primary, без заливки и рамки.
+                if (!primary) {
+                  return (
+                    <TouchableOpacity
+                      key={i}
+                      onPress={() => {
+                        hapticTap();
+                        // Одно закрытие: choice сам решает, закрывать ли модалку.
+                        c.onPress();
+                      }}
+                      style={{
+                        alignSelf: 'center',
+                        paddingVertical: 10,
+                        paddingHorizontal: 20,
+                        minHeight: 40,
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Text
+                        style={{
+                          color: t.textMuted,
+                          fontWeight: '600',
+                          fontSize: f.body,
+                          textAlign: 'center',
+                          zIndex: 10,
+                        }}
+                      >
+                        {c.label}
+                      </Text>
+                    </TouchableOpacity>
+                  );
+                }
                 const buttonColors = isGoldTheme
-                  ? primary
-                    ? GOLD_GRADIENTS.primaryButton
-                    : GOLD_GRADIENTS.raisedTile
+                  ? GOLD_GRADIENTS.primaryButton
                   : isCompassTheme
-                    ? primary
-                      ? COMPASS_GRADIENTS.primaryButton
-                      : COMPASS_GRADIENTS.recessedPanel
-                  : ([primary ? t.accent : t.bgSurface, primary ? t.accent : t.bgSurface, primary ? t.accent : t.bgSurface] as [string, string, string]);
+                    ? COMPASS_GRADIENTS.primaryButton
+                  : ([t.accent, t.accent, t.accent] as [string, string, string]);
                 return (
                   <TouchableOpacity
                     key={i}
                     onPress={() => {
                       hapticTap();
+                      // Одно закрытие: choice сам решает, закрывать ли модалку.
+                      // onRequestClose здесь НЕ вызываем — иначе двойной вызов.
                       c.onPress();
-                      onRequestClose();
                     }}
                     style={{
+                      width: '100%',
                       borderRadius: buttonRadius,
                       borderWidth: 0,
                       borderColor: isGoldTheme
-                        ? primary ? GOLD_RICH.edgeLight : GOLD_RICH.hairline
+                        ? GOLD_RICH.edgeLight
                         : isCompassTheme
-                          ? primary ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet
-                        : primary ? t.accent : t.border,
+                          ? COMPASS_RICH.hairlineStrong
+                          : t.accent,
                       overflow: 'hidden',
-                      ...(isGoldTheme && primary ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+                      ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
                     }}
                   >
                     <LinearGradient
@@ -116,15 +147,15 @@ function ThemedChoiceModal({
                       end={isGoldTheme || isCompassTheme ? { x: 1, y: 1 } : undefined}
                       style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 14 }}
                     >
-                      {isGoldTheme && <GoldBevel radius={12} intensity={primary ? 'strong' : 'quiet'} />}
-                      {isCompassTheme && <CompassDepthSurface radius={buttonRadius} cream={primary} quiet={!primary} />}
+                      {isGoldTheme && <GoldBevel radius={12} intensity="strong" />}
+                      {isCompassTheme && <CompassDepthSurface radius={buttonRadius} cream />}
                       <Text
                         style={{
                           color: isGoldTheme
-                            ? primary ? GOLD_RICH.blackPiano : t.textPrimary
+                            ? GOLD_RICH.blackPiano
                             : isCompassTheme
-                              ? primary ? COMPASS_RICH.textDark : t.textPrimary
-                              : primary ? t.correctText : t.textPrimary,
+                              ? COMPASS_RICH.textDark
+                              : t.correctText,
                           fontWeight: '700',
                           fontSize: f.body,
                           zIndex: 10,

@@ -178,17 +178,17 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'shards':
       return {
         icon: '💎',
-        labelRu: `+${amount} осколков знаний`,
-        labelUk: `+${amount} уламків знань`,
+        labelRu: `+${amount} монет`,
+        labelUk: `+${amount} монет`,
         labelEs:
           amount === 1
             ? '+1 fragmento'
-            : `+${amount} fragmentos`,
-        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} fragmentos`,
-        labelVi: `+${amount} mảnh`,
-        labelId: `+${amount} shard`,
-        labelTr: `+${amount} parça`,
-        labelPl: `+${amount} odłamków`,
+            : `+${amount} monedas`,
+        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} monedas`,
+        labelVi: `+${amount} xu`,
+        labelId: `+${amount} koin`,
+        labelTr: `+${amount} jeton`,
+        labelPl: `+${amount} monet`,
       };
     case 'xp_boost_2x_24h':
       return {
@@ -323,7 +323,8 @@ async function applyBroadcastReward(payload: GlobalBroadcastModalPayload, studyT
       return;
     case 'arena_extra_5':
       // Preserve queued legacy broadcasts with an equal-size neutral reward.
-      await addShardsRaw(5, 'global_broadcast_modal');
+      // §7: выплата монет обнулена — легаси-рассылка приходит без монетной части.
+      await addShardsRaw(0, 'global_broadcast_modal');
       await loadShardsFromCloud().catch(() => {});
       return;
     case 'wager_discount_25':

@@ -6,6 +6,11 @@ import {
   type PurchaseCustomizationInput,
 } from '../app/customization_purchase_intent';
 import type { CustomizationSnapshot } from '../app/customization_snapshot';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+  invalidateAccountGeneration,
+} from '../app/account_generation';
 
 const previousSnapshot: CustomizationSnapshot = {
   source: 'storage', updatedAt: 1, activeAvatar: '18', storedAuraSelection: null,
@@ -49,6 +54,62 @@ function makeDeps(memory = makeMemoryStorage()): CustomizationPurchaseDeps {
 }
 
 describe('customization purchase intent', () => {
+  beforeEach(() => {
+    __resetAccountGenerationForTests();
+    beginAccountGeneration('account-a');
+  });
+
+  it('creates new intents with a CSPRNG queue-compatible operation id', async () => {
+    const prepared = await prepareCustomizationPurchase(purchaseInput, makeDeps());
+
+    expect(prepared.opId).toMatch(/^[A-Za-z0-9_-]{8,80}$/);
+  });
+
+  it('forwards a persisted prepared legacy operation id byte-for-byte', async () => {
+    const legacyOpId = 'customization:legacy-intent-1234';
+    const memory = makeMemoryStorage({
+      customization_purchase_intent_v1: JSON.stringify({
+        v: 1,
+        accountScope: 'account-a',
+        opId: legacyOpId,
+        phase: 'prepared',
+        createdAt: 1,
+        ...purchaseInput,
+      }),
+    });
+    const deps = makeDeps(memory);
+
+    await resumePersistedCustomizationPurchase(deps);
+
+    expect(deps.spendShardsIdempotent).toHaveBeenCalledWith(
+      purchaseInput.cost,
+      purchaseInput.spendReason,
+      legacyOpId,
+      { requireCloudReceiptForLocalLedger: true },
+    );
+  });
+
+  it.each(['charged', 'granted'] as const)(
+    'does not debit a persisted %s legacy intent again',
+    async (phase) => {
+      const memory = makeMemoryStorage({
+        customization_purchase_intent_v1: JSON.stringify({
+          v: 1,
+          accountScope: 'account-a',
+          opId: 'customization:legacy-intent-1234',
+          phase,
+          createdAt: 1,
+          ...purchaseInput,
+        }),
+      });
+      const deps = makeDeps(memory);
+
+      await resumePersistedCustomizationPurchase(deps);
+
+      expect(deps.spendShardsIdempotent).not.toHaveBeenCalled();
+    },
+  );
+
   it('persists charged recovery and resumes after restart without a second spend', async () => {
     const memory = makeMemoryStorage();
     const deps = makeDeps(memory);
@@ -115,5 +176,35 @@ describe('customization purchase intent', () => {
     await expect(resumeCustomizationPurchase(prepared, deps)).resolves.toBe('purchased-only');
     expect(memory.values.get('avatar_aura_owned_v1')).toContain('aura-aurora');
     expect(deps.publishSnapshot).not.toHaveBeenCalled();
+  });
+
+  it('does not persist account A charge or ownership after delayed spend crosses to account B', async () => {
+    const memory = makeMemoryStorage();
+    const deps = makeDeps(memory);
+    let accountScope = 'account-a';
+    deps.getAccountScope = jest.fn(async () => accountScope);
+    let resolveSpend!: (result: 'applied') => void;
+    deps.spendShardsIdempotent = jest.fn(() => new Promise((resolve) => {
+      resolveSpend = resolve;
+    }));
+    const prepared = await prepareCustomizationPurchase(purchaseInput, deps);
+
+    const pending = resumeCustomizationPurchase(prepared, deps);
+    for (let index = 0; index < 20
+      && (deps.spendShardsIdempotent as jest.Mock).mock.calls.length === 0; index += 1) {
+      await Promise.resolve();
+    }
+    expect(deps.spendShardsIdempotent).toHaveBeenCalledTimes(1);
+
+    invalidateAccountGeneration();
+    accountScope = 'account-b';
+    beginAccountGeneration('account-b');
+    resolveSpend('applied');
+
+    await expect(pending).rejects.toThrow('customization_purchase_account_mismatch');
+    expect(memory.values.has('avatar_aura_owned_v1')).toBe(false);
+    expect(deps.onOwnershipGranted).not.toHaveBeenCalled();
+    expect(JSON.parse(memory.values.get('customization_purchase_intent_v1')!))
+      .toMatchObject({ accountScope: 'account-a', phase: 'prepared' });
   });
 });

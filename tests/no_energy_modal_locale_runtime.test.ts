@@ -18,10 +18,10 @@ describe('NoEnergyModal planned locale runtime copy', () => {
     for (const locale of plannedLocales) {
       expect(source).toContain(locale === 'pt-BR' ? "'pt-BR'" : `${locale}:`);
     }
-    expect(source).toContain('messagePtBr');
-    expect(source).toContain('messageVi');
-    expect(source).toContain('messageId');
-    expect(source).toContain('messageTr');
-    expect(source).toContain('messagePl');
+    expect(source).toContain('ENERGY_GATE_MESSAGES_PT_BR');
+    expect(source).toContain('ENERGY_GATE_MESSAGES_VI');
+    expect(source).toContain('ENERGY_GATE_MESSAGES_ID');
+    expect(source).toContain('ENERGY_GATE_MESSAGES_TR');
+    expect(source).toContain('ENERGY_GATE_MESSAGES_PL');
   });
 });

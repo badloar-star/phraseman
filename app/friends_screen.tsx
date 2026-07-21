@@ -467,7 +467,7 @@ export default function FriendsScreen() {
       return;
     }
     if (giftBalance < gift.costShards) {
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Fragmen tidak cukup', 'Yeterli parça yok', 'Za mało odłamków'));
+      showFeedback(L('Не хватает монет', 'Не вистачає монет', 'No tienes suficientes monedas', 'Moedas insuficientes', 'Không đủ xu', 'Koin tidak cukup', 'Jeton yetersiz', 'Za mało monet'));
       return;
     }
     doHaptic();
@@ -519,11 +519,11 @@ export default function FriendsScreen() {
           kind === 'limit'
             ? L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany')
             : kind === 'not_enough_shards'
-            ? L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków')
+            ? L('Не хватает монет', 'Не вистачає монет', 'No tienes suficientes monedas', 'Moedas insuficientes', 'Không đủ xu', 'Koin tidak cukup', 'Jeton yetersiz', 'Za mało monet')
             : kind === 'not_friends' || kind === 'user_missing'
             ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
             : kind === 'auth' || kind === 'identity_changed'
-            ? L('Подарок не дошёл. Осколки вернулись.', 'Подарунок не дійшов. Осколки повернулися.', 'No se pudo enviar el regalo. Recuperaste los fragmentos.', 'O presente não foi enviado. Os fragmentos voltaram.', 'Không gửi được quà. Mảnh đã hoàn lại.', 'Hadiah tidak terkirim. Pecahan dikembalikan.', 'Hediye ulaşmadı. Parçalar geri geldi.', 'Prezent nie dotarł. Odłamki wróciły.')
+            ? L('Подарок не дошёл. Монеты вернулись.', 'Подарунок не дійшов. Монети повернулися.', 'No se pudo enviar el regalo. Recuperaste las monedas.', 'O presente não foi enviado. As moedas voltaram.', 'Không gửi được quà. Xu đã hoàn lại.', 'Hadiah tidak terkirim. Koin dikembalikan.', 'Hediye ulaşmadı. Jetonlar geri geldi.', 'Prezent nie dotarł. Monety wróciły.')
             : kind === 'network'
             ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
             : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
@@ -539,7 +539,7 @@ export default function FriendsScreen() {
       }
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no está activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Fragmen kurang atau pertemanan tidak lagi aktif', 'Yeterli parça yok veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
+          ? L('Не хватает монет или дружба уже не активна', 'Не вистачає монет або дружба вже не активна', 'Faltan monedas o la amistad ya no está activa', 'Moedas insuficientes ou amizade não está mais ativa', 'Không đủ xu hoặc tình bạn không còn hoạt động', 'Koin tidak cukup atau pertemanan tidak lagi aktif', 'Jeton yetersiz veya arkadaşlık artık aktif değil', 'Za mało monet albo znajomość nie jest już aktywna')
           : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không thể gửi quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       emitAppEvent('action_toast', {

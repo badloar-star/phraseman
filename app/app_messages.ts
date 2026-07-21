@@ -4,6 +4,12 @@ import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { emitAppEvent, onAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+  type AccountGenerationToken,
+} from './account_generation';
 import { VIP_SURVEY_ID } from './vip_survey_content';
 import type { Lang } from '../constants/i18n';
 
@@ -451,31 +457,46 @@ export async function migrateLegacyReportReplyClaimsForOwnedMessages(
   return migrated;
 }
 
-async function addPendingReportReplyShardClaim(messageId: string, amount: number): Promise<boolean> {
+async function addPendingReportReplyShardClaim(
+  messageId: string,
+  amount: number,
+  accountToken: AccountGenerationToken,
+  ownerUid: string,
+): Promise<boolean> {
   const clean = cleanPollOptionId(messageId, '');
   const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
   if (!clean || safeAmount <= 0) return false;
-  const ownerUid = await getAppMessagesOwnerUid();
-  if (!ownerUid) return false;
-  const pending = await readPendingReportReplyShardClaims(ownerUid);
-  if (pending.some((claim) => claim.messageId === clean)) return false;
-  await writePendingReportReplyShardClaims([
-    ...pending,
-    { messageId: clean, amount: safeAmount, creditedAtMs: Date.now() },
-  ], ownerUid);
-  return true;
+  if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+    const pending = await readPendingReportReplyShardClaims(ownerUid);
+    if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+    if (pending.some((claim) => claim.messageId === clean)) return false;
+    await writePendingReportReplyShardClaims([
+      ...pending,
+      { messageId: clean, amount: safeAmount, creditedAtMs: Date.now() },
+    ], ownerUid);
+    return isCurrentAccountGeneration(accountToken, ownerUid);
+  });
 }
 
-async function removePendingReportReplyShardClaim(messageId: string): Promise<boolean> {
+async function removePendingReportReplyShardClaim(
+  messageId: string,
+  accountToken: AccountGenerationToken,
+  ownerUid: string,
+): Promise<boolean> {
   const clean = cleanPollOptionId(messageId, '');
   if (!clean) return false;
-  const ownerUid = await getAppMessagesOwnerUid();
-  if (!ownerUid) return false;
-  const pending = await readPendingReportReplyShardClaims(ownerUid);
-  const next = pending.filter((claim) => claim.messageId !== clean);
-  if (next.length === pending.length) return false;
-  await writePendingReportReplyShardClaims(next, ownerUid);
-  return true;
+  if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+  return withAccountTransitionLock(async () => {
+    if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+    const pending = await readPendingReportReplyShardClaims(ownerUid);
+    if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+    const next = pending.filter((claim) => claim.messageId !== clean);
+    if (next.length === pending.length) return false;
+    await writePendingReportReplyShardClaims(next, ownerUid);
+    return isCurrentAccountGeneration(accountToken, ownerUid);
+  });
 }
 
 function currentAppVersion(): string {
@@ -1430,10 +1451,19 @@ export async function markMessageIdsAnimated(ids: string[]): Promise<void> {
  * credit the local wallet before the callable confirms/deduplicates the remote doc.
  * Confirmation may raise the local wallet, but never lowers an optimistic balance.
  */
-async function reconcileReportReplyClaimBalance(serverBalance: number): Promise<void> {
+async function reconcileReportReplyClaimBalance(
+  serverBalance: number,
+  accountToken: AccountGenerationToken,
+  ownerUid: string,
+): Promise<void> {
   const safeBalance = Math.max(0, Math.floor(Number(serverBalance) || 0));
   const { keepShardsBalanceLocalAtLeast } = require('./shards_system') as typeof import('./shards_system');
-  await keepShardsBalanceLocalAtLeast(safeBalance, 'report_reply_claim').catch(() => {});
+  await keepShardsBalanceLocalAtLeast(
+    safeBalance,
+    'report_reply_claim',
+    accountToken,
+    ownerUid,
+  ).catch(() => {});
 }
 
 function isAlreadyClaimedReportReplyError(error: unknown): boolean {
@@ -1442,31 +1472,61 @@ function isAlreadyClaimedReportReplyError(error: unknown): boolean {
   return code.includes('already-exists') || message.includes('already claimed');
 }
 
-export async function claimReportReplyShards(
+async function claimReportReplyShardsForAccount(
   messageId: string,
-  options: { reconcileLocalBalance?: boolean } = {},
+  options: { reconcileLocalBalance?: boolean },
+  accountToken: AccountGenerationToken,
+  ownerUid: string,
 ): Promise<{ amount: number; balance: number }> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) throw new Error('cloud_disabled');
   const clean = String(messageId ?? '').trim();
   if (!clean) throw new Error('message_id_required');
+  if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
+    throw new Error('report_reply_claim_account_changed');
+  }
 
   // Lazy require — модуль functions не должен грузиться (и падать в Expo Go) на импорте.
   const { getApp } = require('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
   const { initFirebaseAppCheckIfAvailable } = require('./app_check_init');
   await initFirebaseAppCheckIfAvailable().catch(() => {});
+  if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
+    throw new Error('report_reply_claim_account_changed');
+  }
+  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  if (
+    canonicalUid !== ownerUid
+    || !isCurrentAccountGeneration(accountToken, ownerUid)
+  ) {
+    throw new Error('report_reply_claim_account_changed');
+  }
 
   const fn = httpsCallable(getFunctions(getApp(), 'us-central1'), 'claimReportReward');
   const res = await fn({ messageId: clean });
+  if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
+    throw new Error('report_reply_claim_account_changed');
+  }
   const amount = Math.max(0, Math.floor(Number((res?.data as any)?.amount) || 0));
   const balance = Math.max(0, Math.floor(Number((res?.data as any)?.balance) || 0));
 
   // Keep local optimistic rewards: server confirmation may raise local balance, never lower it here.
   if (options.reconcileLocalBalance !== false) {
-    await reconcileReportReplyClaimBalance(balance);
+    await reconcileReportReplyClaimBalance(balance, accountToken, ownerUid);
   }
 
   return { amount, balance };
+}
+
+export async function claimReportReplyShards(
+  messageId: string,
+  options: { reconcileLocalBalance?: boolean } = {},
+): Promise<{ amount: number; balance: number }> {
+  const accountToken = captureAccountGeneration();
+  const ownerUid = accountToken.stableId;
+  if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) {
+    throw new Error('report_reply_claim_account_changed');
+  }
+  return claimReportReplyShardsForAccount(messageId, options, accountToken, ownerUid);
 }
 
 export async function claimReportReplyShardsOptimistically(
@@ -1476,31 +1536,86 @@ export async function claimReportReplyShardsOptimistically(
   const clean = cleanPollOptionId(messageId, '');
   const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
   if (!clean || safeAmount <= 0) return false;
-  const queued = await addPendingReportReplyShardClaim(clean, safeAmount).catch(() => false);
+  const accountToken = captureAccountGeneration();
+  const ownerUid = accountToken.stableId;
+  if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
+  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  if (
+    canonicalUid !== ownerUid
+    || !isCurrentAccountGeneration(accountToken, ownerUid)
+  ) return false;
+  const queued = await addPendingReportReplyShardClaim(
+    clean,
+    safeAmount,
+    accountToken,
+    ownerUid,
+  ).catch(() => false);
+  if (!isCurrentAccountGeneration(accountToken, ownerUid)) return false;
   emitAppEvent('app_messages_local_changed');
   if (queued) {
     const { addShardsLocalOnlyForPendingServerClaim } = require('./shards_system') as typeof import('./shards_system');
-    await addShardsLocalOnlyForPendingServerClaim(safeAmount, 'report_reply_claim').catch(() => 0);
+    const credited = await addShardsLocalOnlyForPendingServerClaim(
+      safeAmount,
+      'report_reply_claim',
+      accountToken,
+      ownerUid,
+    ).catch(() => 0);
+    if (credited !== safeAmount || !isCurrentAccountGeneration(accountToken, ownerUid)) return false;
   }
   void resumePendingReportReplyShardClaims();
   return true;
 }
 
 export async function resumePendingReportReplyShardClaims(): Promise<{ resolved: number; pending: number }> {
-  const claims = await readPendingReportReplyShardClaims();
+  const accountToken = captureAccountGeneration();
+  const ownerUid = accountToken.stableId;
+  if (!ownerUid || !isCurrentAccountGeneration(accountToken, ownerUid)) {
+    return { resolved: 0, pending: 0 };
+  }
+  const canonicalUid = await getCanonicalUserId().catch(() => null);
+  if (
+    canonicalUid !== ownerUid
+    || !isCurrentAccountGeneration(accountToken, ownerUid)
+  ) return { resolved: 0, pending: 0 };
+  const claims = await readPendingReportReplyShardClaims(ownerUid);
+  if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
+    return { resolved: 0, pending: claims.length };
+  }
   if (claims.length === 0) return { resolved: 0, pending: 0 };
   let resolved = 0;
   let pending = 0;
   for (const claim of claims) {
     try {
-      const result = await claimReportReplyShards(claim.messageId);
-      await removePendingReportReplyShardClaim(claim.messageId);
-      await reconcileReportReplyClaimBalance(result.balance);
+      const result = await claimReportReplyShardsForAccount(
+        claim.messageId,
+        {},
+        accountToken,
+        ownerUid,
+      );
+      if (!isCurrentAccountGeneration(accountToken, ownerUid)) {
+        pending += 1;
+        continue;
+      }
+      const removed = await removePendingReportReplyShardClaim(
+        claim.messageId,
+        accountToken,
+        ownerUid,
+      );
+      if (!removed || !isCurrentAccountGeneration(accountToken, ownerUid)) {
+        pending += 1;
+        continue;
+      }
+      await reconcileReportReplyClaimBalance(result.balance, accountToken, ownerUid);
       resolved += 1;
     } catch (error) {
       if (isAlreadyClaimedReportReplyError(error)) {
-        await removePendingReportReplyShardClaim(claim.messageId);
-        resolved += 1;
+        const removed = await removePendingReportReplyShardClaim(
+          claim.messageId,
+          accountToken,
+          ownerUid,
+        );
+        if (removed && isCurrentAccountGeneration(accountToken, ownerUid)) resolved += 1;
+        else pending += 1;
       } else {
         pending += 1;
       }

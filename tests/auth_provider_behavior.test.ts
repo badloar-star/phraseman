@@ -157,7 +157,7 @@ jest.mock('../app/shards_system', () => ({
   forceSyncShardsToCloud: jest.fn(async () => {}),
   preparePendingShardDeltasForAccountSwitch: () => preparePendingShardDeltasForAccountSwitch(),
 }));
-let pendingShardQueue: Array<{ type: 'earn' | 'spend' }> = [];
+let pendingShardQueue: { type: 'earn' | 'spend' }[] = [];
 let quarantinedShardQueue = false;
 jest.mock('../app/shards_delta_queue', () => ({
   readShardDeltaQueue: jest.fn(async () => pendingShardQueue),
@@ -958,6 +958,76 @@ test('account switch cannot force-bypass an owner or legacy shard queue quaranti
   });
   expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();
   expect(wipeLocalAccountData).not.toHaveBeenCalled();
+});
+
+test('account switch with confirmed discard backs up and proceeds despite unresolved spend', async () => {
+  authState.isAnonymous = false;
+  preparePendingShardDeltasForAccountSwitch.mockResolvedValueOnce({
+    resolved: 0,
+    pending: 1,
+    pendingEarn: 0,
+    pendingSpend: 1,
+    ownerStableId: mockStableId,
+    stale: false,
+  });
+  pendingShardQueue = [{ type: 'spend' }];
+  const accountGeneration = require('../app/account_generation');
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(
+    signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }),
+  ).resolves.toEqual({ ok: true, synced: true });
+
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
+    'pending_shard_spend_discard_before_account_switch',
+    'local-stable-id',
+  );
+  expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+test('account switch with confirmed discard backs up and proceeds despite quarantined queue', async () => {
+  authState.isAnonymous = false;
+  quarantinedShardQueue = true;
+  const accountGeneration = require('../app/account_generation');
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  await expect(
+    signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true, allowPendingShardSpendDiscard: true }),
+  ).resolves.toEqual({ ok: true, synced: true });
+
+  expect(saveAccountSwitchEmergencyBackup).toHaveBeenCalledWith(
+    'pending_shard_spend_discard_before_account_switch',
+    'local-stable-id',
+  );
+  expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
+  expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+});
+
+test('account switch discard aborts before wipe when its emergency backup fails', async () => {
+  authState.isAnonymous = false;
+  preparePendingShardDeltasForAccountSwitch.mockResolvedValueOnce({
+    resolved: 0,
+    pending: 1,
+    pendingEarn: 0,
+    pendingSpend: 1,
+    ownerStableId: mockStableId,
+    stale: false,
+  });
+  saveAccountSwitchEmergencyBackup.mockRejectedValueOnce(new Error('backup unavailable'));
+  const accountGeneration = require('../app/account_generation');
+  const { signOutAndWipeForAccountSwitch } = loadAuthProvider();
+
+  const result = await signOutAndWipeForAccountSwitch({
+    allowWipeWithoutSync: true,
+    allowPendingShardSpendDiscard: true,
+  });
+
+  expect(result).toEqual({ ok: false, reason: 'backup_failed', detail: 'backup unavailable' });
+  expect(accountGeneration.invalidateAccountGeneration).not.toHaveBeenCalled();
+  expect(wipeLocalAccountData).not.toHaveBeenCalled();
+  expect(clearStableId).not.toHaveBeenCalled();
+  expect(ensureAnonUser).not.toHaveBeenCalled();
 });
 
 test('account switch may preserve a pending earn only after its exact owner queue is backed up', async () => {

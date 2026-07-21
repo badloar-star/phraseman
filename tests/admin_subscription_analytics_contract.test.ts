@@ -8,7 +8,7 @@ describe('Admin v2 subscription lifecycle contract', () => {
   it('mounts server-truth lifecycle analytics without a new top-level tab', () => {
     const html = read('admin/v2/scripts/admin-core.js');
     expect(html).toContain('id="subscription-analytics-panel"');
-    expect(read('admin/v2/index.html')).toContain('/v2/scripts/pages/subscription-analytics.js');
+    expect(read('admin/v2/index.html')).toContain('/scripts/pages/subscription-analytics.js');
     expect(html).not.toContain("'subscription-analytics','openai-budget'");
   });
 

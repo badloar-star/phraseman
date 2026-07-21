@@ -69,8 +69,8 @@ import {
   PROFILE_CARD_PUBLIC_FOCUS_KEY,
   PROFILE_CARD_THEME_KEY,
 } from './profile_card_system';
-import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { actionToastTri, emitAppEvent } from './events';
+import { resetCoinsMigrationModalSeen } from './coins_migration_modal';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import ConsentReverifyHost from '../components/ConsentReverifyHost';
@@ -124,7 +124,6 @@ import type { TrainerMode } from './active_recall';
 import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
-import ThroneRewardModal from '../components/ThroneRewardModal';
 import RewardStackV2 from '../components/reward_v2/RewardStackV2';
 import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import {
@@ -169,10 +168,6 @@ import {
   resetIntroFullAccessForAdmin,
   INTRO_FULL_ACCESS_STORAGE_KEYS,
 } from './intro_full_access';
-import {
-  resetLoyaltyGiftForAdmin,
-  LOYALTY_GIFT_ALL_KEYS,
-} from './loyalty_gift';
 import {
   PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY,
   PERSONAL_PLAN_PENDING_ACTIVATION_KEY,
@@ -353,13 +348,12 @@ function buildAdminResetAllDataKeys(): string[] {
     ...buildAdminResetEnglishExamKeys(),
     ...ADMIN_RESET_TESTER_KEYS,
     ...FRENCH_TARGET_SYNC_KEYS,
-    // Подарочные доступы (3 дня новичку / лояльность) живут в собственных
+    // Подарочный доступ (3 дня новичку) живёт в собственных
     // локальных ключах, которых нет в SYNC_KEYS. Без явного добавления
     // «Сброс всех данных» оставлял активный подарок → у «обнулённого» аккаунта
     // сохранялся премиум-доступ. (premium_active чистится через
     // accountLocalDataKeysForToday выше.)
     ...INTRO_FULL_ACCESS_STORAGE_KEYS,
-    ...LOYALTY_GIFT_ALL_KEYS,
   ]));
 }
 
@@ -744,18 +738,11 @@ export default function SettingsTestersFunctions() {
   >(null);
   const [activatedVipPreviewMarker, setActivatedVipPreviewMarker] = useState<string | null>(null);
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
-  const [throneRewardPreview, setThroneRewardPreview] = useState(false);
   const [rewardStackPreview, setRewardStackPreview] = useState(false);
   // Превью блокирующего модала повторного согласия (возраст + Terms/Privacy + аналитика).
   const [consentReverifyPreview, setConsentReverifyPreview] = useState(false);
 
-  const [rankModal, setRankModal] = useState<{ promoted: boolean; tier: string; level: string } | null>(null);
   const [rankTest, setRankTest] = useState<{ mode: 'club'; delta: number } | null>(null);
-  const [rankTestTier, setRankTestTier] = useState('bronze');
-  const [rankTestLevel, setRankTestLevel] = useState('I');
-  const TIERS_LIST = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
-  const TIER_SHORT_NAMES: Record<string, string> = { bronze: 'Бронза', silver: 'Серебро', gold: 'Золото', platinum: 'Платина', diamond: 'Алмаз', master: 'Мастер', grandmaster: 'Гранд', legend: 'Легенда' };
-  const RANK_LEVELS = ['I', 'II', 'III'];
 
   const [openSection, setOpenSection] = useState<string | null>(null);
   // QA-превью новых пейволов: выбранный сценарий (context) для просмотра A/B/C.
@@ -937,7 +924,6 @@ export default function SettingsTestersFunctions() {
     return isCrownWinner
       ? [
         ...rewards,
-        { id: 'admin_league_arena_plays', kind: 'arena_plays', rarity: 'common', amount: 5 },
         { id: 'admin_league_bonus_shards', kind: 'shards', rarity: 'rare', amount: 18 },
       ]
       : rewards;
@@ -1309,12 +1295,12 @@ export default function SettingsTestersFunctions() {
       reasonText: triLang(lang, {
   ru: 'Admin preview: актуальная глобальная модалка осколков',
   uk: 'Admin preview: актуальна глобальна модалка уламків',
-  es: 'Admin preview: modal global actual de fragmentos',
-  "pt-BR": 'Admin preview: modal global atual de fragmentos',
-  vi: 'Admin preview: modal mảnh toàn cục hiện tại',
-  id: 'Admin preview: modal shard global saat ini',
-  tr: 'Admin preview: güncel global parça modalı',
-  pl: 'Admin preview: aktualny globalny modal odłamków',
+  es: 'Admin preview: modal global actual de monedas',
+  "pt-BR": 'Admin preview: modal global atual de monedas',
+  vi: 'Admin preview: modal xu toàn cục hiện tại',
+  id: 'Admin preview: modal koin global saat ini',
+  tr: 'Admin preview: güncel global jeton modalı',
+  pl: 'Admin preview: aktualny globalny modal monet',
 }),
     });
     markQa('shardsEarned');
@@ -2126,10 +2112,10 @@ export default function SettingsTestersFunctions() {
           uk: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
           es: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
           'pt-BR':  `Rollover semanal do Firestore semeado: ${previousWeekId} -> ${currentWeekId}`,
-          vi:  `Đã seed rollover tuần Firestore: ${previousWeekId} -> ${currentWeekId}`,
-          id:  `Rollover mingguan Firestore di-seed: ${previousWeekId} -> ${currentWeekId}`,
-          tr:  `Firestore haftalık rollover seed edildi: ${previousWeekId} -> ${currentWeekId}`,
-          pl:  `Zasiano tygodniowy rollover Firestore: ${previousWeekId} -> ${currentWeekId}`,
+          vi: `Đã seed rollover tuần Firestore: ${previousWeekId} -> ${currentWeekId}`,
+          id: `Rollover mingguan Firestore di-seed: ${previousWeekId} -> ${currentWeekId}`,
+          tr: `Firestore haftalık rollover seed edildi: ${previousWeekId} -> ${currentWeekId}`,
+          pl: `Zasiano tygodniowy rollover Firestore: ${previousWeekId} -> ${currentWeekId}`,
         }),
       );
     } catch {
@@ -2577,14 +2563,14 @@ export default function SettingsTestersFunctions() {
           <AccordionSection
             id="new_paywalls_abc"
             icon="card-outline"
-            title="🆕 Новые пейволы (A / B / C)"
-            badge={3}
+            title="🆕 Пейволы A/B-теста (A–G)"
+            badge={7}
             open={openSection === 'new_paywalls_abc'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 14, gap: 12 }}>
               <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 16 }}>
-                {'Три варианта для A/B-теста. A — Компакт (всё на одном экране, без скролла). B — Стори (длинная страница убеждения). C — Атриум (первый экран + галерея ниже, рекомендован). Открываются как макеты — покупку не оформляют.'}
+                {'Семь вариантов для A/B-теста. A — Компакт (всё на одном экране). B — Стори (длинная страница убеждения). C — Атриум (галерея + повторный CTA). D — Плитки (планы горизонтальными плитками). E — Один план (без выбора, остальные за ссылкой). F — Честный триал (таймлайн триала — герой экрана). G — Примерка с якорем (карточка «6 месяцев» для сравнения). Открываются как макеты — покупку не оформляют.'}
               </Text>
 
               {/* Выбор сценария — все 26 уникальных триггеров, разбиты по группам */}
@@ -2669,12 +2655,16 @@ export default function SettingsTestersFunctions() {
                 </Text>
               </TouchableOpacity>
 
-              {/* Три кнопки — каждая открывает свой вариант с выбранным сценарием.
+              {/* Семь кнопок — каждая открывает свой вариант с выбранным сценарием.
                   Передаём реалистичные stats, чтобы видеть персонализацию (теги/прогресс). */}
               {([
                 ['/paywall_a', '🅰️ Открыть A — Компакт'],
                 ['/paywall_b', '🅱️ Открыть B — Стори'],
                 ['/paywall_c', '🅲 Открыть C — Атриум ★'],
+                ['/paywall_d', '🧩 Открыть D — Плитки'],
+                ['/paywall_e', '💠 Открыть E — Один план'],
+                ['/paywall_f', '🤝 Открыть F — Честный триал'],
+                ['/paywall_g', '⚖️ Открыть G — Якорь и приманка'],
               ] as const).map(([path, label]) => (
                 <TouchableOpacity
                   key={path}
@@ -2930,41 +2920,6 @@ export default function SettingsTestersFunctions() {
           {/* ── 2. МОДАЛКИ АРЕНЫ ── */}
           <AccordionSection id="arena_modals" icon="trophy-outline" title="Модалки — Арена" badge={5}
             open={openSection === 'arena_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            {/* Rank picker */}
-            <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8, gap: 8 }}>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>Выбери ранг:</Text>
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-                {TIERS_LIST.map(tier => (
-                  <TouchableOpacity key={tier} onPress={() => { doHaptic(); setRankTestTier(tier); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, borderWidth: 1.5, borderColor: rankTestTier === tier ? ACCENT : ADMIN_BORDER_MUTED, backgroundColor: rankTestTier === tier ? ACCENT_BG : ADMIN_SURFACE_MUTED }}
-                    activeOpacity={0.75}>
-                    <Text style={{ color: rankTestTier === tier ? ACCENT : ADMIN_TEXT_MUTED, fontSize: 12, fontWeight: '700' }}>{TIER_SHORT_NAMES[tier]}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-              <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase', marginTop: 4 }}>Уровень:</Text>
-              <View style={{ flexDirection: 'row', gap: 6 }}>
-                {RANK_LEVELS.map(lv => (
-                  <TouchableOpacity key={lv} onPress={() => { doHaptic(); setRankTestLevel(lv); }}
-                    style={{ borderRadius: 8, paddingHorizontal: 18, paddingVertical: 7, borderWidth: 1.5, borderColor: rankTestLevel === lv ? ACCENT : ADMIN_BORDER_MUTED, backgroundColor: rankTestLevel === lv ? ACCENT_BG : ADMIN_SURFACE_MUTED }}
-                    activeOpacity={0.75}>
-                    <Text style={{ color: rankTestLevel === lv ? ACCENT : ADMIN_TEXT_MUTED, fontSize: 14, fontWeight: '800' }}>{lv}</Text>
-                  </TouchableOpacity>
-                ))}
-              </View>
-              <View style={{ flexDirection: 'row', gap: 8, marginTop: 4 }}>
-                <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: true, tier: rankTestTier, level: rankTestLevel }); }}
-                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: ACCENT, backgroundColor: ACCENT_BG, alignItems: 'center' }}
-                  activeOpacity={0.8}>
-                  <Text style={{ color: ACCENT, fontSize: 13, fontWeight: '800' }}>⬆️ Повышение</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => { doHaptic(); setRankModal({ promoted: false, tier: rankTestTier, level: rankTestLevel }); }}
-                  style={{ flex: 1, borderRadius: 10, paddingVertical: 11, borderWidth: 1.5, borderColor: ADMIN_BORDER_MUTED, backgroundColor: ADMIN_SURFACE_MUTED, alignItems: 'center' }}
-                  activeOpacity={0.8}>
-                  <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 13, fontWeight: '800' }}>⬇️ Понижение</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
             <ButtonRow icon="trophy-outline" label="🏆 Финал недели — Лига"
               sub="Показать результат лиги"
               onPress={triggerEndOfWeek}
@@ -2972,10 +2927,6 @@ export default function SettingsTestersFunctions() {
             <ButtonRow testID="testers-league-weekly-rollover-firestore" icon="cloud-done-outline" label="League weekly rollover — Firestore scenario"
               sub="Writes previous-week league_groups/leaderboard, then opens the real result modal"
               onPress={seedFirestoreWeeklyRolloverScenario}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="ribbon-outline" label="👑 Трон дня — награда чемпиона"
-              sub="+10 осколков за удержание трона до 00:00"
-              onPress={() => { doHaptic(); setThroneRewardPreview(true); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="layers-outline" label="🎁 Reward Stack — очередь наград (новый стандарт)"
               sub="Стопка «1 из 3» + «Забрать всё» с улётом иконок вверх"
@@ -3620,10 +3571,8 @@ export default function SettingsTestersFunctions() {
                   'onboarding_analytics_help_v1',
                 ]);
                 await resetIntroFullAccessForAdmin().catch(() => {});
-                await resetLoyaltyGiftForAdmin().catch(() => {});
                 invalidatePremiumCache();
                 emitAppEvent('intro_full_access_changed');
-                emitAppEvent('loyalty_gift_changed');
                 await reloadEnergy().catch(() => {});
                 await AsyncStorage.multiSet([
                   ['onboarding_step', 'welcome'],
@@ -3786,6 +3735,24 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="diamond-outline" label="💎 ShardsEarnedModal — глобальный поток"
               sub="Текущий production-путь: emitAppEvent('shards_earned') → GlobalShardsEarnedHost"
               onPress={showShardsEarnedPreview}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="cash-outline" label="🪙 Миграция монет — превью (демо-анимация)"
+              sub="Играет анимацию на демо-числах 1 250 → 63 БЕЗ сервера и без seen-флага; флаг сбрасывается, чтобы автотриггер тоже можно было проверить"
+              onPress={() => {
+                void resetCoinsMigrationModalSeen().finally(() => {
+                  emitAppEvent('coins_migration_preview', { demoBalance: 1250 });
+                });
+                markQa('coinsMigration');
+              }}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="cash-outline" label="🪙 Миграция монет — выполнить конвертацию сейчас"
+              sub="Реальный claimCoinMigration() на этом аккаунте (20 осколков = 1 монета, идемпотентно); при уже выполненной миграции сервер вернёт alreadyMigrated"
+              onPress={() => {
+                void resetCoinsMigrationModalSeen().finally(() => {
+                  emitAppEvent('coins_migration_run', undefined);
+                });
+                markQa('coinsMigrationRun');
+              }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="flag-outline" label="🚩 ReportUserModal (safe preview)"
               sub="Только UI, без записи репорта"
@@ -4216,17 +4183,6 @@ export default function SettingsTestersFunctions() {
         onClose={() => setCertificatePreviewVisible(false)}
       />
 
-      {rankModal && (
-        <RankChangeModal
-          visible
-          promoted={rankModal.promoted}
-          tier={rankModal.tier}
-          level={rankModal.level}
-          onClose={() => setRankModal(null)}
-          accentColor={TIER_COLORS[rankModal.tier] ?? '#CD7F32'}
-        />
-      )}
-
       <RankChangeTestModal
         visible={!!rankTest}
         mode={rankTest?.mode ?? 'club'}
@@ -4482,12 +4438,6 @@ export default function SettingsTestersFunctions() {
           onForceClose={() => setConsentReverifyPreview(false)}
         />
       )}
-      <ThroneRewardModal
-        visible={throneRewardPreview}
-        shards={10}
-        wins={7}
-        onClose={() => setThroneRewardPreview(false)}
-      />
       <RewardStackV2
         visible={rewardStackPreview}
         rewards={[

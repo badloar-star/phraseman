@@ -1,14 +1,16 @@
 import { trackEvent } from './analytics';
 import Constants from 'expo-constants';
 
-export type ExperimentVariantId = 'A' | 'B' | 'C';
+export type ExperimentVariantId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F' | 'G';
 export type ExperimentAssignmentQuality = 'frozen' | 'pending_fallback';
+
+const EXPERIMENT_VARIANT_IDS: readonly ExperimentVariantId[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
 export interface ExperimentPassport {
   experimentId: string;
   definitionVersion: number;
   assignmentSalt: string;
-  allocation: Record<ExperimentVariantId, number>;
+  allocation: Partial<Record<ExperimentVariantId, number>>;
   controlVariant: ExperimentVariantId;
   audience: string;
   primaryMetric: string;
@@ -47,33 +49,40 @@ export function normalizeExperimentPassport(value: unknown): ExperimentPassport 
   const configRevision = integer(row.configRevision, 1, 1_000_000);
   const allocationRaw = row.allocation && typeof row.allocation === 'object'
     ? row.allocation as Record<string, unknown> : {};
-  const allocation = {
-    A: integer(allocationRaw.A, 0, 100),
-    B: integer(allocationRaw.B, 0, 100),
-    C: integer(allocationRaw.C, 0, 100),
-  };
+  // Allocation: ключи строго из A–G (неизвестные буквы → паспорт невалиден),
+  // минимум 2 варианта, сумма ровно 100, контроль обязан входить с долей > 0.
+  const allocationKeys = Object.keys(allocationRaw);
+  const hasUnknownKeys = allocationKeys.some((key) => !EXPERIMENT_VARIANT_IDS.includes(key as ExperimentVariantId));
+  const allocation: Partial<Record<ExperimentVariantId, number>> = {};
+  for (const key of allocationKeys) {
+    if (!EXPERIMENT_VARIANT_IDS.includes(key as ExperimentVariantId)) continue;
+    const parsed = integer(allocationRaw[key], 0, 100);
+    if (parsed != null) allocation[key as ExperimentVariantId] = parsed;
+  }
+  const parsedKeys = Object.keys(allocation) as ExperimentVariantId[];
+  const allocationSum = parsedKeys.reduce((acc, key) => acc + (allocation[key] ?? 0), 0);
   const startMs = Date.parse(String(row.startUtc ?? ''));
   const endMs = Date.parse(String(row.endUtc ?? ''));
   const rawGuardrails = Array.isArray(row.guardrails) ? row.guardrails.map(String) : [];
   const guardrails = rawGuardrails.filter((item) => METRIC.test(item)).slice(0, 10);
-  const controlAllocation = ['A', 'B', 'C'].includes(controlVariant)
+  const controlAllocation = EXPERIMENT_VARIANT_IDS.includes(controlVariant)
     ? allocation[controlVariant]
     : null;
   if (!CODE.test(experimentId) || !CODE.test(assignmentSalt) || !CODE.test(audience)
     || !METRIC.test(primaryMetric) || !CODE.test(stopRule)
     || guardrails.length === 0 || guardrails.length !== rawGuardrails.length
-    || !['A', 'B', 'C'].includes(controlVariant)
+    || !EXPERIMENT_VARIANT_IDS.includes(controlVariant)
     || !['draft', 'running', 'stopped', 'completed'].includes(status)
     || definitionVersion == null || minimumSample == null || maturityWindowDays == null || configRevision == null
-    || allocation.A == null || allocation.B == null || allocation.C == null
-    || allocation.A + allocation.B + allocation.C !== 100
+    || hasUnknownKeys || parsedKeys.length < 2 || parsedKeys.length !== allocationKeys.length
+    || allocationSum !== 100
     || controlAllocation == null || controlAllocation <= 0
     || !Number.isFinite(startMs) || !Number.isFinite(endMs) || endMs <= startMs) return null;
   return {
     experimentId,
     definitionVersion,
     assignmentSalt,
-    allocation: allocation as Record<ExperimentVariantId, number>,
+    allocation,
     controlVariant,
     audience,
     primaryMetric,
@@ -99,7 +108,8 @@ export function buildExperimentExposurePayload(input: {
   if (input.assignmentQuality !== 'frozen' || input.passport.status !== 'running') {
     throw new Error('experiment_exposure_not_analyzable');
   }
-  if (!(input.variantId in input.passport.allocation) || input.passport.allocation[input.variantId] <= 0) {
+  const variantAllocation = input.passport.allocation[input.variantId];
+  if (variantAllocation == null || variantAllocation <= 0) {
     throw new Error('experiment_variant_invalid');
   }
   return {

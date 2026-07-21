@@ -37,6 +37,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   claimDailyTasksAllShardsRewardDetailed,
   resumePendingDailyTasksAllShardsClaims,
+  SHARD_REWARDS,
 } from '../app/shards_system';
 
 const DAY = '2026-06-21';
@@ -52,6 +53,14 @@ const flushAsync = async (turns = 6) => {
 beforeEach(async () => {
   mockCallable.mockReset();
   await AsyncStorage.clear();
+  // Экономика «Монеты и Звёзды» (docs/plans/2026-07-20) обнулила игровые начисления
+  // монет (в проде daily_tasks_all = 0). Тесты проверяют механику claim, а не каталог,
+  // поэтому поднимаем награду до 1, как было до миграции.
+  SHARD_REWARDS.daily_tasks_all = 1;
+});
+
+afterEach(() => {
+  SHARD_REWARDS.daily_tasks_all = 0;
 });
 
 describe('claimDailyTasksAllShardsRewardDetailed', () => {

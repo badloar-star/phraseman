@@ -152,6 +152,13 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'morning_session':
     case 'evening_session':
     case 'energy_spend':
+    case 'early_all_done':
+    case 'last_chance':
+    case 'weekend_marathon':
+    case 'revision_lesson':
+    case 'perfect_big_lesson':
+    case 'blitz_speed':
+    case 'comeback_lesson':
       await openLessonOrFrenchGate();
       break;
     case 'verb_learned': {
@@ -203,6 +210,25 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       openDiagnosticOrFrenchGate();
       break;
     case 'invite_friend':
+      if (Platform.OS === 'ios') {
+        router.push('/(tabs)/friends' as any);
+      } else {
+        router.push('/settings_invite_friend' as any);
+      }
+      break;
+    case 'polyglot_day':
+      // Программного переключателя языка в проде нет (French включается в настройках) —
+      // ведём в список уроков, где пользователь выберет урок второго языка.
+      router.replace('/(tabs)/lessons' as any);
+      break;
+    case 'streak_freeze_use':
+      router.push('/streak_stats' as any);
+      break;
+    case 'club_attend':
+      router.push('/club_screen' as any);
+      break;
+    case 'mentor_friend':
+      // Как invite_friend: на iPhone экрана ссылки нет — ведём во «Друзья».
       if (Platform.OS === 'ios') {
         router.push('/(tabs)/friends' as any);
       } else {

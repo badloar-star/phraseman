@@ -136,14 +136,14 @@ export default function FlashcardsMarketDevScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('error', {
-          ru: 'Недостаточно осколков для покупки.',
-          uk: 'Недостатньо уламків для купівлі.',
-          es: 'No tienes suficientes fragmentos para comprar.',
-          'pt-BR': 'Você não tem fragmentos suficientes para comprar.',
-          vi: 'Bạn không có đủ mảnh để mua.',
-          id: 'Shard tidak cukup untuk membeli.',
-          tr: 'Satın almak için yeterli parçan yok.',
-          pl: 'Masz za mało odłamków, aby kupić.',
+          ru: 'Недостаточно монет для покупки.',
+          uk: 'Недостатньо монет для купівлі.',
+          es: 'No tienes suficientes monedas para comprar.',
+          'pt-BR': 'Você não tem moedas suficientes para comprar.',
+          vi: 'Bạn không có đủ xu để mua.',
+          id: 'Koin tidak cukup untuk membeli.',
+          tr: 'Satın almak için yeterli jetonun yok.',
+          pl: 'Masz za mało monet, aby kupić.',
         }),
       );
       return;
@@ -161,7 +161,7 @@ export default function FlashcardsMarketDevScreen() {
           uk: `DEV: пак "${packTitleForInterface(pack, 'uk')}" позначено як придбаний (без списання).`,
           es: `DEV: el pack «${packTitleForInterface(pack, 'es')}» ha quedado marcado como comprado (sin cargo).`,
           'pt-BR': `DEV: o pack "${packTitleForInterface(pack, 'pt-BR')}" foi marcado como comprado (sem cobrança).`,
-          vi: `DEV: pack "${packTitleForInterface(pack, 'vi')}" đã được đánh dấu là đã mua (không trừ mảnh).`,
+          vi: `DEV: pack "${packTitleForInterface(pack, 'vi')}" đã được đánh dấu là đã mua (không trừ xu).`,
           id: `DEV: pack "${packTitleForInterface(pack, 'id')}" ditandai sebagai dibeli (tanpa pemotongan).`,
           tr: `DEV: "${packTitleForInterface(pack, 'tr')}" paketi satın alındı olarak işaretlendi (kesinti yok).`,
           pl: `DEV: pakiet "${packTitleForInterface(pack, 'pl')}" oznaczono jako kupiony (bez potrącenia).`,
@@ -249,14 +249,14 @@ export default function FlashcardsMarketDevScreen() {
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
-                ru: 'Этап 1: каталог. Этап 2: покупка за осколки и ownership.',
-                uk: 'Етап 1: каталог. Етап 2: купівля за уламки та ownership.',
-                es: 'Fase 1: catálogo. Fase 2: pagos con fragmentos y colección propia.',
-                'pt-BR': 'Fase 1: catálogo. Fase 2: compra com fragmentos e ownership.',
-                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng mảnh và quyền sở hữu.',
-                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan pecahan dan ownership.',
-                tr: 'Aşama 1: katalog. Aşama 2: parçalarla satın alma ve sahiplik.',
-                pl: 'Etap 1: katalog. Etap 2: zakup za odłamki i ownership.',
+                ru: 'Этап 1: каталог. Этап 2: покупка за монеты и ownership.',
+                uk: 'Етап 1: каталог. Етап 2: купівля за монети та ownership.',
+                es: 'Fase 1: catálogo. Fase 2: pagos con monedas y colección propia.',
+                'pt-BR': 'Fase 1: catálogo. Fase 2: compra com moedas e ownership.',
+                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng xu và quyền sở hữu.',
+                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan koin dan ownership.',
+                tr: 'Aşama 1: katalog. Aşama 2: jetonlarla satın alma ve sahiplik.',
+                pl: 'Etap 1: katalog. Etap 2: zakup za monety i ownership.',
               })}
             </Text>
           </View>

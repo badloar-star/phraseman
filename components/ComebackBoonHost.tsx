@@ -75,14 +75,14 @@ export default function ComebackBoonHost() {
     'Bạn quay lại rồi. Tốt.', 'Kamu kembali. Bagus.', 'Geri döndün. Güzel.', 'Wróciłeś. Dobrze.',
   );
   const rewardLine = L(
-    `Серия под защитой и ${COMEBACK_REWARD.shards} осколков твои`,
-    `Серія під захистом і ${COMEBACK_REWARD.shards} осколків твої`,
-    `Racha protegida y ${COMEBACK_REWARD.shards} fragmentos tuyos`,
-    `Sequência protegida e ${COMEBACK_REWARD.shards} fragmentos seus`,
-    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} mảnh là của bạn`,
+    `Серия под защитой и ${COMEBACK_REWARD.shards} монет твои`,
+    `Серія під захистом і ${COMEBACK_REWARD.shards} монет твої`,
+    `Racha protegida y ${COMEBACK_REWARD.shards} monedas tuyos`,
+    `Sequência protegida e ${COMEBACK_REWARD.shards} monedas seus`,
+    `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} xu là của bạn`,
     `Streak aman dan ${COMEBACK_REWARD.shards} serpihan jadi milikmu`,
-    `Serin korumada ve ${COMEBACK_REWARD.shards} parça senin`,
-    `Seria chroniona i ${COMEBACK_REWARD.shards} odłamków twoje`,
+    `Serin korumada ve ${COMEBACK_REWARD.shards} jeton senin`,
+    `Seria chroniona i ${COMEBACK_REWARD.shards} monet twoje`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',

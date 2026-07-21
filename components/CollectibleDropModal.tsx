@@ -76,6 +76,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
               rarityColor={rarityColor}
               width={200}
               height={160}
+              tiltEnabled={false}
               style={{ backgroundColor: `${rarityColor}1C`, borderRadius: 18 }}
             >
               <CollectibleArt
@@ -112,7 +113,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           {outcome.setCompleted && (
             <View style={styles.setCompletedBox}>
               <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Сет собран! +15 осколков', uk: 'Сет зібрано! +15 уламків', es: '¡Set completo! +15 fragmentos', 'pt-BR': 'Conjunto completo! +15 fragmentos', vi: 'Đủ bộ! +15 mảnh', id: 'Set lengkap! +15 pecahan', tr: 'Set tamam! +15 parça', pl: 'Komplet! +15 odłamków' })}
+                {triLang(lang, { ru: 'Сет собран! +15 монет', uk: 'Сет зібрано! +15 монет', es: '¡Set completo! +15 monedas', 'pt-BR': 'Conjunto completo! +15 moedas', vi: 'Đủ bộ! +15 xu', id: 'Set lengkap! +15 koin', tr: 'Set tamam! +15 jeton', pl: 'Komplet! +15 monet' })}
               </Text>
               {!!secret && (
                 <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>

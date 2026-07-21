@@ -4,7 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { loadWeekLeaderboard } from './hall_of_fame_utils';
+import { loadWeekLeaderboard, getLastWeekFinalPoints } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 import { getCanonicalUserId } from './user_id_policy';
 import { rememberLeagueStateSnapshot, sanitizeLeagueState } from './league_open_cache_policy';
@@ -499,18 +499,15 @@ const repairPendingResultForCurrentUser = async (
     'stored-points',
   );
 
-  const repaired = calculateResult(
-    {
-      leagueId: result.prevLeagueId,
-      weekId: getWeekId(),
-      group: repairedGroup,
-    },
-    storedPoints,
-  );
-
+  // Ремонт — ТОЛЬКО структурный: находим/помечаем текущего пользователя в группе
+  // (isMe, актуальное имя, uid). Исход (prevLeagueId/newLeagueId/myRank/totalInGroup/
+  // promoted/demoted) НЕ пересчитываем: иначе смена имени/uid между ролловером и
+  // показом модалки могла «перевести» пользователя в другую лигу, чем было решено
+  // на ролловере. Если пользователь в группе не найден — ensureCurrentUserInGroup
+  // аккуратно добавит запись с isMe, поля исхода всё равно сохраняются.
   return {
-    ...repaired,
-    prevLeagueId: result.prevLeagueId,
+    ...result,
+    group: repairedGroup,
   };
 };
 
@@ -549,6 +546,16 @@ export const getWeekId = (d: Date = new Date()): string => {
   const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
   const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+};
+
+// Сравнение weekId формата «YYYY-Www» по (год, номер недели).
+// >0: a позже b; 0: равны; <0: a раньше b (например, часы устройства откатили назад).
+const compareWeekIds = (a: string, b: string): number => {
+  const pa = /^(\d{4})-W(\d{2})$/.exec(a);
+  const pb = /^(\d{4})-W(\d{2})$/.exec(b);
+  if (!pa || !pb) return a.localeCompare(b); // неожиданный формат — резервное строковое сравнение
+  if (pa[1] !== pb[1]) return Number(pa[1]) - Number(pb[1]);
+  return Number(pa[2]) - Number(pb[2]);
 };
 
 export const loadLeagueState = async (): Promise<LeagueState | null> => {
@@ -773,6 +780,74 @@ const fetchServerLeagueResult = async (
   }
 };
 
+/**
+ * Читает ВСЕ финализированные серверные результаты пользователя
+ * (users/{uid}/league_week_results/*). Нужно для цепочки переходов, когда
+ * приложение не открывалось несколько недель подряд: cron записывал результат
+ * каждую неделю, а клиентский ролловер применяет максимум один переход.
+ * firestore.rules: allow read (= get + list) для владельца — list разрешён.
+ * Возвращает null если облако недоступно (включая Expo Go / выключенный sync).
+ */
+const fetchServerLeagueResultsAll = async (
+  uid: string,
+): Promise<{ weekId: string; result: ServerLeagueWeekResult }[] | null> => {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    const firestore = require('@react-native-firebase/firestore').default;
+    const snap = await firestore()
+      .collection('users')
+      .doc(uid)
+      .collection('league_week_results')
+      .get();
+    const out: { weekId: string; result: ServerLeagueWeekResult }[] = [];
+    snap.forEach((doc: any) => {
+      const d = doc.data();
+      if (!d || typeof d.rank !== 'number' || typeof d.total !== 'number') return;
+      out.push({ weekId: doc.id, result: d as ServerLeagueWeekResult });
+    });
+    return out;
+  } catch {
+    return null;
+  }
+};
+
+/**
+ * Собирает валидную цепочку серверных результатов за пропущенные недели:
+ * недели из [startWeekId, endWeekId), отсортированные по возрастанию. Первое
+ * звено должно стартовать из startLeagueId, каждое следующее — из лиги,
+ * куда перевело предыдущее; шаг ≤ 1 лига, диапазон 0..CLUBS.length-1.
+ * Цепочка обрывается на первом невалидном звене (дальше истории не доверяем).
+ */
+const buildServerResultChain = (
+  all: { weekId: string; result: ServerLeagueWeekResult }[] | null,
+  startWeekId: string,
+  endWeekId: string,
+  startLeagueId: number,
+): ServerLeagueWeekResult[] => {
+  if (!all) return [];
+  const inRange = all
+    .filter(({ weekId }) =>
+      compareWeekIds(weekId, startWeekId) >= 0 && compareWeekIds(weekId, endWeekId) < 0)
+    .sort((a, b) => compareWeekIds(a.weekId, b.weekId));
+  const chain: ServerLeagueWeekResult[] = [];
+  let currentLeague = startLeagueId;
+  for (const { weekId, result } of inRange) {
+    const valid = result.prevLeagueId === currentLeague
+      && Math.abs(result.newLeagueId - result.prevLeagueId) <= 1
+      && result.newLeagueId >= 0
+      && result.newLeagueId < CLUBS.length;
+    if (!valid) {
+      console.warn('[league_engine] server league result chain broken, ignoring the rest', {
+        weekId, expectedLeagueId: currentLeague, result,
+      });
+      break;
+    }
+    chain.push(result);
+    currentLeague = result.newLeagueId;
+  }
+  return chain;
+};
+
 export const checkLeagueOnAppOpen = async (
   myName: string,
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
@@ -828,16 +903,52 @@ export const checkLeagueOnAppOpen = async (
     return { needShowResult: false, result: null, state };
   }
 
-  // Новая неделя — считаем итоги
-  if (currentWeekId !== state.weekId) {
+  // Новая неделя — считаем итоги. Ролловер только ВПЕРЁД: если часы устройства
+  // откатили назад (currentWeekId < state.weekId), проваливаемся в ветку «та же
+  // неделя» ниже — обновим свои очки в группе без ролловера и без затирания weekId.
+  if (compareWeekIds(currentWeekId, state.weekId) > 0) {
     const storedMyPoints = getStoredMyPointsFromLeagueState(state, myName, myUid);
     const rolloverGroup = ensureCurrentUserInGroup(state.group, myName, storedMyPoints, myUid, 'stored-points');
 
     // Предпочитаем серверный результат (leagueFinalizeCron) — он авторитетен,
     // потому что считался по реальным очкам всех участников, а не по кэшу клиента.
+    // Но принимаем его только после валидации: лига «откуда» должна совпадать с
+    // нашей, переход — максимум на 1 лигу и в пределах допустимого диапазона.
     let result: LeagueResult;
+    // Если неделя пропущена не одна — пробуем цепочку серверных результатов за
+    // все пропущенные недели (один модал, но лига — итоговая по серверной истории).
+    const serverChain = myUid
+      ? buildServerResultChain(
+          await fetchServerLeagueResultsAll(myUid),
+          state.weekId,
+          currentWeekId,
+          state.leagueId,
+        )
+      : [];
+    if (serverChain.length > 0) {
+      const last = serverChain[serverChain.length - 1];
+      result = {
+        prevLeagueId: state.leagueId,
+        newLeagueId: last.newLeagueId,
+        myRank: last.rank,
+        totalInGroup: last.total,
+        promoted: last.newLeagueId > state.leagueId,
+        demoted: last.newLeagueId < state.leagueId,
+        group: rolloverGroup,
+      };
+    } else {
     const serverResult = myUid ? await fetchServerLeagueResult(myUid, state.weekId) : null;
-    if (serverResult) {
+    const serverResultValid = !!serverResult
+      && serverResult.prevLeagueId === state.leagueId
+      && Math.abs(serverResult.newLeagueId - serverResult.prevLeagueId) <= 1
+      && serverResult.newLeagueId >= 0
+      && serverResult.newLeagueId < CLUBS.length;
+    if (serverResult && !serverResultValid) {
+      console.warn('[league_engine] server league result rejected, falling back to local calc', {
+        weekId: state.weekId, stateLeagueId: state.leagueId, serverResult,
+      });
+    }
+    if (serverResult && serverResultValid) {
       result = {
         prevLeagueId: serverResult.prevLeagueId,
         newLeagueId: serverResult.newLeagueId,
@@ -848,7 +959,13 @@ export const checkLeagueOnAppOpen = async (
         group: rolloverGroup,
       };
     } else {
-      result = calculateResult({ ...state, group: rolloverGroup }, storedMyPoints);
+      // Локальный резервный расчёт: кэш группы может отставать (юзер добрал очки в конце
+      // недели, а снапшот не обновился) — берём максимум из кэша и финала,
+      // сохранённого resetWeekPointsIfStale перед обнулением счётчика.
+      const lastFinal = await getLastWeekFinalPoints(state.weekId);
+      const effectiveMyPoints = Math.max(storedMyPoints, lastFinal ?? 0);
+      result = calculateResult({ ...state, group: rolloverGroup }, effectiveMyPoints);
+    }
     }
     await savePendingResult(result);
 
@@ -885,7 +1002,10 @@ export const checkLeagueOnAppOpen = async (
   // Та же неделя — обновляем группу из Firestore (свежие данные всех участников).
   // Если remote недоступен — НЕ переписываем state.group (там могут быть реальные
   // участники, загруженные ранее), только обновляем мои очки.
-  const freshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, currentWeekId);
+  // При откате часов назад (currentWeekId < state.weekId) тоже попадаем сюда:
+  // ролловер не делаем и группу тянем за state.weekId — за «настоящую» неделю.
+  const effectiveWeekId = compareWeekIds(currentWeekId, state.weekId) >= 0 ? currentWeekId : state.weekId;
+  const freshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, effectiveWeekId);
   const updatedGroup = freshGroup ?? ensureCurrentUserInGroup(state.group, myName, myWeekPoints, myUid)
     .sort((a, b) => b.points - a.points);
 

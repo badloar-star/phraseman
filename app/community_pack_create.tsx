@@ -953,14 +953,14 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 {L(
-                  'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их осколки.',
-                  'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх осколки.',
-                  'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás fragmentos.',
-                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará fragmentos.',
-                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được mảnh.',
+                  'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их монеты.',
+                  'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх монети.',
+                  'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás monedas.',
+                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará monedas.',
+                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được xu.',
                   'Di sini kamu bisa membuat paketmu. Jika lolos moderasi, pengguna lain bisa memakainya dan kamu akan mendapatkan fragmen.',
-                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen parça kazanırsın.',
-                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz odłamki.',
+                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen jeton kazanırsın.',
+                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz monety.',
                 )}
               </Text>
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>

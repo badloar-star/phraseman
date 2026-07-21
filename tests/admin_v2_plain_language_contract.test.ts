@@ -33,8 +33,8 @@ describe('Admin v2 plain-language contract', () => {
 
   it('loads the shared language helper before every analytics renderer', () => {
     const html = read('admin/v2/index.html');
-    expect(html.indexOf('/v2/scripts/components/analytics-language.js')).toBeGreaterThan(-1);
-    expect(html.indexOf('/v2/scripts/components/analytics-language.js')).toBeLessThan(html.indexOf('/v2/scripts/pages/product-analytics.js'));
+    expect(html.indexOf('/scripts/components/analytics-language.js')).toBeGreaterThan(-1);
+    expect(html.indexOf('/scripts/components/analytics-language.js')).toBeLessThan(html.indexOf('/scripts/pages/product-analytics.js'));
   });
 
   it('uses human Russian section names and explanations throughout new analytics', () => {

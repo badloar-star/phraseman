@@ -12,7 +12,7 @@ describe('Admin monthly decision pack contract', () => {
     expect(core).toContain('id="monthly-decision-pack-panel"');
     expect(core).toContain('id="monthly-decision-pack-download"');
     expect(core).toContain('Сформировать и скачать ZIP');
-    expect(index).toContain('/v2/scripts/pages/monthly-decision-pack.js');
+    expect(index).toContain('/scripts/pages/monthly-decision-pack.js');
     expect(page).toContain('window.callAdminMonthlyDecisionPack');
     expect(page).toContain('preliminary');
     expect(page).toContain('truncated_not_decision_grade');

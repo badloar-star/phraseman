@@ -70,14 +70,14 @@ export default function PerfectWeekHost() {
     'Tuần hoàn hảo', 'Minggu sempurna', 'Kusursuz hafta', 'Idealny tydzień',
   );
   const rewardLine = L(
-    `Награда за неделю — ${PERFECT_WEEK_REWARD.shards} осколков начислено`,
-    `Нагорода за тиждень — ${PERFECT_WEEK_REWARD.shards} осколків зараховано`,
-    `Recompensa de la semana: ${PERFECT_WEEK_REWARD.shards} fragmentos añadidos`,
-    `Recompensa da semana: ${PERFECT_WEEK_REWARD.shards} fragmentos creditados`,
+    `Награда за неделю — ${PERFECT_WEEK_REWARD.shards} монет начислено`,
+    `Нагорода за тиждень — ${PERFECT_WEEK_REWARD.shards} монет зараховано`,
+    `Recompensa de la semana: ${PERFECT_WEEK_REWARD.shards} monedas añadidos`,
+    `Recompensa da semana: ${PERFECT_WEEK_REWARD.shards} monedas creditados`,
     `Phần thưởng tuần — đã cộng ${PERFECT_WEEK_REWARD.shards} mảnh`,
     `Hadiah mingguan — ${PERFECT_WEEK_REWARD.shards} serpihan ditambahkan`,
     `Haftalık ödül — ${PERFECT_WEEK_REWARD.shards} parça eklendi`,
-    `Nagroda za tydzień — dodano ${PERFECT_WEEK_REWARD.shards} odłamków`,
+    `Nagroda za tydzień — dodano ${PERFECT_WEEK_REWARD.shards} monet`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',

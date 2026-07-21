@@ -46,10 +46,13 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF' },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
-  { mode: 'volt', labelRU: 'Вольт', labelUK: 'Вольт', labelES: 'Volt', labelPtBr: 'Volt', labelVi: 'Volt', labelId: 'Volt', labelTr: 'Volt', labelPl: 'Volt', bg: '#010200', accent: '#D6FF3D', text: '#FFFFFF', preview2: '#B8F222', preview3: '#2EE08C', premiumOnly: true },
-  { mode: 'minimalDark', labelRU: 'Графит', labelUK: 'Графіт', labelES: 'Grafito', labelPtBr: 'Grafite', labelVi: 'Than chì', labelId: 'Grafit', labelTr: 'Grafit', labelPl: 'Grafit', bg: '#111827', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#1F2937', premiumOnly: true },
+  { mode: 'volt', labelRU: 'Лайм', labelUK: 'Лайм', labelES: 'Lima', labelPtBr: 'Lima', labelVi: 'Chanh', labelId: 'Lime', labelTr: 'Limon', labelPl: 'Limetka', bg: '#010200', accent: '#C6FF34', text: '#FFFFFF', preview2: '#A8E81E', preview3: '#2EE08C', premiumOnly: true },
+  { mode: 'minimalDark', labelRU: 'Оникс', labelUK: 'Онікс', labelES: 'Ónix', labelPtBr: 'Ônix', labelVi: 'Mã não', labelId: 'Onyx', labelTr: 'Oniks', labelPl: 'Onyks', bg: '#0B0B0C', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#171717', premiumOnly: true },
+  { mode: 'candyBlue', labelRU: 'Кенди Блу', labelUK: 'Кенді Блу', labelES: 'Azul caramelo', labelPtBr: 'Azul candy', labelVi: 'Xanh kẹo', labelId: 'Biru permen', labelTr: 'Şeker mavisi', labelPl: 'Cukrowy błękit', bg: '#0B161B', accent: '#B2D5E5', text: '#EAF4F8', preview2: '#7FA0AD', preview3: '#1C323B', premiumOnly: true },
+  { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo', bg: '#14131F', accent: '#C8C3FF', text: '#F1EFFF', preview2: '#273468', preview3: '#2A2952', premiumOnly: true },
+  { mode: 'vanilla', labelRU: 'Ванилла', labelUK: 'Ванілла', labelES: 'Vainilla', labelPtBr: 'Baunilha', labelVi: 'Va ni', labelId: 'Vanila', labelTr: 'Vanilya', labelPl: 'Wanilia', bg: '#FAF4E4', accent: '#3D4E8F', text: '#2A2118', preview2: '#5E9A3C', preview3: '#EDE1C6', premiumOnly: true },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
-  { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF6464', text: '#FFFFFF', preview2: '#FF6464', preview3: '#3A2A2E', premiumOnly: true },
+  { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF7F50', text: '#FFFFFF', preview2: '#FF7F50', preview3: '#3A2A2E', premiumOnly: true },
   { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', bg: '#050504', accent: '#D7AD56', text: '#FFF7E6', preview2: '#F1CC72', preview3: '#18140D', rewardOnly: true },
 ];
 
@@ -57,6 +60,12 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
   switch (item.mode) {
     case 'minimalDark':
       return ['#A8CBFF', item.accent, '#2F5C9B'];
+    case 'candyBlue':
+      return ['#D9EDF5', item.accent, '#3A5A68'];
+    case 'indigo':
+      return ['#E4E1FF', item.accent, '#273468'];
+    case 'vanilla':
+      return ['#FFFDF4', item.accent, '#D9A62E'];
     case 'midnight':
     case 'ember':
     case 'aurora':

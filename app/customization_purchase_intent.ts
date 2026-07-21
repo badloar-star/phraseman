@@ -4,7 +4,17 @@ import {
   CUSTOM_AVATAR_OWNED_KEY,
   CUSTOMIZATION_PURCHASE_INTENT_KEY,
 } from '../constants/customization_storage_keys';
-import type { ShardSpendReason, IdempotentShardSpendResult } from './shards_system';
+import type {
+  ShardSpendReason,
+  IdempotentShardSpendResult,
+  SpendShardsOptions,
+} from './shards_system';
+import { newShardOpId } from './shards_delta_queue';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  withAccountTransitionLock,
+} from './account_generation';
 import {
   applyCustomizationDraft,
   type ApplyCustomizationInput,
@@ -38,6 +48,7 @@ export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps
     amount: number,
     reason: ShardSpendReason,
     opId: string,
+    options?: SpendShardsOptions,
   ) => Promise<IdempotentShardSpendResult>;
   onOwnershipGranted: (
     target: 'avatar' | 'aura',
@@ -49,10 +60,6 @@ export interface CustomizationPurchaseDeps extends Omit<CustomizationServiceDeps
 }
 
 export type CustomizationPurchaseOutcome = 'applied' | 'purchased-only';
-
-function newCustomizationOpId(): string {
-  return `customization:${Date.now().toString(36)}:${Math.random().toString(36).slice(2, 10)}`;
-}
 
 function validInput(input: PurchaseCustomizationInput): boolean {
   return (input.target === 'avatar' || input.target === 'aura')
@@ -80,7 +87,7 @@ export async function prepareCustomizationPurchase(
     ...input,
     v: 1,
     accountScope,
-    opId: newCustomizationOpId(),
+    opId: newShardOpId(),
     phase: 'prepared',
     createdAt: Date.now(),
   };
@@ -121,34 +128,62 @@ export async function resumeCustomizationPurchase(
 ): Promise<CustomizationPurchaseOutcome> {
   const accountScope = (await deps.getAccountScope()).trim();
   if (!accountScope || intent.accountScope !== accountScope) throw new Error('customization_purchase_account_mismatch');
+  const accountToken = captureAccountGeneration();
+  const assertCurrentAccount = async (): Promise<void> => {
+    if (
+      accountToken.stableId !== accountScope
+      || !isCurrentAccountGeneration(accountToken, accountScope)
+    ) {
+      throw new Error('customization_purchase_account_mismatch');
+    }
+    const latestScope = (await deps.getAccountScope()).trim();
+    if (
+      latestScope !== accountScope
+      || !isCurrentAccountGeneration(accountToken, accountScope)
+    ) {
+      throw new Error('customization_purchase_account_mismatch');
+    }
+  };
+  await assertCurrentAccount();
   if (!(await deps.validatePurchase(intent))) {
-    await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
+    await withAccountTransitionLock(async () => {
+      await assertCurrentAccount();
+      await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
+    });
     throw new Error('invalid_customization_purchase_product');
   }
   let current = intent;
   if (current.phase === 'prepared') {
-    const spend = await deps.spendShardsIdempotent(current.cost, current.spendReason, current.opId);
+    const spend = await deps.spendShardsIdempotent(
+      current.cost,
+      current.spendReason,
+      current.opId,
+      { requireCloudReceiptForLocalLedger: true },
+    );
     if (spend === 'insufficient') throw new Error('insufficient_shards');
     if (spend === 'failed') throw new Error('shard_spend_failed');
     current = { ...current, phase: 'charged' };
-    await persistIntent(current, deps);
   }
-  if (current.phase === 'charged') {
-    if (!(await deps.validatePurchase(current))) {
-      await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
-      throw new Error('invalid_customization_purchase_product');
+  return withAccountTransitionLock(async () => {
+    await assertCurrentAccount();
+    if (current.phase === 'charged') {
+      await persistIntent(current, deps);
+      if (!(await deps.validatePurchase(current))) {
+        await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
+        throw new Error('invalid_customization_purchase_product');
+      }
+      current = await grantOwnership(current, deps);
     }
-    current = await grantOwnership(current, deps);
-  }
-  if (current.mode === 'buy-and-apply') {
-    if (await deps.validateApply(current)) {
-      await applyCustomizationDraft(current.applyInput, deps);
-      await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
-      return 'applied';
+    if (current.mode === 'buy-and-apply') {
+      if (await deps.validateApply(current)) {
+        await applyCustomizationDraft(current.applyInput, deps);
+        await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
+        return 'applied';
+      }
     }
-  }
-  await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
-  return 'purchased-only';
+    await deps.storage.multiRemove([CUSTOMIZATION_PURCHASE_INTENT_KEY]);
+    return 'purchased-only';
+  });
 }
 
 function parseIntent(raw: string | null): CustomizationPurchaseIntent | null {

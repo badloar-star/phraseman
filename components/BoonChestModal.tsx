@@ -14,6 +14,8 @@ import { Animated, Easing, Image, Modal, StyleSheet, Text, TouchableOpacity, Vie
 import type { ImageSourcePropType } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
+import { useLang } from './LangContext';
+import { triLang } from '../constants/i18n';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
@@ -63,6 +65,7 @@ export default function BoonChestModal({
   onClose,
 }: BoonChestModalProps) {
   const { theme: t, themeMode } = useTheme();
+  const { lang } = useLang();
   const [phase, setPhase] = useState<Phase>('box');
 
   const modalEntrance = useRef(new Animated.Value(0)).current;
@@ -172,16 +175,23 @@ export default function BoonChestModal({
   };
 
   const requestClose = () => {
-    // Закрыл, НЕ открыв сундук — не дисмиссим молча, а открываем тут же:
-    // момент «вот твоя награда» не должен потеряться.
+    // Крестик/«Позже» в фазе сундука — честное «отложить», БЕЗ открытия.
+    // Награда не теряется: PerfectWeek уже начислил приз до показа, а
+    // MysteryMonday/Comeback покажут сундук снова при следующем запуске,
+    // пока награда не забрана.
     if (phase === 'box') {
-      handleTap();
+      onClose();
       return;
     }
     if (phase === 'opening') return; // идёт анимация — дождёмся reveal
     onClaim(); // страховка-идемпотент (claim не должен пропасть)
     onClose();
   };
+
+  const laterLabel = triLang(lang, {
+    ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde',
+    vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później',
+  });
 
   if (!visible) return null;
 
@@ -240,26 +250,39 @@ export default function BoonChestModal({
           <Text style={[styles.title, { color: accent }]}>{title}</Text>
 
           {phase !== 'reveal' ? (
-            <TouchableOpacity
-              testID="boon-chest-box-open"
-              activeOpacity={0.85}
-              onPress={handleTap}
-              disabled={phase === 'opening'}
-              style={{ alignItems: 'center' }}
-            >
-              <GiftBox3D
-                palette={palette}
-                size={STAGE_SIZE}
-                idle={phase === 'box'}
-                opening={phase === 'opening'}
-                floatY={floatAnim}
-                rock={rock}
-                scale={scaleAnim}
-                shakeX={shakeAnim}
-                lidLift={lidLift}
-              />
-              {phase === 'box' && <Text style={[styles.tapHint, { color: textMuted }]}>{tapHint}</Text>}
-            </TouchableOpacity>
+            <>
+              <TouchableOpacity
+                testID="boon-chest-box-open"
+                activeOpacity={0.85}
+                onPress={handleTap}
+                disabled={phase === 'opening'}
+                style={{ alignItems: 'center' }}
+              >
+                <GiftBox3D
+                  palette={palette}
+                  size={STAGE_SIZE}
+                  idle={phase === 'box'}
+                  opening={phase === 'opening'}
+                  floatY={floatAnim}
+                  rock={rock}
+                  scale={scaleAnim}
+                  shakeX={shakeAnim}
+                  lidLift={lidLift}
+                />
+                {phase === 'box' && <Text style={[styles.tapHint, { color: textMuted }]}>{tapHint}</Text>}
+              </TouchableOpacity>
+              {phase === 'box' && (
+                <TouchableOpacity
+                  testID="boon-chest-later"
+                  accessibilityRole="button"
+                  activeOpacity={0.7}
+                  onPress={requestClose}
+                  style={styles.laterBtn}
+                >
+                  <Text style={[styles.laterText, { color: textMuted }]}>{laterLabel}</Text>
+                </TouchableOpacity>
+              )}
+            </>
           ) : (
             <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: [{ translateY: revealY }] }}>
               <View style={styles.orbStage}>
@@ -287,6 +310,16 @@ export default function BoonChestModal({
                 />
                 <View pointerEvents="none" style={styles.claimBtnGloss} />
                 <Text style={[styles.claimBtnText, { color: palette.buttonInk }]}>{claimCta}</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                testID="boon-chest-later"
+                accessibilityRole="button"
+                activeOpacity={0.7}
+                onPress={requestClose}
+                style={styles.laterBtn}
+              >
+                <Text style={[styles.laterText, { color: textMuted }]}>{laterLabel}</Text>
               </TouchableOpacity>
             </Animated.View>
           )}
@@ -368,4 +401,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.22)',
   },
   claimBtnText: { fontSize: 16, fontWeight: '900' },
+  laterBtn: {
+    alignSelf: 'stretch',
+    marginTop: 12,
+    paddingVertical: 8,
+    alignItems: 'center',
+  },
+  laterText: { fontSize: 14, fontWeight: '700' },
 });

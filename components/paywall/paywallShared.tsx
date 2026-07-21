@@ -21,6 +21,7 @@ import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
 import type { ThemeMode } from '../../constants/theme';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
+import { PaywallIdleFloat } from './PaywallMotion';
 
 // ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
 function screenBgTuple(themeMode: string): [string, string, string] {
@@ -223,18 +224,21 @@ export function contextGlyph(ctx: PremiumContext): keyof typeof Ionicons.glyphMa
   return CONTEXT_GLYPH[ctx] ?? 'diamond';
 }
 
-/** Капсула с глифом контекста + тёплое свечение акцента. */
+/** Капсула с глифом контекста + тёплое свечение акцента. Парит (PaywallIdleFloat —
+ *  общий лифт для всех пейволов A–G; луп гейтится фокусом/AppState/reduce-motion). */
 export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chrome: PaywallChrome }) {
   const { tc, cardBorder } = chrome;
   const isDialogLimit = ctx === 'dialog_limit';
   return (
-    <View style={[S.glyphCap, { borderColor: cardBorder, shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
-      {isDialogLimit ? (
-        <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
-      ) : (
-        <Ionicons name={contextGlyph(ctx)} size={32} color={tc.heroAccent} />
-      )}
-    </View>
+    <PaywallIdleFloat haloColor={`${tc.heroAccent}2E`} haloRadius={42} haloInset={6}>
+      <View style={[S.glyphCap, { borderColor: cardBorder, shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
+        {isDialogLimit ? (
+          <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
+        ) : (
+          <Ionicons name={contextGlyph(ctx)} size={32} color={tc.heroAccent} />
+        )}
+      </View>
+    </PaywallIdleFloat>
   );
 }
 

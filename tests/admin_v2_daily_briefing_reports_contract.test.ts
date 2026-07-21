@@ -18,19 +18,19 @@ describe('admin v2 daily briefing and report center', () => {
     expect(core).toContain("'report-center':");
   });
 
-  it('uses callable-only briefing controls and renders source health explicitly', () => {
+  it('uses callable-only briefing controls and keeps the digest page minimal', () => {
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGetDailyBriefing')");
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminGenerateDailyDigest')");
     expect(core).toContain("data-action=\"load-daily-briefing\"");
     expect(core).toContain("data-action=\"generate-daily-briefing\"");
-    expect(core).toContain('Утренний отчёт руководителя');
-    expect(core).toContain('Сформировать отчёт');
+    expect(core).toContain('Брифинг');
+    expect(core).toContain('Сформировать дайджест');
     expect(core).toContain('Сделать сегодня');
     expect(core).toContain('Рост и деньги');
     expect(core).toContain('Риски продукта');
     expect(core).toContain('Очереди');
     expect(core).toContain('Идеи пользователей');
-    expect(core).toContain('Показать server facts JSON');
+    expect(core).not.toContain('Показать server facts JSON');
     expect(core).toContain('sourceHealth');
     expect(core).toContain('Неполная сводка');
   });

@@ -1,6 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
-import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, spendShards } from '../app/shards_system';
+import { addShardsRaw, claimDailyTasksAllShardsReward, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, SHARD_REWARDS, spendShards } from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
@@ -73,6 +77,14 @@ const flushAsync = async (turns = 6) => {
 beforeEach(() => {
   jest.clearAllMocks();
   (firestore as any).__resetTestState?.();
+  __resetAccountGenerationForTests();
+  // stableId поколения должен совпадать с моком getCanonicalUserId ('uid-1') —
+  // иначе applyShardDeltaToCloud резолвит 'stale-generation' и earn/spend дают 0.
+  beginAccountGeneration('uid-1');
+  // Экономика «Монеты и Звёзды» (docs/plans/2026-07-20) обнулила игровые начисления
+  // монет (в проде daily_tasks_all = 0). Тесты проверяют механику claim, а не каталог,
+  // поэтому поднимаем награду до 1, как было до миграции.
+  SHARD_REWARDS.daily_tasks_all = 1;
   Object.keys(mockStorage).forEach(k => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
     Promise.resolve(mockStorage[k] ?? null),
@@ -89,6 +101,10 @@ beforeEach(() => {
     delete mockStorage[k];
     return Promise.resolve();
   });
+});
+
+afterEach(() => {
+  SHARD_REWARDS.daily_tasks_all = 0;
 });
 
 describe('claimDailyTasksAllShardsReward (optimistic claim + Cloud Function sync)', () => {

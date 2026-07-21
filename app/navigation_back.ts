@@ -64,6 +64,10 @@ const PAYWALL_BASE_PATHS: ReadonlySet<string> = new Set([
   '/paywall_a',
   '/paywall_b',
   '/paywall_c',
+  '/paywall_d',
+  '/paywall_e',
+  '/paywall_f',
+  '/paywall_g',
 ]);
 
 /** true для пейволов и транзитных диспетчеров — на них «назад» вести нельзя. */

@@ -11,6 +11,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
+import { PaywallBadgePop } from './PaywallMotion';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 
 interface Props {
@@ -31,13 +32,17 @@ interface Props {
    *  lifetimeAvailable=true (флаг включён + пакет реально пришёл). */
   lifetimePrice?: string | null;
   lifetimeAvailable?: boolean;
+  /** Цена приманки-якоря «6 месяцев» (вариант G, computeDecoyPriceString).
+   *  Когда задана — между «Годом» и «Месяцем» рендерится полноразмерная
+   *  display-only карточка: без onSelect, не выбирается и не покупается. */
+  decoyPriceString?: string | null;
 }
 
 export default function PaywallPlanCards({
   lang, chrome, selected, onSelect,
   yearlyPerMonth, yearlyFull, monthlyPrice,
   savingsPct, perDayLabel, trialDays, loading, disabled,
-  lifetimePrice, lifetimeAvailable,
+  lifetimePrice, lifetimeAvailable, decoyPriceString,
 }: Props) {
   const { tc, textPrimary, textMuted, cardBg, cardBorder, uncheckedBorder } = chrome;
   const [showLifetimeOffer, setShowLifetimeOffer] = React.useState(false);
@@ -137,9 +142,9 @@ export default function PaywallPlanCards({
             <Text style={[S.name, { color: sel ? textPrimary : textMuted }]}>{name}</Text>
           </View>
           {badge !== null && (
-            <View style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
+            <PaywallBadgePop pulse style={[S.saveBadge, { backgroundColor: tc.savingsBadgeBg }]}>
               <Text style={[S.saveBadgeText, { color: tc.savingsBadgeText }]}>{badge}</Text>
-            </View>
+            </PaywallBadgePop>
           )}
         </View>
         <View style={S.priceWrap}>
@@ -157,6 +162,65 @@ export default function PaywallPlanCards({
       </TouchableOpacity>
     );
   };
+
+  // Якорь-приманка «6 месяцев» (вариант G): ПОЛНОРАЗМЕРНАЯ карточка, визуально
+  // идентичная невыбранным карточкам планов (те же стили/градиент/подсветка),
+  // но принципиально display-only — намеренно View без какой-либо обработки
+  // нажатия: якорь не выбирается, не попадает в selectPlan/покупку, дефолтный
+  // выбор остаётся годовым.
+  const renderDecoyCard = (name: string, price: string) => {
+    const decoySurfaceColors = [
+      `${tc.heroAccent}14`,
+      cardBg,
+      cardBg,
+    ] as [string, string, string];
+    return (
+      <View
+        accessibilityRole="text"
+        accessibilityLabel={`${name} ${price}`.trim()}
+        style={[S.card, {
+          borderColor: cardBorder,
+          backgroundColor: cardBg,
+          shadowColor: 'transparent',
+        }]}
+      >
+        <LinearGradient
+          colors={decoySurfaceColors}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View
+          pointerEvents="none"
+          style={[
+            S.cardHighlight,
+            { backgroundColor: `${tc.heroAccent}2E` },
+          ]}
+        />
+        <View style={S.planHeader}>
+          <View style={S.nameWrap}>
+            <Ionicons name="ellipse-outline" size={24} color={uncheckedBorder} />
+            <Text style={[S.name, { color: textMuted }]}>{name}</Text>
+          </View>
+        </View>
+        <View style={S.priceWrap}>
+          <Text
+            style={[S.price, { color: textPrimary }]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.82}
+          >
+            {price}
+          </Text>
+        </View>
+      </View>
+    );
+  };
+
+  const decoyName = triLang(lang, {
+    ru: '6 месяцев', uk: '6 місяців', es: '6 meses', 'pt-BR': '6 meses',
+    vi: '6 tháng', id: '6 bulan', tr: '6 ay', pl: '6 miesięcy',
+  });
 
   const lifetimeOfferTitle = triLang(lang, {
     ru: 'Дополнительное предложение',
@@ -204,6 +268,7 @@ export default function PaywallPlanCards({
         savingsPct !== null && savingsPct > 0 ? `−${savingsPct}%` : null,
         true, // hidePerMonth — это годовая сумма, а не цена за месяц
       )}
+      {decoyPriceString ? renderDecoyCard(decoyName, decoyPriceString) : null}
       {renderCard(
         'monthly',
         triLang(lang, {

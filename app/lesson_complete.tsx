@@ -36,6 +36,7 @@ import { openStoreReviewPage } from './store_review';
 import { recordLessonForRepair } from './streak_repair';
 import { registerXP } from './xp_manager';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
+import { normalizeProfileCardLevel, PROFILE_CARD_LEVEL_KEY, profileCardShardMultiplier } from './profile_card_system';
 import { grantLessonFirstCompleteBonus, retryPendingLessonBonusGrants } from './lesson_bonus_grant';
 import { logAppWarning } from './app_health';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
@@ -832,10 +833,20 @@ export default function LessonComplete() {
       }
 
       if (shardKeys.length > 0) {
-        const total = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
+        const baseTotal = shardKeys.reduce((acc, k) => acc + (SHARD_REWARDS[k] ?? 0), 0);
+        // Фаза 2: +5% осколков за карточку IV+ — та же per-source формула, что и в
+        // shards_system (бонус уже включён в фактическое начисление; здесь — показ).
+        const shardPerkM = profileCardShardMultiplier(
+          normalizeProfileCardLevel(await AsyncStorage.getItem(PROFILE_CARD_LEVEL_KEY)),
+        );
+        const perkBonusTotal = shardKeys.reduce(
+          (acc, k) => acc + (shardPerkM > 1 ? Math.ceil((SHARD_REWARDS[k] ?? 0) * (shardPerkM - 1)) : 0),
+          0,
+        );
+        const total = baseTotal + perkBonusTotal;
         if (total > 0) {
           const reasonText = formatLessonShardBatchReason(shardKeys, lang);
-          emitAppEvent('shards_earned', { amount: total, reasonText });
+          emitAppEvent('shards_earned', { amount: total, ...(perkBonusTotal > 0 ? { bonus: perkBonusTotal } : {}), reasonText });
         }
       }
 

@@ -54,12 +54,19 @@ jest.mock('../app/account_generation', () => ({
 jest.mock('../app/achievements', () => ({ checkAchievements: jest.fn() }));
 jest.mock('../app/shards_delta_queue', () => ({
   enqueueShardDelta: jest.fn(async () => true),
+  enqueueAppliedShardDeltaWithStorage: jest.fn(async (_p: unknown, build: () => Promise<unknown>) => {
+    const update = await build() as { commit: boolean; value: unknown };
+    return { ok: true, committed: update.commit, value: update.value };
+  }),
   newShardOpId: jest.fn(() => 'op-earn-abcdef12'),
   readShardDeltaQueue: jest.fn(async () => []),
   removeShardDeltas: jest.fn(async () => true),
+  hasQuarantinedShardDeltaQueue: jest.fn(async () => false),
+  hasExactLegacyQuarantinedShardDelta: jest.fn(async () => false),
+  consumeExactLegacyQuarantinedShardDelta: jest.fn(async () => false),
 }));
 
-import { addShards, getShardsBalance } from '../app/shards_system';
+import { addShards, addShardsRaw, getShardsBalance } from '../app/shards_system';
 
 const STORAGE_KEY = 'shards_balance';
 const BALANCE_META_KEY = 'shards_balance_meta_v1';
@@ -103,7 +110,7 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
       balance: 252,
       shardsUpdatedAtMs: 7_000_000,
     });
-    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
+    const gained = await addShardsRaw(2, 'lesson_perfect');
     expect(gained).toBe(2);
     await expect(getShardsBalance()).resolves.toBe(252);
     // Клиент вызвал callable с величиной 2 и type earn (знак ставит сервер).
@@ -121,8 +128,22 @@ describe('earn mirrors the authoritative server balance (no stale-cloud collapse
       balance: 252,
       shardsUpdatedAtMs: 7_000_000,
     });
-    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
+    const gained = await addShardsRaw(2, 'lesson_perfect');
     expect(gained).toBe(2);
     await expect(getShardsBalance()).resolves.toBe(252);
+  });
+
+  it('new economy: catalog gameplay earns are 0 (монеты только покупаются, спека §7)', async () => {
+    applyDeltaResult.mockReturnValue({
+      ok: true,
+      alreadyApplied: false,
+      insufficient: false,
+      balance: 250,
+      shardsUpdatedAtMs: 7_000_000,
+    });
+    const gained = await addShards('lesson_perfect', { suppressEarnEvent: true });
+    expect(gained).toBe(0);
+    await expect(getShardsBalance()).resolves.toBe(250);
+    expect(callable).not.toHaveBeenCalled();
   });
 });

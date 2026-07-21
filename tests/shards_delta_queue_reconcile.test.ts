@@ -12,7 +12,9 @@ const applyResult = jest.fn();
 const callable = jest.fn((p: unknown) => Promise.resolve({ data: applyResult(p) }));
 const httpsCallable = jest.fn(() => callable);
 let appCheckReady = true;
+let queueQuarantined = false;
 let accountGeneration = { generation: 1, stableId: 'u1', phase: 'active' as const };
+const hasQuarantinedShardDeltaQueue = jest.fn(async () => queueQuarantined);
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('@react-native-firebase/functions', () => ({
@@ -57,8 +59,11 @@ jest.mock('../app/achievements', () => ({ checkAchievements: jest.fn() }));
 const queueStore: { items: unknown[] } = { items: [] };
 jest.mock('../app/shards_delta_queue', () => ({
   newShardOpId: jest.fn(() => 'op-generated-1'),
+  hasQuarantinedShardDeltaQueue,
   readShardDeltaQueue: jest.fn(async (ownerStableId: string) =>
-    queueStore.items.filter((q: any) => q.ownerStableId === ownerStableId)),
+    queueStore.items
+      .filter((q: any) => q.ownerStableId === ownerStableId)
+      .map((q: any) => ({ localApplied: true, ...q }))),
   removeShardDeltas: jest.fn(async (ownerStableId: string, ids: string[]) => {
     queueStore.items = queueStore.items.filter(
       (q: any) => q.ownerStableId !== ownerStableId || !ids.includes(q.opId),
@@ -79,6 +84,9 @@ const mockStorage: Record<string, string> = {};
 beforeEach(() => {
   jest.clearAllMocks();
   appCheckReady = true;
+  queueQuarantined = false;
+  hasQuarantinedShardDeltaQueue.mockReset();
+  hasQuarantinedShardDeltaQueue.mockImplementation(async () => queueQuarantined);
   accountGeneration = { generation: 1, stableId: 'u1', phase: 'active' };
   queueStore.items = [];
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
@@ -107,6 +115,183 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
     await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 2 });
     expect(httpsCallable).not.toHaveBeenCalled();
     expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn', 'op-spend']);
+  });
+
+  it('does not replay any operation while the owner or legacy queue is quarantined', async () => {
+    queueQuarantined = true;
+    queueStore.items = [
+      { opId: 'op-quarantined', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
+    ];
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
+    expect(httpsCallable).not.toHaveBeenCalled();
+    expect(queueStore.items).toHaveLength(1);
+  });
+
+  it('stops before transport when reading the queue creates a quarantine', async () => {
+    queueStore.items = [
+      { opId: 'op-quarantined-during-read', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
+    ];
+    hasQuarantinedShardDeltaQueue
+      .mockResolvedValueOnce(false)
+      .mockResolvedValueOnce(true);
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
+    expect(callable).not.toHaveBeenCalled();
+    expect(queueStore.items).toHaveLength(1);
+  });
+
+  it('stops at the first unknown failure and keeps the full optimistic suffix in the local balance', async () => {
+    mockStorage[STORAGE_KEY] = '75';
+    queueStore.items = [
+      { opId: 'op-spend-pending', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 1 },
+      { opId: 'op-earn-later', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 2 },
+    ];
+    applyResult.mockReturnValue({
+      ok: false,
+      alreadyApplied: false,
+      insufficient: false,
+      balance: 100,
+      shardsUpdatedAtMs: null,
+    });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 2 });
+    expect(callable).toHaveBeenCalledTimes(1);
+    expect(queueStore.items.map((item: any) => item.opId))
+      .toEqual(['op-spend-pending', 'op-earn-later']);
+    await expect(getShardsBalance()).resolves.toBe(75);
+  });
+
+  it('reconciles a confirmed prefix to server balance plus the still-pending optimistic suffix', async () => {
+    mockStorage[STORAGE_KEY] = '75';
+    queueStore.items = [
+      { opId: 'op-spend-confirmed', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 1 },
+      { opId: 'op-earn-pending', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 2 },
+    ];
+    applyResult
+      .mockReturnValueOnce({
+        ok: true,
+        alreadyApplied: false,
+        insufficient: false,
+        balance: 70,
+        shardsUpdatedAtMs: 1000,
+      })
+      .mockReturnValueOnce({
+        ok: false,
+        alreadyApplied: false,
+        insufficient: false,
+        balance: 70,
+        shardsUpdatedAtMs: null,
+      });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 1 });
+    expect(callable).toHaveBeenCalledTimes(2);
+    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn-pending']);
+    await expect(getShardsBalance()).resolves.toBe(75);
+  });
+
+  it('does not refund a pending spend after a confirmed earn prefix', async () => {
+    mockStorage[STORAGE_KEY] = '75';
+    queueStore.items = [
+      { opId: 'op-earn-confirmed', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'lesson_first', createdAtMs: 1 },
+      { opId: 'op-spend-pending', ownerStableId: 'u1', delta: 30, type: 'spend', reason: 'card_pack', createdAtMs: 2 },
+    ];
+    applyResult
+      .mockReturnValueOnce({
+        ok: true,
+        alreadyApplied: false,
+        insufficient: false,
+        balance: 105,
+        shardsUpdatedAtMs: 1000,
+      })
+      .mockImplementationOnce(() => {
+        throw new Error('transport unavailable');
+      });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 1 });
+    expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-spend-pending']);
+    await expect(getShardsBalance()).resolves.toBe(75);
+  });
+
+  it.each([
+    ['spend', 30],
+    ['earn', 5],
+  ] as const)(
+    'does not send a queued-before-wallet-commit %s after a crash',
+    async (type, delta) => {
+      mockStorage[STORAGE_KEY] = '100';
+      queueStore.items = [{
+        opId: `op-crash-${type}`,
+        ownerStableId: 'u1',
+        delta,
+        type,
+        reason: type === 'spend' ? 'card_pack' : 'lesson_first',
+        createdAtMs: 1,
+        localApplied: false,
+      }];
+
+      await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
+      expect(callable).not.toHaveBeenCalled();
+      expect(queueStore.items).toHaveLength(1);
+      await expect(getShardsBalance()).resolves.toBe(100);
+    },
+  );
+
+  it('reconciles only the locally-applied part of a suffix after a crash-boundary row', async () => {
+    mockStorage[STORAGE_KEY] = '112';
+    queueStore.items = [
+      {
+        opId: 'op-earn-confirmed',
+        ownerStableId: 'u1',
+        delta: 5,
+        type: 'earn',
+        reason: 'lesson_first',
+        createdAtMs: 1,
+        localApplied: true,
+      },
+      {
+        opId: 'op-spend-crashed',
+        ownerStableId: 'u1',
+        delta: 30,
+        type: 'spend',
+        reason: 'card_pack',
+        createdAtMs: 2,
+        localApplied: false,
+      },
+      {
+        opId: 'op-earn-pending',
+        ownerStableId: 'u1',
+        delta: 7,
+        type: 'earn',
+        reason: 'lesson_first',
+        createdAtMs: 3,
+        localApplied: true,
+      },
+    ];
+    applyResult.mockReturnValueOnce({
+      ok: true,
+      alreadyApplied: false,
+      insufficient: false,
+      balance: 105,
+      shardsUpdatedAtMs: 1000,
+    });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 2 });
+    expect(callable).toHaveBeenCalledTimes(1);
+    expect(queueStore.items.map((item: any) => item.opId))
+      .toEqual(['op-spend-crashed', 'op-earn-pending']);
+    await expect(getShardsBalance()).resolves.toBe(112);
+  });
+
+  it('checks quarantine before an online shard callable can mirror server state', () => {
+    const source = readFileSync(join(__dirname, '..', 'app', 'shards_system.ts'), 'utf8');
+    const applyStart = source.indexOf('const applyShardDeltaToCloud');
+    const applyEnd = source.indexOf('const persistLocalBalance', applyStart);
+    const applySource = source.slice(applyStart, applyEnd);
+
+    expect(applySource.indexOf('hasQuarantinedShardDeltaQueue(')).toBeGreaterThan(-1);
+    expect(applySource.indexOf('callShardsApplyDelta('))
+      .toBeGreaterThan(applySource.indexOf('hasQuarantinedShardDeltaQueue('));
   });
 
   it('lowers an inflated local balance to the server value despite a newer local stamp / older server ts', () => {

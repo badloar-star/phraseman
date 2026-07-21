@@ -13,6 +13,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
+import { PaywallCtaShine } from './PaywallMotion';
 
 interface Props {
   lang: Lang;
@@ -96,6 +97,9 @@ export default function PaywallCtaBlock({
             pointerEvents="none"
           />
         ) : null}
+        {/* Блик-полоса раз в ~5.6с (гейтится фокусом/AppState/reduce-motion);
+            лежит ПОД текстом — поздние siblings рисуются поверх. */}
+        <PaywallCtaShine />
         {busy
           ? <ActivityIndicator color={tc.ctaText} />
           : <Text style={[S.ctaText, { color: tc.ctaText }]} numberOfLines={1}>{label}</Text>}

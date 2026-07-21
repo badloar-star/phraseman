@@ -3,7 +3,9 @@ import path from 'path';
 import * as ts from 'typescript';
 
 const readSource = (relativePath: string): string =>
-  fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
+  // Компоненты хранятся в CRLF — нормализуем, чтобы многострочные ожидания не
+  // зависели от окончаний строк (как в level_gift_claim_success_contract).
+  fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8').replace(/\r\n/g, '\n');
 
 describe('gift inventory apply presentation', () => {
   it('requests direct apply presentation for stored single and dual gifts', () => {

@@ -2,7 +2,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
-import { isLoyaltyGiftActive } from './loyalty_gift';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
@@ -306,13 +305,6 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
   if (realPremium || vip) return cacheAccess(true);
 
   if (await isIntroFullAccessActive().catch(() => false)) {
-    return cacheAccess(true);
-  }
-
-  // Подарок лояльности (72ч для существующих free-юзеров). Производный доступ,
-  // как и intro: удаление ключей подарка мгновенно убирает доступ. Kill-switch
-  // tester_no_premium выше уже гасит и его. Платных/VIP не касается (им подарок не выдаётся).
-  if (await isLoyaltyGiftActive().catch(() => false)) {
     return cacheAccess(true);
   }
 

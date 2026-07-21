@@ -8,6 +8,10 @@ import {
   DAILY_TASK_REROLL_MAX_PER_DAY,
 } from '../app/daily_tasks';
 import { dailyTasksProgressKey, dailyTasksRerollKey } from '../app/target_storage_keys';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -23,6 +27,8 @@ const mockStorage: Record<string, string> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('test-owner');
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) =>
     Promise.resolve(mockStorage[k] ?? null),

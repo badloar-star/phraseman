@@ -313,14 +313,10 @@ function SaveProgressBanner() {
               'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
             'pt-BR':
               'Vincule sua conta: suas lições, XP, sequência e conquistas ficam seguros. Mesmo se o celular decidir tirar férias sem avisar.',
-            vi:
-              'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
-            id:
-              'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
-            tr:
-              'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
-            pl:
-              'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
+            vi: 'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
+            id: 'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
+            tr: 'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
+            pl: 'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
           })}
           </Text>
         </View>

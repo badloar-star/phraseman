@@ -8,6 +8,7 @@ describe('Admin v2 unified user profile', () => {
   test('uses protected server callables and never reads private profile collections directly', () => {
     const core = read('admin/v2/scripts/admin-core.js');
     const firebase = read('admin/v2/scripts/admin-firebase.js');
+    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     const index = read('functions/src/index.ts');
 
     expect(firebase).toContain("httpsCallable(functionsUs, 'adminSearchUsers')");
@@ -19,7 +20,9 @@ describe('Admin v2 unified user profile', () => {
     expect(core).toContain("if (!can('users.read'))");
     expect(core).toContain("state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] }");
     expect(core).toContain('Поиск не выполнен');
-    expect(core).toContain('admin/index.html?openUser=');
+    expect(core).toContain('const profileUrl = `?openUser=${encodeURIComponent(profile.canonicalUid)}#users`;');
+    expect(core).not.toContain('admin/index.html?openUser=');
+    expect(capabilities).toMatch(/\{\s*id: 'users',[^}]*nativeRoute: 'users'/);
     expect(index).toContain("export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';");
     for (const collectionName of ['users', 'auth_links', 'user_reports', 'error_reports', 'revenuecat_premium_events']) {
       expect(firebase).not.toContain(`collection(db, '${collectionName}')`);

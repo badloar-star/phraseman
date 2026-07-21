@@ -35,6 +35,15 @@ interface StreakReviveModalProps {
   shopReturnTo?: 'home' | 'streak_stats';
 }
 
+function slavicPlural(count: number, one: string, few: string, many: string): string {
+  const normalized = Math.abs(Math.floor(count));
+  const mod10 = normalized % 10;
+  const mod100 = normalized % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+  return many;
+}
+
 function formatCountdown(msLeft: number, lang: Lang): string {
   const totalSec = Math.max(0, Math.floor(msLeft / 1000));
   const h = Math.floor(totalSec / 3600);
@@ -83,8 +92,8 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const compactHeight = windowHeight < 700 || fontScale > 1.15;
 
   const streakUnit = triLang(lang, {
-    ru: `${lostStreak === 1 ? 'день' : 'дней'} подряд`,
-    uk: `${lostStreak === 1 ? 'день' : 'днів'} поспіль`,
+    ru: `${slavicPlural(lostStreak, 'день', 'дня', 'дней')} подряд`,
+    uk: `${slavicPlural(lostStreak, 'день', 'дні', 'днів')} поспіль`,
     es: 'días seguidos',
     'pt-BR': 'dias seguidos',
     vi: 'ngày liên tiếp',

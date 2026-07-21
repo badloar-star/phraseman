@@ -47,6 +47,15 @@ import {
   normalizeProfileCardTheme,
 } from '../profile_card_system';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
 import { isValidInviteCodeLookup, normalizeInviteCodeInput } from '../friend_code';
 import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, lookupUserByNickname, readCachedMyInviteCodeForFriends, type LookupUserProfile } from '../firestore_friends';
 import {
@@ -718,7 +727,7 @@ function FriendRow({
                 ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
                 : profile.isVip
                 ? <VipGreenUserName text={profile.name} fontSize={f.body} />
-                : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
+                : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', ...((profile.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null) }} numberOfLines={1}>{profile.name}</Text>
               }
             </View>
           </View>
@@ -2688,17 +2697,17 @@ export default function FriendsTabScreen() {
       return;
     }
     if (balanceOverride < gift.costShards) {
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
+      showFeedback(L('Не хватает монет', 'Не вистачає монет', 'No tienes suficientes monedas', 'Moedas insuficientes', 'Không đủ xu', 'Koin tidak cukup', 'Jeton yetersiz', 'Za mało monet'));
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: 'Не хватает осколков',
-        messageUk: 'Не вистачає осколків',
-        messageEs: 'No tienes suficientes fragmentos',
-        messagePtBr: 'Fragmentos insuficientes',
-        messageVi: 'Không đủ mảnh',
-        messageId: 'Pecahan tidak cukup',
+        messageRu: 'Не хватает монет',
+        messageUk: 'Не вистачає монет',
+        messageEs: 'No tienes suficientes monedas',
+        messagePtBr: 'Monedas insuficientes',
+        messageVi: 'Không đủ xu',
+        messageId: 'Koin tidak cukup',
         messageTr: 'Parça yetersiz',
-        messagePl: 'Za mało odłamków',
+        messagePl: 'Za mało monet',
       });
       return;
     }
@@ -2779,11 +2788,11 @@ export default function FriendsTabScreen() {
           kind === 'limit'
             ? L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany')
             : kind === 'not_enough_shards'
-            ? L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków')
+            ? L('Не хватает монет', 'Не вистачає монет', 'No tienes suficientes monedas', 'Moedas insuficientes', 'Không đủ xu', 'Koin tidak cukup', 'Jeton yetersiz', 'Za mało monet')
             : kind === 'not_friends' || kind === 'user_missing'
             ? L('Дружба уже не активна. Обнови список друзей.', 'Дружба вже не активна. Онови список друзів.', 'La amistad ya no esta activa. Actualiza la lista.', 'A amizade não está mais ativa. Atualize a lista.', 'Tình bạn không còn hoạt động. Hãy làm mới danh sách.', 'Pertemanan sudah tidak aktif. Segarkan daftar.', 'Arkadaşlık artık aktif değil. Listeyi yenile.', 'Znajomość nie jest już aktywna. Odśwież listę.')
             : kind === 'auth' || kind === 'identity_changed'
-            ? L('Подарок не дошёл. Осколки вернулись.', 'Подарунок не дійшов. Осколки повернулися.', 'No se pudo enviar el regalo. Recuperaste los fragmentos.', 'O presente não foi enviado. Os fragmentos voltaram.', 'Không gửi được quà. Mảnh đã hoàn lại.', 'Hadiah tidak terkirim. Pecahan dikembalikan.', 'Hediye ulaşmadı. Parçalar geri geldi.', 'Prezent nie dotarł. Odłamki wróciły.')
+            ? L('Подарок не дошёл. Монеты вернулись.', 'Подарунок не дійшов. Монети повернулися.', 'No se pudo enviar el regalo. Recuperaste las monedas.', 'O presente não foi enviado. As moedas voltaram.', 'Không gửi được quà. Xu đã hoàn lại.', 'Hadiah tidak terkirim. Koin dikembalikan.', 'Hediye ulaşmadı. Jetonlar geri geldi.', 'Prezent nie dotarł. Monety wróciły.')
             : kind === 'network'
             ? L('Сеть не ответила. Подарок не списан, попробуй ещё раз.', 'Мережа не відповіла. Подарунок не списано, спробуй ще раз.', 'La red no respondio. No se cobro el regalo; intentalo de nuevo.', 'A rede não respondeu. O presente não foi cobrado; tente de novo.', 'Mạng chưa phản hồi. Quà chưa bị trừ, hãy thử lại.', 'Jaringan tidak merespons. Hadiah belum ditagih; coba lagi.', 'Ağ yanıt vermedi. Hediye ücretlendirilmedi, tekrar dene.', 'Sieć nie odpowiedziała. Prezent nie został pobrany, spróbuj ponownie.')
             : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu');
@@ -2820,7 +2829,7 @@ export default function FriendsTabScreen() {
       }
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Pecahan tidak cukup atau pertemanan sudah tidak aktif', 'Parça yetersiz veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
+          ? L('Не хватает монет или дружба уже не активна', 'Не вистачає монет або дружба вже не активна', 'Faltan monedas o la amistad ya no esta activa', 'Moedas insuficientes ou amizade não está mais ativa', 'Không đủ xu hoặc tình bạn không còn hoạt động', 'Koin tidak cukup atau pertemanan sudah tidak aktif', 'Jeton yetersiz veya arkadaşlık artık aktif değil', 'Za mało monet albo znajomość nie jest już aktywna')
           : L('Подарок не дошёл. Повтори попытку.', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       emitAppEvent('action_toast', {
@@ -2852,17 +2861,17 @@ export default function FriendsTabScreen() {
     if (giftBalance < gift.costShards) {
       const missing = gift.costShards - giftBalance;
       setGiftTarget(null);
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
+      showFeedback(L('Не хватает монет', 'Не вистачає монет', 'No tienes suficientes monedas', 'Moedas insuficientes', 'Không đủ xu', 'Koin tidak cukup', 'Jeton yetersiz', 'Za mało monet'));
       emitAppEvent('action_toast', {
         type: 'info',
-        messageRu: `Нужно ещё осколков: ${missing}`,
-        messageUk: `Потрібно ще осколків: ${missing}`,
-        messageEs: `Necesitas más fragmentos: ${missing}`,
-        messagePtBr: `Você precisa de mais fragmentos: ${missing}`,
-        messageVi: `Cần thêm mảnh: ${missing}`,
-        messageId: `Butuh pecahan lagi: ${missing}`,
-        messageTr: `Daha fazla parça gerekiyor: ${missing}`,
-        messagePl: `Potrzeba więcej odłamków: ${missing}`,
+        messageRu: `Нужно ещё монет: ${missing}`,
+        messageUk: `Потрібно ще монет: ${missing}`,
+        messageEs: `Necesitas más monedas: ${missing}`,
+        messagePtBr: `Você precisa de mais monedas: ${missing}`,
+        messageVi: `Cần thêm xu: ${missing}`,
+        messageId: `Butuh koin lagi: ${missing}`,
+        messageTr: `Daha fazla jeton gerekiyor: ${missing}`,
+        messagePl: `Potrzeba więcej monet: ${missing}`,
       });
       router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
       return;
@@ -3230,7 +3239,7 @@ export default function FriendsTabScreen() {
                   );
                 })}
                 <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '700' }}>
-                  {L('+10 осколков и +1000 XP каждому', '+10 осколків і +1000 XP кожному', '+10 shards and +1000 XP each', '+10 fragmentos e +1000 XP para cada', '+10 mảnh và +1000 XP mỗi người', '+10 pecahan dan +1000 XP masing-masing', 'Herkese +10 parça ve +1000 XP', '+10 odłamków i +1000 XP dla każdego')}
+                  {L('+10 монет и +1000 XP каждому', '+10 монет і +1000 XP кожному', '+10 coins and +1000 XP each', '+10 moedas e +1000 XP para cada', '+10 xu và +1000 XP mỗi ngườи', '+10 koin dan +1000 XP masing-masing', 'Herkese +10 jeton ve +1000 XP', '+10 monet i +1000 XP dla każdego')}
                 </Text>
               </View>
             )}
@@ -3535,7 +3544,7 @@ export default function FriendsTabScreen() {
                 source={oskolokImageForPackShards(giftBalance)}
                 style={{ width: 20, height: 20 }}
                 contentFit="contain"
-                accessibilityLabel="Осколки"
+                accessibilityLabel="Монеты"
               />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </LinearGradient>
@@ -3645,7 +3654,7 @@ export default function FriendsTabScreen() {
                       source={oskolokImageForPackShards(displayCost)}
                       style={{ width: 22, height: 22 }}
                       contentFit="contain"
-                      accessibilityLabel="Осколки"
+                      accessibilityLabel="Монеты"
                     />
                       </>
                     )}
@@ -3727,7 +3736,7 @@ export default function FriendsTabScreen() {
                           {L('Списано', 'Списано', 'Spent', 'Gasto', 'Đã trừ', 'Terpakai', 'Harcanan', 'Pobrano')}
                         </Text>
                         <Text style={{ color: monoIcon(themeMode, '#F3C45E'), fontSize: f.sub, fontWeight: '900' }}>{sentGiftReceipt.costShards}</Text>
-                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Осколки" />
+                        <Image source={oskolokImageForPackShards(sentGiftReceipt.costShards)} style={{ width: 18, height: 18 }} contentFit="contain" accessibilityLabel="Монеты" />
                       </View>
                       <View style={{ width: 1, height: 14, backgroundColor: 'rgba(255,255,255,0.16)' }} />
                       <Text style={{ color: sentGiftChrome.mutedColor, fontSize: f.sub, fontWeight: '800' }}>

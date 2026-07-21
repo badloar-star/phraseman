@@ -7,6 +7,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import { useRouter } from 'expo-router';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import {
+  ActivityIndicator,
   Animated,
   Easing,
   Modal,
@@ -234,6 +235,9 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const premApplyPromiseRef = useRef<Promise<ApplyGiftResult> | null>(null);
   const doneClosingRef = useRef(false);
   const directApplyStartedRef = useRef(false);
+  /** Крестик/«назад» во время анимации открытия сундука: дожидаемся конца
+   *  анимации (она же запускает apply), затем закрываемся как partial claim. */
+  const closeAfterOpenRef = useRef(false);
   /** Только false→true по `visible` — иначе лишний сброс `opened` (Strict Mode / смена deps) убирает уже открытые сундуки. */
   const wasVisibleRef = useRef(false);
   const openingAccountTokenRef = useRef<AccountGenerationToken | null>(null);
@@ -255,6 +259,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
       wasVisibleRef.current = false;
       doneClosingRef.current = false;
       directApplyStartedRef.current = false;
+      closeAfterOpenRef.current = false;
       idleAll.current?.stop();
       idleLeft.current?.stop();
       idleRight.current?.stop();
@@ -448,6 +453,46 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
     await saveUnclaimedDualGift(level, { f2p, prem }, accountToken);
   };
 
+  /**
+   * Закрытие «в середине»: один сундук открыт (и уже применён), второй нет.
+   * Без подтверждения: открытое сохраняем как partial claim, оставшееся —
+   * как «remaining gift», чтобы добрать позже. В витринном режиме (storesOnly)
+   * пара уже сохранена эффектом — просто выходим.
+   */
+  const handleCloseMidWith = useCallback(
+    async (openedKey: BoxKey) => {
+      if (!f2pGift || !premGift || doneClosingRef.current) return;
+      const accountToken = openingAccountTokenRef.current;
+      if (!accountToken || !isCurrentOpening(accountToken)) return;
+      doneClosingRef.current = true;
+      if (storesOnly) {
+        onClose(false);
+        return;
+      }
+      const openedGift = openedKey === 'f2p' ? f2pGift : premGift;
+      const remainingGift = openedKey === 'f2p' ? premGift : f2pGift;
+      const applyP = openedKey === 'f2p' ? f2pApplyPromiseRef.current : premApplyPromiseRef.current;
+      onClose(true);
+      void (async () => {
+        try {
+          const result = await (applyP ?? Promise.resolve<ApplyGiftResult>({ success: false }));
+          if (!isCurrentAccountGeneration(accountToken)) return;
+          if (result.success === true) {
+            await saveRemainingGiftAfterPartialDualClaim(level, remainingGift, accountToken);
+            if (!isCurrentAccountGeneration(accountToken)) return;
+            await saveClaimedGiftRarity(level, openedGift.rarity, accountToken);
+          } else {
+            // Apply не подтвердился — не теряем пару: оба остаются незабранными.
+            await saveUnclaimedDualGift(level, { f2p: f2pGift, prem: premGift }, accountToken);
+          }
+        } catch {
+          // Модалка уже закрыта оптимистично; фоновые ошибки хранилища не показываем.
+        }
+      })();
+    },
+    [f2pGift, premGift, storesOnly, level, onClose],
+  );
+
   const runOpenAnim = (which: BoxKey, g: GiftDef, accountToken: AccountGenerationToken) => {
     const shakeA = which === 'f2p' ? fShake : pShake;
     const scaleA = which === 'f2p' ? fScale : pScale;
@@ -486,7 +531,14 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
         });
         if (which === 'prem' || g.rarity === 'epic' || g.rarity === 'rare') void hapticSuccess();
         else void hapticTap();
-        if (storesOnly) return;
+        if (storesOnly) {
+          // Крестик нажали во время анимации — закрываемся после её конца.
+          if (closeAfterOpenRef.current) {
+            closeAfterOpenRef.current = false;
+            void handleCloseMidWith(which);
+          }
+          return;
+        }
         const applyResultP = applyGift(g, userName, energy, maxEnergy, setEnergyFn, {
           isPremium: true,
           studyTarget,
@@ -500,6 +552,12 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
           if (which === 'f2p') setF2pAppliedMeta(result);
           else setPremAppliedMeta(result);
         });
+        // Крестик нажали во время анимации — apply уже стартовал, закрываемся
+        // как partial claim (оставшийся сундук сохранится).
+        if (closeAfterOpenRef.current) {
+          closeAfterOpenRef.current = false;
+          void handleCloseMidWith(which);
+        }
       });
     });
   };
@@ -666,24 +724,34 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
   const modalPanelBackground = dualGiftModalPanelBackground(themeMode, t);
   const primaryButtonColors = rewardModalPrimaryButtonColors(themeMode);
   const primaryButtonText = rewardModalPrimaryButtonText(themeMode);
-  const applyModeCanClose = presentationMode === 'apply';
-  const canCloseWithIcon = !opening && (applyModeCanClose || !claimNowBusy) && (opened.size === 0 || opened.size === 2);
   const screenDim = USE_ELITE_DUAL_LEVEL_GIFT_MODAL
     ? (false ? 'rgba(24,18,10,0.32)' : 'rgba(0,0,0,0.48)')
     : 'rgba(0,0,0,0.78)';
 
-  const onRequestCloseModal = () => {
+  // Крестик доступен ВСЕГДА. «В середине» (1 открыт) — сохранить открытое и
+  // выйти без подтверждения; во время анимации открытия — дождаться её конца.
+  const requestCloseModal = () => {
     if (presentationMode === 'apply') {
       onClose(false);
       return;
     }
-    if (!applyModeCanClose && claimNowBusy) return;
+    if (claimNowBusy || doneClosingRef.current) return;
+    if (opening) {
+      closeAfterOpenRef.current = true;
+      return;
+    }
     if (opened.size === 2 && f2pGift && premGift) {
       void handleDone();
       return;
     }
+    if (opened.size === 1) {
+      void handleCloseMidWith(opened.has('f2p') ? 'f2p' : 'prem');
+      return;
+    }
     if (phase === 'pair' && opened.size === 0) void handleSkip();
   };
+
+  const onRequestCloseModal = requestCloseModal;
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onRequestCloseModal}>
@@ -739,40 +807,31 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
             <View style={{ ...{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: 28 }, backgroundColor: bgTint, pointerEvents: 'none' }} />
           )}
 
-          {canCloseWithIcon && (
-            <TouchableOpacity
-              testID="level-gift-dual-close"
-              accessibilityRole="button"
-              accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
-              activeOpacity={0.76}
-              onPress={() => {
-                if (presentationMode === 'apply') {
-                  onClose(false);
-                  return;
-                }
-                if (opened.size === 2) {
-                  void handleDone();
-                }
-                else void handleSkip();
-              }}
-              style={{
-                position: 'absolute',
-                top: 10,
-                right: 10,
-                zIndex: 5,
-                width: 34,
-                height: 34,
-                borderRadius: 17,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)',
-                borderWidth: 0,
-                borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
-              }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: 24, lineHeight: 28, fontWeight: '800' }}>×</Text>
-            </TouchableOpacity>
-          )}
+          {/* Крестик доступен всегда: в середине — сохранить открытое и выйти,
+              без подтверждения; во время анимации открытия — дождаться её конца. */}
+          <TouchableOpacity
+            testID="level-gift-dual-close"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
+            activeOpacity={0.76}
+            onPress={requestCloseModal}
+            style={{
+              position: 'absolute',
+              top: 10,
+              right: 10,
+              zIndex: 5,
+              width: 34,
+              height: 34,
+              borderRadius: 17,
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(3,5,10,0.42)' : 'rgba(0,0,0,0.16)',
+              borderWidth: 0,
+              borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.18)' : t.border,
+            }}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: 24, lineHeight: 28, fontWeight: '800' }}>×</Text>
+          </TouchableOpacity>
 
           <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? modalAccent : t.textPrimary, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4, textAlign: 'center' }}>
             {triLang(lang, {
@@ -795,78 +854,95 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
           {phase === 'pair' && (
             <>
+              {/* Слоты сундуков СИММЕТРИЧНЫ: равные колонки, равные отступы,
+                  сцена фиксированной высоты (сундук и мини-награда занимают один
+                  бокс), подписи одной высоты на общей базовой линии. */}
               <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 10 : 6 }}>
                 <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
-                  {opened.has('f2p') && f2pGift ? (
-                    <MiniRewardPeek
-                      gift={f2pGift}
-                      lang={lang}
-                      theme={t}
-                      fonts={f}
-                      themeMode={themeMode}
-                      burstTier={animTierF2p(f2pGift.rarity)}
-                      premVisual={false}
-                    />
-                  ) : (
-                    <TouchableOpacity
-                      testID="level-gift-dual-f2p-open"
-                      activeOpacity={0.88}
-                      disabled={opening != null || opened.has('f2p') || !f2pGift}
-                      onPress={onTapF2p}
-                      style={{ alignItems: 'center' }}
-                    >
-                      <GiftBox3D
-                        palette={paletteForRarity(f2pGift?.rarity ?? 'common')}
-                        size={DUAL_CHEST_STAGE_SIZE}
-                        idle={!opened.has('f2p') && opening !== 'f2p'}
-                        opening={opening === 'f2p'}
-                        floatY={fFloat}
-                        rock={fRockI}
-                        scale={fScale}
-                        shakeX={fShake}
-                        lidLift={fLid}
+                  <View style={{ height: MINI_REWARD_STAGE_SIZE, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>
+                    {opened.has('f2p') && f2pGift ? (
+                      <MiniRewardPeekStage
+                        gift={f2pGift}
+                        themeMode={themeMode}
+                        burstTier={animTierF2p(f2pGift.rarity)}
                       />
-                    </TouchableOpacity>
-                  )}
-                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '700' : '400', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
+                    ) : (
+                      <TouchableOpacity
+                        testID="level-gift-dual-f2p-open"
+                        activeOpacity={0.88}
+                        disabled={opening != null || opened.has('f2p') || !f2pGift}
+                        onPress={onTapF2p}
+                        style={{ alignItems: 'center' }}
+                      >
+                        <GiftBox3D
+                          palette={paletteForRarity(f2pGift?.rarity ?? 'common')}
+                          size={DUAL_CHEST_STAGE_SIZE}
+                          idle={!opened.has('f2p') && opening !== 'f2p'}
+                          opening={opening === 'f2p'}
+                          floatY={fFloat}
+                          rock={fRockI}
+                          scale={fScale}
+                          shakeX={fShake}
+                          lidLift={fLid}
+                        />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                  <Text style={{ color: t.textMuted, fontSize: 10, lineHeight: 13, height: 26, marginTop: 6, textAlign: 'center', fontWeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '700' : '400', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }} numberOfLines={2}>
                     {firstChestLabel(lang)}
                   </Text>
+                  {opened.has('f2p') && f2pGift ? (
+                    <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', textAlign: 'center', marginTop: 4 }} numberOfLines={3}>
+                      {giftDisplayTitleForLang(f2pGift, lang)}
+                    </Text>
+                  ) : null}
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}14` : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? `${modalAccent}36` : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
-                  {opened.has('prem') && premGift ? (
-                    <MiniRewardPeek
-                      gift={premGift}
-                      lang={lang}
-                      theme={t}
-                      fonts={f}
-                      themeMode={themeMode}
-                      burstTier={animTierPrem()}
-                      premVisual
-                    />
-                  ) : (
-                    <TouchableOpacity
-                      testID="level-gift-dual-prem-open"
-                      activeOpacity={0.88}
-                      disabled={opening != null || opened.has('prem') || !premGift}
-                      onPress={onTapPrem}
-                      style={{ alignItems: 'center' }}
-                    >
-                      <GiftBox3D
-                        palette={GIFT_PALETTES.gold}
-                        size={DUAL_CHEST_STAGE_SIZE}
-                        idle={!opened.has('prem') && opening !== 'prem'}
-                        opening={opening === 'prem'}
-                        floatY={pFloat}
-                        rock={pRockI}
-                        scale={pScale}
-                        shakeX={pShake}
-                        lidLift={pLid}
+                  <View style={{ height: MINI_REWARD_STAGE_SIZE, alignSelf: 'stretch', alignItems: 'center', justifyContent: 'center' }}>
+                    {opened.has('prem') && premGift ? (
+                      <MiniRewardPeekStage
+                        gift={premGift}
+                        themeMode={themeMode}
+                        burstTier={animTierPrem()}
                       />
-                    </TouchableOpacity>
-                  )}
-                  <Text style={{ color: monoIcon(themeMode, PREM_LABEL_COLOR), fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
+                    ) : (
+                      <TouchableOpacity
+                        testID="level-gift-dual-prem-open"
+                        activeOpacity={0.88}
+                        disabled={opening != null || opened.has('prem') || !premGift}
+                        onPress={onTapPrem}
+                        style={{ alignItems: 'center' }}
+                      >
+                        <GiftBox3D
+                          palette={GIFT_PALETTES.gold}
+                          size={DUAL_CHEST_STAGE_SIZE}
+                          idle={!opened.has('prem') && opening !== 'prem'}
+                          opening={opening === 'prem'}
+                          floatY={pFloat}
+                          rock={pRockI}
+                          scale={pScale}
+                          shakeX={pShake}
+                          lidLift={pLid}
+                        />
+                      </TouchableOpacity>
+                    )}
+                  </View>
+                  <Text style={{ color: monoIcon(themeMode, PREM_LABEL_COLOR), fontSize: 10, lineHeight: 13, height: 26, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }} numberOfLines={2}>
                     {secondChestLabel(lang)}
                   </Text>
+                  {opened.has('prem') && premGift ? (
+                    <View style={{ alignItems: 'center', marginTop: 4 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', textAlign: 'center' }} numberOfLines={3}>
+                        {giftDisplayTitleForLang(premGift, lang)}
+                      </Text>
+                      <PlusBadge
+                        themeMode={themeMode}
+                        size="xs"
+                        testID="level-gift-dual-peek-plus-badge"
+                        style={{ marginTop: 5, alignSelf: 'center' }}
+                      />
+                    </View>
+                  ) : null}
                 </View>
               </View>
               {opened.size === 0 && (
@@ -884,16 +960,16 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                 </Text>
               )}
               {opened.size === 1 && (
-                <Text style={{ color: t.gold, fontSize: f.caption, marginTop: 10, textAlign: 'center' }}>
+                <Text style={{ color: t.gold, fontSize: f.caption, marginTop: 10, textAlign: 'center', fontWeight: '700' }}>
                   {triLang(lang, {
-                    ru: 'Ещё награда!',
-                    uk: 'Ще одна винагорода!',
-                    es: '¡Otra recompensa!',
-                    'pt-BR': 'Mais uma recompensa!',
-                    vi: 'Thêm một phần thưởng!',
-                    id: 'Hadiah lagi!',
-                    tr: 'Bir ödül daha!',
-                    pl: 'Jeszcze jedna nagroda!',
+                    ru: 'Открыто 1 из 2 — ещё одна награда!',
+                    uk: 'Відкрито 1 з 2 — ще одна нагорода!',
+                    es: '1 de 2 abierto — ¡otra recompensa!',
+                    'pt-BR': '1 de 2 aberto — mais uma recompensa!',
+                    vi: 'Đã mở 1/2 — thêm một phần thưởng!',
+                    id: '1 dari 2 terbuka — ada hadiah lagi!',
+                    tr: '1/2 açıldı — bir ödül daha!',
+                    pl: 'Otwarto 1 z 2 — jeszcze jedna nagroda!',
                   })}
                 </Text>
               )}
@@ -941,30 +1017,6 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       level={level}
                       themeMode={themeMode}
                     />
-                    {hasCosmeticGift && (
-                    <TouchableOpacity
-                      testID="level-gift-dual-open-avatar"
-                      activeOpacity={0.86}
-                      onPress={() => {
-                        if (presentationMode === 'apply') handleApplyPreview(true);
-                        else void (storesOnly ? handleUseNow(true) : handleDone(true));
-                      }}
-                      disabled={claimNowBusy}
-                      style={{
-                          backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface,
-                          borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
-                          paddingVertical: 12,
-                          marginTop: 14,
-                          alignItems: 'center',
-                          borderWidth: 0,
-                          borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(255,255,255,0.12)' : t.border,
-                        }}
-                      >
-                        <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                          {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
-                        </Text>
-                      </TouchableOpacity>
-                    )}
                   </ScrollView>
                   <TouchableOpacity
                     testID="level-gift-dual-claim"
@@ -976,7 +1028,7 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                     }}
                     style={{
                       borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 14,
-                      marginTop: hasCosmeticGift ? 10 : 16,
+                      marginTop: 16,
                       overflow: 'hidden',
                       borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0 : 1.5,
                       borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : '#A78BFA',
@@ -984,13 +1036,14 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                       shadowOpacity: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.18 : 0,
                       shadowRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 14 : 0,
                       shadowOffset: { width: 0, height: 0 },
+                      opacity: claimNowBusy ? 0.85 : 1,
                     }}
                   >
                     <LinearGradient
                       colors={USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonColors : ['#6D28D9', '#4C1D95']}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}
-                      style={{ paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 15 : 14, alignItems: 'center', justifyContent: 'center' }}
+                      style={{ paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 15 : 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}
                     >
                       {USE_ELITE_DUAL_LEVEL_GIFT_MODAL && (
                         <Animated.View
@@ -1006,35 +1059,46 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
                           }}
                         />
                       )}
+                      {claimNowBusy ? (
+                        <ActivityIndicator size="small" color={USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF'} />
+                      ) : null}
                       <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? primaryButtonText : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
-                        {presentationMode === 'apply'
+                        {claimNowBusy
+                          ? triLang(lang, { ru: 'Применяем...', uk: 'Застосовуємо...', es: 'Aplicando...', 'pt-BR': 'Aplicando...', vi: 'Đang áp dụng...', id: 'Menerapkan...', tr: 'Uygulanıyor...', pl: 'Stosowanie...' })
+                          : presentationMode === 'apply'
                           ? triLang(lang, { ru: 'Применить', uk: 'Застосувати', es: 'Aplicar', 'pt-BR': 'Usar', vi: 'Dùng', id: 'Pakai', tr: 'Kullan', pl: 'Użyj' })
                           : storesOnly
-                          ? triLang(lang, { ru: claimNowBusy ? 'Применяем...' : 'Использовать сейчас', uk: claimNowBusy ? 'Застосовуємо...' : 'Використати зараз', es: claimNowBusy ? 'Aplicando...' : 'Usar ahora', 'pt-BR': claimNowBusy ? 'Aplicando...' : 'Usar agora', vi: claimNowBusy ? 'Đang áp dụng...' : 'Dùng ngay', id: claimNowBusy ? 'Menerapkan...' : 'Gunakan sekarang', tr: claimNowBusy ? 'Uygulanıyor...' : 'Şimdi kullan', pl: claimNowBusy ? 'Stosowanie...' : 'Użyj teraz' })
+                          ? triLang(lang, { ru: 'Использовать сейчас', uk: 'Використати зараз', es: 'Usar ahora', 'pt-BR': 'Usar agora', vi: 'Dùng ngay', id: 'Gunakan sekarang', tr: 'Şimdi kullan', pl: 'Użyj teraz' })
                           : triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
+                  {hasCosmeticGift && (
+                    <TouchableOpacity
+                      testID="level-gift-dual-open-avatar"
+                      activeOpacity={0.7}
+                      onPress={() => {
+                        if (presentationMode === 'apply') handleApplyPreview(true);
+                        else void (storesOnly ? handleUseNow(true) : handleDone(true));
+                      }}
+                      disabled={claimNowBusy}
+                      style={{ marginTop: 4, alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, minHeight: 40, justifyContent: 'center', opacity: claimNowBusy ? 0.6 : 1 }}
+                    >
+                      <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+                        {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
+                      </Text>
+                    </TouchableOpacity>
+                  )}
                   {storesOnly && (
                     <TouchableOpacity
                       testID="level-gift-dual-save-opened"
-                      activeOpacity={0.82}
+                      activeOpacity={0.7}
                       disabled={claimNowBusy}
                       onPress={() => { void handleDone(); }}
-                      style={{
-                        marginTop: 10,
-                        paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 11 : 10,
-                        paddingHorizontal: 18,
-                        borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
-                        borderWidth: 0,
-                        borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
-                        backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface,
-                        alignItems: 'center',
-                        opacity: claimNowBusy ? 0.6 : 1,
-                      }}
+                      style={{ marginTop: hasCosmeticGift ? 0 : 4, alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, minHeight: 40, justifyContent: 'center', opacity: claimNowBusy ? 0.6 : 1 }}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.sub, textAlign: 'center', fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Сохранить в подарках', uk: 'Зберегти в подарунках', es: 'Guardar en regalos', 'pt-BR': 'Salvar nos presentes', vi: 'Lưu vào quà', id: 'Simpan ke hadiah', tr: 'Hediyelere kaydet', pl: 'Zapisz w prezentach' })}
+                      <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', fontWeight: '600' }}>
+                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -1044,21 +1108,19 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
               {opened.size === 0 && f2pGift && premGift && (
                 <TouchableOpacity
                   testID="level-gift-dual-save-later"
-                  activeOpacity={0.82}
+                  activeOpacity={0.7}
                   onPress={handleSkip}
                   style={{
-                    marginTop: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 14 : 12,
-                    paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 11 : 10,
-                    paddingHorizontal: 18,
-                    borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 14,
-                    borderWidth: 0,
-                    borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalPanelBorder(themeMode, t) : t.border,
-                    backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? rewardModalSoftSurface(themeMode, t) : t.bgSurface,
-                    alignItems: 'center',
+                    marginTop: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 10,
+                    alignSelf: 'center',
+                    paddingVertical: 10,
+                    paddingHorizontal: 20,
+                    minHeight: 40,
+                    justifyContent: 'center',
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.sub, textAlign: 'center', fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Resgatar mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
+                  <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', fontWeight: '600' }}>
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1072,15 +1134,15 @@ function LevelGiftDualModal({ visible, level, userName, lang, onClose, preRolled
 
 export default memo(LevelGiftDualModal);
 
-/** Сразу после открытия: только иконка + название, без описания (анимация по редкости). */
-function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, premVisual }: {
+/**
+ * Сцена мини-награды сразу после открытия сундука: бёрст + иконка, пружинный
+ * влёт. Название/бейдж рисует слот — так сцена обоих сундуков занимает
+ * одинаковую высоту (симметрия слотов).
+ */
+function MiniRewardPeekStage({ gift, themeMode, burstTier }: {
   gift:        GiftDef;
-  lang:        Lang;
-  theme:       Theme;
-  fonts:       Fonts;
   themeMode:   ThemeMode;
   burstTier:   GiftAnimTier;
-  premVisual:  boolean;
 }) {
   const entry = useRef(new Animated.Value(0)).current;
 
@@ -1100,42 +1162,18 @@ function MiniRewardPeek({ gift, lang, theme: t, fonts: f, themeMode, burstTier, 
   const entryY = entry.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
 
   return (
-    <Animated.View style={{ width: '100%', minHeight: 136, alignItems: 'center', justifyContent: 'flex-start', opacity: entry, transform: [{ translateY: entryY }, { scale: entryScale }] }}>
-      <View style={{ width: MINI_REWARD_STAGE_SIZE, height: MINI_REWARD_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-        <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={MINI_REWARD_STAGE_SIZE} />
-        <Image
-          source={getLevelGiftRewardIcon(gift.id, themeMode)}
-          style={{
-            width: MINI_REWARD_ICON_SIZE,
-            height: MINI_REWARD_ICON_SIZE,
-            zIndex: 2,
-            position: 'relative',
-          }}
-          contentFit="contain"
-        />
-      </View>
-      <Text
+    <Animated.View style={{ width: MINI_REWARD_STAGE_SIZE, height: MINI_REWARD_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', opacity: entry, transform: [{ translateY: entryY }, { scale: entryScale }] }}>
+      <GiftOpenBurst key={`${gift.id}-${burstTier}`} tier={burstTier} size={MINI_REWARD_STAGE_SIZE} />
+      <Image
+        source={getLevelGiftRewardIcon(gift.id, themeMode)}
         style={{
-          color:            t.textPrimary,
-          fontSize:         f.body,
-          fontWeight:       '800',
-          textAlign:        'center',
-          marginTop:        2,
-          zIndex:           2,
-          position:         'relative',
-          paddingHorizontal: 2,
+          width: MINI_REWARD_ICON_SIZE,
+          height: MINI_REWARD_ICON_SIZE,
+          zIndex: 2,
+          position: 'relative',
         }}
-      >
-        {giftDisplayTitleForLang(gift, lang)}
-      </Text>
-      {premVisual ? (
-        <PlusBadge
-          themeMode={themeMode}
-          size="xs"
-          testID="level-gift-dual-peek-plus-badge"
-          style={{ marginTop: 5, alignSelf: 'center' }}
-        />
-      ) : null}
+        contentFit="contain"
+      />
     </Animated.View>
   );
 }

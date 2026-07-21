@@ -133,18 +133,18 @@ describe('achievements', () => {
     expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} нагород`');
   });
 
-  it('claims achievement shards through the local-first path without a blocking global shard modal', async () => {
+  it('claims achievement reward marker without granting coins (§7: награда +1 монета обнулена)', async () => {
     const id = ALL_ACHIEVEMENTS[0].id;
     await AsyncStorage.setItem('achievements_v1', JSON.stringify([
       { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
     ]));
 
+    // Claim-маркер выставляется (структура сохранена), но монеты не начисляются.
     await expect(claimAchievementShardReward(id)).resolves.toBe(true);
 
-    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, {
-      showEarnModal: false,
-      skipServerAwait: true,
-    });
+    expect(addShardsRaw).not.toHaveBeenCalled();
+    const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
+    expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(true);
   });
 
   it('updates the achievement reward modal before the claim promise finishes', () => {

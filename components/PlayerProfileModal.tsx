@@ -27,6 +27,7 @@ import { Image } from 'expo-image';
 import { useRouter } from 'expo-router';
 import firestore from '@react-native-firebase/firestore';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import Svg, { Circle, Defs, LinearGradient as SvgLinearGradient, Stop } from 'react-native-svg';
 import { LinearGradient } from './SafeLinearGradient';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -42,6 +43,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
+import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/profile_card_streak_shield';
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
 import { syncToCloud } from '../app/cloud_sync';
@@ -130,7 +132,6 @@ interface Props {
 
 // Синяя «дорогая» палитра Pro-плашки (зеркало celebrationContent.ts → pro.main).
 const PRO_BADGE_BLUE = '#38BDF8';
-const PRO_BADGE_TEXT = '#04101f';
 
 type ProfileCardVisual = {
   theme: ProfileCardTheme;
@@ -170,6 +171,54 @@ const buildCardVisual = (theme: ProfileCardTheme): Omit<ProfileCardVisual, 'them
 const PROFILE_CARD_VISUALS = Object.fromEntries(
   (Object.keys(PROFILE_CARD_THEME_COLORS) as ProfileCardTheme[]).map((theme) => [theme, buildCardVisual(theme)]),
 ) as Record<ProfileCardTheme, Omit<ProfileCardVisual, 'theme' | 'motion'>>;
+
+// ─── AURORA ─────────────────────────────────────────────────────────────────
+// Утверждённый владельцем редизайн «стекло и глубина света»: полупрозрачные
+// панели с тонкой светлой кромкой поверх тёмного градиента уровня, волосяные
+// разделители и стеклянный хром (кнопки/пилюли) rgba(8,10,16,0.44).
+const AURORA_GLASS = {
+  panelBg: 'rgba(255,255,255,0.05)',
+  panelBorder: 'rgba(255,255,255,0.075)',
+  hairline: 'rgba(255,255,255,0.08)',
+  chromeBg: 'rgba(8,10,16,0.44)',
+  chromeBorder: 'rgba(255,255,255,0.13)',
+  chipBg: 'rgba(255,255,255,0.055)',
+  chipBorder: 'rgba(255,255,255,0.07)',
+  inkSoft: '#C9CBD6',
+} as const;
+
+/**
+ * Кольцо аватара (AURORA v2): СТАТИЧНАЯ полная окружность с градиентом акцента,
+ * strokeWidth 2 — без dasharray-разрыва и без вращения. Анимированные ауры
+ * рисует PremiumAvatarHalo; вращающееся кольцо с ними конфликтовало (фидбек
+ * владельца 2026-07-19).
+ */
+function ProfileOrbitRing({ size, accent }: { size: number; accent: string }) {
+  const strokeWidth = 2;
+  const center = size / 2;
+  const radius = (size - strokeWidth) / 2;
+  return (
+    <View pointerEvents="none" style={{ position: 'absolute', width: size, height: size }}>
+      <Svg width={size} height={size}>
+        <Defs>
+          <SvgLinearGradient id="profileOrbitStroke" x1="0" y1="0" x2="1" y2="1">
+            <Stop offset="0" stopColor={accent} />
+            <Stop offset="0.5" stopColor={accent} stopOpacity={0.55} />
+            <Stop offset="1" stopColor={accent} />
+          </SvgLinearGradient>
+        </Defs>
+        <Circle
+          cx={center}
+          cy={center}
+          r={radius}
+          fill="none"
+          stroke="url(#profileOrbitStroke)"
+          strokeWidth={strokeWidth}
+        />
+      </Svg>
+    </View>
+  );
+}
 
 function normalizeProfileCardSnapshotForLevel(raw: Partial<ProfileCardSnapshot> & Partial<PlayerInfo>): ProfileCardSnapshot {
   const level = normalizeProfileCardLevel(raw.profileCardLevel ?? raw.level);
@@ -249,6 +298,8 @@ function PlayerProfileModalBody({
   const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const [profileCardSnapshot, setProfileCardSnapshot] = useState<ProfileCardSnapshot>(() => normalizeProfileCardSnapshotForLevel(player));
   const [cardStats, setCardStats] = useState<ProfileCardStats | null>(null);
+  // Фаза 3: статус карточного щита «Защита цепочки» (III+, только своя карточка).
+  const [cardShieldStatus, setCardShieldStatus] = useState<CardStreakShieldStatus | null>(null);
   // Превью апгрейда прямо на открытой карточке: null = настоящий уровень, иначе
   // карточка целиком преображается в выбранный уровень (визуал+эффекты+блоки).
   const [previewLevel, setPreviewLevel] = useState<ProfileCardLevel | null>(null);
@@ -359,12 +410,16 @@ function PlayerProfileModalBody({
   // prestigeGlow/Glint/Particle интерполяции удалены как мёртвый код.
   const prestigeActive = displayCardLevel > 0;
   const compassProfileSurface = isCompassTheme && !prestigeActive;
-  // ПРАВИЛО владельца: никаких обводок у контейнеров — поверхность отличается ТОНОМ.
-  const prestigeSurfaceStyle = prestigeActive
-    ? { backgroundColor: cardVisual.surface, borderWidth: 0, borderColor: 'transparent' }
-    : compassProfileSurface
-      ? { backgroundColor: COMPASS_RICH.charcoalRaised, borderWidth: 0, borderColor: 'transparent', overflow: 'hidden' as const }
-      : { backgroundColor: t.bgSurface, borderWidth: 0, borderColor: 'transparent' };
+  // AURORA-стекло: на тёмной престижной карточке — всегда; на светлой теме
+  // (businessLight) базовой карточки стекло нечитаемо, откат на токены темы.
+  const auroraGlass = prestigeActive || themeMode !== 'businessLight';
+  const glassPanel = auroraGlass ? AURORA_GLASS.panelBg : t.bgSurface;
+  const glassPanelBorder = auroraGlass ? AURORA_GLASS.panelBorder : t.border;
+  const glassHairline = auroraGlass ? AURORA_GLASS.hairline : t.border;
+  const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
+  const glassChromeBorder = auroraGlass ? AURORA_GLASS.chromeBorder : t.border;
+  const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
+  const glassChipBorder = auroraGlass ? AURORA_GLASS.chipBorder : t.border;
   const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
 
   const showAddFriend =
@@ -383,6 +438,64 @@ function PlayerProfileModalBody({
     !!todayLike &&
     todayLike.targetUid === likeTargetUid &&
     todayLike.eventId === PROFILE_LIKE_EVENT_ID;
+
+  // Открытие уровневых блоков карточки: II «Выучено» и IV «Путь» собираются
+  // ниже в ОДНУ glass-панель (iOS-список); V «Легенда» — отдельная строка.
+  const showLearnedBlock =
+    displayCardLevel >= 2 &&
+    !!cardStats &&
+    (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null);
+  const showPathBlock = displayCardLevel >= 4 && !!cardStats && cardStats.appDays !== null;
+  // Фаза 3: строка щита — только своя карточка уровня III+ (чужой статус не виден).
+  const showShieldBlock = isMe && displayCardLevel >= 3;
+  const showShieldRow = showShieldBlock && cardShieldStatus !== null;
+
+  // Статус щита грузим как соседние cardStats: async, с отменой при размонтировании.
+  useEffect(() => {
+    let cancelled = false;
+    if (isMe && displayCardLevel >= 3) {
+      getCardStreakShieldStatus().then((s) => { if (!cancelled) setCardShieldStatus(s); }).catch(() => {});
+    } else {
+      setCardShieldStatus(null);
+    }
+    return () => { cancelled = true; };
+  }, [isMe, displayCardLevel]);
+
+  // Подпись статуса щита: активна / перезарядка · N дн / спасла сегодня.
+  const cardShieldStatusText = cardShieldStatus === null
+    ? ''
+    : cardShieldStatus.usedToday
+      ? triLang(lang as Lang, {
+          ru: 'спасла сегодня',
+          uk: 'врятувала сьогодні',
+          es: 'te salvó hoy',
+          'pt-BR': 'salvou hoje',
+          vi: 'đã cứu hôm nay',
+          id: 'menyelamatkan hari ini',
+          tr: 'bugün kurtardı',
+          pl: 'uratowała dziś',
+        })
+      : cardShieldStatus.eligible
+        ? triLang(lang as Lang, {
+            ru: 'активна',
+            uk: 'активна',
+            es: 'activa',
+            'pt-BR': 'ativa',
+            vi: 'đang hoạt động',
+            id: 'aktif',
+            tr: 'aktif',
+            pl: 'aktywna',
+          })
+        : triLang(lang as Lang, {
+            ru: `перезарядка · ${cardShieldStatus.cooldownDaysLeft} дн`,
+            uk: `перезарядка · ${cardShieldStatus.cooldownDaysLeft} дн`,
+            es: `recarga · ${cardShieldStatus.cooldownDaysLeft} d`,
+            'pt-BR': `recarga · ${cardShieldStatus.cooldownDaysLeft} d`,
+            vi: `nạp lại · ${cardShieldStatus.cooldownDaysLeft} ngày`,
+            id: `isi ulang · ${cardShieldStatus.cooldownDaysLeft} hari`,
+            tr: `yeniden dolum · ${cardShieldStatus.cooldownDaysLeft} gün`,
+            pl: `odnowienie · ${cardShieldStatus.cooldownDaysLeft} dni`,
+          });
 
   useEffect(() => {
     let cancelled = false;
@@ -537,6 +650,22 @@ function PlayerProfileModalBody({
           tr: `Kart yükseltildi: ${boughtName}`,
           pl: `Karta ulepszona: ${boughtName}`,
         }), 'info');
+        if (result.legendNo) {
+          // Фаза 4: «праздник легенды» — отдельный праздничный тост следом за тостом апгрейда.
+          const legendNo = result.legendNo;
+          setTimeout(() => {
+            onFriendRequestToast(triLang(lang as Lang, {
+              ru: `🎉 Ты стал Легендой № ${legendNo}! Друзья получили +5 💠`,
+              uk: `🎉 Ти став Легендою № ${legendNo}! Друзі отримали +5 💠`,
+              es: `🎉 ¡Te convertiste en Leyenda n.º ${legendNo}! Tus amigos recibieron +5 💠`,
+              'pt-BR': `🎉 Você virou Lenda n.º ${legendNo}! Seus amigos receberam +5 💠`,
+              vi: `🎉 Bạn đã trở thành Huyền thoại số ${legendNo}! Bạn bè nhận được +5 💠`,
+              id: `🎉 Kamu menjadi Legenda № ${legendNo}! Temanmu menerima +5 💠`,
+              tr: `🎉 Efsane № ${legendNo} oldun! Arkadaşların +5 💠 kazandı`,
+              pl: `🎉 Zostałeś Legendą № ${legendNo}! Znajomi otrzymali +5 💠`,
+            }), 'info');
+          }, 1400);
+        }
         return;
       }
       if (result.reason === 'insufficient') {
@@ -950,15 +1079,15 @@ function PlayerProfileModalBody({
             borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)',
-            borderWidth: 0,
-            borderColor: 'transparent',
+            backgroundColor: compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg,
+            borderWidth: compassProfileSurface ? 0 : 1,
+            borderColor: compassProfileSurface ? 'transparent' : glassChromeBorder,
             overflow: compassProfileSurface ? 'hidden' : 'visible',
             ...(compassProfileSurface ? compassShadow(1) : null),
           }}
         >
           {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
-          <Ionicons name="close" size={22} color={prestigeActive ? '#FFFFFF' : compassProfileSurface ? COMPASS_RICH.champagne : t.textPrimary} />
+          <Ionicons name="close" size={22} color={prestigeActive ? 'rgba(255,255,255,0.82)' : compassProfileSurface ? COMPASS_RICH.champagne : t.textPrimary} />
         </TouchableOpacity>
         {showAddFriend ? (
           <Pressable
@@ -974,12 +1103,12 @@ function PlayerProfileModalBody({
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
               backgroundColor: isAlreadyFriend
-                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : prestigeActive ? 'rgba(240,84,84,0.22)' : 'rgba(240,84,84,0.16)')
-                : (prestigeActive ? 'rgba(0,0,0,0.34)' : compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(255,255,255,0.10)'),
+                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(240,84,84,0.18)')
+                : (compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg),
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: 0,
-              borderColor: 'transparent',
+              borderWidth: compassProfileSurface ? 0 : 1,
+              borderColor: compassProfileSurface ? 'transparent' : isAlreadyFriend ? 'rgba(240,84,84,0.35)' : glassChromeBorder,
               overflow: compassProfileSurface ? 'hidden' : 'visible',
               ...(compassProfileSurface ? compassShadow(1) : null),
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
@@ -1007,7 +1136,8 @@ function PlayerProfileModalBody({
         {isMe && ENABLE_PROFILE_CARD && nextRealLevel !== null ? (
           // Круглая кнопка апгрейда на СВОЕЙ карточке: тап преображает карточку в
           // превью следующего уровня ПРЯМО НА МЕСТЕ, повторные тапы листают до V.
-          // Модель: заливка градиентом следующего уровня + бриллиант (в превью — номер).
+          // AURORA: стеклянный круг, кромка и стрелка в акценте СЛЕДУЮЩЕГО уровня
+          // + его свечение (в превью — римский номер уровня вместо стрелки).
           <Pressable
             testID="player-profile-upgrade-card"
             accessibilityRole="button"
@@ -1034,6 +1164,9 @@ function PlayerProfileModalBody({
               overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
+              backgroundColor: glassChromeBg,
+              borderWidth: 1,
+              borderColor: nextLevelVisual.accentStrong,
               shadowColor: nextLevelVisual.shadowColor,
               shadowOpacity: 0.55,
               shadowRadius: 9,
@@ -1041,23 +1174,45 @@ function PlayerProfileModalBody({
               elevation: 7,
             }}
           >
-            <LinearGradient
-              colors={[nextLevelVisual.accent, nextLevelVisual.secondary]}
-              start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
             <Animated.View style={{ opacity: shimmerOpacity }}>
               {previewLevel === null ? (
-                <Ionicons name="arrow-up" size={22} color={monoIcon(themeMode, '#111827', MONO_ICON.onLight)} />
+                <Ionicons name="arrow-up" size={22} color={nextLevelVisual.accent} />
               ) : (
-                <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontSize: 15, fontWeight: '900' }}>
+                <Text style={{ color: nextLevelVisual.accent, fontSize: 15, fontWeight: '900' }}>
                   {profileCardLevelRoman(previewLevel)}
                 </Text>
               )}
             </Animated.View>
           </Pressable>
         ) : null}
+        {displayCardLevel > 0 && (
+          // AURORA: пилюля уровня переехала из центра в ЛЕВЫЙ ВЕРХНИЙ УГОЛ —
+          // floating glass pill, кромка и текст в акценте отображаемого уровня.
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              top: PROFILE_HEADER_ACTION_TOP,
+              left: PROFILE_HEADER_ACTION_RIGHT,
+              zIndex: 30,
+              maxWidth: '58%',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 6,
+              backgroundColor: glassChromeBg,
+              borderWidth: 1,
+              borderColor: cardVisual.accentStrong,
+              borderRadius: 999,
+              paddingHorizontal: 11,
+              paddingVertical: 6,
+            }}
+          >
+            <Ionicons name="sparkles" size={12} color={cardVisual.accent} />
+            <Text style={{ color: cardVisual.accent, fontWeight: '800', fontSize: f.caption, letterSpacing: 0.4, flexShrink: 1 }}>
+              {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
+            </Text>
+          </View>
+        )}
         {prestigeActive && (
           // При смене уровня (превью/покупка) фон и эффекты мягко проявляются заново —
           // «морф» карточки вместо мгновенной подмены.
@@ -1084,110 +1239,127 @@ function PlayerProfileModalBody({
         <ScrollView
           bounces={false}
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={{ padding: 24, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && previewLevel !== null ? 112 : 0) }}
+          contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 14, paddingBottom: Math.max(96, bottomInset + 72) + (isMe && previewLevel !== null ? 112 : 0) }}
         >
         <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: prestigeActive ? cardVisual.accentStrong : t.border, alignSelf: 'center', marginBottom: 20 }} />
-        {showPremium && (
-          // Pro (разовая «Навсегда») — синяя «дорогая» плашка с 💎; иначе Plus —
-          // золотая со звёздами. Внутренний доступ один и тот же (premium), меняется
-          // только видимое имя/цвет — как в PremiumCelebrationModal (pro=синий).
-          <Animated.View style={{
-            opacity: shimmerOpacity,
-            alignSelf: 'center',
-            marginBottom: 12,
-            backgroundColor: showPro ? PRO_BADGE_BLUE : t.gold,
-            borderRadius: 20,
-            paddingHorizontal: 18,
-            paddingVertical: 5,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-            shadowColor: showPro ? PRO_BADGE_BLUE : t.gold,
-            shadowOpacity: 0.6,
-            shadowRadius: 8,
-            elevation: 6,
-          }}>
-            {showPro ? (
-              <Ionicons name="diamond" size={13} color={PRO_BADGE_TEXT} />
+        <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 18 }}>
+          <View style={{ width: 88, height: 88, alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+            {displayCardLevel > 0 ? (
+              <ProfileOrbitRing size={88} accent={cardVisual.accent} />
             ) : (
-              <Ionicons name="star" size={13} color={t.correctText} />
+              // Уровень 0 — без кольца, простая тонкая кромка.
+              <View pointerEvents="none" style={{ position: 'absolute', width: 78, height: 78, borderRadius: 39, borderWidth: 1, borderColor: auroraGlass ? 'rgba(255,255,255,0.14)' : t.border }} />
             )}
-            <Text style={{ color: showPro ? PRO_BADGE_TEXT : t.correctText, fontWeight: '800', fontSize: f.label, letterSpacing: 1 }}>
-              {showPro ? 'PRO' : 'PLUS'}
-            </Text>
-            {showPro ? (
-              <Ionicons name="diamond" size={13} color={PRO_BADGE_TEXT} />
-            ) : (
-              <Ionicons name="star" size={13} color={t.correctText} />
-            )}
-          </Animated.View>
-        )}
-        {displayCardLevel > 0 && (
-          <LinearGradient
-            colors={[cardVisual.accent, cardVisual.secondary]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            style={{
-            alignSelf: 'center',
-            marginBottom: 12,
-            borderRadius: 18,
-            paddingHorizontal: 14,
-            paddingVertical: 5,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-            shadowColor: cardVisual.shadowColor,
-            shadowOpacity: 0.32,
-            shadowRadius: 10,
-            elevation: 5,
-          }}>
-            <Ionicons name="sparkles" size={13} color="#111827" />
-            <Text style={{ color: monoIcon(themeMode, '#111827', MONO_ICON.onLight), fontWeight: '900', fontSize: f.caption, letterSpacing: 0.4 }}>
-              {profileCardLevelRoman(displayCardLevel)} · {lang === 'ru' ? PROFILE_CARD_LEVEL_NAME_RU[displayCardLevel] : cardDef.name}
-            </Text>
-          </LinearGradient>
-        )}
-        <View style={{ marginBottom: 18 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
-            <View style={{ width: 44 }} />
-            <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
-              {/* Уровень III+ обещает «усиленную рамку аватара» — кольцо цвета уровня. */}
-              <View style={displayCardLevel >= 3 ? { padding: 5, borderRadius: 999, backgroundColor: cardVisual.surface } : null}>
-                <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
-                  <AvatarView
-                    avatar={avatarStr}
-                    totalXP={safeTotalXp}
-                    size={76}
-                    auraId={usesPremiumAura ? undefined : effectiveAuraId}
-                  />
-                </PremiumAvatarHalo>
-              </View>
-              {hasLeagueCrown && (
-                <View style={{ marginTop: 10, maxWidth: '100%' }}>
-                  <LeagueCrownName
-                    text={player.name}
-                    fontSize={f.h2}
-                    iconScale={1.8}
-                    count={displayLeagueCrownCount}
-                  />
-                </View>
-              )}
-              {!hasLeagueCrown && (
-              <Text style={memberNameStatusStyle(
-                { fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 },
-                { isPremium: showPremium, isVip: showVip, themeMode },
-              )}>
-                {player.name}
+            {/* Уровень III+ — мягкое внешнее свечение кольца цветом уровня
+                (бывшее «усиленное кольцо», переосмысленное под стекло). */}
+            <View style={displayCardLevel >= 3 ? {
+              borderRadius: 999,
+              shadowColor: cardVisual.shadowColor,
+              shadowOpacity: 0.55,
+              shadowRadius: 16,
+              shadowOffset: { width: 0, height: 0 },
+              elevation: 9,
+            } : null}>
+              <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
+                <AvatarView
+                  avatar={avatarStr}
+                  totalXP={safeTotalXp}
+                  size={76}
+                  auraId={usesPremiumAura ? undefined : effectiveAuraId}
+                />
+              </PremiumAvatarHalo>
+            </View>
+            <View style={{
+              position: 'absolute',
+              bottom: -6,
+              alignSelf: 'center',
+              backgroundColor: auroraGlass ? 'rgba(8,10,16,0.72)' : t.bgCard,
+              borderWidth: 1,
+              borderColor: cardVisual.accentStrong,
+              borderRadius: 999,
+              paddingHorizontal: 9,
+              paddingVertical: 2,
+            }}>
+              <Text style={{ color: cardVisual.accent, fontSize: 10.5, fontWeight: '800', letterSpacing: 0.7 }}>
+                LV {level}
               </Text>
-              )}
-              <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>
+            </View>
+          </View>
+          {hasLeagueCrown && (
+            <View style={{ maxWidth: '100%' }}>
+              <LeagueCrownName
+                text={player.name}
+                fontSize={26}
+                iconScale={1.8}
+                count={displayLeagueCrownCount}
+              />
+            </View>
+          )}
+          {!hasLeagueCrown && (
+          <Text style={memberNameStatusStyle(
+            { fontSize: 26, fontWeight: '700', color: t.textPrimary },
+            { isPremium: showPremium, isVip: showVip, themeMode },
+          )}>
+            {player.name}
+          </Text>
+          )}
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 10 }}>
+            {showPremium && (
+              // Стеклянная пилюля подписки: PLUS — золотая с diamond, lifetime PRO —
+              // синяя (pro=синий, как в PremiumCelebrationModal). Shimmer сохранён.
+              <Animated.View style={{ opacity: shimmerOpacity }}>
+                <LinearGradient
+                  colors={showPro
+                    ? ['rgba(56,189,248,0.18)', 'rgba(56,189,248,0.07)']
+                    : ['rgba(245,200,66,0.18)', 'rgba(245,200,66,0.07)']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 5,
+                    borderRadius: 999,
+                    paddingHorizontal: 11,
+                    paddingVertical: 5,
+                    borderWidth: 1,
+                    borderColor: showPro ? 'rgba(56,189,248,0.35)' : 'rgba(245,200,66,0.35)',
+                  }}
+                >
+                  <Ionicons name="diamond" size={11} color={showPro ? PRO_BADGE_BLUE : '#F5C842'} />
+                  <Text style={{ color: showPro ? PRO_BADGE_BLUE : '#F5C842', fontWeight: '800', fontSize: 11.5, letterSpacing: 1 }}>
+                    {showPro ? 'PRO' : 'PLUS'}
+                  </Text>
+                </LinearGradient>
+              </Animated.View>
+            )}
+            <View style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              borderRadius: 999,
+              paddingHorizontal: 11,
+              paddingVertical: 5,
+              backgroundColor: auroraGlass ? 'rgba(255,255,255,0.06)' : t.bgSurface,
+              borderWidth: 1,
+              borderColor: auroraGlass ? 'rgba(255,255,255,0.1)' : t.border,
+            }}>
+              <Text style={{ color: auroraGlass ? AURORA_GLASS.inkSoft : t.textSecond, fontSize: 11.5, fontWeight: '600' }}>
                 {getTitleString(level, lang)}
               </Text>
             </View>
-            <View style={{ width: PROFILE_HEADER_ACTION_SIZE }} />
           </View>
         </View>
-        <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
+        {/* AURORA: три плитки статистики слиты в ОДНУ стеклянную капсулу
+            с волосяными разделителями; значения/форматирование не менялись. */}
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'stretch',
+          borderRadius: 16,
+          backgroundColor: glassPanel,
+          borderWidth: 1,
+          borderColor: glassPanelBorder,
+          paddingVertical: 12,
+          marginBottom: 14,
+        }}>
           {[
             {
               key: 'xp',
@@ -1225,20 +1397,23 @@ function PlayerProfileModalBody({
               label: profileChainLabel,
               color: t.textPrimary,
             },
-          ].map((metric) => (
-            <View key={metric.key} style={{ flex: 1, minWidth: 0, alignItems: 'center' }}>
-              <View style={[{
-                width: '100%',
-                minHeight: 46,
-                borderRadius: 12,
-                paddingHorizontal: 8,
-                paddingVertical: 8,
+          ].map((metric, idx) => (
+            <View
+              key={metric.key}
+              style={{
+                flex: 1,
+                minWidth: 0,
                 alignItems: 'center',
-                justifyContent: 'center',
-              }, prestigeSurfaceStyle]}>
-                {compassProfileSurface && <CompassDepthSurface radius={12} quiet />}
+                paddingHorizontal: 6,
+                // Волосяной разделитель между колонками — левая кромка колонки.
+                borderLeftWidth: idx > 0 ? 1 : 0,
+                borderColor: idx > 0 ? glassHairline : 'transparent',
+                marginVertical: 3,
+              }}
+            >
+              <View style={{ width: '100%' }}>
                 <Text
-                  style={{ color: metric.color, fontSize: f.numMd, fontWeight: '800', width: '100%', textAlign: 'center' }}
+                  style={{ color: metric.color, fontSize: 20, fontWeight: '800', width: '100%', textAlign: 'center' }}
                   numberOfLines={1}
                   adjustsFontSizeToFit
                   minimumFontScale={0.62}
@@ -1247,12 +1422,19 @@ function PlayerProfileModalBody({
                   {metric.value}
                 </Text>
               </View>
-              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', marginTop: 6 }} numberOfLines={1}>
+              <Text
+                style={{ color: t.textMuted, fontSize: 9.5, fontWeight: '600', letterSpacing: 1.1, textTransform: 'uppercase', marginTop: 3 }}
+                numberOfLines={1}
+              >
                 {metric.label}
               </Text>
             </View>
           ))}
         </View>
+        {/* AURORA мета-ряд: компактная пилюля лайка (сердце + число, ширина по
+            содержимому) + чип лиги на остаток ширины. Ряд — это кнопка лайка
+            (вся логика: тап, оптимизм, дневной лимит, тосты — без изменений);
+            чип лиги глушит responder, чтобы тап по нему не ставил лайк. */}
         <Pressable
           testID="player-profile-activity-like"
           onPress={() => {
@@ -1272,168 +1454,68 @@ function PlayerProfileModalBody({
             tr: "Aktivite beğenileri",
             pl: "Polubienia aktywności",
           })}
-          style={({ pressed }) => [{
+          style={({ pressed }) => ({
+            flexDirection: 'row',
+            gap: 10,
+            marginBottom: 14,
+            opacity: likeBusy ? 0.6 : pressed && canLike ? 0.85 : 1,
+          })}
+        >
+          <View style={{
             flexDirection: 'row',
             alignItems: 'center',
-            gap: 12,
-            borderRadius: 14,
-            padding: 14,
-            marginBottom: 10,
-            opacity: likeBusy ? 0.6 : pressed && canLike ? 0.85 : 1,
-          }, prestigeSurfaceStyle]}
-        >
-          {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
-          <View style={{
-            width: 34,
-            height: 34,
-            borderRadius: 17,
-            alignItems: 'center',
             justifyContent: 'center',
-            backgroundColor: 'rgba(255,45,85,0.16)',
+            gap: 6,
+            borderRadius: 999,
+            backgroundColor: glassPanel,
+            borderWidth: 1,
+            borderColor: glassPanelBorder,
+            paddingHorizontal: 12,
+            paddingVertical: 10,
           }}>
             <Ionicons
               name={likedThisProfile ? 'heart' : 'heart-outline'}
-              size={19}
+              size={16}
               color={monoIcon(themeMode, '#FF2D55')}
             />
-          </View>
-          <View style={{ flex: 1, minWidth: 0 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: 13.5, fontWeight: '800' }} numberOfLines={1}>
               {activityLikeTotal.toLocaleString()}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
-              {triLang(lang as Lang, {
-                ru: 'лайки за активность',
-                uk: 'лайки за активність',
-                es: 'likes de actividad',
-                'pt-BR': "curtidas de atividade",
-                vi: "lượt thích hoạt động",
-                id: "like aktivitas",
-                tr: "aktivite beğenisi",
-                pl: "polubień aktywności",
-              })}
+          </View>
+          <View
+            onStartShouldSetResponder={() => true}
+            style={{
+              flex: 1,
+              minWidth: 0,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 9,
+              borderRadius: 16,
+              backgroundColor: glassPanel,
+              borderWidth: 1,
+              borderColor: glassPanelBorder,
+              paddingHorizontal: 12,
+              paddingVertical: 10,
+            }}
+          >
+            {club.imageUri
+              ? <Image source={club.imageUri} style={{ width: 28, height: 28, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
+              : <Ionicons name={club.ionIcon as any} size={26} color={monoIcon(themeMode, club.color)} />
+            }
+            <Text style={{ color: t.textPrimary, fontSize: 13.5, fontWeight: '700', flex: 1, minWidth: 0 }} numberOfLines={1}>
+              {clubTierShortName(club, lang as Lang)}
             </Text>
           </View>
         </Pressable>
-        <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-          {compassProfileSurface && <CompassDepthSurface radius={14} quiet />}
-          {club.imageUri
-            ? <Image source={club.imageUri} style={{ width: 32, height: 32, borderRadius: 6 }} contentFit="contain" accessibilityLabel="Иконка лиги" />
-            : <Ionicons name={club.ionIcon as any} size={28} color={monoIcon(themeMode, club.color)} />
-          }
-          <View>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-              {clubTierShortName(club, lang as Lang)}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {triLang(lang as Lang, {
-                ru: 'текущая лига',
-                uk: 'поточна ліга',
-                es: 'Liga actual',
-                'pt-BR': "Liga atual",
-                vi: "Giải đấu hiện tại",
-                id: "Liga saat ini",
-                tr: "Mevcut lig",
-                pl: "Obecna liga",
-              })}
-            </Text>
-          </View>
-        </View>
-        {/* Блоки, открываемые уровнями карточки: II «Выучено», III «Арена», IV «Путь», V «Легенда». */}
-        {displayCardLevel >= 2 && cardStats && (cardStats.wordsLearned !== null || cardStats.phrasesLearned !== null) && (
-          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <Ionicons name="book" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
-            <View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {(cardStats.wordsLearned ?? 0).toLocaleString()} · {(cardStats.phrasesLearned ?? 0).toLocaleString()}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {triLang(lang as Lang, {
-                  ru: 'выучено: слова · фразы',
-                  uk: 'вивчено: слова · фрази',
-                  es: 'aprendido: palabras · frases',
-                  'pt-BR': 'aprendido: palavras · frases',
-                  vi: 'đã học: từ · cụm từ',
-                  id: 'dipelajari: kata · frasa',
-                  tr: 'öğrenilen: kelime · kalıp',
-                  pl: 'nauczone: słowa · frazy',
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
-        {displayCardLevel >= 4 && cardStats && cardStats.appDays !== null && (
-          <View style={[{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <Ionicons name="compass" size={26} color={monoIcon(themeMode, cardVisual.accent)} />
-            <View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {cardStats.appDays.toLocaleString()} · 🔥{(cardStats.longestStreak ?? 0).toLocaleString()}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {triLang(lang as Lang, {
-                  ru: 'дней в Phraseman · рекордная серия',
-                  uk: 'днів у Phraseman · рекордна серія',
-                  es: 'días en Phraseman · racha récord',
-                  'pt-BR': 'dias no Phraseman · sequência recorde',
-                  vi: 'ngày dùng Phraseman · chuỗi kỷ lục',
-                  id: 'hari di Phraseman · rentetan rekor',
-                  tr: 'Phraseman günleri · rekor seri',
-                  pl: 'dni w Phraseman · rekordowa seria',
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
-        {displayCardLevel >= 5 && (
-          <View style={[
-            { flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 14, padding: 14, marginBottom: 10 },
-            prestigeSurfaceStyle,
-            { backgroundColor: cardVisual.accentSoft },
-          ]}>
-            <Text style={{ fontSize: f.numLg }}>👑</Text>
-            <View>
-              <Text style={{ color: cardVisual.secondary, fontSize: f.body, fontWeight: '900' }}>
-                {cardStats?.legendNo
-                  ? triLang(lang as Lang, {
-                      ru: `Легенда №${cardStats.legendNo}`,
-                      uk: `Легенда №${cardStats.legendNo}`,
-                      es: `Leyenda #${cardStats.legendNo}`,
-                      'pt-BR': `Lenda #${cardStats.legendNo}`,
-                      vi: `Huyền thoại #${cardStats.legendNo}`,
-                      id: `Legenda #${cardStats.legendNo}`,
-                      tr: `Efsane #${cardStats.legendNo}`,
-                      pl: `Legenda #${cardStats.legendNo}`,
-                    })
-                  : triLang(lang as Lang, {
-                      ru: 'Легенда',
-                      uk: 'Легенда',
-                      es: 'Leyenda',
-                      'pt-BR': 'Lenda',
-                      vi: 'Huyền thoại',
-                      id: 'Legenda',
-                      tr: 'Efsane',
-                      pl: 'Legenda',
-                    })}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {triLang(lang as Lang, {
-                  ru: 'высший уровень карточки',
-                  uk: 'найвищий рівень картки',
-                  es: 'nivel máximo de la tarjeta',
-                  'pt-BR': 'nível máximo do cartão',
-                  vi: 'cấp thẻ cao nhất',
-                  id: 'level kartu tertinggi',
-                  tr: 'en yüksek kart seviyesi',
-                  pl: 'najwyższy poziom karty',
-                })}
-              </Text>
-            </View>
-          </View>
-        )}
         {isMe && multipliers && (
-          <View style={[{ borderRadius: 14, padding: 14, marginBottom: 10 }, prestigeSurfaceStyle]}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+          // AURORA: одна glass-панель — шапка (подпись капсом + крупный итог,
+          // зелёный #35D07F когда бонус активен) и wrap-чипы модификаторов под ней.
+          <View style={{
+            borderRadius: 16, backgroundColor: glassPanel, borderWidth: 1, borderColor: glassPanelBorder,
+            paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
+          }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
+              <Text style={{ color: t.textMuted, fontSize: 10.5, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang as Lang, {
                   ru: 'Модификаторы XP',
                   uk: 'Модифікатори XP',
@@ -1445,17 +1527,15 @@ function PlayerProfileModalBody({
                   pl: "Modyfikatory XP",
                 })}
               </Text>
-              <View style={{ backgroundColor: multipliers.total > 1 ? t.correct : t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 3 }}>
-                <Text style={{ color: multipliers.total > 1 ? t.correctText : t.textMuted, fontWeight: '800', fontSize: f.label }}>
-                  ×{multipliers.total.toFixed(2)}
-                </Text>
-              </View>
+              <Text style={{ color: multipliers.total > 1 ? '#35D07F' : t.textMuted, fontWeight: '800', fontSize: 19 }}>
+                ×{multipliers.total.toFixed(2)}
+              </Text>
             </View>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
               {multipliers.clubM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🏛️</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Лига',
                       uk: 'Ліга',
@@ -1470,9 +1550,9 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.streakM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🔥</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Цепочка',
                       uk: 'Стрік',
@@ -1487,9 +1567,9 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.comebackM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>⚡</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Камбэк',
                       uk: 'Повернення',
@@ -1504,9 +1584,9 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.leagueBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Буст лиги',
                       uk: 'Буст ліги',
@@ -1521,14 +1601,14 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.leagueGroupBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Общий буст лиги',
                       uk: 'Спільний буст ліги',
                       es: 'Impulso común de liga',
-                      'pt-BR': "Impulso comum de liga",
+                      'pt-BR': "Impulso común de liga",
                       vi: "Tăng lực chung giải đấu",
                       id: "Dorongan liga bersama",
                       tr: "Ortak lig güçlendirmesi",
@@ -1538,9 +1618,9 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.giftM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🎁</Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub }}>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
                       ru: 'Подарок',
                       uk: 'Подарунок',
@@ -1551,6 +1631,23 @@ function PlayerProfileModalBody({
                       tr: "Hediye",
                       pl: "Prezent",
                     })} ×{multipliers.giftM.toFixed(1)}
+                  </Text>
+                </View>
+              )}
+              {multipliers.cardM > 1 && (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                  <Text style={{ fontSize: 13 }}>✦</Text>
+                  <Text style={{ color: t.textSecond, fontSize: 11 }}>
+                    {triLang(lang as Lang, {
+                      ru: 'Карточка',
+                      uk: 'Картка',
+                      es: 'Tarjeta',
+                      'pt-BR': "Cartão",
+                      vi: "Thẻ",
+                      id: "Kartu",
+                      tr: "Kart",
+                      pl: 'Karta',
+                    })} ×{multipliers.cardM.toFixed(2)}
                   </Text>
                 </View>
               )}
@@ -1571,6 +1668,141 @@ function PlayerProfileModalBody({
             </View>
           </View>
         )}
+        {/* Разблокировки уровней II «Выучено», III «Защита цепочки» (только себе)
+            и IV «Путь» — ОДНА glass-панель: строки разделены волосяной линией,
+            как iOS-список; если открыт только один блок — панель с одной строкой.
+            V «Легенда» — отдельная строка. */}
+        {(showLearnedBlock || showShieldBlock || showPathBlock) && (
+          <View style={{
+            borderRadius: 16, backgroundColor: glassPanel, borderWidth: 1, borderColor: glassPanelBorder,
+            marginBottom: 14,
+          }}>
+            {showLearnedBlock && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
+                <View style={{
+                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: cardVisual.accentSoft,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                }}>
+                  <Ionicons name="book" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                    {(cardStats?.wordsLearned ?? 0).toLocaleString()} · {(cardStats?.phrasesLearned ?? 0).toLocaleString()}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                    {triLang(lang as Lang, {
+                      ru: 'выучено: слова · фразы',
+                      uk: 'вивчено: слова · фрази',
+                      es: 'aprendido: palabras · frases',
+                      'pt-BR': 'aprendido: palavras · frases',
+                      vi: 'đã học: từ · cụm từ',
+                      id: 'dipelajari: kata · frasa',
+                      tr: 'öğrenilen: kelime · kalıp',
+                      pl: 'nauczone: słowa · frazy',
+                    })}
+                  </Text>
+                </View>
+              </View>
+            )}
+            {showLearnedBlock && (showShieldRow || showPathBlock) && (
+              <View style={{ height: 1, backgroundColor: glassHairline, marginLeft: 56 }} />
+            )}
+            {showShieldRow && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
+                <View style={{
+                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: cardVisual.accentSoft,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                }}>
+                  <Ionicons name="shield-checkmark" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                    {triLang(lang as Lang, {
+                      ru: 'Защита цепочки',
+                      uk: 'Захист ланцюжка',
+                      es: 'Protección de racha',
+                      'pt-BR': 'Proteção de sequência',
+                      vi: 'Bảo vệ chuỗi',
+                      id: 'Perlindungan rentetan',
+                      tr: 'Seri koruması',
+                      pl: 'Ochrona serii',
+                    })}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                    {cardShieldStatusText}
+                  </Text>
+                </View>
+              </View>
+            )}
+            {showShieldRow && showPathBlock && (
+              <View style={{ height: 1, backgroundColor: glassHairline, marginLeft: 56 }} />
+            )}
+            {showPathBlock && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 11, paddingHorizontal: 12, paddingVertical: 11 }}>
+                <View style={{
+                  width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
+                  backgroundColor: cardVisual.accentSoft,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                }}>
+                  <Ionicons name="compass" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
+                </View>
+                <View style={{ flex: 1, minWidth: 0 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700' }}>
+                    {(cardStats?.appDays ?? 0).toLocaleString()} · 🔥{(cardStats?.longestStreak ?? 0).toLocaleString()}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 1 }}>
+                    {triLang(lang as Lang, {
+                      ru: 'дней в Phraseman · рекордная серия',
+                      uk: 'днів у Phraseman · рекордна серія',
+                      es: 'días en Phraseman · racha récord',
+                      'pt-BR': 'dias no Phraseman · sequência recorde',
+                      vi: 'ngày dùng Phraseman · chuỗi kỷ lục',
+                      id: 'hari di Phraseman · rentetan rekor',
+                      tr: 'Phraseman günleri · rekor seri',
+                      pl: 'dni w Phraseman · rekordowa seria',
+                    })}
+                  </Text>
+                </View>
+              </View>
+            )}
+          </View>
+        )}
+        {displayCardLevel >= 5 && (
+          // AURORA: акцентная строка легенды — корона + имя одной строкой
+          // (вторая строка-подпись убрана по фидбеку владельца).
+          <View style={{
+            flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 11,
+            borderRadius: 16, backgroundColor: cardVisual.accentSoft, borderWidth: 1, borderColor: cardVisual.accentStrong,
+            paddingHorizontal: 12, paddingVertical: 11, marginBottom: 14,
+          }}>
+            <Text style={{ fontSize: f.numMd }}>👑</Text>
+            <Text style={{ color: cardVisual.secondary, fontSize: 14, fontWeight: '900' }}>
+              {cardStats?.legendNo
+                ? triLang(lang as Lang, {
+                    ru: `Легенда №${cardStats.legendNo}`,
+                    uk: `Легенда №${cardStats.legendNo}`,
+                    es: `Leyenda #${cardStats.legendNo}`,
+                    'pt-BR': `Lenda #${cardStats.legendNo}`,
+                    vi: `Huyền thoại #${cardStats.legendNo}`,
+                    id: `Legenda #${cardStats.legendNo}`,
+                    tr: `Efsane #${cardStats.legendNo}`,
+                    pl: `Legenda #${cardStats.legendNo}`,
+                  })
+                : triLang(lang as Lang, {
+                    ru: 'Легенда',
+                    uk: 'Легенда',
+                    es: 'Leyenda',
+                    'pt-BR': 'Lenda',
+                    vi: 'Huyền thoại',
+                    id: 'Legenda',
+                    tr: 'Efsane',
+                    pl: 'Legenda',
+                  })}
+            </Text>
+          </View>
+        )}
         </ScrollView>
         {isMe && previewLevel !== null && (
           // Панель превью: карточка выше уже преобразилась в выбранный уровень —
@@ -1586,7 +1818,9 @@ function PlayerProfileModalBody({
             paddingTop: 12,
             paddingBottom: 12,
             borderRadius: 20,
-            backgroundColor: 'rgba(4,9,6,0.94)',
+            backgroundColor: 'rgba(8,10,16,0.94)',
+            borderWidth: 1,
+            borderColor: glassPanelBorder,
             shadowColor: '#000',
             shadowOpacity: 0.4,
             shadowRadius: 16,

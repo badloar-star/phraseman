@@ -1,5 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getShardsBalance, spendShardsIdempotent } from '../app/shards_system';
+import {
+  __resetAccountGenerationForTests,
+  beginAccountGeneration,
+} from '../app/account_generation';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/config', () => ({ IS_EXPO_GO: true, CLOUD_SYNC_ENABLED: false }));
@@ -10,6 +14,8 @@ const storage: Record<string, string> = {};
 
 beforeEach(() => {
   jest.clearAllMocks();
+  __resetAccountGenerationForTests();
+  beginAccountGeneration('test-owner');
   Object.keys(storage).forEach((key) => delete storage[key]);
   storage.shards_balance = '100';
   (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => storage[key] ?? null);

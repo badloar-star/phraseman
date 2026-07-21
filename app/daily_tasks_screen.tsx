@@ -3,6 +3,8 @@ import TapScale from '../components/TapScale';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
+import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { useFocusEffect, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Reanimated from 'react-native-reanimated';
@@ -22,6 +24,8 @@ import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import PlusBadge from '../components/PlusBadge';
 import { DailyBonusCard, DailyTaskCard } from '../components/daily-tasks/DailyTaskCard';
+import DailyHeroRing from '../components/daily-tasks/DailyHeroRing';
+import { dailyTaskAccentAlpha, dailyTaskAccentHex } from '../components/daily-tasks/daily_task_theme_accents';
 import { safeRouterBack } from './navigation_back';
 import { checkAchievements } from './achievements';
 import { claimTaskWithReward, DailyTask, dailyTaskAvailableForStudyTarget, filterDailyTasksForStudyTarget, getTodayTasks, getTodayKey, getArenaComboRequirement, getTodayTasksSafe, loadTodayProgress, TaskProgress, TaskType, rerollDailyTask, getDailyRerollsLeftToday, DAILY_TASK_REROLL_COST_SHARDS, DAILY_TASK_REROLL_MAX_PER_DAY, } from './daily_tasks';
@@ -33,7 +37,7 @@ import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
-import { lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
+import { dailyTasksAchievementAllDoneStreakKey, lastOpenedLessonKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
 import { flashcardsSourceGatedContentAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { frenchLessonRuntimeAvailableForTarget } from './french_content_source_gate';
@@ -78,6 +82,29 @@ const safeDailyTaskEventPart = (value: unknown): string =>
 
 const markTaskClaimedForUi = (rows: TaskProgress[], taskId: string): TaskProgress[] =>
     rows.map((row) => (row.taskId === taskId ? { ...row, completed: true, claimed: true } : row));
+
+/** Доля выполнения задания 0..1 (комбо-Арена — по играм+победам, как в карточке). */
+const taskProgressFraction = (task: DailyTask, row: TaskProgress | undefined): number => {
+    const current = row?.current ?? 0;
+    if (task.type === 'arena_plays_wins_combo') {
+        const req = getArenaComboRequirement(task);
+        if (req) {
+            const plays = Math.min(req.minPlays, row?.comboPlays ?? current);
+            const wins = row?.comboWins ?? 0;
+            return Math.max(0, Math.min(1, (plays / req.minPlays) * 0.5 + (wins >= req.minWins ? 0.5 : 0)));
+        }
+    }
+    return Math.max(0, Math.min(1, current / task.target));
+};
+
+/** HH:MM:SS для обратного отсчёта до новых вызовов. */
+const formatHms = (totalSeconds: number): string => {
+    const s = Math.max(0, Math.floor(totalSeconds));
+    const hh = String(Math.floor(s / 3600)).padStart(2, '0');
+    const mm = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+    const ss = String(s % 60).padStart(2, '0');
+    return `${hh}:${mm}:${ss}`;
+};
 
 type DailyTaskUiMeta = {
     stage: string;
@@ -1675,6 +1702,501 @@ const getDailyTaskUiMeta = (type: TaskType, lang: Lang): DailyTaskUiMeta => {
             icon: 'people',
             tone: '#94A3B8',
         },
+        early_all_done: {
+            stage: triLang(lang, {
+                ru: 'Утро',
+                uk: 'Ранок',
+                es: 'Mañana',
+                'pt-BR': "Manhã",
+                vi: "Buổi sáng",
+                id: "Pagi",
+                tr: "Sabah",
+                pl: "Poranek",
+            }),
+            label: triLang(lang, {
+                ru: 'Досрочник',
+                uk: 'Достроковик',
+                es: 'Madrugador',
+                'pt-BR': "Madrugador",
+                vi: "Người sớm",
+                id: "Si cepat",
+                tr: "Erkenci",
+                pl: "Ranny ptaszek",
+            }),
+            reason: triLang(lang, {
+                ru: 'Закрой остальные вызовы дня до 12:00.',
+                uk: 'Закрий решту викликів дня до 12:00.',
+                es: 'Completa el resto de tareas antes de las 12:00.',
+                'pt-BR': "Conclua as outras tarefas antes das 12:00.",
+                vi: "Hoàn thành các nhiệm vụ còn lại trước 12:00.",
+                id: "Selesaikan tugas lain sebelum pukul 12:00.",
+                tr: "Diğer görevleri 12:00'den önce bitir.",
+                pl: "Wykonaj pozostałe zadania przed 12:00.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '5-10 мин',
+            icon: 'sunny',
+            tone: '#FFC800',
+        },
+        last_chance: {
+            stage: triLang(lang, {
+                ru: 'Ночь',
+                uk: 'Ніч',
+                es: 'Noche',
+                'pt-BR': "Noite",
+                vi: "Ban đêm",
+                id: "Malam",
+                tr: "Gece",
+                pl: "Noc",
+            }),
+            label: triLang(lang, {
+                ru: 'Последний шанс',
+                uk: 'Останній шанс',
+                es: 'Última oportunidad',
+                'pt-BR': "Última chance",
+                vi: "Cơ hội cuối",
+                id: "Kesempatan terakhir",
+                tr: "Son şans",
+                pl: "Ostatnia szansa",
+            }),
+            reason: triLang(lang, {
+                ru: 'Любое задание в 23:00–00:00 UTC.',
+                uk: 'Будь-яке завдання о 23:00–00:00 UTC.',
+                es: 'Cualquier tarea entre 23:00 y 00:00 UTC.',
+                'pt-BR': "Qualquer tarefa entre 23:00 e 00:00 UTC.",
+                vi: "Bất kỳ nhiệm vụ nào từ 23:00–00:00 UTC.",
+                id: "Tugas apa pun pukul 23:00–00:00 UTC.",
+                tr: "23:00–00:00 UTC arasında bir görev.",
+                pl: "Dowolne zadanie w godzinach 23:00–00:00 UTC.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '1-5 мин',
+            icon: 'moon',
+            tone: '#A78BFA',
+        },
+        comeback_lesson: {
+            stage: triLang(lang, {
+                ru: 'Возврат',
+                uk: 'Повернення',
+                es: 'Regreso',
+                'pt-BR': "Retorno",
+                vi: "Trở lại",
+                id: "Kembali",
+                tr: "Dönüş",
+                pl: "Powrót",
+            }),
+            label: triLang(lang, {
+                ru: 'Феникс',
+                uk: 'Фенікс',
+                es: 'Fénix',
+                'pt-BR': "Fênix",
+                vi: "Phượng hoàng",
+                id: "Phoenix",
+                tr: "Anka",
+                pl: "Feniks",
+            }),
+            reason: triLang(lang, {
+                ru: 'Урок в день возвращения после 3+ дней перерыва.',
+                uk: 'Урок у день повернення після 3+ днів перерви.',
+                es: 'Una lección el día de tu regreso tras 3+ días.',
+                'pt-BR': "Uma lição no dia do retorno após 3+ dias.",
+                vi: "Một bài học vào ngày trở lại sau 3+ ngày nghỉ.",
+                id: "Satu pelajaran di hari kembali setelah 3+ hari.",
+                tr: "3+ gün aradan sonra dönüşte bir ders.",
+                pl: "Lekcja w dniu powrotu po 3+ dniach przerwy.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '5-10 мин',
+            icon: 'flame',
+            tone: '#FB923C',
+        },
+        revision_lesson: {
+            stage: triLang(lang, {
+                ru: 'Повторение',
+                uk: 'Повторення',
+                es: 'Repaso',
+                'pt-BR': "Revisão",
+                vi: "Ôn tập",
+                id: "Ulasan",
+                tr: "Tekrar",
+                pl: "Powtórka",
+            }),
+            label: triLang(lang, {
+                ru: 'Археолог',
+                uk: 'Археолог',
+                es: 'Arqueólogo',
+                'pt-BR': "Arqueólogo",
+                vi: "Nhà khảo cổ",
+                id: "Arkeolog",
+                tr: "Arkeolog",
+                pl: "Archeolog",
+            }),
+            reason: triLang(lang, {
+                ru: 'Повтори урок, пройденный 7+ дней назад.',
+                uk: 'Повтори урок, пройдений 7+ днів тому.',
+                es: 'Repasa una lección de hace 7+ días.',
+                'pt-BR': "Refaça uma lição de 7+ dias atrás.",
+                vi: "Học lại bài học từ 7+ ngày trước.",
+                id: "Ulangi pelajaran dari 7+ hari lalu.",
+                tr: "7+ gün önceki bir dersi tekrarla.",
+                pl: "Powtórz lekcję sprzed 7+ dni.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '5-10 мин',
+            icon: 'time',
+            tone: '#47C870',
+        },
+        polyglot_day: {
+            stage: triLang(lang, {
+                ru: 'Языки',
+                uk: 'Мови',
+                es: 'Idiomas',
+                'pt-BR': "Idiomas",
+                vi: "Ngôn ngữ",
+                id: "Bahasa",
+                tr: "Diller",
+                pl: "Języki",
+            }),
+            label: triLang(lang, {
+                ru: 'Полиглот',
+                uk: 'Поліглот',
+                es: 'Políglota',
+                'pt-BR': "Poliglota",
+                vi: "Đa ngôn ngữ",
+                id: "Poliglot",
+                tr: "Poliglot",
+                pl: "Poliglota",
+            }),
+            reason: triLang(lang, {
+                ru: 'Позанимайся и в английском, и во французском сегодня.',
+                uk: 'Позаймайся і англійською, і французькою сьогодні.',
+                es: 'Estudia inglés y francés hoy.',
+                'pt-BR': "Estude inglês e francês hoje.",
+                vi: "Học cả tiếng Anh và tiếng Pháp hôm nay.",
+                id: "Belajar Inggris dan Prancis hari ini.",
+                tr: "Bugün hem İngilizce hem Fransızca çalış.",
+                pl: "Ucz się dziś angielskiego i francuskiego.",
+            }),
+            cta: triLang(lang, {
+                ru: 'К урокам',
+                uk: 'До уроків',
+                es: 'A lecciones',
+                'pt-BR': "Às lições",
+                vi: "Đến bài học",
+                id: "Ke pelajaran",
+                tr: "Derslere",
+                pl: "Do lekcji",
+            }),
+            minutes: '10-15 мин',
+            icon: 'earth',
+            tone: '#38BDF8',
+        },
+        perfect_big_lesson: {
+            stage: triLang(lang, {
+                ru: 'Точность',
+                uk: 'Точність',
+                es: 'Precisión',
+                'pt-BR': "Precisão",
+                vi: "Chính xác",
+                id: "Presisi",
+                tr: "Hassasiyet",
+                pl: "Precyzja",
+            }),
+            label: triLang(lang, {
+                ru: 'Хирург',
+                uk: 'Хірург',
+                es: 'Cirujano',
+                'pt-BR': "Cirurgião",
+                vi: "Bác sĩ phẫu thuật",
+                id: "Dokter bedah",
+                tr: "Cerrah",
+                pl: "Chirurg",
+            }),
+            reason: triLang(lang, {
+                ru: 'Урок от 20 фраз без единой ошибки.',
+                uk: 'Урок від 20 фраз без жодної помилки.',
+                es: 'Lección de 20+ frases sin un solo error.',
+                'pt-BR': "Lição com 20+ frases sem nenhum erro.",
+                vi: "Bài học 20+ câu không một lỗi.",
+                id: "Pelajaran 20+ frasa tanpa kesalahan.",
+                tr: "20+ ifadelik ders, tek hata yok.",
+                pl: "Lekcja z 20+ fraz bez błędu.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '10-15 мин',
+            icon: 'cut',
+            tone: '#63D98F',
+        },
+        blitz_speed: {
+            stage: triLang(lang, {
+                ru: 'Скорость',
+                uk: 'Швидкість',
+                es: 'Velocidad',
+                'pt-BR': "Velocidade",
+                vi: "Tốc độ",
+                id: "Kecepatan",
+                tr: "Hız",
+                pl: "Szybkość",
+            }),
+            label: triLang(lang, {
+                ru: 'Блиц',
+                uk: 'Блиц',
+                es: 'Relámpago',
+                'pt-BR': "Blitz",
+                vi: "Chớp nhoáng",
+                id: "Blitz",
+                tr: "Yıldırım",
+                pl: "Błyskawica",
+            }),
+            reason: triLang(lang, {
+                ru: '10 верных ответов за 60 секунд в уроке.',
+                uk: '10 правильних відповідей за 60 секунд на уроці.',
+                es: '10 aciertos en 60 segundos en una lección.',
+                'pt-BR': "10 respostas certas em 60 segundos em uma lição.",
+                vi: "10 câu đúng trong 60 giây ở một bài học.",
+                id: "10 jawaban benar dalam 60 detik di pelajaran.",
+                tr: "Bir derste 60 saniyede 10 doğru.",
+                pl: "10 poprawnych odpowiedzi w 60 sekund.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '1-2 мин',
+            icon: 'flash',
+            tone: '#FACC15',
+        },
+        streak_freeze_use: {
+            stage: triLang(lang, {
+                ru: 'Стрик',
+                uk: 'Стрік',
+                es: 'Racha',
+                'pt-BR': "Sequência",
+                vi: "Chuỗi",
+                id: "Rentetan",
+                tr: "Seri",
+                pl: "Seria",
+            }),
+            label: triLang(lang, {
+                ru: 'Щит стрика',
+                uk: 'Щит стріка',
+                es: 'Escudo de racha',
+                'pt-BR': "Escudo da sequência",
+                vi: "Khiên chuỗi",
+                id: "Perisai rentetan",
+                tr: "Seri kalkanı",
+                pl: "Tarcza serii",
+            }),
+            reason: triLang(lang, {
+                ru: 'Используй заморозку стрика.',
+                uk: 'Використай заморозку стріка.',
+                es: 'Usa una congelación de racha.',
+                'pt-BR': "Use um congelamento de sequência.",
+                vi: "Dùng bảo vệ chuỗi (đóng băng).",
+                id: "Gunakan pembekuan rentetan.",
+                tr: "Seri dondurmasını kullan.",
+                pl: "Użyj zamrożenia serii.",
+            }),
+            cta: triLang(lang, {
+                ru: 'К статистике',
+                uk: 'До статистики',
+                es: 'A estadísticas',
+                'pt-BR': "Às estatísticas",
+                vi: "Đến thống kê",
+                id: "Ke statistik",
+                tr: "İstatistiğe",
+                pl: "Do statystyk",
+            }),
+            minutes: '1 мин',
+            icon: 'shield-checkmark',
+            tone: '#60A5FA',
+        },
+        club_attend: {
+            stage: triLang(lang, {
+                ru: 'Клуб',
+                uk: 'Клуб',
+                es: 'Club',
+                'pt-BR': "Clube",
+                vi: "Câu lạc bộ",
+                id: "Klub",
+                tr: "Kulüp",
+                pl: "Klub",
+            }),
+            label: triLang(lang, {
+                ru: 'Оратор',
+                uk: 'Оратор',
+                es: 'Orador',
+                'pt-BR': "Orador",
+                vi: "Diễn giả",
+                id: "Orator",
+                tr: "Hatip",
+                pl: "Mówca",
+            }),
+            reason: triLang(lang, {
+                ru: 'Загляни в спикинг-клуб.',
+                uk: 'Зазирни у спікінг-клуб.',
+                es: 'Pásate por el club de conversación.',
+                'pt-BR': "Visite o clube de conversação.",
+                vi: "Ghé câu lạc bộ nói.",
+                id: "Mampir ke klub speaking.",
+                tr: "Konuşma kulübüne göz at.",
+                pl: "Zajrzyj do klubu rozmów.",
+            }),
+            cta: triLang(lang, {
+                ru: 'В клуб',
+                uk: 'У клуб',
+                es: 'Al club',
+                'pt-BR': "Ao clube",
+                vi: "Đến CLB",
+                id: "Ke klub",
+                tr: "Kulübe",
+                pl: "Do klubu",
+            }),
+            minutes: '1 мин',
+            icon: 'mic',
+            tone: '#94A3B8',
+        },
+        weekend_marathon: {
+            stage: triLang(lang, {
+                ru: 'Выходные',
+                uk: 'Вихідні',
+                es: 'Fin de semana',
+                'pt-BR': "Fim de semana",
+                vi: "Cuối tuần",
+                id: "Akhir pekan",
+                tr: "Hafta sonu",
+                pl: "Weekend",
+            }),
+            label: triLang(lang, {
+                ru: 'Марафон',
+                uk: 'Марафон',
+                es: 'Maratón',
+                'pt-BR': "Maratona",
+                vi: "Marathon",
+                id: "Maraton",
+                tr: "Maraton",
+                pl: "Maraton",
+            }),
+            reason: triLang(lang, {
+                ru: 'Пройди 2 урока в выходной день.',
+                uk: 'Пройди 2 уроки у вихідний день.',
+                es: 'Completa 2 lecciones en fin de semana.',
+                'pt-BR': "Conclua 2 lições no fim de semana.",
+                vi: "Hoàn thành 2 bài học vào cuối tuần.",
+                id: "Selesaikan 2 pelajaran di akhir pekan.",
+                tr: "Hafta sonu 2 ders tamamla.",
+                pl: "Ukończ 2 lekcje w weekend.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Открыть урок',
+                uk: 'Відкрити урок',
+                es: 'Abrir lección',
+                'pt-BR': "Abrir lição",
+                vi: "Mở bài học",
+                id: "Buka pelajaran",
+                tr: "Dersi aç",
+                pl: "Otwórz lekcję",
+            }),
+            minutes: '10-20 мин',
+            icon: 'flag',
+            tone: '#FFC800',
+        },
+        mentor_friend: {
+            stage: triLang(lang, {
+                ru: 'Социальное',
+                uk: 'Соціальне',
+                es: 'Social',
+                'pt-BR': "Social",
+                vi: "Xã hội",
+                id: "Sosial",
+                tr: "Sosyal",
+                pl: "Społeczność",
+            }),
+            label: triLang(lang, {
+                ru: 'Наставник',
+                uk: 'Наставник',
+                es: 'Mentor',
+                'pt-BR': "Mentor",
+                vi: "Người cố vấn",
+                id: "Mentor",
+                tr: "Mentor",
+                pl: "Mentor",
+            }),
+            reason: triLang(lang, {
+                ru: 'Приглашённый тобой друг прошёл первый урок.',
+                uk: 'Запрошений тобою друг пройшов перший урок.',
+                es: 'Un amigo invitado completó su primera lección.',
+                'pt-BR': "Um amigo convidado concluiu a primeira lição.",
+                vi: "Bạn bè bạn mời đã hoàn thành bài đầu.",
+                id: "Teman undanganmu menyelesaikan pelajaran pertama.",
+                tr: "Davet ettiğin arkadaş ilk dersini bitirdi.",
+                pl: "Zaproszony znajomy ukończył pierwszą lekcję.",
+            }),
+            cta: triLang(lang, {
+                ru: 'Пригласить',
+                uk: 'Запросити',
+                es: 'Invitar',
+                'pt-BR': "Convidar",
+                vi: "Mờи",
+                id: "Undang",
+                tr: "Davet et",
+                pl: "Zaproś",
+            }),
+            minutes: '1 мин',
+            icon: 'people',
+            tone: '#94A3B8',
+        },
     };
     // Safe fallback: a task whose `type` isn't in the map (a legacy/removed type still
     // sitting in saved progress, or a newly added type) must NOT return undefined —
@@ -1787,6 +2309,46 @@ export default function DailyTasksScreen() {
     // верхним, и без focus-гарда обе бесконечные анимации продолжают крутиться. AppState
     // добавляет паузу при сворачивании приложения.
     const screenFocused = useIsScreenFocused();
+    const reduceMotion = useReduceMotion();
+    const wallClockNow = useVisibleWallClock(screenFocused, 1000);
+    /** Серия дней «все вызовы выполнены» (ачивка all_daily) — чип под героем. */
+    const [allDoneStreak, setAllDoneStreak] = useState(0);
+    const reloadAllDoneStreak = useCallback(() => {
+        AsyncStorage.getItem(dailyTasksAchievementAllDoneStreakKey(studyTarget))
+            .then((raw) => {
+                try {
+                    const parsed = raw ? JSON.parse(raw) : null;
+                    setAllDoneStreak(Math.max(0, Math.floor(Number(parsed?.streak ?? 0))) || 0);
+                }
+                catch { setAllDoneStreak(0); }
+            })
+            .catch(() => { });
+    }, [studyTarget]);
+    useFocusEffect(useCallback(() => {
+        reloadAllDoneStreak();
+    }, [reloadAllDoneStreak]));
+    // Пульсирующая точка чипа отсчёта: бесконечный цикл — гейтим фокусом экрана
+    // и системным reduce motion (как премиум-анимации выше).
+    const chipPulse = useRef(new Animated.Value(1)).current;
+    useEffect(() => {
+        if (reduceMotion || !screenFocused) {
+            chipPulse.stopAnimation();
+            chipPulse.setValue(1);
+            return undefined;
+        }
+        const loop = Animated.loop(Animated.sequence([
+            Animated.timing(chipPulse, { toValue: 0.35, duration: 800, useNativeDriver: true }),
+            Animated.timing(chipPulse, { toValue: 1, duration: 800, useNativeDriver: true }),
+        ]));
+        loop.start();
+        return () => { loop.stop(); };
+    }, [chipPulse, reduceMotion, screenFocused]);
+    // Входная stagger-анимация героя и карточек — один раз за показ списка.
+    const heroEntrance = useRef(new Animated.Value(0)).current;
+    const cardEntrances = useRef<Record<string, Animated.Value>>({});
+    const entrancePlayedRef = useRef(false);
+    // Анимированная ширина трека прогресса под карточкой (0..1 -> 0%..100%).
+    const taskTrackAnims = useRef<Record<string, Animated.Value>>({});
     useEffect(() => {
         if (!screenFocused) {
             premiumPulse.stopAnimation(); premiumPulse.setValue(1);
@@ -1827,6 +2389,19 @@ export default function DailyTasksScreen() {
             }
         });
     }, [tasks]);
+    // Плавное заполнение трека прогресса карточки при загрузке и смене current.
+    useEffect(() => {
+        (tasks ?? []).forEach((task) => {
+            const anim = taskTrackAnims.current[task.id];
+            if (!anim) return;
+            const frac = taskProgressFraction(task, progress.find((p) => p.taskId === task.id));
+            if (reduceMotion) {
+                anim.setValue(frac);
+                return;
+            }
+            Animated.timing(anim, { toValue: frac, duration: 600, useNativeDriver: false }).start();
+        });
+    }, [tasks, progress, reduceMotion]);
     useEffect(() => {
         AsyncStorage.getItem('user_name').then(n => { if (n)
             setUserName(n); });
@@ -2024,9 +2599,9 @@ export default function DailyTasksScreen() {
         refreshTasksAndProgress();
     }, [refreshTasksAndProgress, tasks.length]));
     useEffect(() => {
-        const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); });
+        const sub = onAppEvent('daily_task_reward_claimed', () => { refreshTasksAndProgress(true); reloadAllDoneStreak(); });
         return () => sub.remove();
-    }, [refreshTasksAndProgress]);
+    }, [refreshTasksAndProgress, reloadAllDoneStreak]);
     // Опрос-как-4-е-задание: при входе/возврате проверяем, активен ли опрос
     // сегодня и пройден ли он. «present» = есть активный ИЛИ уже пройден (тогда
     // плашка остаётся выполненной до конца дня — сервер пройденный не отдаёт).
@@ -2173,7 +2748,7 @@ export default function DailyTasksScreen() {
             const noReroll = allDone
                 ? (await getDailyRerollsLeftToday(studyTarget).catch(() => rerollsLeft)) >= DAILY_TASK_REROLL_MAX_PER_DAY
                 : false;
-            checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).catch(() => { });
+            checkAchievements({ type: 'daily_task', allDone, noReroll, studyTarget }).then(() => reloadAllDoneStreak()).catch(() => { });
             if (awardedXp > 0 && awardedXp !== xpBase) {
                 emitAppEvent('action_toast', {
                     type: 'success',
@@ -2242,8 +2817,8 @@ export default function DailyTasksScreen() {
                 emitAppEvent('action_toast', {
                     type: 'info',
                     messageRu: 'Не получилось получить награду. Попробуй ещё раз.',
-                    messageUk: 'Не вдалося отримати уламки. Спробуйте ще раз.',
-                    messageEs: 'No se pudieron obtener fragmentos. Inténtalo de nuevo.',
+                    messageUk: 'Не вдалося отримати монети. Спробуйте ще раз.',
+                    messageEs: 'No se pudieron obtener monedas. Inténtalo de nuevo.',
                 });
             }
         }
@@ -2404,6 +2979,13 @@ export default function DailyTasksScreen() {
             case 'morning_session':
             case 'evening_session':
             case 'energy_spend':
+            case 'early_all_done':
+            case 'last_chance':
+            case 'weekend_marathon':
+            case 'revision_lesson':
+            case 'perfect_big_lesson':
+            case 'blitz_speed':
+            case 'comeback_lesson':
                 await openLessonOrFrenchGate();
                 break;
             case 'verb_learned': {
@@ -2464,6 +3046,25 @@ export default function DailyTasksScreen() {
                     router.push('/settings_invite_friend' as any);
                 }
                 break;
+            case 'polyglot_day':
+                // Программного переключателя языка в проде нет (French включается в настройках) —
+                // ведём в список уроков, где пользователь выберет урок второго языка.
+                router.replace('/(tabs)/lessons' as any);
+                break;
+            case 'streak_freeze_use':
+                router.push('/streak_stats' as any);
+                break;
+            case 'club_attend':
+                router.push('/club_screen' as any);
+                break;
+            case 'mentor_friend':
+                // Как invite_friend: на iPhone экрана ссылки нет — ведём во «Друзья».
+                if (Platform.OS === 'ios') {
+                    router.push('/(tabs)/friends' as any);
+                } else {
+                    router.push('/settings_invite_friend' as any);
+                }
+                break;
             default:
                 await openLessonOrFrenchGate();
                 break;
@@ -2474,31 +3075,90 @@ export default function DailyTasksScreen() {
         hapticTap();
         void handleTaskNav(task);
     };
-    const sortedTasks = [...tasks].sort((a, b) => {
+    const sortedTasks = useMemo(() => [...tasks].sort((a, b) => {
         const pa = progress.find(p => p.taskId === a.id);
         const pb = progress.find(p => p.taskId === b.id);
         const aScore = pa?.claimed ? 2 : pa?.completed ? 0 : 1;
         const bScore = pb?.claimed ? 2 : pb?.completed ? 0 : 1;
         return aScore - bScore;
+    }), [tasks, progress]);
+    // Герой и карточки входят каскадом (fade+rise, stagger 70мс) — один раз за показ списка.
+    useEffect(() => {
+        if (entrancePlayedRef.current || sortedTasks.length === 0) return;
+        entrancePlayedRef.current = true;
+        const targets = [heroEntrance];
+        sortedTasks.forEach((task) => {
+            const entrance = cardEntrances.current[task.id];
+            if (entrance) targets.push(entrance);
+        });
+        if (reduceMotion) {
+            targets.forEach((v) => { v.setValue(1); });
+            return;
+        }
+        Animated.stagger(70, targets.map((v) => Animated.timing(v, { toValue: 1, duration: 450, useNativeDriver: true }))).start();
+    }, [sortedTasks, reduceMotion, heroEntrance]);
+    // Дуги героя: по одной на задание, в стабильном порядке tasks (не сортировки),
+    // цвет — тематический акцент типа (золотая тема — goldTaskAccent).
+    const heroArcs = useMemo(() => tasks.map((task) => ({
+        key: task.id,
+        color: isGoldTheme ? goldTaskAccent(task.type) : dailyTaskAccentHex(t, task.type),
+        progress: taskProgressFraction(task, progress.find((p) => p.taskId === task.id)),
+    })), [tasks, progress, isGoldTheme, t]);
+    const heroDonePct = dailyCounts.total > 0 ? Math.round((dailyCounts.done / dailyCounts.total) * 100) : 0;
+    // Отсчёт до новых вызовов: сброс в UTC-полночь (как getTodayKey()).
+    const msToNextUtcMidnight = useMemo(() => {
+        const now = new Date(wallClockNow);
+        return Math.max(0, Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1) - wallClockNow);
+    }, [wallClockNow]);
+    const countdownText = formatHms(Math.ceil(msToNextUtcMidnight / 1000));
+    const countdownChipLabel = triLang(lang, {
+        ru: `Новые вызовы через ${countdownText}`,
+        uk: `Нові виклики через ${countdownText}`,
+        es: `Nuevas tareas en ${countdownText}`,
+        'pt-BR': `Novas tarefas em ${countdownText}`,
+        vi: `Nhiệm vụ mới sau ${countdownText}`,
+        id: `Tugas baru dalam ${countdownText}`,
+        tr: `Yeni görevler: ${countdownText}`,
+        pl: `Nowe zadania za ${countdownText}`,
+    });
+    const streakChipLabel = triLang(lang, {
+        ru: `${allDoneStreak} ${slavicPlural(allDoneStreak, 'день', 'дня', 'дней')} подряд`,
+        uk: `${allDoneStreak} ${slavicPlural(allDoneStreak, 'день', 'дні', 'днів')} поспіль`,
+        es: `${allDoneStreak} días seguidos`,
+        'pt-BR': `${allDoneStreak} dias seguidos`,
+        vi: `${allDoneStreak} ngày liên tiếp`,
+        id: `${allDoneStreak} hari berturut-turut`,
+        tr: `üst üste ${allDoneStreak} gün`,
+        pl: `${allDoneStreak} dni z rzędu`,
+    });
+    const heroDoneCaption = triLang(lang, {
+        ru: 'выполнено',
+        uk: 'виконано',
+        es: 'completadas',
+        'pt-BR': 'concluídas',
+        vi: 'đã hoàn thành',
+        id: 'selesai',
+        tr: 'tamamlandı',
+        pl: 'ukończono',
     });
     const bonusTitle = triLang(lang, { ru: 'Бонус за день', uk: 'Бонус за день', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Thưởng trong ngày', id: 'Bonus harian', tr: 'Günlük bonus', pl: 'Bonus dnia' });
     const bonusDescription = triLang(lang, {
-        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}.`,
-        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}.`,
-        es: `Completa todas las tareas y reclama ${trioRewardCount} fragmentos.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} fragmentos.`,
-        vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} mảnh.`, id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
-        tr: `Tüm görevleri tamamla ve ${trioRewardCount} parça al.`, pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} odłamków.`,
+        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монеты', 'монет')}.`,
+        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монети', 'монет')}.`,
+        es: `Completa todas las tareas y reclama ${trioRewardCount} monedas.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} moedas.`,
+        vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} xu.`, id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
+        tr: `Tüm görevleri tamamla ve ${trioRewardCount} jeton al.`, pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} monet.`,
     });
     const bonusClaimLabel = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' });
     const bonusClaimAccessibilityLabel = triLang(lang, {
-        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'осколок', 'осколка', 'осколков')}`,
-        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'уламок', 'уламки', 'уламків')}`,
-        es: `Reclamar bono del día: ${trioRewardCount} fragmentos`,
-        'pt-BR': `Coletar bônus do dia: ${trioRewardCount} fragmentos`,
-        vi: `Nhận thưởng trong ngày: ${trioRewardCount} mảnh`,
+        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монеты', 'монет')}`,
+        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монети', 'монет')}`,
+        es: `Reclamar bono del día: ${trioRewardCount} monedas`,
+        'pt-BR': `Coletar bônus do dia: ${trioRewardCount} moedas`,
+        vi: `Nhận thưởng trong ngày: ${trioRewardCount} xu`,
         id: `Klaim bonus harian: ${trioRewardCount} fragmen`,
-        tr: `Günlük bonusu al: ${trioRewardCount} parça`,
-        pl: `Odbierz bonus dnia: ${trioRewardCount} odłamków`,
+        tr: `Günlük bonusu al: ${trioRewardCount} jeton`,
+        pl: `Odbierz bonus dnia: ${trioRewardCount} monet`,
     });
     if (false) {
         return (<ScreenGradient>
@@ -2594,11 +3254,45 @@ export default function DailyTasksScreen() {
           </>
         )}
 
+        {/* Командный центр: компактное кольцо прогресса (дуга на задание) + чипы
+            (отсчёт до новых вызовов, серия дней). Только при загруженном списке —
+            во время shimmer-скелетонов героя нет. */}
+        {!visibleLoadingTasks && tasks.length > 0 && (
+          <Animated.View style={[dailyTaskStyles.heroBlock, { opacity: heroEntrance, transform: [{ translateY: heroEntrance.interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }]}>
+            <DailyHeroRing
+              size={170}
+              strokeWidth={11}
+              trackColor={isGoldTheme ? GOLD_RICH.hairline : t.bgSurface2}
+              arcs={heroArcs}
+              reduceMotion={reduceMotion}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800' }}>{dailyCounts.done}/{dailyCounts.total}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label }}>{heroDoneCaption}</Text>
+              <View style={[dailyTaskStyles.heroPctPill, { backgroundColor: t.goldBg }]}>
+                <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '800' }}>{heroDonePct}%</Text>
+              </View>
+            </DailyHeroRing>
+            <View style={dailyTaskStyles.heroChipRow}>
+              <View style={[dailyTaskStyles.heroChip, { backgroundColor: t.accentBg }]}>
+                <Animated.View style={[dailyTaskStyles.heroChipDot, { backgroundColor: t.accent, opacity: chipPulse }]} />
+                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '700' }}>{countdownChipLabel}</Text>
+              </View>
+              {allDoneStreak > 0 && (
+                <View style={[dailyTaskStyles.heroChip, { backgroundColor: t.goldBg }]}>
+                  <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '700' }}>🔥 {streakChipLabel}</Text>
+                </View>
+              )}
+            </View>
+          </Animated.View>
+        )}
+
         {/* Бонус за день: показываем ВСЕГДА (пока есть задания) — с прогресс-баром и
             тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка
             висела только при trioClaimButtonEnabled||trioShardsClaimed, из-за чего в
-            обычном «в процессе» состоянии она вообще пропадала. */}
-        {tasks.length > 0 && (<DailyBonusCard
+            обычном «в процессе» состоянии она вообще пропадала.
+            Гард trioRewardCount > 0: экономика «Монеты и Звёзды» (docs/plans/2026-07-20)
+            обнулила каталог — без гарда кнопка показывала «Забрать 0 монет» и молча фейлилась. */}
+        {tasks.length > 0 && trioRewardCount > 0 && (<DailyBonusCard
           testID="daily-bonus"
           title={bonusTitle}
           description={bonusDescription}
@@ -2634,13 +3328,10 @@ export default function DailyTasksScreen() {
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
-            const meta = getDailyTaskUiMeta(task.type, lang);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
-                : isBusinessTheme
-                    ? t.accent
-                    : meta.tone;
+                : dailyTaskAccentHex(t, task.type);
             const taskFillPct = Math.max(0, Math.min(pct, 100));
             const taskFillSizeStyle = completed || claimed
                 ? { right: 0 }
@@ -2658,11 +3349,14 @@ export default function DailyTasksScreen() {
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
             });
             const rerollLabel = triLang(lang, {
-                ru: 'Заменить вызов за осколки', uk: 'Замінити завдання за уламки', es: 'Reemplazar tarea por fragmentos',
-                'pt-BR': 'Substituir tarefa por fragmentos', vi: 'Đổi nhiệm vụ bằng mảnh', id: 'Ganti tugas dengan fragmen',
-                tr: 'Görevi parçalarla değiştir', pl: 'Zamień zadanie za odłamki',
+                ru: 'Заменить вызов за монеты', uk: 'Замінити завдання за монети', es: 'Reemplazar tarea por monedas',
+                'pt-BR': 'Substituir tarefa por moedas', vi: 'Đổi nhiệm vụ bằng xu', id: 'Ganti tugas dengan fragmen',
+                tr: 'Görevi jetonlarla değiştir', pl: 'Zamień zadanie za monety',
             });
-            return (<Animated.View key={task.id} style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null]}>
+            const entranceAnim = cardEntrances.current[task.id] ?? (cardEntrances.current[task.id] = new Animated.Value(entrancePlayedRef.current || reduceMotion ? 1 : 0));
+            const trackAnim = taskTrackAnims.current[task.id] ?? (taskTrackAnims.current[task.id] = new Animated.Value(reduceMotion ? taskFillPct / 100 : 0));
+            return (<Animated.View key={task.id} style={{ opacity: entranceAnim, transform: [{ translateY: entranceAnim.interpolate({ inputRange: [0, 1], outputRange: [14, 0] }) }] }}>
+              <Animated.View style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null]}>
               <DailyTaskCard
                 testID={`daily-task-${task.id}`}
                 title={taskTitle}
@@ -2689,6 +3383,20 @@ export default function DailyTasksScreen() {
                 reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'} /> } : undefined}
                 premium={isPremiumTask ? <Animated.View pointerEvents="box-none" style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 10, transform: [{ scale: premiumPulse }], opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }), borderBottomRightRadius: 18, borderTopLeftRadius: 10, overflow: 'hidden' }}><PlusBadge themeMode={themeMode} size="sm" /></Animated.View> : undefined}
               />
+              {/* Мета-ряд под карточкой: трек прогресса (анимированная ширина),
+                  числовой прогресс (revive taskProgressValuePill) и XP-пилюля (revive xpBadge). */}
+              <View style={dailyTaskStyles.taskMetaRow}>
+                <View style={[dailyTaskStyles.taskProgressTrack, { flex: 1 }, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)' } : null]}>
+                  <Animated.View style={{ height: '100%', width: trackAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: taskAccent, borderRadius: 999 }} />
+                </View>
+                <View style={[dailyTaskStyles.taskProgressValuePill, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.16) }]}>
+                  <Text style={{ color: taskAccent, fontSize: f.label, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{Math.min(current, task.target)}/{task.target}</Text>
+                </View>
+                <View style={[dailyTaskStyles.xpBadge, { backgroundColor: t.goldBg }]}>
+                  <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>+{task.xp} XP</Text>
+                </View>
+              </View>
+              </Animated.View>
             </Animated.View>);
 
         })}
@@ -2951,9 +3659,9 @@ const dailyTaskStyles = StyleSheet.create({
         flexShrink: 0,
     },
     taskProgressValuePill: {
-        minWidth: 66,
-        minHeight: 44,
-        borderRadius: 16,
+        minWidth: 58,
+        height: 30,
+        borderRadius: 15,
         borderWidth: 0,
         paddingHorizontal: 10,
         flexDirection: 'row',
@@ -2993,15 +3701,53 @@ const dailyTaskStyles = StyleSheet.create({
         minWidth: 0,
     },
     xpBadge: {
-        width: 54,
+        minWidth: 62,
         height: 30,
-        borderRadius: 11,
+        borderRadius: 15,
         borderWidth: 0,
-        paddingHorizontal: 4,
-        paddingVertical: 2,
+        paddingHorizontal: 10,
         alignItems: 'center',
         justifyContent: 'center',
         flexShrink: 0,
+    },
+    heroBlock: {
+        alignItems: 'center',
+        gap: 12,
+        paddingTop: 4,
+        paddingBottom: 4,
+    },
+    heroPctPill: {
+        marginTop: 4,
+        borderRadius: 999,
+        paddingHorizontal: 10,
+        paddingVertical: 3,
+    },
+    heroChipRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        gap: 8,
+    },
+    heroChip: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 6,
+        borderRadius: 999,
+        paddingHorizontal: 12,
+        paddingVertical: 6,
+    },
+    heroChipDot: {
+        width: 6,
+        height: 6,
+        borderRadius: 3,
+    },
+    taskMetaRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginTop: 6,
+        paddingHorizontal: 4,
     },
     taskRightColumn: {
         minWidth: 58,

@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, Animated, DeviceEventEmitter,
@@ -68,7 +68,6 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
-import { getLoyaltyGiftState } from '../loyalty_gift';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
@@ -176,6 +175,27 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(226,255,122,0.13)',
     divider: 'rgba(226,255,122,0.07)',
     notice: '#242B19',
+  },
+  candyBlue: {
+    panel: '#16282F',
+    chip: '#16282F',
+    border: 'rgba(178,213,229,0.13)',
+    divider: 'rgba(178,213,229,0.07)',
+    notice: '#1A2E36',
+  },
+  indigo: {
+    panel: '#222140',
+    chip: '#222140',
+    border: 'rgba(200,195,255,0.13)',
+    divider: 'rgba(200,195,255,0.07)',
+    notice: '#26254A',
+  },
+  vanilla: {
+    panel: '#FFFDF4',
+    chip: '#FFFDF4',
+    border: 'rgba(58,44,8,0.12)',
+    divider: 'rgba(58,44,8,0.07)',
+    notice: '#F4EBD4',
   },
 };
 // Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
@@ -405,7 +425,6 @@ export default function SettingsMain() {
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
-  const [loyaltyGiftEndsAt, setLoyaltyGiftEndsAt] = useState<number | null>(null);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
   const [topHelpersOn, setTopHelpersOn] = useState(isTopHelpersEnabled());
@@ -469,13 +488,16 @@ export default function SettingsMain() {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque', 'pt-BR': 'Floresta', vi: 'Rừng', id: 'Hutan', tr: 'Orman', pl: 'Las' },
       gold: { ru: 'Золото', uk: 'Золото', es: 'Oro', 'pt-BR': 'Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
       coral: { ru: 'Корал', uk: 'Корал', es: 'Coral', 'pt-BR': 'Coral', vi: 'San hô', id: 'Koral', tr: 'Mercan', pl: 'Koral' },
-      minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito', 'pt-BR': 'Grafite', vi: 'Than chì', id: 'Grafit', tr: 'Grafit', pl: 'Grafit' },
+      minimalDark: { ru: 'Оникс', uk: 'Онікс', es: 'Ónix', 'pt-BR': 'Ônix', vi: 'Mã não', id: 'Onyx', tr: 'Oniks', pl: 'Onyks' },
       business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Doanh nghiệp', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
       businessLight: { ru: 'Бизнес светлый', uk: 'Бізнес світлий', es: 'Negocios claro', 'pt-BR': 'Negócios claro', vi: 'Doanh nghiệp sáng', id: 'Bisnis terang', tr: 'İş açık', pl: 'Biznes jasny' },
       midnight: { ru: 'Полночь', uk: 'Північ', es: 'Medianoche', 'pt-BR': 'Meia-noite', vi: 'Nửa đêm', id: 'Tengah malam', tr: 'Gece yarısı', pl: 'Północ' },
       ember: { ru: 'Янтарь', uk: 'Бурштин', es: 'Ámbar', 'pt-BR': 'Âmbar', vi: 'Hổ phách', id: 'Amber', tr: 'Kehribar', pl: 'Bursztyn' },
       aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
-      volt: { ru: 'Вольт', uk: 'Вольт', es: 'Volt', 'pt-BR': 'Volt', vi: 'Volt', id: 'Volt', tr: 'Volt', pl: 'Volt' },
+      volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
+      candyBlue: { ru: 'Кенди Блу', uk: 'Кенді Блу', es: 'Azul caramelo', 'pt-BR': 'Azul candy', vi: 'Xanh kẹo', id: 'Biru permen', tr: 'Şeker mavisi', pl: 'Cukrowy błękit' },
+      indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
+      vanilla: { ru: 'Ванилла', uk: 'Ванілла', es: 'Vainilla', 'pt-BR': 'Baunilha', vi: 'Va ni', id: 'Vanila', tr: 'Vanilya', pl: 'Wanilia' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];
@@ -488,9 +510,6 @@ export default function SettingsMain() {
         setVipUntilMs(parseStoredExpiryMs(pairs[1][1] ?? pairs[2][1]));
       })
       .catch(() => {});
-    void getLoyaltyGiftState()
-      .then(state => setLoyaltyGiftEndsAt(state.active ? state.endsAt : null))
-      .catch(() => setLoyaltyGiftEndsAt(null));
   }, []);
 
 
@@ -550,12 +569,10 @@ export default function SettingsMain() {
     const onVipActivated = DeviceEventEmitter.addListener('vip_activated', refreshVipUntil);
     const onAccessChanged = DeviceEventEmitter.addListener('premium_access_changed', refreshVipUntil);
     const onIntroChanged = DeviceEventEmitter.addListener('intro_full_access_changed', refreshVipUntil);
-    const onLoyaltyChanged = DeviceEventEmitter.addListener('loyalty_gift_changed', refreshVipUntil);
     return () => {
       onVipActivated.remove();
       onAccessChanged.remove();
       onIntroChanged.remove();
-      onLoyaltyChanged.remove();
     };
   }, [refreshSupplementalAccessState]);
 
@@ -808,14 +825,6 @@ export default function SettingsMain() {
       icon: 'sparkles-outline',
       title: L('Полный доступ на 3 дня', 'Повний доступ на 3 дні', 'Full access for 3 days', 'Acesso completo por 3 dias', 'Truy cập đầy đủ 3 ngày', 'Akses penuh 3 hari', '3 gün tam erişim', 'Pełny dostęp na 3 dni'),
       subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(introFullAccessEndsAt)}`,
-    });
-  }
-  if (loyaltyGiftEndsAt && loyaltyGiftEndsAt > Date.now()) {
-    plusAccessDetails.push({
-      key: 'loyalty',
-      icon: 'gift-outline',
-      title: L('Подарок: полный доступ на 3 дня', 'Подарунок: повний доступ на 3 дні', 'Gift: full access for 3 days', 'Presente: acesso completo por 3 dias', 'Quà tặng: truy cập đầy đủ 3 ngày', 'Hadiah: akses penuh 3 hari', 'Hediye: 3 gün tam erişim', 'Prezent: pełny dostęp na 3 dni'),
-      subtitle: `${L('Действует до', 'Діє до', 'Active until', 'Ativo até', 'Có hiệu lực đến', 'Aktif sampai', 'Bitiş', 'Ważne do')} ${formatDateTimeShort(loyaltyGiftEndsAt)}`,
     });
   }
 
@@ -1542,6 +1551,45 @@ export default function SettingsMain() {
                   setSwitchAccountStage('wiping');
                   const res = await signOutAndWipeForAccountSwitch();
                   setSwitchAccountStage('idle');
+                  // Общий forced-путь «Сменить без сохранения» для всех блокировок
+                  // смены аккаунта. Аварийная копия (включая очередь осколков)
+                  // пишется внутри signOutAndWipeForAccountSwitch — даже при
+                  // зависшем списании/карантине данные остаются восстановимыми.
+                  const runForcedAccountSwitchWithoutSaving = async () => {
+                    setSwitchAccountStage('wiping');
+                    const forced = await signOutAndWipeForAccountSwitch({
+                      allowWipeWithoutSync: true,
+                      allowPendingShardSpendDiscard: true,
+                    });
+                    setSwitchAccountStage('idle');
+                    if (!forced.ok) {
+                      showInfoAlert(
+                        L(
+                          'Смена аккаунта отменена',
+                          'Зміну акаунту скасовано',
+                          'Cambio de cuenta cancelado',
+                          'Troca de conta cancelada',
+                          'Đã hủy đổi tài khoản',
+                          'Pergantian akun dibatalkan',
+                          'Hesap değişimi iptal edildi',
+                          'Zmiana konta anulowana',
+                        ),
+                        L(
+                          'Защитная проверка не разрешила удалить локальные данные. Всё осталось на месте — попробуй снова позже.',
+                          'Захисна перевірка не дозволила видалити локальні дані. Усе залишилося на місці — спробуй ще раз пізніше.',
+                          'La comprobación de seguridad no permitió borrar los datos locales. Todo sigue en su lugar; inténtalo más tarde.',
+                          'A verificação de segurança não permitiu apagar os dados locais. Tudo continua no lugar; tente novamente mais tarde.',
+                          'Kiểm tra an toàn không cho phép xóa dữ liệu cục bộ. Mọi thứ vẫn nguyên; hãy thử lại sau.',
+                          'Pemeriksaan keamanan tidak mengizinkan penghapusan data lokal. Semuanya tetap aman; coba lagi nanti.',
+                          'Güvenlik kontrolü yerel verilerin silinmesine izin vermedi. Her şey yerinde kaldı; daha sonra tekrar dene.',
+                          'Kontrola bezpieczeństwa nie zezwoliła na usunięcie danych lokalnych. Wszystko pozostało na miejscu; spróbuj ponownie później.',
+                        ),
+                      );
+                      return;
+                    }
+                    setLinkedAuth(null);
+                    setAuthPromptVisible(true);
+                  };
                   if (!res.ok && res.reason === 'pending_shard_spend') {
                     Alert.alert(
                       L(
@@ -1555,15 +1603,62 @@ export default function SettingsMain() {
                         'Zakup nadal się synchronizuje',
                       ),
                       L(
-                        'Смена аккаунта отменена: незавершённое списание осколков нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-                        'Зміну акаунту скасовано: незавершене списання осколків не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-                        'El cambio de cuenta se canceló: un gasto de fragmentos pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
-                        'A troca de conta foi cancelada: um gasto de fragmentos pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
-                        'Đã hủy đổi tài khoản: khoản trừ mảnh đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
+                        'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
+                        'Зміну акаунту скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
+                        'A troca de conta foi cancelada: um gasto de monedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
+                        'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
                         'Pergantian akun dibatalkan: pengeluaran shard yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
-                        'Hesap değişimi iptal edildi: bekleyen parça harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
-                        'Zmiana konta została anulowana: oczekującego wydatku odłamków nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
+                        'Hesap değişimi iptal edildi: bekleyen jeton harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
+                        'Zmiana konta została anulowana: oczekującego wydatku monet nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
                       ),
+                      [
+                        {
+                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          style: 'cancel',
+                        },
+                        {
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          style: 'destructive',
+                          onPress: runForcedAccountSwitchWithoutSaving,
+                        },
+                      ],
+                    );
+                    return;
+                  }
+                  if (!res.ok && res.reason === 'shard_queue_quarantined') {
+                    Alert.alert(
+                      L(
+                        'Нужна проверка монет',
+                        'Потрібна перевірка монет',
+                        'Se deben revisar los monedas',
+                        'É preciso verificar os monedas',
+                        'Cần kiểm tra xu',
+                        'Shard perlu diperiksa',
+                        'Parçaların kontrol edilmesi gerekiyor',
+                        'Odłamki wymagają sprawdzenia',
+                      ),
+                      L(
+                        'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
+                        'Зміну акаунту скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+                        'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
+                        'A troca de conta foi cancelada: a fila local de monedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
+                        'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
+                        'Pergantian akun dibatalkan: antrean shard lokal rusak atau milik akun yang tidak diketahui. Data disimpan untuk pemulihan.',
+                        'Hesap değişimi iptal edildi: yerel jeton kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',
+                        'Zmiana konta została anulowana: lokalna kolejka monet jest uszkodzona lub należy do nieznanego konta. Dane zachowano do odzyskania.',
+                      ),
+                      [
+                        {
+                          text: L('Понятно', 'Зрозуміло', 'Entendido', 'Entendi', 'Đã hiểu', 'Mengerti', 'Anladım', 'Rozumiem'),
+                          style: 'cancel',
+                        },
+                        {
+                          text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
+                          style: 'destructive',
+                          onPress: runForcedAccountSwitchWithoutSaving,
+                        },
+                      ],
                     );
                     return;
                   }
@@ -1590,38 +1685,7 @@ export default function SettingsMain() {
                         {
                           text: L('Сменить без сохранения', 'Змінити без збереження', 'Cambiar sin guardar', 'Trocar sem salvar', 'Đổi mà không lưu', 'Ganti tanpa menyimpan', 'Kaydetmeden değiştir', 'Zmień bez zapisywania'),
                           style: 'destructive',
-                          onPress: async () => {
-                            setSwitchAccountStage('wiping');
-                            const forced = await signOutAndWipeForAccountSwitch({ allowWipeWithoutSync: true });
-                            setSwitchAccountStage('idle');
-                            if (!forced.ok) {
-                              showInfoAlert(
-                                L(
-                                  'Смена аккаунта отменена',
-                                  'Зміну акаунту скасовано',
-                                  'Cambio de cuenta cancelado',
-                                  'Troca de conta cancelada',
-                                  'Đã hủy đổi tài khoản',
-                                  'Pergantian akun dibatalkan',
-                                  'Hesap değişimi iptal edildi',
-                                  'Zmiana konta anulowana',
-                                ),
-                                L(
-                                  'Защитная проверка не разрешила удалить локальные данные. Всё осталось на месте — попробуй снова позже.',
-                                  'Захисна перевірка не дозволила видалити локальні дані. Усе залишилося на місці — спробуй ще раз пізніше.',
-                                  'La comprobación de seguridad no permitió borrar los datos locales. Todo sigue en su lugar; inténtalo más tarde.',
-                                  'A verificação de segurança não permitiu apagar os dados locais. Tudo continua no lugar; tente novamente mais tarde.',
-                                  'Kiểm tra an toàn không cho phép xóa dữ liệu cục bộ. Mọi thứ vẫn nguyên; hãy thử lại sau.',
-                                  'Pemeriksaan keamanan tidak mengizinkan penghapusan data lokal. Semuanya tetap aman; coba lagi nanti.',
-                                  'Güvenlik kontrolü yerel verilerin silinmesine izin vermedi. Her şey yerinde kaldı; daha sonra tekrar dene.',
-                                  'Kontrola bezpieczeństwa nie zezwoliła na usunięcie danych lokalnych. Wszystko pozostało na miejscu; spróbuj ponownie później.',
-                                ),
-                              );
-                              return;
-                            }
-                            setLinkedAuth(null);
-                            setAuthPromptVisible(true);
-                          },
+                          onPress: runForcedAccountSwitchWithoutSaving,
                         },
                       ],
                     );

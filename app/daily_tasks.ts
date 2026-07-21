@@ -4,10 +4,11 @@
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { getStreakFreezeCostShards } from './remote_flags';
 import { actionToastTri, emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
-import { spendShards } from './shards_system';
+import { getShardsBalance, spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
 import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 import { countDueItemsToday } from './active_recall';
@@ -17,6 +18,8 @@ import {
   dailyTasksProgressKey,
   dailyTasksRerollKey,
   irregularVerbsGlobalKey,
+  lessonLastCompletedAtKey,
+  lessonPassCountKey,
   lessonWordsKey,
   storageStudyTarget,
   type RuntimeStudyTarget,
@@ -42,7 +45,7 @@ function emitDailyTaskRewardClaimed(taskId: string, studyTarget?: RuntimeStudyTa
   emitAppEvent('daily_task_reward_claimed', dailyTaskEventPayload(taskId, studyTarget));
 }
 
-export type TaskType =
+export type LegacyTaskType =
   | 'correct_streak'      // N правильных подряд в уроке
   | 'lesson_no_mistakes'  // урок без ошибок (N подряд)
   | 'quiz_hard'           // N правильных ответов на сложном квизе
@@ -78,6 +81,22 @@ export type TaskType =
   | 'arena_plays_wins_combo' // N рейтинг-матчей + ≥M побед (arenaCombo, comboPlays/comboWins)
   | 'arena_rank_promoted'   // повысить ранг (уровень/лигу вверх) в рейтинговой Арене за день
   | 'invite_friend';        // отправить приглашение другу (экран «Пригласить друга», Share без отмены)
+
+// ── Ежедневные челленджи второго поколения (meta/время/возвращение/социум) ──
+export type MetaTaskType =
+  | 'early_all_done'      // закрыть все остальные вызовы дня до 12:00 (локальное время)
+  | 'last_chance'         // выполнить любое другое задание в 23:00–00:00 UTC
+  | 'comeback_lesson'     // урок в день возвращения после 3+ дней перерыва
+  | 'revision_lesson'     // повторить урок, пройденный 7+ дней назад
+  | 'polyglot_day'        // активность и в EN, и во FR за один день
+  | 'perfect_big_lesson'  // урок от 20 фраз без единой ошибки
+  | 'blitz_speed'         // 10 верных ответов за 60 секунд в уроке
+  | 'streak_freeze_use'   // использовать заморозку стрика
+  | 'club_attend'         // заглянуть в спикинг-клуб (первый заход за день)
+  | 'weekend_marathon'    // 2 урока в выходной (добавляется 4-м заданием в сб/вс)
+  | 'mentor_friend';      // приглашённый друг прошёл первый урок (нужен серверный сигнал)
+
+export type TaskType = LegacyTaskType | MetaTaskType;
 
 const RETIRED_QUIZ_ARENA_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'quiz_hard', 'quiz_score', 'quiz_easy', 'quiz_medium', 'quiz_perfect', 'quiz_hard_perfect',
@@ -1881,6 +1900,181 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Arkadaş davetini aç ve bağlantıyı gönder.',
     descPl:'Otwórz zaproszenie znajomego i wyślij link.',
     descUK:'Відкрий запрошення друга й надішли посилання.' },
+
+  // ── Челленджи второго поколения (meta/время/возвращение/социум) ──
+  { id:'ead1', type:'early_all_done', icon:'🌅', target:1, xp:90,
+    titleRU:'Досрочник', titleUK:'Достроковик',
+    titlePtBr:'Madrugador', titleVi:'Người sớm', titleId:'Si cepat', titleTr:'Erkenci', titlePl:'Ranny ptaszek',
+    descRU:'Выполни все остальные вызовы дня до 12:00.',
+    descPtBr:'Conclua todas as outras tarefas do dia antes das 12:00.',
+    descVi:'Hoàn thành tất cả nhiệm vụ còn lại trong ngày trước 12:00.',
+    descId:'Selesaikan semua tugas lain hari ini sebelum pukul 12:00.',
+    descTr:"Günün diğer tüm görevlerini 12:00\'den önce bitir.",
+    descPl:'Wykonaj wszystkie pozostałe zadania dnia przed 12:00.',
+    descUK:'Виконай усі інші виклики дня до 12:00.' },
+  { id:'ead2', type:'early_all_done', icon:'🌅', target:1, xp:102,
+    titleRU:'Раньше всех', titleUK:'Раніше за всіх',
+    titlePtBr:'Antes de todos', titleVi:'Trước cả mọi người', titleId:'Lebih dulu', titleTr:'Herkesten önce', titlePl:'Przed wszystkimi',
+    descRU:'Закрой остальные задания дня до полудня — и день твой.',
+    descPtBr:'Termine as outras tarefas do dia antes do meio-dia.',
+    descVi:'Hoàn thành các nhiệm vụ còn lại trong ngày trước buổi trưa.',
+    descId:'Tuntaskan tugas lain hari ini sebelum tengah hari.',
+    descTr:'Günün kalan görevlerini öğleden önce tamamla.',
+    descPl:'Ukończ pozostałe zadania dnia przed południem.',
+    descUK:'Закрий решту завдань дня до полудня — і день твій.' },
+  { id:'lch1', type:'last_chance', icon:'⏳', target:1, xp:84,
+    titleRU:'Последний шанс', titleUK:'Останній шанс',
+    titlePtBr:'Última chance', titleVi:'Cơ hội cuối', titleId:'Kesempatan terakhir', titleTr:'Son şans', titlePl:'Ostatnia szansa',
+    descRU:'Выполни любое задание в последний час дня (23:00–00:00 UTC).',
+    descPtBr:'Conclua qualquer tarefa na última hora do dia (23:00–00:00 UTC).',
+    descVi:'Hoàn thành bất kỳ nhiệm vụ nào trong giờ cuối của ngày (23:00–00:00 UTC).',
+    descId:'Selesaikan tugas apa pun di jam terakhir hari (23:00–00:00 UTC).',
+    descTr:'Günün son saatinde (23:00–00:00 UTC) herhangi bir görevi tamamla.',
+    descPl:'Wykonaj dowolne zadanie w ostatniej godzinie dnia (23:00–00:00 UTC).',
+    descUK:'Виконай будь-яке завдання в останню годину дня (23:00–00:00 UTC).' },
+  { id:'lch2', type:'last_chance', icon:'⏳', target:1, xp:96,
+    titleRU:'На последнем дыхании', titleUK:'На останньому подиху',
+    titlePtBr:'No último suspiro', titleVi:'Vào phút chót', titleId:'Detik terakhir', titleTr:'Son nefeste', titlePl:'Na ostatnią chwilę',
+    descRU:'Закрой любое задание между 23:00 и полуночью UTC.',
+    descPtBr:'Conclua qualquer tarefa entre 23:00 e meia-noite UTC.',
+    descVi:'Hoàn thành bất kỳ nhiệm vụ nào từ 23:00 đến nửa đêm UTC.',
+    descId:'Selesaikan tugas apa pun antara 23:00 dan tengah malam UTC.',
+    descTr:'23:00 ile gece yarısı (UTC) arasında bir görevi bitir.',
+    descPl:'Ukończ dowolne zadanie między 23:00 a północą UTC.',
+    descUK:'Закрий будь-яке завдання між 23:00 та опівніччю UTC.' },
+  { id:'cb1', type:'comeback_lesson', icon:'🔥', target:1, xp:120,
+    titleRU:'Феникс', titleUK:'Фенікс',
+    titlePtBr:'Fênix', titleVi:'Phượng hoàng', titleId:'Phoenix', titleTr:'Anka', titlePl:'Feniks',
+    descRU:'Пройди урок в день возвращения после 3+ дней перерыва.',
+    descPtBr:'Conclua uma lição no dia do retorno após 3+ dias de pausa.',
+    descVi:'Hoàn thành một bài học vào ngày trở lại sau 3+ ngày nghỉ.',
+    descId:'Selesaikan satu pelajaran di hari kembalimu setelah jeda 3+ hari.',
+    descTr:'3+ günlük aradan sonra dönüş gününde bir ders tamamla.',
+    descPl:'Ukończ lekcję w dniu powrotu po 3+ dniach przerwy.',
+    descUK:'Пройди урок у день повернення після 3+ днів перерви.' },
+  { id:'rv1', type:'revision_lesson', icon:'🏺', target:1, xp:66,
+    titleRU:'Археолог', titleUK:'Археолог',
+    titlePtBr:'Arqueólogo', titleVi:'Nhà khảo cổ', titleId:'Arkeolog', titleTr:'Arkeolog', titlePl:'Archeolog',
+    descRU:'Повтори урок, пройденный 7+ дней назад.',
+    descPtBr:'Refaça uma lição concluída há 7+ dias.',
+    descVi:'Học lại một bài học đã hoàn thành từ 7+ ngày trước.',
+    descId:'Ulangi pelajaran yang selesai 7+ hari lalu.',
+    descTr:'7+ gün önce bitirdiğin bir dersi tekrarla.',
+    descPl:'Powtórz lekcję ukończoną 7+ dni temu.',
+    descUK:'Повтори урок, пройдений 7+ днів тому.' },
+  { id:'rv2', type:'revision_lesson', icon:'🏺', target:1, xp:78,
+    titleRU:'Раскопки', titleUK:'Розкопки',
+    titlePtBr:'Escavação', titleVi:'Khai quật', titleId:'Penggalian', titleTr:'Kazı', titlePl:'Wykopaliska',
+    descRU:'Освежи память: повтори урок, который проходил 7+ дней назад.',
+    descPtBr:'Reveja uma lição feita há 7+ dias para refrescar a memória.',
+    descVi:'Ôn lại một bài học cũ 7+ ngày để làm mới trí nhớ.',
+    descId:'Segarkan ingatan: ulangi pelajaran dari 7+ hari lalu.',
+    descTr:'Hafızanı tazele: 7+ gün önceki bir dersi tekrar et.',
+    descPl:'Odśwież pamięć: powtórz lekcję sprzed 7+ dni.',
+    descUK:'Освіжи пам\'ять: повтори урок, який проходив 7+ днів тому.' },
+  { id:'pg1', type:'polyglot_day', icon:'🌍', target:2, xp:96,
+    titleRU:'Полиглот', titleUK:'Поліглот',
+    titlePtBr:'Poliglota', titleVi:'Đa ngôn ngữ', titleId:'Poliglot', titleTr:'Poliglot', titlePl:'Poliglota',
+    descRU:'Позанимайся и в английском, и во французском сегодня.',
+    descPtBr:'Estude inglês e francês hoje.',
+    descVi:'Học cả tiếng Anh và tiếng Pháp hôm nay.',
+    descId:'Belajar bahasa Inggris dan Prancis hari ini.',
+    descTr:'Bugün hem İngilizce hem Fransızca çalış.',
+    descPl:'Ucz się dziś angielskiego i francuskiego.',
+    descUK:'Позаймайся і англійською, і французькою сьогодні.' },
+  { id:'pbl1', type:'perfect_big_lesson', icon:'🔪', target:1, xp:84,
+    titleRU:'Хирург', titleUK:'Хірург',
+    titlePtBr:'Cirurgião', titleVi:'Bác sĩ phẫu thuật', titleId:'Dokter bedah', titleTr:'Cerrah', titlePl:'Chirurg',
+    descRU:'Пройди урок от 20 фраз без единой ошибки.',
+    descPtBr:'Conclua uma lição com 20+ frases sem nenhum erro.',
+    descVi:'Hoàn thành bài học 20+ câu không một lỗi.',
+    descId:'Selesaikan pelajaran 20+ frasa tanpa satu kesalahan pun.',
+    descTr:'20+ ifadelik bir dersi tek hata yapmadan bitir.',
+    descPl:'Ukończ lekcję z 20+ fraz bez ani jednego błędu.',
+    descUK:'Пройди урок від 20 фраз без жодної помилки.' },
+  { id:'pbl2', type:'perfect_big_lesson', icon:'🔪', target:1, xp:96,
+    titleRU:'Безупречно', titleUK:'Бездоганно',
+    titlePtBr:'Impecável', titleVi:'Hoàn hảo tuyệt đối', titleId:'Sempurna', titleTr:'Kusursuz', titlePl:'Bezbłędnie',
+    descRU:'Длинный урок (20+ фраз) — и ни одной ошибки.',
+    descPtBr:'Lição longa (20+ frases) sem nenhum erro.',
+    descVi:'Bài học dài (20+ câu) không mắc lỗi nào.',
+    descId:'Pelajaran panjang (20+ frasa) tanpa kesalahan.',
+    descTr:'Uzun bir ders (20+ ifade), sıfır hata.',
+    descPl:'Długa lekcja (20+ fraz) i zero błędów.',
+    descUK:'Довгий урок (20+ фраз) — і жодної помилки.' },
+  { id:'pbl3', type:'perfect_big_lesson', icon:'🔪', target:1, xp:108, minPlayerLevel:15,
+    titleRU:'Ювелирная точность', titleUK:'Ювелірна точність',
+    titlePtBr:'Precisão de joalheiro', titleVi:'Chính xác tuyệt đối', titleId:'Presisi permata', titleTr:'Kuyumcu hassasiyeti', titlePl:'Jubilerska precyzja',
+    descRU:'Урок от 20 фраз без единой ошибки — работа ювелира.',
+    descPtBr:'Lição com 20+ frases sem um único erro.',
+    descVi:'Bài học 20+ câu không một lỗi nhỏ.',
+    descId:'Pelajaran 20+ frasa tanpa satu kesalahan.',
+    descTr:'20+ ifadelik ders, tek hata yok.',
+    descPl:'Lekcja z 20+ fraz bez jednego błędu.',
+    descUK:'Урок від 20 фраз без жодної помилки — робота ювеліра.' },
+  { id:'bs1', type:'blitz_speed', icon:'⚡', target:1, xp:78,
+    titleRU:'Блиц', titleUK:'Блиц',
+    titlePtBr:'Blitz', titleVi:'Chớp nhoáng', titleId:'Blitz', titleTr:'Yıldırım', titlePl:'Błyskawica',
+    descRU:'Дай 10 верных ответов за 60 секунд в уроке.',
+    descPtBr:'Acerte 10 respostas em 60 segundos em uma lição.',
+    descVi:'Trả lời đúng 10 câu trong 60 giây ở một bài học.',
+    descId:'Jawab 10 jawaban benar dalam 60 detik di satu pelajaran.',
+    descTr:'Bir derste 60 saniyede 10 doğru yanıt ver.',
+    descPl:'Odpowiedz poprawnie 10 razy w 60 sekund w lekcji.',
+    descUK:'Дай 10 правильних відповідей за 60 секунд на уроці.' },
+  { id:'bs2', type:'blitz_speed', icon:'⚡', target:1, xp:90,
+    titleRU:'Скорость света', titleUK:'Швидкість світла',
+    titlePtBr:'Velocidade da luz', titleVi:'Tốc độ ánh sáng', titleId:'Kecepatan cahaya', titleTr:'Işık hızı', titlePl:'Prędkość światła',
+    descRU:'10 правильных ответов за минуту — не тормози.',
+    descPtBr:'10 respostas certas em um minuto — não freie.',
+    descVi:'10 câu đúng trong một phút — đừng chậm lại.',
+    descId:'10 jawaban benar dalam semenit — jangan melambat.',
+    descTr:'Bir dakikada 10 doğru — yavaşlama.',
+    descPl:'10 poprawnych odpowiedzi w minutę — bez hamowania.',
+    descUK:'10 правильних відповідей за хвилину — не гальмуй.' },
+  { id:'sf1', type:'streak_freeze_use', icon:'🛡️', target:1, xp:48,
+    titleRU:'Щит стрика', titleUK:'Щит стріка',
+    titlePtBr:'Escudo da sequência', titleVi:'Khiên chuỗi', titleId:'Perisai rentetan', titleTr:'Seri kalkanı', titlePl:'Tarcza serii',
+    descRU:'Используй заморозку стрика на экране статистики.',
+    descPtBr:'Use um congelamento de sequência na tela de estatísticas.',
+    descVi:'Dùng bảo vệ chuỗi (đóng băng) trong màn hình thống kê.',
+    descId:'Gunakan pembekuan rentetan di layar statistik.',
+    descTr:'İstatistik ekranında seri dondurmasını kullan.',
+    descPl:'Użyj zamrożenia serii na ekranie statystyk.',
+    descUK:'Використай заморозку стріка на екрані статистики.' },
+  { id:'ca1', type:'club_attend', icon:'🎤', target:1, xp:96,
+    titleRU:'Оратор', titleUK:'Оратор',
+    titlePtBr:'Orador', titleVi:'Diễn giả', titleId:'Orator', titleTr:'Hatip', titlePl:'Mówca',
+    descRU:'Загляни в спикинг-клуб и посмотри, что там обсуждают.',
+    descPtBr:'Visite o clube de conversação e veja o que está rolando.',
+    descVi:'Ghé câu lạc bộ nói và xem mọi người đang thảo luận gì.',
+    descId:'Mampir ke klub speaking dan lihat apa yang sedang dibahas.',
+    descTr:'Konuşma kulübüne göz at ve neler konuşulduğuna bak.',
+    descPl:'Zajrzyj do klubu rozmów i zobacz, o czym dyskutują.',
+    descUK:'Зазирни у спікінг-клуб і подивися, що там обговорюють.' },
+  { id:'wm1', type:'weekend_marathon', icon:'🏁', target:2, xp:108,
+    titleRU:'Выходной марафон', titleUK:'Вихідний марафон',
+    titlePtBr:'Maratona de fim de semana', titleVi:'Marathon cuối tuần', titleId:'Maraton akhir pekan', titleTr:'Hafta sonu maratonu', titlePl:'Weekendowy maraton',
+    descRU:'Пройди 2 урока в выходной день.',
+    descPtBr:'Conclua 2 lições no fim de semana.',
+    descVi:'Hoàn thành 2 bài học vào cuối tuần.',
+    descId:'Selesaikan 2 pelajaran di akhir pekan.',
+    descTr:'Hafta sonu 2 ders tamamla.',
+    descPl:'Ukończ 2 lekcje w weekend.',
+    descUK:'Пройди 2 уроки у вихідний день.' },
+  // TODO(mentor_friend): НЕ добавлять в DAILY_SETS/REPLACEMENT_POOL — задание ждёт
+  // серверный сигнал «приглашённый друг прошёл первый урок» (referral-attribution).
+  // Пока сигнала нет, тип существует только как определение для будущей проводки.
+  { id:'mf1', type:'mentor_friend', icon:'🤝', target:1, xp:150,
+    titleRU:'Наставник', titleUK:'Наставник',
+    titlePtBr:'Mentor', titleVi:'Người cố vấn', titleId:'Mentor', titleTr:'Mentor', titlePl:'Mentor',
+    descRU:'Приглашённый тобой друг прошёл первый урок.',
+    descPtBr:'Um amigo que você convidou concluiu a primeira lição.',
+    descVi:'Bạn bè bạn mời đã hoàn thành bài học đầu tiên.',
+    descId:'Teman yang kamu undang menyelesaikan pelajaran pertamanya.',
+    descTr:'Davet ettiğin bir arkadaş ilk dersini bitirdi.',
+    descPl:'Zaproszony znajomy ukończył pierwszą lekcję.',
+    descUK:'Запрошений тобою друг пройшов перший урок.' },
 ];
 
 // ── Наборы заданий по тиру игрового уровня (30 дней × 3 задания) ──────────
@@ -1891,31 +2085,31 @@ const DAILY_SETS_TIER1: string[][] = [
   ['da2','qe6','dp4'],         // день 2
   ['da3','ta1','dw1'],        // день 3
   ['da4','qs6','dp3'],         // день 4
-  ['da5','cs1','dp5'],         // день 5
+  ['ead1','cs1','dp5'],        // день 5 — early_all_done
   ['da6','wl6','dw2'],         // день 6
   ['da7','lnm1','dw3'],        // день 7
   ['da8','ta8','dp2w1'],         // день 8
   ['da1','cs6','dw4'],         // день 9
   ['da2','tw1','dw5'],         // день 10
   ['da3','ta1','dp1'],        // день 11
-  ['da4','qe4','dp4'],         // день 12
+  ['rv1','qe4','dp4'],        // день 12 — revision_lesson
   ['da5','inv1','dw1'],       // день 13 — пригласить друга
   ['da6','cs1','dp3'],         // день 14
   ['da7','fs6','dp5'],         // день 15
   ['da8','ta9','dw2'],        // день 16
-  ['da1','ot1','dp2w1'],         // день 17
+  ['lch1','ot1','dp2w1'],        // день 17 — last_chance
   ['da2','fv4','arup1'],         // день 18
   ['da3','vl1','dp1'],         // день 19
   ['da4','dl4','dw1'],        // день 20
-  ['da5','cs2','dp3'],         // день 21
+  ['bs1','cs2','dp3'],        // день 21 — blitz_speed
   ['da6','qe1','dp5'],         // день 22
   ['da7','ta8','dw2'],         // день 23
   ['da8','es3','dw1'],         // день 24
   ['da1','lnm6','dp2w1'],       // день 25
-  ['da2','ta9','arup1'],        // день 26
+  ['pg1','ta9','arup1'],       // день 26 — polyglot_day
   ['da3','tp1','dp1'],         // день 27
   ['da4','dl1','dw1'],         // день 28
-  ['da5','fs1','dp3'],        // день 29
+  ['ca1','fs1','dp3'],       // день 29 — club_attend
   ['da6','qe4','dp4'],         // день 30
 ];
 
@@ -1924,33 +2118,33 @@ const DAILY_SETS_TIER2: string[][] = [
   ['da1','ta2','dp1'],         // день 1
   ['da2','qm3','dw1'],         // день 2
   ['da3','ta7','dp4'],        // день 3
-  ['da4','qs2','dp3'],         // день 4
+  ['ead2','qs2','dp3'],        // день 4 — early_all_done
   ['da5','cs3','dp5'],         // день 5
   ['da6','arup1','qm1'],       // день 6 — повышение ранга в Арене
   ['da7','lnm2','dw2'],        // день 7
   ['da8','ta4','dw3'],         // день 8
-  ['da1','cs7','dp2w1'],         // день 9
+  ['sf1','cs7','dp2w1'],        // день 9 — streak_freeze_use
   ['da2','tw2','dw4'],         // день 10
   ['da3','inv1','dw5'],       // день 11 — пригласить друга
   ['da4','qe5','dp1'],         // день 12
   ['da5','vl5','dp4'],        // день 13
-  ['da6','cs2','dw1'],         // день 14
+  ['rv2','cs2','dw1'],        // день 14 — revision_lesson
   ['da7','fs4','dp3'],         // день 15
   ['da8','ta7','dp5'],        // день 16
   ['da1','ot2','dw2'],         // день 17
   ['da2','qm3','dp2w1'],         // день 18
-  ['da3','vl2','arup1'],         // день 19
+  ['pbl1','vl2','arup1'],       // день 19 — perfect_big_lesson
   ['da4','dl2','dp1'],        // день 20
   ['da5','cs3','dw1'],         // день 21
-  ['da6','qp1','dp4'],         // день 22
+  ['lch2','qp1','dp4'],        // день 22 — last_chance
   ['da7','ta5','dp3'],         // день 23
   ['da8','ot2','dp1'],         // день 24
   ['da1','lnm3','dp5'],       // день 25
   ['da2','ta3','dp1'],         // день 26
-  ['da3','tp2','dp5'],         // день 27
+  ['cb1','tp2','dp5'],        // день 27 — comeback_lesson
   ['da4','dl1','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
   ['da5','fs2','dp2'],        // день 29
-  ['da6','dp2','ta10'],         // день 30
+  ['bs2','dp2','ta10'],        // день 30 — blitz_speed
 ];
 
 // Тир 3: уровни 31–50 — сложные квизы, арены, перфекты, хардкор
@@ -1958,32 +2152,32 @@ const DAILY_SETS_TIER3: string[][] = [
   ['da1','ta11','dp1'],        // день 1
   ['da2','qh1','dw1'],         // день 2
   ['da3','ta6','dp4'],        // день 3
-  ['da4','qs4','dp3'],         // день 4
+  ['ead1','qs4','dp3'],        // день 4 — early_all_done
   ['da5','cs4','dp5'],         // день 5
-  ['da6','wl4','dw2'],         // день 6
+  ['ca1','wl4','dw2'],        // день 6 — club_attend
   ['da7','lnm3','dw3'],        // день 7
-  ['da8','ta5','dp2w1'],         // день 8
+  ['pbl2','ta5','dp2w1'],       // день 8 — perfect_big_lesson
   ['da1','cs8','dw4'],         // день 9
   ['da2','tar1','dw5'],         // день 10
   ['da3','ta6','dp1'],        // день 11
-  ['da4','qh5','dp4'],         // день 12
+  ['ead2','qh5','dp4'],        // день 12 — early_all_done
   ['da5','vl6','dw1'],        // день 13
-  ['da6','arup1','qh4'],       // день 14 — повышение ранга в Арене
+  ['cb1','arup1','qh4'],      // день 14 — comeback_lesson
   ['da7','fs5','dp3'],         // день 15
-  ['da8','ta11','dp5'],       // день 16
+  ['rv1','ta11','dp5'],      // день 16 — revision_lesson
   ['da1','ot2','dw2'],         // день 17
   ['da2','qhp1','dp2w1'],        // день 18
   ['da3','vl3','arup1'],         // день 19
-  ['da4','dl3','dp1'],        // день 20
+  ['pbl3','dl3','dp1'],       // день 20 — perfect_big_lesson
   ['da5','dp3w2','ms3'],       // день 21 — 3 матча в Арене + ≥2 победы
   ['da6','qp2','dw1'],         // день 22
-  ['da7','ta6','dp4'],         // день 23
+  ['lch1','ta6','dp4'],        // день 23 — last_chance
   ['da8','ot2','dp1'],         // день 24
-  ['da1','lnm5','dp5'],       // день 25
+  ['sf1','lnm5','dp5'],      // день 25 — streak_freeze_use
   ['da2','ta5','dp3'],         // день 26
-  ['da3','tar2','dp5'],         // день 27
+  ['bs2','tar2','dp5'],        // день 27 — blitz_speed
   ['da4','dl2','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
-  ['da5','fs3','dw5'],         // день 29
+  ['pg1','fs3','dw5'],        // день 29 — polyglot_day
   ['da6','dp2','ta10'],         // день 30
 ];
 
@@ -2065,32 +2259,113 @@ export async function pruneDatedDailyTasksStorageKeys(retainKeys: readonly strin
   }
 }
 
-// Синхронная версия — без уровня, используется только внутри getTodayTasksSafe
-const SAFE_DECOMMISSION_REPLACEMENT_IDS = [
-  'da1', 'ta1', 'rs1', 'da2', 'ta2', 'da3', 'ta3', 'da4', 'ta4', 'da5', 'ta5', 'da6',
-] as const;
+// ── Замена «выведенных» (retired) заданий ───────────────────────────────
+// Раньше пул замены состоял из 12 id в фиксированном порядке и первый свободный
+// всегда был da1/ta1 — поэтому 30/30 дней пользователь видел одни и те же карточки,
+// а в 26/30 дней на экране было два почти одинаковых lesson_complete.
+// Теперь: пул — все «всегда выполнимые» типы, выбор детерминированно вращается
+// по UTC-дню, дубли убираются и по id, и по типу задания.
 
+// Типы, которые всегда выполнимы: без рантайм-условий (слова/глаголы/повторение/
+// тренер проверяются отдельно ниже), без level/free гейтов. early_all_done/last_chance
+// имеют временные окна, но выполнимы в любой день; условные типы (comeback/revision/
+// freeze/club/weekend/polyglot/mentor) в пул НЕ берём — проверяются фолбэками ниже.
+const REPLACEMENT_POOL_TYPES: ReadonlySet<TaskType> = new Set([
+  'lesson_complete', 'total_answers', 'correct_streak', 'lesson_no_mistakes',
+  'open_theory', 'flashcard_view', 'flashcard_save', 'flashcard_flip',
+  'different_lessons', 'daily_active', 'daily_phrase_read', 'daily_phrase_save',
+  'invite_friend',
+  'perfect_big_lesson', 'blitz_speed', 'early_all_done', 'last_chance',
+]);
+
+let _replacementPoolCache: readonly DailyTask[] | null = null;
+const getReplacementPool = (): readonly DailyTask[] => {
+  if (_replacementPoolCache) return _replacementPoolCache;
+  _replacementPoolCache = ALL_TASKS.filter((task) => (
+    REPLACEMENT_POOL_TYPES.has(task.type)
+    && !isRetiredQuizArenaTaskType(task.type)
+    && !task.freeOnly
+    && (task.minPlayerLevel ?? 1) <= 1
+  ));
+  return _replacementPoolCache;
+};
+
+// Детерминированный хеш дня (FNV-1a) — одинаковый список в течение дня,
+// разный ото дня ко дню, стабильный между сессиями.
+const hashDaySeed = (key: string): number => {
+  let h = 2166136261;
+  for (let i = 0; i < key.length; i += 1) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+};
+
+/**
+ * Заменяет retired-задания и убирает дубли типов внутри дневной тройки.
+ * Кандидат ищется от точки вращения (хеш UTC-дня + слот): сначала свободный
+ * по id и типу, затем только по id, затем любой (страховка от исчерпания).
+ */
 function replaceRetiredQuizArenaTasks(tasks: readonly DailyTask[]): DailyTask[] {
-  const usedIds = new Set(tasks.filter((task) => !isRetiredQuizArenaTaskType(task.type)).map((task) => task.id));
-  const replacements = SAFE_DECOMMISSION_REPLACEMENT_IDS
-    .map((id) => ALL_TASKS.find((task) => task.id === id))
-    .filter((task): task is DailyTask => Boolean(task) && !isRetiredQuizArenaTaskType(task.type));
+  const pool = getReplacementPool();
+  if (pool.length === 0) throw new Error('daily_task_decommission_replacement_exhausted');
+  const seed = hashDaySeed(getTodayKey());
+  const usedIds = new Set<string>();
+  const usedTypes = new Set<string>();
+  tasks.forEach((task) => {
+    if (!isRetiredQuizArenaTaskType(task.type)) {
+      usedIds.add(task.id);
+      usedTypes.add(task.type);
+    }
+  });
 
-  return tasks.map((task) => {
+  const takeFromPool = (slot: number): DailyTask => {
+    const start = (seed + slot * 7) % pool.length;
+    for (let step = 0; step < pool.length; step += 1) {
+      const candidate = pool[(start + step) % pool.length];
+      if (!usedIds.has(candidate.id) && !usedTypes.has(candidate.type)) return candidate;
+    }
+    for (let step = 0; step < pool.length; step += 1) {
+      const candidate = pool[(start + step) % pool.length];
+      if (!usedIds.has(candidate.id)) return candidate;
+    }
+    return pool[start];
+  };
+
+  const result = tasks.map((task, idx) => {
     if (!isRetiredQuizArenaTaskType(task.type)) return task;
-    const replacement = replacements.find((candidate) => !usedIds.has(candidate.id));
-    if (!replacement) throw new Error('daily_task_decommission_replacement_exhausted');
+    const replacement = takeFromPool(idx);
     usedIds.add(replacement.id);
+    usedTypes.add(replacement.type);
+    return replacement;
+  });
+
+  // Дедупликация типов: в один день не должно быть двух карточек одного типа
+  // (фолбэки уровня/premium/слов/глаголов могли притащить повтор).
+  const seenTypes = new Set<string>();
+  return result.map((task, idx) => {
+    if (!seenTypes.has(task.type)) {
+      seenTypes.add(task.type);
+      return task;
+    }
+    usedIds.delete(task.id);
+    const replacement = takeFromPool(idx + result.length);
+    seenTypes.add(replacement.type);
+    usedIds.add(replacement.id);
+    usedTypes.add(replacement.type);
     return replacement;
   });
 }
 
 const getTodayTasksByLevel = (playerLevel: number): DailyTask[] => {
   const sets = getSetsForPlayerLevel(playerLevel);
-  const dayOfMonth = new Date().getDate();
-  const setIdx = (dayOfMonth - 1) % sets.length;
+  // UTC-день — как getTodayKey(), чтобы список заданий и прогресс сбрасывались
+  // в одну и ту же полночь (раньше список жил по локальной дате, а прогресс по UTC).
+  // Повторяемость «5-го числа каждого месяца» снимается сидом замен внутри
+  // replaceRetiredQuizArenaTasks — он привязан к полному dayKey, а не к дню месяца.
+  const setIdx = (new Date().getUTCDate() - 1) % sets.length;
   const ids = sets[setIdx];
-  return replaceRetiredQuizArenaTasks(ids.map(id => ALL_TASKS.find(t => t.id)!).filter(Boolean));
+  return replaceRetiredQuizArenaTasks(ids.map(id => ALL_TASKS.find(t => t.id === id)!).filter(Boolean));
 };
 
 // Оставляем для обратной совместимости (используется в паре мест)
@@ -2140,6 +2415,9 @@ export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new
   'trainer_words',
   'trainer_phrases',
   'trainer_arena',
+  'revision_lesson',
+  'perfect_big_lesson',
+  'blitz_speed',
 ]);
 
 export const FRENCH_THEORY_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
@@ -2560,6 +2838,17 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   arena_rank_promoted: 'arena',
   invite_friend: 'social',
   diagnostic_complete: 'social',
+  early_all_done: 'engage',
+  last_chance: 'engage',
+  weekend_marathon: 'engage',
+  revision_lesson: 'engage',
+  polyglot_day: 'engage',
+  streak_freeze_use: 'engage',
+  comeback_lesson: 'engage',
+  perfect_big_lesson: 'perfect',
+  blitz_speed: 'perfect',
+  club_attend: 'social',
+  mentor_friend: 'social',
 };
 
 export function dailyTaskAvailableForStudyTarget(
@@ -2607,6 +2896,13 @@ export type DailyTaskSetRerollResult =
   | { ok: true; tasks: DailyTask[] }
   | { ok: false; reason: RerollFailReason };
 
+// Условные типы нельзя предлагать в реролле: они зависят от рантайм-условий
+// (возвращение после перерыва, старые уроки, доступная заморозка) или ждут
+// серверный сигнал (mentor_friend) — иначе реролл выдал бы невыполнимую карточку.
+const REROLL_INELIGIBLE_CONDITIONAL_TYPES: ReadonlySet<TaskType> = new Set([
+  'comeback_lesson', 'revision_lesson', 'streak_freeze_use', 'mentor_friend',
+]);
+
 /**
  * Подобрать кандидата на замену для taskId среди ALL_TASKS:
  * - в той же категории (engage/quiz/...),
@@ -2645,6 +2941,9 @@ const pickRerollCandidate = async (
   }
 
   const candidates = ALL_TASKS.filter((t) => {
+    if (isRetiredQuizArenaTaskType(t.type)) return false;
+    if (REROLL_INELIGIBLE_CONDITIONAL_TYPES.has(t.type)) return false;
+    if (t.type === 'weekend_marathon' && !isWeekendToday()) return false;
     if (usedIds.has(t.id)) return false;
     if (TASK_TYPE_CATEGORY[t.type] !== cat) return false;
     if ((t.minPlayerLevel ?? 1) > playerLevel) return false;
@@ -2726,6 +3025,157 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
   }
 };
 
+// ── Рантайм-доступность условных заданий второго поколения ─────────────
+// Зеркалит replaceRecallTasksWhenNoDueItems: вызывается ПОСЛЕ базовых замен
+// в getTodayTasksSafe, уважает usedIds и не создаёт дублей по типу.
+const CONDITIONAL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'comeback_lesson', 'revision_lesson', 'streak_freeze_use',
+]);
+
+// Безопасные замены для условных заданий (всегда выполнимы, как RECALL_TASK_FALLBACK_IDS).
+const CONDITIONAL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
+  cb1: ['ta2', 'ta1', 'ot1', 'cs1'],
+  rv1: ['ta1', 'ta8', 'ot1', 'cs1'],
+  rv2: ['ta2', 'ta1', 'ta8', 'cs1'],
+  sf1: ['ta1', 'ot1', 'cs1', 'ta8'],
+};
+
+const COMEBACK_LESSON_MIN_MISSED_DAYS = 3;
+const REVISION_LESSON_MIN_AGE_DAYS = 7;
+// Уроки в контенте нумеруются 1..32 (как в cloud_sync SYNC_KEYS).
+const REVISION_LESSON_SCAN_MAX_LESSON_ID = 32;
+
+const isWeekendToday = (): boolean => {
+  const day = new Date().getDay();
+  return day === 0 || day === 6;
+};
+
+/** Полных дней между двумя YYYY-MM-DD ключами; 0 при невалидной/будущей дате. */
+const daysBetweenDateKeys = (fromKey: string, toKey: string): number => {
+  const from = Date.parse(`${fromKey}T00:00:00Z`);
+  const to = Date.parse(`${toKey}T00:00:00Z`);
+  if (!Number.isFinite(from) || !Number.isFinite(to)) return 0;
+  const diff = Math.floor((to - from) / 86_400_000);
+  return diff > 0 ? diff : 0;
+};
+
+/** comeback_lesson доступен только в день возвращения после 3+ дней перерыва
+ *  (ключ last_active_date — тот же, что читает boons/comeback). */
+const isComebackLessonAvailable = async (): Promise<boolean> => {
+  try {
+    const lastActive = await AsyncStorage.getItem('last_active_date');
+    if (!lastActive) return false;
+    return daysBetweenDateKeys(lastActive, getTodayKey()) >= COMEBACK_LESSON_MIN_MISSED_DAYS;
+  } catch {
+    return false;
+  }
+};
+
+/** revision_lesson доступен, только если есть урок, пройденный 7+ дней назад.
+ *  Бутстрэп: уроки с pass_count>0 без метки времени (пройдены до её появления)
+ *  считаем «старыми», иначе задание было бы мёртвым первые 7 дней после релиза. */
+const hasRevisionEligibleLesson = async (studyTarget?: RuntimeStudyTarget): Promise<boolean> => {
+  try {
+    const ids = Array.from({ length: REVISION_LESSON_SCAN_MAX_LESSON_ID }, (_, i) => i + 1);
+    const [completedRows, passRows] = await Promise.all([
+      AsyncStorage.multiGet(ids.map((id) => lessonLastCompletedAtKey(id, studyTarget))),
+      AsyncStorage.multiGet(ids.map((id) => lessonPassCountKey(id, studyTarget))),
+    ]);
+    const todayKey = getTodayKey();
+    for (let i = 0; i < ids.length; i += 1) {
+      const completedAt = completedRows[i]?.[1];
+      if (completedAt && daysBetweenDateKeys(completedAt, todayKey) >= REVISION_LESSON_MIN_AGE_DAYS) return true;
+      const passCount = parseInt(passRows[i]?.[1] ?? '0', 10) || 0;
+      if (!completedAt && passCount > 0) return true;
+    }
+  } catch {
+    // fall through — считаем недоступным
+  }
+  return false;
+};
+
+/** streak_freeze_use доступен, когда есть что защищать (стрик > 0) и чем платить
+ *  (Premium или осколков хватает на getStreakFreezeCostShards()). */
+const isStreakFreezeTaskAvailable = async (isPremium: boolean): Promise<boolean> => {
+  try {
+    const streak = parseInt((await AsyncStorage.getItem('streak_count')) ?? '0', 10) || 0;
+    if (streak <= 0) return false;
+    if (isPremium) return true;
+    return (await getShardsBalance()) >= getStreakFreezeCostShards();
+  } catch {
+    return false;
+  }
+};
+
+/**
+ * Подменяет условные задания, которые сегодня невыполнимы:
+ * — comeback_lesson: сегодня не день возвращения (перерыв < 3 дней);
+ * — revision_lesson: нет урока, пройденного 7+ дней назад;
+ * — streak_freeze_use: заморозка недоступна (нет стрика / нечем платить).
+ * club_attend НЕ подменяем: клиент не может надёжно определить доступность
+ * клуба (feature-flag/сессии), а заход на экран клуба возможен всегда.
+ */
+const replaceConditionallyUnavailableDailyTasks = async (
+  tasks: DailyTask[],
+  isPremium: boolean,
+  studyTarget?: RuntimeStudyTarget,
+): Promise<DailyTask[]> => {
+  if (!tasks.some((task) => CONDITIONAL_DAILY_TASK_TYPES.has(task.type))) return tasks;
+
+  const availability: Partial<Record<TaskType, boolean>> = {};
+  if (tasks.some((task) => task.type === 'comeback_lesson')) {
+    availability.comeback_lesson = await isComebackLessonAvailable();
+  }
+  if (tasks.some((task) => task.type === 'revision_lesson')) {
+    availability.revision_lesson = await hasRevisionEligibleLesson(studyTarget);
+  }
+  if (tasks.some((task) => task.type === 'streak_freeze_use')) {
+    availability.streak_freeze_use = await isStreakFreezeTaskAvailable(isPremium);
+  }
+
+  const usedIds = new Set(
+    tasks.filter((task) => !CONDITIONAL_DAILY_TASK_TYPES.has(task.type)).map((task) => task.id),
+  );
+  const usedTypes = new Set(
+    tasks.filter((task) => !CONDITIONAL_DAILY_TASK_TYPES.has(task.type)).map((task) => task.type),
+  );
+
+  return tasks.map((task) => {
+    if (!CONDITIONAL_DAILY_TASK_TYPES.has(task.type)) return task;
+    if (availability[task.type] !== false) {
+      usedIds.add(task.id);
+      usedTypes.add(task.type);
+      return task;
+    }
+    const fallbackIds = CONDITIONAL_TASK_FALLBACK_IDS[task.id] ?? ['ta1', 'ta8', 'ot1', 'cs1'];
+    for (const id of fallbackIds) {
+      const fallback = ALL_TASKS.find((candidate) => candidate.id === id);
+      if (!fallback || usedIds.has(id) || usedTypes.has(fallback.type)) continue;
+      if (!dailyTaskAvailableForStudyTarget(fallback, studyTarget)) continue;
+      usedIds.add(id);
+      usedTypes.add(fallback.type);
+      return fallback;
+    }
+    usedIds.add(task.id);
+    usedTypes.add(task.type);
+    return task;
+  });
+};
+
+/**
+ * weekend_marathon: в сб/вс (локальный день недели) wm1 добавляется ЧЕТВЁРТЫМ
+ * заданием. Экран вызовов рендерит список любой длины (sortedTasks.map — как у
+ * опроса-4-го-задания), обрезки до тройки нет. Порог «бонуса за день» считает
+ * все N карточек — в выходной это 4 из 4 (осознанное усложнение выходного дня).
+ */
+const appendWeekendMarathonTask = (tasks: DailyTask[], studyTarget?: RuntimeStudyTarget): DailyTask[] => {
+  if (!isWeekendToday()) return tasks;
+  if (tasks.some((task) => task.type === 'weekend_marathon')) return tasks;
+  const wm = ALL_TASKS.find((task) => task.id === 'wm1');
+  if (!wm || !dailyTaskAvailableForStudyTarget(wm, studyTarget)) return tasks;
+  return [...tasks, wm];
+};
+
 /**
  * Async версия getTodayTasks с тремя проверками:
  * 1. Если уровень пользователя ниже minLevel задания — заменяет на более лёгкое.
@@ -2788,7 +3238,13 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
 
   // 3. Replace verb_learned when too few verbs remain.
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
-  if (!hasVerbTask) return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget);
+  if (!hasVerbTask) {
+    result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
+    return appendWeekendMarathonTask(
+      filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
+      studyTarget,
+    );
+  }
 
   const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
   const learned: Record<string, number> = raw ? JSON.parse(raw) : {};
@@ -2805,7 +3261,11 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
     return (fallbackId ? ALL_TASKS.find(t => t.id === fallbackId) : undefined) ?? task;
   });
 
-  return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget);
+  result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
+  return appendWeekendMarathonTask(
+    filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
+    studyTarget,
+  );
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';
@@ -3055,6 +3515,132 @@ export const saveTodayProgress = async (
   }
 };
 
+// ── Мета-задания дня (early_all_done / last_chance / polyglot_day) ───────
+const META_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'early_all_done', 'last_chance', 'polyglot_day',
+]);
+
+/** Общий (unscoped) ключ полиглот-дня: какие языки уже были активны сегодня. */
+const POLYGLOT_DAY_STORAGE_KEY = 'daily_polyglot_v1';
+
+type PolyglotDayState = { day: string; targets: string[] };
+
+const loadPolyglotDayState = async (): Promise<PolyglotDayState> => {
+  try {
+    const raw = await AsyncStorage.getItem(POLYGLOT_DAY_STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    if (parsed && parsed.day === getTodayKey() && Array.isArray(parsed.targets)) {
+      return {
+        day: parsed.day,
+        targets: parsed.targets.filter((t: unknown): t is string => typeof t === 'string'),
+      };
+    }
+  } catch {
+    // fall through — сбрасываем на новый день
+  }
+  return { day: getTodayKey(), targets: [] };
+};
+
+const savePolyglotDayState = async (state: PolyglotDayState): Promise<void> => {
+  try {
+    await AsyncStorage.setItem(POLYGLOT_DAY_STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    if (__DEV__) console.warn('[daily_tasks]', e);
+  }
+};
+
+type MetaDailyTaskEvaluation = {
+  progress: TaskProgress[];
+  newlyCompletedTaskIds: string[];
+};
+
+/**
+ * Пост-проход после обычных инкрементов прогресса (в updateTaskProgress и
+ * updateMultipleTaskProgress, до записи):
+ * — polyglot_day: daily_active/lesson_complete отмечают язык в общем ключе дня,
+ *   прогресс (в скоупе вызывающего target) = числу разных языков (max 2);
+ * — last_chance: в этом же обновлении завершилось ЛЮБОЕ ДРУГОЕ задание и сейчас
+ *   23:00–00:00 UTC;
+ * — early_all_done: все ОСТАЛЬНЫЕ задания дня выполнены и локальный час < 12.
+ * Прогресс мета-заданий пишется напрямую (не через updateTaskProgress), поэтому
+ * рекурсии нет. Ничего не делает, если в сегодняшнем списке нет мета-типов.
+ */
+const evaluateMetaDailyTasks = async (
+  tasks: DailyTask[],
+  progress: TaskProgress[],
+  updates: readonly { type: TaskType; increment?: number }[],
+  justCompletedTaskIds: readonly string[],
+  studyTarget?: RuntimeStudyTarget,
+): Promise<MetaDailyTaskEvaluation> => {
+  if (!tasks.some((task) => META_DAILY_TASK_TYPES.has(task.type))) {
+    return { progress, newlyCompletedTaskIds: [] };
+  }
+  let next = progress;
+  const newlyCompleted: string[] = [];
+  const applyRow = (taskId: string, mutate: (row: TaskProgress) => TaskProgress) => {
+    next = next.map((row) => (row.taskId === taskId ? mutate(row) : row));
+  };
+
+  // polyglot_day: отмечаем язык активности в общем ключе дня.
+  const incrementedTypes = new Set(
+    updates.filter((u) => (u.increment ?? 1) > 0).map((u) => u.type),
+  );
+  if (incrementedTypes.has('daily_active') || incrementedTypes.has('lesson_complete')) {
+    const polyglotTasks = tasks.filter((task) => task.type === 'polyglot_day');
+    if (polyglotTasks.length > 0) {
+      const state = await loadPolyglotDayState();
+      const target = storageStudyTarget(studyTarget);
+      if (!state.targets.includes(target)) state.targets.push(target);
+      await savePolyglotDayState(state);
+      const distinct = Math.min(2, new Set(state.targets).size);
+      for (const task of polyglotTasks) {
+        const row = next.find((r) => r.taskId === task.id);
+        if (!row || row.completed) continue;
+        const current = Math.min(task.target, Math.max(row.current, distinct));
+        const completed = current >= task.target;
+        applyRow(task.id, (r) => ({ ...r, current, completed }));
+        if (completed) newlyCompleted.push(task.id);
+      }
+    }
+  }
+
+  // last_chance: любое ДРУГОЕ задание завершено в 23:00–00:00 UTC.
+  if (new Date().getUTCHours() === 23) {
+    const justCompletedOther = justCompletedTaskIds.some((id) => {
+      const task = tasks.find((t) => t.id === id);
+      return !!task && task.type !== 'last_chance';
+    });
+    if (justCompletedOther) {
+      for (const task of tasks) {
+        if (task.type !== 'last_chance') continue;
+        const row = next.find((r) => r.taskId === task.id);
+        if (!row || row.completed) continue;
+        applyRow(task.id, (r) => ({ ...r, current: task.target, completed: true }));
+        newlyCompleted.push(task.id);
+      }
+    }
+  }
+
+  // early_all_done: все остальные вызовы дня закрыты до 12:00 локального времени.
+  if (new Date().getHours() < 12) {
+    for (const task of tasks) {
+      if (task.type !== 'early_all_done') continue;
+      const row = next.find((r) => r.taskId === task.id);
+      if (!row || row.completed) continue;
+      const allOthersDone = tasks.every((other) => {
+        if (other.id === task.id) return true;
+        const otherRow = next.find((r) => r.taskId === other.id);
+        return otherRow?.completed === true || otherRow?.claimed === true;
+      });
+      if (!allOthersDone) continue;
+      applyRow(task.id, (r) => ({ ...r, current: task.target, completed: true }));
+      newlyCompleted.push(task.id);
+    }
+  }
+
+  return { progress: next, newlyCompletedTaskIds: newlyCompleted };
+};
+
 // ── Главная функция — обновить прогресс задания ───────────────────────────
 export const updateTaskProgress = async (
   type: TaskType,
@@ -3078,11 +3664,17 @@ export const updateTaskProgress = async (
     return { ...p, current: newCurrent, completed: nowCompleted };
   });
 
-  await saveTodayProgress(updated, studyTarget);
+  // Мета-постпроход (early_all_done / last_chance / polyglot_day) — из того же
+  // снапшота прогресса, отдельных трекинг-вызовов не требует.
+  const meta = await evaluateMetaDailyTasks(tasks, updated, [{ type, increment }], completedTaskIds, studyTarget);
+  await saveTodayProgress(meta.progress, studyTarget);
   for (const taskId of completedTaskIds) {
     emitDailyTaskCompleted(taskId, studyTarget);
   }
-  return { completed: newlyCompleted, allProgress: updated };
+  for (const taskId of meta.newlyCompletedTaskIds) {
+    emitDailyTaskCompleted(taskId, studyTarget);
+  }
+  return { completed: newlyCompleted, allProgress: meta.progress };
 };
 
 // ── Сброс прогресса задания (например при ошибке в серии) ─────────────────
@@ -3280,6 +3872,12 @@ export const updateMultipleTaskProgress = async (
           return { ...p, comboPlays: plays, comboWins: wins, current: Math.min(plays, req.minPlays), completed };
         });
       }
+
+      // Мета-постпроход (early_all_done / last_chance / polyglot_day) — до записи,
+      // чтобы сохранить одним махом вместе с обычными инкрементами.
+      const meta = await evaluateMetaDailyTasks(tasks, progress, updates, [...completedTaskIds], opts?.studyTarget);
+      progress = meta.progress;
+      meta.newlyCompletedTaskIds.forEach((taskId) => completedTaskIds.add(taskId));
 
       // Only save if progress has entries (prevent overwriting with empty array)
       if (progress.length > 0) {

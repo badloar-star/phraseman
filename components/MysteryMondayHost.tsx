@@ -107,14 +107,14 @@ export default function MysteryMondayHost() {
     'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
   const rewardLine = L(
-    `${reward.shards} осколков — теперь твои`,
-    `${reward.shards} осколків — тепер твої`,
-    `${reward.shards} fragmentos — ahora son tuyos`,
-    `${reward.shards} fragmentos — agora são seus`,
+    `${reward.shards} монет — теперь твои`,
+    `${reward.shards} монет — тепер твої`,
+    `${reward.shards} monedas — ahora son tuyos`,
+    `${reward.shards} monedas — agora são seus`,
     `${reward.shards} mảnh — giờ là của bạn`,
     `${reward.shards} serpihan — kini milikmu`,
     `${reward.shards} parça — artık senin`,
-    `${reward.shards} odłamków — teraz twoje`,
+    `${reward.shards} monet — teraz twoje`,
   );
   const tapHint = L(
     'Нажми, чтобы открыть', 'Натисни, щоб відкрити', 'Toca para abrir', 'Toque para abrir',

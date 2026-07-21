@@ -80,7 +80,7 @@ import { useOverlayVisible } from '../../components/OverlayArbiter';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
-import { oskolokImageForPackShards } from '../oskolok';
+import { coinIconForBalance } from '../coin_icons';
 import { buildLastLessonFromHydration, patchHomeScreenHydration, peekHomeScreenHydration, rememberHomeScreenHydration, resolveHomeProfileVisuals } from '../home_screen_hydration';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -1961,14 +1961,14 @@ export default function HomeScreen() {
             const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
             if (!ok) {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
-                    ru: 'Недостаточно осколков',
-                    uk: 'Недостатньо уламків',
+                    ru: 'Недостаточно монет',
+                    uk: 'Недостатньо монет',
                     es: `No tienes suficientes ${BRAND_SHARDS_ES}`,
-                    'pt-BR': "Você não tem fragmentos suficientes",
-                    vi: "Bạn không có đủ mảnh",
-                    id: "Fragmen kamu tidak cukup",
-                    tr: "Yeterli parçan yok",
-                    pl: "Nie masz wystarczająco odłamków",
+                    'pt-BR': "Você não tem moedas suficientes",
+                    vi: "Bạn không có đủ xu",
+                    id: "Koin kamu tidak cukup",
+                    tr: "Yeterli jetonun yok",
+                    pl: "Nie masz wystarczająco monet",
                 }), triLang(lang, {
                     ru: `Заморозка стоит ${FREEZE_COST_SHARDS} 💎. У тебя ${shardsBalance} 💎.`,
                     uk: `Заморозка коштує ${FREEZE_COST_SHARDS} 💎. У тебе ${shardsBalance} 💎.`,
@@ -2302,7 +2302,7 @@ export default function HomeScreen() {
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
-        const homeHeaderShardIconSource = oskolokImageForPackShards(Math.max(1, shardsBalance), themeMode);
+        const homeHeaderShardIconSource = coinIconForBalance(shardsBalance);
         const homeHeaderShardIconSize = 34;
         const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
@@ -2529,7 +2529,7 @@ export default function HomeScreen() {
                     nav.push('/shards_shop');
                   }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel="Осколки" />
+                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} монет`} />
                     <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
                   </Animated.View>
                 </TouchableOpacity>

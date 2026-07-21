@@ -196,6 +196,29 @@ function localized(lang: Lang, copy: Record<Lang, string>): string {
   return copy[lang];
 }
 
+function slavicPlural(count: number, one: string, few: string, many: string): string {
+  const normalized = Math.abs(Math.floor(count));
+  const mod10 = normalized % 10;
+  const mod100 = normalized % 100;
+  if (mod10 === 1 && mod100 !== 11) return one;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+  return many;
+}
+
+/** «1 осколок будет списан…» / «2 осколка будут списаны…» / «5 осколков будут списаны…». */
+function purchaseCostMessage(cost: number, lang: Lang): string {
+  const n = Math.max(0, Math.floor(Number(cost) || 0));
+  if (lang === 'ru') {
+    if (n === 1) return `${n} монета будет списана после подтверждения.`;
+    return `${n} ${slavicPlural(n, 'монета', 'монеты', 'монет')} будут списаны после подтверждения.`;
+  }
+  if (lang === 'uk') {
+    if (n === 1) return `${n} монета буде списана після підтвердження.`;
+    return `${n} ${slavicPlural(n, 'монета', 'монети', 'монет')} будуть списані після підтвердження.`;
+  }
+  return `${n} ${localized(lang, { ru: 'монет будут списаны после подтверждения.', uk: 'монет буде списано після підтвердження.', es: 'monedas se descontarán tras confirmar.', 'pt-BR': 'moedas serão descontados após a confirmação.', vi: 'xu sẽ được trừ sau khi xác nhận.', id: 'koin akan dipotong setelah konfirmasi.', tr: 'jeton onaydan sonra düşülecek.', pl: 'monet zostanie odjętych po potwierdzeniu.' })}`;
+}
+
 function auraName(aura: AvatarAuraDef, lang: Lang): string {
   return triLang(lang, {
     ru: aura.nameRu,
@@ -287,7 +310,7 @@ function availabilityStatus(
   switch (item.availability.kind) {
     case 'owned': return copy.owned;
     case 'none': return copy.noAura;
-    case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'осколков', uk: 'уламків', es: 'fragmentos', 'pt-BR': 'fragmentos', vi: 'mảnh', id: 'shard', tr: 'parça', pl: 'odłamków' })}`;
+    case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'монет', uk: 'монет', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`;
     case 'level': return `${localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' })} ${item.availability.level}`;
     case 'plus': return 'Plus';
     case 'reward': return copy.reward;
@@ -664,7 +687,7 @@ export default function AvatarSelect() {
   ), [insets.top, lang, router, t, copy, handleResetLevelAvatar, confirmed.activeAvatar, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, previewAuraLabel, focused, appState, heroHeight, activeTab, handleTabChange]);
 
   const purchaseMessage = purchaseState.pending
-    ? `${purchaseState.pending.cost} ${localized(lang, { ru: 'осколков будут списаны после подтверждения.', uk: 'уламків буде списано після підтвердження.', es: 'fragmentos se descontarán tras confirmar.', 'pt-BR': 'fragmentos serão descontados após a confirmação.', vi: 'mảnh sẽ được trừ sau khi xác nhận.', id: 'shard akan dipotong setelah konfirmasi.', tr: 'parça onaydan sonra düşülecek.', pl: 'odłamków zostanie odjętych po potwierdzeniu.' })}`
+    ? purchaseCostMessage(purchaseState.pending.cost, lang)
     : '';
 
   return (

@@ -12,11 +12,11 @@ describe('Admin 2 detailed analytics integration', () => {
 
   it('owns every detailed analytics renderer inside Admin 2', () => {
     const shell = read('admin/v2/index.html');
-    expect(shell).toContain('/v2/scripts/components/analytics-language.js');
+    expect(shell).toContain('/scripts/components/analytics-language.js');
     for (const renderer of renderers) {
       const file = `admin/v2/scripts/pages/${renderer}`;
       expect(fs.existsSync(path.join(ROOT, file))).toBe(true);
-      expect(shell).toContain(`/v2/scripts/pages/${renderer}`);
+      expect(shell).toContain(`/scripts/pages/${renderer}`);
     }
   });
 

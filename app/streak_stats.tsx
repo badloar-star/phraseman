@@ -37,6 +37,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { useVisibleWallClock } from '../hooks/use_visible_wall_clock';
 import { getShardsBalance, spendShards } from './shards_system';
+import { updateTaskProgress } from './daily_tasks';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getStatsCache, hydrateStatsCacheFromStorage, refreshStatsCache, type StatsCachedDay, type StatsCachedTimeDay, type StatsPreloadData, } from './statsCache';
 import { emitAppEvent, onAppEvent } from './events';
@@ -927,8 +928,8 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
         { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
         { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Заданий дня выполнено', uk: 'Завдань дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
-        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Осколков заработано', uk: 'Уламків зароблено', es: 'Fragmentos ganados', 'pt-BR': 'Fragmentos ganhos', vi: 'Mảnh đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan parçalar', pl: 'Zdobyte odłamki' }) },
-        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Осколков потрачено', uk: 'Уламків витрачено', es: 'Fragmentos gastados', 'pt-BR': 'Fragmentos gastos', vi: 'Mảnh đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan parçalar', pl: 'Wydane odłamki' }) },
+        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Монет заработано', uk: 'Монет зароблено', es: 'Monedas ganadas', 'pt-BR': 'Moedas ganhos', vi: 'Xu đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan jetonlar', pl: 'Zdobyte monety' }) },
+        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Монет потрачено', uk: 'Монет витрачено', es: 'Monedas gastadas', 'pt-BR': 'Moedas gastos', vi: 'Xu đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan jetonlar', pl: 'Wydane monety' }) },
     ];
     // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
     // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
@@ -1208,7 +1209,10 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                     pl: "Zakład wygrany!",
                 })}
               </Text>
+              {/* §7: монетный выигрыш = 0 — строку с монетами показываем только если она ненулевая (легаси-пари). */}
+              {wager.rewardShards > 0 ? (
               <ShardsInline n={`+${wager.rewardShards}`} size={f.body} textColor={resultColor}/>
+              ) : null}
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
                     ru: `+${wager.rewardXP} к опыту`,
@@ -1276,7 +1280,6 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         const daysKept = wager.daysRequired - daysLeft;
         const tierIcon = TIER_ICONS_WAGER[wager.tierIdx] ?? 'flame-outline';
         const progressPct = Math.max(0, Math.min(100, Math.round((daysKept / wager.daysRequired) * 100)));
-        const netShards = Math.max(0, wager.rewardShards - wager.betShards);
         return (<StatsCardArtSurface name="wager" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={18} scrim="stats" testID="wager-active-card" style={[{ borderRadius: 18, padding: 14, borderWidth: 1, borderColor: wagerBorder, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'wager') : null]}>
         <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
           <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: wagerSoftBg, alignItems: 'center', justifyContent: 'center' }}>
@@ -1299,9 +1302,11 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               <ShardsInline n={wager.betShards} size={f.label} textColor={wagerAccent}/>
             </View>
           </View>
+          {wager.rewardShards > 0 ? (
           <View style={{ alignItems: 'flex-end', flexShrink: 0, maxWidth: 104 }}>
             <Text style={{ color: wagerAccent, fontSize: f.body, fontWeight: '700', lineHeight: f.body * 1.35 }}>{wager.rewardShards}</Text>
           </View>
+          ) : null}
         </View>
 
         <View style={{ marginBottom: 10 }}>
@@ -1337,21 +1342,7 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             })}
         </View>
         <View style={{ flexDirection: 'row', gap: 8, marginTop: 12 }}>
-          <View style={{ flex: 1, minWidth: 0, backgroundColor: t.bgSurface2, borderRadius: 12, padding: 10 }}>
-            <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', marginBottom: 4 }}>
-              {triLang(lang, {
-                ru: 'ВЫИГРЫШ',
-                uk: 'ВИГРАШ',
-                es: 'NETO',
-                'pt-BR': "LÍQUIDO",
-                vi: "RÒNG",
-                id: "NETO",
-                tr: "NET",
-                pl: "NETTO",
-            })}
-            </Text>
-            <ShardsInline n={`+${netShards}`} size={f.body} textColor={wagerAccent}/>
-          </View>
+          {/* §7: блок чистого выигрыша в монетах скрыт — выплата = 0; остаётся XP. */}
           <View style={{ flex: 1, minWidth: 0, backgroundColor: t.bgSurface2, borderRadius: 12, padding: 10 }}>
             <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', marginBottom: 4 }}>
               {triLang(lang, {
@@ -1475,14 +1466,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               </View>
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 14, lineHeight: 20 }}>
                 {triLang(lang, {
-            ru: 'Выбери срок и сделай ставку осколками. Удержишь цепочку — заберёшь больше осколков и опыт.',
-            uk: 'Обери строк і зроби ставку уламками. Утримаєш ланцюжок — забереш більше уламків і досвід.',
-            es: 'Elige un plazo y aporta fragmentos. Si mantienes la racha, ganas fragmentos netos y XP.',
-            'pt-BR': "Escolha um prazo e aposte fragmentos. Se mantiver a sequência, você ganha fragmentos líquidos e XP.",
-            vi: "Chọn thời hạn và đặt mảnh. Nếu giữ chuỗi, bạn nhận mảnh ròng và XP.",
+            ru: 'Выбери срок и сделай ставку монетами. Удержишь цепочку — заберёшь опыт.',
+            uk: 'Обери строк і зроби ставку монетами. Утримаєш ланцюжок — забереш досвід.',
+            es: 'Elige un plazo y aporta monedas. Si mantienes la racha, ganas monedas netos y XP.',
+            'pt-BR': "Escolha um prazo e aposte moedas. Se mantiver a sequência, você ganha moedas líquidos e XP.",
+            vi: "Chọn thời hạn và đặt xu. Nếu giữ chuỗi, bạn nhận xu ròng và XP.",
             id: "Pilih durasi dan setorkan fragmen. Jika rangkaian terjaga, kamu mendapat fragmen neto dan XP.",
-            tr: "Bir süre seç ve parça yatır. Seriyi korursan net parça ve XP kazanırsın.",
-            pl: "Wybierz czas i wpłać odłamki. Jeśli utrzymasz serię, zyskasz odłamki netto i XP.",
+            tr: "Bir süre seç ve jeton yatır. Seriyi korursan net jeton ve XP kazanırsın.",
+            pl: "Wybierz czas i wpłać monety. Jeśli utrzymasz serię, zyskasz monety netto i XP.",
         })}
               </Text>
 
@@ -1535,7 +1526,8 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             pl: "Zyskujesz",
         })}
                     </Text>
-                    <ShardsInline n={`+${sel.rewardShards - effectiveBetShards}`} size={f.body} textColor={wagerAccent}/>
+                    {/* §7: монетная часть награды = 0 — показываем только XP (строка ниже в модале). */}
+                    <Text style={{ color: wagerAccent, fontSize: f.body, fontWeight: '800' }}>+{sel.rewardXP} XP</Text>
                   </View>
                 </View>
                 <Text style={{ color: t.textGhost, fontSize: f.label, lineHeight: Math.round(f.label * 1.4) }}>
@@ -1557,7 +1549,6 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                     {row.map(i => {
                 const tier = WAGER_TIERS[i];
                 const stakeToSpend = effectiveWagerStakes[i] ?? tier.betShards;
-                const netShards = tier.rewardShards - stakeToSpend;
                 const icon = TIER_ICONS_WAGER[i];
                 const label = streakWagerTierDaysLabel(lang, i);
                 const selected = selectedTier === i;
@@ -1594,28 +1585,20 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                                 </Text>
                                 <ShardsInline n={stakeToSpend} size={10} textColor={t.textGhost}/>
                               </View>
+                              {/* §7: чистый выигрыш в монетах = 0 — показываем XP тира. */}
                               <Text style={{ color: selected ? wagerAccent : t.textPrimary, fontSize: 13, fontWeight: '800' }}>
-                                {`+${netShards} ${triLang(lang, {
-                            ru: 'чистыми',
-                            uk: 'чистими',
-                            es: 'netos',
-                            'pt-BR': "líquidos",
-                            vi: "ròng",
-                            id: "neto",
-                            tr: "net",
-                            pl: "netto",
-                        })}`}
+                                {`+${tier.rewardXP} XP`}
                               </Text>
                             </>) : (<Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '700', marginTop: 2 }}>
                               {triLang(lang, {
-                            ru: `Нужно ещё ${deficit} оск.`,
-                            uk: `Ще ${deficit} оск.`,
-                            es: `Faltan ${deficit} frag.`,
-                            'pt-BR': `Faltam ${deficit} frag.`,
-                            vi: `Còn thiếu ${deficit} mảnh`,
-                            id: `Kurang ${deficit} frag.`,
-                            tr: `${deficit} parça eksik`,
-                            pl: `Brakuje ${deficit} odł.`,
+                            ru: `Нужно ещё ${deficit} мон.`,
+                            uk: `Ще ${deficit} мон.`,
+                            es: `Faltan ${deficit} mon.`,
+                            'pt-BR': `Faltam ${deficit} moedas`,
+                            vi: `Còn thiếu ${deficit} xu`,
+                            id: `Kurang ${deficit} koin`,
+                            tr: `${deficit} jeton eksik`,
+                            pl: `Brakuje ${deficit} monet`,
                         })}
                             </Text>)}
                         </TouchableOpacity>);
@@ -1656,28 +1639,29 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                       </View>
                       <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '700', textAlign: 'center', opacity: 0.75 }}>
                         {triLang(lang, {
-                ru: `Награда: +${sel.rewardShards - effectiveBetShards} оск. чистыми · +${sel.rewardXP} опыта`,
-                uk: `Нагорода: +${sel.rewardShards - effectiveBetShards} оск. чистими · +${sel.rewardXP} досвіду`,
-                es: `Recompensa: +${sel.rewardShards - effectiveBetShards} frag. netos · +${sel.rewardXP} XP`,
-                'pt-BR': `Recompensa: +${sel.rewardShards - effectiveBetShards} frag. líquidos · +${sel.rewardXP} XP`,
-                vi: `Thưởng: +${sel.rewardShards - effectiveBetShards} mảnh ròng · +${sel.rewardXP} XP`,
-                id: `Hadiah: +${sel.rewardShards - effectiveBetShards} frag. neto · +${sel.rewardXP} XP`,
-                tr: `Ödül: +${sel.rewardShards - effectiveBetShards} net parça · +${sel.rewardXP} XP`,
-                pl: `Nagroda: +${sel.rewardShards - effectiveBetShards} odł. netto · +${sel.rewardXP} XP`,
+                // §7: монетный выигрыш пари = 0, награда — только опыт.
+                ru: `Награда: +${sel.rewardXP} опыта`,
+                uk: `Нагорода: +${sel.rewardXP} досвіду`,
+                es: `Recompensa: +${sel.rewardXP} XP`,
+                'pt-BR': `Recompensa: +${sel.rewardXP} XP`,
+                vi: `Thưởng: +${sel.rewardXP} XP`,
+                id: `Hadiah: +${sel.rewardXP} XP`,
+                tr: `Ödül: +${sel.rewardXP} XP`,
+                pl: `Nagroda: +${sel.rewardXP} XP`,
             })}
                       </Text>
                     </View>) : (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       <Ionicons name="lock-closed-outline" size={18} color={t.textGhost}/>
                       <Text style={{ color: t.textGhost, fontSize: f.body, fontWeight: '800' }}>
                         {triLang(lang, {
-                ru: 'Недостаточно осколков',
-                uk: 'Недостатньо уламків',
-                es: 'No tienes suficientes fragmentos',
-                'pt-BR': "Você não tem fragmentos suficientes",
-                vi: "Bạn không có đủ mảnh",
-                id: "Fragmen kamu tidak cukup",
-                tr: "Yeterli parçan yok",
-                pl: "Nie masz wystarczająco odłamków",
+                ru: 'Недостаточно монет',
+                uk: 'Недостатньо монет',
+                es: 'No tienes suficientes monedas',
+                'pt-BR': "Você não tem moedas suficientes",
+                vi: "Bạn không có đủ xu",
+                id: "Koin kamu tidak cukup",
+                tr: "Yeterli jetonun yok",
+                pl: "Nie masz wystarczająco monet",
             })}
                       </Text>
                     </View>)}
@@ -1689,14 +1673,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         </View>
       </Modal>
       <ThemedConfirmModal visible={wagerNeedShards} title={triLang(lang, {
-            ru: 'Недостаточно осколков',
-            uk: 'Недостатньо уламків',
-            es: 'No tienes suficientes fragmentos',
-            'pt-BR': "Você não tem fragmentos suficientes",
-            vi: "Bạn không có đủ mảnh",
-            id: "Fragmen kamu tidak cukup",
-            tr: "Yeterli parçan yok",
-            pl: "Nie masz wystarczająco odłamków",
+            ru: 'Недостаточно монет',
+            uk: 'Недостатньо монет',
+            es: 'No tienes suficientes monedas',
+            'pt-BR': "Você não tem moedas suficientes",
+            vi: "Bạn không có đủ xu",
+            id: "Koin kamu tidak cukup",
+            tr: "Yeterli jetonun yok",
+            pl: "Nie masz wystarczająco monet",
         })} messageNode={<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 22 }}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, {
@@ -1713,14 +1697,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             <ShardsInline n={effectiveBetShards} size={f.body} textColor={isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'percentiles')}/>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, {
-                ru: 'осколков',
-                uk: 'уламків',
-                es: 'fragmentos',
-                'pt-BR': "fragmentos",
-                vi: "mảnh",
+                ru: 'монет',
+                uk: 'монет',
+                es: 'monedas',
+                'pt-BR': "moedas",
+                vi: "xu",
                 id: "fragmen",
-                tr: "parça",
-                pl: "odłamków",
+                tr: "jeton",
+                pl: "monet",
             })}
             </Text>
           </View>} cancelLabel={triLang(lang, {
@@ -1796,35 +1780,19 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             })}
                 </Text>
                 <View style={{ gap: 2 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4 }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.body }}>
-                      {triLang(lang, {
-                ru: 'К балансу',
-                uk: 'До балансу',
-                es: 'Al saldo',
-                'pt-BR': "Ao saldo",
-                vi: "Vào số dư",
-                id: "Ke saldo",
-                tr: "Bakiyeye",
-                pl: "Do salda",
+                  <Text style={{ color: t.textGhost, fontSize: f.sub }}>
+                    {triLang(lang, {
+                // §7: монетный выигрыш пари отключён — честно говорим об этом.
+                ru: 'Монетный выигрыш пари отключён — награда только опытом',
+                uk: 'Монетний виграш парі вимкнено — нагорода лише досвідом',
+                es: 'La ganancia en monedas está desactivada: la recompensa es solo XP',
+                'pt-BR': 'O ganho em moedas está desativado: a recompensa é só XP',
+                vi: 'Phần thưởng xu đã tắt — chỉ nhận XP',
+                id: 'Hadiah koin dinonaktifkan — hadiah hanya XP',
+                tr: 'Jeton kazancı kapalı — ödül yalnızca XP',
+                pl: 'Wygrana monet jest wyłączona — nagroda to tylko XP',
             })}
-                    </Text>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                      +{sel.rewardShards - effectiveBetShards}
-                    </Text>
-                    <Text style={{ color: t.textGhost, fontSize: f.sub }}>
-                      {triLang(lang, {
-                ru: `(всего вернётся +${sel.rewardShards} вместе со ставкой)`,
-                uk: `(усього повернеться +${sel.rewardShards} разом зі ставкою)`,
-                es: `(abonamos +${sel.rewardShards}; tu aporte ya está contado)`,
-                'pt-BR': `(creditamos +${sel.rewardShards}; sua aposta já está contada)`,
-                vi: `(cộng +${sel.rewardShards}; phần đặt của bạn đã được tính)`,
-                id: `(kami tambahkan +${sel.rewardShards}; setoranmu sudah dihitung)`,
-                tr: `(+${sel.rewardShards} ekliyoruz; yatırdığın miktar zaten sayıldı)`,
-                pl: `(dopisujemy +${sel.rewardShards}; twoja wpłata jest już uwzględniona)`,
-            })}
-                    </Text>
-                  </View>
+                  </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.body }}>
                     {triLang(lang, {
                 ru: `+${sel.rewardXP} к опыту`,
@@ -1908,14 +1876,14 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
               {triLang(lang, {
-            ru: 'Поставь осколки — удержи серию и забери в 4 раза больше',
-            uk: 'Постав уламки — утримай серію й забери вчетверо більше',
-            es: 'Aporta fragmentos: mantén la racha y cobra la recompensa',
-            'pt-BR': "Aposte fragmentos: mantenha a sequência e receba a recompensa",
-            vi: "Đặt mảnh: giữ chuỗi và nhận thưởng",
+            ru: 'Поставь монеты — удержи серию и забери опыт',
+            uk: 'Постав монети — утримай серію й забери досвід',
+            es: 'Aporta monedas: mantén la racha y cobra la recompensa',
+            'pt-BR': "Aposte moedas: mantenha a sequência e receba a recompensa",
+            vi: "Đặt xu: giữ chuỗi và nhận thưởng",
             id: "Setorkan fragmen: jaga rangkaian dan ambil hadiah",
-            tr: "Parça yatır: seriyi koru ve ödülü al",
-            pl: "Wpłać odłamki: utrzymaj serię i odbierz nagrodę",
+            tr: "Jeton yatır: seriyi koru ve ödülü al",
+            pl: "Wpłać monety: utrzymaj serię i odbierz nagrodę",
         })}
             </Text>
           </View>
@@ -3620,6 +3588,8 @@ export default function StreakStats() {
         setFreezeActive(true);
         emitAppEvent('streak_freeze_updated', { active: true });
         setStreakAtRisk(false);
+        // Ежедневное задание «Щит стрика»: ручная заморозка (бесплатная или за осколки).
+        void updateTaskProgress('streak_freeze_use', 1, studyTarget).catch(() => {});
     };
     return (<View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>
     <StatsArtBackdrop />
@@ -4582,14 +4552,14 @@ export default function StreakStats() {
           (clubDescVisible никогда не выставлялся в true) и удалён. */}
 
       <ThemedConfirmModal visible={freezeNeedShardsModal} title={triLang(lang, {
-            ru: 'Недостаточно осколков',
-            uk: 'Недостатньо уламків',
-            es: 'No tienes suficientes fragmentos',
-            'pt-BR': "Você não tem fragmentos suficientes",
-            vi: "Bạn không có đủ mảnh",
-            id: "Fragmen kamu tidak cukup",
-            tr: "Yeterli parçan yok",
-            pl: "Nie masz wystarczająco odłamków",
+            ru: 'Недостаточно монет',
+            uk: 'Недостатньо монет',
+            es: 'No tienes suficientes monedas',
+            'pt-BR': "Você não tem moedas suficientes",
+            vi: "Bạn không có đủ xu",
+            id: "Koin kamu tidak cukup",
+            tr: "Yeterli jetonun yok",
+            pl: "Nie masz wystarczająco monet",
         })} messageNode={<View style={{ gap: 4, marginBottom: 22 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <Text style={{ color: t.textMuted, fontSize: f.body }}>

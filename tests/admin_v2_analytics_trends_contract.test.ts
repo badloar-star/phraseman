@@ -220,15 +220,15 @@ describe('Admin v2 local chart runtime contract', () => {
       .map((match) => match[1]);
     const chartRuntimeSources = scriptSources.filter((source) => /(?:hammer|chart)/i.test(source));
     const expectedSources = [
-      '/v2/vendor/hammer.min.js',
-      '/v2/vendor/chart.umd.js',
-      '/v2/vendor/chartjs-plugin-zoom.min.js',
+      '/vendor/hammer.min.js',
+      '/vendor/chart.umd.js',
+      '/vendor/chartjs-plugin-zoom.min.js',
     ];
 
     expect(chartRuntimeSources).toEqual(expectedSources);
-    expect(scriptSources).toContain('/v2/scripts/admin-router.js');
+    expect(scriptSources).toContain('/scripts/admin-router.js');
 
-    const routerIndex = scriptSources.indexOf('/v2/scripts/admin-router.js');
+    const routerIndex = scriptSources.indexOf('/scripts/admin-router.js');
     for (const source of expectedSources) {
       expect(scriptSources.indexOf(source)).toBeLessThan(routerIndex);
     }

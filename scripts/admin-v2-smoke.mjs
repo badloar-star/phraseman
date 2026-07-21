@@ -19,6 +19,7 @@ const directScriptFiles = [
   'admin/v2/scripts/pages/retention-diagnostics.js', 'admin/v2/scripts/pages/subscription-analytics.js',
 ];
 const shell = fs.readFileSync('admin/v2/index.html', 'utf8');
+const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
 const failures = [];
 const warnings = [];
 const assert = (condition, message) => { if (!condition) failures.push(message); };
@@ -30,8 +31,12 @@ for (const file of moduleFiles) {
 }
 for (const file of directScriptFiles) {
   assert(moduleFiles.includes(file), `${file} must remain a required Admin 2 module`);
-  assert(shell.includes('/v2/' + file.replace(/^admin\/v2\//, '')), `shell does not include ${file}`);
+  assert(shell.includes('/' + file.replace(/^admin\/v2\//, '')), `shell does not include ${file}`);
 }
+assert(
+  packageJson.scripts?.['admin:serve'] === 'node tests/e2e/admin_v2_static_server.mjs',
+  'admin:serve must use the repository-owned canonical-root Admin V2 loopback server',
+);
 const analyticsModuleFiles = moduleFiles.filter((file) => (
   file === 'admin/v2/scripts/admin-core.js'
   || file.startsWith('admin/v2/scripts/admin-analytics-')
@@ -74,7 +79,7 @@ assert(shell.indexOf('analytics-language.js') < shell.indexOf('product-analytics
 
 if (process.argv.includes('--live') || process.env.ADMIN_V2_SMOKE_LIVE === '1') {
   const base = process.env.ADMIN_V2_SMOKE_URL || 'https://phraseman-ea0b3.web.app';
-  for (const [label, url] of [['root', `${base}/`], ['shell', `${base}/v2/`]]) {
+  for (const [label, url] of [['root', `${base}/`]]) {
     try {
       const response = await fetch(url, { cache: 'no-store' });
       assert(response.ok, `${label} live response ${response.status}`);

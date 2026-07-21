@@ -22,6 +22,12 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   ember: [...CINEMA.ember.bgGradient3],
   aurora: [...CINEMA.aurora.bgGradient3],
   volt: [...CINEMA.volt.bgGradient3],
+  // «Кенди Блу»: тёмный сине-графитовый холод.
+  candyBlue: ['#0B161B', '#050C0F', '#010203'],
+  // «Индиго»: тёмный индиго-сумрак.
+  indigo: ['#14131F', '#0C0B16', '#010102'],
+  // «Ванилла»: светлая тёплая бумага.
+  vanilla: ['#FAF4E4', '#F3E9D2'],
 };
 
 const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {

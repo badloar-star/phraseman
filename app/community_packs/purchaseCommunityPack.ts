@@ -61,14 +61,14 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      ru: 'Недостаточно осколков на балансе. Проверь баланс и попробуй снова.',
-      uk: 'Недостатньо уламків на балансі. Перевір баланс і спробуй ще раз.',
-      es: 'Saldo de fragmentos insuficiente. Comprueba el saldo e inténtalo de nuevo.',
-      'pt-BR': 'Saldo de fragmentos insuficiente. Confira o saldo e tente novamente.',
-      vi: 'Không đủ mảnh trong số dư. Kiểm tra số dư rồi thử lại.',
-      id: 'Saldo pecahan tidak cukup. Periksa saldo lalu coba lagi.',
-      tr: 'Parça bakiyesi yetersiz. Bakiyeni kontrol edip tekrar dene.',
-      pl: 'Za mało odłamków na saldzie. Zsynchronizuj z serwerem i sprawdź.',
+      ru: 'Недостаточно монет на балансе. Проверь баланс и попробуй снова.',
+      uk: 'Недостатньо монет на балансі. Перевір баланс і спробуй ще раз.',
+      es: 'Saldo de monedas insuficiente. Comprueba el saldo e inténtalo de nuevo.',
+      'pt-BR': 'Saldo de moedas insuficiente. Confira o saldo e tente novamente.',
+      vi: 'Không đủ xu trong số dư. Kiểm tra số dư rồi thử lại.',
+      id: 'Saldo koin tidak cukup. Periksa saldo lalu coba lagi.',
+      tr: 'Jeton bakiyesi yetersiz. Bakiyeni kontrol edip tekrar dene.',
+      pl: 'Za mało monet na saldzie. Zsynchronizuj z serwerem i sprawdź.',
     };
   }
   if (lower.includes('own pack') || lower.includes('свой') || lower.includes('власн')) {

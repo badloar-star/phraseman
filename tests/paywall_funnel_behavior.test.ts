@@ -217,3 +217,28 @@ test('GDPR gate: nothing is written to Firestore until analytics consent is gran
   await flush();
   expect(addCalls).toHaveLength(0);
 });
+
+test('purchase price passes through on purchase_completed and defaults to null', async () => {
+  const { logPaywallFunnel } = load();
+  logPaywallFunnel('purchase_completed', { variant: 'D', context: 'checkout', plan: 'yearly', price: '$39.99' });
+  logPaywallFunnel('purchase_completed', { variant: 'D', context: 'checkout', plan: 'monthly' });
+  await flush();
+
+  expect(addCalls).toHaveLength(2);
+  expect(addCalls[0].price).toBe('$39.99');
+  expect(addCalls[1].price).toBeNull();
+});
+
+test('blank price coerces to null and long price is truncated to 24 chars', async () => {
+  const { logPaywallFunnel } = load();
+  // Разные планы, потому что дедупликация воронки схлопывает одинаковые
+  // step+variant+context+plan внутри короткого окна (защита от double-tap).
+  logPaywallFunnel('purchase_completed', { variant: 'E', context: 'checkout', plan: 'lifetime', price: '   ' });
+  logPaywallFunnel('purchase_completed', { variant: 'E', context: 'checkout', plan: 'yearly', price: ` ${'9'.repeat(40)} ₽` });
+  await flush();
+
+  expect(addCalls).toHaveLength(2);
+  expect(addCalls[0].price).toBeNull();
+  expect(typeof addCalls[1].price).toBe('string');
+  expect((addCalls[1].price as string).length).toBe(24);
+});

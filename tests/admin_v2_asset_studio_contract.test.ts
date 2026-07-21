@@ -14,12 +14,12 @@ describe('Admin v2 DALL-E asset studio contract', () => {
 
   test('adds Asset Studio as a native content section, not a loose legacy fallback', () => {
     expect(capabilities).toContain("id: 'asset-studio'");
-    expect(capabilities).toContain("'asset-studio': 'asset-studio'");
+    expect(capabilities).toMatch(/\{\s*id: 'asset-studio',[^}]*nativeRoute: 'asset-studio'/);
+    expect(capabilities).not.toMatch(/\{\s*id: 'asset-studio',[^}]*legacy(?:Tab|Page)/);
     expect(core).toContain("'asset-studio': { title:");
     expect(core).toContain('renderAssetStudio');
     expect(core).toContain('data-action="create-asset-job"');
     expect(core).toContain('data-action="run-asset-job"');
-    expect(router).toContain("'asset-studio': 'asset-studio'");
     expect(router).toContain("'asset-studio'");
   });
 
@@ -32,9 +32,9 @@ describe('Admin v2 DALL-E asset studio contract', () => {
     expect(core).toContain("disabledWhenUnauthorized('content.draft.write')");
   });
 
-  test('shows draft-review-publish safety language and legacy archive link', () => {
+  test('shows draft-review-publish safety language without an old-admin archive link', () => {
     expect(core).toContain('Создание → проверка → публикация');
     expect(core).toContain('Ключ генератора остаётся на сервере');
-    expect(core).toContain('href="../../admin/index.html#openai-budget"');
+    expect(core).not.toMatch(/href=["'][^"']*admin\/index\.html#openai-budget/);
   });
 });

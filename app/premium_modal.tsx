@@ -11,6 +11,10 @@ import {
 import PaywallA from './paywall_a';
 import PaywallB from './paywall_b';
 import PaywallC from './paywall_c';
+import PaywallD from './paywall_d';
+import PaywallE from './paywall_e';
+import PaywallF from './paywall_f';
+import PaywallG from './paywall_g';
 import { getVerifiedPremiumAccessStatus, invalidatePremiumCache } from './premium_guard';
 import {
   activatePendingPersonalPlanAfterPremium,
@@ -125,6 +129,10 @@ function replaceToPaywall(params: RouteParams, router: ReturnType<typeof useRout
 function renderPaywallRoute(route: ReturnType<typeof resolveCurrentPaywallRoute>) {
   if (route === '/paywall_a') return <PaywallA />;
   if (route === '/paywall_b') return <PaywallB />;
+  if (route === '/paywall_d') return <PaywallD />;
+  if (route === '/paywall_e') return <PaywallE />;
+  if (route === '/paywall_f') return <PaywallF />;
+  if (route === '/paywall_g') return <PaywallG />;
   return <PaywallC />;
 }
 

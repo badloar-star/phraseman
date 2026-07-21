@@ -47,11 +47,6 @@ function ThemedConfirmModal({
   const confirmBg = confirmVariant === 'accent' ? t.accent : t.bgSurface;
   const confirmText = confirmVariant === 'accent' ? t.correctText : t.textPrimary;
   const confirmBorder = confirmVariant === 'accent' ? t.accent : t.border;
-  const cancelColors = isGoldTheme
-    ? GOLD_GRADIENTS.raisedTile
-    : isCompassTheme
-      ? COMPASS_GRADIENTS.recessedPanel
-    : ([t.bgSurface, t.bgSurface, t.bgSurface] as [string, string, string]);
   const confirmColors = isGoldTheme
     ? confirmVariant === 'accent'
       ? GOLD_GRADIENTS.primaryButton
@@ -182,38 +177,9 @@ function ThemedConfirmModal({
               {message}
             </Text>
           )}
-          {/* Stacked full-width actions: equal flex:1 in a row forces identical
-              narrow columns and awkward wraps for long localized labels. */}
-          <View style={{ flexDirection: 'column', gap: 10, zIndex: 10 }}>
-            <TouchableOpacity
-              testID={testIDPrefix ? `${testIDPrefix}-cancel` : undefined}
-              onPress={() => {
-                hapticTap();
-                onCancel();
-              }}
-              style={{
-                width: '100%',
-                borderRadius: buttonRadius,
-                borderWidth: 0,
-                borderColor: isGoldTheme ? GOLD_RICH.hairline : isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
-                overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(1) : {}),
-              }}
-            >
-              <LinearGradient
-                colors={cancelColors}
-                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined}
-                start={isGoldTheme || isCompassTheme ? { x: 0, y: 0 } : undefined}
-                end={isGoldTheme || isCompassTheme ? { x: 1, y: 1 } : undefined}
-                style={{ paddingVertical: 14, paddingHorizontal: 14, alignItems: 'center' }}
-              >
-                {isGoldTheme && <GoldBevel radius={12} intensity="quiet" />}
-                {isCompassTheme && <CompassDepthSurface radius={buttonRadius} quiet />}
-                <Text style={{ color: t.textPrimary, fontWeight: '600', textAlign: 'center', fontSize: f.body, zIndex: 10 }}>
-                  {cancelLabel}
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
+          {/* Единый стандарт: primary (confirm) на всю ширину сверху, отмена —
+              центрированная текстовая кнопка под ней. */}
+          <View style={{ flexDirection: 'column', gap: 4, zIndex: 10 }}>
             <TouchableOpacity
               testID={testIDPrefix ? `${testIDPrefix}-confirm` : undefined}
               onPress={() => {
@@ -258,6 +224,24 @@ function ThemedConfirmModal({
                   {confirmLabel}
                 </Text>
               </LinearGradient>
+            </TouchableOpacity>
+            <TouchableOpacity
+              testID={testIDPrefix ? `${testIDPrefix}-cancel` : undefined}
+              onPress={() => {
+                hapticTap();
+                onCancel();
+              }}
+              style={{
+                alignSelf: 'center',
+                paddingVertical: 10,
+                paddingHorizontal: 20,
+                minHeight: 40,
+                justifyContent: 'center',
+              }}
+            >
+              <Text style={{ color: t.textMuted, fontWeight: '600', textAlign: 'center', fontSize: f.body }}>
+                {cancelLabel}
+              </Text>
             </TouchableOpacity>
           </View>
         </LinearGradient>

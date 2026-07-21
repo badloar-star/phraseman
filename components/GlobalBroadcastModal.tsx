@@ -254,20 +254,9 @@ function GlobalBroadcastModal({ payload, visible, onClose, previewOnly = false }
             <Pressable
               disabled={busy}
               onPress={() => { void closeOnce(); }}
-              style={[
-                styles.secondaryBtn,
-                isCompassTheme && compassShadow(1),
-                isCompassTheme && {
-                  borderRadius: 9,
-                  borderWidth: 0,
-                  borderColor: COMPASS_RICH.hairlineQuiet,
-                  backgroundColor: COMPASS_RICH.charcoal,
-                  overflow: 'hidden',
-                },
-              ]}
+              style={styles.secondaryBtn}
             >
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-              <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
+              <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
                 {triLang(lang, {
                   ru: 'Позже',
                   uk: 'Пізніше',
@@ -354,8 +343,11 @@ const styles = StyleSheet.create({
     minHeight: 52,
   },
   secondaryBtn: {
-    paddingVertical: 12,
-    paddingHorizontal: 18,
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     marginTop: 4,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

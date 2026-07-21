@@ -79,7 +79,7 @@ describe('streak_wager effective stake', () => {
       active: true,
       tierIdx: 3,
       betShards: 3,
-      rewardShards: 20,
+      rewardShards: 0, // §7: монетная выплата пари обнулена
     }));
   });
 
@@ -107,7 +107,7 @@ describe('streak_wager effective stake', () => {
       active: true,
       tierIdx: 3,
       betShards: 3,
-      rewardShards: 20,
+      rewardShards: 0, // §7: монетная выплата пари обнулена
     }));
   });
 
@@ -121,7 +121,7 @@ describe('streak_wager effective stake', () => {
       tierIdx: 4,
       betShards: 0,
       daysRequired: 50,
-      rewardShards: 32,
+      rewardShards: 0, // §7: монетная выплата пари обнулена
       rewardXP: 7500,
       daysKept: 10,
       lastChecked: '2026-01-10',

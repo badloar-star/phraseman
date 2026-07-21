@@ -128,27 +128,27 @@ const BOON_COPY: Record<BoonId, BoonCopySource> = {
     },
     detail: {
       ru: [
-        'Сегодня тебя ждёт сундук с сюрпризом. Что внутри — заранее неизвестно: иногда осколки, иногда что-то приятное сверху.',
+        'Сегодня тебя ждёт сундук с сюрпризом. Что внутри — заранее неизвестно: иногда монеты, иногда что-то приятное сверху.',
         'Открыть можно один раз. Просто загляни в приложение — сундук сам предложит себя открыть, и награда сразу станет твоей.',
         'Это маленький праздник без всяких условий: ничего покупать не нужно, подарок уже приготовлен для тебя.',
       ],
       uk: [
-        'Сьогодні на тебе чекає скриня із сюрпризом. Що всередині — заздалегідь невідомо: інколи осколки, інколи щось приємне понад те.',
+        'Сьогодні на тебе чекає скриня із сюрпризом. Що всередині — заздалегідь невідомо: інколи монети, інколи щось приємне понад те.',
         'Відкрити можна один раз. Просто зазирни в застосунок — скриня сама запропонує відкрити її, і нагорода одразу стане твоєю.',
         'Це маленьке свято без жодних умов: нічого купувати не треба, подарунок уже приготовлено для тебе.',
       ],
       es: [
-        'Hoy te espera un cofre sorpresa. Lo que hay dentro es un misterio: a veces fragmentos, a veces algo extra agradable.',
+        'Hoy te espera un cofre sorpresa. Lo que hay dentro es un misterio: a veces monedas, a veces algo extra agradable.',
         'Se abre una sola vez. Solo entra a la app: el cofre te pedirá abrirlo y la recompensa será tuya al instante.',
         'Es una pequeña fiesta sin condiciones: no hay que comprar nada, el regalo ya está listo para ti.',
       ],
       'pt-BR': [
-        'Hoje tem um baú surpresa esperando por você. O que tem dentro é mistério: às vezes fragmentos, às vezes algo extra bacana.',
+        'Hoje tem um baú surpresa esperando por você. O que tem dentro é mistério: às vezes monedas, às vezes algo extra bacana.',
         'Dá pra abrir uma vez. É só entrar no app: o baú vai se oferecer para abrir e a recompensa já vira sua.',
         'É uma pequena festa sem condições: não precisa comprar nada, o presente já está pronto para você.',
       ],
       vi: [
-        'Hôm nay có một rương bất ngờ đang chờ bạn. Bên trong là bí mật: đôi khi là mảnh ghép, đôi khi là thứ gì đó vui hơn.',
+        'Hôm nay có một rương bất ngờ đang chờ bạn. Bên trong là bí mật: đôi khi là xu, đôi khi là thứ gì đó vui hơn.',
         'Chỉ mở được một lần. Cứ vào ứng dụng — rương sẽ tự mời bạn mở, và phần thưởng lập tức là của bạn.',
         'Đây là một niềm vui nhỏ không kèm điều kiện: không cần mua gì, quà đã sẵn sàng cho bạn.',
       ],
@@ -158,12 +158,12 @@ const BOON_COPY: Record<BoonId, BoonCopySource> = {
         'Ini pesta kecil tanpa syarat: tak perlu beli apa pun, hadiahnya sudah disiapkan untukmu.',
       ],
       tr: [
-        'Bugün seni bir sürpriz sandığı bekliyor. İçinde ne var, önceden belli değil: bazen parçalar, bazen üstüne güzel bir şey.',
+        'Bugün seni bir sürpriz sandığı bekliyor. İçinde ne var, önceden belli değil: bazen jetonlar, bazen üstüne güzel bir şey.',
         'Bir kez açılır. Uygulamaya girmen yeter — sandık kendini açmanı isteyecek ve ödül anında senin olacak.',
         'Bu, koşulsuz küçük bir kutlama: hiçbir şey satın almana gerek yok, hediye senin için çoktan hazır.',
       ],
       pl: [
-        'Dziś czeka na ciebie skrzynia-niespodzianka. Co jest w środku, nie wiadomo z góry: czasem odłamki, czasem coś miłego ekstra.',
+        'Dziś czeka na ciebie skrzynia-niespodzianka. Co jest w środku, nie wiadomo z góry: czasem monety, czasem coś miłego ekstra.',
         'Otwierasz raz. Po prostu wejdź do aplikacji — skrzynia sama zaproponuje otwarcie, a nagroda od razu będzie twoja.',
         'To małe święto bez żadnych warunków: nic nie trzeba kupować, prezent już jest dla ciebie gotowy.',
       ],

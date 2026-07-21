@@ -75,7 +75,8 @@ async function applyStreakSaver(todayKey: string): Promise<void> {
 async function applyArenaSaturday(todayKey: string): Promise<void> {
   if (!(await notGrantedToday('arena_saturday', todayKey))) return;
   // Keep already-scheduled legacy boon days valuable after the retired mode disappeared.
-  await grantBoonReward({ shards: ARENA_SATURDAY_BONUS_PLAYS }, 'legacy_arena_saturday');
+  // §7: выплата монет обнулена (монеты только покупаются) — день помечаем, монеты не даём.
+  await grantBoonReward({ shards: 0 }, 'legacy_arena_saturday');
   await markGrantedToday('arena_saturday', todayKey);
 }
 

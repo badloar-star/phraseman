@@ -1425,9 +1425,9 @@ function AchievementModal({
                 borderWidth: pendingShard ? 1 : 0,
                 borderColor: pendingShard ? t.correct + '55' : 'transparent',
               }}>
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Уламок', es: 'Fragmento', 'pt-BR': 'Fragmento', vi: 'Mảnh', id: 'Fragmen', tr: 'Parça', pl: 'Fragment' })} />
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Монета', uk: 'Монета', es: 'Moneda', 'pt-BR': 'Fragmento', vi: 'Xu', id: 'Fragmen', tr: 'Jeton', pl: 'Fragment' })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 уламок знань', es: '+1 fragmento de conocimiento', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 mảnh tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi parçası', pl: '+1 fragment wiedzy' })}
+                  {triLang(lang, { ru: '+1 монета', uk: '+1 монета', es: '+1 moneda', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 xu tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi jetonu', pl: '+1 fragment wiedzy' })}
                 </Text>
                 {pendingShard ? (
                   <TapScale
@@ -1453,7 +1453,7 @@ function AchievementModal({
                   </TapScale>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Осколок получен', uk: 'Уламок отримано', es: 'Fragmento reclamado', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận mảnh', id: 'Fragmen diklaim', tr: 'Parça alındı', pl: 'Fragment odebrany' })}
+                    {triLang(lang, { ru: 'Монета получена', uk: 'Монету отримано', es: 'Moneda reclamada', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận xu', id: 'Fragmen diklaim', tr: 'Jeton alındı', pl: 'Fragment odebrany' })}
                   </Text>
                 )}
               </View>

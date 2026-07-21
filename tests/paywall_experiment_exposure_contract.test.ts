@@ -5,7 +5,7 @@ const root = path.join(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
 
 describe('paywall actual experiment exposure', () => {
-  it.each(['a', 'b', 'c'])('emits only from the rendered paywall %s and reuses its impression ID', (variant) => {
+  it.each(['a', 'b', 'c', 'd', 'e', 'f', 'g'])('emits only from the rendered paywall %s and reuses its impression ID', (variant) => {
     const source = read(`app/paywall_${variant}.tsx`);
     expect(source).toContain('trackPaywallExperimentExposure');
     expect(source).toContain('analyticsImpression.id');

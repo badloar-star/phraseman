@@ -148,37 +148,37 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
 
   // ── CORAL (dark rose / finance) ───────────────────────────────────────────
   coral: {
-    heroAccent: '#FF6464',
+    heroAccent: '#FF7F50',
 
-    selectedCardBorder: '#FF6464',
-    selectedCardBg: 'rgba(255,100,100,0.12)',
+    selectedCardBorder: '#FF7F50',
+    selectedCardBg: 'rgba(255,127,80,0.12)',
     unselectedCardBg: 'rgba(33,24,27,0.88)',
     panelBg: 'rgba(38,24,29,0.78)',
     panelBgStrong: 'rgba(62,32,38,0.88)',
-    selectedCardShadow: '#FF6464',
+    selectedCardShadow: '#FF7F50',
 
     savingsBadgeBg: '#FFD060',
     savingsBadgeText: '#1A1208',
 
-    popularBadgeBg: '#FF6464',
+    popularBadgeBg: '#FF7F50',
     popularBadgeText: '#FFFFFF',
 
-    ctaBg: '#FF6464',
+    ctaBg: '#FF7F50',
     ctaText: '#FFFFFF',
-    ctaShadow: '#FF6464',
+    ctaShadow: '#FF7F50',
 
-    pillBg: 'rgba(255,100,100,0.12)',
-    pillText: '#FF6464',
-    pillBorder: 'rgba(255,100,100,0.28)',
+    pillBg: 'rgba(255,127,80,0.12)',
+    pillText: '#FF7F50',
+    pillBorder: 'rgba(255,127,80,0.28)',
 
     urgencyBg: 'rgba(255,208,96,0.10)',
     urgencyTimerText: '#FFD060',
     urgencyLabelText: '#B9A6AE',
     urgencyStrikethroughColor: '#75656C',
-    urgencyCurrentPriceText: '#FF6464',
+    urgencyCurrentPriceText: '#FF7F50',
 
-    expandBtnText: '#FF6464',
-    expandBtnBorder: 'rgba(255,100,100,0.28)',
+    expandBtnText: '#FF7F50',
+    expandBtnBorder: 'rgba(255,127,80,0.28)',
 
     socialProofText: '#B9A6AE',
     socialProofStarColor: '#FFD060',
@@ -338,37 +338,37 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#FFD27A',
   },
   ember: {
-    heroAccent: '#FFD9A8',
+    heroAccent: '#FFE9B8',
 
-    selectedCardBorder: 'rgba(255,162,69,0.46)',
-    selectedCardBg: 'rgba(255,162,69,0.1)',
+    selectedCardBorder: 'rgba(255,204,85,0.46)',
+    selectedCardBg: 'rgba(255,204,85,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
     panelBg: 'rgba(36,22,14,0.78)',
     panelBgStrong: 'rgba(59,32,16,0.86)',
-    selectedCardShadow: '#9A4E0E',
+    selectedCardShadow: '#9A6E0E',
 
-    savingsBadgeBg: '#FFA245',
-    savingsBadgeText: '#2A1502',
+    savingsBadgeBg: '#FFCC55',
+    savingsBadgeText: '#2A1A02',
 
-    popularBadgeBg: '#FFD9A8',
-    popularBadgeText: '#2A1502',
+    popularBadgeBg: '#FFE9B8',
+    popularBadgeText: '#2A1A02',
 
-    ctaBg: '#FFA245',
-    ctaText: '#2A1502',
+    ctaBg: '#FFCC55',
+    ctaText: '#2A1A02',
     ctaShadow: 'transparent',
 
-    pillBg: 'rgba(255,162,69,0.1)',
-    pillText: '#FFA245',
-    pillBorder: 'rgba(255,162,69,0.18)',
+    pillBg: 'rgba(255,204,85,0.1)',
+    pillText: '#FFCC55',
+    pillBorder: 'rgba(255,204,85,0.18)',
 
-    urgencyBg: 'rgba(255,162,69,0.08)',
-    urgencyTimerText: '#FFD9A8',
+    urgencyBg: 'rgba(255,204,85,0.08)',
+    urgencyTimerText: '#FFE9B8',
     urgencyLabelText: '#C9B4A4',
     urgencyStrikethroughColor: '#8A7464',
-    urgencyCurrentPriceText: '#FFA245',
+    urgencyCurrentPriceText: '#FFCC55',
 
-    expandBtnText: '#FFA245',
-    expandBtnBorder: 'rgba(255,162,69,0.22)',
+    expandBtnText: '#FFCC55',
+    expandBtnBorder: 'rgba(255,204,85,0.22)',
 
     socialProofText: '#C9B4A4',
     socialProofStarColor: '#FFCB5C',
@@ -410,40 +410,151 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofStarColor: '#F2D27A',
   },
   volt: {
-    heroAccent: '#EFFF9E',
+    heroAccent: '#E8FF96',
 
-    selectedCardBorder: 'rgba(214,255,61,0.46)',
-    selectedCardBg: 'rgba(214,255,61,0.1)',
+    selectedCardBorder: 'rgba(198,255,52,0.46)',
+    selectedCardBg: 'rgba(198,255,52,0.1)',
     unselectedCardBg: 'rgba(255,255,255,0.06)',
     panelBg: 'rgba(31,37,11,0.78)',
     panelBgStrong: 'rgba(49,61,14,0.86)',
     selectedCardShadow: '#5F7A0A',
 
-    savingsBadgeBg: '#D6FF3D',
+    savingsBadgeBg: '#C6FF34',
     savingsBadgeText: '#1A2002',
 
-    popularBadgeBg: '#EFFF9E',
+    popularBadgeBg: '#E8FF96',
     popularBadgeText: '#1A2002',
 
-    ctaBg: '#D6FF3D',
+    ctaBg: '#C6FF34',
     ctaText: '#1A2002',
     ctaShadow: 'transparent',
 
-    pillBg: 'rgba(214,255,61,0.1)',
-    pillText: '#D6FF3D',
-    pillBorder: 'rgba(214,255,61,0.18)',
+    pillBg: 'rgba(198,255,52,0.1)',
+    pillText: '#C6FF34',
+    pillBorder: 'rgba(198,255,52,0.18)',
 
-    urgencyBg: 'rgba(214,255,61,0.08)',
-    urgencyTimerText: '#EFFF9E',
+    urgencyBg: 'rgba(198,255,52,0.08)',
+    urgencyTimerText: '#E8FF96',
     urgencyLabelText: '#BFC6A3',
     urgencyStrikethroughColor: '#7E8563',
-    urgencyCurrentPriceText: '#D6FF3D',
+    urgencyCurrentPriceText: '#C6FF34',
 
-    expandBtnText: '#D6FF3D',
-    expandBtnBorder: 'rgba(214,255,61,0.22)',
+    expandBtnText: '#C6FF34',
+    expandBtnBorder: 'rgba(198,255,52,0.22)',
 
     socialProofText: '#BFC6A3',
     socialProofStarColor: '#FFE85C',
+  },
+  // ── CANDY BLUE (тёмная синева / леденцовый голубой) ───────────────────────
+  candyBlue: {
+    heroAccent: '#D9EDF5',
+
+    selectedCardBorder: 'rgba(178,213,229,0.46)',
+    selectedCardBg: 'rgba(178,213,229,0.10)',
+    unselectedCardBg: 'rgba(28,50,59,0.88)',
+    panelBg: 'rgba(22,40,47,0.78)',
+    panelBgStrong: 'rgba(28,50,59,0.88)',
+    selectedCardShadow: '#3A5A68',
+
+    savingsBadgeBg: '#FFC53D',
+    savingsBadgeText: '#1A1408',
+
+    popularBadgeBg: '#B2D5E5',
+    popularBadgeText: '#07110A',
+
+    ctaBg: '#B2D5E5',
+    ctaText: '#07110A',
+    ctaShadow: '#3A5A68',
+
+    pillBg: 'rgba(178,213,229,0.12)',
+    pillText: '#B2D5E5',
+    pillBorder: 'rgba(178,213,229,0.28)',
+
+    urgencyBg: 'rgba(255,197,61,0.10)',
+    urgencyTimerText: '#FFC53D',
+    urgencyLabelText: '#9DB9C4',
+    urgencyStrikethroughColor: '#4E6A76',
+    urgencyCurrentPriceText: '#B2D5E5',
+
+    expandBtnText: '#B2D5E5',
+    expandBtnBorder: 'rgba(178,213,229,0.28)',
+
+    socialProofText: '#9DB9C4',
+    socialProofStarColor: '#FFC53D',
+  },
+  // ── INDIGO (сумрачный индиго / лавандовый акцент) ─────────────────────────
+  indigo: {
+    heroAccent: '#E4E1FF',
+
+    selectedCardBorder: 'rgba(200,195,255,0.46)',
+    selectedCardBg: 'rgba(200,195,255,0.10)',
+    unselectedCardBg: 'rgba(42,41,82,0.88)',
+    panelBg: 'rgba(34,33,64,0.78)',
+    panelBgStrong: 'rgba(42,41,82,0.88)',
+    selectedCardShadow: '#3D3A72',
+
+    savingsBadgeBg: '#FFC53D',
+    savingsBadgeText: '#1A1408',
+
+    popularBadgeBg: '#C8C3FF',
+    popularBadgeText: '#17162B',
+
+    ctaBg: '#C8C3FF',
+    ctaText: '#17162B',
+    ctaShadow: '#3D3A72',
+
+    pillBg: 'rgba(200,195,255,0.12)',
+    pillText: '#C8C3FF',
+    pillBorder: 'rgba(200,195,255,0.28)',
+
+    urgencyBg: 'rgba(255,197,61,0.10)',
+    urgencyTimerText: '#FFC53D',
+    urgencyLabelText: '#B7B3D9',
+    urgencyStrikethroughColor: '#605C8A',
+    urgencyCurrentPriceText: '#C8C3FF',
+
+    expandBtnText: '#C8C3FF',
+    expandBtnBorder: 'rgba(200,195,255,0.28)',
+
+    socialProofText: '#B7B3D9',
+    socialProofStarColor: '#FFC53D',
+  },
+  // ── VANILLA (светлая ваниль / глубокий индиго-синий акцент) ───────────────
+  vanilla: {
+    heroAccent: '#3D4E8F',
+
+    selectedCardBorder: 'rgba(61,78,143,0.50)',
+    selectedCardBg: 'rgba(61,78,143,0.10)',
+    unselectedCardBg: 'rgba(255,253,244,0.92)',
+    panelBg: 'rgba(255,253,244,0.82)',
+    panelBgStrong: 'rgba(244,235,212,0.92)',
+    selectedCardShadow: 'rgba(58,44,8,0.25)',
+
+    savingsBadgeBg: '#D9A62E',
+    savingsBadgeText: '#3A2C08',
+
+    popularBadgeBg: '#3D4E8F',
+    popularBadgeText: '#FFFFFF',
+
+    ctaBg: '#3D4E8F',
+    ctaText: '#FFFFFF',
+    ctaShadow: 'rgba(58,44,8,0.30)',
+
+    pillBg: 'rgba(61,78,143,0.10)',
+    pillText: '#3D4E8F',
+    pillBorder: 'rgba(61,78,143,0.26)',
+
+    urgencyBg: 'rgba(217,166,46,0.12)',
+    urgencyTimerText: '#8A6A10',
+    urgencyLabelText: '#6F6350',
+    urgencyStrikethroughColor: '#C4B89E',
+    urgencyCurrentPriceText: '#3D4E8F',
+
+    expandBtnText: '#3D4E8F',
+    expandBtnBorder: 'rgba(61,78,143,0.26)',
+
+    socialProofText: '#6F6350',
+    socialProofStarColor: '#D9A62E',
   },
 };
 

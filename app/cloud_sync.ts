@@ -21,11 +21,6 @@ import {
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
 } from './intro_full_access_keys';
-import {
-  LOYALTY_GIFT_STARTED_AT_KEY,
-  LOYALTY_GIFT_ENDS_AT_KEY,
-  LOYALTY_GIFT_CLAIMED_KEY,
-} from './loyalty_gift';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { resumePendingDailyTasksAllShardsClaims, resumePendingShardDeltas } from './shards_system';
 import { shardDeltaQueueStorageKey } from './shards_delta_queue';
@@ -528,18 +523,14 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => lessonTheoryXpClaimedKey(i + 1, 'en')),
   ...Array.from({ length: 32 }, (_, i) => achievementLessonPerfectPassesKey(i + 1, 'en')),
   ...FRENCH_TARGET_SYNC_KEYS,
-  // ── Подарочный доступ (intro / loyalty): зеркалим срок в облако, чтобы при смене
+  // ── Подарочный доступ intro: зеркалим срок в облако, чтобы при смене
   //    телефона / переустановке подарок не терялся и восстанавливался (Д2-фикс).
-  //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). claimed —
-  //    чтобы лояльный подарок не выдался повторно на новом устройстве. ВНИМАНИЕ: это
+  //    Зеркалим И started, И ends (getIntroFullAccessState требует оба). ВНИМАНИЕ: это
   //    лёгкий вариант (анти-потеря). Это НЕ серверная защита от ручного продления —
   //    клиент всё ещё может переписать срок локально; для бесплатного подарка риск
   //    низкий. Полную защиту (CF-выдача + blocked-ключи) делать отдельно.
   INTRO_FULL_ACCESS_STARTED_AT_KEY,
   INTRO_FULL_ACCESS_ENDS_AT_KEY,
-  LOYALTY_GIFT_STARTED_AT_KEY,
-  LOYALTY_GIFT_ENDS_AT_KEY,
-  LOYALTY_GIFT_CLAIMED_KEY,
   // ── Claim-маркеры модальных бонусов (Mystery Monday / Comeback / Perfect Week).
   //    Зеркалим в облако, чтобы переустановка / смена устройства не давала повторно
   //    забрать недельную/разовую награду (анти-фарм переустановкой, аудит P2 #12).

@@ -68,7 +68,6 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
     reason: 'League icon pulse requires its pulse prop and the production motion flag.',
     requiredTokens: ['if (!pulse || !CLUB_ENTRY_REPEATING_MOTION_ENABLED)', 'return () => anim.stop()'],
   },
-  'app/components/RankChangeModal.tsx': owned('Rank effects are created only while visible and stopped on cleanup.', ['if (!visible) {', '{visible && (', 'running.forEach']),
   'app/daily_tasks_screen.tsx': guarded('Daily Tasks loops use screen focus and AppState.'),
   'app/flashcards/CardPackShardPaywallModal.tsx': owned('Paywall motion follows the visible prop and is stopped by effect cleanup.', ['if (visible) {', 'cancelAnimation(ctaPulse)']),
   'app/flashcards/FlashcardListItem.tsx': guarded('Flashcard nudge uses screen focus and AppState.'),

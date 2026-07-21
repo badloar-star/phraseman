@@ -318,7 +318,7 @@ export function parsePinnedVideos(raw: string | null | undefined): PinnedVideoIn
       id = parseYoutubeVideoId(item);
     } else if (item && typeof item === 'object') {
       const rec = item as Record<string, unknown>;
-      id = parseYoutubeVideoId(typeof rec.id === 'string' ? rec.id : '')
+      id = parseYoutubeVideoId(typeof rec.id === 'string' ? rec.id: '')
         || parseYoutubeVideoId(typeof rec.url === 'string' ? rec.url : '');
       if (typeof rec.title === 'string' && rec.title.trim()) title = rec.title.trim();
       if (typeof rec.description === 'string' && rec.description.trim()) description = rec.description.trim();

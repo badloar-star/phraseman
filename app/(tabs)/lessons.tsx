@@ -725,7 +725,7 @@ function chapterStatusLine(from: number, to: number, currentLessonNum: number | 
  * шеврон) и плавно раскрываемое тело с текущими плашками уроков и экзаменом.
  * Раскрытие — конечная Reanimated-анимация высоты по замеренному контенту.
  */
-function ChapterCard({ title, statusLine, pct, lockedPlus, expanded, onToggle, accent, isGoldTheme, t, f, themeMode, delayMs = 0, children }: {
+const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lockedPlus, expanded, onToggle, accent, isGoldTheme, t, f, themeMode, delayMs = 0, children }: {
     title: string;
     statusLine: string;
     pct: number;
@@ -787,13 +787,12 @@ function ChapterCard({ title, statusLine, pct, lockedPlus, expanded, onToggle, a
         </Reanimated.View>
       </Reanimated.View>
     );
-}
+});
 
 export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch = 0 }: LessonsTabProps = {}) {
     void _overlayIdentityEpoch;
     const tabContentBottomPad = useTabContentBottomPad();
     const router = useRouter();
-    const insets = useStableSafeAreaInsets();
     const topFadeScroll = useTopFadeScroll();
     const { goHome } = useTabNav();
     const { theme: t, f, themeMode } = useTheme();
@@ -932,7 +931,7 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         if (!lessonsTabVisible) return;
         void loadScores();
     }, [focusTick, lessonsTabVisible, loadScores]);
-    const lessons = lessonNamesForStudyTarget(lang, studyTarget);
+    const lessons = useMemo(() => lessonNamesForStudyTarget(lang, studyTarget), [lang, studyTarget]);
     const premiumReachableLevelIndex = useMemo(() => {
         let idx = getCourseLevelIndex('A1');
         if (examResults.A1?.passed)
@@ -1261,8 +1260,9 @@ return (<LessonCard key={`l-${num}`}
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
     <ScreenGradient>
-      {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия */}
-      <View style={{ paddingTop: insets.top }}>
+      {/* Фиксированная шапка (вне скролла): назад + заголовок + энергия.
+          Верхний safe-area отступ даёт TabScaffold в (tabs)/_layout.tsx — здесь не дублируем. */}
+      <View>
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8 }}>
           <TapScale
             onPress={() => goHome()}

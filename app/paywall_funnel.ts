@@ -62,6 +62,13 @@ export interface PaywallFunnelPayload {
   context: string;
   plan?: 'monthly' | 'yearly' | 'lifetime' | null;
   obColor?: 'main';
+  /**
+   * Локализованная цена стора в момент покупки (priceString, уже через storePriceTrim),
+   * например "$4.99" / "499 ₽". Пишется только на purchase_completed, когда известна.
+   * Это справочная строка для админки, не машинно-парсящаяся сумма: точная выручка
+   * по-прежнему считается сервером из RevenueCat-событий.
+   */
+  price?: string | null;
 }
 
 function paywallFunnelEventKey(step: PaywallFunnelStep, payload: PaywallFunnelPayload): string {
@@ -112,6 +119,9 @@ export function logPaywallFunnel(step: PaywallFunnelStep, payload: PaywallFunnel
         context: String(payload.context || 'generic').slice(0, 40),
         plan: payload.plan ?? null,
         obColor: payload.obColor ?? null,
+        price: typeof payload.price === 'string' && payload.price.trim()
+          ? payload.price.trim().slice(0, 24)
+          : null,
         day: utcDayKey(ts),
         ts,
         uidh: Math.round(hashToUnit(`${stableId}:funnel`) * 1e9).toString(36),

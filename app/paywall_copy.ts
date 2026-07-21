@@ -232,9 +232,9 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     titleRu: 'Повторяй раунды без ограничений',
     titleUk: 'Повторюй раунди без обмежень',
     titleEs: 'Repite rondas sin límites',
-    subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания осколков.',
-    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання уламків.',
-    subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar fragmentos.',
+    subtitleRu: 'Plus открывает повтор любого пройденного раунда. Закрепляй сложные фразы без списания монет.',
+    subtitleUk: 'Plus відкриває повтор будь-якого пройденого раунду. Закріплюй складні фрази без списання монет.',
+    subtitleEs: 'Plus abre el repaso de cualquier ronda completada. Refuerza las frases difíciles sin gastar monedas.',
   },
   stats: {
     titleRu: 'Аналитика прогресса — для Plus',
@@ -496,11 +496,11 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
   mastery: {
     title: { 'pt-BR': 'Repita lições sem limites', vi: 'Ôn lại bài học không giới hạn', id: 'Ulang pelajaran tanpa batas', tr: 'Dersleri sınırsız tekrar et', pl: 'Powtarzaj lekcje bez ograniczeń' },
     subtitle: {
-      'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar fragmentos, mesmo quando o preço subiria a cada repetição.',
-      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn mảnh, kể cả khi giá tăng sau mỗi lần học lại.',
+      'pt-BR': 'Com Plus, qualquer lição concluída fica aberta para repetir sem gastar moedas, mesmo quando o preço subiria a cada repetição.',
+      vi: 'Với Plus, mọi bài đã hoàn thành đều có thể ôn lại mà không tốn xu, kể cả khi giá tăng sau mỗi lần học lại.',
       id: 'Dengan Plus, semua pelajaran selesai bisa diulang tanpa memakai fragmen, bahkan saat harga naik di tiap pengulangan.',
-      tr: 'Plus ile tamamlanan her dersi parça harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
-      pl: 'Z Plus każda ukończona lekcja jest otwarta do powtórki bez odłamków, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
+      tr: 'Plus ile tamamlanan her dersi jeton harcamadan tekrar edersin, ücretsiz modda fiyat her tekrar artsa bile.',
+      pl: 'Z Plus każda ukończona lekcja jest otwarta do powtórki bez monet, nawet gdy w trybie free cena rosłaby po każdym przejściu.',
     },
   },
   stats: {
@@ -1013,7 +1013,7 @@ export const CONTEXT_BENEFITS: Partial<Record<PremiumContext, ({ ru: string; uk:
   ],
   mastery: [
     { ru: 'Безлимит повторов любого урока', uk: 'Безліміт повторів будь-якого уроку', es: 'Repeticiones ilimitadas de lecciones', 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
-    { ru: 'Не тратишь осколки на перепрохождения уроков', uk: 'Не витрачаєш уламки на перепроходження уроків', es: 'No gastas fragmentos al repetir lecciones', 'pt-BR': 'Você não gasta fragmentos ao repetir lições', vi: 'Không tốn mảnh khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında parça harcamazsın', pl: 'Nie wydajesz odłamków na powtórki lekcji' },
+    { ru: 'Не тратишь монеты на перепрохождения уроков', uk: 'Не витрачаєш монети на перепроходження уроків', es: 'No gastas monedas al repetir lecciones', 'pt-BR': 'Você não gasta moedas ao repetir lições', vi: 'Không tốn xu khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında jeton harcamazsın', pl: 'Nie wydajesz monet na powtórki lekcji' },
     { ru: 'Тренируй до идеального результата без давления', uk: 'Тренуй до ідеального результату без тиску', es: 'Entrena hasta perfeccionar sin presión', 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [
@@ -1210,7 +1210,7 @@ export const CONTEXT_BENEFITS_PLANNED: Partial<Record<PremiumContext, PremiumPla
   ],
   mastery: [
     { 'pt-BR': 'Repetições ilimitadas de qualquer lição', vi: 'Ôn lại bất kỳ bài nào không giới hạn', id: 'Pengulangan pelajaran apa pun tanpa batas', tr: 'Her ders için sınırsız tekrar', pl: 'Powtórki dowolnej lekcji bez limitu' },
-    { 'pt-BR': 'Você não gasta fragmentos ao repetir lições', vi: 'Không tốn mảnh khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında parça harcamazsın', pl: 'Nie wydajesz odłamków na powtórki lekcji' },
+    { 'pt-BR': 'Você não gasta moedas ao repetir lições', vi: 'Không tốn xu khi học lại bài', id: 'Tidak memakai fragmen saat mengulang pelajaran', tr: 'Ders tekrarında jeton harcamazsın', pl: 'Nie wydajesz monet na powtórki lekcji' },
     { 'pt-BR': 'Treine até o resultado ideal sem pressão', vi: 'Luyện đến kết quả tốt nhất không áp lực', id: 'Latih sampai hasil ideal tanpa tekanan', tr: 'Baskı olmadan ideal sonuca kadar çalış', pl: 'Trenuj do idealnego wyniku bez presji' },
   ],
   stats: [

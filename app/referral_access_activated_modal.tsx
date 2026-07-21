@@ -148,8 +148,8 @@ export function ReferralAccessActivatedModal({
   const D = grantedDays;
   const subtitleRu =
     friendsCount === 1
-      ? `Друг выполнил условие: установил приложение, ввёл ваш код и прошёл один урок полностью. Вы получили свои ${D} ${pluralDaysRu(D)}.`
-      : `${friendsCount} ${pluralFriendsRu(friendsCount)} выполнили условие. Вы получили свои дни полного доступа.`;
+      ? `Друг выполнил условие: установил приложение, ввёл твой код и прошёл один урок полностью. Ты получил(а) свои ${D} ${pluralDaysRu(D)}.`
+      : `${friendsCount} ${pluralFriendsRu(friendsCount)} выполнили условие. Ты получил(а) свои дни полного доступа.`;
   const subtitleEs =
     friendsCount === 1
       ? `Tu amigo cumplió la condición: instaló la app, introdujo tu código y completó una lección. Recibiste tus ${D} días.`
@@ -272,7 +272,7 @@ export function ReferralAccessActivatedModal({
             </Text>
           )}
 
-          {/* Кнопка «Отлично» */}
+          {/* Кнопка «Готово» */}
           <Pressable
             style={({ pressed }) => [
               styles.button,

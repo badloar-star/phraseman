@@ -23,9 +23,12 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   business: '#0095F6',
   businessLight: '#0095F6',
   midnight: '#8FA0FF',
-  ember: '#FFA245',
+  ember: '#FFCC55',
   aurora: '#3DE8A6',
-  volt: '#D6FF3D',
+  volt: '#C6FF34',
+  candyBlue: '#B2D5E5',
+  indigo: '#C8C3FF',
+  vanilla: '#3D4E8F',
 };
 
 // Statistics deliberately uses a quieter page field than the shared app backdrop so
@@ -41,6 +44,9 @@ const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   ember: '#362418',
   aurora: '#162B2B',
   volt: '#20250E',
+  candyBlue: '#1C323B',
+  indigo: '#2A2952',
+  vanilla: '#F4EBD4',
 };
 
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {

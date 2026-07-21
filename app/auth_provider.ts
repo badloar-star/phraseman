@@ -73,7 +73,10 @@ import {
   loadShardsFromCloud,
   preparePendingShardDeltasForAccountSwitch,
 } from './shards_system';
-import { readShardDeltaQueue } from './shards_delta_queue';
+import {
+  hasQuarantinedShardDeltaQueue,
+  readShardDeltaQueue,
+} from './shards_delta_queue';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
@@ -1549,6 +1552,7 @@ export type SignOutSwitchResult =
   | { ok: true; synced: boolean }
   | { ok: false; reason: 'sync_failed' }
   | { ok: false; reason: 'pending_shard_spend' }
+  | { ok: false; reason: 'shard_queue_quarantined' }
   | { ok: false; reason: 'backup_failed' | 'wipe_failed'; detail: string }
   | { ok: false; reason: 'unknown'; detail?: string };
 
@@ -1561,6 +1565,16 @@ export type SignOutSwitchOptions = {
    * «сменить без сохранения» — тогда пишем аварийную копию и продолжаем.
    */
   allowWipeWithoutSync?: boolean;
+  /**
+   * Разрешить wipe при зависшем pending-списании осколков / карантинной очереди.
+   * По умолчанию false: незавершённое списание блокирует смену аккаунта НАВСЕГДА,
+   * если сервер его перманентно отклоняет (permission-denied / failed-precondition)
+   * или до бэкенда нет доступа — юзер застревает в тупике «подключись к интернету».
+   * true передаётся только после явного подтверждения «сменить без сохранения»:
+   * перед wipe пишем аварийную копию (она включает очередь осколков), чтобы
+   * поддержка могла восстановить баланс вручную.
+   */
+  allowPendingShardSpendDiscard?: boolean;
 };
 
 export async function signOutAndWipeForAccountSwitch(
@@ -1605,9 +1619,33 @@ export async function signOutAndWipeForAccountSwitch(
     if (shardPreflight.stale || shardPreflight.ownerStableId !== switchOwnerStableId) {
       return { ok: false, reason: 'sync_failed' };
     }
-    if (shardPreflight.pendingSpend > 0) {
+    const discardPendingShardSpend = options?.allowPendingShardSpendDiscard === true;
+    if ((await hasQuarantinedShardDeltaQueue(switchOwnerStableId)) && !discardPendingShardSpend) {
+      logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'shard_queue_quarantined' });
+      return { ok: false, reason: 'shard_queue_quarantined' };
+    }
+    if (shardPreflight.pendingSpend > 0 && !discardPendingShardSpend) {
       logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'pending_shard_spend' });
       return { ok: false, reason: 'pending_shard_spend' };
+    }
+    if (discardPendingShardSpend) {
+      // Пользователь явно подтвердил «сменить без сохранения» на алерте про
+      // зависшее списание/карантин: до облака очередь доехать не может, но и
+      // терять её нельзя — пишем аварийную копию (включает очередь осколков),
+      // чтобы поддержка могла восстановить баланс вручную.
+      try {
+        const backedUp = await saveAccountSwitchEmergencyBackup(
+          'pending_shard_spend_discard_before_account_switch',
+          switchOwnerStableId,
+        );
+        if (!backedUp) throw new Error('account_switch_backup_unavailable');
+      } catch (e: any) {
+        const detail = String(e?.message ?? e).slice(0, 80);
+        if (__DEV__) console.warn('[auth_provider] account switch shard-spend discard backup failed', e);
+        logAuthEvent('auth_signout_wipe_failed', { stage: 'backup', error: detail });
+        return { ok: false, reason: 'backup_failed', detail };
+      }
+      logAuthEvent('auth_signout_wipe_shard_spend_discard', { stage: 'preflight' });
     }
     await forceSyncShardsToCloud().catch(() => {});
     const synced = await forceSyncToCloud();
@@ -1635,15 +1673,22 @@ export async function signOutAndWipeForAccountSwitch(
     const transitionFailure: {
       backupDetail: string | null;
       pendingShardSpend: boolean;
+      quarantinedShardQueue: boolean;
     } = {
       backupDetail: null,
       pendingShardSpend: false,
+      quarantinedShardQueue: false,
     };
     const transitionReady = await withAccountTransitionLock(async (): Promise<boolean> => {
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       const finalShardQueue = await readShardDeltaQueue(switchOwnerStableId);
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
-      if (finalShardQueue.some((entry) => entry.type === 'spend')) {
+      if (!discardPendingShardSpend && (await hasQuarantinedShardDeltaQueue(switchOwnerStableId))) {
+        transitionFailure.quarantinedShardQueue = true;
+        return false;
+      }
+      if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
+      if (!discardPendingShardSpend && finalShardQueue.some((entry) => entry.type === 'spend')) {
         transitionFailure.pendingShardSpend = true;
         return false;
       }
@@ -1664,6 +1709,12 @@ export async function signOutAndWipeForAccountSwitch(
       return true;
     });
     if (!transitionReady) {
+      if (transitionFailure.quarantinedShardQueue) {
+        logAuthEvent('auth_signout_wipe_sync_failed_aborted', {
+          stage: 'shard_queue_quarantined_final',
+        });
+        return { ok: false, reason: 'shard_queue_quarantined' };
+      }
       if (transitionFailure.pendingShardSpend) {
         logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'pending_shard_spend_final' });
         return { ok: false, reason: 'pending_shard_spend' };

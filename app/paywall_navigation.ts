@@ -2,7 +2,8 @@ import { InteractionManager } from 'react-native';
 
 import { refreshPaywallAbConfigInBackground, resolvePaywallAbVariantSync, type PaywallAbVariant } from './paywall_variant';
 
-type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c';
+type PaywallRoute = '/paywall_a' | '/paywall_b' | '/paywall_c'
+  | '/paywall_d' | '/paywall_e' | '/paywall_f' | '/paywall_g';
 
 type PaywallRouter = {
   push: (href: any) => void;
@@ -17,6 +18,10 @@ const PAYWALL_ROUTES: Record<PaywallAbVariant, PaywallRoute> = {
   A: '/paywall_a',
   B: '/paywall_b',
   C: '/paywall_c',
+  D: '/paywall_d',
+  E: '/paywall_e',
+  F: '/paywall_f',
+  G: '/paywall_g',
 };
 
 function normalizePaywallParams(params: PaywallNavigationParams = {}): Record<string, string | string[]> {

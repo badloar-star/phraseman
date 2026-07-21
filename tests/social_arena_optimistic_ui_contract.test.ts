@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.join(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
 
-describe('social and arena optimistic UI contracts', () => {
+describe('social optimistic UI contracts', () => {
   it('keeps friend request accept/decline/delete optimistic with rollback paths', () => {
     const friends = read('app/(tabs)/friends.tsx');
     expect(friends).toContain('const handleAcceptRequest = useCallback');
@@ -15,24 +15,16 @@ describe('social and arena optimistic UI contracts', () => {
     expect(friends).toContain('[previousFriend, ...prev]');
   });
 
-  it('keeps profile friend actions and arena invite/rematch optimistic', () => {
+  it('keeps profile friend actions optimistic with rollback paths', () => {
+    // Arena lobby/results were removed with the Arena decommission; profile friend
+    // actions remain the live optimistic social surface.
     const profile = read('components/PlayerProfileModal.tsx');
     expect(profile).toContain('friendRequestSentUids');
     expect(profile).toContain('next.delete(targetUid)');
     expect(profile).toContain('next.add(removedUid)');
-
-    const lobby = read('app/arena_lobby.tsx');
-    expect(lobby).toContain('arenaInvitedFriendUids');
-    expect(lobby).toContain('next.delete(friendStableUid)');
-
-    const results = read('app/arena_results.tsx');
-    expect(results).toContain('optimisticRematchOffer');
-    expect(results).toContain("status: 'pending'");
-    expect(results).toContain("status: 'accepted'");
-    expect(results).toContain("status: 'declined'");
   });
 
-  it('keeps modal/settings/profile/avatar optimistic actions rollback-aware', () => {
+  it('keeps modal/settings/profile/avatar actions rollback-aware or journal-safe', () => {
     const broadcast = read('components/GlobalBroadcastModal.tsx');
     expect(broadcast).toContain('onClose();');
     expect(broadcast).toContain('claimAndDismissGlobalBroadcastModal(payload, studyTarget).then');
@@ -51,10 +43,17 @@ describe('social and arena optimistic UI contracts', () => {
     expect(profileCard).toContain('const result = await upgradeProfileCardLevel();');
     expect(profileCard).toContain('if (result.ok === true)');
 
+    // Avatar/aura purchase is NOT optimistic by design: it runs through a persisted
+    // purchase intent (prepare -> idempotent shard charge -> grant ownership -> apply)
+    // with crash recovery on mount. Success UI appears only after the real outcome;
+    // failure surfaces an error toast (or a shards-shop redirect when insufficient),
+    // so no rollback of a faked applied state is needed or allowed.
     const avatar = read('app/avatar_select.tsx');
-    expect(avatar).toContain('let appliedOptimistic = false');
-    expect(avatar).toContain('setActiveAuraId(previousAuraId)');
-    expect(avatar).toContain('setActiveAvatar(previousAvatar)');
+    expect(avatar).toContain('resumePersistedCustomizationPurchase');
+    expect(avatar).toContain('prepareCustomizationPurchase');
+    expect(avatar).toContain('resumeCustomizationPurchase');
+    expect(avatar).toContain("showToast('error', copy.purchaseError)");
+    expect(avatar).toContain("router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any)");
 
     const notifications = read('app/settings_notifications.tsx');
     expect(notifications).toContain('const previous = s');
@@ -63,6 +62,7 @@ describe('social and arena optimistic UI contracts', () => {
 
     const communityCreate = read('app/community_pack_create.tsx');
     expect(communityCreate).toContain('Отправляем набор на проверку...');
-    expect(communityCreate).toContain("if (updatePackId) {\n          safeRouterBack(router, '/flashcards' as any);");
+    expect(communityCreate).toContain('if (updatePackId) {');
+    expect(communityCreate).toContain("safeRouterBack(router, '/flashcards' as any);");
   });
 });

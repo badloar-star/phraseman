@@ -9,6 +9,7 @@ import {
   Animated,
   Easing,
   Platform,
+  Pressable,
   InteractionManager,
 } from 'react-native';
 import { LinearGradient } from './SafeLinearGradient';
@@ -19,7 +20,7 @@ import { useEnergy, useEnergyCountdown } from './EnergyContext';
 import { usePremium } from './PremiumContext';
 import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
-import { hapticTap, hapticWarning } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
 import { incrementEnergyZeroCount } from '../app/paywall_personalization';
@@ -121,6 +122,30 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#FFFFFF',
     subtitleColor: '#BFC6A3',
   },
+  candyBlue: {
+    glow: '#B2D5E5',
+    borderColor: 'rgba(178,213,229,0.34)',
+    surfaceColors: ['rgba(18,34,41,0.90)', 'rgba(11,22,27,0.94)', 'rgba(1,2,3,0.96)'],
+    cardGlowColors: ['rgba(178,213,229,0.22)', 'rgba(178,213,229,0.08)', 'transparent'],
+    titleColor: '#EAF4F8',
+    subtitleColor: '#9DB9C4',
+  },
+  indigo: {
+    glow: '#C8C3FF',
+    borderColor: 'rgba(200,195,255,0.34)',
+    surfaceColors: ['rgba(28,27,46,0.90)', 'rgba(20,19,31,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(200,195,255,0.22)', 'rgba(200,195,255,0.08)', 'transparent'],
+    titleColor: '#F1EFFF',
+    subtitleColor: '#B7B3D9',
+  },
+  vanilla: {
+    glow: '#3D4E8F',
+    borderColor: 'rgba(42,33,24,0.10)',
+    surfaceColors: ['rgba(255,253,244,0.98)', 'rgba(250,244,228,0.96)', 'rgba(244,235,212,0.98)'],
+    cardGlowColors: ['rgba(61,78,143,0.10)', 'rgba(61,78,143,0.05)', 'transparent'],
+    titleColor: '#2A2118',
+    subtitleColor: '#9A8D76',
+  },
 };
 
 const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;
@@ -170,7 +195,7 @@ interface Props {
   visible: boolean;
   onClose: () => void;
   /**
-   * Если задано — основная кнопка («Понятно» / «На главную») вызывает это.
+   * Если задано — текстовая кнопка «Позже» вызывает это.
    * Иначе как раньше: `onBackHome ?? onClose`.
    * Нужно, когда `onClose` только закрывает окно (успех покупки за осколки), а «Понятно»
    * должно выполнить другое действие (например выход с урока).
@@ -300,12 +325,11 @@ function NoEnergyModal({
     intro.start();
     running.push(intro);
 
-    const pulse = Animated.loop(
-      Animated.sequence([
-        Animated.timing(haloPulse, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-        Animated.timing(haloPulse, { toValue: 0, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-      ]),
-    );
+    // Один мягкий цикл вместо бесконечного pulse молнии.
+    const pulse = Animated.sequence([
+      Animated.timing(haloPulse, { toValue: 1, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+      Animated.timing(haloPulse, { toValue: 0, duration: 1100, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+    ]);
     pulse.start();
     running.push(pulse);
 
@@ -321,7 +345,6 @@ function NoEnergyModal({
     }
     if (wasOpenRef.current) return;
     wasOpenRef.current = true;
-    hapticWarning();
     // «Нет энергии» в проде = пользователь уже увидел систему; не дублировать отдельным тутором на главной
     void AsyncStorage.setItem('energy_onboarding_shown', '1');
     emitAppEvent('bug_hunt_eligible_check');
@@ -381,6 +404,15 @@ function NoEnergyModal({
             style={StyleSheet.absoluteFill}
           />
         </View>
+
+        {/* Тап по фону закрывает модалку */}
+        <Pressable
+          style={StyleSheet.absoluteFill}
+          onPress={() => {
+            hapticTap();
+            onClose();
+          }}
+        />
 
         <Animated.View
           style={[
@@ -493,28 +525,17 @@ function NoEnergyModal({
             activeOpacity={0.7}
             style={{ paddingVertical: 10, alignItems: 'center', marginTop: 4 }}
           >
-            <Text style={{ fontSize: f.body, color: t.textGhost, textDecorationLine: 'underline' }}>
-              {onBackHome
-                ? triLang(lang, {
-                    ru: 'На главную',
-                    uk: 'На головну',
-                    es: 'Volver al inicio',
-                    'pt-BR': 'Voltar ao início',
-                    vi: 'Về trang chính',
-                    id: 'Kembali ke beranda',
-                    tr: 'Ana sayfaya dön',
-                    pl: 'Na stronę główną',
-                  })
-                : triLang(lang, {
-                    ru: 'Закрыть',
-                    uk: 'Закрити',
-                    es: 'Cerrar',
-                    'pt-BR': 'Fechar',
-                    vi: 'Đóng',
-                    id: 'Tutup',
-                    tr: 'Kapat',
-                    pl: 'Rozumiem',
-                  })}
+            <Text style={{ fontSize: f.body, color: t.textMuted }}>
+              {triLang(lang, {
+                ru: 'Позже',
+                uk: 'Пізніше',
+                es: 'Más tarde',
+                'pt-BR': 'Mais tarde',
+                vi: 'Để sau',
+                id: 'Nanti',
+                tr: 'Daha sonra',
+                pl: 'Później',
+              })}
             </Text>
           </TouchableOpacity>
         </Animated.View>

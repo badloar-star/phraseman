@@ -61,15 +61,16 @@ describe('Admin v2 trustworthy analytics contract', () => {
 
     expect(capabilities).toContain("'today', '/today'");
     expect(capabilities).toContain("'growth', '/growth'");
-    expect(capabilities).toContain("'money', '/money'");
+    expect(capabilities).toContain("'subscriptions', '/subscriptions'");
+    expect(capabilities).not.toContain("'/money'");
     expect(capabilities).toContain("'learning', '/learning'");
     expect(core).toContain("today: 'overview'");
     expect(core).toContain("growth: 'product'");
-    expect(core).toContain("money: 'subscriptions'");
+    expect(core).toContain("subscriptions: 'subscriptions'");
     expect(core).toContain("learning: 'exports'");
     expect(core).toContain("['today', 'Сегодня']");
     expect(core).toContain("['growth', 'Рост']");
-    expect(core).toContain("['money', 'Деньги']");
+    expect(core).toContain("['subscriptions', 'Подписки']");
     expect(core).toContain("['learning', 'Обучение']");
     expect(view).toContain("reportShell('overview'");
     expect(view).toContain("reportShell('product'");

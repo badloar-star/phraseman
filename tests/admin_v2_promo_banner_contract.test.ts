@@ -42,13 +42,13 @@ describe('Admin v2 promo banner workflow', () => {
 
   test('requires campaign safety fields and keeps other remote config forms locked during preview', () => {
     expect(core).toContain('Укажите причину изменения промо-баннера.');
-    expect(core).toContain('Campaign ID промо-баннера');
+    expect(core).toContain('Код кампании промо-баннера');
     expect(core).toContain('Ссылка промо-баннера должна начинаться с https:// или phraseman://');
     expect(core).toContain('Агрегированный счётчик закрытий пока недоступен');
     expect(core).toContain("['release-maintenance', 'partial-restore-remote-config', 'premium-access', 'promo-banner']");
     expect(core).toContain("['partial-restore-remote-config', 'premium-access', 'promo-banner']");
-    expect(core).toContain('Promo banner audience:');
-    expect(core).toContain('Promo banner stop condition:');
+    expect(core).toContain('Аудитория промо-баннера:');
+    expect(core).toContain('Условие остановки:');
   });
 
   test('keeps local calendar dates stable and provides accessible button guidance', () => {
@@ -56,6 +56,6 @@ describe('Admin v2 promo banner workflow', () => {
     expect(core).toContain("`${date}T23:59:59`");
     expect(core).toContain('title="Показать точные изменения баннера до публикации"');
     expect(core).toContain('title="Подготовить безопасное выключение баннера для всех пользователей"');
-    expect(core).toContain('title="Отменить предпросмотр без изменения production"');
+    expect(core).toContain('title="Отменить предпросмотр без изменения рабочего приложения"');
   });
 });

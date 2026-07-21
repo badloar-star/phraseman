@@ -26,7 +26,6 @@ import { processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
-import { getLoyaltyGiftState } from '../app/loyalty_gift';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
 import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
@@ -198,18 +197,13 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const introState = noPremiumTester
       ? { active: false, endsAt: null }
       : await getIntroFullAccessState();
-    // Подарок лояльности (72ч для существующих free-юзеров) — производный доступ,
-    // как и intro; так же гасится тестерским «Снять премиум».
-    const loyaltyState = noPremiumTester
-      ? { active: false }
-      : await getLoyaltyGiftState().catch(() => ({ active: false }));
     const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
     const effectiveVip = !noPremiumTester && vip;
     setIsPremium(effectivePremium);
     setIsVip(effectiveVip);
     setIsIntroFullAccess(introState.active);
     setIntroFullAccessEndsAt(introState.endsAt);
-    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || loyaltyState.active);
+    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active);
     if (effectivePremium) {
       setTrialEligible(false);
     } else {
@@ -523,14 +517,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, []);
 
-  // Подарок лояльности активирован/откатан — мгновенно пересчитываем доступ.
-  useEffect(() => {
-    const sub = onAppEvent('loyalty_gift_changed', () => {
-      invalidatePremiumCache();
-      void reload();
-    });
-    return () => sub.remove();
-  }, [reload]);
 
   // Instant update on cancellation/expiry / тестер «Снять премиум»
   useEffect(() => {

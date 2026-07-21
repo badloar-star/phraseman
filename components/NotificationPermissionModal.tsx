@@ -98,24 +98,9 @@ function NotificationPermissionModal({
             ))}
           </View>
 
-          <View style={{ flexDirection: 'row', gap: 10, marginTop: 20 }}>
-            <TouchableOpacity onPress={onCancel} activeOpacity={0.8} style={{ flex: 1, borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', backgroundColor: isCompassTheme ? COMPASS_RICH.charcoal : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
-              {isCompassTheme && <CompassDepthSurface radius={9} quiet />}
-              <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
-                {cancelLabel ??
-                  triLang(lang, {
-                    ru: 'Не сейчас',
-                    uk: 'Не зараз',
-                    es: 'Ahora no',
-                    'pt-BR': 'Agora não',
-                    vi: 'Không phải bây giờ',
-                    id: 'Nanti saja',
-                    tr: 'Şimdi değil',
-                    pl: 'Nie teraz',
-                  })}
-              </Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ flex: 1, backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
+          {/* Единый стандарт: primary на всю ширину, под ней — центрированная текстовая «Позже». */}
+          <View style={{ marginTop: 20 }}>
+            <TouchableOpacity onPress={onConfirm} activeOpacity={0.85} style={{ width: '100%', backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : t.accent, borderRadius: isCompassTheme ? 9 : 12, paddingVertical: 12, alignItems: 'center', borderWidth: 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden', ...(isCompassTheme ? compassShadow(1) : null) }}>
               {isCompassTheme && <CompassDepthSurface radius={9} cream />}
               <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontWeight: '800', fontSize: f.body }}>
                 {confirmLabel ??
@@ -128,6 +113,21 @@ function NotificationPermissionModal({
                     id: 'Aktifkan',
                     tr: 'Aç',
                     pl: 'Włącz',
+                  })}
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={onCancel} activeOpacity={0.7} style={{ alignSelf: 'center', paddingVertical: 10, paddingHorizontal: 20, marginTop: 4, minHeight: 40, justifyContent: 'center' }}>
+              <Text style={{ color: t.textMuted, fontWeight: '600', fontSize: f.body, textAlign: 'center' }}>
+                {cancelLabel ??
+                  triLang(lang, {
+                    ru: 'Позже',
+                    uk: 'Пізніше',
+                    es: 'Más tarde',
+                    'pt-BR': 'Mais tarde',
+                    vi: 'Để sau',
+                    id: 'Nanti saja',
+                    tr: 'Daha sonra',
+                    pl: 'Później',
                   })}
               </Text>
             </TouchableOpacity>

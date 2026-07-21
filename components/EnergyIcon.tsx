@@ -14,6 +14,10 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   ember: require('../assets/images/energy/energy-ember.webp'),
   aurora: require('../assets/images/energy/energy-aurora.webp'),
   volt: require('../assets/images/energy/energy-volt.webp'),
+  // Новые темы переиспользуют ассет minimalDark (graphite), без новых файлов.
+  candyBlue: require('../assets/images/energy/energy-graphite.webp'),
+  indigo: require('../assets/images/energy/energy-graphite.webp'),
+  vanilla: require('../assets/images/energy/energy-graphite.webp'),
 };
 
 interface EnergyIconProps {

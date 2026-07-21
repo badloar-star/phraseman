@@ -23,6 +23,9 @@ const VERTICAL_SCRIMS: Record<ThemeMode, ThreeStop> = {
   ember: ['rgba(1,1,1,0.40)', 'rgba(1,1,1,0.22)', 'rgba(1,1,1,0.66)'],
   aurora: ['rgba(1,2,1,0.40)', 'rgba(1,2,1,0.22)', 'rgba(1,2,1,0.66)'],
   volt: ['rgba(1,2,0,0.40)', 'rgba(1,2,0,0.22)', 'rgba(1,2,0,0.66)'],
+  candyBlue: ['rgba(2,6,8,0.40)', 'rgba(2,6,8,0.22)', 'rgba(2,6,8,0.66)'],
+  indigo: ['rgba(3,3,6,0.40)', 'rgba(3,3,6,0.22)', 'rgba(3,3,6,0.66)'],
+  vanilla: ['rgba(250,244,228,0.42)', 'rgba(250,244,228,0.22)', 'rgba(243,233,210,0.62)'],
 };
 
 const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
@@ -36,6 +39,9 @@ const EDGE_SCRIMS: Record<ThemeMode, FourStop> = {
   ember: ['rgba(1,1,1,0.46)', 'rgba(1,1,1,0.10)', 'rgba(1,1,1,0.08)', 'rgba(1,1,1,0.42)'],
   aurora: ['rgba(1,2,1,0.46)', 'rgba(1,2,1,0.10)', 'rgba(1,2,1,0.08)', 'rgba(1,2,1,0.42)'],
   volt: ['rgba(1,2,0,0.46)', 'rgba(1,2,0,0.10)', 'rgba(1,2,0,0.08)', 'rgba(1,2,0,0.42)'],
+  candyBlue: ['rgba(2,6,8,0.46)', 'rgba(178,213,229,0.04)', 'rgba(178,213,229,0.03)', 'rgba(2,6,8,0.42)'],
+  indigo: ['rgba(3,3,6,0.46)', 'rgba(200,195,255,0.04)', 'rgba(200,195,255,0.03)', 'rgba(3,3,6,0.42)'],
+  vanilla: ['rgba(250,244,228,0.46)', 'rgba(61,78,143,0.03)', 'rgba(61,78,143,0.02)', 'rgba(243,233,210,0.40)'],
 };
 
 function AppArtBackdrop({ name }: { name: AppArtBackdropName }) {

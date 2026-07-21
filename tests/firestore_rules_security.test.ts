@@ -519,6 +519,61 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rewardClaimsBlock).not.toBeNull();
     expect(rewardClaimsBlock![0]).toContain('allow read, create: if userDocOwnerMatchesAuth(userId);');
   });
+
+  test('shard earn daily counters are server-only', () => {
+    const counterBlock = rules.match(
+      /match \/shard_earn_daily_counters\/\{dayKey\} \{[\s\S]*?\n      \}/,
+    );
+    expect(counterBlock).not.toBeNull();
+    expect(counterBlock![0]).toContain('allow read, write: if false;');
+  });
+
+  test('legacy admin catch-all cannot reopen internal shard subcollections', () => {
+    const catchAllStart = rules.indexOf('match /{collection}/{document=**} {');
+    expect(catchAllStart).toBeGreaterThan(-1);
+    const catchAllBlock = rules.slice(catchAllStart);
+    expect(catchAllBlock).toContain("collection != 'users'");
+
+    const usersAdminCompatibilityBlock = rules.match(
+      /match \/users\/\{userId\}\/\{subcollection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/,
+    );
+    expect(usersAdminCompatibilityBlock).not.toBeNull();
+    expect(usersAdminCompatibilityBlock![0]).toContain("subcollection != 'shard_operation_receipts'");
+    expect(usersAdminCompatibilityBlock![0]).toContain("subcollection != 'shard_earn_daily_counters'");
+  });
+});
+
+describe('firestore.rules coin exchange (coins → stars, 2026-07-20 plan §6)', () => {
+  const rules = readFileSync(rulesPath, 'utf8');
+
+  test('exchange state, history and trade ledger are server-only', () => {
+    for (const name of ['economy', 'economy_exchange_history', 'coin_exchange_trades', 'coin_migrations']) {
+      const re = new RegExp('match /' + name + '/\\{document=\\*\\*\\} \\{[\\s\\S]*?\\n    \\}');
+      const block = rules.match(re);
+      expect(block).not.toBeNull();
+      expect(block![0]).toContain('allow read, write: if false;');
+      const catchAllStart = rules.indexOf('match /{collection}/{document=**} {');
+      expect(rules.slice(catchAllStart)).toContain(`collection != '${name}'`);
+    }
+  });
+
+  test('v2 star journal subcollection is server-only', () => {
+    const block = rules.match(/match \/v2_star_journal\/\{entryId\} \{[\s\S]*?\n      \}/);
+    expect(block).not.toBeNull();
+    expect(block![0]).toContain('allow read, write: if false;');
+  });
+
+  test('star wallet and coin migration fields are covered by both shard write guards', () => {
+    const guardBodies = rules.match(/function (?:hasNoShardWrites|newDocHasNoShardWrites)\(\) \{[\s\S]*?\n    \}/g);
+    expect(guardBodies).not.toBeNull();
+    expect(guardBodies!.length).toBeGreaterThanOrEqual(2);
+    for (const body of guardBodies!) {
+      expect(body).toContain("'v2_access_stars'");
+      expect(body).toContain("'v2_access_stars_updated_at_ms'");
+      expect(body).toContain("'coins_migration_v1'");
+      expect(body).toContain("'coins_migration_v1_record'");
+    }
+  });
 });
 
 describe('firestore.rules Explain like I\'m five (Phase 5)', () => {

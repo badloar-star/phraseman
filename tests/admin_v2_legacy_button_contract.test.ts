@@ -1,32 +1,186 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import { spawnSync } from 'node:child_process';
+import { pathToFileURL } from 'node:url';
+import postcss, { type AtRule } from 'postcss';
 
-const ROOT = path.join(__dirname, '..');
-const read = (file: string) => fs.readFileSync(path.join(ROOT, file), 'utf8');
+const root = path.resolve(__dirname, '..');
+const read = (relativePath: string): string => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
-describe('Admin v2 legacy access button', () => {
-  const shell = read('admin/v2/index.html');
-  const styles = read('admin/v2/styles/admin.css');
+type CapabilitySnapshot = {
+  registry: { id: string; route: string; nativeRoute: string; label: string }[];
+  retiredCapabilityIds: string[];
+  resolutions: { hash: string; resolved: boolean; route: string; capabilityId: string }[];
+};
 
-  it('keeps the preserved legacy admin as the final navigation escape hatch', () => {
-    const footerIndex = shell.indexOf('<div class="sidebar-footer">');
-    const legacyLinkIndex = shell.indexOf('class="legacy-admin-link"', footerIndex);
-    const topbarIndex = shell.indexOf('<div class="topbar-actions">');
+function inspectCapabilityModule(hashes: string[]): CapabilitySnapshot {
+  const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
+  const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify({ registry: m.ADMIN_CAPABILITY_REGISTRY, retiredCapabilityIds: m.RETIRED_CAPABILITY_IDS, resolutions: ${JSON.stringify(hashes)}.map((hash) => ({ hash, ...m.resolveCapabilityHash(hash) })) })))`;
+  const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
+  expect(run.status).toBe(0);
+  return JSON.parse(run.stdout);
+}
 
-    expect(footerIndex).toBeGreaterThanOrEqual(0);
-    expect(legacyLinkIndex).toBeGreaterThan(footerIndex);
-    expect(topbarIndex).toBeGreaterThan(legacyLinkIndex);
-    expect(shell).toContain('href="/legacy.html"');
-    expect(shell).toContain('target="_blank"');
-    expect(shell).toContain('rel="noopener"');
-    expect(shell).toContain('<span class="legacy-admin-link-label">Старая админка</span>');
-    expect(shell).toContain('aria-label="Открыть старую админку в новой вкладке"');
-    expect(shell).toContain('data-tooltip="Открыть сохранённые рабочие инструменты старой админки в новой вкладке"');
+describe('Admin v2 native-only boundary', () => {
+  const canonicalRoutes = new Set([
+    'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
+    'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns',
+    'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center',
+  ]);
+  const analyticsBookmarks = new Set(['#today', '#growth', '#subscriptions', '#learning']);
+  const retiredCapabilityIds = [
+    'daily-phrases', 'compass', 'mod-queue', 'audit', 'audit-log',
+    'ops-log', 'archive', 'changelog-0608', 'arena-ranks', 'arena-live', 'arena-bets',
+    'arena-rooms', 'arena-question-pool', 'arena-generator', 'arena-shadow', 'french-quizzes',
+  ] as const;
+  const userFacingSourcePaths = [
+    'admin/v2/index.html',
+    'admin/v2/migration.html',
+    ...fs.readdirSync(path.join(root, 'admin/v2/scripts'), { recursive: true })
+      .map(String)
+      .filter((relativePath) => relativePath.endsWith('.js'))
+      .map((relativePath) => `admin/v2/scripts/${relativePath.replaceAll('\\', '/')}`),
+  ];
+
+  function expectCanonicalEmittedHashes(hashes: string[]) {
+    const uniqueHashes = [...new Set(hashes)];
+    const { resolutions } = inspectCapabilityModule(uniqueHashes);
+    for (const resolution of resolutions) {
+      const decodedHash = decodeURIComponent(resolution.hash).replace(/^#/, '');
+      const emittedSegments = decodedHash.split(':');
+      for (const retiredId of retiredCapabilityIds) expect(emittedSegments).not.toContain(retiredId);
+      expect(emittedSegments).toHaveLength(1);
+      expect(canonicalRoutes).toContain(resolution.route);
+      expect(resolution.capabilityId).toBe('');
+      if (analyticsBookmarks.has(resolution.hash)) {
+        expect(resolution).toMatchObject({ resolved: true, route: 'analytics' });
+      }
+    }
+  }
+
+  test('contains no user-facing old-admin escape link or retired label', () => {
+    const userFacingSources = userFacingSourcePaths.map((sourcePath) => read(sourcePath)).join('\n');
+
+    expect(userFacingSources).not.toMatch(/href\s*=\s*["'](?:[^"']*admin\/index\.html|\/legacy\.html)/);
+    expect(userFacingSources).not.toContain('href="./migration.html"');
+    for (const retiredLabel of [
+      'Старая админка',
+      'Открыть старую админку',
+      'Открыть прежний модуль',
+      'Старый бюджет',
+      'Старый интерфейс',
+      'Старая версия',
+      'Legacy fallback:',
+    ]) {
+      expect(userFacingSources).not.toContain(retiredLabel);
+    }
   });
 
-  it('keeps a 44px dark-navigation control visible on narrow screens', () => {
-    expect(styles).toMatch(/\.sidebar-footer \.legacy-admin-link\s*\{[^}]*min-height:\s*44px;[^}]*background:\s*#2b2418;/s);
-    expect(styles).toContain('@media (max-width: 760px)');
-    expect(styles).toContain('.sidebar-footer .legacy-admin-link-label');
+  test('keeps the exact retired-capability denylist and fails every retired hash closed', () => {
+    const hashes = retiredCapabilityIds.flatMap((id) => [
+      `#${id}`,
+      `#overview:${id}`,
+      `#overview%3A${id}`,
+    ]);
+    const snapshot = inspectCapabilityModule(hashes);
+
+    expect(snapshot.retiredCapabilityIds).toEqual(retiredCapabilityIds);
+    expect(snapshot.resolutions).toHaveLength(retiredCapabilityIds.length * 3);
+    snapshot.resolutions.forEach((resolution) => {
+      expect(resolution).toMatchObject({ resolved: true, route: 'overview', capabilityId: '' });
+    });
+  });
+
+  test('checks single/double-quoted anchors and dynamic emitted hashes before resolving inside V2', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    const staticAnchors = userFacingSourcePaths.flatMap((sourcePath) => {
+      const source = read(sourcePath);
+      return [...source.matchAll(/<a\b[^>]*\bhref\s*=\s*(["'])(#[^"'$]+)\1[^>]*>/g)]
+        .map((match) => ({ markup: match[0], hash: match[2] }));
+    });
+    const workflows = core.slice(core.indexOf('const CONTROL_PANEL_WORKFLOWS'), core.indexOf('function renderControlPanel()'));
+    const workflowPrimaries = [...workflows.matchAll(/\bprimary:\s*'(#[^']+)'/g)].map((match) => match[1]);
+    const overviewDecisions = core.slice(core.indexOf('function renderOverviewDecisions'), core.indexOf('const CONTROL_PANEL_WORKFLOWS'));
+    const dynamicOverviewHashes = [...overviewDecisions.matchAll(/,\s*'(#[a-z0-9-]+)'\s*,\s*'[^']+'\s*,\s*'(?:danger|warning)'/g)].map((match) => match[1]);
+
+    expect(staticAnchors.length).toBeGreaterThan(0);
+    expect(workflowPrimaries.length).toBeGreaterThan(0);
+    expect(dynamicOverviewHashes.length).toBeGreaterThan(0);
+    staticAnchors.forEach(({ markup }) => expect(markup).not.toMatch(/\btarget\s*=\s*["']_blank["']/));
+    expectCanonicalEmittedHashes([
+      ...staticAnchors.map((anchor) => anchor.hash),
+      ...workflowPrimaries,
+      ...dynamicOverviewHashes,
+    ]);
+  });
+
+  test('keeps literal data routes and every global-search emitted route canonical', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    const literalDataRoutes = [...core.matchAll(/\bdata-route="([^"$]+)"/g)].map((match) => match[1]);
+    const navigationMetadata = core.slice(core.indexOf('const CANONICAL_LEFT_NAV_ITEMS'), core.indexOf('function buildVisibleNavigationSearchIndex'));
+    const metadataRoutes = [...navigationMetadata.matchAll(/\broute:\s*'([^']+)'/g)].map((match) => match[1]);
+    const sectionMetadata = core.slice(core.indexOf('export const ADMIN_SECTIONS'), core.indexOf('const PAGES'));
+    const sectionRoutes = [...sectionMetadata.matchAll(/\broute:\s*'([^']+)'/g)].map((match) => match[1]);
+    const analyticsSearchBookmarks = [...core.matchAll(/\[['"]([a-z-]+)['"],\s*['"][^'"]+['"]\]/g)]
+      .map((match) => match[1])
+      .filter((route) => ['today', 'growth', 'subscriptions', 'learning'].includes(route));
+    const { registry } = inspectCapabilityModule([]);
+    const globalSearchRoutes = [
+      ...sectionRoutes,
+      ...metadataRoutes,
+      ...registry.map((capability) => capability.nativeRoute),
+      ...analyticsSearchBookmarks,
+    ];
+
+    expect(core).toContain('data-route="${route}"');
+    expect(core).toContain('data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}"');
+    expect(sectionRoutes.length).toBeGreaterThan(0);
+    expect(metadataRoutes.length).toBeGreaterThan(0);
+    expect(registry.length).toBeGreaterThan(0);
+    expect(analyticsSearchBookmarks).toEqual(expect.arrayContaining(['today', 'growth', 'subscriptions', 'learning']));
+    expectCanonicalEmittedHashes([
+      ...literalDataRoutes.map((route) => `#${route}`),
+      ...globalSearchRoutes.map((route) => `#${route}`),
+    ]);
+  });
+
+  test('keeps retired owner labels out of user-visible Admin V2 copy', () => {
+    const core = read('admin/v2/scripts/admin-core.js');
+    expect(core).not.toMatch(/\bArena\b|Арена|Арены|Компас|\bCompass\b/);
+    expect(core).toContain("{ key: 'gate_personal_plan_premium'");
+    expect(core).toMatch(/function renderCommunity\(\)[\s\S]*?href="#report-center"[^>]*>Открыть центр репортов<\/a>/);
+  });
+
+  test('keeps the V2 shell rooted at the canonical / entry', () => {
+    const shell = read('admin/v2/index.html');
+    expect(shell).toContain('href="/styles/admin.css"');
+    expect(shell).toContain('src="/scripts/admin-router.js"');
+    expect(shell).not.toContain('="/v2/');
+  });
+
+  test('keeps the V2 stylesheet parseable after obsolete blocks are removed', () => {
+    const css = read('admin/v2/styles/admin.css');
+    expect(() => postcss.parse(css)).not.toThrow();
+  });
+
+  test('ends responsive layout with the authoritative mobile drawer cascade', () => {
+    const rootCss = postcss.parse(read('admin/v2/styles/admin.css'));
+    const responsiveRules = rootCss.nodes.filter((node): node is AtRule => node.type === 'atrule' && node.name === 'media');
+    const tabletIndex = responsiveRules.findLastIndex((node) => node.params.includes('max-width: 1020px'));
+    const mobileIndex = responsiveRules.findLastIndex((node) => node.params.includes('max-width: 760px'));
+    expect(mobileIndex).toBeGreaterThan(tabletIndex);
+
+    const tabletCss = responsiveRules[tabletIndex]?.toString() || '';
+    const mobileCss = responsiveRules[mobileIndex]?.toString() || '';
+    expect(tabletCss).toMatch(/\.nav-group > summary span,\s*\.agent-office-nav span,\s*\.agent-manager-nav span\s*\{\s*display:\s*block/s);
+    expect(tabletCss).not.toContain('.legacy-admin-link-label');
+    expect(mobileCss).toMatch(/\.sidebar\s*\{[^}]*width:\s*min\(284px,\s*86vw\)[^}]*transform:\s*translateX\(-102%\)/s);
+    expect(mobileCss).toMatch(/body\.nav-open \.sidebar\s*\{[^}]*transform:\s*translateX\(0\)/s);
+    expect(mobileCss).toMatch(/\.workspace\s*\{[^}]*margin-left:\s*0/s);
+    expect(mobileCss).toMatch(/\.nav-group > summary span,\s*\.nav-group > summary::after,\s*\.agent-office-nav span,\s*\.agent-manager-nav span\s*\{\s*display:\s*block/s);
+    expect(mobileCss).not.toContain('.legacy-admin-link-label');
+    expect(mobileCss).toMatch(/\.nav-group > summary\s*\{[^}]*justify-content:\s*flex-start/s);
+    expect(mobileCss).toMatch(/\.sidebar \.nav-button\s*\{[^}]*justify-content:\s*flex-start/s);
+    expect(mobileCss).toMatch(/\.command-save-bar\s*\{[^}]*left:\s*12px/s);
   });
 });

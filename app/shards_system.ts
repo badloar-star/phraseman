@@ -12,10 +12,14 @@ import { getCanonicalUserId } from './user_id_policy';
 import { emitAppEvent } from './events';
 import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 import {
-  enqueueShardDelta,
+  consumeExactLegacyQuarantinedShardDelta,
+  enqueueAppliedShardDeltaWithStorage,
+  hasExactLegacyQuarantinedShardDelta,
+  hasQuarantinedShardDeltaQueue,
   newShardOpId,
   readShardDeltaQueue,
   removeShardDeltas,
+  type LegacyShardDeltaRecoveryIdentity,
 } from './shards_delta_queue';
 import {
   captureAccountGeneration,
@@ -66,26 +70,36 @@ export type ShardSource =
   // Награда за баг-репорт начисляется админом вручную при подтверждении (admin/index.html,
   // reason 'bug_fixed', shards += 1) — отдельного ShardSource в каталоге для неё нет.
 
+/**
+ * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
+ * игровые начисления монет обнулены — учебная награда ушла в звёзды, монеты только
+ * покупаются. Структура каталога и ShardSource сохранены: addShards() при amount <= 0
+ * завершается no-op, вызывающие не меняются. Единственный оставшийся источник —
+ * подтверждённый баг-репорт (+1 монета), начисляется админом вручную на сервере
+ * (admin/index.html, reason 'bug_fixed') и в этом каталоге не представлен.
+ * Серверный каталог functions/src/shard_reward_catalog.ts НЕ синхронизирован —
+ * требуется отдельное серверное изменение.
+ */
 export const SHARD_REWARDS: Record<ShardSource, number> = {
-  lesson_first: 1,
-  lesson_perfect: 2,
-  lesson_quiz_passed: 1,
-  lesson_completed: 1,
-  streak_7: 3,
-  streak_30: 5,
-  arena_win: 1,
-  arena_10_wins: 1,
-  arena_rank_up_streak: 1,
-  daily_tasks_all: 1,
-  topic_completed: 3,
-  exam_excellent: 3,
-  diagnostic_test: 1,
-  lessons_5_perfect: 3,
-  level_gift: 1,
-  preposition_drill_perfect: 1,
-  plan_day_complete: 2,
-  trainer_perfect_session: 1,
-  survey_completed: 3,
+  lesson_first: 0,
+  lesson_perfect: 0,
+  lesson_quiz_passed: 0,
+  lesson_completed: 0,
+  streak_7: 0,
+  streak_30: 0,
+  arena_win: 0,
+  arena_10_wins: 0,
+  arena_rank_up_streak: 0,
+  daily_tasks_all: 0,
+  topic_completed: 0,
+  exam_excellent: 0,
+  diagnostic_test: 0,
+  lessons_5_perfect: 0,
+  level_gift: 0,
+  preposition_drill_perfect: 0,
+  plan_day_complete: 0,
+  trainer_perfect_session: 0,
+  survey_completed: 0,
 };
 
 const STORAGE_KEY = 'shards_balance';
@@ -163,6 +177,41 @@ const consumeStorePurchasedShardsOnSpend = async (amount: number): Promise<numbe
     return 0;
   }
 };
+
+
+/**
+ * Фаза 2 бонусов карточки: +5% осколков (×1.05) со всех ЗАРАБОТАННЫХ начислений
+ * для уровня карточки IV+. Значение зеркалит PROFILE_CARD_SHARD_BOOST, ключ —
+ * PROFILE_CARD_LEVEL_KEY из app/profile_card_system.ts — модуль сюда НЕ
+ * импортируем, чтобы не поймать цикл (тот же паттерн, что readProfileCardXpMultiplier
+ * в xp_manager и ключи 'streak_count'/'comeback_active').
+ */
+const readProfileCardShardMultiplier = async (): Promise<number> => {
+  try {
+    const raw = await AsyncStorage.getItem('profile_card_level');
+    return parseInt(raw || '0') >= 4 ? 1.05 : 1;
+  } catch {
+    return 1;
+  }
+};
+
+/** Бонусная часть Фазы 2: вверх до целого; при base > 0 и активном перке минимум +1. */
+const profileCardShardBonus = (baseAmount: number, perkM: number): number =>
+  perkM > 1 && baseAmount > 0 ? Math.ceil(baseAmount * (perkM - 1)) : 0;
+
+/**
+ * Причины addShardsRaw, которые НЕ являются заработком — бонус карточки на них
+ * не действует: покупка за реальные деньги (RevenueCat), выплаты пари (возврат
+ * ставки + выигрыш), возвраты и подарки/компенсации (обновление, админ-рассылка).
+ */
+const PROFILE_CARD_PERK_EXCLUDED_REASONS: ReadonlySet<string> = new Set([
+  'shards_store_purchase',
+  'streak_wager_win',
+  'arena_match_wager_win',
+  'club_boost_refund',
+  'release_wave_bonus',
+  'global_broadcast_modal',
+]);
 
 export const getShardAchievementEligibleBalance = async (balance?: number): Promise<number> => {
   const total = balance === undefined ? await getShardsBalance() : Math.max(0, Math.floor(Number(balance) || 0));
@@ -374,28 +423,42 @@ const mirrorServerShardBalanceLocal = async (
 export const addShardsLocalOnlyForPendingServerClaim = async (
   amount: number,
   reason: string = 'pending_server_claim',
+  accountToken: AccountGenerationToken,
+  ownerStableId: string,
 ): Promise<number> => {
+  const isCurrent = (): boolean =>
+    isCurrentAccountGeneration(accountToken, ownerStableId);
   try {
+    if (!isCurrent() || accountToken.stableId !== ownerStableId) return 0;
     const safe = Math.max(0, Math.floor(Number(amount) || 0));
     if (safe <= 0) return 0;
     const cleanReason = String(reason || '').trim() || 'pending_server_claim';
     let meta: ShardBalanceMeta = localWriteStamp('earn', cleanReason);
-    const newBalance = await withStorageLock(async () => {
-      const currentMeta = await readBalanceMeta();
-      meta = {
-        updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
-        op: 'earn',
-        reason: cleanReason,
-      };
-      const current = await getShardsBalance();
-      const next = current + safe;
-      await persistLocalBalance(next, meta);
-      return next;
+    const credited = await withAccountTransitionLock(async () => {
+      if (!isCurrent()) return null;
+      const newBalance = await withStorageLock(async () => {
+        if (!isCurrent()) return null;
+        const currentMeta = await readBalanceMeta();
+        if (!isCurrent()) return null;
+        meta = {
+          updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
+          op: 'earn',
+          reason: cleanReason,
+        };
+        const current = await getShardsBalance();
+        if (!isCurrent()) return null;
+        const next = current + safe;
+        await persistLocalBalance(next, meta);
+        return isCurrent() ? next : null;
+      });
+      if (newBalance === null || !isCurrent()) return null;
+      setShardsBalanceMemory(newBalance);
+      await bumpLifetimeShardsEarned(safe);
+      if (!isCurrent()) return null;
+      await emitShardsBalanceUpdated(newBalance, meta);
+      return isCurrent() ? safe : null;
     });
-    setShardsBalanceMemory(newBalance);
-    void bumpLifetimeShardsEarned(safe);
-    await emitShardsBalanceUpdated(newBalance, meta);
-    return safe;
+    return credited ?? 0;
   } catch (error) {
     DebugLogger.error('shards_system.ts:addShardsLocalOnlyForPendingServerClaim', error, 'warning');
     return 0;
@@ -405,25 +468,41 @@ export const addShardsLocalOnlyForPendingServerClaim = async (
 export const keepShardsBalanceLocalAtLeast = async (
   minimumBalance: number,
   reason: string = 'local_merge',
+  accountToken: AccountGenerationToken,
+  ownerStableId: string,
 ): Promise<number> => {
+  const isCurrent = (): boolean =>
+    isCurrentAccountGeneration(accountToken, ownerStableId);
   try {
+    if (!isCurrent() || accountToken.stableId !== ownerStableId) {
+      return getShardsBalance().catch(() => 0);
+    }
     const safeMinimum = Math.max(0, Math.floor(Number(minimumBalance) || 0));
     const cleanReason = String(reason || '').trim() || 'local_merge';
     let meta: ShardBalanceMeta = localWriteStamp('replace', cleanReason);
-    const nextBalance = await withStorageLock(async () => {
-      const currentMeta = await readBalanceMeta();
-      meta = {
-        updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
-        op: 'replace',
-        reason: cleanReason,
-      };
-      const current = await getShardsBalance();
-      const next = Math.max(current, safeMinimum);
-      await persistLocalBalance(next, meta);
-      return next;
+    const nextBalance = await withAccountTransitionLock(async () => {
+      if (!isCurrent()) return null;
+      const committedBalance = await withStorageLock(async () => {
+        if (!isCurrent()) return null;
+        const currentMeta = await readBalanceMeta();
+        if (!isCurrent()) return null;
+        meta = {
+          updatedAtMs: Math.max(Date.now(), (currentMeta?.updatedAtMs ?? 0) + 1),
+          op: 'replace',
+          reason: cleanReason,
+        };
+        const current = await getShardsBalance();
+        if (!isCurrent()) return null;
+        const next = Math.max(current, safeMinimum);
+        await persistLocalBalance(next, meta);
+        return isCurrent() ? next : null;
+      });
+      if (committedBalance === null || !isCurrent()) return null;
+      setShardsBalanceMemory(committedBalance);
+      await emitShardsBalanceUpdated(committedBalance, meta);
+      return isCurrent() ? committedBalance : null;
     });
-    setShardsBalanceMemory(nextBalance);
-    await emitShardsBalanceUpdated(nextBalance, meta);
+    if (nextBalance === null || !isCurrent()) return getShardsBalance().catch(() => 0);
     return nextBalance;
   } catch (error) {
     DebugLogger.error('shards_system.ts:keepShardsBalanceLocalAtLeast', error, 'warning');
@@ -533,6 +612,7 @@ const applyShardDeltaToCloud = async (
   _localBaseMeta?: ShardBalanceMeta | null,
   accountToken?: AccountGenerationToken,
   opIdOverride?: string,
+  legacyRecoveryIdentity?: LegacyShardDeltaRecoveryIdentity,
 ): Promise<
   | { ok: true; balance: number; balanceBefore: number; updatedAtMs: number; opId: string; alreadyApplied: boolean }
   | { ok: false; reason: 'unavailable'; opId: string }
@@ -547,10 +627,38 @@ const applyShardDeltaToCloud = async (
     if (!ownerStableId || !isCurrentAccountGeneration(operationToken, ownerStableId)) {
       return { ok: false, reason: 'stale-generation', opId };
     }
+    const exactCustomizationRecovery = legacyRecoveryIdentity !== undefined
+      && type === 'spend'
+      && opIdOverride === opId
+      && /^[A-Za-z0-9_:-]{8,80}$/.test(opId)
+      && (
+        reason === 'custom_avatar'
+        || reason === 'custom_avatar_restyle'
+        || reason === 'avatar_aura'
+      );
+    if (await hasQuarantinedShardDeltaQueue(ownerStableId)) {
+      if (
+        !exactCustomizationRecovery
+        || !await hasExactLegacyQuarantinedShardDelta(
+          ownerStableId,
+          legacyRecoveryIdentity!,
+        )
+      ) return { ok: false, reason: 'unavailable', opId };
+    }
+    if (!isCurrentAccountGeneration(operationToken, ownerStableId)) {
+      return { ok: false, reason: 'stale-generation', opId };
+    }
     const uid = await getCanonicalUserId();
     if (!isCurrentAccountGeneration(operationToken, ownerStableId) || uid !== ownerStableId) {
       return { ok: false, reason: 'stale-generation', opId };
     }
+    if (
+      legacyRecoveryIdentity
+      && !await hasExactLegacyQuarantinedShardDelta(
+        ownerStableId,
+        legacyRecoveryIdentity,
+      )
+    ) return { ok: false, reason: 'unavailable', opId };
     // delta приходит со знаком (spend отрицательна). Callable принимает величину +
     // type, знак ставит сервер сам.
     const magnitude = Math.abs(Math.trunc(delta));
@@ -613,12 +721,17 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
     if (!isCurrent()) return 0;
     const amount = SHARD_REWARDS[source];
     if (!Number.isFinite(amount) || amount <= 0) return 0;
+    // Фаза 2: +5% осколков за карточку IV+ — единая точка каталожного заработка;
+    // бонус едет в той же клиентской дельте на сервер, отдельной операции нет.
+    const perkM = await readProfileCardShardMultiplier();
+    const perkBonus = profileCardShardBonus(amount, perkM);
+    const totalAmount = amount + perkBonus;
     const localBase = await getShardsBalance();
     if (!isCurrent()) return 0;
     const localBaseMeta = await readBalanceMeta();
     if (!isCurrent()) return 0;
     const cloudApplied = await applyShardDeltaToCloud(
-      amount,
+      totalAmount,
       'earn',
       source,
       localBase,
@@ -635,48 +748,57 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
         ownerStableId!,
       );
       if (!isCurrent() || (mirrorOutcome !== 'applied' && mirrorOutcome !== 'already-newer')) return 0;
-      void bumpLifetimeShardsEarned(amount);
-      logShardTransaction('earn', amount, source, cloudApplied.balance, cloudApplied.balanceBefore);
+      void bumpLifetimeShardsEarned(totalAmount);
+      logShardTransaction('earn', totalAmount, source, cloudApplied.balance, cloudApplied.balanceBefore);
       if (!opts?.suppressEarnEvent) {
-        emitAppEvent('shards_earned', { amount, reasonKey: source });
+        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
       }
-      return amount;
+      return totalAmount;
     }
     if (cloudApplied.reason === 'stale-generation') return 0;
 
     const meta = localWriteStamp('earn', source);
     const newBalance = await withAccountTransitionLock(async () => {
       if (!isCurrent()) return null;
-      const queued = await enqueuePendingShardDelta(
+      const committed = await commitPendingShardDelta(
         cloudApplied.opId,
-        amount,
+        totalAmount,
         'earn',
         source,
         accountToken,
+        async () => {
+          const current = await getShardsBalance();
+          if (!isCurrent()) throw new Error('stale_shard_account_generation');
+          const next = current + totalAmount;
+          return {
+            commit: true as const,
+            value: next,
+            walletPairs: [
+              [STORAGE_KEY, String(next)],
+              [BALANCE_META_KEY, JSON.stringify(meta)],
+            ],
+          };
+        },
       );
-      if (!isCurrent() || !queued) return null;
-      return withStorageLock(async () => {
-        if (!isCurrent()) return null;
-        const current = await getShardsBalance();
-        if (!isCurrent()) return null;
-        const next = current + amount;
-        await persistLocalBalance(next, meta);
-        if (!isCurrent()) return null;
-        return next;
-      });
+      return isCurrent()
+        && committed.ok
+        && 'committed' in committed
+        && committed.committed
+        ? committed.value
+        : null;
     });
     if (!isCurrent() || newBalance === null) return 0;
     setShardsBalanceMemory(newBalance);
-    void bumpLifetimeShardsEarned(amount);
+    void bumpLifetimeShardsEarned(totalAmount);
     // K3: сервер недоступен — дельта применена локально, серверную сверку кладём
     // в идемпотентную очередь (тот же opId → без удвоения при ретрае).
-    logShardTransaction('earn', amount, source, newBalance, newBalance - amount);
+    logShardTransaction('earn', totalAmount, source, newBalance, newBalance - totalAmount);
     await emitShardsBalanceUpdated(newBalance, meta);
     if (!isCurrent()) return 0;
     if (!opts?.suppressEarnEvent) {
-      emitAppEvent('shards_earned', { amount, reasonKey: source });
+      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
     }
-    return amount;
+    return totalAmount;
   } catch (error) {
     DebugLogger.error('shards_system.ts:addShards', error, 'warning');
     return 0;
@@ -684,28 +806,62 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
 };
 
 /** Best-effort постановка неотправленной дельты в очередь серверной сверки (K3). */
-const enqueuePendingShardDelta = async (
+const commitPendingShardDelta = async <T>(
   opId: string,
   amount: number,
   type: 'earn' | 'spend',
   reason: string,
   accountToken: AccountGenerationToken,
-): Promise<boolean> => {
-  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return false;
+  buildWalletUpdate: () => Promise<
+    | {
+      commit: true;
+      value: T;
+      walletPairs: readonly (readonly [string, string])[];
+    }
+    | { commit: false; value: T }
+  >,
+): Promise<
+  | { ok: true; committed: boolean; value: T }
+  | { ok: true; duplicateExact: true }
+  | { ok: false }
+> => {
   const ownerStableId = accountToken.stableId;
-  if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) return false;
+  if (!ownerStableId || !isCurrentAccountGeneration(accountToken, ownerStableId)) {
+    return { ok: false };
+  }
   const magnitude = Math.abs(Math.trunc(amount));
-  if (magnitude <= 0) return false;
-  const queued = await enqueueShardDelta({
+  if (magnitude <= 0) return { ok: false };
+  if (await hasQuarantinedShardDeltaQueue(ownerStableId)) return { ok: false };
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return { ok: false };
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    try {
+      return await withStorageLock(async () => {
+        if (!isCurrentAccountGeneration(accountToken, ownerStableId)) {
+          throw new Error('stale_shard_account_generation');
+        }
+        const update = await buildWalletUpdate();
+        if (!update.commit) {
+          return { ok: true as const, committed: false, value: update.value };
+        }
+        if (update.walletPairs.length === 0) return { ok: false as const };
+        await AsyncStorage.multiSet(update.walletPairs);
+        return { ok: true as const, committed: true, value: update.value };
+      });
+    } catch {
+      return { ok: false };
+    }
+  }
+  const committed = await enqueueAppliedShardDeltaWithStorage({
     opId,
     ownerStableId,
     delta: magnitude,
     type,
     reason,
     createdAtMs: Date.now(),
-  }).catch(() => false);
-  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return false;
-  return queued;
+    localApplied: true,
+  }, buildWalletUpdate).catch(() => ({ ok: false as const }));
+  if (!isCurrentAccountGeneration(accountToken, ownerStableId)) return { ok: false };
+  return committed;
 };
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
@@ -917,6 +1073,12 @@ export type SpendShardsOptions = {
    * Нужно для покупки наборов без «Подождите…», если облако подвисает.
    */
   skipServerAwait?: boolean;
+  /**
+   * Recovery-only: a prepared customization intent whose opId is already in
+   * the local spend ledger must obtain the exact idempotent server receipt
+   * before ownership can be granted. It never permits generic queue replay.
+   */
+  requireCloudReceiptForLocalLedger?: boolean;
 };
 
 export type AddShardsRawOptions = {
@@ -948,21 +1110,42 @@ export const addShardsRaw = async (
   );
   try {
     if (!isCurrent() || !Number.isFinite(amount) || amount <= 0) return 0;
+    // Фаза 2: +5% осколков за карточку IV+ — для клиент-сформированного заработка;
+    // покупки/пари/возвраты/компенсации исключены, серверные начисления сюда не проходят.
+    const perkM = PROFILE_CARD_PERK_EXCLUDED_REASONS.has(logReason) ? 1 : await readProfileCardShardMultiplier();
+    const perkBonus = profileCardShardBonus(amount, perkM);
+    const totalAmount = amount + perkBonus;
     if (options?.skipServerAwait) {
       const opId = newShardOpId();
       const meta = localWriteStamp('earn', logReason);
       const newBalance = await withAccountTransitionLock(async () => {
         if (!isCurrent()) return null;
-        const queued = await enqueuePendingShardDelta(opId, amount, 'earn', logReason, accountToken);
-        if (!isCurrent() || !queued) return null;
-        return withStorageLock(async () => {
-          if (!isCurrent()) return null;
-          const current = await getShardsBalance();
-          if (!isCurrent()) return null;
-          const next = current + amount;
-          await persistLocalBalance(next, meta);
-          return isCurrent() ? next : null;
-        });
+        const committed = await commitPendingShardDelta(
+          opId,
+          totalAmount,
+          'earn',
+          logReason,
+          accountToken,
+          async () => {
+            const current = await getShardsBalance();
+            if (!isCurrent()) throw new Error('stale_shard_account_generation');
+            const next = current + totalAmount;
+            return {
+              commit: true as const,
+              value: next,
+              walletPairs: [
+                [STORAGE_KEY, String(next)],
+                [BALANCE_META_KEY, JSON.stringify(meta)],
+              ],
+            };
+          },
+        );
+        return isCurrent()
+          && committed.ok
+          && 'committed' in committed
+          && committed.committed
+          ? committed.value
+          : null;
       });
       if (!isCurrent() || newBalance === null) return 0;
       setShardsBalanceMemory(newBalance);
@@ -970,16 +1153,16 @@ export const addShardsRaw = async (
         await bumpStorePurchasedShardsTotal(amount);
         if (!isCurrent()) return 0;
       }
-      void bumpLifetimeShardsEarned(amount);
+      void bumpLifetimeShardsEarned(totalAmount);
       void resumePendingShardDeltas();
-      void logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
+      void logShardTransaction('earn', totalAmount, logReason, newBalance, newBalance - totalAmount);
       await emitShardsBalanceUpdated(newBalance, meta);
       if (!isCurrent()) return 0;
       if (options.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-        emitAppEvent('shards_earned', { amount, reasonKey: k });
+        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
       }
-      return amount;
+      return totalAmount;
     }
 
     const localBase = await getShardsBalance();
@@ -987,7 +1170,7 @@ export const addShardsRaw = async (
     const localBaseMeta = await readBalanceMeta();
     if (!isCurrent()) return 0;
     const cloudApplied = await applyShardDeltaToCloud(
-      amount,
+      totalAmount,
       'earn',
       logReason,
       localBase,
@@ -1008,35 +1191,45 @@ export const addShardsRaw = async (
         await bumpStorePurchasedShardsTotal(amount);
         if (!isCurrent()) return 0;
       }
-      void bumpLifetimeShardsEarned(amount);
-      logShardTransaction('earn', amount, logReason, cloudApplied.balance, cloudApplied.balanceBefore);
+      void bumpLifetimeShardsEarned(totalAmount);
+      logShardTransaction('earn', totalAmount, logReason, cloudApplied.balance, cloudApplied.balanceBefore);
       if (options?.showEarnModal) {
         const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-        emitAppEvent('shards_earned', { amount, reasonKey: k });
+        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
       }
-      return amount;
+      return totalAmount;
     }
     if (cloudApplied.reason === 'stale-generation') return 0;
 
     const meta = localWriteStamp('earn', logReason);
     const newBalance = await withAccountTransitionLock(async () => {
       if (!isCurrent()) return null;
-      const queued = await enqueuePendingShardDelta(
+      const committed = await commitPendingShardDelta(
         cloudApplied.opId,
-        amount,
+        totalAmount,
         'earn',
         logReason,
         accountToken,
+        async () => {
+          const current = await getShardsBalance();
+          if (!isCurrent()) throw new Error('stale_shard_account_generation');
+          const next = current + totalAmount;
+          return {
+            commit: true as const,
+            value: next,
+            walletPairs: [
+              [STORAGE_KEY, String(next)],
+              [BALANCE_META_KEY, JSON.stringify(meta)],
+            ],
+          };
+        },
       );
-      if (!isCurrent() || !queued) return null;
-      return withStorageLock(async () => {
-        if (!isCurrent()) return null;
-        const current = await getShardsBalance();
-        if (!isCurrent()) return null;
-        const next = current + amount;
-        await persistLocalBalance(next, meta);
-        return isCurrent() ? next : null;
-      });
+      return isCurrent()
+        && committed.ok
+        && 'committed' in committed
+        && committed.committed
+        ? committed.value
+        : null;
     });
     if (!isCurrent() || newBalance === null) return 0;
     setShardsBalanceMemory(newBalance);
@@ -1044,15 +1237,15 @@ export const addShardsRaw = async (
       await bumpStorePurchasedShardsTotal(amount);
       if (!isCurrent()) return 0;
     }
-    void bumpLifetimeShardsEarned(amount);
-    logShardTransaction('earn', amount, logReason, newBalance, newBalance - amount);
+    void bumpLifetimeShardsEarned(totalAmount);
+    logShardTransaction('earn', totalAmount, logReason, newBalance, newBalance - totalAmount);
     await emitShardsBalanceUpdated(newBalance, meta);
     if (!isCurrent()) return 0;
     if (options?.showEarnModal) {
       const k = options.earnModalKey ?? logReason ?? 'generic_raw';
-      emitAppEvent('shards_earned', { amount, reasonKey: k });
+      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: k });
     }
-    return amount;
+    return totalAmount;
   } catch (error) {
     DebugLogger.error('shards_system.ts:addShardsRaw', error, 'warning');
     return 0;
@@ -1086,9 +1279,35 @@ export const spendShardsIdempotent = async (
     if (!isCurrent() || !Number.isFinite(amount) || amount <= 0 || !opId.trim()) return 'failed';
     const spendAmount = Math.floor(amount);
     if (spendAmount <= 0) return 'failed';
-    if ((await readShardSpendOpLedger()).includes(opId)) {
+    const localLedgerApplied = (await readShardSpendOpLedger()).includes(opId);
+    if (localLedgerApplied && !options?.requireCloudReceiptForLocalLedger) {
       return isCurrent() ? 'already-applied' : 'failed';
     }
+    const quarantinedLocalLedgerRecovery = localLedgerApplied
+      && options?.requireCloudReceiptForLocalLedger === true
+      && await hasQuarantinedShardDeltaQueue(ownerStableId!);
+    const legacyRecoveryIdentity = {
+      opId,
+      delta: spendAmount,
+      type: 'spend' as const,
+      reason,
+    };
+    if (
+      quarantinedLocalLedgerRecovery
+      && !await hasExactLegacyQuarantinedShardDelta(
+        ownerStableId!,
+        legacyRecoveryIdentity,
+      )
+    ) return 'failed';
+    if (
+      localLedgerApplied
+      && options?.requireCloudReceiptForLocalLedger
+      && !quarantinedLocalLedgerRecovery
+    ) return isCurrent() ? 'already-applied' : 'failed';
+    if (
+      quarantinedLocalLedgerRecovery
+      && (IS_EXPO_GO || !CLOUD_SYNC_ENABLED)
+    ) return 'failed';
     if (!isCurrent()) return 'failed';
     const localBase = await getShardsBalance();
     if (!isCurrent()) return 'failed';
@@ -1102,6 +1321,7 @@ export const spendShardsIdempotent = async (
       localBaseMeta,
       accountToken,
       opId,
+      quarantinedLocalLedgerRecovery ? legacyRecoveryIdentity : undefined,
     );
     if (!isCurrent()) return 'failed';
     if (cloudApplied.ok === true) {
@@ -1127,14 +1347,24 @@ export const spendShardsIdempotent = async (
         });
       });
       if (!ledgerStored || !isCurrent()) return 'failed';
-      if (!cloudApplied.alreadyApplied) {
+      if (quarantinedLocalLedgerRecovery) {
+        const consumed = await withAccountTransitionLock(async () => {
+          if (!isCurrent()) return false;
+          return consumeExactLegacyQuarantinedShardDelta(
+            ownerStableId!,
+            legacyRecoveryIdentity,
+          );
+        });
+        if (!consumed || !isCurrent()) return 'failed';
+      }
+      if (!cloudApplied.alreadyApplied && !localLedgerApplied) {
         await consumeStorePurchasedShardsOnSpend(spendAmount);
         if (!isCurrent()) return 'failed';
         void bumpLifetimeShardsSpent(spendAmount);
         logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
         trackShardsSpentAchievement(spendAmount);
       }
-      return cloudApplied.alreadyApplied ? 'already-applied' : 'applied';
+      return cloudApplied.alreadyApplied || localLedgerApplied ? 'already-applied' : 'applied';
     }
     if (cloudApplied.reason === 'stale-generation') return 'failed';
     if (cloudApplied.ok === false && cloudApplied.reason === 'insufficient') {
@@ -1157,56 +1387,59 @@ export const spendShardsIdempotent = async (
       }
       return 'insufficient';
     }
+    if (quarantinedLocalLedgerRecovery) return 'failed';
 
     if (localBase < spendAmount) return 'insufficient';
     const meta = localWriteStamp('spend', reason);
+    type LocalSpendCommitValue = {
+      kind: 'applied' | 'already' | 'insufficient';
+      balance: number;
+    };
     const localResult = await withAccountTransitionLock(async () => {
       if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
-      const queued = await enqueuePendingShardDelta(
+      const committed = await commitPendingShardDelta<LocalSpendCommitValue>(
         opId,
         spendAmount,
         'spend',
         reason,
         accountToken,
-      );
-      if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
-      if (!queued) return { kind: 'queue-failed' as const, balance: 0 };
-      let storageResult:
-        | { kind: 'applied' | 'already' | 'insufficient' | 'stale'; balance: number }
-        | null = null;
-      try {
-        storageResult = await withStorageLock(async () => {
-          if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
+        async () => {
           const ledger = await readShardSpendOpLedger();
-          if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
+          if (!isCurrent()) throw new Error('stale_shard_account_generation');
           if (ledger.includes(opId)) {
             const balance = await getShardsBalance();
-            return isCurrent()
-              ? { kind: 'already' as const, balance }
-              : { kind: 'stale' as const, balance: 0 };
+            if (!isCurrent()) throw new Error('stale_shard_account_generation');
+            return {
+              commit: false as const,
+              value: { kind: 'already' as const, balance },
+            };
           }
           const current = await getShardsBalance();
-          if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
-          if (current < spendAmount) return { kind: 'insufficient' as const, balance: current };
+          if (!isCurrent()) throw new Error('stale_shard_account_generation');
+          if (current < spendAmount) {
+            return {
+              commit: false as const,
+              value: { kind: 'insufficient' as const, balance: current },
+            };
+          }
           const next = current - spendAmount;
-          await AsyncStorage.multiSet([
-            [STORAGE_KEY, String(next)],
-            [BALANCE_META_KEY, JSON.stringify(meta)],
-            [SHARD_SPEND_OP_LEDGER_KEY, JSON.stringify(appendShardSpendOp(ledger, opId))],
-          ]);
-          return isCurrent()
-            ? { kind: 'applied' as const, balance: next }
-            : { kind: 'stale' as const, balance: 0 };
-        });
-      } catch {
-        await removeShardDeltas(ownerStableId!, [opId]).catch(() => false);
-        return { kind: 'queue-failed' as const, balance: 0 };
+          return {
+            commit: true as const,
+            value: { kind: 'applied' as const, balance: next },
+            walletPairs: [
+              [STORAGE_KEY, String(next)],
+              [BALANCE_META_KEY, JSON.stringify(meta)],
+              [SHARD_SPEND_OP_LEDGER_KEY, JSON.stringify(appendShardSpendOp(ledger, opId))],
+            ],
+          };
+        },
+      );
+      if (!isCurrent()) return { kind: 'stale' as const, balance: 0 };
+      if (!committed.ok) return { kind: 'queue-failed' as const, balance: 0 };
+      if ('duplicateExact' in committed) {
+        return { kind: 'already' as const, balance: await getShardsBalance() };
       }
-      if (storageResult.kind !== 'applied') {
-        const removed = await removeShardDeltas(ownerStableId!, [opId]).catch(() => false);
-        if (!removed) return { kind: 'queue-failed' as const, balance: 0 };
-      }
-      return storageResult;
+      return committed.value;
     });
     if (
       localResult.kind === 'stale'
@@ -1286,6 +1519,11 @@ const markOneTimeClaimInCloud = async (
 export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test'): Promise<number> => {
   const amount = SHARD_REWARDS[source];
   if (!Number.isFinite(amount) || amount <= 0) return 0;
+  // Фаза 2: +5% осколков за карточку IV+ — awardOneTime свой клиентский earn
+  // (exam/diagnostic), бонус в той же транзакции/локальной записи.
+  const perkM = await readProfileCardShardMultiplier();
+  const perkBonus = profileCardShardBonus(amount, perkM);
+  const totalAmount = amount + perkBonus;
   try {
     const existingEvents = await getOneTimeEvents();
     if (existingEvents.has(source)) {
@@ -1311,11 +1549,11 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
           const cloudShards = userSnap.exists ? parseShardBalance(userSnap.data()?.shards) : null;
           const cloudVal = cloudShards ?? 0;
           const base = Math.max(localBalance, cloudVal);
-          const next = base + amount;
+          const next = base + totalAmount;
 
           transaction.set(claimRef, {
             source,
-            amount,
+            amount: totalAmount,
             createdAt: firestore.FieldValue.serverTimestamp(),
           });
           transaction.set(userRef, {
@@ -1345,10 +1583,10 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
         });
 
         const currentBalance = await getShardsBalance();
-        void bumpLifetimeShardsEarned(amount);
-        logShardTransaction('earn', amount, source, currentBalance, currentBalance - amount);
-        emitAppEvent('shards_earned', { amount, reasonKey: source });
-        return amount;
+        void bumpLifetimeShardsEarned(totalAmount);
+        logShardTransaction('earn', totalAmount, source, currentBalance, currentBalance - totalAmount);
+        emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
+        return totalAmount;
       }
     }
 
@@ -1356,7 +1594,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
       const events = await getOneTimeEvents();
       if (events.has(source)) return { awarded: 0, balance: null as number | null, meta: null as ShardBalanceMeta | null };
       const current = await getShardsBalance();
-      const next = current + amount;
+      const next = current + totalAmount;
       events.add(source);
       const meta = localWriteStamp('earn', source);
       await AsyncStorage.multiSet([
@@ -1364,15 +1602,15 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
         [BALANCE_META_KEY, JSON.stringify(meta)],
         [ONE_TIME_KEY, JSON.stringify([...events])],
       ]);
-      return { awarded: amount, balance: next, meta };
+      return { awarded: totalAmount, balance: next, meta };
     });
     if (result.awarded > 0 && result.balance !== null && result.meta) {
       setShardsBalanceMemory(result.balance);
-      void bumpLifetimeShardsEarned(amount);
+      void bumpLifetimeShardsEarned(totalAmount);
       await syncShardsToCloud(result.balance, result.meta);
-      logShardTransaction('earn', amount, source, result.balance, result.balance - amount);
+      logShardTransaction('earn', totalAmount, source, result.balance, result.balance - totalAmount);
       await emitShardsBalanceUpdated(result.balance, result.meta);
-      emitAppEvent('shards_earned', { amount, reasonKey: source });
+      emitAppEvent('shards_earned', { amount: totalAmount, ...(perkBonus > 0 ? { bonus: perkBonus } : {}), reasonKey: source });
     }
     return result.awarded;
   } catch {
@@ -1522,8 +1760,15 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
   const replay = (async (): Promise<{ resolved: number; pending: number }> => {
     let queueLength = 0;
     try {
+      const quarantinedBeforeRead = await hasQuarantinedShardDeltaQueue(ownerStableId);
+      if (!isCurrent()) return { resolved: 0, pending: 0 };
       const queue = await readShardDeltaQueue(ownerStableId);
       queueLength = queue.length;
+      const quarantinedAfterRead = await hasQuarantinedShardDeltaQueue(ownerStableId);
+      if (!isCurrent()) return { resolved: 0, pending: queue.length };
+      if (quarantinedBeforeRead || quarantinedAfterRead) {
+        return { resolved: 0, pending: queue.length };
+      }
       if (!isCurrent() || queue.length === 0) {
         return { resolved: 0, pending: isCurrent() ? 0 : queue.length };
       }
@@ -1536,9 +1781,14 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
 
       const confirmed: string[] = [];
       let latestBalance: number | null = null;
-      let pending = 0;
-      for (const entry of queue) {
+      let pendingStartIndex = queue.length;
+      for (let index = 0; index < queue.length; index += 1) {
+        const entry = queue[index];
         if (!isCurrent()) return { resolved: 0, pending: queue.length };
+        if (entry.localApplied !== true) {
+          pendingStartIndex = index;
+          break;
+        }
         try {
           const data = await runWithTimeout(
             callShardsApplyDelta(
@@ -1555,13 +1805,16 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
             confirmed.push(entry.opId);
             latestBalance = Math.max(0, Math.floor(Number(data.balance) || 0));
           } else {
-            pending += 1;
+            pendingStartIndex = index;
+            break;
           }
         } catch {
           if (!isCurrent()) return { resolved: 0, pending: queue.length };
-          pending += 1;
+          pendingStartIndex = index;
+          break;
         }
       }
+      const pendingEntries = queue.slice(pendingStartIndex);
 
       if (!isCurrent()) return { resolved: 0, pending: queue.length };
       if (confirmed.length > 0) {
@@ -1571,7 +1824,14 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
       }
 
       if (latestBalance !== null) {
-        const correction = latestBalance - localSnapshot;
+        const pendingOptimisticDelta = pendingEntries.reduce(
+          (sum, entry) => entry.localApplied === true
+            ? sum + (entry.type === 'earn' ? entry.delta : -entry.delta)
+            : sum,
+          0,
+        );
+        const targetBalance = Math.max(0, latestBalance + pendingOptimisticDelta);
+        const correction = targetBalance - localSnapshot;
         if (correction !== 0) {
           const meta: ShardBalanceMeta = {
             updatedAtMs: Date.now(),
@@ -1595,7 +1855,7 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
           }
         }
       }
-      return { resolved: confirmed.length, pending };
+      return { resolved: confirmed.length, pending: pendingEntries.length };
     } catch (error) {
       DebugLogger.error('shards_system.ts:resumePendingShardDeltas', error, 'warning');
       return { resolved: 0, pending: queueLength };

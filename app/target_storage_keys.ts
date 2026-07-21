@@ -38,7 +38,7 @@ const FLASHCARDS_MARKET_DEV_OWNED_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}
 const FLASHCARDS_MARKET_DEV_ACTIVE_PACK_KEY = `${FLASHCARDS_MARKET_DEV_STORAGE_PREFIX}_active_pack_v1`;
 
 const RAW_TARGET_SENSITIVE_PATTERNS = [
-  /^lesson\d+_(?:progress|best_score|pass_count|words|listening_progress|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
+  /^lesson\d+_(?:progress|best_score|pass_count|last_completed_at_v1|words|listening_progress|preposition_progress|intro_shown|cellIndex|phraseOrder|contentSignature|errorReplayQueue|errorReplaySince|errorReplayOverride|bonus_granted)$/,
   /^lesson\d+_words_shards_granted$/,
   /^lesson\d+_irregular_shards_granted$/,
   /^lesson_finished_once_v1_\d+$/,
@@ -195,6 +195,12 @@ export function lessonBestScoreKey(lessonId: string | number, studyTarget?: Runt
 
 export function lessonPassCountKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
   const raw = `lesson${lessonId}_pass_count`;
+  return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
+}
+
+/** Дата (YYYY-MM-DD, UTC) последнего прохождения урока — для revision_lesson. */
+export function lessonLastCompletedAtKey(lessonId: string | number, studyTarget?: RuntimeStudyTarget): string {
+  const raw = `lesson${lessonId}_last_completed_at_v1`;
   return scopedOrLegacyKey(raw, 'lesson_progress', studyTarget);
 }
 

@@ -8,8 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodaysBoons } from './boon_engine';
 import type { BoonReward } from './boon_rewards';
 
-/** Крупный приз за полную неделю. */
-export const PERFECT_WEEK_REWARD: BoonReward = { shards: 20 };
+/** Крупный приз за полную неделю. §7: выплата монет обнулена (монеты только покупаются). */
+export const PERFECT_WEEK_REWARD: BoonReward = { shards: 0 };
 
 /** Ключ «приз за неделю X уже выдан» (значение = week_days_week_key). */
 const PERFECT_WEEK_CLAIMED_KEY = 'boon_perfect_week_claimed_v1';

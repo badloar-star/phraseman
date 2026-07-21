@@ -81,7 +81,9 @@ describe('level gift claim success contract', () => {
     const source = readSource(path.join('components', 'LevelGiftDualModal.tsx'));
     const outcomeBlock = source.slice(
       source.indexOf('const persistDualGiftOutcome = async'),
-      source.indexOf('const runOpenAnim ='),
+      // Граница — следующая функция (handleCloseMidWith): путь «закрыть в середине»
+      // легально использует isCurrentOpening, а persistDualGiftOutcome — нет.
+      source.indexOf('const handleCloseMidWith'),
     );
     const handleDoneBlock = source.slice(
       source.indexOf('const handleDone = async'),

@@ -485,7 +485,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
       });
       if (!applied) return;
       void trackEvent('purchase_completed', { context, source, plan: selected, product_id: pkg.product.identifier, with_trial: pkgTrial.hasTrial, paywall: variant, ...paywallImpressionParams(impression) });
-      logPaywallFunnel('purchase_completed', { variant, context, plan: selected });
+      logPaywallFunnel('purchase_completed', { variant, context, plan: selected, price: storePriceTrim(pkg.product.priceString) || null });
       if (pkgTrial.hasTrial) {
         void trackEvent('trial_started', { context, plan: selected, product_id: pkg.product.identifier, paywall: variant, ...paywallImpressionParams(impression) });
         logPaywallFunnel('trial_started', { variant, context, plan: selected });

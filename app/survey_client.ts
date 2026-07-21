@@ -230,7 +230,7 @@ export const TEST_SHARD_SURVEYS: ShardSurveyConfigInput[] = [
     surveyId: 'test_first_impression',
     enabled: false, rewardShards: 3, minDaysBetweenSurveys: 7,
     title: { ru: 'Первое впечатление' },
-    subtitle: { ru: 'Пара вопросов — и осколки твои' },
+    subtitle: { ru: 'Пара вопросов — и монета твоя' },
     audience: { tier: 'any' },
     questions: [
       { id: 'most_useful', type: 'single_choice', text: { ru: 'Что показалось самым полезным?' }, options: [

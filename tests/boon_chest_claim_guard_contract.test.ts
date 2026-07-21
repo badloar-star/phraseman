@@ -7,14 +7,17 @@ describe('boon chest claim guard', () => {
   const modalSource = fs.readFileSync(path.join(ROOT, 'components', 'BoonChestModal.tsx'), 'utf8');
   const rewardSource = fs.readFileSync(path.join(ROOT, 'app', 'boons', 'boon_rewards.ts'), 'utf8');
 
-  it('does not let a reward chest close silently before claim', () => {
+  it('lets the box phase defer honestly without opening the chest (no reward loss)', () => {
     const requestCloseStart = modalSource.indexOf('const requestClose = () => {');
     const requestCloseEnd = modalSource.indexOf('if (!visible) return null;', requestCloseStart);
     const requestClose = modalSource.slice(requestCloseStart, requestCloseEnd);
 
     expect(requestCloseStart).toBeGreaterThanOrEqual(0);
     expect(requestClose).toContain("if (phase === 'box') {");
-    expect(requestClose).toContain('handleTap();');
+    // Крестик/«Позже» в фазе сундука — честное «отложить» БЕЗ открытия:
+    // handleTap здесь НЕ вызывается, награда не теряется (MysteryMonday/Comeback
+    // перепокажут сундук, PerfectWeek уже начислил приз до показа).
+    expect(requestClose).not.toContain('handleTap();');
     expect(requestClose).toContain("if (phase === 'opening') return");
     expect(requestClose).toContain('onClaim();');
     expect(requestClose).toContain('onClose();');

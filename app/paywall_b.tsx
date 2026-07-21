@@ -43,6 +43,7 @@ import { PersonalizationProofCard, CompareCard, FaqCard } from '../components/pa
 import PaywallTrialTimeline from '../components/paywall/PaywallTrialTimeline';
 import PaywallPriceUrgency from '../components/paywall/PaywallPriceUrgency';
 import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure';
+import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -167,42 +168,50 @@ export default function PaywallB() {
 
             {/* Про триал говорит таймлайн ниже (честный «сегодня→напомним→списание»);
                 верхний ribbon убран, чтобы не дублировать (P1-5). */}
-            <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
-            <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+            <PaywallEntrance index={0}>
+              <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
+            </PaywallEntrance>
+            <PaywallEntrance index={1}>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+            </PaywallEntrance>
 
-            {p.offeringsFailed ? (
-              <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
-            ) : (
-              <PaywallPlanCards
+            <PaywallEntrance index={2}>
+              {p.offeringsFailed ? (
+                <PaywallPriceRetry lang={lang as Lang} chrome={chrome} onRetry={p.reloadOfferings} />
+              ) : (
+                <PaywallPlanCards
+                  lang={lang as Lang}
+                  chrome={chrome}
+                  selected={p.selected}
+                  onSelect={p.selectPlan}
+                  yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
+                  yearlyFull={p.yearlyPrice}
+                  monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
+                  savingsPct={p.savingsPct}
+                  perDayLabel={p.perDayLabel}
+                  trialDays={null /* триал объяснён лентой ниже — без дубля */}
+                  loading={p.loading}
+                  disabled={p.purchasing}
+                  lifetimePrice={p.lifetimePrice}
+                  lifetimeAvailable={p.lifetimeAvailable}
+                />
+              )}
+            </PaywallEntrance>
+
+            <PaywallEntrance index={3}>
+              <PaywallPriceUrgency
                 lang={lang as Lang}
                 chrome={chrome}
-                selected={p.selected}
-                onSelect={p.selectPlan}
-                yearlyPerMonth={p.yearlyPerMonth || p.yearlyPrice}
-                yearlyFull={p.yearlyPrice}
-                monthlyPrice={p.monthlyPerMonth || p.monthlyPrice}
-                savingsPct={p.savingsPct}
-                perDayLabel={p.perDayLabel}
-                trialDays={null /* триал объяснён лентой ниже — без дубля */}
-                loading={p.loading}
-                disabled={p.purchasing}
-                lifetimePrice={p.lifetimePrice}
-                lifetimeAvailable={p.lifetimeAvailable}
+                urgency={p.urgency}
+                currentPrice={price}
+                futurePrice={p.futurePrice}
+                period={period}
+                compact
+                isLifetime={isLifetimeSel}
               />
-            )}
+            </PaywallEntrance>
 
-            <PaywallPriceUrgency
-              lang={lang as Lang}
-              chrome={chrome}
-              urgency={p.urgency}
-              currentPrice={price}
-              futurePrice={p.futurePrice}
-              period={period}
-              compact
-              isLifetime={isLifetimeSel}
-            />
-
-            <View style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
+            <PaywallEntrance index={4} style={S.ctaWrap} onLayout={isOnboarding ? sticky.onCtaLayout : undefined}>
               <PaywallCtaBlock
                 lang={lang as Lang}
                 chrome={chrome}
@@ -217,42 +226,56 @@ export default function PaywallB() {
                 trustHasTrial={!!p.trialDays}
                 isOnboarding={isOnboarding}
               />
-            </View>
+            </PaywallEntrance>
 
-            <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
+            <PaywallEntrance index={5}>
+              <PaywallSocialRow lang={lang as Lang} chrome={chrome} />
+            </PaywallEntrance>
 
-            <PersonalizationProofCard
-              lang={lang as Lang}
-              chrome={chrome}
-              tagTexts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))}
-              profile={profile}
-              mirror={mirror}
-              percentileLine={percentileLine}
-            />
-            <CompareCard lang={lang as Lang} chrome={chrome} />
-
-            <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
-            <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
-
-            {p.trialDays && (
-              <PaywallTrialTimeline
+            <PaywallEntrance index={6}>
+              <PersonalizationProofCard
                 lang={lang as Lang}
                 chrome={chrome}
-                days={p.trialDays}
-                priceLabel={price || '…'}
-                periodLabel={period}
+                tagTexts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))}
+                profile={profile}
+                mirror={mirror}
+                percentileLine={percentileLine}
               />
+            </PaywallEntrance>
+            <PaywallEntrance index={7}>
+              <CompareCard lang={lang as Lang} chrome={chrome} />
+            </PaywallEntrance>
+
+            <PaywallEntrance index={8}>
+              <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
+            </PaywallEntrance>
+            <PaywallEntrance index={9}>
+              <FaqCard lang={lang as Lang} chrome={chrome} trialDays={p.trialDays} priceLine={priceLine} />
+            </PaywallEntrance>
+
+            {p.trialDays && (
+              <PaywallEntrance index={10}>
+                <PaywallTrialTimeline
+                  lang={lang as Lang}
+                  chrome={chrome}
+                  days={p.trialDays}
+                  priceLabel={price || '…'}
+                  periodLabel={period}
+                />
+              </PaywallEntrance>
             )}
 
-            <PaywallLegalDisclosure
-              lang={lang as Lang}
-              chrome={chrome}
-              priceLabel={price}
-              periodLabel={period}
-              hasTrial={!!p.trialDays}
-              trialDays={p.trialDays}
-              isLifetime={isLifetimeSel}
-            />
+            <PaywallEntrance index={11}>
+              <PaywallLegalDisclosure
+                lang={lang as Lang}
+                chrome={chrome}
+                priceLabel={price}
+                periodLabel={period}
+                hasTrial={!!p.trialDays}
+                trialDays={p.trialDays}
+                isLifetime={isLifetimeSel}
+              />
+            </PaywallEntrance>
             <View style={{ height: Math.max(bottomInset, 10) }} />
           </ScrollView>
           <PaywallStickyBar

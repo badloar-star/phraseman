@@ -29,8 +29,8 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('isIntroFullAccess');
     expect(source).toContain('introFullAccessEndsAt');
     expect(source).toContain('getIntroFullAccessState');
-    // Доступ собирается из real/vip/intro и подарка лояльности (loyaltyState.active).
-    expect(source).toContain('setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || loyaltyState.active)');
+    // Доступ собирается из real/vip/intro.
+    expect(source).toContain('setHasPremiumAccess(effectivePremium || effectiveVip || introState.active)');
     expect(source).toContain("onAppEvent('intro_full_access_changed'");
   });
 
@@ -53,15 +53,10 @@ describe('PremiumContext VIP event contract', () => {
       .toBeLessThan(body.indexOf('setIsPremium(true)'));
   });
 
-  it('exposes loyalty gift as a separate derived access source', () => {
-    expect(source).toContain('getLoyaltyGiftState');
-    expect(source).toContain("onAppEvent('loyalty_gift_changed'");
-  });
-
   it('clears in-memory entitlement state immediately when account deletion completes locally', () => {
     const start = source.indexOf("onAppEvent('account_deleted'");
     expect(start).toBeGreaterThan(-1);
-    const body = source.slice(start, source.indexOf("onAppEvent('loyalty_gift_changed'", start));
+    const body = source.slice(start, source.indexOf("onAppEvent('premium_deactivated'", start));
 
     expect(body).toContain('invalidatePremiumCache()');
     expect(body).toContain('vipSnapshotStateRef.current = false');

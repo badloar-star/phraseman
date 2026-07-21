@@ -104,18 +104,18 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     return {
       cancel: 'Скасувати',
       buy: 'Купити',
-      buyShards: 'Купити осколки',
-      forShards: (n: number) => `Купити за ${n} осколків`,
-      insufficientTitle: 'Недостатньо осколків',
+      buyShards: 'Купити монети',
+      forShards: (n: number) => `Купити за ${n} монет`,
+      insufficientTitle: 'Недостатньо монет',
       insufficientIntro:
-        'Поповніть баланс у магазині осколків — кнопка нижче відкриє вкладку з пакетами.',
+        'Поповніть баланс у магазині монет — кнопка нижче відкриє вкладку з пакетами.',
       balanceBlockTitle: 'Для цього набору',
       ctaSub: 'Покупка в одне торкання',
-      shopCtaSub: 'Пакети осколків у магазині',
+      shopCtaSub: 'Пакети монет у магазині',
       voucherKicker: '🎁 Безкоштовний набір',
       voucherTitle: 'Використати подарунок?',
       voucherIntro:
-        'Цей набір додасться у «Картки» безкоштовно — ціну осколків можна не платити.',
+        'Цей набір додасться у «Картки» безкоштовно — ціну монет можна не платити.',
       voucherWarn:
         '⚠️ Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
       voucherCta: '🎁 Використати подарунок',
@@ -123,11 +123,11 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherCtaSub: 'Подарунок «згорить» одразу після цього',
       packKindLabel: 'Набір',
       metaCards: (n: number) => `${n} карток`,
-      shortageRemaining: (n: number) => `Не вистачає ще ${n} осколків`,
+      shortageRemaining: (n: number) => `Не вистачає ще ${n} монет`,
       needLabel: 'Потрібно',
       youHaveLabel: 'У вас',
       costLabel: 'Вартість',
-      shardsUnit: 'осколків',
+      shardsUnit: 'монет',
       waitBusy: '',
       reportPack: '⚐ Поскаржитися на набір',
       hidePack: 'Не показувати мені',
@@ -170,18 +170,18 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   return {
     cancel: 'Отмена',
     buy: 'Открыть',
-    buyShards: 'Пополнить осколки',
-    forShards: (n: number) => `Открыть за ${n} осколков`,
-    insufficientTitle: 'Недостаточно осколков',
+    buyShards: 'Пополнить монеты',
+    forShards: (n: number) => `Открыть за ${n} монет`,
+    insufficientTitle: 'Недостаточно монет',
     insufficientIntro:
-      'Пополни баланс в магазине осколков — кнопка ниже откроет вкладку с пакетами.',
+      'Пополни баланс в магазине монет — кнопка ниже откроет вкладку с пакетами.',
     balanceBlockTitle: 'Для этого набора',
     ctaSub: 'Откроется в одно касание',
-    shopCtaSub: 'Пакеты осколков в магазине',
+    shopCtaSub: 'Пакеты монет в магазине',
     voucherKicker: '🎁 Набор в подарок',
     voucherTitle: 'Использовать подарок?',
     voucherIntro:
-      'Этот набор добавится в «Карточки» бесплатно — осколки тратить не нужно.',
+      'Этот набор добавится в «Карточки» бесплатно — монеты тратить не нужно.',
     voucherWarn:
       '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
     voucherCta: '🎁 Использовать подарок',
@@ -189,11 +189,11 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     voucherCtaSub: 'Подарок «сгорит» сразу после этого',
     packKindLabel: 'Набор',
     metaCards: (n: number) => `${n} карточек`,
-    shortageRemaining: (n: number) => `Не хватает ещё ${n} осколков`,
+    shortageRemaining: (n: number) => `Не хватает ещё ${n} монет`,
     needLabel: 'Нужно',
     youHaveLabel: 'У тебя',
-    costLabel: 'Нужно осколков',
-    shardsUnit: 'осколков',
+    costLabel: 'Нужно монет',
+    shardsUnit: 'монет',
     waitBusy: '',
     reportPack: '⚐ Пожаловаться на набор',
     hidePack: 'Не показывать мне',
@@ -311,7 +311,8 @@ export default function CardPackShardPaywallModal({
   }, [visible, backdropO, sheetY, sheetOpacity, ctaPulse, dragTranslateY]);
 
   const backdropStyle = useAnimatedStyle(() => ({
-    opacity: backdropO.value * 0.72,
+    // Подложка слабеет при оттягивании листа вниз (как в RegistrationPromptModal).
+    opacity: backdropO.value * 0.72 * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
   }));
 
   const sheetStyle = useAnimatedStyle(() => ({

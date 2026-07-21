@@ -33,7 +33,8 @@ import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
-import { pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
+import { getTodayKey, pruneDatedDailyTasksStorageKeys, resetAndUpdateTaskProgress, updateMultipleTaskProgress, updateTaskProgress } from './daily_tasks';
+import { daysSinceLastActive } from './boons/comeback';
 import { bumpStatsDaily } from './stats_daily_breakdown';
 import { getCurrentMultiplierBreakdown, getLessonDifficultyMultiplier, registerXP } from './xp_manager';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
@@ -122,7 +123,7 @@ import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
 import { openLessonGateByRuntime, shouldBlockLessonAccess } from './lesson_premium_gate';
 import { MOTION_DURATION } from '../constants/motion';
-import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
+import { dailyTaskLessonVisitedKey, fiftyFiftyUsageKey, grammarHintSeenKey, lessonIntroShownKey, lessonLastCompletedAtKey, lessonPassCountKey, lessonProgressKey, lessonSessionKey } from './target_storage_keys';
 import { lessonSupportContentAvailableForTarget } from './lesson_support_target_gate';
 import { loadFrenchRemoteLessonRows } from './french_lesson_remote_runtime';
 import { safeRouterBack } from './navigation_back';
@@ -2137,6 +2138,17 @@ export default function LessonScreen() {
     lessonAnalyticsAttemptRef.current = createLessonAnalyticsAttempt(Crypto.randomUUID);
   }
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
+  const blitzCorrectTimesRef = useRef<number[]>([]); // метки последних верных ответов (blitz_speed)
+  const blitzFiredRef = useRef(false);              // blitz_speed уже засчитан в этом уроке
+  // last_active_date на СТАРТЕ урока: первое начисление XP перезапишет её сегодняшней
+  // датой, и «возвращение после перерыва» перестанет быть видно (comeback_lesson).
+  const comebackLastActiveRef = useRef<string | null | undefined>(undefined);
+
+  useEffect(() => {
+    AsyncStorage.getItem('last_active_date')
+      .then((value) => { comebackLastActiveRef.current = value; })
+      .catch(() => { comebackLastActiveRef.current = null; });
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -3001,6 +3013,17 @@ export default function LessonScreen() {
       correctStreakRef.current += 1;
       todayAnswersRef.current += 1;
       setComboCount(correctStreakRef.current);
+      // blitz_speed: скользящее окно — 10 верных ответов с размахом ≤60 секунд (раз в урок).
+      if (!blitzFiredRef.current) {
+        const nowMs = Date.now();
+        const times = blitzCorrectTimesRef.current;
+        times.push(nowMs);
+        if (times.length > 10) times.shift();
+        if (times.length === 10 && nowMs - times[0] <= 60_000) {
+          blitzFiredRef.current = true;
+          updateTaskProgress('blitz_speed', 1, studyTargetRef.current).catch(() => {});
+        }
+      }
       const lessonUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
         { type: 'correct_streak' },
         { type: 'lesson_no_mistakes' },
@@ -3226,8 +3249,46 @@ export default function LessonScreen() {
           correct,
           effectiveTotal,
         }, 'lesson1');
+        const lessonFinishUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [
+          { type: 'lesson_complete', increment: 1 },
+        ];
+        // weekend_marathon: уроки в выходной (локальный день недели) считаются отдельно.
+        const finishWeekday = new Date().getDay();
+        if (finishWeekday === 0 || finishWeekday === 6) {
+          lessonFinishUpdates.push({ type: 'weekend_marathon', increment: 1 });
+        }
+        // perfect_big_lesson: длинный урок (20+ фраз) без единой ошибки за проход.
+        if (effectiveTotal >= 20 && lessonWrongMistakesRef.current.length === 0) {
+          lessonFinishUpdates.push({ type: 'perfect_big_lesson', increment: 1 });
+        }
+        // comeback_lesson: урок в день возвращения после 3+ дней перерыва
+        // (last_active_date прочитана на старте урока — см. comebackLastActiveRef).
+        const finishTodayKey = getTodayKey();
+        if (daysSinceLastActive(comebackLastActiveRef.current, finishTodayKey) >= 3) {
+          lessonFinishUpdates.push({ type: 'comeback_lesson', increment: 1 });
+        }
+        // revision_lesson: предыдущее прохождение этого урока было 7+ дней назад.
+        // Бутстрэп: уроки без метки времени (пройдены до её появления) с pass_count>0
+        // считаем «старыми» — иначе задание было бы мёртвым первые 7 дней после релиза.
+        const finishedAtKey = lessonLastCompletedAtKey(lessonId, studyTargetRef.current);
+        let revisionEligible = false;
+        try {
+          const [prevFinishedAt, prevPassCountRaw] = await Promise.all([
+            AsyncStorage.getItem(finishedAtKey),
+            AsyncStorage.getItem(lessonPassCountKey(lessonId, studyTargetRef.current)),
+          ]);
+          revisionEligible = prevFinishedAt
+            ? daysSinceLastActive(prevFinishedAt, finishTodayKey) >= 7
+            : (parseInt(prevPassCountRaw ?? '0', 10) || 0) > 0;
+        } catch {
+          revisionEligible = false;
+        }
+        if (revisionEligible) {
+          lessonFinishUpdates.push({ type: 'revision_lesson', increment: 1 });
+        }
+        void AsyncStorage.setItem(finishedAtKey, finishTodayKey).catch(() => {});
         updateMultipleTaskProgress(
-          [{ type: 'lesson_complete', increment: 1 }],
+          lessonFinishUpdates,
           { studyTarget: studyTargetRef.current },
         ).catch(() => {});
         void bumpStatsDaily('lessons_completed', 1, studyTargetRef.current);

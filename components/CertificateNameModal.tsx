@@ -150,7 +150,7 @@ function CertificateNameModal({ visible, initialName = '', onSave, onSkip }: Pro
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.skipBtn} onPress={handleSkip} activeOpacity={0.7}>
-                <Text style={{ color: t.textSecond, fontSize: f.body, textDecorationLine: 'underline' }}>
+                <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
                   {triLang(lang as Lang, {
                     ru: 'Пропустить (выдать без имени)',
                     uk: 'Пропустити (видати без імені)',
@@ -210,8 +210,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   skipBtn: {
-    marginTop: 10,
+    marginTop: 4,
+    alignSelf: 'center',
     paddingVertical: 10,
-    alignItems: 'center',
+    paddingHorizontal: 20,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

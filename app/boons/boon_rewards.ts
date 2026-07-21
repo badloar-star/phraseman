@@ -18,11 +18,17 @@ interface RewardTier {
   shards: number;
 }
 
+/**
+ * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
+ * выплаты монет из буня обнулены — монеты только покупаются. Структура тиров, веса,
+ * claim-гарды и модалки сохранены. ОТКРЫТЫЙ ВОПРОС к владельцу: судьба недельных
+ * сундуков без монетной награды (заменить на звёзды/XP или переосмыслить).
+ */
 const MYSTERY_TIERS: readonly RewardTier[] = [
-  { weight: 60, shards: 3 },
-  { weight: 27, shards: 5 },
-  { weight: 10, shards: 8 },
-  { weight: 3, shards: 15 },
+  { weight: 60, shards: 0 },
+  { weight: 27, shards: 0 },
+  { weight: 10, shards: 0 },
+  { weight: 3, shards: 0 },
 ];
 
 /**
@@ -40,8 +46,8 @@ export function pickMysteryReward(roll: number): BoonReward {
   return { shards: MYSTERY_TIERS[0].shards };
 }
 
-/** Фиксированная награда «Дня возвращения». */
-export const COMEBACK_REWARD: BoonReward = { shards: 5 };
+/** Фиксированная награда «Дня возвращения». §7: выплата монет обнулена (см. MYSTERY_TIERS). */
+export const COMEBACK_REWARD: BoonReward = { shards: 0 };
 
 /** Текущий week-id (UTC, ISO-неделя-подобный номер) — для недельных claim-ключей. */
 export function currentWeekId(todayKey: string = getTodayKey()): string {

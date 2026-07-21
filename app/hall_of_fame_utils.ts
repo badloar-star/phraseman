@@ -10,6 +10,7 @@ import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
 import { isStreakFreezeActiveToday } from './streak_freeze';
+import { getCardStreakShieldStatus, tryConsumeCardStreakShield } from './profile_card_streak_shield';
 import { STREAK_WEEK_MARKERS_KEY, addDaysToDateKey, recordStreakWeekMarker } from './streak_week_markers';
 import {
   getLocalDayKey,
@@ -120,12 +121,31 @@ export const resetWeekPointsIfStale = async (): Promise<void> => {
     const data: { weekKey?: string; points?: number } = JSON.parse(raw);
     if (data.weekKey !== currentWeekKey) {
       await AsyncStorage.multiSet([
+        // Финал завершившейся недели — до обнуления, чтобы лиговый rollover
+        // мог считать переход по реальным очкам, а не по устаревшему кэшу группы.
+        ['week_points_last_final', JSON.stringify({ weekKey: data.weekKey ?? '', points: Number(data.points ?? 0) || 0 })],
         ['week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 })],
         ['week_points', '0'],
       ]);
     }
   } catch (e) {
     if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+  }
+};
+
+// Возвращает финальные очки завершившейся недели, сохранённые resetWeekPointsIfStale,
+// если сохранённый weekKey совпадает с запрошенным weekId; иначе null.
+export const getLastWeekFinalPoints = async (weekId: string): Promise<number | null> => {
+  try {
+    const raw = await AsyncStorage.getItem('week_points_last_final');
+    if (!raw) return null;
+    const data: { weekKey?: string; points?: number } = JSON.parse(raw);
+    if (data.weekKey !== weekId) return null;
+    const points = Number(data.points ?? 0);
+    return Number.isFinite(points) ? points : null;
+  } catch (e) {
+    if (__DEV__) console.warn('[hall_of_fame_utils]', e);
+    return null;
   }
 };
 
@@ -249,11 +269,24 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       else if (lastActive && missedExactlyOneDay && await wasRepairedToday()) {
         // streak не меняем — починка спасла
       }
-      // 3. Первый вход в приложение
+      // 3. Карточный щит III+ (Фаза 3): бесплатная авто-заморозка 1 раз в 7 дней.
+      // Приоритет ниже ручной заморозки и починки, но выше щита друга (его бережём).
+      // Достижение streak_freeze_used здесь НЕ эмитим — оно считает ручные заморозки.
+      else if (lastActive && missedExactlyOneDay && await tryConsumeCardStreakShield(today)) {
+        // streak не меняем — щит карточки спас. Маркер недели — как у ручной заморозки.
+        await recordStreakWeekMarker(addDaysToDateKey(lastActive, 1), 'freeze').catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'reward',
+          messageRu: `🛡 Карточка спасла цепочку ${streak} дн.`,
+          messageUk: `🛡 Картка врятувала ланцюжок ${streak} дн.`,
+          messageEs: `🛡 La tarjeta salvó tu racha de ${streak} días`,
+        });
+      }
+      // 4. Первый вход в приложение
       else if (lastActive === null) {
         streak = 1;
       }
-      // 4. Chain Shield активен — защищает от потери цепочки
+      // 5. Chain Shield активен — защищает от потери цепочки
       else if (lastActive && missedExactlyOneDay) {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
@@ -300,7 +333,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
           streak = 1;
         }
       }
-      // 5. Цепочка потеряна
+      // 6. Цепочка потеряна
       else {
         const prevStreak = streak;
         logStreakLost(prevStreak);
@@ -543,6 +576,10 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     const todayStr = getLocalDayKey();
     // Заморозка уже активна сегодня — цепочка сохранится автоматически
     if (isStreakFreezeActiveToday(freeze, todayStr)) return { willLose: false, streakBefore: streak };
+
+    // Карточный щит III+ уже сработал сегодня — цепочка спасена, риск/paywall не показываем.
+    const cardShield = await getCardStreakShieldStatus(todayStr);
+    if (cardShield.usedToday) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };
   } catch (e) {

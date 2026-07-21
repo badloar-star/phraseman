@@ -6,7 +6,7 @@ import { spawnSync } from 'node:child_process';
 const root = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
-function loadRegistry(): { id: string; route: string; migrationStatus: string; nativeRoute: string }[] {
+function loadRegistry(): { id: string; route: string; nativeRoute: string }[] {
   const moduleUrl = pathToFileURL(path.join(root, 'admin/v2/scripts/admin-capabilities.js')).href;
   const script = `import(${JSON.stringify(moduleUrl)}).then((m) => process.stdout.write(JSON.stringify(m.ADMIN_CAPABILITY_REGISTRY)))`;
   const run = spawnSync(process.execPath, ['--input-type=module', '--eval', script], { cwd: root, encoding: 'utf8' });
@@ -23,89 +23,65 @@ function resolveCapabilityHash(hash: string): { resolved: boolean; route: string
 }
 
 describe('Admin v2 native capability routing', () => {
-  test('marks only V2-allowed native capabilities as guarded', () => {
+  test('keeps only native Admin V2 capabilities in the registry', () => {
     const registry = loadRegistry();
-    const native = registry.filter((capability) => capability.nativeRoute);
-    // The registry intentionally has 52 capabilities: 47 legacy tabs plus five
-    // standalone legacy pages, represented without duplicate tab entries.
-    expect(registry).toHaveLength(52);
-    expect(native.map(({ id, nativeRoute }) => [id, nativeRoute]).sort()).toEqual([
+    expect(registry.map(({ id, nativeRoute }) => [id, nativeRoute]).sort()).toEqual([
       ['analytics', 'analytics'],
       ['app-messages', 'campaigns'],
       ['asset-studio', 'asset-studio'],
+      ['coin-center', 'coin-center'],
       ['daily-digest', 'daily-briefing'],
       ['gmail-support', 'support'],
       ['openai-budget', 'diagnostics'],
+      ['paywall-ab', 'application'],
+      ['plans', 'plans'],
       ['promo-codes', 'money'],
       ['remote-config', 'application'],
       ['reports', 'report-center'],
       ['users', 'users'],
     ]);
-    expect(native.every((capability) => capability.migrationStatus === 'guarded')).toBe(true);
-    expect(registry.filter((capability) => !capability.nativeRoute).every((capability) => capability.migrationStatus === 'fallback')).toBe(true);
+    expect(registry.every((capability) => capability.nativeRoute)).toBe(true);
   });
 
-  test('routes native capabilities directly and opens fallback modules outside the blocked iframe', () => {
+  test('routes supported hashes locally and has no fallback URL path', () => {
     const router = read('admin/v2/scripts/admin-router.js');
     const core = read('admin/v2/scripts/admin-core.js');
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
     expect(router).toContain('resolveCapabilityHash(globalThis.location.hash)');
-    expect(router).toContain("'control-panel': 'control-panel'");
-    expect(capabilities).toContain('directCapability.nativeRoute');
-    expect(capabilities).toContain('requestedCapability?.nativeRoute');
-    expect(core).toContain('!capability.nativeRoute');
-    expect(core).toContain('renderCapabilityWorkspace');
     expect(core).not.toContain('<iframe');
-    expect(capabilities).toContain('`/legacy.html#${encodeURIComponent(capability.legacyTab)}`');
-
-    const registry = loadRegistry();
-    expect(registry.find((capability) => capability.id === 'control-panel')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
-    expect(registry.find((capability) => capability.id === 'paywall-ab')).toMatchObject({ migrationStatus: 'fallback', nativeRoute: '' });
+    expect(capabilities).not.toMatch(/legacyTab|legacyPage|capabilityUrl|\/legacy\.html/);
+    expect(resolveCapabilityHash('#application:remote-config')).toEqual({ resolved: true, route: 'application', capabilityId: '' });
+    expect(resolveCapabilityHash('#paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: '' });
+    expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: '' });
   });
 
-  test('decodes an encoded fallback hash into its exact route and capability', () => {
-    expect(resolveCapabilityHash('#application%3Apaywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
-    expect(resolveCapabilityHash('#application:paywall-ab')).toEqual({ resolved: true, route: 'application', capabilityId: 'paywall-ab' });
-  });
+  test('resolves every canonical V2 navigation hash to its own local screen', () => {
+    const canonicalHashes = [
+      'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
+      'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns',
+      'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center',
+    ];
 
-  test('keeps a top-level route native when a legacy capability has the same id', () => {
-    expect(resolveCapabilityHash('#overview')).toEqual({ resolved: false, route: 'overview', capabilityId: '' });
-    expect(resolveCapabilityHash('#control-panel')).toEqual({ resolved: false, route: 'control-panel', capabilityId: '' });
-    expect(resolveCapabilityHash('#overview:overview')).toEqual({ resolved: true, route: 'overview', capabilityId: 'overview' });
-  });
-
-  test('keeps standalone analytics bookmarks inside the full native analytics page', () => {
-    for (const hash of ['#product', '#/product', '#subscriptions', '#/subscriptions', '#monthly', '#/monthly']) {
-      expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'analytics', capabilityId: '' });
+    for (const route of canonicalHashes) {
+      expect(resolveCapabilityHash(`#${route}`)).toEqual({ resolved: false, route, capabilityId: '' });
     }
   });
 
-  test('fails closed to the overview for every excluded V2 capability and Arena entry point', () => {
+  test('fails closed to overview for unknown, excluded, and encoded hashes', () => {
     for (const hash of [
+      '#unknown-route',
       '#arena-ranks', '#arena-live', '#arena-bets', '#arena-rooms', '#community:arena-live',
       '#arena-question-pool', '#content:arena-question-pool', '#content:arena-generator', '#content:arena-shadow',
-      '#french-quizzes', '#content:daily-phrases',
-      '#content:compass', '#mod-queue', '#community:mod-queue', '#audit', '#audit-log', '#ops-log',
-      '#archive', '#changelog-0608',
+      '#french-quizzes', '#content:daily-phrases', '#content:compass', '#mod-queue', '#community:mod-queue',
+      '#audit', '#audit-log', '#ops-log', '#archive', '#changelog-0608',
     ]) {
       expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'overview', capabilityId: '' });
     }
   });
 
-  test('renders a native Control Panel hub for the old pult groups', () => {
-    const router = read('admin/v2/scripts/admin-router.js');
-    const core = read('admin/v2/scripts/admin-core.js');
-    expect(router).toContain("'control-panel': 'control-panel'");
-    expect(core).toContain('function renderControlPanel');
-    expect(core).toContain('29 старых кнопок');
-    expect(core).toContain('Окно ручного обновления');
-    expect(core).toContain('Настройки и переключатели');
-    expect(core).toContain('Plus-доступ и уроки');
-    expect(core).toContain('Недельные бонусы');
-    expect(core).toContain('ИИ и бюджеты');
-    expect(core).toContain('Кампании и коммуникации');
-    expect(core).toContain('Старый модуль отдельно');
-    expect(core).toContain('Его действия могут менять рабочее приложение');
-    expect(core).not.toContain('Архивная сверка старой функции');
+  test('keeps native analytics bookmarks inside the local analytics route', () => {
+    for (const hash of ['#product', '#/product', '#subscriptions', '#/subscriptions', '#monthly', '#/monthly']) {
+      expect(resolveCapabilityHash(hash)).toEqual({ resolved: true, route: 'analytics', capabilityId: '' });
+    }
   });
 });

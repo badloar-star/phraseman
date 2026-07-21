@@ -29,6 +29,7 @@ beforeEach(() => {
     return Promise.resolve();
   });
   __resetAccountGenerationForTests();
+  beginAccountGeneration('test-owner');
 });
 
 describe('shards_system guards and one-time awards', () => {
@@ -103,7 +104,13 @@ describe('shards_system guards and one-time awards', () => {
 
   it('can credit a pending server-owned claim locally without using the generic cloud earn path', async () => {
     mockStorage.shards_balance = '7';
-    await expect(addShardsLocalOnlyForPendingServerClaim(2, 'report_reply_claim')).resolves.toBe(2);
+    const token = captureAccountGeneration();
+    await expect(addShardsLocalOnlyForPendingServerClaim(
+      2,
+      'report_reply_claim',
+      token,
+      'test-owner',
+    )).resolves.toBe(2);
     await expect(getShardsBalance()).resolves.toBe(9);
     expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({
       op: 'earn',
@@ -119,7 +126,13 @@ describe('shards_system guards and one-time awards', () => {
       reason: 'offline_reward',
     });
 
-    await expect(keepShardsBalanceLocalAtLeast(10, 'report_reply_claim')).resolves.toBe(80);
+    const token = captureAccountGeneration();
+    await expect(keepShardsBalanceLocalAtLeast(
+      10,
+      'report_reply_claim',
+      token,
+      'test-owner',
+    )).resolves.toBe(80);
     await expect(getShardsBalance()).resolves.toBe(80);
     expect(JSON.parse(mockStorage.shards_balance_meta_v1)).toMatchObject({
       updatedAtMs: expect.any(Number),
@@ -127,6 +140,34 @@ describe('shards_system guards and one-time awards', () => {
       reason: 'report_reply_claim',
     });
     expect(JSON.parse(mockStorage.shards_balance_meta_v1).updatedAtMs).toBeGreaterThan(2_000);
+  });
+
+  it.each([
+    ['optimistic add', async (token: ReturnType<typeof captureAccountGeneration>) =>
+      addShardsLocalOnlyForPendingServerClaim(5, 'report_reply_claim', token, 'account-a')],
+    ['server merge', async (token: ReturnType<typeof captureAccountGeneration>) =>
+      keepShardsBalanceLocalAtLeast(50, 'report_reply_claim', token, 'account-a')],
+  ] as const)('does not write account A %s after a delayed read crosses to B', async (_name, run) => {
+    beginAccountGeneration('account-a');
+    const token = captureAccountGeneration();
+    mockStorage.shards_balance = '10';
+    let releaseRead!: () => void;
+    const delayedRead = new Promise<void>((resolve) => { releaseRead = resolve; });
+    (AsyncStorage.getItem as jest.Mock).mockImplementationOnce(async (key: string) => {
+      await delayedRead;
+      return mockStorage[key] ?? null;
+    });
+
+    const pending = run(token);
+    await Promise.resolve();
+    invalidateAccountGeneration();
+    beginAccountGeneration('account-b');
+    mockStorage.shards_balance = '7';
+    releaseRead();
+
+    await pending;
+    await expect(getShardsBalance()).resolves.toBe(7);
+    expect(emitAppEvent).not.toHaveBeenCalledWith('shards_balance_updated', expect.anything());
   });
 
   it('does not keep spent store shards excluded forever', async () => {

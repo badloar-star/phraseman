@@ -7,14 +7,12 @@ export type OverlayKey =
   | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'introFullAccess'
-  | 'loyaltyGift'
   | 'dailyPlan'
   | 'levelUp'
   | 'themedAlert'
   | 'premiumCelebration'
   | 'vipCelebration'
   | 'leagueResult'
-  | 'arenaSeasonResult'
   | 'streakRevive'
   | 'entitlementExpired'
   | 'referralWelcome'
@@ -26,6 +24,7 @@ export type OverlayKey =
   | 'lessonCompleteNotif'
   | 'arenaRoomConfirm'
   | 'collectibleDrop'
+  | 'coinsMigration'
   | 'shardsEarned'
   | 'matchFoundToastScreen'
   | 'matchFoundToast'
@@ -52,14 +51,12 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
-  'loyaltyGift',
   'dailyPlan',
   'levelUp',
   'themedAlert',
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
-  'arenaSeasonResult',
   'streakRevive',
   'entitlementExpired',
   'referralWelcome',
@@ -81,6 +78,9 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'dailyTaskRewardToast',
   'coachToast',
   'actionToast',
+  // coinsMigration — одноразовый информ-модал «Осколки → Монеты» (без награды по тапу,
+  // закрывает юзер): дожидается всех наград/тостов, стоит перед «идеальной неделей».
+  'coinsMigration',
   // perfectWeekReward — недельный бонус («Идеальная неделя»). По требованию показывается
   // САМЫМ ПОСЛЕДНИМ: дожидается, пока закроются ВСЕ остальные окна (приветствие, обновление,
   // «что нового», компас, праздники, тосты) — и только тогда занимает слот. Награда уже
@@ -152,12 +152,10 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
-  'loyaltyGift',
   'levelUp',
   'premiumCelebration',
   'vipCelebration',
   'leagueResult',
-  'arenaSeasonResult',
   'entitlementExpired',
   'referralWelcome',
   'themedAlert',
@@ -172,6 +170,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   // поверх ещё закрывающегося нативного модала (напр. глобального update/introFullAccess
   // при заходе в комнату) ломал стек модалок (фриз / одно окно пропадало).
   'arenaRoomConfirm',
+  'coinsMigration',
 ]);
 
 /** Рендерится ли ключ нативным <Modal> (нужен ли зазор при передаче слота). */
@@ -207,14 +206,12 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   leagueBonusAvailable: false,
   notifNudge: false,
   introFullAccess: false,
-  loyaltyGift: false,
   dailyPlan: false,
   levelUp: false,
   themedAlert: false,
   premiumCelebration: false,
   vipCelebration: false,
   leagueResult: false,
-  arenaSeasonResult: false,
   streakRevive: false,
   entitlementExpired: false,
   referralWelcome: false,
@@ -234,6 +231,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   dailyTaskRewardToast: false,
   coachToast: false,
   actionToast: false,
+  coinsMigration: false,
 };
 
 export function resolveNextOverlay(

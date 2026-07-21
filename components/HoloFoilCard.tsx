@@ -60,6 +60,9 @@ interface HoloFoilCardProps {
   style?: StyleProp<ViewStyle>;
   /** Запускать приветственный авто-«тряс» при появлении. */
   autoShake?: boolean;
+  /** 3D-наклон/вращение карты (за пальцем, на «трясе» и в idle). false — карта
+      не крутится, но радуга/глянец/спекуляр продолжают жить. */
+  tiltEnabled?: boolean;
 }
 
 /** Полупрозрачный hex-суффикс из 0..1 (для краёв/подложек). */
@@ -76,6 +79,7 @@ export default function HoloFoilCard({
   height = 147,
   style,
   autoShake = true,
+  tiltEnabled = true,
 }: HoloFoilCardProps) {
   const p = HOLO_PROFILES[rarity] ?? HOLO_PROFILES.common;
   const isFocused = useIsScreenFocused();
@@ -178,12 +182,13 @@ export default function HoloFoilCard({
     [width, height],
   );
 
-  // Каркас карты: 3D-наклон + лёгкий прилёт-масштаб.
+  // Каркас карты: 3D-наклон + лёгкий прилёт-масштаб. При tiltEnabled:false
+  // вращение отключено («не надо крутить») — остаются прилёт и голография.
   const cardStyle = useAnimatedStyle(() => {
-    const ix = p.idleShimmer ? Math.sin(idle.value * Math.PI * 2) * 0.18 : 0;
-    const iy = p.idleShimmer ? Math.cos(idle.value * Math.PI * 2) * 0.14 : 0;
-    const rx = (-(ny.value + iy)) * p.tilt;
-    const ry = (nx.value + ix) * p.tilt;
+    const ix = tiltEnabled && p.idleShimmer ? Math.sin(idle.value * Math.PI * 2) * 0.18 : 0;
+    const iy = tiltEnabled && p.idleShimmer ? Math.cos(idle.value * Math.PI * 2) * 0.14 : 0;
+    const rx = tiltEnabled ? (-(ny.value + iy)) * p.tilt : 0;
+    const ry = tiltEnabled ? (nx.value + ix) * p.tilt : 0;
     const scale = interpolate(enter.value, [0, 0.5, 1], [0.86, 1.05, 1]);
     return {
       opacity: interpolate(enter.value, [0, 1], [0.4, 1]),

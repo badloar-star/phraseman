@@ -331,7 +331,7 @@ export default function ProblemCoach() {
         <View style={styles.introGuideList}>
           {introLearningBlocks.map((block, index) => {
             const blockText = copy('text' in block ? block.text : block);
-            const blockKey = 'id' in block ? block.id : `${diagnosisTraining.id}-intro-${index}`;
+            const blockKey = 'id' in block ? block.id: `${diagnosisTraining.id}-intro-${index}`;
             return (
               <View key={blockKey} style={styles.introGuideRow}>
                 <View style={[styles.introGuideDot, { backgroundColor: t.gold }]} />

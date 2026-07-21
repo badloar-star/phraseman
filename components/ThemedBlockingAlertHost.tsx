@@ -22,7 +22,7 @@ function ThemedBlockingAlertHost() {
       message={head?.message ?? ''}
       choices={
         head
-          ? [{ label: head.okLabel, onPress: () => {} }]
+          ? [{ label: head.okLabel, onPress: () => { resolveThemedBlockingAlertHead(); } }]
           : []
       }
       onRequestClose={() => {

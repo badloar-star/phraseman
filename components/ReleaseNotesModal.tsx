@@ -78,26 +78,22 @@ const TEXT = {
       + 'As estatísticas ficaram mais claras: ficou mais fácil acompanhar sequência, ritmo de estudo, congelamento e progresso.\n\n'
       + 'Também melhoramos o chat da liga: mensagens não lidas, denúncias, ocultar participantes e conexão mais estável.\n\n'
       + 'Além disso, ajustamos lições, dicas, quizzes, acesso Plus, sincronização e alguns erros que atrapalhavam com confiança demais.',
-    vi:
-      'Chúng tôi đã cập nhật nhẹ PhraseMan: làm mới giao diện cấp độ, giải đấu, quà tặng, năng lượng và thống kê.\n\n'
+    vi: 'Chúng tôi đã cập nhật nhẹ PhraseMan: làm mới giao diện cấp độ, giải đấu, quà tặng, năng lượng và thống kê.\n\n'
       + 'Thẻ học giờ có tự động phát âm thanh, để bạn luyện nghe bình tĩnh hơn mà không cần bấm liên tục.\n\n'
       + 'Thống kê rõ ràng hơn: dễ theo dõi chuỗi học, nhịp học, đóng băng chuỗi và tiến bộ.\n\n'
       + 'Chat giải đấu cũng được cải thiện: tin nhắn chưa đọc, báo cáo, ẩn người tham gia và kết nối ổn định hơn.\n\n'
       + 'Chúng tôi cũng chỉnh bài học, gợi ý, quiz, quyền truy cập Plus, đồng bộ và vài lỗi từng làm phiền khá tự tin.',
-    id:
-      'Kami sedikit memperbarui PhraseMan: tampilan level, liga, hadiah, energi, dan statistik dibuat lebih segar.\n\n'
+    id: 'Kami sedikit memperbarui PhraseMan: tampilan level, liga, hadiah, energi, dan statistik dibuat lebih segar.\n\n'
       + 'Kartu sekarang punya pemutaran otomatis, jadi kamu bisa melatih pendengaran tanpa terlalu sering menekan tombol.\n\n'
       + 'Statistik jadi lebih jelas: lebih mudah melihat streak, ritme belajar, freeze, dan progres.\n\n'
       + 'Chat liga juga kami rapikan: pesan belum dibaca, laporan, sembunyikan peserta, dan koneksi yang lebih stabil.\n\n'
       + 'Kami juga memperbaiki pelajaran, petunjuk, kuis, akses Plus, sinkronisasi, dan beberapa bug yang terlalu percaya diri mengganggu.',
-    tr:
-      'PhraseMan’i biraz güncelledik: seviyeler, ligler, hediyeler, enerji ve istatistiklerin görünümünü yeniledik.\n\n'
+    tr: 'PhraseMan’i biraz güncelledik: seviyeler, ligler, hediyeler, enerji ve istatistiklerin görünümünü yeniledik.\n\n'
       + 'Kartlara otomatik dinleme eklendi; artık sürekli dokunmadan sakin bir şekilde dinleme çalışması yapabilirsiniz.\n\n'
       + 'İstatistikler daha anlaşılır oldu: seri, çalışma ritmi, dondurma ve ilerlemeyi takip etmek daha kolay.\n\n'
       + 'Lig sohbetini de iyileştirdik: okunmamış mesajlar, şikayetler, katılımcı gizleme ve daha stabil bağlantı.\n\n'
       + 'Ayrıca dersleri, ipuçlarını, quizleri, Plus erişimini, senkronizasyonu ve fazla özgüvenle rahatsız eden birkaç hatayı düzelttik.',
-    pl:
-      'Trochę odświeżyliśmy PhraseMan: wygląd poziomów, lig, prezentów, energii i statystyk.\n\n'
+    pl: 'Trochę odświeżyliśmy PhraseMan: wygląd poziomów, lig, prezentów, energii i statystyk.\n\n'
       + 'Fiszki mają teraz automatyczne odtwarzanie, więc można spokojnie ćwiczyć słuch bez ciągłego klikania.\n\n'
       + 'Statystyki są czytelniejsze: łatwiej śledzić serię, rytm nauki, zamrożenie i postęp.\n\n'
       + 'Dopracowaliśmy też czat ligi: nieprzeczytane wiadomości, zgłoszenia, ukrywanie uczestników i stabilniejsze połączenie.\n\n'

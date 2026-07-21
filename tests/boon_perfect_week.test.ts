@@ -67,8 +67,8 @@ describe('parseWeekDone', () => {
 });
 
 describe('PERFECT_WEEK_REWARD', () => {
-  it('крупный приз (20 осколков)', () => {
-    expect(PERFECT_WEEK_REWARD.shards).toBe(20);
+  it('§7: монетный приз обнулён (монеты только покупаются)', () => {
+    expect(PERFECT_WEEK_REWARD.shards).toBe(0);
   });
 });
 

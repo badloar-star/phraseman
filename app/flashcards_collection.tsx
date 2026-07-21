@@ -996,14 +996,14 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('info', {
-          ru: 'Набор ещё не куплен. Его можно открыть за осколки в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за уламки в магазині (вкладка з наборами карток).',
-          es: 'Aún no has comprado este pack. Puedes obtenerlo por fragmentos en la tienda (pestaña de packs de Tarjetas).',
-          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por fragmentos na loja (aba de packs de Cartões).',
-          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng mảnh trong cửa hàng (tab pack Thẻ).',
-          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan shard di toko (tab pack Kartu).',
-          tr: 'Bu paket henüz satın alınmadı. Mağazada parçalarla açabilirsin (Kart paketleri sekmesi).',
-          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za odłamki w sklepie (zakładka pakietów Kart).',
+          ru: 'Набор ещё не куплен. Его можно открыть за монеты в магазине (вкладка с наборами карточек).',
+          uk: 'Набір ще не куплено. Його можна відкрити за монети в магазині (вкладка з наборами карток).',
+          es: 'Aún no has comprado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).',
+          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por moedas na loja (aba de packs de Cartões).',
+          vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng xu trong cửa hàng (tab pack Thẻ).',
+          id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan koin di toko (tab pack Kartu).',
+          tr: 'Bu paket henüz satın alınmadı. Mağazada jetonlarla açabilirsin (Kart paketleri sekmesi).',
+          pl: 'Ten pakiet nie został jeszcze kupiony. Możesz otworzyć go za monety w sklepie (zakładka pakietów Kart).',
         }),
       );
       router.replace('/flashcards' as any);

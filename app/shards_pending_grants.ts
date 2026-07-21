@@ -139,14 +139,14 @@ export async function resumePendingShardGrants(): Promise<{ resolved: number; st
       });
       emitAppEvent('action_toast', {
         type: 'success',
-        messageRu: `Готово: +${grant.expectedShards} осколков`,
-        messageUk: `Готово: +${grant.expectedShards} уламків`,
+        messageRu: `Готово: +${grant.expectedShards} монет`,
+        messageUk: `Готово: +${grant.expectedShards} монет`,
         messageEs: `Listo: +${grant.expectedShards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-        messagePtBr: `Pronto: +${grant.expectedShards} fragmentos`,
+        messagePtBr: `Pronto: +${grant.expectedShards} monedas`,
         messageVi: `Xong: +${grant.expectedShards} mảnh`,
         messageId: `Selesai: +${grant.expectedShards} shard`,
         messageTr: `Tamam: +${grant.expectedShards} parça`,
-        messagePl: `Gotowe: +${grant.expectedShards} odłamków`,
+        messagePl: `Gotowe: +${grant.expectedShards} monet`,
       });
       continue;
     }

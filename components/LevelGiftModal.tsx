@@ -39,7 +39,6 @@ import {
   RewardModalLiquidGlass,
   rewardModalPanelBorder,
   rewardModalPanelColors,
-  rewardModalSoftSurface,
 } from './RewardModalBackdrop';
 import {
   markGiftClaimed,
@@ -605,18 +604,14 @@ function LevelGiftModal({
                   activeOpacity={0.7}
                   onPress={handleSkip}
                   style={{
-                    marginTop: 18,
-                    paddingVertical: 11,
-                    paddingHorizontal: 22,
-                    borderRadius: 16,
-                    borderWidth: 0,
-                    borderColor: rewardModalPanelBorder(themeMode, t),
-                    backgroundColor: rewardModalSoftSurface(themeMode, t),
+                    marginTop: 14,
+                    paddingVertical: 8,
                     alignItems: 'center',
+                    alignSelf: 'stretch',
                   }}
                 >
-                  <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Receber mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -675,23 +670,19 @@ function LevelGiftModal({
                   {storesOnly && (
                     <TouchableOpacity
                       testID="level-gift-save-choice-later"
-                      activeOpacity={0.85}
+                      activeOpacity={0.7}
                       onPress={() => {
                         void hapticTap();
                         closeForCurrentOpening(false);
                       }}
                       style={{
-                        borderRadius: 14,
-                        paddingVertical: 12,
-                        paddingHorizontal: 22,
-                        borderWidth: 0,
-                        borderColor: t.border,
-                        backgroundColor: t.bgSurface2,
+                        paddingVertical: 8,
                         alignItems: 'center',
+                        alignSelf: 'stretch',
                       }}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Выбрать позже', uk: 'Вибрати пізніше', es: 'Elegir más tarde', 'pt-BR': 'Escolher depois', vi: 'Chọn sau', id: 'Pilih nanti', tr: 'Sonra seç', pl: 'Wybierz później' })}
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                        {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti', tr: 'Daha sonra', pl: 'Później' })}
                       </Text>
                     </TouchableOpacity>
                   )}

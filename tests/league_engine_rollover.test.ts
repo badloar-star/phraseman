@@ -11,6 +11,7 @@ jest.mock('../app/firestore_leagues', () => ({
 
 jest.mock('../app/hall_of_fame_utils', () => ({
   loadWeekLeaderboard: jest.fn(async () => []),
+  getLastWeekFinalPoints: jest.fn(async () => null),
 }));
 
 import {
@@ -276,7 +277,7 @@ describe('league weekly rollover', () => {
     expect(opened.result?.group.some(m => m.name === 'QA Monday' && m.isMe)).toBe(true);
   });
 
-  it('repairs an already saved pending result with rank 0', async () => {
+  it('repairs an already saved pending result structurally without changing its outcome', async () => {
     await AsyncStorage.setItem('user_name', 'QA Monday');
     const pending = {
       prevLeagueId: 0,
@@ -294,18 +295,20 @@ describe('league weekly rollover', () => {
     const repaired = await loadPendingResult();
     const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
 
+    // Ремонт только структурный: isMe восстановлен, но исход (rank 0, лига, флаги)
+    // остаётся ровно тем, что был вычислен на ролловере — не пересчитывается.
     expect(repaired).toMatchObject({
       prevLeagueId: 0,
-      newLeagueId: 1,
-      myRank: 1,
+      newLeagueId: 0,
+      myRank: 0,
       totalInGroup: 10,
-      promoted: true,
+      promoted: false,
     });
-    expect(savedPending.myRank).toBe(1);
+    expect(savedPending.myRank).toBe(0);
     expect(savedPending.group.some((m: GroupMember) => m.name === 'QA Monday' && m.isMe)).toBe(true);
   });
 
-  it('recalculates an already saved pending result with the current top-three zone', async () => {
+  it('preserves the outcome of an already saved pending result (structural repair only)', async () => {
     const { group } = makeGroupWithMyRank(16, 5);
     const stalePending = {
       prevLeagueId: 0,
@@ -323,17 +326,19 @@ describe('league weekly rollover', () => {
     const savedPending = JSON.parse(await AsyncStorage.getItem('league_result_pending') || '{}');
     const savedState = JSON.parse(await AsyncStorage.getItem('league_state_v3') || '{}');
 
+    // Поля исхода не пересчитываются: pending показывает ровно тот результат,
+    // что был сохранён на ролловере, даже если зона/состав группы «изменились» бы.
     expect(repaired).toMatchObject({
       prevLeagueId: 0,
-      newLeagueId: 0,
+      newLeagueId: 1,
       myRank: 5,
       totalInGroup: 16,
-      promoted: false,
+      promoted: true,
       demoted: false,
     });
-    expect(savedPending.promoted).toBe(false);
-    expect(savedPending.newLeagueId).toBe(0);
-    expect(savedState.leagueId).toBe(0);
+    expect(savedPending.promoted).toBe(true);
+    expect(savedPending.newLeagueId).toBe(1);
+    expect(savedState.leagueId).toBe(1);
   });
 
   it('demotes the bottom result zone and uses stored weekly points from league state', async () => {

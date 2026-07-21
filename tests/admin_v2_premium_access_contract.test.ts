@@ -17,9 +17,10 @@ describe('Admin v2 Free / Plus access workflow', () => {
     expect(core).toContain('gate_ai_dialog_premium');
     expect(core).toContain('gate_personal_plan_premium');
     expect(core).toContain('free_lesson_limit');
-    expect(core).toContain('free_daily_quiz_limit');
     expect(core).toContain('free_trainer_sessions_per_day');
     expect(core).not.toContain('arena_daily_max');
+    expect(core).not.toContain('free_daily_quiz_limit');
+    expect(core).not.toContain('gate_quizzes_premium');
     expect(core).toContain('max_energy');
     expect(core).toContain('free_lessons_extra');
     expect(core).toContain('premium_lessons_extra');

@@ -12,7 +12,7 @@ const router = read('admin/v2/scripts/admin-router.js');
 
 for (const callable of [
   'agentOfficeListCases', 'agentOfficeGetCase', 'agentOfficeListRecommendations',
-  'agentOfficeDecideRecommendation', 'agentOfficeListAuditEvents',
+  'agentOfficeDecideRecommendation', 'agentOfficeListAuditEvents', 'agentOfficeGetAggregateHealth',
 ]) assert.ok(firebase.includes(`httpsCallable(functionsUs, '${callable}')`), `missing ${callable} callable`);
 
 assert.ok(router.includes("'agent-office': 'agent-office'"), 'missing Agent Office route');
@@ -37,5 +37,20 @@ assert.ok(core.includes('globalThis.confirm(confirmation)'), 'a dangerous decisi
 assert.ok(core.includes('escapeHtml(agentCase.summary'), 'case text must be escaped before rendering');
 assert.ok(core.includes('<label for="agent-office-reason-'), 'decision reason needs an accessible label');
 assert.equal(/(?:getFirestore|collection\(|doc\(|onSnapshot)/.test(firebase), false, 'browser must not read Agent Office Firestore directly');
+
+assert.ok(core.includes('const AGENT_OFFICE_AGGREGATE_PLAN_SIGNALS = Object.freeze'), 'aggregate plan sources must be closed');
+assert.ok(core.includes('function agentOfficeAggregatePlanSignal(input)'), 'aggregate signals need a closed projection');
+assert.ok(core.includes('function buildAgentOfficeAggregatePlanSignals(items)'), 'aggregate cards need a safe builder');
+assert.ok(core.includes('data-action="add-agent-office-aggregate-to-plan"'), 'eligible aggregate cards need a plan action');
+assert.match(core, /if \(state\.adminRole === 'owner'\) \{\s*try \{ aggregateResult = await actions\.getAgentOfficeAggregateHealth\(\); \}/, 'only the owner may load aggregate health');
+assert.ok(core.includes("if (state.adminRole !== 'owner' || !signal)"), 'aggregate plan action must stay owner-only');
+assert.ok(core.includes('if (digestSignalAlreadyLinked(signal)) return setMessage'), 'aggregate action must reject stale duplicates');
+assert.ok(core.includes("globalThis.location.hash = 'plans'"), 'aggregate action must hand off to Plans');
+assert.ok(core.includes('globalThis.confirm('), 'plan creation must retain explicit confirmation');
+
+const aggregateProjection = core.slice(core.indexOf('function agentOfficeAggregatePlanSignal(input)'), core.indexOf('function buildAgentOfficeAggregatePlanSignals'));
+for (const forbidden of ['caseId', 'recommendationId', 'sourceRef', 'uid', 'email', 'summary', 'evidence']) {
+  assert.equal(aggregateProjection.includes(forbidden), false, `aggregate projection must not include ${forbidden}`);
+}
 
 console.log('Agent Office Admin v2 contract passed');

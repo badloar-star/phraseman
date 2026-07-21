@@ -77,6 +77,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
 import { oskolokImageForPackShards, oskolokImageForShardIapRow } from './oskolok';
+import { coinIconForBalance } from './coin_icons';
 import {
   trackCardPackClick,
   trackShardPackClick,
@@ -520,7 +521,7 @@ export default function ShardsShopScreen() {
           es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.',
           'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no App Store Connect.',
           vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong App Store Connect.',
-          id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di App Store Connect.',
+          id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di App Store Connect.',
           tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve App Store Connect aktif ürünlerini kontrol et.',
           pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w App Store Connect.',
         }),
@@ -555,7 +556,7 @@ export default function ShardsShopScreen() {
           es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.',
           'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos no Google Play.',
           vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong Google Play.',
-          id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di Google Play.',
+          id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di Google Play.',
           tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve Google Play aktif ürünlerini kontrol et.',
           pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w Google Play.',
         }),
@@ -589,7 +590,7 @@ export default function ShardsShopScreen() {
         es: 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.',
         'pt-BR': 'A loja ainda não está pronta: verifique o Offering «shards» no RevenueCat e os produtos ativos na loja de apps.',
         vi: 'Cửa hàng chưa sẵn sàng: kiểm tra Offering «shards» trong RevenueCat và các sản phẩm đang hoạt động trong cửa hàng ứng dụng.',
-        id: 'Toko belum siap: periksa Offering «shards» di RevenueCat dan produk aktif di toko aplikasi.',
+        id: 'Toko belum siap: periksa Offering «koin» di RevenueCat dan produk aktif di toko aplikasi.',
         tr: 'Mağaza henüz hazır değil: RevenueCat içindeki «shards» Offering ve uygulama mağazası aktif ürünlerini kontrol et.',
         pl: 'Sklep nie jest jeszcze gotowy: sprawdź Offering «shards» w RevenueCat oraz aktywne produkty w sklepie z aplikacjami.',
       }),
@@ -885,27 +886,27 @@ export default function ShardsShopScreen() {
   }, []);
 
   const shardTerm = triLang(lang, {
-    ru: 'осколков',
-    uk: 'уламків',
+    ru: 'монет',
+    uk: 'монет',
     es: shardsEsLc,
-    'pt-BR': 'fragmentos',
-    vi: 'mảnh',
-    id: 'shard',
-    tr: 'parça',
-    pl: 'odłamków',
+    'pt-BR': 'moedas',
+    vi: 'xu',
+    id: 'koin',
+    tr: 'jeton',
+    pl: 'monet',
   });
   const heroTitle = triLang(lang, {
-    ru: 'Осколки знаний',
-    uk: 'Уламки знань',
+    ru: 'Монеты',
+    uk: 'Монети',
     es: `${BRAND_SHARDS_ES} de conocimiento`,
-    'pt-BR': 'Fragmentos de conhecimento',
-    vi: 'Mảnh kiến thức',
-    id: 'Shard pengetahuan',
-    tr: 'Bilgi parçaları',
-    pl: 'Odłamki wiedzy',
+    'pt-BR': 'Moedas de conhecimento',
+    vi: 'Xu kiến thức',
+    id: 'Koin pengetahuan',
+    tr: 'Bilgi jetonları',
+    pl: 'Monety wiedzy',
   });
   const heroSub = triLang(lang, {
-    ru: 'Трать осколки на вызовы, клуб и всё, что нужно прямо сейчас.',
+    ru: 'Трать монеты на вызовы, клуб и всё, что нужно прямо сейчас.',
     uk: 'Один пакет — більше дій: бонуси, клуб і швидкі покупки в застосунку.',
     es: 'Un paquete, más acciones: bonificaciones, club y compras rápidas en la app.',
     'pt-BR': 'Um pacote, mais ações: bônus, clube e compras rápidas no app.',
@@ -934,14 +935,14 @@ export default function ShardsShopScreen() {
   const needLine = useMemo(() => {
     if (remainingNeed <= 0) return null;
     return triLang(lang, {
-      ru: `Нужно ещё ${remainingNeed} осколков — выбери пакет ниже.`,
-      uk: `Не вистачає ще ${remainingNeed} уламків — обери пакет нижче.`,
+      ru: `Нужно ещё ${remainingNeed} монет — выбери пакет ниже.`,
+      uk: `Не вистачає ще ${remainingNeed} монет — обери пакет нижче.`,
       es: `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`,
-      'pt-BR': `Faltam mais ${remainingNeed} fragmentos — escolha um pacote abaixo.`,
-      vi: `Bạn còn thiếu ${remainingNeed} mảnh — hãy chọn một gói bên dưới.`,
-      id: `Masih kurang ${remainingNeed} shard — pilih paket di bawah.`,
-      tr: `${remainingNeed} parça daha gerekiyor — aşağıdan bir paket seç.`,
-      pl: `Brakuje jeszcze ${remainingNeed} odłamków — wybierz pakiet poniżej.`,
+      'pt-BR': `Faltam mais ${remainingNeed} moedas — escolha um pacote abaixo.`,
+      vi: `Bạn còn thiếu ${remainingNeed} xu — hãy chọn một gói bên dưới.`,
+      id: `Masih kurang ${remainingNeed} koin — pilih paket di bawah.`,
+      tr: `${remainingNeed} jeton daha gerekiyor — aşağıdan bir paket seç.`,
+      pl: `Brakuje jeszcze ${remainingNeed} monet — wybierz pakiet poniżej.`,
     });
   }, [lang, remainingNeed, shardsEsLc]);
 
@@ -973,14 +974,14 @@ export default function ShardsShopScreen() {
           void loadCardMarket({ background: true, force: true }).catch(() => {});
           emitAppEvent('action_toast', {
             type: 'success',
-            messageRu: `DEV: начислено ${shards} осколков.`,
-            messageUk: `DEV: нараховано ${shards} уламків.`,
+            messageRu: `DEV: начислено ${shards} монет.`,
+            messageUk: `DEV: нараховано ${shards} монет.`,
             messageEs: `DEV: se añadieron ${shards} ${BRAND_SHARDS_ES.toLowerCase()}.`,
-            messagePtBr: `DEV: ${shards} fragmentos adicionados.`,
+            messagePtBr: `DEV: ${shards} monedas adicionados.`,
             messageVi: `DEV: đã cộng ${shards} mảnh.`,
             messageId: `DEV: ${shards} shard ditambahkan.`,
             messageTr: `DEV: ${shards} parça eklendi.`,
-            messagePl: `DEV: dodano ${shards} odłamków.`,
+            messagePl: `DEV: dodano ${shards} monet.`,
           });
           return;
         }
@@ -1063,10 +1064,10 @@ export default function ShardsShopScreen() {
           void clearPendingShardGrant(purchaseTxId).catch(() => {});
           emitAppEvent('action_toast', {
             type: 'success',
-            messageRu: `Готово: +${shards} осколков`,
-            messageUk: `Готово: +${shards} уламків`,
+            messageRu: `Готово: +${shards} монет`,
+            messageUk: `Готово: +${shards} монет`,
             messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-            messagePtBr: `Pronto: +${shards} fragmentos`,
+            messagePtBr: `Pronto: +${shards} monedas`,
             messageVi: `Xong: +${shards} mảnh`,
             messageId: `Selesai: +${shards} shard`,
             messageTr: `Tamam: +${shards} parça`,
@@ -1075,10 +1076,10 @@ export default function ShardsShopScreen() {
         } else {
           emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Оплата принята. Осколки появятся через пару минут.',
-            messageUk: 'Оплату прийнято. Уламки з\'являться за пару хвилин.',
-            messageEs: 'Pago recibido. Los fragmentos aparecerán en un par de minutos.',
-            messagePtBr: 'Pagamento recebido. Os fragmentos aparecerão em alguns minutos.',
+            messageRu: 'Оплата принята. Монеты появятся через пару минут.',
+            messageUk: 'Оплату прийнято. Монети з\'являться за пару хвилин.',
+            messageEs: 'Pago recibido. Los monedas aparecerán en un par de minutos.',
+            messagePtBr: 'Pagamento recebido. Os monedas aparecerão em alguns minutos.',
             messageVi: 'Đã nhận thanh toán. Mảnh sẽ xuất hiện sau vài phút.',
             messageId: 'Pembayaran diterima. Shard akan muncul dalam beberapa menit.',
             messageTr: 'Ödeme alındı. Parçalar birkaç dakika içinde görünecek.',
@@ -1386,7 +1387,7 @@ export default function ShardsShopScreen() {
               >
                 {isGoldTheme && <GoldBevel radius={17} intensity="normal" />}
                 {isCompassTheme && <CompassBevel radius={9} intensity="normal" />}
-                <Image source={oskolokImageForPackShards(balance)} style={{ width: 24, height: 24 }} contentFit="contain" />
+                <Image source={coinIconForBalance(balance)} style={{ width: 24, height: 24 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: `Баланс: ${balance} монет`, uk: `Баланс: ${balance} монет`, es: `Saldo: ${balance} monedas`, 'pt-BR': `Saldo: ${balance} moedas`, vi: `Số dư: ${balance} xu`, id: `Saldo: ${balance} koin`, tr: `Bakiye: ${balance} jeton`, pl: `Saldo: ${balance} monet` })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{balance}</Text>
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
                 {hasActiveVoucher && shopTab === 'paid' && (
@@ -1421,14 +1422,14 @@ export default function ShardsShopScreen() {
               const label =
                 key === 'catalog'
                   ? triLang(lang, {
-                    ru: 'Осколки',
-                    uk: 'Уламки',
+                    ru: 'Монеты',
+                    uk: 'Монети',
                     es: BRAND_SHARDS_ES,
-                    'pt-BR': 'Fragmentos',
-                    vi: 'Mảnh',
-                    id: 'Shard',
-                    tr: 'Parçalar',
-                    pl: 'Odłamki',
+                    'pt-BR': 'Moedas',
+                    vi: 'Xu',
+                    id: 'Koin',
+                    tr: 'Jetonlar',
+                    pl: 'Monety',
                   })
                   : triLang(lang, {
                     ru: 'Карточки',
@@ -1478,6 +1479,56 @@ export default function ShardsShopScreen() {
                 </View>
               );
             })}
+            {/* Вход на «Биржу» — обмен монет на звёзды (спека §6). */}
+            <View style={{ minWidth: 0, minHeight: 48, justifyContent: 'center' }}>
+              <PressableScale
+                onPress={() => router.push('/coin_exchange' as any)}
+                scaleTo={0.97}
+                withHaptic
+                accessibilityRole="button"
+                accessibilityLabel={triLang(lang, {
+                  ru: 'Биржа: обмен монет на звёзды',
+                  uk: 'Біржа: обмін монет на зірки',
+                  es: 'Intercambio: cambia monedas por estrellas',
+                  'pt-BR': 'Câmbio: troque moedas por estrelas',
+                  vi: 'Sàn giao dịch: đổi xu lấy sao',
+                  id: 'Bursa: tukar koin dengan bintang',
+                  tr: 'Borsa: jetonları yıldızla değiştir',
+                  pl: 'Giełda: wymień monety na gwiazdki',
+                })}
+                style={{ width: '100%' }}
+              >
+                <View
+                  style={{
+                    minHeight: 46,
+                    paddingVertical: 12,
+                    paddingHorizontal: 14,
+                    borderRadius: isCompassTheme ? 9 : 999,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexDirection: 'row',
+                    gap: 6,
+                    backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : t.bgSurface,
+                    borderWidth: 0,
+                    borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : t.border,
+                  }}
+                >
+                  <Ionicons name="swap-horizontal" size={16} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} accessibilityElementsHidden importantForAccessibility="no" />
+                  <Text style={{ fontSize: typeof f.caption === 'number' && f.caption > 0 ? f.caption : 13, lineHeight: 18, fontWeight: '800', color: t.textPrimary, letterSpacing: 0.2 }} numberOfLines={1}>
+                    {triLang(lang, {
+                      ru: 'Биржа',
+                      uk: 'Біржа',
+                      es: 'Cambio',
+                      'pt-BR': 'Câmbio',
+                      vi: 'Sàn',
+                      id: 'Bursa',
+                      tr: 'Borsa',
+                      pl: 'Giełda',
+                    })}
+                  </Text>
+                </View>
+              </PressableScale>
+            </View>
           </View>
           </View>
 
@@ -1506,14 +1557,14 @@ export default function ShardsShopScreen() {
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                   <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                     {triLang(lang, {
-                      ru: 'Наборы за осколки',
-                      uk: 'Набори за уламки',
+                      ru: 'Наборы за монеты',
+                      uk: 'Набори за монети',
                       es: `Paquetes por ${shardsEsLc}`,
-                      'pt-BR': 'Pacotes por fragmentos',
-                      vi: 'Gói đổi bằng mảnh',
-                      id: 'Paket dengan shard',
-                      tr: 'Parçalarla paketler',
-                      pl: 'Pakiety za odłamki',
+                      'pt-BR': 'Pacotes por moedas',
+                      vi: 'Gói đổi bằng xu',
+                      id: 'Paket dengan koin',
+                      tr: 'Jetonlarla paketler',
+                      pl: 'Pakiety za monety',
                     })}
                   </Text>
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
@@ -1704,14 +1755,14 @@ export default function ShardsShopScreen() {
                                       pl: '🎁 Użyj prezentu',
                                     })
                                     : triLang(lang, {
-                                      ru: `Открыть за ${pack.priceShards} осколков`,
-                                      uk: `Відкрити за ${pack.priceShards} уламків`,
+                                      ru: `Открыть за ${pack.priceShards} монет`,
+                                      uk: `Відкрити за ${pack.priceShards} монет`,
                                       es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
-                                      'pt-BR': `Comprar por ${pack.priceShards} fragmentos`,
-                                      vi: `Mua với ${pack.priceShards} mảnh`,
-                                      id: `Beli dengan ${pack.priceShards} shard`,
-                                      tr: `${pack.priceShards} parça ile satın al`,
-                                      pl: `Kup za ${pack.priceShards} odłamków`,
+                                      'pt-BR': `Comprar por ${pack.priceShards} moedas`,
+                                      vi: `Mua với ${pack.priceShards} xu`,
+                                      id: `Beli dengan ${pack.priceShards} koin`,
+                                      tr: `${pack.priceShards} jeton ile satın al`,
+                                      pl: `Kup za ${pack.priceShards} monet`,
                                     })
                                 }
                                 useLockIcon={false}
@@ -1774,7 +1825,7 @@ export default function ShardsShopScreen() {
                           justifyContent: 'center',
                         }}
                       >
-                        <Image source={oskolokImageForPackShards(balance)} style={{ width: 52, height: 52 }} contentFit="contain" />
+                        <Image source={coinIconForBalance(balance)} style={{ width: 52, height: 52 }} contentFit="contain" />
                       </View>
                     </PulsingShardFrame>
                     <View style={{ flex: 1, minWidth: 0 }}>
@@ -1826,14 +1877,14 @@ export default function ShardsShopScreen() {
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Осколки за деньги',
-                  uk: 'Уламки за гроші',
+                  ru: 'Монеты за деньги',
+                  uk: 'Монети за гроші',
                   es: `${BRAND_SHARDS_ES} (pago)`,
-                  'pt-BR': 'Fragmentos (pagamento)',
-                  vi: 'Mảnh (thanh toán)',
-                  id: 'Shard (pembayaran)',
-                  tr: 'Parçalar (ödeme)',
-                  pl: 'Odłamki (płatność)',
+                  'pt-BR': 'Moedas (pagamento)',
+                  vi: 'Xu (thanh toán)',
+                  id: 'Koin (pembayaran)',
+                  tr: 'Jetonlar (ödeme)',
+                  pl: 'Monety (płatność)',
                 })}
               </Text>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />

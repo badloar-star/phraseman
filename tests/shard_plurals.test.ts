@@ -4,26 +4,26 @@ import {
   ruShardKnowledgeSubtitle,
 } from '../constants/shard_plurals';
 
-describe('shard plurals', () => {
-  it('RU: согласует осколок/осколка/осколов с числом', () => {
-    expect(ruKnowledgeShardsAfterNumber(1)).toBe('осколок знаний');
-    expect(ruKnowledgeShardsAfterNumber(21)).toBe('осколок знаний');
-    expect(ruKnowledgeShardsAfterNumber(2)).toBe('осколка знаний');
-    expect(ruKnowledgeShardsAfterNumber(22)).toBe('осколка знаний');
-    expect(ruKnowledgeShardsAfterNumber(350)).toBe('осколков знаний');
-    expect(ruKnowledgeShardsAfterNumber(11)).toBe('осколков знаний');
-    expect(ruKnowledgeShardsAfterNumber(112)).toBe('осколков знаний');
+describe('coin plurals (бывшие «осколки» → «монеты», переименование отображаемое)', () => {
+  it('RU: согласует монета/монеты/монет с числом', () => {
+    expect(ruKnowledgeShardsAfterNumber(1)).toBe('монета');
+    expect(ruKnowledgeShardsAfterNumber(21)).toBe('монета');
+    expect(ruKnowledgeShardsAfterNumber(2)).toBe('монеты');
+    expect(ruKnowledgeShardsAfterNumber(22)).toBe('монеты');
+    expect(ruKnowledgeShardsAfterNumber(350)).toBe('монет');
+    expect(ruKnowledgeShardsAfterNumber(11)).toBe('монет');
+    expect(ruKnowledgeShardsAfterNumber(112)).toBe('монет');
   });
 
   it('UK: согласует формы после числа', () => {
-    expect(ukKnowledgeShardsAfterNumber(1)).toBe('уламок знань');
-    expect(ukKnowledgeShardsAfterNumber(21)).toBe('уламок знань');
-    expect(ukKnowledgeShardsAfterNumber(3)).toBe('уламки знань');
-    expect(ukKnowledgeShardsAfterNumber(11)).toBe('уламків знань');
-    expect(ukKnowledgeShardsAfterNumber(350)).toBe('уламків знань');
+    expect(ukKnowledgeShardsAfterNumber(1)).toBe('монета');
+    expect(ukKnowledgeShardsAfterNumber(21)).toBe('монета');
+    expect(ukKnowledgeShardsAfterNumber(3)).toBe('монети');
+    expect(ukKnowledgeShardsAfterNumber(11)).toBe('монет');
+    expect(ukKnowledgeShardsAfterNumber(350)).toBe('монет');
   });
 
   it('subtitle RU включает число', () => {
-    expect(ruShardKnowledgeSubtitle(350)).toBe('+350 осколков знаний');
+    expect(ruShardKnowledgeSubtitle(350)).toBe('+350 монет');
   });
 });

@@ -1634,7 +1634,7 @@ export default function LessonMenu() {
   id: 'Tutup',
   tr: 'Kapat',
   pl: 'Zamknij',
-}), onPress: () => {} }]}
+}), onPress: () => setSoonOpen(null) }]}
         onRequestClose={() => setSoonOpen(null)}
       />
       </ContentWrap>

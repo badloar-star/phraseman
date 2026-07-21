@@ -5,6 +5,28 @@ import { spawnSync } from 'node:child_process';
 const root = path.resolve(__dirname, '..');
 const read = (relativePath: string): string => fs.readFileSync(path.join(root, relativePath), 'utf8');
 
+function functionBlock(source: string, start: string, end: string): string {
+  const startIndex = source.indexOf(start);
+  const endIndex = source.indexOf(end, startIndex + start.length);
+  expect(startIndex).toBeGreaterThanOrEqual(0);
+  expect(endIndex).toBeGreaterThan(startIndex);
+  return source.slice(startIndex, endIndex);
+}
+
+function expectActionBranchReachable(handler: string, actionId: string): string {
+  const marker = `if (action === '${actionId}')`;
+  const branchIndex = handler.indexOf(marker);
+  expect(branchIndex).toBeGreaterThanOrEqual(0);
+  const prefix = handler.slice(0, branchIndex);
+  const actionSpecificEarlyExits = [...prefix.matchAll(/if\s*\(([^;\n]*\baction\b[^;\n]*)\)\s*(?:return|throw)\b/g)]
+    .map((match) => match[1])
+    .filter((condition) => [...condition.matchAll(/['"]([^'"]+)['"]/g)].some((match) => match[1] === actionId));
+  expect(actionSpecificEarlyExits).toEqual([]);
+
+  const nextBranchIndex = handler.indexOf('\n  if (action === ', branchIndex + marker.length);
+  return handler.slice(branchIndex, nextBranchIndex > branchIndex ? nextBranchIndex : undefined);
+}
+
 describe('Admin v2 audit log native contract', () => {
   const core = read('admin/v2/scripts/admin-core.js');
   const firebase = read('admin/v2/scripts/admin-firebase.js');
@@ -12,11 +34,16 @@ describe('Admin v2 audit log native contract', () => {
   const router = read('admin/v2/scripts/admin-router.js');
   const index = read('functions/src/index.ts');
 
-  test('promotes Audit log to a guarded native diagnostics capability without losing fallback', () => {
-    expect(capabilities).toContain("audit: 'diagnostics'");
-    expect(router).toContain("'audit-log': 'diagnostics'");
-    expect(core).toContain('renderAuditLogPanel');
-    expect(core).toContain('href="../../admin/index.html#audit"');
+  test('keeps the native diagnostics panel while retired audit routes stay out of navigation', () => {
+    const diagnosticsRenderer = core.slice(
+      core.indexOf('function renderDiagnostics()'),
+      core.indexOf('function renderSupport()'),
+    );
+
+    expect(capabilities).not.toMatch(/\{\s*id: 'audit(?:-log)?'/);
+    expect(router).not.toMatch(/['"]audit(?:-log)?['"]\s*:/);
+    expect(diagnosticsRenderer).toContain('${renderAuditLogPanel()}');
+    expect(core).not.toMatch(/href=["'][^"']*admin\/index\.html#audit/);
     expect(core).not.toContain('Нативная временная шкала переносится следующим этапом.');
   });
 
@@ -27,7 +54,22 @@ describe('Admin v2 audit log native contract', () => {
     expect(index).toContain("export { adminListAuditLog } from './admin_audit_log'");
   });
 
-  test('renders safe read-only controls, states and legacy handoff', () => {
+  test('dispatches both audit actions to the stateful callable loader without an earlier action exit', () => {
+    const handler = functionBlock(core, 'async function handleAction(action, target)', 'async function handleClick(event)');
+    const loadBranch = expectActionBranchReachable(handler, 'load-audit-log');
+    const nextBranch = expectActionBranchReachable(handler, 'load-audit-next');
+    const loader = functionBlock(core, 'async function loadAuditLog(append = false)', 'async function loadAgentOffice(');
+
+    expect(loadBranch).toMatch(/state\.audit\s*=\s*\{[\s\S]*action:[\s\S]*query:[\s\S]*sinceDays:/);
+    expect(loadBranch).toMatch(/return runBusy\(loadAuditLog,/);
+    expect(nextBranch).toMatch(/state\.audit\.nextCursor[\s\S]*loadAuditLog\(true\)/);
+    expect(loader).toMatch(/state\.audit\s*=\s*\{[^;]*state:\s*'loading'/);
+    expect(loader).toMatch(/await actions\.listAuditLog\(\{/);
+    expect(loader).toMatch(/state\.audit\s*=\s*\{[\s\S]*state:\s*String\(result\?\.state \|\| 'ready'\)/);
+    expect(loader).toMatch(/state\.audit\s*=\s*\{[^;]*state:\s*'error'/);
+  });
+
+  test('renders safe native read-only controls and states', () => {
     expect(core).toContain('audit-action-filter');
     expect(core).toContain('audit-search-filter');
     expect(core).toContain('audit-days-filter');

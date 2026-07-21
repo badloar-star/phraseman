@@ -95,8 +95,8 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
           </Text>
           <Text style={[styles.body, { color: t.textMuted, fontSize: f.body }]}>
             {triLang(lang, {
-              ru: 'Хотите поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
-              uk: 'Хочете поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
+              ru: 'Хочешь поделиться впечатлением о Phraseman? Честный отзыв поможет другим людям понять, чего ждать от приложения.',
+              uk: 'Хочеш поділитися враженням про Phraseman? Чесний відгук допоможе іншим людям зрозуміти, чого чекати від застосунку.',
               es: '¿Quieres compartir tu impresión de Phraseman? Una reseña honesta ayuda a otras personas a saber qué esperar de la app.',
               'pt-BR': 'Quer compartilhar sua impressão do Phraseman? Uma avaliação honesta ajuda outras pessoas a saber o que esperar do app.',
               vi: 'Bạn muốn chia sẻ cảm nhận về Phraseman? Một đánh giá chân thật giúp người khác biết nên mong đợi gì từ ứng dụng.',
@@ -113,9 +113,23 @@ function VipSurveyReviewPromptModal({ visible, onClose }: Props) {
             style={[styles.primaryButton, isCompassTheme && compassShadow(2), { backgroundColor: isCompassTheme ? COMPASS_RICH.champagne : '#16A34A', borderRadius: isCompassTheme ? 9 : 16, borderWidth: isCompassTheme ? StyleSheet.hairlineWidth : 0, borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : 'transparent', overflow: 'hidden' }]}
           >
             {isCompassTheme && <CompassDepthSurface radius={9} cream />}
-            <Ionicons name="create-outline" size={19} color={isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF'} />
-            <Text style={[styles.primaryText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : '#FFFFFF' }]}>
+            <Ionicons name="create-outline" size={19} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
+            <Text style={[styles.primaryText, { fontSize: f.body, color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText }]}>
               {triLang(lang, { ru: 'Написать отзыв', uk: 'Написати відгук', es: 'Escribir reseña', 'pt-BR': 'Escrever avaliação', vi: 'Viết đánh giá', id: 'Tulis ulasan', tr: 'Değerlendirme yaz', pl: 'Napisz recenzję' })}
+            </Text>
+          </TouchableOpacity>
+          {/* Единый стандарт: текстовая «Позже» под primary (раньше отказ был
+              только через крестик/фон). */}
+          <TouchableOpacity
+            testID="vip-survey-review-later"
+            activeOpacity={0.7}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
+            onPress={close}
+            style={styles.laterButton}
+          >
+            <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+              {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -189,5 +203,13 @@ const styles = StyleSheet.create({
   primaryText: {
     color: '#FFFFFF',
     fontWeight: '900',
+  },
+  laterButton: {
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 4,
+    minHeight: 40,
+    justifyContent: 'center',
   },
 });

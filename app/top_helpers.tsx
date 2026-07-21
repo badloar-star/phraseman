@@ -47,6 +47,15 @@ import SkeletonBlock from '../components/SkeletonShimmer';
 const HELPERS_AVATAR_SIZE = 52;
 const HELPERS_ACCENT = '#F59E0B';
 
+// Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
+// свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
+const LEGEND_CARD_NAME_GOLD = {
+  color: '#F5C842',
+  textShadowColor: 'rgba(245,200,66,0.45)',
+  textShadowOffset: { width: 0, height: 0 },
+  textShadowRadius: 6,
+} as const;
+
 function boardTitle(lang: string): string {
   return triLang(lang as never, {
     ru: 'Топ хелперов', uk: 'Топ хелперів', es: 'Top Helpers', 'pt-BR': 'Top Helpers',
@@ -265,6 +274,7 @@ export default function TopHelpersScreen() {
                       fontSize: isTop3 ? 16 : 15,
                       color: t.textPrimary,
                       fontWeight: isMe || isTop3 ? '700' : '600',
+                      ...((item.profileCardLevel ?? 0) >= 5 ? LEGEND_CARD_NAME_GOLD : null),
                     }}
                   >
                     {item.displayName}

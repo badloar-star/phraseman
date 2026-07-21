@@ -5,10 +5,11 @@ import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
  * Открывается кнопкой «Объяснить» в футере разбора ошибки урока. Показывает ОТДЕЛЬНЫЙ,
  * упрощённый текст (variant='eli5'), который генерит/кэширует тот же CF explainMistake.
  * Родитель (lesson1.tsx) владеет запросом и передаёт сюда state/text/onRetry — модал
- * только рисует. Стиль строго по дому: RN Modal + legacy Animated слайд снизу + fade,
- * как в ExplainSheet/NoEnergyModal. Reanimated не используем.
+ * только рисует. Шторка интерактивная (единый стандарт): reanimated +
+ * drag-to-dismiss по паттерну RegistrationPromptModal — тяга вниз 1:1, вверх
+ * резина ×0.12, закрытие по 88px/velocity 900, подложка слабеет при тяге.
  */
-import React, { memo, useEffect, useRef } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   View,
   Text,
@@ -16,13 +17,20 @@ import {
   Pressable,
   ScrollView,
   StyleSheet,
-  Animated,
-  Dimensions,
+  useWindowDimensions,
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
+import Animated, {
+  Easing as REasing,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from './SafeLinearGradient';
 import SkeletonBlock from './SkeletonShimmer';
-import { MOTION_SPRING_LEGACY } from '../constants/motion';
 import { useTheme } from './ThemeContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
@@ -42,39 +50,102 @@ interface Props {
   onRetry: () => void;
 }
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SHEET_HIDDEN = 320; // стартовая позиция листа под экраном (выезд/уезд)
 
 function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Props) {
   const { theme: t, f } = useTheme();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
+  const { height: viewportHeight } = useWindowDimensions();
 
-  const translateY = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
-  const backdropOp = useRef(new Animated.Value(0)).current;
+  // ── Интерактивная шторка (reanimated, паттерн RegistrationPromptModal) ────
+  const backdropO = useSharedValue(0);
+  const sheetY = useSharedValue(SHEET_HIDDEN);
+  const sheetOpacity = useSharedValue(0);
+  const dragTranslateY = useSharedValue(0);
 
   useEffect(() => {
-    if (!visible) {
-      translateY.setValue(SCREEN_HEIGHT);
-      backdropOp.setValue(0);
-      return;
-    }
-    const intro = Animated.parallel([
-      Animated.spring(translateY, {
-        toValue: 0,
-        tension: MOTION_SPRING_LEGACY.panel.tension,
-        friction: MOTION_SPRING_LEGACY.panel.friction,
-        useNativeDriver: true,
-      }),
-      Animated.timing(backdropOp, { toValue: 1, duration: 220, useNativeDriver: true }),
-    ]);
-    intro.start();
-    return () => intro.stop();
-  }, [visible, translateY, backdropOp]);
+    if (!visible) return;
+    // Вход: подложка + лист выезжает снизу.
+    dragTranslateY.value = 0;
+    backdropO.value = withTiming(1, { duration: 200, easing: REasing.out(REasing.cubic) });
+    sheetY.value = SHEET_HIDDEN;
+    sheetOpacity.value = withTiming(1, { duration: 220 });
+    sheetY.value = withTiming(0, { duration: 380, easing: REasing.bezier(0.32, 0.72, 0, 1) });
+  }, [visible, backdropO, sheetY, sheetOpacity, dragTranslateY]);
 
   const handleClose = () => {
     hapticTap();
     onClose();
   };
+
+  const handleCloseRef = useRef(handleClose);
+  handleCloseRef.current = handleClose;
+
+  // Анимированное закрытие (крестик/фон/системная «назад»): лист уезжает вниз +
+  // подложка тает, затем общий путь handleClose.
+  const dismissSheet = useCallback(() => {
+    backdropO.value = withTiming(0, { duration: 200 });
+    sheetOpacity.value = withTiming(0, { duration: 180 });
+    sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
+      if (finished) runOnJS(handleCloseRef.current)();
+    });
+  }, [backdropO, sheetOpacity, sheetY]);
+
+  const closeAfterSwipe = useCallback(() => {
+    handleCloseRef.current();
+  }, []);
+
+  const swipeOffDistance = useMemo(() => Math.max(480, viewportHeight * 0.6), [viewportHeight]);
+
+  // Интерактивный лист: тянешь вниз 1:1, вверх — резиновое сопротивление (×0.12);
+  // отпустил — spring обратно или уезд вниз + закрытие (порог 88px / velocityY 900).
+  const panGesture = useMemo(
+    () =>
+      Gesture.Pan()
+        .activeOffsetY(10)
+        .failOffsetX([-32, 32])
+        .onUpdate((e) => {
+          'worklet';
+          const ty = e.translationY;
+          dragTranslateY.value = ty < 0 ? ty * 0.12 : ty;
+        })
+        .onEnd((e) => {
+          'worklet';
+          const shouldClose = dragTranslateY.value > 88 || e.velocityY > 900;
+          if (shouldClose) {
+            dragTranslateY.value = withTiming(swipeOffDistance, { duration: 260 }, (finished) => {
+              if (finished) {
+                runOnJS(closeAfterSwipe)();
+              }
+            });
+          } else {
+            dragTranslateY.value = withSpring(0, { damping: 22, stiffness: 300 });
+          }
+        }),
+    [closeAfterSwipe, dragTranslateY, swipeOffDistance],
+  );
+
+  // Подложка: затемнение по backdropO, посветление при оттягивании листа вниз.
+  const backdropStyle = useAnimatedStyle(() => ({
+    opacity: backdropO.value * (1 - Math.min(Math.max(dragTranslateY.value, 0) / 600, 0.5)),
+  }));
+
+  const sheetStyle = useAnimatedStyle(() => ({
+    opacity: sheetOpacity.value,
+    transform: [{ translateY: sheetY.value + dragTranslateY.value }],
+  }));
+
+  const closeLabel = triLang(lang, {
+    ru: 'Закрыть',
+    uk: 'Закрити',
+    es: 'Cerrar',
+    'pt-BR': 'Fechar',
+    vi: 'Đóng',
+    id: 'Tutup',
+    tr: 'Kapat',
+    pl: 'Zamknij',
+  });
 
   const title = triLang(lang, {
     ru: 'Объясни проще',
@@ -127,24 +198,25 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
   );
 
   return (
-    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={handleClose}>
-      <View style={styles.root}>
-        <Animated.View style={[StyleSheet.absoluteFill, { opacity: backdropOp }]}>
-          <Pressable style={styles.backdrop} onPress={handleClose} accessibilityLabel="Close" />
-        </Animated.View>
+    <Modal visible={visible} transparent animationType="none" statusBarTranslucent onRequestClose={dismissSheet}>
+      <GestureHandlerRootView style={styles.root}>
+        <Pressable style={StyleSheet.absoluteFill} onPress={dismissSheet} accessibilityLabel={closeLabel}>
+          <Animated.View style={[styles.backdrop, backdropStyle]} />
+        </Pressable>
 
-        <Animated.View
-          style={[
-            styles.sheet,
-            {
-              backgroundColor: t.bgCard,
-              borderColor: t.border,
-              shadowColor: t.accent,
-              paddingBottom: 20 + bottomInset,
-              transform: [{ translateY }],
-            },
-          ]}
-        >
+        <GestureDetector gesture={panGesture}>
+          <Animated.View
+            style={[
+              styles.sheet,
+              {
+                backgroundColor: t.bgCard,
+                borderColor: t.border,
+                shadowColor: t.accent,
+                paddingBottom: 20 + bottomInset,
+              },
+              sheetStyle,
+            ]}
+          >
           <TonalSurface pointerEvents="none" radius={24} tone="raised" style={StyleSheet.absoluteFillObject} />
           <LinearGradient
             colors={[`${t.accent}1F`, 'transparent']}
@@ -162,10 +234,10 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
               {title}
             </Text>
             <Pressable
-              onPress={handleClose}
+              onPress={dismissSheet}
               hitSlop={8}
               accessibilityRole="button"
-              accessibilityLabel="Close"
+              accessibilityLabel={closeLabel}
               style={({ pressed }) => [styles.closeBtn, { backgroundColor: t.bgSurface2 }, pressed && styles.pressed]}
             >
               <Ionicons name="close" size={20} color={t.textMuted} />
@@ -173,7 +245,7 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
           </View>
 
           <ScrollView
-            style={styles.bodyScroll}
+            style={[styles.bodyScroll, { maxHeight: viewportHeight * 0.5 }]}
             contentContainerStyle={styles.bodyScrollContent}
             showsVerticalScrollIndicator={false}
           >
@@ -215,8 +287,9 @@ function MistakeEli5Modal({ visible, onClose, lang, state, text, onRetry }: Prop
               </View>
             )}
           </ScrollView>
-        </Animated.View>
-      </View>
+          </Animated.View>
+        </GestureDetector>
+      </GestureHandlerRootView>
     </Modal>
   );
 }
@@ -285,7 +358,7 @@ const styles = StyleSheet.create({
     opacity: 0.78,
   },
   bodyScroll: {
-    maxHeight: SCREEN_HEIGHT * 0.5,
+    maxHeight: 420, // базовый потолок; реальный — inline viewportHeight * 0.5
   },
   bodyScrollContent: {
     paddingBottom: 12,

@@ -35,7 +35,7 @@ describe('Admin v2 global navigation search', () => {
     expect(core).toContain('element.getClientRects().length > 0');
     expect(core).toContain("!element.matches(':disabled')");
     expect(core).toContain("element.closest('[aria-hidden=\"true\"], [inert]')");
-    expect(core).toContain("const fallbacks = document.body.classList.contains('nav-open') ? [toggle, launcher] : [launcher, toggle];");
+    expect(core).toContain("const fallbacks = document.body.classList.contains('nav-open') ? [toggle, ...mobileNavFocusableElements()] : [launcher, toggle];");
     expect(core).toContain('const target = [returnFocus, ...fallbacks].find(isRestorableGlobalSearchFocus);');
     const restore = core.slice(core.indexOf('function restoreGlobalSearchFocus()'));
     expect(restore.indexOf('globalSearchReturnFocus = null;')).toBeLessThan(restore.indexOf('.focus({ preventScroll: true })'));

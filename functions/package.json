@@ -4,7 +4,7 @@
   "engines": {
     "node": "22"
   },
-  "main": "lib/index.js",
+  "main": "lib/functions/src/index.js",
   "scripts": {
     "build": "tsc",
     "serve": "npm run build && firebase emulators:start --only functions",
@@ -27,8 +27,8 @@
     "nodemailer": "^9.0.3"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^5.0.1",
     "@types/archiver": "^6.0.4",
-    "@firebase/rules-unit-testing": "5.0.1",
     "@types/jest": "^30.0.0",
     "@types/mailparser": "^3.4.6",
     "@types/node": "^22.0.0",

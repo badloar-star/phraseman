@@ -54,6 +54,11 @@
       const financialWarning = revenue.status === 'truncated_not_decision_grade'
         ? '<div class="notice warning section"><strong>Финансовая выборка обрезана безопасным лимитом.</strong><br>Эти показатели имеют статус truncated_not_decision_grade и не подходят для продуктового решения.</div>'
         : '';
+      const refundPlanSignal = !m.truncated && Number(m.undatedEvents) === 0 && Number(m.refunds) > 0 && Number.isFinite(Number(data.dataThroughMs))
+        ? { metric: 'analytics_subscription_refunds', source: 'revenuecat_subscription_analytics', state: 'ready', count: Number(m.refunds), rangeDays, observedAtMs: Number(data.dataThroughMs) }
+        : null;
+      if (refundPlanSignal) await window.AdminV2HydrateAnalyticsPlanAction?.(refundPlanSignal);
+      const refundPlanAction = refundPlanSignal ? window.AdminV2RenderAnalyticsPlanAction?.(refundPlanSignal) || '' : '';
       content.innerHTML = '<div style="padding:10px 12px;border:1px solid #293548;border-radius:9px;color:#cbd5e1;font-size:12px;line-height:1.55;margin:10px 0"><b>Отключение продления</b> означает, что следующего автоматического платежа не будет, но уже оплаченный доступ может продолжаться. <b>Окончание доступа</b> означает, что RevenueCat сообщил о завершении права доступа. Причины доступны только у новых серверных событий после выпуска этой детализации; старую историю восстановить нельзя. Мы не связываем отмену подписки с конкретным экраном приложения.</div>' +
         financialWarning +
         '<div class="chart-card" style="margin-bottom:12px"><h3 title="Серверно подтверждённые суммы RevenueCat" tabindex="0">Деньги и покрытие</h3><div class="an2-grid">' +
@@ -75,7 +80,7 @@
           card('Возобновили продление', m.uncancellations, 'Пользователь снова включил автоматическое продление.') +
           card('Проблемы со списанием', m.billingIssues, 'RevenueCat сообщил о проблеме при попытке очередного платежа.') +
           card('Доступ закончился', m.expirations, 'RevenueCat сообщил, что оплаченный доступ завершился.') +
-          card('Возвраты денег', m.refunds, 'События полного или частичного возврата платежа.') +
+          card('Возвраты денег', m.refunds, 'События полного или частичного возврата платежа.') + refundPlanAction +
           card('Переносы доступа', m.transfers, 'Перенос права доступа между идентификаторами. Не входит в разбивку по тарифам и магазинам.') + '</div>' +
         '<div class="chart-card" style="margin-bottom:12px"><h3 title="Насколько надёжно определено время серверных событий" tabindex="0" aria-label="Качество времени событий. Насколько надёжно определено время серверных событий">Качество времени событий</h3><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;font-size:12px">' +
           qualityItem('Без времени самого события', m.missingEventTimestamp, 'RevenueCat не передал время события.') +

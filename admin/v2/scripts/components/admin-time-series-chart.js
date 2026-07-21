@@ -14,6 +14,12 @@ const UNIT_NAMES = new Set(['count', 'ratio', 'usd_micros']);
 const RESERVED_IDS = new Set(['__proto__', 'constructor', 'prototype']);
 const liveChartsById = new Map();
 const liveChartsByHost = new Map();
+const chartKindById = new Map();
+const CHART_KINDS = Object.freeze([
+  ['line', 'Линии', '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m3 17 6-6 4 4 8-8"/></svg>'],
+  ['area', 'Область', '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3 17l6-6 4 4 8-8v12H3z" opacity="0.85"/></svg>'],
+  ['bar', 'Столбцы', '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="4" y="10" width="4" height="10" rx="1"/><rect x="10" y="4" width="4" height="16" rx="1"/><rect x="16" y="13" width="4" height="7" rx="1"/></svg>'],
+]);
 const ruDate = new Intl.DateTimeFormat('ru-RU', {
   day: 'numeric',
   month: 'long',
@@ -467,6 +473,13 @@ export function createAdminChartScaffold(host, descriptor) {
   const heading = document.createElement('h3');
   heading.className = 'admin-chart__title';
   heading.textContent = descriptor.title;
+  const head = document.createElement('div');
+  head.className = 'admin-chart__head';
+  head.appendChild(heading);
+  const kinds = document.createElement('div');
+  kinds.className = 'admin-chart__kinds';
+  kinds.setAttribute('data-chart-kinds', '');
+  head.appendChild(kinds);
   const legend = document.createElement('div');
   legend.className = 'admin-chart__legend';
   legend.setAttribute('data-chart-legend', '');
@@ -488,9 +501,9 @@ export function createAdminChartScaffold(host, descriptor) {
   live.setAttribute('data-chart-live', '');
   live.setAttribute('aria-live', 'polite');
   live.setAttribute('aria-atomic', 'true');
-  root.append(heading, legend, summary, canvas, live);
+  root.append(head, legend, summary, canvas, live);
   host.appendChild(root);
-  return { root, legend, summary, canvas, live };
+  return { root, legend, summary, canvas, live, kinds };
 }
 
 export function createAdminChartTable(document, captionText, headers, rows) {
@@ -913,6 +926,42 @@ export function mountTimeSeriesChart(host, descriptor, chartFactory = globalThis
     metricButtons.set(series.metricId, button);
     scaffold.legend.appendChild(button);
   });
+  const kindButtons = new Map();
+  const applyChartKind = (kind) => {
+    chartKindById.set(normalized.id, kind);
+    for (const dataset of chart.data.datasets) {
+      dataset.type = kind === 'bar' ? 'bar' : 'line';
+      dataset.fill = kind === 'area';
+      if (kind === 'bar') {
+        dataset.borderRadius = 5;
+        dataset.maxBarThickness = 26;
+      }
+    }
+    for (const [buttonKind, button] of kindButtons) {
+      const selected = buttonKind === kind;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', String(selected));
+    }
+    if (typeof chart.update === 'function') chart.update();
+  };
+  for (const [kind, label, icon] of CHART_KINDS) {
+    const button = host.ownerDocument.createElement('button');
+    button.type = 'button';
+    button.setAttribute('type', 'button');
+    button.className = 'admin-chart__kind';
+    button.setAttribute('aria-pressed', 'false');
+    const kindTooltip = `Показать график как: ${label}`;
+    button.setAttribute('title', kindTooltip);
+    button.setAttribute('data-tooltip', kindTooltip);
+    button.setAttribute('aria-label', label);
+    button.innerHTML = icon;
+    const onClick = () => applyChartKind(kind);
+    button.addEventListener('click', onClick);
+    cleanup.push(() => button.removeEventListener('click', onClick));
+    kindButtons.set(kind, button);
+    scaffold.kinds.appendChild(button);
+  }
   selectMetric(activeMetricId, false);
+  applyChartKind(chartKindById.get(normalized.id) || 'area');
   return registerAdminChart({ id: normalized.id, host, root: scaffold.root, chart, cleanup });
 }

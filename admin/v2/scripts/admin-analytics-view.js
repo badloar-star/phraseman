@@ -278,6 +278,8 @@ function consentCoverageSection(snapshot) {
 }
 
 export function renderAdminAnalytics(model) {
+  globalThis.AdminV2RenderAnalyticsPlanAction = typeof model.renderPlanAction === 'function' ? model.renderPlanAction : undefined;
+  globalThis.AdminV2HydrateAnalyticsPlanAction = typeof model.hydratePlanAction === 'function' ? model.hydratePlanAction : undefined;
   const rangeDays = Number(model.rangeDays || model.snapshot?.rangeDays || 28);
   const loading = model.status === 'loading';
   const controlsDisabled = Boolean(model.controlsDisabled || !model.authorized || model.busy || loading);

@@ -17,19 +17,19 @@
     <div class="head">
       <div>
         <h1>Достоверность переноса функций</h1>
-            <p class="muted" id="inventory-summary">Загружаем фактические показатели старой админки…</p>
+            <p class="muted" id="inventory-summary">Загружаем сохранённые показатели аудита…</p>
       </div>
     </div>
-    <div class="notice">Статус модуля и статус отдельной кнопки — разные вещи. Нативный экран не означает, что каждая операция старой админки уже перенесена. Неопределённые элементы остаются в инвентаре без догадок.</div>
+    <div class="notice">Статус модуля и статус отдельной кнопки — разные вещи. Нативный экран не означает, что каждая сохранённая операция уже перенесена. Неопределённые элементы остаются в реестре без догадок.</div>
     <div class="controls">
       <label class="field" for="search">Поиск<input id="search" placeholder="Название, кнопка, обработчик или вкладка"></label>
       <label class="field" for="route">Раздел<select id="route"><option value="">Все 7 разделов</option></select></label>
-      <label class="field" for="status">Статус<select id="status"><option value="">Все статусы</option><option value="inventory">Требует уточнения</option><option value="guarded">Нативный защищённый экран</option><option value="ported">Полностью перенесено</option><option value="fallback">Старый интерфейс</option><option value="blocked">Заблокировано</option></select></label>
+      <label class="field" for="status">Статус<select id="status"><option value="">Все статусы</option><option value="inventory">Требует уточнения</option><option value="guarded">Нативный защищённый экран</option><option value="ported">Полностью перенесено</option><option value="fallback">Требует переноса</option><option value="blocked">Заблокировано</option></select></label>
     </div>
     <div id="summary" class="summary" aria-live="polite"></div>
-    <div class="section-title"><h2>Модули</h2><p class="muted">58 рабочих областей, распределённых по семи разделам.</p></div>
+    <div class="section-title"><h2>Модули</h2><p class="muted">Сохранённые рабочие области распределены по семи разделам.</p></div>
     <div id="capabilities" class="groups" aria-live="polite"><div class="empty">Загружаем модули…</div></div>
-    <div class="section-title"><h2>Кнопки старой админки</h2><p class="muted">Детальная инвентаризация остаётся консервативной до проверки каждой операции.</p></div>
+    <div class="section-title"><h2>Сохранённый аудит кнопок</h2><p class="muted">Детальная инвентаризация остаётся консервативной до проверки каждой операции.</p></div>
     <div id="groups" class="groups" aria-live="polite"><div class="empty">Загружаем кнопки…</div></div>
   </main>
   <script>
@@ -37,14 +37,14 @@
     const $=id=>document.getElementById(id);
     const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
     const routeLabels={overview:'Обзор',application:'Приложение',users:'Пользователи',money:'Деньги',content:'Контент',community:'Комьюнити',diagnostics:'Диагностика'};
-    const statusLabels={inventory:'Требует уточнения',guarded:'Нативный защищённый экран',ported:'Полностью перенесено',fallback:'Старый интерфейс',blocked:'Заблокировано'};
+    const statusLabels={inventory:'Требует уточнения',guarded:'Нативный защищённый экран',ported:'Полностью перенесено',fallback:'Требует переноса',blocked:'Заблокировано'};
     const groupByRoute=rows=>{const groups=new Map();rows.forEach(row=>{const route=row.route||row.target?.route||'diagnostics';(groups.get(route)||groups.set(route,[]).get(route)).push(row)});return groups};
     async function boot(){
       try{
         const response=await fetch('../../docs/admin/ADMIN_V2_MIGRATION_COVERAGE.json',{cache:'no-store'});
         if(!response.ok)throw new Error('coverage_unavailable');
         state.board=await response.json();
-        $('inventory-summary').textContent=`Фактически найдено: ${state.board.source.buttons} кнопок и ${state.board.source.functions} функций. Данные обновлены ${new Date(state.board.generatedAt).toLocaleString('ru-RU')}.`;
+        $('inventory-summary').textContent=`В сохранённом аудите: ${state.board.source.buttons} кнопок и ${state.board.source.functions} функций. Данные зафиксированы ${new Date(state.board.generatedAt).toLocaleString('ru-RU')}.`;
         $('route').innerHTML='<option value="">Все 7 разделов</option>'+state.board.routes.map(route=>`<option value="${esc(route)}">${esc(routeLabels[route]||route)}</option>`).join('');
         render();
       }catch{
@@ -62,7 +62,7 @@
       $('summary').innerHTML=[
         `<span class="pill">Модулей: <b>${capabilitySummary.total}</b></span>`,
         `<span class="pill">Нативных защищённых: <b>${capabilitySummary.guarded}</b></span>`,
-        `<span class="pill">Старый интерфейс: <b>${capabilitySummary.fallback}</b></span>`,
+        `<span class="pill">Требуют переноса: <b>${capabilitySummary.fallback}</b></span>`,
         `<span class="pill">Кнопок: <b>${state.board.source.buttons}</b></span>`,
         `<span class="pill">Функций: <b>${state.board.source.functions}</b></span>`
       ].join('');
@@ -71,7 +71,7 @@
     }
     function renderCapabilities(rows){
       if(!rows.length){$('capabilities').innerHTML='<div class="empty">Модули не найдены по текущему фильтру.</div>';return}
-      $('capabilities').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const hash=row.nativeRoute?encodeURIComponent(row.nativeRoute):`${encodeURIComponent(row.route)}:${encodeURIComponent(row.capabilityId)}`;return `<div class="row"><div><b>${esc(row.label)}</b><small>${esc(row.notes)}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span><a class="legacy" href="./index.html#${hash}" title="Открыть модуль в новой админке">Открыть</a></span></div>`}).join('')}</section>`).join('')
+      $('capabilities').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const action=row.nativeRoute?`<a class="legacy" href="./index.html#${encodeURIComponent(row.nativeRoute)}" title="Открыть нативный модуль в Admin V2">Открыть в V2</a>`:'<span class="muted">Только в реестре</span>';const note=row.nativeRoute?'Нативный маршрут подтверждён; операции по-прежнему проверяются отдельными контрактами.':'Запись сохранена для проверки переноса без внешнего перехода.';return `<div class="row"><div><b>${esc(row.label)}</b><small>${esc(note)}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span>${action}</span></div>`}).join('')}</section>`).join('')
     }
     function linkedFunctionPurpose(names){
       const joined=(Array.isArray(names)?names:[]).join(' ').toLowerCase();
@@ -87,7 +87,7 @@
     }
     function renderButtons(rows){
       if(!rows.length){$('groups').innerHTML='<div class="empty">Кнопки не найдены по текущему фильтру.</div>';return}
-      $('groups').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const tab=row.legacy.tab;const source=row.legacy.provenance==='script-template'?'шаблон в скрипте':tab||'контекст не определён';const functions=Array.isArray(row.linkedFunctions)?row.linkedFunctions:[];const link=tab?`<a class="legacy" href="/legacy.html#${encodeURIComponent(tab)}" target="_blank" rel="noopener" title="Открыть рабочий старый интерфейс в отдельной вкладке">Старая версия</a>`:'<span class="muted">Требует контекста</span>';return `<div class="row"><div><b>${esc(row.legacy.text||row.legacy.id||'Без подписи')}</b><small>${esc(source)} · строка ${row.legacy.line} · ${esc(linkedFunctionPurpose(functions))}${functions.length?`<br><span class="muted">Технические функции: <code>${esc(functions.join(', '))}</code></span>`:''}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span>${link}</span></div>`}).join('')}</section>`).join('')
+      $('groups').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const source=row.legacy.provenance==='script-template'?'шаблон в сохранённом аудите':'сохранённая запись';const functions=Array.isArray(row.linkedFunctions)?row.linkedFunctions:[];return `<div class="row"><div><b>${esc(row.legacy.text||row.legacy.id||'Без подписи')}</b><small>${esc(source)} · строка ${row.legacy.line} · ${esc(linkedFunctionPurpose(functions))}${functions.length?`<br><span class="muted">Технические функции: <code>${esc(functions.join(', '))}</code></span>`:''}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span><span class="muted">Только в реестре</span></span></div>`}).join('')}</section>`).join('')
     }
     ['search','route','status'].forEach(id=>$(id).addEventListener('input',render));
     boot();

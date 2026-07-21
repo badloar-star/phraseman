@@ -22,6 +22,7 @@ const HREF_GUIDANCE = Object.freeze({
   '#support': 'Открыть почту поддержки и защищённую подготовку ответов.',
   '#content': 'Открыть фабрику языков и управление контентом.',
   '#analytics': 'Открыть подробную продуктовую и подписочную аналитику.',
+  '#subscriptions': 'Открыть подписочную аналитику в Admin V2.',
 });
 
 export function specificGuidanceForControl(attributes) {
@@ -52,8 +53,6 @@ export function specificGuidanceForControl(attributes) {
 
   const href = String(attributes.href ?? '');
   if (HREF_GUIDANCE[href]) return HREF_GUIDANCE[href];
-  if (href.includes('#subscriptions')) return 'Открыть старый рабочий модуль подписок в отдельной вкладке для сверки.';
-  if (href.includes('#gmail-support')) return 'Открыть прежний модуль поддержки в отдельной вкладке для аварийной сверки.';
   if (String(attributes.className ?? '').split(/\s+/).includes('asset-preview')) return 'Открыть созданное изображение в полном размере в отдельной вкладке.';
   return '';
 }

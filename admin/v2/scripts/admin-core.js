@@ -1,4 +1,4 @@
-import { ADMIN_CAPABILITY_REGISTRY, capabilityById, capabilityUrl } from './admin-capabilities.js';
+import { ADMIN_CAPABILITY_REGISTRY, capabilityById } from './admin-capabilities.js';
 import { completeAnalyticsLoad, createCanonicalAnalyticsReport } from './admin-analytics-state.js';
 import {
   captureLegacyAnalyticsWorkspaces,
@@ -28,6 +28,7 @@ import {
 } from './admin-analytics-trends-view.js';
 import { downloadAnalyticsReportBundle } from './admin-report-export.js';
 import { destroyAdminChart, destroyAdminCharts } from './components/admin-time-series-chart.js';
+import { mountCoinRateChart } from './components/admin-coin-rate-chart.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
 import { specificGuidanceForControl } from './admin-guidance.js';
 import { renderContentGeneratorShell } from './content-factory/renderers.js';
@@ -37,6 +38,7 @@ import { buildAgentOfficeDecisionConfirmation, buildAgentOfficeDecisionRequest, 
 import { buildSearchIndex, createQueryCancellation, searchIndex } from './admin-v2-global-search.js';
 import { createFavoritesStore } from './admin-v2-favorites.js';
 import { createOverviewCache } from './admin-overview-cache.js';
+import { createRouteRefreshCoordinator } from './admin-route-refresh.js';
 import {
   DASHBOARD_WIDGET_REGISTRY,
   deriveAdminBrowserPreferenceScope,
@@ -79,6 +81,11 @@ let favoritesStore = createFavoritesStore({ storage: dashboardWidgetStorage(), s
 let favoritesScopeState = 'session';
 const overviewCache = createOverviewCache();
 let overviewCacheScope = null;
+const routeRefreshCoordinator = createRouteRefreshCoordinator({
+  isVisible: () => document.visibilityState === 'visible',
+});
+const ROUTE_REFRESH_TTL_MS = 30_000;
+let agentOfficeLoadGeneration = 0;
 
 export const ADMIN_SECTIONS = Object.freeze([
   { route: 'overview', label: 'Обзор', title: 'Ежедневный обзор' },
@@ -94,18 +101,20 @@ const PAGES = Object.freeze({
   overview: { title: 'Обзор', description: 'Сигналы, требующие решения сегодня, и последние управленческие действия.' },
   'agent-office': { title: 'Стратегические решения', description: 'Рекомендации агентов с доказательствами, сроком актуальности и ручным подтверждением.' },
   'agent-manager': { title: 'Менеджер агентов', description: 'Постановка задач, очередь, согласования, результаты и регламенты в одном месте.' },
-  'control-panel': { title: 'Пульт управления', description: 'Главные рычаги старой админки, сгруппированные по безопасным рабочим процессам.' },
+  'control-panel': { title: 'Пульт управления', description: 'Главные операционные рычаги, сгруппированные по безопасным рабочим процессам.' },
   application: { title: 'Приложение', description: 'Обновления, баннеры, технические работы и конфигурация приложения.' },
   users: { title: 'Пользователи', description: 'Единый поиск, профиль, обращения, покупки и история действий пользователя.' },
   money: { title: 'Деньги', description: 'Подписки, платежи, промокоды и подтверждённые показатели выручки.' },
+  'coin-center': { title: 'Центр монет', description: 'Курс биржи «монеты → звёзды», ручное переопределение, история колебаний и объёмы обменов.' },
   content: { title: 'Контент', description: 'Уроки, языковые пакеты и безопасная фабрика новых языков.' },
-  community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние Арены.' },
+  community: { title: 'Комьюнити', description: 'Жалобы, пользовательский контент, чат и состояние сообщества.' },
   diagnostics: { title: 'Диагностика', description: 'Состояние системы, ошибки, журнал действий и восстановление.' },
   support: { title: 'Почта поддержки', description: 'Входящие письма людей и системные сообщения с явной категорией, без скрытой потери.' },
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
-  'daily-briefing': { title: 'Утренний отчёт руководителя', description: 'Рост, деньги, риски, очереди и действия на сегодня.' },
+  'daily-briefing': { title: 'Брифинг', description: 'Сводка дня: рост, деньги, риски и действия.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
   'asset-studio': { title: 'Студия изображений', description: 'Создание изображений через безопасный серверный процесс: создать → проверить → опубликовать.' },
+  plans: { title: 'Планы', description: 'Структурированные планы действий с серверно заданными заголовком, описанием и шагами.' },
   campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
   'admin-settings': { title: 'Настройки админки', description: 'Личный вид, рабочие привычки, репорты, алерты и защитные правила этой панели.' },
 });
@@ -173,7 +182,7 @@ const PREMIUM_ACCESS_FEATURES = Object.freeze([
   { key: 'gate_smart_trainer_premium', label: 'Умный тренажёр' },
   { key: 'gate_trainer_modes_premium', label: 'Лимит тренажёра' },
   { key: 'gate_diagnosis_training_premium', label: 'Разбор ошибок' },
-  { key: 'gate_personal_plan_premium', label: 'Личный план / Компас' },
+  { key: 'gate_personal_plan_premium', label: 'Личный план' },
   { key: 'gate_stats_premium', label: 'Статистика и инсайты' },
   { key: 'gate_flashcards_premium', label: 'Карточки сверх лимита' },
   { key: 'gate_themes_premium', label: 'Темы оформления' },
@@ -358,7 +367,7 @@ const state = {
   workspace: null,
   contentStages: createContentFactoryState(),
   generation: null,
-  support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null },
+  support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null, observedAtMs: 0 },
   analytics: { status: 'idle', snapshot: null, error: '' },
   activeAnalyticsReport: 'overview',
   analyticsTrends: createAnalyticsTrendScopesState(),
@@ -367,25 +376,45 @@ const state = {
   selectedCapabilityId: '',
   remoteConfig: null,
   remoteConfigPreview: null,
+  paywallAb: defaultPaywallAbState(),
+  paywallAbStats: defaultPaywallAbStatsState(),
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
+  directorDigest: { state: 'idle', digest: null, rangeDays: 7, error: '', fetchedAtMs: 0, audio: { state: 'idle', current: 0, total: 0, error: '' } },
   reports: defaultReportState(initialAdminUiSettings),
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
+  plans: { state: 'idle', items: [], error: '' },
+  digestPlanDraft: null,
+  digestPlanSourceHashes: {},
   promo: { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' },
   campaigns: { state: 'idle', items: [], preview: null, error: '' },
-  agentOffice: { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 },
+  agentOffice: { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], aggregateHealth: [], showAudit: false, error: '', fetchedAtMs: 0 },
   agentManager: { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 },
   broadcasts: { state: 'idle', items: [], preview: null, error: '' },
+  coinCenter: defaultCoinCenterState(),
 };
+
+function defaultCoinCenterState() {
+  return {
+    state: 'idle',
+    exchange: null,
+    history: [],
+    stats24h: null,
+    overrides: [],
+    rangeDays: 30,
+    error: '',
+    fetchedAtMs: 0,
+  };
+}
 
 let actions = null;
 let actionsReady = false;
+const directorDigestAudioPlayback = { clips: [], player: null, current: 0 };
 let initialized = false;
 let reportFilterTimer = 0;
 let reportRequestId = 0;
-let overviewBriefingRefreshInFlight = false;
 let adminAutoRefreshTimer = 0;
 let adminInteractionSeen = false;
 let lastCriticalSoundSignature = '';
@@ -479,12 +508,6 @@ function pageHeader(page, eyebrow, actionHtml = '') {
 
 function emptyState(message) {
   return `<div class="empty-state">${ICONS.empty}<div>${escapeHtml(message)}</div></div>`;
-}
-
-function renderCapabilityWorkspace(capability) {
-  const url = capabilityUrl(capability);
-  return `${pageHeader(PAGES[capability.route] ?? PAGES.overview, capability.label, `<button class="button" data-action="close-capability" type="button" title="Вернуться к разделу">К списку инструментов</button>`)}
-    <section class="card section"><div class="card-header"><div><h2>${escapeHtml(capability.label)}</h2><p>${escapeHtml(capability.description)}</p></div><span class="badge warning">Старая версия</span></div><div class="card-body"><div class="notice warning"><strong>Этот инструмент ещё переносится.</strong> Он откроется в отдельной вкладке, потому что политика безопасности запрещает встраивать старую админку внутрь Admin 2.</div><div class="actions section"><a class="button primary" href="${escapeHtml(url)}" target="_blank" rel="noopener" title="Открыть рабочий инструмент «${escapeHtml(capability.label)}» в старой админке">Открыть рабочий инструмент</a></div></div></section>`;
 }
 
 function settingsSelect(id, label, value, options, title) {
@@ -690,9 +713,10 @@ const CANONICAL_LEFT_NAV_ITEMS = Object.freeze([
   { id: 'gmail-support', route: 'support', label: 'Почта поддержки' },
   { id: 'reports', route: 'report-center', label: 'Центр репортов' },
   { id: 'app-messages', route: 'campaigns', label: 'Кампании' },
+  { id: 'plans', route: 'plans', label: 'Планы' },
 ]);
 const CANONICAL_LEFT_NAV_ITEM_IDS = new Set(CANONICAL_LEFT_NAV_ITEMS.map((item) => item.id));
-const CANONICAL_LEFT_NAV_PARENT_ROUTES = Object.freeze({ users: 'users', 'gmail-support': 'users', reports: 'users', 'app-messages': 'application' });
+const CANONICAL_LEFT_NAV_PARENT_ROUTES = Object.freeze({ users: 'users', 'gmail-support': 'users', reports: 'users', 'app-messages': 'application', plans: 'content' });
 const ADMIN_UTILITY_NAV_ITEMS = Object.freeze([
   { id: 'control-panel', route: 'control-panel', label: 'Пульт управления' },
 ]);
@@ -706,7 +730,7 @@ function buildVisibleNavigationSearchIndex(groups, routeFor, utilityItems = []) 
       description: capability.description || '',
       route: routeFor(capability),
       nativeRoute: routeFor(capability),
-      legacyStatus: routeFor(capability) ? 'native' : 'legacy',
+      nativeStatus: 'native',
       permission: capability.permission || '',
       excluded: !routeFor(capability),
     }))),
@@ -718,7 +742,7 @@ function buildVisibleNavigationSearchIndex(groups, routeFor, utilityItems = []) 
         description: capability?.description || '',
         route: item.route,
         nativeRoute: item.route,
-        legacyStatus: 'native',
+        nativeStatus: 'native',
         permission: capability?.permission || '',
         excluded: false,
       };
@@ -742,7 +766,7 @@ function renderGlobalSearchFavorites() {
   const favorites = favoriteNavigationEntries();
   const scopeNotice = favoritesStore.getScope() ? '' : `<p role="status">${favoritesScopeState === 'loading' ? 'Закрепления сохраняются только в этом сеансе, пока загружаются личные настройки.' : 'Закрепления сохраняются только в этом сеансе.'}</p>`;
   list.innerHTML = `${scopeNotice}${favorites.length
-    ? favorites.map((entry) => `<div><button class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" type="button"><strong>${escapeHtml(entry.label)}</strong></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="Открепить ${escapeHtml(entry.label)}" title="Открепить ${escapeHtml(entry.label)}">Открепить</button></div>`).join('')
+    ? favorites.map((entry) => `<div><button class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" type="button" title="Открыть ${escapeHtml(entry.label)}"><strong>${escapeHtml(entry.label)}</strong></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="Открепить ${escapeHtml(entry.label)}" title="Открепить ${escapeHtml(entry.label)}">Открепить</button></div>`).join('')
     : '<p>Пока нет закреплённых разделов.</p>'}`;
 }
 
@@ -753,7 +777,7 @@ function renderGlobalSearchResults(query) {
   globalSearchSelectedIndex = Math.min(globalSearchSelectedIndex, Math.max(results.length - 1, 0));
   list.innerHTML = results.length ? results.map((entry, index) => {
     const favorite = favoritesStore.load().includes(entry.id);
-    return `<div><button id="global-search-result-${index}" class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" role="option" aria-selected="${index === globalSearchSelectedIndex ? 'true' : 'false'}" type="button"><strong>${escapeHtml(entry.label)}</strong><small>${escapeHtml(entry.description)}</small></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}" title="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}">${favorite ? 'Открепить' : 'Закрепить'}</button></div>`;
+    return `<div><button id="global-search-result-${index}" class="button ghost" data-global-search-route="${escapeHtml(entry.route || entry.nativeRoute)}" role="option" aria-selected="${index === globalSearchSelectedIndex ? 'true' : 'false'}" type="button" title="Открыть ${escapeHtml(entry.label)}"><strong>${escapeHtml(entry.label)}</strong><small>${escapeHtml(entry.description)}</small></button><button class="button small" data-global-search-favorite-id="${escapeHtml(entry.id)}" type="button" aria-label="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}" title="${favorite ? 'Открепить' : 'Закрепить'} ${escapeHtml(entry.label)}">${favorite ? 'Открепить' : 'Закрепить'}</button></div>`;
   }).join('') : '<div class="empty-state">Ничего не найдено.</div>';
 }
 
@@ -772,7 +796,7 @@ function restoreGlobalSearchFocus() {
   globalSearchReturnFocus = null;
   const toggle = document.getElementById('mobile-nav-toggle');
   const launcher = document.getElementById('global-search-launcher');
-  const fallbacks = document.body.classList.contains('nav-open') ? [toggle, launcher] : [launcher, toggle];
+  const fallbacks = document.body.classList.contains('nav-open') ? [toggle, ...mobileNavFocusableElements()] : [launcher, toggle];
   const target = [returnFocus, ...fallbacks].find(isRestorableGlobalSearchFocus);
   target?.focus({ preventScroll: true });
 }
@@ -915,7 +939,7 @@ function renderNavigation() {
     const capabilities = ADMIN_CAPABILITY_REGISTRY.filter((capability) => capability.route === section.route && capability.id !== 'control-panel' && capabilityById(capability.id) && !CANONICAL_LEFT_NAV_ITEM_IDS.has(capability.id));
     if (section.route !== 'money') return { ...section, capabilities };
     const analytics = capabilities.find((capability) => capability.id === 'analytics');
-    const reports = analytics ? [['today', 'Сегодня'], ['growth', 'Рост'], ['money', 'Деньги'], ['learning', 'Обучение']]
+    const reports = analytics ? [['today', 'Сегодня'], ['growth', 'Рост'], ['subscriptions', 'Подписки'], ['learning', 'Обучение']]
       .map(([id, label]) => ({ ...analytics, id: `analytics-${id}`, label, nativeRoute: id })) : [];
     return { ...section, capabilities: [...reports, ...capabilities.filter((capability) => capability.id !== 'analytics')] };
   });
@@ -928,16 +952,16 @@ function renderNavigation() {
   }
   const isActive = (capability) => state.selectedCapabilityId === capability.id
     || state.route === routeFor(capability)
-    || (String(capability.id).startsWith('analytics-') && routeFor(capability) === ({ overview: 'today', product: 'growth', subscriptions: 'money', exports: 'learning' }[state.activeAnalyticsReport] || ''));
+    || (String(capability.id).startsWith('analytics-') && routeFor(capability) === ({ overview: 'today', product: 'growth', subscriptions: 'subscriptions', exports: 'learning' }[state.activeAnalyticsReport] || ''));
   const renderItem = (capability) => {
     const route = routeFor(capability);
-    const label = `${capability.label}${route ? '' : ' · старая версия'}`;
-    if (!route) return `<a class="nav-button nav-fallback" href="${escapeHtml(capabilityUrl(capability))}" target="_blank" rel="noopener" title="Открыть ${escapeHtml(capability.label)} в старой админке"><span>${escapeHtml(label)}</span></a>`;
+    const label = capability.label;
+    if (!route) return '';
     return `<button class="nav-button" type="button" data-route="${route}" aria-current="${isActive(capability) ? 'page' : 'false'}" title="${escapeHtml(capability.label)}"><span>${escapeHtml(label)}</span></button>`;
   };
   nav.innerHTML = groupsWithCanonicalItems.map((group) => `<details class="nav-group"${group.capabilities.some(isActive) || state.route === group.route ? ' open' : ''}><summary>${ICONS[group.route]}<span>${escapeHtml(group.label)}</span></summary><div class="nav-group-items">${group.capabilities.map(renderItem).join('')}</div></details>`).join('');
   utilityNav.innerHTML = ADMIN_UTILITY_NAV_ITEMS.map(renderItem).join('');
-  const parentRoutes = { campaigns: 'application', support: 'users', analytics: 'money', 'daily-briefing': 'overview', 'report-center': 'users', 'asset-studio': 'content', 'control-panel': 'overview', 'agent-office': 'overview', 'agent-manager': 'overview' };
+  const parentRoutes = { campaigns: 'application', support: 'users', analytics: 'money', 'coin-center': 'money', 'daily-briefing': 'overview', 'report-center': 'users', 'asset-studio': 'content', plans: 'content', 'control-panel': 'overview', 'agent-office': 'overview', 'agent-manager': 'overview' };
   const activeRoute = parentRoutes[state.route] || state.route;
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
   const page = PAGES[state.route] ?? PAGES.overview;
@@ -999,45 +1023,47 @@ function filterOverviewDecisionRows(rows) {
 
 function renderOverviewDecisions(view) {
   if (!view.hasData) return emptyState(view.state === 'loading' ? 'Ожидаю сохранённый снимок.' : 'Нет подтверждённых данных для списка решений.');
+  const signals = new Map(buildOverviewPlanSignals(view).map((signal) => [signal.code, signal]));
   const rows = [];
-  if (view.metrics.criticalSignals > 0) rows.push(['Критические сигналы', `${view.metrics.criticalSignals} сигналов ошибок и безопасности за окно снимка`, '#diagnostics', 'Открыть диагностику', 'danger']);
-  if (view.metrics.queueSignals24h > 0) rows.push(['Репорты и очереди за 24 часа', `${view.metrics.queueSignals24h} новых открытых репортов и событий очередей за окно снимка`, '#report-center', 'Открыть центр репортов', 'warning']);
+  if (view.metrics.criticalSignals > 0) rows.push(['Критические сигналы', `${view.metrics.criticalSignals} сигналов ошибок и безопасности за окно снимка`, '#diagnostics', 'Открыть диагностику', 'danger', signals.get('overview_critical_signals')]);
+  if (view.metrics.queueSignals24h > 0) rows.push(['Репорты и очереди за 24 часа', `${view.metrics.queueSignals24h} новых открытых репортов и событий очередей за окно снимка`, '#report-center', 'Открыть центр репортов', 'warning', signals.get('overview_queue_signals')]);
   if (view.metrics.packSubmissions24h > 0) rows.push(['Новые подачи паков', `${view.metrics.packSubmissions24h} подач за последние 24 часа; статус каждой проверьте в комьюнити`, '#community', 'Открыть комьюнити', 'warning']);
-  if (view.metrics.sourceErrors > 0) rows.push(['Источники данных', `${view.metrics.sourceErrors} источников не прочитано`, '#diagnostics', 'Проверить источники', 'danger']);
-  if (view.metrics.sourceTruncated > 0) rows.push(['Ограниченные выборки', `${view.metrics.sourceTruncated} источников вернули неполную выборку`, '#diagnostics', 'Проверить полноту', 'warning']);
+  if (view.metrics.sourceErrors > 0) rows.push(['Источники данных', `${view.metrics.sourceErrors} источников не прочитано`, '#diagnostics', 'Проверить источники', 'danger', signals.get('overview_source_error')]);
+  if (view.metrics.sourceTruncated > 0) rows.push(['Ограниченные выборки', `${view.metrics.sourceTruncated} источников вернули неполную выборку`, '#diagnostics', 'Проверить полноту', 'warning', signals.get('overview_source_truncated')]);
   if (view.hasUnknownMetrics) rows.push(['Неизвестные показатели', 'Часть полей отсутствует в сохранённом снимке, поэтому админка не подставляет нули.', '#diagnostics', 'Проверить источники', 'warning']);
   if (!rows.length) return emptyState(view.state === 'ready' ? 'По подтверждённому снимку отслеживаемых приоритетов нет.' : 'Подтверждённых приоритетов нет, но снимок неполный или устарел.');
   const { visibleRows, hiddenCount } = filterOverviewDecisionRows(rows);
   if (!visibleRows.length) return `${emptyState('Включён режим только важных алертов: критических сигналов сейчас нет.')}<div class="notice section">${hiddenCount} менее срочных сигналов скрыто настройкой.</div>`;
-  return `<div class="data-list">${visibleRows.map(([title, detail, href, action, kind]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a></div>`).join('')}</div>${hiddenCount ? `<div class="notice section">${hiddenCount} менее срочных сигналов скрыто режимом важных алертов.</div>` : ''}`;
+  return `<div class="data-list">${visibleRows.map(([title, detail, href, action, kind, signal]) => `<div class="list-row"><div><strong>${escapeHtml(title)}</strong><small>${escapeHtml(detail)}</small></div><div class="actions"><a class="button small ${kind === 'danger' ? '' : 'ghost'}" href="${href}" title="${escapeHtml(action)}">${escapeHtml(action)}</a>${renderOperationalPlanAction(signal)}</div></div>`).join('')}</div>${hiddenCount ? `<div class="notice section">${hiddenCount} менее срочных сигналов скрыто режимом важных алертов.</div>` : ''}`;
 }
 
 const CONTROL_PANEL_WORKFLOWS = Object.freeze([
-  { title: 'Обновления и обслуживание', description: 'Окно обновления, обязательное обновление, ссылки магазинов, доля показа и сообщение о технических работах.', primary: '#application', primaryLabel: 'Открыть настройки приложения', fallback: 'control-panel', risk: 'Высокий риск', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Настройки и переключатели', description: 'Промокоды, лига по опыту, постоянный доступ, идеи, боты Арены, первый запуск, таймеры оплаты, видеокнопка и стартовый подарок.', primary: '#application', primaryLabel: 'Открыть настройки приложения', fallback: 'remote-config', risk: 'Защищённая публикация', coverage: '8 переключателей', guarded: true },
-  { title: 'Промокоды', description: 'Создание пачек и собственных кодов, список кодов и активации перенесены в раздел «Деньги».', primary: '#money', primaryLabel: 'Открыть промокоды', fallback: 'promo-codes', risk: 'Серверная команда', coverage: 'перенесено', guarded: true },
-  { title: 'Промо-баннер', description: 'Текст, ссылка, срок, аудитория, платформа и безопасное выключение перенесены в раздел «Приложение».', primary: '#application', primaryLabel: 'Открыть промо-баннер', fallback: 'control-panel', risk: 'Защищённая публикация', coverage: 'перенесено', guarded: true },
-  { title: 'Plus-доступ и уроки', description: 'Глобальные возможности Plus, бесплатные лимиты и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть доступ Бесплатный / Plus', fallback: 'control-panel', risk: 'Защищённая публикация', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и возврат к исходным значениям.', primary: '#remote-config', primaryLabel: 'Открыть удалённую конфигурацию', fallback: 'control-panel', risk: 'Контент и экономика', coverage: '3 старые кнопки', guarded: true },
-  { title: 'ИИ и бюджеты', description: 'Модель Theo, дневные лимиты, фоновые задания ИИ, бюджет и Студия изображений.', primary: '#asset-studio', primaryLabel: 'Открыть Студию изображений', fallback: 'openai-budget', risk: 'Бюджет ИИ', coverage: '5 старых кнопок', guarded: true },
-  { title: 'Кампании и коммуникации', description: 'Сообщения и опросы создаются и включаются в новой версии; push-уведомления, варианты экрана оплаты, опрос Plus и Telegram будут перенесены следующими.', primary: '#campaigns', primaryLabel: 'Открыть кампании', fallback: 'app-messages', risk: 'Сообщения защищены; push-уведомления ещё переносятся', coverage: 'частично перенесено', guarded: true },
+  { title: 'Обновления и обслуживание', description: 'Окно обновления, обязательное обновление, ссылки магазинов, доля показа и сообщение о технических работах.', primary: '#application', primaryLabel: 'Открыть настройки приложения', risk: 'Высокий риск', coverage: '5 сценариев', guarded: true },
+  { title: 'Настройки и переключатели', description: 'Промокоды, лига по опыту, постоянный доступ, идеи, игровые боты, первый запуск, таймеры оплаты, видеокнопка и стартовый подарок.', primary: '#application', primaryLabel: 'Открыть настройки приложения', risk: 'Защищённая публикация', coverage: '8 переключателей', guarded: true },
+  { title: 'Промокоды', description: 'Создание пачек и собственных кодов, список кодов и активации доступны в разделе «Деньги».', primary: '#money', primaryLabel: 'Открыть промокоды', risk: 'Серверная команда', coverage: 'доступно', guarded: true },
+  { title: 'Промо-баннер', description: 'Текст, ссылка, срок, аудитория, платформа и безопасное выключение доступны в разделе «Приложение».', primary: '#application', primaryLabel: 'Открыть промо-баннер', risk: 'Защищённая публикация', coverage: 'доступно', guarded: true },
+  { title: 'Plus-доступ и уроки', description: 'Глобальные возможности Plus, бесплатные лимиты и поурочное открытие 1–32.', primary: '#application', primaryLabel: 'Открыть доступ Бесплатный / Plus', risk: 'Защищённая публикация', coverage: '5 сценариев', guarded: true },
+  { title: 'Недельные бонусы', description: 'Расписание бонусов, включение бонусов и возврат к исходным значениям.', primary: '#application', primaryLabel: 'Открыть конфигурацию', risk: 'Контент и экономика', coverage: '3 сценария', guarded: true },
+  { title: 'ИИ и бюджеты', description: 'Модель Theo, дневные лимиты, фоновые задания ИИ, бюджет и Студия изображений.', primary: '#asset-studio', primaryLabel: 'Открыть Студию изображений', risk: 'Бюджет ИИ', coverage: '5 сценариев', guarded: true },
+  { title: 'Кампании и коммуникации', description: 'Сообщения и опросы создаются и включаются в Admin V2; остальные инструменты будут добавлены отдельными безопасными изменениями.', primary: '#campaigns', primaryLabel: 'Открыть кампании', risk: 'Сообщения защищены', coverage: 'частично доступно', guarded: true },
 ]);
 
 function renderControlPanel() {
-  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной процесс настройки приложения">Открыть конфигурацию</a><a class="button ghost" href="../../admin/index.html#control-panel" target="_blank" rel="noopener" title="Открыть старый пульт только для аварийной сверки">Старый пульт</a>`;
+  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной процесс настройки приложения">Открыть конфигурацию</a>`;
   return `${pageHeader(PAGES['control-panel'], 'Обзор / Пульт', headerActions)}
-    <div class="notice"><strong>Рабочий слой Admin 2.</strong> Здесь собраны группы старого пульта. Опасные действия не копируются прямой записью: они ведут в защищённый процесс или во временный старый модуль до полноценного переноса формы.</div>
-    <section class="card section"><div class="card-header"><div><h2>Карта старого пульта</h2><p>29 старых кнопок разложены по рабочим процессам, чтобы ничего не потерять и не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
-      <div class="card-body"><div class="control-panel-workflows">${CONTROL_PANEL_WORKFLOWS.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><div class="actions"><a class="button ${item.guarded ? '' : 'ghost'} small" href="${escapeHtml(item.primary)}" title="${item.guarded ? 'Открыть основной процесс Admin 2' : 'Открыть старый рабочий модуль'}: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a><a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.fallback)}" target="_blank" rel="noopener" title="Открыть старый рабочий модуль отдельно. Его действия могут менять рабочее приложение.">Старый модуль отдельно</a></div></article>`).join('')}</div></div></section>
+    <div class="notice"><strong>Рабочий слой Admin V2.</strong> Здесь собраны безопасные процессы для ежедневных операций. Опасные действия доступны только через защищённый процесс с предпросмотром, причиной и журналом.</div>
+    <section class="card section"><div class="card-header"><div><h2>Карта рабочих процессов</h2><p>Операционные сценарии сгруппированы так, чтобы не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
+      <div class="card-body"><div class="control-panel-workflows">${CONTROL_PANEL_WORKFLOWS.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><div class="actions"><a class="button small" href="${escapeHtml(item.primary)}" title="Открыть основной процесс Admin V2: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a></div></article>`).join('')}</div></div></section>
     <section class="card section"><div class="card-header"><div><h2>Правило переноса опасных кнопок</h2><p>Каждая опасная кнопка переносится отдельно: предпросмотр, причина, ожидаемая версия, журнал действий и восстановление.</p></div></div><div class="card-body"><div class="control-panel-transfer-list"><span>Ручное и обязательное обновление перенесены в защищённый процесс.</span><span>Ограничения уроков Plus перенесены в защищённый процесс Бесплатный / Plus.</span><span>Задания ИИ частично доступны через контроль бюджета и Студию изображений; редактор настроек переносится отдельно.</span></div></div></section>`;
 }
 
 function renderOverview() {
   const view = buildOperationalSnapshot(state.briefing);
-  const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить снимок</button><a class="button" href="#daily-briefing" title="Открыть подробный ежедневный брифинг">Подробный брифинг</a><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
+  const headerActions = `<span class="hint" role="status">Снимок обновляется автоматически при открытии.</span><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
   return `${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
     ${isDashboardWidgetVisible('operational_state') ? renderOverviewOperationalState(view) : ''}
     ${isDashboardWidgetVisible('payment_summary') ? renderOverviewPaymentSummary(overviewAnalyticsModel()) : ''}
+    ${renderDirectorDigest()}
     <div class="columns section">${isDashboardWidgetVisible('decision_queue') ? `<section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>` : ''}
     ${isDashboardWidgetVisible('quick_links') ? `<section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами">Стратегические решения</a><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section>` : ''}</div>`;
 }
@@ -1067,13 +1093,14 @@ function agentOfficeBadge(status) {
 function renderAgentOfficeCenter() {
   const agentOffice = state.agentOffice;
   const readable = state.authorized && can('briefing.read');
-  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><button class="button primary" data-action="load-agent-office" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить дела и рекомендации через защищённые серверные callable">${agentOffice.state === 'idle' ? 'Загрузить решения' : 'Обновить решения'}</button>`;
+  const aggregateHealthCards = state.adminRole === 'owner' ? renderAgentOfficeAggregateHealth(agentOffice.aggregateHealth) : '';
+  const headerActions = `<span class="hint" role="status">Дела обновляются автоматически при открытии.</span><a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a>`;
   if (!readable) return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice warning" role="alert"><strong>Нет доступа к стратегическим решениям.</strong><br>Для чтения нужен серверный доступ briefing.read. Решения, данные и журналы не загружаются в браузер без этой проверки.</div>`;
   if (agentOffice.state === 'loading') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice" role="status" aria-live="polite">Загружаю дела, рекомендации и безопасную проекцию журнала…</div>`;
   if (agentOffice.state === 'error') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice danger" role="alert"><strong>Стратегические решения не загружены.</strong><br>${escapeHtml(agentOffice.error || 'Сервер не вернул безопасную проекцию данных.')}<div class="actions section"><button class="button" data-action="load-agent-office" type="button" title="Повторить серверное чтение дел и рекомендаций">Повторить</button></div></div>`;
-  if (agentOffice.state === 'empty') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice" role="status"><strong>Открытых стратегических решений нет.</strong><br>Нули не подставляются: появившиеся дела будут прочитаны только через серверную проекцию.</div>`;
+  if (agentOffice.state === 'empty') return `${pageHeader(PAGES['agent-office'], 'Обзор / Офис агентов', headerActions)}<div class="notice" role="status"><strong>Открытых стратегических решений нет.</strong><br>Нули не подставляются: появившиеся дела будут прочитаны только через серверную проекцию.</div>${aggregateHealthCards}`;
   const item = agentOffice.item;
-  const caseRows = agentOffice.cases.map((agentCase) => `<div class="list-row"><div><strong>${escapeHtml(agentCase.summary || agentCase.caseId)}</strong><small>Статус: ${escapeHtml(agentOfficeStatusLabel(agentCase.status))} · обновлено ${escapeHtml(dateTime(agentCase.updatedAtMs))}</small></div><button class="button small" data-action="open-agent-office-case" data-agent-office-case-id="${escapeHtml(agentCase.caseId)}" type="button" title="Открыть доказательства и рекомендацию этого дела">Открыть</button></div>`).join('') || emptyState('Дела в безопасной проекции отсутствуют.');
+  const caseRows = `${aggregateHealthCards}${agentOffice.cases.map((agentCase) => `<div class="list-row"><div><strong>${escapeHtml(agentCase.summary || agentCase.caseId)}</strong><small>Статус: ${escapeHtml(agentOfficeStatusLabel(agentCase.status))} · обновлено ${escapeHtml(dateTime(agentCase.updatedAtMs))}</small></div><button class="button small" data-action="open-agent-office-case" data-agent-office-case-id="${escapeHtml(agentCase.caseId)}" type="button" title="Открыть доказательства и рекомендацию этого дела">Открыть</button></div>`).join('') || emptyState('Дела в безопасной проекции отсутствуют.')}`;
   const sourceHealth = Array.isArray(item?.sourceHealth) ? item.sourceHealth.map((source) => `<li><strong>${escapeHtml(source.source)}</strong> — ${escapeHtml(source.state)}; ${escapeHtml(agentOfficeFreshness(source.observedAtMs))}</li>`).join('') : '';
   const recommendationRows = agentOffice.recommendations.map((recommendation) => {
     const decisionState = decisionAvailability({ authorized: state.authorized, role: state.adminRole, busy: state.busy, agentCase: item, recommendation });
@@ -1097,10 +1124,10 @@ function renderAgentManagerWorkspace() {
   const manager = state.agentManager;
   const owner = state.authorized && state.adminRole === 'owner';
   const disabled = owner && !state.busy ? '' : ' disabled';
-  const header = pageHeader(PAGES['agent-manager'], 'Офис агентов / Менеджер', `<button class="button" data-action="load-agent-manager" type="button"${disabled} title="Обновить состав, очередь и регламенты через сервер">Обновить</button>`);
+  const header = pageHeader(PAGES['agent-manager'], 'Офис агентов / Менеджер', '<span class="hint" role="status">Состав и очередь обновляются автоматически при открытии.</span>');
   if (!owner) return `${header}<div class="notice warning" role="alert"><strong>Нужна роль владельца.</strong><br>Менеджер показывает только безопасные серверные проекции.</div>`;
   if (manager.state === 'loading') return `${header}<div class="notice" role="status">Загружаю агентов, очередь и регламенты…</div>`;
-  if (manager.state === 'error') return `${header}<div class="notice danger" role="alert"><strong>Менеджер агентов не загрузился.</strong><br>${escapeHtml(manager.error || 'Сервер не вернул очередь.')}<div class="actions section"><button class="button" data-action="load-agent-manager" type="button">Повторить</button></div></div>`;
+  if (manager.state === 'error') return `${header}<div class="notice danger" role="alert"><strong>Менеджер агентов не загрузился.</strong><br>${escapeHtml(manager.error || 'Сервер не вернул очередь.')}<div class="actions section"><button class="button" data-action="load-agent-manager" type="button" title="Повторить загрузку состава, очереди и регламентов через сервер">Повторить</button></div></div>`;
   const tasks = Array.isArray(manager.tasks) ? manager.tasks : [];
   const agents = Array.isArray(manager.agents) ? manager.agents : [];
   const runbooks = Array.isArray(manager.runbooks) ? manager.runbooks : [];
@@ -1111,17 +1138,17 @@ function renderAgentManagerWorkspace() {
   const agentRows = agents.map((agent) => {
     const task = byAgent.get(String(agent.agentId));
     return `<article class="agent-manager-role"><div><strong>${escapeHtml(agent.label || agent.agentId)}</strong><small>${escapeHtml(task?.title || (agent.enabled ? 'Свободен' : 'На паузе'))}</small></div><span class="badge ${agent.enabled ? (task ? 'warning' : 'success') : 'danger'}">${escapeHtml(task ? agentManagerStatusLabel(task.status) : (agent.enabled ? 'готов' : 'пауза'))}</span></article>`;
-  }).join('') || `<div class="notice">Команда ещё не зарегистрирована. <button class="button small" data-action="initialize-agent-manager-roster" type="button">Собрать команду</button></div>`;
+  }).join('') || `<div class="notice">Команда ещё не зарегистрирована. <button class="button small" data-action="initialize-agent-manager-roster" type="button" title="Зарегистрировать стандартный состав команды для этой панели">Собрать команду</button></div>`;
   const taskRows = (items, emptyText) => items.map((task) => {
     const next = agentManagerNextAction(task.status);
-    const action = next ? `<button class="button small" data-action="transition-agent-manager-task" data-agent-manager-task-id="${escapeHtml(task.taskId)}" data-agent-manager-next-status="${escapeHtml(next[0])}" data-agent-manager-revision="${escapeHtml(task.revision)}" type="button">${escapeHtml(next[1])}</button>` : '';
+    const action = next ? `<button class="button small" data-action="transition-agent-manager-task" data-agent-manager-task-id="${escapeHtml(task.taskId)}" data-agent-manager-next-status="${escapeHtml(next[0])}" data-agent-manager-revision="${escapeHtml(task.revision)}" type="button" title="Перевести задачу в следующий этап: ${escapeHtml(next[1])}">${escapeHtml(next[1])}</button>` : '';
     return `<article class="list-row"><div><strong>${escapeHtml(task.title)}</strong><small>${escapeHtml(agentManagerStatusLabel(task.status))} · ${escapeHtml(task.assignedAgentId || 'manager')} · ${escapeHtml(task.priority || 'normal')}</small><small>${escapeHtml(task.brief || '')}</small></div><div class="actions"><span class="badge ${badgeClass(task.status)}">${escapeHtml(agentManagerStatusLabel(task.status))}</span>${action}</div></article>`;
   }).join('') || emptyState(emptyText);
   const runbookRows = runbooks.map((runbook) => `<article class="list-row"><div><strong>${escapeHtml(runbook.title || 'Регламент')}</strong><small>${escapeHtml(runbook.summary || '')}</small></div><span class="badge">FAQ</span></article>`).join('') || emptyState('Регламенты пока недоступны.');
   return `${header}
     <section class="agent-manager-operations section" aria-label="Состояние офиса агентов"><div class="agent-manager-kpis"><article><span>Активная очередь</span><strong>${active.length}</strong><small>в работе или на проверке</small></article><article><span>Ждут решения</span><strong>${pending.length}</strong><small>требуют ручного согласования</small></article><article><span>История</span><strong>${history.length}</strong><small>готовые и архивные задачи</small></article></div><div class="agent-manager-roster"><div><h2>Кто чем занят</h2><p>Подтверждённые задачи кода забирает подключённый Codex на этом ПК. Он готовит изменения только для ручной проверки.</p></div><div class="agent-manager-role-list">${agentRows}</div></div></section>
-    <section class="card section" aria-label="Подключение локального исполнителя"><div class="card-header"><div><h2>Локальный Codex</h2><p>Подключается один раз. После этого подтверждённые задачи разработки запускаются автоматически на этом компьютере.</p></div><button class="button" data-action="create-agent-manager-local-runner-pairing" type="button"${disabled}>Подключить этот ПК</button></div>${manager.pairing ? `<div class="notice"><strong>Код подключения создан.</strong><br>Он действует до ${escapeHtml(new Date(Number(manager.pairing.expiresAtMs)).toLocaleTimeString('ru-RU'))}. Codex подключает этот ПК автоматически; код не сохраняется в админке.</div>` : ''}</section>
-    <section class="card section"><div class="card-header"><div><h2>Поручить менеджеру</h2><p>Задача сначала попадёт в план. Письма, production и код этот экран не запускает.</p></div></div><div class="card-body fields"><div class="field"><label for="agent-manager-title">Что нужно сделать</label><input id="agent-manager-title" maxlength="140" placeholder="Например: проверить рост ошибок после релиза"></div><div class="field"><label for="agent-manager-brief">Контекст и ожидаемый результат</label><textarea id="agent-manager-brief" maxlength="4000" placeholder="Что проверить, ограничения и ожидаемый результат"></textarea></div><div class="field"><label for="agent-manager-priority">Приоритет</label><select id="agent-manager-priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="critical">Критический</option><option value="low">Низкий</option></select></div><div class="field"><label for="agent-manager-scope">Разрешённая область</label><select id="agent-manager-scope"><option value="analysis_only">Только анализ</option><option value="support_draft">Черновик ответа поддержки</option><option value="code_prepare">Подготовка кода без запуска</option><option value="content_prepare">Подготовка контента без публикации</option></select></div><div class="actions"><button class="button primary" data-action="create-agent-manager-task" type="button"${disabled}>Передать менеджеру</button><a class="button ghost" href="#support">Почта</a><a class="button ghost" href="#report-center">Репорты</a></div></div></section>
+    <section class="card section" aria-label="Подключение локального исполнителя"><div class="card-header"><div><h2>Локальный Codex</h2><p>Подключается один раз. После этого подтверждённые задачи разработки запускаются автоматически на этом компьютере.</p></div><button class="button" data-action="create-agent-manager-local-runner-pairing" type="button" title="Создать временный код для подключения этого компьютера"${disabled}>Подключить этот ПК</button></div>${manager.pairing ? `<div class="notice"><strong>Код подключения создан.</strong><br>Он действует до ${escapeHtml(new Date(Number(manager.pairing.expiresAtMs)).toLocaleTimeString('ru-RU'))}. Codex подключает этот ПК автоматически; код не сохраняется в админке.</div>` : ''}</section>
+    <section class="card section"><div class="card-header"><div><h2>Поручить менеджеру</h2><p>Задача сначала попадёт в план. Письма, production и код этот экран не запускает.</p></div></div><div class="card-body fields"><div class="field"><label for="agent-manager-title">Что нужно сделать</label><input id="agent-manager-title" maxlength="140" placeholder="Например: проверить рост ошибок после релиза"></div><div class="field"><label for="agent-manager-brief">Контекст и ожидаемый результат</label><textarea id="agent-manager-brief" maxlength="4000" placeholder="Что проверить, ограничения и ожидаемый результат"></textarea></div><div class="field"><label for="agent-manager-priority">Приоритет</label><select id="agent-manager-priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="critical">Критический</option><option value="low">Низкий</option></select></div><div class="field"><label for="agent-manager-scope">Разрешённая область</label><select id="agent-manager-scope"><option value="analysis_only">Только анализ</option><option value="support_draft">Черновик ответа поддержки</option><option value="code_prepare">Подготовка кода без запуска</option><option value="content_prepare">Подготовка контента без публикации</option></select></div><div class="actions"><button class="button primary" data-action="create-agent-manager-task" type="button" title="Добавить задачу в очередь менеджера для ручного согласования"${disabled}>Передать менеджеру</button><a class="button ghost" href="#support">Почта</a><a class="button ghost" href="#report-center">Репорты</a></div></div></section>
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Очередь и решения</h2><p>Задачи, которым нужно ваше действие.</p></div><span class="badge warning">${pending.length}</span></div><div class="card-body">${taskRows(pending, 'Нет задач, ожидающих решения.')}</div></section><section class="card"><div class="card-header"><div><h2>Исполнители</h2><p>Реальный состав и текущая занятость.</p></div></div><div class="card-body">${agentRows}</div></section></div>
     <section class="card section"><div class="card-header"><div><h2>Активная очередь</h2><p>Согласованные задачи в работе и на проверке.</p></div></div><div class="card-body">${taskRows(active, 'Активных задач сейчас нет.')}</div></section>
     <section class="card section"><div class="card-header"><div><h2>История и архив</h2><p>Завершённые, отменённые и архивные задачи.</p></div></div><div class="card-body">${taskRows(history, 'История пока пуста.')}</div></section>
@@ -1148,6 +1175,464 @@ function remoteConfigValue(branch, key, fallback = '') {
 
 function selectedBool(value, expected) {
   return (value === true) === expected ? ' selected' : '';
+}
+
+const PAYWALL_AB_VARIANTS = Object.freeze([
+  { letter: 'a', name: 'Компакт', description: 'Всё решающее на одном экране: минимум текста, ноль скролла.' },
+  { letter: 'b', name: 'Стори', description: 'Длинная страница убеждения: лента триала, отзывы, планы внизу.' },
+  { letter: 'c', name: 'Атриум', description: 'Самодостаточный первый экран плюс галерея доказательств ниже.' },
+  { letter: 'd', name: 'Плитки', description: 'Выбор плана горизонтальным рядом плиток; год предвыбран.' },
+  { letter: 'e', name: 'Один план', description: 'Одна доминирующая оффер-карточка без выбора на первом экране.' },
+  { letter: 'f', name: 'Честный триал', description: 'Таймлайн триала первым блоком — до планов и цен.' },
+  { letter: 'g', name: 'Приманка', description: 'Невыбираемая карточка-якорь рядом с годовым планом (decoy-эффект).' },
+]);
+const PAYWALL_AB_LETTERS = Object.freeze(PAYWALL_AB_VARIANTS.map((variant) => variant.letter));
+
+function defaultPaywallAbState() {
+  return { state: 'idle', exists: false, doc: null, history: [], draft: null, preview: null, publishedAtMs: 0, error: '' };
+}
+
+// ── Статистика вариантов (панель рядом с редактором долей A/B-теста) ────────
+// Панель только читает: агрегацию считает серверный callable
+// adminGetPaywallVariantStats (functions/src/admin_paywall_variant_stats.ts).
+function defaultPaywallAbStatsState() {
+  return { state: 'idle', rangeDays: 30, report: null, error: '', fetchedAtMs: 0 };
+}
+
+// Узнаваемый цвет на вариант A–G: тёмные оттенки палитры Библии админки,
+// читаемые на белой поверхности без текста поверх заливки.
+const PAYWALL_VARIANT_STATS_COLORS = Object.freeze({
+  A: '#2563EB',
+  B: '#7C3AED',
+  C: '#0F766E',
+  D: '#D97706',
+  E: '#DC2626',
+  F: '#DB2777',
+  G: '#4D7C0F',
+});
+
+const paywallStatsNumberFormat = new Intl.NumberFormat('ru-RU');
+const paywallStatsPercentFormat = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 1 });
+const paywallStatsUsdFormat = new Intl.NumberFormat('ru-RU', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+
+// Черновик редактора. Для ещё не созданного документа показываем фактический дефолт
+// приложения из paywall_variant.ts: A 33 / B 33 / C 34 включены, D–G выключены.
+function paywallAbDraftFromDoc(doc, { exists = true } = {}) {
+  const source = doc && typeof doc === 'object' ? doc : {};
+  const draft = { salt: 'v3', ratingX10: 0, ratingsCount: 0 };
+  for (const { letter } of PAYWALL_AB_VARIANTS) {
+    const pct = Number(source[`${letter}_pct`]);
+    draft[letter] = {
+      enabled: exists ? source[`${letter}_enabled`] !== false : ['a', 'b', 'c'].includes(letter),
+      pct: Number.isInteger(pct) && pct >= 0 && pct <= 100 ? pct : 0,
+    };
+  }
+  if (!exists) { draft.a.pct = 33; draft.b.pct = 33; draft.c.pct = 34; }
+  if (typeof source.salt === 'string' && source.salt.trim()) draft.salt = source.salt.trim().slice(0, 40);
+  const rating = Number(source.rating_x10);
+  if (Number.isInteger(rating) && rating >= 0 && rating <= 50) draft.ratingX10 = rating;
+  const count = Number(source.ratings_count);
+  if (Number.isInteger(count) && count >= 0) draft.ratingsCount = count;
+  return draft;
+}
+
+function paywallAbEnabledLetters(draft) {
+  return PAYWALL_AB_LETTERS.filter((letter) => draft?.[letter]?.enabled === true);
+}
+
+function paywallAbEnabledSum(draft) {
+  return paywallAbEnabledLetters(draft).reduce((total, letter) => total + (draft[letter].pct || 0), 0);
+}
+
+// Делит remaining между letters пропорционально их текущим долям в draft.
+// Все нули — делим поровну. Остаток округления уходит на самую большую долю
+// (при равенстве — на первую букву), при переполнении вниз — на следующие по размеру.
+function paywallAbProportionalShares(draft, letters, remaining) {
+  const shares = {};
+  if (!letters.length) return shares;
+  const currentSum = letters.reduce((total, letter) => total + (draft[letter].pct || 0), 0);
+  if (currentSum <= 0) {
+    const base = Math.floor(remaining / letters.length);
+    let extra = remaining - base * letters.length;
+    for (const letter of letters) { shares[letter] = base + (extra > 0 ? 1 : 0); if (extra > 0) extra -= 1; }
+    return shares;
+  }
+  let assigned = 0;
+  for (const letter of letters) {
+    shares[letter] = Math.round((remaining * (draft[letter].pct || 0)) / currentSum);
+    assigned += shares[letter];
+  }
+  let residue = remaining - assigned;
+  const ordered = [...letters].sort((left, right) => (shares[right] - shares[left]) || (PAYWALL_AB_LETTERS.indexOf(left) - PAYWALL_AB_LETTERS.indexOf(right)));
+  for (const letter of ordered) {
+    if (residue === 0) break;
+    const next = Math.max(0, shares[letter] + residue);
+    residue = shares[letter] + residue - next;
+    shares[letter] = next;
+  }
+  return shares;
+}
+
+// Связанные ползунки: изменённый вариант держит своё значение, остаток до 100
+// делят остальные включённые варианты пропорционально текущим долям.
+function redistributePaywallAbShares(draft, changedLetter, rawPct) {
+  const entry = draft?.[changedLetter];
+  if (!entry) return;
+  const pct = Math.max(0, Math.min(100, Math.round(Number(rawPct) || 0)));
+  if (!entry.enabled) { entry.pct = pct; return; }
+  const others = paywallAbEnabledLetters(draft).filter((letter) => letter !== changedLetter);
+  entry.pct = others.length ? pct : 100;
+  const shares = paywallAbProportionalShares(draft, others, 100 - entry.pct);
+  for (const [letter, share] of Object.entries(shares)) draft[letter].pct = share;
+}
+
+function togglePaywallAbVariant(draft, letter, enabled) {
+  const entry = draft?.[letter];
+  if (!entry) return;
+  entry.enabled = enabled;
+  if (!enabled) {
+    const others = paywallAbEnabledLetters(draft);
+    const shares = paywallAbProportionalShares(draft, others, 100);
+    for (const [other, share] of Object.entries(shares)) draft[other].pct = share;
+    entry.pct = 0;
+    return;
+  }
+  entry.pct = 0;
+  const enabledLetters = paywallAbEnabledLetters(draft);
+  if (enabledLetters.length === 1) draft[enabledLetters[0]].pct = 100;
+  else if (paywallAbEnabledSum(draft) !== 100) {
+    const shares = paywallAbProportionalShares(draft, enabledLetters, 100);
+    for (const [other, share] of Object.entries(shares)) draft[other].pct = share;
+  }
+}
+
+function applyPaywallAbPreset(draft, preset) {
+  if (preset === 'off') {
+    for (const letter of PAYWALL_AB_LETTERS) { draft[letter].enabled = false; draft[letter].pct = 0; }
+    return;
+  }
+  if (preset === 'even') {
+    let letters = paywallAbEnabledLetters(draft);
+    if (!letters.length) {
+      for (const letter of PAYWALL_AB_LETTERS) draft[letter].enabled = true;
+      letters = [...PAYWALL_AB_LETTERS];
+    }
+    for (const letter of PAYWALL_AB_LETTERS) draft[letter].pct = 0;
+    const shares = paywallAbProportionalShares(draft, letters, 100);
+    for (const [letter, share] of Object.entries(shares)) draft[letter].pct = share;
+    return;
+  }
+  if (preset === 'abc') {
+    const split = { a: 33, b: 33, c: 34 };
+    for (const letter of PAYWALL_AB_LETTERS) {
+      draft[letter].enabled = letter in split;
+      draft[letter].pct = split[letter] ?? 0;
+    }
+  }
+}
+
+// Итоговый документ remote_config/paywall_ab без служебных полей:
+// updatedAt и updatedBy проставляет сервер при публикации.
+function paywallAbDocAfter(payload) {
+  const after = {};
+  for (const letter of PAYWALL_AB_LETTERS) {
+    after[`${letter}_pct`] = payload.variants[letter].pct;
+    after[`${letter}_enabled`] = payload.variants[letter].enabled;
+  }
+  after.salt = payload.salt;
+  after.rating_x10 = payload.rating_x10;
+  after.ratings_count = payload.ratings_count;
+  return after;
+}
+
+function paywallAbFieldChanges(before, after) {
+  const fields = [...PAYWALL_AB_LETTERS.flatMap((letter) => [`${letter}_pct`, `${letter}_enabled`]), 'salt', 'rating_x10', 'ratings_count'];
+  const format = (value) => (value === undefined || value === null ? '∅' : String(value));
+  const changes = [];
+  for (const field of fields) {
+    if (JSON.stringify(before?.[field]) !== JSON.stringify(after?.[field])) {
+      changes.push(`${field}: ${format(before?.[field])} → ${format(after?.[field])}`);
+    }
+  }
+  return changes;
+}
+
+function buildPaywallAbPreview() {
+  const workspace = state.paywallAb;
+  if (workspace.state !== 'ready' || !workspace.draft) throw new Error('Сначала загрузите текущие доли пейволов.');
+  const draft = workspace.draft;
+  const enabledLetters = paywallAbEnabledLetters(draft);
+  if (!enabledLetters.length) throw new Error('Включите хотя бы один вариант — приложению нужен хотя бы один экран оплаты.');
+  const sum = paywallAbEnabledSum(draft);
+  if (sum !== 100) throw new Error(`Сумма долей включённых вариантов должна быть 100%, сейчас ${sum}%.`);
+  const salt = String(draft.salt ?? '').trim();
+  if (!salt || salt.length > 40) throw new Error('Соль эксперимента: от 1 до 40 символов.');
+  const reason = readTextInput('paywall-ab-reason', 500);
+  if (!reason) throw new Error('Укажите причину публикации.');
+  const payload = {
+    variants: Object.fromEntries(PAYWALL_AB_LETTERS.map((letter) => [letter, { enabled: draft[letter].enabled === true, pct: draft[letter].pct }])),
+    salt,
+    rating_x10: draft.ratingX10,
+    ratings_count: draft.ratingsCount,
+  };
+  const after = paywallAbDocAfter(payload);
+  const changes = paywallAbFieldChanges(workspace.doc ?? {}, after);
+  const summary = enabledLetters.map((letter) => `${letter.toUpperCase()} ${draft[letter].pct}%`).join(' · ');
+  return { source: 'paywall-ab', payload, reason, changes, after, summary };
+}
+
+function ensurePaywallAbPreviewIsFresh(preview) {
+  let current = null;
+  try { current = buildPaywallAbPreview(); } catch { return true; }
+  const stale = JSON.stringify(current.payload) !== JSON.stringify(preview.payload) || current.reason !== preview.reason;
+  if (!stale) return true;
+  state.paywallAb.preview = current;
+  setMessage('Поля изменились после предпросмотра. Я обновил предпросмотр — проверьте его и нажмите публикацию ещё раз.', 'warning');
+  renderCurrentPage();
+  return false;
+}
+
+function paywallAbPublishQuestion(preview) {
+  return `Опубликовать доли экранов оплаты для всех пользователей?\n\n${preview.summary}\n\nКто увидит: все пользователи приложения сразу после публикации.\nКак откатить: вернуть прежние доли и опубликовать снова.\nЗаписывается в историю.`;
+}
+
+// Живая синхронизация DOM во время движения ползунка без полного рендера,
+// чтобы не терять фокус и захват указателя.
+function syncPaywallAbDom() {
+  const draft = state.paywallAb.draft;
+  if (!draft) return;
+  for (const letter of PAYWALL_AB_LETTERS) {
+    const slider = document.querySelector(`[data-paywall-ab-slider="${letter}"]`);
+    if (slider) slider.value = String(draft[letter].pct);
+    const value = document.querySelector(`[data-paywall-ab-value="${letter}"]`);
+    if (value) value.textContent = `${draft[letter].pct}%`;
+  }
+  const sum = document.getElementById('paywall-ab-sum');
+  if (sum) {
+    const total = paywallAbEnabledSum(draft);
+    sum.textContent = `Сумма: ${total}%`;
+    sum.className = `badge ${total === 100 && paywallAbEnabledLetters(draft).length ? 'success' : 'danger'}`;
+  }
+}
+
+function renderPaywallAbHistory(history) {
+  const items = Array.isArray(history) ? history.slice(0, 6) : [];
+  if (!items.length) return emptyState('История публикаций пейволов пуста.');
+  return `<div class="data-list">${items.map((item) => {
+    const changes = Array.isArray(item.changes) ? item.changes.map(String) : [];
+    return `<div class="list-row"><div><strong>${escapeHtml(auditActionLabel(item.action || 'paywall_ab_save'))}</strong><small>${escapeHtml(String(item.timestamp || item.at || ''))} · ${escapeHtml(String(item.reason || item.by || 'Причина не указана'))}</small>${changes.length ? `<small>${changes.map((change) => escapeHtml(change)).join(' · ')}</small>` : ''}</div></div>`;
+  }).join('')}</div>`;
+}
+
+function renderPaywallAbWorkflow() {
+  const workspace = state.paywallAb;
+  const preview = workspace.preview;
+  const canWrite = can('application.config.write') && !state.busy;
+  const formLocked = !canWrite || Boolean(preview);
+  const loadButton = `<button class="button" data-action="load-paywall-ab" type="button"${canWrite || workspace.state !== 'ready' ? '' : ' disabled'} title="Загрузить текущие доли экранов оплаты и историю публикаций через сервер">${workspace.state === 'ready' ? 'Обновить данные' : 'Загрузить доли'}</button>`;
+  const header = `<section class="card section"><div class="card-header"><div><h2>A/B-тест пейволов</h2><p>Семь экранов оплаты делят 100% показов. Ползунки связаны: один забирает или отдаёт проценты остальным включённым вариантам.</p></div>${loadButton}</div><div class="card-body">`;
+  if (workspace.state === 'error') {
+    return `${header}<div class="notice danger" role="alert"><strong>Не удалось загрузить доли пейволов.</strong><br>${escapeHtml(workspace.error || 'Сервер не вернул данные.')}</div></div></section>`;
+  }
+  if (workspace.state !== 'ready' || !workspace.draft) {
+    return `${header}${emptyState(state.authorized ? 'Загрузите текущие доли, чтобы редактировать их без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</div></section>`;
+  }
+  const draft = workspace.draft;
+  const enabledLetters = paywallAbEnabledLetters(draft);
+  const sum = paywallAbEnabledSum(draft);
+  const doc = workspace.doc ?? {};
+  const updatedLabel = workspace.exists
+    ? `Текущая публикация: ${doc.updatedAt ? escapeHtml(new Date(Number(doc.updatedAt)).toLocaleString('ru-RU')) : '—'} · ${escapeHtml(String(doc.updatedBy || '—'))}`
+    : 'Документ ещё не создан — в приложении действуют доли по умолчанию: A 33% · B 33% · C 34%, соль v3.';
+  const rows = PAYWALL_AB_VARIANTS.map((variant) => {
+    const entry = draft[variant.letter];
+    return `<div class="paywall-ab-row${entry.enabled ? '' : ' is-disabled'}">
+      <label class="check paywall-ab-toggle" title="${entry.enabled ? 'Выключить вариант: его доля распределится между остальными включёнными' : 'Включить вариант: он вернётся с 0% и получит долю от движения ползунков'}"><input type="checkbox" data-paywall-ab-enabled="${variant.letter}"${entry.enabled ? ' checked' : ''}${formLocked ? ' disabled' : ''}><span><strong>${variant.letter.toUpperCase()} · «${variant.name}»</strong><small>${variant.description}</small></span></label>
+      <div class="paywall-ab-share"><input type="range" min="0" max="100" step="1" value="${entry.pct}" data-paywall-ab-slider="${variant.letter}"${!entry.enabled || formLocked ? ' disabled' : ''} aria-label="Доля варианта ${variant.letter.toUpperCase()} «${variant.name}» в процентах" title="Доля показов варианта ${variant.letter.toUpperCase()} «${variant.name}». Остальные включённые варианты делят остаток до 100% пропорционально своим долям"><span class="paywall-ab-value" data-paywall-ab-value="${variant.letter}">${entry.pct}%</span></div>
+    </div>`;
+  }).join('');
+  const previewBlock = preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>Предпросмотр A/B-теста пейволов</strong><br>${escapeHtml(preview.summary)}<br>${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Изменений нет.'}<div class="code-preview section">${escapeHtml(JSON.stringify(preview.after, null, 2))}</div>Сервер дополнительно проставит updatedAt и updatedBy.</div>` : '';
+  return `${header}
+    <div class="notice"><strong>Кто увидит:</strong> все пользователи приложения сразу после публикации. <strong>Как откатить:</strong> вернуть прежние доли и опубликовать снова. Каждая публикация записывается в историю.</div>
+    <div class="section"><span class="badge ${workspace.exists ? 'success' : ''}">${workspace.exists ? 'Опубликовано' : 'Не настроено'}</span> <span class="badge ${sum === 100 && enabledLetters.length ? 'success' : 'danger'}" id="paywall-ab-sum">Сумма: ${sum}%</span> <span class="hint">${updatedLabel}</span></div>
+    ${!enabledLetters.length ? '<div class="notice warning section"><strong>Все варианты выключены.</strong> Публикация заблокирована: приложению нужен хотя бы один включённый экран оплаты. Включите вариант галочкой или нажмите «Поровну».</div>' : ''}
+    ${rows}
+    <div class="paywall-ab-presets section">
+      <button class="button" data-action="paywall-ab-preset-off" type="button"${formLocked ? ' disabled' : ''} title="Выключить все семь вариантов. Публикация будет заблокирована: приложению нужен хотя бы один включённый экран оплаты">Выключить всё</button>
+      <button class="button" data-action="paywall-ab-preset-even" type="button"${formLocked ? ' disabled' : ''} title="Разделить 100% поровну между включёнными вариантами. Если все выключены, включает все семь">Поровну</button>
+      <button class="button" data-action="paywall-ab-preset-abc" type="button"${formLocked ? ' disabled' : ''} title="Оставить только A 33%, B 33% и C 34%; варианты D–G выключатся">Только A/B/C</button>
+    </div>
+    <h3>Социальное доказательство и технические детали</h3>
+    <div class="fields">
+      <div class="field"><label for="paywall-ab-rating">Рейтинг на экране оплаты (1–5)</label><input id="paywall-ab-rating" type="number" min="0" max="5" step="0.1" value="${(draft.ratingX10 / 10).toFixed(1)}" data-paywall-ab-field="rating"${formLocked ? ' disabled' : ''}><span class="hint">0 — скрыть рейтинг. Хранится как <code>rating_x10</code> (4.7 → 47).</span></div>
+      <div class="field"><label for="paywall-ab-ratings-count">Количество оценок</label><input id="paywall-ab-ratings-count" type="number" min="0" step="1" value="${draft.ratingsCount}" data-paywall-ab-field="count"${formLocked ? ' disabled' : ''}><span class="hint">0 — скрыть счётчик. Хранится как <code>ratings_count</code>.</span></div>
+      <div class="field"><label for="paywall-ab-salt">Соль эксперимента</label><input id="paywall-ab-salt" maxlength="40" value="${escapeHtml(draft.salt)}" data-paywall-ab-field="salt"${formLocked ? ' disabled' : ''}><span class="hint">Меняйте только для осознанного пересева бакетов — это новый эксперимент. По умолчанию сохраняется текущая. Хранится как <code>salt</code>.</span></div>
+    </div>
+    <div class="field full section"><label for="paywall-ab-reason">Причина публикации</label><textarea id="paywall-ab-reason" maxlength="500" placeholder="Что меняем в долях пейволов, зачем и как проверим результат"${formLocked ? ' disabled' : ''}>${escapeHtml(preview?.reason ?? '')}</textarea></div>
+    ${previewBlock}
+    <div class="actions end section">${preview ? '<button class="button" data-action="discard-paywall-ab-preview" type="button" title="Отменить предпросмотр и вернуться к редактированию долей">Изменить ещё</button>' : ''}<button class="button ${preview ? '' : 'primary'}" data-action="preview-paywall-ab" type="button"${canWrite && !preview ? '' : ' disabled'} title="Показать точные изменения документа paywall_ab до публикации">Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-paywall-ab" type="button"${canWrite ? '' : ' disabled'} title="Опубликовать через серверную команду с причиной, проверкой версии и записью в журнал">Опубликовать</button>` : ''}</div>
+    ${workspace.publishedAtMs ? `<div class="notice success section">Опубликовано ${escapeHtml(new Date(workspace.publishedAtMs).toLocaleString('ru-RU'))} — приложение подхватит изменения при следующем чтении конфигурации.</div>` : ''}
+    <h3>Последние публикации</h3>
+    ${renderPaywallAbHistory(workspace.history)}
+  </div></section>`;
+}
+
+function formatPaywallStatsCount(value) {
+  return paywallStatsNumberFormat.format(Number(value) || 0).replace(/[  ]/g, ' ');
+}
+
+function formatPaywallStatsPct(value) {
+  if (value === null || value === undefined) return '—';
+  return `${paywallStatsPercentFormat.format(Number(value) || 0).replace(/[  ]/g, ' ')} %`;
+}
+
+function formatPaywallStatsUsd(micros) {
+  if (micros === null || micros === undefined) return '—';
+  return paywallStatsUsdFormat.format((Number(micros) || 0) / 1_000_000).replace(/[  ]/g, ' ');
+}
+
+// Нормализует строки отчёта сервера: все семь вариантов всегда присутствуют,
+// отсортированы по покупкам (лидер первым), числа защищены от мусора.
+function paywallVariantStatsRows(report) {
+  const variants = Array.isArray(report?.variants) ? report.variants : [];
+  const nonNegative = (value) => {
+    const numeric = Number(value);
+    return Number.isFinite(numeric) && numeric >= 0 ? numeric : 0;
+  };
+  return PAYWALL_AB_VARIANTS.map((variant) => {
+    const letter = variant.letter.toUpperCase();
+    const raw = variants.find((row) => row && row.variant === letter) ?? {};
+    return {
+      letter,
+      name: variant.name,
+      color: PAYWALL_VARIANT_STATS_COLORS[letter],
+      shown: nonNegative(raw.shown),
+      cta: nonNegative(raw.cta),
+      purchases: nonNegative(raw.purchases),
+      conversionPct: raw.conversionPct === null || raw.conversionPct === undefined ? null : nonNegative(raw.conversionPct),
+      revenueMicros: raw.revenueMicros === null || raw.revenueMicros === undefined ? null : nonNegative(raw.revenueMicros),
+      unpricedPurchases: nonNegative(raw.unpricedPurchases),
+    };
+  }).sort((left, right) => (right.purchases - left.purchases) || (right.shown - left.shown) || left.letter.localeCompare(right.letter));
+}
+
+// Столбчатая диаграмма покупок по вариантам — ручной SVG без внешних библиотек.
+function renderPaywallAbStatsBarChart(rows) {
+  const width = 640;
+  const height = 240;
+  const padTop = 24;
+  const padBottom = 30;
+  const padX = 12;
+  const innerWidth = width - padX * 2;
+  const innerHeight = height - padTop - padBottom;
+  const maxPurchases = Math.max(1, ...rows.map((row) => row.purchases));
+  const slot = innerWidth / rows.length;
+  const barWidth = Math.min(48, Math.round(slot * 0.56));
+  const bars = rows.map((row, index) => {
+    const barHeight = row.purchases > 0 ? Math.max(4, Math.round((innerHeight * row.purchases) / maxPurchases)) : 0;
+    const x = Math.round(padX + slot * index + (slot - barWidth) / 2);
+    const y = padTop + innerHeight - barHeight;
+    const centerX = x + barWidth / 2;
+    const tooltip = `${row.letter} «${row.name}»: ${formatPaywallStatsCount(row.purchases)} покупок, ${formatPaywallStatsCount(row.shown)} показов`;
+    return `<g><title>${escapeHtml(tooltip)}</title>${barHeight ? `<rect x="${x}" y="${y}" width="${barWidth}" height="${barHeight}" rx="8" fill="${row.color}"></rect>` : `<line x1="${x}" y1="${padTop + innerHeight}" x2="${x + barWidth}" y2="${padTop + innerHeight}" stroke="${row.color}" stroke-width="3" stroke-linecap="round" opacity="0.35"></line>`}<text class="paywall-stats-chart-value" x="${centerX}" y="${barHeight ? y - 7 : padTop + innerHeight - 7}" text-anchor="middle">${formatPaywallStatsCount(row.purchases)}</text><text class="paywall-stats-chart-letter" x="${centerX}" y="${height - 10}" text-anchor="middle">${row.letter}</text></g>`;
+  }).join('');
+  const totalPurchases = rows.reduce((sum, row) => sum + row.purchases, 0);
+  return `<svg class="paywall-stats-chart" viewBox="0 0 ${width} ${height}" role="img" aria-label="Столбчатая диаграмма покупок по вариантам пейвола. Всего покупок за период: ${formatPaywallStatsCount(totalPurchases)}. Точные числа есть в таблице ниже.">${bars}</svg>`;
+}
+
+// Донат долей: при оценке выручке — доли выручки, иначе доли показов.
+function renderPaywallAbStatsDonut(rows, mode) {
+  const valueOf = (row) => (mode === 'revenue' ? (row.revenueMicros ?? 0) : row.shown);
+  const total = rows.reduce((sum, row) => sum + valueOf(row), 0);
+  if (total <= 0) return emptyState(mode === 'revenue' ? 'Оценочной выручки за период нет.' : 'Показов за период нет.');
+  const size = 220;
+  const center = size / 2;
+  const radius = 76;
+  const circumference = 2 * Math.PI * radius;
+  let covered = 0;
+  const segments = rows.map((row) => {
+    const value = valueOf(row);
+    if (value <= 0) return '';
+    const fraction = value / total;
+    const length = fraction * circumference;
+    const segment = `<circle cx="${center}" cy="${center}" r="${radius}" fill="none" stroke="${row.color}" stroke-width="30" stroke-dasharray="${length.toFixed(2)} ${(circumference - length).toFixed(2)}" stroke-dashoffset="${(-covered).toFixed(2)}" transform="rotate(-90 ${center} ${center})"><title>${escapeHtml(`${row.letter} «${row.name}»: ${formatPaywallStatsPct(Math.round(fraction * 1000) / 10)}`)}</title></circle>`;
+    covered += length;
+    return segment;
+  }).join('');
+  const centerValue = mode === 'revenue' ? formatPaywallStatsUsd(total) : formatPaywallStatsCount(total);
+  const centerLabel = mode === 'revenue' ? 'оценка выручки' : 'показов всего';
+  const ariaLabel = mode === 'revenue'
+    ? `Круговая диаграмма долей оценочной выручки по вариантам. Всего: ${centerValue}.`
+    : `Круговая диаграмма долей показов по вариантам. Всего: ${centerValue} показов.`;
+  return `<svg class="paywall-stats-donut" viewBox="0 0 ${size} ${size}" role="img" aria-label="${escapeHtml(ariaLabel)} Точные числа есть в таблице ниже.">${segments}<text class="paywall-stats-donut-value" x="${center}" y="${center - 2}" text-anchor="middle">${escapeHtml(centerValue)}</text><text class="paywall-stats-donut-label" x="${center}" y="${center + 16}" text-anchor="middle">${escapeHtml(centerLabel)}</text></svg>`;
+}
+
+function renderPaywallAbStatsLegend(rows) {
+  return `<ul class="paywall-stats-legend">${rows.map((row) => `<li><span class="paywall-stats-chip" style="background:${row.color}"></span><span><strong>${row.letter}</strong> «${escapeHtml(row.name)}»</span></li>`).join('')}</ul>`;
+}
+
+// Таблица по вариантам, отсортирована по покупкам; лидер отмечен 🏆.
+function renderPaywallAbStatsTable(rows, revenueKind) {
+  const leader = rows.find((row) => row.purchases > 0) ?? null;
+  const body = rows.map((row) => {
+    const leaderMark = leader && row.letter === leader.letter ? ' <span class="paywall-stats-leader" title="Лидер по покупкам за период">🏆 лидер</span>' : '';
+    const revenueCell = revenueKind === 'estimate' ? escapeHtml(formatPaywallStatsUsd(row.revenueMicros)) : '—';
+    return `<tr><th scope="row"><span class="paywall-stats-chip" style="background:${row.color}"></span> ${row.letter} «${escapeHtml(row.name)}»${leaderMark}</th><td>${formatPaywallStatsCount(row.shown)}</td><td>${formatPaywallStatsCount(row.cta)}</td><td>${formatPaywallStatsCount(row.purchases)}</td><td>${formatPaywallStatsPct(row.conversionPct)}</td><td>${revenueCell}</td></tr>`;
+  }).join('');
+  return `<div class="paywall-stats-table-wrap"><table class="paywall-stats-table"><caption class="visually-hidden">Показы, CTA, покупки, конверсия и выручка по каждому варианту пейвола за выбранный период</caption><thead><tr><th scope="col">Вариант</th><th scope="col">Показы</th><th scope="col">CTA</th><th scope="col">Покупки</th><th scope="col">Конверсия</th><th scope="col">Выручка</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
+function renderPaywallAbStats() {
+  const stats = state.paywallAbStats;
+  const canRead = can('money.read') && !state.busy;
+  const rangeButtons = [7, 30, 90].map((days) => `<button class="button small${stats.rangeDays === days ? ' primary' : ''}" data-action="paywall-ab-stats-range" data-range-days="${days}" type="button"${can('money.read') && !state.busy ? '' : ' disabled'} title="Показать статистику вариантов за последние ${days} дней">${days} дней</button>`).join('');
+  const loadButton = `<button class="button" data-action="load-paywall-ab-stats" type="button"${canRead || stats.state !== 'ready' ? '' : ' disabled'} title="Загрузить свежую агрегацию воронки с сервера. Панель ничего не меняет в приложении">${stats.state === 'ready' ? 'Обновить данные' : 'Загрузить статистику'}</button>`;
+  const header = `<section class="card section" id="paywall-ab-stats"><div class="card-header"><div><h2>Статистика вариантов</h2><p>Показы, клики по кнопке, покупки, конверсия и выручка каждого экрана оплаты. Панель только читает серверную агрегацию и ничего не меняет.</p></div><div class="actions">${rangeButtons}${loadButton}</div></div><div class="card-body">`;
+  if (!can('money.read')) {
+    return `${header}<div class="notice warning">Статистика вариантов доступна с правом чтения денежных показателей (money.read).</div></div></section>`;
+  }
+  if (stats.state === 'error') {
+    return `${header}<div class="notice danger" role="alert"><strong>Не удалось загрузить статистику вариантов.</strong><br>${escapeHtml(stats.error || 'Сервер не вернул данные.')}</div></div></section>`;
+  }
+  if (stats.state === 'loading') {
+    return `${header}${emptyState('Считаю воронку на сервере…')}</div></section>`;
+  }
+  if (stats.state !== 'ready' || !stats.report) {
+    return `${header}${emptyState(state.authorized ? 'Загрузите статистику, чтобы сравнить экраны оплаты по показам, покупкам и выручке.' : 'Войдите с ролью администратора.')}</div></section>`;
+  }
+  const report = stats.report;
+  const rows = paywallVariantStatsRows(report);
+  const totals = report.totals && typeof report.totals === 'object' ? report.totals : {};
+  const revenueKind = report.revenue?.kind === 'estimate' ? 'estimate' : 'unavailable';
+  const summaryCards = `<section class="metrics section">
+    <article class="card metric"><label>Показы</label><strong>${formatPaywallStatsCount(totals.shown)}</strong><span class="badge">за ${stats.rangeDays} дн.</span></article>
+    <article class="card metric"><label>Покупки</label><strong>${formatPaywallStatsCount(totals.purchases)}</strong><span class="badge success">без dev-сборок</span></article>
+    <article class="card metric"><label>Конверсия</label><strong>${formatPaywallStatsPct(totals.conversionPct)}</strong><span class="badge">покупки / показы</span></article>
+    <article class="card metric"><label>Выручка</label><strong>${revenueKind === 'estimate' ? escapeHtml(formatPaywallStatsUsd(totals.revenueMicros)) : '—'}</strong><span class="badge${revenueKind === 'estimate' ? '' : ' danger'}">${revenueKind === 'estimate' ? 'оценка' : 'нет данных о ценах'}</span></article>
+  </section>`;
+  const revenueNotice = revenueKind === 'estimate'
+    ? `<div class="notice section"><strong>Выручка — оценка, а не точная сумма.</strong> Показы и покупки посчитаны точно по событиям воронки. Выручка варианта = его покупки по планам × средняя цена плана из production-покупок RevenueCat за ${Number(report.priceWindowDays) || 90} дней (${['monthly', 'yearly', 'lifetime'].map((plan) => `${plan} ${formatPaywallStatsUsd(report.revenue?.planPricesMicros?.[plan])}`).join(' · ')}). Точная выручка по варианту невозможна: события RevenueCat не знают, какой экран оплаты видел пользователь.</div>`
+    : `<div class="notice warning section"><strong>Нет данных о ценах — выручку не выдумываем.</strong> Показы, CTA и покупки ниже — точные. За ${Number(report.priceWindowDays) || 90} дней нет ни одной production-покупки RevenueCat с известной суммой, поэтому колонка выручки пуста. Оценка появится сама после первых покупок.</div>`;
+  const truncatedNotice = report.truncated === true
+    ? '<div class="notice warning section"><strong>Данные обрезаны лимитом сканирования.</strong> Событий за период слишком много, сервер посчитал только первую часть. Сократите период для точных чисел.</div>'
+    : '';
+  const noTraffic = rows.filter((row) => row.shown === 0);
+  const noTrafficNotice = noTraffic.length
+    ? `<div class="notice section">Варианты ${noTraffic.map((row) => row.letter).join('–')} ещё не получали трафик за этот период — у них нули не из-за поломки, а из-за долей распределения.</div>`
+    : '';
+  const hasTraffic = rows.some((row) => row.shown > 0 || row.purchases > 0);
+  const donutMode = revenueKind === 'estimate' && Number(totals.revenueMicros) > 0 ? 'revenue' : 'shown';
+  const charts = hasTraffic
+    ? `<div class="paywall-stats-grid section">
+        <div class="paywall-stats-chart-card"><h3>Покупки по вариантам</h3>${renderPaywallAbStatsBarChart(rows)}</div>
+        <div class="paywall-stats-chart-card"><h3>${donutMode === 'revenue' ? 'Доли оценочной выручки' : 'Доли показов'}</h3>${renderPaywallAbStatsDonut(rows, donutMode)}</div>
+      </div>
+      ${renderPaywallAbStatsLegend(rows)}
+      <h3>По вариантам</h3>
+      ${renderPaywallAbStatsTable(rows, revenueKind)}`
+    : emptyState('За выбранный период событий воронки нет. Попробуйте увеличить период — варианты D–G могли ещё не получить трафик.');
+  const fetchedLabel = stats.fetchedAtMs ? `<div class="section"><span class="hint">Обновлено: ${escapeHtml(new Date(stats.fetchedAtMs).toLocaleString('ru-RU'))} · источник: paywall_funnel + revenuecat_premium_events (только чтение)</span></div>` : '';
+  return `${header}${summaryCards}${revenueNotice}${truncatedNotice}${noTrafficNotice}${charts}${fetchedLabel}</div></section>`;
 }
 
 const ONBOARDING_ENABLED_STEPS_KEY = 'onboarding_enabled_steps_v1';
@@ -1313,6 +1798,8 @@ function renderApplication() {
       <article class="card metric"><label>Числа</label><strong>${workspace ? keyCount('numbers') : '—'}</strong><span class="badge">ключей</span></article>
       <article class="card metric"><label>Тексты</label><strong>${workspace ? keyCount('texts') : '—'}</strong><span class="badge">ключей</span></article>
     </section>
+    ${renderPaywallAbWorkflow()}
+    ${renderPaywallAbStats()}
     ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
       ${renderReleaseMaintenanceWorkflow() + renderPromoBannerWorkflow()}
       ${renderPremiumAccessWorkflow()}
@@ -1366,7 +1853,7 @@ function renderGlobalBroadcastPanel() {
   const items = Array.isArray(broadcast.items) ? broadcast.items : [];
   const preview = broadcast.preview;
   const history = broadcast.state === 'loading' ? emptyState('Загрузка рассылок…') : broadcast.state === 'error' ? `<div class="notice danger">${escapeHtml(broadcast.error)}</div>` : items.length ? `<div class="data-list">${items.map((item) => `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без заголовка')}</strong><small>${escapeHtml(item.messageRu || '')}</small></div><span class="badge ${item.active ? 'success' : ''}">${item.active ? 'Активно' : 'Выключено'}</span></article>`).join('')}</div>` : emptyState('История рассылок пуста.');
-  return `<section class="card section"><div class="card-header"><div><h2>Глобальная рассылка</h2><p>Preview → подтверждение → атомарная публикация с audit и idempotency.</p></div><button class="button" data-action="load-global-broadcasts" type="button">Обновить</button></div><div class="card-body"><div class="field"><label for="global-broadcast-title-ru">Заголовок</label><input id="global-broadcast-title-ru" maxlength="160"></div><div class="field full"><label for="global-broadcast-message-ru">Текст</label><textarea id="global-broadcast-message-ru" maxlength="2000"></textarea></div><div class="field"><label for="global-broadcast-reward-type">Подарок</label><select id="global-broadcast-reward-type">${GLOBAL_BROADCAST_REWARDS.map((item) => `<option value="${item.key}">${item.label}</option>`).join('')}</select></div><div class="field"><label for="global-broadcast-reward-amount">Количество осколков</label><input id="global-broadcast-reward-amount" type="number" min="0" max="1000" value="0"></div><div class="field"><label for="global-broadcast-reason">Причина</label><textarea id="global-broadcast-reason" maxlength="500"></textarea></div>${preview ? `<div class="notice warning">${escapeHtml(preview.summary)}</div>` : ''}<div class="actions end"><button class="button primary" data-action="preview-global-broadcast" type="button">Предпросмотр</button>${preview ? '<button class="button primary" data-action="publish-global-broadcast" type="button">Опубликовать</button>' : ''}<button class="button danger" data-action="deactivate-global-broadcasts" type="button"${items.some((item) => item.active) ? '' : ' disabled'}>Выключить активные</button></div><h3>История</h3>${history}</div></section>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Глобальная рассылка</h2><p>Preview → подтверждение → атомарная публикация с audit и idempotency.</p></div><button class="button" data-action="load-global-broadcasts" type="button" title="Обновить историю и текущие активные рассылки">Обновить</button></div><div class="card-body"><div class="field"><label for="global-broadcast-title-ru">Заголовок</label><input id="global-broadcast-title-ru" maxlength="160"></div><div class="field full"><label for="global-broadcast-message-ru">Текст</label><textarea id="global-broadcast-message-ru" maxlength="2000"></textarea></div><div class="field"><label for="global-broadcast-reward-type">Подарок</label><select id="global-broadcast-reward-type">${GLOBAL_BROADCAST_REWARDS.map((item) => `<option value="${item.key}">${item.label}</option>`).join('')}</select></div><div class="field"><label for="global-broadcast-reward-amount">Количество осколков</label><input id="global-broadcast-reward-amount" type="number" min="0" max="1000" value="0"></div><div class="field"><label for="global-broadcast-reason">Причина</label><textarea id="global-broadcast-reason" maxlength="500"></textarea></div>${preview ? `<div class="notice warning">${escapeHtml(preview.summary)}</div>` : ''}<div class="actions end"><button class="button primary" data-action="preview-global-broadcast" type="button" title="Проверить текст и получателей без отправки">Предпросмотр</button>${preview ? '<button class="button primary" data-action="publish-global-broadcast" type="button" title="Опубликовать проверенную рассылку для выбранной аудитории">Опубликовать</button>' : ''}<button class="button danger" data-action="deactivate-global-broadcasts" type="button" title="Сразу выключить все активные глобальные рассылки"${items.some((item) => item.active) ? '' : ' disabled'}>Выключить активные</button></div><h3>История</h3>${history}</div></section>`;
 }
 
 async function loadGlobalBroadcasts() {
@@ -1401,10 +1888,10 @@ function renderCampaigns() {
     return `<article class="list-row"><div><strong>${escapeHtml(item.titleRu || 'Без темы')}</strong><small>${escapeHtml(item.kind === 'poll' ? 'Опрос' : 'Сообщение')} · ${escapeHtml(audienceLabel(item.audience || 'all'))} · приоритет ${Number(item.priority || 0)}</small><small>Статус: ${campaignStatus} · Срок показа: ${expiryStatus} · Выключатель показа: ${killSwitchStatus}</small><small>Прочтения ${Number(item.readCount || 0)} · лайки ${Number(item.likeCount || 0)} · дизлайки ${Number(item.dislikeCount || 0)} · голоса ${Number(item.pollVoteCount || 0)}</small><small><code>${escapeHtml(item.id)}</code></small></div><div class="actions"><span class="badge ${active ? 'success' : expired ? 'warning' : ''}">${campaignStatus}</span><button class="button small" data-app-message-toggle="${escapeHtml(item.id)}" data-next-active="${nextActive}" type="button"${locked || expired ? ' disabled' : ''} title="Включить или выключить сообщение через серверную команду с причиной и журнал действий" aria-label="${nextActive ? 'Включить показ' : 'Выключить показ'}: ${escapeHtml(item.titleRu || 'Без темы')}">${nextActive ? 'Включить' : 'Выключить'}</button></div></article>`;
   }).join('')}</div>`;
   const options = Array.from({ length: 6 }, (_, index) => `<div class="field"><label for="app-message-poll-option-${index + 1}">Вариант ${index + 1}</label><input id="app-message-poll-option-${index + 1}" maxlength="160" value="${escapeHtml(draft?.translations?.ru?.pollOptions?.[index] || '')}" placeholder="${index < 2 ? 'Обязательно для опроса' : 'Необязательно'}"${locked ? ' disabled' : ''}></div>`).join('');
-  const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><a class="button ghost" href="../../admin/index.html#app-messages" target="_blank" rel="noopener" title="Открыть старый модуль для редактирования, удаления и аварийной сверки">Старый модуль сообщений</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
+  const headerActions = `<a class="button" href="#application" title="Вернуться к настройкам приложения">К приложению</a><button class="button" data-action="load-app-messages" type="button"${disabledWhenUnauthorized('campaigns.read')} title="Загрузить до 120 последних сообщений и агрегированные счётчики">${items.length ? 'Обновить список' : 'Загрузить сообщения'}</button>`;
   return `${pageHeader(PAGES.campaigns, 'Приложение / Кампании', headerActions)}
     ${renderGlobalBroadcastPanel()}
-    <div class="notice"><strong>Новая версия: создание сообщения и управление его показом.</strong> Редактирование и удаление будут перенесены следующим безопасным срезом после политики сохранения голосов. До этого старый модуль остаётся доступен для этих двух операций.</div>
+    <div class="notice"><strong>Создание сообщения и управление его показом доступны в Admin V2.</strong> Редактирование и удаление пока недоступны: их добавят отдельным безопасным изменением после политики сохранения голосов.</div>
     <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">нравится и не нравится</span></article></section>
     <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное сообщение для входящих или опрос. Черновик никому не показывается; активное сообщение появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Рабочая кампания</span></div><div class="card-body">
       <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Черновик / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема на русском</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст на русском</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса на русском</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и условие остановки"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
@@ -1467,10 +1954,10 @@ function renderProfile() {
   const sourceStates = sections.diagnostics?.sourceStates || {};
   const failed = Object.values(sourceStates).filter((source) => source?.state === 'error').length;
   const partial = Object.values(sourceStates).filter((source) => source?.state === 'partial').length;
-  const legacyUrl = `../../admin/index.html?openUser=${encodeURIComponent(profile.canonicalUid)}#users`;
+  const profileUrl = `?openUser=${encodeURIComponent(profile.canonicalUid)}#users`;
   return `<div class="profile-workspace">
     ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
-    <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(identityReasonLabel(profile.identity?.reason || 'requested'))}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(legacyUrl)}" target="_blank" rel="noopener" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
+    <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(identityReasonLabel(profile.identity?.reason || 'requested'))}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(profileUrl)}" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
     ${renderAdminAccessControls(profile.canonicalUid, summary)}
     <div class="profile-section-grid">
       <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
@@ -1496,7 +1983,7 @@ function buildAccessPreview(kind) {
 function renderAdminAccessControls(uid, summary) {
   if (!can('money.manual_access.write') && !can('community.moderate')) return '';
   const preview = adminAccessPreview;
-  return `<section class="card profile-section admin-access-controls"><div class="card-header"><div><h3>Управление доступом и блокировкой</h3><p>Каждая операция проходит preview → подтверждение → серверную транзакцию и аудит.</p></div></div><div class="form-grid"><div class="field"><label for="admin-access-days">Срок доступа, дней (0 = бессрочно)</label><input id="admin-access-days" type="number" min="0" max="3650" value="30"></div><div class="field"><label for="admin-access-reason">Причина</label><input id="admin-access-reason" type="text" maxlength="500" placeholder="Причина операции"></div></div><div class="actions"><button class="button" data-action="preview-admin-premium" type="button"${can('money.manual_access.write') ? '' : ' disabled'}>Preview Premium</button><button class="button" data-action="preview-admin-vip" type="button"${can('money.manual_access.write') ? '' : ' disabled'}>Preview VIP</button><button class="button danger" data-action="preview-admin-ban" type="button"${can('community.moderate') ? '' : ' disabled'}>${summary.banned ? 'Preview разблокировки' : 'Preview бана'}</button></div>${preview && preview.uid === uid ? `<div class="notice warning"><strong>Проверка операции:</strong> ${escapeHtml(preview.label)}<br>Причина: ${escapeHtml(preview.reason)}<div class="actions"><button class="button primary" data-action="publish-admin-access" type="button">Подтвердить</button><button class="button" data-action="discard-admin-access" type="button">Отмена</button></div></div>` : ''}</section>`;
+  return `<section class="card profile-section admin-access-controls"><div class="card-header"><div><h3>Управление доступом и блокировкой</h3><p>Каждая операция проходит preview → подтверждение → серверную транзакцию и аудит.</p></div></div><div class="form-grid"><div class="field"><label for="admin-access-days">Срок доступа, дней (0 = бессрочно)</label><input id="admin-access-days" type="number" min="0" max="3650" value="30"></div><div class="field"><label for="admin-access-reason">Причина</label><input id="admin-access-reason" type="text" maxlength="500" placeholder="Причина операции"></div></div><div class="actions"><button class="button" data-action="preview-admin-premium" type="button" title="Проверить выдачу Premium без изменения доступа"${can('money.manual_access.write') ? '' : ' disabled'}>Preview Premium</button><button class="button" data-action="preview-admin-vip" type="button" title="Проверить выдачу VIP без изменения доступа"${can('money.manual_access.write') ? '' : ' disabled'}>Preview VIP</button><button class="button danger" data-action="preview-admin-ban" type="button" title="Проверить блокировку или разблокировку без изменения статуса"${can('community.moderate') ? '' : ' disabled'}>${summary.banned ? 'Preview разблокировки' : 'Preview бана'}</button></div>${preview && preview.uid === uid ? `<div class="notice warning"><strong>Проверка операции:</strong> ${escapeHtml(preview.label)}<br>Причина: ${escapeHtml(preview.reason)}<div class="actions"><button class="button primary" data-action="publish-admin-access" type="button" title="Подтвердить проверенную операцию и записать её через сервер">Подтвердить</button><button class="button" data-action="discard-admin-access" type="button" title="Отменить проверку без изменения доступа">Отмена</button></div></div>` : ''}</section>`;
 }
 
 function renderUsers() {
@@ -1559,11 +2046,201 @@ function renderPromoWorkflow() {
 }
 
 function renderMoney() {
-  return `${pageHeader(PAGES.money, 'Деньги', '<a class="button ghost" href="../../admin/index.html#promo-codes" title="Аварийно открыть старый модуль промокодов">Старый модуль промокодов</a>')}
+  return `${pageHeader(PAGES.money, 'Деньги')}
     <div class="notice warning">События нажатия «Купить» не считаются выручкой. Денежные показатели должны приходить из платёжного источника.</div>
     <section class="metrics section">${['Активные подписки', 'Выручка за период', 'Платёжные проблемы', 'Возвраты'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>
     ${renderPromoWorkflow()}
-    <section class="card section"><div class="card-header"><div><h2>Платёжные инструменты</h2><p>Текущие рабочие операции доступны без потери функций.</p></div><div class="actions"><a class="button" href="#analytics">Аналитика</a><a class="button" href="../../admin/index.html#subscriptions">Подписки</a></div></div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>Платёжные инструменты</h2><p>Текущие рабочие операции доступны без потери функций.</p></div><div class="actions"><a class="button" href="#analytics" title="Открыть платёжную и продуктовую аналитику">Аналитика</a><a class="button" href="#subscriptions" title="Открыть подписки">Подписки</a><a class="button" href="#coin-center" title="Открыть курс биржи монет в звёзды, историю и объёмы обменов">Центр монет</a></div></div></section>`;
+}
+
+// Контракт callable adminGetCoinExchangeCenter({ rangeDays }):
+// {
+//   exchange: { rate, baseRate, corridorMin, corridorMax, nextRecalcAtMs, updatedAtMs,
+//     manualOverride: null | { rate, reason, author, atMs } },           // источник: Firestore doc economy/exchange
+//   history: [{ date: 'YYYY-MM-DD', rate, volumeCoins, volumeStars, source: 'auto'|'manual' }], // economy_exchange_history
+//   stats24h: { volumeCoins, volumeStars, trades, uniqueUsers, totalCoins },
+//   overrides: [{ rate, reason, author, atMs }],                          // аудит ручных переопределений
+// }
+// Запись курса: callable adminSetCoinExchangeRate({ rate, reason, idempotencyKey, requestId }).
+
+function normalizeCoinRate(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : fallback;
+}
+
+function normalizeCoinCenterResult(result, rangeDays) {
+  const exchange = result && typeof result.exchange === 'object' ? result.exchange : {};
+  const manualOverride = exchange.manualOverride && typeof exchange.manualOverride === 'object'
+    ? {
+      rate: normalizeCoinRate(exchange.manualOverride.rate),
+      reason: String(exchange.manualOverride.reason || ''),
+      author: String(exchange.manualOverride.author || ''),
+      atMs: Number(exchange.manualOverride.atMs || 0),
+    }
+    : null;
+  const history = (Array.isArray(result?.history) ? result.history : [])
+    .map((point) => ({
+      date: String(point?.date || ''),
+      rate: normalizeCoinRate(point?.rate),
+      volumeCoins: Math.max(0, Number(point?.volumeCoins || 0) || 0),
+      volumeStars: Math.max(0, Number(point?.volumeStars || 0) || 0),
+      source: String(point?.source) === 'manual' ? 'manual' : 'auto',
+    }))
+    .filter((point) => /^\d{4}-\d{2}-\d{2}$/.test(point.date) && point.rate > 0)
+    .sort((a, b) => (a.date < b.date ? -1 : 1));
+  const stats = result && typeof result.stats24h === 'object' ? result.stats24h : {};
+  const overrides = (Array.isArray(result?.overrides) ? result.overrides : [])
+    .map((entry) => ({
+      rate: normalizeCoinRate(entry?.rate),
+      reason: String(entry?.reason || ''),
+      author: String(entry?.author || ''),
+      atMs: Number(entry?.atMs || 0),
+    }))
+    .filter((entry) => entry.rate > 0)
+    .sort((a, b) => b.atMs - a.atMs)
+    .slice(0, 20);
+  return {
+    state: 'ready',
+    exchange: {
+      rate: normalizeCoinRate(exchange.rate),
+      baseRate: normalizeCoinRate(exchange.baseRate),
+      corridorMin: normalizeCoinRate(exchange.corridorMin),
+      corridorMax: normalizeCoinRate(exchange.corridorMax),
+      nextRecalcAtMs: Number(exchange.nextRecalcAtMs || 0),
+      updatedAtMs: Number(exchange.updatedAtMs || 0),
+      manualOverride,
+    },
+    history,
+    stats24h: {
+      volumeCoins: Math.max(0, Number(stats.volumeCoins || 0) || 0),
+      volumeStars: Math.max(0, Number(stats.volumeStars || 0) || 0),
+      trades: Math.max(0, Math.trunc(Number(stats.trades || 0) || 0)),
+      uniqueUsers: Math.max(0, Math.trunc(Number(stats.uniqueUsers || 0) || 0)),
+      totalCoins: Number.isFinite(Number(stats.totalCoins)) ? Number(stats.totalCoins) : null,
+    },
+    overrides,
+    rangeDays,
+    error: '',
+    fetchedAtMs: Date.now(),
+  };
+}
+
+async function loadCoinCenter() {
+  const authGeneration = state.authGeneration;
+  state.coinCenter = { ...state.coinCenter, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.getCoinExchangeCenter({ rangeDays: state.coinCenter.rangeDays });
+    if (!authStillValid(authGeneration, 'money.read')) return STALE_AUTH_RESULT;
+    state.coinCenter = normalizeCoinCenterResult(result, state.coinCenter.rangeDays);
+    renderCurrentPage();
+    return result;
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'money.read')) return STALE_AUTH_RESULT;
+    const message = errorMessage(error);
+    state.coinCenter = {
+      ...state.coinCenter,
+      state: 'error',
+      error: /not-found|not_found|unimplemented/i.test(message)
+        ? `Серверная функция биржи ещё не опубликована (${message}). Раздел заработает после выкатки adminGetCoinExchangeCenter.`
+        : message,
+    };
+    renderCurrentPage();
+    return null;
+  }
+}
+
+function coinCenterCorridor() {
+  const exchange = state.coinCenter.exchange;
+  if (!exchange) return { min: 0, max: 0 };
+  return { min: exchange.corridorMin, max: exchange.corridorMax };
+}
+
+function renderCoinCenterRateCard() {
+  const exchange = state.coinCenter.exchange;
+  if (!exchange || !exchange.rate) return emptyState('Сервер вернул ответ без текущего курса. Проверьте документ economy/exchange.');
+  const override = exchange.manualOverride;
+  return `<section class="card section"><div class="card-header"><div><h2>Текущий курс биржи</h2><p>Глобальный серверный курс. Клиент приложения курс не считает.</p></div><span class="badge ${override ? 'warning' : 'success'}">${override ? 'Действует ручной курс' : 'Автоматический режим'}</span></div>
+    <div class="card-body">
+      <section class="metrics">
+        <article class="card metric"><label>Курс сейчас</label><strong>1 монета = ${escapeHtml(metricValue(exchange.rate))} звёзд</strong><span class="badge">${escapeHtml(`Обновлён: ${dateTime(exchange.updatedAtMs)}`)}</span></article>
+        <article class="card metric"><label>Коридор курса</label><strong>${escapeHtml(`${metricValue(exchange.corridorMin)} – ${metricValue(exchange.corridorMax)}`)}</strong><span class="badge">Минимум – максимум, объявлен заранее</span></article>
+        <article class="card metric"><label>Базовая цена</label><strong>${escapeHtml(metricValue(exchange.baseRate))}</strong><span class="badge">К ней курс возвращается при падении спроса</span></article>
+        <article class="card metric"><label>Следующий автопересчёт</label><strong>${escapeHtml(dateTime(exchange.nextRecalcAtMs))}</strong><span class="badge">Раз в сутки по спросу, максимум ±10%</span></article>
+      </section>
+      ${override ? `<div class="notice warning section"><strong>Ручное переопределение активно.</strong><br>Курс ${escapeHtml(metricValue(override.rate))} установил ${escapeHtml(override.author || 'администратор')} · ${escapeHtml(dateTime(override.atMs))}.<br>Причина: ${escapeHtml(override.reason || 'не указана')}.<br>Действует до следующего автоматического пересчёта.</div>` : ''}
+    </div></section>`;
+}
+
+function renderCoinCenterOverrideForm() {
+  const exchange = state.coinCenter.exchange;
+  const { min, max } = coinCenterCorridor();
+  const corridorKnown = min > 0 && max >= min;
+  return `<section class="card section"><div class="card-header"><div><h2>Ручное переопределение курса</h2><p>Новый курс применится сразу для всех пользователей и попадёт в аудит-лог.</p></div><span class="badge">Запись через сервер</span></div>
+    <div class="card-body">
+      <div class="notice">Курс также пересчитывается автоматически раз в сутки по спросу (максимум ±10% в сутки), ручное значение действует до следующего пересчёта.</div>
+      <div class="fields section">
+        <div class="field"><label for="coin-rate-value">Новый курс: звёзд за 1 монету</label><input id="coin-rate-value" type="number" inputmode="decimal" min="${corridorKnown ? min : 1}" max="${corridorKnown ? max : 100000}" step="1"${exchange?.rate ? ` value="${exchange.rate}"` : ''} aria-describedby="coin-rate-hint"${disabledWhenUnauthorized('money.manual_access.write')}><small id="coin-rate-hint" class="hint">${corridorKnown ? `Допустимый коридор: ${metricValue(min)} – ${metricValue(max)} звёзд.` : 'Коридор неизвестен: сначала загрузите данные.'}</small></div>
+        <div class="field full"><label for="coin-rate-reason">Причина изменения (обязательно)</label><textarea id="coin-rate-reason" maxlength="500" placeholder="Например: спрос резко вырос после акции, курс просел ниже планового"${disabledWhenUnauthorized('money.manual_access.write')}></textarea><small class="hint">Причина сохранится в аудит-логе вместе с автором и временем.</small></div>
+      </div>
+      <div class="actions end section"><button class="button" data-action="load-coin-center" type="button" title="Перечитать курс, историю и статистику с сервера"${disabledWhenUnauthorized('money.read')}>Обновить данные</button><button class="button primary" data-action="set-coin-exchange-rate" type="button" title="Установить ручной курс обмена для всех пользователей. Применится сразу, действует до следующего автоматического пересчёта, записывается в аудит. Проверка коридора и подтверждение перед записью."${disabledWhenUnauthorized('money.manual_access.write')}>Установить курс</button></div>
+    </div></section>`;
+}
+
+function renderCoinCenterHistory() {
+  const history = state.coinCenter.history;
+  return `<section class="card section"><div class="card-header"><div><h2>История курса</h2><p>Дневной курс и объём обменов за ${state.coinCenter.rangeDays} дней. Источник: economy_exchange_history.</p></div><div class="field" style="min-width:180px"><label for="coin-center-range-days">Период</label><select id="coin-center-range-days" title="Выбрать глубину истории курса"${disabledWhenUnauthorized('money.read')}>${[30, 60, 90].map((days) => `<option value="${days}"${state.coinCenter.rangeDays === days ? ' selected' : ''}>${days} дней</option>`).join('')}</select></div></div>
+    <div class="card-body">
+      ${history.length ? '<div id="coin-rate-chart-host"></div>' : emptyState('История курса пока пуста: биржа ещё не работала или записи не накоплены. График появится после первых дней обменов.')}
+    </div></section>`;
+}
+
+function renderCoinCenterStats() {
+  const stats = state.coinCenter.stats24h;
+  const metrics = stats ? [
+    operationalMetric('Объём обменов · 24 ч', `${metricValue(stats.volumeCoins)} монет`, `выдано ${metricValue(stats.volumeStars)} звёзд`),
+    operationalMetric('Обменов · 24 ч', metricValue(stats.trades), 'завершённые операции'),
+    operationalMetric('Уникальных пользователей · 24 ч', metricValue(stats.uniqueUsers), 'меняли монеты на звёзды'),
+    operationalMetric('Всего обменяно монет', stats.totalCoins === null ? '—' : metricValue(stats.totalCoins), stats.totalCoins === null ? 'Сервер пока не считает' : 'за всё время'),
+  ] : [
+    operationalMetric('Объём обменов · 24 ч', '—', 'Не загружено'),
+    operationalMetric('Обменов · 24 ч', '—', 'Не загружено'),
+    operationalMetric('Уникальных пользователей · 24 ч', '—', 'Не загружено'),
+    operationalMetric('Всего обменяно монет', '—', 'Не загружено'),
+  ];
+  return `<section class="metrics section">${metrics.join('')}</section>`;
+}
+
+function renderCoinCenterAudit() {
+  const overrides = state.coinCenter.overrides;
+  return `<section class="card section"><div class="card-header"><div><h2>Журнал ручных переопределений</h2><p>Кто, когда и почему менял курс вручную.</p></div><span class="badge">Последние ${overrides.length || '—'}</span></div>
+    <div class="card-body">
+      ${overrides.length ? `<div class="job-list">${overrides.map((entry) => `<div class="list-row"><div><strong>1 монета = ${escapeHtml(metricValue(entry.rate))} звёзд</strong><small>${escapeHtml(entry.author || 'Администратор')} · ${escapeHtml(dateTime(entry.atMs))}<br>Причина: ${escapeHtml(entry.reason || 'не указана')}</small></div><span class="badge warning">Ручной курс</span></div>`).join('')}</div>` : emptyState('Ручных переопределений ещё не было. Курс всегда считался автоматически.')}
+    </div></section>`;
+}
+
+function renderCoinCenter() {
+  const center = state.coinCenter;
+  const refreshButton = `<button class="button primary" data-action="load-coin-center" type="button" title="Перечитать курс, историю и статистику биржи с сервера"${disabledWhenUnauthorized('money.read')}>Обновить данные</button>`;
+  if (!can('money.read')) return `${pageHeader(PAGES['coin-center'], 'Деньги / Центр монет')}<div class="notice warning">Раздел доступен с правом чтения денежных показателей (money.read).</div>`;
+  if (center.state === 'loading') return `${pageHeader(PAGES['coin-center'], 'Деньги / Центр монет', refreshButton)}<div class="notice" role="status" aria-live="polite">Загружаю курс, историю и статистику биржи…</div>`;
+  if (center.state === 'error') return `${pageHeader(PAGES['coin-center'], 'Деньги / Центр монет', refreshButton)}<div class="notice danger" role="alert"><strong>Данные биржи не прочитаны.</strong><br>${escapeHtml(center.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-coin-center" type="button" title="Повторно прочитать данные биржи">Повторить чтение</button></div></div>`;
+  if (center.state !== 'ready') return `${pageHeader(PAGES['coin-center'], 'Деньги / Центр монет', refreshButton)}${emptyState('Нажмите «Обновить данные», чтобы прочитать текущий курс, историю и статистику биржи.')}`;
+  return `${pageHeader(PAGES['coin-center'], 'Деньги / Центр монет', refreshButton)}
+    <div class="notice">Монеты ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание. Обмен работает только в одну сторону: монеты → звёзды.</div>
+    ${renderCoinCenterStats()}
+    ${renderCoinCenterRateCard()}
+    ${renderCoinCenterOverrideForm()}
+    ${renderCoinCenterHistory()}
+    ${renderCoinCenterAudit()}`;
+}
+
+function mountCoinCenterChartWhenCurrent(target, capturedRenderGeneration) {
+  if (state.route !== 'coin-center' || state.coinCenter.state !== 'ready' || !state.coinCenter.history.length) return;
+  queueMicrotask(() => {
+    if (capturedRenderGeneration !== renderGeneration || state.route !== 'coin-center') return;
+    mountCoinRateChart(target.querySelector('#coin-rate-chart-host'), state.coinCenter.history);
+  });
 }
 
 function renderFactorySteps() {
@@ -1713,14 +2390,14 @@ function isSupportedContentKind(kind) {
 
 function renderContent() {
   const panel = state.factoryStep === 1 ? renderFactoryCreate() : state.factoryStep === 2 ? renderFactoryGeneration() : state.factoryStep === 3 ? renderFactoryReview() : renderFactoryPublish();
-  return `${pageHeader(PAGES.content, 'Фабрика языков', '<a class="button" href="../../admin/index.html#content" title="Открыть существующие инструменты контента">Текущие инструменты</a>')}
+  return `${pageHeader(PAGES.content, 'Фабрика языков')}
     ${renderContentGeneratorShell({ ...v2ContentStages(), stages: state.contentStages.items.filter((stage) => isSupportedContentKind(stage.kind)), canWrite: can('content.draft.write'), canPublish: can('content.publish') })}
     <details class="section"><summary>Совместимый генератор полного языкового пакета</summary>
     <div class="factory-layout">${renderFactorySteps()}${panel}</div></details>`;
 }
 
 function renderCommunity() {
-  return `${pageHeader(PAGES.community, 'Комьюнити', '<a class="button primary" href="../../admin/index.html#reports" title="Открыть рабочую очередь жалоб">Открыть очередь</a>')}
+  return `${pageHeader(PAGES.community, 'Комьюнити', '<a class="button primary" href="#report-center" title="Открыть единый центр жалоб, ошибок и контентных репортов">Открыть центр репортов</a>')}
     <div class="notice">Пустая очередь не считается подтверждённым хорошим состоянием, пока источник не загружен.</div>
     <section class="metrics section">${['Жалобы без ответа', 'Сообщения чата'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>`;
 }
@@ -1738,6 +2415,8 @@ const SOURCE_LABELS = Object.freeze({
 
 const AUDIT_ACTION_LABELS = Object.freeze({
   'remote_config.publish': 'Публикация настроек приложения',
+  'paywall_ab.publish': 'Публикация A/B-теста пейволов',
+  paywall_ab_save: 'Сохранение A/B-теста пейволов',
   'support.reply.send': 'Ответ пользователю',
   'support.reply.prepare': 'Подготовка ответа',
   'support.reply.delivery_unknown': 'Неизвестный статус доставки',
@@ -1836,7 +2515,8 @@ function renderDiagnosticsSourceHealth(view) {
   if (view.state === 'error') return `<div class="notice danger" role="alert"><strong>Источники не загружены.</strong><br>${escapeHtml(view.error || 'Сервер не вернул снимок.')}<div class="actions section"><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Повторно прочитать состояние источников">Повторить чтение</button></div></div>`;
   if (!view.hasData) return emptyState('Сохранённый снимок источников ещё не загружен.');
   if (!view.sources.length) return emptyState('В сохранённом снимке нет сведений об источниках.');
-  return `<div class="source-health-grid">${view.sources.map((source) => `<div><span>${escapeHtml(SOURCE_LABELS[source.source] || 'Неизвестный источник')}</span><small class="mono">${escapeHtml(source.source)}</small>${sourceHealthBadge(source)}<small>Записей: ${source.count.toLocaleString('ru-RU')}${source.limit ? ` · лимит ${source.limit.toLocaleString('ru-RU')}` : ''}</small><small>Проверен: ${escapeHtml(dateTime(source.checkedAtMs))}</small><small>Последнее событие: ${escapeHtml(dateTime(source.latestEventAtMs))}</small>${source.error ? `<small class="source-error">${escapeHtml(source.error)}</small>` : ''}</div>`).join('')}</div>`;
+  const signals = new Map(buildDiagnosticsPlanSignals(view).map((signal) => [operationalPlanSignalKey(signal), signal]));
+  return `<div class="source-health-grid">${view.sources.map((source) => { const code = source.state === 'error' ? 'diagnostics_source_error' : source.state === 'truncated' ? 'diagnostics_source_truncated' : ''; const signal = signals.get(`diagnostics:${code}:${source.source}`); return `<div><span>${escapeHtml(SOURCE_LABELS[source.source] || 'Неизвестный источник')}</span><small class="mono">${escapeHtml(source.source)}</small>${sourceHealthBadge(source)}<small>Записей: ${source.count.toLocaleString('ru-RU')}${source.limit ? ` · лимит ${source.limit.toLocaleString('ru-RU')}` : ''}</small><small>Проверен: ${escapeHtml(dateTime(source.checkedAtMs))}</small><small>Последнее событие: ${escapeHtml(dateTime(source.latestEventAtMs))}</small>${source.error ? `<small class="source-error">${escapeHtml(source.error)}</small>` : ''}${renderOperationalPlanAction(signal)}</div>`; }).join('')}</div>`;
 }
 
 function auditSummary(value) {
@@ -1867,9 +2547,9 @@ function renderAuditLogPanel() {
   else body = `<div class="data-list audit-list">${items.map((row) => {
     const entity = row.entity && typeof row.entity === 'object' ? row.entity : {};
     const profileUid = entity.uid || entity.targetUid || entity.userUid || entity.reporterUid || (entity.collection === 'users' ? entity.id : '');
-    return `<article class="list-row audit-row"><div><strong>${escapeHtml(auditActionLabel(row.action))}</strong><small><code>${escapeHtml(row.action || 'unknown')}</code> · ${escapeHtml(dateTime(row.timestampMs))} · ${escapeHtml(auditActor(row))} · ${escapeHtml(row.role || 'роль не указана')}</small><small>${escapeHtml(SOURCE_LABELS[entity.collection] || 'Неизвестный объект')}${entity.id ? ` / ${escapeHtml(entity.id)}` : ''}${row.requestId ? ` · код запроса: <code>${escapeHtml(row.requestId)}</code>` : ''}</small><small>Причина и откат: ${escapeHtml(row.reason || 'причина не указана')}${row.rollbackReference ? ` · код восстановления: <code>${escapeHtml(row.rollbackReference)}</code>` : ''}</small><small>До: ${escapeHtml(auditSummary(row.before))}</small><small>После: ${escapeHtml(auditSummary(row.after))}</small></div><div class="actions">${profileUid ? `<button class="button small ghost" data-audit-user-uid="${escapeHtml(profileUid)}" type="button" title="Открыть профиль связанного пользователя">Профиль</button>` : ''}<a class="button small ghost" href="../../admin/index.html#audit" target="_blank" rel="noopener" title="Открыть старый модуль аудита для расширенной сверки">Старый журнал</a></div></article>`;
+    return `<article class="list-row audit-row"><div><strong>${escapeHtml(auditActionLabel(row.action))}</strong><small><code>${escapeHtml(row.action || 'unknown')}</code> · ${escapeHtml(dateTime(row.timestampMs))} · ${escapeHtml(auditActor(row))} · ${escapeHtml(row.role || 'роль не указана')}</small><small>${escapeHtml(SOURCE_LABELS[entity.collection] || 'Неизвестный объект')}${entity.id ? ` / ${escapeHtml(entity.id)}` : ''}${row.requestId ? ` · код запроса: <code>${escapeHtml(row.requestId)}</code>` : ''}</small><small>Причина и откат: ${escapeHtml(row.reason || 'причина не указана')}${row.rollbackReference ? ` · код восстановления: <code>${escapeHtml(row.rollbackReference)}</code>` : ''}</small><small>До: ${escapeHtml(auditSummary(row.before))}</small><small>После: ${escapeHtml(auditSummary(row.after))}</small></div><div class="actions">${profileUid ? `<button class="button small ghost" data-audit-user-uid="${escapeHtml(profileUid)}" type="button" title="Открыть профиль связанного пользователя">Профиль</button>` : ''}</div></article>`;
   }).join('')}</div>${audit.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-audit-next" type="button" title="Загрузить более старые записи журнала">Показать ещё</button></div>' : ''}`;
-  return `<section class="card section"><div class="card-header"><div><h2>Журнал действий</h2><p>Изменения здесь только читаются: кто, что поменял, причина, before/after и ссылка на откат.</p></div><div class="actions"><span class="badge ${badgeClass(audit.state)}">${escapeHtml(auditStateLabel(audit.state))}</span><a class="button small ghost" href="../../admin/index.html#audit" target="_blank" rel="noopener" title="Открыть старый модуль аудита для сверки">Старый журнал</a></div></div><div class="card-body">${filterBar}<div class="hint section">Показано ${items.length}${audit.fetchedAtMs ? ` · обновлено ${escapeHtml(dateTime(audit.fetchedAtMs))}` : ''}</div>${body}</div></section>`;
+  return `<section class="card section"><div class="card-header"><div><h2>Журнал действий</h2><p>Изменения здесь только читаются: кто, что поменял, причина, before/after и ссылка на откат.</p></div><div class="actions"><span class="badge ${badgeClass(audit.state)}">${escapeHtml(auditStateLabel(audit.state))}</span></div></div><div class="card-body">${filterBar}<div class="hint section">Показано ${items.length}${audit.fetchedAtMs ? ` · обновлено ${escapeHtml(dateTime(audit.fetchedAtMs))}` : ''}</div>${body}</div></section>`;
 }
 
 function renderOpsLogPanel() {
@@ -1894,7 +2574,7 @@ function renderOpsLogPanel() {
   else if (ops.state === 'error') body = `<div class="notice danger" role="alert"><strong>Операционный журнал не загружен.</strong><br>${escapeHtml(ops.error || 'Сервер не вернул данные.')}<div class="actions section"><button class="button" data-action="load-ops-log" type="button"${disabledWhenUnauthorized('diagnostics.read')} title="Повторно загрузить операционный журнал">Повторить чтение</button></div></div>`;
   else if (!items.length) body = emptyState(ops.state === 'idle' ? 'Загрузите журнал после входа с правом диагностики.' : 'В выбранной серверной выборке событий не найдено.');
   else body = `<div class="data-list ops-list">${items.map((row) => `<article class="list-row ops-row"><div><strong>${escapeHtml(opsTypeLabel(row.type))}</strong><small><code>${escapeHtml(row.type || 'event')}</code> · ${escapeHtml(row.sourceLabel || OPS_SOURCE_LABELS[row.source] || 'Источник')} · ${escapeHtml(dateTime(row.timestampMs))}</small><small>UID: <code>${escapeHtml(row.uid || '—')}</code>${row.name ? ` · ${escapeHtml(row.name)}` : ''}${row.status ? ` · статус: ${escapeHtml(operationalStateLabel(row.status))} <code>${escapeHtml(row.status)}</code>` : ''}</small><small>Детали: ${escapeHtml(opsDetailsSummary(row.details))}</small></div><div class="actions"><span class="badge ${row.source === 'admin' ? 'success' : row.source === 'error_report' ? 'warning' : 'danger'}">${escapeHtml(OPS_SOURCE_LABELS[row.source] || row.source || 'Источник')}</span></div></article>`).join('')}</div>`;
-  return `<section class="card section"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные действия, баг-репорты и жалобы в одном безопасном снимке только для чтения.</p></div><div class="actions"><span class="badge ${badgeClass(ops.state)}">${escapeHtml(opsStateLabel(ops.state))}</span><a class="button small ghost" href="../../admin/index.html#ops-log" target="_blank" rel="noopener" title="Открыть старый операционный журнал для сверки">Старый ops-log</a></div></div><div class="card-body">${filterBar}${['partial', 'truncated'].includes(ops.state) ? '<div class="notice warning section"><strong>Выборка неполная.</strong> Один из источников вернул ошибку или достиг серверного лимита. Числа ниже относятся только к загруженной части.</div>' : ''}<section class="metrics section">${[
+  return `<section class="card section"><div class="card-header"><div><h2>Операционный журнал</h2><p>Серверные действия, баг-репорты и жалобы в одном безопасном снимке только для чтения.</p></div><div class="actions"><span class="badge ${badgeClass(ops.state)}">${escapeHtml(opsStateLabel(ops.state))}</span></div></div><div class="card-body">${filterBar}${['partial', 'truncated'].includes(ops.state) ? '<div class="notice warning section"><strong>Выборка неполная.</strong> Один из источников вернул ошибку или достиг серверного лимита. Числа ниже относятся только к загруженной части.</div>' : ''}<section class="metrics section">${[
     metric('Событий', kpis.events ?? items.length),
     metric('Баг-репорты', kpis.reportCreated ?? 0),
     metric('Исправлено', kpis.fixed ?? 0),
@@ -1912,12 +2592,14 @@ function renderDiagnostics() {
     operationalMetric('Ограниченные выборки', metricValue(view.metrics.sourceTruncated), 'лимит или частичные данные', view.metrics.sourceTruncated ? 'warning' : ''),
     operationalMetric('Ошибки приложения', metricValue(view.metrics.appErrors), 'за окно снимка', view.metrics.appErrors ? 'warning' : ''),
   ] : ['Источники в снимке', 'Ошибки источников', 'Ограниченные выборки', 'Ошибки приложения'].map((label) => operationalMetric(label, '—', view.stateLabel));
-  const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить диагностику</button><a class="button" href="./migration.html" title="Открыть полный реестр переноса функций">Реестр переноса</a>`;
+  const headerActions = `<button class="button primary" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Прочитать последний сохранённый снимок без запуска генерации">Обновить диагностику</button>`;
   return `${pageHeader(PAGES.diagnostics, 'Диагностика', headerActions)}
     ${view.isPartial ? '<div class="notice warning"><strong>Диагностика частичная.</strong> Минимум один источник достиг лимита или вернул неполную выборку.</div>' : ''}
     ${view.state === 'stale' ? '<div class="notice warning"><strong>Диагностика устарела.</strong> Снимок старше 36 часов.</div>' : ''}
     <section class="metrics section">${metrics.join('')}</section>
     <section class="card section"><div class="card-header"><div><h2>Состояние источников</h2><p>Для каждого источника отдельно показаны полнота, время проверки и последнее событие.</p></div><span class="badge ${badgeClass(view.state)}">${escapeHtml(view.stateLabel)}</span></div><div class="card-body">${renderDiagnosticsSourceHealth(view)}</div></section>
+    ${renderAuditLogPanel()}
+    ${renderOpsLogPanel()}
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section></div>`;
 }
 
@@ -1938,11 +2620,13 @@ function renderSupport() {
   const count = (status) => items.filter((item) => String(item.status || 'new') === status).length;
   const humanCount = items.filter((item) => item.mailCategory === 'human' || item.mailCategory === 'user').length;
   const readyDrafts = items.filter((item) => String(item.status || 'new') === 'new' && String(item.draftReply || '').trim()).length;
+  const planSignals = new Map(buildSupportPlanSignals(state.support).map((signal) => [signal.code, signal]));
+  const metric = (label, value, badge, signalCode) => `<article class="card metric"><label>${label}</label><strong>${state.support.loaded ? value : '—'}</strong>${badge}${state.support.loaded ? renderSupportPlanAction(planSignals.get(signalCode)) : ''}</article>`;
   const statusName = (status) => ({ new: 'Новое', answered: 'Отвечено', archived: 'Архив' })[status] ?? status;
   const headerAction = `<div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized()}>Обновить</button><button class="button primary" data-action="pull-support" type="button"${disabledWhenUnauthorized()}>Проверить Gmail</button></div>`;
   return `${pageHeader(supportPage, 'Пользователи / Поддержка', headerAction)}
     <div class="notice">Письма людей не удаляются и не скрываются системным фильтром. Категория показывается отдельно, а в список возвращаются все статусы.</div>
-    <section class="metrics section"><article class="card metric"><label>Всего загружено</label><strong>${state.support.loaded ? items.length : '—'}</strong><span class="badge">до 500</span></article><article class="card metric"><label>Новые</label><strong>${state.support.loaded ? count('new') : '—'}</strong><span class="badge warning">нужен ответ</span></article><article class="card metric"><label>Письма людей</label><strong>${state.support.loaded ? humanCount : '—'}</strong><span class="badge">не скрываются</span></article><article class="card metric"><label>Отвечено</label><strong>${state.support.loaded ? count('answered') : '—'}</strong><span class="badge success">готово</span></article></section>
+    <section class="metrics section">${metric('Всего загружено', items.length, '<span class="badge">до 500</span>', 'support_queue_total')}${metric('Новые', count('new'), '<span class="badge warning">нужен ответ</span>', 'support_queue_new')}${metric('Письма людей', humanCount, '<span class="badge">не скрываются</span>', 'support_queue_human')}${metric('Отвечено', count('answered'), '<span class="badge success">готово</span>', 'support_queue_answered')}${metric('Архив', count('archived'), '<span class="badge">завершено</span>', 'support_queue_archived')}</section>
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Черновики можно редактировать перед отправкой.</p></div><div class="actions"><button class="button small" data-support-filter="new" type="button" aria-pressed="${filter === 'new' ? 'true' : 'false'}">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button" aria-pressed="${filter === 'answered' ? 'true' : 'false'}">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button" aria-pressed="${filter === 'archived' ? 'true' : 'false'}">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button" aria-pressed="${filter === 'all' ? 'true' : 'false'}">Все</button></div></div>
       <div class="card-body"><div class="actions"><button class="button" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && !state.busy && !pending ? '' : ' disabled'} title="Сгенерировать черновики для новых писем без ответа">Сгенерировать черновики</button><button class="button" data-action="prepare-support-reply-batch" type="button"${state.authorized && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Сначала будет создан точный запечатанный список до 200 писем">Подготовить пакет (${readyDrafts})</button><span class="hint">Показано: ${filtered.length} из ${items.length}</span></div><div class="hint" role="status" aria-live="polite">${listStatus}</div>
       ${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState(emptyMessage) : `<div class="support-list section">${filtered.map((item) => {
@@ -1952,7 +2636,7 @@ function renderSupport() {
         const gateState = String(item.replyGate?.state || '');
         return `<article class="support-message"><header><div><strong>${escapeHtml(item.subject || '(без темы)')}</strong><small>${escapeHtml(item.fromName || '')} &lt;${escapeHtml(item.fromEmail || 'неизвестный отправитель')}&gt; · ${escapeHtml(when)}</small></div><div class="actions"><span class="badge">${escapeHtml(mailCategoryLabel(item.mailCategory))}</span><span class="badge ${badgeClass(status)}">${escapeHtml(statusName(status))}</span>${gateState ? `<span class="badge ${gateState === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(gateState))}</span>` : ''}</div></header><div class="support-body">${escapeHtml(String(item.bodyText || '').slice(0, 8000)) || '<span class="muted">Пустое тело письма</span>'}</div>${status !== 'archived' ? `<div class="field section"><label for="support-reply-${messageId}">Ответ</label><textarea id="support-reply-${messageId}" class="support-reply" placeholder="Введите ответ или сгенерируйте черновик">${escapeHtml(item.draftReply || '')}</textarea></div><div class="actions section"><button class="button small" data-action="generate-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>Сгенерировать</button><button class="button small primary" data-action="prepare-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending && status === 'new' && gateState !== 'delivery_unknown' && gateState !== 'dispatching' ? '' : ' disabled'} title="Сначала будет показан точный текст с подписью">Подготовить отправку</button></div>` : ''}${gateState === 'delivery_unknown' ? `<div class="notice danger section">Gmail мог принять письмо, но подтверждение потеряно. Автоматический повтор заблокирован; владелец должен проверить папку «Отправленные».</div><div class="actions section"><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="accepted" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: да</button><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="verified_not_sent" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: нет</button></div>` : ''}<div class="actions section"><button class="button ghost small" data-action="set-support-status" data-message-id="${messageId}" data-status="${status === 'archived' ? 'new' : 'archived'}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>${status === 'archived' ? 'Вернуть в новые' : 'В архив'}</button></div></article>`;
       }).join('')}</div>`}</div></section>
-      <section class="card"><div class="card-header"><div><h2>${pending ? (pendingIsBatch ? 'Подтверждение пакета' : 'Подтверждение отправки') : 'Подпись'}</h2><p>${pending ? (pendingIsBatch ? 'Проверьте состав запечатанного пакета.' : 'Проверьте точного получателя и итоговый текст.') : 'Добавляется сервером после текста ответа.'}</p></div></div><div class="card-body">${pending ? (pendingIsBatch ? `<div class="confirmation-panel"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="batch-preview section">${(Array.isArray(pending.items) ? pending.items : []).map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. При частичном сбое пакет продолжит только ещё не начатые операции и никогда автоматически не повторит неопределённую доставку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Отменить пакет</button><button class="button primary" data-action="dispatch-support-reply-batch" type="button"${state.busy || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''}>Подтвердить пакет</button></div></div>` : `<div class="confirmation-panel"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения этот запечатанный текст уже не изменяется. Повторный клик не создаст вторую SMTP-отправку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${state.busy ? ' disabled' : ''}>Отменить</button><button class="button primary" data-action="dispatch-support-reply" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Подтвердить и отправить</button></div></div>`) : `<div class="field"><label for="support-signature">Подпись поддержки</label><textarea id="support-signature" maxlength="2000" placeholder="С уважением, команда Phraseman">${escapeHtml(state.support.signature || '')}</textarea></div><div class="hint">Ревизия подписи: ${Number(state.support.signatureRevision || 0)}</div><div class="actions end section"><button class="button primary" data-action="save-support-signature" type="button"${state.authorized && !state.busy ? '' : ' disabled'}>Сохранить подпись</button></div><div class="notice section">Одиночная и пакетная отправка защищены неизменяемыми операциями, явным предпросмотром и блокировкой автоматического повтора при неопределённом ответе Gmail.</div><a class="button section" href="../../admin/index.html#gmail-support" target="_blank" rel="noopener">Открыть прежний модуль</a>`}</div></section></div>`;
+      <section class="card"><div class="card-header"><div><h2>${pending ? (pendingIsBatch ? 'Подтверждение пакета' : 'Подтверждение отправки') : 'Подпись'}</h2><p>${pending ? (pendingIsBatch ? 'Проверьте состав запечатанного пакета.' : 'Проверьте точного получателя и итоговый текст.') : 'Добавляется сервером после текста ответа.'}</p></div></div><div class="card-body">${pending ? (pendingIsBatch ? `<div class="confirmation-panel"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="batch-preview section">${(Array.isArray(pending.items) ? pending.items : []).map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. При частичном сбое пакет продолжит только ещё не начатые операции и никогда автоматически не повторит неопределённую доставку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Отменить пакет</button><button class="button primary" data-action="dispatch-support-reply-batch" type="button"${state.busy || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''}>Подтвердить пакет</button></div></div>` : `<div class="confirmation-panel"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения этот запечатанный текст уже не изменяется. Повторный клик не создаст вторую SMTP-отправку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${state.busy ? ' disabled' : ''}>Отменить</button><button class="button primary" data-action="dispatch-support-reply" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Подтвердить и отправить</button></div></div>`) : `<div class="field"><label for="support-signature">Подпись поддержки</label><textarea id="support-signature" maxlength="2000" placeholder="С уважением, команда Phraseman">${escapeHtml(state.support.signature || '')}</textarea></div><div class="hint">Ревизия подписи: ${Number(state.support.signatureRevision || 0)}</div><div class="actions end section"><button class="button primary" data-action="save-support-signature" type="button"${state.authorized && !state.busy ? '' : ' disabled'}>Сохранить подпись</button></div><div class="notice section">Одиночная и пакетная отправка защищены неизменяемыми операциями, явным предпросмотром и блокировкой автоматического повтора при неопределённом ответе Gmail.</div>`}</div></section></div>`;
 }
 
 function renderDetailedAnalyticsWorkspace() {
@@ -2179,31 +2863,31 @@ async function completeAnalyticsTrendRequest(token) {
   }
 }
 
-function maybeLoadOverviewAnalyticsTrends() {
+async function loadOverviewAnalyticsTrends() {
   if (
     !actionsReady
     || state.route !== 'overview'
     || !state.authorized
     || !can('money.read')
     || state.analyticsTrends.overview.status === 'loading'
-  ) return;
+  ) return undefined;
   const input = defaultTrendRequest('overview');
   const token = beginAnalyticsTrendRequest('overview', input, { force: false });
-  if (token.cached) return;
+  if (token.cached) return analyticsTrendScopeState('overview').data;
   renderCurrentPage();
-  void completeAnalyticsTrendRequest(token)
-    .catch(() => {})
-    .finally(() => {
-      if (
-        state.route === 'overview'
-        && authStillValid(token.authGeneration, 'money.read')
-        && isCurrentAnalyticsTrendRequest('overview', token.generation)
-      ) renderCurrentPage();
-    });
+  try {
+    return await completeAnalyticsTrendRequest(token);
+  } finally {
+    if (
+      state.route === 'overview'
+      && authStillValid(token.authGeneration, 'money.read')
+      && isCurrentAnalyticsTrendRequest('overview', token.generation)
+    ) renderCurrentPage();
+  }
 }
 
 function renderAnalytics() {
-  const aliases = { today: 'overview', growth: 'product', money: 'subscriptions', learning: 'exports' };
+  const aliases = { today: 'overview', growth: 'product', subscriptions: 'subscriptions', learning: 'exports' };
   const requested = aliases[String(globalThis.location?.hash || '').replace(/^#/, '').trim().toLowerCase()];
   if (requested && state.activeAnalyticsReport !== requested) state.activeAnalyticsReport = requested;
   const trendModel = paywallAnalyticsModel();
@@ -2217,6 +2901,8 @@ function renderAnalytics() {
     analyticsTrendsDraft: state.analyticsTrendsDraft,
     activeReport: state.activeAnalyticsReport,
     onToggleAnalyticsSeries: trendModel.onToggleSeries,
+    renderPlanAction: renderAnalyticsAggregatePlanAction,
+    hydratePlanAction: hydrateAnalyticsAggregatePlanAction,
   });
   return `${summary}${can('money.read') ? renderDetailedAnalyticsWorkspace() : ''}`;
 }
@@ -2240,7 +2926,7 @@ function syncAnalyticsReportVisibility(root = document) {
 }
 
 function selectAnalyticsReport(reportId) {
-  const aliases = { today: 'overview', growth: 'product', money: 'subscriptions', learning: 'exports' };
+  const aliases = { today: 'overview', growth: 'product', subscriptions: 'subscriptions', learning: 'exports' };
   const requested = aliases[String(reportId)] || String(reportId);
   const next = ['overview', 'product', 'subscriptions', 'exports'].includes(requested) ? requested : 'overview';
   if (state.activeAnalyticsReport === next) return;
@@ -2252,7 +2938,7 @@ function renderAssetStudio() {
   if (!can('content.read')) return `${pageHeader(PAGES['asset-studio'], 'Контент / Студия изображений')}<div class="notice warning">У вашей роли нет разрешения content.read.</div>`;
   const items = state.assetStudio.items || [];
   const selected = items.find((item) => String(item.id) === String(state.assetStudio.selectedJobId)) || items[0] || null;
-  const headerAction = `<div class="actions"><button class="button" data-action="load-asset-jobs" type="button"${disabledWhenUnauthorized('content.read')} title="Загрузить последние задания генерации ассетов">Обновить очередь</button><a class="button" href="../../admin/index.html#openai-budget" target="_blank" rel="noopener" title="Архивная сверка бюджета и старых OpenAI настроек">Старый бюджет</a></div>`;
+  const headerAction = '<span class="hint" role="status">Очередь обновляется автоматически при открытии.</span>';
   const rows = items.length ? items.map((job) => `<article class="list-row asset-job-row"><div><strong>${escapeHtml(job.title || 'Задание на изображение')}</strong><small><code>${escapeHtml(job.id)}</code> · ${escapeHtml(assetKindLabel(job.kind || 'generic'))} · ${escapeHtml(dateTime(job.updatedAtMs || job.createdAtMs))}</small><small>${escapeHtml(job.targetPath || 'путь сохранения не указан')} ${job.slotKey ? `· ключ места: ${escapeHtml(job.slotKey)}` : ''}</small>${job.error ? `<small class="source-error">${escapeHtml(job.error)}</small>` : ''}</div><div class="actions"><span class="badge ${badgeClass(job.status)}">${escapeHtml(statusLabel(job.status))}</span><button class="button small" data-select-asset-job="${escapeHtml(job.id)}" type="button" title="Открыть предпросмотр задания">Открыть</button>${['draft', 'failed'].includes(String(job.status)) ? `<button class="button small primary" data-action="run-asset-job" data-asset-job-id="${escapeHtml(job.id)}" type="button"${disabledWhenUnauthorized('content.draft.write')} title="Запустить серверную генерацию изображений по этому черновику">Сгенерировать</button>` : ''}</div></article>`).join('') : emptyState('Создайте первое задание на изображение или обновите очередь.');
   const previews = selected?.results?.length ? `<div class="asset-preview-grid">${selected.results.map((result, index) => `<a class="asset-preview" href="${escapeHtml(result.previewUrl || '#')}" target="_blank" rel="noopener"><span>Вариант ${index + 1}</span>${result.previewUrl ? `<img src="${escapeHtml(result.previewUrl)}" alt="Предпросмотр созданного изображения ${index + 1}" loading="lazy">` : `<code>${escapeHtml(result.gsPath || '')}</code>`}</a>`).join('')}</div>` : emptyState('После генерации здесь появятся безопасные ссылки на изображения из хранилища.');
   return `${pageHeader(PAGES['asset-studio'], 'Контент / Студия изображений', headerAction)}
@@ -2273,7 +2959,59 @@ function renderAssetStudio() {
       </div></section>
       <section class="card"><div class="card-header"><div><h2>Предпросмотр и результаты</h2><p>Сначала проверьте варианты, потом отдельно публикуйте в ресурсы приложения.</p></div></div><div class="card-body">${selected ? `<div class="notice"><strong>${escapeHtml(selected.title)}</strong><br><code>${escapeHtml(selected.targetPath || 'путь сохранения не указан')}</code></div>${previews}` : previews}</div></section>
     </div>
-    <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2><p>Последние серверные задания с записью в журнале действий и результатами в хранилище.</p></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}</div>` : ''}<div class="data-list">${rows}</div></div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2><p>Последние серверные задания с записью в журнале действий и результатами в хранилище.</p></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}<div class="actions section"><button class="button" data-action="load-asset-jobs" type="button"${disabledWhenUnauthorized('content.read')} title="Повторно прочитать очередь заданий после ошибки">Повторить чтение</button></div></div>` : ''}<div class="data-list">${rows}</div></div></section>`;
+}
+
+const PLAN_PRIORITY_LABELS = Object.freeze({ low: 'Низкий приоритет', normal: 'Обычный приоритет', high: 'Высокий приоритет', critical: 'Критический приоритет' });
+const PLAN_EFFECT_LABELS = Object.freeze({ reduce_failures: 'снижение сбоев', improve_resilience: 'повышение устойчивости', reduce_drop_off: 'снижение оттока', improve_conversion: 'рост конверсии', improve_quality: 'повышение качества', reduce_cost: 'снижение затрат', improve_response_time: 'ускорение ответа' });
+
+function renderPlans() {
+  if (state.adminRole !== 'owner') return `${pageHeader(PAGES.plans, 'Контент / Планы')}<div class="notice warning" role="alert"><strong>Нет доступа к планам.</strong><br>Просмотр и создание планов доступны только владельцу админки.</div>`;
+  const view = state.plans;
+  const draft = state.digestPlanDraft;
+  const items = Array.isArray(view.items) ? view.items : [];
+  const selectedIndex = items.length ? Math.min(Math.max(Number.isInteger(view.selectedIndex) ? view.selectedIndex : 0, 0), items.length - 1) : 0;
+  const selected = items[selectedIndex] || null;
+
+  const quietMenu = `<details class="quiet-menu"><summary title="Управление планами" aria-label="Управление планами">⋯</summary><div class="quiet-menu-pop" role="menu"><button class="quiet-menu-item" data-action="open-plan-form" type="button" title="Создать структурированный план из фиксированных полей">Новый план</button><button class="quiet-menu-item" data-action="load-plans" type="button" title="Повторно прочитать архив планов">Обновить архив</button></div></details>`;
+
+  const listContent = view.state === 'loading'
+    ? '<div class="notice" role="status">Загружаем сохранённые планы…</div>'
+    : view.state === 'error'
+      ? `<div class="notice danger" role="alert">${escapeHtml(view.error || 'Не удалось загрузить планы.')}<div class="actions section"><button class="button" data-action="load-plans" type="button" title="Повторно прочитать архив планов">Повторить чтение</button></div></div>`
+      : items.length
+        ? items.map((plan, index) => `<button class="plan-row${index === selectedIndex ? ' selected' : ''}" data-action="select-plan" data-plan-index="${index}" type="button"><strong>${escapeHtml(plan.title || 'План')}</strong><small class="plan-row-preview">${escapeHtml(plan.summary || '')}</small><span class="plan-row-meta"><small>${escapeHtml(dateTime(plan.createdAtMs))}</small><span class="badge ${badgeClass(plan.status || 'draft')}">${escapeHtml(statusLabel(plan.status || 'draft'))}</span></span></button>`).join('')
+        : emptyState('Сохранённых планов пока нет. Создайте первый план из меню «⋯» выше.');
+
+  const detail = selected
+    ? `<div class="plans-detail-head"><span class="badge ${badgeClass(selected.status || 'draft')}">${escapeHtml(statusLabel(selected.status || 'draft'))}</span><span class="badge">${escapeHtml(PLAN_PRIORITY_LABELS[selected.priority] || selected.priority || '')}</span></div>
+      <h2>${escapeHtml(selected.title || 'План')}</h2>
+      <p class="plans-detail-meta">Создан ${escapeHtml(dateTime(selected.createdAtMs))}${selected.expectedEffect ? ` · эффект: ${escapeHtml(PLAN_EFFECT_LABELS[selected.expectedEffect] || selected.expectedEffect)}` : ''}</p>
+      <p class="plans-detail-summary">${escapeHtml(selected.summary || '')}</p>
+      ${Array.isArray(selected.steps) && selected.steps.length ? `<div class="plans-steps"><p class="plans-steps-title">Шаги</p>${selected.steps.map((step, i) => `<div class="plans-step"><span class="plans-step-num">${i + 1}</span><div><strong>${escapeHtml(step.title || '')}</strong><small>${escapeHtml(step.outcome || '')}</small></div></div>`).join('')}</div>` : ''}
+      ${selected.source?.ref ? `<p class="plans-source">источник: ${escapeHtml(selected.source.ref)}</p>` : ''}`
+    : emptyState('Выберите план слева, чтобы прочитать его.');
+
+  const formDialog = view.formOpen === true
+    ? `<div class="plan-form-overlay"><div class="plan-form-dialog" role="dialog" aria-modal="true" aria-label="Новый план">
+        <div class="card-header"><div><h2>Новый план</h2><p>Заголовок, описание и шаги определяет сервер; свободный текст не отправляется.</p></div></div>
+        <div class="fields">
+          <div class="field"><label for="plan-kind">Тип плана</label><select id="plan-kind"><option value="reliability"${draft?.planKind === 'reliability' ? ' selected' : ''}>Надёжность</option><option value="retention"${draft?.planKind === 'retention' ? ' selected' : ''}>Удержание</option><option value="conversion"${draft?.planKind === 'conversion' ? ' selected' : ''}>Конверсия</option><option value="content_quality"${draft?.planKind === 'content_quality' ? ' selected' : ''}>Качество контента</option><option value="support_quality"${draft?.planKind === 'support_quality' ? ' selected' : ''}>Качество поддержки</option><option value="cost_control"${draft?.planKind === 'cost_control' ? ' selected' : ''}>Контроль затрат</option></select></div>
+          <div class="field"><label for="plan-priority">Приоритет</label><select id="plan-priority"><option value="normal"${draft?.priority === 'normal' ? ' selected' : ''}>Обычный</option><option value="low"${draft?.priority === 'low' ? ' selected' : ''}>Низкий</option><option value="high"${draft?.priority === 'high' ? ' selected' : ''}>Высокий</option><option value="critical"${draft?.priority === 'critical' ? ' selected' : ''}>Критический</option></select></div>
+          <div class="field"><label for="plan-effect">Ожидаемый эффект</label><select id="plan-effect"><option value="reduce_failures"${draft?.expectedEffect === 'reduce_failures' ? ' selected' : ''}>Снизить сбои</option><option value="improve_resilience"${draft?.expectedEffect === 'improve_resilience' ? ' selected' : ''}>Повысить устойчивость</option><option value="reduce_drop_off"${draft?.expectedEffect === 'reduce_drop_off' ? ' selected' : ''}>Снизить отток</option><option value="improve_conversion"${draft?.expectedEffect === 'improve_conversion' ? ' selected' : ''}>Повысить конверсию</option><option value="improve_quality"${draft?.expectedEffect === 'improve_quality' ? ' selected' : ''}>Повысить качество</option><option value="reduce_cost"${draft?.expectedEffect === 'reduce_cost' ? ' selected' : ''}>Снизить затраты</option><option value="improve_response_time"${draft?.expectedEffect === 'improve_response_time' ? ' selected' : ''}>Ускорить ответ</option></select></div>
+          <div class="field full"><label for="plan-source-hash">SHA-256 хеш сводки</label><input id="plan-source-hash" value="${escapeHtml(draft?.sourceHash || '')}" inputmode="text" autocomplete="off" maxlength="64" pattern="[a-f0-9]{64}" placeholder="64 строчных шестнадцатеричных символа" aria-describedby="plan-source-help"><small id="plan-source-help">Обязательный источник: сохранённая сводка руководителя.</small></div>
+          <fieldset class="field full"><legend>Действия плана</legend><div class="choice-grid">${['investigate_metrics', 'reproduce_issue', 'prepare_change', 'verify_change', 'define_rollback', 'monitor_outcome'].map((code) => `<label><input type="checkbox" data-plan-action-code="${code}"${draft ? (draft.actionCodes.includes(code) ? ' checked' : '') : (['investigate_metrics', 'prepare_change'].includes(code) ? ' checked' : '')}> ${{ investigate_metrics: 'Проверить метрики', reproduce_issue: 'Воспроизвести проблему', prepare_change: 'Подготовить изменение', verify_change: 'Проверить изменение', define_rollback: 'Задать откат', monitor_outcome: 'Наблюдать результат' }[code]}</label>`).join('')}</div></fieldset>
+        </div>
+        <div class="actions end section"><button class="button" data-action="close-plan-form" type="button">Отмена</button><button class="button primary" data-action="create-plan" type="button" title="Создать структурированный план на сервере">Создать план</button></div>
+      </div></div>`
+    : '';
+
+  return `${pageHeader(PAGES.plans, 'Контент / Планы', quietMenu)}
+    <div class="plans-layout section">
+      <div class="plans-list card">${listContent}</div>
+      <div class="plans-detail card">${detail}</div>
+    </div>
+    ${formDialog}`;
 }
 
 function numberValue(value) {
@@ -2307,8 +3045,284 @@ function buildPmDigestActions(facts, stateName) {
   return actions.slice(0, 6);
 }
 
+const DIGEST_PLAN_SIGNALS = Object.freeze({
+  investigate_safety_flags: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'reliability', priority: 'critical', expectedEffect: 'reduce_failures' },
+  investigate_refunds: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'conversion', priority: 'high', expectedEffect: 'improve_conversion' },
+  fix_critical_errors: { actionCodes: ['reproduce_issue', 'prepare_change', 'verify_change'], planKind: 'reliability', priority: 'critical', expectedEffect: 'reduce_failures' },
+  triage_open_reports: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'high', expectedEffect: 'improve_response_time' },
+  investigate_cancellations: { actionCodes: ['investigate_metrics', 'define_rollback'], planKind: 'retention', priority: 'high', expectedEffect: 'reduce_drop_off' },
+  clear_work_queues: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  review_user_ideas: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'content_quality', priority: 'normal', expectedEffect: 'improve_quality' },
+});
+
+const OPERATIONAL_PLAN_SIGNALS = Object.freeze({
+  overview_critical_signals: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'reliability', priority: 'critical', expectedEffect: 'reduce_failures' },
+  overview_queue_signals: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'high', expectedEffect: 'improve_response_time' },
+  overview_source_error: { actionCodes: ['reproduce_issue', 'prepare_change', 'verify_change'], planKind: 'reliability', priority: 'high', expectedEffect: 'reduce_failures' },
+  overview_source_truncated: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'reliability', priority: 'normal', expectedEffect: 'improve_resilience' },
+  diagnostics_source_error: { actionCodes: ['reproduce_issue', 'prepare_change', 'verify_change'], planKind: 'reliability', priority: 'high', expectedEffect: 'reduce_failures' },
+  diagnostics_source_truncated: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'reliability', priority: 'normal', expectedEffect: 'improve_resilience' },
+  report_source_error: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'high', expectedEffect: 'improve_response_time' },
+  report_source_truncated: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  support_queue_new: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'high', expectedEffect: 'improve_response_time' },
+  support_queue_human: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  support_queue_answered: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  support_queue_archived: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  support_queue_total: { actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'normal', expectedEffect: 'improve_response_time' },
+  daily_briefing_open_safety: { actionCodes: ['investigate_metrics', 'prepare_change', 'verify_change'], planKind: 'reliability', priority: 'critical', expectedEffect: 'reduce_failures' },
+});
+
+const ANALYTICS_AGGREGATE_PLAN_SIGNALS = Object.freeze({
+  analytics_subscription_refunds: { actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'conversion', priority: 'high', expectedEffect: 'reduce_failures' },
+});
+
+function analyticsAggregatePlanSignal(input) {
+  const metric = String(input?.metric || '');
+  const definition = ANALYTICS_AGGREGATE_PLAN_SIGNALS[metric];
+  const source = String(input?.source || '');
+  const stateName = String(input?.state || '');
+  const count = Number(input?.count);
+  const rangeDays = Number(input?.rangeDays);
+  const observedAtMs = Number(input?.observedAtMs);
+  if (!definition || stateName !== 'ready' || !/^[a-z0-9_-]{1,80}$/.test(source)) return null;
+  if (!Number.isSafeInteger(count) || count <= 0 || !Number.isSafeInteger(rangeDays) || rangeDays < 1 || rangeDays > 90 || !Number.isSafeInteger(observedAtMs) || observedAtMs <= 0) return null;
+  return { scope: 'analytics', metric, source, state: stateName, count, rangeDays, observedAtMs, ...definition };
+}
+
+function analyticsAggregatePlanSignalKey(signal) {
+  return signal ? `${signal.scope}:${signal.metric}:${signal.rangeDays}:${signal.state}:${signal.count}:${signal.observedAtMs}` : '';
+}
+
+function analyticsAggregatePlanSourceBytes(signal) {
+  return new TextEncoder().encode(JSON.stringify({ scope: signal.scope, metric: signal.metric, rangeDays: signal.rangeDays, state: signal.state, count: signal.count, observedAtMs: signal.observedAtMs }));
+}
+
+async function analyticsAggregatePlanSourceHash(signal) {
+  const bytes = await globalThis.crypto?.subtle?.digest('SHA-256', analyticsAggregatePlanSourceBytes(signal));
+  if (!bytes) throw new Error('Браузер не смог подготовить SHA-256 ссылку на агрегат аналитики.');
+  return [...new Uint8Array(bytes)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hydrateAnalyticsAggregatePlanAction(input) {
+  const signal = analyticsAggregatePlanSignal(input);
+  if (!signal) return null;
+  const sourceHash = await analyticsAggregatePlanSourceHash(signal);
+  state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, [analyticsAggregatePlanSignalKey(signal)]: sourceHash };
+  return signal;
+}
+
+function renderAnalyticsAggregatePlanAction(input) {
+  const signal = analyticsAggregatePlanSignal(input);
+  if (!signal || state.adminRole !== 'owner' || digestSignalAlreadyLinked(signal)) return '';
+  return `<div class="actions section"><button class="button small ghost" data-action="add-analytics-aggregate-to-plan" data-analytics-plan-key="${escapeHtml(analyticsAggregatePlanSignalKey(signal))}" type="button"${state.busy ? ' disabled' : ''} title="Добавить только кодированный агрегат аналитики в план">Добавить в план</button></div>`;
+}
+
+const AGENT_OFFICE_AGGREGATE_PLAN_SIGNALS = Object.freeze({
+  analytics: Object.freeze({ states: Object.freeze(['error']), actionCodes: ['investigate_metrics', 'verify_change'], planKind: 'reliability', priority: 'high', expectedEffect: 'reduce_failures' }),
+  reports: Object.freeze({ states: Object.freeze(['error']), actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'support_quality', priority: 'high', expectedEffect: 'improve_response_time' }),
+  audit: Object.freeze({ states: Object.freeze(['error']), actionCodes: ['investigate_metrics', 'prepare_change'], planKind: 'reliability', priority: 'high', expectedEffect: 'reduce_failures' }),
+});
+
+function agentOfficeAggregatePlanSignal(input) {
+  if (!input || typeof input !== 'object' || Object.keys(input).length !== 5) return null;
+  const source = String(input.source || '');
+  const stateName = String(input.state || '');
+  const definition = AGENT_OFFICE_AGGREGATE_PLAN_SIGNALS[source];
+  const count = Number(input.count);
+  const observedAtMs = Number(input.observedAtMs);
+  if (!definition || !definition.states.includes(stateName) || input.truncated !== false) return null;
+  if (!Number.isSafeInteger(count) || count < 0 || !Number.isSafeInteger(observedAtMs) || observedAtMs <= 0) return null;
+  return { scope: 'agent_office', source, state: stateName, count, truncated: false, observedAtMs, ...definition };
+}
+
+function buildAgentOfficeAggregatePlanSignals(items) {
+  return (Array.isArray(items) ? items : []).flatMap((item) => {
+    const signal = agentOfficeAggregatePlanSignal(item);
+    return signal ? [signal] : [];
+  });
+}
+
+function agentOfficeAggregatePlanSignalKey(signal) {
+  return signal ? `${signal.scope}:${signal.source}:${signal.state}:${signal.count}:${signal.observedAtMs}` : '';
+}
+
+function agentOfficeAggregatePlanSourceBytes(signal) {
+  return new TextEncoder().encode(JSON.stringify({ scope: signal.scope, source: signal.source, state: signal.state, count: signal.count, truncated: signal.truncated, observedAtMs: signal.observedAtMs }));
+}
+
+async function agentOfficeAggregatePlanSourceHash(signal) {
+  const bytes = await globalThis.crypto?.subtle?.digest('SHA-256', agentOfficeAggregatePlanSourceBytes(signal));
+  if (!bytes) throw new Error('Браузер не смог подготовить SHA-256 ссылку на агрегат Офиса агентов.');
+  return [...new Uint8Array(bytes)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hydrateAgentOfficeAggregatePlanAction(input) {
+  const signal = agentOfficeAggregatePlanSignal(input);
+  if (!signal) return null;
+  const sourceHash = await agentOfficeAggregatePlanSourceHash(signal);
+  state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, [agentOfficeAggregatePlanSignalKey(signal)]: sourceHash };
+  return signal;
+}
+
+function renderAgentOfficeAggregatePlanAction(signal) {
+  if (!signal || state.adminRole !== 'owner' || digestSignalAlreadyLinked(signal)) return '';
+  return `<button class="button small ghost" data-action="add-agent-office-aggregate-to-plan" data-agent-office-aggregate-plan-key="${escapeHtml(agentOfficeAggregatePlanSignalKey(signal))}" type="button"${state.busy ? ' disabled' : ''} title="Добавить в план только закрытый агрегат без данных дел и рекомендаций">Добавить в план</button>`;
+}
+
+function renderAgentOfficeAggregateHealth(items) {
+  const signals = buildAgentOfficeAggregatePlanSignals(items);
+  if (!signals.length) return '';
+  const rows = signals.map((signal) => `<div class="list-row"><div><strong>${escapeHtml(signal.source)}</strong><small>${escapeHtml(signal.state)} · ${escapeHtml(String(signal.count))} · ${escapeHtml(dateTime(signal.observedAtMs))}</small></div>${renderAgentOfficeAggregatePlanAction(signal)}</div>`).join('');
+  return `<section class="card section"><div class="card-header"><div><h2>Агрегаты для плана</h2><p>Только закрытые счётчики состояния источников. Карточки дел, рекомендации и их текст не передаются.</p></div></div><div class="card-body">${rows}</div></section>`;
+}
+
+function operationalPlanSignal(code, scope, source, stateName, count, observedAtMs) {
+  const definition = OPERATIONAL_PLAN_SIGNALS[code];
+  if (!definition || !['error', 'truncated', 'ready'].includes(stateName)) return null;
+  if (!/^[a-z0-9_-]{1,80}$/.test(source)) return null;
+  return { code, scope, source, state: stateName, count: Number(count || 0), observedAtMs: Number(observedAtMs || 0), ...definition };
+}
+
+function buildOverviewPlanSignals(view) {
+  if (!view?.hasData || view.isStale || view.isPartial) return [];
+  const observedAtMs = Number(view.generatedAtMs || 0);
+  return [
+    view.metrics.criticalSignals > 0 ? operationalPlanSignal('overview_critical_signals', 'overview', 'daily_briefing', 'ready', view.metrics.criticalSignals, observedAtMs) : null,
+    view.metrics.queueSignals24h > 0 ? operationalPlanSignal('overview_queue_signals', 'overview', 'daily_briefing', 'ready', view.metrics.queueSignals24h, observedAtMs) : null,
+    view.metrics.sourceErrors > 0 ? operationalPlanSignal('overview_source_error', 'overview', 'daily_briefing', 'error', view.metrics.sourceErrors, observedAtMs) : null,
+    view.metrics.sourceTruncated > 0 ? operationalPlanSignal('overview_source_truncated', 'overview', 'daily_briefing', 'truncated', view.metrics.sourceTruncated, observedAtMs) : null,
+  ].filter(Boolean);
+}
+
+function buildDiagnosticsPlanSignals(view) {
+  if (!view?.hasData || view.isStale || view.isPartial) return [];
+  return (view.sources || []).flatMap((source) => {
+    const stateName = String(source.state || '');
+    const code = stateName === 'error' ? 'diagnostics_source_error' : stateName === 'truncated' ? 'diagnostics_source_truncated' : '';
+    const signal = code ? operationalPlanSignal(code, 'diagnostics', String(source.source || ''), stateName, source.count, source.latestEventAtMs || source.checkedAtMs) : null;
+    return signal ? [signal] : [];
+  });
+}
+
+function buildReportPlanSignals(reports) {
+  if (!reports || !['ready', 'partial', 'truncated'].includes(reports.state)) return [];
+  return (Array.isArray(reports.sourceHealth) ? reports.sourceHealth : []).flatMap((source) => {
+    const stateName = String(source.state || '');
+    const code = stateName === 'error' ? 'report_source_error' : stateName === 'truncated' ? 'report_source_truncated' : '';
+    const signal = code ? operationalPlanSignal(code, 'report_center', String(source.source || ''), stateName, source.count, source.latestEventAtMs) : null;
+    return signal ? [signal] : [];
+  });
+}
+
+function buildSupportPlanSignals(support) {
+  if (!support?.loaded) return [];
+  const items = Array.isArray(support.items) ? support.items : [];
+  const observedAtMs = Number(support.observedAtMs || 0);
+  const count = (predicate) => items.filter(predicate).length;
+  return [
+    operationalPlanSignal('support_queue_total', 'support', 'support_email_queue', 'ready', items.length, observedAtMs),
+    operationalPlanSignal('support_queue_new', 'support', 'support_email_queue', 'ready', count((item) => String(item.status || 'new') === 'new'), observedAtMs),
+    operationalPlanSignal('support_queue_human', 'support', 'support_email_queue', 'ready', count((item) => item.mailCategory === 'human' || item.mailCategory === 'user'), observedAtMs),
+    operationalPlanSignal('support_queue_answered', 'support', 'support_email_queue', 'ready', count((item) => String(item.status || 'new') === 'answered'), observedAtMs),
+    operationalPlanSignal('support_queue_archived', 'support', 'support_email_queue', 'ready', count((item) => String(item.status || 'new') === 'archived'), observedAtMs),
+  ].filter((signal) => signal && signal.count > 0);
+}
+
+function buildDailyBriefingSafetyPlanSignals(digest, stateName) {
+  if (!digest || stateName !== 'ready') return [];
+  const safetySource = (Array.isArray(digest.sourceHealth) ? digest.sourceHealth : [])
+    .find((source) => String(source?.sourceId || '') === 'safety_flags');
+  if (String(safetySource?.status || '') !== 'ok') return [];
+  const signal = operationalPlanSignal('daily_briefing_open_safety', 'daily_briefing', 'safety_flags', 'ready', Number(digest.facts?.safety?.open || 0), Number(digest.generatedAtMs || 0));
+  return signal && signal.count > 0 ? [signal] : [];
+}
+
+function operationalPlanSignalKey(signal) {
+  return signal ? `${signal.scope}:${signal.code}:${signal.source}` : '';
+}
+
+function operationalPlanSourceBytes(signal) {
+  return new TextEncoder().encode(JSON.stringify({ scope: signal.scope, code: signal.code, source: signal.source, state: signal.state, count: signal.count, observedAtMs: signal.observedAtMs }));
+}
+
+async function operationalPlanSourceHash(signal) {
+  const bytes = await globalThis.crypto?.subtle?.digest('SHA-256', operationalPlanSourceBytes(signal));
+  if (!bytes) throw new Error('Браузер не смог подготовить SHA-256 ссылку на операционный сигнал.');
+  return [...new Uint8Array(bytes)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hydrateOperationalPlanSourceHashes(signals) {
+  if (state.adminRole !== 'owner') return;
+  const hashes = await Promise.all((signals || []).map(async (signal) => [operationalPlanSignalKey(signal), await operationalPlanSourceHash(signal)]));
+  state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, ...Object.fromEntries(hashes) };
+}
+
+function renderOperationalPlanAction(signal) {
+  if (!signal || state.adminRole !== 'owner' || digestSignalAlreadyLinked(signal)) return '';
+  return `<button class="button small ghost" data-action="add-operational-signal-to-plan" data-operational-plan-key="${escapeHtml(operationalPlanSignalKey(signal))}" type="button"${state.busy ? ' disabled' : ''} title="Добавить только кодированный операционный сигнал в план">Добавить в план</button>`;
+}
+
+function renderSupportPlanAction(signal) {
+  if (!signal || state.adminRole !== 'owner' || digestSignalAlreadyLinked(signal)) return '';
+  return `<div class="actions section"><button class="button small ghost" data-action="add-operational-signal-to-plan" data-support-plan-key="${escapeHtml(operationalPlanSignalKey(signal))}" data-operational-plan-key="${escapeHtml(operationalPlanSignalKey(signal))}" type="button"${state.busy ? ' disabled' : ''} title="Добавить только кодированный счётчик очереди в план">Добавить в план</button></div>`;
+}
+
+function renderDailyBriefingSafetyPlanAction(digest, stateName) {
+  const signal = buildDailyBriefingSafetyPlanSignals(digest, stateName)[0];
+  if (!signal || state.adminRole !== 'owner' || digestSignalAlreadyLinked(signal)) return '';
+  return `<div class="actions section"><button class="button small ghost" data-action="add-operational-signal-to-plan" data-safety-plan-key="${escapeHtml(operationalPlanSignalKey(signal))}" data-operational-plan-key="${escapeHtml(operationalPlanSignalKey(signal))}" type="button"${state.busy ? ' disabled' : ''} title="Добавить только количество открытых safety-сигналов в план">Добавить в план</button></div>`;
+}
+
+function buildDigestPlanSignals(facts, stateName) {
+  if (stateName === 'partial' || stateName === 'stale') return [];
+  const signals = [];
+  if (numberValue(facts.safety?.open)) signals.push('investigate_safety_flags');
+  if (numberValue(facts.revenue?.refunds)) signals.push('investigate_refunds');
+  if (numberValue(facts.appErrors?.critical)) signals.push('fix_critical_errors');
+  if (numberValue(facts.reports?.open)) signals.push('triage_open_reports');
+  if (numberValue(facts.cancels?.total)) signals.push('investigate_cancellations');
+  if (Array.isArray(facts.queues) && facts.queues.length) signals.push('clear_work_queues');
+  if (numberValue(facts.ideas?.total)) signals.push('review_user_ideas');
+  return signals.map((code) => ({ code, ...DIGEST_PLAN_SIGNALS[code] }));
+}
+
+function digestSignalAlreadyLinked(signal) {
+  const sourceHash = state.digestPlanSourceHashes?.[agentOfficeAggregatePlanSignalKey(signal)] || state.digestPlanSourceHashes?.[analyticsAggregatePlanSignalKey(signal)] || state.digestPlanSourceHashes?.[operationalPlanSignalKey(signal)] || state.digestPlanSourceHashes?.[signal.code];
+  return planSourceHashAlreadyLinked(sourceHash);
+}
+
+function planSourceHashAlreadyLinked(sourceHash) {
+  if (!/^[a-f0-9]{64}$/.test(sourceHash || '')) return false;
+  return (state.plans.items || []).some((plan) => String(plan?.source?.ref || '').endsWith(`sha256:${sourceHash}`));
+}
+
+function digestPlanSourceBytes(digest, signalCodes) {
+  return new TextEncoder().encode(JSON.stringify({ dayKey: String(digest.dayKey || ''), generatedAtMs: Number(digest.generatedAtMs || 0), signals: signalCodes }));
+}
+
+async function digestPlanSourceHash(digest, signalCodes) {
+  const digestBytes = await globalThis.crypto?.subtle?.digest('SHA-256', digestPlanSourceBytes(digest, signalCodes));
+  if (!digestBytes) throw new Error('Браузер не смог подготовить SHA-256 ссылку на сводку.');
+  return [...new Uint8Array(digestBytes)].map((byte) => byte.toString(16).padStart(2, '0')).join('');
+}
+
+async function hydrateDigestPlanSourceHashes(digest, stateName) {
+  if (!digest || state.adminRole !== 'owner') return;
+  const signals = buildDigestPlanSignals(digest.facts || {}, stateName);
+  const hashes = await Promise.all(signals.map(async (signal) => [signal.code, await digestPlanSourceHash(digest, [signal.code])]));
+  state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, ...Object.fromEntries(hashes) };
+}
+
 function renderPmDigestActions(facts, stateName) {
-  return `<div class="briefing-action-list">${buildPmDigestActions(facts, stateName).map((item, index) => `<article class="briefing-action ${item.tone || ''}"><span class="briefing-action-rank">${index + 1}</span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.text)}</p></div></article>`).join('')}</div>`;
+  const signals = buildDigestPlanSignals(facts, stateName);
+  const canAddToPlan = state.adminRole === 'owner' && !state.busy;
+  return `<div class="briefing-action-list">${buildPmDigestActions(facts, stateName).map((item, index) => {
+    const signal = signals[index];
+    const action = signal && !digestSignalAlreadyLinked(signal)
+      ? `<div class="actions section"><button class="button small" data-action="add-digest-signal-to-plan" data-digest-plan-code="${escapeHtml(signal.code)}" type="button"${canAddToPlan ? '' : ' disabled'} title="Добавить этот сигнал в план без передачи текста карточки">Добавить в план</button></div>`
+      : '';
+    return `<article class="briefing-action ${item.tone || ''}"><span class="briefing-action-rank">${index + 1}</span><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.text)}</p>${action}</div></article>`;
+  }).join('')}</div>`;
 }
 
 function renderPmDigestGrowthRevenue(facts) {
@@ -2354,10 +3368,9 @@ function renderDailyBriefing() {
   if (!can('briefing.read')) return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг')}<div class="notice warning">У вашей роли нет разрешения briefing.read.</div>`;
   const digest = state.briefing.digest;
   const facts = digest?.facts || {};
-  const health = Array.isArray(digest?.sourceHealth) ? digest.sourceHealth : [];
   const stateLabel = ({ ready: 'Полная', partial: 'Неполная', stale: 'Устарела', legacy: 'Старый формат', empty: 'Нет данных', loading: 'Загрузка' })[state.briefing.state] || state.briefing.state;
-  const headerAction = `<div class="actions"><a class="button" href="#overview" title="Вернуться в обзор">К обзору</a><button class="button" data-action="load-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.read')} title="Загрузить последнюю сохранённую сводку без запуска генерации">Обновить</button><button class="button primary" data-action="generate-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.generate')} title="Собрать свежий утренний отчёт за последние 24 часа">Сформировать отчёт</button></div>`;
-  return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Утренний отчёт руководителя', headerAction)}
+  const headerAction = `<div class="actions briefing-header-actions"><button class="button primary" data-action="generate-daily-briefing" type="button"${disabledWhenUnauthorized('briefing.generate')} title="Собрать свежий дайджест за последние 24 часа">Сформировать дайджест</button><small class="briefing-auto-note">Обновляется автоматически при открытии</small></div>`;
+  return `${pageHeader(PAGES['daily-briefing'], 'Обзор / Брифинг', headerAction)}
     ${state.briefing.state === 'partial' || digest?.generationState === 'partial' ? '<div class="notice warning"><strong>Неполная сводка.</strong> Один или несколько источников достигли лимита. Это не считается «спокойными сутками».</div>' : ''}
     ${state.briefing.generationOutcome === 'preserved' ? '<div class="notice success"><strong>Полная сводка сохранена.</strong> Новый неполный прогон не заменил уже готовую сводку за этот день.</div>' : ''}
     ${state.briefing.state === 'stale' ? '<div class="notice warning">Сводка старше 36 часов. Сформируйте новую перед управленческими решениями.</div>' : ''}
@@ -2368,17 +3381,15 @@ function renderDailyBriefing() {
       <article class="card metric"><label>Критические ошибки</label><strong>${digest ? Number(facts.appErrors?.critical || 0) : '—'}</strong><span class="badge ${Number(facts.appErrors?.critical || 0) ? 'danger' : ''}">app_errors</span></article>
       <article class="card metric"><label>Новые пользователи</label><strong>${digest ? Number(facts.growth?.newUsers || 0) : '—'}</strong><span class="badge">сервер</span></article>
     </section>
-    ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю сохранённый утренний отчёт…</span></div>' : emptyState('Загрузите последний отчёт или сформируйте новый.')}</section>` : `
+    ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю свежий дайджест…</span></div>' : emptyState('Дайджест обновляется автоматически при открытии. Или сформируйте новый кнопкой выше.')}</section>` : `
       <div class="briefing-board section">
         <section class="card briefing-main"><div class="card-header"><div><h2>Сделать сегодня</h2><p>${escapeHtml(dateTime(digest.generatedAtMs))} · ${escapeHtml(digest.model || 'без модели')} · ${escapeHtml(digest.generatedBy || 'система')}</p></div><span class="badge ${badgeClass(state.briefing.state)}">${escapeHtml(stateLabel)}</span></div><div class="card-body">${renderPmDigestActions(facts, state.briefing.state)}</div></section>
         <section class="card"><div class="card-header"><div><h2>Рост и деньги</h2><p>События RevenueCat и paywall без выдумывания выручки.</p></div></div><div class="card-body">${renderPmDigestGrowthRevenue(facts)}</div></section>
-        <section class="card"><div class="card-header"><div><h2>Риски продукта</h2><p>Safety, ошибки, репорты и отмены в одном месте.</p></div></div><div class="card-body">${renderPmDigestRiskBoard(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Риски продукта</h2><p>Safety, ошибки, репорты и отмены в одном месте.</p></div></div><div class="card-body">${renderPmDigestRiskBoard(facts)}${renderDailyBriefingSafetyPlanAction(digest, state.briefing.state)}</div></section>
         <section class="card"><div class="card-header"><div><h2>Короткая сводка</h2><p>Текстовый вывод генератора без markdown-шума.</p></div></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
         <section class="card"><div class="card-header"><div><h2>Очереди</h2><p>Где накопилась ручная работа.</p></div></div><div class="card-body">${renderPmDigestQueues(facts)}</div></section>
         <section class="card"><div class="card-header"><div><h2>Идеи пользователей</h2><p>Кандидаты для продуктового backlog.</p></div></div><div class="card-body">${renderPmDigestIdeas(facts)}</div></section>
-      </div>
-      <div class="columns section"><section class="card"><div class="card-header"><div><h2>Полнота источников</h2><p>Пустой источник, ошибка и обрезанная выборка различаются.</p></div><span class="badge">${health.length} источников</span></div><div class="card-body">${renderBriefingHealth(health)}</div></section>
-      <section class="card"><div class="card-header"><div><h2>Проверяемые факты</h2><p>Сырой JSON оставлен для аудита и отладки, но не мешает работе.</p></div></div><div class="card-body"><details class="briefing-raw"><summary>Показать server facts JSON</summary><pre class="code-preview">${escapeHtml(JSON.stringify(facts, null, 2))}</pre></details></div></section></div>`}`;
+      </div>`}`;
 }
 
 const REPORT_SOURCE_LABELS = Object.freeze({
@@ -2467,9 +3478,10 @@ function renderReportQueue() {
   const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => `<option value="${value}"${reports.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
   const laneOptions = `<option value="">Все состояния</option>${Object.entries(REPORT_LANE_LABELS).map(([value, label]) => `<option value="${value}"${reports.lane === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
   const health = Array.isArray(reports.sourceHealth) ? reports.sourceHealth : [];
+  const reportSignals = new Map(buildReportPlanSignals(reports).map((signal) => [operationalPlanSignalKey(signal), signal]));
   return `${pageHeader(PAGES['report-center'], 'Пользователи / Репорты', '<a class="button" href="#users" title="Вернуться к пользователям">К пользователям</a>')}
     <div class="notice">Каждая запись сохраняет исходную коллекцию и исходный статус. Массовые, блокирующие и удаляющие действия остаются в защищённых рабочих модулях.</div>
-    ${reports.error ? `<div class="notice danger section"><strong>Очередь не загружена</strong><br>${escapeHtml(reports.error)}</div>` : ''}
+    ${reports.error ? `<div class="notice danger section"><strong>Очередь не загружена</strong><br>${escapeHtml(reports.error)}<div class="actions section"><button class="button" data-action="load-report-queue" type="button"${disabledWhenUnauthorized('reports.read')} title="Повторно прочитать очередь репортов после ошибки">Повторить чтение</button></div></div>` : ''}
     <section class="card section"><div class="card-header"><div><h2>Фильтры очереди</h2><p>Сервер возвращает не более 100 записей за запрос.</p></div><span class="badge">reports.read</span></div><div class="card-body"><div class="report-filters">
       <div class="field"><label for="report-source-filter">Источник</label><select id="report-source-filter">${sourceOptions}</select></div>
       <div class="field"><label for="report-lane-filter">Рабочее состояние</label><select id="report-lane-filter">${laneOptions}</select></div>
@@ -2477,9 +3489,9 @@ function renderReportQueue() {
       <div class="field"><label for="report-uid-filter">UID пользователя</label><input id="report-uid-filter" value="${escapeHtml(reports.uid)}" placeholder="необязательно"></div>
       <div class="field"><label for="report-category-filter">Категория / серьёзность</label><input id="report-category-filter" value="${escapeHtml(reports.category)}" placeholder="например, critical"></div>
       <div class="field"><label for="report-days-filter">Период</label><select id="report-days-filter">${[1, 7, 30, 90].map((days) => `<option value="${days}"${Number(reports.sinceDays) === days ? ' selected' : ''}>${days} дн.</option>`).join('')}</select></div>
-      <div class="report-auto-refresh" role="status" aria-live="polite"><span class="badge ${reports.state === 'loading' ? 'warning' : 'success'}">${reports.state === 'loading' ? 'Обновляется…' : 'Автообновление включено'}</span><button class="button small ghost" data-action="load-report-queue" type="button"${disabledWhenUnauthorized('reports.read')} title="Обновить очередь вручную">Обновить сейчас</button></div>
+      <div class="report-auto-refresh" role="status" aria-live="polite"><span class="badge ${reports.state === 'loading' ? 'warning' : 'success'}">${reports.state === 'loading' ? 'Обновляется…' : 'Автообновление включено'}</span></div>
     </div></div></section>
-    ${health.length ? `<section class="report-health section" aria-label="Состояние источников">${health.map((source) => `<span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}" title="${escapeHtml(source.error || '')}">${escapeHtml(REPORT_SOURCE_LABELS[source.source] || 'Неизвестный источник')} · ${escapeHtml(operationalStateLabel(source.state))} · ${Number(source.count || 0)}</span>`).join('')}</section>` : ''}
+    ${health.length ? `<section class="report-health section" aria-label="Состояние источников">${health.map((source) => { const code = source.state === 'error' ? 'report_source_error' : source.state === 'truncated' ? 'report_source_truncated' : ''; const signal = reportSignals.get(`report_center:${code}:${source.source}`); return `<span class="badge ${source.state === 'error' ? 'danger' : source.state === 'truncated' ? 'warning' : source.state === 'ready' ? 'success' : ''}" title="${escapeHtml(source.error || '')}">${escapeHtml(REPORT_SOURCE_LABELS[source.source] || 'Неизвестный источник')} · ${escapeHtml(operationalStateLabel(source.state))} · ${Number(source.count || 0)}</span>${renderOperationalPlanAction(signal)}`; }).join('')}</section>` : ''}
     <section class="card section"><div class="card-header"><div><h2>Рабочая очередь</h2><p>${reports.state === 'idle' ? 'Выберите фильтры и загрузите данные.' : `Показано ${items.length} записей.${hiddenArchivedCount ? ` Архив скрыт настройкой: ${hiddenArchivedCount}.` : ''}`}</p></div><span class="badge ${badgeClass(reports.state)}">${escapeHtml(operationalStateLabel(reports.state))}</span></div><div class="card-body">
       ${reports.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю репорты из выбранных источников…</span></div>' : !items.length ? emptyState(reports.state === 'idle' ? 'Очередь ещё не загружена.' : ['partial', 'truncated'].includes(reports.state) ? 'В просмотренной части совпадений нет; источник ограничен, поэтому это не означает, что репортов нет вообще.' : 'По выбранным фильтрам репортов нет.') : `<div class="report-list">${items.map((item) => {
         const users = item.users || {};
@@ -2506,7 +3518,7 @@ function renderReportQueue() {
             <div class="field"><label for="${replyId}-shards">Награда осколками</label><input id="${replyId}-shards" type="number" min="0" max="100" value="0"></div>
             <div class="actions end"><button class="button primary" data-action="send-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.send')} title="Отправить только владельцу исходного репорта">Проверить и отправить</button></div>
           </div></details>` : ''}
-          <footer>${dangerousActionDisclosure(`<a class="button ghost small" href="../../admin/index.html#${encodeURIComponent(item.source === 'app_errors' ? 'app-health' : 'reports')}" target="_blank" rel="noopener" title="Открыть расширенный рабочий модуль">Расширенные действия</a>`, 'Расширенные действия')}</footer></article>`;
+          </article>`;
       }).join('')}</div>${reports.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-report-next" type="button" title="Загрузить следующую страницу этого источника">Показать ещё</button></div>' : ''}`}
     </div></section>`;
 }
@@ -2521,22 +3533,13 @@ function renderCurrentPage() {
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, 'admin-settings': renderAdminSettings };
-  const capability = capabilityById(state.selectedCapabilityId);
-  if (capability && capability.route === state.route && !capability.nativeRoute) {
-    target.innerHTML = renderCapabilityWorkspace(capability);
-  } else {
-    const page = (renderers[state.route] ?? renderOverview)();
-    target.innerHTML = page;
-  }
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, 'coin-center': renderCoinCenter, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, plans: renderPlans, 'admin-settings': renderAdminSettings };
+  const page = (renderers[state.route] ?? renderOverview)();
+  target.innerHTML = page;
   if (state.route === 'analytics') {
     restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces);
     syncAnalyticsReportVisibility(target);
   }
-  target.querySelectorAll('a[href^="../../admin/index.html"]').forEach((link) => {
-    const href = link.getAttribute('href') || '';
-    link.setAttribute('href', href.replace('../../admin/index.html', '/legacy.html'));
-  });
   renderNavigation();
   ensureInteractiveGuidance(document);
   renderAuthStatus();
@@ -2574,6 +3577,7 @@ function renderCurrentPage() {
       );
     });
   }
+  mountCoinCenterChartWhenCurrent(target, capturedRenderGeneration);
 }
 
 function ensureInteractiveGuidance(root) {
@@ -2633,20 +3637,6 @@ async function loadJobDetail(jobId) {
   state.workspace = await actions.getFactoryWorkspace({ studyTarget: job.studyTarget, learnerSourceLocale: job.learnerSourceLocale ?? job.sourceLocale, limit: 100 });
 }
 
-function maybeLoadOperationalBriefing() {
-  if (!actions || !can('briefing.read')) return;
-  if (!['overview', 'diagnostics'].includes(state.route)) return;
-  if (!['idle', 'stale'].includes(state.briefing.state) || overviewBriefingRefreshInFlight) return;
-  const quiet = state.briefing.state === 'stale' && Boolean(state.briefing.digest);
-  overviewBriefingRefreshInFlight = true;
-  void loadDailyBriefing(false, { quiet })
-    .then((result) => {
-      if (result !== STALE_AUTH_RESULT && result !== QUIET_CACHE_RESULT) renderCurrentPage();
-    })
-    .catch(() => renderCurrentPage())
-    .finally(() => { overviewBriefingRefreshInFlight = false; });
-}
-
 function applySupportListResult(result) {
   const serverPending = [
     ...(Array.isArray(result?.pendingBatches) ? result.pendingBatches : []),
@@ -2663,6 +3653,7 @@ function applySupportListResult(result) {
     signature: String(result?.signature ?? ''),
     signatureRevision: Number(result?.signatureRevision ?? 0),
     pendingReply: restoredPending,
+    observedAtMs: Date.now(),
   };
 }
 
@@ -3237,6 +4228,192 @@ async function loadAdminUserProfile(uid) {
   }
 }
 
+function directorDigestMetricLabel(metric) {
+  return String(metric?.id || '').replace(/^paywall\./, 'Paywall · ').replace(/^store\./, 'Store · ').replace(/^revenue\./, 'Выручка · ').replace(/\.v1$/, '').replaceAll('_', ' ');
+}
+
+function renderDirectorDigestChart(metric) {
+  const current = Number.isFinite(metric?.current) ? Math.max(0, Number(metric.current)) : null;
+  const previous = Number.isFinite(metric?.previous) ? Math.max(0, Number(metric.previous)) : null;
+  const max = Math.max(current || 0, previous || 0, 1);
+  const currentWidth = current === null ? 0 : Math.round((current / max) * 100);
+  const previousWidth = previous === null ? 0 : Math.round((previous / max) * 100);
+  const label = escapeHtml(directorDigestMetricLabel(metric));
+  return `<div class="director-digest-chart" role="img" aria-label="График метрики ${label}"><span class="director-digest-bar previous" style="width:${previousWidth}%" title="Предыдущий период: ${previous === null ? 'нет данных' : previous}"></span><span class="director-digest-bar current" style="width:${currentWidth}%" title="Текущий период: ${current === null ? 'нет данных' : current}"></span></div>`;
+}
+
+function directorDigestFallbackNarrative(digest, status) {
+  const metrics = Array.isArray(digest?.metrics) ? digest.metrics : [];
+  let executiveSummary = 'Подтверждённых метрик за выбранный период нет.';
+  if (status === 'unavailable' || !metrics.length) {
+    executiveSummary = status === 'unavailable'
+      ? 'Данные за выбранный период недоступны; управленческий вывод не сформирован.'
+      : executiveSummary;
+  } else {
+    const changed = metrics.filter((metric) => metric.current !== null && metric.previous !== null && metric.absoluteDelta !== 0).slice(0, 3);
+    executiveSummary = changed.length
+      ? `Главные изменения: ${changed.map((metric) => `${directorDigestMetricLabel(metric)} — сейчас ${metric.current}, ранее ${metric.previous}`).join('; ')}.`
+      : 'Подтверждённые метрики за выбранный период без заметных изменений.';
+  }
+  return {
+    ownerMonologue: `${executiveSummary} Это резервная сводка без углублённой интерпретации: прежде чем принимать решение, я бы сформировал отчёт повторно и сверил ключевые изменения с соседними шагами пользовательского пути.`,
+    executiveSummary,
+    productManager: [],
+    growthAndRevenue: [],
+    qualityAndRisks: status === 'partial' ? ['Часть источников неполная; решения требуют повторной проверки.'] : [],
+    userVoice: [],
+    actions: [],
+    sourceWarnings: [],
+  };
+}
+
+function directorDigestOwnerMonologue(narrative) {
+  if (!narrative || typeof narrative !== 'object') return '';
+  return String(narrative.ownerMonologue || narrative.executiveSummary || '')
+    .replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, '[контакт скрыт]')
+    .replace(/\+?\d[\d\s().-]{7,}\d/g, '[контакт скрыт]')
+    .replace(/https?:\/\/\S+/gi, '')
+    .replace(/[`{}\[\]<>]/g, '')
+    .replace(/\b[a-z][a-z0-9_-]*(?:\.[a-z0-9_-]+){1,}\b/gi, '')
+    .replace(/\s+([,.;:])/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 8_000);
+}
+
+function directorDigestNarrativeSpeechText(narrative) {
+  return directorDigestOwnerMonologue(narrative);
+}
+
+function stopDirectorDigestAudio() {
+  if (directorDigestAudioPlayback.player) {
+    directorDigestAudioPlayback.player.pause();
+    directorDigestAudioPlayback.player.onended = null;
+    directorDigestAudioPlayback.player = null;
+  }
+  directorDigestAudioPlayback.clips = [];
+  directorDigestAudioPlayback.current = 0;
+}
+
+function playDirectorDigestAudioClip(index) {
+  const clip = directorDigestAudioPlayback.clips[index];
+  if (!clip) {
+    state.directorDigest.audio = { ...state.directorDigest.audio, state: 'ready', current: 0 };
+    renderCurrentPage();
+    return;
+  }
+  const player = new Audio(`data:${clip.mimeType || 'audio/mpeg'};base64,${clip.base64}`);
+  directorDigestAudioPlayback.player = player;
+  directorDigestAudioPlayback.current = index;
+  state.directorDigest.audio = { ...state.directorDigest.audio, state: 'playing', current: index + 1 };
+  player.onended = () => playDirectorDigestAudioClip(index + 1);
+  player.play().catch((error) => {
+    state.directorDigest.audio = { ...state.directorDigest.audio, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  });
+  renderCurrentPage();
+}
+
+function toggleDirectorDigestAudio() {
+  const player = directorDigestAudioPlayback.player;
+  if (!player) return;
+  if (player.paused) {
+    player.play().then(() => {
+      state.directorDigest.audio = { ...state.directorDigest.audio, state: 'playing' };
+      renderCurrentPage();
+    }).catch((error) => {
+      state.directorDigest.audio = { ...state.directorDigest.audio, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
+    });
+  } else {
+    player.pause();
+    state.directorDigest.audio = { ...state.directorDigest.audio, state: 'paused' };
+    renderCurrentPage();
+  }
+}
+
+async function speakDirectorDigest() {
+  if (state.adminRole !== 'owner' || !actions?.generateDirectorDigestAudio) return;
+  const digest = state.directorDigest.digest;
+  const text = directorDigestNarrativeSpeechText(digest?.narrative || directorDigestFallbackNarrative(digest, state.directorDigest.state));
+  if (!text) return setMessage('Сначала сформируйте управленческую сводку.', 'warning');
+  stopDirectorDigestAudio();
+  state.directorDigest.audio = { ...state.directorDigest.audio, state: 'loading', current: 0, total: 0, error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.generateDirectorDigestAudio({ text });
+    const clips = Array.isArray(result?.clips) ? result.clips.filter((clip) => clip && clip.base64) : [];
+    if (!clips.length) throw new Error('tts_empty_audio');
+    directorDigestAudioPlayback.clips = clips;
+    state.directorDigest.audio = { ...state.directorDigest.audio, state: 'ready', current: 0, total: clips.length, error: '' };
+    playDirectorDigestAudioClip(0);
+  } catch (error) {
+    state.directorDigest.audio = { ...state.directorDigest.audio, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+  }
+}
+
+async function loadDirectorDigestAndSpeak() {
+  const result = await loadDirectorDigest();
+  if (result === STALE_AUTH_RESULT) return result;
+  await speakDirectorDigest();
+  return result;
+}
+
+function renderDirectorDigestNarrative(narrative) {
+  const monologue = directorDigestOwnerMonologue(narrative);
+  if (!monologue) return '';
+  return `<section class="director-digest-monologue" aria-label="Директорский монолог"><p>${escapeHtml(monologue)}</p></section>`;
+}
+
+function renderDirectorDigest() {
+  if (state.adminRole !== 'owner') return '';
+  const digest = state.directorDigest.digest;
+  const periods = [1, 3, 7, 28, 90];
+  const metrics = Array.isArray(digest?.metrics) ? digest.metrics : [];
+  const status = state.directorDigest.state;
+  const narrative = renderDirectorDigestNarrative(digest?.narrative || directorDigestFallbackNarrative(digest, status));
+  const cards = metrics.length ? metrics.map((metric) => `<article class="director-digest-metric"><div class="director-digest-metric-head"><strong>${escapeHtml(directorDigestMetricLabel(metric))}</strong><span class="badge ${metric.availability === 'ready' ? 'success' : metric.availability === 'partial' ? 'warning' : ''}">${escapeHtml(metric.availability || 'нет данных')}</span></div>${renderDirectorDigestChart(metric)}<div class="director-digest-values"><span>Сейчас: ${metric.current === null ? '—' : escapeHtml(metric.current)}</span><span>Ранее: ${metric.previous === null ? '—' : escapeHtml(metric.previous)}</span><span>${metric.percentDelta === null ? '—' : `${metric.percentDelta}%`}</span></div></article>`).join('') : emptyState(status === 'loading' ? 'Загружаю управленческую сводку…' : status === 'error' ? state.directorDigest.error : 'Нажмите «Сформировать сводку», чтобы получить агрегированные метрики.');
+  const table = metrics.length ? `<table class="director-digest-table"><caption>Табличная альтернатива графикам</caption><thead><tr><th>Метрика</th><th>Сейчас</th><th>Ранее</th><th>Изменение</th></tr></thead><tbody>${metrics.map((metric) => `<tr><th scope="row">${escapeHtml(directorDigestMetricLabel(metric))}</th><td>${metric.current === null ? '—' : escapeHtml(metric.current)}</td><td>${metric.previous === null ? '—' : escapeHtml(metric.previous)}</td><td>${metric.percentDelta === null ? '—' : `${metric.percentDelta}%`}</td></tr>`).join('')}</tbody></table>` : '';
+  const audio = state.directorDigest.audio || { state: 'idle', current: 0, total: 0, error: '' };
+  const audioLabel = audio.state === 'loading' ? 'Готовлю озвучку…' : audio.state === 'playing' ? `Воспроизведение ${audio.current} из ${audio.total}` : audio.state === 'paused' ? `Пауза · фрагмент ${audio.current} из ${audio.total}` : 'Озвучка включится автоматически';
+  const audioStatus = audio.state === 'error' ? `<span class="director-digest-audio-error" role="alert">${escapeHtml(audio.error || 'Не удалось подготовить озвучку.')}</span>` : audio.state === 'playing' || audio.state === 'paused' ? `<span id="director-digest-audio" aria-live="polite">${audioLabel}</span>` : '';
+  const pauseButton = audio.state === 'playing' || audio.state === 'paused' ? `<button class="button" data-action="pause-director-digest" type="button" title="${audio.state === 'paused' ? 'Продолжить озвучку' : 'Поставить озвучку на паузу'}">${audio.state === 'paused' ? 'Продолжить' : 'Пауза'}</button>` : '';
+  const digestBusy = state.directorDigest.state === 'loading' || audio.state === 'loading';
+  const digestButtonLabel = digestBusy ? 'Формирую и озвучиваю…' : 'Сформировать и озвучить';
+  return `<section class="card section director-digest" aria-labelledby="director-digest-title"><div class="card-header"><div><h2 id="director-digest-title">Управленческая сводка</h2><p>Агрегированные метрики paywall, покупок и выручки без сырых данных. После формирования озвучка запускается автоматически.</p></div><span class="badge ${badgeClass(status)}">${escapeHtml(status === 'idle' ? 'Не загружено' : status)}</span></div><div class="card-body"><div class="director-digest-controls"><div class="field"><label for="director-digest-range">Период</label><select id="director-digest-range" data-director-digest-range${digestBusy ? ' disabled' : ''}>${periods.map((days) => `<option value="${days}"${state.directorDigest.rangeDays === days ? ' selected' : ''}>${days} дн.</option>`).join('')}</select></div><button class="button primary" data-action="load-director-digest" type="button"${digestBusy ? ' disabled' : ''} title="Сформировать сводку и сразу включить её озвучку">${digestButtonLabel}</button>${pauseButton}${audioStatus}</div>${narrative}<div class="director-digest-grid">${cards}</div>${table}</div></section>`;
+}
+
+async function loadDirectorDigest() {
+  if (state.adminRole !== 'owner' || !actions?.getDirectorDigest) return;
+  const authGeneration = state.authGeneration;
+  stopDirectorDigestAudio();
+  state.directorDigest.audio = { state: 'idle', current: 0, total: 0, error: '' };
+  state.directorDigest = { ...state.directorDigest, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.getDirectorDigest({ rangeDays: state.directorDigest.rangeDays });
+    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    state.directorDigest = { ...state.directorDigest, state: String(result?.state || 'unavailable'), digest: result || null, fetchedAtMs: Number(result?.generatedAtMs || Date.now()), error: '' };
+    renderCurrentPage();
+    return result;
+  } catch (error) {
+    if (authStillValid(authGeneration, 'briefing.read')) {
+      state.directorDigest = { ...state.directorDigest, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
+    }
+    throw error;
+  }
+}
+
+function handleDirectorDigestChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLSelectElement) || !target.matches('[data-director-digest-range]')) return;
+  if (state.adminRole !== 'owner') return;
+  const rangeDays = Number(target.value);
+  if ([1, 3, 7, 28, 90].includes(rangeDays)) state.directorDigest = { ...state.directorDigest, rangeDays };
+}
+
 async function loadDailyBriefing(generate = false, { quiet = false } = {}) {
   const authGeneration = state.authGeneration;
   const quietRefresh = quiet && Boolean(state.briefing.digest);
@@ -3263,16 +4440,23 @@ async function loadDailyBriefing(generate = false, { quiet = false } = {}) {
     const cached = overviewCacheScope ? overviewCache.write(overviewCacheScope, nextBriefing) : null;
     if (cached?.changed === false) {
       state.briefing = { ...cached.value, state: 'ready', error: '' };
+      await hydrateDigestPlanSourceHashes(state.briefing.digest, state.briefing.state);
+      const operationalView = buildOperationalSnapshot(state.briefing);
+      await hydrateOperationalPlanSourceHashes([...buildOverviewPlanSignals(operationalView), ...buildDiagnosticsPlanSignals(operationalView), ...buildDailyBriefingSafetyPlanSignals(state.briefing.digest, state.briefing.state)]);
       if (quietRefresh) return QUIET_CACHE_RESULT;
       return generationResult || result;
     }
     state.briefing = nextBriefing;
+    await hydrateDigestPlanSourceHashes(state.briefing.digest, state.briefing.state);
+    const operationalView = buildOperationalSnapshot(state.briefing);
+    await hydrateOperationalPlanSourceHashes([...buildOverviewPlanSignals(operationalView), ...buildDiagnosticsPlanSignals(operationalView), ...buildDailyBriefingSafetyPlanSignals(state.briefing.digest, state.briefing.state)]);
     return generationResult || result;
   } catch (error) {
     if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
     if (authStillValid(authGeneration, 'briefing.read')) {
       const cached = overviewCacheScope ? overviewCache.markError(overviewCacheScope, errorMessage(error)) : null;
       state.briefing = cached ? { ...cached.value, state: 'error', error: cached.error } : { ...state.briefing, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
     }
     throw error;
   }
@@ -3303,11 +4487,13 @@ async function loadReportQueue(append = false) {
       nextCursor: String(result?.nextCursor || ''),
       error: '',
     };
+    await hydrateOperationalPlanSourceHashes(buildReportPlanSignals(state.reports));
     renderCurrentPage();
   } catch (error) {
     if (!authStillValid(authGeneration, 'reports.read') || requestId !== reportRequestId) return STALE_AUTH_RESULT;
     if (authStillValid(authGeneration, 'reports.read')) {
       state.reports = { ...state.reports, state: 'error', error: errorMessage(error) };
+      renderCurrentPage();
     }
     throw error;
   }
@@ -3458,17 +4644,25 @@ async function loadAuditLog(append = false) {
 
 async function loadAgentOffice(caseId = state.agentOffice.selectedCaseId) {
   const authGeneration = state.authGeneration;
+  const loadGeneration = ++agentOfficeLoadGeneration;
   state.agentOffice = { ...state.agentOffice, state: 'loading', error: '' };
   renderCurrentPage();
   try {
     const casesResult = await actions.listAgentOfficeCases({ limit: 50, cursor: '' });
-    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    if (loadGeneration !== agentOfficeLoadGeneration || !authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
     const cases = Array.isArray(casesResult?.items) ? casesResult.items : [];
+    let aggregateResult = null;
+    if (state.adminRole === 'owner') {
+      try { aggregateResult = await actions.getAgentOfficeAggregateHealth(); }
+      catch { aggregateResult = null; }
+    }
+    if (loadGeneration !== agentOfficeLoadGeneration || !authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    const aggregateHealth = Array.isArray(aggregateResult?.items) ? aggregateResult.items : [];
     const selectedCaseId = cases.some((item) => String(item.caseId) === String(caseId))
       ? String(caseId)
       : String(cases[0]?.caseId || '');
     if (!selectedCaseId) {
-      state.agentOffice = { ...state.agentOffice, state: 'empty', cases, selectedCaseId: '', item: null, recommendations: [], auditEvents: [], fetchedAtMs: Date.now(), error: '' };
+      state.agentOffice = { ...state.agentOffice, state: 'empty', cases, selectedCaseId: '', item: null, recommendations: [], auditEvents: [], aggregateHealth, fetchedAtMs: Date.now(), error: '' };
       return state.agentOffice;
     }
     const [caseResult, recommendationsResult, auditResult] = await Promise.all([
@@ -3476,7 +4670,7 @@ async function loadAgentOffice(caseId = state.agentOffice.selectedCaseId) {
       actions.listAgentOfficeRecommendations({ caseId: selectedCaseId, limit: 50, cursor: '' }),
       can('diagnostics.read') ? actions.listAgentOfficeAuditEvents({ caseId: selectedCaseId, limit: 50, cursor: '' }) : Promise.resolve({ items: [] }),
     ]);
-    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    if (loadGeneration !== agentOfficeLoadGeneration || !authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
     state.agentOffice = {
       ...state.agentOffice,
       state: 'ready',
@@ -3485,16 +4679,17 @@ async function loadAgentOffice(caseId = state.agentOffice.selectedCaseId) {
       item: caseResult?.item || null,
       recommendations: Array.isArray(recommendationsResult?.items) ? recommendationsResult.items : [],
       auditEvents: Array.isArray(auditResult?.items) ? auditResult.items : [],
+      aggregateHealth,
       fetchedAtMs: Date.now(),
       error: '',
     };
     return state.agentOffice;
   } catch (error) {
-    if (!authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
+    if (loadGeneration !== agentOfficeLoadGeneration || !authStillValid(authGeneration, 'briefing.read')) return STALE_AUTH_RESULT;
     state.agentOffice = { ...state.agentOffice, state: 'error', error: errorMessage(error) };
     throw error;
   } finally {
-    if (state.route === 'agent-office' && authGeneration === state.authGeneration) renderCurrentPage();
+    if (state.route === 'agent-office' && loadGeneration === agentOfficeLoadGeneration && authGeneration === state.authGeneration) renderCurrentPage();
   }
 }
 
@@ -3637,6 +4832,25 @@ async function loadOpsLog() {
   }
 }
 
+async function loadPlans() {
+  if (state.adminRole !== 'owner') return;
+  const authGeneration = state.authGeneration;
+  state.plans = { ...state.plans, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listPlans({ limit: 25 });
+    if (authGeneration !== state.authGeneration || state.adminRole !== 'owner') return STALE_AUTH_RESULT;
+    const items = Array.isArray(result?.items) ? result.items : [];
+    state.plans = { state: items.length ? 'ready' : 'empty', items, error: '' };
+    return result;
+  } catch (error) {
+    if (authGeneration !== state.authGeneration || state.adminRole !== 'owner') return STALE_AUTH_RESULT;
+    state.plans = { ...state.plans, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
+    throw error;
+  }
+}
+
 async function loadAssetJobs() {
   const authGeneration = state.authGeneration;
   state.assetStudio = { ...state.assetStudio, state: 'loading', error: '' };
@@ -3656,8 +4870,74 @@ async function loadAssetJobs() {
   } catch (error) {
     if (!authStillValid(authGeneration, 'content.read')) return STALE_AUTH_RESULT;
     state.assetStudio = { ...state.assetStudio, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
     throw error;
   }
+}
+
+function refreshDirectorDigestPlaceholder() {
+  // The overview card is visible immediately, while data generation remains a deliberate button action.
+  return Promise.resolve();
+}
+
+function refreshCurrentRouteReadModels() {
+  if (!actionsReady || !state.authReady || !state.authorized || !state.adminUid) return;
+  routeRefreshCoordinator.setContext(`${state.authGeneration}:${state.adminUid}:${state.adminRole}`);
+  const requests = {
+    overview: [
+      { key: 'overview-briefing', permission: 'briefing.read', load: () => loadDailyBriefing(false) },
+      { key: 'overview-trends', permission: 'money.read', load: loadOverviewAnalyticsTrends },
+      { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
+      { key: 'director-digest', permission: 'briefing.read', ownerOnly: true, load: refreshDirectorDigestPlaceholder },
+    ],
+    analytics: [
+      { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
+    ],
+    'report-center': [
+      { key: 'report-queue', permission: 'reports.read', load: () => loadReportQueue(false) },
+      { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
+    ],
+    diagnostics: [
+      { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
+    ],
+    'daily-briefing': [
+      { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
+    ],
+    'asset-studio': [
+      { key: 'asset-jobs', permission: 'content.read', load: loadAssetJobs },
+    ],
+    'coin-center': [
+      { key: 'coin-center', permission: 'money.read', load: loadCoinCenter },
+    ],
+    plans: state.adminRole === 'owner'
+      ? [{ key: 'plans', permission: '', load: loadPlans }]
+      : [],
+    'agent-office': [
+      { key: agentOfficeRefreshKey(), permission: 'briefing.read', load: () => loadAgentOffice() },
+    ],
+    'agent-manager': state.adminRole === 'owner'
+      ? [{ key: 'agent-manager', permission: '', load: loadAgentManager }]
+      : [],
+  }[state.route] || [];
+  for (const request of requests) {
+    if (request.ownerOnly && state.adminRole !== 'owner') continue;
+    if (request.permission && !can(request.permission)) continue;
+    void routeRefreshCoordinator.refresh({ ...request, ttlMs: ROUTE_REFRESH_TTL_MS, skipIfHidden: true }).catch(() => {});
+  }
+}
+
+function agentOfficeRefreshKey(caseId = state.agentOffice.selectedCaseId) {
+  return `agent-office:${String(caseId || '')}`;
+}
+
+function refreshAgentOffice({ caseId = state.agentOffice.selectedCaseId, force = false } = {}) {
+  routeRefreshCoordinator.setContext(`${state.authGeneration}:${state.adminUid}:${state.adminRole}`);
+  return routeRefreshCoordinator.refresh({
+    key: agentOfficeRefreshKey(caseId),
+    ttlMs: ROUTE_REFRESH_TTL_MS,
+    force,
+    load: () => loadAgentOffice(caseId),
+  });
 }
 
 async function copyOpsSnapshot() {
@@ -3819,7 +5099,6 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
-  if (['load-audit-log', 'load-audit-next', 'load-ops-log', 'copy-ops-snapshot'].includes(action)) return;
   if (action === 'select-analytics-report') {
     selectAnalyticsReport(target.getAttribute('data-analytics-report') || document.getElementById('analytics-report-select')?.value || 'overview');
     return;
@@ -3917,6 +5196,73 @@ async function handleAction(action, target) {
     setMessage(result?.preservedExisting ? 'Полная сводка уже существовала; неполный прогон не был сохранён.' : 'Новая сводка сформирована и сохранена.', result?.preservedExisting ? 'warning' : 'success');
     return result;
   });
+  if (action === 'load-director-digest') return runBusy(() => loadDirectorDigestAndSpeak(), 'Сводка сформирована и озвучивается.');
+  if (action === 'pause-director-digest') return toggleDirectorDigestAudio();
+  if (action === 'speak-director-digest') return runBusy(() => speakDirectorDigest(), 'Озвучка управленческой сводки подготовлена.');
+  if (action === 'add-digest-signal-to-plan') {
+    const digest = state.briefing.digest;
+    if (state.adminRole !== 'owner' || !digest) return;
+    const code = String(target.getAttribute('data-digest-plan-code') || '');
+    const signal = buildDigestPlanSignals(digest.facts || {}, state.briefing.state).find((item) => item.code === code);
+    if (!signal) return setMessage('Этот сигнал нельзя добавить в план из текущей сводки.', 'warning');
+    if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому сигналу уже создан. Обновите список планов.', 'warning');
+    return runBusy(async () => {
+      const sourceHash = await digestPlanSourceHash(digest, [signal.code]);
+      state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, [signal.code]: sourceHash };
+      state.digestPlanDraft = { ...signal, sourceHash };
+      globalThis.location.hash = 'plans';
+    }, 'Черновик плана подготовлен. Проверьте поля и подтвердите создание.');
+  }
+  if (action === 'add-operational-signal-to-plan') {
+    if (state.adminRole !== 'owner') return;
+    const key = String(target.getAttribute('data-operational-plan-key') || '');
+    const view = buildOperationalSnapshot(state.briefing);
+    const signal = [
+      ...buildOverviewPlanSignals(view),
+      ...buildDiagnosticsPlanSignals(view),
+      ...buildReportPlanSignals(state.reports),
+      ...buildSupportPlanSignals(state.support),
+      ...buildDailyBriefingSafetyPlanSignals(state.briefing.digest, state.briefing.state),
+    ].find((candidate) => operationalPlanSignalKey(candidate) === key);
+    if (state.adminRole !== 'owner' || !signal) return setMessage('Этот операционный сигнал больше нельзя добавить в план.', 'warning');
+    if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому сигналу уже создан. Обновите список планов.', 'warning');
+    return runBusy(async () => {
+      const sourceHash = await operationalPlanSourceHash(signal);
+      state.digestPlanSourceHashes = { ...state.digestPlanSourceHashes, [operationalPlanSignalKey(signal)]: sourceHash };
+      state.digestPlanDraft = { ...signal, sourceHash };
+      globalThis.location.hash = 'plans';
+    }, 'Черновик плана подготовлен. В запрос попадут только фиксированный код и SHA-256 ссылка на сигнал.');
+  }
+  if (action === 'add-analytics-aggregate-to-plan') {
+    const key = String(target.getAttribute('data-analytics-plan-key') || '');
+    const signal = analyticsAggregatePlanSignal({
+      metric: key.split(':')[1], source: 'revenuecat_subscription_analytics', rangeDays: Number(key.split(':')[2]),
+      state: key.split(':')[3], count: Number(key.split(':')[4]), observedAtMs: Number(key.split(':')[5]),
+    });
+    if (state.adminRole !== 'owner' || !signal || analyticsAggregatePlanSignalKey(signal) !== key) return setMessage('Этот агрегат больше нельзя добавить в план: обновите аналитику.', 'warning');
+    await hydrateAnalyticsAggregatePlanAction(signal);
+    if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому агрегату уже создан. Обновите список планов.', 'warning');
+    if (!globalThis.confirm('Подготовить черновик плана по этому агрегату аналитики? Текст карточки и данные пользователей не передаются.')) return;
+    return runBusy(async () => {
+      const sourceHash = state.digestPlanSourceHashes?.[analyticsAggregatePlanSignalKey(signal)];
+      state.digestPlanDraft = { ...signal, sourceHash };
+      globalThis.location.hash = 'plans';
+    }, 'Черновик плана подготовлен. Проверьте поля и отдельно подтвердите создание на сервере.');
+  }
+  if (action === 'add-agent-office-aggregate-to-plan') {
+    const key = String(target.getAttribute('data-agent-office-aggregate-plan-key') || '');
+    const signal = buildAgentOfficeAggregatePlanSignals(state.agentOffice.aggregateHealth)
+      .find((candidate) => agentOfficeAggregatePlanSignalKey(candidate) === key);
+    if (state.adminRole !== 'owner' || !signal) return setMessage('Этот агрегат Офиса агентов больше нельзя добавить в план: обновите страницу.', 'warning');
+    await hydrateAgentOfficeAggregatePlanAction(signal);
+    if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому агрегату уже создан. Обновите список планов.', 'warning');
+    if (!globalThis.confirm('Подготовить черновик плана по этому агрегату Офиса агентов? Данные дел, рекомендаций и пользователей не передаются.')) return;
+    return runBusy(async () => {
+      const sourceHash = state.digestPlanSourceHashes?.[agentOfficeAggregatePlanSignalKey(signal)];
+      state.digestPlanDraft = { ...signal, sourceHash };
+      globalThis.location.hash = 'plans';
+    }, 'Черновик плана подготовлен. Проверьте поля и отдельно подтвердите создание на сервере.');
+  }
   if (action === 'save-admin-settings') {
     state.adminSettings = saveAdminUiSettings(state.adminSettings);
     savedAdminUiSettings = state.adminSettings;
@@ -3958,7 +5304,7 @@ async function handleAction(action, target) {
     if (!state.reports.nextCursor) return;
     return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
   }
-  if (action === 'load-agent-office') return runBusy(() => loadAgentOffice(), 'Стратегические решения загружены через серверную проекцию.');
+  if (action === 'load-agent-office') return runBusy(() => refreshAgentOffice({ force: true }), 'Стратегические решения загружены через серверную проекцию.');
   if (action === 'load-agent-manager') return runBusy(() => loadAgentManager(), 'Менеджер агентов и очередь загружены через серверную проекцию.');
   if (action === 'initialize-agent-manager-roster') return runBusy(async () => { await actions.initializeAgentManagerRoster(); await loadAgentManager(); }, 'Реестр агентов создан. Выполнение задач требует отдельного согласования.');
   if (action === 'create-agent-manager-task') return createAgentManagerTask();
@@ -3967,7 +5313,7 @@ async function handleAction(action, target) {
   if (action === 'open-agent-office-case') {
     const caseId = String(target.getAttribute('data-agent-office-case-id') || '');
     if (!caseId) return;
-    return runBusy(() => loadAgentOffice(caseId), 'Дело и его доказательства загружены.');
+    return runBusy(() => refreshAgentOffice({ caseId, force: true }), 'Дело и его доказательства загружены.');
   }
   if (action === 'open-agent-office-audit') {
     state.agentOffice = { ...state.agentOffice, showAudit: !state.agentOffice.showAudit };
@@ -4155,6 +5501,61 @@ async function handleAction(action, target) {
       state.remoteConfig = await actions.getRemoteConfigWorkspace();
       state.remoteConfigPreview = null;
     }, 'Конфигурация опубликована и записана в журнал.');
+  }
+  if (action === 'load-paywall-ab') {
+    return runBusy(async () => {
+      try {
+        const result = await actions.getPaywallAbWorkspace();
+        state.paywallAb = { ...defaultPaywallAbState(), state: 'ready', exists: result?.exists === true, doc: result?.config && typeof result.config === 'object' ? result.config : {}, history: Array.isArray(result?.history) ? result.history : [], draft: paywallAbDraftFromDoc(result?.config, { exists: result?.exists === true }) };
+      } catch (error) {
+        state.paywallAb = { ...defaultPaywallAbState(), state: 'error', error: errorMessage(error) };
+        throw error;
+      }
+    }, 'Доли пейволов и история загружены.');
+  }
+  if (action === 'paywall-ab-preset-off' || action === 'paywall-ab-preset-even' || action === 'paywall-ab-preset-abc') {
+    if (!state.paywallAb.draft || state.paywallAb.preview || state.busy) return;
+    applyPaywallAbPreset(state.paywallAb.draft, action.replace('paywall-ab-preset-', ''));
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'preview-paywall-ab') {
+    try { state.paywallAb.preview = buildPaywallAbPreview(); setMessage('Предпросмотр A/B-теста пейволов готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'discard-paywall-ab-preview') { state.paywallAb.preview = null; renderCurrentPage(); return; }
+  if (action === 'publish-paywall-ab') {
+    const preview = state.paywallAb.preview;
+    if (!preview?.changes?.length) return setMessage('Нет изменений для публикации.', 'warning');
+    if (!ensurePaywallAbPreviewIsFresh(preview)) return;
+    if (!globalThis.confirm(paywallAbPublishQuestion(preview))) return;
+    const expectedUpdatedAt = state.paywallAb.exists ? Number(state.paywallAb.doc?.updatedAt ?? 0) : undefined;
+    return runBusy(async () => {
+      const result = await actions.publishPaywallAb({ ...preview.payload, expectedUpdatedAt, idempotencyKey: id('paywall-ab'), reason: preview.reason, requestId: id('request-paywall-ab') });
+      const workspace = await actions.getPaywallAbWorkspace();
+      state.paywallAb = { ...defaultPaywallAbState(), state: 'ready', exists: workspace?.exists === true, doc: workspace?.config && typeof workspace.config === 'object' ? workspace.config : {}, history: Array.isArray(workspace?.history) ? workspace.history : [], draft: paywallAbDraftFromDoc(workspace?.config, { exists: workspace?.exists === true }), publishedAtMs: Number(result?.updatedAt ?? Date.now()) };
+    }, 'Доли пейволов опубликованы и записаны в журнал.');
+  }
+  if (action === 'load-paywall-ab-stats' || action === 'paywall-ab-stats-range') {
+    if (!can('money.read')) return setMessage('Статистика вариантов доступна с правом чтения денежных показателей (money.read).', 'warning');
+    if (action === 'paywall-ab-stats-range') {
+      const requestedRange = Number(target?.getAttribute('data-range-days'));
+      if (![7, 30, 90].includes(requestedRange)) return;
+      if (state.paywallAbStats.rangeDays !== requestedRange) {
+        state.paywallAbStats = { ...state.paywallAbStats, rangeDays: requestedRange, state: 'idle', report: null };
+      }
+    }
+    state.paywallAbStats = { ...state.paywallAbStats, state: 'loading', error: '' };
+    renderCurrentPage();
+    return runBusy(async () => {
+      try {
+        const report = await actions.getPaywallVariantStats({ rangeDays: state.paywallAbStats.rangeDays });
+        state.paywallAbStats = { ...state.paywallAbStats, state: 'ready', report: report && typeof report === 'object' ? report : null, error: '', fetchedAtMs: Date.now() };
+      } catch (error) {
+        state.paywallAbStats = { ...state.paywallAbStats, state: 'error', error: errorMessage(error) };
+      }
+    }, 'Статистика вариантов обновлена.');
   }
   if (action === 'load-factory-jobs') return runBusy(async () => { await loadJobs(); state.factoryStep = 2; }, 'Черновики загружены.');
   if (action === 'load-content-stages') return runBusy(() => loadContentStages(), 'Очередь независимых стадий обновлена.');
@@ -4439,7 +5840,63 @@ async function handleAction(action, target) {
       return results;
     });
   }
+  if (action === 'select-plan') {
+    const index = Number(target.getAttribute('data-plan-index') || 0);
+    state.plans = { ...state.plans, selectedIndex: index };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'open-plan-form') {
+    state.plans = { ...state.plans, formOpen: true };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'close-plan-form') {
+    state.plans = { ...state.plans, formOpen: false };
+    renderCurrentPage();
+    return;
+  }
+  if (action === 'load-plans') return runBusy(loadPlans, 'Архив планов загружен.');
+  if (action === 'create-plan') {
+    const sourceHash = String(document.getElementById('plan-source-hash')?.value || '').trim();
+    const actionCodes = [...document.querySelectorAll('[data-plan-action-code]:checked')]
+      .map((input) => String(input.getAttribute('data-plan-action-code') || ''))
+      .filter(Boolean);
+    if (!/^[a-f0-9]{64}$/.test(sourceHash)) return setMessage('Введите SHA-256 хеш сводки: 64 строчных шестнадцатеричных символа.', 'warning');
+    if (!actionCodes.length) return setMessage('Выберите хотя бы одно действие плана.', 'warning');
+    const input = {
+      idempotencyKey: `plan-${globalThis.crypto?.randomUUID?.() || `${Date.now()}-${Math.random().toString(36).slice(2)}`}`,
+      planKind: document.getElementById('plan-kind')?.value || 'reliability',
+      priority: document.getElementById('plan-priority')?.value || 'normal',
+      expectedEffect: document.getElementById('plan-effect')?.value || 'reduce_failures',
+      source: { kind: 'director_digest', ref: `director_digest:sha256:${sourceHash}` },
+      actionCodes,
+    };
+    if (planSourceHashAlreadyLinked(sourceHash)) return setMessage('План по этому сигналу уже создан. Обновите список планов.', 'warning');
+    if (!globalThis.confirm('Создать план на сервере? Будет сохранён только структурированный код действия и SHA-256 ссылка на сводку.')) return;
+    return runBusy(async () => {
+      await actions.createPlan(input);
+      state.digestPlanDraft = null;
+      state.plans = { ...state.plans, formOpen: false };
+      await loadPlans();
+    }, 'План сохранён. Заголовок, описание и шаги заданы сервером.');
+  }
   if (action === 'load-asset-jobs') return runBusy(loadAssetJobs, 'Очередь ассетов загружена.');
+  if (action === 'load-coin-center') return runBusy(loadCoinCenter, 'Данные биржи обновлены.');
+  if (action === 'set-coin-exchange-rate') {
+    const exchange = state.coinCenter.exchange;
+    const { min, max } = coinCenterCorridor();
+    const rate = Number(String(document.getElementById('coin-rate-value')?.value ?? '').replace(',', '.'));
+    if (!Number.isFinite(rate) || rate <= 0) return setMessage('Укажите курс: положительное число звёзд за 1 монету.', 'warning');
+    if (min > 0 && max >= min && (rate < min || rate > max)) return setMessage(`Курс вне объявленного коридора ${metricValue(min)} – ${metricValue(max)} звёзд. Сервер такое значение не примет.`, 'warning');
+    const reason = readTextInput('coin-rate-reason', 500);
+    if (!reason) return setMessage('Укажите причину изменения курса: она обязательна для аудита.', 'warning');
+    if (!globalThis.confirm(`Установить ручной курс: 1 монета = ${metricValue(rate)} звёзд?\n\nПричина: ${reason}\n\nКурс применится сразу для всех пользователей и будет действовать до следующего автоматического пересчёта (раз в сутки, максимум ±10%).${exchange?.manualOverride ? `\n\nТекущий ручной курс ${metricValue(exchange.manualOverride.rate)} будет заменён.` : ''}`)) return;
+    return runBusy(async () => {
+      await actions.setCoinExchangeRate({ rate, reason, idempotencyKey: id('coin-rate'), requestId: id('coin-rate-request') });
+      await loadCoinCenter();
+    }, 'Ручной курс установлен и записан в аудит.');
+  }
   if (action === 'create-asset-job') {
     const input = {
       kind: document.getElementById('asset-kind')?.value || 'generic',
@@ -4676,7 +6133,7 @@ async function handleClick(event) {
   const capabilityId = target.getAttribute('data-capability-id');
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
-    if (capability) globalThis.location.hash = capability.nativeRoute || `${capability.route}:${capability.id}`;
+    if (capability) globalThis.location.hash = capability.nativeRoute;
     return;
   }
   const supportFilter = target.getAttribute('data-support-filter');
@@ -4697,9 +6154,7 @@ export function setAdminActions(nextActions) {
   actions = nextActions;
   actionsReady = true;
   if (state.authorized && state.route === 'content' && can('content.read') && ['idle', 'error'].includes(state.contentStages.capabilitiesState)) { state.contentStages = { ...state.contentStages, capabilitiesState: 'idle' }; void ensureContentCapabilities().then(renderCurrentPage); }
-  if (state.authorized && state.route === 'agent-manager' && state.adminRole === 'owner' && ['idle', 'error'].includes(state.agentManager.state)) void loadAgentManager().catch(() => {});
-  maybeLoadOperationalBriefing();
-  maybeLoadOverviewAnalyticsTrends();
+  refreshCurrentRouteReadModels();
 }
 
 export function setAuthState(auth) {
@@ -4753,35 +6208,48 @@ export function setAuthState(auth) {
     state.preview = null;
     state.message = '';
     state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
+    stopDirectorDigestAudio();
+    state.directorDigest = { state: 'idle', digest: null, rangeDays: 7, error: '', fetchedAtMs: 0, audio: { state: 'idle', current: 0, total: 0, error: '' } };
     state.reports = defaultReportState(state.adminSettings);
     state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
     state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
     state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
+    state.plans = { state: 'idle', items: [], error: '' };
+    state.digestPlanDraft = null;
+    state.digestPlanSourceHashes = {};
     state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
     state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
-    state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
+    state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], aggregateHealth: [], showAudit: false, error: '', fetchedAtMs: 0 };
     state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 };
   }
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
+  if (!state.authorized || !can('briefing.read') || state.adminRole !== 'owner') { stopDirectorDigestAudio(); state.directorDigest = { state: 'idle', digest: null, rangeDays: 7, error: '', fetchedAtMs: 0, audio: { state: 'idle', current: 0, total: 0, error: '' } }; }
   if (!state.authorized || !can('reports.read')) state.reports = defaultReportState(state.adminSettings);
   if (!state.authorized || !can('money.read')) state.analytics = { status: 'idle', snapshot: null, error: '' };
+  if (!state.authorized || !can('money.read')) state.coinCenter = defaultCoinCenterState();
   if (!state.authorized || !can('money.read')) state.analyticsTrends = createAnalyticsTrendScopesState();
   if (!state.authorized || !can('money.read')) state.analyticsTrendsDraft = defaultAnalyticsTrendsDraft();
   if (!state.authorized || !can('diagnostics.read')) state.audit = { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' };
   if (!state.authorized || !can('diagnostics.read')) state.ops = { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' };
+  if (!state.authorized || state.adminRole !== 'owner') {
+    state.plans = { state: 'idle', items: [], error: '' };
+    state.digestPlanDraft = null;
+    state.digestPlanSourceHashes = {};
+  }
   if (!state.authorized || !can('content.read')) state.assetStudio = { state: 'idle', items: [], selectedJobId: '', error: '' };
   if (!state.authorized || !can('money.read')) state.promo = { state: 'idle', codes: [], redemptions: [], generatedCodes: [], preview: null, error: '' };
   if (!state.authorized || !can('campaigns.read')) state.campaigns = { state: 'idle', items: [], preview: null, error: '' };
-  if (!state.authorized || !can('briefing.read')) state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], showAudit: false, error: '', fetchedAtMs: 0 };
+  if (!state.authorized || !can('briefing.read')) state.agentOffice = { state: 'idle', cases: [], selectedCaseId: '', item: null, recommendations: [], auditEvents: [], aggregateHealth: [], showAudit: false, error: '', fetchedAtMs: 0 };
   if (!state.authorized || state.adminRole !== 'owner') state.agentManager = { state: 'idle', tasks: [], agents: [], runbooks: [], pairing: null, error: '', fetchedAtMs: 0 };
   if (!state.authorized || !can('campaigns.read')) state.broadcasts = { state: 'idle', items: [], preview: null, error: '' };
+  if (!state.authorized || !can('application.config.write')) state.paywallAb = defaultPaywallAbState();
+  if (!state.authorized || !can('money.read')) state.paywallAbStats = defaultPaywallAbStatsState();
   renderCurrentPage();
   if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
-  maybeLoadOperationalBriefing();
-  maybeLoadOverviewAnalyticsTrends();
+  refreshCurrentRouteReadModels();
 }
 
 export function renderRoute(route, capabilityId = '') {
@@ -4793,17 +6261,12 @@ export function renderRoute(route, capabilityId = '') {
   const previousRoute = state.route;
   state.route = PAGES[requestedRoute] ? requestedRoute : 'overview';
   if (!state.adminSettings.rememberSectionFilters && previousRoute !== state.route) resetEphemeralSectionFilters(state.route);
-  const capability = capabilityById(capabilityId);
-  state.selectedCapabilityId = capability?.route === state.route && !capability.nativeRoute ? capability.id : '';
+  state.selectedCapabilityId = '';
   renderCurrentPage();
   if (actionsReady && state.route === 'content' && state.authorized && can('content.read') && state.contentStages.capabilitiesState === 'idle') {
     void ensureContentCapabilities().then(renderCurrentPage);
   }
-  if (actionsReady && state.route === 'agent-manager' && state.authorized && state.adminRole === 'owner' && ['idle', 'error'].includes(state.agentManager.state)) {
-    void loadAgentManager().catch(() => {});
-  }
-  maybeLoadOperationalBriefing();
-  maybeLoadOverviewAnalyticsTrends();
+  refreshCurrentRouteReadModels();
 }
 
 function handleContentStudioInput(event) {
@@ -4836,6 +6299,50 @@ function handleContentStudioChange(event) {
   if (target.hasAttribute('data-content-dependency-id')) state.contentStages = { ...state.contentStages, selectedDependencyIds: [...document.querySelectorAll('[data-content-dependency-id]:checked')].map((input) => String(input.getAttribute('data-content-dependency-id'))) };
 }
 
+function handleCoinCenterChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLSelectElement) || target.id !== 'coin-center-range-days') return;
+  const days = [30, 60, 90].includes(Number(target.value)) ? Number(target.value) : 30;
+  if (days === state.coinCenter.rangeDays) return;
+  state.coinCenter = { ...state.coinCenter, rangeDays: days };
+  if (actionsReady && state.authorized && can('money.read')) void loadCoinCenter().catch(() => {});
+  else renderCurrentPage();
+}
+
+function handlePaywallAbInput(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  const draft = state.paywallAb.draft;
+  if (!draft || state.paywallAb.preview) return;
+  const sliderLetter = target.getAttribute('data-paywall-ab-slider');
+  if (sliderLetter) {
+    redistributePaywallAbShares(draft, sliderLetter, target.value);
+    syncPaywallAbDom();
+    return;
+  }
+  const field = target.getAttribute('data-paywall-ab-field');
+  if (field === 'rating') {
+    const value = Number(target.value);
+    draft.ratingX10 = Number.isFinite(value) ? Math.max(0, Math.min(50, Math.round(value * 10))) : 0;
+    return;
+  }
+  if (field === 'count') {
+    const value = Number(target.value);
+    draft.ratingsCount = Number.isFinite(value) ? Math.max(0, Math.round(value)) : 0;
+    return;
+  }
+  if (field === 'salt') draft.salt = target.value.trim().slice(0, 40);
+}
+
+function handlePaywallAbChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement)) return;
+  const letter = target.getAttribute('data-paywall-ab-enabled');
+  if (!letter || !state.paywallAb.draft || state.paywallAb.preview) return;
+  togglePaywallAbVariant(state.paywallAb.draft, letter, target.checked);
+  renderCurrentPage();
+}
+
 export function initAdminUi() {
   if (initialized) return;
   initialized = true;
@@ -4845,10 +6352,14 @@ export function initAdminUi() {
   document.addEventListener('change', handleAdminSettingsChange);
   document.addEventListener('change', handleContentStudioChange);
   document.addEventListener('change', handleAnalyticsTrendsControlChange);
+  document.addEventListener('change', handleCoinCenterChange);
+  document.addEventListener('change', handleDirectorDigestChange);
   document.addEventListener('input', handleReportFilterInput);
   document.addEventListener('input', handleAdminSettingsChange);
   document.addEventListener('input', handleContentStudioInput);
   document.addEventListener('input', handleAnalyticsTrendsControlChange);
+  document.addEventListener('input', handlePaywallAbInput);
+  document.addEventListener('change', handlePaywallAbChange);
   document.addEventListener('keydown', (event) => {
     const target = event.target;
     const editable = target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement || target?.isContentEditable;
@@ -4912,6 +6423,14 @@ export function initAdminUi() {
     if (!adminSettingsDirty()) return;
     event.preventDefault();
     event.returnValue = '';
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState !== 'visible') return;
+    refreshCurrentRouteReadModels();
+  });
+  globalThis.addEventListener?.('pageshow', () => {
+    if (document.visibilityState !== 'visible') return;
+    refreshCurrentRouteReadModels();
   });
   document.getElementById('mobile-nav-toggle')?.addEventListener('click', () => setMobileNavOpen(!document.body.classList.contains('nav-open')));
   document.getElementById('mobile-nav-backdrop')?.addEventListener('click', closeMobileNav);

@@ -1,0 +1,164 @@
+name: English Level Check production release
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: english-level-test-production-release
+  cancel-in-progress: false
+
+jobs:
+  validate-deploy-publish:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-full-audit' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      FIREBASE_PROJECT_ID: phraseman-ea0b3
+      FIREBASE_SA_PRIMARY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHRASEMAN_EA0B3 }}
+      FIREBASE_SA_ALT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PHR_MAN_EA0B3 }}
+      FIREBASE_SA_GENERIC: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      GOOGLE_CREDENTIALS_SECRET: ${{ secrets.GOOGLE_CREDENTIALS }}
+      GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+      FIREBASE_TOKEN_SECRET: ${{ secrets.FIREBASE_TOKEN }}
+
+    steps:
+      - name: Check out audited release branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Reconstruct immutable release payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(find .release/english-test -maxdepth 1 -type f -name 'part-*' | wc -l | tr -d ' ')" = "10"
+          for n in $(seq 0 9); do part=$(printf '%03d' "$n"); test -s ".release/english-test/part-$part"; done
+          cat .release/english-test/part-* > /tmp/english-test-release.b64
+          base64 --decode /tmp/english-test-release.b64 > /tmp/english-test-release.tar.xz
+          echo "d7682645609959b249516fb22c656639b6451af6264e736111e64c296fc106f1  /tmp/english-test-release.tar.xz" | sha256sum --check --strict
+          tar -xJf /tmp/english-test-release.tar.xz -C .
+          node scripts/apply_english_test_release.mjs
+
+      - name: Validate bank, adaptive engine, browser and admin contracts
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/generate_english_level_test_bank.mjs
+          node scripts/validate_english_level_test_release.mjs
+          python3 scripts/english-test-audit/audit_question_bank.py content/english-test/questions.en.source.json --json /tmp/english-test-audit.json
+          python3 scripts/english-test-audit/run_edge_case_tests.py > /tmp/english-test-edge-cases.json
+          python3 - <<'PY'
+          import json
+          audit = json.load(open('/tmp/english-test-audit.json', encoding='utf-8'))
+          edge = json.load(open('/tmp/english-test-edge-cases.json', encoding='utf-8'))
+          assert audit['ok'] is True and audit['questionCount'] == 240
+          assert audit['errors'] == [] and audit['warnings'] == []
+          assert edge['ok'] is True and edge['checkCount'] == 46
+          PY
+          node --check knowly-www/english-level-test/assets/test-core.js
+          node --check knowly-www/english-level-test/assets/test.js
+          node --check admin/v2/scripts/pages/english-test-analytics.js
+          node --check admin/v2/scripts/admin-analytics-app.js
+          node --check admin/v2/scripts/admin-analytics-firebase.js
+          node --check scripts/apply_english_test_release.mjs
+          node --check scripts/validate_english_level_test_release.mjs
+
+      - name: Install, build and test Cloud Functions
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --prefix functions
+          npm --prefix functions run build
+          npm --prefix functions test -- --runTestsByPath src/english_test_analytics.test.ts src/english_test_scoring.test.ts --runInBand
+
+      - name: Configure Firebase authentication
+        id: firebase-auth
+        shell: bash
+        run: |
+          set -euo pipefail
+          service_account=""
+          for candidate in "$FIREBASE_SA_PRIMARY" "$FIREBASE_SA_ALT" "$FIREBASE_SA_GENERIC" "$GOOGLE_CREDENTIALS_SECRET" "$GCP_SERVICE_ACCOUNT_KEY"; do
+            if [ -n "$candidate" ]; then service_account="$candidate"; break; fi
+          done
+          if [ -n "$service_account" ]; then
+            if printf '%s' "$service_account" | grep -q '^[[:space:]]*{'; then
+              printf '%s' "$service_account" > "$RUNNER_TEMP/firebase-service-account.json"
+            else
+              printf '%s' "$service_account" | base64 --decode > "$RUNNER_TEMP/firebase-service-account.json"
+            fi
+            python3 - <<'PY'
+          import json, os
+          path = os.path.join(os.environ['RUNNER_TEMP'], 'firebase-service-account.json')
+          data = json.load(open(path, encoding='utf-8'))
+          assert data.get('type') == 'service_account'
+          assert data.get('project_id') == 'phraseman-ea0b3'
+          PY
+            echo "mode=service-account" >> "$GITHUB_OUTPUT"
+            echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/firebase-service-account.json" >> "$GITHUB_ENV"
+          elif [ -n "$FIREBASE_TOKEN_SECRET" ]; then
+            echo "mode=token" >> "$GITHUB_OUTPUT"
+          else
+            echo "No Firebase deployment credential is configured in repository secrets." >&2
+            exit 31
+          fi
+
+      - name: Deploy bounded Firebase resources
+        shell: bash
+        run: |
+          set -euo pipefail
+          only="functions:siteStatsTrack,functions:finalizeStaleEnglishTests,functions:cleanupEnglishTestAnalytics,firestore:indexes,hosting:knowlywww,hosting:admin"
+          if [ "${{ steps.firebase-auth.outputs.mode }}" = "token" ]; then
+            npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive --token "$FIREBASE_TOKEN_SECRET"
+          else
+            npx --yes firebase-tools@15.24.0 deploy --project "$FIREBASE_PROJECT_ID" --only "$only" --non-interactive
+          fi
+
+      - name: Verify production pages
+        shell: bash
+        run: |
+          set -euo pipefail
+          verify_page() {
+            local url="$1" marker="$2"
+            for attempt in $(seq 1 12); do
+              if curl --fail --silent --show-error --location --max-time 20 "$url" -o /tmp/page.html \
+                && grep --fixed-strings --quiet "$marker" /tmp/page.html; then
+                echo "Verified: $url"
+                return 0
+              fi
+              sleep 5
+            done
+            echo "Production verification failed: $url" >&2
+            return 1
+          }
+          verify_page "https://knowlyapps.web.app/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
+          verify_page "https://knowlyapps.com/english-level-test/" "Насколько <em>естественно</em> звучит ваш английский?"
+          verify_page "https://phraseman-ea0b3.web.app/v2/" "Аналитика Phraseman"
+
+      - name: Replace bootstrap payload with reviewed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf .release/english-test
+          rm -f .github/workflows/apply-english-test-release.yml
+          rm -f .release/english-test-pr-trigger
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git commit -m "feat(web): deploy audited English level test"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}

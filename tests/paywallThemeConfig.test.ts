@@ -7,10 +7,12 @@ import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
+  'candyBlue', 'indigo', 'vanilla',
 ];
 
 const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
+  'candyBlue', 'indigo', 'vanilla',
 ];
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [
@@ -107,7 +109,7 @@ describe('PAYWALL_THEME_CONFIG — тематическая корректнос
 
   it('coral: CTA красно-коралловый', () => {
     const { ctaBg, ctaText } = PAYWALL_THEME_CONFIG.coral;
-    expect(ctaBg.toLowerCase()).toContain('ff6464');
+    expect(ctaBg.toLowerCase()).toContain('ff7f50');
     // На красном фоне — белый текст
     expect(ctaText.toLowerCase()).toContain('ffffff');
   });

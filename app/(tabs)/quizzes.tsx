@@ -205,6 +205,9 @@ const THEME_TEXT: Record<QuizVisualThemeMode, { primary: string; secondary: stri
   ember:    { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   aurora:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
   volt:     { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.66)' },
+  candyBlue: { primary: '#EAF4F8', secondary: '#9DB9C4' },
+  indigo:   { primary: '#F1EFFF', secondary: '#B7B3D9' },
+  vanilla:  { primary: '#2A2118', secondary: '#6F6350' },
   ocean:  { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)'  },
   sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)'  },
 };

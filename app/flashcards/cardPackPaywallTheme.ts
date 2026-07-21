@@ -318,6 +318,10 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   ember: shellOnboardingGraphite(),
   aurora: shellOnboardingGraphite(),
   volt: shellOnboardingGraphite(),
+  // Новые темы: тёмные — графитовая оболочка, светлая «Ванилла» — светлая оболочка.
+  candyBlue: shellOnboardingGraphite(),
+  indigo: shellOnboardingGraphite(),
+  vanilla: shellBusinessLight(),
 };
 
 // ─── Легкі «смаки» категорії (набір) поверх оболонки теми ────────────────────

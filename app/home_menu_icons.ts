@@ -19,7 +19,9 @@ export type HomeMenuImageSet = {
 };
 
 export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
-  if (themeMode === 'minimalDark') {
+  if (themeMode === 'minimalDark' || themeMode === 'candyBlue' || themeMode === 'indigo' || themeMode === 'vanilla') {
+    // Новые темы (candyBlue/indigo/vanilla) переиспользуют набор minimalDark,
+    // пока для них нет собственных ассетов (fallback как у business).
     return {
       lesson: require('../assets/images/home_menu/home-minimal-dark-lessons.webp'),
       cards: require('../assets/images/home_menu/home-minimal-dark-cards.webp'),

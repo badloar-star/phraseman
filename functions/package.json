@@ -13,7 +13,8 @@
     "deploy:telegram-premium": "node ../scripts/deploy_lock_guard.mjs && npm run build && firebase deploy --only functions:telegramPremiumWebhook",
     "test": "jest --no-coverage",
     "test:content-factory-emulator": "jest --no-coverage --runInBand --detectOpenHandles src/content_factory/emulator",
-    "quality:prompt-regression": "npm run build && node ../scripts/run-content-prompt-regression.mjs"
+    "quality:prompt-regression": "npm run build && node ../scripts/run-content-prompt-regression.mjs",
+    "test:emulator:v2-authoring-rules": "firebase emulators:exec --config ../firebase.json --only firestore --project demo-phraseman-rules --log-verbosity QUIET \"jest --config jest.emulator.config.js --runTestsByPath src/content_studio/emulator/v2_authoring_rules.emulator.test.ts --no-cache --runInBand\""
   },
   "dependencies": {
     "@google-cloud/bigquery": "^8.3.1",
@@ -27,10 +28,13 @@
   },
   "devDependencies": {
     "@types/archiver": "^6.0.4",
+    "@firebase/rules-unit-testing": "5.0.1",
     "@types/jest": "^30.0.0",
     "@types/mailparser": "^3.4.6",
     "@types/node": "^22.0.0",
     "@types/nodemailer": "^8.0.1",
+    "firebase": "12.16.0",
+    "firebase-tools": "15.23.0",
     "jest": "^30.3.0",
     "ts-jest": "^29.4.9",
     "typescript": "^5.0.0"

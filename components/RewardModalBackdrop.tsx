@@ -146,6 +146,12 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#111905', '#1B2608', '#050702'];
     case 'minimalDark':
       return ['#0F141C', '#0A0D13', '#030508'];
+    case 'candyBlue':
+      return ['#0B161B', '#122229', '#04090C'];
+    case 'indigo':
+      return ['#14131F', '#1C1B2E', '#060510'];
+    case 'vanilla':
+      return ['#F3E9D2', '#EDE1C6', '#D8C8A4'];
     case 'dark':
     default:
       return ['#15231A', '#0A120E', '#040906'];
@@ -170,6 +176,12 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#C8F336';
     case 'minimalDark':
       return '#6EA8FF';
+    case 'candyBlue':
+      return '#B2D5E5';
+    case 'indigo':
+      return '#C8C3FF';
+    case 'vanilla':
+      return '#3D4E8F';
     case 'dark':
     default:
       return t.gold;
@@ -195,6 +207,12 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(200,243,54,0.34)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.30)';
+    case 'candyBlue':
+      return 'rgba(178,213,229,0.30)';
+    case 'indigo':
+      return 'rgba(200,195,255,0.30)';
+    case 'vanilla':
+      return 'rgba(61,78,143,0.30)';
     case 'dark':
     default:
       return 'rgba(88,204,137,0.30)';
@@ -219,6 +237,12 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(200,243,54,0.09)';
     case 'minimalDark':
       return 'rgba(110,168,255,0.08)';
+    case 'candyBlue':
+      return 'rgba(178,213,229,0.08)';
+    case 'indigo':
+      return 'rgba(200,195,255,0.08)';
+    case 'vanilla':
+      return 'rgba(61,78,143,0.08)';
     case 'dark':
     default:
       return 'rgba(255,255,255,0.055)';
@@ -243,6 +267,12 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#ECFCCB', '#A3E635'];
     case 'minimalDark':
       return ['#D7E7FF', '#6EA8FF'];
+    case 'candyBlue':
+      return ['#E4F2F8', '#B2D5E5'];
+    case 'indigo':
+      return ['#ECEAFF', '#C8C3FF'];
+    case 'vanilla':
+      return ['#5A6CAA', '#3D4E8F'];
     case 'dark':
     default:
       return ['#F0F7F2', '#8FE5AD'];
@@ -316,6 +346,12 @@ function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, strin
       return ['#22320A', '#101805', '#030501'];
     case 'minimalDark':
       return ['#101824', '#090D15', '#020407'];
+    case 'candyBlue':
+      return ['#122229', '#0B161B', '#020506'];
+    case 'indigo':
+      return ['#1C1B2E', '#14131F', '#040309'];
+    case 'vanilla':
+      return ['#FFFDF4', '#F4EBD4', '#DCCDA8'];
     case 'dark':
     default:
       return ['#0F2718', '#07110C', '#020503'];
@@ -340,6 +376,12 @@ function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, 
       return ['#2B3C0B', '#182206', '#050701'];
     case 'minimalDark':
       return ['#152032', '#0A101B', '#030508'];
+    case 'candyBlue':
+      return ['#1C323B', '#0E1C22', '#020506'];
+    case 'indigo':
+      return ['#2A2952', '#16152A', '#040309'];
+    case 'vanilla':
+      return ['#FFFDF4', '#F6EEDA', '#E2D4B2'];
     case 'dark':
     default:
       return ['#13301D', '#0A150F', '#030604'];

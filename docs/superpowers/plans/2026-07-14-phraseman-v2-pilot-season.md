@@ -108,7 +108,7 @@ npx jest --runTestsByPath tests/learning_v2_identity_contract.test.ts --no-cache
 - `tests/learning_v2_decision_registry.test.ts`
 - `functions/src/content_studio/decision_registry.test.ts`
 
-**Contract:** implement exact spec 08 §6.2 `DecisionRegistryBody` with the eight discriminated `HYP-V2-001..008` setting shapes, immutable `DecisionRegistryRecord {ref: VersionRef, object, createdAt}` and resolved pair. Body has no own hash/object/time; `ref.id/version` equal body identity and `ref.contentHash = hashCanonicalBody(body) = object.contentHash`. Storage is immutable and content-addressed.
+**Contract:** implement exact spec 08 §6.2 `DecisionRegistryBody` with the eight discriminated `HYP-V2-001..008` setting shapes, immutable `DecisionRegistryRecord {ref: VersionRef, object, createdAt}` and resolved pair. Body has no own hash/object/time; `ref.id/version` equal body identity and `ref.contentHash = hashCanonicalBody(body) = object.contentHash`. Storage is immutable and content-addressed. `HYP-V2-006` carries independent `maxBoostsPerGate`, `maxBoostsPerChapter` and `maxBoostsPerSeason` values; none may be inferred from another. Version 1 remains internal-only at `HYP-V2-008` rollout 0% until a powered experiment passport publishes a new registry version.
 
 **Test first:** shared client/Functions fixture and ordered issue-code corpus cover exact eight-key completeness, map-key/decisionId match, finite ranges/fractions, unique increasing ordinals/milestones, derived star/gate totals, hash/object mismatch, missing/unknown setting and forbidden latest-version resolution. Both runtimes must produce the same canonical bytes/hash and the same accept/reject results.
 

@@ -13,7 +13,7 @@ describe('ThemeContext default theme', () => {
   });
 
   it('keeps Midnight free, moves other non-reward themes behind Premium, and leaves Gold reward-only', () => {
-    expect(source).toContain("const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt']");
+    expect(source).toContain("const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'vanilla']");
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*\}/);
     expect(settingsThemesSource).not.toMatch(/\{\s*mode: 'midnight'[^}]*premiumOnly: true/);
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'minimalDark'[^}]*premiumOnly: true/);

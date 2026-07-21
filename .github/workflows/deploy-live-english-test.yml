@@ -2,17 +2,13 @@ name: Deploy live English Level Test
 
 on:
   pull_request:
-    branches:
-      - master
-    types:
-      - opened
-      - synchronize
-      - reopened
+    branches: [master]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
-  id-token: write
   pull-requests: write
+  id-token: write
 
 concurrency:
   group: english-level-test-live-production
@@ -28,17 +24,17 @@ jobs:
     timeout-minutes: 55
     env:
       FIREBASE_PROJECT_ID: phraseman-ea0b3
-      RELEASE_SHA256: 6415de5720874b19028f8fb5b3b1687b573523cdbd2826d31687a04c234eff2d
+      RELEASE_SHA256: a752ee8af401486948184d422e69c012f90f52eceddd6e8cf69f96669b93a26e
 
     steps:
-      - name: Check out immutable payload branch
+      - name: Check out payload branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 1
           path: payload
 
-      - name: Check out current production branch
+      - name: Check out current master
         uses: actions/checkout@v4
         with:
           ref: master
@@ -46,147 +42,33 @@ jobs:
           token: ${{ github.token }}
           path: production
 
-      - name: Detect completed release
-        id: state
-        working-directory: production
-        shell: bash
-        run: |
-          if [[ -f .english-test-live-release ]]; then
-            echo 'skip=true' >> "$GITHUB_OUTPUT"
-            echo 'The verified release marker already exists.'
-          else
-            echo 'skip=false' >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Use Node.js 22
-        if: steps.state.outputs.skip != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '22'
 
-      - name: Materialise reviewed source
-        if: steps.state.outputs.skip != 'true'
+      - name: Reconstruct and apply reviewed release
         working-directory: production
         shell: bash
         run: |
           set -euo pipefail
           test -s ../payload/.english-test-live/manifest.json
-          test "$(find ../payload/.english-test-live -maxdepth 1 -type f -name 'payload.part*' | wc -l | tr -d ' ')" = '12'
-          cat ../payload/.english-test-live/payload.part* > "$RUNNER_TEMP/english-test-live-release.b64"
-          base64 --decode "$RUNNER_TEMP/english-test-live-release.b64" > "$RUNNER_TEMP/english-test-live-release.tar.xz"
-          echo "$RELEASE_SHA256  $RUNNER_TEMP/english-test-live-release.tar.xz" | sha256sum --check --strict
-          xz --test "$RUNNER_TEMP/english-test-live-release.tar.xz"
-          tar -tJf "$RUNNER_TEMP/english-test-live-release.tar.xz" > "$RUNNER_TEMP/english-test-live-files.txt"
+          test "$(find ../payload/.english-test-live -maxdepth 1 -type f -name 'payload.part*' | wc -l | tr -d ' ')" = '8'
+          cat ../payload/.english-test-live/payload.part* > "$RUNNER_TEMP/english-test-live.b64"
+          base64 --decode "$RUNNER_TEMP/english-test-live.b64" > "$RUNNER_TEMP/english-test-live.tar.xz"
+          echo "$RELEASE_SHA256  $RUNNER_TEMP/english-test-live.tar.xz" | sha256sum --check --strict
+          xz --test "$RUNNER_TEMP/english-test-live.tar.xz"
+          tar -tJf "$RUNNER_TEMP/english-test-live.tar.xz" > "$RUNNER_TEMP/english-test-live-files.txt"
           sed -n '1,120p' "$RUNNER_TEMP/english-test-live-files.txt"
-          tar -xJf "$RUNNER_TEMP/english-test-live-release.tar.xz" -C .
+          tar -xJf "$RUNNER_TEMP/english-test-live.tar.xz" -C .
+          node scripts/apply_english_test_live_release.mjs
+          node scripts/sync-legal-html.mjs
           test -s knowly-www/english-level-test/index.html
-          test -s knowly-www/english-level-test/app.js
-          test -s knowly-www/english-level-test/questions.en.json
           test -s admin/v2/english-test.html
           test -s functions-english-test/index.js
+          test -s functions-english-test/questions.en.json
 
-      - name: Integrate Firebase, navigation, sitemap and privacy
-        if: steps.state.outputs.skip != 'true'
-        working-directory: production
-        shell: bash
-        run: |
-          set -euo pipefail
-          node <<'NODE'
-          const fs = require('node:fs');
-          const read = (file) => fs.readFileSync(file, 'utf8');
-          const write = (file, value) => fs.writeFileSync(file, value, 'utf8');
-          const writeJson = (file, value) => write(file, `${JSON.stringify(value, null, 2)}\n`);
-          function insertOnce(file, marker, insertion, sentinel) {
-            let text = read(file);
-            if (text.includes(sentinel)) return;
-            const index = text.indexOf(marker);
-            if (index < 0) throw new Error(`Integration marker not found in ${file}: ${marker}`);
-            text = text.slice(0, index) + insertion + text.slice(index);
-            write(file, text);
-          }
-
-          const firebase = JSON.parse(read('firebase.json'));
-          const currentFunctions = Array.isArray(firebase.functions)
-            ? firebase.functions
-            : firebase.functions ? [firebase.functions] : [];
-          const functionEntries = currentFunctions.map((entry, index) => ({
-            ...entry,
-            ...(entry.codebase ? {} : { codebase: index === 0 ? 'default' : `codebase-${index}` }),
-          }));
-          if (!functionEntries.some((entry) => entry.codebase === 'english-test')) {
-            functionEntries.push({
-              source: 'functions-english-test',
-              codebase: 'english-test',
-              runtime: 'nodejs22',
-              ignore: ['node_modules', '.git', 'firebase-debug.log', 'firebase-debug.*.log'],
-            });
-          }
-          firebase.functions = functionEntries;
-          const publicHosting = Array.isArray(firebase.hosting)
-            ? firebase.hosting.find((entry) => entry && entry.target === 'knowlywww')
-            : null;
-          if (!publicHosting) throw new Error('Firebase Hosting target knowlywww is missing.');
-          publicHosting.rewrites ||= [];
-          if (!publicHosting.rewrites.some((entry) => entry?.source === '/api/english-test')) {
-            publicHosting.rewrites.unshift({
-              source: '/api/english-test',
-              function: { functionId: 'englishTestApi', region: 'us-central1' },
-            });
-          }
-          publicHosting.headers ||= [];
-          if (!publicHosting.headers.some((entry) => entry?.source === '/english-level-test/questions.en.json')) {
-            publicHosting.headers.push({
-              source: '/english-level-test/questions.en.json',
-              headers: [{ key: 'Cache-Control', value: 'public, max-age=3600, must-revalidate' }],
-            });
-          }
-          writeJson('firebase.json', firebase);
-
-          const pkg = JSON.parse(read('package.json'));
-          pkg.scripts ||= {};
-          Object.assign(pkg.scripts, {
-            'english-test:check': 'node --check knowly-www/english-level-test/app.js && node --check admin/v2/scripts/pages/english-test-standalone.js && npm test --prefix functions-english-test',
-            'english-test:deploy': 'npx firebase-tools deploy --project phraseman-ea0b3 --only functions:english-test,hosting:knowlywww,hosting:admin --non-interactive',
-          });
-          writeJson('package.json', pkg);
-
-          insertOnce(
-            'admin/v2/index.html',
-            '        <a href="#monthly" title="Ежемесячный пакет решений">Пакет решений</a>\n',
-            '        <a href="/v2/english-test.html" title="Аналитика веб‑теста английского">Веб‑тест</a>\n',
-            'href="/v2/english-test.html"',
-          );
-          insertOnce(
-            'knowly-www/index.html',
-            '        <a href="/guides/">Гайды</a>\n',
-            '        <a href="/english-level-test/">Тест уровня</a>\n',
-            'href="/english-level-test/"',
-          );
-          insertOnce(
-            'knowly-www/sitemap.xml',
-            '  <url>\n    <loc>https://knowlyapps.com/guides/</loc>',
-            '  <url>\n    <loc>https://knowlyapps.com/english-level-test/</loc>\n    <lastmod>2026-07-21</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.9</priority>\n  </url>\n',
-            'https://knowlyapps.com/english-level-test/',
-          );
-
-          const privacyFile = 'legal/privacy_policy_en.json';
-          const privacy = JSON.parse(read(privacyFile));
-          if (!Array.isArray(privacy) || !privacy.length) throw new Error('Canonical privacy policy is invalid.');
-          privacy[0].body = String(privacy[0].body || '').replace(/Last updated:\s*[^\n]+/i, 'Last updated: July 21, 2026');
-          if (!privacy.some((section) => section.heading === '10A. Website English Level Check')) {
-            const analyticsIndex = privacy.findIndex((section) => /^10\. Analytics/i.test(section.heading));
-            if (analyticsIndex < 0) throw new Error('Analytics privacy section not found.');
-            privacy.splice(analyticsIndex + 1, 0, {
-              heading: '10A. Website English Level Check',
-              body: 'The optional English Level Check on Knowly website pages can run entirely in the browser. If you leave anonymous analytics disabled, your answers, estimated level, and certificate name are not sent to Knowly.\n\nIf you expressly enable anonymous test analytics, we process a random attempt identifier, coarse campaign/referrer and device categories, question identifiers, selected option numbers, server-calculated correctness, response times, progress and abandonment position, estimated CEFR level, certificate actions without the certificate name, and share-action channels. We do not link this website test to a Phraseman App account.\n\nThe name typed onto a certificate is rendered locally in your browser and is not included in analytics or the admin response. Detailed anonymous attempts are scheduled for deletion after 180 days. Event receipts and rate-limit records are short-lived. The test result is an informal estimate and not an accredited language qualification.'
-            });
-          }
-          writeJson(privacyFile, privacy);
-          NODE
-          node scripts/sync-legal-html.mjs
-
-      - name: Validate public test, admin and functions
-        if: steps.state.outputs.skip != 'true'
+      - name: Validate public test, bank, admin and backend
         working-directory: production
         shell: bash
         run: |
@@ -197,24 +79,23 @@ jobs:
           python3 - <<'PY'
           import hashlib, json
           from collections import Counter
-          paths = ['knowly-www/english-level-test/questions.en.json', 'functions-english-test/questions.en.json']
-          raw = [open(path, 'rb').read() for path in paths]
-          assert raw[0] == raw[1], 'public/server banks differ'
-          bank = json.loads(raw[0])
+          public = open('knowly-www/english-level-test/questions.en.json', 'rb').read()
+          server = open('functions-english-test/questions.en.json', 'rb').read()
+          assert public == server
+          bank = json.loads(public)
           assert bank['bankVersion'] == '2026-07-21.8'
           assert len(bank['questions']) == 240
           assert len({q['id'] for q in bank['questions']}) == 240
           assert Counter(q['level'] for q in bank['questions']) == Counter({'A1':40,'A2':40,'B1':40,'B2':40,'C1':40,'C2':40})
           assert Counter(q['correctIndex'] for q in bank['questions']) == Counter({0:60,1:60,2:60,3:60})
           assert all(len(q['options']) == 4 and 0 <= q['correctIndex'] <= 3 for q in bank['questions'])
-          print('Question bank SHA-256:', hashlib.sha256(raw[0]).hexdigest())
+          print('Question bank SHA-256:', hashlib.sha256(public).hexdigest())
           PY
-          npm ci --prefix functions-english-test --ignore-scripts
+          npm install --prefix functions-english-test --ignore-scripts
           npm test --prefix functions-english-test
           npm audit --prefix functions-english-test --omit=dev
 
-      - name: Discover Firebase deployment credential
-        if: steps.state.outputs.skip != 'true'
+      - name: Discover Firebase credential
         id: firebase-auth
         env:
           REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
@@ -225,78 +106,73 @@ jobs:
           python3 - <<'PY'
           import base64, json, os, re, sys
           from pathlib import Path
-          def read_json_env(name):
-              raw = os.environ.get(name, '').strip()
-              if not raw:
-                  return {}
+          def read_map(name):
               try:
-                  data = json.loads(raw)
-              except json.JSONDecodeError:
-                  return {}
-              return data if isinstance(data, dict) else {}
-          secrets = read_json_env('REPO_SECRETS_JSON')
-          variables = read_json_env('REPO_VARS_JSON')
-          relevant = sorted(key for key, value in secrets.items() if value and re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|CLOUD|WORKLOAD|SERVICE_ACCOUNT', key, re.I))
-          print('Available cloud credential keys:', ', '.join(relevant) if relevant else '(none)')
-          def candidates(value):
-              yield value
-              try:
-                  yield base64.b64decode(''.join(value.split()), validate=True).decode('utf-8')
+                  value = json.loads(os.environ.get(name, '{}'))
               except Exception:
-                  return
+                  return {}
+              return value if isinstance(value, dict) else {}
+          secrets = read_map('REPO_SECRETS_JSON')
+          variables = read_map('REPO_VARS_JSON')
+          relevant = sorted(k for k, v in secrets.items() if v and re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|CLOUD|WORKLOAD|SERVICE_ACCOUNT', k, re.I))
+          print('Available cloud credential keys:', ', '.join(relevant) if relevant else '(none)')
           credential = Path(os.environ['RUNNER_TEMP']) / 'firebase-deploy-credential.json'
           for key, value in secrets.items():
               if not value:
                   continue
-              for candidate in candidates(str(value)):
+              candidates = [str(value)]
+              try:
+                  candidates.append(base64.b64decode(''.join(str(value).split()), validate=True).decode('utf-8'))
+              except Exception:
+                  pass
+              for candidate in candidates:
                   try:
                       data = json.loads(candidate)
                   except Exception:
                       continue
                   if not isinstance(data, dict):
                       continue
-                  credential_type = data.get('type')
+                  kind = data.get('type')
                   project = data.get('project_id') or data.get('quota_project_id')
-                  if credential_type in {'service_account', 'external_account', 'authorized_user'} and (not project or project == 'phraseman-ea0b3'):
+                  if kind in {'service_account', 'external_account', 'authorized_user'} and (not project or project == 'phraseman-ea0b3'):
                       credential.write_text(candidate, encoding='utf-8')
                       with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
                           env.write(f'GOOGLE_APPLICATION_CREDENTIALS={credential}\n')
-                      with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
-                          output.write('mode=adc\n')
-                      print(f'Using Google credential from {key} ({credential_type}).')
+                      with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                          out.write('mode=adc\n')
+                      print(f'Using Google credential from {key} ({kind}).')
                       sys.exit(0)
           for key, value in secrets.items():
               if value and re.search(r'FIREBASE.*TOKEN|TOKEN.*FIREBASE', key, re.I):
                   print(f'::add-mask::{value}')
                   with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
                       env.write(f'FIREBASE_DEPLOY_TOKEN={value}\n')
-                  with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
-                      output.write('mode=token\n')
-                  print(f'Using Firebase CI token from {key}.')
+                  with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                      out.write('mode=token\n')
+                  print(f'Using Firebase token from {key}.')
                   sys.exit(0)
           merged = {**variables, **secrets}
-          provider = next((str(value) for key, value in merged.items() if value and re.search(r'WORKLOAD.*IDENTITY.*PROVIDER|WIF.*PROVIDER', key, re.I)), '')
-          account = next((str(value) for key, value in merged.items() if value and re.search(r'(WORKLOAD|WIF|DEPLOY).*SERVICE.*ACCOUNT|SERVICE.*ACCOUNT.*EMAIL', key, re.I)), '')
+          provider = next((str(v) for k, v in merged.items() if v and re.search(r'WORKLOAD.*IDENTITY.*PROVIDER|WIF.*PROVIDER', k, re.I)), '')
+          account = next((str(v) for k, v in merged.items() if v and re.search(r'(WORKLOAD|WIF|DEPLOY).*SERVICE.*ACCOUNT|SERVICE.*ACCOUNT.*EMAIL', k, re.I)), '')
           if provider and account:
               with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
                   env.write(f'WIF_PROVIDER={provider}\nWIF_SERVICE_ACCOUNT={account}\n')
-              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
-                  output.write('mode=wif\n')
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                  out.write('mode=wif\n')
               print('Using Workload Identity Federation.')
               sys.exit(0)
-          print('No Firebase deployment credential is configured in repository secrets or variables.', file=sys.stderr)
+          print('No Firebase deployment credential is configured.', file=sys.stderr)
           sys.exit(31)
           PY
 
       - name: Authenticate through Workload Identity
-        if: steps.state.outputs.skip != 'true' && steps.firebase-auth.outputs.mode == 'wif'
+        if: steps.firebase-auth.outputs.mode == 'wif'
         uses: google-github-actions/auth@v3
         with:
           workload_identity_provider: ${{ env.WIF_PROVIDER }}
           service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
 
-      - name: Deploy isolated Functions and both Hosting targets
-        if: steps.state.outputs.skip != 'true'
+      - name: Deploy Functions and both Hosting targets
         working-directory: production
         shell: bash
         run: |
@@ -307,8 +183,7 @@ jobs:
           fi
           npx --yes firebase-tools@15.24.0 "${args[@]}"
 
-      - name: Verify live pages and routed API
-        if: steps.state.outputs.skip != 'true'
+      - name: Verify production pages and API
         working-directory: production
         shell: bash
         run: |
@@ -318,24 +193,22 @@ jobs:
             for attempt in $(seq 1 18); do
               code="$(curl --silent --show-error --location --max-time 25 --output /tmp/page.html --write-out '%{http_code}' "$url" || true)"
               if [[ "$code" == '200' ]] && grep --fixed-strings --quiet "$marker" /tmp/page.html; then
-                echo "Verified $url"
+                echo "Verified: $url"
                 return 0
               fi
               echo "Attempt $attempt: $url returned $code"
               sleep 5
             done
-            echo "Production verification failed: $url" >&2
             return 1
           }
           verify_page 'https://knowlyapps.web.app/english-level-test/' 'Насколько <em>естественно</em> звучит ваш английский?'
           verify_page 'https://knowlyapps.com/english-level-test/' 'Насколько <em>естественно</em> звучит ваш английский?'
           verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'English Level Test'
-          api_code="$(curl --silent --show-error --max-time 25 --request OPTIONS --header 'Origin: https://knowlyapps.com' --output /tmp/api-options.txt --write-out '%{http_code}' 'https://knowlyapps.com/api/english-test')"
-          test "$api_code" = '204'
-          echo 'Verified routed English-test API (OPTIONS 204).'
+          code="$(curl --silent --show-error --request OPTIONS --header 'Origin: https://knowlyapps.com' --output /tmp/api.txt --write-out '%{http_code}' 'https://knowlyapps.com/api/english-test')"
+          test "$code" = '204'
+          echo 'Verified routed English-test API.'
 
-      - name: Commit the deployed source to master
-        if: steps.state.outputs.skip != 'true'
+      - name: Commit verified production source to master
         working-directory: production
         shell: bash
         run: |
@@ -355,14 +228,14 @@ jobs:
           git push origin HEAD:master
 
       - name: Upload diagnostics on failure
-        if: failure() && steps.state.outputs.skip != 'true'
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: english-test-live-deploy-diagnostics-${{ github.run_attempt }}
           path: |
             ${{ runner.temp }}/english-test-live-files.txt
             /tmp/page.html
-            /tmp/api-options.txt
+            /tmp/api.txt
             production/firebase-debug.log
           if-no-files-found: ignore
           retention-days: 3

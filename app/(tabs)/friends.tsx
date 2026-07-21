@@ -7,7 +7,15 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { FlashList } from '@shopify/flash-list';
-import Reanimated, { runOnJS, useSharedValue } from 'react-native-reanimated';
+import Reanimated, {
+  FadeInDown,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withRepeat,
+  withSequence,
+  withTiming,
+} from 'react-native-reanimated';
 
 // FlashList с поддержкой Reanimated-обработчика скролла (onScroll-worklet на UI-потоке).
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
@@ -681,8 +689,67 @@ function FriendsThemeIcon({
   );
 }
 
+// ── Микроанимации списков (D-редизайн): каскад, пульс, pop ─────────────────────
+
+/** Мягкий пульс (opacity 0.6→1) — для кнопки подарка, когда подарок реально доступен. */
+function PulseOn({ active, children }: { active: boolean; children: React.ReactNode }) {
+  const opacity = useSharedValue(1);
+  useEffect(() => {
+    if (active) {
+      opacity.value = withRepeat(withTiming(0.6, { duration: 900 }), -1, true);
+    } else {
+      opacity.value = withTiming(1, { duration: 150 });
+    }
+  }, [active, opacity]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+  return <Reanimated.View style={style}>{children}</Reanimated.View>;
+}
+
+/** Кнопка лайка с pop-анимацией сердечка (scale 1→1.4→1) при тапе. */
+function ActivityLikeButton({
+  testID, liked, count, likeColor, chrome, t, f, accessibilityLabel, onPress,
+}: {
+  testID: string; liked: boolean; count: number; likeColor: string;
+  chrome: FriendsChrome; t: any; f: any;
+  accessibilityLabel: string; onPress: () => void;
+}) {
+  const scale = useSharedValue(1);
+  const heartStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
+  const handlePress = () => {
+    scale.value = withSequence(withTiming(1.4, { duration: 120 }), withTiming(1, { duration: 180 }));
+    onPress();
+  };
+  return (
+    <TapScale
+      testID={testID}
+      onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      style={{
+        minWidth: 44,
+        minHeight: 44,
+        borderRadius: 14,
+        paddingHorizontal: 7,
+        paddingVertical: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: liked ? 'rgba(255,45,85,0.16)' : chrome.button,
+        borderWidth: 0.5,
+        borderColor: liked ? 'rgba(255,45,85,0.55)' : chrome.border,
+      }}
+    >
+      <Reanimated.View style={heartStyle}>
+        <Ionicons name={liked ? 'heart' : 'heart-outline'} size={19} color={liked ? likeColor : t.textMuted} />
+      </Reanimated.View>
+      <Text style={{ color: liked ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
+        {count}
+      </Text>
+    </TapScale>
+  );
+}
+
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, referralStatus,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, referralStatus, giftAvailable,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
@@ -691,6 +758,8 @@ function FriendRow({
   themeMode: ThemeMode;
   /** Статус приглашения, если друг пришёл по твоему коду. */
   referralStatus?: 'pending' | 'qualified' | 'rewarded';
+  /** Подарок реально доступен (баланс осколков ≥ цены самого дешёвого) — кнопка мягко пульсирует. */
+  giftAvailable?: boolean;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   const leagueCrownCount = Math.max(0, Math.floor(Number(profile.leagueCrownCount) || 0));
@@ -781,7 +850,9 @@ function FriendRow({
             accessibilityLabel={triLang(lang as any, { ru: `Подарить ${profile.name}`, uk: `Подарувати ${profile.name}`, es: `Regalar a ${profile.name}`, 'pt-BR': `Presentear ${profile.name}`, vi: `Tặng quà cho ${profile.name}`, id: `Beri hadiah ke ${profile.name}`, tr: `${profile.name} kullanıcısına hediye gönder`, pl: `Podaruj ${profile.name}` })}
             style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}
           >
-            <Ionicons name="gift-outline" size={18} color={t.accent} />
+            <PulseOn active={giftAvailable === true}>
+              <Ionicons name="gift-outline" size={18} color={t.accent} />
+            </PulseOn>
           </TapScale>
           <TapScale
             testID={`friend-delete-${profile.uid}`}
@@ -1511,7 +1582,7 @@ function ActivityTab({
 
   const showFeed = !emptyNoFriends && !emptyNoEvents;
 
-  const renderFeedItem = ({ item }: { item: ActivityFeedItem }) => {
+  const renderFeedItem = ({ item, index }: { item: ActivityFeedItem; index: number }) => {
         if (item.kind === 'section') {
           const label = item.section === 'today'
             ? L('Сегодня', 'Сьогодні', 'Hoy', 'Hoje', 'Hôm nay', 'Hari ini', 'Bugün', 'Dzisiaj')
@@ -1519,12 +1590,14 @@ function ActivityTab({
             ? L('Вчера', 'Вчора', 'Ayer', 'Ontem', 'Hôm qua', 'Kemarin', 'Dün', 'Wczoraj')
             : L('Ранее', 'Раніше', 'Antes', 'Antes', 'Trước đó', 'Sebelumnya', 'Daha önce', 'Wcześniej');
           return (
-            <Text
-              testID={`friends-activity-section-${item.section}`}
-              style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, marginBottom: 10 }}
-            >
-              {label}
-            </Text>
+            <Reanimated.View entering={FadeInDown.duration(280)}>
+              <Text
+                testID={`friends-activity-section-${item.section}`}
+                style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, marginTop: 4, marginBottom: 10 }}
+              >
+                {label}
+              </Text>
+            </Reanimated.View>
           );
         }
         const event = item.event;
@@ -1541,6 +1614,7 @@ function ActivityTab({
           ? lessonsDayText(name, item.lessonsCount, lang)
           : eventText(event, name, lang);
         return (
+          <Reanimated.View entering={FadeInDown.delay(Math.min(index, 10) * 40).duration(320)}>
           <View
             testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
@@ -1592,30 +1666,19 @@ function ActivityTab({
                 </Text>
               </View>
             </TouchableOpacity>
-            <TapScale
+            <ActivityLikeButton
               testID={`friends-activity-like-${event.uid}-${event.id}`}
-              onPress={() => { void handleActivityLike(event); }}
-              accessibilityRole="button"
+              liked={likedToday}
+              count={likeCount}
+              likeColor={likeColor}
+              chrome={chrome}
+              t={t}
+              f={f}
               accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad', 'Like de atividade', 'Thích hoạt động', 'Like aktivitas', 'Etkinlik beğenisi', 'Polubienie aktywności')}
-              style={{
-                minWidth: 44,
-                minHeight: 44,
-                borderRadius: 14,
-                paddingHorizontal: 7,
-                paddingVertical: 5,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : chrome.button,
-                borderWidth: 0.5,
-                borderColor: likedToday ? 'rgba(255,45,85,0.55)' : chrome.border,
-              }}
-            >
-              <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? likeColor : t.textMuted} />
-              <Text style={{ color: likedToday ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
-                {likeCount}
-              </Text>
-            </TapScale>
+              onPress={() => { void handleActivityLike(event); }}
+            />
           </View>
+          </Reanimated.View>
         );
   };
 
@@ -1837,12 +1900,32 @@ function AddFriendModal({
               </View>
             )}
 
+            {/* Скелетон-shimmer на время поиска (opacity loop, UI-анимация). */}
+            {isSearching && !foundUser && (
+              <View testID="friends-search-skeleton" style={{ gap: 10 }}>
+                {[0, 1].map((row) => (
+                  <PulseOn key={row} active>
+                    <View style={{
+                      height: row === 0 ? 76 : 20,
+                      borderRadius: 14,
+                      backgroundColor: chrome.button,
+                      borderWidth: 0.5,
+                      borderColor: chrome.border,
+                      width: row === 0 ? '100%' : '60%',
+                    }} />
+                  </PulseOn>
+                ))}
+              </View>
+            )}
+
             {foundUser && (
-              <FoundUserCard
-                profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
-                isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
-                themeMode={themeMode}
-              />
+              <Reanimated.View entering={FadeInDown.duration(280)}>
+                <FoundUserCard
+                  profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
+                  isAdding={isAdding} lang={lang} t={t} f={f} chrome={chrome}
+                  themeMode={themeMode}
+                />
+              </Reanimated.View>
             )}
 
             {addFeedback && (
@@ -3411,16 +3494,19 @@ export default function FriendsTabScreen() {
           data={sortedFriends}
           keyExtractor={(profile: FriendProfile) => profile.uid}
           renderItem={({ item: profile, index: i }: { item: FriendProfile; index: number }) => (
-            <FriendRow
-              profile={profile}
-              rank={i + 1}
-              onPress={() => openProfile(profile)}
-              onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-              onGift={() => openGiftPicker(profile)}
-              lang={lang} t={t} f={f} chrome={chrome}
-              themeMode={themeMode}
-              referralStatus={referralStatusByUid.get(profile.uid)}
-            />
+            <Reanimated.View entering={FadeInDown.delay(Math.min(i, 10) * 40).duration(320)}>
+              <FriendRow
+                profile={profile}
+                rank={i + 1}
+                onPress={() => openProfile(profile)}
+                onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+                onGift={() => openGiftPicker(profile)}
+                lang={lang} t={t} f={f} chrome={chrome}
+                themeMode={themeMode}
+                referralStatus={referralStatusByUid.get(profile.uid)}
+                giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
+              />
+            </Reanimated.View>
           )}
           ListHeaderComponent={<>{listHeader}{friendsPreList}</>}
           ListEmptyComponent={friendsEmptyState}

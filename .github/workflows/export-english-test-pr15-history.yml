@@ -1,0 +1,54 @@
+name: Export English test PR15 transport history
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: >-
+      github.event.pull_request.head.ref == 'agent/english-level-test-20260721' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Export chunk history and commit graph
+        shell: bash
+        run: |
+          set -euo pipefail
+          out=/tmp/english-test-pr15-history
+          mkdir -p "$out/versions"
+          git log --all --date=iso-strict --format='%H %P %ad %an %s' -- .english-test-bootstrap .release/english-test > "$out/chunk-commits.txt"
+          git log --all --graph --decorate --oneline --max-count=150 > "$out/graph.txt"
+          git show-ref > "$out/refs.txt"
+          for path in .english-test-bootstrap/payload.part{00..11}; do
+            safe="$(basename "$path")"
+            git log --all --format='%H' -- "$path" | awk '!seen[$0]++' > "$out/${safe}-commits.txt"
+            while read -r commit; do
+              [[ -n "$commit" ]] || continue
+              if git cat-file -e "$commit:$path" 2>/dev/null; then
+                git show "$commit:$path" > "$out/versions/${safe}-${commit}.txt"
+              fi
+            done < "$out/${safe}-commits.txt"
+          done
+          find "$out" -type f -maxdepth 2 -printf '%P %s\n' | sort > "$out/inventory.txt"
+          sha256sum "$out"/versions/* > "$out/version-hashes.txt" || true
+      - name: Upload transport history
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-pr15-transport-history
+          path: /tmp/english-test-pr15-history
+          if-no-files-found: error
+          retention-days: 2

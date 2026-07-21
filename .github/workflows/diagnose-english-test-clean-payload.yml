@@ -1,0 +1,48 @@
+name: Diagnose clean English test payload
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  diagnose:
+    if: >-
+      github.event.pull_request.head.ref == 'agent/english-level-test-production' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - name: Print transport and decoded archive diagnostics
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, gzip, hashlib
+          path=Path('.release/english-test-clean.b64')
+          data=path.read_bytes()
+          print('transport_bytes=',len(data))
+          print('transport_sha256=',hashlib.sha256(data).hexdigest())
+          print('transport_head=',repr(data[:24]))
+          print('transport_tail=',repr(data[-24:]))
+          print('whitespace_bytes=',sum(chr(b).isspace() for b in data))
+          try:
+              decoded=base64.b64decode(data,validate=False)
+              print('decoded_bytes=',len(decoded))
+              print('decoded_sha256=',hashlib.sha256(decoded).hexdigest())
+              print('decoded_head=',repr(decoded[:16]))
+              try:
+                  raw=gzip.decompress(decoded)
+                  print('gzip_ok=true raw_bytes=',len(raw),'raw_sha256=',hashlib.sha256(raw).hexdigest())
+              except Exception as exc:
+                  print('gzip_ok=false error=',repr(exc))
+          except Exception as exc:
+              print('base64_ok=false error=',repr(exc))
+          PY

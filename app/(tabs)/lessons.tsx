@@ -1005,6 +1005,15 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
             return next;
         });
     }, []);
+    // Стабильные per-chapter колбэки: без них React.memo(ChapterCard) ломался бы
+    // новой лямбдой onToggle на каждом рендере.
+    const chapterToggles = useMemo(() => {
+        const map: Record<string, () => void> = {};
+        for (const level of Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]) {
+            map[level] = () => toggleChapter(level);
+        }
+        return map;
+    }, [toggleChapter]);
     // Keep this dense list stable: JS-driven per-card scroll scale made cards jitter.
     const itemAnims = useMemo(() => listData.map(() => null), [listData]);
     const handleLessonsScroll = useCallback((e: any) => {
@@ -1196,7 +1205,7 @@ const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
 const levelLockedByExam = isPremium && !isUnlocked && !DEV_CONTENT_UNLOCK && !noLimits;
 const premiumRequired = !isPremium && !noLimits && requiresPremiumForLesson(num, legacyFreeLessonCap);
 const showLessonProgressFill = isUnlocked && progPct > 0;
-const cardRadius = isGoldTheme ? 14 : USE_ELITE_LESSONS_MAP ? 18 : 16;
+const cardRadius = isGoldTheme ? 14 : 16;
 const lockedCardBaseColor = isGoldTheme
     ? goldSurface
     : isCoralTheme
@@ -1256,6 +1265,27 @@ return (<LessonCard key={`l-${num}`}
     textPrimary={t.textPrimary} textMuted={t.textMuted}
 />);
     };
+
+    // ── Тела глав (плашки уроков + зачёт) мемоизированы ─────────────────────
+    // Тап по шапке главы меняет только openChapters; без мемоизации каждый тап
+    // перерендеривал все ~32 тяжёлые карточки уроков (градиенты/тени/SVG) —
+    // отсюда подтормаживание раскрытия. Одинаковые ссылки на элементы дают
+    // React bail-out, и раскрытие анимируется без JS-шторма.
+    const chapterBodies = useMemo(() => {
+        const bodies: Record<string, React.ReactNode> = {};
+        for (const level of Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]) {
+            const [from, to] = COURSE_LEVEL_RANGES[level];
+            bodies[level] = (<>
+                {lessons.slice(from - 1, to).map((name, offset) => renderLessonCard({ index: from - 1 + offset, name }))}
+                {level !== 'B2' ? renderExamCard(level) : null}
+            </>);
+        }
+        return bodies;
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lessons, unlockedLessons, progCounts, currentLessonNum, scores, examResults,
+        examBestPcts, examPassCounts, premiumReachableLevelIndex, isPremium, noLimits,
+        legacyFreeLessonCap, themeMode, isGoldTheme, isCoralTheme, t, f, lang,
+        openLessonPaywall, router, studyTarget, goldSurface, goldHairline, goldAntique, goldBright]);
 
     // ── Render ────────────────────────────────────────────────────────────────
     return (<>
@@ -1482,7 +1512,7 @@ return (<LessonCard key={`l-${num}`}
                 pct={chapterPct}
                 lockedPlus={chapterPremiumLocked}
                 expanded={openChapters.has(chapterLevel)}
-                onToggle={() => toggleChapter(chapterLevel)}
+                onToggle={chapterToggles[chapterLevel]}
                 accent={chapterAccent}
                 isGoldTheme={isGoldTheme}
                 t={t}
@@ -1490,8 +1520,7 @@ return (<LessonCard key={`l-${num}`}
                 themeMode={themeMode}
                 delayMs={60 + Math.max(0, chapterIndex) * 50}
               >
-                {lessons.slice(chapFrom - 1, chapTo).map((name, offset) => renderLessonCard({ index: chapFrom - 1 + offset, name }))}
-                {chapterLevel !== 'B2' ? renderExamCard(chapterLevel) : null}
+                {chapterBodies[chapterLevel]}
               </ChapterCard>
             </View>);
         }}

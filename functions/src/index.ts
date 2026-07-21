@@ -440,6 +440,7 @@ export { adminEditContentStageArtifact } from './admin_content_stage_edits';
 export { adminRunContentStage, CONTENT_STAGE_OPENAI_API_KEY } from './content_stage_worker';
 export { adminGetContentFactoryJobDetail, adminGetContentFactoryUnitPreview, adminGetContentFactoryWorkspace, adminGetContentFactoryRolloutMetrics } from './admin_content_factory_read';
 export { adminRunContentGenerationUnit, CONTENT_FACTORY_OPENAI_API_KEY } from './content_factory_worker';
+export { adminSaveV2EpisodeDraft, adminSaveV2SeasonDraft } from './admin_content_studio_callables';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';
@@ -481,3 +482,19 @@ export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemove
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { explainQuiz } = require('./explain_quiz');
 exports.explainQuiz = explainQuiz;
+// Learning V2 delayed evidence: server-classified, idempotent receipt finalization.
+export { finalizeLearningV2DelayedCandidate } from './learning_v2_delayed_callable';
+export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';
+
+// ── Рулетка Plus (спин-кредиты → дни VIP) и claim qualified-приглашений в прокруты ──
+export { referralSpin } from './referral_spin';
+export { referralClaimSpin } from './referral_claim_spin';
+
+// ── Fan-out ленты активности друзей (users/{uid}/my_events → users/{friendUid}/feed) ──
+export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';
+
+// ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
+export { friendsGetProfiles } from './friends_profiles';
+
+// ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
+export { adminListReferrals, adminSpinStats, adminSpinLogs, adminSetSpinWeights, adminReferralHealth } from './admin_referrals';

@@ -215,6 +215,10 @@ service cloud.firestore {
         'profile_card_level',
         // Survey completion timestamp is written only by submitShardSurvey (Admin SDK).
         'shard_survey_last_at_ms',
+        // Прокруты рулетки Plus: начисляет/списывает ТОЛЬКО сервер
+        // (referralClaimSpin / referralSpin, Admin SDK) — клиент не должен себе их рисовать.
+        'referral_spin_credits',
+        'referral_spins_total',
       ];
     }
 
@@ -1070,7 +1074,8 @@ service cloud.firestore {
     // Прямой клиентский read закрыт; запись — только Admin SDK (referralApply/referralClaimVipReward).
     match /referral_attributions/{id} {
       allow read: if isAdmin();
-      allow write: if false;
+      allow update: if isAdmin();
+      allow create, delete: if false;
     }
 
     // â”€â”€ User data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -1253,7 +1258,7 @@ service cloud.firestore {
     // Legacy/bundled flashcard marketplace metadata. Clients query only
     // published packs; writes stay server/admin-only.
     match /card_packs/{packId} {
-      allow read: if resource.data.status == 'published';
+      allow read: if isAdmin() || resource.data.status == 'published';
       allow create, update, delete: if isAdmin();
     }
 
@@ -1313,7 +1318,7 @@ service cloud.firestore {
 
     // â”€â”€ Error reports (Ð±Ð°Ð³-Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /error_reports/{docId} {
-      allow create: if false;
+      allow create: if isAdmin();
       allow read, update, delete: if isAdmin();
     }
 
@@ -1668,6 +1673,18 @@ service cloud.firestore {
         || isAdmin()
         || (request.auth != null
             && exists(/databases/$(database)/documents/users/$(userId)/friend_auth_edges/$(request.auth.uid)));
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Fan-out лента активности (пишет ТОЛЬКО сервер, feed_fanout.ts; Admin SDK rules обходит).
+    match /users/{userId}/feed/{eventId} {
+      allow read: if canonicalUserMatchesAuth(userId) || isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Лог спинов рулетки Plus (пишет ТОЛЬКО сервер, referral_spin.ts).
+    match /users/{userId}/referral_spins/{spinId} {
+      allow read: if canonicalUserMatchesAuth(userId) || isAdmin();
       allow create, update, delete: if isAdmin();
     }
 
@@ -2111,6 +2128,124 @@ service cloud.firestore {
         && collection != 'arena_pulse_events'
         && collection != 'quiz_explanations'
         && collection != 'quiz_explain_billing';
+    // Legacy browser-admin compatibility. These rules mirror only operations
+    // that admin/legacy.html performs directly; do not replace them with a
+    // recursive or prefix-wide admin grant.
+    match /admin_digest_runs/{runId} {
+      allow list: if isAdmin();
+    }
+    match /admin_digests/{dayKey} {
+      allow get: if isAdmin();
+    }
+    match /support_inbox/{messageId} {
+      allow list: if isAdmin();
+    }
+    match /admin_push_jobs/{jobId} {
+      allow list, create: if isAdmin();
+    }
+    match /revenuecat_premium_events/{eventId} {
+      allow list: if isAdmin();
+    }
+    match /revenuecat_shard_transactions/{transactionId} {
+      allow list: if isAdmin();
+    }
+    match /users_dedup_archive/{userId} {
+      allow create, update: if isAdmin();
+    }
+    match /adminContentDrafts/fr/quiz/{version} {
+      allow create, update: if isAdmin();
+    }
+    match /adminContentRollbacks/fr/quiz/{version} {
+      allow create, update: if isAdmin();
+    }
+
+    // Legacy admin collection-group queries need a collection-group match;
+    // the nested users/{userId}/... rules continue to govern document writes.
+    match /{path=**}/app_message_states/{messageId} {
+      allow list: if isAdmin();
+    }
+    match /{path=**}/promo_redemptions/{code} {
+      allow list: if isAdmin();
+    }
+
+    // Learning V2 Content Studio authoring state is callable/Admin-SDK only.
+    // Firestore allow expressions are OR-combined across overlapping matches,
+    // so these exact deny blocks rely on the final catch-all also being deny-only.
+    match /content_mode_templates/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_draft_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_versions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_mode_template_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_drafts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_season_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_drafts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_revisions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_episode_lifecycle/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_review_queue/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_localization_units/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_review_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_validation_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_waivers/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_sessions/{docId} {
+      allow read, write: if false;
+    }
+    match /content_studio_preview_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /content_app_support_manifests/{docId} {
+      allow read, write: if false;
+    }
+
+    // Learning V2 delayed evidence is server-owned. Clients must use the
+    // callable; direct reads/writes would bypass assignment, timing and
+    // idempotency checks. Admin SDK writes are unaffected by these rules.
+    match /learning_v2_assignments/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_launches/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_timing_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_failure_receipts/{docId} {
+      allow read, write: if false;
+    }
+    match /learning_v2_receipt_operations/{docId} {
+      allow read, write: if false;
+    }
+
+    match /{document=**} {
       allow read, write: if false;
     }
   }

@@ -54,6 +54,7 @@
         { "source": "/phraseman/duel/**", "destination": "/download/", "type": 302 }
       ],
       "rewrites": [
+        { "source": "/api/english-test", "function": { "functionId": "englishTestApi", "region": "us-central1" } },
         { "source": "/unsubscribe", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } },
         { "source": "/unsubscribe/**", "function": { "functionId": "emailUnsubscribe", "region": "us-central1" } }
       ],
@@ -65,6 +66,12 @@
           ]
         },
         {
+          "source": "/api/english-test",
+          "headers": [
+            { "key": "Cache-Control", "value": "no-store" }
+          ]
+        },
+        {
           "source": "/.well-known/apple-app-site-association",
           "headers": [
             { "key": "Content-Type", "value": "application/json" }
@@ -73,10 +80,24 @@
       ]
     }
   ],
-  "functions": {
-    "source": "functions",
-    "runtime": "nodejs22"
-  },
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "default",
+      "runtime": "nodejs22"
+    },
+    {
+      "source": "functions-english-test",
+      "codebase": "english-test",
+      "runtime": "nodejs22",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ]
+    }
+  ],
   "react-native": {
     "app_check_token_auto_refresh": false,
     "analytics_auto_collection_enabled": false

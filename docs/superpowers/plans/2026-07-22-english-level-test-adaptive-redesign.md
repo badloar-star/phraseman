@@ -1,5 +1,7 @@
 # English Level Test Adaptive Redesign Implementation Plan
 
+**Status:** Completed and deployed to `englishTestApi` and Firebase Hosting target `knowlywww` on 2026-07-22. Final release gates: 81/81 Node tests, deterministic generator check, website surface contract, independent review, local mobile E2E, and production mobile E2E.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the uncalibrated theta-based English test with a transparent A1-first staircase, repair and validate the 240-item bank, remove false precision, and deploy the verified result.

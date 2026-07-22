@@ -3,6 +3,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { russianUiForQuestion } from './english_test_russian_ui.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
@@ -787,6 +788,7 @@ function reviewQuestion(question, level, index) {
   const ambiguityNotes = `Only “${answer}” satisfies the stated context and target; the distractors conflict with the prompt or this rule: ${reviewed.explanation}`;
   return {
     ...reviewed,
+    ...russianUiForQuestion(reviewed),
     targetConstruct,
     cefrRationale,
     dialect: reviewed.dialect || DIALECTS[reviewed.id] || 'neutral',
@@ -804,8 +806,8 @@ function reviewQuestion(question, level, index) {
 for (const level of LEVELS) {
   const file = join(ROOT, 'content', 'english-test', 'questions', `${level}.json`);
   const data = JSON.parse(readFileSync(file, 'utf8'));
-  data.schemaVersion = 2;
-  data.bankVersion = '2026-07-22.3';
+  data.schemaVersion = 3;
+  data.bankVersion = '2026-07-22.4';
   data.questions = data.questions.map((question, index) => reviewQuestion(question, level, index));
   writeFileSync(file, `${JSON.stringify(data, null, 2)}\n`, 'utf8');
   console.log(`Reviewed ${level}: ${data.questions.length} questions`);

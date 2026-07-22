@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "bankVersion": "2026-07-22.3",
+  "schemaVersion": 3,
+  "bankVersion": "2026-07-22.4",
   "language": "en",
   "level": "A2",
   "questions": [
@@ -24,7 +24,10 @@
       "cefrRationale": "A2 text task: the learner handles “Experiences” and identifies “been” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “been” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Have been' is the present perfect form of 'to be'."
+      "ambiguityNotes": "Only “been” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Have been' is the present perfect form of 'to be'.",
+      "scenarioRu": "Жизненный опыт",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "Have you ever ______ to Japan?"
     },
     {
       "id": "en-a2-002",
@@ -46,7 +49,10 @@
       "cefrRationale": "A2 text task: the learner handles “Recent actions” and identifies “done” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “done” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Present perfect uses the past participle: 'done'."
+      "ambiguityNotes": "Only “done” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Present perfect uses the past participle: 'done'.",
+      "scenarioRu": "Недавнее действие",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I have ______ my homework."
     },
     {
       "id": "en-a2-003",
@@ -68,7 +74,10 @@
       "cefrRationale": "A2 text task: the learner handles “Unfinished time” and identifies “since” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “since” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Since' + specific point in time with present perfect."
+      "ambiguityNotes": "Only “since” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Since' + specific point in time with present perfect.",
+      "scenarioRu": "Действие с указанного времени",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "She has lived here ______ 2015."
     },
     {
       "id": "en-a2-004",
@@ -90,7 +99,10 @@
       "cefrRationale": "A2 text task: the learner handles “Duration” and identifies “for” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “for” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'For' + duration with present perfect."
+      "ambiguityNotes": "Only “for” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'For' + duration with present perfect.",
+      "scenarioRu": "Продолжительность",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "They have been married ______ twenty years."
     },
     {
       "id": "en-a2-005",
@@ -112,7 +124,10 @@
       "cefrRationale": "A2 text task: the learner handles “Past continuous” and identifies “called” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “called” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The interruption ('when I called') is in past simple."
+      "ambiguityNotes": "Only “called” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The interruption ('when I called') is in past simple.",
+      "scenarioRu": "Прерванное действие",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "What were you doing when I ______?"
     },
     {
       "id": "en-a2-006",
@@ -134,7 +149,10 @@
       "cefrRationale": "A2 text task: the learner handles “Interrupted action” and identifies “was raining” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “was raining” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The background action uses past continuous."
+      "ambiguityNotes": "Only “was raining” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The background action uses past continuous.",
+      "scenarioRu": "Погода в прошлом",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "It ______ when we left the house."
     },
     {
       "id": "en-a2-007",
@@ -156,7 +174,10 @@
       "cefrRationale": "A2 text task: the learner handles “Comparisons” and identifies “more interesting” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “more interesting” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Long adjectives use 'more' for comparative."
+      "ambiguityNotes": "Only “more interesting” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Long adjectives use 'more' for comparative.",
+      "scenarioRu": "Сравнение",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "This book is ______ than that one."
     },
     {
       "id": "en-a2-008",
@@ -178,7 +199,10 @@
       "cefrRationale": "A2 text task: the learner handles “Superlatives” and identifies “best” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “best” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Best' is the superlative of 'good'."
+      "ambiguityNotes": "Only “best” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Best' is the superlative of 'good'.",
+      "scenarioRu": "Превосходная степень",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "She is the ______ student in the class."
     },
     {
       "id": "en-a2-009",
@@ -200,7 +224,10 @@
       "cefrRationale": "A2 text task: the learner handles “Modals: ability” and identifies “could” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “could” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Could' is the past of 'can' for past ability."
+      "ambiguityNotes": "Only “could” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Could' is the past of 'can' for past ability.",
+      "scenarioRu": "Умение в прошлом",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "When I was young, I ______ run very fast."
     },
     {
       "id": "en-a2-010",
@@ -222,7 +249,10 @@
       "cefrRationale": "A2 text task: the learner handles “Asking a friend for permission” and identifies “Can I use your phone?” using the stated pragmatics cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Can I use your phone?” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Can I ...?” is a natural A2 form for asking permission in an informal situation."
+      "ambiguityNotes": "Only “Can I use your phone?” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Can I ...?” is a natural A2 form for asking permission in an informal situation.",
+      "scenarioRu": "Просьба к другу",
+      "instructionRu": "Тебе нужно ненадолго воспользоваться телефоном друга. Выбери естественную просьбу.",
+      "stimulus": ""
     },
     {
       "id": "en-a2-011",
@@ -244,7 +274,10 @@
       "cefrRationale": "A2 text task: the learner handles “Modals: obligation” and identifies “must” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “must” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Must' expresses strong obligation."
+      "ambiguityNotes": "Only “must” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Must' expresses strong obligation.",
+      "scenarioRu": "Обязанность",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "You ______ wear a seatbelt in the car."
     },
     {
       "id": "en-a2-012",
@@ -266,7 +299,10 @@
       "cefrRationale": "A2 text task: the learner handles “Giving simple advice” and identifies “You should get some rest.” using the stated pragmatics cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “You should get some rest.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Should” is the standard A2 form for giving friendly advice."
+      "ambiguityNotes": "Only “You should get some rest.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Should” is the standard A2 form for giving friendly advice.",
+      "scenarioRu": "Простой совет",
+      "instructionRu": "Друг говорит, что очень устал. Выбери самый полезный ответ.",
+      "stimulus": "I am exhausted."
     },
     {
       "id": "en-a2-013",
@@ -288,7 +324,10 @@
       "cefrRationale": "A2 text task: the learner handles “Quantifiers” and identifies “any” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “any” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Any' is used in negative sentences with uncountable/countable nouns."
+      "ambiguityNotes": "Only “any” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Any' is used in negative sentences with uncountable/countable nouns.",
+      "scenarioRu": "Количество",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "I don't have ______ money."
     },
     {
       "id": "en-a2-014",
@@ -310,7 +349,10 @@
       "cefrRationale": "A2 text task: the learner handles “Countable nouns” and identifies “any” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “any” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Any' in negative sentences with plural countable nouns."
+      "ambiguityNotes": "Only “any” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Any' in negative sentences with plural countable nouns.",
+      "scenarioRu": "Исчисляемые предметы",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "There aren't ______ chairs in this room."
     },
     {
       "id": "en-a2-015",
@@ -332,7 +374,10 @@
       "cefrRationale": "A2 text task: the learner handles “Much vs many” and identifies “many” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “many” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Many' is used with countable plural nouns ('people')."
+      "ambiguityNotes": "Only “many” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Many' is used with countable plural nouns ('people').",
+      "scenarioRu": "Сколько людей",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "How ______ people came to the party?"
     },
     {
       "id": "en-a2-016",
@@ -354,7 +399,10 @@
       "cefrRationale": "A2 text task: the learner handles “Going to vs will” and identifies “is going to” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “is going to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Evidence in the present suggests 'going to' for prediction."
+      "ambiguityNotes": "Only “is going to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Evidence in the present suggests 'going to' for prediction.",
+      "scenarioRu": "Планы и прогноз",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "Look at those clouds! It ______ rain."
     },
     {
       "id": "en-a2-017",
@@ -376,7 +424,10 @@
       "cefrRationale": "A2 text task: the learner handles “Promises” and identifies “will” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “will” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Will' is used for spontaneous promises."
+      "ambiguityNotes": "Only “will” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Will' is used for spontaneous promises.",
+      "scenarioRu": "Обещание",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "I ______ help you with your project."
     },
     {
       "id": "en-a2-018",
@@ -398,7 +449,10 @@
       "cefrRationale": "A2 text task: the learner handles “Travel” and identifies “get off” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “get off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Get off' is used for leaving buses, trains, and planes."
+      "ambiguityNotes": "Only “get off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Get off' is used for leaving buses, trains, and planes.",
+      "scenarioRu": "Поездка",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "We need to ______ the train at the next station."
     },
     {
       "id": "en-a2-019",
@@ -420,7 +474,10 @@
       "cefrRationale": "A2 text task: the learner handles “Phrasal verbs” and identifies “turn off” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “turn off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Turn off' means to stop the light/electricity."
+      "ambiguityNotes": "Only “turn off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Turn off' means to stop the light/electricity.",
+      "scenarioRu": "Фразовый глагол",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "Please ______ the light when you leave."
     },
     {
       "id": "en-a2-020",
@@ -442,7 +499,10 @@
       "cefrRationale": "A2 text task: the learner handles “Reflexive pronouns” and identifies “myself” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “myself” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Reflexive pronoun 'myself' when subject and object are the same."
+      "ambiguityNotes": "Only “myself” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Reflexive pronoun 'myself' when subject and object are the same.",
+      "scenarioRu": "Возвратное местоимение",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I cut ______ while cooking."
     },
     {
       "id": "en-a2-021",
@@ -464,7 +524,10 @@
       "cefrRationale": "A2 text task: the learner handles “Question tags” and identifies “don't you” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “don't you” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Positive statement → negative tag with auxiliary 'do'."
+      "ambiguityNotes": "Only “don't you” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Positive statement → negative tag with auxiliary 'do'.",
+      "scenarioRu": "Краткий вопрос",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "You like pizza, ______?"
     },
     {
       "id": "en-a2-022",
@@ -486,7 +549,10 @@
       "cefrRationale": "A2 text task: the learner handles “Question tags negative” and identifies “is she” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “is she” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Negative statement → positive tag."
+      "ambiguityNotes": "Only “is she” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Negative statement → positive tag.",
+      "scenarioRu": "Отрицательный краткий вопрос",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "She isn't here, ______?"
     },
     {
       "id": "en-a2-023",
@@ -508,7 +574,10 @@
       "cefrRationale": "A2 text task: the learner handles “Short story” and identifies “Two years” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Two years” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The text says 'moved to Madrid two years ago'."
+      "ambiguityNotes": "Only “Two years” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The text says 'moved to Madrid two years ago'.",
+      "scenarioRu": "Короткая история",
+      "instructionRu": "Прочитай историю и выбери, как долго Мария живёт в Мадриде.",
+      "stimulus": "Maria moved to Madrid two years ago. She found a job as a teacher. Now she lives in a small flat near the park. She enjoys her life there."
     },
     {
       "id": "en-a2-024",
@@ -530,7 +599,10 @@
       "cefrRationale": "A2 text task: the learner handles “Notice” and identifies “On Mondays” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “On Mondays” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The notice explicitly states 'closed on Mondays'."
+      "ambiguityNotes": "Only “On Mondays” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The notice explicitly states 'closed on Mondays'.",
+      "scenarioRu": "Объявление музея",
+      "instructionRu": "Прочитай объявление и выбери день, когда музей закрыт.",
+      "stimulus": "The museum is closed on Mondays. Free entry for children under 12."
     },
     {
       "id": "en-a2-025",
@@ -552,7 +624,10 @@
       "cefrRationale": "A2 text task: the learner handles “Shopping” and identifies “small” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “small” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Don't fit' suggests a size problem; 'too small' is the logical answer."
+      "ambiguityNotes": "Only “small” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Don't fit' suggests a size problem; 'too small' is the logical answer.",
+      "scenarioRu": "Покупка обуви",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "These shoes don't fit me. They are too ______."
     },
     {
       "id": "en-a2-026",
@@ -574,7 +649,10 @@
       "cefrRationale": "A2 text task: the learner handles “Health” and identifies “medicine” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “medicine” satisfies the stated context and target; the distractors conflict with the prompt or this rule: For a headache, you take medicine."
+      "ambiguityNotes": "Only “medicine” satisfies the stated context and target; the distractors conflict with the prompt or this rule: For a headache, you take medicine.",
+      "scenarioRu": "Самочувствие",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "I have a headache. I need to take some ______."
     },
     {
       "id": "en-a2-027",
@@ -596,7 +674,10 @@
       "cefrRationale": "A2 text task: the learner handles “Too vs enough” and identifies “too” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “too” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Too' + adjective means 'excessively' (negative result)."
+      "ambiguityNotes": "Only “too” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Too' + adjective means 'excessively' (negative result).",
+      "scenarioRu": "Слишком горячий",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "The coffee is ______ hot to drink."
     },
     {
       "id": "en-a2-028",
@@ -618,7 +699,10 @@
       "cefrRationale": "A2 text task: the learner handles “Enough” and identifies “enough” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “enough” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Enough' goes after adjectives but before nouns."
+      "ambiguityNotes": "Only “enough” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Enough' goes after adjectives but before nouns.",
+      "scenarioRu": "Достаточно времени",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I don't have ______ time to finish this."
     },
     {
       "id": "en-a2-029",
@@ -640,7 +724,10 @@
       "cefrRationale": "A2 text task: the learner handles “Time expressions” and identifies “as soon as” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “as soon as” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'As soon as' means immediately after."
+      "ambiguityNotes": "Only “as soon as” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'As soon as' means immediately after.",
+      "scenarioRu": "Когда позвонить",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "I will call you ______ I get home."
     },
     {
       "id": "en-a2-030",
@@ -662,7 +749,10 @@
       "cefrRationale": "A2 text task: the learner handles “First conditional” and identifies “will stay” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “will stay” satisfies the stated context and target; the distractors conflict with the prompt or this rule: First conditional: if + present simple, will + infinitive."
+      "ambiguityNotes": "Only “will stay” satisfies the stated context and target; the distractors conflict with the prompt or this rule: First conditional: if + present simple, will + infinitive.",
+      "scenarioRu": "Условие и результат",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "If it rains tomorrow, I ______ at home."
     },
     {
       "id": "en-a2-031",
@@ -684,7 +774,10 @@
       "cefrRationale": "A2 text task: the learner handles “Zero conditional scientific fact” and identifies “boils” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “boils” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A general scientific result uses present simple in both parts of the zero conditional."
+      "ambiguityNotes": "Only “boils” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A general scientific result uses present simple in both parts of the zero conditional.",
+      "scenarioRu": "Научный факт",
+      "instructionRu": "Выбери форму, которая правильно завершает научный факт в нулевом условном предложении.",
+      "stimulus": "If you heat water to 100°C, it ______."
     },
     {
       "id": "en-a2-032",
@@ -706,7 +799,10 @@
       "cefrRationale": "A2 text task: the learner handles “Weather forecast” and identifies “cloudy” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “cloudy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Cloudy' is the adjective describing weather."
+      "ambiguityNotes": "Only “cloudy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Cloudy' is the adjective describing weather.",
+      "scenarioRu": "Прогноз погоды",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "The weather forecast says it will be ______ and sunny tomorrow."
     },
     {
       "id": "en-a2-033",
@@ -728,7 +824,10 @@
       "cefrRationale": "A2 text task: the learner handles “Restaurant review” and identifies “The service” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “The service” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'The service was very slow' identifies the problem."
+      "ambiguityNotes": "Only “The service” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'The service was very slow' identifies the problem.",
+      "scenarioRu": "Отзыв о ресторане",
+      "instructionRu": "Прочитай отзыв и выбери, на что жалуется посетитель.",
+      "stimulus": "The food was excellent, but the service was very slow. We waited 45 minutes for our main course. The prices were reasonable."
     },
     {
       "id": "en-a2-034",
@@ -750,7 +849,10 @@
       "cefrRationale": "A2 text task: the learner handles “Movement onto a surface” and identifies “onto” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “onto” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Onto” expresses movement from a lower position to a position on a surface."
+      "ambiguityNotes": "Only “onto” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Onto” expresses movement from a lower position to a position on a surface.",
+      "scenarioRu": "Движение на поверхность",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "The cat moved from the floor to the top of the table. It jumped ______ the table."
     },
     {
       "id": "en-a2-035",
@@ -772,7 +874,10 @@
       "cefrRationale": "A2 text task: the learner handles “Opposite adjectives” and identifies “expensive” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “expensive” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Expensive' is the opposite of 'cheap'."
+      "ambiguityNotes": "Only “expensive” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Expensive' is the opposite of 'cheap'.",
+      "scenarioRu": "Противоположные значения",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "The opposite of 'cheap' is ______."
     },
     {
       "id": "en-a2-036",
@@ -794,7 +899,10 @@
       "cefrRationale": "A2 text task: the learner handles “Countable/uncountable” and identifies “some” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “some” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Some' is used in polite requests with uncountable nouns."
+      "ambiguityNotes": "Only “some” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Some' is used in polite requests with uncountable nouns.",
+      "scenarioRu": "Просьба о воде",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "Can I have ______ water, please?"
     },
     {
       "id": "en-a2-037",
@@ -816,7 +924,10 @@
       "cefrRationale": "A2 text task: the learner handles “Feelings” and identifies “happy” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “happy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Passing an exam makes you happy."
+      "ambiguityNotes": "Only “happy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Passing an exam makes you happy.",
+      "scenarioRu": "Чувства",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "I am ______ because I passed my exam."
     },
     {
       "id": "en-a2-038",
@@ -838,7 +949,10 @@
       "cefrRationale": "A2 text task: the learner handles “Offering a drink” and identifies “Would you like something to drink?” using the stated pragmatics cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Would you like something to drink?” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Would you like ...?” is a polite, conventional way to make an offer."
+      "ambiguityNotes": "Only “Would you like something to drink?” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Would you like ...?” is a polite, conventional way to make an offer.",
+      "scenarioRu": "Предложение напитка",
+      "instructionRu": "Гость только что пришёл. Выбери естественный способ предложить ему напиток.",
+      "stimulus": ""
     },
     {
       "id": "en-a2-039",
@@ -860,7 +974,10 @@
       "cefrRationale": "A2 text task: the learner handles “Jobs” and identifies “cook” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “cook” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A cook (or chef) cooks in a restaurant."
+      "ambiguityNotes": "Only “cook” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A cook (or chef) cooks in a restaurant.",
+      "scenarioRu": "Профессии",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "A person who cooks in a restaurant is a ______."
     },
     {
       "id": "en-a2-040",
@@ -882,7 +999,10 @@
       "cefrRationale": "A2 text task: the learner handles “Invitation” and identifies “Reply to the invitation” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Reply to the invitation” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'RSVP' means 'please reply' in French ('Répondez s'il vous plaît')."
+      "ambiguityNotes": "Only “Reply to the invitation” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'RSVP' means 'please reply' in French ('Répondez s'il vous plaît').",
+      "scenarioRu": "Приглашение",
+      "instructionRu": "Прочитай приглашение и выбери, что нужно сделать до четверга.",
+      "stimulus": "You are invited to a birthday party on Saturday at 7 PM. Please bring a small gift. RSVP by Thursday."
     }
   ]
 }

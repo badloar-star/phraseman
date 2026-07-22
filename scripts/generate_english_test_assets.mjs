@@ -51,6 +51,7 @@ function requireNonEmptyString(question, key) {
 function validateQuestion(q, level, seenIds) {
   const required = [
     'id', 'level', 'difficulty', 'skill', 'format', 'scenario', 'prompt',
+    'scenarioRu', 'instructionRu', 'stimulus',
     'options', 'correctIndex', 'explanation', 'targetConstruct',
     'cefrRationale', 'dialect', 'reviewStatus', 'ambiguityNotes',
   ];
@@ -79,8 +80,17 @@ function validateQuestion(q, level, seenIds) {
   if (typeof q.difficulty !== 'number' || q.difficulty < minDifficulty || q.difficulty > maxDifficulty) {
     throw new Error(`Question ${q.id} has invalid difficulty: ${q.difficulty}`);
   }
-  for (const key of ['scenario', 'prompt', 'explanation', 'targetConstruct', 'cefrRationale', 'ambiguityNotes']) {
+  for (const key of [
+    'scenario', 'prompt', 'scenarioRu', 'instructionRu', 'explanation',
+    'targetConstruct', 'cefrRationale', 'ambiguityNotes',
+  ]) {
     requireNonEmptyString(q, key);
+  }
+  if (typeof q.stimulus !== 'string') {
+    throw new Error(`Question ${q.id} has invalid stimulus`);
+  }
+  if (!/[\u0400-\u04FF]/.test(q.scenarioRu) || !/[\u0400-\u04FF]/.test(q.instructionRu)) {
+    throw new Error(`Question ${q.id} must have Russian UI copy`);
   }
   const validSkills = ['grammar', 'vocabulary', 'reading', 'pragmatics'];
   if (!validSkills.includes(q.skill)) {

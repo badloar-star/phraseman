@@ -502,12 +502,31 @@ html, body {
   animation: fadeIn 0.3s ease;
 }
 
-.elt-prompt {
+.elt-instruction {
   font-size: 1.15rem;
-  font-weight: 500;
-  margin-bottom: 24px;
-  line-height: 1.4;
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.5;
   animation: fadeInUp 0.35s 0.05s both ease;
+}
+
+.elt-stimulus {
+  margin-bottom: 24px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1.55;
+  white-space: pre-line;
+  animation: fadeInUp 0.35s 0.08s both ease;
+}
+
+.elt-instruction + .elt-options {
+  margin-top: 12px;
 }
 
 .elt-options {
@@ -1089,7 +1108,7 @@ html, body {
 }
 
 @media (min-width: 1024px) {
-  .elt-prompt {
+  .elt-instruction {
     font-size: 1.25rem;
   }
 }

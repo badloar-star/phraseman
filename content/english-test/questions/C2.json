@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "bankVersion": "2026-07-22.3",
+  "schemaVersion": 3,
+  "bankVersion": "2026-07-22.4",
   "language": "en",
   "level": "C2",
   "questions": [
@@ -25,7 +25,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “needn’t have” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Needn’t have” states that the action occurred but proved unnecessary.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "I carried my umbrella all day. It was harmless but unnecessary because it did not rain. I ______ brought it."
     },
     {
       "id": "en-c2-002",
@@ -48,7 +51,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “didn’t need to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Didn’t need to” fits an unnecessary action that the speaker did not perform.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "My roommate had already ordered pizza, so I did not cook dinner. I ______ cook dinner."
     },
     {
       "id": "en-c2-003",
@@ -71,7 +77,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “might have told” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Might have + past participle' expresses mild reproach about a past omission.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "You ______ me you were leaving! I would have come to say goodbye."
     },
     {
       "id": "en-c2-004",
@@ -94,7 +103,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “could have won” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Could have + past participle' for unrealised possibility in the past.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "She ______ the marathon if she hadn't injured her knee."
     },
     {
       "id": "en-c2-005",
@@ -117,7 +129,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “didn’t say” satisfies the stated context and target; the distractors conflict with the prompt or this rule: For a present or future preference about another person, “would rather” takes a past form.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "From now on, I’d rather you ______ anything about this to anyone."
     },
     {
       "id": "en-c2-006",
@@ -140,7 +155,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “hand in” satisfies the stated context and target; the distractors conflict with the prompt or this rule: With the same subject, “would sooner” takes the bare infinitive: “would sooner hand in”.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I would sooner ______ my resignation than accept those terms."
     },
     {
       "id": "en-c2-007",
@@ -163,7 +181,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The sources are numerous, but the central argument may still be weak.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The narrowly positive comment on quantity, combined with withheld praise for reasoning, conventionally implies a reservation about argumentative quality.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи наиболее вероятный скрытый смысл замечания рецензента.",
+      "stimulus": "A reviewer writes, “The author has certainly assembled a great many sources,” but offers no praise for the reasoning."
     },
     {
       "id": "en-c2-008",
@@ -186,7 +207,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “Had it not been for” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A counterfactual completed past condition uses “Had it not been for ...”.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Используй инверсию с Past Perfect для завершённого результата в прошлом.",
+      "stimulus": "______ your generosity, this project would never have been completed."
     },
     {
       "id": "en-c2-009",
@@ -209,7 +233,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “isn’t necessarily” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Isn’t necessarily” denies that the statement is always true without claiming that it is never true.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму частичного, а не абсолютного отрицания.",
+      "stimulus": "All that glitters ______ gold."
     },
     {
       "id": "en-c2-010",
@@ -232,7 +259,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “did they know” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Fronted negative “little” triggers inversion: “Little did they know ...”.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "Little ______ that their conversation was being recorded."
     },
     {
       "id": "en-c2-011",
@@ -255,7 +285,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “had I closed” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'No sooner' requires inversion with past perfect: 'had I closed'.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "No sooner ______ the door than the phone rang."
     },
     {
       "id": "en-c2-012",
@@ -278,7 +311,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “did” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Inversion after 'Not only' with past simple event.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "Not only ______ she win the championship, but she also broke the world record."
     },
     {
       "id": "en-c2-013",
@@ -301,7 +337,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “should you leave” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'On no account' triggers inversion: 'should you leave'.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "On no account ______ the premises without notifying security."
     },
     {
       "id": "en-c2-014",
@@ -324,7 +363,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “albeit” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Albeit” is a formal concessive conjunction meaning “although it was”.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери формальное уступительное слово.",
+      "stimulus": "The plan was accepted, ______ reluctantly."
     },
     {
       "id": "en-c2-015",
@@ -347,7 +389,10 @@
       "cefrRationale": "C2 text task: the learner handles “Calibrated academic claim” and identifies “The findings may be consistent with a causal relationship.” using the stated pragmatics cue.",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The findings may be consistent with a causal relationship.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “May be consistent with” preserves the distinction between suggestive evidence and a demonstrated causal conclusion.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Выбери формулировку причинной связи с уместной академической осторожностью.",
+      "stimulus": "The evidence is suggestive but not conclusive."
     },
     {
       "id": "en-c2-016",
@@ -370,7 +415,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “nonetheless” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Nonetheless” marks the contrast between methodological strength and uncertain relevance.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай английский текст и выбери правильный вариант.",
+      "stimulus": "The evidence is methodologically robust; ______, its relevance to the present case remains uncertain."
     },
     {
       "id": "en-c2-017",
@@ -393,7 +441,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “At least one member did not reject it.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Not all rejected” logically entails that at least one member did not reject; it does not specify how many or whether they approved.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Определи, какой вывод обязательно следует из высказывания.",
+      "stimulus": "“Not all of the committee members rejected the amendment.”"
     },
     {
       "id": "en-c2-018",
@@ -416,7 +467,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “insofar as” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Insofar as” means “to the extent that” and matches the explicit restriction in the second clause.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "The waiver applies ______ compliance would impose a disproportionate burden, and only to that extent."
     },
     {
       "id": "en-c2-019",
@@ -439,7 +493,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “I am not entirely convinced that the evidence supports the conclusion drawn; however, the methodology appears sound.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Qualified disagreement balances critique with acknowledgment of strengths.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери ответ, который выражает несогласие с оговоркой в академическом контексте.",
+      "stimulus": ""
     },
     {
       "id": "en-c2-020",
@@ -462,7 +519,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The proposal has some merit, but the reviewer retains a serious reservation.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Not without merit” gives limited praise, while the following clause preserves a substantial qualification.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Выбери толкование, которое точнее всего сохраняет позицию рецензента.",
+      "stimulus": "A reviewer concludes, “The proposal is not without merit, though its central assumption remains untested.”"
     },
     {
       "id": "en-c2-021",
@@ -485,7 +545,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “equivocal” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Equivocal” describes language intentionally open to opposing interpretations and therefore non-committal.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "The spokesperson’s reply could be read as either qualified support or a polite refusal; it was deliberately ______."
     },
     {
       "id": "en-c2-022",
@@ -508,7 +571,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The concession does not surrender or weaken those rights.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In legal usage, “without prejudice to” preserves the referenced rights despite the present act.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Определи значение юридической оговорки.",
+      "stimulus": "“This concession is made without prejudice to the claimant’s existing rights.”"
     },
     {
       "id": "en-c2-023",
@@ -531,7 +597,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “Every resubmitted amendment had been rejected by the committee.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Only X were resubmitted” makes prior rejection necessary for resubmission, but does not say that all rejected items were resubmitted.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Выбери вывод, который обязательно следует из структуры предложения.",
+      "stimulus": "“Only the amendments that the committee had rejected were resubmitted.”"
     },
     {
       "id": "en-c2-024",
@@ -554,7 +623,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The minister did not issue a full denial.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Stopped short of denying” means the response did not go as far as an outright denial; it does not amount to full confirmation.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи, что точнее всего означает формулировка отчёта.",
+      "stimulus": "A report says, “The minister stopped short of denying that officials had discussed the proposal.”"
     },
     {
       "id": "en-c2-025",
@@ -577,7 +649,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The speech was empty but delivered with false gravity” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Saying nothing with extraordinary verbosity' and 'so little meaning' reveal satirical criticism.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай текст и определи истинное мнение автора.",
+      "stimulus": "The minister's speech was a masterclass in saying nothing with extraordinary verbosity. Every platitude was delivered with the gravitas of a Shakespearean soliloquy, leaving the audience in awe of how so many words could convey so little meaning."
     },
     {
       "id": "en-c2-026",
@@ -600,7 +675,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The report may lack credibility” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The emphasis on 'entirely self-conducted without external verification' implies potential credibility issues.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай текст и выбери наиболее обоснованный скрытый вывод.",
+      "stimulus": "The company's environmental report was comprehensive, thorough, and — notably — entirely self-conducted without external verification."
     },
     {
       "id": "en-c2-027",
@@ -623,7 +701,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “shake up” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Shake up' means to make significant changes to improve.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "The new manager decided to ______ the department, removing outdated practices and introducing modern workflows."
     },
     {
       "id": "en-c2-028",
@@ -646,7 +727,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “in the” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'In the political wilderness' means out of power and influence.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "After losing the election, the politician found himself ______ political wilderness."
     },
     {
       "id": "en-c2-029",
@@ -669,7 +753,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The analyst questions the reported magnitude without necessarily denying an effect.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Appears to have been overstated” combines evidential caution with a challenge to degree, not a categorical denial.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи позицию аналитика, выраженную этой формулировкой.",
+      "stimulus": "An analyst writes, “The effect appears to have been overstated.”"
     },
     {
       "id": "en-c2-030",
@@ -692,7 +779,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The cost reduction is accepted, while the effect on outcomes remains unresolved.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The first nominal clause is explicitly treated as settled; “another matter” separates and leaves open the outcome claim.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Выбери точное толкование противопоставления в высказывании.",
+      "stimulus": "“That the policy reduced expenditure is not in dispute; whether it improved outcomes is another matter.”"
     },
     {
       "id": "en-c2-031",
@@ -715,7 +805,10 @@
       "dialect": "british",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “I acknowledge your words but disagree” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In British English, this phrase is often a polite way of expressing disagreement.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Прочитай ситуацию и выбери самый естественный и уместный ответ.",
+      "stimulus": "In British English, 'I hear what you say' often means ______."
     },
     {
       "id": "en-c2-032",
@@ -738,7 +831,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “understatement” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Calling −30°C “a bit chilly” deliberately makes the extreme cold sound less severe.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи приём, с помощью которого говорящий намеренно преуменьшает серьёзность ситуации.",
+      "stimulus": "At −30°C, the mountaineer says, “It’s a bit chilly.”"
     },
     {
       "id": "en-c2-033",
@@ -761,7 +857,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “ostensibly” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Ostensibly” marks the stated or apparent purpose while signalling that the real motive may differ.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "The measure was ______ introduced to simplify regulation, though internal documents suggest a political motive."
     },
     {
       "id": "en-c2-034",
@@ -784,7 +883,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “contingent upon” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Contingent upon” means dependent on a condition being fulfilled.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "Approval is ______ the applicant’s securing independent funding; without it, the project cannot proceed."
     },
     {
       "id": "en-c2-035",
@@ -807,7 +909,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “Possibly none survived, and certainly not many did.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Few, if any” allows zero and otherwise limits the surviving set to a small number.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Выбери наиболее точное толкование высказывания.",
+      "stimulus": "“Few, if any, of the reported gains survived adjustment for prior attainment.”"
     },
     {
       "id": "en-c2-036",
@@ -830,7 +935,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “Rejecting “conclusive” as too strong while leaving room for weaker support.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The speaker sets an upper limit on endorsement rather than making a total negative judgement.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи, что делает говорящий этой формулировкой.",
+      "stimulus": "“I wouldn’t go so far as to call the findings conclusive.”"
     },
     {
       "id": "en-c2-037",
@@ -853,7 +961,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The paper claims to do so, but the writer withholds endorsement.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In critical prose, “purports to” reports a claimed achievement while creating distance from its truth.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи, что здесь выражает оборот “purports to”.",
+      "stimulus": "A critique says, “The paper purports to resolve the paradox.”"
     },
     {
       "id": "en-c2-038",
@@ -876,7 +987,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “It continued in a more limited form rather than simply being dropped.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The construction corrects the first description (“abandoned”) in favour of the more precise second one (“recast”).",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Выбери наиболее близкий по смыслу перефразированный вариант.",
+      "stimulus": "“The reform was not so much abandoned as recast in narrower terms.”"
     },
     {
       "id": "en-c2-039",
@@ -899,7 +1013,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “The visitor must leave very soon.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In this context, mentioning the six o’clock closing time indirectly tells the visitor that they must leave soon.",
-      "upperBandEvidence": false
+      "upperBandEvidence": false,
+      "scenarioRu": "Общение в ситуации",
+      "instructionRu": "Определи, что библиотекарь подразумевает своим ответом.",
+      "stimulus": "At 5:55, a visitor asks a librarian, “Can I stay here?” The librarian replies, “The library closes at six.”"
     },
     {
       "id": "en-c2-040",
@@ -922,7 +1039,10 @@
       "dialect": "neutral",
       "reviewStatus": "reviewed",
       "ambiguityNotes": "Only “It prevents the statement from being treated as conceding liability.” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Should be construed as” concerns interpretation; the clause expressly blocks an inference of admitted liability.",
-      "upperBandEvidence": true
+      "upperBandEvidence": true,
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Определи, какой юридический эффект должна создать эта формулировка.",
+      "stimulus": "“Nothing in this statement should be construed as an admission of liability.”"
     }
   ]
 }

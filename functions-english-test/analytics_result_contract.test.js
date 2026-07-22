@@ -44,7 +44,7 @@ function loadActionNormalizer() {
   });
   const normalizeCompletedResult = loadFunction('normalizeCompletedResult');
   const normalizeBankVersion = loadFunction('normalizeBankVersion', {
-    BANK_VERSION: '2026-07-22.3',
+    BANK_VERSION: '2026-07-22.4',
   });
   return loadFunction('normalizeAnalyticsAction', {
     normalizeBankVersion,
@@ -148,7 +148,7 @@ test('complete action writes a result only after contract normalization', () => 
 
 test('attempt bank version is strictly normalized and bounded before persistence', () => {
   const normalizeBankVersion = loadFunction('normalizeBankVersion', {
-    BANK_VERSION: '2026-07-22.3',
+    BANK_VERSION: '2026-07-22.4',
   });
 
   assert.equal(normalizeBankVersion('2026-07-22.123'), '2026-07-22.123');
@@ -162,7 +162,7 @@ test('attempt bank version is strictly normalized and bounded before persistence
     null,
   ];
   for (const value of invalid) {
-    assert.equal(normalizeBankVersion(value), '2026-07-22.3');
+    assert.equal(normalizeBankVersion(value), '2026-07-22.4');
   }
 
   const attemptCreation = source.slice(
@@ -454,7 +454,7 @@ test('analytics client and IP buckets are HMAC-addressed and atomically updated 
 });
 
 test('analytics infrastructure contract uses the revised bank, usable rate limit, and FieldValue API', () => {
-  assert.match(source, /BANK_VERSION = '2026-07-22\.3'/);
+  assert.match(source, /BANK_VERSION = '2026-07-22\.4'/);
   const rateLimit = source.match(/ANALYTICS_RATE_LIMIT\s*=\s*(\d+)/);
   assert.ok(rateLimit, 'ANALYTICS_RATE_LIMIT must be explicit');
   assert.equal(Number(rateLimit[1]), 180, 'analytics must permit three max-flow retakes per hour');

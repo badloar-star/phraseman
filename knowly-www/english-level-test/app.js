@@ -7,7 +7,7 @@
   'use strict';
 
   const API_BASE = '/api/english-test';
-  const BANK_URL = './data/questions.en.json?v=20260722-3';
+  const BANK_URL = './data/questions.en.json?v=20260722-4';
 
   const STORE_URL_IOS = 'https://apps.apple.com/app/id6764800879';
   const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
@@ -619,15 +619,18 @@
       <div class="elt-test">
         <div class="elt-progress-bar"><div class="elt-progress-fill"></div></div>
         <div class="elt-question-meta">Вопрос ${position}</div>
-        <div class="elt-scenario">${escapeHtml(q.scenario)}</div>
-        <div class="elt-prompt">${escapeHtml(q.prompt)}</div>
+        <div class="elt-scenario" lang="ru">${escapeHtml(q.scenarioRu)}</div>
+        <div class="elt-instruction" lang="ru">${escapeHtml(q.instructionRu)}</div>
+        ${q.stimulus
+          ? `<div class="elt-stimulus" lang="en">${escapeHtml(q.stimulus)}</div>`
+          : ''}
         <div class="elt-options" role="radiogroup" aria-label="Варианты ответа">
           ${q.options
             .map(
               (opt, i) => `
             <button class="elt-option" data-index="${i}" role="radio" aria-checked="false" tabindex="0">
               <span class="elt-option-letter">${String.fromCharCode(65 + i)}</span>
-              <span class="elt-option-text">${escapeHtml(opt)}</span>
+              <span class="elt-option-text" lang="en">${escapeHtml(opt)}</span>
             </button>
           `
             )

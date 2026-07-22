@@ -21,6 +21,8 @@ const REQUIRED_REVIEW_FIELDS = [
   'reviewStatus',
   'ambiguityNotes',
 ];
+const REQUIRED_RUSSIAN_UI_FIELDS = ['scenarioRu', 'instructionRu'];
+const CYRILLIC_PATTERN = /[\u0400-\u04FF]/;
 
 function readLevel(level) {
   return JSON.parse(fs.readFileSync(
@@ -45,6 +47,12 @@ test('every level has 40 reviewed, unambiguous items in its CEFR range', () => {
         assert.equal(typeof question[field], 'string', `${question.id} ${field}`);
         assert.ok(question[field].trim(), `${question.id} ${field} must not be empty`);
       }
+      for (const field of REQUIRED_RUSSIAN_UI_FIELDS) {
+        assert.equal(typeof question[field], 'string', `${question.id} ${field}`);
+        assert.ok(question[field].trim(), `${question.id} ${field} must not be empty`);
+        assert.match(question[field], CYRILLIC_PATTERN, `${question.id} ${field} must be Russian`);
+      }
+      assert.equal(typeof question.stimulus, 'string', `${question.id} stimulus`);
       assert.equal(question.reviewStatus, 'reviewed', question.id);
       assert.ok(['neutral', 'british', 'american'].includes(question.dialect), question.id);
       assert.equal(question.options.length, 4, question.id);
@@ -61,6 +69,105 @@ test('every level has 40 reviewed, unambiguous items in its CEFR range', () => {
     assert.deepEqual(positions, [10, 10, 10, 10], `${level} stored answer positions`);
   }
   assert.equal(ids.size, 240);
+});
+
+test('beginner tasks explain the action in Russian and keep the assessed language in English', () => {
+  const questions = ['A1', 'A2'].flatMap((level) => readLevel(level).questions);
+  const byId = Object.fromEntries(questions.map((question) => [question.id, question]));
+
+  for (const question of questions) {
+    assert.match(question.scenarioRu, CYRILLIC_PATTERN, `${question.id} scenario`);
+    assert.match(question.instructionRu, CYRILLIC_PATTERN, `${question.id} instruction`);
+    assert.equal(
+      question.options.some((option) => CYRILLIC_PATTERN.test(option)),
+      false,
+      `${question.id} options must remain English assessment material`,
+    );
+  }
+
+  assert.equal(byId['en-a1-005'].scenarioRu, 'Заказ в кафе');
+  assert.equal(
+    byId['en-a1-005'].instructionRu,
+    'Бариста спрашивает, что ты хочешь заказать. Выбери самый естественный ответ.',
+  );
+  assert.equal(byId['en-a1-005'].stimulus, 'What would you like?');
+  assert.equal(byId['en-a1-005'].options[byId['en-a1-005'].correctIndex], 'A coffee, please.');
+});
+
+test('English stimulus does not repeat service instructions already shown in Russian', () => {
+  const questions = LEVELS.flatMap((level) => readLevel(level).questions);
+  const byId = Object.fromEntries(questions.map((question) => [question.id, question]));
+  const englishMetaInstruction = /^(?:choose|read(?: the text)?|complete|use|repeat|in formal (?:english|writing)|which response|which opening)\b/i;
+
+  for (const question of questions) {
+    assert.doesNotMatch(question.stimulus, englishMetaInstruction, question.id);
+  }
+
+  assert.equal(
+    byId['en-b1-023'].stimulus,
+    'The government has announced plans to reduce carbon emissions by 40% before 2030. The new policy will affect the transport and energy sectors.',
+  );
+  assert.equal(
+    byId['en-c2-020'].stimulus,
+    'A reviewer concludes, “The proposal is not without merit, though its central assumption remains untested.”',
+  );
+});
+
+test('localization preserves complete assessed sentences and precise high-band tasks', () => {
+  const questions = LEVELS.flatMap((level) => readLevel(level).questions);
+  const byId = Object.fromEntries(questions.map((question) => [question.id, question]));
+  const genericInstructions = new Set([
+    'Выбери грамматически правильный вариант.',
+    'Выбери форму, которая правильно завершает английское предложение.',
+    'Выбери английское слово или выражение, которое лучше всего подходит по смыслу.',
+    'Выбери английское слово или выражение, которое правильно заполняет пропуск.',
+    'Прочитай английский текст и выбери правильный ответ.',
+    'Прочитай английский текст и выбери правильный вариант.',
+    'Прочитай ситуацию и выбери самый естественный и уместный ответ.',
+    'Прочитай ситуацию и выбери самый естественный и уместный вариант.',
+  ]);
+
+  for (const question of questions) {
+    const promptBlankCount = (question.prompt.match(/______/g) || []).length;
+    const stimulusBlankCount = (question.stimulus.match(/______/g) || []).length;
+    assert.equal(stimulusBlankCount, promptBlankCount, `${question.id} assessed blanks`);
+    if (question.prompt !== question.stimulus) {
+      assert.equal(
+        genericInstructions.has(question.instructionRu),
+        false,
+        `${question.id} transformed prompt needs a specific Russian goal`,
+      );
+    }
+  }
+
+  assert.equal(byId['en-a2-005'].stimulus, 'What were you doing when I ______?');
+  assert.match(byId['en-a1-022'].stimulus, /The shop ______ at 9:00\./);
+  assert.equal(
+    byId['en-b2-027'].stimulus,
+    '“Will you come to the party?” “Yes, I ______.”',
+  );
+  assert.equal(
+    byId['en-c1-015'].instructionRu,
+    'Определи основную функцию оборота “I wonder whether you might”.',
+  );
+  assert.equal(
+    byId['en-c2-020'].instructionRu,
+    'Выбери толкование, которое точнее всего сохраняет позицию рецензента.',
+  );
+  assert.equal(
+    byId['en-c2-039'].instructionRu,
+    'Определи, что библиотекарь подразумевает своим ответом.',
+  );
+  const neutralUpperBandInstructions = {
+    'en-c1-028': 'Определи, что говорящий сообщает этой фразой.',
+    'en-c2-029': 'Определи позицию аналитика, выраженную этой формулировкой.',
+    'en-c2-035': 'Выбери наиболее точное толкование высказывания.',
+    'en-c2-036': 'Определи, что делает говорящий этой формулировкой.',
+    'en-c2-037': 'Определи, что здесь выражает оборот “purports to”.',
+  };
+  for (const [id, instruction] of Object.entries(neutralUpperBandInstructions)) {
+    assert.equal(byId[id].instructionRu, instruction, id);
+  }
 });
 
 test('confirmed broken items contain the corrected one-answer forms', () => {

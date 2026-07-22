@@ -32,7 +32,7 @@ const ALLOWED_ORIGINS = [
   'https://phraseman-ea0b3.web.app',
 ];
 
-const BANK_VERSION = '2026-07-22.3';
+const BANK_VERSION = '2026-07-22.4';
 const MAX_BODY_BYTES = 32768;
 const RATE_LIMIT_WINDOW_MS = 3600000; // 1 hour
 const ANALYTICS_RATE_LIMIT = 180;

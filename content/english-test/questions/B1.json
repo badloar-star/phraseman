@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "bankVersion": "2026-07-22.3",
+  "schemaVersion": 3,
+  "bankVersion": "2026-07-22.4",
   "language": "en",
   "level": "B1",
   "questions": [
@@ -24,7 +24,10 @@
       "cefrRationale": "B1 text task: the learner handles “Passive voice present” and identifies “is written” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “is written” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Present simple passive: am/is/are + past participle."
+      "ambiguityNotes": "Only “is written” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Present simple passive: am/is/are + past participle.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "The letter ______ in English."
     },
     {
       "id": "en-b1-002",
@@ -46,7 +49,10 @@
       "cefrRationale": "B1 text task: the learner handles “Passive voice past” and identifies “was built” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “was built” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Past simple passive: was/were + past participle."
+      "ambiguityNotes": "Only “was built” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Past simple passive: was/were + past participle.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "The bridge ______ in 1890."
     },
     {
       "id": "en-b1-003",
@@ -68,7 +74,10 @@
       "cefrRationale": "B1 text task: the learner handles “Ongoing activity up to now” and identifies “has been studying” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “has been studying” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The present perfect continuous highlights an activity that began in the past and is still continuing."
+      "ambiguityNotes": "Only “has been studying” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The present perfect continuous highlights an activity that began in the past and is still continuing.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "She started two hours ago and is still studying. She ______ for two hours."
     },
     {
       "id": "en-b1-004",
@@ -90,7 +99,10 @@
       "cefrRationale": "B1 text task: the learner handles “Used to vs be used to” and identifies “used to” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “used to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Used to' expresses past habits that no longer continue."
+      "ambiguityNotes": "Only “used to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Used to' expresses past habits that no longer continue.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I ______ live in Paris, but now I live in London."
     },
     {
       "id": "en-b1-005",
@@ -112,7 +124,10 @@
       "cefrRationale": "B1 text task: the learner handles “Be used to + noun/-ing” and identifies “waking” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “waking” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Be used to' is followed by a noun or gerund (-ing form)."
+      "ambiguityNotes": "Only “waking” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Be used to' is followed by a noun or gerund (-ing form).",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "I am used to ______ early."
     },
     {
       "id": "en-b1-006",
@@ -134,7 +149,10 @@
       "cefrRationale": "B1 text task: the learner handles “Reported speech: present to past” and identifies “was” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “was” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In reported speech, present simple 'am' backshifts to past simple 'was'."
+      "ambiguityNotes": "Only “was” satisfies the stated context and target; the distractors conflict with the prompt or this rule: In reported speech, present simple 'am' backshifts to past simple 'was'.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "'I am tired,' she said. → She said that she ______ tired."
     },
     {
       "id": "en-b1-007",
@@ -156,7 +174,10 @@
       "cefrRationale": "B1 text task: the learner handles “Reported speech: pronoun shift” and identifies “would” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “would” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Will' backshifts to 'would' in reported speech."
+      "ambiguityNotes": "Only “would” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Will' backshifts to 'would' in reported speech.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "'I will help you,' he told me. → He told me that he ______ help me."
     },
     {
       "id": "en-b1-008",
@@ -178,7 +199,10 @@
       "cefrRationale": "B1 text task: the learner handles “Reported speech: time shift” and identifies “the day before” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “the day before” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Yesterday' becomes 'the day before' in reported speech."
+      "ambiguityNotes": "Only “the day before” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Yesterday' becomes 'the day before' in reported speech.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "'I saw him yesterday,' she said. → She said that she had seen him ______."
     },
     {
       "id": "en-b1-009",
@@ -200,7 +224,10 @@
       "cefrRationale": "B1 text task: the learner handles “Second conditional” and identifies “had” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “had” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Second conditional: if + past simple, would + infinitive."
+      "ambiguityNotes": "Only “had” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Second conditional: if + past simple, would + infinitive.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "If I ______ enough money, I would buy a car."
     },
     {
       "id": "en-b1-010",
@@ -222,7 +249,10 @@
       "cefrRationale": "B1 text task: the learner handles “Second conditional: hypothetical present” and identifies “would get” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “would get” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Second conditional for unreal present/future situations."
+      "ambiguityNotes": "Only “would get” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Second conditional for unreal present/future situations.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "If she spoke French, she ______ the job."
     },
     {
       "id": "en-b1-011",
@@ -244,7 +274,10 @@
       "cefrRationale": "B1 text task: the learner handles “Formal hypothetical wish” and identifies “were” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “were” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Formal irrealis clauses use “were” for all persons after “wish”."
+      "ambiguityNotes": "Only “were” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Formal irrealis clauses use “were” for all persons after “wish”.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "В формальном английском выбери форму сослагательного наклонения после “I wish”.",
+      "stimulus": "I wish I ______ taller."
     },
     {
       "id": "en-b1-012",
@@ -266,7 +299,10 @@
       "cefrRationale": "B1 text task: the learner handles “Wish + past perfect” and identifies “had” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “had” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Wish' + past perfect expresses regret about the past."
+      "ambiguityNotes": "Only “had” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Wish' + past perfect expresses regret about the past.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I wish I ______ studied harder for the exam."
     },
     {
       "id": "en-b1-013",
@@ -288,7 +324,10 @@
       "cefrRationale": "B1 text task: the learner handles “Phrasal verbs: separable” and identifies “look up” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “look up” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Look up' means to search for information."
+      "ambiguityNotes": "Only “look up” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Look up' means to search for information.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "I need to ______ this word in the dictionary."
     },
     {
       "id": "en-b1-014",
@@ -310,7 +349,10 @@
       "cefrRationale": "B1 text task: the learner handles “Phrasal verbs” and identifies “put off” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “put off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Put off' means to postpone."
+      "ambiguityNotes": "Only “put off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Put off' means to postpone.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "We need to ______ the meeting until next week."
     },
     {
       "id": "en-b1-015",
@@ -332,7 +374,10 @@
       "cefrRationale": "B1 text task: the learner handles “Phrasal verbs” and identifies “take off” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “take off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Take off' means to remove (clothes, shoes)."
+      "ambiguityNotes": "Only “take off” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Take off' means to remove (clothes, shoes).",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "Please ______ your shoes before entering."
     },
     {
       "id": "en-b1-016",
@@ -354,7 +399,10 @@
       "cefrRationale": "B1 text task: the learner handles “Phrasal verbs” and identifies “take up” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “take up” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Take up' means to start a new hobby or activity."
+      "ambiguityNotes": "Only “take up” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Take up' means to start a new hobby or activity.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "I need to ______ a new hobby."
     },
     {
       "id": "en-b1-017",
@@ -376,7 +424,10 @@
       "cefrRationale": "B1 text task: the learner handles “Relative clauses: defining” and identifies “who” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “who” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Who' is used for people in relative clauses."
+      "ambiguityNotes": "Only “who” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Who' is used for people in relative clauses.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "The man ______ lives next door is a doctor."
     },
     {
       "id": "en-b1-018",
@@ -398,7 +449,10 @@
       "cefrRationale": "B1 text task: the learner handles “Relative clauses: things” and identifies “which” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “which” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Which' or 'that' is used for things."
+      "ambiguityNotes": "Only “which” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Which' or 'that' is used for things.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "This is the book ______ I told you about."
     },
     {
       "id": "en-b1-019",
@@ -420,7 +474,10 @@
       "cefrRationale": "B1 text task: the learner handles “Relative clauses: possession” and identifies “whose” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “whose” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Whose' shows possession in relative clauses."
+      "ambiguityNotes": "Only “whose” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Whose' shows possession in relative clauses.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "I met a woman ______ son is a famous actor."
     },
     {
       "id": "en-b1-020",
@@ -442,7 +499,10 @@
       "cefrRationale": "B1 text task: the learner handles “Defining vs non-defining” and identifies “who” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “who” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Non-defining relative clauses use 'who' or 'which' (not 'that')."
+      "ambiguityNotes": "Only “who” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Non-defining relative clauses use 'who' or 'which' (not 'that').",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "My brother, ______ lives in Berlin, is visiting us."
     },
     {
       "id": "en-b1-021",
@@ -464,7 +524,10 @@
       "cefrRationale": "B1 text task: the learner handles “Gerund vs infinitive” and identifies “listening” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “listening” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Enjoy' is followed by a gerund (-ing form)."
+      "ambiguityNotes": "Only “listening” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Enjoy' is followed by a gerund (-ing form).",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "I enjoy ______ to music."
     },
     {
       "id": "en-b1-022",
@@ -486,7 +549,10 @@
       "cefrRationale": "B1 text task: the learner handles “Verbs taking infinitive” and identifies “to buy” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “to buy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Decide' is followed by the infinitive with 'to'."
+      "ambiguityNotes": "Only “to buy” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Decide' is followed by the infinitive with 'to'.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "She decided ______ a new car."
     },
     {
       "id": "en-b1-023",
@@ -508,7 +574,10 @@
       "cefrRationale": "B1 text task: the learner handles “News article” and identifies “Environmental targets” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Environmental targets” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The text focuses on reducing carbon emissions — environmental targets."
+      "ambiguityNotes": "Only “Environmental targets” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The text focuses on reducing carbon emissions — environmental targets.",
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай текст и выбери его главную тему.",
+      "stimulus": "The government has announced plans to reduce carbon emissions by 40% before 2030. The new policy will affect the transport and energy sectors."
     },
     {
       "id": "en-b1-024",
@@ -530,7 +599,10 @@
       "cefrRationale": "B1 text task: the learner handles “Travel guide” and identifies “Every day except Tuesday” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Every day except Tuesday” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The castle is closed on Tuesdays, so you can visit every other day."
+      "ambiguityNotes": "Only “Every day except Tuesday” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The castle is closed on Tuesdays, so you can visit every other day.",
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай объявление и выбери, когда можно посетить замок.",
+      "stimulus": "Visitors should note that the castle is closed on Tuesdays for restoration work. Guided tours are available in English and French on other days."
     },
     {
       "id": "en-b1-025",
@@ -552,7 +624,10 @@
       "cefrRationale": "B1 text task: the learner handles “Decision collocation” and identifies “make” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “make” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Make a decision” is the standard neutral collocation."
+      "ambiguityNotes": "Only “make” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Make a decision” is the standard neutral collocation.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери слово, которое образует стандартное английское словосочетание.",
+      "stimulus": "We need to ______ a decision soon."
     },
     {
       "id": "en-b1-026",
@@ -574,7 +649,10 @@
       "cefrRationale": "B1 text task: the learner handles “Collocations” and identifies “do” using the stated vocabulary cue.",
       "dialect": "british",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “do” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Do someone a favour' is the correct collocation."
+      "ambiguityNotes": "Only “do” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Do someone a favour' is the correct collocation.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "Could you ______ me a favour?"
     },
     {
       "id": "en-b1-027",
@@ -596,7 +674,10 @@
       "cefrRationale": "B1 text task: the learner handles “External workplace rule” and identifies “have to” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “have to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Have to” expresses an obligation imposed by an external rule; the other modals do not state that obligation."
+      "ambiguityNotes": "Only “have to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Have to” expresses an obligation imposed by an external rule; the other modals do not state that obligation.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая подчёркивает обязанность по внешнему правилу.",
+      "stimulus": "My employer requires it, so I ______ wear safety glasses."
     },
     {
       "id": "en-b1-028",
@@ -618,7 +699,10 @@
       "cefrRationale": "B1 text task: the learner handles “Absence of obligation” and identifies “don’t have to” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “don’t have to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Don’t have to” means there is no obligation; the other choices express prohibition or inability."
+      "ambiguityNotes": "Only “don’t have to” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “Don’t have to” means there is no obligation; the other choices express prohibition or inability.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "There is no obligation to eat if you are not hungry. You ______ eat."
     },
     {
       "id": "en-b1-029",
@@ -640,7 +724,10 @@
       "cefrRationale": "B1 text task: the learner handles “Word formation” and identifies “development” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “development” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Development' is the noun form needed after 'the'."
+      "ambiguityNotes": "Only “development” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Development' is the noun form needed after 'the'.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "The ______ of the project took three months."
     },
     {
       "id": "en-b1-030",
@@ -662,7 +749,10 @@
       "cefrRationale": "B1 text task: the learner handles “Though / although / even though” and identifies “Although” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “Although” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Although' introduces a contrast."
+      "ambiguityNotes": "Only “Although” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Although' introduces a contrast.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "______ it was raining, we went for a walk."
     },
     {
       "id": "en-b1-031",
@@ -684,7 +774,10 @@
       "cefrRationale": "B1 text task: the learner handles “However vs although” and identifies “However” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “However” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'However' is a conjunctive adverb used between sentences with a semicolon or period."
+      "ambiguityNotes": "Only “However” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'However' is a conjunctive adverb used between sentences with a semicolon or period.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "It was cold. ______, we went swimming."
     },
     {
       "id": "en-b1-032",
@@ -706,7 +799,10 @@
       "cefrRationale": "B1 text task: the learner handles “Prepositions after adjectives” and identifies “of” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “of” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Fond of' is the fixed preposition."
+      "ambiguityNotes": "Only “of” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Fond of' is the fixed preposition.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "I am very fond ______ classical music."
     },
     {
       "id": "en-b1-033",
@@ -728,7 +824,10 @@
       "cefrRationale": "B1 text task: the learner handles “So / such” and identifies “such” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “such” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Such' + a/an + adjective + noun; 'so' + adjective (without noun)."
+      "ambiguityNotes": "Only “such” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Such' + a/an + adjective + noun; 'so' + adjective (without noun).",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "It was ______ a boring film that I fell asleep."
     },
     {
       "id": "en-b1-034",
@@ -750,7 +849,10 @@
       "cefrRationale": "B1 text task: the learner handles “So / such” and identifies “so” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “so” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'So' + adjective (+ that clause)."
+      "ambiguityNotes": "Only “so” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'So' + adjective (+ that clause).",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "The coffee was ______ hot that I couldn't drink it."
     },
     {
       "id": "en-b1-035",
@@ -772,7 +874,10 @@
       "cefrRationale": "B1 text task: the learner handles “Idioms” and identifies “deal with” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “deal with” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Deal with' means to handle or manage a situation."
+      "ambiguityNotes": "Only “deal with” satisfies the stated context and target; the distractors conflict with the prompt or this rule: 'Deal with' means to handle or manage a situation.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое лучше всего подходит по смыслу.",
+      "stimulus": "I think we should ______ the problem before it gets worse."
     },
     {
       "id": "en-b1-036",
@@ -794,7 +899,10 @@
       "cefrRationale": "B1 text task: the learner handles “Question forms” and identifies “What time” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “What time” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “What time” asks for a precise clock time; the reply gives 7 o’clock exactly."
+      "ambiguityNotes": "Only “What time” satisfies the stated context and target; the distractors conflict with the prompt or this rule: “What time” asks for a precise clock time; the reply gives 7 o’clock exactly.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "______ do you usually get up? — At 7 o’clock exactly."
     },
     {
       "id": "en-b1-037",
@@ -816,7 +924,10 @@
       "cefrRationale": "B1 text task: the learner handles “Email” and identifies “To inform of success” using the stated reading cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “To inform of success” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The email states the application 'has been successful'."
+      "ambiguityNotes": "Only “To inform of success” satisfies the stated context and target; the distractors conflict with the prompt or this rule: The email states the application 'has been successful'.",
+      "scenarioRu": "Понимание текста",
+      "instructionRu": "Прочитай письмо и выбери его основную цель.",
+      "stimulus": "Dear Mr. Smith, Thank you for your email. We are pleased to inform you that your application has been successful. We will contact you next week to arrange an interview."
     },
     {
       "id": "en-b1-038",
@@ -838,7 +949,10 @@
       "cefrRationale": "B1 text task: the learner handles “Restaurant staff” and identifies “waiter” using the stated vocabulary cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “waiter” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A waiter serves customers at their table; the context excludes the other restaurant roles."
+      "ambiguityNotes": "Only “waiter” satisfies the stated context and target; the distractors conflict with the prompt or this rule: A waiter serves customers at their table; the context excludes the other restaurant roles.",
+      "scenarioRu": "Словарный запас",
+      "instructionRu": "Выбери английское слово или выражение, которое правильно заполняет пропуск.",
+      "stimulus": "The person who served our table was very friendly and helpful. He was our ______."
     },
     {
       "id": "en-b1-039",
@@ -860,7 +974,10 @@
       "cefrRationale": "B1 text task: the learner handles “Articles: the vs a/an” and identifies “The” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “The” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Geographic features like oceans, seas, and rivers take 'the'."
+      "ambiguityNotes": "Only “The” satisfies the stated context and target; the distractors conflict with the prompt or this rule: Geographic features like oceans, seas, and rivers take 'the'.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери грамматически правильный вариант.",
+      "stimulus": "______ Pacific Ocean is the largest ocean on Earth."
     },
     {
       "id": "en-b1-040",
@@ -882,7 +999,10 @@
       "cefrRationale": "B1 text task: the learner handles “Zero article” and identifies “—” using the stated grammar cue.",
       "dialect": "neutral",
       "reviewStatus": "reviewed",
-      "ambiguityNotes": "Only “—” satisfies the stated context and target; the distractors conflict with the prompt or this rule: No article is used for meals in general."
+      "ambiguityNotes": "Only “—” satisfies the stated context and target; the distractors conflict with the prompt or this rule: No article is used for meals in general.",
+      "scenarioRu": "Грамматика",
+      "instructionRu": "Выбери форму, которая правильно завершает английское предложение.",
+      "stimulus": "I usually have ______ breakfast at 8 AM."
     }
   ]
 }

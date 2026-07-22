@@ -99,11 +99,26 @@ test('Pre-A1 and insufficient-data result wording stays neutral', () => {
 test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
-  const expectedRevision = '20260722-3';
+  const expectedRevision = '20260722-4';
 
   assert.equal((html.match(new RegExp(expectedRevision, 'g')) || []).length, 4);
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
-  assert.doesNotMatch(`${html}\n${app}`, /20260722-2/);
+  assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
+});
+
+test('question screen separates Russian instructions from English assessment material', () => {
+  const app = read('app.js');
+  const styles = read('styles.css');
+
+  assert.match(app, /class="elt-scenario" lang="ru"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
+  assert.match(app, /class="elt-instruction" lang="ru"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
+  assert.match(app, /class="elt-stimulus" lang="en"/);
+  assert.match(app, /escapeHtml\(q\.stimulus\)/);
+  assert.match(app, /class="elt-option-text" lang="en"/);
+  assert.doesNotMatch(app, /escapeHtml\(q\.scenario\)/);
+  assert.doesNotMatch(app, /escapeHtml\(q\.prompt\)/);
+  assert.match(styles, /\.elt-instruction\s*\{/);
+  assert.match(styles, /\.elt-stimulus\s*\{/);
 });
 
 test('client sends the root bank version and bounded calibration evidence', () => {

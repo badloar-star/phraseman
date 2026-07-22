@@ -23,12 +23,18 @@ and never manufacture learning mastery.
 - Unit: 12 required micro-sessions plus up to two adaptive sessions.
 - Required path: `Understand (4) -> Use (4) -> Master (4)`.
 - Micro-session: 7–9 exercise cards, 3–4 interaction modes, normally 2.5–4 minutes.
+- Expected core cadence: 3–5 sessions per day over approximately 12–16 weeks;
+  optional practice does not extend or block the required path.
 - The counts are pinned pilot hypotheses, not values selected freely by a model.
 - A unit is built around one observable `can do` outcome. Grammar, vocabulary,
   pronunciation and writing-system work exist only to serve that outcome.
 
 The generator must first build a shared content graph and then compile sessions.
 It must not independently generate twelve unrelated phrase lists.
+
+The existing 32 Episode identities remain stable internal unit identities. New
+generation uses an explicit versioned twelve-session child contract; the legacy
+single-session E1 contract remains readable but is not the new product target.
 
 ## 3. Pedagogic modes and UI engines
 

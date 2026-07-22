@@ -5774,3 +5774,42 @@ Acceptance criteria for the planning task:
   AI disagreement checks reduce its scope but cannot honestly replace it.
 - Map extensibility should use generic optional slots and a capability registry,
   not hard-coded one-off nodes.
+
+## 15.8 — Owner cardinality decision: 32 units × 12 sessions (2026-07-22)
+
+The owner explicitly confirmed that Learning V2 is a several-week full course,
+not a short 32-session path. The approved target is 32 units with twelve
+required micro-sessions per unit, each normally 7–9 cards and 2.5–4 minutes.
+The expected core cadence is 3–5 sessions per day over approximately 12–16
+weeks, with optional speech practice remaining available beyond the core path.
+
+### Contract consequence
+
+The current canonical `v2-episode-contract.v1` E1 is approximately 12 minutes
+with 10 activities, 9 graph nodes and 8 performance-star slots. It cannot be
+silently treated as the approved twelve-session unit. Preserve v1 as a readable
+legacy/internal artifact and introduce an explicit v2 Episode/unit contract
+that pins a versioned child SessionSet containing exactly twelve required
+sessions. Existing 32 Episode identities remain stable internal unit identities;
+the season cardinality remains 32 rather than expanding to 384 Episode records.
+
+Farmable optional-practice stars may add to cumulative access under a versioned
+diminishing-reward policy, but must not update best performance slots, satisfy
+the local performance minimum, write checkpoint evidence or mint mastery.
+
+### Plan and exact next task
+
+`docs/superpowers/plans/2026-07-22-learning-v2-e1-content-compiler.md`
+is the implementation plan. Its first writer packet is the cross-contract
+SessionSet/Episode-v2 migration, followed by star-source separation, language
+profile/content contracts, the twelve-session compiler and E1-only QA proof.
+
+No implementation, Admin UI, Kimi import, Rules/index change, deployment or
+production action has been authorised by this documentation update alone.
+
+### Находки и предложения
+
+- Keep one stable 32-unit map; do not expose 384 top-level nodes.
+- Unit progress should summarise twelve child sessions while optional practice
+  remains visually secondary and non-blocking.
+- The legacy E1 fixture is regression evidence, not the new product target.

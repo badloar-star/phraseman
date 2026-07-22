@@ -1,9 +1,9 @@
 # Phraseman Learning V2 — мастер-хендовер
 
-**Последнее обновление:** 2026-07-15, Europe/Dublin  
+**Последнее обновление:** 2026-07-22, Europe/Dublin
 **Статус цели:** active  
-**Текущая стадия:** планирование и нормативные спецификации завершены; Content Studio Task 0, Firebase CLI reproducibility, umbrella Phase 01 / Task 1.1 identity/versioning и Task 1.1A immutable DecisionRegistry закрыты отдельными локальными коммитами, узкими тестами и двумя независимыми финальными PASS-аудитами
-**Точный следующий крупный шаг:** выполнить umbrella Phase 01 / Task 1.2 — canonical activity/episode/curriculum contracts; после него строго 1.3 evidence/result → 1.4 backend mirror и только затем dedicated Content Studio Tasks 1–3
+**Текущая стадия:** E1 content-compiler Task 0 завершён локальным коммитом `cd95d4336`; versioned Episode-v2/SessionSet на 12 обязательных сессий прошёл финальный gate 426/426, fresh spec PASS и fresh adversarial PASS; runtime SessionSet resolver остаётся явно отложенным
+**Точный следующий крупный шаг:** выполнить Task 0A — отделить farmable optional-practice access stars от performance/checkpoint/mastery; затем строго Tasks 1–8 language profile → content items → compiler → optional practice → diminishing rewards → Content Factory prerequisite → Functions/QA → E1 proof
 **Назначение файла:** это живой центр управления между сессиями. Он не заменяет подробные спецификации и TDD-планы, а сообщает следующей сессии, что прочитать, что уже доказано, что не сделано и какой именно шаг выполнять дальше.
 
 ---
@@ -5813,3 +5813,192 @@ production action has been authorised by this documentation update alone.
 - Unit progress should summarise twelve child sessions while optional practice
   remains visually secondary and non-blocking.
 - The legacy E1 fixture is regression evidence, not the new product target.
+
+## 15.9 — Task 0 complete: versioned twelve-session unit contract (2026-07-22)
+
+### Mission
+
+Learning V2 remains a server-deliverable 32-unit course. Each stable unit identity
+now has an explicit v2 contract that points to a versioned child SessionSet with
+exactly twelve required micro-sessions. The legacy Episode-v1 artifact remains
+readable and unchanged. Optional practice stays outside required progression and
+cannot write performance or mastery. The next packet separates farmable access
+stars before language-profile, multilingual content, compiler, QA, Admin or UI
+work begins.
+
+### Owner intent and normative precedence
+
+- Owner-approved course shape: 32 units x 12 required sessions, normally 7-9
+  cards and 150-240 seconds per session, three zones of four sessions, normally
+  3-5 sessions per day over approximately 12-16 weeks.
+- Optional practice may remain repeatable and may later mint diminishing access
+  stars, but it is never required for progress and never proves mastery.
+- Normative order for this packet:
+  1. `AGENTS.md` and this living handover;
+  2. `docs/v2/README.md`;
+  3. the two 2026-07-14 V2 plans;
+  4. `docs/superpowers/specs/2026-07-22-learning-v2-content-generation-and-optional-practice-design.md`;
+  5. `docs/superpowers/plans/2026-07-22-learning-v2-e1-content-compiler.md`.
+
+### Git and workspace receipt
+
+- Worktree: `C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot`
+- Branch: `prod-snapshot/learning-v2-pilot-20260721`
+- Task start HEAD: `e47a3ea815a3fa8fcecb1ebaa87ce29a96bd1a97`
+- Task 0 implementation commit:
+  `cd95d4336ba7c68ad00d224bd3f50157640e8f5e`
+  (`feat: version V2 units with twelve sessions`)
+- Upstream: none configured.
+- Main checkout `C:\appsprojects\phraseman` was already dirty (213 paths were
+  observed during the boundary audit). It was not edited, cleaned, staged or
+  used for this packet.
+- Push, deploy, release, Rules/index changes, Admin changes, production writes,
+  OpenAI API use and Kimi-package mutation: none.
+
+### Files in the atomic Task 0 commit
+
+| File | Purpose |
+|---|---|
+| `modules/learning-v2/contracts/session.ts` | New exact `v2-session-set.v1` body, required sessions/cards/zones, optional slots, canonical hostile-input boundary and duplicate guards. |
+| `modules/learning-v2/contracts/identities.ts` | Branded `SessionId` parsing and identity validation. |
+| `modules/learning-v2/contracts/episode.ts` | Explicit Episode-v1/Episode-v2 union and exact `sessionSetRef`; v1 remains readable. |
+| `modules/learning-v2/contracts/validation.ts` | Standalone/package v1-v2 dispatch, v2 30-48 minute aggregate, deterministic issue ordering and fail-closed canonical validation. |
+| `tests/support/learning_v2_session_builders.ts` | Frozen legacy/v2/SessionSet builders; v2 ref uses the real canonical SessionSet body hash. |
+| `tests/learning_v2_session_contract.test.ts` | Twelve-session cardinality, zones, duration, cards, families, optional separation, uniqueness and hostile-input tests. |
+| `tests/learning_v2_episode_contract.test.ts` | Legacy regression, v2 ref/duration/package parity, malformed-container and hostile-priority tests. |
+
+The legacy fixture `tests/fixtures/learning-v2/episode-01.valid.json` remained
+byte-identical to HEAD (`git blob 47c4d68404eb013bc022ff57c97bc1cc9c0f3efb`).
+
+### RED, repair and GREEN evidence
+
+1. Baseline before Task 0: 3 suites, 330/330 tests PASS.
+2. Initial RED: session + episode suites failed to compile (2 suites failed,
+   0 tests) because SessionSet, SessionId and Episode-v2 did not exist.
+3. The first GREEN exposed a package/standalone gap: valid Episode-v2 was
+   accepted standalone but rejected by the authoritative package path.
+4. Fresh reviews then closed these concrete failures without widening scope:
+   canonical SessionSet hostile-input handling; required-container preflight;
+   package-v1/v2 diagnostic parity; global card/optional-slot/capability
+   uniqueness; canonical SessionSet ref hash; missing/undefined/accessor/proxy
+   priority; and compound-invalid issue ordering.
+5. One proposed package-v1 `phraseFrames:null` defect was disproved rather than
+   patched: the exact two-case package regression passed because
+   `validatePackageShape` already returned `field_type_invalid` at the exact
+   path.
+6. Final deterministic gate:
+
+```powershell
+npx jest --runTestsByPath tests/learning_v2_identity_contract.test.ts tests/learning_v2_session_contract.test.ts tests/learning_v2_episode_contract.test.ts tests/learning_v2_attempt_cardinality.test.ts tests/learning_v2_evidence_contract.test.ts --no-cache --runInBand
+```
+
+Result: 5/5 suites, 426/426 tests PASS, 0 snapshots. Episode suite: 358/358
+PASS. Hostile/compound focused gates PASS. Prettier on the exact seven files
+PASS. `git diff --check` PASS. Final fresh spec review: P0/P1/P2 = 0/0/0.
+Final fresh adversarial review: P0/P1/P2 = 0/0/0. No hash race was observed.
+Jest still prints the pre-existing force-exit/open-handles advisory; it is not a
+test failure and no source change was made for it.
+
+### Current phase status (00-14)
+
+| Phase | Status after Task 0 | Remaining gate |
+|---|---|---|
+| 00 Security boundary | Complete for the recorded packet | Preserve existing time-bounded audit/release evidence. |
+| 01 Domain contracts | Partial: original contracts complete; twelve-session Task 0 complete | Task 0A, then compiler Tasks 1-8. |
+| 02 Progress and access | Partial | Separate optional-practice access stars from performance/mastery. |
+| 03 UI reference and shells | Blocked/partial | Owner-approved lawful captures and later app-map packet. |
+| 04 Voice platform | Partial | Device/privacy/acoustic evidence remains open. |
+| 05 Activity families | Partial | Do not implement more UI modes in this compiler packet. |
+| 06 Content delivery | Partial | Language profile, content items, compiler, Functions adapter and QA. |
+| 07 E1 vertical slice | Blocked | Requires Tasks 0A-8 plus device/accessibility evidence. |
+| 08 P1/E1-E8 | Not started | Depends on E1 vertical slice. |
+| 09 Speaking Club | Not started | Depends on frozen graph/content contracts. |
+| 10 Placement/migration | Blocked on owner provenance decision | No migration in this packet. |
+| 11 Full pilot | Not started | Validator and E1 artifacts still absent until Tasks 1-8. |
+| 12 Telemetry/experiments | Not started | Later privacy-conscious packet. |
+| 13 Rollout | Not started | No deploy/release action authorised. |
+| 14 Legacy decision | Not started | Legacy remains intact until explicit owner decision. |
+
+### E1 content-compiler task table
+
+| Task | Status | Exact outcome/gate |
+|---|---|---|
+| 0 Versioned unit-to-session migration | COMPLETE | Commit `cd95d4336`; 426/426; spec and red-team PASS. |
+| 0A Star-source separation | NEXT / NOT STARTED | Optional practice adds cumulative access only. |
+| 1 Immutable LanguageProfile | Not started | Requires Task 0A. |
+| 2 Structured language-native content items | Not started | Requires LanguageProfile. |
+| 3 Deterministic twelve-session compiler | Not started | Requires Tasks 1-2. |
+| 4 Generic optional-practice slots | Not started | No UI coupling. |
+| 5 Diminishing unlimited rewards | Not started | Versioned, no hard cap, no mastery output. |
+| 6 Content Factory language-profile prerequisite | Not started | No fourteenth stage kind. |
+| 7 Functions adapter and blocking E1 QA | Not started | This is where exact SessionSet ref-to-body/hash resolution closes. |
+| 8 E1 source fixture and vertical-slice proof | Not started | Preserve legacy E1 fixture. |
+
+### Product, security, privacy and accessibility invariants
+
+- The twelve required sessions are exactly ordinals 1-12: four `understand`,
+  four `use`, four `master`; each is 150-240 seconds, 7-9 cards and 3-4
+  distinct registered activity families.
+- Optional slots are outside the twelve, at most two, globally unambiguous,
+  `requiredForProgress:false` and `canWriteMastery:false`.
+- Episode-v1 retains its original contract and legacy policy. Episode-v2 uses
+  aggregate 30-48 minutes and an exact lowercase SHA-256 SessionSet ref.
+- This packet validates the ref and its test-builder hash. Runtime
+  `sessionSetRef -> body` lookup and body-hash resolution are deliberately not
+  claimed; Task 7 must close them fail-closed.
+- Hostile getters, proxies, symbols, non-enumerable keys, cycles, exotic
+  prototypes and other non-canonical inputs fail closed without invoking code.
+- Purchased/farmed access never proves performance, checkpoint evidence or
+  mastery. Task 0A makes the source separation explicit.
+- No production export, contact-sheet waiver, Admin bypass, Rules/index change,
+  deployment, push or legacy deletion occurred.
+
+### Exact next executable task: Task 0A
+
+Files:
+
+- modify `modules/learning-v2/contracts/stars.ts`;
+- modify `tests/learning_v2_gate_policy.test.ts`;
+- create `tests/learning_v2_star_source_separation.test.ts`.
+
+RED:
+
+```powershell
+npx jest --runTestsByPath tests/learning_v2_star_source_separation.test.ts tests/learning_v2_gate_policy.test.ts --no-cache --runInBand
+```
+
+Expected RED: source-labelled access projection does not exist and optional
+practice separation is not yet proven.
+
+GREEN:
+
+```powershell
+npx jest --runTestsByPath tests/learning_v2_star_source_separation.test.ts tests/learning_v2_gate_policy.test.ts tests/learning_v2_learning_evidence_policy.test.ts --no-cache --runInBand
+```
+
+Acceptance criteria:
+
+- exact source labels: `performance`, `optional_practice`, `purchase`;
+- only `performance` may update best-by-slot performance;
+- optional practice may add idempotent cumulative access but exposes neither
+  `performanceStarsDelta` nor `mastered`;
+- optional practice cannot satisfy `localPerformanceMinimum`, checkpoint
+  evidence or mastery;
+- one writer, fresh spec review, fresh adversarial review, final deterministic
+  gate, atomic commit and another exhaustive handover update.
+
+Startup:
+
+```powershell
+Set-Location C:\Users\badlo\codex-worktrees\phraseman\learning-v2-pilot
+git status --short --branch
+git log -3 --oneline
+```
+
+### Findings and proposals
+
+- Do not begin Task 1 or any Admin/UI/Kimi import before Task 0A is fully closed.
+- Keep the runtime SessionSet resolver visibly deferred; never present ref-shape
+  validation as loaded-body validation.
+- Investigate the Jest open-handles advisory in a separate bounded diagnostic
+  packet only; it did not invalidate Task 0.

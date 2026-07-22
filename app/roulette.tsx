@@ -42,11 +42,15 @@ import { scheduleOnRN } from 'react-native-worklets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { CINEMA, cinemaAlpha, isCinemaMode } from '../constants/cinemaThemes';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getCanonicalUserId } from './user_id_policy';
-import { readCachedSpinCredits, spinReferralRoulette } from './roulette_spin_client';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
+import { getClaimableReferralState, peekClaimableReferralState } from './referral_vip';
+import { claimReferralSpins, peekCachedSpinCredits, readCachedSpinCredits, spinReferralRoulette } from './roulette_spin_client';
 import { POSITION_OF_PRIZE, preloadRoulettePrizeImages, ROULETTE_PRIZES, SHOW_SPIN_ODDS, TAPE_CYCLE } from './roulette_prizes';
-import { useReferralRouletteEnabled } from './referral_roulette_flag';
+import { useReferralRoulettePolicy } from './referral_roulette_flag';
+import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
+import { readReferralDrain } from './referrals_cache';
+import { isReferralCloudEnabled } from './referral_cloud';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
 import { useLang } from '../components/LangContext';
@@ -92,10 +96,41 @@ export default function RouletteScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
-  const rouletteOn = useReferralRouletteEnabled();
+  const roulettePolicy = useReferralRoulettePolicy();
   const reduceMotion = useReducedMotion();
 
-  const [spins, setSpins] = useState(0);
+  const rouletteAccountToken = captureAccountGeneration();
+  const rouletteAccountKey = accountScopeKey(rouletteAccountToken);
+  const persistedDrain = readReferralDrain(rouletteAccountToken);
+  const warmDrain = persistedDrain?.value ?? peekClaimableReferralState()?.drain;
+  const [drain, setDrain] = useState(() => warmDrain ?? null);
+  const [hasServerDrain, setHasServerDrain] = useState(() => !!warmDrain);
+  const initialReferralSurface = selectReferralSurfaceState({
+    referralEnabled: isReferralCloudEnabled(),
+    remotePolicy: roulettePolicy,
+    persistedDrain: warmDrain,
+  });
+  const [spinState, setSpins] = useState(() => (
+    initialReferralSurface.emergencyStop
+      ? 0
+      : initialReferralSurface.softEnabled
+      ? peekCachedSpinCredits()
+      : warmDrain?.availableCreditCount ?? 0
+  ));
+  const [rouletteStateAccountKey, setRouletteStateAccountKey] = useState<string | null>(() => (
+    rouletteAccountKey
+  ));
+  const scopedReferralState = selectAccountScopedReferralState(rouletteAccountKey, {
+    accountKey: rouletteStateAccountKey,
+    drain: hasServerDrain ? drain : null,
+    spins: spinState,
+  });
+  const spins = scopedReferralState.spins;
+  const referralSurface = selectReferralSurfaceState({
+    referralEnabled: isReferralCloudEnabled(),
+    remotePolicy: roulettePolicy,
+    persistedDrain: scopedReferralState.drain,
+  });
   const [spinning, setSpinning] = useState(false);
   const [assetsReady, setAssetsReady] = useState(false);
   const [layoutReady, setLayoutReady] = useState(false);
@@ -131,12 +166,14 @@ export default function RouletteScreen() {
   }, [translateX]);
 
   useEffect(() => {
-    if (rouletteOn) return;
+    const rouletteAvailable = !referralSurface.emergencyStop
+      && (referralSurface.softEnabled || spins > 0 || spinningRef.current || win != null);
+    if (rouletteAvailable) return;
     cancelAnimation(translateX);
     spinningRef.current = false;
     setSpinning(false);
     setWin(null);
-  }, [rouletteOn, translateX]);
+  }, [referralSurface.emergencyStop, referralSurface.softEnabled, spins, translateX, win]);
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
@@ -144,26 +181,34 @@ export default function RouletteScreen() {
     toastTimerRef.current = setTimeout(() => setToast(null), 3200);
   }, []);
 
-  /**
-   * Обновление счётчика прокрутов: мгновенно из кэша, затем сеть.
-   * Публичного getter'а на сервере нет — читаем users/{uid}.progress
-   * .referral_spin_credits напрямую (тот же getDb-паттерн, что и в
-   * firestore_friend_activity.ts). TODO: заменить на callable, когда появится.
-   */
+  /** Мгновенный account-scoped cache, затем только server-derived drain state. */
   const refreshSpins = useCallback(async () => {
-    const cached = await readCachedSpinCredits();
+    const requestAccount = captureAccountGeneration();
+    if (referralSurface.emergencyStop) {
+      setRouletteStateAccountKey(accountScopeKey(requestAccount));
+      setSpins(0);
+      return;
+    }
+    const cachedDrain = readReferralDrain(requestAccount)?.value;
+    const cached = referralSurface.softEnabled
+      ? await readCachedSpinCredits()
+      : cachedDrain?.availableCreditCount ?? 0;
+    if (!isCurrentAccountGeneration(requestAccount)) return;
+    setRouletteStateAccountKey(accountScopeKey(requestAccount));
+    if (cachedDrain) {
+      setDrain(cachedDrain);
+      setHasServerDrain(true);
+    }
     setSpins(cached);
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    try {
-      const uid = await getCanonicalUserId();
-      if (!uid) return;
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const db = require('@react-native-firebase/firestore').default();
-      const snap = await db.collection('users').doc(uid).get();
-      const remote = Number(snap?.data()?.progress?.referral_spin_credits);
-      if (Number.isFinite(remote) && remote >= 0) setSpins(Math.floor(remote));
-    } catch { /* офлайн/прав нет — остаёмся на кэше */ }
-  }, []);
+    await claimReferralSpins().catch(() => null);
+    const state = await getClaimableReferralState({ force: true });
+    if (state.ok && isCurrentAccountGeneration(requestAccount)) {
+      setRouletteStateAccountKey(accountScopeKey(requestAccount));
+      setDrain(state.drain);
+      setHasServerDrain(true);
+      setSpins(state.drain.availableCreditCount);
+    }
+  }, [referralSurface.emergencyStop, referralSurface.softEnabled, rouletteAccountKey]);
 
   useFocusEffect(
     useCallback(() => {
@@ -172,7 +217,7 @@ export default function RouletteScreen() {
   );
 
   // ── Завершение спина (вызывается на JS-треде после анимации) ───────────────
-  const onSpinEnd = useCallback((prizeIndex: number, prizeDays: number, vipUntil: string) => {
+  const onSpinEnd = useCallback((prizeIndex: number, prizeDays: number, vipUntil: number) => {
     setHighlightIdx(lastIndexRef.current);
     setSpinning(false);
     spinningRef.current = false;
@@ -197,6 +242,7 @@ export default function RouletteScreen() {
       return;
     }
     if (spinningRef.current || spins <= 0) return;
+    const spinAccount = captureAccountGeneration();
     spinningRef.current = true;
     setSpinning(true);
     setHighlightIdx(null);
@@ -207,6 +253,11 @@ export default function RouletteScreen() {
     translateX.value = centerX - (norm * STEP + CARD_W / 2);
 
     const outcome = await spinReferralRoulette();
+    if (!isCurrentAccountGeneration(spinAccount)) {
+      spinningRef.current = false;
+      setSpinning(false);
+      return;
+    }
     if (!outcome.ok) {
       spinningRef.current = false;
       setSpinning(false);
@@ -256,9 +307,11 @@ export default function RouletteScreen() {
     return cards;
   }, []);
 
-  const canSpin = rouletteOn && assetsReady && layoutReady && spins > 0 && !spinning;
+  const rouletteAvailable = !referralSurface.emergencyStop
+    && (referralSurface.softEnabled || spins > 0 || spinning || win != null);
+  const canSpin = rouletteAvailable && assetsReady && layoutReady && spins > 0 && !spinning;
 
-  if (!rouletteOn) {
+  if (!rouletteAvailable) {
     return (
       <View style={[styles.root, { backgroundColor: t.bgGradient[0] }]}>
         <View style={[styles.header, { paddingTop: insets.top + 8 }]}>

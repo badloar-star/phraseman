@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { browserLocalPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { browserSessionPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 function unwrap(result) {
@@ -50,7 +50,7 @@ export function observeAdminAuthState({ auth, subscribe, onAuth }) {
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
   const auth = getAuth(app);
-  await setPersistence(auth, browserLocalPersistence);
+  await setPersistence(auth, browserSessionPersistence);
   const functionsUs = getFunctions(app, 'us-central1');
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
@@ -102,11 +102,13 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const monthlyDecisionPackCallable = httpsCallable(functionsUs, 'adminMonthlyDecisionPack');
   const searchUsersCallable = httpsCallable(functionsUs, 'adminSearchUsers');
   const getUserProfileCallable = httpsCallable(functionsUs, 'adminGetUserProfile');
+  const sendPersonalAppMessageCallable = httpsCallable(functionsUs, 'adminSendPersonalAppMessage');
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
   const getReferralHealthCallable = httpsCallable(functionsUs, 'adminReferralHealth');
   const setReferralRouletteEnabledCallable = httpsCallable(functionsUs, 'adminSetReferralRouletteEnabled');
+  const setReferralRouletteEmergencyStopCallable = httpsCallable(functionsUs, 'adminSetReferralRouletteEmergencyStop');
   const getPaywallAbWorkspaceCallable = httpsCallable(functionsUs, 'adminGetPaywallAbWorkspace');
   const publishPaywallAbCallable = httpsCallable(functionsUs, 'adminPublishPaywallAb');
   const getPaywallVariantStatsCallable = httpsCallable(functionsUs, 'adminGetPaywallVariantStats');
@@ -126,6 +128,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const directorDigestCallable = httpsCallable(functionsUs, 'adminGetDirectorDigest');
   const directorDigestAudioCallable = httpsCallable(functionsUs, 'adminGenerateDirectorDigestAudio');
   const listReportQueueCallable = httpsCallable(functionsUs, 'adminListReportQueue');
+  const exportReportDocumentsCallable = httpsCallable(functionsUs, 'adminExportReportDocuments');
+  const exportUnresolvedReportsCallable = httpsCallable(functionsUs, 'adminExportUnresolvedReports');
   const updateReportStatusCallable = httpsCallable(functionsUs, 'adminUpdateReportStatus');
   const draftReportReplyCallable = httpsCallable(functionsUs, 'adminDraftReportReply');
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
@@ -208,11 +212,13 @@ export async function createFirebaseAdminActions({ onAuth }) {
     generateMonthlyDecisionPack: async (input) => unwrap(await monthlyDecisionPackCallable(input)),
     searchUsers: async (input) => unwrap(await searchUsersCallable(input)),
     getUserProfile: async (input) => unwrap(await getUserProfileCallable(input)),
+    sendPersonalAppMessage: async (input) => unwrap(await sendPersonalAppMessageCallable(input)),
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
     getReferralHealth: async () => unwrap(await getReferralHealthCallable({})),
     setReferralRouletteEnabled: async (input) => unwrap(await setReferralRouletteEnabledCallable(input)),
+    setReferralRouletteEmergencyStop: async (input) => unwrap(await setReferralRouletteEmergencyStopCallable(input)),
     getPaywallAbWorkspace: async () => unwrap(await getPaywallAbWorkspaceCallable({})),
     publishPaywallAb: async (input) => unwrap(await publishPaywallAbCallable(input)),
     getPaywallVariantStats: async (input) => unwrap(await getPaywallVariantStatsCallable(input)),
@@ -232,6 +238,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
     getDirectorDigest: async (input) => unwrap(await directorDigestCallable(input)),
     generateDirectorDigestAudio: async (input) => unwrap(await directorDigestAudioCallable(input)),
     listReportQueue: async (input) => unwrap(await listReportQueueCallable(input)),
+    exportReportDocuments: async (input) => unwrap(await exportReportDocumentsCallable(input)),
+    exportUnresolvedReports: async (input) => unwrap(await exportUnresolvedReportsCallable(input)),
     updateReportStatus: async (input) => unwrap(await updateReportStatusCallable(input)),
     draftReportReply: async (input) => unwrap(await draftReportReplyCallable(input)),
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),

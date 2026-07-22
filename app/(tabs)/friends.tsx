@@ -82,7 +82,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
 import { fetchFriendProfilesBatch, type FriendProfileBatchRecord } from '../friends_profiles_batch';
-import { ensureInviteCodeShared } from '../invite_code_singleton';
+import { ensureInviteCodeShared, invalidateInviteCodeShared } from '../invite_code_singleton';
 import { isPremiumProgressActive, isVipProgressActive } from '../premium_progress';
 import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
@@ -135,19 +135,28 @@ import { checkAchievements } from '../achievements';
 import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
 import {
   getClaimableReferralState,
+  peekClaimableReferralState,
   summarizeInvites,
   type ReferralInvite,
 } from '../referral_vip';
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
 import { generateReferralCode, getReferralCode } from '../referral_system';
 import { isReferralCloudEnabled } from '../referral_flags';
-import { useReferralRouletteEnabled } from '../referral_roulette_flag';
+import { useReferralRoulettePolicy } from '../referral_roulette_flag';
+import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
 import {
   shouldShowReferralAccessEnded,
   markReferralAccessEndedSeen,
   getTrackedReferralWindowEnd,
 } from '../referral_access_ended_tracker';
 import { useAppSnapshotSelector } from '../app_snapshot_store';
+import { captureAccountGeneration } from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
+import {
+  isReferralAccountRequestCurrent,
+  readReferralDrain,
+  readReferralInvites,
+} from '../referrals_cache';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -2042,54 +2051,140 @@ export default function FriendsTabScreen() {
   } | null>(null);
 
   // ── Реферал: накопленные дни доступа + модалки активации/окончания ──────────
-  const [referralInvites, setReferralInvites] = useState<ReferralInvite[]>([]);
+  const referralAccountToken = captureAccountGeneration();
+  const referralAccountKey = accountScopeKey(referralAccountToken);
+  const warmReferralState = peekClaimableReferralState();
+  const warmReferralInvites = readReferralInvites(referralAccountToken);
+  const warmReferralDrain = readReferralDrain(referralAccountToken);
+  const [referralInviteState, setReferralInvites] = useState<ReferralInvite[]>(() => (
+    warmReferralInvites?.value ?? warmReferralState?.invites ?? []
+  ));
+  const [referralDrain, setReferralDrain] = useState(() => warmReferralDrain?.value ?? warmReferralState?.drain ?? {
+    softEnabled: true,
+    emergencyStop: false,
+    serverNowMs: 0,
+    activePendingCount: 0,
+    claimableQualifiedCount: 0,
+    availableCreditCount: 0,
+    latestPendingDeadlineMs: 0,
+    earliestCreditExpiryMs: 0,
+  });
+  const [hasReferralServerDrain, setHasReferralServerDrain] = useState(() => (
+    !!warmReferralDrain || !!warmReferralState
+  ));
+  const [referralStateAccountKey, setReferralStateAccountKey] = useState<string | null>(() => (
+    referralAccountKey
+  ));
   const [accessEndedOpen, setAccessEndedOpen] = useState(false);
   /** РЕФЕРАЛЬНЫЙ код (referral_codes) — отдельный от friend-кода (myCode). Для «Пригласить». */
-  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const [referralCodeState, setReferralCode] = useState<string | null>(null);
+  const [referralCodeAccountKey, setReferralCodeAccountKey] = useState<string | null>(() => (
+    referralAccountKey
+  ));
   const referralEnabled = isReferralCloudEnabled();
-  const rouletteOn = useReferralRouletteEnabled();
-  const referralOfferOn = referralEnabled && rouletteOn;
+  const roulettePolicy = useReferralRoulettePolicy();
+  const scopedReferralState = selectAccountScopedReferralState(referralAccountKey, {
+    accountKey: referralStateAccountKey,
+    invites: referralInviteState,
+    drain: hasReferralServerDrain ? referralDrain : null,
+  });
+  const referralInvites = scopedReferralState.invites;
+  const referralCode = selectAccountScopedReferralState(referralAccountKey, {
+    accountKey: referralCodeAccountKey,
+    referralCode: referralCodeState,
+  }).referralCode;
+  const referralSurface = selectReferralSurfaceState({
+    referralEnabled,
+    remotePolicy: roulettePolicy,
+    persistedDrain: scopedReferralState.drain,
+  });
+  const referralMarketingVisible = referralSurface.marketingVisible;
+  const referralDrainVisible = referralSurface.drainVisible;
+  const referralUiVisible = referralMarketingVisible || referralDrainVisible;
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
 
+  useEffect(() => {
+    const token = captureAccountGeneration();
+    if (!isReferralAccountRequestCurrent(token, referralAccountKey)) {
+      setReferralInvites([]);
+      setHasReferralServerDrain(false);
+      return;
+    }
+    setReferralStateAccountKey(referralAccountKey);
+    setReferralInvites(readReferralInvites(token)?.value ?? []);
+    const nextDrain = readReferralDrain(token)?.value;
+    setHasReferralServerDrain(!!nextDrain);
+    setReferralDrain(nextDrain ?? {
+      softEnabled: roulettePolicy.softEnabled,
+      emergencyStop: roulettePolicy.emergencyStop,
+      serverNowMs: 0,
+      activePendingCount: 0,
+      claimableQualifiedCount: 0,
+      availableCreditCount: 0,
+      latestPendingDeadlineMs: 0,
+      earliestCreditExpiryMs: 0,
+    });
+  }, [referralAccountKey, roulettePolicy.emergencyStop, roulettePolicy.softEnabled]);
+
   const refreshReferralState = useCallback(async (options: { force?: boolean } = {}) => {
-    if (!referralOfferOn) return;
+    if (!referralEnabled || referralSurface.emergencyStop) return;
     const now = Date.now();
     if (!options.force && now - referralLastRefreshAtRef.current < FRIENDS_REFERRAL_REFRESH_TTL_MS) return;
     if (referralRefreshInFlightRef.current) return referralRefreshInFlightRef.current;
     referralLastRefreshAtRef.current = now;
+    const requestToken = captureAccountGeneration();
+    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
     const task = (async () => {
     // Реферальный код (ensure на сервере). Без него «Пригласить» делилась бы friend-кодом,
     // которого нет в referral_codes → друг получал «код не найден» и наград не было (C1).
-    try {
+    if (referralMarketingVisible) try {
       // Кэш-код первым: серверный ensure только когда кода ещё нет, а не на каждый фокус таба.
       let rc = await getReferralCode();
+      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       if (!rc || rc.trim().length < 4) {
         await generateReferralCode(myProfile?.name ?? 'User');
+        if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
         rc = await getReferralCode();
+        if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       }
-      if (rc && rc.trim().length >= 4) setReferralCode(rc.trim().toUpperCase());
+      if (rc && rc.trim().length >= 4) {
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
+        setReferralCode(rc.trim().toUpperCase());
+      }
     } catch { /* нет auth_links / сети — добьём ретраем ниже (useEffect) */ }
+    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
     const state = await getClaimableReferralState({ force: options.force });
-    if (state.ok) {
+    if (state.ok && isReferralAccountRequestCurrent(requestToken, referralAccountKey)) {
+      setReferralStateAccountKey(accountScopeKey(requestToken));
       setReferralInvites(prev => referralInvitesKey(prev) === referralInvitesKey(state.invites) ? prev : state.invites);
+      setReferralDrain(current => JSON.stringify(current) === JSON.stringify(state.drain) ? current : state.drain);
+      setHasReferralServerDrain(true);
     }
+    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
 
     // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
     // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
     try {
       const pairs = await AsyncStorage.multiGet(['vip_plan', 'vip_until']);
+      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
       const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
-      if (show) setAccessEndedOpen(true);
+      if (show && isReferralAccountRequestCurrent(requestToken, referralAccountKey)) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }
     })();
     referralRefreshInFlightRef.current = task.finally(() => {
       referralRefreshInFlightRef.current = null;
     });
     return referralRefreshInFlightRef.current;
-  }, [myProfile?.name, referralOfferOn]);
+  }, [
+    myProfile?.name,
+    referralAccountKey,
+    referralEnabled,
+    referralMarketingVisible,
+    referralSurface.emergencyStop,
+  ]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
   const dismissReferralAccessEnded = useCallback(async () => {
@@ -2100,19 +2195,22 @@ export default function FriendsTabScreen() {
   /** Не пускать второй Share, пока первый ещё готовится/открыт (двойной тап = два шеринга). */
   const inviteShareBusyRef = useRef(false);
   const handleReferralInvite = useCallback(async () => {
-    if (!referralOfferOn || inviteShareBusyRef.current) return;
+    if (!referralMarketingVisible || inviteShareBusyRef.current) return;
+    const requestToken = captureAccountGeneration();
+    if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
     inviteShareBusyRef.current = true;
     hapticTap();
     try {
       const name = myProfile?.name ?? '';
       const share = await buildCloudReferralInviteShare({ lang, userName: name }).catch(() => null);
+      if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
       if (share?.message) {
         await Share.share({ message: share.message });
       }
     } finally {
       inviteShareBusyRef.current = false;
     }
-  }, [lang, myProfile?.name, referralOfferOn]);
+  }, [lang, myProfile?.name, referralAccountKey, referralMarketingVisible]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -2198,7 +2296,7 @@ export default function FriendsTabScreen() {
   const syncMyInviteCode = useCallback(async (isCancelled: () => boolean = () => false) => {
     const stopped = () => !mountedRef.current || isCancelled();
     // Ретрай/бэкофф живёт внутри синглтона (dedupe с referrals.tsx — один сетевой проход).
-    const code = await ensureInviteCodeShared();
+    const code = await ensureMyInviteCodeForFriends('User');
     if (stopped()) return;
     if (code) {
       setMyCode(code);
@@ -2325,28 +2423,49 @@ export default function FriendsTabScreen() {
   // СИНХРОННО из кеша и сразу вшиваем в текст. Без этого код стартовал с null и «моргал»:
   // пропадал при переключении вкладок и всплывал лишь через ~1.5 с после ответа сервера.
   useEffect(() => {
-    if (!referralOfferOn) return;
+    invalidateInviteCodeShared(referralAccountKey);
+    setReferralCodeAccountKey(referralAccountKey);
+    setReferralCode(null);
+  }, [referralAccountKey]);
+
+  useEffect(() => {
+    if (!referralMarketingVisible) return;
     let cancelled = false;
+    const requestToken = captureAccountGeneration();
     void getReferralCode().then(rc => {
-      if (!cancelled && rc && rc.trim().length >= 4) {
+      if (
+        !cancelled
+        && rc
+        && rc.trim().length >= 4
+        && isReferralAccountRequestCurrent(requestToken, referralAccountKey)
+      ) {
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
         setReferralCode(prev => prev ?? rc.trim().toUpperCase());
       }
     }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
     return () => { cancelled = true; };
-  }, [referralOfferOn]);
+  }, [referralAccountKey, referralMarketingVisible]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
   // зияет пустота. refreshReferralState бьёт лишь раз на фокус, поэтому добиваем код
   // ограниченным ретраем с бэкоффом, пока он не появится (auth готовится за пару секунд).
   useEffect(() => {
-    if (!referralOfferOn || referralCode) return;
+    if (!referralMarketingVisible || referralCode) return;
     let cancelled = false;
+    const requestToken = captureAccountGeneration();
     void ensureInviteCodeShared(myProfile?.name ?? 'User').then(code => {
-      if (!cancelled && code) setReferralCode(code);
+      if (
+        !cancelled
+        && code
+        && isReferralAccountRequestCurrent(requestToken, referralAccountKey)
+      ) {
+        setReferralCodeAccountKey(accountScopeKey(requestToken));
+        setReferralCode(code);
+      }
     });
     return () => { cancelled = true; };
-  }, [referralOfferOn, referralCode, myProfile?.name]);
+  }, [referralAccountKey, referralMarketingVisible, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──
@@ -3224,7 +3343,7 @@ export default function FriendsTabScreen() {
               </TouchableOpacity>
             );
           })}
-          {referralOfferOn && (
+          {referralUiVisible && (
             <TouchableOpacity
               testID="friends-open-referrals"
               accessibilityRole="button"
@@ -3376,7 +3495,7 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
-                {referralOfferOn ? (
+                {referralMarketingVisible ? (
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
@@ -3506,7 +3625,7 @@ export default function FriendsTabScreen() {
                 onGift={() => openGiftPicker(profile)}
                 lang={lang} t={t} f={f} chrome={chrome}
                 themeMode={themeMode}
-                referralStatus={referralOfferOn ? referralStatusByUid.get(profile.uid) : undefined}
+                referralStatus={referralUiVisible ? referralStatusByUid.get(profile.uid) : undefined}
                 giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
               />
             </Reanimated.View>
@@ -4030,7 +4149,7 @@ export default function FriendsTabScreen() {
       />
 
       <ReferralAccessEndedModal
-        visible={referralOfferOn && accessEndedOpen}
+        visible={referralMarketingVisible && accessEndedOpen}
         onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
         onOpenFullAccess={() => {
           setAccessEndedOpen(false);

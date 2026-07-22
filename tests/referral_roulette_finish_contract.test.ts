@@ -3,6 +3,7 @@ import { join } from 'path';
 import {
   __resetRemoteFlagsForTest,
   applyRemoteConfigSnapshot,
+  isReferralRouletteEmergencyStopped,
   isReferralRouletteEnabled,
 } from '../app/remote_flags';
 import { referralRouletteEnabledFromData } from '../functions/src/referral_roulette_flag';
@@ -25,7 +26,19 @@ describe('referral roulette finish contract', () => {
 
     const hook = read('app/referral_roulette_flag.ts');
     expect(hook).toContain("onAppEvent('remote_config_changed'");
-    expect(hook).toContain('setEnabled(isReferralRouletteEnabled())');
+    expect(hook).toContain('setPolicy((current) =>');
+    expect(hook).toContain('isReferralRouletteEmergencyStopped()');
+
+    applyRemoteConfigSnapshot({ numbers: {
+      referral_roulette_enabled: true,
+      referral_roulette_emergency_stop: true,
+    } });
+    expect(isReferralRouletteEnabled()).toBe(true);
+    expect(isReferralRouletteEmergencyStopped()).toBe(true);
+    expect(referralRouletteEnabledFromData({ numbers: {
+      referral_roulette_enabled: true,
+      referral_roulette_emergency_stop: true,
+    } })).toBe(false);
 
     expect(referralRouletteEnabledFromData(undefined)).toBe(true);
     expect(referralRouletteEnabledFromData({ numbers: {} })).toBe(true);
@@ -72,11 +85,16 @@ describe('referral roulette finish contract', () => {
     const entry = read('app/referral_code_entry.tsx');
     const expired = read('components/EntitlementExpiredHost.tsx');
 
-    expect(referrals).toContain('const referralOfferOn = referralEnabled && rouletteOn');
-    expect(referrals).toContain('{referralOfferOn && (');
-    expect(friends).toContain('const referralOfferOn = referralEnabled && rouletteOn');
-    expect(friends).toContain('referralOfferOn ? referralStatusByUid.get(profile.uid) : undefined');
-    expect(friends).toContain('{referralOfferOn && (');
+    expect(referrals).toContain('const marketingVisible = referralSurface.marketingVisible');
+    expect(referrals).toContain('selectReferralSurfaceState');
+    expect(referrals).toContain('const drainVisible = referralSurface.drainVisible');
+    expect(referrals).toContain('{referralUiVisible && (');
+    expect(referrals).toContain('{marketingVisible && (');
+    expect(friends).toContain('const referralMarketingVisible = referralSurface.marketingVisible');
+    expect(friends).toContain('selectReferralSurfaceState');
+    expect(friends).toContain('const referralDrainVisible = referralSurface.drainVisible');
+    expect(friends).toContain('referralUiVisible ? referralStatusByUid.get(profile.uid) : undefined');
+    expect(friends).toContain('{referralUiVisible && (');
     expect(welcome).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(welcome).toContain('const wantShow = rouletteOn &&');
     expect(entry).toContain('const rouletteOn = useReferralRouletteEnabled()');
@@ -129,7 +147,7 @@ describe('referral roulette finish contract', () => {
     const screen = read('app/roulette.tsx');
     const about = read('app/roulette_about.tsx');
 
-    expect(client).toContain("msg.includes('REFERRAL_ROULETTE_DISABLED')");
+    expect(client).toContain("msg.includes('REFERRAL_ROULETTE_EMERGENCY_STOP')");
     expect(client).toContain("reason: 'disabled'");
     expect(screen).toContain("outcome.reason === 'disabled'");
     expect(screen).toContain("showToast(L('Рулетка временно недоступна'");
@@ -152,8 +170,8 @@ describe('referral roulette finish contract', () => {
 
       expect(txStart).toBeGreaterThan(0);
       expect(source).toContain("db.collection('remote_config').doc('app')");
-      expect(txBody).toContain('referralRouletteEnabledFromData');
-      expect(txBody).toContain("'REFERRAL_ROULETTE_DISABLED'");
+      expect(txBody).toContain('referralRoulettePolicyFromData');
+      expect(txBody).toContain("'REFERRAL_ROULETTE_EMERGENCY_STOP'");
       expect(configRead).toBeGreaterThanOrEqual(0);
       expect(firstWrite).toBeGreaterThan(configRead);
     }
@@ -197,8 +215,8 @@ describe('referral roulette finish contract', () => {
     const core = read('admin/v2/scripts/admin-core.js');
 
     expect(referral).toContain('return false;');
-    expect(spin).toContain("new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED')");
-    expect(claim).toContain("new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED')");
+    expect(spin).toContain("new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP')");
+    expect(claim).toContain("new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP')");
     expect(admin).toContain("hasPermission(role, 'application.config.write')");
     expect(admin).toContain("action: 'referral_roulette.enabled.set'");
     expect(admin).toContain("db.collection('admin_log').doc()");

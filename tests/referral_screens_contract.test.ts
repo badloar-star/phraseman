@@ -1,14 +1,25 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { __resetAccountGenerationForTests, ensureAccountGeneration } from '../app/account_generation';
+import { accountScopeKey } from '../app/account_scope_key';
+import {
+  selectAccountScopedReferralState,
+  selectReferralSurfaceState,
+} from '../app/referral_surface_state';
 import {
   beginReferralInvitesRequest,
   commitReferralInvites,
+  commitReferralState,
+  parsePersistedReferralState,
   parsePersistedReferralInvites,
+  readReferralDrain,
   readReferralInvites,
   referralInvitesCacheSizeForTests,
   resetReferralInvitesCacheForTests,
   serializeReferralInvites,
+  serializeReferralState,
+  isReferralAccountRequestCurrent,
+  storeReferralState,
 } from '../app/referrals_cache';
 
 function read(rel: string): string {
@@ -36,6 +47,153 @@ describe('referral roulette screen contract', () => {
       expect(commitReferralInvites(beginReferralInvitesRequest(token), rows)).toBe(true);
     }
     expect(referralInvitesCacheSizeForTests()).toBe(2);
+  });
+
+  it('persists the grandfathered drain with the same account and TTL boundary', () => {
+    const alice = ensureAccountGeneration('alice');
+    const rows = [{ refereeStableId: 'friend', status: 'pending', createdAtMs: 1 }] as any;
+    const drain = {
+      softEnabled: false,
+      emergencyStop: false,
+      serverNowMs: 1_000,
+      activePendingCount: 1,
+      claimableQualifiedCount: 2,
+      availableCreditCount: 3,
+      latestPendingDeadlineMs: 2_000,
+      earliestCreditExpiryMs: 3_000,
+    };
+    const request = beginReferralInvitesRequest(alice);
+    expect(commitReferralState(request, rows, drain, 1_000)).toBe(true);
+    expect(readReferralDrain(alice, 20_000)).toEqual({ value: drain, isFresh: true });
+    expect(readReferralDrain(alice, 70_000)).toEqual({ value: drain, isFresh: false });
+
+    const persisted = serializeReferralState(alice, rows, drain, 1_000);
+    expect(parsePersistedReferralState(persisted, alice, 20_000)).toEqual({
+      value: rows,
+      drain,
+      updatedAt: 1_000,
+      isFresh: true,
+    });
+    expect(parsePersistedReferralState(persisted, { ...alice, stableId: 'bob' })).toBeNull();
+  });
+
+  it('rejects a friends referral refresh response after an account switch', () => {
+    const alice = ensureAccountGeneration('alice');
+    const aliceKey = accountScopeKey(alice)!;
+    expect(isReferralAccountRequestCurrent(alice, aliceKey)).toBe(true);
+
+    ensureAccountGeneration('bob');
+    expect(isReferralAccountRequestCurrent(alice, aliceKey)).toBe(false);
+  });
+
+  it('hides invites, drain, and spins on the first render of a new account', () => {
+    const alice = ensureAccountGeneration('alice');
+    const aliceKey = accountScopeKey(alice)!;
+    const invites = [{ refereeStableId: 'alice-friend', status: 'qualified', createdAtMs: 1 }] as any;
+    const drain = {
+      softEnabled: false,
+      emergencyStop: false,
+      serverNowMs: 1_000,
+      activePendingCount: 1,
+      claimableQualifiedCount: 1,
+      availableCreditCount: 2,
+      latestPendingDeadlineMs: 2_000,
+      earliestCreditExpiryMs: 3_000,
+    };
+    expect(selectAccountScopedReferralState(aliceKey, {
+      accountKey: aliceKey,
+      invites,
+      drain,
+      spins: 2,
+      referralCode: 'ALICE1',
+    })).toMatchObject({ accountMatches: true, invites, drain, spins: 2, referralCode: 'ALICE1' });
+
+    const bob = ensureAccountGeneration('bob');
+    expect(selectAccountScopedReferralState(accountScopeKey(bob), {
+      accountKey: aliceKey,
+      invites,
+      drain,
+      spins: 2,
+      referralCode: 'ALICE1',
+    })).toEqual({ accountMatches: false, invites: [], drain: null, spins: 0, referralCode: null });
+  });
+
+  it('a stale account response cannot evict the newer account cache entry', () => {
+    const alice = ensureAccountGeneration('alice');
+    const aliceRequest = beginReferralInvitesRequest(alice);
+    const bob = ensureAccountGeneration('bob');
+    const bobInvites = [{ refereeStableId: 'bob-friend', status: 'pending', createdAtMs: 1 }] as any;
+    const bobDrain = {
+      softEnabled: false,
+      emergencyStop: false,
+      serverNowMs: 10,
+      activePendingCount: 1,
+      claimableQualifiedCount: 0,
+      availableCreditCount: 0,
+      latestPendingDeadlineMs: 20,
+      earliestCreditExpiryMs: 0,
+    };
+    expect(storeReferralState(bob, bobInvites, bobDrain, 10)).toBe(true);
+    expect(commitReferralState(aliceRequest, [], { ...bobDrain, availableCreditCount: 9 }, 20)).toBe(false);
+    expect(readReferralInvites(bob, 20)?.value).toBe(bobInvites);
+    expect(readReferralDrain(bob, 20)?.value).toBe(bobDrain);
+  });
+
+  it('hydrates referrals, friends, and settings from the account-scoped drain cache', () => {
+    const referrals = read('app/referrals.tsx');
+    const friends = read('app/(tabs)/friends.tsx');
+    const settings = read('app/(tabs)/settings.tsx');
+    const bootstrap = read('app/app_snapshot_bootstrap.ts');
+
+    expect(referrals).toContain('readReferralDrain(renderToken)');
+    expect(friends).toContain('readReferralDrain(referralAccountToken)');
+    expect(friends).toContain('isReferralAccountRequestCurrent(requestToken, referralAccountKey)');
+    expect(settings).toContain('readReferralDrain(settingsReferralToken)');
+    expect(settings).toContain("router.push('/referrals' as any)");
+    expect(bootstrap).toContain('REFERRAL_STATE_STORAGE_KEY');
+    expect(bootstrap).toContain('hydrateReferralStateFromRaw');
+  });
+
+  it('uses persisted server policy before remote config hydration', () => {
+    const baseDrain = {
+      softEnabled: false,
+      emergencyStop: false,
+      serverNowMs: 1_000,
+      activePendingCount: 0,
+      claimableQualifiedCount: 0,
+      availableCreditCount: 2,
+      latestPendingDeadlineMs: 0,
+      earliestCreditExpiryMs: 2_000,
+    };
+    expect(selectReferralSurfaceState({
+      referralEnabled: true,
+      remotePolicy: { softEnabled: true, emergencyStop: false, remoteHydrated: false },
+      persistedDrain: baseDrain,
+    })).toMatchObject({
+      softEnabled: false,
+      emergencyStop: false,
+      marketingVisible: false,
+      drainVisible: true,
+      rouletteAvailable: true,
+      availableCreditCount: 2,
+    });
+    expect(selectReferralSurfaceState({
+      referralEnabled: true,
+      remotePolicy: { softEnabled: true, emergencyStop: false, remoteHydrated: false },
+      persistedDrain: { ...baseDrain, emergencyStop: true },
+    })).toMatchObject({
+      emergencyStop: true,
+      marketingVisible: false,
+      drainVisible: false,
+      rouletteAvailable: false,
+      availableCreditCount: 0,
+    });
+  });
+
+  it('roulette synchronously reads the persisted account-scoped drain', () => {
+    const roulette = read('app/roulette.tsx');
+    expect(roulette).toContain('readReferralDrain(rouletteAccountToken)');
+    expect(roulette).toContain('selectReferralSurfaceState');
   });
 
   it('converts qualified invites into spin credits without legacy per-row claiming', () => {
@@ -95,9 +253,11 @@ describe('referral roulette screen contract', () => {
     const spin = read('functions/src/referral_spin.ts');
 
     expect(referral).toContain('resolveReferralRouletteEnabled');
-    expect(claim).toContain("'REFERRAL_ROULETTE_DISABLED'");
+    expect(claim).toContain("'REFERRAL_ROULETTE_EMERGENCY_STOP'");
+    expect(claim).toContain('referralRoulettePolicyFromData');
     expect(claim).toContain('referral_spin_credits');
-    expect(spin).toContain("'REFERRAL_ROULETTE_DISABLED'");
+    expect(spin).toContain("'REFERRAL_ROULETTE_EMERGENCY_STOP'");
+    expect(spin).toContain('reconcileLedgerRows');
     expect(spin).toContain('spinRequestId');
     expect(spin).toContain('prizeDays');
   });

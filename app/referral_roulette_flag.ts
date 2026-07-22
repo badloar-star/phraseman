@@ -9,17 +9,47 @@
  */
 import { useEffect, useState } from 'react';
 import { onAppEvent } from './events';
-import { isReferralRouletteEnabled } from './remote_flags';
+import {
+  hasRemoteConfigSnapshotApplied,
+  isReferralRouletteEmergencyStopped,
+  isReferralRouletteEnabled,
+} from './remote_flags';
 
-export function useReferralRouletteEnabled(): boolean {
-  const [enabled, setEnabled] = useState<boolean>(() => isReferralRouletteEnabled());
+export type ReferralRouletteClientPolicy = Readonly<{
+  softEnabled: boolean;
+  emergencyStop: boolean;
+  remoteHydrated: boolean;
+}>;
+
+function readPolicy(): ReferralRouletteClientPolicy {
+  return {
+    softEnabled: isReferralRouletteEnabled(),
+    emergencyStop: isReferralRouletteEmergencyStopped(),
+    remoteHydrated: hasRemoteConfigSnapshotApplied(),
+  };
+}
+
+export function useReferralRoulettePolicy(): ReferralRouletteClientPolicy {
+  const [policy, setPolicy] = useState<ReferralRouletteClientPolicy>(() => readPolicy());
   useEffect(() => {
     const sub = onAppEvent('remote_config_changed', () => {
-      setEnabled(isReferralRouletteEnabled());
+      const next = readPolicy();
+      setPolicy((current) => (
+        current.softEnabled === next.softEnabled
+          && current.emergencyStop === next.emergencyStop
+          && current.remoteHydrated === next.remoteHydrated
+          ? current
+          : next
+      ));
     });
     return () => sub.remove();
   }, []);
-  return enabled;
+  return policy;
+}
+
+export function useReferralRouletteEnabled(): boolean {
+  const policy = useReferralRoulettePolicy();
+  return policy.softEnabled && !policy.emergencyStop;
 }
 
 /* expo-router route shim */

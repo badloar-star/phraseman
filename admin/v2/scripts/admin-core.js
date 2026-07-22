@@ -376,7 +376,7 @@ const state = {
   selectedCapabilityId: '',
   remoteConfig: null,
   remoteConfigPreview: null,
-  referralRoulette: { state: 'idle', enabled: true, auditId: '', error: '' },
+  referralRoulette: { state: 'idle', enabled: true, emergencyStop: false, softOffAtMs: 0, drainMetrics: null, auditId: '', error: '' },
   paywallAb: defaultPaywallAbState(),
   paywallAbStats: defaultPaywallAbStatsState(),
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
@@ -1783,29 +1783,37 @@ function renderReferralRouletteControl() {
   const control = state.referralRoulette;
   const ready = control.state === 'ready';
   const enabled = ready ? control.enabled === true : true;
-  const nextEnabled = !enabled;
+  const emergencyStop = ready ? control.emergencyStop === true : false;
   const locked = state.busy || !ready || !can('application.config.write');
-  const statusLabel = control.state === 'loading'
+  const softStatusLabel = control.state === 'loading'
     ? 'Загрузка…'
     : control.state === 'error'
       ? 'Ошибка чтения'
       : ready
-        ? enabled ? 'Включено' : 'Выключено'
+        ? enabled ? 'Новые приглашения открыты' : 'Мягко выключено'
         : 'Не загружено';
-  const statusClass = ready && enabled ? 'success' : control.state === 'error' ? 'warning' : '';
-  const tooltip = nextEnabled
-    ? 'Включит рулетку Plus и реферальные входы для пользователей после обновления remote config. Изменение выполняет сервер, записывает причину и audit ID. Отменить можно этой же кнопкой.'
-    : 'Выключит рулетку Plus и реферальные входы для пользователей после обновления remote config. Сервер отклонит spin и claim. Изменение записывается в аудит; вернуть доступ можно этой же кнопкой.';
+  const softStatusClass = ready && enabled ? 'success' : control.state === 'error' ? 'warning' : '';
   const error = control.error ? `<div class="notice warning section" role="alert">${escapeHtml(control.error)}</div>` : '';
   const audit = control.auditId
     ? `<span class="hint">Последняя запись аудита: <code>${escapeHtml(control.auditId)}</code></span>`
     : '<span class="hint">После изменения здесь появится ID записи в журнале.</span>';
+  const metrics = control.drainMetrics || {};
+  const drainSummary = ready
+    ? `Ожидают урок: ${Number(metrics.pendingAttributions || 0)} · ждут начисления: ${Number(metrics.qualifiedAwaitingCredit || 0)} · доступно ledger-кредитов: ${Number(metrics.availableLedgerCredits || 0)}`
+    : 'Загрузите серверное состояние, чтобы увидеть остаток обязательств.';
+  const deadlineSummary = !enabled && Number(metrics.latestGrandfatherDeadlineMs || 0) > 0
+    ? `Последний возможный срок pending: ${escapeHtml(dateTime(metrics.latestGrandfatherDeadlineMs))}. Legacy-кредиты: до ${escapeHtml(dateTime(metrics.legacyCreditExpiryMs))}.`
+    : `Legacy-кредиты: до ${escapeHtml(dateTime(metrics.legacyCreditExpiryMs))}.`;
 
-  return `<section class="card section" aria-labelledby="referral-roulette-title"><div class="card-header"><div><h2 id="referral-roulette-title">Рулетка Plus и приглашения</h2><p>Один аварийный выключатель скрывает предложение в приложении и закрывает серверную выдачу прокрутов.</p><small><code>numbers.referral_roulette_enabled</code></small></div><span class="badge ${statusClass}" role="status" aria-live="polite">${statusLabel}</span></div><div class="card-body">
-    <div class="notice"><strong>Текущее влияние:</strong> ${ready ? enabled ? 'приглашения дают один прокрут; приз — Plus от 1 до 365 дней.' : 'предложение скрыто; referralSpin и referralClaimSpin отвечают failed-precondition.' : 'загрузите серверное состояние перед изменением.'}</div>
-    <div class="field full section"><label for="referral-roulette-reason">Причина изменения</label><textarea id="referral-roulette-reason" maxlength="500" placeholder="Зачем меняется доступ и как проверить результат"${locked ? ' disabled' : ''}></textarea></div>
+  return `<section class="card section" aria-labelledby="referral-roulette-title"><div class="card-header"><div><h2 id="referral-roulette-title">Рулетка Plus и приглашения</h2><p>Мягко закройте новые приглашения или отдельно остановите все операции в аварийной ситуации.</p></div><span class="badge ${softStatusClass}" role="status" aria-live="polite">${softStatusLabel}</span></div><div class="card-body">
+    <div class="notice"><strong>Остаток обязательств:</strong> ${escapeHtml(drainSummary)}<br>${deadlineSummary}</div>
+    <div class="section"><h3>Новые приглашения и промо</h3><p>Мягкое выключение скрывает маркетинг и закрывает новые коды. Уже начатые приглашения сохраняют 7-дневный срок, а заработанные прокруты — 30-дневный.</p><small><code>numbers.referral_roulette_enabled</code></small></div>
+    <div class="field full section"><label for="referral-roulette-soft-reason">Причина мягкого изменения</label><textarea id="referral-roulette-soft-reason" maxlength="500" placeholder="Почему закрываем или открываем новые приглашения и как проверить результат"${locked ? ' disabled' : ''}></textarea></div>
+    <div class="actions end section"><button class="button${enabled ? ' danger' : ''}" data-action="set-referral-roulette-enabled" data-enabled="${!enabled}" type="button" aria-pressed="${enabled}" title="${enabled ? 'Закроет новые коды, приглашения и промо. Действующие pending и ledger-кредиты сохранят сроки. Повторное включение доступно этой же кнопкой.' : 'Откроет новые коды, приглашения и промо после обновления Remote Config. Изменение попадёт в аудит.'}" data-tooltip="${enabled ? 'Закроет новые коды, приглашения и промо. Действующие pending и ledger-кредиты сохранят сроки. Повторное включение доступно этой же кнопкой.' : 'Откроет новые коды, приглашения и промо после обновления Remote Config. Изменение попадёт в аудит.'}"${locked ? ' disabled' : ''}>${enabled ? 'Мягко выключить' : 'Открыть новые приглашения'}</button></div>
+    <div class="notice ${emergencyStop ? 'danger' : 'warning'} section"><h3>Аварийная остановка рулетки</h3><p>${emergencyStop ? 'Активна: qualification, award, claim и spin заблокированы для всех.' : 'Выключена: аварийный блок не мешает обычной работе или мягкому drain.'}</p><small><code>numbers.referral_roulette_emergency_stop</code></small></div>
+    <div class="field full section"><label for="referral-roulette-emergency-reason">Причина аварийного изменения</label><textarea id="referral-roulette-emergency-reason" maxlength="500" placeholder="Инцидент, влияние и условие снятия блокировки"${locked ? ' disabled' : ''}></textarea></div>
     ${error}
-    <div class="actions end section">${audit}<a class="button ghost" href="#diagnostics" title="Открыть журнал действий и проверить запись изменения" data-tooltip="Откроет журнал действий. Настройки приложения не изменятся.">Открыть аудит</a><button class="button" data-action="load-referral-roulette" type="button" title="Загрузить текущее состояние рулетки с сервера" data-tooltip="Загрузит текущее состояние и health-проверки. Пользовательские настройки не изменятся."${state.busy || !can('application.config.write') ? ' disabled' : ''}>Обновить состояние</button><button class="button${enabled ? ' danger' : ''}" data-action="set-referral-roulette-enabled" data-enabled="${nextEnabled}" type="button" aria-pressed="${enabled}" title="${tooltip}" data-tooltip="${tooltip}"${locked ? ' disabled' : ''}>${nextEnabled ? 'Включить' : 'Выключить'}</button></div>
+    <div class="actions end section">${audit}<a class="button ghost" href="#diagnostics" title="Открыть журнал действий и проверить запись изменения" data-tooltip="Откроет журнал действий. Настройки приложения не изменятся.">Открыть аудит</a><button class="button" data-action="load-referral-roulette" type="button" title="Загрузить флаги и остаток обязательств без изменения данных" data-tooltip="Загрузит серверное состояние и drain-метрики. Пользовательские настройки не изменятся."${state.busy || !can('application.config.write') ? ' disabled' : ''}>Обновить состояние</button><button class="button danger" data-action="set-referral-roulette-emergency" data-emergency-stop="${!emergencyStop}" type="button" aria-pressed="${emergencyStop}" title="${emergencyStop ? 'Снимет аварийную блокировку. Мягкий флаг продолжит действовать независимо.' : 'Немедленно заблокирует qualification, award, claim и spin для всех. Потребуется явная причина и подтверждение.'}" data-tooltip="${emergencyStop ? 'Снимет аварийную блокировку. Мягкий флаг продолжит действовать независимо.' : 'Немедленно заблокирует qualification, award, claim и spin для всех. Потребуется явная причина и подтверждение.'}"${locked ? ' disabled' : ''}>${emergencyStop ? 'Снять аварийную остановку' : 'Включить аварийную остановку'}</button></div>
   </div></section>`;
 }
 
@@ -3661,6 +3669,9 @@ async function refreshReferralRouletteControl() {
     state.referralRoulette = {
       state: 'ready',
       enabled: result.rouletteEnabled,
+      emergencyStop: result.emergencyStop === true,
+      softOffAtMs: Number(result.softOffAtMs || 0),
+      drainMetrics: result.drainMetrics || null,
       auditId: state.referralRoulette.auditId || '',
       error: '',
     };
@@ -5507,11 +5518,11 @@ async function handleAction(action, target) {
   if (action === 'set-referral-roulette-enabled') {
     if (!can('application.config.write')) return setMessage('У роли нет права менять конфигурацию приложения.', 'warning');
     const enabled = target?.dataset?.enabled === 'true';
-    const reason = readTextInput('referral-roulette-reason', 500);
+    const reason = readTextInput('referral-roulette-soft-reason', 500);
     if (reason.length < 5) return setMessage('Добавьте причину изменения — минимум 5 символов.', 'warning');
     const question = enabled
-      ? 'Включить рулетку Plus и реферальные входы? Изменение применится после обновления remote config и попадёт в аудит.'
-      : 'Выключить рулетку Plus и реферальные входы? UI исчезнет, а spin/claim будут отклоняться сервером. Изменение попадёт в аудит.';
+      ? 'Открыть новые приглашения и промо? Аварийная остановка не изменится. Действие попадёт в аудит.'
+      : 'Мягко закрыть новые приглашения и промо? Pending и заработанные прокруты сохранят свои сроки. Действие попадёт в аудит.';
     if (!globalThis.confirm(question)) return;
     return runBusy(async () => {
       const result = await actions.setReferralRouletteEnabled({
@@ -5523,12 +5534,43 @@ async function handleAction(action, target) {
       state.referralRoulette = {
         state: 'ready',
         enabled: result?.enabled === true,
+        emergencyStop: state.referralRoulette.emergencyStop === true,
+        softOffAtMs: Number(result?.softOffAtMs ?? 0),
+        drainMetrics: state.referralRoulette.drainMetrics || null,
         auditId: String(result?.auditId || ''),
         error: '',
       };
       state.remoteConfig = await actions.getRemoteConfigWorkspace();
       state.remoteConfigPreview = null;
-      setMessage(`Рулетка ${enabled ? 'включена' : 'выключена'}. Audit ID: ${String(result?.auditId || 'не возвращён')}`, 'success');
+      await refreshReferralRouletteControl();
+      setMessage(`Новые приглашения ${enabled ? 'открыты' : 'мягко закрыты'}. Audit ID: ${String(result?.auditId || 'не возвращён')}`, 'success');
+    });
+  }
+  if (action === 'set-referral-roulette-emergency') {
+    if (!can('application.config.write')) return setMessage('У роли нет права менять конфигурацию приложения.', 'warning');
+    const emergencyStop = target?.dataset?.emergencyStop === 'true';
+    const reason = readTextInput('referral-roulette-emergency-reason', 500);
+    if (reason.length < 5) return setMessage('Добавьте причину аварийного изменения — минимум 5 символов.', 'warning');
+    const question = emergencyStop
+      ? 'Включить аварийную остановку? Qualification, award, claim и spin немедленно остановятся для всех.'
+      : 'Снять аварийную остановку? Мягкий флаг новых приглашений останется без изменений.';
+    if (!globalThis.confirm(question)) return;
+    return runBusy(async () => {
+      const result = await actions.setReferralRouletteEmergencyStop({
+        emergencyStop,
+        reason,
+        idempotencyKey: id('referral-roulette-emergency'),
+        requestId: id('request-referral-roulette-emergency'),
+      });
+      state.referralRoulette = {
+        ...state.referralRoulette,
+        state: 'ready',
+        emergencyStop: result?.emergencyStop === true,
+        auditId: String(result?.auditId || ''),
+        error: '',
+      };
+      await refreshReferralRouletteControl();
+      setMessage(`Аварийная остановка ${emergencyStop ? 'включена' : 'снята'}. Audit ID: ${String(result?.auditId || 'не возвращён')}`, 'success');
     });
   }
   if (action === 'preview-remote-config') {

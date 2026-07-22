@@ -12,8 +12,309 @@ import path from 'path';
 
 const rulesPath = path.join(process.cwd(), 'firestore.rules');
 
+type ParsedMatchBlock = { path: string; source: string };
+type ParsedAllowStatement = { operations: string; expression: string };
+
+function stripRulesComments(source: string): string {
+  return source
+    .replace(/\/\*[\s\S]*?\*\//g, (comment) => comment.replace(/[^\r\n]/g, ' '))
+    .replace(/\/\/[^\r\n]*/g, '');
+}
+
+function balancedBlockEnd(source: string, openBrace: number): number | null {
+  let depth = 1;
+  let quote = '';
+  let escaped = false;
+  for (let index = openBrace + 1; index < source.length; index += 1) {
+    const char = source[index];
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (char === '\\') escaped = true;
+      else if (char === quote) quote = '';
+      continue;
+    }
+    if (char === "'" || char === '"') quote = char;
+    else if (char === '{') depth += 1;
+    else if (char === '}') depth -= 1;
+    if (depth === 0) return index + 1;
+  }
+  return null;
+}
+
+function rootMatchBlocks(source: string): ParsedMatchBlock[] {
+  const executable = stripRulesComments(source);
+  const databaseHeader = /\bmatch\s+\/databases\/\{database\}\/documents\s*\{/g.exec(executable);
+  if (!databaseHeader || databaseHeader.index === undefined) return [];
+  const databaseOpenBrace = databaseHeader.index + databaseHeader[0].lastIndexOf('{');
+  const databaseEnd = balancedBlockEnd(executable, databaseOpenBrace);
+  if (databaseEnd === null) return [];
+
+  const blocks: ParsedMatchBlock[] = [];
+  let depth = 1;
+  let quote = '';
+  let escaped = false;
+  for (let index = databaseOpenBrace + 1; index < databaseEnd - 1; index += 1) {
+    const char = executable[index];
+    if (quote) {
+      if (escaped) escaped = false;
+      else if (char === '\\') escaped = true;
+      else if (char === quote) quote = '';
+      continue;
+    }
+    if (char === "'" || char === '"') {
+      quote = char;
+      continue;
+    }
+    if (char === '{') {
+      depth += 1;
+      continue;
+    }
+    if (char === '}') {
+      depth -= 1;
+      continue;
+    }
+    if (depth !== 1 || !executable.startsWith('match', index)) continue;
+    const previous = index > 0 ? executable[index - 1] : '';
+    if (/[A-Za-z0-9_]/.test(previous)) continue;
+    const header = /^match\s+\/([^\s]+)\s*\{/.exec(executable.slice(index));
+    if (!header) continue;
+    const openBrace = index + header[0].lastIndexOf('{');
+    const end = balancedBlockEnd(executable, openBrace);
+    if (end === null || end > databaseEnd) continue;
+    blocks.push({ path: header[1], source: executable.slice(index, end) });
+    index = end - 1;
+  }
+  return blocks;
+}
+
+function allowStatements(block: string): ParsedAllowStatement[] {
+  return Array.from(
+    block.matchAll(/\ballow\s+([^:;]+?)\s*:\s*if\s+([\s\S]*?);/g),
+    (match) => ({
+      operations: match[1].replace(/\s+/g, ' ').trim(),
+      expression: match[2].replace(/\s+/g, ' ').trim(),
+    }),
+  );
+}
+
+function identityRuleGuardViolations(source: string): string[] {
+  const violations: string[] = [];
+  const blocks = rootMatchBlocks(source);
+  const collectionBlocks = (collection: string) => blocks.filter(
+    (block) => block.path.startsWith(`${collection}/`),
+  );
+  const exactBlock = (pathPattern: string) => blocks.filter((block) => block.path === pathPattern);
+
+  const authLinkBlocks = collectionBlocks('auth_links');
+  if (
+    authLinkBlocks.length !== 1 ||
+    authLinkBlocks[0].path !== 'auth_links/{providerUid}'
+  ) {
+    violations.push('auth_links:exact_root_count');
+  } else {
+    const statements = allowStatements(authLinkBlocks[0].source);
+    if (
+      statements.length !== 2 ||
+      statements[0].operations !== 'read' ||
+      statements[0].expression !== 'isAdmin() || ownsAuthLinkDoc()' ||
+      statements[1].operations !== 'create, update, delete' ||
+      statements[1].expression !== 'false'
+    ) {
+      violations.push('auth_links:allow_contract');
+    }
+  }
+
+  const tombstoneBlocks = collectionBlocks('account_deletion_tombstones');
+  if (
+    tombstoneBlocks.length !== 1 ||
+    tombstoneBlocks[0].path !== 'account_deletion_tombstones/{userId}'
+  ) {
+    violations.push('tombstones:exact_root_count');
+  } else {
+    const statements = allowStatements(tombstoneBlocks[0].source);
+    if (
+      statements.length !== 1 ||
+      statements[0].operations !== 'read, write' ||
+      statements[0].expression !== 'false'
+    ) {
+      violations.push('tombstones:allow_contract');
+    }
+  }
+
+  const catchAllBlocks = exactBlock('{collection}/{document=**}');
+  if (catchAllBlocks.length !== 1) {
+    violations.push('catch_all:exact_root_count');
+  } else {
+    const statements = allowStatements(catchAllBlocks[0].source);
+    const catchAll = statements.length === 1 ? statements[0] : null;
+    if (!catchAll || catchAll.operations !== 'read, write') {
+      violations.push('catch_all:allow_contract');
+    } else {
+      const conjuncts = catchAll.expression.split('&&').map((term) => term.trim());
+      if (catchAll.expression.includes('||') || conjuncts[0] !== 'isAdmin()') {
+        violations.push('catch_all:not_conjunctive_admin_gate');
+      }
+      for (const collection of ['auth_links', 'account_deletion_tombstones']) {
+        if (!conjuncts.includes(`collection != '${collection}'`)) {
+          violations.push(`catch_all:${collection}`);
+        }
+      }
+    }
+  }
+  return violations;
+}
+
+function identityRulesFixture(overrides: {
+  catchAllExpression?: string;
+  extraBlocks?: string;
+} = {}): string {
+  return `service cloud.firestore {
+  match /databases/{database}/documents {
+    match /auth_links/{providerUid} {
+      allow read: if isAdmin() || ownsAuthLinkDoc();
+      allow create, update, delete: if false;
+    }
+    match /account_deletion_tombstones/{userId} {
+      allow read, write: if false;
+    }
+${overrides.extraBlocks ?? ''}
+    match /{collection}/{document=**} {
+      allow read, write: if ${overrides.catchAllExpression ?? "isAdmin() && collection != 'auth_links' && collection != 'account_deletion_tombstones'"};
+    }
+  }
+}`;
+}
+
 describe('firestore.rules security baseline', () => {
   const rules = readFileSync(rulesPath, 'utf8');
+  const executableRules = stripRulesComments(rules);
+
+  function exactRootMatchBlocks(pathPattern: string): string[] {
+    return rootMatchBlocks(executableRules)
+      .filter((block) => block.path === pathPattern)
+      .map((block) => block.source);
+  }
+
+  function activeAllowLines(block: string): string[] {
+    return allowStatements(block).map(
+      ({ operations, expression }) => `allow ${operations}: if ${expression};`,
+    );
+  }
+
+  const SERVER_OWNED_USER_IDENTITY_FIELDS = [
+    'firebaseAuthUid',
+    'linkedAuth',
+    'identityHidden',
+    'canonicalStableId',
+    'duplicateOfStableId',
+    'anon_merge_claim',
+    'identityCanonicalizedAt',
+    'identityMergedAt',
+    'identityCleanupAt',
+    'identityCleanupReason',
+  ] as const;
+
+  test('identity rule parser accepts the current rules', () => {
+    expect(identityRuleGuardViolations(rules)).toEqual([]);
+  });
+
+  test('identity rule parser rejects OR-bypassed catch-all exclusions', () => {
+    const mutated = identityRulesFixture({
+      catchAllExpression:
+        "collection != 'auth_links' && collection != 'account_deletion_tombstones' || isAdmin()",
+    });
+    expect(identityRuleGuardViolations(mutated)).not.toEqual([]);
+  });
+
+  test.each([
+    ['tab', '\t'],
+    ['two spaces', '  '],
+    ['five spaces', '     '],
+  ])('identity rule parser rejects a %s-indented duplicate permissive auth_links root', (
+    _label,
+    indent,
+  ) => {
+    const mutated = identityRulesFixture({
+      extraBlocks: `${indent}match /auth_links/{document=**} {
+${indent}  allow read, write: if isAdmin();
+${indent}}`,
+    });
+    expect(identityRuleGuardViolations(mutated)).toContain('auth_links:exact_root_count');
+  });
+
+  test.each([
+    ['tab', '\t'],
+    ['two spaces', '  '],
+    ['five spaces', '     '],
+  ])('identity rule parser rejects a %s-indented duplicate permissive tombstone root', (
+    _label,
+    indent,
+  ) => {
+    const mutated = identityRulesFixture({
+      extraBlocks: `${indent}match /account_deletion_tombstones/{document=**} {
+${indent}  allow read, write: if isAdmin();
+${indent}}`,
+    });
+    expect(identityRuleGuardViolations(mutated)).toContain('tombstones:exact_root_count');
+  });
+
+  test('identity rule parser ignores a permissive nested user recovery control', () => {
+    const mutated = identityRulesFixture({
+      extraBlocks: `    match /users/{uid} {
+      match /auth_recovery_codes/{doc} {
+        allow read, write: if true;
+      }
+    }`,
+    });
+    expect(identityRuleGuardViolations(mutated)).toEqual([]);
+  });
+
+  test('identity rule parser ignores comment-fake catch-all exclusions', () => {
+    const mutated = identityRulesFixture({
+      catchAllExpression: `isAdmin()
+        // && collection != 'auth_links'
+        /* && collection != 'account_deletion_tombstones' */`,
+    });
+    expect(identityRuleGuardViolations(mutated)).not.toEqual([]);
+  });
+
+  test('users create rejects client identity poisoning, including browser admins', () => {
+    const fields = rules.match(/function serverOwnedUserIdentityFields\(\) \{[\s\S]*?\n    \}/);
+    const guard = rules.match(/function newDocHasNoServerIdentityWrites\(\) \{[\s\S]*?\n    \}/);
+    expect(fields).not.toBeNull();
+    expect(guard).not.toBeNull();
+    expect(guard![0]).not.toContain('isAdmin()');
+    expect(guard![0]).toContain('.hasAny(serverOwnedUserIdentityFields())');
+    for (const field of SERVER_OWNED_USER_IDENTITY_FIELDS) {
+      expect(fields![0]).toContain(`'${field}'`);
+    }
+    expect(rules).toMatch(
+      /allow create:\s*if\s+newUserDocOwnerMatchesAuth\(userId\)[\s\S]*?newDocHasNoServerIdentityWrites\(\)/,
+    );
+  });
+
+  test('users update and delete cannot change or remove server-owned identity', () => {
+    const updateGuard = rules.match(/function hasNoServerIdentityWrites\(\) \{[\s\S]*?\n    \}/);
+    const deleteGuard = rules.match(/function userDocHasNoServerIdentity\(\) \{[\s\S]*?\n    \}/);
+    expect(updateGuard).not.toBeNull();
+    expect(deleteGuard).not.toBeNull();
+    expect(updateGuard![0]).not.toContain('isAdmin()');
+    expect(deleteGuard![0]).not.toContain('isAdmin()');
+    expect(updateGuard![0]).toContain('.hasAny(serverOwnedUserIdentityFields())');
+    expect(deleteGuard![0]).toContain('.hasAny(serverOwnedUserIdentityFields())');
+    expect(rules).toMatch(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)[\s\S]*?hasNoServerIdentityWrites\(\)/,
+    );
+    expect(rules).toContain(
+      'allow delete: if userDocOwnerMatchesAuth(userId) && userDocHasNoServerIdentity();',
+    );
+  });
+
+  test('legacy browser-admin catch-all cannot bypass users identity guards', () => {
+    const catchAllBlock = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
+    expect(catchAllBlock).not.toBeNull();
+    expect(catchAllBlock![0]).toContain("collection != 'users'");
+  });
 
   test('Arena runtime pool is client-readable but server-owned', () => {
     expect(rules).toMatch(/match \/arena_questions\/\{qId\} \{[\s\S]*?allow read:\s*if request\.auth != null;[\s\S]*?allow write:\s*if false;/);
@@ -294,12 +595,40 @@ describe('firestore.rules security baseline', () => {
     expect(functionsIndex).toContain('exports.leagueSyncMyBoost = leagueSyncMyBoost;');
   });
 
-  test('catch-all permits only admins and retains a terminal deny fallback', () => {
+  test('admin catch-all remains admin-only and is followed by a terminal deny', () => {
     const catchAllBlock = rules.match(/match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/);
     expect(catchAllBlock).not.toBeNull();
-    expect(catchAllBlock![0]).toMatch(
-      /allow read, write: if isAdmin\(\)[\s\S]*?;\s*allow read, write: if false;/,
+    expect(catchAllBlock![0]).toMatch(/allow read, write: if isAdmin\(\)[\s\S]*?;/);
+    expect(catchAllBlock![0]).not.toContain('allow read, write: if false;');
+
+    const terminalDenyStart = rules.lastIndexOf('match /{document=**} {');
+    expect(terminalDenyStart).toBeGreaterThan(catchAllBlock!.index!);
+    expect(rules.slice(terminalDenyStart)).toMatch(
+      /^match \/\{document=\*\*\} \{\s*allow read, write: if false;\s*\}/,
     );
+  });
+
+  test('referral ledger migration state is server-owned on user create and update', () => {
+    const guardBlock = rules.match(
+      /function blockedPremiumProgressKeys\(\) \{[\s\S]*?\n    \}/,
+    );
+    expect(guardBlock).not.toBeNull();
+    expect(guardBlock![0]).toContain("'referral_spin_ledger_version'");
+    expect(guardBlock![0]).toContain("'referral_spin_ledger_migrated_at_ms'");
+    expect(rules).toMatch(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
+    );
+    expect(rules).toMatch(
+      /function newDocHasNoPremiumWrites\(\) \{[\s\S]*?\.hasAny\(blockedPremiumProgressKeys\(\)\)/,
+    );
+  });
+
+  test('referral spin credit ledger subcollection rejects every client write', () => {
+    const ledgerBlock = rules.match(
+      /match \/referral_spin_credit_ledger\/\{creditId\} \{[\s\S]*?\n      \}/,
+    );
+    expect(ledgerBlock).not.toBeNull();
+    expect(ledgerBlock![0]).toMatch(/allow create, update, delete:\s*if false;/);
   });
 
   test('app diagnostics collections are server/admin-write only with admin read', () => {

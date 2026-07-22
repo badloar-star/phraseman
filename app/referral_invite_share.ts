@@ -11,6 +11,7 @@
  */
 import { buildReferralShareLinks } from './referral_bootstrap';
 import { generateReferralCode, getReferralCode } from './referral_system';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import type { Lang } from '../constants/i18n';
 
 const BODY_RU = [
@@ -156,14 +157,16 @@ export async function buildCloudReferralInviteShare(params: {
   lang: InviteShareLang;
   userName: string;
 }): Promise<ReferralInviteShare | null> {
+  const accountToken = captureAccountGeneration();
   // Кэш-код первым: Share должен открываться сразу после тапа. Серверный ensure
   // (2 round-trip'а: auth-link + ensure-код) нужен только когда кода ещё нет —
   // иначе на медленной сети системный шеринг открывался с многосекундной задержкой.
   let refCode = await getReferralCode();
+  if (!isCurrentAccountGeneration(accountToken)) return null;
   if (!refCode || refCode.trim().length < 4) {
     refCode = await generateReferralCode(params.userName || 'User');
   }
-  if (!refCode || refCode.trim().length < 4) return null;
+  if (!isCurrentAccountGeneration(accountToken) || !refCode || refCode.trim().length < 4) return null;
   const { https: inviteHttps } = buildReferralShareLinks(refCode);
   const { lang } = params;
   // One public invite URL is enough: the landing page handles app-open/store routing.

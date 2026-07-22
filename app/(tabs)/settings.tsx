@@ -73,6 +73,8 @@ import { getClaimableReferralState } from '../referral_vip';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
 import { readReferralDrain } from '../referrals_cache';
+import { isReferralCloudEnabled } from '../referral_cloud';
+import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
@@ -439,16 +441,21 @@ export default function SettingsMain() {
   const [settingsReferralDrain, setSettingsReferralDrain] = useState(() => (
     readReferralDrain(settingsReferralToken)?.value ?? null
   ));
-  const settingsReferralDrainVisible = !roulettePolicy.softEnabled
-    && !roulettePolicy.emergencyStop
-    && !!settingsReferralDrain
-    && (
-      settingsReferralDrain.activePendingCount > 0
-      || settingsReferralDrain.claimableQualifiedCount > 0
-      || settingsReferralDrain.availableCreditCount > 0
-    );
-  const settingsReferralRowVisible = !roulettePolicy.emergencyStop
-    && (roulettePolicy.softEnabled || settingsReferralDrainVisible);
+  const [settingsReferralStateKey, setSettingsReferralStateKey] = useState<string | null>(() => (
+    settingsReferralAccountKey
+  ));
+  const scopedSettingsReferralState = selectAccountScopedReferralState(settingsReferralAccountKey, {
+    accountKey: settingsReferralStateKey,
+    drain: settingsReferralDrain,
+  });
+  const settingsReferralSurface = selectReferralSurfaceState({
+    referralEnabled: isReferralCloudEnabled(),
+    remotePolicy: roulettePolicy,
+    persistedDrain: scopedSettingsReferralState.drain,
+  });
+  const settingsReferralDrainVisible = settingsReferralSurface.drainVisible;
+  const settingsReferralRowVisible = settingsReferralSurface.marketingVisible
+    || settingsReferralDrainVisible;
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -464,22 +471,25 @@ export default function SettingsMain() {
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
 
   useEffect(() => {
-    if (!settingsTabVisible || roulettePolicy.emergencyStop) return;
-    const token = settingsReferralToken;
+    if (!settingsTabVisible || settingsReferralSurface.emergencyStop) return;
+    const token = captureAccountGeneration();
+    if (accountScopeKey(token) !== settingsReferralAccountKey) return;
     const cached = readReferralDrain(token);
+    setSettingsReferralStateKey(settingsReferralAccountKey);
     setSettingsReferralDrain(cached?.value ?? null);
     let alive = true;
     void getClaimableReferralState()
       .then((state) => {
         if (!alive || !state.ok || !isCurrentAccountGeneration(token)) return;
+        setSettingsReferralStateKey(accountScopeKey(token));
         setSettingsReferralDrain(state.drain);
       })
       .catch(() => {});
     return () => { alive = false; };
   }, [
     focusTick,
-    roulettePolicy.emergencyStop,
-    roulettePolicy.softEnabled,
+    settingsReferralSurface.emergencyStop,
+    settingsReferralSurface.softEnabled,
     settingsReferralAccountKey,
     settingsTabVisible,
   ]);
@@ -1345,13 +1355,13 @@ export default function SettingsMain() {
             testID="settings-invite-friend-row"
             icon="people"
             color="teal"
-            label={roulettePolicy.softEnabled
+            label={settingsReferralSurface.softEnabled
               ? L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')
               : L('Мои приглашения', 'Мої запрошення', 'Mis invitaciones', 'Meus convites', 'Lời mời của tôi', 'Undangan saya', 'Davetlerim', 'Moje zaproszenia')}
-            sub={roulettePolicy.softEnabled
+            sub={settingsReferralSurface.softEnabled
               ? L('1 прокрут · Plus от 1 до 365 дней', '1 прокрут · Plus від 1 до 365 днів', '1 giro · Plus de 1 a 365 días', '1 giro · Plus de 1 a 365 dias', '1 lượt quay · Plus từ 1 đến 365 ngày', '1 putaran · Plus 1–365 hari', '1 çevirme · 1–365 gün Plus', '1 los · Plus od 1 do 365 dni')
               : L('Забрать оставшиеся прокруты', 'Забрати решту прокрутів', 'Usar los giros restantes', 'Usar os giros restantes', 'Dùng lượt quay còn lại', 'Gunakan putaran tersisa', 'Kalan çevirmeleri kullan', 'Użyj pozostałych losów')}
-            onPress={() => roulettePolicy.softEnabled
+            onPress={() => settingsReferralSurface.softEnabled
               ? router.push('/settings_invite_friend' as any)
               : router.push('/referrals' as any)}
           /> : null}

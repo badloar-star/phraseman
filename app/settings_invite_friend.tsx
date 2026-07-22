@@ -27,6 +27,8 @@ import type { Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { useReferralRouletteEnabled } from './referral_roulette_flag';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 
 const MONTHLY_LIMIT = 30;
 
@@ -302,9 +304,14 @@ export default function SettingsInviteFriend() {
   const tx = COPY[copyLang] ?? COPY.ru;
 
   const [busy, setBusy] = useState(false);
+  const inviteAccountKey = accountScopeKey(captureAccountGeneration());
 
   const onSendInvite = useCallback(async () => {
     if (!rouletteOn || busy) return;
+    const requestToken = captureAccountGeneration();
+    const requestIsCurrent = () => accountScopeKey(requestToken) === inviteAccountKey
+      && isCurrentAccountGeneration(requestToken);
+    if (!requestIsCurrent()) return;
     hapticTap();
     setBusy(true);
     try {
@@ -315,7 +322,9 @@ export default function SettingsInviteFriend() {
       try {
         name = (await AsyncStorage.getItem('profile_name'))?.trim() || 'User';
       } catch { /* имя — только сид для кода, не критично */ }
+      if (!requestIsCurrent()) return;
       const cloud = await buildCloudReferralInviteShare({ lang: copyLang, userName: name }).catch(() => null);
+      if (!requestIsCurrent()) return;
 
       let r: { action?: string } | undefined;
       if (cloud?.message) {
@@ -328,6 +337,7 @@ export default function SettingsInviteFriend() {
         r = await Share.share({ message: msg });
       }
 
+      if (!requestIsCurrent()) return;
       if (shouldCountInviteShare(r)) {
         void updateMultipleTaskProgress(
           [{ type: 'invite_friend', increment: 1 }],
@@ -338,7 +348,7 @@ export default function SettingsInviteFriend() {
     } finally {
       setBusy(false);
     }
-  }, [busy, copyLang, rouletteOn, studyTarget]);
+  }, [busy, copyLang, inviteAccountKey, rouletteOn, studyTarget]);
 
   const isIos = effectiveOs === 'ios';
   const scrollBottomPad = 100 + Math.max(bottomInset, 16);

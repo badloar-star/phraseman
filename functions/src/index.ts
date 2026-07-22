@@ -499,4 +499,12 @@ export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';
 export { friendsGetProfiles } from './friends_profiles';
 
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
-export { adminListReferrals, adminSpinStats, adminSpinLogs, adminSetSpinWeights, adminSetReferralRouletteEnabled, adminReferralHealth } from './admin_referrals';
+export {
+  adminListReferrals,
+  adminSpinStats,
+  adminSpinLogs,
+  adminSetSpinWeights,
+  adminSetReferralRouletteEnabled,
+  adminSetReferralRouletteEmergencyStop,
+  adminReferralHealth,
+} from './admin_referrals';

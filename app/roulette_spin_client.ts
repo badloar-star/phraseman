@@ -13,14 +13,48 @@ import * as Crypto from 'expo-crypto';
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { captureAccountGeneration } from './account_generation';
+import { accountScopeKey } from './account_scope_key';
 import { getCanonicalUserId } from './user_id_policy';
 import { isReferralCloudEnabled } from './referral_flags';
-import { isReferralRouletteEnabled } from './remote_flags';
+import { isReferralRouletteEmergencyStopped } from './remote_flags';
 
 const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
+const SPIN_CREDITS_MEMORY_MAX_ENTRIES = 2;
+const spinCreditsMemoryByScope = new Map<string, number>();
 /** Сетевые повторы одного спина (с тем же spinRequestId!) — не более двух. */
 const SPIN_NETWORK_RETRIES = 2;
+
+function spinCreditsStorageKey(stableId: string): string {
+  return `${SPIN_CREDITS_CACHE_KEY}:${encodeURIComponent(stableId)}`;
+}
+
+function activeSpinCreditsScope(stableId?: string): string | null {
+  const token = captureAccountGeneration();
+  if (stableId && token.stableId !== stableId) return null;
+  return accountScopeKey(token);
+}
+
+function rememberSpinCredits(stableId: string, rawValue: number): number {
+  const value = Math.max(0, Math.floor(Number(rawValue) || 0));
+  const scope = activeSpinCreditsScope(stableId);
+  if (!scope) return value;
+  spinCreditsMemoryByScope.delete(scope);
+  spinCreditsMemoryByScope.set(scope, value);
+  while (spinCreditsMemoryByScope.size > SPIN_CREDITS_MEMORY_MAX_ENTRIES) {
+    const oldest = spinCreditsMemoryByScope.keys().next().value as string | undefined;
+    if (!oldest) break;
+    spinCreditsMemoryByScope.delete(oldest);
+  }
+  return value;
+}
+
+async function cacheSpinCredits(stableId: string, rawValue: number): Promise<number> {
+  const value = rememberSpinCredits(stableId, rawValue);
+  await AsyncStorage.setItem(spinCreditsStorageKey(stableId), String(value)).catch(() => {});
+  return value;
+}
 
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), REGION), name);
@@ -74,8 +108,7 @@ async function newSpinRequestId(): Promise<string> {
 
 /** Конвертирует все qualified-приглашения в прокруты (капы 30/мес, 3/день — на сервере). */
 export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
-  // Мастер-флаг «рулетка+рефералка» (админка → remote_config): выкл → не ходим в сеть.
-  if (!isReferralRouletteEnabled()) return null;
+  if (isReferralRouletteEmergencyStopped()) return null;
   if (!isReferralCloudEnabled()) return null;
   const stableId = await getCanonicalUserId();
   if (!stableId) return null;
@@ -83,20 +116,27 @@ export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
   const fn = callable<{ referrerStableId: string }, ClaimSpinResult>('referralClaimSpin');
   const res = await fn({ referrerStableId: stableId });
   if (typeof res.data?.spinsTotal === 'number') {
-    await AsyncStorage.setItem(SPIN_CREDITS_CACHE_KEY, String(res.data.spinsTotal)).catch(() => {});
+    await cacheSpinCredits(stableId, res.data.spinsTotal);
   }
   return res.data;
 }
 
 /** Локальный кэш счётчика прокрутов (мгновенный первый кадр; сеть обновит). */
 export async function readCachedSpinCredits(): Promise<number> {
+  const stableId = await getCanonicalUserId();
+  if (!stableId) return 0;
   try {
-    const raw = await AsyncStorage.getItem(SPIN_CREDITS_CACHE_KEY);
+    const raw = await AsyncStorage.getItem(spinCreditsStorageKey(stableId));
     const n = Math.floor(Number(raw));
-    return Number.isFinite(n) && n >= 0 ? n : 0;
+    return rememberSpinCredits(stableId, Number.isFinite(n) && n >= 0 ? n : 0);
   } catch {
     return 0;
   }
+}
+
+export function peekCachedSpinCredits(): number {
+  const scope = activeSpinCreditsScope();
+  return scope ? spinCreditsMemoryByScope.get(scope) ?? 0 : 0;
 }
 
 // ── Спин ─────────────────────────────────────────────────────────────────────
@@ -113,8 +153,7 @@ async function callReferralSpinOnce(stableId: string, spinRequestId: string): Pr
  * бизнес-ошибки (no_spins / link_required) не ретраятся.
  */
 export async function spinReferralRoulette(): Promise<SpinOutcome> {
-  // Мастер-флаг «рулетка+рефералка» (админка → remote_config): выкл → disabled.
-  if (!isReferralRouletteEnabled()) return { ok: false, reason: 'disabled' };
+  if (isReferralRouletteEmergencyStopped()) return { ok: false, reason: 'disabled' };
   if (!isReferralCloudEnabled()) return { ok: false, reason: 'disabled' };
   const stableId = await getCanonicalUserId();
   if (!stableId) return { ok: false, reason: 'no_user' };
@@ -132,7 +171,7 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         spinsLeft: Math.max(0, Math.floor(data.spinsLeft ?? 0)),
         vipUntil: Math.max(0, Math.floor(data.vipUntil ?? 0)),
       };
-      await AsyncStorage.setItem(SPIN_CREDITS_CACHE_KEY, String(outcome.spinsLeft)).catch(() => {});
+      await cacheSpinCredits(stableId, outcome.spinsLeft);
       return outcome;
     } catch (e) {
       const code = callableErrorCode(e);
@@ -140,7 +179,7 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         // Флаг мог выключиться уже после открытия экрана: это отдельное состояние,
         // не «закончились прокруты». Остальные бизнес-ошибки различаем по message.
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
-        if (msg.includes('REFERRAL_ROULETTE_DISABLED')) return { ok: false, reason: 'disabled', code };
+        if (msg.includes('REFERRAL_ROULETTE_EMERGENCY_STOP')) return { ok: false, reason: 'disabled', code };
         return { ok: false, reason: msg.includes('LINK_ACCOUNT_REQUIRED') ? 'link_required' : 'no_spins', code };
       }
       if (code === 'unauthenticated' || code === 'permission-denied' || code === 'invalid-argument') {
@@ -173,7 +212,7 @@ export async function devGrantReferralSpin(): Promise<DevGrantOutcome> {
     const fn = callable<{ stableId: string }, { ok?: boolean; spinsTotal: number }>('referralDevGrantSpin');
     const res = await fn({ stableId });
     const spinsTotal = Math.max(0, Math.floor(Number(res.data?.spinsTotal ?? 0)));
-    await AsyncStorage.setItem(SPIN_CREDITS_CACHE_KEY, String(spinsTotal)).catch(() => {});
+    await cacheSpinCredits(stableId, spinsTotal);
     return { ok: true, spinsTotal };
   } catch (e) {
     const code = callableErrorCode(e);

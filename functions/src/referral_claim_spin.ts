@@ -18,9 +18,25 @@ import {
   prunePeriodCounter,
   referralClaimSlotsLeft,
   resolveReferralConfig,
-  resolveReferralRouletteEnabled,
+  resolveReferralRoulettePolicy,
 } from './referral';
-import { referralRouletteEnabledFromData } from './referral_roulette_flag';
+import {
+  REFERRAL_ANALYTICS_EVENTS,
+  existingQualifiedDrainEligible,
+  policyTimestampMs,
+  referralRoulettePolicyFromData,
+} from './referral_roulette_policy';
+import {
+  REFERRAL_SPIN_LEDGER,
+  REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID,
+  REFERRAL_SPIN_LEDGER_VERSION,
+  buildAvailableCredit,
+  buildLegacyCreditRows,
+  ledgerRowFromData,
+  reconcileLedgerRowsForClaim,
+  referralCreditId,
+  shouldMigrateLegacyAggregate,
+} from './referral_spin_ledger';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -63,9 +79,9 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
 
-  // Мастер-флаг «рулетка+рефералка» (админка → remote_config). Выкл → failed-precondition.
-  if (!(await resolveReferralRouletteEnabled(db))) {
-    throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+  const outerPolicy = await resolveReferralRoulettePolicy(db);
+  if (outerPolicy.emergencyStop) {
+    throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
   }
 
   // Тюнинг капов из «Пульта». Читаем ДО транзакции (отдельный документ).
@@ -82,22 +98,6 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
   const userRef = db.collection(USERS).doc(referrerStableId);
   const configRef = db.collection('remote_config').doc('app');
 
-  if (qualifiedSnap.empty) {
-    // Нет award-транзакции, но stale outer precheck не должен вернуть успех после OFF.
-    if (!(await resolveReferralRouletteEnabled(db))) {
-      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
-    }
-    const u = await userRef.get();
-    const p = (u.data() as { progress?: Record<string, unknown> } | undefined)?.progress ?? {};
-    return {
-      ok: true,
-      claimed: 0,
-      spinsTotal: Math.max(0, Math.floor(Number(p.referral_spin_credits ?? 0))),
-      cappedThisMonth: false,
-      cappedToday: false,
-    };
-  }
-
   const ym = yyyymmNow();
   const ymd = yyyymmddNow();
 
@@ -110,8 +110,9 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
       ...attRefs.map((r) => tx.get(r)),
     ]);
     const configData = configSnap.data() as { numbers?: Record<string, unknown> } | undefined;
-    if (!referralRouletteEnabledFromData(configData)) {
-      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+    const policy = referralRoulettePolicyFromData(configData);
+    if (policy.emergencyStop) {
+      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
     }
 
     const userData = userSnap.data() ?? {};
@@ -120,9 +121,102 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
     const daily = (progressData.referral_vip_claims_daily as Record<string, number> | undefined) ?? {};
     let usedThisMonth = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
     let usedToday = Math.max(0, Math.floor(Number(daily[ymd] ?? 0)));
-    let spinsTotal = Math.max(0, Math.floor(Number(progressData.referral_spin_credits ?? 0)));
+    const aggregateBefore = Math.max(0, Math.floor(Number(progressData.referral_spin_credits ?? 0)));
 
     const nowMs = Date.now();
+    const ledgerVersion = Math.max(0, Math.floor(Number(progressData.referral_spin_ledger_version ?? 0)));
+    const ledgerCollection = userRef.collection(REFERRAL_SPIN_LEDGER);
+    const migrationMarkerRef = ledgerCollection.doc(REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID);
+    const [migrationMarkerSnap, anyLedgerSnap] = await Promise.all([
+      tx.get(migrationMarkerRef),
+      tx.get(ledgerCollection.limit(1)),
+    ]);
+    const migrateLegacyAggregate = shouldMigrateLegacyAggregate({
+      migrationMarkerExists: migrationMarkerSnap.exists,
+      anyLedgerDocumentExists: !anyLedgerSnap.empty,
+    });
+    const shouldWriteMigrationMarker = !migrationMarkerSnap.exists;
+    let legacyRows: ReturnType<typeof buildLegacyCreditRows> = [];
+    let legacyRefs: admin.firestore.DocumentReference[] = [];
+    let legacySnaps: admin.firestore.DocumentSnapshot[] = [];
+    if (migrateLegacyAggregate) {
+      try {
+        legacyRows = buildLegacyCreditRows(referrerStableId, aggregateBefore);
+      } catch {
+        throw new HttpsError('failed-precondition', 'LEGACY_CREDIT_MIGRATION_TOO_LARGE');
+      }
+      legacyRefs = legacyRows.map((row) => userRef.collection(REFERRAL_SPIN_LEDGER).doc(row.id));
+      legacySnaps = await Promise.all(legacyRefs.map((ref) => tx.get(ref)));
+    }
+
+    const candidateCreditRefs = attSnaps.map((snap) => (
+      userRef.collection(REFERRAL_SPIN_LEDGER).doc(referralCreditId(snap.id))
+    ));
+    const candidateCreditSnaps = await Promise.all(candidateCreditRefs.map((ref) => tx.get(ref)));
+    const availableSnap = await tx.get(
+      ledgerCollection.where('status', '==', 'available').limit(450),
+    );
+    if (availableSnap.size >= 450) {
+      throw new HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+    }
+    const persistedRows = availableSnap.docs.map((doc) => {
+      const parsed = ledgerRowFromData(doc.id, doc.data() as Record<string, unknown>);
+      if (!parsed) throw new HttpsError('failed-precondition', 'LEDGER_INVALID_CREDIT');
+      return parsed;
+    });
+    const persistedIds = new Set(persistedRows.map((row) => row.id));
+    const migrationRows = legacyRows.filter((row, index) => (
+      !legacySnaps[index].exists && !persistedIds.has(row.id)
+    ));
+    const ledgerRows = [...persistedRows, ...migrationRows];
+    const beforeClaimAll = reconcileLedgerRowsForClaim(ledgerRows, nowMs, { softEnabled: true }, 0);
+    const expiredIds = new Set(beforeClaimAll.expiredIds);
+    const migrationIds = new Set(migrationRows.map((row) => row.id));
+    const persistedExpiredCount = beforeClaimAll.expiredIds.filter((id) => !migrationIds.has(id)).length;
+    const conservativeWriteCount = migrationRows.length
+      + persistedExpiredCount
+      + (attSnaps.length * 2)
+      + 2
+      + (shouldWriteMigrationMarker ? 1 : 0);
+    if (conservativeWriteCount > 480) {
+      throw new HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+    }
+
+    migrationRows.forEach((row) => {
+      const { id: _id, ...data } = row;
+      tx.create(userRef.collection(REFERRAL_SPIN_LEDGER).doc(row.id), {
+        ...data,
+        earnedAt: admin.firestore.Timestamp.fromMillis(row.earnedAtMs),
+        expiresAt: admin.firestore.Timestamp.fromMillis(row.expiresAtMs),
+        ...(expiredIds.has(row.id) ? {
+          status: 'expired',
+          expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+          expiredAtMs: nowMs,
+        } : {}),
+      });
+    });
+    if (shouldWriteMigrationMarker) {
+      tx.create(migrationMarkerRef, {
+        kind: 'migration_marker',
+        version: REFERRAL_SPIN_LEDGER_VERSION,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        createdAtMs: nowMs,
+      });
+    }
+    for (const creditId of expiredIds) {
+      if (migrationIds.has(creditId)) continue;
+      tx.set(userRef.collection(REFERRAL_SPIN_LEDGER).doc(creditId), {
+        status: 'expired',
+        expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+        expiredAtMs: nowMs,
+      }, { merge: true });
+      console.log(JSON.stringify({
+        event: REFERRAL_ANALYTICS_EVENTS.creditExpired,
+        ownerStableId: referrerStableId,
+        creditId,
+        expiredAtMs: nowMs,
+      }));
+    }
     let claimed = 0;
     let cappedThisMonth = false;
     let cappedToday = false;
@@ -130,8 +224,18 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
     for (let i = 0; i < attSnaps.length; i += 1) {
       const snap = attSnaps[i];
       if (!snap.exists) continue;
-      const row = snap.data() as { status?: string } | undefined;
+      const row = snap.data() as {
+        status?: string;
+        createdAt?: unknown;
+        createdAtMs?: unknown;
+        qualifiedAt?: unknown;
+        qualifiedAtMs?: unknown;
+      } | undefined;
       if (row?.status !== 'qualified' && row?.status !== 'skipped_referrer_cap') continue;
+      if (!existingQualifiedDrainEligible({
+        createdAtMs: policyTimestampMs(row.createdAt) || policyTimestampMs(row.createdAtMs),
+        qualifiedAtMs: policyTimestampMs(row.qualifiedAt) || policyTimestampMs(row.qualifiedAtMs),
+      }, policy)) continue;
 
       if (referralClaimSlotsLeft(usedThisMonth, usedToday, cfg.maxClaimsPerMonth, cfg.maxClaimsPerDay) <= 0) {
         // Кап (день/месяц). Статус НЕ понижаем — прокрут не теряется, доберётся позже.
@@ -145,10 +249,34 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
         break;
       }
 
-      spinsTotal += 1;
-      usedThisMonth += 1;
-      usedToday += 1;
-      claimed += 1;
+      const creditRef = candidateCreditRefs[i];
+      const creditSnap = candidateCreditSnaps[i];
+      if (!creditSnap.exists) {
+        const credit = buildAvailableCredit({
+          id: creditRef.id,
+          ownerStableId: referrerStableId,
+          source: 'referral',
+          attributionId: snap.id,
+          earnedAtMs: nowMs,
+        });
+        const { id: _id, ...creditData } = credit;
+        tx.create(creditRef, {
+          ...creditData,
+          earnedAt: admin.firestore.FieldValue.serverTimestamp(),
+          expiresAt: admin.firestore.Timestamp.fromMillis(credit.expiresAtMs),
+        });
+        claimed += 1;
+        usedThisMonth += 1;
+        usedToday += 1;
+        console.log(JSON.stringify({
+          event: REFERRAL_ANALYTICS_EVENTS.creditEarned,
+          ownerStableId: referrerStableId,
+          attributionId: snap.id,
+          creditId: creditRef.id,
+          earnedAtMs: nowMs,
+          expiresAtMs: credit.expiresAtMs,
+        }));
+      }
 
       tx.set(
         attRefs[i],
@@ -161,36 +289,62 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
       );
     }
 
-    if (claimed > 0) {
+    const allAfterClaim = reconcileLedgerRowsForClaim(ledgerRows, nowMs, { softEnabled: true }, claimed);
+    const eligibleAfterClaim = reconcileLedgerRowsForClaim(ledgerRows, nowMs, policy, claimed);
+    const aggregateSpinsTotal = allAfterClaim.availableCountAfterClaim;
+    const responseSpinsTotal = eligibleAfterClaim.availableCountAfterClaim;
+
+    if (
+      claimed > 0
+      || ledgerVersion < REFERRAL_SPIN_LEDGER_VERSION
+      || expiredIds.size > 0
+      || aggregateBefore !== aggregateSpinsTotal
+    ) {
       tx.set(
         userRef,
         {
           progress: {
-            referral_spin_credits: spinsTotal,
-            // Те же счётчики капов, что у VIP-claim: чистим старые периоды (M1).
-            referral_vip_claims_monthly: prunePeriodCounter({ ...monthly, [ym]: usedThisMonth }, 3),
-            referral_vip_claims_daily: prunePeriodCounter({ ...daily, [ymd]: usedToday }, 10),
+            referral_spin_credits: aggregateSpinsTotal,
+            referral_spin_ledger_version: REFERRAL_SPIN_LEDGER_VERSION,
+            ...(migrateLegacyAggregate
+              ? { referral_spin_ledger_migrated_at_ms: nowMs }
+              : {}),
+            ...(claimed > 0 ? {
+              // Те же счётчики капов, что у VIP-claim: чистим старые периоды (M1).
+              referral_vip_claims_monthly: prunePeriodCounter({ ...monthly, [ym]: usedThisMonth }, 3),
+              referral_vip_claims_daily: prunePeriodCounter({ ...daily, [ymd]: usedToday }, 10),
+            } : {}),
           },
           updatedAt: nowMs,
         },
         { merge: true },
       );
 
-      const rewardRef = userRef.collection('shard_rewards').doc();
-      tx.set(rewardRef, {
-        ts: new Date(nowMs).toISOString(),
-        reason: 'referral_spin_credit',
-        rewardType: 'spin_credit',
-        amount: claimed,
-        label: `🎡 +${claimed} прокрут(а) рулетки`,
-        seen: false,
-      });
+      if (claimed > 0) {
+        const rewardRef = userRef.collection('shard_rewards').doc();
+        tx.set(rewardRef, {
+          ts: new Date(nowMs).toISOString(),
+          reason: 'referral_spin_credit',
+          rewardType: 'spin_credit',
+          amount: claimed,
+          label: `🎡 +${claimed} прокрут(а) рулетки`,
+          seen: false,
+        });
+      }
     }
 
     console.log(
-      JSON.stringify({ event: 'referral_claim_spin', referrerStableId, claimed, spinsTotal, cappedThisMonth, cappedToday }),
+      JSON.stringify({
+        event: 'referral_claim_spin',
+        referrerStableId,
+        claimed,
+        spinsTotal: responseSpinsTotal,
+        aggregateSpinsTotal,
+        cappedThisMonth,
+        cappedToday,
+      }),
     );
 
-    return { ok: true, claimed, spinsTotal, cappedThisMonth, cappedToday };
+    return { ok: true, claimed, spinsTotal: responseSpinsTotal, cappedThisMonth, cappedToday };
   });
 });

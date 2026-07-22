@@ -1,6 +1,9 @@
-export type ReferralRouletteConfigData = {
-  numbers?: Record<string, unknown>;
-};
+import {
+  referralRoulettePolicyFromData,
+  type ReferralRouletteConfigData,
+} from './referral_roulette_policy';
+
+export type { ReferralRouletteConfigData } from './referral_roulette_policy';
 
 /**
  * Missing keys remain ON for compatibility. An explicit boolean false is the
@@ -10,5 +13,6 @@ export type ReferralRouletteConfigData = {
 export function referralRouletteEnabledFromData(
   data: ReferralRouletteConfigData | undefined,
 ): boolean {
-  return data?.numbers?.referral_roulette_enabled !== false;
+  const policy = referralRoulettePolicyFromData(data);
+  return policy.softEnabled && !policy.emergencyStop;
 }

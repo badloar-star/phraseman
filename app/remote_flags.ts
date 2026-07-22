@@ -66,6 +66,7 @@ export type RemoteBoolKey =
   // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
   // Дефолт true (kill-switch). Подхватывается из numbers в applyRemoteConfigSnapshot.
   | 'referral_roulette_enabled'
+  | 'referral_roulette_emergency_stop'
   | 'speaking_enabled'
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
@@ -291,6 +292,8 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
   // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
   referral_roulette_enabled: true,
+  // Отдельный hard stop. Отсутствие ключа безопасно сохраняет рабочее состояние.
+  referral_roulette_emergency_stop: false,
   speaking_enabled: true,
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
   // админка может экстренно выключить).
@@ -559,6 +562,8 @@ export function applyRemoteConfigSnapshot(snapshot: {
   // чтобы сервер и админка писали один и тот же ключ.
   const rouletteRaw = snapshot.numbers?.referral_roulette_enabled;
   if (typeof rouletteRaw === 'boolean') nextBools.referral_roulette_enabled = rouletteRaw;
+  const rouletteEmergencyRaw = snapshot.numbers?.referral_roulette_emergency_stop;
+  if (typeof rouletteEmergencyRaw === 'boolean') nextBools.referral_roulette_emergency_stop = rouletteEmergencyRaw;
   for (const key of Object.keys(DEFAULT_TEXTS) as RemoteTextKey[]) {
     const raw = snapshot.texts?.[key];
     if (typeof raw === 'string') nextTexts[key] = raw;
@@ -668,6 +673,7 @@ export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_r
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
 export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
+export const isReferralRouletteEmergencyStopped = () => getRemoteBool('referral_roulette_emergency_stop');
 
 const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
   first_lesson: 'soft_upsell_first_lesson_enabled',

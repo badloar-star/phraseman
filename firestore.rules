@@ -219,11 +219,14 @@ service cloud.firestore {
         // (referralClaimSpin / referralSpin, Admin SDK) — клиент не должен себе их рисовать.
         'referral_spin_credits',
         'referral_spins_total',
+        'referral_spin_ledger_version',
+        'referral_spin_ledger_migrated_at_ms',
       ];
     }
 
     function progressHasNoPremiumWrites() {
       return isAdmin()
+        || !request.resource.data.diff(resource.data).affectedKeys().hasAny(['progress'])
         || !request.resource.data.get('progress', {})
               .diff(resource.data.get('progress', {}))
               .affectedKeys().hasAny(blockedPremiumProgressKeys())
@@ -1114,6 +1117,14 @@ service cloud.firestore {
 
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
+      }
+
+      // Durable roulette credits and the server-owned migration marker are
+      // written only by Cloud Functions through Admin SDK. Clients consume the
+      // callable projection instead of reading or mutating ledger documents.
+      match /referral_spin_credit_ledger/{creditId} {
+        allow read: if false;
+        allow create, update, delete: if false;
       }
 
       // Инбокс решений по идеям. Создаёт только сервер (adminDecideUserIdea, Admin SDK).

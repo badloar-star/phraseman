@@ -6,6 +6,8 @@
  * после успеха обновить локальное состояние доступа из облака и завести анимацию активации.
  */
 import { logEvent } from './firebase';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { getCanonicalUserId } from './user_id_policy';
 import {
   callReferralClaimVipReward,
@@ -14,10 +16,16 @@ import {
   isReferralCloudEnabled,
   type ClaimVipRewardResult,
   type ListMyInvitesResult,
+  type ReferralDrainState,
   type ReferralInvite,
 } from './referral_cloud';
 import { invalidatePremiumCache } from './premium_guard';
 import { markVipCelebrationPending } from './vip_celebration_state';
+import {
+  REFERRAL_STATE_STORAGE_KEY,
+  serializeReferralState,
+  storeReferralState,
+} from './referrals_cache';
 
 export type { ReferralInvite } from './referral_cloud';
 
@@ -26,6 +34,16 @@ const EMPTY_INVITES: ListMyInvitesResult = {
   invites: [],
   qualifiedCount: 0,
   claimableVipDays: 0,
+  drain: {
+    softEnabled: true,
+    emergencyStop: false,
+    serverNowMs: 0,
+    activePendingCount: 0,
+    claimableQualifiedCount: 0,
+    availableCreditCount: 0,
+    latestPendingDeadlineMs: 0,
+    earliestCreditExpiryMs: 0,
+  },
 };
 const REFERRAL_INVITES_CACHE_TTL_MS = 15 * 60 * 1000;
 
@@ -42,11 +60,38 @@ export function invalidateClaimableReferralStateCache(stableId?: string): void {
   }
 }
 
+export function peekClaimableReferralState(): ListMyInvitesResult | null {
+  const account = captureAccountGeneration();
+  if (
+    account.phase !== 'active'
+    || !account.stableId
+    || referralInvitesCache?.stableId !== account.stableId
+  ) return null;
+  return referralInvitesCache.data;
+}
+
+function normalizeDrain(value: Partial<ReferralDrainState> | null | undefined): ReferralDrainState {
+  return {
+    softEnabled: value?.softEnabled !== false,
+    emergencyStop: value?.emergencyStop === true,
+    serverNowMs: Math.max(0, Math.floor(Number(value?.serverNowMs) || 0)),
+    activePendingCount: Math.max(0, Math.floor(Number(value?.activePendingCount) || 0)),
+    claimableQualifiedCount: Math.max(0, Math.floor(Number(value?.claimableQualifiedCount) || 0)),
+    availableCreditCount: Math.max(0, Math.floor(Number(value?.availableCreditCount) || 0)),
+    latestPendingDeadlineMs: Math.max(0, Math.floor(Number(value?.latestPendingDeadlineMs) || 0)),
+    earliestCreditExpiryMs: Math.max(0, Math.floor(Number(value?.earliestCreditExpiryMs) || 0)),
+  };
+}
+
 /** Сколько дней доступа можно открыть прямо сейчас (есть qualified-друзья). */
 export async function getClaimableReferralState(options: { force?: boolean } = {}): Promise<ListMyInvitesResult> {
   if (!isReferralCloudEnabled()) return EMPTY_INVITES;
   const stableId = await getCanonicalUserId();
   if (!stableId) return EMPTY_INVITES;
+  const accountToken = captureAccountGeneration();
+  if (accountToken.phase !== 'active' || accountToken.stableId !== stableId) {
+    return { ...EMPTY_INVITES, ok: false };
+  }
   const now = Date.now();
   if (
     !options.force
@@ -72,12 +117,21 @@ export async function getClaimableReferralState(options: { force?: boolean } = {
       invites: Array.isArray(res.invites) ? res.invites : [],
       qualifiedCount: res.qualifiedCount ?? 0,
       claimableVipDays: res.claimableVipDays ?? 0,
+      drain: normalizeDrain(res.drain),
     };
+    if (!isCurrentAccountGeneration(accountToken, stableId)) {
+      return { ...EMPTY_INVITES, ok: false };
+    }
+    const updatedAtMs = Date.now();
     referralInvitesCache = {
       stableId,
-      updatedAtMs: Date.now(),
+      updatedAtMs,
       data,
     };
+    if (storeReferralState(accountToken, data.invites, data.drain, updatedAtMs)) {
+      const persisted = serializeReferralState(accountToken, data.invites, data.drain, updatedAtMs);
+      if (persisted) void AsyncStorage.setItem(REFERRAL_STATE_STORAGE_KEY, persisted).catch(() => {});
+    }
     return data;
   })().finally(() => {
     referralInvitesInFlight.delete(stableId);

@@ -23,12 +23,16 @@ import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import {
   getClaimableReferralState,
+  peekClaimableReferralState,
   type ReferralInvite,
 } from './referral_vip';
 import { claimReferralSpins, devGrantReferralSpin, readCachedSpinCredits } from './roulette_spin_client';
 import { preloadRoulettePrizeImages, ROULETTE_PRIZES } from './roulette_prizes';
-import { useReferralRouletteEnabled } from './referral_roulette_flag';
-import { ensureInviteCodeShared } from './invite_code_singleton';
+import { useReferralRoulettePolicy } from './referral_roulette_flag';
+import { formatReferralSunsetDate, referralSunsetCopy } from './referral_sunset_copy';
+import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
+import { copyReferralCodeForAccount } from './referral_code_clipboard';
+import { ensureInviteCodeShared, invalidateInviteCodeShared } from './invite_code_singleton';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { safeRouterBack } from './navigation_back';
@@ -37,9 +41,9 @@ import TonalSurface from '../components/TonalSurface';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import {
-  beginReferralInvitesRequest, commitReferralInvites, hydrateReferralInvitesIfEmpty,
-  isReferralInvitesRequestCurrent, parsePersistedReferralInvites,
-  readReferralInvites, serializeReferralInvites,
+  REFERRAL_STATE_STORAGE_KEY,
+  beginReferralInvitesRequest, commitReferralState, hydrateReferralStateFromRaw,
+  isReferralInvitesRequestCurrent, readReferralDrain, readReferralInvites,
 } from './referrals_cache';
 
 function makeL(lang: Lang) {
@@ -68,8 +72,6 @@ function inviteDisplayName(invite: ReferralInvite, fallbackPrefix: string): stri
 }
 
 /** Кэш последнего успешного списка приглашений — экран рисуется мгновенно, без скелетонов. */
-const REFERRALS_INVITES_CACHE_KEY = 'referrals_invites_cache_v2';
-
 export default function ReferralsScreen() {
   const router = useRouter();
   const { theme: t, f, ds } = useTheme();
@@ -78,24 +80,61 @@ export default function ReferralsScreen() {
   const renderToken = captureAccountGeneration();
   const renderAccountScope = accountScopeKey(renderToken);
   const initialWarm = readReferralInvites(renderToken);
+  const initialDrain = readReferralDrain(renderToken);
   const [loadedAccountScope, setLoadedAccountScope] = useState<string | null>(() => renderAccountScope);
   const [inviteState, setInvites] = useState<ReferralInvite[]>(() => initialWarm?.value ?? []);
-  const invites = loadedAccountScope === renderAccountScope ? inviteState : [];
   const [loading, setLoading] = useState(() => initialWarm === null);
-  const visibleLoading = loading || loadedAccountScope !== renderAccountScope;
   const [refreshing, setRefreshing] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   /** Дубликат реф-кода из /friends — чтобы код можно было найти, когда в Друзьях уже есть люди. */
   const referralEnabled = isReferralCloudEnabled();
-  /** Мастер-флаг «рулетка+рефералка» из админки (remote_config, живое обновление). */
-  const rouletteOn = useReferralRouletteEnabled();
-  const referralOfferOn = referralEnabled && rouletteOn;
-  const [referralCode, setReferralCode] = useState<string | null>(null);
+  const roulettePolicy = useReferralRoulettePolicy();
+  const warmReferralState = peekClaimableReferralState();
+  const [drain, setDrain] = useState(() => initialDrain?.value ?? warmReferralState?.drain ?? {
+    softEnabled: roulettePolicy.softEnabled,
+    emergencyStop: roulettePolicy.emergencyStop,
+    serverNowMs: 0,
+    activePendingCount: 0,
+    claimableQualifiedCount: 0,
+    availableCreditCount: 0,
+    latestPendingDeadlineMs: 0,
+    earliestCreditExpiryMs: 0,
+  });
+  const [hasServerDrain, setHasServerDrain] = useState(() => !!initialDrain || !!warmReferralState);
+  const [spinCreditState, setSpinCredits] = useState(() => (
+    initialDrain?.value.availableCreditCount ?? warmReferralState?.drain.availableCreditCount ?? 0
+  ));
+  const scopedReferralState = selectAccountScopedReferralState(renderAccountScope, {
+    accountKey: loadedAccountScope,
+    invites: inviteState,
+    drain: hasServerDrain ? drain : null,
+    spins: spinCreditState,
+  });
+  const invites = scopedReferralState.invites;
+  const spinCredits = scopedReferralState.spins;
+  const visibleLoading = loading || !scopedReferralState.accountMatches;
+  const referralSurface = selectReferralSurfaceState({
+    referralEnabled,
+    remotePolicy: roulettePolicy,
+    persistedDrain: scopedReferralState.drain,
+  });
+  const marketingVisible = referralSurface.marketingVisible;
+  const drainVisible = referralSurface.drainVisible;
+  const referralUiVisible = marketingVisible || drainVisible;
+  const sunsetCopy = referralSunsetCopy[lang as Lang] ?? referralSunsetCopy.ru;
+  const [referralCodeState, setReferralCode] = useState<string | null>(null);
+  const [referralCodeAccountScope, setReferralCodeAccountScope] = useState<string | null>(() => (
+    renderAccountScope
+  ));
+  const referralCode = selectAccountScopedReferralState(renderAccountScope, {
+    accountKey: referralCodeAccountScope,
+    referralCode: referralCodeState,
+  }).referralCode;
   const [codeCopied, setCodeCopied] = useState(false);
   const copyTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const load = useCallback(async (options: { force?: boolean } = {}) => {
-    if (!referralOfferOn) {
+    if (!referralEnabled || referralSurface.emergencyStop) {
       setLoading(false);
       return;
     }
@@ -115,36 +154,39 @@ export default function ReferralsScreen() {
     try {
       const state = await getClaimableReferralState({ force: options.force });
     // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
-      if (!state.ok || !commitReferralInvites(request, state.invites)) return;
-      setLoadedAccountScope(requestScope);
-      setInvites(state.invites);
-      const persisted = serializeReferralInvites(token, state.invites);
-      if (persisted) void AsyncStorage.setItem(REFERRALS_INVITES_CACHE_KEY, persisted).catch(() => {});
+      if (!state.ok || !commitReferralState(request, state.invites, state.drain)) return;
+        setLoadedAccountScope(requestScope);
+        setInvites(state.invites);
+        setDrain(state.drain);
+        setHasServerDrain(true);
+        setSpinCredits(state.drain.availableCreditCount);
     } finally {
       if (isReferralInvitesRequestCurrent(request)) setLoading(false);
     }
-  }, [referralOfferOn, renderAccountScope]);
+  }, [referralEnabled, referralSurface.emergencyStop, renderAccountScope]);
 
   useEffect(() => {
-    if (!referralOfferOn) {
+    if (!referralEnabled || referralSurface.emergencyStop) {
       setSpinCredits(0);
       return;
     }
     let alive = true;
     const persistenceToken = captureAccountGeneration();
     // Мгновенная гидрация из кэша: экран не «грузится каждый раз», сервер обновляет фоном.
-    void AsyncStorage.getItem(REFERRALS_INVITES_CACHE_KEY)
+    void AsyncStorage.getItem(REFERRAL_STATE_STORAGE_KEY)
       .then(raw => {
         if (!alive || !raw) return;
         try {
           const token = persistenceToken;
-          const cached = parsePersistedReferralInvites(raw, token);
-          if (cached && isCurrentAccountGeneration(token)) {
-            hydrateReferralInvitesIfEmpty(token, cached.value, cached.updatedAt);
+          if (hydrateReferralStateFromRaw(raw, token) && isCurrentAccountGeneration(token)) {
             const current = readReferralInvites(token);
-            if (!current) return;
+            const currentDrain = readReferralDrain(token);
+            if (!current || !currentDrain) return;
             setLoadedAccountScope(accountScopeKey(token));
             setInvites(current.value);
+            setDrain(currentDrain.value);
+            setHasServerDrain(true);
+            setSpinCredits(currentDrain.value.availableCreditCount);
             setLoading(false);
           }
         } catch { /* битый кэш — просто ждём сеть */ }
@@ -156,7 +198,7 @@ export default function ReferralsScreen() {
         if (alive) setLoading(false);
       });
     return () => { alive = false; };
-  }, [load, renderAccountScope]);
+  }, [load, referralEnabled, referralSurface.emergencyStop, renderAccountScope]);
 
   const refresh = useCallback(async () => {
     setRefreshing(true);
@@ -166,21 +208,31 @@ export default function ReferralsScreen() {
 
   // Прокруты рулетки Plus: конвертируем qualified-приглашения (капы на сервере),
   // счётчик — мгновенно из кэша, затем сеть.
-  const [spinCredits, setSpinCredits] = useState(0);
   useEffect(() => {
+    if (!referralUiVisible) {
+      setSpinCredits(0);
+      return;
+    }
     let alive = true;
+    const requestToken = captureAccountGeneration();
     void (async () => {
       const claim = await claimReferralSpins().catch(() => null);
-      if (!alive) return;
-      if (claim && typeof claim.spinsTotal === 'number') setSpinCredits(claim.spinsTotal);
-      else setSpinCredits(await readCachedSpinCredits());
+      if (!alive || !isCurrentAccountGeneration(requestToken)) return;
+      if (claim && typeof claim.spinsTotal === 'number') {
+        setSpinCredits(claim.spinsTotal);
+        await load({ force: true }).catch(() => {});
+      }
+      else {
+        const cached = await readCachedSpinCredits();
+        if (alive && isCurrentAccountGeneration(requestToken)) setSpinCredits(cached);
+      }
     })();
     return () => { alive = false; };
-  }, [referralOfferOn]);
+  }, [load, referralUiVisible]);
 
   useEffect(() => {
-    if (referralOfferOn && spinCredits > 0) void preloadRoulettePrizeImages().catch(() => {});
-  }, [referralOfferOn, spinCredits]);
+    if (referralUiVisible && spinCredits > 0) void preloadRoulettePrizeImages().catch(() => {});
+  }, [referralUiVisible, spinCredits]);
 
   // DEV: кнопка «+1 прокрут» (только __DEV__; гейт/лимит 10-в-сутки — на сервере).
   const [devGrantBusy, setDevGrantBusy] = useState(false);
@@ -207,22 +259,45 @@ export default function ReferralsScreen() {
   // Реф-код: тот же серверный код, что в /friends. Ретрай/бэкофф — внутри синглтона
   // (dedupe с friends.tsx — один сетевой проход на процесс).
   useEffect(() => {
-    if (!referralOfferOn || referralCode) return;
+    invalidateInviteCodeShared(renderAccountScope);
+    setReferralCodeAccountScope(renderAccountScope);
+    setReferralCode(null);
+    setCodeCopied(false);
+  }, [renderAccountScope]);
+
+  useEffect(() => {
+    if (!marketingVisible || referralCode) return;
     let cancelled = false;
+    const requestToken = captureAccountGeneration();
+    const requestAccountScope = accountScopeKey(requestToken);
     void ensureInviteCodeShared('User').then(code => {
-      if (!cancelled && code) setReferralCode(code);
+      if (
+        !cancelled
+        && code
+        && requestAccountScope === renderAccountScope
+        && isCurrentAccountGeneration(requestToken)
+      ) {
+        setReferralCodeAccountScope(requestAccountScope);
+        setReferralCode(code);
+      }
     });
     return () => { cancelled = true; };
-  }, [referralOfferOn, referralCode]);
+  }, [marketingVisible, referralCode, renderAccountScope]);
 
   /** «Пригласить» — системный Share; с кэшированным кодом открывается мгновенно. */
   const [inviteBusy, setInviteBusy] = useState(false);
   const handleInvite = useCallback(async () => {
     if (inviteBusy) return;
+    const requestToken = captureAccountGeneration();
+    if (accountScopeKey(requestToken) !== renderAccountScope) return;
     hapticTap();
     setInviteBusy(true);
     try {
       const share = await buildCloudReferralInviteShare({ lang: lang as Lang, userName: 'User' }).catch(() => null);
+      if (
+        accountScopeKey(requestToken) !== renderAccountScope
+        || !isCurrentAccountGeneration(requestToken)
+      ) return;
       if (share?.message) {
         await Share.share({ message: share.message });
       } else {
@@ -240,18 +315,27 @@ export default function ReferralsScreen() {
     } finally {
       setInviteBusy(false);
     }
-  }, [L, inviteBusy, lang]);
+  }, [L, inviteBusy, lang, renderAccountScope]);
 
   const copyReferralCode = useCallback(async () => {
-    if (!referralCode) return;
+    if (!referralCode || !renderAccountScope) return;
     hapticTap();
     try {
-      await Clipboard.setStringAsync(referralCode);
+      const copied = await copyReferralCodeForAccount({
+        accountToken: renderToken,
+        accountKey: renderAccountScope,
+        code: referralCode,
+        readText: Clipboard.getStringAsync,
+        writeText: async (value) => {
+          await Clipboard.setStringAsync(value);
+        },
+      });
+      if (!copied) return;
       setCodeCopied(true);
       if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
       copyTimerRef.current = setTimeout(() => setCodeCopied(false), 1600);
     } catch { /* буфер недоступен — код всё равно виден на экране */ }
-  }, [referralCode]);
+  }, [referralCode, renderAccountScope, renderToken]);
 
   useEffect(() => () => {
     if (copyTimerRef.current) clearTimeout(copyTimerRef.current);
@@ -328,7 +412,7 @@ export default function ReferralsScreen() {
             </Text>
           </View>
 
-          {referralOfferOn && (
+          {referralUiVisible && (
             <TonalSurface
               testID="referrals-roulette-hero"
               radius={20}
@@ -340,7 +424,9 @@ export default function ReferralsScreen() {
                 style={{ color: t.textPrimary, fontSize: f.h2 ?? 22, lineHeight: 28, fontFamily: ds.fontFamily, fontWeight: '700' }}
                 numberOfLines={1}
               >
-                {L('Рулетка Plus', 'Рулетка Plus', 'Ruleta Plus', 'Roleta Plus', 'Vòng quay Plus', 'Roulette Plus', 'Plus Ruleti', 'Ruletka Plus')}
+                {drainVisible
+                  ? sunsetCopy.drainTitle
+                  : L('Рулетка Plus', 'Рулетка Plus', 'Ruleta Plus', 'Roleta Plus', 'Vòng quay Plus', 'Roulette Plus', 'Plus Ruleti', 'Ruletka Plus')}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <View style={{ paddingHorizontal: 11, paddingVertical: 7, borderRadius: 12, backgroundColor: t.bgSurface }}>
@@ -348,7 +434,7 @@ export default function ReferralsScreen() {
                     {L(`Прокрутов: ${spinCredits}`, `Прокрутів: ${spinCredits}`, `Giros: ${spinCredits}`, `Giros: ${spinCredits}`, `Lượt quay: ${spinCredits}`, `Putaran: ${spinCredits}`, `Çevirme: ${spinCredits}`, `Losy: ${spinCredits}`)}
                   </Text>
                 </View>
-                {__DEV__ && (
+                {marketingVisible && __DEV__ && (
                   <TouchableOpacity
                     testID="referrals-roulette-dev-grant"
                     accessibilityRole="button"
@@ -364,7 +450,7 @@ export default function ReferralsScreen() {
                   </TouchableOpacity>
                 )}
               </View>
-              <View testID="referrals-roulette-preview" style={{ width: '100%', height: 112 }}>
+              {marketingVisible && <View testID="referrals-roulette-preview" style={{ width: '100%', height: 112 }}>
                 <ScrollView
                   testID="referrals-roulette-preview-rail"
                   horizontal
@@ -378,9 +464,9 @@ export default function ReferralsScreen() {
                     </View>
                   ))}
                 </ScrollView>
-              </View>
+              </View>}
               <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontFamily: ds.fontFamily, fontWeight: '400' }}>
-                {L(
+                {drainVisible ? sunsetCopy.drainBody : L(
                   'Пригласи друга — когда он введёт твой код и закончит первый урок, получишь 1 прокрут. В рулетке — Plus от 1 дня до 365 дней.',
                   'Запроси друга — коли він введе твій код і закінчить перший урок, отримаєш 1 прокрут. У рулетці — Plus від 1 до 365 днів.',
                   'Invita a un amigo: cuando use tu código y termine la primera lección, recibirás 1 giro. En la ruleta hay Plus de 1 a 365 días.',
@@ -391,7 +477,21 @@ export default function ReferralsScreen() {
                   'Zaproś znajomego: gdy wpisze twój kod i ukończy pierwszą lekcję, dostaniesz 1 los. W ruletce wygrywa się od 1 do 365 dni Plus.',
                 )}
               </Text>
-              <TouchableOpacity
+              {drainVisible && drain.latestPendingDeadlineMs > 0 && (
+                <View testID="referrals-sunset-pending-deadline" style={{ padding: 12, borderRadius: 14, backgroundColor: t.bgSurface }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub ?? 13, fontWeight: '700' }}>
+                    {sunsetCopy.pendingDeadline}: {formatReferralSunsetDate(drain.latestPendingDeadlineMs, lang as Lang)}
+                  </Text>
+                </View>
+              )}
+              {drainVisible && drain.earliestCreditExpiryMs > 0 && (
+                <View testID="referrals-sunset-spin-expiry" style={{ padding: 12, borderRadius: 14, backgroundColor: t.bgSurface }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.sub ?? 13, fontWeight: '700' }}>
+                    {sunsetCopy.spinExpiry}: {formatReferralSunsetDate(drain.earliestCreditExpiryMs, lang as Lang)}
+                  </Text>
+                </View>
+              )}
+              {spinCredits > 0 && <TouchableOpacity
                 testID="referrals-roulette-spin"
                 accessibilityRole="button"
                 activeOpacity={0.84}
@@ -402,8 +502,8 @@ export default function ReferralsScreen() {
                 <Text style={{ color: t.correctText, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
                   {L('Крутить', 'Крутити', 'Girar', 'Girar', 'Quay', 'Putar', 'Çevir', 'Zakręć')}
                 </Text>
-              </TouchableOpacity>
-              <TouchableOpacity
+              </TouchableOpacity>}
+              {marketingVisible && <TouchableOpacity
                 testID="referrals-roulette-about"
                 accessibilityRole="link"
                 activeOpacity={0.8}
@@ -414,11 +514,11 @@ export default function ReferralsScreen() {
                 <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '400' }}>
                   {L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
                 </Text>
-              </TouchableOpacity>
+              </TouchableOpacity>}
             </TonalSurface>
           )}
 
-          {referralOfferOn ? (
+          {referralUiVisible && (
           <TonalSurface radius={20} tone="raised" backgroundColor={glassFill(t.bgSurface, 0.46)} style={{ padding: 18, gap: 10 }}>
             <View style={{ width: 48, height: 48, borderRadius: 16, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}>
               <Ionicons name="people-outline" size={24} color={t.accent} />
@@ -427,7 +527,7 @@ export default function ReferralsScreen() {
               {L('Твои приглашения', 'Твої запрошення', 'Tus invitaciones', 'Seus convites', 'Lời mời của bạn', 'Undanganmu', 'Davetlerin', 'Twoje zaproszenia')}
             </Text>
             <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
-              {L(
+              {drainVisible ? sunsetCopy.drainBody : L(
                 'Здесь появятся приглашённые друзья. За каждого друга, который введёт твой код и закончит первый урок, начисляется 1 прокрут.',
                 'Тут з’являться запрошені друзі. За кожного друга, який введе твій код і закінчить перший урок, нараховується 1 прокрут.',
                 'Aquí aparecerán tus amigos invitados. Cada amigo que use tu código y termine la primera lección te da 1 giro.',
@@ -439,18 +539,9 @@ export default function ReferralsScreen() {
               )}
             </Text>
           </TonalSurface>
-          ) : (
-            <TonalSurface testID="referrals-off-notice" radius={20} tone="raised" style={{ padding: 18, gap: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h2 ?? 22, lineHeight: 28, fontWeight: '700' }}>
-                {L('Приглашения временно недоступны', 'Запрошення тимчасово недоступні', 'Las invitaciones no están disponibles temporalmente', 'Os convites estão temporariamente indisponíveis', 'Lời mời tạm thời không khả dụng', 'Undangan sementara tidak tersedia', 'Davetler geçici olarak kullanılamıyor', 'Zaproszenia są chwilowo niedostępne')}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '400' }}>
-                {L('Попробуй открыть этот раздел позже.', 'Спробуй відкрити цей розділ пізніше.', 'Intenta abrir esta sección más tarde.', 'Tente abrir esta seção mais tarde.', 'Hãy thử mở lại mục này sau.', 'Coba buka bagian ini lagi nanti.', 'Bu bölümü daha sonra tekrar aç.', 'Spróbuj otworzyć tę sekcję później.')}
-              </Text>
-            </TonalSurface>
           )}
 
-          {referralOfferOn && (
+          {marketingVisible && (
             <TouchableOpacity
               testID="referrals-invite"
               accessibilityRole="button"
@@ -477,7 +568,7 @@ export default function ReferralsScreen() {
             </TouchableOpacity>
           )}
 
-          {referralOfferOn && referralCode ? (
+          {marketingVisible && referralCode ? (
             <TonalSurface
               testID="referrals-my-code-card"
               radius={20}
@@ -516,13 +607,13 @@ export default function ReferralsScreen() {
             </TonalSurface>
           ) : null}
 
-          {referralOfferOn && message && (
+          {referralUiVisible && message && (
             <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface }}>
               <Text testID="referrals-feedback" style={{ color: t.textPrimary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>{message}</Text>
             </View>
           )}
 
-          {referralOfferOn && (visibleLoading ? (
+          {referralUiVisible && (visibleLoading ? (
             <View style={{ gap: 12 }}>
               {Array.from({ length: 3 }).map((_, i) => (
                 <SkeletonBlock key={`referral-skeleton-${i}`} width="100%" height={76} borderRadius={18} />

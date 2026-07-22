@@ -141,6 +141,7 @@ import {
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
 import { generateReferralCode, getReferralCode } from '../referral_system';
 import { isReferralCloudEnabled } from '../referral_flags';
+import { useReferralRouletteEnabled } from '../referral_roulette_flag';
 import {
   shouldShowReferralAccessEnded,
   markReferralAccessEndedSeen,
@@ -290,8 +291,8 @@ function shouldUseLookupDisplayName(profile: FriendProfile | null): boolean {
   return !current || current === '…' || current === '...' || current === 'Phraseman' || current === 'Friend' || current === 'Player' || current === 'Игрок';
 }
 
-function placeholderFriendProfile(uid: string, fallbackName?: string): FriendProfile {
-  const sanitizedName = cleanFriendDisplayName(fallbackName);
+function placeholderFriendProfile(uid: string, candidateName?: string): FriendProfile {
+  const sanitizedName = cleanFriendDisplayName(candidateName);
   return {
     uid,
     name: sanitizedName || 'Phraseman',
@@ -339,9 +340,9 @@ function friendProfileFromLookup(uid: string, lp: LookupUserProfile | undefined)
 function profileWithLookupDisplayName(
   uid: string,
   profile: FriendProfile | null,
-  fallbackName?: string,
+  candidateName?: string,
 ): FriendProfile | null {
-  const sanitizedName = cleanFriendDisplayName(fallbackName);
+  const sanitizedName = cleanFriendDisplayName(candidateName);
   if (!sanitizedName) return profile;
   if (!profile) return placeholderFriendProfile(uid, sanitizedName);
   if (!shouldUseLookupDisplayName(profile)) return profile;
@@ -524,7 +525,7 @@ async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfi
   try {
     // Пачечный серверный путь (1 callable вместо 4-RTT цепочки); legacy-цепочка
     // (leaderboard → arena_profiles) теперь выполняется внутри friendsGetProfiles.
-    // TODO(legacy-fallback): для IS_EXPO_GO/CLOUD_SYNC_ENABLED=false старая цепочка
+    // TODO(legacy-compat): для IS_EXPO_GO/CLOUD_SYNC_ENABLED=false старая цепочка
     // видна в git-истории при необходимости.
     const map = await fetchFriendProfilesBatch([uid]);
     const rec = map[uid];
@@ -2046,11 +2047,13 @@ export default function FriendsTabScreen() {
   /** РЕФЕРАЛЬНЫЙ код (referral_codes) — отдельный от friend-кода (myCode). Для «Пригласить». */
   const [referralCode, setReferralCode] = useState<string | null>(null);
   const referralEnabled = isReferralCloudEnabled();
+  const rouletteOn = useReferralRouletteEnabled();
+  const referralOfferOn = referralEnabled && rouletteOn;
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
 
   const refreshReferralState = useCallback(async (options: { force?: boolean } = {}) => {
-    if (!isReferralCloudEnabled()) return;
+    if (!referralOfferOn) return;
     const now = Date.now();
     if (!options.force && now - referralLastRefreshAtRef.current < FRIENDS_REFERRAL_REFRESH_TTL_MS) return;
     if (referralRefreshInFlightRef.current) return referralRefreshInFlightRef.current;
@@ -2086,7 +2089,7 @@ export default function FriendsTabScreen() {
       referralRefreshInFlightRef.current = null;
     });
     return referralRefreshInFlightRef.current;
-  }, [myProfile?.name]);
+  }, [myProfile?.name, referralOfferOn]);
 
   /** Закрыть модал окончания, пометив ровно то окно, для которого он показан (фикс BUG 2). */
   const dismissReferralAccessEnded = useCallback(async () => {
@@ -2097,7 +2100,7 @@ export default function FriendsTabScreen() {
   /** Не пускать второй Share, пока первый ещё готовится/открыт (двойной тап = два шеринга). */
   const inviteShareBusyRef = useRef(false);
   const handleReferralInvite = useCallback(async () => {
-    if (inviteShareBusyRef.current) return;
+    if (!referralOfferOn || inviteShareBusyRef.current) return;
     inviteShareBusyRef.current = true;
     hapticTap();
     try {
@@ -2109,7 +2112,7 @@ export default function FriendsTabScreen() {
     } finally {
       inviteShareBusyRef.current = false;
     }
-  }, [lang, myProfile?.name]);
+  }, [lang, myProfile?.name, referralOfferOn]);
 
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
@@ -2322,7 +2325,7 @@ export default function FriendsTabScreen() {
   // СИНХРОННО из кеша и сразу вшиваем в текст. Без этого код стартовал с null и «моргал»:
   // пропадал при переключении вкладок и всплывал лишь через ~1.5 с после ответа сервера.
   useEffect(() => {
-    if (!referralEnabled) return;
+    if (!referralOfferOn) return;
     let cancelled = false;
     void getReferralCode().then(rc => {
       if (!cancelled && rc && rc.trim().length >= 4) {
@@ -2330,20 +2333,20 @@ export default function FriendsTabScreen() {
       }
     }).catch(() => { /* нет кеша — сетевой ретрай ниже добьёт первую генерацию */ });
     return () => { cancelled = true; };
-  }, [referralEnabled]);
+  }, [referralOfferOn]);
 
   // Реф-код на свежей установке часто пуст: ensure-CF падает, пока auth_links не готовы
   // (та же холодная гонка, что и при резервации имени) — и в тексте «введёт ваш код __»
   // зияет пустота. refreshReferralState бьёт лишь раз на фокус, поэтому добиваем код
   // ограниченным ретраем с бэкоффом, пока он не появится (auth готовится за пару секунд).
   useEffect(() => {
-    if (!referralEnabled || referralCode) return;
+    if (!referralOfferOn || referralCode) return;
     let cancelled = false;
     void ensureInviteCodeShared(myProfile?.name ?? 'User').then(code => {
       if (!cancelled && code) setReferralCode(code);
     });
     return () => { cancelled = true; };
-  }, [referralEnabled, referralCode, myProfile?.name]);
+  }, [referralOfferOn, referralCode, myProfile?.name]);
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
   // ──
@@ -3221,7 +3224,7 @@ export default function FriendsTabScreen() {
               </TouchableOpacity>
             );
           })}
-          {isReferralCloudEnabled() && (
+          {referralOfferOn && (
             <TouchableOpacity
               testID="friends-open-referrals"
               accessibilityRole="button"
@@ -3373,18 +3376,18 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
-                {referralEnabled ? (
+                {referralOfferOn ? (
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
-                        'Получите 7 дней полного Plus-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
-                        'Отримайте 7 днів повного Plus-доступу до всього за одного запрошеного друга, який встановить застосунок, введе ваш код',
-                        'Recibe 7 días de acceso Plus completo a todo por cada amigo invitado que instale la app, introduzca tu código',
-                        'Receba 7 dias de acesso Plus completo a tudo por um amigo convidado que instalar o app, inserir seu código',
-                        'Nhận 7 ngày Plus đầy đủ khi bạn mời một người bạn cài ứng dụng, nhập mã của bạn',
-                        'Dapatkan 7 hari Plus penuh saat teman yang kamu undang memasang aplikasi, memasukkan kodemu',
-                        'Davet ettiğin arkadaş uygulamayı kurup kodunu girerse',
-                        'Otrzymasz 7 dni pełnego Plus za znajomego, który zainstaluje aplikację i wpisze twój kod',
+                        'Пригласи друга. Когда он установит приложение, введёт твой код',
+                        'Запроси друга. Коли він встановить застосунок і введе твій код',
+                        'Invita a un amigo. Cuando instale la app e introduzca tu código',
+                        'Convide um amigo. Quando instalar o app e inserir seu código',
+                        'Mời một người bạn. Khi họ cài ứng dụng và nhập mã của bạn',
+                        'Undang teman. Setelah memasang aplikasi dan memasukkan kodemu',
+                        'Bir arkadaşını davet et. Uygulamayı kurup kodunu girerse',
+                        'Zaproś znajomego. Gdy zainstaluje aplikację i wpisze twój kod',
                       )}
                       {referralCode ? (
                         <Text testID="friends-referral-code-inline" style={{ color: t.accent, fontWeight: '900', letterSpacing: 1 }}>
@@ -3392,14 +3395,14 @@ export default function FriendsTabScreen() {
                         </Text>
                       ) : null}
                       {L(
-                        ' и пройдёт один урок полностью. Друг тоже получит 7 дней полного доступа.',
-                        ' і повністю пройде один урок. Друг теж отримає 7 днів повного доступу.',
-                        ' y complete una lección. Tu amigo también recibirá 7 días.',
-                        ' e concluir uma lição. Ele também recebe 7 dias.',
-                        ' và hoàn thành một bài học. Bạn ấy cũng nhận 7 ngày.',
-                        ' dan menyelesaikan satu pelajaran. Temanmu juga dapat 7 hari.',
-                        ' ve bir dersi tamamen bitirirse 7 gün tam Plus erişim kazanırsın. Arkadaşın da 7 gün alır.',
-                        ' i ukończy jedną lekcję. Znajomy też dostanie 7 dni.',
+                        ' и закончит первый урок, ты получишь 1 прокрут. Приз — Plus от 1 дня до 365 дней.',
+                        ' і закінчить перший урок, ти отримаєш 1 прокрут. Приз — Plus від 1 до 365 днів.',
+                        ' y termine la primera lección, recibirás 1 giro. El premio es Plus de 1 a 365 días.',
+                        ' e concluir a primeira lição, você recebe 1 giro. O prêmio é Plus de 1 a 365 dias.',
+                        ' và hoàn thành bài học đầu tiên, bạn nhận 1 lượt quay. Giải Plus từ 1 đến 365 ngày.',
+                        ' lalu menyelesaikan pelajaran pertama, kamu mendapat 1 putaran. Hadiah Plus 1–365 hari.',
+                        ' ve ilk dersi bitirirse 1 çevirme kazanırsın. Ödül 1–365 gün Plus.',
+                        ' i ukończy pierwszą lekcję, dostaniesz 1 los. Nagroda to Plus od 1 do 365 dni.',
                       )}
                     </Text>
                     <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
@@ -3503,7 +3506,7 @@ export default function FriendsTabScreen() {
                 onGift={() => openGiftPicker(profile)}
                 lang={lang} t={t} f={f} chrome={chrome}
                 themeMode={themeMode}
-                referralStatus={referralStatusByUid.get(profile.uid)}
+                referralStatus={referralOfferOn ? referralStatusByUid.get(profile.uid) : undefined}
                 giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
               />
             </Reanimated.View>
@@ -4027,7 +4030,7 @@ export default function FriendsTabScreen() {
       />
 
       <ReferralAccessEndedModal
-        visible={accessEndedOpen}
+        visible={referralOfferOn && accessEndedOpen}
         onInviteFriend={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); void handleReferralInvite(); }}
         onOpenFullAccess={() => {
           setAccessEndedOpen(false);

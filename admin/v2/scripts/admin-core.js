@@ -376,6 +376,7 @@ const state = {
   selectedCapabilityId: '',
   remoteConfig: null,
   remoteConfigPreview: null,
+  referralRoulette: { state: 'idle', enabled: true, auditId: '', error: '' },
   paywallAb: defaultPaywallAbState(),
   paywallAbStats: defaultPaywallAbStatsState(),
   users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
@@ -1778,6 +1779,36 @@ function renderRemoteConfigHistory() {
   return `<div class="data-list">${history.map((item) => `<div class="list-row"><div><strong>${escapeHtml(auditActionLabel(item.action || 'Изменение конфигурации'))}</strong><small>${escapeHtml(item.timestamp || item.at || '')} · ${escapeHtml(item.reason || item.by || 'Причина не указана')}</small>${item.rollbackReference ? `<small>Код восстановления: <code>${escapeHtml(item.rollbackReference)}</code></small>` : ''}</div><div class="actions"><span class="badge">ревизия ${Number(item.revision ?? 0)}</span>${item.before && typeof item.before === 'object' ? `<button class="button small" data-action="preview-remote-config-restore" data-rollback-reference="${escapeHtml(item.id || item.rollbackReference || '')}" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'} title="Подготовить предпросмотр восстановления значений из состояния до этой публикации. Новые ключи не удаляются.">Восстановить значения</button>` : ''}</div></div>`).join('')}</div>`;
 }
 
+function renderReferralRouletteControl() {
+  const control = state.referralRoulette;
+  const ready = control.state === 'ready';
+  const enabled = ready ? control.enabled === true : true;
+  const nextEnabled = !enabled;
+  const locked = state.busy || !ready || !can('application.config.write');
+  const statusLabel = control.state === 'loading'
+    ? 'Загрузка…'
+    : control.state === 'error'
+      ? 'Ошибка чтения'
+      : ready
+        ? enabled ? 'Включено' : 'Выключено'
+        : 'Не загружено';
+  const statusClass = ready && enabled ? 'success' : control.state === 'error' ? 'warning' : '';
+  const tooltip = nextEnabled
+    ? 'Включит рулетку Plus и реферальные входы для пользователей после обновления remote config. Изменение выполняет сервер, записывает причину и audit ID. Отменить можно этой же кнопкой.'
+    : 'Выключит рулетку Plus и реферальные входы для пользователей после обновления remote config. Сервер отклонит spin и claim. Изменение записывается в аудит; вернуть доступ можно этой же кнопкой.';
+  const error = control.error ? `<div class="notice warning section" role="alert">${escapeHtml(control.error)}</div>` : '';
+  const audit = control.auditId
+    ? `<span class="hint">Последняя запись аудита: <code>${escapeHtml(control.auditId)}</code></span>`
+    : '<span class="hint">После изменения здесь появится ID записи в журнале.</span>';
+
+  return `<section class="card section" aria-labelledby="referral-roulette-title"><div class="card-header"><div><h2 id="referral-roulette-title">Рулетка Plus и приглашения</h2><p>Один аварийный выключатель скрывает предложение в приложении и закрывает серверную выдачу прокрутов.</p><small><code>numbers.referral_roulette_enabled</code></small></div><span class="badge ${statusClass}" role="status" aria-live="polite">${statusLabel}</span></div><div class="card-body">
+    <div class="notice"><strong>Текущее влияние:</strong> ${ready ? enabled ? 'приглашения дают один прокрут; приз — Plus от 1 до 365 дней.' : 'предложение скрыто; referralSpin и referralClaimSpin отвечают failed-precondition.' : 'загрузите серверное состояние перед изменением.'}</div>
+    <div class="field full section"><label for="referral-roulette-reason">Причина изменения</label><textarea id="referral-roulette-reason" maxlength="500" placeholder="Зачем меняется доступ и как проверить результат"${locked ? ' disabled' : ''}></textarea></div>
+    ${error}
+    <div class="actions end section">${audit}<a class="button ghost" href="#diagnostics" title="Открыть журнал действий и проверить запись изменения" data-tooltip="Откроет журнал действий. Настройки приложения не изменятся.">Открыть аудит</a><button class="button" data-action="load-referral-roulette" type="button" title="Загрузить текущее состояние рулетки с сервера" data-tooltip="Загрузит текущее состояние и health-проверки. Пользовательские настройки не изменятся."${state.busy || !can('application.config.write') ? ' disabled' : ''}>Обновить состояние</button><button class="button${enabled ? ' danger' : ''}" data-action="set-referral-roulette-enabled" data-enabled="${nextEnabled}" type="button" aria-pressed="${enabled}" title="${tooltip}" data-tooltip="${tooltip}"${locked ? ' disabled' : ''}>${nextEnabled ? 'Включить' : 'Выключить'}</button></div>
+  </div></section>`;
+}
+
 function renderApplication() {
   const workspace = state.remoteConfig;
   const config = workspace?.config ?? {};
@@ -1798,6 +1829,7 @@ function renderApplication() {
       <article class="card metric"><label>Числа</label><strong>${workspace ? keyCount('numbers') : '—'}</strong><span class="badge">ключей</span></article>
       <article class="card metric"><label>Тексты</label><strong>${workspace ? keyCount('texts') : '—'}</strong><span class="badge">ключей</span></article>
     </section>
+    ${renderReferralRouletteControl()}
     ${renderPaywallAbWorkflow()}
     ${renderPaywallAbStats()}
     ${!workspace ? `<section class="card section">${emptyState(state.authorized ? 'Загрузите конфигурацию, чтобы редактировать её без прямой записи из браузера.' : 'Войдите с ролью администратора.')}</section>` : `
@@ -3618,6 +3650,28 @@ async function runBusy(operation, successMessage = '') {
   } finally {
     state.busy = false;
     renderCurrentPage();
+  }
+}
+
+async function refreshReferralRouletteControl() {
+  state.referralRoulette = { ...state.referralRoulette, state: 'loading', error: '' };
+  try {
+    const result = await actions.getReferralHealth();
+    if (typeof result?.rouletteEnabled !== 'boolean') throw new Error('Сервер не вернул текущее состояние рулетки.');
+    state.referralRoulette = {
+      state: 'ready',
+      enabled: result.rouletteEnabled,
+      auditId: state.referralRoulette.auditId || '',
+      error: '',
+    };
+    return result;
+  } catch (error) {
+    state.referralRoulette = {
+      ...state.referralRoulette,
+      state: 'error',
+      error: errorMessage(error),
+    };
+    throw error;
   }
 }
 
@@ -5442,7 +5496,41 @@ async function handleAction(action, target) {
     state.users.profileLoading = true;
     return runBusy(() => loadAdminUserProfile(uid), 'Профиль обновлён.');
   }
-  if (action === 'load-remote-config') return runBusy(async () => { state.remoteConfig = await actions.getRemoteConfigWorkspace(); state.remoteConfigPreview = null; }, 'Конфигурация и история загружены.');
+  if (action === 'load-remote-config') return runBusy(async () => {
+    state.remoteConfig = await actions.getRemoteConfigWorkspace();
+    state.remoteConfigPreview = null;
+    await refreshReferralRouletteControl().catch(() => null);
+  }, 'Конфигурация и история загружены.');
+  if (action === 'load-referral-roulette') {
+    return runBusy(() => refreshReferralRouletteControl(), 'Текущее состояние рулетки загружено.');
+  }
+  if (action === 'set-referral-roulette-enabled') {
+    if (!can('application.config.write')) return setMessage('У роли нет права менять конфигурацию приложения.', 'warning');
+    const enabled = target?.dataset?.enabled === 'true';
+    const reason = readTextInput('referral-roulette-reason', 500);
+    if (reason.length < 5) return setMessage('Добавьте причину изменения — минимум 5 символов.', 'warning');
+    const question = enabled
+      ? 'Включить рулетку Plus и реферальные входы? Изменение применится после обновления remote config и попадёт в аудит.'
+      : 'Выключить рулетку Plus и реферальные входы? UI исчезнет, а spin/claim будут отклоняться сервером. Изменение попадёт в аудит.';
+    if (!globalThis.confirm(question)) return;
+    return runBusy(async () => {
+      const result = await actions.setReferralRouletteEnabled({
+        enabled,
+        reason,
+        idempotencyKey: id('referral-roulette-enabled'),
+        requestId: id('request-referral-roulette-enabled'),
+      });
+      state.referralRoulette = {
+        state: 'ready',
+        enabled: result?.enabled === true,
+        auditId: String(result?.auditId || ''),
+        error: '',
+      };
+      state.remoteConfig = await actions.getRemoteConfigWorkspace();
+      state.remoteConfigPreview = null;
+      setMessage(`Рулетка ${enabled ? 'включена' : 'выключена'}. Audit ID: ${String(result?.auditId || 'не возвращён')}`, 'success');
+    });
+  }
   if (action === 'preview-remote-config') {
     try { state.remoteConfigPreview = buildRemoteConfigPreview(); setMessage('Предпросмотр готов. Проверьте изменения перед публикацией.', 'success'); } catch (error) { setMessage(errorMessage(error), 'warning'); }
     renderCurrentPage();

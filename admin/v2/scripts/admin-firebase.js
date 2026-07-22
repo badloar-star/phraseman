@@ -105,6 +105,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const openAiBudgetCallable = httpsCallable(functionsUs, 'openAiBudgetDashboard');
   const getRemoteConfigWorkspaceCallable = httpsCallable(functionsUs, 'adminGetRemoteConfigWorkspace');
   const publishRemoteConfigCallable = httpsCallable(functionsUs, 'adminPublishRemoteConfig');
+  const getReferralHealthCallable = httpsCallable(functionsUs, 'adminReferralHealth');
+  const setReferralRouletteEnabledCallable = httpsCallable(functionsUs, 'adminSetReferralRouletteEnabled');
   const getPaywallAbWorkspaceCallable = httpsCallable(functionsUs, 'adminGetPaywallAbWorkspace');
   const publishPaywallAbCallable = httpsCallable(functionsUs, 'adminPublishPaywallAb');
   const getPaywallVariantStatsCallable = httpsCallable(functionsUs, 'adminGetPaywallVariantStats');
@@ -209,6 +211,8 @@ export async function createFirebaseAdminActions({ onAuth }) {
     loadOpenAiBudgetDashboard,
     getRemoteConfigWorkspace: async () => unwrap(await getRemoteConfigWorkspaceCallable({})),
     publishRemoteConfig: async (input) => unwrap(await publishRemoteConfigCallable(input)),
+    getReferralHealth: async () => unwrap(await getReferralHealthCallable({})),
+    setReferralRouletteEnabled: async (input) => unwrap(await setReferralRouletteEnabledCallable(input)),
     getPaywallAbWorkspace: async () => unwrap(await getPaywallAbWorkspaceCallable({})),
     publishPaywallAb: async (input) => unwrap(await publishPaywallAbCallable(input)),
     getPaywallVariantStats: async (input) => unwrap(await getPaywallVariantStatsCallable(input)),

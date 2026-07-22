@@ -108,16 +108,16 @@ function label(lang: InviteShareLang, copy: Record<InviteShareLang, string>): st
  */
 function buildReferralInviteShare(lang: InviteShareLang, inviteHttps: string, refCode: string): ReferralInviteShare {
   const body = pickBody(lang, inviteHttps);
-  // Явно проговариваем условие и взаимный бонус — чтобы друг понял, что сделать.
+  // Явно проговариваем условие и награду пригласившему — чтобы друг понял, что сделать.
   const condition = label(lang, {
-    ru: 'Установи приложение, введи мой код и пройди один урок полностью — мы оба получим по 7 дней полного доступа.',
-    uk: 'Встанови застосунок, введи мій код і пройди один урок повністю — ми обидва отримаємо по 7 днів повного доступу.',
-    es: 'Instala la app, introduce mi código y completa una lección: los dos recibiremos 7 días de acceso completo.',
-    'pt-BR': 'Instale o app, insira meu código e conclua uma lição — nós dois ganhamos 7 dias de acesso completo.',
-    vi: 'Cài ứng dụng, nhập mã của mình và hoàn thành một bài học — cả hai cùng nhận 7 ngày truy cập đầy đủ.',
-    id: 'Pasang aplikasi, masukkan kodeku, dan selesaikan satu pelajaran — kita berdua dapat 7 hari akses penuh.',
-    tr: 'Uygulamayı kur, kodumu gir ve bir dersi tamamen bitir — ikimiz de 7 gün tam erişim kazanırız.',
-    pl: 'Zainstaluj aplikację, wpisz mój kod i ukończ jedną lekcję — oboje dostaniemy po 7 dni pełnego dostępu.',
+    ru: 'Установи приложение, введи мой код и пройди первый урок полностью — я получу 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
+    uk: 'Встанови застосунок, введи мій код і пройди перший урок повністю — я отримаю 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
+    es: 'Instala la app, introduce mi código y completa la primera lección: recibiré 1 giro con premios Plus de 1 a 365 días.',
+    'pt-BR': 'Instale o app, insira meu código e conclua a primeira lição: receberei 1 giro com prêmios Plus de 1 a 365 dias.',
+    vi: 'Cài ứng dụng, nhập mã của mình và hoàn thành bài học đầu tiên — mình nhận 1 lượt quay với giải Plus từ 1 đến 365 ngày.',
+    id: 'Pasang aplikasi, masukkan kodeku, dan selesaikan pelajaran pertama — aku mendapat 1 putaran dengan hadiah Plus 1–365 hari.',
+    tr: 'Uygulamayı kur, kodumu gir ve ilk dersi bitir — 1 çevirme kazanırım. Rulette 1–365 gün Plus var.',
+    pl: 'Zainstaluj aplikację, wpisz mój kod i ukończ pierwszą lekcję — dostanę 1 los z nagrodą Plus od 1 do 365 dni.',
   });
   const codeLabel = label(lang, {
     ru: 'Мой код: ',

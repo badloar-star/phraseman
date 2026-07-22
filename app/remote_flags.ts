@@ -61,6 +61,11 @@ export type RemoteBoolKey =
   | 'soft_upsell_streak_enabled'
   | 'soft_upsell_repeated_training_enabled'
   | 'referral_enabled'
+  // Мастер-флаг «Рулетка Plus + реферальная программа». Живёт в numbers
+  // (remote_config/app.numbers.referral_roulette_enabled) — туда его пишут
+  // adminSetReferralRouletteEnabled и скрипты; сервер читает тот же ключ.
+  // Дефолт true (kill-switch). Подхватывается из numbers в applyRemoteConfigSnapshot.
+  | 'referral_roulette_enabled'
   | 'speaking_enabled'
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
@@ -283,6 +288,9 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   // экстренно выключить). ВНИМАНИЕ: для рабочих ссылок-приглашений нужна
   // задеплоенная invite-страница — иначе ссылки будут битыми.
   referral_enabled: true,
+  // Рулетка+рефералка: дефолт true (kill-switch). Ключ лежит в numbers
+  // (boolean), подхват — спец-веткой в applyRemoteConfigSnapshot ниже.
+  referral_roulette_enabled: true,
   speaking_enabled: true,
   // «Сокровищница»: дефолт true = kill-switch семантика (фича едет с релизом,
   // админка может экстренно выключить).
@@ -547,6 +555,10 @@ export function applyRemoteConfigSnapshot(snapshot: {
     const raw = snapshot.bools?.[key];
     if (typeof raw === 'boolean') nextBools[key] = raw;
   }
+  // Мастер-флаг рулетки живёт в numbers (boolean) — подхватываем отдельно,
+  // чтобы сервер и админка писали один и тот же ключ.
+  const rouletteRaw = snapshot.numbers?.referral_roulette_enabled;
+  if (typeof rouletteRaw === 'boolean') nextBools.referral_roulette_enabled = rouletteRaw;
   for (const key of Object.keys(DEFAULT_TEXTS) as RemoteTextKey[]) {
     const raw = snapshot.texts?.[key];
     if (typeof raw === 'string') nextTexts[key] = raw;
@@ -655,6 +667,7 @@ export const getArenaSeasonRollbackSteps = () => getRemoteNumber('arena_season_r
 /** Стоимость заморозки серии в осколках (было FREEZE_COST_SHARDS=10). Дефолт 10. */
 export const getStreakFreezeCostShards = () => getRemoteNumber('streak_freeze_cost_shards');
 export const isReferralEnabled = () => getRemoteBool('referral_enabled');
+export const isReferralRouletteEnabled = () => getRemoteBool('referral_roulette_enabled');
 
 const SOFT_UPSELL_FLAG_BY_TRIGGER: Record<SoftUpsellTrigger, RemoteBoolKey> = {
   first_lesson: 'soft_upsell_first_lesson_enabled',

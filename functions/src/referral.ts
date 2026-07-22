@@ -19,6 +19,7 @@
  * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
  */
 import * as admin from 'firebase-admin';
+import { referralRouletteEnabledFromData } from './referral_roulette_flag';
 import * as crypto from 'node:crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import * as functions from 'firebase-functions/v2';
@@ -99,6 +100,27 @@ export async function resolveReferralConfig(
   } catch (e) {
     console.warn('resolveReferralConfig failed, using defaults', e);
     return { ...REFERRAL_DEFAULTS };
+  }
+}
+
+/**
+ * Мастер-флаг «Рулетка Plus + реферальная программа» (remote_config/app.numbers
+ * .referral_roulette_enabled, boolean). Kill-switch семантика: дефолт ON —
+ * выключена фича только при явном `false`. Ошибка чтения закрывает критичный путь
+ * (fail-closed), а отсутствие самого ключа сохраняет обратную совместимость и даёт ON.
+ * Управляется из админки
+ * (adminSetReferralRouletteEnabled), клиент читает тот же ключ (remote_flags).
+ */
+export async function resolveReferralRouletteEnabled(
+  db: admin.firestore.Firestore,
+): Promise<boolean> {
+  try {
+    const snap = await db.collection('remote_config').doc('app').get();
+    const data = snap.data() as { numbers?: Record<string, unknown> } | undefined;
+    return referralRouletteEnabledFromData(data);
+  } catch (e) {
+    console.warn('resolveReferralRouletteEnabled failed, fail closed', e);
+    return false;
   }
 }
 

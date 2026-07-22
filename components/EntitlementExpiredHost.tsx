@@ -19,6 +19,7 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import RewardCardV2 from './reward_v2/RewardCardV2';
+import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 
 type Kind = 'premium' | 'vip';
 
@@ -47,7 +48,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus-доступ завершился',
       title: 'Plus закончился',
-      value: 'Пригласи друзей — получишь снова, по 7 дней за каждого.',
+      value: 'Пригласи друга: после его первого урока получишь 1 прокрут. Приз — Plus от 1 дня до 365 дней.',
       cta: 'Продлить Plus',
       ghost: 'Позже',
     },
@@ -63,7 +64,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus-доступ завершився',
       title: 'Plus закінчився',
-      value: 'Запроси друзів — отримаєш знову, по 7 днів за кожного.',
+      value: 'Запроси друга: після його першого уроку отримаєш 1 прокрут. Приз — Plus від 1 до 365 днів.',
       cta: 'Продовжити Plus',
       ghost: 'Пізніше',
     },
@@ -79,7 +80,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Acceso Plus finalizado',
       title: 'Plus terminó',
-      value: 'Invita amigos y recupéralo: 7 días por cada uno.',
+      value: 'Invita a un amigo: tras su primera lección recibirás 1 giro. Premio Plus de 1 a 365 días.',
       cta: 'Pasar a Plus',
       ghost: 'Más tarde',
     },
@@ -95,7 +96,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Acesso Plus encerrado',
       title: 'O Plus acabou',
-      value: 'Convide amigos e recupere: 7 dias por cada um.',
+      value: 'Convide um amigo: após a primeira lição você recebe 1 giro. Prêmio Plus de 1 a 365 dias.',
       cta: 'Assinar Plus',
       ghost: 'Depois',
     },
@@ -111,7 +112,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus đã kết thúc',
       title: 'Plus đã hết hạn',
-      value: 'Mời bạn bè để nhận lại — 7 ngày cho mỗi người.',
+      value: 'Mời một người bạn: sau bài học đầu tiên, bạn nhận 1 lượt quay. Giải Plus từ 1 đến 365 ngày.',
       cta: 'Nâng cấp Plus',
       ghost: 'Để sau',
     },
@@ -127,7 +128,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Akses Plus berakhir',
       title: 'Plus berakhir',
-      value: 'Undang teman untuk mendapatkannya lagi — 7 hari per teman.',
+      value: 'Undang teman: setelah pelajaran pertamanya kamu mendapat 1 putaran. Hadiah Plus 1–365 hari.',
       cta: 'Ambil Plus',
       ghost: 'Nanti',
     },
@@ -143,7 +144,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus erişimi sona erdi',
       title: 'Plus bitti',
-      value: 'Arkadaşlarını davet et, her biri için 7 gün daha kazan.',
+      value: 'Bir arkadaşını davet et: ilk dersinden sonra 1 çevirme kazan. Ödül 1–365 gün Plus.',
       cta: 'Plus’a geç',
       ghost: 'Sonra',
     },
@@ -159,7 +160,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Dostęp Plus wygasł',
       title: 'Plus się skończył',
-      value: 'Zaproś znajomych — odzyskasz po 7 dni za każdego.',
+      value: 'Zaproś znajomego: po jego pierwszej lekcji dostaniesz 1 los. Nagroda Plus od 1 do 365 dni.',
       cta: 'Przejdź na Plus',
       ghost: 'Później',
     },
@@ -169,6 +170,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
 function EntitlementExpiredHost() {
   const { lang } = useLang();
   const router = useRouter();
+  const rouletteOn = useReferralRouletteEnabled();
   const [kind, setKind] = useState<Kind | null>(null);
   const overlayVisible = useOverlayVisible('entitlementExpired', kind != null);
 
@@ -286,19 +288,20 @@ function EntitlementExpiredHost() {
   if (!kind || !overlayVisible) return null;
 
   const langTexts = TEXTS[lang] ?? TEXTS.ru;
-  const tx = langTexts[kind];
+  const copyKind: Kind = kind === 'vip' && !rouletteOn ? 'premium' : kind;
+  const tx = langTexts[copyKind];
 
   return (
     <RewardCardV2
       visible
-      semantic={kind === 'premium' ? 'gold' : 'social'}
+      semantic={copyKind === 'premium' ? 'gold' : 'social'}
       kicker={tx.kicker}
-      icon={kind === 'premium' ? '👑' : '🤝'}
+      icon={copyKind === 'premium' ? '👑' : '🤝'}
       title={tx.title}
       value={tx.value}
       ctaLabel={tx.cta}
       onCta={() => {
-        const context = kind === 'premium' ? 'premium_expired' : 'vip_expired';
+        const context = copyKind === 'premium' ? 'premium_expired' : 'vip_expired';
         navigateAfterModalClose(markShownAndClose, () => {
           router.push({
             pathname: '/premium_modal',

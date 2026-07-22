@@ -15,6 +15,7 @@ import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { getCanonicalUserId } from './user_id_policy';
 import { isReferralCloudEnabled } from './referral_flags';
+import { isReferralRouletteEnabled } from './remote_flags';
 
 const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
@@ -73,6 +74,8 @@ async function newSpinRequestId(): Promise<string> {
 
 /** Конвертирует все qualified-приглашения в прокруты (капы 30/мес, 3/день — на сервере). */
 export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
+  // Мастер-флаг «рулетка+рефералка» (админка → remote_config): выкл → не ходим в сеть.
+  if (!isReferralRouletteEnabled()) return null;
   if (!isReferralCloudEnabled()) return null;
   const stableId = await getCanonicalUserId();
   if (!stableId) return null;
@@ -110,6 +113,8 @@ async function callReferralSpinOnce(stableId: string, spinRequestId: string): Pr
  * бизнес-ошибки (no_spins / link_required) не ретраятся.
  */
 export async function spinReferralRoulette(): Promise<SpinOutcome> {
+  // Мастер-флаг «рулетка+рефералка» (админка → remote_config): выкл → disabled.
+  if (!isReferralRouletteEnabled()) return { ok: false, reason: 'disabled' };
   if (!isReferralCloudEnabled()) return { ok: false, reason: 'disabled' };
   const stableId = await getCanonicalUserId();
   if (!stableId) return { ok: false, reason: 'no_user' };
@@ -132,8 +137,10 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
     } catch (e) {
       const code = callableErrorCode(e);
       if (code === 'failed-precondition') {
-        // NO_SPIN_CREDITS или LINK_ACCOUNT_REQUIRED — различаем по message.
+        // Флаг мог выключиться уже после открытия экрана: это отдельное состояние,
+        // не «закончились прокруты». Остальные бизнес-ошибки различаем по message.
         const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
+        if (msg.includes('REFERRAL_ROULETTE_DISABLED')) return { ok: false, reason: 'disabled', code };
         return { ok: false, reason: msg.includes('LINK_ACCOUNT_REQUIRED') ? 'link_required' : 'no_spins', code };
       }
       if (code === 'unauthenticated' || code === 'permission-denied' || code === 'invalid-argument') {

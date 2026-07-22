@@ -21,6 +21,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { applyManualReferralCode, type ReferralApplyStatus } from './referral_bootstrap';
 import { safeRouterBack } from './navigation_back';
 import TonalSurface from '../components/TonalSurface';
+import { useReferralRouletteEnabled } from './referral_roulette_flag';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
 
@@ -30,14 +31,14 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'ok',
         text: L(
-          'Код принят. Пройдите один урок полностью — вы получите 7 дней полного доступа, и друг сможет забрать свои 7 дней.',
-          'Код прийнято. Повністю пройдіть один урок — ви отримаєте 7 днів повного доступу, і друг зможе забрати свої 7 днів.',
-          'Código aceptado. Completa una lección: recibirás 7 días de acceso completo y tu amigo podrá recoger sus 7 días.',
-          'Código aceito. Conclua uma lição: você recebe 7 dias de acesso completo e seu amigo poderá resgatar os 7 dias.',
-          'Đã nhận mã. Hoàn thành một bài học: bạn nhận 7 ngày truy cập đầy đủ và bạn của bạn cũng nhận 7 ngày.',
-          'Kode diterima. Selesaikan satu pelajaran: kamu mendapat 7 hari akses penuh dan temanmu bisa mengambil 7 harinya.',
-          'Kod kabul edildi. Bir dersi tamamen bitir: 7 gün tam erişim alırsın, arkadaşın da kendi 7 gününü alır.',
-          'Kod przyjęty. Ukończ jedną lekcję: dostaniesz 7 dni pełnego dostępu, a znajomy odbierze swoje 7 dni.',
+          'Код принят. Пройди первый урок полностью — другу откроется 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
+          'Код прийнято. Пройди перший урок повністю — друг отримає 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
+          'Código aceptado. Completa la primera lección: tu amigo recibirá 1 giro y podrá ganar de 1 a 365 días de Plus.',
+          'Código aceito. Conclua a primeira lição: seu amigo recebe 1 giro e pode ganhar de 1 a 365 dias de Plus.',
+          'Đã nhận mã. Hoàn thành bài học đầu tiên: bạn của bạn nhận 1 lượt quay và có thể thắng từ 1 đến 365 ngày Plus.',
+          'Kode diterima. Selesaikan pelajaran pertama: temanmu mendapat 1 putaran dan bisa menang 1–365 hari Plus.',
+          'Kod kabul edildi. İlk dersi bitir: arkadaşın 1 çevirme kazanır ve 1–365 gün Plus kazanabilir.',
+          'Kod przyjęty. Ukończ pierwszą lekcję: znajomy dostanie 1 los i może wygrać od 1 do 365 dni Plus.',
         ),
       };
     case 'already':
@@ -174,14 +175,15 @@ export default function ReferralCodeEntryScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
+  const rouletteOn = useReferralRouletteEnabled();
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
 
-  const canSubmit = code.trim().length >= 4 && !busy;
+  const canSubmit = rouletteOn && code.trim().length >= 4 && !busy;
 
   const submit = useCallback(async () => {
-    if (!canSubmit) return;
+    if (!rouletteOn || !canSubmit) return;
     hapticTap();
     setBusy(true);
     setFeedback(null);
@@ -191,7 +193,34 @@ export default function ReferralCodeEntryScreen() {
     } finally {
       setBusy(false);
     }
-  }, [L, canSubmit, code]);
+  }, [L, canSubmit, code, rouletteOn]);
+
+  if (!rouletteOn) {
+    return (
+      <ScreenGradient artBackdrop="friends">
+        <SafeAreaView testID="referral-code-entry-off" style={{ flex: 1 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 12 }}>
+            <TapScale
+              accessibilityRole="button"
+              accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
+              onPress={() => safeRouterBack(router, '/(tabs)/friends' as any)}
+              style={{ width: 44, height: 44, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface }}
+            >
+              <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+            </TapScale>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, paddingBottom: 72 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2 ?? 22, lineHeight: 28, fontWeight: '700', textAlign: 'center' }}>
+              {L('Раздел временно недоступен', 'Розділ тимчасово недоступний', 'Sección temporalmente no disponible', 'Seção temporariamente indisponível', 'Mục tạm thời không khả dụng', 'Bagian sementara tidak tersedia', 'Bölüm geçici olarak kullanılamıyor', 'Sekcja jest chwilowo niedostępna')}
+            </Text>
+            <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '400', textAlign: 'center', marginTop: 8 }}>
+              {L('Попробуй ещё раз позже.', 'Спробуй ще раз пізніше.', 'Inténtalo de nuevo más tarde.', 'Tente novamente mais tarde.', 'Hãy thử lại sau.', 'Coba lagi nanti.', 'Daha sonra tekrar dene.', 'Spróbuj ponownie później.')}
+            </Text>
+          </View>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   return (
     <ScreenGradient artBackdrop="friends">
@@ -239,26 +268,26 @@ export default function ReferralCodeEntryScreen() {
               </Text>
               <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
                 {L(
-                  'Есть код от друга? Введите его здесь — и заберите 7 дней полного доступа в Phraseman.',
-                  'Є код від друга? Введіть його тут — і заберіть 7 днів повного доступу в Phraseman.',
-                  '¿Tienes un código de un amigo? Escríbelo aquí y llévate 7 días de acceso completo a Phraseman.',
-                  'Tem um código de amigo? Digite aqui e ganhe 7 dias de acesso completo ao Phraseman.',
-                  'Có mã từ bạn bè? Nhập mã ở đây để nhận 7 ngày truy cập đầy đủ vào Phraseman.',
-                  'Punya kode dari teman? Masukkan di sini dan ambil 7 hari akses penuh ke Phraseman.',
-                  'Arkadaşından bir kod mu var? Buraya gir ve Phraseman’da 7 gün tam erişimi al.',
-                  'Masz kod od znajomego? Wpisz go tutaj i odbierz 7 dni pełnego dostępu do Phraseman.',
+                  'Есть код от друга? Введи его здесь и закончи первый урок — другу откроется 1 прокрут.',
+                  'Є код від друга? Введи його тут і закінчи перший урок — друг отримає 1 прокрут.',
+                  '¿Tienes un código de un amigo? Escríbelo aquí y termina la primera lección para darle 1 giro.',
+                  'Tem um código de amigo? Digite aqui e conclua a primeira lição para dar 1 giro a ele.',
+                  'Có mã từ bạn bè? Nhập mã và hoàn thành bài học đầu tiên để bạn của bạn nhận 1 lượt quay.',
+                  'Punya kode dari teman? Masukkan dan selesaikan pelajaran pertama agar temanmu mendapat 1 putaran.',
+                  'Arkadaşından bir kod mu var? Gir ve ilk dersi bitir; arkadaşın 1 çevirme kazansın.',
+                  'Masz kod od znajomego? Wpisz go i ukończ pierwszą lekcję, aby znajomy dostał 1 los.',
                 )}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>
                 {L(
-                  'Мини-квест простой: установить приложение, ввести код и пройти один урок до конца. После этого вы получите 7 дней полного доступа, а друг — свои 7 дней.',
-                  'Мініквест простий: встановити застосунок, ввести код і пройти один урок до кінця. Після цього ви отримаєте 7 днів повного доступу, а друг — свої 7 днів.',
-                  'El minirreto es simple: instalar la app, introducir el código y completar una lección. Después recibes 7 días de acceso completo, y tu amigo sus 7 días.',
-                  'A missão é simples: instalar o app, inserir o código e concluir uma lição. Depois você recebe 7 dias de acesso completo, e seu amigo recebe os 7 dias dele.',
-                  'Nhiệm vụ nhỏ rất đơn giản: cài ứng dụng, nhập mã và hoàn thành một bài học. Sau đó bạn nhận 7 ngày truy cập đầy đủ, còn bạn bè nhận 7 ngày của họ.',
-                  'Misi kecilnya simpel: pasang aplikasi, masukkan kode, dan selesaikan satu pelajaran. Setelah itu kamu mendapat 7 hari akses penuh, dan temanmu mendapat 7 harinya.',
-                  'Mini görev basit: uygulamayı kur, kodu gir ve bir dersi sonuna kadar bitir. Sonra sen 7 gün tam erişim alırsın, arkadaşın da kendi 7 gününü alır.',
-                  'Mini misja jest prosta: zainstaluj aplikację, wpisz kod i ukończ jedną lekcję. Potem dostajesz 7 dni pełnego dostępu, a znajomy swoje 7 dni.',
+                  'Мини-квест простой: установить приложение, ввести код и пройти первый урок до конца. После этого друг получит 1 прокрут с шансом выиграть Plus от 1 дня до 365 дней.',
+                  'Мініквест простий: встановити застосунок, ввести код і пройти перший урок до кінця. Після цього друг отримає 1 прокрут із шансом виграти Plus від 1 до 365 днів.',
+                  'El minirreto es simple: instalar la app, introducir el código y completar la primera lección. Tu amigo recibe 1 giro con premios Plus de 1 a 365 días.',
+                  'A missão é simples: instalar o app, inserir o código e concluir a primeira lição. Seu amigo recebe 1 giro com prêmios Plus de 1 a 365 dias.',
+                  'Nhiệm vụ rất đơn giản: cài ứng dụng, nhập mã và hoàn thành bài học đầu tiên. Bạn của bạn nhận 1 lượt quay với giải Plus từ 1 đến 365 ngày.',
+                  'Misinya simpel: pasang aplikasi, masukkan kode, lalu selesaikan pelajaran pertama. Temanmu mendapat 1 putaran dengan hadiah Plus 1–365 hari.',
+                  'Görev basit: uygulamayı kur, kodu gir ve ilk dersi bitir. Arkadaşın 1 çevirme ve 1–365 gün Plus şansı kazanır.',
+                  'Misja jest prosta: zainstaluj aplikację, wpisz kod i ukończ pierwszą lekcję. Znajomy dostaje 1 los z nagrodą Plus od 1 do 365 dni.',
                 )}
               </Text>
               <TextInput

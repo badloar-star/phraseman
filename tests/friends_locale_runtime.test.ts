@@ -27,7 +27,7 @@ describe('friends tab locale runtime', () => {
     expect(source).toContain('testID="friends-empty-enter-code"');
     // minHeight + paddingVertical (не жёсткая height): кнопки растут под крупные шрифты.
     expect(source).toContain("style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
-    expect(source).toContain("style={{ flex: 1, minHeight: 58, backgroundColor: 'transparent'");
+    expect(source).toContain("style={{ flex: 1, minHeight: 58, backgroundColor: chrome.button");
     // adjustsFontSizeToFit запрещён на кнопках (схлопывает текст в ноль — известная ловушка);
     // вместо него перенос на 2 строки.
     expect(source).toContain('numberOfLines={2}');
@@ -56,11 +56,11 @@ describe('friends tab locale runtime', () => {
     expect(source).not.toContain('<CodeCard');
   });
 
-  it('shows the empty-friends referral premium offer instead of generic progress copy', () => {
+  it('shows the gated empty-friends roulette offer with localized variable prizes', () => {
     const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
 
     expect(source).toContain(
-      'Получите 7 дней полного Plus-доступа ко всему за одного приглашённого друга, который установит приложение, введёт ваш код',
+      'Пригласи друга. Когда он установит приложение, введёт твой код',
     );
     // Показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
     // ввёл бы friend-код, которого нет в referral_codes, и наград не было бы (C1).
@@ -69,7 +69,10 @@ describe('friends tab locale runtime', () => {
     // карточке. Отдельная карточка убрана, чтобы код был ровно в ОДНОМ месте в Друзьях.
     expect(source).toContain('testID="friends-referral-code-inline"');
     expect(source).not.toContain('testID="friends-referral-code-card"');
-    expect(source).toContain(' і повністю пройде один урок.');
+    expect(source).toContain(' і закінчить перший урок, ти отримаєш 1 прокрут.');
+    expect(source).toContain('Приз — Plus от 1 дня до 365 дней.');
+    expect(source).toContain('const referralOfferOn = referralEnabled && rouletteOn');
+    expect(source).toContain('{referralOfferOn ? (');
     expect(source).not.toContain('testID="friends-referral-seven-plus-seven-note"');
     // «Запросити» делится реферальной ссылкой через handleReferralInvite (не friend-кодом).
     expect(source).toContain('void handleReferralInvite()');

@@ -15,7 +15,7 @@ function read(rel: string): string {
   return readFileSync(join(__dirname, '..', rel), 'utf8');
 }
 
-describe('referral 7 plus 7 screen contract', () => {
+describe('referral roulette screen contract', () => {
   beforeEach(() => {
     __resetAccountGenerationForTests();
     resetReferralInvitesCacheForTests();
@@ -38,37 +38,40 @@ describe('referral 7 plus 7 screen contract', () => {
     expect(referralInvitesCacheSizeForTests()).toBe(2);
   });
 
-  it('uses one aggregate pending state instead of a spinner in every row', () => {
+  it('converts qualified invites into spin credits without legacy per-row claiming', () => {
     const source = read('app/referrals.tsx');
-    expect(source).toContain('testID="referrals-claim-pending"');
-    expect(source).not.toContain('claiming && claimable ? <ActivityIndicator');
+    expect(source).toContain('claimReferralSpins');
+    expect(source).toContain("'Прокрут начислен'");
+    expect(source).toContain("'Прокрут готов'");
+    expect(source).not.toContain('testID="referrals-claim-pending"');
+    expect(source).not.toContain('claimReferralVipDays');
     expect(source).toContain('readReferralInvites(renderToken)');
-    expect(source).toContain('const claimToken = captureAccountGeneration()');
-    expect(source).toContain('if (!isCurrentAccountGeneration(claimToken))');
-    expect(source).toContain('invalidateReferralInvites(claimToken)');
   });
   it('keeps referral code entry as a separate explanatory screen', () => {
     const source = read('app/referral_code_entry.tsx');
 
     expect(source).toContain('testID="screen-referral-code-entry"');
-    expect(source).toContain('Есть код от друга? Введите его здесь — и заберите 7 дней полного доступа в Phraseman.');
-    expect(source).toContain('Мини-квест простой: установить приложение, ввести код и пройти один урок до конца.');
+    expect(source).toContain('Есть код от друга? Введи его здесь и закончи первый урок — другу откроется 1 прокрут.');
+    expect(source).toContain('Plus от 1 дня до 365 дней.');
+    expect(source).toContain('const rouletteOn = useReferralRouletteEnabled()');
+    expect(source).toContain('testID="referral-code-entry-off"');
     expect(source).not.toContain('testID="referral-code-seven-plus-seven-note"');
     expect(source).toContain('testID="referral-code-input"');
     expect(source).toContain('applyManualReferralCode');
   });
 
-  it('keeps referrals as a separate screen with per-invite Plus actions', () => {
+  it('keeps referrals as a separate gated roulette screen without legacy Plus claims', () => {
     const source = read('app/referrals.tsx');
 
     expect(source).toContain('testID="screen-referrals"');
     expect(source).toContain('Твои приглашения');
-    expect(source).toContain('Как только друг поставит приложение, введёт твой код и закончит первый урок');
-    expect(source).toContain('друг не выполнил условие');
-    expect(source).toContain('Получить Plus');
+    expect(source).toContain('testID="referrals-roulette-hero"');
+    expect(source).toContain('Ждём первый урок');
+    expect(source).toContain('Прокрут готов');
+    expect(source).not.toContain('Получить Plus');
     expect(source).not.toContain('Получить VIP');
     expect(source).not.toContain('VIP можно забирать');
-    expect(source).toContain('claimReferralVipDays');
+    expect(source).not.toContain('claimReferralVipDays');
     expect(source).not.toContain('testID="referrals-seven-plus-seven-note"');
     expect(source).not.toContain('summary.pending');
     expect(source).not.toContain('claimableDays');
@@ -86,30 +89,27 @@ describe('referral 7 plus 7 screen contract', () => {
     expect(layout).toContain('<Stack.Screen name="referrals"');
   });
 
-  it('keeps cloud reward logic as two separate rewards (default 7 days, tunable)', () => {
-    const source = read('functions/src/referral.ts');
+  it('keeps roulette credits and prizes server-authoritative behind the master flag', () => {
+    const referral = read('functions/src/referral.ts');
+    const claim = read('functions/src/referral_claim_spin.ts');
+    const spin = read('functions/src/referral_spin.ts');
 
-    // Дефолт 7 дней сохранён; сами дни теперь крутятся из «Пульта» (cfg.rewardDays),
-    // но инвариант «две отдельные награды двум людям, не 14 одному» не меняется.
-    expect(source).toContain('export const REFERRAL_REWARD_DAYS = 7');
-    expect(source).toContain('rewardDays: REFERRAL_REWARD_DAYS'); // дефолт конфига = 7
-    expect(source).toContain('referralConfigFromData'); // парсер тюнинга из Пульта
-    expect(source).toContain("referral_vip_last_source: source");
-    // referee получает свои дни отдельной выдачей (buildReferralVipProgressPatch ... 'referee')
-    expect(source).toContain('refereeVipDays: cfg.rewardDays');
-    expect(source).toContain("'referee'");
-    expect(source).toContain("'referrer'");
-    expect(source).toContain("rewardKind: 'vip_days_both'");
+    expect(referral).toContain('resolveReferralRouletteEnabled');
+    expect(claim).toContain("'REFERRAL_ROULETTE_DISABLED'");
+    expect(claim).toContain('referral_spin_credits');
+    expect(spin).toContain("'REFERRAL_ROULETTE_DISABLED'");
+    expect(spin).toContain('spinRequestId');
+    expect(spin).toContain('prizeDays');
   });
 
-  it('keeps modal and share copy aligned with install-code-lesson condition', () => {
-    const modal = read('app/referral_access_activated_modal.tsx');
+  it('keeps share and expiration copy aligned with the roulette model', () => {
     const share = read('app/referral_invite_share.ts');
+    const expired = read('components/EntitlementExpiredHost.tsx');
 
-    expect(modal).toContain('установил приложение, ввёл твой код и прошёл один урок полностью');
-    expect(modal).toContain('${D}+${D} не равно ${D2}: друг получил свои ${D} ${pluralDaysRu(D)} отдельно.');
-    expect(share).toContain('Установи приложение, введи мой код и пройди один урок полностью');
-    expect(share).toContain('мы оба получим по 7 дней полного доступа');
+    expect(share).toContain('Установи приложение, введи мой код и пройди первый урок полностью');
+    expect(share).toContain('Plus от 1 дня до 365 дней');
+    expect(expired).toContain('1 прокрут');
+    expect(expired).not.toContain('по 7 дней за каждого');
   });
 
   it('hides the welcome code-entry CTA after the code has already been applied', () => {

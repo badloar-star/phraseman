@@ -26,15 +26,15 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
 import BouncyScrollView from '../components/BouncyScrollView';
+import { useReferralRouletteEnabled } from './referral_roulette_flag';
 
-const REFERRER_VIP_DAYS = 7;
 const MONTHLY_LIMIT = 30;
 
 const COPY = {
   ru: {
     title: 'Пригласить друга',
-    heroTitle: 'Зови друга —\nполучи 7 дней доступа',
-    heroSub: 'За каждого друга, который освоится в Phraseman, тебе — 7 дней полного доступа. Дни суммируются.',
+    heroTitle: 'Зови друга —\nполучи прокрут рулетки',
+    heroSub: 'За друга, который введёт твой код и закончит первый урок, тебе начислится 1 прокрут. Приз — Plus от 1 дня до 365 дней.',
     stepsTitle: 'Как это работает',
     step1Title: 'Отправь свою ссылку',
     step1Body: 'Поделись приглашением в любом мессенджере. Друг сможет перейти по ссылке и установить Phraseman.',
@@ -43,18 +43,19 @@ const COPY = {
     step2TitleIos: 'Друг вводит ваш код',
     step2BodyIos:
       'Во вкладке «Друзья» он вводит ваш персональный код. Дальше — закончить урок 1 минимум на бронзу.',
-    step3Title: 'Открой свои дни доступа',
-    step3Body: `Во вкладке «Друзья» нажми «Получить» — и тебе +${REFERRER_VIP_DAYS} дней полного доступа за этого друга. Дни складываются.`,
-    smallPrint: `Доступ начисляется один раз за каждого нового друга. В месяц можно открыть награду максимум за ${MONTHLY_LIMIT} приглашений. У друга — свои стартовые дни доступа.`,
+    step3Title: 'Крути рулетку',
+    step3Body: 'После первого урока друга тебе автоматически начислится 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
+    smallPrint: `Один прокрут начисляется один раз за каждого нового друга. В месяц учитывается не больше ${MONTHLY_LIMIT} приглашений.`,
     cta: 'Отправить приглашение',
-    preparing: '',
+    preparing: 'Готовим приглашение…',
+    unavailable: 'Этот раздел временно недоступен.',
     needAuthTitle: 'Нужен вход',
-    needAuth: 'Войди через Google или Apple, чтобы ссылка учитывала приглашение и тебе начислились дни доступа.',
+    needAuth: 'Войди через Google или Apple, чтобы ссылка учитывала приглашение и тебе начислился прокрут.',
   },
   uk: {
     title: 'Запросити друга',
-    heroTitle: 'Клич друга —\nотримай 7 днів доступу',
-    heroSub: 'За кожного друга, який освоїться в Phraseman, тобі — 7 днів повного доступу. Дні сумуються.',
+    heroTitle: 'Клич друга —\nотримай прокрут рулетки',
+    heroSub: 'За друга, який введе твій код і закінчить перший урок, ти отримаєш 1 прокрут. Приз — Plus від 1 до 365 днів.',
     stepsTitle: 'Як це працює',
     step1Title: 'Надішли своє посилання',
     step1Body: 'Поділись запрошенням у будь-якому месенджері. Друг зможе перейти за посиланням і встановити Phraseman.',
@@ -63,19 +64,20 @@ const COPY = {
     step2TitleIos: 'Друг вводить твій код',
     step2BodyIos:
       'У вкладці «Друзі» він вводить твій персональний код. Далі — закінчити урок 1 щонайменше на бронзу.',
-    step3Title: 'Відкрий свої дні доступу',
-    step3Body: `У вкладці «Друзі» натисни «Отримати» — і тобі +${REFERRER_VIP_DAYS} днів повного доступу за цього друга. Дні додаються.`,
-    smallPrint: `Доступ нараховується один раз за кожного нового друга. На місяць можна відкрити нагороду максимум за ${MONTHLY_LIMIT} запрошень. У друга — свої стартові дні доступу.`,
+    step3Title: 'Крути рулетку',
+    step3Body: 'Після першого уроку друга тобі автоматично нарахується 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
+    smallPrint: `Один прокрут нараховується один раз за кожного нового друга. На місяць враховується не більше ${MONTHLY_LIMIT} запрошень.`,
     cta: 'Надіслати запрошення',
-    preparing: '',
+    preparing: 'Готуємо запрошення…',
+    unavailable: 'Цей розділ тимчасово недоступний.',
     needAuthTitle: 'Потрібен вхід',
-    needAuth: 'Увійди через Google або Apple, щоб посилання враховувало запрошення і тобі нарахувалися дні доступу.',
+    needAuth: 'Увійди через Google або Apple, щоб посилання враховувало запрошення і тобі нарахувався прокрут.',
   },
   es: {
     title: 'Invitar a un amigo',
-    heroTitle: 'Invita a un amigo —\nconsigue 7 días de acceso',
+    heroTitle: 'Invita a un amigo —\nconsigue 1 giro',
     heroSub:
-      'Por cada amigo que empiece en Phraseman, tú consigues 7 días de acceso completo. Los días se suman.',
+      'Cuando use tu código y termine la primera lección, recibirás 1 giro. El premio es Plus de 1 a 365 días.',
     stepsTitle: 'Cómo funciona',
     step1Title: 'Envía tu enlace',
     step1Body:
@@ -86,19 +88,20 @@ const COPY = {
     step2TitleIos: 'Tu amigo introduce tu código',
     step2BodyIos:
       'En «Amigos» puede introducir tu código personal. Luego debe terminar la lección 1 con al menos bronce.',
-    step3Title: 'Abre tus días de acceso',
-    step3Body: `En «Amigos» pulsa «Conseguir» y obtendrás +${REFERRER_VIP_DAYS} días de acceso completo por ese amigo. Los días se acumulan.`,
-    smallPrint: `El acceso se concede una vez por cada amigo nuevo. Cada mes puedes abrir recompensa por un máximo de ${MONTHLY_LIMIT} invitaciones. Tu amigo tiene sus propios días de acceso de inicio.`,
+    step3Title: 'Gira la ruleta',
+    step3Body: 'El giro se acredita automáticamente al completar tu amigo la primera lección. Puedes ganar de 1 a 365 días de Plus.',
+    smallPrint: `Se acredita 1 giro una vez por cada amigo nuevo. Se cuentan como máximo ${MONTHLY_LIMIT} invitaciones al mes.`,
     cta: 'Enviar invitación',
-    preparing: '',
+    preparing: 'Preparando la invitación…',
+    unavailable: 'Esta sección no está disponible temporalmente.',
     needAuthTitle: 'Inicia sesión',
     needAuth:
-      'Entra con Google o Apple para que el enlace registre la invitación y tú recibas los días de acceso.',
+      'Entra con Google o Apple para que el enlace registre la invitación y recibas el giro.',
   },
   'pt-BR': {
     title: 'Convidar amigo',
-    heroTitle: 'Chame um amigo —\nganhe 7 dias de acesso',
-    heroSub: 'Para cada amigo que começar no Phraseman, você ganha 7 dias de acesso completo. Os dias se somam.',
+    heroTitle: 'Chame um amigo —\nganhe 1 giro',
+    heroSub: 'Quando ele usar seu código e concluir a primeira lição, você recebe 1 giro. O prêmio é Plus de 1 a 365 dias.',
     stepsTitle: 'Como funciona',
     step1Title: 'Envie seu link',
     step1Body: 'Compartilhe o convite em qualquer mensageiro. Seu amigo pode abrir o link e instalar o Phraseman.',
@@ -106,18 +109,19 @@ const COPY = {
     step2Body: 'Ele precisa instalar o Phraseman pelo seu link e terminar a lição 1 com pelo menos bronze.',
     step2TitleIos: 'Seu amigo digita seu código',
     step2BodyIos: 'Na aba "Amigos", ele digita seu código pessoal. Depois, termina a lição 1 com pelo menos bronze.',
-    step3Title: 'Abra seus dias de acesso',
-    step3Body: `Na aba "Amigos", toque em "Resgatar" e ganhe +${REFERRER_VIP_DAYS} dias de acesso completo por esse amigo. Os dias se acumulam.`,
-    smallPrint: `O acesso é concedido uma vez para cada novo amigo. Por mês, você pode abrir recompensa por no máximo ${MONTHLY_LIMIT} convites. Seu amigo tem os próprios dias de acesso iniciais.`,
+    step3Title: 'Gire a roleta',
+    step3Body: 'O giro é creditado automaticamente quando seu amigo conclui a primeira lição. Você pode ganhar de 1 a 365 dias de Plus.',
+    smallPrint: `É creditado 1 giro uma vez por cada amigo novo. No máximo ${MONTHLY_LIMIT} convites contam por mês.`,
     cta: 'Enviar convite',
-    preparing: '',
+    preparing: 'Preparando o convite…',
+    unavailable: 'Esta seção está temporariamente indisponível.',
     needAuthTitle: 'Login necessário',
-    needAuth: 'Entre com Google ou Apple para que o link registre o convite e você receba os dias de acesso.',
+    needAuth: 'Entre com Google ou Apple para que o link registre o convite e você receba o giro.',
   },
   vi: {
     title: 'Mời bạn bè',
-    heroTitle: 'Mời bạn —\nnhận 7 ngày truy cập',
-    heroSub: 'Mỗi người bạn bắt đầu dùng Phraseman sẽ mang về cho bạn 7 ngày truy cập đầy đủ. Số ngày được cộng dồn.',
+    heroTitle: 'Mời bạn —\nnhận 1 lượt quay',
+    heroSub: 'Khi bạn bè nhập mã và hoàn thành bài học đầu tiên, bạn nhận 1 lượt quay. Giải Plus từ 1 đến 365 ngày.',
     stepsTitle: 'Cách hoạt động',
     step1Title: 'Gửi liên kết của bạn',
     step1Body: 'Chia sẻ lời mời qua bất kỳ ứng dụng nhắn tin nào. Bạn của bạn có thể mở liên kết và cài Phraseman.',
@@ -125,18 +129,19 @@ const COPY = {
     step2Body: 'Người đó cần cài Phraseman từ liên kết của bạn và hoàn thành bài 1 ít nhất mức đồng.',
     step2TitleIos: 'Bạn của bạn nhập mã',
     step2BodyIos: 'Trong tab "Bạn bè", người đó nhập mã cá nhân của bạn. Sau đó hoàn thành bài 1 ít nhất mức đồng.',
-    step3Title: 'Mở số ngày truy cập của bạn',
-    step3Body: `Trong tab "Bạn bè", nhấn "Nhận" và bạn được +${REFERRER_VIP_DAYS} ngày truy cập đầy đủ cho người bạn này. Số ngày được cộng dồn.`,
-    smallPrint: `Quyền truy cập được cộng một lần cho mỗi bạn mới. Mỗi tháng bạn có thể mở thưởng tối đa cho ${MONTHLY_LIMIT} lời mời. Bạn của bạn có những ngày truy cập khởi đầu riêng.`,
+    step3Title: 'Quay vòng quay',
+    step3Body: 'Lượt quay tự động được cộng khi bạn bè hoàn thành bài học đầu tiên. Bạn có thể thắng từ 1 đến 365 ngày Plus.',
+    smallPrint: `Mỗi bạn mới chỉ cộng 1 lượt quay một lần. Tối đa ${MONTHLY_LIMIT} lời mời được tính mỗi tháng.`,
     cta: 'Gửi lời mời',
-    preparing: '',
+    preparing: 'Đang chuẩn bị lời mời…',
+    unavailable: 'Mục này tạm thời không khả dụng.',
     needAuthTitle: 'Cần đăng nhập',
-    needAuth: 'Đăng nhập bằng Google hoặc Apple để liên kết ghi nhận lời mời và bạn nhận được số ngày truy cập.',
+    needAuth: 'Đăng nhập bằng Google hoặc Apple để liên kết ghi nhận lời mời và bạn nhận lượt quay.',
   },
   'id': {
     title: 'Undang teman',
-    heroTitle: 'Ajak teman —\ndapat 7 hari akses',
-    heroSub: 'Untuk setiap teman yang mulai memakai Phraseman, kamu dapat 7 hari akses penuh. Harinya diakumulasi.',
+    heroTitle: 'Ajak teman —\ndapat 1 putaran',
+    heroSub: 'Saat teman memasukkan kodemu dan menyelesaikan pelajaran pertama, kamu mendapat 1 putaran. Hadiah Plus 1–365 hari.',
     stepsTitle: 'Cara kerjanya',
     step1Title: 'Kirim tautanmu',
     step1Body: 'Bagikan undangan lewat aplikasi pesan apa pun. Temanmu bisa membuka tautan dan memasang Phraseman.',
@@ -144,18 +149,19 @@ const COPY = {
     step2Body: 'Ia perlu memasang Phraseman dari tautanmu dan menyelesaikan pelajaran 1 minimal perunggu.',
     step2TitleIos: 'Teman memasukkan kodemu',
     step2BodyIos: 'Di tab "Teman", ia memasukkan kode pribadimu. Setelah itu menyelesaikan pelajaran 1 minimal perunggu.',
-    step3Title: 'Buka hari aksesmu',
-    step3Body: `Di tab "Teman", ketuk "Ambil" dan kamu dapat +${REFERRER_VIP_DAYS} hari akses penuh untuk teman ini. Harinya bertambah.`,
-    smallPrint: `Akses diberikan satu kali untuk setiap teman baru. Per bulan kamu bisa membuka hadiah untuk maksimal ${MONTHLY_LIMIT} undangan. Temanmu punya hari akses awalnya sendiri.`,
+    step3Title: 'Putar roulette',
+    step3Body: 'Putaran otomatis masuk saat teman menyelesaikan pelajaran pertama. Kamu bisa menang 1–365 hari Plus.',
+    smallPrint: `Setiap teman baru memberi 1 putaran satu kali. Maksimal ${MONTHLY_LIMIT} undangan dihitung per bulan.`,
     cta: 'Kirim undangan',
-    preparing: '',
+    preparing: 'Menyiapkan undangan…',
+    unavailable: 'Bagian ini sementara tidak tersedia.',
     needAuthTitle: 'Perlu masuk',
-    needAuth: 'Masuk dengan Google atau Apple agar tautan mencatat undangan dan kamu mendapat hari akses.',
+    needAuth: 'Masuk dengan Google atau Apple agar tautan mencatat undangan dan kamu mendapat putaran.',
   },
   tr: {
     title: 'Arkadaş davet et',
-    heroTitle: 'Arkadaşını çağır —\n7 gün erişim kazan',
-    heroSub: 'Phraseman’e başlayan her arkadaşın için sana 7 gün tam erişim. Günler birikir.',
+    heroTitle: 'Arkadaşını çağır —\n1 çevirme kazan',
+    heroSub: 'Arkadaşın kodunu girip ilk dersi bitirdiğinde 1 çevirme kazanırsın. Ödül 1–365 gün Plus.',
     stepsTitle: 'Nasıl çalışır',
     step1Title: 'Bağlantını gönder',
     step1Body: 'Davetini herhangi bir mesajlaşma uygulamasında paylaş. Arkadaşın bağlantıyı açıp Phraseman’i kurabilir.',
@@ -163,18 +169,19 @@ const COPY = {
     step2Body: 'Phraseman’i senin bağlantından kurup 1. dersi en az bronz seviyede bitirmesi gerekir.',
     step2TitleIos: 'Arkadaşın kodunu girer',
     step2BodyIos: '"Arkadaşlar" sekmesinde kişisel kodunu girer. Sonra 1. dersi en az bronz seviyede bitirir.',
-    step3Title: 'Erişim günlerini aç',
-    step3Body: `"Arkadaşlar" sekmesinde "Al"a dokun, bu arkadaş için sana +${REFERRER_VIP_DAYS} gün tam erişim gelsin. Günler birikir.`,
-    smallPrint: `Erişim her yeni arkadaş için bir kez verilir. Ayda en fazla ${MONTHLY_LIMIT} davet için ödül açabilirsin. Arkadaşının kendi başlangıç erişim günleri vardır.`,
+    step3Title: 'Ruleti çevir',
+    step3Body: 'Arkadaşın ilk dersi bitirdiğinde çevirme otomatik yüklenir. 1–365 gün Plus kazanabilirsin.',
+    smallPrint: `Her yeni arkadaş bir kez 1 çevirme kazandırır. Ayda en fazla ${MONTHLY_LIMIT} davet sayılır.`,
     cta: 'Davet gönder',
-    preparing: '',
+    preparing: 'Davet hazırlanıyor…',
+    unavailable: 'Bu bölüm geçici olarak kullanılamıyor.',
     needAuthTitle: 'Giriş gerekli',
-    needAuth: 'Bağlantının daveti sayması ve sana erişim günleri gelmesi için Google veya Apple ile giriş yap.',
+    needAuth: 'Bağlantının daveti sayması ve çevirmenin gelmesi için Google veya Apple ile giriş yap.',
   },
   pl: {
     title: 'Zaproś znajomego',
-    heroTitle: 'Zaproś znajomego —\nzdobądź 7 dni dostępu',
-    heroSub: 'Za każdego znajomego, który zacznie korzystać z Phraseman, dostajesz 7 dni pełnego dostępu. Dni się sumują.',
+    heroTitle: 'Zaproś znajomego —\nzdobądź 1 los',
+    heroSub: 'Gdy znajomy wpisze twój kod i ukończy pierwszą lekcję, dostaniesz 1 los. Nagroda to Plus od 1 do 365 dni.',
     stepsTitle: 'Jak to działa',
     step1Title: 'Wyślij swój link',
     step1Body: 'Udostępnij zaproszenie w dowolnym komunikatorze. Znajomy otworzy link i zainstaluje Phraseman.',
@@ -182,13 +189,14 @@ const COPY = {
     step2Body: 'Musi zainstalować Phraseman z twojego linku i ukończyć lekcję 1 co najmniej na brąz.',
     step2TitleIos: 'Znajomy wpisuje twój kod',
     step2BodyIos: 'W zakładce "Znajomi" wpisuje twój osobisty kod. Potem kończy lekcję 1 co najmniej na brąz.',
-    step3Title: 'Odbierz swoje dni dostępu',
-    step3Body: `W zakładce "Znajomi" naciśnij "Odbierz", a otrzymasz +${REFERRER_VIP_DAYS} dni pełnego dostępu za tego znajomego. Dni się sumują.`,
-    smallPrint: `Dostęp przysługuje raz za każdego nowego znajomego. Miesięcznie możesz odebrać nagrodę maksymalnie za ${MONTHLY_LIMIT} zaproszeń. Znajomy ma własne startowe dni dostępu.`,
+    step3Title: 'Zakręć ruletką',
+    step3Body: 'Los zostanie dodany automatycznie, gdy znajomy ukończy pierwszą lekcję. Możesz wygrać od 1 do 365 dni Plus.',
+    smallPrint: `Każdy nowy znajomy daje 1 los tylko raz. Miesięcznie liczy się maksymalnie ${MONTHLY_LIMIT} zaproszeń.`,
     cta: 'Wyślij zaproszenie',
-    preparing: '',
+    preparing: 'Przygotowujemy zaproszenie…',
+    unavailable: 'Sekcja jest chwilowo niedostępna.',
     needAuthTitle: 'Wymagane logowanie',
-    needAuth: 'Zaloguj się przez Google lub Apple, aby link zapisał zaproszenie i otrzymasz dni dostępu.',
+    needAuth: 'Zaloguj się przez Google lub Apple, aby link zapisał zaproszenie i dodał los.',
   },
 };
 
@@ -285,6 +293,7 @@ export default function SettingsInviteFriend() {
 
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
+  const rouletteOn = useReferralRouletteEnabled();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const bottomPad =
@@ -295,7 +304,7 @@ export default function SettingsInviteFriend() {
   const [busy, setBusy] = useState(false);
 
   const onSendInvite = useCallback(async () => {
-    if (busy) return;
+    if (!rouletteOn || busy) return;
     hapticTap();
     setBusy(true);
     try {
@@ -329,10 +338,32 @@ export default function SettingsInviteFriend() {
     } finally {
       setBusy(false);
     }
-  }, [busy, copyLang, studyTarget]);
+  }, [busy, copyLang, rouletteOn, studyTarget]);
 
   const isIos = effectiveOs === 'ios';
   const scrollBottomPad = 100 + Math.max(bottomInset, 16);
+
+  if (!rouletteOn) {
+    return (
+      <ScreenGradient artBackdrop="settings">
+        <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
+            <TouchableOpacity accessibilityRole="button" accessibilityLabel={tx.title} onPress={() => safeRouterBack(router, '/(tabs)/settings' as any)} style={{ width: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
+              <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
+            </TouchableOpacity>
+          </View>
+          <View testID="settings-invite-friend-off" style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 24, paddingBottom: bottomPad }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
+              {COPY[copyLang]?.title ?? COPY.ru.title}
+            </Text>
+            <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 23, fontWeight: '400', textAlign: 'center', marginTop: 8 }}>
+              {tx.unavailable}
+            </Text>
+          </View>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
 
   return (
     <ScreenGradient artBackdrop="settings">
@@ -559,7 +590,7 @@ export default function SettingsInviteFriend() {
             {isCompassTheme ? <CompassDepthSurface radius={9} cream={!busy} quiet={busy} /> : null}
             <Ionicons name="share-social" size={20} color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
             <Text style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {tx.cta}
+              {busy ? tx.preparing : tx.cta}
             </Text>
           </TouchableOpacity>
         </View>

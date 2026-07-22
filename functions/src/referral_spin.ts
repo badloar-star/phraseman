@@ -24,6 +24,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   assertAuthStableLink,
+  resolveReferralRouletteEnabled,
   stackVipUntilMs,
   vipUntilFromProgress,
 } from './referral';
@@ -34,6 +35,7 @@ import {
   referralSpinWeightsFromData,
   spinDraw,
 } from './referral_spin_logic';
+import { referralRouletteEnabledFromData } from './referral_roulette_flag';
 
 // Реэкспорт для тестов/совместимости (раньше жили здесь).
 export {
@@ -99,7 +101,13 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, stableId);
 
+  // Мастер-флаг «рулетка+рефералка» (админка → remote_config). Выкл → failed-precondition.
+  if (!(await resolveReferralRouletteEnabled(db))) {
+    throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+  }
+
   const weights = await resolveReferralSpinWeights(db);
+  const configRef = db.collection('remote_config').doc('app');
   const userRef = db.collection(USERS).doc(stableId);
   const spinsCol = userRef.collection(SPINS_SUBCOLLECTION);
 
@@ -120,7 +128,15 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
 
   return db.runTransaction(async (tx): Promise<SpinResult> => {
     const spinRef = spinsCol.doc(spinRequestId);
-    const [userSnap, existingSpin] = await Promise.all([tx.get(userRef), tx.get(spinRef)]);
+    const [configSnap, userSnap, existingSpin] = await Promise.all([
+      tx.get(configRef),
+      tx.get(userRef),
+      tx.get(spinRef),
+    ]);
+    const configData = configSnap.data() as { numbers?: Record<string, unknown> } | undefined;
+    if (!referralRouletteEnabledFromData(configData)) {
+      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+    }
 
     // Идемпотентность: повтор с тем же spinRequestId → тот же приз, без списания кредита.
     if (existingSpin.exists) {

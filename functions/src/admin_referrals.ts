@@ -13,6 +13,9 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import { createAuditRecord } from './admin/audit_contract';
+import { hasPermission } from './admin/permissions';
+import { hasAdminRole, type AdminRole } from './admin/roles';
 import {
   REFERRAL_SPIN_PRIZE_DAYS,
   referralSpinWeightsFromData,
@@ -39,6 +42,11 @@ function assertAdmin(request: { auth?: { uid: string; token?: Record<string, unk
   if (request.auth.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'ADMIN_REQUIRED');
   }
+}
+
+function adminRoleFromToken(token: Record<string, unknown> | undefined): AdminRole | null {
+  const role = token?.adminRole;
+  return hasAdminRole(role) ? role : null;
 }
 
 function clampLimit(raw: unknown, fallback: number): number {
@@ -248,6 +256,84 @@ export const adminSetSpinWeights = onCall(CALLABLE_BASE, async (request) => {
   return { ok: true, weights: v.weights };
 });
 
+// ── b2) Мастер-флаг «Рулетка Plus + реферальная программа» ────────────────────
+
+/**
+ * Вкл/выкл всей связки рулетка+рефералка из админки БЕЗ релиза.
+ * Пишет remote_config/app.numbers.referral_roulette_enabled (boolean) — тот же ключ,
+ * что читают referralSpin/referralClaimSpin (resolveReferralRouletteEnabled) и клиент
+ * (remote_flags → isReferralRouletteEnabled). Дефолт при отсутствии ключа = ON.
+ */
+export const adminSetReferralRouletteEnabled = onCall(CALLABLE_BASE, async (request) => {
+  assertAdmin(request);
+  const role = adminRoleFromToken(request.auth?.token as Record<string, unknown> | undefined);
+  if (!role || !hasPermission(role, 'application.config.write')) {
+    throw new HttpsError('permission-denied', 'APPLICATION_CONFIG_WRITE_REQUIRED');
+  }
+  const enabled = request.data?.enabled;
+  if (typeof enabled !== 'boolean') {
+    throw new HttpsError('invalid-argument', 'enabled (boolean) required');
+  }
+  const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
+  const requestId = String(request.data?.requestId ?? '').trim().slice(0, 160);
+  const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 120);
+  if (!reason || !requestId || !idempotencyKey) {
+    throw new HttpsError('invalid-argument', 'reason, requestId and idempotencyKey required');
+  }
+  const db = admin.firestore();
+  const configRef = db.collection('remote_config').doc('app');
+  const operationRef = db.collection('admin_command_operations').doc(`referral_roulette_${idempotencyKey}`);
+  const auditRef = db.collection('admin_log').doc();
+  const fingerprint = JSON.stringify({ enabled });
+  const actorUid = request.auth!.uid;
+
+  return db.runTransaction(async (tx) => {
+    const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
+    if (operationSnap.exists) {
+      const previous = operationSnap.data() ?? {};
+      if (previous.requestFingerprint !== fingerprint || previous.actorUid !== actorUid) {
+        throw new HttpsError('already-exists', 'idempotency key replay mismatch');
+      }
+      return {
+        ok: true,
+        enabled: previous.enabled === true,
+        auditId: String(previous.auditId ?? ''),
+        replayed: true,
+      };
+    }
+
+    const config = (configSnap.data() ?? {}) as { numbers?: Record<string, unknown> };
+    const beforeEnabled = config.numbers?.referral_roulette_enabled !== false;
+    const audit = createAuditRecord({
+      action: 'referral_roulette.enabled.set',
+      actorUid,
+      role,
+      entity: { collection: 'remote_config', id: 'app' },
+      reason,
+      before: { enabled: beforeEnabled },
+      after: { enabled },
+      requestId,
+      timestamp: new Date().toISOString(),
+    });
+
+    tx.set(configRef, {
+      numbers: { referral_roulette_enabled: enabled },
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedBy: actorUid,
+    }, { merge: true });
+    tx.create(auditRef, { ...audit, operationId: operationRef.id });
+    tx.create(operationRef, {
+      action: 'referral_roulette.enabled.set',
+      actorUid,
+      requestFingerprint: fingerprint,
+      enabled,
+      auditId: auditRef.id,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { ok: true, enabled, auditId: auditRef.id, replayed: false };
+  });
+});
+
 // ── c) Health-проверки ────────────────────────────────────────────────────────
 
 type HealthStatus = 'ok' | 'warn' | 'fail';
@@ -272,13 +358,27 @@ export const adminReferralHealth = onCall(CALLABLE_BASE, async (request) => {
 
   // 2. Весы валидны (мягкий парсер → если дефолт вместо конфига, значит мусор/отсутствует).
   let weightsValid = true;
+  // Мастер-флаг: отсутствие ключа = ON, ошибка чтения = fail-closed.
+  let rouletteEnabled = false;
+  let rouletteFlagReadable = false;
   try {
     const snap = await db.collection('remote_config').doc('app').get();
     const data = snap.data() as { numbers?: Record<string, unknown> } | undefined;
     weightsValid = validateSpinWeights(data?.numbers?.referral_spin_weights).ok;
+    rouletteEnabled = data?.numbers?.referral_roulette_enabled !== false;
+    rouletteFlagReadable = true;
   } catch {
     weightsValid = false;
   }
+  checks.push({
+    id: 'roulette_feature_flag',
+    status: !rouletteFlagReadable ? 'fail' : rouletteEnabled ? 'ok' : 'warn',
+    detail: !rouletteFlagReadable
+      ? 'Не удалось прочитать referral_roulette_enabled — серверные spin/claim закрыты fail-closed'
+      : rouletteEnabled
+      ? 'referral_roulette_enabled: ON — рулетка и рефералка работают'
+      : 'referral_roulette_enabled: OFF — рулетка+рефералка выключены из админки (referralSpin/claimSpin → failed-precondition)',
+  });
   checks.push({
     id: 'weights_valid',
     status: weightsValid ? 'ok' : 'warn',
@@ -358,5 +458,5 @@ export const adminReferralHealth = onCall(CALLABLE_BASE, async (request) => {
     : checks.some((c) => c.status === 'warn')
       ? 'warn'
       : 'ok';
-  return { ok: true, status: worst, checks, checkedAtMs: Date.now() };
+  return { ok: true, status: worst, checks, rouletteEnabled, checkedAtMs: Date.now() };
 });

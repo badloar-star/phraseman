@@ -10,6 +10,7 @@ import {
   getPaywallVariant,
   getRemoteConfigSignature,
   isReferralEnabled,
+  isReferralRouletteEnabled,
   isLeagueXpPromotionEnabled,
   isMaintenanceBanner,
   isMaintenanceBlock,
@@ -67,6 +68,7 @@ describe('remote_flags', () => {
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1000);
       expect(isReferralEnabled()).toBe(true);
+      expect(isReferralRouletteEnabled()).toBe(true);
       expect(getRemoteBool('speaking_enabled')).toBe(true);
       expect(getRemoteBool('weekly_review_ai_v2_enabled')).toBe(true);
       expect(isLeagueXpPromotionEnabled()).toBe(false);
@@ -129,6 +131,13 @@ describe('remote_flags', () => {
       expect(getRemoteNumber('max_energy')).toBe(5);
       expect(getPaywallV2Pct()).toBe(100);
       expect(getLeagueXpPromotionThreshold()).toBe(1);
+    });
+
+    it('reads the referral roulette kill switch from the numbers branch and resets to default-on', () => {
+      applyRemoteConfigSnapshot({ numbers: { referral_roulette_enabled: false } });
+      expect(isReferralRouletteEnabled()).toBe(false);
+      applyRemoteConfigSnapshot({ numbers: {} });
+      expect(isReferralRouletteEnabled()).toBe(true);
     });
 
     it('keeps the runtime energy base fixed at five', () => {

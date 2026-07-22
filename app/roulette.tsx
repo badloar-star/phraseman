@@ -1,7 +1,7 @@
 /**
  * Экран рулетки Plus (роут /roulette).
  *
- * Лента из 72 карточек (12 копий TAPE_CYCLE из 6 призов), горизонтальный скролл
+ * Лента из 36 карточек (6 копий TAPE_CYCLE из 6 призов), горизонтальный скролл
  * на UI-треде (Reanimated translateX). Результат определяет СЕРВЕР
  * (referralSpin, идемпотентно по spinRequestId — см. roulette_spin_client.ts);
  * клиент лишь докручивает ленту до позиции выданного приза.
@@ -19,8 +19,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AccessibilityInfo,
-  Image,
+  type LayoutChangeEvent,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -28,25 +27,35 @@ import {
   View,
   useWindowDimensions,
 } from 'react-native';
+import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, {
+  cancelAnimation,
   Easing,
-  runOnJS,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import { scheduleOnRN } from 'react-native-worklets';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { CINEMA, cinemaAlpha, isCinemaMode } from '../constants/cinemaThemes';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { readCachedSpinCredits, spinReferralRoulette } from './roulette_spin_client';
-import type { SpinOutcome } from './roulette_spin_client';
-import { POSITION_OF_PRIZE, ROULETTE_PRIZES, SHOW_SPIN_ODDS, TAPE_CYCLE } from './roulette_prizes';
+import { POSITION_OF_PRIZE, preloadRoulettePrizeImages, ROULETTE_PRIZES, SHOW_SPIN_ODDS, TAPE_CYCLE } from './roulette_prizes';
+import { useReferralRouletteEnabled } from './referral_roulette_flag';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
+import { useLang } from '../components/LangContext';
+import { triLang, type Lang } from '../constants/i18n';
+
+function makeL(lang: Lang) {
+  return (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+}
 
 // ── Геометрия ленты (совпадает с веб-макетом) ────────────────────────────────
 const CARD_W = 150;
@@ -54,8 +63,8 @@ const CARD_H = 100; // 3:2, как в модалке выигрыша
 const GAP = 16;
 const STEP = CARD_W + GAP;
 const CYCLE = TAPE_CYCLE.length; // 6
-const COPIES = 12;
-const TAPE_COUNT = CYCLE * COPIES; // 72
+const COPIES = 6;
+const TAPE_COUNT = CYCLE * COPIES; // 36
 const SPIN_DURATION_MS = 4800;
 /** Минимум полных карточек прокрутки за спин (≈3 круга). */
 const MIN_TRAVEL = 18;
@@ -78,20 +87,26 @@ const STARS: readonly StarDot[] = (() => {
 
 export default function RouletteScreen() {
   const { theme: t, f, ds, themeMode } = useTheme();
+  const { lang } = useLang();
+  const L = useMemo(() => makeL(lang as Lang), [lang]);
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
-  const centerX = windowWidth / 2;
+  const rouletteOn = useReferralRouletteEnabled();
+  const reduceMotion = useReducedMotion();
 
   const [spins, setSpins] = useState(0);
   const [spinning, setSpinning] = useState(false);
-  const [reduceMotion, setReduceMotion] = useState(false);
+  const [assetsReady, setAssetsReady] = useState(false);
+  const [layoutReady, setLayoutReady] = useState(false);
+  const [tapeViewportWidth, setTapeViewportWidth] = useState(windowWidth);
   const [highlightIdx, setHighlightIdx] = useState<number | null>(null);
   const [win, setWin] = useState<RouletteWinData | null>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [prizesOpen, setPrizesOpen] = useState(false);
 
-  const translateX = useSharedValue(centerX - CARD_W / 2);
+  const centerX = tapeViewportWidth / 2;
+  const translateX = useSharedValue(windowWidth / 2 - CARD_W / 2);
   const lastIndexRef = useRef(0);
   const spinningRef = useRef(false);
   const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -102,12 +117,26 @@ export default function RouletteScreen() {
     : [t.accent, t.accent];
 
   useEffect(() => {
-    AccessibilityInfo.isReduceMotionEnabled().then(setReduceMotion).catch(() => {});
+    let alive = true;
+    void preloadRoulettePrizeImages()
+      .then(() => { if (alive) setAssetsReady(true); })
+      .catch(() => { if (alive) setAssetsReady(false); });
     return () => {
+      alive = false;
+      spinningRef.current = false;
+      cancelAnimation(translateX);
       if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
       if (winTimerRef.current) clearTimeout(winTimerRef.current);
     };
-  }, []);
+  }, [translateX]);
+
+  useEffect(() => {
+    if (rouletteOn) return;
+    cancelAnimation(translateX);
+    spinningRef.current = false;
+    setSpinning(false);
+    setWin(null);
+  }, [rouletteOn, translateX]);
 
   const showToast = useCallback((msg: string) => {
     setToast(msg);
@@ -143,16 +172,30 @@ export default function RouletteScreen() {
   );
 
   // ── Завершение спина (вызывается на JS-треде после анимации) ───────────────
-  const onSpinEnd = useCallback((outcome: Extract<SpinOutcome, { ok: true }>) => {
+  const onSpinEnd = useCallback((prizeIndex: number, prizeDays: number, vipUntil: string) => {
     setHighlightIdx(lastIndexRef.current);
     setSpinning(false);
     spinningRef.current = false;
     winTimerRef.current = setTimeout(() => {
-      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil });
+      setWin({ prizeIndex, prizeDays, vipUntil });
     }, 500);
   }, []);
 
+  const onTapeLayout = useCallback((event: LayoutChangeEvent) => {
+    const width = event.nativeEvent.layout.width;
+    if (!Number.isFinite(width) || width <= 0) return;
+    setTapeViewportWidth((current) => current === width ? current : width);
+    setLayoutReady(true);
+    if (!spinningRef.current) {
+      translateX.value = width / 2 - (lastIndexRef.current * STEP + CARD_W / 2);
+    }
+  }, [translateX]);
+
   const onSpin = useCallback(async () => {
+    if (!assetsReady || !layoutReady) {
+      showToast(L('Карточки ещё готовятся — секунду', 'Картки ще готуються — секунду', 'Las tarjetas aún se están preparando', 'Os cartões ainda estão sendo preparados', 'Thẻ vẫn đang được chuẩn bị', 'Kartu masih disiapkan', 'Kartlar hâlâ hazırlanıyor', 'Karty są jeszcze przygotowywane'));
+      return;
+    }
     if (spinningRef.current || spins <= 0) return;
     spinningRef.current = true;
     setSpinning(true);
@@ -169,14 +212,14 @@ export default function RouletteScreen() {
       setSpinning(false);
       if (outcome.reason === 'no_spins') {
         setSpins(0);
-        showToast('Прокруты закончились — пригласи друга');
+        showToast(L('Прокруты закончились — пригласи друга', 'Прокрути закінчилися — запроси друга', 'No quedan giros: invita a un amigo', 'Os giros acabaram — convide um amigo', 'Đã hết lượt quay — hãy mời bạn', 'Putaran habis — undang teman', 'Çevirme kalmadı — bir arkadaşını davet et', 'Skończyły się losy — zaproś znajomego'));
       } else if (outcome.reason === 'link_required') {
-        showToast('Нужно связать аккаунт — загляни в профиль');
+        showToast(L('Нужно связать аккаунт — загляни в профиль', 'Потрібно прив’язати акаунт — зазирни в профіль', 'Vincula tu cuenta desde el perfil', 'Vincule sua conta no perfil', 'Hãy liên kết tài khoản trong hồ sơ', 'Tautkan akunmu di profil', 'Hesabını profilden bağla', 'Połącz konto w profilu'));
       } else if (outcome.reason === 'disabled') {
-        showToast('Рулетка временно недоступна');
+        showToast(L('Рулетка временно недоступна', 'Рулетка тимчасово недоступна', 'La ruleta no está disponible temporalmente', 'A roleta está temporariamente indisponível', 'Vòng quay tạm thời không khả dụng', 'Roulette sementara tidak tersedia', 'Rulet geçici olarak kullanılamıyor', 'Ruletka jest chwilowo niedostępna'));
       } else {
         // retry уже выполнен внутри клиента с тем же spinRequestId — не дублируем.
-        showToast('Сеть подвела — попробуй ещё раз');
+        showToast(L('Сеть подвела — попробуй ещё раз', 'Помилка мережі — спробуй ще раз', 'Falló la red: inténtalo de nuevo', 'Falha na rede — tente novamente', 'Lỗi mạng — hãy thử lại', 'Jaringan bermasalah — coba lagi', 'Ağ hatası — tekrar dene', 'Błąd sieci — spróbuj ponownie'));
       }
       return;
     }
@@ -190,7 +233,7 @@ export default function RouletteScreen() {
 
     if (reduceMotion) {
       translateX.value = targetX;
-      onSpinEnd(outcome);
+      onSpinEnd(outcome.prizeIndex, outcome.prizeDays, outcome.vipUntil);
       return;
     }
     translateX.value = withTiming(
@@ -198,11 +241,10 @@ export default function RouletteScreen() {
       { duration: SPIN_DURATION_MS, easing: Easing.bezier(0.1, 0.72, 0.06, 1) },
       (finished) => {
         'worklet';
-        if (finished) runOnJS(onSpinEnd)(outcome);
-        else runOnJS(() => { spinningRef.current = false; })();
+        if (finished) scheduleOnRN(onSpinEnd, outcome.prizeIndex, outcome.prizeDays, outcome.vipUntil);
       },
     );
-  }, [spins, centerX, reduceMotion, translateX, onSpinEnd, showToast]);
+  }, [L, assetsReady, layoutReady, spins, centerX, reduceMotion, translateX, onSpinEnd, showToast]);
 
   const tapeStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
@@ -214,7 +256,26 @@ export default function RouletteScreen() {
     return cards;
   }, []);
 
-  const canSpin = spins > 0 && !spinning;
+  const canSpin = rouletteOn && assetsReady && layoutReady && spins > 0 && !spinning;
+
+  if (!rouletteOn) {
+    return (
+      <View style={[styles.root, { backgroundColor: t.bgGradient[0] }]}>
+        <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
+          <Pressable onPress={() => router.back()} hitSlop={12} style={[styles.headerBtn, { borderColor: t.border }]} accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '400' }}>‹</Text>
+          </Pressable>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1, textAlign: 'center' }}>
+            {L('Раздел недоступен', 'Розділ недоступний', 'Sección no disponible', 'Seção indisponível', 'Mục không khả dụng', 'Bagian tidak tersedia', 'Bölüm kullanılamıyor', 'Sekcja niedostępna')}
+          </Text>
+          <View style={styles.headerBtn} />
+        </View>
+        <Text style={{ color: t.textMuted, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '400', textAlign: 'center', margin: 24 }}>
+          {L('Этот раздел сейчас выключен.', 'Цей розділ зараз вимкнено.', 'Esta sección está desactivada.', 'Esta seção está desativada.', 'Mục này hiện đang tắt.', 'Bagian ini sedang dinonaktifkan.', 'Bu bölüm şu anda kapalı.', 'Ta sekcja jest teraz wyłączona.')}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.root}>
@@ -280,7 +341,7 @@ export default function RouletteScreen() {
         </View>
 
         {/* Лента */}
-        <View style={[styles.tapeViewport, { height: CARD_H + 28 }]}>
+        <View style={[styles.tapeViewport, { height: CARD_H + 28 }]} onLayout={onTapeLayout}>
           <Animated.View style={[styles.tapeRow, tapeStyle]}>
             {tapeCards.map((prizeIdx, i) => {
               const prize = ROULETTE_PRIZES[prizeIdx];
@@ -300,7 +361,7 @@ export default function RouletteScreen() {
                     },
                   ]}
                 >
-                  <Image source={prize.image} style={styles.tapeCardImage} resizeMode="cover" />
+                  <Image source={prize.image} style={styles.tapeCardImage} contentFit="cover" cachePolicy="memory-disk" priority="high" />
                 </View>
               );
             })}
@@ -352,7 +413,13 @@ export default function RouletteScreen() {
                     fontWeight: '700',
                   }}
                 >
-                  {spinning ? 'Крутится…' : spins > 0 ? 'Крутить' : 'Нет прокрутов'}
+                  {!assetsReady || !layoutReady
+                    ? L('Готовим…', 'Готуємо…', 'Preparando…', 'Preparando…', 'Đang chuẩn bị…', 'Menyiapkan…', 'Hazırlanıyor…', 'Przygotowujemy…')
+                    : spinning
+                      ? L('Крутится…', 'Крутиться…', 'Girando…', 'Girando…', 'Đang quay…', 'Berputar…', 'Çevriliyor…', 'Kręci się…')
+                      : spins > 0
+                        ? L('Крутить', 'Крутити', 'Girar', 'Girar', 'Quay', 'Putar', 'Çevir', 'Zakręć')
+                        : L('Нет прокрутов', 'Немає прокрутів', 'Sin giros', 'Sem giros', 'Không có lượt quay', 'Tidak ada putaran', 'Çevirme yok', 'Brak losów')}
                 </Text>
               </LinearGradient>
             </Pressable>
@@ -386,7 +453,7 @@ export default function RouletteScreen() {
               {ROULETTE_PRIZES.map((p) => (
                 <View key={p.index} style={styles.prizeRow}>
                   <View style={[styles.prizeThumbOuter, { borderColor: t.border }]}>
-                    <Image source={p.image} style={styles.prizeThumb} resizeMode="cover" />
+                    <Image source={p.image} style={styles.prizeThumb} contentFit="cover" cachePolicy="memory-disk" priority="normal" />
                   </View>
                   <Text style={{ color: t.textPrimary, fontSize: f.sub, fontFamily: ds.fontFamily, fontWeight: '700', width: 74 }}>
                     {p.label}

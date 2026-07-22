@@ -11,6 +11,8 @@
  * (см. PATCHES.md S9).
  */
 
+import { Asset } from 'expo-asset';
+
 export interface RoulettePrize {
   /** Индекс = prizeIndex в ответе referralSpin. */
   index: number;
@@ -56,6 +58,21 @@ export const POSITION_OF_PRIZE: readonly number[] = (() => {
  * включить обратно — одна строка: true. Экраны читают этот флаг.
  */
 export const SHOW_SPIN_ODDS = false;
+
+let roulettePrizePreload: Promise<void> | null = null;
+
+/** Бounded preload всех шести статичных карточек; повторные вызовы делят один Promise. */
+export async function preloadRoulettePrizeImages(): Promise<void> {
+  if (!roulettePrizePreload) {
+    roulettePrizePreload = Asset.loadAsync(ROULETTE_PRIZES.map((prize) => prize.image))
+      .then(() => undefined)
+      .catch((error) => {
+        roulettePrizePreload = null;
+        throw error;
+      });
+  }
+  return roulettePrizePreload;
+}
 
 /* expo-router route shim */
 export default function __RouteShim() { return null; }

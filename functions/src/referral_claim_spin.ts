@@ -18,7 +18,9 @@ import {
   prunePeriodCounter,
   referralClaimSlotsLeft,
   resolveReferralConfig,
+  resolveReferralRouletteEnabled,
 } from './referral';
+import { referralRouletteEnabledFromData } from './referral_roulette_flag';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -61,6 +63,11 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
   const db = admin.firestore();
   await assertAuthStableLink(db, authUid, referrerStableId);
 
+  // Мастер-флаг «рулетка+рефералка» (админка → remote_config). Выкл → failed-precondition.
+  if (!(await resolveReferralRouletteEnabled(db))) {
+    throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+  }
+
   // Тюнинг капов из «Пульта». Читаем ДО транзакции (отдельный документ).
   const cfg = await resolveReferralConfig(db);
 
@@ -73,8 +80,13 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
     .get();
 
   const userRef = db.collection(USERS).doc(referrerStableId);
+  const configRef = db.collection('remote_config').doc('app');
 
   if (qualifiedSnap.empty) {
+    // Нет award-транзакции, но stale outer precheck не должен вернуть успех после OFF.
+    if (!(await resolveReferralRouletteEnabled(db))) {
+      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+    }
     const u = await userRef.get();
     const p = (u.data() as { progress?: Record<string, unknown> } | undefined)?.progress ?? {};
     return {
@@ -90,10 +102,17 @@ export const referralClaimSpin = onCall(CALLABLE_BASE, async (request): Promise<
   const ymd = yyyymmddNow();
 
   return db.runTransaction(async (tx): Promise<ClaimSpinResult> => {
-    const userSnap = await tx.get(userRef);
     // Перечитываем attributions внутри транзакции (защита от гонки двойного клика).
     const attRefs = qualifiedSnap.docs.map((d) => db.collection(REFERRAL_ATTRIBUTIONS).doc(d.id));
-    const attSnaps = await Promise.all(attRefs.map((r) => tx.get(r)));
+    const [configSnap, userSnap, ...attSnaps] = await Promise.all([
+      tx.get(configRef),
+      tx.get(userRef),
+      ...attRefs.map((r) => tx.get(r)),
+    ]);
+    const configData = configSnap.data() as { numbers?: Record<string, unknown> } | undefined;
+    if (!referralRouletteEnabledFromData(configData)) {
+      throw new HttpsError('failed-precondition', 'REFERRAL_ROULETTE_DISABLED');
+    }
 
     const userData = userSnap.data() ?? {};
     const progressData = (userData as { progress?: Record<string, unknown> }).progress ?? {};

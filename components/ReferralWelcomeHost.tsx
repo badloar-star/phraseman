@@ -2,9 +2,8 @@
  * ReferralWelcomeHost — глобальный хост приветствия ПРИГЛАШЁННОГО.
  *
  * Показывает один раз на главной (после онбординга) тем, кто пришёл по реферал-ссылке,
- * объясняя награду: «установи → ВВЕДИ КОД (если ещё не) → пройди 1 урок полностью →
- * получишь 7 дней полного доступа». До этого реферал-ссылка молча вела на главную и
- * новичок не знал про подарок (награда referee = 7 дней, functions/src/referral.ts).
+ * объясняя условие: «установи → ВВЕДИ КОД (если ещё не) → пройди первый урок →
+ * пригласившему откроется один прокрут рулетки с призом Plus от 1 до 365 дней».
  *
  * Монтируется из app/_layout.tsx внутри OverlayArbiterProvider (рядом с
  * ArenaFriendInviteHost), поэтому НЕ требует правок home.tsx. Видимостью управляет
@@ -25,6 +24,7 @@ import {
   markReferralWelcomeSeen,
   type ReferralWelcomeDecision,
 } from '../app/referral_welcome_state';
+import { useReferralRouletteEnabled } from '../app/referral_roulette_flag';
 
 function makeL(lang: Lang) {
   return (
@@ -43,15 +43,20 @@ export default function ReferralWelcomeHost() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang } = useLang();
+  const rouletteOn = useReferralRouletteEnabled();
   const L = makeL(lang as Lang);
 
   const [welcomeDecision, setWelcomeDecision] = useState<ReferralWelcomeDecision | null>(null);
-  const wantShow = welcomeDecision?.show ?? false;
+  const wantShow = rouletteOn && (welcomeDecision?.show ?? false);
   const visible = useOverlayVisible('referralWelcome', wantShow);
 
   // Один раз при монтировании решаем, надо ли показывать (читает только AsyncStorage).
   useEffect(() => {
     let alive = true;
+    if (!rouletteOn) {
+      setWelcomeDecision(null);
+      return;
+    }
     decideReferralWelcome()
       .then((d) => {
         if (alive && d.show) setWelcomeDecision(d);
@@ -60,7 +65,7 @@ export default function ReferralWelcomeHost() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [rouletteOn]);
 
   const scale = useRef(new Animated.Value(0.9)).current;
   const opacity = useRef(new Animated.Value(0)).current;
@@ -100,14 +105,14 @@ export default function ReferralWelcomeHost() {
     'Masz zaproszenie — jest prezent',
   );
   const body = L(
-    'Пройди один урок полностью — и получишь 7 дней полного доступа бесплатно. Твой друг тоже получит свои 7 дней.',
-    'Пройди один урок повністю — і отримаєш 7 днів повного доступу безкоштовно. Твій друг теж отримає свої 7 днів.',
-    'Completa una lección entera y obtienes 7 días de acceso total gratis. Tu amigo también recibe sus 7 días.',
-    'Conclua uma lição inteira e ganhe 7 dias de acesso total grátis. Seu amigo também ganha 7 dias.',
-    'Hoàn thành một bài học và nhận 7 ngày truy cập đầy đủ miễn phí. Bạn của bạn cũng nhận 7 ngày.',
-    'Selesaikan satu pelajaran penuh dan dapatkan 7 hari akses penuh gratis. Temanmu juga dapat 7 hari.',
-    'Bir dersi tamamen bitir, 7 gün tam erişim bedava senin olsun. Arkadaşın da kendi 7 gününü alır.',
-    'Ukończ całą lekcję i zgarnij 7 dni pełnego dostępu za darmo. Twój znajomy też dostaje swoje 7 dni.',
+    'Пройди первый урок полностью — пригласивший тебя друг получит 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
+    'Пройди перший урок повністю — друг, який тебе запросив, отримає 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
+    'Completa la primera lección: quien te invitó recibirá 1 giro con premios Plus de 1 a 365 días.',
+    'Conclua a primeira lição: quem convidou você recebe 1 giro com prêmios Plus de 1 a 365 dias.',
+    'Hoàn thành bài học đầu tiên: người mời bạn nhận 1 lượt quay với giải Plus từ 1 đến 365 ngày.',
+    'Selesaikan pelajaran pertama: teman yang mengundangmu mendapat 1 putaran dengan hadiah Plus 1–365 hari.',
+    'İlk dersi bitir: seni davet eden arkadaşın 1 çevirme ve 1–365 gün Plus şansı kazanır.',
+    'Ukończ pierwszą lekcję: osoba, która cię zaprosiła, dostanie 1 los z nagrodą Plus od 1 do 365 dni.',
   );
   const primaryCta = L(
     'Пройти первый урок',
@@ -135,6 +140,7 @@ export default function ReferralWelcomeHost() {
     ?? (t as { bgPrimary?: string }).bgPrimary
     ?? '#15181a';
   const accent = (t as { accent?: string }).accent ?? '#34C759';
+  const accentText = (t as { correctText?: string }).correctText ?? '#07110A';
   const textPrimary = (t as { textPrimary?: string }).textPrimary ?? '#FFFFFF';
   const textSecond = (t as { textSecond?: string; textSecondary?: string }).textSecond
     ?? (t as { textSecondary?: string }).textSecondary
@@ -149,7 +155,7 @@ export default function ReferralWelcomeHost() {
             style={[styles.card, { backgroundColor: bgCard, transform: [{ scale }], opacity }]}
           >
             <View style={[styles.badge, { backgroundColor: accent }]}>
-              <Ionicons name="gift" size={30} color="#fff" />
+              <Ionicons name="gift" size={30} color={accentText} />
             </View>
             <Text style={[styles.title, { color: textPrimary }]}>{title}</Text>
             <Text style={[styles.body, { color: textSecond }]}>{body}</Text>
@@ -160,7 +166,7 @@ export default function ReferralWelcomeHost() {
               style={[styles.primaryBtn, { backgroundColor: accent }]}
               accessibilityRole="button"
             >
-              <Text style={styles.primaryBtnText}>{primaryCta}</Text>
+              <Text style={[styles.primaryBtnText, { color: accentText }]}>{primaryCta}</Text>
             </Pressable>
 
             {showCodeCta ? (

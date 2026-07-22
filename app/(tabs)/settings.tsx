@@ -68,6 +68,7 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
+import { useReferralRouletteEnabled } from '../referral_roulette_flag';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
@@ -428,6 +429,7 @@ export default function SettingsMain() {
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
   const [topHelpersOn, setTopHelpersOn] = useState(isTopHelpersEnabled());
+  const rouletteOn = useReferralRouletteEnabled();
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -1299,14 +1301,14 @@ export default function SettingsMain() {
             уже готовый экран, куда из настроек раньше не было входа. */}
         <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          <SettingsRow
+          {rouletteOn ? <SettingsRow
             testID="settings-invite-friend-row"
             icon="people"
             color="teal"
             label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
-            sub={L('Вы оба получите бонус', 'Ви обоє отримаєте бонус', 'Ambos recibís un bonus', 'Vocês dois ganham um bônus', 'Cả hai đều nhận thưởng', 'Kalian berdua dapat bonus', 'İkiniz de bonus alırsınız', 'Oboje dostaniecie bonus')}
+            sub={L('1 прокрут · Plus от 1 до 365 дней', '1 прокрут · Plus від 1 до 365 днів', '1 giro · Plus de 1 a 365 días', '1 giro · Plus de 1 a 365 dias', '1 lượt quay · Plus từ 1 đến 365 ngày', '1 putaran · Plus 1–365 hari', '1 çevirme · 1–365 gün Plus', '1 los · Plus od 1 do 365 dni')}
             onPress={() => router.push('/settings_invite_friend' as any)}
-          />
+          /> : null}
           {topHelpersOn ? (
             <SettingsRow
               testID="settings-top-helpers-row"

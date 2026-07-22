@@ -16,7 +16,7 @@ const SOCIAL_FRIENDS_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   // Новые темы переиспользуют ассет minimalDark, без новых файлов.
   candyBlue: require('../assets/images/social_icons/social-friends-candyBlue.webp'),
   indigo: require('../assets/images/social_icons/social-friends-indigo.webp'),
-  vanilla: require('../assets/images/social_icons/social-friends-minimalDark.webp'),
+  vanilla: require('../assets/images/social_icons/social-friends-vanilla.webp'),
 };
 
 const SOCIAL_CHAT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
@@ -32,7 +32,7 @@ const SOCIAL_CHAT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   volt: require('../assets/images/social_icons/social-chat-volt.webp'),
   candyBlue: require('../assets/images/social_icons/social-chat-candyBlue.webp'),
   indigo: require('../assets/images/social_icons/social-chat-indigo.webp'),
-  vanilla: require('../assets/images/social_icons/social-chat-minimalDark.webp'),
+  vanilla: require('../assets/images/social_icons/social-chat-vanilla.webp'),
 };
 
 export function getSocialFriendsIcon(themeMode: ThemeMode): ImageSourcePropType {

@@ -168,9 +168,9 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     analytics: 'assets/images/trainer_theme_icons/indigo/analytics.webp',
   },
   vanilla: {
-    phrases: 'assets/images/trainer_theme_icons/minimalDark/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/minimalDark/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/minimalDark/analytics.webp',
+    phrases: 'assets/images/trainer_theme_icons/vanilla/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/vanilla/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/vanilla/analytics.webp',
   },
 };
 
@@ -236,9 +236,9 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     analytics: require('../assets/images/trainer_theme_icons/indigo/analytics.webp'),
   },
   vanilla: {
-    phrases: require('../assets/images/trainer_theme_icons/minimalDark/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/minimalDark/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/minimalDark/analytics.webp'),
+    phrases: require('../assets/images/trainer_theme_icons/vanilla/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/vanilla/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/vanilla/analytics.webp'),
   },
 };
 

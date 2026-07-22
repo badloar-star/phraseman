@@ -33,6 +33,20 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/levels/her man fog.webp'),
     };
   }
+  if (themeMode === 'vanilla') {
+    return {
+      lesson: require('../assets/images/home_menu/vanilla/home-vanilla-lessons.webp'),
+      cards: require('../assets/images/home_menu/vanilla/home-vanilla-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/vanilla/home-vanilla-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/vanilla/home-vanilla-league.webp'),
+      test: require('../assets/images/home_menu/vanilla/home-vanilla-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/vanilla/home-vanilla-practice.webp'),
+      dialogs: require('../assets/images/home_menu/vanilla/home-vanilla-dialogs.webp'),
+      exam: require('../assets/images/home_menu/vanilla/home-vanilla-exam.webp'),
+      shop: require('../assets/images/home_menu/vanilla/home-vanilla-shop.webp'),
+      heroMap: require('../assets/images/home_menu/vanilla/home-vanilla-hero-map.webp'),
+    };
+  }
   if (themeMode === 'indigo') {
     return {
       lesson: require('../assets/images/home_menu/indigo/home-indigo-lessons.webp'),

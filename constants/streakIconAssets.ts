@@ -167,16 +167,16 @@ const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
     100: 'assets/images/streak_icons/indigo/streak-fire-indigo-100.webp',
   },
   vanilla: {
-    1: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-001.webp',
-    2: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-002.webp',
-    3: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-003.webp',
-    5: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-005.webp',
-    7: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-007.webp',
-    10: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-010.webp',
-    20: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-020.webp',
-    35: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-035.webp',
-    60: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-060.webp',
-    100: 'assets/images/streak_icons/minimalDark/streak-fire-minimalDark-100.webp',
+    1: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-001.webp',
+    2: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-002.webp',
+    3: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-003.webp',
+    5: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-005.webp',
+    7: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-007.webp',
+    10: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-010.webp',
+    20: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-020.webp',
+    35: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-035.webp',
+    60: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-060.webp',
+    100: 'assets/images/streak_icons/vanilla/streak-fire-vanilla-100.webp',
   },
 };
 
@@ -326,16 +326,16 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
     100: require('../assets/images/streak_icons/indigo/streak-fire-indigo-100.webp'),
   },
   vanilla: {
-    1: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-001.webp'),
-    2: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-002.webp'),
-    3: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-003.webp'),
-    5: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-005.webp'),
-    7: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-007.webp'),
-    10: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-010.webp'),
-    20: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-020.webp'),
-    35: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-035.webp'),
-    60: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-060.webp'),
-    100: require('../assets/images/streak_icons/minimalDark/streak-fire-minimalDark-100.webp'),
+    1: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-001.webp'),
+    2: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-002.webp'),
+    3: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-003.webp'),
+    5: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-005.webp'),
+    7: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-007.webp'),
+    10: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-010.webp'),
+    20: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-020.webp'),
+    35: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-035.webp'),
+    60: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-060.webp'),
+    100: require('../assets/images/streak_icons/vanilla/streak-fire-vanilla-100.webp'),
   },
 };
 
@@ -388,7 +388,7 @@ const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   // Новые темы показывают freeze-иконку minimalDark без новых ассетов.
   candyBlue: 'assets/images/streak_icons/candyBlue/streak-freeze-candyBlue.webp',
   indigo: 'assets/images/streak_icons/indigo/streak-freeze-indigo.webp',
-  vanilla: 'assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp',
+  vanilla: 'assets/images/streak_icons/vanilla/streak-freeze-vanilla.webp',
 };
 
 const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
@@ -404,7 +404,7 @@ const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
   volt: require('../assets/images/streak_icons/volt/streak-freeze-volt.webp'),
   candyBlue: require('../assets/images/streak_icons/candyBlue/streak-freeze-candyBlue.webp'),
   indigo: require('../assets/images/streak_icons/indigo/streak-freeze-indigo.webp'),
-  vanilla: require('../assets/images/streak_icons/minimalDark/streak-freeze-minimalDark.webp'),
+  vanilla: require('../assets/images/streak_icons/vanilla/streak-freeze-vanilla.webp'),
 };
 
 const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {

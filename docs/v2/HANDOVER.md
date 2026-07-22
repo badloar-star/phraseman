@@ -5702,3 +5702,75 @@ brief, execution phases, browser-preview requirements, QA gates and delivery
 contract. The owner only needs to give Kimi this single document. The split
 files under `docs/v2/frontend-handoff/kimi-k3/` remain supporting records and
 are not required for the handoff.
+
+## 15.7 — Content generator and optional-practice owner decision (2026-07-22)
+
+### Mission
+
+The owner approved a simple Admin generation experience backed by a strict
+multilingual compiler and review pipeline. The product shape remains 32
+communicative units, twelve required micro-sessions per unit and up to two
+adaptive sessions. Content is generated language-natively from a certified
+LanguageProfile and `can do` graph, not by translating one English phrase list
+or generating twelve unrelated session batches.
+
+### New authority
+
+`docs/superpowers/specs/2026-07-22-learning-v2-content-generation-and-optional-practice-design.md`
+records the approved product direction:
+
+- eight reusable UI engines and fourteen pedagogic modes;
+- structured phrase/content objects compiled into sequenced sessions;
+- language-profile, independent-QA, exception-review and immutable-release gates;
+- scoped generation E1 -> E1–E8 -> E1–E32 rather than one unchecked batch;
+- dedicated Script Curriculum packs for Chinese, Japanese, Korean, RTL and
+  future writing systems;
+- one or two dynamic optional practice nodes per unit, initially Quick Speak,
+  Echo & Rhythm and Listen & Respond;
+- unlimited optional star earning with deterministic diminishing rewards for
+  repeating the same easy material;
+- strict separation of economy stars, access and learning mastery.
+
+### Completed / partial / not started
+
+| Item | Status | Evidence / closing step |
+|---|---|---|
+| Owner product direction | complete | Owner explicitly approved the generator vision and no-hard-cap reward decision on 2026-07-22. |
+| Normative design record | complete | New specification above. |
+| Exact reward/decay numbers | not started | Must be pinned as pilot hypotheses with tests and telemetry. |
+| Admin/runtime implementation | not started | Requires a separate approved implementation plan. |
+| Kimi V5 intake | partial | External prototype remains under read-only monitoring; do not import until its final package stabilises and passes intake. |
+
+### Preserved state
+
+- This decision changes documentation only.
+- No app, Admin, Functions, Rules, indexes, content or tests were changed.
+- No API generation, deploy, push or production action occurred.
+- Existing dirty worktrees and the external Kimi working folder remain untouched.
+
+### Exact next executable task
+
+After the owner reviews this written specification, create a TDD implementation
+plan that reconciles it with the existing pilot-season, Content Studio and
+multilingual writing-system plans. The first implementation packet must remain
+E1-only and define the typed LanguageProfile/content-item/session-compiler
+contracts plus deterministic validation and reward/mastery separation before
+any bulk content generation or UI import.
+
+Acceptance criteria for the planning task:
+
+1. no duplicate curriculum or release authority;
+2. exact dependency order and one-writer file ownership;
+3. E1 -> E1–E8 -> E1–E32 gates remain intact;
+4. optional practice cannot block progress or mint mastery;
+5. reward decay values remain explicit hypotheses until approved;
+6. Kimi presentation intake is a separate reviewed packet.
+
+### Находки и предложения
+
+- The one-button Admin experience is an orchestration UI, not permission to
+  remove quality gates.
+- A small native-review certification step per new language is still required;
+  AI disagreement checks reduce its scope but cannot honestly replace it.
+- Map extensibility should use generic optional slots and a capability registry,
+  not hard-coded one-off nodes.

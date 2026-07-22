@@ -3189,7 +3189,9 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
     const adminTasks = adminOverride.taskIds
       .map((id) => ALL_TASKS.find((t) => t.id === id))
       .filter((t): t is DailyTask => Boolean(t));
-    return filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(adminTasks), studyTarget);
+    // Admin QA override показываем ДОСЛОВНО: ротация retired-типов здесь не применяется,
+    // иначе seed-пак (da2/da3 и т.п.) молча подменялся и QA проверял не те задания.
+    return filterDailyTasksForStudyTarget(adminTasks, studyTarget);
   }
   // Выбираем набор заданий по тиру уровня игрока
   const baseTasks = getTodayTasksByLevel(playerLevel);

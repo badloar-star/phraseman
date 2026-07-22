@@ -32,6 +32,10 @@ function sha256(text) {
   return createHash('sha256').update(text, 'utf-8').digest('hex');
 }
 
+function normalizeLineEndings(text) {
+  return text.replace(/\r\n/g, '\n');
+}
+
 function loadLevel(level) {
   const path = join(SOURCE_DIR, `${level}.json`);
   if (!existsSync(path)) {
@@ -204,7 +208,7 @@ function main() {
         process.exit(1);
       }
       const existing = readFileSync(output, 'utf-8');
-      if (existing !== generated) {
+      if (normalizeLineEndings(existing) !== normalizeLineEndings(generated)) {
         console.error(`Check failed: generated output differs from ${output}`);
         process.exit(1);
       }

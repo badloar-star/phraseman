@@ -37,8 +37,8 @@ describe('"My practice" speaks the correct answer out loud', () => {
     // WordBank + speaking-fill + FillGap — три точки правильного ответа.
     const calls = phrasesSrc.match(/speakAnswer\(phrase, studyTarget\)/g) ?? [];
     expect(calls.length).toBeGreaterThanOrEqual(3);
-    const waitedCalls = phrasesSrc.match(/waitForPhraseAnswerFeedback\(speakAnswer\(phrase, studyTarget\)\)/g) ?? [];
-    expect(waitedCalls.length).toBeGreaterThanOrEqual(3);
+    // Озвучка больше не управляет переходом: карточка ждёт явного «Готово →».
+    expect(phrasesSrc).not.toContain('waitForPhraseAnswerFeedback');
     expect(phrasesSrc).not.toContain('setTimeout(() => onResult(true), 700)');
   });
 

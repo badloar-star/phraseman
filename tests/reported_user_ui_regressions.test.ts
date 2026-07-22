@@ -22,7 +22,20 @@ describe('reported user UI regressions', () => {
   it('does not make the phrase check button look active before the word bank is complete', () => {
     expect(trainerSource).toContain('const canCheck = selected.length === correctTokens.length && correctTokens.length > 0;');
     expect(trainerSource).toContain('disabled={!canCheck || feedback !== \'none\'}');
-    expect(trainerSource).toContain('opacity: canCheck ? 1 : 0.4');
+    expect(trainerSource).toContain("opacity: canCheck || feedback !== 'none' ? 1 : 0.4");
+  });
+
+  it('keeps a checked phrase on screen until the learner chooses what to do next', () => {
+    expect(trainerSource).toContain('onAdvance: () => void;');
+    expect(trainerSource).toContain('const retry = () => {');
+    expect(trainerSource).toContain("ru: 'Готово →'");
+    expect(trainerSource).toContain("ru: 'Повторить ещё раз'");
+    expect(trainerSource).not.toContain('waitForPhraseAnswerFeedback');
+  });
+
+  it('records only the first graded attempt when a learner retries the same phrase', () => {
+    expect(trainerSource).toContain('const hasRecordedResult = useRef(false);');
+    expect(trainerSource).toContain('if (hasRecordedResult.current) return;');
   });
 
   it('never leaves a multi-word phrase in the original word order', () => {

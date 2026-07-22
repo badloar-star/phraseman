@@ -38,9 +38,10 @@ describe('trainer phrases speaking auto-fill contract', () => {
     expect(source).toContain('opacity: used ? 0.18 : 1');
   });
 
-  it('grades the phrase immediately so the user does not assemble by hand', () => {
+  it('grades the phrase immediately but leaves its completion under learner control', () => {
     expect(onPassBody).toContain("setFeedback('correct')");
-    expect(onPassBody).toContain('onResult(true)');
+    expect(onPassBody).toContain('recordResult(true)');
+    expect(onPassBody).not.toContain('waitForPhraseAnswerFeedback');
   });
 
   it('does not overwrite an already-graded card', () => {

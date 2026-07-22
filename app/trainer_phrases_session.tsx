@@ -16,7 +16,6 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import {
   Animated,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -88,21 +87,6 @@ import {
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
 
-const TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS = 700;
-
-function wait(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function waitForPhraseAnswerFeedback(
-  answerSpeech: Promise<void>,
-): Promise<void> {
-  await Promise.all([
-    answerSpeech.catch(() => undefined),
-    wait(TRAINER_PHRASE_CORRECT_FEEDBACK_MIN_MS),
-  ]);
-}
-
 function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): readonly string[] | undefined {
   if (!item.lessonId || !errorWord) return undefined;
   const phrase = getLessonData(item.lessonId).find(row => row.english.trim() === item.key.trim());
@@ -120,13 +104,14 @@ function lessonSourceDistractorsForItem(item: TrainerItem, errorWord: string): r
 interface WordBankProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  onAdvance: () => void;
   // Озвучка живёт на родителе (TrainerPhrasesSession), а не внутри карточки:
   // при переходе к следующему заданию карточка размонтируется (меняется key),
   // и если бы useAudio() был здесь, его cleanup оборвал бы фразу на полуслове.
   speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
-function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
+function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
@@ -143,6 +128,7 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
   const [bank] = useState<WordBankTile[]>(() => buildSessionWordBank(phrase));
   const [selected, setSelected] = useState<WordBankTile[]>([]);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const hasRecordedResult = useRef(false);
   const shakeAnim = useRef(new Animated.Value(0)).current;
   const { flashKey, flash } = useWordFlash();
 
@@ -175,6 +161,12 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
     setSelected(s => s.filter(t => t.slot !== tile.slot));
   };
 
+  const recordResult = (correct: boolean) => {
+    if (hasRecordedResult.current) return;
+    hasRecordedResult.current = true;
+    onResult(correct);
+  };
+
   const check = () => {
     if (selected.length !== correctTokens.length) return;
     const userAnswer = selected.map(t => t.text).join(' ').toLowerCase();
@@ -184,7 +176,8 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
+      void speakAnswer(phrase, studyTarget);
+      recordResult(true);
     } else {
       hapticError();
       Animated.sequence([
@@ -193,12 +186,16 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
         Animated.timing(shakeAnim, { toValue: 6, duration: 60, useNativeDriver: true }),
         Animated.timing(shakeAnim, { toValue: 0, duration: 60, useNativeDriver: true }),
       ]).start();
-      setTimeout(() => {
-        setFeedback('none');
-        setSelected([]);
-        onResult(false);
-      }, 1200);
+      recordResult(false);
     }
+  };
+
+  const retry = () => {
+    if (feedback === 'none') return;
+    void hapticTap();
+    setSelected([]);
+    setFeedback('none');
+    shakeAnim.setValue(0);
   };
 
   const zoneBg = feedback === 'correct'
@@ -367,9 +364,35 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
           setFeedback('correct');
           hapticSuccess();
           playCorrect();
-          void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
+          void speakAnswer(phrase, studyTarget);
+          recordResult(true);
         }}
       />
+
+      {feedback !== 'none' ? (
+        <View style={styles.resultActions}>
+          <TouchableOpacity
+            onPress={onAdvance}
+            style={[styles.resultActionButton, { backgroundColor: t.correct }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Готово, перейти к следующей фразе', uk: 'Готово, перейти до наступної фрази', es: 'Listo, pasar a la siguiente frase', 'pt-BR': 'Concluído, ir para a próxima frase', vi: 'Xong, chuyển sang câu tiếp theo', id: 'Selesai, lanjut ke frasa berikutnya', tr: 'Tamam, sonraki ifadeye geç', pl: 'Gotowe, przejdź do następnej frazy' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={retry}
+            style={[styles.resultActionButton, { backgroundColor: t.bgSurface2 }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Повторить эту фразу ещё раз', uk: 'Повторити цю фразу ще раз', es: 'Repetir esta frase otra vez', 'pt-BR': 'Repetir esta frase mais uma vez', vi: 'Lặp lại câu này một lần nữa', id: 'Ulangi frasa ini sekali lagi', tr: 'Bu ifadeyi tekrar et', pl: 'Powtórz tę frazę jeszcze raz' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.textPrimary, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Повторить ещё раз', uk: 'Повторити ще раз', es: 'Repetir otra vez', 'pt-BR': 'Repetir mais uma vez', vi: 'Lặp lại lần nữa', id: 'Ulangi sekali lagi', tr: 'Tekrar et', pl: 'Powtórz jeszcze raz' })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -378,12 +401,13 @@ function WordBankMode({ item, onResult, speakAnswer }: WordBankProps) {
 interface FillGapProps {
   item: TrainerItem;
   onResult: (correct: boolean) => void;
+  onAdvance: () => void;
   // См. комментарий к WordBankProps.speakAnswer — озвучка принадлежит родителю,
   // чтобы фраза не обрывалась при размонтировании карточки на следующем задании.
   speakAnswer: (text: string, studyTarget: StudyTargetLang) => Promise<void>;
 }
 
-function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
+function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
   const { theme: t, f, themeMode } = useTheme();
   const isCompassTheme = false;
   const accent = statsThemeAccent(themeMode);
@@ -406,6 +430,7 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   }));
   const [chosen, setChosen] = useState<string | null>(null);
   const [feedback, setFeedback] = useState<'none' | 'correct' | 'wrong'>('none');
+  const hasRecordedResult = useRef(false);
   const shakeX = useSharedValue(0);
   const shakeStyle = useAnimatedStyle(() => ({ transform: [{ translateX: shakeX.value }] }));
 
@@ -413,6 +438,12 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
   // buildTrainerSessionDeck гарантирует gapIndex >= 0 для fill_gap; -1 — фолбэк без слота.
   const phraseWords = useMemo(() => phrase.split(' '), [phrase]);
   const gapIndex = useMemo(() => trainerGapTokenIndex(phrase, errorWord), [phrase, errorWord]);
+
+  const recordResult = (correct: boolean) => {
+    if (hasRecordedResult.current) return;
+    hasRecordedResult.current = true;
+    onResult(correct);
+  };
 
   const pick = (opt: string) => {
     if (feedback !== 'none') return;
@@ -422,7 +453,8 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
     if (isOk) {
       hapticSuccess();
       playCorrect();
-      void waitForPhraseAnswerFeedback(speakAnswer(phrase, studyTarget)).then(() => onResult(true));
+      void speakAnswer(phrase, studyTarget);
+      recordResult(true);
     } else {
       hapticError();
       shakeX.value = withSequence(
@@ -431,12 +463,16 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
         withTiming(-3, { duration: 55 }),
         withTiming(0, { duration: 55 }),
       );
-      setTimeout(() => {
-        setChosen(null);
-        setFeedback('none');
-        onResult(false);
-      }, 1100);
+      recordResult(false);
     }
+  };
+
+  const retry = () => {
+    if (feedback === 'none') return;
+    void hapticTap();
+    setChosen(null);
+    setFeedback('none');
+    shakeX.value = 0;
   };
 
   const gapBg = feedback === 'correct'
@@ -536,6 +572,31 @@ function FillGapMode({ item, onResult, speakAnswer }: FillGapProps) {
           </View>
         </Reanimated.View>
       ) : null}
+
+      {feedback !== 'none' ? (
+        <View style={styles.resultActions}>
+          <TouchableOpacity
+            onPress={onAdvance}
+            style={[styles.resultActionButton, { backgroundColor: t.correct }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Готово, перейти к следующей фразе', uk: 'Готово, перейти до наступної фрази', es: 'Listo, pasar a la siguiente frase', 'pt-BR': 'Concluído, ir para a próxima frase', vi: 'Xong, chuyển sang câu tiếp theo', id: 'Selesai, lanjut ke frasa berikutnya', tr: 'Tamam, sonraki ifadeye geç', pl: 'Gotowe, przejdź do następnej frazy' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={retry}
+            style={[styles.resultActionButton, { backgroundColor: t.bgSurface2 }]}
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Повторить эту фразу ещё раз', uk: 'Повторити цю фразу ще раз', es: 'Repetir esta frase otra vez', 'pt-BR': 'Repetir esta frase mais uma vez', vi: 'Lặp lại câu này một lần nữa', id: 'Ulangi frasa ini sekali lagi', tr: 'Bu ifadeyi tekrar et', pl: 'Powtórz tę frazę jeszcze raz' })}
+          >
+            <Text style={[styles.resultActionText, { color: t.textPrimary, fontSize: f.body }]}>
+              {triLang(lang, { ru: 'Повторить ещё раз', uk: 'Повторити ще раз', es: 'Repetir otra vez', 'pt-BR': 'Repetir mais uma vez', vi: 'Lặp lại lần nữa', id: 'Ulangi sekali lagi', tr: 'Tekrar et', pl: 'Powtórz jeszcze raz' })}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
     </View>
   );
 }
@@ -570,6 +631,8 @@ export default function TrainerPhrasesSession() {
   const dailySessionTracked = useRef(false);
   const planTrainerCompletionTracked = useRef(false);
   const sessionStartRef = useRef(0);
+  const pendingResultRef = useRef<Promise<void>>(Promise.resolve());
+  const advancingRef = useRef(false);
   const planTrainerContext = useMemo(() => readTrainerPlanTaskContext({
     mode: params.mode,
     planDayIndex: params.planDayIndex,
@@ -665,34 +728,42 @@ export default function TrainerPhrasesSession() {
     return () => { cancelled = true; };
     }, [planTrainerContext, router, reloadKey, sourceLocale, studyTarget, trainerGateOpen]);
 
-  const handleResult = useCallback(async (answeredCorrectly: boolean) => {
+  const handleResult = useCallback((answeredCorrectly: boolean) => {
     const card = deck[current];
     if (!card) return;
 
-    const nextCorrect = correct + (answeredCorrectly ? 1 : 0);
-    const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
-    await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
-    const updates: { type: TaskType; increment: number }[] = [];
-    if (!dailySessionTracked.current) {
-      dailySessionTracked.current = true;
-      updates.push({ type: 'recall_session', increment: 1 });
-    }
-    if (answeredCorrectly) {
-      updates.push({ type: 'recall_answers', increment: 1 });
-      updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
-      checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
-    }
+    pendingResultRef.current = (async () => {
+      await markTrainerResult(card.item.key, card.item.queue, answeredCorrectly, studyTarget);
+      const updates: { type: TaskType; increment: number }[] = [];
+      if (!dailySessionTracked.current) {
+        dailySessionTracked.current = true;
+        updates.push({ type: 'recall_session', increment: 1 });
+      }
+      if (answeredCorrectly) {
+        updates.push({ type: 'recall_answers', increment: 1 });
+        updates.push({ type: card.item.queue === 'arena' ? 'trainer_arena' : 'trainer_phrases', increment: 1 });
+        checkAchievements({ type: 'trainer_correct', correct: 1, studyTarget }).catch(() => {});
+      }
+      if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
+    })().catch(() => {});
+  }, [deck, current, studyTarget]);
 
+  const handleAdvance = useCallback(async () => {
+    if (advancingRef.current) return;
+    advancingRef.current = true;
+    await pendingResultRef.current;
     const next = current + 1;
     if (next >= deck.length) {
-      if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
+      if (deck.length >= 5 && wrong === 0) {
+        updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }], { studyTarget }).catch(() => {});
+      }
       checkAchievements({
         type: 'trainer_session_result',
-        correct: nextCorrect,
-        wrong: nextWrong,
+        correct,
+        wrong,
         total: deck.length,
         studyTarget,
       }).catch(() => {});
@@ -700,8 +771,8 @@ export default function TrainerPhrasesSession() {
     } else {
       setCurrent(next);
     }
-    if (updates.length > 0) updateMultipleTaskProgress(updates, { studyTarget }).catch(() => {});
-  }, [deck, current, correct, wrong, studyTarget]);
+    advancingRef.current = false;
+  }, [deck.length, current, correct, wrong, studyTarget]);
 
   useEffect(() => {
     if (!done || !planTrainerContext.taskId || planTrainerCompletionTracked.current) return;
@@ -843,8 +914,8 @@ export default function TrainerPhrasesSession() {
             scrollEventThrottle={16}
           >
             {card?.mode === 'word_bank'
-              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} speakAnswer={speakAnswer} />
+              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
+              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
             }
           </BouncyScrollView>
         </ContentWrap>

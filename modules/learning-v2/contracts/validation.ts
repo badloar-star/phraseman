@@ -224,6 +224,26 @@ const EPISODE_KEYS = [
   "accessibilityRoutes",
   "checkpointContract",
 ] as const;
+const EPISODE_V2_KEYS = [...EPISODE_KEYS, "sessionSetRef"] as const;
+const EPISODE_REQUIRED_ARRAY_KEYS = [
+  "phraseFrames",
+  "semanticSlots",
+  "criticalConstraints",
+  "activities",
+  "starSlots",
+  "delayedProbeDefinitions",
+  "reviewLinks",
+  "accessibilityRoutes",
+] as const;
+const EPISODE_REQUIRED_OBJECT_KEYS = [
+  "scenario",
+  "graph",
+  "requiredLoops",
+  "assessmentNodes",
+  "capstoneContract",
+  "learningDesign",
+  "masteryContract",
+] as const;
 const GRAPH_KEYS = ["startNodeId", "capstoneNodeId", "nodes", "edges"] as const;
 const NODE_KEYS = [
   "nodeId",
@@ -332,6 +352,10 @@ type CanonicalJsonSnapshotResult =
   | { readonly ok: true; readonly value: unknown }
   | { readonly ok: false; readonly issue: V2ContractIssue };
 
+interface CanonicalJsonSnapshotOptions {
+  readonly permittedUndefinedDataPropertyPath?: string;
+}
+
 /**
  * Builds a data-descriptor-only JSON snapshot before any semantic parser or
  * canonical hash runs. Accessors, cycles, sparse arrays, exotic prototypes,
@@ -340,6 +364,7 @@ type CanonicalJsonSnapshotResult =
 const snapshotCanonicalJsonInput = (
   input: unknown,
   rootPath: string,
+  options?: CanonicalJsonSnapshotOptions,
 ): CanonicalJsonSnapshotResult => {
   const active = new WeakSet<object>();
   const root: { value: unknown } = { value: undefined };
@@ -497,6 +522,12 @@ const snapshotCanonicalJsonInput = (
             issue: issue("contract_input_invalid", stablePath),
           };
         }
+        if (
+          descriptor.value === undefined &&
+          options?.permittedUndefinedDataPropertyPath === stablePath
+        ) {
+          continue;
+        }
         entries.push({ key, value: descriptor.value });
       }
       const snapshot: JsonObject =
@@ -562,6 +593,22 @@ const exactObjectIssues = (
       issues.push(issue("field_missing", `${path}.${key}`));
   }
   return issues;
+};
+
+const episodeContainerShapeIssue = (
+  episode: JsonObject,
+): V2ContractIssue | undefined => {
+  for (const key of EPISODE_REQUIRED_ARRAY_KEYS) {
+    if (!Array.isArray(episode[key])) {
+      return issue("field_type_invalid", `$.episode.${key}`);
+    }
+  }
+  for (const key of EPISODE_REQUIRED_OBJECT_KEYS) {
+    if (!isPlainObject(episode[key])) {
+      return issue("field_type_invalid", `$.episode.${key}`);
+    }
+  }
+  return undefined;
 };
 
 const uniqueSecondIndex = (values: readonly unknown[]): number => {
@@ -647,16 +694,35 @@ const validatePackageShape = (input: unknown): readonly V2ContractIssue[] => {
     if (templateIssues.length > 0) return templateIssues;
   }
 
+  const episode = root.episode as JsonObject;
+  const episodeKeys =
+    episode?.schemaVersion === "v2-episode-contract.v2"
+      ? EPISODE_V2_KEYS
+      : EPISODE_KEYS;
+  if (
+    episode?.schemaVersion === "v2-episode-contract.v2" &&
+    (!hasOwn(episode, "sessionSetRef") || episode.sessionSetRef === undefined)
+  ) {
+    return [
+      issue("episode_session_set_ref_required", "$.episode.sessionSetRef"),
+    ];
+  }
   const episodeIssues = exactObjectIssues(
     root.episode,
-    EPISODE_KEYS.filter((key) => key !== "checkpointContract"),
+    episodeKeys.filter((key) => key !== "checkpointContract"),
     ["checkpointContract"],
     "$.episode",
   );
   if (episodeIssues.length > 0) return episodeIssues;
-  const episode = root.episode as JsonObject;
-  if (episode.schemaVersion !== "v2-episode-contract.v1") {
+  if (
+    episode.schemaVersion !== "v2-episode-contract.v1" &&
+    episode.schemaVersion !== "v2-episode-contract.v2"
+  ) {
     return [issue("schema_version_invalid", "$.episode.schemaVersion")];
+  }
+  if (episode.schemaVersion === "v2-episode-contract.v2") {
+    const episodeResult = validateV2EpisodeContract(episode);
+    if (!episodeResult.ok) return episodeResult.issues;
   }
   if (!isRecordArray(episode.activities))
     return [issue("field_type_invalid", "$.episode.activities")];
@@ -2145,7 +2211,8 @@ export const validateModeTemplateArtifactBody = (
 export const validateModeTemplateLifecycleHead = (
   input: unknown,
 ): V2ContractValidationResult<ModeTemplateLifecycleHead> => {
-  if (!isPlainObject(input)) return fail([issue("mode_template_lifecycle_invalid", "$")]);
+  if (!isPlainObject(input))
+    return fail([issue("mode_template_lifecycle_invalid", "$")]);
   const allowed = [
     "schemaVersion",
     "templateId",
@@ -2183,7 +2250,9 @@ export const validateModeTemplateLifecycleHead = (
     Number(input.version) < 1 ||
     typeof input.contentHash !== "string" ||
     !HASH_PATTERN.test(input.contentHash) ||
-    !["approved", "published", "deprecated", "archived"].includes(String(input.status)) ||
+    !["approved", "published", "deprecated", "archived"].includes(
+      String(input.status),
+    ) ||
     typeof input.reason !== "string" ||
     input.reason.length === 0 ||
     typeof input.changedBy !== "string" ||
@@ -2197,16 +2266,28 @@ export const validateModeTemplateLifecycleHead = (
   const hasReplacement = hasOwn(input, "replacementRef");
   const hasNoReplacement = hasOwn(input, "noReplacement");
   if (hasNoReplacement && input.noReplacement !== true)
-    return fail([issue("mode_template_lifecycle_no_replacement_invalid", "$.noReplacement")]);
+    return fail([
+      issue(
+        "mode_template_lifecycle_no_replacement_invalid",
+        "$.noReplacement",
+      ),
+    ]);
   if (hasReplacement) {
     if (!isPlainObject(input.replacementRef))
-      return fail([issue("mode_template_lifecycle_replacement_invalid", "$.replacementRef")]);
+      return fail([
+        issue(
+          "mode_template_lifecycle_replacement_invalid",
+          "$.replacementRef",
+        ),
+      ]);
     const replacement = input.replacementRef;
     if (
       Object.keys(replacement).some(
         (key) => !["templateId", "version", "contentHash"].includes(key),
       ) ||
-      !["templateId", "version", "contentHash"].every((key) => hasOwn(replacement, key)) ||
+      !["templateId", "version", "contentHash"].every((key) =>
+        hasOwn(replacement, key),
+      ) ||
       typeof replacement.templateId !== "string" ||
       !/^[A-Za-z0-9._-]{1,160}$/.test(replacement.templateId) ||
       !Number.isSafeInteger(replacement.version) ||
@@ -2214,20 +2295,36 @@ export const validateModeTemplateLifecycleHead = (
       typeof replacement.contentHash !== "string" ||
       !HASH_PATTERN.test(replacement.contentHash)
     )
-      return fail([issue("mode_template_lifecycle_replacement_invalid", "$.replacementRef")]);
+      return fail([
+        issue(
+          "mode_template_lifecycle_replacement_invalid",
+          "$.replacementRef",
+        ),
+      ]);
     if (
       replacement.templateId === input.templateId &&
       replacement.version === input.version &&
       replacement.contentHash === input.contentHash
     )
-      return fail([issue("mode_template_lifecycle_replacement_self_reference", "$.replacementRef")]);
+      return fail([
+        issue(
+          "mode_template_lifecycle_replacement_self_reference",
+          "$.replacementRef",
+        ),
+      ]);
   }
   if (input.status === "deprecated" && hasReplacement === hasNoReplacement)
-    return fail([issue("mode_template_lifecycle_deprecation_choice_invalid", "$")]);
+    return fail([
+      issue("mode_template_lifecycle_deprecation_choice_invalid", "$"),
+    ]);
   if (input.status === "published" && (hasReplacement || hasNoReplacement))
-    return fail([issue("mode_template_lifecycle_published_metadata_invalid", "$")]);
+    return fail([
+      issue("mode_template_lifecycle_published_metadata_invalid", "$"),
+    ]);
   if (input.status === "archived" && (hasReplacement || hasNoReplacement))
-    return fail([issue("mode_template_lifecycle_archived_metadata_invalid", "$")]);
+    return fail([
+      issue("mode_template_lifecycle_archived_metadata_invalid", "$"),
+    ]);
   return pass(input as unknown as ModeTemplateLifecycleHead);
 };
 
@@ -2245,8 +2342,8 @@ export const validateContentReceiptSubject = (
   if (
     !isPlainObject(input) ||
     Object.keys(input).length !== 4 ||
-    !["entityType", "entityId", "entityRevision", "entityFingerprint"].every((key) =>
-      hasOwn(input, key),
+    !["entityType", "entityId", "entityRevision", "entityFingerprint"].every(
+      (key) => hasOwn(input, key),
     ) ||
     !CONTENT_RECEIPT_ENTITY_TYPES.has(String(input.entityType)) ||
     typeof input.entityId !== "string" ||
@@ -2263,7 +2360,8 @@ export const validateContentReceiptSubject = (
 export const validateContentGateReceiptBody = (
   input: unknown,
 ): V2ContractValidationResult<ContentGateReceiptBody> => {
-  if (!isPlainObject(input)) return fail([issue("content_gate_receipt_invalid", "$")]);
+  if (!isPlainObject(input))
+    return fail([issue("content_gate_receipt_invalid", "$")]);
   const required = [
     "schemaVersion",
     "gateKind",
@@ -2286,8 +2384,14 @@ export const validateContentGateReceiptBody = (
   if (
     input.schemaVersion !== "content-gate-receipt-body.v1" ||
     !["approval", "release_seal"].includes(String(input.gateKind)) ||
-    !["validationReceiptHash", "localizationReceiptSetHash", "reviewReceiptHash", "waiverSetHash"].every(
-      (key) => typeof input[key] === "string" && HASH_PATTERN.test(String(input[key])),
+    ![
+      "validationReceiptHash",
+      "localizationReceiptSetHash",
+      "reviewReceiptHash",
+      "waiverSetHash",
+    ].every(
+      (key) =>
+        typeof input[key] === "string" && HASH_PATTERN.test(String(input[key])),
     ) ||
     typeof input.evaluatedBy !== "string" ||
     input.evaluatedBy.length === 0 ||
@@ -2306,7 +2410,12 @@ export const validateContentGateReceiptBody = (
       typeof previews.android !== "string" ||
       !HASH_PATTERN.test(previews.android)
     )
-      return fail([issue("content_gate_receipt_preview_hashes_invalid", "$.devicePreviewReceiptHashes")]);
+      return fail([
+        issue(
+          "content_gate_receipt_preview_hashes_invalid",
+          "$.devicePreviewReceiptHashes",
+        ),
+      ]);
   }
   return pass(input as unknown as ContentGateReceiptBody);
 };
@@ -4849,11 +4958,12 @@ const validateEpisodePolicyLimits = (
       return [issue("node_count_policy_mismatch", "$.episode.graph.nodes")];
     }
     if (
-      typeof episode.estimatedMinutes !== "number" ||
-      !rangeContains(
-        nodeSettings.targetEpisodeMinutes,
-        episode.estimatedMinutes,
-      )
+      episode.schemaVersion === "v2-episode-contract.v1" &&
+      (typeof episode.estimatedMinutes !== "number" ||
+        !rangeContains(
+          nodeSettings.targetEpisodeMinutes,
+          episode.estimatedMinutes,
+        ))
     ) {
       return [
         issue("episode_dosage_policy_mismatch", "$.episode.estimatedMinutes"),
@@ -5891,6 +6001,7 @@ const validateLearningPackageInternal = (
   const shapeIssues = validatePackageShape(input);
   if (shapeIssues.length > 0) return fail(shapeIssues);
   const root = input as JsonObject;
+  const episode = root.episode as JsonObject;
   const identityIssue = learningPackageIdentityIssue(root);
   if (identityIssue) return fail([identityIssue]);
   const deepShapeIssues = validatePackageDeepShape(root);
@@ -5903,7 +6014,6 @@ const validateLearningPackageInternal = (
 
   const policyIssues = validatePoliciesAndActivities(root);
   if (policyIssues.length > 0) return fail(policyIssues);
-  const episode = root.episode as JsonObject;
   const phaseIssues = validateNodePhases(episode);
   if (phaseIssues.length > 0) return fail(phaseIssues);
   const assessmentIssues = validateAssessmentProjection(episode);
@@ -6178,7 +6288,44 @@ export const validateV2LearningPackage = (
   input: unknown,
   context: V2ContractValidationContext,
 ): V2ContractValidationResult<V2LearningPackage> => {
-  const inputSnapshot = snapshotCanonicalJsonInput(input, "$");
+  let snapshotOptions: CanonicalJsonSnapshotOptions | undefined;
+  try {
+    if (input !== null && typeof input === "object" && !Array.isArray(input)) {
+      const episodeDescriptor = Reflect.getOwnPropertyDescriptor(
+        input,
+        "episode",
+      );
+      if (
+        episodeDescriptor?.enumerable === true &&
+        !episodeDescriptor.get &&
+        !episodeDescriptor.set &&
+        hasOwn(episodeDescriptor as unknown as JsonObject, "value") &&
+        episodeDescriptor.value !== null &&
+        typeof episodeDescriptor.value === "object" &&
+        !Array.isArray(episodeDescriptor.value)
+      ) {
+        const episode = episodeDescriptor.value as object;
+        const schemaDescriptor = Reflect.getOwnPropertyDescriptor(
+          episode,
+          "schemaVersion",
+        );
+        if (
+          schemaDescriptor?.enumerable === true &&
+          !schemaDescriptor.get &&
+          !schemaDescriptor.set &&
+          hasOwn(schemaDescriptor as unknown as JsonObject, "value") &&
+          schemaDescriptor.value === "v2-episode-contract.v2"
+        ) {
+          snapshotOptions = {
+            permittedUndefinedDataPropertyPath: "$.episode.sessionSetRef",
+          };
+        }
+      }
+    }
+  } catch {
+    // The canonical snapshot below reports hostile descriptor/proxy traps.
+  }
+  const inputSnapshot = snapshotCanonicalJsonInput(input, "$", snapshotOptions);
   if (inputSnapshot.ok === false) return fail([inputSnapshot.issue]);
   return safely(() =>
     validateLearningPackageInternal(inputSnapshot.value, context),
@@ -6757,11 +6904,92 @@ export const validateV2CheckpointContract = (
 export const validateV2EpisodeContract = (
   input: unknown,
 ): V2ContractValidationResult<V2EpisodeContract> => {
-  const snapshot = snapshotCanonicalJsonInput(input, "$.episode");
+  let snapshotOptions: CanonicalJsonSnapshotOptions | undefined;
+  try {
+    if (input !== null && typeof input === "object" && !Array.isArray(input)) {
+      const schemaDescriptor = Reflect.getOwnPropertyDescriptor(
+        input,
+        "schemaVersion",
+      );
+      if (
+        schemaDescriptor?.enumerable === true &&
+        !schemaDescriptor.get &&
+        !schemaDescriptor.set &&
+        hasOwn(schemaDescriptor as unknown as JsonObject, "value") &&
+        schemaDescriptor.value === "v2-episode-contract.v2"
+      ) {
+        snapshotOptions = {
+          permittedUndefinedDataPropertyPath: "$.episode.sessionSetRef",
+        };
+      }
+    }
+  } catch {
+    // The canonical snapshot below reports hostile descriptors/proxies fail-closed.
+  }
+  const snapshot = snapshotCanonicalJsonInput(
+    input,
+    "$.episode",
+    snapshotOptions,
+  );
   if (snapshot.ok === false) return fail([snapshot.issue]);
   return safely(() => {
     if (!isPlainObject(snapshot.value)) {
       return fail([issue("field_type_invalid", "$.episode")]);
+    }
+    if (snapshot.value.schemaVersion === "v2-episode-contract.v2") {
+      if (
+        !hasOwn(snapshot.value, "sessionSetRef") ||
+        snapshot.value.sessionSetRef === undefined
+      ) {
+        return fail([
+          issue("episode_session_set_ref_required", "$.episode.sessionSetRef"),
+        ]);
+      }
+      const exactV2Issues = exactObjectIssues(
+        snapshot.value,
+        EPISODE_V2_KEYS.filter((key) => key !== "checkpointContract"),
+        ["checkpointContract"],
+        "$.episode",
+      );
+      if (exactV2Issues.length > 0) return fail(exactV2Issues);
+      if (
+        !Number.isSafeInteger(snapshot.value.estimatedMinutes) ||
+        Number(snapshot.value.estimatedMinutes) < 30 ||
+        Number(snapshot.value.estimatedMinutes) > 48
+      ) {
+        return fail([
+          issue(
+            "episode_estimated_minutes_invalid",
+            "$.episode.estimatedMinutes",
+          ),
+        ]);
+      }
+      const sessionSetRef = snapshot.value.sessionSetRef;
+      if (
+        !isPlainObject(sessionSetRef) ||
+        exactObjectIssues(
+          sessionSetRef,
+          ["episodeId", "version", "contentHash"],
+          [],
+          "$.episode.sessionSetRef",
+        ).length > 0 ||
+        sessionSetRef.episodeId !== snapshot.value.episodeId ||
+        !isNonEmptyString(sessionSetRef.episodeId) ||
+        !V2_IDENTITY_REGEX.test(sessionSetRef.episodeId) ||
+        !isPositiveInteger(sessionSetRef.version) ||
+        typeof sessionSetRef.contentHash !== "string" ||
+        !HASH_PATTERN.test(sessionSetRef.contentHash)
+      ) {
+        return fail([
+          issue("episode_session_set_ref_invalid", "$.episode.sessionSetRef"),
+        ]);
+      }
+      const containerShapeIssue = episodeContainerShapeIssue(snapshot.value);
+      if (containerShapeIssue) return fail([containerShapeIssue]);
+      const v2Issues = validateEpisodeDeepShape(snapshot.value);
+      return v2Issues.length > 0
+        ? fail(v2Issues)
+        : pass(snapshot.value as unknown as V2EpisodeContract);
     }
     const exactIssues = exactObjectIssues(
       snapshot.value,
@@ -6773,33 +7001,8 @@ export const validateV2EpisodeContract = (
     if (snapshot.value.schemaVersion !== "v2-episode-contract.v1") {
       return fail([issue("schema_version_invalid", "$.episode.schemaVersion")]);
     }
-    for (const key of [
-      "phraseFrames",
-      "semanticSlots",
-      "criticalConstraints",
-      "activities",
-      "starSlots",
-      "delayedProbeDefinitions",
-      "reviewLinks",
-      "accessibilityRoutes",
-    ]) {
-      if (!Array.isArray(snapshot.value[key])) {
-        return fail([issue("field_type_invalid", `$.episode.${key}`)]);
-      }
-    }
-    for (const key of [
-      "scenario",
-      "graph",
-      "requiredLoops",
-      "assessmentNodes",
-      "capstoneContract",
-      "learningDesign",
-      "masteryContract",
-    ]) {
-      if (!isPlainObject(snapshot.value[key])) {
-        return fail([issue("field_type_invalid", `$.episode.${key}`)]);
-      }
-    }
+    const containerShapeIssue = episodeContainerShapeIssue(snapshot.value);
+    if (containerShapeIssue) return fail([containerShapeIssue]);
     const issues = validateEpisodeDeepShape(snapshot.value);
     return issues.length > 0
       ? fail(issues)

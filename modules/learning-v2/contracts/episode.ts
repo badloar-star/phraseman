@@ -106,6 +106,12 @@ export interface V2DelayedProbeRef {
   readonly contentHash: string;
 }
 
+export interface V2SessionSetRef {
+  readonly episodeId: EpisodeId;
+  readonly version: number;
+  readonly contentHash: string;
+}
+
 export interface V2DelayedProbeDefinitionBody {
   readonly schemaVersion: "v2-delayed-probe-definition.v1";
   readonly probeId: string;
@@ -396,7 +402,7 @@ export interface V2CheckpointContract {
   }[];
 }
 
-export interface V2EpisodeContract {
+export interface V2EpisodeContractV1 {
   readonly schemaVersion: "v2-episode-contract.v1";
   readonly episodeId: EpisodeId;
   readonly seasonId: SeasonId;
@@ -428,3 +434,14 @@ export interface V2EpisodeContract {
   readonly accessibilityRoutes: readonly V2AccessibilityRoute[];
   readonly checkpointContract?: V2CheckpointContract;
 }
+
+export interface V2EpisodeContractV2 extends Omit<
+  V2EpisodeContractV1,
+  "schemaVersion" | "estimatedMinutes"
+> {
+  readonly schemaVersion: "v2-episode-contract.v2";
+  readonly estimatedMinutes: number;
+  readonly sessionSetRef: V2SessionSetRef;
+}
+
+export type V2EpisodeContract = V2EpisodeContractV1 | V2EpisodeContractV2;

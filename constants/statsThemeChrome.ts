@@ -46,7 +46,7 @@ const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   volt: '#20250E',
   candyBlue: '#1C323B',
   indigo: '#2A2952',
-  vanilla: '#F4EBD4',
+  vanilla: '#E9DCC0',
 };
 
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {

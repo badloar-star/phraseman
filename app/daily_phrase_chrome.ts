@@ -182,7 +182,7 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     shadow: '#C8C3FF',
   },
   vanilla: {
-    colors: ['#FFFDF4', '#F6EEDA', '#EDE1C6'],
+    colors: ['#FFFDF6', '#F3E7C8', '#E9D6AC'],
     border: 'rgba(61,78,143,0.30)',
     glow: 'rgba(61,78,143,0.10)',
     title: '#3D4E8F',

@@ -68,7 +68,11 @@ import { syncMyLeagueMemberProfileNow } from '../firestore_leagues';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { isIdeasEnabled, isPromoCodesEnabled, isTopHelpersEnabled } from '../remote_flags';
-import { useReferralRouletteEnabled } from '../referral_roulette_flag';
+import { useReferralRoulettePolicy } from '../referral_roulette_flag';
+import { getClaimableReferralState } from '../referral_vip';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { accountScopeKey } from '../account_scope_key';
+import { readReferralDrain } from '../referrals_cache';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
@@ -192,11 +196,11 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     notice: '#26254A',
   },
   vanilla: {
-    panel: '#FFFDF4',
-    chip: '#FFFDF4',
-    border: 'rgba(58,44,8,0.12)',
-    divider: 'rgba(58,44,8,0.07)',
-    notice: '#F4EBD4',
+    panel: '#FFFDF6',
+    chip: '#FFFDF6',
+    border: 'rgba(58,44,8,0.22)',
+    divider: 'rgba(58,44,8,0.12)',
+    notice: '#F8F0DA',
   },
 };
 // Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
@@ -429,7 +433,22 @@ export default function SettingsMain() {
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
   const [topHelpersOn, setTopHelpersOn] = useState(isTopHelpersEnabled());
-  const rouletteOn = useReferralRouletteEnabled();
+  const roulettePolicy = useReferralRoulettePolicy();
+  const settingsReferralToken = captureAccountGeneration();
+  const settingsReferralAccountKey = accountScopeKey(settingsReferralToken);
+  const [settingsReferralDrain, setSettingsReferralDrain] = useState(() => (
+    readReferralDrain(settingsReferralToken)?.value ?? null
+  ));
+  const settingsReferralDrainVisible = !roulettePolicy.softEnabled
+    && !roulettePolicy.emergencyStop
+    && !!settingsReferralDrain
+    && (
+      settingsReferralDrain.activePendingCount > 0
+      || settingsReferralDrain.claimableQualifiedCount > 0
+      || settingsReferralDrain.availableCreditCount > 0
+    );
+  const settingsReferralRowVisible = !roulettePolicy.emergencyStop
+    && (roulettePolicy.softEnabled || settingsReferralDrainVisible);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -443,6 +462,27 @@ export default function SettingsMain() {
    *   'wiping'      — крутится спиннер: forced sync + signOut + wipe
    */
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
+
+  useEffect(() => {
+    if (!settingsTabVisible || roulettePolicy.emergencyStop) return;
+    const token = settingsReferralToken;
+    const cached = readReferralDrain(token);
+    setSettingsReferralDrain(cached?.value ?? null);
+    let alive = true;
+    void getClaimableReferralState()
+      .then((state) => {
+        if (!alive || !state.ok || !isCurrentAccountGeneration(token)) return;
+        setSettingsReferralDrain(state.drain);
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [
+    focusTick,
+    roulettePolicy.emergencyStop,
+    roulettePolicy.softEnabled,
+    settingsReferralAccountKey,
+    settingsTabVisible,
+  ]);
 
   const [hapticTap,  setHapticTap]   = useState(() => appSnapshot.settings?.tapHaptics ?? true);
   // Согласие на аналитику, юр-документы и удаление аккаунта переехали на
@@ -1301,13 +1341,19 @@ export default function SettingsMain() {
             уже готовый экран, куда из настроек раньше не было входа. */}
         <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          {rouletteOn ? <SettingsRow
+          {settingsReferralRowVisible ? <SettingsRow
             testID="settings-invite-friend-row"
             icon="people"
             color="teal"
-            label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
-            sub={L('1 прокрут · Plus от 1 до 365 дней', '1 прокрут · Plus від 1 до 365 днів', '1 giro · Plus de 1 a 365 días', '1 giro · Plus de 1 a 365 dias', '1 lượt quay · Plus từ 1 đến 365 ngày', '1 putaran · Plus 1–365 hari', '1 çevirme · 1–365 gün Plus', '1 los · Plus od 1 do 365 dni')}
-            onPress={() => router.push('/settings_invite_friend' as any)}
+            label={roulettePolicy.softEnabled
+              ? L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')
+              : L('Мои приглашения', 'Мої запрошення', 'Mis invitaciones', 'Meus convites', 'Lời mời của tôi', 'Undangan saya', 'Davetlerim', 'Moje zaproszenia')}
+            sub={roulettePolicy.softEnabled
+              ? L('1 прокрут · Plus от 1 до 365 дней', '1 прокрут · Plus від 1 до 365 днів', '1 giro · Plus de 1 a 365 días', '1 giro · Plus de 1 a 365 dias', '1 lượt quay · Plus từ 1 đến 365 ngày', '1 putaran · Plus 1–365 hari', '1 çevirme · 1–365 gün Plus', '1 los · Plus od 1 do 365 dni')
+              : L('Забрать оставшиеся прокруты', 'Забрати решту прокрутів', 'Usar los giros restantes', 'Usar os giros restantes', 'Dùng lượt quay còn lại', 'Gunakan putaran tersisa', 'Kalan çevirmeleri kullan', 'Użyj pozostałych losów')}
+            onPress={() => roulettePolicy.softEnabled
+              ? router.push('/settings_invite_friend' as any)
+              : router.push('/referrals' as any)}
           /> : null}
           {topHelpersOn ? (
             <SettingsRow

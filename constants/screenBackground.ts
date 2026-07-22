@@ -26,8 +26,8 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   candyBlue: ['#0B161B', '#050C0F', '#010203'],
   // «Индиго»: тёмный индиго-сумрак.
   indigo: ['#14131F', '#0C0B16', '#010102'],
-  // «Ванилла»: светлая тёплая бумага.
-  vanilla: ['#FAF4E4', '#F3E9D2'],
+  // «Ванилла»: светлая тёплая бумага с тёплой глубиной вниз.
+  vanilla: ['#F1E6CB', '#E7D5AC', '#DCC694'],
 };
 
 const LEGACY_UNSUPPORTED_BG_GRADIENTS: Record<'ocean' | 'sakura', string[]> = {

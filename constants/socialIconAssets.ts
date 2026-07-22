@@ -14,7 +14,7 @@ const SOCIAL_FRIENDS_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   aurora: require('../assets/images/social_icons/social-friends-aurora.webp'),
   volt: require('../assets/images/social_icons/social-friends-volt.webp'),
   // Новые темы переиспользуют ассет minimalDark, без новых файлов.
-  candyBlue: require('../assets/images/social_icons/social-friends-minimalDark.webp'),
+  candyBlue: require('../assets/images/social_icons/social-friends-candyBlue.webp'),
   indigo: require('../assets/images/social_icons/social-friends-minimalDark.webp'),
   vanilla: require('../assets/images/social_icons/social-friends-minimalDark.webp'),
 };
@@ -30,7 +30,7 @@ const SOCIAL_CHAT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   ember: require('../assets/images/social_icons/social-chat-ember.webp'),
   aurora: require('../assets/images/social_icons/social-chat-aurora.webp'),
   volt: require('../assets/images/social_icons/social-chat-volt.webp'),
-  candyBlue: require('../assets/images/social_icons/social-chat-minimalDark.webp'),
+  candyBlue: require('../assets/images/social_icons/social-chat-candyBlue.webp'),
   indigo: require('../assets/images/social_icons/social-chat-minimalDark.webp'),
   vanilla: require('../assets/images/social_icons/social-chat-minimalDark.webp'),
 };

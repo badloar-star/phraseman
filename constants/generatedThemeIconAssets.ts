@@ -13,7 +13,7 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   ember: require('../assets/images/generated_theme_icons/lesson-exam-ember.webp'),
   aurora: require('../assets/images/generated_theme_icons/lesson-exam-aurora.webp'),
   volt: require('../assets/images/generated_theme_icons/lesson-exam-volt.webp'),
-  candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
+  candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-candyBlue.webp'),
   indigo: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
   vanilla: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
 };

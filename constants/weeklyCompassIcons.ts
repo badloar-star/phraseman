@@ -16,7 +16,7 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   volt: 'assets/images/weekly_compass_icons/volt.webp',
   // Новые темы показывают иконку minimalDark (новые ассеты не требуются).
   candyBlue: 'assets/images/weekly_compass_icons/candyBlue.webp',
-  indigo: 'assets/images/weekly_compass_icons/minimalDark.webp',
+  indigo: 'assets/images/weekly_compass_icons/indigo.webp',
   vanilla: 'assets/images/weekly_compass_icons/minimalDark.webp',
 };
 
@@ -63,7 +63,7 @@ const GENERATED_COMPASS_ICON_SOURCES: Partial<Record<ThemeMode, ImageSourcePropT
   aurora: require('../assets/images/weekly_compass_icons/aurora.webp'),
   volt: require('../assets/images/weekly_compass_icons/volt.webp'),
   candyBlue: require('../assets/images/weekly_compass_icons/candyBlue.webp'),
-  indigo: require('../assets/images/weekly_compass_icons/minimalDark.webp'),
+  indigo: require('../assets/images/weekly_compass_icons/indigo.webp'),
   vanilla: require('../assets/images/weekly_compass_icons/minimalDark.webp'),
 };
 

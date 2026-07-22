@@ -14,7 +14,7 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   aurora: require('../assets/images/generated_theme_icons/lesson-exam-aurora.webp'),
   volt: require('../assets/images/generated_theme_icons/lesson-exam-volt.webp'),
   candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-candyBlue.webp'),
-  indigo: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
+  indigo: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
   vanilla: require('../assets/images/generated_theme_icons/lesson-exam-minimalDark.webp'),
 };
 

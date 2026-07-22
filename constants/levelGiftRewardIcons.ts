@@ -72,7 +72,7 @@ const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   aurora: require('../assets/images/shards/aurora-80.webp'),
   volt: require('../assets/images/shards/volt-80.webp'),
   candyBlue: require('../assets/images/shards/candyBlue-80.webp'),
-  indigo: require('../assets/images/shards/minimalDark-80.webp'),
+  indigo: require('../assets/images/shards/indigo-80.webp'),
   vanilla: require('../assets/images/shards/minimalDark-80.webp'),
 };
 

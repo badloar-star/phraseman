@@ -62,7 +62,7 @@ import { resolveFlashcardBackText, type CardItem, type FlashcardContentLang } fr
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { flashcardContentLang } from './spanish_content_gate';
 import { getCanonicalUserId } from './user_id_policy';
-import { flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
+import { flashcardsSwipeHintSeenKey, flashcardsSwipeMemoryKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { markPersonalPlanTaskCompleted } from './personal_plan_progress';
 import {
   flashcardsCommunityPacksAvailableForTarget,
@@ -415,12 +415,26 @@ function localizedField(
   return s(ru) || s(uk) || s(es);
 }
 
-function detailNoteForCard(card: CardItem, lang: FlashcardContentLang): string {
+/**
+ * зачем: alreadyShown — текст, уже выведенный рядом как «правильный перевод». Раньше
+ * example мог содержать его же, и пользователь видел одну фразу дважды подряд
+ * («Можешь включить свет? Можешь включить свет?» — репорт по карточке turn on).
+ * Сравниваем по нормализованному виду, чтобы регистр и пунктуация не мешали.
+ */
+function detailNoteForCard(card: CardItem, lang: FlashcardContentLang, alreadyShown?: string): string {
   const literal = localizedField(card, lang, card.literalRu, card.literalUk, card.literalEs);
   const explanation = localizedField(card, lang, card.explanationRu, card.explanationUk, card.explanationEs);
   const usage = localizedField(card, lang, card.usageNoteRu, card.usageNoteUk, card.usageNoteEs);
   const example = localizedField(card, lang, card.exampleRu, card.exampleUk, card.exampleEs);
-  return [literal, explanation, usage, example || s(card.description)].filter(Boolean).slice(0, 2).join('\n');
+  const shownKey = noteDedupKey(alreadyShown);
+  const parts = [literal, explanation, usage, example || s(card.description)]
+    .filter(Boolean)
+    .filter((part) => !shownKey || noteDedupKey(part) !== shownKey);
+  return parts.slice(0, 2).join('\n');
+}
+
+function noteDedupKey(value: string | undefined): string {
+  return s(value).toLocaleLowerCase().replace(/[\s\p{P}]+/gu, ' ').trim();
 }
 
 function packKey(pack: FlashcardMarketPack): string {
@@ -846,6 +860,13 @@ export default function FlashcardsSwipeScreen() {
   const [stats, setStats] = useState<SessionStats>(() => initialStats(0));
   const [sessionInfo, setSessionInfo] = useState<SessionInfo>(() => initialSessionInfo);
   const [settling, setSettling] = useState(false);
+  // зачем: одноразовая подсказка «как пользоваться экраном» для новых юзеров —
+  // репорт «не понимают карточку/аудио/свайп». Схема 1:1 с flashcardsDeleteHintSeenKey
+  // из flashcards_collection.tsx (тот же "seen"-флаг в AsyncStorage, тот же UX баннера).
+  const [showSwipeHint, setShowSwipeHint] = useState(false);
+  const swipeHintAnim = useRef(new Animated.Value(0)).current;
+  const swipeHintTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const swipeHintCheckedRef = useRef(false);
   const progressRef = useRef<Record<string, CardProgress>>({});
   const memoryRef = useRef<SwipeMemory>({});
   const settlingRef = useRef(false);
@@ -1160,6 +1181,50 @@ export default function FlashcardsSwipeScreen() {
         tr: "İfade",
         pl: "Zwrot",
       }),
+      // зачем: кнопка «Начать» гасла молча, пока грузились наборы или шёл запуск —
+      // репорт «Кнопка начать не сработала». Теперь подпись сама объясняет причину.
+      startLoading: triLang(lang, {
+        ru: 'Загружаем наборы…',
+        uk: 'Завантажуємо набори…',
+        es: 'Cargando mazos…',
+        'pt-BR': 'Carregando baralhos…',
+        vi: 'Đang tải bộ thẻ…',
+        id: 'Memuat set…',
+        tr: 'Setler yükleniyor…',
+        pl: 'Ładujemy zestawy…',
+      }),
+      startNoSelection: triLang(lang, {
+        ru: 'Выберите набор ниже',
+        uk: 'Виберіть набір нижче',
+        es: 'Elige un mazo abajo',
+        'pt-BR': 'Escolha um baralho abaixo',
+        vi: 'Chọn bộ thẻ bên dưới',
+        id: 'Pilih set di bawah',
+        tr: 'Aşağıdan set seç',
+        pl: 'Wybierz zestaw poniżej',
+      }),
+      startStarting: triLang(lang, {
+        ru: 'Готовим тренировку…',
+        uk: 'Готуємо тренування…',
+        es: 'Preparando la sesión…',
+        'pt-BR': 'Preparando o treino…',
+        vi: 'Đang chuẩn bị luyện tập…',
+        id: 'Menyiapkan latihan…',
+        tr: 'Antrenman hazırlanıyor…',
+        pl: 'Przygotowujemy trening…',
+      }),
+      // зачем: заглушка для карточки с пустым текстом — вместо пустого прямоугольника
+      // (репорты «Не видна карточка с вопросом»). Просим отметить через «Нашёл ошибку».
+      brokenCardPhrase: triLang(lang, {
+        ru: 'Текст карточки не загрузился',
+        uk: 'Текст картки не завантажився',
+        es: 'No se cargó el texto de la tarjeta',
+        'pt-BR': 'O texto do cartão não carregou',
+        vi: 'Không tải được nội dung thẻ',
+        id: 'Teks kartu gagal dimuat',
+        tr: 'Kart metni yüklenemedi',
+        pl: 'Nie udało się wczytać tekstu fiszki',
+      }),
       correctTranslation: triLang(lang, {
         ru: 'Правильный перевод',
         uk: 'Правильний переклад',
@@ -1429,6 +1494,29 @@ export default function FlashcardsSwipeScreen() {
         id: "baru",
         tr: "yeni",
         pl: "nowe",
+      }),
+      // зачем: текст одноразовой подсказки на экране тренировки — жест/аудио/кнопки в одной строке.
+      swipeHint: triLang(lang, {
+        ru: 'Смахни карточку вправо/влево или используй кнопки. Значок динамика озвучит фразу.',
+        uk: 'Змахни картку вправо/вліво або використай кнопки. Значок динаміка озвучить фразу.',
+        es: 'Desliza la tarjeta a la derecha o izquierda, o usa los botones. El icono del altavoz la pronuncia.',
+        'pt-BR': 'Deslize o cartão para a direita/esquerda ou use os botões. O ícone de som lê a frase.',
+        vi: 'Vuốt thẻ sang phải/trái hoặc dùng các nút. Biểu tượng loa sẽ đọc cụm từ.',
+        id: 'Geser kartu ke kanan/kiri atau gunakan tombol. Ikon speaker akan mengucapkan frasa.',
+        tr: 'Kartı sağa/sola kaydır ya da düğmeleri kullan. Hoparlör simgesi ifadeyi seslendirir.',
+        pl: 'Przesuń fiszkę w prawo/lewo albo użyj przycisków. Ikona głośnika odczyta zwrot.',
+      }),
+      // зачем: accessibilityLabel кнопки закрытия одноразовой подсказки — раньше по
+      // ошибке использовался text.reload («Обновить»), что неверно озвучивалось скринридером.
+      dismissHint: triLang(lang, {
+        ru: 'Закрыть подсказку',
+        uk: 'Закрити підказку',
+        es: 'Cerrar sugerencia',
+        'pt-BR': 'Fechar dica',
+        vi: 'Đóng gợi ý',
+        id: 'Tutup petunjuk',
+        tr: 'İpucunu kapat',
+        pl: 'Zamknij podpowiedź',
       }),
       sessionSummary: triLang(lang, {
         ru: 'Слабые вернутся внутри сессии. Лёгкие уйдут на повтор позже.',
@@ -1860,6 +1948,53 @@ export default function FlashcardsSwipeScreen() {
     });
   }, [currentPrompt?.id, position]);
 
+  // зачем: показываем подсказку один раз — при первом реальном входе в play-фазу
+  // (не на restore черновика посреди сессии, поэтому проверяем currentPrompt, а
+  // не просто phase). Флаг ставим сразу при показе, чтобы повторный маунт экрана
+  // (напр. быстрый back/forward) не показал баннер снова, пока идёт запрос к AsyncStorage.
+  useEffect(() => {
+    if (phase !== 'play' || !currentPrompt || swipeHintCheckedRef.current) return;
+    swipeHintCheckedRef.current = true;
+    void AsyncStorage.getItem(flashcardsSwipeHintSeenKey(studyTarget))
+      .then((seen) => {
+        if (seen === '1') return;
+        setShowSwipeHint(true);
+      })
+      .catch(() => {});
+  }, [currentPrompt, phase, studyTarget]);
+
+  const dismissSwipeHint = useCallback(() => {
+    if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
+    Animated.timing(swipeHintAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
+      setShowSwipeHint(false);
+    });
+    void AsyncStorage.setItem(flashcardsSwipeHintSeenKey(studyTarget), '1');
+  }, [studyTarget, swipeHintAnim]);
+
+  useEffect(() => {
+    if (!showSwipeHint) return;
+    Animated.timing(swipeHintAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
+    // Автоскрытие через 6с — дольше, чем delete-hint (5с), т.к. текста тут больше (жест+аудио+кнопки).
+    swipeHintTimer.current = setTimeout(() => dismissSwipeHint(), 6000);
+    return () => {
+      if (swipeHintTimer.current) clearTimeout(swipeHintTimer.current);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showSwipeHint]);
+
+  // зачем: репорт «свайп срабатывает мгновенно, аудио послушать не успеваю» —
+  // на быстром свайпе onPanResponderRelease мог сработать раньше, чем звук карточки
+  // вообще стартовал (речь запускается тапом по карточке, а не автоматически).
+  // Штампуем момент показа карточки и в релизе жеста считаем ответ полноценным
+  // свайпом только после короткой выдержки — это не блокирует жест визуально
+  // (карта всё ещё тянется пальцем), а лишь решает, when a fast flick counts.
+  const cardShownAtRef = useRef(0);
+  useEffect(() => {
+    if (!currentPrompt?.id) return;
+    cardShownAtRef.current = Date.now();
+  }, [currentPrompt?.id]);
+  const MIN_SWIPE_DWELL_MS = 220;
+
   const settleCard = useCallback(
     (direction: 'left' | 'right', after: () => void) => {
       if (settlingRef.current) return;
@@ -2053,11 +2188,17 @@ export default function FlashcardsSwipeScreen() {
           position.setValue({ x: gesture.dx, y: gesture.dy * 0.16 });
         },
         onPanResponderRelease: (_, gesture) => {
-          if (gesture.dx > 96) {
+          // зачем: см. MIN_SWIPE_DWELL_MS выше — очень быстрый флик (меньше выдержки
+          // с момента появления карточки) не засчитываем как ответ, а мягко
+          // возвращаем карточку на место, чтобы у пользователя был шанс услышать
+          // озвучку/прочитать карточку перед тем, как жест «съест» её целиком.
+          const dwellMs = Date.now() - cardShownAtRef.current;
+          const dwellOk = dwellMs >= MIN_SWIPE_DWELL_MS;
+          if (dwellOk && gesture.dx > 96) {
             answerCurrent(true);
             return;
           }
-          if (gesture.dx < -96) {
+          if (dwellOk && gesture.dx < -96) {
             answerCurrent(false);
             return;
           }
@@ -2085,6 +2226,12 @@ export default function FlashcardsSwipeScreen() {
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
   const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
+  // зачем: у карточки был только minHeight и НИ maxHeight, ни overflow — при длинном
+  // объяснении она раздувалась под контент и наезжала на кнопки ответа снизу (репорт:
+  // блок теории вылез поверх карточки). Верхний предел считаем от уже известных величин,
+  // а НЕ через onLayout: замер дал бы прыжок геометрии на первом кадре, что запрещено
+  // контрактом стабильности лэйаута. Прокрутка остаётся внутри feedbackScroll.
+  const cardMaxHeight = Math.max(cardHeight, Math.floor(height * (isPlanFlashcardsTask ? 0.46 : 0.62)));
   // зачем: A-39 — на улёте карта доворачивается до 16deg (в макете это
   // финальная поза). При перетаскивании пальцем наклон мягче (7deg на пол-экрана),
   // поэтому две точки: жест — деликатный, улёт за край — выразительный.
@@ -2172,22 +2319,39 @@ export default function FlashcardsSwipeScreen() {
             </View>
           ))}
         </View>
-        <DuoPressable
-          onPress={startSession}
-          disabled={selectedSources.length === 0 || starting || loadingSources}
-          edgeColor={t.accent}
-          wrapStyle={{ marginTop: 14 }}
-          style={[
-            styles.heroStart,
-            {
-              backgroundColor: selectedSources.length === 0 || starting || loadingSources ? t.bgSurface2 : t.accent,
-              opacity: selectedSources.length === 0 || starting || loadingSources ? 0.72 : 1,
-            },
-          ]}
-        >
-          <Ionicons name={starting ? 'sparkles-outline' : 'play'} size={20} color={t.correctText} />
-          <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>{text.start}</Text>
-        </DuoPressable>
+        {/* зачем: раньше кнопка просто гасла (opacity 0.72) без единого слова о причине —
+            «Кнопка начать не сработала» (репорт 25.07). Теперь сама подпись говорит,
+            чего ждать или что сделать: грузятся наборы / не выбран набор / идёт запуск.
+            Геометрия не меняется — только текст и иконка, прыжка лэйаута нет. */}
+        {(() => {
+          const startBlockReason = loadingSources
+            ? { label: text.startLoading, icon: 'albums-outline' as const }
+            : starting
+              ? { label: text.startStarting, icon: 'sparkles-outline' as const }
+              : selectedSources.length === 0
+                ? { label: text.startNoSelection, icon: 'albums-outline' as const }
+                : null;
+          return (
+            <DuoPressable
+              onPress={startSession}
+              disabled={startBlockReason != null}
+              edgeColor={t.accent}
+              wrapStyle={{ marginTop: 14 }}
+              style={[
+                styles.heroStart,
+                {
+                  backgroundColor: startBlockReason ? t.bgSurface2 : t.accent,
+                  opacity: startBlockReason ? 0.72 : 1,
+                },
+              ]}
+            >
+              <Ionicons name={startBlockReason?.icon ?? 'play'} size={20} color={t.correctText} />
+              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+                {startBlockReason?.label ?? text.start}
+              </Text>
+            </DuoPressable>
+          );
+        })()}
       </View>
 
       <Text style={[styles.segmentLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.sourcesTitle}</Text>
@@ -2329,7 +2493,9 @@ export default function FlashcardsSwipeScreen() {
   const renderPlay = () => {
     if (done) return renderDone();
     if (!currentPrompt) return null;
-    const note = detailNoteForCard(currentPrompt.card, cardContentLang);
+    // зачем: trueTranslation уже показан в блоке «правильный перевод» — не дублируем
+    // его внутри заметки-примера.
+    const note = detailNoteForCard(currentPrompt.card, cardContentLang, currentPrompt.trueTranslation);
     const transcription = s(currentPrompt.card.transcription);
     const reportDataText = [
       `EN: ${currentPrompt.card.en}`,
@@ -2388,6 +2554,35 @@ export default function FlashcardsSwipeScreen() {
           <View style={[styles.progressFill, { width: `${progressPct}%` as `${number}%`, backgroundColor: t.accent }]} />
         </View>
 
+        {/* Первое знакомство с экраном — одноразовая подсказка, схема как flashcardsDeleteHintSeenKey */}
+        {showSwipeHint ? (
+          <Animated.View
+            style={[
+              styles.swipeHintBanner,
+              {
+                opacity: swipeHintAnim,
+                transform: [
+                  { translateY: swipeHintAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) },
+                ],
+                backgroundColor: glassFill(t.bgSurface, 0.5),
+              },
+            ]}
+          >
+            <Ionicons name="sparkles-outline" size={18} color={t.textSecond} />
+            <Text style={[styles.swipeHintText, { color: t.textSecond, fontSize: f.caption }]}>
+              {text.swipeHint}
+            </Text>
+            <TouchableOpacity
+              activeOpacity={0.75}
+              onPress={dismissSwipeHint}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+              accessibilityLabel={text.dismissHint}
+            >
+              <Ionicons name="close" size={18} color={t.textMuted} />
+            </TouchableOpacity>
+          </Animated.View>
+        ) : null}
+
         <View style={[styles.cardStage, isPlanFlashcardsTask && styles.planCardStage]}>
           {queue[1] ? (
             <View
@@ -2410,10 +2605,17 @@ export default function FlashcardsSwipeScreen() {
               {
                 width: cardWidth,
                 minHeight: cardHeight,
-                backgroundColor: t.bgSurface,
-                borderColor: feedback ? (feedback.kind === 'wrong' ? t.wrong : t.gold) : 'transparent',
-                borderWidth: feedback ? 1.2 : 0,
-                shadowColor: t.cardShadow,
+                maxHeight: cardMaxHeight,
+                overflow: 'hidden',
+                // зачем: обводка заменена на тон+тень — рамки вокруг блоков запрещены
+                // в проекте. Результат ответа теперь читается по подложке карточки и
+                // цвету тени, а не по контуру: мягче и «дороже», сигнал не потерян.
+                backgroundColor: feedback
+                  ? (feedback.kind === 'wrong' ? t.wrongBg : t.correctBg)
+                  : t.bgSurface,
+                shadowColor: feedback
+                  ? (feedback.kind === 'wrong' ? t.wrong : t.gold)
+                  : t.cardShadow,
               },
               {
                 transform: [...position.getTranslateTransform(), { rotate }],
@@ -2479,7 +2681,12 @@ export default function FlashcardsSwipeScreen() {
                 // фиксированной высоты (flex:1, justifyContent:'center'), поэтому перенос безопасен.
                 numberOfLines={isPlanFlashcardsTask ? 4 : 3}
               >
-                {currentPrompt.card.en}
+                {/* зачем: если у карточки в данных пустой en, enBox (flex:1, center) не
+                    схлопывается — карточка превращалась в пустой серый прямоугольник без
+                    единого слова (репорты «Не видна карточка с вопросом» 18 и 24.07).
+                    Корень в данных пока не найден, поэтому здесь честная заглушка вместо
+                    пустоты: человек видит, что карточка битая, и может её отметить. */}
+                {s(currentPrompt.card.en) || text.brokenCardPhrase}
               </Text>
               {transcription ? (
                 <Text style={[styles.transcriptionText, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
@@ -2957,6 +3164,26 @@ const styles = StyleSheet.create({
   progressFill: {
     height: '100%',
     borderRadius: 999,
+  },
+  // зачем: одноразовая подсказка-баннер над карточкой — без обводки (запрещена),
+  // разделяется тоном подложки (glassFill) + мягкой тенью, как остальные карточки проекта.
+  swipeHintBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderRadius: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    marginBottom: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 2 },
+    elevation: 2,
+  },
+  swipeHintText: {
+    flex: 1,
+    lineHeight: 18,
   },
   cardStage: {
     flex: 1,

@@ -610,6 +610,13 @@ export function flashcardsSwipeMemoryKey(studyTarget?: RuntimeStudyTarget): stri
   return scopedOrLegacyKey('flashcards_swipe_memory_v1', 'flashcards', studyTarget);
 }
 
+// зачем: та же схема, что flashcardsDeleteHintSeenKey (flashcards_collection.tsx) —
+// одноразовая подсказка про экран «Тренировка карточек» (жест/аудио/кнопки),
+// показываем один раз при первом входе в play-фазу.
+export function flashcardsSwipeHintSeenKey(studyTarget?: RuntimeStudyTarget): string {
+  return scopedOrLegacyKey('flashcards_swipe_hint_seen', 'flashcards', studyTarget);
+}
+
 export function flashcardsMarketplaceBuiltCardsCacheKey(studyTarget?: RuntimeStudyTarget): string {
   return scopedOrLegacyKey('flashcards_market_built_cards_v1', 'flashcards', studyTarget);
 }

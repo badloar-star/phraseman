@@ -62,4 +62,34 @@ describe("Learning V2 gate policy", () => {
     });
     expect(result).toMatchObject({ allowed: false, reason: "checkpoint" });
   });
+
+  it("does not let optional-practice access replace local performance or checkpoint evidence", () => {
+    const farmedAccess = 999;
+
+    expect(
+      evaluateGatePolicy({
+        targetEpisode: 9,
+        alreadyUnlocked: false,
+        requiredLoopsComplete: true,
+        capabilityFallbackComplete: true,
+        priorEpisodePerformanceEarned: 0,
+        checkpointDecision: "not_required",
+        cumulativeAccessEarned: farmedAccess,
+        purchasedAccessApplied: 0,
+      }),
+    ).toEqual({ allowed: false, reason: "local_performance" });
+
+    expect(
+      evaluateGatePolicy({
+        targetEpisode: 9,
+        alreadyUnlocked: false,
+        requiredLoopsComplete: true,
+        capabilityFallbackComplete: true,
+        priorEpisodePerformanceEarned: 24,
+        checkpointDecision: "incomplete",
+        cumulativeAccessEarned: farmedAccess,
+        purchasedAccessApplied: 0,
+      }),
+    ).toEqual({ allowed: false, reason: "checkpoint" });
+  });
 });

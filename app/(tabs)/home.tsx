@@ -116,9 +116,7 @@ const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const CARD_W = (CONTENT_W - 32 - 10) / 2;
-const USE_ELITE_HOME_STATUS = true;
 // Rollback: set false to return to the previous elite home status card.
-const HOME_STATUS_DENSE_PROGRESS_EXPERIMENT = true;
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
 // Бесконечный shimmer прогресс-бара гоняем на НАТИВНОМ драйвере: это чистый transform
@@ -923,7 +921,7 @@ export default function HomeScreen() {
         Animated.timing(fadeAnim, { toValue: 1, duration: 380, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }).start();
     }, [lang, studyTarget]);
     useEffect(() => {
-        if (!USE_ELITE_HOME_STATUS || !homeRuntimeActive)
+        if (!homeRuntimeActive)
             return;
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
@@ -2199,8 +2197,8 @@ export default function HomeScreen() {
     const renderNewHome = () => {
         const { level, progress } = getXPProgress(totalXP);
         const menuImages = getHomeMenuImages(themeMode);
-        const homeQuickRowPad = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16;
-        const homeQuickRowGap = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10;
+        const homeQuickRowPad = 8;
+        const homeQuickRowGap = 14;
         const homeQuickTileWidth = Math.floor((SCREEN_W - homeQuickRowPad * 2 - homeQuickRowGap * 2) / 3);
         const homeQuickIconPlateSize = Math.min(118, Math.max(88, homeQuickTileWidth - 20));
         const homeQuickIconImageSize = Math.max(96, homeQuickIconPlateSize + 18);
@@ -2208,7 +2206,7 @@ export default function HomeScreen() {
         const homeQuickIconRadius = isGoldTheme ? 26 : 30;
         const homePracticeIconSize = 64;
         const homePracticeIconImageSize = homePracticeIconSize;
-        const homeTodayIconSize = HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 84 : 96;
+        const homeTodayIconSize = 84;
         const homeTodayIconImageSize = homeTodayIconSize;
         const homeTodayCardMinHeight = 112;
         const homeTodayLeagueCardMinHeight = 120;
@@ -2592,365 +2590,19 @@ export default function HomeScreen() {
 
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
-          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 18 : 20, minHeight: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (homeStatsReady ? 184 : 196) : (homeStatsReady ? undefined : 200), overflow: 'hidden' }}>
+          <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null, null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: homeStatsReady ? 184 : 196, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
-              {!USE_ELITE_HOME_STATUS && (<View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden' }} pointerEvents="none">
-                  <View style={{ position: 'absolute', top: -30, right: -20, width: 110, height: 110, borderRadius: 55, backgroundColor: t.textSecond + '12' }}/>
-                  <View style={{ position: 'absolute', bottom: -20, left: -10, width: 70, height: 70, borderRadius: 35, backgroundColor: t.correct + '10' }}/>
-                </View>)}
 
-              {USE_ELITE_HOME_STATUS ? (HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? renderExperimentalHomeStatus() : (<Animated.View style={{
-                    opacity: eliteStatusEntrance,
-                    transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
-                }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18, gap: eliteStatsCompact ? 8 : 10 }}>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, minWidth: 0 }}>
-                      <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar" style={{ marginRight: eliteStatsCompact ? 10 : 12 }}>
-                        <AvatarView avatar={userAvatar} level={level} size={eliteAvatarSize} auraId={effectiveUserAvatarAura}/>
-                      </TouchableOpacity>
-                      <View style={{ flex: 1, minWidth: eliteStatsCompact ? 74 : 112 }}>
-                        <View style={{
-                    alignSelf: 'flex-start',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    borderRadius: 999,
-                    paddingHorizontal: 9,
-                    paddingVertical: 3,
-                    marginBottom: 4,
-                    backgroundColor: isGoldTheme ? 'rgba(246, 201, 92, 0.16)' : (isLightTheme ? 'rgba(64, 102, 190, 0.10)' : 'rgba(125, 174, 255, 0.14)'),
-                    borderWidth: 0,
-                    borderColor: 'transparent',
-                }}>
-                          <Text allowFontScaling={false} style={{ color: isGoldTheme ? GOLD_RICH.paleGold : t.textPrimary, fontSize: eliteLevelBadgeFontSize, fontWeight: '900', lineHeight: eliteLevelBadgeFontSize + 4, letterSpacing: 0 }} numberOfLines={1}>
-                            {triLang(lang, {
-                    ru: 'Уровень',
-                    uk: 'Рівень',
-                    es: 'Nivel',
-                    'pt-BR': "Nível",
-                    vi: "Cấp",
-                    id: "Level",
-                    tr: "Seviye",
-                    pl: "Poziom",
-                })} {level}
-                          </Text>
-                        </View>
-                      </View>
-                    </View>
-
-                    <View style={{ alignItems: 'center', width: eliteStreakColumnWidth, flexShrink: 0 }}>
-                      <View style={[{
-                    width: eliteStreakIconBox,
-                    height: eliteStreakIconBox,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                }, homeStreakIconFrameStyle]}>
-                        <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStreakIconSize}/>
-                      </View>
-                      <Animated.Text allowFontScaling={false} style={{ color: t.textPrimary, fontSize: eliteStreakValueSize, fontWeight: '900', lineHeight: eliteStreakValueSize + 5, transform: [{ scale: streakScaleAnim }], textAlign: 'center', includeFontPadding: false }} numberOfLines={1}>
-                        {displayStreak}
-                      </Animated.Text>
-                      <Text allowFontScaling={false} style={{ color: t.textSecond, fontSize: eliteMetaFontSize, fontWeight: '700', textAlign: 'center', width: '100%', lineHeight: eliteMetaFontSize + 4 }} numberOfLines={1}>
-                        {homeStreakDaysLabel}
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View style={{ marginBottom: 15 }}>
-                      {totalXPMulti > 1.0 && (<View style={{ alignItems: 'flex-end', marginBottom: 7 }}>
-                          <View style={{ backgroundColor: t.gold, borderRadius: 9, paddingHorizontal: 7, paddingVertical: 2 }}>
-                            <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                          </View>
-                        </View>)}
-                    <View style={{
-                    height: 12,
-                    borderRadius: 8,
-                    overflow: 'hidden',
-                    backgroundColor: isSketchLightTheme ? 'rgba(56,52,44,0.56)' : isLightTheme ? 'rgba(255,255,255,0.35)' : isGoldTheme ? 'rgba(0,0,0,0.36)' : 'rgba(255,255,255,0.08)',
-                    borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
-                    borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent',
-                }}>
-                      <LinearGradient colors={isSketchLightTheme ? [t.accent, t.correct] : isLightTheme ? [t.accent, '#FFFFFFAA'] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 8, overflow: 'hidden' }}>
-                        {(isGoldTheme) && (<>
-                            <LinearGradient colors={['rgba(255,255,255,0.34)', 'rgba(255,255,255,0.055)', 'rgba(0,0,0,0.14)']} locations={[0, 0.46, 1]} start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }} style={StyleSheet.absoluteFill}/>
-                            <View style={{ position: 'absolute', left: 0, right: 0, bottom: 0, height: 1, backgroundColor: 'rgba(0,0,0,0.26)' }}/>
-                          </>)}
-                        <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
-                          <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
-                        </Animated.View>
-                      </LinearGradient>
-                    </View>
-                  </View>
-
-                  {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 13 }}>
-                      <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.metallicFill : [t.gold, '#FFF2B0']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 12, paddingHorizontal: 9, paddingVertical: 4, flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                        <Ionicons name="trophy" size={14} color={t.textOnGold}/>
-                        <Text style={{ color: t.textOnGold, fontSize: eliteXpBadgeFontSize, fontWeight: '800' }}>
-                          {triLang(lang, {
-                        ru: `Обошёл ${homeXpPercentile}% по XP`,
-                        uk: `Обійшов ${homeXpPercentile}% за XP`,
-                        es: `Por delante del ${homeXpPercentile}% en XP`,
-                        'pt-BR': `À frente de ${homeXpPercentile}% em XP`,
-                        vi: `Vượt ${homeXpPercentile}% về XP`,
-                        id: `Lebih unggul dari ${homeXpPercentile}% dalam XP`,
-                        tr: `XP’de %${homeXpPercentile} öndesin`,
-                        pl: `Przed ${homeXpPercentile}% w XP`,
-                    })}
-                        </Text>
-                      </LinearGradient>
-                    </View>)}
-
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 2 }}>
-                    {weekDays.map((d, i) => {
-                      const marker = markerForWeekDay(i);
-                      const marked = isWeekDayMarked(i);
-                      return (<View key={i} style={{ alignItems: 'center', gap: 6, width: 34 }}>
-                        <View style={{
-                        width: eliteWeekDotSize, height: eliteWeekDotSize, borderRadius: eliteWeekDotSize / 2,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        overflow: 'hidden',
-                        backgroundColor: marker === 'freeze' ? weekDotFill(i, marker, weekDotTheme.freezeBg) : isGoldTheme && !marker ? 'transparent' : weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                        borderWidth: marker === 'freeze' ? 1 : todayRingWidth(i, marker) ?? (marked && !isGoldTheme ? 0 : 1),
-                        borderColor: isGoldTheme
-                            ? weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder)
-                            : weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
-                    }}>
-                          {isGoldTheme && !marker && (<>
-                              <LinearGradient colors={weekDone[i] ? GOLD_GRADIENTS.metallicFill : ['rgba(23,23,23,0.66)', 'rgba(10,10,10,0.58)', 'rgba(7,7,7,0.50)']} locations={[0, 0.48, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill}/>
-                              <GoldBevel radius={eliteWeekDotSize / 2} intensity={marked ? 'normal' : 'quiet'}/>
-                            </>)}
-                          {renderWeekMarkerContent(marker, eliteWeekDotSize, eliteStatsCompact ? 15 : 16, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={eliteStatsCompact ? 15 : 16} color={weekDotTheme.checkColor}/>)}
-                        </View>
-                        <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: eliteWeekDayFontSize, fontWeight: '800' }}>{d}</Text>
-                      </View>);
-                    })}
-                  </View>
-                  {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
-                        color: t.accent,
-                        fontSize: 13,
-                        fontWeight: '700',
-                        marginTop: 14,
-                        textAlign: 'center',
-                        lineHeight: 18,
-                        transform: [{ scale: statsHintPulseAnim }],
-                    }}>
-                      {s.home.statsPulseHint}
-                    </Animated.Text>)}
-                </Animated.View>)) : (<>
-              {/* Верхняя строка: Уровень + Цепочка */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 16 }}>
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 6 }}>{triLang(lang, {
-                    ru: 'Уровень',
-                    uk: 'Рівень',
-                    es: 'Nivel',
-                    'pt-BR': "Nível",
-                    vi: "Cấp độ",
-                    id: "Level",
-                    tr: "Seviye",
-                    pl: "Poziom",
-                })}</Text>
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                    <TouchableOpacity activeOpacity={0.78} onPress={(event) => {
-                    event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/avatar_select');
-                }} accessibilityRole="button" accessibilityLabel="Avatar">
-                      <AvatarView avatar={userAvatar} level={level} size={44} auraId={effectiveUserAvatarAura}/>
-                    </TouchableOpacity>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: 20, fontWeight: '800', lineHeight: 24 }} numberOfLines={1}>
-                        {triLang(lang, {
-                    ru: 'Ур.',
-                    uk: 'Рів.',
-                    es: 'Nv.',
-                    'pt-BR': "Nv.",
-                    vi: "Cấp",
-                    id: "Lv.",
-                    tr: "Sv.",
-                    pl: "Poz.",
-                })} {level}
-                      </Text>
-                    </View>
-                  </View>
-                </View>
-                <View style={{ alignItems: 'center', marginLeft: 12 }}>
-                  <View style={[{
-                        width: homeLargeStreakIconBox,
-                        height: homeLargeStreakIconBox,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }, homeStreakIconFrameStyle]}>
-                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeLargeStreakIconSize}/>
-                  </View>
-                  <Animated.Text style={{ color: t.textPrimary, fontSize: 34, fontWeight: '800', lineHeight: 38, transform: [{ scale: streakScaleAnim }] }}>{displayStreak}</Animated.Text>
-                  <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'center' }} numberOfLines={1}>{homeStreakDaysLabel}</Text>
-                </View>
-              </View>
-
-              {/* Прогресс XP — толще */}
-              <View style={{ marginBottom: 14 }}>
-                <View style={{ height: 9, backgroundColor: t.bgSurface, borderRadius: 5, overflow: 'hidden' }}>
-                  <LinearGradient colors={isGoldTheme ? GOLD_GRADIENTS.progressMetal : [isLightTheme ? t.accent : t.gold, isLightTheme ? t.accent : t.gold]} locations={undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${Math.min(100, Math.round(progress * 100))}%` as any, height: '100%', borderRadius: 5 }}/>
-                </View>
-                {totalXPMulti > 1.0 && (<View style={{ alignItems: 'flex-end', marginTop: 5 }}>
-                    <View style={{ backgroundColor: t.gold, borderRadius: 8, paddingHorizontal: 6, paddingVertical: 2 }}>
-                      <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>+{Math.round((totalXPMulti - 1) * 100)}% XP</Text>
-                    </View>
-                  </View>)}
-              </View>
-
-              {/* МИНИ-БЕЙДЖ XP-ПЕРЦЕНТИЛЯ */}
-              {hasPremiumAccess && homeXpPercentile !== null && (<View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-                  <View style={{ backgroundColor: t.gold, borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                    <Text style={{ fontSize: 12 }}>🏆</Text>
-                    <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>
-                      {triLang(lang, {
-                        ru: `Обошёл ${homeXpPercentile}% по XP`,
-                        uk: `Обійшов ${homeXpPercentile}% за XP`,
-                        es: `Por delante del ${homeXpPercentile}% en XP`,
-                        'pt-BR': `À frente de ${homeXpPercentile}% em XP`,
-                        vi: `Vượt ${homeXpPercentile}% về XP`,
-                        id: `Lebih unggul dari ${homeXpPercentile}% dalam XP`,
-                        tr: `XP’de %${homeXpPercentile} öndesin`,
-                        pl: `Przed ${homeXpPercentile}% w XP`,
-                    })}
-                    </Text>
-                  </View>
-                </View>)}
-
-              {/* Точки недели — крупнее */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 4 }}>
-                {weekDays.map((d, i) => {
-                  const marker = markerForWeekDay(i);
-                  const marked = isWeekDayMarked(i);
-                  return (<View key={i} style={{ alignItems: 'center', gap: 6 }}>
-                    <View style={{
-                        width: 22, height: 22, borderRadius: 11,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundColor: weekDotFill(i, marker, i === todayIdx ? weekDotTheme.todayBg : weekDotTheme.emptyBg),
-                        borderWidth: marker === 'freeze' ? 1 : marked ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i === todayIdx && !weekDone[i] ? 2 : 0)),
-                        borderColor: weekDotBorder(i, marker, i === todayIdx ? weekDotTheme.todayBorder : weekDotTheme.emptyBorder),
-                    }}>
-                      {renderWeekMarkerContent(marker, 22, 14, weekDotTheme.checkColor) ?? (weekDone[i] && <Ionicons name="checkmark" size={14} color={weekDotTheme.checkColor}/>)}
-                    </View>
-                    <Text style={{ color: weekDayLabelColor(i, i === todayIdx ? t.accent : t.textPrimary, t.textMuted), fontSize: 12, fontWeight: i === todayIdx ? '800' : '600' }}>{d}</Text>
-                  </View>);
-                })}
-              </View>
-              {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
-                        color: t.accent,
-                        fontSize: 13,
-                        fontWeight: '700',
-                        marginTop: 14,
-                        textAlign: 'center',
-                        lineHeight: 18,
-                        transform: [{ scale: statsHintPulseAnim }],
-                    }}>
-                  {s.home.statsPulseHint}
-                </Animated.Text>)}
-              </>)}
+              {renderExperimentalHomeStatus()}
             </LinearGradient>
           </TouchableOpacity>
           </Animated.View>
 
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
-          {/* ЗАМОРОЗКА ЦЕПОЧКИ — для всех когда цепочка под угрозой */}
-          {false && streakAtRisk && !freezeActive && (<TouchableOpacity activeOpacity={0.88} onPress={handleFreezeStreak} style={{
-                        marginHorizontal: 16,
-                        marginBottom: 12,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 16,
-                        backgroundColor: isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : t.bgCard,
-                        borderWidth: 1,
-                        borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairlineStrong : (t.accent + '55'),
-                        padding: 16,
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        gap: 12,
-                        ...({}),
-                    }}>
-              <View style={{ width: 42, height: 42, borderRadius: isCompassTheme ? compassHomeRadius : 21, alignItems: 'center', justifyContent: 'center', backgroundColor: isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : (t.accent + '24'), borderWidth: 0, borderColor: isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : (t.accent + '5C') }}>
-                <Ionicons name="snow-outline" size={24} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 13, fontWeight: '700' }}>
-                  {triLang(lang, {
-                        ru: `Защити цепочку ${streak} дней — заходи сегодня`,
-                        uk: `Захисти ланцюжок ${streak} днів — заходь сьогодні`,
-                        es: `Llevas ${streak} días de racha: no la pierdas hoy`,
-                        'pt-BR': `Você está há ${streak} dias em sequência: não perca hoje`,
-                        vi: `Bạn đã giữ chuỗi ${streak} ngày: đừng để mất hôm nay`,
-                        id: `Rangkaianmu sudah ${streak} hari: jangan hilang hari ini`,
-                        tr: `${streak} günlük serin var: bugün kaybetme`,
-                        pl: `Masz serię ${streak} dni: nie strać jej dziś`,
-                    })}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: 12, marginTop: 2 }}>
-                  {!hasPremiumAccess
-                        ? triLang(lang, {
-                            ru: 'Доступно только для Plus',
-                            uk: 'Доступно лише для Plus',
-                            es: 'Solo disponible con Plus',
-                            'pt-BR': "Disponível apenas com Plus",
-                            vi: "Chỉ có với Plus",
-                            id: "Hanya tersedia dengan Plus",
-                            tr: "Yalnızca Plus ile kullanılabilir",
-                            pl: "Dostępne tylko z Plus",
-                        })
-                        : !premiumFreezeUsed
-                            ? triLang(lang, {
-                                ru: 'Заморозить бесплатно — бонус Plus',
-                                uk: 'Заморозити безкоштовно — бонус Plus',
-                                es: 'Primera congelación gratis con Plus',
-                                'pt-BR': "Primeiro congelamento grátis com Plus",
-                                vi: "Lần đóng băng đầu miễn phí với Plus",
-                                id: "Pembekuan pertama gratis dengan Plus",
-                                tr: "Plus ile ilk dondurma ücretsiz",
-                                pl: "Pierwsze zamrożenie gratis z Plus",
-                            })
-                            : triLang(lang, {
-                                ru: `Заморозить за ${FREEZE_COST_SHARDS} 💎`,
-                                uk: `Заморозити за ${FREEZE_COST_SHARDS} 💎`,
-                                es: `Congela tu racha por ${FREEZE_COST_SHARDS} 💎`,
-                                'pt-BR': `Congele sua sequência por ${FREEZE_COST_SHARDS} 💎`,
-                                vi: `Đóng băng chuỗi với ${FREEZE_COST_SHARDS} 💎`,
-                                id: `Bekukan rangkaianmu seharga ${FREEZE_COST_SHARDS} 💎`,
-                                tr: `Serini ${FREEZE_COST_SHARDS} 💎 karşılığında dondur`,
-                                pl: `Zamroź serię za ${FREEZE_COST_SHARDS} 💎`,
-                            })}
-                </Text>
-              </View>
-              <View style={{ alignItems: 'flex-end', gap: 2 }}>
-                {!hasPremiumAccess
-                        ? <PlusBadge themeMode={themeMode} size="xs" />
-                        : hasPremiumAccess && !premiumFreezeUsed
-                            ? <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent, fontSize: 12, fontWeight: '700' }}>
-                        {triLang(lang, {
-                                    ru: 'Бесплатно',
-                                    uk: 'Безкоштовно',
-                                    es: 'Gratis',
-                                    'pt-BR': "Grátis",
-                                    vi: "Miễn phí",
-                                    id: "Gratis",
-                                    tr: "Ücretsiz",
-                                    pl: "Gratis",
-                                })}
-                      </Text>
-                            : <Text style={{ color: shardsBalance >= FREEZE_COST_SHARDS ? (isGoldTheme ? GOLD_RICH.paleGold : isCompassTheme ? '#F2C48D' : t.accent) : t.textGhost, fontSize: 12, fontWeight: '700' }}>
-                        {FREEZE_COST_SHARDS} 💎
-                      </Text>}
-                <Ionicons name="chevron-forward" size={16} color={isGoldTheme ? GOLD_RICH.champagne : isCompassTheme ? '#F2C48D' : t.accent}/>
-              </View>
-            </TouchableOpacity>)}
 
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
@@ -2966,7 +2618,7 @@ export default function HomeScreen() {
               onTouchEnd={handleHomeFeatureTipTouchEnd}
               onTouchCancel={handleHomeFeatureTipTouchCancel}
               style={{
-                marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16,
+                marginHorizontal: 8,
                 marginBottom: 12,
                 borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24,
                 overflow: 'hidden',
@@ -3050,7 +2702,7 @@ export default function HomeScreen() {
           {/* БЫСТРЫЙ ДОСТУП: уроки + квизы + карточки */}
           <Animated.View style={sectionStyle(3)}>
           <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
-          {USE_ELITE_HOME_STATUS && (<View style={{ marginHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, marginBottom: 10 }}>
+          <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
               <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
                 {triLang(lang, {
                     ru: 'Быстрый старт',
@@ -3063,8 +2715,8 @@ export default function HomeScreen() {
                     pl: "Szybki start",
                 })}
               </Text>
-            </View>)}
-          <View style={{ marginBottom: 12, paddingHorizontal: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 8 : 16, gap: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 14 : 10, flexDirection: 'row' }}>
+            </View>
+          <View style={{ marginBottom: 12, paddingHorizontal: 8, gap: 14, flexDirection: 'row' }}>
               {visibleQuickItems.map((item, index) => {
                 const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
                 const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
@@ -3073,8 +2725,8 @@ export default function HomeScreen() {
                 const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
                 return (<Animated.View key={item.label} style={{
                         flex: 1,
-                        opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
-                        transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
+                        opacity: tileOpacity,
+                        transform: [{ translateY: tileY }],
                     }}>
                 <TouchableOpacity testID={item.testID} accessibilityLabel={`qa-${item.testID}`} accessible={true} activeOpacity={0.78} onPress={() => {
                         go(item.path);
@@ -3084,11 +2736,11 @@ export default function HomeScreen() {
                         borderWidth: 0,
                         borderColor: 'transparent',
                         overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
+                        backgroundColor: tilePanelBg,
                         ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
                         ...({}),
                     }}>
-              {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+              {(<View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
                       {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
                       {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
                       <View style={{
@@ -3104,15 +2756,7 @@ export default function HomeScreen() {
                             : <View style={{ width: homeQuickIconImageSize, height: homeQuickIconImageSize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>}
                       </View>
                       <Text style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
-                    </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
-                  {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
-                  <View style={{ position: 'relative' }}>
-                    {item.img
-                            ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)
-                            : <View style={{ width: homeQuickIconLegacySize, height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>}
-                  </View>
-                  <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>{item.label}</Text>
-                  </LinearGradient>)}
+                    </View>)}
                 </TouchableOpacity>
                 </Animated.View>);
             })}
@@ -3122,7 +2766,7 @@ export default function HomeScreen() {
 
           {/* SRS ПОВТОРЕНИЕ + ряд «Задания дня / Лига / Аттестация» */}
           <Animated.View style={sectionStyle(4)}>
-          {HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (<>
+          <>
           <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
             <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
               {triLang(lang, {
@@ -3315,249 +2959,13 @@ export default function HomeScreen() {
               </LinearGradient>
             </TouchableOpacity>)}
           </View>
-          </>) : (<>
-
-          {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
-          <View style={{ paddingHorizontal: 16, marginBottom: 12 }}>
-            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={() => { hapticTap(); void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); }} style={{
-                borderRadius: isGoldTheme ? 14 : 16,
-                borderWidth: 0,
-                borderColor: 'transparent',
-                overflow: 'hidden',
-                backgroundColor: USE_ELITE_HOME_STATUS
-                    ? (isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
-                    : 'transparent',
-                ...(isGoldTheme ? goldShadow(1) : {}),
-                ...({}),
-            }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: isGoldTheme ? 14 : 16, padding: 14 }}>
-              {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-              <View style={{ width: homePracticeIconSize, height: homePracticeIconSize, borderRadius: 12, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}>
-                <LightSketchMenuImage source={menuImages.practice} width={homePracticeIconImageSize} height={homePracticeIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'practice')} contentFit="contain" cachePolicy="memory-disk"/>
-              </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, {
-                ru: 'Моя практика',
-                uk: 'Моя практика',
-                es: 'Mi práctica',
-                'pt-BR': "Minha prática",
-                vi: "Luyện tập của tôi",
-                id: "Latihan saya",
-                tr: "Pratiğim",
-                pl: "Moje ćwiczenie",
-            })}
-                </Text>
-                <Text style={{ display: 'none', color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                  {triLang(lang, {
-                ru: '🧠 Моя практика',
-                uk: '🧠 Моя практика',
-                es: '🧠 Mi práctica',
-                'pt-BR': "🧠 Minha prática",
-                vi: "🧠 Luyện tập của tôi",
-                id: "🧠 Latihan saya",
-                tr: "🧠 Pratiğim",
-                pl: "🧠 Moje ćwiczenie",
-            })}
-                </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
-                  {dueCount > 0
-                ? triLang(lang, {
-                    ru: `${dueCount} ждут сегодня`,
-                    uk: `${dueCount} чекають сьогодні`,
-                    es: `${dueCount} esperan hoy`,
-                    'pt-BR': `${dueCount} esperam hoje`,
-                    vi: `${dueCount} đang chờ hôm nay`,
-                    id: `${dueCount} menunggu hari ini`,
-                    tr: `${dueCount} bugün bekliyor`,
-                    pl: `${dueCount} czeka dziś`,
-                })
-                : triLang(lang, {
-                    ru: 'Ошибки под контролем',
-                    uk: 'Помилки під контролем',
-                    es: 'Errores bajo control',
-                    'pt-BR': "Erros sob controle",
-                    vi: "Lỗi trong tầm kiểm soát",
-                    id: "Kesalahan terkendali",
-                    tr: "Hatalar kontrol altında",
-                    pl: "Błędy pod kontrolą",
-                })}
-                </Text>
-                <Text style={{ display: 'none', color: t.textSecond, fontSize: f.label, marginTop: 1 }} numberOfLines={1}>
-                  {dueCount > 0
-                ? triLang(lang, {
-                    ru: `${dueCount} ждут сегодня`,
-                    uk: `${dueCount} чекають сьогодні`,
-                    es: `${dueCount} esperan hoy`,
-                    'pt-BR': `${dueCount} esperam hoje`,
-                    vi: `${dueCount} đang chờ hôm nay`,
-                    id: `${dueCount} menunggu hari ini`,
-                    tr: `${dueCount} bugün bekliyor`,
-                    pl: `${dueCount} czeka dziś`,
-                })
-                : triLang(lang, {
-                    ru: 'Закрепи сложное',
-                    uk: 'Повторення помилок',
-                    es: 'Repaso de errores',
-                    'pt-BR': "Revisão de erros",
-                    vi: "Ôn lỗi sai",
-                    id: "Tinjauan kesalahan",
-                    tr: "Hata tekrarı",
-                    pl: "Powtórka błędów",
-                })}
-                </Text>
-              </View>
-              {dueCount > 0 && (<View style={{ backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : '#E05050', borderRadius: 11, minWidth: 22, height: 22, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 }}>
-                  <Text style={{ color: isGoldTheme ? t.textOnGold : '#fff', fontSize: 11, fontWeight: '900' }}>{dueCount}</Text>
-                </View>)}
-              <Ionicons name="chevron-forward" size={18} color={t.textGhost}/>
-              </View>
-            </TouchableOpacity>
-          </View>
-
-          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
-            <View style={{ marginBottom: 12, paddingHorizontal: 16, gap: 10, flexDirection: 'row' }}>
-              {visibleActivityQuickItems.map((item, index) => {
-                const tileOpacity = eliteActivityTileEntrance[index] ?? eliteStatusEntrance;
-                const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
-                const tileBorderColor = isGoldTheme ? goldHairline : isCompassTheme ? compassHairline : isPaperHomeTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
-                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
-                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
-                return (<Animated.View key={item.key} style={{
-                        flex: 1,
-                        opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
-                        transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
-                    }}>
-                  <TouchableOpacity testID={`home-activity-${item.key}`} activeOpacity={0.78} onPress={() => { go(item.path); }} style={{
-                        flex: 1,
-                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
-                        borderWidth: 0,
-                        borderColor: 'transparent',
-                        overflow: 'hidden',
-                        backgroundColor: USE_ELITE_HOME_STATUS ? tilePanelBg : 'transparent',
-                        ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
-                        ...({}),
-                    }}>
-                    {USE_ELITE_HOME_STATUS ? (<View style={{ flex: 1, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
-                    {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
-                    {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
-                    <View style={{
-                            position: 'relative',
-                            width: homeQuickIconPlateSize,
-                            height: homeQuickIconPlateSize,
-                            borderRadius: homeQuickIconRadius,
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            backgroundColor: tileIconBg,
-                        }}>
-                      {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                    </View>
-                    <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
-                      {item.label}
-                    </Text>
-                    {item.kind === 'tasks' ? (<View style={{ width: '100%', marginTop: 1 }}>
-                        <View style={{ flexDirection: 'row', gap: 4 }}>
-                          {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                                const done = ti < tasksCompleted;
-                                return (<View key={ti} style={{ flex: 1, height: 3, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)', borderRadius: 2, overflow: 'hidden' }}>
-                                {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }}/> : null}
-                              </View>);
-                            })}
-                        </View>
-                      </View>) : null}
-                  </View>) : (<LinearGradient colors={isGoldTheme ? goldRaisedTile : isSketchLightTheme ? sketchHomePanelGradient : t.cardGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, borderRadius: isGoldTheme ? 14 : 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}>
-                      {isGoldTheme && <GoldBevel radius={14} intensity="normal"/>}
-                      <View style={{ position: 'relative', height: homeQuickIconLegacySize, justifyContent: 'center', alignItems: 'center' }}>
-                        {item.kind === 'tasks' ? (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : item.kind === 'league' ? (<LightSketchMenuImage source={themedClubIcon} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>) : (<LightSketchMenuImage source={item.img} width={homeQuickIconLegacySize} height={homeQuickIconLegacySize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>)}
-                      </View>
-                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
-                        {item.label}
-                      </Text>
-                      {item.kind === 'tasks' ? (<View style={{ width: '100%', marginTop: 2 }}>
-                          <View style={{ flexDirection: 'row', gap: 4 }}>
-                            {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
-                                const done = ti < tasksCompleted;
-                                return (<View key={ti} style={{ flex: 1, height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
-                                  {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }}/> : null}
-                                </View>);
-                            })}
-                          </View>
-                        </View>) : null}
-                  </LinearGradient>)}
-                </TouchableOpacity>
-                </Animated.View>);
-            })}
-            </View>
-          </View>
-
-          {homeLeagueChest && (<TouchableOpacity testID="home-league-open" activeOpacity={0.88} onPress={() => {
-                    hapticTap();
-                    nav.push('/league_screen');
-                }} style={{ marginHorizontal: 16, marginBottom: 12 }} accessibilityRole="button" accessibilityLabel={triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}>
-              <LinearGradient colors={leagueBonusPalette.card} locations={leagueBonusPalette.cardLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: isGoldTheme ? 14 : 18, borderWidth: isGoldTheme ? 1 : 0.5, borderColor: leagueBonusPalette.border, backgroundColor: leagueBonusPalette.innerBg, padding: 14, overflow: 'hidden', ...({}) }}>
-                <Image
-                  pointerEvents="none"
-                  source={leagueBonusGiftImage}
-                  style={{
-                    position: 'absolute',
-                    right: -8,
-                    top: -16,
-                    width: 120,
-                    height: 120,
-                    opacity: homeLeagueChestReady ? 0.22 : 0.14,
-                    transform: [{ rotate: '-8deg' }],
-                  }}
-                  contentFit="contain"
-                  accessible={false}
-                />
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 10 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
-                    <View style={{ width: homeTodayIconSize, height: homeTodayIconSize, borderRadius: isCompassTheme ? compassHomeRadius : Math.round(homeTodayIconSize / 2), backgroundColor: leagueBonusPalette.iconBg, alignItems: 'center', justifyContent: 'center', borderWidth: 0.5, borderColor: leagueBonusPalette.iconBorder, shadowColor: homeLeagueChestAccent, shadowOpacity: homeLeagueChestReady ? 0.42 : 0.24, shadowRadius: 14, shadowOffset: { width: 0, height: 6 }, elevation: 7, overflow: 'visible' }}>
-                      <Image source={leagueBonusGiftImage} style={{ width: homeTodayIconSize, height: homeTodayIconSize, opacity: homeLeagueChestReady ? 1 : 0.94 }} contentFit="contain" accessibilityLabel="Подарок лиги" />
-                    </View>
-                    <View style={{ flex: 1, minWidth: 0 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }} numberOfLines={1}>
-                        {triLang(lang, {
-                    ru: 'Цель лиги',
-                    uk: 'Ціль ліги',
-                    es: 'Meta de liga',
-                    'pt-BR': "Meta da liga",
-                    vi: "Mục tiêu giải đấu",
-                    id: "Target liga",
-                    tr: "Lig hedefi",
-                    pl: "Cel ligi",
-                })}
-                      </Text>
-                      <Text style={{ color: leagueBonusPalette.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }} numberOfLines={1}>
-                        {homeLeagueChest.leagueName}
-                      </Text>
-                    </View>
-                  </View>
-                  <Text style={{ color: homeLeagueChestAccent, fontSize: f.h2, fontWeight: '900' }}>
-                    {homeLeagueChestPct}%
-                  </Text>
-                </View>
-                <View style={{ height: 10, borderRadius: 6, overflow: 'hidden', backgroundColor: leagueBonusPalette.track, borderWidth: 0, borderColor: leagueBonusPalette.trackBorder }}>
-                  <LinearGradient colors={homeLeagueChestFill} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ height: '100%', width: `${homeLeagueChestPct}%` as any, borderRadius: 6 }}/>
-                </View>
-              </LinearGradient>
-            </TouchableOpacity>)}
-          </>)}
+          </>
 
           </Animated.View>
 
           {/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}
           <Animated.View style={sectionStyle(5)}>
-          {HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? (<>
+          <>
           <View style={{ marginHorizontal: 8, marginBottom: 10 }}>
             <Text style={{ color: t.textPrimary, fontSize: Math.max(13, f.label), fontWeight: '900', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
               {triLang(lang, {
@@ -3573,10 +2981,10 @@ export default function HomeScreen() {
             </Text>
           </View>
           <DailyPhraseCard variant="homeAdditional" />
-          </>) : <DailyPhraseCard />}
+          </>
 
           {/* Подвал */}
-          <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 12, borderTopWidth: HOME_STATUS_DENSE_PROGRESS_EXPERIMENT ? 0 : 0.5, borderTopColor: t.border }}>
+          <View style={{ alignItems: 'center', paddingVertical: 24, marginTop: 0 }}>
             <ReportErrorButton screen="home" dataId="home_main" dataText={triLang(lang, {
                 ru: 'Главный экран',
                 uk: 'Головний екран',

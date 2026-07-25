@@ -588,12 +588,14 @@ const LessonCard = React.memo(function LessonCard({
                             : null}
               </View>
             </View>
+            {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — текст уже
+                переносится на 2 строки (numberOfLines={2}), этого достаточно, guard-ok */}
             <Text style={{
                 color: lessonTextColor,
                 fontSize: f.body,
                 fontWeight: '700',
                 ...LESSON_CARD_WHITE_TEXT_SHADOW,
-            }} numberOfLines={2} adjustsFontSizeToFit minimumFontScale={0.8} maxFontSizeMultiplier={1}>
+            }} numberOfLines={2} maxFontSizeMultiplier={1}>
               {name}
             </Text>
           </View>
@@ -1488,7 +1490,10 @@ return (<LessonCard key={`l-${num}`}
                       <Text style={{ color: attestationMuted, fontSize: Math.max(12, f.label), fontWeight: '800', letterSpacing: 0, textTransform: 'uppercase' }} numberOfLines={1}>
                         B2 / CEFR
                       </Text>
-                      <Text style={{ color: attestationText, fontSize: Math.max(27, f.h1), lineHeight: Math.max(32, f.h1 + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>
+                      {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
+                          уменьшен базовый размер (было 27, стало 22), чтобы влезали длинные варианты
+                          перевода («Değerlendirme», «Evaluación») без ужимания на рендере, guard-ok */}
+                      <Text style={{ color: attestationText, fontSize: Math.max(22, Math.min(f.h1, 27)), lineHeight: Math.max(27, Math.min(f.h1, 27) + 4), fontWeight: '900', letterSpacing: 0 }} numberOfLines={1}>
                         {s.home.attestTile}
                       </Text>
                     </View>

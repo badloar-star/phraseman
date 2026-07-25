@@ -1299,7 +1299,10 @@ export default function SettingsMain() {
                     fontWeight: '700',
                     color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
                   }}>A</Text>
-                  <Text numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                  {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — подпись
+                      короткое слово в равнодолевой (flex:1) плитке без фиксированной высоты,
+                      при нехватке места просто перенесётся на 2 строки, guard-ok */}
+                  <Text numberOfLines={2} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                     {L(
                       sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                       sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
@@ -1932,11 +1935,13 @@ export default function SettingsMain() {
                   {nameSaving ? (
                     <ActivityIndicator size="small" color={isCompassTheme ? COMPASS_RICH.textDark : t.correctText} />
                   ) : null}
+                  {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — статично
+                      уменьшен размер (было до 15, стало до 13), чтобы длинные варианты перевода
+                      («Kaydediliyor», «Zapisywanie») влезали в flex:1-кнопку рядом с индикатором
+                      без ужимания на рендере, guard-ok */}
                   <Text
-                    style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: Math.min(f.body, 15), fontWeight: '700', flexShrink: 1 }}
+                    style={{ color: isCompassTheme ? COMPASS_RICH.textDark : t.correctText, fontSize: Math.min(f.body, 13), fontWeight: '700', flexShrink: 1 }}
                     numberOfLines={1}
-                    adjustsFontSizeToFit
-                    minimumFontScale={0.78}
                   >
                     {nameSaving
                       ? L('Сохраняем', 'Зберігаємо', 'Guardando', 'Salvando', 'Đang lưu', 'Menyimpan', 'Kaydediliyor', 'Zapisywanie')

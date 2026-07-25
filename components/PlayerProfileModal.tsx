@@ -421,7 +421,6 @@ function PlayerProfileModalBody({
   // соблазняли вернуть рамку.
   const glassHairline = auroraGlass ? AURORA_GLASS.hairline : t.border;
   const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
-  const glassChromeBorder = auroraGlass ? AURORA_GLASS.chromeBorder : t.border;
   const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
 
   // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
@@ -1093,11 +1092,17 @@ function PlayerProfileModalBody({
             borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
             alignItems: 'center',
             justifyContent: 'center',
+            // зачем: §0.D — та же логика, что у кнопки друга: тон + мягкая
+            // тень вместо кромки; кнопка лежит поверх артворка карточки.
             backgroundColor: compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg,
-            borderWidth: compassProfileSurface ? 0 : 1,
-            borderColor: compassProfileSurface ? 'transparent' : glassChromeBorder,
             overflow: compassProfileSurface ? 'hidden' : 'visible',
-            ...(compassProfileSurface ? compassShadow(1) : null),
+            ...(compassProfileSurface ? compassShadow(1) : {
+              shadowColor: '#000',
+              shadowOpacity: 0.32,
+              shadowRadius: 8,
+              shadowOffset: { width: 0, height: 3 },
+              elevation: 5,
+            }),
           }}
         >
           {compassProfileSurface && <CompassDepthSurface radius={9} quiet />}
@@ -1116,15 +1121,22 @@ function PlayerProfileModalBody({
               width: PROFILE_HEADER_ACTION_SIZE,
               height: PROFILE_HEADER_ACTION_SIZE,
               borderRadius: compassProfileSurface ? 9 : PROFILE_HEADER_ACTION_SIZE / 2,
+              // зачем: §0.D — кнопка лежит поверх артворка карточки, поэтому
+              // кромку заменяем более плотной заливкой + мягкой тенью ниже:
+              // отделение то же, «нарисованной» линии нет.
               backgroundColor: isAlreadyFriend
-                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(240,84,84,0.18)')
+                ? (compassProfileSurface ? COMPASS_RICH.charcoalRaised : 'rgba(240,84,84,0.30)')
                 : (compassProfileSurface ? COMPASS_RICH.charcoalRaised : glassChromeBg),
               alignItems: 'center',
               justifyContent: 'center',
-              borderWidth: compassProfileSurface ? 0 : 1,
-              borderColor: compassProfileSurface ? 'transparent' : isAlreadyFriend ? 'rgba(240,84,84,0.35)' : glassChromeBorder,
               overflow: compassProfileSurface ? 'hidden' : 'visible',
-              ...(compassProfileSurface ? compassShadow(1) : null),
+              ...(compassProfileSurface ? compassShadow(1) : {
+                shadowColor: '#000',
+                shadowOpacity: 0.32,
+                shadowRadius: 8,
+                shadowOffset: { width: 0, height: 3 },
+                elevation: 5,
+              }),
               opacity: friendRequestBusy ? 0.55 : isFriendRequestSent ? 0.75 : 1,
             }}
             accessibilityRole="button"

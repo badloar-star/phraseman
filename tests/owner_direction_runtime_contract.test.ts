@@ -567,7 +567,6 @@ describe('owner runtime direction contract', () => {
       'app/app_health.ts': 1,
       'app/firebase.ts': 1,
       'app/firestore_friend_requests.ts': 1,
-      'app/friends_screen.tsx': 1,
       'app/shards_shop.tsx': 3,
       'app/streak_wager.ts': 1,
     };
@@ -900,23 +899,19 @@ describe('owner runtime direction contract', () => {
 
   it('keeps friend gift sends optimistic without exposing auth-link internals', () => {
     const friendsTab = read('app/(tabs)/friends.tsx');
-    const legacyFriends = read('app/friends_screen.tsx');
 
-    for (const source of [friendsTab, legacyFriends]) {
-      expect(source).toContain('sendFriendGiftWithShards');
-      expect(source).toContain('setGiftBusyId(giftId)');
-      expect(source).toContain("reason: 'friend_gift_optimistic'");
-      expect(source).toContain("reason: 'friend_gift_rollback'");
-      expect(source).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
-      expect(source).toContain('setGiftBalance(guardedBalance)');
-      expect(source).not.toContain('setGiftBalance(res.senderBalanceAfter)');
-      expect(source).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
-      expect(source).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
-    }
+    expect(friendsTab).toContain('sendFriendGiftWithShards');
+    expect(friendsTab).toContain('setGiftBusyId(giftId)');
+    expect(friendsTab).toContain("reason: 'friend_gift_optimistic'");
+    expect(friendsTab).toContain("reason: 'friend_gift_rollback'");
+    expect(friendsTab).toContain('const guardedBalance = await getShardsBalance().catch(() => res.senderBalanceAfter);');
+    expect(friendsTab).toContain('setGiftBalance(guardedBalance)');
+    expect(friendsTab).not.toContain('setGiftBalance(res.senderBalanceAfter)');
+    expect(friendsTab).not.toContain(['Аккаунт ещё', 'связывается', 'с облаком'].join(' '));
+    expect(friendsTab).not.toContain(['Подожди пару секунд', 'и попробуй снова'].join(' '));
 
     expect(friendsTab).toContain('setSentGiftReceipt({');
     expect(friendsTab).toContain('balanceAfter: guardedBalance');
-    expect(legacyFriends).toContain('setGiftTarget(null);');
   });
 
   it('keeps server-first profile upgrades and daily rerolls visibly pending', () => {

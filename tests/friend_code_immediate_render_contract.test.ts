@@ -22,12 +22,4 @@ describe('friends invite code first paint', () => {
     expect(cachedRead).toBeLessThan(deferredWork);
     expect(ensureRead).toBeLessThan(deferredWork);
   });
-
-  it('keeps the legacy friends screen from deferring friend-code generation', () => {
-    const source = read('app/friends_screen.tsx');
-
-    expect(source).toContain('readCachedMyInviteCodeForFriends');
-    expect(source).toContain("const code = await ensureMyInviteCodeForFriends('');");
-    expect(source).not.toContain('InteractionManager.runAfterInteractions');
-  });
 });

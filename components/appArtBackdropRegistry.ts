@@ -82,7 +82,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   arena_leaderboard: 'arena',
   club_screen: 'friends',
   league_screen: 'friends',
-  friends_screen: 'friends',
   settings_edu: 'settings',
   settings_notifications: 'settings',
   settings_themes: 'settings',

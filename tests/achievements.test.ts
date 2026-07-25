@@ -222,11 +222,9 @@ describe('achievements', () => {
   it('wires friend count achievements for both accepted and observed friendships', () => {
     const acceptPath = path.join(__dirname, '..', 'app', 'firestore_friend_requests.ts');
     const tabPath = path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx');
-    const rootPath = path.join(__dirname, '..', 'app', 'friends_screen.tsx');
 
     expect(fs.readFileSync(acceptPath, 'utf8')).toContain("type: 'friend_added'");
     expect(fs.readFileSync(tabPath, 'utf8')).toContain("type: 'friend_added'");
-    expect(fs.readFileSync(rootPath, 'utf8')).toContain("type: 'friend_added'");
   });
 
   it('can unlock every achievement through its public event contract', async () => {

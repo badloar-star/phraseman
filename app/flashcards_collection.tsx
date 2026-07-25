@@ -1223,6 +1223,46 @@ export default function FlashcardsScreen() {
   }, [cards, customCards, flipAnim, studyTarget]);
 
   // ── Delete with animation ──────────────────────────────────────────────────
+  /**
+   * зачем (макет B1 `.snackx` «Карточка удалена · ↩ Отменить»): удаление было
+   * НЕОБРАТИМЫМ — промахнулся долгим нажатием и карточка исчезла навсегда,
+   * вместе с её прогрессом. Держим последнюю удалённую в памяти и даём вернуть
+   * её одним тапом. 5 секунд: меньше — не успеть заметить, больше — плашка
+   * начинает мешать.
+   */
+  const [undoCard, setUndoCard] = useState<{ card: CardItem; idx: number } | null>(null);
+  const undoTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const clearUndo = useCallback(() => {
+    if (undoTimerRef.current) { clearTimeout(undoTimerRef.current); undoTimerRef.current = null; }
+    setUndoCard(null);
+  }, []);
+
+  const restoreDeletedCard = useCallback(async () => {
+    const pending = undoCard;
+    if (!pending) return;
+    clearUndo();
+    try {
+      if (pending.card.categoryId === 'saved') {
+        // Возвращаем в то же хранилище, откуда удалили.
+        await saveFlashcards([{ ...(pending.card as any) }], studyTarget);
+        setSavedCards((prev) => (prev.some((c) => c.id === pending.card.id) ? prev : [pending.card, ...prev]));
+      } else if (pending.card.categoryId === 'custom') {
+        const restored = [pending.card, ...customCards.filter((c) => c.id !== pending.card.id)];
+        await writeCustomCards(restored, studyTarget);
+        setCustomCards(restored);
+      }
+    } catch {
+      // Восстановление не удалось — не роняем экран; карточка просто
+      // останется удалённой, как и было до тапа «Отменить».
+    }
+  }, [clearUndo, customCards, studyTarget, undoCard]);
+
+  // Гасим таймер при уходе с экрана, чтобы не дёргать setState после размонтирования.
+  useEffect(() => () => {
+    if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+  }, []);
+
   const handleDeleteCard = useCallback(async (item: CardItem, itemIdx: number) => {
     const anim = getDeleteAnim(item.id);
     anim.opacity.setValue(1);
@@ -1240,6 +1280,10 @@ export default function FlashcardsScreen() {
     ]).start(async () => {
       await deleteCardById(item.id, itemIdx);
       setDeletingId(null);
+      // Запоминаем удалённую карточку и запускаем окно отмены.
+      if (undoTimerRef.current) clearTimeout(undoTimerRef.current);
+      setUndoCard({ card: item, idx: itemIdx });
+      undoTimerRef.current = setTimeout(() => setUndoCard(null), 5000);
     });
   }, [deleteCardById, getDeleteAnim]);
 
@@ -1713,6 +1757,66 @@ export default function FlashcardsScreen() {
             Только на вкладке своих карточек — лимит касается именно их. */}
         {activeCat === 'custom' && (
           <CollectionLimitHeader saved={savedCards.length} isPremium={isPremium} t={t} />
+        )}
+
+        {/* Плашка отмены удаления (макет B1 `.snackx`). Плавает над списком,
+            чтобы не сдвигать контент — иначе список прыгал бы на каждое
+            удаление. Тап-зона кнопки 44px (§4.6), обводок нет (§0.D). */}
+        {undoCard && (
+          <View
+            pointerEvents="box-none"
+            style={{
+              position: 'absolute',
+              left: 16,
+              right: 16,
+              bottom: Math.max(bottomInset, 12) + 16,
+              zIndex: 50,
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 12,
+              paddingLeft: 16,
+              paddingRight: 8,
+              paddingVertical: 8,
+              borderRadius: 16,
+              backgroundColor: t.bgSurface2 ?? t.bgSurface,
+              shadowColor: '#000',
+              shadowOpacity: 0.32,
+              shadowRadius: 14,
+              shadowOffset: { width: 0, height: 6 },
+              elevation: 10,
+            }}
+          >
+            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>
+              {triLang(lang, {
+                ru: 'Карточка удалена',
+                uk: 'Картку видалено',
+                es: 'Tarjeta eliminada',
+                'pt-BR': 'Cartão excluído',
+                vi: 'Đã xoá thẻ',
+                id: 'Kartu dihapus',
+                tr: 'Kart silindi',
+                pl: 'Fiszka usunięta',
+              })}
+            </Text>
+            <TouchableOpacity
+              onPress={restoreDeletedCard}
+              activeOpacity={0.8}
+              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 14, borderRadius: 12 }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight: '800' }}>
+                ↩ {triLang(lang, {
+                  ru: 'Отменить',
+                  uk: 'Скасувати',
+                  es: 'Deshacer',
+                  'pt-BR': 'Desfazer',
+                  vi: 'Hoàn tác',
+                  id: 'Urungkan',
+                  tr: 'Geri al',
+                  pl: 'Cofnij',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </View>
         )}
 
         {/* зачем (макет B1 `.fchips`): отобрать проблемные карточки было

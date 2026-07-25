@@ -501,6 +501,16 @@ export {
   tournamentClaimReward,
 } from './tournaments';
 export { adminSeedBotProfiles } from './tournament_bots';
+// Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,
+// публикация в пул, статистика готовности раундов, расписание слотов.
+export {
+  adminGenerateTournamentTasks,
+  adminListTournamentTasks,
+  adminMutateTournamentTasks,
+  adminTournamentPoolStats,
+  adminGetTournamentSchedule,
+  adminSetTournamentSchedule,
+} from './admin_tournament_tasks';
 
 // ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
 export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';

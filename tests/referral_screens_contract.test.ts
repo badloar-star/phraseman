@@ -190,10 +190,19 @@ describe('referral roulette screen contract', () => {
     });
   });
 
-  it('roulette synchronously reads the persisted account-scoped drain', () => {
-    const roulette = read('app/roulette.tsx');
-    expect(roulette).toContain('readReferralDrain(rouletteAccountToken)');
-    expect(roulette).toContain('selectReferralSurfaceState');
+  // зачем: отдельный экран рулетки удалён (2026-07-25) — спин живёт на /referrals,
+  // дуга (prize_arc) лишь докручивается до приза, который выдал СЕРВЕР.
+  it('spins the prize arc to the server-issued prize on the unified screen', () => {
+    const referrals = read('app/referrals.tsx');
+    const arc = read('components/prize_arc.tsx');
+    expect(referrals).toContain('readReferralDrain(renderToken)');
+    expect(referrals).toContain('selectReferralSurfaceState');
+    expect(referrals).toContain('spinReferralRoulette');
+    expect(referrals).toContain('arcRef.current?.spinTo(outcome.prizeIndex)');
+    expect(arc).toContain('POSITION_OF_PRIZE');
+    expect(arc).toContain('TAPE_CYCLE');
+    expect(arc).not.toContain('runOnJS(');
+    expect(arc).toContain('scheduleOnRN(');
   });
 
   it('converts qualified invites into spin credits without legacy per-row claiming', () => {
@@ -205,24 +214,30 @@ describe('referral roulette screen contract', () => {
     expect(source).not.toContain('claimReferralVipDays');
     expect(source).toContain('readReferralInvites(renderToken)');
   });
-  it('keeps referral code entry as a separate explanatory screen', () => {
-    const source = read('app/referral_code_entry.tsx');
+  // зачем: экран ввода кода схлопнут в шит на едином экране (2026-07-25);
+  // настройки и welcome-модалка открывают его через /referrals?enter=1.
+  it('keeps referral code entry as a gated sheet on the unified screen', () => {
+    const sheet = read('components/referral_code_sheet.tsx');
+    const referrals = read('app/referrals.tsx');
+    const settings = read('app/(tabs)/settings.tsx');
+    const welcome = read('components/ReferralWelcomeHost.tsx');
 
-    expect(source).toContain('testID="screen-referral-code-entry"');
-    expect(source).toContain('Есть код от друга? Введи его здесь и оформи Plus или Pro — другу откроется ключ.');
-    expect(source).toContain('Plus от 1 дня до 365 дней.');
-    expect(source).toContain('const rouletteOn = useReferralRouletteEnabled()');
-    expect(source).toContain('testID="referral-code-entry-off"');
-    expect(source).not.toContain('testID="referral-code-seven-plus-seven-note"');
-    expect(source).toContain('testID="referral-code-input"');
-    expect(source).toContain('applyManualReferralCode');
+    expect(sheet).toContain('testID="referral-code-sheet"');
+    expect(sheet).toContain('testID="referral-code-sheet-input"');
+    expect(sheet).toContain('testID="referral-code-sheet-submit"');
+    expect(sheet).toContain('applyManualReferralCode');
+    expect(sheet).not.toContain('testID="referral-code-seven-plus-seven-note"');
+    expect(referrals).toContain("params.enter === '1' && marketingVisible");
+    expect(referrals).toContain('testID="referrals-enter-code"');
+    expect(settings).toContain("router.push('/referrals?enter=1' as any)");
+    expect(welcome).toContain("router.push('/referrals?enter=1' as never)");
   });
 
   it('keeps referrals as a separate gated roulette screen without legacy Plus claims', () => {
     const source = read('app/referrals.tsx');
 
     expect(source).toContain('testID="screen-referrals"');
-    expect(source).toContain('Твои приглашения');
+    expect(source).toContain('Приглашённые друзья');
     expect(source).toContain('testID="referrals-roulette-hero"');
     expect(source).toContain('Ждём покупку Plus');
     expect(source).toContain('Ключ готов');
@@ -246,12 +261,13 @@ describe('referral roulette screen contract', () => {
     expect(friends).not.toContain('testID="friends-open-referrals"');
     expect(friends).not.toContain("router.push('/referrals' as any)");
     expect(friends).not.toContain("router.push('/referral_code_entry' as any)");
-    // Входы живут в настройках: ряд «Ввести реферальный код» + инвайт-баннер.
+    // Входы живут в настройках: ряд «Ввести реферальный код» (тот же экран,
+    // шит открыт через ?enter=1) + инвайт-баннер.
     expect(settings).toContain('testID="settings-referral-code-row"');
     expect(settings).toContain('testID="settings-invite-banner"');
-    expect(settings).toContain("router.push('/referral_code_entry' as any)");
+    expect(settings).toContain("router.push('/referrals?enter=1' as any)");
     expect(settings).toContain("router.push('/referrals' as any)");
-    expect(layout).toContain('<Stack.Screen name="referral_code_entry"');
+    expect(layout).not.toContain('<Stack.Screen name="referral_code_entry"');
     expect(layout).toContain('<Stack.Screen name="referrals"');
   });
 
@@ -304,7 +320,8 @@ describe('referral roulette screen contract', () => {
 
   it('keeps referral screens borderless using tonal surfaces instead of decorative outlines', () => {
     const referrals = read('app/referrals.tsx');
-    const entry = read('app/referral_code_entry.tsx');
+    const shell = read('components/referral_sheet_shell.tsx');
+    const sheet = read('components/referral_code_sheet.tsx');
     const ended = read('app/referral_access_ended_modal.tsx');
 
     expect(referrals).toContain('testID="screen-referrals"');
@@ -315,13 +332,13 @@ describe('referral roulette screen contract', () => {
     expect(referrals).not.toContain('BlurView');
     expect(referrals).not.toContain('backdropFilter');
 
-    expect(entry).toContain('testID="screen-referral-code-entry"');
-    expect(entry).toContain('TonalSurface');
-    expect(entry).toContain('testID="referral-code-input"');
-    expect(entry).toContain('testID="referral-code-submit"');
-    expect(entry).not.toMatch(/borderWidth:\s*0,\s*borderColor:/);
-    expect(entry).not.toContain('BlurView');
-    expect(entry).not.toContain('backdropFilter');
+    expect(shell).toContain('TonalSurface');
+    expect(shell).not.toMatch(/borderWidth:\s*[1-9]/);
+    expect(sheet).toContain('testID="referral-code-sheet-input"');
+    expect(sheet).toContain('testID="referral-code-sheet-submit"');
+    expect(sheet).not.toMatch(/borderWidth:\s*[1-9]/);
+    expect(sheet).not.toContain('BlurView');
+    expect(sheet).not.toContain('backdropFilter');
 
     expect(ended).toContain('backgroundColor: pressed ? t.bgSurface2 : t.bgSurface');
     expect(ended).not.toContain('borderColor: t.accent');

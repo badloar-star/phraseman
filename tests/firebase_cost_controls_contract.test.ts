@@ -40,16 +40,17 @@ describe('Firebase cost controls', () => {
 
   it('keeps referral cost guardrails: no code generation on sign-in, lazy invite link on share, no referral reads in friends sync', () => {
     const authProviderSource = read('app/auth_provider.ts');
-    const inviteSource = read('app/settings_invite_friend.tsx');
+    // зачем: экран settings_invite_friend удалён (2026-07-25) — cloud invite
+    // теперь строится только по явному нажатию «Пригласить» на /referrals.
+    const referralsSource = read('app/referrals.tsx');
     const friendsSource = read('app/firestore_friends.ts');
 
     // Код выдаётся лениво (по «Пригласить»), а не на каждый вход.
     expect(authProviderSource).not.toContain("import('./referral_system')");
     expect(authProviderSource).not.toContain('generateReferralCode');
-    // Экран настроек делает cloud invite только по явному нажатию Share, не при render/load.
-    expect(inviteSource).toContain('const onSendInvite = useCallback(async () => {');
-    expect(inviteSource).toContain('await buildCloudReferralInviteShare');
-    expect(inviteSource).not.toContain('isReferralCloudEnabled');
+    // Экран рефералов делает cloud invite только по явному нажатию Share, не при render/load.
+    expect(referralsSource).toContain('const handleInvite = useCallback(async () => {');
+    expect(referralsSource).toContain('await buildCloudReferralInviteShare');
     // Синк друзей не читает реферальные коллекции. ЕДИНСТВЕННОЕ разрешённое чтение
     // referral_codes — явный поиск по введённому коду (lookupInviteCode, dd94792b0:
     // друг вводит РЕФЕРАЛЬНЫЙ код вместо friend-кода — иначе «код не найден»).

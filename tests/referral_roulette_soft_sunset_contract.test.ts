@@ -65,16 +65,17 @@ describe('referral roulette soft sunset integration contract', () => {
     expect(client).toContain('encodeURIComponent(stableId)');
   });
 
-  test('soft-off roulette uses server drain credits and never a dev-only aggregate', () => {
-    const roulette = read('app/roulette.tsx');
+  // зачем: отдельный экран рулетки удалён (2026-07-25) — те же серверные
+  // инварианты дренажа теперь несёт единый экран /referrals.
+  test('soft-off spin uses server drain credits and never a dev-only aggregate', () => {
     const referrals = read('app/referrals.tsx');
     const spin = read('functions/src/referral_spin.ts');
-    expect(roulette).toContain('getClaimableReferralState');
-    expect(roulette).toContain('state.drain.availableCreditCount');
-    expect(roulette).toContain('isCurrentAccountGeneration(requestAccount)');
-    expect(roulette).toContain('readReferralDrain(rouletteAccountToken)');
-    expect(roulette).toContain('selectReferralSurfaceState');
-    expect(roulette).not.toContain("progress?.referral_spin_credits");
+    expect(referrals).toContain('getClaimableReferralState');
+    expect(referrals).toContain('state.drain.availableCreditCount');
+    expect(referrals).toContain('isCurrentAccountGeneration(spinAccount)');
+    expect(referrals).toContain('readReferralDrain(renderToken)');
+    expect(referrals).toContain('selectReferralSurfaceState');
+    expect(referrals).not.toContain("progress?.referral_spin_credits");
     expect(referrals).toContain('setSpinCredits(state.drain.availableCreditCount)');
     expect(spin).toContain('eligibleSummary.availableCount - 1');
   });

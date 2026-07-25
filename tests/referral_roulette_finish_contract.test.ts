@@ -47,15 +47,16 @@ describe('referral roulette finish contract', () => {
   });
 
   it('removes fixed seven-day referral promises from every referral entry surface', () => {
+    // зачем: экраны ввода/приглашения/объяснялки схлопнуты в шиты единого экрана
+    // (2026-07-25) — проверяем те же обещания на новых поверхностях.
     const targets = [
       'app/(tabs)/friends.tsx',
       'app/referrals.tsx',
-      'app/referral_code_entry.tsx',
       'app/referral_invite_share.ts',
-      'app/settings_invite_friend.tsx',
       'components/ReferralWelcomeHost.tsx',
       'components/EntitlementExpiredHost.tsx',
-      'app/roulette_about.tsx',
+      'components/referral_code_sheet.tsx',
+      'components/referral_how_sheet.tsx',
     ];
     const source = targets.map(read).join('\n');
     const forbidden = [
@@ -82,7 +83,6 @@ describe('referral roulette finish contract', () => {
     const referrals = read('app/referrals.tsx');
     const friends = read('app/(tabs)/friends.tsx');
     const welcome = read('components/ReferralWelcomeHost.tsx');
-    const entry = read('app/referral_code_entry.tsx');
     const expired = read('components/EntitlementExpiredHost.tsx');
 
     expect(referrals).toContain('const marketingVisible = referralSurface.marketingVisible');
@@ -90,6 +90,9 @@ describe('referral roulette finish contract', () => {
     expect(referrals).toContain('const drainVisible = referralSurface.drainVisible');
     expect(referrals).toContain('{referralUiVisible && (');
     expect(referrals).toContain('{marketingVisible && (');
+    // Шит ввода кода открывается только при живом маркетинге (флаг вкл):
+    // и по ссылке на экране, и по ?enter=1 из настроек.
+    expect(referrals).toContain("params.enter === '1' && marketingVisible");
     expect(friends).toContain('const referralMarketingVisible = referralSurface.marketingVisible');
     expect(friends).toContain('selectReferralSurfaceState');
     // Из «Друзей» реферальный UI убран (owner 2026-07-24): статусные чипы и
@@ -99,66 +102,60 @@ describe('referral roulette finish contract', () => {
     expect(friends).not.toContain('friends-open-referrals');
     expect(welcome).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(welcome).toContain('const wantShow = rouletteOn &&');
-    expect(entry).toContain('const rouletteOn = useReferralRouletteEnabled()');
-    expect(entry).toContain('if (!rouletteOn)');
-    expect(entry).toContain('testID="referral-code-entry-off"');
     expect(expired).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(expired).toContain("kind === 'vip' && !rouletteOn ? 'premium' : kind");
   });
 
   it('puts one polished gated hero first, before the code card', () => {
     const source = read('app/referrals.tsx');
+    const arc = read('components/prize_arc.tsx');
     const heroAt = source.indexOf('testID="referrals-roulette-hero"');
     const codeAt = source.indexOf('testID="referrals-my-code-card"');
 
     expect(heroAt).toBeGreaterThan(0);
     expect(codeAt).toBeGreaterThan(heroAt);
     expect(source.match(/testID="referrals-roulette-dev-grant"/g)).toHaveLength(1);
-    expect(source).toContain('testID="referrals-roulette-preview"');
+    // зачем: превью-лента заменена дугой карточек (Kimi-стиль, 2026-07-25).
+    expect(source).toContain('<PrizeArc');
     expect(source).toContain('numberOfLines={1}');
-    expect(source).toContain('testID="referrals-roulette-preview-rail"');
-    expect(source).toContain('horizontal');
-    expect(source).toContain('ROULETTE_PRIZES.map');
+    expect(arc).toContain('testID="prize-arc"');
+    expect(arc).toContain('ROULETTE_PRIZES[');
     expect(source).toContain('Plus от 1 дня до 365 дней');
     expect(source).not.toContain("transform: [{ rotate:");
     expect(source).not.toMatch(/fontWeight:\s*'[89]00'/);
   });
 
-  it('keeps the roulette first frame static until assets and layout are ready', () => {
-    const screen = read('app/roulette.tsx');
+  it('keeps the prize arc first frame static until assets are ready', () => {
+    const arc = read('components/prize_arc.tsx');
     const prizes = read('app/roulette_prizes.ts');
 
-    expect(screen).toContain("import { Image } from 'expo-image'");
-    expect(screen).toContain("from 'react-native-worklets'");
-    expect(screen).toContain('scheduleOnRN(');
-    expect(screen).not.toContain('runOnJS');
-    expect(screen).toContain('useReducedMotion()');
-    expect(screen).toContain('cancelAnimation(translateX)');
-    expect(screen).toContain('const COPIES = 6');
-    expect(screen).toContain('const [assetsReady, setAssetsReady]');
-    expect(screen).toContain('const [layoutReady, setLayoutReady]');
-    expect(screen).toContain('onLayout={onTapeLayout}');
-    expect(screen).toContain('cachePolicy="memory-disk"');
-    expect(screen).toContain('priority="high"');
-    expect(screen).toContain('if (!assetsReady || !layoutReady)');
+    expect(arc).toContain("from 'expo-image'");
+    expect(arc).toContain("from 'react-native-worklets'");
+    expect(arc).toContain('scheduleOnRN(');
+    expect(arc).not.toContain('runOnJS(');
+    expect(arc).toContain('useReducedMotion()');
+    expect(arc).toContain('cancelAnimation(rotation)');
+    expect(arc).toContain('const [assetsReady, setAssetsReady]');
+    expect(arc).toContain('preloadRoulettePrizeImages()');
+    expect(arc).toContain('cachePolicy="memory-disk"');
+    // Высота зоны фиксирована — первый кадр равен финальной геометрии.
+    expect(arc).toContain('export const PRIZE_ARC_HEIGHT');
     expect(prizes).toContain('export async function preloadRoulettePrizeImages');
   });
 
-  it('maps a server-side disable race distinctly and localizes the about screen', () => {
+  it('maps a server-side disable race distinctly and localizes the how-it-works sheet', () => {
     const client = read('app/roulette_spin_client.ts');
-    const screen = read('app/roulette.tsx');
-    const about = read('app/roulette_about.tsx');
+    const referrals = read('app/referrals.tsx');
+    const how = read('components/referral_how_sheet.tsx');
 
     expect(client).toContain("msg.includes('REFERRAL_ROULETTE_EMERGENCY_STOP')");
     expect(client).toContain("reason: 'disabled'");
-    expect(screen).toContain("outcome.reason === 'disabled'");
-    expect(screen).toContain("showToast(L('Награды временно недоступны'");
-    expect(about).toContain('const { lang } = useLang()');
-    expect(about).toContain('const L = makeL(lang as Lang)');
-    expect(about).toContain('const rouletteOn = useReferralRouletteEnabled()');
-    expect(about).toContain('if (!rouletteOn)');
+    expect(referrals).toContain("outcome.reason === 'disabled'");
+    expect(referrals).toContain("setMessage(L('Награды временно недоступны'");
+    expect(how).toContain('const { lang } = useLang()');
+    expect(how).toContain('const L = makeL(lang as Lang)');
     for (const marker of ['Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego']) {
-      expect(about).toContain(marker);
+      expect(referrals).toContain(marker);
     }
   });
 
@@ -179,19 +176,17 @@ describe('referral roulette finish contract', () => {
     }
   });
 
-  it('localizes roulette and invite flag-off/loading states for all eight locales', () => {
-    const roulette = read('app/roulette.tsx');
-    const invite = read('app/settings_invite_friend.tsx');
+  it('localizes spin and sheet states for all eight locales', () => {
+    const referrals = read('app/referrals.tsx');
+    const codeSheet = read('components/referral_code_sheet.tsx');
+    const howSheet = read('components/referral_how_sheet.tsx');
 
-    expect(roulette).toContain("showToast(L('Карточки ещё готовятся — секунду'");
-    expect(roulette).toContain("L('Готовим…'");
-    expect(roulette).toContain("L('Раздел недоступен'");
-    expect(invite).toContain("unavailable: 'Этот раздел временно недоступен.'");
-    expect(invite).toContain("unavailable: 'Sekcja jest chwilowo niedostępna.'");
-    expect(invite).toContain("preparing: 'Готовим приглашение…'");
-    expect(invite).toContain("preparing: 'Przygotowujemy zaproszenie…'");
-    expect(invite).toContain('{busy ? tx.preparing : tx.cta}');
-    expect(invite).not.toContain("copyLang === 'ru' ?");
+    expect(referrals).toContain("L('Открываем…'");
+    expect(referrals).toContain("L('Забрать награду'");
+    expect(referrals).toContain("'Odbierz nagrodę'");
+    expect(codeSheet).toContain("L('Применить код'");
+    expect(codeSheet).toContain("'Zastosuj kod'");
+    expect(howSheet).toContain("'Jak to działa'");
   });
 
   it('keeps the settings invite banner honest in every locale', () => {
@@ -228,14 +223,14 @@ describe('referral roulette finish contract', () => {
   it('keeps roulette wording out of every user-visible referral string', () => {
     const screens = [
       'app/referrals.tsx',
-      'app/roulette.tsx',
-      'app/roulette_about.tsx',
-      'app/settings_invite_friend.tsx',
-      'app/referral_code_entry.tsx',
       'app/referral_invite_share.ts',
       'app/referral_sunset_copy.ts',
       'components/EntitlementExpiredHost.tsx',
       'components/ReferralWelcomeHost.tsx',
+      'components/referral_code_sheet.tsx',
+      'components/referral_how_sheet.tsx',
+      'components/referral_sheet_shell.tsx',
+      'components/prize_arc.tsx',
     ];
     const banned = /рулетк|прокрут|крутить|крути\b/i;
     const offenders: string[] = [];

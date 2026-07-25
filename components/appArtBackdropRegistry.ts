@@ -86,7 +86,6 @@ export const APP_ART_ROUTE_BACKDROPS: Record<string, AppArtBackdropName> = {
   settings_notifications: 'settings',
   settings_themes: 'settings',
   settings_language: 'settings',
-  settings_invite_friend: 'settings',
   premium_modal: 'settings',
   avatar_select: 'settings',
   privacy_screen: 'settings',

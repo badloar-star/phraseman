@@ -1061,7 +1061,9 @@ export default function SettingsMain() {
               icon="gift"
               color="pink"
               label={L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
-              onPress={() => { doHaptic(); router.push('/referral_code_entry' as any); }}
+              // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
+              // ?enter=1 сразу выдвигает шит «Код от друга».
+              onPress={() => { doHaptic(); router.push('/referrals?enter=1' as any); }}
             />
           ) : null}
           {!hasPremiumAccess && promoCodesOn ? (

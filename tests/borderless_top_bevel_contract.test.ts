@@ -76,7 +76,9 @@ describe('borderless top bevel contract', () => {
     expectNoDecorativeTopBevelAround(diagnostic, 's.diagnostic.prevResult');
     expectNoDecorativeTopBevelAround(diagnostic, 's.diagnostic.correct');
     expectNoDecorativeTopBevel(sliceBetween(referrals, 'testID={`referrals-row-', '<View style={{ flexDirection'));
-    expectNoDecorativeTopBevelAround(referrals, "Ionicons name=\"people-outline\"");
+    // зачем: блок «Твои приглашения» (people-outline) схлопнут в единый экран —
+    // тональность проверяем на карточке кода.
+    expectNoDecorativeTopBevelAround(referrals, 'testID="referrals-my-code-card"');
     expectNoDecorativeTopBevelAround(prepositionDrill, '{subtitle}');
     expectNoDecorativeTopBevelAround(personalPlanComplete, 'styles.card');
   });

@@ -86,7 +86,9 @@ export default function ReferralWelcomeHost() {
     setWelcomeDecision(null);
     void markReferralWelcomeSeen().catch(() => {});
     try {
-      router.push('/referral_code_entry' as never);
+      // зачем: экран ввода кода удалён — единый экран рефералов сам выдвигает
+      // шит «Код от друга» по параметру enter=1.
+      router.push('/referrals?enter=1' as never);
     } catch {
       /* роут недоступен — просто закрываем */
     }

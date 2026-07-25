@@ -210,11 +210,8 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       openDiagnosticOrFrenchGate();
       break;
     case 'invite_friend':
-      if (Platform.OS === 'ios') {
-        router.push('/(tabs)/friends' as any);
-      } else {
-        router.push('/settings_invite_friend' as any);
-      }
+      // зачем: отдельный экран приглашения удалён — вся рефералка живёт на /referrals.
+      router.push('/referrals' as any);
       break;
     case 'polyglot_day':
       // Программного переключателя языка в проде нет (French включается в настройках) —
@@ -228,12 +225,8 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
       router.push('/club_screen' as any);
       break;
     case 'mentor_friend':
-      // Как invite_friend: на iPhone экрана ссылки нет — ведём во «Друзья».
-      if (Platform.OS === 'ios') {
-        router.push('/(tabs)/friends' as any);
-      } else {
-        router.push('/settings_invite_friend' as any);
-      }
+      // Как invite_friend: единый экран рефералов.
+      router.push('/referrals' as any);
       break;
     default:
       await openLessonOrFrenchGate();

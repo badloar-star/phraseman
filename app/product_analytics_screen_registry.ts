@@ -10,7 +10,7 @@ const STATIC_SCREEN_NAMES = [
   'personal_plan_runtime_dev', 'personal_plan_stats_screen', 'personal_plan_task_done',
   'personal_plan_thank_you', 'personal_plan_theory', 'phrase_analytics_screen', 'premium_modal',
   'preposition_drill', 'privacy_screen', 'problem_coach', 'promo_code_entry',
-  'referral_code_entry', 'referrals', 'review', 'settings_edu', 'settings_language',
+  'referrals', 'review', 'settings_edu', 'settings_language',
   'settings_notifications', 'settings_themes', 'shards_shop', 'streak_stats', 'terms_screen',
   'top_helpers', 'trainer', 'trainer_phrases_session',
   'trainer_plan_session', 'trainer_words_session',

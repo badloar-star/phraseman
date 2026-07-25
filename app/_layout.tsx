@@ -2840,7 +2840,6 @@ function AppContent() {
       <Stack.Screen name="paywall_f" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_g" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', ...bottomModalAnimationOptions, gestureEnabled: true }} />
-      <Stack.Screen name="referral_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="referrals" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="promo_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="avatar_select" />

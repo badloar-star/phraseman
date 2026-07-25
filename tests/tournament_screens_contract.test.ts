@@ -21,12 +21,14 @@ const SCREENS = [
   'app/tournament_table.tsx',
   'app/tournament_results.tsx',
   'app/tournament_season.tsx',
+  'app/tournament_tickets.tsx',
 ] as const;
 
 const COMPONENTS = [
   'components/tournament/tournament_theme.ts',
   'components/tournament/tournament_ui.tsx',
   'components/tournament/TournamentCountdown.tsx',
+  'components/tournament/TournamentEdgeState.tsx',
 ] as const;
 
 const ALL_FILES = [...SCREENS, ...COMPONENTS];
@@ -175,6 +177,47 @@ describe('экраны режима «Турниры»', () => {
       const cleanups = (source.match(/clearInterval|clearTimeout/g) ?? []).length;
       expect(cleanups).toBeGreaterThan(0);
     }
+  });
+
+  it('клиент слушает ОДИН документ комнаты, а не коллекцию', () => {
+    // §11 спеки и правило экономии: подписка на коллекцию тарифицируется
+    // за каждый документ при каждом изменении — на 16 игроках это заметно.
+    const client = read('app/tournament_client.ts');
+    expect(client).toContain("doc(getFirestore(), 'tournamentRooms', roomId)");
+    expect(client).toContain('onSnapshot');
+    // Слушателей на коллекции быть не должно.
+    expect(client).not.toMatch(/onSnapshot\(\s*collection\(/);
+    expect(client).not.toMatch(/onSnapshot\(\s*query\(/);
+  });
+
+  it('расписание кэшируется, а не слушается — оно меняется раз в недели', () => {
+    const client = read('app/tournament_client.ts');
+    expect(client).toContain('SCHEDULE_TTL_MS');
+    expect(client).toContain('getDoc');
+    // Кэш обязан жить часами, иначе смысла в нём нет.
+    expect(client).toMatch(/SCHEDULE_TTL_MS\s*=\s*\d+\s*\*\s*60\s*\*\s*60\s*\*\s*1000/);
+  });
+
+  it('очки считает сервер — клиент только отправляет ответы', () => {
+    const client = read('app/tournament_client.ts');
+    expect(client).toContain('submitAnswers');
+    // Клиент не должен слать готовый счёт: это дыра для накрутки.
+    expect(client).not.toMatch(/submitAnswers\([^)]*score/);
+  });
+
+  it('таймеры раундов идут от серверного дедлайна, а не локальных часов', () => {
+    const client = read('app/tournament_client.ts');
+    expect(client).toContain('stateDeadlineAtMs');
+  });
+
+  it('краевые состояния собраны в одном месте', () => {
+    const edge = read('components/tournament/TournamentEdgeState.tsx');
+    for (const kind of ['offline', 'preseason', 'cancelled', 'alreadyIn', 'emptyPool']) {
+      expect(edge).toContain(kind);
+    }
+    // Скелетон повторяет геометрию, а не крутит спиннер на весь экран.
+    expect(edge).toContain('TournamentSkeleton');
+    expect(edge).not.toContain('ActivityIndicator');
   });
 
   it('интерактивные элементы доступны для скринридера', () => {

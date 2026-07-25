@@ -43,6 +43,7 @@ import { stageCommunityPackCardsForNavigation } from '../community_packs/staging
 import { packTileImageForPack } from './packMarketplaceIcons';
 import { hasActivePackGiftVoucher } from './pack_trial_gift';
 import DuoPressable from '../../components/DuoPressable';
+import FlashcardsHubHeader from '../../components/flashcards/FlashcardsHubHeader';
 import GlassSurface, { glassFill } from '../../components/GlassSurface';
 import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -1056,6 +1057,23 @@ export default function FlashcardsCategoryHub({
 
   return (
     <View style={{ paddingHorizontal: H_PAD }}>
+      {/* зачем: макет A1 `.hub-top` — заголовок раздела + баланс монет. Раньше
+          баланса на экране не было вообще: юзер узнавал, что монет не хватает,
+          только упёршись в пейвол. Теперь решение принимается до тапа. */}
+      <FlashcardsHubHeader
+        title={triLang(lang, {
+          ru: 'Карточки',
+          uk: 'Картки',
+          es: 'Tarjetas',
+          'pt-BR': 'Cartões',
+          vi: 'Thẻ',
+          id: 'Kartu',
+          tr: 'Kartlar',
+          pl: 'Karty',
+        })}
+        balance={shardBalance}
+        t={t}
+      />
       {hubSegmentTabs}
 
       {cloudCommunityEnabled ? (

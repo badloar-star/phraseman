@@ -180,3 +180,52 @@ const STREAK_CHART_SCRUB_HINT_BY_LANG: Record<Lang, string> = {
 export function streakChartScrubHint(lang: Lang): string {
   return STREAK_CHART_SCRUB_HINT_BY_LANG[lang];
 }
+
+const STREAK_PROTECTION_ACTIVE_BY_LANG: Record<Lang, string> = {
+  ru: 'Серия под защитой сегодня',
+  uk: 'Серія під захистом сьогодні',
+  es: 'Racha protegida hoy',
+  'pt-BR': 'Sequência protegida hoje',
+  vi: 'Chuỗi đang được bảo vệ hôm nay',
+  id: 'Rangkaian terlindungi hari ini',
+  tr: 'Seri bugün korumada',
+  pl: 'Seria dziś pod ochroną',
+};
+
+const STREAK_PROTECTION_AT_RISK_BY_LANG: Record<Lang, string> = {
+  ru: 'Серия под угрозой — можно защитить',
+  uk: 'Серія під загрозою — можна захистити',
+  es: 'Racha en riesgo: puedes protegerla',
+  'pt-BR': 'Sequência em risco: você pode protegê-la',
+  vi: 'Chuỗi đang gặp rủi ro — có thể bảo vệ',
+  id: 'Rangkaian berisiko — bisa dilindungi',
+  tr: 'Seri risk altında — koruyabilirsin',
+  pl: 'Seria zagrożona — możesz ją chronić',
+};
+
+const STREAK_PROTECTION_SAFE_BY_LANG: Record<Lang, string> = {
+  ru: 'Серия в безопасности',
+  uk: 'Серія в безпеці',
+  es: 'Racha a salvo',
+  'pt-BR': 'Sequência em segurança',
+  vi: 'Chuỗi đang an toàn',
+  id: 'Rangkaian aman',
+  tr: 'Seri güvende',
+  pl: 'Seria jest bezpieczna',
+};
+
+/**
+ * Подпись статуса заморозки серии (testID="stats-series-protection-status").
+ * зачем: раньше единственная фраза «Защита серии доступна при риске» звучала
+ * как машинный перевод и не различала состояния. Теперь три реальных состояния:
+ * активна сегодня / под угрозой (можно защитить) / в безопасности (защита не нужна).
+ */
+export function streakProtectionStatusLabel(
+  lang: Lang,
+  freezeActive: boolean,
+  streakAtRisk: boolean,
+): string {
+  if (freezeActive) return STREAK_PROTECTION_ACTIVE_BY_LANG[lang];
+  if (streakAtRisk) return STREAK_PROTECTION_AT_RISK_BY_LANG[lang];
+  return STREAK_PROTECTION_SAFE_BY_LANG[lang];
+}

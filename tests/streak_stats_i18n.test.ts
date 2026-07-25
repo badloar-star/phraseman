@@ -21,6 +21,7 @@ import {
   STREAK_WEEK_ROW_TR,
   STREAK_WEEK_ROW_VI,
   streakCalendarShortWeekdays,
+  streakProtectionStatusLabel,
   streakWagerTierDaysLabel,
   streakWeekRowShort,
 } from '../constants/streak_stats_i18n';
@@ -87,5 +88,35 @@ describe('streakWagerTierDaysLabel', () => {
     const legacyRuntimePattern = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimePattern);
+  });
+});
+
+describe('streakProtectionStatusLabel', () => {
+  const ALL_LANGS: Lang[] = ['ru', 'uk', 'es', 'pt-BR', 'vi', 'id', 'tr', 'pl'];
+
+  it('never falls back to the old robotic "доступна при риске" phrasing', () => {
+    for (const lang of ALL_LANGS) {
+      expect(streakProtectionStatusLabel(lang, false, true)).not.toMatch(/доступн.*риск/i);
+    }
+  });
+
+  it('returns a distinct label for each of the 3 reachable states, per language', () => {
+    for (const lang of ALL_LANGS) {
+      const active = streakProtectionStatusLabel(lang, true, true);
+      const atRisk = streakProtectionStatusLabel(lang, false, true);
+      const safe = streakProtectionStatusLabel(lang, false, false);
+      // freezeActive wins regardless of streakAtRisk.
+      expect(streakProtectionStatusLabel(lang, true, false)).toBe(active);
+      expect(new Set([active, atRisk, safe]).size).toBe(3);
+      expect(active.length).toBeGreaterThan(0);
+      expect(atRisk.length).toBeGreaterThan(0);
+      expect(safe.length).toBeGreaterThan(0);
+    }
+  });
+
+  it('ru: matches the exact natural-language copy for each state', () => {
+    expect(streakProtectionStatusLabel('ru', true, true)).toBe('Серия под защитой сегодня');
+    expect(streakProtectionStatusLabel('ru', false, true)).toBe('Серия под угрозой — можно защитить');
+    expect(streakProtectionStatusLabel('ru', false, false)).toBe('Серия в безопасности');
   });
 });

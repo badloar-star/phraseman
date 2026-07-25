@@ -19,7 +19,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON, isBusinessMode } from '../constants/monoIcon';
-import { streakCalendarShortWeekdays, streakChartScrubHint, streakWeeklyExperienceLabel, streakWeekRowShort, streakWagerTierDaysLabel, } from '../constants/streak_stats_i18n';
+import { streakCalendarShortWeekdays, streakChartScrubHint, streakWeeklyExperienceLabel, streakWeekRowShort, streakWagerTierDaysLabel, streakProtectionStatusLabel, } from '../constants/streak_stats_i18n';
 import { LEAGUES } from './league_engine';
 import { clearFinishedWager, getEffectiveWagerStake, loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 // stationary_clubs feature удалён.
@@ -1060,6 +1060,16 @@ interface JournalMemorySnapshot {
     dueToday: number;
 }
 let journalMemorySnapshotPeek: JournalMemorySnapshot | null = null;
+
+/** зачем: тот же peek-паттерн для вкладки «Активность за год» (Время/Опыт/Год) —
+ * primaryMetric раньше стартовал с useState(DEFAULT_STATS_PRIMARY_METRIC) и
+ * секцию AsyncStorage.getItem() в useEffect подменял значение чуть позже,
+ * из-за чего при каждом повторном открытии экрана в этой же сессии был виден
+ * мигающий переброс вкладки (напр. Опыт → Год). Модульный peek запоминает
+ * последнее известное/выбранное значение синхронно, так что lazy-инициализатор
+ * useState читает его на первом же кадре — без вспышки. Холодный старт
+ * процесса (самый первый заход) неизбежно ждёт первого async-чтения один раз. */
+let primaryMetricPeek: StatsPrimaryMetric | null = null;
 
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, pickerOnly = false, onPickerClose }: {
     lang: Lang;
@@ -2684,7 +2694,12 @@ function StreakHeroCard({
                     <View testID="stats-series-protection-status" style={{ minHeight: 40, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 7 }}>
                         <Ionicons name={freezeActive ? 'shield-checkmark-outline' : 'snow-outline'} size={18} color={accent} />
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
-                            {triLang(lang, { ru: freezeActive ? 'Защита активна сегодня' : 'Защита серии доступна при риске', uk: freezeActive ? 'Захист активний сьогодні' : 'Захист серії доступний при ризику', es: freezeActive ? 'Protección activa hoy' : 'Protección disponible si hay riesgo', 'pt-BR': freezeActive ? 'Proteção ativa hoje' : 'Proteção disponível em risco', vi: freezeActive ? 'Bảo vệ đang hoạt động hôm nay' : 'Bảo vệ khả dụng khi có rủi ro', id: freezeActive ? 'Perlindungan aktif hari ini' : 'Perlindungan tersedia saat berisiko', tr: freezeActive ? 'Koruma bugün etkin' : 'Riskte koruma kullanılabilir', pl: freezeActive ? 'Ochrona aktywna dziś' : 'Ochrona dostępna przy ryzyku' })}
+                            {/* зачем: «Защита серии доступна при риске» звучало как машинный перевод —
+                                живой человек так не скажет. Заменено на streakProtectionStatusLabel
+                                (constants/streak_stats_i18n.ts, покрыт тестом) с 3 реальными
+                                состояниями: активна сегодня / под угрозой, можно защитить /
+                                в безопасности, защита не нужна. */}
+                            {streakProtectionStatusLabel(lang, freezeActive, streakAtRisk)}
                             {chainShieldDays > 0 ? ` · ${chainShieldDays}` : ''}
                         </Text>
                     </View>
@@ -3191,7 +3206,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     const [wagerOpen, setWagerOpen] = useState(false);
     const [wagerPickerOpen, setWagerPickerOpen] = useState(false);
     const [comparisonOpen, setComparisonOpen] = useState(true);
-    const [primaryMetric, setPrimaryMetric] = useState<StatsPrimaryMetric>(DEFAULT_STATS_PRIMARY_METRIC);
+    // зачем: lazy-инициализатор читает primaryMetricPeek синхронно на первом кадре
+    // (см. комментарий у объявления peek выше) — устраняет вспышку дефолтной
+    // вкладки перед переключением на последнюю сохранённую (Perf Bible: instant
+    // first frame, no default-then-patch).
+    const [primaryMetric, setPrimaryMetric] = useState<StatsPrimaryMetric>(() => primaryMetricPeek ?? DEFAULT_STATS_PRIMARY_METRIC);
     const FREEZE_COST_SHARDS = 10;
     const refreshReviveOffer = useCallback(async () => {
         const offer = await getReviveOffer();
@@ -3276,8 +3295,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         const key = statsPrimaryMetricKey(studyTarget);
         void AsyncStorage.getItem(key)
             .then((stored) => {
+            const normalized = normalizeStatsPrimaryMetric(stored);
+            primaryMetricPeek = normalized;
             if (!cancelled)
-                setPrimaryMetric(normalizeStatsPrimaryMetric(stored));
+                setPrimaryMetric(normalized);
         })
             .catch(() => {
             // Keep the safe default when the preference cannot be read.
@@ -3285,6 +3306,9 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         return () => { cancelled = true; };
     }, [studyTarget]);
     const selectPrimaryMetric = useCallback((nextMetric: StatsPrimaryMetric) => {
+        // зачем: обновляем peek синхронно с тапом — следующее открытие экрана
+        // в этой сессии стартует сразу с этой вкладкой, без ожидания AsyncStorage.
+        primaryMetricPeek = nextMetric;
         setPrimaryMetric(nextMetric);
         void AsyncStorage.setItem(statsPrimaryMetricKey(studyTarget), nextMetric).catch(() => {
             // The selection still works for this visit when persistence is unavailable.

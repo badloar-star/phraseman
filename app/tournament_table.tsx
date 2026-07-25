@@ -9,7 +9,7 @@
 // списка known заранее, поэтому перестановка не двигает соседние блоки.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useEffect, useMemo, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
   FadeIn,
@@ -22,13 +22,17 @@ import Animated, {
 import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { T, motion, placeColor, radius, type } from '../components/tournament/tournament_theme';
+import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { useTournamentRoom, type RoomPlayer } from './tournament_client';
+import { getStableId } from './stable_id';
+import { useLocalSearchParams } from 'expo-router';
 
 const ROW_HEIGHT = 56;
 const ROW_GAP = 8;
 const TOTAL_ROUNDS = 4;
 
 type Row = {
-  id: number;
+  id: string;
   name: string;
   emoji: string;
   color: string;
@@ -39,46 +43,102 @@ type Row = {
   prevPlace: number;
 };
 
-/** TODO(server): придёт из tournamentRooms/{roomId}.standings. */
-const DEMO_ROWS: Row[] = [
-  { id: 16, name: 'КубокБарон', emoji: '👑', color: '#FFD43B', score: 50, streak: 6, prevPlace: 1 },
-  { id: 5, name: 'МолнияPRO', emoji: '⚔️', color: '#FF5B6C', score: 45, streak: 7, prevPlace: 2 },
-  { id: 2, name: 'СловоЖора', emoji: '🐺', color: '#8B8B8B', score: 40, streak: 5, prevPlace: 3 },
-  { id: 12, name: 'МадамПеревод', emoji: '💃', color: '#FF5B6C', score: 40, streak: 1, prevPlace: 7 },
-  { id: 1, name: 'Вы', emoji: '🦊', color: '#FB923C', score: 35, streak: 3, isYou: true, prevPlace: 9 },
-  { id: 9, name: 'VerbaVolt', emoji: '⚡', color: '#FFD43B', score: 35, streak: 2, prevPlace: 4 },
-  { id: 4, name: 'ГраммарНацик', emoji: '🤓', color: '#FFD43B', score: 30, streak: 0, prevPlace: 5 },
-  { id: 7, name: 'Полиглот_77', emoji: '🌍', color: '#3B82F6', score: 30, streak: 4, prevPlace: 6 },
-  { id: 14, name: 'АкцентЗеро', emoji: '🎯', color: '#A78BFA', score: 30, streak: 2, prevPlace: 8 },
-  { id: 3, name: 'Фразочкина', emoji: '🦉', color: '#47C870', score: 25, streak: 2, prevPlace: 10 },
-  { id: 11, name: 'IdiomHunter', emoji: '🏹', color: '#47C870', score: 25, streak: 3, prevPlace: 11 },
-  { id: 6, name: 'LingvoLisa', emoji: '🔥', color: '#FB923C', score: 20, streak: 1, prevPlace: 12 },
-  { id: 8, name: 'СленгМастер', emoji: '🎧', color: '#A78BFA', score: 20, streak: 0, prevPlace: 13 },
-  { id: 10, name: 'ТихийСловарь', emoji: '📚', color: '#8AB49A', score: 15, streak: 0, prevPlace: 14 },
-  { id: 13, name: 'NoCapNika', emoji: '🧢', color: '#3B82F6', score: 15, streak: 0, prevPlace: 15 },
-  { id: 15, name: 'RoflPhrase', emoji: '🐸', color: '#47C870', score: 10, streak: 0, prevPlace: 16 },
-];
+/**
+ * Игроки комнаты → строки таблицы, отсортированные по очкам.
+ *
+ * зачем: сервер хранит игроков в порядке входа и НЕ считает места — это
+ * витрина. Позицию прошлого раунда берём из предыдущего снимка, чтобы
+ * показать обгоны; без неё строки просто встанут на места без анимации.
+ */
+function mapPlayersToRows(
+  players: readonly RoomPlayer[],
+  myId: string | null,
+  previousPlaces: Map<string, number>,
+): Row[] {
+  const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
+  return sorted.map((player, index) => ({
+    id: player.id,
+    name: player.name || 'Игрок',
+    emoji: player.avatar || '🙂',
+    color: player.color || '#8AB49A',
+    score: Number(player.score ?? 0),
+    streak: Number(player.streak ?? 0),
+    isYou: Boolean(myId) && player.id === myId,
+    // Нет прошлой позиции (первый раунд) — стартуем с текущей, без «переезда».
+    prevPlace: previousPlaces.get(player.id) ?? index + 1,
+  }));
+}
 
 export default function TournamentTableScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const [roundNo] = useState(3);
-  const [secondsLeft, setSecondsLeft] = useState(Math.round(motion.tableHoldMs / 1000));
+  const params = useLocalSearchParams<{ roomId?: string }>();
+  const roomId = typeof params.roomId === 'string' ? params.roomId : null;
 
-  // Авто-переход: таблица показывается 10-12 секунд (§ спеки).
+  const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
+  const [myId, setMyId] = useState<string | null>(null);
+
+  /**
+   * Места предыдущего показа таблицы — источник анимации обгонов.
+   * Держим в ref: обновление этой карты НЕ должно вызывать ре-рендер, иначе
+   * строки переедут второй раз уже после приземления.
+   */
+  const previousPlacesRef = useRef<Map<string, number>>(new Map());
+
   useEffect(() => {
-    const id = setInterval(() => setSecondsLeft((value) => Math.max(0, value - 1)), 1000);
-    return () => clearInterval(id);
+    let cancelled = false;
+    void getStableId().then((id) => { if (!cancelled) setMyId(id); });
+    return () => { cancelled = true; };
   }, []);
 
-  useEffect(() => {
-    if (secondsLeft > 0) return;
-    router.replace(roundNo >= TOTAL_ROUNDS ? '/tournament_results' : '/tournament_round');
-  }, [secondsLeft, roundNo, router]);
+  const roundNo = room?.rounds?.length
+    ? Math.max(...room.rounds.map((round) => round.roundNo))
+    : 1;
 
-  const myScore = useMemo(() => DEMO_ROWS.find((row) => row.isYou)?.score ?? 0, []);
-  const listHeight = DEMO_ROWS.length * (ROW_HEIGHT + ROW_GAP);
-  const maxScore = DEMO_ROWS[0]?.score || 1;
+  const rows = useMemo(
+    () => mapPlayersToRows(room?.players ?? [], myId, previousPlacesRef.current),
+    [room?.players, myId],
+  );
+
+  // Запоминаем позиции ПОСЛЕ отрисовки — для следующего показа таблицы.
+  useEffect(() => {
+    if (rows.length === 0) return;
+    const next = new Map<string, number>();
+    rows.forEach((row, index) => next.set(row.id, index + 1));
+    previousPlacesRef.current = next;
+  }, [rows]);
+
+  // Переход дальше по СЕРВЕРНОМУ состоянию: локальный таймер только рисует
+  // обратный отсчёт, решение о смене этапа принимает сервер.
+  useEffect(() => {
+    if (!room || !roomId) return;
+    if (room.state === 'round') {
+      router.replace({ pathname: '/tournament_round', params: { roomId } });
+    }
+    if (room.state === 'results' || room.state === 'rewards' || room.state === 'closed') {
+      router.replace({ pathname: '/tournament_results', params: { roomId } });
+    }
+  }, [room?.state, roomId, router, room]);
+
+  const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
+  const listHeight = Math.max(1, rows.length) * (ROW_HEIGHT + ROW_GAP);
+  const maxScore = rows[0]?.score || 1;
+  const isFinal = roundNo >= TOTAL_ROUNDS;
+
+  if (status === 'offline') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="offline" onRetry={retry} />
+      </View>
+    );
+  }
+  if (room?.state === 'cancelled') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.root}>
@@ -94,17 +154,14 @@ export default function TournamentTableScreen() {
 
       {/* Высота списка известна заранее — соседние блоки не двигаются */}
       <View style={[styles.list, { height: listHeight }]}>
-        {DEMO_ROWS.map((row, index) => (
-          <TableRow
-            key={row.id}
-            row={row}
-            place={index + 1}
-            maxScore={maxScore}
-          />
+        {rows.map((row, index) => (
+          <TableRow key={row.id} row={row} place={index + 1} maxScore={maxScore} />
         ))}
       </View>
 
-      <Text style={styles.hint}>Следующий раунд через {secondsLeft}</Text>
+      <Text style={styles.hint}>
+        {isFinal ? 'Считаем итоги…' : `Следующий раунд через ${secondsLeft}`}
+      </Text>
     </View>
   );
 }

@@ -268,6 +268,44 @@ describe('экраны режима «Турниры»', () => {
     expect(layout).toMatch(/case 4: return loadSettingsScreen\(\)/);
   });
 
+  it('главный экран берёт данные с сервера, а не из заглушки', () => {
+    const home = read('app/(tabs)/tournaments.tsx');
+
+    // Слоты, комната и вход идут через клиентский слой.
+    expect(home).toContain('useTournamentRoom');
+    expect(home).toContain('loadSchedule');
+    expect(home).toContain('joinTournament');
+    // Захардкоженного расписания быть не должно.
+    expect(home).not.toContain('const DAY_SLOTS');
+  });
+
+  it('вход в турнир защищён от двойного списания билета', () => {
+    // Билет списывает сервер; два быстрых тапа = два запроса = два билета.
+    const home = read('app/(tabs)/tournaments.tsx');
+    expect(home).toMatch(/if \(!roomId \|\| joining\) return/);
+    expect(home).toMatch(/disabled=\{joining\}/);
+  });
+
+  it('roomId вычисляется той же формулой, что на сервере', () => {
+    // Расхождение = клиент слушает несуществующий документ и висит в загрузке.
+    const client = read('app/tournament_client.ts');
+    const server = read('functions/src/tournament_core.ts');
+
+    const formula = /\$\{slotId\}_\$\{timezone\.replace\(\/\[\^\\w\]\/g, '_'\)\}_\$\{dateKey\}/;
+    expect(client).toMatch(formula);
+    expect(server).toMatch(formula);
+    expect(client).toContain('slice(0, 140)');
+    expect(server).toContain('slice(0, 140)');
+  });
+
+  it('главный экран показывает краевые состояния вместо пустоты', () => {
+    const home = read('app/(tabs)/tournaments.tsx');
+    expect(home).toContain('TournamentSkeleton');
+    expect(home).toContain('kind="offline"');
+    expect(home).toContain('kind="preseason"');
+    expect(home).toContain('kind="cancelled"');
+  });
+
   it('экран турниров лежит внутри папки вкладок', () => {
     // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();

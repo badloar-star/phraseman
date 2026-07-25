@@ -163,9 +163,31 @@ async function callFunction<T>(name: string, payload: Record<string, unknown> = 
   return result.data as T;
 }
 
+/**
+ * Идентификатор комнаты собирается детерминированно из слота, таймзоны и даты
+ * — той же формулой, что на сервере (tournament_core.tournamentRoomId).
+ *
+ * зачем: так клиент находит сегодняшнюю комнату БЕЗ запроса «а какая комната
+ * сейчас?» — ноль лишних чтений на каждом открытии экрана. Формула обязана
+ * совпадать с серверной, иначе игрок будет слушать несуществующий документ.
+ */
+export function tournamentRoomId(slotId: string, timezone: string, dateKey: string): string {
+  return `${slotId}_${timezone.replace(/[^\w]/g, '_')}_${dateKey}`.slice(0, 140);
+}
+
+/** Дата YYYY-MM-DD в таймзоне слота — ключ сегодняшней комнаты. */
+export function tournamentDateKey(timezone: string, at: Date = new Date()): string {
+  try {
+    // en-CA даёт формат YYYY-MM-DD без ручной сборки строки.
+    return at.toLocaleDateString('en-CA', { timeZone: timezone });
+  } catch {
+    return at.toISOString().slice(0, 10);
+  }
+}
+
 /** Вход в турнир: списывает билет и сажает игрока в комнату. */
-export function joinTournament(slotId: string) {
-  return callFunction<{ ok: boolean; roomId: string }>('tournamentJoin', { slotId });
+export function joinTournament(roomId: string) {
+  return callFunction<{ ok: boolean; roomId: string }>('tournamentJoin', { roomId });
 }
 
 /** Отправка ответов батча. Сервер сам считает очки — клиенту нельзя доверять. */

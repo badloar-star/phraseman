@@ -10,7 +10,7 @@
 // «0 → значение» прыжков и полноэкранных спиннеров.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
@@ -18,16 +18,71 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
 import { T, radius, type } from '../../components/tournament/tournament_theme';
+import { TournamentEdgeState, TournamentSkeleton } from '../../components/tournament/TournamentEdgeState';
+import {
+  joinTournament,
+  loadSchedule,
+  tournamentDateKey,
+  tournamentRoomId,
+  useTournamentRoom,
+} from '../tournament_client';
 
 type SlotState = 'done' | 'now' | 'next';
 type DaySlot = { time: string; state: SlotState };
 
-/** Заглушка данных до подключения сервера — форма совпадает с ответом комнаты. */
-const DAY_SLOTS: DaySlot[] = [
-  { time: '12:00', state: 'done' },
-  { time: '19:00', state: 'now' },
-  { time: '21:00', state: 'next' },
-];
+/** Слот расписания — форма совпадает с TournamentSlotConfig на сервере. */
+type ScheduleSlot = {
+  slotId: string;
+  localTime: string;
+  timezone?: string;
+  ticketsRequired?: number;
+  enabled?: boolean;
+  /** Вычисляется на клиенте: когда сегодня стартует этот слот. */
+  startsAtMs?: number;
+};
+type ScheduleConfig = { slots: ScheduleSlot[] };
+
+/** Момент сегодняшнего старта слота в его таймзоне. */
+function slotStartMs(slot: ScheduleSlot): number {
+  const match = /^(\d{2}):(\d{2})$/.exec(slot.localTime ?? '');
+  if (!match) return 0;
+  const now = new Date();
+  const target = new Date(now);
+  target.setHours(Number(match[1]), Number(match[2]), 0, 0);
+  return target.getTime();
+}
+
+/**
+ * Ближайший включённый слот: тот, что ещё не прошёл. Если на сегодня всё
+ * отыграно — берём первый завтрашний, чтобы отсчёт не показывал ноль.
+ */
+function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
+  const enabled = slots
+    .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
+    .map((slot) => ({ ...slot, startsAtMs: slotStartMs(slot) }))
+    .sort((a, b) => a.startsAtMs - b.startsAtMs);
+  if (enabled.length === 0) return null;
+
+  const now = Date.now();
+  const upcoming = enabled.find((slot) => slot.startsAtMs > now - 20 * 60 * 1000);
+  if (upcoming) return upcoming;
+  const first = enabled[0];
+  return { ...first, startsAtMs: first.startsAtMs + 24 * 60 * 60 * 1000 };
+}
+
+/** Слоты дня для полосы под отсчётом: пройден / идёт / следующий. */
+function daySlots(slots: ScheduleSlot[], activeSlotId: string | null): DaySlot[] {
+  const now = Date.now();
+  return slots
+    .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
+    .map((slot) => {
+      const startsAtMs = slotStartMs(slot);
+      const state: SlotState = slot.slotId === activeSlotId
+        ? 'now'
+        : startsAtMs < now ? 'done' : 'next';
+      return { time: slot.localTime, state };
+    });
+}
 
 const SEASON_LEADERS = [
   { emoji: '🐺', color: '#8B8B8B' },
@@ -39,28 +94,102 @@ export default function TournamentsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
 
-  // TODO(server): значения придут из tournamentRooms/tournamentSchedule одним
-  // снимком. Сейчас — форма данных, чтобы верстка совпала с макетом.
-  const [tickets] = useState(3);
-  const [gems] = useState(124);
-  const [bank] = useState(240);
+  // TODO(server): баланс придёт из профиля тем же снимком, что и главная.
+  const [tickets] = useState<number>(3);
+  const [gems] = useState<number>(124);
+  const [bank] = useState<number>(240);
   const [confirmVisible, setConfirmVisible] = useState(false);
+  const [joining, setJoining] = useState(false);
 
-  const secondsToStart = useCountdown(4 * 60 + 23);
-  const live = false;
+  // Расписание читается снимком и кэшируется на 6 часов — оно меняется раз
+  // в недели, live-подписка на нём была бы тратой чтений.
+  const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
+  const [scheduleFailed, setScheduleFailed] = useState(false);
+
+  const reloadSchedule = useCallback(() => {
+    setScheduleFailed(false);
+    void loadSchedule()
+      .then((value) => setSchedule((value as ScheduleConfig | null) ?? { slots: [] }))
+      .catch(() => setScheduleFailed(true));
+  }, []);
+
+  useEffect(reloadSchedule, [reloadSchedule]);
+
+  // Ближайший включённый слот и его сегодняшняя комната.
+  const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
+  const roomId = useMemo(() => {
+    if (!nextSlot) return null;
+    const timezone = nextSlot.timezone || 'Europe/Moscow';
+    return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone));
+  }, [nextSlot]);
+
+  const { room, status, retry } = useTournamentRoom(roomId);
+
+  const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
+  const secondsToStart = useCountdown(
+    startsAt ? Math.max(0, Math.round((startsAt - Date.now()) / 1000)) : 0,
+    Boolean(startsAt),
+  );
+  const live = room?.state === 'round' || room?.state === 'table' || room?.state === 'final';
   const noTickets = tickets <= 0;
 
   const openConfirm = useCallback(() => setConfirmVisible(true), []);
   const closeConfirm = useCallback(() => setConfirmVisible(false), []);
-  const enterLobby = useCallback(() => {
-    setConfirmVisible(false);
-    router.push('/tournament_lobby');
-  }, [router]);
+
+  /**
+   * Вход: билет списывает СЕРВЕР, клиент только просит. Пока запрос летит,
+   * кнопка заблокирована — иначе двойной тап спишет два билета.
+   */
+  const enterLobby = useCallback(async () => {
+    if (!roomId || joining) return;
+    setJoining(true);
+    try {
+      await joinTournament(roomId);
+      setConfirmVisible(false);
+      router.push('/tournament_lobby');
+    } catch {
+      setConfirmVisible(false);
+    } finally {
+      setJoining(false);
+    }
+  }, [roomId, joining, router]);
 
   const contentPadding = useMemo(
     () => ({ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 120 }),
     [insets.top, insets.bottom],
   );
+
+  // Краевые состояния до основного рендера: скелетон повторяет геометрию,
+  // поэтому появление данных не двигает вёрстку.
+  if (scheduleFailed || status === 'offline') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="offline" onRetry={() => { reloadSchedule(); retry(); }} />
+      </View>
+    );
+  }
+  if (!schedule) {
+    return (
+      <View style={[styles.root, { paddingTop: insets.top + 12 }]}>
+        <TournamentSkeleton />
+      </View>
+    );
+  }
+  if (!nextSlot) {
+    // Слоты выключены в админке — режим ещё не запущен.
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="preseason" />
+      </View>
+    );
+  }
+  if (room?.state === 'cancelled') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="cancelled" onRetry={reloadSchedule} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.root}>
@@ -96,12 +225,14 @@ export default function TournamentsScreen() {
                 <TimeLeft seconds={secondsToStart} />
               )}
               <Text style={styles.heroSub}>
-                {live ? '12 из 16 мест занято — успей зайти!' : 'до старта · 16 игроков · 4 раунда'}
+                {live
+                  ? `${room?.players?.length ?? 0} из 16 мест занято — успей зайти!`
+                  : 'до старта · 16 игроков · 4 раунда'}
               </Text>
             </View>
 
             <View style={styles.slots}>
-              {DAY_SLOTS.map((slot) => (
+              {daySlots(schedule?.slots ?? [], nextSlot?.slotId ?? null).map((slot) => (
                 <SlotCell key={slot.time} slot={slot} live={live} />
               ))}
             </View>
@@ -118,7 +249,9 @@ export default function TournamentsScreen() {
                 </View>
               </>
             ) : (
-              <Cta onPress={openConfirm}>{live ? 'В игру · 1 🎟' : 'Играть за 1 🎟'}</Cta>
+              <Cta onPress={openConfirm} disabled={!roomId}>
+                {live ? 'В игру · 1 🎟' : `Играть за ${nextSlot?.ticketsRequired ?? 1} 🎟`}
+              </Cta>
             )}
           </Card>
         </Animated.View>
@@ -176,7 +309,9 @@ export default function TournamentsScreen() {
         <Text style={styles.sheetTitle}>Войти в турнир?</Text>
         <Text style={styles.sheetSub}>Списание: 1 🎟 · останется {Math.max(0, tickets - 1)}</Text>
         <View style={styles.sheetActions}>
-          <Cta onPress={enterLobby}>Погнали!</Cta>
+          <Cta onPress={enterLobby} disabled={joining}>
+            {joining ? 'Заходим…' : 'Погнали!'}
+          </Cta>
           <Cta ghost onPress={closeConfirm}>Отмена</Cta>
         </View>
       </Sheet>

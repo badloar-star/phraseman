@@ -165,7 +165,6 @@ describe('owner runtime direction contract', () => {
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
       'app/visible_wall_clock.ts': 3,
-      'components/ActiveBoostBar.tsx': 1,
       // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
       // Три внутренних scheduler-тика одного shared countdown store; подписчики
@@ -275,16 +274,6 @@ describe('owner runtime direction contract', () => {
     }
 
     expect(found).toEqual(allowlist);
-  });
-
-  it('keeps boost countdown timer idle when there are no active boosts', () => {
-    const source = read('components/ActiveBoostBar.tsx');
-
-    expect(source).toContain('if (boosts.length === 0)');
-    expect(source).toContain('Object.keys(prev).length === 0 ? prev : {}');
-    expect(source).toContain('if (activeBoosts.length === 0) return;');
-    expect(source).toContain('const interval = setInterval(() => {');
-    expect(source).toContain('return () => clearInterval(interval);');
   });
 
   it('keeps energy recovery polling idle when full, unlimited, or backgrounded', () => {

@@ -268,6 +268,11 @@ const LEAGUE_BONUS_AVAILABLE_SESSION_MAX_KEYS = 64;
 const leagueBonusAvailableReservedThisSession = new Set<string>();
 const ENABLE_ROOT_LEAGUE_BONUS_WATCH = true;
 const LEAGUE_BONUS_CHECK_MIN_MS = 60_000;
+// зачем: аудит нагрева 2026-07-25 — flushQueue/intro/winback дёргались на КАЖДЫЙ
+// разворот приложения без троттла (AsyncStorage + premium-проверки). Событийные и
+// стартовые пути остаются мгновенными, троттлится ТОЛЬКО foreground-страховка.
+const FOREGROUND_FLUSH_MIN_MS = 15_000;
+const FOREGROUND_MODAL_CHECK_MIN_MS = 60_000;
 const ENABLE_STARTUP_CONTENT_PREWARM = false;
 const FIRST_CONTENT_READY_FALLBACK_MS = 900;
 const USE_ELITE_LEVEL_UP_MODAL = true;
@@ -887,9 +892,16 @@ function GlobalLevelUpHandler() {
     };
   }, [flushQueue]);
 
+  const lastForegroundFlushAtRef = useRef(0);
   useEffect(() => {
     const sub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void flushQueue();
+      if (state !== 'active') return;
+      // зачем: foreground-путь — лишь страховка на пропущенное level_up_pending;
+      // событие само зовёт flushQueue мгновенно. Троттл гасит частые сворачивания.
+      const now = Date.now();
+      if (now - lastForegroundFlushAtRef.current < FOREGROUND_FLUSH_MIN_MS) return;
+      lastForegroundFlushAtRef.current = now;
+      void flushQueue();
     });
     return () => sub.remove();
   }, [flushQueue]);
@@ -2436,15 +2448,18 @@ function AppContent() {
     }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
+  const lastForegroundIntroCheckAtRef = useRef(0);
   useEffect(() => {
     void checkIntroFullAccessEndedModal();
     const introSub = onAppEvent('intro_full_access_changed', () => {
       void checkIntroFullAccessEndedModal();
     });
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') {
-        void checkIntroFullAccessEndedModal();
-      }
+      if (state !== 'active') return;
+      const now = Date.now();
+      if (now - lastForegroundIntroCheckAtRef.current < FOREGROUND_MODAL_CHECK_MIN_MS) return;
+      lastForegroundIntroCheckAtRef.current = now;
+      void checkIntroFullAccessEndedModal();
     });
     return () => {
       introSub.remove();
@@ -2478,10 +2493,15 @@ function AppContent() {
     } catch { /* no-op */ }
   }, [effectiveShowOnboarding, firstContentReady, hasVerifiedRealPremiumOrVip, isBanned, ready]);
 
+  const lastForegroundWinbackCheckAtRef = useRef(0);
   useEffect(() => {
     void checkWinbackOffer();
     const appSub = AppState.addEventListener('change', (state) => {
-      if (state === 'active') void checkWinbackOffer();
+      if (state !== 'active') return;
+      const now = Date.now();
+      if (now - lastForegroundWinbackCheckAtRef.current < FOREGROUND_MODAL_CHECK_MIN_MS) return;
+      lastForegroundWinbackCheckAtRef.current = now;
+      void checkWinbackOffer();
     });
     return () => { appSub.remove(); };
   }, [checkWinbackOffer]);

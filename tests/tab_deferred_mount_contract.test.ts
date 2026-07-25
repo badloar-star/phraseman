@@ -22,7 +22,9 @@ describe('tab background pre-mount contract', () => {
     const source = readLayout();
 
     expect(source).toContain('const ENABLE_BACKGROUND_TAB_PREMOUNT = true');
-    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 4, 3, 2] as const');
+    // зачем: после снятия Арены табов стало 4 — порядок премаунта в коде [1, 3, 2]
+    // (коммит 53063c465); контракт забыли синхронизировать, страж горел ложно.
+    expect(source).toContain('const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const');
     expect(source).toContain('scheduleIdleTask');
     expect(source).toContain('requestIdleCallback');
     expect(source).toContain("onAppEvent('app_first_content_ready', startPremount)");

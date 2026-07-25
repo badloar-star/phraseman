@@ -52,6 +52,12 @@ interface PremiumContextValue {
   reload: () => Promise<void>;
 }
 
+// зачем: аудит нагрева 2026-07-25 — ретрай VIP-слушателя был фиксированные 2.5с БЕЗ
+// предохранителя: при битом auth-линке долбил сеть бесконечно (грелка/батарея).
+// Экспоненциальный отступ по образцу app/net_status.ts (OFFLINE_BACKOFF_MS);
+// счётчик сбрасывается живым снапшотом — рабочий слушатель отступ не чувствует.
+const PREMIUM_LISTENER_RETRY_BACKOFF_MS = [2_500, 10_000, 30_000, 60_000, 120_000, 300_000] as const;
+
 const PremiumContext = createContext<PremiumContextValue>({
   isPremium: false,
   isVip: false,
@@ -333,6 +339,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     let cancelled = false;
     let unsubscribe: (() => void) | null = null;
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    let retryAttempt = 0;
     const listenerEpoch = getPremiumAccountTransitionEpoch();
     const isListenerCurrent = () => (
       !cancelled
@@ -349,10 +356,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
     const scheduleRetry = () => {
       if (!isListenerCurrent() || retryTimer) return;
+      const delay = PREMIUM_LISTENER_RETRY_BACKOFF_MS[
+        Math.min(retryAttempt, PREMIUM_LISTENER_RETRY_BACKOFF_MS.length - 1)
+      ]!;
+      retryAttempt += 1;
       retryTimer = setTimeout(() => {
         retryTimer = null;
         void start();
-      }, 2_500);
+      }, delay);
     };
 
     const start = async () => {
@@ -389,6 +400,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
         unsubscribe = db.collection('users').doc(uid).onSnapshot(
           (snap) => {
+            retryAttempt = 0; // живой снапшот — канал работает, отступ обнуляем
             if (!snap.exists || !isListenerCurrent()) return;
             const data = snap.data ? snap.data() : undefined;
             const progress = (data?.progress ?? {}) as Record<string, unknown>;

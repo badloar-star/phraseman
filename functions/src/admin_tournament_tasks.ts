@@ -155,47 +155,92 @@ export function parseMutateRequest(data: unknown): MutateRequest {
   return Object.freeze({ taskIds: Object.freeze([...new Set(taskIds)]), action });
 }
 
+/**
+ * Слот расписания.
+ *
+ * зачем: формат обязан совпадать с TournamentSlotConfig из tournament_core —
+ * его читает планировщик комнат (readTournamentSchedule). Первая версия
+ * админки писала hour/minute, и сервер такие слоты молча отбрасывал: в UI
+ * показывалось «undefined:undefined», а сохранённое расписание не запустило
+ * бы ни одного турнира.
+ */
 export type ScheduleSlotInput = {
   readonly slotId: string;
-  readonly hour: number;
-  readonly minute: number;
+  readonly localTime: string;
+  readonly timezone: string;
+  readonly ticketsRequired: number;
   readonly enabled: boolean;
 };
 
 export type ScheduleRequest = {
   readonly slots: readonly ScheduleSlotInput[];
   readonly timezone: string;
+  readonly freeWeeklyEntry: boolean;
+  readonly ticketGemValue: number;
 };
 
+/** Валидна ли IANA-таймзона — той же проверкой, что делает сервер комнат. */
+function isValidTimezone(timezone: string): boolean {
+  try {
+    new Intl.DateTimeFormat('en-US', { timeZone: timezone }).format(0);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function parseScheduleRequest(data: unknown): ScheduleRequest {
-  const record = onlyKeys(data, ['slots', 'timezone'], 'tournament_schedule_invalid');
+  const record = onlyKeys(
+    data,
+    ['slots', 'timezone', 'freeWeeklyEntry', 'ticketGemValue'],
+    'tournament_schedule_invalid',
+  );
   const slotsRaw = record.slots;
   const timezone = String(record.timezone ?? 'Europe/Moscow').trim();
 
   if (!Array.isArray(slotsRaw) || slotsRaw.length === 0 || slotsRaw.length > 12
-    // IANA-имя: сервер сверяет его же при создании комнат.
-    || !/^[A-Za-z]+\/[A-Za-z_\-+0-9/]+$/.test(timezone)) {
+    || !isValidTimezone(timezone)) {
+    throw new HttpsError('invalid-argument', 'tournament_schedule_invalid');
+  }
+
+  const ticketGemValue = record.ticketGemValue === undefined ? 0 : Number(record.ticketGemValue);
+  if (!Number.isSafeInteger(ticketGemValue) || ticketGemValue < 0 || ticketGemValue > 1_000) {
     throw new HttpsError('invalid-argument', 'tournament_schedule_invalid');
   }
 
   const slots = slotsRaw.map((slot) => {
     if (!isRecord(slot)) throw new HttpsError('invalid-argument', 'tournament_schedule_slot_invalid');
     const slotId = String(slot.slotId ?? '').trim();
-    const hour = Number(slot.hour);
-    const minute = Number(slot.minute);
+    const localTime = String(slot.localTime ?? '').trim();
+    const slotTimezone = String(slot.timezone ?? timezone).trim();
+    const ticketsRequired = slot.ticketsRequired === undefined ? 1 : Number(slot.ticketsRequired);
+    const timeMatch = /^(\d{2}):(\d{2})$/.exec(localTime);
+
     if (!ID_RE.test(slotId)
-      || !Number.isSafeInteger(hour) || hour < 0 || hour > 23
-      || !Number.isSafeInteger(minute) || minute < 0 || minute > 59) {
+      || !timeMatch || Number(timeMatch[1]) > 23 || Number(timeMatch[2]) > 59
+      || !isValidTimezone(slotTimezone)
+      || !Number.isSafeInteger(ticketsRequired) || ticketsRequired < 1 || ticketsRequired > 100) {
       throw new HttpsError('invalid-argument', 'tournament_schedule_slot_invalid');
     }
-    return Object.freeze({ slotId, hour, minute, enabled: slot.enabled === true });
+    return Object.freeze({
+      slotId,
+      localTime,
+      timezone: slotTimezone,
+      ticketsRequired,
+      enabled: slot.enabled === true,
+    });
   });
 
   const unique = new Set(slots.map((slot) => slot.slotId));
   if (unique.size !== slots.length) {
     throw new HttpsError('invalid-argument', 'tournament_schedule_duplicate_slot');
   }
-  return Object.freeze({ slots: Object.freeze(slots), timezone });
+  return Object.freeze({
+    slots: Object.freeze(slots),
+    timezone,
+    freeWeeklyEntry: record.freeWeeklyEntry === true,
+    ticketGemValue,
+  });
 }
 
 // ── Представление задания для админки ───────────────────────────────────────
@@ -464,9 +509,20 @@ export const adminSetTournamentSchedule = onCall(
       }
     }
 
+    // Пишем ровно те поля, что читает readTournamentSchedule в tournament_core:
+    // slotId/localTime/timezone/ticketsRequired/enabled + freeWeeklyEntry и
+    // ticketGemValue на верхнем уровне. Любое расхождение = слот молча
+    // отбрасывается планировщиком и турнир не стартует.
     await ref.set({
-      slots: params.slots.map((slot) => ({ ...slot })),
-      timezone: params.timezone,
+      slots: params.slots.map((slot) => ({
+        slotId: slot.slotId,
+        localTime: slot.localTime,
+        timezone: slot.timezone,
+        ticketsRequired: slot.ticketsRequired,
+        enabled: slot.enabled,
+      })),
+      freeWeeklyEntry: params.freeWeeklyEntry,
+      ticketGemValue: params.ticketGemValue,
       updatedAtMs: Date.now(),
     }, { merge: true });
 

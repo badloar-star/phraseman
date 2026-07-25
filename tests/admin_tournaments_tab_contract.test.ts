@@ -47,7 +47,7 @@ function runTab() {
         ] } };
       }
       if (name === 'adminGetTournamentSchedule') {
-        return { data: { slots: [{ slotId: 'noon', hour: 12, minute: 0, enabled: false }] } };
+        return { data: { slots: [{ slotId: 'daily_1200', localTime: '12:00', timezone: 'Europe/Moscow', ticketsRequired: 1, enabled: false }] } };
       }
       if (name === 'adminGenerateTournamentTasks') {
         return { data: { stats: { produced: 10, phrasesSeen: 5 }, written: 10, keptPublished: 3, samples: [] } };
@@ -189,6 +189,22 @@ describe('вкладка «Турниры» в админке', () => {
     const start = html.indexOf('const ADMIN_TAB_GROUPS');
     const groups = html.slice(start, start + 2600);
     expect(groups).toMatch(/tournaments:\s*'arena'/);
+  });
+
+  it('расписание шлёт слоты в формате сервера, а не hour/minute', () => {
+    // Регрессия: писали hour+minute, сервер такие слоты молча отбрасывал —
+    // в UI было «undefined:undefined», а расписание не запускало турниры.
+    const start = html.indexOf('window.tnSaveSchedule');
+    expect(start).toBeGreaterThan(0);
+    const scheduleBlock = html.slice(start, start + 2000);
+
+    expect(scheduleBlock).toContain('localTime');
+    expect(scheduleBlock).toContain("timezone: 'Europe/Moscow'");
+    expect(scheduleBlock).toContain('ticketsRequired');
+    // Старый формат не должен вернуться ни в отправке, ни в отрисовке.
+    expect(scheduleBlock).not.toMatch(/hour:\s*Number/);
+    expect(scheduleBlock).not.toMatch(/minute:\s*Number/);
+    expect(html).not.toContain('data-hour=');
   });
 
   it('разметка вкладки следует правилам владельца', () => {

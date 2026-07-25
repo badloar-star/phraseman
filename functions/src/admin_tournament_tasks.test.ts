@@ -90,40 +90,56 @@ describe('разбор запроса публикации', () => {
 });
 
 describe('разбор расписания', () => {
-  it('принимает три слота с таймзоной', () => {
+  const slot = (over = {}) => ({
+    slotId: 'daily_1200', localTime: '12:00', timezone: 'Europe/Moscow',
+    ticketsRequired: 1, enabled: false, ...over,
+  });
+
+  it('принимает слоты в формате, который читает планировщик комнат', () => {
     const parsed = parseScheduleRequest({
-      slots: [
-        { slotId: 'noon', hour: 12, minute: 0, enabled: false },
-        { slotId: 'evening', hour: 19, minute: 0, enabled: true },
-      ],
+      slots: [slot(), slot({ slotId: 'daily_1900', localTime: '19:00', enabled: true })],
       timezone: 'Europe/Moscow',
     });
     expect(parsed.slots).toHaveLength(2);
+    expect(parsed.slots[0].localTime).toBe('12:00');
     expect(parsed.slots[1].enabled).toBe(true);
-    expect(parsed.timezone).toBe('Europe/Moscow');
+    expect(parsed.slots[0].timezone).toBe('Europe/Moscow');
+    expect(parsed.slots[0].ticketsRequired).toBe(1);
   });
 
-  it('отклоняет невозможное время и мусорную таймзону', () => {
-    expectRejected(() => parseScheduleRequest({ slots: [{ slotId: 'a', hour: 25, minute: 0 }] }));
-    expectRejected(() => parseScheduleRequest({ slots: [{ slotId: 'a', hour: 12, minute: 61 }] }));
-    expectRejected(() => parseScheduleRequest({
-      slots: [{ slotId: 'a', hour: 12, minute: 0 }],
-      timezone: 'НеТаймзона',
-    }));
+  it('требует localTime в формате ЧЧ:ММ — hour/minute сервер не понимает', () => {
+    // Регрессия: первая версия админки слала hour+minute, сервер молча
+    // отбрасывал такие слоты и расписание не запускало ни одного турнира.
+    expectRejected(() => parseScheduleRequest({ slots: [{ slotId: 'a', hour: 12, minute: 0 }] }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ localTime: '' })] }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ localTime: '9:00' })] }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ localTime: '25:00' })] }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ localTime: '12:61' })] }));
+  });
+
+  it('отклоняет мусорную таймзону — её же проверяет сервер комнат', () => {
+    expectRejected(() => parseScheduleRequest({ slots: [slot()], timezone: 'НеТаймзона' }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ timezone: 'Nowhere/Nope' })] }));
   });
 
   it('отклоняет дубли слотов — иначе комнаты создадутся дважды', () => {
     expectRejected(() => parseScheduleRequest({
-      slots: [
-        { slotId: 'noon', hour: 12, minute: 0 },
-        { slotId: 'noon', hour: 19, minute: 0 },
-      ],
+      slots: [slot(), slot({ localTime: '19:00' })],
     }));
   });
 
   it('enabled по умолчанию false — слот не включается молча', () => {
-    const parsed = parseScheduleRequest({ slots: [{ slotId: 'noon', hour: 12, minute: 0 }] });
+    const parsed = parseScheduleRequest({ slots: [{
+      slotId: 'daily_1200', localTime: '12:00', timezone: 'Europe/Moscow',
+    }] });
     expect(parsed.slots[0].enabled).toBe(false);
+    expect(parsed.slots[0].ticketsRequired).toBe(1);
+  });
+
+  it('стоимость входа ограничена разумными пределами', () => {
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ ticketsRequired: 0 })] }));
+    expectRejected(() => parseScheduleRequest({ slots: [slot({ ticketsRequired: 9999 })] }));
+    expect(parseScheduleRequest({ slots: [slot({ ticketsRequired: 5 })] }).slots[0].ticketsRequired).toBe(5);
   });
 });
 

@@ -162,7 +162,57 @@ describe('генератор турнирных заданий', () => {
     expect(published.tasks.every((task) => task.verified === true)).toBe(true);
   });
 
-  it('сложность растёт по CEFR и попадает в диапазон раундов сервера', () => {
+  it('сложность учитывает формат: сборка из слов тяжелее выбора из вариантов', () => {
+    // зачем: контента B2 почти нет, по одному CEFR hard-пул был 91 задание на
+    // всё приложение. Надбавка за формат/длину даёт честный hard без нового
+    // контента — но не должна выталкивать короткий лёгкий вопрос в hard.
+    const long = 'I would like to book a table for two people tonight';
+    const source = day({
+      phrases: [
+        phrase('short', 'Hi', 'Привет', WORDS),
+        phrase('long', long, 'Я хотел бы забронировать столик', WORDS),
+        phrase('p3', 'See you later', 'До встречи', WORDS),
+        phrase('p4', 'How are you', 'Как дела', WORDS),
+        phrase('p5', 'Thanks a lot', 'Большое спасибо', WORDS),
+      ],
+    });
+
+    const choice = generateTournamentTasks([source], { kinds: ['choice'] }).tasks;
+    const translate = generateTournamentTasks([source], { kinds: ['translate'] }).tasks;
+
+    const shortChoice = choice.find((t) => t.payload.phrase === 'Hi');
+    const longTranslate = translate.find((t) => t.payload.correctAnswer === long);
+
+    // Короткий выбор на A1 остаётся лёгким — иначе раунд 1 остался бы без пула.
+    expect(shortChoice?.difficulty).toBe(1);
+    // Длинная сборка из слов на том же A1 — заметно тяжелее.
+    expect(longTranslate?.difficulty).toBeGreaterThan(1);
+
+    for (const task of [...choice, ...translate]) {
+      expect(task.difficulty).toBeGreaterThanOrEqual(1);
+      expect(task.difficulty).toBeLessThanOrEqual(3);
+      expect(Number.isInteger(task.difficulty)).toBe(true);
+    }
+  });
+
+  it('пул покрывает все раунды: сервер требует d1, d1-2, d2, d2-3', () => {
+    const source = [
+      day({ level: 'A1', dayIndex: 1 }),
+      day({ level: 'A2', dayIndex: 12 }),
+      day({ level: 'B1', dayIndex: 20 }),
+      day({ level: 'B2', dayIndex: 30 }),
+    ];
+    const { tasks } = generateTournamentTasks(source);
+    const levels = new Set(tasks.map((task) => task.difficulty));
+
+    // Пустой уровень означает, что соответствующий раунд не наберёт заданий
+    // и комната будет отменена с возвратом билетов.
+    expect(levels.has(1)).toBe(true);
+    expect(levels.has(2)).toBe(true);
+    expect(levels.has(3)).toBe(true);
+  });
+
+  it('базовая сложность растёт по CEFR и попадает в диапазон раундов сервера', () => {
     expect(difficultyForDay(day({ level: 'A1' }))).toBe(1);
     expect(difficultyForDay(day({ level: 'B1' }))).toBe(2);
     expect(difficultyForDay(day({ level: 'B2' }))).toBe(3);

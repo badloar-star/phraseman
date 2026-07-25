@@ -107,9 +107,9 @@ const CEFR_DIFFICULTY: Record<string, number> = {
 };
 
 /**
- * Сложность 1..3 — то, что требует сервер (раунд 1 → 1, раунд 4 → 2-3).
- * Основной сигнал — CEFR дня; если его нет, берём порядковый номер дня:
- * ранние дни плана заведомо проще поздних.
+ * Базовая сложность дня по языковому уровню.
+ * CEFR — основной сигнал; без него берём порядковый номер дня: ранние дни
+ * плана заведомо проще поздних.
  */
 export function difficultyForDay(day: SourceDay): number {
   const byCefr = day.level ? CEFR_DIFFICULTY[String(day.level).toUpperCase()] : undefined;
@@ -117,6 +117,38 @@ export function difficultyForDay(day: SourceDay): number {
   if (day.dayIndex <= 10) return 1;
   if (day.dayIndex <= 25) return 2;
   return 3;
+}
+
+/** Длина фразы, с которой задание считается заметно тяжелее. */
+const LONG_PHRASE_TOKENS = 6;
+const VERY_LONG_PHRASE_TOKENS = 9;
+
+/**
+ * Итоговая сложность 1..3 с учётом ФОРМАТА задания, а не только уровня языка.
+ *
+ * зачем: контент планов почти весь A1-A2, поэтому по одному CEFR выходило
+ * всего 91 задание сложности 3 на весь пул — четвёртый раунд начал бы
+ * повторяться примерно через неделю. Но трудность задания задаёт не только
+ * язык: собрать фразу из слов объективно тяжелее, чем выбрать из 4 вариантов
+ * (нет подсказки-вариантов, нужен порядок слов), а длинная фраза тяжелее
+ * короткой. Поэтому к базовой сложности добавляем надбавку за формат и длину —
+ * это даёт честный hard-пул без выдумывания нового контента.
+ */
+export function difficultyForTask(
+  day: SourceDay,
+  kind: GeneratableKind,
+  tokenCount: number,
+): number {
+  let score = difficultyForDay(day);
+  // Сборка из слов — нет вариантов-подсказок, требуется порядок.
+  if (kind === 'translate') score += 0.5;
+  // Тайм-атака давит временем: серия вопросов за 60 секунд.
+  if (kind === 'timeattack') score += 0.5;
+  if (tokenCount >= VERY_LONG_PHRASE_TOKENS) score += 1;
+  else if (tokenCount >= LONG_PHRASE_TOKENS) score += 0.5;
+  // Округляем вниз на .5: надбавка формата не должна сама по себе выталкивать
+  // лёгкий короткий вопрос в hard — иначе раунд 1 останется без пула.
+  return Math.max(1, Math.min(3, Math.floor(score)));
 }
 
 /**
@@ -213,7 +245,7 @@ function buildChoiceTask(
     taskId: taskId('choice', day, phrase.id),
     mode: TOURNAMENT_MODES.choice,
     isVoice: false,
-    difficulty: difficultyForDay(day),
+    difficulty: difficultyForTask(day, 'choice', phraseTokens(phrase.english).length),
     payload: { phrase: phrase.english.trim(), options, correctIndex },
     tags: tagsForDay(day),
     verified,
@@ -256,7 +288,7 @@ function buildTranslateTask(
     taskId: taskId('translate', day, phrase.id),
     mode: TOURNAMENT_MODES.translate,
     isVoice: false,
-    difficulty: difficultyForDay(day),
+    difficulty: difficultyForTask(day, 'translate', correctTokens.length),
     payload: {
       phrase: normalizedRu(phrase),
       wordBank,
@@ -316,7 +348,7 @@ function buildTimeattackTask(
     taskId: `timeattack_${day.planId}_${day.dayIndex}`.replace(/[^a-zA-Z0-9_.:-]/g, '').slice(0, 160),
     mode: TOURNAMENT_MODES.timeattack,
     isVoice: false,
-    difficulty: difficultyForDay(day),
+    difficulty: difficultyForTask(day, 'timeattack', 0),
     payload: {
       prompt: topic ? `Переведи: ${topic}`.slice(0, 200) : 'Переведи как можно больше',
       items,

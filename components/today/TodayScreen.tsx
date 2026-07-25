@@ -63,7 +63,7 @@ const FALLBACK_TASK: TodayTask = { kind: 'lesson_dive', minutes: 5 };
 const FALLBACK_RECOMMENDATION: TodayTask = { kind: 'flashcards_review', minutes: 2 };
 
 function routeFor(task: TodayTask): TodayRoute {
-  if (task.kind === 'lesson_dive') return task.focus ? { pathname: '/(tabs)/lessons', params: { id: task.focus } } : { pathname: '/(tabs)/lessons' };
+  if (task.kind === 'lesson_dive') return task.focus ? { pathname: '/lesson_menu', params: { id: task.focus } } : { pathname: '/(tabs)/lessons' };
   if (task.kind === 'mistake_repair') return { pathname: '/trainer' };
   if (task.kind === 'flashcards_review') return { pathname: '/flashcards_swipe' };
   return { pathname: '/personal_plan' };

@@ -28,7 +28,7 @@ export function compassTaskRoute(task: CompassTask, _day: CompassDay | null): Co
     case 'lesson_dive':
       // focus = id рекомендованного урока (строка). Без id — общий список уроков.
       return task.focus
-        ? { pathname: '/(tabs)/lessons', params: { id: task.focus } }
+        ? { pathname: '/lesson_menu', params: { id: task.focus } }
         : { pathname: '/(tabs)/lessons' };
     case 'mistake_repair':
       // Разбор фраз ведёт в актуальную «Мою практику» (/trainer). Прямой заход в

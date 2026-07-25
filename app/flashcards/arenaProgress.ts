@@ -21,6 +21,22 @@ import type { ArenaAnswer } from './arenaQuiz';
 const DAY_MS = 24 * 60 * 60 * 1000;
 /** Шкала интервалов повторения — дословно как в свайпе (nextDueAfterMastery). */
 const INTERVALS_DAYS = [1, 3, 7, 14, 30, 60];
+/**
+ * Потолок записей в памяти — зеркалит `compactMemory` свайпа.
+ * зачем (НАЙДЕНО АУДИТОМ): свайп режет память до 1200 строк перед записью, а
+ * арена писала всё подряд. Без потолка хранилище росло бы без предела через
+ * арену, и один из двух режимов молча раздувал бы то, что второй подрезает.
+ */
+const MEMORY_CAP = 1200;
+
+/** Оставляет 1200 самых свежих записей — как compactMemory в свайпе. */
+export function compactArenaMemory(memory: ArenaMemory): ArenaMemory {
+  const entries = Object.entries(memory);
+  if (entries.length <= MEMORY_CAP) return memory;
+  return Object.fromEntries(
+    entries.sort((a, b) => (b[1].lastSeenAt || 0) - (a[1].lastSeenAt || 0)).slice(0, MEMORY_CAP),
+  );
+}
 
 export interface ArenaMemoryRow {
   correct: number;
@@ -112,7 +128,7 @@ export async function saveArenaRun(
       memory[a.cardId] = applyArenaAnswer(memory[a.cardId], a.correct, now);
     }
 
-    await AsyncStorage.setItem(key, JSON.stringify(memory));
+    await AsyncStorage.setItem(key, JSON.stringify(compactArenaMemory(memory)));
     return true;
   } catch {
     return false;

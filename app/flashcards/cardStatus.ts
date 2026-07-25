@@ -68,7 +68,30 @@ export function statusFromMemoryRow(row: MemoryRow | undefined, now: number): Fl
 }
 
 /**
- * Читает прогресс свайпа и отдаёт карту «id карточки → статус».
+ * Достаёт id карточки из ключа памяти.
+ *
+ * зачем (НАЙДЕНО АУДИТОМ 2026-07-25): свайп индексирует память СОСТАВНЫМ
+ * ключом `${source.id}:${card.id}` — например `saved:all:abc123`. Коллекция
+ * же ищет статус по голому `item.id` (`abc123`). Из-за этого весь прогресс
+ * свайпа в коллекции НЕ ОТОБРАЖАЛСЯ — точки статусов были почти всегда серые
+ * («новая»), сколько бы юзер ни тренировался.
+ *
+ * Берём часть после последнего двоеточия: id карточек двоеточий не содержат,
+ * а префикс источника — содержит (`saved:all`, `custom:all`, `pack:xyz`).
+ */
+export function cardIdFromMemoryKey(key: string): string {
+  const idx = key.lastIndexOf(':');
+  return idx >= 0 ? key.slice(idx + 1) : key;
+}
+
+/**
+ * Читает прогресс и отдаёт карту «id карточки → статус».
+ *
+ * Понимает ОБА формата ключей: составной от свайпа (`saved:all:abc`) и голый
+ * от арены (`abc`). Если одна карточка встречается в обоих — берём худший
+ * статус: проблемную карточку нельзя прятать за хорошим результатом другого
+ * режима.
+ *
  * Ошибки хранилища не бросаем: статус — украшение списка, из-за него список
  * не должен падать. При сбое просто вернём пустую карту (все точки «new»).
  */
@@ -82,10 +105,10 @@ export async function loadFlashcardStatuses(
     const parsed = JSON.parse(raw) as unknown;
     if (!parsed || typeof parsed !== 'object') return {};
     const out: FlashcardStatusMap = {};
-    for (const [id, value] of Object.entries(parsed as Record<string, unknown>)) {
+    for (const [key, value] of Object.entries(parsed as Record<string, unknown>)) {
       if (!value || typeof value !== 'object') continue;
       const r = value as Record<string, unknown>;
-      out[id] = statusFromMemoryRow(
+      const status = statusFromMemoryRow(
         {
           correct: typeof r.correct === 'number' ? r.correct : 0,
           wrong: typeof r.wrong === 'number' ? r.wrong : 0,
@@ -95,9 +118,26 @@ export async function loadFlashcardStatuses(
         },
         now,
       );
+      const id = cardIdFromMemoryKey(key);
+      const prev = out[id];
+      out[id] = prev ? worstStatus(prev, status) : status;
     }
     return out;
   } catch {
     return {};
   }
+}
+
+/** Порядок «тревожности»: чем выше, тем важнее показать. */
+const STATUS_SEVERITY: Record<FlashcardStatus, number> = {
+  mastered: 0,
+  new: 1,
+  learning: 2,
+  review: 3,
+  weak: 4,
+};
+
+/** Из двух статусов одной карточки выбирает тот, что требует внимания. */
+export function worstStatus(a: FlashcardStatus, b: FlashcardStatus): FlashcardStatus {
+  return STATUS_SEVERITY[b] > STATUS_SEVERITY[a] ? b : a;
 }

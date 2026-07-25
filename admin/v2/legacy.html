@@ -17095,42 +17095,9 @@
     document.querySelectorAll('[id^="tab-"].reports-tab, [id^="tab-"].users-tab, [id^="tab-"].analytics').forEach(panel => {
       panel.classList.toggle('active', panel.id === 'tab-' + tab);
     });
-    const overviewTab = document.getElementById('tab-overview');
-    if (overviewTab) overviewTab.classList.toggle('active', tab === 'overview');
-    const modQueueTab = document.getElementById('tab-mod-queue');
-    if (modQueueTab) modQueueTab.classList.toggle('active', tab === 'mod-queue');
-    const ideasTab = document.getElementById('tab-ideas');
-    if (ideasTab) ideasTab.classList.toggle('active', tab === 'ideas');
-    document.getElementById('tab-users').classList.toggle('active',tab==='users');
-    document.getElementById('tab-analytics').classList.toggle('active',tab==='analytics');
-    const openAiBudgetTab = document.getElementById('tab-openai-budget');
-    if (openAiBudgetTab) openAiBudgetTab.classList.toggle('active', tab === 'openai-budget');
-    document.getElementById('tab-app-health').classList.toggle('active',tab==='app-health');
-    document.getElementById('tab-reports').classList.toggle('active',tab==='reports');
-    const wiTabInbox = document.getElementById('tab-website-inbox');
-    if (wiTabInbox) wiTabInbox.classList.toggle('active', tab === 'website-inbox');
-    document.getElementById('tab-user-reports').classList.toggle('active',tab==='user-reports');
-    { const sfTab = document.getElementById('tab-safety-flags'); if (sfTab) sfTab.classList.toggle('active', tab==='safety-flags'); }
-    { const acTab = document.getElementById('tab-age-consent'); if (acTab) acTab.classList.toggle('active', tab==='age-consent'); }
-    const explainRepTab = document.getElementById('tab-explain-reports');
-    if (explainRepTab) explainRepTab.classList.toggle('active', tab === 'explain-reports');
-    const explainCacheTab = document.getElementById('tab-explain-cache');
-    if (explainCacheTab) explainCacheTab.classList.toggle('active', tab === 'explain-cache');
-    const compassTab = document.getElementById('tab-compass');
-    if (compassTab) compassTab.classList.toggle('active', tab === 'compass');
-    document.getElementById('tab-archive').classList.toggle('active',tab==='archive');
-    document.getElementById('tab-audit').classList.toggle('active',tab==='audit');
-    document.getElementById('tab-ops-log').classList.toggle('active',tab==='ops-log');
-    document.getElementById('tab-community-packs').classList.toggle('active',tab==='community-packs');
-    document.getElementById('tab-clubs').classList.toggle('active',tab==='clubs');
-    const refTab = document.getElementById('tab-referrals');
-    if (refTab) refTab.classList.toggle('active', tab === 'referrals');
-    const banTab = document.getElementById('tab-ban-list');
-    if (banTab) banTab.classList.toggle('active', tab === 'ban-list');
-    const premTab = document.getElementById('tab-premium');
-    if (premTab) premTab.classList.toggle('active', tab === 'premium');
-    const vipTab = document.getElementById('tab-vip');
-    if (vipTab) vipTab.classList.toggle('active', tab === 'vip');
+    // зачем: показ нужной панели делает ОДИН цикл выше (селектор по [id^="tab-"]).
+    // Раньше следом шли ~70 строк ручного toggle на каждую вкладку — они повторяли
+    // ту же работу, и новая вкладка не открывалась, если про неё забывали дописать.
     // зачем: подсветка активного подраздела внутри объединённого раздела "Plus" (Real/Admin)
     if (tab === 'premium' || tab === 'vip') {
       document.querySelectorAll('.plus-subtab').forEach((btn) => {
@@ -17141,32 +17108,6 @@
         btn.style.color = btn.classList.contains('active') ? (isReal ? '#4ade80' : '#86efac') : '#9ca3af';
       });
     }
-    const plusRadarTab = document.getElementById('tab-plus-radar');
-    if (plusRadarTab) plusRadarTab.classList.toggle('active', tab === 'plus-radar');
-    const promoCodesTab = document.getElementById('tab-promo-codes');
-    if (promoCodesTab) promoCodesTab.classList.toggle('active', tab === 'promo-codes');
-    const cancelSurveysTab = document.getElementById('tab-cancel-surveys');
-    if (cancelSurveysTab) cancelSurveysTab.classList.toggle('active', tab === 'cancel-surveys');
-    const reviewPromoTab = document.getElementById('tab-review-promo');
-    if (reviewPromoTab) reviewPromoTab.classList.toggle('active', tab === 'review-promo');
-    const appMessagesTab = document.getElementById('tab-app-messages');
-    if (appMessagesTab) appMessagesTab.classList.toggle('active', tab === 'app-messages');
-    const controlPanelTab = document.getElementById('tab-control-panel');
-    if (controlPanelTab) controlPanelTab.classList.toggle('active', tab === 'control-panel');
-    const remoteConfigTab = document.getElementById('tab-remote-config');
-    if (remoteConfigTab) remoteConfigTab.classList.toggle('active', tab === 'remote-config');
-    const paywallAbTab = document.getElementById('tab-paywall-ab');
-    if (paywallAbTab) paywallAbTab.classList.toggle('active', tab === 'paywall-ab');
-    const alertsTab = document.getElementById('tab-alerts');
-    if (alertsTab) alertsTab.classList.toggle('active', tab === 'alerts');
-    const ugcTab = document.getElementById('tab-ugc-purchases');
-    if (ugcTab) ugcTab.classList.toggle('active', tab === 'ugc-purchases');
-    const refundsTab = document.getElementById('tab-refunds');
-    if (refundsTab) refundsTab.classList.toggle('active', tab === 'refunds');
-    const cpTabEl = document.getElementById('tab-card-packs');
-    if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
-    const dpTabEl = document.getElementById('tab-daily-phrases');
-    if (dpTabEl) dpTabEl.classList.toggle('active', tab === 'daily-phrases');
     const sb = document.getElementById('stats-bar');
     if (sb) {
       if (tab === 'users' && window._users && window._users.length) sb.style.display = 'block';

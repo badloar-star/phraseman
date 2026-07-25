@@ -1811,6 +1811,16 @@ export default function FlashcardsSwipeScreen() {
 
   const progressPct = stats.total > 0 ? Math.min(100, Math.round((stats.mastered / stats.total) * 100)) : 0;
   const currentPrompt = queue[0] ?? null;
+
+  // зачем: СТРАХОВКА от невидимой карточки. flyOpacity гасится при улёте и
+  // раньше возвращался в 1 ТОЛЬКО внутри finish(). Любой другой путь смены
+  // карточки (смена набора, перезапуск сессии, возврат на экран, обрыв
+  // анимации при уходе в фон) оставлял значение 0 — и следующая карточка
+  // рисовалась ПУСТОЙ. Привязываем сброс к самой карточке: новая карточка в
+  // кадре — всегда видима, независимо от того, как она там оказалась.
+  useEffect(() => {
+    flyOpacity.stopAnimation(() => flyOpacity.setValue(1));
+  }, [currentPrompt?.id, flyOpacity]);
   const done = phase === 'play' && !currentPrompt && stats.total > 0;
 
   useEffect(() => {
@@ -1876,16 +1886,16 @@ export default function FlashcardsSwipeScreen() {
         settlingRef.current = false;
         setSettling(false);
       };
-      // зачем: A-39 из макета — карта не уезжает по прямой, а уходит ДУГОЙ:
-      // вбок + вниз на 50px с доворотом до 16deg и растворением. Раньше был
-      // плоский горизонтальный сдвиг за 190мс — движение читалось как «рывок».
-      // Тайминги дословно из эталона: transform .45s ease-in, opacity .4s.
-      // Страховочный таймаут держим больше длительности (450 + запас), иначе
-      // finish() сработает раньше конца анимации и карта моргнёт.
-      // A-55: при «Уменьшении движения» дуга схлопывается до 120мс — карта
-      // просто исчезает, без размашистого полёта.
-      const flyMs = reduceMotionRef.current ? 120 : 450;
-      settleGuardRef.current = setTimeout(finish, flyMs + 250);
+      // зачем: A-39 из макета — карта уходит дугой (вбок + вниз) с доворотом и
+      // растворением, а не плоским сдвигом.
+      // КРИТИЧНО про длительность: пока идёт улёт, settlingRef блокирует ввод —
+      // экран не принимает ни свайп, ни кнопки. Эталонные 450мс из макета
+      // (это web, там ввод не блокируется) давали 450мс залипания и ощущение
+      // «свайп не срабатывает, надо дёргать несколько раз». Поэтому держим
+      // ИСХОДНЫЕ 190мс отзывчивости: форма движения из макета, тайминг — свой.
+      // Отзывчивость важнее буквального соответствия эталону.
+      const flyMs = reduceMotionRef.current ? 110 : 190;
+      settleGuardRef.current = setTimeout(finish, flyMs + 260);
       Animated.parallel([
         Animated.timing(position, {
           toValue: {
@@ -1898,7 +1908,7 @@ export default function FlashcardsSwipeScreen() {
         }),
         Animated.timing(flyOpacity, {
           toValue: 0,
-          duration: reduceMotionRef.current ? 120 : 400,
+          duration: flyMs,
           easing: Easing.in(Easing.ease),
           useNativeDriver: true,
         }),

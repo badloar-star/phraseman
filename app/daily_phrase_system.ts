@@ -404,50 +404,6 @@ const getDefaultPhrase = (): DailyPhrase => {
   return phraseFromIdiom(idiom);
 };
 
-export function subscribeTodayPhrase(onPhrase: (phrase: DailyPhrase) => void): () => void {
-  const db = getFirestore();
-  if (!db) return () => {};
-  let unsub: (() => void) | undefined;
-  const today = todayKey();
-  void ensureCloudAuth();
-  try {
-    unsub = db
-      .collection(DAILY_PHRASES_COLLECTION)
-      .where('scheduledDate', '==', today)
-      .orderBy('order', 'asc')
-      .limit(REMOTE_DAILY_PHRASE_QUERY_LIMIT)
-      .onSnapshot(
-        (snap: { forEach: (cb: (docSnap: { id: string; data: () => RemoteDailyPhraseDoc }) => void) => void }) => {
-          let phrase: DailyPhrase | null = null;
-          snap.forEach((docSnap) => {
-            if (phrase) return;
-            const raw = docSnap.data();
-            if (!raw || raw.active === false || raw.scheduledDate !== today) return;
-            phrase = normalizeRemotePhrase(docSnap.id, raw, today);
-          });
-          if (phrase) {
-            void AsyncStorage.setItem(REMOTE_DAILY_PHRASE_CACHE_KEY, JSON.stringify({ date: today, phrase })).catch(() => {});
-            onPhrase(phrase);
-          }
-        },
-        () => {},
-      );
-  } catch {
-    return () => {};
-  }
-  return () => {
-    try { unsub?.(); } catch {}
-  };
-}
-
-export function subscribeTodayPhraseForTarget(
-  onPhrase: (phrase: DailyPhrase) => void,
-  studyTarget?: RuntimeStudyTarget,
-): () => void {
-  if (!dailyPhraseContentAvailableForTarget(studyTarget)) return () => {};
-  return subscribeTodayPhrase(onPhrase);
-}
-
 export async function setDailyPhraseSavedOnServer(phraseId: string | undefined, saved: boolean): Promise<void> {
   const id = String(phraseId || '').trim();
   if (!id || id.startsWith('local-')) return;

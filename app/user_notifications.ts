@@ -251,43 +251,6 @@ export async function refreshUserNotificationsOnce(options: {
   }
 }
 
-/**
- * Realtime-подписка на центр событий. Возвращает unsubscribe.
- * Первый колбэк может прийти из кеша (offline-friendly), затем — live.
- */
-export function subscribeUserNotifications(
-  onChange: (list: UserNotification[]) => void,
-): () => void {
-  let disposed = false;
-  let unsubscribeSnapshot: (() => void) | null = null;
-
-  void (async () => {
-    const ownerUid = await getNotificationOwnerUid();
-    if (!ownerUid) return;
-    const query = getNotificationsQuery(ownerUid);
-    if (disposed) return;
-    if (!query) return;
-    unsubscribeSnapshot = query.onSnapshot(
-      (snap: any) => {
-        if (disposed || !snap) return;
-        void (async () => {
-          const currentOwnerUid = await getNotificationOwnerUid();
-          if (disposed || currentOwnerUid !== ownerUid) return;
-          const list = (snap.docs || []).map((doc: any) => normalizeNotification(doc.id, doc.data?.() || {}));
-          writeCache(ownerUid, list);
-          onChange(list);
-        })();
-      },
-      () => {},
-    );
-  })();
-
-  return () => {
-    disposed = true;
-    if (unsubscribeSnapshot) unsubscribeSnapshot();
-  };
-}
-
 /** Пометить события прочитанными (батчем; правила пускают только read/readAt/updatedAt). */
 export async function markUserNotificationsRead(ids: string[]): Promise<void> {
   const db = getFirestore();

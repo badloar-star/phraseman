@@ -252,14 +252,10 @@ describe('owner runtime direction contract', () => {
       // Arena listeners удалены вместе с фичей; монитор удаления аккаунта —
       // новый intentional live-listener.
       'app/app_messages.ts': 3,
-      'app/daily_phrase_system.ts': 1,
       'app/firestore_friend_requests.ts': 2,
-      'app/firestore_leagues.ts': 2,
       'app/league_group_boosts.ts': 2,
       'app/remote_account_deletion_monitor.ts': 1,
       'app/remote_config_client.ts': 1,
-      'app/services/league_chest_rewards.ts': 3,
-      'app/user_notifications.ts': 1,
       'components/PremiumContext.tsx': 1,
     };
     const found: Record<string, number> = {};

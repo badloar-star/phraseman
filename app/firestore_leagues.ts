@@ -28,7 +28,6 @@ import {
   getLeagueSyncForceIntervalMs,
   getLeagueSyncMinDelta,
   getLeagueSyncMinIntervalMs,
-  isLeagueRealtimeMembersEnabled,
   isLeagueStartupRegistrationEnabled,
 } from './remote_flags';
 import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
@@ -1177,126 +1176,6 @@ async function fetchGroupMembers(
   if (!snap.exists) return [];
   const members: Record<string, any> = snap.data()?.members ?? {};
   return mapLeagueMembersToGroupList(members, myUid, myName, myWeekPoints);
-}
-
-/**
- * Живе оновлення списку учасників клубу (та сама `league_groups` що в адмінці), без 60s кешу league_engine.
- */
-export function subscribeToLeagueGroupMembers(
-  onUpdate: (members: GroupMember[]) => void,
-): () => void {
-  if (!CLOUD_SYNC_ENABLED) return () => {};
-  const db = getFirestore();
-  if (!db) return () => {};
-  if (!isLeagueRealtimeMembersEnabled()) {
-    let cancelled = false;
-    void (async () => {
-      try {
-        const uid = await ensureAnonUser();
-        if (cancelled || !uid) return;
-        const lbSnap = await db.collection(COL_LB).doc(uid).get();
-        const lbData =
-          (lbSnap?.data?.() as { groupId?: string; groupWeekId?: string; leagueId?: number } | undefined) || {};
-        if (!lbSnap?.exists || !lbData.groupId || lbData.groupWeekId !== getWeekId()) {
-          if (!cancelled) onUpdate([]);
-          return;
-        }
-        const [myName, wp, groupSnap] = await Promise.all([
-          AsyncStorage.getItem('user_name').then((x) => (x || '').trim() || 'Игрок'),
-          getMyWeekPoints(),
-          db.collection('league_groups').doc(lbData.groupId).get(),
-        ]);
-        if (cancelled) return;
-        const members: Record<string, any> =
-          (groupSnap?.data?.() as { members?: Record<string, any> } | undefined)?.members ?? {};
-        onUpdate(mapLeagueMembersToGroupList(members, uid, myName, wp));
-      } catch {
-        if (!cancelled) onUpdate([]);
-      }
-    })();
-    return () => {
-      cancelled = true;
-    };
-  }
-  const r: { lb: (() => void) | null; g: (() => void) | null } = { lb: null, g: null };
-  let cancelled = false;
-  let lastReconcileAt = 0;
-  const RECONCILE_THROTTLE_MS = 30_000;
-
-  const triggerReconcile = (myLeagueId: number) => {
-    const now = Date.now();
-    if (now - lastReconcileAt < RECONCILE_THROTTLE_MS) return;
-    lastReconcileAt = now;
-    void (async () => {
-      try {
-        const myName = ((await AsyncStorage.getItem('user_name')) || '').trim() || 'Игрок';
-        const wp = await getMyWeekPoints();
-        await getOrCreateLeagueGroup(getWeekId(), myLeagueId, myName, wp);
-      } catch (e) {
-        if (__DEV__) console.warn('[firestore_leagues] reconcile failed', e);
-      }
-    })();
-  };
-
-  void (async () => {
-    const uid = await ensureAnonUser();
-    if (cancelled || !uid) return;
-    r.lb = db.collection(COL_LB).doc(uid).onSnapshot(
-      (lbSnap: any) => {
-        if (r.g) {
-          r.g();
-          r.g = null;
-        }
-        if (!lbSnap?.exists) {
-          onUpdate([]);
-          return;
-        }
-        const lbData =
-          (lbSnap.data() as { groupId?: string; groupWeekId?: string; leagueId?: number } | undefined) || {};
-        const gid = lbData.groupId;
-        const gWeekId = lbData.groupWeekId;
-        const myLeagueId = normLeagueIdData(lbData.leagueId, 0);
-        const currentWeekId = getWeekId();
-
-        // Stale weekId или нет groupId — игнорируем и форсим reconcile
-        if (!gid || gWeekId !== currentWeekId) {
-          onUpdate([]);
-          triggerReconcile(myLeagueId);
-          return;
-        }
-
-        r.g = db.collection('league_groups').doc(gid).onSnapshot(
-          (gSnap: any) => {
-            if (!gSnap?.exists) {
-              onUpdate([]);
-              triggerReconcile(myLeagueId);
-              return;
-            }
-            void (async () => {
-              const myName = ((await AsyncStorage.getItem('user_name')) || '').trim() || 'Игрок';
-              const wp = await getMyWeekPoints();
-              const members: Record<string, any> =
-                (gSnap.data() as { members?: Record<string, any> } | undefined)?.members ?? {};
-              const memberCount = Object.keys(members).length;
-
-              // Solo-группа — пользователь застрял один. Не выдаём в UI, форсим reconcile.
-              if (memberCount <= 1) {
-                triggerReconcile(myLeagueId);
-                return;
-              }
-              onUpdate(mapLeagueMembersToGroupList(members, uid, myName, wp));
-            })();
-          },
-        );
-      },
-    );
-  })();
-
-  return () => {
-    cancelled = true;
-    r.g?.();
-    r.lb?.();
-  };
 }
 
 /** Пушит личный буст (×2/×3) в league_groups.members.{uid} — другие участники видят модификатор. */

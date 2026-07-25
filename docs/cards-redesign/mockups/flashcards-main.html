@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phraseman · Карточки 2.0 — киллер-фича: твоя вселенная слов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════ СТРАНИЦА (каркас как в phraseman-card-v2) ═══════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{--bg:#07080B;--ink:#F2F3F7;--mut:#8B8E9D;--dim:#62646F;
+  --spring:cubic-bezier(.34,1.56,.64,1);--ease-out:cubic-bezier(.22,.61,.36,1);--ease-in:cubic-bezier(.55,.06,.68,.19)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--ink);padding:56px 40px 90px}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(700px 400px at 12% -5%,rgba(90,110,180,.10),transparent 65%),
+             radial-gradient(700px 500px at 95% 110%,rgba(60,150,140,.07),transparent 65%)}
+.wrap{max-width:1560px;margin:0 auto;position:relative}
+h1{font-size:34px;font-weight:800;letter-spacing:-.8px}
+.lede{margin-top:14px;max-width:920px;font-size:14.5px;line-height:1.65;color:var(--mut)}
+.lede b{color:#C9CBD6;font-weight:600}
+.lvl-legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.lvl-legend i{font-style:normal;font-size:11px;font-weight:600;color:#AEB1BE;
+  background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08);
+  padding:7px 12px;border-radius:999px}
+.lvl-legend i b{font-weight:800}
+.sec{margin-top:74px}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.sec-name{display:flex;align-items:baseline;gap:14px}
+.sec-idx{font-size:12px;font-weight:700;letter-spacing:.24em;color:var(--dim)}
+.sec-name h2{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.sec-name h2 em{font-style:normal;font-size:13px;font-weight:600;color:var(--mut);letter-spacing:.06em;margin-left:10px}
+.sec-desc{margin-top:10px;max-width:860px;font-size:13.5px;line-height:1.6;color:var(--mut)}
+.sec-desc b{color:#C9CBD6;font-weight:600}
+.sec-desc code{font-family:inherit;font-size:12px;background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;color:#C9CBD6}
+.tags{display:flex;gap:7px;flex-wrap:wrap}
+.tag{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:#9FA2B0;border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 11px;white-space:nowrap}
+.row{display:flex;gap:26px;overflow-x:auto;padding:26px 6px 30px;scroll-snap-type:x mandatory;align-items:flex-start}
+.row::-webkit-scrollbar{height:8px}
+.row::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:4px}
+.row::-webkit-scrollbar-track{background:rgba(255,255,255,.03);border-radius:4px}
+.item{scroll-snap-align:start;flex-shrink:0}
+.cap{margin-top:16px;width:302px}
+.cap b{display:block;font-size:12.5px;font-weight:700}
+.cap span{display:block;font-size:11px;color:var(--mut);margin-top:3px;line-height:1.5}
+.notes{margin-top:80px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.note{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:20px;padding:24px}
+.note h3{font-size:14px;font-weight:800;letter-spacing:.02em;margin-bottom:12px}
+.note ul{list-style:none}
+.note li{font-size:12.5px;line-height:1.55;color:var(--mut);padding:5px 0 5px 18px;position:relative}
+.note li::before{content:'';position:absolute;left:0;top:12px;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.16)}
+.note li b{color:#C9CBD6;font-weight:600}
+.verdict{background:linear-gradient(150deg,rgba(90,166,255,.09),rgba(79,224,200,.05));border-color:rgba(90,166,255,.22)}
+.verdict li::before{background:#5AA6FF}
+.num{font-variant-numeric:tabular-nums}
+
+/* переключатель reduced motion в шапке */
+.rm-switch{display:inline-flex;align-items:center;gap:14px;margin-top:24px;padding:12px 16px;border-radius:16px;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.09);cursor:pointer;user-select:none;transition:border-color .2s}
+.rm-switch:hover{border-color:rgba(90,166,255,.35)}
+.rm-switch:focus-visible{outline:2px solid #5AA6FF;outline-offset:2px}
+.rm-switch .tumb{width:42px;height:24px;border-radius:999px;background:rgba(255,255,255,.1);position:relative;flex-shrink:0;transition:background-color .2s}
+.rm-switch .tumb::after{content:'';position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
+  background:#8B8E9D;transition:transform .25s var(--spring),background-color .2s}
+.rm-switch.on .tumb{background:rgba(90,166,255,.35)}
+.rm-switch.on .tumb::after{transform:translateX(18px);background:#5AA6FF}
+.rm-switch b{font-size:12px}
+.rm-switch span{font-size:10px;color:var(--mut)}
+
+/* пауза вечных циклов вне фокуса (perf_freeze_contract) */
+body.pause .fx,body.pause .wbar{animation-play-state:paused!important}
+
+/* ═══════════════════════ ОБЩИЕ КНОПКИ (анатомия как в card-v2) ═══════════════════════ */
+.kb{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(170deg,rgba(16,19,28,.88),rgba(10,12,18,.82));
+  border:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.78);cursor:pointer;font-family:inherit;
+  transition:transform .22s var(--spring),border-color .2s,color .2s,opacity .2s;position:relative}
+.kb.pressed{transform:scale(.94)}
+.kb.disabled{opacity:.38;cursor:not-allowed}
+.kb.accent{color:#4FE0C8;border-color:rgba(79,224,200,.42)}
+.kb.danger{color:#FF6B7E;border-color:rgba(255,107,126,.4)}
+.kb.success{color:#35D07F;border-color:rgba(53,208,127,.5)}
+.xcta{border:none;border-radius:16px;min-height:48px;padding:13px 20px;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-size:13px;font-weight:800;color:#0A0B10;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(170deg,#4FE0C8,#3AC9B2);transition:transform .22s var(--spring),opacity .2s}
+.xcta.pressed{transform:scale(.96)}
+.xcta:active{transform:scale(.97)}
+.xcta.disabled{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:#8B8E9D;cursor:not-allowed}
+.xcta.success{background:linear-gradient(170deg,#35D07F,#2BB96C)}
+.xcta.loading{cursor:progress;opacity:.85}
+.xcta.gold{background:linear-gradient(170deg,#E8C86A,#C9982F)}
+.xghost{border-radius:16px;min-height:48px;padding:12px 18px;background:transparent;border:1px solid rgba(255,255,255,.16);
+  color:#C9CBD6;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .22s var(--spring),border-color .2s,opacity .2s}
+.xghost.pressed{transform:scale(.96)}
+.xghost.disabled{opacity:.38;cursor:not-allowed}
+.spin{width:16px;height:16px;border-radius:50%;flex-shrink:0;
+  border:2px solid rgba(255,255,255,.18);border-top-color:currentColor;animation:rot .7s linear infinite}
+.xcta .spin{border-color:rgba(10,11,16,.25);border-top-color:#0A0B10}
+
+/* чипы статусов карточек — ядро концепции §3.1 */
+.st{display:inline-flex;align-items:center;gap:5px;font-size:9.5px;font-weight:800;letter-spacing:.05em;
+  padding:5px 9px;border-radius:999px;white-space:nowrap}
+.st-new{color:#9FB4CC;background:rgba(159,180,204,.1);border:1px solid rgba(159,180,204,.32)}
+.st-learn{color:#5AA6FF;background:rgba(90,166,255,.1);border:1px solid rgba(90,166,255,.32)}
+.st-rev{color:#F5C842;background:rgba(245,200,66,.09);border:1px solid rgba(245,200,66,.32)}
+.st-master{color:#35D07F;background:rgba(53,208,127,.1);border:1px solid rgba(53,208,127,.32)}
+.st-weak{color:#FF6B7E;background:rgba(255,107,126,.09);border:1px solid rgba(255,107,126,.34)}
+
+/* ═══════════════════════ 01 · ХАБ — полки и тайлы ═══════════════════════ */
+.shelf{margin-top:36px}
+.shelf:first-of-type{margin-top:26px}
+.shelf-h{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.shelf-h h3{font-size:15px;font-weight:800;letter-spacing:-.2px;display:flex;align-items:center;gap:9px}
+.shelf-h h3 em{font-style:normal;font-size:10.5px;font-weight:600;color:var(--dim);letter-spacing:.04em}
+.shelf-h a{font-size:11px;font-weight:700;color:#5AA6FF;text-decoration:none;cursor:pointer;white-space:nowrap}
+.shelf .row{padding:16px 2px 18px;gap:16px}
+.ptile{width:224px;flex-shrink:0;border-radius:20px;overflow:hidden;cursor:pointer;position:relative;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08);
+  transition:transform .22s var(--spring),border-color .2s}
+.ptile:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16)}
+.pt-cover{height:104px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pt-mono{font-size:34px;font-weight:900;letter-spacing:-1px;color:rgba(255,255,255,.92)}
+.pt-kind{position:absolute;top:10px;left:10px;font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.85);background:rgba(6,7,10,.5);padding:4px 8px;border-radius:999px}
+.pt-trial{position:absolute;top:10px;right:10px;font-size:8.5px;font-weight:800;letter-spacing:.03em;
+  color:#F5C842;background:rgba(6,7,10,.62);border:1px solid rgba(245,200,66,.45);padding:4px 8px;border-radius:999px;
+  font-variant-numeric:tabular-nums}
+.pt-price{position:absolute;bottom:10px;right:10px;font-size:10px;font-weight:800;color:#0A0B10;
+  background:linear-gradient(170deg,#E8C86A,#D8B45A);padding:5px 9px;border-radius:999px;font-variant-numeric:tabular-nums}
+.pt-owned{position:absolute;bottom:10px;right:10px;font-size:9px;font-weight:800;color:#35D07F;
+  background:rgba(6,7,10,.62);border:1px solid rgba(53,208,127,.4);padding:4px 8px;border-radius:999px}
+.pt-body{padding:12px 14px 14px}
+.pt-body b{display:block;font-size:13.5px;font-weight:800;letter-spacing:-.2px}
+.pt-sub{display:block;font-size:10px;color:var(--mut);margin-top:3px}
+.pt-prog{margin-top:10px}
+.pt-prog-bar{height:6px;border-radius:3px;background:rgba(255,255,255,.07);overflow:hidden;position:relative}
+.pt-prog-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,#4FE0C8,#2E9E8C);
+  transform-origin:left center}
+.pt-prog-lbl{display:flex;justify-content:space-between;font-size:9.5px;color:var(--mut);margin-top:5px;font-variant-numeric:tabular-nums}
+.pt-prog-lbl b{color:#4FE0C8}
+.pt-author{display:flex;align-items:center;gap:7px;margin-top:9px;font-size:10px;color:var(--mut)}
+.pt-author i{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-style:normal;font-size:8.5px;font-weight:800;color:#fff;background:linear-gradient(135deg,#6D5DF6,#9D8CFF)}
+.pt-rate{margin-left:auto;color:#F5C842;font-weight:800;font-variant-numeric:tabular-nums}
+/* компактные тайлы тем */
+.ttile{width:170px;flex-shrink:0;border-radius:18px;padding:16px;cursor:pointer;position:relative;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08);
+  transition:transform .22s var(--spring),border-color .2s}
+.ttile:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.16)}
+.ttile .tt-ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:11px}
+.ttile b{display:block;font-size:13px;font-weight:800}
+.ttile span{display:block;font-size:9.5px;color:var(--mut);margin-top:3px}
+</style>
+<style>
+/* ═══════════════════════ 02 · КОЛЛЕКЦИЯ ═══════════════════════ */
+.col-panel{width:420px;flex-shrink:0;border-radius:22px;padding:20px;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.col-panel h4{font-size:13px;font-weight:800;display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.col-panel .sub{font-size:10.5px;color:var(--mut);margin-bottom:14px;line-height:1.5}
+.lim-bar{height:8px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden;position:relative;margin:10px 0 6px}
+.lim-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:4px;background:linear-gradient(90deg,#4FE0C8,#2E9E8C)}
+.lim-nums{display:flex;justify-content:space-between;font-size:10px;color:var(--mut);font-variant-numeric:tabular-nums}
+.lim-nums b{color:#4FE0C8}
+.st-legend{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.fcard{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:14px;margin-top:9px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);cursor:pointer;
+  transition:transform .2s var(--spring),background-color .2s}
+.fcard:hover{background:rgba(255,255,255,.05)}
+.fcard:active{transform:scale(.985)}
+.fcard .fw{flex:1;min-width:0}
+.fcard .fw b{display:block;font-size:12.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fcard .fw span{display:block;font-size:10px;color:var(--mut);margin-top:1px}
+/* undo-снэкбар */
+.snack{display:flex;align-items:center;gap:10px;margin-top:14px;padding:12px 14px;border-radius:14px;
+  background:linear-gradient(170deg,rgba(20,23,33,.97),rgba(12,14,20,.97));border:1px solid rgba(255,255,255,.12);
+  font-size:11.5px;color:#C9CBD6}
+.snack b{font-weight:700}
+.snack button{margin-left:auto;border:none;background:none;color:#4FE0C8;font-family:inherit;font-size:11.5px;
+  font-weight:800;cursor:pointer;padding:8px 12px;border-radius:9px;min-height:36px;transition:transform .18s var(--spring)}
+.snack button:active{transform:scale(.94)}
+.snack .sn-undo{display:flex;align-items:center;gap:5px}
+/* empty-state онбординг */
+.empty-hero{text-align:center;padding:26px 18px 22px}
+.empty-ico{width:64px;height:64px;border-radius:20px;margin:0 auto 14px;color:#4FE0C8;
+  background:rgba(79,224,200,.09);border:1px solid rgba(79,224,200,.3);display:flex;align-items:center;justify-content:center}
+.empty-hero h5{font-size:15px;font-weight:800;margin-bottom:6px}
+.empty-hero p{font-size:11.5px;color:var(--mut);line-height:1.55;margin-bottom:16px}
+
+/* ═══════════════════════ 03 · ПРОСМОТР — flip-стопка ═══════════════════════ */
+.stage-panel{width:380px;flex-shrink:0;border-radius:22px;padding:20px;position:relative;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.stage-panel h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.stage-panel .sub{font-size:10.5px;color:var(--mut);margin-bottom:16px;line-height:1.5}
+.flip-thread{height:4px;border-radius:2px;background:rgba(255,255,255,.07);overflow:hidden;position:relative;margin-bottom:18px}
+.flip-thread i{position:absolute;left:0;top:0;bottom:0;width:100%;border-radius:2px;
+  background:linear-gradient(90deg,#4FE0C8,#5AA6FF);transform-origin:left center;
+  transform:scaleX(.2);transition:transform .35s var(--ease-out)}
+.flip-deck{position:relative;height:220px;perspective:1000px;margin-bottom:16px}
+.flip-ghost{position:absolute;inset:0;border-radius:20px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.05)}
+.flip-ghost.g1{transform:translateY(9px) scale(.965)}
+.flip-ghost.g2{transform:translateY(18px) scale(.93)}
+.flip-card{position:absolute;inset:0;transform-style:preserve-3d;cursor:pointer;
+  transition:transform .38s var(--spring)}
+.flip-card.flipped{transform:rotateY(180deg)}
+.flip-card.air{animation:flipair .38s var(--ease-out)}
+.flip-face{position:absolute;inset:0;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:20px;text-align:center;
+  background:radial-gradient(120% 60% at 80% -10%,rgba(79,224,200,.1),transparent 60%),linear-gradient(170deg,#12141D,#0B0C12);
+  border:1px solid rgba(79,224,200,.28)}
+.flip-face.back{transform:rotateY(180deg);
+  background:radial-gradient(120% 60% at 20% 110%,rgba(90,166,255,.12),transparent 60%),linear-gradient(170deg,#12141D,#0B0C12);
+  border-color:rgba(90,166,255,.3)}
+.flip-face .fk{font-size:8.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.flip-face .fw2{font-size:26px;font-weight:800;letter-spacing:-.5px}
+.flip-face .ft{font-size:13px;color:var(--mut)}
+.flip-face .fhint{position:absolute;bottom:13px;font-size:9px;color:var(--dim);letter-spacing:.06em}
+.flip-controls{display:flex;gap:10px;align-items:center;justify-content:center}
+.flip-controls .xcta{min-height:44px;padding:11px 18px;font-size:12px}
+
+/* ═══════════════════════ 04 · СВАЙП — дуэль-колода ═══════════════════════ */
+.duel-stage{position:relative;height:250px;margin-bottom:14px}
+.duel-ghost{position:absolute;left:14px;right:14px;top:10px;bottom:-8px;border-radius:20px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);transform:scale(.96) translateY(6px)}
+.duel-card{position:absolute;inset:0;border-radius:20px;padding:22px;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;text-align:center;will-change:transform,opacity;
+  background:radial-gradient(120% 60% at 80% -10%,rgba(90,166,255,.1),transparent 60%),linear-gradient(170deg,#12141D,#0B0C12);
+  border:1px solid rgba(255,255,255,.12);transition:transform .45s var(--ease-in),opacity .4s ease-in}
+.duel-card .dw{font-size:24px;font-weight:800;letter-spacing:-.4px}
+.duel-card .dt{font-size:12px;color:var(--mut)}
+.duel-card .dq{position:absolute;top:14px;left:16px;font-size:9.5px;font-weight:800;color:var(--dim);font-variant-numeric:tabular-nums}
+.duel-card.fly-r{transform:translate(300px,46px) rotate(16deg);opacity:0}
+.duel-card.fly-l{transform:translate(-300px,46px) rotate(-16deg);opacity:0}
+.duel-card.deal{transition:transform .38s var(--spring),opacity .3s ease-out}
+.duel-btns{display:flex;gap:12px}
+.duel-btns button{flex:1;border-radius:16px;min-height:52px;font-family:inherit;font-size:13.5px;font-weight:800;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:transform .22s var(--spring),opacity .2s}
+.duel-btns button:active{transform:scale(.95)}
+.db-no{background:rgba(255,107,126,.1);border:1px solid rgba(255,107,126,.4);color:#FF6B7E}
+.db-yes{background:rgba(53,208,127,.12);border:1px solid rgba(53,208,127,.45);color:#35D07F}
+.duel-meta{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.combo-chip{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:900;color:#F5C842;
+  padding:6px 11px;border-radius:999px;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.4);
+  font-variant-numeric:tabular-nums;transition:transform .3s var(--spring),opacity .3s}
+.combo-chip.pop{animation:likepop .5s var(--spring)}
+.mastery{margin-left:auto;text-align:right}
+.mastery b{display:block;font-size:16px;font-weight:900;color:#35D07F;font-variant-numeric:tabular-nums;transition:transform .2s var(--spring)}
+.mastery b.bump{animation:likepop .45s var(--spring)}
+.mastery span{font-size:8.5px;color:var(--dim);letter-spacing:.08em;text-transform:uppercase}
+.fly-x{position:absolute;z-index:5;font-size:15px;font-weight:900;color:#F5C842;pointer-events:none;
+  transition:transform .6s var(--ease-in),opacity .6s ease-in;font-variant-numeric:tabular-nums}
+
+/* ═══════════════════════ 05 · АУДИО — плеер ═══════════════════════ */
+.player{width:380px;flex-shrink:0;border-radius:22px;padding:20px;position:relative;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.player h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.player .sub{font-size:10.5px;color:var(--mut);margin-bottom:16px;line-height:1.5}
+.pl-cover{height:130px;border-radius:18px;position:relative;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;margin-bottom:14px}
+.pl-cover .pt-mono{font-size:40px}
+.pl-cover .pl-pack{position:absolute;bottom:10px;left:12px;font-size:9.5px;font-weight:800;color:rgba(255,255,255,.9);
+  background:rgba(6,7,10,.55);padding:4px 9px;border-radius:999px}
+.pl-track{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.pl-track b{font-size:13px;font-weight:800}
+.pl-track span{font-size:10px;color:var(--mut);font-variant-numeric:tabular-nums}
+.wave{display:flex;align-items:center;gap:3px;height:44px;margin-bottom:12px}
+.wbar{flex:1;height:100%;border-radius:2px;background:linear-gradient(180deg,#4FE0C8,#2E9E8C);
+  transform:scaleY(.22);transform-origin:center;will-change:transform}
+.wave.playing .wbar{animation:wavey 1.15s ease-in-out infinite}
+.wave .wbar:nth-child(3n){background:linear-gradient(180deg,#5AA6FF,#3A7BE0)}
+.pl-controls{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:14px}
+.pl-play{width:56px;height:56px;border-radius:50%;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(170deg,#4FE0C8,#3AC9B2);color:#0A0B10;transition:transform .22s var(--spring)}
+.pl-play:active{transform:scale(.93)}
+.pl-speeds{display:flex;gap:6px;justify-content:center}
+.pl-speeds button{border-radius:999px;padding:8px 13px;font-family:inherit;font-size:10.5px;font-weight:800;cursor:pointer;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:#8B8E9D;min-height:36px;
+  transition:transform .18s var(--spring),background-color .2s,color .2s}
+.pl-speeds button.on{background:rgba(79,224,200,.14);border-color:rgba(79,224,200,.4);color:#4FE0C8}
+.pl-speeds button:active{transform:scale(.94)}
+/* режим «в машине» — крупные контролы */
+.car-panel .pl-controls{gap:22px;margin:22px 0}
+.car-panel .pl-play{width:84px;height:84px}
+.car-panel .kb{width:64px;height:64px}
+.car-chip{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;color:#5AA6FF;
+  background:rgba(90,166,255,.1);border:1px solid rgba(90,166,255,.35);padding:5px 10px;border-radius:999px;margin-bottom:12px}
+
+/* ═══════════════════════ 06 · АРЕНА — квиз ═══════════════════════ */
+.quiz{width:380px;flex-shrink:0;border-radius:22px;padding:20px;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.quiz h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.quiz .sub{font-size:10.5px;color:var(--mut);margin-bottom:14px;line-height:1.5}
+.q-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.q-count{font-size:10.5px;font-weight:800;color:var(--dim);font-variant-numeric:tabular-nums}
+.q-timer{margin-left:auto;position:relative;width:44px;height:44px}
+.q-timer svg{transform:rotate(-90deg)}
+.q-timer b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:900;font-variant-numeric:tabular-nums;color:#F5C842}
+.q-q{border-radius:16px;padding:18px;text-align:center;font-size:17px;font-weight:800;letter-spacing:-.3px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);margin-bottom:12px;line-height:1.4}
+.q-q em{font-style:normal;color:#4FE0C8}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.q-opt{border-radius:14px;min-height:52px;padding:12px;font-family:inherit;font-size:12.5px;font-weight:700;cursor:pointer;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:#C9CBD6;text-align:center;
+  transition:transform .2s var(--spring),background-color .2s,border-color .2s,opacity .2s}
+.q-opt:hover{background:rgba(255,255,255,.07)}
+.q-opt:active{transform:scale(.97)}
+.q-opt.right{background:rgba(53,208,127,.14);border-color:rgba(53,208,127,.55);color:#35D07F;animation:likepop .45s var(--spring)}
+.q-opt.wrong{background:rgba(255,107,126,.12);border-color:rgba(255,107,126,.5);color:#FF6B7E;animation:shakey .4s ease-out}
+.q-opt.dimmed{opacity:.4}
+/* итоги арены */
+.q-result{text-align:center;padding:8px 0 2px}
+.q-score{font-size:40px;font-weight:900;letter-spacing:-1px;font-variant-numeric:tabular-nums}
+.q-score em{font-style:normal;font-size:18px;color:var(--mut);font-weight:700}
+.q-weak{margin-top:14px;text-align:left}
+.q-weak .wk{display:flex;align-items:center;gap:9px;padding:9px 11px;border-radius:12px;margin-top:7px;
+  background:rgba(255,107,126,.06);border:1px solid rgba(255,107,126,.22);font-size:11px}
+.q-weak .wk b{font-weight:700}
+.q-weak .wk span{color:var(--mut);margin-left:auto;font-size:9.5px;flex-shrink:0}
+</style>
+<style>
+/* ═══════════════════════ 07 · РАСПАКОВКА + ПЕЙВОЛ 2.0 ═══════════════════════ */
+.pack-stage{position:relative;height:280px;border-radius:18px;overflow:hidden;margin-bottom:14px;
+  background:linear-gradient(170deg,#0D0F16,#08090E);border:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center}
+.pack-box{position:relative;z-index:2;width:150px;height:104px;border-radius:16px;will-change:transform;
+  background:linear-gradient(170deg,#1B1430,#120D22);border:1px solid rgba(157,140,255,.45);
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;
+  transition:transform .3s var(--spring)}
+.pack-box .pb-mono{font-size:26px;font-weight:900;color:#B9A8FF}
+.pack-box .pb-nm{font-size:8.5px;font-weight:800;letter-spacing:.14em;color:#8F7FD8;text-transform:uppercase}
+.pack-flap{position:absolute;left:-1px;right:-1px;top:-1px;height:34px;border-radius:16px 16px 4px 4px;z-index:3;
+  background:linear-gradient(170deg,#2A2048,#1B1430);border:1px solid rgba(157,140,255,.5);
+  transform-origin:top center;transition:transform .3s var(--ease-in)}
+.pack-stage.open .pack-flap{transform:rotateX(105deg)}
+.pack-stage.open .pack-box{transform:scale(1.04)}
+.pack-flash{position:absolute;left:50%;top:50%;width:16px;height:16px;border-radius:50%;z-index:4;pointer-events:none;
+  background:radial-gradient(circle,#fff 0%,rgba(157,140,255,.9) 40%,transparent 72%);
+  transform:translate(-50%,-50%) scale(0);opacity:0}
+.pack-flash.go{transition:transform .22s ease-out,opacity .22s ease-out;transform:translate(-50%,-50%) scale(15);opacity:1}
+.pack-flash.out{transition:opacity .25s ease-out;opacity:0}
+.fly-card{position:absolute;left:50%;top:50%;width:56px;height:76px;border-radius:10px;z-index:5;pointer-events:none;
+  background:linear-gradient(170deg,#141824,#0C0E15);border:1px solid rgba(90,166,255,.45);
+  display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800;color:#7FB3FF;
+  opacity:0;transform:translate(-50%,-50%) scale(.3);transition:transform .42s var(--spring),opacity .2s ease-out}
+.pack-count{position:absolute;left:0;right:0;bottom:16px;z-index:6;text-align:center;pointer-events:none;
+  font-size:17px;font-weight:900;color:#4FE0C8;letter-spacing:-.3px;font-variant-numeric:tabular-nums;
+  opacity:0;transform:translateY(14px) scale(.7);transition:transform .35s var(--spring),opacity .2s ease-out}
+.pack-count.in{opacity:1;transform:translateY(0) scale(1)}
+.pk-conf{position:absolute;left:50%;top:40%;width:6px;height:6px;border-radius:2px;z-index:7;pointer-events:none;opacity:0}
+.pk-conf.go{animation:conf .85s ease-out forwards}
+/* пейвол-панели */
+.pay{width:340px;flex-shrink:0;border-radius:22px;padding:20px;position:relative;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.pay h4{font-size:13.5px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.pay h4 .pm{margin-left:auto;font-size:9px;font-weight:800;letter-spacing:.1em;color:var(--dim)}
+.pay .sub{font-size:10.5px;color:var(--mut);margin-bottom:14px;line-height:1.5}
+.pay-pack{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:14px;margin-bottom:14px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08)}
+.pay-pack .pp-cov{width:42px;height:42px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:900;color:#fff}
+.pay-pack b{display:block;font-size:12.5px;font-weight:800}
+.pay-pack span{display:block;font-size:9.5px;color:var(--mut);margin-top:1px}
+.pay-pack .pp-pr{margin-left:auto;font-size:13px;font-weight:900;color:#F5C842;font-variant-numeric:tabular-nums;flex-shrink:0}
+.pay-cols{display:flex;gap:10px;margin-bottom:14px}
+.pay-cols>div{flex:1;border-radius:14px;padding:12px;text-align:center;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.pay-cols b{display:block;font-size:18px;font-weight:900;font-variant-numeric:tabular-nums}
+.pay-cols span{display:block;font-size:9px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-top:3px;font-weight:700}
+.pay-cols .lack b{color:#FF6B7E}
+.pay-cols .have b{color:#35D07F}
+.pay-note{margin-top:11px;font-size:10px;color:var(--dim);line-height:1.5;text-align:center}
+.voucher-badge{display:flex;align-items:center;gap:9px;padding:11px 13px;border-radius:14px;margin-bottom:14px;
+  background:rgba(245,200,66,.07);border:1px solid rgba(245,200,66,.32);font-size:11px;color:#E8C86A;line-height:1.45}
+.voucher-badge b{font-weight:800}
+
+/* ═══════════════════════ 08 · ТРЕНЕР ═══════════════════════ */
+.tr-panel{width:380px;flex-shrink:0;border-radius:22px;padding:20px;
+  background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07)}
+.tr-panel h4{font-size:13px;font-weight:800;margin-bottom:4px}
+.tr-panel .sub{font-size:10.5px;color:var(--mut);margin-bottom:14px;line-height:1.5}
+.tr-day{display:flex;gap:9px;margin-bottom:14px}
+.tr-slot{flex:1;border-radius:14px;padding:13px 8px;text-align:center;background:rgba(53,208,127,.06);
+  border:1px dashed rgba(53,208,127,.35)}
+.tr-slot b{display:block;font-size:16px;font-weight:900;color:#35D07F;font-variant-numeric:tabular-nums}
+.tr-slot span{display:block;font-size:8.5px;color:var(--mut);margin-top:2px}
+.tr-tabs{display:flex;gap:0;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.12);margin-bottom:13px}
+.tr-tabs button{flex:1;padding:10px 4px;border:none;background:transparent;color:#8B8E9D;font-family:inherit;
+  font-size:10.5px;font-weight:700;cursor:pointer;min-height:44px;transition:background-color .2s,color .2s}
+.tr-tabs button.on{background:rgba(90,166,255,.13);color:#5AA6FF}
+.tr-q{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;font-size:11.5px;
+  border-bottom:1px solid rgba(255,255,255,.05)}
+.tr-q:last-child{border-bottom:none}
+.tr-q span{color:#C9CBD6}
+.tr-q b{font-weight:800;font-variant-numeric:tabular-nums}
+.tr-weak{margin-top:13px;padding:12px 13px;border-radius:14px;background:rgba(255,107,126,.06);border:1px solid rgba(255,107,126,.25)}
+.tr-weak h5{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#FF6B7E;margin-bottom:8px}
+.tr-weak .tw{display:flex;gap:7px;flex-wrap:wrap}
+.tr-weak .tw i{font-style:normal;font-size:10.5px;font-weight:700;color:#C9CBD6;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);padding:5px 10px;border-radius:999px}
+.tr-lock{margin-top:12px;display:flex;align-items:center;gap:9px;font-size:10.5px;color:var(--mut)}
+.tr-lock b{color:#F5C842}
+
+/* ═══════════════════════ 09 · ПРОГРЕСС ═══════════════════════ */
+.prog-hero{width:380px;flex-shrink:0;border-radius:22px;padding:22px;text-align:center;
+  background:radial-gradient(120% 60% at 50% -10%,rgba(232,200,106,.09),transparent 60%),rgba(255,255,255,.025);
+  border:1px solid rgba(232,200,106,.22)}
+.prog-nums{display:flex;justify-content:center;gap:0;margin:16px 0 6px}
+.prog-nums>div{flex:1;text-align:center;position:relative}
+.prog-nums>div+div::before{content:'';position:absolute;left:0;top:16%;bottom:16%;width:1px;background:rgba(255,255,255,.08)}
+.prog-nums b{display:block;font-size:27px;font-weight:900;font-variant-numeric:tabular-nums}
+.prog-nums span{display:block;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);font-weight:700;margin-top:3px}
+.pn-master b{color:#E8C86A}
+.pn-learn b{color:#5AA6FF}
+.pn-weak b{color:#FF6B7E}
+.day-ring{display:flex;align-items:center;gap:14px;margin-top:16px;padding:13px 15px;border-radius:16px;text-align:left;
+  background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.day-ring .dr-txt{flex:1}
+.day-ring .dr-txt b{display:block;font-size:12px;font-weight:800}
+.day-ring .dr-txt span{display:block;font-size:10px;color:var(--mut);margin-top:2px;line-height:1.45}
+.ring{position:relative;width:52px;height:52px;flex-shrink:0}
+.ring svg{transform:rotate(-90deg)}
+.ring b{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:10.5px;font-weight:900;
+  font-variant-numeric:tabular-nums;color:#4FE0C8}
+/* микро-церемония освоения */
+.master-demo{margin-top:16px}
+.mc-card{position:relative;border-radius:16px;padding:18px;overflow:hidden;
+  background:linear-gradient(170deg,#12141D,#0B0C12);border:1px solid rgba(255,255,255,.1);
+  transition:transform .3s var(--spring),border-color .3s}
+.mc-card .mw{font-size:17px;font-weight:800}
+.mc-card .mt{font-size:10.5px;color:var(--mut);margin-top:2px}
+.mc-card .mst{position:absolute;top:12px;right:12px}
+.mc-card.engraved{border-color:rgba(232,200,106,.65);transform:scale(1.02)}
+.mc-sheen{position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(232,200,106,.4) 50%,transparent 60%);
+  transform:translateX(-120%)}
+.mc-card.engraved .mc-sheen{opacity:1;animation:sweep .7s var(--ease-out) 1}
+
+/* ═══════════════════════ 10 · КНОПКИ+СОСТОЯНИЯ ═══════════════════════ */
+.bgrid{display:flex;flex-direction:column;gap:2px;margin-top:30px;min-width:900px}
+.brow{display:grid;grid-template-columns:170px repeat(5,1fr);gap:14px;align-items:center;
+  padding:16px 18px;border-radius:16px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06)}
+.brow+.brow{margin-top:10px}
+.brow-head{background:none;border:none;padding:4px 18px 10px}
+.brow-head span{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.bname b{display:block;font-size:13px;font-weight:700}
+.bname span{display:block;font-size:10px;color:var(--mut);margin-top:3px;line-height:1.45}
+.bcell{display:flex;flex-direction:column;align-items:center;gap:8px;min-height:76px;justify-content:center}
+.bcell>span{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);font-weight:700}
+.hit{border:1.5px dashed rgba(90,166,255,.4);border-radius:50%;padding:3px;display:flex}
+.hit.sq{border-radius:16px}
+.sk-card{width:320px;border-radius:22px;padding:18px;flex-shrink:0;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08)}
+.sk{position:relative;overflow:hidden;border-radius:10px;background:rgba(255,255,255,.06)}
+.sk::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 25%,rgba(255,255,255,.09) 50%,transparent 75%);
+  transform:translateX(-110%);animation:shimmer 1.6s ease-in-out infinite}
+.state-badge{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;letter-spacing:.05em;
+  padding:6px 10px;border-radius:999px;color:#F5C842;background:rgba(245,200,66,.1);border:1px solid rgba(245,200,66,.3)}
+.err-card{width:320px;border-radius:22px;padding:40px 24px;flex-shrink:0;text-align:center;
+  background:linear-gradient(170deg,#101219,#0A0B10);border:1px solid rgba(255,255,255,.08)}
+.err-ico{width:56px;height:56px;border-radius:18px;margin:0 auto 16px;color:#FF6B7E;
+  background:rgba(255,107,126,.1);border:1px solid rgba(255,107,126,.3);display:flex;align-items:center;justify-content:center}
+.err-card h5{font-size:15px;font-weight:800;margin-bottom:6px}
+.err-card p{font-size:11.5px;color:var(--mut);line-height:1.55;margin-bottom:18px}
+
+/* ═══════════════════════ АНИМАЦИИ — только transform / opacity ═══════════════════════ */
+@keyframes rot{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%{transform:translateX(-110%)}60%,100%{transform:translateX(110%)}}
+@keyframes wavey{0%,100%{transform:scaleY(.22)}50%{transform:scaleY(.95)}}
+@keyframes likepop{0%{transform:scale(1)}35%{transform:scale(1.18)}70%{transform:scale(.94)}100%{transform:scale(1)}}
+@keyframes shakey{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}55%{transform:translateX(5px)}80%{transform:translateX(-3px)}}
+@keyframes flipair{0%{scale:1}45%{scale:1.035}100%{scale:1}}
+@keyframes conf{0%{transform:translate(0,0) rotate(0deg) scale(1);opacity:1}
+  100%{transform:translate(var(--dx),var(--dy)) rotate(var(--rr)) scale(.7);opacity:0}}
+@keyframes sweep{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@keyframes breathe{0%,100%{opacity:.55}50%{opacity:1}}
+
+/* ═══════════════════════ REDUCED MOTION ═══════════════════════ */
+body.rm .wbar,body.rm .sk::after,body.rm .fx{animation:none!important}
+body.rm .flip-card,body.rm .duel-card,body.rm .kb,body.rm .xcta,body.rm .xghost,
+body.rm .q-opt,body.rm .fly-card,body.rm .pack-box,body.rm .mc-card{transition-duration:.12s!important}
+@media (prefers-reduced-motion:reduce){
+  .wbar,.sk::after,.fx{animation:none!important}
+  .spin{animation-duration:1.6s!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Карточки 2.0 — киллер-фича «твоя вселенная слов»</h1>
+  <p class="lede">Переработка раздела «Карточки» по аудиту §3: раздел-тупик становится <b>петлёй</b>
+  «сохрани → отработай → почувствуй прогресс → хочешь ещё». Ядро — <b>единый статус карточки</b>
+  «новая → учу → повторяю → освоена» (+ «слабая» из Тренера), который двигают все режимы отработки.
+  Моушн-система как в профиле 2.0: только transform/opacity, пружины <b>cubic-bezier(.34,1.56,.64,1)</b>,
+  ≤ 2 вечных цикла на экран, reduced-motion из коробки. Данные везде одни:
+  <b>Nzn · 330 💠 · лимит 12/20 · 142 освоено · 38 учу · 7 слабых</b>.</p>
+  <div class="lvl-legend">
+    <i><b>R1</b> Просмотр · flip-стопка</i><i><b>R2</b> Свайп · дуэль-колода</i><i><b>R3</b> Аудио-плейлист</i>
+    <i><b>R4</b> Арена-квиз</i><i><b>R5</b> Тренер ошибок</i><i><b>R6</b> Распаковка пака 1400мс</i>
+    <i><b>Пейвол 2.0</b> · 3 честных режима</i>
+  </div>
+  <div class="rm-switch" id="rmSwitch" role="switch" aria-checked="false" tabindex="0">
+    <div class="tumb"></div>
+    <div><b>Reduced motion</b><br><span>глушит waveform и все циклы; хореографии → мгновенные переходы</span></div>
+  </div>
+</header>
+
+<!-- ═══════════════════════ 01 · ХАБ ═══════════════════════ -->
+<section class="sec" id="s-hub">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">01</span><h2>ХАБ<em>полки вместо каталога покупок</em></h2></div>
+      <p class="sec-desc">Закрывает аудит §2.1 и §3.3: хаб открывается <b>прогрессом пользователя, а не магазином</b>.
+      Полка «Продолжи» — начатые паки с % освоения (паки больше не умирают после покупки, §2.5).
+      «Кино-вселенные» — витринный ряд с артом (сильнейший дифференциатор против Duolingo, §2.6.5).
+      Тайл показывает цену в 💠, % освоено и <b>триал-бейдж «48ч · осталось 6ч»</b> — сгорающий подарок
+      больше не сгорает молча (§2.6.2). «Мои паки» — авторская витрина UGC со статистикой (§2.6.4).</p>
+    </div>
+    <div class="tags"><span class="tag">петля §2.1</span><span class="tag">% освоения</span><span class="tag">триал виден</span><span class="tag">UGC-витрина</span></div>
+  </div>
+  <div id="hubShelves"></div>
+</section>
+
+<!-- ═══════════════════════ 02 · КОЛЛЕКЦИЯ ═══════════════════════ -->
+<section class="sec" id="s-collection">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">02</span><h2>КОЛЛЕКЦИЯ<em>свои карточки · лимит виден заранее</em></h2></div>
+      <p class="sec-desc">Закрывает §2.2: счётчик <b>«12 / 20» виден ДО упора</b>, на 15/20 — мягкий нудж
+      «Plus снимает лимит», стена предсказуема. Чипы статусов — единая модель прогресса карточки (§2.5).
+      Удаление — не неоткрываемый long-press, а действие с <b>undo-снэкбаром «Отменить»</b> (§2.8.2).
+      Пустая коллекция — онбординг-герой «сохрани первую фразу из урока» (§2.8.1: его видят 100% новых).</p>
+    </div>
+    <div class="tags"><span class="tag">12/20 заранее</span><span class="tag">5 статусов</span><span class="tag">undo</span><span class="tag">empty-state</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="col-panel">
+      <h4>Моя коллекция <span style="margin-left:auto" class="st st-learn">12 / 20 💠 free</span></h4>
+      <div class="sub">Лимит виден всегда — до того, как упрёшься.</div>
+      <div class="lim-bar"><i style="width:60%"></i></div>
+      <div class="lim-nums"><span><b>12</b> сохранено</span><span>осталось <b style="color:#F5C842">8</b> · Plus снимает лимит</span></div>
+      <div class="st-legend">
+        <span class="st st-new">новая</span><span class="st st-learn">учу</span><span class="st st-rev">повторяю</span>
+        <span class="st st-master">освоена</span><span class="st st-weak">слабая</span>
+      </div>
+      <div class="fcard"><div class="fw"><b>layover</b><span>пересадка · пак «Аэропорт»</span></div><span class="st st-learn">учу</span></div>
+      <div class="fcard"><div class="fw"><b>get along with</b><span>ладить с · сохранена из урока</span></div><span class="st st-weak">слабая</span></div>
+      <div class="fcard"><div class="fw"><b>boarding pass</b><span>посадочный талон · пак «Аэропорт»</span></div><span class="st st-master">освоена</span></div>
+      <div class="fcard"><div class="fw"><b>fair enough</b><span>справедливо · сленг</span></div><span class="st st-rev">повторяю</span></div>
+      <div class="snack"><b>Карточка удалена</b><button class="sn-undo" id="undoDemo">↩ Отменить</button></div>
+    </div>
+    <div class="cap"><b>Коллекция 2.0</b><span>лимит 12/20 на виду, статусы карт чипами, undo вместо молчаливого удаления</span></div></div>
+
+    <div class="item"><div class="col-panel">
+      <div class="empty-hero">
+        <div class="empty-ico"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-4-7 4V5a2 2 0 012-2h10a2 2 0 012 2v16z"/></svg></div>
+        <h5>Здесь будут твои слова</h5>
+        <p>Сохрани первую фразу из любого урока кнопкой «В карточки» — она появится здесь и начнёт путь<br>«новая → учу → освоена».</p>
+        <button class="xcta" style="width:100%">Перейти к урокам</button>
+        <button class="xghost" style="width:100%;margin-top:9px">Открыть стартовый пак · 0 💠</button>
+      </div>
+    </div>
+    <div class="cap"><b>Empty-state · онбординг</b><span>первый экран раздела для новичка: понятное действие вместо пустоты (§2.8.1)</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 03 · ПРОСМОТР — flip-стопка ═══════════════════════ -->
+<section class="sec" id="s-flip">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">03</span><h2>ПРОСМОТР<em>flip-стопка · живое демо</em></h2></div>
+      <p class="sec-desc">R1 — бесплатный режим, точка входа в петлю (§3.2). Вместо плоского flip — <b>3D-переворот
+      380мс с пружинным доворотом</b> и «воздухом» в середине (scale 1→1.03→1), колода ощущается физической
+      (две тени-стопки под картой). <b>Прогресс-нить</b> сверху превращает листание в прогресс. Тапните
+      по карточке или кнопке — всё живое.</p>
+    </div>
+    <div class="tags"><span class="tag">R1 · free</span><span class="tag">rotateY 380мс</span><span class="tag">пружинный доворот</span><span class="tag">прогресс-нить</span></div>
+  </div>
+  <div class="row">
+    <div class="item"><div class="stage-panel">
+      <h4>Flip-стопка · пак «Аэропорт и перелёты»</h4>
+      <div class="sub">Клик по карточке — переворот. Стрелки — листание колоды.</div>
+      <div class="flip-thread"><i id="flipBar"></i></div>
+      <div class="flip-deck">
+        <div class="flip-ghost g2"></div>
+        <div class="flip-ghost g1"></div>
+        <div class="flip-card" id="flipCard" role="button" tabindex="0" aria-label="Перевернуть карточку">
+          <div class="flip-face flip-front">
+            <span class="fk">слово · 2 / 24</span>
+            <span class="fw2" id="flipWord">boarding pass</span>
+            <span class="ft" id="flipTr">/ˈbɔːdɪŋ pɑːs/</span>
+            <span class="fhint">тап — перевернуть</span>
+          </div>
+          <div class="flip-face back">
+            <span class="fk">перевод</span>
+            <span class="fw2" id="flipRu">посадочный талон</span>
+            <span class="ft" id="flipEx">Show your boarding pass at the gate.</span>
+            <span class="fhint">ещё тап — обратно</span>
+          </div>
+        </div>
+      </div>
+      <div class="flip-controls">
+        <button class="kb" id="flipPrev" aria-label="Назад"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button class="xcta" id="flipBtn">Перевернуть</button>
+        <button class="kb" id="flipNext" aria-label="Вперёд"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="cap"><b>Живое демо</b><span>пружинный переворот + «воздух» в середине; прогресс-нить — scaleX, дешёвая</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 04 · СВАЙП — дуэль-колода ═══════════════════════ -->
+<section class="sec" id="s-swipe">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">04</span><h2>СВАЙП<em>дуэль-колода · живое демо</em></h2></div>
+      <p class="sec-desc">R2 в 2.0 (§3.2): вместо Plus-стены — <b>5 бесплатных свайпов в день</b>, сэмпл вместо
+      блокировки (§3.5). «Знаю / Не знаю» решает судьбу карточки: она улетает свайп-дугой (transform+rotate),
+      серия верных ответов даёт <b>комбо ×2 ×3</b> — множитель «прилипает» и улетает в счётчик, а
+      <b>мастерство растёт на глазах</b>. Нажимайте кнопки — всё по-настоящему работает.</p>
+    </div>
+    <div class="tags"><span class="tag">R2 · 5 free/день</span><span class="tag">комбо ×3</span><span class="tag">мастерство live</span></div>
+  </div>
+  <div class="row">
+    <div class="item"><div class="stage-panel">
+      <h4>Дуэль-колода · быстрая проверка</h4>
+      <div class="sub">Честный ответ двигает статус карточки — свайп питает единый прогресс (§2.5).</div>
+      <div class="duel-meta">
+        <span class="combo-chip" id="comboChip" style="opacity:0">🔥 ×1</span>
+        <div class="mastery"><b id="masteryNum">38</b><span>мастерство</span></div>
+      </div>
+      <div class="duel-stage" id="duelStage">
+        <div class="duel-ghost"></div>
+        <div class="duel-card" id="duelCard">
+          <span class="dq" id="duelQ">3 / 5 free</span>
+          <span class="dw" id="duelWord">get along with</span>
+          <span class="dt" id="duelHint">вспомни значение, потом реши</span>
+        </div>
+      </div>
+      <div class="duel-btns">
+        <button class="db-no" id="btnNo">✗ Не знаю</button>
+        <button class="db-yes" id="btnYes">✓ Знаю</button>
+      </div>
+    </div>
+    <div class="cap"><b>Живое демо</b><span>карта улетает дугой, комбо ×N прилипает и улёт в счётчик мастерства (+1, +2, +3)</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 05 · АУДИО — плеер ═══════════════════════ -->
+<section class="sec" id="s-audio">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">05</span><h2>АУДИО<em>плеер-плейлист · 1 трек/день free</em></h2></div>
+      <p class="sec-desc">R3 в 2.0 (§3.2): автоплей за Plus превращается в <b>полноценный плеер</b>: обложка пака,
+      <b>waveform из 24 баров</b> на scaleY (transform — дёшево, паузится вне фокуса и при reduced-motion),
+      скорости 0.75 / 1 / 1.25 и <b>режим «в машине»</b> — контролы 64–84px для использования за рулём.
+      Бесплатный сэмпл: 1 трек в день — вкус есть, потолок есть (§3.5). Нажмите ▶ — waveform оживёт.</p>
+    </div>
+    <div class="tags"><span class="tag">R3 · 1 трек free</span><span class="tag">waveform scaleY</span><span class="tag">0.75–1.25×</span><span class="tag">в машине</span></div>
+  </div>
+  <div class="row">
+    <div class="item"><div class="player">
+      <h4>Аудио-плейлист</h4>
+      <div class="sub">Карточки звучат подряд: слово → пауза → перевод → пример.</div>
+      <div class="pl-cover" style="background:linear-gradient(135deg,#1B3A4B,#0F2027)">
+        <span class="pt-mono">✈</span>
+        <span class="pl-pack">Аэропорт и перелёты · 24 трека</span>
+      </div>
+      <div class="pl-track"><b>02 · boarding pass — посадочный талон</b><span>0:04 / 2:36</span></div>
+      <div class="wave" id="wave1"></div>
+      <div class="pl-controls">
+        <button class="kb" aria-label="Назад"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20L9 12l10-8v16z"/><path d="M5 19V5"/></svg></button>
+        <button class="pl-play" id="playBtn" aria-label="Слушать"><svg id="playIco" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></button>
+        <button class="kb" aria-label="Вперёд"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8V4z"/><path d="M19 5v14"/></svg></button>
+      </div>
+      <div class="pl-speeds" id="speedRow">
+        <button data-s="0.75">0.75×</button>
+        <button data-s="1" class="on">1×</button>
+        <button data-s="1.25">1.25×</button>
+      </div>
+    </div>
+    <div class="cap"><b>Плеер 2.0</b><span>waveform — 24 бара на transform, цикл один, вне фокуса на паузе (§3.4.5)</span></div></div>
+
+    <div class="item"><div class="player car-panel">
+      <span class="car-chip">🚗 режим «в машине»</span>
+      <h4>Крупные контролы · 84px</h4>
+      <div class="sub">Минимум текста, максимум тап-зон: play 84px, скипы 64px — попадёшь не глядя.</div>
+      <div class="pl-track" style="justify-content:center;text-align:center"><b>boarding pass</b></div>
+      <div class="pl-controls">
+        <button class="kb" aria-label="Назад"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20L9 12l10-8v16z"/><path d="M5 19V5"/></svg></button>
+        <button class="pl-play" aria-label="Слушать"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg></button>
+        <button class="kb" aria-label="Вперёд"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8V4z"/><path d="M19 5v14"/></svg></button>
+      </div>
+      <div class="wave playing" id="wave2" style="height:34px"></div>
+    </div>
+    <div class="cap"><b>«В машине»</b><span>отдельный режим плеера: тап-зоны 64–84px, ничего лишнего</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 06 · АРЕНА — квиз ═══════════════════════ -->
+<section class="sec" id="s-arena">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">06</span><h2>АРЕНА<em>квиз 4 варианта · живое демо</em></h2></div>
+      <p class="sec-desc">R4 в 2.0 (§3.2): игровая тренировка становится <b>ареной-квизом</b>: вопрос, 4 варианта,
+      <b>таймер-кольцо</b> (вращение = transform), правильный ответ зеленеет <b>пружинным pop</b>, ошибка —
+      короткий shake. Кликните любой вариант. Справа — <b>экран итогов с разбором слабых карт</b>:
+      ошибки не пропадают, а уходят в Тренер (связка §2.5).</p>
+    </div>
+    <div class="tags"><span class="tag">R4</span><span class="tag">таймер-кольцо</span><span class="tag">pop / shake</span><span class="tag">разбор слабых</span></div>
+  </div>
+  <div class="row">
+    <div class="item"><div class="quiz">
+      <h4>Арена-квиз · раунд 3/10</h4>
+      <div class="sub">Выбери правильный перевод до конца таймера.</div>
+      <div class="q-top">
+        <span class="q-count">вопрос 3 / 10</span>
+        <div class="q-timer">
+          <svg width="44" height="44" viewBox="0 0 44 44">
+            <circle cx="22" cy="22" r="19" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="3.5"/>
+            <circle id="timerArc" cx="22" cy="22" r="19" fill="none" stroke="#F5C842" stroke-width="3.5"
+              stroke-linecap="round" stroke-dasharray="119.4" stroke-dashoffset="0"/>
+          </svg>
+          <b id="timerNum">8</b>
+        </div>
+      </div>
+      <div class="q-q">«пересадка» по-английски — это…</div>
+      <div class="q-opts" id="qOpts">
+        <button class="q-opt" data-ok="0">customs</button>
+        <button class="q-opt" data-ok="1">layover</button>
+        <button class="q-opt" data-ok="0">gate</button>
+        <button class="q-opt" data-ok="0">carry-on</button>
+      </div>
+    </div>
+    <div class="cap"><b>Живое демо</b><span>кликните вариант: верный — зелёный pop, неверный — shake; таймер — вращение дуги</span></div></div>
+
+    <div class="item"><div class="quiz">
+      <h4>Итоги раунда</h4>
+      <div class="sub">Результат — не цифра в никуда, а план: слабые карты сразу уходят в Тренер.</div>
+      <div class="q-result">
+        <div class="q-score">9<em> / 10</em></div>
+        <div style="font-size:11px;color:var(--mut);margin-top:2px">+84 XP · комбо-множитель до ×3</div>
+        <div class="q-weak">
+          <div class="wk"><span class="st st-weak">слабая</span><b>get along with</b><span>→ Тренер · слова</span></div>
+          <div class="wk"><span class="st st-weak">слабая</span><b>fair enough</b><span>→ Тренер · фразы</span></div>
+        </div>
+        <button class="xcta" style="width:100%;margin-top:16px">Разобрать слабые в Тренере</button>
+        <button class="xghost" style="width:100%;margin-top:9px">Ещё раунд</button>
+      </div>
+    </div>
+    <div class="cap"><b>Экран итогов</b><span>каждая ошибка — следующий шаг петли, а не тупик (§2.1)</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 07 · РАСПАКОВКА ПАКА + ПЕЙВОЛ 2.0 ═══════════════════════ -->
+<section class="sec" id="s-pack">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">07</span><h2>РАСПАКОВКА<em>церемония 1400мс + пейвол 2.0</em></h2></div>
+      <p class="sec-desc">R6 и E8 (§2.3, §3.2, §3.3). <b>Церемония распаковки</b>: пак вскрывается → вспышка →
+      каскад карт stagger 40мс → оседание в стопку → «+24 карточки» — всё на transform/opacity, конфетти
+      один раз. <b>Пейвол 2.0</b>: вечный пульс CTA убран (он же нарушал perf-контракт, §2.3) — вместо него
+      честная арифметика «Открыть за 120 💠 · останется 210 💠»; «не хватает» — колонки Нужно/У тебя и два
+      позитивных выхода; подарок-ваучер показывает <b>дедлайн прямо в модале</b> (§2.6.3).</p>
+    </div>
+    <div class="tags"><span class="tag">R6 · 1400мс</span><span class="tag">без вечного пульса</span><span class="tag">3 режима</span><span class="tag">дедлайн виден</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="stage-panel">
+      <h4>Церемония распаковки</h4>
+      <div class="sub">Живая хореография 1400мс. Конфетти — один раз, без loop (§3.4.4).</div>
+      <div class="pack-stage" id="packStage">
+        <div class="pack-flash" id="packFlash"></div>
+        <div class="pack-box" id="packBox">
+          <div class="pack-flap"></div>
+          <span class="pb-mono">✈</span>
+          <span class="pb-nm">Аэропорт</span>
+        </div>
+        <div class="pack-count" id="packCount">+24 карточки</div>
+      </div>
+      <button class="xcta" id="packPlay" style="width:100%">▶ Проиграть распаковку</button>
+    </div>
+    <div class="cap"><b>(а) Церемония · R6</b><span>вскрытие → вспышка → каскад stagger 40мс → стопка → счётчик</span></div></div>
+
+    <div class="item"><div class="pay">
+      <h4>Хватает осколков <span class="pm">РЕЖИМ 1</span></h4>
+      <div class="sub">Честная арифметика вместо «откроется в одно касание». CTA статичен — никакого вечного пульса.</div>
+      <div class="pay-pack">
+        <div class="pp-cov" style="background:linear-gradient(135deg,#1B3A4B,#0F2027)">✈</div>
+        <div><b>Аэропорт и перелёты</b><span>24 карточки · тема daily</span></div>
+        <span class="pp-pr">120 💠</span>
+      </div>
+      <button class="xcta" style="width:100%">Открыть за 120 💠 · останется 210 💠</button>
+      <div class="pay-note">Баланс 330 💠 · покупка идемпотентна, двойной тап невозможен (§2.4)</div>
+    </div>
+    <div class="cap"><b>(б) Пейвол · confirm</b><span>остаток после покупки виден ДО тапа; микро-акцент при появлении — один раз</span></div></div>
+
+    <div class="item"><div class="pay">
+      <h4>Не хватает <span class="pm">РЕЖИМ 2</span></h4>
+      <div class="sub">Не тупик, а выбор: заработать в игре или пополнить.</div>
+      <div class="pay-pack">
+        <div class="pp-cov" style="background:linear-gradient(135deg,#3A2E12,#241B08)">PB</div>
+        <div><b>Peaky Blinders</b><span>96 карточек · кино-вселенная</span></div>
+        <span class="pp-pr">450 💠</span>
+      </div>
+      <div class="pay-cols">
+        <div class="lack"><b>450 💠</b><span>нужно</span></div>
+        <div class="have"><b>330 💠</b><span>у тебя</span></div>
+      </div>
+      <button class="xcta" style="width:100%">Заработать в вызовах дня</button>
+      <button class="xghost" style="width:100%;margin-top:9px">Пополнить осколки</button>
+      <div class="pay-note">~60 💠/нед вашим темпом · пак откроется ~через 2 недели бесплатно</div>
+    </div>
+    <div class="cap"><b>(в) Пейвол · insufficient</b><span>«заработать» стоит раньше «пополнить» — сначала игра, потом деньги (§1.3)</span></div></div>
+
+    <div class="item"><div class="pay">
+      <h4>Подарок-ваучер <span class="pm">РЕЖИМ 3</span></h4>
+      <div class="sub">Одноразовый ваучер из Лиги. Дедлайн — прямо в модале, не мелким шрифтом.</div>
+      <div class="voucher-badge">🎁 <span><b>Набор в подарок</b> · одноразовый · <b>сгорит 23 июля</b></span></div>
+      <div class="pay-pack">
+        <div class="pp-cov" style="background:linear-gradient(135deg,#123B33,#0A2620)">RT</div>
+        <div><b>Royal Tea</b><span>64 карточки · кино-вселенная</span></div>
+        <span class="pp-pr" style="color:#35D07F">0 💠</span>
+      </div>
+      <button class="xcta gold" style="width:100%">Открыть подарок</button>
+      <div class="pay-note">Напомним за 24ч и за 6ч до сгорания — сгоревший подарок хуже его отсутствия (§2.6.2)</div>
+    </div>
+    <div class="cap"><b>(г) Пейвол · voucher</b><span>срок виден в самом модале + напоминания — подарок успевают использовать</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 08 · ТРЕНЕР ═══════════════════════ -->
+<section class="sec" id="s-trainer">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">08</span><h2>ТРЕНЕР<em>присядка дня · слабые места видны до лока</em></h2></div>
+      <p class="sec-desc">R5 и E12 (§2.7). После дневной free-сессии — не dead-end, а <b>«присядка дня»: 3 карточки
+      бесплатно всегда</b> — привычка живёт, Plus не каннибализируется. Smart-mix продаёт себя сам:
+      <b>превью слабых мест ДО лока</b> («твои 3 слабые темы: фразовые глаголы, времена, предлоги») —
+      данные уже есть из mistake_log. Табы очередей words / phrases / arena с честными счётчиками.</p>
+    </div>
+    <div class="tags"><span class="tag">R5</span><span class="tag">3 free всегда</span><span class="tag">превью до лока</span><span class="tag">3 очереди</span></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="tr-panel">
+      <h4>Присядка дня</h4>
+      <div class="sub">Три бесплатные карточки каждый день — даже после исчерпания сессии.</div>
+      <div class="tr-day">
+        <div class="tr-slot"><b>1</b><span>слово</span></div>
+        <div class="tr-slot"><b>2</b><span>фраза</span></div>
+        <div class="tr-slot"><b>3</b><span>арена</span></div>
+      </div>
+      <button class="xcta" style="width:100%">Начать присядку · free</button>
+      <div class="tr-lock"><span>🔒</span><span>Полная сессия smart-mix — <b>Plus</b>. Ниже видно, что именно он разберёт.</span></div>
+    </div>
+    <div class="cap"><b>Присядка дня</b><span>3 карточки бесплатно всегда — dead-end после лимита убран (§2.7)</span></div></div>
+
+    <div class="item"><div class="tr-panel">
+      <h4>Твои слабые места <span style="margin-left:auto" class="st st-weak">видно до Plus</span></h4>
+      <div class="sub">Лок продаёт сам себя: превью построено на реальном mistake_log.</div>
+      <div class="tr-weak" style="margin-top:0">
+        <h5>твои 3 слабые темы</h5>
+        <div class="tw"><i>фразовые глаголы · 14 ошибок</i><i>времена · 9 ошибок</i><i>предлоги · 7 ошибок</i></div>
+      </div>
+      <div class="tr-weak" style="border-color:rgba(90,166,255,.25);background:rgba(90,166,255,.05)">
+        <h5 style="color:#5AA6FF">smart-mix соберёт сессию</h5>
+        <div class="tw"><i>точечный повтор</i><i>по теме</i><i>сложные первыми</i></div>
+      </div>
+      <button class="xcta gold" style="width:100%;margin-top:14px">Разблокировать smart-mix · Plus</button>
+    </div>
+    <div class="cap"><b>Превью слабых мест</b><span>до лока видны конкретные темы и числа ошибок (§2.7)</span></div></div>
+
+    <div class="item"><div class="tr-panel">
+      <h4>Очереди тренера</h4>
+      <div class="sub">Три источника ошибок — одна очередь с табами.</div>
+      <div class="tr-tabs" id="trTabs">
+        <button class="on" data-t="0">Слова · 23</button>
+        <button data-t="1">Фразы · 11</button>
+        <button data-t="2">Арена · 7</button>
+      </div>
+      <div class="tr-q"><span>get along with</span><b>×4 ошибки</b></div>
+      <div class="tr-q"><span>run out of</span><b>×3 ошибки</b></div>
+      <div class="tr-q"><span>fair enough</span><b>×2 ошибки</b></div>
+      <div class="tr-q"><span>look forward to</span><b>×2 ошибки</b></div>
+      <button class="xghost" style="width:100%;margin-top:14px">Вся очередь · 23 карточки</button>
+    </div>
+    <div class="cap"><b>Очереди</b><span>words / phrases / arena — счётчики на табах, прогресс без overflow (§2.7)</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ 09 · ПРОГРЕСС ═══════════════════════ -->
+<section class="sec" id="s-progress">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">09</span><h2>ПРОГРЕСС<em>витрина мастерства · кольцо дня</em></h2></div>
+      <p class="sec-desc">Ядро киллер-фичи (§3.1): экран, ради которого раздел открывают каждый день.
+      <b>«142 освоено · 38 учу · 7 слабых»</b> — единый прогресс, питаемый всеми режимами. <b>Кольцо дня</b>
+      («отработай 10 — удержишь серию») связывает карточки со стриком. Освоение карточки — событие:
+      <b>микро-церемония «золотая гравюра»</b> — карточка поп-пружинит, золотой блик пробегает по ней
+      (transform), счётчик +1. Нажмите кнопку — увидите.</p>
+    </div>
+    <div class="tags"><span class="tag">§3.1 ядро</span><span class="tag">кольцо дня</span><span class="tag">гравюра освоения</span></div>
+  </div>
+  <div class="row">
+    <div class="item"><div class="prog-hero">
+      <div style="font-size:10px;font-weight:800;letter-spacing:.16em;color:var(--dim);text-transform:uppercase">витрина мастерства · Nzn</div>
+      <div class="prog-nums">
+        <div class="pn-master"><b id="mstNum">142</b><span>освоено</span></div>
+        <div class="pn-learn"><b>38</b><span>учу</span></div>
+        <div class="pn-weak"><b>7</b><span>слабых</span></div>
+      </div>
+      <div class="day-ring">
+        <div class="ring">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="22" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="4"/>
+            <circle cx="26" cy="26" r="22" fill="none" stroke="#4FE0C8" stroke-width="4" stroke-linecap="round"
+              stroke-dasharray="138.2" stroke-dashoffset="41.5"/>
+          </svg>
+          <b>7/10</b>
+        </div>
+        <div class="dr-txt"><b>Кольцо дня</b><span>Отработай ещё 3 карточки — удержишь серию 13 🔥</span></div>
+      </div>
+      <div class="master-demo">
+        <div class="mc-card" id="mcCard">
+          <div class="mc-sheen"></div>
+          <span class="mst st st-learn" id="mcStatus">учу</span>
+          <div class="mw">boarding pass</div>
+          <div class="mt">посадочный талон · 4 верных ответа подряд</div>
+        </div>
+        <button class="xcta gold" id="mcBtn" style="width:100%;margin-top:12px">▶ Освоить карточку</button>
+      </div>
+    </div>
+    <div class="cap"><b>Микро-церемония</b><span>пружина + золотой sweep по карточке + счётчик 142 → 143 (§3.4.2)</span></div></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ 10 · КНОПКИ+СОСТОЯНИЯ ═══════════════════════ -->
+<section class="sec" id="s-states">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">10</span><h2>КНОПКИ + СОСТОЯНИЯ<em>матрица · скелетон · офлайн · ошибка</em></h2></div>
+      <p class="sec-desc">Каждая кнопка раздела в состояниях <b>default / pressed / disabled / loading / success</b>
+      (§1.3): пунктир — тап-зона 44px. «Сохранить» показывает лимит <b>прямо на кнопке</b> (§2.2).
+      Скелетон тайла — shimmer только на transform. Офлайн — бейдж свежести + disabled-действия с причиной.
+      Ошибка покупки — таймаут 8с и «Повторить» вместо вечного «Подождите…» (§2.4).</p>
+    </div>
+    <div class="tags"><span class="tag">44px hit-area</span><span class="tag">лимит на кнопке</span><span class="tag">R5–R7</span></div>
+  </div>
+  <div class="row" style="padding-bottom:10px">
+    <div class="bgrid" id="btnGrid"></div>
+  </div>
+  <div class="row">
+
+    <div class="item"><div class="sk-card" aria-label="Тайл пака загружается">
+      <div class="sk" style="height:104px;border-radius:14px"></div>
+      <div class="sk" style="height:13px;width:62%;margin-top:13px"></div>
+      <div class="sk" style="height:10px;width:44%;margin-top:8px"></div>
+      <div class="sk" style="height:6px;margin-top:14px;border-radius:3px"></div>
+      <div class="sk" style="height:44px;margin-top:16px;border-radius:14px"></div>
+    </div>
+    <div class="cap"><b>Скелетон тайла</b><span>shimmer — чистый translateX; тайл не дёргается при подгрузке (§2.8)</span></div></div>
+
+    <div class="item"><div class="sk-card" style="text-align:center">
+      <span class="state-badge">● офлайн · обновлено 12 мин назад</span>
+      <div class="sk" style="height:84px;border-radius:14px;margin-top:14px;background:rgba(255,255,255,.04)"></div>
+      <div style="font-size:13px;font-weight:800;margin-top:13px">Dark Logic</div>
+      <div style="font-size:10px;color:var(--mut);margin-top:3px">86 / 138 освоено · 62%</div>
+      <button class="xcta disabled" disabled style="width:100%;margin-top:15px">Слушать · нужен интернет</button>
+      <button class="xghost disabled" disabled style="width:100%;margin-top:9px">Купить новый пак</button>
+      <div style="font-size:9.5px;color:var(--mut);margin-top:11px;line-height:1.5">Офлайн доступны: просмотр и свайп по скачанным пакам</div>
+    </div>
+    <div class="cap"><b>Офлайн</b><span>что можно — подсвечено, что нельзя — disabled с причиной (§2.8)</span></div></div>
+
+    <div class="item"><div class="err-card">
+      <div class="err-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.5v.01"/></svg></div>
+      <h5>Покупка не завершилась</h5>
+      <p>Сервер не ответил за 8 секунд. Осколки <b style="color:#C9CBD6">не списаны</b> — покупка идемпотентна, повтор безопасен.</p>
+      <button class="xcta" style="width:100%">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 11-2.6-6.4"/><path d="M21 3v6h-6"/></svg>
+        Повторить
+      </button>
+    </div>
+    <div class="cap"><b>Ошибка</b><span>таймаут 8с + «Повторить» вместо вечного «Подождите…» (§2.4)</span></div></div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════ ЧЕМ ЭТО ЛУЧШЕ DUOLINGO ═══════════════════════ -->
+<section class="sec" id="s-notes">
+  <div class="sec-head">
+    <div>
+      <div class="sec-name"><span class="sec-idx">11</span><h2>ЧЕМ ЭТО ЛУЧШЕ DUOLINGO<em>итоговые принципы</em></h2></div>
+    </div>
+    <div class="tags"><span class="tag">итог</span></div>
+  </div>
+  <div class="notes" style="margin-top:26px">
+    <div class="note">
+      <h3>Петля вместо тупика</h3>
+      <ul>
+        <li>Каждый экран заканчивается <b>следующим шагом</b>: итоги арены → Тренер, распаковка → «Продолжи», коллекция → режимы</li>
+        <li>Единый статус карточки «новая → учу → повторяю → освоена» двигают <b>все режимы</b> — прогресс ощутим ежедневно</li>
+        <li>Северная звезда раздела: «освоено карточек/неделю», а не «куплено паков»</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Честная монетизация</h3>
+      <ul>
+        <li>Plus продаётся <b>сэмплами, а не стенами</b>: 5 свайпов/день, 1 аудио-трек, присядка Тренера</li>
+        <li>Пейвол без вечного пульса: арифметика «останется 210 💠», «заработать» раньше «пополнить»</li>
+        <li>Триал и ваучер показывают дедлайн — сгоревший подарок хуже его отсутствия</li>
+      </ul>
+    </div>
+    <div class="note">
+      <h3>Дорогой моушн, дешёвый рендер</h3>
+      <ul>
+        <li>Фирменные моменты: flip с пружинным доворотом, комбо улетающее в счётчик, распаковка 1400мс, золотая гравюра</li>
+        <li>Всё на <b>transform/opacity</b>: waveform — scaleY, таймер — rotate, shimmer — translateX</li>
+        <li>Хореографии проигрываются <b>один раз</b>, конфетти без loop</li>
+      </ul>
+    </div>
+    <div class="note verdict">
+      <h3>Бюджет и доступность</h3>
+      <ul>
+        <li>Не более <b>2 вечных циклов</b> на экран; waveform — единственный цикл плеера, паузится вне фокуса</li>
+        <li>Reduced-motion из коробки: переключатель + <b>prefers-reduced-motion</b></li>
+        <li>Тап-зоны ≥ 44px, в режиме «в машине» — 64–84px; числа — tabular-nums</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+<script>
+/* ═══════════ 01 · ХАБ — полки из данных ═══════════ */
+const HUB = [
+  {title:'Продолжи', note:'начатые паки · % освоения', tiles:[
+    {name:'Dark Logic', kind:'Кино-вселенная', mono:'DL', cov:'linear-gradient(135deg,#241D3D,#141024)', prog:62, cards:'86 / 138', owned:1},
+    {name:'Negotiator', kind:'Кино-вселенная', mono:'NG', cov:'linear-gradient(135deg,#3D2B16,#241B0C)', prog:31, cards:'24 / 78', owned:1, trial:'48ч · осталось 6ч'},
+    {name:'Аэропорт и перелёты', kind:'Тема · daily', mono:'✈', cov:'linear-gradient(135deg,#1B3A4B,#0F2027)', prog:8, cards:'2 / 24', owned:1},
+  ]},
+  {title:'Кино-вселенные', note:'витринный ряд', tiles:[
+    {name:'Dark Logic', kind:'Кино-вселенная', mono:'DL', cov:'linear-gradient(135deg,#241D3D,#141024)', owned:1, cards:'138 карт'},
+    {name:'Negotiator', kind:'Кино-вселенная', mono:'NG', cov:'linear-gradient(135deg,#3D2B16,#241B0C)', owned:1, trial:'48ч · осталось 6ч', cards:'78 карт'},
+    {name:'Peaky Blinders', kind:'Кино-вселенная', mono:'PB', cov:'linear-gradient(135deg,#3A2E12,#241B08)', price:450, cards:'96 карт'},
+    {name:'Royal Tea', kind:'Кино-вселенная', mono:'RT', cov:'linear-gradient(135deg,#123B33,#0A2620)', price:260, cards:'64 карты'},
+    {name:'Wild West', kind:'Кино-вселенная', mono:'WW', cov:'linear-gradient(135deg,#3D1F16,#24100A)', price:260, cards:'72 карты'},
+  ]},
+  {title:'Темы', note:'daily · business · slang', themes:[
+    {name:'Daily', sub:'18 паков · от 60 💠', ico:'☀️', bg:'rgba(79,224,200,.12)', col:'#4FE0C8'},
+    {name:'Business', sub:'12 паков · от 120 💠', ico:'💼', bg:'rgba(90,166,255,.12)', col:'#5AA6FF'},
+    {name:'Slang', sub:'9 паков · от 90 💠', ico:'🔥', bg:'rgba(255,107,126,.12)', col:'#FF6B7E'},
+  ]},
+  {title:'От сообщества', note:'UGC с рейтингом', tiles:[
+    {name:'IT-сленг стендапов', kind:'Сообщество', mono:'IT', cov:'linear-gradient(135deg,#17301F,#0D1F13)', price:90, cards:'36 карт', author:'@kesha', rate:'4.8'},
+    {name:'Фразы для собеседований', kind:'Сообщество', mono:'JOB', cov:'linear-gradient(135deg,#2E1B3D,#1A0F24)', price:150, cards:'52 карты', author:'@arina', rate:'4.9'},
+  ]},
+  {title:'Мои паки', note:'авторская витрина', tiles:[
+    {name:'Финтех-сленг', kind:'Мой пак', mono:'FT', cov:'linear-gradient(135deg,#33240F,#1F1508)', cards:'40 карт', author:'вы · Nzn', rate:'4.6', mine:'214 установок'},
+  ]},
+];
+function ptile(t){
+  const badge = t.trial ? `<span class="pt-trial">⏳ ${t.trial}</span>` : '';
+  const corner = t.price ? `<span class="pt-price">${t.price} 💠</span>`
+    : (t.owned||t.mine) ? `<span class="pt-owned">✓ открыт</span>` : '';
+  const prog = t.prog!=null ? `<div class="pt-prog"><div class="pt-prog-bar"><i style="width:${t.prog}%"></i></div>
+    <div class="pt-prog-lbl"><span class="num">${t.cards}</span><b>${t.prog}% освоено</b></div></div>`
+    : `<div class="pt-prog-lbl" style="margin-top:10px"><span>${t.cards}</span>${t.mine?`<b style="color:#E8C86A">${t.mine}</b>`:''}</div>`;
+  const auth = t.author ? `<div class="pt-author"><i>${t.author.replace(/[^a-zA-Zа-яё]/gi,'').slice(0,1).toUpperCase()||'N'}</i>${t.author}<span class="pt-rate">★ ${t.rate}</span></div>` : '';
+  return `<div class="ptile" role="button" tabindex="0">
+    <div class="pt-cover" style="background:${t.cov}">${t.trial?'':`<span class="pt-kind">${t.kind}</span>`}${badge}
+      <span class="pt-mono">${t.mono}</span>${corner}</div>
+    <div class="pt-body"><b>${t.name}</b>${prog}${auth}</div>
+  </div>`;
+}
+document.getElementById('hubShelves').innerHTML = HUB.map(s=>`
+  <div class="shelf">
+    <div class="shelf-h"><h3>${s.title}<em>${s.note}</em></h3><a>все ›</a></div>
+    <div class="row">${s.themes
+      ? s.themes.map(t=>`<div class="ttile" role="button" tabindex="0"><div class="tt-ico" style="background:${t.bg};color:${t.col};font-size:17px">${t.ico}</div><b>${t.name}</b><span>${t.sub}</span></div>`).join('')
+      : s.tiles.map(ptile).join('')}</div>
+  </div>`).join('');
+
+/* ═══════════ 03 · FLIP-СТОПКА ═══════════ */
+const DECK = [
+  ['boarding pass','посадочный талон','/ˈbɔːdɪŋ pɑːs/','Show your boarding pass at the gate.'],
+  ['layover','пересадка','/ˈleɪəʊvə/','I have a two-hour layover in Frankfurt.'],
+  ['gate','выход на посадку','/ɡeɪt/','Our flight boards at gate B12.'],
+  ['customs','таможня','/ˈkʌstəmz/','We got through customs quickly.'],
+  ['carry-on','ручная кладь','/ˈkæri ɒn/','Is this bag allowed as carry-on?'],
+];
+let fi=0, flipped=false;
+const flipCard=document.getElementById('flipCard'), flipBar=document.getElementById('flipBar');
+function renderCard(){
+  const [w,ru,tr,ex]=DECK[fi];
+  document.getElementById('flipWord').textContent=w;
+  document.getElementById('flipTr').textContent=tr;
+  document.getElementById('flipRu').textContent=ru;
+  document.getElementById('flipEx').textContent=ex;
+  flipCard.closest('.flip-deck').previousElementSibling;
+  flipCard.querySelector('.fk').textContent=`слово · ${fi+1} / ${DECK.length}`;
+  flipBar.style.transform=`scaleX(${(fi+1)/DECK.length})`;
+}
+function doFlip(){
+  flipped=!flipped;
+  flipCard.classList.toggle('flipped',flipped);
+  flipCard.classList.remove('air'); void flipCard.offsetWidth; flipCard.classList.add('air');
+}
+flipCard.addEventListener('click',doFlip);
+flipCard.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();doFlip();}});
+document.getElementById('flipBtn').addEventListener('click',doFlip);
+document.getElementById('flipNext').addEventListener('click',()=>{fi=(fi+1)%DECK.length;flipped=false;flipCard.classList.remove('flipped');renderCard();});
+document.getElementById('flipPrev').addEventListener('click',()=>{fi=(fi-1+DECK.length)%DECK.length;flipped=false;flipCard.classList.remove('flipped');renderCard();});
+renderCard();
+
+/* ═══════════ 04 · СВАЙП — дуэль-колода ═══════════ */
+const DDECK=['get along with','layover','fair enough','run out of','carry-on'];
+let di=0, combo=0, mastery=38, free=3, duelBusy=false;
+const duelCard=document.getElementById('duelCard'), comboChip=document.getElementById('comboChip'),
+      masteryNum=document.getElementById('masteryNum'), duelStage=document.getElementById('duelStage');
+function answer(ok){
+  if (duelBusy) return;
+  duelBusy=true;
+  duelCard.classList.add(ok?'fly-r':'fly-l');
+  if (ok){
+    combo++;
+    const mult=Math.min(combo,3);
+    mastery+=mult;
+    if (combo>=2){
+      comboChip.textContent=`🔥 ×${mult}`;
+      comboChip.style.opacity=1;
+      comboChip.classList.remove('pop'); void comboChip.offsetWidth; comboChip.classList.add('pop');
+      /* множитель «улетает» в счётчик (FLIP, transform only) */
+      const fx=document.createElement('span');
+      fx.className='fly-x'; fx.textContent=`+${mult}`;
+      const st=duelStage.getBoundingClientRect();
+      fx.style.right='14px'; fx.style.top='-6px';
+      duelStage.appendChild(fx);
+      requestAnimationFrame(()=>{fx.style.transform='translate(26px,-30px) scale(.6)';fx.style.opacity='0';});
+      setTimeout(()=>fx.remove(),650);
+    }
+    masteryNum.textContent=mastery;
+    masteryNum.classList.remove('bump'); void masteryNum.offsetWidth; masteryNum.classList.add('bump');
+  } else {
+    combo=0; comboChip.style.opacity=0;
+  }
+  setTimeout(()=>{
+    di=(di+1)%DDECK.length;
+    free=free>1?free-1:5;
+    document.getElementById('duelQ').textContent=`${free} / 5 free`;
+    document.getElementById('duelWord').textContent=DDECK[di];
+    duelCard.classList.remove('fly-r','fly-l');
+    duelCard.classList.add('deal');
+    duelBusy=false;
+  },460);
+}
+document.getElementById('btnYes').addEventListener('click',()=>answer(true));
+document.getElementById('btnNo').addEventListener('click',()=>answer(false));
+
+/* ═══════════ 05 · АУДИО — waveform ═══════════ */
+function buildWave(id){
+  const w=document.getElementById(id);
+  if (!w) return;
+  for (let i=0;i<24;i++){
+    const b=document.createElement('i');
+    b.className='wbar';
+    b.style.animationDelay=(i*47%900)+'ms';
+    b.style.animationDuration=(900+(i*97%500))+'ms';
+    w.appendChild(b);
+  }
+}
+buildWave('wave1'); buildWave('wave2');
+let playing=false;
+const wave1=document.getElementById('wave1'), playIco=document.getElementById('playIco');
+document.getElementById('playBtn').addEventListener('click',()=>{
+  playing=!playing;
+  wave1.classList.toggle('playing',playing);
+  playIco.innerHTML=playing?'<path d="M7 5h4v14H7zM13 5h4v14h-4z"/>':'<path d="M8 5.5v13l11-6.5-11-6.5z"/>';
+});
+document.getElementById('speedRow').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#speedRow button').forEach(x=>x.classList.toggle('on',x===b));
+  wave1.querySelectorAll('.wbar').forEach((bar,i)=>{
+    bar.style.animationDuration=((900+(i*97%500))/parseFloat(b.dataset.s))+'ms';
+  });
+});
+
+/* ═══════════ 06 · АРЕНА — квиз ═══════════ */
+const qOpts=document.getElementById('qOpts');
+let qBusy=false;
+qOpts.addEventListener('click',e=>{
+  const b=e.target.closest('.q-opt');
+  if (!b||qBusy) return;
+  qBusy=true;
+  const ok=b.dataset.ok==='1';
+  qOpts.querySelectorAll('.q-opt').forEach(o=>{
+    if (o===b) o.classList.add(ok?'right':'wrong');
+    else if (o.dataset.ok==='1') o.classList.add('right');
+    else o.classList.add('dimmed');
+  });
+  document.getElementById('timerNum').textContent=ok?'✓':'✗';
+  setTimeout(()=>{
+    qOpts.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('right','wrong','dimmed'));
+    document.getElementById('timerNum').textContent='8';
+    qBusy=false;
+  },1500);
+});
+/* таймер-кольцо: вращение дуги = transform */
+const timerArc=document.getElementById('timerArc');
+let tAng=0;
+setInterval(()=>{
+  if (document.body.classList.contains('rm')||document.hidden) return;
+  tAng=(tAng+6)%360;
+  timerArc.style.transform=`rotate(${tAng}deg)`;
+  timerArc.style.transformOrigin='center';
+},100);
+
+/* ═══════════ 07 · РАСПАКОВКА — церемония 1400мс ═══════════ */
+const packStage=document.getElementById('packStage'), packFlash=document.getElementById('packFlash'),
+      packCount=document.getElementById('packCount'), packPlay=document.getElementById('packPlay');
+let packBusy=false;
+function pkConfetti(){
+  const colors=['#B9A8FF','#fff','#F5C842','#4FE0C8'];
+  for (let i=0;i<12;i++){
+    const s=document.createElement('i');
+    s.className='pk-conf';
+    const a=Math.random()*Math.PI*2, d=55+Math.random()*65;
+    s.style.setProperty('--dx',Math.cos(a)*d+'px');
+    s.style.setProperty('--dy',(Math.sin(a)*d-30)+'px');
+    s.style.setProperty('--rr',(Math.random()*260-130)+'deg');
+    s.style.background=colors[i%4];
+    packStage.appendChild(s);
+    requestAnimationFrame(()=>s.classList.add('go'));
+    setTimeout(()=>s.remove(),950);
+  }
+}
+function spawnCards(){
+  /* каскад карт stagger 40мс → оседание в стопку */
+  for (let i=0;i<6;i++){
+    const c=document.createElement('div');
+    c.className='fly-card';
+    c.textContent='✈';
+    packStage.appendChild(c);
+    const dx=(i-2.5)*13, dy=-4-i*3, rot=(i-2.5)*4;
+    setTimeout(()=>{
+      c.style.transform=`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) rotate(${rot}deg) scale(1)`;
+      c.style.opacity='1';
+    },40*i);
+  }
+}
+packPlay.addEventListener('click',()=>{
+  if (packBusy) return;
+  packBusy=true; packPlay.disabled=true;
+  const rm=document.body.classList.contains('rm');
+  if (rm){
+    /* reduced motion: мгновенный кросс-фейд результата */
+    packStage.classList.add('open');
+    packCount.classList.add('in');
+    setTimeout(()=>{
+      packStage.querySelectorAll('.fly-card,.pk-conf').forEach(n=>n.remove());
+      packStage.classList.remove('open'); packCount.classList.remove('in');
+      packFlash.classList.remove('go','out');
+      packBusy=false; packPlay.disabled=false;
+    },3000);
+    return;
+  }
+  packStage.classList.add('open');                              // 0–300 вскрытие
+  setTimeout(()=>packFlash.classList.add('go'),300);            // 300–500 вспышка
+  setTimeout(()=>packFlash.classList.add('out'),520);
+  setTimeout(spawnCards,560);                                   // 560–800 каскад stagger 40
+  setTimeout(()=>packCount.classList.add('in'),1050);           // счётчик «+24 карточки»
+  setTimeout(pkConfetti,1100);                                  // конфетти один раз
+  setTimeout(()=>{packFlash.classList.remove('go','out');},1400);
+  setTimeout(()=>{                                              // реверс для повторного проигрывания
+    packStage.querySelectorAll('.fly-card,.pk-conf').forEach(n=>n.remove());
+    packStage.classList.remove('open'); packCount.classList.remove('in');
+    packBusy=false; packPlay.disabled=false;
+  },3600);
+});
+
+/* ═══════════ 08 · ТРЕНЕР — табы очередей ═══════════ */
+const TQUEUE=[
+  [['get along with','×4 ошибки'],['run out of','×3 ошибки'],['fair enough','×2 ошибки'],['look forward to','×2 ошибки']],
+  [['It slipped my mind','×3 ошибки'],['fair enough','×2 ошибки'],['no worries','×2 ошибки'],['here you go','×1 ошибка']],
+  [['layover vs stopover','×3 ошибки'],['customs vs passport control','×2 ошибки'],['gate vs terminal','×2 ошибки'],['carry-on vs checked','×1 ошибка']],
+];
+document.getElementById('trTabs').addEventListener('click',e=>{
+  const b=e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('#trTabs button').forEach(x=>x.classList.toggle('on',x===b));
+  const rows=TQUEUE[+b.dataset.t].map(r=>`<div class="tr-q"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('');
+  const panel=b.closest('.tr-panel');
+  panel.querySelectorAll('.tr-q').forEach(n=>n.remove());
+  panel.querySelector('.xghost').insertAdjacentHTML('beforebegin',rows);
+});
+
+/* ═══════════ 09 · ПРОГРЕСС — микро-церемония освоения ═══════════ */
+const mcCard=document.getElementById('mcCard'), mcBtn=document.getElementById('mcBtn'),
+      mcStatus=document.getElementById('mcStatus'), mstNum=document.getElementById('mstNum');
+let mcBusy=false, mst=142;
+mcBtn.addEventListener('click',()=>{
+  if (mcBusy) return;
+  mcBusy=true;
+  mcCard.classList.add('engraved');
+  mcStatus.className='mst st st-master';
+  mcStatus.textContent='освоена ✓';
+  setTimeout(()=>{
+    mst++;
+    mstNum.textContent=mst;
+    mstNum.parentElement.style.animation='likepop .45s var(--spring)';
+    setTimeout(()=>mstNum.parentElement.style.animation='',500);
+  },350);
+  setTimeout(()=>{                                              // реверс для повторного демо
+    mcCard.classList.remove('engraved');
+    mcStatus.className='mst st st-learn';
+    mcStatus.textContent='учу';
+    mcBusy=false;
+  },2600);
+});
+
+/* ═══════════ 10 · КНОПКИ — матрица состояний ═══════════ */
+const IC={
+  save:'<path d="M19 21l-7-4-7 4V5a2 2 0 012-2h10a2 2 0 012 2v16z"/>',
+  dia:'<path d="M7 3h10l4 6-9 12L3 9l4-6z"/><path d="M3 9h18M12 21L8.5 9l2-6M12 21L15.5 9l-2-6"/>',
+  check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  xx:'<path d="M6 6l12 12M18 6L6 18"/>',
+  play:'<path d="M8 5.5v13l11-6.5-11-6.5z"/>',
+};
+const ic2=(n,s=14,w=1.8)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${IC[n]}</svg>`;
+const SPIN='<span class="spin"></span>';
+const PLAYF='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5-11-6.5z"/></svg>';
+const bcell=(inner,label,sq)=>`<div class="bcell"><div class="hit${sq?' sq':''}">${inner}</div><span>${label}</span></div>`;
+const brow=(name,sub,cells)=>`<div class="brow"><div class="bname"><b>${name}</b><span>${sub}</span></div>${cells.join('')}</div>`;
+document.getElementById('btnGrid').innerHTML =
+  `<div class="brow brow-head"><span>кнопка</span><span>default</span><span>pressed</span><span>disabled</span><span>loading</span><span>success</span></div>`
+  + brow('Сохранить · 12/20','лимит прямо на кнопке',[
+      bcell(`<button class="xcta" style="min-height:44px;padding:11px 16px;font-size:12px">${ic2('save',14,1.8)}В карточки · 12/20</button>`,'default',1),
+      bcell(`<button class="xcta pressed" style="min-height:44px;padding:11px 16px;font-size:12px">${ic2('save',14,1.8)}В карточки · 12/20</button>`,'pressed',1),
+      bcell(`<button class="xcta disabled" style="min-height:44px;padding:11px 16px;font-size:12px">Лимит 20/20 · Plus</button>`,'упор в лимит',1),
+      bcell(`<button class="xcta loading" style="min-height:44px;padding:11px 16px;font-size:12px">${SPIN}</button>`,'сохраняем',1),
+      bcell(`<button class="xcta success" style="min-height:44px;padding:11px 16px;font-size:12px">${ic2('check',14,2)}Сохранено</button>`,'success',1)])
+  + brow('Открыть пак','без вечного пульса',[
+      bcell(`<button class="xcta" style="min-height:44px;padding:11px 16px;font-size:12px">Открыть за 120 💠</button>`,'default',1),
+      bcell(`<button class="xcta pressed" style="min-height:44px;padding:11px 16px;font-size:12px">Открыть за 120 💠</button>`,'pressed',1),
+      bcell(`<button class="xcta disabled" style="min-height:44px;padding:11px 16px;font-size:12px">Не хватает 120 💠</button>`,'честный тупик',1),
+      bcell(`<button class="xcta loading" style="min-height:44px;padding:11px 16px;font-size:12px">${SPIN}Списываем…</button>`,'loading',1),
+      bcell(`<button class="xcta success" style="min-height:44px;padding:11px 16px;font-size:12px">${ic2('check',14,2)}+24 карточки</button>`,'success',1)])
+  + brow('Знаю / Не знаю','дуэль-колода',[
+      bcell(`<button class="kb success">${ic2('check',16,2)}</button>`,'знаю'),
+      bcell(`<button class="kb success pressed">${ic2('check',16,2)}</button>`,'pressed'),
+      bcell(`<button class="kb disabled">${ic2('check',16,2)}</button>`,'free исчерпаны'),
+      bcell(`<button class="kb">${SPIN}</button>`,'loading'),
+      bcell(`<button class="kb danger">${ic2('xx',15,2)}</button>`,'не знаю')])
+  + brow('Play аудио','круг 56px',[
+      bcell(`<button class="kb accent" style="width:56px;height:56px">${PLAYF}</button>`,'default'),
+      bcell(`<button class="kb accent pressed" style="width:56px;height:56px">${PLAYF}</button>`,'pressed'),
+      bcell(`<button class="kb disabled" style="width:56px;height:56px">${PLAYF}</button>`,'офлайн'),
+      bcell(`<button class="kb" style="width:56px;height:56px">${SPIN}</button>`,'буфер'),
+      bcell(`<button class="kb success" style="width:56px;height:56px">${ic2('check',18,2)}</button>`,'прослушано')])
+  + brow('Ghost','вторичные действия',[
+      bcell(`<button class="xghost" style="min-height:44px;padding:11px 16px;font-size:12px">Пополнить осколки</button>`,'default',1),
+      bcell(`<button class="xghost pressed" style="min-height:44px;padding:11px 16px;font-size:12px">Пополнить осколки</button>`,'pressed',1),
+      bcell(`<button class="xghost disabled" style="min-height:44px;padding:11px 16px;font-size:12px">Пополнить осколки</button>`,'disabled',1),
+      bcell(`<button class="xghost" style="min-height:44px;padding:11px 16px;font-size:12px">${SPIN}</button>`,'loading',1),
+      bcell(`<button class="xghost" style="min-height:44px;padding:11px 16px;font-size:12px">${ic2('check',14,2)}</button>`,'success',1)]);
+
+/* undo-снэкбар (демо) */
+document.getElementById('undoDemo').addEventListener('click',e=>{
+  const b=e.currentTarget;
+  b.textContent='✓ Восстановлено';
+  setTimeout(()=>b.innerHTML='↩ Отменить',1400);
+});
+
+/* ═══════════ REDUCED MOTION + фокус ═══════════ */
+const rmSw=document.getElementById('rmSwitch');
+function setRM(v){
+  document.body.classList.toggle('rm',v);
+  rmSw.classList.toggle('on',v);
+  rmSw.setAttribute('aria-checked',String(v));
+}
+rmSw.addEventListener('click',()=>setRM(!document.body.classList.contains('rm')));
+rmSw.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();rmSw.click();}});
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) setRM(true);
+document.addEventListener('visibilitychange',()=>{
+  document.body.classList.toggle('pause',document.hidden);
+});
+</script>
+</body>
+</html>

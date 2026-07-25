@@ -12361,6 +12361,38 @@
     <div id="tn-gen-result" style="margin-top:14px"></div>
   </div>
 
+  <!-- Шаг 1.5: ИИ-генератор (новый контент отныне создаётся здесь) -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 ИИ-генератор — новые вопросы</div>
+    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
+      ИИ придумывает живые вопросы «угадай перевод» под выбранный уровень. Всё попадает «На проверку» —
+      в игру без вашего одобрения не уходит. Батч = 10 вопросов.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="tn-ai-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="A1">A1 — новичок</option>
+        <option value="A2" selected>A2 — базовый</option>
+        <option value="B1">B1 — средний</option>
+        <option value="B2">B2 — уверенный</option>
+        <option value="C1">C1 — продвинутый</option>
+        <option value="C2">C2 — свободный</option>
+      </select>
+      <input type="text" id="tn-ai-topic" placeholder="Тема (необязательно): аэропорт, собеседование…" maxlength="120"
+        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;min-width:260px" />
+      <select id="tn-ai-batches" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="1">10 вопросов</option>
+        <option value="2">20 вопросов</option>
+        <option value="3">30 вопросов</option>
+      </select>
+      <button type="button" onclick="tnAiGenerate(true)" title="Сгенерировать и показать, ничего не сохраняя"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Примеры</button>
+      <button type="button" onclick="tnAiGenerate(false)" title="Сгенерировать и положить на проверку"
+        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🤖 Сгенерировать</button>
+      <span id="tn-ai-status" style="font-size:13px;color:#9ca3af"></span>
+    </div>
+    <div id="tn-ai-result" style="margin-top:14px"></div>
+  </div>
+
   <!-- Шаг 2: проверка -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
     <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — проверить и опубликовать</div>
@@ -12376,6 +12408,12 @@
         <option value="2">Средние</option>
         <option value="3">Сложные</option>
       </select>
+      <select id="tn-source" onchange="tnLoadTasks(true)" title="Раздельные пулы: вопросы от ИИ и вопросы из планов"
+        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="">Оба пула</option>
+        <option value="ai">🤖 Пул ИИ</option>
+        <option value="plan_content">📚 Пул из планов</option>
+      </select>
       <button type="button" onclick="tnLoadTasks(true)"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
       <span style="flex:1"></span>
@@ -12385,6 +12423,42 @@
     </div>
     <div id="tn-list"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
     <div id="tn-more" style="margin-top:12px"></div>
+  </div>
+
+  <!-- Шаг 2.5: собрать турнир вручную -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🎯 Собрать турнир вручную</div>
+    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
+      Выберите слот и дату, отметьте вопросы галочками в списке выше и добавьте их в нужный раунд.
+      Раунды без набора соберутся случайно, как обычно. Работают только опубликованные вопросы.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+      <select id="tn-cur-slot" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="daily_1200">Слот 12:00</option>
+        <option value="daily_1900">Слот 19:00</option>
+        <option value="daily_2100">Слот 21:00</option>
+      </select>
+      <input type="date" id="tn-cur-date" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px" />
+      <button type="button" onclick="tnCuratedLoad()"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Открыть набор</button>
+      <span style="flex:1"></span>
+      <select id="tn-cur-round" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="1">Раунд 1</option>
+        <option value="2">Раунд 2</option>
+        <option value="3">Раунд 3</option>
+        <option value="4">Раунд 4</option>
+      </select>
+      <button type="button" onclick="tnCuratedAdd()" title="Добавить отмеченные галочками вопросы из списка выше в выбранный раунд"
+        style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">➕ Отмеченные в раунд</button>
+    </div>
+    <div id="tn-cur-box"><div class="reports-empty">Выберите слот и дату, затем «Открыть набор».</div></div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+      <button type="button" onclick="tnCuratedSave()"
+        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить набор</button>
+      <button type="button" onclick="tnCuratedClear()"
+        style="background:#3a1a1a;border:1px solid #5a2a2a;color:#fca5a5;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🗑 Снять набор</button>
+      <span id="tn-cur-status" style="font-size:13px;color:#9ca3af;align-self:center"></span>
+    </div>
   </div>
 
   <!-- Шаг 3: расписание -->
@@ -35438,10 +35512,13 @@
   // ═══════════════════════════════════════════════════════════════════════
   let _fnTnGenerate = null, _fnTnList = null, _fnTnMutate = null;
   let _fnTnStats = null, _fnTnGetSchedule = null, _fnTnSetSchedule = null;
+  let _fnTnAiGenerate = null, _fnTnEdit = null, _fnTnCurGet = null, _fnTnCurSet = null;
   const tnFn = (cached, name) => cached || httpsCallable(functionsUs, name);
 
   let _tnCursor = '';
   let _tnItems = [];
+  /** Черновик кураторского набора: раунд → список taskId. */
+  let _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
 
   const TN_MODE_LABEL = {
     guess_phrase: 'Угадай перевод',
@@ -35494,14 +35571,28 @@
     const invalid = task.valid === false
       ? '<span style="background:rgba(248,113,113,0.14);color:#fca5a5;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;margin-left:6px">Битое</span>'
       : '';
+    // Раздельные пулы: откуда пришёл вопрос.
+    const src = task.source === 'ai'
+      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">🤖 ИИ</span>'
+      : (task.source === 'plan_content'
+        ? '<span style="background:rgba(96,165,250,0.14);color:#93c5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">📚 Планы</span>'
+        : '');
+    // Заметка редактору от ИИ: почему верен ответ и в чём ловушки.
+    const meta = task.aiMeta && (task.aiMeta.scenario || task.aiMeta.ruleNote)
+      ? `<div style="margin-top:8px;font-size:12px;color:#8b8fa3;line-height:1.5">${task.aiMeta.scenario ? `🎬 ${escapeHtml(task.aiMeta.scenario)} · ` : ''}${escapeHtml(task.aiMeta.ruleNote || '')}</div>`
+      : '';
 
-    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px" id="tn-card-${escapeHtml(task.taskId)}">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <input type="checkbox" class="tn-pick" value="${escapeHtml(task.taskId)}" ${task.verified ? '' : 'checked'} style="width:16px;height:16px;cursor:pointer" />
         <span style="font-size:12px;color:#6b7280">${escapeHtml(mode)} · ${escapeHtml(String(diff))}</span>
-        <span style="flex:1"></span>${badge}${invalid}
+        <span style="flex:1"></span>${src}${badge}${invalid}
+        <button type="button" onclick="tnEditStart('${escapeHtml(task.taskId)}')" title="Изменить вопрос"
+          style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">✏️</button>
+        <button type="button" onclick="tnDeleteTask('${escapeHtml(task.taskId)}')" title="Удалить вопрос из пула"
+          style="background:#2a1518;border:1px solid #4a2a2e;color:#fca5a5;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">🗑</button>
       </div>
-      ${body}
+      <div class="tn-card-body">${body}${meta}</div>
     </div>`;
   }
 
@@ -35513,8 +35604,10 @@
       _fnTnList = tnFn(_fnTnList, 'adminListTournamentTasks');
       const status = document.getElementById('tn-status')?.value ?? 'draft';
       const difficulty = Number(document.getElementById('tn-difficulty')?.value || 0);
+      const source = document.getElementById('tn-source')?.value || '';
       const payload = { limit: 25, status, cursor: _tnCursor };
       if (difficulty) payload.difficulty = difficulty;
+      if (source) payload.source = source;
 
       const res = await _fnTnList(payload);
       const data = res?.data || {};
@@ -35615,10 +35708,21 @@
           <span style="flex:1"></span>${ready}
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">${cards}</div>
-        <div style="font-size:13px;color:#9ca3af">
+        <div style="font-size:13px;color:#9ca3af;margin-bottom:10px">
           В игре: <strong style="color:#4ade80">${d.published ?? 0}</strong> ·
           На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
         </div>
+        ${(() => {
+          // Раздельные пулы владельца: ИИ-генератор и задания из планов.
+          const s = d.sources || {};
+          const ai = s.ai || { total: 0, published: 0, drafts: 0 };
+          const plan = s.plan_content || { total: 0, published: 0, drafts: 0 };
+          const cell = (icon, name, v, color) => `<div style="background:#15151f;border-radius:10px;padding:12px 14px;flex:1;min-width:220px">
+            <div style="font-size:12px;color:#6b7280;margin-bottom:6px">${icon} ${name}</div>
+            <div style="font-size:13px;color:#9ca3af">В игре: <strong style="color:${color}">${v.published}</strong> · На проверке: <strong style="color:#fbbf24">${v.drafts}</strong> · Всего: ${v.total}</div>
+          </div>`;
+          return `<div style="display:flex;gap:10px;flex-wrap:wrap">${cell('🤖', 'Пул ИИ', ai, '#c4b5fd')}${cell('📚', 'Пул из планов', plan, '#93c5fd')}</div>`;
+        })()}
       </div>`;
     } catch (e) {
       box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
@@ -35694,8 +35798,261 @@
     }
   };
 
+  // ── ИИ-генерация ────────────────────────────────────────────────────────
+  window.tnAiGenerate = async function tnAiGenerate(dryRun) {
+    const status = document.getElementById('tn-ai-status');
+    const result = document.getElementById('tn-ai-result');
+    if (status) status.textContent = dryRun ? 'ИИ придумывает примеры…' : 'ИИ придумывает вопросы…';
+    if (result) result.innerHTML = '';
+    try {
+      _fnTnAiGenerate = tnFn(_fnTnAiGenerate, 'adminGenerateTournamentTasksAi');
+      const payload = {
+        level: document.getElementById('tn-ai-level')?.value || 'A2',
+        batches: Number(document.getElementById('tn-ai-batches')?.value || 1),
+        dryRun: dryRun === true,
+      };
+      const topic = (document.getElementById('tn-ai-topic')?.value || '').trim();
+      if (topic) payload.topicHint = topic;
+
+      const res = await _fnTnAiGenerate(payload);
+      const data = res?.data || {};
+      if (status) status.textContent = '';
+
+      const rejected = Array.isArray(data.rejectedBatches) ? data.rejectedBatches.length : 0;
+      const head = dryRun
+        ? `ИИ предложил <strong style="color:#fafafa">${data.accepted ?? 0}</strong> вопросов. Ничего не сохранено.`
+        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> вопросов на проверке.`;
+      const warn = rejected
+        ? `<div style="color:#fbbf24;margin-top:4px">Батчей забраковано контролем качества: ${rejected} — деньги за них потрачены, но брак в пул не попал.</div>`
+        : '';
+      const samples = Array.isArray(data.samples) && data.samples.length
+        ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';
+
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}${warn}</div>${samples}`;
+      if (!dryRun) { await window.tnLoadTasks(true); await window.tnLoadStats(); }
+    } catch (e) {
+      if (status) status.textContent = '';
+      const code = tnError(e);
+      const nice = code.includes('tournament_ai_daily_cap')
+        ? 'Дневной лимит ИИ-генераций исчерпан. Завтра счётчик обнулится.'
+        : (code.includes('tournament_disabled_by_admin') ? 'ИИ-генератор выключен рубильником в настройках OpenAI-джобов.' : code);
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">Ошибка: ${escapeHtml(nice)}</div>`;
+    }
+  };
+
+  // ── Редактирование вопроса ──────────────────────────────────────────────
+  const tnInput = (id, value, width) =>
+    `<input type="text" id="${id}" value="${escapeHtml(value)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;width:${width || '100%'};box-sizing:border-box;margin-bottom:6px" />`;
+
+  window.tnEditStart = function tnEditStart(taskId) {
+    const task = _tnItems.find((t) => t.taskId === taskId);
+    const card = document.getElementById(`tn-card-${taskId}`);
+    if (!task || !card) return;
+    const body = card.querySelector('.tn-card-body');
+    if (!body) return;
+    const p = task.payload || {};
+
+    if (task.mode === 'guess_phrase') {
+      const opts = Array.isArray(p.options) ? p.options : ['', '', '', ''];
+      body.innerHTML = `
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Английская фраза</div>
+        ${tnInput(`tn-e-phrase-${taskId}`, p.phrase || '')}
+        <div style="font-size:12px;color:#6b7280;margin:6px 0 4px">Варианты (отметьте правильный)</div>
+        ${opts.map((o, i) => `<div style="display:flex;gap:8px;align-items:center">
+          <input type="radio" name="tn-e-correct-${taskId}" value="${i}" ${i === p.correctIndex ? 'checked' : ''} style="cursor:pointer" />
+          ${tnInput(`tn-e-opt-${taskId}-${i}`, o, 'calc(100% - 30px)')}
+        </div>`).join('')}
+        <div style="display:flex;gap:10px;margin-top:8px;align-items:center">
+          <select id="tn-e-diff-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:6px 10px;font-size:13px">
+            ${[1, 2, 3].map((d) => `<option value="${d}" ${d === task.difficulty ? 'selected' : ''}>${TN_DIFF_LABEL[d]}</option>`).join('')}
+          </select>
+          <button type="button" onclick="tnEditSave('${escapeHtml(taskId)}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
+          <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
+        </div>`;
+    } else {
+      // Редкие форматы правим как JSON — форма на каждый формат тут не окупается.
+      body.innerHTML = `
+        <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Данные задания (JSON)</div>
+        <textarea id="tn-e-json-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:10px 12px;font-size:12px;width:100%;box-sizing:border-box;min-height:140px;font-family:monospace">${escapeHtml(JSON.stringify(p, null, 2))}</textarea>
+        <div style="display:flex;gap:10px;margin-top:8px">
+          <button type="button" onclick="tnEditSave('${escapeHtml(taskId)}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
+          <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
+        </div>`;
+    }
+  };
+
+  window.tnEditSave = async function tnEditSave(taskId) {
+    const task = _tnItems.find((t) => t.taskId === taskId);
+    if (!task) return;
+    let payload;
+    let difficulty = task.difficulty;
+
+    if (task.mode === 'guess_phrase') {
+      const phrase = (document.getElementById(`tn-e-phrase-${taskId}`)?.value || '').trim();
+      const options = [0, 1, 2, 3].map((i) => (document.getElementById(`tn-e-opt-${taskId}-${i}`)?.value || '').trim());
+      const correctIndex = Number(document.querySelector(`input[name="tn-e-correct-${taskId}"]:checked`)?.value ?? -1);
+      difficulty = Number(document.getElementById(`tn-e-diff-${taskId}`)?.value || task.difficulty);
+      if (!phrase || options.some((o) => !o) || correctIndex < 0) {
+        showToast('Заполни фразу, все 4 варианта и отметь правильный.', 'warn');
+        return;
+      }
+      payload = { phrase, options, correctIndex, correctAnswer: options[correctIndex] };
+    } else {
+      try {
+        payload = JSON.parse(document.getElementById(`tn-e-json-${taskId}`)?.value || '');
+      } catch {
+        showToast('JSON не разбирается — проверь кавычки и запятые.', 'warn');
+        return;
+      }
+    }
+
+    try {
+      _fnTnEdit = tnFn(_fnTnEdit, 'adminEditTournamentTask');
+      await _fnTnEdit({ taskId, payload, difficulty });
+      showToast('Вопрос сохранён', 'ok');
+      await window.tnLoadTasks(true);
+    } catch (e) {
+      const code = tnError(e);
+      showToast(code.includes('tournament_edit_contract')
+        ? 'Правка не прошла контроль качества: ' + code.split(':').pop()
+        : 'Не удалось сохранить: ' + code, 'err');
+    }
+  };
+
+  window.tnDeleteTask = async function tnDeleteTask(taskId) {
+    if (!confirm('Удалить этот вопрос из пула насовсем?')) return;
+    try {
+      _fnTnMutate = tnFn(_fnTnMutate, 'adminMutateTournamentTasks');
+      await _fnTnMutate({ taskIds: [taskId], action: 'delete' });
+      showToast('Вопрос удалён', 'ok');
+      await window.tnLoadTasks(true);
+      await window.tnLoadStats();
+    } catch (e) {
+      showToast('Не удалось удалить: ' + tnError(e), 'err');
+    }
+  };
+
+  // ── Кураторский набор: ручной отбор заданий на конкретный турнир ────────
+  function tnCuratedRender() {
+    const box = document.getElementById('tn-cur-box');
+    if (!box) return;
+    const total = [1, 2, 3, 4].reduce((n, r) => n + _tnCurated[r].length, 0);
+    if (!total) {
+      box.innerHTML = '<div class="reports-empty">Набор пуст — раунды соберутся случайно. Отметьте вопросы галочками выше и добавьте в раунд.</div>';
+      return;
+    }
+    box.innerHTML = [1, 2, 3, 4].map((r) => {
+      const ids = _tnCurated[r];
+      if (!ids.length) return `<div style="font-size:13px;color:#6b7280;padding:4px 0">Раунд ${r}: случайная выборка</div>`;
+      const chips = ids.map((id) => {
+        const task = _tnItems.find((t) => t.taskId === id);
+        const label = task && task.payload && task.payload.phrase ? String(task.payload.phrase).slice(0, 40) : id.slice(0, 18);
+        return `<span style="background:#1a1a24;border-radius:6px;padding:3px 8px;margin:0 6px 6px 0;display:inline-block;font-size:12px;color:#cbd5e1">${escapeHtml(label)}
+          <span onclick="tnCuratedRemove(${r}, '${escapeHtml(id)}')" style="color:#fca5a5;cursor:pointer;margin-left:4px" title="Убрать из раунда">✕</span></span>`;
+      }).join('');
+      return `<div style="padding:6px 0"><div style="font-size:13px;font-weight:700;color:#fafafa;margin-bottom:6px">Раунд ${r} — ${ids.length} шт.</div>${chips}</div>`;
+    }).join('');
+  }
+
+  window.tnCuratedRemove = function tnCuratedRemove(round, taskId) {
+    _tnCurated[round] = _tnCurated[round].filter((id) => id !== taskId);
+    tnCuratedRender();
+  };
+
+  window.tnCuratedAdd = function tnCuratedAdd() {
+    const round = Number(document.getElementById('tn-cur-round')?.value || 1);
+    const picked = Array.from(document.querySelectorAll('.tn-pick:checked')).map((el) => el.value);
+    if (!picked.length) { showToast('Отметь вопросы галочками в списке выше.', 'warn'); return; }
+    const merged = Array.from(new Set([..._tnCurated[round], ...picked]));
+    if (merged.length > 8) { showToast('В раунде может быть не больше 8 вопросов.', 'warn'); return; }
+    _tnCurated[round] = merged;
+    tnCuratedRender();
+  };
+
+  window.tnCuratedLoad = async function tnCuratedLoad() {
+    const status = document.getElementById('tn-cur-status');
+    const dateKey = document.getElementById('tn-cur-date')?.value || '';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
+    if (status) status.textContent = 'Загружаю набор…';
+    try {
+      _fnTnCurGet = tnFn(_fnTnCurGet, 'adminGetTournamentCurated');
+      const res = await _fnTnCurGet({
+        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
+        timezone: 'Europe/Moscow',
+        dateKey,
+      });
+      const d = res?.data || {};
+      _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
+      (Array.isArray(d.rounds) ? d.rounds : []).forEach((r) => {
+        if (r && r.roundNo >= 1 && r.roundNo <= 4) _tnCurated[r.roundNo] = Array.isArray(r.taskIds) ? r.taskIds : [];
+      });
+      if (status) status.textContent = d.exists ? 'Набор загружен.' : 'Набора ещё нет — соберите новый.';
+      tnCuratedRender();
+    } catch (e) {
+      if (status) status.textContent = '';
+      showToast('Не удалось открыть набор: ' + tnError(e), 'err');
+    }
+  };
+
+  window.tnCuratedSave = async function tnCuratedSave() {
+    const status = document.getElementById('tn-cur-status');
+    const dateKey = document.getElementById('tn-cur-date')?.value || '';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
+    const rounds = [1, 2, 3, 4]
+      .filter((r) => _tnCurated[r].length > 0)
+      .map((r) => ({ roundNo: r, taskIds: _tnCurated[r] }));
+    if (!rounds.length) { showToast('Набор пуст. Чтобы снять набор, жми «Снять набор».', 'warn'); return; }
+    if (status) status.textContent = 'Сохраняю…';
+    try {
+      _fnTnCurSet = tnFn(_fnTnCurSet, 'adminSetTournamentCurated');
+      const res = await _fnTnCurSet({
+        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
+        timezone: 'Europe/Moscow',
+        dateKey,
+        rounds,
+      });
+      const d = res?.data || {};
+      if (d.ok === false && Array.isArray(d.rejected)) {
+        if (status) status.textContent = '';
+        showToast(`Не сохранено: ${d.rejected.length} вопросов не опубликованы или удалены.`, 'err');
+        return;
+      }
+      if (status) status.textContent = 'Набор сохранён — турнир соберётся из этих вопросов.';
+      showToast('Кураторский набор сохранён', 'ok');
+    } catch (e) {
+      if (status) status.textContent = '';
+      showToast('Не удалось сохранить набор: ' + tnError(e), 'err');
+    }
+  };
+
+  window.tnCuratedClear = async function tnCuratedClear() {
+    const dateKey = document.getElementById('tn-cur-date')?.value || '';
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) { showToast('Выбери дату турнира.', 'warn'); return; }
+    if (!confirm('Снять кураторский набор? Турнир соберётся случайно.')) return;
+    try {
+      _fnTnCurSet = tnFn(_fnTnCurSet, 'adminSetTournamentCurated');
+      await _fnTnCurSet({
+        slotId: document.getElementById('tn-cur-slot')?.value || 'daily_1900',
+        timezone: 'Europe/Moscow',
+        dateKey,
+        rounds: [],
+      });
+      _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
+      tnCuratedRender();
+      showToast('Набор снят', 'ok');
+    } catch (e) {
+      showToast('Не удалось снять набор: ' + tnError(e), 'err');
+    }
+  };
+
   window.tnOpenTab = async function tnOpenTab() {
     window._tournamentsLoaded = true;
+    // Дата по умолчанию для ручной сборки — завтра (сегодняшние слоты обычно уже прошли).
+    const dateInput = document.getElementById('tn-cur-date');
+    if (dateInput && !dateInput.value) {
+      const tomorrow = new Date(Date.now() + 24 * 60 * 60 * 1000);
+      dateInput.value = tomorrow.toISOString().slice(0, 10);
+    }
     await Promise.all([window.tnLoadStats(), window.tnLoadTasks(true), window.tnLoadSchedule()]);
   };
 

@@ -52,6 +52,12 @@ function runTab() {
       if (name === 'adminGenerateTournamentTasks') {
         return { data: { stats: { produced: 10, phrasesSeen: 5 }, written: 10, keptPublished: 3, samples: [] } };
       }
+      if (name === 'adminGenerateTournamentTasksAi') {
+        return { data: { accepted: 10, written: 10, rejectedBatches: [], requests: 1, samples: [] } };
+      }
+      if (name === 'adminGetTournamentCurated') {
+        return { data: { exists: false, rounds: [] } };
+      }
       return { data: { affected: 1, rejected: [] } };
     },
     functionsUs: {},
@@ -63,9 +69,11 @@ function runTab() {
   sandbox.document = {
     getElementById: (id: string) => (elements[id] ||= {
       id, innerHTML: '', textContent: '',
-      value: id === 'tn-status' ? 'draft' : '0',
+      value: id === 'tn-status' ? 'draft' : (id === 'tn-source' || id === 'tn-ai-topic' || id === 'tn-cur-date' ? '' : '0'),
+      querySelector: () => null,
     }),
     querySelectorAll: (selector: string) => (selector.includes('tn-pick') || selector.includes('tn-slot') ? checkboxes : []),
+    querySelector: () => null,
   };
   sandbox.window = sandbox;
 
@@ -205,6 +213,83 @@ describe('вкладка «Турниры» в админке', () => {
     expect(scheduleBlock).not.toMatch(/hour:\s*Number/);
     expect(scheduleBlock).not.toMatch(/minute:\s*Number/);
     expect(html).not.toContain('data-hour=');
+  });
+
+  it('ИИ-генератор: функции объявлены, разметка на месте', () => {
+    const { sandbox } = runTab();
+    for (const name of ['tnAiGenerate', 'tnEditStart', 'tnEditSave', 'tnDeleteTask',
+      'tnCuratedLoad', 'tnCuratedAdd', 'tnCuratedSave', 'tnCuratedClear']) {
+      expect(typeof sandbox[name]).toBe('function');
+      expect(html).toContain(`${name}(`);
+    }
+    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-ai-batches', 'tn-source', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
+      expect(html).toContain(`id="${id}"`);
+    }
+  });
+
+  it('ИИ-предпросмотр ничего не сохраняет и не перезагружает список', async () => {
+    const { sandbox, calls, elements } = runTab();
+    elements['tn-ai-level'] = { id: 'tn-ai-level', value: 'B1', innerHTML: '', textContent: '', querySelector: () => null };
+    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(true);
+
+    const generate = calls.find((call) => call.name === 'adminGenerateTournamentTasksAi');
+    expect(generate?.payload?.dryRun).toBe(true);
+    expect(generate?.payload?.level).toBe('B1');
+    expect(calls.filter((call) => call.name === 'adminListTournamentTasks')).toHaveLength(0);
+  });
+
+  it('ИИ-генерация без dryRun кладёт черновики и обновляет список со статистикой', async () => {
+    const { sandbox, calls, elements } = runTab();
+    elements['tn-ai-level'] = { id: 'tn-ai-level', value: 'A2', innerHTML: '', textContent: '', querySelector: () => null };
+    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(false);
+
+    const names = calls.filter((call) => call.name).map((call) => call.name);
+    expect(names).toContain('adminGenerateTournamentTasksAi');
+    expect(names).toContain('adminListTournamentTasks');
+    expect(names).toContain('adminTournamentPoolStats');
+  });
+
+  it('фильтр источника уходит на сервер, пустой — не уходит', async () => {
+    const { sandbox, calls, elements } = runTab();
+    await (sandbox.tnLoadTasks as (reset: boolean) => Promise<void>)(true);
+    expect(calls.find((call) => call.name === 'adminListTournamentTasks')?.payload?.source).toBeUndefined();
+
+    elements['tn-source'].value = 'ai';
+    await (sandbox.tnLoadTasks as (reset: boolean) => Promise<void>)(true);
+    const withSource = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
+    expect(withSource?.payload?.source).toBe('ai');
+  });
+
+  it('удаление вопроса требует подтверждение и шлёт action=delete', async () => {
+    const { sandbox, calls } = runTab();
+    await (sandbox.tnDeleteTask as (id: string) => Promise<void>)('t1');
+
+    const mutate = calls.find((call) => call.name === 'adminMutateTournamentTasks');
+    expect(mutate?.payload?.action).toBe('delete');
+    expect(mutate?.payload?.taskIds).toEqual(['t1']);
+  });
+
+  it('кураторский набор: отбор галочками → раунд → сохранение в формате сервера', async () => {
+    const { sandbox, calls, elements, checkboxes } = runTab();
+    checkboxes.push({ value: 't1', checked: true, getAttribute: () => '' });
+    elements['tn-cur-date'] = { id: 'tn-cur-date', value: '2026-07-27', innerHTML: '', textContent: '', querySelector: () => null };
+    elements['tn-cur-round'] = { id: 'tn-cur-round', value: '2', innerHTML: '', textContent: '', querySelector: () => null };
+    elements['tn-cur-slot'] = { id: 'tn-cur-slot', value: 'daily_1900', innerHTML: '', textContent: '', querySelector: () => null };
+
+    (sandbox.tnCuratedAdd as () => void)();
+    await (sandbox.tnCuratedSave as () => Promise<void>)();
+
+    const save = calls.find((call) => call.name === 'adminSetTournamentCurated');
+    expect(save?.payload?.slotId).toBe('daily_1900');
+    expect(save?.payload?.dateKey).toBe('2026-07-27');
+    expect(save?.payload?.timezone).toBe('Europe/Moscow');
+    expect(save?.payload?.rounds).toEqual([{ roundNo: 2, taskIds: ['t1'] }]);
+  });
+
+  it('кураторский набор без даты не уходит на сервер', async () => {
+    const { sandbox, calls } = runTab();
+    await (sandbox.tnCuratedSave as () => Promise<void>)();
+    expect(calls.some((call) => call.name === 'adminSetTournamentCurated')).toBe(false);
   });
 
   it('разметка вкладки следует правилам владельца', () => {

@@ -49,6 +49,9 @@ import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
+import { getTrainerDashboard } from './trainer_store';
+import MemoryGauge from '../components/journal/MemoryGauge';
+import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
@@ -1047,6 +1050,17 @@ let wagerCardWarm: {
  * приложения, так что повторные визиты сразу показывают верное число. */
 let achievementCountPeek: number | null = null;
 let recentAchievementIdsPeek: string[] | null = null;
+
+/** зачем: тот же peek-паттерн для «Прочность памяти»/CEFR-строки (MemoryGauge,
+ * CefrLine) — totalTracked/masteredCount/dueToday читаются из локального
+ * trainer_store (AsyncStorage, без сети) в useFocusEffect ниже; peek не даёт
+ * модулям стартовать с нулей на повторных открытиях экрана в этой сессии. */
+interface JournalMemorySnapshot {
+    totalTracked: number;
+    masteredCount: number;
+    dueToday: number;
+}
+let journalMemorySnapshotPeek: JournalMemorySnapshot | null = null;
 
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, pickerOnly = false, onPickerClose }: {
     lang: Lang;
@@ -3162,6 +3176,11 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // экрана до ответа loadAchievementStates() (см. achievementCountPeek выше).
     const [achievementCount, setAchievementCount] = useState(() => achievementCountPeek ?? 0);
     const [recentAchievementIds, setRecentAchievementIds] = useState<string[]>(() => recentAchievementIdsPeek ?? []);
+    // зачем: MemoryGauge/CefrLine — то же правило «первый кадр = финальные
+    // числа», что и achievementCount выше (см. journalMemorySnapshotPeek).
+    const [journalMemory, setJournalMemory] = useState<JournalMemorySnapshot>(
+        () => journalMemorySnapshotPeek ?? { totalTracked: 0, masteredCount: 0, dueToday: 0 },
+    );
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
@@ -3229,6 +3248,30 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         });
         return () => { cancelled = true; };
     }, []));
+    // зачем: MemoryGauge/CefrLine (журнал) — getTrainerDashboard читает только
+    // локальный AsyncStorage тренажёра (уже используется на других экранах:
+    // signal_bus, trainer_practice_prefetch, weekly_review_briefing), НИКАКИХ
+    // новых чтений Firestore. words+phrases (без arena) — та же выборка, что
+    // и trainerPracticeDue в statsCache, для согласованности «фраз под риском».
+    useFocusEffect(useCallback(() => {
+        let cancelled = false;
+        void getTrainerDashboard(studyTarget)
+            .then((dash) => {
+                if (cancelled) return;
+                const snapshot: JournalMemorySnapshot = {
+                    totalTracked: dash.totalTracked,
+                    masteredCount: dash.archived,
+                    dueToday: dash.due.words + dash.due.phrases,
+                };
+                journalMemorySnapshotPeek = snapshot;
+                setJournalMemory(snapshot);
+            })
+            .catch(() => {
+                // Peek уже наполнен — оставляем последнее известное состояние
+                // вместо отката к нулям (тот же принцип, что и achievementCount).
+            });
+        return () => { cancelled = true; };
+    }, [studyTarget]));
     useEffect(() => {
         let cancelled = false;
         const key = statsPrimaryMetricKey(studyTarget);
@@ -3701,7 +3744,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
 
       <ContentWrap>
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
-      <View style={{ paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+      <View style={{ paddingHorizontal: 15, paddingTop: embedded ? 4 : (Platform.OS === 'android' ? 28 : 15), paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {!embedded && (<TapScale
           onPress={() => {
@@ -3764,6 +3807,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           график, ряд достижений), как в app/review.tsx ~1300. */}
       {!statsReady ? (
         <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 16, gap: 12 }}>
+          <SkeletonBlock width="100%" height={200} borderRadius={22} />
           <SkeletonBlock width="100%" height={168} borderRadius={22} />
           <SkeletonBlock width="100%" height={92} borderRadius={22} />
           <SkeletonBlock width="100%" height={230} borderRadius={22} />
@@ -3771,9 +3815,44 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         </View>
       ) : null}
       <BouncyWrap>
-      <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
+      <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16, paddingBottom: embedded ? 140 : 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>
         <Reanimated.View entering={FadeInDown.duration(420).delay(0)}>
+          <StatsCardArtSurface
+            testID="journal-memory-card"
+            name="practiceBalance"
+            theme={t}
+            isGoldTheme={isGoldTheme}
+            gradientColors={statsCardGradient(t)}
+            gradientLocations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            radius={statsSurfaceRadius(themeMode, 22)}
+            scrim="stats"
+            style={[
+              { borderRadius: statsSurfaceRadius(themeMode, 22), padding: 14, borderWidth: 0, overflow: 'hidden', gap: 10 },
+              isGoldTheme ? goldShadow(2) : statsGlowStyle(themeMode, 'practiceBalance'),
+            ]}
+          >
+            {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
+            <MemoryGauge
+              t={t}
+              f={f}
+              lang={lang}
+              themeMode={themeMode}
+              isGoldTheme={isGoldTheme}
+              totalTracked={journalMemory.totalTracked}
+              dueToday={journalMemory.dueToday}
+            />
+            <CefrLine
+              t={t}
+              f={f}
+              lang={lang}
+              themeMode={themeMode}
+              isGoldTheme={isGoldTheme}
+              masteredCount={journalMemory.masteredCount}
+            />
+          </StatsCardArtSurface>
+        </Reanimated.View>
+        <Reanimated.View entering={FadeInDown.duration(420).delay(70)}>
           <StreakHeroCard
             t={t}
             f={f}
@@ -3808,7 +3887,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        <Reanimated.View entering={FadeInDown.duration(420).delay(70)}>
+        <Reanimated.View entering={FadeInDown.duration(420).delay(140)}>
           <XpLevelCard
             t={t}
             f={f}
@@ -3820,7 +3899,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        <Reanimated.View entering={FadeInDown.duration(420).delay(140)}>
+        <Reanimated.View entering={FadeInDown.duration(420).delay(210)}>
           <WeekAnalyticsCard
             t={t}
             f={f}
@@ -3836,7 +3915,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        <Reanimated.View entering={FadeInDown.duration(420).delay(210)}>
+        <Reanimated.View entering={FadeInDown.duration(420).delay(280)}>
           <AllMetricsFoldCard
             t={t}
             f={f}
@@ -3849,7 +3928,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        <Reanimated.View entering={FadeInDown.duration(420).delay(280)}>
+        <Reanimated.View entering={FadeInDown.duration(420).delay(350)}>
         <RecentAchievementsCard
           t={t}
           f={f}
@@ -3895,7 +3974,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             });
             if (pItems.length === 0) return null;
             return (
-              <Reanimated.View entering={FadeInDown.duration(420).delay(350)}>
+              <Reanimated.View entering={FadeInDown.duration(420).delay(420)}>
               <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
                 <StatsCardArtSurface testID="stats-comparison-content" name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>

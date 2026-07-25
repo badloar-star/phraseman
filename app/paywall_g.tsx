@@ -34,7 +34,7 @@ import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './pay
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallHeroExplain, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
@@ -125,6 +125,7 @@ export default function PaywallG() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -160,7 +161,8 @@ export default function PaywallG() {
             </PaywallEntrance>
 
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={3}>{title}</Text>
+              <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>

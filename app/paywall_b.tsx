@@ -31,7 +31,7 @@ import { loadPercentileData } from './daily_analytics_sync';
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallHeroExplain, PaywallSocialRow,
   PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
@@ -137,6 +137,7 @@ export default function PaywallB() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
   const isLifetimeSel = p.selected === 'lifetime';
   const price = isLifetimeSel ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
@@ -172,7 +173,8 @@ export default function PaywallB() {
               <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             </PaywallEntrance>
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={3}>{title}</Text>
+              <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>

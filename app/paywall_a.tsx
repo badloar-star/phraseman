@@ -13,14 +13,12 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
-import Ionicons from '@expo/vector-icons/Ionicons';
 
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import {
   resolvePaywallContext, getPaywallCopy, getHeroPlannedCopy,
-  applyWinBackCopy, applyWinBackPlannedCopy,
-  CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP,
+  applyWinBackCopy, applyWinBackPlannedCopy, makeLP,
 } from './paywall_copy';
 import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
@@ -35,7 +33,7 @@ import { readPaywallProfile, type PaywallProfile, type PaywallLang } from './pay
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallHeroExplain, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
@@ -127,7 +125,7 @@ export default function PaywallA() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
-  const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 4);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -162,7 +160,8 @@ export default function PaywallA() {
             </PaywallEntrance>
 
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={3}>{title}</Text>
+              <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>
@@ -246,17 +245,8 @@ export default function PaywallA() {
               </PaywallEntrance>
             )}
 
-            <PaywallEntrance index={8} style={S.benefits}>
-              {benefits.map((b, i) => (
-                <View key={i} style={S.benefitRow}>
-                  <Ionicons name="checkmark-circle" size={17} color={chrome.textMuted} />
-                  <Text style={[S.benefitText, { color: chrome.textMuted }]}>
-                    {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
-                  </Text>
-                </View>
-              ))}
-            </PaywallEntrance>
-
+            {/* зачем: контекстные бенефиты переехали в хиро (PaywallHeroExplain) —
+                нижний дубль под сгибом удалён по аудиту «пейволы-объясняют». */}
             <PaywallEntrance index={9}>
               <PaywallTestimonials items={testimonials} lang={lang as Lang} chrome={chrome} />
             </PaywallEntrance>

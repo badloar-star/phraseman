@@ -16,6 +16,7 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { useTheme } from '../ThemeContext';
 import { getPaywallThemeConfig, type ThemePaywallConfig } from '../paywallThemeConfig';
 import { getPaywallSocialProof } from '../../app/paywall_variant';
+import { CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP } from '../../app/paywall_copy';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
@@ -217,6 +218,10 @@ const CONTEXT_GLYPH: Partial<Record<PremiumContext, keyof typeof Ionicons.glyphM
   ai_explain: 'bulb',
   weekly_review: 'calendar',
   avatar_aura: 'color-wand',
+  speaking_club: 'chatbubbles',
+  free_lessons_complete: 'flag',
+  winback: 'refresh',
+  referral_ended: 'gift',
   generic: 'diamond',
 };
 
@@ -239,6 +244,36 @@ export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chro
         )}
       </View>
     </PaywallIdleFloat>
+  );
+}
+
+// ── хиро-объяснение: субтайтл контекста + 3 выгоды момента ───────────────────
+// зачем (аудит «пейволы-объясняют», жалоба юзера на «Ты растёшь быстро»):
+// субтайтлы написаны для всех контекстов в paywall_copy, но не рендерились ни в
+// одном варианте — юзер видел лозунг без причины показа. Блок един для всех рук
+// A–G, чтобы A/B-эксперимент продолжал сравнивать доказательную часть, а не хиро.
+export function PaywallHeroExplain({ ctx, chrome, lang, subtitle }: {
+  ctx: PremiumContext;
+  chrome: PaywallChrome;
+  lang: Lang;
+  subtitle: string;
+}) {
+  const LP = makeLP(lang);
+  const benefits = (CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic).slice(0, 3);
+  return (
+    <View style={S.heroExplainWrap}>
+      <Text style={[S.heroExplainSubtitle, { color: chrome.textPrimary }]}>{subtitle}</Text>
+      <View style={S.heroExplainBens}>
+        {benefits.map((b, i) => (
+          <View key={b.ru} style={S.heroExplainBenRow}>
+            <Ionicons name="checkmark" size={15} color={chrome.tc.heroAccent} style={S.heroExplainBenIcon} />
+            <Text style={[S.heroExplainBenText, { color: chrome.textMuted }]}>
+              {LP(b.ru, b.uk, b.es, getContextBenefitPlanned(ctx, i))}
+            </Text>
+          </View>
+        ))}
+      </View>
+    </View>
   );
 }
 
@@ -544,6 +579,14 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 20, elevation: 7,
   },
   glyphCompassImage: { height: 62, width: 62 },
+  // хиро-объяснение (субтайтл + выгоды момента) — фиксированная геометрия с
+  // первого кадра: копия синхронная, без загрузок и сдвигов (layout stability).
+  heroExplainWrap: { marginTop: 9, alignItems: 'center' },
+  heroExplainSubtitle: { textAlign: 'center', fontSize: 14, lineHeight: 19.5, maxWidth: 320, opacity: 0.82 },
+  heroExplainBens: { marginTop: 12, gap: 6, alignSelf: 'center' },
+  heroExplainBenRow: { flexDirection: 'row', alignItems: 'flex-start', gap: 8, maxWidth: 316 },
+  heroExplainBenIcon: { marginTop: 1.5 },
+  heroExplainBenText: { fontSize: 13, lineHeight: 18, flexShrink: 1 },
   socialRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 14 },
   starsRow: { flexDirection: 'row', gap: 2 },
   socialText: { fontSize: 13, fontWeight: '700' },

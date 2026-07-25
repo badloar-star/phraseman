@@ -22,7 +22,6 @@ import React, {
   useImperativeHandle,
   useMemo,
   useRef,
-  useState,
 } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
 import { Image } from 'expo-image';
@@ -99,19 +98,21 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
   const enter = useSharedValue(reduceMotion ? 1 : 0);
   const spinningRef = useRef(false);
 
-  const [assetsReady, setAssetsReady] = useState(false);
+  // зачем: владелец увидел вечно пустые карточки — рендер БОЛЬШЕ НЕ ждёт
+  // Asset.loadAsync (если прелоад молча падал, дуга оставалась пустой навсегда).
+  // expo-image грузит require()-ассеты сам с кэшем; прелоад остаётся тёплым
+  // фоном, чтобы спин не ловил догрузку.
   useEffect(() => {
-    let alive = true;
-    void preloadRoulettePrizeImages()
-      .then(() => { if (alive) setAssetsReady(true); })
-      .catch(() => {});
+    void preloadRoulettePrizeImages().catch(() => {});
     return () => {
-      alive = false;
       cancelAnimation(rotation);
     };
   }, [rotation]);
 
   // Вход: дуга выкатывается снизу с лёгким довором (как полукруг у Kimi).
+  // зачем: вход только через transform, БЕЗ opacity-гейта — если анимация входа
+  // по любой причине не отработает, дуга всё равно видима (правило «reveal
+  // enhances an already-visible default»).
   useEffect(() => {
     if (reduceMotion) { enter.value = 1; return; }
     enter.value = withTiming(1, { duration: ENTER_MS, easing: Easing.bezier(0.32, 0.72, 0, 1) });
@@ -170,7 +171,6 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
     transform: [{ rotate: `${rotation.value}deg` }],
   }));
   const zoneStyle = useAnimatedStyle(() => ({
-    opacity: enter.value,
     transform: [{ translateY: (1 - enter.value) * 36 }],
   }));
 
@@ -198,7 +198,7 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
       )}
       <View style={[styles.pivotAnchor, { left: windowWidth / 2 }]}>
         <Animated.View style={pivotStyle}>
-          {assetsReady && slots.map(({ slot, prize }) => (
+          {slots.map(({ slot, prize }) => (
             <View
               key={slot}
               style={[

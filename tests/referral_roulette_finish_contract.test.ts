@@ -135,7 +135,10 @@ describe('referral roulette finish contract', () => {
     expect(arc).not.toContain('runOnJS(');
     expect(arc).toContain('useReducedMotion()');
     expect(arc).toContain('cancelAnimation(rotation)');
-    expect(arc).toContain('const [assetsReady, setAssetsReady]');
+    // зачем: рендер карточек НЕ гейтится прелоадом (падение Asset.loadAsync
+    // оставляло дугу пустой навсегда) и вход не прячет дугу через opacity.
+    expect(arc).not.toContain('assetsReady &&');
+    expect(arc).not.toMatch(/opacity:\s*enter\.value/);
     expect(arc).toContain('preloadRoulettePrizeImages()');
     expect(arc).toContain('cachePolicy="memory-disk"');
     // Высота зоны фиксирована — первый кадр равен финальной геометрии.

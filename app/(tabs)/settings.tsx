@@ -427,6 +427,18 @@ export default function SettingsMain() {
   const [newName, setNewName]     = useState('');
   const [nameSaving, setNameSaving] = useState(false);
   const nameSavingRef = useRef(false);
+  /**
+   * зачем (Optimistic UI): раньше «Сохранить» держало модалку открытой и крутило
+   * спиннер, пока ждали ответ nameReserve — юзер упирался в блокирующий Alert
+   * только ПОСЛЕ round-trip. Теперь модалка закрывается и новый ник виден в
+   * профиле СРАЗУ по тапу, а бронь на сервере (14-дневный кулдаун — источник
+   * истины, НЕ ослаблен) идёт фоном. Если сервер отклонит — откатываем ник
+   * обратно и показываем некритичную инлайн-плашку (не блокирующий Alert).
+   * nameChangeGuardRef — last-write-guard: поздний ответ устаревшей попытки
+   * не может откатить уже более свежее локальное имя (гонка double-tap/повтор).
+   */
+  const [nameChangeNotice, setNameChangeNotice] = useState<string | null>(null);
+  const nameChangeGuardRef = useRef(0);
   const settingsStorageHydratedRef = useRef(false);
   useEffect(() => {
     if (nameModal) warmNameAvailabilityAuth();
@@ -437,6 +449,10 @@ export default function SettingsMain() {
   const [vipUntilMs, setVipUntilMs] = useState(0);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
   const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
+  /** зачем: единый ряд «Ввести код» вверху настроек переключается между
+   *  реферальным и промокодом одним тумблером внутри той же карточки —
+   *  тип берём не из отдельного экрана, а из этого локального состояния. */
+  const [codeEntryMode, setCodeEntryMode] = useState<'referral' | 'promo'>('referral');
   const [topHelpersOn, setTopHelpersOn] = useState(isTopHelpersEnabled());
   const roulettePolicy = useReferralRoulettePolicy();
   const settingsReferralToken = captureAccountGeneration();
@@ -754,8 +770,15 @@ export default function SettingsMain() {
       return;
     }
 
+    // зачем (Optimistic UI, last-write-guard): если юзер успеет запустить ещё одну
+    // попытку смены ника, поздний ответ ЭТОЙ попытки не должен откатить уже более
+    // свежее локальное состояние (double-tap / повторный сабмит).
+    const myGuard = ++nameChangeGuardRef.current;
+    const isStaleAttempt = () => nameChangeGuardRef.current !== myGuard;
+
     nameSavingRef.current = true;
     setNameSaving(true);
+    setNameChangeNotice(null);
     try {
       // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
       // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
@@ -768,12 +791,14 @@ export default function SettingsMain() {
         reservation = { status: 'error' };
       }
 
+      if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
+
       if (reservation.status === 'taken') {
-        alertOverName(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
+        setNameChangeNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
-        alertOverName(L(
+        setNameChangeNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
           'Нік можна змінювати не частіше одного разу на 14 днів.',
           'Puedes cambiar el nombre solo una vez cada 14 días.',
@@ -786,7 +811,7 @@ export default function SettingsMain() {
         return;
       }
       if (reservation.status !== 'ok') {
-        alertOverName(L(
+        setNameChangeNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
           'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
           'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
@@ -799,7 +824,10 @@ export default function SettingsMain() {
         return;
       }
 
-      // Бронь подтверждена — применяем локально и закрываем модалку.
+      // зачем (Optimistic UI): бронь подтверждена сервером (14-дневный кулдаун
+      // и проверка уникальности НЕ ослаблены — это по-прежнему источник истины).
+      // Дальше применяем ник локально и закрываем модалку СРАЗУ, а не после
+      // ещё одного round-trip — вся сетевая часть (проверка) уже позади.
       try {
         await AsyncStorage.setItem('user_name', trimmed);
         setUserName(trimmed);
@@ -815,16 +843,18 @@ export default function SettingsMain() {
         closeNameModalNow();
       } catch (error) {
         DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
-        alertOverName(L(
-          'Имя не сохранилось локально. Попробуй ещё раз.',
-          'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
-          'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
-          'Não foi possível salvar o nome localmente. Tente novamente.',
-          'Không thể lưu tên cục bộ. Hãy thử lại.',
-          'Nama belum bisa disimpan secara lokal. Coba lagi.',
-          'Ad yerel olarak kaydedilemedi. Tekrar dene.',
-          'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
-        ));
+        if (!isStaleAttempt()) {
+          setNameChangeNotice(L(
+            'Имя не сохранилось локально. Попробуй ещё раз.',
+            'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
+            'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
+            'Não foi possível salvar o nome localmente. Tente novamente.',
+            'Không thể lưu tên cục bộ. Hãy thử lại.',
+            'Nama belum bisa disimpan secara lokal. Coba lagi.',
+            'Ad yerel olarak kaydedilemedi. Tekrar dene.',
+            'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
+          ));
+        }
         return;
       }
 
@@ -903,7 +933,13 @@ export default function SettingsMain() {
   const plusRowPress = () => {
     doHaptic();
     if (hasPremiumAccess) {
-      router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any);
+      // зачем: settings.tsx уже знает premiumPlan синхронно (см. useState выше,
+      // подтянут AsyncStorage-эффектом на монтировании таба) — передаём его дальше,
+      // чтобы manage_subscription.tsx открылся с готовым планом без спиннера.
+      router.push({
+        pathname: '/premium_modal',
+        params: { manage: '1', ...(premiumPlan ? { plan: premiumPlan } : {}) },
+      } as any);
     } else {
       router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any);
     }
@@ -1055,25 +1091,101 @@ export default function SettingsMain() {
             sub={plusRowSub}
             onPress={plusRowPress}
           />
-          {settingsReferralSurface.marketingVisible ? (
-            <SettingsRow
-              testID="settings-referral-code-row"
-              icon="gift"
-              color="pink"
-              label={L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
-              // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
-              // ?enter=1 сразу выдвигает шит «Код от друга».
-              onPress={() => { doHaptic(); router.push('/referrals?enter=1' as any); }}
-            />
-          ) : null}
-          {!hasPremiumAccess && promoCodesOn ? (
-            <SettingsRow
-              testID="settings-promo-code-row"
-              icon="ticket-outline"
-              color="purple"
-              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-              onPress={() => { doHaptic(); router.push('/promo_code_entry' as any); }}
-            />
+          {/*
+            зачем: раньше «Ввести реферальный код» и «Ввести промокод» были двумя
+            рядами, будто это разные вещи — визуально уже была одна карточка
+            (SettingsGroup), но воспринимались отдельно. Владелец попросил
+            смерджить их в ОДИН ряд с переключателем «реферальный / промокод»
+            внутри одной карточки: юзер выбирает тип кода тут же, тап ведёт на
+            соответствующий готовый экран ввода (referrals?enter=1 /
+            promo_code_entry). Отдельный инпут-инлайн не заводим: у промокода
+            своя серверная логика (redeemPromoCode → promoCodeRedeem, VIP-грант,
+            celebration-модалка), а у реферального кода — свой шит на экране
+            /referrals; переиспользуем готовые проверенные потоки вместо
+            дублирования сетевых вызовов тут.
+          */}
+          {(settingsReferralSurface.marketingVisible || (!hasPremiumAccess && promoCodesOn)) ? (
+            <SettingsCustomRow>
+              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? 12 : 0 }}>
+                <SettingsIconTile icon={codeEntryMode === 'promo' ? 'ticket-outline' : 'gift'} color={codeEntryMode === 'promo' ? 'purple' : 'pink'} />
+                <View style={{ flex: 1, marginLeft: 12 }}>
+                  <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>
+                    {codeEntryMode === 'promo'
+                      ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
+                      : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+                  </Text>
+                  <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
+                    {codeEntryMode === 'promo'
+                      ? L('Код от Phraseman — активирует Plus', 'Код від Phraseman — активує Plus', 'Código de Phraseman: activa Plus', 'Código da Phraseman: ativa o Plus', 'Mã từ Phraseman — kích hoạt Plus', 'Kode dari Phraseman — mengaktifkan Plus', 'Phraseman kodu — Plus etkinleştirir', 'Kod od Phraseman — aktywuje Plus')
+                      : L('Код от друга — шанс выиграть Plus', 'Код від друга — шанс виграти Plus', 'Código de un amigo: opción de ganar Plus', 'Código de um amigo: chance de ganhar Plus', 'Mã từ bạn bè — cơ hội thắng Plus', 'Kode dari teman — kesempatan menangkan Plus', 'Arkadaş kodu — Plus kazanma şansı', 'Kod od znajomego — szansa na wygranie Plus')}
+                  </Text>
+                </View>
+                <TouchableOpacity
+                  testID="settings-code-entry-submit"
+                  accessibilityRole="button"
+                  accessibilityLabel={codeEntryMode === 'promo'
+                    ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
+                    : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+                  activeOpacity={0.8}
+                  onPress={() => {
+                    doHaptic();
+                    if (codeEntryMode === 'promo') {
+                      router.push('/promo_code_entry' as any);
+                    } else {
+                      // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
+                      // ?enter=1 сразу выдвигает шит «Код от друга».
+                      router.push('/referrals?enter=1' as any);
+                    }
+                  }}
+                  style={{
+                    width: 34, height: 34, borderRadius: 17,
+                    alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: chipSurfaceOn,
+                  }}
+                >
+                  <Ionicons name="chevron-forward" size={17} color={t.textGhost} />
+                </TouchableOpacity>
+              </View>
+              {/* Переключатель показываем только если оба типа кода доступны — иначе
+                  переключать нечего (только промокоды выключены/премиум, или
+                  реферальная маркетинговая строка скрыта флагом). Разделяем состояния
+                  ТОЛЬКО заливкой/тоном — без обводки (правило владельца: никаких
+                  borderWidth/borderColor вокруг контейнеров-переключателей). */}
+              {settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? (
+                <View style={{ flexDirection: 'row', gap: 8 }}>
+                  {(['referral', 'promo'] as const).map(mode => (
+                    <TouchableOpacity
+                      key={mode}
+                      testID={`settings-code-entry-mode-${mode}`}
+                      accessibilityRole="button"
+                      accessibilityState={{ selected: codeEntryMode === mode }}
+                      accessibilityLabel={mode === 'promo'
+                        ? L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
+                        : L('Реферальный код', 'Реферальний код', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
+                      onPress={() => { doHaptic(); setCodeEntryMode(mode); }}
+                      activeOpacity={0.8}
+                      style={{
+                        flex: 1,
+                        alignItems: 'center',
+                        paddingVertical: 8,
+                        borderRadius: 10,
+                        backgroundColor: codeEntryMode === mode ? chipSurfaceOn : chipSurfaceOff,
+                      }}
+                    >
+                      <Text style={{
+                        fontSize: f.label,
+                        fontWeight: '700',
+                        color: codeEntryMode === mode ? chipTextOn : t.textSecond,
+                      }}>
+                        {mode === 'promo'
+                          ? L('Промокод', 'Промокод', 'Código promocional', 'Código promocional', 'Mã khuyến mãi', 'Kode promo', 'Promo kod', 'Kod promocyjny')
+                          : L('Реферальный код', 'Реферальний код', 'Código de invitación', 'Código de indicação', 'Mã giới thiệu', 'Kode referal', 'Davet kodu', 'Kod polecenia')}
+                      </Text>
+                    </TouchableOpacity>
+                  ))}
+                </View>
+              ) : null}
+            </SettingsCustomRow>
           ) : null}
         </SettingsGroup>
         {premiumDetails}
@@ -1119,7 +1231,10 @@ export default function SettingsMain() {
           </TouchableOpacity>
         ) : null}
 
-        {isStudyTargetSourceUiLang(lang) && (
+        {/* зачем: в паблик-сборке выбор языка изучения не готов (открыт только английский) —
+            секция должна не рендериться ВООБЩЕ, а не просто прятать подписи. В DEV
+            (ENABLE_DEV_STUDY_TARGET_LANG) поведение и вид секции остаются как были. */}
+        {ENABLE_DEV_STUDY_TARGET_LANG && isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
             <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
               {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
@@ -1170,78 +1285,10 @@ export default function SettingsMain() {
           </View>
         )}
 
-        <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
-
-        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          <SettingsRow
-            testID="settings-profile-row"
-            icon="person"
-            color="blue"
-            label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
-            sub={userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono')}
-            onPress={() => { setNewName(userName); setNameModal(true); }}
-          />
-          <SettingsRow
-            icon="key"
-            color="green"
-            label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-            sub={
-              linkedAuth
-                ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
-                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')
-            }
-            onPress={() => {
-              if (!linkedAuth) {
-                setAuthPromptVisible(true);
-                return;
-              }
-              setAccountModalVisible(true);
-            }}
-          />
-          <SettingsRow
-            testID="settings-language-row"
-            icon="language"
-            color="teal"
-            label={L('Язык интерфейса', 'Мова інтерфейсу', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
-            sub={LANG_NATIVE[lang]}
-            onPress={() => router.push('/settings_language' as any)}
-          />
-        </SettingsGroup>
-        {/* Баннер: нет ника */}
-        {nameReady && !userName && (
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => { doHaptic(); setNewName(''); setNameModal(true); }}
-            style={{
-              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
-              flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: settingsNoticeBg,
-              borderRadius: 12, padding: 12,
-              borderWidth: 0, borderColor: 'transparent',
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
-            }}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="information-circle-outline" size={20} color={t.accent} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
-              {L(
-                'Установите никнейм, чтобы участвовать в клубах и рейтинге',
-                'Встановіть нікнейм, щоб брати участь у клубах та рейтингу',
-                'Añade un nombre o apodo para participar en el club y en la clasificación.',
-                'Adicione um apelido para participar dos clubes e do ranking.',
-                'Đặt biệt danh để tham gia câu lạc bộ và bảng xếp hạng.',
-                'Tambahkan nama panggilan untuk ikut klub dan peringkat.',
-                'Kulüplere ve sıralamaya katılmak için bir takma ad ekle.',
-                'Ustaw pseudonim, aby brać udział w klubach i rankingach.',
-              )}
-            </Text>
-            <Ionicons name="chevron-forward" size={16} color={t.accent} />
-          </TouchableOpacity>
-        )}
-
-
-
+        {/* зачем: владелец попросил меньше скролла до частых настроек — секция
+            «Внешний вид и отклик» (темы/шрифт/хаптик) перенесена сразу под
+            Plus/реферал/промо-группу (Plus остаётся видимым наверху экрана),
+            выше «Профиля» и остальных разделов. */}
         <SettingsSectionTitle title={L('Внешний вид и отклик', 'Вигляд і відгук', 'Apariencia y respuesta', 'Aparência e resposta', 'Giao diện và phản hồi', 'Tampilan dan respons', 'Görünüm ve geri bildirim', 'Wygląd i reakcje')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
@@ -1349,6 +1396,99 @@ export default function SettingsMain() {
           />
 
         </SettingsGroup>
+
+        <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
+
+        <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-profile-row"
+            icon="person"
+            color="blue"
+            label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
+            sub={userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono')}
+            onPress={() => { setNewName(userName); setNameChangeNotice(null); setNameModal(true); }}
+          />
+          <SettingsRow
+            icon="key"
+            color="green"
+            label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
+            sub={
+              linkedAuth
+                ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
+                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')
+            }
+            onPress={() => {
+              if (!linkedAuth) {
+                setAuthPromptVisible(true);
+                return;
+              }
+              setAccountModalVisible(true);
+            }}
+          />
+          <SettingsRow
+            testID="settings-language-row"
+            icon="language"
+            color="teal"
+            label={L('Язык интерфейса', 'Мова інтерфейсу', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
+            sub={LANG_NATIVE[lang]}
+            onPress={() => router.push('/settings_language' as any)}
+          />
+        </SettingsGroup>
+        {/* зачем (Optimistic UI): модалка смены ника теперь закрывается сразу
+            (см. saveName) — если сервер потом откажет (кулдаун/занято/сеть),
+            откат виден здесь некритичной инлайн-плашкой, а не блокирующим Alert. */}
+        {nameChangeNotice ? (
+          <View
+            testID="settings-nickname-inline-notice"
+            style={{
+              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
+              flexDirection: 'row', alignItems: 'center', gap: 10,
+              backgroundColor: settingsNoticeBg,
+              borderRadius: 12, padding: 12,
+              borderWidth: 0, borderColor: 'transparent',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            <Ionicons name="alert-circle-outline" size={20} color={t.wrong} />
+            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
+              {nameChangeNotice}
+            </Text>
+          </View>
+        ) : null}
+        {/* Баннер: нет ника */}
+        {nameReady && !userName && (
+          <TouchableOpacity
+            activeOpacity={0.85}
+            onPress={() => { doHaptic(); setNewName(''); setNameChangeNotice(null); setNameModal(true); }}
+            style={{
+              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
+              flexDirection: 'row', alignItems: 'center', gap: 10,
+              backgroundColor: settingsNoticeBg,
+              borderRadius: 12, padding: 12,
+              borderWidth: 0, borderColor: 'transparent',
+              overflow: 'hidden',
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            <Ionicons name="information-circle-outline" size={20} color={t.accent} />
+            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
+              {L(
+                'Установите никнейм, чтобы участвовать в клубах и рейтинге',
+                'Встановіть нікнейм, щоб брати участь у клубах та рейтингу',
+                'Añade un nombre o apodo para participar en el club y en la clasificación.',
+                'Adicione um apelido para participar dos clubes e do ranking.',
+                'Đặt biệt danh để tham gia câu lạc bộ và bảng xếp hạng.',
+                'Tambahkan nama panggilan untuk ikut klub dan peringkat.',
+                'Kulüplere ve sıralamaya katılmak için bir takma ad ekle.',
+                'Ustaw pseudonim, aby brać udział w klubach i rankingach.',
+              )}
+            </Text>
+            <Ionicons name="chevron-forward" size={16} color={t.accent} />
+          </TouchableOpacity>
+        )}
 
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>

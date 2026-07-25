@@ -148,11 +148,12 @@ export default function PaywallPlanCards({
           )}
         </View>
         <View style={S.priceWrap}>
+          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
+              flexShrink:1, tail-многоточие как крайний случай вместо сжатия шрифта */}
           <Text
             style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.82}
+            ellipsizeMode="tail"
           >
             {price || (loading ? '…' : '—')}
           </Text>
@@ -204,11 +205,12 @@ export default function PaywallPlanCards({
           </View>
         </View>
         <View style={S.priceWrap}>
+          {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — S.price уже
+              flexShrink:1, tail-многоточие как крайний случай вместо сжатия шрифта */}
           <Text
             style={[S.price, { color: textPrimary }]}
             numberOfLines={1}
-            adjustsFontSizeToFit
-            minimumFontScale={0.82}
+            ellipsizeMode="tail"
           >
             {price}
           </Text>

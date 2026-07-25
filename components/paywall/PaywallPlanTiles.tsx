@@ -152,11 +152,12 @@ export default function PaywallPlanTiles({
             <Text style={[S.name, { color: sel ? textPrimary : textMuted }]} numberOfLines={1}>
               {tile.name}
             </Text>
+            {/* зачем: убран шрифто-сжимающий проп (запрещён на iOS) — tail-многоточие
+                как крайний случай вместо сжатия шрифта на узкой плитке */}
             <Text
               style={[S.price, { color: sel ? tc.urgencyCurrentPriceText : textPrimary }]}
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
+              ellipsizeMode="tail"
             >
               {tile.price || (loading ? '…' : '—')}
             </Text>

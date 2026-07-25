@@ -213,14 +213,17 @@ export default function StudyLanguagePicker({
                 </View>
               ) : null}
             </View>
+            {/* зачем: раньше здесь было динамическое сжатие шрифта (запрещённый
+                паттерн — ужимает короткие варианты на iOS). Длина названия языка
+                сильно варьируется по локалям («Español» vs «日本語»); вместо
+                сжатия — перенос на 2 строки, tile под ним уже с запасом. */}
             <Text
-              numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
+              numberOfLines={2}
               style={{
                 color: active ? palette.textOn : palette.textOff,
                 width: '100%',
-                fontSize: Math.max(10, labelFontSize - 1),
+                fontSize: Math.max(9, labelFontSize - 2),
+                lineHeight: Math.max(11, labelFontSize + 1),
                 fontWeight: active ? '800' : '700',
                 textAlign: 'center',
               }}

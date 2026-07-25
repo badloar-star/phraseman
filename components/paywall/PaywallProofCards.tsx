@@ -103,8 +103,6 @@ export function MirrorCard({ lang, chrome, mirror }: { lang: Lang; chrome: Paywa
             <Text
               style={[S.mirrorValue, { color: chrome.textPrimary }]}
               numberOfLines={1}
-              adjustsFontSizeToFit
-              minimumFontScale={0.72}
             >
               {formatMirrorValue(s.value)}
             </Text>
@@ -219,8 +217,6 @@ export function PersonalizationProofCard({
               <Text
                 style={[S.personalStatValue, { color: chrome.textPrimary }]}
                 numberOfLines={1}
-                adjustsFontSizeToFit
-                minimumFontScale={0.76}
               >
                 {formatMirrorValue(s.value)}
               </Text>
@@ -435,9 +431,12 @@ const S = StyleSheet.create({
     flexGrow: 1, flexBasis: '47%', minWidth: '47%', minHeight: 74, borderRadius: 13, borderWidth: 0,
     paddingVertical: 11, paddingHorizontal: 8, alignItems: 'center', justifyContent: 'center',
   },
+  // зачем: было adjustsFontSizeToFit(0.72) — запрещённое динамическое сжатие
+  // коротких чисел/процентов; formatMirrorValue уже отдаёт компактные строки
+  // (напр. «87%», «12д»), статичного кегля 18 хватает без обрезки на iOS.
   mirrorValue: {
     alignSelf: 'stretch', textAlign: 'center',
-    fontSize: 21, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+    fontSize: 18, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
   },
   mirrorLabel: { fontSize: 11.5, marginTop: 4, textAlign: 'center' },
   mirrorLine: { fontSize: 13.5, marginTop: 11, lineHeight: 19 },
@@ -457,9 +456,10 @@ const S = StyleSheet.create({
     flex: 1, minWidth: 0,
     paddingVertical: 1, paddingHorizontal: 3, alignItems: 'center', justifyContent: 'center',
   },
+  // зачем: было adjustsFontSizeToFit(0.76) — тот же класс бага, что у mirrorValue.
   personalStatValue: {
     alignSelf: 'stretch', textAlign: 'center',
-    fontSize: 20.5, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
+    fontSize: 17.5, fontWeight: '900', letterSpacing: 0, fontVariant: ['tabular-nums'],
   },
   personalStatLabel: { alignSelf: 'stretch', fontSize: 11.5, marginTop: 3, textAlign: 'center' },
   personalPct: {

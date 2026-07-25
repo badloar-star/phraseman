@@ -1416,11 +1416,12 @@ function CleanOnboarding({
         <View style={styles.welcomeContent} testID="onboarding-welcome-screen">
           <View style={styles.welcomeLogoBlock}>
             <WelcomeLogo />
+            {/* зачем: убран шрифто-сжимающий проп (запрещён, ужимал текст на iOS) — оба варианта
+                короткие (макс. 2 строки при fontSize 34/lineHeight 39), запас numberOfLines={3}
+                достаточен без сжатия шрифта */}
             <Text
               style={styles.welcomeTitle}
               numberOfLines={3}
-              adjustsFontSizeToFit
-              minimumFontScale={0.78}
             >
               {authMode ? 'Вернём твой прогресс' : 'От первых слов до свободной речи.'}
             </Text>

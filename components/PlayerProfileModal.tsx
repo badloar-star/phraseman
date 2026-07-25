@@ -43,6 +43,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
+import SkeletonBlock from './SkeletonShimmer';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/profile_card_streak_shield';
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
@@ -415,12 +416,13 @@ function PlayerProfileModalBody({
   // (businessLight) базовой карточки стекло нечитаемо, откат на токены темы.
   const auroraGlass = prestigeActive || themeMode !== 'businessLight';
   const glassPanel = auroraGlass ? AURORA_GLASS.panelBg : t.bgSurface;
-  const glassPanelBorder = auroraGlass ? AURORA_GLASS.panelBorder : t.border;
+  // зачем: panelBorder/chipBorder больше не используются — все кромки панелей и
+  // чипов сняты по §0.D, разделение переведено на тон. Токены удалены, чтобы не
+  // соблазняли вернуть рамку.
   const glassHairline = auroraGlass ? AURORA_GLASS.hairline : t.border;
   const glassChromeBg = auroraGlass ? AURORA_GLASS.chromeBg : t.bgSurface;
   const glassChromeBorder = auroraGlass ? AURORA_GLASS.chromeBorder : t.border;
   const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
-  const glassChipBorder = auroraGlass ? AURORA_GLASS.chipBorder : t.border;
 
   // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
   // (хендоф docs/cards-redesign §0.D, приоритет над рамками из HTML-макета).
@@ -1325,9 +1327,12 @@ function PlayerProfileModalBody({
               // синяя (pro=синий, как в PremiumCelebrationModal). Shimmer сохранён.
               <Animated.View style={{ opacity: shimmerOpacity }}>
                 <LinearGradient
+                  // зачем: §0.D — цветную кромку заменяет более глубокий
+                  // градиент того же тона (0.18→0.28 сверху): пилюля читается
+                  // как материал, а не как обведённый блок.
                   colors={showPro
-                    ? ['rgba(56,189,248,0.18)', 'rgba(56,189,248,0.07)']
-                    : ['rgba(245,200,66,0.18)', 'rgba(245,200,66,0.07)']}
+                    ? ['rgba(56,189,248,0.28)', 'rgba(56,189,248,0.10)']
+                    : ['rgba(245,200,66,0.28)', 'rgba(245,200,66,0.10)']}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
                   style={{
@@ -1337,8 +1342,6 @@ function PlayerProfileModalBody({
                     borderRadius: 999,
                     paddingHorizontal: 11,
                     paddingVertical: 5,
-                    borderWidth: 1,
-                    borderColor: showPro ? 'rgba(56,189,248,0.35)' : 'rgba(245,200,66,0.35)',
                   }}
                 >
                   <Ionicons name="diamond" size={11} color={showPro ? PRO_BADGE_BLUE : '#F5C842'} />
@@ -1354,9 +1357,9 @@ function PlayerProfileModalBody({
               borderRadius: 999,
               paddingHorizontal: 11,
               paddingVertical: 5,
-              backgroundColor: auroraGlass ? 'rgba(255,255,255,0.06)' : t.bgSurface,
-              borderWidth: 1,
-              borderColor: auroraGlass ? 'rgba(255,255,255,0.1)' : t.border,
+              // зачем: §0.D — пилюля титула держится тоном; кромку заменяет
+              // чуть более плотная подложка (0.06 → 0.10), разделение то же.
+              backgroundColor: auroraGlass ? 'rgba(255,255,255,0.10)' : t.bgSurface,
             }}>
               <Text style={{ color: auroraGlass ? AURORA_GLASS.inkSoft : t.textSecond, fontSize: 11.5, fontWeight: '600' }}>
                 {getTitleString(level, lang)}
@@ -1370,9 +1373,8 @@ function PlayerProfileModalBody({
           flexDirection: 'row',
           alignItems: 'stretch',
           borderRadius: 16,
+          // зачем: §0.D — капсула статистики держится тоном подложки, не кромкой.
           backgroundColor: glassPanel,
-          borderWidth: 1,
-          borderColor: glassPanelBorder,
           paddingVertical: 12,
           marginBottom: 14,
         }}>
@@ -1428,12 +1430,24 @@ function PlayerProfileModalBody({
               }}
             >
               <View style={{ width: '100%' }}>
+                {/* зачем: авто-ужатие шрифта убрано — запрещено правилом
+                    владельца (класс бага: короткие значения на iOS сжимались
+                    до нечитаемого кегля рядом с длинными). Значения тут
+                    короткие — «12.3K», «Lv.42», «365», — поэтому фиксированный
+                    кегль с tabular-nums: цифры одной ширины, три колонки не
+                    пляшут. Длинное значение обрежется хвостом, а не сожмётся. */}
                 <Text
-                  style={{ color: metric.color, fontSize: 20, fontWeight: '800', width: '100%', textAlign: 'center' }}
+                  style={{
+                    color: metric.color,
+                    fontSize: 20,
+                    fontWeight: '800',
+                    width: '100%',
+                    textAlign: 'center',
+                    fontVariant: ['tabular-nums'],
+                  }}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.62}
-                  maxFontSizeMultiplier={1}
+                  ellipsizeMode="clip"
+                  maxFontSizeMultiplier={1.1}
                 >
                   {metric.value}
                 </Text>
@@ -1483,9 +1497,8 @@ function PlayerProfileModalBody({
             justifyContent: 'center',
             gap: 6,
             borderRadius: 999,
+            // зачем: §0.D — счётчик лайков держится тоном подложки.
             backgroundColor: glassPanel,
-            borderWidth: 1,
-            borderColor: glassPanelBorder,
             paddingHorizontal: 12,
             paddingVertical: 10,
           }}>
@@ -1507,9 +1520,8 @@ function PlayerProfileModalBody({
               alignItems: 'center',
               gap: 9,
               borderRadius: 16,
+              // зачем: §0.D — плашка лиги держится тоном подложки.
               backgroundColor: glassPanel,
-              borderWidth: 1,
-              borderColor: glassPanelBorder,
               paddingHorizontal: 12,
               paddingVertical: 10,
             }}
@@ -1523,11 +1535,32 @@ function PlayerProfileModalBody({
             </Text>
           </View>
         </Pressable>
+        {isMe && !multipliers && (
+          // зачем: §5 Шаг 1 «состояния» + Performance Bible — модификаторы
+          // грузятся после interactions, и панель раньше ВОЗНИКАЛА на пустом
+          // месте, дёргая лэйаут. Скелетон держит ту же геометрию (высота
+          // шапки 24 + gap 9 + ряд чипов 24 + паддинги 26 = 83), поэтому
+          // первый кадр совпадает с финальным.
+          <View style={{
+            borderRadius: 16, backgroundColor: glassPanel,
+            paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
+          }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
+              <SkeletonBlock width={118} height={11} borderRadius={4} />
+              <SkeletonBlock width={54} height={19} borderRadius={6} />
+            </View>
+            <View style={{ flexDirection: 'row', gap: 6 }}>
+              <SkeletonBlock width={92} height={24} borderRadius={8} />
+              <SkeletonBlock width={78} height={24} borderRadius={8} />
+            </View>
+          </View>
+        )}
         {isMe && multipliers && (
           // AURORA: одна glass-панель — шапка (подпись капсом + крупный итог,
           // зелёный #35D07F когда бонус активен) и wrap-чипы модификаторов под ней.
+          // зачем: §0.D — панель держится тоном подложки, кромка снята.
           <View style={{
-            borderRadius: 16, backgroundColor: glassPanel, borderWidth: 1, borderColor: glassPanelBorder,
+            borderRadius: 16, backgroundColor: glassPanel,
             paddingHorizontal: 14, paddingVertical: 13, marginBottom: 14,
           }}>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 9 }}>
@@ -1549,7 +1582,7 @@ function PlayerProfileModalBody({
             </View>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
               {multipliers.clubM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🏛️</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1566,7 +1599,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.streakM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🔥</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1583,7 +1616,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.comebackM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>⚡</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1600,7 +1633,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.leagueBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1617,7 +1650,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.leagueGroupBoostM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>XP</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1634,7 +1667,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.giftM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>🎁</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1651,7 +1684,7 @@ function PlayerProfileModalBody({
                 </View>
               )}
               {multipliers.cardM > 1 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderWidth: 1, borderColor: glassChipBorder, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: glassChipBg, borderRadius: 8, paddingHorizontal: 9, paddingVertical: 5 }}>
                   <Text style={{ fontSize: 13 }}>✦</Text>
                   <Text style={{ color: t.textSecond, fontSize: 11 }}>
                     {triLang(lang as Lang, {
@@ -1690,7 +1723,8 @@ function PlayerProfileModalBody({
             V «Легенда» — отдельная строка. */}
         {(showLearnedBlock || showShieldBlock || showPathBlock) && (
           <View style={{
-            borderRadius: 16, backgroundColor: glassPanel, borderWidth: 1, borderColor: glassPanelBorder,
+            // зачем: §0.D — панель бонусов держится тоном подложки, не кромкой.
+            borderRadius: 16, backgroundColor: glassPanel,
             marginBottom: 14,
           }}>
             {showLearnedBlock && (
@@ -1790,7 +1824,8 @@ function PlayerProfileModalBody({
           // (вторая строка-подпись убрана по фидбеку владельца).
           <View style={{
             flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 11,
-            borderRadius: 16, backgroundColor: cardVisual.accentSoft, borderWidth: 1, borderColor: cardVisual.accentStrong,
+            // зачем: §0.D — строка легенды держится акцентным тоном уровня V.
+            borderRadius: 16, backgroundColor: cardVisual.accentSoft,
             paddingHorizontal: 12, paddingVertical: 11, marginBottom: 14,
           }}>
             <Text style={{ fontSize: f.numMd }}>👑</Text>
@@ -1834,9 +1869,9 @@ function PlayerProfileModalBody({
             paddingTop: 12,
             paddingBottom: 12,
             borderRadius: 20,
+            // зачем: §0.D — плавающая панель превью отделяется тенью ниже
+            // (она уже сильная), кромка не нужна.
             backgroundColor: 'rgba(8,10,16,0.94)',
-            borderWidth: 1,
-            borderColor: glassPanelBorder,
             shadowColor: '#000',
             shadowOpacity: 0.4,
             shadowRadius: 16,

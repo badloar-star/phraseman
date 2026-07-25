@@ -1,4 +1,6 @@
 import { statusFromMemoryRow, FLASHCARD_STATUS_COLOR } from '../app/flashcards/cardStatus';
+import { applyCardFilter } from '../app/flashcards/selectors';
+import type { CardItem } from '../app/flashcards/types';
 
 /**
  * Контракт статусов карточек в коллекции (макет B1 `.cdot`, палитра §4.3).
@@ -42,6 +44,33 @@ describe('statusFromMemoryRow', () => {
 
   it('срок ещё не подошёл — learning', () => {
     expect(statusFromMemoryRow(row({ seen: 4, correct: 4, mastered: 2, nextDueAt: NOW + 60_000 }), NOW)).toBe('learning');
+  });
+
+  it('фильтр по статусу отбирает нужные карточки', () => {
+    const card = (id: string) => ({ id, en: id, ru: id, uk: id, categoryId: 'custom', isSystem: false }) as CardItem;
+    const cards = [card('a'), card('b'), card('c')];
+    const statuses = { a: 'weak', b: 'mastered' };
+
+    expect(applyCardFilter(cards, 'status:weak', statuses).map((c) => c.id)).toEqual(['a']);
+    // Карточка без записи прогресса считается новой — как и точка в списке.
+    expect(applyCardFilter(cards, 'status:new', statuses).map((c) => c.id)).toEqual(['c']);
+    // 'all' не трогает список.
+    expect(applyCardFilter(cards, 'all', statuses)).toHaveLength(3);
+  });
+
+  it('статусы ещё не загрузились — список не прячем', () => {
+    const card = (id: string) => ({ id, en: id, ru: id, uk: id, categoryId: 'custom', isSystem: false }) as CardItem;
+    const cards = [card('a'), card('b')];
+    // Без карты статусов фильтр обязан вернуть всё, а не пустой экран.
+    expect(applyCardFilter(cards, 'status:weak', undefined)).toHaveLength(2);
+  });
+
+  it('фильтр по источнику не сломан статусной веткой', () => {
+    const lessonCard = { id: 'l1', en: 'x', ru: 'x', uk: 'x', categoryId: 'saved', isSystem: false, source: 'lesson', sourceId: '7' } as CardItem;
+    const otherCard = { id: 'o1', en: 'y', ru: 'y', uk: 'y', categoryId: 'saved', isSystem: false, source: 'trainer' } as CardItem;
+    const cards = [lessonCard, otherCard];
+    expect(applyCardFilter(cards, 'lesson:7', {}).map((c) => c.id)).toEqual(['l1']);
+    expect(applyCardFilter(cards, 'trainer', {}).map((c) => c.id)).toEqual(['o1']);
   });
 
   it('цвета статусов — дословно из §4.3 хендофа', () => {

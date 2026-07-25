@@ -30,6 +30,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
 import { loadFlashcardStatuses, type FlashcardStatusMap } from './flashcards/cardStatus';
+import StatusFilterChips from '../components/flashcards/StatusFilterChips';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -303,6 +304,19 @@ export default function FlashcardsScreen() {
   // после тренировки точки были свежими, но не чаще: список не должен
   // перечитывать хранилище на каждый ре-рендер.
   const [cardStatuses, setCardStatuses] = useState<FlashcardStatusMap>({});
+
+  // Подписи чипов фильтра по статусу (макет B1 `.fchips`).
+  const statusChipLabels = useMemo(
+    () => ({
+      all: triLang(lang, { ru: 'Все', uk: 'Усі', es: 'Todas', 'pt-BR': 'Todos', vi: 'Tất cả', id: 'Semua', tr: 'Tümü', pl: 'Wszystkie' }),
+      new: triLang(lang, { ru: 'Новые', uk: 'Нові', es: 'Nuevas', 'pt-BR': 'Novos', vi: 'Mới', id: 'Baru', tr: 'Yeni', pl: 'Nowe' }),
+      learning: triLang(lang, { ru: 'Учу', uk: 'Вчу', es: 'Aprendiendo', 'pt-BR': 'Aprendendo', vi: 'Đang học', id: 'Belajar', tr: 'Öğreniyorum', pl: 'Uczę się' }),
+      review: triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repasar', 'pt-BR': 'Revisar', vi: 'Ôn lại', id: 'Ulangi', tr: 'Tekrar', pl: 'Powtórz' }),
+      mastered: triLang(lang, { ru: 'Освоены', uk: 'Засвоєні', es: 'Dominadas', 'pt-BR': 'Dominados', vi: 'Đã thuộc', id: 'Dikuasai', tr: 'Pekişti', pl: 'Opanowane' }),
+      weak: triLang(lang, { ru: 'Слабые', uk: 'Слабкі', es: 'Difíciles', 'pt-BR': 'Difíceis', vi: 'Còn yếu', id: 'Lemah', tr: 'Zayıf', pl: 'Słabe' }),
+    }),
+    [lang],
+  );
   useFocusEffect(
     useCallback(() => {
       let cancelled = false;
@@ -544,9 +558,13 @@ export default function FlashcardsScreen() {
     return getCardsForCategory(activeCat, savedCards, customCards, systemCardsForTarget);
   }, [activeCat, savedCards, customCards, collectionCustomCards, systemCardsForTarget]);
   const filteredCards = useMemo(
-    () => applyCardFilter(cards, activeFilter),
-    [cards, activeFilter],
+    () => applyCardFilter(cards, activeFilter, cardStatuses),
+    [cards, activeFilter, cardStatuses],
   );
+
+  // зачем: чипы считаем по ПОЛНОМУ набору, а не по отфильтрованному — иначе
+  // после выбора «Слабые» остальные чипы исчезли бы и вернуться было бы некуда.
+  const cardIds = useMemo(() => cards.map((c) => c.id), [cards]);
 
   const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 45 }), []);
   const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
@@ -1690,6 +1708,19 @@ export default function FlashcardsScreen() {
         {activeCat === 'custom' && (
           <CollectionLimitHeader saved={savedCards.length} isPremium={isPremium} t={t} />
         )}
+
+        {/* зачем (макет B1 `.fchips`): отобрать проблемные карточки было
+            невозможно — список шёл одной кучей. Именно слабые надо тренировать
+            первыми, теперь до них один тап. Чип показывается только если такие
+            карточки есть: пустой фильтр — обман, а не выбор. */}
+        <StatusFilterChips
+          activeFilter={activeFilter}
+          onChange={setActiveFilter}
+          cardIds={cardIds}
+          statuses={cardStatuses}
+          labels={statusChipLabels}
+          t={t}
+        />
 
         {/* Slide wrapper — clips and drives category-switch slide transition */}
         <View

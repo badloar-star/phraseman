@@ -19,9 +19,26 @@ export function getCardsForCategory(
   return (systemCards ?? []).filter(c => c.categoryId === activeCat);
 }
 
-export function applyCardFilter(cards: CardItem[], activeFilter: string): CardItem[] {
+export function applyCardFilter(
+  cards: CardItem[],
+  activeFilter: string,
+  /**
+   * зачем (макет B1 `.fchips`): фильтр по статусу изучения — «Учу»,
+   * «Повторить», «Освоены», «Слабые». Карта статусов приходит извне
+   * (её читает экран из локального хранилища), чтобы селектор остался
+   * чистой функцией и тестировался без моков хранилища.
+   */
+  statuses?: Record<string, string>,
+): CardItem[] {
   const list = cards ?? [];
   if (activeFilter === 'all') return list;
+  if (activeFilter.startsWith('status:')) {
+    // Статусы ещё не загрузились — не прячем список, показываем как есть.
+    if (!statuses) return list;
+    const want = activeFilter.slice(7);
+    // Карточки без записи прогресса считаются новыми (та же логика, что у точек).
+    return list.filter((c) => (statuses[c.id] ?? 'new') === want);
+  }
   return list.filter(c => {
     if (activeFilter.startsWith('lesson:')) {
       return c.source === 'lesson' && c.sourceId === activeFilter.slice(7);

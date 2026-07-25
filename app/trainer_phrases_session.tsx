@@ -474,14 +474,9 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
     }
   };
 
-  const retry = () => {
-    if (feedback === 'none') return;
-    void hapticTap();
-    setChosen(null);
-    setFeedback('none');
-    shakeX.value = 0;
-  };
-
+  // зачем: продуктовое решение — в режиме "вставь пропущенное слово" оставляем
+  // только "Готово →"; кнопка "Повторить ещё раз" убрана, поэтому retry() и её
+  // обработчик здесь больше не нужны (WordBankMode свой retry не трогаем).
   const gapBg = feedback === 'correct'
     ? t.correctBg
     : feedback === 'wrong'
@@ -590,16 +585,6 @@ function FillGapMode({ item, onResult, onAdvance, speakAnswer }: FillGapProps) {
           >
             <Text style={[styles.resultActionText, { color: t.correctText, fontSize: f.body }]}>
               {triLang(lang, { ru: 'Готово →', uk: 'Готово →', es: 'Listo →', 'pt-BR': 'Concluído →', vi: 'Xong →', id: 'Selesai →', tr: 'Tamam →', pl: 'Gotowe →' })}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={retry}
-            style={[styles.resultActionButton, { backgroundColor: t.bgSurface2 }]}
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Повторить эту фразу ещё раз', uk: 'Повторити цю фразу ще раз', es: 'Repetir esta frase otra vez', 'pt-BR': 'Repetir esta frase mais uma vez', vi: 'Lặp lại câu này một lần nữa', id: 'Ulangi frasa ini sekali lagi', tr: 'Bu ifadeyi tekrar et', pl: 'Powtórz tę frazę jeszcze raz' })}
-          >
-            <Text style={[styles.resultActionText, { color: t.textPrimary, fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Повторить ещё раз', uk: 'Повторити ще раз', es: 'Repetir otra vez', 'pt-BR': 'Repetir mais uma vez', vi: 'Lặp lại lần nữa', id: 'Ulangi sekali lagi', tr: 'Tekrar et', pl: 'Powtórz jeszcze raz' })}
             </Text>
           </TouchableOpacity>
         </View>

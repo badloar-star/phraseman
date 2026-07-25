@@ -244,4 +244,67 @@ describe('buildTrainerFillGapOptions', () => {
     expect(source).toContain('buildTrainerFillGapOptions');
     expect(source).not.toContain('function buildFillGapOptions');
   });
+
+  it('does not offer a near-synonym adjective ("glad"/"pleased") as a distractor for "happy"', () => {
+    // WORD_POOLS_L1.adjectives itself has no "glad"/"pleased" entries, so force
+    // the scenario via sourceDistractors (still exercises the same synonym-cluster
+    // filter that also guards the generic CATEGORY_POOLS fallback).
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'happy',
+      phrase: 'She is happy today',
+      category: 'adjective',
+      sourceDistractors: ['glad', 'pleased', 'big', 'tall'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('happy');
+    for (const nearSynonym of ['glad', 'pleased']) {
+      expect(options).not.toContain(nearSynonym);
+    }
+  });
+
+  it('keeps unrelated adjectives (big, tall) as valid distractors for "happy"', () => {
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'happy',
+      phrase: 'She is happy today',
+      category: 'adjective',
+      sourceDistractors: ['glad', 'pleased', 'big', 'tall'],
+      shuffle: false,
+    });
+
+    expect(options).toEqual(expect.arrayContaining(['big', 'tall']));
+  });
+
+  it('does not offer a same-cluster adjective from the generic pool fallback ("terrible" for "awful")', () => {
+    // Both "terrible" and "awful" are present in WORD_POOLS_L1.adjectives, so this
+    // exercises the CATEGORY_POOLS fallback path directly (no sourceDistractors).
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'awful',
+      phrase: 'The weather was awful',
+      category: 'adjective',
+      shuffle: false,
+    });
+
+    expect(options).toContain('awful');
+    expect(options).not.toContain('terrible');
+  });
+
+  it('does not offer a near-synonym verb ("purchase"-like "buy"/"get") pair across sourceDistractors', () => {
+    // "get" and "buy" are both plausible near-synonyms in casual usage for
+    // acquiring something; force via sourceDistractors since exact pool overlap
+    // for this cluster isn't guaranteed to hit the fallback path.
+    const options = buildTrainerFillGapOptions({
+      correctWord: 'big',
+      phrase: 'That is a big house',
+      category: 'adjective',
+      sourceDistractors: ['large', 'huge', 'small', 'old'],
+      shuffle: false,
+    });
+
+    expect(options).toContain('big');
+    for (const nearSynonym of ['large', 'huge']) {
+      expect(options).not.toContain(nearSynonym);
+    }
+    expect(options).toEqual(expect.arrayContaining(['small', 'old']));
+  });
 });

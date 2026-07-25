@@ -98,6 +98,53 @@ function pronounSubjectGroup(pronounKey: string): PronounAgreement | null {
   return null;
 }
 
+// зачем: категорийные пулы (adjectives/adverbs/verbs) заполняют недостающие
+// дистракторы словами того же типа речи, но некоторые пары внутри пула —
+// почти синонимы (awful/terrible, happy/glad) и одинаково подходят по смыслу,
+// из-за чего юзер видит два "правильных на вид" варианта. Кластеры ниже — это
+// курируемый список близких синонимов среди слов, которые реально есть в
+// WORD_POOLS_L1 (adjectives/adverbs/verbs), не общий словарь синонимов.
+const SYNONYM_CLUSTERS: readonly (readonly string[])[] = [
+  ['happy', 'glad', 'pleased'],
+  ['big', 'large', 'huge'],
+  ['small', 'little', 'tiny'],
+  ['fast', 'quick', 'rapid'],
+  ['sad', 'upset', 'unhappy'],
+  ['good', 'great', 'nice'],
+  ['bad', 'terrible', 'awful'],
+  ['easy', 'simple'],
+  ['hard', 'difficult', 'tough'],
+  ['tired', 'exhausted'],
+  ['scared', 'afraid', 'frightened'],
+  ['angry', 'mad', 'furious'],
+  ['smart', 'clever', 'intelligent'],
+  ['beautiful', 'lovely', 'gorgeous'],
+  ['important', 'significant'],
+  ['quickly', 'rapidly', 'fast'],
+  ['often', 'frequently'],
+  ['always', 'constantly'],
+  ['buy', 'purchase', 'get'],
+  ['begin', 'start'],
+  ['finish', 'complete', 'end'],
+  ['show', 'demonstrate'],
+  ['help', 'assist'],
+  ['want', 'wish', 'desire'],
+  ['like', 'enjoy', 'love'],
+];
+
+const SYNONYM_CLUSTER_BY_WORD: Map<string, number> = new Map();
+SYNONYM_CLUSTERS.forEach((cluster, clusterIndex) => {
+  cluster.forEach((word) => {
+    SYNONYM_CLUSTER_BY_WORD.set(normalizeTokenKey(word), clusterIndex);
+  });
+});
+
+function isSynonymOfCorrect(candidateKey: string, correctKey: string): boolean {
+  const candidateCluster = SYNONYM_CLUSTER_BY_WORD.get(candidateKey);
+  if (candidateCluster === undefined) return false;
+  return SYNONYM_CLUSTER_BY_WORD.get(correctKey) === candidateCluster;
+}
+
 const PLACE_NOUNS = new Set([
   ...WORD_POOLS_L1.places.map((word) => normalizeTokenKey(word)),
   'airport',
@@ -248,6 +295,17 @@ function fillGapSlotContext(phrase: string, correctKey: string): FillGapSlotCont
 
 function isLikelyAlsoValidInSlot(candidateKey: string, correctKey: string, category: WordCategory, context: FillGapSlotContext): boolean {
   const lemma = simpleLemma(candidateKey);
+  // зачем: близкий синоним верного слова одинаково хорошо подходит по смыслу в
+  // любом контексте — это не дистрактор, а второй "правильный" ответ, который
+  // путает юзера. Проверяем ДО остальных category-specific правил и для всех
+  // content-word категорий (verb/noun/adjective/adverb), т.к. кластеры выше
+  // покрывают именно эти части речи.
+  if (
+    (category === 'verb' || category === 'noun' || category === 'adjective' || category === 'adverb') &&
+    isSynonymOfCorrect(candidateKey, correctKey)
+  ) {
+    return true;
+  }
   if (category === 'verb' && context.next && OBJECT_PRONOUNS.has(context.next)) {
     return PLAUSIBLE_OBJECT_VERBS.has(lemma);
   }

@@ -241,7 +241,6 @@
     "expo-web-browser": "~15.0.11",
     "fast-xml-parser": "^5.8.0",
     "hammerjs": "2.0.8",
-    "lottie-react-native": "~7.3.1",
     "posthog-react-native": "^4.46.19",
     "react": "19.1.0",
     "react-dom": "19.1.0",

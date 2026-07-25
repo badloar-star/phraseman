@@ -29,6 +29,7 @@ import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
+import { loadFlashcardStatuses, type FlashcardStatusMap } from './flashcards/cardStatus';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -295,6 +296,22 @@ export default function FlashcardsScreen() {
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const flashcardsTarget = flashcardsCacheTarget(studyTarget);
+
+  // зачем (макет B1 `.cdot`): статусы изучения для цветных точек в списке.
+  // FIREBASE: читаем только локальный AsyncStorage (тот же ключ, что пишет
+  // свайп-тренировка) — ноль запросов к Firestore. Обновляем на фокусе, чтобы
+  // после тренировки точки были свежими, но не чаще: список не должен
+  // перечитывать хранилище на каждый ре-рендер.
+  const [cardStatuses, setCardStatuses] = useState<FlashcardStatusMap>({});
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      void loadFlashcardStatuses(flashcardsTarget).then((map) => {
+        if (!cancelled) setCardStatuses(map);
+      });
+      return () => { cancelled = true; };
+    }, [flashcardsTarget]),
+  );
   const savedCardsCache = _savedCardsCacheByTarget[flashcardsTarget] ?? null;
   const customCardsCache = _customCardsCacheByTarget[flashcardsTarget] ?? null;
   const strLang: Lang = lang;
@@ -1948,6 +1965,7 @@ export default function FlashcardsScreen() {
               <FlashcardListItem
                 item={item}
                 itemIdx={itemIdx}
+                status={cardStatuses[item.id]}
                 lang={cardContentLang}
                 activeCat={activeCat}
                 isPremium={isPremium}

@@ -24,6 +24,7 @@ import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
+import { FLASHCARD_STATUS_COLOR, FLASHCARD_STATUS_A11Y_LABEL, type FlashcardStatus } from './cardStatus';
 
 const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
@@ -90,6 +91,11 @@ const speechLocaleForFlashcardBack = (lang: FlashcardContentLang): string => {
 type Props = {
   item: CardItem;
   itemIdx: number;
+  /**
+   * Статус изучения для цветной точки (макет B1 `.cdot`).
+   * undefined — точку не рисуем (статусы ещё не загрузились или выключены).
+   */
+  status?: FlashcardStatus;
   lang: FlashcardContentLang;
   activeCat: CategoryId;
   isPremium: boolean;
@@ -140,6 +146,7 @@ type Props = {
 function FlashcardListItemImpl({
   item,
   itemIdx,
+  status,
   lang,
   activeCat,
   isPremium,
@@ -831,13 +838,36 @@ function FlashcardListItemImpl({
                   <Text style={{ color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 0.4 }}>DEV PACK</Text>
                 </View>
               )}
+              {/* зачем: §0.D — кромка бейджа источника снята, разделение
+                  держит более плотная заливка того же тона (22 → 33). */}
               {showSourceBadge && (
-                <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
+                <View style={[sourceBadgeStyle, { backgroundColor: `${srcBadgeColor}33`, borderWidth: 0, borderColor: 'transparent' }]}>
                   <Text style={[sourceBadgeTextStyle, { color: srcBadgeColor }]}>
                     {srcLabel}
                     {item.sourceId ? ` ${item.sourceId}` : ''}
                   </Text>
                 </View>
+              )}
+              {/* зачем (макет B1 `.cdot`): все карточки в списке выглядели
+                  одинаково — нельзя было понять, что освоено, а что
+                  проваливается. Прогресс копился в тренировке и нигде не
+                  показывался. Точка в углу даёт статус боковым зрением.
+                  Цвета — §4.3; статус дублируется меткой для скринридера. */}
+              {status && (
+                <View
+                  pointerEvents="none"
+                  accessible
+                  accessibilityLabel={FLASHCARD_STATUS_A11Y_LABEL[status]}
+                  style={{
+                    position: 'absolute',
+                    top: 10,
+                    right: 10,
+                    width: 8,
+                    height: 8,
+                    borderRadius: 999,
+                    backgroundColor: FLASHCARD_STATUS_COLOR[status],
+                  }}
+                />
               )}
               <ScrollView
                 style={{ maxHeight: frontTextMaxH, width: '100%' }}

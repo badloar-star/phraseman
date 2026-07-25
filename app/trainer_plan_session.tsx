@@ -45,7 +45,7 @@ export default function TrainerPlanSession() {
           messageEs: 'French trainer is still behind source gate.',
         });
         markNextNavigationAsReplace();
-        router.replace('/(tabs)/lessons' as any);
+        router.replace('/lesson_menu' as any);
         return;
       }
 

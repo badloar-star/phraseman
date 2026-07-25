@@ -3761,7 +3761,7 @@ export default function LessonScreen() {
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/(tabs)/lessons' as any)}
+              onPress={() => router.replace('/lesson_menu' as any)}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >

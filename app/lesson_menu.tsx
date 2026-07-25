@@ -1143,7 +1143,7 @@ export default function LessonMenu() {
           <PremiumCard level={1} onPress={()=>{
             hapticTap();
             // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-            safeRouterBack(router, '/(tabs)/lessons' as any);
+            safeRouterBack(router, '/(tabs)/home' as any);
           }}
             style={{width:38,height:38,borderRadius:19}}
             innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -1251,7 +1251,7 @@ export default function LessonMenu() {
         <PremiumCard testID="lesson-menu-back" level={1} onPress={()=>{
           hapticTap();
           // Safe-back: после онбординга стек может быть пуст — возвращаемся на список уроков.
-          safeRouterBack(router, '/(tabs)/lessons' as any);
+          safeRouterBack(router, '/(tabs)/home' as any);
         }}
           style={{width:38,height:38,borderRadius:19}}
           innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}

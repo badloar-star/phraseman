@@ -14,9 +14,10 @@ describe('compassTaskRoute', () => {
     expect(r.params).toEqual({ id: '5' });
   });
 
-  it('routes lesson_dive without focus to lessons tab', () => {
+  // 2026-07-25: таб «Уроки» заменён «Журналом» — список уроков теперь /lesson_menu.
+  it('routes lesson_dive without focus to lesson menu', () => {
     const r = compassTaskRoute(task({ kind: 'lesson_dive' }), day);
-    expect(r.pathname).toBe('/(tabs)/lessons');
+    expect(r.pathname).toBe('/lesson_menu');
     expect(r.params).toBeUndefined();
   });
 

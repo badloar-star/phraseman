@@ -2018,10 +2018,9 @@ export default function HomeScreen() {
     };
     const weekDays = HOME_WEEK_DAYS[lang] ?? HOME_WEEK_DAYS.ru;
     const todayIdx = (new Date().getDay() + 6) % 7;
-    /** Индексы табов: 0 home, 1 lessons, 2 friends, 3 settings — см. app/(tabs)/_layout.tsx */
+    /** Индексы табов: 0 home, 1 journal, 2 friends, 3 settings — см. app/(tabs)/_layout.tsx.
+     *  Уроки больше не таб: список — полноэкранный /lesson_menu. */
     const TAB_IDX: Record<string, number> = {
-        '/(tabs)/lessons': 1,
-        lessons: 1,
         '/(tabs)/friends': 2,
         friends: 2,
         '/(tabs)/settings': 3,

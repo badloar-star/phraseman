@@ -64,7 +64,10 @@ let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
 function loadLessonsScreen(): TabScreenComponent {
-  deferredLessonsScreen ??= (require('./lessons') as DeferredTabModule).default;
+  // зачем: таб 1 = «Журнал» (раздел статистики) по решению владельца; уроки
+  // дня — на главной, полный список — /lesson_menu. Имя лоадера сохранено,
+  // чтобы не трогать privacy-boundary вокруг таба.
+  deferredLessonsScreen ??= (require('./journal') as DeferredTabModule).default;
   return deferredLessonsScreen;
 }
 
@@ -281,18 +284,20 @@ type TabDef = {
   active: IconName;
 };
 
-/** Суффиксы путей четырёх основных табов (список уроков — `lessons.tsx`, не `index.tsx`). */
-const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/friends', '/settings'] as const;
+/** Суффиксы путей четырёх основных табов. Таб 1 — «Журнал» (статистика);
+ *  legacy-суффикс `/lessons` оставлен в маппинге, чтобы старые диплинки не терялись. */
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
+  '/journal': 1,
   '/lessons': 1,
   '/friends': 2,
   '/settings': 3,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
-  1: '/(tabs)/lessons',
+  1: '/(tabs)/journal',
   2: '/(tabs)/friends',
   3: '/(tabs)/settings',
 };
@@ -362,6 +367,7 @@ const TAB_DARK_ACTIVE_BORDER_ALPHA = 0.32;
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
+  journal: 1,
   lessons: 1,
   friends: 2,
   settings: 3,
@@ -413,10 +419,10 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
 const TABS: TabDef[] = [
-  { key: 'home',     icon: 'home-outline',     active: 'home' },
-  { key: 'index',    icon: 'book-outline',     active: 'book' },
-  { key: 'friends',  icon: 'people-outline',   active: 'people' },
-  { key: 'settings', icon: 'settings-outline', active: 'settings' },
+  { key: 'home',     icon: 'home-outline',        active: 'home' },
+  { key: 'index',    icon: 'stats-chart-outline', active: 'stats-chart' },
+  { key: 'friends',  icon: 'people-outline',      active: 'people' },
+  { key: 'settings', icon: 'settings-outline',    active: 'settings' },
 ];
 
 

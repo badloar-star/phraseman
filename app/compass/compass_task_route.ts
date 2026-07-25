@@ -29,7 +29,7 @@ export function compassTaskRoute(task: CompassTask, _day: CompassDay | null): Co
       // focus = id рекомендованного урока (строка). Без id — общий список уроков.
       return task.focus
         ? { pathname: '/lesson_menu', params: { id: task.focus } }
-        : { pathname: '/(tabs)/lessons' };
+        : { pathname: '/lesson_menu' };
     case 'mistake_repair':
       // Разбор фраз ведёт в актуальную «Мою практику» (/trainer). Прямой заход в
       // /problem_coach (старая микро-очередь по microDiagnosisId) убран: тренажёр

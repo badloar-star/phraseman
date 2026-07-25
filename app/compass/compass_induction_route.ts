@@ -10,7 +10,7 @@
  *  - level_test  → /diagnostic_test     (lessons.tsx:1125, daily_tasks_screen.tsx:2098)
  *  - dialogs     → /ai_dialog_home      (_admin_settings_testers.tsx:3403)
  *  - flashcards  → /flashcards_swipe     (как в compass_task_route)
- *  - lessons     → /(tabs)/lessons      (как в compass_task_route)
+ *  - lessons     → /lesson_menu         (как в compass_task_route; таб уроков заменён Журналом)
  *  - daily_tasks → /daily_tasks_screen  (_admin_settings_testers.tsx:4778)
  *
  * ИЗОЛЯЦИЯ: модуль не читает сигналы и не зависит от состояния — только маппинг.
@@ -28,12 +28,12 @@ export function compassInductionRoute(feature: CompassInductionFeature): Compass
     case 'flashcards':
       return { pathname: '/flashcards_swipe' };
     case 'lessons':
-      return { pathname: '/(tabs)/lessons' };
+      return { pathname: '/lesson_menu' };
     case 'daily_tasks':
       return { pathname: '/daily_tasks_screen' };
     default:
       // Неизвестная фича (на будущее) — безопасный общий вход.
-      return { pathname: '/(tabs)/lessons' };
+      return { pathname: '/lesson_menu' };
   }
 }
 

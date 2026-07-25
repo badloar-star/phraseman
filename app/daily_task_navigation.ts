@@ -35,7 +35,7 @@ type NavigateDailyTaskInput = {
 
 export async function navigateDailyTask({ lang, router, studyTarget, task }: NavigateDailyTaskInput): Promise<void> {
   if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
-    router.replace('/(tabs)/lessons' as any);
+    router.replace('/lesson_menu' as any);
     return;
   }
 
@@ -50,7 +50,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         messageUk: 'French урок ще на source gate. English фрази не відкриватимуться як заміна.',
         messageEs: 'French lesson is still behind source gate.',
       });
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       return;
     }
     await primeLessonScreenFromStorage(lessonId, studyTarget);
@@ -66,7 +66,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         messageUk: copy.title,
         messageEs: 'French diagnostic is still behind source gate.',
       });
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       return;
     }
     router.push('/diagnostic_test');
@@ -96,7 +96,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         messageUk: copy.title,
         messageEs: 'French trainer is still behind source gate.',
       });
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       return;
     }
     if (route === '/trainer') {
@@ -121,7 +121,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
         messageUk: copy.title,
         messageEs: 'French flashcards are still behind source gate.',
       });
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       return;
     }
     router.push('/flashcards');
@@ -142,7 +142,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
 
   switch (task.type) {
     case 'different_lessons':
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       break;
     case 'total_answers':
     case 'correct_streak':
@@ -181,7 +181,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
           messageUk: 'French теорія відкриється після source gate. English theory не підставляється.',
           messageEs: 'French theory is still behind source gate.',
         });
-        router.replace('/(tabs)/lessons' as any);
+        router.replace('/lesson_menu' as any);
         break;
       }
       router.push({ pathname: '/lesson_help', params: { id: lessonId } });
@@ -216,7 +216,7 @@ export async function navigateDailyTask({ lang, router, studyTarget, task }: Nav
     case 'polyglot_day':
       // Программного переключателя языка в проде нет (French включается в настройках) —
       // ведём в список уроков, где пользователь выберет урок второго языка.
-      router.replace('/(tabs)/lessons' as any);
+      router.replace('/lesson_menu' as any);
       break;
     case 'streak_freeze_use':
       router.push('/streak_stats' as any);

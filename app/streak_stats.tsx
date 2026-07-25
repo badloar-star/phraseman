@@ -3094,7 +3094,9 @@ function RecentAchievementsCard({
     </TouchableOpacity>);
 }
 
-export default function StreakStats() {
+// зачем: раздел статистики переезжает на вкладку таббара «Журнал» (решение
+// владельца); embedded скрывает кнопку «назад» — у таба её быть не должно.
+export default function StreakStats({ embedded = false }: { embedded?: boolean } = {}) {
     const statsRuntimeActive = useRuntimeActive();
     const router = useRouter();
     const insets = useStableSafeAreaInsets();
@@ -3701,18 +3703,18 @@ export default function StreakStats() {
       <Reanimated.View style={[{ flex: 1 }, bouncyStyle]}>
       <View style={{ paddingHorizontal: 15, paddingTop: Platform.OS === 'android' ? 28 : 15, paddingBottom: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-        <TapScale
+        {!embedded && (<TapScale
           onPress={() => {
             safeRouterBack(router, '/(tabs)/home' as any);
           }}
           hitSlop={10}
         >
           <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
-        </TapScale>
+        </TapScale>)}
         <FlowText
           testID="stats-header-title"
           provenance="authored"
-          style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: 8, flex: 1 }}
+          style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginLeft: embedded ? 0 : 8, flex: 1 }}
         >
           {triLang(lang, {
             ru: 'Твои результаты',

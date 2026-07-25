@@ -923,7 +923,7 @@ export default function LessonComplete() {
     void (async () => {
       const canApply = await canApplyCompletionRewards();
       if (!canApply) {
-        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/(tabs)/lessons' as any);
+        if (!cancelled && frenchStudyActive(studyTarget)) router.replace('/lesson_menu' as any);
         return;
       }
       grantBonus();

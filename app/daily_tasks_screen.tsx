@@ -2869,7 +2869,7 @@ export default function DailyTasksScreen() {
     // Счётчик и знаменатель учитывают опрос как 4-е задание, когда он активен.
     const handleTaskNav = async (task: DailyTask) => {
         if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) {
-            router.replace('/(tabs)/lessons' as any);
+            router.replace('/lesson_menu' as any);
             return;
         }
         const lastLesson = await AsyncStorage.getItem(lastOpenedLessonKey(studyTarget));
@@ -2882,7 +2882,7 @@ export default function DailyTasksScreen() {
                     messageUk: 'French урок ще на source gate. English фрази не відкриватимуться як заміна.',
                     messageEs: 'French lesson is still behind source gate.',
                 });
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 return;
             }
             await primeLessonScreenFromStorage(lessonId, studyTarget);
@@ -2897,7 +2897,7 @@ export default function DailyTasksScreen() {
                     messageUk: copy.title,
                     messageEs: 'French diagnostic is still behind source gate.',
                 });
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 return;
             }
             router.push('/diagnostic_test');
@@ -2925,7 +2925,7 @@ export default function DailyTasksScreen() {
                     messageUk: copy.title,
                     messageEs: 'French trainer is still behind source gate.',
                 });
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 return;
             }
             if (route === '/trainer') {
@@ -2949,7 +2949,7 @@ export default function DailyTasksScreen() {
                     messageUk: copy.title,
                     messageEs: 'French flashcards are still behind source gate.',
                 });
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 return;
             }
             router.push('/flashcards');
@@ -2969,7 +2969,7 @@ export default function DailyTasksScreen() {
         switch (task.type) {
             case 'different_lessons':
                 // "Заниматься в N разных уроках" — отправляем в список, чтобы пользователь мог выбрать другой урок.
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 break;
             case 'total_answers':
             case 'correct_streak':
@@ -3008,7 +3008,7 @@ export default function DailyTasksScreen() {
                         messageUk: 'French теорія відкриється після source gate. English theory не підставляється.',
                         messageEs: 'French theory is still behind source gate.',
                     });
-                    router.replace('/(tabs)/lessons' as any);
+                    router.replace('/lesson_menu' as any);
                     break;
                 }
                 router.push({ pathname: '/lesson_help', params: { id: lessonId } });
@@ -3045,7 +3045,7 @@ export default function DailyTasksScreen() {
             case 'polyglot_day':
                 // Программного переключателя языка в проде нет (French включается в настройках) —
                 // ведём в список уроков, где пользователь выберет урок второго языка.
-                router.replace('/(tabs)/lessons' as any);
+                router.replace('/lesson_menu' as any);
                 break;
             case 'streak_freeze_use':
                 router.push('/streak_stats' as any);

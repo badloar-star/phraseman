@@ -39,7 +39,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { scheduleOnRN } from 'react-native-worklets';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// зачем: сырой useSafeAreaInsets отдаёт 0 до прихода нативных метрик — хедер и лента
+// прыгали на первом кадре. Стабильная обёртка знает инсеты синхронно
+// (контракт tests/stable_safe_area_initial_metrics_contract.test.ts).
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useTheme } from '../components/ThemeContext';
 import { CINEMA, cinemaAlpha, isCinemaMode } from '../constants/cinemaThemes';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
@@ -94,7 +97,7 @@ export default function RouletteScreen() {
   const { lang } = useLang();
   const L = useMemo(() => makeL(lang as Lang), [lang]);
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
   const roulettePolicy = useReferralRoulettePolicy();
   const reduceMotion = useReducedMotion();

@@ -12,7 +12,9 @@ import React from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// зачем: сырой useSafeAreaInsets отдаёт 0 до прихода нативных метрик — контент
+// прыгал на первом кадре (контракт stable_safe_area_initial_metrics_contract).
+import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { CINEMA, cinemaAlpha, isCinemaMode } from '../constants/cinemaThemes';
@@ -28,7 +30,7 @@ function makeL(lang: Lang) {
 export default function RouletteAboutScreen() {
   const { theme: t, f, ds, themeMode } = useTheme();
   const router = useRouter();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
   const rouletteOn = useReferralRouletteEnabled();

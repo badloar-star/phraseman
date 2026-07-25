@@ -69,6 +69,30 @@
     .tab:hover { color: #fff; opacity: 1; background: rgba(255,255,255,0.045); }
     .tab.active { color: var(--acc-soft); border-color: var(--panel-border); background: rgba(255,255,255,0.075); font-weight: 700; opacity: 1; text-shadow: none; }
     .tab-n-badge { display: inline-block; min-width: 17px; text-align: center; border-radius: 10px; padding: 1px 6px; font-size: 10px; font-weight: 800; vertical-align: middle; line-height: 1.25; margin-left: 3px; }
+
+    /* Счётчик чтений Firestore — цена текущего захода в админку.
+       зачем: владелец платит за каждое чтение; раньше расход был невидим.
+       Разделение тоном, без обводок (правило владельца). */
+    .read-meter {
+      position: fixed; right: 14px; bottom: 14px; z-index: 90;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 11.5px; font-variant-numeric: tabular-nums;
+      background: rgba(18,18,26,0.92); backdrop-filter: blur(8px);
+      border-radius: 10px; box-shadow: 0 6px 22px rgba(0,0,0,0.42);
+      color: #9ca3af; cursor: pointer; user-select: none;
+      transition: color .15s ease-out, background .15s ease-out;
+    }
+    .read-meter:hover { color: #e5e7eb; background: rgba(26,26,36,0.96); }
+    .read-meter-head { padding: 7px 12px; display: flex; align-items: center; gap: 7px; }
+    .read-meter-dot { width: 6px; height: 6px; border-radius: 50%; background: #4ade80; flex: none; }
+    .read-meter.is-warm .read-meter-dot { background: #fbbf24; }
+    .read-meter.is-hot .read-meter-dot { background: #f87171; }
+    .read-meter-num { font-weight: 800; color: #e5e7eb; }
+    .read-meter-body { display: none; padding: 2px 12px 10px; max-height: 46vh; overflow-y: auto; }
+    .read-meter.open .read-meter-body { display: block; }
+    .read-meter-row { display: flex; justify-content: space-between; gap: 16px; padding: 3px 0; color: #9ca3af; }
+    .read-meter-row b { color: #d1d5db; font-weight: 700; }
+    @media (prefers-reduced-motion: reduce) { .read-meter { transition: none; } }
     .admin-tab-main { display: inline-flex; align-items: center; gap: 8px; min-width: 0; flex: 1 1 auto; }
     .admin-tab-icon { width: 18px; height: 18px; flex: 0 0 18px; display: inline-flex; align-items: center; justify-content: center; color: #8b949e; opacity: 0.92; }
     .admin-tab-icon svg { width: 18px; height: 18px; display: block; stroke: currentColor; }
@@ -9526,6 +9550,16 @@
   <a class="tab" href="/v2.html" target="_blank" rel="noopener" title="Открыть новую админку: Офис агентов, Центр монет, Фабрика языков, Брифинг" style="text-decoration:none;background:rgba(183,227,91,0.10);border:1px solid rgba(183,227,91,0.35);color:#b7e35b;font-weight:700">V2 →</a>
 </div>
 
+<!-- Счётчик чтений Firestore: цена текущего захода, клик — разбивка по разделам -->
+<div id="read-meter" class="read-meter" style="display:none" onclick="toggleReadMeter()" title="Чтений базы за текущий заход. Клик — разбивка по разделам.">
+  <div class="read-meter-head">
+    <span class="read-meter-dot"></span>
+    <span class="read-meter-num" id="read-meter-num">0</span>
+    <span>чтений</span>
+  </div>
+  <div class="read-meter-body" id="read-meter-body"></div>
+</div>
+
 <div id="stats-bar" style="display:none">
   <div class="stats">
     <div class="stat-card"><div class="label" data-i18n-es="Total">Total</div><div class="value" id="s-total">—</div></div>
@@ -12697,7 +12731,7 @@
 <script src="french-daily-phrases-admin.js"></script>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot, documentId } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getFirestore, collection, collectionGroup, getDocs as _fsGetDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc as _fsGetDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot, documentId } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
@@ -12714,6 +12748,63 @@
   const app = initializeApp(await resolveFirebaseConfig());
   const db = getFirestore(app);
   const auth = getAuth(app);
+
+  // ── Счётчик чтений Firestore ────────────────────────────────────────────────
+  // зачем: владелец платит за каждое чтение, но раньше цена захода была невидима.
+  // Оборачиваем getDocs/getDoc один раз (вместо правки 150+ мест вызова) и копим
+  // статистику по разделам — какой раздел сколько съел. Только счётчик в памяти,
+  // никаких дополнительных запросов и записей.
+  window._readStats = { total: 0, byTab: {} };
+  function _countReads(n) {
+    const tab = window._currentAdminTab || 'старт';
+    window._readStats.total += n;
+    window._readStats.byTab[tab] = (window._readStats.byTab[tab] || 0) + n;
+    if (typeof window.renderReadMeter === 'function') window.renderReadMeter();
+  }
+  async function getDocs(...args) {
+    const snap = await _fsGetDocs(...args);
+    // пустой результат всё равно тарифицируется как одно чтение
+    _countReads(Math.max(1, snap.size || 0));
+    return snap;
+  }
+  async function getDoc(...args) {
+    const snap = await _fsGetDoc(...args);
+    _countReads(1);
+    return snap;
+  }
+
+  // Отрисовка счётчика. Обновление скидываем в rAF — чтобы серия быстрых
+  // запросов не дёргала DOM на каждом ответе.
+  let _readMeterRaf = 0;
+  window.renderReadMeter = function() {
+    if (_readMeterRaf) return;
+    _readMeterRaf = requestAnimationFrame(() => {
+      _readMeterRaf = 0;
+      const box = document.getElementById('read-meter');
+      const num = document.getElementById('read-meter-num');
+      if (!box || !num) return;
+      const total = window._readStats.total;
+      box.style.display = total > 0 ? 'block' : 'none';
+      num.textContent = total.toLocaleString('ru-RU');
+      // Порог «дорого»: заход дороже 2000 чтений стоит заметить.
+      box.classList.toggle('is-warm', total >= 800 && total < 2000);
+      box.classList.toggle('is-hot', total >= 2000);
+      if (!box.classList.contains('open')) return;
+      const rows = Object.entries(window._readStats.byTab).sort((a, b) => b[1] - a[1]);
+      // зачем: словарь названий (ADMIN_CLEAN_TAB_LABELS) объявлен ниже по файлу
+      // через const — прямая ссылка отсюда упала бы в TDZ. Читаем через window,
+      // куда он публикуется, и мягко откатываемся на технический ключ вкладки.
+      const dict = window.ADMIN_CLEAN_TAB_LABELS || {};
+      const label = (k) => dict[k] || k;
+      document.getElementById('read-meter-body').innerHTML = rows
+        .map(([k, v]) => `<div class="read-meter-row"><span>${escapeHtml(label(k))}</span><b>${v.toLocaleString('ru-RU')}</b></div>`)
+        .join('') || '<div class="read-meter-row">пока пусто</div>';
+    });
+  };
+  window.toggleReadMeter = function() {
+    document.getElementById('read-meter')?.classList.toggle('open');
+    window.renderReadMeter();
+  };
   const functionsUs = getFunctions(app, 'us-central1');
   let _fnCommunityModerate = null;
   function getCommunityModerateCallable() {
@@ -16985,6 +17076,9 @@
       return;
     }
     if (!isAdminSwitchableTab(tab)) tab = ADMIN_DEFAULT_TAB;
+    // зачем: счётчик чтений должен относить запросы к тому разделу, который их
+    // вызвал — помечаем ДО загрузки данных вкладки (загрузчики зовутся ниже).
+    window._currentAdminTab = tab;
     const nextHash = '#' + (tab === 'website-inbox' ? 'support' : tab);
     if (options.replaceHash && window.history?.replaceState) {
       if (window.location.hash !== nextHash) window.history.replaceState(null, '', nextHash);
@@ -18257,6 +18351,9 @@
     'app-health': 'App Health',
     'push-notify': 'Push',
   };
+  // зачем: счётчик чтений (объявлен выше по файлу) показывает человекочитаемые
+  // названия разделов в разбивке — ему нужен доступ к этому словарю.
+  window.ADMIN_CLEAN_TAB_LABELS = ADMIN_CLEAN_TAB_LABELS;
 
   const ADMIN_TAB_ICON_PATHS = {
     activity: '<path d="M22 12h-4l-3 8L9 4l-3 8H2"/>',

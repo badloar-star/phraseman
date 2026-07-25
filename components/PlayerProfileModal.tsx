@@ -43,6 +43,7 @@ import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/profile_card_streak_shield';
 import { CLOUD_SYNC_ENABLED, ENABLE_PROFILE_CARD, IS_EXPO_GO } from '../app/config';
 import { readLifetimeProfileStatsCache, loadLifetimeProfileStats } from '../app/lifetime_profile_stats';
@@ -420,6 +421,17 @@ function PlayerProfileModalBody({
   const glassChromeBorder = auroraGlass ? AURORA_GLASS.chromeBorder : t.border;
   const glassChipBg = auroraGlass ? AURORA_GLASS.chipBg : t.bgCard;
   const glassChipBorder = auroraGlass ? AURORA_GLASS.chipBorder : t.border;
+
+  // зачем: владелец не терпит обводок контейнеров — разделяем тоном/тенью/фоном
+  // (хендоф docs/cards-redesign §0.D, приоритет над рамками из HTML-макета).
+  // Акцентная подложка уровня вместо цветной кромки: та же семантика уровня,
+  // читается как материал, а не как рамка.
+  const levelSurface = cardVisual.accentSoft;
+
+  // зачем: A-54/A-55 — модалка не знала про «Уменьшение движения», вечный shimmer
+  // крутился всегда. Теперь один флаг гейтит и цикл, и длительности входа.
+  const reduceMotion = useReduceMotion();
+
   const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
 
   const showAddFriend =
@@ -1164,9 +1176,9 @@ function PlayerProfileModalBody({
               overflow: 'hidden',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: glassChromeBg,
-              borderWidth: 1,
-              borderColor: nextLevelVisual.accentStrong,
+              // зачем: §0.D — вместо цветной кромки уровня даём тонированную
+              // подложку следующего уровня; свечение ниже и так несёт его цвет.
+              backgroundColor: nextLevelVisual.accentSoft,
               shadowColor: nextLevelVisual.shadowColor,
               shadowOpacity: 0.55,
               shadowRadius: 9,
@@ -1199,9 +1211,8 @@ function PlayerProfileModalBody({
               flexDirection: 'row',
               alignItems: 'center',
               gap: 6,
-              backgroundColor: glassChromeBg,
-              borderWidth: 1,
-              borderColor: cardVisual.accentStrong,
+              // зачем: §0.D — пилюля уровня держится тоном акцента, не кромкой.
+              backgroundColor: levelSurface,
               borderRadius: 999,
               paddingHorizontal: 11,
               paddingVertical: 6,
@@ -1273,12 +1284,17 @@ function PlayerProfileModalBody({
               position: 'absolute',
               bottom: -6,
               alignSelf: 'center',
-              backgroundColor: auroraGlass ? 'rgba(8,10,16,0.72)' : t.bgCard,
-              borderWidth: 1,
-              borderColor: cardVisual.accentStrong,
+              // зачем: §0.D — бейдж лежит поверх аватара, поэтому отделяем его
+              // плотной подложкой + тенью вместо акцентной кромки.
+              backgroundColor: auroraGlass ? 'rgba(8,10,16,0.88)' : t.bgCard,
               borderRadius: 999,
               paddingHorizontal: 9,
               paddingVertical: 2,
+              shadowColor: '#000',
+              shadowOpacity: auroraGlass ? 0.5 : 0.18,
+              shadowRadius: 6,
+              shadowOffset: { width: 0, height: 2 },
+              elevation: 4,
             }}>
               <Text style={{ color: cardVisual.accent, fontSize: 10.5, fontWeight: '800', letterSpacing: 0.7 }}>
                 LV {level}
@@ -1950,13 +1966,24 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const [friendToast, setFriendToast] = useState<string | null>(null);
   const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
 
+  // зачем: A-54/A-55 — внешняя оболочка модалки владеет вечным shimmer и
+  // анимацией входа; флаг нужен здесь отдельно от внутренней карточки.
+  const reduceMotion = useReduceMotion();
+
   // Только `player` с родителя — никакого «снимка» после onClose. Иначе на Android
   // прозрачный Modal с visible=true оставался невидимым перехватчиком касаний.
   const modalOpen = !!player;
 
-  // Gold shimmer — пока открыт профиль
+  // Gold shimmer — пока открыт профиль.
+  // зачем: A-6/A-54 — вечный цикл раньше крутился всегда, даже при системном
+  // «Уменьшении движения». Теперь при reduce-motion показываем статичный кадр
+  // на полной непрозрачности вместо пульсации (гасим цикл, не элемент).
   useEffect(() => {
     if (!player) {
+      return;
+    }
+    if (reduceMotion) {
+      shimmerAnim.setValue(1);
       return;
     }
     const loop = Animated.loop(
@@ -1967,7 +1994,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     );
     loop.start();
     return () => loop.stop();
-  }, [player, shimmerAnim]);
+  }, [player, shimmerAnim, reduceMotion]);
 
   // Сброс при полном закрытии
   useEffect(() => {
@@ -1998,14 +2025,18 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
 
     slideAnim.stopAnimation();
     fadeAnim.stopAnimation();
+    // зачем: A-55 — при «Уменьшении движения» вход не отменяем (иначе модалка
+    // возникает рывком), а сжимаем до 150мс и убираем выезд снизу: остаётся
+    // мягкий кросс-фейд на месте.
+    if (reduceMotion) slideAnim.setValue(0);
     Animated.parallel([
       Animated.timing(slideAnim, {
         toValue: 0,
-        duration: 300,
+        duration: reduceMotion ? 0 : 300,
         easing: Easing.out(Easing.cubic),
         useNativeDriver: true,
       }),
-      Animated.timing(fadeAnim, { toValue: 1, duration: 220, useNativeDriver: true }),
+      Animated.timing(fadeAnim, { toValue: 1, duration: reduceMotion ? 150 : 220, useNativeDriver: true }),
     ]).start();
 
     let cancelled = false;
@@ -2038,7 +2069,7 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       cancelled = true;
       task?.cancel?.();
     };
-  }, [player, fadeAnim, slideAnim]);
+  }, [player, fadeAnim, slideAnim, reduceMotion]);
 
   const handleClose = useCallback(() => {
     onClose();

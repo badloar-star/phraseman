@@ -3089,7 +3089,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
         <TouchableOpacity
           testID="lesson-words-complete-back"
           style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
-          onPress={() => safeRouterBack(router, '/lesson_menu')}
+          onPress={() => safeRouterBack(router, '/(tabs)/lessons')}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{pickTriLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← A la lección', 'pt-BR': '← Para a lição', vi: '← Về bài học', id: '← Ke pelajaran', tr: '← Derse', pl: '← Do lekcji' })}</Text>
         </TouchableOpacity>
@@ -3612,7 +3612,7 @@ export default function LessonWords() {
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}>
+        <TapScale testID="lesson-words-header-back" onPress={() => safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any)}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TapScale>
         <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1}>{ws.title(lessonId)}</Text>
@@ -3623,7 +3623,7 @@ export default function LessonWords() {
         {frenchVocabularyBlocked ? (
           <FrenchVocabularyUnavailable
             lang={lang}
-            onBack={() => router.replace({ pathname: '/lesson_menu', params: { id: String(lessonId) } } as any)}
+            onBack={() => router.replace({ pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any)}
           />
         ) : frenchRemoteWordsLoading ? (
           <View testID="lesson-words-french-remote-loading" style={{ flex:1, justifyContent:'center', alignItems:'center', padding:20 }}>

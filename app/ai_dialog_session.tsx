@@ -1255,7 +1255,7 @@ export default function AiDialogSession() {
             accessibilityRole="button"
             onPress={() => {
               hapticTap();
-              router.replace('/lesson_menu' as any);
+              router.replace('/(tabs)/lessons' as any);
             }}
             style={{
               marginTop: 22,
@@ -1717,9 +1717,31 @@ export default function AiDialogSession() {
                         const isTranslating = translatingIdx === i;
                         const hasTranslation = translations[i] != null;
                         const isFlipped = flipped[i] === true;
-                        // Скрываем кнопку только у НЕ открытых реплик при исчерпанном лимите.
+                        // зачем: раньше кнопка при исчерпанном лимите просто ИСЧЕЗАЛА —
+                        // пользователь читал это как поломку («в последней реплике нет
+                        // перевода»), потому что не знал про лимит 3 перевода на диалог.
+                        // Теперь вместо пустоты — спокойная подпись с причиной, без кнопки.
                         if (!shouldShowTranslateButton(hasTranslation, translateUsed, TRANSLATE_LIMIT_PER_DIALOG)) {
-                          return null;
+                          return (
+                            <View
+                              style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 8, alignSelf: 'flex-start' }}
+                              accessibilityRole="text"
+                            >
+                              <Ionicons name="lock-closed-outline" size={13} color={t.textMuted} />
+                              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
+                                {triLang(lang, {
+                                  ru: `Переводы на диалог: ${TRANSLATE_LIMIT_PER_DIALOG} из ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  uk: `Переклади на діалог: ${TRANSLATE_LIMIT_PER_DIALOG} з ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  es: `Traducciones por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  'pt-BR': `Traduções por diálogo: ${TRANSLATE_LIMIT_PER_DIALOG} de ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  vi: `Bản dịch mỗi hội thoại: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  id: `Terjemahan per dialog: ${TRANSLATE_LIMIT_PER_DIALOG} dari ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  tr: `Diyalog başına çeviri: ${TRANSLATE_LIMIT_PER_DIALOG}/${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                  pl: `Tłumaczenia na dialog: ${TRANSLATE_LIMIT_PER_DIALOG} z ${TRANSLATE_LIMIT_PER_DIALOG}`,
+                                })}
+                              </Text>
+                            </View>
+                          );
                         }
                         if (isTranslating) {
                           return (

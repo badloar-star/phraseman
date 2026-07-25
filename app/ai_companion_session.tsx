@@ -190,7 +190,7 @@ export default function AiCompanionSession() {
             accessibilityRole="button"
             onPress={() => {
               hapticTap();
-              router.replace('/lesson_menu' as any);
+              router.replace('/(tabs)/lessons' as any);
             }}
             style={{
               marginTop: 22,

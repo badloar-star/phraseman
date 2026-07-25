@@ -2223,9 +2223,9 @@ export const setupNotificationTapHandler = (
         case 'inactive_long':
           scheduleNav(() => {
             if (typeof router.replace === 'function') {
-              router.replace('/lesson_menu' as any);
+              router.replace('/(tabs)/lessons' as any);
             } else {
-              router.push('/lesson_menu' as any);
+              router.push('/(tabs)/lessons' as any);
             }
           });
           break;

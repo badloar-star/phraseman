@@ -50,7 +50,6 @@ import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
 import { getTrainerDashboard } from './trainer_store';
-import MemoryGauge from '../components/journal/MemoryGauge';
 import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
@@ -3833,15 +3832,6 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
             ]}
           >
             {isGoldTheme ? <GoldBevel radius={16} intensity="normal" /> : null}
-            <MemoryGauge
-              t={t}
-              f={f}
-              lang={lang}
-              themeMode={themeMode}
-              isGoldTheme={isGoldTheme}
-              totalTracked={journalMemory.totalTracked}
-              dueToday={journalMemory.dueToday}
-            />
             <CefrLine
               t={t}
               f={f}

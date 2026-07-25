@@ -2025,6 +2025,8 @@ export default function HomeScreen() {
      *  «Турниры» (кубок по центру) её обязательно править вместе с ним —
      *  иначе переходы отсюда уводят не на тот экран. */
     const TAB_IDX: Record<string, number> = {
+        '/(tabs)/lessons': 1,
+        lessons: 1,
         '/(tabs)/tournaments': 2,
         tournaments: 2,
         '/(tabs)/friends': 3,
@@ -2424,39 +2426,6 @@ export default function HomeScreen() {
         const homeDayPracticeLabel = dueCount <= 0
             ? (homeDayLessonDone ? '✓' : '')
             : (dueCount > 99 ? '99+' : String(dueCount));
-        const homeDayAllClosed = homeDayLessonDone && dueCount <= 0;
-        const homeDayMetaLabel = homeDayAllClosed
-            ? triLang(lang, {
-                ru: 'День закрыт — серия продлена',
-                uk: 'День закрито — серію продовжено',
-                es: 'Día completado: racha extendida',
-                'pt-BR': 'Dia concluído: sequência estendida',
-                vi: 'Đã xong hôm nay — chuỗi được nối dài',
-                id: 'Hari selesai — rangkaian berlanjut',
-                tr: 'Gün tamamlandı — seri uzadı',
-                pl: 'Dzień zaliczony — seria przedłużona',
-            })
-            : homeDayLessonDone && dueCount > 0
-                ? triLang(lang, {
-                    ru: 'Осталась практика — и день закрыт',
-                    uk: 'Лишилася практика — і день закрито',
-                    es: 'Falta la práctica y el día está listo',
-                    'pt-BR': 'Falta a prática e o dia está pronto',
-                    vi: 'Còn phần luyện tập là xong ngày',
-                    id: 'Tinggal latihan, hari pun selesai',
-                    tr: 'Bir pratik kaldı — gün tamam',
-                    pl: 'Została praktyka i dzień zaliczony',
-                })
-                : triLang(lang, {
-                    ru: 'Закрой кольца — день засчитан',
-                    uk: 'Закрий кільця — день зараховано',
-                    es: 'Cierra los anillos y suma el día',
-                    'pt-BR': 'Feche os anéis e conte o dia',
-                    vi: 'Khép các vòng — ngày được tính',
-                    id: 'Tutup cincin — hari terhitung',
-                    tr: 'Halkaları kapat — gün sayılsın',
-                    pl: 'Domknij pierścienie — dzień zaliczony',
-                });
         // зачем: владелец вернул герой-модуль (серия+уровень+XP+неделя) как был.
         const experimentalStatusWeekDotSize = eliteStatsCompact ? 24 : 28;
         const renderHomeHeroStatus = () => (<Animated.View style={{
@@ -2695,9 +2664,6 @@ export default function HomeScreen() {
                   testID: 'home-ring-cards',
                 }}
               />
-              <Text style={{ textAlign: 'center', marginTop: 12, color: homeThemePanelText, opacity: 0.75, fontSize: Math.max(13, f.sub), fontWeight: '600' }} numberOfLines={1}>
-                {homeDayMetaLabel}
-              </Text>
             </LinearGradient>
           </View>
 
@@ -2841,7 +2807,7 @@ export default function HomeScreen() {
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
-              <TouchableOpacity activeOpacity={0.82} testID="home-open-lessons" onPress={() => { hapticTap(); nav.push('/lesson_menu'); }} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
+              <TouchableOpacity activeOpacity={0.82} testID="home-open-lessons" onPress={() => { go('/(tabs)/lessons'); }} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
                 <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
                 </View>

@@ -28,12 +28,12 @@ export function compassInductionRoute(feature: CompassInductionFeature): Compass
     case 'flashcards':
       return { pathname: '/flashcards_swipe' };
     case 'lessons':
-      return { pathname: '/lesson_menu' };
+      return { pathname: '/(tabs)/lessons' };
     case 'daily_tasks':
       return { pathname: '/daily_tasks_screen' };
     default:
       // Неизвестная фича (на будущее) — безопасный общий вход.
-      return { pathname: '/lesson_menu' };
+      return { pathname: '/(tabs)/lessons' };
   }
 }
 

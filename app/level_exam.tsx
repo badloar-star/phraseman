@@ -895,8 +895,8 @@ export default function LevelExam() {
     return (
       <FrenchLevelExamUnavailable
         lang={lang}
-        onBack={() => { hapticTap(); safeRouterBack(router, '/lesson_menu' as any); }}
-        onLessons={() => { hapticTap(); router.replace('/lesson_menu' as any); }}
+        onBack={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
+        onLessons={() => { hapticTap(); router.replace('/(tabs)/lessons' as any); }}
         f={f}
         themeMode={themeMode}
       />
@@ -919,7 +919,7 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lesson_menu' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TapScale>
           </View>
@@ -971,7 +971,7 @@ export default function LevelExam() {
                       },
                     } as any);
                   } else {
-                    router.replace('/lesson_menu' as any);
+                    router.replace('/(tabs)/lessons' as any);
                   }
                 }}
                 style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
@@ -1103,7 +1103,7 @@ export default function LevelExam() {
               borderBottomColor: LX.cardLine,
             }}
           >
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lesson_menu' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
               <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
             </TapScale>
           </View>
@@ -1265,7 +1265,7 @@ export default function LevelExam() {
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/lesson_menu' as any); }}>
+            <TapScale onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}>
               <Ionicons name="chevron-back" size={26} color={sx.primary} />
             </TapScale>
             <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
@@ -1500,7 +1500,7 @@ export default function LevelExam() {
               </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => { hapticTap(); safeRouterBack(router, '/lesson_menu' as any); }}
+              onPress={() => { hapticTap(); safeRouterBack(router, '/(tabs)/lessons' as any); }}
               style={{
                 borderRadius: 14,
                 borderWidth: isGoldTheme ? 1 : 0,
@@ -1770,7 +1770,7 @@ export default function LevelExam() {
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {
           setExitExamConfirm(false);
-          safeRouterBack(router, '/lesson_menu' as any);
+          safeRouterBack(router, '/(tabs)/lessons' as any);
         }}
         confirmVariant="accent"
       />

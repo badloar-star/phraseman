@@ -849,7 +849,7 @@ export default function ExamScreen() {
     <FrenchLingmanExamUnavailable
       lang={lang}
       onBack={() => safeRouterBack(router)}
-      onLessons={() => router.replace('/lesson_menu' as any)}
+      onLessons={() => router.replace('/(tabs)/lessons' as any)}
       sx={sx}
       t={t}
       f={f}
@@ -899,7 +899,7 @@ export default function ExamScreen() {
             {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
           </Text>
         </View>
-        <TouchableOpacity activeOpacity={0.75} style={{marginTop:24}} onPress={()=>router.replace('/lesson_menu' as any)}>
+        <TouchableOpacity activeOpacity={0.75} style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/lessons' as any)}>
           <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →')}
           </Text>

@@ -47,6 +47,16 @@ function isCommentLine(line: string): boolean {
 }
 
 /**
+ * Вырезает многострочные /* ... *\/ комментарии целиком (не только их первую
+ * строку) — иначе продолжение блочного комментария на второй+ строке (не
+ * начинается с `*`/`//`) ошибочно считается кодом. Не задевает строки внутри
+ * JSX/шаблонных строк на практике: проп adjustsFontSizeToFit никогда не несёт `/*`.
+ */
+function stripBlockComments(source: string): string {
+  return source.replace(/\/\*[\s\S]*?\*\//g, '');
+}
+
+/**
  * Счёт вхождений запрещённого JSX-пропа, комментарии не считаем.
  * Строки вида `adjustsFontSizeToFit:` (тип-литерал/деструктуризация с отбрасыванием,
  * `Omit<..., 'adjustsFontSizeToFit'>`) не считаем — это места, где проп ЗАПРЕЩАЮТ
@@ -55,7 +65,7 @@ function isCommentLine(line: string): boolean {
  */
 function countAdjustsFontSizeToFit(source: string): number {
   let count = 0;
-  for (const line of source.split('\n')) {
+  for (const line of stripBlockComments(source).split('\n')) {
     if (isCommentLine(line)) continue;
     if (/adjustsFontSizeToFit\s*[:?]/.test(line)) continue;
     if (/['"]adjustsFontSizeToFit['"]/.test(line)) continue;

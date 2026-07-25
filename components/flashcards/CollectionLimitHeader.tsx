@@ -17,8 +17,14 @@ import type { Theme } from '../../constants/theme';
  * Обводок нет (§0.D) — разделение тоном подложки.
  */
 
-/** Лимит карточек на бесплатном тарифе (зеркалит гейт в AddToFlashcard). */
-export const FREE_FLASHCARD_LIMIT = 20;
+// зачем (НАЙДЕНО АУДИТОМ 2026-07-25): лимит был объявлен ЗДЕСЬ ЖЕ отдельной
+// константой, дублируя FREE_FLASHCARD_LIMIT из hooks/use-flashcards.ts — того
+// самого места, где гейт реально отказывает в сохранении. Поменяли бы там 20
+// на 30 — счётчик молча продолжил бы показывать «/ 20» и врать про остаток.
+// Берём единый источник истины.
+import { FREE_FLASHCARD_LIMIT } from '../../hooks/use-flashcards';
+
+export { FREE_FLASHCARD_LIMIT };
 
 interface CollectionLimitHeaderProps {
   /** Сколько своих карточек сохранено. */

@@ -6041,3 +6041,60 @@ artifact class (first-hand Phraseman contact sheets) and remains `not_created`.
   does not track the Kimi workspace automatically.
 - The V5 "final reference" resolution offered by Kimi is still pending an
   explicit owner decision; V5 remains a candidate until recorded here.
+
+## 15.11 — E1 Content Compiler packet complete: Tasks 1-8 (2026-07-25)
+
+### Outcome
+
+All remaining tasks of
+`docs/superpowers/plans/2026-07-22-learning-v2-e1-content-compiler.md` are
+implemented, verified and committed. The packet is closed. Commits, in order,
+on `prod-snapshot/learning-v2-pilot-20260721`:
+
+- `28e93f26b` feat: define V2 language profiles (Task 1)
+- `c839fd61f` feat: validate V2 content items (Task 2)
+- `488a36974` feat: compile V2 required sessions (Task 3)
+- `b343ce9c5` feat: define V2 optional practice slots (Task 4)
+- `a62cb8ee9` feat: project optional practice rewards (Task 5)
+- `be5852d20` feat: pin V2 generation language profile (Task 6)
+- `051ceef8c` feat: compile and validate V2 episode content (Task 7)
+- Task 8 commit: this handover update + `e1-content-source.json` fixture +
+  `tests/learning_v2_e1_content_compiler.test.ts`.
+
+### Verification evidence (final joint packet, 2026-07-25)
+
+- Root: 13 suites / **460 tests PASS** (language profile, content item,
+  session compiler, optional practice, reward, E1 vertical slice, episode
+  contract, gate policy, evidence policy, session contract, star source
+  separation, attempt cardinality, evidence contract).
+- Functions: 4 suites / **22 tests PASS** (generation contract, generation
+  plan incl. exact thirteen-kind regression, compilation adapter, content QA).
+- `tsc --noEmit` (root): zero errors in `modules/learning-v2/**`,
+  `tests/learning_v2*`, `tests/support/learning_v2*`. Pre-existing snapshot
+  debt remains in app/components/survey tests (unrelated, untouched).
+- `tsc --noEmit` (functions): zero errors outside the pre-existing
+  `src/index.ts` snapshot debt (missing sibling modules on this branch).
+
+### Contract highlights beyond the plan sketch
+
+- All validators are fail-closed with deep-frozen, caller-detached normalized
+  bodies (immutability rule).
+- The compiler is deterministic and order-independent (internal sort by
+  `contentItemId`), emits canonical session sets that pass
+  `validateV2SessionSet` byte-for-byte after stripping the session-level
+  `support` view field, and never reuses a promptId across the unit.
+- QA additionally blocks: duplicate card ids, foreign-episode optional
+  templates, unsupported optional families; unused bank items surface as
+  warnings, never blocks.
+- The Functions adapter takes an injected async profile resolver (no direct
+  Firestore reads in pure code), verifies resolver-ref identity, recomputes
+  the canonical body hash and refuses on any mismatch.
+- Fixture hashes are real `hashCanonicalBody` values, proven in-test.
+
+### Deliberately NOT done here (later packets)
+
+Admin V2 one-button orchestration, exception review, live device preview
+(packet 2); app map/session UI, dynamic optional speech nodes, Kimi
+presentation import (packet 3). No Rules, indexes, deploy configuration or
+production pointers were touched. No production reward numbers were chosen —
+the fixture reward policy is keyed `optional-practice-test-policy`.

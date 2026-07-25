@@ -1,0 +1,582 @@
+{
+  "schemaVersion": "v2-e1-content-source.v1",
+  "episodeId": "ep-01",
+  "canDoOutcomeId": "obj-introduce-self",
+  "languageProfile": {
+    "schemaVersion": "v2-language-profile-body.v1",
+    "profileId": "english-general-a1",
+    "version": 1,
+    "targetLanguage": "en",
+    "script": {
+      "system": "latin",
+      "direction": "ltr",
+      "tokenization": "space_delimited",
+      "joiningBehavior": "none"
+    },
+    "grammar": {
+      "dominantWordOrders": [
+        "svo"
+      ],
+      "morphology": "mixed",
+      "grammaticalFeatures": [
+        "person",
+        "number",
+        "tense"
+      ],
+      "registerFeatures": [
+        "neutral",
+        "formal",
+        "informal"
+      ]
+    },
+    "speech": {
+      "lexicalTone": false,
+      "stressSystem": "lexical",
+      "ttsLocales": [
+        "en-US",
+        "en-GB"
+      ],
+      "sttLocales": [
+        "en-US",
+        "en-GB"
+      ]
+    },
+    "scriptCurricula": [],
+    "supportedActivityFamilies": [
+      "listen_choose",
+      "sound_contrast",
+      "speed_match",
+      "phrase_builder",
+      "listen_build_dictation",
+      "context_gap_grammar",
+      "quick_spoken_response",
+      "shadowing_prosody",
+      "scripted_repeat_compare",
+      "scripted_dialogue"
+    ]
+  },
+  "languageProfileRef": {
+    "profileId": "english-general-a1",
+    "version": 1,
+    "contentHash": "e8ce0e4b735ad2a8044159ad2b6274cdd7ff8f49d838f8228c062c4669fa9138"
+  },
+  "contentItems": [
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-introduce-name-01",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "I am Anna.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Я Анна.",
+          "sourceHash": "03514e93e7e91481d9def99b7603dcac07b0dd285aab5a1cf4511dfaf303caad"
+        }
+      ],
+      "acceptedAnswers": [
+        "I am Anna.",
+        "I'm Anna."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "I Anna.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "first_person_singular"
+      ],
+      "pronunciationTargets": [
+        "stress_1"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "phrase_builder",
+        "quick_spoken_response",
+        "speed_match",
+        "scripted_dialogue"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-introduce-you-02",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "You are Tom.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Ты Том.",
+          "sourceHash": "dcec725763a67d5248b7a3e8740661156f1757cc977ddb32ebebb5b39426bb66"
+        }
+      ],
+      "acceptedAnswers": [
+        "You are Tom.",
+        "You're Tom."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "You Tom.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "second_person_singular"
+      ],
+      "pronunciationTargets": [
+        "stress_2"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "sound_contrast",
+        "context_gap_grammar",
+        "listen_build_dictation",
+        "shadowing_prosody"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-origin-city-03",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "I am from Madrid.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Я из Мадрида.",
+          "sourceHash": "5ae69220c450facae73e21f57b31e9cab4918ed38abc84f87971401951b76d27"
+        }
+      ],
+      "acceptedAnswers": [
+        "I am from Madrid.",
+        "I'm from Madrid."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "I from Madrid.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "preposition_from"
+      ],
+      "pronunciationTargets": [
+        "stress_3"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "phrase_builder",
+        "speed_match",
+        "quick_spoken_response",
+        "scripted_repeat_compare",
+        "scripted_dialogue"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-greeting-04",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "Nice to meet you.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Приятно познакомиться.",
+          "sourceHash": "692918a3367058c64bc78a969ed85ed317fb1cd8ef1c062aa56e9f9a32c415c2"
+        }
+      ],
+      "acceptedAnswers": [
+        "Nice to meet you."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "Nice meet you.",
+          "reasonCode": "infinitive_marker_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "fixed_expression"
+      ],
+      "pronunciationTargets": [
+        "stress_4"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "phrase_builder",
+        "listen_build_dictation",
+        "context_gap_grammar",
+        "shadowing_prosody"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-name-question-05",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "What is your name?",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Как тебя зовут?",
+          "sourceHash": "fbb6c13af8e358c4315bb446de0c7ef86ebe749417d1757a9ac93afc4a7dea38"
+        }
+      ],
+      "acceptedAnswers": [
+        "What is your name?",
+        "What's your name?"
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "What your name?",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "question_word",
+        "copula_be"
+      ],
+      "pronunciationTargets": [
+        "stress_5"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "sound_contrast",
+        "speed_match",
+        "quick_spoken_response",
+        "scripted_repeat_compare",
+        "scripted_dialogue"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-origin-question-06",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "Where are you from?",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Откуда ты?",
+          "sourceHash": "91c33d10f9975909b0c4d6f747af9826a15af07f4e83b761a6052849d8899f0c"
+        }
+      ],
+      "acceptedAnswers": [
+        "Where are you from?"
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "Where you from?",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "question_word",
+        "preposition_from"
+      ],
+      "pronunciationTargets": [
+        "stress_6"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "phrase_builder",
+        "quick_spoken_response",
+        "speed_match",
+        "scripted_dialogue"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-she-name-07",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "She is Maria.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Она Мария.",
+          "sourceHash": "17881e5c94ed1efab17547ba8d17332543793208029d8ece5067d823842e8f5f"
+        }
+      ],
+      "acceptedAnswers": [
+        "She is Maria.",
+        "She's Maria."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "She Maria.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "third_person_singular"
+      ],
+      "pronunciationTargets": [
+        "stress_7"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "sound_contrast",
+        "context_gap_grammar",
+        "listen_build_dictation",
+        "shadowing_prosody"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-he-origin-08",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "He is from Japan.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Он из Японии.",
+          "sourceHash": "901f72d007d43a328c9d0b74b0f4b8f0f141bcdbf6330f47392980c8de7728ea"
+        }
+      ],
+      "acceptedAnswers": [
+        "He is from Japan.",
+        "He's from Japan."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "He from Japan.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "third_person_singular",
+        "preposition_from"
+      ],
+      "pronunciationTargets": [
+        "stress_8"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "phrase_builder",
+        "speed_match",
+        "quick_spoken_response",
+        "scripted_repeat_compare",
+        "scripted_dialogue"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-greeting-hello-09",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "Hello, I am new here.",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Привет, я здесь новенький.",
+          "sourceHash": "c96a4d6df3cdc37d39a9a225a3872c5b584b86d599fe167b46be96865d896263"
+        }
+      ],
+      "acceptedAnswers": [
+        "Hello, I am new here.",
+        "Hello, I'm new here."
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "Hello, I new here.",
+          "reasonCode": "copula_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "copula_be",
+        "greeting"
+      ],
+      "pronunciationTargets": [
+        "stress_9"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "listen_choose",
+        "phrase_builder",
+        "listen_build_dictation",
+        "context_gap_grammar",
+        "shadowing_prosody"
+      ]
+    },
+    {
+      "schemaVersion": "v2-content-item.v1",
+      "contentItemId": "e1-polite-repeat-10",
+      "episodeId": "ep-01",
+      "intentId": "introduce_self_name",
+      "target": {
+        "locale": "en",
+        "text": "Sorry, can you repeat that?",
+        "register": "neutral",
+        "region": "general"
+      },
+      "learnerMeanings": [
+        {
+          "locale": "ru",
+          "value": "Извините, можете повторить?",
+          "sourceHash": "0b80db3543f3246330960ef8f2ab09c91dbca7b799560162d20c37cc9c56156c"
+        }
+      ],
+      "acceptedAnswers": [
+        "Sorry, can you repeat that?"
+      ],
+      "rejectedAnswers": [
+        {
+          "value": "Sorry, you repeat that?",
+          "reasonCode": "modal_missing"
+        }
+      ],
+      "linguisticFeatures": [
+        "modal_can",
+        "question"
+      ],
+      "pronunciationTargets": [
+        "stress_10"
+      ],
+      "prerequisiteContentItemIds": [],
+      "objectiveIds": [
+        "obj-introduce-self"
+      ],
+      "compatibleFamilies": [
+        "sound_contrast",
+        "speed_match",
+        "quick_spoken_response",
+        "scripted_repeat_compare",
+        "scripted_dialogue"
+      ]
+    }
+  ],
+  "optionalPracticeTemplates": [
+    {
+      "slotId": "optional-ep-01-echo-rhythm-v1",
+      "episodeId": "ep-01",
+      "capabilityId": "echo-rhythm-v1",
+      "family": "shadowing_prosody",
+      "sourcePriority": "current_unit",
+      "expectedSeconds": 90,
+      "requiredForProgress": false,
+      "canWriteMastery": false
+    },
+    {
+      "slotId": "optional-ep-01-quick-speak-v1",
+      "episodeId": "ep-01",
+      "capabilityId": "quick-speak-v1",
+      "family": "quick_spoken_response",
+      "sourcePriority": "current_unit",
+      "expectedSeconds": 75,
+      "requiredForProgress": false,
+      "canWriteMastery": false
+    }
+  ],
+  "rewardPolicy": {
+    "schemaVersion": "v2-optional-practice-reward-policy.v1",
+    "key": "optional-practice-test-policy",
+    "version": 1,
+    "repeatBands": [
+      {
+        "minimumPriorExactCompletions": 0,
+        "multiplierBasisPoints": 10000
+      },
+      {
+        "minimumPriorExactCompletions": 2,
+        "multiplierBasisPoints": 6000
+      },
+      {
+        "minimumPriorExactCompletions": 5,
+        "multiplierBasisPoints": 2500
+      }
+    ],
+    "dueBoostBasisPoints": 2000,
+    "mistakeRepairBoostBasisPoints": 2000,
+    "minimumAward": 1
+  },
+  "rewardPolicyRef": {
+    "kind": "reward",
+    "key": "optional-practice-test-policy",
+    "version": 1,
+    "contentHash": "c604c15a12cccd65ed1c769f0481fb0c85456679d72eaba52fcc6d4292b13755"
+  }
+}

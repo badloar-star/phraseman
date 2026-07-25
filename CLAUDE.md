@@ -45,6 +45,11 @@ Before creating or editing screens, tabs, animations, data loading, or content f
 read **`AGENTS.md` → «Performance Bible (Instagram-Grade Runtime)»** and follow it exactly:
 frozen background (freezeOnBlur/react-freeze + guarded loops), instant first frame
 (sync hydration from snapshot/peek, no default-then-patch, no full-screen spinners),
-constant stack background, lazy content through registry accessors (the seam for the
-planned server-side content delivery). Guarded by `tests/perf_freeze_contract.test.ts` —
-never weaken the guards to make a feature pass; extend allowlists only consciously.
+**layout stability (first frame = final geometry: skeletons with reserved sizes, no
+`if (loading) return null`, no zero-then-jump counters, flow inserts only via
+`animateNextLayoutTransition`, insets only via `useStableSafeAreaInsets`, no
+`adjustsFontSizeToFit`)**, constant stack background, lazy content through registry
+accessors (the seam for the planned server-side content delivery). Guarded by
+`tests/perf_freeze_contract.test.ts` and `tests/layout_stability_contract.test.ts`
+(+ baseline `config/layout-stability-baseline.json`, may only shrink) — never weaken
+the guards to make a feature pass; extend allowlists only consciously.

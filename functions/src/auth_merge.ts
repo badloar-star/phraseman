@@ -1,12 +1,11 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
 import {
   cleanupLegacyAuthIdentityDuplicates,
   describeAppCheckHeader,
-  linkStableAuthUid,
   readAnonMergeClaim,
-  resolveStableUidForAuth,
 } from './auth_identity';
 
 const USERS = 'users';
@@ -343,32 +342,6 @@ type MergeResult = {
  * canonical id without rewriting.
  */
 const AUTH_LINKS_COL = 'auth_links';
-
-/**
- * Genuine ownership = the caller controls this account through a trustworthy
- * signal — its firebaseAuthUid is the caller, or a provider link (Google/Apple)
- * binds it to the caller, or auth_links/{authUid} points at it. It deliberately
- * does NOT accept the anonymous-reinstall relink escape (assertStableOwner line
- * ~173), which trusts a stable_id that is publicly readable as a leaderboard
- * document id. A fresh anon_merge_claim proves a device held an anonymous LOSER
- * but must NEVER make an account the merge survivor (see the "never overwrite an
- * owned account" test). Used to gate every path that rebinds
- * users/{id}.firebaseAuthUid to the caller (#11 / #12 account-takeover).
- */
-async function callerGenuinelyOwns(
-  db: admin.firestore.Firestore,
-  authUid: string,
-  stableId: string,
-  data?: Record<string, unknown> | null,
-): Promise<boolean> {
-  const userData =
-    data ?? ((await db.collection(USERS).doc(stableId).get().catch(() => null))?.data() as Record<string, unknown> | undefined) ?? {};
-  if (userDataOwnedByAuth(userData, authUid)) return true;
-  const linkSnap = await db.collection(AUTH_LINKS_COL).doc(authUid).get().catch(() => null);
-  if (stableId && cleanStr(linkSnap?.data()?.stable_id) === stableId) return true;
-  return false;
-}
-
 function userDataOwnedByAuth(data: Record<string, unknown>, authUid: string): boolean {
   if (cleanStr((data as { firebaseAuthUid?: unknown }).firebaseAuthUid) === authUid) return true;
   const linkedAuth = (data as { linkedAuth?: unknown }).linkedAuth;
@@ -379,19 +352,220 @@ function userDataOwnedByAuth(data: Record<string, unknown>, authUid: string): bo
   return false;
 }
 
-/** Throw permission-denied unless the caller GENUINELY owns the account it is
- *  about to be bound to. Shared by every merge branch that would rewrite
- *  users/{id}.firebaseAuthUid, so a leaked stable_id alone can never seize a
- *  stranger's account. */
-async function assertGenuineOwnerForBind(
+type TransactionResolvedIdentity = {
+  stableId: string;
+  data: Record<string, unknown>;
+  ref: admin.firestore.DocumentReference;
+};
+
+type TransactionMergeOutcome = MergeResult & {
+  xpA: number;
+  xpB: number;
+};
+
+const MAX_MERGE_CANONICAL_HOPS = 8;
+
+async function mergeStableAccountsTransactionally(
   db: admin.firestore.Firestore,
   authUid: string,
-  stableId: string,
-  data?: Record<string, unknown> | null,
-): Promise<void> {
-  if (await callerGenuinelyOwns(db, authUid, stableId, data)) return;
-  console.warn(JSON.stringify({ event: 'merge_bind_denied', authUid, stableId }));
-  throw new HttpsError('permission-denied', 'stable_id_mismatch');
+  rawA: string,
+  rawB: string,
+  now: number,
+): Promise<MergeResult> {
+  const authLinkRef = db.collection(AUTH_LINKS_COL).doc(authUid);
+  const authMarkerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+  let transactionAttempt = 0;
+
+  const outcome = await db.runTransaction(async (tx): Promise<TransactionMergeOutcome> => {
+    transactionAttempt += 1;
+    if (transactionAttempt > 1) {
+      throw new HttpsError('failed-precondition', 'stable_identity_changed');
+    }
+
+    const userCache = new Map<string, Promise<TransactionResolvedIdentity>>();
+    const readStable = (stableId: string): Promise<TransactionResolvedIdentity> => {
+      const cached = userCache.get(stableId);
+      if (cached) return cached;
+      const pending = (async () => {
+        const ref = db.collection(USERS).doc(stableId);
+        const tombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
+        const [userSnap, tombstoneSnap] = await Promise.all([
+          tx.get(ref),
+          tx.get(tombstoneRef),
+        ]);
+        if (tombstoneSnap.exists) {
+          throw new HttpsError('failed-precondition', 'account_delete_pending');
+        }
+        if (!userSnap.exists) {
+          throw new HttpsError('failed-precondition', 'stable_id_missing');
+        }
+        return {
+          stableId,
+          data: (userSnap.data() ?? {}) as Record<string, unknown>,
+          ref,
+        };
+      })();
+      userCache.set(stableId, pending);
+      return pending;
+    };
+
+    const resolveCanonical = async (startStableId: string): Promise<TransactionResolvedIdentity> => {
+      let currentStableId = startStableId;
+      const visited = new Set<string>();
+      for (let hop = 0; hop < MAX_MERGE_CANONICAL_HOPS; hop += 1) {
+        if (visited.has(currentStableId)) {
+          throw new HttpsError('failed-precondition', 'stable_identity_changed');
+        }
+        visited.add(currentStableId);
+        const current = await readStable(currentStableId);
+        const nextStableId = current.data.identityHidden === true
+          ? cleanStr(current.data.canonicalStableId)
+          : '';
+        if (!nextStableId || nextStableId === currentStableId) return current;
+        currentStableId = nextStableId;
+      }
+      throw new HttpsError('failed-precondition', 'stable_identity_changed');
+    };
+
+    const [authLinkSnap, authMarkerSnap] = await Promise.all([
+      tx.get(authLinkRef),
+      tx.get(authMarkerRef),
+    ]);
+    if (authMarkerSnap.exists) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
+
+    const [resolvedA, resolvedB] = await Promise.all([
+      resolveCanonical(rawA),
+      resolveCanonical(rawB),
+    ]);
+
+    const linkedStableId = cleanStr(authLinkSnap.data()?.stable_id);
+    if (authLinkSnap.exists) {
+      if (!linkedStableId) {
+        throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      }
+      const linkedIdentity = await resolveCanonical(linkedStableId);
+      if (!userDataOwnedByAuth(linkedIdentity.data, authUid) && linkedStableId !== linkedIdentity.stableId) {
+        throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      }
+      return {
+        canonicalStableId: linkedIdentity.stableId,
+        mergedFromStableId: null,
+        alreadyMerged: true,
+        xpA: asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0,
+        xpB: asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0,
+      };
+    }
+
+    if (resolvedA.stableId === resolvedB.stableId) {
+      if (!userDataOwnedByAuth(resolvedA.data, authUid)) {
+        throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      }
+      const xp = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
+      return {
+        canonicalStableId: resolvedA.stableId,
+        mergedFromStableId: null,
+        alreadyMerged: true,
+        xpA: xp,
+        xpB: xp,
+      };
+    }
+
+    const xpA = asCleanInt((resolvedA.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
+    const xpB = asCleanInt((resolvedB.data.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
+    const bWins = xpB > xpA;
+    const winner = bWins ? resolvedB : resolvedA;
+    const loser = bWins ? resolvedA : resolvedB;
+    if (!userDataOwnedByAuth(winner.data, authUid)) {
+      throw new HttpsError('permission-denied', 'stable_id_mismatch');
+    }
+    if (!userDataOwnedByAuth(loser.data, authUid)) {
+      const claim = readAnonMergeClaim(loser.data, now);
+      const loserAuthUid = cleanStr(loser.data.firebaseAuthUid);
+      if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
+        throw new HttpsError('permission-denied', 'stable_id_mismatch');
+      }
+    }
+
+    const mergedProgress = mergeUserProgress(
+      winner.data.progress as ProgressMap | undefined,
+      loser.data.progress as ProgressMap | undefined,
+      now,
+    );
+    const mergedShards = mergeShards(winner.data.shards, loser.data.shards);
+    const winnerUpdate: Record<string, unknown> = {
+      progress: mergedProgress,
+      firebaseAuthUid: authUid,
+      updatedAt: now,
+      identityMergedAt: now,
+      anon_merge_claim: admin.firestore.FieldValue.delete(),
+    };
+    if (mergedShards !== undefined) {
+      winnerUpdate.shards = mergedShards;
+      winnerUpdate.shards_updated_at_ms = now;
+      winnerUpdate.shards_updated_op = 'replace';
+      winnerUpdate.shards_updated_reason = 'account_merge';
+    }
+    tx.set(winner.ref, winnerUpdate, { merge: true });
+    tx.set(loser.ref, {
+      identityHidden: true,
+      canonicalStableId: winner.stableId,
+      duplicateOfStableId: winner.stableId,
+      identityMergedAt: now,
+      updatedAt: now,
+      anon_merge_claim: admin.firestore.FieldValue.delete(),
+    }, { merge: true });
+    tx.set(authLinkRef, { stable_id: winner.stableId, updatedAt: now }, { merge: true });
+    return {
+      canonicalStableId: winner.stableId,
+      mergedFromStableId: loser.stableId,
+      alreadyMerged: false,
+      xpA,
+      xpB,
+    };
+  });
+
+  if (outcome.alreadyMerged || !outcome.mergedFromStableId) {
+    return {
+      canonicalStableId: outcome.canonicalStableId,
+      mergedFromStableId: null,
+      alreadyMerged: true,
+    };
+  }
+
+  const winnerId = outcome.canonicalStableId;
+  const loserId = outcome.mergedFromStableId;
+  await cleanupLegacyAuthIdentityDuplicates(db, winnerId, authUid, {
+    reason: 'account_merge',
+  }).catch((error) => {
+    console.warn(JSON.stringify({
+      event: 'account_merge_cleanup_failed',
+      winnerId,
+      loserId,
+      message: String((error as { message?: unknown })?.message ?? error).slice(0, 160),
+    }));
+  });
+  await repointReferralOnMerge(db, winnerId, loserId).catch((error) => {
+    console.warn(JSON.stringify({
+      event: 'account_merge_referral_repoint_failed',
+      winnerId,
+      loserId,
+      message: String((error as { message?: unknown })?.message ?? error).slice(0, 160),
+    }));
+  });
+  console.log(JSON.stringify({
+    event: 'account_merged',
+    winner: winnerId.slice(0, 8),
+    loser: loserId.slice(0, 8),
+    xpWinner: Math.max(outcome.xpA, outcome.xpB),
+    xpLoser: Math.min(outcome.xpA, outcome.xpB),
+  }));
+  return {
+    canonicalStableId: winnerId,
+    mergedFromStableId: loserId,
+    alreadyMerged: false,
+  };
 }
 
 export async function mergeStableAccounts(
@@ -404,270 +578,212 @@ export async function mergeStableAccounts(
   const a = cleanStr(stableIdA);
   const b = cleanStr(stableIdB);
   if (!a || !b) throw new HttpsError('invalid-argument', 'stable_ids_required');
-
-  // Same id (or already-canonicalized to the same target) → nothing to merge.
-  if (a === b) {
-    await assertGenuineOwnerForBind(db, authUid, a);
-    await linkStableAuthUid(db, a, authUid);
-    return { canonicalStableId: a, mergedFromStableId: null, alreadyMerged: true };
-  }
-
-  const [snapA, snapB] = await Promise.all([
-    db.collection(USERS).doc(a).get(),
-    db.collection(USERS).doc(b).get(),
-  ]);
-  const dataA = (snapA.data() ?? {}) as Record<string, unknown>;
-  const dataB = (snapB.data() ?? {}) as Record<string, unknown>;
-
-  // Resolve hidden→canonical pointers so we never "revive" a tombstoned doc.
-  const canonA =
-    dataA.identityHidden === true && cleanStr(dataA.canonicalStableId)
-      ? cleanStr(dataA.canonicalStableId)
-      : a;
-  const canonB =
-    dataB.identityHidden === true && cleanStr(dataB.canonicalStableId)
-      ? cleanStr(dataB.canonicalStableId)
-      : b;
-
-  // Already merged into the same canonical → idempotent no-op.
-  if (canonA === canonB) {
-    await assertGenuineOwnerForBind(db, authUid, canonA);
-    await linkStableAuthUid(db, canonA, authUid);
-    return { canonicalStableId: canonA, mergedFromStableId: null, alreadyMerged: true };
-  }
-
-  // Ownership: the SURVIVING (winner) account must be owned by the caller. The
-  // loser may be a device-held anonymous account the caller doesn't formally own
-  // yet (scenario #11), but ONLY if it carries a fresh anon_merge_claim it stamped
-  // itself moments ago while still anonymous (see authStampAnonOwnership). That
-  // proves the same device held it — an attacker with a leaked stable_id has no
-  // anonymous token to stamp with, so cannot absorb a stranger's account.
-  // resolveStableUidForAuth self-heals firebaseAuthUid; here we tolerate a mismatch
-  // and defer the decision until the XP winner is known.
-  // repairLinks:false — the ownership PROBE must be READ-ONLY. Previously
-  // resolveStableUidForAuth rebound users/{id}.firebaseAuthUid as a side effect of
-  // the probe, so a permissive anon-relink resolve seized a victim's account before
-  // the ownership gates even ran (and that rebind was not rolled back on a later
-  // throw). The genuine rebind now happens ONLY in the final transaction / the
-  // gated branch links below.
-  const opts = { allowProviderRelink: true, repairLinks: false };
-  const resolveOwnershipSafe = async (id: string): Promise<{ owned: boolean; id: string }> => {
-    try {
-      return { owned: true, id: await resolveStableUidForAuth(db, authUid, id, opts) };
-    } catch {
-      return { owned: false, id };
-    }
-  };
-  const resA = await resolveOwnershipSafe(canonA);
-  const resB = await resolveOwnershipSafe(canonB);
-
-  const liveA = (await db.collection(USERS).doc(resA.id).get()).data() ?? {};
-  const liveB = (await db.collection(USERS).doc(resB.id).get()).data() ?? {};
-
-  const xpA = asCleanInt((liveA.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
-  const xpB = asCleanInt((liveB.progress as ProgressMap | undefined)?.user_total_xp) ?? 0;
-
-  // Winner = higher XP. Tie → A.
-  let winnerId = resA.id;
-  let loserId = resB.id;
-  let winnerData = liveA as Record<string, unknown>;
-  let loserData = liveB as Record<string, unknown>;
-  let winnerOwned = resA.owned;
-  let loserOwned = resB.owned;
-  if (xpB > xpA) {
-    winnerId = resB.id;
-    loserId = resA.id;
-    winnerData = liveB as Record<string, unknown>;
-    loserData = liveA as Record<string, unknown>;
-    winnerOwned = resB.owned;
-    loserOwned = resA.owned;
-  }
-
-  if (winnerId === loserId) {
-    await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData as Record<string, unknown>);
-    await linkStableAuthUid(db, winnerId, authUid);
-    return { canonicalStableId: winnerId, mergedFromStableId: null, alreadyMerged: true };
-  }
-
-  // The surviving account MUST be GENUINELY owned by the caller — by a trustworthy
-  // signal (firebaseAuthUid / provider link / auth_links), NOT merely "ownable" via
-  // the anonymous-reinstall relink escape, which trusts a stable_id that is publicly
-  // readable as a leaderboard document id. A leaked stable_id must never let an
-  // attacker seize a stranger's account (#11 / #12). A fresh anon_merge_claim proves
-  // a device held an anonymous LOSER but can NEVER make an account the survivor
-  // (guarded by the "never overwrite an owned account" test). winnerOwned above came
-  // from the permissive probe and is intentionally no longer trusted here.
-  await assertGenuineOwnerForBind(db, authUid, winnerId, winnerData as Record<string, unknown>);
-  // The loser, if not owned, is only absorbable with a fresh self-stamped anon
-  // claim whose authUid matches the loser doc's own firebaseAuthUid (the anon uid
-  // that held it). No claim / stale / mismatched → reject.
-  if (!loserOwned) {
-    const claim = readAnonMergeClaim(loserData, now);
-    const loserAuthUid = cleanStr((loserData as { firebaseAuthUid?: unknown }).firebaseAuthUid);
-    if (!claim || !loserAuthUid || claim.authUid !== loserAuthUid) {
-      throw new HttpsError('permission-denied', 'stable_id_mismatch');
-    }
-  }
-
-  const mergedProgress = mergeUserProgress(
-    winnerData.progress as ProgressMap | undefined,
-    loserData.progress as ProgressMap | undefined,
-    now,
-  );
-  const mergedShards = mergeShards(winnerData.shards, loserData.shards);
-
-  const winnerRef = db.collection(USERS).doc(winnerId);
-  const loserRef = db.collection(USERS).doc(loserId);
-
-  await db.runTransaction(async (tx) => {
-    const update: Record<string, unknown> = {
-      progress: mergedProgress,
-      firebaseAuthUid: authUid,
-      updatedAt: now,
-      identityMergedAt: now,
-      // Consume any claim on the survivor so it can't be replayed.
-      anon_merge_claim: admin.firestore.FieldValue.delete(),
-    };
-    if (mergedShards !== undefined) {
-      update.shards = mergedShards;
-      update.shards_updated_at_ms = now;
-      update.shards_updated_op = 'replace';
-      update.shards_updated_reason = 'account_merge';
-    }
-    tx.set(winnerRef, update, { merge: true });
-
-    tx.set(
-      loserRef,
-      {
-        identityHidden: true,
-        canonicalStableId: winnerId,
-        duplicateOfStableId: winnerId,
-        identityMergedAt: now,
-        updatedAt: now,
-        anon_merge_claim: admin.firestore.FieldValue.delete(),
-      },
-      { merge: true },
-    );
-  });
-
-  // Canonicalize leaderboard / league_groups / name_index for both the loser id
-  // and any siblings sharing this auth uid. Best-effort (does not fail the merge).
-  await cleanupLegacyAuthIdentityDuplicates(db, winnerId, authUid, {
-    reason: 'account_merge',
-  }).catch((e) => {
-    console.warn(
-      JSON.stringify({
-        event: 'account_merge_cleanup_failed',
-        winnerId,
-        loserId,
-        message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
-      }),
-    );
-  });
-
-  // Re-point referral data (attributions as referee/referrer + owned code) from loser to
-  // winner — иначе приглашённые друзья и незабранные награды «терялись» после входа на
-  // новом телефоне. Best-effort: сбой не валит merge (как и cleanup выше).
-  await repointReferralOnMerge(db, winnerId, loserId).catch((e) => {
-    console.warn(
-      JSON.stringify({
-        event: 'account_merge_referral_repoint_failed',
-        winnerId,
-        loserId,
-        message: String((e as { message?: unknown })?.message ?? e).slice(0, 160),
-      }),
-    );
-  });
-
-  console.log(
-    JSON.stringify({
-      event: 'account_merged',
-      winner: winnerId.slice(0, 8),
-      loser: loserId.slice(0, 8),
-      xpWinner: Math.max(xpA, xpB),
-      xpLoser: Math.min(xpA, xpB),
-    }),
-  );
-
-  return { canonicalStableId: winnerId, mergedFromStableId: loserId, alreadyMerged: false };
+  return mergeStableAccountsTransactionally(db, authUid, a, b, now);
 }
 
 const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
 const REFERRAL_CODES = 'referral_codes';
 const REFERRAL_OWNERS = 'referral_owners';
 
+const REFERRAL_ATTRIBUTION_PAGE_SIZE = 500;
+const REFERRAL_CODE_PAGE_SIZE = 50;
+const REFERRAL_TRANSACTION_CONCURRENCY = 10;
+
+export type ReferralRepointResult = {
+  complete: boolean;
+  attributionDocsRepointed: number;
+  codeDocsRepointed: number;
+  lastAttributionId: string | null;
+  lastCodeId: string | null;
+  stoppedReason?: 'account_delete_pending';
+  stoppedPhase?: 'referee' | 'attributions' | 'codes' | 'owner';
+};
+
+type GuardedReferralMutation = 'changed' | 'skipped' | 'account_delete_pending';
+type GuardedReferralChunk = {
+  accountDeletePending: boolean;
+  changedCount: number;
+};
+
 /**
  * Переносит реферальные данные с loser-аккаунта на winner после merge.
- * Документы attribution заведены по REFEREE id (doc id) и хранят REFERRER id в поле.
- * Переносим обе роли + владение кодом. Идемпотентно, защищено от self-referral и
- * двойной выдачи (статус/refereeRewardedAtMs не пересчитываем). Best-effort, без транзакции
- * на весь объём (могут быть сотни строк) — каждый кусок атомарен сам по себе.
+ * Каждая строка повторно читается в транзакции вместе с tombstone обоих аккаунтов:
+ * stale query не может перезаписать новую награду/владельца, а удаление останавливает
+ * проход с наблюдаемым incomplete-результатом. Страницы упорядочены по document id.
  */
 export async function repointReferralOnMerge(
   db: admin.firestore.Firestore,
   winnerId: string,
   loserId: string,
-): Promise<void> {
-  if (!winnerId || !loserId || winnerId === loserId) return;
+): Promise<ReferralRepointResult> {
+  const result: ReferralRepointResult = {
+    complete: true,
+    attributionDocsRepointed: 0,
+    codeDocsRepointed: 0,
+    lastAttributionId: null,
+    lastCodeId: null,
+  };
+  if (!winnerId || !loserId || winnerId === loserId) return result;
 
-  // (1) Роль REFEREE: referral_attributions/{loserId} → /{winnerId} (rename = copy+delete).
+  const winnerTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(winnerId);
+  const loserTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(loserId);
+  const incomplete = (
+    phase: NonNullable<ReferralRepointResult['stoppedPhase']>,
+  ): ReferralRepointResult => ({
+    ...result,
+    complete: false,
+    stoppedReason: 'account_delete_pending',
+    stoppedPhase: phase,
+  });
+
+  // (1) Роль REFEREE: referral_attributions/{loserId} → /{winnerId}.
   const loserAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(loserId);
-  const loserAttrSnap = await loserAttrRef.get();
-  if (loserAttrSnap.exists) {
+  const winnerAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(winnerId);
+  const refereeOutcome = await db.runTransaction(async (tx): Promise<GuardedReferralMutation> => {
+    const [winnerTombstoneSnap, loserTombstoneSnap, loserAttrSnap, winnerAttrSnap] =
+      await Promise.all([
+        tx.get(winnerTombstoneRef),
+        tx.get(loserTombstoneRef),
+        tx.get(loserAttrRef),
+        tx.get(winnerAttrRef),
+      ]);
+    if (winnerTombstoneSnap.exists || loserTombstoneSnap.exists) {
+      return 'account_delete_pending';
+    }
+    if (!loserAttrSnap.exists) return 'skipped';
     const loserAttr = loserAttrSnap.data() as { referrerStableId?: string; status?: string };
-    // Self-referral после слияния (winner пригласил loser или наоборот) — такая запись бессмысленна.
-    if (String(loserAttr?.referrerStableId ?? '') === winnerId) {
-      await loserAttrRef.delete().catch(() => {});
+    if (String(loserAttr.referrerStableId ?? '') === winnerId) {
+      tx.delete(loserAttrRef);
     } else {
-      const winnerAttrRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(winnerId);
-      const winnerAttrSnap = await winnerAttrRef.get();
       const survivor = chooseSurvivingAttribution(
         winnerAttrSnap.exists ? (winnerAttrSnap.data() as { status?: string }) : undefined,
         loserAttr,
       );
-      await winnerAttrRef.set(survivor as Record<string, unknown>, { merge: true });
-      await loserAttrRef.delete().catch(() => {});
+      tx.set(winnerAttrRef, survivor as Record<string, unknown>, { merge: true });
+      tx.delete(loserAttrRef);
     }
-  }
+    return 'changed';
+  });
+  if (refereeOutcome === 'account_delete_pending') return incomplete('referee');
 
-  // (2) Роль REFERRER: все attribution, где referrerStableId == loserId → winnerId.
-  // Доки, ставшие self-referral (referee doc id == winnerId), удаляем.
-  const asReferrer = await db
-    .collection(REFERRAL_ATTRIBUTIONS)
-    .where('referrerStableId', '==', loserId)
-    .limit(500)
-    .get();
-  for (const d of asReferrer.docs) {
-    if (d.id === winnerId) {
-      await d.ref.delete().catch(() => {});
-    } else {
-      await d.ref.set({ referrerStableId: winnerId }, { merge: true }).catch(() => {});
+  // (2) Роль REFERRER: bounded, deterministic pages with per-row ownership checks.
+  let attributionCursor: string | null = null;
+  while (true) {
+    let query: FirebaseFirestore.Query = db
+      .collection(REFERRAL_ATTRIBUTIONS)
+      .where('referrerStableId', '==', loserId)
+      .orderBy(admin.firestore.FieldPath.documentId())
+      .limit(REFERRAL_ATTRIBUTION_PAGE_SIZE);
+    if (attributionCursor) query = query.startAfter(attributionCursor);
+    const page = await query.get();
+    for (let offset = 0; offset < page.docs.length; offset += REFERRAL_TRANSACTION_CONCURRENCY) {
+      const chunk = page.docs.slice(offset, offset + REFERRAL_TRANSACTION_CONCURRENCY);
+      const chunkResult = await db.runTransaction(async (tx): Promise<GuardedReferralChunk> => {
+        const [winnerTombstoneSnap, loserTombstoneSnap, ...currentSnaps] =
+          await Promise.all([
+            tx.get(winnerTombstoneRef),
+            tx.get(loserTombstoneRef),
+            ...chunk.map((queried) => tx.get(queried.ref)),
+          ]);
+        if (winnerTombstoneSnap.exists || loserTombstoneSnap.exists) {
+          return { accountDeletePending: true, changedCount: 0 };
+        }
+        let changedCount = 0;
+        currentSnaps.forEach((currentSnap, index) => {
+          if (
+            !currentSnap.exists
+            || cleanStr(currentSnap.data()?.referrerStableId) !== loserId
+          ) {
+            return;
+          }
+          const queried = chunk[index];
+          if (queried.id === winnerId) tx.delete(queried.ref);
+          else tx.set(queried.ref, { referrerStableId: winnerId }, { merge: true });
+          changedCount += 1;
+        });
+        return { accountDeletePending: false, changedCount };
+      });
+      if (chunkResult.accountDeletePending) return incomplete('attributions');
+      result.attributionDocsRepointed += chunkResult.changedCount;
+      attributionCursor = chunk[chunk.length - 1].id;
+      result.lastAttributionId = attributionCursor;
     }
+    if (page.size < REFERRAL_ATTRIBUTION_PAGE_SIZE) break;
   }
 
-  // (3) Владение КОДОМ: referral_codes где ownerStableId == loserId → winnerId.
-  const ownedCodes = await db
-    .collection(REFERRAL_CODES)
-    .where('ownerStableId', '==', loserId)
-    .limit(50)
-    .get();
-  for (const d of ownedCodes.docs) {
-    await d.ref.set({ ownerStableId: winnerId }, { merge: true }).catch(() => {});
+  // (3) Владение кодами: same ordered paging and transactional revalidation.
+  let codeCursor: string | null = null;
+  while (true) {
+    let query: FirebaseFirestore.Query = db
+      .collection(REFERRAL_CODES)
+      .where('ownerStableId', '==', loserId)
+      .orderBy(admin.firestore.FieldPath.documentId())
+      .limit(REFERRAL_CODE_PAGE_SIZE);
+    if (codeCursor) query = query.startAfter(codeCursor);
+    const page = await query.get();
+    for (let offset = 0; offset < page.docs.length; offset += REFERRAL_TRANSACTION_CONCURRENCY) {
+      const chunk = page.docs.slice(offset, offset + REFERRAL_TRANSACTION_CONCURRENCY);
+      const chunkResult = await db.runTransaction(async (tx): Promise<GuardedReferralChunk> => {
+        const [winnerTombstoneSnap, loserTombstoneSnap, ...currentSnaps] =
+          await Promise.all([
+            tx.get(winnerTombstoneRef),
+            tx.get(loserTombstoneRef),
+            ...chunk.map((queried) => tx.get(queried.ref)),
+          ]);
+        if (winnerTombstoneSnap.exists || loserTombstoneSnap.exists) {
+          return { accountDeletePending: true, changedCount: 0 };
+        }
+        let changedCount = 0;
+        currentSnaps.forEach((currentSnap, index) => {
+          if (!currentSnap.exists || cleanStr(currentSnap.data()?.ownerStableId) !== loserId) {
+            return;
+          }
+          tx.set(chunk[index].ref, { ownerStableId: winnerId }, { merge: true });
+          changedCount += 1;
+        });
+        return { accountDeletePending: false, changedCount };
+      });
+      if (chunkResult.accountDeletePending) return incomplete('codes');
+      result.codeDocsRepointed += chunkResult.changedCount;
+      codeCursor = chunk[chunk.length - 1].id;
+      result.lastCodeId = codeCursor;
+    }
+    if (page.size < REFERRAL_CODE_PAGE_SIZE) break;
   }
 
-  // (4) referral_owners/{loserId}: если у winner ещё нет своего кода — переносим, иначе
-  // лузерский owner-док убираем (его referral_codes уже перенаправлены на winner в (3)).
+  // (4) Owner pointer: preserve a winner collision and retire only loser-owned data.
   const loserOwnerRef = db.collection(REFERRAL_OWNERS).doc(loserId);
-  const loserOwnerSnap = await loserOwnerRef.get();
-  if (loserOwnerSnap.exists) {
-    const winnerOwnerRef = db.collection(REFERRAL_OWNERS).doc(winnerId);
-    const winnerOwnerSnap = await winnerOwnerRef.get();
-    if (!winnerOwnerSnap.exists) {
-      const data = loserOwnerSnap.data() as Record<string, unknown>;
-      await winnerOwnerRef.set({ ...data, ownerStableId: winnerId }, { merge: true }).catch(() => {});
+  const winnerOwnerRef = db.collection(REFERRAL_OWNERS).doc(winnerId);
+  const ownerOutcome = await db.runTransaction(async (tx): Promise<GuardedReferralMutation> => {
+    const [winnerTombstoneSnap, loserTombstoneSnap, loserOwnerSnap, winnerOwnerSnap] =
+      await Promise.all([
+        tx.get(winnerTombstoneRef),
+        tx.get(loserTombstoneRef),
+        tx.get(loserOwnerRef),
+        tx.get(winnerOwnerRef),
+      ]);
+    if (winnerTombstoneSnap.exists || loserTombstoneSnap.exists) {
+      return 'account_delete_pending';
     }
-    await loserOwnerRef.delete().catch(() => {});
-  }
+    if (!loserOwnerSnap.exists) return 'skipped';
+    const loserOwner = loserOwnerSnap.data() as Record<string, unknown>;
+    const loserOwnerStableId = cleanStr(loserOwner.ownerStableId);
+    if (loserOwnerStableId && loserOwnerStableId !== loserId) {
+      throw new HttpsError('failed-precondition', 'referral_owner_changed');
+    }
+    if (winnerOwnerSnap.exists) {
+      const winnerOwnerStableId = cleanStr(winnerOwnerSnap.data()?.ownerStableId);
+      if (winnerOwnerStableId && winnerOwnerStableId !== winnerId) {
+        throw new HttpsError('failed-precondition', 'referral_owner_changed');
+      }
+    } else {
+      tx.set(winnerOwnerRef, { ...loserOwner, ownerStableId: winnerId }, { merge: true });
+    }
+    tx.delete(loserOwnerRef);
+    return 'changed';
+  });
+  if (ownerOutcome === 'account_delete_pending') return incomplete('owner');
+  return result;
 }
 
 export const authMergeStableAccounts = onCall(HOT_CALLABLE_OPTIONS, async (request) => {

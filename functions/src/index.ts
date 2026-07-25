@@ -41,7 +41,9 @@ const { runSupportInboxPullCron, GMAIL_SUPPORT_APP_PASSWORD } = require('./suppo
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, leagueActivateGroupBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authEnsureStableLink, authStampAnonOwnership } = require('./auth_identity');
+const { authEnsureStableLink, authStampAnonOwnership, authRecoveryHint } = require('./auth_identity');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { authRequestRecoveryCode, authConfirmRecoveryCode } = require('./auth_recovery');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authMergeStableAccounts } = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -128,7 +130,7 @@ const {
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { submitUserIdea, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
+const { submitUserIdea, adminListUserIdeas, adminDecideUserIdea, adminDraftIdeaDecision } = require('./user_ideas');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueFinalizeCron } = require('./league_finalize_cron');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -143,6 +145,7 @@ const { progressSubmitEvent, progressMigrateSnapshot } = require('./progress_eve
 const {
   adminAlertOnUserReport,
   adminAlertOnCriticalError,
+  adminAlertOnAuthFailureSpike,
   adminAlertOnContentReport,
   adminAlertContentReportDigest,
   adminAlertOnCancelSurvey,
@@ -156,6 +159,9 @@ exports.leagueSyncMyBoost = leagueSyncMyBoost;
 exports.leagueActivateGroupBoost = leagueActivateGroupBoost;
 exports.authEnsureStableLink = authEnsureStableLink;
 exports.authStampAnonOwnership = authStampAnonOwnership;
+exports.authRecoveryHint = authRecoveryHint;
+exports.authRequestRecoveryCode = authRequestRecoveryCode;
+exports.authConfirmRecoveryCode = authConfirmRecoveryCode;
 exports.authMergeStableAccounts = authMergeStableAccounts;
 exports.accountDeleteMine = accountDeleteMine;
 exports.accountDeleteEnqueue = accountDeleteEnqueue;
@@ -223,6 +229,7 @@ exports.progressSubmitEvent = progressSubmitEvent;
 exports.progressMigrateSnapshot = progressMigrateSnapshot;
 exports.adminAlertOnUserReport = adminAlertOnUserReport;
 exports.adminAlertOnCriticalError = adminAlertOnCriticalError;
+exports.adminAlertOnAuthFailureSpike = adminAlertOnAuthFailureSpike;
 exports.adminAlertOnContentReport = adminAlertOnContentReport;
 exports.adminAlertContentReportDigest = adminAlertContentReportDigest;
 exports.adminAlertOnCancelSurvey = adminAlertOnCancelSurvey;
@@ -243,6 +250,7 @@ exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
 exports.claimCoinMigration = claimCoinMigration;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
+exports.adminListUserIdeas = adminListUserIdeas;
 exports.adminDecideUserIdea = adminDecideUserIdea;
 exports.adminDraftIdeaDecision = adminDraftIdeaDecision;
 exports.leagueFinalizeCron = leagueFinalizeCron;
@@ -370,6 +378,8 @@ export { adminReplyToReport, claimReportReward, adminDraftReportReply } from './
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
 export { adminGrantAccess, adminSetUserBan } from './admin_access_controls';
+// ── Починка/перепривязка auth-привязок из админки (permission users.auth_repair) ──
+export { adminRepairAuthLink, adminRelinkProvider } from './admin_auth_repair';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
 export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
@@ -382,7 +392,7 @@ export { adminGetAnalyticsTrends } from './admin_analytics_trends';
 export { adminGetDirectorDigest } from './admin_director_digest';
 export { adminGenerateDirectorDigestAudio } from './admin_director_digest_audio';
 export { adminSearchUsers, adminGetUserProfile } from './admin_user_profile';
-export { adminExportReportDocuments, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
+export { adminExportReportDocuments, adminExportUnresolvedReports, adminListReportQueue, adminUpdateReportStatus } from './admin_reports_center';
 export { adminListAuditLog } from './admin_audit_log';
 export { adminListOpsLog } from './admin_ops_log';
 export { adminCreatePlan, adminGetPlan, adminListPlans } from './admin_plans';
@@ -427,6 +437,7 @@ export {
   adminUpdateAppMessage,
   adminDeleteAppMessage,
   adminCleanupExpiredAppMessages,
+  adminSendPersonalAppMessage,
 } from './admin_app_messages';
 export {
   adminListGlobalBroadcasts,
@@ -470,6 +481,8 @@ export {
   tournamentCreateRooms,
   tournamentJoin,
   tournamentFillBots,
+  tournamentAdvanceRooms,
+  tournamentAdvanceRound,
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,

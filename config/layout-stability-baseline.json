@@ -1,0 +1,30 @@
+{
+  "adjustsFontSizeToFit": {
+    "app/(tabs)/lessons.tsx": 2,
+    "app/(tabs)/settings.tsx": 2,
+    "app/LeagueResultModal.tsx": 1,
+    "app/flashcards/FlashcardListItem.tsx": 2,
+    "app/flashcards_swipe.tsx": 1,
+    "app/lesson_irregular_verbs.tsx": 1,
+    "app/pack_opening.tsx": 2,
+    "app/paywall_e.tsx": 1,
+    "app/personal_plan.tsx": 1,
+    "app/personal_plan_exercise.tsx": 1,
+    "components/CleanOnboarding.tsx": 1,
+    "components/PlayerProfileModal.tsx": 1,
+    "components/StreakReviveModal.tsx": 1,
+    "components/paywall/PaywallPlanCards.tsx": 2,
+    "components/paywall/PaywallPlanTiles.tsx": 1,
+    "components/paywall/PaywallProofCards.tsx": 2,
+    "components/settings/StudyLanguagePicker.tsx": 1,
+    "components/text-integrity/AdaptiveLabel.tsx": 1,
+    "components/text-integrity/ExpandableText.tsx": 1,
+    "components/text-integrity/FlowText.tsx": 2
+  },
+  "rawSafeAreaInsets": {
+    "components/RegistrationPromptModal.tsx": 1
+  },
+  "loadingReturnsNull": {
+    "app/streak_stats.tsx": 1
+  }
+}

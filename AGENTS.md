@@ -166,6 +166,18 @@ Root causes fixed on 2026-07-02 (see `PERF_MASTER_PLAN.md`): frozen-background n
 - Never replace a whole screen with a centered spinner while loading — keep final geometry (skeleton blocks or last-known content). Layout must not shift when data arrives.
 - Focus-driven refetch (`useFocusEffect`) must (a) be wrapped in `useCallback`, (b) compare fresh data with current state and skip `setState` when nothing changed ("quiet revalidation"), and (c) respect a TTL (30–60s) unless an explicit app event invalidates it.
 
+### Layout stability (first frame = final geometry)
+
+Guarded by `tests/layout_stability_contract.test.ts` + baseline `config/layout-stability-baseline.json` (the baseline may ONLY shrink — new violations are red CI). Per-edit feedback: `scripts/hooks/layout_stability_hook.mjs` (PostToolUse). The bar is Bevel-grade: after the first frame, NOTHING on screen moves unless the user acted or an explicit animation runs.
+
+- Anything that arrives async either hydrates synchronously from a peek/snapshot cache, or its exact place is reserved with `SkeletonBlock` (`components/SkeletonShimmer.tsx`) matching the final width/height. Reference: `app/review.tsx` loading skeleton.
+- Never `if (loading) return null` on a screen: it is a blank frame followed by the whole screen popping in (ratcheted).
+- Counters visible on the first frame must not render `0` and then jump to the real value — hydrate from a module peek-cache (pattern: `app/home_screen_hydration.ts`) or reserve the digits with a small fixed-width `SkeletonBlock`.
+- Elements inserted into / removed from normal flow after the first frame (banners, inline cards) must wrap the visibility flip in `animateNextLayoutTransition()` from `app/smooth_layout.ts` — a smooth ~220ms push, never a teleport. Prefer overlay (`position: 'absolute'`, e.g. `components/OfflineBanner.tsx`) when the element must not displace content and does not cover controls.
+- Safe-area insets ONLY via `useStableSafeAreaInsets` (`app/stable_safe_area_metrics.ts`). The raw `useSafeAreaInsets` from `react-native-safe-area-context` reports 0 until native metrics land → inset jump (ratcheted).
+- `adjustsFontSizeToFit` is banned — on iOS it shrinks short variants to tiny font (known regression class); fix with wrapping/layout, never by shrinking text (ratcheted).
+- `onLayout` → `setState` measure-then-render is allowed only when the measured content is invisible until measured (opacity 0) or its container height is already reserved — a measurement must never move visible content.
+
 ### Optimistic UI and offline mutations
 - Phraseman is local-first for ordinary rewards and reversible user actions: the visible result must update immediately, without `Applying...`, spinners, disabled close buttons, or waiting for a server response.
 - Persist the local intent/effect first, then synchronize or retry in the background. Offline/transient failure uses the existing no-network notification and must not roll back newer user-visible state merely because the server is temporarily unavailable.

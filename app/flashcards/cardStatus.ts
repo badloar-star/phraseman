@@ -38,6 +38,40 @@ export const FLASHCARD_STATUS_A11Y_LABEL: Record<FlashcardStatus, string> = {
   weak: 'Слабая карточка',
 };
 
+/**
+ * Локализованные метки статуса для скринридера.
+ *
+ * зачем (НАЙДЕНО АУДИТОМ 2026-07-25): метки были захардкожены по-русски, а у
+ * приложения 8 локалей — незрячий украинец или испанец слышал бы русский текст
+ * на каждой карточке списка. Цвет точки им и так недоступен, метка — их
+ * единственный источник статуса, поэтому она обязана звучать на их языке.
+ */
+export function flashcardStatusA11yLabel(status: FlashcardStatus, lang: string): string {
+  const byLang: Record<FlashcardStatus, Record<string, string>> = {
+    new: {
+      ru: 'Новая карточка', uk: 'Нова картка', es: 'Tarjeta nueva', 'pt-BR': 'Cartão novo',
+      vi: 'Thẻ mới', id: 'Kartu baru', tr: 'Yeni kart', pl: 'Nowa fiszka',
+    },
+    learning: {
+      ru: 'Учу', uk: 'Вивчаю', es: 'Aprendiendo', 'pt-BR': 'Aprendendo',
+      vi: 'Đang học', id: 'Sedang dipelajari', tr: 'Öğreniyorum', pl: 'Uczę się',
+    },
+    review: {
+      ru: 'Пора повторить', uk: 'Час повторити', es: 'Hora de repasar', 'pt-BR': 'Hora de revisar',
+      vi: 'Đến lúc ôn lại', id: 'Waktunya diulang', tr: 'Tekrar zamanı', pl: 'Czas powtórzyć',
+    },
+    mastered: {
+      ru: 'Освоена', uk: 'Опанована', es: 'Dominada', 'pt-BR': 'Dominado',
+      vi: 'Đã thuộc', id: 'Dikuasai', tr: 'Öğrenildi', pl: 'Opanowana',
+    },
+    weak: {
+      ru: 'Слабая карточка', uk: 'Слабка картка', es: 'Tarjeta débil', 'pt-BR': 'Cartão fraco',
+      vi: 'Thẻ yếu', id: 'Kartu lemah', tr: 'Zayıf kart', pl: 'Słaba fiszka',
+    },
+  };
+  return byLang[status][lang] ?? byLang[status].ru!;
+}
+
 /** Сколько верных подряд считаем «освоено» (зеркалит шкалу интервалов свайпа). */
 const MASTERED_AT = 4;
 

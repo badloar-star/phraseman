@@ -24,7 +24,7 @@ import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
 import { CardItem, CategoryId, cardHasDetails, resolveFlashcardBackText, type FlashcardContentLang } from './types';
-import { FLASHCARD_STATUS_COLOR, FLASHCARD_STATUS_A11Y_LABEL, type FlashcardStatus } from './cardStatus';
+import { FLASHCARD_STATUS_COLOR, flashcardStatusA11yLabel, type FlashcardStatus } from './cardStatus';
 
 const MODERN_ABBREV_DEV = `DEV:${OFFICIAL_MODERN_ABBREV_EN_ID}`;
 
@@ -857,7 +857,7 @@ function FlashcardListItemImpl({
                 <View
                   pointerEvents="none"
                   accessible
-                  accessibilityLabel={FLASHCARD_STATUS_A11Y_LABEL[status]}
+                  accessibilityLabel={flashcardStatusA11yLabel(status, lang)}
                   style={{
                     position: 'absolute',
                     top: 10,

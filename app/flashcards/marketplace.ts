@@ -196,6 +196,20 @@ const parseIdList = (raw: string | null): string[] => {
   }
 };
 
+// зачем: синхронное зеркало last-known owned pack ids в памяти по studyTarget —
+// экран магазина сеет ownedPackIds ИЗ него при первом рендере (peekWarmOwnedPackIds),
+// чтобы карточки уже открытых наборов не мигали «не куплено → куплено» после AsyncStorage round-trip.
+const warmOwnedPackIdsByTarget = new Map<string, string[]>();
+
+function warmOwnedKey(studyTarget?: RuntimeStudyTarget): string {
+  return storageStudyTarget(studyTarget);
+}
+
+/** Последний известный список owned id для studyTarget — без ожидания AsyncStorage. null если ещё не читали в этой сессии. */
+export function peekWarmOwnedPackIds(studyTarget?: RuntimeStudyTarget): string[] | null {
+  return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? null;
+}
+
 export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promise<string[]> {
   try {
     const ownedKey = flashcardsOwnedPacksKey(studyTarget);
@@ -206,9 +220,10 @@ export async function loadOwnedPackIds(studyTarget?: RuntimeStudyTarget): Promis
     if (merged.length > 0 && fromOwned.length === 0 && fromLegacy.length > 0) {
       await AsyncStorage.setItem(ownedKey, JSON.stringify(merged));
     }
+    warmOwnedPackIdsByTarget.set(warmOwnedKey(studyTarget), merged);
     return merged;
   } catch {
-    return [];
+    return warmOwnedPackIdsByTarget.get(warmOwnedKey(studyTarget)) ?? [];
   }
 }
 

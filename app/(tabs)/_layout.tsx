@@ -329,9 +329,18 @@ const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
 // Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
 // native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
-const TAB_SCROLL_COLLAPSED_SCALE = 0.9;
-const TAB_SCROLL_COLLAPSED_TRANSLATE_Y = 8;
-const TAB_SCROLL_COLLAPSED_OPACITY = 0.94;
+// зачем: владелец попросил таббар как у Bevel/iOS 26 — при скролле вниз капсула
+// схлопывается в круглую кнопку («орб») активной вкладки слева; тап по орбу ТОЛЬКО
+// разворачивает, без навигации. Реализация — кроссфейд двух слоёв (капсула ↔ орб)
+// на одном tabScrollProgress: только transform/opacity, width/left не анимируем
+// (layout-анимации уходят на JS-поток — перегрев и фризы уже были больной темой).
+const TAB_CAPSULE_EXIT_SCALE = 0.92;
+const TAB_COLLAPSED_ORB_ENTER_SCALE = 0.9;
+/** Капсула гаснет в первой половине жеста, орб появляется во второй — слои не смешиваются. */
+const TAB_CAPSULE_FADE_OUT_END = 0.45;
+const TAB_ORB_FADE_IN_START = 0.4;
+/** Орб Ø=tabBarHeight (~58): hitSlop добирает цель до комфортных ≥44dp с запасом по краям. */
+const TAB_ORB_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 } as const;
 const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
 const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
 const TAB_SCROLL_DIRECTION_EPSILON = 5;
@@ -434,6 +443,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const tabScrollLastYRef = useRef(0);
   const tabScrollLastToggleAtRef = useRef(0);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
+  /** Зеркало tabScrollCollapsedRef в state: pointerEvents и доступность слоёв капсула/орб. */
+  const [tabChromeCollapsed, setTabChromeCollapsed] = useState(false);
+  const orbPressAnim = useRef(new Animated.Value(0)).current;
   const firstContentReadyEmittedRef = useRef(false);
   // Press feedback must not drive selection; otherwise release can restart the highlight spring.
   const visualTabIdx = visualIdx;
@@ -497,26 +509,29 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     outputRange: [1, 0.92],
   });
 
+  /** Единственная точка переключения капсула↔орб: скролл-триггеры, тап по орбу,
+   *  свайп между табами и программная смена таба идут через неё. */
+  const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
+    if (tabScrollCollapsedRef.current === collapsed) return;
+    const now = Date.now();
+    if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) {
+      return;
+    }
+    tabScrollLastToggleAtRef.current = now;
+    tabScrollCollapsedRef.current = collapsed;
+    setTabChromeCollapsed(collapsed);
+    tabScrollProgress.stopAnimation();
+    Animated.timing(tabScrollProgress, {
+      toValue: collapsed ? 1 : 0,
+      duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [tabScrollProgress]);
+
   useEffect(() => {
     const scrollY = topFadeScroll?.scrollY;
     if (!scrollY) return undefined;
-
-    const animateTo = (collapsed: boolean, immediate = false) => {
-      if (tabScrollCollapsedRef.current === collapsed) return;
-      const now = Date.now();
-      if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) {
-        return;
-      }
-      tabScrollLastToggleAtRef.current = now;
-      tabScrollCollapsedRef.current = collapsed;
-      tabScrollProgress.stopAnimation();
-      Animated.timing(tabScrollProgress, {
-        toValue: collapsed ? 1 : 0,
-        duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
-        easing: Easing.out(Easing.cubic),
-        useNativeDriver: true,
-      }).start();
-    };
 
     const id = scrollY.addListener(({ value }) => {
       const y = Math.max(0, value);
@@ -524,17 +539,17 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       tabScrollLastYRef.current = y;
 
       if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {
-        animateTo(false, true);
+        animateTabChrome(false, true);
         return;
       }
 
       if (delta >= TAB_SCROLL_DIRECTION_EPSILON && y >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) {
-        animateTo(true);
+        animateTabChrome(true);
         return;
       }
 
       if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) {
-        animateTo(false);
+        animateTabChrome(false);
       }
     });
 
@@ -542,24 +557,57 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       scrollY.removeListener(id);
       tabScrollProgress.stopAnimation();
     };
-  }, [activeIdx, tabScrollProgress, topFadeScroll?.scrollY]);
+  }, [activeIdx, animateTabChrome, tabScrollProgress, topFadeScroll?.scrollY]);
 
-  const tabScrollScale = tabScrollProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, TAB_SCROLL_COLLAPSED_SCALE],
+  // contract: collapsed-tap-expands-only — тап по орбу лишь разворачивает капсулу,
+  // навигации нет: видна одна активная вкладка, тап по ней значит «покажи остальные».
+  const handleOrbPress = useCallback(() => {
+    hapticTap();
+    animateTabChrome(false, true);
+  }, [animateTabChrome]);
+
+  /** Свайп между табами — смена контекста: навигация должна быть видна немедленно. */
+  const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
+    animateTabChrome(false, true);
+    onSwipeStart(physicalIdx);
+  }, [animateTabChrome, onSwipeStart]);
+
+  /** Программная смена таба: новый таб открывается наверху — таббар всегда развёрнут,
+   *  lastY сбрасываем, чтобы первый scroll-кадр нового таба не дал ложную дельту. */
+  const goToTabExpanded = useCallback((idx: number) => {
+    tabScrollLastYRef.current = 0;
+    animateTabChrome(false, true);
+    goToTab(idx);
+  }, [animateTabChrome, goToTab]);
+
+  const tabCapsuleOpacity = tabScrollProgress.interpolate({
+    inputRange: [0, TAB_CAPSULE_FADE_OUT_END],
+    outputRange: [1, 0],
     extrapolate: 'clamp',
   });
 
-  const tabScrollTranslateY = tabScrollProgress.interpolate({
+  const tabCapsuleScale = tabScrollProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, TAB_SCROLL_COLLAPSED_TRANSLATE_Y],
+    outputRange: [1, TAB_CAPSULE_EXIT_SCALE],
     extrapolate: 'clamp',
   });
 
-  const tabScrollOpacity = tabScrollProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, TAB_SCROLL_COLLAPSED_OPACITY],
+  const tabOrbOpacity = tabScrollProgress.interpolate({
+    inputRange: [TAB_ORB_FADE_IN_START, 1],
+    outputRange: [0, 1],
     extrapolate: 'clamp',
+  });
+
+  /* Орб входит с 0.9, не с нуля — ничто в физическом мире не появляется из ниоткуда. */
+  const tabOrbScale = tabScrollProgress.interpolate({
+    inputRange: [TAB_ORB_FADE_IN_START, 1],
+    outputRange: [TAB_COLLAPSED_ORB_ENTER_SCALE, 1],
+    extrapolate: 'clamp',
+  });
+
+  const orbPressScale = orbPressAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, 0.94],
   });
 
   const notifyFirstContentReady = useCallback(() => {
@@ -590,7 +638,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
         <View style={{ flex: 1, width: '100%', alignSelf: 'stretch', flexDirection: 'column' }}>
           <View style={s.tabContent}>
             <GestureHandlerRootView style={{ flex: 1 }}>
-              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTab} onSwipeStart={onSwipeStart} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
+              <TabSlider activeIndex={physicalPageIdx} onTabChange={goToTabExpanded} onSwipeStart={handleSwipeStartChrome} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
                 {tabScreens}
               </TabSlider>
             </GestureHandlerRootView>
@@ -602,6 +650,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
           >
             <Animated.View
               onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
+              pointerEvents={tabChromeCollapsed ? 'none' : 'auto'}
+              accessibilityElementsHidden={tabChromeCollapsed}
+              importantForAccessibility={tabChromeCollapsed ? 'no-hide-descendants' : 'auto'}
               style={[
                 s.tabPill,
                 {
@@ -611,10 +662,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   borderRadius: tabBarHeight / 2,
                   borderColor: tabPillBorder,
                   shadowColor: t.shadowDark,
-                  opacity: tabScrollOpacity,
+                  opacity: tabCapsuleOpacity,
                   transform: [
-                    { translateY: tabScrollTranslateY },
-                    { scale: tabScrollScale },
+                    { scale: tabCapsuleScale },
                     { scale: tabPillPressScale },
                   ],
                 },
@@ -663,7 +713,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     style={s.tabBtn}
                     onPressIn={() => beginTabPress(i)}
                     onPressOut={endTabPress}
-                    onPress={() => { goToTab(i); }}
+                    onPress={() => { goToTabExpanded(i); }}
                     activeOpacity={1}
                   >
                     {/* Подсветка активного таба — мягкая «пилюля» под иконкой (как в Instagram). */}
@@ -685,6 +735,54 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   </TouchableOpacity>
                 );
               })}
+            </Animated.View>
+
+            {/* Орб — свёрнутый таббар (Bevel/iOS 26): круг слева с иконкой активной
+                вкладки. Кроссфейд с капсулой по тому же tabScrollProgress. */}
+            <Animated.View
+              pointerEvents={tabChromeCollapsed ? 'auto' : 'none'}
+              accessibilityElementsHidden={!tabChromeCollapsed}
+              importantForAccessibility={tabChromeCollapsed ? 'auto' : 'no-hide-descendants'}
+              style={[
+                s.tabOrb,
+                {
+                  bottom: tabPillBottom,
+                  left: ds.spacing.lg,
+                  width: tabBarHeight,
+                  height: tabBarHeight,
+                  borderRadius: tabBarHeight / 2,
+                  shadowColor: t.shadowDark,
+                  opacity: tabOrbOpacity,
+                  transform: [
+                    { scale: tabOrbScale },
+                    { scale: orbPressScale },
+                  ],
+                },
+              ]}
+            >
+              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
+              <TouchableOpacity
+                testID="tab-collapsed-orb"
+                accessibilityLabel="qa-tab-collapsed-orb"
+                accessible={true}
+                accessibilityRole="button"
+                style={s.tabOrbBtn}
+                hitSlop={TAB_ORB_HIT_SLOP}
+                onPressIn={() => {
+                  Animated.spring(orbPressAnim, { toValue: 1, speed: 34, bounciness: 6, useNativeDriver: true }).start();
+                }}
+                onPressOut={() => {
+                  Animated.spring(orbPressAnim, { toValue: 0, speed: 28, bounciness: 4, useNativeDriver: true }).start();
+                }}
+                onPress={handleOrbPress}
+                activeOpacity={1}
+              >
+                <Ionicons
+                  name={(TABS[visualTabIdx] ?? TABS[0]).active}
+                  size={26}
+                  color={t.accent}
+                />
+              </TouchableOpacity>
             </Animated.View>
           </View>
         </View>
@@ -1032,6 +1130,25 @@ const s = StyleSheet.create({
     height: TAB_ACTIVE_PILL_HEIGHT,
     borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
     borderWidth: 0,
+  },
+  /** Орб — свёрнутое состояние таббара: меньше площадь → сильнее «парит»
+   *  (плотнее opacity при том же радиусе, что у капсулы — дороже radius нельзя, перф). */
+  tabOrb: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderWidth: 0,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.34,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  tabOrbBtn: {
+    flex: 1,
+    alignSelf: 'stretch',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
 });

@@ -257,18 +257,24 @@ describe('registerXP', () => {
     expect(__xpManagerTestHooks.progressEventTypeForSource('club_mission_complete')).toBe('club_mission_complete');
   });
 
-  it('runs the 10k restore exactly once and commits its marker with XP', async () => {
+  // зачем: клиентский пересчёт XP по старой кривой ОСОЗНАННО отключён (см. коммент
+  // в xp_manager.ts: «Level-formula repair is a server/admin migration, not a
+  // boot-time client mutation») — устройство не имеет права само домыслить баланс и
+  // протащить юзера через несколько уровней. Раньше тест требовал ровно такого
+  // пересчёта (10000 → 16000). Теперь фиксируем ЗАЩИТУ: миграция ставит маркеры,
+  // но баланс не трогает, и повторный запуск тоже ничего не меняет.
+  it('never rewrites XP on device: marks the migration done and leaves the balance intact', async () => {
     const { migrateXPFormulaV2 } = await import('../app/xp_manager');
-    const { XP_LEVEL_RESTORE_250_TO_400_KEY, restoredXPForOld250VisibleLevel } = await import('../app/xp_level_restore');
+    const { XP_LEVEL_RESTORE_250_TO_400_KEY } = await import('../app/xp_level_restore');
     await AsyncStorage.setItem('user_total_xp', '10000');
-    const restoredXp = String(restoredXPForOld250VisibleLevel(10000).targetXP);
 
     await migrateXPFormulaV2();
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
     expect(await AsyncStorage.getItem(XP_LEVEL_RESTORE_250_TO_400_KEY)).toBe('1');
 
+    // Идемпотентность: второй прогон не «догоняет» баланс задним числом.
     await migrateXPFormulaV2();
-    expect(await AsyncStorage.getItem('user_total_xp')).toBe(restoredXp);
+    expect(await AsyncStorage.getItem('user_total_xp')).toBe('10000');
   });
 });
 

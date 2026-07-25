@@ -41,7 +41,9 @@ const COPY: Record<EdgeKind, { icon: string; title: string; body: string; action
   cancelled: {
     icon: '🫱',
     title: 'Турнир отменён',
-    body: 'Не набралось игроков. Билет вернулся, плюс 3 💎 за ожидание',
+    // зачем: 💎 — запрещённая эмодзи-валюта (правило владельца). Текстом
+    // «монеты», как в tournament_results.tsx / tournament_tickets.tsx.
+    body: 'Не набралось игроков. Билет вернулся, плюс 3 монеты за ожидание',
     action: 'На главную',
   },
   alreadyIn: {

@@ -95,8 +95,13 @@ export default function TournamentTicketsScreen() {
 
         <Cta onPress={openHowTo}>Как получить ещё</Cta>
 
+        {/* зачем: 💎 — запрещённая эмодзи-валюта (правило владельца, тот же
+            запрет уже применён в tournament_results.tsx). Cta заворачивает
+            children в один <Text>, поэтому картинку-монету сюда не вставить
+            без переделки компонента — текстом ссылаемся на «монет», как в
+            призовом тексте результатов. */}
         <Cta ghost disabled={!canBuy}>
-          Купить 1 🎟 за {TICKET_GEM_PRICE} 💎
+          Купить 1 🎟 за {TICKET_GEM_PRICE} монет
         </Cta>
 
         {/* Источники */}

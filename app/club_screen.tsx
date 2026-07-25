@@ -764,12 +764,17 @@ export default function ClubScreen() {
     activeGroupBoostRef.current = activeGroupBoost;
   }, [activeGroupBoost]);
 
-  useEffect(() => subscribeToActiveLeagueGroupBoost((boost) => {
-    if (!isMountedRef.current) return;
-    if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
-    setActiveGroupBoost(boost);
-    setGroupBoostLikeTotal(boost?.likeCount ?? 0);
-  }), []);
+  // зачем: аудит нагрева 2026-07-25 — подписки буста жили в голом useEffect и
+  // продолжали слушать Firestore, пока экран смонтирован (даже не в фокусе/в фоне).
+  // Остальные realtime-эффекты этого файла уже на useFocusEffect — выравниваем.
+  useFocusEffect(
+    useCallback(() => subscribeToActiveLeagueGroupBoost((boost) => {
+      if (!isMountedRef.current) return;
+      if (!boost && activeGroupBoostRef.current && activeGroupBoostRef.current.expiresAt > Date.now()) return;
+      setActiveGroupBoost(boost);
+      setGroupBoostLikeTotal(boost?.likeCount ?? 0);
+    }), []),
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -785,24 +790,30 @@ export default function ClubScreen() {
     };
   }, [activeGroupBoost?.buyerUid, activeGroupBoost?.likeEventId]);
 
-  useEffect(() => {
-    if (!activeGroupBoost) {
-      setGroupBoostTimeLeft('');
-      return;
-    }
-    const update = () => {
-      const live = activeGroupBoost.expiresAt > Date.now();
-      if (!live) {
-        setActiveGroupBoost(null);
+  // зачем: аудит нагрева 2026-07-25 — секундный тик буста работал и вне фокуса
+  // экрана (setState каждую секунду в фоне, пока активен буст). Гардим фокусом,
+  // как соседний недельный countdown ниже.
+  useFocusEffect(
+    useCallback(() => {
+      if (!activeGroupBoost) {
         setGroupBoostTimeLeft('');
         return;
       }
-      setGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(activeGroupBoost.expiresAt));
-    };
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, [activeGroupBoost?.expiresAt]);
+      const update = () => {
+        const live = activeGroupBoost.expiresAt > Date.now();
+        if (!live) {
+          setActiveGroupBoost(null);
+          setGroupBoostTimeLeft('');
+          return;
+        }
+        setGroupBoostTimeLeft(formatLeagueGroupBoostTimeLeft(activeGroupBoost.expiresAt));
+      };
+      update();
+      const id = setInterval(update, 1000);
+      return () => clearInterval(id);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activeGroupBoost?.expiresAt]),
+  );
 
   // Таймер недели: общий visible wall clock (1 Гц), текст меняется максимум раз в минуту,
   // подписка живёт только пока экран в фокусе — новых setInterval не создаём.

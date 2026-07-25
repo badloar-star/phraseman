@@ -216,3 +216,36 @@ test('исключение из reserveNameDetailed не ломает ensureLoca
   await ensureLocalNickname();
   expect(mockReserveNameDetailed).toHaveBeenCalledTimes(2);
 });
+
+test('исчерпание бюджета ретраев снимает AppState-слушатель — нет вечной сети на каждый foreground', async () => {
+  // зачем: аудит нагрева 2026-07-25 — слушатель foreground раньше жил вечно и дёргал
+  // generateAndReserveNickname на каждый разворот приложения после исчерпания бюджета.
+  jest.useFakeTimers();
+  const removeSpy = jest.fn();
+  const { AppState } = require('react-native');
+  const addSpy = jest.spyOn(AppState, 'addEventListener').mockReturnValue({ remove: removeSpy } as never);
+  try {
+    try { Object.defineProperty(AppState, 'currentState', { configurable: true, value: 'active' }); } catch {}
+    const AsyncStorage = require('@react-native-async-storage/async-storage').default
+      ?? require('@react-native-async-storage/async-storage');
+    const guard = require('../app/nickname_guard');
+    await AsyncStorage.setItem(guard.GENERATED_NICKNAME_PENDING_KEY, '1');
+    mockGenerateAndReserveNickname.mockResolvedValue({ status: 'error' });
+
+    await guard.resumePendingGeneratedNickname(); // попытка №1 → слушатель + таймер 5с
+    expect(addSpy).toHaveBeenCalledTimes(1);
+
+    for (let i = 0; i < 3; i++) {
+      await jest.runOnlyPendingTimersAsync(); // попытки №2..№4 по бюджету задержек
+      await Promise.resolve();
+    }
+    await Promise.resolve();
+
+    expect(mockGenerateAndReserveNickname).toHaveBeenCalledTimes(4);
+    expect(removeSpy).toHaveBeenCalledTimes(1); // слушатель снят при исчерпании бюджета
+    expect(jest.getTimerCount()).toBe(0); // и новых таймеров не осталось
+  } finally {
+    jest.useRealTimers();
+    addSpy.mockRestore();
+  }
+});

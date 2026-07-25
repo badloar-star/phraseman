@@ -104,7 +104,16 @@ export async function ensureUniqueGeneratedNickname(): Promise<string> {
 }
 
 function schedulePendingNicknameRetry(): void {
-  if (pendingNicknameRetry || pendingNicknameRetryAttempt >= PENDING_NICKNAME_RETRY_DELAYS_MS.length) return;
+  if (pendingNicknameRetry) return;
+  if (pendingNicknameRetryAttempt >= PENDING_NICKNAME_RETRY_DELAYS_MS.length) {
+    // зачем: бюджет из 3 отложенных попыток исчерпан, а AppState-слушатель раньше
+    // ОСТАВАЛСЯ жить и дёргал сеть на каждый разворот приложения бесконечно
+    // (аудит нагрева 2026-07-25). Снимаем слушатель; счётчик НЕ сбрасываем —
+    // свежий бюджет даёт только новый запуск приложения (ensureLocalNickname).
+    pendingNicknameAppStateSub?.remove();
+    pendingNicknameAppStateSub = null;
+    return;
+  }
   if (!pendingNicknameAppStateSub) {
     pendingNicknameAppStateSub = AppState.addEventListener('change', (state) => {
       if (state !== 'active') {

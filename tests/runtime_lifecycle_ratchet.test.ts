@@ -58,6 +58,10 @@ const runtime = (reason: string, requiredTokens: string[] = []): MotionReview =>
 });
 
 const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
+  // зачем: пульс подарка/скелетона попал в релиз 21.07 БЕЗ гарда (регрессия нагрева,
+  // аудит 2026-07-25) и мимо этого реестра. Фиксируем файл здесь, чтобы гард
+  // useRuntimeActive нельзя было потерять снова незаметно.
+  'app/(tabs)/friends.tsx': runtime('Gift pulse and search skeleton loops require focused foreground runtime.', ['if (active && runtimeActive)']),
   'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(isHomeOwner)', '!homeRuntimeActive']),
   'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
   'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },

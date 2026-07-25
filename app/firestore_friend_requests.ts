@@ -624,9 +624,25 @@ export function subscribeToIncomingRequests(
  * - Односторонние friends-документы (должны были удалиться при deleteFriend)
  * Вызывается один раз при открытии вкладки. Fire-and-forget.
  */
+// зачем: чистка — редкая ремонтная операция, а вкладка «Друзья» зовёт её при КАЖДОМ
+// появлении: полный скан friend_requests + friends + до 20 reverse-чтений = до ~22
+// Firestore reads на каждое переключение таба (аудит 2026-07-25). Троттлим: не чаще
+// раза в 6 часов, метка в AsyncStorage переживает перезапуски. Экономия чтений.
+const FRIEND_CLEANUP_LAST_RUN_KEY = 'friends_cleanup_last_run_v1';
+const FRIEND_CLEANUP_MIN_INTERVAL_MS = 6 * 60 * 60 * 1000;
+let friendCleanupInFlight = false;
+
 export async function cleanupStaleFriendData(): Promise<void> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  if (friendCleanupInFlight) return;
+  friendCleanupInFlight = true;
   try {
+    const lastRaw = await AsyncStorage.getItem(FRIEND_CLEANUP_LAST_RUN_KEY).catch(() => null);
+    const sinceLast = Date.now() - Number(lastRaw ?? 0);
+    // Отрицательное sinceLast = часы переведены назад → метка из «будущего», не верим ей.
+    if (Number(lastRaw) > 0 && sinceLast >= 0 && sinceLast < FRIEND_CLEANUP_MIN_INTERVAL_MS) return;
+    // Метку ставим ДО работы: даже неудачная попытка не должна повторяться каждый вход в таб.
+    await AsyncStorage.setItem(FRIEND_CLEANUP_LAST_RUN_KEY, String(Date.now())).catch(() => {});
     const myUid = await ensureAnonUser();
     if (!myUid) return;
     const db = getFirestore();
@@ -672,6 +688,8 @@ export async function cleanupStaleFriendData(): Promise<void> {
     }
   } catch {
     /* ignore — cleanup is best-effort */
+  } finally {
+    friendCleanupInFlight = false;
   }
 }
 

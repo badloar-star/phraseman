@@ -241,6 +241,30 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toMatch(/'\/\(tabs\)\/settings':\s*4/);
   });
 
+  it('порядок страниц слайдера совпадает с порядком кнопок таббара', () => {
+    // Регрессия владельца: кнопка кубка открывала друзей, друзья —
+    // настройки, настройки вылетали. Причина: список страниц слайдера и
+    // LOGICAL_TAB_IDS остались на четырёх вкладках, хотя кнопок стало пять.
+    // Сборка при этом не падает — баг виден только на устройстве.
+    const layout = read('app/(tabs)/_layout.tsx');
+    const model = read('lib/today/tab_page_model.ts');
+
+    // Модель страниц знает про пятую вкладку.
+    expect(model).toContain("'home', 'lessons', 'tournaments', 'friends', 'settings'");
+    expect(model).toMatch(/LogicalTabIndex = 0 \| 1 \| 2 \| 3 \| 4/);
+    expect(model).toMatch(/PhysicalPageIndex = 0 \| 1 \| 2 \| 3 \| 4 \| 5/);
+
+    // Панели слайдера стоят в том же порядке, что кнопки.
+    expect(layout).toMatch(/key="tournaments"[\s\S]{0,120}loadScreen=\{loadTournamentsScreen\}/);
+    expect(layout).toMatch(/shouldLoad\(3\)\} loadScreen=\{loadFriendsScreen\}/);
+    expect(layout).toMatch(/shouldLoad\(4\)\} loadScreen=\{loadSettingsScreen\}/);
+
+    // Предзагрузка соседних вкладок — та же нумерация.
+    expect(layout).toMatch(/case 2: return loadTournamentsScreen\(\)/);
+    expect(layout).toMatch(/case 3: return loadFriendsScreen\(\)/);
+    expect(layout).toMatch(/case 4: return loadSettingsScreen\(\)/);
+  });
+
   it('экран турниров лежит внутри папки вкладок', () => {
     // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();

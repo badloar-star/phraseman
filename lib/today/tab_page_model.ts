@@ -1,10 +1,17 @@
-export const LOGICAL_TAB_IDS = ['home', 'lessons', 'friends', 'settings'] as const;
+/**
+ * зачем: порядок ОБЯЗАН совпадать с TABS в app/(tabs)/_layout.tsx.
+ * Вкладка «Турниры» (кубок) стоит по центру — третьей, поэтому friends и
+ * settings сдвинулись. Забыть про этот файл легко: сборка не падает, но
+ * таббар начинает открывать соседние экраны, а последний просто вылетает
+ * (индекс выходит за границы LogicalTabIndex).
+ */
+export const LOGICAL_TAB_IDS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
 export const PHYSICAL_PAGE_IDS = ['today', ...LOGICAL_TAB_IDS] as const;
 
 export type LogicalTabId = (typeof LOGICAL_TAB_IDS)[number];
 export type PhysicalPageId = (typeof PHYSICAL_PAGE_IDS)[number];
-export type LogicalTabIndex = 0 | 1 | 2 | 3;
-export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4;
+export type LogicalTabIndex = 0 | 1 | 2 | 3 | 4;
+export type PhysicalPageIndex = 0 | 1 | 2 | 3 | 4 | 5;
 export type TabRuntimeOwnerId = PhysicalPageId;
 
 function assertIntegerInRange(value: number, max: number, label: string): void {

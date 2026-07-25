@@ -60,6 +60,7 @@ type DeferredTabModule = { default: TabScreenComponent };
 type CancelableTask = { cancel?: () => void };
 
 let deferredLessonsScreen: TabScreenComponent | null = null;
+let deferredTournamentsScreen: TabScreenComponent | null = null;
 let deferredFriendsScreen: TabScreenComponent | null = null;
 let deferredSettingsScreen: TabScreenComponent | null = null;
 
@@ -69,6 +70,11 @@ function loadLessonsScreen(): TabScreenComponent {
   // чтобы не трогать privacy-boundary вокруг таба.
   deferredLessonsScreen ??= (require('./journal') as DeferredTabModule).default;
   return deferredLessonsScreen;
+}
+
+function loadTournamentsScreen(): TabScreenComponent {
+  deferredTournamentsScreen ??= (require('./tournaments') as DeferredTabModule).default;
+  return deferredTournamentsScreen;
 }
 
 function loadFriendsScreen(): TabScreenComponent {
@@ -84,8 +90,9 @@ function loadSettingsScreen(): TabScreenComponent {
 function loadDeferredTabScreenByIndex(idx: number): TabScreenComponent | null {
   switch (idx) {
     case 1: return loadLessonsScreen();
-    case 2: return loadFriendsScreen();
-    case 3: return loadSettingsScreen();
+    case 2: return loadTournamentsScreen();
+    case 3: return loadFriendsScreen();
+    case 4: return loadSettingsScreen();
     default: return null;
   }
 }
@@ -1092,8 +1099,12 @@ export default function TabLayout() {
           isActive={activeIdx === 1 && physicalPageIdx === logicalTabToPhysicalPage(1)}
         />
       ) : placeholder('ph-index'),
-      show(2) ? <TabPane key="friends" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
-      show(3) ? <TabPane key="settings" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
+      // зачем: кубок стоит по центру (макет 01) — порядок здесь ОБЯЗАН
+      // совпадать с TABS и LOGICAL_TAB_IDS, иначе кнопка таббара открывает
+      // соседний экран, а последний вылетает.
+      show(2) ? <TabPane key="tournaments" freezeWanted={freezeWanted(2)}><DeferredTabScreen shouldLoad={shouldLoad(2)} loadScreen={loadTournamentsScreen} /></TabPane> : placeholder('ph-tournaments'),
+      show(3) ? <TabPane key="friends" freezeWanted={freezeWanted(3)}><DeferredTabScreen shouldLoad={shouldLoad(3)} loadScreen={loadFriendsScreen} /></TabPane> : placeholder('ph-friends'),
+      show(4) ? <TabPane key="settings" freezeWanted={freezeWanted(4)}><DeferredTabScreen shouldLoad={shouldLoad(4)} loadScreen={loadSettingsScreen} /></TabPane> : placeholder('ph-settings'),
     ];
   }, [activeIdx, mountedTabs, physicalPageIdx, t.bgPrimary, tabPaneWidth, visitedTabs]);
 

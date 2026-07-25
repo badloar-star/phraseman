@@ -103,6 +103,7 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/LevelGiftDualModal.tsx': owned('Dual gift loops are guarded by visible phase and stopped on cleanup.', ['if (!visible', 'idleAll.current?.stop()']),
   'components/LevelGiftModal.tsx': owned('Gift loops are guarded by visibility and stopped whenever hidden.', ['if (!visible || !gift)', 'idleLoop.current?.stop()']),
   'components/LingmanVideosButton.tsx': guarded('Unread pulse uses navigation focus and AppState.'),
+  'components/flashcards/AudioWaveform.tsx': owned('Waveform bars run only while audio plays, the screen is focused and reduced motion is off; every loop is stopped on cleanup.', ['if (!active)', 'loop.stop()']),
   'components/league/LeagueArenaScene.tsx': guarded('Arena beams, emblem float and confetti loops use screen focus and AppState.'),
   'components/league/LeagueMyPositionBar.tsx': guarded('My-position rank glow loop uses screen focus and AppState.'),
   'components/league/LeagueChestTeaserModal.tsx': owned('Chest teaser rays and bob run only while the modal is visible and stop on cleanup.', ['if (!visible) return null', 'if (!visible) return']),

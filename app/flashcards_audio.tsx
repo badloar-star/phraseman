@@ -1,6 +1,7 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
+import AudioWaveform from '../components/flashcards/AudioWaveform';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -1056,6 +1057,10 @@ export default function FlashcardsAudioScreen() {
             </View>
           </View>
 
+          {/* зачем: A-35 — раньше не было никакой обратной связи «звук идёт»:
+              кнопка play и тишина. Волна показывает воспроизведение и гаснет
+              на паузе, вне фокуса и при «Уменьшении движения». */}
+          <AudioWaveform playing={isPlaying} color={t.accent} height={26} style={{ marginBottom: 14 }} />
           <View style={styles.controlRow}>
             <TapScale onPress={goToPreviousCard} disabled={cardIndex === 0} style={[styles.iconButton, { backgroundColor: t.bgSurface, opacity: cardIndex === 0 ? 0.45 : 1 }]}>
               <Ionicons name="play-skip-back" size={20} color={t.textSecond} />

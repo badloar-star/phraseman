@@ -10,9 +10,7 @@
  */
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
-  KeyboardAvoidingView,
   Modal,
-  Platform,
   Pressable,
   StyleSheet,
   Text,
@@ -32,6 +30,7 @@ import Animated, {
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { hapticTap } from '../hooks/use-haptics';
+import { useKeyboardBottomInset } from './keyboardAvoidance';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
 
@@ -58,6 +57,11 @@ export default function ReferralSheetShell({
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
   const { height: viewportHeight } = useWindowDimensions();
+  // зачем: владелец (2026-07-25) — раньше KeyboardAvoidingView(padding) двигал ВЕСЬ
+  // шит вверх на высоту клавиатуры → шит «прыгал»/уезжал вместо стабильной позиции.
+  // Теперь шит остаётся закреплён снизу (justifyContent:'flex-end' в .avoider),
+  // а клавиатуре уступает только его нижний паддинг — контент виден, каркас не едет.
+  const keyboardBottomInset = useKeyboardBottomInset(visible);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(SHEET_HIDDEN);
@@ -130,17 +134,15 @@ export default function ReferralSheetShell({
           <Animated.View style={[styles.backdrop, backdropStyle]} />
         </Pressable>
 
-        <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-          style={styles.avoider}
-          pointerEvents="box-none"
-        >
+        <View style={styles.avoider} pointerEvents="box-none">
           <GestureDetector gesture={panGesture}>
             <Animated.View
               testID={testID}
               style={[
                 styles.sheet,
-                { backgroundColor: t.bgCard, paddingBottom: 20 + bottomInset },
+                // зачем: паддинг снизу растёт на высоту клавиатуры вместо сдвига
+                // всего шита — заголовок/грабер не дёргаются, стабильная позиция.
+                { backgroundColor: t.bgCard, paddingBottom: 20 + Math.max(bottomInset, keyboardBottomInset) },
                 sheetStyle,
               ]}
             >
@@ -165,7 +167,7 @@ export default function ReferralSheetShell({
               {children}
             </Animated.View>
           </GestureDetector>
-        </KeyboardAvoidingView>
+        </View>
       </GestureHandlerRootView>
     </Modal>
   );

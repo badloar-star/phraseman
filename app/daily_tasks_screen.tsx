@@ -106,6 +106,25 @@ const formatHms = (totalSeconds: number): string => {
     return `${hh}:${mm}:${ss}`;
 };
 
+// зачем: 11 мета-типов задач (early_all_done…mentor_friend) не имеют .webp в
+// DAILY_TASK_ACHIEVEMENT_ICONS/DAILY_TASK_ID_ACHIEVEMENT_ICONS — achievementIcon
+// резолвился в undefined и карточка рендерила пустой Image. Вместо генерации новых
+// растровых ассетов — используем Ionicons (тот же single-color line-стиль, что и
+// остальная навигация/бейджи этого экрана: chevron-back, refresh, checkmark-circle).
+const DAILY_TASK_META_ICON_FALLBACK: Partial<Record<TaskType, keyof typeof Ionicons.glyphMap>> = {
+    early_all_done: 'sunny-outline',
+    last_chance: 'hourglass-outline',
+    comeback_lesson: 'flame-outline',
+    revision_lesson: 'refresh-circle-outline',
+    polyglot_day: 'globe-outline',
+    perfect_big_lesson: 'ribbon-outline',
+    blitz_speed: 'flash-outline',
+    streak_freeze_use: 'shield-checkmark-outline',
+    club_attend: 'mic-outline',
+    weekend_marathon: 'flag-outline',
+    mentor_friend: 'people-outline',
+};
+
 type DailyTaskUiMeta = {
     stage: string;
     label: string;
@@ -2347,8 +2366,6 @@ export default function DailyTasksScreen() {
     const heroEntrance = useRef(new Animated.Value(0)).current;
     const cardEntrances = useRef<Record<string, Animated.Value>>({});
     const entrancePlayedRef = useRef(false);
-    // Анимированная ширина трека прогресса под карточкой (0..1 -> 0%..100%).
-    const taskTrackAnims = useRef<Record<string, Animated.Value>>({});
     useEffect(() => {
         if (!screenFocused) {
             premiumPulse.stopAnimation(); premiumPulse.setValue(1);
@@ -2389,19 +2406,10 @@ export default function DailyTasksScreen() {
             }
         });
     }, [tasks]);
-    // Плавное заполнение трека прогресса карточки при загрузке и смене current.
-    useEffect(() => {
-        (tasks ?? []).forEach((task) => {
-            const anim = taskTrackAnims.current[task.id];
-            if (!anim) return;
-            const frac = taskProgressFraction(task, progress.find((p) => p.taskId === task.id));
-            if (reduceMotion) {
-                anim.setValue(frac);
-                return;
-            }
-            Animated.timing(anim, { toValue: frac, duration: 600, useNativeDriver: false }).start();
-        });
-    }, [tasks, progress, reduceMotion]);
+    // зачем: п.1 — сам анимированный трек-бар убран из рендера (карточка теперь
+    // единственный индикатор через taskCapsuleFill), поэтому эффект, который его
+    // анимировал (taskTrackAnims), стал мёртвым кодом без потребителя — удалён вместе
+    // с track-view, чтобы не гонять Animated.timing впустую на каждый tick прогресса.
     useEffect(() => {
         AsyncStorage.getItem('user_name').then(n => { if (n)
             setUserName(n); });
@@ -3321,6 +3329,8 @@ export default function DailyTasksScreen() {
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+            // зачем: см. DAILY_TASK_META_ICON_FALLBACK — без него мета-задания рендерили пустую картинку.
+            const metaIconFallback = achievementIcon ? undefined : DAILY_TASK_META_ICON_FALLBACK[task.type];
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
                 : dailyTaskAccentHex(t, task.type);
@@ -3340,13 +3350,19 @@ export default function DailyTasksScreen() {
                 ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
             });
+            // зачем: п.3 — кнопка обещала «монеты», а confirm-модалка (ниже, ~rerollConfirm)
+            // списывает и показывает ОСКОЛКИ (DAILY_TASK_REROLL_COST_SHARDS →
+            // spendShards(..., 'daily_task_reroll') в app/daily_tasks.ts) — это единственная
+            // серверная логика оплаты реролла, монеты тут вообще не участвуют. Правим кнопку
+            // под реальность (осколки), а не наоборот.
             const rerollLabel = triLang(lang, {
-                ru: 'Заменить вызов за монеты', uk: 'Замінити завдання за монети', es: 'Reemplazar tarea por monedas',
-                'pt-BR': 'Substituir tarefa por moedas', vi: 'Đổi nhiệm vụ bằng xu', id: 'Ganti tugas dengan fragmen',
-                tr: 'Görevi jetonlarla değiştir', pl: 'Zamień zadanie za monety',
+                ru: 'Заменить вызов за осколки', uk: 'Замінити завдання за скалки', es: 'Reemplazar tarea por fragmentos',
+                'pt-BR': 'Substituir tarefa por fragmentos', vi: 'Đổi nhiệm vụ bằng mảnh vỡ', id: 'Ganti tugas dengan pecahan',
+                tr: 'Görevi kırıklarla değiştir', pl: 'Zamień zadanie za odłamki',
             });
             const entranceAnim = cardEntrances.current[task.id] ?? (cardEntrances.current[task.id] = new Animated.Value(entrancePlayedRef.current || reduceMotion ? 1 : 0));
-            const trackAnim = taskTrackAnims.current[task.id] ?? (taskTrackAnims.current[task.id] = new Animated.Value(reduceMotion ? taskFillPct / 100 : 0));
+            // зачем: п.1 — trackAnim (анимация отдельного прогресс-трека) удалён вместе
+            // с самим треком; taskTrackAnims-ref больше не существует (см. useRef выше).
             return (<Animated.View key={task.id} style={{ opacity: entranceAnim, transform: [{ translateY: entranceAnim.interpolate({ inputRange: [0, 1], outputRange: [14, 0] }) }] }}>
               <Animated.View style={[dailyTaskStyles.taskOuterAnim, { transform: [{ scale: anim }] }, isGoldTheme ? goldShadow(completed && !claimed ? 2 : 1) : null]}>
               <DailyTaskCard
@@ -3363,11 +3379,21 @@ export default function DailyTasksScreen() {
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
                 iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
-                icon={<Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" />}
+                icon={metaIconFallback
+                    ? <Ionicons name={metaIconFallback} size={30} color={taskAccent} accessible={false} />
+                    // guard-ok: decorative — card Pressable already carries title+description as its accessibilityLabel.
+                    : <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" accessible={false} />}
                 background={<>
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
+                  {/* зачем: п.2 — «done/total» переехал с отдельного мета-ряда под карточкой
+                      прямо на карточку (бейдж в правом верхнем углу), т.к. заливка карточки
+                      (taskCapsuleFill выше) уже сама показывает прогресс — числа рядом читаются
+                      как единая карточка, а не как две дублирующие друг друга подписи. */}
+                  <View pointerEvents="none" style={[dailyTaskStyles.taskCornerProgressBadge, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.22) }]}>
+                    <Text style={{ color: taskAccent, fontSize: f.label - 1, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{Math.min(current, task.target)}/{task.target}</Text>
+                  </View>
                 </>}
                 action={completed && !claimed ? { label: claimLabel, onPress: () => { void handleClaim(task.id, task.xp); }, foregroundColor: rewardActionText, backgroundColor: rewardActionBg, disabled: claimBusyId === task.id, loading: claimBusyId === task.id } : undefined}
                 claimed={claimed}
@@ -3375,15 +3401,12 @@ export default function DailyTasksScreen() {
                 reroll={!completed && !claimed && rerollsLeft > 0 ? { accessibilityLabel: rerollLabel, onPress: () => { hapticTap(); setRerollConfirm({ task }); }, icon: <Ionicons name="refresh" size={22} color={isGoldTheme ? goldAccent : 'rgba(255,255,255,0.62)'} /> } : undefined}
                 premium={isPremiumTask ? <Animated.View pointerEvents="box-none" style={{ position: 'absolute', bottom: -1, right: -1, zIndex: 10, transform: [{ scale: premiumPulse }], opacity: premiumSparkle.interpolate({ inputRange: [0, 1], outputRange: [0.86, 1] }), borderBottomRightRadius: 18, borderTopLeftRadius: 10, overflow: 'hidden' }}><PlusBadge themeMode={themeMode} size="sm" /></Animated.View> : undefined}
               />
-              {/* Мета-ряд под карточкой: трек прогресса (анимированная ширина),
-                  числовой прогресс (revive taskProgressValuePill) и XP-пилюля (revive xpBadge). */}
-              <View style={dailyTaskStyles.taskMetaRow}>
-                <View style={[dailyTaskStyles.taskProgressTrack, { flex: 1 }, isGoldTheme ? { backgroundColor: 'rgba(0,0,0,0.34)' } : null]}>
-                  <Animated.View style={{ height: '100%', width: trackAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: taskAccent, borderRadius: 999 }} />
-                </View>
-                <View style={[dailyTaskStyles.taskProgressValuePill, { backgroundColor: dailyTaskAccentAlpha(taskAccent, 0.16) }]}>
-                  <Text style={{ color: taskAccent, fontSize: f.label, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>{Math.min(current, task.target)}/{task.target}</Text>
-                </View>
+              {/* зачем: п.1 — убран отдельный трек прогресса (taskProgressTrack) и повторный
+                  числовой пилюля (taskProgressValuePill): карточка уже показывает прогресс через
+                  свою заливку (taskCapsuleFill) + угловой бейдж done/total (см. background выше),
+                  так что отдельная полоса была вторым, лишним индикатором того же самого числа.
+                  Оставлена только XP-пилюля — она несёт другую информацию (награда, не прогресс). */}
+              <View style={[dailyTaskStyles.taskMetaRow, { justifyContent: 'flex-end' }]}>
                 <View style={[dailyTaskStyles.xpBadge, { backgroundColor: t.goldBg }]}>
                   <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>+{task.xp} XP</Text>
                 </View>
@@ -3594,6 +3617,22 @@ const dailyTaskStyles = StyleSheet.create({
         borderTopRightRadius: 4,
         borderBottomRightRadius: 4,
         opacity: 0.88,
+    },
+    // зачем: счётчик «текущее/цель» бейджем в правом верхнем углу карточки
+    // (см. background в рендере задачи) — pill без обводки (borderWidth:0),
+    // тон акцента вместо рамки, как PlusBadge/премиум-бейдж этого экрана.
+    taskCornerProgressBadge: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        minWidth: 44,
+        height: 22,
+        borderRadius: 11,
+        borderWidth: 0,
+        paddingHorizontal: 8,
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 2,
     },
     taskMainRow: {
         flexDirection: 'row',

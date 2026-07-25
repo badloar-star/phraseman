@@ -25,6 +25,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Clipboard from 'expo-clipboard';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TapScale from '../components/TapScale';
@@ -33,6 +34,7 @@ import ReferralCodeSheet from '../components/referral_code_sheet';
 import ReferralHowSheet from '../components/referral_how_sheet';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
+import ReferralFriendRewardModal from '../components/referral_friend_reward_modal';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -162,6 +164,35 @@ export default function ReferralsScreen() {
   const winTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [codeSheetOpen, setCodeSheetOpen] = useState(false);
   const [howSheetOpen, setHowSheetOpen] = useState(false);
+
+  // зачем: владелец (2026-07-25) — раньше при появлении готового ключа (друг
+  // оформил Plus/Pro и статус приглашения перешёл в qualified/skipped) экран
+  // просто молча перерисовывал строку без обратной связи. Диффим предыдущий
+  // снимок invites против нового: если чей-то статус ВПЕРВЫЕ стал «ключ готов»,
+  // показываем поздравительную модалку (оптимистично, по факту прихода данных
+  // с сервера — сам грант ключа уже произошёл на сервере, тут только клиентская
+  // реакция на замеченное изменение, без придуманного триггера).
+  const prevInviteStatusRef = useRef<Map<string, string> | null>(null);
+  const [rewardCelebration, setRewardCelebration] = useState<{ name: string } | null>(null);
+  useEffect(() => {
+    const prevMap = prevInviteStatusRef.current;
+    const nextMap = new Map(invites.map(inv => [inv.refereeStableId, inv.status]));
+    if (prevMap) {
+      for (const invite of invites) {
+        const prevStatus = prevMap.get(invite.refereeStableId);
+        const nowReady = invite.status === 'qualified' || invite.status === 'skipped_referrer_cap';
+        const wasReady = prevStatus === 'qualified' || prevStatus === 'skipped_referrer_cap';
+        if (nowReady && !wasReady && prevStatus !== undefined) {
+          setRewardCelebration({
+            name: inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy')),
+          });
+          break;
+        }
+      }
+    }
+    prevInviteStatusRef.current = nextMap;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [invites]);
 
   // Из настроек «Ввести реферальный код» → тот же экран с открытым шитом.
   const enterParamHandledRef = useRef(false);
@@ -435,9 +466,12 @@ export default function ReferralsScreen() {
         : L('Ждём покупку Plus', 'Чекаємо на покупку Plus', 'Esperando la compra de Plus', 'Aguardando a compra do Plus', 'Đang chờ mua Plus', 'Menunggu pembelian Plus', 'Plus satın alımı bekleniyor', 'Czekamy na zakup Plus');
     const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
 
+    // зачем: владелец (2026-07-25) — список друзей раньше просто «выпрыгивал»
+    // статично без входной анимации; заводим лёгкий FadeInDown как у остальных
+    // карточек в friends.tsx (FoundUserCard), задержка по индексу для каскада.
     return (
+      <Reanimated.View key={`${invite.refereeStableId}-${index}`} entering={FadeInDown.delay(index * 40).duration(280)}>
       <TonalSurface
-        key={`${invite.refereeStableId}-${index}`}
         testID={`referrals-row-${invite.refereeStableId || index}`}
         radius={18}
         tone={spinReady ? 'raised' : 'subtle'}
@@ -461,6 +495,7 @@ export default function ReferralsScreen() {
           </View>
         </View>
       </TonalSurface>
+      </Reanimated.View>
     );
   };
 
@@ -717,6 +752,24 @@ export default function ReferralsScreen() {
         <ReferralCodeSheet visible={codeSheetOpen} onClose={() => setCodeSheetOpen(false)} />
         <ReferralHowSheet visible={howSheetOpen} onClose={() => setHowSheetOpen(false)} />
         <RouletteWinModal data={win} onClose={() => setWin(null)} />
+        <ReferralFriendRewardModal
+          data={rewardCelebration}
+          onClose={() => setRewardCelebration(null)}
+          title={L('Ключ получен!', 'Ключ отримано!', '¡Llave conseguida!', 'Chave recebida!', 'Đã nhận chìa khóa!', 'Kunci diperoleh!', 'Anahtar alındı!', 'Klucz zdobyty!')}
+          subtitle={rewardCelebration
+            ? L(
+              `${rewardCelebration.name} оформил Plus или Pro — забирай ключ и крути награду.`,
+              `${rewardCelebration.name} оформив Plus або Pro — забирай ключ і крути нагороду.`,
+              `${rewardCelebration.name} activó Plus o Pro: recoge tu llave y gira la recompensa.`,
+              `${rewardCelebration.name} ativou o Plus ou Pro — pegue sua chave e gire a recompensa.`,
+              `${rewardCelebration.name} đã mua Plus hoặc Pro — hãy nhận chìa khóa và quay thưởng.`,
+              `${rewardCelebration.name} membeli Plus atau Pro — ambil kuncimu dan putar hadiah.`,
+              `${rewardCelebration.name} Plus veya Pro satın aldı — anahtarını al ve ödülü çevir.`,
+              `${rewardCelebration.name} kupił Plus lub Pro — odbierz klucz i zakręć nagrodą.`,
+            )
+            : ''}
+          ctaLabel={L('Забрать награду', 'Забрати нагороду', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

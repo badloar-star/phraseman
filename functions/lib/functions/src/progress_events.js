@@ -51,7 +51,6 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const auth_identity_1 = require("./auth_identity");
 const xp_levels_1 = require("./xp_levels");
-const referral_1 = require("./referral");
 exports.PROGRESS_EVENT_TYPES = [
     'lesson_answer',
     'lesson_complete',
@@ -643,6 +642,11 @@ function applyLessonFields(progress, patch, event) {
         patch[cellKey] = String(Math.max(readInt(progress[cellKey], 0), cellIndex));
     }
 }
+/**
+ * @deprecated Реферальная квалификация больше НЕ завязана на урок 1 (с 2026-07-24
+ * условие — покупка Plus/Pro приглашённым, см. referral.ts). Функция оставлена как
+ * чистый предикат события «урок 1 пройден» для тестов/истории; в проде не вызывается.
+ */
 function shouldQualifyReferralFromProgressEvent(event) {
     if (event.type !== 'lesson_complete')
         return false;
@@ -890,11 +894,6 @@ exports.progressSubmitEvent = (0, https_1.onCall)(callable_options_1.HOT_CALLABL
         });
         return result;
     });
-    if (shouldQualifyReferralFromProgressEvent(event)) {
-        await (0, referral_1.markRefereeQualified)(db, stableUid).catch((e) => {
-            console.warn('[progress_events] referral qualification failed', e);
-        });
-    }
     await projectProgressToCurrentLeague(db, stableUid, result).catch((e) => {
         console.warn('[progress_events] league projection failed', e);
     });

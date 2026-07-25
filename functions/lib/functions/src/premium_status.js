@@ -20,6 +20,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.parseProgressMs = parseProgressMs;
+exports.isStorePremiumActive = isStorePremiumActive;
 exports.isVipActive = isVipActive;
 exports.isGiftAccessActive = isGiftAccessActive;
 exports.isPremiumAccessActive = isPremiumAccessActive;

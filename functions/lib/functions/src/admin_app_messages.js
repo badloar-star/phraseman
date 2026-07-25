@@ -33,8 +33,9 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = exports.adminCreateAppMessage = exports.adminListAppMessages = void 0;
+exports.adminCleanupExpiredAppMessages = exports.adminDeleteAppMessage = exports.adminUpdateAppMessage = exports.adminSetAppMessageActive = exports.adminCreateAppMessage = exports.adminListAppMessages = exports.adminSendPersonalAppMessage = void 0;
 exports.normalizeAppMessageCreateInput = normalizeAppMessageCreateInput;
+exports.normalizePersonalAppMessageInput = normalizePersonalAppMessageInput;
 exports.normalizeAppMessageToggleInput = normalizeAppMessageToggleInput;
 exports.normalizeAppMessageUpdateInput = normalizeAppMessageUpdateInput;
 exports.normalizeAppMessageDeleteInput = normalizeAppMessageDeleteInput;
@@ -142,6 +143,42 @@ function normalizeAppMessageCreateInput(data, actorEmail, nowMs = Date.now()) {
     const requestFingerprint = JSON.stringify({ kind, active, audience, priority, ttlDays, translations });
     return Object.freeze({ document: Object.freeze(document), requestFingerprint, ...command });
 }
+function normalizePersonalAppMessageInput(data, actorEmail, nowMs = Date.now()) {
+    if (!isRecord(data))
+        throw new https_1.HttpsError('invalid-argument', 'request object required');
+    if ('recipientUid' in data || 'firebaseUid' in data || 'authUid' in data) {
+        throw new https_1.HttpsError('invalid-argument', 'uid is the only supported recipient identity');
+    }
+    const command = requiredCommandFields(data);
+    const uid = text(data.uid, 160);
+    const title = text(data.title, 160);
+    const body = text(data.body, 2000);
+    const deliveryMode = data.deliveryMode;
+    if (!/^[A-Za-z0-9._-]{2,160}$/.test(uid))
+        throw new https_1.HttpsError('invalid-argument', 'valid stable uid required');
+    if (!title || !body)
+        throw new https_1.HttpsError('invalid-argument', 'title and body are required');
+    if (deliveryMode !== 'inbox' && deliveryMode !== 'next_login_modal') {
+        throw new https_1.HttpsError('invalid-argument', 'deliveryMode must be inbox or next_login_modal');
+    }
+    const createdAt = new Date(nowMs).toISOString();
+    const document = {
+        kind: 'personal_admin_message',
+        recipientUid: uid,
+        deliveryMode,
+        title,
+        body,
+        active: true,
+        createdAt,
+        createdAtMs: nowMs,
+        updatedAt: createdAt,
+        updatedAtMs: nowMs,
+        createdBy: actorEmail,
+        nextLoginModalPending: deliveryMode === 'next_login_modal',
+    };
+    const requestFingerprint = JSON.stringify({ uid, deliveryMode, title, body });
+    return Object.freeze({ uid, deliveryMode, document: Object.freeze(document), requestFingerprint, ...command });
+}
 function normalizeAppMessageToggleInput(data) {
     if (!isRecord(data))
         throw new https_1.HttpsError('invalid-argument', 'request object required');
@@ -244,6 +281,55 @@ function assertPermission(request, permission) {
         throw new https_1.HttpsError('permission-denied', `Role cannot use ${permission}`);
     return role;
 }
+exports.adminSendPersonalAppMessage = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
+    const role = assertPermission(request, 'users.message.write');
+    const actorUid = request.auth.uid;
+    const actorEmail = text(request.auth.token.email, 320) || actorUid;
+    const input = normalizePersonalAppMessageInput(request.data, actorEmail);
+    const db = admin.firestore();
+    const userRef = db.collection('users').doc(input.uid);
+    const messageRef = userRef.collection('user_messages').doc();
+    const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+    return db.runTransaction(async (tx) => {
+        const [recipient, operation] = await Promise.all([tx.get(userRef), tx.get(operationRef)]);
+        if (operation.exists) {
+            const previous = operation.data() ?? {};
+            assertOperationFingerprint(previous, input.requestFingerprint);
+            assertOperationActor(previous, actorUid);
+            return {
+                ok: true,
+                messageId: String(previous.entityId ?? ''),
+                auditId: String(previous.auditId ?? ''),
+                replayed: true,
+            };
+        }
+        if (!recipient.exists)
+            throw new https_1.HttpsError('not-found', 'personal_message_recipient_not_found');
+        const recipientData = recipient.data() ?? {};
+        if (recipientData.accountDeletedAtMs || recipientData.deleted === true) {
+            throw new https_1.HttpsError('failed-precondition', 'personal_message_recipient_unavailable');
+        }
+        const audit = (0, audit_contract_1.createAuditRecord)({
+            action: 'app_message.personal_send', actorUid, role,
+            entity: { collection: `users/${input.uid}/user_messages`, id: messageRef.id },
+            reason: input.reason, before: {}, after: input.document, requestId: input.requestId,
+            rollbackReference: messageRef.id, timestamp: new Date().toISOString(),
+        });
+        tx.create(messageRef, input.document);
+        tx.create(auditRef, { ...audit, operationId: input.idempotencyKey, recipientUid: input.uid });
+        tx.create(operationRef, {
+            operationId: input.idempotencyKey,
+            requestFingerprint: input.requestFingerprint,
+            actorUid,
+            entityId: messageRef.id,
+            recipientUid: input.uid,
+            auditId: auditRef.id,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { ok: true, messageId: messageRef.id, auditId: auditRef.id, replayed: false };
+    });
+});
 exports.adminListAppMessages = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     assertPermission(request, 'campaigns.read');
     const limit = Math.max(1, Math.min(120, Math.floor(Number(request.data?.limit ?? 120))));

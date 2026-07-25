@@ -3,6 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const https_1 = require("firebase-functions/v2/https");
 const admin_reports_center_1 = require("./admin_reports_center");
 describe('admin reports center contracts', () => {
+    test('fails closed when the admin role claim is missing or invalid', () => {
+        expect(() => (0, admin_reports_center_1.requireReportPermission)({ auth: { uid: 'admin-1', token: { admin: true } } }, 'reports.read')).toThrow(https_1.HttpsError);
+        expect(() => (0, admin_reports_center_1.requireReportPermission)({ auth: { uid: 'admin-1', token: { admin: true, adminRole: 'unknown' } } }, 'reports.read')).toThrow(https_1.HttpsError);
+        expect(() => (0, admin_reports_center_1.requireReportPermission)({ auth: { uid: 'admin-1', token: { admin: true, adminRole: 'support' } } }, 'reports.read')).not.toThrow();
+    });
     test('accepts only closed report sources and bounded list inputs', () => {
         expect((0, admin_reports_center_1.parseReportListRequest)({ source: 'error_reports', limit: 999, sinceDays: 30 })).toMatchObject({
             source: 'error_reports', limit: 100, sinceDays: 30,
@@ -40,6 +45,47 @@ describe('admin reports center contracts', () => {
         });
         expect(JSON.stringify(row)).not.toContain('secret');
         expect(JSON.stringify(row)).not.toContain('token');
+    });
+    test('projects device and route context needed for a horizontal report card', () => {
+        expect((0, admin_reports_center_1.projectReportRow)('error_reports', 'r-device', {
+            status: 'new', comment: 'broken button', uid: 'u1', screen: '/lesson/1',
+            os: 'android', appVersion: '1.5.53', deviceModel: 'Pixel 8', context: 'after submit',
+        })).toMatchObject({
+            context: {
+                screen: '/lesson/1',
+                os: 'android',
+                appVersion: '1.5.53',
+                deviceModel: 'Pixel 8',
+                details: 'after submit',
+            },
+        });
+    });
+    test('defines unresolved as every report not answered or archived', () => {
+        expect((0, admin_reports_center_1.isReportUnresolved)('new')).toBe(true);
+        expect((0, admin_reports_center_1.isReportUnresolved)('fixed')).toBe(true);
+        expect((0, admin_reports_center_1.isReportUnresolved)('answered')).toBe(false);
+        expect((0, admin_reports_center_1.isReportUnresolved)('archived')).toBe(false);
+    });
+    test('exports the legacy workflow guidance with the one-coin rule', () => {
+        const instructions = (0, admin_reports_center_1.reportExportInstructions)();
+        expect(instructions).toContain('каждый reportId');
+        expect(instructions).toContain('не выполнять массовую живую отправку');
+        expect(instructions).toContain('не более одной монеты');
+        expect(instructions).not.toMatch(/осколк|shard/i);
+    });
+    test('parses bounded server-side pages for all unresolved reports', () => {
+        expect((0, admin_reports_center_1.parseUnresolvedExportRequest)({})).toEqual({ cursor: '', limit: 100 });
+        expect((0, admin_reports_center_1.parseUnresolvedExportRequest)({ limit: 999, cursor: 'opaque_1' })).toEqual({ cursor: 'opaque_1', limit: 100 });
+        expect(() => (0, admin_reports_center_1.parseUnresolvedExportRequest)({ cursor: '../escape' })).toThrow(https_1.HttpsError);
+    });
+    test('projects reply archive metadata without exposing unrelated fields', () => {
+        expect((0, admin_reports_center_1.projectReportRow)('error_reports', 'archived-1', {
+            status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили', replyCoins: 1,
+            repliedAtMs: 1234, repliedBy: 'admin@example.com', resolution: 'confirmed_fixed', secret: 'drop',
+        })).toMatchObject({ archive: {
+                title: 'Спасибо', body: 'Исправили', coins: 1, repliedAtMs: 1234,
+                repliedBy: 'admin@example.com', resolution: 'confirmed_fixed',
+            } });
     });
     test('accepts only an ordered bounded list of export references', () => {
         expect((0, admin_reports_center_1.parseReportExportRequest)({ reports: [

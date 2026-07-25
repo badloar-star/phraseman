@@ -33,8 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminUpdateReportStatus = exports.adminExportReportDocuments = exports.adminListReportQueue = exports.REPORT_SOURCES = void 0;
+exports.adminUpdateReportStatus = exports.adminExportUnresolvedReports = exports.adminExportReportDocuments = exports.adminListReportQueue = exports.REPORT_SOURCES = void 0;
+exports.isReportUnresolved = isReportUnresolved;
+exports.reportExportInstructions = reportExportInstructions;
+exports.requireReportPermission = requireReportPermission;
 exports.parseReportListRequest = parseReportListRequest;
+exports.parseUnresolvedExportRequest = parseUnresolvedExportRequest;
 exports.parseReportExportRequest = parseReportExportRequest;
 exports.serializeReportDocument = serializeReportDocument;
 exports.canonicalReportLane = canonicalReportLane;
@@ -52,11 +56,26 @@ const MAX_LIST_LIMIT = 100;
 const MAX_FILTER_SCAN_LIMIT = 500;
 const MAX_EXPORT_REFERENCES = 100;
 const MAX_EXPORT_RESPONSE_BYTES = 4000000;
+const MAX_UNRESOLVED_EXPORT_SCAN = 2000;
 const DEFAULT_LIST_LIMIT = 50;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const CURSOR_RE = /^[A-Za-z0-9_-]{1,500}$/;
 const LANE_VALUES = new Set(['open', 'reviewed', 'known', 'resolved', 'answered', 'escalated', 'archived']);
+function isReportUnresolved(status) {
+    const normalized = cleanText(status, 40).toLowerCase();
+    return normalized !== 'answered' && normalized !== 'archived';
+}
+function reportExportInstructions() {
+    return [
+        'Проверь каждый reportId отдельно и сгруппируй явные дубли.',
+        'Исправляй только подтверждённые безопасные ошибки и не раскрывай внутренние данные.',
+        'Подготовь отдельный живой уважительный ответ на языке пользователя для каждого reportId.',
+        'Черновики должны оставаться редактируемыми и проверяться администратором.',
+        'Черновики проверяются администратором; не выполнять массовую живую отправку через CLI или автоматический процесс.',
+        'Награда допустима только за confirmed_fixed: не более одной монеты и ровно один раз; остальные исходы получают 0.',
+    ].join('\n');
+}
 exports.REPORT_SOURCES = ['error_reports', 'user_reports', 'community_pack_reports', 'explain_report_entries', 'app_errors'];
 const SOURCE_CONFIG = Object.freeze({
     error_reports: {
@@ -117,7 +136,9 @@ function requireReportPermission(request, permission) {
     if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim())
         throw new https_1.HttpsError('permission-denied', 'Admin only');
     const claimedRole = request.auth.token.adminRole;
-    const role = (0, roles_1.hasAdminRole)(claimedRole) ? claimedRole : 'admin';
+    if (!(0, roles_1.hasAdminRole)(claimedRole))
+        throw new https_1.HttpsError('permission-denied', 'Valid adminRole required');
+    const role = claimedRole;
     if (!(0, permissions_1.hasPermission)(role, permission))
         throw new https_1.HttpsError('permission-denied', `Role cannot use ${permission}`);
     return { actorUid: String(request.auth.uid), role };
@@ -154,6 +175,15 @@ function parseReportListRequest(data) {
     if (cursor && (rawStatus || lane || uid || category || reportId))
         throw new https_1.HttpsError('invalid-argument', 'cursor cannot be combined with report filters');
     return Object.freeze({ source, rawStatus, lane, uid, category, reportId, sinceDays, limit, cursor });
+}
+function parseUnresolvedExportRequest(data) {
+    const input = isRecord(data) ? data : {};
+    const cursor = cleanText(input.cursor, 501);
+    const requestedLimit = Number(input.limit ?? MAX_LIST_LIMIT);
+    const limit = Math.max(1, Math.min(MAX_LIST_LIMIT, Number.isFinite(requestedLimit) ? Math.floor(requestedLimit) : MAX_LIST_LIMIT));
+    if (cursor && !CURSOR_RE.test(cursor))
+        throw new https_1.HttpsError('invalid-argument', 'cursor is invalid');
+    return Object.freeze({ cursor, limit });
 }
 function parseReportExportRequest(data) {
     const input = isRecord(data) ? data : {};
@@ -264,6 +294,18 @@ function projectReportRow(source, id, row) {
             dataId: cleanText(row.dataId, 200) || null,
             packId: cleanText(row.packId, 160) || null,
             feature: cleanText(row.feature, 120) || null,
+            os: cleanText(row.os || row.platform || row.deviceOS, 120) || null,
+            appVersion: cleanText(row.appVersion || row.version, 80) || null,
+            deviceModel: cleanText(row.deviceModel || row.model, 160) || null,
+            details: cleanText(row.context, 1000) || null,
+        }),
+        archive: Object.freeze({
+            resolution: cleanText(row.resolution, 40) || null,
+            title: cleanText(row.replyTitle, 160) || null,
+            body: cleanText(row.replyBody, 2000) || null,
+            coins: Math.max(0, Math.min(1, Math.floor(Number(row.replyCoins ?? 0) || 0))),
+            repliedAtMs: millis(row.repliedAtMs || row.repliedAt || row.answeredAtMs),
+            repliedBy: cleanText(row.repliedBy || row.adminStatusUpdatedBy, 320) || null,
         }),
     });
 }
@@ -312,6 +354,24 @@ function decodeCursor(cursor, source) {
         if (parsed.source !== source || !TOKEN_RE.test(id))
             throw new Error('cursor mismatch');
         return id;
+    }
+    catch {
+        throw new https_1.HttpsError('invalid-argument', 'cursor is invalid');
+    }
+}
+function encodeUnresolvedExportCursor(cursor) {
+    return Buffer.from(JSON.stringify({ v: 1, ...cursor }), 'utf8').toString('base64url');
+}
+function decodeUnresolvedExportCursor(cursor) {
+    if (!cursor)
+        return { sourceIndex: 0, lastId: '' };
+    try {
+        const parsed = JSON.parse(Buffer.from(cursor, 'base64url').toString('utf8'));
+        const sourceIndex = Math.floor(Number(parsed.sourceIndex));
+        const lastId = cleanText(parsed.lastId, 160);
+        if (parsed.v !== 1 || sourceIndex < 0 || sourceIndex >= exports.REPORT_SOURCES.length || (lastId && !TOKEN_RE.test(lastId)))
+            throw new Error('invalid');
+        return { sourceIndex, lastId };
     }
     catch {
         throw new https_1.HttpsError('invalid-argument', 'cursor is invalid');
@@ -407,6 +467,61 @@ exports.adminExportReportDocuments = (0, https_1.onCall)({ region: REGION, enfor
         throw new https_1.HttpsError('resource-exhausted', 'report export chunk is too large; narrow the filters and try again');
     }
     return response;
+});
+exports.adminExportUnresolvedReports = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK, timeoutSeconds: 60, memory: '512MiB' }, async (request) => {
+    const context = requireReportPermission(request, 'reports.read');
+    if (!(0, permissions_1.hasPermission)(context.role, 'diagnostics.read'))
+        throw new https_1.HttpsError('permission-denied', 'diagnostics.read required for a complete export');
+    const input = parseUnresolvedExportRequest(request.data);
+    const db = admin.firestore();
+    const documents = [];
+    let { sourceIndex, lastId } = decodeUnresolvedExportCursor(input.cursor);
+    let scanned = 0;
+    while (sourceIndex < exports.REPORT_SOURCES.length && documents.length < input.limit && scanned < MAX_UNRESOLVED_EXPORT_SCAN) {
+        const source = exports.REPORT_SOURCES[sourceIndex];
+        const batchLimit = Math.min(200, MAX_UNRESOLVED_EXPORT_SCAN - scanned);
+        let query = db.collection(SOURCE_CONFIG[source].collection)
+            .orderBy(admin.firestore.FieldPath.documentId())
+            .limit(batchLimit);
+        if (lastId)
+            query = query.startAfter(lastId);
+        const snapshot = await query.get();
+        if (snapshot.empty) {
+            sourceIndex += 1;
+            lastId = '';
+            continue;
+        }
+        for (const doc of snapshot.docs) {
+            scanned += 1;
+            const row = doc.data();
+            if (isReportUnresolved(normalizedStatus(source, row.status))) {
+                const candidate = { source, id: doc.id, document: serializeReportDocument(row) };
+                const responseBytes = Buffer.byteLength(JSON.stringify({ instructions: reportExportInstructions(), documents: [...documents, candidate] }), 'utf8');
+                if (responseBytes > MAX_EXPORT_RESPONSE_BYTES) {
+                    if (!documents.length)
+                        throw new https_1.HttpsError('resource-exhausted', 'a report document is too large to export safely');
+                    return { ok: true, instructions: reportExportInstructions(), documents, nextCursor: encodeUnresolvedExportCursor({ sourceIndex, lastId }), scanned };
+                }
+                documents.push(candidate);
+            }
+            lastId = doc.id;
+            if (documents.length >= input.limit || scanned >= MAX_UNRESOLVED_EXPORT_SCAN)
+                break;
+        }
+        if (documents.length >= input.limit || scanned >= MAX_UNRESOLVED_EXPORT_SCAN)
+            break;
+        if (snapshot.size < batchLimit) {
+            sourceIndex += 1;
+            lastId = '';
+        }
+    }
+    return {
+        ok: true,
+        instructions: reportExportInstructions(),
+        documents,
+        nextCursor: sourceIndex < exports.REPORT_SOURCES.length ? encodeUnresolvedExportCursor({ sourceIndex, lastId }) : null,
+        scanned,
+    };
 });
 exports.adminUpdateReportStatus = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
     const input = parseReportStatusUpdateRequest(request.data);

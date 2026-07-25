@@ -36,6 +36,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.referralClaimVipReward = exports.referralListMyInvites = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.LESSON1_LIVE_PASS_KEYS = exports.REFERRAL_DEFAULTS = exports.MAX_REFERRER_CLAIMS_PER_DAY = exports.MAX_REFERRER_CLAIMS_PER_MONTH = exports.REFERRAL_REWARD_DAYS = void 0;
 exports.referralConfigFromData = referralConfigFromData;
 exports.resolveReferralConfig = resolveReferralConfig;
+exports.resolveReferralRouletteEnabled = resolveReferralRouletteEnabled;
+exports.resolveReferralRoulettePolicy = resolveReferralRoulettePolicy;
 exports.referralClaimSlotsLeft = referralClaimSlotsLeft;
 exports.hasLiveFirstLessonPass = hasLiveFirstLessonPass;
 exports.hasCompletedFirstLesson = hasCompletedFirstLesson;
@@ -50,21 +52,20 @@ exports.prunePeriodCounter = prunePeriodCounter;
 exports.markRefereeQualified = markRefereeQualified;
 exports.assertAuthStableLink = assertAuthStableLink;
 /**
- * Вирусный реферал (7 дней другу + 7 дней пригласившему, экономия Firebase-лимитов).
- * Крючок: «друг установил приложение, ввёл код и прошёл первый урок — вы оба получаете
- * по 7 дней полного доступа». 7+7 не равно 14: это две отдельные награды двум людям.
+ * Вирусный реферал с рулеткой Plus (экономия Firebase-лимитов).
+ * Крючок: «друг установил приложение, ввёл код и КУПИЛ Plus или Pro — пригласивший получает 1 прокрут рулетки (приз — Plus от 1 до 365 дней)».
  *
  * Поток:
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
- *   3. referee РЕАЛЬНО проходит урок 1 (>= бронзы ⇒ lesson1_pass_count >= 1, для fr —
- *      scoped-ключ lesson_progress_v2::fr::lesson1_pass_count). Сервер пишет pass_count только
- *      при passed; триггер referralOnUserProgressUpdated помечает attribution status='qualified'
- *      и сразу начисляет приглашённому его 7 дней. НЕ по unlocked_lessons (урок открывается и без
- *      прохождения — premium/intro/зачёт), иначе ложная квалификация и невидимый fr-курс.
- *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
- *      одна транзакция, +7 дней VIP пригласившему (стак vip_until), attribution → 'rewarded'.
+ *   3. referee покупает Plus или Pro: вебхук RevenueCat/Telegram пишет store-план в
+ *      users/{id}.progress.premium_plan (клиент эти поля писать не может — firestore.rules:
+ *      progressHasNoPremiumWrites). Триггер referralOnUserProgressUpdated ловит переход
+ *      «не было store-премиума → есть» и помечает attribution status='qualified'.
+ *      Приглашённый НЕ получает бонусных дней — он уже оплатил доступ.
+ *   4. referrer в /referrals конвертирует qualified-приглашения в прокруты →
+ *      referralClaimSpin (детерминированный леджер, месячный/дневной капы).
  *
  * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{id}.progress, что и admin-grant.
  * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
@@ -74,6 +75,9 @@ const crypto = __importStar(require("node:crypto"));
 const https_1 = require("firebase-functions/v2/https");
 const functions = __importStar(require("firebase-functions/v2"));
 const callable_options_1 = require("./callable_options");
+const referral_roulette_policy_1 = require("./referral_roulette_policy");
+const referral_spin_ledger_1 = require("./referral_spin_ledger");
+const premium_status_1 = require("./premium_status");
 const REGION = 'us-central1';
 const CODE_LEN = 6;
 const CHARSET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -134,6 +138,30 @@ async function resolveReferralConfig(db) {
     catch (e) {
         console.warn('resolveReferralConfig failed, using defaults', e);
         return { ...exports.REFERRAL_DEFAULTS };
+    }
+}
+/**
+ * Мастер-флаг «Рулетка Plus + реферальная программа» (remote_config/app.numbers
+ * .referral_roulette_enabled, boolean). Kill-switch семантика: дефолт ON —
+ * выключена фича только при явном `false`. Ошибка чтения закрывает критичный путь
+ * (fail-closed), а отсутствие самого ключа сохраняет обратную совместимость и даёт ON.
+ * Управляется из админки
+ * (adminSetReferralRouletteEnabled), клиент читает тот же ключ (remote_flags).
+ */
+async function resolveReferralRouletteEnabled(db) {
+    const policy = await resolveReferralRoulettePolicy(db);
+    return policy.softEnabled && !policy.emergencyStop;
+}
+/** Read errors fail closed as an emergency stop for every mutating path. */
+async function resolveReferralRoulettePolicy(db) {
+    try {
+        const snap = await db.collection('remote_config').doc('app').get();
+        const data = snap.data();
+        return (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(data);
+    }
+    catch (e) {
+        console.warn('resolveReferralRoulettePolicy failed, fail closed', e);
+        return { softEnabled: false, emergencyStop: true, softOffAtMs: 0 };
     }
 }
 /**
@@ -286,12 +314,6 @@ function isReferralAccountTooEstablishedForApply(userData, nowMs, maxAccountAgeM
     const createdAtMs = parseMs(userData.created_at);
     return createdAtMs > 0 && nowMs - createdAtMs > maxAccountAgeMs;
 }
-function hasLesson1DoneProgress(root) {
-    if (!root)
-        return false;
-    const p = root?.progress;
-    return hasCompletedFirstLesson(p);
-}
 /**
  * Был ли это записью МИГРАЦИИ снапшота прогресса (progressMigrateSnapshot), а не живым
  * событием урока. Миграция доверяет клиентскому lesson1_pass_count (progress_events.ts:
@@ -376,11 +398,10 @@ function pruneDailyCounter(map, keepDays = 10) {
     return prunePeriodCounter(map, keepDays);
 }
 /**
- * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
+ * Referee купил Plus или Pro ⇒ помечаем его attribution как 'qualified'.
  *
- * Приглашённый получает свои 7 дней сразу после выполнения условия.
- * Пригласивший получает отдельные 7 дней по кнопке, чтобы не писать в чужой документ
- * на каждое обновление прогресса. 7+7 — это два отдельных человека, не 14 дней одному.
+ * Приглашённый НЕ получает бонусных дней — он уже оплатил доступ. Пригласивший
+ * конвертирует qualified-приглашение в прокрут рулетки по кнопке (referralClaimSpin).
  */
 async function markRefereeQualified(db, userId) {
     const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(userId);
@@ -394,37 +415,65 @@ async function markRefereeQualified(db, userId) {
     const referrerId = String(att0.referrerStableId ?? '').trim();
     if (!referrerId)
         return;
-    // Тюнинг из «Пульта» (дней награды). Читаем ДО транзакции (отдельный документ).
-    const cfg = await resolveReferralConfig(db);
     const uref = (uid) => db.collection(USERS).doc(uid);
+    const configRef = db.collection('remote_config').doc('app');
     await db.runTransaction(async (tx) => {
-        const attR = await tx.get(attRef);
-        const refeeSnap = await tx.get(uref(userId));
+        const [configSnap, attR, refeeSnap] = await Promise.all([
+            tx.get(configRef),
+            tx.get(attRef),
+            tx.get(uref(userId)),
+        ]);
         if (!attR.exists)
             return;
-        if (!hasLesson1DoneProgress(refeeSnap.data()))
+        const refereeProgressNow = refeeSnap.data()?.progress;
+        if (!(0, premium_status_1.isStorePremiumActive)(refereeProgressNow, Date.now()))
             return;
         const row = attR.data();
         if (row?.status && row.status !== 'pending')
             return;
         const nowMs = Date.now();
-        const refereeData = refeeSnap.data() ?? {};
-        const refereeProgress = refereeData.progress ?? {};
-        const refereeVipPatch = buildReferralVipProgressPatch(refereeProgress, nowMs, cfg.rewardDays, 'referee');
-        // Помечаем attribution готовым к обналичиванию referrer'ом.
-        // Приглашённый получает свои 7 дней сразу; пригласивший забирает свои 7 дней по кнопке.
+        const policy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configSnap.data());
+        if (policy.emergencyStop) {
+            console.warn(JSON.stringify({ event: 'referral_qualification_blocked', reason: 'emergency_stop', userId, atMs: nowMs }));
+            return;
+        }
+        const createdAtMs = (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAt) || (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAtMs);
+        const deadlineAtMs = (0, referral_roulette_policy_1.attributionDeadlineMs)(createdAtMs);
+        if (!(0, referral_roulette_policy_1.canQualifyAt)(policy, createdAtMs, nowMs)) {
+            tx.set(attRef, {
+                status: 'expired',
+                deadlineAtMs,
+                expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+                expiredAtMs: nowMs,
+                expiryReason: 'qualification_deadline',
+            }, { merge: true });
+            console.log(JSON.stringify({
+                event: referral_roulette_policy_1.REFERRAL_ANALYTICS_EVENTS.attributionExpired,
+                attributionId: userId,
+                createdAtMs,
+                deadlineAtMs,
+                atMs: nowMs,
+            }));
+            return;
+        }
+        // Помечаем attribution готовым к конвертации в прокрут рулетки referrer'ом.
+        // Приглашённому НИЧЕГО не начисляем — он уже оплатил Plus/Pro.
         tx.set(attRef, {
             status: 'qualified',
             qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
-            qualifiedBy: 'lesson1_pass_count',
-            refereeVipDays: cfg.rewardDays,
-            refereeRewardedAtMs: nowMs,
-            rewardKind: 'vip_days_both',
+            qualifiedAtMs: nowMs,
+            qualifiedBy: 'premium_purchase',
+            deadlineAtMs,
+            rewardKind: 'referrer_spin',
         }, { merge: true });
-        tx.set(uref(userId), {
-            progress: refereeVipPatch,
-            updatedAt: nowMs,
-        }, { merge: true });
+        console.log(JSON.stringify({
+            event: referral_roulette_policy_1.REFERRAL_ANALYTICS_EVENTS.attributionQualified,
+            attributionId: userId,
+            createdAtMs,
+            deadlineAtMs,
+            atMs: nowMs,
+            softEnabled: policy.softEnabled,
+        }));
     });
 }
 async function assertAuthStableLink(db, authUid, clientStableId) {
@@ -458,6 +507,7 @@ exports.referralEnsureMyCode = (0, https_1.onCall)(CALLABLE_BASE, async (request
     const db = admin.firestore();
     await assertAuthStableLink(db, authUid, stableId);
     const ownerRef = db.collection(REFERRAL_OWNERS).doc(stableId);
+    const configRef = db.collection('remote_config').doc('app');
     const existing = await ownerRef.get();
     if (existing.exists && existing.data()?.code) {
         return { code: String(existing.data().code) };
@@ -467,9 +517,16 @@ exports.referralEnsureMyCode = (0, https_1.onCall)(CALLABLE_BASE, async (request
         const codeRef = db.collection(REFERRAL_CODES).doc(code);
         // eslint-disable-next-line no-await-in-loop
         const created = await db.runTransaction(async (tx) => {
-            const oSnap = await tx.get(ownerRef);
+            const [oSnap, configSnap] = await Promise.all([tx.get(ownerRef), tx.get(configRef)]);
             if (oSnap.exists && oSnap.data()?.code) {
                 return { code: String(oSnap.data().code), created: false };
+            }
+            const policy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configSnap.data());
+            if (policy.emergencyStop) {
+                throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+            }
+            if (!(0, referral_roulette_policy_1.canCreateNewReferral)(policy)) {
+                throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_SOFT_OFF');
             }
             const cSnap = await tx.get(codeRef);
             if (cSnap.exists) {
@@ -512,8 +569,9 @@ exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
     const codeRef = db.collection(REFERRAL_CODES).doc(refCode);
     const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(refereeStableId);
     const userRef = db.collection(USERS).doc(refereeStableId);
+    const configRef = db.collection('remote_config').doc('app');
     const result = await db.runTransaction(async (tx) => {
-        const att0 = await tx.get(attRef);
+        const [att0, configSnap] = await Promise.all([tx.get(attRef), tx.get(configRef)]);
         if (att0.exists) {
             const d = att0.data();
             return {
@@ -522,8 +580,15 @@ exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
                 refCode: d?.refCode ?? refCode,
                 referrerStableId: d?.referrerStableId,
                 status: d?.status,
-                hasLivePass: false,
+                hasStorePremium: false,
             };
+        }
+        const policy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configSnap.data());
+        if (policy.emergencyStop) {
+            throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+        }
+        if (!(0, referral_roulette_policy_1.canCreateNewReferral)(policy)) {
+            throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_SOFT_OFF');
         }
         const userSnap = await tx.get(userRef);
         if (REFEREE_MAX_ACCOUNT_AGE_MS > 0) {
@@ -546,39 +611,49 @@ exports.referralApply = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
         if (ownerStableId === refereeStableId) {
             throw new https_1.HttpsError('invalid-argument', 'SELF_REFERRAL');
         }
+        const nowMs = Date.now();
         const now = admin.firestore.FieldValue.serverTimestamp();
         tx.set(attRef, {
             referrerStableId: ownerStableId,
             refCode,
             status: 'pending',
             createdAt: now,
+            createdAtMs: nowMs,
+            deadlineAtMs: (0, referral_roulette_policy_1.attributionDeadlineMs)(nowMs),
             updatedAt: now,
         });
+        console.log(JSON.stringify({
+            event: referral_roulette_policy_1.REFERRAL_ANALYTICS_EVENTS.attributionCreated,
+            attributionId: refereeStableId,
+            referrerStableId: ownerStableId,
+            createdAtMs: nowMs,
+            deadlineAtMs: (0, referral_roulette_policy_1.attributionDeadlineMs)(nowMs),
+        }));
         const refereeProgress = userSnap.data()?.progress;
         return {
             ok: true,
             already: false,
             referrerStableId: ownerStableId,
             refCode,
-            hasLivePass: hasLiveFirstLessonPass(refereeProgress),
+            hasStorePremium: (0, premium_status_1.isStorePremiumActive)(refereeProgress, Date.now()),
         };
     });
-    // Мгновенная квалификация ТОЛЬКО по live-маркеру (сервер ставит его при живом
-    // passed-событии урока 1; миграция снапшота маркер не ставит — фрод не проходит).
-    // markRefereeQualified сам перепроверяет всё в транзакции (идемпотентно).
-    if (result?.ok && !result.already && result.hasLivePass) {
+    // Мгновенная квалификация, если приглашённый УЖЕ купил Plus/Pro до ввода кода
+    // (вебхук успел записать store-план раньше apply). markRefereeQualified сам
+    // перепроверяет всё в транзакции (идемпотентно).
+    if (result?.ok && !result.already && result.hasStorePremium) {
         await markRefereeQualified(db, refereeStableId).catch((e) => {
             console.warn('[referral] qualify after apply failed', e);
         });
     }
-    const { hasLivePass: _hasLivePass, ...response } = result;
+    const { hasStorePremium: _hasStorePremium, ...response } = result;
     return response;
 });
 /**
- * Когда referee РЕАЛЬНО проходит урок 1 (lesson1_pass_count >= 1, для fr — scoped-ключ) —
- * помечаем attribution referee как 'qualified' + начисляем приглашённому его 7 дней VIP.
- * referrer'у НИЧЕГО не пишем (pull): он обналичит свои 7 дней по кнопке. Отсекаем запись
- * миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
+ * Когда referee покупает Plus или Pro (вебхук RevenueCat/Telegram пишет store-план в
+ * progress.premium_plan) — помечаем attribution referee как 'qualified'. referrer'у
+ * НИЧЕГО не пишем (pull): он конвертирует приглашение в прокрут (referralClaimSpin).
+ * Отсекаем запись миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
  */
 exports.referralOnUserProgressUpdated = functions.firestore.onDocumentWritten({ document: `${USERS}/{userId}`, region: REGION }, async (event) => {
     const userId = event.params.userId;
@@ -587,18 +662,19 @@ exports.referralOnUserProgressUpdated = functions.firestore.onDocumentWritten({ 
         return;
     const beforeExists = event.data?.before?.exists;
     const before = beforeExists ? event.data?.before.data() : undefined;
-    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентскому
-    // lesson1_pass_count и могла бы зачесть урок 1 без реального прохождения. Реальное
-    // прохождение идёт через progressSubmitEvent и не трогает progressMigratedAt.
+    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентским
+    // полям прогресса. store-план она подделать не может (firestore.rules: клиенту
+    // premium_* запрещены), но гард оставляем как дешёвую защиту от гонок миграции.
     if (isSnapshotMigrationWrite(before, after))
         return;
     const pA = after?.progress;
     const pB = before?.progress;
-    // Дёшево выходим, если сигнал «урок 1 пройден» не изменился (любой из pass-ключей).
-    const unchanged = LESSON1_PASS_KEYS.every((k) => pA?.[k] === pB?.[k]);
-    if (unchanged)
+    // Дёшево выходим: реагируем только на переход «не было store-премиума → есть».
+    // store-план пишет только сервер (RevenueCat/Telegram webhook) — firestore.rules
+    // запрещает клиенту premium_* (progressHasNoPremiumWrites), подделать нельзя.
+    if (!(0, premium_status_1.isStorePremiumActive)(pA, Date.now()))
         return;
-    if (!hasLesson1DoneProgress(after))
+    if ((0, premium_status_1.isStorePremiumActive)(pB, Date.now()))
         return;
     const db = admin.firestore();
     await markRefereeQualified(db, userId);
@@ -640,11 +716,21 @@ exports.referralListMyInvites = (0, https_1.onCall)(CALLABLE_BASE, async (reques
     const cached = force ? undefined : listMyInvitesServerCache.get(cacheKey);
     if (cached && cached.expiresAtMs > Date.now())
         return cached.data;
-    const snap = await db
-        .collection(REFERRAL_ATTRIBUTIONS)
-        .where('referrerStableId', '==', referrerStableId)
-        .limit(200)
-        .get();
+    const userRef = db.collection(USERS).doc(referrerStableId);
+    const ledgerCollection = userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER);
+    const [snap, configSnap, userSnap, ledgerSnap, migrationMarkerSnap, anyLedgerSnap] = await Promise.all([
+        db.collection(REFERRAL_ATTRIBUTIONS)
+            .where('referrerStableId', '==', referrerStableId)
+            .limit(200)
+            .get(),
+        db.collection('remote_config').doc('app').get(),
+        userRef.get(),
+        ledgerCollection.where('status', '==', 'available').get(),
+        ledgerCollection.doc(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID).get(),
+        ledgerCollection.limit(1).get(),
+    ]);
+    const policy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configSnap.data());
+    const serverNowMs = Date.now();
     const profileSnaps = snap.docs.length
         ? await db.getAll(...snap.docs.map((d) => db.collection(USERS).doc(d.id)))
         : [];
@@ -656,24 +742,71 @@ exports.referralListMyInvites = (0, https_1.onCall)(CALLABLE_BASE, async (reques
     }
     const invites = snap.docs.map((d) => {
         const row = d.data();
-        const createdAtMs = row.createdAt && typeof row.createdAt.toMillis === 'function'
-            ? row.createdAt.toMillis()
-            : 0;
+        const createdAtMs = (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAt) || (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAtMs);
+        const qualifiedAtMs = (0, referral_roulette_policy_1.policyTimestampMs)(row.qualifiedAt) || (0, referral_roulette_policy_1.policyTimestampMs)(row.qualifiedAtMs);
+        const deadlineAtMs = (0, referral_roulette_policy_1.policyTimestampMs)(row.deadlineAtMs) || (0, referral_roulette_policy_1.attributionDeadlineMs)(createdAtMs);
+        const storedStatus = row.status ?? 'pending';
+        const status = storedStatus === 'pending' && !(0, referral_roulette_policy_1.canQualifyAt)(policy, createdAtMs, serverNowMs)
+            ? 'expired'
+            : storedStatus;
         const refereeName = nameByStableId.get(d.id);
         return {
             refereeStableId: d.id,
-            status: row.status ?? 'pending',
+            status,
             ...(refereeName ? { refereeName } : {}),
             createdAtMs,
+            deadlineAtMs,
+            ...(qualifiedAtMs > 0 ? { qualifiedAtMs } : {}),
         };
     });
+    const eligibleQualifiedCount = snap.docs.filter((doc) => {
+        const row = doc.data();
+        if (row.status !== 'qualified' && row.status !== 'skipped_referrer_cap')
+            return false;
+        return (0, referral_roulette_policy_1.existingQualifiedDrainEligible)({
+            createdAtMs: (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAt) || (0, referral_roulette_policy_1.policyTimestampMs)(row.createdAtMs),
+            qualifiedAtMs: (0, referral_roulette_policy_1.policyTimestampMs)(row.qualifiedAt) || (0, referral_roulette_policy_1.policyTimestampMs)(row.qualifiedAtMs),
+        }, policy);
+    }).length;
+    const activePending = invites.filter((invite) => invite.status === 'pending');
+    const ledgerRows = ledgerSnap.docs
+        .map((doc) => (0, referral_spin_ledger_1.ledgerRowFromData)(doc.id, doc.data()))
+        .filter((row) => row !== null);
+    const ledgerSummary = (0, referral_spin_ledger_1.reconcileLedgerRows)(ledgerRows, serverNowMs, policy);
+    const progress = userSnap.data()?.progress ?? {};
+    const aggregateCredits = Math.max(0, Math.floor(Number(progress.referral_spin_credits ?? 0)));
+    const legacyAvailable = (0, referral_spin_ledger_1.shouldMigrateLegacyAggregate)({
+        migrationMarkerExists: migrationMarkerSnap.exists,
+        anyLedgerDocumentExists: !anyLedgerSnap.empty,
+    })
+        && (0, referral_roulette_policy_1.legacyCreditExpiryMs)() >= serverNowMs
+        && !policy.emergencyStop
+        ? aggregateCredits
+        : 0;
+    const legacyExpiry = legacyAvailable > 0 ? (0, referral_roulette_policy_1.legacyCreditExpiryMs)() : 0;
+    const availableCreditCount = policy.emergencyStop
+        ? 0
+        : ledgerSummary.availableCount + legacyAvailable;
+    const earliestCreditExpiryMs = [ledgerSummary.earliestExpiryMs, legacyExpiry]
+        .filter((value) => value > 0)
+        .reduce((earliest, value) => earliest === 0 ? value : Math.min(earliest, value), 0);
     const qualifiedCount = invites.filter((i) => i.status === 'qualified').length;
-    const cfg = await resolveReferralConfig(db);
+    const cfg = referralConfigFromData(configSnap.data()?.numbers);
     const result = {
         ok: true,
         invites,
         qualifiedCount,
         claimableVipDays: qualifiedCount * cfg.rewardDays,
+        drain: {
+            softEnabled: policy.softEnabled,
+            emergencyStop: policy.emergencyStop,
+            serverNowMs,
+            activePendingCount: policy.emergencyStop ? 0 : activePending.length,
+            claimableQualifiedCount: policy.emergencyStop ? 0 : eligibleQualifiedCount,
+            availableCreditCount,
+            latestPendingDeadlineMs: activePending.reduce((latest, invite) => Math.max(latest, invite.deadlineAtMs), 0),
+            earliestCreditExpiryMs,
+        },
     };
     cacheListMyInvites(cacheKey, result);
     return result;
@@ -697,6 +830,17 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
     const db = admin.firestore();
     await assertAuthStableLink(db, authUid, referrerStableId);
     listMyInvitesServerCache.delete(referrerStableId);
+    // This callable belongs to the pre-roulette VIP contract. Keep it for old
+    // clients while admissions are open, but never let it consume a qualified
+    // attribution after the soft sunset (the ledger claim owns that drain) or
+    // while the emergency stop is active.
+    const entryPolicy = await resolveReferralRoulettePolicy(db);
+    if (entryPolicy.emergencyStop) {
+        throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+    }
+    if (!entryPolicy.softEnabled) {
+        throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_SOFT_SUNSET');
+    }
     // Тюнинг из «Пульта» (дней награды + капы). Читаем ДО транзакции (отд. документ).
     const cfg = await resolveReferralConfig(db);
     // Какие приглашения этого referrer'а готовы к обналичиванию (ещё не rewarded).
@@ -723,11 +867,22 @@ exports.referralClaimVipReward = (0, https_1.onCall)(CALLABLE_BASE, async (reque
     const ym = yyyymmNow();
     const ymd = yyyymmddNow();
     const userRef = db.collection(USERS).doc(referrerStableId);
+    const configRef = db.collection('remote_config').doc('app');
     return db.runTransaction(async (tx) => {
-        const userSnap = await tx.get(userRef);
         // Перечитываем attributions внутри транзакции (защита от гонки двойного клика).
         const attRefs = qualifiedSnap.docs.map((d) => db.collection(REFERRAL_ATTRIBUTIONS).doc(d.id));
-        const attSnaps = await Promise.all(attRefs.map((r) => tx.get(r)));
+        const [userSnap, configSnap, ...attSnaps] = await Promise.all([
+            tx.get(userRef),
+            tx.get(configRef),
+            ...attRefs.map((r) => tx.get(r)),
+        ]);
+        const transactionPolicy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configSnap.data());
+        if (transactionPolicy.emergencyStop) {
+            throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+        }
+        if (!transactionPolicy.softEnabled) {
+            throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_SOFT_SUNSET');
+        }
         const userData = userSnap.data() ?? {};
         const progressData = userData.progress;
         const monthly = progressData?.referral_vip_claims_monthly ?? {};

@@ -52,6 +52,39 @@ describe('normalizeAppMessageCreateInput', () => {
         expect(() => (0, admin_app_messages_1.normalizeAppMessageCreateInput)({ ...base, kind: 'poll', translations: { ru: { title: 'x', body: 'y', pollQuestion: 'q', pollOptions: ['one'] } } }, 'admin')).toThrow(https_1.HttpsError);
     });
 });
+describe('normalizePersonalAppMessageInput', () => {
+    const personal = {
+        uid: 'stable-user_123',
+        title: 'Ответ команды',
+        body: 'Мы проверили ваш вопрос.',
+        deliveryMode: 'next_login_modal',
+        reason: 'Ответ на обращение пользователя',
+        idempotencyKey: 'personal-message-1',
+        requestId: 'request-personal-1',
+    };
+    test('accepts a stable UID and only the two personal delivery modes', () => {
+        expect((0, admin_app_messages_1.normalizePersonalAppMessageInput)(personal, 'admin@example.com', 1800000000000)).toMatchObject({
+            uid: 'stable-user_123',
+            deliveryMode: 'next_login_modal',
+            document: {
+                kind: 'personal_admin_message',
+                deliveryMode: 'next_login_modal',
+                title: 'Ответ команды',
+                body: 'Мы проверили ваш вопрос.',
+                createdBy: 'admin@example.com',
+            },
+        });
+        expect((0, admin_app_messages_1.normalizePersonalAppMessageInput)({ ...personal, deliveryMode: 'inbox' }, 'admin@example.com').deliveryMode).toBe('inbox');
+        expect(() => (0, admin_app_messages_1.normalizePersonalAppMessageInput)({ ...personal, deliveryMode: 'push' }, 'admin@example.com')).toThrow(https_1.HttpsError);
+    });
+    test('rejects foreign recipient aliases and keeps retry fingerprint stable', () => {
+        expect(() => (0, admin_app_messages_1.normalizePersonalAppMessageInput)({ ...personal, recipientUid: 'other-user' }, 'admin@example.com')).toThrow(https_1.HttpsError);
+        const first = (0, admin_app_messages_1.normalizePersonalAppMessageInput)(personal, 'admin@example.com', 1800000000000);
+        const retry = (0, admin_app_messages_1.normalizePersonalAppMessageInput)(personal, 'admin@example.com', 1800060000000);
+        expect(retry.requestFingerprint).toBe(first.requestFingerprint);
+        expect(retry.document.createdAtMs).not.toBe(first.document.createdAtMs);
+    });
+});
 describe('normalizeAppMessageToggleInput', () => {
     test('accepts a reasoned active-state change and rejects malformed ids', () => {
         expect((0, admin_app_messages_1.normalizeAppMessageToggleInput)({ messageId: 'message_123', active: false, reason: 'Campaign ended', idempotencyKey: 'toggle-1', requestId: 'req-1' })).toMatchObject({ messageId: 'message_123', active: false });

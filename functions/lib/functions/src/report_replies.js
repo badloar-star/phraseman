@@ -34,6 +34,10 @@ var __importStar = (this && this.__importStar) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.adminDraftReportReply = exports.claimReportReward = exports.adminReplyToReport = exports.USER_MESSAGES_COLLECTION = void 0;
+exports.requireReportReplyPermission = requireReportReplyPermission;
+exports.normalizeReportReplyReward = normalizeReportReplyReward;
+exports.reportDocumentAllowsCoin = reportDocumentAllowsCoin;
+exports.normalizeStoredReportReplyClaimAmount = normalizeStoredReportReplyClaimAmount;
 exports.reportRecipientCandidate = reportRecipientCandidate;
 /**
  * Ответы на юзерские репорты через персональные уведомления (инбокс-колокольчик).
@@ -61,6 +65,7 @@ const premium_status_1 = require("./premium_status");
 const explain_provider_1 = require("./explain/explain_provider");
 const user_notifications_1 = require("./user_notifications");
 const xp_levels_1 = require("./xp_levels");
+const permissions_1 = require("./admin/permissions");
 const REGION = 'us-central1';
 const OPENAI_API_KEY = (0, params_1.defineSecret)('OPENAI_API_KEY');
 exports.USER_MESSAGES_COLLECTION = 'user_messages';
@@ -140,8 +145,7 @@ function readLeaderboardProjection(lb, prog, report) {
     }
     return proj;
 }
-const REPLY_SHARDS_MIN = 0;
-const REPLY_SHARDS_MAX = 100;
+const REPORT_RESOLUTIONS = ['confirmed_fixed', 'duplicate', 'in_progress', 'rejected', 'unconfirmed'];
 const REPLY_TITLE_MAX = 120;
 const REPLY_BODY_MAX = 1200;
 /** Коллекции репортов, на которые можно отвечать. Замкнутый список — админка не
@@ -152,13 +156,39 @@ const REPORT_COLLECTIONS = new Set([
     'user_reports',
     'community_pack_reports',
 ]);
-function requireAdmin(request) {
-    if (request.auth?.token?.admin !== true) {
-        throw new https_1.HttpsError('permission-denied', 'Admin only');
+function requireReportReplyPermission(request, permission) {
+    if (!(0, permissions_1.hasClaimedPermission)(request.auth?.token, permission)) {
+        throw new https_1.HttpsError('permission-denied', `Role cannot use ${permission}`);
     }
 }
 function cleanString(value, maxLen) {
     return String(value ?? '').trim().slice(0, maxLen);
+}
+function normalizeReportReplyReward(data) {
+    const input = data && typeof data === 'object' && !Array.isArray(data)
+        ? data
+        : {};
+    const resolution = cleanString(input.resolution, 40);
+    const coins = Number(input.coins ?? 0);
+    if (!REPORT_RESOLUTIONS.includes(resolution)) {
+        throw new https_1.HttpsError('invalid-argument', 'unsupported report resolution');
+    }
+    if (!Number.isInteger(coins) || (coins !== 0 && coins !== 1)) {
+        throw new https_1.HttpsError('invalid-argument', 'coins must be exactly 0 or 1');
+    }
+    if (coins === 1 && resolution !== 'confirmed_fixed') {
+        throw new https_1.HttpsError('failed-precondition', 'one coin requires confirmed_fixed');
+    }
+    return { resolution, coins: coins };
+}
+function reportDocumentAllowsCoin(report, resolution) {
+    return resolution === 'confirmed_fixed'
+        && (cleanString(report.resolution, 40) === 'confirmed_fixed' || cleanString(report.status, 40) === 'fixed');
+}
+function normalizeStoredReportReplyClaimAmount(message) {
+    if (message.coins !== undefined)
+        return Number(message.coins) === 1 ? 1 : 0;
+    return Math.floor(Number(message.shards) || 0) > 0 ? 1 : 0;
 }
 function reportRecipientCandidate(reportCollection, report) {
     if (reportCollection === 'error_reports') {
@@ -191,13 +221,12 @@ function reportRecipientCandidate(reportCollection, report) {
  *   - admin_log: аудит
  */
 exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK }, async (request) => {
-    requireAdmin(request);
+    requireReportReplyPermission(request, 'reports.reply.send');
     const reportCollection = cleanString(request.data?.reportCollection, 64);
     const reportId = cleanString(request.data?.reportId, 128);
     const title = cleanString(request.data?.title, REPLY_TITLE_MAX);
     const body = cleanString(request.data?.body, REPLY_BODY_MAX);
-    const shardsRaw = Number(request.data?.shards ?? 0);
-    const shards = Number.isFinite(shardsRaw) ? Math.floor(shardsRaw) : NaN;
+    const reward = normalizeReportReplyReward(request.data);
     if (!REPORT_COLLECTIONS.has(reportCollection)) {
         throw new https_1.HttpsError('invalid-argument', `reportCollection must be one of: ${Array.from(REPORT_COLLECTIONS).join(', ')}`);
     }
@@ -205,9 +234,6 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
         throw new https_1.HttpsError('invalid-argument', 'reportId required');
     if (!title || !body)
         throw new https_1.HttpsError('invalid-argument', 'title and body required');
-    if (!Number.isFinite(shards) || shards < REPLY_SHARDS_MIN || shards > REPLY_SHARDS_MAX) {
-        throw new https_1.HttpsError('invalid-argument', `shards must be ${REPLY_SHARDS_MIN}..${REPLY_SHARDS_MAX}`);
-    }
     const db = admin.firestore();
     const adminEmail = String(request.auth?.token?.email ?? '');
     const nowMs = Date.now();
@@ -250,11 +276,15 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
         if (typeof report.replyMessageId === 'string' && report.replyMessageId) {
             throw new https_1.HttpsError('already-exists', 'report already replied');
         }
+        if (reward.coins === 1 && !reportDocumentAllowsCoin(report, reward.resolution)) {
+            throw new https_1.HttpsError('failed-precondition', 'report is not server-confirmed as fixed');
+        }
         tx.set(messageRef, {
             kind: 'report_reply',
             title,
             body,
-            shards,
+            coins: reward.coins,
+            resolution: reward.resolution,
             claimed: false,
             claimedAtMs: null,
             reportCollection,
@@ -275,7 +305,8 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
                 messageId: messageRef.id,
                 title,
                 body,
-                shards,
+                coins: reward.coins,
+                resolution: reward.resolution,
                 claimed: false,
                 claimedAtMs: null,
                 reportCollection,
@@ -286,7 +317,7 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
         // подтверждение состоялось независимо от того, заберёт ли юзер награду).
         // В той же транзакции обновляем публичную проекцию борда «Топ хелперов»,
         // чтобы рейтинг на борде и счётчик титула никогда не разъезжались.
-        if (shards > 0) {
+        if (reward.coins === 1) {
             tx.set(userRef, {
                 progress: { [HELPFUL_REPORTS_CONFIRMED_KEY]: admin.firestore.FieldValue.increment(1) },
             }, { merge: true });
@@ -302,8 +333,12 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
             status: 'answered',
             replyMessageId: messageRef.id,
             replyNotificationId: notificationRef.id,
-            replyShards: shards,
+            replyTitle: title,
+            replyBody: body,
+            replyCoins: reward.coins,
+            resolution: reward.resolution,
             repliedAt: nowIso,
+            repliedAtMs: nowMs,
             repliedBy: adminEmail,
             replyRecipientUid: uid,
             ...(originalUid !== uid ? { replyOriginalUid: originalUid } : {}),
@@ -313,10 +348,10 @@ exports.adminReplyToReport = (0, https_1.onCall)({ region: REGION, enforceAppChe
             adminEmail,
             action: 'reply_to_report',
             uid,
-            details: { reportCollection, reportId, shards, title },
+            details: { reportCollection, reportId, coins: reward.coins, resolution: reward.resolution, title },
         });
     });
-    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, shards };
+    return { ok: true, messageId: messageRef.id, notificationId: notificationRef.id, coins: reward.coins };
 });
 /**
  * claimReportReward — юзер жмёт «Забрать осколки» в уведомлении-ответе.
@@ -350,7 +385,7 @@ exports.claimReportReward = (0, https_1.onCall)({ region: REGION, enforceAppChec
         const message = messageSnap.data() ?? {};
         if (message.kind !== 'report_reply')
             throw new https_1.HttpsError('failed-precondition', 'not a report reply');
-        const amount = Math.floor(Number(message.shards) || 0);
+        const amount = normalizeStoredReportReplyClaimAmount(message);
         if (amount <= 0)
             throw new https_1.HttpsError('failed-precondition', 'nothing to claim');
         if (message.claimed === true)
@@ -369,7 +404,7 @@ exports.claimReportReward = (0, https_1.onCall)({ region: REGION, enforceAppChec
             shards: after,
             shards_updated_at_ms: nowMs,
             shards_updated_op: 'earn',
-            shards_updated_reason: 'report_reply_claim',
+            shards_updated_reason: 'report_reply_coin_claim',
             updatedAt: nowMs,
         }, { merge: true });
         const shardLogRef = userRef.collection('shard_log').doc();
@@ -377,7 +412,7 @@ exports.claimReportReward = (0, https_1.onCall)({ region: REGION, enforceAppChec
             ts: nowIso,
             type: 'earn',
             amount,
-            reason: 'report_reply_claim',
+            reason: 'report_reply_coin_claim',
             balanceBefore: before,
             balanceAfter: after,
             messageId,
@@ -412,7 +447,7 @@ const DRAFT_SYSTEM_PROMPT = [
  * Возвращает { title, body } — админ может отредактировать перед отправкой.
  */
 exports.adminDraftReportReply = (0, https_1.onCall)({ region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK, secrets: [OPENAI_API_KEY] }, async (request) => {
-    requireAdmin(request);
+    requireReportReplyPermission(request, 'reports.reply.draft');
     const reportText = cleanString(request.data?.reportText, 4000);
     const verdict = cleanString(request.data?.verdict, 16);
     const fixNote = cleanString(request.data?.fixNote, 600);

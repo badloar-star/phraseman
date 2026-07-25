@@ -1,0 +1,36 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const artifact_edit_1 = require("./artifact_edit");
+const stage = { stageId: 'req:quiz_questions:topic-1:r1', requestId: 'req', kind: 'quiz_questions', scopeId: 'topic-1', studyTarget: 'en', sourceLocale: 'ru', cefr: 'A2', count: 10, revision: 1, artifactId: 'artifact:req:quiz_questions:topic-1:r1' };
+const item = (index) => ({ id: `q${index}`, prompt: `Question ${index}?`, choices: ['A', 'B', 'C', 'D'], correctIndex: 0, optionExplanations: ['a', 'b', 'c', 'd'], difficulty: index < 4 ? 'easy' : index < 8 ? 'medium' : 'hard', skillTag: 'travel', sourcePhraseIds: ['p1'] });
+const baseArtifact = { stage: 'quiz_questions', items: Array.from({ length: 10 }, (_, index) => item(index)) };
+describe('immutable artifact edit contract', () => {
+    test('parses a bounded exact-base edit request', () => {
+        const result = (0, artifact_edit_1.parseArtifactEditRequest)({ baseStageId: stage.stageId, expectedBaseReviewFingerprint: 'a'.repeat(64), idempotencyKey: 'edit-1', reason: 'Fix an incorrect distractor', artifact: baseArtifact });
+        expect(result).toMatchObject({ baseStageId: stage.stageId, idempotencyKey: 'edit-1' });
+        expect(() => (0, artifact_edit_1.parseArtifactEditRequest)({ ...result, reason: 'bad', serverField: true })).toThrow('artifact_edit_invalid');
+    });
+    test('creates a new revision identity and semantic diff without mutating the base', () => {
+        const candidate = structuredClone(baseArtifact);
+        candidate.items[0].prompt = 'Corrected question?';
+        const prepared = (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, candidate, 'edit-1');
+        expect(prepared).toMatchObject({ baseStageId: stage.stageId, newStageId: 'req:quiz_questions:topic-1:r2', newArtifactId: 'artifact:req:quiz_questions:topic-1:r2', revision: 2 });
+        expect(prepared.objectPath).toMatch(/^content-factory-stages\/[a-f0-9]{64}\/r2\/a1-[a-f0-9]{64}\.json$/);
+        expect(prepared.diff.summary.changed).toBeGreaterThan(0);
+        expect(baseArtifact.items[0].prompt).toBe('Question 0?');
+    });
+    test('rejects invalid answer index, changed count, identity and unapproved source references', () => {
+        const invalidIndex = structuredClone(baseArtifact);
+        invalidIndex.items[0].correctIndex = 9;
+        expect(() => (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, invalidIndex, 'edit-1')).toThrow('artifact_edit_validation_failed:question_correct_index_invalid');
+        expect(() => (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, { ...baseArtifact, items: baseArtifact.items.slice(1) }, 'edit-1')).toThrow('artifact_edit_item_identity_changed');
+        const invalidRef = structuredClone(baseArtifact);
+        invalidRef.items[0].sourcePhraseIds = ['unapproved'];
+        expect(() => (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, invalidRef, 'edit-1')).toThrow('artifact_edit_reference_not_approved');
+        expect(() => (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, { ...baseArtifact, stage: 'arena_questions' }, 'edit-1')).toThrow('artifact_edit_stage_identity_changed');
+    });
+    test('rejects no-op edits', () => {
+        expect(() => (0, artifact_edit_1.prepareArtifactEdit)(stage, baseArtifact, structuredClone(baseArtifact), 'edit-1')).toThrow('artifact_edit_no_changes');
+    });
+});
+//# sourceMappingURL=artifact_edit.test.js.map

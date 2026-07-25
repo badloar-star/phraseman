@@ -33,10 +33,12 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminAlertOnConfigWritten = exports.adminAlertOnUgcRefund = exports.adminAlertOnCancelSurvey = exports.adminAlertContentReportDigest = exports.adminAlertOnContentReport = exports.adminAlertOnCriticalError = exports.adminAlertOnUserReport = exports.ADMIN_ALERT_BOT_TOKEN = void 0;
+exports.adminAlertOnConfigWritten = exports.adminAlertOnAuthFailureSpike = exports.adminAlertOnUgcRefund = exports.adminAlertOnCancelSurvey = exports.adminAlertContentReportDigest = exports.adminAlertOnContentReport = exports.adminAlertOnCriticalError = exports.adminAlertOnUserReport = exports.ADMIN_ALERT_BOT_TOKEN = void 0;
 exports.sendTelegramAlert = sendTelegramAlert;
 exports.formatContentReportAlert = formatContentReportAlert;
 exports.formatContentReportAlertSafe = formatContentReportAlertSafe;
+exports.isAuthFailureErrorDoc = isAuthFailureErrorDoc;
+exports.nextAuthFailureSpikeState = nextAuthFailureSpikeState;
 const admin = __importStar(require("firebase-admin"));
 const params_1 = require("firebase-functions/params");
 const firestore_1 = require("firebase-functions/v2/firestore");
@@ -371,6 +373,113 @@ exports.adminAlertOnUgcRefund = (0, firestore_1.onDocumentWritten)({ document: '
     if (!becameRefunded)
         return;
     await recordSpikeEvent('Рефанды UGC');
+});
+// ── 4б. Spike in auth sign-in failures (app_errors, feature=auth) ────────────
+// Продакшн-инцидент 2026-07: после переустановки юзеры не могли войти в свой
+// аккаунт (auth_link_failed / «не тот аккаунт»). Клиент пишет такие ошибки в
+// app_errors с feature:'auth' (или context 'auth:signin_failure'). Считаем их в
+// скользящем часовом окне и при всплеске шлём алерт — чтобы вспышку было видно
+// сразу, а не по жалобам. recordSpikeEvent переиспользовать нельзя: он жёстко
+// завязан на тип cancelRefundSpike и окно cancelRefundWindow — поэтому здесь
+// минимальный локальный аналог со СВОИМ окном (authFailureWindow) и СВОИМ
+// cooldown-полем (authFailureAlertedAt); существующий спайк отмен/рефандов не
+// затронут.
+const AUTH_FAILURE_MAX_STAGES = 8; // кап на карту stage→count, чтобы теги не раздували док
+/** Чистый предикат фильтра auth-фейлов в app_errors. Экспортирован для тестов. */
+function isAuthFailureErrorDoc(data) {
+    const feature = String(data?.feature ?? '').trim().toLowerCase();
+    const context = String(data?.context ?? '').trim().toLowerCase();
+    return feature === 'auth' || context === 'auth:signin_failure';
+}
+/**
+ * Чистая логика скользящего окна всплеска auth-фейлов (зеркалит recordSpikeEvent,
+ * но без I/O — для тестов и транзакции): новое окно, инкремент, порог, cooldown.
+ */
+function nextAuthFailureSpikeState(params) {
+    const win = params.window || {};
+    const since = Number(win.since || 0);
+    const stages = { ...(win.stages || {}) };
+    const bumpStage = (target) => {
+        if (!params.stage)
+            return;
+        if (!(params.stage in target) && Object.keys(target).length >= AUTH_FAILURE_MAX_STAGES)
+            return;
+        target[params.stage] = (target[params.stage] || 0) + 1;
+    };
+    if (!since || params.now - since > SPIKE_WINDOW_MS) {
+        // Окно истекло → начинаем новое. Порог при первом событии не проверяем —
+        // то же поведение, что у recordSpikeEvent (алерт со второго события окна).
+        const fresh = {};
+        bumpStage(fresh);
+        return { window: { since: params.now, count: 1, stages: fresh }, shouldAlert: false, count: 1, alertedAt: null };
+    }
+    const count = Number(win.count || 0) + 1;
+    bumpStage(stages);
+    const inCooldown = Boolean(params.lastAlertedAt) && params.now - params.lastAlertedAt < SPIKE_COOLDOWN_MS;
+    const shouldAlert = count >= params.threshold && !inCooldown;
+    return {
+        window: { since, count, stages },
+        shouldAlert,
+        count,
+        alertedAt: shouldAlert ? params.now : null,
+    };
+}
+async function recordAuthFailureSpikeEvent(stage) {
+    const cfg = await readAlertsConfig();
+    if (!alertTypeEnabled(cfg, 'authFailureSpike'))
+        return;
+    const threshold = Math.max(1, Number(cfg?.spikePerHour || 5));
+    const now = Date.now();
+    const ref = db().doc(ALERTS_DOC);
+    let shouldAlert = false;
+    let windowCount = 0;
+    let windowStages = {};
+    try {
+        await db().runTransaction(async (tx) => {
+            const snap = await tx.get(ref);
+            const data = (snap.data() || {});
+            const next = nextAuthFailureSpikeState({
+                window: data.authFailureWindow,
+                lastAlertedAt: Number(data.authFailureAlertedAt || 0),
+                now,
+                threshold,
+                stage,
+            });
+            shouldAlert = next.shouldAlert;
+            windowCount = next.count;
+            windowStages = next.window.stages;
+            tx.set(ref, {
+                authFailureWindow: next.window,
+                ...(next.alertedAt ? { authFailureAlertedAt: next.alertedAt } : {}),
+            }, { merge: true });
+        });
+    }
+    catch (error) {
+        console.error('[adminAlerts] auth failure spike tx failed', error);
+        return;
+    }
+    if (!shouldAlert)
+        return;
+    // Топ-3 stage из tags за окно (если окно хранит только счётчики — просто N).
+    const topStages = Object.entries(windowStages)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([name, count]) => `${escapeHtml(clip(name, 40))} ×${count}`);
+    const text = `⚠️ <b>Всплеск ошибок входа</b>\n\n` +
+        `<b>${windowCount}</b> за последний час (порог ${threshold}).` +
+        (topStages.length ? `\nТоп stage: ${topStages.join(', ')}.` : '') +
+        `\n\n<i>Открой админку → App Health → auth.</i>`;
+    const ok = await sendTelegramAlert(exports.ADMIN_ALERT_BOT_TOKEN.value(), text, cfg);
+    if (ok)
+        await markSent('authFailureSpike');
+}
+exports.adminAlertOnAuthFailureSpike = (0, firestore_1.onDocumentCreated)({ document: 'app_errors/{id}', region: REGION, secrets: [exports.ADMIN_ALERT_BOT_TOKEN] }, async (event) => {
+    const data = event.data?.data() || {};
+    if (!isAuthFailureErrorDoc(data))
+        return;
+    const tags = data.tags && typeof data.tags === 'object' ? data.tags : {};
+    const stage = clip(tags.stage ?? data.stage, 60) || undefined;
+    await recordAuthFailureSpikeEvent(stage);
 });
 // ── 5. Test ping from the admin UI ───────────────────────────────────────────
 // The "Test" button in the admin Alerts tab writes admin_config/alerts.testPing.

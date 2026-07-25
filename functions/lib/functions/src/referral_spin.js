@@ -61,6 +61,8 @@ const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
 const referral_1 = require("./referral");
 const referral_spin_logic_1 = require("./referral_spin_logic");
+const referral_roulette_policy_1 = require("./referral_roulette_policy");
+const referral_spin_ledger_1 = require("./referral_spin_ledger");
 // Реэкспорт для тестов/совместимости (раньше жили здесь).
 var referral_spin_logic_2 = require("./referral_spin_logic");
 Object.defineProperty(exports, "REFERRAL_SPIN_PRIZE_DAYS", { enumerable: true, get: function () { return referral_spin_logic_2.REFERRAL_SPIN_PRIZE_DAYS; } });
@@ -109,7 +111,12 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
     }
     const db = admin.firestore();
     await (0, referral_1.assertAuthStableLink)(db, authUid, stableId);
+    const outerPolicy = await (0, referral_1.resolveReferralRoulettePolicy)(db);
+    if (outerPolicy.emergencyStop) {
+        throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+    }
     const weights = await resolveReferralSpinWeights(db);
+    const configRef = db.collection('remote_config').doc('app');
     const userRef = db.collection(USERS).doc(stableId);
     const spinsCol = userRef.collection(SPINS_SUBCOLLECTION);
     // Джекпот-капы по логу спинов — ДО транзакции (запросы внутри tx невозможны).
@@ -128,9 +135,18 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
         forbidden.add(referral_spin_logic_1.JACKPOT_INDEX);
     if (!bigPrizeSnap.empty)
         forbidden.add(referral_spin_logic_1.BIG_PRIZE_INDEX);
-    return db.runTransaction(async (tx) => {
+    const outcome = await db.runTransaction(async (tx) => {
         const spinRef = spinsCol.doc(spinRequestId);
-        const [userSnap, existingSpin] = await Promise.all([tx.get(userRef), tx.get(spinRef)]);
+        const [configSnap, userSnap, existingSpin] = await Promise.all([
+            tx.get(configRef),
+            tx.get(userRef),
+            tx.get(spinRef),
+        ]);
+        const configData = configSnap.data();
+        const policy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(configData);
+        if (policy.emergencyStop) {
+            throw new https_1.HttpsError('failed-precondition', 'REFERRAL_ROULETTE_EMERGENCY_STOP');
+        }
         // Идемпотентность: повтор с тем же spinRequestId → тот же приз, без списания кредита.
         if (existingSpin.exists) {
             const s = existingSpin.data();
@@ -145,11 +161,110 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
         }
         const userData = userSnap.data() ?? {};
         const progress = userData.progress ?? {};
-        const credits = Math.max(0, Math.floor(Number(progress.referral_spin_credits ?? 0)));
-        if (credits <= 0) {
-            throw new https_1.HttpsError('failed-precondition', 'NO_SPIN_CREDITS');
-        }
+        const aggregateBefore = Math.max(0, Math.floor(Number(progress.referral_spin_credits ?? 0)));
         const spinsUsedTotal = Math.max(0, Math.floor(Number(progress.referral_spins_total ?? 0)));
+        const nowMs = Date.now();
+        const ledgerVersion = Math.max(0, Math.floor(Number(progress.referral_spin_ledger_version ?? 0)));
+        const ledgerCollection = userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER);
+        const migrationMarkerRef = ledgerCollection.doc(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID);
+        const [migrationMarkerSnap, anyLedgerSnap] = await Promise.all([
+            tx.get(migrationMarkerRef),
+            tx.get(ledgerCollection.limit(1)),
+        ]);
+        const migrateLegacyAggregate = (0, referral_spin_ledger_1.shouldMigrateLegacyAggregate)({
+            migrationMarkerExists: migrationMarkerSnap.exists,
+            anyLedgerDocumentExists: !anyLedgerSnap.empty,
+        });
+        const shouldWriteMigrationMarker = !migrationMarkerSnap.exists;
+        let legacyRows = [];
+        let legacyRefs = [];
+        let legacySnaps = [];
+        if (migrateLegacyAggregate) {
+            try {
+                legacyRows = (0, referral_spin_ledger_1.buildLegacyCreditRows)(stableId, aggregateBefore);
+            }
+            catch {
+                throw new https_1.HttpsError('failed-precondition', 'LEGACY_CREDIT_MIGRATION_TOO_LARGE');
+            }
+            legacyRefs = legacyRows.map((row) => userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER).doc(row.id));
+            legacySnaps = await Promise.all(legacyRefs.map((ref) => tx.get(ref)));
+        }
+        const availableSnap = await tx.get(ledgerCollection.where('status', '==', 'available').limit(450));
+        if (availableSnap.size >= 450) {
+            throw new https_1.HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+        }
+        const persistedRows = availableSnap.docs.map((doc) => {
+            const parsed = (0, referral_spin_ledger_1.ledgerRowFromData)(doc.id, doc.data());
+            if (!parsed)
+                throw new https_1.HttpsError('failed-precondition', 'LEDGER_INVALID_CREDIT');
+            return parsed;
+        });
+        const persistedIds = new Set(persistedRows.map((row) => row.id));
+        const migrationRows = legacyRows.filter((row, index) => !legacySnaps[index].exists && !persistedIds.has(row.id));
+        const ledgerRows = [...persistedRows, ...migrationRows];
+        const eligibleSummary = (0, referral_spin_ledger_1.reconcileLedgerRows)(ledgerRows, nowMs, policy);
+        const allSummary = (0, referral_spin_ledger_1.reconcileLedgerRows)(ledgerRows, nowMs, { softEnabled: true });
+        const expiredIds = new Set(allSummary.expiredIds);
+        const migrationIds = new Set(migrationRows.map((row) => row.id));
+        const persistedExpiredCount = allSummary.expiredIds.filter((id) => !migrationIds.has(id)).length;
+        const conservativeWriteCount = migrationRows.length
+            + persistedExpiredCount
+            + 3
+            + (shouldWriteMigrationMarker ? 1 : 0);
+        if (conservativeWriteCount > 480) {
+            throw new https_1.HttpsError('failed-precondition', 'LEDGER_RECONCILIATION_LIMIT');
+        }
+        migrationRows.forEach((row) => {
+            const ref = userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER).doc(row.id);
+            const { id: _id, ...data } = row;
+            tx.create(ref, {
+                ...data,
+                earnedAt: admin.firestore.Timestamp.fromMillis(row.earnedAtMs),
+                expiresAt: admin.firestore.Timestamp.fromMillis(row.expiresAtMs),
+                ...(expiredIds.has(row.id) ? {
+                    status: 'expired',
+                    expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+                    expiredAtMs: nowMs,
+                } : {}),
+            });
+        });
+        if (shouldWriteMigrationMarker) {
+            tx.create(migrationMarkerRef, {
+                kind: 'migration_marker',
+                version: referral_spin_ledger_1.REFERRAL_SPIN_LEDGER_VERSION,
+                createdAt: admin.firestore.FieldValue.serverTimestamp(),
+                createdAtMs: nowMs,
+            });
+        }
+        for (const creditId of expiredIds) {
+            if (migrationIds.has(creditId))
+                continue;
+            tx.set(userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER).doc(creditId), {
+                status: 'expired',
+                expiredAt: admin.firestore.FieldValue.serverTimestamp(),
+                expiredAtMs: nowMs,
+            }, { merge: true });
+            console.log(JSON.stringify({
+                event: referral_roulette_policy_1.REFERRAL_ANALYTICS_EVENTS.creditExpired,
+                ownerStableId: stableId,
+                creditId,
+                expiredAtMs: nowMs,
+            }));
+        }
+        const selectedCredit = eligibleSummary.oldestValid;
+        if (!selectedCredit) {
+            tx.set(userRef, {
+                progress: {
+                    referral_spin_credits: allSummary.availableCount,
+                    referral_spin_ledger_version: referral_spin_ledger_1.REFERRAL_SPIN_LEDGER_VERSION,
+                    ...(migrateLegacyAggregate
+                        ? { referral_spin_ledger_migrated_at_ms: nowMs }
+                        : {}),
+                },
+                updatedAt: nowMs,
+            }, { merge: true });
+            return { noCredit: true };
+        }
         // RNG: seed живёт только в памяти вызова; в лог — sha256(seed) для аудита.
         const seed = crypto.randomBytes(16).toString('hex');
         const rng = () => crypto.randomInt(0, 1000000000) / 1000000000;
@@ -157,10 +272,19 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
         const draw = (0, referral_spin_logic_1.spinDraw)({ weights, spinsUsedTotal, forbidden, rng });
         const { prizeIndex, prizeDays, pity, reroll } = draw;
         // Стак VIP — тот же подход, что referralClaimVipReward: от max(текущее окно, now).
-        const nowMs = Date.now();
         const currentUntil = (0, referral_1.vipUntilFromProgress)(progress);
         const vipUntil = (0, referral_1.stackVipUntilMs)(currentUntil, nowMs, prizeDays);
-        const spinsLeft = credits - 1;
+        // The compatibility aggregate keeps every unexpired source, including dev
+        // grants. The callable response is narrower: under soft OFF it reports only
+        // production-drain credits so a dev-only balance cannot keep roulette open.
+        const spinsLeft = Math.max(0, eligibleSummary.availableCount - 1);
+        const aggregateSpinsLeft = Math.max(0, allSummary.availableCount - 1);
+        tx.set(userRef.collection(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER).doc(selectedCredit.id), {
+            status: 'consumed',
+            consumedAt: admin.firestore.FieldValue.serverTimestamp(),
+            consumedAtMs: nowMs,
+            spinRequestId,
+        }, { merge: true });
         tx.set(userRef, {
             progress: {
                 vip_active: 'true',
@@ -170,7 +294,11 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
                 vip_admin_override: 'true',
                 vip_admin_grant_at: String(nowMs),
                 referral_vip_last_source: 'referral_spin',
-                referral_spin_credits: spinsLeft,
+                referral_spin_credits: aggregateSpinsLeft,
+                referral_spin_ledger_version: referral_spin_ledger_1.REFERRAL_SPIN_LEDGER_VERSION,
+                ...(migrateLegacyAggregate
+                    ? { referral_spin_ledger_migrated_at_ms: nowMs }
+                    : {}),
                 referral_spins_total: spinsUsedTotal + 1,
             },
             updatedAt: nowMs,
@@ -186,6 +314,8 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
             vipUntilMs: vipUntil,
             createdAt: admin.firestore.FieldValue.serverTimestamp(),
             createdAtMs: nowMs,
+            creditId: selectedCredit.id,
+            creditSource: selectedCredit.source,
         });
         console.log(JSON.stringify({
             event: 'referral_spin',
@@ -194,9 +324,23 @@ exports.referralSpin = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
             prizeDays,
             pity,
             reroll,
+            creditId: selectedCredit.id,
+            creditSource: selectedCredit.source,
             spinsUsedTotal: spinsUsedTotal + 1,
+        }));
+        console.log(JSON.stringify({
+            event: referral_roulette_policy_1.REFERRAL_ANALYTICS_EVENTS.creditConsumed,
+            ownerStableId: stableId,
+            creditId: selectedCredit.id,
+            source: selectedCredit.source,
+            spinRequestId,
+            consumedAtMs: nowMs,
         }));
         return { ok: true, prizeIndex, prizeDays, spinsLeft, vipUntil };
     });
+    if ('noCredit' in outcome) {
+        throw new https_1.HttpsError('failed-precondition', 'NO_SPIN_CREDITS');
+    }
+    return outcome;
 });
 //# sourceMappingURL=referral_spin.js.map

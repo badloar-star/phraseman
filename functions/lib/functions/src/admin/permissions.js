@@ -23,14 +23,14 @@ const BRIEFING_OPERATOR_PERMISSIONS = [
 ];
 const ROLE_PERMISSIONS = {
     owner: new Set([
-        'users.read', 'users.write', 'money.read', 'money.manual_access.write',
+        'users.read', 'users.write', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
         'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
         'diagnostics.read', 'community.moderate', 'admin.roles.write',
         ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',
         ...REPORT_OPERATOR_PERMISSIONS, ...BRIEFING_OPERATOR_PERMISSIONS, 'diagnostics.status.write',
     ]),
     admin: new Set([
-        'users.read', 'users.write', 'money.read', 'money.manual_access.write',
+        'users.read', 'users.write', 'users.auth_repair', 'users.message.write', 'money.read', 'money.manual_access.write',
         'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write',
         'diagnostics.read', 'community.moderate',
         ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous',

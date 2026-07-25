@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminReferralHealth = exports.adminSetSpinWeights = exports.adminSpinLogs = exports.adminSpinStats = exports.adminListReferrals = void 0;
+exports.adminReferralHealth = exports.adminSetReferralRouletteEmergencyStop = exports.adminSetReferralRouletteEnabled = exports.adminSetSpinWeights = exports.adminSpinLogs = exports.adminSpinStats = exports.adminListReferrals = void 0;
 /**
  * Admin-callables для раздела «Рефералы» админки: список приглашений, статистика
  * и лог рулетки, запись весов в «Пульт», health-проверки работоспособности.
@@ -49,7 +49,14 @@ exports.adminReferralHealth = exports.adminSetSpinWeights = exports.adminSpinLog
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const callable_options_1 = require("./callable_options");
+const audit_contract_1 = require("./admin/audit_contract");
+const permissions_1 = require("./admin/permissions");
+const roles_1 = require("./admin/roles");
 const referral_spin_logic_1 = require("./referral_spin_logic");
+const referral_roulette_policy_1 = require("./referral_roulette_policy");
+const referral_spin_ledger_1 = require("./referral_spin_ledger");
+const referral_admin_drain_metrics_1 = require("./referral_admin_drain_metrics");
+const referral_admin_soft_toggle_1 = require("./referral_admin_soft_toggle");
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: callable_options_1.ENFORCE_APP_CHECK };
 const USERS = 'users';
@@ -68,6 +75,10 @@ function assertAdmin(request) {
     if (request.auth.token?.admin !== true) {
         throw new https_1.HttpsError('permission-denied', 'ADMIN_REQUIRED');
     }
+}
+function adminRoleFromToken(token) {
+    const role = token?.adminRole;
+    return (0, roles_1.hasAdminRole)(role) ? role : null;
 }
 function clampLimit(raw, fallback) {
     const n = Math.trunc(Number(raw));
@@ -239,6 +250,153 @@ exports.adminSetSpinWeights = (0, https_1.onCall)(CALLABLE_BASE, async (request)
     console.log(JSON.stringify({ event: 'admin_set_spin_weights', weights: v.weights, by: request.auth?.uid }));
     return { ok: true, weights: v.weights };
 });
+// ── b2) Мастер-флаг «Рулетка Plus + реферальная программа» ────────────────────
+/**
+ * Вкл/выкл всей связки рулетка+рефералка из админки БЕЗ релиза.
+ * Пишет remote_config/app.numbers.referral_roulette_enabled (boolean) — тот же ключ,
+ * что читают referralSpin/referralClaimSpin (resolveReferralRouletteEnabled) и клиент
+ * (remote_flags → isReferralRouletteEnabled). Дефолт при отсутствии ключа = ON.
+ */
+exports.adminSetReferralRouletteEnabled = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
+    assertAdmin(request);
+    const role = adminRoleFromToken(request.auth?.token);
+    if (!role || !(0, permissions_1.hasPermission)(role, 'application.config.write')) {
+        throw new https_1.HttpsError('permission-denied', 'APPLICATION_CONFIG_WRITE_REQUIRED');
+    }
+    const enabled = request.data?.enabled;
+    if (typeof enabled !== 'boolean') {
+        throw new https_1.HttpsError('invalid-argument', 'enabled (boolean) required');
+    }
+    const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
+    const requestId = String(request.data?.requestId ?? '').trim().slice(0, 160);
+    const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 120);
+    if (!reason || !requestId || !idempotencyKey) {
+        throw new https_1.HttpsError('invalid-argument', 'reason, requestId and idempotencyKey required');
+    }
+    const db = admin.firestore();
+    const configRef = db.collection('remote_config').doc('app');
+    const operationRef = db.collection('admin_command_operations').doc(`referral_roulette_${idempotencyKey}`);
+    const auditRef = db.collection('admin_log').doc();
+    const fingerprint = JSON.stringify({ enabled });
+    const actorUid = request.auth.uid;
+    return db.runTransaction(async (tx) => {
+        const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
+        if (operationSnap.exists) {
+            const previous = operationSnap.data() ?? {};
+            if (previous.requestFingerprint !== fingerprint || previous.actorUid !== actorUid) {
+                throw new https_1.HttpsError('already-exists', 'idempotency key replay mismatch');
+            }
+            return (0, referral_admin_soft_toggle_1.referralSoftToggleReplayResult)(previous);
+        }
+        const config = (configSnap.data() ?? {});
+        const beforeEnabled = config.numbers?.referral_roulette_enabled !== false;
+        const beforeSoftOffAtMs = tsToMs(config.numbers?.referral_roulette_soft_off_at_ms);
+        const nowMs = Date.now();
+        const softOffAtMs = (0, referral_admin_soft_toggle_1.resolveReferralSoftOffAtMs)({
+            enabled,
+            beforeEnabled,
+            beforeSoftOffAtMs,
+            nowMs,
+        });
+        const audit = (0, audit_contract_1.createAuditRecord)({
+            action: 'referral_roulette.enabled.set',
+            actorUid,
+            role,
+            entity: { collection: 'remote_config', id: 'app' },
+            reason,
+            before: { enabled: beforeEnabled, softOffAtMs: beforeSoftOffAtMs },
+            after: { enabled, softOffAtMs },
+            requestId,
+            timestamp: new Date().toISOString(),
+        });
+        tx.set(configRef, {
+            numbers: {
+                referral_roulette_enabled: enabled,
+                referral_roulette_soft_off_at_ms: softOffAtMs,
+            },
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedBy: actorUid,
+        }, { merge: true });
+        tx.create(auditRef, { ...audit, operationId: operationRef.id });
+        tx.create(operationRef, {
+            action: 'referral_roulette.enabled.set',
+            actorUid,
+            requestFingerprint: fingerprint,
+            enabled,
+            softOffAtMs,
+            auditId: auditRef.id,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { ok: true, enabled, softOffAtMs, auditId: auditRef.id, replayed: false };
+    });
+});
+/** True kill switch: blocks qualification, credit award, claim, and spin for everyone. */
+exports.adminSetReferralRouletteEmergencyStop = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
+    assertAdmin(request);
+    const role = adminRoleFromToken(request.auth?.token);
+    if (!role || !(0, permissions_1.hasPermission)(role, 'application.config.write')) {
+        throw new https_1.HttpsError('permission-denied', 'APPLICATION_CONFIG_WRITE_REQUIRED');
+    }
+    const emergencyStop = request.data?.emergencyStop;
+    if (typeof emergencyStop !== 'boolean') {
+        throw new https_1.HttpsError('invalid-argument', 'emergencyStop (boolean) required');
+    }
+    const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
+    const requestId = String(request.data?.requestId ?? '').trim().slice(0, 160);
+    const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 120);
+    if (!reason || !requestId || !idempotencyKey) {
+        throw new https_1.HttpsError('invalid-argument', 'reason, requestId and idempotencyKey required');
+    }
+    const db = admin.firestore();
+    const configRef = db.collection('remote_config').doc('app');
+    const operationRef = db.collection('admin_command_operations').doc(`referral_roulette_emergency_${idempotencyKey}`);
+    const auditRef = db.collection('admin_log').doc();
+    const fingerprint = JSON.stringify({ emergencyStop });
+    const actorUid = request.auth.uid;
+    return db.runTransaction(async (tx) => {
+        const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
+        if (operationSnap.exists) {
+            const previous = operationSnap.data() ?? {};
+            if (previous.requestFingerprint !== fingerprint || previous.actorUid !== actorUid) {
+                throw new https_1.HttpsError('already-exists', 'idempotency key replay mismatch');
+            }
+            return {
+                ok: true,
+                emergencyStop: previous.emergencyStop === true,
+                auditId: String(previous.auditId ?? ''),
+                replayed: true,
+            };
+        }
+        const config = (configSnap.data() ?? {});
+        const beforeEmergencyStop = config.numbers?.referral_roulette_emergency_stop === true;
+        const audit = (0, audit_contract_1.createAuditRecord)({
+            action: 'referral_roulette.emergency_stop.set',
+            actorUid,
+            role,
+            entity: { collection: 'remote_config', id: 'app' },
+            reason,
+            before: { emergencyStop: beforeEmergencyStop },
+            after: { emergencyStop },
+            requestId,
+            timestamp: new Date().toISOString(),
+        });
+        tx.set(configRef, {
+            numbers: { referral_roulette_emergency_stop: emergencyStop },
+            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+            updatedBy: actorUid,
+        }, { merge: true });
+        tx.create(auditRef, { ...audit, operationId: operationRef.id });
+        tx.create(operationRef, {
+            action: 'referral_roulette.emergency_stop.set',
+            actorUid,
+            requestFingerprint: fingerprint,
+            emergencyStop,
+            auditId: auditRef.id,
+            createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        return { ok: true, emergencyStop, auditId: auditRef.id, replayed: false };
+    });
+});
 exports.adminReferralHealth = (0, https_1.onCall)(CALLABLE_BASE, async (request) => {
     assertAdmin(request);
     const db = admin.firestore();
@@ -252,14 +410,45 @@ exports.adminReferralHealth = (0, https_1.onCall)(CALLABLE_BASE, async (request)
     });
     // 2. Весы валидны (мягкий парсер → если дефолт вместо конфига, значит мусор/отсутствует).
     let weightsValid = true;
+    // Мастер-флаг: отсутствие ключа = ON, ошибка чтения = fail-closed.
+    let rouletteEnabled = false;
+    let emergencyStop = true;
+    let softOffAtMs = 0;
+    let roulettePolicy = {
+        softEnabled: false,
+        emergencyStop: true,
+        softOffAtMs: 0,
+    };
+    let rouletteFlagReadable = false;
     try {
         const snap = await db.collection('remote_config').doc('app').get();
         const data = snap.data();
         weightsValid = (0, referral_spin_logic_1.validateSpinWeights)(data?.numbers?.referral_spin_weights).ok;
+        roulettePolicy = (0, referral_roulette_policy_1.referralRoulettePolicyFromData)(data);
+        rouletteEnabled = roulettePolicy.softEnabled;
+        emergencyStop = roulettePolicy.emergencyStop;
+        softOffAtMs = roulettePolicy.softOffAtMs;
+        rouletteFlagReadable = true;
     }
     catch {
         weightsValid = false;
     }
+    checks.push({
+        id: 'roulette_feature_flag',
+        status: !rouletteFlagReadable ? 'fail' : rouletteEnabled ? 'ok' : 'warn',
+        detail: !rouletteFlagReadable
+            ? 'Не удалось прочитать referral_roulette_enabled — серверные spin/claim закрыты fail-closed'
+            : rouletteEnabled
+                ? 'referral_roulette_enabled: ON — рулетка и рефералка работают'
+                : 'referral_roulette_enabled: OFF — новые приглашения и dev-выдача закрыты; grandfathered claim/spin работают до своих дедлайнов',
+    });
+    checks.push({
+        id: 'roulette_emergency_stop',
+        status: emergencyStop ? 'fail' : 'ok',
+        detail: emergencyStop
+            ? 'Аварийная остановка активна: qualification, award, claim и spin заблокированы для всех'
+            : 'Аварийная остановка выключена',
+    });
     checks.push({
         id: 'weights_valid',
         status: weightsValid ? 'ok' : 'warn',
@@ -303,6 +492,59 @@ exports.adminReferralHealth = (0, https_1.onCall)(CALLABLE_BASE, async (request)
         status: 'ok',
         detail: `Выборка ${creditsSnap.size} юзеров: на руках ${onHand}, использовано ${used}. Точный баланс issued=used+onHand — отдельная reconcile-джоба (TODO)`,
     });
+    const drainSampleLimit = HEALTH_SAMPLE_USERS + 1;
+    const serverNowMs = Date.now();
+    const [pendingDrainSnap, qualifiedDrainSnap, ledgerAvailableSnap] = await Promise.all([
+        db.collection(REFERRAL_ATTRIBUTIONS)
+            .where('status', '==', 'pending')
+            .limit(drainSampleLimit)
+            .get(),
+        db.collection(REFERRAL_ATTRIBUTIONS)
+            .where('status', 'in', ['qualified', 'skipped_referrer_cap'])
+            .limit(drainSampleLimit)
+            .get(),
+        db.collectionGroup(referral_spin_ledger_1.REFERRAL_SPIN_LEDGER)
+            .where('status', '==', 'available')
+            .limit(drainSampleLimit)
+            .get(),
+    ]);
+    const sampledAttributions = [...pendingDrainSnap.docs, ...qualifiedDrainSnap.docs]
+        .slice(0, HEALTH_SAMPLE_USERS * 2)
+        .map((doc) => {
+        const row = doc.data();
+        return {
+            status: String(row.status ?? ''),
+            createdAtMs: tsToMs(row.createdAt) || tsToMs(row.createdAtMs),
+            qualifiedAtMs: tsToMs(row.qualifiedAt) || tsToMs(row.qualifiedAtMs),
+        };
+    });
+    const sampledCredits = ledgerAvailableSnap.docs
+        .slice(0, HEALTH_SAMPLE_USERS)
+        .map((doc) => {
+        const row = doc.data();
+        return {
+            status: String(row.status ?? ''),
+            source: String(row.source ?? ''),
+            expiresAtMs: tsToMs(row.expiresAt) || tsToMs(row.expiresAtMs),
+        };
+    });
+    const semanticDrain = (0, referral_admin_drain_metrics_1.summarizeReferralAdminDrain)({
+        policy: roulettePolicy,
+        nowMs: serverNowMs,
+        attributions: sampledAttributions,
+        credits: sampledCredits,
+    });
+    const drainMetrics = {
+        ...semanticDrain,
+        aggregateCreditsSampled: onHand,
+        softOffAtMs,
+        legacyCreditExpiryMs: (0, referral_roulette_policy_1.legacyCreditExpiryMs)(),
+        serverNowMs,
+        sampleLimit: HEALTH_SAMPLE_USERS,
+        truncated: pendingDrainSnap.size > HEALTH_SAMPLE_USERS
+            || qualifiedDrainSnap.size > HEALTH_SAMPLE_USERS
+            || ledgerAvailableSnap.size > HEALTH_SAMPLE_USERS,
+    };
     // 6. Отставание feed: последнее событие my_events vs последняя feed-копия (по выборке).
     let feedLagMinutes = -1;
     try {
@@ -330,6 +572,15 @@ exports.adminReferralHealth = (0, https_1.onCall)(CALLABLE_BASE, async (request)
         : checks.some((c) => c.status === 'warn')
             ? 'warn'
             : 'ok';
-    return { ok: true, status: worst, checks, checkedAtMs: Date.now() };
+    return {
+        ok: true,
+        status: worst,
+        checks,
+        rouletteEnabled,
+        emergencyStop,
+        softOffAtMs,
+        drainMetrics,
+        checkedAtMs: Date.now(),
+    };
 });
 //# sourceMappingURL=admin_referrals.js.map

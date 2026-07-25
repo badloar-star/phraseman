@@ -33,13 +33,15 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.authStampAnonOwnership = exports.ANON_MERGE_CLAIM_TTL_MS = exports.authEnsureStableLink = void 0;
+exports.authStampAnonOwnership = exports.ANON_MERGE_CLAIM_TTL_MS = exports.authRecoveryHint = exports.authEnsureStableLink = void 0;
 exports.describeAppCheckHeader = describeAppCheckHeader;
 exports.ensureAuthLinkDoc = ensureAuthLinkDoc;
 exports.linkStableAuthUid = linkStableAuthUid;
 exports.cleanupLegacyAuthIdentityDuplicates = cleanupLegacyAuthIdentityDuplicates;
 exports.resolveStableUidForAuth = resolveStableUidForAuth;
 exports.ensureStableLinkForAuth = ensureStableLinkForAuth;
+exports.maskEmailForRecoveryHint = maskEmailForRecoveryHint;
+exports.buildRecoveryHintFromUserData = buildRecoveryHintFromUserData;
 exports.readAnonMergeClaim = readAnonMergeClaim;
 exports.stampAnonOwnershipForAuth = stampAnonOwnershipForAuth;
 const admin = __importStar(require("firebase-admin"));
@@ -56,10 +58,35 @@ const IDENTITY_CLEANUP_THROTTLE_MS = 6 * 60 * 60 * 1000;
 function shouldRepairIdentityLinks(options) {
     return options?.repairLinks !== false;
 }
+function throwIdentityCheckUnavailable(error) {
+    if (error instanceof https_1.HttpsError)
+        throw error;
+    throw new https_1.HttpsError('unavailable', 'identity_check_unavailable');
+}
+async function readIdentityOrThrow(read) {
+    try {
+        return await read;
+    }
+    catch (error) {
+        return throwIdentityCheckUnavailable(error);
+    }
+}
 async function assertAccountDeletionNotPending(db, authUid) {
-    const marker = await db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get().catch(() => null);
-    if (marker?.exists) {
+    const marker = await readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid).get());
+    if (marker.exists) {
         throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+    }
+}
+async function assertStableDeletionNotPending(db, stableId) {
+    const tombstone = await readIdentityOrThrow(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(stableId).get());
+    if (tombstone.exists) {
+        throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+    }
+}
+async function assertSelectionDeletionNotPending(db, selection) {
+    const stableIds = [...new Set([...selection.sourceStableIds, selection.stableUid])];
+    for (const stableId of stableIds) {
+        await assertStableDeletionNotPending(db, stableId);
     }
 }
 function readHeaderValue(value) {
@@ -175,16 +202,23 @@ function mergeStableIdentityCandidate(byId, candidate) {
         byId.set(candidate.id, { ...candidate });
         return;
     }
+    current.hasAuthoritativeOwner = current.hasAuthoritativeOwner || candidate.hasAuthoritativeOwner;
     current.hasProviderLink = current.hasProviderLink || candidate.hasProviderLink;
     current.xp = Math.max(current.xp, candidate.xp);
     current.updatedAt = Math.max(current.updatedAt, candidate.updatedAt);
     current.hidden = current.hidden && candidate.hidden;
+    current.sourceStableIds = [...new Set([
+            ...current.sourceStableIds,
+            ...candidate.sourceStableIds,
+        ])];
 }
 function pickBestStableIdentityCandidate(candidates) {
     const list = Array.from(candidates);
     if (list.length === 0)
         return null;
     list.sort((a, b) => {
+        if (a.hasAuthoritativeOwner !== b.hasAuthoritativeOwner)
+            return a.hasAuthoritativeOwner ? -1 : 1;
         if (a.hidden !== b.hidden)
             return a.hidden ? 1 : -1;
         if (a.hasProviderLink !== b.hasProviderLink)
@@ -195,7 +229,7 @@ function pickBestStableIdentityCandidate(candidates) {
             return b.updatedAt - a.updatedAt;
         return a.id.localeCompare(b.id);
     });
-    return list[0]?.id ?? null;
+    return list[0] ?? null;
 }
 function collectStableIdentityCandidates(docs, authUid, liveCanonicalIds) {
     const out = new Map();
@@ -208,7 +242,9 @@ function collectStableIdentityCandidates(docs, authUid, liveCanonicalIds) {
             id: hidden && canonicalStableId && (!liveCanonicalIds || liveCanonicalIds.has(canonicalStableId))
                 ? canonicalStableId
                 : doc.id,
+            sourceStableIds: [doc.id],
             hidden,
+            hasAuthoritativeOwner: normalizeStableId(data.firebaseAuthUid) === authUid,
             hasProviderLink: normalizeStableId(linkedAuth?.providerUid) === authUid,
             xp: readProgressXp(data),
             updatedAt: readUpdatedAt(data),
@@ -217,10 +253,12 @@ function collectStableIdentityCandidates(docs, authUid, liveCanonicalIds) {
     }
     return out;
 }
-async function findStableUidForProviderAuth(db, authUid) {
+async function findStableUidForProviderAuth(db, authUid, authoritativeOnly = false) {
     const [byFirebaseAuthUidSnap, byLinkedAuthUidSnap] = await Promise.all([
-        db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get().catch(() => null),
-        db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20).get().catch(() => null),
+        readIdentityOrThrow(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(20).get()),
+        authoritativeOnly
+            ? Promise.resolve(null)
+            : readIdentityOrThrow(db.collection(USERS).where('linkedAuth.providerUid', '==', authUid).limit(20).get()),
     ]);
     const docs = [];
     const seen = new Set();
@@ -249,45 +287,89 @@ async function findStableUidForProviderAuth(db, authUid) {
         }
     }
     await Promise.all([...canonicalIdsToCheck].map(async (canonicalStableId) => {
-        const snap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
-        if (snap?.exists)
+        const snap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
+        if (snap.exists)
             liveCanonicalIds.add(canonicalStableId);
     }));
     const candidatesById = collectStableIdentityCandidates(docs, authUid, liveCanonicalIds);
-    return pickBestStableIdentityCandidate(candidatesById.values());
+    const selected = pickBestStableIdentityCandidate(candidatesById.values());
+    if (!selected)
+        return null;
+    return {
+        stableUid: selected.id,
+        sourceStableIds: [...new Set([...selected.sourceStableIds, selected.id])],
+    };
 }
 async function findLiveAuthLinkAnchor(db, authUid) {
-    const linkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);
+    const linkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
     const anchoredStableId = normalizeStableId(linkSnap?.data()?.stable_id);
     if (!anchoredStableId)
         return null;
-    const anchoredUserSnap = await db.collection(USERS).doc(anchoredStableId).get().catch(() => null);
-    if (!anchoredUserSnap?.exists)
-        return null;
+    const anchoredUserSnap = await readIdentityOrThrow(db.collection(USERS).doc(anchoredStableId).get());
+    if (!anchoredUserSnap.exists) {
+        return { anchorStableId: anchoredStableId, selection: null };
+    }
     const anchoredUserData = anchoredUserSnap.data() ?? {};
     const canonicalStableId = normalizeStableId(anchoredUserData.canonicalStableId);
     if (anchoredUserData.identityHidden === true && canonicalStableId && canonicalStableId !== anchoredStableId) {
-        const canonicalSnap = await db.collection(USERS).doc(canonicalStableId).get().catch(() => null);
-        if (canonicalSnap?.exists)
-            return canonicalStableId;
+        const canonicalSnap = await readIdentityOrThrow(db.collection(USERS).doc(canonicalStableId).get());
+        const canonicalAuthUid = normalizeStableId(canonicalSnap?.data()?.firebaseAuthUid);
+        if (canonicalSnap?.exists && canonicalAuthUid === authUid) {
+            return {
+                anchorStableId: anchoredStableId,
+                selection: {
+                    stableUid: canonicalStableId,
+                    sourceStableIds: [anchoredStableId, canonicalStableId],
+                },
+            };
+        }
     }
-    return anchoredStableId;
+    return {
+        anchorStableId: anchoredStableId,
+        selection: { stableUid: anchoredStableId, sourceStableIds: [anchoredStableId] },
+    };
+}
+function readAnonClaimFingerprint(userData) {
+    const claim = userData.anon_merge_claim;
+    if (!claim || typeof claim !== 'object')
+        return { authUid: '', at: null };
+    const authUid = normalizeStableId(claim.authUid);
+    const atValue = Number(claim.at);
+    return { authUid, at: Number.isFinite(atValue) ? atValue : null };
+}
+function stableOwnerProofFromSnapshots(userSnap, linkSnap, authorization, existingOwnerIds = []) {
+    const userData = userSnap.data() ?? {};
+    const claim = readAnonClaimFingerprint(userData);
+    return {
+        userExists: userSnap.exists,
+        userAuthUid: normalizeStableId(userData.firebaseAuthUid),
+        linkedAuthUid: normalizeStableId(userData.linkedAuth?.providerUid),
+        anonClaimAuthUid: claim.authUid,
+        anonClaimAt: claim.at,
+        authLinkExists: linkSnap.exists,
+        authLinkStableId: normalizeStableId(linkSnap.data()?.stable_id),
+        existingOwnerIds: [...existingOwnerIds].sort(),
+        authorization,
+    };
 }
 async function assertStableOwner(db, authUid, stableId, options) {
     if (!stableId || stableId.length > 160) {
         throw new https_1.HttpsError('invalid-argument', 'stable_id_required');
     }
-    if (stableId === authUid)
-        return;
     const [userSnap, linkSnap] = await Promise.all([
-        db.collection(USERS).doc(stableId).get().catch(() => null),
-        db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null),
+        readIdentityOrThrow(db.collection(USERS).doc(stableId).get()),
+        readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get()),
     ]);
     const userData = userSnap?.data() ?? {};
     const userAuthUid = String(userData.firebaseAuthUid ?? '').trim();
     const linkedStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
-    if (linkedStableId === stableId)
-        return;
+    const allowedAuthLinkStableIds = new Set([
+        stableId,
+        ...(options?.allowedAuthLinkStableIds ?? []),
+    ]);
+    if (linkedStableId && allowedAuthLinkStableIds.has(linkedStableId)) {
+        return stableOwnerProofFromSnapshots(userSnap, linkSnap, 'link');
+    }
     const canonicalLinkConflicts = Boolean(linkedStableId && linkedStableId !== stableId);
     const linkedAuth = userData.linkedAuth;
     const hasProviderLink = linkedAuth != null &&
@@ -297,10 +379,12 @@ async function assertStableOwner(db, authUid, stableId, options) {
     const linkedAuthUid = hasProviderLink
         ? String(linkedAuth.providerUid ?? '').trim()
         : '';
-    if (!canonicalLinkConflicts && userAuthUid === authUid)
-        return;
-    if (!canonicalLinkConflicts && linkedAuthUid === authUid)
-        return;
+    if (!canonicalLinkConflicts && userAuthUid === authUid) {
+        return stableOwnerProofFromSnapshots(userSnap, linkSnap, 'user');
+    }
+    if (stableId === authUid && !canonicalLinkConflicts) {
+        return stableOwnerProofFromSnapshots(userSnap, linkSnap, 'self');
+    }
     const anonClaim = readAnonMergeClaim(userData, Date.now());
     const hasFreshPreviousOwnerProof = Boolean(userAuthUid && anonClaim?.authUid === userAuthUid);
     // Переустановка приложения пересоздаёт анонимный Firebase uid, но stable_id
@@ -311,10 +395,11 @@ async function assertStableOwner(db, authUid, stableId, options) {
         (options?.allowAnonRelink === true || options?.allowProviderRelink === true) &&
         hasFreshPreviousOwnerProof &&
         !linkedAuthUid) {
-        const existingByAuth = await db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get().catch(() => null);
-        const existingStableId = String(existingByAuth?.docs?.[0]?.id ?? '').trim();
-        if (!existingStableId || existingStableId === stableId)
-            return;
+        const existingByAuth = await readIdentityOrThrow(db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(1).get());
+        const existingOwnerIds = (existingByAuth?.docs ?? []).map((doc) => doc.id).sort();
+        if (existingOwnerIds.length === 0 || existingOwnerIds.every((id) => id === stableId)) {
+            return stableOwnerProofFromSnapshots(userSnap, linkSnap, 'anon_relink', existingOwnerIds);
+        }
     }
     // Диагностика: брошенный HttpsError НЕ попадает в functions:log сам по себе
     // (виден только на клиенте через Crashlytics). Логируем причину отказа, чтобы
@@ -347,91 +432,154 @@ async function assertStableOwner(db, authUid, stableId, options) {
  * merge'ом — чтобы не затирать provider/email существующего провайдерского линка.
  */
 async function ensureAuthLinkDoc(db, authUid, stableId, provider, metadata) {
-    await assertAccountDeletionNotPending(db, authUid);
-    const linkRef = db.collection(AUTH_LINKS).doc(authUid);
-    const linkSnap = await linkRef.get().catch(() => null);
-    const currentLinkStableId = String(linkSnap?.data()?.stable_id ?? '').trim();
-    const current = linkSnap?.data() ?? {};
-    const now = Date.now();
-    const patch = { stable_id: stableId, updatedAt: now };
-    if (provider) {
-        patch.providerUid = authUid;
-        patch.provider = provider;
-        if (typeof current.linkedAt !== 'number' || current.linkedAt <= 0) {
-            patch.linkedAt = now;
-        }
-        patch.lastSignInAt = metadata?.lastSignInAt ?? now;
-        if (metadata?.devicePlatform)
-            patch.devicePlatform = metadata.devicePlatform;
-        if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'email')) {
-            patch.email = metadata.email ?? null;
-        }
-        if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')) {
-            patch.displayName = metadata.displayName ?? null;
-        }
-    }
-    const providerNeedsBackfill = Boolean(provider) &&
-        (String(current.providerUid ?? '').trim() !== authUid ||
-            String(current.provider ?? '').trim() !== provider ||
-            typeof current.linkedAt !== 'number' ||
-            current.linkedAt <= 0);
-    const metadataNeedsRefresh = Boolean(provider && metadata && Object.keys(metadata).length > 0);
-    if (!linkSnap?.exists || currentLinkStableId !== stableId || providerNeedsBackfill || metadataNeedsRefresh) {
-        await linkRef.set(patch, { merge: true });
-    }
-}
-async function ensureProviderLinkedAuth(db, stableId, authUid, provider, metadata) {
-    if (!provider)
-        return;
-    const now = Date.now();
-    await db.collection(USERS).doc(stableId).set({
-        firebaseAuthUid: authUid,
-        linkedAuth: {
-            provider,
-            providerUid: authUid,
-            email: metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? metadata.email ?? null : null,
-            displayName: metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')
-                ? metadata.displayName ?? null
-                : null,
-            linkedAt: now,
-            lastSignInAt: metadata?.lastSignInAt ?? now,
-            devicePlatform: metadata?.devicePlatform ?? 'web',
-        },
-        updatedAt: now,
-    }, { merge: true });
-    await (0, email_contacts_1.upsertEmailContact)(db, {
-        email: metadata?.email,
-        source: 'app',
+    await repairIdentityDocumentsAtomically(db, authUid, stableId, {
+        writeUser: false,
+        writeAuthLink: true,
         provider,
-        providerUid: authUid,
-        stableId,
-        displayName: metadata?.displayName,
-        devicePlatform: metadata?.devicePlatform ?? 'web',
-        lastSignInAt: metadata?.lastSignInAt ?? now,
-    }).catch((error) => {
-        console.warn(JSON.stringify({
-            event: 'email_contact_app_upsert_failed',
-            stableId,
-            authUid,
-            provider,
-            message: String(error?.message ?? error).slice(0, 160),
-        }));
+        metadata,
     });
 }
-async function linkStableAuthUid(db, stableId, authUid) {
-    await assertAccountDeletionNotPending(db, authUid);
+async function repairIdentityDocumentsAtomically(db, authUid, stableId, options) {
     const now = Date.now();
     const userRef = db.collection(USERS).doc(stableId);
-    const userSnap = await userRef.get().catch(() => null);
-    const currentUserAuthUid = String(userSnap?.data()?.firebaseAuthUid ?? '').trim();
-    let repairedIdentityLink = false;
-    if (!userSnap?.exists || currentUserAuthUid !== authUid) {
-        await userRef.set({
-            firebaseAuthUid: authUid,
-            updatedAt: now,
-        }, { merge: true });
-        repairedIdentityLink = true;
+    const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);
+    const authMarkerRef = db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+    const existingOwnerQuery = db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(2);
+    const protectedStableIds = [...new Set([
+            ...(options.sourceStableIds ?? []),
+            stableId,
+        ])];
+    const tombstoneRefs = protectedStableIds.map((id) => (db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(id)));
+    let transactionBaseline = null;
+    try {
+        return await db.runTransaction(async (transaction) => {
+            const [authMarkerSnap, tombstoneSnaps, userSnap, authLinkSnap, existingOwnerSnap] = await Promise.all([
+                transaction.get(authMarkerRef),
+                Promise.all(tombstoneRefs.map((ref) => transaction.get(ref))),
+                transaction.get(userRef),
+                transaction.get(authLinkRef),
+                options.writeUser ? transaction.get(existingOwnerQuery) : Promise.resolve(null),
+            ]);
+            if (authMarkerSnap.exists || tombstoneSnaps.some((snap) => snap.exists)) {
+                throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+            }
+            const currentUserData = userSnap?.data() ?? {};
+            const currentUserAuthUid = String(currentUserData.firebaseAuthUid ?? '').trim();
+            const currentLinkedAuthUid = normalizeStableId(currentUserData.linkedAuth?.providerUid);
+            const currentLinkStableId = normalizeStableId(authLinkSnap?.data()?.stable_id);
+            const currentOwnerIds = (existingOwnerSnap?.docs ?? []).map((doc) => doc.id).sort();
+            const userAlreadyTarget = Boolean(userSnap.exists &&
+                (currentUserAuthUid === authUid ||
+                    currentLinkedAuthUid === authUid));
+            const linkAlreadyTarget = authLinkSnap.exists && currentLinkStableId === stableId;
+            const authoritativeNow = userAlreadyTarget || linkAlreadyTarget;
+            const currentProof = stableOwnerProofFromSnapshots(userSnap, authLinkSnap, options.ownerProof?.authorization ?? 'user', currentOwnerIds);
+            const expectedProof = options.ownerProof ?? transactionBaseline;
+            if (!expectedProof) {
+                if (!authoritativeNow) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+                transactionBaseline = currentProof;
+            }
+            else {
+                const userOwnershipFullyTarget = Boolean(userSnap.exists &&
+                    currentUserAuthUid === authUid &&
+                    currentLinkedAuthUid === authUid);
+                const peerCompletedHiddenCanonicalization = Boolean(expectedProof.authorization === 'link' &&
+                    expectedProof.authLinkStableId &&
+                    expectedProof.authLinkStableId !== stableId &&
+                    userOwnershipFullyTarget &&
+                    linkAlreadyTarget);
+                const exactSecurityState = currentProof.userExists === expectedProof.userExists &&
+                    currentProof.userAuthUid === expectedProof.userAuthUid &&
+                    currentProof.linkedAuthUid === expectedProof.linkedAuthUid &&
+                    currentProof.anonClaimAuthUid === expectedProof.anonClaimAuthUid &&
+                    currentProof.anonClaimAt === expectedProof.anonClaimAt &&
+                    currentProof.authLinkExists === expectedProof.authLinkExists &&
+                    currentProof.authLinkStableId === expectedProof.authLinkStableId;
+                if ((expectedProof.userExists && !userSnap.exists) ||
+                    (expectedProof.authLinkExists && !authLinkSnap.exists) ||
+                    (!exactSecurityState && !peerCompletedHiddenCanonicalization)) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+                if (expectedProof.authorization === 'anon_relink' &&
+                    !peerCompletedHiddenCanonicalization &&
+                    (!userSnap.exists ||
+                        !readAnonMergeClaim(currentUserData, Date.now()) ||
+                        currentProof.anonClaimAuthUid !== expectedProof.userAuthUid ||
+                        currentProof.linkedAuthUid !== '' ||
+                        currentOwnerIds.join('\u0000') !== expectedProof.existingOwnerIds.join('\u0000'))) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+            }
+            if (options.writeUser && !userSnap.exists) {
+                throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+            }
+            const userAuthUidChanged = !userSnap.exists || currentUserAuthUid !== authUid;
+            if (options.writeUser && (userAuthUidChanged || options.provider)) {
+                const userPatch = {
+                    firebaseAuthUid: authUid,
+                    updatedAt: now,
+                };
+                if (options.provider) {
+                    userPatch.linkedAuth = {
+                        provider: options.provider,
+                        providerUid: authUid,
+                        email: options.metadata && Object.prototype.hasOwnProperty.call(options.metadata, 'email')
+                            ? options.metadata.email ?? null
+                            : null,
+                        displayName: options.metadata && Object.prototype.hasOwnProperty.call(options.metadata, 'displayName')
+                            ? options.metadata.displayName ?? null
+                            : null,
+                        linkedAt: now,
+                        lastSignInAt: options.metadata?.lastSignInAt ?? now,
+                        devicePlatform: options.metadata?.devicePlatform ?? 'web',
+                    };
+                }
+                transaction.set(userRef, userPatch, { merge: true });
+            }
+            if (options.writeAuthLink) {
+                const current = authLinkSnap?.data() ?? {};
+                const linkPatch = { stable_id: stableId, updatedAt: now };
+                if (options.provider) {
+                    linkPatch.providerUid = authUid;
+                    linkPatch.provider = options.provider;
+                    if (typeof current.linkedAt !== 'number' || current.linkedAt <= 0) {
+                        linkPatch.linkedAt = now;
+                    }
+                    linkPatch.lastSignInAt = options.metadata?.lastSignInAt ?? now;
+                    if (options.metadata?.devicePlatform)
+                        linkPatch.devicePlatform = options.metadata.devicePlatform;
+                    if (options.metadata && Object.prototype.hasOwnProperty.call(options.metadata, 'email')) {
+                        linkPatch.email = options.metadata.email ?? null;
+                    }
+                    if (options.metadata && Object.prototype.hasOwnProperty.call(options.metadata, 'displayName')) {
+                        linkPatch.displayName = options.metadata.displayName ?? null;
+                    }
+                }
+                const providerNeedsBackfill = Boolean(options.provider) &&
+                    (String(current.providerUid ?? '').trim() !== authUid ||
+                        String(current.provider ?? '').trim() !== options.provider ||
+                        typeof current.linkedAt !== 'number' ||
+                        current.linkedAt <= 0);
+                const metadataNeedsRefresh = Boolean(options.provider && options.metadata && Object.keys(options.metadata).length > 0);
+                if (!authLinkSnap?.exists ||
+                    currentLinkStableId !== stableId ||
+                    providerNeedsBackfill ||
+                    metadataNeedsRefresh) {
+                    transaction.set(authLinkRef, linkPatch, { merge: true });
+                }
+            }
+            return { userAuthUidChanged };
+        });
     }
+    catch (error) {
+        return throwIdentityCheckUnavailable(error);
+    }
+}
+async function finishUserIdentityRepairBestEffort(db, stableId, authUid, userAuthUidChanged) {
+    const now = Date.now();
+    let repairedIdentityLink = userAuthUidChanged;
     const lbRef = db.collection(LEADERBOARD).doc(stableId);
     const lbSnap = await lbRef.get().catch(() => null);
     if (lbSnap?.exists) {
@@ -454,6 +602,54 @@ async function linkStableAuthUid(db, stableId, authUid) {
             }));
         });
     }
+}
+async function repairStableAuthUid(db, selection, authUid, ownerProof) {
+    const repair = await repairIdentityDocumentsAtomically(db, authUid, selection.stableUid, {
+        writeUser: true,
+        writeAuthLink: false,
+        sourceStableIds: selection.sourceStableIds,
+        ownerProof,
+    });
+    await finishUserIdentityRepairBestEffort(db, selection.stableUid, authUid, repair.userAuthUidChanged);
+}
+async function ensureStableIdentityPair(db, authUid, selection, provider, metadata) {
+    const ownerProof = await assertStableOwner(db, authUid, selection.stableUid, {
+        allowProviderRelink: Boolean(provider),
+        allowAnonRelink: !provider,
+        allowedAuthLinkStableIds: selection.sourceStableIds,
+    });
+    const repair = await repairIdentityDocumentsAtomically(db, authUid, selection.stableUid, {
+        writeUser: true,
+        writeAuthLink: true,
+        provider,
+        metadata,
+        sourceStableIds: selection.sourceStableIds,
+        ownerProof,
+    });
+    await finishUserIdentityRepairBestEffort(db, selection.stableUid, authUid, repair.userAuthUidChanged);
+    if (!provider)
+        return;
+    await (0, email_contacts_1.upsertEmailContact)(db, {
+        email: metadata?.email,
+        source: 'app',
+        provider,
+        providerUid: authUid,
+        stableId: selection.stableUid,
+        displayName: metadata?.displayName,
+        devicePlatform: metadata?.devicePlatform ?? 'web',
+        lastSignInAt: metadata?.lastSignInAt ?? Date.now(),
+    }).catch((error) => {
+        console.warn(JSON.stringify({
+            event: 'email_contact_app_upsert_failed',
+            stableId: selection.stableUid,
+            authUid,
+            provider,
+            message: String(error?.message ?? error).slice(0, 160),
+        }));
+    });
+}
+async function linkStableAuthUid(db, stableId, authUid) {
+    await repairStableAuthUid(db, { stableUid: stableId, sourceStableIds: [stableId] }, authUid);
 }
 function readNumber(value) {
     const n = Number(value);
@@ -761,48 +957,173 @@ async function cleanupLegacyAuthIdentityDuplicates(db, stableId, authUid, opts) 
     }
     return stats;
 }
+function selectionFromUserData(stableId, userData) {
+    const canonicalStableId = normalizeStableId(userData.canonicalStableId);
+    if (userData.identityHidden === true && canonicalStableId && canonicalStableId !== stableId) {
+        return {
+            stableUid: canonicalStableId,
+            sourceStableIds: [stableId, canonicalStableId],
+        };
+    }
+    return { stableUid: stableId, sourceStableIds: [stableId] };
+}
+async function finalizeStableIdentitySelection(db, authUid, selection, options, verifyOwner) {
+    await assertSelectionDeletionNotPending(db, selection);
+    const ownerProof = verifyOwner || shouldRepairIdentityLinks(options)
+        ? await assertStableOwner(db, authUid, selection.stableUid, {
+            ...options,
+            allowedAuthLinkStableIds: selection.sourceStableIds,
+        })
+        : undefined;
+    if (shouldRepairIdentityLinks(options)) {
+        await repairStableAuthUid(db, selection, authUid, ownerProof);
+    }
+    return selection.stableUid;
+}
+async function resolveRequestedStableIdentity(db, authUid, stableId, options) {
+    const requestedUserSnap = await readIdentityOrThrow(db.collection(USERS).doc(stableId).get());
+    const selection = selectionFromUserData(stableId, requestedUserSnap?.data() ?? {});
+    return finalizeStableIdentitySelection(db, authUid, selection, options, true);
+}
 async function resolveStableUidForAuth(db, authUid, requestedStableId, options) {
     await assertAccountDeletionNotPending(db, authUid);
     const stableId = normalizeStableId(requestedStableId);
     const authLinkAnchor = await findLiveAuthLinkAnchor(db, authUid);
-    if (authLinkAnchor) {
-        if (shouldRepairIdentityLinks(options)) {
-            await linkStableAuthUid(db, authLinkAnchor, authUid);
-        }
-        return authLinkAnchor;
+    if (authLinkAnchor?.selection) {
+        return finalizeStableIdentitySelection(db, authUid, authLinkAnchor.selection, options, false);
+    }
+    if (authLinkAnchor && stableId === authLinkAnchor.anchorStableId) {
+        throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+    }
+    // Account-merge ownership probes must evaluate the exact requested identity,
+    // not collapse two candidates into the same globally ranked provider owner.
+    if (stableId && options?.repairLinks === false) {
+        return resolveRequestedStableIdentity(db, authUid, stableId, options);
+    }
+    const authoritativeByAuth = await findStableUidForProviderAuth(db, authUid, true);
+    if (authoritativeByAuth) {
+        return finalizeStableIdentitySelection(db, authUid, authoritativeByAuth, options, true);
     }
     if (stableId) {
-        const requestedUserSnap = await db.collection(USERS).doc(stableId).get().catch(() => null);
-        const requestedUserData = requestedUserSnap?.data() || {};
-        const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
-        if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== stableId) {
-            await assertStableOwner(db, authUid, canonicalStableId, options);
-            if (shouldRepairIdentityLinks(options)) {
-                await linkStableAuthUid(db, canonicalStableId, authUid);
-            }
-            return canonicalStableId;
-        }
-        await assertStableOwner(db, authUid, stableId, options);
-        if (shouldRepairIdentityLinks(options)) {
-            await linkStableAuthUid(db, stableId, authUid);
-        }
-        return stableId;
+        return resolveRequestedStableIdentity(db, authUid, stableId, options);
     }
-    const direct = await db.collection(USERS).doc(authUid).get().catch(() => null);
+    const direct = await readIdentityOrThrow(db.collection(USERS).doc(authUid).get());
     if (direct?.exists) {
-        const requestedUserData = direct.data() || {};
-        const canonicalStableId = normalizeStableId(requestedUserData.canonicalStableId);
-        if (requestedUserData.identityHidden === true && canonicalStableId && canonicalStableId !== authUid) {
-            return canonicalStableId;
+        const directSelection = selectionFromUserData(authUid, direct.data() ?? {});
+        if (directSelection.stableUid !== authUid) {
+            return finalizeStableIdentitySelection(db, authUid, directSelection, options, true);
         }
     }
     const byAuth = await findStableUidForProviderAuth(db, authUid);
-    if (byAuth)
-        return byAuth;
+    if (byAuth) {
+        return finalizeStableIdentitySelection(db, authUid, byAuth, options, true);
+    }
     if (options?.requireKnownIdentity) {
         throw new https_1.HttpsError('failed-precondition', 'stable_id_required');
     }
     return authUid;
+}
+async function bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata) {
+    let previouslyObservedMissingTarget = false;
+    const now = Date.now();
+    const userRef = db.collection(USERS).doc(stableId);
+    const authLinkRef = db.collection(AUTH_LINKS).doc(authUid);
+    const authMarkerRef = db.collection(account_delete_job_1.ACCOUNT_DELETE_AUTH_MARKERS).doc(authUid);
+    const tombstoneRef = db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(stableId);
+    const existingIdentityQuery = db.collection(USERS).where('firebaseAuthUid', '==', authUid).limit(2);
+    try {
+        return await db.runTransaction(async (transaction) => {
+            const [userSnap, authLinkSnap, authMarkerSnap, tombstoneSnap, existingIdentitySnap] = await Promise.all([
+                transaction.get(userRef),
+                transaction.get(authLinkRef),
+                transaction.get(authMarkerRef),
+                transaction.get(tombstoneRef),
+                transaction.get(existingIdentityQuery),
+            ]);
+            if (authMarkerSnap.exists || tombstoneSnap.exists) {
+                throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+            }
+            if (authLinkSnap.exists) {
+                const linkedStableId = normalizeStableId(authLinkSnap.data()?.stable_id);
+                if (!linkedStableId) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+                const [linkedUserSnap, linkedTombstoneSnap] = linkedStableId === stableId
+                    ? [userSnap, tombstoneSnap]
+                    : await Promise.all([
+                        transaction.get(db.collection(USERS).doc(linkedStableId)),
+                        transaction.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId)),
+                    ]);
+                if (linkedTombstoneSnap.exists) {
+                    throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+                }
+                if (!linkedUserSnap.exists) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+                return { status: 'authoritative', stableUid: linkedStableId };
+            }
+            if (userSnap.exists) {
+                if (previouslyObservedMissingTarget) {
+                    throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+                }
+                return { status: 'not_candidate' };
+            }
+            const existingIdentityDocs = existingIdentitySnap.docs ?? [];
+            if (existingIdentityDocs.length > 1) {
+                throw new https_1.HttpsError('permission-denied', 'stable_id_mismatch');
+            }
+            if (existingIdentityDocs.length === 1) {
+                const authoritativeStableId = existingIdentityDocs[0].id;
+                const authoritativeTombstoneSnap = authoritativeStableId === stableId
+                    ? tombstoneSnap
+                    : await transaction.get(db.collection(account_delete_job_1.ACCOUNT_DELETE_TOMBSTONES).doc(authoritativeStableId));
+                if (authoritativeTombstoneSnap.exists) {
+                    throw new https_1.HttpsError('failed-precondition', 'account_delete_pending');
+                }
+                return { status: 'authoritative', stableUid: authoritativeStableId };
+            }
+            previouslyObservedMissingTarget = true;
+            const userData = {
+                firebaseAuthUid: authUid,
+                updatedAt: now,
+            };
+            const authLinkData = {
+                stable_id: stableId,
+                updatedAt: now,
+            };
+            if (provider) {
+                userData.linkedAuth = {
+                    provider,
+                    providerUid: authUid,
+                    email: metadata && Object.prototype.hasOwnProperty.call(metadata, 'email') ? metadata.email ?? null : null,
+                    displayName: metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')
+                        ? metadata.displayName ?? null
+                        : null,
+                    linkedAt: now,
+                    lastSignInAt: metadata?.lastSignInAt ?? now,
+                    devicePlatform: metadata?.devicePlatform ?? 'web',
+                };
+                authLinkData.providerUid = authUid;
+                authLinkData.provider = provider;
+                authLinkData.linkedAt = now;
+                authLinkData.lastSignInAt = metadata?.lastSignInAt ?? now;
+                if (metadata?.devicePlatform)
+                    authLinkData.devicePlatform = metadata.devicePlatform;
+                if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'email')) {
+                    authLinkData.email = metadata.email ?? null;
+                }
+                if (metadata && Object.prototype.hasOwnProperty.call(metadata, 'displayName')) {
+                    authLinkData.displayName = metadata.displayName ?? null;
+                }
+            }
+            transaction.create(userRef, userData);
+            transaction.create(authLinkRef, authLinkData);
+            return { status: 'bootstrapped', stableUid: stableId };
+        });
+    }
+    catch (error) {
+        return throwIdentityCheckUnavailable(error);
+    }
 }
 async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInProvider, metadata) {
     const stableId = normalizeStableId(requestedStableId);
@@ -813,11 +1134,14 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
             : null;
     const allowProviderRelink = Boolean(provider);
     const allowAnonRelink = !allowProviderRelink;
+    if (stableId.length > 160) {
+        throw new https_1.HttpsError('invalid-argument', 'stable_id_required');
+    }
     // Добираем email/displayName из Firebase Auth, если клиент их не прислал —
     // иначе linkedAuth.email пишется null и юзера не найти по почте в админке.
     metadata = await enrichMetadataFromAuth(authUid, provider, metadata);
     if (provider) {
-        const existingLinkSnap = await db.collection(AUTH_LINKS).doc(authUid).get().catch(() => null);
+        const existingLinkSnap = await readIdentityOrThrow(db.collection(AUTH_LINKS).doc(authUid).get());
         const linkedStableId = normalizeStableId(existingLinkSnap?.data()?.stable_id);
         // Хвост E: auth_links может указывать на УДАЛЁННЫЙ users-док (осиротевшая
         // привязка после deleteAccountAndWipe — серверная чистка fire-and-forget могла
@@ -828,7 +1152,7 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
         // на живой аккаунт по providerUid). providerUid криптографически принадлежит
         // юзеру, мёртвый док всё равно пуст — захвата чужого нет.
         const linkedUserExists = linkedStableId
-            ? Boolean((await db.collection(USERS).doc(linkedStableId).get().catch(() => null))?.exists)
+            ? (await readIdentityOrThrow(db.collection(USERS).doc(linkedStableId).get())).exists
             : false;
         if (linkedStableId && linkedStableId !== stableId && !linkedUserExists) {
             console.warn(JSON.stringify({
@@ -841,24 +1165,96 @@ async function ensureStableLinkForAuth(db, authUid, requestedStableId, signInPro
             // не используем мёртвый linkedStableId — провалимся к обычному resolve ниже.
         }
         else if (linkedStableId && linkedStableId !== stableId) {
-            const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, { allowProviderRelink: true });
-            await ensureAuthLinkDoc(db, authUid, linkedStableUid, provider, metadata);
-            await ensureProviderLinkedAuth(db, linkedStableUid, authUid, provider, metadata);
+            const linkedStableUid = await resolveStableUidForAuth(db, authUid, linkedStableId, {
+                allowProviderRelink: true,
+                repairLinks: false,
+            });
+            await ensureStableIdentityPair(db, authUid, {
+                stableUid: linkedStableUid,
+                sourceStableIds: [linkedStableId, linkedStableUid],
+            }, provider, metadata);
             return { ok: true, stableUid: linkedStableUid, authUid };
         }
         if (!linkedStableId) {
-            const existingUserStableUid = await findStableUidForProviderAuth(db, authUid);
-            if (existingUserStableUid && existingUserStableUid !== stableId) {
-                const stableUid = await resolveStableUidForAuth(db, authUid, existingUserStableUid, { allowProviderRelink: true });
-                await ensureAuthLinkDoc(db, authUid, stableUid, provider, metadata);
-                await ensureProviderLinkedAuth(db, stableUid, authUid, provider, metadata);
+            const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
+            if (existingUserSelection && existingUserSelection.stableUid !== stableId) {
+                const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
+                    allowProviderRelink: true,
+                    repairLinks: false,
+                });
+                await ensureStableIdentityPair(db, authUid, {
+                    stableUid,
+                    sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
+                }, provider, metadata);
                 return { ok: true, stableUid, authUid };
             }
         }
     }
-    const stableUid = await resolveStableUidForAuth(db, authUid, stableId, { allowProviderRelink, allowAnonRelink });
-    await ensureAuthLinkDoc(db, authUid, stableUid, provider, metadata);
-    await ensureProviderLinkedAuth(db, stableUid, authUid, provider, metadata);
+    if (stableId) {
+        const existingAnchor = await findLiveAuthLinkAnchor(db, authUid);
+        if (existingAnchor?.selection) {
+            const stableUid = await resolveStableUidForAuth(db, authUid, existingAnchor.selection.stableUid, {
+                allowProviderRelink,
+                allowAnonRelink,
+                repairLinks: false,
+            });
+            await ensureStableIdentityPair(db, authUid, {
+                stableUid,
+                sourceStableIds: [...existingAnchor.selection.sourceStableIds, stableUid],
+            }, provider, metadata);
+            return { ok: true, stableUid, authUid };
+        }
+        const existingUserSelection = await findStableUidForProviderAuth(db, authUid);
+        if (existingUserSelection) {
+            const stableUid = await resolveStableUidForAuth(db, authUid, existingUserSelection.stableUid, {
+                allowProviderRelink,
+                allowAnonRelink,
+                repairLinks: false,
+            });
+            await ensureStableIdentityPair(db, authUid, {
+                stableUid,
+                sourceStableIds: [...existingUserSelection.sourceStableIds, stableUid],
+            }, provider, metadata);
+            return { ok: true, stableUid, authUid };
+        }
+        const bootstrap = await bootstrapMissingStableIdentity(db, authUid, stableId, provider, metadata);
+        if (bootstrap.status === 'bootstrapped') {
+            if (provider) {
+                await (0, email_contacts_1.upsertEmailContact)(db, {
+                    email: metadata?.email,
+                    source: 'app',
+                    provider,
+                    providerUid: authUid,
+                    stableId,
+                    displayName: metadata?.displayName,
+                    devicePlatform: metadata?.devicePlatform ?? 'web',
+                    lastSignInAt: metadata?.lastSignInAt ?? Date.now(),
+                }).catch((error) => {
+                    console.warn(JSON.stringify({
+                        event: 'email_contact_app_upsert_failed',
+                        stableId,
+                        authUid,
+                        provider,
+                        message: String(error?.message ?? error).slice(0, 160),
+                    }));
+                });
+            }
+            return { ok: true, stableUid: bootstrap.stableUid, authUid };
+        }
+        if (bootstrap.status === 'authoritative') {
+            await assertStableDeletionNotPending(db, bootstrap.stableUid);
+            return { ok: true, stableUid: bootstrap.stableUid, authUid };
+        }
+    }
+    const relinkOptions = { allowProviderRelink, allowAnonRelink };
+    const stableUid = await resolveStableUidForAuth(db, authUid, stableId, {
+        ...relinkOptions,
+        repairLinks: false,
+    });
+    await ensureStableIdentityPair(db, authUid, {
+        stableUid,
+        sourceStableIds: [...new Set([stableId, stableUid].filter(Boolean))],
+    }, provider, metadata);
     return { ok: true, stableUid, authUid };
 }
 exports.authEnsureStableLink = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
@@ -876,6 +1272,45 @@ exports.authEnsureStableLink = (0, https_1.onCall)(callable_options_1.HOT_CALLAB
     const signInProvider = String(request.auth.token?.firebase?.sign_in_provider ?? '').trim();
     const metadata = normalizeAuthLinkMetadata(request.data?.linkMetadata);
     return ensureStableLinkForAuth(db, authUid, request.data?.stableId, signInProvider, metadata);
+});
+// ── Recovery hint: каким аккаунтом входить (маскированный email) ─────────────
+// После переустановки юзер видит recovery-модалку, но не помнит, КАКОЙ Google/
+// Apple аккаунт привязан к прогрессу — и тычет вслепую в один из нескольких на
+// устройстве (инцидент 2026-07-21). По stable_id (UUID, уже есть на устройстве —
+// это доказательство владения локальными данными) отдаём ТОЛЬКО маску email
+// (usk***@gmail.com) и провайдера. Индустриальный стандарт (Google/банки);
+// полный email никогда не покидает сервер.
+function maskEmailForRecoveryHint(email) {
+    const value = String(email ?? '').trim();
+    const at = value.indexOf('@');
+    if (at <= 0 || at === value.length - 1)
+        return null;
+    const local = value.slice(0, at);
+    const domain = value.slice(at + 1);
+    return `${local.slice(0, 3)}***@${domain}`;
+}
+function buildRecoveryHintFromUserData(userData) {
+    if (!userData)
+        return { found: false, linked: false, provider: null, maskedEmail: null };
+    const linkedAuth = userData.linkedAuth;
+    const providerRaw = linkedAuth && typeof linkedAuth === 'object'
+        ? String(linkedAuth.provider ?? '').trim()
+        : '';
+    const provider = providerRaw === 'google' ? 'google' : providerRaw === 'apple' ? 'apple' : null;
+    if (!provider)
+        return { found: true, linked: false, provider: null, maskedEmail: null };
+    const maskedEmail = maskEmailForRecoveryHint(linkedAuth.email);
+    return { found: true, linked: true, provider, maskedEmail };
+}
+exports.authRecoveryHint = (0, https_1.onCall)(callable_options_1.HOT_CALLABLE_OPTIONS, async (request) => {
+    if (!request.auth?.uid)
+        throw new https_1.HttpsError('unauthenticated', 'auth_required');
+    const stableId = normalizeStableId(request.data?.stableId);
+    if (!stableId)
+        return { found: false, linked: false, provider: null, maskedEmail: null };
+    const db = admin.firestore();
+    const snap = await db.collection(USERS).doc(stableId).get().catch(() => null);
+    return buildRecoveryHintFromUserData(snap?.exists ? snap.data() : undefined);
 });
 // ── Anonymous-ownership claim (closes #11 safely) ────────────────────────────
 // Перед входом через Google/Apple клиент (ещё анонимный) ставит на свой

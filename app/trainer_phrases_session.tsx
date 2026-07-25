@@ -283,6 +283,13 @@ function WordBankMode({ item, onResult, onAdvance, speakAnswer }: WordBankProps)
             <DuoPressable
               key={tile.slot}
               withHaptic={false}
+              // зачем: юзер жаловался что тап по плитке ощущается медленно. Причина —
+              // DuoPressable по умолчанию ждёт 90мс (unstable_pressDelay), чтобы отличить
+              // тап от старта скролла. Плитки банка слов — не скроллящийся контент сами
+              // по себе (скроллится вся BouncyScrollView), поэтому тап должен регистрироваться
+              // сразу; визуальный "осадочный" отклик (scale/opacity в DuoPressable) остаётся
+              // анимированным как был — откладываем только его, не сам факт нажатия.
+              delayPressIn={0}
               disabled={used || feedback !== 'none'}
               edgeHeight={5}
               edgeColor={on ? t.accent : 'rgba(0,0,0,0.30)'}
@@ -913,9 +920,13 @@ export default function TrainerPhrasesSession() {
             showsVerticalScrollIndicator={false}
             scrollEventThrottle={16}
           >
+            {/* зачем: в ключ добавлена позиция в колоде. Раньше ключ был только из
+                item.key, и две подряд идущие карточки с одинаковым текстом заставляли
+                React переиспользовать инстанс — feedback оставался от прошлой карточки,
+                и «Проверить» блокировалась навсегда (репорт «через пару заданий»). */}
             {card?.mode === 'word_bank'
-              ? <WordBankMode key={card.item.key + '_wb'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
-              : card && <FillGapMode key={card.item.key + '_fg'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
+              ? <WordBankMode key={card.item.key + '_' + current + '_wb'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
+              : card && <FillGapMode key={card.item.key + '_' + current + '_fg'} item={card.item} onResult={handleResult} onAdvance={handleAdvance} speakAnswer={speakAnswer} />
             }
           </BouncyScrollView>
         </ContentWrap>

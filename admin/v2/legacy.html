@@ -9767,7 +9767,7 @@
     </div>
     <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
       <button type="button" class="cp-btn" onclick="savePromoCode()" style="background:#1f2937;border:1px solid #374151;color:#86efac;padding:9px 16px;border-radius:8px;cursor:pointer;min-height:38px">💾 Создать / обновить код</button>
-      <button type="button" class="cp-btn" onclick="loadPromoCodes()" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить список</button>
+      <button type="button" class="cp-btn" onclick="loadPromoCodes(true)" style="background:#1f2937;border:1px solid #374151;color:#93c5fd;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px">🔄 Обновить список</button>
       <button type="button" class="cp-btn" onclick="switchTab('promo-codes')" title="Открыть простой раздел для генерации пачек, одноразовых и своих промокодов" style="background:#172033;border:1px solid #334155;color:#bfdbfe;padding:9px 14px;border-radius:8px;cursor:pointer;min-height:38px;font-weight:800">Открыть большой раздел</button>
       <span id="cp-promo-status" class="cp-status-chip"></span>
     </div>
@@ -10449,7 +10449,7 @@
         Выбранный опрос
         <select id="ss-survey-select" onchange="window.onShardSurveySelect && window.onShardSurveySelect()" style="min-width:260px"></select>
       </label>
-      <button type="button" onclick="window.loadShardSurveys && window.loadShardSurveys()" title="Перечитать список опросов и статистику из Firestore">Обновить список</button>
+      <button type="button" onclick="window.loadShardSurveys && window.loadShardSurveys(true)" title="Перечитать список опросов и статистику из Firestore">Обновить список</button>
       <button type="button" onclick="window.exportShardSurveyCsv && window.exportShardSurveyCsv()" title="Скачать ответы выбранного опроса в CSV">Скачать CSV</button>
     </div>
   </div>
@@ -11092,7 +11092,7 @@
       <option value="content">Контент</option>
       <option value="other">Другое</option>
     </select>
-    <button onclick="loadUserIdeas()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button onclick="loadUserIdeas(true)" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
     <span class="reports-count" id="idea-count"></span>
   </div>
   <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -11114,7 +11114,7 @@
       <option value="content">Контент</option>
       <option value="other">Другое</option>
     </select>
-    <button onclick="loadDecidedIdeas()" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
+    <button onclick="loadDecidedIdeas(true)" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
     <span class="reports-count" id="idea-decided-count"></span>
   </div>
   <div id="idea-decided-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
@@ -11424,7 +11424,7 @@
       </div>
       <div class="promo-quick-actions">
         <button type="button" class="promo-btn promo-ghost" onclick="switchTab('control-panel')" title="Открыть Пульт и включить пункт «Промокоды» в приложении">Открыть рубильник</button>
-        <button type="button" id="promo-refresh-btn" class="promo-btn promo-secondary" onclick="loadPromoCodes()" title="Обновить список последних промокодов">Обновить список</button>
+        <button type="button" id="promo-refresh-btn" class="promo-btn promo-secondary" onclick="loadPromoCodes(true)" title="Обновить список последних промокодов">Обновить список</button>
         <button type="button" id="promo-redemptions-refresh-btn" class="promo-btn promo-secondary" onclick="loadPromoRedemptions()" title="Показать пользователей, которые уже активировали промокод">Кто активировал</button>
       </div>
     </section>
@@ -13266,7 +13266,7 @@
 <script src="french-daily-phrases-admin.js"></script>
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, startAt, endAt, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField, onSnapshot, documentId } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
   import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
@@ -14104,6 +14104,41 @@
     return Number.isFinite(n) ? n : defaultValue;
   }
   function escapeHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+  // ── Батч-резолвер имён по uid ────────────────────────────────────────────────
+  // зачем: раньше рефералы дёргали getDoc на КАЖДЫЙ uid (до 600 чтений за заход,
+  // и заново на каждое «загрузить ещё»). Теперь — запрос по 30 uid за раз через
+  // documentId() + общий кэш на сессию: повторные uid не стоят ни одного чтения.
+  window._userNameCache = window._userNameCache || {};
+  async function resolveUserNames(uids) {
+    const out = {};
+    const need = [];
+    for (const uid of uids || []) {
+      if (!uid) continue;
+      if (window._userNameCache[uid] !== undefined) out[uid] = window._userNameCache[uid];
+      else if (!need.includes(uid)) need.push(uid);
+    }
+    // Firestore: 'in' принимает максимум 30 значений на запрос.
+    const chunks = [];
+    for (let i = 0; i < need.length; i += 30) chunks.push(need.slice(i, i + 30));
+    await Promise.all(chunks.map(async (chunk) => {
+      try {
+        const sn = await getDocs(query(collection(db, 'users'), where(documentId(), 'in', chunk)));
+        sn.docs.forEach((d) => {
+          const x = d.data() || {};
+          const name = x.name || x.displayName || x.email || d.id;
+          window._userNameCache[d.id] = name;
+          out[d.id] = name;
+        });
+      } catch {}
+    }));
+    // uid, которых нет в users, кэшируем как пустые — чтобы не спрашивать снова.
+    for (const uid of need) {
+      if (out[uid] === undefined) { window._userNameCache[uid] = ''; out[uid] = ''; }
+    }
+    return out;
+  }
+  window.resolveUserNames = resolveUserNames;
 
   // ── Toast ─────────────────────────────────────────────────────────────────────
   // ── Audit log ─────────────────────────────────────────────────────────────────
@@ -16717,7 +16752,10 @@
   // Действия: осколки (инкремент) и Plus/Pro на N месяцев (0 = бессрочно).
   window._helpersBoard = [];
 
-  window.loadHelpersBoard = async function() {
+  window.loadHelpersBoard = async function(force) {
+    // зачем: раньше вкладка перечитывала ВСЮ коллекцию top_helpers при каждом
+    // клике. Теперь читаем один раз за сессию; «🔄 Обновить» шлёт force=true.
+    if (window._helpersBoardLoaded && !force) { renderHelpersBoard(); return; }
     // Описание + флаг вкл/выкл из remote_config/app.
     try {
       const cfg = await getDoc(doc(db, 'remote_config', 'app'));
@@ -16727,10 +16765,12 @@
       const enEl = document.getElementById('thb-enabled');
       if (enEl) enEl.checked = !(data.bools && data.bools.top_helpers_enabled === false);
     } catch (e) { console.warn('helpers cfg', e); }
-    // Весь борд (без limit — админ видит всех; в приложении только топ-10).
+    // зачем: limit(300) вместо выкачивания всей коллекции — в приложении виден
+    // только топ-10, админу 300 хватает с большим запасом.
     try {
-      const snap = await getDocs(query(collection(db, 'top_helpers'), orderBy('confirmed', 'desc')));
+      const snap = await getDocs(query(collection(db, 'top_helpers'), orderBy('confirmed', 'desc'), limit(300)));
       window._helpersBoard = snap.docs.map(d => Object.assign({ uid: d.id }, d.data() || {}));
+      window._helpersBoardLoaded = true;
       renderHelpersBoard();
       if (typeof showToast === 'function') showToast(`Загружено: ${window._helpersBoard.length}`);
     } catch (e) {
@@ -23860,14 +23900,27 @@
     return IDEA_LANG_LABELS[c] || IDEA_LANG_LABELS[c.slice(0, 2)] || c;
   }
 
-  window.loadUserIdeas = async function() {
+  // ── Общий источник идей для обеих вкладок ────────────────────────────────────
+  // зачем: «Идеи» и «Идеи: решённые» читали ОДНУ коллекцию user_ideas по 500
+  // документов КАЖДАЯ (1000 чтений за переключение). Теперь запрос один, обе
+  // вкладки фильтруют один и тот же массив в памяти. force=true — после решения
+  // по идее, чтобы статус и текст ответа обновились сразу.
+  window.fetchUserIdeasShared = async function(force) {
+    if (window._allUserIdeas && window._allUserIdeas.length && !force) return window._allUserIdeas;
+    const snap = await getDocs(query(collection(db, 'user_ideas'), orderBy('createdAtMs', 'desc'), limit(500)));
+    window._allUserIdeas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    return window._allUserIdeas;
+  };
+
+  window.loadUserIdeas = async function(force) {
     window._userIdeasLoaded = true;
     const list = document.getElementById('idea-list');
     if (!list) return;
-    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    if (!window._allUserIdeas || !window._allUserIdeas.length || force) {
+      list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    }
     try {
-      const snap = await getDocs(query(collection(db, 'user_ideas'), orderBy('createdAtMs', 'desc'), limit(500)));
-      window._allUserIdeas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      await window.fetchUserIdeasShared(force);
       filterUserIdeas();
     } catch (e) {
       list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
@@ -24075,16 +24128,18 @@
   window._decidedIdeasLoaded = false;
   window._allDecidedIdeas = [];
 
-  window.loadDecidedIdeas = async function() {
+  window.loadDecidedIdeas = async function(force) {
     window._decidedIdeasLoaded = true;
     const list = document.getElementById('idea-decided-list');
     if (!list) return;
-    list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    if (!window._allUserIdeas || !window._allUserIdeas.length || force) {
+      list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    }
     try {
-      // Всегда тянем свежие данные с сервера — чтобы точный текст, отправленный
-      // пользователю (decisionMessageRu), и статус были актуальны.
-      const snap = await getDocs(query(collection(db, 'user_ideas'), orderBy('createdAtMs', 'desc'), limit(500)));
-      const all = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      // зачем: берём тот же общий массив, что и вкладка «Идеи» — вместо второго
+      // запроса на 500 документов. После решения по идее вызывается с force=true,
+      // поэтому decisionMessageRu и статус остаются актуальными.
+      const all = await window.fetchUserIdeasShared(force);
       window._allDecidedIdeas = all.filter(r => {
         const s = r.status || 'pending';
         return s === 'approved' || s === 'rejected';
@@ -26329,7 +26384,7 @@
       if (!_fnPromoUpsert) _fnPromoUpsert = httpsCallable(functionsUs, 'promoCodeUpsert');
       await _fnPromoUpsert({ code, rewardKind: 'days', rewardDays: days, maxRedemptions, expiresAtMs, enabled, note });
       cpPromoStatus('Код «' + code + '» сохранён.', '#4ade80');
-      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
+      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes(true);
     } catch (e) {
       cpPromoStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     }
@@ -26366,7 +26421,7 @@
       promoAdminStatus('Создано кодов: ' + codes.length + '. Окно с копированием открыто.', '#4ade80');
       window.showGeneratedPromoCodes(codes, 'Срок Plus: ' + duration.label + ' · лимит: ' + payload.maxRedemptions + ' · кодов: ' + codes.length);
       if (typeof logAction === 'function') logAction('promo_codes_admin_batch', 'promo_codes', { count: codes.length, oneTime: !!oneTime, rewardKind: duration.rewardKind, rewardDays: duration.rewardDays });
-      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes();
+      if (typeof window.loadPromoCodes === 'function') void window.loadPromoCodes(true);
     } catch (e) {
       promoAdminStatus('Ошибка: ' + (e && e.message ? e.message : e), '#f87171');
     } finally {
@@ -26381,18 +26436,27 @@
     return window.createPromoCodesBatch(true);
   };
 
-  window.loadPromoCodes = async function() {
+  window.loadPromoCodes = async function(force) {
     const boxes = [document.getElementById('cp-promo-list'), document.getElementById('promo-codes-list')].filter(Boolean);
     if (!boxes.length) return;
+    // зачем: список кодов перечитывался при КАЖДОМ клике на вкладку (80 чтений).
+    // Коды меняются редко и только из этой же админки, поэтому держим отрисованный
+    // HTML в памяти; все мутации кодов зовут loadPromoCodes(true) и обновляют его.
+    if (window._promoCodesHtml && !force) {
+      boxes.forEach((box) => { box.innerHTML = window._promoCodesHtml; });
+      return;
+    }
     const refreshBtn = document.getElementById('promo-refresh-btn');
     if (refreshBtn) refreshBtn.disabled = true;
     try {
       const snap = await getDocs(query(collection(db, 'promo_codes'), orderBy('updatedAtMs', 'desc'), limit(80)));
       if (snap.empty) {
-        boxes.forEach((box) => { box.innerHTML = '<div style="font-size:12px;color:#6b7280">Кодов пока нет — создай первый выше.</div>'; });
+        window._promoCodesHtml = '<div style="font-size:12px;color:#6b7280">Кодов пока нет — создай первый выше.</div>';
+        boxes.forEach((box) => { box.innerHTML = window._promoCodesHtml; });
         return;
       }
       const rows = snap.docs.map((d) => promoCodeRowHtml(String(d.id), d.data() || {}, true)).join('');
+      window._promoCodesHtml = rows;
       boxes.forEach((box) => { box.innerHTML = rows; });
     } catch (e) {
       boxes.forEach((box) => {
@@ -30919,14 +30983,18 @@
     return String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;' }[c]));
   }
 
-  window.loadShardSurveys = async function loadShardSurveys() {
+  window.loadShardSurveys = async function loadShardSurveys(force) {
     const statusEl = document.getElementById('ss-status');
+    // зачем: раньше обе коллекции выкачивались целиком при каждом заходе на
+    // вкладку. Теперь — один раз за сессию + limit; «Обновить список» шлёт force.
+    if (window._shardSurveysLoaded && !force) return;
     try {
       if (statusEl) statusEl.textContent = 'Загрузка опросов…';
       const [surveysSnap, statsSnap] = await Promise.all([
-        getDocs(collection(db, 'shard_surveys')),
-        getDocs(collection(db, 'shard_survey_stats')),
+        getDocs(query(collection(db, 'shard_surveys'), limit(200))),
+        getDocs(query(collection(db, 'shard_survey_stats'), limit(200))),
       ]);
+      window._shardSurveysLoaded = true;
       _ssSurveys = surveysSnap.docs.map((d) => ({ surveyId: d.id, ...d.data() }));
       _ssStats = {};
       statsSnap.docs.forEach((d) => { _ssStats[d.id] = d.data(); });
@@ -31117,7 +31185,7 @@
         if (statusEl) statusEl.textContent = 'Изменение отменено. Ничего не применено.';
         return;
       }
-      await window.loadShardSurveys();
+      await window.loadShardSurveys(true); // после записи кэш обязан обновиться
     } catch (e) {
       const message = 'Ошибка: ' + (e && e.message ? e.message : e);
       if (statusEl) statusEl.textContent = message;
@@ -31561,7 +31629,7 @@
       }
       ssSetEditorStatus('Сохранено.');
       window.closeShardSurveyEditor();
-      await window.loadShardSurveys();
+      await window.loadShardSurveys(true); // после записи кэш обязан обновиться
     } catch (e) {
       ssSetEditorStatus('Ошибка: ' + (e && e.message ? e.message : e), 'err');
     }
@@ -31963,14 +32031,7 @@
         if (r.refereeId) uidSet.add(r.refereeId);
         return r;
       });
-      const nameMap = {};
-      const ids = [...uidSet].slice(0, 600);
-      await Promise.all(ids.map(async (uid) => {
-        try {
-          const u = await getDoc(doc(db, 'users', uid));
-          if (u.exists()) nameMap[uid] = u.data()?.name || u.data()?.displayName || u.data()?.email || uid;
-        } catch {}
-      }));
+      const nameMap = await resolveUserNames([...uidSet].slice(0, 600));
       rows.forEach((r) => {
         r.referrerName = nameMap[r.referrerId] || '';
         r.refereeName = nameMap[r.refereeId] || '';

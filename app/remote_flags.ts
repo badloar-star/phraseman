@@ -71,7 +71,6 @@ export type RemoteBoolKey =
   | 'collectibles_enabled'
   | 'league_xp_promotion_enabled'
   | 'league_startup_registration_enabled'
-  | 'league_realtime_members_enabled'
   | 'lifetime_button_enabled'
   | 'explain_enabled'
   | 'ideas_enabled'
@@ -300,7 +299,6 @@ const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
   collectibles_enabled: true,
   league_xp_promotion_enabled: false,
   league_startup_registration_enabled: true,
-  league_realtime_members_enabled: true,
   // Кнопка Phraseman Pro (lifetime) на пейволах. Дефолт TRUE с 2026-06-21: продукт
   // phraseman_premium_lifetime_v1 заведён в App Store + Google Play и привязан в
   // RevenueCat (entitlement premium, пакет $rc_lifetime в default offering), т.е.
@@ -950,7 +948,10 @@ export function shouldShowPromoBanner(params: {
 export const isOnboardingPlanOnly = () => getRemoteBool('onboarding_plan_only_enabled');
 export const isLeagueXpPromotionEnabled = () => getRemoteBool('league_xp_promotion_enabled');
 export const isLeagueStartupRegistrationEnabled = () => getRemoteBool('league_startup_registration_enabled');
-export const isLeagueRealtimeMembersEnabled = () => getRemoteBool('league_realtime_members_enabled');
+// зачем: league_realtime_members_enabled удалён целиком (тип+дефолт+хелпер) —
+// realtime-подписка на участников лиги снесена (subscribeToLeagueGroupMembers,
+// 2026-07-25), мёртвый kill-switch в «Пульте» лишь вводил бы в заблуждение.
+// Старый ключ в Firestore-доке безопасно игнорируется циклом по DEFAULT_FLAGS.
 /** Phraseman Pro показывается как раскрываемая разовая покупка. Дефолт true. */
 export const isLifetimeButtonEnabled = () => getRemoteBool('lifetime_button_enabled');
 /** Раздел «Идеи» в настройках (год премиума за идею). Дефолт false — sell-switch. */

@@ -8,7 +8,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import { TODAY_FALLBACK_RECOMMENDATION } from '../../lib/today/fallback';
-import { selectTodayMetricsFromActivity, type TodayMetrics } from '../../lib/today/today_metrics';
+import { selectDaysSinceLearningFromActivity, selectTodayMetricsFromActivity, type TodayMetrics } from '../../lib/today/today_metrics';
 import type { TodayDestinationId } from '../../lib/today/types';
 import { useLang } from '../LangContext';
 import { useStudyTarget } from '../StudyTargetContext';
@@ -137,6 +137,10 @@ export default function TodayScreen() {
         asyncStorageModule,
         targetStorage,
         { loadActivity365Analytics },
+        { loadFlashcards },
+        dailyTasksModule,
+        { getStatsCache },
+        { LESSON_COUNT },
       ] = await Promise.all([
         import('../../app/compass/signal_bus'),
         import('../../app/compass/compass_brain'),
@@ -148,16 +152,23 @@ export default function TodayScreen() {
         import('@react-native-async-storage/async-storage'),
         import('../../app/target_storage_keys'),
         import('../../app/activity_365_analytics'),
+        import('../../hooks/use-flashcards'),
+        import('../../app/daily_tasks'),
+        import('../../app/statsCache'),
+        import('../../app/lesson_grammar_map'),
       ]);
       const token = accountGeneration.captureAccountGeneration();
       const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
       const requestedScope = scopeModule.createTodayScope({ account: token, studyTargetId: studyTarget, uiLocale: lang, now: new Date(), timeZone });
       const scopeKey = requestedScope?.scopeKey ?? ['pending', studyTarget, lang, timeZone].map(encodeURIComponent).join('|');
       if (requestedScope && accountGeneration.isCurrentAccountGeneration(token)) await historyStore.hydrateTodayRecommendationHistory(token);
-      const [snapshot, lastOpenedLessonRaw, activity] = await Promise.all([
+      const [snapshot, lastOpenedLessonRaw, activity, savedFlashcards, dailyTaskList] = await Promise.all([
         collectCompassSnapshot(studyTarget, Date.now()),
         asyncStorageModule.default.getItem(targetStorage.lastOpenedLessonKey(studyTarget)).catch(() => null),
         loadActivity365Analytics(studyTarget),
+        // зачем: правила рекомендаций были мертвы из-за захардкоженных нулей — тянем реальное число сохранённых карточек (тот же локальный AsyncStorage-кэш, что и экран коллекции).
+        loadFlashcards(studyTarget).catch(() => []),
+        dailyTasksModule.getTodayTasksSafe(studyTarget).catch(() => []),
       ]);
       if (!snapshot || cancelled) return;
       if (token.phase === 'active' && !accountGeneration.isCurrentAccountGeneration(token)) return;
@@ -175,7 +186,18 @@ export default function TodayScreen() {
       const hour = now.getHours();
       const planDay = snapshot.planDay;
       const todayMetrics = selectTodayMetricsFromActivity(activity.days, now.getTime());
+      const daysSinceLearning = selectDaysSinceLearningFromActivity(activity.days, now.getTime());
       const progressPct = planDay && primary.kind === 'plan_continue' ? Math.max(0, Math.min(100, Math.round(planDay.dayProgressPct))) : null;
+      // зачем: правила рекомендаций были мертвы из-за захардкоженных нулей — daily-tasks прогресс из того же локального AsyncStorage, что читает главный экран (home.tsx) для своей плитки заданий.
+      const dailyTaskProgress = dailyTaskList.length > 0
+        ? await dailyTasksModule.loadTodayProgress(dailyTaskList, studyTarget).catch(() => [])
+        : [];
+      const dailyTasksTotal = dailyTaskList.length;
+      const dailyTasksClaimed = dailyTasksModule.countClaimedForTaskList(dailyTaskList, dailyTaskProgress);
+      const dailyTasksRemaining = Math.max(0, dailyTasksTotal - dailyTasksClaimed);
+      // зачем: getStatsCache() — синхронное чтение уже прогретого модульного кэша (Home/Статистика его наполняют), новых чтений не добавляет.
+      const streak = getStatsCache(studyTarget).totalStreak;
+      const courseComplete = snapshot.passedLessons.length >= LESSON_COUNT;
       const recommendation = selectTodayRecommendation({
         facts: {
           timeBucket: hour < 6 ? 'night' : hour < 11 ? 'morning' : hour < 17 ? 'midday' : 'evening',
@@ -184,10 +206,10 @@ export default function TodayScreen() {
           todayLessons: todayMetrics.lessons,
           todayXp: todayMetrics.xp,
           resumeKind: primary.kind === 'plan_continue' ? 'plan' : 'lesson',
-          streak: 0,
-          daysSinceLearning: null,
+          streak,
+          daysSinceLearning,
           nextLessonId: day.lessonInviteId ?? null,
-          courseComplete: false,
+          courseComplete,
           plan: planDay ? {
             active: !planDay.todayDone,
             isCarryover: planDay.isCarryover,
@@ -196,9 +218,9 @@ export default function TodayScreen() {
             progressPct: planDay.dayProgressPct,
           } : null,
           practiceDue: snapshot.trainer?.totalDue ?? 0,
-          flashcardCount: 0,
-          dailyTasksRemaining: 0,
-          dailyTasksTotal: 0,
+          flashcardCount: savedFlashcards.length,
+          dailyTasksRemaining,
+          dailyTasksTotal,
           availableDestinations: new Set<TodayDestinationId>(['lessons', 'plan', 'practice', 'flashcards', 'daily_tasks']),
         },
         locale: lang,

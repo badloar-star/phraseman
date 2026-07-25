@@ -130,20 +130,6 @@ function errorsAwaitingText(total: number, lang: Lang): string {
     }
 }
 
-/** «доля ошибок за N дней» — подпись окна аналитики под слабым местом. */
-function errorsShareWindowText(days: number, lang: Lang): string {
-    switch (lang) {
-        case 'uk': return `частка помилок за ${days} ${pluralSlavic(days, 'день', 'дні', 'днів')}`;
-        case 'es': return `parte de los errores en ${days} días`;
-        case 'pt-BR': return `parcela dos erros em ${days} dias`;
-        case 'vi': return `tỷ lệ lỗi trong ${days} ngày`;
-        case 'id': return `porsi kesalahan dalam ${days} hari`;
-        case 'tr': return `son ${days} gündeki hata payı`;
-        case 'pl': return `udział błędów w ciągu ${days} dni`;
-        default: return `доля ошибок за ${days} ${pluralSlavic(days, 'день', 'дня', 'дней')}`;
-    }
-}
-
 /** Компактная подпись минут для скраб-пузыря недельного графика («12 мин» / «1 ч 5 мин»). */
 function practiceMinutesLabel(minutes: number, lang: Lang): string {
     const total = Math.max(0, Math.round(minutes));
@@ -188,9 +174,8 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
  * Если персональные тренировки доступны и для категории есть диагноз — ведёт
  * в /problem_coach, иначе — на полный экран аналитики.
  */
-function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack }: {
+function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack }: {
     stat: WordCategoryStat;
-    windowDays: number;
     lang: Lang;
     t: ReturnType<typeof useTheme>['theme'];
     f: ReturnType<typeof useTheme>['f'];
@@ -226,12 +211,16 @@ function WeakSpotCard({ stat, windowDays, lang, t, f, router, resolvedPersonalTr
           subColor={t.textMuted}
           centerTextStyle={{ fontSize: 14, lineHeight: 17 }}
         />
+        {/* зачем: убрали подпись «доля ошибок за N дней» под названием категории — карточка теперь
+            только имя+кольцо+кнопка (просьба владельца, п.2). numberOfLines={2}+flexShrink на самом
+            Text (без шрифт-сжатия, запрещённого в проекте) — длинные категории вроде «Существительные»
+            переносятся по словам, а не режутся посреди слова. guard-ok */}
         <View style={{ flex: 1, minWidth: 0 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+          <Text
+            style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}
+            numberOfLines={2}
+          >
             {trainerCategoryLabel(stat.category, lang)}
-          </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '600', marginTop: 2 }}>
-            {errorsShareWindowText(windowDays, lang)}
           </Text>
         </View>
         <View style={[styles.ghostBtn, { backgroundColor: softBg }]}>
@@ -546,7 +535,6 @@ function TrainerScreenInner() {
                   <WeakSpotCard
                     key={stat.category}
                     stat={stat}
-                    windowDays={shownAnalytics.windowDays}
                     lang={lang}
                     t={t}
                     f={f}
@@ -564,9 +552,7 @@ function TrainerScreenInner() {
             {/* Ритм недели: значения только по зажатию (scrub), как на экране статистики. */}
             {weekBars.length > 0 ? (
               <Reanimated.View entering={FadeInDown.delay(250).duration(320)} style={[styles.rhythmCard, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Практика по дням · зажмите график для значений', uk: 'Практика по днях · затисніть графік для значень', es: 'Práctica por días · mantén el gráfico para ver valores', 'pt-BR': 'Prática por dia · segure o gráfico para ver valores', vi: 'Luyện tập theo ngày · giữ biểu đồ để xem giá trị', id: 'Latihan per hari · tahan grafik untuk nilai', tr: 'Günlere göre pratik · değerler için grafiği basılı tut', pl: 'Praktyka po dniach · przytrzymaj wykres, by zobaczyć wartości' })}
-                </Text>
+                {/* зачем: убрали подпись-инструкцию «зажмите график для значений» — long-press остаётся рабочим, но без обучающей строки над графиком (просьба владельца, п.1) */}
                 <StatBars
                   bars={weekBars}
                   accent={accent}

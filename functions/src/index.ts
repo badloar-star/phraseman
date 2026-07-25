@@ -17,6 +17,12 @@ import {
   onSessionPlayerLobbyDisabled,
   questionTimeoutDisabled,
 } from './quiz_arena_decommission';
+import {
+  HELP_BOARD_DECOMMISSIONED_EXPORTS,
+  compassChatDailyCronDisabled,
+  helpBoardCompassRetryCronDisabled,
+  helpBoardGenerateCompassForTopicDisabled,
+} from './help_board_decommission';
 
 admin.initializeApp();
 
@@ -187,6 +193,13 @@ exports.onArenaSessionFinished = onArenaSessionFinishedDisabled;
 exports.onArenaSessionAborted = onArenaSessionAbortedDisabled;
 exports.onArenaRematchAccepted = onArenaRematchAcceptedDisabled;
 exports.questionTimeout = questionTimeoutDisabled;
+// зачем: Help Board и Compass-чат удалены владельцем (9af87817d), но живут в
+// проде — гасим надгробиями, чтобы старые клиенты получали внятный отказ,
+// а не ошибку соединения. Подробности — в help_board_decommission.ts.
+Object.assign(exports, HELP_BOARD_DECOMMISSIONED_EXPORTS);
+exports.helpBoardGenerateCompassForTopic = helpBoardGenerateCompassForTopicDisabled;
+exports.helpBoardCompassRetryCron = helpBoardCompassRetryCronDisabled;
+exports.compassChatDailyCron = compassChatDailyCronDisabled;
 exports.friendEnsureMyCode = friendEnsureMyCode;
 exports.friendLookupUser = friendLookupUser;
 exports.friendLikeActivity = friendLikeActivity;

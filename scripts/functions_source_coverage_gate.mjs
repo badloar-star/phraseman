@@ -53,6 +53,67 @@ const INTENTIONALLY_REMOVED = new Set([
   'leagueChatSendMessage',
 ]);
 
+/*
+ * Функции без исходников, которые владелец решил НЕ восстанавливать (2026-07-25).
+ * Гейт считает их отдельно и деплой из-за них не блокирует — но любое НОВОЕ имя,
+ * не попавшее в этот список, гейт всё так же остановит. Поэтому список точный,
+ * а не по префиксам: иначе будущая настоящая потеря проскочит незамеченной.
+ *
+ * зачем: эти функции написаны в ветке admin-language-factory (отколовшейся
+ * 2026-07-10) и выложены на прод частичным деплоем — в основной линии их не было
+ * НИКОГДА, это не потеря, а незавершённое слияние. Интерфейса к ним нет нигде:
+ * проверено и по старой админке (admin/legacy.html, admin/v2/legacy.html), и по
+ * новой admin/v2 — 2 из 94. Звать их некому.
+ *
+ * Владелец возвращается на СТАРУЮ админку, новая будет удалена, поэтому шаг D
+ * плана унификации (порт фич в новую админку) отменён целиком.
+ *
+ * Исключение — adminPreviewVoiceResearchMutation / adminApplyVoiceResearchMutation:
+ * их зовёт раздел «Опросы за осколки» в старой админке. Владелец решил старую
+ * админку не трогать, раздел остаётся нерабочим осознанно.
+ *
+ * Карта источников (если раздел понадобится) —
+ * docs/merge-reports/ORPHANED_FUNCTIONS_RECOVERY_MAP.md.
+ */
+const ACCEPTED_UNMERGED = new Set([
+  'adminApplyAlertsConfig', 'adminApplyCommunityMutation', 'adminApplyCompassChange',
+  'adminApplyContentMutation', 'adminApplyLegacyPlusMigration', 'adminApplyManualAccess',
+  'adminApplyMoneyMutation', 'adminApplySafetyModerationMutation', 'adminApplyVipSurveyCampaign',
+  'adminApplyVoiceResearchMutation', 'adminApproveCommunityMutation', 'adminApproveCompassChange',
+  'adminApproveContentMutation', 'adminApproveEmailCampaign', 'adminApproveMoneyMutation',
+  'adminApprovePushCampaign', 'adminApproveSafetyModerationMutation', 'adminCancelEmailCampaign',
+  'adminCancelPushJob', 'adminCreateEmailCampaign', 'adminCreatePushJob',
+  'adminEmailCampaignCreated', 'adminEmailCampaignsCron', 'adminExportAppHealth',
+  'adminExportCacheEntries', 'adminExportEmailContacts', 'adminGenerateProductBrief',
+  'adminGetAlertsWorkspace', 'adminGetAppHealthDetail', 'adminGetCommunityOperationDetail',
+  'adminGetCommunityOperationsWorkspace', 'adminGetCompassWorkspace',
+  'adminGetContentOperationDetail', 'adminGetContentOperationsWorkspace',
+  'adminGetDiagnosticsArchiveDetail', 'adminGetLandingExperimentReport',
+  'adminGetMoneyOperationDetail', 'adminGetMoneyOperationsWorkspace',
+  'adminGetPlusControlWorkspace', 'adminGetSafetyModerationSensitiveDetail',
+  'adminGetSafetyModerationWorkspace', 'adminGetVipSurveyWorkspace',
+  'adminGetVoiceResearchWorkspace', 'adminListAppActivity', 'adminListAppHealth',
+  'adminListBetaTesters', 'adminListCacheEntries', 'adminListDiagnosticsArchive',
+  'adminListEmailCampaigns', 'adminListEmailContacts', 'adminListPushJobs',
+  'adminListSafetyModerationApprovals', 'adminListSafetyModerationHistory',
+  'adminListVipSurveyResponses', 'adminMutateProductItem', 'adminPreviewAlertTest',
+  'adminPreviewAlertsConfig', 'adminPreviewCacheReset', 'adminPreviewCommunityMutation',
+  'adminPreviewCompassChange', 'adminPreviewContentMutation', 'adminPreviewEmailCampaign',
+  'adminPreviewLegacyPlusMigration', 'adminPreviewManualAccess', 'adminPreviewMoneyMutation',
+  'adminPreviewPushAudience', 'adminPreviewSafetyModerationMutation',
+  'adminPreviewVipSurveyCampaign', 'adminPreviewVoiceResearchMutation',
+  'adminPublishContentPack', 'adminQueueAlertTest', 'adminRequestCommunityApproval',
+  'adminRequestCompassApproval', 'adminRequestContentApproval',
+  'adminRequestEmailCampaignApproval', 'adminRequestMoneyApproval', 'adminRequestPushApproval',
+  'adminRequestSafetyModerationApproval', 'adminResetCacheEntry', 'adminResumeCommunityBulk',
+  'adminResumeSafetyModerationBulk', 'adminRollbackContentPack', 'adminUpdateBetaTester',
+  'adminWebsiteInboxList', 'adminWebsiteInboxMarkRead', 'adminYoutubeAnalytics',
+  'agentManagerRecommendCriticalDigest', 'agentOfficeTelegramPublishRecommendation',
+  'getActiveLanguageCatalog', 'getPublishedCourseRelease', 'getPublishedCourseSurfaceBundle',
+  'getPublishedCourseSurfaceEntry', 'getPublishedLessonArtifact',
+  'supportReplyDispatchSweeperCron',
+]);
+
 const args = new Set(process.argv.slice(2));
 const OFFLINE = args.has('--offline');
 const REFRESH = args.has('--refresh');
@@ -130,7 +191,14 @@ const live = readLiveFunctions();
 
 const allMissing = live.names.filter((name) => !covered.has(name));
 const intentional = allMissing.filter((name) => INTENTIONALLY_REMOVED.has(name));
-const orphans = allMissing.filter((name) => !INTENTIONALLY_REMOVED.has(name));
+const accepted = allMissing.filter(
+  (name) => !INTENTIONALLY_REMOVED.has(name) && ACCEPTED_UNMERGED.has(name),
+);
+// зачем: блокируем деплой только на НЕОЖИДАННЫХ пропажах. Всё, что владелец уже
+// разобрал (удалено намеренно / принято как несведённое), учитывается отдельно.
+const orphans = allMissing.filter(
+  (name) => !INTENTIONALLY_REMOVED.has(name) && !ACCEPTED_UNMERGED.has(name),
+);
 
 if (AS_JSON) {
   console.log(JSON.stringify({
@@ -149,10 +217,12 @@ console.log(`Источник списка живых функций: ${live.sou
 console.log(`Живых функций в проде:          ${live.names.length}`);
 console.log(`Покрыто исходниками:            ${covered.size} (основной codebase ${builtNames.length} + english-test ${englishTestNames.length})`);
 console.log(`Осознанно удалено (чаты):       ${intentional.length}`);
-console.log(`СИРОТ без исходников:           ${orphans.length}`);
+console.log(`Принято как несведённое:        ${accepted.length} (решение владельца 2026-07-25)`);
+console.log(`НЕОЖИДАННЫХ сирот:              ${orphans.length}`);
 
 if (orphans.length === 0) {
-  console.log('\n✅ Сирот нет. Полный деплой функций безопасен.\n');
+  console.log('\n✅ Неожиданных пропаж нет. Полный деплой функций безопасен.');
+  console.log(`   ⚠️  ${accepted.length} несведённых функций останутся на проде как есть.\n`);
   process.exit(0);
 }
 

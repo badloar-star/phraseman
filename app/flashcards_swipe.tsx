@@ -2423,14 +2423,12 @@ export default function FlashcardsSwipeScreen() {
             <View style={[styles.enBox, isPlanFlashcardsTask && styles.planEnBox]}>
               <Text style={[styles.enLabel, { color: t.textMuted, fontSize: f.caption }]}>{text.phraseLabel}</Text>
               <Text
-                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(22, f.h2 + 2) : Math.min(26, f.h1 + 3) }]}
-                // Shrink-to-fit (эталон FlashcardListItem): на Android жирный крупный
-                // центрированный текст без этого терял последнее слово при системном
-                // увеличении шрифта (напр. «to work» показывалось как «to»). numberOfLines
-                // обязателен — иначе Android игнорирует adjustsFontSizeToFit.
-                numberOfLines={isPlanFlashcardsTask ? 3 : 2}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
+                style={[styles.englishText, isPlanFlashcardsTask && styles.planEnglishText, { color: t.textPrimary, fontSize: isPlanFlashcardsTask ? Math.min(20, f.h2) : Math.min(24, f.h1 + 1) }]}
+                // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) — сжатие
+                // теряло слово при системном увеличении шрифта на Android («to work» → «to»).
+                // Вместо сжатия: чуть меньший базовый fontSize + больше строк — enBox не имеет
+                // фиксированной высоты (flex:1, justifyContent:'center'), поэтому перенос безопасен.
+                numberOfLines={isPlanFlashcardsTask ? 4 : 3}
               >
                 {currentPrompt.card.en}
               </Text>

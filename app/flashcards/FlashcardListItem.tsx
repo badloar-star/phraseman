@@ -686,12 +686,13 @@ function FlashcardListItemImpl({
                   <>
                     <Text
                       maxFontSizeMultiplier={1.35}
+                      // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) —
+                      // сжатие шрифта на iOS теряло короткие варианты; вместо этого фикс
+                      // базовый размер под 2 строки и разрешаем перенос вместо сжатия.
                       numberOfLines={2}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.7}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1 + 4,
+                        fontSize: f.h1,
                         fontWeight: '800',
                         textAlign: 'center',
                         letterSpacing: 0.5,
@@ -721,12 +722,13 @@ function FlashcardListItemImpl({
                   <>
                     <Text
                       maxFontSizeMultiplier={1.35}
+                      // зачем: adjustsFontSizeToFit запрещён (Performance Bible/владелец) —
+                      // сжатие шрифта на iOS теряло короткие варианты; вместо этого фикс
+                      // базовый размер и увеличенный лимит строк дают перенос вместо сжатия.
                       numberOfLines={item.transcription?.trim() ? 4 : 6}
-                      adjustsFontSizeToFit
-                      minimumFontScale={0.7}
                       style={{
                         color: t.textPrimary,
-                        fontSize: f.h1 + 2,
+                        fontSize: f.h1,
                         fontWeight: '700',
                         textAlign: 'center',
                         width: '100%',

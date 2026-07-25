@@ -523,41 +523,48 @@ export const adminGenerateTournamentTasksAi = onCall(
     let completionTokens = 0;
     let requests = 0;
 
-    for (let batchNo = 0; batchNo < params.batches; batchNo += 1) {
-      const outcome = await generateOneAiBatch(apiKey, cfg.model, {
-        level: params.level,
-        topicHint: params.topicHint,
-        previousKeys: knownKeys,
-        previousPhrases: knownPhrases.slice(-120),
-      });
-      promptTokens += outcome.promptTokens;
-      completionTokens += outcome.completionTokens;
-      requests += outcome.requests;
-      if (!outcome.ok) {
-        rejectedBatches.push([...outcome.errors]);
-        continue;
+    // зачем: billing пишется и при падении OpenAI посреди repair-цикла —
+    // токены первых запросов уже потрачены, и без finally дашборд трат
+    // повторил бы старый баг недосчёта (>60% невидимых расходов).
+    try {
+      for (let batchNo = 0; batchNo < params.batches; batchNo += 1) {
+        const outcome = await generateOneAiBatch(apiKey, cfg.model, {
+          level: params.level,
+          topicHint: params.topicHint,
+          previousKeys: knownKeys,
+          previousPhrases: knownPhrases.slice(-120),
+        });
+        promptTokens += outcome.promptTokens;
+        completionTokens += outcome.completionTokens;
+        requests += outcome.requests;
+        if (!outcome.ok) {
+          rejectedBatches.push([...outcome.errors]);
+          continue;
+        }
+        for (const item of outcome.items) {
+          // Второй батч не должен дублировать первый в этом же вызове.
+          knownKeys.add(tournamentAiSemanticKey(item));
+          knownPhrases.push(item.phrase);
+          accepted.push(item);
+        }
       }
-      for (const item of outcome.items) {
-        // Второй батч не должен дублировать первый в этом же вызове.
-        knownKeys.add(tournamentAiSemanticKey(item));
-        knownPhrases.push(item.phrase);
-        accepted.push(item);
+    } finally {
+      if (requests > 0) {
+        // Учёт трат — в общий дашборд OpenAI (схема A: promptTokens/completionTokens).
+        await db.collection(AI_BILLING_COLLECTION).add({
+          model: cfg.model,
+          promptTokens,
+          completionTokens,
+          requests,
+          level: params.level,
+          batchesRequested: params.batches,
+          batchesAccepted: params.batches - rejectedBatches.length,
+          dryRun: params.dryRun,
+          uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+          createdAtMs: nowMs,
+        }).catch((error) => console.error('[tournament_ai] billing write failed', error));
       }
     }
-
-    // Учёт трат — в общий дашборд OpenAI (схема A: promptTokens/completionTokens).
-    await db.collection(AI_BILLING_COLLECTION).add({
-      model: cfg.model,
-      promptTokens,
-      completionTokens,
-      requests,
-      level: params.level,
-      batchesRequested: params.batches,
-      batchesAccepted: params.batches - rejectedBatches.length,
-      dryRun: params.dryRun,
-      uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
-      createdAtMs: nowMs,
-    });
 
     const tasks = tournamentAiTasksFrom(accepted, params.level) ?? [];
     if (accepted.length > 0 && tasks.length === 0) {
@@ -689,7 +696,9 @@ export const adminEditTournamentTask = onCall(
       taskId: params.taskId,
       mode: existing.mode,
       isVoice: existing.isVoice === true,
-      difficulty: params.difficulty || existing.difficulty,
+      // 0 = «не менять» (валидный диапазон пула 1-3); явная проверка вместо
+      // falsy — чтобы будущая правка диапазона не сделала 0 молча-игнорируемым.
+      difficulty: params.difficulty === 0 ? existing.difficulty : params.difficulty,
       payload: params.payload,
       tags: Array.isArray(existing.tags) ? existing.tags : [],
       verified: existing.verified === true,

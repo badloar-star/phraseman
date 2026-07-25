@@ -35537,6 +35537,14 @@
     return code;
   }
 
+  /**
+   * зачем: escapeHtml админки не экранирует одинарную кавычку, а taskId
+   * вставляется в onclick='...'. Сервер и так пропускает только
+   * [A-Za-z0-9._:-] (ID_RE), но локальный фильтр закрывает латентную XSS,
+   * если правило id когда-нибудь ослабят.
+   */
+  const tnSafeId = (id) => String(id ?? '').replace(/[^A-Za-z0-9._:-]/g, '');
+
   /** Карточка одного задания: показываем правильный ответ — это экран проверки. */
   function tnRenderTask(task) {
     const p = task.payload || {};
@@ -35582,14 +35590,15 @@
       ? `<div style="margin-top:8px;font-size:12px;color:#8b8fa3;line-height:1.5">${task.aiMeta.scenario ? `🎬 ${escapeHtml(task.aiMeta.scenario)} · ` : ''}${escapeHtml(task.aiMeta.ruleNote || '')}</div>`
       : '';
 
-    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px" id="tn-card-${escapeHtml(task.taskId)}">
+    const sid = tnSafeId(task.taskId);
+    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px" id="tn-card-${sid}">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <input type="checkbox" class="tn-pick" value="${escapeHtml(task.taskId)}" ${task.verified ? '' : 'checked'} style="width:16px;height:16px;cursor:pointer" />
+        <input type="checkbox" class="tn-pick" value="${sid}" ${task.verified ? '' : 'checked'} style="width:16px;height:16px;cursor:pointer" />
         <span style="font-size:12px;color:#6b7280">${escapeHtml(mode)} · ${escapeHtml(String(diff))}</span>
         <span style="flex:1"></span>${src}${badge}${invalid}
-        <button type="button" onclick="tnEditStart('${escapeHtml(task.taskId)}')" title="Изменить вопрос"
+        <button type="button" onclick="tnEditStart('${sid}')" title="Изменить вопрос"
           style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">✏️</button>
-        <button type="button" onclick="tnDeleteTask('${escapeHtml(task.taskId)}')" title="Удалить вопрос из пула"
+        <button type="button" onclick="tnDeleteTask('${sid}')" title="Удалить вопрос из пула"
           style="background:#2a1518;border:1px solid #4a2a2e;color:#fca5a5;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">🗑</button>
       </div>
       <div class="tn-card-body">${body}${meta}</div>
@@ -35665,7 +35674,10 @@
   };
 
   window.tnPublishVisible = async function tnPublishVisible() {
-    const picked = Array.from(document.querySelectorAll('.tn-pick:checked')).map(el => el.value);
+    // зачем: только список ревью (#tn-list) — карточки-примеры в панелях
+    // генерации тоже несут чекбоксы, и глобальный селектор пытался бы
+    // публиковать id из dry-run примеров, которых нет в базе.
+    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map(el => el.value);
     if (!picked.length) { showToast('Нечего публиковать: отметь задания галочками.', 'warn'); return; }
     if (!confirm(`Опубликовать ${picked.length} заданий? Они станут доступны игрокам.`)) return;
     try {
@@ -35844,7 +35856,9 @@
   const tnInput = (id, value, width) =>
     `<input type="text" id="${id}" value="${escapeHtml(value)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;width:${width || '100%'};box-sizing:border-box;margin-bottom:6px" />`;
 
-  window.tnEditStart = function tnEditStart(taskId) {
+  window.tnEditStart = function tnEditStart(rawTaskId) {
+    // Тот же фильтр, что при отрисовке: id в разметке всегда «чистый».
+    const taskId = tnSafeId(rawTaskId);
     const task = _tnItems.find((t) => t.taskId === taskId);
     const card = document.getElementById(`tn-card-${taskId}`);
     if (!task || !card) return;
@@ -35866,7 +35880,7 @@
           <select id="tn-e-diff-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:6px 10px;font-size:13px">
             ${[1, 2, 3].map((d) => `<option value="${d}" ${d === task.difficulty ? 'selected' : ''}>${TN_DIFF_LABEL[d]}</option>`).join('')}
           </select>
-          <button type="button" onclick="tnEditSave('${escapeHtml(taskId)}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
+          <button type="button" onclick="tnEditSave('${taskId}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
           <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
         </div>`;
     } else {
@@ -35875,7 +35889,7 @@
         <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Данные задания (JSON)</div>
         <textarea id="tn-e-json-${taskId}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:10px 12px;font-size:12px;width:100%;box-sizing:border-box;min-height:140px;font-family:monospace">${escapeHtml(JSON.stringify(p, null, 2))}</textarea>
         <div style="display:flex;gap:10px;margin-top:8px">
-          <button type="button" onclick="tnEditSave('${escapeHtml(taskId)}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
+          <button type="button" onclick="tnEditSave('${taskId}')" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:7px 14px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">💾 Сохранить</button>
           <button type="button" onclick="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#9ca3af;padding:7px 14px;border-radius:8px;cursor:pointer;font-size:13px">Отмена</button>
         </div>`;
     }
@@ -35948,7 +35962,7 @@
         const task = _tnItems.find((t) => t.taskId === id);
         const label = task && task.payload && task.payload.phrase ? String(task.payload.phrase).slice(0, 40) : id.slice(0, 18);
         return `<span style="background:#1a1a24;border-radius:6px;padding:3px 8px;margin:0 6px 6px 0;display:inline-block;font-size:12px;color:#cbd5e1">${escapeHtml(label)}
-          <span onclick="tnCuratedRemove(${r}, '${escapeHtml(id)}')" style="color:#fca5a5;cursor:pointer;margin-left:4px" title="Убрать из раунда">✕</span></span>`;
+          <span onclick="tnCuratedRemove(${r}, '${tnSafeId(id)}')" style="color:#fca5a5;cursor:pointer;margin-left:4px" title="Убрать из раунда">✕</span></span>`;
       }).join('');
       return `<div style="padding:6px 0"><div style="font-size:13px;font-weight:700;color:#fafafa;margin-bottom:6px">Раунд ${r} — ${ids.length} шт.</div>${chips}</div>`;
     }).join('');
@@ -35961,7 +35975,9 @@
 
   window.tnCuratedAdd = function tnCuratedAdd() {
     const round = Number(document.getElementById('tn-cur-round')?.value || 1);
-    const picked = Array.from(document.querySelectorAll('.tn-pick:checked')).map((el) => el.value);
+    // зачем: тот же принцип, что в tnPublishVisible — набор собирается только
+    // из списка ревью, а не из карточек-примеров панелей генерации.
+    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map((el) => el.value);
     if (!picked.length) { showToast('Отметь вопросы галочками в списке выше.', 'warn'); return; }
     const merged = Array.from(new Set([..._tnCurated[round], ...picked]));
     if (merged.length > 8) { showToast('В раунде может быть не больше 8 вопросов.', 'warn'); return; }

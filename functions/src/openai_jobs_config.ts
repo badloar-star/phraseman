@@ -67,7 +67,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
   image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
   // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
-  // на батчи в сутки; запускает только владелец вручную, 300 — щедрый потолок.
+  // на БАТЧИ в сутки; каждый батч может стоить до 3 реальных запросов OpenAI
+  // (генерация + до 2 починок), т.е. фактический потолок запросов = 3×кап.
+  // Реальные траты по токенам видны в дашборде (tournament_ai_billing).
   tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
 };
 

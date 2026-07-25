@@ -286,6 +286,16 @@ describe('вкладка «Турниры» в админке', () => {
     expect(save?.payload?.rounds).toEqual([{ roundNo: 2, taskIds: ['t1'] }]);
   });
 
+  it('публикация и кураторский отбор берут галочки ТОЛЬКО из списка ревью', () => {
+    // Регрессия аудита 2026-07-25: глобальный селектор захватывал чекбоксы из
+    // карточек-примеров панелей генерации — после dry-run публикация пыталась
+    // отправить id, которых нет в базе.
+    const publishStart = html.indexOf('window.tnPublishVisible');
+    expect(html.slice(publishStart, publishStart + 800)).toContain("'#tn-list .tn-pick:checked'");
+    const curatedStart = html.indexOf('window.tnCuratedAdd');
+    expect(html.slice(curatedStart, curatedStart + 800)).toContain("'#tn-list .tn-pick:checked'");
+  });
+
   it('кураторский набор без даты не уходит на сервер', async () => {
     const { sandbox, calls } = runTab();
     await (sandbox.tnCuratedSave as () => Promise<void>)();

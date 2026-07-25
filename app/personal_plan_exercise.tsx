@@ -1672,11 +1672,13 @@ function PlanChoiceTile({
             useGridOptions ? s.optionGridText : s.optionText,
             { color: textColor, fontWeight: showPressed ? '700' : (useGridOptions ? '500' : '600') },
           ]}
-          // Длинные слова в узкой 48%-плитке резались до огрызка «t...». Ужимаем
-          // шрифт в ОДНУ строку (не переносим по слогам — это выглядело сломано).
-          numberOfLines={useGridOptions ? 1 : undefined}
-          adjustsFontSizeToFit={useGridOptions}
-          minimumFontScale={useGridOptions ? 0.55 : undefined}
+          // зачем: adjustsFontSizeToFit запрещён в проекте (сжатие текста запрещённый
+          // паттерн, см. AGENTS.md Performance Bible). Длинные слова в узкой 48%-плитке
+          // раньше резались до «t...» при принудительной 1 строке + сжатии шрифта.
+          // Вместо сжатия — статичный чуть уменьшенный кегль (optionGridText) и перенос
+          // до 2 строк; плитка центрирована и имеет только minHeight, так что при
+          // переносе она просто становится выше, а не ломает сетку.
+          numberOfLines={useGridOptions ? 2 : undefined}
         >
           {option}
         </Text>
@@ -3173,5 +3175,8 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  optionGridText: { fontSize: 20, lineHeight: 25, fontWeight: '700', textAlign: 'center' },
+  // зачем: было 20/25 + adjustsFontSizeToFit(min 0.55)+numberOfLines=1 — сжимало длинные
+  // слова до огрызка. Убрали сжатие: статичный кегль чуть меньше + перенос на 2 строки
+  // (см. numberOfLines={2} у Text выше), тайл растёт по высоте, а не режет текст.
+  optionGridText: { fontSize: 18, lineHeight: 22, fontWeight: '700', textAlign: 'center' },
 });

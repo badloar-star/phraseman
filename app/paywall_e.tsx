@@ -31,7 +31,7 @@ import { createPaywallAnalyticsImpression, paywallImpressionParams } from './pay
 import { pickTestimonials, type Testimonial } from './paywall_testimonials';
 import { isPaywallReviewsEnabled } from './remote_flags';
 import {
-  usePaywallChrome, PaywallGlyphCapsule, PaywallSocialRow, PaywallCloseButton,
+  usePaywallChrome, PaywallGlyphCapsule, PaywallHeroExplain, PaywallSocialRow, PaywallCloseButton,
   PaywallPriceRetry, PaywallTestimonials, PaywallBackground, type PaywallBackgroundHandle,
   usePaywallScreenStackOptions, PaywallStickyBar, useStickyCta,
 } from '../components/paywall/paywallShared';
@@ -96,6 +96,7 @@ export default function PaywallE() {
   const copy = applyWinBackCopy(getPaywallCopy(ctx), ctx, hadPremiumEver);
   const planned = applyWinBackPlannedCopy(getHeroPlannedCopy(ctx, 0), ctx, hadPremiumEver);
   const title = LP(copy.titleRu, copy.titleUk, copy.titleEs, planned.title);
+  const subtitle = LP(copy.subtitleRu, copy.subtitleUk, copy.subtitleEs, planned.subtitle);
 
   const price = p.selected === 'lifetime' ? p.lifetimePrice : p.selected === 'yearly' ? p.yearlyPrice : p.monthlyPrice;
   const period = periodLabelFor(lang as Lang, p.selected);
@@ -164,7 +165,8 @@ export default function PaywallE() {
             </PaywallEntrance>
 
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={3}>{title}</Text>
+              <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 
             <PaywallEntrance index={2}>
@@ -193,11 +195,14 @@ export default function PaywallE() {
                     })}
                   </Text>
                 </View>
+                {/* зачем: авто-сжатие шрифта запрещено в проекте (см. AGENTS.md Performance
+                    Bible — известный класс бага: ужимает короткие варианты на iOS). Раньше
+                    min-scale 0.82 страховал от длинных ценовых строк в некоторых локалях.
+                    Убрали сжатие: статичный кегль (S.offerPrice fontSize 34→30) с запасом
+                    под карточку шириной ~card-40px. */}
                 <Text
                   style={[S.offerPrice, { color: tc.urgencyCurrentPriceText }]}
                   numberOfLines={1}
-                  adjustsFontSizeToFit
-                  minimumFontScale={0.82}
                 >
                   {p.yearlyPrice || (p.loading ? '…' : '—')}
                 </Text>
@@ -350,8 +355,10 @@ const S = StyleSheet.create({
   saveBadgeText: { fontSize: 12, fontWeight: '900', letterSpacing: 0 },
   offerHeader: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   offerName: { fontSize: 16.5, fontWeight: '800', letterSpacing: 0 },
+  // зачем: было fontSize 34 + adjustsFontSizeToFit(min 0.82) — сжимало длинные ценовые
+  // строки. Убрали сжатие: статичный кегль 30 с запасом под ширину карточки, без рантайм-скейла.
   offerPrice: {
-    marginTop: 10, fontSize: 34, fontWeight: '900', letterSpacing: 0,
+    marginTop: 10, fontSize: 30, fontWeight: '900', letterSpacing: 0,
     fontVariant: ['tabular-nums'], textAlign: 'center',
   },
   offerSub: { marginTop: 7, fontSize: 13, lineHeight: 18, textAlign: 'center' },

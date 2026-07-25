@@ -407,6 +407,33 @@ describe('экраны режима «Турниры»', () => {
     expect(round).toMatch(/из \{total\}/);
   });
 
+  it('translate («собери фразу») рисуется, а не пустует', () => {
+    // КРИТИЧНО: генератор кладёт в пул 3276 заданий translate_build —
+    // столько же, сколько choice. Сервер (selectRoundTasks) выбирает режим
+    // раунда случайно, поэтому без этой раскладки треть турниров зависала
+    // бы на экране «Готовим вопросы…» навсегда (найдено аудитом 2026-07-25).
+    const round = read('app/tournament_round.tsx');
+    expect(round).toContain("task.kind === 'translate'");
+    expect(round).toContain('WordBank');
+    expect(round).toContain('wordBank');
+    // Старая заглушка-комментарий про «фаза 2» для translate не должна
+    // остаться единственным поведением — voice там теперь один.
+    expect(round).not.toMatch(/\/\/ translate\/voice рисуются другими раскладками — фаза 2\.\s*\n\s*return \[\];/);
+  });
+
+  it('ответ translate уходит как { tokens }, а не как индекс', () => {
+    const round = read('app/tournament_round.tsx');
+    expect(round).toContain('answerTranslate');
+    expect(round).toMatch(/answer:\s*\{\s*tokens:/);
+  });
+
+  it('банк слов не даёт использовать одно слово дважды', () => {
+    // Защита от гонки/двойного тапа: слово, уже перенесённое в собранную
+    // фразу, недоступно повторно, пока не вернётся обратно.
+    const round = read('app/tournament_round.tsx');
+    expect(round).toMatch(/disabled=\{revealed \|\| used\}/);
+  });
+
   it('экран турниров лежит внутри папки вкладок', () => {
     // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();

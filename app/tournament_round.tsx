@@ -30,12 +30,15 @@ const LETTERS = ['A', 'B', 'C', 'D'] as const;
 type Question = {
   /** taskId исходного задания — на него ссылается ответ. */
   taskId: string;
-  kind: 'choice' | 'timeattack';
+  kind: 'choice' | 'timeattack' | 'translate';
   prompt: string;
   phrase: string;
+  /** Варианты для choice/timeattack; пусто для translate. */
   options: string[];
+  /** Банк слов вразнобой для translate; пусто для choice/timeattack. */
+  wordBank: string[];
   /**
-   * Позиция подвопроса внутри timeattack.items; для choice всегда 0.
+   * Позиция подвопроса внутри timeattack.items; для choice/translate всегда 0.
    * зачем: одно timeattack-задание — это НЕСКОЛЬКО экранных вопросов с общим
    * taskId, но сервер (verifyTournamentAnswer) ждёт один ответ на весь
    * набор — массив selectedIndexes по всем items сразу. Поэтому ответы
@@ -43,7 +46,7 @@ type Question = {
    * пачки только при отправке (см. buildAnswerRow).
    */
   itemIndex: number;
-  /** Сколько всего подвопросов в этом задании — 1 для choice. */
+  /** Сколько всего подвопросов в этом задании — 1 для choice/translate. */
   itemCount: number;
 };
 
@@ -66,7 +69,7 @@ function taskToQuestions(task: PublicTask): Question[] {
     if (!phrase || options.length < 2) return [];
     return [{
       taskId: task.taskId, kind: 'choice', prompt: 'Что это значит?', phrase, options,
-      itemIndex: 0, itemCount: 1,
+      wordBank: [], itemIndex: 0, itemCount: 1,
     }];
   }
   if (task.kind === 'timeattack') {
@@ -78,12 +81,25 @@ function taskToQuestions(task: PublicTask): Question[] {
         if (options.length < 2) return null;
         return {
           taskId: task.taskId, kind: 'timeattack', prompt, phrase: String(item.prompt ?? ''),
-          options, itemIndex, itemCount: items.length,
+          options, wordBank: [], itemIndex, itemCount: items.length,
         };
       })
       .filter((question): question is Question => question !== null);
   }
-  // translate/voice рисуются другими раскладками — фаза 2.
+  if (task.kind === 'translate') {
+    // зачем: генератор кладёт в пул 3276 заданий translate_build (столько же,
+    // сколько choice) — сервер выбирает режим раунда случайно, поэтому без
+    // этой ветки треть турниров зависала бы на «Готовим вопросы…» навсегда
+    // (найдено аудитом 2026-07-25).
+    const wordBank = Array.isArray(payload.wordBank) ? (payload.wordBank as string[]) : [];
+    const phrase = String(payload.phrase ?? '');
+    if (!phrase || wordBank.length < 2) return [];
+    return [{
+      taskId: task.taskId, kind: 'translate', prompt: 'Собери фразу', phrase,
+      options: [], wordBank, itemIndex: 0, itemCount: 1,
+    }];
+  }
+  // voice рисуется отдельной раскладкой — фаза 2 (серверный скоринг выключен).
   return [];
 }
 
@@ -100,6 +116,13 @@ export default function TournamentRoundScreen() {
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('intro');
   const [picked, setPicked] = useState<number | null>(null);
+  /**
+   * Явный флаг тайм-аута — раньше «был ли дан ответ» определялось через
+   * picked !== null, но у translate нет picked (ответ — собранный порядок
+   * слов, не индекс варианта), и фидбек всегда показывал бы «Время вышло»
+   * даже при собранной фразе.
+   */
+  const [timedOut, setTimedOut] = useState(false);
   const [streak, setStreak] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -114,8 +137,12 @@ export default function TournamentRoundScreen() {
    * и ответ был бы принят как неверный независимо от выбора игрока.
    * Копим по taskId, на отправке (buildAnswerRows) собираем один пункт
    * пачки на задание в точном серверном формате.
+   *
+   * Значение для choice/timeattack — индекс варианта (number). Для translate
+   * значение — уже собранный порядок токенов (string[]): сервер сверяет
+   * ЦЕЛУЮ последовательность слов, а не один индекс.
    */
-  const answersByKeyRef = useRef<Map<string, number | null>>(new Map());
+  const answersByKeyRef = useRef<Map<string, number | string[] | null>>(new Map());
   const submittedRef = useRef(false);
 
   const activeRound = useMemo(
@@ -135,23 +162,31 @@ export default function TournamentRoundScreen() {
 
   /**
    * Собирает пачку ответов в точном формате verifyTournamentAnswer:
-   * choice → { selectedIndex }, timeattack → { selectedIndexes } — массив
-   * по ВСЕМ подвопросам задания, даже если часть не была отвечена (null
-   * остаётся null, сервер сам решит, что с ним делать при подсчёте).
+   *   choice     → { selectedIndex: number }
+   *   timeattack → { selectedIndexes: number[] } — по ВСЕМ подвопросам
+   *                задания, даже если часть не была отвечена (тогда -1,
+   *                сервер сам решит, что с ним делать при подсчёте)
+   *   translate  → { tokens: string[] } — собранный порядок слов
    */
   const buildAnswerRows = useCallback((): Array<{ taskId: string; answer: unknown }> => {
-    const byTask = new Map<string, { kind: Question['kind']; values: (number | null)[] }>();
+    const byTask = new Map<string, { kind: Question['kind']; values: (number | string[] | null)[] }>();
     for (const q of questions) {
       const entry = byTask.get(q.taskId) ?? { kind: q.kind, values: [] };
       entry.values[q.itemIndex] = answersByKeyRef.current.get(`${q.taskId}:${q.itemIndex}`) ?? null;
       byTask.set(q.taskId, entry);
     }
-    return Array.from(byTask.entries()).map(([taskId, entry]) => ({
-      taskId,
-      answer: entry.kind === 'choice'
-        ? { selectedIndex: entry.values[0] }
-        : { selectedIndexes: entry.values.map((value) => value ?? -1) },
-    }));
+    return Array.from(byTask.entries()).map(([taskId, entry]) => {
+      if (entry.kind === 'translate') {
+        return { taskId, answer: { tokens: entry.values[0] ?? [] } };
+      }
+      if (entry.kind === 'choice') {
+        return { taskId, answer: { selectedIndex: entry.values[0] } };
+      }
+      return {
+        taskId,
+        answer: { selectedIndexes: entry.values.map((value) => (typeof value === 'number' ? value : -1)) },
+      };
+    });
   }, [questions]);
 
   // Интро раунда: показываем режим, затем первый вопрос.
@@ -196,6 +231,7 @@ export default function TournamentRoundScreen() {
     }
     setIndex((value) => value + 1);
     setPicked(null);
+    setTimedOut(false);
     setPhase('question');
   }, [index, total, flushAnswers, roomId, router]);
 
@@ -204,6 +240,7 @@ export default function TournamentRoundScreen() {
 
     // Мгновенный отклик: подсветка и вибрация СРАЗУ, до любой сети.
     setPicked(optionIndex);
+    setTimedOut(false);
     setPhase('feedback');
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
@@ -217,10 +254,27 @@ export default function TournamentRoundScreen() {
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
   }, [phase, question, goNext]);
 
+  /**
+   * Подтверждение сборки фразы (translate) — вызывается, когда игрок собрал
+   * фразу целиком (banklWords.length === 0) или нажал «Готово».
+   * зачем: в отличие от choice, здесь нет единственного индекса — ответ это
+   * ВЕСЬ собранный порядок слов, поэтому answer передаётся отдельно.
+   */
+  const answerTranslate = useCallback((tokens: string[]) => {
+    if (phase !== 'question' || !question) return;
+    setPhase('feedback');
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    setStreak((value) => value + 1);
+    // guard-ok: Map.set() в памяти (локальный буфер ответов), не Firestore.
+    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, tokens);
+    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
+  }, [phase, question, goNext]);
+
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
     if (phase !== 'question' || secondsLeft > 0 || !question) return;
     setPicked(null);
+    setTimedOut(true);
     setPhase('feedback');
     setStreak(0);
     // Пропуск — оставляем null в буфере (в timeattack это станет -1 в
@@ -245,7 +299,10 @@ export default function TournamentRoundScreen() {
     if (advanceRef.current) clearTimeout(advanceRef.current);
   }, []);
 
-  const answered = picked !== null;
+  // зачем: было picked !== null — у translate нет picked (ответ это собранный
+  // порядок слов, не индекс варианта), фидбек всегда лгал бы «Время вышло»
+  // даже при верно собранной фразе. timedOut выставляется явно в трёх местах.
+  const answered = !timedOut;
   const dots = useMemo(() => Array.from({ length: total }, (_, i) => i), [total]);
 
   if (status === 'offline') {
@@ -327,20 +384,29 @@ export default function TournamentRoundScreen() {
           <Text style={styles.questionPhrase}>{question.phrase}</Text>
         </Card>
 
-        {/* Варианты */}
-        <View style={styles.options}>
-          {question.options.map((option, optionIndex) => (
-            <OptionRow
-              key={option}
-              letter={LETTERS[optionIndex]}
-              text={option}
-              index={optionIndex}
-              picked={picked}
-              revealed={phase === 'feedback'}
-              onPress={answer}
-            />
-          ))}
-        </View>
+        {/* Варианты (choice/timeattack) или сборка слов (translate) */}
+        {question.kind === 'translate' ? (
+          <WordBank
+            key={question.taskId}
+            wordBank={question.wordBank}
+            revealed={phase === 'feedback'}
+            onSubmit={answerTranslate}
+          />
+        ) : (
+          <View style={styles.options}>
+            {question.options.map((option, optionIndex) => (
+              <OptionRow
+                key={option}
+                letter={LETTERS[optionIndex]}
+                text={option}
+                index={optionIndex}
+                picked={picked}
+                revealed={phase === 'feedback'}
+                onPress={answer}
+              />
+            ))}
+          </View>
+        )}
 
         {/* Фидбек — место зарезервировано, поэтому варианты не прыгают.
             зачем: правильность знает только сервер (ключи ответов клиенту не
@@ -401,6 +467,113 @@ const OptionRow = memo(function OptionRow({
       <Text style={[styles.optionText, { color: textColor }]}>{text}</Text>
       {isPicked ? <Text style={styles.optionMark}>✓</Text> : null}
     </Pressable>
+  );
+});
+
+// ── Сборка фразы из слов (translate) ────────────────────────────────────────
+
+/**
+ * Собери фразу из слов: банк перемешанных слов внизу, собранная фраза
+ * растёт сверху. Тап переносит слово из банка в собранную строку; повторный
+ * тап на собранное слово возвращает его обратно — без этого опечатка
+ * заставляла бы ждать конца вопроса, чтобы её исправить.
+ *
+ * Каждое слово в банке уникально по ПОЗИЦИИ (не по тексту): фраза может
+ * содержать повторяющееся слово («I am, I think»), поэтому ключ — индекс
+ * исходного банка, а не сам текст.
+ */
+const WordBank = memo(function WordBank({
+  wordBank, revealed, onSubmit,
+}: {
+  wordBank: string[];
+  revealed: boolean;
+  onSubmit: (tokens: string[]) => void;
+}) {
+  // usedPositions — индексы слов банка, уже перенесённых в собранную фразу,
+  // в порядке переноса. Сбрасывается при смене самого banklWords (новый
+  // вопрос) через key={question.taskId} на родителе.
+  const [usedPositions, setUsedPositions] = useState<number[]>([]);
+  const usedSet = useMemo(() => new Set(usedPositions), [usedPositions]);
+
+  const takeWord = useCallback((position: number) => {
+    if (revealed || usedSet.has(position)) return;
+    void Haptics.selectionAsync();
+    setUsedPositions((value) => [...value, position]);
+  }, [revealed, usedSet]);
+
+  const returnWord = useCallback((slotIndex: number) => {
+    if (revealed) return;
+    void Haptics.selectionAsync();
+    setUsedPositions((value) => value.filter((_, index) => index !== slotIndex));
+  }, [revealed]);
+
+  const submit = useCallback(() => {
+    if (revealed || usedPositions.length !== wordBank.length) return;
+    onSubmit(usedPositions.map((position) => wordBank[position]));
+  }, [revealed, usedPositions, wordBank, onSubmit]);
+
+  const collected = usedPositions.map((position) => wordBank[position]);
+  const isComplete = collected.length === wordBank.length && wordBank.length > 0;
+
+  return (
+    <View>
+      {/* Собранная фраза — зарезервированное место фиксированной высоты,
+          чтобы банк слов ниже не прыгал по мере сборки. */}
+      <View style={styles.assembled}>
+        {collected.length === 0 ? (
+          <Text style={styles.assembledPlaceholder}>Собирай слова снизу…</Text>
+        ) : (
+          collected.map((word, slotIndex) => (
+            <Pressable
+              key={slotIndex}
+              onPress={() => returnWord(slotIndex)}
+              disabled={revealed}
+              style={styles.assembledChip}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: revealed }}
+              accessibilityLabel={`Убрать слово ${word}`}
+            >
+              <Text style={styles.assembledChipText}>{word}</Text>
+            </Pressable>
+          ))
+        )}
+      </View>
+
+      {/* Банк слов вразнобой */}
+      <View style={styles.bank}>
+        {wordBank.map((word, position) => {
+          const used = usedSet.has(position);
+          return (
+            <Pressable
+              key={position}
+              onPress={() => takeWord(position)}
+              disabled={revealed || used}
+              style={[styles.bankChip, used && styles.bankChipUsed]}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: revealed || used }}
+              accessibilityLabel={`Слово ${word}`}
+            >
+              <Text style={[styles.bankChipText, used && styles.bankChipTextUsed]}>{word}</Text>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <View style={styles.submitSlot}>
+        {isComplete ? (
+          <Pressable
+            onPress={submit}
+            disabled={revealed}
+            style={styles.submitButton}
+            accessibilityRole="button"
+            accessibilityState={{ disabled: revealed }}
+            accessibilityLabel="Подтвердить фразу"
+          >
+            <Text style={styles.submitButtonText}>Готово ✓</Text>
+          </Pressable>
+        ) : null}
+      </View>
+    </View>
   );
 });
 
@@ -467,4 +640,48 @@ const styles = StyleSheet.create({
     color: T.ghost,
     fontVariant: ['tabular-nums'],
   },
+
+  // ── Сборка фразы из слов (translate) ──────────────────────────────────────
+  assembled: {
+    minHeight: 56,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    alignItems: 'center',
+    paddingVertical: 8,
+  },
+  assembledPlaceholder: { ...type.body, color: T.ghost },
+  assembledChip: {
+    backgroundColor: T.accentSoft,
+    borderRadius: radius.sm,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  assembledChipText: { fontSize: 16, fontWeight: '800', color: T.accent },
+
+  bank: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 14,
+  },
+  bankChip: {
+    backgroundColor: T.card,
+    borderRadius: radius.sm,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  bankChipUsed: { opacity: 0.25 },
+  bankChipText: { fontSize: 16, fontWeight: '700', color: T.text },
+  bankChipTextUsed: { color: T.ghost },
+
+  submitSlot: { minHeight: 58, marginTop: 16, justifyContent: 'center' },
+  submitButton: {
+    backgroundColor: T.accent,
+    borderRadius: radius.md,
+    minHeight: 58,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  submitButtonText: { fontSize: 17, fontWeight: '900', color: T.accentText },
 });

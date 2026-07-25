@@ -174,15 +174,16 @@ describe('achievements', () => {
     expect(source).not.toContain('unlockedCount} / {total}');
   });
 
-  it('wires nearest locked achievements into the achievements screen header', () => {
+  // зачем: секция «Ближайшие награды» удалена с экрана по запросу владельца —
+  // тест обновлён, чтобы подтвердить отсутствие удалённого кода вместо его наличия.
+  it('does not render the removed "nearest rewards" section on the achievements screen', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
 
-    expect(source).toContain("import { getNearestLockedAchievements } from './achievement_nearest';");
-    expect(source).toContain('const nearestAchievements = useMemo(() =>');
-    expect(source).toContain('getNearestLockedAchievements(');
-    expect(source).toContain('<NearestAchievementsBlock');
-    expect(source).toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
+    expect(source).not.toContain("import { getNearestLockedAchievements } from './achievement_nearest';");
+    expect(source).not.toContain('const nearestAchievements = useMemo(() =>');
+    expect(source).not.toContain('<NearestAchievementsBlock');
+    expect(source).not.toContain('ListHeaderComponent={nearestAchievements.length > 0 ?');
   });
 
   it('wires card pack achievements into both official and community purchase flows', () => {

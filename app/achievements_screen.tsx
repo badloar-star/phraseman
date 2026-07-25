@@ -31,8 +31,8 @@ import {
   achievementDescForLang,
   checkAchievements,
 } from './achievements';
-import { getNearestLockedAchievements } from './achievement_nearest';
-import type { NearestAchievementItem } from './achievement_nearest';
+// зачем: секция «Ближайшие награды» удалена с экрана — импорт больше не нужен здесь
+// (achievement_nearest.ts остаётся, у него свой тест-файл achievement_nearest.test.ts)
 import { triLang, type Lang } from '../constants/i18n';
 import { getLevelFromXP, type ThemeMode } from '../constants/theme';
 import { hapticSuccess } from '../hooks/use-haptics';
@@ -1208,109 +1208,9 @@ function BadgeShieldInner({
 }
 export const BadgeShield = memo(BadgeShieldInner);
 
-type NearestAchievementsBlockProps = {
-  items: NearestAchievementItem<Achievement>[];
-  lang: Lang;
-  t: any;
-  f: any;
-  isDark: boolean;
-  gold: string;
-  onSelect: (achievement: Achievement) => void;
-};
-
-const NearestAchievementsBlock = memo(function NearestAchievementsBlock({
-  items,
-  lang,
-  t,
-  f,
-  isDark,
-  gold,
-  onSelect,
-}: NearestAchievementsBlockProps) {
-  if (items.length === 0) return null;
-
-  return (
-    <View style={{ paddingTop: 2, paddingBottom: 14 }}>
-      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 8 }}>
-        {triLang(lang, {
-          ru: 'Ближайшие награды',
-          uk: 'Найближчі нагороди',
-          es: 'Próximas recompensas',
-          'pt-BR': 'Próximas recompensas',
-          vi: 'Phần thưởng gần nhất',
-          id: 'Hadiah terdekat',
-          tr: 'Yakındaki ödüller',
-          pl: 'Najbliższe nagrody',
-        })}
-      </Text>
-      <View style={{ gap: 8 }}>
-        {items.map(({ achievement, current, target, remaining, progressPct }) => {
-          const color = achievementCategoryColor(achievement.category);
-          const iconName = ACHIEVEMENT_ICON[achievement.id] ?? CAT_ICON[achievement.category] ?? 'star';
-          const name = achievementNameForLang(achievement, lang);
-          return (
-            <TouchableOpacity
-              key={achievement.id}
-              activeOpacity={0.82}
-              onPress={() => onSelect(achievement)}
-              accessibilityRole="button"
-              accessibilityLabel={name}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                minHeight: 74,
-                gap: 10,
-                backgroundColor: glassFill(t.bgSurface, 0.46),
-                borderRadius: 8,
-                borderWidth: 0,
-                borderColor: color + '44',
-                paddingHorizontal: 10,
-                paddingVertical: 9,
-              }}
-            >
-              <BadgeShield
-                unlocked={false}
-                inProgress
-                color={color}
-                iconName={iconName}
-                size={46}
-                maskBg={t.bgCard}
-                achievementId={achievement.id}
-                isDark={isDark}
-                gold={gold}
-              />
-              <View style={{ flex: 1, minWidth: 0, gap: 5 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text
-                    numberOfLines={1}
-                    style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800', flex: 1 }}
-                  >
-                    {name}
-                  </Text>
-                  <Text style={{ color, fontSize: Math.max(11, Math.min(f.sub, 13)), fontWeight: '900' }}>
-                    {progressPct}%
-                  </Text>
-                </View>
-                <View style={{ height: 7, backgroundColor: t.bgSurface2, borderRadius: 4, overflow: 'hidden' }}>
-                  <View style={{ height: 7, width: `${progressPct}%` as any, backgroundColor: color, borderRadius: 4 }} />
-                </View>
-                <Text numberOfLines={1} style={{ color: t.textGhost, fontSize: Math.max(11, Math.min(f.sub, 13)) }}>
-                  {current} / {target}
-                  {remaining > 0
-                    ? `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${remaining}`
-                    : ''}
-                </Text>
-              </View>
-              <View style={{ minWidth: 44, height: 44, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
-              </View>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
-    </View>
-  );
-});
+// зачем: секция «Ближайшие награды» (NearestAchievementsBlock) удалена по запросу
+// владельца — карточки-достижения ниже по экрану используют ту же achievements-логику,
+// её не трогаем.
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
@@ -1682,14 +1582,7 @@ export default function AchievementsScreen() {
   const visibleAchievementDefinitions = useMemo(() =>
     ALL_ACHIEVEMENTS.filter(a => isVisibleAchievement(a, stateMap)),
   [stateMap]);
-  const nearestAchievements = useMemo(() =>
-    getNearestLockedAchievements(
-      visibleAchievementDefinitions,
-      new Set(states.filter(s => s.unlockedAt !== null).map(s => s.id)),
-      id => getAchievementProgress(id, stats),
-    ),
-  [states, stats, visibleAchievementDefinitions]);
-
+  // зачем: nearestAchievements (питал удалённую секцию «Ближайшие награды») больше не нужен
   const achievementSections = useMemo((): AchievementListSection[] => {
     const sections = CATEGORIES.flatMap(cat => {
       const color = achievementCategoryColor(cat, themeMode);
@@ -1807,17 +1700,6 @@ export default function AchievementsScreen() {
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 0 }}
           showsVerticalScrollIndicator={false}
           stickySectionHeadersEnabled={false}
-          ListHeaderComponent={nearestAchievements.length > 0 ? (
-            <NearestAchievementsBlock
-              items={nearestAchievements}
-              lang={lang}
-              t={t}
-              f={f}
-              isDark={isDark}
-              gold={gold}
-              onSelect={onSelectAchievement}
-            />
-          ) : null}
           ListEmptyComponent={(
             <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
               <Ionicons name="trophy-outline" size={42} color={t.textGhost} />

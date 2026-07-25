@@ -17,7 +17,6 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   // Новые темы показывают иконку minimalDark (новые ассеты не требуются).
   candyBlue: 'assets/images/weekly_compass_icons/candyBlue.webp',
   indigo: 'assets/images/weekly_compass_icons/indigo.webp',
-  vanilla: 'assets/images/weekly_compass_icons/vanilla.webp',
 };
 
 export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
@@ -46,7 +45,6 @@ export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {
   volt: 'Centered 3D compass icon for a language learning app, black cinema finish, electric lime volt glow, neon luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   candyBlue: 'Centered 3D compass icon for a language learning app, deep blue-charcoal enamel, candy blue glass glow, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   indigo: 'Centered 3D compass icon for a language learning app, dusk indigo enamel, soft lavender glow, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
-  vanilla: 'Centered 3D compass icon for a language learning app, warm vanilla cream enamel, deep royal indigo needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
 };
 
 // Add one generated asset at a time, then move its require from fallback to the
@@ -64,7 +62,6 @@ const GENERATED_COMPASS_ICON_SOURCES: Partial<Record<ThemeMode, ImageSourcePropT
   volt: require('../assets/images/weekly_compass_icons/volt.webp'),
   candyBlue: require('../assets/images/weekly_compass_icons/candyBlue.webp'),
   indigo: require('../assets/images/weekly_compass_icons/indigo.webp'),
-  vanilla: require('../assets/images/weekly_compass_icons/vanilla.webp'),
 };
 
 export function compassIconSource(themeMode: ThemeMode): ImageSourcePropType {

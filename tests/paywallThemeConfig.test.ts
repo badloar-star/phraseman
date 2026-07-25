@@ -7,12 +7,12 @@ import type { ThemeMode } from '../constants/theme';
 
 const ALL_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo', 'vanilla',
+  'candyBlue', 'indigo',
 ];
 
 const DISTINCT_ACCENT_THEMES: ThemeMode[] = [
   'dark', 'gold', 'coral', 'minimalDark', 'business', 'midnight', 'ember', 'aurora', 'volt',
-  'candyBlue', 'indigo', 'vanilla',
+  'candyBlue', 'indigo',
 ];
 
 const REQUIRED_KEYS: (keyof ThemePaywallConfig)[] = [

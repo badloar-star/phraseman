@@ -28,7 +28,6 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   volt: '#C6FF34',
   candyBlue: '#B2D5E5',
   indigo: '#C8C3FF',
-  vanilla: '#3D4E8F',
 };
 
 // Statistics deliberately uses a quieter page field than the shared app backdrop so
@@ -46,7 +45,6 @@ const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   volt: '#20250E',
   candyBlue: '#1C323B',
   indigo: '#2A2952',
-  vanilla: '#E9DCC0',
 };
 
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
@@ -181,17 +179,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     percentiles: '#E4A6FF',
     archiveMap: '#C8C3FF',
     wager: '#FFC53D',
-  },
-  vanilla: {
-    streak: '#D97A2E',
-    freeze: '#4E8FC8',
-    multipliers: '#D9A62E',
-    practiceBalance: '#5E9A3C',
-    weekRhythm: '#4EA8A0',
-    activity: '#5E9A3C',
-    percentiles: '#7A5FC8',
-    archiveMap: '#3D4E8F',
-    wager: '#D9A62E',
   },
 };
 

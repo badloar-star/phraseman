@@ -205,13 +205,6 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     divider: 'rgba(200,195,255,0.07)',
     notice: '#26254A',
   },
-  vanilla: {
-    panel: '#FFFDF6',
-    chip: '#FFFDF6',
-    border: 'rgba(58,44,8,0.22)',
-    divider: 'rgba(58,44,8,0.12)',
-    notice: '#F8F0DA',
-  },
 };
 // Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
 
@@ -568,7 +561,6 @@ export default function SettingsMain() {
       volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
       candyBlue: { ru: 'Кенди Блу', uk: 'Кенді Блу', es: 'Azul caramelo', 'pt-BR': 'Azul candy', vi: 'Xanh kẹo', id: 'Biru permen', tr: 'Şeker mavisi', pl: 'Cukrowy błękit' },
       indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
-      vanilla: { ru: 'Ванилла', uk: 'Ванілла', es: 'Vainilla', 'pt-BR': 'Baunilha', vi: 'Va ni', id: 'Vanila', tr: 'Vanilya', pl: 'Wanilia' },
     };
     const entry = names[themeMode] ?? names.minimalDark;
     return entry[lang];

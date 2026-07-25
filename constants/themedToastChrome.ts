@@ -121,15 +121,6 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0.78)',
     radius: 16,
   },
-  vanilla: {
-    cardColors: ['rgba(255,253,244,0.98)', 'rgba(246,238,218,0.97)', 'rgba(237,225,198,0.95)'],
-    accent: '#3D4E8F',
-    accentSoft: 'rgba(61,78,143,0.12)',
-    border: 'rgba(61,78,143,0.30)',
-    closeBg: 'rgba(61,78,143,0.08)',
-    shadowColor: 'rgba(58,44,8,0.30)',
-    radius: 16,
-  },
 };
 
 export function themedToastChrome(themeMode: ThemeMode, theme: Theme): ThemedToastChrome {

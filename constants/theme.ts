@@ -480,48 +480,7 @@ export const INDIGO = {
   bgGradient: ['#14131F', '#0C0B16', '#010102'] as unknown as [string, string],
 };
 
-// ─── «ВАНИЛЛА» (vanilla) ─────────────────────────────────────────────────────
-// Первая СВЕТЛАЯ тема в выборе: тёплая ванильная бумага, тёмный коричневый
-// текст, глубокий индиго-синий акцент (royal dusk). На синих CTA — белый текст
-// (accent достаточно тёмный); на зелёных «верно» — белый (correct #5E9A3C
-// достаточно тёмный для белого). Свечение/глосс выключены, тени мягкие тёплые.
-export const VANILLA = {
-  bgPrimary:   '#F1E6CB',
-  bgCard:      '#FFFDF6',
-  bgSurface:   '#F8F0DA',
-  bgSurface2:  '#EEDFC0',
-  textPrimary: '#2A2118',
-  textOnCard:  '#2A2118',
-  textSecond:  '#6F6350',
-  textMuted:   '#96886D',
-  textGhost:   '#B7A888',
-  heroTextPrimary: '#2A2118',
-  heroTextMuted:   '#6F6350',
-  border:      '#D9C69C',
-  borderLight: '#E9DCC0',
-  correct:     '#5E9A3C',
-  correctBg:   'rgba(94,154,60,0.14)',
-  wrong:       '#C4534A',
-  wrongBg:     'rgba(196,83,74,0.12)',
-  gold:        '#D9A62E',
-  goldBg:      'rgba(217,166,46,0.16)',
-  textOnGold:  '#3A2C08',
-  accent:      '#3D4E8F',
-  accentBg:    'rgba(61,78,143,0.12)',
-  correctText: '#FFFFFF',
-  shadowDark:       'rgba(58,44,8,0.30)',
-  shadowLight:      'rgba(255,255,255,0.9)',
-  borderHighlight:  '#FFFDF6',
-  isGlowEnabled:    false,
-  isGlossEnabled:   false,
-  btnShadow:   '#2C3A6E',
-  cardShadow:  'rgba(58,44,8,0.24)',
-  glow:        'rgba(61,78,143,0.12)',
-  cardGradient: ['#FFFEF9', '#F0E2BE'] as [string, string],
-  bgGradient: ['#F1E6CB', '#E7D5AC', '#DCC694'] as unknown as [string, string],
-};
-
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'vanilla';
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -550,7 +509,6 @@ const _checkBUSINESS: Theme = BUSINESS as any;
 const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
 const _checkCANDY_BLUE: Theme = CANDY_BLUE as any;
 const _checkINDIGO: Theme = INDIGO as any;
-const _checkVANILLA: Theme = VANILLA as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {

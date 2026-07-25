@@ -15,7 +15,6 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   volt: require('../assets/images/generated_theme_icons/lesson-exam-volt.webp'),
   candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-candyBlue.webp'),
   indigo: require('../assets/images/generated_theme_icons/lesson-exam-indigo.webp'),
-  vanilla: require('../assets/images/generated_theme_icons/lesson-exam-vanilla.webp'),
 };
 
 export function getLessonExamIcon(themeMode: ThemeMode): ImageSourcePropType {

@@ -181,18 +181,6 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     ornament: '#C8C3FF',
     shadow: '#C8C3FF',
   },
-  vanilla: {
-    colors: ['#FFFDF6', '#F3E7C8', '#E9D6AC'],
-    border: 'rgba(61,78,143,0.30)',
-    glow: 'rgba(61,78,143,0.10)',
-    title: '#3D4E8F',
-    phrase: '#2A2118',
-    sub: '#6F6350',
-    iconBg: 'rgba(61,78,143,0.10)',
-    iconBorder: 'rgba(61,78,143,0.22)',
-    ornament: '#3D4E8F',
-    shadow: 'rgba(58,44,8,0.25)',
-  },
 };
 
 export function dailyPhraseChromeFor(mode: ThemeMode): DailyPhraseChrome {

@@ -154,14 +154,6 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskGlow: 'rgba(200,195,255,0.09)',
     taskBorder: 'rgba(200,195,255,0.28)',
   },
-  vanilla: {
-    accent: '#3D4E8F',
-    accentSoft: 'rgba(61,78,143,0.12)',
-    chipBg: 'rgba(61,78,143,0.10)',
-    chipText: '#2C3A6E',
-    taskGlow: 'rgba(61,78,143,0.06)',
-    taskBorder: 'rgba(61,78,143,0.24)',
-  },
 };
 
 const TITLE_VARIANTS = [

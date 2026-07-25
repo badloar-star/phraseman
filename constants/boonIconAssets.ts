@@ -172,19 +172,6 @@ export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIc
     perfect_week: 'assets/images/weekly_boon_icons/png/indigo/perfect_week.webp',
     comeback: 'assets/images/weekly_boon_icons/png/indigo/comeback.webp',
   },
-  vanilla: {
-    streak_saver: 'assets/images/weekly_boon_icons/png/vanilla/streak_saver.webp',
-    mystery_monday: 'assets/images/weekly_boon_icons/png/vanilla/mystery_monday.webp',
-    turbo_regen: 'assets/images/weekly_boon_icons/png/vanilla/turbo_regen.webp',
-    energy_free_window: 'assets/images/weekly_boon_icons/png/vanilla/energy_free_window.webp',
-    double_xp: 'assets/images/weekly_boon_icons/png/vanilla/double_xp.webp',
-    flashcard_friday: 'assets/images/weekly_boon_icons/png/vanilla/flashcard_friday.webp',
-    arena_saturday: 'assets/images/weekly_boon_icons/png/vanilla/speaking_saturday.webp',
-    speaking_saturday: 'assets/images/weekly_boon_icons/png/vanilla/speaking_saturday.webp',
-    early_bird: 'assets/images/weekly_boon_icons/png/vanilla/early_bird.webp',
-    perfect_week: 'assets/images/weekly_boon_icons/png/vanilla/perfect_week.webp',
-    comeback: 'assets/images/weekly_boon_icons/png/vanilla/comeback.webp',
-  },
 };
 
 const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, ImageSourcePropType>> = {
@@ -343,19 +330,6 @@ const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, Image
     early_bird: require('../assets/images/weekly_boon_icons/png/indigo/early_bird.webp'),
     perfect_week: require('../assets/images/weekly_boon_icons/png/indigo/perfect_week.webp'),
     comeback: require('../assets/images/weekly_boon_icons/png/indigo/comeback.webp'),
-  },
-  vanilla: {
-    streak_saver: require('../assets/images/weekly_boon_icons/png/vanilla/streak_saver.webp'),
-    mystery_monday: require('../assets/images/weekly_boon_icons/png/vanilla/mystery_monday.webp'),
-    turbo_regen: require('../assets/images/weekly_boon_icons/png/vanilla/turbo_regen.webp'),
-    energy_free_window: require('../assets/images/weekly_boon_icons/png/vanilla/energy_free_window.webp'),
-    double_xp: require('../assets/images/weekly_boon_icons/png/vanilla/double_xp.webp'),
-    flashcard_friday: require('../assets/images/weekly_boon_icons/png/vanilla/flashcard_friday.webp'),
-    arena_saturday: require('../assets/images/weekly_boon_icons/png/vanilla/speaking_saturday.webp'),
-    speaking_saturday: require('../assets/images/weekly_boon_icons/png/vanilla/speaking_saturday.webp'),
-    early_bird: require('../assets/images/weekly_boon_icons/png/vanilla/early_bird.webp'),
-    perfect_week: require('../assets/images/weekly_boon_icons/png/vanilla/perfect_week.webp'),
-    comeback: require('../assets/images/weekly_boon_icons/png/vanilla/comeback.webp'),
   },
 };
 

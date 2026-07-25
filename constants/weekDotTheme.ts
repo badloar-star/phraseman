@@ -121,15 +121,6 @@ const WEEK_DOTS: Record<ThemeMode, Omit<WeekDotTheme, 'freezeBg' | 'freezeBorder
     todayBorder: 'rgba(200,195,255,0.56)',
     checkColor: '#17162B',
   },
-  vanilla: {
-    completeBg: '#3D4E8F',
-    completeBorder: 'rgba(61,78,143,0.72)',
-    emptyBg: 'rgba(61,78,143,0.08)',
-    todayBg: 'rgba(61,78,143,0.16)',
-    emptyBorder: 'rgba(61,78,143,0.26)',
-    todayBorder: 'rgba(61,78,143,0.56)',
-    checkColor: '#FFFFFF',
-  },
 };
 
 export function themedWeekDot(themeMode: ThemeMode, theme: Theme): WeekDotTheme {

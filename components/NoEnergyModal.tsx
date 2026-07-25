@@ -138,14 +138,6 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#F1EFFF',
     subtitleColor: '#B7B3D9',
   },
-  vanilla: {
-    glow: '#3D4E8F',
-    borderColor: 'rgba(42,33,24,0.10)',
-    surfaceColors: ['rgba(255,253,244,0.98)', 'rgba(250,244,228,0.96)', 'rgba(244,235,212,0.98)'],
-    cardGlowColors: ['rgba(61,78,143,0.10)', 'rgba(61,78,143,0.05)', 'transparent'],
-    titleColor: '#2A2118',
-    subtitleColor: '#9A8D76',
-  },
 };
 
 const HERO_ENERGY_ICON_CONTENT_OFFSET = { x: 4, y: 0 } as const;

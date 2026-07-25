@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, VANILLA, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
@@ -210,15 +210,15 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   businessLight: BUSINESS_LIGHT,
   candyBlue: CANDY_BLUE,
   indigo: INDIGO,
-  vanilla: VANILLA,
 };
-const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'vanilla', 'dark', 'coral', 'gold'];
+const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'dark', 'coral', 'gold'];
 /** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'vanilla'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
-const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight']);
+// vanilla удалена полностью (2026-07-25): владелец решил снять светлую тему из выбора.
+const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla']);
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
@@ -267,7 +267,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
         migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
-        migrated === 'candyBlue' || migrated === 'indigo' || migrated === 'vanilla';
+        migrated === 'candyBlue' || migrated === 'indigo';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;

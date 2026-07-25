@@ -85,7 +85,6 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
   // Новые темы переиспользуют набор minimalDark без новых ассетов (как business-fallback).
   candyBlue: MINIMAL_DARK_TASK_ASSETS,
   indigo: MINIMAL_DARK_TASK_ASSETS,
-  vanilla: MINIMAL_DARK_TASK_ASSETS,
   business: {
     core_lesson: require('../assets/images/personal_plan_tasks_fit/business/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/business/route_gavan.webp'),
@@ -211,7 +210,6 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
   minimalDark: MINIMAL_DARK_ROUTE_ASSETS,
   candyBlue: MINIMAL_DARK_ROUTE_ASSETS,
   indigo: MINIMAL_DARK_ROUTE_ASSETS,
-  vanilla: MINIMAL_DARK_ROUTE_ASSETS,
   business: {
     gavan: require('../assets/images/personal_plan_tasks_fit/business/route_gavan.webp'),
     voyazh: require('../assets/images/personal_plan_tasks_fit/business/route_voyazh.webp'),

@@ -519,43 +519,6 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofText: '#B7B3D9',
     socialProofStarColor: '#FFC53D',
   },
-  // ── VANILLA (светлая ваниль / глубокий индиго-синий акцент) ───────────────
-  vanilla: {
-    heroAccent: '#3D4E8F',
-
-    selectedCardBorder: 'rgba(61,78,143,0.50)',
-    selectedCardBg: 'rgba(61,78,143,0.10)',
-    unselectedCardBg: 'rgba(255,253,244,0.92)',
-    panelBg: 'rgba(255,253,244,0.82)',
-    panelBgStrong: 'rgba(244,235,212,0.92)',
-    selectedCardShadow: 'rgba(58,44,8,0.25)',
-
-    savingsBadgeBg: '#D9A62E',
-    savingsBadgeText: '#3A2C08',
-
-    popularBadgeBg: '#3D4E8F',
-    popularBadgeText: '#FFFFFF',
-
-    ctaBg: '#3D4E8F',
-    ctaText: '#FFFFFF',
-    ctaShadow: 'rgba(58,44,8,0.30)',
-
-    pillBg: 'rgba(61,78,143,0.10)',
-    pillText: '#3D4E8F',
-    pillBorder: 'rgba(61,78,143,0.26)',
-
-    urgencyBg: 'rgba(217,166,46,0.12)',
-    urgencyTimerText: '#8A6A10',
-    urgencyLabelText: '#6F6350',
-    urgencyStrikethroughColor: '#C4B89E',
-    urgencyCurrentPriceText: '#3D4E8F',
-
-    expandBtnText: '#3D4E8F',
-    expandBtnBorder: 'rgba(61,78,143,0.26)',
-
-    socialProofText: '#6F6350',
-    socialProofStarColor: '#D9A62E',
-  },
 };
 
 export function getPaywallThemeConfig(themeMode: ThemeMode): ThemePaywallConfig {

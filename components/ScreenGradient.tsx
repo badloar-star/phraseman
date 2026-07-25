@@ -37,7 +37,6 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   volt: 1,
   candyBlue: 1,
   indigo: 1,
-  vanilla: 1,
 };
 
 type OrbSpec = { x: number; y: number; r: number; color: string; opacity: number };
@@ -68,8 +67,6 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
   candyBlue: { bloomA: '#B2D5E5', bloomB: '#3A5A68' },
   indigo: { bloomA: '#C8C3FF', bloomB: '#273468' },
-  // «Ванилла»: светлая тема — тёплый бумажный блум без цвета.
-  vanilla: { bloomA: '#FAF4E4', bloomB: '#FAF4E4' },
 };
 
 const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
@@ -122,8 +119,6 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
     { x: W * 0.58, y: H * 0.80, r: 140, color: '#273468', opacity: 0.12 },
     { x: W * 0.28, y: H * 0.20, r:  80, color: '#C8C3FF', opacity: 0.07 },
   ],
-  // «Ванилла»: светлая бумажная подложка без орбов.
-  vanilla: [],
 };
 
 const LEGACY_UNSUPPORTED_ORBS: Record<'ocean' | 'sakura', OrbSpec[]> = {

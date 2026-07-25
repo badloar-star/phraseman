@@ -50,7 +50,6 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'minimalDark', labelRU: 'Оникс', labelUK: 'Онікс', labelES: 'Ónix', labelPtBr: 'Ônix', labelVi: 'Mã não', labelId: 'Onyx', labelTr: 'Oniks', labelPl: 'Onyks', bg: '#0B0B0C', accent: '#6EA8FF', text: '#F9FAFB', preview2: '#9CA3AF', preview3: '#171717', premiumOnly: true },
   { mode: 'candyBlue', labelRU: 'Кенди Блу', labelUK: 'Кенді Блу', labelES: 'Azul caramelo', labelPtBr: 'Azul candy', labelVi: 'Xanh kẹo', labelId: 'Biru permen', labelTr: 'Şeker mavisi', labelPl: 'Cukrowy błękit', bg: '#0B161B', accent: '#B2D5E5', text: '#EAF4F8', preview2: '#7FA0AD', preview3: '#1C323B', premiumOnly: true },
   { mode: 'indigo', labelRU: 'Индиго', labelUK: 'Індиго', labelES: 'Índigo', labelPtBr: 'Índigo', labelVi: 'Chàm', labelId: 'Indigo', labelTr: 'İndigo', labelPl: 'Indygo', bg: '#14131F', accent: '#C8C3FF', text: '#F1EFFF', preview2: '#273468', preview3: '#2A2952', premiumOnly: true },
-  { mode: 'vanilla', labelRU: 'Ванилла', labelUK: 'Ванілла', labelES: 'Vainilla', labelPtBr: 'Baunilha', labelVi: 'Va ni', labelId: 'Vanila', labelTr: 'Vanilya', labelPl: 'Wanilia', bg: '#F1E6CB', accent: '#3D4E8F', text: '#2A2118', preview2: '#5E9A3C', preview3: '#EEDFC0', premiumOnly: true },
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', labelPtBr: 'Floresta', labelVi: 'Rừng', labelId: 'Hutan', labelTr: 'Orman', labelPl: 'Las', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
   { mode: 'coral', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', labelPtBr: 'Coral', labelVi: 'San hô', labelId: 'Koral', labelTr: 'Mercan', labelPl: 'Koral', bg: '#1C1113', accent: '#FF7F50', text: '#FFFFFF', preview2: '#FF7F50', preview3: '#3A2A2E', premiumOnly: true },
   { mode: 'gold', labelRU: 'Золото', labelUK: 'Золото', labelES: 'Oro', labelPtBr: 'Ouro', labelVi: 'Vàng', labelId: 'Emas', labelTr: 'Altın', labelPl: 'Złoto', bg: '#050504', accent: '#D7AD56', text: '#FFF7E6', preview2: '#F1CC72', preview3: '#18140D', rewardOnly: true },
@@ -64,8 +63,6 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
       return ['#D9EDF5', item.accent, '#3A5A68'];
     case 'indigo':
       return ['#E4E1FF', item.accent, '#273468'];
-    case 'vanilla':
-      return ['#FFFDF6', item.accent, '#D9A62E'];
     case 'midnight':
     case 'ember':
     case 'aurora':

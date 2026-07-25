@@ -6002,3 +6002,42 @@ git log -3 --oneline
   validation as loaded-body validation.
 - Investigate the Jest open-handles advisory in a separate bounded diagnostic
   packet only; it did not invalidate Task 0.
+
+## 15.10 — Task 0A closed; Kimi K3 delivery location pointer (2026-07-25)
+
+### Task 0A commit
+
+Star-source separation is committed as `47c61b453`
+(`feat: separate V2 practice star sources`) on
+`prod-snapshot/learning-v2-pilot-20260721`. Final gate before commit:
+`learning_v2_star_source_separation` + `learning_v2_gate_policy` +
+`learning_v2_learning_evidence_policy`, 46/46 tests PASS, worktree clean.
+The next writer packet is Task 1 (LanguageProfile contract) of
+`docs/superpowers/plans/2026-07-22-learning-v2-e1-content-compiler.md`.
+
+### Kimi K3 frontend delivery — where it actually lives
+
+The accepted Kimi V5 delivery is NOT inside this repository. Do not conclude
+"mockups not created" from repository search alone; the wireframe index in
+`docs/v2/reference-evidence/phraseman-wireframes.md` tracks a different
+artifact class (first-hand Phraseman contact sheets) and remains `not_created`.
+
+- Primary copy (Kimi workspace, working copy for further Kimi iterations):
+  `C:\Users\badlo\Documents\kimi\workspace\kimi-delivery\learning-v2-frontend\20260719-0858-k3\`
+- Backup snapshot (2026-07-25, 684 files / 49.87 MB, without `node_modules`,
+  SHA-256 spot-check 8/8 against `handoff/file-sha256.json`):
+  `C:\appsprojects\phraseman-backups\kimi-learning-v2-frontend-20260719-0858-k3\`
+- Intake status: accepted 2026-07-22 as presentation reference and selective
+  component source only — see `handoff/CODEX_INTAKE_REPORT_20260722.md` inside
+  the delivery. Rebinding to frozen ViewModels and typed commands remains
+  mandatory before any production import.
+- Local preview: `npx http-server source/dist -p 4173` →
+  `http://localhost:4173` (standalone single file:
+  `source/dist/phraseman-v2-lab-standalone.html`).
+
+### Findings and proposals
+
+- Refresh the backup snapshot after any further Kimi iteration; the snapshot
+  does not track the Kimi workspace automatically.
+- The V5 "final reference" resolution offered by Kimi is still pending an
+  explicit owner decision; V5 remains a candidate until recorded here.

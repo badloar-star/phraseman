@@ -1631,6 +1631,191 @@
     body[data-admin-skin="onboarding"] .admin-tab-group-label.is-hidden {
       display: none;
     }
+
+    /* ──────────────────────────────────────────────────────────────────────
+       NAV LAYOUT (свой порядок разделов)
+       зачем: владелец просил перетаскивать разделы слева и раскладывать как
+       удобно — плоский свободный порядок, ⭐ избранные сверху, ненужные
+       скрываются. Порядок живёт в admin_config/nav_layout (все устройства),
+       локальный кэш даёт мгновенный первый кадр без ожидания сети.
+       Разделители зоны — тоном/фоном, без обводок-акцентов.
+       ────────────────────────────────────────────────────────────────────── */
+
+    /* Плоский свой порядок: заголовки групп больше не описывают список. */
+    body[data-admin-skin="onboarding"] .tabs[data-nav-custom="true"] .admin-tab-group-label {
+      display: none;
+    }
+
+    /* Кнопка входа/выхода из режима правки — в шапке списка, рядом с поиском. */
+    body[data-admin-skin="onboarding"] .admin-nav-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 8px;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-btn {
+      appearance: none;
+      border: 0;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      color: var(--admin-muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 11.5px;
+      font-weight: 700;
+      line-height: 1;
+      padding: 7px 10px;
+      transition: background .16s cubic-bezier(.22,1,.36,1), color .16s cubic-bezier(.22,1,.36,1);
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-btn:hover {
+      background: rgba(255,255,255,0.09);
+      color: var(--admin-text);
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-btn:focus-visible {
+      outline: 2px solid rgba(var(--admin-accent-2-rgb), 0.65);
+      outline-offset: 2px;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-btn[aria-pressed="true"] {
+      background: rgba(var(--admin-accent-2-rgb), 0.22);
+      color: var(--admin-text);
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-btn-ghost {
+      background: transparent;
+      margin-left: auto;
+      padding: 7px 8px;
+    }
+
+    /* Подсказка режима правки. */
+    body[data-admin-skin="onboarding"] .admin-nav-hint {
+      display: none;
+      margin: 0 2px 8px;
+      color: #737986;
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .admin-nav-hint {
+      display: block;
+    }
+
+    /* Зона «Избранное»: отделяется тоном фона, не рамкой. */
+    body[data-admin-skin="onboarding"] .admin-nav-zone-label {
+      display: none;
+      color: #737986;
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin: 4px 4px 6px;
+      text-transform: uppercase;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-pinned="true"] .admin-nav-zone-label {
+      display: block;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-zone-label.admin-nav-zone-rest {
+      margin-top: 14px;
+    }
+    body[data-admin-skin="onboarding"] .tab[data-nav-pinned="1"] {
+      background: rgba(255,255,255,0.032) !important;
+    }
+    body[data-admin-skin="onboarding"] .tab[data-nav-pinned="1"]:hover {
+      background: rgba(255,255,255,0.06) !important;
+    }
+    body[data-admin-skin="onboarding"] .tab[data-nav-pinned="1"].active {
+      background: rgba(255,255,255,0.09) !important;
+    }
+
+    /* Скрытые разделы: невидимы обычно, полупрозрачны в режиме правки. */
+    body[data-admin-skin="onboarding"] .tab[data-nav-hidden="1"] {
+      display: none;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .tab[data-nav-hidden="1"] {
+      display: flex;
+      opacity: .38;
+    }
+    /* зачем: открытый раздел не должен исчезать из меню — иначе непонятно,
+       где ты находишься. Открыть скрытый можно по ссылке/хэшу. */
+    body[data-admin-skin="onboarding"] .tab[data-nav-hidden="1"].active {
+      display: flex;
+      opacity: .62;
+    }
+
+    /* Ряд действий внутри плитки — только в режиме правки. */
+    body[data-admin-skin="onboarding"] .admin-nav-actions {
+      display: none;
+      align-items: center;
+      gap: 2px;
+      flex: 0 0 auto;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .admin-nav-actions {
+      display: flex;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-act {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      border-radius: 6px;
+      color: #737986;
+      cursor: pointer;
+      font-size: 12px;
+      line-height: 1;
+      padding: 4px 5px;
+      transition: background .14s cubic-bezier(.22,1,.36,1), color .14s cubic-bezier(.22,1,.36,1);
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-act:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--admin-text);
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-act:focus-visible {
+      outline: 2px solid rgba(var(--admin-accent-2-rgb), 0.65);
+      outline-offset: 1px;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-act[data-on="1"] { color: #e8c566; }
+
+    /* Ручка перетаскивания. */
+    body[data-admin-skin="onboarding"] .admin-nav-grip {
+      display: none;
+      flex: 0 0 auto;
+      color: #5b6270;
+      cursor: grab;
+      font-size: 12px;
+      line-height: 1;
+      padding: 2px 1px 2px 0;
+      user-select: none;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .admin-nav-grip {
+      display: block;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .tab { cursor: grab; }
+    body[data-admin-skin="onboarding"] .tab.is-nav-dragging {
+      opacity: .5;
+      cursor: grabbing;
+    }
+    /* Индикатор места вставки — тонкая линия тоном акцента. */
+    body[data-admin-skin="onboarding"] .tab.is-nav-drop-before {
+      box-shadow: inset 0 2px 0 0 rgba(var(--admin-accent-2-rgb), 0.9) !important;
+    }
+    body[data-admin-skin="onboarding"] .tab.is-nav-drop-after {
+      box-shadow: inset 0 -2px 0 0 rgba(var(--admin-accent-2-rgb), 0.9) !important;
+    }
+    /* Клавиатурный перенос: раздел «взят». */
+    body[data-admin-skin="onboarding"] .tab.is-nav-grabbed {
+      background: rgba(var(--admin-accent-2-rgb), 0.2) !important;
+    }
+    body[data-admin-skin="onboarding"] .admin-nav-status {
+      display: none;
+      margin: 8px 2px 0;
+      color: #737986;
+      font-size: 11px;
+      line-height: 1.4;
+    }
+    body[data-admin-skin="onboarding"] .tabs[data-nav-edit="true"] .admin-nav-status {
+      display: block;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-admin-skin="onboarding"] .admin-nav-btn,
+      body[data-admin-skin="onboarding"] .admin-nav-act { transition: none; }
+    }
+
     body[data-admin-skin="onboarding"] .tab {
       color: var(--admin-muted) !important;
       border-color: transparent !important;
@@ -9488,6 +9673,16 @@
     <input id="admin-tab-search" type="search" autocomplete="off" placeholder="Search sections" aria-label="Search admin sections" />
     <div class="admin-tab-empty">No sections found</div>
   </div>
+  <!-- зачем: владелец просил сам раскладывать разделы слева — режим правки
+       включает перетаскивание, ⭐ наверх и скрытие; порядок хранится в базе -->
+  <div class="admin-nav-tools">
+    <button type="button" id="admin-nav-edit-btn" class="admin-nav-btn" aria-pressed="false"
+            onclick="toggleAdminNavEdit()" title="Перетаскивай разделы, закрепляй наверх, скрывай ненужные">✥ Порядок</button>
+    <button type="button" id="admin-nav-reset-btn" class="admin-nav-btn admin-nav-btn-ghost"
+            onclick="resetAdminNavLayout()" title="Вернуть заводской порядок и показать все разделы">Сбросить</button>
+  </div>
+  <div class="admin-nav-hint">Тащи мышкой или возьми раздел клавишей Space/Enter и двигай стрелками. ⭐ — наверх, 👁 — скрыть.</div>
+  <div class="admin-nav-zone-label admin-nav-zone-pinned">⭐ Избранное</div>
   <div class="tab active" onclick="switchTab('control-panel')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.4);color:#fbbf24;font-weight:700">🎛 Пульт управления</div>
   <div class="tab" onclick="switchTab('overview')" data-i18n-es="Overview">Overview</div>
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
@@ -9543,6 +9738,7 @@
   <!-- зачем: старая админка стала главной; уникальные разделы v2 (Офис агентов, Центр монет, Фабрика, Брифинг) остаются в один клик -->
   <!-- зачем: /index.html теперь редиректит на старую (закладки на index.html тоже должны открывать старую) — ссылка на новую ведёт на /v2.html -->
   <a class="tab" href="/v2.html" target="_blank" rel="noopener" title="Открыть новую админку: Офис агентов, Центр монет, Фабрика языков, Брифинг" style="text-decoration:none;background:rgba(183,227,91,0.10);border:1px solid rgba(183,227,91,0.35);color:#b7e35b;font-weight:700">V2 →</a>
+  <div class="admin-nav-status" id="admin-nav-status" role="status" aria-live="polite"></div>
 </div>
 
 <!-- Счётчик чтений Firestore: цена текущего захода, клик — разбивка по разделам -->
@@ -13275,6 +13471,9 @@
     const st = document.getElementById('status-text');
     if (st) st.textContent = user.email || user.uid;
     startAdminApp();
+    // зачем: свой порядок разделов живёт в базе, чтобы был одинаковым на всех
+    // устройствах владельца. Ровно одно чтение за заход, после логина.
+    if (typeof window.loadAdminNavLayout === 'function') void window.loadAdminNavLayout();
     setTimeout(() => {
       if (typeof window.openAdminUserFromQuery === 'function') {
         void window.openAdminUserFromQuery();
@@ -17259,11 +17458,29 @@
     let visible = 0;
     const visibleGroups = new Set();
     tabsBox.querySelectorAll('.tab').forEach((tabEl) => {
-      const haystack = normalizeAdminTabSearch(`${tabEl.textContent || ''} ${tabEl.getAttribute('data-i18n-es') || ''}`);
+      // зачем: искать только по названию раздела. textContent таба теперь
+      // включает служебные символы ручки и кнопок ⭐/👁 — по ним искать нельзя.
+      // У части разделов нет чистого лейбла (.admin-tab-text), поэтому для них
+      // собираем текст из «неслужебных» узлов, а не берём textContent целиком.
+      const labelText = tabEl.querySelector('.admin-tab-text')?.textContent
+        ?? tabEl.dataset.cleanLabel
+        ?? Array.from(tabEl.childNodes)
+             .filter((n) => !(n.nodeType === Node.ELEMENT_NODE
+               && (n.classList?.contains('admin-nav-grip') || n.classList?.contains('admin-nav-actions'))))
+             .map((n) => n.textContent || '')
+             .join(' ');
+      const haystack = normalizeAdminTabSearch(`${labelText || ''} ${tabEl.getAttribute('data-i18n-es') || ''}`);
       const matched = !queryText || haystack.includes(queryText);
-      tabEl.style.display = matched ? '' : 'none';
-      if (matched && tabEl.dataset.adminGroup) visibleGroups.add(tabEl.dataset.adminGroup);
-      if (matched) visible += 1;
+      // зачем: скрытые владельцем разделы прячет CSS (data-nav-hidden). Инлайн
+      // display их бы перебил и вернул в список при поиске — поэтому только
+      // снимаем/ставим инлайн-скрытие, а решение о скрытых оставляем CSS.
+      if (matched) tabEl.style.removeProperty('display');
+      else tabEl.style.display = 'none';
+      // Скрытый владельцем раздел не считаем найденным — иначе «ничего не
+      // найдено» не покажется, хотя список визуально пуст.
+      const reallyVisible = matched && tabEl.dataset.navHidden !== '1';
+      if (reallyVisible && tabEl.dataset.adminGroup) visibleGroups.add(tabEl.dataset.adminGroup);
+      if (reallyVisible) visible += 1;
     });
     tabsBox.querySelectorAll('.admin-tab-group-label').forEach((label) => {
       label.classList.toggle('is-hidden', !!queryText && !visibleGroups.has(label.dataset.adminGroup));
@@ -18470,7 +18687,515 @@
       tabEl.dataset.badgeHtml = badge;
     });
     applyGroupedAdminTabs();
+    applyAdminNavLayout();
   }
+
+  /* ────────────────────────────────────────────────────────────────────────
+     NAV LAYOUT — свой порядок разделов в левом меню
+     зачем: владелец просил раскладывать разделы слева как удобно, прямо на
+     сайте. Плоский свободный порядок (заголовки групп прячутся, когда есть
+     свой порядок), ⭐ избранные наверху, ненужные скрываются.
+
+     Хранение: admin_config/nav_layout — один документ, чтобы порядок был
+     одинаковым на всех устройствах. Экономия: ровно 1 чтение за заход (при
+     логине) и запись не чаще раза в ~1.2 с (дебаунс) — перетаскивание не
+     тарифицируется на каждый пиксель. localStorage — кэш для мгновенного
+     первого кадра: список раскладывается ещё до ответа сети.
+     ──────────────────────────────────────────────────────────────────────── */
+  const ADMIN_NAV_LAYOUT_CACHE_KEY = 'pm_admin_nav_layout_v1';
+  const ADMIN_NAV_LAYOUT_DOC = 'nav_layout';
+  // { order: string[], pinned: string[], hidden: string[], rev: number }
+  window._adminNavLayout = window._adminNavLayout || null;
+  let _adminNavEditMode = false;
+  let _adminNavSaveTimer = 0;
+  let _adminNavSaveRev = 0;
+
+  function adminNavEmptyLayout() {
+    return { order: [], pinned: [], hidden: [], rev: 0 };
+  }
+
+  /* зачем: adminTabKeyFromElement матчит 'testers.html' подстрокой, поэтому
+     'beta_testers.html' получает тот же ключ 'testers' — два разных раздела
+     становятся неотличимы, порядок и флаги слипаются. Для раскладки нужен
+     СВОЙ гарантированно уникальный ключ: берём цель перехода как есть. */
+  function adminNavKeyFromElement(tabEl) {
+    if (!tabEl) return '';
+    const onclick = tabEl.getAttribute('onclick') || '';
+    const viaSwitch = onclick.match(/switchTab\('([^']+)'\)/);
+    if (viaSwitch) return viaSwitch[1];
+    const viaHref = onclick.match(/location\.href\s*=\s*'([^']+)'/);
+    if (viaHref) return 'page:' + viaHref[1];
+    const href = tabEl.getAttribute('href');
+    if (href) return 'page:' + href;
+    return adminTabKeyFromElement(tabEl) || '';
+  }
+
+  function adminNavNormalizeLayout(raw) {
+    const src = raw && typeof raw === 'object' ? raw : {};
+    const uniqStrings = (value) => {
+      if (!Array.isArray(value)) return [];
+      const out = [];
+      const seen = new Set();
+      value.forEach((item) => {
+        const key = String(item || '').trim();
+        if (!key || seen.has(key)) return;
+        seen.add(key);
+        out.push(key);
+      });
+      return out;
+    };
+    return {
+      order: uniqStrings(src.order),
+      pinned: uniqStrings(src.pinned),
+      hidden: uniqStrings(src.hidden),
+      rev: Number.isFinite(Number(src.rev)) ? Number(src.rev) : 0,
+    };
+  }
+
+  function adminNavLayout() {
+    if (!window._adminNavLayout) window._adminNavLayout = adminNavEmptyLayout();
+    return window._adminNavLayout;
+  }
+
+  function adminNavIsCustom(layout) {
+    const l = layout || adminNavLayout();
+    return !!(l.order.length || l.pinned.length || l.hidden.length);
+  }
+
+  function adminNavReadCache() {
+    try {
+      const raw = window.localStorage ? localStorage.getItem(ADMIN_NAV_LAYOUT_CACHE_KEY) : '';
+      return raw ? adminNavNormalizeLayout(JSON.parse(raw)) : null;
+    } catch (_) { return null; }
+  }
+
+  function adminNavWriteCache(layout) {
+    try {
+      if (window.localStorage) localStorage.setItem(ADMIN_NAV_LAYOUT_CACHE_KEY, JSON.stringify(layout));
+    } catch (_) { /* приватный режим / переполнение — не критично */ }
+  }
+
+  function adminNavSetStatus(text) {
+    const el = document.getElementById('admin-nav-status');
+    if (el) el.textContent = text || '';
+  }
+
+  /* Порядок в DOM = свой порядок, затем всё, чего в нём нет (новые разделы
+     после обновления админки), в заводском порядке. Избранные — всегда сверху. */
+  function applyAdminNavLayout() {
+    const tabsBox = document.querySelector('.tabs');
+    if (!tabsBox) return;
+    const layout = adminNavLayout();
+    const custom = adminNavIsCustom(layout);
+    tabsBox.dataset.navCustom = custom ? 'true' : 'false';
+    tabsBox.dataset.navPinned = layout.pinned.length ? 'true' : 'false';
+
+    const tabEls = Array.from(tabsBox.querySelectorAll(':scope > .tab'));
+    const byKey = new Map();
+    tabEls.forEach((tabEl) => {
+      const key = adminNavKeyFromElement(tabEl);
+      if (key) {
+        tabEl.dataset.navKey = key;
+        byKey.set(key, tabEl);
+      }
+    });
+
+    const pinnedSet = new Set(layout.pinned.filter((k) => byKey.has(k)));
+    const hiddenSet = new Set(layout.hidden.filter((k) => byKey.has(k)));
+
+    // Флаги на плитках: скрытые не показываем, избранные подсвечиваем тоном.
+    tabEls.forEach((tabEl) => {
+      const key = tabEl.dataset.navKey || '';
+      if (pinnedSet.has(key)) tabEl.dataset.navPinned = '1';
+      else delete tabEl.dataset.navPinned;
+      if (hiddenSet.has(key)) tabEl.dataset.navHidden = '1';
+      else delete tabEl.dataset.navHidden;
+    });
+
+    if (!custom) {
+      adminNavEnsureControls(tabsBox);
+      adminNavRemoveRestLabel(tabsBox);
+      return;
+    }
+
+    // Итоговая последовательность: свой порядок → остальные в заводском.
+    const ordered = [];
+    const used = new Set();
+    layout.order.forEach((key) => {
+      const el = byKey.get(key);
+      if (el && !used.has(key)) { used.add(key); ordered.push(el); }
+    });
+    tabEls.forEach((tabEl) => {
+      const key = tabEl.dataset.navKey || '';
+      if (!used.has(key)) { used.add(key); ordered.push(tabEl); }
+    });
+    const pinnedFirst = [
+      ...ordered.filter((el) => pinnedSet.has(el.dataset.navKey || '')),
+      ...ordered.filter((el) => !pinnedSet.has(el.dataset.navKey || '')),
+    ];
+
+    // Переставляем только если порядок реально отличается — лишние
+    // перемещения узлов дороги и сбивают фокус/скролл.
+    const currentKeys = tabEls.map((el) => el.dataset.navKey || '');
+    const nextKeys = pinnedFirst.map((el) => el.dataset.navKey || '');
+    if (currentKeys.join('|') !== nextKeys.join('|')) {
+      const frag = document.createDocumentFragment();
+      pinnedFirst.forEach((el) => frag.appendChild(el));
+      const statusEl = document.getElementById('admin-nav-status');
+      if (statusEl) tabsBox.insertBefore(frag, statusEl);
+      else tabsBox.appendChild(frag);
+    }
+    adminNavPlaceRestLabel(tabsBox, pinnedFirst, pinnedSet);
+    adminNavEnsureControls(tabsBox);
+  }
+
+  function adminNavRemoveRestLabel(tabsBox) {
+    tabsBox.querySelector(':scope > .admin-nav-zone-rest')?.remove();
+  }
+
+  /* Метка «Остальные» встаёт ровно после последнего избранного. */
+  function adminNavPlaceRestLabel(tabsBox, orderedEls, pinnedSet) {
+    if (!pinnedSet.size) { adminNavRemoveRestLabel(tabsBox); return; }
+    const firstRest = orderedEls.find((el) => !pinnedSet.has(el.dataset.navKey || ''));
+    if (!firstRest) { adminNavRemoveRestLabel(tabsBox); return; }
+    let label = tabsBox.querySelector(':scope > .admin-nav-zone-rest');
+    if (!label) {
+      label = document.createElement('div');
+      label.className = 'admin-nav-zone-label admin-nav-zone-rest';
+      label.textContent = 'Остальные';
+    }
+    if (label.nextElementSibling !== firstRest) tabsBox.insertBefore(label, firstRest);
+  }
+
+  /* Ручка + кнопки ⭐/👁 внутри плитки. applyCleanAdminTabLabels перезаписывает
+     innerHTML таба, поэтому контролы восстанавливаем после каждого релейбла. */
+  function adminNavEnsureControls(tabsBox) {
+    const layout = adminNavLayout();
+    const pinnedSet = new Set(layout.pinned);
+    const hiddenSet = new Set(layout.hidden);
+    tabsBox.querySelectorAll(':scope > .tab').forEach((tabEl) => {
+      const key = tabEl.dataset.navKey || adminNavKeyFromElement(tabEl);
+      if (!key) return;
+      tabEl.dataset.navKey = key;
+      tabEl.setAttribute('draggable', _adminNavEditMode ? 'true' : 'false');
+      if (!tabEl.hasAttribute('tabindex')) tabEl.setAttribute('tabindex', '0');
+
+      let grip = tabEl.querySelector(':scope > .admin-nav-grip');
+      if (!grip) {
+        grip = document.createElement('span');
+        grip.className = 'admin-nav-grip';
+        grip.setAttribute('aria-hidden', 'true');
+        grip.textContent = '⠿';
+        tabEl.insertBefore(grip, tabEl.firstChild);
+      }
+
+      let actions = tabEl.querySelector(':scope > .admin-nav-actions');
+      if (!actions) {
+        actions = document.createElement('span');
+        actions.className = 'admin-nav-actions';
+        const mkBtn = (cls, act) => {
+          const b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'admin-nav-act ' + cls;
+          b.dataset.navAct = act;
+          return b;
+        };
+        actions.appendChild(mkBtn('admin-nav-act-pin', 'pin'));
+        actions.appendChild(mkBtn('admin-nav-act-hide', 'hide'));
+        tabEl.appendChild(actions);
+      }
+      const pinBtn = actions.querySelector('[data-nav-act="pin"]');
+      const hideBtn = actions.querySelector('[data-nav-act="hide"]');
+      const isPinned = pinnedSet.has(key);
+      const isHidden = hiddenSet.has(key);
+      if (pinBtn) {
+        pinBtn.textContent = '★';
+        pinBtn.dataset.on = isPinned ? '1' : '0';
+        pinBtn.title = isPinned ? 'Убрать из избранного' : 'Закрепить наверху';
+        pinBtn.setAttribute('aria-label', pinBtn.title);
+      }
+      if (hideBtn) {
+        hideBtn.textContent = isHidden ? '🚫' : '👁';
+        hideBtn.dataset.on = isHidden ? '1' : '0';
+        hideBtn.title = isHidden ? 'Показать раздел' : 'Скрыть раздел';
+        hideBtn.setAttribute('aria-label', hideBtn.title);
+      }
+    });
+  }
+
+  /* Снимок текущего DOM-порядка → в layout.order (без метки и статуса). */
+  function adminNavCaptureOrder() {
+    const tabsBox = document.querySelector('.tabs');
+    if (!tabsBox) return;
+    const keys = Array.from(tabsBox.querySelectorAll(':scope > .tab'))
+      .map((el) => el.dataset.navKey || adminNavKeyFromElement(el))
+      .filter(Boolean);
+    adminNavLayout().order = keys;
+  }
+
+  window.toggleAdminNavEdit = function toggleAdminNavEdit(force) {
+    _adminNavEditMode = typeof force === 'boolean' ? force : !_adminNavEditMode;
+    const tabsBox = document.querySelector('.tabs');
+    if (tabsBox) tabsBox.dataset.navEdit = _adminNavEditMode ? 'true' : 'false';
+    const btn = document.getElementById('admin-nav-edit-btn');
+    if (btn) {
+      btn.setAttribute('aria-pressed', _adminNavEditMode ? 'true' : 'false');
+      btn.textContent = _adminNavEditMode ? '✓ Готово' : '✥ Порядок';
+    }
+    if (!_adminNavEditMode) adminNavClearGrab();
+    if (tabsBox) adminNavEnsureControls(tabsBox);
+    adminNavSetStatus(_adminNavEditMode ? 'Правка порядка включена.' : '');
+  };
+
+  window.resetAdminNavLayout = function resetAdminNavLayout() {
+    if (!adminNavIsCustom()) {
+      adminNavSetStatus('Порядок и так заводской.');
+      return;
+    }
+    if (!window.confirm('Вернуть заводской порядок разделов и показать все скрытые?')) return;
+    window._adminNavLayout = adminNavEmptyLayout();
+    adminNavWriteCache(window._adminNavLayout);
+    const tabsBox = document.querySelector('.tabs');
+    if (tabsBox) {
+      // Заводской порядок восстанавливаем через группировку: снимаем флаг и
+      // прогоняем её заново (она же вернёт заголовки групп).
+      tabsBox.querySelectorAll(':scope > .admin-tab-group-label').forEach((el) => el.remove());
+      adminNavRemoveRestLabel(tabsBox);
+      delete tabsBox.dataset.grouped;
+      applyGroupedAdminTabs();
+    }
+    applyAdminNavLayout();
+    adminNavQueueSave();
+    adminNavSetStatus('Заводской порядок возвращён.');
+  };
+
+  /* Клик по ⭐/👁 — мгновенно локально, база догоняет фоном. */
+  function adminNavToggleFlag(key, field) {
+    const layout = adminNavLayout();
+    const list = layout[field];
+    const idx = list.indexOf(key);
+    if (idx >= 0) list.splice(idx, 1);
+    else list.push(key);
+    // Закрепление и скрытие взаимоисключающи — иначе «избранное» невидимо.
+    if (field === 'pinned' && list.includes(key)) {
+      const hIdx = layout.hidden.indexOf(key);
+      if (hIdx >= 0) layout.hidden.splice(hIdx, 1);
+    }
+    if (field === 'hidden' && list.includes(key)) {
+      const pIdx = layout.pinned.indexOf(key);
+      if (pIdx >= 0) layout.pinned.splice(pIdx, 1);
+    }
+    if (!layout.order.length) adminNavCaptureOrder();
+    applyAdminNavLayout();
+    adminNavQueueSave();
+  }
+
+  /* ── Перетаскивание мышью ────────────────────────────────────────────── */
+  // Держим сам элемент, а не ключ: искать его заново по селектору лишнее и
+  // ломается на неуникальных ключах.
+  let _adminNavDragEl = null;
+
+  function adminNavClearDropMarks() {
+    document.querySelectorAll('.tabs .tab.is-nav-drop-before, .tabs .tab.is-nav-drop-after')
+      .forEach((el) => el.classList.remove('is-nav-drop-before', 'is-nav-drop-after'));
+  }
+
+  function adminNavMoveElement(dragEl, targetEl, before) {
+    const parent = dragEl.parentElement;
+    if (!parent || dragEl === targetEl) return;
+    parent.insertBefore(dragEl, before ? targetEl : targetEl.nextSibling);
+    adminNavCaptureOrder();
+    // Перетащенный раздел наследует зону, в которую его положили: если он
+    // оказался среди избранных — становится избранным, и наоборот.
+    const layout = adminNavLayout();
+    const key = dragEl.dataset.navKey || '';
+    const targetPinned = targetEl.dataset.navPinned === '1';
+    const isPinned = layout.pinned.includes(key);
+    if (layout.pinned.length) {
+      if (targetPinned && !isPinned) layout.pinned.push(key);
+      if (!targetPinned && isPinned) layout.pinned.splice(layout.pinned.indexOf(key), 1);
+    }
+    applyAdminNavLayout();
+    adminNavQueueSave();
+  }
+
+  /* ── Клавиатура: Space/Enter «берёт» раздел, стрелки двигают ─────────── */
+  let _adminNavGrabbedEl = null;
+
+  function adminNavClearGrab() {
+    _adminNavGrabbedEl = null;
+    document.querySelectorAll('.tabs .tab.is-nav-grabbed').forEach((el) => {
+      el.classList.remove('is-nav-grabbed');
+      el.setAttribute('aria-grabbed', 'false');
+    });
+  }
+
+  function adminNavGrab(tabEl) {
+    adminNavClearGrab();
+    _adminNavGrabbedEl = tabEl;
+    tabEl.classList.add('is-nav-grabbed');
+    tabEl.setAttribute('aria-grabbed', 'true');
+    adminNavSetStatus('Раздел взят. Стрелки ↑↓ — двигать, Enter — положить, Esc — отменить.');
+  }
+
+  function adminNavStepGrabbed(dir) {
+    const tabsBox = document.querySelector('.tabs');
+    const el = _adminNavGrabbedEl;
+    if (!tabsBox || !el || !el.isConnected) return;
+    // Соседи среди видимых в текущем режиме плиток (скрытые в правке видны).
+    const sibs = Array.from(tabsBox.querySelectorAll(':scope > .tab'))
+      .filter((n) => n === el || n.offsetParent !== null || _adminNavEditMode);
+    const idx = sibs.indexOf(el);
+    const target = sibs[idx + dir];
+    if (!target) return;
+    adminNavMoveElement(el, target, dir < 0);
+    el.focus({ preventScroll: false });
+  }
+
+  function setupAdminNavLayout() {
+    const tabsBox = document.querySelector('.tabs');
+    if (!tabsBox || tabsBox.dataset.navWired === 'true') return;
+    tabsBox.dataset.navWired = 'true';
+
+    // Кнопки ⭐/👁 внутри плитки не должны переключать раздел.
+    tabsBox.addEventListener('click', (event) => {
+      const actBtn = event.target?.closest?.('.admin-nav-act');
+      if (!actBtn) return;
+      event.preventDefault();
+      event.stopPropagation();
+      const tabEl = actBtn.closest('.tab');
+      const key = tabEl?.dataset.navKey || '';
+      if (!key) return;
+      adminNavToggleFlag(key, actBtn.dataset.navAct === 'pin' ? 'pinned' : 'hidden');
+    }, true);
+
+    tabsBox.addEventListener('dragstart', (event) => {
+      if (!_adminNavEditMode) return;
+      const tabEl = event.target?.closest?.('.tab');
+      if (!tabEl) return;
+      _adminNavDragEl = tabEl;
+      tabEl.classList.add('is-nav-dragging');
+      try {
+        event.dataTransfer.effectAllowed = 'move';
+        event.dataTransfer.setData('text/plain', tabEl.dataset.navKey || 'section');
+      } catch (_) { /* Safari бывает капризен с dataTransfer */ }
+    });
+
+    tabsBox.addEventListener('dragover', (event) => {
+      if (!_adminNavEditMode || !_adminNavDragEl) return;
+      const tabEl = event.target?.closest?.('.tab');
+      if (!tabEl || tabEl === _adminNavDragEl) return;
+      event.preventDefault();
+      const rect = tabEl.getBoundingClientRect();
+      const before = event.clientY < rect.top + rect.height / 2;
+      adminNavClearDropMarks();
+      tabEl.classList.add(before ? 'is-nav-drop-before' : 'is-nav-drop-after');
+    });
+
+    tabsBox.addEventListener('drop', (event) => {
+      if (!_adminNavEditMode || !_adminNavDragEl) return;
+      const tabEl = event.target?.closest?.('.tab');
+      if (!tabEl) return;
+      event.preventDefault();
+      const rect = tabEl.getBoundingClientRect();
+      const before = event.clientY < rect.top + rect.height / 2;
+      const dragEl = _adminNavDragEl;
+      adminNavClearDropMarks();
+      if (dragEl && dragEl !== tabEl) adminNavMoveElement(dragEl, tabEl, before);
+    });
+
+    tabsBox.addEventListener('dragend', () => {
+      _adminNavDragEl = null;
+      adminNavClearDropMarks();
+      tabsBox.querySelectorAll('.tab.is-nav-dragging').forEach((el) => el.classList.remove('is-nav-dragging'));
+    });
+
+    tabsBox.addEventListener('keydown', (event) => {
+      if (!_adminNavEditMode) return;
+      const tabEl = event.target?.closest?.('.tab');
+      if (!tabEl) return;
+      const key = event.key;
+      if (key === ' ' || key === 'Spacebar' || key === 'Enter') {
+        event.preventDefault();
+        event.stopPropagation();
+        if (_adminNavGrabbedEl === tabEl) {
+          adminNavClearGrab();
+          adminNavSetStatus('Раздел на месте.');
+        } else {
+          adminNavGrab(tabEl);
+        }
+        return;
+      }
+      if (key === 'Escape' && _adminNavGrabbedEl) {
+        event.preventDefault();
+        adminNavClearGrab();
+        adminNavSetStatus('Перенос отменён.');
+        return;
+      }
+      if ((key === 'ArrowUp' || key === 'ArrowDown') && _adminNavGrabbedEl) {
+        event.preventDefault();
+        adminNavStepGrabbed(key === 'ArrowUp' ? -1 : 1);
+      }
+    });
+
+    // Мгновенный первый кадр: раскладываем из кэша до ответа сети.
+    const cached = adminNavReadCache();
+    if (cached) window._adminNavLayout = cached;
+    applyAdminNavLayout();
+  }
+
+  /* ── Сохранение: дебаунс + защита от гонок (поздний ответ не затирает) ── */
+  function adminNavQueueSave() {
+    const layout = adminNavLayout();
+    layout.rev = (layout.rev || 0) + 1;
+    adminNavWriteCache(layout);
+    if (_adminNavSaveTimer) clearTimeout(_adminNavSaveTimer);
+    _adminNavSaveTimer = setTimeout(() => {
+      _adminNavSaveTimer = 0;
+      void adminNavSaveToServer();
+    }, 1200);
+  }
+
+  async function adminNavSaveToServer() {
+    if (typeof setDoc !== 'function' || typeof db === 'undefined') return;
+    const layout = adminNavLayout();
+    const rev = layout.rev || 0;
+    _adminNavSaveRev = rev;
+    const snapshot = { order: [...layout.order], pinned: [...layout.pinned], hidden: [...layout.hidden], rev };
+    try {
+      const who = (window._adminEmail
+        || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email)
+        || 'admin');
+      await setDoc(doc(db, 'admin_config', ADMIN_NAV_LAYOUT_DOC), {
+        ...snapshot, updatedAt: Date.now(), updatedBy: who,
+      }, { merge: true });
+      // Поздний ответ на устаревшую версию не должен ничего сообщать.
+      if (_adminNavSaveRev !== rev) return;
+      adminNavSetStatus('Порядок сохранён — он подхватится на всех устройствах.');
+    } catch (e) {
+      adminNavSetStatus('Не удалось сохранить в базу: ' + (e?.message || e) + '. Порядок остался в этом браузере.');
+    }
+  }
+
+  /* Одно чтение за заход, после авторизации. Серверная версия побеждает
+     только если мы не успели ничего изменить локально (rev не вырос). */
+  window.loadAdminNavLayout = async function loadAdminNavLayout() {
+    if (typeof getDoc !== 'function' || typeof db === 'undefined') return;
+    if (window._adminNavLayoutLoaded) return;
+    window._adminNavLayoutLoaded = true;
+    try {
+      const snap = await getDoc(doc(db, 'admin_config', ADMIN_NAV_LAYOUT_DOC));
+      if (!snap.exists()) return;
+      const remote = adminNavNormalizeLayout(snap.data());
+      const local = adminNavLayout();
+      if ((local.rev || 0) > (remote.rev || 0)) return;
+      window._adminNavLayout = remote;
+      adminNavWriteCache(remote);
+      applyAdminNavLayout();
+    } catch (_) {
+      // Нет прав/сети — работаем на локальном кэше, молча.
+    }
+  };
 
   function decodeAdminMojibake(value) {
     const text = String(value || '');
@@ -18766,6 +19491,7 @@
       setupAdminOverviewActions();
       setupAdminHashRouting();
       setupAdminTextCleanup();
+      setupAdminNavLayout();
       setupAdminStateCompaction();
     }, { once: true });
   } else {
@@ -18773,6 +19499,7 @@
     setupAdminOverviewActions();
     setupAdminHashRouting();
     setupAdminTextCleanup();
+    setupAdminNavLayout();
     setupAdminStateCompaction();
   }
 

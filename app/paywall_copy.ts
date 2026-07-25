@@ -1111,10 +1111,12 @@ CONTEXT_BENEFITS.intro_ended = [
   { ru: 'Сохрани темп, набранный за пробный период', uk: 'Збережи темп, набраний за пробний період', es: 'Mantén el ritmo que lograste en la prueba', 'pt-BR': 'Mantenha o ritmo que você ganhou no teste', vi: 'Giữ nhịp bạn đã có trong thời gian dùng thử', id: 'Pertahankan ritme yang kamu dapat saat masa coba', tr: 'Deneme sürecinde kazandığın ritmi koru', pl: 'Zachowaj tempo zdobyte w okresie próbnym' },
 ];
 
+// зачем: выгоды привязаны к моменту level_up — что конкретно откроется на пути дальше
+// (старый третий пункт обещал «XP-бусты», которых у Plus нет — убран, чтобы не врать).
 CONTEXT_BENEFITS.level_up = [
-  { ru: 'Ты на подъёме — открой всё и не сбавляй темп', uk: 'Ти на підйомі — відкрий усе й не збавляй темп', es: 'Estás en racha: abre todo y no bajes el ritmo', 'pt-BR': 'Você está em alta: abra tudo e não perca o ritmo', vi: 'Bạn đang lên phong độ — mở hết và giữ nhịp', id: 'Kamu sedang naik: buka semua dan jaga ritme', tr: 'Yükseliştesin — her şeyi aç ve hızını düşürme', pl: 'Jesteś na fali — otwórz wszystko i nie zwalniaj' },
-  { ru: 'Следующие уровни без барьеров и ожиданий', uk: 'Наступні рівні без бар\'єрів і очікувань', es: 'Los siguientes niveles sin barreras ni esperas', 'pt-BR': 'Os próximos níveis sem barreiras nem esperas', vi: 'Các cấp tiếp theo không rào cản, không chờ đợi', id: 'Level berikutnya tanpa hambatan dan menunggu', tr: 'Sonraki seviyeler engelsiz ve beklemesiz', pl: 'Kolejne poziomy bez barier i czekania' },
-  { ru: 'XP-бусты и больше пользы с каждой сессии', uk: 'XP-бусти й більше користі з кожної сесії', es: 'Bonus de XP y más valor en cada sesión', 'pt-BR': 'Boosts de XP e mais valor por sessão', vi: 'Boost XP và mỗi phiên học có ích hơn', id: 'Boost XP dan manfaat lebih besar tiap sesi', tr: 'XP boostları ve her seanstan daha fazla fayda', pl: 'Boosty XP i więcej wartości z każdej sesji' },
+  { ru: 'Все уроки твоего уровня — открыты сразу', uk: 'Усі уроки твого рівня — відкриті одразу', es: 'Todas las lecciones de tu nivel, abiertas ya', 'pt-BR': 'Todas as lições do seu nível, abertas já', vi: 'Mọi bài học của cấp bạn mở ngay', id: 'Semua pelajaran levelmu langsung terbuka', tr: 'Seviyendeki tüm dersler hemen açık', pl: 'Wszystkie lekcje twojego poziomu od razu otwarte' },
+  { ru: 'Энергия не заканчивается', uk: 'Енергія не закінчується', es: 'La energía no se acaba', 'pt-BR': 'A energia não acaba', vi: 'Năng lượng không cạn', id: 'Energi tidak habis', tr: 'Enerji bitmez', pl: 'Energia się nie kończy' },
+  { ru: 'Тренировки без дневных пауз', uk: 'Тренування без денних пауз', es: 'Entrenamientos sin pausas diarias', 'pt-BR': 'Treinos sem pausas diárias', vi: 'Luyện tập không nghỉ theo ngày', id: 'Latihan tanpa jeda harian', tr: 'Günlük ara olmadan antrenman', pl: 'Treningi bez dziennych przerw' },
 ];
 
 CONTEXT_BENEFITS.smart_trainer = [
@@ -1309,9 +1311,9 @@ CONTEXT_BENEFITS_PLANNED.intro_ended = [
 ];
 
 CONTEXT_BENEFITS_PLANNED.level_up = [
-  { 'pt-BR': 'Você está em alta: abra tudo e não perca o ritmo', vi: 'Bạn đang lên phong độ — mở hết và giữ nhịp', id: 'Kamu sedang naik: buka semua dan jaga ritme', tr: 'Yükseliştesin — her şeyi aç ve hızını düşürme', pl: 'Jesteś na fali — otwórz wszystko i nie zwalniaj' },
-  { 'pt-BR': 'Os próximos níveis sem barreiras nem esperas', vi: 'Các cấp tiếp theo không rào cản, không chờ đợi', id: 'Level berikutnya tanpa hambatan dan menunggu', tr: 'Sonraki seviyeler engelsiz ve beklemesiz', pl: 'Kolejne poziomy bez barier i czekania' },
-  { 'pt-BR': 'Boosts de XP e mais valor por sessão', vi: 'Boost XP và mỗi phiên học có ích hơn', id: 'Boost XP dan manfaat lebih besar tiap sesi', tr: 'XP boostları ve her seanstan daha fazla fayda', pl: 'Boosty XP i więcej wartości z każdej sesji' },
+  { 'pt-BR': 'Todas as lições do seu nível, abertas já', vi: 'Mọi bài học của cấp bạn mở ngay', id: 'Semua pelajaran levelmu langsung terbuka', tr: 'Seviyendeki tüm dersler hemen açık', pl: 'Wszystkie lekcje twojego poziomu od razu otwarte' },
+  { 'pt-BR': 'A energia não acaba', vi: 'Năng lượng không cạn', id: 'Energi tidak habis', tr: 'Enerji bitmez', pl: 'Energia się nie kończy' },
+  { 'pt-BR': 'Treinos sem pausas diárias', vi: 'Luyện tập không nghỉ theo ngày', id: 'Latihan tanpa jeda harian', tr: 'Günlük ara olmadan antrenman', pl: 'Treningi bez dziennych przerw' },
 ];
 
 CONTEXT_BENEFITS_PLANNED.smart_trainer = [

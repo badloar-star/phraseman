@@ -21,7 +21,9 @@ import Reanimated, {
 const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) as any;
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+// зачем: «добавить друга» — низкий Bevel-шит на общем каркасе шторок рефералки.
+import ReferralSheetShell from '../../components/referral_sheet_shell';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
 import { glassFill } from '../../components/GlassSurface';
@@ -55,7 +57,7 @@ import {
   normalizeProfileCardPublicFocus,
   normalizeProfileCardTheme,
 } from '../profile_card_system';
-import { stableInitialWindowMetrics, useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 
 // Фаза 4: золото имени владельца карточки V «Легенда» — насыщенное золото + лёгкое
 // свечение. Применяется только в «простой» ветке имени (vip/premium-стили сильнее).
@@ -1792,44 +1794,27 @@ function AddFriendModal({
   ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const searchReady = isFriendSearchReady(codeInput);
   const codeMode = isFriendCodeQuery(codeInput);
-  // Юзер открыл модалку «добавить друга» именно чтобы ввести имя — открываем
-  // клавиатуру сами. Задержка ждёт slide-анимацию pageSheet: без неё фокус на
+  // Юзер открыл шит «добавить друга» именно чтобы ввести имя — открываем
+  // клавиатуру сами. Задержка ждёт выезд шторки (380мс): без неё фокус на
   // iOS теряется и клавиатура не поднимается.
   const searchInputRef = useRef<TextInput>(null);
   useEffect(() => {
     if (!visible) return;
-    const id = setTimeout(() => searchInputRef.current?.focus(), 320);
+    const id = setTimeout(() => searchInputRef.current?.focus(), 420);
     return () => clearTimeout(id);
   }, [visible]);
+  // зачем: владелец (2026-07-25) — «добавить друга» не должен занимать весь экран;
+  // низкий выезжающий шит в стиле Bevel вместо pageSheet-модалки. Каркас общий
+  // с шитами рефералки (drag-to-dismiss, подложка, грабер).
   return (
-    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
-      <SafeAreaProvider initialMetrics={stableInitialWindowMetrics}>
-        <ScreenGradient forceFullBleed artBackdrop="friends">
-          <SafeAreaView style={{ flex: 1 }} edges={['top', 'right', 'bottom', 'left']}>
-          <View style={{ flex: 1 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 10 }}>
-            <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
-              {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
-            </Text>
-            <TapScale
-              onPress={onClose}
-              hitSlop={8}
-              style={{
-                width: 44, height: 44, borderRadius: 22,
-                alignItems: 'center', justifyContent: 'center',
-                backgroundColor: chrome.button,
-                borderWidth: 0, borderColor: 'transparent',
-              }}
-            >
-              <Ionicons name="close" size={24} color={t.textMuted} />
-            </TapScale>
-          </View>
-
-          <ScrollView
-            keyboardShouldPersistTaps="handled"
-            decelerationRate="normal"
-            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 28, gap: 14 }}
-          >
+    <ReferralSheetShell
+      visible={visible}
+      onClose={onClose}
+      testID="friends-add-sheet"
+      title={L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
+      closeLabel={L('Закрыть', 'Закрити', 'Cerrar', 'Fechar', 'Đóng', 'Tutup', 'Kapat', 'Zamknij')}
+    >
+      <View style={{ gap: 14, paddingBottom: 4 }}>
             <View
               testID="friends-code-search-card"
               style={{
@@ -1927,12 +1912,8 @@ function AddFriendModal({
                 <Text style={{ color: t.correct, fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
               </View>
             )}
-          </ScrollView>
-          </View>
-          </SafeAreaView>
-        </ScreenGradient>
-      </SafeAreaProvider>
-    </Modal>
+      </View>
+    </ReferralSheetShell>
   );
 }
 

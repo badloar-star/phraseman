@@ -17521,8 +17521,11 @@
       window.location.hash = nextHash;
     }
     document.querySelectorAll('.tab').forEach(t => {
-      const tabId = t.getAttribute('onclick').match(/'([^']+)'/)?.[1];
-      t.classList.toggle('active', tabId === tab);
+      // зачем: среди .tab есть ссылки без onclick (например «V2 →» — обычный
+      // <a href>). Раньше .getAttribute('onclick') отдавал там null и .match()
+      // ронял switchTab целиком — переставали открываться ВСЕ разделы админки.
+      const tabId = (t.getAttribute('onclick') || '').match(/'([^']+)'/)?.[1];
+      t.classList.toggle('active', Boolean(tabId) && tabId === tab);
     });
     document.querySelectorAll('[id^="tab-"].reports-tab, [id^="tab-"].users-tab, [id^="tab-"].analytics').forEach(panel => {
       panel.classList.toggle('active', panel.id === 'tab-' + tab);
@@ -18933,6 +18936,9 @@
     'french-quizzes': 'community',
     'push-notify': 'community',
     clubs: 'arena',
+    // зачем: без записи в этой карте раздел сваливается в «Diagnostics» —
+    // турниры относятся к соревновательной группе, рядом с клубами.
+    tournaments: 'arena',
     'arena-ranks': 'arena',
     'arena-live': 'arena',
     'arena-bets': 'arena',

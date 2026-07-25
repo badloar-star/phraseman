@@ -169,6 +169,28 @@ describe('вкладка «Турниры» в админке', () => {
     expect(html).toContain('Опубликуй хотя бы 50');
   });
 
+  it('switchTab переживает вкладки без onclick — иначе падает вся админка', () => {
+    // Регрессия: среди .tab есть ссылки-кнопки без onclick (например «V2 →» —
+    // обычный <a href>). Код брал getAttribute('onclick').match(...) напрямую,
+    // получал null и ронял switchTab — переставали открываться ВСЕ разделы,
+    // не только «Турниры».
+    // Ни одно обращение к onclick не должно вызывать .match() напрямую:
+    // у ссылок-вкладок (<a href>) атрибута нет, там null.
+    expect(html).not.toMatch(/getAttribute\(['"]onclick['"]\)\.match/);
+
+    // Конкретно в switchTab — защита обязана быть на месте.
+    const switchTabStart = html.indexOf('window.switchTab = function');
+    expect(switchTabStart).toBeGreaterThan(0);
+    const switchTabBody = html.slice(switchTabStart, switchTabStart + 1500);
+    expect(switchTabBody).toContain("(t.getAttribute('onclick') || '')");
+  });
+
+  it('раздел отнесён к соревновательной группе, а не к диагностике', () => {
+    const start = html.indexOf('const ADMIN_TAB_GROUPS');
+    const groups = html.slice(start, start + 2600);
+    expect(groups).toMatch(/tournaments:\s*'arena'/);
+  });
+
   it('разметка вкладки следует правилам владельца', () => {
     const start = html.indexOf('<div id="tab-tournaments"');
     const end = html.indexOf('<!-- REFERRALS TAB -->');

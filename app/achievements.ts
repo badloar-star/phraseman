@@ -3125,7 +3125,34 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
     }
 
     if (justUnlocked.length > 0) {
-      await saveStates(states, eventStudyTarget);
+      // зачем: _achievementLock (локальная цепочка промисов этого модуля) и withStorageLock
+      // (глобальный мьютекс storage_mutex) — ДВА независимых замка над одним хранилищем.
+      // claimAchievementShardReward/markAchievementsNotified пишут под вторым, а этот путь
+      // писал вообще без него: между чтением states (500 строк выше) и записью успевал
+      // пройти claim, и его shardClaimed затирался целиком — награда снова показывалась как
+      // «забрать», а тост об уже показанном достижении всплывал повторно.
+      // Читать всё под глобальным мьютексом нельзя: между чтением и записью лежит длинная
+      // асинхронная логика, и держать на ней замок, общий с осколками/заданиями/стриками, —
+      // прямой путь к залипанию. Поэтому пишем слиянием: под замком перечитываем свежий
+      // снимок и накатываем на него ТОЛЬКО свои разблокировки, не трогая чужие поля.
+      const unlockedIds = new Set(justUnlocked.map((a) => a.id));
+      await withStorageLock(async () => {
+        const fresh = await loadAchievementStatesForTarget(eventStudyTarget);
+        const freshById = new Map(fresh.map((s) => [s.id, s]));
+        for (const row of states) {
+          if (!unlockedIds.has(row.id)) continue;
+          const current = freshById.get(row.id);
+          if (!current) {
+            freshById.set(row.id, row);
+            continue;
+          }
+          // Разблокировка идемпотентна: если параллельный путь уже проставил unlockedAt,
+          // оставляем более раннюю метку. Остальные поля (shardClaimed, notified) — чужая
+          // зона ответственности, их снимок свежее нашего.
+          if (current.unlockedAt === null) current.unlockedAt = row.unlockedAt;
+        }
+        await saveStates(Array.from(freshById.values()), eventStudyTarget);
+      });
       emitAppEvent('achievement_unlocked');
 
       const userName = await AsyncStorage.getItem('user_name').catch(() => null);

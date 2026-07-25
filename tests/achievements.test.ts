@@ -523,3 +523,29 @@ describe('achievements', () => {
     expect(JSON.parse(lessonProgress ?? '[]').filter((x: string) => x === 'correct')).toHaveLength(50);
   });
 });
+
+describe('запись состояния достижений не затирает параллельные правки', () => {
+  // зачем: _achievementLock (локальная цепочка промисов модуля) и withStorageLock
+  // (глобальный мьютекс) — два НЕЗАВИСИМЫХ замка над одним хранилищем. Путь
+  // checkAchievements писал вообще без второго, поэтому параллельный
+  // claimAchievementShardReward терял свой shardClaimed, а уже показанный тост всплывал
+  // повторно. Лечится слиянием: под замком перечитать свежий снимок и накатить только
+  // свои разблокировки. Храповик держит эту форму записи.
+  const source = fs.readFileSync(path.join(process.cwd(), 'app', 'achievements.ts'), 'utf8');
+
+  it('пишет разблокировки через слияние со свежим снимком под общим мьютексом', () => {
+    expect(source).toContain('await withStorageLock(async () => {');
+    expect(source).toContain('const fresh = await loadAchievementStatesForTarget(eventStudyTarget);');
+    expect(source).toContain('await saveStates(Array.from(freshById.values()), eventStudyTarget);');
+  });
+
+  it('не пишет весь массив states напрямую в обход слияния', () => {
+    // Прямой saveStates(states, eventStudyTarget) — ровно тот путь, который затирал
+    // чужие поля. Слияние обязано идти через freshById.
+    expect(source).not.toContain('await saveStates(states, eventStudyTarget);');
+  });
+
+  it('сохраняет более раннюю метку разблокировки при гонке', () => {
+    expect(source).toContain('if (current.unlockedAt === null) current.unlockedAt = row.unlockedAt;');
+  });
+});

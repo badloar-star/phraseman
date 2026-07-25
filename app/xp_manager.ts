@@ -714,6 +714,20 @@ export function peekLastMultiplierBreakdown(): MultiplierBreakdown | null {
   return lastResolvedMultiplierBreakdown;
 }
 
+// зачем: module-scope кэш выше НЕ был привязан ни к какому uid — он просто держал
+// последний резолвленный брейкдаун процесса. При logout/смене аккаунта БЕЗ
+// полного рестарта приложения (общий девайс, QA свитчит тестовые аккаунты)
+// PlayerProfileModal синхронно читал peekLastMultiplierBreakdown() и мгновенно
+// показывал множители ПРЕДЫДУЩЕГО аккаунта как текущие — до того, как фоновый
+// getCurrentMultiplierBreakdown() успевал их молча перезаписать. Это утечка
+// данных одного аккаунта в сессию другого. Вызывается из
+// wipeLocalAccountDataUnsafe (cloud_sync.ts) и signOutCurrentProvider
+// (auth_provider.ts) — единственных точек, через которые проходит любой logout/
+// account-switch/account-delete flow.
+export function resetMultiplierBreakdownCache(): void {
+  lastResolvedMultiplierBreakdown = null;
+}
+
 export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdown> => {
   try {
     const clubM = await getCombinedClubMultiplier();

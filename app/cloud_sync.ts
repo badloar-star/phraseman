@@ -46,6 +46,9 @@ import {
   withRestoreApplicationLock,
 } from './account_generation';
 import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
+// зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
+// в xp_manager.ts (защита от утечки предыдущего аккаунта в PlayerProfileModal).
+import { resetMultiplierBreakdownCache } from './xp_manager';
 import {
   extractExamBestPctOverlay,
   publishExamBestPctOverlay,
@@ -2997,6 +3000,9 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   lastActivityStampAt = 0;
   pendingSync = false;
   resetAppSnapshotForAccountSwitch();
+  // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
+  // XP предыдущего аккаунта (см. комментарий у resetMultiplierBreakdownCache).
+  resetMultiplierBreakdownCache();
   if (syncTimer) {
     clearTimeout(syncTimer);
     syncTimer = null;

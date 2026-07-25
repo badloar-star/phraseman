@@ -2043,6 +2043,16 @@ export async function signOutCurrentProvider(): Promise<void> {
   // никогда не вызывается заново — а currentUser уже null. Любые последующие
   // Firestore writes падают с PERMISSION_DENIED до перезапуска приложения.
   try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
+  // зачем: signOutCurrentProvider — единственная точка, через которую проходят
+  // ВСЕ пути выхода (явный logout, смена аккаунта, account-delete, recovery-
+  // mismatch), включая те, что не доходят до wipeLocalAccountData. Сбрасываем
+  // здесь же — иначе на recovery-пути (rejectRecoveryProviderMismatch) кэш
+  // множителей предыдущего провайдера мог пережить signOut и утечь в
+  // PlayerProfileModal следующего вошедшего аккаунта.
+  try {
+    const { resetMultiplierBreakdownCache } = await import('./xp_manager');
+    resetMultiplierBreakdownCache();
+  } catch { /* ignore */ }
   logAuthEvent('auth_signout');
 }
 

@@ -3,7 +3,6 @@ import {
   Animated as RNAnim,
   AppState,
   BackHandler,
-  type DimensionValue,
   InteractionManager,
   LayoutChangeEvent,
   ScrollView,
@@ -39,6 +38,7 @@ import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
+import { ENABLE_DEV_TOOLS } from './config';
 import GoldBevel from '../components/GoldBevel';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import CompassBevel from '../components/CompassBevel';
@@ -63,6 +63,7 @@ import {
   packDescriptionForInterface,
   packTitleForInterface,
   peekWarmMarketplacePacks,
+  peekWarmOwnedPackIds,
   type FlashcardMarketPack,
 } from './flashcards/marketplace';
 import { packTileImageForPack } from './flashcards/packMarketplaceIcons';
@@ -141,92 +142,12 @@ function isPaywallAtmosphereMode(mode: ThemeMode): boolean {
   return mode === 'dark' || false || mode === 'gold';
 }
 
-type Blob = {
-  w: number;
-  h: number;
-  r: number;
-  color: string;
-  top?: DimensionValue;
-  left?: DimensionValue;
-  right?: DimensionValue;
-  bottom?: DimensionValue;
-};
-
 type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
-function ShopParallaxBlobs({ themeMode }: { themeMode: ThemeMode }) {
-  const p0 = useRef(new RNAnim.Value(0)).current;
-  const p1 = useRef(new RNAnim.Value(0)).current;
-  const p2 = useRef(new RNAnim.Value(0)).current;
-
-  useEffect(() => {
-    const m = (v: RNAnim.Value, d: number) =>
-      RNAnim.loop(
-        RNAnim.sequence([RNAnim.timing(v, { toValue: 1, duration: d, useNativeDriver: true }), RNAnim.timing(v, { toValue: 0, duration: d, useNativeDriver: true })]),
-      );
-    const a0 = m(p0, 10000);
-    const a1 = m(p1, 13500);
-    const a2 = m(p2, 11800);
-    a0.start();
-    a1.start();
-    a2.start();
-    return () => {
-      a0.stop();
-      a1.stop();
-      a2.stop();
-    };
-  }, [p0, p1, p2]);
-
-  const isDark = isPaywallAtmosphereMode(themeMode);
-  const B: Blob[] = isDark
-    ? [
-        { w: 200, h: 200, r: 100, top: '4%' as const, left: '-10%' as const, color: 'rgba(75, 95, 55,0.32)' },
-        { w: 170, h: 170, r: 85, top: '32%' as const, right: '-6%' as const, color: 'rgba(55, 70, 48,0.3)' },
-        { w: 150, h: 150, r: 75, bottom: '6%' as const, left: '14%' as const, color: 'rgba(60, 78, 52,0.28)' },
-      ]
-    : [
-        { w: 200, h: 200, r: 100, top: '4%' as const, left: '-10%' as const, color: 'rgba(0,118,192,0.12)' },
-        { w: 170, h: 170, r: 85, top: '32%' as const, right: '-6%' as const, color: 'rgba(255,150,200,0.1)' },
-        { w: 150, h: 150, r: 75, bottom: '6%' as const, left: '14%' as const, color: 'rgba(0,118,192,0.1)' },
-      ];
-
-  const s0 = p0.interpolate({ inputRange: [0, 1], outputRange: [-12, 22] });
-  const s0y = p0.interpolate({ inputRange: [0, 1], outputRange: [6, -14] });
-  const s1 = p1.interpolate({ inputRange: [0, 1], outputRange: [16, -18] });
-  const s1y = p1.interpolate({ inputRange: [0, 1], outputRange: [-8, 14] });
-  const s2 = p2.interpolate({ inputRange: [0, 1], outputRange: [-9, 14] });
-  const s2y = p2.interpolate({ inputRange: [0, 1], outputRange: [8, -10] });
-
-  const tr = [
-    [{ translateX: s0 }, { translateY: s0y }],
-    [{ translateX: s1 }, { translateY: s1y }],
-    [{ translateX: s2 }, { translateY: s2y }],
-  ];
-
-  return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill} collapsable={false}>
-      {B.map((b, i) => (
-        <RNAnim.View
-          key={`blob_${i}`}
-          style={[
-            {
-              position: 'absolute',
-              top: b.top,
-              left: b.left,
-              right: b.right,
-              bottom: b.bottom,
-              width: b.w,
-              height: b.h,
-              borderRadius: b.r,
-              backgroundColor: b.color,
-            },
-            { transform: tr[i]! },
-          ]}
-        />
-      ))}
-    </View>
-  );
-}
+// зачем: владелец попросил убрать декоративные плавающие "блобы"-подложку за
+// контентом магазина (ShopParallaxBlobs) — чисто орнамент, не влияет на функциональность.
+// Компонент и его рендер убраны; isPaywallAtmosphereMode оставлен — используется ниже
+// для расчёта цветов карточек паков.
 
 function PulsingShardFrame({
   width: fw,
@@ -622,7 +543,14 @@ export default function ShardsShopScreen() {
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(() =>
     officialCardPacksEnabled ? peekWarmMarketplacePacks(studyTarget, lang) ?? reserveBundledMarketPacks(studyTarget, lang) : [],
   );
-  const [ownedPackIds, setOwnedPackIds] = useState<string[]>([]);
+  // зачем: раньше ownedPackIds стартовал с [] и все карточки паков на вкладке «Карточки»
+  // мигали «не куплено», пока не приходил ответ loadAccessiblePackIds — теперь сеем
+  // синхронно из peekWarmOwnedPackIds (in-memory зеркало последнего чтения AsyncStorage
+  // в этой сессии приложения), а ownedResolved держит true/false: знаем ли мы уже
+  // достоверный owned-статус (иначе рендер паков дальше держится за cardMarketLoading).
+  const [ownedPackIds, setOwnedPackIds] = useState<string[]>(() => peekWarmOwnedPackIds(studyTarget) ?? []);
+  const ownedResolvedRef = useRef(peekWarmOwnedPackIds(studyTarget) != null);
+  const [ownedResolved, setOwnedResolved] = useState<boolean>(() => ownedResolvedRef.current);
   /** true только при первом запросе списка наборов (вкладка «Карточки»); вкладка «Осколки» не ждёт этот сетевой round-trip. */
   const [cardMarketLoading, setCardMarketLoading] = useState(false);
   const [buyingShardPackId, setBuyingShardPackId] = useState<string | null>(null);
@@ -676,7 +604,10 @@ export default function ShardsShopScreen() {
       .map((p) => `${p.id}:${p.priceShards}:${p.cardCount}:${p.updatedAt}:${p.listingStatus ?? ''}`)
       .join('|');
   const marketPacksFingerprintRef = useRef<string>(computeMarketFingerprint(marketPacks));
-  const ownedFingerprintRef = useRef<string>('');
+  // зачем: сид тем же значением, что и initial state ownedPackIds (peekWarmOwnedPackIds) —
+  // если warm-кэш уже содержал owned-список, первый успешный fetch с тем же результатом
+  // не должен триггерить лишний setOwnedPackIds (fingerprint совпадёт).
+  const ownedFingerprintRef = useRef<string>([...(peekWarmOwnedPackIds(studyTarget) ?? [])].sort().join('|'));
   /** 30s throttle на Firestore-обновления (force=true для after-purchase refresh). */
   const lastCardMarketFetchRef = useRef<number>(0);
 
@@ -688,6 +619,7 @@ export default function ShardsShopScreen() {
       ownedFingerprintRef.current = '';
       cardMarketFetchedOnce.current = true;
       setCardMarketLoading(false);
+      setOwnedResolved(true);
       return;
     }
     const now = Date.now();
@@ -714,6 +646,10 @@ export default function ShardsShopScreen() {
         ownedFingerprintRef.current = nextOwnedFp;
         setOwnedPackIds(owned);
       }
+      // зачем: помечаем owned-статус достоверным ТОЛЬКО после успешного разрешения
+      // loadAccessiblePackIds — иначе (allSettled rejected) держим прежний рендер-гейт,
+      // чтобы не мигнуть "не куплено" по неудачному запросу.
+      if (ownedRes.status === 'fulfilled') setOwnedResolved(true);
       cardMarketFetchedOnce.current = true;
     } catch {
       const reserve = reserveBundledMarketPacks(studyTarget, lang);
@@ -1318,7 +1254,6 @@ export default function ShardsShopScreen() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
-        <ShopParallaxBlobs themeMode={themeMode} />
         <ContentWrap>
           {/** width: 100% — инакше на Android з zIndex/elevation ряд табів міг зхлопуватись по висоті */}
           <View style={{ zIndex: 2, elevation: 4, width: '100%' }}>
@@ -1479,7 +1414,10 @@ export default function ShardsShopScreen() {
                 </View>
               );
             })}
-            {/* Вход на «Биржу» — обмен монет на звёзды (спека §6). */}
+            {/* Вход на «Биржу» — обмен монет на звёзды (спека §6).
+                зачем: фича скрыта из публичной сборки по решению владельца, но код/маршрут
+                остаются рабочими для dev/QA — тот же флаг, что и остальные dev-only входы. */}
+            {ENABLE_DEV_TOOLS && (
             <View style={{ minWidth: 0, minHeight: 48, justifyContent: 'center' }}>
               <PressableScale
                 onPress={() => router.push('/coin_exchange' as any)}
@@ -1529,6 +1467,7 @@ export default function ShardsShopScreen() {
                 </View>
               </PressableScale>
             </View>
+            )}
           </View>
           </View>
 
@@ -1593,7 +1532,13 @@ export default function ShardsShopScreen() {
                     }}
                   >
                   {marketPacks.map((pack) => {
-                    const owned = ownedPackIds.includes(pack.id);
+                    // зачем: пока owned-статус не подтверждён (ownedResolved=false — ни warm-кэш,
+                    // ни fetch ещё не отдали ответ), НЕ считаем пак «не куплен» — раньше здесь
+                    // всегда было ownedPackIds.includes(...) с [] по умолчанию, из-за чего все
+                    // карточки на миг показывали «не куплено», а через доли секунды перекрашивались
+                    // в «куплено». Теперь до resolve owned трактуем как «неизвестно» = не owned-purchased UI,
+                    // но и не блокируем повторный тап (buyingShardPackId разрулит гонки).
+                    const owned = ownedResolved && ownedPackIds.includes(pack.id);
                     const busy = buyingShardPackId === pack.id;
                     const title = packTitleForInterface(pack, lang);
                     const desc = packDescriptionForInterface(pack, lang);

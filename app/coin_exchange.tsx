@@ -11,6 +11,7 @@ import { useRouter } from 'expo-router';
 // зачем: голый router.back() крашит Android/Fabric при teardown — контракт
 // navigation_back_underlay_contract требует safeRouterBack (честный replace).
 import { safeRouterBack } from './navigation_back';
+import { ENABLE_DEV_TOOLS } from './config';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
@@ -73,6 +74,14 @@ export default function CoinExchangeScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { insets } = useScreen();
+
+  // зачем: «Биржа» скрыта из публичной сборки владельцем — код/маршрут остаются рабочими
+  // для dev/QA, но прямой переход по ссылке в проде должен просто вернуть назад.
+  useEffect(() => {
+    if (!ENABLE_DEV_TOOLS) {
+      safeRouterBack(router);
+    }
+  }, [router]);
 
   // Первый кадр — из кэша (Performance Bible: никакого полноэкранного спиннера).
   const [quote, setQuote] = useState<CoinExchangeQuote | null>(() => peekCoinExchangeQuote());

@@ -232,6 +232,32 @@
     return Number.isSafeInteger(value) && value >= SOCIAL_PROOF_COUNT ? value : SOCIAL_PROOF_COUNT;
   }
 
+  // зачем: владельцу мешала двухфазная анимация счётчика — сначала докрутка до
+  // заглушки 124 000, пауза, потом второй прогон до серверного числа. Храним
+  // последнее реальное значение и целимся сразу в него: один плавный заход.
+  const COMPLETED_CACHE_KEY = 'english_test_completed_cache_v1';
+  let bestCompleted = SOCIAL_PROOF_COUNT;
+  let completedFetchedAt = 0;
+
+  function hydrateCompletedCache() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(COMPLETED_CACHE_KEY));
+      if (Number.isSafeInteger(parsed?.value)) bestCompleted = normalizePublicCompleted(parsed.value);
+    } catch (e) {
+      // Заглушка SOCIAL_PROOF_COUNT остаётся отправной точкой.
+    }
+  }
+
+  function rememberCompleted(value) {
+    bestCompleted = normalizePublicCompleted(value);
+    completedFetchedAt = Date.now();
+    try {
+      localStorage.setItem(COMPLETED_CACHE_KEY, JSON.stringify({ value: bestCompleted, at: completedFetchedAt }));
+    } catch (e) {
+      // Значение в памяти страницы — достаточно для этой сессии.
+    }
+  }
+
   async function fetchPublicCompleted() {
     try {
       const response = await fetch(API_BASE, {
@@ -287,11 +313,19 @@
   }
 
   function refreshLandingCounter(node) {
+    // Свежее значение (моложе 30с) не перезапрашиваем — и дешевле по функциям,
+    // и счётчик не дёргается вторым прогоном при возврате на лендинг.
+    if (Date.now() - completedFetchedAt < COUNTER_REFRESH_MS) {
+      if (isLandingCounterActive(node)) applyCompletedCount(node, bestCompleted);
+      return Promise.resolve();
+    }
     if (landingCounterRequest?.node === node) return landingCounterRequest.promise;
     const request = { node, promise: null };
     request.promise = (async () => {
       const completed = await fetchPublicCompleted();
-      if (completed !== null && isLandingCounterActive(node)) applyCompletedCount(node, completed);
+      if (completed === null) return;
+      rememberCompleted(completed);
+      if (isLandingCounterActive(node)) applyCompletedCount(node, bestCompleted);
     })().finally(() => {
       if (landingCounterRequest === request) landingCounterRequest = null;
     });
@@ -545,7 +579,7 @@
     mountView(node);
     hideBrokenBrandIcons(node);
 
-    applyCompletedCount(node, SOCIAL_PROOF_COUNT);
+    applyCompletedCount(node, bestCompleted);
     startLandingCounterRefresh(node);
     void flushCompletionOutbox();
 
@@ -829,6 +863,13 @@
     countUp(node.querySelector('#statAnswered'), result.answered, { delay: 350 });
     countUp(node.querySelector('#statSkipped'), result.skipped, { delay: 450 });
 
+    // зачем: Enter в поле имени = «Создать сертификат», без лишнего тапа по кнопке.
+    node.querySelector('#certName').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        node.querySelector('#certBtn').click();
+      }
+    });
     node.querySelector('#certBtn').addEventListener('click', () => {
       const name = sanitizeName(node.querySelector('#certName').value);
       if (!name) {
@@ -1014,5 +1055,6 @@
   window.addEventListener('online', () => {
     void flushCompletionOutbox();
   });
+  hydrateCompletedCache();
   renderLanding();
 })();

@@ -972,6 +972,11 @@ html, body {
   width: 100%;
   padding: 32px 28px 28px;
   border: 1px solid var(--border);
+  /* зачем: владелец показал скрин — модалка выше экрана, кнопки/темы обрезаны
+     и недоступны. Страховка: не выше вьюпорта, внутренний скролл на крайний случай. */
+  max-height: calc(100vh - 24px);
+  max-height: calc(100dvh - 24px);
+  overflow-y: auto;
 }
 
 .elt-cert-close {
@@ -1059,6 +1064,15 @@ html, body {
   height: 14px;
   border-radius: 50%;
   display: inline-block;
+}
+
+/* зачем: ширина сертификата считается от высоты экрана (аспект 1100:780 ≈ 1.41),
+   чтобы ВСЯ модалка — язык, темы, сертификат, CTA и кнопки — влезала на один экран
+   без скролла. ~400px — бюджет на всё, кроме самого сертификата. */
+.elt-cert-wrap {
+  width: clamp(260px, calc((100vh - 400px) * 1.41), 100%);
+  width: clamp(260px, calc((100dvh - 400px) * 1.41), 100%);
+  margin: 0 auto;
 }
 
 .elt-cert-wrap svg {

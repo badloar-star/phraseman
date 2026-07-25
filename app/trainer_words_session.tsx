@@ -34,13 +34,14 @@ import { statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrom
 import type { ThemeMode } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
+  getCachedDueItems,
   getDueItems,
   getTrainerPremiumItemsForPlanQueue,
   markTrainerResult,
   trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
-import { getCachedPhraseSessionItems, PHRASE_SESSION_LIMIT } from './trainer_practice_hall';
+import { getCachedPhraseSessionItems, PHRASE_SESSION_LIMIT, WORD_SESSION_LIMIT } from './trainer_practice_hall';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
@@ -488,11 +489,27 @@ export default function TrainerWordsSession() {
   }
 
   if (done) {
-    // Цепочка микса: после слов предлагаем фразы (включая арену), если они ещё ждут.
-    const phrasesChain = planTrainerContext.taskId
+    // зачем: симметрично фразовой сессии — сначала проверяем остаток СВОИХ
+    // слов (лимит пачки WORD_SESSION_LIMIT мог обрезать очередь), и только
+    // если слов больше не осталось — предлагаем фразы (включая арену).
+    const moreWordsChain = planTrainerContext.taskId
+      ? []
+      : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
+    const phrasesChain = planTrainerContext.taskId || moreWordsChain.length > 0
       ? []
       : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
-    const nextLabel = phrasesChain.length > 0
+    const nextLabel = moreWordsChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Слова',
+        uk: 'Далі: Слова',
+        es: 'Siguiente: Palabras',
+        'pt-BR': 'A seguir: Palavras',
+        vi: 'Tiếp: Từ vựng',
+        id: 'Lanjut: Kata',
+        tr: 'Sıradaki: Kelimeler',
+        pl: 'Dalej: Słowa',
+      })} · ${moreWordsChain.length}`
+      : phrasesChain.length > 0
       ? `${triLang(lang, {
         ru: 'Дальше: Фразы',
         uk: 'Далі: Фрази',
@@ -504,6 +521,7 @@ export default function TrainerWordsSession() {
         pl: 'Dalej: Frazy',
       })} · ${phrasesChain.length}`
       : undefined;
+    const nextRoute = moreWordsChain.length > 0 ? '/trainer_words_session' : '/trainer_phrases_session';
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -518,7 +536,7 @@ export default function TrainerWordsSession() {
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
-              onNext={nextLabel ? () => { hapticTap(); router.replace('/trainer_phrases_session' as any); } : undefined}
+              onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
             />
           </ContentWrap>
         </SafeAreaView>

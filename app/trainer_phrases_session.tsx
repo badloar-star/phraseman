@@ -57,6 +57,7 @@ import {
 import {
   buildSessionWordBank,
   buildTrainerSessionDeck,
+  getCachedPhraseSessionItems,
   getPhraseSessionItems,
   mergePhraseSessionItems,
   normalizeGapToken,
@@ -807,11 +808,28 @@ export default function TrainerPhrasesSession() {
   }
 
   if (done) {
-    // Цепочка микса: после фраз (и арены) предлагаем слова, если они ещё ждут.
-    const wordsChain = planTrainerContext.taskId
+    // зачем: раньше после лимитированной пачки фраз сразу предлагали слова,
+    // даже если фраз ещё много осталось — юзер видел «прошёл фразы → слова →
+    // снова фразы» вместо того, чтобы сначала добить фразовую очередь целиком.
+    // Сначала проверяем остаток СВОЕЙ очереди, и только если она пуста — слова.
+    const morePhrasesChain = planTrainerContext.taskId
+      ? []
+      : getCachedPhraseSessionItems(PHRASE_SESSION_LIMIT, studyTarget, sourceLocale);
+    const wordsChain = planTrainerContext.taskId || morePhrasesChain.length > 0
       ? []
       : getCachedDueItems('words', WORD_SESSION_LIMIT, studyTarget, sourceLocale);
-    const nextLabel = wordsChain.length > 0
+    const nextLabel = morePhrasesChain.length > 0
+      ? `${triLang(lang, {
+        ru: 'Дальше: Фразы',
+        uk: 'Далі: Фрази',
+        es: 'Siguiente: Frases',
+        'pt-BR': 'A seguir: Frases',
+        vi: 'Tiếp: Cụm từ',
+        id: 'Lanjut: Frasa',
+        tr: 'Sıradaki: İfadeler',
+        pl: 'Dalej: Frazy',
+      })} · ${morePhrasesChain.length}`
+      : wordsChain.length > 0
       ? `${triLang(lang, {
         ru: 'Дальше: Слова',
         uk: 'Далі: Слова',
@@ -823,6 +841,7 @@ export default function TrainerPhrasesSession() {
         pl: 'Dalej: Słowa',
       })} · ${wordsChain.length}`
       : undefined;
+    const nextRoute = morePhrasesChain.length > 0 ? '/trainer_phrases_session' : '/trainer_words_session';
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
@@ -837,7 +856,7 @@ export default function TrainerPhrasesSession() {
               onDone={() => { hapticTap(); safeRouterBack(router, planTrainerContext.taskId ? '/personal_plan' as any : '/trainer' as any); }}
               onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
               nextLabel={nextLabel}
-              onNext={nextLabel ? () => { hapticTap(); router.replace('/trainer_words_session' as any); } : undefined}
+              onNext={nextLabel ? () => { hapticTap(); router.replace(nextRoute as any); } : undefined}
             />
           </ContentWrap>
         </SafeAreaView>

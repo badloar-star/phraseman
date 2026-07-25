@@ -49,6 +49,7 @@ import { type AllPercentiles } from './leaderboard_stats';
 import { loadLifetimeProfileStats, type LifetimeProfileStats } from './lifetime_profile_stats';
 import { devRandomizeLifetimePathDailyMetrics, loadLifetimeTotalsChartDays, loadWeeklyLearnedCounts, type LifetimeTotalsChartKind, type LifetimeChartDay, type DevLifetimePathRandomSums, } from './stats_daily_breakdown';
 import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from './achievements';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
@@ -1039,6 +1040,13 @@ let wagerCardWarm: {
     shards: number;
     stakes: number[];
 } | null = null;
+/** зачем: achievementCount раньше стартовал с useState(0) и рисовал «Все 0»,
+ * пока loadAchievementStates() (AsyncStorage) не отвечал в useFocusEffect —
+ * тот же класс бага, что и wagerCardWarm выше. Модульный peek запоминает
+ * последнее известное значение между открытиями экрана в рамках сессии
+ * приложения, так что повторные визиты сразу показывают верное число. */
+let achievementCountPeek: number | null = null;
+let recentAchievementIdsPeek: string[] | null = null;
 
 function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = false, pickerOnly = false, onPickerClose }: {
     lang: Lang;
@@ -3143,8 +3151,10 @@ export default function StreakStats() {
     const [giftTimeLeft, setGiftTimeLeft] = useState('');
     const [chainShieldDays, setChainShieldDays] = useState(_sc.chainShieldDays);
     const [, setHadPremiumEver] = useState(_sc.hadPremiumEver);
-    const [achievementCount, setAchievementCount] = useState(0);
-    const [recentAchievementIds, setRecentAchievementIds] = useState<string[]>([]);
+    // зачем: peek-кэш вместо 0 по умолчанию — иначе «Все 0» на каждом открытии
+    // экрана до ответа loadAchievementStates() (см. achievementCountPeek выше).
+    const [achievementCount, setAchievementCount] = useState(() => achievementCountPeek ?? 0);
+    const [recentAchievementIds, setRecentAchievementIds] = useState<string[]>(() => recentAchievementIdsPeek ?? []);
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
     const [freezeNeedShardsModal, setFreezeNeedShardsModal] = useState(false);
@@ -3192,12 +3202,20 @@ export default function StreakStats() {
         void loadAchievementStates()
             .then(states => {
             if (!cancelled) {
-                setAchievementCount(states.filter(s => s.unlockedAt !== null).length);
-                setRecentAchievementIds(recentUnlockedAchievementIds(states, 4));
+                const count = states.filter(s => s.unlockedAt !== null).length;
+                const recentIds = recentUnlockedAchievementIds(states, 4);
+                // зачем: обновляем peek синхронно с state — следующее открытие
+                // экрана в этой сессии сразу стартует с верным числом, без «0».
+                achievementCountPeek = count;
+                recentAchievementIdsPeek = recentIds;
+                setAchievementCount(count);
+                setRecentAchievementIds(recentIds);
             }
         })
             .catch(() => {
-            if (!cancelled) {
+            if (!cancelled && achievementCountPeek === null) {
+                // Настоящей ошибки чтения не прячем только если peek ещё ни разу
+                // не наполнялся — иначе экран откатился бы с верного числа на 0.
                 setAchievementCount(0);
                 setRecentAchievementIds([]);
             }
@@ -3732,6 +3750,19 @@ export default function StreakStats() {
         </View>
       </View>
 
+      {/* зачем: раньше при statsReady=false ScrollView рендерился с opacity:0 —
+          первый кадр был полностью пустым (только шапка), а весь контент
+          «впрыгивал» целиком, когда loadAll() догружался. Держим геометрию
+          загруженного экрана скелетоном (шапка героя, XP-карта, недельный
+          график, ряд достижений), как в app/review.tsx ~1300. */}
+      {!statsReady ? (
+        <View pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, padding: 16, gap: 12 }}>
+          <SkeletonBlock width="100%" height={168} borderRadius={22} />
+          <SkeletonBlock width="100%" height={92} borderRadius={22} />
+          <SkeletonBlock width="100%" height={230} borderRadius={22} />
+          <SkeletonBlock width="100%" height={90} borderRadius={22} />
+        </View>
+      ) : null}
       <BouncyWrap>
       <Reanimated.ScrollView ref={scrollRef} decelerationRate="normal" bounces alwaysBounceVertical overScrollMode="always" pointerEvents={statsReady ? 'auto' : 'none'} style={{ opacity: statsReady ? 1 : 0 }} contentContainerStyle={{ padding: 16 }} showsVerticalScrollIndicator={false} onScroll={onAnimatedScroll} scrollEventThrottle={16}>
         <View style={{ gap: 12 }}>

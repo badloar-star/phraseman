@@ -7,6 +7,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  BackHandler,
   Easing,
   PanResponder,
   Platform,
@@ -1851,6 +1852,19 @@ export default function FlashcardsSwipeScreen() {
     draftRestoreAttemptedRef.current = true;
     safeRouterBack(router, '/flashcards' as any);
   }, [router]);
+
+  // зачем: системный «Назад» на Android уходил мимо exitTraining/safeRouterBack и вёл себя
+  // иначе, чем кнопка выхода — терялся честный стек навигации (navigation_back.ts) и
+  // пометка draftRestoreAttemptedRef, из-за чего при следующем заходе мог всплыть черновик
+  // уже закрытой сессии. Заводим тот же путь, что и у кнопки, по образцу lesson1.tsx.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      exitTraining();
+      return true;
+    });
+    return () => sub.remove();
+  }, [exitTraining]);
 
   const openSettings = useCallback(() => {
     void hapticTap();

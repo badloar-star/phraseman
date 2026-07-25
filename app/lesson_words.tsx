@@ -7,8 +7,10 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  BackHandler,
   Easing,
   InteractionManager,
+  Platform,
   Pressable,
   ScrollView,
   SectionList,
@@ -2706,6 +2708,19 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
   useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
+  // мог оказаться не на экране уроков. Заводим тот же путь выхода, что и у кнопки, по
+  // образцу lesson1.tsx. Возвращаем true: событие обработано, дефолтный выход не нужен.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
+      return true;
+    });
+    return () => sub.remove();
+  }, [router, lessonId]);
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);

@@ -35,7 +35,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  AppState, AppStateStatus, Animated, Dimensions, Easing as SlideEasing, ScrollView,
+  AppState, AppStateStatus, Animated, BackHandler, Dimensions, Easing as SlideEasing, Platform, ScrollView,
   StyleSheet,
   Text, TextInput, TouchableOpacity,
   View,
@@ -722,6 +722,24 @@ export default function ReviewScreen() {
       safeRouterBack(router);
     }
   }, [router]);
+
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), из-за чего после
+  // повторения пользователь мог не вернуться на экран, с которого пришёл, и бейдж
+  // «к повторению» не пересчитывался по focusTick. Модалка энергии перехватывает первым
+  // нажатием, как в lesson1.tsx: сначала закрыть её, а не выходить из сессии.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (noEnergyModalOpen) {
+        onCloseEnergyModal();
+        return true;
+      }
+      safeRouterBack(router);
+      return true;
+    });
+    return () => sub.remove();
+  }, [noEnergyModalOpen, onCloseEnergyModal, router]);
 
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
@@ -1899,7 +1917,10 @@ export default function ReviewScreen() {
                   pl: "Poprawna odpowiedź:",
                 })}
               </Text>
-              <Text style={{ color: t.correct, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '600' }} numberOfLines={isPlanPracticeTask ? 2 : undefined}>
+              {/* зачем: обрезка снята — в режиме плана скролл выключен
+                  (scrollEnabled={!isPlanPracticeTask}), и numberOfLines={2} делал
+                  правильный ответ нечитаемым. Тот же баг, что в lesson1.tsx. */}
+              <Text style={{ color: t.correct, fontSize: isPlanPracticeTask ? f.body : f.bodyLg, fontWeight: '600' }}>
                 {englishRecallSurface(item.phrase)}
               </Text>
             </Animated.View>

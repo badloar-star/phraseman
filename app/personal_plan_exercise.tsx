@@ -13,7 +13,7 @@ import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 // режимов без места на экране и постепенно выпиливается — не использовать в новом коде.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
+import { ActivityIndicator, Animated, BackHandler, Linking, Modal, Platform, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, type TextStyle, type ViewStyle } from 'react-native';
 import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
 import { File } from 'expo-file-system';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -1768,6 +1768,19 @@ export default function PersonalPlanExerciseScreen() {
   const handleExerciseScroll = useCallback((e: any) => {
     fadeScrollY.setValue(e?.nativeEvent?.contentOffset?.y ?? 0);
   }, [fadeScrollY]);
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
+  // мог оказаться не на экране плана. Заводим тот же путь выхода, что и у кнопки, по
+  // образцу lesson1.tsx. Возвращаем true: событие обработано, дефолтный выход не нужен.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      safeRouterBack(router, '/personal_plan');
+      return true;
+    });
+    return () => sub.remove();
+  }, [router]);
+
   const params = useLocalSearchParams();
   const { theme: t, themeMode, f } = useTheme();
   const { studyTarget } = useStudyTarget();

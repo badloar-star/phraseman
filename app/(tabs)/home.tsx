@@ -2585,7 +2585,11 @@ export default function HomeScreen() {
                     <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
                   </Animated.View>
                 </TouchableOpacity>
-                {renderHomeProfileButton()}
+                {/* зачем: владелец попросил поменять местами бюст/профиль и колокольчик —
+                    теперь колокольчик (с бейджем непрочитанных) идёт сразу после осколков,
+                    а аватар/бюст профиля уходит на дальний правый край, где раньше был
+                    колокольчик. onPress/бейдж каждой кнопки не тронуты. */}
+                <NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />
                 <View style={{ flex: 1, minWidth: 0 }} />
                 {/* зачем: хедер сжат с 5 целей до 3 (осколки/профиль/колокольчик) —
                 {/* зачем: хедер — осколки/профиль/видео/колокольчик: владелец вернул
@@ -2606,7 +2610,7 @@ export default function HomeScreen() {
                   </View>
                 )}
                 <LingmanVideosButton />
-                <NotificationCenterButton isHomeTabActive={isHomeOwner} homeFocusTick={focusTick} />
+                {renderHomeProfileButton()}
               </View>
               {/* Анимация начисления осколков */}
               <Animated.Text style={{

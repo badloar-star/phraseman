@@ -2144,6 +2144,14 @@ export default function LessonScreen() {
   const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
+  // зачем: checkAnswer асинхронна и до первого await не поднимала никакого флага, а UI
+  // блокировался только через status === 'playing' — setStatus('result') отрабатывает уже
+  // ПОСЛЕ await, поэтому два быстрых тапа (или тап + тап по фону) успевали пройти оба и
+  // засчитать один ответ дважды: двойной XP, сбитый счётчик серии. Синхронный ref-флаг
+  // закрывает окно так же, как locked.current в lesson_words.tsx и settlingRef в
+  // flashcards_swipe.tsx. Снимается сразу после setStatus('result') — дальше барьером
+  // работает сам статус, поэтому флаг не залипает на путях, минующих goNext.
+  const answerInFlightRef  = useRef(false);
   const lessonExitInFlightRef = useRef(false);
   const lessonAnalyticsKey = `${lessonId}:${lessonStorageId}:${studyTarget}`;
   const lessonAnalyticsKeyRef = useRef(lessonAnalyticsKey);
@@ -2833,12 +2841,20 @@ export default function LessonScreen() {
 
   const checkAnswer = useCallback(async (answer: string) => {
     if (!phrase) return;
+    // зачем: guard СИНХРОННЫЙ и стоит до первого await — иначе два быстрых тапа успевают
+    // войти оба (setStatus('result') отрабатывает только после await, и кнопка, завязанная
+    // на status === 'playing', ещё не успела перерисоваться). Тот же приём, что
+    // locked.current в lesson_words.tsx. Снимается в goNext при возврате в 'playing'.
+    if (answerInFlightRef.current) return;
     // Блокируем ответ если энергия закончилась
     if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0 && bonusEnergyRef.current <= 0) {
       void trackFeatureBlocked('lesson', 'answer', 'no_energy', { lessonId, cellIndex }, 'lesson1');
       showEnergyEmptyFeedbackRef.current();
       return;
     }
+    // Флаг поднимаем ПОСЛЕ проверки энергии: отказ по энергии — не принятый ответ,
+    // пользователь должен иметь возможность повторить попытку после пополнения.
+    answerInFlightRef.current = true;
     const st = studyTargetRef.current;
     const expected = phraseCanonicalAnswer(phrase, st);
     const answerAlts = phraseAnswerAlternatives(phrase, st);
@@ -3170,6 +3186,12 @@ export default function LessonScreen() {
 
     // Сразу показываем результат — НЕ ждать AsyncStorage (await раньше давал 1–3 с задержки UI).
     setStatus('result');
+    // зачем: с этого момента барьером служит сам статус ('result' блокирует и кнопку, и
+    // handleBgTap, и выбор слова), поэтому ref-флаг свою работу сделал и снимается здесь, а
+    // не в goNext. Так он не залипнет ни на одном из путей, где goNext не вызывается:
+    // завершение урока (уход на lesson_complete), ранний выход по isCompletingRef, а также
+    // при исключении в коде ниже — иначе экран навсегда перестал бы принимать ответы.
+    answerInFlightRef.current = false;
 
     // ==================== NEW: Handle to-be hint and encouragement screens ====================
     if (isRight) {
@@ -3373,6 +3395,10 @@ export default function LessonScreen() {
     setCellIndex(nextCell);
 
     stopAudio();
+    // Страховка: флаг уже снят в checkAnswer после setStatus('result'), но goNext вызывается
+    // и по авто-переходу, и вручную — снимаем повторно, чтобы новая фраза гарантированно
+    // принимала ответ даже если сюда пришли по пути, минующему показ результата.
+    answerInFlightRef.current = false;
     setStatus('playing');
     setLessonTeachingNote(null);
     setSelectedWords([]);

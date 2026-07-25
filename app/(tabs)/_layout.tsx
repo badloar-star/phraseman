@@ -336,16 +336,21 @@ const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
 // (layout-анимации уходят на JS-поток — перегрев и фризы уже были больной темой).
 const TAB_CAPSULE_EXIT_SCALE = 0.92;
 const TAB_COLLAPSED_ORB_ENTER_SCALE = 0.9;
-/** Капсула гаснет в первой половине жеста, орб появляется во второй — слои не смешиваются. */
-const TAB_CAPSULE_FADE_OUT_END = 0.45;
-const TAB_ORB_FADE_IN_START = 0.4;
+/** зачем: владелец увидел «мгновенное переключение» вместо анимации — ease-out
+ *  съедал ранний фейд. Капсула теперь видна почти весь жест и ЕДЕТ влево к орбу
+ *  (translateX — движение даёт «сворачивание», как у Bevel), окна фейдов широко
+ *  перекрываются. Это по-прежнему только transform/opacity на нативном драйвере. */
+const TAB_CAPSULE_FADE_OUT_END = 0.8;
+const TAB_ORB_FADE_IN_START = 0.3;
 /** Орб Ø=tabBarHeight (~58): hitSlop добирает цель до комфортных ≥44dp с запасом по краям. */
 const TAB_ORB_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 } as const;
 const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
 const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
 const TAB_SCROLL_DIRECTION_EPSILON = 5;
-const TAB_SCROLL_COLLAPSE_MS = 220;
-const TAB_SCROLL_EXPAND_MS = 260;
+/** 300/340 вместо прежних 220/260: у морфинга с перелётом капсулы движение должно
+ *  успеть прочитаться глазом; разворот чуть дольше схлопывания — возврат мягче ухода. */
+const TAB_SCROLL_COLLAPSE_MS = 300;
+const TAB_SCROLL_EXPAND_MS = 340;
 const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
 const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
@@ -592,6 +597,16 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     extrapolate: 'clamp',
   });
 
+  /* Перелёт капсулы к позиции орба: центр капсулы смещается к левому краю,
+   * пока она гаснет — читается как «бар сворачивается в кружок», не как подмена.
+   * До первого onLayout (tabPillWidth=0) перелёт нулевой — геометрия ещё неизвестна. */
+  const tabCapsuleTravelX = tabPillWidth > 0 ? -((tabPillWidth - tabBarHeight) / 2) : 0;
+  const tabCapsuleTranslateX = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, tabCapsuleTravelX],
+    extrapolate: 'clamp',
+  });
+
   const tabOrbOpacity = tabScrollProgress.interpolate({
     inputRange: [TAB_ORB_FADE_IN_START, 1],
     outputRange: [0, 1],
@@ -664,6 +679,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   shadowColor: t.shadowDark,
                   opacity: tabCapsuleOpacity,
                   transform: [
+                    { translateX: tabCapsuleTranslateX },
                     { scale: tabCapsuleScale },
                     { scale: tabPillPressScale },
                   ],

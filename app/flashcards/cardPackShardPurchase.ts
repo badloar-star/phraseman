@@ -1,6 +1,6 @@
 import { emitAppEvent } from '../events';
 import { logCardPackPurchasedShards } from '../firebase';
-import { getShardsBalance, spendShards } from '../shards_system';
+import { addShardsRaw, getShardsBalance, spendShards } from '../shards_system';
 import { trackCardPackPurchase } from '../user_stats';
 import {
   addOwnedPackId,
@@ -62,8 +62,33 @@ export async function purchaseCardPackWithShards(
     });
     return 'spend_failed';
   }
-  await addOwnedPackId(pack.id, studyTarget);
-  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget);
+  // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): монеты уже списаны строкой выше. Если
+  // выдача пака упадёт (AsyncStorage.setItem бросает при заполненном диске —
+  // saveOwnedPackIds его не ловит), юзер оставался БЕЗ ДЕНЕГ И БЕЗ ПАКА, без
+  // отката. Возвращаем монеты и честно говорим, что покупка не прошла.
+  // Причина 'card_pack_refund' в списке исключений перка — иначе бонус
+  // карточки IV+ начислил бы +5% сверх возврата, и юзер вышел бы в плюс.
+  try {
+    await addOwnedPackId(pack.id, studyTarget);
+  } catch {
+    try {
+      await addShardsRaw(pack.priceShards, 'card_pack_refund');
+    } catch {
+      // Возврат тоже не прошёл — молчать нельзя, но и упасть нельзя.
+      // Баланс сверится с облаком при следующем входе (источник истины там).
+    }
+    const balanceBack = await getShardsBalance().catch(() => balance);
+    emitAppEvent('shards_balance_updated', { balance: balanceBack });
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Набор не удалось сохранить. Монеты возвращены.',
+      messageUk: 'Не вдалося зберегти набір. Монети повернуто.',
+      messageEs: 'No se pudo guardar el pack. Monedas devueltas.',
+    });
+    return 'spend_failed';
+  }
+  // Кэш карточек — не критичен: пак уже в «Моих», список подтянется при входе.
+  await primeMarketplaceBuiltCardsCacheFromOwnedStorage(studyTarget).catch(() => {});
   const nb = await getShardsBalance();
   emitAppEvent('shards_balance_updated', { balance: nb });
   const toastTitleEs =

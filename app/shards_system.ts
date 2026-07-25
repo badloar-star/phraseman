@@ -209,6 +209,10 @@ const PROFILE_CARD_PERK_EXCLUDED_REASONS: ReadonlySet<string> = new Set([
   'streak_wager_win',
   'arena_match_wager_win',
   'club_boost_refund',
+  // зачем: возврат за несостоявшуюся покупку пака — НЕ заработок. Без этой
+  // строки бонус карточки IV+ начислил бы при откате +5% сверх возвращённой
+  // суммы, и юзер выходил бы в плюс от неудачной покупки.
+  'card_pack_refund',
   'release_wave_bonus',
   'global_broadcast_modal',
 ]);

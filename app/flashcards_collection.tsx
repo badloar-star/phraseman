@@ -1192,19 +1192,11 @@ export default function FlashcardsScreen() {
       });
       setIsFlipped(false);
       flipAnim.setValue(0);
-      emitAppEvent(
-        'action_toast',
-        actionToastTri('success', {
-          ru: 'Карточка удалена.',
-          uk: 'Картку видалено.',
-          es: 'Tarjeta eliminada.',
-          'pt-BR': 'Cartão removido.',
-          vi: 'Đã xóa thẻ.',
-          id: 'Kartu dihapus.',
-          tr: 'Kart silindi.',
-          pl: 'Karta usunięta.',
-        }),
-      );
+      // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): тост «Карточка удалена» убран —
+      // он дублировал плашку отмены, которая говорит то же самое И даёт
+      // кнопку «Отменить». Два уведомления об одном действии одновременно
+      // выглядели как сбой. Ошибку удаления по-прежнему показываем тостом:
+      // там плашки отмены не будет.
     } catch {
       emitAppEvent(
         'action_toast',
@@ -1244,8 +1236,16 @@ export default function FlashcardsScreen() {
     clearUndo();
     try {
       if (pending.card.categoryId === 'saved') {
-        // Возвращаем в то же хранилище, откуда удалили.
-        await saveFlashcards([{ ...(pending.card as any) }], studyTarget);
+        // зачем (НАЙДЕНО АУДИТОМ 2026-07-25): saveFlashcards ЗАМЕНЯЕТ весь
+        // список, а не добавляет одну карточку. Раньше сюда передавался массив
+        // из одной карточки — нажатие «Отменить» СТИРАЛО ВСЕ остальные
+        // сохранённые карточки юзера. Читаем актуальный список с диска (там
+        // же withWriteLock, гонки с параллельным удалением исключены) и
+        // возвращаем карточку в него.
+        const current = await loadFlashcards(studyTarget);
+        if (!current.some((c) => c.id === pending.card.id)) {
+          await saveFlashcards([pending.card as unknown as Flashcard, ...current], studyTarget);
+        }
         setSavedCards((prev) => (prev.some((c) => c.id === pending.card.id) ? prev : [pending.card, ...prev]));
       } else if (pending.card.categoryId === 'custom') {
         const restored = [pending.card, ...customCards.filter((c) => c.id !== pending.card.id)];

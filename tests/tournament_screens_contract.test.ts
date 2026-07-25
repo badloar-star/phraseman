@@ -368,6 +368,45 @@ describe('экраны режима «Турниры»', () => {
     expect(round).toMatch(/if \(!roomId \|\| submittedRef\.current\) return/);
   });
 
+  it('ответ уходит в точном формате verifyTournamentAnswer, а не голым числом', () => {
+    // КРИТИЧНО: аудит нашёл, что клиент слал answer как голое число
+    // (optionIndex), а сервер (verifyTournamentAnswer в tournament_core.ts)
+    // требует answer объектом — { selectedIndex } для choice,
+    // { selectedIndexes } для timeattack. isRecord(answer) на числе даёт
+    // false и функция сразу возвращает false — ЛЮБОЙ ответ choice
+    // засчитывался бы неверным независимо от того, что выбрал игрок.
+    const round = read('app/tournament_round.tsx');
+    expect(round).toContain('selectedIndex');
+    expect(round).toContain('selectedIndexes');
+    // buildAnswerRows обязан существовать — это единственное место, где
+    // формируется объект ответа перед отправкой.
+    expect(round).toContain('buildAnswerRows');
+
+    const server = read('functions/src/tournament_core.ts');
+    expect(server).toContain('selectedIndex');
+    expect(server).toContain('selectedIndexes');
+  });
+
+  it('timeattack разворачивается во ВСЕ подвопросы, не только первый', () => {
+    // КРИТИЧНО: генератор кладёт 6 подвопросов в items[], но клиент рисовал
+    // только items[0] — 5 из 6 вопросов серии молча терялись (аудит).
+    const round = read('app/tournament_round.tsx');
+    expect(round).toContain('taskToQuestions');
+    expect(round).toMatch(/flatMap\(taskToQuestions\)/);
+    // Старая версия (один вопрос на задание) не должна вернуться в коде.
+    // Упоминание в комментарии-объяснении бага (аудит) не считается
+    // нарушением, поэтому ищем только исполняемое обращение к элементу.
+    expect(round).not.toMatch(/tasks\.map\(taskToQuestion\)/);
+    expect(round).not.toMatch(/items\[0\]\??\.\w/);
+  });
+
+  it('прогресс-подпись раунда показывает реальное число вопросов', () => {
+    // Было жёстко «из QUESTIONS_PER_ROUND» (5) — в timeattack-раунде
+    // подвопросов 6, подпись лгала бы «Вопрос 6 из 5».
+    const round = read('app/tournament_round.tsx');
+    expect(round).toMatch(/из \{total\}/);
+  });
+
   it('экран турниров лежит внутри папки вкладок', () => {
     // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();

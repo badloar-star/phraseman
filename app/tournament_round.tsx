@@ -28,36 +28,63 @@ const SECONDS_PER_QUESTION = 15;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
 
 type Question = {
-  id: string;
+  /** taskId исходного задания — на него ссылается ответ. */
+  taskId: string;
+  kind: 'choice' | 'timeattack';
   prompt: string;
   phrase: string;
   options: string[];
+  /**
+   * Позиция подвопроса внутри timeattack.items; для choice всегда 0.
+   * зачем: одно timeattack-задание — это НЕСКОЛЬКО экранных вопросов с общим
+   * taskId, но сервер (verifyTournamentAnswer) ждёт один ответ на весь
+   * набор — массив selectedIndexes по всем items сразу. Поэтому ответы
+   * подвопросов одного taskId копятся отдельно и мержатся в один пункт
+   * пачки только при отправке (см. buildAnswerRow).
+   */
+  itemIndex: number;
+  /** Сколько всего подвопросов в этом задании — 1 для choice. */
+  itemCount: number;
 };
 
 /**
- * Публичное задание сервера → вопрос экрана.
+ * Публичное задание сервера → один или несколько вопросов экрана.
  *
  * зачем: сервер НЕ присылает правильный ответ (его вырезает publicPayload),
  * поэтому подсветку верного варианта показывать нечем. Мгновенный отклик даём
  * по факту нажатия, а очки считает сервер — так накрутить нельзя.
+ *
+ * timeattack разворачивается в СПИСОК вопросов (по items.length штук) —
+ * раньше здесь рисовался только items[0], и 5 из 6 подвопросов серии молча
+ * терялись (найдено аудитом 2026-07-25).
  */
-function taskToQuestion(task: PublicTask): Question | null {
+function taskToQuestions(task: PublicTask): Question[] {
   const payload = task.payload ?? {};
   if (task.kind === 'choice') {
     const options = Array.isArray(payload.options) ? (payload.options as string[]) : [];
     const phrase = String(payload.phrase ?? '');
-    if (!phrase || options.length < 2) return null;
-    return { id: task.taskId, prompt: 'Что это значит?', phrase, options };
+    if (!phrase || options.length < 2) return [];
+    return [{
+      taskId: task.taskId, kind: 'choice', prompt: 'Что это значит?', phrase, options,
+      itemIndex: 0, itemCount: 1,
+    }];
   }
   if (task.kind === 'timeattack') {
     const items = Array.isArray(payload.items) ? (payload.items as Record<string, unknown>[]) : [];
-    const first = items[0];
-    const options = Array.isArray(first?.options) ? (first?.options as string[]) : [];
-    if (!first || options.length < 2) return null;
-    return { id: task.taskId, prompt: String(payload.prompt ?? 'Переведи'), phrase: String(first.prompt ?? ''), options };
+    const prompt = String(payload.prompt ?? 'Переведи');
+    return items
+      .map((item, itemIndex): Question | null => {
+        const options = Array.isArray(item?.options) ? (item.options as string[]) : [];
+        if (options.length < 2) return null;
+        return {
+          taskId: task.taskId, kind: 'timeattack', prompt, phrase: String(item.prompt ?? ''),
+          options, itemIndex, itemCount: items.length,
+        };
+      })
+      .filter((question): question is Question => question !== null);
   }
   // translate/voice рисуются другими раскладками — фаза 2.
-  return null;
+  return [];
 }
 
 type Phase = 'intro' | 'question' | 'feedback';
@@ -76,8 +103,19 @@ export default function TournamentRoundScreen() {
   const [streak, setStreak] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  /** Ответы копятся локально и уходят ОДНОЙ пачкой в конце раунда (§ спеки). */
-  const answersRef = useRef<Array<{ taskId: string; answer: unknown }>>([]);
+  /**
+   * Ответы по каждому подвопросу, ключ — `${taskId}:${itemIndex}`.
+   *
+   * зачем: сервер (verifyTournamentAnswer) проверяет timeattack ОДНИМ
+   * ответом на всё задание — { selectedIndexes: number[] } длиной
+   * items.length, а не по одному ответу на подвопрос. Раньше клиент слал
+   * голое число как answer и terealTaskId на каждый подвопрос — сервер
+   * получал бы answer не тем объектом, каким его ждёт verifyTournamentAnswer,
+   * и ответ был бы принят как неверный независимо от выбора игрока.
+   * Копим по taskId, на отправке (buildAnswerRows) собираем один пункт
+   * пачки на задание в точном серверном формате.
+   */
+  const answersByKeyRef = useRef<Map<string, number | null>>(new Map());
   const submittedRef = useRef(false);
 
   const activeRound = useMemo(
@@ -88,12 +126,33 @@ export default function TournamentRoundScreen() {
 
   const questions = useMemo(() => {
     const tasks = activeRound?.tasks ?? [];
-    return tasks.map(taskToQuestion).filter((question): question is Question => question !== null);
+    return tasks.flatMap(taskToQuestions);
   }, [activeRound?.tasks]);
 
   const total = questions.length || QUESTIONS_PER_ROUND;
   const question = questions[index] ?? null;
   const multiplier = streak >= 4 ? 2 : streak >= 2 ? 1.5 : 1;
+
+  /**
+   * Собирает пачку ответов в точном формате verifyTournamentAnswer:
+   * choice → { selectedIndex }, timeattack → { selectedIndexes } — массив
+   * по ВСЕМ подвопросам задания, даже если часть не была отвечена (null
+   * остаётся null, сервер сам решит, что с ним делать при подсчёте).
+   */
+  const buildAnswerRows = useCallback((): Array<{ taskId: string; answer: unknown }> => {
+    const byTask = new Map<string, { kind: Question['kind']; values: (number | null)[] }>();
+    for (const q of questions) {
+      const entry = byTask.get(q.taskId) ?? { kind: q.kind, values: [] };
+      entry.values[q.itemIndex] = answersByKeyRef.current.get(`${q.taskId}:${q.itemIndex}`) ?? null;
+      byTask.set(q.taskId, entry);
+    }
+    return Array.from(byTask.entries()).map(([taskId, entry]) => ({
+      taskId,
+      answer: entry.kind === 'choice'
+        ? { selectedIndex: entry.values[0] }
+        : { selectedIndexes: entry.values.map((value) => value ?? -1) },
+    }));
+  }, [questions]);
 
   // Интро раунда: показываем режим, затем первый вопрос.
   useEffect(() => {
@@ -124,10 +183,10 @@ export default function TournamentRoundScreen() {
     submittedRef.current = true;
     // Не ждём ответа: очки придут через подписку на комнату, а игрок в это
     // время уже смотрит таблицу — блокировать экран нечем и незачем.
-    void submitAnswers(roomId, roundNo, answersRef.current).catch(() => {
+    void submitAnswers(roomId, roundNo, buildAnswerRows()).catch(() => {
       // Сеть моргнула — сервер засчитает таймаут по своему дедлайну.
     });
-  }, [roomId, roundNo]);
+  }, [roomId, roundNo, buildAnswerRows]);
 
   const goNext = useCallback(() => {
     if (index + 1 >= total) {
@@ -151,7 +210,9 @@ export default function TournamentRoundScreen() {
     // Серию ведём локально для множителя; правильность знает только сервер,
     // поэтому серию считаем по факту ответа, а очки не показываем до таблицы.
     setStreak((value) => value + 1);
-    answersRef.current.push({ taskId: question.id, answer: optionIndex });
+    // guard-ok: это Map.set() в памяти (локальный буфер ответов), не запись
+    // в Firestore — итоговая пачка уходит одним submitAnswers ниже.
+    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, optionIndex);
 
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
   }, [phase, question, goNext]);
@@ -162,7 +223,9 @@ export default function TournamentRoundScreen() {
     setPicked(null);
     setPhase('feedback');
     setStreak(0);
-    answersRef.current.push({ taskId: question.id, answer: null });
+    // Пропуск — оставляем null в буфере (в timeattack это станет -1 в
+    // selectedIndexes при сборке пачки, см. buildAnswerRows).
+    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, null);
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
   }, [phase, secondsLeft, question, goNext]);
 
@@ -201,13 +264,16 @@ export default function TournamentRoundScreen() {
   }
 
   if (phase === 'intro') {
+    // зачем: раньше здесь было захардкожено «Угадай перевод» для любого
+    // раунда — интро тайм-атаки лгало о своём режиме (найдено аудитом).
+    const modeLabel = questions[0]?.kind === 'timeattack' ? 'Тайм-атака' : 'Угадай перевод';
     return (
       <View style={[styles.root, styles.introRoot]}>
         <Animated.Text entering={ZoomIn.duration(320)} style={styles.introRound}>
           Раунд {roundNo}
         </Animated.Text>
         <Animated.Text entering={FadeIn.delay(200)} style={styles.introMode}>
-          Угадай перевод
+          {modeLabel}
         </Animated.Text>
       </View>
     );
@@ -233,8 +299,11 @@ export default function TournamentRoundScreen() {
       >
         {/* Шапка: прогресс батча, множитель, таймер */}
         <View style={styles.header}>
+          {/* зачем: было жёстко «из QUESTIONS_PER_ROUND» (константа 5) — в
+              timeattack-раунде реальных подвопросов 6, подпись лгала бы
+              «Вопрос 6 из 5» (найдено аудитом). total уже берёт questions.length. */}
           <Text style={styles.progressLabel}>
-            Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {QUESTIONS_PER_ROUND}</Text>
+            Вопрос {index + 1} <Text style={styles.progressLabelDim}>из {total}</Text>
           </Text>
           <View style={styles.dots}>
             {dots.map((dot) => (

@@ -210,7 +210,7 @@ export default function PaywallC() {
               <PaywallGlyphCapsule ctx={ctx} chrome={chrome} />
             </PaywallEntrance>
             <PaywallEntrance index={1}>
-              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={3}>{title}</Text>
+              <Text style={[S.title, { color: chrome.textPrimary }]} numberOfLines={2}>{title}</Text>
               <PaywallHeroExplain ctx={ctx} chrome={chrome} lang={lang as Lang} subtitle={subtitle} />
             </PaywallEntrance>
 

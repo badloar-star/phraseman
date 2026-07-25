@@ -292,20 +292,21 @@ function FlippableCard({
             ]}
           >
             <>
+              {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт
+                  layout stability) — статично уменьшаем кегль (f.body вместо f.h3) с запасом
+                  под длинные фразы, перенос уже даёт numberOfLines=2. guard-ok */}
               <Text
-                style={[styles.cardEN, { color: t.textPrimary, fontSize: f.h3 }]}
+                style={[styles.cardEN, { color: t.textPrimary, fontSize: f.body }]}
                 numberOfLines={2}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
               >
                 {card.en}
               </Text>
               <View style={[styles.cardSep, { backgroundColor: t.borderLight }]} />
+              {/* зачем: аналогично — статичный кегль поменьше (f.caption вместо f.body),
+                  numberOfLines=3 уже даёт перенос под длинный перевод. guard-ok */}
               <Text
-                style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
+                style={[styles.cardRU, { color: t.textSecond, fontSize: f.caption }]}
                 numberOfLines={3}
-                adjustsFontSizeToFit
-                minimumFontScale={0.7}
               >
                 {resolveFlashcardBackText(card, cardLang)}
               </Text>

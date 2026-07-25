@@ -1186,10 +1186,12 @@ const PodiumColumn = memo(function PodiumColumn({
       </View>
 
       {/* Имя */}
+      {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
+          stability) — имя уже обрезано до 10 символов выше (name = member?.name?.slice(0, 10)),
+          так что при f.caption и maxWidth 104 оно и без сжатия помещается в одну строку;
+          numberOfLines=1 подстрахует. guard-ok */}
       <Text
         numberOfLines={1}
-        adjustsFontSizeToFit
-        minimumFontScale={0.8}
         style={memberNameStatusStyle(
           {
             color: member?.isMe ? cfg.primary : t.textPrimary,

@@ -1170,7 +1170,11 @@ export default function LessonIrregularVerbs() {
             <TapScale onPress={() => { fk.tap(); Keyboard.dismiss(); safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any); }}>
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TapScale>
-            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.8}>{lessonId}. {title}</Text>
+            {/* зачем: убран авто-сжимающий пропс шрифта (запрещённый паттерн, контракт layout
+                stability) — статично уменьшаем кегль до f.h3 (как в остальных хедерах проекта),
+                длинные названия уроков (напр. "Неправильные глаголы") влезают в одну строку
+                без сжатия. guard-ok */}
+            <Text style={{ color: sx.primary, fontSize: f.h3, fontWeight: '600', flex: 1, textAlign: 'center', marginHorizontal: 8 }} numberOfLines={1}>{lessonId}. {title}</Text>
             <View style={{ width: 28 }} />
           </View>
 

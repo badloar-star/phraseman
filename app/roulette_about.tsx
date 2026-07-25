@@ -50,7 +50,9 @@ export default function RouletteAboutScreen() {
 
   const rules: readonly string[] = [
     L('Ключ начисляется за каждое засчитанное приглашение.', 'Ключ нараховується за кожне зараховане запрошення.', 'Se acredita una llave por cada invitación válida.', 'Uma chave é creditada por cada convite válido.', 'Mỗi lời mời hợp lệ nhận một chìa khóa.', 'Satu kunci diberikan untuk setiap undangan yang sah.', 'Her geçerli davet için bir anahtar yüklenir.', 'Jeden klucz jest przyznawany za każde uznane zaproszenie.'),
-    L('Не более 3 ключей в день и 30 в месяц.', 'Не більше 3 ключів на день і 30 на місяць.', 'Máximo 3 llaves al día y 30 al mes.', 'No máximo 3 chaves por dia e 30 por mês.', 'Tối đa 3 chìa khóa mỗi ngày và 30 mỗi tháng.', 'Maksimal 3 kunci per hari dan 30 per bulan.', 'Günde en fazla 3, ayda 30 anahtar.', 'Maksymalnie 3 klucze dziennie i 30 miesięcznie.'),
+    // зачем: лимиты «3/день, 30/мес» сняты (владелец, 2026-07-25) — ключ даётся только
+    // за реальную покупку друга, ограничивать нечего. Строку про лимиты убрали совсем.
+    L('Сколько друзей оформит подписку — столько ключей ты получишь.', 'Скільки друзів оформить підписку — стільки ключів ти отримаєш.', 'Recibes una llave por cada amigo que compre la suscripción.', 'Você recebe uma chave por cada amigo que assinar.', 'Bạn nhận một chìa khóa cho mỗi người bạn mua gói.', 'Kamu dapat satu kunci untuk setiap teman yang berlangganan.', 'Abone olan her arkadaş için bir anahtar kazanırsın.', 'Dostajesz klucz za każdego znajomego, który kupi subskrypcję.'),
     L('Выигрыш суммируется с текущим сроком Plus.', 'Виграш додається до поточного строку Plus.', 'El premio se suma a tu período Plus actual.', 'O prêmio é somado ao período Plus atual.', 'Phần thưởng được cộng vào thời hạn Plus hiện tại.', 'Hadiah ditambahkan ke masa Plus saat ini.', 'Ödül mevcut Plus sürene eklenir.', 'Nagroda dodaje się do obecnego okresu Plus.'),
     L('Результат определяет сервер.', 'Результат визначає сервер.', 'El servidor determina el resultado.', 'O servidor determina o resultado.', 'Máy chủ xác định kết quả.', 'Server menentukan hasilnya.', 'Sonucu sunucu belirler.', 'Wynik ustala serwer.'),
   ];

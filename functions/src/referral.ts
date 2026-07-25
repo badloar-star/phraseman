@@ -1,19 +1,18 @@
 /**
- * Вирусный реферал (7 дней другу + 7 дней пригласившему, экономия Firebase-лимитов).
- * Крючок: «друг установил приложение, ввёл код и прошёл первый урок — вы оба получаете
- * по 7 дней полного доступа». 7+7 не равно 14: это две отдельные награды двум людям.
+ * Вирусный реферал с рулеткой Plus (экономия Firebase-лимитов).
+ * Крючок: «друг установил приложение, ввёл код и КУПИЛ Plus или Pro — пригласивший получает 1 прокрут рулетки (приз — Plus от 1 до 365 дней)».
  *
  * Поток:
  *   1. referralEnsureMyCode — referrer получает публичный код (referral_codes/{code}).
  *   2. referralApply — referee вводит код (deeplink/manual). Идемпотентно, антифрод по возрасту аккаунта.
  *      Создаёт referral_attributions/{refereeStableId} со status='pending'.
- *   3. referee РЕАЛЬНО проходит урок 1 (>= бронзы ⇒ lesson1_pass_count >= 1, для fr —
- *      scoped-ключ lesson_progress_v2::fr::lesson1_pass_count). Сервер пишет pass_count только
- *      при passed; триггер referralOnUserProgressUpdated помечает attribution status='qualified'
- *      и сразу начисляет приглашённому его 7 дней. НЕ по unlocked_lessons (урок открывается и без
- *      прохождения — premium/intro/зачёт), иначе ложная квалификация и невидимый fr-курс.
- *   4. referrer в /friends видит qualified-друга и сам жмёт «Открыть» → referralClaimVipReward:
- *      одна транзакция, +7 дней VIP пригласившему (стак vip_until), attribution → 'rewarded'.
+ *   3. referee покупает Plus или Pro: вебхук RevenueCat/Telegram пишет store-план в
+ *      users/{id}.progress.premium_plan (клиент эти поля писать не может — firestore.rules:
+ *      progressHasNoPremiumWrites). Триггер referralOnUserProgressUpdated ловит переход
+ *      «не было store-премиума → есть» и помечает attribution status='qualified'.
+ *      Приглашённый НЕ получает бонусных дней — он уже оплатил доступ.
+ *   4. referrer в /referrals конвертирует qualified-приглашения в прокруты →
+ *      referralClaimSpin (детерминированный леджер, месячный/дневной капы).
  *
  * VIP-механику НЕ меняем: пишем те же поля vip_* в users/{id}.progress, что и admin-grant.
  * Авторитетный источник premium/vip — только Admin SDK (firestore.rules: progressHasNoPremiumWrites).
@@ -41,6 +40,7 @@ import {
   reconcileLedgerRows,
   shouldMigrateLegacyAggregate,
 } from './referral_spin_ledger';
+import { isStorePremiumActive } from './premium_status';
 
 const REGION = 'us-central1';
 
@@ -55,16 +55,21 @@ const MAX_CODE_ATTEMPTS = 12;
 /** Referral reward: 7 days for the invited friend and 7 days for the referrer. */
 export const REFERRAL_REWARD_DAYS = 7;
 const DAY_MS = 24 * 60 * 60 * 1000;
-/** Антифрод-кап: сколько друзей можно «обналичить» в VIP за календарный месяц. */
-export const MAX_REFERRER_CLAIMS_PER_MONTH = 30;
 /**
- * Анти-фарм: сколько наград можно обналичить за КАЛЕНДАРНЫЙ ДЕНЬ. Главная защита от накрутки
- * свежими аккаунтами (created_at клиентоперезаписываем, stableId сбрасывается отключением
- * бэкапа — см. referralApply). created_at правилами до конца не закрыть; дневной throttle
- * ограничивает СКОРОСТЬ фарма при любом сбросе личности. Награды не теряются: за капом
- * остаются 'qualified' и обналичиваются на следующий день. Честный юзер редко зовёт >3/день.
+ * зачем: лимиты сняты по решению владельца (2026-07-25). Раньше условие награды было
+ * «друг прошёл урок 1» — бесплатно и накручиваемо, поэтому нужен был анти-фарм throttle
+ * (3/день, 30/мес). Теперь ключ выдаётся ТОЛЬКО когда приглашённый КУПИЛ Plus или Pro
+ * (см. qualifiedBy: 'premium_purchase'), то есть накрутка требует реальных платежей —
+ * она сама себя наказывает и в антифроде не нуждается. Дневной кап при этом бил по
+ * самым ценным юзерам: привёл 5 платящих друзей — получил 3 ключа.
+ *
+ * Значения остаются НЕ-нулевыми и настраиваемыми из «Пульта»
+ * (referral_max_claims_month / referral_max_claims_day, clamp 0..100000): это защитный
+ * потолок на случай, если понадобится срочно вернуть throttle без деплоя функций.
+ * 0 в этой схеме означал бы «запретить всё», поэтому ставим заведомо недостижимый предел.
  */
-export const MAX_REFERRER_CLAIMS_PER_DAY = 3;
+export const MAX_REFERRER_CLAIMS_PER_MONTH = 100000;
+export const MAX_REFERRER_CLAIMS_PER_DAY = 100000;
 
 export interface ReferralConfig {
   /** Дней VIP за одного друга (и referrer'у, и referee — это два разных человека). */
@@ -327,13 +332,6 @@ export function isReferralAccountTooEstablishedForApply(
   return createdAtMs > 0 && nowMs - createdAtMs > maxAccountAgeMs;
 }
 
-function hasLesson1DoneProgress(
-  root: admin.firestore.DocumentData | undefined,
-): boolean {
-  if (!root) return false;
-  const p = (root as { progress?: Record<string, unknown> })?.progress;
-  return hasCompletedFirstLesson(p);
-}
 
 /**
  * Был ли это записью МИГРАЦИИ снапшота прогресса (progressMigrateSnapshot), а не живым
@@ -440,11 +438,10 @@ function pruneDailyCounter(map: Record<string, number>, keepDays = 10): Record<s
 }
 
 /**
- * Referee прошёл урок 1 ⇒ помечаем его attribution как 'qualified'.
+ * Referee купил Plus или Pro ⇒ помечаем его attribution как 'qualified'.
  *
- * Приглашённый получает свои 7 дней сразу после выполнения условия.
- * Пригласивший получает отдельные 7 дней по кнопке, чтобы не писать в чужой документ
- * на каждое обновление прогресса. 7+7 — это два отдельных человека, не 14 дней одному.
+ * Приглашённый НЕ получает бонусных дней — он уже оплатил доступ. Пригласивший
+ * конвертирует qualified-приглашение в прокрут рулетки по кнопке (referralClaimSpin).
  */
 export async function markRefereeQualified(
   db: admin.firestore.Firestore,
@@ -469,7 +466,8 @@ export async function markRefereeQualified(
       tx.get(uref(userId)),
     ]);
     if (!attR.exists) return;
-    if (!hasLesson1DoneProgress(refeeSnap.data())) return;
+    const refereeProgressNow = (refeeSnap.data() as { progress?: Record<string, unknown> } | undefined)?.progress;
+    if (!isStorePremiumActive(refereeProgressNow, Date.now())) return;
     const row = attR.data() as { status?: string; createdAt?: unknown; createdAtMs?: unknown };
     if (row?.status && row.status !== 'pending') return;
 
@@ -487,7 +485,7 @@ export async function markRefereeQualified(
         deadlineAtMs,
         expiredAt: admin.firestore.FieldValue.serverTimestamp(),
         expiredAtMs: nowMs,
-        expiryReason: 'first_lesson_deadline',
+        expiryReason: 'qualification_deadline',
       }, { merge: true });
       console.log(JSON.stringify({
         event: REFERRAL_ANALYTICS_EVENTS.attributionExpired,
@@ -498,38 +496,17 @@ export async function markRefereeQualified(
       }));
       return;
     }
-    const configData = configSnap.data() as { numbers?: Record<string, unknown> } | undefined;
-    const cfg = referralConfigFromData(configData?.numbers);
-    const refereeData = refeeSnap.data() ?? {};
-    const refereeProgress = (refereeData as { progress?: Record<string, unknown> }).progress ?? {};
-    const refereeVipPatch = buildReferralVipProgressPatch(
-      refereeProgress,
-      nowMs,
-      cfg.rewardDays,
-      'referee',
-    );
-
-    // Помечаем attribution готовым к обналичиванию referrer'ом.
-    // Приглашённый получает свои 7 дней сразу; пригласивший забирает свои 7 дней по кнопке.
+    // Помечаем attribution готовым к конвертации в прокрут рулетки referrer'ом.
+    // Приглашённому НИЧЕГО не начисляем — он уже оплатил Plus/Pro.
     tx.set(
       attRef,
       {
         status: 'qualified' as AttributionStatus,
         qualifiedAt: admin.firestore.FieldValue.serverTimestamp(),
         qualifiedAtMs: nowMs,
-        qualifiedBy: 'lesson1_pass_count',
+        qualifiedBy: 'premium_purchase',
         deadlineAtMs,
-        refereeVipDays: cfg.rewardDays,
-        refereeRewardedAtMs: nowMs,
-        rewardKind: 'vip_days_both',
-      },
-      { merge: true },
-    );
-    tx.set(
-      uref(userId),
-      {
-        progress: refereeVipPatch,
-        updatedAt: nowMs,
+        rewardKind: 'referrer_spin',
       },
       { merge: true },
     );
@@ -664,7 +641,7 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
         refCode: d?.refCode ?? refCode,
         referrerStableId: d?.referrerStableId,
         status: d?.status,
-        hasLivePass: false,
+        hasStorePremium: false,
       };
     }
     const policy = referralRoulettePolicyFromData(configSnap.data() as { numbers?: Record<string, unknown> } | undefined);
@@ -724,26 +701,26 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
       already: false,
       referrerStableId: ownerStableId,
       refCode,
-      hasLivePass: hasLiveFirstLessonPass(refereeProgress),
+      hasStorePremium: isStorePremiumActive(refereeProgress, Date.now()),
     };
   });
-  // Мгновенная квалификация ТОЛЬКО по live-маркеру (сервер ставит его при живом
-  // passed-событии урока 1; миграция снапшота маркер не ставит — фрод не проходит).
-  // markRefereeQualified сам перепроверяет всё в транзакции (идемпотентно).
-  if (result?.ok && !result.already && result.hasLivePass) {
+  // Мгновенная квалификация, если приглашённый УЖЕ купил Plus/Pro до ввода кода
+  // (вебхук успел записать store-план раньше apply). markRefereeQualified сам
+  // перепроверяет всё в транзакции (идемпотентно).
+  if (result?.ok && !result.already && result.hasStorePremium) {
     await markRefereeQualified(db, refereeStableId).catch((e) => {
       console.warn('[referral] qualify after apply failed', e);
     });
   }
-  const { hasLivePass: _hasLivePass, ...response } = result;
+  const { hasStorePremium: _hasStorePremium, ...response } = result;
   return response;
 });
 
 /**
- * Когда referee РЕАЛЬНО проходит урок 1 (lesson1_pass_count >= 1, для fr — scoped-ключ) —
- * помечаем attribution referee как 'qualified' + начисляем приглашённому его 7 дней VIP.
- * referrer'у НИЧЕГО не пишем (pull): он обналичит свои 7 дней по кнопке. Отсекаем запись
- * миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
+ * Когда referee покупает Plus или Pro (вебхук RevenueCat/Telegram пишет store-план в
+ * progress.premium_plan) — помечаем attribution referee как 'qualified'. referrer'у
+ * НИЧЕГО не пишем (pull): он конвертирует приглашение в прокрут (referralClaimSpin).
+ * Отсекаем запись миграции снапшота (isSnapshotMigrationWrite). onDocumentWritten: и create, и update.
  */
 export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritten(
   { document: `${USERS}/{userId}`, region: REGION },
@@ -753,19 +730,20 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!after) return;
     const beforeExists = event.data?.before?.exists;
     const before = beforeExists ? event.data?.before.data() : undefined;
-    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентскому
-    // lesson1_pass_count и могла бы зачесть урок 1 без реального прохождения. Реальное
-    // прохождение идёт через progressSubmitEvent и не трогает progressMigratedAt.
+    // Анти-обход: миграция снапшота (progressMigrateSnapshot) доверяет клиентским
+    // полям прогресса. store-план она подделать не может (firestore.rules: клиенту
+    // premium_* запрещены), но гард оставляем как дешёвую защиту от гонок миграции.
     if (isSnapshotMigrationWrite(
       before as Record<string, unknown> | undefined,
       after as Record<string, unknown> | undefined,
     )) return;
     const pA = (after as { progress?: Record<string, unknown> })?.progress;
     const pB = (before as { progress?: Record<string, unknown> } | undefined)?.progress;
-    // Дёшево выходим, если сигнал «урок 1 пройден» не изменился (любой из pass-ключей).
-    const unchanged = LESSON1_PASS_KEYS.every((k) => pA?.[k] === pB?.[k]);
-    if (unchanged) return;
-    if (!hasLesson1DoneProgress(after)) return;
+    // Дёшево выходим: реагируем только на переход «не было store-премиума → есть».
+    // store-план пишет только сервер (RevenueCat/Telegram webhook) — firestore.rules
+    // запрещает клиенту premium_* (progressHasNoPremiumWrites), подделать нельзя.
+    if (!isStorePremiumActive(pA, Date.now())) return;
+    if (isStorePremiumActive(pB, Date.now())) return;
 
     const db = admin.firestore();
     await markRefereeQualified(db, userId);

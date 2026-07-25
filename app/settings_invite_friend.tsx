@@ -30,7 +30,6 @@ import { useReferralRouletteEnabled } from './referral_roulette_flag';
 import { captureAccountGeneration, isCurrentAccountGeneration } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 
-const MONTHLY_LIMIT = 30;
 
 const COPY = {
   ru: {
@@ -46,7 +45,7 @@ const COPY = {
     step2BodyIos: 'Он вводит ваш персональный код в настройках приложения. Дальше — оформить Plus или Pro.',
     step3Title: 'Открой награду',
     step3Body: 'После покупки Plus или Pro приглашённым другом тебе автоматически начислится ключ. Наградой может стать Plus от 1 дня до 365 дней.',
-    smallPrint: `Один ключ начисляется один раз за каждого нового друга. В месяц учитывается не больше ${MONTHLY_LIMIT} приглашений.`,
+    smallPrint: 'Один ключ начисляется один раз за каждого нового друга.',
     cta: 'Отправить приглашение',
     preparing: 'Готовим приглашение…',
     unavailable: 'Этот раздел временно недоступен.',
@@ -66,7 +65,7 @@ const COPY = {
     step2BodyIos: 'Він вводить ваш персональний код у налаштуваннях застосунку. Далі — оформити Plus або Pro.',
     step3Title: 'Відкрий нагороду',
     step3Body: 'Після покупки Plus або Pro запрошеним другом тобі автоматично нарахується ключ. Нагородою може стати Plus від 1 до 365 днів.',
-    smallPrint: `Один ключ нараховується один раз за кожного нового друга. На місяць враховується не більше ${MONTHLY_LIMIT} запрошень.`,
+    smallPrint: 'Один ключ нараховується один раз за кожного нового друга.',
     cta: 'Надіслати запрошення',
     preparing: 'Готуємо запрошення…',
     unavailable: 'Цей розділ тимчасово недоступний.',
@@ -87,7 +86,7 @@ const COPY = {
     step2BodyIos: 'Introduce tu código personal en los ajustes de la app. Después: comprar Plus o Pro.',
     step3Title: 'Abre la recompensa',
     step3Body: 'Cuando tu amigo compre Plus o Pro, la llave se acredita automáticamente. Puedes ganar Plus de 1 a 365 días.',
-    smallPrint: `Se acredita una llave una vez por cada amigo nuevo. Se cuentan como máximo ${MONTHLY_LIMIT} invitaciones al mes.`,
+    smallPrint: 'Se acredita una llave una vez por cada amigo nuevo.',
     cta: 'Enviar invitación',
     preparing: 'Preparando la invitación…',
     unavailable: 'Esta sección no está disponible temporalmente.',
@@ -108,7 +107,7 @@ const COPY = {
     step2BodyIos: 'Ele insere seu código pessoal nas configurações do app. Depois: assinar Plus ou Pro.',
     step3Title: 'Abra a recompensa',
     step3Body: 'Quando seu amigo assinar Plus ou Pro, a chave é creditada automaticamente. Você pode ganhar Plus de 1 a 365 dias.',
-    smallPrint: `É creditada uma chave uma vez por cada amigo novo. No máximo ${MONTHLY_LIMIT} convites contam por mês.`,
+    smallPrint: 'É creditada uma chave uma vez por cada amigo novo.',
     cta: 'Enviar convite',
     preparing: 'Preparando o convite…',
     unavailable: 'Esta seção está temporariamente indisponível.',
@@ -128,7 +127,7 @@ const COPY = {
     step2BodyIos: 'Người đó nhập mã cá nhân của bạn trong cài đặt ứng dụng. Sau đó — mua Plus hoặc Pro.',
     step3Title: 'Mở phần thưởng',
     step3Body: 'Sau khi bạn bè mua Plus hoặc Pro, chìa khóa tự động được cộng. Bạn có thể thắng Plus từ 1 đến 365 ngày.',
-    smallPrint: `Mỗi bạn mới chỉ cộng một chìa khóa một lần. Tối đa ${MONTHLY_LIMIT} lời mời được tính mỗi tháng.`,
+    smallPrint: 'Mỗi bạn mới chỉ cộng một chìa khóa một lần.',
     cta: 'Gửi lời mời',
     preparing: 'Đang chuẩn bị lời mời…',
     unavailable: 'Mục này tạm thời không khả dụng.',
@@ -148,7 +147,7 @@ const COPY = {
     step2BodyIos: 'Ia memasukkan kode pribadimu di pengaturan aplikasi. Setelah itu — membeli Plus atau Pro.',
     step3Title: 'Buka hadiah',
     step3Body: 'Setelah teman membeli Plus atau Pro, kunci otomatis masuk. Kamu bisa menang Plus 1–365 hari.',
-    smallPrint: `Setiap teman baru memberi satu kunci satu kali. Maksimal ${MONTHLY_LIMIT} undangan dihitung per bulan.`,
+    smallPrint: 'Setiap teman baru memberi satu kunci satu kali.',
     cta: 'Kirim undangan',
     preparing: 'Menyiapkan undangan…',
     unavailable: 'Bagian ini sementara tidak tersedia.',
@@ -168,7 +167,7 @@ const COPY = {
     step2BodyIos: 'Kişisel kodunuzu uygulamanın ayarlarına girer. Sonra — Plus veya Pro satın alır.',
     step3Title: 'Ruleti çevir',
     step3Body: 'Arkadaşın Plus veya Pro satın aldığında anahtar otomatik yüklenir. 1–365 gün Plus kazanabilirsin.',
-    smallPrint: `Her yeni arkadaş bir kez bir anahtar kazandırır. Ayda en fazla ${MONTHLY_LIMIT} davet sayılır.`,
+    smallPrint: 'Her yeni arkadaş bir kez bir anahtar kazandırır.',
     cta: 'Davet gönder',
     preparing: 'Davet hazırlanıyor…',
     unavailable: 'Bu bölüm geçici olarak kullanılamıyor.',
@@ -188,7 +187,7 @@ const COPY = {
     step2BodyIos: 'Wpisuje twój osobisty kod w ustawieniach aplikacji. Potem — kupuje Plus lub Pro.',
     step3Title: 'Otwórz nagrodę',
     step3Body: 'Gdy znajomy kupi Plus lub Pro, klucz zostanie dodany automatycznie. Możesz wygrać Plus od 1 do 365 dni.',
-    smallPrint: `Każdy nowy znajomy daje klucz tylko raz. Miesięcznie liczy się maksymalnie ${MONTHLY_LIMIT} zaproszeń.`,
+    smallPrint: 'Każdy nowy znajomy daje klucz tylko raz.',
     cta: 'Wyślij zaproszenie',
     preparing: 'Przygotowujemy zaproszenie…',
     unavailable: 'Sekcja jest chwilowo niedostępna.',

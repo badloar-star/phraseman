@@ -75,8 +75,16 @@ import { accountScopeKey } from '../account_scope_key';
 import { readReferralDrain } from '../referrals_cache';
 import { isReferralCloudEnabled } from '../referral_cloud';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
+import { Image } from 'expo-image';
+import Constants from 'expo-constants';
+import { getAppReleaseBuildId } from '../app_build_id';
+import { clearAppCaches } from '../cache_reset';
+
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+
+/** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
+const INVITE_GIFT_BANNER = require('../../assets/images/settings/invite_gift_banner.webp');
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -243,11 +251,6 @@ export default function SettingsMain() {
   const chipSurfaceOn = settingsChipBg;
   const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
   const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
-  /** Плашка Premium на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
-  const premiumActiveSurface = isGradientLight ? t.bgCard : settingsNoticeBg;
-  const premiumActiveTitle = isGradientLight ? t.textPrimary : t.correct;
-  const premiumActiveSub = isGradientLight ? t.textMuted : t.textSecond;
-  const premiumActiveIcon = isGradientLight ? t.accent : t.correct;
   /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне. */
   const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
@@ -883,85 +886,56 @@ export default function SettingsMain() {
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
 
-  // Plus-плашка вынесена в переменную, чтобы стоять В РАЗНЫХ местах экрана без
-  // дублирования разметки: для БЕСПЛАТНЫХ — вверху (после «Профиля»), сразу
-  // предлагая доступ; для ПЛАТНЫХ — внизу, как статус «активирован».
-  const premiumPanel = hasPremiumAccess ? (
-          <TouchableOpacity
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              margin: SETTINGS_GROUP_MARGIN,
-              marginVertical: 20,
-              backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : premiumActiveSurface,
-              borderRadius: isCompassTheme ? 8 : 14,
-              padding: 16,
-              borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : t.correct,
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(2) : {}),
-            }}
-            onPress={() => router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any)}
-            activeOpacity={0.85}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} selected /> : null}
-            <Ionicons name="diamond" size={26} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.cream : premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
-              </Text>
-              <Text style={{ color: isCompassTheme ? COMPASS_RICH.textMuted : premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
-                {isPremium && premiumPlan === 'lifetime'
-                  ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
-                  : isPremium && premiumPlan === 'yearly'
-                  ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
-                  : isPremium && premiumPlan === 'monthly'
-                    ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
-                    : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny')}
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={isCompassTheme ? COMPASS_RICH.champagne : premiumActiveIcon} />
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity
-            style={[
-              {
-                flexDirection: 'row',
-                alignItems: 'center',
-                margin: SETTINGS_GROUP_MARGIN,
-                marginVertical: 20,
-                backgroundColor: settingsPanelBg,
-                borderRadius: isCompassTheme ? 8 : 14,
-                padding: 16,
-                borderWidth: 0,
-                borderColor: settingsBorder,
-                overflow: 'hidden',
-              },
-              isCompassTheme && compassShadow(1),
-            ]}
-            onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any)}
-            activeOpacity={0.85}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                Plus
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny')}
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
-          </TouchableOpacity>
-        );
+  // Верх экрана — по референсу Bevel: плашка Plus + ввод реферального кода +
+  // промокод одной группой, под ней широкий инвайт-баннер с картинкой.
+  const plusRowLabel = hasPremiumAccess
+    ? `${premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
+    : 'Phraseman Plus';
+  const plusRowSub = hasPremiumAccess
+    ? (isPremium && premiumPlan === 'lifetime'
+      ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
+      : isPremium && premiumPlan === 'yearly'
+      ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
+      : isPremium && premiumPlan === 'monthly'
+        ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
+        : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny'))
+    : L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny');
+  const plusRowPress = () => {
+    doHaptic();
+    if (hasPremiumAccess) {
+      router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any);
+    } else {
+      router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any);
+    }
+  };
+
+  /** «Очистить кеш»: только косметические кеши (картинки, SWR друзей/рефералки). Прогресс/аккаунт не трогаем. */
+  const confirmClearCache = () => {
+    doHaptic();
+    Alert.alert(
+      L('Очистить кеш?', 'Очистити кеш?', '¿Borrar caché?', 'Limpar cache?', 'Xóa bộ nhớ đệm?', 'Hapus cache?', 'Önbellek temizlensin mi?', 'Wyczyścić pamięć podręczną?'),
+      L('Удалим кеш картинок и временные данные. Прогресс, аккаунт и покупки останутся на месте.', 'Видалимо кеш зображень і тимчасові дані. Прогрес, акаунт і покупки залишаться.', 'Borraremos la caché de imágenes y datos temporales. El progreso, la cuenta y las compras se mantienen.', 'Vamos apagar o cache de imagens e dados temporários. Progresso, conta e compras permanecem.', 'Xóa cache hình ảnh và dữ liệu tạm. Tiến trình, tài khoản và gói mua vẫn giữ nguyên.', 'Cache gambar dan data sementara akan dihapus. Progres, akun, dan pembelian tetap aman.', 'Görsel önbelleği ve geçici veriler silinir. İlerleme, hesap ve satın alımlar korunur.', 'Usuniemy pamięć podręczną obrazów i dane tymczasowe. Postęp, konto i zakupy zostają.'),
+      [
+        { text: L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj'), style: 'cancel' as const },
+        {
+          text: L('Очистить', 'Очистити', 'Borrar', 'Limpar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść'),
+          style: 'destructive' as const,
+          onPress: () => {
+            void clearAppCaches().then(() => {
+              Alert.alert(L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe'), L('Кеш очищен.', 'Кеш очищено.', 'Caché borrada.', 'Cache limpo.', 'Đã xóa bộ nhớ đệm.', 'Cache dihapus.', 'Önbellek temizlendi.', 'Pamięć podręczna wyczyszczona.'));
+            }).catch(() => {});
+          },
+        },
+      ],
+    );
+  };
 
   const premiumDetails = hasPremiumAccess && plusAccessDetails.length > 0 ? (
           <View
             testID="settings-plus-access-details"
             style={{
               marginHorizontal: SETTINGS_GROUP_MARGIN,
-              marginTop: -10,
+              marginTop: 8,
               marginBottom: 16,
               paddingVertical: 6,
               paddingHorizontal: 12,
@@ -1070,6 +1044,78 @@ export default function SettingsMain() {
             {L('Настройки', 'Налаштування', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
         </View>
+
+        {/* Верхняя группа по референсу Bevel: Plus + ввод реферального кода + промокод. */}
+        <SettingsGroup marginTop={8} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-plus-row"
+            icon={hasPremiumAccess ? 'diamond' : 'diamond-outline'}
+            color="yellow"
+            label={plusRowLabel}
+            sub={plusRowSub}
+            onPress={plusRowPress}
+          />
+          {settingsReferralSurface.marketingVisible ? (
+            <SettingsRow
+              testID="settings-referral-code-row"
+              icon="gift"
+              color="pink"
+              label={L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+              onPress={() => { doHaptic(); router.push('/referral_code_entry' as any); }}
+            />
+          ) : null}
+          {!hasPremiumAccess && promoCodesOn ? (
+            <SettingsRow
+              testID="settings-promo-code-row"
+              icon="ticket-outline"
+              color="purple"
+              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+              onPress={() => { doHaptic(); router.push('/promo_code_entry' as any); }}
+            />
+          ) : null}
+        </SettingsGroup>
+        {premiumDetails}
+        {settingsReferralRowVisible ? (
+          <TouchableOpacity
+            testID="settings-invite-banner"
+            accessibilityRole="button"
+            accessibilityLabel={L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
+            activeOpacity={0.88}
+            onPress={() => { doHaptic(); router.push('/referrals' as any); }}
+            style={{
+              marginHorizontal: SETTINGS_GROUP_MARGIN,
+              marginTop: 12,
+              borderRadius: 16,
+              overflow: 'hidden',
+              backgroundColor: settingsPanelBg,
+              borderWidth: 0,
+              borderColor: settingsBorder,
+              ...(isCompassTheme ? compassShadow(1) : {}),
+            }}
+          >
+            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
+            <Image
+              source={INVITE_GIFT_BANNER}
+              style={{ width: '100%', height: 132 }}
+              contentFit="cover"
+              cachePolicy="memory-disk"
+              transition={120}
+            />
+            <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, gap: 10 }}>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+                  {L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2, lineHeight: 17 }}>
+                  {settingsReferralSurface.softEnabled
+                    ? L('Когда друг оформит Plus или Pro, ты получишь шанс выиграть Plus от 1 до 365 дней', 'Коли друг оформить Plus або Pro, ти отримаєш шанс виграти Plus від 1 до 365 днів', 'Cuando tu amigo compre Plus o Pro, tendrás la oportunidad de ganar Plus de 1 a 365 días', 'Quando seu amigo assinar Plus ou Pro, você terá a chance de ganhar Plus de 1 a 365 dias', 'Khi bạn bè mua Plus hoặc Pro, bạn có cơ hội thắng Plus từ 1 đến 365 ngày', 'Saat temanmu membeli Plus atau Pro, kamu berkesempatan memenangkan Plus 1–365 hari', 'Arkadaşın Plus veya Pro satın aldığında 1–365 gün Plus kazanma şansın olur', 'Gdy znajomy kupi Plus lub Pro, dostaniesz szansę wygrać Plus od 1 do 365 dni')
+                    : L('У тебя остались шансы выиграть Plus — забери их до срока', 'У тебе залишилися шанси виграти Plus — забери їх до строку', 'Te quedan oportunidades de ganar Plus: úsalas antes del plazo', 'Você ainda tem chances de ganhar Plus — use-as antes do prazo', 'Bạn vẫn còn cơ hội thắng Plus — hãy dùng trước hạn', 'Kamu masih punya kesempatan memenangkan Plus — pakai sebelum batas waktu', 'Plus kazanma şansların duruyor — süresi dolmadan kullan', 'Masz jeszcze szanse wygrać Plus — wykorzystaj je przed terminem')}
+                </Text>
+              </View>
+              <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+            </View>
+          </TouchableOpacity>
+        ) : null}
 
         {isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
@@ -1192,23 +1238,6 @@ export default function SettingsMain() {
           </TouchableOpacity>
         )}
 
-        {/* Предложение Plus — для БЕСПЛАТНЫХ сразу после «Профиля»: раньше плашка
-            жила в самом низу экрана, и бесплатный юзер мог до неё не доскроллить.
-            Промокод рядом (тоже путь к Plus), поэтому отдельной секции «Промокоды»
-            больше нет. */}
-        {!hasPremiumAccess ? premiumPanel : null}
-        {!hasPremiumAccess && promoCodesOn ? (
-          <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-            <SettingsRow
-              testID="settings-promo-code-row"
-              icon="ticket-outline"
-              color="purple"
-              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
-              sub={L('Активируй код и получи Plus', 'Активуй код і отримай Plus', 'Activa un código y consigue Plus', 'Ative um código e ganhe Plus', 'Kích hoạt mã để nhận Plus', 'Aktifkan kode dan dapatkan Plus', 'Kodu etkinleştir ve Plus al', 'Aktywuj kod i odbierz Plus')}
-              onPress={() => router.push('/promo_code_entry' as any)}
-            />
-          </SettingsGroup>
-        ) : null}
 
 
         <SettingsSectionTitle title={L('Внешний вид и отклик', 'Вигляд і відгук', 'Apariencia y respuesta', 'Aparência e resposta', 'Giao diện và phản hồi', 'Tampilan dan respons', 'Görünüm ve geri bildirim', 'Wygląd i reakcje')} />
@@ -1293,7 +1322,6 @@ export default function SettingsMain() {
             icon="phone-portrait"
             color="orange"
             label={L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}
-            sub={L('Вибрация на каждом нажатии', 'Вібрація на кожному натисканні', 'Vibración ligera al pulsar', 'Vibração leve a cada toque', 'Rung nhẹ khi chạm', 'Getaran ringan setiap ketukan', 'Her dokunuşta hafif titreşim', 'Lekka wibracja przy każdym dotknięciu')}
             hideChevron
             right={
               <CustomSwitch
@@ -1329,7 +1357,6 @@ export default function SettingsMain() {
             icon="notifications"
             color="red"
             label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')}
-            sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')}
             onPress={() => router.push('/settings_notifications')}
           />
           {homeTipsReplayAvailable ? (
@@ -1337,8 +1364,7 @@ export default function SettingsMain() {
               testID="settings-show-home-tips"
               icon="bulb"
               color="teal"
-              label={L('Подсказки на главной', 'Підказки на головній', 'Consejos en inicio', 'Dicas na tela inicial', 'Mẹo ở trang chính', 'Tips di beranda', 'Ana ekrandaki ipuçları', 'Wskazówki na głównej')}
-              sub={L('Показать карточки-подсказки ещё раз', 'Показати картки-підказки ще раз', 'Mostrar las tarjetas guía otra vez', 'Mostrar os cartões-guia de novo', 'Hiện lại các thẻ hướng dẫn', 'Tampilkan kartu panduan lagi', 'Rehber kartları tekrar göster', 'Pokaż karty przewodnika ponownie')}
+              label={L('Показать подсказки снова', 'Показати підказки знову', 'Mostrar consejos de nuevo', 'Mostrar dicas de novo', 'Hiện lại mẹo', 'Tampilkan tips lagi', 'İpuçlarını yeniden göster', 'Pokaż wskazówki ponownie')}
               onPress={resetHomeFeatureTips}
             />
           ) : null}
@@ -1347,31 +1373,16 @@ export default function SettingsMain() {
         </SettingsGroup>
 
         {/* «Сообщество» и «Ещё» слиты в одну секцию — раньше каждая держала по
-            одному ряду и плодила лишние заголовки. «Пригласить друга» ведёт на
-            уже готовый экран, куда из настроек раньше не было входа. */}
+            одному ряду и плодила лишние заголовки. Приглашения/реферальный код
+            переехали в верхнюю группу и инвайт-баннер (референс Bevel). */}
         <SettingsSectionTitle title={L('Сообщество и помощь', 'Спільнота й допомога', 'Comunidad y ayuda', 'Comunidade e ajuda', 'Cộng đồng và trợ giúp', 'Komunitas dan bantuan', 'Topluluk ve yardım', 'Społeczność i pomoc')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
-          {settingsReferralRowVisible ? <SettingsRow
-            testID="settings-invite-friend-row"
-            icon="people"
-            color="teal"
-            label={settingsReferralSurface.softEnabled
-              ? L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')
-              : L('Мои приглашения', 'Мої запрошення', 'Mis invitaciones', 'Meus convites', 'Lời mời của tôi', 'Undangan saya', 'Davetlerim', 'Moje zaproszenia')}
-            sub={settingsReferralSurface.softEnabled
-              ? L('1 прокрут · Plus от 1 до 365 дней', '1 прокрут · Plus від 1 до 365 днів', '1 giro · Plus de 1 a 365 días', '1 giro · Plus de 1 a 365 dias', '1 lượt quay · Plus từ 1 đến 365 ngày', '1 putaran · Plus 1–365 hari', '1 çevirme · 1–365 gün Plus', '1 los · Plus od 1 do 365 dni')
-              : L('Забрать оставшиеся прокруты', 'Забрати решту прокрутів', 'Usar los giros restantes', 'Usar os giros restantes', 'Dùng lượt quay còn lại', 'Gunakan putaran tersisa', 'Kalan çevirmeleri kullan', 'Użyj pozostałych losów')}
-            onPress={() => settingsReferralSurface.softEnabled
-              ? router.push('/settings_invite_friend' as any)
-              : router.push('/referrals' as any)}
-          /> : null}
           {topHelpersOn ? (
             <SettingsRow
               testID="settings-top-helpers-row"
               icon="ribbon"
               color="yellow"
               label={L('Топ хелперов', 'Топ хелперів', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers')}
-              sub={L('Кто помогает нам ловить баги', 'Хто допомагає нам ловити баги', 'Quiénes nos ayudan a cazar errores', 'Quem nos ajuda a caçar bugs', 'Ai giúp chúng tôi tìm lỗi', 'Siapa yang membantu memburu bug', 'Hata avında bize kim yardım ediyor', 'Kto pomaga nam łapać błędy')}
               onPress={() => router.push('/top_helpers' as any)}
             />
           ) : null}
@@ -1381,7 +1392,6 @@ export default function SettingsMain() {
               icon="bulb"
               color="yellow"
               label={L('Идеи', 'Ідеї', 'Ideas', 'Ideias', 'Ý tưởng', 'Ide', 'Fikirler', 'Pomysły')}
-              sub={L('Твоя идея — год доступа', 'Твоя ідея — рік доступу', 'Tu idea — un año de acceso', 'Sua ideia — um ano de acesso', 'Ý tưởng của bạn — một năm truy cập', 'Idemu — setahun akses', 'Fikrin — bir yıl erişim', 'Twój pomysł — rok dostępu')}
               onPress={() => router.push('/ideas_submit' as any)}
             />
           ) : null}
@@ -1407,11 +1417,6 @@ export default function SettingsMain() {
             />
           ) : null}
         </SettingsGroup>
-        {/* Plus внизу — только СТАТУС для платных (плашка «активирован» + детали
-            доступа). Для бесплатных предложение Plus стоит ВВЕРХУ, после «Профиля»,
-            чтобы его точно увидели без долгого скролла. */}
-        {hasPremiumAccess ? premiumPanel : null}
-        {premiumDetails}
 
         {/* Приватность и данные — всё, что касается данных пользователя, собрано в
             один блок внизу: согласие на аналитику (раньше терялось в «Профиле»),
@@ -1427,12 +1432,18 @@ export default function SettingsMain() {
             icon="lock-closed"
             color="teal"
             label={L('Приватность и данные', 'Приватність і дані', 'Privacidad y datos', 'Privacidade e dados', 'Quyền riêng tư và dữ liệu', 'Privasi dan data', 'Gizlilik ve veriler', 'Prywatność i dane')}
-            sub={L('Данные, документы, удаление аккаунта', 'Дані, документи, видалення акаунта', 'Datos, documentos, eliminar cuenta', 'Dados, documentos, excluir conta', 'Dữ liệu, tài liệu, xóa tài khoản', 'Data, dokumen, hapus akun', 'Veriler, belgeler, hesap silme', 'Dane, dokumenty, usunięcie konta')}
             onPress={() => router.push('/privacy_settings' as never)}
+          />
+          <SettingsRow
+            testID="settings-clear-cache-row"
+            icon="trash-bin"
+            color="gray"
+            label={L('Очистить кеш картинок', 'Очистити кеш зображень', 'Borrar caché de imágenes', 'Limpar cache de imagens', 'Xóa bộ nhớ đệm hình ảnh', 'Hapus cache gambar', 'Görsel önbelleğini temizle', 'Wyczyść pamięć obrazów')}
+            onPress={confirmClearCache}
           />
         </SettingsGroup>
 
-        {/* Подвал — только бренд (юр. документы переехали в «Приватность и данные»). */}
+        {/* Подвал — бренд и версия (юр. документы переехали в «Приватность и данные»). */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
           <TouchableOpacity activeOpacity={1}>
             <Text style={{ color:screenMuted, fontSize:f.caption, fontWeight:'600', letterSpacing:0.5, textAlign:'center' }}>
@@ -1440,6 +1451,9 @@ export default function SettingsMain() {
             </Text>
             <Text style={{ color:screenMuted, fontSize:f.caption, marginTop:4, textAlign:'center' }}>
               by Knowly
+            </Text>
+            <Text style={{ color:screenMuted, fontSize:f.caption - 1, marginTop:6, textAlign:'center' }}>
+              {`${Constants.expoConfig?.version ?? ''} (${getAppReleaseBuildId()})`}
             </Text>
           </TouchableOpacity>
         </View>

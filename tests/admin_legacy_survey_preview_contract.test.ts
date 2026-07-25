@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(__dirname, '..');
-const legacy = fs.readFileSync(path.join(root, 'admin', 'legacy.html'), 'utf8');
+const legacy = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
 const surveySectionStart = legacy.indexOf('// Опросы за осколки (shard-survey)');
 const surveySectionEnd = legacy.indexOf('const REWARD_TYPES', surveySectionStart);
 const surveySection = legacy.slice(surveySectionStart, surveySectionEnd);

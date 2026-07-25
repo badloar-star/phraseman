@@ -23,7 +23,7 @@ const LIVE_ADMIN = 'admin/v2/legacy.html';
 
 /** Замороженные файлы: только чтение, развивать нельзя. */
 const FROZEN_ADMIN_FILES = [
-  'admin/legacy.html',
+  'admin/v2/legacy.html',
   'admin/index.html',
   'admin/full.html',
 ] as const;
@@ -61,15 +61,15 @@ describe('единственная рабочая админка', () => {
     expect(html).toContain('legacy.html');
   });
 
-  it('отставшая копия admin/legacy.html не выдаёт себя за живую админку', () => {
-    const stalePath = path.join(repoRoot, 'admin/legacy.html');
+  it('отставшая копия admin/v2/legacy.html не выдаёт себя за живую админку', () => {
+    const stalePath = path.join(repoRoot, 'admin/v2/legacy.html');
     if (!existsSync(stalePath)) return; // удалена — идеальный исход
 
-    // Если копии разошлись, admin/legacy.html — мёртвый дубль. Тест не требует
+    // Если копии разошлись, admin/v2/legacy.html — мёртвый дубль. Тест не требует
     // их совпадения (это невозможно поддерживать), но требует, чтобы правила
     // явно называли её замороженной.
     const agents = read('AGENTS.md');
-    expect(agents).toContain('admin/legacy.html');
+    expect(agents).toContain('admin/v2/legacy.html');
     expect(agents.toUpperCase()).toContain('ЗАМОРОЖЕН');
 
     const stale = md5(readFileSync(stalePath));

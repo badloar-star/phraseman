@@ -5,7 +5,7 @@ const root = path.join(__dirname, '..');
 const read = (file: string) => fs.readFileSync(path.join(root, file), 'utf8');
 
 function legacyInstructionLines(): string[] {
-  const legacy = read('admin/legacy.html');
+  const legacy = read('admin/v2/legacy.html');
   const marker = 'const llmInstructions = [';
   const start = legacy.indexOf(marker);
   const end = legacy.indexOf("].join('\\n');", start);

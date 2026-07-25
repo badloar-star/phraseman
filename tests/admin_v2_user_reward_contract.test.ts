@@ -41,7 +41,7 @@ describe('Admin v2 guarded individual reward workflow', () => {
   });
 
   test('keeps the legacy reward button compatible with the strengthened command contract', () => {
-    const legacy = read('admin/legacy.html');
+    const legacy = read('admin/v2/legacy.html');
 
     expect(legacy).toContain("reason: String(comment || '').trim() ||");
     expect(legacy).toContain('idempotencyKey: `legacy-reward-${commandNonce}`');

@@ -22,7 +22,7 @@ describe('Admin 2 detailed analytics integration', () => {
 
   it('mounts the detailed views only on the Admin 2 analytics route', () => {
     const core = read('admin/v2/scripts/admin-core.js');
-    const legacy = read('admin/legacy.html');
+    const legacy = read('admin/v2/legacy.html');
     for (const id of [
       'product-analytics-panel', 'product-analytics-sessions', 'product-analytics-screens',
       'product-analytics-lessons', 'product-analytics-learning-dropoff',

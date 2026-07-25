@@ -6,7 +6,7 @@ const read = (relativePath: string) => fs.readFileSync(path.join(root, relativeP
 
 describe('legacy admin primary entry', () => {
   const entry = read('admin/index.html');
-  const legacy = read('admin/legacy.html');
+  const legacy = read('admin/v2/legacy.html');
 
   test('opens the preserved legacy admin by default and keeps the requested hash', () => {
     expect(entry).toContain('<title>PhraseMan Admin</title>');

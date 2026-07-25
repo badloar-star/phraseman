@@ -7,7 +7,7 @@ const read = (relativePath: string): string => fs.readFileSync(path.join(root, r
 describe('Admin v2 Free / Plus access workflow', () => {
   const core = read('admin/v2/scripts/admin-core.js');
   const firebase = read('admin/v2/scripts/admin-firebase.js');
-  const legacy = read('admin/legacy.html');
+  const legacy = read('admin/v2/legacy.html');
 
   test('ports the old control-panel premium gates into a guarded native workflow', () => {
     expect(core).toContain('function renderPremiumAccessWorkflow');

@@ -28,6 +28,7 @@ import {
 import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import CollectionLimitHeader from '../components/flashcards/CollectionLimitHeader';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -1663,6 +1664,15 @@ export default function FlashcardsScreen() {
             )}
           </View>
         </View>
+
+        {/* зачем (аудит §2.2, макет B1 `.col-cnt`/`.col-bar`): лимит бесплатных
+            карточек был НЕВИДИМ до упора — юзер спокойно сохранял и внезапно
+            получал стену пейвола на 21-й. Теперь остаток виден заранее, и цвет
+            полосы предупреждает на подходе (жёлтый с 15/20, красный на упоре).
+            Только на вкладке своих карточек — лимит касается именно их. */}
+        {activeCat === 'custom' && (
+          <CollectionLimitHeader saved={savedCards.length} isPremium={isPremium} t={t} />
+        )}
 
         {/* Slide wrapper — clips and drives category-switch slide transition */}
         <View

@@ -1,11 +1,13 @@
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../components/TapScale';
+import { useReduceMotion } from '../hooks/use_reduce_motion';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
+  Easing,
   PanResponder,
   Platform,
   ScrollView,
@@ -854,6 +856,15 @@ export default function FlashcardsSwipeScreen() {
   const draftRestoreAttemptedRef = useRef(false);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
+  // зачем: A-39 — карта при улёте растворяется (opacity 1→0 за 400мс).
+  // Отдельное значение от position, потому что затухание короче сдвига.
+  const flyOpacity = useRef(new Animated.Value(1)).current;
+  // зачем: A-55 — «Уменьшение движения» гасит размашистый полёт. Держим в ref,
+  // а не в state: settleCard — useCallback, и лишняя зависимость пересоздавала
+  // бы PanResponder на каждую смену настройки (жест бы срывался).
+  const reduceMotion = useReduceMotion();
+  const reduceMotionRef = useRef(reduceMotion);
+  useEffect(() => { reduceMotionRef.current = reduceMotion; }, [reduceMotion]);
   const topFadeScrollY = useRef(new Animated.Value(0)).current;
   const planFlashcardsTaskId = routeParamString(params.planFlashcardsTask) === '1' ? routeParamString(params.planTaskId) : '';
   const isPlanFlashcardsTask = Boolean(planFlashcardsTaskId);
@@ -1858,17 +1869,40 @@ export default function FlashcardsSwipeScreen() {
           settleGuardRef.current = null;
         }
         position.setValue({ x: 0, y: 0 });
+        // зачем: вернуть непрозрачность ДО показа следующей карты — иначе
+        // она въедет в кадр невидимой (значение осталось бы 0 после улёта).
+        flyOpacity.setValue(1);
         after();
         settlingRef.current = false;
         setSettling(false);
       };
-      // 190мс анимация + запас; если штатный колбэк не пришёл — доводим руками.
-      settleGuardRef.current = setTimeout(finish, 450);
-      Animated.timing(position, {
-        toValue: { x: direction === 'right' ? width * 1.15 : -width * 1.15, y: 0 },
-        duration: 190,
-        useNativeDriver: true,
-      }).start(() => {
+      // зачем: A-39 из макета — карта не уезжает по прямой, а уходит ДУГОЙ:
+      // вбок + вниз на 50px с доворотом до 16deg и растворением. Раньше был
+      // плоский горизонтальный сдвиг за 190мс — движение читалось как «рывок».
+      // Тайминги дословно из эталона: transform .45s ease-in, opacity .4s.
+      // Страховочный таймаут держим больше длительности (450 + запас), иначе
+      // finish() сработает раньше конца анимации и карта моргнёт.
+      // A-55: при «Уменьшении движения» дуга схлопывается до 120мс — карта
+      // просто исчезает, без размашистого полёта.
+      const flyMs = reduceMotionRef.current ? 120 : 450;
+      settleGuardRef.current = setTimeout(finish, flyMs + 250);
+      Animated.parallel([
+        Animated.timing(position, {
+          toValue: {
+            x: direction === 'right' ? width * 1.15 : -width * 1.15,
+            y: reduceMotionRef.current ? 0 : 50,
+          },
+          duration: flyMs,
+          easing: Easing.in(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.timing(flyOpacity, {
+          toValue: 0,
+          duration: reduceMotionRef.current ? 120 : 400,
+          easing: Easing.in(Easing.ease),
+          useNativeDriver: true,
+        }),
+      ]).start(() => {
         position.stopAnimation(() => {
           finish();
         });
@@ -2041,9 +2075,12 @@ export default function FlashcardsSwipeScreen() {
     ? Math.min(292, Math.max(218, height * 0.34))
     : Math.min(360, Math.max(250, height * 0.42));
   const feedbackMaxHeight = Math.max(120, Math.floor(cardHeight * 0.5));
+  // зачем: A-39 — на улёте карта доворачивается до 16deg (в макете это
+  // финальная поза). При перетаскивании пальцем наклон мягче (7deg на пол-экрана),
+  // поэтому две точки: жест — деликатный, улёт за край — выразительный.
   const rotate = position.x.interpolate({
-    inputRange: [-width / 2, 0, width / 2],
-    outputRange: ['-7deg', '0deg', '7deg'],
+    inputRange: [-width * 1.15, -width / 2, 0, width / 2, width * 1.15],
+    outputRange: ['-16deg', '-7deg', '0deg', '7deg', '16deg'],
     extrapolate: 'clamp',
   });
   const yesOpacity = position.x.interpolate({
@@ -2370,6 +2407,8 @@ export default function FlashcardsSwipeScreen() {
               },
               {
                 transform: [...position.getTranslateTransform(), { rotate }],
+                // зачем: A-39 — карта растворяется на улёте, а не пропадает резко.
+                opacity: flyOpacity,
               },
             ]}
           >

@@ -700,6 +700,20 @@ export interface MultiplierBreakdown {
   total: number;
 }
 
+// зачем: PlayerProfileModal раньше монтировался со skeleton и подменял его на
+// реальные множители мгновение спустя (заметный "мигающий" reveal). Множители
+// нигде не хранятся синхронно (все источники — AsyncStorage/Firestore чтения),
+// поэтому держим последний резолвленный снимок в памяти модуля: первый вызов в
+// сессии всё ещё асинхронный, но повторное открытие модалки (в течение той же
+// сессии) отдаёт синхронный кэш и рендерится сразу в финальном состоянии, а
+// свежее значение подтягивается в фоне и тихо обновляет тот же объект.
+let lastResolvedMultiplierBreakdown: MultiplierBreakdown | null = null;
+
+/** Синхронный доступ к последнему резолвленному брейкдауну (null = ещё не считали в этой сессии). */
+export function peekLastMultiplierBreakdown(): MultiplierBreakdown | null {
+  return lastResolvedMultiplierBreakdown;
+}
+
 export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdown> => {
   try {
     const clubM = await getCombinedClubMultiplier();
@@ -717,9 +731,11 @@ export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdo
     // Фаза 1: буст карточки II+ — тот же вклад, что registerXP добавляет при начислении.
     const cardM = await readProfileCardXpMultiplier();
     const total = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueGroupBoostM - 1) + (leagueChestM - 1) + boonXpContribution + (cardM - 1) + (hotHoursM - 1);
-    return { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, hotHoursM, total };
+    const breakdown: MultiplierBreakdown = { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, leagueChestM, boonXpContribution, cardM, hotHoursM, total };
+    lastResolvedMultiplierBreakdown = breakdown;
+    return breakdown;
   } catch {
-    return { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1 };
+    return lastResolvedMultiplierBreakdown ?? { clubM: 1, streakM: 1, comebackM: 1, giftM: 1, leagueBoostM: 1, leagueGroupBoostM: 1, leagueChestM: 1, boonXpContribution: 0, cardM: 1, hotHoursM: 1, total: 1 };
   }
 };
 

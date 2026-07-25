@@ -42,7 +42,7 @@ import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
-import { getCurrentMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
+import { getCurrentMultiplierBreakdown, peekLastMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
 import SkeletonBlock from './SkeletonShimmer';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { getCardStreakShieldStatus, type CardStreakShieldStatus } from '../app/profile_card_streak_shield';
@@ -2008,7 +2008,15 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const fadeAnim  = useRef(new Animated.Value(0)).current;
   const shimmerAnim = useRef(new Animated.Value(0)).current;
 
-  const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(null);
+  // зачем: требование владельца — модалка открывается СНИМКОМ, без skeleton→
+  // reveal. getCurrentMultiplierBreakdown() сама по себе асинхронна (AsyncStorage
+  // + Firestore чтения), но peekLastMultiplierBreakdown() отдаёт синхронно
+  // последнее резолвленное значение той же сессии — используем его как
+  // начальное состояние, чтобы первый рендер уже был "финальным" (если игрок
+  // уже открывал профиль/начислял XP в этой сессии). Совсем первое открытие
+  // после старта приложения по-прежнему покажет короткий skeleton — реальных
+  // синхронных данных для него в приложении не существует.
+  const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(() => peekLastMultiplierBreakdown());
   const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
   const [friendToast, setFriendToast] = useState<string | null>(null);
   const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
@@ -2048,7 +2056,9 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     if (player) return;
     slideAnim.setValue(500);
     fadeAnim.setValue(0);
-    setMultipliers(null);
+    // зачем: НЕ сбрасываем multipliers в null при закрытии — держим последний
+    // резолвленный снимок, чтобы следующее открытие сразу отрисовалось финальным
+    // состоянием (см. peekLastMultiplierBreakdown выше), а не снова со skeleton.
     setResolvedTotalXp(null);
     setFriendToast(null);
   }, [player, slideAnim, fadeAnim]);
@@ -2062,7 +2072,10 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   useEffect(() => {
     if (!player) return;
 
-    setMultipliers(null);
+    // зачем: не затираем кэш в null на каждое открытие — если peekLastMultiplierBreakdown()
+    // уже дал значение синхронно при инициализации state, держим его видимым, пока
+    // фоновый пересчёт ниже не подтвердит/обновит актуальное значение.
+    if (!multipliers) setMultipliers(peekLastMultiplierBreakdown());
     const initialTotalXp = Number.isFinite(Number(player.totalXp))
       ? Math.max(0, Math.floor(Number(player.totalXp)))
       : Number.isFinite(Number(player.points))

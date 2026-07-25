@@ -9,6 +9,12 @@
 //
 // Данные о подписке — авторитетно из стора (Purchases.getCustomerInfo). Никаких
 // фейковых дат/сумм: если данных нет, поле просто не показывается.
+//
+// Инстант-открытие (2026-07-25): план (?plan=) приходит параметром роута из
+// settings.tsx, который уже знает premiumPlan синхронно на момент показа кнопки
+// "Plus активирован" — первый кадр рендерится с ним сразу, без спиннера. Локальный
+// AsyncStorage-кэш (premium_plan/premium_rc_product_id) и живой RevenueCat-запрос
+// дальше уточняют план/дату/цену в фоне, не блокируя открытие.
 // ════════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useEffect, useState } from 'react';
 import {
@@ -17,7 +23,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import Purchases, { type CustomerInfo, PRORATION_MODE } from 'react-native-purchases';
 
@@ -53,16 +59,23 @@ type ManageSubscriptionCopy = {
   pl: string;
 };
 
-// «Что включено» — полный список привилегий Premium. Каждый пункт соответствует
-// реальному гейту в коде (см. feature_gates.ts: 15 фич за премиум-замком) либо
-// конкретной механике (energy_system, ai_dialog, compass, stats, home freeze).
-// Формулировки сжатые, по Библии Phraseman, без хардкода чисел/цен.
+// «Что включено» — полный список привилегий Premium. Каждый пункт сверен с реальным
+// гейтом в коде (аудит 2026-07-25, см. app/feature_gates.ts + app/energy_system.ts +
+// app/remote_flags.ts). Формулировки сжатые, по Библии Phraseman, без хардкода чисел/цен.
+//
+// зачем: два пункта убраны — «Квизы без дневного лимита» и «Арена без дневного лимита» —
+// потому что дневного лимита на квизы/арену в коде СЕЙЧАС НЕТ вообще (ни для платных,
+// ни для бесплатных). app/remote_flags.ts объявляет free_daily_quiz_limit/arena_daily_max/
+// gate_quizzes_premium/gate_arena_premium, но ни один из геттеров getFreeDailyQuizLimit()/
+// isQuizzesPremiumGated()/getArenaDailyMax()/isArenaPremiumGated() (remote_flags.ts:652-653,
+// 1006-1007) не вызывается нигде в app/ или functions/src — обещание было ложным для всех
+// пользователей. Энергия — единственный реально проверенный "безлимит для премиума" гейт
+// (см. spendEnergy → isFeatureFreeForEveryone('energy') / getVerifiedPremiumStatus(),
+// energy_system.ts:212-224), поэтому первый пункт остаётся про энергию.
 const INCLUDED: ManageSubscriptionCopy[] = [
   // — Доступ и лимиты —
   { ru: 'Безлимитная энергия — уроки, квизы и экзамены без ожидания', uk: 'Безлімітна енергія — уроки, квізи та іспити без очікування', es: 'Energía ilimitada: lecciones, quizzes y exámenes sin esperas', 'pt-BR': 'Energia ilimitada: aulas, quizzes e exames sem espera', vi: 'Năng lượng không giới hạn: bài học, quiz và bài kiểm tra không phải chờ', id: 'Energi tak terbatas: pelajaran, kuis, dan ujian tanpa menunggu', tr: 'Sınırsız enerji: dersler, quizler ve sınavlar beklemeden', pl: 'Nielimitowana energia: lekcje, quizy i egzaminy bez czekania' },
   { ru: 'Все уроки текущего уровня открыты полностью', uk: 'Усі уроки поточного рівня відкриті повністю', es: 'Todas las lecciones del nivel actual abiertas', 'pt-BR': 'Todas as aulas do nível atual totalmente abertas', vi: 'Tất cả bài học của cấp hiện tại được mở đầy đủ', id: 'Semua pelajaran level saat ini terbuka penuh', tr: 'Mevcut seviyedeki tüm dersler tamamen açık', pl: 'Wszystkie lekcje bieżącego poziomu są w pełni otwarte' },
-  { ru: 'Квизы без дневного лимита', uk: 'Квізи без денного ліміту', es: 'Cuestionarios sin límite diario', 'pt-BR': 'Quizzes sem limite diário', vi: 'Quiz không giới hạn ngày', id: 'Kuis tanpa batas harian', tr: 'Günlük limitsiz quizler', pl: 'Quizy bez dziennego limitu' },
-  { ru: 'Арена без дневного лимита и без затрат энергии', uk: 'Арена без денного ліміту й без витрат енергії', es: 'Arena sin límite diario ni gasto de energía', 'pt-BR': 'Arena sem limite diário nem gasto de energia', vi: 'Arena không giới hạn ngày và không tốn năng lượng', id: 'Arena tanpa batas harian dan tanpa biaya energi', tr: 'Günlük limitsiz ve enerji harcamayan arena', pl: 'Arena bez dziennego limitu i bez zużycia energii' },
   // — Живая практика —
   { ru: 'Безлимитные диалоги по сценариям', uk: 'Безлімітні діалоги за сценаріями', es: 'Diálogos por escenarios sin límite', 'pt-BR': 'Diálogos por cenários sem limite', vi: 'Hội thoại theo kịch bản không giới hạn', id: 'Dialog berbasis skenario tanpa batas', tr: 'Senaryolu diyaloglar sınırsız', pl: 'Nielimitowane dialogi według scenariuszy' },
   { ru: 'Собеседник «Компас» — общайся без ограничений', uk: 'Співрозмовник «Компас» — спілкуйся без обмежень', es: 'Compañero «Compás»: conversa sin límites', 'pt-BR': 'Parceiro «Bússola»: converse sem limites', vi: 'Người bạn «La bàn» — trò chuyện không giới hạn', id: 'Teman «Kompas» — mengobrol tanpa batas', tr: 'Sohbet arkadaşı «Pusula» — sınırsız konuş', pl: 'Rozmówca „Kompas” — rozmawiaj bez ograniczeń' },
@@ -136,6 +149,7 @@ function localPremiumPlan(productId: unknown, storedPlan: unknown): PremiumStore
 
 export default function ManageSubscription() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ plan?: string | string[] }>();
   const { lang } = useLang();
   const L = lang as Lang;
   const chrome = usePaywallChrome();
@@ -150,9 +164,19 @@ export default function ManageSubscription() {
     pl: string,
   ) => triLang(L, { ru, uk, es, 'pt-BR': ptBR, vi, id, tr, pl });
 
+  // зачем (аудит инстант-открытия 2026-07-25): раньше fallbackPlan/loading стартовали
+  // "пустыми" и модалка ждала initRevenueCat()+getCustomerInfo()+AsyncStorage — юзер видел
+  // скелетон, хотя кнопка "Plus активирован" в settings.tsx уже ЗНАЛА premiumPlan синхронно
+  // (иначе она не могла бы показать этот лейбл). Теперь читаем ?plan= из параметров роута
+  // (см. settings.tsx plusRowPress + paywall_navigation.ts форвардинг) и от него же решаем
+  // loading=false с первого кадра — контент рендерится сразу, RevenueCat лишь дотягивает
+  // точную дату списания/цену в фоне и не блокирует первый рендер.
+  const routeParamPlan = normalizeStoredPremiumPlan(
+    Array.isArray(params.plan) ? params.plan[0] : params.plan,
+  );
   const [info, setInfo] = useState<CustomerInfo | null>(null);
-  const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [fallbackPlan, setFallbackPlan] = useState<PremiumStorePlan | null>(routeParamPlan);
+  const [loading, setLoading] = useState(routeParamPlan === null);
   const [yearlyPriceStr, setYearlyPriceStr] = useState('');
   const [yearlyPkg, setYearlyPkg] = useState<import('react-native-purchases').PurchasesPackage | null>(null);
   const [changing, setChanging] = useState(false);
@@ -164,19 +188,24 @@ export default function ManageSubscription() {
     let dead = false;
     void (async () => {
       try {
-        await initRevenueCat();
-        await syncRevenueCatIdentity();
-        const [ci, localPairs] = await Promise.all([
-          Purchases.getCustomerInfo(),
-          AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id']),
-        ]);
+        // Локальный AsyncStorage-кэш (записан persistStorePremiumLocally при покупке/смене
+        // плана) читаем ПЕРВЫМ и отдельно от RevenueCat — он не требует сети и обычно уже
+        // точнее route-параметра (знает lifetime/expiry), поэтому обновляет fallbackPlan
+        // ещё до того, как достучимся до RevenueCat.
+        const localPairs = await AsyncStorage.multiGet(['premium_plan', 'premium_rc_product_id']);
         const storedPlan = localPairs.find(p => p[0] === 'premium_plan')?.[1];
         const storedProductId = localPairs.find(p => p[0] === 'premium_rc_product_id')?.[1];
         const nextFallbackPlan = localPremiumPlan(storedProductId, storedPlan);
-        if (!dead) {
-          setInfo(ci);
+        if (!dead && nextFallbackPlan) {
           setFallbackPlan(nextFallbackPlan);
+          setLoading(false);
         }
+
+        await initRevenueCat();
+        await syncRevenueCatIdentity();
+        const ci = await Purchases.getCustomerInfo();
+        if (!dead) setInfo(ci);
+
         const o = await Purchases.getOfferings();
         const pkgs = resolvePremiumPackages(o.current?.availablePackages ?? []);
         if (!dead && pkgs.yearly) {

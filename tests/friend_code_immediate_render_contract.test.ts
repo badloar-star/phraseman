@@ -9,10 +9,12 @@ function read(rel: string): string {
 
 describe('friends invite code first paint', () => {
   it('starts cached friend-code render and cloud ensure before deferred friends work', () => {
-    const source = read('app/(tabs)/friends.tsx');
+    // зачем: файл на Windows живёт то с LF, то с CRLF — контракт не про переносы
+    // строк, поэтому нормализуем; ensure теперь с колбэком отмены (гейт видимого таба).
+    const source = read('app/(tabs)/friends.tsx').replace(/\r\n/g, '\n');
     const effectStart = source.indexOf('useEffect(() => {\n    mountedRef.current = true;');
     const cachedRead = source.indexOf('readCachedMyInviteCodeForFriends().then', effectStart);
-    const ensureRead = source.indexOf('void syncMyInviteCode();', effectStart);
+    const ensureRead = source.indexOf('void syncMyInviteCode(() => cancelled);', effectStart);
     const deferredWork = source.indexOf('InteractionManager.runAfterInteractions', effectStart);
 
     expect(effectStart).toBeGreaterThanOrEqual(0);

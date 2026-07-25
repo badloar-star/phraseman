@@ -121,16 +121,19 @@ describe('achievements', () => {
     expect(offenders).toEqual([]);
   });
 
-  it('uses pluralized RU/UK copy for the received achievements count', () => {
+  it('keeps the stats achievements counter on live unlocked count and hides the zero state', () => {
+    // зачем: редизайн карточки («Все N») снял существительное после числа —
+    // плюрализация ruAchievementRewardPhrase жила только в мёртвом {false && ...}
+    // блоке и удалена вместе с ним. Контракт охраняет живое: счётчик — из
+    // loadAchievementStates (unlocked, не общий тотал) и запрет «Все 0».
     const file = path.join(__dirname, '..', 'app', 'streak_stats.tsx');
     const source = fs.readFileSync(file, 'utf8');
 
-    expect(source).toContain('ruAchievementRewardPhrase(achievementCount)');
-    expect(source).toContain('ukAchievementRewardPhrase(achievementCount)');
+    expect(source).toContain('Все ${achievementCount}');
+    expect(source).toContain('Усі ${achievementCount}');
+    expect(source).toContain('achievementCount > 0');
     expect(source).toContain('loadAchievementStates()');
     expect(source).not.toContain('ALL_ACHIEVEMENTS.length');
-    expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} наград`');
-    expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} нагород`');
   });
 
   it('claims achievement reward marker without granting coins (§7: награда +1 монета обнулена)', async () => {
@@ -199,9 +202,9 @@ describe('achievements', () => {
   });
 
   it('keeps flashcard source achievement aligned with live save sources', () => {
+    // зачем: экран квизов снят целиком (3eba05191, вместе с Ареной) — живые
+    // source="..." сохранения остались только в уроках и карточке дня.
     const files = [
-      path.join(__dirname, '..', 'app', '(tabs)', 'quizzes.tsx'),
-      path.join(__dirname, '..', 'app', 'quizzes.tsx'),
       path.join(__dirname, '..', 'app', 'lesson1.tsx'),
       path.join(__dirname, '..', 'app', 'lesson_words.tsx'),
       path.join(__dirname, '..', 'app', 'lesson_irregular_verbs.tsx'),

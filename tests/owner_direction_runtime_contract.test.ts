@@ -868,11 +868,14 @@ describe('owner runtime direction contract', () => {
   it('keeps account merge shard writes stamped so stale local wallets cannot overwrite them', () => {
     const source = read('functions/src/auth_merge.ts');
 
-    expect(source).toContain('const mergedShards = mergeShards(winnerData.shards, loserData.shards);');
-    expect(source).toContain('update.shards = mergedShards;');
-    expect(source).toContain('update.shards_updated_at_ms = now;');
-    expect(source).toContain("update.shards_updated_op = 'replace';");
-    expect(source).toContain("update.shards_updated_reason = 'account_merge';");
+    // зачем: рефакторинг 3eba05191 переименовал winnerData/update → winner.data/
+    // winnerUpdate и перенёс чтения внутрь транзакции; сама защита (merge = max +
+    // штампы свежести кошелька) не менялась — контракт перепривязан к живым именам.
+    expect(source).toContain('const mergedShards = mergeShards(winner.data.shards, loser.data.shards);');
+    expect(source).toContain('winnerUpdate.shards = mergedShards;');
+    expect(source).toContain('winnerUpdate.shards_updated_at_ms = now;');
+    expect(source).toContain("winnerUpdate.shards_updated_op = 'replace';");
+    expect(source).toContain("winnerUpdate.shards_updated_reason = 'account_merge';");
   });
 
   it('keeps level gift shard fallback on the shared shard mirror instead of raw balance writes', () => {

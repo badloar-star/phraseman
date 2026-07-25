@@ -9465,10 +9465,6 @@
       </div>
     </div>
 
-    <div class="h-sec">
-      <div class="h-sec-title">Audit archive</div>
-      <div style="font-size:12.5px;color:#9ca3af;margin-bottom:8px">Архивный чеклист аудита от 8 июня 2026. Историческая запись — не для текущей работы.</div>
-    </div>
 
     <div style="background:#0f1f0f;border:1px solid #1a3a1a;border-radius:10px;padding:14px 16px;margin-top:8px">
       <div style="font-size:13px;font-weight:800;color:#4ade80;margin-bottom:8px">💡 Полезные подсказки</div>
@@ -9497,7 +9493,6 @@
   <div class="tab" onclick="switchTab('daily-digest')" title="Сводка от прошлого открытия: сравнения, продуктовые выводы, риски и действия" style="background:rgba(139,124,255,0.14);border:1px solid rgba(139,124,255,0.4);color:#c4b5fd;font-weight:700">🌅 Дайджест</div>
   <div class="tab" onclick="switchTab('mod-queue')" style="background:rgba(108,71,255,0.12);border:1px solid rgba(108,71,255,0.35);color:#c4b5fd;font-weight:700">🛡 Очередь</div>
   <div class="tab" onclick="switchTab('ideas')" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">💡 Идеи</div>
-  <div class="tab" onclick="switchTab('ideas-decided')" title="Архив решённых идей: принятые (выдан год Плюс) и отклонённые — с текстом, отправленным пользователю" style="background:rgba(74,222,128,0.10);border:1px solid rgba(74,222,128,0.30);color:#86efac;font-weight:700">✅ Идеи: решённые</div>
   <div class="tab" onclick="switchTab('users')" data-i18n-es="Usuarios">Users</div>
   <div class="tab" onclick="location.href='testers.html'" data-i18n-es="Pagos Telegram">Телеграм оплаты</div>
   <div class="tab" onclick="location.href='beta_testers.html'" title="Бета-тестеры: список, выдача ауры «Нимб», Plus навсегда, управление энергией" style="background:rgba(56,189,248,0.12);border:1px solid rgba(56,189,248,0.4);color:#7dd3fc;font-weight:700">🔵 Бета тестеры</div>
@@ -11110,8 +11105,11 @@
 <!-- IDEAS TAB (Идеи пользователей — год премиума за принятую идею) -->
 <div id="tab-ideas" class="reports-tab">
   <div class="reports-toolbar">
+    <!-- зачем: «Решённые» — бывшая отдельная вкладка, слита сюда как значение
+         фильтра: она читала ту же коллекцию user_ideas вторым запросом. -->
     <select id="idea-filter-status" onchange="filterUserIdeas()">
       <option value="pending" data-i18n-es="Pendientes">На рассмотрении</option>
+      <option value="decided">Решённые (принятые + отклонённые)</option>
       <option value="approved" data-i18n-es="Aprobadas">Принятые</option>
       <option value="rejected" data-i18n-es="Rechazadas">Отклонённые</option>
       <option value="" data-i18n-es="Todas">Все</option>
@@ -11128,28 +11126,6 @@
     <span class="reports-count" id="idea-count"></span>
   </div>
   <div id="idea-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
-</div>
-
-<!-- IDEAS DECIDED TAB (Архив решённых идей: принятые + отклонённые) -->
-<div id="tab-ideas-decided" class="reports-tab">
-  <div class="reports-toolbar">
-    <select id="idea-decided-filter-status" onchange="filterDecidedIdeas()">
-      <option value="" data-i18n-es="Todas (aceptadas y rechazadas)">Все решённые</option>
-      <option value="approved" data-i18n-es="Aceptadas">Принятые</option>
-      <option value="rejected" data-i18n-es="Rechazadas">Отклонённые</option>
-    </select>
-    <select id="idea-decided-filter-category" onchange="filterDecidedIdeas()">
-      <option value="" data-i18n-es="Todas las categorías">Все категории</option>
-      <option value="feature">Новая фича</option>
-      <option value="improvement">Улучшение</option>
-      <option value="monetization">Монетизация</option>
-      <option value="content">Контент</option>
-      <option value="other">Другое</option>
-    </select>
-    <button onclick="loadDecidedIdeas(true)" style="background:#2a2a3a;color:#aaa" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
-    <span class="reports-count" id="idea-decided-count"></span>
-  </div>
-  <div id="idea-decided-list"><div class="reports-empty" data-i18n-es="⏳ Cargando...">⏳ Загрузка...</div></div>
 </div>
 
 <!-- TOP HELPERS BOARD TAB (Топ хелперов) -->
@@ -12952,7 +12928,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -17119,9 +17095,6 @@
     if (tab === 'ideas' && typeof window.loadUserIdeas === 'function') {
       void window.loadUserIdeas();
     }
-    if (tab === 'ideas-decided' && typeof window.loadDecidedIdeas === 'function') {
-      void window.loadDecidedIdeas();
-    }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
     }
@@ -18247,7 +18220,6 @@
     overview: 'Overview',
     'mod-queue': 'Moderation queue',
     ideas: 'Ideas',
-    'ideas-decided': 'Decided ideas',
     users: 'Users',
     testers: 'Testers',
     full: 'Full analytics',
@@ -18336,7 +18308,6 @@
     overview: 'chart',
     'mod-queue': 'flag',
     ideas: 'lightbulb',
-    'ideas-decided': 'clipboard',
     full: 'chart',
     site: 'globe',
     analytics: 'chart',
@@ -18413,7 +18384,6 @@
     'age-consent': 'core',
     overview: 'core',
     'mod-queue': 'users',
-    'ideas-decided': 'users',
     analytics: 'core',
     'onboarding-sources': 'core',
     'openai-budget': 'revenue',
@@ -23395,7 +23365,14 @@
     const status = document.getElementById('idea-filter-status').value;
     const category = document.getElementById('idea-filter-category').value;
     let arr = window._allUserIdeas;
-    if (status) arr = arr.filter(r => (r.status || 'pending') === status);
+    // 'decided' = принятые + отклонённые (заменяет бывшую вкладку «Идеи: решённые»).
+    if (status === 'decided') {
+      arr = arr.filter(r => { const s = r.status || 'pending'; return s === 'approved' || s === 'rejected'; })
+               .slice()
+               .sort((a, b) => Number(b.decidedAt || b.createdAtMs || 0) - Number(a.decidedAt || a.createdAtMs || 0));
+    } else if (status) {
+      arr = arr.filter(r => (r.status || 'pending') === status);
+    }
     if (category) arr = arr.filter(r => (r.category || 'other') === category);
     renderUserIdeas(arr);
   };
@@ -23431,8 +23408,18 @@
       const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '';
       const langLbl = escapeHtml(ideaLangLabel(r.lang));
 
+      // зачем: раньше точный текст, ушедший пользователю (decisionMessageRu), и
+      // дата решения жили в ОТДЕЛЬНОЙ вкладке «Идеи: решённые», которая читала ту
+      // же коллекцию второй раз. Вкладку слили сюда — показываем это прямо в
+      // карточке решённой идеи, фильтр статуса наверху заменяет вторую вкладку.
+      const decidedDate = r.decidedAtIso ? escapeHtml(String(r.decidedAtIso).slice(0, 10)) : '';
+      const sentMsg = escapeHtml(String(r.decisionMessageRu || '').trim());
       const actions = decided
-        ? `<div style="font-size:11px;color:#666;margin-top:6px">${status === 'approved' ? '✅ год Плюс выдан' : '✖️ отклонена'}${decidedBy ? ' · ' + decidedBy : ''}</div>`
+        ? `<div style="font-size:11px;color:#666;margin-top:6px">${status === 'approved' ? '✅ год Плюс выдан' : '✖️ отклонена'}${decidedBy ? ' · ' + decidedBy : ''}${decidedDate ? ' · ' + decidedDate : ''}</div>${
+            sentMsg
+              ? `<div style="margin-top:7px;padding:8px 10px;background:#12151d;border-radius:8px;font-size:12px;color:#9ca3af;line-height:1.5"><span style="color:#6b7280">Ответ пользователю:</span> ${sentMsg}</div>`
+              : ''
+          }`
         : `<div style="margin-top:10px">
              <textarea id="idea-msg-${id}" placeholder="Текст модалки для пользователя. Нажми «✨ ИИ» — текст сгенерируется сразу на языке пользователя. Пусто = стандартный текст." style="width:100%;min-height:64px;background:#0f1320;border:1px solid #2a3550;color:#dbe3f4;border-radius:8px;padding:8px 10px;font-size:12px;resize:vertical;box-sizing:border-box"></textarea>
              <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;align-items:center">
@@ -23583,124 +23570,6 @@
       else alert('Ошибка: ' + msg);
       filterUserIdeas();
     }
-  }
-
-  // ── ИДЕИ: РЕШЁННЫЕ — архив принятых + отклонённых ────────────────────────────
-  // Read-only архив по той же коллекции user_ideas (status: approved|rejected).
-  // Показывает точный текст, отправленный пользователю (decisionMessageRu),
-  // кто и когда решил. Ничего не отправляет — только просмотр истории.
-  window._decidedIdeasLoaded = false;
-  window._allDecidedIdeas = [];
-
-  window.loadDecidedIdeas = async function(force) {
-    window._decidedIdeasLoaded = true;
-    const list = document.getElementById('idea-decided-list');
-    if (!list) return;
-    if (!window._allUserIdeas || !window._allUserIdeas.length || force) {
-      list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
-    }
-    try {
-      // зачем: берём тот же общий массив, что и вкладка «Идеи» — вместо второго
-      // запроса на 500 документов. После решения по идее вызывается с force=true,
-      // поэтому decisionMessageRu и статус остаются актуальными.
-      const all = await window.fetchUserIdeasShared(force);
-      window._allDecidedIdeas = all.filter(r => {
-        const s = r.status || 'pending';
-        return s === 'approved' || s === 'rejected';
-      });
-      filterDecidedIdeas();
-    } catch (e) {
-      list.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message || String(e))}</div>`;
-    }
-  };
-
-  window.filterDecidedIdeas = function() {
-    const status = document.getElementById('idea-decided-filter-status').value;
-    const category = document.getElementById('idea-decided-filter-category').value;
-    let arr = window._allDecidedIdeas;
-    if (status) arr = arr.filter(r => (r.status || '') === status);
-    if (category) arr = arr.filter(r => (r.category || 'other') === category);
-    renderDecidedIdeas(arr);
-  };
-
-  function renderDecidedIdeas(ideas) {
-    const list = document.getElementById('idea-decided-list');
-    const countEl = document.getElementById('idea-decided-count');
-    if (!list) return;
-    if (countEl) countEl.textContent = `${ideas.length} идей`;
-    if (!ideas.length) { list.innerHTML = '<div class="reports-empty">📭 Решённых идей нет</div>'; return; }
-
-    // Свежерешённые сверху (по времени решения, затем по времени создания).
-    const sorted = ideas.slice().sort((a, b) => {
-      const ad = Number(a.decidedAt || a.createdAtMs || 0);
-      const bd = Number(b.decidedAt || b.createdAtMs || 0);
-      return bd - ad;
-    });
-
-    list.innerHTML = sorted.map(r => {
-      const status = r.status || '';
-      const approved = status === 'approved';
-      const statusColor = approved ? '#4ade80' : '#6b7280';
-      const statusTxt = approved ? 'принята' : 'отклонена';
-      const catLabel = escapeHtml(IDEA_CATEGORY_LABELS[r.category] || r.category || '—');
-      const title = escapeHtml(r.title || '—');
-      const desc = escapeHtml(r.description || '');
-      const benefit = escapeHtml(r.benefit || '');
-      const createdDate = escapeHtml(r.createdAt ? String(r.createdAt).slice(0, 10) : '—');
-      const decidedDate = escapeHtml(r.decidedAtIso ? String(r.decidedAtIso).slice(0, 10) : '—');
-      const uidFull = r.uid ? String(r.uid).trim() : '';
-      const uidFullEsc = escapeHtml(uidFull);
-      const uShort = uidFull ? escapeHtml(uidFull.slice(-8)) : '—';
-      const cachedU = uidFull ? (window._users || []).find(u => u.uid === uidFull) : null;
-      const uName = escapeHtml(r.userName || r.name || (cachedU && cachedU.name) || (uidFull && window._refNameCache && window._refNameCache[uidFull]) || '?');
-      const plat = escapeHtml(r.platform || (cachedU && cachedU.platform) || '—');
-      const decidedBy = r.decidedBy ? escapeHtml(String(r.decidedBy)) : '—';
-      // Точный текст, который ушёл пользователю в модалку (decisionMessageRu).
-      const sentMsg = escapeHtml(String(r.decisionMessageRu || '').trim());
-
-      const decisionLine = approved
-        ? `✅ Принята — год Плюс выдан`
-        : `✖️ Отклонена`;
-
-      return `
-        <div class="report-card" style="border-left:3px solid ${statusColor};display:block">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
-            <span style="font-size:18px">${approved ? '✅' : '✖️'}</span>
-            <div style="flex:1">
-              <div style="color:#fff;font-weight:700;font-size:15px">${title}</div>
-              <div style="color:#666;font-size:11px" ${uidFull ? `data-idea-uid="${uidFullEsc}"` : ''}>${uidFull ? `<button type="button" class="idea-author-open" data-open="${uidFullEsc}" title="Открыть карточку пользователя (uid ${uidFullEsc})" style="background:none;border:none;padding:0;margin:0;color:#8ab4ff;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px"><span data-idea-author-name>${uName}</span> · uid ${uShort}</button>` : `<span data-idea-author-name>${uName}</span> · uid ${uShort}`} · ${plat} · создана ${createdDate}</div>
-            </div>
-            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;background:#2a1a00;color:#fbbf24">${catLabel}</span>
-            <span style="padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;color:${statusColor}">${statusTxt}</span>
-          </div>
-          <div style="font-size:13px;color:#cbd5e1;white-space:pre-wrap;line-height:1.5;margin-bottom:${benefit ? '8px' : '0'}">${desc}</div>
-          ${benefit ? `<div style="font-size:12px;color:#93a4bd;white-space:pre-wrap;line-height:1.5"><b style="color:#7c93b4">Польза:</b> ${benefit}</div>` : ''}
-          <div style="margin-top:10px;padding-top:8px;border-top:1px solid #1e2230;font-size:11px;color:#8a97ad">
-            ${decisionLine} · решил: ${decidedBy} · ${decidedDate}
-          </div>
-          ${sentMsg
-            ? `<div style="margin-top:8px;background:#0f1320;border:1px solid #2a3550;border-radius:8px;padding:8px 10px">
-                 <div style="font-size:10px;text-transform:uppercase;letter-spacing:.04em;color:#7c93b4;margin-bottom:4px">✉️ Текст, отправленный пользователю</div>
-                 <div style="font-size:12.5px;color:#dbe3f4;white-space:pre-wrap;line-height:1.5">${sentMsg}</div>
-               </div>`
-            : `<div style="margin-top:8px;font-size:11px;color:#6b7280;font-style:italic">Отправлен стандартный текст (админ не переопределял).</div>`}
-        </div>`;
-    }).join('');
-
-    list.querySelectorAll('button.idea-author-open').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const uid = btn.getAttribute('data-open');
-        if (uid) void loadUserToCacheAndOpen(uid);
-      });
-    });
-
-    // Дотянуть имена авторов, у которых в записи имени нет (осталось «?»).
-    const missing = sorted
-      .filter(r => !(r.userName || r.name))
-      .map(r => (r.uid ? String(r.uid).trim() : ''))
-      .filter(Boolean);
-    if (missing.length) void enrichIdeaAuthorNames(list, missing);
   }
 
   // ── EXPLAIN REPORTS — «Непонятно объяснили» ─────────────────────────────────

@@ -183,17 +183,20 @@ describe('экраны режима «Турниры»', () => {
     // §11 спеки и правило экономии: подписка на коллекцию тарифицируется
     // за каждый документ при каждом изменении — на 16 игроках это заметно.
     const client = read('app/tournament_client.ts');
-    expect(client).toContain("doc(getFirestore(), 'tournamentRooms', roomId)");
-    expect(client).toContain('onSnapshot');
-    // Слушателей на коллекции быть не должно.
-    expect(client).not.toMatch(/onSnapshot\(\s*collection\(/);
-    expect(client).not.toMatch(/onSnapshot\(\s*query\(/);
+    // Приложение на @react-native-firebase (цепочечный API), не на веб-SDK:
+    // веб-синтаксис здесь просто не запустился бы.
+    expect(client).toContain('@react-native-firebase/firestore');
+    expect(client).not.toContain("from 'firebase/firestore'");
+    expect(client).toMatch(/\.collection\('tournamentRooms'\)\s*\.doc\(roomId\)\s*\.onSnapshot/);
+    // Подписки на коллекцию быть не должно — это чтение за каждый документ.
+    expect(client).not.toMatch(/collection\('tournamentRooms'\)\s*\.onSnapshot/);
+    expect(client).not.toMatch(/\.where\([^)]*\)\s*\.onSnapshot/);
   });
 
   it('расписание кэшируется, а не слушается — оно меняется раз в недели', () => {
     const client = read('app/tournament_client.ts');
     expect(client).toContain('SCHEDULE_TTL_MS');
-    expect(client).toContain('getDoc');
+    expect(client).toMatch(/\.doc\('config'\)\s*\.get\(\)/);
     // Кэш обязан жить часами, иначе смысла в нём нет.
     expect(client).toMatch(/SCHEDULE_TTL_MS\s*=\s*\d+\s*\*\s*60\s*\*\s*60\s*\*\s*1000/);
   });

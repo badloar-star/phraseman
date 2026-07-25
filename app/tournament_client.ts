@@ -90,33 +90,35 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
     let cancelled = false;
     setStatus('loading');
 
-    // Импорт внутри эффекта: модуль Firestore не попадает в стартовый бандл
-    // экрана, если пользователь до турниров не дошёл (холодный старт).
+    // зачем: приложение использует @react-native-firebase (цепочечный API),
+    // а не веб-SDK. Импорт внутри эффекта — модуль не попадает в стартовый
+    // бандл, если пользователь до турниров не дошёл (холодный старт).
     void (async () => {
       try {
-        const { getFirestore, doc, onSnapshot } = await import('firebase/firestore');
+        const firestore = (await import('@react-native-firebase/firestore')).default;
         if (cancelled) return;
 
-        const reference = doc(getFirestore(), 'tournamentRooms', roomId);
-        unsubscribeRef.current = onSnapshot(
-          reference,
-          (snapshot) => {
-            if (cancelled) return;
-            if (!snapshot.exists()) {
-              setRoom(null);
-              setStatus('error');
-              return;
-            }
-            setRoom(snapshot.data() as Room);
-            setStatus('ready');
-          },
-          () => {
-            if (cancelled) return;
-            // Различаем «нет сети» и «нет доступа» по факту наличия данных:
-            // если что-то уже пришло, значит доступ есть и это обрыв связи.
-            setStatus((previous) => (previous === 'ready' ? 'offline' : 'error'));
-          },
-        );
+        unsubscribeRef.current = firestore()
+          .collection('tournamentRooms')
+          .doc(roomId)
+          .onSnapshot(
+            (snapshot: any) => {
+              if (cancelled) return;
+              if (!snapshot?.exists) {
+                setRoom(null);
+                setStatus('error');
+                return;
+              }
+              setRoom(snapshot.data() as Room);
+              setStatus('ready');
+            },
+            () => {
+              if (cancelled) return;
+              // Различаем «нет сети» и «нет доступа»: если данные уже
+              // приходили, значит доступ есть и это обрыв связи.
+              setStatus((previous) => (previous === 'ready' ? 'offline' : 'error'));
+            },
+          );
       } catch {
         if (!cancelled) setStatus('offline');
       }
@@ -151,9 +153,12 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
 
 // ── Callable-обёртки ────────────────────────────────────────────────────────
 
+const FUNCTIONS_REGION = 'us-central1';
+
 async function callFunction<T>(name: string, payload: Record<string, unknown> = {}): Promise<T> {
-  const { getFunctions, httpsCallable } = await import('firebase/functions');
-  const call = httpsCallable(getFunctions(undefined, 'us-central1'), name);
+  const { getApp } = await import('@react-native-firebase/app');
+  const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
+  const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name);
   const result = await call(payload);
   return result.data as T;
 }
@@ -190,9 +195,9 @@ export async function loadSchedule(force = false): Promise<unknown> {
   if (!force && scheduleCache && now - scheduleCache.at < SCHEDULE_TTL_MS) {
     return scheduleCache.value;
   }
-  const { getFirestore, doc, getDoc } = await import('firebase/firestore');
-  const snapshot = await getDoc(doc(getFirestore(), 'tournamentSchedule', 'config'));
-  const value = snapshot.exists() ? snapshot.data() : null;
+  const firestore = (await import('@react-native-firebase/firestore')).default;
+  const snapshot = await firestore().collection('tournamentSchedule').doc('config').get();
+  const value = snapshot.exists ? snapshot.data() : null;
   scheduleCache = { at: now, value };
   return value;
 }

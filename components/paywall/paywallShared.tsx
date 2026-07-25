@@ -17,6 +17,7 @@ import { useTheme } from '../ThemeContext';
 import { getPaywallThemeConfig, type ThemePaywallConfig } from '../paywallThemeConfig';
 import { getPaywallSocialProof } from '../../app/paywall_variant';
 import { CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP } from '../../app/paywall_copy';
+import { PaywallContextIcon } from './PaywallContextIcons';
 import type { PremiumContext } from '../../app/premium_context';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackground';
@@ -240,7 +241,10 @@ export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chro
         {isDialogLimit ? (
           <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
         ) : (
-          <Ionicons name={contextGlyph(ctx)} size={32} color={tc.heroAccent} />
+          /* зачем: владелец убрал стоковые Ionicons из хиро — фирменный контурный
+             набор PaywallContextIcons, у каждого контекста своя иконка (макеты
+             docs/paywall-audit). Цвет — акцент контекста темы, как раньше. */
+          <PaywallContextIcon ctx={ctx} size={32} color={tc.heroAccent} />
         )}
       </View>
     </PaywallIdleFloat>

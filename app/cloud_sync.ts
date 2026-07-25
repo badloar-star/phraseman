@@ -49,6 +49,10 @@ import { resetAppSnapshotForAccountSwitch } from './app_snapshot_store';
 // зачем: сброс кэша множителей XP при смене аккаунта — см. resetMultiplierBreakdownCache
 // в xp_manager.ts (защита от утечки предыдущего аккаунта в PlayerProfileModal).
 import { resetMultiplierBreakdownCache } from './xp_manager';
+// зачем: сброс кэша состояния лиги предыдущего аккаунта при смене юзера — см.
+// clearCachedLeagueStateSnapshot в league_open_cache_policy.ts (защита от утечки
+// ранга/группы/участников лиги предыдущего аккаунта в club_screen).
+import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
 import {
   extractExamBestPctOverlay,
   publishExamBestPctOverlay,
@@ -3003,6 +3007,9 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   // зачем: без этого PlayerProfileModal мог мгновенно отрендерить множители
   // XP предыдущего аккаунта (см. комментарий у resetMultiplierBreakdownCache).
   resetMultiplierBreakdownCache();
+  // зачем: без этого club_screen мог мгновенно отрендерить ранг/группу лиги
+  // предыдущего аккаунта (см. комментарий у clearCachedLeagueStateSnapshot).
+  clearCachedLeagueStateSnapshot();
   if (syncTimer) {
     clearTimeout(syncTimer);
     syncTimer = null;

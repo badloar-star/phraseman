@@ -2053,6 +2053,17 @@ export async function signOutCurrentProvider(): Promise<void> {
     const { resetMultiplierBreakdownCache } = await import('./xp_manager');
     resetMultiplierBreakdownCache();
   } catch { /* ignore */ }
+  // зачем: cachedLeagueStateSnapshot в league_open_cache_policy.ts — module-scope
+  // кэш БЕЗ привязки к uid (см. clearCachedLeagueStateSnapshot). При смене
+  // аккаунта на общем девайсе/QA БЕЗ полного рестарта приложения
+  // getCachedLeagueStateSync() синхронно отдавал ранг/группу/участников лиги
+  // ПРЕДЫДУЩЕГО пользователя следующему вошедшему — утечка чужих данных лиги.
+  // signOutCurrentProvider — та же единственная точка всех путей выхода, что и
+  // для resetMultiplierBreakdownCache выше, поэтому сбрасываем здесь же.
+  try {
+    const { clearCachedLeagueStateSnapshot } = await import('./league_open_cache_policy');
+    clearCachedLeagueStateSnapshot();
+  } catch { /* ignore */ }
   logAuthEvent('auth_signout');
 }
 

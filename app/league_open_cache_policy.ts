@@ -25,6 +25,14 @@ export function rememberLeagueStateSnapshot(state: LeagueState | null | undefine
   return cachedLeagueStateSnapshot;
 }
 
+// зачем: cachedLeagueStateSnapshot выше — module-scope кэш БЕЗ привязки к uid,
+// он просто держит последнее сохранённое состояние лиги процесса (ранг, группа,
+// участники). При logout/смене аккаунта БЕЗ полного рестарта приложения (общий
+// девайс, QA свитчит тестовые аккаунты) getCachedLeagueStateSync() синхронно
+// отдавал состояние лиги ПРЕДЫДУЩЕГО аккаунта следующему вошедшему — утечка
+// чужих данных лиги. Вызывается из wipeLocalAccountDataUnsafe (cloud_sync.ts) и
+// signOutCurrentProvider (auth_provider.ts) — тех же точек, что и
+// resetMultiplierBreakdownCache в xp_manager.ts (см. 35b425d4c).
 export function clearCachedLeagueStateSnapshot(): void {
   cachedLeagueStateSnapshot = null;
 }

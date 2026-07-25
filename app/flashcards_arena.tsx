@@ -266,6 +266,29 @@ export default function FlashcardsArenaScreen() {
     void saveArenaRun(answers, studyTarget);
   }, [phase, answers, studyTarget]);
 
+  /**
+   * зачем (НАЙДЕНО АУДИТОМ 2026-07-25): выход с СЕРЕДИНЫ забега терял весь
+   * прогресс — ответы уже даны, но записывались только в фазе done. Юзер
+   * честно отработал 7 из 10 вопросов, вышел — и ничего не засчиталось.
+   *
+   * Держим ответы в ref, чтобы cleanup видел их актуальное значение (замыкание
+   * эффекта с пустыми зависимостями иначе поймало бы пустой массив), и пишем
+   * при размонтировании. Тот же savedRunRef защищает от двойной записи, если
+   * забег успел дойти до итогов.
+   */
+  const answersRef = useRef(answers);
+  answersRef.current = answers;
+  const studyTargetRef = useRef(studyTarget);
+  studyTargetRef.current = studyTarget;
+  useEffect(
+    () => () => {
+      if (savedRunRef.current || answersRef.current.length === 0) return;
+      savedRunRef.current = true;
+      void saveArenaRun(answersRef.current, studyTargetRef.current);
+    },
+    [],
+  );
+
   const restart = useCallback(() => {
     void hapticTap();
     clearTimers();

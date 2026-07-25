@@ -29,6 +29,9 @@ import {
 } from 'react-native';
 import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
+// зачем: голый router.back() крашит Android/Fabric при teardown — контракт
+// navigation_back_underlay_contract требует safeRouterBack (честный replace).
+import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from 'expo-linear-gradient';
 import Animated, {
   cancelAnimation,
@@ -318,7 +321,7 @@ export default function RouletteScreen() {
     return (
       <View style={[styles.root, { backgroundColor: t.bgGradient[0] }]}>
         <View style={[styles.header, { paddingTop: insets.top + 8 }]}>
-          <Pressable onPress={() => router.back()} hitSlop={12} style={[styles.headerBtn, { borderColor: t.border }]} accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}>
+          <Pressable onPress={() => safeRouterBack(router)} hitSlop={12} style={styles.headerBtn} accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '400' }}>‹</Text>
           </Pressable>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1, textAlign: 'center' }}>
@@ -369,7 +372,7 @@ export default function RouletteScreen() {
         {/* Хедер */}
         <View style={styles.header}>
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router)}
             hitSlop={12}
             style={[styles.headerBtn, { backgroundColor: t.bgCard }]}
             accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}

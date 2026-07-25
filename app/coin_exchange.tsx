@@ -8,6 +8,9 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View, Text, ScrollView, TextInput, ActivityIndicator } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
+// зачем: голый router.back() крашит Android/Fabric при teardown — контракт
+// navigation_back_underlay_contract требует safeRouterBack (честный replace).
+import { safeRouterBack } from './navigation_back';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import Svg, { Polyline, Line, Circle } from 'react-native-svg';
@@ -169,7 +172,7 @@ export default function CoinExchangeScreen() {
           {/* Шапка */}
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 12, gap: 12 }}>
             <TapScale
-              onPress={() => router.back()}
+              onPress={() => safeRouterBack(router)}
               accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
               accessibilityRole="button"
               style={{ width: 40, height: 40, borderRadius: 20, alignItems: 'center', justifyContent: 'center' }}

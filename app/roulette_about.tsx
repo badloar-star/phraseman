@@ -11,6 +11,9 @@
 import React from 'react';
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useRouter } from 'expo-router';
+// зачем: голый router.back() крашит Android/Fabric при teardown — контракт
+// navigation_back_underlay_contract требует safeRouterBack (честный replace).
+import { safeRouterBack } from './navigation_back';
 import { LinearGradient } from 'expo-linear-gradient';
 // зачем: сырой useSafeAreaInsets отдаёт 0 до прихода нативных метрик — контент
 // прыгал на первом кадре (контракт stable_safe_area_initial_metrics_contract).
@@ -106,9 +109,9 @@ export default function RouletteAboutScreen() {
         {/* Хедер */}
         <View style={styles.header}>
           <Pressable
-            onPress={() => router.back()}
+            onPress={() => safeRouterBack(router)}
             hitSlop={12}
-            style={[styles.headerBtn, { borderColor: t.border }]}
+            style={styles.headerBtn}
             accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '400' }}>‹</Text>

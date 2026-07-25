@@ -306,6 +306,46 @@ describe('экраны режима «Турниры»', () => {
     expect(home).toContain('kind="cancelled"');
   });
 
+  it('лобби и раунд работают от комнаты, а не от заглушек', () => {
+    const lobby = read('app/tournament_lobby.tsx');
+    const round = read('app/tournament_round.tsx');
+
+    expect(lobby).toContain('useTournamentRoom');
+    expect(round).toContain('useTournamentRoom');
+    expect(lobby).not.toContain('const DEMO_SEATS');
+    expect(round).not.toContain('const DEMO_QUESTIONS');
+  });
+
+  it('переходы между этапами делает сервер, а не локальный таймер', () => {
+    // Иначе игроки с неточными часами уходят в раунд раньше остальных
+    // и видят вопросы, которых сервер ещё не выдал.
+    const lobby = read('app/tournament_lobby.tsx');
+    expect(lobby).toMatch(/room\.state === 'round'/);
+    // Кнопка «Начать сейчас» не должна дублировать серверный старт.
+    expect(lobby).not.toMatch(/onPress=\{\(\) => router\.replace\(.*tournament_round/);
+
+    const round = read('app/tournament_round.tsx');
+    expect(round).toMatch(/room\.state === 'table'/);
+    expect(round).toMatch(/room\.state === 'results'/);
+  });
+
+  it('правильный ответ не приходит на клиент — подглядеть нельзя', () => {
+    // Сервер вырезает ключи ответов из публичного payload. Если экран начнёт
+    // ждать correctIndex, он либо сломается, либо кто-то протащит ответы
+    // в клиент — а это накрутка очков.
+    const round = read('app/tournament_round.tsx');
+    expect(round).not.toContain('correctIndex');
+    expect(round).toContain('Ответ принят');
+  });
+
+  it('ответы уходят одной пачкой и ровно один раз за раунд', () => {
+    const round = read('app/tournament_round.tsx');
+    expect(round).toContain('submitAnswers');
+    expect(round).toContain('submittedRef');
+    // Повторная отправка = лишние вызовы функции и риск гонки.
+    expect(round).toMatch(/if \(!roomId \|\| submittedRef\.current\) return/);
+  });
+
   it('экран турниров лежит внутри папки вкладок', () => {
     // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
     expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();

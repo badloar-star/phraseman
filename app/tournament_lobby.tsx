@@ -7,7 +7,7 @@
 // никакого «список растёт и всё прыгает».
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
@@ -16,6 +16,10 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
 import { useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, formatTimeLeft, radius, type } from '../components/tournament/tournament_theme';
+import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { useTournamentRoom, type RoomPlayer } from './tournament_client';
+import { getStableId } from './stable_id';
+import { useLocalSearchParams } from 'expo-router';
 
 const SEATS = 16;
 const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
@@ -32,55 +36,100 @@ type Seat = {
   isYou?: boolean;
 };
 
-/** TODO(server): придёт из tournamentRooms/{roomId}.players одним слушателем. */
-const DEMO_SEATS: Seat[] = [
-  { id: 1, name: 'Вы', emoji: '🦊', color: '#FB923C', streak: 3, rank: 'Знаток', winRate: 52, played: 41, isYou: true },
-  { id: 2, name: 'СловоЖора', emoji: '🐺', color: '#8B8B8B', streak: 5, rank: 'Мастер', winRate: 61, played: 128 },
-  { id: 3, name: 'Фразочкина', emoji: '🦉', color: '#47C870', streak: 2, rank: 'Знаток', winRate: 49, played: 73 },
-  { id: 4, name: 'ГраммарНацик', emoji: '🤓', color: '#FFD43B', streak: 0, rank: 'Ученик', winRate: 44, played: 22 },
-  { id: 5, name: 'МолнияPRO', emoji: '⚔️', color: '#FF5B6C', streak: 7, rank: 'Мастер', winRate: 66, played: 210 },
-  { id: 6, name: 'LingvoLisa', emoji: '🔥', color: '#FB923C', streak: 1, rank: 'Знаток', winRate: 53, played: 88 },
-  { id: 7, name: 'Полиглот_77', emoji: '🌍', color: '#3B82F6', streak: 4, rank: 'Мастер', winRate: 58, played: 155 },
-  { id: 8, name: 'СленгМастер', emoji: '🎧', color: '#A78BFA', streak: 0, rank: 'Ученик', winRate: 41, played: 30 },
-  { id: 9, name: 'VerbaVolt', emoji: '⚡', color: '#FFD43B', streak: 2, rank: 'Знаток', winRate: 50, played: 64 },
-  { id: 10, name: 'ТихийСловарь', emoji: '📚', color: '#8AB49A', streak: 0, rank: 'Ученик', winRate: 39, played: 18 },
-  { id: 11, name: 'IdiomHunter', emoji: '🏹', color: '#47C870', streak: 3, rank: 'Знаток', winRate: 55, played: 97 },
-  { id: 12, name: 'МадамПеревод', emoji: '💃', color: '#FF5B6C', streak: 1, rank: 'Знаток', winRate: 47, played: 52 },
-  { id: 13, name: 'NoCapNika', emoji: '🧢', color: '#3B82F6', streak: 0, rank: 'Ученик', winRate: 43, played: 25 },
-  { id: 14, name: 'АкцентЗеро', emoji: '🎯', color: '#A78BFA', streak: 2, rank: 'Знаток', winRate: 51, played: 70 },
-  { id: 15, name: 'RoflPhrase', emoji: '🐸', color: '#47C870', streak: 0, rank: 'Ученик', winRate: 38, played: 14 },
-  { id: 16, name: 'КубокБарон', emoji: '👑', color: '#FFD43B', streak: 6, rank: 'Легенда', winRate: 71, played: 340 },
-];
+/** Ранг по числу сыгранных турниров — сервер его не считает, это витрина. */
+function rankForPlayed(played: number): string {
+  if (played >= 300) return 'Легенда';
+  if (played >= 120) return 'Мастер';
+  if (played >= 40) return 'Знаток';
+  return 'Ученик';
+}
+
+/**
+ * Игроки комнаты → места сетки.
+ *
+ * зачем: сервер отдаёт плоский список без «кто я» и без витринных полей.
+ * Порядок сохраняем как пришёл — сервер сажает игроков в порядке входа, и
+ * пересортировка заставила бы карточки прыгать при каждом обновлении.
+ */
+function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null): Seat[] {
+  return players.slice(0, SEATS).map((player, index) => {
+    const played = Number((player as { played?: number }).played ?? 0);
+    return {
+      id: index + 1,
+      name: player.name || 'Игрок',
+      emoji: player.avatar || '🙂',
+      color: player.color || '#8AB49A',
+      streak: Number(player.streak ?? 0),
+      rank: rankForPlayed(played),
+      winRate: Math.round(Number((player as { botWinRate?: number }).botWinRate ?? 0) * 100) || 0,
+      played,
+      isYou: Boolean(myId) && player.id === myId,
+    };
+  });
+}
 
 export default function TournamentLobbyScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const params = useLocalSearchParams<{ roomId?: string }>();
+  const roomId = typeof params.roomId === 'string' ? params.roomId : null;
 
-  // Игроки «подключаются» по одному — так лобби живёт, а не висит статикой.
-  const [joined, setJoined] = useState(6);
+  const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
   const [selected, setSelected] = useState<Seat | null>(null);
   const [reaction, setReaction] = useState<string | null>(null);
-  const secondsToStart = useCountdown(14);
+  const [myId, setMyId] = useState<string | null>(null);
 
+  // Свой id нужен, чтобы подсветить своё место в сетке.
   useEffect(() => {
-    if (joined >= SEATS) return;
-    const id = setTimeout(() => setJoined((n) => Math.min(SEATS, n + 1)), 420);
-    return () => clearTimeout(id);
-  }, [joined]);
+    let cancelled = false;
+    void getStableId().then((id) => { if (!cancelled) setMyId(id); });
+    return () => { cancelled = true; };
+  }, []);
 
+  // Переход в раунд по СЕРВЕРНОМУ состоянию, а не по локальному таймеру:
+  // иначе игроки с неточными часами уйдут в раунд раньше или позже остальных.
   useEffect(() => {
-    if (secondsToStart > 0) return;
-    router.replace('/tournament_round');
-  }, [secondsToStart, router]);
+    if (!room || !roomId) return;
+    if (room.state === 'round' || room.state === 'table') {
+      router.replace({ pathname: '/tournament_round', params: { roomId } });
+    }
+  }, [room?.state, roomId, router, room]);
 
+  const seats = useMemo(() => mapPlayersToSeats(room?.players ?? [], myId), [room?.players, myId]);
+  const joined = seats.length;
   const full = joined >= SEATS;
-  const seats = useMemo(() => DEMO_SEATS.slice(0, joined), [joined]);
+  const secondsToStart = secondsLeft;
+
+  // зачем: таймер реакции держим в ref и чистим при уходе — иначе он дёрнет
+  // состояние уже размонтированного экрана (частый случай: тапнул реакцию и
+  // сразу стартовал раунд).
+  const reactionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const sendReaction = useCallback((emoji: string) => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     setReaction(emoji);
-    setTimeout(() => setReaction(null), 900);
+    if (reactionTimerRef.current) clearTimeout(reactionTimerRef.current);
+    reactionTimerRef.current = setTimeout(() => setReaction(null), 900);
   }, []);
+
+  useEffect(() => () => {
+    if (reactionTimerRef.current) clearTimeout(reactionTimerRef.current);
+  }, []);
+
+  if (status === 'offline') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="offline" onRetry={retry} />
+      </View>
+    );
+  }
+  if (room?.state === 'cancelled') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.root}>
@@ -144,8 +193,10 @@ export default function TournamentLobbyScreen() {
           ))}
         </View>
 
-        <Cta disabled={!full} onPress={() => router.replace('/tournament_round')}>
-          {full ? 'Начать сейчас ▶' : `Ждём ещё ${SEATS - joined}`}
+        {/* зачем: старт даёт СЕРВЕР по дедлайну — кнопка лишь сообщает статус.
+            Ручной переход раньше сервера показал бы вопросы, которых ещё нет. */}
+        <Cta disabled>
+          {full ? 'Все на месте — начинаем!' : `Ждём ещё ${Math.max(0, SEATS - joined)}`}
         </Cta>
       </ScrollView>
 

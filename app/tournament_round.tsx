@@ -19,6 +19,9 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
 import { T, motion, radius, type } from '../components/tournament/tournament_theme';
+import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
+import { useLocalSearchParams } from 'expo-router';
 
 const QUESTIONS_PER_ROUND = 5;
 const SECONDS_PER_QUESTION = 15;
@@ -29,127 +32,173 @@ type Question = {
   prompt: string;
   phrase: string;
   options: string[];
-  correctIndex: number;
 };
 
-/** TODO(server): придёт из tournamentRooms/{roomId}.rounds[n].tasks. */
-const DEMO_QUESTIONS: Question[] = [
-  {
-    id: 'q1', prompt: 'Что это значит?', phrase: '«Break a leg!»',
-    options: ['Сломай ногу!', 'Ни пуха ни пера!', 'Беги быстрее!', 'Держись подальше!'],
-    correctIndex: 1,
-  },
-  {
-    id: 'q2', prompt: 'Что это значит?', phrase: '«Piece of cake»',
-    options: ['Кусок торта', 'Проще простого', 'Дорогое удовольствие', 'Сладкая жизнь'],
-    correctIndex: 1,
-  },
-  {
-    id: 'q3', prompt: 'Что это значит?', phrase: '«Hit the books»',
-    options: ['Сесть за учёбу', 'Бросить книги', 'Купить учебник', 'Закрыть тему'],
-    correctIndex: 0,
-  },
-  {
-    id: 'q4', prompt: 'Что это значит?', phrase: '«Under the weather»',
-    options: ['Попасть под дождь', 'Приболеть', 'Опоздать', 'Замёрзнуть'],
-    correctIndex: 1,
-  },
-  {
-    id: 'q5', prompt: 'Что это значит?', phrase: '«Call it a day»',
-    options: ['Назначить дату', 'Закончить на сегодня', 'Позвонить днём', 'Начать сначала'],
-    correctIndex: 1,
-  },
-];
+/**
+ * Публичное задание сервера → вопрос экрана.
+ *
+ * зачем: сервер НЕ присылает правильный ответ (его вырезает publicPayload),
+ * поэтому подсветку верного варианта показывать нечем. Мгновенный отклик даём
+ * по факту нажатия, а очки считает сервер — так накрутить нельзя.
+ */
+function taskToQuestion(task: PublicTask): Question | null {
+  const payload = task.payload ?? {};
+  if (task.kind === 'choice') {
+    const options = Array.isArray(payload.options) ? (payload.options as string[]) : [];
+    const phrase = String(payload.phrase ?? '');
+    if (!phrase || options.length < 2) return null;
+    return { id: task.taskId, prompt: 'Что это значит?', phrase, options };
+  }
+  if (task.kind === 'timeattack') {
+    const items = Array.isArray(payload.items) ? (payload.items as Record<string, unknown>[]) : [];
+    const first = items[0];
+    const options = Array.isArray(first?.options) ? (first?.options as string[]) : [];
+    if (!first || options.length < 2) return null;
+    return { id: task.taskId, prompt: String(payload.prompt ?? 'Переведи'), phrase: String(first.prompt ?? ''), options };
+  }
+  // translate/voice рисуются другими раскладками — фаза 2.
+  return null;
+}
 
 type Phase = 'intro' | 'question' | 'feedback';
 
 export default function TournamentRoundScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const params = useLocalSearchParams<{ roomId?: string }>();
+  const roomId = typeof params.roomId === 'string' ? params.roomId : null;
 
-  const [roundNo] = useState(1);
+  const { room, status, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId);
+
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('intro');
   const [picked, setPicked] = useState<number | null>(null);
-  const [score, setScore] = useState(0);
   const [streak, setStreak] = useState(0);
   const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Ответы копятся локально и уходят ОДНОЙ пачкой в конце раунда (§ спеки). */
+  const answersRef = useRef<Array<{ taskId: string; answer: unknown }>>([]);
+  const submittedRef = useRef(false);
 
-  const question = DEMO_QUESTIONS[index];
+  const activeRound = useMemo(
+    () => room?.rounds?.find((round) => round.tasks && round.tasks.length > 0) ?? null,
+    [room?.rounds],
+  );
+  const roundNo = activeRound?.roundNo ?? 1;
+
+  const questions = useMemo(() => {
+    const tasks = activeRound?.tasks ?? [];
+    return tasks.map(taskToQuestion).filter((question): question is Question => question !== null);
+  }, [activeRound?.tasks]);
+
+  const total = questions.length || QUESTIONS_PER_ROUND;
+  const question = questions[index] ?? null;
   const multiplier = streak >= 4 ? 2 : streak >= 2 ? 1.5 : 1;
 
-  // Интро раунда: режим + 3-2-1, затем первый вопрос.
+  // Интро раунда: показываем режим, затем первый вопрос.
   useEffect(() => {
     if (phase !== 'intro') return;
     const id = setTimeout(() => setPhase('question'), 1600);
     return () => clearTimeout(id);
   }, [phase]);
 
-  // Таймер вопроса. Ноль = ответ не дан, идём дальше без очков.
+  // Таймер вопроса. Ноль = ответа не было, идём дальше без очков.
   useEffect(() => {
     if (phase !== 'question') return;
     setSecondsLeft(SECONDS_PER_QUESTION);
     const id = setInterval(() => {
       setSecondsLeft((value) => {
-        if (value <= 1) {
-          clearInterval(id);
-          return 0;
-        }
+        if (value <= 1) { clearInterval(id); return 0; }
         return value - 1;
       });
     }, 1000);
     return () => clearInterval(id);
   }, [phase, index]);
 
+  /**
+   * Отправка пачки. Ровно один раз за раунд: сервер идемпотентен, но лишний
+   * вызов — лишние деньги и лишний риск гонки.
+   */
+  const flushAnswers = useCallback(() => {
+    if (!roomId || submittedRef.current) return;
+    submittedRef.current = true;
+    // Не ждём ответа: очки придут через подписку на комнату, а игрок в это
+    // время уже смотрит таблицу — блокировать экран нечем и незачем.
+    void submitAnswers(roomId, roundNo, answersRef.current).catch(() => {
+      // Сеть моргнула — сервер засчитает таймаут по своему дедлайну.
+    });
+  }, [roomId, roundNo]);
+
   const goNext = useCallback(() => {
-    if (index + 1 >= QUESTIONS_PER_ROUND) {
-      router.replace('/tournament_table');
+    if (index + 1 >= total) {
+      flushAnswers();
+      router.replace(roomId ? { pathname: '/tournament_table', params: { roomId } } : '/tournament_table');
       return;
     }
     setIndex((value) => value + 1);
     setPicked(null);
     setPhase('question');
-  }, [index, router]);
+  }, [index, total, flushAnswers, roomId, router]);
 
   const answer = useCallback((optionIndex: number) => {
-    if (phase !== 'question') return;
-    const correct = optionIndex === question.correctIndex;
+    if (phase !== 'question' || !question) return;
 
+    // Мгновенный отклик: подсветка и вибрация СРАЗУ, до любой сети.
     setPicked(optionIndex);
     setPhase('feedback');
-    // Хаптик на ответе — управляющее действие, вибрация уместна.
-    void Haptics.notificationAsync(
-      correct ? Haptics.NotificationFeedbackType.Success : Haptics.NotificationFeedbackType.Warning,
-    );
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
 
-    if (correct) {
-      // Скорость даёт до +40% к базе (§5 спеки).
-      const speedBonus = Math.round((secondsLeft / SECONDS_PER_QUESTION) * 4);
-      setScore((value) => value + Math.round((10 + speedBonus) * multiplier));
-      setStreak((value) => value + 1);
-    } else {
-      setStreak(0);
-    }
+    // Серию ведём локально для множителя; правильность знает только сервер,
+    // поэтому серию считаем по факту ответа, а очки не показываем до таблицы.
+    setStreak((value) => value + 1);
+    answersRef.current.push({ taskId: question.id, answer: optionIndex });
 
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, question.correctIndex, secondsLeft, multiplier, goNext]);
+  }, [phase, question, goNext]);
 
-  // Время вышло — засчитываем как пропуск и идём дальше.
+  // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
-    if (phase !== 'question' || secondsLeft > 0) return;
+    if (phase !== 'question' || secondsLeft > 0 || !question) return;
     setPicked(null);
     setPhase('feedback');
     setStreak(0);
+    answersRef.current.push({ taskId: question.id, answer: null });
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, secondsLeft, goNext]);
+  }, [phase, secondsLeft, question, goNext]);
+
+  // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
+  useEffect(() => {
+    if (!room || !roomId) return;
+    if (room.state === 'table' || room.state === 'final') {
+      flushAnswers();
+      router.replace({ pathname: '/tournament_table', params: { roomId } });
+    }
+    if (room.state === 'results' || room.state === 'rewards') {
+      router.replace({ pathname: '/tournament_results', params: { roomId } });
+    }
+  }, [room?.state, roomId, router, room, flushAnswers]);
 
   useEffect(() => () => {
     if (advanceRef.current) clearTimeout(advanceRef.current);
   }, []);
 
-  const isCorrect = picked !== null && picked === question.correctIndex;
-  const dots = useMemo(() => Array.from({ length: QUESTIONS_PER_ROUND }, (_, i) => i), []);
+  const answered = picked !== null;
+  const dots = useMemo(() => Array.from({ length: total }, (_, i) => i), [total]);
+
+  if (status === 'offline') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="offline" onRetry={retry} />
+      </View>
+    );
+  }
+  if (room?.state === 'cancelled') {
+    return (
+      <View style={styles.root}>
+        <TournamentEdgeState kind="cancelled" onRetry={() => router.replace('/tournaments')} />
+      </View>
+    );
+  }
 
   if (phase === 'intro') {
     return (
@@ -160,6 +209,15 @@ export default function TournamentRoundScreen() {
         <Animated.Text entering={FadeIn.delay(200)} style={styles.introMode}>
           Угадай перевод
         </Animated.Text>
+      </View>
+    );
+  }
+
+  // Задания ещё не пришли — держим геометрию интро, а не мигаем пустотой.
+  if (!question) {
+    return (
+      <View style={[styles.root, styles.introRoot]}>
+        <Text style={styles.introMode}>Готовим вопросы…</Text>
       </View>
     );
   }
@@ -209,36 +267,32 @@ export default function TournamentRoundScreen() {
               text={option}
               index={optionIndex}
               picked={picked}
-              correctIndex={question.correctIndex}
               revealed={phase === 'feedback'}
               onPress={answer}
             />
           ))}
         </View>
 
-        {/* Фидбек — место зарезервировано, поэтому варианты не прыгают */}
+        {/* Фидбек — место зарезервировано, поэтому варианты не прыгают.
+            зачем: правильность знает только сервер (ключи ответов клиенту не
+            приходят), поэтому подтверждаем ПРИЁМ ответа, а результат игрок
+            видит в таблице — это же и защита от подглядывания ответов. */}
         <View style={styles.feedbackSlot}>
           {phase === 'feedback' ? (
             <Animated.View entering={FadeIn.duration(160)}>
-              <Card tone={isCorrect ? 'card' : 'card'} pad={18} style={{
-                backgroundColor: isCorrect ? T.accentSoft : T.dangerSoft,
-              }}>
-                <Text style={[styles.feedbackTitle, { color: isCorrect ? T.accent : T.danger }]}>
-                  {isCorrect ? 'Правильно!' : 'Почти!'}
+              <Card pad={18} style={{ backgroundColor: answered ? T.accentSoft : T.dangerSoft }}>
+                <Text style={[styles.feedbackTitle, { color: answered ? T.accent : T.danger }]}>
+                  {answered ? 'Ответ принят' : 'Время вышло'}
                 </Text>
                 <Text style={styles.feedbackSub}>
-                  {isCorrect
-                    ? `+${Math.round(10 * multiplier)} очков · дальше вопрос ${Math.min(index + 2, QUESTIONS_PER_ROUND)}/${QUESTIONS_PER_ROUND}`
-                    : question.options[question.correctIndex]}
+                  {index + 1 < total
+                    ? `дальше вопрос ${index + 2} из ${total}`
+                    : 'считаем результаты…'}
                 </Text>
               </Card>
             </Animated.View>
           ) : null}
         </View>
-
-        <Text style={styles.scoreLine} allowFontScaling={false}>
-          Ваши очки: {score}
-        </Text>
       </ScrollView>
     </View>
   );
@@ -247,21 +301,20 @@ export default function TournamentRoundScreen() {
 // ── Вариант ответа ──────────────────────────────────────────────────────────
 
 const OptionRow = memo(function OptionRow({
-  letter, text, index, picked, correctIndex, revealed, onPress,
+  letter, text, index, picked, revealed, onPress,
 }: {
   letter: string;
   text: string;
   index: number;
   picked: number | null;
-  correctIndex: number;
   revealed: boolean;
   onPress: (index: number) => void;
 }) {
-  const isCorrect = revealed && index === correctIndex;
-  const isWrongPick = revealed && picked === index && index !== correctIndex;
-
-  const background = isCorrect ? T.accentSoft : isWrongPick ? T.dangerSoft : T.card;
-  const textColor = isCorrect ? T.accent : isWrongPick ? T.danger : T.text;
+  // Подсвечиваем ТОЛЬКО выбранный вариант: правильный ответ придёт с
+  // сервером в таблице, показывать его здесь нечем и не нужно.
+  const isPicked = picked === index;
+  const background = isPicked ? T.accentSoft : T.card;
+  const textColor = isPicked ? T.accent : T.text;
 
   return (
     <Pressable
@@ -273,11 +326,11 @@ const OptionRow = memo(function OptionRow({
       accessibilityLabel={`Вариант ${letter}: ${text}`}
     >
       <View style={styles.optionInnerLight} pointerEvents="none" />
-      <View style={[styles.optionLetter, isCorrect && { backgroundColor: T.accent }]}>
-        <Text style={[styles.optionLetterText, isCorrect && { color: T.accentText }]}>{letter}</Text>
+      <View style={[styles.optionLetter, isPicked && { backgroundColor: T.accent }]}>
+        <Text style={[styles.optionLetterText, isPicked && { color: T.accentText }]}>{letter}</Text>
       </View>
       <Text style={[styles.optionText, { color: textColor }]}>{text}</Text>
-      {isCorrect ? <Text style={styles.optionMark}>✓</Text> : null}
+      {isPicked ? <Text style={styles.optionMark}>✓</Text> : null}
     </Pressable>
   );
 });

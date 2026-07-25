@@ -146,7 +146,7 @@ export default function TournamentsScreen() {
     try {
       await joinTournament(roomId);
       setConfirmVisible(false);
-      router.push('/tournament_lobby');
+      router.push({ pathname: '/tournament_lobby', params: { roomId } });
     } catch {
       setConfirmVisible(false);
     } finally {

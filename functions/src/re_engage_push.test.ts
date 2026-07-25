@@ -4,6 +4,8 @@
  * валидацию токена, локализацию текста и разбивку на чанки.
  * I/O (Firestore scan + Expo fetch) здесь не тестируется — только чистые функции.
  */
+import fs from 'fs';
+import path from 'path';
 import {
   classifyReEngageUser,
   selectReEngageCandidates,
@@ -210,5 +212,42 @@ describe('chunkMessages', () => {
   });
   it('пустой массив — нет чанков', () => {
     expect(chunkMessages([], 100)).toEqual([]);
+  });
+});
+
+describe('проекция полей в скане users', () => {
+  // зачем: скан users читает документы через .select(), чтобы не тянуть их целиком —
+  // доки users самые «толстые» в базе. Но проекция и parseReEngageUser должны знать об
+  // одних и тех же полях: добавят поле в парсер и забудут в .select() — оно молча придёт
+  // пустым, кандидат отсеется, и пуш просто перестанет уходить. Молча. Этот храповик
+  // ловит рассинхрон на CI, а не в проде.
+  const source = fs.readFileSync(path.join(__dirname, 're_engage_push.ts'), 'utf8');
+  const projection = source.slice(source.indexOf('.select('), source.indexOf('if (lastDoc)'));
+
+  it.each([
+    'expoPushToken',
+    'pushTokenLang',
+    'pushTokenTimezone',
+    'last_active_at',
+    'lastReEngagePushAt',
+    'progress.streak_count',
+    'progress.user_name',
+  ])('проекция включает поле %s, которое читает parseReEngageUser', (field) => {
+    expect(projection).toContain(`'${field}'`);
+  });
+
+  it('парсер не читает полей сверх спроецированных', () => {
+    const parser = source.slice(
+      source.indexOf('export function parseReEngageUser'),
+      source.indexOf('/** Возвращает локальный час'),
+    );
+    // Все обращения вида data?.X и progress.X внутри парсера.
+    const read = new Set<string>();
+    for (const m of parser.matchAll(/data\?\.([a-zA-Z_0-9]+)/g)) read.add(m[1]);
+    for (const m of parser.matchAll(/progress\.([a-zA-Z_0-9]+)/g)) read.add(`progress.${m[1]}`);
+    read.delete('progress'); // сам объект progress, а не поле внутри него
+    for (const field of read) {
+      expect(projection).toContain(`'${field}'`);
+    }
   });
 });

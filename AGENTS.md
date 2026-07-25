@@ -1,17 +1,44 @@
 # Project Rules
 
-## Admin V2 Boundary
+## ⛔ ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА — `admin/v2/legacy.html` (КРИТИЧНО, читать первым)
 
-- Admin V2 at `/v2/` is the sole Admin surface. Future agents may inspect old admin files read-only as historical reference when the owner explicitly requests comparison or prompt/behavior research, but must never modify, import, link to, route to, call, copy runtime code from, or use old admin files as fallback. All implementation and verification must target Admin V2; preserve old admin files untouched for user-managed deletion.
+Владелец пользуется ОДНОЙ админкой:
+**https://phraseman-ea0b3.web.app/legacy.html#control-panel**
+
+Её исходник — **`admin/v2/legacy.html`** и ТОЛЬКО он. Проверено побайтово (md5 живой
+страницы == md5 этого файла). Firebase Hosting target `admin` публикует папку
+`admin/v2` (`firebase.json` → `"public": "admin/v2"`), поэтому любая правка вне этой
+папки на боевую НЕ попадает.
+
+**ВСЁ пишем сюда:** новые разделы, генераторы, кнопки, callable-вызовы, фиксы.
+Ни в какой другой файл админки писать НЕЛЬЗЯ.
+
+> ⚠️ Имя папки `v2` историческое и вводит в заблуждение: внутри лежит привычная
+> тёмная «старая» админка (`legacy.html`), а не какая-то новая. Не переименовывать
+> без отдельного решения владельца — сломается hosting target.
+
+### Заморожённые файлы админки (НЕ ТРОГАТЬ, только чтение)
+
+| Файл | Что это | Статус |
+|---|---|---|
+| `admin/legacy.html` | отставшая копия рабочей админки | 🧊 ЗАМОРОЖЕН, к удалению |
+| `admin/index.html` | редирект-заглушка на `/legacy.html` | 🧊 не редактировать |
+| `admin/full.html`, `admin/site.html` | исторические огрызки | 🧊 не редактировать |
+| `admin/v2/index.html` + `admin/v2/scripts/*` | белая v2-панель, владелец ей не пользуется | 🧊 не развивать без запроса |
+
+Признак ошибки: если правка админки НЕ находится в `admin/v2/legacy.html` — она
+почти наверняка уезжает в мёртвый файл. Остановись и проверь путь.
+
+Контракт защищён тестом `tests/admin_single_surface_contract.test.ts`.
 
 ## Admin UI Bible
 
-- Before changing `admin/index.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
+- Before changing `admin/v2/legacy.html`, admin navigation, admin controls, banners, update modals, remote-config panels, or any new admin screen, read `docs/design/ADMIN_UI_BIBLE.md` first and follow it as the source of truth.
 - Admin UI must stay simple, categorized, icon-supported, tooltip-rich, accessible, and free of visual clutter. Do not add admin buttons, colors, overlays, menus, or text patterns that violate the Bible.
 
 ## Error Report Reply Preview Publishing
 
-- After Codex prepares and dry-runs a valid `replies.json`, it must immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/index.html`, run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.
+- After preparing and dry-running a valid `replies.json`, immediately and idempotently add those drafts to `PREPARED_REPORT_REPLIES` in `admin/v2/legacy.html` (the single live admin surface — see the boundary rule at the top), run the focused preview contracts, and deploy only Firebase Hosting target `admin` via `npm run hosting:admin`. Do not ask for another confirmation before publishing this preview.
 - Preview publishing is static hosting only: it must not write Firestore, send user notifications, change report status, or award shards.
 - Live delivery remains exclusively manual: only the administrator presses `Отправить готовые ответы` in the admin UI. Codex must never run `reply_to_reports.mjs --send` as part of this workflow.
 - Preserve existing prepared drafts and unrelated user changes. Re-running the workflow must replace or skip the same `reportId`, never create duplicate preview entries.

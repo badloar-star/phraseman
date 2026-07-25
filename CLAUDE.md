@@ -1,5 +1,15 @@
 # Phraseman — Claude instructions
 
+## ⛔ АДМИНКА: писать ТОЛЬКО в `admin/v2/legacy.html`
+
+Владелец пользуется одной админкой — https://phraseman-ea0b3.web.app/legacy.html#control-panel
+Её исходник — **`admin/v2/legacy.html`**, и hosting публикует именно папку `admin/v2`.
+Любая правка админки вне этого файла на боевую НЕ попадёт.
+
+`admin/legacy.html`, `admin/index.html`, `admin/full.html`, `admin/v2/index.html`
+и `admin/v2/scripts/*` — **заморожены**, только чтение. Подробности и таблица
+файлов: `AGENTS.md` → «ЕДИНСТВЕННАЯ РАБОЧАЯ АДМИНКА».
+
 ## MASON — content scriptwriter pipeline
 
 If the user says **"MASON"**, "мейсон", "подними мейсон", or **"пишем новый ролик"** —

@@ -48,6 +48,29 @@ describe('account deletion rebuilt flow contract', () => {
     expect(deleteSource).toContain("logAuthEvent('auth_account_delete_enqueue_failed'");
   });
 
+  it('cancels scheduled notifications and the push token before signing out', () => {
+    // зачем: удаление аккаунта не трогало уведомления вовсе — cancelAllNotifications
+    // вызывался только из тумблера настроек. Запланированные локальные напоминания
+    // оставались на устройстве после удаления, а push-токен исчезал лишь когда серверный
+    // воркер асинхронно снесёт документ — в этом окне бывший пользователь продолжал
+    // получать пуши. Privacy policy (§20) обещает «clear local app data immediately»,
+    // так что это было ещё и расхождение кода с политикой.
+    const start = authProvider.indexOf('export async function deleteAccountAndWipe');
+    const end = authProvider.indexOf('export async function handleAccountDeletedOnAnotherDevice', start);
+    const deleteSource = authProvider.slice(start, end);
+
+    expect(deleteSource).toContain("await import('./notifications')");
+    expect(deleteSource).toContain('cancelAllNotifications()');
+
+    // Порядок обязателен: удаление push-токена из Firestore требует живой авторизации,
+    // после signOut запись уже не пройдёт по правам.
+    const cancel = deleteSource.indexOf("await import('./notifications')");
+    const signOutInDelete = deleteSource.indexOf('await signOutCurrentProvider()');
+    expect(cancel).toBeGreaterThan(-1);
+    expect(signOutInDelete).toBeGreaterThan(-1);
+    expect(cancel).toBeLessThan(signOutInDelete);
+  });
+
   it('blocks immediate same-provider re-login until background deletion is settled', () => {
     const start = authProvider.indexOf('export async function deleteAccountAndWipe');
     const captureProvider = authProvider.indexOf('const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;', start);

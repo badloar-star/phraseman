@@ -705,6 +705,34 @@ interface NativeAuthCredential {
 const GOOGLE_SIGNIN_TIMEOUT_MS = 30_000;
 let googleNativeSignInInFlight: Promise<any> | null = null;
 
+type ProviderCredentialModeReservation = {
+  readonly mode: 'signin' | 'recovery';
+  readonly provider: AuthProviderId;
+  operationSettled: boolean;
+  googleNativePending: boolean;
+};
+
+let providerCredentialModeReservation: ProviderCredentialModeReservation | null = null;
+
+function createProviderCredentialModeReservation(
+  mode: ProviderCredentialModeReservation['mode'],
+  provider: AuthProviderId,
+): ProviderCredentialModeReservation {
+  return { mode, provider, operationSettled: false, googleNativePending: false };
+}
+
+function releaseProviderCredentialModeReservationIfSettled(
+  reservation: ProviderCredentialModeReservation,
+): void {
+  if (
+    providerCredentialModeReservation === reservation
+    && reservation.operationSettled
+    && !reservation.googleNativePending
+  ) {
+    providerCredentialModeReservation = null;
+  }
+}
+
 function withTimeout<T>(p: Promise<T>, ms: number, label: string): Promise<T> {
   return new Promise<T>((resolve, reject) => {
     const t = setTimeout(() => reject(new Error(`timeout_${label}_${ms}ms`)), ms);
@@ -740,11 +768,19 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
   try {
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn()');
     if (!googleNativeSignInInFlight) {
+      const nativeReservation = providerCredentialModeReservation;
+      if (!nativeReservation) throw new Error('google_signin_reservation_missing');
       const nativeTask = mod.GoogleSignin.signIn();
       googleNativeSignInInFlight = nativeTask;
+      nativeReservation.googleNativePending = true;
+      const settleNativeTask = () => {
+        if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null;
+        nativeReservation.googleNativePending = false;
+        releaseProviderCredentialModeReservationIfSettled(nativeReservation);
+      };
       nativeTask.then(
-        () => { if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null; },
-        () => { if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null; },
+        settleNativeTask,
+        settleNativeTask,
       );
     }
     const nativeTask = googleNativeSignInInFlight;
@@ -1007,10 +1043,49 @@ async function rejectRecoveryProviderMismatch(
   return { result: 'error', error: 'recovery_provider_mismatch' };
 }
 
+/**
+ * Acquires only the native provider proof used to bootstrap the isolated recovery
+ * Firebase app. This path must never touch default Auth, Firestore, stable_id, or sync.
+ */
+export async function acquireAuthRecoveryNativeCredential(
+  provider: AuthProviderId,
+): Promise<NativeAuthCredential | { cancelled: true }> {
+  const occupied = providerCredentialModeReservation;
+  if (occupied) {
+    if (occupied.mode === 'signin') {
+      throw new Error(`auth_recovery_credential_blocked_signin_${occupied.provider}`);
+    }
+    throw new Error(`auth_recovery_credential_in_progress_${occupied.provider}`);
+  }
+
+  const reservation = createProviderCredentialModeReservation('recovery', provider);
+  providerCredentialModeReservation = reservation;
+  try {
+    if (provider === 'google') return await runGoogleNativeSignIn();
+    if (Platform.OS === 'android') return await runAppleAndroidOAuthSignIn();
+    return await runAppleNativeSignIn();
+  } finally {
+    reservation.operationSettled = true;
+    releaseProviderCredentialModeReservationIfSettled(reservation);
+  }
+}
+
 export async function signInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions = {},
 ): Promise<SignInResult> {
+  if (providerCredentialModeReservation?.mode === 'recovery') {
+    return {
+      result: 'error',
+      error: `auth_signin_in_progress_recovery_${providerCredentialModeReservation.provider}`,
+    };
+  }
+  if (providerCredentialModeReservation?.mode === 'signin' && !providerSignInInFlight) {
+    return {
+      result: 'error',
+      error: `auth_signin_still_running_${providerCredentialModeReservation.provider}`,
+    };
+  }
   if (providerSignInInFlight) {
     if (
       providerSignInInFlight.provider !== provider
@@ -1023,6 +1098,8 @@ export async function signInWithProvider(
     }
     return providerSignInInFlight.task;
   }
+  const reservation = createProviderCredentialModeReservation('signin', provider);
+  providerCredentialModeReservation = reservation;
   const task = runSignInWithProvider(provider, options);
   providerSignInInFlight = {
     provider,
@@ -1034,6 +1111,8 @@ export async function signInWithProvider(
     return await task;
   } finally {
     if (providerSignInInFlight?.task === task) providerSignInInFlight = null;
+    reservation.operationSettled = true;
+    releaseProviderCredentialModeReservationIfSettled(reservation);
   }
 }
 
@@ -1884,6 +1963,26 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
       .catch((e) => {
         if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: enqueue failed; pending guard retained', e);
         logAuthEvent('auth_account_delete_enqueue_failed');
+      });
+
+    // зачем: удаление аккаунта не трогало уведомления вовсе — cancelAllNotifications
+    // вызывался ТОЛЬКО из тумблера в настройках. В результате запланированные локальные
+    // напоминания (ежедневное, streak-warning, recap, upsell) оставались на устройстве
+    // после удаления, а push-токен исчезал лишь когда серверный воркер асинхронно снесёт
+    // документ пользователя — в этом окне бывший пользователь продолжал получать пуши.
+    // Privacy policy (legal/privacy_policy_en.json, §20) обещает «clear local app data
+    // immediately» и удаление данных, привязанных к stable ID, так что это ещё и
+    // расхождение кода с политикой. Делаем ДО signOut, пока авторизация жива: иначе
+    // удаление токена из Firestore не пройдёт по правам. Ошибку глушим — она не должна
+    // отменять само удаление аккаунта.
+    // Импорт ленивый: notifications.ts тяжёлый (расписания, локали, шаблоны), а
+    // auth_provider участвует в старте приложения — статический импорт утянул бы его
+    // в стартовый бандл ради кода, который нужен один раз за всё время жизни аккаунта.
+    await import('./notifications')
+      .then(({ cancelAllNotifications }) => cancelAllNotifications())
+      .catch((e: unknown) => {
+        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: notifications cleanup failed', e);
+        logAuthEvent('auth_account_delete_notifications_cleanup_failed');
       });
 
     await beginEntitlementSafeAccountTransition();

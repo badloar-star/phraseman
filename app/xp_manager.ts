@@ -1,7 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
 import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
-import { ensureAnonUser, markCloudSyncPending } from './cloud_sync';
+import { markCloudSyncPending } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { getLeagueGroupBoostMultiplier } from './league_group_boosts';
@@ -372,18 +371,15 @@ export const registerXP = async (
       );
       finalDelta = sanitizeLocalXpAmount(Math.round(amount * totalMultiplier));
       appliedDelta = finalDelta;
-      // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
-      try {
-        const db = firestore();
-        ensureAnonUser().then((uid: string | null) => {
-          if (!uid) return;
-          db.collection('arena_profiles').doc(uid).set({
-            multipliers: { clubM, streakM, comebackM, giftM, leagueBoostM, leagueGroupBoostM, cardM, hotHoursM, total: totalMultiplier, updatedAt: Date.now() },
-          }, { merge: true }).catch(() => {});
-        }).catch(() => {});
-      } catch (e) {
-        if (__DEV__) console.warn('[xp_manager]', e);
-      }
+      // зачем: здесь была запись множителей в arena_profiles/{uid} «для показа другим
+      // игрокам». Арена выведена из эксплуатации (tests/quiz_arena_decommission_contract):
+      // firestore.rules держит `allow read, write: if false`, сервер в эту коллекцию не
+      // пишет, поле multipliers не читает ни один экран. То есть на КАЖДЫЙ начисляемый XP
+      // (каждый правильный ответ, 16 источников) уходил сетевой запрос, который правила
+      // гарантированно отклоняли, а .catch(() => {}) делал отказ невидимым — чистый расход
+      // батареи и радио. Контракт декоммиссии искал клиентские файлы по слову «arena» в
+      // ИМЕНИ файла, поэтому xp_manager.ts под зачистку не попал. Публичный профиль
+      // синхронизируется правильным путём — syncPublicProfileSnapshot (TTL 24ч) ниже.
 
       const eventType = progressEventTypeForSource(source);
       if (progressServerRequired() && eventType && finalDelta > 0) {

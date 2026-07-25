@@ -27,6 +27,7 @@ import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { useAudio } from '../hooks/use-audio';
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from './audio_playback_mode';
 import { setManagedAudioMode } from './audio_session_coordinator';
+import { useAppRuntimeActive } from './runtime_app_state_store';
 import {
   dialogScenarioNextStepHint,
   dialogScenarioTitle,
@@ -195,6 +196,9 @@ export default function AiDialogSession() {
   const router = useRouter();
   const { speak, stop: stopSpeaking } = useAudio();
   const speechModule = useMemo(() => (isSpeakingEnabled() ? loadPlanSpeechModule() : null), []);
+  // зачем: экран диалога не размонтируется при сворачивании приложения, поэтому нужен явный
+  // сигнал «ушли в фон» — иначе распознавание речи продолжает слушать микрофон (см. эффект ниже).
+  const appRuntimeActive = useAppRuntimeActive();
   const { playRecordStart } = useRecordStartCue();
   const params = useLocalSearchParams<{ scenarioId?: string; lessonId?: string }>();
   const aiDialogGateOpen = aiDialogContentAvailableForTarget(studyTarget);
@@ -621,6 +625,33 @@ export default function AiDialogSession() {
       restoreLoudPlaybackMode();
     };
   }, [cleanupVoiceInputListeners, clearRecognizerWatchdog, speechModule]);
+
+  // зачем: сворачивание приложения НЕ размонтирует экран, поэтому cleanup выше не срабатывает
+  // и распознавание продолжало держать микрофон открытым в фоне — большой расход батареи.
+  // Обрываем жёстко (abort), снимаем отложенную отправку реплики и возвращаем режим
+  // воспроизведения. Возобновление — только по явному действию пользователя.
+  useEffect(() => {
+    if (appRuntimeActive) return;
+    conversationReleasePendingRef.current = false;
+    if (conversationSendTimerRef.current != null) {
+      clearTimeout(conversationSendTimerRef.current);
+      conversationSendTimerRef.current = null;
+    }
+    clearRecognizerWatchdog();
+    cleanupVoiceInputListeners();
+    try {
+      speechModule?.abort();
+    } catch {
+      /* no-op */
+    }
+    try {
+      stopSpeaking();
+    } catch {
+      /* no-op */
+    }
+    restoreLoudPlaybackMode();
+    if (voiceInputMountedRef.current) setVoiceInputStatus('idle');
+  }, [appRuntimeActive, speechModule, clearRecognizerWatchdog, cleanupVoiceInputListeners, stopSpeaking]);
 
   const enterAnim = useRef(new Animated.Value(0)).current;
   useEffect(() => {

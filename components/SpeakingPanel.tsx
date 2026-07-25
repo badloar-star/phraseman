@@ -16,6 +16,7 @@ import * as Speech from 'expo-speech';
 
 import { LOUD_PLAYBACK_AUDIO_MODE, SPEAKING_RECORDING_AUDIO_MODE } from '../app/audio_playback_mode';
 import { setManagedAudioMode } from '../app/audio_session_coordinator';
+import { useAppRuntimeActive } from '../app/runtime_app_state_store';
 import { VoiceEqualizer, type VoiceEqualizerRef } from '../app/voice_equalizer';
 import {
   PLAN_PRONUNCIATION_PASS_THRESHOLD,
@@ -281,6 +282,9 @@ export function SpeakingPanel({
   // In preview mode the native speech module is never touched, so permission
   // prompts and recognition stay inert while the visual state is inspected.
   const speech = useMemo(() => (isPreview ? null : loadSpeechModule()), [isPreview]);
+  // зачем: панель живёт внутри упражнения и при сворачивании приложения НЕ размонтируется —
+  // нужен явный сигнал «приложение ушло в фон», чтобы отпустить микрофон (см. эффект ниже).
+  const appRuntimeActive = useAppRuntimeActive();
   const { playRecordStart } = useRecordStartCue();
   const [status, setStatus] = useState<SpeakingPanelStatus>(previewStatus ?? 'idle');
   const statusRef = useRef<SpeakingPanelStatus>(previewStatus ?? 'idle');
@@ -1505,6 +1509,52 @@ export function SpeakingPanel({
       restoreLoudPlaybackMode();
     };
   }, [speech, cleanupListeners, cleanupAudioEndListener, clearWatchdog, clearAutoAdvance]);
+
+  // зачем: свернуть приложение — НЕ то же самое, что закрыть панель. Размонтирования не
+  // происходит, cleanup выше не срабатывает, и распознавание продолжало слушать микрофон в
+  // фоне — сильнейший разряд батареи. Watchdog (7с) тут не помогает: он ловит МОЛЧАЩИЙ
+  // движок, а живой микрофон для него исправен. Обрываем жёстко (abort/cancel), а не через
+  // stopListening: тот при статусе 'listening' уводит в 'scoring', то есть запускает оценку
+  // обрывка фразы уже в фоне. Возврат в приложение оставляем ручным — пользователь сам
+  // нажмёт «говорить», молча возобновлять запись за него нельзя.
+  useEffect(() => {
+    if (isPreview) return;
+    if (appRuntimeActive) return;
+    clearWatchdog();
+    clearAutoAdvance();
+    cleanupListeners();
+    cleanupWordListeners();
+    try {
+      speech?.abort();
+    } catch {
+      /* no-op */
+    }
+    try {
+      holdRecRef.current?.cancel();
+    } catch {
+      /* no-op */
+    }
+    holdRecRef.current = null;
+    try {
+      wordHoldRecRef.current?.cancel();
+    } catch {
+      /* no-op */
+    }
+    wordHoldRecRef.current = null;
+    try {
+      replayPlayerRef.current?.pause();
+    } catch {
+      /* no-op */
+    }
+    try {
+      Speech.stop();
+    } catch {
+      /* no-op */
+    }
+    // Сессия захвата больше не нужна — возвращаем громкое воспроизведение.
+    restoreLoudPlaybackMode();
+    if (mountedRef.current) setStatus('idle');
+  }, [appRuntimeActive, isPreview, speech, clearWatchdog, clearAutoAdvance, cleanupListeners, cleanupWordListeners]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».

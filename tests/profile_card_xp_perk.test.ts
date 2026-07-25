@@ -46,9 +46,21 @@ describe('xp_manager — cardM вклад во всех формулах (source
     expect(source).not.toMatch(/from '\.\/profile_card_system'/);
   });
 
-  it('mirrors cardM into arena_profiles and normalizes legacy docs without it', () => {
-    expect(source).toContain('leagueGroupBoostM, cardM, hotHoursM, total: totalMultiplier');
+  it('normalizes legacy multiplier docs that predate cardM', () => {
+    // Чтение старых документов остаётся живым: где бы breakdown ни был прочитан,
+    // отсутствующий cardM должен дефолтиться к нейтральной 1.
     expect(source).toContain("cardM: typeof m.cardM === 'number' ? m.cardM : 1");
+  });
+
+  it('never writes multipliers back into the decommissioned arena_profiles', () => {
+    // зачем: арена выведена из эксплуатации (tests/quiz_arena_decommission_contract) —
+    // firestore.rules держит `allow read, write: if false`, сервер туда не пишет, поле
+    // multipliers не читает ни один экран. Раньше registerXP слал эту запись на КАЖДЫЙ
+    // начисляемый XP; правила её отклоняли, а .catch(() => {}) скрывал отказ — впустую
+    // будило радио на каждом правильном ответе. Контракт декоммиссии фильтрует клиентские
+    // файлы по слову «arena» в ИМЕНИ файла, поэтому xp_manager.ts мимо него проходил;
+    // этот храповик закрывает именно ту брешь.
+    expect(source).not.toContain("collection('arena_profiles')");
   });
 
   it('keeps cardM neutral in the breakdown fallback', () => {

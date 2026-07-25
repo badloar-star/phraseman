@@ -43,6 +43,13 @@ export type HomeScreenHydration = {
     leaderPoints: number;
   } | null;
   personalPlanSnapshot?: PersonalPlanHomeSnapshot | null;
+  // зачем: dueCount/tasksCompleted раньше стартовали с useState(0) и «прыгали» на
+  // реальное число вторым проходом (после belowFoldReady) при каждом повторном
+  // открытии таба — тот же класс бага, что и остальные поля тут. Кладём последнее
+  // известное значение в снапшот, чтобы первый рендер второго прохода уже показывал
+  // правду, а не 0.
+  dueCount?: number;
+  tasksCompleted?: number;
 };
 
 let snapshotByTarget: Partial<Record<string, HomeScreenHydration>> = {};

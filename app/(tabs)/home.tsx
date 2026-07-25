@@ -621,7 +621,10 @@ export default function HomeScreen() {
         pl: "Cześć,",
     }));
     const [taskProgress, setTaskProgress] = useState<TaskProgress[]>([]);
-    const [tasksCompleted, setTasksCompleted] = useState(0);
+    // зачем: гидрируем синхронно из снапшота (тот же паттерн, что userName/streak выше) —
+    // раньше стартовал с 0 и «прыгал» на реальное число вторым проходом (belowFoldReady),
+    // заметно на каждом повторном открытии Home. Холодный первый-в-жизни запуск (hh=null) — 0.
+    const [tasksCompleted, setTasksCompleted] = useState(() => hh?.tasksCompleted ?? 0);
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
     const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
@@ -633,7 +636,10 @@ export default function HomeScreen() {
     // [SRS] Количество фраз, готовых к повторению сегодня (из локального стора).
     // Показывается в подписи «Моя практика»: >0 → «N ждут сегодня», иначе
     // «Ошибки под контролем». Считается и в проде (запрос локальный, без сети).
-    const [dueCount, setDueCount] = useState(0);
+    // зачем: гидрируем синхронно из снапшота — раньше стартовал с 0 и подпись «ждут
+    // сегодня» прыгала на реальное число вторым проходом при каждом повторном открытии
+    // Home; холодный первый-в-жизни запуск (hh=null) честно остаётся 0.
+    const [dueCount, setDueCount] = useState(() => hh?.dueCount ?? 0);
     const [userAvatar, setUserAvatar] = useState(() => initialVisuals.avatar);
     const [userAvatarAura, setUserAvatarAura] = useState<string | null>(() => initialVisuals.aura);
     const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium, isVip);
@@ -804,7 +810,12 @@ export default function HomeScreen() {
             setTaskProgress(progress);
             setDailyTaskBarCount(taskList.length > 0 ? taskList.length : 3);
             const progressById = new Map(progress.map((row) => [row.taskId, row]));
-            setTasksCompleted(taskList.filter((task) => progressById.get(task.id)?.completed === true).length);
+            const nextTasksCompleted = taskList.filter((task) => progressById.get(task.id)?.completed === true).length;
+            setTasksCompleted(nextTasksCompleted);
+            // зачем: обновляем снапшот и на лёгком refresh-пути (не только в loadData) —
+            // иначе выполнение задания между полными загрузками не долетает до кэша,
+            // и следующее открытие Home снова покажет устаревшее число до второго прохода.
+            patchHomeScreenHydration({ tasksCompleted: nextTasksCompleted }, studyTarget);
         }
         catch {
             /* keep previous summary */
@@ -1692,6 +1703,12 @@ export default function HomeScreen() {
                 lastLessonId: snapLastLessonId,
                 lastLessonProgress: snapLastLessonProgress,
                 lastLessonScore: snapLastLessonScore,
+                // зачем: rememberHomeScreenHydration ПОЛНОСТЬЮ заменяет снапшот (не мёржит) —
+                // на этом шаге dueCount/tasksCompleted этого прогона loadData ещё не посчитаны
+                // (считаются ниже), поэтому переносим предыдущее известное значение, чтобы не
+                // затереть его на 0/undefined; ниже patchHomeScreenHydration допишет свежее.
+                dueCount: hh?.dueCount,
+                tasksCompleted: hh?.tasksCompleted,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
                 homeLeagueChest,
@@ -1756,7 +1773,11 @@ export default function HomeScreen() {
             const nSlots = taskList.length > 0 ? taskList.length : 3;
             setDailyTaskBarCount(nSlots);
             const taskProgressById = new Map(tp.map((row) => [row.taskId, row]));
-            setTasksCompleted(taskList.filter((task) => taskProgressById.get(task.id)?.completed).length);
+            const loadedTasksCompleted = taskList.filter((task) => taskProgressById.get(task.id)?.completed).length;
+            setTasksCompleted(loadedTasksCompleted);
+            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
+            // Home второй проход (belowFoldReady) стартует с этого числа, а не с 0.
+            patchHomeScreenHydration({ tasksCompleted: loadedTasksCompleted }, studyTarget);
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
                 const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
@@ -1816,6 +1837,9 @@ export default function HomeScreen() {
                 }
             }
             setDueCount(dueItems.length);
+            // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
+            // Home подпись «Моя практика» стартует с этого числа, а не с 0 (см. dueCount выше).
+            patchHomeScreenHydration({ dueCount: dueItems.length }, studyTarget);
             setMedalCounts(countMedals(allMedals));
             // [BANNERS] Login bonus, comeback, personal best, streak repair
             if (bonusRaw) {

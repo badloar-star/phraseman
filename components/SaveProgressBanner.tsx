@@ -28,6 +28,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { CLOUD_SYNC_ENABLED } from '../app/config';
 import { getLinkedAuthInfo } from '../app/auth_provider';
+// зачем: visible стартует false → async shouldShow() вставляет карточку в поток Home
+// вторым проходом и телепортирует всё, что ниже. Оборачиваем каждый flip видимости
+// в плавный layout-переход (Performance Bible → Layout Stability), а не в телепорт.
+import { animateNextLayoutTransition } from '../app/smooth_layout';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
@@ -75,6 +79,9 @@ function SaveProgressBanner() {
 
   const recheck = useCallback(async () => {
     const ok = await shouldShow();
+    // зачем: setVisible здесь вставляет/убирает баннер из потока Home и двигает всё
+    // ниже — планируем плавный layout-переход СТРОГО перед setState (не после).
+    animateNextLayoutTransition();
     setVisible(ok);
   }, []);
 
@@ -82,12 +89,18 @@ function SaveProgressBanner() {
     let alive = true;
     (async () => {
       const ok = await shouldShow();
-      if (alive) setVisible(ok);
+      if (alive) {
+        animateNextLayoutTransition();
+        setVisible(ok);
+      }
     })();
     // Любое изменение XP или линка — перепроверяем.
     const xpSub = DeviceEventEmitter.addListener('xp_changed', recheck);
     const xpUpdSub = DeviceEventEmitter.addListener('xp_updated', recheck);
-    const linkSub = DeviceEventEmitter.addListener('auth_provider_linked', () => setVisible(false));
+    const linkSub = DeviceEventEmitter.addListener('auth_provider_linked', () => {
+      animateNextLayoutTransition();
+      setVisible(false);
+    });
     return () => {
       alive = false;
       xpSub.remove();
@@ -112,6 +125,8 @@ function SaveProgressBanner() {
 
   const handleDismiss = useCallback(async () => {
     hapticTap();
+    // зачем: закрытие "×" убирает карточку из потока — плавный переход, а не телепорт.
+    animateNextLayoutTransition();
     setVisible(false);
     try {
       await AsyncStorage.setItem(DISMISSED_AT_KEY, String(Date.now()));
@@ -330,6 +345,8 @@ function SaveProgressBanner() {
         onClose={() => setAuthModalVisible(false)}
         onSignedIn={() => {
           setAuthModalVisible(false);
+          // зачем: успешный логин убирает баннер из потока — плавный переход, не телепорт.
+          animateNextLayoutTransition();
           setVisible(false);
         }}
       />

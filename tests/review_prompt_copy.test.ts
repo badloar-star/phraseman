@@ -40,10 +40,6 @@ describe('in-app review prompts', () => {
     }
   });
 
-  it('does not add punctuation or a broken placeholder to the Arena review dialog', () => {
-    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'arena_results.tsx'), 'utf8');
-
-    expect(source).not.toContain('{variant.btnYes} ?');
-    expect(source).not.toMatch(/>\s*\?\?\s*<\/Text>/);
-  });
+  // зачем: тест проверял диалог отзыва в app/arena_results.tsx — экран удалён
+  // вместе с Ареной. Живая проверка формулировки просьбы выше остаётся.
 });

@@ -23,16 +23,6 @@ describe('bot names locale runtime', () => {
     }
   });
 
-  it('keeps arena bot display names routed through the locale-aware picker', () => {
-    const botNames = fs.readFileSync(path.join(ROOT, 'app', 'constants', 'bot_names.ts'), 'utf8');
-    const arenaGame = fs.readFileSync(path.join(ROOT, 'app', 'arena_game.tsx'), 'utf8');
-    const arenaResults = fs.readFileSync(path.join(ROOT, 'app', 'arena_results.tsx'), 'utf8');
-    const legacyLocaleBranch = ["lang === 'es' ? pickRandom", 'BotNameEs()'].join('');
-
-    expect(botNames).toContain('export function pickRandomBotNameForLang');
-    expect(arenaGame).toContain('pickRandomBotNameForLang(lang)');
-    expect(arenaResults).toContain('pickRandomBotNameForLang(lang)');
-    expect(`${arenaGame}\n${arenaResults}`).not.toContain(legacyLocaleBranch);
-    expect(arenaResults).not.toContain(`mockOppName${['Fall', 'back'].join('')}Ref`);
-  });
+  // зачем: тест проверял имена ботов в app/arena_game.tsx и app/arena_results.tsx —
+  // оба экрана удалены вместе с Ареной. Живая проверка latin-only локалей выше остаётся.
 });

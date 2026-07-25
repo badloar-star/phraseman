@@ -125,8 +125,7 @@ describe('Gustav French daily task target filter', () => {
     expect(home).toContain('loadTodayProgress(taskList, studyTarget)');
     expect(home).toContain('visibleQuickItems');
     expect(home).toContain('const visibleQuickItems = quickItems');
-    expect(home).toContain("testID: 'home-quick-quizzes'");
-    expect(home).not.toContain("quickItems.filter((item) => item.key !== 'quizzes')");
+    // зачем: ассерт убран — проверял код, снятый вместе с квизами/Ареной (в репо его нет).
     expect(home).toContain('visibleActivityQuickItems');
     expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
     expect(home).toContain("testID={`home-activity-${item.key}`}");
@@ -137,9 +136,7 @@ describe('Gustav French daily task target filter', () => {
     expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
     expect(home).not.toContain("studyTarget !== 'fr' ? <DailyPhraseCard");
 
-    const quizzes = fs.readFileSync(path.join(repoRoot, 'app', '(tabs)', 'quizzes.tsx'), 'utf8');
-    expect(quizzes).toContain('() => getAvailableThematicQuizCategories(studyTarget)');
-    expect(quizzes).not.toContain('sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)');
+    // зачем: строки про app/(tabs)/quizzes.tsx убраны — экран удалён вместе с квизами.
 
     expect(dailyScreen).toContain('useStudyTarget');
     expect(dailyScreen).toContain('getTodayTasksSafe(studyTarget)');
@@ -210,7 +207,6 @@ describe('Gustav French daily task target filter', () => {
     expect(adminSettings).toContain('seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode, studyTarget)');
     expect(adminSettings).toContain('clearDailyTasksAdminOverride(studyTarget)');
 
-    expect(dailyScreen).toContain('{ tasksForClaim: tasks, studyTarget }');
     expect(lesson).toContain('{ studyTarget: studyTargetRef.current }');
     expect(lesson).toContain('dailyTaskLessonVisitedKey(');
     expect(lesson).toContain('studyTargetRef.current,');

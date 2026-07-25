@@ -21,8 +21,7 @@ describe('semantic explanation UI contract', () => {
     expect(read('components/AiMistakeCard.tsx')).toContain('LearningSemanticBlock');
     expect(read('components/MistakeEli5Modal.tsx')).toContain('buildMistakeExplanationBlocks');
     expect(read('components/MistakeEli5Modal.tsx')).toContain('LearningSemanticBlock');
-    expect(read('app/(tabs)/quizzes.tsx')).toContain('buildQuizExplanationBlocks');
-    expect(read('app/(tabs)/quizzes.tsx')).toContain('LearningSemanticBlock');
+    // зачем: строки про app/(tabs)/quizzes.tsx убраны — экран удалён вместе с квизами.
   });
 
   it('keeps the simple phrase ExplainSheet out of the semantic-cloud redesign', () => {

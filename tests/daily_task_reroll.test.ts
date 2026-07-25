@@ -126,10 +126,15 @@ describe('daily_task_reroll', () => {
     mockStorage.shards_balance = '1';
     const tasks = await getTodayTasksSafe();
     const target = tasks[0]!.id;
+    const before = await getDailyRerollsLeftToday();
     const r = await rerollDailyTask(target);
     expect(r.ok).toBe(false);
     if (!r.ok) expect(r.reason).toBe('insufficient_shards');
     expect(mockStorage.shards_balance).toBe('1');
+    // зачем: право на реролл резервируется ДО списания (иначе два параллельных вызова
+    // прошли бы проверку лимита оба и списали дважды). Если списание не удалось, резерв
+    // обязан откатиться — иначе сгоревшая попытка молча съедала бы суточный лимит.
+    expect(await getDailyRerollsLeftToday()).toBe(before);
   });
 
   it('expires reroll state from previous day', async () => {

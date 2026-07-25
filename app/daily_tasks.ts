@@ -2977,6 +2977,9 @@ const pickRerollCandidate = async (
  */
 export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudyTarget): Promise<RerollResult> => {
   try {
+    // Быстрый отказ до дорогих операций (подбор кандидата, чтение прогресса). Настоящий
+    // барьер лимита — резерв под withStorageLock ниже: только он атомарен относительно
+    // параллельного реролла.
     const left = await getDailyRerollsLeftToday(studyTarget);
     if (left <= 0) return { ok: false, reason: 'limit_reached' };
 
@@ -2994,18 +2997,44 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
     const candidate = await pickRerollCandidate(taskId, tasks.map((t) => t.id), playerLevel, isPremium, studyTarget);
     if (!candidate) return { ok: false, reason: 'no_candidates' };
 
-    const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS, 'daily_task_reroll');
-    if (!spent) return { ok: false, reason: 'insufficient_shards' };
-
-    // Обновляем reroll-state и обнуляем прогресс старого id (чтобы не «висел»).
-    await withStorageLock(async () => {
+    // зачем: раньше проверка лимита (getDailyRerollsLeftToday выше) и списание осколков шли
+    // ВНЕ замка, а под ним обновлялось только состояние — классический check-then-act. Между
+    // проверкой и записью лежит несколько await, поэтому два параллельных реролла (два
+    // устройства, ретрай после медленного ответа) читали один и тот же left=1, оба проходили
+    // проверку и оба списывали осколки, превышая суточный лимит.
+    // Лимит считается по числу записей в replacements, поэтому резервируем ИМЕННО запись —
+    // под замком, до списания. Тот же приём, что в claimTaskWithReward: дорогая операция
+    // (spendShards сам берёт withStorageLock, вложенный захват = дедлок) остаётся снаружи.
+    const todayKey = getTodayKey();
+    const reserved = await withStorageLock(async (): Promise<boolean> => {
       const state = await loadRerollStateRaw(studyTarget);
-      // Если уже сохранена замена для этого id — обновляем (на случай гонки).
-      const replacements = { ...state.replacements, [taskId]: candidate.id };
-      await saveRerollState({ dayKey: getTodayKey(), replacements }, studyTarget);
+      const replacements = state.replacements ?? {};
+      // Повторный реролл того же задания заменяет свою же запись — лимит не тратится дважды.
+      const isReplacingOwnEntry = Object.prototype.hasOwnProperty.call(replacements, taskId);
+      if (!isReplacingOwnEntry && Object.keys(replacements).length >= DAILY_TASK_REROLL_MAX_PER_DAY) {
+        return false;
+      }
+      await saveRerollState({ dayKey: todayKey, replacements: { ...replacements, [taskId]: candidate.id } }, studyTarget);
+      return true;
+    });
+    if (!reserved) return { ok: false, reason: 'limit_reached' };
 
-      // Прогресс: добавим строку для нового id с нулём, удалим строку для старого.
-      const key = dailyTasksProgressKey(getTodayKey(), studyTarget);
+    const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS, 'daily_task_reroll');
+    if (!spent) {
+      // Осколков не хватило — снимаем резерв, иначе сгоревшая попытка съела бы суточный
+      // лимит впустую. Восстанавливаем ровно прежнее значение ключа, чужие замены не трогаем.
+      await withStorageLock(async () => {
+        const state = await loadRerollStateRaw(studyTarget);
+        const rest = { ...(state.replacements ?? {}) };
+        delete rest[taskId];
+        await saveRerollState({ dayKey: todayKey, replacements: rest }, studyTarget);
+      }).catch(() => {});
+      return { ok: false, reason: 'insufficient_shards' };
+    }
+
+    // Резерв оплачен — обнуляем прогресс старого id (чтобы не «висел») под тем же замком.
+    await withStorageLock(async () => {
+      const key = dailyTasksProgressKey(todayKey, studyTarget);
       const raw = await AsyncStorage.getItem(key);
       const arr: TaskProgress[] = raw ? (JSON.parse(raw) as TaskProgress[]) : [];
       const filtered = Array.isArray(arr) ? arr.filter((p) => p.taskId !== taskId) : [];

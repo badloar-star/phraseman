@@ -2690,7 +2690,7 @@ function insertTrainingCardLater(queue: TrainingQueueItem[], currentIndex: numbe
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget }) {
+function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initialLearned, initialCounts, onCountUpdate, userName: userNameProp = '', onNoEnergy, studyTarget, onAndroidBackIntercept }: { words:Word[]; storageKey:string; wordsShardGrantKey:string; lessonId: number; lang: Lang; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void; userName?: string; onNoEnergy: () => void; studyTarget?: RuntimeStudyTarget; onAndroidBackIntercept?: (handler: (() => boolean) | null) => void }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { flashKey, flash } = useWordFlash();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -2709,18 +2709,6 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
 
-  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
-  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
-  // мог оказаться не на экране уроков. Заводим тот же путь выхода, что и у кнопки, по
-  // образцу lesson1.tsx. Возвращаем true: событие обработано, дефолтный выход не нужен.
-  useEffect(() => {
-    if (Platform.OS !== 'android') return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
-      return true;
-    });
-    return () => sub.remove();
-  }, [router, lessonId]);
 
   const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
@@ -2757,6 +2745,26 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
   const [xpToastVisible, setXpToastVisible] = useState(false);
   const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
+
+  // зачем: системный «Назад» перехватывает родитель (LessonWords) — там обработчик активен
+  // на ЛЮБОЙ вкладке, а Training монтируется только на вкладке тренировки. Свои модалки
+  // Training прокидывает наверх через onAndroidBackIntercept, чтобы «Назад» закрывал их,
+  // а не выкидывал с экрана.
+  useEffect(() => {
+    if (!onAndroidBackIntercept) return;
+    onAndroidBackIntercept(() => {
+      if (practiceRepeatConfirm) {
+        setPracticeRepeatConfirm(false);
+        return true;
+      }
+      if (victoryShown) {
+        setVictoryShown(false);
+        return true;
+      }
+      return false;
+    });
+    return () => onAndroidBackIntercept(null);
+  }, [onAndroidBackIntercept, practiceRepeatConfirm, victoryShown]);
 
   /** Снизу вверх + фейд; исчезновение — фейд и лёгкий подъём */
   const xpTranslateY = useRef(new Animated.Value(44)).current;
@@ -3562,7 +3570,36 @@ export default function LessonWords() {
   const wordsShardGrantKey = lessonWordsShardsGrantedKey(lessonId, studyTarget);
   const ws = s.words;
 
+  // зачем: системный «Назад» на Android уходил мимо safeRouterBack и вёл себя иначе, чем
+  // кнопка в шапке — терялся честный стек навигации (navigation_back.ts), и пользователь
+  // мог оказаться не на экране уроков. Обработчик живёт ЗДЕСЬ, а не в Training: Training
+  // монтируется только на вкладке тренировки, и на вкладке «Словарь» (а также при нулевой
+  // энергии, где список открыт сразу) «Назад» остался бы необработанным.
+  // Ссылка-перехватчик: Training регистрирует в неё свою проверку открытых модалок и
+  // возвращает true, если нажатие поглощено, — иначе выходим с экрана.
+  const androidBackInterceptRef = useRef<(() => boolean) | null>(null);
+  const setAndroidBackIntercept = useCallback((handler: (() => boolean) | null) => {
+    androidBackInterceptRef.current = handler;
+  }, []);
+
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
+
+  // Обработчик системного «Назад» (см. комментарий у androidBackInterceptRef выше).
+  // Порядок перехвата: модалка энергии → модалки тренировки → выход с экрана.
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (noEnergyModalOpen) {
+        setNoEnergyModalOpen(false);
+        return true;
+      }
+      if (androidBackInterceptRef.current?.()) return true;
+      safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
+      return true;
+    });
+    return () => sub.remove();
+  }, [router, lessonId, noEnergyModalOpen]);
+
   /** null = «авто»: при 0 энергии сразу Словарь, при наличии — Повторение, без кадра с неверной вкладкой */
   const [userTab, setUserTab] = useState<'train' | 'list' | null>(initialTab);
   const tab = userTab !== null ? userTab : (canTrain ? 'train' : 'list');
@@ -3680,6 +3717,7 @@ export default function LessonWords() {
             onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
             onNoEnergy={() => setNoEnergyModalOpen(true)}
             studyTarget={studyTarget}
+            onAndroidBackIntercept={setAndroidBackIntercept}
           />
         )}
       </View>

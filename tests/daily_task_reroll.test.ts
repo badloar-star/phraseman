@@ -1,3 +1,5 @@
+import fs from 'fs';
+import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   rerollDailyTask,
@@ -71,6 +73,45 @@ describe('daily_task_reroll', () => {
     expect(mockStorage.shards_balance).toBe(String(50 - DAILY_TASK_REROLL_COST_SHARDS));
     const after = await getDailyRerollsLeftToday();
     expect(after).toBe(DAILY_TASK_REROLL_MAX_PER_DAY - 1);
+  });
+
+  it('rollback never touches a replacement written by someone else (compare-and-swap)', async () => {
+    // зачем: откат резерва при неудачном списании раньше безусловно перезаписывал ключ
+    // значением, снятым в момент СВОЕГО резервирования. Если параллельный вызов успел
+    // записать и ОПЛАТИТЬ свою замену того же задания, откат стирал её — пользователь
+    // платил, а замена пропадала. Теперь откат сверяет текущее значение с тем, что
+    // записал именно этот вызов, и чужое не трогает.
+    //
+    // Сам сценарий гонки сегодня недостижим: DAILY_TASK_REROLL_MAX_PER_DAY === 1, поэтому
+    // ранняя проверка лимита отсекает второй реролл ещё до резервирования (получаем
+    // limit_reached, а не insufficient_shards). Тест фиксирует ИНВАРИАНТ отката на уровне
+    // исходника — он должен пережить и поднятие лимита, при котором ветка
+    // isReplacingOwnEntry станет достижимой.
+    const source = fs.readFileSync(path.join(process.cwd(), 'app', 'daily_tasks.ts'), 'utf8');
+    const rollback = source.slice(
+      source.indexOf('const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS'),
+      source.indexOf('// Резерв оплачен'),
+    );
+    expect(rollback).toContain('if (rest[taskId] !== candidate.id) return;');
+    // И сам возврат прежнего значения, а не безусловное удаление ключа.
+    expect(rollback).toContain('if (previousReplacementForTask === undefined) delete rest[taskId];');
+    expect(rollback).toContain('else rest[taskId] = previousReplacementForTask;');
+  });
+
+  it('keeps the early limit check ahead of the expensive path', async () => {
+    // При лимите 1 повторный реролл обязан отсекаться дешёвой проверкой, не доходя до
+    // подбора кандидата и списания.
+    const tasks = await getTodayTasksSafe();
+    const target = tasks[0]!.id;
+    const first = await rerollDailyTask(target);
+    expect(first.ok).toBe(true);
+
+    const balanceAfterFirst = mockStorage.shards_balance;
+    const second = await rerollDailyTask(target);
+    expect(second.ok).toBe(false);
+    if (!second.ok) expect(second.reason).toBe('limit_reached');
+    // Осколки за отклонённую попытку не списываются.
+    expect(mockStorage.shards_balance).toBe(balanceAfterFirst);
   });
 
   it('keeps French reroll state and replacement progress under scoped keys', async () => {

@@ -3028,9 +3028,13 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
       // Осколков не хватило — снимаем резерв, иначе сгоревшая попытка съела бы суточный
       // лимит впустую. Чужие замены не трогаем, а свою возвращаем к прежнему значению:
       // если замена уже была, её нельзя просто удалить — задание «отыграло» бы назад.
+      // Откат идёт по compare-and-swap: если в хранилище уже НЕ наш candidate.id, значит
+      // параллельный реролл того же задания успел записать и оплатить свою замену — тогда
+      // не трогаем её вовсе, иначе стёрли бы то, за что пользователь заплатил.
       await withStorageLock(async () => {
         const state = await loadRerollStateRaw(studyTarget);
         const rest = { ...(state.replacements ?? {}) };
+        if (rest[taskId] !== candidate.id) return;
         if (previousReplacementForTask === undefined) delete rest[taskId];
         else rest[taskId] = previousReplacementForTask;
         await saveRerollState({ dayKey: todayKey, replacements: rest }, studyTarget);

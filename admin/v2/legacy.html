@@ -10562,20 +10562,16 @@
   <div style="max-width:980px;background:#11131c;border:1px solid #222633;border-radius:14px;padding:18px">
     <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">📊 Результаты — где покупают чаще</div>
     <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 14px">
-      За выбранный период: сколько раз показали каждую версию и сколько раз с неё купили.
-      Главная колонка — <b style="color:#e2e8f0">«покупают»</b> (доля купивших из увидевших). У кого выше при похожем числе показов — тот и победил.
+      За выбранный период: сколько раз показали каждую версию, сколько нажали кнопку и сколько раз с неё купили.
+      Главная колонка — <b style="color:#e2e8f0">«% покупок»</b> (доля купивших из увидевших). У кого выше при похожем числе показов — тот и победил.
+      Считает сервер — браузер ничего не скачивает и не суммирует сам.
     </p>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:14px">
       <button type="button" onclick="pabFunnelRange(7)" class="pab-range">Неделя</button>
       <button type="button" onclick="pabFunnelRange(30)" class="pab-range">Месяц</button>
       <button type="button" onclick="pabFunnelRange(90)" class="pab-range">3 месяца</button>
-      <span style="font-size:12px;color:#6b7280">или вручную:</span>
-      <input type="date" id="pab-from" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px 8px;border-radius:7px"/>
-      <span style="color:#6b7280">—</span>
-      <input type="date" id="pab-to" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:6px 8px;border-radius:7px"/>
-      <button type="button" onclick="loadPaywallFunnel()" style="background:#1f2937;border:1px solid #374151;color:#e5e7eb;padding:7px 15px;border-radius:8px;cursor:pointer;font-weight:600">Показать</button>
       <label style="font-size:12px;color:#6b7280;display:flex;align-items:center;gap:5px;margin-left:4px">
-        <input type="checkbox" id="pab-include-dev" style="width:14px;height:14px"/> со мной/тестами</label>
+        <input type="checkbox" id="pab-include-dev" style="width:14px;height:14px" onchange="loadOnboardingColorStats(window._pabRangeDays||30)"/> со мной/тестами (только цвет онбординга ниже)</label>
       <span id="pab-funnel-status" style="font-size:12px;color:#9ca3af"></span>
     </div>
     <div id="pab-funnel"><div style="font-size:12.5px;color:#6b7280">Выбери период (Неделя / Месяц) — покажу таблицу.</div></div>
@@ -10586,21 +10582,15 @@
     <div style="font-size:15px;font-weight:700;color:#e2e8f0;margin-bottom:4px">💰 Деньги по экранам и графики</div>
     <p style="font-size:12.5px;color:#9ca3af;line-height:1.55;margin:0 0 12px">
       Какой экран приносит больше всего покупок и денег, динамика покупок по дням, воронка и доли тарифов.
-      Деньги — <b style="color:#e2e8f0">оценочные</b>: считаются как «число покупок × цена тарифа».
-      Базовые цены заданы в рублях; выбери валюту — и суммы пересчитаются по <b style="color:#e2e8f0">сегодняшнему курсу</b>.
+      Деньги — <b style="color:#e2e8f0">оценка сервера</b>: покупки варианта × средняя цена плана из настоящих
+      покупок RevenueCat. Считается в долларах, здесь можно посмотреть в другой валюте по <b style="color:#e2e8f0">сегодняшнему курсу</b>.
       Точную выручку до копейки смотри в App Store / Google Play; здесь — чтобы видеть, <i>какой экран</i> приносит деньги.
     </p>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px;font-size:12px;color:#9ca3af">
-      <span style="color:#6b7280">Базовые цены (₽):</span>
-      <label style="display:flex;align-items:center;gap:4px">Месяц <input type="number" id="pab-price-monthly" value="499" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
-      <label style="display:flex;align-items:center;gap:4px">Год <input type="number" id="pab-price-yearly" value="2990" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
-      <label style="display:flex;align-items:center;gap:4px">Навсегда <input type="number" id="pab-price-lifetime" value="4990" min="0" step="1" style="width:78px;background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 7px;border-radius:7px"/></label>
-    </div>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;font-size:12px;color:#9ca3af">
       <label style="display:flex;align-items:center;gap:6px">Показать в валюте
-        <select id="pab-price-currency" onchange="loadPaywallFunnel()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 9px;border-radius:7px;cursor:pointer">
-          <option value="RUB" selected>₽ Рубль (RUB)</option>
-          <option value="USD">$ Доллар (USD)</option>
+        <select id="pab-price-currency" onchange="pabRerenderMoneyFromCache()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:5px 9px;border-radius:7px;cursor:pointer">
+          <option value="USD" selected>$ Доллар (USD)</option>
+          <option value="RUB">₽ Рубль (RUB)</option>
           <option value="EUR">€ Евро (EUR)</option>
           <option value="GBP">£ Фунт (GBP)</option>
           <option value="KZT">₸ Тенге (KZT)</option>
@@ -27245,110 +27235,218 @@
     }
   };
 
-  // ══ Paywall A/B — простой человеческий интерфейс выбора экрана оплаты ══════
-  // Внутри по-прежнему пишем remote_config/paywall_ab { a_pct,b_pct,c_pct,salt,
-  // rating_x10,ratings_count }. UI прячет проценты за пресетами, оценку даёт в
-  // привычной шкале 1–5 (в базе ×10), соль не показываем — храним прежнюю.
-  let _pabSalt = 'v3'; // сохраняем как было; UI её не трогает
+  // ══ Paywall A/B — интерфейс выбора экрана оплаты (7 вариантов, A–G) ════════
+  // зачем: аудит «полный раздел A/B в админке» (2026-07-25) — раньше вкладка
+  // писала remote_config/paywall_ab напрямую из браузера (без прав/аудита/
+  // идемпотентности) и знала только про A/B/C. Теперь читает/пишет ИСКЛЮЧИТЕЛЬНО
+  // через adminGetPaywallAbWorkspace / adminPublishPaywallAb (functions/src/
+  // admin_paywall_ab.ts) — тот же контракт, что уже проверен тестами и питает
+  // мёртвый admin-core.js. UI прячет проценты за пресетами; соль не показываем.
+  const PAB_VARIANTS = [
+    { letter: 'a', name: 'Компакт', color: '#60a5fa' },
+    { letter: 'b', name: 'Стори', color: '#a78bfa' },
+    { letter: 'c', name: 'Атриум ★', color: '#fbbf24' },
+    { letter: 'd', name: 'Плитки', color: '#34d399' },
+    { letter: 'e', name: 'Один план', color: '#f87171' },
+    { letter: 'f', name: 'Честный триал', color: '#ec4899' },
+    { letter: 'g', name: 'Приманка', color: '#a3e635' },
+  ];
+  const PAB_LETTERS = PAB_VARIANTS.map(v => v.letter);
+  let _pabDraft = null;       // { a:{enabled,pct}, ..., salt, ratingX10, ratingsCount }
+  let _pabExpectedUpdatedAt = null;
+  let _pabWorkspaceLoaded = false;
 
   function pabSetStatus(msg, color) {
     const el = document.getElementById('pab-status');
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
   }
-  function pabNum(id) {
-    const el = document.getElementById(id);
-    const v = el && el.value !== '' ? Number(el.value) : 0;
-    return Number.isFinite(v) ? v : 0;
-  }
-  function pabShares() {
-    return {
-      a: Math.max(0, Math.min(100, Math.round(pabNum('pab-a')))),
-      b: Math.max(0, Math.min(100, Math.round(pabNum('pab-b')))),
-      c: Math.max(0, Math.min(100, Math.round(pabNum('pab-c')))),
-    };
-  }
-  // Какой пресет соответствует текущим долям (для подсветки карточки).
-  function pabDetectPreset(a, b, c) {
-    if (a === 0 && b === 0 && c === 0) return 'off';
-    if (a === 10 && b === 10 && c === 80) return 'soft';
-    if (a === 33 && b === 33 && c === 34) return 'even';
-    if (a === 0 && b === 0 && c === 100) return 'atrium';
-    return 'custom';
-  }
-  function pabHighlightPreset(name) {
-    document.querySelectorAll('#pab-presets .pab-card').forEach(el => {
-      el.classList.toggle('pab-active', el.getAttribute('data-preset') === name);
-    });
-  }
-  // Человеческая сводка «что произойдёт».
-  function pabRenderSummary() {
-    const { a, b, c } = pabShares();
-    const sum = a + b + c;
-    const rest = Math.max(0, 100 - sum);
-    const box = document.getElementById('pab-summary');
-    if (!box) return;
-    if (sum === 0) {
-      box.innerHTML = '<b style="color:#fbbf24">Сейчас A/B выключен.</b> Все пользователи видят новый «Атриум». Старый экран не показывается.';
-      return;
+  function pabDraftFromDoc(d, exists) {
+    const draft = { salt: 'v3', ratingX10: 0, ratingsCount: 0 };
+    for (const letter of PAB_LETTERS) {
+      const pct = Number(d[`${letter}_pct`]);
+      draft[letter] = {
+        enabled: exists ? d[`${letter}_enabled`] !== false : ['a', 'b', 'c'].includes(letter),
+        pct: Number.isInteger(pct) && pct >= 0 && pct <= 100 ? pct : 0,
+      };
     }
-    const parts = [];
-    if (a) parts.push(`<b style="color:#60a5fa">${a}%</b> — Компакт`);
-    if (b) parts.push(`<b style="color:#a78bfa">${b}%</b> — Стори`);
-    if (c) parts.push(`<b style="color:#fbbf24">${c}%</b> — Атриум`);
-    if (rest) parts.push(`<b style="color:#fbbf24">${rest}%</b> — Атриум fallback`);
-    let warn = '';
-    if (sum > 100) warn = '<div style="color:#f87171;margin-top:6px">⚠️ Сумма больше 100% — приложение само ужмёт до 100%. Лучше поправь.</div>';
-    box.innerHTML = 'Из 100 человек: ' + parts.join(' · ') + '.' + warn;
+    if (!exists) { draft.a.pct = 33; draft.b.pct = 33; draft.c.pct = 34; }
+    if (typeof d.salt === 'string' && d.salt.trim()) draft.salt = d.salt.trim().slice(0, 40);
+    const rating = Number(d.rating_x10);
+    if (Number.isInteger(rating) && rating >= 0 && rating <= 50) draft.ratingX10 = rating;
+    const count = Number(d.ratings_count);
+    if (Number.isInteger(count) && count >= 0) draft.ratingsCount = count;
+    return draft;
   }
-  window.pabRecalc = function() {
-    const { a, b, c } = pabShares();
-    const sum = a + b + c;
-    const v1 = document.getElementById('pab-v1');
-    if (v1) v1.value = sum > 100 ? '0 (>100)' : String(Math.max(0, 100 - sum)) + '% → C';
-    pabHighlightPreset(pabDetectPreset(a, b, c));
-    pabRenderSummary();
+  function pabEnabledLetters(draft) { return PAB_LETTERS.filter(l => draft[l].enabled === true); }
+  function pabEnabledSum(draft) { return pabEnabledLetters(draft).reduce((s, l) => s + (draft[l].pct || 0), 0); }
+  // Делит remaining между letters пропорционально их текущим долям (все нули → поровну).
+  function pabProportionalShares(draft, letters, remaining) {
+    const shares = {};
+    if (!letters.length) return shares;
+    const currentSum = letters.reduce((s, l) => s + (draft[l].pct || 0), 0);
+    if (currentSum <= 0) {
+      const base = Math.floor(remaining / letters.length);
+      let extra = remaining - base * letters.length;
+      for (const l of letters) { shares[l] = base + (extra > 0 ? 1 : 0); if (extra > 0) extra -= 1; }
+      return shares;
+    }
+    let assigned = 0;
+    for (const l of letters) { shares[l] = Math.round((remaining * (draft[l].pct || 0)) / currentSum); assigned += shares[l]; }
+    let residue = remaining - assigned;
+    const ordered = [...letters].sort((x, y) => (shares[y] - shares[x]) || (PAB_LETTERS.indexOf(x) - PAB_LETTERS.indexOf(y)));
+    for (const l of ordered) {
+      if (residue === 0) break;
+      const next = Math.max(0, shares[l] + residue);
+      residue = shares[l] + residue - next;
+      shares[l] = next;
+    }
+    return shares;
+  }
+  // Связанные ползунки: изменённый вариант держит своё значение, остаток делят остальные включённые пропорционально.
+  window.pabSliderInput = function(letter, rawPct) {
+    if (!_pabDraft) return;
+    const entry = _pabDraft[letter];
+    if (!entry) return;
+    const pct = Math.max(0, Math.min(100, Math.round(Number(rawPct) || 0)));
+    if (!entry.enabled) { entry.pct = pct; pabSyncDom(); return; }
+    const others = pabEnabledLetters(_pabDraft).filter(l => l !== letter);
+    entry.pct = others.length ? pct : 100;
+    const shares = pabProportionalShares(_pabDraft, others, 100 - entry.pct);
+    for (const [l, share] of Object.entries(shares)) _pabDraft[l].pct = share;
+    pabSyncDom();
   };
-  // Нажатие на карточку-пресет.
+  window.pabToggleVariant = function(letter, enabledRaw) {
+    if (!_pabDraft) return;
+    const entry = _pabDraft[letter];
+    if (!entry) return;
+    const enabled = !!enabledRaw;
+    entry.enabled = enabled;
+    if (!enabled) {
+      const others = pabEnabledLetters(_pabDraft);
+      const shares = pabProportionalShares(_pabDraft, others, 100);
+      for (const [l, share] of Object.entries(shares)) _pabDraft[l].pct = share;
+      entry.pct = 0;
+    } else {
+      entry.pct = 0;
+      const enabledLetters = pabEnabledLetters(_pabDraft);
+      if (enabledLetters.length === 1) _pabDraft[enabledLetters[0]].pct = 100;
+      else if (pabEnabledSum(_pabDraft) !== 100) {
+        const shares = pabProportionalShares(_pabDraft, enabledLetters, 100);
+        for (const [l, share] of Object.entries(shares)) _pabDraft[l].pct = share;
+      }
+    }
+    pabRenderVariantRows();
+  };
+  function pabApplyPreset(name) {
+    if (!_pabDraft) return;
+    if (name === 'off') { for (const l of PAB_LETTERS) { _pabDraft[l].enabled = false; _pabDraft[l].pct = 0; } _pabDraft.c.enabled = true; _pabDraft.c.pct = 100; }
+    else if (name === 'abc') { for (const l of PAB_LETTERS) { _pabDraft[l].enabled = ['a','b','c'].includes(l); _pabDraft[l].pct = { a: 33, b: 33, c: 34 }[l] || 0; } }
+    else if (name === 'even') {
+      for (const l of PAB_LETTERS) _pabDraft[l].enabled = true;
+      for (const l of PAB_LETTERS) _pabDraft[l].pct = 0;
+      const shares = pabProportionalShares(_pabDraft, PAB_LETTERS, 100);
+      for (const [l, share] of Object.entries(shares)) _pabDraft[l].pct = share;
+    } else if (name === 'atrium') { for (const l of PAB_LETTERS) { _pabDraft[l].enabled = l === 'c'; _pabDraft[l].pct = l === 'c' ? 100 : 0; } }
+  }
   window.pabPreset = function(name) {
-    const map = { off:[0,0,0], soft:[10,10,80], even:[33,33,34], atrium:[0,0,100] };
-    const v = map[name] || [0,0,0];
-    const set = (id, x) => { const el = document.getElementById(id); if (el) el.value = String(x); };
-    set('pab-a', v[0]); set('pab-b', v[1]); set('pab-c', v[2]);
-    // Пресет — это просто; ручные поля прячем.
+    pabApplyPreset(name);
     const custom = document.getElementById('pab-custom');
     if (custom) custom.style.display = 'none';
-    pabRecalc();
+    pabRenderVariantRows();
   };
   window.pabToggleCustom = function() {
     const custom = document.getElementById('pab-custom');
     if (custom) custom.style.display = custom.style.display === 'none' ? 'block' : 'none';
   };
-  // Оценка: галочка вкл/выкл + поле 1–5.
   window.pabRatingToggle = function() {
     const on = !!(document.getElementById('pab-rating-on') || {}).checked;
     const field = document.getElementById('pab-rating');
     if (field && on && (!field.value || Number(field.value) <= 0)) field.value = '5.0';
     if (field && !on) field.value = '';
   };
+  function pabDetectPresetName() {
+    if (!_pabDraft) return null;
+    const enabled = pabEnabledLetters(_pabDraft);
+    if (!enabled.length) return null;
+    if (enabled.length === 1 && enabled[0] === 'c' && _pabDraft.c.pct === 100) return 'atrium';
+    if (enabled.join(',') === 'a,b,c' && _pabDraft.a.pct === 33 && _pabDraft.b.pct === 33 && _pabDraft.c.pct === 34) return 'abc';
+    if (enabled.length === 7 && enabled.every(l => Math.abs(_pabDraft[l].pct - 100/7) <= 1)) return 'even';
+    return null;
+  }
+  function pabHighlightPreset() {
+    const active = pabDetectPresetName();
+    document.querySelectorAll('#pab-presets .pab-card').forEach(el => {
+      el.classList.toggle('pab-active', el.getAttribute('data-preset') === active);
+    });
+  }
+  function pabRenderSummary() {
+    const box = document.getElementById('pab-summary');
+    if (!box || !_pabDraft) return;
+    const enabled = pabEnabledLetters(_pabDraft);
+    if (!enabled.length) { box.innerHTML = '<b style="color:#f87171">Ни один экран не включён — так нельзя, приложению нужен хотя бы один.</b>'; return; }
+    const parts = enabled.map(l => {
+      const v = PAB_VARIANTS.find(x => x.letter === l);
+      return `<b style="color:${v.color}">${_pabDraft[l].pct}%</b> — ${escapeHtml(v.name)}`;
+    });
+    const sum = pabEnabledSum(_pabDraft);
+    let warn = '';
+    if (sum !== 100) warn = `<div style="color:#f87171;margin-top:6px">⚠️ Сумма включённых экранов должна быть 100%, сейчас ${sum}%.</div>`;
+    box.innerHTML = 'Из 100 человек: ' + parts.join(' · ') + '.' + warn;
+  }
+  function pabSyncDom() {
+    if (!_pabDraft) return;
+    for (const letter of PAB_LETTERS) {
+      const slider = document.querySelector(`[data-pab-slider="${letter}"]`);
+      if (slider) slider.value = String(_pabDraft[letter].pct);
+      const value = document.querySelector(`[data-pab-value="${letter}"]`);
+      if (value) value.textContent = `${_pabDraft[letter].pct}%`;
+    }
+    pabHighlightPreset();
+    pabRenderSummary();
+  }
+  function pabRenderVariantRows() {
+    const host = document.getElementById('pab-variant-rows');
+    if (!host || !_pabDraft) return;
+    host.innerHTML = PAB_VARIANTS.map(v => {
+      const entry = _pabDraft[v.letter];
+      return `<div style="display:flex;align-items:center;gap:10px;padding:8px 10px;background:#12151f;border-radius:8px">
+        <label style="display:flex;align-items:center;gap:7px;width:150px;flex:none;cursor:pointer">
+          <input type="checkbox" ${entry.enabled ? 'checked' : ''} onchange="pabToggleVariant('${v.letter}', this.checked)" style="width:16px;height:16px"/>
+          <span style="font-size:12.5px;color:${v.color};font-weight:700">${v.letter.toUpperCase()} · ${escapeHtml(v.name)}</span>
+        </label>
+        <input type="range" min="0" max="100" value="${entry.pct}" data-pab-slider="${v.letter}" oninput="pabSliderInput('${v.letter}', this.value)" ${entry.enabled ? '' : 'disabled'} style="flex:1;accent-color:${v.color}"/>
+        <span data-pab-value="${v.letter}" style="width:44px;text-align:right;font-size:12.5px;color:#cbd5e1;font-variant-numeric:tabular-nums">${entry.pct}%</span>
+      </div>`;
+    }).join('');
+    pabHighlightPreset();
+    pabRenderSummary();
+  }
+
+  let _fnGetPaywallAbWorkspace = null, _fnPublishPaywallAb = null, _fnGetPaywallVariantStats = null;
+  function pabFn(name) {
+    if (name === 'getPaywallAbWorkspace') return _fnGetPaywallAbWorkspace || (_fnGetPaywallAbWorkspace = httpsCallable(functionsUs, 'adminGetPaywallAbWorkspace'));
+    if (name === 'publishPaywallAb') return _fnPublishPaywallAb || (_fnPublishPaywallAb = httpsCallable(functionsUs, 'adminPublishPaywallAb'));
+    return _fnGetPaywallVariantStats || (_fnGetPaywallVariantStats = httpsCallable(functionsUs, 'adminGetPaywallVariantStats'));
+  }
 
   window.loadPaywallAb = async function() {
     window._paywallAbLoaded = true;
+    _pabWorkspaceLoaded = true;
     pabSetStatus('Загрузка…');
     try {
-      const snap = await getDoc(doc(db, 'remote_config', 'paywall_ab'));
-      const d = snap.exists() ? (snap.data() || {}) : {};
-      const set = (id, v) => { const el = document.getElementById(id); if (el && v != null) el.value = v; };
-      set('pab-a', d.a_pct ?? 0); set('pab-b', d.b_pct ?? 0); set('pab-c', d.c_pct ?? 0);
-      _pabSalt = (typeof d.salt === 'string' && d.salt) ? d.salt : 'v3';
-      // Оценка ×10 → шкала 1–5; 0 = выключено.
-      const rx10 = Number(d.rating_x10 || 0);
+      const res = await pabFn('getPaywallAbWorkspace')({});
+      const d = res.data || {};
+      const doc = d.config || {};
+      _pabDraft = pabDraftFromDoc(doc, d.exists === true);
+      _pabExpectedUpdatedAt = d.exists === true ? Number(doc.updatedAt || 0) : null;
       const ratingOn = document.getElementById('pab-rating-on');
-      if (ratingOn) ratingOn.checked = rx10 > 0;
-      set('pab-rating', rx10 > 0 ? (rx10 / 10).toFixed(1) : '');
-      set('pab-count', d.ratings_count ?? 0);
-      pabRecalc();
-      pabSetStatus(snap.exists() ? ('Загружено · последнее изменение: ' + (d.updatedBy || '—')) : 'Пока ничего не настроено — все видят новый «Атриум».', '#4ade80');
-      // Период результатов по умолчанию — последняя неделя.
+      if (ratingOn) ratingOn.checked = _pabDraft.ratingX10 > 0;
+      const ratingField = document.getElementById('pab-rating');
+      if (ratingField) ratingField.value = _pabDraft.ratingX10 > 0 ? (_pabDraft.ratingX10 / 10).toFixed(1) : '';
+      const countField = document.getElementById('pab-count');
+      if (countField) countField.value = _pabDraft.ratingsCount || 0;
+      pabRenderVariantRows();
+      pabSetStatus(d.exists ? ('Загружено · последнее изменение: ' + (doc.updatedBy || '—')) : 'Пока ничего не настроено — все видят «Атриум».', '#4ade80');
       pabFunnelRange(7, true);
     } catch (e) {
       pabSetStatus('Не удалось загрузить: ' + (e && e.message ? e.message : e), '#f87171');
@@ -27356,29 +27454,39 @@
   };
 
   window.savePaywallAb = async function() {
+    if (!_pabDraft) { pabSetStatus('Сначала загрузите текущие доли.', '#f87171'); return; }
+    const enabledLetters = pabEnabledLetters(_pabDraft);
+    if (!enabledLetters.length) { pabSetStatus('Включите хотя бы один экран.', '#f87171'); return; }
+    const sum = pabEnabledSum(_pabDraft);
+    if (sum !== 100) { pabSetStatus(`Сумма включённых экранов должна быть 100%, сейчас ${sum}%.`, '#f87171'); return; }
     pabSetStatus('Сохраняю…');
     try {
-      const { a, b, c } = pabShares();
       const ratingOn = !!(document.getElementById('pab-rating-on') || {}).checked;
-      const ratingVal = pabNum('pab-rating'); // 1..5
+      const ratingVal = Number((document.getElementById('pab-rating') || {}).value) || 0;
       const rating = ratingOn ? Math.max(0, Math.min(50, Math.round(ratingVal * 10))) : 0;
-      const count = Math.max(0, Math.round(pabNum('pab-count')));
-      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
-      let prev = {};
-      try { const ps = await getDoc(doc(db, 'remote_config', 'paywall_ab')); if (ps.exists()) prev = ps.data() || {}; } catch (_) {}
-      const next = { a_pct: a, b_pct: b, c_pct: c, salt: _pabSalt, rating_x10: rating, ratings_count: count, updatedAt: Date.now(), updatedBy: who };
-      const changes = [];
-      for (const k of ['a_pct','b_pct','c_pct','salt','rating_x10','ratings_count']) {
-        if (String(prev[k]) !== String(next[k])) changes.push(`${k}: ${prev[k] ?? '∅'} → ${next[k]}`);
-      }
-      await setDoc(doc(db, 'remote_config', 'paywall_ab'), next, { merge: false });
-      if (changes.length) {
-        try { await addDoc(collection(db, 'remote_config_history'), { changes, by: who, at: new Date().toISOString(), doc: 'paywall_ab' }); } catch (_) {}
-        if (typeof logAction === 'function') logAction('paywall_ab_save', 'remote_config/paywall_ab', { changes: changes.length });
-      }
+      const count = Math.max(0, Math.round(Number((document.getElementById('pab-count') || {}).value) || 0));
+      const variants = {};
+      for (const letter of PAB_LETTERS) variants[letter] = { enabled: _pabDraft[letter].enabled === true, pct: _pabDraft[letter].pct };
+      const payload = {
+        variants,
+        salt: _pabDraft.salt,
+        rating_x10: rating,
+        ratings_count: count,
+        expectedUpdatedAt: _pabExpectedUpdatedAt ?? undefined,
+        idempotencyKey: 'paywall_ab_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10),
+        reason: 'Изменение через админку',
+        requestId: 'req_' + Date.now() + '_' + Math.random().toString(36).slice(2, 10),
+      };
+      const res = await pabFn('publishPaywallAb')(payload);
+      _pabExpectedUpdatedAt = Number((res.data || {}).updatedAt || Date.now());
       pabSetStatus('✅ Сохранено. Приложение подхватит за пару секунд.', '#4ade80');
     } catch (e) {
-      pabSetStatus('Не удалось сохранить: ' + (e && e.message ? e.message : e), '#f87171');
+      const code = e && e.code;
+      if (code === 'functions/failed-precondition' || code === 'failed-precondition') {
+        pabSetStatus('Кто-то другой уже изменил доли — нажми «Отменить мои правки», проверь и сохрани заново.', '#f87171');
+      } else {
+        pabSetStatus('Не удалось сохранить: ' + (e && e.message ? e.message : e), '#f87171');
+      }
     }
   };
 
@@ -27388,10 +27496,6 @@
   // агрегаты, на выход строка HTML/SVG.
   // ════════════════════════════════════════════════════════════════════════
   const PAB_NUM = (n) => Number(n || 0).toLocaleString('ru-RU');
-  function pabReadPrice(id, fallback) {
-    const n = Number((document.getElementById(id) || {}).value);
-    return Number.isFinite(n) && n >= 0 ? n : fallback;
-  }
 
   // ── Реальные валюты: символ + курс на сегодня (общий движок для всей админки) ──
   const PAB_CUR_SYMBOL = {
@@ -27531,78 +27635,55 @@
       <div style="display:flex;flex-direction:column;gap:8px">${legend}</div></div>`;
   }
 
-  async function renderPaywallMoneyAndCharts(d) {
+  // зачем: раньше здесь считали деньги сами (ручные RUB-цены × live FX) —
+  // отдельная от честной серверной оценки методология, цифры расходились.
+  // Теперь один источник денег — report.revenue (RevenueCat-observed, USD);
+  // конвертер валют остался, но только для отображения той же суммы.
+  async function renderPaywallMoneyAndCharts({ rows, revenueKind, funnelTotals }) {
     const host = document.getElementById('pab-money-charts');
     if (!host) return;
-    const code = String((document.getElementById('pab-price-currency') || {}).value || 'RUB').trim() || 'RUB';
+    const code = String((document.getElementById('pab-price-currency') || {}).value || 'USD').trim() || 'USD';
     const cur = PAB_CUR_SYMBOL[code] || code;
-    // Курс на сегодня: 1 RUB → выбранная валюта. Базовые цены хранятся в рублях.
     const statusEl = document.getElementById('pab-fx-status');
-    if (statusEl && code !== 'RUB') statusEl.textContent = 'Загружаю курс…';
-    const fx = await pabGetRate(code);
+    if (statusEl && code !== 'USD') statusEl.textContent = 'Загружаю курс…';
+    const fx = code === 'USD' ? { rate: 1, live: true, date: null } : await pabGetRate(code, 'USD');
     const rate = fx.rate;
     if (statusEl) {
-      if (code === 'RUB') {
-        statusEl.textContent = '';
-      } else if (fx.live) {
+      if (code === 'USD') statusEl.textContent = '';
+      else if (fx.live) {
         const dt = fx.date ? new Date(fx.date).toLocaleDateString('ru-RU') : 'сегодня';
         statusEl.style.color = '#6b7280';
-        statusEl.textContent = `Курс на ${dt}: 1 ₽ = ${rate.toPrecision(3)} ${cur}`;
+        statusEl.textContent = `Курс на ${dt}: 1 $ = ${rate.toPrecision(3)} ${cur}`;
       } else {
         statusEl.style.color = '#f59e0b';
-        statusEl.textContent = `⚠ Не удалось получить свежий курс — показан приблизительный (${rate.toPrecision(3)} ${cur} за ₽).`;
+        statusEl.textContent = `⚠ Не удалось получить свежий курс — показан приблизительный (${rate.toPrecision(3)} ${cur} за $).`;
       }
     }
-    // Базовые цены в рублях (то, что введено в полях) → конвертируем в выбранную валюту.
-    const baseRub = {
-      monthly: pabReadPrice('pab-price-monthly', 499),
-      yearly: pabReadPrice('pab-price-yearly', 2990),
-      lifetime: pabReadPrice('pab-price-lifetime', 4990),
-    };
-    const price = {
-      monthly: baseRub.monthly * rate,
-      yearly: baseRub.yearly * rate,
-      lifetime: baseRub.lifetime * rate,
-    };
-    const money = (m) => m.monthly * price.monthly + m.yearly * price.yearly + m.lifetime * price.lifetime;
-    // Единый форматтер денег для всей админки (мелкие валюты — с копейками, крупные — целыми).
-    const fmtMoney = (v) => pabFmtMoney(v, code, rate);
+    const fmtMoney = (micros) => micros == null ? '—' : pabFmtMoney((micros / 1_000_000) * rate, code, rate);
 
-    const keys = Object.keys(d.moneyByCtx);
-    const totalBuys = keys.reduce((s, k) => s + d.moneyByCtx[k].buys, 0);
+    const totalBuys = rows.reduce((s, r) => s + r.purchases, 0);
     if (totalBuys === 0) {
       host.innerHTML = '<div style="font-size:12.5px;color:#6b7280;padding:8px 0">За этот период покупок ещё не было — деньги и графики появятся, когда люди начнут покупать.</div>';
       return;
     }
-    const totalMoney = keys.reduce((s, k) => s + money(d.moneyByCtx[k]), 0);
-
-    // 1) Таблица «экран → покупки → деньги», отсортирована по деньгам (сверху — кто приносит больше).
-    const rows = keys.map(k => ({ k, ...d.moneyByCtx[k], money: money(d.moneyByCtx[k]) }))
-      .sort((a, b) => b.money - a.money);
-    const maxMoney = Math.max(1, ...rows.map(r => r.money));
-    const tableRows = rows.map(r => {
-      const cr = r.shown > 0 ? (r.buys / r.shown * 100).toFixed(1) + '%' : '—';
-      const barW = (r.money / maxMoney * 100).toFixed(1);
-      const share = totalMoney > 0 ? (r.money / totalMoney * 100).toFixed(0) : '0';
+    const moneyRows = revenueKind === 'estimate' ? [...rows].sort((a, b) => (b.revenueMicros || 0) - (a.revenueMicros || 0)) : rows;
+    const totalMoney = revenueKind === 'estimate' ? rows.reduce((s, r) => s + (r.revenueMicros || 0), 0) : null;
+    const maxMoney = Math.max(1, ...moneyRows.map(r => r.revenueMicros || 0));
+    const moneyTableRows = moneyRows.map(r => {
+      const barW = totalMoney ? ((r.revenueMicros || 0) / maxMoney * 100).toFixed(1) : '0';
+      const share = totalMoney ? ((r.revenueMicros || 0) / totalMoney * 100).toFixed(0) : '0';
       return `<tr style="border-bottom:1px solid #1e2230">
-        <td style="padding:8px 10px;color:#e5e7eb">${escapeHtml(d.CTX_RU[r.k] || r.k)}</td>
-        <td style="padding:8px 10px;text-align:right;color:#4ade80;font-weight:700">${PAB_NUM(r.buys)}</td>
-        <td style="padding:8px 10px;text-align:right;color:#9ca3af">${PAB_NUM(r.trial)}</td>
-        <td style="padding:8px 10px;text-align:right;color:#fbbf24">${cr}</td>
-        <td style="padding:8px 10px;text-align:right;color:#86efac;font-weight:800;white-space:nowrap">${fmtMoney(r.money)}</td>
+        <td style="padding:8px 10px;color:${r.color};font-weight:700">${r.letter} · ${escapeHtml(r.name)}</td>
+        <td style="padding:8px 10px;text-align:right;color:#4ade80;font-weight:700">${PAB_NUM(r.purchases)}</td>
+        <td style="padding:8px 10px;text-align:right;color:#fbbf24">${r.conversionPct == null ? '—' : r.conversionPct.toFixed(1) + '%'}</td>
+        <td style="padding:8px 10px;text-align:right;color:#86efac;font-weight:800;white-space:nowrap">${revenueKind === 'estimate' ? fmtMoney(r.revenueMicros) : '—'}</td>
         <td style="padding:8px 10px;min-width:120px"><div style="background:#0d0f17;border-radius:5px;height:9px;overflow:hidden"><div style="width:${barW}%;height:100%;background:linear-gradient(90deg,#22c55e,#4ade80)"></div></div><div style="font-size:10px;color:#6b7280;margin-top:2px">${share}% денег</div></td>
       </tr>`;
     }).join('');
 
-    // 2) Данные графиков.
-    const days = Object.keys(d.buysByDay).sort();
-    const linePoints = days.map(day => ({ label: day, value: d.buysByDay[day] }));
-    const donutSlices = [
-      { label: 'Месяц', value: d.planTotals.monthly, color: '#60a5fa' },
-      { label: 'Год', value: d.planTotals.yearly, color: '#a78bfa' },
-      { label: 'Навсегда', value: d.planTotals.lifetime, color: '#fbbf24' },
-      { label: 'Другое', value: d.planTotals.other, color: '#6b7280' },
-    ];
+    const barChartRows = rows.map(r => [`${r.letter} ${escapeHtml(r.name)}`, r.purchases, r.color]);
+    const donutSlices = rows.filter(r => r.shown > 0).map(r => ({ label: `${r.letter} ${r.name}`, value: r.shown, color: r.color }));
+    const topRow = moneyRows[0];
 
     host.innerHTML = `
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px">
@@ -27612,51 +27693,84 @@
         </div>
         <div style="flex:1;min-width:150px;background:#0d0f17;border:1px solid #1e2230;border-radius:10px;padding:13px 15px">
           <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px">Деньги (оценка)</div>
-          <div style="font-size:24px;font-weight:800;color:#86efac;margin-top:3px">${fmtMoney(totalMoney)}</div>
+          <div style="font-size:24px;font-weight:800;color:#86efac;margin-top:3px">${revenueKind === 'estimate' ? fmtMoney(totalMoney) : '—'}</div>
         </div>
         <div style="flex:1;min-width:150px;background:#0d0f17;border:1px solid #1e2230;border-radius:10px;padding:13px 15px">
           <div style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:.4px">Топ-экран по деньгам</div>
-          <div style="font-size:15px;font-weight:700;color:#e5e7eb;margin-top:5px">${escapeHtml(d.CTX_RU[rows[0].k] || rows[0].k)}</div>
-          <div style="font-size:12px;color:#86efac;margin-top:1px">${fmtMoney(rows[0].money)}</div>
+          <div style="font-size:15px;font-weight:700;color:#e5e7eb;margin-top:5px">${topRow.letter} · ${escapeHtml(topRow.name)}</div>
+          <div style="font-size:12px;color:#86efac;margin-top:1px">${revenueKind === 'estimate' ? fmtMoney(topRow.revenueMicros) : '—'}</div>
         </div>
       </div>
 
       <div style="font-size:13px;font-weight:700;color:#e2e8f0;margin:4px 0 8px">Какой экран приносит больше денег</div>
       <div style="overflow-x:auto;margin-bottom:22px"><table style="width:100%;border-collapse:collapse;font-size:13px">
         <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11px">
-          <th style="padding:7px 10px;text-align:left">Экран / ситуация</th>
+          <th style="padding:7px 10px;text-align:left">Экран</th>
           <th style="padding:7px 10px;text-align:right">купили</th>
-          <th style="padding:7px 10px;text-align:right">пробный</th>
           <th style="padding:7px 10px;text-align:right">% покупок</th>
           <th style="padding:7px 10px;text-align:right">деньги (оценка)</th>
           <th style="padding:7px 10px;text-align:left">доля</th>
-        </tr></thead><tbody>${tableRows}</tbody>
+        </tr></thead><tbody>${moneyTableRows}</tbody>
       </table></div>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px">
         <div style="background:#0d0f17;border:1px solid #1e2230;border-radius:11px;padding:15px">
-          <div style="font-size:12.5px;font-weight:700;color:#e2e8f0;margin-bottom:10px">📈 Покупки по дням</div>
-          ${pabSvgLineChart(linePoints, { accent: '#4ade80' })}
+          <div style="font-size:12.5px;font-weight:700;color:#e2e8f0;margin-bottom:10px">📊 Покупки по экранам</div>
+          ${pabSvgBarByVariant(barChartRows)}
         </div>
         <div style="background:#0d0f17;border:1px solid #1e2230;border-radius:11px;padding:15px">
           <div style="font-size:12.5px;font-weight:700;color:#e2e8f0;margin-bottom:10px">🧪 Воронка (все экраны вместе)</div>
-          ${pabSvgFunnel(d.funnelTotals)}
+          ${pabSvgFunnel(funnelTotals)}
         </div>
         <div style="background:#0d0f17;border:1px solid #1e2230;border-radius:11px;padding:15px">
-          <div style="font-size:12.5px;font-weight:700;color:#e2e8f0;margin-bottom:10px">🥧 Доли тарифов</div>
+          <div style="font-size:12.5px;font-weight:700;color:#e2e8f0;margin-bottom:10px">🥧 Доли показов по экранам</div>
           ${pabSvgDonut(donutSlices)}
         </div>
       </div>
-      <div style="font-size:11px;color:#6b7280;margin-top:12px">Деньги — оценка по твоим ценам выше (${escapeHtml(price.monthly + cur)}/мес, ${escapeHtml(price.yearly + cur)}/год, ${escapeHtml(price.lifetime + cur)}/навсегда). «Другое» в тарифах — покупки без явного плана в записи. Точные суммы — в отчётах сторов.</div>`;
+      <div style="font-size:11px;color:#6b7280;margin-top:12px">${revenueKind === 'estimate' ? 'Деньги — оценка сервера по настоящим ценам RevenueCat, в валюте по курсу выше.' : 'Пока нет ни одной покупки с известной ценой — деньги не показываем, чтобы не выдумывать.'} Точные суммы — в отчётах App Store / Google Play.</div>`;
   }
 
-  // Быстрый период результатов: N дней назад → сегодня.
+  // Столбчатая диаграмма покупок по вариантам (замена line-chart «по дням» —
+  // сервер отдаёт агрегат за период, не разбивку по дням).
+  function pabSvgBarByVariant(rows /* [[label, value, color]] */) {
+    if (!rows.length || rows.every(r => r[1] === 0)) return '<div style="font-size:12px;color:#6b7280;padding:8px 0">Нет покупок за период.</div>';
+    const W = 640, H = 200, padTop = 14, padBottom = 30, padX = 12;
+    const innerW = W - padX * 2, innerH = H - padTop - padBottom;
+    const maxV = Math.max(1, ...rows.map(r => r[1]));
+    const slot = innerW / rows.length;
+    const barW = Math.min(48, Math.round(slot * 0.56));
+    const bars = rows.map((r, i) => {
+      const h = r[1] > 0 ? Math.max(4, Math.round((innerH * r[1]) / maxV)) : 0;
+      const x = Math.round(padX + slot * i + (slot - barW) / 2);
+      const y = padTop + innerH - h;
+      const cx = x + barW / 2;
+      return `<g><title>${escapeHtml(r[0])}: ${PAB_NUM(r[1])}</title>${h ? `<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="6" fill="${r[2]}"/>` : `<line x1="${x}" y1="${padTop + innerH}" x2="${x + barW}" y2="${padTop + innerH}" stroke="${r[2]}" stroke-width="3" stroke-linecap="round" opacity="0.35"/>`}<text x="${cx}" y="${h ? y - 6 : padTop + innerH - 6}" fill="#e5e7eb" font-size="11" text-anchor="middle" font-weight="700">${PAB_NUM(r[1])}</text><text x="${cx}" y="${H - 10}" fill="#9ca3af" font-size="10" text-anchor="middle">${escapeHtml(String(r[0]).split(' ')[0])}</text></g>`;
+    }).join('');
+    return `<svg viewBox="0 0 ${W} ${H}" width="100%" style="max-width:660px" role="img" aria-label="Покупки по вариантам пейвола">${bars}</svg>`;
+  }
+
+  // Смена валюты в блоке «Деньги» — перерисовка из уже загруженного отчёта,
+  // БЕЗ повторного похода на сервер (экономия вызовов adminGetPaywallVariantStats).
+  window.pabRerenderMoneyFromCache = function() {
+    const report = window._pabLastReport;
+    if (!report) return;
+    const rows = PAB_VARIANTS.map(v => {
+      const raw = (report.variants || []).find(r => r.variant === v.letter.toUpperCase()) || {};
+      return {
+        letter: v.letter.toUpperCase(), name: v.name, color: v.color,
+        shown: Number(raw.shown) || 0, purchases: Number(raw.purchases) || 0,
+        conversionPct: raw.conversionPct ?? null, revenueMicros: raw.revenueMicros ?? null,
+      };
+    });
+    const revenueKind = report.revenue && report.revenue.kind === 'estimate' ? 'estimate' : 'unavailable';
+    renderPaywallMoneyAndCharts({ rows, revenueKind, funnelTotals: { shown: report.totals.shown, cta_click: report.totals.cta, trial_started: 0, purchase_completed: report.totals.purchases } })
+      .catch((e) => console.error('renderPaywallMoneyAndCharts failed', e));
+  };
+
+  // Быстрый период результатов — сервер сам считает окно по rangeDays
+  // (жёстко [7,30,90], проверено adminGetPaywallVariantStats).
   window.pabFunnelRange = function(days, silent) {
-    const today = new Date(); const from = new Date(today.getTime() - (days - 1) * 86400000);
-    const iso = (x) => x.toISOString().slice(0, 10);
-    const fEl = document.getElementById('pab-from'); const tEl = document.getElementById('pab-to');
-    if (fEl) fEl.value = iso(from);
-    if (tEl) tEl.value = iso(today);
+    window._pabRangeDays = days;
     document.querySelectorAll('.pab-range').forEach(el => {
       el.classList.toggle('pab-active', el.getAttribute('onclick') === `pabFunnelRange(${days})`);
     });
@@ -27722,172 +27836,203 @@
     return `<div style="font-size:12.5px;color:${color};margin:0 0 16px;padding:9px 12px;background:${bg};border:1px solid ${color}44;border-radius:8px;line-height:1.5">${icon} <b>Достоверность:</b> ${verdict}</div>`;
   }
 
+  // Ситуации показа (premium context) по-русски — те же контексты, что и в
+  // app/premium_context.ts. Неизвестный ключ показываем как есть (новый
+  // контекст появится раньше, чем кто-то обновит этот словарь).
+  const CTX_RU = {
+    no_energy: 'Кончилась энергия', course_after_lesson3: 'Дальше по курсу', lesson_b1: 'Уроки B1',
+    flashcard_limit: 'Лимит карточек', flashcard_training: 'Тренировка карточек', flashcard_autoplay: 'Автовоспроизведение карточек',
+    streak: 'Серия', theme: 'Темы оформления', club: 'Клуб', trainer: 'Тренажёр', trainer_limit: 'Лимит тренажёра',
+    smart_trainer: 'Умный микс', dialog_limit: 'Лимит диалогов', dialog_locked_level: 'Диалог — уровень заблокирован',
+    dialog_analysis: 'Разбор диалога', ai_voice_input: 'Голосовой ввод в диалоге', speaking: 'Говорение',
+    diagnosis_training: 'Персональная тренировка', mastery: 'Мастерство', stats: 'Статистика', heatmap: 'Карта активности',
+    patterns: 'Паттерны ошибок', percentiles: 'Перцентили', personal_plan: 'Личный план', intro_ended: 'Конец пробного доступа',
+    level_up: 'Новый уровень', premium_expired: 'Подписка истекла', vip_expired: 'VIP истёк',
+    notification_upsell: 'Пуш-уведомление', language_add: 'Второй язык', ai_explain: 'ИИ-объяснение',
+    weekly_review: 'Недельный обзор', avatar_aura: 'Аура аватара', speaking_club: 'Разговорный клуб',
+    free_lessons_complete: 'Бесплатные уроки пройдены', winback: 'Возвращение после паузы',
+    referral_ended: 'Реферальный доступ закончился', generic: 'Просто Plus',
+  };
+
   window.loadPaywallFunnel = async function() {
     const box = document.getElementById('pab-funnel');
     const status = document.getElementById('pab-funnel-status');
     if (!box) return;
-    const fromV = (document.getElementById('pab-from') || {}).value || '';
-    const toV = (document.getElementById('pab-to') || {}).value || '';
-    if (!fromV || !toV) { if (status) status.textContent = 'Выбери период.'; return; }
-    const includeDev = !!(document.getElementById('pab-include-dev') || {}).checked;
-    if (status) status.textContent = 'Считаю…';
+    const rangeDays = Number(window._pabRangeDays) || 30;
+    if (status) status.textContent = 'Считаю на сервере…';
     box.innerHTML = '';
     try {
-      const qy = query(collection(db, 'paywall_funnel'), where('day', '>=', fromV), where('day', '<=', toV));
-      const snap = await getDocs(qy);
-      const VAR = ['A','B','C','v1'];
-      const STEPS = ['shown','cta_click','trial_started','purchase_completed','close'];
-      const agg = {}; const ctxAgg = {}; let dropped = 0, total = 0;
-      const COLORS = ['blue', 'green'];
-      const colorAgg = {};
-      // ── Деньги/графики: агрегаты покупок по экрану, дню и тарифу ──────────────
-      const PLANS = ['monthly','yearly','lifetime'];
-      const moneyByCtx = {};            // context -> { shown, trial, buys, monthly, yearly, lifetime, other }
-      const buysByDay = {};             // 'YYYY-MM-DD' -> число покупок
-      const planTotals = { monthly:0, yearly:0, lifetime:0, other:0 };
-      const funnelTotals = { shown:0, cta_click:0, trial_started:0, purchase_completed:0 };
-      for (const v of VAR) { agg[v] = { shown:0, cta_click:0, trial_started:0, purchase_completed:0, close:0, users:new Set() }; }
-      for (const c of COLORS) { colorAgg[c] = { shown:0, trial_started:0, purchase_completed:0, users:new Set() }; }
-      snap.forEach(docSnap => {
-        const r = docSnap.data() || {};
-        total++;
-        if (!includeDev && r.dev === true) { dropped++; return; }
-        const v = VAR.includes(r.variant) ? r.variant : null;
-        if (!v || !STEPS.includes(r.step)) return;
-        agg[v][r.step]++;
-        if (r.step === 'shown' && r.uidh) agg[v].users.add(r.uidh);
-        // Воронка/деньги: суммируем по шагам независимо от A/B-варианта.
-        if (funnelTotals[r.step] != null) funnelTotals[r.step]++;
-        {
-          const ck = String(r.context || 'generic');
-          const m = moneyByCtx[ck] || (moneyByCtx[ck] = { shown:0, trial:0, buys:0, monthly:0, yearly:0, lifetime:0, other:0 });
-          if (r.step === 'shown') m.shown++;
-          else if (r.step === 'trial_started') m.trial++;
-          else if (r.step === 'purchase_completed') {
-            m.buys++;
-            const pl = PLANS.includes(r.plan) ? r.plan : 'other';
-            m[pl]++; planTotals[pl]++;
-            const dayK = String(r.day || (r.ts ? new Date(r.ts).toISOString().slice(0,10) : ''));
-            if (dayK) buysByDay[dayK] = (buysByDay[dayK] || 0) + 1;
-          }
-        }
-        if (r.step === 'purchase_completed') {
-          const ck = String(r.context || 'generic');
-          ctxAgg[ck] = ctxAgg[ck] || { A:0, B:0, C:0, v1:0 };
-          if (ctxAgg[ck][v] != null) ctxAgg[ck][v]++;
-        }
-        // Онбординг цвет — агрегируем только события из онбординга
-        if (r.context === 'onboarding') {
-          const col = COLORS.includes(r.obColor) ? r.obColor : null;
-          if (col) {
-            if (r.step === 'shown') { colorAgg[col].shown++; if (r.uidh) colorAgg[col].users.add(r.uidh); }
-            if (r.step === 'trial_started') colorAgg[col].trial_started++;
-            if (r.step === 'purchase_completed') colorAgg[col].purchase_completed++;
-          }
-        }
-      });
-      const pct = (num, den) => den > 0 ? (num / den * 100).toFixed(1) + '%' : '—';
-      // лучший вариант по доле покупок (минимум показов, чтобы не выстрелил случайный 1/1)
-      let best = null, bestRate = -1;
-      VAR.forEach(v => { const x = agg[v]; if (x.shown >= 30) { const rate = x.purchase_completed / x.shown; if (rate > bestRate) { bestRate = rate; best = v; } } });
+      // зачем: было прямое чтение всей коллекции paywall_funnel из браузера
+      // (без прав, без честной оценки выручки) — теперь единственный источник
+      // серверная агрегация adminGetPaywallVariantStats (money.read), которая
+      // уже применяет FUNNEL_ROW_CAP/truncated и НЕ выдумывает цены.
+      const res = await pabFn('getPaywallVariantStats')({ rangeDays });
+      const report = res.data;
+      window._pabLastReport = report;
+      const rows = PAB_VARIANTS.map(v => {
+        const raw = (report.variants || []).find(r => r.variant === v.letter.toUpperCase()) || {};
+        return {
+          letter: v.letter.toUpperCase(), name: v.name, color: v.color,
+          shown: Number(raw.shown) || 0, cta: Number(raw.cta) || 0, purchases: Number(raw.purchases) || 0,
+          conversionPct: raw.conversionPct ?? null,
+          revenueMicros: raw.revenueMicros ?? null,
+        };
+      }).sort((a, b) => (b.purchases - a.purchases) || (b.shown - a.shown));
+      const leader = rows.find(r => r.purchases > 0) || null;
       // ── Статистическая значимость: лидер против второго по конверсии ──────────
       // Двухпропорционный z-тест (перевод z→«вероятность, что лидер реально лучше»
       // = нормальная CDF). Без внешних библиотек: аппроксимация Abramowitz-Stegun.
-      const abStats = paywallAbSignificance(agg, VAR, best);
-      const varName = { A:'Компакт', B:'Стори', C:'Атриум ★', v1:'Архив v1' };
-      const varColor = { A:'#60a5fa', B:'#a78bfa', C:'#fbbf24', v1:'#9ca3af' };
-      const rows = VAR.map(v => {
-        const x = agg[v];
-        const crBuy = pct(x.purchase_completed, x.shown);
-        const isBest = v === best;
-        return `<tr style="border-bottom:1px solid #1e2230;${isBest ? 'background:#0f1a12' : ''}">
-          <td style="padding:9px 10px;font-weight:700;color:${varColor[v]}">${varName[v]}${isBest ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
-          <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${x.shown.toLocaleString('ru-RU')}</td>
-          <td style="padding:9px 10px;text-align:right;color:#a78bfa">${x.trial_started.toLocaleString('ru-RU')}</td>
-          <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed.toLocaleString('ru-RU')}</td>
-          <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${crBuy}</td>
+      const agg = {}; for (const r of rows) agg[r.letter] = { shown: r.shown, purchase_completed: r.purchases };
+      const abStats = paywallAbSignificance(agg, rows.map(r => r.letter), leader ? leader.letter : null);
+      const varNameMap = Object.fromEntries(rows.map(r => [r.letter, r.name]));
+      const pctText = (v) => v == null ? '—' : v.toFixed(1) + '%';
+      const usdText = (micros) => micros == null ? '—' : '$' + (micros / 1_000_000).toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+      const revenueKind = report.revenue && report.revenue.kind === 'estimate' ? 'estimate' : 'unavailable';
+      const tableRows = rows.map(r => {
+        const isLeader = leader && r.letter === leader.letter;
+        return `<tr style="border-bottom:1px solid #1e2230;${isLeader ? 'background:#0f1a12' : ''}">
+          <td style="padding:9px 10px;font-weight:700;color:${r.color}">${r.letter} · ${escapeHtml(r.name)}${isLeader ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
+          <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${r.shown.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#a78bfa">${r.cta.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${r.purchases.toLocaleString('ru-RU')}</td>
+          <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${pctText(r.conversionPct)}</td>
+          <td style="padding:9px 10px;text-align:right;color:#86efac;font-weight:700">${revenueKind === 'estimate' ? usdText(r.revenueMicros) : '—'}</td>
         </tr>`;
       }).join('');
-      // контексты — по-русски, только где были покупки
-      const CTX_RU = { no_energy:'Кончилась энергия', arena:'Арена', course_after_lesson3:'Дальше по курсу', quiz_limit:'Лимит квизов', quiz_hard:'Сложный квиз', flashcard_limit:'Лимит карточек', streak:'Серия', personal_plan:'Личный план', intro_ended:'Конец пробного доступа', speaking:'Говорение', trainer:'Тренажёр', dialog_limit:'Лимит диалогов', generic:'Просто Plus', level_up:'Новый уровень', smart_trainer:'Умный микс' };
-      const ctxKeys = Object.keys(ctxAgg).sort();
-      const ctxRows = ctxKeys.length ? ctxKeys.map(ck => `<tr style="border-bottom:1px solid #1e2230">
-          <td style="padding:7px 10px;color:#cbd5e1">${escapeHtml(CTX_RU[ck] || ck)}</td>
-          <td style="padding:7px 10px;text-align:right;color:#60a5fa">${ctxAgg[ck].A}</td>
-          <td style="padding:7px 10px;text-align:right;color:#a78bfa">${ctxAgg[ck].B}</td>
-          <td style="padding:7px 10px;text-align:right;color:#fbbf24">${ctxAgg[ck].C}</td>
-          <td style="padding:7px 10px;text-align:right;color:#9ca3af">${ctxAgg[ck].v1}</td>
-        </tr>`).join('') : '<tr><td colspan="5" style="padding:8px 10px;color:#6b7280;font-size:12px">За этот период покупок ещё не было.</td></tr>';
-      const noData = total === 0;
+      // ── Разрез по ситуациям показа: где какой экран выигрывает ────────────────
+      const contexts = Array.isArray(report.contexts) ? report.contexts : [];
+      const ctxRows = contexts.length ? contexts.map(row => {
+        const label = CTX_RU[row.context] || row.context;
+        const byVariant = row.purchasesByVariant || {};
+        let ctxLeader = null, ctxLeaderCount = -1;
+        for (const v of PAB_VARIANTS) {
+          const n = Number(byVariant[v.letter.toUpperCase()]) || 0;
+          if (n > ctxLeaderCount) { ctxLeaderCount = n; ctxLeader = v; }
+        }
+        const leaderCell = ctxLeaderCount > 0 ? `<span style="color:${ctxLeader.color};font-weight:700">${ctxLeader.letter.toUpperCase()} · ${escapeHtml(ctxLeader.name)}</span>` : '<span style="color:#6b7280">—</span>';
+        return `<tr style="border-bottom:1px solid #1e2230">
+          <td style="padding:7px 10px;color:#cbd5e1">${escapeHtml(label)}</td>
+          <td style="padding:7px 10px;text-align:right;color:#e5e7eb">${Number(row.shown || 0).toLocaleString('ru-RU')}</td>
+          <td style="padding:7px 10px;text-align:right;color:#4ade80;font-weight:700">${Number(row.purchases || 0).toLocaleString('ru-RU')}</td>
+          <td style="padding:7px 10px;text-align:right;color:#fbbf24">${pctText(row.conversionPct)}</td>
+          <td style="padding:7px 10px">${leaderCell}</td>
+        </tr>`;
+      }).join('') : '<tr><td colspan="5" style="padding:8px 10px;color:#6b7280;font-size:12px">За этот период показов ещё не было.</td></tr>';
+      const noData = rows.every(r => r.shown === 0);
+      const truncatedNotice = report.truncated === true
+        ? '<div style="color:#fbbf24;font-size:11.5px;margin-bottom:10px">⚠️ Событий за период слишком много — сервер посчитал только часть. Сократи период для точных чисел.</div>'
+        : '';
+      const revenueNotice = revenueKind === 'estimate'
+        ? `<div style="font-size:11px;color:#6b7280;margin-top:10px">Выручка — оценка: покупки варианта × средняя цена плана из настоящих покупок RevenueCat за ${Number(report.priceWindowDays) || 90} дней. Не выдумываем числа — если наблюдений цены нет, ячейка пустая.</div>`
+        : `<div style="font-size:11px;color:#fbbf24;margin-top:10px">Пока нет ни одной production-покупки RevenueCat с известной суммой — колонка «деньги» пустая, не выдумываем.</div>`;
       box.innerHTML = noData
         ? '<div style="font-size:13px;color:#9ca3af;padding:8px 0">За этот период данных пока нет. Запусти тест (Шаг 1) и подожди — цифры появятся по мере того, как люди открывают экран оплаты.</div>'
         : `
+        ${truncatedNotice}
         <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">
           <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11.5px">
             <th style="padding:8px 10px;text-align:left">Версия экрана</th>
             <th style="padding:8px 10px;text-align:right">показали</th>
-            <th style="padding:8px 10px;text-align:right">начали пробный</th>
+            <th style="padding:8px 10px;text-align:right">нажали кнопку</th>
             <th style="padding:8px 10px;text-align:right">купили</th>
             <th style="padding:8px 10px;text-align:right">% покупок</th>
-          </tr></thead><tbody>${rows}</tbody>
+            <th style="padding:8px 10px;text-align:right">деньги (оценка)</th>
+          </tr></thead><tbody>${tableRows}</tbody>
         </table></div>
-        <div style="font-size:11.5px;color:#6b7280;margin:10px 0 10px">Всего событий за период: ${total.toLocaleString('ru-RU')}${dropped ? ` · скрыто моих/тестовых: ${dropped}` : ''}. «% покупок» считается надёжно от 30 показов.</div>
-        ${paywallAbVerdictHtml(abStats, varName)}
-        <div style="font-size:12px;color:#8b919c;margin-bottom:6px">Откуда люди приходили на экран (число покупок):</div>
+        ${revenueNotice}
+        <div style="font-size:11.5px;color:#6b7280;margin:10px 0 10px">«% покупок» считается надёжно от 30 показов.</div>
+        ${paywallAbVerdictHtml(abStats, varNameMap)}
+        <div style="font-size:12px;color:#8b919c;margin:16px 0 6px;font-weight:700">🎯 Какой экран выигрывает в какой ситуации</div>
+        <p style="font-size:11.5px;color:#6b7280;margin:0 0 10px">Ситуации, где люди чаще всего видят экран оплаты, отсортированы по числу показов. «Лидер» — какой вариант купили чаще всего именно в этой ситуации (мало данных — не показатель, смотри вместе с числом показов).</p>
         <div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12.5px">
           <thead><tr style="border-bottom:1px solid #2a2f40;color:#6b7280;font-size:11px">
-            <th style="padding:6px 10px;text-align:left">Ситуация в приложении</th><th style="padding:6px 10px;text-align:right;color:#60a5fa">Компакт</th><th style="padding:6px 10px;text-align:right;color:#a78bfa">Стори</th><th style="padding:6px 10px;text-align:right;color:#fbbf24">Атриум</th><th style="padding:6px 10px;text-align:right">Архив v1</th>
+            <th style="padding:6px 10px;text-align:left">Ситуация в приложении</th>
+            <th style="padding:6px 10px;text-align:right">показов</th>
+            <th style="padding:6px 10px;text-align:right">купили</th>
+            <th style="padding:6px 10px;text-align:right">% покупок</th>
+            <th style="padding:6px 10px;text-align:left">выигрывает</th>
           </tr></thead><tbody>${ctxRows}</tbody>
         </table></div>`;
       if (status) status.textContent = '';
 
-      // ── Деньги по экранам + графики ───────────────────────────────────────────
-      renderPaywallMoneyAndCharts({ moneyByCtx, buysByDay, planTotals, funnelTotals, CTX_RU, fromV, toV })
+      // ── Деньги по экранам + графики (из тех же rows/report — без второго похода в базу) ──
+      renderPaywallMoneyAndCharts({ rows, revenueKind, funnelTotals: { shown: report.totals.shown, cta_click: report.totals.cta, trial_started: 0, purchase_completed: report.totals.purchases } })
         .catch((e) => console.error('renderPaywallMoneyAndCharts failed', e));
 
-      // ── Онбординг цвет ───────────────────────────────────────────────────────
-      const colorBox = document.getElementById('pab-ob-color');
-      if (colorBox) {
-        const totalObShown = colorAgg.blue.shown + colorAgg.green.shown;
-        if (totalObShown === 0) {
-          colorBox.innerHTML = '<div style="font-size:12.5px;color:#6b7280">За этот период данных по онбординг-цвету пока нет. Они появятся после следующего обновления приложения.</div>';
-        } else {
-          let bestColor = null;
-          const blueRate = colorAgg.blue.shown >= 10 ? colorAgg.blue.purchase_completed / colorAgg.blue.shown : -1;
-          const greenRate = colorAgg.green.shown >= 10 ? colorAgg.green.purchase_completed / colorAgg.green.shown : -1;
-          if (blueRate >= 0 && greenRate >= 0) bestColor = blueRate >= greenRate ? 'blue' : 'green';
-          const colorName = { blue: '🔵 Синий', green: '🟢 Зелёный' };
-          const colorHex  = { blue: '#60a5fa', green: '#4ade80' };
-          const colorRows = COLORS.map(c => {
-            const x = colorAgg[c];
-            const cr = x.shown > 0 ? (x.purchase_completed / x.shown * 100).toFixed(1) + '%' : '—';
-            const trialCr = x.shown > 0 ? (x.trial_started / x.shown * 100).toFixed(1) + '%' : '—';
-            const isWin = c === bestColor;
-            return `<tr style="border-bottom:1px solid #1e2230;${isWin ? 'background:#0f1a12' : ''}">
-              <td style="padding:9px 10px;font-weight:700;color:${colorHex[c]}">${colorName[c]}${isWin ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
-              <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${x.shown.toLocaleString('ru-RU')}</td>
-              <td style="padding:9px 10px;text-align:right;color:#a78bfa">${x.trial_started.toLocaleString('ru-RU')} <span style="color:#6b7280;font-size:11px">(${trialCr})</span></td>
-              <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed.toLocaleString('ru-RU')}</td>
-              <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${cr}</td>
-            </tr>`;
-          }).join('');
-          colorBox.innerHTML = `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">
-            <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11.5px">
-              <th style="padding:8px 10px;text-align:left">Цвет онбординга</th>
-              <th style="padding:8px 10px;text-align:right">Показов пейвола</th>
-              <th style="padding:8px 10px;text-align:right">Начали триал</th>
-              <th style="padding:8px 10px;text-align:right">Купили</th>
-              <th style="padding:8px 10px;text-align:right">% покупок</th>
-            </tr></thead><tbody>${colorRows}</tbody>
-          </table></div>
-          <div style="font-size:11.5px;color:#6b7280;margin-top:10px">Только пользователи, дошедшие до экрана оплаты в онбординге. «% покупок» надёжен от 10 показов.</div>`;
-        }
-      }
+      // ── Онбординг цвет — отдельная лёгкая метрика, не про варианты пейвола ────
+      // (агрегируется прямым чтением по узкому query context=='onboarding';
+      // это НЕ деньги/варианты, поэтому остаётся вне серверного callable).
+      await loadOnboardingColorStats(rangeDays);
     } catch (e) {
       box.innerHTML = `<div style="font-size:12.5px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
       if (status) status.textContent = '';
     }
   };
+
+  // Онбординг-цвет: узкая метрика (обычные показы/покупки при context=='onboarding'),
+  // не относится к деньгам/вариантам пейвола — читает paywall_funnel напрямую тем же
+  // паттерном, что и раньше, только вынесена в отдельную функцию.
+  async function loadOnboardingColorStats(rangeDays) {
+    const colorBox = document.getElementById('pab-ob-color');
+    if (!colorBox) return;
+    const today = new Date();
+    const from = new Date(today.getTime() - (rangeDays - 1) * 86400000);
+    const iso = (x) => x.toISOString().slice(0, 10);
+    const includeDev = !!(document.getElementById('pab-include-dev') || {}).checked;
+    const COLORS = ['blue', 'green'];
+    const colorAgg = { blue: { shown: 0, trial_started: 0, purchase_completed: 0 }, green: { shown: 0, trial_started: 0, purchase_completed: 0 } };
+    try {
+      const qy = query(collection(db, 'paywall_funnel'), where('day', '>=', iso(from)), where('day', '<=', iso(today)));
+      const snap = await getDocs(qy);
+      snap.forEach(docSnap => {
+        const r = docSnap.data() || {};
+        if (!includeDev && r.dev === true) return;
+        if (r.context !== 'onboarding') return;
+        const col = COLORS.includes(r.obColor) ? r.obColor : null;
+        if (!col) return;
+        if (r.step === 'shown') colorAgg[col].shown++;
+        else if (r.step === 'trial_started') colorAgg[col].trial_started++;
+        else if (r.step === 'purchase_completed') colorAgg[col].purchase_completed++;
+      });
+    } catch (e) {
+      colorBox.innerHTML = `<div style="font-size:12.5px;color:#f87171">Ошибка: ${escapeHtml(e && e.message ? e.message : String(e))}</div>`;
+      return;
+    }
+    const totalObShown = colorAgg.blue.shown + colorAgg.green.shown;
+    if (totalObShown === 0) {
+      colorBox.innerHTML = '<div style="font-size:12.5px;color:#6b7280">За этот период данных по онбординг-цвету пока нет. Они появятся после следующего обновления приложения.</div>';
+      return;
+    }
+    let bestColor = null;
+    const blueRate = colorAgg.blue.shown >= 10 ? colorAgg.blue.purchase_completed / colorAgg.blue.shown : -1;
+    const greenRate = colorAgg.green.shown >= 10 ? colorAgg.green.purchase_completed / colorAgg.green.shown : -1;
+    if (blueRate >= 0 && greenRate >= 0) bestColor = blueRate >= greenRate ? 'blue' : 'green';
+    const colorName = { blue: '🔵 Синий', green: '🟢 Зелёный' };
+    const colorHex = { blue: '#60a5fa', green: '#4ade80' };
+    const colorRows = COLORS.map(c => {
+      const x = colorAgg[c];
+      const cr = x.shown > 0 ? (x.purchase_completed / x.shown * 100).toFixed(1) + '%' : '—';
+      const trialCr = x.shown > 0 ? (x.trial_started / x.shown * 100).toFixed(1) + '%' : '—';
+      const isWin = c === bestColor;
+      return `<tr style="border-bottom:1px solid #1e2230;${isWin ? 'background:#0f1a12' : ''}">
+        <td style="padding:9px 10px;font-weight:700;color:${colorHex[c]}">${colorName[c]}${isWin ? ' <span style="color:#4ade80;font-size:11px">🏆 лидер</span>' : ''}</td>
+        <td style="padding:9px 10px;text-align:right;color:#e5e7eb">${x.shown.toLocaleString('ru-RU')}</td>
+        <td style="padding:9px 10px;text-align:right;color:#a78bfa">${x.trial_started.toLocaleString('ru-RU')} <span style="color:#6b7280;font-size:11px">(${trialCr})</span></td>
+        <td style="padding:9px 10px;text-align:right;color:#4ade80;font-weight:700">${x.purchase_completed.toLocaleString('ru-RU')}</td>
+        <td style="padding:9px 10px;text-align:right;color:#fbbf24;font-weight:800;font-size:14px">${cr}</td>
+      </tr>`;
+    }).join('');
+    colorBox.innerHTML = `<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:13.5px">
+      <thead><tr style="border-bottom:2px solid #2a2f40;color:#8b919c;font-size:11.5px">
+        <th style="padding:8px 10px;text-align:left">Цвет онбординга</th>
+        <th style="padding:8px 10px;text-align:right">Показов пейвола</th>
+        <th style="padding:8px 10px;text-align:right">Начали триал</th>
+        <th style="padding:8px 10px;text-align:right">Купили</th>
+        <th style="padding:8px 10px;text-align:right">% покупок</th>
+      </tr></thead><tbody>${colorRows}</tbody>
+    </table></div>
+    <div style="font-size:11.5px;color:#6b7280;margin-top:10px">Только пользователи, дошедшие до экрана оплаты в онбординге. «% покупок» надёжен от 10 показов.</div>`;
+  }
 
   // ── Telegram alerts config (admin_config/alerts) ──────────────────────────
   function alertsSetStatus(msg, color) {

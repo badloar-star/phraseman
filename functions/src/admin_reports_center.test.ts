@@ -8,9 +8,19 @@ import {
   parseReportStatusUpdateRequest,
   projectReportRow,
   serializeReportDocument,
+  isReportUnresolved,
+  reportExportInstructions,
+  parseUnresolvedExportRequest,
+  requireReportPermission,
 } from './admin_reports_center';
 
 describe('admin reports center contracts', () => {
+  test('fails closed when the admin role claim is missing or invalid', () => {
+    expect(() => requireReportPermission({ auth: { uid: 'admin-1', token: { admin: true } } }, 'reports.read')).toThrow(HttpsError);
+    expect(() => requireReportPermission({ auth: { uid: 'admin-1', token: { admin: true, adminRole: 'unknown' } } }, 'reports.read')).toThrow(HttpsError);
+    expect(() => requireReportPermission({ auth: { uid: 'admin-1', token: { admin: true, adminRole: 'support' } } }, 'reports.read')).not.toThrow();
+  });
+
   test('accepts only closed report sources and bounded list inputs', () => {
     expect(parseReportListRequest({ source: 'error_reports', limit: 999, sinceDays: 30 })).toMatchObject({
       source: 'error_reports', limit: 100, sinceDays: 30,
@@ -51,6 +61,52 @@ describe('admin reports center contracts', () => {
     });
     expect(JSON.stringify(row)).not.toContain('secret');
     expect(JSON.stringify(row)).not.toContain('token');
+  });
+
+  test('projects device and route context needed for a horizontal report card', () => {
+    expect(projectReportRow('error_reports', 'r-device', {
+      status: 'new', comment: 'broken button', uid: 'u1', screen: '/lesson/1',
+      os: 'android', appVersion: '1.5.53', deviceModel: 'Pixel 8', context: 'after submit',
+    })).toMatchObject({
+      context: {
+        screen: '/lesson/1',
+        os: 'android',
+        appVersion: '1.5.53',
+        deviceModel: 'Pixel 8',
+        details: 'after submit',
+      },
+    });
+  });
+
+  test('defines unresolved as every report not answered or archived', () => {
+    expect(isReportUnresolved('new')).toBe(true);
+    expect(isReportUnresolved('fixed')).toBe(true);
+    expect(isReportUnresolved('answered')).toBe(false);
+    expect(isReportUnresolved('archived')).toBe(false);
+  });
+
+  test('exports the legacy workflow guidance with the one-coin rule', () => {
+    const instructions = reportExportInstructions();
+    expect(instructions).toContain('каждый reportId');
+    expect(instructions).toContain('не выполнять массовую живую отправку');
+    expect(instructions).toContain('не более одной монеты');
+    expect(instructions).not.toMatch(/осколк|shard/i);
+  });
+
+  test('parses bounded server-side pages for all unresolved reports', () => {
+    expect(parseUnresolvedExportRequest({})).toEqual({ cursor: '', limit: 100 });
+    expect(parseUnresolvedExportRequest({ limit: 999, cursor: 'opaque_1' })).toEqual({ cursor: 'opaque_1', limit: 100 });
+    expect(() => parseUnresolvedExportRequest({ cursor: '../escape' })).toThrow(HttpsError);
+  });
+
+  test('projects reply archive metadata without exposing unrelated fields', () => {
+    expect(projectReportRow('error_reports', 'archived-1', {
+      status: 'archived', replyTitle: 'Спасибо', replyBody: 'Исправили', replyCoins: 1,
+      repliedAtMs: 1234, repliedBy: 'admin@example.com', resolution: 'confirmed_fixed', secret: 'drop',
+    })).toMatchObject({ archive: {
+      title: 'Спасибо', body: 'Исправили', coins: 1, repliedAtMs: 1234,
+      repliedBy: 'admin@example.com', resolution: 'confirmed_fixed',
+    } });
   });
 
   test('accepts only an ordered bounded list of export references', () => {

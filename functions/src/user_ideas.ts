@@ -4,6 +4,8 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK, ENFORCE_APP_CHECK_SENSITIVE } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { openAiChat } from './explain/explain_provider';
+import { hasPermission } from './admin/permissions';
+import { hasAdminRole } from './admin/roles';
 
 const REGION = 'us-central1';
 const OPENAI_API_KEY = defineSecret('OPENAI_API_KEY');
@@ -12,6 +14,8 @@ const RATE_COLLECTION = 'user_idea_rate_limits';
 const IDEA_INBOX = 'idea_inbox';
 const DAY_MS = 24 * 60 * 60 * 1000;
 const YEAR_MS = 365 * DAY_MS;
+const IDEAS_MAX_LIST_LIMIT = 50;
+const IDEAS_CURSOR_RE = /^[A-Za-z0-9_-]{1,200}$/;
 
 /** 1 идея в сутки на пользователя (защита от спама в админ-очереди). */
 const MAX_IDEAS_PER_DAY = 1;
@@ -121,6 +125,84 @@ export const submitUserIdea = onCall(
 
       return { ok: true, id: ideaRef.id };
     });
+  },
+);
+
+// ─────────────────────────────────────────────────────────────────────────────
+// 1b) Админ: список идей с фильтрами по статусу/категории и пагинацией
+// ─────────────────────────────────────────────────────────────────────────────
+/**
+ * зачем: в новой админке раздел "Идеи" был урезан до 3 карточек без фильтров и
+ * действий (владелец продукта провёл аудит и попросил вернуть полноценный
+ * воркфлоу, как в старой админке — фильтр по статусу/категории, пагинация,
+ * список для дальнейшего принять/отклонить через adminDecideUserIdea).
+ * Курсор — id последнего документа предыдущей страницы (сортировка по
+ * createdAtMs desc, тот же паттерн, что и adminListReportQueue).
+ */
+export const adminListUserIdeas = onCall(
+  {
+    region: REGION,
+    enforceAppCheck: ENFORCE_APP_CHECK,
+    timeoutSeconds: 15,
+    memory: '256MiB',
+    maxInstances: 10,
+  },
+  async (request) => {
+    const role = request.auth?.token?.adminRole;
+    if (request.auth?.token?.admin !== true || !hasAdminRole(role) || !hasPermission(role, 'ideas.read')) {
+      throw new HttpsError('permission-denied', 'Admin only');
+    }
+
+    const status = enumText(request.data?.status, ['pending', 'approved', 'rejected', 'all'] as const, 'pending');
+    const category = text(request.data?.category, 40);
+    const cursor = text(request.data?.cursor, 200);
+    if (cursor && !IDEAS_CURSOR_RE.test(cursor)) throw new HttpsError('invalid-argument', 'cursor_invalid');
+    const requestedLimit = Number(request.data?.limit);
+    const limit = Math.max(1, Math.min(IDEAS_MAX_LIST_LIMIT, Number.isFinite(requestedLimit) ? Math.floor(requestedLimit) : 20));
+
+    const db = admin.firestore();
+    let query: FirebaseFirestore.Query = db.collection(IDEAS_COLLECTION);
+    if (status !== 'all') query = query.where('status', '==', status);
+    query = query.orderBy('createdAtMs', 'desc');
+
+    if (cursor) {
+      const cursorDoc = await db.collection(IDEAS_COLLECTION).doc(cursor).get();
+      if (!cursorDoc.exists) throw new HttpsError('failed-precondition', 'cursor_not_found');
+      query = query.startAfter(cursorDoc);
+    }
+
+    // Категория не индексирована вместе со статусом — фильтруем в памяти на разумном окне,
+    // не вытягивая всю коллекцию (Firebase-экономия: страница остаётся маленькой).
+    const fetchLimit = category ? Math.min(200, limit * 5) : limit + 1;
+    const snap = await query.limit(fetchLimit).get();
+    let docs = snap.docs;
+    if (category) docs = docs.filter((doc) => String(doc.data().category ?? '') === category);
+    const hasMore = docs.length > limit;
+    const page = docs.slice(0, limit);
+
+    const items = page.map((doc) => {
+      const data = doc.data() as Record<string, unknown>;
+      return {
+        id: doc.id,
+        title: text(data.title, 120),
+        description: text(data.description, 2000),
+        benefit: text(data.benefit, 1000),
+        category: text(data.category, 40),
+        status: text(data.status, 20),
+        userName: nullableText(data.userName, 120),
+        uid: text(data.uid, 180),
+        lang: nullableText(data.lang, 16),
+        createdAtMs: numeric(data.createdAtMs),
+        decidedAtMs: data.decidedAt != null ? numeric(data.decidedAt) : null,
+        decidedBy: nullableText(data.decidedBy, 160),
+      };
+    });
+
+    return {
+      ok: true,
+      items,
+      nextCursor: hasMore && page.length ? page[page.length - 1].id : '',
+    };
   },
 );
 

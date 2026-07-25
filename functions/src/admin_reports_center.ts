@@ -9,11 +9,28 @@ const MAX_LIST_LIMIT = 100;
 const MAX_FILTER_SCAN_LIMIT = 500;
 const MAX_EXPORT_REFERENCES = 100;
 const MAX_EXPORT_RESPONSE_BYTES = 4_000_000;
+const MAX_UNRESOLVED_EXPORT_SCAN = 2_000;
 const DEFAULT_LIST_LIMIT = 50;
 const TOKEN_RE = /^[A-Za-z0-9._-]{1,160}$/;
 const UID_RE = /^[A-Za-z0-9._-]{2,160}$/;
 const CURSOR_RE = /^[A-Za-z0-9_-]{1,500}$/;
 const LANE_VALUES = new Set(['open', 'reviewed', 'known', 'resolved', 'answered', 'escalated', 'archived']);
+
+export function isReportUnresolved(status: unknown): boolean {
+  const normalized = cleanText(status, 40).toLowerCase();
+  return normalized !== 'answered' && normalized !== 'archived';
+}
+
+export function reportExportInstructions(): string {
+  return [
+    'Проверь каждый reportId отдельно и сгруппируй явные дубли.',
+    'Исправляй только подтверждённые безопасные ошибки и не раскрывай внутренние данные.',
+    'Подготовь отдельный живой уважительный ответ на языке пользователя для каждого reportId.',
+    'Черновики должны оставаться редактируемыми и проверяться администратором.',
+    'Черновики проверяются администратором; не выполнять массовую живую отправку через CLI или автоматический процесс.',
+    'Награда допустима только за confirmed_fixed: не более одной монеты и ровно один раз; остальные исходы получают 0.',
+  ].join('\n');
+}
 
 export const REPORT_SOURCES = ['error_reports', 'user_reports', 'community_pack_reports', 'explain_report_entries', 'app_errors'] as const;
 export type ReportSource = typeof REPORT_SOURCES[number];
@@ -83,13 +100,14 @@ function millis(value: unknown): number {
   return 0;
 }
 
-function requireReportPermission(
+export function requireReportPermission(
   request: { auth?: { uid?: string; token?: Row } | null },
   permission: AdminPermission,
 ): { actorUid: string; role: AdminRole } {
   if (request.auth?.token?.admin !== true || !String(request.auth.uid ?? '').trim()) throw new HttpsError('permission-denied', 'Admin only');
   const claimedRole = request.auth.token.adminRole;
-  const role: AdminRole = hasAdminRole(claimedRole) ? claimedRole : 'admin';
+  if (!hasAdminRole(claimedRole)) throw new HttpsError('permission-denied', 'Valid adminRole required');
+  const role: AdminRole = claimedRole;
   if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   return { actorUid: String(request.auth.uid), role };
 }
@@ -141,6 +159,20 @@ export interface ReportExportReference {
 
 export interface ReportExportRequest {
   readonly reports: readonly ReportExportReference[];
+}
+
+export interface UnresolvedExportRequest {
+  readonly cursor: string;
+  readonly limit: number;
+}
+
+export function parseUnresolvedExportRequest(data: unknown): UnresolvedExportRequest {
+  const input = isRecord(data) ? data : {};
+  const cursor = cleanText(input.cursor, 501);
+  const requestedLimit = Number(input.limit ?? MAX_LIST_LIMIT);
+  const limit = Math.max(1, Math.min(MAX_LIST_LIMIT, Number.isFinite(requestedLimit) ? Math.floor(requestedLimit) : MAX_LIST_LIMIT));
+  if (cursor && !CURSOR_RE.test(cursor)) throw new HttpsError('invalid-argument', 'cursor is invalid');
+  return Object.freeze({ cursor, limit });
 }
 
 export function parseReportExportRequest(data: unknown): ReportExportRequest {
@@ -242,6 +274,18 @@ export function projectReportRow(source: ReportSource, id: string, row: Row): Ro
       dataId: cleanText(row.dataId, 200) || null,
       packId: cleanText(row.packId, 160) || null,
       feature: cleanText(row.feature, 120) || null,
+      os: cleanText(row.os || row.platform || row.deviceOS, 120) || null,
+      appVersion: cleanText(row.appVersion || row.version, 80) || null,
+      deviceModel: cleanText(row.deviceModel || row.model, 160) || null,
+      details: cleanText(row.context, 1000) || null,
+    }),
+    archive: Object.freeze({
+      resolution: cleanText(row.resolution, 40) || null,
+      title: cleanText(row.replyTitle, 160) || null,
+      body: cleanText(row.replyBody, 2000) || null,
+      coins: Math.max(0, Math.min(1, Math.floor(Number(row.replyCoins ?? 0) || 0))),
+      repliedAtMs: millis(row.repliedAtMs || row.repliedAt || row.answeredAtMs),
+      repliedBy: cleanText(row.repliedBy || row.adminStatusUpdatedBy, 320) || null,
     }),
   });
 }
@@ -308,6 +352,25 @@ function decodeCursor(cursor: string, source: ReportSource): string {
     const id = cleanText(parsed.id, 160);
     if (parsed.source !== source || !TOKEN_RE.test(id)) throw new Error('cursor mismatch');
     return id;
+  } catch {
+    throw new HttpsError('invalid-argument', 'cursor is invalid');
+  }
+}
+
+type UnresolvedExportCursor = { sourceIndex: number; lastId: string };
+
+function encodeUnresolvedExportCursor(cursor: UnresolvedExportCursor): string {
+  return Buffer.from(JSON.stringify({ v: 1, ...cursor }), 'utf8').toString('base64url');
+}
+
+function decodeUnresolvedExportCursor(cursor: string): UnresolvedExportCursor {
+  if (!cursor) return { sourceIndex: 0, lastId: '' };
+  try {
+    const parsed = JSON.parse(Buffer.from(cursor, 'base64url').toString('utf8')) as Row;
+    const sourceIndex = Math.floor(Number(parsed.sourceIndex));
+    const lastId = cleanText(parsed.lastId, 160);
+    if (parsed.v !== 1 || sourceIndex < 0 || sourceIndex >= REPORT_SOURCES.length || (lastId && !TOKEN_RE.test(lastId))) throw new Error('invalid');
+    return { sourceIndex, lastId };
   } catch {
     throw new HttpsError('invalid-argument', 'cursor is invalid');
   }
@@ -403,6 +466,62 @@ export const adminExportReportDocuments = onCall(
       throw new HttpsError('resource-exhausted', 'report export chunk is too large; narrow the filters and try again');
     }
     return response;
+  },
+);
+
+export const adminExportUnresolvedReports = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 60, memory: '512MiB' },
+  async (request) => {
+    const context = requireReportPermission(request as { auth?: { uid?: string; token?: Row } }, 'reports.read');
+    if (!hasPermission(context.role, 'diagnostics.read')) throw new HttpsError('permission-denied', 'diagnostics.read required for a complete export');
+    const input = parseUnresolvedExportRequest(request.data);
+    const db = admin.firestore();
+    const documents: Row[] = [];
+    let { sourceIndex, lastId } = decodeUnresolvedExportCursor(input.cursor);
+    let scanned = 0;
+
+    while (sourceIndex < REPORT_SOURCES.length && documents.length < input.limit && scanned < MAX_UNRESOLVED_EXPORT_SCAN) {
+      const source = REPORT_SOURCES[sourceIndex];
+      const batchLimit = Math.min(200, MAX_UNRESOLVED_EXPORT_SCAN - scanned);
+      let query: FirebaseFirestore.Query = db.collection(SOURCE_CONFIG[source].collection)
+        .orderBy(admin.firestore.FieldPath.documentId())
+        .limit(batchLimit);
+      if (lastId) query = query.startAfter(lastId);
+      const snapshot = await query.get();
+      if (snapshot.empty) {
+        sourceIndex += 1;
+        lastId = '';
+        continue;
+      }
+      for (const doc of snapshot.docs) {
+        scanned += 1;
+        const row = doc.data() as Row;
+        if (isReportUnresolved(normalizedStatus(source, row.status))) {
+          const candidate = { source, id: doc.id, document: serializeReportDocument(row) };
+          const responseBytes = Buffer.byteLength(JSON.stringify({ instructions: reportExportInstructions(), documents: [...documents, candidate] }), 'utf8');
+          if (responseBytes > MAX_EXPORT_RESPONSE_BYTES) {
+            if (!documents.length) throw new HttpsError('resource-exhausted', 'a report document is too large to export safely');
+            return { ok: true, instructions: reportExportInstructions(), documents, nextCursor: encodeUnresolvedExportCursor({ sourceIndex, lastId }), scanned };
+          }
+          documents.push(candidate);
+        }
+        lastId = doc.id;
+        if (documents.length >= input.limit || scanned >= MAX_UNRESOLVED_EXPORT_SCAN) break;
+      }
+      if (documents.length >= input.limit || scanned >= MAX_UNRESOLVED_EXPORT_SCAN) break;
+      if (snapshot.size < batchLimit) {
+        sourceIndex += 1;
+        lastId = '';
+      }
+    }
+
+    return {
+      ok: true,
+      instructions: reportExportInstructions(),
+      documents,
+      nextCursor: sourceIndex < REPORT_SOURCES.length ? encodeUnresolvedExportCursor({ sourceIndex, lastId }) : null,
+      scanned,
+    };
   },
 );
 

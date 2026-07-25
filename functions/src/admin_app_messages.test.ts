@@ -4,6 +4,7 @@ import {
   normalizeAppMessageCreateInput,
   normalizeAppMessageCleanupInput,
   normalizeAppMessageDeleteInput,
+  normalizePersonalAppMessageInput,
   normalizeAppMessageToggleInput,
   normalizeAppMessageUpdateInput,
 } from './admin_app_messages';
@@ -60,6 +61,42 @@ describe('normalizeAppMessageCreateInput', () => {
     expect(() => normalizeAppMessageCreateInput({ ...base, reason: '' }, 'admin')).toThrow(HttpsError);
     expect(() => normalizeAppMessageCreateInput({ ...base, translations: { ru: { title: '', body: '' } } }, 'admin')).toThrow(HttpsError);
     expect(() => normalizeAppMessageCreateInput({ ...base, kind: 'poll', translations: { ru: { title: 'x', body: 'y', pollQuestion: 'q', pollOptions: ['one'] } } }, 'admin')).toThrow(HttpsError);
+  });
+});
+
+describe('normalizePersonalAppMessageInput', () => {
+  const personal = {
+    uid: 'stable-user_123',
+    title: 'Ответ команды',
+    body: 'Мы проверили ваш вопрос.',
+    deliveryMode: 'next_login_modal',
+    reason: 'Ответ на обращение пользователя',
+    idempotencyKey: 'personal-message-1',
+    requestId: 'request-personal-1',
+  } as const;
+
+  test('accepts a stable UID and only the two personal delivery modes', () => {
+    expect(normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_000_000_000)).toMatchObject({
+      uid: 'stable-user_123',
+      deliveryMode: 'next_login_modal',
+      document: {
+        kind: 'personal_admin_message',
+        deliveryMode: 'next_login_modal',
+        title: 'Ответ команды',
+        body: 'Мы проверили ваш вопрос.',
+        createdBy: 'admin@example.com',
+      },
+    });
+    expect(normalizePersonalAppMessageInput({ ...personal, deliveryMode: 'inbox' }, 'admin@example.com').deliveryMode).toBe('inbox');
+    expect(() => normalizePersonalAppMessageInput({ ...personal, deliveryMode: 'push' }, 'admin@example.com')).toThrow(HttpsError);
+  });
+
+  test('rejects foreign recipient aliases and keeps retry fingerprint stable', () => {
+    expect(() => normalizePersonalAppMessageInput({ ...personal, recipientUid: 'other-user' }, 'admin@example.com')).toThrow(HttpsError);
+    const first = normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_000_000_000);
+    const retry = normalizePersonalAppMessageInput(personal, 'admin@example.com', 1_800_060_000_000);
+    expect(retry.requestFingerprint).toBe(first.requestFingerprint);
+    expect(retry.document.createdAtMs).not.toBe(first.document.createdAtMs);
   });
 });
 

@@ -76,7 +76,7 @@ export function parseProgressMs(value: unknown): number {
 const SERVER_RC_GRACE_MS = 72 * 60 * 60 * 1000;
 
 /** Store-премиум (RevenueCat monthly/yearly/annual/lifetime). expiry<=0 = бессрочный активный. */
-function isStorePremiumActive(progress: ProgressLike, now: number): boolean {
+export function isStorePremiumActive(progress: ProgressLike, now: number): boolean {
   const data = progress ?? {};
   const plan = cleanPlan(data.premium_plan);
   const override = cleanStr(data.admin_premium_override).toLowerCase();

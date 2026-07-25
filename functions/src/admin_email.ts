@@ -83,13 +83,17 @@ function escapeHtml(value: string): string {
 /**
  * HTML-версия письма с явной UTF-8-разметкой. Без неё кириллица в некоторых
  * клиентах (Gmail) может превратиться в «?». HTML гарантирует charset=utf-8.
+ * Для транзакционных писем (unsubscribeUrl не передан) футер отписки НЕ
+ * добавляем: письмо не рассылка, отписываться не от чего.
  */
-function buildHtmlBody(text: string, unsubscribeUrl: string): string {
+function buildHtmlBody(text: string, unsubscribeUrl?: string): string {
   const safeBody = escapeHtml(text).replace(/\n/g, '<br>');
-  const safeUrl = escapeHtml(unsubscribeUrl);
-  return `<!doctype html><html><head><meta charset="utf-8"></head>` +
+  const base = `<!doctype html><html><head><meta charset="utf-8"></head>` +
     `<body style="font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;line-height:1.6;color:#111">` +
-    `<div>${safeBody}</div>` +
+    `<div>${safeBody}</div>`;
+  if (!unsubscribeUrl) return `${base}</body></html>`;
+  const safeUrl = escapeHtml(unsubscribeUrl);
+  return base +
     `<hr style="border:none;border-top:1px solid #e5e7eb;margin:20px 0">` +
     `<div style="font-size:12px;color:#6b7280">Phraseman · ` +
     `<a href="${safeUrl}" style="color:#6b7280">Отписаться от рассылки</a></div>` +
@@ -102,8 +106,8 @@ async function sendResendEmail(params: {
   to: string;
   subject: string;
   text: string;
-  unsubscribeUrl: string;
-}): Promise<{ ok: boolean; id?: string; error?: string }> {
+  unsubscribeUrl?: string;
+}): Promise<{ ok: boolean; id?: string; error?: string; errorKind?: 'http' | 'transport' }> {
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -115,14 +119,23 @@ async function sendResendEmail(params: {
         text: params.text,
         html: buildHtmlBody(params.text, params.unsubscribeUrl),
         // RFC 8058: почтовые клиенты (Gmail/Apple) показывают кнопку «Отписаться».
-        headers: {
-          'List-Unsubscribe': `<${params.unsubscribeUrl}>`,
-          'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
-        },
+        // Только для рассылок: транзакционным письмам List-Unsubscribe не нужен.
+        headers: params.unsubscribeUrl
+          ? {
+            'List-Unsubscribe': `<${params.unsubscribeUrl}>`,
+            'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+          }
+          : undefined,
       }),
     });
     const body = await response.text();
-    if (!response.ok) return { ok: false, error: body.slice(0, 500) || String(response.status) };
+    if (!response.ok) {
+      return {
+        ok: false,
+        error: body.slice(0, 500) || String(response.status),
+        errorKind: 'http',
+      };
+    }
     try {
       const parsed = JSON.parse(body) as { id?: string };
       return { ok: true, id: parsed.id };
@@ -130,8 +143,37 @@ async function sendResendEmail(params: {
       return { ok: true };
     }
   } catch (error) {
-    return { ok: false, error: String(error).slice(0, 500) };
+    return { ok: false, error: String(error).slice(0, 500), errorKind: 'transport' };
   }
+}
+
+/**
+ * Минимальная обёртка для ТРАНЗАКЦИОННЫХ писем (код восстановления и т.п.).
+ * От рассылки отличается тем, что: без List-Unsubscribe/футера отписки, без
+ * проверки suppression-листа (письмо запрошено самим юзером) и без кампании в
+ * Firestore. Пустой RESEND_API_KEY не роняет модуль: возвращает
+ * { ok: false, error: 'resend_key_missing' }, решение о HttpsError — у вызывающего.
+ */
+export async function sendTransactionalEmail(params: {
+  to: string;
+  subject: string;
+  text: string;
+}): Promise<{ ok: boolean; id?: string; error?: string }> {
+  const apiKey = resendApiKey.value();
+  if (!apiKey) return { ok: false, error: 'resend_key_missing' };
+  const from = adminEmailFrom.value() || 'Phraseman <onboarding@resend.dev>';
+  const result = await sendResendEmail({
+    apiKey,
+    from,
+    to: params.to,
+    subject: params.subject,
+    text: params.text,
+  });
+  if (result.ok) return { ok: true, ...(result.id ? { id: result.id } : {}) };
+  return {
+    ok: false,
+    error: result.errorKind === 'http' ? 'resend_http_failed' : 'resend_transport_failed',
+  };
 }
 
 async function sendBroadcastEmails(payload: NormalizedAdminEmailBroadcast, campaignId: string): Promise<{

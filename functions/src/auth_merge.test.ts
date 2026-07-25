@@ -248,7 +248,22 @@ describe('mergeShards', () => {
 type DocData = Record<string, unknown>;
 type Store = Record<string, Record<string, DocData | undefined>>;
 
-function makeDbStub(initial: Store = {}) {
+function makeDbStub(
+  initial: Store = {},
+  options?: {
+    afterDocGet?: (
+      collection: string,
+      id: string,
+      count: number,
+      mutate: (data: DocData | undefined) => void,
+    ) => void;
+    afterQueryGet?: (
+      collection: string,
+      ids: string[],
+      mutate: (id: string, data: DocData | undefined) => void,
+    ) => void;
+  },
+) {
   const store: Store = {
     users: { ...(initial.users ?? {}) },
     auth_links: { ...(initial.auth_links ?? {}) },
@@ -256,17 +271,40 @@ function makeDbStub(initial: Store = {}) {
     league_groups: { ...(initial.league_groups ?? {}) },
     name_index: { ...(initial.name_index ?? {}) },
     identity_cleanup_candidates: { ...(initial.identity_cleanup_candidates ?? {}) },
+    account_deletion_auth_markers: { ...(initial.account_deletion_auth_markers ?? {}) },
+    account_deletion_tombstones: { ...(initial.account_deletion_tombstones ?? {}) },
+  };
+  let docGetCount = 0;
+  const queryLog: Array<{ collection: string; cursor: string; limit: number; ids: string[] }> = [];
+  const versions = new Map<string, number>();
+  const pathFor = (name: string, id: string) => `${name}/${id}`;
+  const mutate = (name: string, id: string, data: DocData | undefined) => {
+    store[name] = store[name] ?? {};
+    if (data === undefined) delete store[name][id];
+    else store[name][id] = { ...data };
+    const path = pathFor(name, id);
+    versions.set(path, (versions.get(path) ?? 0) + 1);
   };
 
   const docApi = (name: string, id: string) => ({
     id,
-    get: async () => snapFor(name, id, store[name]?.[id]),
+    path: pathFor(name, id),
+    get: async () => {
+      const snapshot = snapFor(name, id, store[name]?.[id]);
+      docGetCount += 1;
+      options?.afterDocGet?.(name, id, docGetCount, (data) => mutate(name, id, data));
+      return snapshot;
+    },
     set: async (data: DocData) => {
       store[name] = store[name] ?? {};
       store[name][id] = { ...(store[name][id] ?? {}), ...data };
+      const path = pathFor(name, id);
+      versions.set(path, (versions.get(path) ?? 0) + 1);
     },
     delete: async () => {
       if (store[name]) delete store[name][id];
+      const path = pathFor(name, id);
+      versions.set(path, (versions.get(path) ?? 0) + 1);
     },
   });
 
@@ -284,12 +322,41 @@ function makeDbStub(initial: Store = {}) {
     return (data as Record<string, unknown>)[key] === value;
   };
 
-  const queryApi = (name: string, field: unknown, op: string, value: unknown) => ({
-    limit: () => queryApi(name, field, op, value),
+  const queryApi = (
+    name: string,
+    field: unknown,
+    op: string,
+    value: unknown,
+    pageLimit = Number.POSITIVE_INFINITY,
+    cursor = '',
+  ): any => ({
+    orderBy: () => queryApi(name, field, op, value, pageLimit, cursor),
+    startAfter: (nextCursor: unknown) => queryApi(
+      name,
+      field,
+      op,
+      value,
+      pageLimit,
+      String((nextCursor as { id?: unknown })?.id ?? nextCursor ?? ''),
+    ),
+    limit: (nextLimit: number) => queryApi(name, field, op, value, nextLimit, cursor),
     get: async () => {
       const docs = Object.entries(store[name] ?? {})
-        .filter(([, data]) => matches(data, field, op, value))
+        .filter(([id, data]) => id > cursor && matches(data, field, op, value))
+        .sort(([left], [right]) => left.localeCompare(right))
+        .slice(0, pageLimit)
         .map(([id, data]) => snapFor(name, id, data));
+      queryLog.push({
+        collection: name,
+        cursor,
+        limit: pageLimit,
+        ids: docs.map((doc) => doc.id),
+      });
+      options?.afterQueryGet?.(
+        name,
+        docs.map((doc) => doc.id),
+        (id, data) => mutate(name, id, data),
+      );
       return { empty: docs.length === 0, docs, size: docs.length };
     },
   });
@@ -316,17 +383,40 @@ function makeDbStub(initial: Store = {}) {
       };
     },
     runTransaction: async (fn: (tx: any) => Promise<unknown>) => {
-      const tx = {
-        get: async (ref: { get: () => Promise<unknown> }) => ref.get(),
-        set: async (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => ref.set(data),
-        delete: async (ref: { delete: () => Promise<void> }) => ref.delete(),
-        update: async (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => ref.set(data),
-      };
-      return fn(tx);
+      for (let attempt = 0; attempt < 20; attempt += 1) {
+        let hasWritten = false;
+        const reads = new Map<string, number>();
+        const writes: Array<() => Promise<void>> = [];
+        const tx = {
+          get: async (ref: { path: string; get: () => Promise<unknown> }) => {
+            if (hasWritten) throw new Error('transaction_read_after_write');
+            reads.set(ref.path, versions.get(ref.path) ?? 0);
+            return ref.get();
+          },
+          set: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
+            hasWritten = true;
+            writes.push(() => ref.set(data));
+          },
+          delete: (ref: { delete: () => Promise<void> }) => {
+            hasWritten = true;
+            writes.push(() => ref.delete());
+          },
+          update: (ref: { set: (d: DocData) => Promise<void> }, data: DocData) => {
+            hasWritten = true;
+            writes.push(() => ref.set(data));
+          },
+        };
+        const result = await fn(tx);
+        const conflicted = [...reads].some(([path, version]) => (versions.get(path) ?? 0) !== version);
+        if (conflicted) continue;
+        for (const write of writes) await write();
+        return result;
+      }
+      throw new Error('transaction_retry_limit');
     },
   };
 
-  return { db, store };
+  return { db, store, queryLog };
 }
 
 describe('mergeStableAccounts', () => {
@@ -371,7 +461,372 @@ describe('mergeStableAccounts', () => {
     const loser = store.users['stable-phone']!;
     expect(loser.identityHidden).toBe(true);
     expect(loser.canonicalStableId).toBe('stable-tablet');
+    expect(store.auth_links['google-1']).toMatchObject({ stable_id: 'stable-tablet' });
   });
+
+  it('chooses the winner and merge payload from transaction snapshots', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': {
+          firebaseAuthUid: 'google-transaction',
+          progress: { user_total_xp: '100', streak_count: '2' },
+          shards: 10,
+        },
+        'stable-b': {
+          firebaseAuthUid: 'google-transaction',
+          progress: { user_total_xp: '50', streak_count: '1' },
+          shards: 5,
+        },
+      },
+    });
+    const runTransaction = db.runTransaction;
+    db.runTransaction = async (fn: (tx: any) => Promise<unknown>) => {
+      store.users['stable-b'] = {
+        ...store.users['stable-b'],
+        progress: { user_total_xp: '1000', streak_count: '99' },
+        shards: 999,
+      };
+      return runTransaction(fn);
+    };
+
+    const result = await mergeStableAccounts(
+      db as any,
+      'google-transaction',
+      'stable-a',
+      'stable-b',
+      NOW,
+    );
+
+    expect(result).toEqual({
+      canonicalStableId: 'stable-b',
+      mergedFromStableId: 'stable-a',
+      alreadyMerged: false,
+    });
+    expect(store.users['stable-b']?.shards).toBe(999);
+    expect((store.users['stable-b']?.progress as DocData).streak_count).toBe('99');
+    expect(store.users['stable-a']).toMatchObject({
+      identityHidden: true,
+      canonicalStableId: 'stable-b',
+    });
+  });
+
+  it('fails closed when winner ownership changes before the transaction reads it', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-owned': {
+          firebaseAuthUid: 'google-owner-race',
+          progress: { user_total_xp: '100' },
+        },
+        'stable-loser': {
+          firebaseAuthUid: 'google-owner-race',
+          progress: { user_total_xp: '50' },
+        },
+      },
+    });
+    const runTransaction = db.runTransaction;
+    db.runTransaction = async (fn: (tx: any) => Promise<unknown>) => {
+      store.users['stable-owned'] = {
+        ...store.users['stable-owned'],
+        firebaseAuthUid: 'attacker-uid',
+      };
+      return runTransaction(fn);
+    };
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'google-owner-race',
+        'stable-owned',
+        'stable-loser',
+        NOW,
+      ),
+    ).rejects.toMatchObject({ code: 'permission-denied' });
+
+    expect(store.users['stable-owned']?.firebaseAuthUid).toBe('attacker-uid');
+    expect(store.users['stable-loser']?.identityHidden).not.toBe(true);
+  });
+
+  it('fails closed when an account-deletion marker appears before the transaction reads', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': { firebaseAuthUid: 'google-delete-race', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-delete-race', progress: { user_total_xp: '50' } },
+      },
+    });
+    const runTransaction = db.runTransaction;
+    db.runTransaction = async (fn: (tx: any) => Promise<unknown>) => {
+      store.account_deletion_auth_markers['google-delete-race'] = { status: 'pending' };
+      return runTransaction(fn);
+    };
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-delete-race', 'stable-a', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
+  it.each([
+    ['raw', 'stable-raw'],
+    ['resolved', 'stable-a'],
+    ['terminal', 'stable-terminal'],
+  ])('fails closed when a %s stable-id tombstone appears before the transaction reads', async (_kind, tombstonedId) => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-raw': {
+          identityHidden: true,
+          canonicalStableId: 'stable-a',
+          progress: { user_total_xp: '1' },
+        },
+        'stable-a': { firebaseAuthUid: 'google-tombstone-race', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-tombstone-race', progress: { user_total_xp: '50' } },
+        'stable-terminal': {
+          firebaseAuthUid: 'google-tombstone-race',
+          progress: { user_total_xp: '200' },
+        },
+      },
+    });
+    const runTransaction = db.runTransaction;
+    db.runTransaction = async (fn: (tx: any) => Promise<unknown>) => {
+      if (tombstonedId === 'stable-terminal') {
+        store.users['stable-a'] = {
+          ...store.users['stable-a'],
+          identityHidden: true,
+          canonicalStableId: 'stable-terminal',
+        };
+      }
+      store.account_deletion_tombstones[tombstonedId] = { status: 'pending' };
+      return runTransaction(fn);
+    };
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-tombstone-race', 'stable-raw', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'account_delete_pending' });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
+  it('does not recreate a user that disappears before the transaction reads it', async () => {
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': { firebaseAuthUid: 'google-missing-race', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-missing-race', progress: { user_total_xp: '50' } },
+      },
+    });
+    const runTransaction = db.runTransaction;
+    db.runTransaction = async (fn: (tx: any) => Promise<unknown>) => {
+      delete store.users['stable-b'];
+      store.auth_links['google-missing-race'] = { stable_id: 'stable-b' };
+      return runTransaction(fn);
+    };
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-missing-race', 'stable-a', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_id_missing' });
+    expect(store.users['stable-b']).toBeUndefined();
+    expect(store.users['stable-a']?.identityHidden).not.toBe(true);
+  });
+
+  it('fails closed when auth_links moves to a third account before the transaction reads', async () => {
+    let moved = false;
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-a': { firebaseAuthUid: 'google-link-race', progress: { user_total_xp: '100' } },
+        'stable-b': { firebaseAuthUid: 'google-link-race', progress: { user_total_xp: '50' } },
+        'stable-third': { firebaseAuthUid: 'google-link-race', progress: { user_total_xp: '200' } },
+      },
+    }, {
+      afterDocGet: (collection, id, _count, mutate) => {
+        if (!moved && collection === 'auth_links' && id === 'google-link-race') {
+          moved = true;
+          mutate({ stable_id: 'stable-third' });
+        }
+      },
+    });
+
+    await expect(
+      mergeStableAccounts(db as any, 'google-link-race', 'stable-a', 'stable-b', NOW),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+  });
+
+  it('does not overwrite an auth_links anchor that moves to a protected raw id after preflight', async () => {
+    let moved = false;
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-raw-a': {
+          identityHidden: true,
+          canonicalStableId: 'stable-canonical-a',
+          progress: { user_total_xp: '1' },
+        },
+        'stable-canonical-a': {
+          firebaseAuthUid: 'google-protected-link-race',
+          progress: { user_total_xp: '100' },
+        },
+        'stable-b': {
+          firebaseAuthUid: 'google-protected-link-race',
+          progress: { user_total_xp: '50' },
+        },
+      },
+    }, {
+      afterDocGet: (collection, id, _count, mutate) => {
+        if (!moved && collection === 'auth_links' && id === 'google-protected-link-race') {
+          moved = true;
+          mutate({ stable_id: 'stable-raw-a', updatedAt: NOW + 1 });
+        }
+      },
+    });
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'google-protected-link-race',
+        'stable-raw-a',
+        'stable-b',
+        NOW,
+      ),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
+
+    expect(store.auth_links['google-protected-link-race']).toEqual({
+      stable_id: 'stable-raw-a',
+      updatedAt: NOW + 1,
+    });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+    expect(store.users['stable-canonical-a']?.identityMergedAt).toBeUndefined();
+  });
+
+  it('rejects auth_links drift after resolver reads but before the post-resolution baseline', async () => {
+    let moved = false;
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-raw-a': {
+          identityHidden: true,
+          canonicalStableId: 'stable-canonical-a',
+          progress: { user_total_xp: '1' },
+        },
+        'stable-canonical-a': {
+          firebaseAuthUid: 'google-resolver-link-race',
+          progress: { user_total_xp: '100' },
+        },
+        'stable-b': {
+          firebaseAuthUid: 'google-resolver-link-race',
+          progress: { user_total_xp: '50' },
+        },
+      },
+    }, {
+      afterDocGet: (collection, id, _count, mutate) => {
+        if (!moved && collection === 'auth_links' && id === 'google-resolver-link-race') {
+          moved = true;
+          mutate({
+            stable_id: 'stable-raw-a',
+            updatedAt: NOW + 1,
+          });
+        }
+      },
+    });
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'google-resolver-link-race',
+        'stable-raw-a',
+        'stable-b',
+        NOW,
+      ),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
+
+    expect(store.auth_links['google-resolver-link-race']).toEqual({
+      stable_id: 'stable-raw-a',
+      updatedAt: NOW + 1,
+    });
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+    expect(store.users['stable-canonical-a']?.identityMergedAt).toBeUndefined();
+  });
+
+  it('rejects an absent-to-anchor-to-absent ABA during resolution with zero stale writes', async () => {
+    let authLinkReads = 0;
+    const { db, store } = makeDbStub({
+      users: {
+        'stable-raw-a': {
+          identityHidden: true,
+          canonicalStableId: 'stable-canonical-a',
+          progress: { user_total_xp: '1' },
+        },
+        'stable-canonical-a': {
+          firebaseAuthUid: 'google-resolver-aba',
+          progress: { user_total_xp: '100' },
+        },
+        'stable-b': {
+          firebaseAuthUid: 'google-resolver-aba',
+          progress: { user_total_xp: '50' },
+        },
+      },
+    }, {
+      afterDocGet: (collection, id, _count, mutate) => {
+        if (collection !== 'auth_links' || id !== 'google-resolver-aba') return;
+        authLinkReads += 1;
+        if (authLinkReads === 1) {
+          mutate({ stable_id: 'stable-raw-a', updatedAt: NOW + 1 });
+          mutate(undefined);
+        }
+      },
+    });
+
+    await expect(
+      mergeStableAccounts(
+        db as any,
+        'google-resolver-aba',
+        'stable-raw-a',
+        'stable-b',
+        NOW,
+      ),
+    ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
+
+    expect(store.auth_links['google-resolver-aba']).toBeUndefined();
+    expect(store.users['stable-b']?.identityHidden).not.toBe(true);
+    expect(store.users['stable-canonical-a']?.identityMergedAt).toBeUndefined();
+  });
+
+  it.each(['changed', 'cycle'])(
+    'fails closed when canonical targets become %s after preflight',
+    async (mode) => {
+      let changed = false;
+      let storeRef: Store;
+      const { db, store } = makeDbStub({
+        users: {
+          'stable-a': { firebaseAuthUid: 'google-canonical-race', progress: { user_total_xp: '100' } },
+          'stable-b': { firebaseAuthUid: 'google-canonical-race', progress: { user_total_xp: '50' } },
+          'stable-terminal': {
+            firebaseAuthUid: 'google-canonical-race',
+            progress: { user_total_xp: '200' },
+          },
+        },
+      }, {
+        afterDocGet: (collection, id, _count, mutate) => {
+          if (changed || collection !== 'users' || id !== 'stable-a') return;
+          changed = true;
+          mutate({
+            ...storeRef.users['stable-a'],
+            identityHidden: true,
+            canonicalStableId: mode === 'cycle' ? 'stable-b' : 'stable-terminal',
+          });
+          if (mode === 'cycle') {
+            storeRef.users['stable-b'] = {
+              ...storeRef.users['stable-b'],
+              identityHidden: true,
+              canonicalStableId: 'stable-a',
+            };
+          }
+        },
+      });
+      storeRef = store;
+
+      await expect(
+        mergeStableAccounts(db as any, 'google-canonical-race', 'stable-a', 'stable-b', NOW),
+      ).rejects.toMatchObject({ code: 'failed-precondition', message: 'stable_identity_changed' });
+      expect(store.users['stable-a']?.duplicateOfStableId).toBeUndefined();
+      expect(store.users['stable-b']?.duplicateOfStableId).toBeUndefined();
+      expect(store.auth_links['google-canonical-race']).toBeUndefined();
+    },
+  );
 
   it('carries the loser\'s active premium onto the winner', async () => {
     const { db, store } = makeDbStub({
@@ -402,7 +857,9 @@ describe('mergeStableAccounts', () => {
   });
 
   it('is idempotent when already merged (loser hidden → winner)', async () => {
-    const { db } = makeDbStub({
+    const originalLink = { stable_id: 'stable-canon', provider: 'google', updatedAt: 111 };
+    const { db, store } = makeDbStub({
+      auth_links: { 'google-3': originalLink },
       users: {
         'stable-canon': { firebaseAuthUid: 'google-3', progress: { user_total_xp: '500' } },
         'stable-old': {
@@ -417,15 +874,46 @@ describe('mergeStableAccounts', () => {
     const res = await mergeStableAccounts(db as any, 'google-3', 'stable-old', 'stable-canon', NOW);
     expect(res.alreadyMerged).toBe(true);
     expect(res.canonicalStableId).toBe('stable-canon');
+    expect(store.auth_links['google-3']).toEqual(originalLink);
   });
 
   it('returns canonical without change when both ids are equal', async () => {
-    const { db } = makeDbStub({
+    const originalLink = { stable_id: 'stable-x', provider: 'google', updatedAt: 111 };
+    const { db, store } = makeDbStub({
+      auth_links: { 'google-4': originalLink },
       users: { 'stable-x': { firebaseAuthUid: 'google-4', progress: { user_total_xp: '1' } } },
     });
     const res = await mergeStableAccounts(db as any, 'google-4', 'stable-x', 'stable-x', NOW);
     expect(res.alreadyMerged).toBe(true);
     expect(res.canonicalStableId).toBe('stable-x');
+    expect(store.auth_links['google-4']).toEqual(originalLink);
+  });
+
+  it('keeps auth_links unchanged when distinct inputs resolve to one winner before merge', async () => {
+    const originalLink = { stable_id: 'stable-canonical', provider: 'google', updatedAt: 111 };
+    const { db, store } = makeDbStub({
+      auth_links: { 'google-converged': originalLink },
+      users: {
+        'stable-canonical': { firebaseAuthUid: 'google-converged', progress: { user_total_xp: '500' } },
+        'stable-input-a': { progress: { user_total_xp: '10' } },
+        'stable-input-b': { progress: { user_total_xp: '20' } },
+      },
+    });
+
+    const res = await mergeStableAccounts(
+      db as any,
+      'google-converged',
+      'stable-input-a',
+      'stable-input-b',
+      NOW,
+    );
+
+    expect(res).toEqual({
+      canonicalStableId: 'stable-canonical',
+      mergedFromStableId: null,
+      alreadyMerged: true,
+    });
+    expect(store.auth_links['google-converged']).toEqual(originalLink);
   });
 
   it('rejects when caller does not own one of the accounts', async () => {
@@ -633,6 +1121,186 @@ describe('repointReferralOnMerge — перенос реферальных да�
     expect(store.referral_codes.ZZZ999?.ownerStableId).toBe('winner');
     expect(store.referral_owners.loser).toBeUndefined();
     expect(store.referral_owners.winner).toMatchObject({ ownerStableId: 'winner', code: 'ZZZ999' });
+  });
+
+  it('deterministically paginates 501 attributions and 51 codes without truncation', async () => {
+    const { db, store, queryLog } = makeDbStub();
+    store.referral_attributions = Object.fromEntries(
+      Array.from({ length: 501 }, (_, index) => [
+        `attr-${String(index).padStart(4, '0')}`,
+        { referrerStableId: 'loser', status: index % 2 ? 'pending' : 'qualified' },
+      ]),
+    );
+    store.referral_codes = Object.fromEntries(
+      Array.from({ length: 51 }, (_, index) => [
+        `code-${String(index).padStart(4, '0')}`,
+        { ownerStableId: 'loser', normalized: `CODE${index}` },
+      ]),
+    );
+
+    const result = await repointReferralOnMerge(db as any, 'winner', 'loser');
+
+    expect(result).toMatchObject({
+      complete: true,
+      attributionDocsRepointed: 501,
+      codeDocsRepointed: 51,
+    });
+    expect(Object.values(store.referral_attributions))
+      .toHaveLength(501);
+    expect(Object.values(store.referral_attributions).every(
+      (data) => data?.referrerStableId === 'winner',
+    )).toBe(true);
+    expect(Object.values(store.referral_codes).every(
+      (data) => data?.ownerStableId === 'winner',
+    )).toBe(true);
+    expect(queryLog.filter(({ collection }) => collection === 'referral_attributions')
+      .map(({ cursor, limit, ids }) => ({ cursor, limit, size: ids.length })))
+      .toEqual([
+        { cursor: '', limit: 500, size: 500 },
+        { cursor: 'attr-0499', limit: 500, size: 1 },
+      ]);
+    expect(queryLog.filter(({ collection }) => collection === 'referral_codes')
+      .map(({ cursor, limit, ids }) => ({ cursor, limit, size: ids.length })))
+      .toEqual([
+        { cursor: '', limit: 50, size: 50 },
+        { cursor: 'code-0049', limit: 50, size: 1 },
+      ]);
+  });
+
+  it('is idempotent on rerun after all referral pages and owner docs are complete', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_attributions = Object.fromEntries(
+      Array.from({ length: 501 }, (_, index) => [
+        `attr-${String(index).padStart(4, '0')}`,
+        { referrerStableId: 'loser', status: 'qualified' },
+      ]),
+    );
+    store.referral_codes = Object.fromEntries(
+      Array.from({ length: 51 }, (_, index) => [
+        `code-${String(index).padStart(4, '0')}`,
+        { ownerStableId: 'loser' },
+      ]),
+    );
+    store.referral_owners = {
+      loser: { ownerStableId: 'loser', code: 'LOSER1' },
+      winner: { ownerStableId: 'winner', code: 'WINNER1' },
+    };
+
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+    const afterFirstRun = JSON.parse(JSON.stringify(store));
+    const second = await repointReferralOnMerge(db as any, 'winner', 'loser');
+
+    expect(store).toEqual(afterFirstRun);
+    expect(second).toMatchObject({
+      complete: true,
+      attributionDocsRepointed: 0,
+      codeDocsRepointed: 0,
+    });
+    expect(store.referral_owners.winner).toMatchObject({ code: 'WINNER1' });
+    expect(store.referral_owners.loser).toBeUndefined();
+  });
+
+  it('preserves a concurrent attribution reward and new owner instead of overwriting a stale query row', async () => {
+    let injected = false;
+    const { db, store } = makeDbStub({}, {
+      afterQueryGet: (collection, ids, mutate) => {
+        if (!injected && collection === 'referral_attributions' && ids.includes('friend')) {
+          injected = true;
+          mutate('friend', {
+            referrerStableId: 'new-owner',
+            status: 'rewarded',
+            referrerRewardedAtMs: NOW + 1,
+          });
+        }
+      },
+    });
+    store.referral_attributions = {
+      friend: { referrerStableId: 'loser', status: 'pending' },
+    };
+
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+
+    expect(store.referral_attributions.friend).toEqual({
+      referrerStableId: 'new-owner',
+      status: 'rewarded',
+      referrerRewardedAtMs: NOW + 1,
+    });
+  });
+
+  it('preserves winner owner-code on collision while repointing loser-owned codes', async () => {
+    const { db, store } = makeDbStub();
+    store.referral_codes = {
+      LOSER1: { ownerStableId: 'loser' },
+      WINNER1: { ownerStableId: 'winner' },
+    };
+    store.referral_owners = {
+      loser: { ownerStableId: 'loser', code: 'LOSER1' },
+      winner: { ownerStableId: 'winner', code: 'WINNER1' },
+    };
+
+    await repointReferralOnMerge(db as any, 'winner', 'loser');
+
+    expect(store.referral_owners.winner).toEqual({ ownerStableId: 'winner', code: 'WINNER1' });
+    expect(store.referral_owners.loser).toBeUndefined();
+    expect(store.referral_codes.LOSER1?.ownerStableId).toBe('winner');
+    expect(store.referral_codes.WINNER1?.ownerStableId).toBe('winner');
+  });
+
+  it('returns incomplete without writes when either stable id is tombstoned before repoint', async () => {
+    const { db, store } = makeDbStub({
+      account_deletion_tombstones: { loser: { status: 'pending' } },
+    });
+    store.referral_attributions = {
+      friend: { referrerStableId: 'loser', status: 'qualified' },
+    };
+
+    const result = await repointReferralOnMerge(db as any, 'winner', 'loser');
+
+    expect(result).toMatchObject({
+      complete: false,
+      stoppedReason: 'account_delete_pending',
+      stoppedPhase: 'referee',
+      attributionDocsRepointed: 0,
+      codeDocsRepointed: 0,
+    });
+    expect(store.referral_attributions.friend?.referrerStableId).toBe('loser');
+  });
+
+  it('stops observably when a tombstone appears mid-page and leaves the remainder retryable', async () => {
+    let loserTombstoneReads = 0;
+    const { db, store } = makeDbStub({}, {
+      afterDocGet: (collection, id, _count, mutate) => {
+        if (collection === 'account_deletion_tombstones' && id === 'loser') {
+          loserTombstoneReads += 1;
+          // Referee guard is read #1, the first 10-row chunk is #2, and the
+          // tombstone appears inside the next chunk's transaction (#3).
+          if (loserTombstoneReads === 3) mutate({ status: 'pending' });
+        }
+      },
+    });
+    store.referral_attributions = Object.fromEntries(
+      Array.from({ length: 20 }, (_, index) => [
+        `friend-${String(index).padStart(2, '0')}`,
+        { referrerStableId: 'loser', status: 'qualified' },
+      ]),
+    );
+
+    const result = await repointReferralOnMerge(db as any, 'winner', 'loser');
+    const moved = Object.values(store.referral_attributions)
+      .filter((data) => data?.referrerStableId === 'winner').length;
+    const remaining = Object.values(store.referral_attributions)
+      .filter((data) => data?.referrerStableId === 'loser').length;
+
+    expect(result).toMatchObject({
+      complete: false,
+      stoppedReason: 'account_delete_pending',
+      stoppedPhase: 'attributions',
+      attributionDocsRepointed: moved,
+      codeDocsRepointed: 0,
+    });
+    expect(moved).toBeGreaterThan(0);
+    expect(remaining).toBeGreaterThan(0);
+    expect(moved + remaining).toBe(20);
   });
 
   it('no-op при winner === loser', async () => {

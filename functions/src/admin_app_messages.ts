@@ -56,6 +56,18 @@ export interface NormalizedAppMessageCleanupInput {
   readonly requestFingerprint: string;
 }
 
+export type PersonalAppMessageDeliveryMode = 'inbox' | 'next_login_modal';
+
+export interface NormalizedPersonalAppMessageInput {
+  readonly uid: string;
+  readonly deliveryMode: PersonalAppMessageDeliveryMode;
+  readonly document: Readonly<RecordValue>;
+  readonly reason: string;
+  readonly idempotencyKey: string;
+  readonly requestId: string;
+  readonly requestFingerprint: string;
+}
+
 function isRecord(value: unknown): value is RecordValue {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
@@ -152,6 +164,44 @@ export function normalizeAppMessageCreateInput(data: unknown, actorEmail: string
   return Object.freeze({ document: Object.freeze(document), requestFingerprint, ...command });
 }
 
+export function normalizePersonalAppMessageInput(
+  data: unknown,
+  actorEmail: string,
+  nowMs = Date.now(),
+): NormalizedPersonalAppMessageInput {
+  if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
+  if ('recipientUid' in data || 'firebaseUid' in data || 'authUid' in data) {
+    throw new HttpsError('invalid-argument', 'uid is the only supported recipient identity');
+  }
+  const command = requiredCommandFields(data);
+  const uid = text(data.uid, 160);
+  const title = text(data.title, 160);
+  const body = text(data.body, 2000);
+  const deliveryMode = data.deliveryMode;
+  if (!/^[A-Za-z0-9._-]{2,160}$/.test(uid)) throw new HttpsError('invalid-argument', 'valid stable uid required');
+  if (!title || !body) throw new HttpsError('invalid-argument', 'title and body are required');
+  if (deliveryMode !== 'inbox' && deliveryMode !== 'next_login_modal') {
+    throw new HttpsError('invalid-argument', 'deliveryMode must be inbox or next_login_modal');
+  }
+  const createdAt = new Date(nowMs).toISOString();
+  const document: RecordValue = {
+    kind: 'personal_admin_message',
+    recipientUid: uid,
+    deliveryMode,
+    title,
+    body,
+    active: true,
+    createdAt,
+    createdAtMs: nowMs,
+    updatedAt: createdAt,
+    updatedAtMs: nowMs,
+    createdBy: actorEmail,
+    nextLoginModalPending: deliveryMode === 'next_login_modal',
+  };
+  const requestFingerprint = JSON.stringify({ uid, deliveryMode, title, body });
+  return Object.freeze({ uid, deliveryMode, document: Object.freeze(document), requestFingerprint, ...command });
+}
+
 export function normalizeAppMessageToggleInput(data: unknown): NormalizedAppMessageToggleInput {
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
   const command = requiredCommandFields(data);
@@ -243,12 +293,65 @@ function roleFor(token: RecordValue): AdminRole {
   return role;
 }
 
-function assertPermission(request: { auth?: { token?: RecordValue } }, permission: 'campaigns.read' | 'campaigns.write'): AdminRole {
+function assertPermission(request: { auth?: { token?: RecordValue } }, permission: 'campaigns.read' | 'campaigns.write' | 'users.message.write'): AdminRole {
   if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
   const role = roleFor(request.auth.token);
   if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   return role;
 }
+
+export const adminSendPersonalAppMessage = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    const role = assertPermission(request, 'users.message.write');
+    const actorUid = request.auth!.uid;
+    const actorEmail = text(request.auth!.token.email, 320) || actorUid;
+    const input = normalizePersonalAppMessageInput(request.data, actorEmail);
+    const db = admin.firestore();
+    const userRef = db.collection('users').doc(input.uid);
+    const messageRef = userRef.collection('user_messages').doc();
+    const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+
+    return db.runTransaction(async (tx) => {
+      const [recipient, operation] = await Promise.all([tx.get(userRef), tx.get(operationRef)]);
+      if (operation.exists) {
+        const previous = operation.data() ?? {};
+        assertOperationFingerprint(previous, input.requestFingerprint);
+        assertOperationActor(previous, actorUid);
+        return {
+          ok: true,
+          messageId: String(previous.entityId ?? ''),
+          auditId: String(previous.auditId ?? ''),
+          replayed: true,
+        };
+      }
+      if (!recipient.exists) throw new HttpsError('not-found', 'personal_message_recipient_not_found');
+      const recipientData = recipient.data() ?? {};
+      if (recipientData.accountDeletedAtMs || recipientData.deleted === true) {
+        throw new HttpsError('failed-precondition', 'personal_message_recipient_unavailable');
+      }
+      const audit = createAuditRecord({
+        action: 'app_message.personal_send', actorUid, role,
+        entity: { collection: `users/${input.uid}/user_messages`, id: messageRef.id },
+        reason: input.reason, before: {}, after: input.document, requestId: input.requestId,
+        rollbackReference: messageRef.id, timestamp: new Date().toISOString(),
+      });
+      tx.create(messageRef, input.document);
+      tx.create(auditRef, { ...audit, operationId: input.idempotencyKey, recipientUid: input.uid });
+      tx.create(operationRef, {
+        operationId: input.idempotencyKey,
+        requestFingerprint: input.requestFingerprint,
+        actorUid,
+        entityId: messageRef.id,
+        recipientUid: input.uid,
+        auditId: auditRef.id,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+      return { ok: true, messageId: messageRef.id, auditId: auditRef.id, replayed: false };
+    });
+  },
+);
 
 export const adminListAppMessages = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },

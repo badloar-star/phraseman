@@ -17,6 +17,7 @@
   "exclude": [
     "functions",
     "docs/reports",
+    "docs/design",
     "subscription-recovery",
     "tmp",
     "node_modules"

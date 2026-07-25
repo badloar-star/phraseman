@@ -1535,7 +1535,13 @@ export default function FlashcardsScreen() {
   }
 
   // ── Empty state ────────────────────────────────────────────────────────────
-  if (!loading && filteredCards.length === 0) return (
+  // зачем: раньше условие смотрело только на filteredCards — и когда фильтр
+  // (в т.ч. новый по статусу) ничего не находил, юзеру показывали онбординг
+  // «Создай первую карточку», хотя карточки у него ЕСТЬ. Теперь настоящий
+  // онбординг — только когда набор пуст целиком; пустой результат фильтра
+  // остаётся в обычном экране со списком, где видны чипы и можно вернуться
+  // к «Все».
+  if (!loading && cards.length === 0) return (
     <ScreenGradient artBackdrop="flashcards">
     <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]} edges={['left', 'right', 'bottom']}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
@@ -1721,6 +1727,37 @@ export default function FlashcardsScreen() {
           labels={statusChipLabels}
           t={t}
         />
+
+        {/* зачем: фильтр может не найти ничего (напр. «Слабые», когда все
+            карточки освоены). Раньше это уводило в онбординг «создай первую
+            карточку» — теперь честно говорим, что в этом фильтре пусто, и
+            даём вернуться к «Все» одним тапом, не теряя контекст. */}
+        {!loading && cards.length > 0 && filteredCards.length === 0 && (
+          <View style={{ alignItems: 'center', paddingHorizontal: 32, paddingVertical: 28, gap: 12 }}>
+            <Ionicons name="funnel-outline" size={40} color={t.textGhost} />
+            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: 'В этом фильтре пока пусто',
+                uk: 'У цьому фільтрі поки порожньо',
+                es: 'Este filtro está vacío',
+                'pt-BR': 'Este filtro está vazio',
+                vi: 'Bộ lọc này chưa có thẻ',
+                id: 'Filter ini masih kosong',
+                tr: 'Bu filtrede henüz kart yok',
+                pl: 'Ten filtr jest pusty',
+              })}
+            </Text>
+            <TouchableOpacity
+              onPress={() => setActiveFilter('all')}
+              activeOpacity={0.8}
+              style={{ minHeight: 44, justifyContent: 'center', paddingHorizontal: 22, borderRadius: 999, backgroundColor: `${t.accent}26` }}
+            >
+              <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '800' }}>
+                {statusChipLabels.all}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
 
         {/* Slide wrapper — clips and drives category-switch slide transition */}
         <View

@@ -6,7 +6,7 @@
   },
   "main": "lib/functions/src/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "npm run build:tournament-content && tsc && node scripts/copy_generated_assets.js",
     "serve": "npm run build && firebase emulators:start --only functions",
     "deploy": "node ../scripts/deploy_lock_guard.mjs && npm run build && node ../scripts/functions_source_coverage_gate.mjs && firebase deploy --only functions",
     "gate:functions-coverage": "npm run build && node ../scripts/functions_source_coverage_gate.mjs",
@@ -16,7 +16,8 @@
     "test:content-factory-emulator": "jest --no-coverage --runInBand --detectOpenHandles src/content_factory/emulator",
     "quality:prompt-regression": "npm run build && node ../scripts/run-content-prompt-regression.mjs",
     "test:emulator:v2-authoring-rules": "firebase emulators:exec --config ../firebase.json --only firestore --project demo-phraseman-rules --log-verbosity QUIET \"jest --config jest.emulator.config.js --runTestsByPath src/content_studio/emulator/v2_authoring_rules.emulator.test.ts --no-cache --runInBand\"",
-    "test:emulator:tournament-runtime": "firebase emulators:exec --config ../firebase.json --only firestore --project demo-phraseman-tournament-runtime --log-verbosity QUIET \"jest --config jest.emulator.config.js --runTestsByPath src/tournament_runtime.emulator.test.ts --no-cache --runInBand\""
+    "test:emulator:tournament-runtime": "firebase emulators:exec --config ../firebase.json --only firestore --project demo-phraseman-tournament-runtime --log-verbosity QUIET \"jest --config jest.emulator.config.js --runTestsByPath src/tournament_runtime.emulator.test.ts --no-cache --runInBand\"",
+    "build:tournament-content": "node scripts/build_tournament_content.js"
   },
   "dependencies": {
     "@google-cloud/bigquery": "^8.3.1",

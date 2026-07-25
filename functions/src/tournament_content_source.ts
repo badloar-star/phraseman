@@ -17,41 +17,36 @@ export const TOURNAMENT_SOURCE_PLANS: readonly string[] = Object.freeze([
   'mitap', 'gavan', 'impuls', 'echo', 'voyazh',
 ]);
 
-/** Кэш на инстанс функции: повторные вызовы не перечитывают мегабайты. */
-const DAYS_CACHE = new Map<string, readonly SourceDay[]>();
+/** Кэш на инстанс функции: JSON парсится один раз на холодный старт. */
+let BUNDLE_CACHE: readonly SourceDay[] | null = null;
 
 /**
- * Достаёт массив дней из модуля плана.
- * Имя экспорта у планов отличается (MITAP_CONTENT_DAYS и т.п.), поэтому
- * ищем первый экспорт-массив, элементы которого похожи на день с фразами.
+ * Загружает выжимку контента, собранную на этапе сборки.
+ *
+ * зачем: исходники планов (app/plan_content_*.ts) — TypeScript в корне
+ * проекта, а в Cloud Functions уезжает только папка functions/, где .ts никто
+ * не исполнит. Поэтому scripts/build_tournament_content.js вытаскивает нужные
+ * генератору поля в src/generated/tournament_content.json (2.2 МБ вместо 20 МБ
+ * исходников — без объяснений, теории и словаря дня). Файл обязан обновляться
+ * при изменении контента планов: `npm run build:tournament-content`.
  */
-function extractDays(planModule: Record<string, unknown>): readonly SourceDay[] {
-  for (const value of Object.values(planModule)) {
-    if (!Array.isArray(value) || value.length === 0) continue;
-    const first = value[0] as Record<string, unknown> | undefined;
-    if (first && Array.isArray(first.phrases)) return value as readonly SourceDay[];
+function loadBundle(): readonly SourceDay[] {
+  if (BUNDLE_CACHE) return BUNDLE_CACHE;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: JSON грузится лениво, только при первой генерации
+    BUNDLE_CACHE = require('./generated/tournament_content.json') as readonly SourceDay[];
+  } catch {
+    // Отсутствие выжимки не должно ронять функцию: генерация вернёт ноль
+    // заданий и админка покажет это владельцу явно.
+    BUNDLE_CACHE = [];
   }
-  return [];
+  return BUNDLE_CACHE;
 }
 
-/** Лениво грузит дни одного плана. Неизвестный/битый план — пустой массив. */
+/** Дни одного плана. Неизвестный план — пустой массив. */
 export function loadPlanDays(planId: string): readonly SourceDay[] {
-  const cached = DAYS_CACHE.get(planId);
-  if (cached) return cached;
   if (!TOURNAMENT_SOURCE_PLANS.includes(planId)) return [];
-
-  let days: readonly SourceDay[] = [];
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: ленивая загрузка мегабайтного плана только при обращении
-    const planModule = require(`../../app/plan_content_${planId}`) as Record<string, unknown>;
-    days = extractDays(planModule);
-  } catch {
-    // Отсутствующий план не должен ронять генерацию остальных.
-    days = [];
-  }
-
-  DAYS_CACHE.set(planId, days);
-  return days;
+  return loadBundle().filter((day) => day.planId === planId);
 }
 
 /** Собирает дни нескольких планов в один список для генератора. */

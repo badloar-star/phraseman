@@ -46,11 +46,19 @@ function isCommentLine(line: string): boolean {
   return trimmed.startsWith('//') || trimmed.startsWith('*') || trimmed.startsWith('/*');
 }
 
-/** Счёт вхождений запрещённого JSX-пропа, комментарии не считаем. */
+/**
+ * Счёт вхождений запрещённого JSX-пропа, комментарии не считаем.
+ * Строки вида `adjustsFontSizeToFit:` (тип-литерал/деструктуризация с отбрасыванием,
+ * `Omit<..., 'adjustsFontSizeToFit'>`) не считаем — это места, где проп ЗАПРЕЩАЮТ
+ * принимать/прокидывать (эталон: components/text-integrity/FlowText.tsx), а не
+ * места, где он реально применён к <Text>.
+ */
 function countAdjustsFontSizeToFit(source: string): number {
   let count = 0;
   for (const line of source.split('\n')) {
     if (isCommentLine(line)) continue;
+    if (/adjustsFontSizeToFit\s*[:?]/.test(line)) continue;
+    if (/['"]adjustsFontSizeToFit['"]/.test(line)) continue;
     const matches = line.match(/\badjustsFontSizeToFit\b/g);
     if (matches) count += matches.length;
   }

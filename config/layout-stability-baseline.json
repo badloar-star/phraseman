@@ -16,10 +16,7 @@
     "components/paywall/PaywallPlanCards.tsx": 2,
     "components/paywall/PaywallPlanTiles.tsx": 1,
     "components/paywall/PaywallProofCards.tsx": 2,
-    "components/settings/StudyLanguagePicker.tsx": 1,
-    "components/text-integrity/AdaptiveLabel.tsx": 1,
-    "components/text-integrity/ExpandableText.tsx": 1,
-    "components/text-integrity/FlowText.tsx": 2
+    "components/settings/StudyLanguagePicker.tsx": 1
   },
   "rawSafeAreaInsets": {
     "components/RegistrationPromptModal.tsx": 1

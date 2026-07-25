@@ -3071,9 +3071,14 @@ function RecentAchievementsCard({
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
             {triLang(lang, { ru: 'Последние достижения', uk: 'Останні досягнення', es: 'Últimos logros', 'pt-BR': 'Últimas conquistas', vi: 'Thành tích mới nhất', id: 'Pencapaian terbaru', tr: 'Son başarılar', pl: 'Ostatnie osiągnięcia' })}
           </Text>
-          <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>
-            {triLang(lang, { ru: `Все ${achievementCount}`, uk: `Усі ${achievementCount}`, es: `Todos ${achievementCount}`, 'pt-BR': `Todas ${achievementCount}`, vi: `Tất cả ${achievementCount}`, id: `Semua ${achievementCount}`, tr: `Tümü ${achievementCount}`, pl: `Wszystkie ${achievementCount}` })}
-          </Text>
+          {/* зачем: при нуле счётчик прячем — «Все 0» в первый день демотивирует
+              (интент снятого легаси-блока ruAchievementRewardPhrase); высота ряда
+              задаётся заголовком, геометрия при появлении числа не прыгает. */}
+          {achievementCount > 0 ? (
+            <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>
+              {triLang(lang, { ru: `Все ${achievementCount}`, uk: `Усі ${achievementCount}`, es: `Todos ${achievementCount}`, 'pt-BR': `Todas ${achievementCount}`, vi: `Tất cả ${achievementCount}`, id: `Semua ${achievementCount}`, tr: `Tümü ${achievementCount}`, pl: `Wszystkie ${achievementCount}` })}
+            </Text>
+          ) : null}
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 14, paddingLeft: 2 }}>
           {(latest.length > 0 ? latest : [null, null, null, null]).map((achievement, index) => (

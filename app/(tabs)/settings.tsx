@@ -771,10 +771,53 @@ export default function SettingsMain() {
     nameSavingRef.current = true;
     setNameSaving(true);
     setNameChangeNotice(null);
+
+    // зачем (Optimistic UI, ГЕНУИННО): раньше ник применялся локально ТОЛЬКО
+    // после ответа reserveNameDetailed — то есть UI ждал round-trip как и до
+    // «оптимистичного» коммита, несмотря на комментарий. Теперь показываем
+    // новое имя и закрываем модалку СРАЗУ по тапу, а бронь (14-дневный кулдаун
+    // и проверка уникальности — источник истины, НЕ ослаблены) идёт в фоне.
+    // Если сервер отклонит — откатываем ник обратно на oldName и показываем
+    // некритичную инлайн-плашку (nameChangeNotice), а не блокирующий Alert.
+    setUserName(trimmed);
+    patchAppSnapshot((current) => current.profile ? {
+      profile: {
+        ...current.profile,
+        source: 'local',
+        updatedAt: Date.now(),
+        name: trimmed,
+      },
+    } : {});
+    closeNameModalNow();
+    void AsyncStorage.setItem('user_name', trimmed).catch((error) => {
+      DebugLogger.error('settings.tsx:renameName:localApplyOptimistic', error, 'warning');
+    });
+    void updateLocalNameReferences(oldName, trimmed).catch((error) => {
+      DebugLogger.error('settings.tsx:renameName:localReferencesOptimistic', error, 'warning');
+    });
+
+    const rollbackToOldName = () => {
+      if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
+      setUserName(oldName);
+      patchAppSnapshot((current) => current.profile ? {
+        profile: {
+          ...current.profile,
+          source: 'local',
+          updatedAt: Date.now(),
+          name: oldName,
+        },
+      } : {});
+      void AsyncStorage.setItem('user_name', oldName).catch((error) => {
+        DebugLogger.error('settings.tsx:renameName:rollbackStorage', error, 'warning');
+      });
+      void updateLocalNameReferences(trimmed, oldName).catch((error) => {
+        DebugLogger.error('settings.tsx:renameName:rollbackReferences', error, 'warning');
+      });
+    };
+
     try {
-      // Жёсткая проверка уникальности: бронируем имя на сервере СНАЧАЛА и применяем
-      // локально только при 'ok'. Раньше имя применялось до ответа сервера (и при
-      // 'taken' откатывалось «как получится») — из-за чего дубликаты просачивались.
+      // Жёсткая проверка уникальности: бронируем имя на сервере В ФОНЕ, пока
+      // юзер уже видит новое имя. При отказе сервера — откатываем.
       let reservation: Awaited<ReturnType<typeof reserveNameDetailed>>;
       try {
         reservation = await reserveNameDetailed(trimmed, oldName, { source: 'settings' });
@@ -786,10 +829,12 @@ export default function SettingsMain() {
       if (isStaleAttempt()) return; // более свежая попытка уже решила исход UI
 
       if (reservation.status === 'taken') {
+        rollbackToOldName();
         setNameChangeNotice(L('Это имя уже занято. Выбери другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
         return;
       }
       if (reservation.status === 'cooldown') {
+        rollbackToOldName();
         setNameChangeNotice(L(
           'Ник можно менять не чаще одного раза в 14 дней.',
           'Нік можна змінювати не частіше одного разу на 14 днів.',
@@ -803,6 +848,7 @@ export default function SettingsMain() {
         return;
       }
       if (reservation.status !== 'ok') {
+        rollbackToOldName();
         setNameChangeNotice(L(
           'Имя не проверилось. Проверь интернет и попробуй ещё раз.',
           'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
@@ -816,40 +862,7 @@ export default function SettingsMain() {
         return;
       }
 
-      // зачем (Optimistic UI): бронь подтверждена сервером (14-дневный кулдаун
-      // и проверка уникальности НЕ ослаблены — это по-прежнему источник истины).
-      // Дальше применяем ник локально и закрываем модалку СРАЗУ, а не после
-      // ещё одного round-trip — вся сетевая часть (проверка) уже позади.
-      try {
-        await AsyncStorage.setItem('user_name', trimmed);
-        setUserName(trimmed);
-        patchAppSnapshot((current) => current.profile ? {
-          profile: {
-            ...current.profile,
-            source: 'local',
-            updatedAt: Date.now(),
-            name: trimmed,
-          },
-        } : {});
-        await updateLocalNameReferences(oldName, trimmed);
-        closeNameModalNow();
-      } catch (error) {
-        DebugLogger.error('settings.tsx:renameName:localApply', error, 'warning');
-        if (!isStaleAttempt()) {
-          setNameChangeNotice(L(
-            'Имя не сохранилось локально. Попробуй ещё раз.',
-            'Не вдалося зберегти імʼя локально. Спробуйте ще раз.',
-            'No pudimos guardar el nombre localmente. Inténtalo de nuevo.',
-            'Não foi possível salvar o nome localmente. Tente novamente.',
-            'Không thể lưu tên cục bộ. Hãy thử lại.',
-            'Nama belum bisa disimpan secara lokal. Coba lagi.',
-            'Ad yerel olarak kaydedilemedi. Tekrar dene.',
-            'Nie udało się zapisać nazwy lokalnie. Spróbuj ponownie.',
-          ));
-        }
-        return;
-      }
-
+      // Бронь подтверждена сервером — оптимистично показанное имя остаётся.
       void syncArenaDisplayName(trimmed).catch((error) => {
         DebugLogger.error('settings.tsx:renameName:arenaSync', error, 'warning');
       });

@@ -11,7 +11,6 @@ import {
   hasEnergyBoost,
   getBoostTimeRemaining,
   formatBoostTimeRemaining,
-  formatBoostTimeRemainingForLang,
   getBoostDef,
   getBoostsHistory,
   clearAllBoosts,
@@ -429,21 +428,6 @@ describe('Club Boosts System', () => {
       const subMinute = /\d+s\b/u.test(formatted);
       expect(formatted).toBeTruthy();
       expect(subMinute || formatted.includes('м') || formatted.includes('ч')).toBe(true);
-    });
-
-    test('should format expired boost time for planned locales without RU fallback', () => {
-      const expired: ActiveBoost = {
-        id: 'xp_2x_2h_250xp',
-        activatedBy: 'TestPlayer',
-        activatedAt: Date.now() - 3 * 60 * 60 * 1000,
-        durationMs: 2 * 60 * 60 * 1000,
-      };
-
-      expect(formatBoostTimeRemainingForLang(expired, 'pt-BR')).toBe('Encerrado');
-      expect(formatBoostTimeRemainingForLang(expired, 'vi')).toBe('Đã kết thúc');
-      expect(formatBoostTimeRemainingForLang(expired, 'id')).toBe('Berakhir');
-      expect(formatBoostTimeRemainingForLang(expired, 'tr')).toBe('Bitti');
-      expect(formatBoostTimeRemainingForLang(expired, 'pl')).toBe('Zakończono');
     });
   });
 

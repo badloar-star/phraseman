@@ -66,7 +66,33 @@
     },
   };
 
+  // зачем: владелец потребовал выбор языка сертификата — либо ВСЁ на английском
+  // (включая дату), либо ВСЁ на русском; раньше дата была ru-RU на англ. тексте.
+  const LANGS = {
+    en: {
+      label: 'English',
+      dateLocale: 'en-GB',
+      title: 'Certificate of Completion',
+      certifies: 'This certifies that',
+      completed: 'completed the Phraseman English Level Check',
+      received: 'and received an estimated CEFR level of',
+      summary: (correct, answered) => `Preliminary text-based assessment · ${correct}/${answered} correct`,
+      informal: 'This is an informal assessment. It is not an accredited language qualification.',
+    },
+    ru: {
+      label: 'Русский',
+      dateLocale: 'ru-RU',
+      title: 'Сертификат',
+      certifies: 'Настоящий сертификат выдан',
+      completed: 'за прохождение проверки уровня английского Phraseman',
+      received: 'с предварительной оценкой по шкале CEFR',
+      summary: (correct, answered) => `Предварительная текстовая оценка · ${correct}/${answered} верно`,
+      informal: 'Это неофициальная оценка, а не аккредитованная языковая квалификация.',
+    },
+  };
+
   let currentTheme = 'gold';
+  let currentLang = 'en';
 
   function isAppleMobile() {
     const ua = navigator.userAgent || '';
@@ -86,10 +112,11 @@
     return name.replace(/[^a-zA-Z0-9\u0400-\u04FF\-]/g, '_').slice(0, 40);
   }
 
-  function buildSvg(data, themeKey) {
+  function buildSvg(data, themeKey, langKey) {
     const { name, result } = data;
     const t = THEMES[themeKey] || THEMES.gold;
-    const dateStr = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+    const L = LANGS[langKey] || LANGS.en;
+    const dateStr = new Date().toLocaleDateString(L.dateLocale, { day: 'numeric', month: 'long', year: 'numeric' });
     const cx = CERT_WIDTH / 2;
 
     return `<svg viewBox="0 0 ${CERT_WIDTH} ${CERT_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
@@ -105,20 +132,20 @@
 
       <rect x="${cx - 120}" y="58" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
 
-      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">Certificate of Completion</text>
-      <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">This certifies that</text>
+      <text x="${cx}" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="${t.title}" font-weight="bold">${escapeXml(L.title)}</text>
+      <text x="${cx}" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.certifies)}</text>
       <text x="${cx}" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="${t.title}" font-weight="bold">${escapeXml(name)}</text>
       <line x1="300" y1="320" x2="${CERT_WIDTH - 300}" y2="320" stroke="${t.border}" stroke-width="2"/>
-      <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">completed the Phraseman English Level Check</text>
-      <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">and received an estimated CEFR level of</text>
+      <text x="${cx}" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.completed)}</text>
+      <text x="${cx}" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="${t.text}">${escapeXml(L.received)}</text>
       <text x="${cx}" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="72" fill="${t.level}" font-weight="bold">${escapeXml(result.estimatedLevel)}</text>
-      <text x="${cx}" y="550" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="${t.text}">Preliminary text-based assessment · ${result.correct}/${result.answered} correct</text>
+      <text x="${cx}" y="550" text-anchor="middle" font-family="Georgia,serif" font-size="17" fill="${t.text}">${escapeXml(L.summary(result.correct, result.answered))}</text>
 
       <rect x="${cx - 120}" y="590" width="240" height="5" fill="${t.ribbon}" rx="2.5"/>
 
-      <text x="${cx}" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="${t.text}" font-weight="600">${dateStr}</text>
+      <text x="${cx}" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="14" fill="${t.text}" font-weight="600">${escapeXml(dateStr)}</text>
       <text x="${cx}" y="690" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
-        This is an informal assessment. It is not an accredited language qualification.
+        ${escapeXml(L.informal)}
       </text>
       <text x="${cx}" y="715" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="${t.text}">
         knowlyapps.com/english-level-test/
@@ -162,6 +189,12 @@
       <div class="elt-cert-container" role="dialog" aria-modal="true" aria-label="Сертификат результата">
         <button class="elt-cert-close" type="button" aria-label="Закрыть">&times;</button>
 
+        <div class="elt-cert-langs" role="group" aria-label="Язык сертификата">
+          ${Object.entries(LANGS).map(([key, lang]) => `
+            <button class="elt-cert-lang-btn${key === currentLang ? ' active' : ''}" data-lang="${key}" type="button">${lang.label}</button>
+          `).join('')}
+        </div>
+
         <div class="elt-cert-themes">
           ${Object.entries(THEMES).map(([key, t]) => `
             <button class="elt-cert-theme-btn${key === currentTheme ? ' active' : ''}" data-theme="${key}" style="--theme-color:${t.ribbon}" title="${t.name}">
@@ -172,7 +205,7 @@
         </div>
 
         <div class="elt-cert-wrap" id="certRenderArea">
-          ${buildSvg(data, currentTheme)}
+          ${buildSvg(data, currentTheme, currentLang)}
         </div>
 
         ${data.cta ? `
@@ -224,10 +257,25 @@
 
     function clearSavePreview() {
       saveGeneration++;
-      container.querySelector('.elt-cert-save-preview')?.remove();
+      container.querySelector('.elt-cert-save-link')?.remove();
+      container.querySelector('.elt-cert-save-hint')?.remove();
+      // PNG подменял SVG на месте — возвращаем SVG, чтобы повторное скачивание/печать работали.
+      const svg = container.querySelector('#certRenderArea svg');
+      if (svg) svg.style.display = '';
       if (savePreviewUrl) {
         URL.revokeObjectURL(savePreviewUrl);
         savePreviewUrl = null;
+      }
+    }
+
+    function rebuildCertArea() {
+      const area = container.querySelector('#certRenderArea');
+      area.innerHTML = buildSvg(data, currentTheme, currentLang);
+      if (!reducedMotion) {
+        area.animate([
+          { opacity: 0.5, transform: 'scale(0.98)' },
+          { opacity: 1, transform: 'scale(1)' }
+        ], { duration: 300, easing: 'ease-out' });
       }
     }
 
@@ -244,18 +292,23 @@
 
     container.querySelectorAll('.elt-cert-theme-btn').forEach((btn) => {
       btn.addEventListener('click', () => {
+        if (btn.dataset.theme === currentTheme) return;
         clearSavePreview();
         currentTheme = btn.dataset.theme;
         container.querySelectorAll('.elt-cert-theme-btn').forEach((b) => b.classList.remove('active'));
         btn.classList.add('active');
-        const area = container.querySelector('#certRenderArea');
-        area.innerHTML = buildSvg(data, currentTheme);
-        if (!reducedMotion) {
-          area.animate([
-            { opacity: 0.5, transform: 'scale(0.98)' },
-            { opacity: 1, transform: 'scale(1)' }
-          ], { duration: 300, easing: 'ease-out' });
-        }
+        rebuildCertArea();
+      });
+    });
+
+    container.querySelectorAll('.elt-cert-lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (btn.dataset.lang === currentLang) return;
+        clearSavePreview();
+        currentLang = btn.dataset.lang;
+        container.querySelectorAll('.elt-cert-lang-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        rebuildCertArea();
       });
     });
 
@@ -287,7 +340,9 @@
         }
       }
     });
-    container.querySelector('#certPrint').addEventListener('click', () => printCert(container.querySelector('#certRenderArea')));
+    // Печатаем свежесобранный SVG, а не innerHTML области: после iOS-сохранения
+    // там лежит PNG-подмена с подсказкой, которые в печать попадать не должны.
+    container.querySelector('#certPrint').addEventListener('click', () => printCert(buildSvg(data, currentTheme, currentLang)));
 
     const ctaBtn = container.querySelector('#certCtaBtn');
     if (data.cta && ctaBtn) {
@@ -345,18 +400,27 @@
   }
 
   function showIosSavePreview(container, pngBlob, filename) {
+    // зачем: владелец спросил «почему отдельно» — вторая копия сертификата ниже
+    // сбивала с толку. Теперь PNG подменяет SVG НА МЕСТЕ: удерживать нужно ту же
+    // картинку, которую пользователь уже видит, а подсказка появляется под ней.
     const objectUrl = URL.createObjectURL(pngBlob);
-    const preview = document.createElement('section');
-    preview.className = 'elt-cert-save-preview';
-    preview.innerHTML = `
-      <p>Нажмите и удерживайте изображение, затем выберите «Сохранить в Фото».</p>
-      <a download="${filename}"><img alt="Готовый сертификат для сохранения" /></a>
-    `;
-    const link = preview.querySelector('a');
+    const wrap = container.querySelector('#certRenderArea');
+    const svg = wrap.querySelector('svg');
+    if (svg) svg.style.display = 'none';
+    const link = document.createElement('a');
+    link.className = 'elt-cert-save-link';
+    link.download = filename;
     link.href = objectUrl;
-    preview.querySelector('img').src = objectUrl;
-    container.querySelector('.elt-cert-actions').before(preview);
-    preview.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const img = document.createElement('img');
+    img.alt = 'Готовый сертификат — нажмите и удерживайте, чтобы сохранить';
+    img.src = objectUrl;
+    link.appendChild(img);
+    wrap.appendChild(link);
+    const hint = document.createElement('p');
+    hint.className = 'elt-cert-save-hint';
+    hint.textContent = 'Нажмите и удерживайте сертификат, затем «Сохранить в Фото»';
+    wrap.appendChild(hint);
+    hint.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return objectUrl;
   }
 
@@ -392,8 +456,8 @@
     }
   }
 
-  function printCert(renderArea) {
-    if (!renderArea) return;
+  function printCert(svgMarkup) {
+    if (!svgMarkup) return;
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <html>
@@ -411,7 +475,7 @@
         </head>
         <body>
           <div class="cert-box">
-            ${renderArea.innerHTML}
+            ${svgMarkup}
           </div>
           <script>window.onload = function(){ setTimeout(function(){ window.print(); }, 200); };</script>
         </body>

@@ -557,10 +557,18 @@ html, body {
 .elt-option:nth-child(3) { animation-delay: 0.18s; }
 .elt-option:nth-child(4) { animation-delay: 0.24s; }
 
-.elt-option:hover {
-  border-color: var(--accent);
-  background: rgba(42, 157, 92, 0.08);
-  transform: translateX(4px);
+/* зачем: на тачах iOS «залипал» hover — после тапа новый вопрос показывал
+   вариант в том же месте как будто выбранный. Hover — только для мыши. */
+@media (hover: hover) {
+  .elt-option:hover {
+    border-color: var(--accent);
+    background: rgba(42, 157, 92, 0.08);
+    transform: translateX(4px);
+  }
+  .elt-option:hover .elt-option-letter {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
 }
 
 .elt-option:focus-visible {
@@ -587,11 +595,6 @@ html, body {
   font-size: 0.9rem;
   color: var(--text-secondary);
   transition: background 0.2s ease, color 0.2s ease;
-}
-
-.elt-option:hover .elt-option-letter {
-  background: var(--accent);
-  color: var(--on-accent);
 }
 
 .elt-actions {
@@ -989,6 +992,36 @@ html, body {
   color: var(--text);
 }
 
+.elt-cert-langs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.elt-cert-lang-btn {
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+@media (hover: hover) {
+  .elt-cert-lang-btn:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+  }
+}
+.elt-cert-lang-btn.active {
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 0 2px var(--accent);
+}
+
 .elt-cert-themes {
   display: flex;
   gap: 8px;
@@ -1043,26 +1076,26 @@ html, body {
   flex-wrap: wrap;
 }
 
-.elt-cert-save-preview {
-  margin-top: 16px;
-  padding: 14px;
-  border: 1px solid rgba(74,222,128,0.3);
-  border-radius: 14px;
-  background: rgba(42,157,92,0.08);
-  text-align: center;
+/* iOS-сохранение: PNG встаёт на место SVG, подсказка — строкой под ним */
+.elt-cert-save-link {
+  display: block;
+  animation: fadeIn 0.3s ease;
 }
-.elt-cert-save-preview p {
-  margin: 0 0 12px;
-  color: var(--text);
-  font-size: 0.9rem;
-}
-.elt-cert-save-preview img {
+.elt-cert-save-link img {
   display: block;
   width: 100%;
   height: auto;
   border-radius: 8px;
   user-select: none;
   -webkit-user-drag: auto;
+}
+.elt-cert-save-hint {
+  margin: 12px 0 0;
+  text-align: center;
+  color: var(--accent-light);
+  font-size: 0.88rem;
+  font-weight: 600;
+  animation: fadeIn 0.35s ease both;
 }
 
 /* Loading / Error */
@@ -1082,7 +1115,8 @@ html, body {
 
 /* Print */
 @media print {
-  .elt-cert-actions, .elt-cert-close, .elt-cert-backdrop, .elt-cert-themes, .elt-cert-cta {
+  .elt-cert-actions, .elt-cert-close, .elt-cert-backdrop, .elt-cert-themes, .elt-cert-cta,
+  .elt-cert-langs, .elt-cert-save-hint {
     display: none !important;
   }
   .elt-cert-container {

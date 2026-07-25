@@ -43,6 +43,8 @@ import ClozeGapText from '../components/ClozeGapText';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
+import { peekDiagnosticReadiness, rememberDiagnosticExamLessonsDone, rememberDiagnosticExamReadinessPercent } from './diagnostic_test_state';
+import SkeletonBlock from '../components/SkeletonShimmer';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { diagnosticContentAvailableForTarget, frenchDiagnosticGateCopy } from './diagnostic_target_gate';
 import { diagnosticLastKey, diagnosticOpenFlagKey, lessonProgressKey, storageStudyTarget } from './target_storage_keys';
@@ -978,9 +980,17 @@ export default function DiagnosticTest() {
   const [hapticsOn,   setHapticsOn]= useState(true);
   const [autoAdvance, setAutoAdvance]= useState(false);
   const { playCorrect } = useCorrectSound();
-  const [examLessonsDone, setExamLessonsDone] = useState(0);
+  // зачем: убрать «прыжок с нулей» — на первом кадре до AsyncStorage-подгрузки
+  // examLessonsDone/examReadiness.percent брали дефолт 0 и рендерили «0/32
+  // уроков»/«0%», а через мгновение число прыгало на реальное. Сессионный
+  // peek-кеш (diagnostic_test_state.ts) даёт последнее известное значение
+  // синхронно; null — только на самом первом открытии экрана в этом процессе,
+  // и тогда вместо цифры рисуем скелетон той же геометрии (см. рендер ниже).
+  const diagnosticReadinessPeek = peekDiagnosticReadiness(studyTarget);
+  const [examLessonsDone, setExamLessonsDone] = useState<number | null>(() => diagnosticReadinessPeek?.examLessonsDone ?? null);
+  const [examReadinessPercent, setExamReadinessPercent] = useState<number | null>(() => diagnosticReadinessPeek?.examReadinessPercent ?? null);
   const [examReadiness, setExamReadiness] = useState<ExamReadinessSnapshot>({
-    percent: 0,
+    percent: diagnosticReadinessPeek?.examReadinessPercent ?? 0,
     currentLesson: 1,
     phrasesLearnedTotal: 0,
     wrongInActiveScope: 0,
@@ -1152,12 +1162,15 @@ export default function DiagnosticTest() {
       } catch { /* skip corrupt */ }
     }
     setExamLessonsDone(done);
+    rememberDiagnosticExamLessonsDone(done, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
   }, [studyTarget]);
 
   const loadExamReadiness = useCallback(async () => {
     try {
       const snap = await loadExamReadinessSnapshot(studyTarget);
       setExamReadiness(snap);
+      setExamReadinessPercent(snap.percent);
+      rememberDiagnosticExamReadinessPercent(snap.percent, studyTarget); // зачем: обновить peek-кеш для следующего первого кадра
     } catch {
       /* keep previous */
     }
@@ -1392,7 +1405,33 @@ export default function DiagnosticTest() {
   const qOpts = diagnosticQuestionOptions(lang, q);
   const result = getResult(score, questions, answersRef.current);
 
-  if ((phase === 'quiz' || isFrenchDiagnostic) && (questionsLoading || !q || questions.length === 0)) {
+  // зачем: questionsLoading===true (французские вопросы ещё грузятся с сервера) —
+  // это НЕ ошибка, а нормальное временное состояние. Раньше оба случая (ещё
+  // грузится / реально не загрузилось) рисовали один и тот же экран с текстом
+  // «Вопросы не загрузились» и кнопкой «Назад» — пользователь на каждой обычной
+  // загрузке на миг видел ложное сообщение об ошибке. Теперь пока идёт загрузка —
+  // зарезервированный скелетон карточек вопроса (та же геометрия, что и quiz-экран
+  // ниже), а текст об ошибке — только когда загрузка реально завершилась пусто.
+  if ((phase === 'quiz' || isFrenchDiagnostic) && questionsLoading) {
+    return (
+      <ScreenGradient artBackdrop="diagnosticTest">
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={{ padding: 24 }}>
+              <SkeletonBlock width="70%" height={f.h2} borderRadius={6} />
+              <SkeletonBlock width="100%" height={90} borderRadius={16} style={{ marginTop: 24 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 20 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+              <SkeletonBlock width="100%" height={52} borderRadius={14} style={{ marginTop: 12 }} />
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  if ((phase === 'quiz' || isFrenchDiagnostic) && (!q || questions.length === 0)) {
     return (
       <ScreenGradient artBackdrop="diagnosticTest">
         <SafeAreaView style={{ flex: 1 }}>
@@ -1462,10 +1501,15 @@ export default function DiagnosticTest() {
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
             {s.diagnostic.examReadinessTitle}
           </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
-            <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
-            <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
-          </View>
+          {/* зачем: examReadinessPercent===null только на первом кадре до подгрузки — скелетон той же геометрии вместо ложного «0%» */}
+          {examReadinessPercent === null ? (
+            <SkeletonBlock width={64} height={f.numLg + 10} borderRadius={8} style={{ marginTop: 12 }} />
+          ) : (
+            <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
+              <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
+              <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
+            </View>
+          )}
           <View
             style={{
               width: '100%',
@@ -1478,7 +1522,7 @@ export default function DiagnosticTest() {
           >
             <View
               style={{
-                width: `${examReadiness.percent}%` as `${number}%`,
+                width: `${examReadinessPercent ?? 0}%` as `${number}%`,
                 height: '100%',
                 backgroundColor: t.correct,
                 borderRadius: 4,
@@ -1504,13 +1548,18 @@ export default function DiagnosticTest() {
           <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56, flexShrink: 0 }} contentFit="contain" cachePolicy="memory-disk" />
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
-            <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
-              {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
-            </Text>
+            {/* зачем: examLessonsDone===null только на первом кадре до подгрузки — скелетон вместо ложного «0/32» */}
+            {examLessonsDone === null ? (
+              <SkeletonBlock width={90} height={f.label} borderRadius={4} style={{ marginTop: 6 }} />
+            ) : (
+              <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
+                {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
+              </Text>
+            )}
             <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
               <View
                 style={{
-                  width: `${Math.round((examLessonsDone / 32) * 100)}%` as `${number}%`,
+                  width: `${Math.round(((examLessonsDone ?? 0) / 32) * 100)}%` as `${number}%`,
                   height: '100%',
                   backgroundColor: t.correct,
                   borderRadius: 2,

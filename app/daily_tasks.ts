@@ -3006,6 +3006,9 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
     // под замком, до списания. Тот же приём, что в claimTaskWithReward: дорогая операция
     // (spendShards сам берёт withStorageLock, вложенный захват = дедлок) остаётся снаружи.
     const todayKey = getTodayKey();
+    // Прежнее значение ключа запоминаем, чтобы при неудачном списании вернуть ИМЕННО его:
+    // повторный реролл уже заменённого задания иначе потерял бы свою законную замену.
+    let previousReplacementForTask: string | undefined;
     const reserved = await withStorageLock(async (): Promise<boolean> => {
       const state = await loadRerollStateRaw(studyTarget);
       const replacements = state.replacements ?? {};
@@ -3014,6 +3017,7 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
       if (!isReplacingOwnEntry && Object.keys(replacements).length >= DAILY_TASK_REROLL_MAX_PER_DAY) {
         return false;
       }
+      previousReplacementForTask = isReplacingOwnEntry ? replacements[taskId] : undefined;
       await saveRerollState({ dayKey: todayKey, replacements: { ...replacements, [taskId]: candidate.id } }, studyTarget);
       return true;
     });
@@ -3022,11 +3026,13 @@ export const rerollDailyTask = async (taskId: string, studyTarget?: RuntimeStudy
     const spent = await spendShards(DAILY_TASK_REROLL_COST_SHARDS, 'daily_task_reroll');
     if (!spent) {
       // Осколков не хватило — снимаем резерв, иначе сгоревшая попытка съела бы суточный
-      // лимит впустую. Восстанавливаем ровно прежнее значение ключа, чужие замены не трогаем.
+      // лимит впустую. Чужие замены не трогаем, а свою возвращаем к прежнему значению:
+      // если замена уже была, её нельзя просто удалить — задание «отыграло» бы назад.
       await withStorageLock(async () => {
         const state = await loadRerollStateRaw(studyTarget);
         const rest = { ...(state.replacements ?? {}) };
-        delete rest[taskId];
+        if (previousReplacementForTask === undefined) delete rest[taskId];
+        else rest[taskId] = previousReplacementForTask;
         await saveRerollState({ dayKey: todayKey, replacements: rest }, studyTarget);
       }).catch(() => {});
       return { ok: false, reason: 'insufficient_shards' };

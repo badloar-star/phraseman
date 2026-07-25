@@ -540,6 +540,7 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(true);
   });
 
+  /* Quiz payload locale coverage was retired with the Quiz/Arena surface.
   it('does not flag quiz rows covered by structured source-locale payloads', () => {
     const result = analyzeUiLocaleSource(
       'app/quiz_data.ts',
@@ -576,6 +577,7 @@ describe('heisenberg UI locale audit', () => {
     expect(result.findings.some((finding) => finding.code === 'locale-object-missing-all-planned-locales')).toBe(true);
   });
 
+  */
   it('detects missing top-level constants/i18n bundles', () => {
     const findings = analyzeUiBundleSource(
       'constants/i18n.ts',

@@ -908,7 +908,9 @@ describe('streak cloud restore safety', () => {
       league_result_pending: pendingResult,
     }));
 
-    expect(restored).toBe(false);
+    // Restore may safely apply unrelated cloud state; the dismissal contract is
+    // that the already-consumed league result itself never reappears.
+    expect(restored).toBe(true);
     await expect(AsyncStorage.getItem('league_result_pending')).resolves.toBeNull();
   });
 

@@ -122,4 +122,30 @@ describe('notification cache account isolation', () => {
     ]);
     expect(mockGetCountByUid['stable-C']).toBe(1);
   });
+
+  it('normalizes report reply coin rewards while accepting legacy shard payloads', async () => {
+    (getCanonicalUserId as jest.Mock).mockResolvedValue('stable-coins');
+    mockDocsByUid['stable-coins'] = [
+      {
+        id: 'current-reward',
+        data: {
+          type: 'report_reply',
+          reportReply: { messageId: 'message-current', coins: 1, claimed: false },
+          createdAt: 300,
+        },
+      },
+      {
+        id: 'legacy-reward',
+        data: {
+          type: 'report_reply',
+          reportReply: { messageId: 'message-legacy', shards: 1, claimed: false },
+          createdAt: 200,
+        },
+      },
+    ];
+
+    const notifications = await refreshUserNotificationsOnce({ force: true });
+
+    expect(notifications.map((notification) => notification.reportReply?.coins)).toEqual([1, 1]);
+  });
 });

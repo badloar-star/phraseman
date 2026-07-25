@@ -1,5 +1,4 @@
 import { getPersonalPlanPhraseLesson } from '../app/personal_plan_phrase_lessons';
-import { getPersonalPlanQuizPhrases } from '../app/personal_plan_quizzes';
 
 const GENERATED_CERTIFIED_LESSON_IDS = [
   'voyazh_d001_content_unit',
@@ -59,10 +58,6 @@ const GENERATED_CERTIFIED_LESSON_IDS = [
   'echo_d011_content_unit',
 ];
 
-const GENERATED_CERTIFIED_QUIZ_IDS = GENERATED_CERTIFIED_LESSON_IDS.map((lessonId) =>
-  lessonId.replace(/_d(\d{3})_content_unit$/, (_match, day) => `_day_${Number(day)}_quiz`),
-);
-
 function expectRussianExplanation(text: string) {
   expect(text).toMatch(/[А-Яа-яЁё]/);
   expect(text).not.toMatch(/\bmatches the day phrase\b/i);
@@ -75,19 +70,6 @@ function expectRussianExplanation(text: string) {
 }
 
 describe('personal plan generated feedback locale', () => {
-  it('keeps generated quiz explanations in Russian for every certified generated day', () => {
-    for (const quizId of GENERATED_CERTIFIED_QUIZ_IDS) {
-      const quiz = getPersonalPlanQuizPhrases(quizId, 'Alex');
-      expect(quiz).not.toBeNull();
-
-      for (const item of quiz ?? []) {
-        for (const explanation of item.explanations) {
-          expectRussianExplanation(explanation);
-        }
-      }
-    }
-  });
-
   it('keeps generated lesson teaching notes in Russian for every certified generated day', () => {
     for (const lessonId of GENERATED_CERTIFIED_LESSON_IDS) {
       const lesson = getPersonalPlanPhraseLesson(lessonId);

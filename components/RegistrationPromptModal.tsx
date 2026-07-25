@@ -43,6 +43,8 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 import { logEvent } from '../app/firebase';
+import { fetchAuthRecoveryHint, type AuthRecoveryHint } from '../app/cloud_sync';
+import { getStableId } from '../app/stable_id';
 import { emitAppEvent } from '../app/events';
 import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { triLang } from '../constants/i18n';
@@ -135,6 +137,10 @@ function RegistrationPromptModal({
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
   const [signInSlow, setSignInSlow] = useState(false);
   const [inlineError, setInlineError] = useState<string | null>(null);
+  // Провайдер последней неуспешной попытки — для кнопки «Повторить» под ошибкой.
+  const [retryProvider, setRetryProvider] = useState<AuthProviderId | null>(null);
+  // Recovery hint: каким аккаунтом входить (маска email с сервера).
+  const [recoveryHint, setRecoveryHint] = useState<AuthRecoveryHint | null>(null);
   const [streakDays, setStreakDays] = useState(0);
 
   // Анимация листа (reanimated, паттерн CardPackShardPaywallModal):
@@ -183,6 +189,7 @@ function RegistrationPromptModal({
       return;
     }
     setInlineError(null);
+    setRetryProvider(null);
     let active = true;
     void isAppleSignInAvailable().then((available) => {
       if (active) setAppleAvail(available);
@@ -211,6 +218,23 @@ function RegistrationPromptModal({
       active = false;
     };
   }, [visible, context, clearSlowTimer, backdropO, sheetY, sheetOpacity, dragTranslateY, cascade]);
+
+  // Recovery hint: в startup_recovery подтягиваем с сервера, КАКИМ аккаунтом
+  // входить (маска email + провайдер). Полный email с сервера не уходит.
+  useEffect(() => {
+    if (!visible || context !== 'startup_recovery') {
+      if (!visible) setRecoveryHint(null);
+      return;
+    }
+    let active = true;
+    void (async () => {
+      const stableId = await getStableId().catch(() => null);
+      if (!stableId) return;
+      const hint = await fetchAuthRecoveryHint(stableId);
+      if (active && hint?.linked) setRecoveryHint(hint);
+    })();
+    return () => { active = false; };
+  }, [visible, context]);
 
   // Каскад появления элемента i: своё окно внутри общего 640мс прогресса.
   const useRiseStyle = (i: number) =>
@@ -386,6 +410,7 @@ function RegistrationPromptModal({
       const attemptToken = attemptLifecycle.startAttempt();
       if (attemptToken === null) return;
       setLoadingProvider(provider);
+      setRetryProvider(null);
       setSignInSlow(false);
       clearSlowTimer();
       slowTimerRef.current = setTimeout(() => {
@@ -410,6 +435,8 @@ function RegistrationPromptModal({
         if (__DEV__) console.log('[RegistrationPromptModal] signInWithProvider returned', result);
 
         if (result.result === 'cancelled') {
+          // Отмена picker'а — retryable: даём «Повторить» под сообщением.
+          setRetryProvider(provider);
           // В TestFlight/проде раньше молчали — выглядело как «кнопка сломана».
           if (__DEV__) {
             const gpsLine =
@@ -443,8 +470,13 @@ function RegistrationPromptModal({
           return;
         }
         if (result.result === 'error') {
+          // Большинство ошибок входа retryable (сеть/холодный старт/App Check) —
+          // покажем «Повторить»; ветки ниже снимают его там, где повтор бессмыслен.
+          setRetryProvider(provider);
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
           if (result.error === 'recovery_provider_mismatch') {
+            // Тут нужен ДРУГОЙ аккаунт, а не повтор того же — «Повторить» прячем.
+            setRetryProvider(null);
             showInlineError(
               triLang(lang, { ru: 'Нужен прежний аккаунт', uk: 'Потрібен попередній акаунт', es: 'Necesitas la cuenta anterior', 'pt-BR': 'Use a conta anterior', vi: 'Cần tài khoản trước đây', id: 'Gunakan akun sebelumnya', tr: 'Önceki hesap gerekli', pl: 'Potrzebne jest poprzednie konto' }),
               triLang(lang, {
@@ -461,6 +493,8 @@ function RegistrationPromptModal({
             return;
           }
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
+            // Конфиг сборки, а не транзиент — повтор не поможет.
+            setRetryProvider(null);
             showInlineError(
               triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
               triLang(lang, {
@@ -732,6 +766,14 @@ function RegistrationPromptModal({
             {finalSubtitle}
           </Animated.Text>
 
+          {context === 'startup_recovery' && recoveryHint?.linked === true && (
+            <Animated.Text style={[styles.subtitle, { color: t.accent, fontSize: f.caption }, rise1]}>
+              {recoveryHint.maskedEmail
+                ? `${triLang(lang, { ru: 'Твой прогресс привязан к аккаунту', uk: 'Твій прогрес прив’язаний до акаунта', es: 'Tu progreso está vinculado a la cuenta', 'pt-BR': 'Seu progresso está vinculado à conta', vi: 'Tiến độ của bạn được liên kết với tài khoản', id: 'Progresmu tertaut ke akun', tr: 'İlerlemen bu hesaba bağlı', pl: 'Twój postęp jest powiązany z kontem' })} ${recoveryHint.maskedEmail} ${triLang(lang, { ru: '— войди через него', uk: '— увійди через нього', es: '— inicia sesión con ella', 'pt-BR': '— entre com ela', vi: '— hãy đăng nhập bằng tài khoản đó', id: '— masuk dengan akun itu', tr: '— onunla giriş yap', pl: '— zaloguj się przez nie' })}`
+                : triLang(lang, { ru: `Прогресс привязан к аккаунту ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — выбери его при входе`, uk: `Прогрес прив’язаний до акаунта ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — обери його під час входу`, es: `El progreso está vinculado a una cuenta de ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'}: elígela al entrar`, 'pt-BR': `O progresso está vinculado a uma conta ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — escolha-a ao entrar`, vi: `Tiến độ được liên kết với tài khoản ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — hãy chọn đúng tài khoản đó`, id: `Progres tertaut ke akun ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — pilih akun itu saat masuk`, tr: `İlerleme bir ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} hesabına bağlı — girişte onu seç`, pl: `Postęp jest powiązany z kontem ${recoveryHint.provider === 'apple' ? 'Apple' : 'Google'} — wybierz je przy logowaniu` })}
+            </Animated.Text>
+          )}
+
           <Animated.View style={[styles.buttons, rise2]}>
             {googleAvail && (
               <GoogleSignInButton
@@ -795,6 +837,19 @@ function RegistrationPromptModal({
             <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
               {inlineError}
             </Text>
+          )}
+
+          {!!inlineError && retryProvider !== null && loadingProvider === null && (
+            <Pressable
+              onPress={() => { void handleSignIn(retryProvider); }}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, { ru: 'Повторить вход', uk: 'Повторити вхід', es: 'Reintentar acceso', 'pt-BR': 'Tentar entrar novamente', vi: 'Thử đăng nhập lại', id: 'Coba masuk lagi', tr: 'Girişi tekrar dene', pl: 'Spróbuj zalogować ponownie' })}
+              style={[styles.laterButton, { borderRadius: 12, marginTop: 8, backgroundColor: t.accent }]}
+            >
+              <Text style={[styles.laterText, { color: t.correctText, fontSize: f.body }]}>
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
+              </Text>
+            </Pressable>
           )}
 
           {__DEV__ && context !== 'startup_recovery' && (

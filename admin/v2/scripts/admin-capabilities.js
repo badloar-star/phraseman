@@ -12,12 +12,13 @@ export const ADMIN_CAPABILITY_REGISTRY = Object.freeze([
   { id: 'coin-center', route: 'money', nativeRoute: 'coin-center', label: 'Центр монет', description: 'Курс биржи монет в звёзды, ручное переопределение, история и объёмы обменов.' },
   { id: 'asset-studio', route: 'content', nativeRoute: 'asset-studio', label: 'Студия изображений', description: 'Создание изображений через безопасные серверные задания.' },
   { id: 'plans', route: 'content', nativeRoute: 'plans', label: 'Планы', description: 'Структурированные планы действий с серверно заданными шагами.' },
+  { id: 'english-test', route: 'content', nativeRoute: 'english-test', label: 'Тест английского', description: 'Воронка веб-теста уровня: лендинг, вопросы, сертификаты, установки приложения.' },
 ].map((capability) => Object.freeze({ ...capability, migrationStatus: 'native' })));
 
 const NATIVE_PAGE_HASHES = new Set([
   'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
   'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'plans', 'campaigns', 'coin-center',
-  'control-panel', 'admin-settings', 'agent-office', 'agent-manager',
+  'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'english-test',
 ]);
 
 const ANALYTICS_BOOKMARK_HASHES = new Set([

@@ -96,7 +96,7 @@ export const REFERRAL_CODE_INDEX_COLLECTION = 'referral_codes';
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const FUNCTIONS_REGION = 'us-central1';
 // friendLookupUser has a 15 s server budget and may need a cold start plus the
-// legacy-name fallback queries. The former 2.5 s client cutoff converted valid
+// legacy-name compatibility queries. The former 2.5 s client cutoff converted valid
 // late responses into a false "not found" result.
 export const FRIEND_NAME_LOOKUP_CALLABLE_MS = 12_000;
 const FRIEND_NAME_LOOKUP_ATTEMPTS = 2;

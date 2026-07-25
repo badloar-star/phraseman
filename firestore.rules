@@ -65,6 +65,38 @@ service cloud.firestore {
         );
     }
 
+    // Identity ownership is server-authoritative. These fields are written only
+    // by Cloud Functions through Admin SDK, which bypasses Firestore Rules.
+    // There is deliberately no isAdmin() exception: a browser-admin token is
+    // still an untrusted client credential and must use an audited callable.
+    function serverOwnedUserIdentityFields() {
+      return [
+        'firebaseAuthUid',
+        'linkedAuth',
+        'identityHidden',
+        'canonicalStableId',
+        'duplicateOfStableId',
+        'anon_merge_claim',
+        'identityCanonicalizedAt',
+        'identityMergedAt',
+        'identityCleanupAt',
+        'identityCleanupReason',
+      ];
+    }
+
+    function hasNoServerIdentityWrites() {
+      return !request.resource.data.diff(resource.data).affectedKeys()
+        .hasAny(serverOwnedUserIdentityFields());
+    }
+
+    function newDocHasNoServerIdentityWrites() {
+      return !request.resource.data.keys().hasAny(serverOwnedUserIdentityFields());
+    }
+
+    function userDocHasNoServerIdentity() {
+      return !resource.data.keys().hasAny(serverOwnedUserIdentityFields());
+    }
+
     // Флаг, который CF progressSubmitEvent/progressMigrateSnapshot выставляет
     // при первом серверном событии. Пока флага нет — старый клиент может писать
     // XP/streak/progress напрямую (плавный переход без force-update).
@@ -1095,21 +1127,37 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Recovery secrets, rate-limit state, and audit events are server-only.
+    // Cloud Functions use the Admin SDK, which bypasses Firestore Rules.
+    match /auth_recovery_codes/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /auth_recovery_rate_limits/{document=**} {
+      allow read, write: if false;
+    }
+
+    match /auth_recovery_events/{document=**} {
+      allow read, write: if false;
+    }
+
     match /users/{userId} {
       // read: владелец/админ ИЛИ документа ещё нет (пустое чтение безопасно и
       // не валит клиентскую транзакцию входа на новом localStableId — см.
       // userDocMissing выше). delete остаётся строго для владельца/админа.
       allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);
-      allow delete: if userDocOwnerMatchesAuth(userId);
+      allow delete: if userDocOwnerMatchesAuth(userId) && userDocHasNoServerIdentity();
       // Клиент может обновлять свой документ, но не может трогать premium/VIP поля
       // и баланс осколков (shards). Их пишет только Admin SDK через Cloud Functions.
       allow update: if userDocOwnerMatchesAuth(userId)
         && accountDeletionNotPending(userId)
+        && hasNoServerIdentityWrites()
         && progressHasNoPremiumWrites()
         && hasNoShardWrites()
         && hasNoProgressAuthorityMarkerWrites();
       allow create: if newUserDocOwnerMatchesAuth(userId)
         && accountDeletionNotPending(userId)
+        && newDocHasNoServerIdentityWrites()
         && newDocHasNoPremiumWrites()
         && newDocHasNoShardWrites()
         && newDocHasNoServerScoreWrites()
@@ -1145,6 +1193,11 @@ service cloud.firestore {
       match /reward_claims/{claimId} {
         allow read, create: if userDocOwnerMatchesAuth(userId);
         allow update, delete: if false;
+      }
+
+      match /tournament_receipts/{receiptId} {
+        allow read: if userDocOwnerMatchesAuth(userId);
+        allow write: if false;
       }
 
       // Idempotency receipts for shardsApplyDelta are written only by Admin SDK.
@@ -1717,54 +1770,13 @@ service cloud.firestore {
           && !exists(/databases/$(database)/documents/account_deletion_auth_markers/$(request.auth.uid));
       }
 
-      function stableIdOwnedByThisAuth(stableId) {
-        return stableId is string
-          && stableId.size() > 0
-          && stableUserMatchesAuth(stableId);
-      }
-
-      function authLinkLegacyUpdateOk() {
-        return ownsAuthLinkDoc()
-          && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])
-          && (
-            request.resource.data.stable_id == resource.data.stable_id
-            || stableIdOwnedByThisAuth(request.resource.data.stable_id)
-          );
-      }
-
       // The app only needs to read the link for the provider account that is
       // currently signed in. Broad authenticated reads expose account mappings.
       allow read: if isAdmin() || ownsAuthLinkDoc();
+      // Identity anchors are server-owned. Browser clients, including admins,
+      // must use a callable; Admin SDK writes bypass Firestore Rules.
+      allow create, update, delete: if false;
 
-      // Create: Ð¿Ñ€Ð¸ Ð¿ÐµÑ€Ð²Ð¾Ð¼ login. Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ ÑÑÑ‹Ð»Ð°Ñ‚ÑŒÑÑ Ð½Ð° providerUid Ð¸Ð· id
-      // Ð¸ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ stable_id Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ ÑŽÐ·ÐµÑ€Ð° + provider.
-      allow create: if ownsAuthLinkDoc()
-        && request.resource.data.providerUid == providerUid
-        && request.resource.data.stable_id is string
-        && request.resource.data.stable_id.size() > 0
-        && request.resource.data.provider in ['google', 'apple']
-        && stableIdOwnedByThisAuth(request.resource.data.stable_id);
-
-      // Update: Ð¿Ñ€Ð¸ relogin Ð¸Ð»Ð¸ swap Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°. ÐœÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ»Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹.
-      // providerUid Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ.
-      allow update: if (
-          ownsAuthLinkDoc()
-          && (!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)
-          && request.resource.data.providerUid == providerUid
-          && request.resource.data.provider in ['google', 'apple']
-          && (!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)
-          && request.resource.data.diff(resource.data).affectedKeys()
-             .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform', 'providerUid', 'provider', 'linkedAt', 'updatedAt'])
-          && (
-            request.resource.data.stable_id == resource.data.stable_id
-            || stableIdOwnedByThisAuth(request.resource.data.stable_id)
-          )
-        )
-        || authLinkLegacyUpdateOk();
-
-      // Delete: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð´Ð¼Ð¸Ð½ (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ð°Ð½ÐµÐ»ÑŒ) Ð¸Ð»Ð¸ Cloud Function Ð´Ð»Ñ revocation.
-      allow delete: if isAdmin();
     }
 
     // ÐÐ³Ñ€ÐµÐ³Ð°Ñ‚Ñ‹ Ð´Ð»Ñ UI (ÑÑ‡Ñ‘Ñ‚Ñ‡Ð¸Ðº Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸ Ð°Ñ€ÐµÐ½Ñ‹ â€” Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Cloud Function)
@@ -2085,6 +2097,13 @@ service cloud.firestore {
 
     match /{collection}/{document=**} {
       allow read, write: if isAdmin()
+        && collection != 'users'
+        && collection != 'auth_links'
+        && collection != 'account_deletion_tombstones'
+        && collection != 'account_deletion_auth_markers'
+        && collection != 'auth_recovery_codes'
+        && collection != 'auth_recovery_rate_limits'
+        && collection != 'auth_recovery_events'
         && collection != 'agent_cases'
         && collection != 'agent_recommendations'
         && collection != 'agent_approvals'
@@ -2109,6 +2128,12 @@ service cloud.firestore {
         && collection != 'economy_exchange_history'
         && collection != 'coin_exchange_trades'
         && collection != 'coin_migrations'
+        && collection != 'tournamentSchedule'
+        && collection != 'tournamentRooms'
+        && collection != 'tournamentTasks'
+        && collection != 'tournamentSeasons'
+        && collection != 'tournamentBank'
+        && collection != 'botProfiles'
         // Retired Quiz/Arena collections remain sealed even for browser admins.
         // Firestore overlapping matches are OR-combined, so every retired root
         // must also be excluded from this legacy compatibility catch-all.
@@ -2260,13 +2285,57 @@ service cloud.firestore {
     // ── Турниры (Фаза 1 MVP, спека docs/tournaments/2026-07-21-tournaments-mode-spec.md) ──
     // Все записи — только через Cloud Functions (Admin SDK). Клиенты читают
     // комнаты/сезон/банк/ботов; задания отдаёт только сервер по seed.
+    // Compatibility for rooms deployed before participantAuthUids existed.
+    // The fixed room cap is 16, so exact indexed checks preserve document
+    // listeners for real participants without granting a collection-wide read.
+    function legacyTournamentHasPlayerId(room, uid) {
+      return (room.players.size() > 0 && room.players[0].isBot == false && room.players[0].id == uid)
+        || (room.players.size() > 1 && room.players[1].isBot == false && room.players[1].id == uid)
+        || (room.players.size() > 2 && room.players[2].isBot == false && room.players[2].id == uid)
+        || (room.players.size() > 3 && room.players[3].isBot == false && room.players[3].id == uid)
+        || (room.players.size() > 4 && room.players[4].isBot == false && room.players[4].id == uid)
+        || (room.players.size() > 5 && room.players[5].isBot == false && room.players[5].id == uid)
+        || (room.players.size() > 6 && room.players[6].isBot == false && room.players[6].id == uid)
+        || (room.players.size() > 7 && room.players[7].isBot == false && room.players[7].id == uid)
+        || (room.players.size() > 8 && room.players[8].isBot == false && room.players[8].id == uid)
+        || (room.players.size() > 9 && room.players[9].isBot == false && room.players[9].id == uid)
+        || (room.players.size() > 10 && room.players[10].isBot == false && room.players[10].id == uid)
+        || (room.players.size() > 11 && room.players[11].isBot == false && room.players[11].id == uid)
+        || (room.players.size() > 12 && room.players[12].isBot == false && room.players[12].id == uid)
+        || (room.players.size() > 13 && room.players[13].isBot == false && room.players[13].id == uid)
+        || (room.players.size() > 14 && room.players[14].isBot == false && room.players[14].id == uid)
+        || (room.players.size() > 15 && room.players[15].isBot == false && room.players[15].id == uid);
+    }
+
+    function isLegacyTournamentParticipant(room) {
+      return request.auth != null
+        && room.players is list
+        && (legacyTournamentHasPlayerId(room, request.auth.uid)
+          || (exists(/databases/$(database)/documents/auth_links/$(request.auth.uid))
+            && legacyTournamentHasPlayerId(
+              room,
+              get(/databases/$(database)/documents/auth_links/$(request.auth.uid)).data.stable_id
+            )));
+    }
+
     match /tournamentSchedule/{docId} {
       allow read: if request.auth != null;
       allow write: if false;
     }
     match /tournamentRooms/{roomId} {
-      allow read: if request.auth != null;
+      // Lobby discovery remains available to signed-in users. Once play starts,
+      // only auth identities recorded by tournamentJoin may read the room.
+      allow read: if request.auth != null
+        && (resource.data.state in ['scheduled', 'lobby']
+          || (resource.data.get('participantAuthUidsComplete', false) == true
+            && request.auth.uid in resource.data.get('participantAuthUids', []))
+          || (resource.data.get('participantAuthUidsComplete', false) != true
+            && (request.auth.uid in resource.data.get('participantAuthUids', [])
+              || isLegacyTournamentParticipant(resource.data))));
       allow write: if false;
+    }
+    match /tournamentRooms/{roomId}/taskSecrets/{taskId} {
+      allow read, write: if false;
     }
     match /tournamentTasks/{taskId} {
       allow read, write: if false;
@@ -2288,6 +2357,10 @@ service cloud.firestore {
       allow write: if false;
     }
     match /users/{uid}/reward_claims/{claimId} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow write: if false;
+    }
+    match /users/{uid}/tournament_receipts/{receiptId} {
       allow read: if request.auth != null && request.auth.uid == uid;
       allow write: if false;
     }

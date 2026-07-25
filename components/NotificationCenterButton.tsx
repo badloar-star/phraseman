@@ -10,7 +10,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { HOME_NOTIFICATION_BADGE_COLOR, HOME_NOTIFICATION_BADGE_TEXT_COLOR } from './homeNotificationBadge';
 import AppMessagesInbox from './AppMessagesInbox';
-import { claimReportReplyShardsOptimistically } from '../app/app_messages';
+import { claimReportReplyCoinsOptimistically } from '../app/app_messages';
 import {
   countUnreadNotifications,
   isUserNotificationVisible,
@@ -235,12 +235,12 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
 
   const claimReportReward = useCallback((row: UserNotification) => {
     const reward = row.reportReply;
-    if (!reward || reward.shards <= 0 || reward.claimed) return;
+    if (!reward || reward.coins <= 0 || reward.claimed) return;
     if (optimisticReportClaimIdsRef.current.has(reward.messageId)) return;
     optimisticReportClaimIdsRef.current.add(reward.messageId);
     hapticTap();
     markReportReplyClaimedLocally(row.id, reward.messageId);
-    void claimReportReplyShardsOptimistically(reward.messageId, reward.shards);
+    void claimReportReplyCoinsOptimistically(reward.messageId, reward.coins);
   }, [markReportReplyClaimedLocally]);
 
   const openNotification = useCallback((row: UserNotification) => {
@@ -265,14 +265,14 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
         <Text style={[styles.detailMeta, { color: t.textGhost }]}>{timeLabel(row.createdAt)}</Text>
         <Text style={[styles.detailTitle, { color: t.textPrimary }]}>{title}</Text>
         {body ? <Text style={[styles.detailBody, { color: t.textMuted }]}>{body}</Text> : null}
-        {reward.shards > 0 ? (
+        {reward.coins > 0 ? (
           <View style={[styles.rewardCard, { backgroundColor: t.bgSurface, borderColor: 'rgba(99,217,143,0.35)' }]}>
             <View style={styles.rewardTop}>
               <View style={styles.rewardIcon}>
                 <Ionicons name={reward.claimed ? 'checkmark-circle' : 'diamond-outline'} size={20} color="#2E9E63" />
               </View>
               <Text style={[styles.rewardTitle, { color: t.textPrimary }]}>
-                {reward.claimed ? copy.claimed : `+${reward.shards}`}
+                {reward.claimed ? copy.claimed : `+${reward.coins}`}
               </Text>
             </View>
             {!reward.claimed ? (
@@ -280,12 +280,12 @@ function NotificationCenterButton({ isHomeTabActive, homeFocusTick }: Notificati
                 testID="notification-report-reply-claim-cta"
                 activeOpacity={0.86}
                 accessibilityRole="button"
-                accessibilityLabel={copy.claimShards(reward.shards)}
+                accessibilityLabel={copy.claimShards(reward.coins)}
                 onPress={() => claimReportReward(row)}
                 style={styles.rewardButton}
               >
                 <Ionicons name="diamond-outline" size={17} color="#07110A" />
-                <Text style={styles.rewardButtonText}>{copy.claimShards(reward.shards)}</Text>
+                <Text style={styles.rewardButtonText}>{copy.claimShards(reward.coins)}</Text>
               </TouchableOpacity>
             ) : null}
           </View>

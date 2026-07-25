@@ -2,11 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import { dailyPhraseContentAvailableForTarget } from '../app/daily_phrase_target_gate';
 import { diagnosticContentAvailableForTarget } from '../app/diagnostic_target_gate';
-import { quizContentAvailableForTarget } from '../app/quiz_target_gate';
-import {
-  getAvailableThematicQuizCategories,
-  getThematicQuizPhrases,
-} from '../app/quiz_thematic_registry';
 
 const ROOT = path.join(__dirname, '..');
 
@@ -30,33 +25,13 @@ describe('Gustav French dev surface parity', () => {
     }
   });
 
-  it('keeps the English app shape visible for French dev while source-gating missing French content', () => {
-    const home = read('app/(tabs)/home.tsx');
-    const quizzes = read('app/(tabs)/quizzes.tsx');
+  it('keeps active English surfaces visible for French dev while source-gating missing French content', () => {
     const dailyPhrase = read('components/DailyPhraseCard.tsx');
     const diagnostic = read('app/diagnostic_test.tsx');
     const lessonMenu = read('app/lesson_menu.tsx');
 
-    expect(quizContentAvailableForTarget('fr')).toBe(true);
     expect(diagnosticContentAvailableForTarget('fr')).toBe(true);
     expect(dailyPhraseContentAvailableForTarget('fr')).toBe(true);
-
-    expect(home).toContain("testID: 'home-quick-quizzes'");
-    expect(home).toContain("key: 'daily'");
-    expect(home).toContain("key: 'attest'");
-    expect(home).toContain('const visibleQuickItems = quickItems');
-    expect(home).toContain('const visibleActivityQuickItems = activityQuickItems');
-    expect(home).not.toContain("quickItems.filter((item) => item.key !== 'quizzes')");
-    expect(home).not.toContain("activityQuickItems.filter((item) => item.key !== 'attest')");
-    expect(home).not.toContain("studyTarget !== 'fr' && <DailyPhraseCard");
-
-    const quizRoot = quizzes.slice(quizzes.indexOf('export default function QuizzesScreen'));
-    expect(quizRoot).toContain(': <LevelSelect sourceGated={frenchQuizBlocked}');
-    expect(quizRoot).not.toContain('return <FrenchQuizUnavailable />;');
-    expect(quizzes).toContain('const lockedBySourceGate = sourceGated');
-    expect(quizzes).toContain('const quizCardsLocked = lockedBySourceGate || lockedByDailyLimit');
-    expect(quizzes).toContain('() => getAvailableThematicQuizCategories(studyTarget)');
-    expect(quizzes).not.toContain('sourceGated ? [] : getAvailableThematicQuizCategories(studyTarget)');
 
     expect(dailyPhrase).toContain('const dailyPhraseGateOpen = dailyPhraseContentAvailableForTarget(studyTarget)');
     expect(dailyPhrase).toContain('getTodayPhraseForTarget(studyTarget, lang)');
@@ -68,40 +43,6 @@ describe('Gustav French dev surface parity', () => {
     expect(lessonMenu).toContain("const frenchAuxiliarySourceGated = storageStudyTarget(studyTarget) === 'fr'");
     expect(lessonMenu).toContain('unavailable: frenchAuxiliarySourceGated');
     expect(lessonMenu).not.toContain('hideEnglishOnlyAuxiliary');
-  });
-
-  it('keeps thematic challenge sections visible for French dev without exposing English question banks', () => {
-    const englishCategories = getAvailableThematicQuizCategories('en');
-    const frenchCategories = getAvailableThematicQuizCategories('fr');
-
-    expect(englishCategories.length).toBeGreaterThan(0);
-    expect(frenchCategories.map((category) => category.id)).toEqual(
-      englishCategories.map((category) => category.id),
-    );
-    expect(frenchCategories.every((category) => category.target === 'en')).toBe(true);
-
-    for (const category of frenchCategories) {
-      expect(getThematicQuizPhrases(category.id, { studyTarget: 'fr', sourceLocale: 'ru' })).toEqual([]);
-    }
-  });
-
-  it('blocks French dev actions before global navigation keys or English loaders can open stale content', () => {
-    const quizzes = read('app/(tabs)/quizzes.tsx');
-    const dailyTasks = read('app/daily_tasks_screen.tsx');
-
-    expect(quizzes).toContain('if (frenchQuizBlocked) {');
-    expect(quizzes).toContain('await AsyncStorage.removeItem(QUIZ_E2E_OPEN_RESULTS_KEY)');
-    expect(quizzes).toContain('if (frenchQuizBlocked) return;');
-    expect(quizzes).toContain('getQuizPhrasesLoaded(quizLevel, 10, lang, studyTarget)');
-
-    const dailyTaskQuizSlice = dailyTasks.slice(
-      dailyTasks.indexOf("const openQuizOrFrenchGate = async (level: 'easy' | 'medium' | 'hard')"),
-      dailyTasks.indexOf('const openDiagnosticOrFrenchGate'),
-    );
-    expect(dailyTaskQuizSlice).toContain('if (!quizContentAvailableForTarget(studyTarget))');
-    expect(dailyTaskQuizSlice.indexOf('if (!quizContentAvailableForTarget(studyTarget))')).toBeLessThan(
-      dailyTaskQuizSlice.indexOf('await AsyncStorage.setItem(quizNavLevelKey(studyTarget), level)'),
-    );
   });
 
   it('keeps French daily-task sections visible but source-gates non-French task destinations before navigation', () => {
@@ -119,7 +60,6 @@ describe('Gustav French dev surface parity', () => {
       expect(source).toContain("openTrainerOrFrenchGate('/trainer')");
       expect(source).toContain("openTrainerOrFrenchGate('/trainer_words_session')");
       expect(source).toContain("openTrainerOrFrenchGate('/trainer_phrases_session')");
-      expect(source).toContain("openTrainerOrFrenchGate('/trainer_arena_session')");
 
       expect(source).toContain('openFlashcardsOrFrenchGate');
       expect(source).toContain("flashcardsSourceGatedContentAvailableForTarget(storageStudyTarget(studyTarget), 'system_cards')");
@@ -149,7 +89,6 @@ describe('Gustav French dev surface parity', () => {
     const trainerSessionFiles = [
       read('app/trainer_words_session.tsx'),
       read('app/trainer_phrases_session.tsx'),
-      read('app/trainer_arena_session.tsx'),
     ];
 
     for (const source of trainerSessionFiles) {
@@ -168,7 +107,6 @@ describe('Gustav French dev surface parity', () => {
     expect(adminSettings).toContain('const openTrainerQaRoute =');
     expect(adminSettings).toContain("openTrainerQaRoute('/trainer_words_session')");
     expect(adminSettings).toContain("openTrainerQaRoute('/trainer_phrases_session')");
-    expect(adminSettings).toContain("openTrainerQaRoute('/trainer_arena_session')");
     expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_words_session' as any)}");
     expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_phrases_session' as any)}");
     expect(adminSettings).not.toContain("onPress={() => router.push('/trainer_arena_session' as any)}");

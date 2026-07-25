@@ -1023,6 +1023,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   checkBtnText: { fontWeight: '800' },
+  resultActions: {
+    gap: 10,
+  },
+  resultActionButton: {
+    minHeight: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+  },
+  resultActionText: {
+    fontWeight: '800',
+    textAlign: 'center',
+  },
   doneContainer: {
     flex: 1,
     alignItems: 'center',

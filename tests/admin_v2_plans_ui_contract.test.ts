@@ -41,7 +41,8 @@ describe('Admin v2 plans UI', () => {
     expect(core).toContain("data-action=\"open-plan-form\"");
     expect(core).toContain('plans-layout');
     expect(core).toContain('plan-row');
-    expect(core).toContain('quiet-menu');
+    // зачем: скрытое меню «⋯» заменено видимыми кнопками по требованию владельца (однокликовость)
+    expect(core).not.toContain('quiet-menu');
     expect(core).toContain('plan.title');
     expect(core).toContain('plan.summary');
     expect(core).toContain('selected.steps');

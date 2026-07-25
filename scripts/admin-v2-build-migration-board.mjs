@@ -38,6 +38,11 @@ const APPROVED_NATIVE_CAPABILITY_IDS = Object.freeze([
   'asset-studio',
   'plans',
 ]);
+// These pages were created directly in Admin V2 and therefore are not rows in
+// the historical migration inventory. They still must use a native V2 route.
+const V2_ONLY_NATIVE_CAPABILITY_IDS = Object.freeze([
+  'english-test',
+]);
 const NATIVE_PAGE_ROUTES = new Set([
   ...APPROVED_ROUTES,
   'support',
@@ -52,6 +57,7 @@ const NATIVE_PAGE_ROUTES = new Set([
   'agent-manager',
   'plans',
   'coin-center',
+  'english-test',
 ]);
 const STATUS_KEYS = Object.freeze(['inventory', 'ported', 'fallback', 'guarded', 'blocked']);
 
@@ -138,8 +144,9 @@ for (const [label, rows] of [
 
 const registry = Array.isArray(ADMIN_CAPABILITY_REGISTRY) ? ADMIN_CAPABILITY_REGISTRY : [];
 const registryIds = registry.map((capability) => capability?.id);
-if (!sameMembers(registryIds, APPROVED_NATIVE_CAPABILITY_IDS)) {
-  errors.push(`native registry ids must contain exactly: ${APPROVED_NATIVE_CAPABILITY_IDS.join(', ')}`);
+const allowedRegistryIds = [...APPROVED_NATIVE_CAPABILITY_IDS, ...V2_ONLY_NATIVE_CAPABILITY_IDS];
+if (!sameMembers(registryIds, allowedRegistryIds)) {
+  errors.push(`native registry ids must contain exactly: ${allowedRegistryIds.join(', ')}`);
 }
 validateUnique(registry, 'id', 'native registry', errors);
 
@@ -163,6 +170,7 @@ for (const [index, capability] of registry.entries()) {
     errors.push(`native registry ${capability.id} label and description must be non-empty`);
   }
 
+  if (V2_ONLY_NATIVE_CAPABILITY_IDS.includes(capability.id)) continue;
   const saved = coverageByCapabilityId.get(capability.id);
   if (!saved) {
     errors.push(`saved board must contain native registry capability ${capability.id}`);

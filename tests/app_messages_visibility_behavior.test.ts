@@ -22,10 +22,16 @@ jest.mock('../app/config', () => ({
 }));
 
 import {
+  acknowledgePersonalAdminMessageModal,
+  applyPendingPersonalModalAcknowledgementsToSnapshot,
   dismissAppMessage,
+  mergeAppMessagesWithStates,
   migrateLegacyReportReplyClaimsForOwnedMessages,
+  normalizeOwnedUserAppMessage,
   normalizeUserAppMessage,
+  pickNextLoginPersonalMessage,
   readPendingAppMessageVisibility,
+  readPendingPersonalModalAcknowledgements,
   readPendingReportReplyShardClaims,
   restoreAppMessage,
 } from '../app/app_messages';
@@ -100,8 +106,9 @@ describe('app-message visibility outbox behavior', () => {
     expect(await AsyncStorage.getItem('app_messages_report_reply_pending_claims_v2:account-A')).toBeNull();
   });
 
-  it('migrates a legacy reward only after matching a private message owned by that account', async () => {
+  it('migrates and caps a legacy reward only after matching a private message owned by that account', async () => {
     const claim = [{ messageId: 'report-owned', amount: 2, creditedAtMs: 900 }];
+    const cappedClaim = [{ messageId: 'report-owned', amount: 1, creditedAtMs: 900 }];
     await AsyncStorage.setItem('app_messages_report_reply_pending_claims_v1', JSON.stringify(claim));
     const ownedMessage = normalizeUserAppMessage('report-owned', {
       kind: 'report_reply',
@@ -113,8 +120,44 @@ describe('app-message visibility outbox behavior', () => {
     }, 1_000);
 
     expect(await migrateLegacyReportReplyClaimsForOwnedMessages('account-A', [])).toEqual([]);
-    expect(await migrateLegacyReportReplyClaimsForOwnedMessages('account-A', [ownedMessage])).toEqual(claim);
+    expect(await migrateLegacyReportReplyClaimsForOwnedMessages('account-A', [ownedMessage])).toEqual(cappedClaim);
     expect(await AsyncStorage.getItem('app_messages_report_reply_pending_claims_v1')).toBeNull();
-    expect(await AsyncStorage.getItem('app_messages_report_reply_pending_claims_v2:account-A')).toBe(JSON.stringify(claim));
+    expect(await AsyncStorage.getItem('app_messages_report_reply_pending_claims_v2:account-A')).toBe(JSON.stringify(cappedClaim));
+  });
+
+  it('persists personal modal acknowledgement per account before an offline retry', async () => {
+    const now = jest.spyOn(Date, 'now').mockReturnValue(2_000);
+    const message = normalizeOwnedUserAppMessage('personal-1', {
+      kind: 'personal_admin_message',
+      recipientUid: 'account-A',
+      deliveryMode: 'next_login_modal',
+      nextLoginModalPending: true,
+      title: 'Team',
+      body: 'Offline durable acknowledgement',
+      createdAtMs: 1_000,
+    }, 'account-A', 2_000)!;
+
+    await acknowledgePersonalAdminMessageModal('personal-1', 'account-A');
+    const pending = await readPendingPersonalModalAcknowledgements('account-A');
+    const restarted = applyPendingPersonalModalAcknowledgementsToSnapshot(
+      mergeAppMessagesWithStates([message], [], 2_000),
+      pending,
+    );
+    now.mockRestore();
+
+    expect(pending).toEqual([{ messageId: 'personal-1', acknowledgedAtMs: 2_000 }]);
+    expect(pickNextLoginPersonalMessage(restarted)).toBeNull();
+    expect(restarted.messages.map((row) => row.id)).toEqual(['personal-1']);
+    expect(await readPendingPersonalModalAcknowledgements('account-B')).toEqual([]);
+  });
+
+  it('caps legacy local report-claim outbox amounts without changing other reward stores', async () => {
+    await AsyncStorage.setItem(
+      'app_messages_report_reply_pending_claims_v2:account-A',
+      JSON.stringify([{ messageId: 'legacy-report', amount: 50, creditedAtMs: 900 }]),
+    );
+    expect(await readPendingReportReplyShardClaims('account-A')).toEqual([
+      { messageId: 'legacy-report', amount: 1, creditedAtMs: 900 },
+    ]);
   });
 });

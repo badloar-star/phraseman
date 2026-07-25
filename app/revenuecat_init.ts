@@ -169,25 +169,33 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
   if (!isCurrent()) return false;
   if (!canonicalUserId) return false;
 
+  const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent()) return false;
+  if (!currentAppUserId) return false;
   const now = Date.now();
-  if (lastIdentitySyncUserId === canonicalUserId && now - lastIdentitySyncAt < RC_IDENTITY_SYNC_TTL_MS) {
+  if (
+    currentAppUserId === canonicalUserId
+    && lastIdentitySyncUserId === canonicalUserId
+    && now - lastIdentitySyncAt < RC_IDENTITY_SYNC_TTL_MS
+  ) {
     return true;
   }
 
-  const currentAppUserId = await Purchases.getAppUserID().catch(() => '');
-  if (!isCurrent()) return false;
   let loginCustomerInfo: unknown = null;
-  if (currentAppUserId && currentAppUserId !== canonicalUserId) {
+  if (currentAppUserId !== canonicalUserId) {
     if (!isCurrent()) return false;
     const loginResult = await Purchases.logIn(canonicalUserId).catch(() => null);
-    if (!isCurrent()) {
-      return false;
-    }
+    if (!isCurrent() || !loginResult) return false;
     loginCustomerInfo = (loginResult as { customerInfo?: unknown } | null)?.customerInfo ?? null;
   }
 
+  // logIn resolving is not proof that the SDK actually moved from A to B.
+  // Verify the SDK identity before attributes, CustomerInfo, or local persistence.
+  const verifiedAppUserId = await Purchases.getAppUserID().catch(() => '');
+  if (!isCurrent() || verifiedAppUserId !== canonicalUserId) return false;
+
   const attributes: Record<string, string> = { phraseman_uid: canonicalUserId };
-  if (currentAppUserId && currentAppUserId !== canonicalUserId && isRevenueCatAnonymousId(currentAppUserId)) {
+  if (currentAppUserId !== canonicalUserId && isRevenueCatAnonymousId(currentAppUserId)) {
     attributes.phraseman_previous_rc_app_user_id = currentAppUserId;
   }
   if (!isCurrent()) return false;
@@ -210,15 +218,10 @@ export async function syncRevenueCatIdentity(callerIsCurrent?: () => boolean): P
     }
   }
 
-  const syncedAppUserId = await Purchases.getAppUserID().catch(() => '');
   if (!isCurrent()) return false;
-  const identityReady = syncedAppUserId === canonicalUserId || currentAppUserId === canonicalUserId;
-
-  if (identityReady) {
-    lastIdentitySyncUserId = canonicalUserId;
-    lastIdentitySyncAt = now;
-  }
-  return identityReady;
+  lastIdentitySyncUserId = canonicalUserId;
+  lastIdentitySyncAt = now;
+  return true;
 }
 
 /**

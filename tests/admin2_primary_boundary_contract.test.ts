@@ -31,7 +31,15 @@ describe('Admin 2 primary boundary', () => {
     expect(sources[0]).toContain('href="/styles/admin.css"');
     expect(sources[0]).toContain('src="/scripts/admin-router.js"');
     expect(sources[0]).not.toContain('="/v2/');
-    for (const source of sources) {
+    // Owner decision (2026-07-24): one sanctioned emergency escape to the archived
+    // old admin — the small yellow icon-only button in the V2 shell. Strip it before
+    // asserting that nothing else references the legacy surface.
+    const [shellSource, ...runtimeSources] = sources;
+    const sanitized = [
+      shellSource.replace(/<a class="legacy-admin-link"[\s\S]*?<\/a>/, ''),
+      ...runtimeSources,
+    ];
+    for (const source of sanitized) {
       expect(source).not.toMatch(/\.\.\/\.\.\/admin\/index\.html|\/legacy\.html|LEGACY_ROUTE_MAP|legacyTab|legacyPage|capabilityUrl/i);
     }
   });

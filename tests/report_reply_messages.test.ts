@@ -1,8 +1,8 @@
 /**
  * Ответы на репорты в инбоксе (users/{uid}/user_messages, kind 'report_reply').
  * Контракт: персональное сообщение раскладывает единый title/body во все языки,
- * живёт дольше рассылок (внутри невостребованная награда) и несёт shards/claimed
- * для кнопки «Забрать осколки».
+ * живёт дольше рассылок (внутри невостребованная награда) и несёт coins/claimed
+ * для кнопки «Забрать монеты».
  */
 import {
   APP_MESSAGE_TTL_MS,
@@ -23,7 +23,7 @@ describe('report reply user messages', () => {
     kind: 'report_reply',
     title: 'Спасибо за репорт!',
     body: 'Ошибка исправлена — забери награду.',
-    shards: 1,
+    coins: 1,
     claimed: false,
     createdAtMs: now,
   };
@@ -31,7 +31,7 @@ describe('report reply user messages', () => {
   it('normalizes personal message with report_reply kind and reward payload', () => {
     const message = normalizeUserAppMessage('um1', baseDoc, now);
     expect(message.kind).toBe('report_reply');
-    expect(message.reportReply).toEqual({ shards: 1, claimed: false });
+    expect(message.reportReply).toEqual({ coins: 1, claimed: false });
   });
 
   it('spreads the single-language title/body across all languages', () => {
@@ -55,21 +55,23 @@ describe('report reply user messages', () => {
     expect(isAppMessageAllowedForAudience(message, false)).toBe(true);
   });
 
-  it('keeps claimed flag and clamps negative shards to zero', () => {
+  it('keeps claimed flag and clamps rewards to the one-coin contract', () => {
     const claimed = normalizeUserAppMessage('um2', { ...baseDoc, claimed: true }, now);
-    expect(claimed.reportReply).toEqual({ shards: 1, claimed: true });
-    const broken = normalizeUserAppMessage('um3', { ...baseDoc, shards: -5 }, now);
-    expect(broken.reportReply).toEqual({ shards: 0, claimed: false });
+    expect(claimed.reportReply).toEqual({ coins: 1, claimed: true });
+    const broken = normalizeUserAppMessage('um3', { ...baseDoc, coins: -5 }, now);
+    expect(broken.reportReply).toEqual({ coins: 0, claimed: false });
+    const legacy = normalizeUserAppMessage('um4', { ...baseDoc, coins: undefined, shards: 1 }, now);
+    expect(legacy.reportReply).toEqual({ coins: 1, claimed: false });
   });
 
-  it('excludes report replies from the Messages inbox and unread count', () => {
+  it('keeps report replies in the Messages inbox and unread count', () => {
     const message = normalizeUserAppMessage('um1', baseDoc, now);
     const snapshot = mergeAppMessagesWithStates([message], [], now);
-    expect(snapshot.messages).toHaveLength(0);
-    expect(snapshot.unreadCount).toBe(0);
+    expect(snapshot.messages).toHaveLength(1);
+    expect(snapshot.unreadCount).toBe(1);
   });
 
-  it('sanitizes stale cached report replies without hiding ordinary messages', () => {
+  it('keeps report replies and ordinary messages in sanitized cached snapshots', () => {
     const reportReply = {
       ...normalizeUserAppMessage('um1', baseDoc, now),
       readAtMs: null,
@@ -77,14 +79,15 @@ describe('report reply user messages', () => {
       reaction: null,
       pollOptionId: null,
       unread: true,
+      personalModalAcknowledgedAtMs: null,
     };
     const ordinary = { ...reportReply, id: 'broadcast1', kind: 'message' as const, reportReply: null };
     const snapshot = sanitizeAppMessagesInboxSnapshot({
       messages: [reportReply, ordinary],
       unreadCount: 2,
     });
-    expect(snapshot.messages.map((message) => message.id)).toEqual(['broadcast1']);
-    expect(snapshot.unreadCount).toBe(1);
+    expect(snapshot.messages.map((message) => message.id)).toEqual(['um1', 'broadcast1']);
+    expect(snapshot.unreadCount).toBe(2);
   });
 
   it('filters every dismissed team message kind', () => {

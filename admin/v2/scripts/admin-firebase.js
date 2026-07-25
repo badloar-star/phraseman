@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
-import { browserSessionPersistence, getAuth, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import { browserLocalPersistence, getAuth, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, setPersistence, signInWithPopup, signInWithRedirect, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
 function unwrap(result) {
@@ -50,7 +50,13 @@ export function observeAdminAuthState({ auth, subscribe, onAuth }) {
 export async function createFirebaseAdminActions({ onAuth }) {
   const app = initializeApp(await resolveFirebaseConfig());
   const auth = getAuth(app);
-  await setPersistence(auth, browserSessionPersistence);
+  await setPersistence(auth, browserLocalPersistence);
+  // Завершаем вход через редирект (телефон), если он был начат на прошлой загрузке.
+  try {
+    await getRedirectResult(auth);
+  } catch {
+    // Редирект-вход не начинался или не завершился — итоговое состояние разберёт observer.
+  }
   const functionsUs = getFunctions(app, 'us-central1');
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
@@ -133,6 +139,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
   const updateReportStatusCallable = httpsCallable(functionsUs, 'adminUpdateReportStatus');
   const draftReportReplyCallable = httpsCallable(functionsUs, 'adminDraftReportReply');
   const sendReportReplyCallable = httpsCallable(functionsUs, 'adminReplyToReport');
+  const listUserIdeasCallable = httpsCallable(functionsUs, 'adminListUserIdeas');
+  const decideUserIdeaCallable = httpsCallable(functionsUs, 'adminDecideUserIdea');
+  const draftIdeaDecisionCallable = httpsCallable(functionsUs, 'adminDraftIdeaDecision');
   const listAuditLogCallable = httpsCallable(functionsUs, 'adminListAuditLog');
   const listOpsLogCallable = httpsCallable(functionsUs, 'adminListOpsLog');
   const createPlanCallable = httpsCallable(functionsUs, 'adminCreatePlan');
@@ -163,7 +172,19 @@ export async function createFirebaseAdminActions({ onAuth }) {
   observeAdminAuthState({ auth, subscribe: onAuthStateChanged, onAuth });
 
   return Object.freeze({
-    signIn: () => signInWithPopup(auth, provider),
+    signIn: () => {
+      // На телефоне popup-вход зависает или блокируется — там сразу редирект.
+      // На десктопе пробуем popup, а при блокировке popup уходим в редирект.
+      const userAgent = String(globalThis.navigator?.userAgent || '');
+      if (/Android|iPhone|iPad|iPod|Mobile/i.test(userAgent)) return signInWithRedirect(auth, provider);
+      return signInWithPopup(auth, provider).catch((error) => {
+        const code = String(error?.code || '');
+        if (code === 'auth/popup-blocked' || code === 'auth/operation-not-supported-in-this-environment' || code === 'auth/web-storage-unsupported') {
+          return signInWithRedirect(auth, provider);
+        }
+        throw error;
+      });
+    },
     signOut: () => signOut(auth),
     createFactoryJob: async (input) => unwrap(await createFactoryJobCallable(input)),
     listFactoryJobs: async (input) => unwrap(await listFactoryJobsCallable(input)),
@@ -243,6 +264,9 @@ export async function createFirebaseAdminActions({ onAuth }) {
     updateReportStatus: async (input) => unwrap(await updateReportStatusCallable(input)),
     draftReportReply: async (input) => unwrap(await draftReportReplyCallable(input)),
     sendReportReply: async (input) => unwrap(await sendReportReplyCallable(input)),
+    listUserIdeas: async (input) => unwrap(await listUserIdeasCallable(input)),
+    decideUserIdea: async (input) => unwrap(await decideUserIdeaCallable(input)),
+    draftIdeaDecision: async (input) => unwrap(await draftIdeaDecisionCallable(input)),
     listAuditLog: async (input) => unwrap(await listAuditLogCallable(input)),
     listOpsLog: async (input) => unwrap(await listOpsLogCallable(input)),
     createPlan: async (input) => unwrap(await createPlanCallable(input)),

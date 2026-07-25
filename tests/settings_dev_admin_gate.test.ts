@@ -22,16 +22,17 @@ describe('settings dev admin gate', () => {
   });
 
   it('uses Premium access, not store-only Premium, for the active settings card', () => {
-    // Плашка статуса Plus вынесена в переменную premiumPanel, но ветвление —
-    // именно по hasPremiumAccess (полный доступ: подписка/VIP/intro), НЕ по
-    // store-only isPremium. Инвариант — источник признака и тексты статуса.
+    // Верхняя плашка «Phraseman Plus» ветвится именно по hasPremiumAccess
+    // (полный доступ: подписка/VIP/intro), НЕ по store-only isPremium.
+    // Инвариант — источник признака и тексты статуса.
     expect(settingsSource).toMatch(/const \{[^}]*hasPremiumAccess[^}]*\} = usePremium\(\)/);
-    expect(settingsSource).toContain('const premiumPanel = hasPremiumAccess ? (');
+    expect(settingsSource).toContain('const plusRowLabel = hasPremiumAccess');
+    expect(settingsSource).toContain('const plusRowSub = hasPremiumAccess');
+    expect(settingsSource).toContain('if (hasPremiumAccess) {');
+    expect(settingsSource).toContain('testID="settings-plus-row"');
     expect(settingsSource).toContain('Plus доступ активен');
     expect(settingsSource).toContain('Plus access active');
-    // Статус-плашку внизу показываем только платным; предложение Plus для фри —
-    // отдельно и ВВЕРХУ (после «Профиля»).
-    expect(settingsSource).toContain('{hasPremiumAccess ? premiumPanel : null}');
-    expect(settingsSource).toContain('{!hasPremiumAccess ? premiumPanel : null}');
+    // Детали статуса (premiumDetails) показываем только платным.
+    expect(settingsSource).toContain('const premiumDetails = hasPremiumAccess && plusAccessDetails.length > 0 ? (');
   });
 });

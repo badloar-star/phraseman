@@ -56,7 +56,7 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('client auth-link lookup is only a short hint because the server callable is authoritative', () => {
-    expect(source).toContain('const AUTH_LINK_HINT_TIMEOUT_MS = 1_500');
+    expect(source).toContain('const AUTH_LINK_HINT_TIMEOUT_MS = 5_000');
     expect(prePostLinkSource).toContain("withTimeout<any>(linkRef.get(), AUTH_LINK_HINT_TIMEOUT_MS, 'link_lookup')");
   });
 
@@ -64,7 +64,7 @@ describe('auth provider stable-id linking', () => {
     // Root cause of this sign-in outage: auth_links/{providerUid} can already
     // point at remoteStableId. Relinking localStableId first is then correctly
     // rejected as stable_id_mismatch, so the app must swap to remoteStableId.
-    expect(prePostLinkSource).toContain("captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed')");
+    expect(prePostLinkSource).toContain("captureAuthSignInFailure(provider, 'auth_link', `remote_stable_link_failed:${linkedRemote.failure ?? 'unknown'}`)");
     expect(prePostLinkSource).toContain("remoteStableId: linkedRemote.stableUid");
     expect(prePostLinkSource).toContain("mergedFromStableId: localStableId");
     expect(cloudSyncSource).toContain('export async function mergeStableAccountsViaServer');
@@ -178,8 +178,15 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('both provider stable-id swaps invalidate A before wipe and activate B only after setStableId', () => {
+    const transitionHelperStart = source.indexOf('function beginEntitlementSafeAccountTransition');
+    const transitionHelperEnd = source.indexOf('const getAuth =', transitionHelperStart);
+    const transitionHelperSource = source.slice(transitionHelperStart, transitionHelperEnd);
+    expect(transitionHelperSource).toContain('invalidateAccountGeneration();');
+    expect(transitionHelperSource).toContain('beginPremiumAccountTransition();');
+    expect(transitionHelperSource).toContain('await waitForPremiumAccountWorkIdle();');
+
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
-      const invalidate = branch.indexOf('invalidateAccountGeneration();');
+      const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');
       const wipe = branch.indexOf('await wipeLocalAccountData();');
       const setStable = branch.indexOf('await setStableId(canonicalStableId);');
       const activate = branch.indexOf('beginAccountGeneration(canonicalStableId);');
@@ -188,7 +195,7 @@ describe('auth provider stable-id linking', () => {
       expect(invalidate).toBeLessThan(wipe);
       expect(wipe).toBeLessThan(setStable);
       expect(setStable).toBeLessThan(activate);
-      expect(branch.match(/invalidateAccountGeneration\(\);/g)).toHaveLength(1);
+      expect(branch.match(/await beginEntitlementSafeAccountTransition\(\);/g)).toHaveLength(1);
     }
   });
 
@@ -337,7 +344,8 @@ describe('auth provider stable-id linking', () => {
   });
 
   test('remote stable-id swap clears the premium cache so the previous account status is not shown', () => {
-    expect(source).toContain("import { invalidatePremiumCache } from './premium_guard'");
+    expect(source).toContain('beginPremiumAccountTransition, invalidatePremiumCache');
+    expect(mergeSwapSource).toContain('beginEntitlementSafeAccountTransition()');
     expect(mergeSwapSource).toContain('invalidatePremiumCache()');
     // Cache must be cleared AFTER the stable id is swapped.
     expect(mergeSwapSource.indexOf('await setStableId(canonicalStableId)')).toBeLessThan(

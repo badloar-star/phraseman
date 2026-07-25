@@ -95,6 +95,7 @@ const SECTION_META: Record<string, { chapter: AdminChapterId; keywords: string }
   gifts_catalog: { chapter: 'rewards', keywords: 'справочник подарки каталог все подарки иконки описания уровень премиум вехи друзья сундук лиги gift catalog' },
   collectible_drop_modals: { chapter: 'modals', keywords: 'коллекция карточка дроп сокровищница новая карточка получение подарок редкость сет собран секретка collectible drop modal' },
   user_consents: { chapter: 'data', keywords: 'согласия consent gdpr возраст аналитика приватность дата отзыв granted denied user_consents' },
+  ux_overhaul_modals: { chapter: 'modals', keywords: 'ux обновление новые модалы тосты превью аудит boon chest streak revive eli5 avatar editor sheet реферал referral access shard paywall collectible drop themed confirm blocking action toast reward' },
 };
 
 export interface AdminNavState {

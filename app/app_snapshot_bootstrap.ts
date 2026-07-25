@@ -17,6 +17,11 @@ import { startFriendsTabSwrPrime, peekFriendsTabSwrWarm } from './friends_tab_sw
 import { lastOpenedLessonKey, storageStudyTarget, type RuntimeStudyTarget } from './target_storage_keys';
 import { getUserSettingsSnapshot, hydrateUserSettingsFromStorage } from './user_settings_store';
 import { buildCustomizationSnapshot } from './customization_snapshot';
+import { captureAccountGeneration } from './account_generation';
+import {
+  REFERRAL_STATE_STORAGE_KEY,
+  hydrateReferralStateFromRaw,
+} from './referrals_cache';
 
 const BOOT_PROFILE_KEYS = [
   'user_name',
@@ -166,6 +171,7 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
     lastOpenedKey,
     BOOT_LANG_KEY,
     BOOT_STUDY_TARGET_KEY,
+    REFERRAL_STATE_STORAGE_KEY,
   ];
   const [pairs, friends] = await Promise.all([
     AsyncStorage.multiGet(keys).catch(() => [] as [string, string | null][]),
@@ -179,6 +185,11 @@ export async function primeAppSnapshotFromStorage(studyTarget?: RuntimeStudyTarg
   const values = mapPairs(pairs);
   writePeekAppLang(values.get(BOOT_LANG_KEY) ?? null);
   writePeekStudyTargetRaw(values.get(BOOT_STUDY_TARGET_KEY) ?? null);
+  hydrateReferralStateFromRaw(
+    values.get(REFERRAL_STATE_STORAGE_KEY),
+    captureAccountGeneration(),
+    now,
+  );
   const profile = buildProfileSnapshot(values, now);
   patchAppSnapshot({
     profile,

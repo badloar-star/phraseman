@@ -4,6 +4,7 @@ export type OverlayKey =
   | 'update'
   | 'releaseNotes'
   | 'broadcast'
+  | 'personalAdminMessage'
   | 'leagueBonusAvailable'
   | 'notifNudge'
   | 'introFullAccess'
@@ -48,6 +49,7 @@ export const OVERLAY_PRIORITY: readonly OverlayKey[] = [
   'authRecovery',
   'releaseNotes',
   'broadcast',
+  'personalAdminMessage',
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
@@ -149,6 +151,7 @@ export const NATIVE_MODAL_KEYS: ReadonlySet<OverlayKey> = new Set<OverlayKey>([
   'update',
   'releaseNotes',
   'broadcast',
+  'personalAdminMessage',
   'leagueBonusAvailable',
   'notifNudge',
   'introFullAccess',
@@ -203,6 +206,7 @@ export const EMPTY_OVERLAY_WANTS: WantsMap = {
   update: false,
   releaseNotes: false,
   broadcast: false,
+  personalAdminMessage: false,
   leagueBonusAvailable: false,
   notifNudge: false,
   introFullAccess: false,

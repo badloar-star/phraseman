@@ -259,8 +259,13 @@ describe('app_messages', () => {
 
   it('seeds an admin VIP survey test as a local-only inbox message', async () => {
     const id = await seedLocalVipSurveyTestMessage(now);
-    const rawMessages = await AsyncStorage.getItem('app_messages_local_preview_v1');
-    const rawStates = await AsyncStorage.getItem('app_message_local_preview_states_v1');
+    const keys = await AsyncStorage.getAllKeys();
+    const messageKey = keys.find((key) => key.startsWith('app_messages_local_preview_v2:'));
+    const stateKey = keys.find((key) => key.startsWith('app_message_local_preview_states_v2:'));
+    expect(messageKey).toBeDefined();
+    expect(stateKey).toBeDefined();
+    const rawMessages = await AsyncStorage.getItem(messageKey!);
+    const rawStates = await AsyncStorage.getItem(stateKey!);
     const messages = JSON.parse(rawMessages || '[]');
     const states = JSON.parse(rawStates || '[]');
 

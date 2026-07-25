@@ -34,13 +34,6 @@ jest.mock('../app/config', () => ({
 
 import { actionToastTri } from '../app/events';
 import { getReviewVariant } from '../app/review_utils';
-import {
-  arenaBilingualFirst,
-  arenaGameStr,
-  arenaSecondsSuffix,
-  arenaToasts,
-  arenaUiLang,
-} from '../constants/arena_i18n';
 import { bundleLang, legacyRuUk, triLang, type Lang } from '../constants/i18n';
 
 beforeEach(() => {
@@ -118,66 +111,6 @@ describe('actionToastTri', () => {
     expect(source).toContain('messageTr?: string');
     expect(source).toContain('messagePl?: string');
     expect(source).not.toMatch(legacyRuntimePattern);
-  });
-});
-
-describe('arena_i18n', () => {
-  it.each<[Lang, Lang]>([
-    ['ru', 'ru'],
-    ['uk', 'uk'],
-    ['es', 'es'],
-    ['pt-BR', 'pt-BR'],
-    ['vi', 'vi'],
-    ['id', 'id'],
-    ['tr', 'tr'],
-    ['pl', 'pl'],
-  ])('arenaUiLang(%s)', (lang, code) => {
-    expect(arenaUiLang(lang)).toBe(code);
-  });
-
-  it('arenaBilingualFirst picks segment by lang', () => {
-    const s = 'A · B · C';
-    expect(arenaBilingualFirst(s, 'ru')).toBe('A');
-    expect(arenaBilingualFirst(s, 'uk')).toBe('B');
-    expect(arenaBilingualFirst(s, 'es')).toBe('C');
-    expect(arenaBilingualFirst('solo', 'es')).toBe('solo');
-  });
-
-  it('arenaSecondsSuffix uses spaced s only for ES', () => {
-    expect(arenaSecondsSuffix('ru')).toMatch(/с$/);
-    expect(arenaSecondsSuffix('es')).toBe(' s');
-    expect(arenaSecondsSuffix('vi')).toBe(' giây');
-    expect(arenaSecondsSuffix('tr')).toBe(' sn');
-  });
-
-  it('arenaGameStr returns localized string', () => {
-    expect(arenaGameStr('es', 'accept')).toBe('ACEPTAR');
-    expect(arenaGameStr('uk', 'decline')).toBe('Відмовити');
-    expect(arenaGameStr('pt-BR', 'accept')).toBe('ACEITAR');
-    expect(arenaGameStr('vi', 'decline')).toBe('Từ chối');
-  });
-
-  it('every arenaToasts entry includes planned interface locales', () => {
-    for (const [key, row] of Object.entries(arenaToasts)) {
-      expect(row.messageRu.length).toBeGreaterThan(0);
-      expect(row.messageUk!.length).toBeGreaterThan(0);
-      expect(row.messageEs!.length).toBeGreaterThan(0);
-      expect(row.messagePtBr.length).toBeGreaterThan(0);
-      expect(row.messageVi.length).toBeGreaterThan(0);
-      expect(row.messageId.length).toBeGreaterThan(0);
-      expect(row.messageTr.length).toBeGreaterThan(0);
-      expect(row.messagePl.length).toBeGreaterThan(0);
-      expect(key).toBeTruthy();
-    }
-  });
-
-  it('keeps arena runtime toasts on localized payload helpers', () => {
-    for (const file of ['app/arena_lobby.tsx', 'app/arena_game.tsx']) {
-      const source = fs.readFileSync(path.join(process.cwd(), file), 'utf8');
-      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageRu:/);
-      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageUk:/);
-      expect(source).not.toMatch(/emitAppEvent\('action_toast',\s*\{[\s\S]{0,300}\bmessageEs:/);
-    }
   });
 });
 

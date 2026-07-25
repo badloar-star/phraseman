@@ -600,7 +600,6 @@ function isPrepositionExplanationCoveredByPlannedFallback(file: string, node: ts
 }
 
 let lessonWordSourceLocaleCoverageCache: Set<string> | null = null;
-let quizSourceLocaleCoverageCache: Set<string> | null = null;
 let diagnosisTrainingTitleCoverageCache: boolean | null = null;
 
 function lessonWordSourceLocaleCoverage(): Set<string> {
@@ -649,49 +648,6 @@ function isLessonWordCoveredBySourceLocaleMap(file: string, node: ts.ObjectLiter
   return Boolean(pos && coverage.has(`${lowerEnglish}::${pos}`));
 }
 
-function quizSourceLocaleCoverage(): Set<string> {
-  if (quizSourceLocaleCoverageCache) return quizSourceLocaleCoverageCache;
-  const status = new Map<string, boolean>();
-  try {
-    const {
-      getQuizPoolAuditEntries,
-    } = cjsRequire('../app/quiz_data') as typeof import('../app/quiz_data');
-    const {
-      getStructuredQuizSourceLocalePayload,
-    } = cjsRequire('../app/quiz_source_locale_payloads') as typeof import('../app/quiz_source_locale_payloads');
-
-    for (const difficulty of ['easy', 'medium', 'hard'] as const) {
-      for (const entry of getQuizPoolAuditEntries(difficulty)) {
-        const key = entry.ru.trim();
-        if (!key) continue;
-        const covered = PLANNED_UI_LOCALES.every((locale) => {
-          const payload = getStructuredQuizSourceLocalePayload(difficulty, entry.ordinal, locale);
-          return Boolean(payload?.prompt?.trim() && payload.explanations?.length === 4);
-        });
-        status.set(key, (status.get(key) ?? true) && covered);
-      }
-    }
-  } catch {
-    quizSourceLocaleCoverageCache = new Set();
-    return quizSourceLocaleCoverageCache;
-  }
-
-  quizSourceLocaleCoverageCache = new Set(
-    [...status.entries()]
-      .filter(([, covered]) => covered)
-      .map(([key]) => key),
-  );
-  return quizSourceLocaleCoverageCache;
-}
-
-function isQuizEntryCoveredBySourceLocalePayloads(file: string, node: ts.ObjectLiteralExpression): boolean {
-  if (!normalizePath(file).endsWith('app/quiz_data.ts')) return false;
-  const ru = objectLiteralStringValue(node, 'ru');
-  if (!ru) return false;
-  if (!objectLiteralKeys(node).has('choices')) return false;
-  return quizSourceLocaleCoverage().has(ru.trim());
-}
-
 function diagnosisTrainingTitlesHavePlannedLocaleCoverage(): boolean {
   if (diagnosisTrainingTitleCoverageCache !== null) return diagnosisTrainingTitleCoverageCache;
   try {
@@ -722,7 +678,6 @@ function expressionCoveredByExternalLocaleSource(file: string, expression: ts.Ex
 }
 
 function isLocaleObjectCoveredElsewhere(file: string, node: ts.ObjectLiteralExpression): boolean {
-  if (isQuizEntryCoveredBySourceLocalePayloads(file, node)) return true;
   if (isLessonWordCoveredBySourceLocaleMap(file, node)) return true;
   return isPrepositionExplanationCoveredByPlannedFallback(file, node);
 }

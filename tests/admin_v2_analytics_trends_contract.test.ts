@@ -681,20 +681,22 @@ describe('Admin v2 paywall analytics category contract', () => {
   });
 
   test('keeps behavioral signals and confirmed store truth visibly separate', () => {
+    // зачем: YouTube-стиль аналитики (вкладки-метрики + один график) по требованию владельца; поведение и подтверждения магазина остаются раздельными вкладками/подписями
     for (const heading of [
-      'Поведенческие сигналы приложения',
-      'Семантическая воронка paywall',
-      'Разрезы поведенческих сигналов',
-      'Подтверждённые покупки RevenueCat',
-      'Валовая выручка по валютной шкале',
+      'Показы предложения',
+      'Подтверждённые покупки',
+      'Выручка',
       'Покупки осколков',
+      'Путь к покупке',
       'Причины ошибок покупки',
+      'Разрезы: где и что нажимают',
       'Свежесть и состояние источников',
     ]) {
       expect(renderer).toContain(heading);
     }
     expect(renderer).toContain('сигнал покупки, не подтверждение магазина');
-    expect(renderer).toContain('подтверждённая покупка магазина');
+    expect(renderer).toContain('RevenueCat');
+    expect(renderer).toContain('события приложения');
     expect(renderer).toContain('PAYWALL_DEFAULT_VISIBLE_METRIC_IDS');
   });
 

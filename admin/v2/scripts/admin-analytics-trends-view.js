@@ -187,16 +187,20 @@ function renderToolbar(model) {
   const fieldDisabled = disabled(controlsDisabled);
   const resetTooltip = escapeAnalyticsHtml('Сбросить масштаб всех графиков к полному выбранному периоду');
   const refreshTooltip = escapeAnalyticsHtml('Принудительно обновить агрегированные графики с сервера');
-  return `<section class="card section analytics-trends-toolbar" aria-labelledby="analytics-trends-filters-title">
-    <div class="card-header"><div><h2 id="analytics-trends-filters-title">Период и фильтры графиков</h2><p>Каждый фильтр действует только на подписанный источник и не меняет соседние графики.</p></div><div class="actions"><button class="button" data-action="reset-analytics-zoom" type="button" title="${resetTooltip}" data-tooltip="${resetTooltip}">Сбросить масштаб</button><button class="button" data-action="load-analytics-trends" type="button" title="${refreshTooltip}" data-tooltip="${refreshTooltip}"${fieldDisabled}>${model?.status === 'loading' ? 'Обновление…' : 'Обновить графики'}</button></div></div>
+  // зачем: YouTube-паттерн — период/шаг/обновить всегда видны одной строкой, за раскрытием только редкие продвинутые фильтры (однокликовость)
+  return `<div class="analytics-quick-toolbar" role="toolbar" aria-label="Период графиков">
+    <div class="field"><label class="visually-hidden" for="analytics-trends-preset">Быстрый период</label><select id="analytics-trends-preset"${fieldDisabled}><option value="7"${selected(values.preset, '7')}>7 дней</option><option value="28"${selected(values.preset, '28')}>28 дней</option><option value="90"${selected(values.preset, '90')}>90 дней</option><option value="custom"${selected(values.preset, 'custom')}>Свои даты</option></select></div>
+    <div class="field"><label class="visually-hidden" for="analytics-trends-granularity">Шаг</label><select id="analytics-trends-granularity"${fieldDisabled}><option value="day"${selected(values.granularity, 'day')}>По дням</option><option value="week"${selected(values.granularity, 'week')}>По неделям</option></select></div>
+    <label class="analytics-checkbox" for="analytics-trends-compare"><input id="analytics-trends-compare" type="checkbox"${checked(values.comparePrevious)}${fieldDisabled}> Сравнить с прошлым периодом</label>
+    <div class="actions"><button class="button" data-action="reset-analytics-zoom" type="button" title="${resetTooltip}" data-tooltip="${resetTooltip}">Сбросить масштаб</button><button class="button primary" data-action="load-analytics-trends" type="button" title="${refreshTooltip}" data-tooltip="${refreshTooltip}"${fieldDisabled}>${model?.status === 'loading' ? 'Обновление…' : 'Обновить'}</button></div>
+  </div>
+  <details class="analytics-filter-disclosure"><summary>Продвинутые фильтры</summary><section class="card section analytics-trends-toolbar" aria-labelledby="analytics-trends-filters-title">
+    <div class="card-header"><div><h2 id="analytics-trends-filters-title">Фильтры источников</h2><p>Каждый фильтр действует только на подписанный источник и не меняет соседние графики.</p></div></div>
     <div class="card-body analytics-trends-filter-grid">
-      <fieldset class="analytics-filter-group" aria-describedby="analytics-period-scope"><legend>Период</legend>
-        <div class="field"><label for="analytics-trends-preset">Быстрый период</label><select id="analytics-trends-preset"${fieldDisabled}><option value="7"${selected(values.preset, '7')}>7 дней</option><option value="28"${selected(values.preset, '28')}>28 дней</option><option value="90"${selected(values.preset, '90')}>90 дней</option><option value="custom"${selected(values.preset, 'custom')}>Свои даты</option></select></div>
+      <fieldset class="analytics-filter-group" aria-describedby="analytics-period-scope"><legend>Свои даты</legend>
         <div class="field"><label for="analytics-trends-from">С даты</label><input id="analytics-trends-from" type="date" value="${escapeAnalyticsHtml(values.fromDate)}"${fieldDisabled}></div>
         <div class="field"><label for="analytics-trends-to">По дату</label><input id="analytics-trends-to" type="date" value="${escapeAnalyticsHtml(values.toDate)}"${fieldDisabled}></div>
-        <div class="field"><label for="analytics-trends-granularity">Шаг</label><select id="analytics-trends-granularity"${fieldDisabled}><option value="day"${selected(values.granularity, 'day')}>По дням</option><option value="week"${selected(values.granularity, 'week')}>По неделям</option></select></div>
-        <label class="analytics-checkbox" for="analytics-trends-compare"><input id="analytics-trends-compare" type="checkbox"${checked(values.comparePrevious)}${fieldDisabled}> Сравнить с предыдущим периодом</label>
-        ${renderScopeNote('analytics-period-scope', 'Период и шаг применяются ко всем графикам; наборы источников остаются раздельными.')}
+        ${renderScopeNote('analytics-period-scope', 'Даты работают при выборе «Свои даты» в быстром периоде сверху.')}
       </fieldset>
       <fieldset class="analytics-filter-group" aria-describedby="analytics-paywall-scope"><legend>Поведение на paywall</legend>
         <div class="field"><label for="analytics-trends-context">Контекст</label><input id="analytics-trends-context" maxlength="40" value="${escapeAnalyticsHtml(values.context)}" placeholder="Например, onboarding"${fieldDisabled}></div>
@@ -214,7 +218,7 @@ function renderToolbar(model) {
         ${renderScopeNote('analytics-platform-scope', 'Только на причины ошибок из управляемого хранилища. Другие графики этот фильтр не меняет.')}
       </fieldset>
     </div>
-  </section>`;
+  </section></details>`;
 }
 
 function isSeriesVisible(metricId, visibleSeries, behavioral) {
@@ -545,22 +549,63 @@ export function renderOverviewPaymentSummary(model) {
   </section>`;
 }
 
+// зачем: владелец попросил аналитику «как в YouTube Studio» — 4 кликабельные вкладки-метрики сверху, ОДИН большой график выбранной метрики, ниже воронка и простые разбивки; вместо прежней колонки из 8 отдельных карточек-графиков
+const ANALYTICS_METRIC_TABS = Object.freeze([
+  { id: 'behavioral', label: 'Показы предложения', hostId: 'analytics-trends-behavioral-chart', note: 'события приложения' },
+  { id: 'store', label: 'Подтверждённые покупки', hostId: 'analytics-trends-store-chart', note: 'RevenueCat' },
+  { id: 'revenue', label: 'Выручка', hostId: 'analytics-trends-revenue-chart', note: 'USD, подтверждено' },
+  { id: 'shards', label: 'Покупки осколков', hostId: 'analytics-trends-shards-chart', note: 'production' },
+]);
+
+function activeAnalyticsMetricTab(model) {
+  return ANALYTICS_METRIC_TABS.find((tab) => tab.id === model?.activeMetric) || ANALYTICS_METRIC_TABS[0];
+}
+
+function analyticsMetricTabValue(model, tabId) {
+  if (tabId === 'behavioral') {
+    return numberText(coveredSeriesTotal(stageMetric(model?.data?.sections?.behavioralPaywall?.series, 'paywall.shown.v1')));
+  }
+  if (tabId === 'store') {
+    return numberText(coveredSeriesTotal(stageMetric(model?.data?.sections?.confirmedStore?.series, 'store.initial_purchase.v1')));
+  }
+  if (tabId === 'revenue') {
+    const total = coveredSeriesTotal(
+      asArray(model?.data?.sections?.grossRevenue?.series).find((series) => series?.metricId === OVERVIEW_GROSS_REVENUE_METRIC_ID) || null,
+      'usd_micros',
+    );
+    return Number.isFinite(total) ? formatAdminChartValue(total, 'usd_micros') : '—';
+  }
+  if (tabId === 'shards') {
+    const series = asArray(model?.data?.sections?.shardPurchases?.series);
+    return series.length ? numberText(coveredSeriesTotal(series[0])) : '—';
+  }
+  return '—';
+}
+
+function renderAnalyticsMetricTabs(model) {
+  const active = activeAnalyticsMetricTab(model);
+  return `<div class="analytics-metric-tabs" role="tablist" aria-label="Главные показатели периода">${ANALYTICS_METRIC_TABS.map((tab) => `<button class="analytics-metric-tab${tab.id === active.id ? ' active' : ''}" data-action="select-analytics-metric" data-analytics-metric="${tab.id}" type="button" role="tab" aria-selected="${tab.id === active.id ? 'true' : 'false'}" title="Показать график: ${escapeAnalyticsHtml(tab.label)}"><span>${escapeAnalyticsHtml(tab.label)}</span><strong>${escapeAnalyticsHtml(analyticsMetricTabValue(model, tab.id))}</strong><small>${escapeAnalyticsHtml(tab.note)}</small></button>`).join('')}</div>`;
+}
+
 export function renderPaywallAnalyticsCategory(model) {
+  const active = activeAnalyticsMetricTab(model);
+  // зачем: монтируем ТОЛЬКО график выбранной вкладки — остальные хосты не рендерятся, их дескрипторы автоматически пропускаются при монтировании
   const descriptors = createPaywallAnalyticsChartDescriptors(model);
   const mountedHostIds = descriptorHostIds(descriptors);
   const response = model?.data;
   return `<section class="analytics-trends-category section" aria-labelledby="analytics-trends-title">
-    <div class="section-heading"><div><h2 id="analytics-trends-title">Paywall и покупки</h2><p>Поведение в приложении и подтверждённые данные магазина показаны раздельно.</p></div></div>
     <div id="analytics-trends-live" class="analytics-detail-status" role="status" aria-live="polite">${renderTrendState(model)}${response ? `<small>Графики: ${escapeAnalyticsHtml(dateTimeText(response.generatedAtMs))} · UTC · ${escapeAnalyticsHtml(response.definitionVersion || '')}</small>` : ''}</div>
     ${renderToolbar(model)}
-    <section class="card section" aria-labelledby="analytics-behavioral-title"><div class="card-header"><div><h2 id="analytics-behavioral-title">Поведенческие сигналы приложения</h2><p>Firestore показывает действия в приложении: сигнал покупки, не подтверждение магазина. По умолчанию видны не больше четырёх основных линий.</p></div></div><div class="card-body">${renderSeriesToggles(model)}${chartHost('analytics-trends-behavioral-chart', mountedHostIds, 'Поведенческие линии не выбраны или данных пока нет.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-semantic-funnel-title"><div class="card-header"><div><h2 id="analytics-semantic-funnel-title">Семантическая воронка paywall</h2><p>Последовательность действий помогает читать смысл шагов, но не связывает сигнал приложения с транзакцией магазина.</p></div></div><div class="card-body">${renderSemanticFunnel(model)}</div></section>
-    <section class="card section" aria-labelledby="analytics-breakdowns-title"><div class="card-header"><div><h2 id="analytics-breakdowns-title">Разрезы поведенческих сигналов</h2><p>Контекст, вариант и план относятся только к paywall_funnel.</p></div></div><div class="card-body analytics-trends-breakdown-grid">${chartHost('analytics-trends-context-chart', mountedHostIds, 'Нет разреза по контексту.')}${chartHost('analytics-trends-variant-chart', mountedHostIds, 'Нет разреза по варианту.')}${chartHost('analytics-trends-plan-chart', mountedHostIds, 'Нет разреза по плану.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-confirmed-store-title"><div class="card-header"><div><h2 id="analytics-confirmed-store-title">Подтверждённые покупки RevenueCat</h2><p>RevenueCat — подтверждённая покупка магазина. Эти события не выдаются за сигналы paywall.</p></div></div><div class="card-body">${chartHost('analytics-trends-store-chart', mountedHostIds, 'Подтверждённых событий магазина за период нет.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-revenue-title"><div class="card-header"><div><h2 id="analytics-revenue-title">Валовая выручка по валютной шкале</h2><p>Деньги отделены от количества событий и показываются в USD по подтверждённым полям RevenueCat.</p></div></div><div class="card-body">${chartHost('analytics-trends-revenue-chart', mountedHostIds, 'Денежные значения за период недоступны.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-shards-title"><div class="card-header"><div><h2 id="analytics-shards-title">Покупки осколков</h2><p>Подтверждённые production-транзакции осколков показаны отдельно от премиум-доступа.</p></div></div><div class="card-body">${chartHost('analytics-trends-shards-chart', mountedHostIds, 'Подтверждённых покупок осколков за период нет.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-failures-title"><div class="card-header"><div><h2 id="analytics-failures-title">Причины ошибок покупки</h2><p>Агрегированные причины из управляемого хранилища; фильтр платформы действует только здесь.</p></div></div><div class="card-body">${chartHost('analytics-trends-failure-chart', mountedHostIds, 'Причины ошибок не зарегистрированы или источник недоступен.')}</div></section>
-    <section class="card section" aria-labelledby="analytics-trends-health-title"><div class="card-header"><div><h2 id="analytics-trends-health-title">Свежесть и состояние источников</h2><p>Каждый источник сообщает собственную свежесть, полноту и ограничения.</p></div></div><div class="card-body">${renderSourceHealth(model)}</div></section>
+    <section class="card section analytics-main-panel" aria-label="Главный график аналитики">
+      ${renderAnalyticsMetricTabs(model)}
+      <div class="card-body">${active.id === 'behavioral' ? renderSeriesToggles(model) : ''}${chartHost(active.hostId, mountedHostIds, 'Данных для выбранной метрики за период нет.')}</div>
+    </section>
+    <div class="analytics-secondary-grid section">
+      <section class="card" aria-labelledby="analytics-semantic-funnel-title"><div class="card-header"><div><h2 id="analytics-semantic-funnel-title">Путь к покупке</h2></div></div><div class="card-body">${renderSemanticFunnel(model)}</div></section>
+      <section class="card" aria-labelledby="analytics-failures-title"><div class="card-header"><div><h2 id="analytics-failures-title">Причины ошибок покупки</h2></div></div><div class="card-body">${chartHost('analytics-trends-failure-chart', mountedHostIds, 'Причины ошибок не зарегистрированы или источник недоступен.')}</div></section>
+    </div>
+    <section class="card section" aria-labelledby="analytics-breakdowns-title"><div class="card-header"><div><h2 id="analytics-breakdowns-title">Разрезы: где и что нажимают</h2></div></div><div class="card-body analytics-trends-breakdown-grid">${chartHost('analytics-trends-context-chart', mountedHostIds, 'Нет разреза по контексту.')}${chartHost('analytics-trends-variant-chart', mountedHostIds, 'Нет разреза по варианту.')}${chartHost('analytics-trends-plan-chart', mountedHostIds, 'Нет разреза по плану.')}</div></section>
+    <section class="card section" aria-labelledby="analytics-trends-health-title"><div class="card-header"><div><h2 id="analytics-trends-health-title">Свежесть и состояние источников</h2></div></div><div class="card-body">${renderSourceHealth(model)}</div></section>
   </section>`;
 }
 

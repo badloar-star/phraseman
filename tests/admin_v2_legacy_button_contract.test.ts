@@ -25,7 +25,7 @@ describe('Admin v2 native-only boundary', () => {
   const canonicalRoutes = new Set([
     'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
     'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns',
-    'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center',
+    'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center', 'english-test',
   ]);
   const analyticsBookmarks = new Set(['#today', '#growth', '#subscriptions', '#learning']);
   const retiredCapabilityIds = [
@@ -61,19 +61,32 @@ describe('Admin v2 native-only boundary', () => {
   test('contains no user-facing old-admin escape link or retired label', () => {
     const userFacingSources = userFacingSourcePaths.map((sourcePath) => read(sourcePath)).join('\n');
 
-    expect(userFacingSources).not.toMatch(/href\s*=\s*["'](?:[^"']*admin\/index\.html|\/legacy\.html)/);
+    expect(userFacingSources).not.toMatch(/href\s*=\s*["'][^"']*admin\/index\.html/);
     expect(userFacingSources).not.toContain('href="./migration.html"');
+
+    // Owner decision (2026-07-24): exactly one sanctioned emergency escape to the
+    // archived old admin is allowed — the small yellow icon-only button fixed at
+    // the bottom corner of the V2 shell. Any other legacy link stays forbidden.
+    const legacyHrefs = userFacingSources.match(/href\s*=\s*["']\/legacy\.html["']/g) || [];
+    expect(legacyHrefs).toHaveLength(1);
+    const shell = read('admin/v2/index.html');
+    expect(shell).toMatch(/<a class="legacy-admin-link" href="\/legacy\.html" target="_blank" rel="noopener" title="Открыть старую админку в новой вкладке" aria-label="Открыть старую админку в новой вкладке">/);
+    const sourcesWithoutSanctionedLink = userFacingSources
+      .replace(/<a class="legacy-admin-link"[\s\S]*?<\/a>/, '')
+      .replace(/\/\* Legacy admin quick link[\s\S]*?\}\n/, '');
+    expect(sourcesWithoutSanctionedLink).not.toMatch(/href\s*=\s*["']\/legacy\.html/);
+
     for (const retiredLabel of [
       'Старая админка',
-      'Открыть старую админку',
       'Открыть прежний модуль',
       'Старый бюджет',
       'Старый интерфейс',
       'Старая версия',
       'Legacy fallback:',
     ]) {
-      expect(userFacingSources).not.toContain(retiredLabel);
+      expect(sourcesWithoutSanctionedLink).not.toContain(retiredLabel);
     }
+    expect(sourcesWithoutSanctionedLink).not.toContain('Открыть старую админку');
   });
 
   test('keeps the exact retired-capability denylist and fails every retired hash closed', () => {

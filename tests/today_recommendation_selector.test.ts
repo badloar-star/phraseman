@@ -4,7 +4,7 @@ import type { TodayRecommendationRule } from '../lib/today/recommendation_catalo
 const facts: RecommendationFacts = {
   timeBucket: 'morning', isWeekend: false, todayStudyMinutes: null, todayLessons: null, todayXp: null,
   resumeKind: 'lesson', streak: 0, daysSinceLearning: null, nextLessonId: 2, courseComplete: false,
-  plan: null, practiceDue: 0, flashcardCount: 0, arenaPlaysLeft: 0, dailyTasksRemaining: 0,
+  plan: null, practiceDue: 0, flashcardCount: 0, dailyTasksRemaining: 0,
   dailyTasksTotal: 0, availableDestinations: new Set(['lessons', 'practice', 'flashcards']),
 };
 

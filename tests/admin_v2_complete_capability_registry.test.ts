@@ -8,7 +8,7 @@ describe('Admin v2 capability registry', () => {
   test('declares only the locally implemented capabilities', () => {
     const registry = read('admin/v2/scripts/admin-capabilities.js');
     expect([...registry.matchAll(/id: '([^']+)'/g)].map((match) => match[1]).sort()).toEqual([
-      'analytics', 'app-messages', 'asset-studio', 'coin-center', 'daily-digest', 'gmail-support',
+      'analytics', 'app-messages', 'asset-studio', 'coin-center', 'daily-digest', 'english-test', 'gmail-support',
       'openai-budget', 'paywall-ab', 'plans', 'promo-codes', 'remote-config', 'reports', 'users',
     ]);
   });

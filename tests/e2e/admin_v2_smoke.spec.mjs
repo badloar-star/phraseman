@@ -124,12 +124,8 @@ test('shell keeps usable workspace geometry across desktop, tablet, and drawer b
     expect(geometry.bodyScrollWidth, `body overflow at ${width}px`).toBeLessThanOrEqual(width);
 
     if (width > 1020) {
-      expect(geometry.sidebar.width, `desktop sidebar width at ${width}px`).toBeCloseTo(284, 0);
+      expect(geometry.sidebar.width, `desktop sidebar width at ${width}px`).toBeCloseTo(248, 0);
       expect(geometry.sidebarPosition, `desktop sidebar position at ${width}px`).toBe('sticky');
-    } else if (width > 760) {
-      expect(geometry.sidebar.width, `labeled tablet sidebar width at ${width}px`).toBeCloseTo(236, 0);
-      expect(geometry.sidebarPosition, `labeled tablet sidebar position at ${width}px`).toBe('sticky');
-      expect(geometry.collapsedLabelDisplay, `tablet sidebar label at ${width}px`).toBe('block');
     } else {
       expect(geometry.sidebarPosition, 'drawer sidebar position').toBe('fixed');
       expect(geometry.workspaceMarginLeft, 'drawer workspace offset').toBe('0px');

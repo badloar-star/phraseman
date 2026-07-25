@@ -26,7 +26,11 @@ import {
   resetAllAdminChartZoom,
   updatePaywallAnalyticsLiveRegion,
 } from './admin-analytics-trends-view.js';
-import { downloadAnalyticsReportBundle } from './admin-report-export.js';
+import {
+  buildReportClipboardText,
+  downloadAnalyticsReportBundle,
+  loadReportDocumentsInAdaptiveChunks,
+} from './admin-report-export.js';
 import { destroyAdminChart, destroyAdminCharts } from './components/admin-time-series-chart.js';
 import { mountCoinRateChart } from './components/admin-coin-rate-chart.js';
 import { buildOperationalSnapshot } from './admin-operational-snapshot.js';
@@ -39,6 +43,7 @@ import { buildSearchIndex, createQueryCancellation, searchIndex } from './admin-
 import { createFavoritesStore } from './admin-v2-favorites.js';
 import { createOverviewCache } from './admin-overview-cache.js';
 import { createRouteRefreshCoordinator } from './admin-route-refresh.js';
+import { createRouteSnapshotStore } from './admin-route-snapshots.js';
 import {
   DASHBOARD_WIDGET_REGISTRY,
   deriveAdminBrowserPreferenceScope,
@@ -113,8 +118,10 @@ const PAGES = Object.freeze({
   analytics: { title: 'Аналитика', description: 'Серверные показатели с отдельным состоянием каждого источника.' },
   'daily-briefing': { title: 'Брифинг', description: 'Сводка дня: рост, деньги, риски и действия.' },
   'report-center': { title: 'Центр репортов', description: 'Единая ограниченная очередь ошибок, жалоб и контентных репортов без смешивания исходных статусов.' },
+  ideas: { title: 'Идеи', description: '' },
   'asset-studio': { title: 'Студия изображений', description: 'Создание изображений через безопасный серверный процесс: создать → проверить → опубликовать.' },
   plans: { title: 'Планы', description: 'Структурированные планы действий с серверно заданными заголовком, описанием и шагами.' },
+  'english-test': { title: 'Тест английского', description: 'Воронка веб-теста уровня английского: от захода на страницу до установки приложения.' },
   campaigns: { title: 'Кампании', description: 'Сообщения внутри приложения, аудитории, опросы и история откликов.' },
   'admin-settings': { title: 'Настройки админки', description: 'Личный вид, рабочие привычки, репорты, алерты и защитные правила этой панели.' },
 });
@@ -153,14 +160,41 @@ const DEFAULT_ADMIN_UI_SETTINGS = Object.freeze({
 });
 const ADMIN_REPORT_SOURCE_DEFAULT_OPTIONS = Object.freeze(['all', 'error_reports', 'user_reports', 'community_pack_reports', 'explain_report_entries', 'app_errors']);
 
+const SUPPORT_OPERATOR_PERMISSIONS = Object.freeze([
+  'support.inbox.read',
+  'support.inbox.pull',
+  'support.draft.write',
+  'support.reply.send',
+  'support.archive',
+  'support.settings.write',
+]);
+
+// зачем: клиентское зеркало серверных прав (functions/src/admin/permissions.ts) — держим ideas.read/ideas.decide в синхроне с сервером, иначе кнопки будут видны, но сервер откажет
+const IDEA_OPERATOR_PERMISSIONS = Object.freeze(['ideas.read', 'ideas.decide']);
+
 const ADMIN_ROLE_PERMISSIONS = Object.freeze({
-  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
-  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write']),
+  owner: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', ...IDEA_OPERATOR_PERMISSIONS]),
+  admin: new Set(['users.read', 'money.read', 'money.manual_access.write', 'content.read', 'content.draft.write', 'content.publish', 'application.config.write', 'campaigns.read', 'campaigns.write', 'briefing.read', 'briefing.generate', ...SUPPORT_OPERATOR_PERMISSIONS, 'support.reply.resolve_ambiguous', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read', 'diagnostics.status.write', ...IDEA_OPERATOR_PERMISSIONS]),
   content_editor: new Set(['content.read', 'content.draft.write']),
   analyst: new Set(['users.read', 'money.read', 'content.read', 'campaigns.read', 'briefing.read', 'reports.read', 'diagnostics.read']),
   developer: new Set(['content.read', 'briefing.read', 'diagnostics.read', 'diagnostics.status.write']),
-  support: new Set(['users.read', 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send', 'diagnostics.read']),
-  moderator: new Set(['users.read', 'reports.read', 'reports.status.write']),
+  support: new Set(['users.read', 'diagnostics.read', ...SUPPORT_OPERATOR_PERMISSIONS, 'reports.read', 'reports.status.write', 'reports.reply.draft', 'reports.reply.send']),
+  moderator: new Set(['users.read', 'reports.read', 'reports.status.write', ...IDEA_OPERATOR_PERMISSIONS]),
+});
+
+const SUPPORT_ACTION_PERMISSIONS = Object.freeze({
+  'load-support': 'support.inbox.read',
+  'pull-support': 'support.inbox.pull',
+  'generate-support-reply': 'support.draft.write',
+  'prepare-support-reply': 'support.reply.send',
+  'dispatch-support-reply': 'support.reply.send',
+  'cancel-support-reply': 'support.reply.send',
+  'prepare-support-reply-batch': 'support.reply.send',
+  'dispatch-support-reply-batch': 'support.reply.send',
+  'cancel-support-reply-batch': 'support.reply.send',
+  'save-support-signature': 'support.settings.write',
+  'set-support-status': 'support.archive',
+  'resolve-support-reply': 'support.reply.resolve_ambiguous',
 });
 
 const FACTORY_STEPS = Object.freeze([
@@ -311,6 +345,36 @@ function defaultReportState(settings = DEFAULT_ADMIN_UI_SETTINGS) {
     nextCursor: '',
     error: '',
     replyDrafts: {},
+    selectedKey: '',
+  };
+}
+
+// зачем: восстановленный воркфлоу "Идеи" — тот же формат состояния, что у очереди репортов (фильтры + пагинация)
+function defaultIdeasState() {
+  return {
+    state: 'idle',
+    items: [],
+    status: 'pending',
+    category: '',
+    nextCursor: '',
+    error: '',
+    decisionDrafts: {},
+  };
+}
+
+function defaultSupportState() {
+  return {
+    loaded: false,
+    items: [],
+    signature: '',
+    signatureDraft: null,
+    signatureRevision: 0,
+    filter: 'new',
+    selectedMessageId: '',
+    replyDrafts: {},
+    pendingReply: null,
+    dismissedPendingKey: '',
+    observedAtMs: 0,
   };
 }
 
@@ -367,9 +431,10 @@ const state = {
   workspace: null,
   contentStages: createContentFactoryState(),
   generation: null,
-  support: { loaded: false, items: [], signature: '', signatureRevision: 0, filter: 'new', pendingReply: null, observedAtMs: 0 },
+  support: defaultSupportState(),
   analytics: { status: 'idle', snapshot: null, error: '' },
   activeAnalyticsReport: 'overview',
+  analyticsActiveMetric: 'behavioral',
   analyticsTrends: createAnalyticsTrendScopesState(),
   analyticsTrendsDraft: defaultAnalyticsTrendsDraft(),
   budget: null,
@@ -379,10 +444,12 @@ const state = {
   referralRoulette: { state: 'idle', enabled: true, emergencyStop: false, softOffAtMs: 0, drainMetrics: null, auditId: '', error: '' },
   paywallAb: defaultPaywallAbState(),
   paywallAbStats: defaultPaywallAbStatsState(),
-  users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] },
+  // зачем: bulk-выбор для массовых действий над пользователями — только среди результатов поиска (не вся база, см. договорённость с владельцем)
+  users: { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [], bulkSelected: new Set() },
   briefing: { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' },
   directorDigest: { state: 'idle', digest: null, rangeDays: 7, error: '', fetchedAtMs: 0, audio: { state: 'idle', current: 0, total: 0, error: '' } },
   reports: defaultReportState(initialAdminUiSettings),
+  ideas: defaultIdeasState(),
   audit: { state: 'idle', items: [], action: '', query: '', sinceDays: 7, nextCursor: '', fetchedAtMs: 0, error: '' },
   ops: { state: 'idle', items: [], sourceHealth: [], kpis: null, source: '', type: '', query: '', copyText: '', fetchedAtMs: 0, error: '' },
   assetStudio: { state: 'idle', items: [], selectedJobId: '', error: '' },
@@ -416,6 +483,7 @@ const directorDigestAudioPlayback = { clips: [], player: null, current: 0 };
 let initialized = false;
 let reportFilterTimer = 0;
 let reportRequestId = 0;
+let ideasRequestId = 0;
 let adminAutoRefreshTimer = 0;
 let adminInteractionSeen = false;
 let lastCriticalSoundSignature = '';
@@ -423,6 +491,95 @@ let renderGeneration = 0;
 const analyticsTrendRequestGeneration = { overview: 0, paywall: 0 };
 const STALE_AUTH_RESULT = Symbol('stale-auth-result');
 const QUIET_CACHE_RESULT = Symbol('quiet-cache-result');
+const ROUTE_SNAPSHOT_FIELDS = Object.freeze({
+  overview: ['briefing'],
+  users: ['users'],
+  support: ['support'],
+  analytics: ['analytics', 'analyticsTrends'],
+  campaigns: ['campaigns', 'broadcasts'],
+  money: ['analytics', 'promo'],
+  diagnostics: ['audit', 'ops'],
+  'daily-briefing': ['briefing', 'directorDigest'],
+  'report-center': ['reports'],
+  ideas: ['ideasWorkspace'],
+  'asset-studio': ['assetStudio'],
+  plans: ['plans'],
+  'coin-center': ['coinCenter'],
+  'agent-office': ['agentOffice'],
+  'agent-manager': ['agentManager'],
+  // зачем: владелец попросил, чтобы КАЖДЫЙ раздел при возврате мгновенно показывал последнее состояние, а не грузился с нуля — покрываем оставшиеся разделы с данными (control-panel статичен, admin-settings локален — им нечего снапшотить)
+  application: ['remoteConfig', 'referralRoulette', 'paywallAb', 'paywallAbStats'],
+  content: ['contentStages', 'workspace'],
+  community: ['reports'],
+});
+let routeSnapshotStore = null;
+let routeSnapshotInfo = null;
+const hydratedRouteSnapshots = new Set();
+const freshSnapshotWrites = new Set();
+
+function currentRouteSnapshotKey(route = state.route) {
+  return state.adminUid ? `${state.adminUid}:${state.adminRole}:${route}` : '';
+}
+
+function currentRouteSnapshotAccess() {
+  const permissions = ADMIN_ROLE_PERMISSIONS[state.adminRole];
+  if (!state.authorized || !state.adminRole || !permissions) return null;
+  return { role: state.adminRole, permissions: [...permissions].sort() };
+}
+
+function getRouteSnapshotStore() {
+  if (routeSnapshotStore) return routeSnapshotStore;
+  try { routeSnapshotStore = createRouteSnapshotStore(); }
+  catch { return null; }
+  return routeSnapshotStore;
+}
+
+function routeSnapshotData(route = state.route) {
+  const fields = ROUTE_SNAPSHOT_FIELDS[route] || [];
+  return Object.fromEntries(fields.map((field) => [field, state[field]]));
+}
+
+function routeSnapshotHasSuccessfulData(route = state.route) {
+  return Object.values(routeSnapshotData(route)).some((value) => value && typeof value === 'object' && (
+    value.loaded === true
+    || value.searched === true
+    || ['ready', 'partial', 'truncated', 'empty'].includes(String(value.state || value.status || ''))
+    || Boolean(value.profile || value.snapshot || value.digest || value.item)
+    // зачем: разделы «Приложение» (remoteConfig.config) и «Контент» (contentStages.items) не имеют маркеров state/loaded — без этих признаков их снапшоты никогда не сохранялись бы
+    || Boolean(value.config)
+    || (Array.isArray(value.items) && value.items.length > 0)
+  ));
+}
+
+function hydrateCurrentRouteSnapshot() {
+  const access = currentRouteSnapshotAccess();
+  if (!state.adminUid || !access || !ROUTE_SNAPSHOT_FIELDS[state.route]) return;
+  const key = currentRouteSnapshotKey();
+  if (!key || hydratedRouteSnapshots.has(key)) return;
+  hydratedRouteSnapshots.add(key);
+  const snapshot = getRouteSnapshotStore()?.read(state.adminUid, state.route, access);
+  if (!snapshot?.data || typeof snapshot.data !== 'object' || Array.isArray(snapshot.data)) return;
+  for (const field of ROUTE_SNAPSHOT_FIELDS[state.route]) {
+    const value = snapshot.data[field];
+    if (value && typeof value === 'object' && !Array.isArray(value)) state[field] = value;
+  }
+  // зачем: bulkSelected — это Set, а снапшот проходит через JSON и вернул бы обычный объект без .has/.add — после восстановления пересоздаём Set заново
+  if (state.users && !(state.users.bulkSelected instanceof Set)) state.users.bulkSelected = new Set();
+  routeSnapshotInfo = { route: state.route, savedAtMs: snapshot.savedAtMs, stale: snapshot.stale === true };
+}
+
+function persistCurrentRouteSnapshot() {
+  const access = currentRouteSnapshotAccess();
+  if (!state.adminUid || !access || !routeSnapshotHasSuccessfulData()) return;
+  const key = currentRouteSnapshotKey();
+  if (!freshSnapshotWrites.delete(key)) return;
+  try {
+    const savedAtMs = getRouteSnapshotStore()?.write(state.adminUid, state.route, routeSnapshotData(), access);
+    if (savedAtMs) routeSnapshotInfo = { route: state.route, savedAtMs, stale: false };
+  } catch {
+    // Snapshot persistence must never block the live Admin V2 read model.
+  }
+}
 
 export function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
@@ -504,7 +661,11 @@ function badgeClass(value) {
 }
 
 function pageHeader(page, eyebrow, actionHtml = '') {
-  return `<header class="page-header"><div><div class="eyebrow">${escapeHtml(eyebrow)}</div><h1>${escapeHtml(page.title)}</h1><p>${escapeHtml(page.description)}</p></div>${actionHtml ? `<div class="actions">${actionHtml}</div>` : ''}</header>`;
+  const snapshot = routeSnapshotInfo?.route === state.route
+    ? `<span class="badge ${routeSnapshotInfo.stale ? 'warning' : ''}" title="Последний безопасно сохранённый снимок этого раздела">Снимок: ${escapeHtml(dateTime(routeSnapshotInfo.savedAtMs))}${routeSnapshotInfo.stale ? ' · устарел, обновляем' : ''}</span>`
+    : '';
+  // зачем: убрали текст-описание под заголовком по всей админке — дублировал название раздела и создавал визуальный шум (аудит владельца)
+  return `<header class="page-header"><div><div class="eyebrow">${escapeHtml(eyebrow)}</div><h1>${escapeHtml(page.title)}</h1>${snapshot}</div>${actionHtml ? `<div class="actions">${actionHtml}</div>` : ''}</header>`;
 }
 
 function emptyState(message) {
@@ -541,7 +702,7 @@ function renderDashboardWidgetSettings() {
         : copy.description;
     return `<div class="field full"><label class="check settings-check" for="${inputId}"><input id="${inputId}" data-dashboard-widget-id="${widget.id}" type="checkbox"${visibleIds.includes(widget.id) ? ' checked' : ''}${forced || !allowed ? ' disabled' : ''} aria-describedby="${forced ? descriptionId : ''}"><span>${escapeHtml(copy.label)}</span></label><small id="${descriptionId}" class="hint">${escapeHtml(explanation)}</small></div>`;
   }).join('');
-  return `<section id="settings-dashboard-widgets" class="card settings-panel" data-admin-settings-panel="dashboard-widgets" tabindex="-1"><div class="card-header"><div><h2>Виджеты главной страницы</h2><p>Выберите необязательные блоки. Критические сигналы и рабочие переходы остаются видимыми.</p></div><span class="badge">Только этот браузер</span></div><div class="card-body fields">${rows}</div></section>`;
+  return `<section id="settings-dashboard-widgets" class="card settings-panel" data-admin-settings-panel="dashboard-widgets" tabindex="-1"><div class="card-header"><div><h2>Виджеты главной страницы</h2></div><span class="badge">Только этот браузер</span></div><div class="card-body fields">${rows}</div></section>`;
 }
 
 function renderAdminSettings() {
@@ -561,14 +722,14 @@ function renderAdminSettings() {
       </nav>
     </div></section>
     <div class="settings-layout">
-      <section id="settings-appearance" class="card settings-panel" data-admin-settings-panel="appearance" tabindex="-1"><div class="card-header"><div><h2>Внешний вид</h2><p>Тема, основной акцент и плотность рабочей панели.</p></div></div><div class="card-body fields">
+      <section id="settings-appearance" class="card settings-panel" data-admin-settings-panel="appearance" tabindex="-1"><div class="card-header"><div><h2>Внешний вид</h2></div></div><div class="card-body fields">
         ${settingsSelect('admin-setting-theme', 'Тема', settings.theme, [['light', 'Светлая'], ['dark', 'Тёмная'], ['system', 'Как в системе']], 'Выбрать светлую, тёмную или системную тему')}
         ${settingsSelect('admin-setting-accent', 'Акцент', settings.accent, accentOptions, 'Выбрать основной цвет кнопок, активных пунктов и подсветок')}
         <div class="field"><label for="admin-setting-customAccent">Свой акцент</label><input id="admin-setting-customAccent" data-admin-setting="customAccent" type="color" value="${escapeHtml(settings.customAccent)}" title="Выбрать произвольный цвет акцента"></div>
         ${settingsSelect('admin-setting-density', 'Плотность', settings.density, [['comfortable', 'Комфортно'], ['compact', 'Компактно']], 'Выбрать расстояния между элементами интерфейса')}
         <div class="accent-swatch" aria-label="Предпросмотр акцента"><span style="background:${escapeHtml(accentForSettings(settings).color)}"></span><strong>${escapeHtml(ADMIN_ACCENT_PRESETS[settings.accent]?.label || 'Свой')}</strong><small>Текст на ярком акценте остаётся тёмным для контраста.</small></div>
       </div></section>
-      <section id="settings-workflow" class="card settings-panel" data-admin-settings-panel="workflow" tabindex="-1"><div class="card-header"><div><h2>Рабочий режим</h2><p>Как админка ведёт себя в обычной ежедневной работе.</p></div></div><div class="card-body fields">
+      <section id="settings-workflow" class="card settings-panel" data-admin-settings-panel="workflow" tabindex="-1"><div class="card-header"><div><h2>Рабочий режим</h2></div></div><div class="card-body fields">
         ${settingsSelect('admin-setting-startPage', 'Стартовая страница', settings.startPage, startPageOptions, 'Выбрать страницу, которую удобнее открывать первой')}
         ${settingsSelect('admin-setting-autoRefreshSeconds', 'Автообновление', settings.autoRefreshSeconds, [[0, 'Выключено'], [15, '15 секунд'], [30, '30 секунд'], [60, '1 минута']], 'Выбрать частоту автообновления рабочих очередей')}
         ${settingsCheckbox('admin-setting-importantAlertsOnly', 'На главной показывать только важные алерты', settings.importantAlertsOnly, 'Скрывать тихие информационные сигналы на обзорной странице')}
@@ -577,7 +738,7 @@ function renderAdminSettings() {
         <details class="settings-advanced-disclosure"${settings.expandedAdvancedActions ? ' open' : ''}><summary>Предпросмотр расширенного блока</summary><p>Такие блоки в очередях и инструментах будут сразу раскрыты, если настройка включена.</p></details>
       </div></section>
       ${renderDashboardWidgetSettings()}
-      <section id="settings-reports" class="card settings-panel" data-admin-settings-panel="reports" tabindex="-1"><div class="card-header"><div><h2>Центр репортов</h2><p>Дефолты очереди, чтобы открытые обращения сразу были выше шума.</p></div></div><div class="card-body fields">
+      <section id="settings-reports" class="card settings-panel" data-admin-settings-panel="reports" tabindex="-1"><div class="card-header"><div><h2>Центр репортов</h2></div></div><div class="card-body fields">
         ${settingsSelect('admin-setting-defaultSinceDays', 'Период по умолчанию', settings.defaultSinceDays, [[1, '24 часа'], [7, '7 дней'], [30, '30 дней'], [90, '90 дней']], 'Выбрать период, который центр репортов ставит при первом открытии')}
         ${settingsSelect('admin-setting-defaultSource', 'Источник по умолчанию', settings.defaultSource, sourceOptions, 'Выбрать источник репортов при первом открытии')}
         ${settingsSelect('admin-setting-defaultLane', 'Статус по умолчанию', settings.defaultLane, [['', 'Все состояния'], ['open', 'Открытые'], ['answered', 'Отвеченные'], ['resolved', 'Закрытые'], ['escalated', 'Эскалированные']], 'Выбрать рабочее состояние репортов при первом открытии')}
@@ -585,12 +746,12 @@ function renderAdminSettings() {
         ${settingsCheckbox('admin-setting-showAnsweredBelowOpen', 'Отвеченные показывать ниже открытых', settings.showAnsweredBelowOpen, 'Сначала показывать то, что ещё ждёт решения')}
         ${settingsCheckbox('admin-setting-hideArchivedByDefault', 'Архив скрыт по умолчанию', settings.hideArchivedByDefault, 'Не смешивать архив с рабочей очередью')}
       </div></section>
-      <section id="settings-alerts" class="card settings-panel" data-admin-settings-panel="alerts" tabindex="-1"><div class="card-header"><div><h2>Уведомления и алерты</h2><p>Сколько внимания админка просит у человека.</p></div></div><div class="card-body fields">
+      <section id="settings-alerts" class="card settings-panel" data-admin-settings-panel="alerts" tabindex="-1"><div class="card-header"><div><h2>Уведомления и алерты</h2></div></div><div class="card-body fields">
         ${settingsCheckbox('admin-setting-criticalAlertSound', 'Звук для критических событий', settings.criticalAlertSound, 'Разрешить звуковой сигнал только для критических алертов')}
         ${settingsCheckbox('admin-setting-sidebarCounters', 'Показывать счётчики в меню', settings.sidebarCounters, 'Показывать полезные счётчики рядом с разделами, когда они доступны')}
         ${settingsCheckbox('admin-setting-quietMode', 'Тихий режим без лишних вспышек', settings.quietMode, 'Уменьшить визуальное внимание второстепенных уведомлений')}
       </div></section>
-      <section id="settings-safety" class="card settings-panel" data-admin-settings-panel="safety" tabindex="-1"><div class="card-header"><div><h2>Безопасность интерфейса</h2><p>Защитные привычки для production и опасных действий.</p></div></div><div class="card-body fields">
+      <section id="settings-safety" class="card settings-panel" data-admin-settings-panel="safety" tabindex="-1"><div class="card-header"><div><h2>Безопасность интерфейса</h2></div></div><div class="card-body fields">
         ${settingsCheckbox('admin-setting-strongProductionWarning', 'Production-предупреждение показывать ярче', settings.strongProductionWarning, 'Сильнее выделять рабочее окружение, где действия влияют на пользователей')}
         ${settingsCheckbox('admin-setting-requireReasonForStatus', 'Требовать причину при смене статуса', settings.requireReasonForStatus, 'Не давать менять статус репорта без понятной причины')}
         ${settingsCheckbox('admin-setting-collapseDangerousActions', 'Опасные действия держать свернутыми', settings.collapseDangerousActions, 'Скрывать destructive-действия до явного раскрытия')}
@@ -676,8 +837,8 @@ function isDashboardWidgetVisible(id) {
   return visibleDashboardWidgetIds().includes(id);
 }
 
-function disabledWhenUnauthorized(permission = '') {
-  return state.authorized && !state.busy && (!permission || can(permission)) ? '' : ' disabled';
+function disabledWhenUnauthorized(...permissions) {
+  return state.authorized && !state.busy && permissions.every((permission) => !permission || can(permission)) ? '' : ' disabled';
 }
 
 function authStillValid(authGeneration, permission) {
@@ -713,11 +874,13 @@ const CANONICAL_LEFT_NAV_ITEMS = Object.freeze([
   { id: 'users', route: 'users', label: 'Пользователи' },
   { id: 'gmail-support', route: 'support', label: 'Почта поддержки' },
   { id: 'reports', route: 'report-center', label: 'Центр репортов' },
+  { id: 'ideas', route: 'ideas', label: 'Идеи' },
   { id: 'app-messages', route: 'campaigns', label: 'Кампании' },
   { id: 'plans', route: 'plans', label: 'Планы' },
 ]);
 const CANONICAL_LEFT_NAV_ITEM_IDS = new Set(CANONICAL_LEFT_NAV_ITEMS.map((item) => item.id));
-const CANONICAL_LEFT_NAV_PARENT_ROUTES = Object.freeze({ users: 'users', 'gmail-support': 'users', reports: 'users', 'app-messages': 'application', plans: 'content' });
+// зачем: вернули полноценный раздел "Идеи" (был урезан до 3 карточек без действий) — та же группа меню, что у репортов, идеи тоже пользовательская обратная связь
+const CANONICAL_LEFT_NAV_PARENT_ROUTES = Object.freeze({ users: 'users', 'gmail-support': 'users', reports: 'users', ideas: 'users', 'app-messages': 'application', plans: 'content' });
 const ADMIN_UTILITY_NAV_ITEMS = Object.freeze([
   { id: 'control-panel', route: 'control-panel', label: 'Пульт управления' },
 ]);
@@ -804,10 +967,10 @@ function restoreGlobalSearchFocus() {
 
 function ensureGlobalSearchUi() {
   const actions = document.querySelector('.topbar-actions');
-  if (actions && !document.getElementById('global-search-launcher')) actions.insertAdjacentHTML('afterbegin', '<button id="global-search-launcher" class="button small" type="button" title="Найти раздел или инструмент; Ctrl/Cmd+K">Поиск</button>');
+  if (actions && !document.getElementById('global-search-launcher')) actions.insertAdjacentHTML('afterbegin', '<button id="global-search-launcher" class="button small topbar-icon-button" type="button" title="Найти раздел или инструмент; Ctrl/Cmd+K" aria-label="Поиск"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>');
   const root = document.getElementById('dialog-root');
   if (!root || document.getElementById('global-search-dialog')) return;
-  root.insertAdjacentHTML('beforeend', '<dialog id="global-search-dialog" aria-label="Поиск разделов и инструментов"><form method="dialog"><div class="card-header"><div><h2>Поиск</h2><p>Только видимые разделы и инструменты админки.</p></div><button class="button" value="cancel" type="submit" title="Закрыть поиск">Закрыть</button></div><div class="card-body"><section id="global-search-favorites" aria-labelledby="global-search-favorites-title"><h3 id="global-search-favorites-title">Закреплённые разделы</h3><div id="global-search-favorites-list"></div></section><label for="global-search-input">Найти раздел или инструмент</label><input id="global-search-input" type="search" autocomplete="off"><div id="global-search-results" role="listbox" aria-label="Результаты поиска"></div></div></form></dialog>');
+  root.insertAdjacentHTML('beforeend', '<dialog id="global-search-dialog" aria-label="Поиск разделов и инструментов"><form method="dialog"><div class="card-header"><div><h2>Поиск</h2></div><button class="button" value="cancel" type="submit" title="Закрыть поиск">Закрыть</button></div><div class="card-body"><section id="global-search-favorites" aria-labelledby="global-search-favorites-title"><h3 id="global-search-favorites-title">Закреплённые разделы</h3><div id="global-search-favorites-list"></div></section><label for="global-search-input">Найти раздел или инструмент</label><input id="global-search-input" type="search" autocomplete="off"><div id="global-search-results" role="listbox" aria-label="Результаты поиска"></div></div></form></dialog>');
   const dialog = document.getElementById('global-search-dialog');
   const input = document.getElementById('global-search-input');
   input?.addEventListener('input', () => {
@@ -960,9 +1123,10 @@ function renderNavigation() {
     if (!route) return '';
     return `<button class="nav-button" type="button" data-route="${route}" aria-current="${isActive(capability) ? 'page' : 'false'}" title="${escapeHtml(capability.label)}"><span>${escapeHtml(label)}</span></button>`;
   };
-  nav.innerHTML = groupsWithCanonicalItems.map((group) => `<details class="nav-group"${group.capabilities.some(isActive) || state.route === group.route ? ' open' : ''}><summary>${ICONS[group.route]}<span>${escapeHtml(group.label)}</span></summary><div class="nav-group-items">${group.capabilities.map(renderItem).join('')}</div></details>`).join('');
+  // зачем: пользователь просил все группы меню развёрнутыми сразу, как в старой админке — не заставлять кликать, чтобы увидеть разделы
+  nav.innerHTML = groupsWithCanonicalItems.map((group) => `<details class="nav-group" open><summary>${ICONS[group.route]}<span>${escapeHtml(group.label)}</span></summary><div class="nav-group-items">${group.capabilities.map(renderItem).join('')}</div></details>`).join('');
   utilityNav.innerHTML = ADMIN_UTILITY_NAV_ITEMS.map(renderItem).join('');
-  const parentRoutes = { campaigns: 'application', support: 'users', analytics: 'money', 'coin-center': 'money', 'daily-briefing': 'overview', 'report-center': 'users', 'asset-studio': 'content', plans: 'content', 'control-panel': 'overview', 'agent-office': 'overview', 'agent-manager': 'overview' };
+  const parentRoutes = { campaigns: 'application', support: 'users', analytics: 'money', 'coin-center': 'money', 'daily-briefing': 'overview', 'report-center': 'users', ideas: 'users', 'asset-studio': 'content', plans: 'content', 'english-test': 'content', 'control-panel': 'overview', 'agent-office': 'overview', 'agent-manager': 'overview' };
   const activeRoute = parentRoutes[state.route] || state.route;
   const current = ADMIN_SECTIONS.find((section) => section.route === activeRoute);
   const page = PAGES[state.route] ?? PAGES.overview;
@@ -973,6 +1137,7 @@ function renderNavigation() {
 function renderAuthStatus() {
   const target = document.getElementById('auth-status');
   if (!target) return;
+
   if (!state.authReady) {
     target.textContent = 'Проверка доступа…';
   } else if (!state.authorized && state.adminEmail) {
@@ -980,7 +1145,9 @@ function renderAuthStatus() {
   } else if (!state.authorized) {
     target.innerHTML = '<button class="button small" data-action="sign-in" type="button" title="Войти через Google">Войти</button>';
   } else {
-    target.innerHTML = `${escapeHtml(state.adminEmail || 'Администратор')} · ${escapeHtml(state.adminRole)} · <button class="button small" data-action="sign-out" type="button" title="Выйти">Выйти</button>`;
+    const label = escapeHtml(state.adminEmail || 'Администратор');
+    const initial = escapeHtml(String(state.adminEmail || 'А').trim().slice(0, 2).toLowerCase() || 'а');
+    target.innerHTML = `<span class="auth-person"><span class="auth-avatar" aria-hidden="true">${initial}</span><span class="auth-person-label">${label} · ${escapeHtml(state.adminRole)}</span></span><button class="button small" data-action="sign-out" type="button" title="Выйти">Выйти</button>`;
   }
 }
 
@@ -1050,23 +1217,30 @@ const CONTROL_PANEL_WORKFLOWS = Object.freeze([
 ]);
 
 function renderControlPanel() {
-  const headerActions = `<a class="button" href="#overview" title="Вернуться к ежедневному обзору">К обзору</a><a class="button primary" href="#application" title="Открыть основной процесс настройки приложения">Открыть конфигурацию</a>`;
-  return `${pageHeader(PAGES['control-panel'], 'Обзор / Пульт', headerActions)}
-    <div class="notice"><strong>Рабочий слой Admin V2.</strong> Здесь собраны безопасные процессы для ежедневных операций. Опасные действия доступны только через защищённый процесс с предпросмотром, причиной и журналом.</div>
-    <section class="card section"><div class="card-header"><div><h2>Карта рабочих процессов</h2><p>Операционные сценарии сгруппированы так, чтобы не смешивать рискованные действия.</p></div><span class="badge">control-panel</span></div>
-      <div class="card-body"><div class="control-panel-workflows">${CONTROL_PANEL_WORKFLOWS.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><div class="actions"><a class="button small" href="${escapeHtml(item.primary)}" title="Открыть основной процесс Admin V2: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a></div></article>`).join('')}</div></div></section>
-    <section class="card section"><div class="card-header"><div><h2>Правило переноса опасных кнопок</h2><p>Каждая опасная кнопка переносится отдельно: предпросмотр, причина, ожидаемая версия, журнал действий и восстановление.</p></div></div><div class="card-body"><div class="control-panel-transfer-list"><span>Ручное и обязательное обновление перенесены в защищённый процесс.</span><span>Ограничения уроков Plus перенесены в защищённый процесс Бесплатный / Plus.</span><span>Задания ИИ частично доступны через контроль бюджета и Студию изображений; редактор настроек переносится отдельно.</span></div></div></section>`;
+  const headerActions = `<span class="hint" role="status">Рабочие процессы открываются в защищённом разделе.</span>`;
+  const groups = [
+    { title: 'Приложение и обновления', hint: '3 процесса', items: CONTROL_PANEL_WORKFLOWS.slice(0, 3) },
+    { title: 'Доступ и экономика', hint: '3 процесса', items: CONTROL_PANEL_WORKFLOWS.slice(3, 6) },
+    { title: 'ИИ и коммуникации', hint: '2 процесса', items: CONTROL_PANEL_WORKFLOWS.slice(6) },
+  ];
+  return `${pageHeader(PAGES['control-panel'], 'Утилиты', headerActions)}
+    <div class="control-panel-groups section">${groups.map((group) => `<section class="card control-panel-group"><div class="card-header"><div><div class="eyebrow">${escapeHtml(group.hint)}</div><h2>${escapeHtml(group.title)}</h2></div></div><div class="card-body"><div class="control-panel-workflows">${group.items.map((item) => `<article class="control-panel-workflow"><div><strong>${escapeHtml(item.title)}</strong><p>${escapeHtml(item.description)}</p><div class="control-panel-tags"><span class="badge">${escapeHtml(item.coverage)}</span><span class="badge ${item.guarded ? 'success' : 'warning'}">${escapeHtml(item.risk)}</span></div></div><a class="control-panel-open" href="${escapeHtml(item.primary)}" title="Открыть основной процесс Admin V2: ${escapeHtml(item.title)}">${escapeHtml(item.primaryLabel)}</a></article>`).join('')}</div></div></section>`).join('')}</div>
+    <section class="control-panel-safety section" aria-label="Правило безопасных действий">Каждая опасная кнопка открывает отдельный защищённый процесс: предпросмотр, причина, ожидаемая версия, журнал действий и восстановление. Ручное обновление и лимиты уроков Plus уже перенесены в этот порядок.</section>`;
 }
 
 function renderOverview() {
   const view = buildOperationalSnapshot(state.briefing);
-  const headerActions = `<span class="hint" role="status">Снимок обновляется автоматически при открытии.</span><a class="button" href="#diagnostics" title="Открыть диагностику источников">Диагностика</a>`;
-  return `${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
-    ${isDashboardWidgetVisible('operational_state') ? renderOverviewOperationalState(view) : ''}
-    ${isDashboardWidgetVisible('payment_summary') ? renderOverviewPaymentSummary(overviewAnalyticsModel()) : ''}
-    ${renderDirectorDigest()}
-    <div class="columns section">${isDashboardWidgetVisible('decision_queue') ? `<section class="card"><div class="card-header"><div><h2>Требует решения</h2><p>Только подтверждённые сигналы с понятным следующим действием.</p></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>` : ''}
-    ${isDashboardWidgetVisible('quick_links') ? `<section class="card"><div class="card-header"><div><h2>Быстрые переходы</h2><p>Частые рабочие задачи.</p></div></div><div class="card-body actions"><a class="button" href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами">Стратегические решения</a><a class="button" href="#daily-briefing">Брифинг</a><a class="button" href="#report-center">Репорты</a><a class="button" href="#support">Почта</a><a class="button" href="#content">Контент</a><a class="button" href="#analytics">Аналитика</a></div></section>` : ''}</div>`;
+  const headerActions = `<span class="overview-updated hint" role="status">Снимок обновляется автоматически при открытии. · <a href="#diagnostics" title="Открыть диагностику источников">Диагностика</a></span>`;
+  const quickLinks = `<section class="card overview-quick-links"><div class="card-header"><div><div class="eyebrow">частые задачи</div><h2>Быстрые переходы</h2></div></div><div class="card-body"><a href="#agent-office" title="Открыть рекомендации агентов с проверяемыми доказательствами"><span>Стратегические решения</span><small>офис агентов</small></a><a href="#report-center"><span>Центр репортов</span><small>рабочая очередь</small></a><a href="#support"><span>Почта поддержки</span><small>обращения</small></a><a href="#analytics"><span>Аналитика</span><small>период и источники</small></a></div></section>`;
+  const briefing = `<section class="overview-briefing-card" aria-labelledby="overview-briefing-title"><div class="eyebrow">оперативная сводка</div><h2 id="overview-briefing-title">Брифинг дня</h2><p>${escapeHtml(view.hasData ? 'Подтверждённые сигналы и приоритетные действия собраны в ежедневном брифинге.' : 'Сохранённый ежедневный брифинг появится после первого безопасного чтения источников.')}</p><a href="#daily-briefing" title="Открыть ежедневный брифинг">Открыть брифинг <span aria-hidden="true">→</span></a></section>`;
+  return `<div class="overview-page">${pageHeader(PAGES.overview, 'Управление сегодня', headerActions)}
+    <div class="overview-operational-status">${isDashboardWidgetVisible('operational_state') ? renderOverviewOperationalState(view) : ''}</div>
+    <div class="overview-main-grid section">
+      <div>${isDashboardWidgetVisible('payment_summary') ? renderOverviewPaymentSummary(overviewAnalyticsModel()) : ''}</div>
+      <aside class="overview-side-stack">${briefing}${isDashboardWidgetVisible('quick_links') ? quickLinks : ''}</aside>
+    </div>
+    ${isDashboardWidgetVisible('decision_queue') ? `<section class="card overview-decisions section"><div class="card-header"><div><div class="eyebrow">подтверждённые сигналы</div><h2>Требует решения</h2></div></div><div class="card-body">${renderOverviewDecisions(view)}</div></section>` : ''}
+    ${renderDirectorDigest()}</div>`;
 }
 
 function agentOfficeStatusLabel(status) {
@@ -1150,9 +1324,9 @@ function renderAgentManagerWorkspace() {
     <section class="agent-manager-operations section" aria-label="Состояние офиса агентов"><div class="agent-manager-kpis"><article><span>Активная очередь</span><strong>${active.length}</strong><small>в работе или на проверке</small></article><article><span>Ждут решения</span><strong>${pending.length}</strong><small>требуют ручного согласования</small></article><article><span>История</span><strong>${history.length}</strong><small>готовые и архивные задачи</small></article></div><div class="agent-manager-roster"><div><h2>Кто чем занят</h2><p>Подтверждённые задачи кода забирает подключённый Codex на этом ПК. Он готовит изменения только для ручной проверки.</p></div><div class="agent-manager-role-list">${agentRows}</div></div></section>
     <section class="card section" aria-label="Подключение локального исполнителя"><div class="card-header"><div><h2>Локальный Codex</h2><p>Подключается один раз. После этого подтверждённые задачи разработки запускаются автоматически на этом компьютере.</p></div><button class="button" data-action="create-agent-manager-local-runner-pairing" type="button" title="Создать временный код для подключения этого компьютера"${disabled}>Подключить этот ПК</button></div>${manager.pairing ? `<div class="notice"><strong>Код подключения создан.</strong><br>Он действует до ${escapeHtml(new Date(Number(manager.pairing.expiresAtMs)).toLocaleTimeString('ru-RU'))}. Codex подключает этот ПК автоматически; код не сохраняется в админке.</div>` : ''}</section>
     <section class="card section"><div class="card-header"><div><h2>Поручить менеджеру</h2><p>Задача сначала попадёт в план. Письма, production и код этот экран не запускает.</p></div></div><div class="card-body fields"><div class="field"><label for="agent-manager-title">Что нужно сделать</label><input id="agent-manager-title" maxlength="140" placeholder="Например: проверить рост ошибок после релиза"></div><div class="field"><label for="agent-manager-brief">Контекст и ожидаемый результат</label><textarea id="agent-manager-brief" maxlength="4000" placeholder="Что проверить, ограничения и ожидаемый результат"></textarea></div><div class="field"><label for="agent-manager-priority">Приоритет</label><select id="agent-manager-priority"><option value="normal">Обычный</option><option value="high">Высокий</option><option value="critical">Критический</option><option value="low">Низкий</option></select></div><div class="field"><label for="agent-manager-scope">Разрешённая область</label><select id="agent-manager-scope"><option value="analysis_only">Только анализ</option><option value="support_draft">Черновик ответа поддержки</option><option value="code_prepare">Подготовка кода без запуска</option><option value="content_prepare">Подготовка контента без публикации</option></select></div><div class="actions"><button class="button primary" data-action="create-agent-manager-task" type="button" title="Добавить задачу в очередь менеджера для ручного согласования"${disabled}>Передать менеджеру</button><a class="button ghost" href="#support">Почта</a><a class="button ghost" href="#report-center">Репорты</a></div></div></section>
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Очередь и решения</h2><p>Задачи, которым нужно ваше действие.</p></div><span class="badge warning">${pending.length}</span></div><div class="card-body">${taskRows(pending, 'Нет задач, ожидающих решения.')}</div></section><section class="card"><div class="card-header"><div><h2>Исполнители</h2><p>Реальный состав и текущая занятость.</p></div></div><div class="card-body">${agentRows}</div></section></div>
-    <section class="card section"><div class="card-header"><div><h2>Активная очередь</h2><p>Согласованные задачи в работе и на проверке.</p></div></div><div class="card-body">${taskRows(active, 'Активных задач сейчас нет.')}</div></section>
-    <section class="card section"><div class="card-header"><div><h2>История и архив</h2><p>Завершённые, отменённые и архивные задачи.</p></div></div><div class="card-body">${taskRows(history, 'История пока пуста.')}</div></section>
+    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Очередь и решения</h2></div><span class="badge warning">${pending.length}</span></div><div class="card-body">${taskRows(pending, 'Нет задач, ожидающих решения.')}</div></section><section class="card"><div class="card-header"><div><h2>Исполнители</h2></div></div><div class="card-body">${agentRows}</div></section></div>
+    <section class="card section"><div class="card-header"><div><h2>Активная очередь</h2></div></div><div class="card-body">${taskRows(active, 'Активных задач сейчас нет.')}</div></section>
+    <section class="card section"><div class="card-header"><div><h2>История и архив</h2></div></div><div class="card-body">${taskRows(history, 'История пока пуста.')}</div></section>
     <section class="card section"><div class="card-header"><div><h2>Регламенты и FAQ</h2><p>Без секретов, персональных данных и прямого доступа к Firestore.</p></div></div><div class="card-body">${runbookRows}</div></section>`;
 }
 
@@ -1858,7 +2032,7 @@ function renderApplication() {
         ${preview ? `<div class="notice ${preview.changes.length ? 'warning' : ''} section"><strong>${escapeHtml(preview.title || 'Предпросмотр изменений')}</strong><br>${preview.summary ? `${escapeHtml(preview.summary)}<br>` : ''}${preview.changes.length ? preview.changes.map((change) => escapeHtml(change)).join('<br>') : 'Значения не отличаются от текущей ревизии.'}</div>` : ''}
         <div class="actions end section">${preview ? '<button class="button" data-action="discard-remote-config-preview" type="button">Изменить ещё</button>' : ''}<button class="button ${preview || editorLocked ? '' : 'primary'}" data-action="preview-remote-config" type="button"${can('application.config.write') && !state.busy && !editorLocked ? '' : ' disabled'}>Предпросмотр</button>${preview?.changes.length ? `<button class="button primary" data-action="publish-remote-config" type="button"${can('application.config.write') && !state.busy ? '' : ' disabled'}>Опубликовать</button>` : ''}</div>
       </div></section>
-      <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2><p>Серверный журнал с причиной и ревизией.</p></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
+      <section class="card section"><div class="card-header"><div><h2>Последние изменения</h2></div></div><div class="card-body">${renderRemoteConfigHistory()}</div></section>
     `}`;
 }
 
@@ -1935,11 +2109,11 @@ function renderCampaigns() {
     <section class="metrics section"><article class="card metric"><label>Активные</label><strong>${items.length ? activeCount : '—'}</strong><span class="badge success">сейчас</span></article><article class="card metric"><label>Всего</label><strong>${items.length || '—'}</strong><span class="badge">до 120</span></article><article class="card metric"><label>Прочтения</label><strong>${items.length ? reads : '—'}</strong><span class="badge">агрегировано</span></article><article class="card metric"><label>Реакции</label><strong>${items.length ? reactions : '—'}</strong><span class="badge">нравится и не нравится</span></article></section>
     <section class="card section"><div class="card-header"><div><h2>Новое сообщение</h2><p>Создайте обычное сообщение для входящих или опрос. Черновик никому не показывается; активное сообщение появляется у выбранной аудитории после публикации.</p></div><span class="badge warning">Рабочая кампания</span></div><div class="card-body">
       <div class="fields"><div class="field"><label for="app-message-kind">Формат</label><select id="app-message-kind"${locked ? ' disabled' : ''}><option value="message"${draft.kind === 'poll' ? '' : ' selected'}>Сообщение</option><option value="poll"${draft.kind === 'poll' ? ' selected' : ''}>Сообщение + опрос</option></select></div><div class="field"><label for="app-message-active">Статус после публикации</label><select id="app-message-active"${locked ? ' disabled' : ''}><option value="false"${draft.active === true ? '' : ' selected'}>Черновик / выключено</option><option value="true"${draft.active === true ? ' selected' : ''}>Активно</option></select></div><div class="field"><label for="app-message-audience">Аудитория</label><select id="app-message-audience"${locked ? ' disabled' : ''}><option value="all"${draft.audience && draft.audience !== 'all' ? '' : ' selected'}>Все пользователи</option><option value="free"${draft.audience === 'free' ? ' selected' : ''}>Только Free</option><option value="premium"${draft.audience === 'premium' ? ' selected' : ''}>Только Plus</option></select></div><div class="field"><label for="app-message-priority">Приоритет</label><input id="app-message-priority" type="number" min="0" max="99" value="${escapeHtml(draft.priority ?? 0)}"${locked ? ' disabled' : ''}></div><div class="field"><label for="app-message-ttl-days">Срок, дней</label><input id="app-message-ttl-days" type="number" min="1" max="30" value="${escapeHtml(draft.ttlDays ?? 30)}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-title-ru">Тема на русском</label><input id="app-message-title-ru" maxlength="160" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'title'))}"${locked ? ' disabled' : ''}></div><div class="field full"><label for="app-message-body-ru">Текст на русском</label><textarea id="app-message-body-ru" rows="3" maxlength="2000"${locked ? ' disabled' : ''}>${escapeHtml(appMessageDraftValue(draft, 'ru', 'body'))}</textarea></div><div class="field full"><label for="app-message-poll-question-ru">Вопрос опроса на русском</label><input id="app-message-poll-question-ru" maxlength="300" value="${escapeHtml(appMessageDraftValue(draft, 'ru', 'pollQuestion'))}" placeholder="Только для формата «Опрос»"${locked ? ' disabled' : ''}></div>${options}<div class="field full"><label for="app-message-reason">Причина публикации</label><textarea id="app-message-reason" maxlength="500" placeholder="Цель, аудитория, срок и условие остановки"${locked ? ' disabled' : ''}>${escapeHtml(campaignState.preview?.reason || '')}</textarea></div></div>
-      <details class="section"><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
+      <details class="section" open><summary>Переводы на 8 языков</summary><div class="notice section">Пустое поле безопасно наследует RU. Для опроса варианты вводятся по одному на строку в том же порядке.</div>${renderAppMessageTranslations(draft, locked)}</details>
       ${campaignState.preview ? `<div class="notice warning section"><strong>Предпросмотр не опубликован</strong><br>Пользователи ещё не видят это сообщение. ${escapeHtml(campaignState.preview.summary)}<div class="code-preview section">${campaignState.preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
       <div class="actions end section">${campaignState.preview ? '<button class="button" data-action="discard-app-message-preview" type="button" title="Отменить предпросмотр без записи в рабочее приложение">Изменить ещё</button>' : ''}<button class="button ${campaignState.preview ? '' : 'primary'}" data-action="preview-app-message" type="button"${locked ? ' disabled' : ''} title="Сначала показать точное сообщение, аудиторию и срок без записи в рабочее приложение">Предпросмотр</button>${campaignState.preview ? `<button class="button primary" data-action="publish-app-message" type="button"${locked ? ' disabled' : ''} title="Создать сообщение через серверную команду с указанной причиной, защитой от повторной отправки и записью в журнал">Опубликовать</button>` : ''}</div>
     </div></section>
-    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2><p>Статус, срок, аудитория, прочтения, реакции и голоса опросов.</p></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div><div class="hint section" role="status" aria-live="polite">${listStatus}</div>${list}</div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>История сообщений</h2></div></div><div class="card-body"><div class="field full"><label for="app-message-toggle-reason">Причина включения или выключения</label><input id="app-message-toggle-reason" maxlength="500" placeholder="Почему меняется показ и как вернуть прежнее состояние"></div><div class="hint section" role="status" aria-live="polite">${listStatus}</div>${list}</div></section>`;
 }
 
 function dateTime(value) {
@@ -1973,13 +2147,23 @@ function renderSourceBlock(title, source) {
   return `<div class="profile-source"><header><strong>${escapeHtml(title)}</strong>${sourceBadge(source)}</header>${sourceNotice(source)}${rows.length ? `<ul class="profile-events">${rows.slice(0, 8).map(compactEvent).join('')}</ul>` : ''}</div>`;
 }
 
+// зачем: bulk-выбор владелец попросил вернуть как в старой админке, но БЕЗ выгрузки всей базы — только среди уже найденных результатов поиска
+function renderUserBulkToolbar() {
+  const selected = state.users.bulkSelected;
+  if (!selected.size) return '';
+  const canGrant = can('money.manual_access.write');
+  const canBan = can('community.moderate');
+  return `<div class="bulk-toolbar" role="region" aria-label="Массовые действия"><span class="badge">Выбрано: ${selected.size}</span><div class="actions"><button class="button" data-action="bulk-grant-premium" type="button"${canGrant ? '' : ' disabled'} title="Выдать Plus всем выбранным на 365 дней">Выдать Plus (365 дн.)</button><button class="button" data-action="bulk-grant-vip" type="button"${canGrant ? '' : ' disabled'} title="Выдать VIP всем выбранным на 365 дней">Выдать VIP (365 дн.)</button><button class="button danger" data-action="bulk-ban-users" type="button"${canBan ? '' : ' disabled'} title="Заблокировать всех выбранных">Забанить</button><button class="button ghost" data-action="bulk-clear-selection" type="button" title="Снять выбор со всех">Снять выбор</button></div></div>`;
+}
+
 function renderUserSearchResults() {
   const items = state.users.items;
   if (state.users.searchState === 'loading') return `<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Ищу по защищённым серверным источникам…</span></div>`;
   if (state.users.searchState === 'error') return `<div class="notice danger section"><strong>Поиск не выполнен</strong><br>${escapeHtml(state.users.searchErrors.join(' · ') || 'Серверные источники поиска недоступны.')}</div>`;
   if (!state.users.searched) return emptyState('Введите UID, точное имя или почту. Общий список пользователей не сканируется.');
   if (!items.length) return emptyState('Совпадений не найдено. Проверьте точное имя, UID или почту.');
-  return `${state.users.searchState === 'partial' ? `<div class="notice warning section">Результаты частичные: ${escapeHtml(state.users.searchErrors.join(' · ') || 'один из источников поиска недоступен')}</div>` : ''}<div class="user-search-results">${items.map((user) => `<button type="button" class="user-result${state.users.profile?.canonicalUid === user.uid ? ' selected' : ''}" data-user-profile-uid="${escapeHtml(user.uid)}" title="Открыть единый профиль"><span class="user-avatar">${escapeHtml(String(user.name || '?').slice(0, 1).toUpperCase())}</span><span><strong>${escapeHtml(user.name || user.uid)}</strong><small>Ник: ${escapeHtml(user.name || 'не указан')}</small><small>UUID: <code>${escapeHtml(user.uid)}</code> · ${escapeHtml(user.email || 'почта не указана')} · ${Number(user.xp || 0).toLocaleString('ru-RU')} XP</small></span><span class="badge ${user.banned ? 'danger' : user.banState === 'unknown' ? 'warning' : user.premiumPlan ? 'success' : ''}">${user.banned ? 'Заблокирован' : user.banState === 'unknown' ? 'Статус неизвестен' : user.premiumPlan ? 'Plus' : 'Free'}</span></button>`).join('')}</div>`;
+  const selected = state.users.bulkSelected;
+  return `${state.users.searchState === 'partial' ? `<div class="notice warning section">Результаты частичные: ${escapeHtml(state.users.searchErrors.join(' · ') || 'один из источников поиска недоступен')}</div>` : ''}${renderUserBulkToolbar()}<div class="user-search-results">${items.map((user) => `<div class="user-result${state.users.profile?.canonicalUid === user.uid ? ' selected' : ''}"><input type="checkbox" class="user-bulk-checkbox" data-user-bulk-uid="${escapeHtml(user.uid)}"${selected.has(user.uid) ? ' checked' : ''} aria-label="Выбрать ${escapeHtml(user.name || user.uid)} для массового действия"><button type="button" class="user-result-open" data-user-profile-uid="${escapeHtml(user.uid)}" title="Открыть единый профиль"><span class="user-avatar">${escapeHtml(String(user.name || '?').slice(0, 1).toUpperCase())}</span><span><strong>${escapeHtml(user.name || user.uid)}</strong><small>Ник: ${escapeHtml(user.name || 'не указан')}</small><small>UUID: <code>${escapeHtml(user.uid)}</code> · ${escapeHtml(user.email || 'почта не указана')} · ${Number(user.xp || 0).toLocaleString('ru-RU')} XP</small></span><span class="badge ${user.banned ? 'danger' : user.banState === 'unknown' ? 'warning' : user.premiumPlan ? 'success' : ''}">${user.banned ? 'Заблокирован' : user.banState === 'unknown' ? 'Статус неизвестен' : user.premiumPlan ? 'Plus' : 'Free'}</span></button></div>`).join('')}</div>`;
 }
 
 function renderProfile() {
@@ -1998,13 +2182,14 @@ function renderProfile() {
   return `<div class="profile-workspace">
     ${state.users.profileLoading ? '<div class="notice" role="status" aria-live="polite">Обновляю источники; текущий снимок остаётся на экране.</div>' : ''}
     <section class="card profile-hero"><div><div class="eyebrow">Канонический профиль</div><h2>${escapeHtml(summary.name || profile.canonicalUid)}</h2><p class="mono">${escapeHtml(profile.canonicalUid)}</p><div class="actions"><span class="badge ${summary.banned ? 'danger' : 'success'}">${summary.banned ? 'Заблокирован' : 'Активен'}</span><span class="badge">${escapeHtml(identityReasonLabel(profile.identity?.reason || 'requested'))}</span>${profile.state === 'partial' ? '<span class="badge warning">Неполный снимок</span>' : '<span class="badge success">Снимок готов</span>'}</div></div><div class="profile-hero-actions"><button class="button" data-action="reload-user-profile" type="button" title="Обновить все источники профиля" data-tooltip="Обновить все источники профиля">Обновить</button><a class="button" href="${escapeHtml(profileUrl)}" title="Открыть защищённое управление аккаунтом" data-tooltip="Открыть защищённое управление аккаунтом">Управление аккаунтом</a></div></section>
+    ${renderPersonalAppMessageComposer(profile.canonicalUid)}
     ${renderAdminAccessControls(profile.canonicalUid, summary)}
     <div class="profile-section-grid">
-      <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3><p>Канонический UID и привязка входа.</p></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
+      <section class="card profile-section"><div class="card-header"><div><h3>1. Личность и аккаунт</h3></div></div><dl class="profile-facts"><dt>Почта</dt><dd>${escapeHtml(summary.auth?.email || '—')}</dd><dt>Провайдер</dt><dd>${escapeHtml(summary.auth?.provider || '—')}</dd><dt>Язык / платформа</dt><dd>${escapeHtml(summary.language || '—')} · ${escapeHtml(summary.platform || '—')}</dd><dt>Последняя активность</dt><dd>${escapeHtml(dateTime(summary.lastActiveAtMs))}</dd><dt>Алиасы</dt><dd>${escapeHtml((profile.identity?.aliases || []).join(', ') || 'нет')}</dd></dl></section>
       <section class="card profile-section"><div class="card-header"><div><h3>2. Обучение</h3><p>Прогресс без выдачи сырого документа.</p></div></div><div class="profile-metrics"><div><strong>${Number(summary.xp || 0).toLocaleString('ru-RU')}</strong><small>XP</small></div><div><strong>${Number(summary.streak || 0)}</strong><small>дней streak</small></div><div><strong>${Number(summary.lessonsCompleted || 0)}</strong><small>уроков</small></div><div><strong>${escapeHtml(summary.placementLevel || '—')}</strong><small>уровень</small></div></div></section>
-      <section class="card profile-section"><div class="card-header"><div><h3>3. Рейтинг</h3><p>Отдельный серверный источник.</p></div></div>${renderSourceBlock('Leaderboard', competition.leaderboard)}</section>
-      <section class="card profile-section"><div class="card-header"><div><h3>4. Деньги и доступ</h3><p>Plus, осколки, покупки и рефералы.</p></div><span class="badge ${summary.premiumPlan ? 'success' : ''}">${escapeHtml(summary.premiumPlan || 'Free')}</span></div><div class="profile-metrics compact"><div><strong>${Number(summary.shards || 0)}</strong><small>осколков</small></div><div><strong>${Number(money.premiumEvents?.count || 0)}</strong><small>Plus-событий</small></div><div><strong>${Number(money.referrals?.count || 0)}</strong><small>приглашено</small></div></div>${renderSourceBlock('Платёжные события', money.premiumEvents)}${renderSourceBlock('Осколки', money.shardTransactions)}</section>
-      <section class="card profile-section"><div class="card-header"><div><h3>5. Комьюнити</h3><p>Чат и пользовательские покупки.</p></div></div>${renderSourceBlock('Сообщения', community.chatMessages)}${renderSourceBlock('Покупки наборов', community.ugcBuys)}${renderSourceBlock('Продажи наборов', community.ugcSells)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>3. Рейтинг</h3></div></div>${renderSourceBlock('Leaderboard', competition.leaderboard)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>4. Деньги и доступ</h3></div><span class="badge ${summary.premiumPlan ? 'success' : ''}">${escapeHtml(summary.premiumPlan || 'Free')}</span></div><div class="profile-metrics compact"><div><strong>${Number(summary.shards || 0)}</strong><small>осколков</small></div><div><strong>${Number(money.premiumEvents?.count || 0)}</strong><small>Plus-событий</small></div><div><strong>${Number(money.referrals?.count || 0)}</strong><small>приглашено</small></div></div>${renderSourceBlock('Платёжные события', money.premiumEvents)}${renderSourceBlock('Осколки', money.shardTransactions)}</section>
+      <section class="card profile-section"><div class="card-header"><div><h3>5. Комьюнити</h3></div></div>${renderSourceBlock('Сообщения', community.chatMessages)}${renderSourceBlock('Покупки наборов', community.ugcBuys)}${renderSourceBlock('Продажи наборов', community.ugcSells)}</section>
       <section class="card profile-section"><div class="card-header"><div><h3>6. Модерация и репорты</h3><p>Жалобы от пользователя и на него не смешиваются.</p></div></div>${renderSourceBlock('Репорты приложения', moderation.errorReports)}${renderSourceBlock('Жалобы на пользователя', moderation.reportsAgainst)}${renderSourceBlock('Жалобы пользователя', moderation.reportsBy)}</section>
       <section class="card profile-section diagnostics-section"><div class="card-header"><div><h3>7. Диагностика источников</h3><p>Пустой источник не равен ошибке чтения.</p></div><div class="actions"><span class="badge ${failed ? 'danger' : 'success'}">Ошибок: ${failed}</span><span class="badge ${partial ? 'warning' : ''}">Частично: ${partial}</span></div></div><div class="source-health-grid">${Object.entries(sourceStates).map(([name, source]) => `<div><span>${escapeHtml(name)}</span>${sourceBadge(source)}<small>${Number(source?.count || 0)} записей · ${escapeHtml(dateTime(source?.fetchedAtMs))}</small></div>`).join('')}</div></section>
     </div>
@@ -2029,8 +2214,13 @@ function renderAdminAccessControls(uid, summary) {
 function renderUsers() {
   if (!can('users.read')) return `${pageHeader(PAGES.users, 'Пользователи')}<div class="notice warning">Для просмотра профилей нужна роль с разрешением users.read. Сохранённые результаты скрыты.</div>`;
   return `${pageHeader(PAGES.users, 'Пользователи', '<a class="button" href="#support" title="Открыть почту поддержки">Почта</a><a class="button primary" href="#report-center" title="Открыть единый центр репортов">Центр репортов</a>')}
-    <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div>${renderUserSearchResults()}</div></section>
-    <div class="section">${renderProfile()}</div>`;
+    <section class="card user-search-card"><div class="card-header"><div><h2>Найти пользователя</h2><p>Точный серверный поиск без загрузки всей базы в браузер.</p></div><span class="badge">users.read</span></div><div class="card-body"><div class="user-search-form"><div class="field"><label for="user-search">Почта, точное имя или UID</label><input id="user-search" type="search" value="${escapeHtml(state.users.query)}" placeholder="alice@example.com или stable UID" autocomplete="off"></div><button class="button primary" data-action="search-admin-users" type="button" title="Найти пользователя без загрузки всей базы" data-tooltip="Найти пользователя без загрузки всей базы"${disabledWhenUnauthorized('users.read')}>Найти</button></div></div></section>
+    <div class="users-workspace section"><section class="card users-results-panel"><div class="card-header"><div><h2>Результаты</h2><p>${state.users.searched ? 'Выберите пользователя, чтобы открыть единый профиль.' : 'Поиск не сканирует всю базу пользователей.'}</p></div></div><div class="card-body">${renderUserSearchResults()}</div></section><div class="users-profile-panel">${renderProfile()}</div></div>`;
+}
+
+function renderPersonalAppMessageComposer(uid) {
+  if (!can('users.message.write')) return '';
+  return `<section class="card profile-section"><div class="card-header"><div><h3>Персональное сообщение</h3><p>Получатель зафиксирован по стабильному UID. Сообщение останется в колокольчике; окно при следующем входе показывается один раз.</p></div><span class="badge">users.message.write</span></div><div class="card-body"><div class="fields"><div class="field"><label for="personal-message-uid">Стабильный UID</label><input id="personal-message-uid" value="${escapeHtml(uid)}" readonly></div><div class="field"><label for="personal-message-delivery">Доставка</label><select id="personal-message-delivery"><option value="inbox">Только колокольчик</option><option value="next_login_modal">Окно при следующем входе + колокольчик</option></select></div><div class="field full"><label for="personal-message-title">Заголовок</label><input id="personal-message-title" maxlength="160"></div><div class="field full"><label for="personal-message-body">Текст</label><textarea id="personal-message-body" maxlength="2000" rows="4"></textarea></div><div class="field full"><label for="personal-message-reason">Причина для журнала</label><input id="personal-message-reason" maxlength="500" placeholder="Почему это сообщение нужно отправить"></div></div><div class="actions end section"><button class="button primary" data-action="send-personal-app-message" type="button"${disabledWhenUnauthorized('users.message.write')} title="Отправить сообщение только выбранному стабильному UID с журналом и защитой от повтора">Проверить и отправить</button></div></div></section>`;
 }
 
 function formatPromoDate(ms) {
@@ -2064,7 +2254,7 @@ function renderPromoWorkflow() {
   const promoDraft = preview?.payload || {};
   const promoMode = Array.isArray(promoDraft.codes) ? 'custom' : 'generated';
   const promoExpires = String(promoDraft.expiresDate || '');
-  return `<section class="card section"><div class="card-header"><div><h2>Промокоды</h2><p>Создание кодов идёт через серверные callable, без прямой записи Firestore из браузера.</p></div><span class="badge success">Новая версия</span></div><div class="card-body">
+  return `<section class="card section"><div class="card-header"><div><h2>Промокоды</h2></div><span class="badge success">Новая версия</span></div><div class="card-body">
     <div class="fields">
       <div class="field"><label for="promo-mode">Тип</label><select id="promo-mode"><option value="generated"${promoMode === 'generated' ? ' selected' : ''}>Сгенерировать пачку</option><option value="custom"${promoMode === 'custom' ? ' selected' : ''}>Свои коды</option></select></div>
       <div class="field"><label for="promo-count">Количество</label><input id="promo-count" type="number" min="1" max="200" value="${escapeHtml(promoDraft.count || 10)}"></div>
@@ -2082,7 +2272,7 @@ function renderPromoWorkflow() {
     ${preview ? `<div class="notice warning section"><strong>Предпросмотр промокодов</strong><br>${escapeHtml(preview.summary)}<div class="code-preview section">${preview.details.map((line) => escapeHtml(line)).join('<br>')}</div></div>` : ''}
     <div class="actions end section"><button class="button" data-action="load-promo-codes" type="button"${disabledWhenUnauthorized('money.read')} title="Загрузить последние промокоды и последние активации через сервер">Обновить список</button>${preview ? '<button class="button" data-action="discard-promo-preview" type="button" title="Отменить текущий предпросмотр и вернуться к редактированию">Изменить ещё</button>' : ''}<button class="button" data-action="preview-one-time-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Собрать предпросмотр пачки одноразовых промокодов без публикации">Предпросмотр одноразовых</button><button class="button ${preview ? '' : 'primary'}" data-action="preview-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Собрать предпросмотр промокодов без создания кодов">Предпросмотр промокодов</button>${preview ? `<button class="button primary" data-action="publish-promo-codes" type="button"${disabledWhenUnauthorized('money.manual_access.write')} title="Создать промокоды по проверенному предпросмотру и записать аудит">Опубликовать</button>` : ''}</div>
   </div></section>
-  <section class="card section"><div class="card-header"><div><h2>Последние коды и активации</h2><p>Серверный список: последние коды и последние user redemptions.</p></div></div><div class="card-body"><div class="split-grid"><div>${renderPromoCodesList()}</div><div>${renderPromoRedemptionsList()}</div></div></div></section>`;
+  <section class="card section"><div class="card-header"><div><h2>Последние коды и активации</h2></div></div><div class="card-body"><div class="split-grid"><div>${renderPromoCodesList()}</div><div>${renderPromoRedemptionsList()}</div></div></div></section>`;
 }
 
 function renderMoney() {
@@ -2253,7 +2443,7 @@ function renderCoinCenterStats() {
 
 function renderCoinCenterAudit() {
   const overrides = state.coinCenter.overrides;
-  return `<section class="card section"><div class="card-header"><div><h2>Журнал ручных переопределений</h2><p>Кто, когда и почему менял курс вручную.</p></div><span class="badge">Последние ${overrides.length || '—'}</span></div>
+  return `<section class="card section"><div class="card-header"><div><h2>Журнал ручных переопределений</h2></div><span class="badge">Последние ${overrides.length || '—'}</span></div>
     <div class="card-body">
       ${overrides.length ? `<div class="job-list">${overrides.map((entry) => `<div class="list-row"><div><strong>1 монета = ${escapeHtml(metricValue(entry.rate))} звёзд</strong><small>${escapeHtml(entry.author || 'Администратор')} · ${escapeHtml(dateTime(entry.atMs))}<br>Причина: ${escapeHtml(entry.reason || 'не указана')}</small></div><span class="badge warning">Ручной курс</span></div>`).join('')}</div>` : emptyState('Ручных переопределений ещё не было. Курс всегда считался автоматически.')}
     </div></section>`;
@@ -2437,9 +2627,22 @@ function renderContent() {
 }
 
 function renderCommunity() {
-  return `${pageHeader(PAGES.community, 'Комьюнити', '<a class="button primary" href="#report-center" title="Открыть единый центр жалоб, ошибок и контентных репортов">Открыть центр репортов</a>')}
-    <div class="notice">Пустая очередь не считается подтверждённым хорошим состоянием, пока источник не загружен.</div>
-    <section class="metrics section">${['Жалобы без ответа', 'Сообщения чата'].map((label) => `<article class="card metric"><label>${label}</label><strong>—</strong><span class="badge">Не загружено</span></article>`).join('')}</section>`;
+  const loaded = state.reports.state !== 'idle';
+  const reports = Array.isArray(state.reports.items) ? state.reports.items : [];
+  const communityReports = reports.filter((item) => ['community_pack_reports', 'user_reports', 'safety_reports'].includes(String(item?.source || '')));
+  const open = communityReports.filter((item) => !['resolved', 'answered', 'archived'].includes(String(item?.lane || '')));
+  const freshSince = Date.now() - 24 * 60 * 60 * 1000;
+  const fresh = communityReports.filter((item) => Number(item?.createdAtMs || 0) >= freshSince);
+  const metric = (label, value, hint, tone = '') => `<article class="community-metric ${tone}"><label>${label}</label><strong>${loaded ? value : '—'}</strong><span>${loaded ? hint : 'Источник не загружен'}</span></article>`;
+  const rows = communityReports.slice(0, 12).map((item) => {
+    const source = REPORT_SOURCE_LABELS[item.source] || 'Репорт сообщества';
+    const status = REPORT_LANE_LABELS[item.lane] || 'Неизвестно';
+    return `<article class="community-row"><div><strong>${escapeHtml(item.summary || '(без описания)')}</strong><small>${escapeHtml(source)} · ${escapeHtml(dateTime(item.createdAtMs))}</small><p>${escapeHtml(item.category || item.context?.feature || 'Требуется проверка модерации.')}</p></div><div><span class="badge ${item.lane === 'escalated' ? 'danger' : item.lane === 'resolved' || item.lane === 'answered' ? 'success' : 'warning'}">${escapeHtml(status)}</span><a class="button small" href="#report-center" title="Открыть Центр репортов и подробности записи">Открыть</a></div></article>`;
+  }).join('');
+  return `<div class="community-page">${pageHeader(PAGES.community, 'Комьюнити', '<a class="button primary" href="#report-center" title="Открыть единый центр жалоб, ошибок и контентных репортов">Открыть центр репортов</a>')}
+    <div class="community-status hint">Пустая очередь не считается подтверждённым хорошим состоянием, пока источник не загружен.</div>
+    <section class="community-metrics section">${metric('Новые подачи', fresh.length, 'за 24 часа', 'lime')}${metric('В модерации', open.length, 'ждут решения', 'amber')}${metric('Всего в очереди', communityReports.length, 'загруженные записи')}</section>
+    <section class="card community-queue section"><div class="card-header"><div><h2>Очередь модерации</h2><p>${loaded ? `Показано ${communityReports.length} записей, доступных в безопасной проекции.` : 'Загрузите Центр репортов: данные появятся здесь без подмены значений.'}</p></div>${loaded ? `<span class="badge">${communityReports.length}</span>` : ''}</div><div class="card-body">${rows || emptyState(loaded ? 'В загруженной очереди нет записей сообщества.' : 'Записи сообщества ещё не загружены.')}</div></section></div>`;
 }
 
 const SOURCE_LABELS = Object.freeze({
@@ -2643,40 +2846,94 @@ function renderDiagnostics() {
     <div class="columns section"><section class="card"><div class="card-header"><div><h2>Бюджет генерации</h2><p>Только чтение серверных коллекций расходов.</p></div><button class="button primary" data-action="load-openai-budget" type="button"${disabledWhenUnauthorized()}>Загрузить</button></div><div class="card-body">${budget ? `<pre class="code-preview">${escapeHtml(JSON.stringify(budget, null, 2))}</pre>` : '<p class="hint">Данные не загружены.</p>'}</div></section></div>`;
 }
 
+function supportStatusName(status) {
+  return ({ new: 'Новое', answered: 'Отвечено', archived: 'Архив' })[status] ?? status;
+}
+
+function supportMessageTime(item) {
+  return item?.receivedAtMs
+    ? new Date(Number(item.receivedAtMs)).toLocaleString('ru-RU')
+    : String(item?.receivedAtIso || item?.receivedAt || '');
+}
+
+function supportDraftText(item) {
+  const messageId = String(item?.id ?? '');
+  return Object.prototype.hasOwnProperty.call(state.support.replyDrafts, messageId)
+    ? String(state.support.replyDrafts[messageId] ?? '')
+    : String(item?.draftReply ?? '');
+}
+
+function supportPendingKey(pending) {
+  return String(pending?.batchId || pending?.operationId || '');
+}
+
+function supportPendingReviewMessageId(pending) {
+  const candidateIds = pending?.batchId
+    ? (Array.isArray(pending.items) ? pending.items : []).map((item) => String(item?.messageDocId || ''))
+    : [String(pending?.messageDocId || '')];
+  return candidateIds.find((messageId) => state.support.items.some((item) => (
+    String(item.id) === messageId && String(item.replyGate?.state || '') === 'delivery_unknown'
+  ))) || candidateIds.find(Boolean) || '';
+}
+
+function renderSupportPendingReply(pending) {
+  const pendingIsBatch = Boolean(pending?.batchId);
+  const canSend = state.authorized && can('support.reply.send') && !state.busy;
+  const reviewMessageId = escapeHtml(supportPendingReviewMessageId(pending));
+  if (pendingIsBatch) {
+    const batchItems = Array.isArray(pending.items) ? pending.items : [];
+    return `<div class="support-detail-scroll"><div class="support-detail-heading"><div><div class="eyebrow">Запечатанный предпросмотр</div><h2>Подтверждение пакета</h2><p>Проверьте получателей и точные тексты. После подтверждения пакет продолжит только ещё не начатые операции.</p></div><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></div><div class="confirmation-panel support-confirmation"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>Подтвердить до</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd></dl><div class="batch-preview section">${batchItems.map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. Неопределённая доставка никогда не повторяется автоматически.</div>${pending.state === 'attention_required' ? '<div class="notice danger section"><strong>Нужна ручная проверка доставки.</strong><br>Откройте письма с неизвестным результатом и сверьте их с папкой «Отправленные». Это не повторяет отправку и не отменяет серверные операции.</div>' : ''}<div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${!canSend || pending.state !== 'prepared' ? ' disabled' : ''} title="Отменить запечатанный пакет; ещё не начатые письма не будут отправлены">Отменить пакет</button>${pending.state === 'attention_required' ? `<button class="button" data-action="review-support-delivery" data-message-id="${reviewMessageId}" type="button" title="Закрыть только этот предпросмотр в браузере и открыть письмо для ручной сверки; серверная операция не отменяется и не повторяется">Перейти к проверке писем</button>` : ''}<button class="button primary" data-action="dispatch-support-reply-batch" type="button"${!canSend || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''} title="Подтвердить точный манифест и отправить только разрешённые сервером операции">Подтвердить пакет</button></div></div></div>`;
+  }
+  return `<div class="support-detail-scroll"><div class="support-detail-heading"><div><div class="eyebrow">Запечатанный предпросмотр</div><h2>Подтверждение отправки</h2><p>Проверьте точного получателя и итоговый текст с серверной подписью.</p></div><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></div><div class="confirmation-panel support-confirmation"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>Payload hash</dt><dd><code>${escapeHtml(pending.payloadHash || '')}</code></dd><dt>Подтвердить до</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения запечатанный текст не меняется. Повторный клик не создаст вторую SMTP-отправку.</div>${pending.state === 'delivery_unknown' ? '<div class="notice danger section"><strong>Операцию нельзя отменить как подготовленную.</strong><br>Её результат уже неизвестен. Перейдите к письму и вручную проверьте папку «Отправленные»; автоматический повтор заблокирован.</div>' : ''}<div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${!canSend || pending.state !== 'prepared' ? ' disabled' : ''} title="Отменить только подготовленную серверную операцию до начала отправки">Отменить подготовку</button>${pending.state === 'delivery_unknown' ? `<button class="button primary" data-action="review-support-delivery" data-message-id="${reviewMessageId}" type="button" title="Закрыть только этот предпросмотр в браузере и открыть письмо для ручной сверки; серверная операция не отменяется и не повторяется">Перейти к проверке доставки</button>` : `<button class="button primary" data-action="dispatch-support-reply" type="button"${!canSend || pending.state !== 'prepared' ? ' disabled' : ''} title="Подтвердить показанный запечатанный текст и передать его Gmail один раз">Подтвердить и отправить</button>`}</div></div></div>`;
+}
+
+function renderSupportMessageDetail(item) {
+  if (!item) return emptyState('Выберите письмо в очереди слева.');
+  const messageId = escapeHtml(item.id);
+  const status = String(item.status || 'new');
+  const gateState = String(item.replyGate?.state || '');
+  const replyText = supportDraftText(item);
+  const canDraft = state.authorized && can('support.draft.write') && !state.busy && !state.support.pendingReply;
+  const canPrepare = state.authorized && can('support.reply.send') && !state.busy && !state.support.pendingReply && status === 'new' && gateState !== 'delivery_unknown' && gateState !== 'dispatching';
+  const canChangeStatus = state.authorized && can('support.archive') && !state.busy && !state.support.pendingReply;
+  const canResolve = state.authorized && can('support.reply.resolve_ambiguous') && !state.busy;
+  return `<div class="support-detail-scroll"><div class="support-detail-heading"><div><div class="actions support-detail-badges"><span class="badge">${escapeHtml(mailCategoryLabel(item.mailCategory))}</span><span class="badge ${badgeClass(status)}">${escapeHtml(supportStatusName(status))}</span>${gateState ? `<span class="badge ${gateState === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(gateState))}</span>` : ''}</div><h2>${escapeHtml(item.subject || '(без темы)')}</h2><p>${escapeHtml(item.fromName || '')} &lt;${escapeHtml(item.fromEmail || 'неизвестный отправитель')}&gt; · ${escapeHtml(supportMessageTime(item))}</p><small class="mono">${messageId}</small></div></div><div class="support-letter-body">${escapeHtml(String(item.bodyText || '').slice(0, 8000)) || '<span class="muted">Пустое тело письма</span>'}</div>${status !== 'archived' ? `<section class="support-draft-panel" aria-labelledby="support-draft-title-${messageId}"><div class="support-draft-heading"><div><h3 id="support-draft-title-${messageId}">Черновик ответа</h3><p>Сначала проверьте текст. Отправка станет доступна только после отдельного запечатанного предпросмотра.</p></div><span class="badge">ревизия ${Number(item.draftRevision || 0)}</span></div><div class="field"><label for="support-reply-${messageId}">Текст ответа</label><textarea id="support-reply-${messageId}" class="support-reply" data-support-draft-id="${messageId}" placeholder="Введите ответ или создайте черновик"${canDraft ? '' : ' disabled'}>${escapeHtml(replyText)}</textarea></div><div class="actions section"><button class="button" data-action="generate-support-reply" data-message-id="${messageId}" type="button"${canDraft ? '' : ' disabled'} title="Создать серверный черновик для выбранного письма; письмо не будет отправлено">Создать черновик</button><button class="button primary" data-action="prepare-support-reply" data-message-id="${messageId}" type="button"${canPrepare ? '' : ' disabled'} title="Запечатать получателя, текст и подпись и показать отдельный предпросмотр без отправки">Проверить и подготовить</button></div></section>` : ''}${gateState === 'delivery_unknown' ? `<div class="notice danger section"><strong>Доставка Gmail не подтверждена.</strong><br>Автоматический повтор заблокирован. Владелец или администратор должен проверить папку «Отправленные».</div><div class="actions section"><button class="button" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="accepted" type="button"${canResolve ? '' : ' disabled'} title="После ручной проверки Gmail отметить письмо найденным в папке Отправленные">В отправленных: да</button><button class="button" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="verified_not_sent" type="button"${canResolve ? '' : ' disabled'} title="После ручной проверки Gmail подтвердить отсутствие письма и разрешить новую подготовку">В отправленных: нет</button></div>` : ''}<div class="actions support-detail-footer"><button class="button ghost" data-action="set-support-status" data-message-id="${messageId}" data-status="${status === 'archived' ? 'new' : 'archived'}" type="button"${canChangeStatus ? '' : ' disabled'} title="${status === 'archived' ? 'Вернуть письмо в рабочую очередь новых' : 'Переместить письмо в архив без удаления'}">${status === 'archived' ? 'Вернуть в новые' : 'В архив'}</button></div></div>`;
+}
+
+function renderSupportSignature() {
+  const signature = state.support.signatureDraft ?? state.support.signature ?? '';
+  const canSave = state.authorized && can('support.settings.write') && !state.busy && !state.support.pendingReply;
+  return `<section class="card support-signature-panel section"><div class="card-header"><div><h2>Подпись поддержки</h2><p>Сервер добавит её после текста ответа; изменение попадёт в аудит.</p></div><span class="badge">ревизия ${Number(state.support.signatureRevision || 0)}</span></div><div class="card-body"><div class="field"><label for="support-signature">Текст подписи</label><textarea id="support-signature" data-support-signature-draft maxlength="2000" placeholder="С уважением, команда Phraseman"${canSave ? '' : ' disabled'}>${escapeHtml(signature)}</textarea></div><div class="actions end section"><button class="button" data-action="save-support-signature" type="button"${canSave ? '' : ' disabled'} title="Сохранить подпись на сервере; она применится только к новым подготовленным ответам">Сохранить подпись</button></div></div></section>`;
+}
+
 function renderSupport() {
   const supportPage = { ...PAGES.support, title: 'Входящие / Поддержка' };
   const items = state.support.items;
   const pending = state.support.pendingReply;
-  const pendingIsBatch = Boolean(pending?.batchId);
   const filter = state.support.filter || 'new';
   const filtered = items.filter((item) => filter === 'all' || String(item.status || 'new') === filter).slice(0, 50);
+  const selected = filtered.find((item) => String(item.id) === String(state.support.selectedMessageId)) ?? filtered[0] ?? null;
+  const selectedMessageId = String(selected?.id ?? '');
   const listStatus = state.support.loaded ? `Писем в списке: ${filtered.length}.` : 'Загружаю входящие…';
-  const emptyMessage = ({
-    new: 'Новых писем нет.',
-    answered: 'Отвеченных писем нет.',
-    archived: 'В архиве писем нет.',
-    all: 'Во входящих писем нет.',
-  })[filter] || 'Во входящих писем нет.';
+  const emptyMessage = ({ new: 'Новых писем нет.', answered: 'Отвеченных писем нет.', archived: 'В архиве писем нет.', all: 'Во входящих писем нет.' })[filter] || 'Во входящих писем нет.';
   const count = (status) => items.filter((item) => String(item.status || 'new') === status).length;
   const humanCount = items.filter((item) => item.mailCategory === 'human' || item.mailCategory === 'user').length;
   const readyDrafts = items.filter((item) => String(item.status || 'new') === 'new' && String(item.draftReply || '').trim()).length;
   const planSignals = new Map(buildSupportPlanSignals(state.support).map((signal) => [signal.code, signal]));
   const metric = (label, value, badge, signalCode) => `<article class="card metric"><label>${label}</label><strong>${state.support.loaded ? value : '—'}</strong>${badge}${state.support.loaded ? renderSupportPlanAction(planSignals.get(signalCode)) : ''}</article>`;
-  const statusName = (status) => ({ new: 'Новое', answered: 'Отвечено', archived: 'Архив' })[status] ?? status;
-  const headerAction = `<div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized()}>Обновить</button><button class="button primary" data-action="pull-support" type="button"${disabledWhenUnauthorized()}>Проверить Gmail</button></div>`;
+  const headerAction = `<div class="actions"><button class="button" data-action="load-support" type="button"${disabledWhenUnauthorized('support.inbox.read')} title="Перечитать до 500 сохранённых писем без изменения статусов">Обновить</button><button class="button" data-action="pull-support" type="button"${disabledWhenUnauthorized('support.inbox.pull')} title="Проверить Gmail и сохранить новые письма в защищённую очередь без отправки ответов">Проверить Gmail</button></div>`;
+  const queueRows = filtered.map((item) => {
+    const messageId = escapeHtml(item.id);
+    const status = String(item.status || 'new');
+    const gateState = String(item.replyGate?.state || '');
+    const active = String(item.id) === selectedMessageId;
+    return `<button class="support-row${active ? ' selected' : ''}" data-support-message-id="${messageId}" type="button" role="option" aria-selected="${active ? 'true' : 'false'}" title="Открыть письмо и его черновик"><strong>${escapeHtml(item.subject || '(без темы)')}</strong><span class="support-row-preview">${escapeHtml(String(item.bodyText || '').slice(0, 220)) || 'Пустое тело письма'}</span><span class="support-row-meta"><small>${escapeHtml(item.fromEmail || 'неизвестный отправитель')} · ${escapeHtml(supportMessageTime(item))}</small><span class="badge ${gateState === 'delivery_unknown' ? 'danger' : badgeClass(status)}">${escapeHtml(gateState ? operationalStateLabel(gateState) : supportStatusName(status))}</span></span></button>`;
+  }).join('');
   return `${pageHeader(supportPage, 'Пользователи / Поддержка', headerAction)}
-    <div class="notice">Письма людей не удаляются и не скрываются системным фильтром. Категория показывается отдельно, а в список возвращаются все статусы.</div>
-    <section class="metrics section">${metric('Всего загружено', items.length, '<span class="badge">до 500</span>', 'support_queue_total')}${metric('Новые', count('new'), '<span class="badge warning">нужен ответ</span>', 'support_queue_new')}${metric('Письма людей', humanCount, '<span class="badge">не скрываются</span>', 'support_queue_human')}${metric('Отвечено', count('answered'), '<span class="badge success">готово</span>', 'support_queue_answered')}${metric('Архив', count('archived'), '<span class="badge">завершено</span>', 'support_queue_archived')}</section>
-    <div class="columns section"><section class="card"><div class="card-header"><div><h2>Рабочая очередь</h2><p>Черновики можно редактировать перед отправкой.</p></div><div class="actions"><button class="button small" data-support-filter="new" type="button" aria-pressed="${filter === 'new' ? 'true' : 'false'}">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button" aria-pressed="${filter === 'answered' ? 'true' : 'false'}">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button" aria-pressed="${filter === 'archived' ? 'true' : 'false'}">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button" aria-pressed="${filter === 'all' ? 'true' : 'false'}">Все</button></div></div>
-      <div class="card-body"><div class="actions"><button class="button" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && !state.busy && !pending ? '' : ' disabled'} title="Сгенерировать черновики для новых писем без ответа">Сгенерировать черновики</button><button class="button" data-action="prepare-support-reply-batch" type="button"${state.authorized && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Сначала будет создан точный запечатанный список до 200 писем">Подготовить пакет (${readyDrafts})</button><span class="hint">Показано: ${filtered.length} из ${items.length}</span></div><div class="hint" role="status" aria-live="polite">${listStatus}</div>
-      ${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState(emptyMessage) : `<div class="support-list section">${filtered.map((item) => {
-        const messageId = escapeHtml(item.id);
-        const status = String(item.status || 'new');
-        const when = item.receivedAtMs ? new Date(Number(item.receivedAtMs)).toLocaleString('ru-RU') : String(item.receivedAtIso || item.receivedAt || '');
-        const gateState = String(item.replyGate?.state || '');
-        return `<article class="support-message"><header><div><strong>${escapeHtml(item.subject || '(без темы)')}</strong><small>${escapeHtml(item.fromName || '')} &lt;${escapeHtml(item.fromEmail || 'неизвестный отправитель')}&gt; · ${escapeHtml(when)}</small></div><div class="actions"><span class="badge">${escapeHtml(mailCategoryLabel(item.mailCategory))}</span><span class="badge ${badgeClass(status)}">${escapeHtml(statusName(status))}</span>${gateState ? `<span class="badge ${gateState === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(gateState))}</span>` : ''}</div></header><div class="support-body">${escapeHtml(String(item.bodyText || '').slice(0, 8000)) || '<span class="muted">Пустое тело письма</span>'}</div>${status !== 'archived' ? `<div class="field section"><label for="support-reply-${messageId}">Ответ</label><textarea id="support-reply-${messageId}" class="support-reply" placeholder="Введите ответ или сгенерируйте черновик">${escapeHtml(item.draftReply || '')}</textarea></div><div class="actions section"><button class="button small" data-action="generate-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>Сгенерировать</button><button class="button small primary" data-action="prepare-support-reply" data-message-id="${messageId}" type="button"${state.authorized && !state.busy && !pending && status === 'new' && gateState !== 'delivery_unknown' && gateState !== 'dispatching' ? '' : ' disabled'} title="Сначала будет показан точный текст с подписью">Подготовить отправку</button></div>` : ''}${gateState === 'delivery_unknown' ? `<div class="notice danger section">Gmail мог принять письмо, но подтверждение потеряно. Автоматический повтор заблокирован; владелец должен проверить папку «Отправленные».</div><div class="actions section"><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="accepted" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: да</button><button class="button small" data-action="resolve-support-reply" data-operation-id="${escapeHtml(item.replyGate?.operationId || '')}" data-resolution="verified_not_sent" type="button"${['owner', 'admin'].includes(state.adminRole) && !state.busy ? '' : ' disabled'}>В отправленных: нет</button></div>` : ''}<div class="actions section"><button class="button ghost small" data-action="set-support-status" data-message-id="${messageId}" data-status="${status === 'archived' ? 'new' : 'archived'}" type="button"${state.authorized && !state.busy && !pending ? '' : ' disabled'}>${status === 'archived' ? 'Вернуть в новые' : 'В архив'}</button></div></article>`;
-      }).join('')}</div>`}</div></section>
-      <section class="card"><div class="card-header"><div><h2>${pending ? (pendingIsBatch ? 'Подтверждение пакета' : 'Подтверждение отправки') : 'Подпись'}</h2><p>${pending ? (pendingIsBatch ? 'Проверьте состав запечатанного пакета.' : 'Проверьте точного получателя и итоговый текст.') : 'Добавляется сервером после текста ответа.'}</p></div></div><div class="card-body">${pending ? (pendingIsBatch ? `<div class="confirmation-panel"><dl><dt>Писем</dt><dd>${Number(pending.count || 0)}</dd><dt>Пакет</dt><dd><code>${escapeHtml(pending.batchId || '')}</code></dd><dt>Манифест</dt><dd><code>${escapeHtml(pending.manifestHash || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'attention_required' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="batch-preview section">${(Array.isArray(pending.items) ? pending.items : []).map((item, index) => `<details${index < 2 ? ' open' : ''}><summary>${index + 1}. ${escapeHtml(item.payload?.to || '')} — ${escapeHtml(item.payload?.subject || '')}</summary><div class="support-body confirmation-text">${escapeHtml(item.payload?.finalText || '')}</div></details>`).join('')}</div><div class="notice section">Каждое письмо имеет отдельную защищённую операцию. При частичном сбое пакет продолжит только ещё не начатые операции и никогда автоматически не повторит неопределённую доставку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply-batch" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Отменить пакет</button><button class="button primary" data-action="dispatch-support-reply-batch" type="button"${state.busy || !['prepared', 'dispatching', 'attention_required'].includes(pending.state) ? ' disabled' : ''}>Подтвердить пакет</button></div></div>` : `<div class="confirmation-panel"><dl><dt>Кому</dt><dd>${escapeHtml(pending.payload?.to || '')}</dd><dt>Тема</dt><dd>${escapeHtml(pending.payload?.subject || '')}</dd><dt>Операция</dt><dd><code>${escapeHtml(pending.operationId || '')}</code></dd><dt>До</dt><dd>${escapeHtml(pending.confirmationExpiresAt ? new Date(pending.confirmationExpiresAt).toLocaleString('ru-RU') : '')}</dd><dt>Состояние</dt><dd><span class="badge ${pending.state === 'delivery_unknown' ? 'danger' : ''}">${escapeHtml(operationalStateLabel(pending.state || 'prepared'))}</span></dd></dl><div class="support-body confirmation-text">${escapeHtml(pending.payload?.finalText || '')}</div><div class="notice section">После подтверждения этот запечатанный текст уже не изменяется. Повторный клик не создаст вторую SMTP-отправку.</div><div class="actions end section"><button class="button" data-action="cancel-support-reply" type="button"${state.busy ? ' disabled' : ''}>Отменить</button><button class="button primary" data-action="dispatch-support-reply" type="button"${state.busy || pending.state !== 'prepared' ? ' disabled' : ''}>Подтвердить и отправить</button></div></div>`) : `<div class="field"><label for="support-signature">Подпись поддержки</label><textarea id="support-signature" maxlength="2000" placeholder="С уважением, команда Phraseman">${escapeHtml(state.support.signature || '')}</textarea></div><div class="hint">Ревизия подписи: ${Number(state.support.signatureRevision || 0)}</div><div class="actions end section"><button class="button primary" data-action="save-support-signature" type="button"${state.authorized && !state.busy ? '' : ' disabled'}>Сохранить подпись</button></div><div class="notice section">Одиночная и пакетная отправка защищены неизменяемыми операциями, явным предпросмотром и блокировкой автоматического повтора при неопределённом ответе Gmail.</div>`}</div></section></div>`;
+    <div class="support-queue-summary"><span><strong>${state.support.loaded ? count('new') : '—'}</strong> в очереди</span><span>${state.support.loaded ? `${humanCount} писем людей · ${count('answered')} отвечено · ${count('archived')} в архиве` : 'Данные появятся после защищённой загрузки.'}</span></div>
+    <section class="metrics support-metrics section">${metric('Всего загружено', items.length, '<span class="badge">до 500</span>', 'support_queue_total')}${metric('Новые', count('new'), '<span class="badge warning">нужен ответ</span>', 'support_queue_new')}${metric('Письма людей', humanCount, '<span class="badge">не скрываются</span>', 'support_queue_human')}${metric('Отвечено', count('answered'), '<span class="badge success">готово</span>', 'support_queue_answered')}${metric('Архив', count('archived'), '<span class="badge">завершено</span>', 'support_queue_archived')}</section>
+    <div class="support-workspace section"><section class="card support-queue-panel" aria-labelledby="support-queue-title"><div class="card-header support-queue-header"><div><h2 id="support-queue-title">Рабочая очередь</h2><p>Показано ${filtered.length} из ${items.length}</p></div></div><div class="support-filter-tabs" aria-label="Фильтр писем"><button class="button small" data-support-filter="new" type="button" aria-pressed="${filter === 'new' ? 'true' : 'false'}" title="Показать письма, которые ждут ответа">Новые ${count('new')}</button><button class="button small" data-support-filter="answered" type="button" aria-pressed="${filter === 'answered' ? 'true' : 'false'}" title="Показать письма с подтверждённым ответом">Отвечено ${count('answered')}</button><button class="button small" data-support-filter="archived" type="button" aria-pressed="${filter === 'archived' ? 'true' : 'false'}" title="Показать письма, перенесённые в архив">Архив ${count('archived')}</button><button class="button small" data-support-filter="all" type="button" aria-pressed="${filter === 'all' ? 'true' : 'false'}" title="Показать все статусы без скрытия писем">Все</button></div><div class="support-queue-tools"><button class="button small" data-action="generate-support-reply" data-message-id="" type="button"${state.support.loaded && count('new') && state.authorized && can('support.draft.write') && !state.busy && !pending ? '' : ' disabled'} title="Создать серверные черновики только для новых писем без ответа; письма не отправляются">Создать черновики</button><button class="button small" data-action="prepare-support-reply-batch" type="button"${state.authorized && can('support.reply.send') && !state.busy && !pending && readyDrafts ? '' : ' disabled'} title="Запечатать точный серверный список до 200 готовых черновиков и показать подтверждение без отправки">Подготовить пакет (${readyDrafts})</button></div><div class="hint support-list-status" role="status" aria-live="polite">${listStatus}</div><div class="support-list" role="listbox" aria-label="Письма поддержки">${!state.support.loaded ? emptyState('Загрузите входящие после авторизации.') : !filtered.length ? emptyState(emptyMessage) : queueRows}</div></section><section class="card support-detail-panel" aria-label="Выбранное письмо и безопасная подготовка ответа">${pending ? renderSupportPendingReply(pending) : renderSupportMessageDetail(selected)}</section></div>
+    ${renderSupportSignature()}`;
 }
 
 function renderDetailedAnalyticsWorkspace() {
@@ -2764,6 +3021,8 @@ function paywallAnalyticsModel() {
     controlsDisabled: Boolean(disabledWhenUnauthorized('money.read')),
     busy: state.busy,
     draft: state.analyticsTrendsDraft,
+    // зачем: YouTube-стиль аналитики — вкладки-метрики над одним большим графиком; выбранная метрика живёт в state
+    activeMetric: state.analyticsActiveMetric,
     onToggleSeries: (metricId, visible) => {
       replaceAnalyticsTrendScope(
         'paywall',
@@ -2984,7 +3243,7 @@ function renderAssetStudio() {
   return `${pageHeader(PAGES['asset-studio'], 'Контент / Студия изображений', headerAction)}
     <div class="notice">Создание → проверка → публикация. Ключ генератора остаётся на сервере; в браузере создаётся только безопасное задание. Публикация в ресурсы приложения выполняется отдельно после проверки, чтобы не добавить лишние файлы.</div>
     <div class="columns section">
-      <section class="card"><div class="card-header"><div><h2>Новое задание на изображение</h2><p>Сформируйте черновик генерации: тип, место использования, путь сохранения и описание.</p></div></div><div class="card-body">
+      <section class="card"><div class="card-header"><div><h2>Новое задание на изображение</h2></div></div><div class="card-body">
         <div class="fields">
           <div class="field"><label for="asset-kind">Тип изображения</label><select id="asset-kind"><option value="generic">Обычное изображение</option><option value="onboarding_icon">Значок первого запуска</option><option value="background">Фон</option></select></div>
           <div class="field"><label for="asset-count">Количество вариантов</label><input id="asset-count" type="number" min="1" max="4" value="1"></div>
@@ -2997,9 +3256,9 @@ function renderAssetStudio() {
         </div>
         <div class="actions end section"><button class="button primary" data-action="create-asset-job" type="button"${disabledWhenUnauthorized('content.draft.write')} title="Создать черновик задания без запуска генератора">Создать черновик</button></div>
       </div></section>
-      <section class="card"><div class="card-header"><div><h2>Предпросмотр и результаты</h2><p>Сначала проверьте варианты, потом отдельно публикуйте в ресурсы приложения.</p></div></div><div class="card-body">${selected ? `<div class="notice"><strong>${escapeHtml(selected.title)}</strong><br><code>${escapeHtml(selected.targetPath || 'путь сохранения не указан')}</code></div>${previews}` : previews}</div></section>
+      <section class="card"><div class="card-header"><div><h2>Предпросмотр и результаты</h2></div></div><div class="card-body">${selected ? `<div class="notice"><strong>${escapeHtml(selected.title)}</strong><br><code>${escapeHtml(selected.targetPath || 'путь сохранения не указан')}</code></div>${previews}` : previews}</div></section>
     </div>
-    <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2><p>Последние серверные задания с записью в журнале действий и результатами в хранилище.</p></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}<div class="actions section"><button class="button" data-action="load-asset-jobs" type="button"${disabledWhenUnauthorized('content.read')} title="Повторно прочитать очередь заданий после ошибки">Повторить чтение</button></div></div>` : ''}<div class="data-list">${rows}</div></div></section>`;
+    <section class="card section"><div class="card-header"><div><h2>Очередь генераций</h2></div></div><div class="card-body">${state.assetStudio.error ? `<div class="notice danger">${escapeHtml(state.assetStudio.error)}<div class="actions section"><button class="button" data-action="load-asset-jobs" type="button"${disabledWhenUnauthorized('content.read')} title="Повторно прочитать очередь заданий после ошибки">Повторить чтение</button></div></div>` : ''}<div class="data-list">${rows}</div></div></section>`;
 }
 
 const PLAN_PRIORITY_LABELS = Object.freeze({ low: 'Низкий приоритет', normal: 'Обычный приоритет', high: 'Высокий приоритет', critical: 'Критический приоритет' });
@@ -3013,7 +3272,8 @@ function renderPlans() {
   const selectedIndex = items.length ? Math.min(Math.max(Number.isInteger(view.selectedIndex) ? view.selectedIndex : 0, 0), items.length - 1) : 0;
   const selected = items[selectedIndex] || null;
 
-  const quietMenu = `<details class="quiet-menu"><summary title="Управление планами" aria-label="Управление планами">⋯</summary><div class="quiet-menu-pop" role="menu"><button class="quiet-menu-item" data-action="open-plan-form" type="button" title="Создать структурированный план из фиксированных полей">Новый план</button><button class="quiet-menu-item" data-action="load-plans" type="button" title="Повторно прочитать архив планов">Обновить архив</button></div></details>`;
+  // зачем: владелец просит однокликовость — скрытое меню «⋯» заменено видимыми кнопками (то же правило, что для «•••» в репортах)
+  const quietMenu = `<div class="actions"><button class="button small" data-action="open-plan-form" type="button" title="Создать структурированный план из фиксированных полей">Новый план</button><button class="button small" data-action="load-plans" type="button" title="Повторно прочитать архив планов">Обновить архив</button></div>`;
 
   const listContent = view.state === 'loading'
     ? '<div class="notice" role="status">Загружаем сохранённые планы…</div>'
@@ -3394,6 +3654,41 @@ function renderPmDigestQueues(facts) {
   return `<div class="briefing-queue-list">${queues.slice(0, 8).map((q) => `<article><strong>${escapeHtml(q.name || 'Очередь')}</strong><span class="badge warning">${numberValue(q.total)}</span><small>${escapeHtml(q.note || 'Разобрать по приоритету.')}</small></article>`).join('')}</div>`;
 }
 
+const IDEA_STATUS_LABELS = Object.freeze({ pending: 'На рассмотрении', approved: 'Принята', rejected: 'Отклонена', all: 'Все статусы' });
+const IDEA_CATEGORY_LABELS = Object.freeze({ feature: 'Новая функция', improvement: 'Улучшение', monetization: 'Монетизация', content: 'Контент', other: 'Другое' });
+
+// зачем: полноценный воркфлоу "Идеи" вместо 3 карточек без действий в дайджесте — фильтры, пагинация, принять/отклонить (аудит владельца новой админки)
+function renderIdeasWorkspace() {
+  if (!can('ideas.read')) return `${pageHeader(PAGES.ideas, 'Пользователи / Идеи')}<div class="notice warning">У вашей роли нет разрешения ideas.read.</div>`;
+  const ideas = state.ideas;
+  const items = Array.isArray(ideas.items) ? ideas.items : [];
+  const statusOptions = Object.entries(IDEA_STATUS_LABELS).map(([value, label]) => `<option value="${value}"${ideas.status === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
+  const categoryOptions = `<option value="">Все категории</option>${Object.entries(IDEA_CATEGORY_LABELS).map(([value, label]) => `<option value="${value}"${ideas.category === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
+  return `${pageHeader(PAGES.ideas, 'Пользователи / Идеи')}
+    <section class="card section"><div class="card-header"><div><h2>Фильтры</h2></div></div><div class="card-body"><div class="report-filters">
+      <div class="field"><label for="idea-status-filter">Статус</label><select id="idea-status-filter">${statusOptions}</select></div>
+      <div class="field"><label for="idea-category-filter">Категория</label><select id="idea-category-filter">${categoryOptions}</select></div>
+    </div></div></section>
+    ${ideas.error ? `<div class="notice danger section"><strong>Идеи не загружены</strong><br>${escapeHtml(ideas.error)}<div class="actions section"><button class="button" data-action="load-user-ideas" type="button"${disabledWhenUnauthorized('ideas.read')} title="Повторно прочитать список идей">Повторить чтение</button></div></div>` : ''}
+    <section class="card section"><div class="card-header"><div><h2>Идеи пользователей</h2></div><span class="badge">${items.length}${ideas.nextCursor ? '+' : ''}</span></div><div class="card-body">
+      ${ideas.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю идеи…</span></div>' : !items.length ? emptyState(ideas.state === 'idle' ? 'Список ещё не загружен.' : 'По выбранным фильтрам идей нет.') : `<div class="report-list">${items.map((idea) => renderIdeaCard(idea)).join('')}</div>${ideas.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-user-ideas-next" type="button" title="Загрузить следующую страницу">Показать ещё</button></div>' : ''}`}
+    </div></section>`;
+}
+
+function renderIdeaCard(idea) {
+  const draft = state.ideas.decisionDrafts?.[idea.id] || {};
+  const decided = idea.status === 'approved' || idea.status === 'rejected';
+  const toneId = `idea-tone-${escapeHtml(idea.id)}`;
+  return `<article class="report-card tone-${idea.status === 'approved' ? 'success' : idea.status === 'rejected' ? '' : 'warning'}" data-idea-id="${escapeHtml(idea.id)}"><header><div><div class="report-source">${escapeHtml(IDEA_CATEGORY_LABELS[idea.category] || 'Без категории')} · <code>${escapeHtml(idea.id)}</code></div><h3>${escapeHtml(idea.title || '(без заголовка)')}</h3><small>${escapeHtml(idea.userName || 'Без имени')} · ${escapeHtml(dateTime(idea.createdAtMs))}</small></div><div class="actions"><span class="badge ${idea.status === 'approved' ? 'success' : idea.status === 'rejected' ? '' : 'warning'}">${escapeHtml(IDEA_STATUS_LABELS[idea.status] || idea.status)}</span></div></header>
+    <div class="report-context"><span><b>Описание:</b> ${escapeHtml(idea.description || '—')}</span>${idea.benefit ? `<span><b>Польза:</b> ${escapeHtml(idea.benefit)}</span>` : ''}</div>
+    ${decided ? `<div class="report-context"><span><b>Решение:</b> ${escapeHtml(idea.decidedBy || '—')} · ${escapeHtml(dateTime(idea.decidedAtMs))}</span></div>` : `
+    <div class="report-status-controls"><div class="field"><label for="${toneId}">Тон ответа пользователю (необязательно)</label><input id="${toneId}" maxlength="600" value="${escapeHtml(draft.toneHint || '')}" placeholder="Например: поблагодари теплее, идея правда классная"></div>
+    <div class="actions"><button class="button small" data-action="draft-idea-decision" data-idea-id="${escapeHtml(idea.id)}" data-idea-decision="approve" type="button"${disabledWhenUnauthorized('ideas.decide')} title="Сформировать ИИ-черновик текста для принятой идеи">Черновик принятия</button><button class="button small" data-action="draft-idea-decision" data-idea-id="${escapeHtml(idea.id)}" data-idea-decision="reject" type="button"${disabledWhenUnauthorized('ideas.decide')} title="Сформировать ИИ-черновик текста для отклонённой идеи">Черновик отказа</button></div></div>
+    ${draft.message ? `<div class="report-reply"><h4>Сообщение пользователю (${draft.decision === 'approve' ? 'принятие + год Plus' : 'отказ'})</h4><div class="report-reply-grid"><div class="field full"><textarea id="idea-message-${escapeHtml(idea.id)}" maxlength="900">${escapeHtml(draft.message)}</textarea></div><div class="actions end full"><button class="button primary" data-action="send-idea-decision" data-idea-id="${escapeHtml(idea.id)}" data-idea-decision="${draft.decision}" type="button"${disabledWhenUnauthorized('ideas.decide')} title="${draft.decision === 'approve' ? 'Принять идею, выдать год Plus и отправить сообщение' : 'Отклонить идею и отправить сообщение'}">${draft.decision === 'approve' ? 'Принять и выдать год Plus' : 'Отклонить'}</button></div></div></div>` : ''}
+    `}
+  </article>`;
+}
+
 function renderPmDigestIdeas(facts) {
   const items = Array.isArray(facts.ideas?.items) ? facts.ideas.items : [];
   if (!items.length) return emptyState('Новых пользовательских идей в digest нет.');
@@ -3424,11 +3719,11 @@ function renderDailyBriefing() {
     ${!digest ? `<section class="card section">${state.briefing.state === 'loading' ? '<div class="profile-loading" role="status" aria-live="polite"><span class="loading-bar"></span><span>Загружаю свежий дайджест…</span></div>' : emptyState('Дайджест обновляется автоматически при открытии. Или сформируйте новый кнопкой выше.')}</section>` : `
       <div class="briefing-board section">
         <section class="card briefing-main"><div class="card-header"><div><h2>Сделать сегодня</h2><p>${escapeHtml(dateTime(digest.generatedAtMs))} · ${escapeHtml(digest.model || 'без модели')} · ${escapeHtml(digest.generatedBy || 'система')}</p></div><span class="badge ${badgeClass(state.briefing.state)}">${escapeHtml(stateLabel)}</span></div><div class="card-body">${renderPmDigestActions(facts, state.briefing.state)}</div></section>
-        <section class="card"><div class="card-header"><div><h2>Рост и деньги</h2><p>События RevenueCat и paywall без выдумывания выручки.</p></div></div><div class="card-body">${renderPmDigestGrowthRevenue(facts)}</div></section>
-        <section class="card"><div class="card-header"><div><h2>Риски продукта</h2><p>Safety, ошибки, репорты и отмены в одном месте.</p></div></div><div class="card-body">${renderPmDigestRiskBoard(facts)}${renderDailyBriefingSafetyPlanAction(digest, state.briefing.state)}</div></section>
-        <section class="card"><div class="card-header"><div><h2>Короткая сводка</h2><p>Текстовый вывод генератора без markdown-шума.</p></div></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
-        <section class="card"><div class="card-header"><div><h2>Очереди</h2><p>Где накопилась ручная работа.</p></div></div><div class="card-body">${renderPmDigestQueues(facts)}</div></section>
-        <section class="card"><div class="card-header"><div><h2>Идеи пользователей</h2><p>Кандидаты для продуктового backlog.</p></div></div><div class="card-body">${renderPmDigestIdeas(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Рост и деньги</h2></div></div><div class="card-body">${renderPmDigestGrowthRevenue(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Риски продукта</h2></div></div><div class="card-body">${renderPmDigestRiskBoard(facts)}${renderDailyBriefingSafetyPlanAction(digest, state.briefing.state)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Короткая сводка</h2></div></div><div class="card-body"><div class="briefing-summary">${escapeHtml(digest.summary || 'Сводка пуста.')}</div></div></section>
+        <section class="card"><div class="card-header"><div><h2>Очереди</h2></div></div><div class="card-body">${renderPmDigestQueues(facts)}</div></section>
+        <section class="card"><div class="card-header"><div><h2>Идеи пользователей</h2></div></div><div class="card-body">${renderPmDigestIdeas(facts)}</div></section>
       </div>`}`;
 }
 
@@ -3504,6 +3799,12 @@ function shouldHideArchivedReport(item) {
   return rawStatus === 'archived' || rawStatus === 'archive';
 }
 
+function visibleReportQueueItems() {
+  return (Array.isArray(state.reports.items) ? state.reports.items : [])
+    .filter((item) => !shouldHideArchivedReport(item))
+    .sort((left, right) => reportSortKey(left).localeCompare(reportSortKey(right)));
+}
+
 function dangerousActionDisclosure(innerHtml, label = 'Опасные или legacy-действия') {
   if (!state.adminSettings.collapseDangerousActions) return innerHtml;
   return `<details class="settings-danger-disclosure report-danger-disclosure"><summary>${escapeHtml(label)}</summary><div class="actions">${innerHtml}</div></details>`;
@@ -3513,16 +3814,18 @@ function renderReportQueue() {
   const reports = state.reports;
   const rawItems = Array.isArray(reports.items) ? reports.items : [];
   const hiddenArchivedCount = rawItems.filter(shouldHideArchivedReport).length;
-  const items = rawItems.filter((item) => !shouldHideArchivedReport(item)).sort((left, right) => reportSortKey(left).localeCompare(reportSortKey(right)));
+  const items = visibleReportQueueItems();
   const canChange = (item) => item.source === 'app_errors' ? can('diagnostics.status.write') : can('reports.status.write');
   const sourceOptions = Object.entries(REPORT_SOURCE_LABELS).map(([value, label]) => `<option value="${value}"${reports.source === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('');
   const laneOptions = `<option value="">Все состояния</option>${Object.entries(REPORT_LANE_LABELS).map(([value, label]) => `<option value="${value}"${reports.lane === value ? ' selected' : ''}>${escapeHtml(label)}</option>`).join('')}`;
   const health = Array.isArray(reports.sourceHealth) ? reports.sourceHealth : [];
   const reportSignals = new Map(buildReportPlanSignals(reports).map((signal) => [operationalPlanSignalKey(signal), signal]));
-  return `${pageHeader(PAGES['report-center'], 'Пользователи / Репорты', '<a class="button" href="#users" title="Вернуться к пользователям">К пользователям</a>')}
+  // зачем: владелец просил убрать скрытое меню «•••» — эти 3-4 действия делаются часто, должны быть видны сразу, без лишнего клика
+  const headerActions = `<div class="report-header-actions-menu"><a class="button" href="#users" title="Вернуться к пользователям">К пользователям</a><button class="button" data-action="copy-all-reports" type="button"${disabledWhenUnauthorized('reports.read')} title="Скопировать все показанные репорты с точными исходными документами и текущими фильтрами">Скопировать все репорты</button><button class="button" data-action="copy-all-unresolved-reports" type="button"${disabledWhenUnauthorized('reports.read', 'diagnostics.read')} title="Скопировать все нерешённые репорты с точными исходными полями и инструкцией. Требуются права reports.read и diagnostics.read: полный экспорт включает ошибки приложения">Копировать все нерешённые</button>${state.adminRole === 'owner' ? '<button class="button" data-action="send-all-unresolved-to-office" type="button" title="Создать отдельную идемпотентную задачу Офиса для каждого нерешённого репорта">Все нерешённые в Офис</button>' : ''}<button class="button" data-action="view-report-archive" type="button"${disabledWhenUnauthorized('reports.read')} title="Показать репорты с финальным статусом archived">Архив</button></div>`;
+  return `${pageHeader(PAGES['report-center'], 'Пользователи / Репорты', headerActions)}
     <div class="notice">Каждая запись сохраняет исходную коллекцию и исходный статус. Массовые, блокирующие и удаляющие действия остаются в защищённых рабочих модулях.</div>
     ${reports.error ? `<div class="notice danger section"><strong>Очередь не загружена</strong><br>${escapeHtml(reports.error)}<div class="actions section"><button class="button" data-action="load-report-queue" type="button"${disabledWhenUnauthorized('reports.read')} title="Повторно прочитать очередь репортов после ошибки">Повторить чтение</button></div></div>` : ''}
-    <section class="card section"><div class="card-header"><div><h2>Фильтры очереди</h2><p>Сервер возвращает не более 100 записей за запрос.</p></div><span class="badge">reports.read</span></div><div class="card-body"><div class="report-filters">
+    <section class="card section"><div class="card-header"><div><h2>Фильтры очереди</h2></div><span class="badge">reports.read</span></div><div class="card-body"><div class="report-filters">
       <div class="field"><label for="report-source-filter">Источник</label><select id="report-source-filter">${sourceOptions}</select></div>
       <div class="field"><label for="report-lane-filter">Рабочее состояние</label><select id="report-lane-filter">${laneOptions}</select></div>
       <div class="field"><label for="report-raw-status-filter">Исходный статус</label><input id="report-raw-status-filter" value="${escapeHtml(reports.rawStatus)}" placeholder="например, new"></div>
@@ -3542,25 +3845,92 @@ function renderReportQueue() {
         const replyId = `report-reply-${String(item.source).replace(/[^A-Za-z0-9_-]/g, '-')}-${String(item.id).replace(/[^A-Za-z0-9_-]/g, '-')}`;
         const replyDraft = reports.replyDrafts?.[replyKey] || {};
         const replySupported = item.source !== 'app_errors' && item.rawStatus !== 'answered';
+        const archive = item.archive || {};
         const reportUsers = [[users.primaryName, users.primaryUid], [users.reporterName, users.reporterUid], [users.reportedName, users.reportedUid], [users.authorName, users.authorUid]].filter(([, uid]) => uid);
         const userButtons = [...new Map(reportUsers.map(([name, uid]) => [uid, name])).entries()].map(([uid, name]) => `<button class="button ghost small" data-report-user-uid="${escapeHtml(uid)}" type="button" title="Открыть единый профиль ${escapeHtml(userIdentityLabel(name, uid))}">Профиль · ${escapeHtml(userIdentityLabel(name, String(uid).slice(0, 14)))}</button>`).join('');
-        return `<article class="report-card tone-${reportToneClass(item.lane)}" data-report-lane="${escapeHtml(item.lane)}"><header><div><div class="report-source">${escapeHtml(REPORT_SOURCE_LABELS[item.source] || 'Неизвестный источник')} · <code>${escapeHtml(item.id)}</code></div><h3>${escapeHtml(item.summary || '(без описания)')}</h3><small>${escapeHtml(item.category || context.feature || context.screen || 'без категории')} · ${escapeHtml(dateTime(item.createdAtMs))}</small></div><div class="actions"><span class="badge">Ключ источника: <code>${escapeHtml(item.source)}</code></span><span class="badge">Исходный статус: ${escapeHtml(item.rawStatus)}</span><span class="badge ${item.lane === 'resolved' || item.lane === 'answered' ? 'success' : item.lane === 'escalated' ? 'danger' : 'warning'}">${escapeHtml(REPORT_LANE_LABELS[item.lane] || 'Неизвестное состояние')}</span></div></header>
+        return `<article class="report-card tone-${reportToneClass(item.lane)}" data-report-lane="${escapeHtml(item.lane)}" data-report-key="${escapeHtml(`${item.source}:${item.id}`)}"><header><div><div class="report-source">${escapeHtml(REPORT_SOURCE_LABELS[item.source] || 'Неизвестный источник')} · <code>${escapeHtml(item.id)}</code></div><h3>${escapeHtml(item.summary || '(без описания)')}</h3><small>${escapeHtml(item.category || context.feature || context.screen || 'без категории')} · ${escapeHtml(dateTime(item.createdAtMs))}</small></div><div class="actions"><span class="badge">Ключ источника: <code>${escapeHtml(item.source)}</code></span><span class="badge">Исходный статус: ${escapeHtml(item.rawStatus)}</span><span class="badge ${item.lane === 'resolved' || item.lane === 'answered' ? 'success' : item.lane === 'escalated' ? 'danger' : 'warning'}">${escapeHtml(REPORT_LANE_LABELS[item.lane] || 'Неизвестное состояние')}</span></div></header>
           ${userButtons ? `<div class="actions report-users">${userButtons}</div>` : ''}
           <div class="report-context">${Object.entries(context).filter(([, value]) => value).map(([key, value]) => `<span><b>${escapeHtml(contextFieldLabel(key))}:</b> ${escapeHtml(value)}</span>`).join('')}</div>
+          ${item.rawStatus === 'archived' || item.rawStatus === 'answered' ? `<div class="report-context"><span><b>Итог:</b> ${escapeHtml(archive.resolution || item.rawStatus)}</span><span><b>Ответ:</b> ${escapeHtml(archive.title || '—')} · ${escapeHtml(archive.body || '—')}</span><span><b>Когда:</b> ${escapeHtml(dateTime(archive.repliedAtMs))}</span><span><b>Администратор:</b> ${escapeHtml(archive.repliedBy || '—')}</span><span><b>Монеты:</b> ${Number(archive.coins || 0)}</span></div>` : ''}
+          ${state.adminRole === 'owner' ? `<div class="actions report-users"><button class="button ghost small" data-report-office-source="${escapeHtml(item.source)}" data-report-office-id="${escapeHtml(item.id)}" type="button" title="Передать этот репорт в Офис агентов без копирования пользовательского текста в задачу">Передать в Офис</button></div>` : ''}
           ${canChange(item) && transitions.length ? `<div class="report-status-controls"><div class="field"><label for="${escapeHtml(reasonId)}">Причина изменения статуса</label><input id="${escapeHtml(reasonId)}" maxlength="500"${state.adminSettings.requireReasonForStatus ? ' required' : ''} placeholder="Что проверено и почему меняется статус"></div><div class="actions">${transitions.map((next) => `<button class="button small" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-current-status="${escapeHtml(item.rawStatus)}" data-report-next-status="${escapeHtml(next)}" data-report-reason-id="${escapeHtml(reasonId)}" type="button" title="Изменить статус с обязательным аудитом">${escapeHtml(reportStatusLabel(next))}</button>`).join('')}</div></div>` : ''}
-          ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<details class="report-reply settings-advanced-disclosure"${state.adminSettings.expandedAdvancedActions ? ' open' : ''}><summary>Ответить пользователю</summary><div class="report-reply-grid">
+          ${replySupported && (can('reports.reply.draft') || can('reports.reply.send')) ? `<section class="report-reply"><h4>Ответить пользователю</h4><div class="report-reply-grid">
             <div class="field"><label for="${replyId}-verdict">Результат проверки</label><select id="${replyId}-verdict"><option value="confirmed">Подтверждено</option><option value="rejected">Не подтвердилось</option></select></div>
             <div class="field"><label for="${replyId}-lang">Язык ответа</label><input id="${replyId}-lang" value="ru" maxlength="8"></div>
             <div class="field full"><label for="${replyId}-note">Что исправлено или почему отклонено</label><input id="${replyId}-note" maxlength="600" placeholder="Короткая фактическая заметка для черновика"></div>
             <div class="actions full"><button class="button small" data-action="draft-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.draft')} title="Создать редактируемый черновик ответа">Создать черновик</button></div>
             <div class="field full"><label for="${replyId}-title">Заголовок</label><input id="${replyId}-title" maxlength="120" value="${escapeHtml(replyDraft.title || '')}" placeholder="Спасибо за сообщение"></div>
             <div class="field full"><label for="${replyId}-body">Ответ</label><textarea id="${replyId}-body" maxlength="1200" placeholder="Проверьте и отредактируйте текст перед отправкой">${escapeHtml(replyDraft.body || '')}</textarea></div>
-            <div class="field"><label for="${replyId}-shards">Награда осколками</label><input id="${replyId}-shards" type="number" min="0" max="100" value="0"></div>
+            <div class="field"><label for="${replyId}-resolution">Итог проверки</label><select id="${replyId}-resolution"><option value="confirmed_fixed">Подтверждено и исправлено</option><option value="duplicate">Дубликат</option><option value="in_progress">В работе</option><option value="rejected">Не подтвердилось</option></select></div>
+            <div class="field"><label for="${replyId}-coins">Награда</label><select id="${replyId}-coins"><option value="0">Без награды</option><option value="1">1 монета — только за подтверждённое исправление</option></select></div>
             <div class="actions end"><button class="button primary" data-action="send-report-reply" data-report-source="${escapeHtml(item.source)}" data-report-id="${escapeHtml(item.id)}" data-report-reply-id="${escapeHtml(replyId)}" type="button"${disabledWhenUnauthorized('reports.reply.send')} title="Отправить только владельцу исходного репорта">Проверить и отправить</button></div>
-          </div></details>` : ''}
+          </div></section>` : ''}
           </article>`;
       }).join('')}</div>${reports.nextCursor ? '<div class="actions end section"><button class="button" data-action="load-report-next" type="button" title="Загрузить следующую страницу этого источника">Показать ещё</button></div>' : ''}`}
     </div></section>`;
+}
+
+function renderEnglishTestAnalytics() {
+  queueMicrotask(() => {
+    if (state.route === 'english-test') globalThis.loadEnglishTestAnalytics?.();
+  });
+  return '<div class="notice" role="status">Загрузка…</div>';
+}
+
+function enhanceReportQueueWorkspace(root) {
+  if (state.route !== 'report-center') return;
+  const list = root.querySelector('.report-list');
+  const cards = list ? [...list.querySelectorAll(':scope > .report-card')] : [];
+  if (!list || !cards.length) return;
+
+  const selectedKey = cards.some((card) => card.dataset.reportKey === state.reports.selectedKey)
+    ? state.reports.selectedKey
+    : String(cards[0].dataset.reportKey || '');
+  const selectedCard = cards.find((card) => card.dataset.reportKey === selectedKey) || cards[0];
+  const workspace = document.createElement('div');
+  workspace.className = 'report-workspace';
+  const queue = document.createElement('section');
+  queue.className = 'report-queue-panel';
+  const queueList = document.createElement('div');
+  queueList.className = 'report-queue-list';
+  queue.setAttribute('aria-label', 'Очередь репортов');
+
+  cards.forEach((card) => {
+    const key = String(card.dataset.reportKey || '');
+    const button = document.createElement('button');
+    button.className = `report-queue-row${key === selectedKey ? ' selected' : ''}`;
+    button.type = 'button';
+    button.dataset.reportSelectKey = key;
+    button.setAttribute('aria-pressed', key === selectedKey ? 'true' : 'false');
+    const source = card.querySelector('.report-source')?.textContent?.trim() || 'Репорт';
+    const title = card.querySelector('h3')?.textContent?.trim() || '(без описания)';
+    const meta = card.querySelector('header small')?.textContent?.trim() || '';
+    const status = card.querySelector('.badge:last-child')?.textContent?.trim() || '';
+    button.innerHTML = `<span class="report-queue-source"></span><strong></strong><small></small><span class="report-queue-status"></span>`;
+    button.querySelector('.report-queue-source').textContent = source;
+    button.querySelector('strong').textContent = title;
+    button.querySelector('small').textContent = meta;
+    button.querySelector('.report-queue-status').textContent = status;
+    queueList.append(button);
+  });
+
+  const detail = document.createElement('section');
+  detail.className = 'report-detail-panel';
+  detail.setAttribute('aria-label', 'Детали выбранного репорта');
+  detail.append(selectedCard);
+  queue.append(queueList);
+  workspace.append(queue, detail);
+  list.replaceWith(workspace);
+}
+
+function renderAuthGate() {
+  if (!state.authReady) {
+    return '<section class="auth-gate" aria-live="polite"><div class="auth-gate-card"><span class="brand-mark" aria-hidden="true">P</span><h1>Админка Phraseman</h1><p>Проверка доступа…</p></div></section>';
+  }
+  if (state.adminEmail) {
+    return `<section class="auth-gate"><div class="auth-gate-card"><span class="brand-mark" aria-hidden="true">P</span><h1>Админка Phraseman</h1><p>${escapeHtml(state.adminEmail)} — у этого аккаунта нет доступа администратора.</p><button class="button" data-action="sign-out" type="button" title="Выйти и выбрать другой аккаунт">Выйти и выбрать другой аккаунт</button></div></section>`;
+  }
+  return '<section class="auth-gate"><div class="auth-gate-card"><span class="brand-mark" aria-hidden="true">P</span><h1>Админка Phraseman</h1><p>Вход только для администраторов.</p><button class="button primary" data-action="sign-in" type="button" title="Войти через Google">Войти через Google</button></div></section>';
 }
 
 function renderCurrentPage() {
@@ -3569,13 +3939,22 @@ function renderCurrentPage() {
   const capturedRenderGeneration = renderGeneration;
   const target = document.getElementById('app');
   if (!target) return;
+  const authLocked = !state.authReady || !state.authorized;
+  document.body.classList.toggle('auth-locked', authLocked);
+  if (authLocked) {
+    target.innerHTML = renderAuthGate();
+    renderAuthStatus();
+    setMessage(state.message, state.messageKind);
+    return;
+  }
   if (target.dataset) target.dataset.route = state.route;
   const legacyAnalyticsWorkspaces = state.route === 'analytics'
     ? captureLegacyAnalyticsWorkspaces(target)
     : [];
-  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, 'coin-center': renderCoinCenter, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, 'asset-studio': renderAssetStudio, plans: renderPlans, 'admin-settings': renderAdminSettings };
+  const renderers = { overview: renderOverview, 'agent-office': renderAgentOfficeCenter, 'agent-manager': renderAgentManagerWorkspace, 'control-panel': renderControlPanel, application: renderApplication, campaigns: renderCampaigns, users: renderUsers, money: renderMoney, 'coin-center': renderCoinCenter, content: renderContent, community: renderCommunity, diagnostics: renderDiagnostics, support: renderSupport, analytics: renderAnalytics, 'daily-briefing': renderDailyBriefing, 'report-center': renderReportQueue, ideas: renderIdeasWorkspace, 'asset-studio': renderAssetStudio, plans: renderPlans, 'admin-settings': renderAdminSettings, 'english-test': renderEnglishTestAnalytics };
   const page = (renderers[state.route] ?? renderOverview)();
   target.innerHTML = page;
+  enhanceReportQueueWorkspace(target);
   if (state.route === 'analytics') {
     restoreLegacyAnalyticsWorkspaces(target, legacyAnalyticsWorkspaces);
     syncAnalyticsReportVisibility(target);
@@ -3618,6 +3997,7 @@ function renderCurrentPage() {
     });
   }
   mountCoinCenterChartWhenCurrent(target, capturedRenderGeneration);
+  persistCurrentRouteSnapshot();
 }
 
 function ensureInteractiveGuidance(root) {
@@ -3650,6 +4030,10 @@ async function runBusy(operation, successMessage = '') {
   renderCurrentPage();
   try {
     const result = await operation();
+    if (result !== STALE_AUTH_RESULT && busyAuthGeneration === state.authGeneration && routeSnapshotHasSuccessfulData()) {
+      freshSnapshotWrites.add(currentRouteSnapshotKey());
+      persistCurrentRouteSnapshot();
+    }
     if (successMessage && result !== STALE_AUTH_RESULT && busyAuthGeneration === state.authGeneration) setMessage(successMessage, 'success');
     return result;
   } catch (error) {
@@ -3703,20 +4087,26 @@ async function loadJobDetail(jobId) {
 }
 
 function applySupportListResult(result) {
+  const items = Array.isArray(result?.items) ? result.items : [];
   const serverPending = [
     ...(Array.isArray(result?.pendingBatches) ? result.pendingBatches : []),
     ...(Array.isArray(result?.pendingReplies) ? result.pendingReplies : []),
   ];
+  const visibleServerPending = serverPending.filter((candidate) => supportPendingKey(candidate) !== state.support.dismissedPendingKey);
   const currentPending = state.support.pendingReply;
-  const restoredPending = serverPending.find((candidate) => (
+  const restoredPending = visibleServerPending.find((candidate) => (
     currentPending?.batchId ? candidate.batchId === currentPending.batchId : candidate.operationId === currentPending?.operationId
-  )) ?? serverPending[0] ?? null;
+  )) ?? visibleServerPending[0] ?? null;
+  const selectedMessageId = items.some((item) => String(item.id) === String(state.support.selectedMessageId))
+    ? String(state.support.selectedMessageId)
+    : String(items[0]?.id ?? '');
   state.support = {
     ...state.support,
     loaded: true,
-    items: Array.isArray(result?.items) ? result.items : [],
+    items,
     signature: String(result?.signature ?? ''),
     signatureRevision: Number(result?.signatureRevision ?? 0),
+    selectedMessageId,
     pendingReply: restoredPending,
     observedAtMs: Date.now(),
   };
@@ -4552,6 +4942,7 @@ async function loadReportQueue(append = false) {
       nextCursor: String(result?.nextCursor || ''),
       error: '',
     };
+    freshSnapshotWrites.add(currentRouteSnapshotKey('report-center'));
     await hydrateOperationalPlanSourceHashes(buildReportPlanSignals(state.reports));
     renderCurrentPage();
   } catch (error) {
@@ -4560,6 +4951,36 @@ async function loadReportQueue(append = false) {
       state.reports = { ...state.reports, state: 'error', error: errorMessage(error) };
       renderCurrentPage();
     }
+    throw error;
+  }
+}
+
+// зачем: тот же паттерн, что loadReportQueue — сервер уже режет лимитом и пагинирует, тут просто держим состояние и курсор
+async function loadUserIdeas(append = false) {
+  const authGeneration = state.authGeneration;
+  const requestId = ++ideasRequestId;
+  if (!append) state.ideas = { ...state.ideas, state: 'loading', error: '' };
+  renderCurrentPage();
+  try {
+    const result = await actions.listUserIdeas({
+      status: state.ideas.status,
+      category: state.ideas.category,
+      limit: 20,
+      ...(append && state.ideas.nextCursor ? { cursor: state.ideas.nextCursor } : {}),
+    });
+    if (!authStillValid(authGeneration, 'ideas.read') || requestId !== ideasRequestId) return STALE_AUTH_RESULT;
+    state.ideas = {
+      ...state.ideas,
+      state: 'ready',
+      items: append ? [...state.ideas.items, ...(Array.isArray(result?.items) ? result.items : [])] : Array.isArray(result?.items) ? result.items : [],
+      nextCursor: String(result?.nextCursor || ''),
+      error: '',
+    };
+    renderCurrentPage();
+  } catch (error) {
+    if (!authStillValid(authGeneration, 'ideas.read') || requestId !== ideasRequestId) return STALE_AUTH_RESULT;
+    state.ideas = { ...state.ideas, state: 'error', error: errorMessage(error) };
+    renderCurrentPage();
     throw error;
   }
 }
@@ -4627,8 +5048,42 @@ async function applyReportFiltersAndLoad() {
   }
 }
 
+async function applyIdeaFiltersAndLoad() {
+  if (!state.authorized || !can('ideas.read') || state.route !== 'ideas') return;
+  state.ideas = {
+    ...state.ideas,
+    status: String(document.getElementById('idea-status-filter')?.value || 'pending'),
+    category: String(document.getElementById('idea-category-filter')?.value || ''),
+    nextCursor: '',
+  };
+  try {
+    await loadUserIdeas(false);
+  } catch (error) {
+    setMessage(`Не удалось обновить список идей: ${errorMessage(error)}`, 'danger');
+    renderCurrentPage();
+  }
+}
+
+function handleUserBulkCheckboxChange(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLInputElement) || !target.classList.contains('user-bulk-checkbox')) return;
+  const uid = String(target.getAttribute('data-user-bulk-uid') || '');
+  if (!uid) return;
+  if (target.checked) state.users.bulkSelected.add(uid);
+  else state.users.bulkSelected.delete(uid);
+  renderCurrentPage();
+}
+
 function handleReportFilterChange(event) {
   const target = event.target;
+  if (target instanceof HTMLInputElement && target.classList.contains('user-bulk-checkbox')) {
+    handleUserBulkCheckboxChange(event);
+    return;
+  }
+  if (target instanceof HTMLSelectElement && target.id.startsWith('idea-') && target.id.endsWith('-filter')) {
+    void applyIdeaFiltersAndLoad();
+    return;
+  }
   if (!(target instanceof HTMLSelectElement) || !target.id.startsWith('report-') || !target.id.endsWith('-filter')) return;
   globalThis.clearTimeout(reportFilterTimer);
   void applyReportFiltersAndLoad();
@@ -4791,7 +5246,7 @@ async function createAgentManagerTask() {
   const priority = String(document.getElementById('agent-manager-priority')?.value || 'normal');
   const allowedScope = String(document.getElementById('agent-manager-scope')?.value || 'analysis_only');
   if (title.length < 3 || brief.length < 10) return setMessage('Укажите задачу и контекст: минимум 3 и 10 символов.', 'warning');
-  if (!globalThis.confirm(`Передать менеджеру задачу «${title}»?\n\nОна будет только запланирована. Для запуска потребуется отдельное согласование.`)) return;
+  // зачем: однокликовость — задача только планируется, запуск требует отдельного согласования, confirm был лишним
   return runBusy(async () => {
     await actions.createAgentManagerTask({ taskId: id('manager-task'), title, brief, priority, deadlineAtMs: null, allowedScope, sourceLinks: [] });
     await loadAgentManager();
@@ -4841,7 +5296,6 @@ async function transitionAgentManagerTask(target) {
   const expectedRevision = Number(target.getAttribute('data-agent-manager-revision') || 0);
   const task = state.agentManager.tasks.find((item) => String(item.taskId) === taskId);
   if (!task || !taskId || !status || !Number.isSafeInteger(expectedRevision) || expectedRevision < 1) return setMessage('Задача устарела. Обновите очередь.', 'warning');
-  if (!globalThis.confirm(`Перевести задачу «${task.title}» в статус «${agentManagerStatusLabel(status)}»?`)) return;
   return runBusy(async () => {
     await actions.transitionAgentManagerTask({ taskId, expectedRevision, status });
     await loadAgentManager();
@@ -4962,6 +5416,9 @@ function refreshCurrentRouteReadModels() {
       { key: 'report-queue', permission: 'reports.read', load: () => loadReportQueue(false) },
       { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
     ],
+    ideas: [
+      { key: 'ideas-queue', permission: 'ideas.read', load: () => loadUserIdeas(false) },
+    ],
     diagnostics: [
       { key: 'plans', permission: '', ownerOnly: true, load: loadPlans },
     ],
@@ -4984,11 +5441,93 @@ function refreshCurrentRouteReadModels() {
       ? [{ key: 'agent-manager', permission: '', load: loadAgentManager }]
       : [],
   }[state.route] || [];
-  for (const request of requests) {
-    if (request.ownerOnly && state.adminRole !== 'owner') continue;
-    if (request.permission && !can(request.permission)) continue;
-    void routeRefreshCoordinator.refresh({ ...request, ttlMs: ROUTE_REFRESH_TTL_MS, skipIfHidden: true }).catch(() => {});
+  const route = state.route;
+  const adminUid = state.adminUid;
+  const authGeneration = state.authGeneration;
+  const adminRole = state.adminRole;
+  for (const routeRequest of requests) {
+    if (routeRequest.ownerOnly && state.adminRole !== 'owner') continue;
+    if (routeRequest.permission && !can(routeRequest.permission)) continue;
+    const request = {
+      ...routeRequest,
+      load: async () => {
+        const result = await routeRequest.load();
+        if (
+          state.route === route
+          && state.adminUid === adminUid
+          && state.adminRole === adminRole
+          && state.authGeneration === authGeneration
+          && result !== STALE_AUTH_RESULT
+        ) {
+          freshSnapshotWrites.add(currentRouteSnapshotKey(route));
+          persistCurrentRouteSnapshot();
+        }
+        return result;
+      },
+    };
+    void routeRefreshCoordinator.refresh({
+      ...request,
+      ttlMs: ROUTE_REFRESH_TTL_MS,
+      skipIfHidden: true
+    }).catch(() => {});
   }
+}
+
+async function loadAllUnresolvedReportDocuments() {
+  const documents = [];
+  let cursor = '';
+  let instructions = '';
+  const seenCursors = new Set();
+  for (let page = 0; page < 5_000; page += 1) {
+    const result = await actions.exportUnresolvedReports({ cursor, limit: 100 });
+    instructions ||= String(result?.instructions || '');
+    if (Array.isArray(result?.documents)) documents.push(...result.documents);
+    const nextCursor = String(result?.nextCursor || '');
+    if (!nextCursor) return { instructions, documents };
+    if (seenCursors.has(nextCursor)) throw new Error('Сервер повторил курсор полного экспорта; операция остановлена без потери уже прочитанных данных.');
+    seenCursors.add(nextCursor);
+    cursor = nextCursor;
+  }
+  throw new Error('Полный экспорт превысил безопасный предел числа страниц.');
+}
+
+async function copyAllReports() {
+  if (['idle', 'loading', 'error'].includes(state.reports.state)) {
+    setMessage('Дождитесь окончания загрузки репортов.', 'warning');
+    return;
+  }
+  const items = visibleReportQueueItems();
+  if (!items.length) {
+    setMessage('Нет репортов в текущем фильтре.', 'warning');
+    return;
+  }
+  const authGeneration = state.authGeneration;
+  const documents = await loadReportDocumentsInAdaptiveChunks(items, async (reports) => {
+    const result = await actions.exportReportDocuments({ reports });
+    if (!authStillValid(authGeneration, 'reports.read')) return [];
+    return Array.isArray(result?.documents) ? result.documents : [];
+  });
+  if (!authStillValid(authGeneration, 'reports.read')) return STALE_AUTH_RESULT;
+  const clipboardText = buildReportClipboardText({
+    generatedAt: new Date().toISOString(),
+    items,
+    documents,
+    filters: {
+      source: state.reports.source,
+      lane: state.reports.lane,
+      rawStatus: state.reports.rawStatus,
+      uid: state.reports.uid,
+      category: state.reports.category,
+      sinceDays: state.reports.sinceDays,
+      grouping: state.adminSettings.reportGrouping,
+    },
+    hasNextPage: Boolean(state.reports.nextCursor),
+    isTruncated: state.reports.sourceHealth.some((source) => source.state === 'truncated'),
+  });
+  if (!authStillValid(authGeneration, 'reports.read')) return STALE_AUTH_RESULT;
+  await navigator.clipboard.writeText(clipboardText);
+  setMessage(`Скопировано репортов: ${items.length}.`, 'success');
+  return true;
 }
 
 function agentOfficeRefreshKey(caseId = state.agentOffice.selectedCaseId) {
@@ -5026,7 +5565,7 @@ async function updateReportStatus(target) {
   const reasonId = String(target.getAttribute('data-report-reason-id') || '');
   const reason = String(document.getElementById(reasonId)?.value || '').trim();
   if (state.adminSettings.requireReasonForStatus && !reason) return setMessage('Укажите причину изменения статуса.', 'warning');
-  if (!globalThis.confirm(`Изменить статус «${reportStatusLabel(expectedStatus)}» на «${reportStatusLabel(nextStatus)}»?`)) return;
+  // зачем: однокликовость — смена статуса репорта обратима (transitions в обе стороны) и пишется в аудит, confirm был лишним шагом на каждый репорт
   const authGeneration = state.authGeneration;
   const requiredPermission = source === 'app_errors' ? 'diagnostics.status.write' : 'reports.status.write';
   return runBusy(async () => {
@@ -5151,8 +5690,7 @@ async function toggleAppMessage(messageId, active) {
   if (!reason) return setMessage('Укажите причину включения или выключения сообщения.', 'warning');
   const item = state.campaigns.items.find((candidate) => String(candidate.id) === String(messageId));
   if (!item) return setMessage('Сообщение не найдено в загруженном списке.', 'warning');
-  const actionLabel = active ? 'включить' : 'выключить';
-  if (!globalThis.confirm(`${actionLabel === 'включить' ? 'Включить' : 'Выключить'} сообщение «${item.titleRu || item.id}»?\n\nПричина: ${reason}`)) return;
+  // зачем: однокликовость — тумблер кампании обратим одним кликом, причина уже обязательна и уходит в аудит
   return runBusy(async () => {
     await actions.setAppMessageActive({ messageId, active, reason, idempotencyKey: id('app-message-toggle'), requestId: id('request-app-message-toggle') });
     await loadAppMessages();
@@ -5164,8 +5702,29 @@ async function handleAction(action, target) {
   if (action === 'sign-in') return actions.signIn();
   if (action === 'sign-out') return actions.signOut();
   if (!state.authorized) return setMessage('Сначала войдите с ролью администратора.', 'warning');
+  const supportPermission = SUPPORT_ACTION_PERMISSIONS[action];
+  if (supportPermission && !can(supportPermission)) return setMessage('У роли нет права выполнять это действие с почтой поддержки.', 'warning');
+  if (action === 'review-support-delivery') {
+    if (!can('support.inbox.read')) return setMessage('У роли нет права читать почту поддержки.', 'warning');
+    const pendingReply = state.support.pendingReply;
+    if (!pendingReply) return;
+    state.support.dismissedPendingKey = supportPendingKey(pendingReply);
+    state.support.pendingReply = null;
+    state.support.selectedMessageId = String(target.getAttribute('data-message-id') || supportPendingReviewMessageId(pendingReply));
+    state.support.filter = 'all';
+    renderCurrentPage();
+    setMessage('Запечатанный предпросмотр закрыт только в браузере. Серверная операция не отменена и не будет отправлена повторно автоматически.', 'warning');
+    return;
+  }
   if (action === 'select-analytics-report') {
     selectAnalyticsReport(target.getAttribute('data-analytics-report') || document.getElementById('analytics-report-select')?.value || 'overview');
+    return;
+  }
+  if (action === 'select-analytics-metric') {
+    const metric = String(target.getAttribute('data-analytics-metric') || 'behavioral');
+    if (state.analyticsActiveMetric === metric) return;
+    state.analyticsActiveMetric = metric;
+    renderCurrentPage();
     return;
   }
   if (action === 'export-analytics-report') {
@@ -5190,12 +5749,12 @@ async function handleAction(action, target) {
     if (!preview) return setMessage('Сначала соберите предпросмотр.', 'warning');
     let current; try { current = buildGlobalBroadcastPreview(); } catch (error) { return setMessage(errorMessage(error), 'warning'); }
     if (!sameGlobalBroadcastPayload(current.payload, preview.payload) || current.reason !== preview.reason) return setMessage('Данные изменились после предпросмотра. Соберите новый предпросмотр.', 'warning');
-    if (!globalThis.confirm(`Опубликовать глобальную рассылку?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    // зачем: однокликовость — предпросмотр→публикация уже два осознанных шага с проверкой свежести, третий confirm повторял те же данные
     return runBusy(async () => { await actions.publishGlobalBroadcast({ ...preview.payload, reason: preview.reason, ...preview.operation }); state.broadcasts.preview = null; await loadGlobalBroadcasts(); }, 'Глобальная рассылка опубликована.');
   }
   if (action === 'deactivate-global-broadcasts') {
     const reason = readTextInput('global-broadcast-reason', 500);
-    if (!reason || !globalThis.confirm(`Выключить активные рассылки?\n\nПричина: ${reason}`)) return;
+    if (!reason) return setMessage('Укажите причину выключения рассылок.', 'warning');
     return runBusy(async () => { await actions.deactivateGlobalBroadcasts({ reason, idempotencyKey: id('global-broadcast-deactivate'), requestId: id('global-broadcast-deactivate-request') }); await loadGlobalBroadcasts(); }, 'Активные рассылки выключены.');
   }
   if (action === 'load-app-messages') return runBusy(loadAppMessages, 'Сообщения загружены.');
@@ -5216,7 +5775,7 @@ async function handleAction(action, target) {
       renderCurrentPage();
       return;
     }
-    if (!globalThis.confirm(`Создать ${preview.payload.kind === 'poll' ? 'опрос' : 'сообщение'}?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    // зачем: однокликовость — предпросмотр с проверкой свежести формы уже есть, confirm повторял те же данные третий раз
     return runBusy(async () => {
       await actions.createAppMessage({ ...preview.payload, reason: preview.reason, idempotencyKey: id('app-message-create'), requestId: id('request-app-message-create') });
       state.campaigns.preview = null;
@@ -5246,7 +5805,7 @@ async function handleAction(action, target) {
       renderCurrentPage();
       return;
     }
-    if (!globalThis.confirm(`Опубликовать промокоды?\n\n${preview.summary}\n\nПричина: ${preview.reason}`)) return;
+    // зачем: однокликовость — предпросмотр→публикация уже двухшаговый осознанный процесс, confirm был третьим повтором
     return runBusy(async () => {
       const result = await actions.promoCodeBatchUpsert(preview.payload);
       state.promo.generatedCodes = Array.isArray(result?.codes) ? result.codes.map(String) : [];
@@ -5307,7 +5866,7 @@ async function handleAction(action, target) {
     if (state.adminRole !== 'owner' || !signal || analyticsAggregatePlanSignalKey(signal) !== key) return setMessage('Этот агрегат больше нельзя добавить в план: обновите аналитику.', 'warning');
     await hydrateAnalyticsAggregatePlanAction(signal);
     if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому агрегату уже создан. Обновите список планов.', 'warning');
-    if (!globalThis.confirm('Подготовить черновик плана по этому агрегату аналитики? Текст карточки и данные пользователей не передаются.')) return;
+    // зачем: однокликовость — создаётся только черновик плана, ничего не публикуется
     return runBusy(async () => {
       const sourceHash = state.digestPlanSourceHashes?.[analyticsAggregatePlanSignalKey(signal)];
       state.digestPlanDraft = { ...signal, sourceHash };
@@ -5321,7 +5880,7 @@ async function handleAction(action, target) {
     if (state.adminRole !== 'owner' || !signal) return setMessage('Этот агрегат Офиса агентов больше нельзя добавить в план: обновите страницу.', 'warning');
     await hydrateAgentOfficeAggregatePlanAction(signal);
     if (digestSignalAlreadyLinked(signal)) return setMessage('План по этому агрегату уже создан. Обновите список планов.', 'warning');
-    if (!globalThis.confirm('Подготовить черновик плана по этому агрегату Офиса агентов? Данные дел, рекомендаций и пользователей не передаются.')) return;
+    // зачем: однокликовость — создаётся только черновик плана, ничего не публикуется
     return runBusy(async () => {
       const sourceHash = state.digestPlanSourceHashes?.[agentOfficeAggregatePlanSignalKey(signal)];
       state.digestPlanDraft = { ...signal, sourceHash };
@@ -5368,6 +5927,14 @@ async function handleAction(action, target) {
   if (action === 'load-report-next') {
     if (!state.reports.nextCursor) return;
     return runBusy(() => loadReportQueue(true), 'Следующая страница репортов загружена.');
+  }
+  if (action === 'load-user-ideas') {
+    state.ideas = { ...state.ideas, nextCursor: '' };
+    return runBusy(() => loadUserIdeas(false), 'Список идей загружен.');
+  }
+  if (action === 'load-user-ideas-next') {
+    if (!state.ideas.nextCursor) return;
+    return runBusy(() => loadUserIdeas(true), 'Следующая страница идей загружена.');
   }
   if (action === 'load-agent-office') return runBusy(() => refreshAgentOffice({ force: true }), 'Стратегические решения загружены через серверную проекцию.');
   if (action === 'load-agent-manager') return runBusy(() => loadAgentManager(), 'Менеджер агентов и очередь загружены через серверную проекцию.');
@@ -5436,13 +6003,16 @@ async function handleAction(action, target) {
     const replyId = String(target.getAttribute('data-report-reply-id') || '');
     const title = String(document.getElementById(`${replyId}-title`)?.value || '').trim();
     const body = String(document.getElementById(`${replyId}-body`)?.value || '').trim();
-    const shards = Number(document.getElementById(`${replyId}-shards`)?.value || 0);
+    const resolution = String(document.getElementById(`${replyId}-resolution`)?.value || 'rejected');
+    const coins = Number(document.getElementById(`${replyId}-coins`)?.value || 0);
     if (!title || !body) return setMessage('Заполните заголовок и текст ответа.', 'warning');
-    if (!Number.isInteger(shards) || shards < 0 || shards > 100) return setMessage('Награда должна быть целым числом от 0 до 100.', 'warning');
-    if (!globalThis.confirm(`Отправить владельцу репорта?\n\n${title}\n\n${body}${shards ? `\n\nНаграда: ${shards}` : ''}`)) return;
+    if (!['confirmed_fixed', 'duplicate', 'in_progress', 'rejected'].includes(resolution)) return setMessage('Выберите допустимый итог проверки.', 'warning');
+    if (!Number.isInteger(coins) || coins < 0 || coins > 1 || (coins === 1 && resolution !== 'confirmed_fixed')) return setMessage('Одну монету можно выдать только за подтверждённую и исправленную проблему.', 'warning');
+    // зачем: однокликовость — текст ответа уже виден в редактируемой форме; confirm остаётся только когда выдаётся монета (деньги)
+    if (coins === 1 && !globalThis.confirm(`Отправить ответ и выдать 1 монету?\n\n${title}`)) return;
     const authGeneration = state.authGeneration;
     return runBusy(async () => {
-      await actions.sendReportReply({ reportCollection: source, reportId, title, body, shards });
+      await actions.sendReportReply({ reportCollection: source, reportId, title, body, resolution, coins });
       if (!authStillValid(authGeneration, 'reports.reply.send')) return STALE_AUTH_RESULT;
       const nextDrafts = { ...state.reports.replyDrafts };
       delete nextDrafts[`${source}:${reportId}`];
@@ -5450,6 +6020,147 @@ async function handleAction(action, target) {
       const loaded = await loadReportQueue();
       return loaded === STALE_AUTH_RESULT ? STALE_AUTH_RESULT : true;
     }, 'Ответ отправлен владельцу репорта; повторная отправка заблокирована сервером.');
+  }
+  if (action === 'draft-idea-decision') {
+    const ideaId = String(target.getAttribute('data-idea-id') || '');
+    const decision = String(target.getAttribute('data-idea-decision') || '');
+    if (!ideaId || !['approve', 'reject'].includes(decision)) return;
+    const toneHint = String(document.getElementById(`idea-tone-${ideaId}`)?.value || '').trim();
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const draft = await actions.draftIdeaDecision({ ideaId, decision, toneHint });
+      if (!authStillValid(authGeneration, 'ideas.decide')) return STALE_AUTH_RESULT;
+      state.ideas.decisionDrafts = { ...state.ideas.decisionDrafts, [ideaId]: { decision, message: String(draft?.message || ''), toneHint } };
+    }, 'Черновик сообщения готов. Проверьте текст перед отправкой.');
+  }
+  if (action === 'send-idea-decision') {
+    const ideaId = String(target.getAttribute('data-idea-id') || '');
+    const decision = String(target.getAttribute('data-idea-decision') || '');
+    if (!ideaId || !['approve', 'reject'].includes(decision)) return;
+    const message = String(document.getElementById(`idea-message-${ideaId}`)?.value || '').trim();
+    if (!message) return setMessage('Заполните текст сообщения.', 'warning');
+    // зачем: approve выдаёт год Plus реальному пользователю — необратимая денежная операция, поэтому подтверждение оставлено (в отличие от обычных действий, которые владелец попросил выполнять сразу)
+    if (decision === 'approve' && !globalThis.confirm(`Принять идею и выдать год Plus?\n\n${message}`)) return;
+    if (decision === 'reject' && !globalThis.confirm(`Отклонить идею?\n\n${message}`)) return;
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      await actions.decideUserIdea({ ideaId, decision, messageRu: message, messageUk: message, messageEs: message });
+      if (!authStillValid(authGeneration, 'ideas.decide')) return STALE_AUTH_RESULT;
+      const nextDrafts = { ...state.ideas.decisionDrafts };
+      delete nextDrafts[ideaId];
+      state.ideas.decisionDrafts = nextDrafts;
+      const loaded = await loadUserIdeas(false);
+      return loaded === STALE_AUTH_RESULT ? STALE_AUTH_RESULT : true;
+    }, decision === 'approve' ? 'Идея принята, пользователю выдан год Plus.' : 'Идея отклонена, сообщение отправлено.');
+  }
+  if (action === 'bulk-clear-selection') {
+    state.users.bulkSelected = new Set();
+    renderCurrentPage();
+    return;
+  }
+  // зачем: массовые действия над пользователями (вернули по просьбе владельца, как в старой админке) — цикл по тем же серверным callable, что уже используются для одного пользователя (grantAccess/setUserBan), с проверкой прав и аудитом на каждую операцию. Выбор — только среди результатов поиска, без выгрузки всей базы (см. договорённость).
+  if (action === 'bulk-grant-premium' || action === 'bulk-grant-vip') {
+    const kind = action === 'bulk-grant-vip' ? 'vip' : 'premium';
+    const uids = [...state.users.bulkSelected];
+    if (!uids.length) return;
+    if (!globalThis.confirm(`Выдать ${kind === 'vip' ? 'VIP' : 'Plus'} на 365 дней ${uids.length} пользователям?`)) return;
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      let done = 0;
+      const failed = [];
+      for (const uid of uids) {
+        try {
+          await actions.grantAccess({ uid, kind, durationDays: 365, reason: `Массовая выдача ${kind === 'vip' ? 'VIP' : 'Plus'} администратором`, requestId: id('bulk-access'), idempotencyKey: id('bulk-access') });
+          done++;
+        } catch (error) {
+          failed.push(`${uid}: ${errorMessage(error)}`);
+        }
+      }
+      if (!authStillValid(authGeneration, 'money.manual_access.write')) return STALE_AUTH_RESULT;
+      state.users.bulkSelected = new Set();
+      if (failed.length) setMessage(`Готово ${done}/${uids.length}. Ошибки: ${failed.slice(0, 3).join(' · ')}${failed.length > 3 ? '…' : ''}`, 'warning');
+      return true;
+    }, `${kind === 'vip' ? 'VIP' : 'Plus'} выдан выбранным пользователям.`);
+  }
+  if (action === 'bulk-ban-users') {
+    const uids = [...state.users.bulkSelected];
+    if (!uids.length) return;
+    if (!globalThis.confirm(`Заблокировать ${uids.length} пользователей? Они не смогут использовать приложение.`)) return;
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      let done = 0;
+      const failed = [];
+      for (const uid of uids) {
+        try {
+          await actions.setUserBan({ uid, banned: true, reason: 'Массовая блокировка администратором', requestId: id('bulk-ban'), idempotencyKey: id('bulk-ban') });
+          done++;
+        } catch (error) {
+          failed.push(`${uid}: ${errorMessage(error)}`);
+        }
+      }
+      if (!authStillValid(authGeneration, 'community.moderate')) return STALE_AUTH_RESULT;
+      state.users.bulkSelected = new Set();
+      if (failed.length) setMessage(`Забанено ${done}/${uids.length}. Ошибки: ${failed.slice(0, 3).join(' · ')}${failed.length > 3 ? '…' : ''}`, 'warning');
+      return true;
+    }, 'Выбранные пользователи заблокированы.');
+  }
+  if (action === 'send-personal-app-message') {
+    const uid = String(state.users.profile?.canonicalUid || '').trim();
+    const title = readTextInput('personal-message-title', 160);
+    const body = readTextInput('personal-message-body', 2000);
+    const reason = readTextInput('personal-message-reason', 500);
+    const deliveryMode = String(document.getElementById('personal-message-delivery')?.value || 'inbox');
+    if (!uid || !title || !body || !reason) return setMessage('Заполните заголовок, текст и причину отправки.', 'warning');
+    if (!['inbox', 'next_login_modal'].includes(deliveryMode)) return setMessage('Выберите допустимый способ доставки.', 'warning');
+    // зачем: однокликовость — весь текст уже виден в форме, адресат один и зафиксирован по UID, сервер защищает от повтора
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      await actions.sendPersonalAppMessage({
+        uid,
+        title,
+        body,
+        deliveryMode,
+        reason,
+        idempotencyKey: id('personal-app-message'),
+        requestId: id('personal-app-message-request'),
+      });
+      if (!authStillValid(authGeneration, 'users.message.write')) return STALE_AUTH_RESULT;
+      const titleInput = document.getElementById('personal-message-title');
+      const bodyInput = document.getElementById('personal-message-body');
+      const reasonInput = document.getElementById('personal-message-reason');
+      if (titleInput) titleInput.value = '';
+      if (bodyInput) bodyInput.value = '';
+      if (reasonInput) reasonInput.value = '';
+      return true;
+    }, 'Персональное сообщение отправлено выбранному пользователю и записано в журнал.');
+  }
+  if (action === 'view-report-archive') {
+    state.reports = { ...state.reports, rawStatus: 'archived', lane: '', nextCursor: '' };
+    return runBusy(() => loadReportQueue(false), 'Архив репортов загружен.');
+  }
+  if (action === 'copy-all-reports') {
+    return runBusy(copyAllReports);
+  }
+  if (action === 'copy-all-unresolved-reports') {
+    return runBusy(async () => {
+      const exported = await loadAllUnresolvedReportDocuments();
+      await navigator.clipboard.writeText(JSON.stringify({ instructions: exported.instructions, reports: exported.documents }, null, 2));
+      setMessage(`Скопировано нерешённых репортов: ${exported.documents.length}.`, 'success');
+      return STALE_AUTH_RESULT;
+    });
+  }
+  if (action === 'send-all-unresolved-to-office') {
+    if (state.adminRole !== 'owner') return setMessage('Передача в Офис доступна только владельцу.', 'warning');
+    return runBusy(async () => {
+      const exported = await loadAllUnresolvedReportDocuments();
+      if (!exported.documents.length) throw new Error('Нерешённых репортов нет.');
+      // зачем: однокликовость — операция идемпотентна, повторный запуск переиспользует уже созданные задачи
+      for (const report of exported.documents) {
+        await actions.createAgentManagerInboxTask({ sourceType: 'report', reportSource: report.source, sourceId: report.id });
+      }
+      setMessage(`В Офис передано репортов: ${exported.documents.length}.`, 'success');
+      return STALE_AUTH_RESULT;
+    });
   }
   if (action === 'search-admin-users') {
     const query = String(document.getElementById('user-search')?.value ?? '').trim();
@@ -5493,7 +6204,7 @@ async function handleAction(action, target) {
     if (!preview) return setMessage('Сначала подготовьте preview.', 'warning');
     const reason = readTextInput('admin-access-reason', 500);
     if (reason !== preview.reason) { adminAccessPreview = null; renderCurrentPage(); return setMessage('Причина изменилась после preview. Подготовьте его заново.', 'warning'); }
-    if (!globalThis.confirm(`${preview.label}?\n\nПричина: ${preview.reason}`)) return;
+    // зачем: однокликовость — preview→подтверждение уже двухшаговый явный процесс с проверкой причины, третий confirm повторял то же самое
     return runBusy(async () => {
       if (preview.kind) await actions.grantAccess(preview);
       else await actions.setUserBan(preview);
@@ -5624,7 +6335,7 @@ async function handleAction(action, target) {
       renderCurrentPage();
       return;
     }
-    if (!globalThis.confirm(remoteConfigPublishQuestion(preview))) return;
+    // зачем: однокликовость — предпросмотр с диффом изменений уже показан и проверен на свежесть, третий confirm повторял тот же дифф
     const expectedRevision = Number(state.remoteConfig?.config?.revision ?? 0);
     return runBusy(async () => {
       await actions.publishRemoteConfig({ nextConfig: preview.nextConfig, expectedRevision, idempotencyKey: id('remote-config'), reason: preview.reason, requestId: id('request-remote-config') });
@@ -5659,7 +6370,7 @@ async function handleAction(action, target) {
     const preview = state.paywallAb.preview;
     if (!preview?.changes?.length) return setMessage('Нет изменений для публикации.', 'warning');
     if (!ensurePaywallAbPreviewIsFresh(preview)) return;
-    if (!globalThis.confirm(paywallAbPublishQuestion(preview))) return;
+    // зачем: однокликовость — предпросмотр распределения процентов уже показан и проверен на свежесть, confirm повторял те же цифры
     const expectedUpdatedAt = state.paywallAb.exists ? Number(state.paywallAb.doc?.updatedAt ?? 0) : undefined;
     return runBusy(async () => {
       const result = await actions.publishPaywallAb({ ...preview.payload, expectedUpdatedAt, idempotencyKey: id('paywall-ab'), reason: preview.reason, requestId: id('request-paywall-ab') });
@@ -5764,12 +6475,11 @@ async function handleAction(action, target) {
     const reason = String(document.getElementById('factory-review-reason')?.value ?? '').trim();
     if (!reason) return setMessage('Добавьте комментарий проверяющего.', 'warning');
     const status = action === 'approve-factory-job' ? 'approved' : 'rejected';
-    const question = status === 'approved' ? 'Подтвердить, что содержимое и источники проверены?' : 'Отклонить пакет и вернуть его на доработку?';
-    if (!globalThis.confirm(question)) return;
+    // зачем: однокликовость — решение обратимо (reject возвращает на доработку), публикация пользователям гейтится отдельной активацией
     return runBusy(async () => { await actions.reviewFactoryJob({ jobId: state.selectedJobId, status, reason, requestId: id(`review-${status}`) }); await loadJobDetail(state.selectedJobId); if (status === 'approved') state.factoryStep = 4; }, status === 'approved' ? 'Проверка одобрена.' : 'Пакет отклонён.');
   }
   if (action === 'seal-factory-release') {
-    if (!globalThis.confirm('Создать неизменяемый релиз из одобренного пакета?')) return;
+    // зачем: однокликовость — запечатанный релиз не виден пользователям до отдельной активации (у неё confirm сохранён)
     return runBusy(async () => { await actions.sealFactoryRelease({ jobId: state.selectedJobId, idempotencyKey: id('seal'), requestId: id('request-seal') }); await loadJobDetail(state.selectedJobId); }, 'Релиз запечатан. Он ещё не активирован.');
   }
   if (action === 'activate-factory-release') {
@@ -5787,39 +6497,85 @@ async function handleAction(action, target) {
     const catalog = state.detail?.catalog ?? {};
     return runBusy(async () => { await actions.rollbackFactoryRelease({ targetReleaseId, expectedCurrentReleaseId: String(catalog.activeRelease?.releaseId ?? ''), expectedRevision: Number(catalog.revision ?? 0), idempotencyKey: id('rollback'), reason, requestId: id('request-rollback') }); await loadJobDetail(state.selectedJobId); }, 'Откат выполнен.');
   }
-  if (action === 'load-support') return runBusy(async () => { applySupportListResult(await actions.loadSupport({ limit: 500 })); }, 'Входящие загружены.');
-  if (action === 'pull-support') return runBusy(async () => { const result = await actions.pullSupport({ requestId: id('support-pull') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); setMessage(result?.parseFailed ? `Почта проверена: сохранено ${Number(result?.saved ?? 0)}, но одно или несколько писем не удалось разобрать. Они останутся в окне повторного чтения.` : `Почта проверена: найдено ${Number(result?.fetched ?? 0)}, сохранено ${Number(result?.saved ?? 0)}.`, result?.parseFailed ? 'warning' : 'success'); });
+  if (action === 'load-support') {
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const result = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.inbox.read')) return STALE_AUTH_RESULT;
+      applySupportListResult(result);
+      return result;
+    }, 'Входящие загружены.');
+  }
+  if (action === 'pull-support') {
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const result = await actions.pullSupport({ requestId: id('support-pull') });
+      if (!authStillValid(authGeneration, 'support.inbox.pull')) return STALE_AUTH_RESULT;
+      const list = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.inbox.pull')) return STALE_AUTH_RESULT;
+      applySupportListResult(list);
+      setMessage(result?.parseFailed ? `Почта проверена: сохранено ${Number(result?.saved ?? 0)}, но одно или несколько писем не удалось разобрать. Они останутся в окне повторного чтения.` : `Почта проверена: найдено ${Number(result?.fetched ?? 0)}, сохранено ${Number(result?.saved ?? 0)}.`, result?.parseFailed ? 'warning' : 'success');
+      return result;
+    });
+  }
   if (action === 'generate-support-reply') {
     const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
-    return runBusy(async () => { const generated = await actions.generateSupportReply({ ...(messageDocId ? { messageDocId } : {}), requestId: id('support-draft') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); setMessage(`Черновиков создано: ${Number(generated?.generated ?? 0)}${generated?.remaining ? `, осталось: ${Number(generated.remaining)}` : ''}.`, 'success'); });
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const generated = await actions.generateSupportReply({ ...(messageDocId ? { messageDocId } : {}), requestId: id('support-draft') });
+      if (!authStillValid(authGeneration, 'support.draft.write')) return STALE_AUTH_RESULT;
+      if (messageDocId) {
+        const replyDrafts = { ...state.support.replyDrafts };
+        delete replyDrafts[messageDocId];
+        state.support.replyDrafts = replyDrafts;
+      }
+      const list = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.draft.write')) return STALE_AUTH_RESULT;
+      applySupportListResult(list);
+      setMessage(`Черновиков создано: ${Number(generated?.generated ?? 0)}${generated?.remaining ? `, осталось: ${Number(generated.remaining)}` : ''}.`, 'success');
+      return generated;
+    });
   }
   if (action === 'prepare-support-reply-batch') {
+    const authGeneration = state.authGeneration;
     return runBusy(async () => {
-      state.support.pendingReply = await actions.prepareSupportReplyBatch({ limit: 200, idempotencyKey: id('support-batch'), requestId: id('support-batch-request') });
+      const pendingReply = await actions.prepareSupportReplyBatch({ limit: 200, idempotencyKey: id('support-batch'), requestId: id('support-batch-request') });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
+      state.support.dismissedPendingKey = '';
+      state.support.pendingReply = pendingReply;
+      return pendingReply;
     }, 'Пакет запечатан. Проверьте получателей и точные тексты.');
   }
   if (action === 'prepare-support-reply') {
     const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
     const item = state.support.items.find((candidate) => String(candidate.id) === messageDocId);
-    const replyText = String(document.getElementById(`support-reply-${messageDocId}`)?.value ?? '').trim();
+    const replyText = String(state.support.replyDrafts[messageDocId] ?? document.getElementById(`support-reply-${messageDocId}`)?.value ?? item?.draftReply ?? '').trim();
     if (!replyText) return setMessage('Введите или сгенерируйте ответ.', 'warning');
+    const authGeneration = state.authGeneration;
     return runBusy(async () => {
-      state.support.pendingReply = await actions.prepareSupportReply({
+      const pendingReply = await actions.prepareSupportReply({
         messageDocId,
         replyText,
         expectedDraftRevision: Number(item?.draftRevision ?? 0),
         idempotencyKey: id('support-prepare'),
         requestId: id('support-prepare-request'),
       });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
+      state.support.dismissedPendingKey = '';
+      state.support.pendingReply = pendingReply;
+      return pendingReply;
     }, 'Ответ запечатан. Проверьте предпросмотр и подтвердите отправку.');
   }
   if (action === 'dispatch-support-reply') {
     const pendingReply = state.support.pendingReply;
     if (!pendingReply) return setMessage('Нет подготовленного ответа.', 'warning');
+    const authGeneration = state.authGeneration;
     return runBusy(async () => {
       const result = await actions.dispatchSupportReply({ operationId: pendingReply.operationId, confirmationNonce: pendingReply.confirmationNonce, payloadHash: pendingReply.payloadHash });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
       state.support.pendingReply = { ...pendingReply, ...result };
       const list = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
       state.support = { ...state.support, loaded: true, items: Array.isArray(list?.items) ? list.items : [], signature: String(list?.signature ?? ''), signatureRevision: Number(list?.signatureRevision ?? 0), pendingReply: result?.state === 'accepted' ? null : state.support.pendingReply };
       if (result?.state === 'delivery_unknown') setMessage('Результат Gmail неизвестен. Повтор заблокирован; проверьте «Отправленные».', 'warning');
       else if (result?.state === 'accepted') setMessage('Ответ принят Gmail и отмечен как отправленный.', 'success');
@@ -5829,15 +6585,32 @@ async function handleAction(action, target) {
   if (action === 'cancel-support-reply') {
     const pendingReply = state.support.pendingReply;
     if (!pendingReply) return;
-    return runBusy(async () => { await actions.cancelSupportReply({ operationId: pendingReply.operationId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-cancel') }); state.support.pendingReply = null; }, 'Подготовленная отправка отменена.');
+    if (String(pendingReply.state || '') !== 'prepared') return setMessage('Отмена недоступна: серверная операция уже вышла из состояния подготовки. Откройте письмо для проверки результата.', 'warning');
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const result = await actions.cancelSupportReply({ operationId: pendingReply.operationId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-cancel') });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
+      if (result?.state !== 'cancelled') {
+        state.support.pendingReply = { ...pendingReply, ...result };
+        setMessage(`Операция не отменена: сервер вернул состояние «${operationalStateLabel(result?.state)}». Откройте письмо и проверьте доставку.`, 'warning');
+        return result;
+      }
+      state.support.pendingReply = null;
+      state.support.dismissedPendingKey = '';
+      setMessage('Подготовленная отправка отменена.', 'success');
+      return result;
+    });
   }
   if (action === 'dispatch-support-reply-batch') {
     const pendingReply = state.support.pendingReply;
     if (!pendingReply?.batchId) return setMessage('Нет подготовленного пакета.', 'warning');
+    const authGeneration = state.authGeneration;
     return runBusy(async () => {
       const result = await actions.dispatchSupportReplyBatch({ batchId: pendingReply.batchId, confirmationNonce: pendingReply.confirmationNonce, manifestHash: pendingReply.manifestHash });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
       state.support.pendingReply = { ...pendingReply, ...result };
       const list = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
       state.support = { ...state.support, loaded: true, items: Array.isArray(list?.items) ? list.items : [], signature: String(list?.signature ?? ''), signatureRevision: Number(list?.signatureRevision ?? 0), pendingReply: result?.state === 'accepted' ? null : state.support.pendingReply };
       if (result?.state === 'accepted') setMessage(`Пакет отправлен: ${Number(result.accepted || 0)} писем принято Gmail.`, 'success');
       else if (result?.state === 'attention_required') setMessage(`Пакет требует проверки: принято ${Number(result.accepted || 0)}, неопределённо ${Number(result.attention || 0)}, ещё не начато ${Number(result.pending || 0)}.`, 'warning');
@@ -5847,25 +6620,46 @@ async function handleAction(action, target) {
   if (action === 'cancel-support-reply-batch') {
     const pendingReply = state.support.pendingReply;
     if (!pendingReply?.batchId) return;
-    return runBusy(async () => { await actions.cancelSupportReplyBatch({ batchId: pendingReply.batchId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-batch-cancel') }); state.support.pendingReply = null; }, 'Пакет отменён; ни одна не начатая операция не будет отправлена.');
+    if (String(pendingReply.state || '') !== 'prepared') return setMessage('Отмена пакета недоступна после начала отправки. Перейдите к ручной проверке неизвестных доставок.', 'warning');
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => {
+      const result = await actions.cancelSupportReplyBatch({ batchId: pendingReply.batchId, confirmationNonce: pendingReply.confirmationNonce, requestId: id('support-batch-cancel') });
+      if (!authStillValid(authGeneration, 'support.reply.send')) return STALE_AUTH_RESULT;
+      if (result?.state !== 'cancelled') {
+        state.support.pendingReply = { ...pendingReply, ...result };
+        setMessage(`Пакет не отменён: сервер вернул состояние «${operationalStateLabel(result?.state)}».`, 'warning');
+        return result;
+      }
+      state.support.pendingReply = null;
+      state.support.dismissedPendingKey = '';
+      setMessage('Пакет отменён; ни одна не начатая операция не будет отправлена.', 'success');
+      return result;
+    });
   }
   if (action === 'save-support-signature') {
-    const signature = String(document.getElementById('support-signature')?.value ?? '').slice(0, 2000);
-    return runBusy(async () => { const result = await actions.saveSupportSignature({ signature, requestId: id('support-signature') }); state.support.signature = String(result?.signature ?? signature); state.support.signatureRevision = Number(result?.signatureRevision ?? state.support.signatureRevision); }, 'Подпись сохранена.');
+    const signature = String(state.support.signatureDraft ?? document.getElementById('support-signature')?.value ?? '').slice(0, 2000);
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => { const result = await actions.saveSupportSignature({ signature, requestId: id('support-signature') }); if (!authStillValid(authGeneration, 'support.settings.write')) return STALE_AUTH_RESULT; state.support.signature = String(result?.signature ?? signature); state.support.signatureDraft = null; state.support.signatureRevision = Number(result?.signatureRevision ?? state.support.signatureRevision); return result; }, 'Подпись сохранена.');
   }
   if (action === 'set-support-status') {
     const messageDocId = String(target.getAttribute('data-message-id') ?? '').trim();
     const status = String(target.getAttribute('data-status') ?? '').trim();
-    return runBusy(async () => { await actions.setSupportStatus({ messageDocId, status, requestId: id('support-status') }); applySupportListResult(await actions.loadSupport({ limit: 500 })); }, status === 'archived' ? 'Письмо перемещено в архив.' : 'Письмо возвращено в новые.');
+    const authGeneration = state.authGeneration;
+    return runBusy(async () => { await actions.setSupportStatus({ messageDocId, status, requestId: id('support-status') }); if (!authStillValid(authGeneration, 'support.archive')) return STALE_AUTH_RESULT; const list = await actions.loadSupport({ limit: 500 }); if (!authStillValid(authGeneration, 'support.archive')) return STALE_AUTH_RESULT; applySupportListResult(list); return list; }, status === 'archived' ? 'Письмо перемещено в архив.' : 'Письмо возвращено в новые.');
   }
   if (action === 'resolve-support-reply') {
     const operationId = String(target.getAttribute('data-operation-id') ?? '').trim();
     const resolution = String(target.getAttribute('data-resolution') ?? '').trim();
     const sent = resolution === 'accepted';
     if (!globalThis.confirm(sent ? 'Вы проверили папку «Отправленные» и нашли это письмо?' : 'Вы проверили папку «Отправленные» и уверены, что этого письма там нет?')) return;
+    const authGeneration = state.authGeneration;
     return runBusy(async () => {
       await actions.resolveSupportReplyDelivery({ operationId, resolution, reason: sent ? 'Verified in Gmail Sent folder' : 'Verified absent from Gmail Sent folder', requestId: id('support-reconcile') });
-      applySupportListResult(await actions.loadSupport({ limit: 500 }));
+      if (!authStillValid(authGeneration, 'support.reply.resolve_ambiguous')) return STALE_AUTH_RESULT;
+      const list = await actions.loadSupport({ limit: 500 });
+      if (!authStillValid(authGeneration, 'support.reply.resolve_ambiguous')) return STALE_AUTH_RESULT;
+      applySupportListResult(list);
+      return list;
     }, sent ? 'Доставка подтверждена вручную.' : 'Подтверждено: письмо не отправлено, можно подготовить новую операцию.');
   }
   if (action === 'reset-analytics-zoom') {
@@ -6003,7 +6797,7 @@ async function handleAction(action, target) {
       actionCodes,
     };
     if (planSourceHashAlreadyLinked(sourceHash)) return setMessage('План по этому сигналу уже создан. Обновите список планов.', 'warning');
-    if (!globalThis.confirm('Создать план на сервере? Будет сохранён только структурированный код действия и SHA-256 ссылка на сводку.')) return;
+    // зачем: однокликовость — сохраняется только структурированный черновик плана
     return runBusy(async () => {
       await actions.createPlan(input);
       state.digestPlanDraft = null;
@@ -6083,6 +6877,12 @@ async function handleClick(event) {
     event.preventDefault();
     globalThis.location.hash = route;
     closeMobileNav();
+    return;
+  }
+  const reportSelectKey = target.getAttribute('data-report-select-key');
+  if (reportSelectKey) {
+    state.reports = { ...state.reports, selectedKey: reportSelectKey };
+    renderCurrentPage();
     return;
   }
   const contentMode = target.getAttribute('data-content-create-mode');
@@ -6245,6 +7045,16 @@ async function handleClick(event) {
   }
   const appMessageToggleId = target.getAttribute('data-app-message-toggle');
   if (appMessageToggleId) return toggleAppMessage(appMessageToggleId, target.getAttribute('data-next-active') === 'true');
+  const reportOfficeSource = target.getAttribute('data-report-office-source');
+  const reportOfficeId = target.getAttribute('data-report-office-id');
+  if (reportOfficeSource && reportOfficeId) {
+    if (state.adminRole !== 'owner') return setMessage('Передача в Офис доступна только владельцу.', 'warning');
+    // зачем: однокликовость — идемпотентная передача во внутренний Офис, ничего пользовательского не отправляется
+    return runBusy(
+      () => actions.createAgentManagerInboxTask({ sourceType: 'report', reportSource: reportOfficeSource, sourceId: reportOfficeId }),
+      'Репорт передан в Офис агентов; повторная передача не создаст дубликат.',
+    );
+  }
   const reportUserUid = target.getAttribute('data-report-user-uid');
   if (reportUserUid) {
     state.users.profileLoading = true;
@@ -6264,6 +7074,12 @@ async function handleClick(event) {
   if (capabilityId) {
     const capability = capabilityById(capabilityId);
     if (capability) globalThis.location.hash = capability.nativeRoute;
+    return;
+  }
+  const supportMessageId = target.getAttribute('data-support-message-id');
+  if (supportMessageId) {
+    state.support.selectedMessageId = supportMessageId;
+    renderCurrentPage();
     return;
   }
   const supportFilter = target.getAttribute('data-support-filter');
@@ -6290,9 +7106,18 @@ export function setAdminActions(nextActions) {
 export function setAuthState(auth) {
   const previousDashboardScope = dashboardWidgetsScope;
   const previousUid = state.adminUid;
+  const previousRole = state.adminRole;
   const nextAuthorized = auth.authorized === true;
   const nextUid = nextAuthorized ? normalizeFirebaseUid(auth.uid) : null;
+  const nextRole = nextAuthorized ? String(auth.role ?? '') : '';
   const accountChanged = !nextAuthorized || !nextUid || previousUid !== nextUid;
+  const roleChanged = previousRole !== nextRole;
+  if (previousUid && (accountChanged || roleChanged)) {
+    try { getRouteSnapshotStore()?.clearAdmin(previousUid); } catch {}
+    hydratedRouteSnapshots.clear();
+    freshSnapshotWrites.clear();
+    routeSnapshotInfo = null;
+  }
   if (!nextAuthorized || !nextUid || previousUid !== nextUid) pendingLegacyDashboardWidgetIds = null;
   if (accountChanged) {
     if (overviewCacheScope) overviewCache.clear(overviewCacheScope);
@@ -6316,7 +7141,7 @@ export function setAuthState(auth) {
   state.authorized = nextAuthorized;
   state.adminEmail = String(auth.email ?? '');
   state.adminUid = state.authorized ? normalizeFirebaseUid(auth.uid) : null;
-  state.adminRole = String(auth.role ?? '');
+  state.adminRole = nextRole;
   const legacy = drainLegacyDashboardWidgetPreferences({
     storage: dashboardWidgetStorage(),
     legacyScope: state.authorized && state.adminEmail ? `admin:${state.adminEmail}` : null,
@@ -6355,6 +7180,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('users.read')) {
     state.users = { query: '', searched: false, items: [], profile: null, profileLoading: false, searchState: 'idle', searchErrors: [] };
   }
+  if (accountChanged || previousRole !== state.adminRole || !can('support.inbox.read')) state.support = defaultSupportState();
   if (!state.authorized || !can('briefing.read')) state.briefing = { state: 'idle', digest: null, fetchedAtMs: 0, error: '', generationOutcome: '' };
   if (!state.authorized || !can('briefing.read') || state.adminRole !== 'owner') { stopDirectorDigestAudio(); state.directorDigest = { state: 'idle', digest: null, rangeDays: 7, error: '', fetchedAtMs: 0, audio: { state: 'idle', current: 0, total: 0, error: '' } }; }
   if (!state.authorized || !can('reports.read')) state.reports = defaultReportState(state.adminSettings);
@@ -6377,6 +7203,7 @@ export function setAuthState(auth) {
   if (!state.authorized || !can('campaigns.read')) state.broadcasts = { state: 'idle', items: [], preview: null, error: '' };
   if (!state.authorized || !can('application.config.write')) state.paywallAb = defaultPaywallAbState();
   if (!state.authorized || !can('money.read')) state.paywallAbStats = defaultPaywallAbStatsState();
+  hydrateCurrentRouteSnapshot();
   renderCurrentPage();
   if (actionsReady && state.authorized && state.route === 'content' && can('content.read') && state.contentStages.capabilitiesState === 'idle') void ensureContentCapabilities().then(renderCurrentPage);
   refreshCurrentRouteReadModels();
@@ -6392,6 +7219,8 @@ export function renderRoute(route, capabilityId = '') {
   state.route = PAGES[requestedRoute] ? requestedRoute : 'overview';
   if (!state.adminSettings.rememberSectionFilters && previousRoute !== state.route) resetEphemeralSectionFilters(state.route);
   state.selectedCapabilityId = '';
+  routeSnapshotInfo = null;
+  hydrateCurrentRouteSnapshot();
   renderCurrentPage();
   if (actionsReady && state.route === 'content' && state.authorized && can('content.read') && state.contentStages.capabilitiesState === 'idle') {
     void ensureContentCapabilities().then(renderCurrentPage);
@@ -6473,6 +7302,17 @@ function handlePaywallAbChange(event) {
   renderCurrentPage();
 }
 
+function handleSupportDraftInput(event) {
+  const target = event.target;
+  if (!(target instanceof HTMLTextAreaElement) || !state.authorized) return;
+  const messageId = String(target.getAttribute('data-support-draft-id') || '').trim();
+  if (messageId) {
+    state.support.replyDrafts = { ...state.support.replyDrafts, [messageId]: target.value };
+    return;
+  }
+  if (target.hasAttribute('data-support-signature-draft')) state.support.signatureDraft = target.value;
+}
+
 export function initAdminUi() {
   if (initialized) return;
   initialized = true;
@@ -6489,6 +7329,7 @@ export function initAdminUi() {
   document.addEventListener('input', handleContentStudioInput);
   document.addEventListener('input', handleAnalyticsTrendsControlChange);
   document.addEventListener('input', handlePaywallAbInput);
+  document.addEventListener('input', handleSupportDraftInput);
   document.addEventListener('change', handlePaywallAbChange);
   document.addEventListener('keydown', (event) => {
     const target = event.target;

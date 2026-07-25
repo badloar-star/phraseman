@@ -187,6 +187,8 @@ import BannersToastsExtraSection from '../components/admin_panel/sections/Banner
 import VipSurveyExtraSection from '../components/admin_panel/sections/VipSurveyExtraSection';
 import LabsSection from '../components/admin_panel/sections/LabsSection';
 import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
+import UxOverhaulModalsSection from '../components/admin_panel/sections/UxOverhaulModalsSection';
+import TournamentBotsSection from '../components/admin_panel/sections/TournamentBotsSection';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -2479,6 +2481,7 @@ export default function SettingsTestersFunctions() {
               doHaptic={doHaptic}
             />
           </View>
+          <TournamentBotsSection open={openSection === 'tournament_bots'} onToggle={toggleSection} />
           {quickVisible && (<>
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
@@ -3836,6 +3839,17 @@ export default function SettingsTestersFunctions() {
               sub="Preview-only: активная broadcast-модалка без claim, cloud-write и награды"
               onPress={() => { setGlobalBroadcastPreview(ADMIN_GLOBAL_BROADCAST_PREVIEW); markQa('globalBroadcast'); }}
               t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow
+              testID="admin-preview-vip-survey-notification"
+              icon="chatbubbles-outline"
+              label="💚 VIP survey тестовое уведомление"
+              sub="Добавляет inbox-уведомление на главную. Завершение опроса отправляет реальные ответы в админку и активирует VIP через callable."
+              onPress={showVipSurveyNotificationPreview}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+              confirm="Добавить VIP survey уведомление?"
+            />
           </AccordionSection>
 
 
@@ -3994,6 +4008,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── Новые секции (редизайн 2026-06): сценарии, непокрытые модалки/тосты, лабы ── */}
+          <UxOverhaulModalsSection open={openSection === 'ux_overhaul_modals'} onToggle={toggleSection} />
           <RewardModalsExtraSection open={openSection === 'reward_modals_extra'} onToggle={toggleSection} />
           <SystemModalsExtraSection open={openSection === 'system_modals_extra'} onToggle={toggleSection} />
           <BannersToastsExtraSection open={openSection === 'banners_toasts_extra'} onToggle={toggleSection} />

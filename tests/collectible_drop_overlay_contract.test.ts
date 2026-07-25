@@ -43,7 +43,9 @@ describe('collectible drop overlay contract', () => {
   });
 
   it('gates every production CollectibleDropModal renderer through OverlayArbiter', () => {
-    for (const relativePath of ['app/lesson_complete.tsx', 'app/arena_results.tsx']) {
+    // app/arena_results.tsx был удалён вместе с ареной; единственный
+    // продакшен-рендерер дропа — экран завершения урока.
+    for (const relativePath of ['app/lesson_complete.tsx']) {
       const source = read(relativePath);
       expect(source).toContain("useOverlayVisible('collectibleDrop', shownCardDrop != null)");
       expect(source).toContain('outcome={collectibleDropVisible ? shownCardDrop : null}');
@@ -61,10 +63,9 @@ describe('collectible drop overlay contract', () => {
       .sort();
 
     expect(renderers).toEqual([
-      'app/_admin_settings_testers.tsx',
-      'app/arena_results.tsx',
       'app/lesson_complete.tsx',
       'components/admin_panel/sections/CollectibleDropModalsSection.tsx',
+      'components/admin_panel/sections/UxOverhaulModalsSection.tsx',
     ].sort());
   });
 });

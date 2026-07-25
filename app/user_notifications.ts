@@ -42,7 +42,7 @@ export interface UserNotificationReportReply {
   messageId: string;
   title: string;
   body: string;
-  shards: number;
+  coins: number;
   claimed: boolean;
   claimedAtMs: number | null;
 }
@@ -89,13 +89,13 @@ function normalizeReportReply(value: unknown): UserNotificationReportReply | nul
   const row = value as Record<string, unknown>;
   const messageId = cleanText(row.messageId, 128);
   if (!messageId) return null;
-  const shards = Math.max(0, Math.floor(Number(row.shards ?? 0) || 0));
+  const coins = Math.max(0, Math.min(1, Math.floor(Number(row.coins ?? row.shards ?? 0) || 0)));
   const claimedAtMsRaw = Math.floor(Number(row.claimedAtMs ?? 0) || 0);
   return {
     messageId,
     title: cleanText(row.title, 120),
     body: cleanText(row.body, 1200),
-    shards,
+    coins,
     claimed: row.claimed === true,
     claimedAtMs: claimedAtMsRaw > 0 ? claimedAtMsRaw : null,
   };

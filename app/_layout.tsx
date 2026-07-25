@@ -43,6 +43,7 @@ import {
   canAcknowledgeLevelUpForAccount,
   isLevelUpAccountTokenCurrent,
 } from './level_up_account_guard';
+import { isCurrentAccountGeneration } from './account_generation';
 import type { GiftDef } from './level_gift_system';
 import Onboarding from '../components/onboarding';
 import { paywallScreenStackOptions } from '../components/paywall/paywallShared';
@@ -52,6 +53,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
+import PersonalAdminMessageModal from '../components/PersonalAdminMessageModal';
 import MaintenanceGate from '../components/MaintenanceGate';
 import ForceUpdateGate from '../components/ForceUpdateGate';
 import OfflineBanner from '../components/OfflineBanner';
@@ -68,10 +70,12 @@ import { checkAchievements, getPendingNotifications } from './achievements';
 import {
   ensureAnonUser,
   ensureStableAuthLink,
+  restoreFromCloudDetailed,
   restoreFromCloudWithRecoveryDetails,
   syncToCloud,
   type CloudRestoreFailureReason,
 } from './cloud_sync';
+import { processPendingAuthLink } from './pending_auth_link';
 import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
@@ -168,6 +172,12 @@ import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
 import { installInterFontPatch } from './font_family_patch';
+import {
+  acknowledgePersonalAdminMessageModal,
+  pickNextLoginPersonalMessage,
+  refreshAppMessagesSnapshotOnce,
+  type AppMessageWithState,
+} from './app_messages';
 import {
   getIntroFullAccessState,
   markIntroFullAccessEndedSeen,
@@ -1352,6 +1362,9 @@ function AppContent() {
 
   const [releaseNotesOffer, setReleaseNotesOffer] = useState(false);
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
+  const [personalAdminMessage, setPersonalAdminMessage] = useState<AppMessageWithState | null>(null);
+  const [accountGeneration, setAccountGeneration] = useState(() => captureAccountGeneration());
+  const [appIsActive, setAppIsActive] = useState(AppState.currentState === 'active');
   const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [startupAuthRecoveryVisible, setStartupAuthRecoveryVisible] = useState(false);
@@ -1431,6 +1444,40 @@ function AppContent() {
   useEffect(() => {
     setRootNavigationReady(true);
   }, []);
+
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration((token) => {
+      setAccountGeneration(token);
+      setPersonalAdminMessage(null);
+    });
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', (nextState) => setAppIsActive(nextState === 'active'));
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!ready || !firstContentReady || !appIsActive || effectiveShowOnboarding || isBanned) return;
+    if (accountGeneration.phase !== 'active' || !accountGeneration.stableId) return;
+    const token = accountGeneration;
+    let cancelled = false;
+    void refreshAppMessagesSnapshotOnce({ force: true, minIntervalMs: 0 })
+      .then((snapshot) => {
+        if (cancelled || !isCurrentAccountGeneration(token, token.stableId)) return;
+        setPersonalAdminMessage(pickNextLoginPersonalMessage(snapshot));
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, [accountGeneration, appIsActive, effectiveShowOnboarding, firstContentReady, isBanned, ready]);
+
+  const closePersonalAdminMessage = useCallback(async (messageId: string) => {
+    const ownerUid = accountGeneration.stableId;
+    setPersonalAdminMessage((current) => current?.id === messageId ? null : current);
+    if (!ownerUid || !isCurrentAccountGeneration(accountGeneration, ownerUid)) return;
+    await acknowledgePersonalAdminMessageModal(messageId, ownerUid).catch(() => {});
+  }, [accountGeneration]);
 
   // Глобальная аудио-сессия на старте: озвучка должна играть ДАЖЕ при включённом
   // беззвучном режиме (mute-switch) на iPhone и независимо от того, какой путь
@@ -1899,6 +1946,14 @@ function AppContent() {
       await ensureAnonUser();
       const result = await restoreFromCloudWithRecoveryDetails(coldExamBestPctRestoreOptions);
       bootRestoreFailureReason = result.failureReason;
+      // Тихий deferred link: дожимаем отложенную привязку в фоне. Успех →
+      // журнал снят и тут же молча подтягиваем облако в этой же сессии.
+      // Никакого UI: юзер не должен знать, что что-то догонялось.
+      void processPendingAuthLink()
+        .then((pendingResult) => (
+          pendingResult === 'completed' ? restoreFromCloudDetailed().catch(() => 'failed' as const) : undefined
+        ))
+        .catch(() => {});
       return result.status;
     };
     const runContentDeliveryMigration = (after?: Promise<unknown> | null): Promise<void> => {
@@ -2639,6 +2694,7 @@ function AppContent() {
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
+  const personalAdminMessageVisible = useOverlayVisible('personalAdminMessage', !!personalAdminMessage);
   const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
   const startupAuthRecoveryModalVisible = useOverlayVisible('authRecovery', startupAuthRecoveryVisible);
@@ -2907,6 +2963,12 @@ function AppContent() {
       visible={appOverlaysEnabled && broadcastModalVisible}
       payload={globalBroadcastModal}
       onClose={() => setGlobalBroadcastModal(null)}
+    />
+
+    <PersonalAdminMessageModal
+      visible={appOverlaysEnabled && personalAdminMessageVisible}
+      message={personalAdminMessage}
+      onAcknowledge={closePersonalAdminMessage}
     />
 
     <LeagueBonusAvailableModal

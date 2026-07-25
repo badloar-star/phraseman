@@ -3,7 +3,6 @@ import { getPersonalPlanListenBuildItems, validatePersonalPlanListenBuildItem } 
 import { getPersonalPlanListenChooseItems } from '../app/personal_plan_listen_choose_items';
 import { getPersonalPlanMissingWordItems, validatePersonalPlanMissingWordItemQuality } from '../app/personal_plan_missing_word_items';
 import { getPersonalPlanPhraseLesson } from '../app/personal_plan_phrase_lessons';
-import { getPersonalPlanQuizPhrases } from '../app/personal_plan_quizzes';
 
 const GENERATED_LESSON_IDS = [
   'voyazh_d001_content_unit',
@@ -44,10 +43,6 @@ const GENERATED_LESSON_IDS = [
   'echo_d011_content_unit',
 ];
 
-function quizIdForLesson(lessonId: string): string {
-  return lessonId.replace(/_d(\d{3})_content_unit$/, (_match, day) => `_day_${Number(day)}_quiz`);
-}
-
 function startsWithAnswerOrder(targetWords: string[], wordOptions: string[]): boolean {
   return targetWords.every((word, index) => wordOptions[index] === word);
 }
@@ -63,7 +58,10 @@ describe('generated personal plan option ordering', () => {
       const chooseItems = getPersonalPlanChooseNaturalPhraseItems({ lessonId, contentUnitIds });
       const listenChooseItems = getPersonalPlanListenChooseItems({ lessonId, contentUnitIds });
 
-      expect(missingWordItems).toHaveLength(contentUnitIds.length);
+      // The generator intentionally drops a phrase when it cannot produce at
+      // least three unambiguous options; every emitted item must still be safe.
+      expect(missingWordItems.length).toBeGreaterThan(0);
+      expect(missingWordItems.length).toBeLessThanOrEqual(contentUnitIds.length);
       expect(chooseItems).toHaveLength(contentUnitIds.length);
       expect(listenChooseItems).toHaveLength(contentUnitIds.length);
       expect(validatePersonalPlanMissingWordItemQuality(missingWordItems)).toEqual([]);
@@ -88,23 +86,4 @@ describe('generated personal plan option ordering', () => {
     }
   });
 
-  it('shuffles generated quiz choices and keeps lively per-option Russian explanations', () => {
-    for (const lessonId of GENERATED_LESSON_IDS) {
-      const quiz = getPersonalPlanQuizPhrases(quizIdForLesson(lessonId), 'Alex');
-      expect(quiz).not.toBeNull();
-      expect(quiz).toHaveLength(10);
-      expect(quiz?.every((item) => item.correct !== 0)).toBe(true);
-
-      for (const item of quiz ?? []) {
-        expect(Array.isArray(item.correct)).toBe(false);
-        const correctIndex = Array.isArray(item.correct) ? item.correct[0] : item.correct;
-        expect(item.answer).toBe(item.choices[correctIndex]);
-        for (const explanation of item.explanations) {
-          expect(explanation).toMatch(/[А-Яа-яЁё]/);
-          expect(explanation).not.toMatch(/правильная фраза дня|другая фраза из этого дня|not correct|wrong answer/i);
-          expect(explanation).toMatch(/Бинго|попали в смысл|Точно|живой вариант|ловушка|мимо|Хитрый момент|знакомые слова/);
-        }
-      }
-    }
-  });
 });

@@ -59,6 +59,14 @@ export type PremiumContext =
   | 'weekly_review'
   /** Премиум-аура вокруг аватара (лиги, друзья и списки сообщества). */
   | 'avatar_aura'
+  /** Разговорный клуб: бесплатная миссия дня сыграна (раньше падал в generic). */
+  | 'speaking_club'
+  /** Софт-апсейл на результатах последнего бесплатного урока (раньше падал в generic). */
+  | 'free_lessons_complete'
+  /** Вернувшийся после 7+ дней неактивности (раньше шёл как streak — обещал спасти сгоревшую серию). */
+  | 'winback'
+  /** Закончился реферальный/подарочный VIP-доступ (friends; раньше generic). */
+  | 'referral_ended'
   | 'generic';
 
 export const PREMIUM_CONTEXT_VALUES = [
@@ -95,6 +103,10 @@ export const PREMIUM_CONTEXT_VALUES = [
   'ai_explain',
   'weekly_review',
   'avatar_aura',
+  'speaking_club',
+  'free_lessons_complete',
+  'winback',
+  'referral_ended',
   'generic',
 ] as const satisfies readonly PremiumContext[];
 

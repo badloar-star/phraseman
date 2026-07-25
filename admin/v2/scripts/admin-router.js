@@ -3,7 +3,7 @@ import { createFirebaseAdminActions } from './admin-firebase.js';
 import { resolveCapabilityHash } from './admin-capabilities.js';
 
 const TOP_LEVEL_ROUTES = new Set(ADMIN_SECTIONS.map((section) => section.route));
-const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'plans', 'campaigns', 'coin-center', 'control-panel', 'admin-settings', 'agent-office', 'agent-manager']);
+const SUB_ROUTES = new Set(['support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'plans', 'campaigns', 'coin-center', 'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'english-test']);
 const CANONICAL_ROUTE_ALIASES = Object.freeze({
   'agent-office': 'agent-office',
 });

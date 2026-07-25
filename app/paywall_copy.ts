@@ -63,6 +63,10 @@ export const PREMIUM_HERO_ART: Record<PremiumContext, PremiumHeroArt> = {
   ai_explain: { accent: '#FDE68A', accent2: '#A78BFA', shardAmount: 180 },
   weekly_review: { accent: '#72E6A9', accent2: '#FDE68A', shardAmount: 180 },
   avatar_aura: { accent: '#E879F9', accent2: '#38BDF8', shardAmount: 180 },
+  speaking_club: { accent: '#5EEAD4', accent2: '#FACC15', shardAmount: 180 },
+  free_lessons_complete: { accent: '#63E6BE', accent2: '#FFD86B', shardAmount: 180 },
+  winback: { accent: '#FFB020', accent2: '#66A8FF', shardAmount: 420 },
+  referral_ended: { accent: '#FACC15', accent2: '#F0ABFC', shardAmount: 420 },
   generic: { accent: '#C8FF00', accent2: '#67E8F9', shardAmount: 0 },
 };
 
@@ -75,28 +79,30 @@ export type PaywallCopy = {
   subtitleEs: string;
 };
 
+// зачем: аудит «пейволы-объясняют» — заголовок называет момент (бесплатная часть позади),
+// а не абстрактный «полный доступ»; субтайтл теперь виден в хиро и объясняет, что откроется.
 const COURSE_AFTER_LESSON3_COPY: PaywallCopy = {
-  titleRu: 'Открой полный доступ к Phraseman',
-  titleUk: 'Відкрий повний доступ до Phraseman',
-  titleEs: 'Obtén acceso completo a Phraseman',
-  subtitleRu: 'Plus открывает доступ ко всем урокам, безлимитную практику и все возможности Plus.',
-  subtitleUk: 'Plus відкриває доступ до всіх уроків, безлімітної практики та всіх можливостей Plus.',
-  subtitleEs: 'Plus te da acceso a todas las lecciones, práctica ilimitada y todas las funciones de Plus.',
+  titleRu: 'Дальше — полный курс',
+  titleUk: 'Далі — повний курс',
+  titleEs: 'Lo siguiente: el curso completo',
+  subtitleRu: 'Бесплатная часть пройдена. Plus открывает все уроки и практику без пауз.',
+  subtitleUk: 'Безкоштовну частину пройдено. Plus відкриває всі уроки та практику без пауз.',
+  subtitleEs: 'La parte gratis está completada. Plus abre todas las lecciones y práctica sin pausas.',
 };
 const COURSE_AFTER_LESSON3_PLANNED_COPY: PremiumPlannedHeroCopy = {
   title: {
-    'pt-BR': 'Tenha acesso completo ao Phraseman',
-    vi: 'Mở toàn quyền truy cập Phraseman',
-    id: 'Buka akses penuh ke Phraseman',
-    tr: "Phraseman'a tam erişimi aç",
-    pl: 'Odblokuj pełny dostęp do Phraseman',
+    'pt-BR': 'A seguir: o curso completo',
+    vi: 'Tiếp theo: khóa học đầy đủ',
+    id: 'Selanjutnya: kursus lengkap',
+    tr: 'Sırada: kursun tamamı',
+    pl: 'Dalej: pełny kurs',
   },
   subtitle: {
-    'pt-BR': 'O Plus dá acesso a todas as lições, prática ilimitada e todos os recursos Plus.',
-    vi: 'Plus cho bạn quyền truy cập vào tất cả bài học, luyện tập không giới hạn và mọi tính năng Plus.',
-    id: 'Plus memberi akses ke semua pelajaran, latihan tanpa batas, dan semua fitur Plus.',
-    tr: 'Plus, tüm derslere, sınırsız pratiğe ve tüm Plus özelliklerine erişim sağlar.',
-    pl: 'Plus zapewnia dostęp do wszystkich lekcji, nieograniczonej praktyki i wszystkich funkcji Plus.',
+    'pt-BR': 'A parte grátis foi concluída. O Plus abre todas as lições e a prática sem pausas.',
+    vi: 'Bạn đã hoàn thành phần miễn phí. Plus mở tất cả bài học và luyện tập không gián đoạn.',
+    id: 'Bagian gratis sudah selesai. Plus membuka semua pelajaran dan latihan tanpa jeda.',
+    tr: 'Ücretsiz bölüm tamamlandı. Plus tüm dersleri ve kesintisiz pratiği açar.',
+    pl: 'Darmowa część ukończona. Plus otwiera wszystkie lekcje i praktykę bez przerw.',
   },
 };
 
@@ -137,6 +143,22 @@ export function normalizePremiumContext(raw: string | string[] | undefined): Pre
   return PREMIUM_CONTEXT_SET.has(value as PremiumContext) ? (value as PremiumContext) : 'generic';
 }
 
+/**
+ * Контекст с учётом source. Аудит «пейволы-объясняют» (2026-07-25):
+ * зачем: winback-триггер в _layout шлёт context:'streak' — вернувшийся после 7+ дней
+ * видел «Не теряй серию, которую уже построил», хотя серия у него уже сгорела.
+ * Маппим по source на честный контекст «С возвращением», не трогая сам триггер.
+ */
+export function resolvePaywallContext(
+  rawContext: string | string[] | undefined,
+  rawSource: string | string[] | undefined,
+): PremiumContext {
+  const source = Array.isArray(rawSource) ? rawSource[0] : rawSource;
+  if (source === 'winback') return 'winback';
+  if (source === 'referral_ended') return 'referral_ended';
+  return normalizePremiumContext(rawContext);
+}
+
 export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { generic: PaywallCopy } = {
   language_add: {
     titleRu: 'Добавь второй язык к изучению',
@@ -147,12 +169,13 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'La cuenta gratis incluye un idioma. Con Plus aprende varios a la vez: cada idioma tiene su propio plan, progreso y logros.',
   },
   no_energy: {
-    titleRu: 'Останови паузы из-за энергии',
-    titleUk: 'Зупини паузи через енергію',
-    titleEs: 'Evita pausas por energía',
-    subtitleRu: 'С Plus — безлимитная энергия: уроки, тренажёр и финальный экзамен без таймера ожидания, ритм только твой.',
-    subtitleUk: 'З Plus — безлімітна енергія: уроки, тренажер та фінальний іспит без таймера — ритм лише твій.',
-    subtitleEs: 'Con Plus tienes energía ilimitada: lecciones, entrenador y examen final sin temporizadores de espera, a tu ritmo.',
+    // зачем: заголовок фиксирует момент («энергия кончилась»), а не абстрактную пользу.
+    titleRu: 'Энергия кончилась. С Plus она не кончается',
+    titleUk: 'Енергія скінчилась. З Plus вона не закінчується',
+    titleEs: 'Sin energía. Con Plus no se acaba',
+    subtitleRu: 'Уроки, тренажёр и экзамен — без таймера ожидания. Ритм только твой.',
+    subtitleUk: 'Уроки, тренажер та іспит — без таймера очікування. Ритм лише твій.',
+    subtitleEs: 'Lecciones, entrenador y examen sin temporizador de espera. El ritmo es tuyo.',
   },
   streak: {
     titleRu: 'Не теряй серию, которую уже построил',
@@ -165,20 +188,23 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
   course_after_lesson3: COURSE_AFTER_LESSON3_COPY,
   lesson_b1: LESSON_B1_COPY,
   flashcard_limit: {
-    titleRu: 'Твоя база карточек не должна иметь лимит',
-    titleUk: 'Твоя база карток не повинна мати ліміт',
-    titleEs: 'Tu colección de tarjetas merece estar sin límites',
-    subtitleRu: 'Сохраняй все важные фразы и строй персональную систему повторения без потолка.',
-    subtitleUk: 'Зберігай усі важливі фрази й будуй персональну систему повторення без обмежень.',
-    subtitleEs: 'Guarda todas las frases clave y crea tu repaso personal sin techo.',
+    // зачем: момент — юзер только что заполнил бесплатные 20 слотов; хвалим выбор, потом снимаем потолок.
+    titleRu: '20 из 20 — база собрана',
+    titleUk: '20 із 20 — база зібрана',
+    titleEs: '20 de 20: colección completa',
+    subtitleRu: 'Ты сохранил всё, что помещалось. Plus снимает потолок: сохраняй каждую нужную фразу.',
+    subtitleUk: 'Ти зберіг усе, що вміщалося. Plus знімає стелю: зберігай кожну потрібну фразу.',
+    subtitleEs: 'Guardaste todo lo que cabía. Plus quita el techo: guarda cada frase que necesites.',
   },
   theme: {
-    titleRu: 'Персонализируй обучение под себя',
-    titleUk: 'Персоналізуй навчання під себе',
-    titleEs: 'Adapta la app a tu estilo',
-    subtitleRu: 'С Plus приложение становится твоим: больше вовлеченности, выше регулярность занятий.',
-    subtitleUk: 'З Plus застосунок стає твоїм: більше залучення, вища регулярність занять.',
-    subtitleEs: 'Con Plus la app se siente tuya: más implicación y más constancia en cada sesión.',
+    // зачем: старый субтайтл говорил языком продуктовых метрик («вовлеченность»),
+    // а не языком юзера — заменён на человеческую пользу.
+    titleRu: 'Сделай Phraseman своим',
+    titleUk: 'Зроби Phraseman своїм',
+    titleEs: 'Haz que Phraseman sea tuyo',
+    subtitleRu: 'Темы оформления входят в Plus. Выбери настроение, в котором приятно заниматься каждый день.',
+    subtitleUk: 'Теми оформлення входять у Plus. Обери настрій, у якому приємно займатися щодня.',
+    subtitleEs: 'Los temas visuales van con Plus. Elige el ambiente en el que da gusto estudiar a diario.',
   },
   club: {
     titleRu: 'Усиль прогресс через клубы и бонусы',
@@ -207,12 +233,14 @@ export const PAYWALL_COPY: Partial<Record<PremiumContext, PaywallCopy>> & { gene
     subtitleEs: 'Plus abre sesiones del Entrenador sin límite en todos los modos. Repite las frases cuanto necesites, sin pausas.',
   },
   dialog_limit: {
-    titleRu: 'Живая практика в диалогах',
-    titleUk: 'Жива практика в діалогах',
-    titleEs: 'Práctica real en los diálogos',
-    subtitleRu: 'Plus открывает живую практику английского: новые сценарии, разбор каждой реплики, твои слова из карточек.',
-    subtitleUk: 'Plus відкриває живу практику англійської: нові сценарії, розбір кожної репліки, твої слова з карток.',
-    subtitleEs: 'Plus abre práctica real de inglés: nuevos escenarios, análisis de cada frase y tus palabras de las tarjetas.',
+    // зачем: юзер упёрся в дневной лимит посреди разговора — заголовок отвечает
+    // «почему стоп», а не рекламирует функцию, которой он уже пользуется.
+    titleRu: 'Разговор сегодня только разогрелся',
+    titleUk: 'Розмова сьогодні лише розігрілася',
+    titleEs: 'La conversación apenas se calentaba',
+    subtitleRu: 'Бесплатный диалог на сегодня пройден. Plus продолжает без дневной паузы — с разбором каждой реплики.',
+    subtitleUk: 'Безкоштовний діалог на сьогодні пройдено. Plus продовжує без денної паузи — з розбором кожної репліки.',
+    subtitleEs: 'El diálogo gratis de hoy está completo. Plus sigue sin pausa diaria, con análisis de cada frase.',
   },
   diagnosis_training: {
     // Библия: «ошибка»→«разбор/что подтянуть», ≤10 слов/предложение, gain-framing.
@@ -297,14 +325,17 @@ PAYWALL_COPY.intro_ended = {
   subtitleEs: 'Ya probaste el acceso completo. Plus lo abre sin pausas ni bloqueos.',
 };
 
-// План #3: after-win апсейл при повышении уровня. Стиль 2 Игра + 3 Инвестор, gain-framing.
+// План #3: after-win апсейл при повышении уровня.
+// зачем: жалоба юзера — «Ты растёшь быстро» не объясняла, при чём тут покупка.
+// Новый заголовок называет настоящую причину показа: юзер идёт быстрее, чем
+// открывается бесплатный контент; субтайтл говорит, что именно откроется.
 PAYWALL_COPY.level_up = {
-  titleRu: 'Ты растёшь быстро',
-  titleUk: 'Ти ростеш швидко',
-  titleEs: 'Estás creciendo rápido',
-  subtitleRu: 'Новый уровень — твой. Plus снимает все лимиты на пути.',
-  subtitleUk: 'Новий рівень — твій. Plus знімає всі ліміти на шляху.',
-  subtitleEs: 'Nuevo nivel desbloqueado. Plus quita todos los límites del camino.',
+  titleRu: 'Ты растёшь быстрее бесплатного плана',
+  titleUk: 'Ти ростеш швидше за безкоштовний план',
+  titleEs: 'Creces más rápido que el plan gratis',
+  subtitleRu: 'Уровень взят — темп твой. Plus открывает следующие уроки сразу, без пауз энергии.',
+  subtitleUk: 'Рівень узято — темп твій. Plus відкриває наступні уроки одразу, без пауз енергії.',
+  subtitleEs: 'Nivel conseguido, el ritmo es tuyo. Plus abre las próximas lecciones sin pausas de energía.',
 };
 
 // План #11: умный микс тренажёра. Стиль 4 Эксперт + 1 Тренер, gain-framing.
@@ -411,25 +442,25 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   no_energy: {
-    title: { 'pt-BR': 'Pare as pausas por falta de energia', vi: 'Dừng những lần nghỉ vì hết năng lượng', id: 'Hentikan jeda akibat energi habis', tr: 'Enerji yüzünden verilen araları durdur', pl: 'Zatrzymaj przerwy przez energię' },
+    title: { 'pt-BR': 'A energia acabou. Com Plus ela não acaba', vi: 'Hết năng lượng. Với Plus thì không bao giờ hết', id: 'Energi habis. Dengan Plus tidak akan habis', tr: 'Enerji bitti. Plus ile hiç bitmez', pl: 'Energia się skończyła. Z Plus się nie kończy' },
     subtitle: {
-      'pt-BR': 'Com Plus, energia ilimitada: lições, prática e exame final sem temporizador de espera, no seu ritmo.',
-      vi: 'Với Plus, năng lượng không giới hạn: bài học, luyện tập và bài kiểm tra cuối không cần chờ, theo nhịp của bạn.',
-      id: 'Dengan Plus, energi tanpa batas: pelajaran, latihan, dan ujian akhir tanpa timer tunggu, sesuai ritmemu.',
-      tr: 'Plus ile sınırsız enerji: dersler, pratik ve final sınavı bekleme sayacı olmadan, senin ritminde.',
-      pl: 'Z Plus energia jest bez limitu: lekcje, praktyka i egzamin końcowy bez czekania, w twoim rytmie.',
+      'pt-BR': 'Lições, treino e exame sem temporizador de espera. O ritmo é seu.',
+      vi: 'Bài học, luyện tập và bài kiểm tra không cần chờ. Nhịp độ là của bạn.',
+      id: 'Pelajaran, latihan, dan ujian tanpa timer tunggu. Ritme milikmu.',
+      tr: 'Dersler, antrenman ve sınav bekleme sayacı olmadan. Ritim senin.',
+      pl: 'Lekcje, trener i egzamin bez timera oczekiwania. Rytm należy do ciebie.',
     },
   },
   course_after_lesson3: COURSE_AFTER_LESSON3_PLANNED_COPY,
   lesson_b1: LESSON_B1_PLANNED_COPY,
   flashcard_limit: {
-    title: { 'pt-BR': 'Sua base de cartões não deve ter limite', vi: 'Kho thẻ của bạn không nên có giới hạn', id: 'Koleksi kartumu tidak perlu dibatasi', tr: 'Kart arşivin sınırlı olmamalı', pl: 'Twoja baza fiszek nie powinna mieć limitu' },
+    title: { 'pt-BR': '20 de 20: coleção completa', vi: '20/20 — kho thẻ đã đầy', id: '20 dari 20: koleksi penuh', tr: '20/20 — arşiv doldu', pl: '20 z 20 — baza pełna' },
     subtitle: {
-      'pt-BR': 'Salve todas as frases importantes e monte seu sistema pessoal de revisão sem teto.',
-      vi: 'Lưu mọi cụm từ quan trọng và xây hệ thống ôn tập cá nhân không giới hạn.',
-      id: 'Simpan semua frasa penting dan bangun sistem pengulangan pribadi tanpa batas atas.',
-      tr: 'Önemli tüm ifadeleri kaydet ve sınırsız kişisel tekrar sistemini kur.',
-      pl: 'Zapisuj wszystkie ważne frazy i buduj własny system powtórek bez sufitu.',
+      'pt-BR': 'Você salvou tudo o que cabia. O Plus tira o teto: salve cada frase que precisar.',
+      vi: 'Bạn đã lưu hết chỗ trống. Plus bỏ trần: lưu mọi cụm từ bạn cần.',
+      id: 'Kamu menyimpan semua yang muat. Plus menghapus batas: simpan tiap frasa yang perlu.',
+      tr: 'Sığan her şeyi kaydettin. Plus tavanı kaldırır: gereken her ifadeyi kaydet.',
+      pl: 'Zapisałeś wszystko, co się mieściło. Plus zdejmuje sufit: zapisuj każdą potrzebną frazę.',
     },
   },
   streak: {
@@ -443,13 +474,13 @@ export const PAYWALL_PLANNED_COPY: Partial<Record<PremiumContext, PremiumPlanned
     },
   },
   theme: {
-    title: { 'pt-BR': 'Personalize o aprendizado do seu jeito', vi: 'Cá nhân hóa việc học theo bạn', id: 'Sesuaikan belajar dengan gayamu', tr: 'Öğrenmeyi kendine göre kişiselleştir', pl: 'Dopasuj naukę do siebie' },
+    title: { 'pt-BR': 'Faça o Phraseman ser seu', vi: 'Biến Phraseman thành của bạn', id: 'Jadikan Phraseman milikmu', tr: 'Phraseman’ı kendine göre yap', pl: 'Uczyń Phraseman swoim' },
     subtitle: {
-      'pt-BR': 'Com Plus, o app fica mais seu: mais envolvimento e mais regularidade nos estudos.',
-      vi: 'Với Plus, ứng dụng giống của bạn hơn: gắn bó hơn và học đều hơn.',
-      id: 'Dengan Plus, aplikasi terasa lebih milikmu: lebih terlibat dan lebih konsisten.',
-      tr: 'Plus ile uygulama sana ait hisseder: daha fazla bağlılık, daha düzenli çalışma.',
-      pl: 'Z Plus aplikacja staje się bardziej twoja: większe zaangażowanie i regularność.',
+      'pt-BR': 'Os temas visuais fazem parte do Plus. Escolha o clima em que dá gosto estudar todo dia.',
+      vi: 'Chủ đề giao diện thuộc về Plus. Chọn không khí khiến bạn thích học mỗi ngày.',
+      id: 'Tema tampilan termasuk Plus. Pilih suasana yang bikin betah belajar tiap hari.',
+      tr: 'Görünüm temaları Plus’a dahil. Her gün çalışmayı keyifli kılan havayı seç.',
+      pl: 'Motywy wyglądu należą do Plus. Wybierz nastrój, w którym miło uczyć się codziennie.',
     },
   },
   club: {
@@ -625,18 +656,18 @@ PAYWALL_PLANNED_COPY.notification_upsell = {
 // языки падали в generic. Закрываем, чтобы каждый контекст был персональным на всех 8.
 PAYWALL_PLANNED_COPY.dialog_limit = {
   title: {
-    'pt-BR': 'Prática real nos diálogos',
-    vi: 'Luyện nói thật trong hội thoại',
-    id: 'Latihan nyata di dialog',
-    tr: 'Diyaloglarda gerçek pratik',
-    pl: 'Prawdziwa praktyka w dialogach',
+    'pt-BR': 'A conversa de hoje só esquentou',
+    vi: 'Cuộc trò chuyện hôm nay mới nóng máy',
+    id: 'Obrolan hari ini baru pemanasan',
+    tr: 'Bugünkü sohbet daha yeni ısındı',
+    pl: 'Dzisiejsza rozmowa dopiero się rozkręciła',
   },
   subtitle: {
-    'pt-BR': 'O Plus abre prática real de inglês: novos cenários, análise de cada fala e suas palavras dos cartões.',
-    vi: 'Plus mở luyện nói tiếng Anh thật: kịch bản mới, phân tích từng câu và từ vựng của bạn từ thẻ.',
-    id: 'Plus membuka latihan bahasa Inggris nyata: skenario baru, analisis tiap ucapan, dan katamu dari kartu.',
-    tr: 'Plus gerçek İngilizce pratiğini açar: yeni senaryolar, her cümlenin analizi ve kartlarındaki kelimeler.',
-    pl: 'Plus otwiera prawdziwą praktykę angielskiego: nowe scenariusze, analiza każdej wypowiedzi i twoje słowa z fiszek.',
+    'pt-BR': 'O diálogo grátis de hoje terminou. O Plus continua sem pausa diária, com análise de cada fala.',
+    vi: 'Lượt hội thoại miễn phí hôm nay đã hết. Plus tiếp tục không nghỉ theo ngày, kèm phân tích từng câu.',
+    id: 'Dialog gratis hari ini selesai. Plus lanjut tanpa jeda harian, dengan ulasan tiap ucapan.',
+    tr: 'Bugünün ücretsiz diyaloğu bitti. Plus günlük ara olmadan, her cümlenin analiziyle devam eder.',
+    pl: 'Darmowy dialog na dziś zaliczony. Plus kontynuuje bez dziennej przerwy, z analizą każdej wypowiedzi.',
   },
 };
 PAYWALL_PLANNED_COPY.speaking = {
@@ -673,18 +704,18 @@ PAYWALL_PLANNED_COPY.intro_ended = {
 };
 PAYWALL_PLANNED_COPY.level_up = {
   title: {
-    'pt-BR': 'Você está crescendo rápido',
-    vi: 'Bạn đang tiến bộ nhanh',
-    id: 'Kamu berkembang cepat',
-    tr: 'Hızlı ilerliyorsun',
-    pl: 'Rozwijasz się szybko',
+    'pt-BR': 'Você cresce mais rápido que o plano grátis',
+    vi: 'Bạn tiến nhanh hơn gói miễn phí',
+    id: 'Kamu tumbuh lebih cepat dari paket gratis',
+    tr: 'Ücretsiz plandan daha hızlı büyüyorsun',
+    pl: 'Rośniesz szybciej niż darmowy plan',
   },
   subtitle: {
-    'pt-BR': 'Novo nível desbloqueado. O Plus remove todos os limites do caminho.',
-    vi: 'Mở khoá cấp mới. Plus gỡ mọi giới hạn trên đường đi.',
-    id: 'Level baru terbuka. Plus menghapus semua batas di jalanmu.',
-    tr: 'Yeni seviye açıldı. Plus yoldaki tüm sınırları kaldırır.',
-    pl: 'Odblokowano nowy poziom. Plus usuwa wszystkie limity po drodze.',
+    'pt-BR': 'Nível conquistado, o ritmo é seu. O Plus abre as próximas lições na hora, sem pausas de energia.',
+    vi: 'Đã lên cấp — nhịp độ là của bạn. Plus mở ngay các bài tiếp theo, không gián đoạn năng lượng.',
+    id: 'Level tercapai, ritme milikmu. Plus langsung membuka pelajaran berikutnya tanpa jeda energi.',
+    tr: 'Seviye alındı, tempo senin. Plus sonraki dersleri hemen, enerji molasız açar.',
+    pl: 'Poziom zdobyty, tempo jest twoje. Plus od razu otwiera kolejne lekcje, bez przerw na energię.',
   },
 };
 PAYWALL_PLANNED_COPY.smart_trainer = {

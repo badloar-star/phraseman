@@ -67,7 +67,10 @@ import {
   withAccountTransitionLock,
   waitForRestoreApplicationIdleWithDeadline,
 } from './account_generation';
-import { invalidatePremiumCache } from './premium_guard';
+import {
+  beginPremiumAccountTransition, invalidatePremiumCache,
+  waitForPremiumAccountWorkIdle,
+} from './premium_guard';
 import {
   forceSyncShardsToCloud,
   loadShardsFromCloud,
@@ -78,6 +81,7 @@ import {
   readShardDeltaQueue,
 } from './shards_delta_queue';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
+import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
@@ -154,6 +158,7 @@ export type SignInResult =
   | { result: 'linked_existing'; email: string | null; displayName: string | null }
   | { result: 'created_new'; email: string | null; displayName: string | null }
   | { result: 'merged_devices'; email: string | null; displayName: string | null; mergedFromStableId: string }
+  | { result: 'linked_pending'; email: string | null; displayName: string | null }
   | { result: 'cancelled' }
   | { result: 'error'; error: string };
 
@@ -172,6 +177,12 @@ function emitAuthProviderLinked(): void {
   } catch {
     /* UI refresh is best-effort; auth result must still return. */
   }
+}
+
+async function beginEntitlementSafeAccountTransition(): Promise<void> {
+  invalidateAccountGeneration();
+  beginPremiumAccountTransition();
+  await waitForPremiumAccountWorkIdle();
 }
 
 // ── Lazy native modules ───────────────────────────────────────────────────────
@@ -343,7 +354,25 @@ export async function isGoogleSignInAvailable(): Promise<boolean> {
 const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
 // This client read is only a latency hint. The callable below is authoritative
 // and independently resolves an existing provider anchor.
-const AUTH_LINK_HINT_TIMEOUT_MS = 1_500;
+// 1.5с не хватало на холодном старте (Redmi/Android 10): lookup обрывался →
+// уходили в локальную ветку и показывали «Нужен прежний аккаунт» даже при
+// правильно выбранном аккаунте. 5с — всё ещё короткая подсказка: серверный
+// callable авторитетен и сам разрулит anchor при любом исходе hint'а.
+const AUTH_LINK_HINT_TIMEOUT_MS = 5_000;
+
+/**
+ * Транзиентные failure-классы стадии auth_link — их ретраим (холодный старт,
+ * сеть, App Check). stable_id_mismatch сюда НЕ входит: это детерминированный
+ * отказ сервера (защита владения аккаунтом), ретрай бессмысленен.
+ */
+const AUTH_LINK_TRANSIENT_FAILURES = new Set(['identity_unavailable', 'transport_unavailable', 'app_check_unavailable']);
+/**
+ * Паузы между ретраями auth_link (мс). Всего ≤3 попыток (начальная + 2 ретрая):
+ * нарочно ограничено, чтобы не стэкать серийные 12-секундные дедлайны callable
+ * (см. контракт в tests/auth_provider_stable_link.test.ts). Транзиентный сбой
+ * почти всегда лечится уже второй попыткой.
+ */
+const AUTH_LINK_RETRY_BACKOFF_MS = [700, 1500];
 
 /**
  * Пост-транзакционный restore/sync прогресса (полная склейка облака) может быть тяжелее
@@ -452,6 +481,7 @@ async function completePreparedAccountDeleteLocalExit(
   }
   try {
     await clearStableId();
+    await clearPendingAuthLink();
   } catch (e) {
     localExitVerified = false;
     if (__DEV__) console.warn('[auth_provider] pending account delete: stable id clear failed', e);
@@ -545,7 +575,7 @@ export async function resumePendingAccountDeleteLocalExit(): Promise<boolean> {
     if (!authReady) return false;
   }
 
-  invalidateAccountGeneration();
+  await beginEntitlementSafeAccountTransition();
   await Promise.all([
     waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
     quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
@@ -942,12 +972,15 @@ function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detai
     const d = detail.replace(/\s+/g, ' ').slice(0, 280);
     recordError(new Error(`auth_signin:${provider}:${stage}:${d}`), 'auth_signin');
     const severity = EXPECTED_AUTH_FAILURE_STAGES.has(stage) ? 'warning' : 'critical';
+    // logAppError плавает в фоне: try/catch вокруг НЕ ловит async-reject плавающего
+    // промиса → любой внутренний сбой логгера становился uncaught «(in promise)»
+    // поверх исходной ошибки входа. Диагностика не должна ухудшать исходный путь.
     void logAppError('auth:signin_failure', new Error(d), {
       feature: 'auth',
       severity,
       writeToFirestore: severity === 'critical',
       tags: { provider, stage },
-    });
+    }).catch(() => {});
   } catch {
     /* ignore */
   }
@@ -1241,12 +1274,21 @@ async function runSignInWithProvider(
   };
 
   // Стадия auth_link часто падала «local_stable_link_failed» на ХОЛОДНОМ старте
-  // Android: anon-auth/сеть/App Check ещё не поднялись, waitForFirebaseAuthUid
-  // (≈1.4с) истекает → ensureStableAuthLinkForStableId возвращает false → весь
-  // вход прерывался с Critical-алертом. Операция идемпотентна и самолечится —
-  // не сдаёмся с первой попытки, ретраим с нарастающей паузой.
-  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<StableAuthLinkEnsureResult> =>
-    ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
+  // Android: anon-auth/сеть/App Check ещё не поднялись → первый вызов callable
+  // обрывался и весь вход прерывался с Critical-алертом. Операция идемпотентна
+  // и самолечится — ретраим транзиентные failure-классы с нарастающей паузой
+  // (AUTH_LINK_TRANSIENT_FAILURES / AUTH_LINK_RETRY_BACKOFF_MS). Транзиентный
+  // сбой почти всегда лечится уже второй попыткой; детерминированный
+  // stable_id_mismatch не ретраим — его разруливают ветки ниже (recovery/rotation).
+  const ensureStableAuthLinkWithRetry = async (stableId: string): Promise<StableAuthLinkEnsureResult> => {
+    let result = await ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
+    for (let retry = 0; retry < AUTH_LINK_RETRY_BACKOFF_MS.length; retry += 1) {
+      if (result.ok || !result.failure || !AUTH_LINK_TRANSIENT_FAILURES.has(result.failure)) break;
+      await new Promise<void>((resolve) => setTimeout(resolve, AUTH_LINK_RETRY_BACKOFF_MS[retry]));
+      result = await ensureStableAuthLinkForStableIdDetailed(stableId, authLinkMetadata);
+    }
+    return result;
+  };
 
   if (remoteStableId) {
     if (options.requireCurrentStableIdOwnership) {
@@ -1258,7 +1300,9 @@ async function runSignInWithProvider(
     // stable_id_mismatch because auth_links/{providerUid} points to remoteStableId.
     const linkedRemote = await ensureStableAuthLinkWithRetry(remoteStableId);
     if (!linkedRemote.ok || !linkedRemote.stableUid) {
-      captureAuthSignInFailure(provider, 'auth_link', 'remote_stable_link_failed');
+      // failure-класс в репорт: app_check/transport/identity — иначе по «*_failed»
+      // не отличить сломанный App Check от сети (инцидент 2026-07-21).
+      captureAuthSignInFailure(provider, 'auth_link', `remote_stable_link_failed:${linkedRemote.failure ?? 'unknown'}`);
       return { result: 'error', error: 'auth_link_failed' };
     }
     outcome = {
@@ -1278,7 +1322,7 @@ async function runSignInWithProvider(
       // progress. This restores league/social access without merging foreign data.
       try {
         await quiesceSyncBeforeStableIdSwap();
-        invalidateAccountGeneration();
+        await beginEntitlementSafeAccountTransition();
         await clearStableId();
         localStableId = await getStableId();
         beginAccountGeneration(localStableId);
@@ -1289,7 +1333,26 @@ async function runSignInWithProvider(
       }
     }
     if (!linkedLocal.ok || !linkedLocal.stableUid) {
-      captureAuthSignInFailure(provider, 'auth_link', 'local_stable_link_failed');
+      captureAuthSignInFailure(provider, 'auth_link', `local_stable_link_failed:${linkedLocal.failure ?? 'unknown'}`);
+      // Тихий deferred link: провайдер-вход УЖЕ состоялся (Firebase-сессия жива
+      // и переживёт рестарт), упала только фоновая серверная привязка по
+      // ТРАНЗИЕНТНОЙ причине. Вместо ошибки-тупика журналируем намерение и
+      // впускаем юзера: boot-restore зовёт тот же ensure с тем же stableId на
+      // каждом запуске и сойдётся сам, а processPendingAuthLink дожимает в фоне.
+      // mismatch сюда не доходит (защитные ветки выше), swap не требуется —
+      // stableId остаётся локальным, чужой/облачный прогресс не показывается.
+      if (linkedLocal.failure && AUTH_LINK_TRANSIENT_FAILURES.has(linkedLocal.failure)) {
+        await recordPendingAuthLink({
+          provider,
+          email: firebaseEmail,
+          displayName: providerDisplayName,
+          stableId: localStableId,
+          failure: linkedLocal.failure,
+        });
+        logAuthEvent('auth_signin_deferred_pending', { provider, failure: linkedLocal.failure });
+        emitAuthProviderLinked();
+        return { result: 'linked_pending', email: firebaseEmail, displayName: providerDisplayName };
+      }
       return { result: 'error', error: 'auth_link_failed' };
     }
     if (options.requireCurrentStableIdOwnership && linkedLocal.stableUid !== preProviderStableId) {
@@ -1307,6 +1370,9 @@ async function runSignInWithProvider(
       };
     }
   }
+
+  // Любой успешный outcome снимает отложенную привязку — она больше не нужна.
+  void clearPendingAuthLink();
 
   // 4. Post-link: handle stable_id swap if needed
   if (outcome.kind === 'merged_swap_to_remote') {
@@ -1345,7 +1411,7 @@ async function runSignInWithProvider(
 
       // Clear account A while its id is still active, then install server-canonical B.
       // This prevents account A AsyncStorage from being observed under account B.
-      invalidateAccountGeneration();
+      await beginEntitlementSafeAccountTransition();
       await wipeLocalAccountData();
       await setStableId(canonicalStableId);
       beginAccountGeneration(canonicalStableId);
@@ -1417,7 +1483,7 @@ async function runSignInWithProvider(
         // подменяем stable_id и тянем слитый прогресс, как в swap-ветке.
         // Хвост D: гасим фоновый sync перед сменой stable_id (см. swap-ветку выше).
         await quiesceSyncBeforeStableIdSwap();
-        invalidateAccountGeneration();
+        await beginEntitlementSafeAccountTransition();
         await wipeLocalAccountData();
         await setStableId(canonicalStableId);
         beginAccountGeneration(canonicalStableId);
@@ -1583,7 +1649,7 @@ export async function signOutAndWipeForAccountSwitch(
   if (!CLOUD_SYNC_ENABLED) {
     // В Expo Go / без облака просто чистим локально — ничего терять не можем.
     try {
-      invalidateAccountGeneration();
+      await beginEntitlementSafeAccountTransition();
       await Promise.all([
         waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
         quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
@@ -1705,7 +1771,7 @@ export async function signOutAndWipeForAccountSwitch(
         }
         if (!backedUp || !isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       }
-      invalidateAccountGeneration();
+      await beginEntitlementSafeAccountTransition();
       return true;
     });
     if (!transitionReady) {
@@ -1750,6 +1816,8 @@ export async function signOutAndWipeForAccountSwitch(
     }
     // 4. Сносим stable_id (новый сгенерируется в ensureAnonUser ниже).
     await clearStableId();
+    // Отложенная привязка относится к старому аккаунту — снимаем вместе с ним.
+    await clearPendingAuthLink();
     // 5. Поднимаем чистую анонимную Firebase сессию + новый stable_id.
     await ensureAnonUser();
     beginAccountGeneration(await getStableId().catch(() => null));
@@ -1818,7 +1886,7 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
         logAuthEvent('auth_account_delete_enqueue_failed');
       });
 
-    invalidateAccountGeneration();
+    await beginEntitlementSafeAccountTransition();
     await Promise.all([
       waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
       quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
@@ -1890,7 +1958,7 @@ export async function handleAccountDeletedOnAnotherDevice(): Promise<RemoteAccou
   );
   if (!pendingDelete) return { ok: false, reason: 'pending_guard_persist_failed' };
 
-  invalidateAccountGeneration();
+  await beginEntitlementSafeAccountTransition();
   await Promise.all([
     waitForRestoreApplicationIdleWithDeadline(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),
     quiesceCloudSyncForAccountTransition(ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS),

@@ -339,7 +339,9 @@ ${indent}}`,
     // (e.g. hasNoShardWrites()), so match the owner + premium-guard prefix instead of
     // pinning the exact (and growing) full line.
     expect(rules).toContain('allow read: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
-    expect(rules).toContain('allow delete: if userDocOwnerMatchesAuth(userId);');
+    expect(rules).toContain(
+      'allow delete: if userDocOwnerMatchesAuth(userId) && userDocHasNoServerIdentity();',
+    );
     expect(rules).toMatch(
       /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)\s*&&[\s\S]*?progressHasNoPremiumWrites\(\)/,
     );
@@ -378,7 +380,11 @@ ${indent}}`,
     expect(rules).not.toContain('allow delete: if userDocOwnerMatchesAuth(userId) || userDocMissing(userId);');
     // update тоже НЕ должен получать missing-doc послабление (создание идёт через
     // allow create + newUserDocOwnerMatchesAuth, который требует firebaseAuthUid==auth.uid).
-    expect(rules).not.toMatch(/allow update:[\s\S]*?userDocMissing\(userId\)/);
+    const userUpdateGuard = rules.match(
+      /allow update:\s*if\s+userDocOwnerMatchesAuth\(userId\)[\s\S]*?;/,
+    );
+    expect(userUpdateGuard).not.toBeNull();
+    expect(userUpdateGuard![0]).not.toContain('userDocMissing(userId)');
   });
 
   // ── Paywall-bypass guard (premium/VIP self-grant) ────────────────────────
@@ -460,6 +466,12 @@ ${indent}}`,
     // It must inspect the diff of the progress map's affected keys.
     expect(rules).toMatch(
       /function progressHasNoPremiumWrites\(\) \{[\s\S]*?\.get\('progress', \{\}\)[\s\S]*?\.diff\(resource\.data\.get\('progress', \{\}\)\)[\s\S]*?\.affectedKeys\(\)[\s\S]*?\.hasAny\(\[/,
+    );
+  });
+
+  test('ordinary user-field updates short-circuit the large progress guard', () => {
+    expect(rules).toMatch(
+      /function progressHasNoPremiumWrites\(\) \{[\s\S]*?request\.resource\.data\.diff\(resource\.data\)\.affectedKeys\(\)\.hasAny\(\['progress'\]\)/,
     );
   });
 
@@ -571,7 +583,9 @@ ${indent}}`,
   test('card_packs marketplace exposes only published metadata to clients', () => {
     const cardPacksBlock = rules.match(/match \/card_packs\/\{packId\} \{[\s\S]*?\n    \}/);
     expect(cardPacksBlock).not.toBeNull();
-    expect(cardPacksBlock![0]).toContain("allow read: if resource.data.status == 'published';");
+    expect(cardPacksBlock![0]).toContain(
+      "allow read: if isAdmin() || resource.data.status == 'published';",
+    );
     expect(cardPacksBlock![0]).toContain('allow create, update, delete: if isAdmin();');
     expect(cardPacksBlock![0]).not.toContain('allow write: if request.auth != null;');
   });
@@ -711,46 +725,65 @@ ${indent}}`,
     expect(rules).toMatch(/function appMessagePollVoteOk\(messageId, userId\) \{[\s\S]*?request\.resource\.data\.optionId in message\.poll\.optionIds/);
   });
 
-  test('auth_links are scoped to the signed-in provider uid and owned stable id', () => {
-    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
-    expect(authLinksBlock).not.toBeNull();
-    expect(authLinksBlock![0]).toContain('function ownsAuthLinkDoc()');
-    expect(authLinksBlock![0]).toContain('request.auth.uid == providerUid');
-    expect(authLinksBlock![0]).toContain('function stableIdOwnedByThisAuth(stableId)');
-    expect(authLinksBlock![0]).toContain('&& stableUserMatchesAuth(stableId);');
-    expect(authLinksBlock![0]).toContain('allow read: if isAdmin() || ownsAuthLinkDoc();');
-    expect(authLinksBlock![0]).toContain('allow create: if ownsAuthLinkDoc()');
-    expect(authLinksBlock![0]).toContain('&& stableIdOwnedByThisAuth(request.resource.data.stable_id);');
-    expect(authLinksBlock![0]).toContain('allow update: if (');
-    expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['providerUid']) || resource.data.providerUid == providerUid)");
-    expect(authLinksBlock![0]).toContain("request.resource.data.provider in ['google', 'apple']");
-    expect(authLinksBlock![0]).toContain("(!resource.data.keys().hasAny(['provider']) || request.resource.data.provider == resource.data.provider)");
-    expect(authLinksBlock![0]).toContain("'providerUid', 'provider', 'linkedAt'");
-    expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
-    expect(authLinksBlock![0]).toContain('|| authLinkLegacyUpdateOk();');
-    expect(authLinksBlock![0]).not.toContain('allow read: if request.auth != null;');
-    expect(authLinksBlock![0]).not.toContain('allow update: if request.auth != null');
+  test('auth_links reads stay scoped while all browser writes are denied', () => {
+    const authLinksBlocks = exactRootMatchBlocks('auth_links/{providerUid}');
+    expect(authLinksBlocks).toHaveLength(1);
+    const authLinksBlock = authLinksBlocks[0];
+    expect(authLinksBlock).toContain('function ownsAuthLinkDoc()');
+    expect(authLinksBlock).toContain('request.auth.uid == providerUid');
+    expect(activeAllowLines(authLinksBlock)).toEqual([
+      'allow read: if isAdmin() || ownsAuthLinkDoc();',
+      'allow create, update, delete: if false;',
+    ]);
   });
 
-  // ── updatedAt в whitelist auth_links update (2026-07-02) ─────────────────
-  // Клиентский fallback (cloud_sync, «Хвост B») пишет auth_links c полем updatedAt.
-  // Раньше updatedAt отсутствовал в hasOnly([...]) → на ПОВТОРНОМ входе update молча
-  // DENIED, и мост provider→stableId не обновлялся. updatedAt должен быть в whitelist.
-  test('auth_links update whitelist includes updatedAt for the client fallback write', () => {
-    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
-    expect(authLinksBlock).not.toBeNull();
-    expect(authLinksBlock![0]).toContain("'providerUid', 'provider', 'linkedAt', 'updatedAt'");
+  test('auth_links are excluded from the browser-admin catch-all write grant', () => {
+    expect(rules).toContain("&& collection != 'auth_links'");
   });
 
-  test('auth_links keep a narrow legacy update path for the 1.5.41 sign-in transaction', () => {
-    const authLinksBlock = rules.match(/match \/auth_links\/\{providerUid\} \{[\s\S]*?\n    \}/);
-    expect(authLinksBlock).not.toBeNull();
-    expect(authLinksBlock![0]).toContain('function authLinkLegacyUpdateOk()');
-    expect(authLinksBlock![0]).toContain('return ownsAuthLinkDoc()');
-    expect(authLinksBlock![0]).toContain(".hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform'])");
-    expect(authLinksBlock![0]).toContain('request.resource.data.stable_id == resource.data.stable_id');
-    expect(authLinksBlock![0]).toContain('|| stableIdOwnedByThisAuth(request.resource.data.stable_id)');
-    expect(authLinksBlock![0]).toContain('|| authLinkLegacyUpdateOk();');
+  test.each([
+    'auth_recovery_codes',
+    'auth_recovery_rate_limits',
+    'auth_recovery_events',
+  ])('%s is server-only for every browser client, including admins', (collection) => {
+    const blocks = exactRootMatchBlocks(`${collection}/{document=**}`);
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual(['allow read, write: if false;']);
+  });
+
+  test('identity deletion and recovery roots are excluded from the browser-admin catch-all', () => {
+    const catchAllBlocks = exactRootMatchBlocks('{collection}/{document=**}');
+    expect(catchAllBlocks).toHaveLength(1);
+    const catchAllAllows = activeAllowLines(catchAllBlocks[0]);
+    expect(catchAllAllows).toHaveLength(1);
+    expect(catchAllAllows[0]).toMatch(/^allow read, write: if isAdmin\(\) && /);
+    expect(catchAllAllows[0]).toMatch(/;$/);
+    for (const collection of [
+      'account_deletion_tombstones',
+      'account_deletion_auth_markers',
+      'auth_recovery_codes',
+      'auth_recovery_rate_limits',
+      'auth_recovery_events',
+    ]) {
+      expect(catchAllBlocks[0]).toContain(`&& collection != '${collection}'`);
+    }
+  });
+
+  test('account deletion auth marker keeps exact owner read and denies every browser write', () => {
+    const blocks = exactRootMatchBlocks('account_deletion_auth_markers/{authUid}');
+    expect(blocks).toHaveLength(1);
+    expect(activeAllowLines(blocks[0])).toEqual([
+      'allow read: if request.auth != null && request.auth.uid == authUid;',
+      'allow write: if false;',
+    ]);
+  });
+
+  test('auth_links server writes remain on the Admin SDK path', () => {
+    const authIdentity = readFileSync(path.join(process.cwd(), 'functions/src/auth_identity.ts'), 'utf8');
+    expect(authIdentity).toContain("import * as admin from 'firebase-admin';");
+    expect(authIdentity).toContain("const AUTH_LINKS = 'auth_links';");
+    expect(authIdentity).toContain('transaction.set(authLinkRef, linkPatch, { merge: true });');
+    expect(authIdentity).toContain('transaction.create(authLinkRef, authLinkData);');
   });
 });
 
@@ -829,11 +862,17 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow delete: if canonicalUserMatchesAuth\(ownerUid\) \|\| canonicalUserMatchesAuth\(friendUid\);/);
   });
 
-  test('catch-all is still the last match block (D-09 regression guard)', () => {
+  test('terminal deny is still the last match block (D-09 regression guard)', () => {
     const matches = [...rules.matchAll(/match \/[^\s]+ \{/g)];
     const lastMatch = matches[matches.length - 1];
     expect(lastMatch).toBeDefined();
-    expect(lastMatch![0]).toContain('match /{collection}/{document=**}');
+    expect(lastMatch![0]).toContain('match /{document=**}');
+
+    const lastMatchIndex = lastMatch!.index ?? -1;
+    expect(lastMatchIndex).toBeGreaterThan(-1);
+    expect(rules.slice(lastMatchIndex)).toMatch(
+      /^match \/\{document=\*\*\} \{\s*allow read, write: if false;\s*\}\s*\}\s*\}\s*$/,
+    );
   });
 
   test('existing rules untouched — users, leaderboard, banned_users, auth_links blocks still present', () => {
@@ -861,18 +900,23 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(counterBlock![0]).toContain('allow read, write: if false;');
   });
 
-  test('legacy admin catch-all cannot reopen internal shard subcollections', () => {
-    const catchAllStart = rules.indexOf('match /{collection}/{document=**} {');
-    expect(catchAllStart).toBeGreaterThan(-1);
-    const catchAllBlock = rules.slice(catchAllStart);
-    expect(catchAllBlock).toContain("collection != 'users'");
-
-    const usersAdminCompatibilityBlock = rules.match(
-      /match \/users\/\{userId\}\/\{subcollection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/,
+  test('legacy admin catch-all excludes users and explicit shard subcollection denies remain', () => {
+    const catchAllBlock = rules.match(
+      /match \/\{collection\}\/\{document=\*\*\} \{[\s\S]*?\n    \}/,
     );
-    expect(usersAdminCompatibilityBlock).not.toBeNull();
-    expect(usersAdminCompatibilityBlock![0]).toContain("subcollection != 'shard_operation_receipts'");
-    expect(usersAdminCompatibilityBlock![0]).toContain("subcollection != 'shard_earn_daily_counters'");
+    expect(catchAllBlock).not.toBeNull();
+    expect(catchAllBlock![0]).toContain("collection != 'users'");
+
+    const usersRootBlock = rules.match(
+      /^    match \/users\/\{userId\} \{[\s\S]*?(?=^    match \/)/m,
+    );
+    expect(usersRootBlock).not.toBeNull();
+    expect(usersRootBlock![0]).toMatch(
+      /match \/shard_operation_receipts\/\{opId\} \{\s*allow read, write: if false;\s*\}/,
+    );
+    expect(usersRootBlock![0]).toMatch(
+      /match \/shard_earn_daily_counters\/\{dayKey\} \{\s*allow read, write: if false;\s*\}/,
+    );
   });
 });
 

@@ -26,7 +26,7 @@ describe('admin VIP survey preview', () => {
     expect(screen).toContain("router.replace('/(tabs)/home'");
     expect(screen).not.toContain("nav.navigate('/(tabs)/home'");
     expect(screen).toContain('Завершение опроса отправляет реальные ответы в админку');
-    expect(appMessages).toContain('AsyncStorage.setItem(LOCAL_APP_MESSAGES_KEY');
+    expect(appMessages).toContain('AsyncStorage.setItem(appMessagesOwnerStorageKey(LOCAL_APP_MESSAGES_KEY_PREFIX');
     expect(appMessages).toContain('admin_test_vip_survey_');
     expect(appMessages).toContain("if (message.kind === 'vip_survey') return !hasPremiumAccess");
     expect(appMessages).toContain("audience: 'free'");
@@ -64,7 +64,7 @@ describe('admin VIP survey preview', () => {
     expect(modal).toContain('spellCheck={false}');
     expect(modal).toContain('<View style={StyleSheet.absoluteFill} />');
     expect(modal).not.toContain('StyleSheet.absoluteFill} onPress={onClose}');
-    expect(modal).toContain('setError(copy.error)');
+    expect(modal).toContain('setError(classifySubmitError(detail))');
     expect(modal).not.toContain('`${copy.error} (${detail})`');
     expect(modal).toContain('Нажми «Завершить опрос» — и Plus активируется.');
     expect(modal).not.toContain('VIP-аккаунт активирован');
@@ -89,7 +89,7 @@ describe('admin VIP survey preview', () => {
     expect(surveyClient).toMatch(/if \(active\) \{\r?\n\s*emitAppEvent\('vip_activated'\);/);
     expect(surveyClient).toContain("emitAppEvent('premium_access_changed', { active, source: active ? 'vip' : 'none' })");
     expect(reviewPrompt).toContain('Твой Plus активирован');
-    expect(reviewPrompt).toContain('Хотите поделиться впечатлением о Phraseman?');
+    expect(reviewPrompt).toContain('Хочешь поделиться впечатлением о Phraseman?');
     expect(reviewPrompt).toContain('Написать отзыв');
     expect(reviewPrompt).toContain('vip-survey-review-write');
     expect(reviewPrompt).toContain('openStoreReviewPage');
@@ -100,10 +100,9 @@ describe('admin VIP survey preview', () => {
     expect(storeReview).not.toMatch(legacyRuntimePattern);
     expect(modal).not.toContain('previewOnly?: boolean');
     expect(modal).not.toContain("vipPlan: 'survey_vip_preview'");
-    expect(admin).toContain('onSnapshot');
-    expect(admin).toContain("collection(db, 'vip_survey_responses')");
-    expect(admin).toContain('refreshVipSurveyUsers');
-    expect(admin).toContain('renderVipSurveyResponses()');
+    // Старый admin/index.html выведен из эксплуатации (Admin V2 — единственная
+    // админ-поверхность); живого просмотра ответов VIP-опроса в V2 пока нет —
+    // поэтому ассерты на onSnapshot/vip_survey_responses в старой админке сняты.
 
     const finishStart = modal.indexOf('const finish = async () => {');
     const finishBody = modal.slice(finishStart, modal.indexOf('const goNext', finishStart));

@@ -128,7 +128,7 @@ export function ReferralAccessActivatedModal({
   // Локализованные строки
   // ---------------------------------------------------------------------------
 
-  // Заголовок: «7 дней доступа открыто»
+  // Заголовок использует фактический срок ответа сервера, без обещания фиксированного числа дней.
   const titleRu = `${grantedDays} ${pluralDaysRu(grantedDays)} доступа открыто`;
   const titleEs = `${grantedDays} días de acceso abiertos`;
   const title = L(

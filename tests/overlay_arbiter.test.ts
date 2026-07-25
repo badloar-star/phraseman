@@ -248,7 +248,7 @@ describe('OverlayArbiter: исчерпывающая классификация 
   // Выселять по таймеру нельзя — потеряется награда или окно, которое юзер читает.
   const PROTECTED_REGISTRY: readonly OverlayKey[] = [
     'onboardingWelcome', 'authRecovery',
-    'update', 'releaseNotes', 'broadcast', 'leagueBonusAvailable', 'notifNudge',
+    'update', 'releaseNotes', 'broadcast', 'personalAdminMessage', 'leagueBonusAvailable', 'notifNudge',
     'introFullAccess', 'dailyPlan', 'levelUp', 'themedAlert',
     'premiumCelebration', 'vipCelebration', 'leagueResult', 'streakRevive',
     'entitlementExpired', 'referralWelcome', 'mysteryMondayChest', 'comebackDay',

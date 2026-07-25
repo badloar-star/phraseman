@@ -37,7 +37,7 @@ import {
   pickAppMessageText,
   setAppMessageReaction,
   setAppMessagePollVote,
-  claimReportReplyShardsOptimistically,
+  claimReportReplyCoinsOptimistically,
   subscribeUserAppMessages,
   readAnimatedMessageIds,
   markMessageIdsAnimated,
@@ -98,7 +98,7 @@ function inboxText(lang: Lang) {
     pollResultsHint: triLang(lang, { ru: 'Результаты после выбора', uk: 'Результати після вибору', es: 'Resultados despues de elegir', 'pt-BR': 'Resultados após escolher', vi: 'Kết quả sau khi chọn', id: 'Hasil setelah memilih', tr: 'Sonuçlar seçimden sonra', pl: 'Wyniki po wyborze' }),
     inbox: triLang(lang, { ru: 'Inbox', uk: 'Inbox', es: 'Inbox', 'pt-BR': 'Inbox', vi: 'Inbox', id: 'Inbox', tr: 'Inbox', pl: 'Inbox' }),
     reportReply: triLang(lang, { ru: 'Ответ на репорт', uk: 'Відповідь на репорт', es: 'Respuesta a tu reporte', 'pt-BR': 'Resposta ao seu reporte', vi: 'Phản hồi báo cáo', id: 'Balasan laporan', tr: 'Rapor yanıtı', pl: 'Odpowiedź na zgłoszenie' }),
-    claimShards: (n: number) => triLang(lang, {
+    claimCoins: (n: number) => triLang(lang, {
       ru: `Забрать монеты (+${n})`,
       uk: `Забрати монети (+${n})`,
       es: `Reclamar monedas (+${n})`,
@@ -552,12 +552,12 @@ function AppMessagesInbox({
 
   const claimReportReward = (message: AppMessageWithState) => {
     const reward = message.reportReply;
-    if (!reward || reward.shards <= 0 || reward.claimed) return;
+    if (!reward || reward.coins <= 0 || reward.claimed) return;
     if (optimisticReportClaimIdsRef.current.has(message.id)) return;
     optimisticReportClaimIdsRef.current.add(message.id);
     hapticTap();
     markReplyClaimedLocally(message.id);
-    void claimReportReplyShardsOptimistically(message.id, reward.shards);
+    void claimReportReplyCoinsOptimistically(message.id, reward.coins);
   };
 
   const dismissSurveyMessage = (messageId: string) => {
@@ -784,10 +784,10 @@ function AppMessagesInbox({
                         <Ionicons name="chatbox-ellipses-outline" size={11} color={chrome.soft} />
                         <Text style={[styles.pollBadgeText, { color: chrome.soft }]}>{copy.reportReply}</Text>
                       </View>
-                      {(message.reportReply?.shards ?? 0) > 0 && !message.reportReply?.claimed ? (
+                      {(message.reportReply?.coins ?? 0) > 0 && !message.reportReply?.claimed ? (
                         <View style={[styles.pollBadge, { borderColor: 'rgba(99,217,143,0.5)', backgroundColor: 'rgba(99,217,143,0.10)' }]}>
                           <Ionicons name="diamond-outline" size={11} color={monoIcon(themeMode, '#63D98F')} />
-                          <Text style={[styles.pollBadgeText, { color: '#63D98F' }]}>+{message.reportReply?.shards}</Text>
+                          <Text style={[styles.pollBadgeText, { color: '#63D98F' }]}>+{message.reportReply?.coins}</Text>
                         </View>
                       ) : null}
                     </>
@@ -897,12 +897,12 @@ function AppMessagesInbox({
     );
   };
 
-  // Карточка награды в ответе на репорт: кнопка «Забрать осколки» → CF claimReportReward.
+  // Карточка награды в ответе на репорт: кнопка «Забрать монеты» → CF claimReportReward.
   // Никаких модалок при начислении — вся выдача живёт здесь, в уведомлении.
   const renderReportReplyClaim = (message: AppMessageWithState) => {
     if (message.kind !== 'report_reply') return null;
     const reward = message.reportReply;
-    if (!reward || reward.shards <= 0) return null;
+    if (!reward || reward.coins <= 0) return null;
     return (
       <View style={[styles.vipSurveyCard, { backgroundColor: isDark ? '#182131' : '#F8FAFC', borderColor: 'rgba(99,217,143,0.30)' }]}>
         <View style={styles.vipSurveyCardTop}>
@@ -911,7 +911,7 @@ function AppMessagesInbox({
           </View>
           <View style={styles.vipSurveyTextWrap}>
             <Text style={[styles.vipSurveyTitle, { color: chrome.text }]}>
-              {reward.claimed ? copy.claimed : `+${reward.shards}`}
+              {reward.claimed ? copy.claimed : `+${reward.coins}`}
             </Text>
           </View>
         </View>
@@ -920,12 +920,12 @@ function AppMessagesInbox({
             testID="report-reply-claim-cta"
             activeOpacity={0.86}
             accessibilityRole="button"
-            accessibilityLabel={copy.claimShards(reward.shards)}
+            accessibilityLabel={copy.claimCoins(reward.coins)}
             onPress={() => { void claimReportReward(message); }}
             style={[styles.vipSurveyButton, { backgroundColor: '#2E9E63' }]}
           >
-            <Ionicons name="diamond-outline" size={17} color="#FFFFFF" />
-            <Text style={[styles.vipSurveyButtonText, { color: '#FFFFFF' }]}>{copy.claimShards(reward.shards)}</Text>
+            <Ionicons name="cash-outline" size={17} color="#FFFFFF" />
+            <Text style={[styles.vipSurveyButtonText, { color: '#FFFFFF' }]}>{copy.claimCoins(reward.coins)}</Text>
           </TouchableOpacity>
         ) : null}
       </View>

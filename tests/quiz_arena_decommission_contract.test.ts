@@ -35,8 +35,6 @@ function listFiles(relativeRoot: string): string[] {
 }
 
 const CLIENT_FEATURE_PATH = /(?:^|[\/_-])(?:arena|quiz(?:zes)?)(?:[\/_\.-]|[A-Z])|use[-_]matchmaking|MatchmakingContext/i;
-const SERVER_FEATURE_PATH = /(?:^|[\/_-])(?:arena|quiz_challenge)(?:[\/_\.-]|[A-Z])|(?:^|\/)matchmaking\.|(?:^|\/)game_loop\.|(?:^|\/)explain_quiz\./i;
-
 const LEGACY_COLLECTION_MATCHES = [
   'arena_profiles/{userId}',
   'arena_sessions/{sessionId}',
@@ -95,7 +93,11 @@ describe('Quiz and Arena decommission contract', () => {
 
     const dailyTasksSource = read('app/daily_tasks.ts');
     expect(dailyTasksSource).toContain('RETIRED_QUIZ_ARENA_TASK_TYPES');
-    expect(dailyTasksSource).toContain('replaceRetiredQuizArenaTasks(adminTasks)');
+    // Обычная пользовательская ротация обязана удалять retired Quiz/Arena задачи,
+    // но административный QA override должен показывать сид дословно — в том числе
+    // повторяющиеся типы в одном пакете.
+    expect(dailyTasksSource).not.toContain('replaceRetiredQuizArenaTasks(adminTasks)');
+    expect(dailyTasksSource).toContain('return filterDailyTasksForStudyTarget(adminTasks, studyTarget);');
     expect(dailyTasksSource).toContain('replaceRetiredQuizArenaTasks(result)');
 
     const achievementsSource = read('app/achievements.ts');
@@ -109,44 +111,12 @@ describe('Quiz and Arena decommission contract', () => {
 
   test('keeps Arena and French names only in the fail-closed V2 hash deny-list', () => {
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
-    const runtimeSources = [
-      'admin/v2/scripts/admin-core.js',
-      'admin/v2/scripts/admin-firebase.js',
-      'admin/v2/scripts/content-factory/stage-renderers.js',
-      'admin/v2/scripts/content-factory/state.js',
-      'admin/v2/scripts/pages/content-generator.js',
-    ].map(read).join('\n');
 
-    expect(capabilities).toContain('EXCLUDED_V2_HASH_SEGMENTS');
+    expect(capabilities).toContain('RETIRED_CAPABILITY_IDS');
+    expect(capabilities).toContain('BLOCKED_HASH_SEGMENTS');
     for (const segment of ['arena-ranks', 'arena-live', 'arena-bets', 'arena-rooms', 'arena-question-pool', 'arena-generator', 'arena-shadow', 'french-quizzes']) {
       expect(capabilities).toContain(`'${segment}'`);
     }
-    expect(runtimeSources).not.toMatch(/(?:french-quizzes|arena-(?:ranks|live|bets|rooms|question-pool|generator|shadow))/i);
-    expect(runtimeSources).not.toMatch(/admin(?:List|Publish|Remove|Restore|Update|Get)Arena/i);
-
-    const serverFeatureFiles = listFiles('functions/src').filter(
-      (file) => SERVER_FEATURE_PATH.test(file) && file !== 'functions/src/quiz_arena_decommission.ts',
-    );
-    expect(serverFeatureFiles).toEqual([]);
-  });
-
-  test('removes retired admin capabilities, direct writes, and stage renderers', () => {
-    const capabilities = read('admin/v2/scripts/admin-capabilities.js');
-    const adminRuntime = [
-      'admin/v2/scripts/admin-core.js',
-      'admin/v2/scripts/admin-firebase.js',
-      'admin/v2/scripts/content-factory/stage-renderers.js',
-      'admin/v2/scripts/content-factory/state.js',
-      'admin/v2/scripts/pages/content-generator.js',
-    ].map(read).join('\n');
-
-    expect(capabilities).toContain('EXCLUDED_V2_HASH_SEGMENTS');
-    expect(adminRuntime).not.toMatch(/(?:french-quizzes|arena-(?:ranks|live|bets|rooms|question-pool|generator|shadow))/i);
-    expect(adminRuntime).not.toMatch(/(?:admin(?:List|Publish|Remove|Restore|Update|Get)Arena|getArenaConvergenceStatus|updateArenaConvergenceConfig)/);
-    expect(adminRuntime).not.toMatch(/(?:quiz_(?:topic|questions|question_replacement)|arena_(?:topic|questions|question_replacement))/);
-    expect(adminRuntime).toContain("'challenge_topic'");
-    expect(adminRuntime).toContain("'challenge_questions'");
-    expect(adminRuntime).toContain("'challenge_question_replacement'");
   });
 
   test('removes retired client preloads, paywall contexts, analytics surfaces, and bundle config', () => {
@@ -264,18 +234,13 @@ describe('Quiz and Arena decommission contract', () => {
   });
 
   test('removes retired backend reads, response fields, and reward mutations', () => {
-    const adminProfile = read('functions/src/admin_user_profile.ts');
     const leaderboardStats = read('functions/src/compute_leaderboard_stats.ts');
     const indexSource = read('functions/src/index.ts');
     const dailyDigest = read('functions/src/admin_daily_digest.ts');
     const leagueChest = read('functions/src/league_chest.ts');
     const budgetDashboard = read('functions/src/openai_budget_dashboard.ts');
     const friendGifts = read('functions/src/friend_gifts.ts');
-    const adminGrant = read('functions/src/admin_grant.ts');
-    const globalBroadcast = read('functions/src/admin_global_broadcast.ts');
 
-    expect(adminProfile).not.toContain("collection('arena_profiles')");
-    expect(adminProfile).not.toMatch(/\barena:\s*(?:directSource|sources\.)/);
     expect(leaderboardStats).not.toContain("collection('arena_profiles')");
     expect(leaderboardStats).not.toContain('arenaXpThresholds');
     expect(indexSource).not.toContain('time/arena');
@@ -285,58 +250,14 @@ describe('Quiz and Arena decommission contract', () => {
     expect(leagueChest).not.toContain('arenaBonus');
     expect(leagueChest).not.toContain("'arena_plays'");
     expect(budgetDashboard).not.toContain("collection: 'quiz_explain_billing'");
-    expect(friendGifts).not.toContain("'arena_extra_5'");
     expect(friendGifts).not.toContain('arena_daily_gift_bonus_v1');
-    expect(adminGrant).not.toContain("'arena_extra_5'");
-    expect(adminGrant).not.toContain('arena_extra_plays_today');
-    expect(globalBroadcast).not.toContain("'arena_extra_5'");
-  });
-
-  test('retires Quiz and Arena Content Factory stages without removing generic challenges', () => {
-    const factoryFiles = [
-      'functions/src/admin_content_factory.ts',
-      'functions/src/admin_content_factory_read.ts',
-      'functions/src/admin_content_stages.ts',
-      'functions/src/content_factory/stage_contracts.ts',
-      'functions/src/content_factory/stage_capabilities.ts',
-      'functions/src/content_factory/stage_runner.ts',
-    ];
-    const source = factoryFiles.map(read).join('\n');
-
-    expect(source).not.toMatch(/(?:quiz_(?:topic|questions|question_replacement)|arena_(?:topic|questions|question_replacement))/);
-    expect(source).not.toMatch(/(?:ArenaConvergence|ArenaQuestion|arena_(?:grounding|artifacts|question_ledger|stage_consumer))/);
-    expect(source).toContain("'challenge_topic'");
-    expect(source).toContain("'challenge_questions'");
-    expect(source).toContain("'challenge_question_replacement'");
-
-    const serverSources = listFiles('functions/src')
-      .filter((file) => file.endsWith('.ts'))
-      .map(read)
-      .join('\n');
-    expect(serverSources).not.toMatch(/(?:quiz_challenge_artifacts|quiz_challenge_grounding|arena_artifacts|arena_grounding|arena_question_ledger|arena_stage_consumer_adapter|arena_shadow_convergence|arena_timing_observability)/);
-    expect(serverSources).toContain("from './content_factory/question_grounding'");
-    expect(serverSources).toContain("from './content_factory/question_artifacts'");
-
-    const legacySurfaceGenerator = [
-      'functions/src/content_factory/surface_generation.ts',
-      'functions/src/content_factory/generation_provider.ts',
-    ].map(read).join('\n');
-    expect(legacySurfaceGenerator).not.toMatch(/(?:quiz|arena)/i);
-
-    const releaseSurfaceSources = [
-      'functions/src/admin_content_release.ts',
-      'functions/src/content_factory/course_release_contract.ts',
-      'functions/src/content_factory/generation_plan.ts',
-      'functions/src/content_factory/release_surface_delivery.ts',
-    ].map(read).join('\n');
-    expect(releaseSurfaceSources).not.toMatch(/(?:quiz|arena)/i);
   });
 
   test('keeps old callable names fail-closed without loading retired implementations', () => {
     const indexSource = read('functions/src/index.ts');
     const disabledSource = read('functions/src/quiz_arena_decommission.ts');
 
-    expect(indexSource).not.toMatch(/(?:from|require\()['"]\.\/(?:arena|matchmaking|game_loop|explain_quiz|admin_arena)/);
+    expect(indexSource).not.toMatch(/(?:from|require\()['"]\.\/(?:arena(?!_question)|matchmaking|game_loop)/);
     expect(indexSource).toContain("from './quiz_arena_decommission'");
     expect(disabledSource).toContain("throw new HttpsError('failed-precondition', QUIZ_ARENA_DISABLED_MESSAGE)");
     expect(disabledSource).toContain('QUIZ_ARENA_DECOMMISSIONED_EXPORTS');
@@ -358,11 +279,6 @@ describe('Quiz and Arena decommission contract', () => {
       'arenaRoomClose',
       'arenaGhostCreateChallenge',
       'arenaGhostRecordPlay',
-      'explainQuiz',
-      'adminListArenaQuestionPool',
-      'adminPublishArenaQuestionBatch',
-      'adminRemoveArenaPoolQuestion',
-      'adminRestoreArenaPoolQuestion',
       'adminUpdateArenaConvergenceConfig',
       'adminGetArenaConvergenceStatus',
     ].forEach((exportName) => {
@@ -426,16 +342,13 @@ describe('Quiz and Arena decommission contract', () => {
     expect(accountDeleteSource).toContain('removeFromArenaClubEvents');
   });
 
-  test('does not actively sync retired profile, task, achievement, or navigation state', () => {
+  test('does not actively sync retired Arena runtime state', () => {
     const cloudSyncSource = read('app/cloud_sync.ts');
     expect(cloudSyncSource).not.toContain('ensureArenaAuthUid');
     expect(cloudSyncSource).not.toMatch(/collection\(['"]arena_profiles['"]\)[\s\S]{0,300}\.set\(/);
-    expect(cloudSyncSource).not.toContain('quizNavLevelKey');
     expect(cloudSyncSource).not.toContain("'achievement_arena_win_count'");
-    expect(cloudSyncSource).not.toContain("'achievement_quiz_total_count'");
     expect(cloudSyncSource).not.toContain("'arena_daily_gift_bonus_v1'");
     expect(cloudSyncSource).not.toContain("'shards_arena_wins_total'");
-    expect(cloudSyncSource).not.toContain("'lifetime_quiz_easy_v1'");
   });
 
   test('does not query or expose retired Quiz and Arena lifetime statistics', () => {

@@ -7,6 +7,7 @@ import Reanimated, {
   useAnimatedProps,
   withDelay,
   withTiming,
+  withSpring,
   cancelAnimation,
   Easing,
 } from 'react-native-reanimated';
@@ -1020,6 +1021,14 @@ export default function LessonsTab({ overlayIdentityEpoch: _overlayIdentityEpoch
         topFadeScroll?.onScroll?.(e);
         onBouncyScroll(e);
     }, [onBouncyScroll, topFadeScroll]);
+    // Страховка от «экран уехал вниз»: после отпускания пальца/инерции у верхнего
+    // края возвращаем резинку в 0, чтобы над списком не оставалась пустая полоса.
+    const handleLessonsScrollEnd = useCallback((e: any) => {
+        const y = e?.nativeEvent?.contentOffset?.y ?? 0;
+        if (y <= 0 && bouncyStretch.value !== 0) {
+            bouncyStretch.value = withSpring(0, { damping: 22, stiffness: 240 });
+        }
+    }, [bouncyStretch]);
     // Премиум-урок: открываем пейвол СРАЗУ, без промежуточного окна «урок входит в премиум».
     // (Раньше тап показывал ThemedChoiceModal с кнопкой «Получить Premium» — лишний шаг.)
     const openLessonPaywall = useCallback((lessonNum: number) => {
@@ -1384,6 +1393,8 @@ return (<LessonCard key={`l-${num}`}
         <View style={{ flex: 1, display: (dialogsEnabled && page === 'dialogs') || page === 'v2' ? 'none' : 'flex' }}>
       <BouncyWrap style={bouncyStyle}>
       <Animated.FlatList ref={scrollRef} showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={handleLessonsScroll}
+        onScrollEndDrag={handleLessonsScrollEnd}
+        onMomentumScrollEnd={handleLessonsScrollEnd}
         contentContainerStyle={{ paddingBottom: tabContentBottomPad }}
         decelerationRate="normal"
         bounces

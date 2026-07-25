@@ -20,14 +20,15 @@ describe('friends tab locale runtime', () => {
     }
   });
 
-  it('keeps empty-friends invite actions aligned as equal horizontal buttons', () => {
+  it('keeps the empty-friends add action as a single full-width button', () => {
     const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
 
-    expect(source).toContain('testID="friends-empty-invite"');
-    expect(source).toContain('testID="friends-empty-enter-code"');
-    // minHeight + paddingVertical (не жёсткая height): кнопки растут под крупные шрифты.
+    expect(source).toContain('testID="friends-empty-add"');
+    // Реферальные CTA убраны из empty-state (owner 2026-07-24): приглашения живут в настройках.
+    expect(source).not.toContain('testID="friends-empty-invite"');
+    expect(source).not.toContain('testID="friends-empty-enter-code"');
+    // minHeight + paddingVertical (не жёсткая height): кнопка растёт под крупные шрифты.
     expect(source).toContain("style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center'");
-    expect(source).toContain("style={{ flex: 1, minHeight: 58, backgroundColor: chrome.button");
     // adjustsFontSizeToFit запрещён на кнопках (схлопывает текст в ноль — известная ловушка);
     // вместо него перенос на 2 строки.
     expect(source).toContain('numberOfLines={2}');
@@ -56,32 +57,23 @@ describe('friends tab locale runtime', () => {
     expect(source).not.toContain('<CodeCard');
   });
 
-  it('shows the gated empty-friends roulette offer with localized variable prizes', () => {
+  it('keeps referral mechanics warm in friends without rendering referral UI', () => {
     const source = fs.readFileSync(path.join(__dirname, '../app/(tabs)/friends.tsx'), 'utf8');
 
-    expect(source).toContain(
-      'Пригласи друга. Когда он установит приложение, введёт твой код',
-    );
-    // Показываем РЕФЕРАЛЬНЫЙ код (referral_codes), не friend-код — иначе друг
-    // ввёл бы friend-код, которого нет в referral_codes, и наград не было бы (C1).
-    expect(source).toContain('const [referralCode, setReferralCode]');
-    // Код живёт ИНЛАЙНОМ в тексте empty-state (как и было задумано), а не в отдельной
-    // карточке. Отдельная карточка убрана, чтобы код был ровно в ОДНОМ месте в Друзьях.
-    expect(source).toContain('testID="friends-referral-code-inline"');
+    // UI рулетки/приглашений из «Друзей» убран полностью (owner 2026-07-24):
+    // ни мегафон-иконки, ни empty-state оффера, ни переходов на реферальные экраны.
+    expect(source).not.toContain('testID="friends-referral-code-inline"');
     expect(source).not.toContain('testID="friends-referral-code-card"');
-    expect(source).toContain(' і закінчить перший урок, ти отримаєш 1 прокрут.');
-    expect(source).toContain('Приз — Plus от 1 дня до 365 дней.');
-    expect(source).toContain('const referralOfferOn = referralEnabled && rouletteOn');
-    expect(source).toContain('{referralOfferOn ? (');
-    expect(source).not.toContain('testID="friends-referral-seven-plus-seven-note"');
-    // «Запросити» делится реферальной ссылкой через handleReferralInvite (не friend-кодом).
+    expect(source).not.toContain('testID="friends-open-referrals"');
+    expect(source).not.toContain('Мои рефералы');
+    expect(source).not.toContain("router.push('/referrals' as any)");
+    expect(source).not.toContain("router.push('/referral_code_entry' as any)");
+    // Механика осталась: реф-код прогревается на фокус, модалка окончания доступа
+    // по-прежнему делится приглашением (legacy-drain).
+    expect(source).toContain('const referralMarketingVisible = referralSurface.marketingVisible');
+    expect(source).toContain('selectReferralSurfaceState');
     expect(source).toContain('void handleReferralInvite()');
-    expect(source).toContain("router.push('/referral_code_entry' as any)");
-    expect(source).toContain("router.push('/referrals' as any)");
-    // Вход в «Рефералы» — иконка-чип (megaphone) с accessibility-лейблом, без текстовой кнопки.
-    expect(source).toContain('Мои рефералы');
-    expect(source).toContain('Ввести код');
-    expect(source).not.toContain('Друзья видят твой прогресс');
+    expect(source).toContain('ReferralAccessEndedModal');
   });
 
   it('keeps Firestore friend/league helpers free of locale fallback audit markers', () => {

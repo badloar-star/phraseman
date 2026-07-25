@@ -57,7 +57,7 @@ const language = window.AdminAnalyticsLanguage;
 const ANALYTICS_REPORTS = Object.freeze([
   { id: 'overview', label: 'Сегодня', description: 'Что показывает: текущие сигналы оплаты и источники. Решение: есть ли проблема, требующая действия сегодня.' },
   { id: 'product', label: 'Рост', description: 'Что показывает: активацию и возвращаемость. Решение: где проверить путь пользователя и удержание.' },
-  { id: 'subscriptions', label: 'Деньги', description: 'Что показывает: подтверждённые подписки и возвраты. Решение: нужно ли разбирать выручку или возвраты.' },
+  { id: 'subscriptions', label: 'Подписки', description: 'Что показывает: подтверждённые подписки и возвраты. Решение: нужно ли разбирать выручку или возвраты.' },
   { id: 'exports', label: 'Обучение', description: 'Что показывает: качество данных обучения и покрытие. Решение: достаточно ли данных для продуктового вывода.' },
 ]);
 
@@ -111,24 +111,51 @@ function reportOption(report, activeReport) {
   return `<option value="${escapeHtml(report.id)}"${report.id === activeReport ? ' selected' : ''}>${escapeHtml(report.label)}</option>`;
 }
 
-function compactSnapshotMetrics(snapshot) {
+function compactSnapshotMetrics(snapshot, activeReport = 'overview') {
   const access = snapshot?.access || {};
   const store = snapshot?.storeActivity || {};
   const funnel = snapshot?.funnelSignals || {};
   const events = funnel.events || {};
+  const consent = snapshot?.analyticsConsent || {};
+  const activity = snapshot?.appActivity || {};
+  const totalActivity = Object.values(activity).reduce((total, value) => total + (Number(value) || 0), 0);
+  const metricSets = {
+    overview: [
+      ['Активные доступы', access.activeAccessTotal, 'Текущий Plus-доступ по всем категориям', sourceAvailable(snapshot, 'users')],
+      ['Покупки RevenueCat', store.newPurchases, 'Начало подписки и разовые покупки за период', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+      ['Продления', store.renewals, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+      ['Показы paywall', events.shown, 'Поведенческие события приложения', sourceAvailable(snapshot, 'paywall_funnel')],
+    ],
+    product: [
+      ['Показы предложения', events.shown, 'События экрана оплаты', sourceAvailable(snapshot, 'paywall_funnel')],
+      ['Переходы', events.ctaClick, 'Нажатия на основное действие', sourceAvailable(snapshot, 'paywall_funnel')],
+      ['Начали пробный период', events.trialStarted, 'Сигналы приложения', sourceAvailable(snapshot, 'paywall_funnel')],
+      ['Сигналы покупки', events.purchaseCompleted, 'Не заменяют подтверждение магазина', sourceAvailable(snapshot, 'paywall_funnel')],
+    ],
+    subscriptions: [
+      ['Новые подписки', store.newPurchases, 'Подтверждено RevenueCat', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+      ['Продления', store.renewals, 'Подтверждено RevenueCat', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+      ['Возвраты', store.refunds, 'Серверные события магазина', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+      ['Пробные периоды', store.trialStarts, 'Подтверждённые события RevenueCat', sourceAvailable(snapshot, 'revenuecat_premium_events')],
+    ],
+    exports: [
+      ['Согласие на аналитику', consent.granted, 'Пользователи, разрешившие агрегированный анализ', sourceAvailable(snapshot, 'users')],
+      ['Без согласия', consent.denied, 'Не входят в поведенческие срезы', sourceAvailable(snapshot, 'users')],
+      ['Ожидают выбора', consent.unset, 'Ещё не выбрали настройку аналитики', sourceAvailable(snapshot, 'users')],
+      ['События приложения', totalActivity, 'Все агрегированные события за период', sourceAvailable(snapshot, 'app_activity')],
+    ],
+  };
+  const items = metricSets[activeReport] || metricSets.overview;
   return `<section class="analytics-canonical-strip" aria-label="Ключевые показатели выбранного периода">
-    ${metric('Активные доступы', access.activeAccessTotal, 'Текущий Plus-доступ по всем категориям', sourceAvailable(snapshot, 'users'))}
-    ${metric('Покупки RevenueCat', store.newPurchases, 'Начало подписки и разовые покупки за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
-    ${metric('Продления', store.renewals, 'Подтверждено RevenueCat за период', sourceAvailable(snapshot, 'revenuecat_premium_events'))}
-    ${metric('Показы paywall', events.shown, 'Поведенческие события приложения', sourceAvailable(snapshot, 'paywall_funnel'))}
+    ${items.map(([label, value, note, available]) => metric(label, value, note, available)).join('')}
   </section>`;
 }
 
-function snapshotSummaryPanel(snapshot) {
+function snapshotSummaryPanel(snapshot, activeReport) {
   if (!snapshot) return skeletonMetrics();
   return `<section id="analytics-snapshot" class="analytics-report-panel" aria-labelledby="analytics-snapshot-title">
     <div class="section-heading"><div><h2 id="analytics-snapshot-title">Снимок периода</h2><p>Только самые важные числа сверху. Подробные разрезы лежат в выбранных отчётах ниже.</p></div></div>
-    ${compactSnapshotMetrics(snapshot)}
+    ${compactSnapshotMetrics(snapshot, activeReport)}
   </section>`;
 }
 
@@ -221,6 +248,9 @@ function sourceSection(snapshot) {
 }
 
 function integritySection(snapshot, trends) {
+  if (!snapshot || !Number.isFinite(Number(snapshot.generatedAtMs))) {
+    return `<section class="card section" aria-labelledby="analytics-integrity-title"><div class="card-header"><div><h2 id="analytics-integrity-title">Проверка пригодности данных</h2><p>Сверка появится после загрузки снимка выбранного периода.</p></div></div><div class="card-body"><div class="analytics-empty" role="status">Снимок ещё не загружен: числовые итоги не показываются, чтобы не подменять неизвестные данные нулями.</div></div></section>`;
+  }
   const events = snapshot?.funnelSignals?.events || {};
   const ids = ['paywall.shown.v1', 'paywall.cta_click.v1', 'paywall.trial_started.v1', 'paywall.purchase_completed.v1'];
   const sections = trends?.data?.sections || {};
@@ -286,6 +316,7 @@ export function renderAdminAnalytics(model) {
   const snapshot = model.snapshot;
   const activeReport = ANALYTICS_REPORTS.some((report) => report.id === model.activeReport) ? model.activeReport : 'overview';
   const activeReportMeta = ANALYTICS_REPORTS.find((report) => report.id === activeReport) || ANALYTICS_REPORTS[0];
+  const supportsCanonicalSnapshot = activeReport === 'overview';
   const paywallCategory = renderPaywallAnalyticsCategory({
     ...(model.analyticsTrends || {}),
     authorized: model.authorized,
@@ -294,12 +325,12 @@ export function renderAdminAnalytics(model) {
     draft: model.analyticsTrendsDraft,
     onToggleSeries: model.onToggleAnalyticsSeries,
   });
-  return `<header class="page-header analytics-canonical-header"><div><div class="eyebrow">Деньги / Аналитика</div><h1>Аналитика</h1><p>Четыре отчёта для ежедневного решения; источник и свежесть данных показаны рядом с результатом.</p></div><div class="analytics-toolbar"><label for="analytics-report-select">Отчёт</label><select id="analytics-report-select" data-action="select-analytics-report"${controlsDisabled ? ' disabled' : ''}>${ANALYTICS_REPORTS.map((report) => reportOption(report, activeReport)).join('')}</select><label for="analytics-range">Период</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики, сохраняя последний подтверждённый результат на экране"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div></header>
-    <section class="analytics-report-switcher" aria-label="Выбранный аналитический отчёт"><div><strong>${escapeHtml(activeReportMeta.label)}</strong><small>${escapeHtml(activeReportMeta.description)}</small></div><div class="analytics-report-tabs" role="tablist" aria-label="Типы аналитики">${ANALYTICS_REPORTS.map((report) => `<button class="button small ${report.id === activeReport ? 'primary' : 'ghost'}" data-action="select-analytics-report" data-analytics-report="${escapeHtml(report.id)}" type="button" role="tab" aria-selected="${report.id === activeReport ? 'true' : 'false'}" title="Показать отчёт: ${escapeHtml(report.label)}">${escapeHtml(report.label)}</button>`).join('')}</div></section>
+  return `<header class="page-header analytics-canonical-header"><div><div class="eyebrow">Деньги</div><h1>Аналитика</h1><p>${escapeHtml(activeReportMeta.description)}</p></div>${supportsCanonicalSnapshot ? `<div class="analytics-toolbar"><label class="visually-hidden" for="analytics-range">Период аналитики</label><select id="analytics-range"${controlsDisabled ? ' disabled' : ''}><option value="7"${rangeDays === 7 ? ' selected' : ''}>7 дней</option><option value="28"${rangeDays === 28 ? ' selected' : ''}>28 дней</option><option value="90"${rangeDays === 90 ? ' selected' : ''}>90 дней</option></select><button class="button primary" data-action="load-analytics" type="button" title="Обновить серверный снимок аналитики, сохраняя последний подтверждённый результат на экране"${controlsDisabled ? ' disabled' : ''}>${loading ? 'Обновление…' : 'Обновить'}</button></div>` : ''}</header>
+    <section class="analytics-report-switcher" aria-label="Выбранный аналитический отчёт"><label class="visually-hidden" for="analytics-report-select">Отчёт аналитики</label><select id="analytics-report-select" data-action="select-analytics-report"${controlsDisabled ? ' disabled' : ''}>${ANALYTICS_REPORTS.map((report) => reportOption(report, activeReport)).join('')}</select><nav class="analytics-report-tabs" aria-label="Типы аналитики">${ANALYTICS_REPORTS.map((report) => `<button class="button small ${report.id === activeReport ? 'primary' : 'ghost'}" data-action="select-analytics-report" data-analytics-report="${escapeHtml(report.id)}" type="button"${controlsDisabled ? ' disabled' : ''}${report.id === activeReport ? ' aria-current="page"' : ''} title="Показать отчёт: ${escapeHtml(report.label)}">${escapeHtml(report.label)}</button>`).join('')}</nav></section>
     <div class="analytics-status" aria-live="polite">${stateNotice(model)}${snapshot ? `<small>Снимок: ${escapeHtml(dateTime(snapshot.generatedAtMs))} · период ${escapeHtml(snapshot.rangeDays)} дней · ${escapeHtml(snapshot.definitionVersion || '')}</small>` : ''}</div>
-    ${snapshotSummaryPanel(snapshot)}
+    ${activeReport === 'overview' ? '' : snapshotSummaryPanel(snapshot, activeReport)}
     ${reportShell('overview', activeReport, 'Сегодня', 'Что показывает: текущие сигналы оплаты и источники. Какое решение принять: есть ли проблема, требующая действия сегодня.', paywallCategory)}
-    ${reportShell('product', activeReport, 'Рост', 'Что показывает: активацию, возвращаемость и продуктовые изменения. Какое решение принять: что улучшать в следующем цикле.', '<div class="analytics-empty">Ниже откроется существующий продуктовый отчёт. Остальные тяжёлые разделы скрыты.</div>')}
-    ${reportShell('subscriptions', activeReport, 'Деньги', 'Что показывает: подписки и денежные разрезы RevenueCat. Какое решение принять: где требуется действие по выручке или возвратам.', '<div class="analytics-empty">Ниже откроется существующий отчёт подписок. Остальные тяжёлые разделы скрыты.</div>')}
+    ${reportShell('product', activeReport, 'Рост', 'Что показывает: активацию, возвращаемость и продуктовые изменения. Какое решение принять: что улучшать в следующем цикле.', '')}
+    ${reportShell('subscriptions', activeReport, 'Деньги', 'Что показывает: подписки и денежные разрезы RevenueCat. Какое решение принять: где требуется действие по выручке или возвратам.', '')}
     ${reportShell('exports', activeReport, 'Обучение', 'Что показывает: полноту и качество данных для отчёта об обучении. Какое решение принять: можно ли доверять данным перед продуктовым решением.', `${integritySection(snapshot || {}, model.analyticsTrends || {})}${consentCoverageSection(snapshot || {})}${sourceSection(snapshot || {})}`)}`;
 }

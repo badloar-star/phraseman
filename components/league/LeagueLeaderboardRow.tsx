@@ -58,7 +58,6 @@ function LeagueLeaderboardRowComponent({ member, index, lang, palette, zone, ren
             {hasCrown ? <Ionicons name="trophy" size={15} color={palette.warning} /> : null}
           </View>
           <View style={styles.metaRow}>
-            {member.streak ? <Text style={[styles.meta, { color: palette.muted }]}>{member.streak} {triLang(lang, { ru: 'дн.', uk: 'дн.', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}</Text> : null}
             {member.leagueBoostMultiplier && member.leagueBoostMultiplier > 1 ? <Text style={[styles.boost, { color: palette.warning }]}>×{member.leagueBoostMultiplier}</Text> : null}
           </View>
         </View>

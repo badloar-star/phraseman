@@ -35,7 +35,7 @@ describe('report replies in home notification center', () => {
     expect(model).toContain('export async function refreshUserNotificationsOnce');
     expect(model).toContain("LAST_REFRESH_KEY = 'user_notifications_last_refresh_ms_v1'");
 
-    expect(button).toContain("import { claimReportReplyShardsOptimistically } from '../app/app_messages'");
+    expect(button).toContain("import { claimReportReplyCoinsOptimistically } from '../app/app_messages'");
     expect(button).toContain("import { AppState, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'");
     expect(button).toContain("import MotionModal from './MotionModal'");
     expect(button).toContain('<MotionModal');
@@ -47,6 +47,6 @@ describe('report replies in home notification center', () => {
     expect(button).toContain("AppState.addEventListener('change'");
     expect(button).toContain("row.type === 'report_reply' && row.reportReply");
     expect(button).toContain('notification-report-reply-claim-cta');
-    expect(button).toContain('claimReportReplyShardsOptimistically(reward.messageId, reward.shards)');
+    expect(button).toContain('claimReportReplyCoinsOptimistically(reward.messageId, reward.coins)');
   });
 });

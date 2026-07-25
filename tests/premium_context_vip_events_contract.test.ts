@@ -57,13 +57,64 @@ describe('PremiumContext VIP event contract', () => {
     const start = source.indexOf("onAppEvent('account_deleted'");
     expect(start).toBeGreaterThan(-1);
     const body = source.slice(start, source.indexOf("onAppEvent('premium_deactivated'", start));
+    const resetStart = source.indexOf('const resetPremiumUiForAccountTransition');
+    const resetBody = source.slice(resetStart, source.indexOf('const reloadTrialEligible', resetStart));
 
-    expect(body).toContain('invalidatePremiumCache()');
-    expect(body).toContain('vipSnapshotStateRef.current = false');
+    expect(body).toContain('beginPremiumAccountTransition()');
+    expect(resetBody).toContain('vipSnapshotStateRef.current = false');
+    expect(resetBody).toContain('setIsPremium(false)');
+    expect(resetBody).toContain('setIsVip(false)');
+    expect(resetBody).toContain('setHasPremiumAccess(false)');
+    expect(resetBody).toContain('setAccessResolved(false)');
+    expect(body).not.toContain('setAccessResolved(true)');
+    expect(resetBody).toContain('setIsIntroFullAccess(false)');
+    expect(body).toContain("emitAppEvent('premium_access_changed', { active: false, source: 'none' })");
+  });
+
+  it('fails closed immediately on the reusable account transition event', () => {
+    expect(source).toContain('onPremiumAccountTransition');
+    const listenerStart = source.indexOf('onPremiumAccountTransition(');
+    const listenerBody = source.slice(listenerStart, source.indexOf('return () =>', listenerStart));
+    const resetStart = source.indexOf('const resetPremiumUiForAccountTransition');
+    const body = source.slice(resetStart, source.indexOf('const reloadTrialEligible', resetStart));
+
+    expect(listenerBody).toContain('resetPremiumUiForAccountTransition()');
+    expect(listenerBody).toContain('premiumAccountTransitionActiveRef.current = true');
+    expect(listenerBody).toContain('setPremiumListenerRevision((v) => v + 1)');
     expect(body).toContain('setIsPremium(false)');
     expect(body).toContain('setIsVip(false)');
     expect(body).toContain('setHasPremiumAccess(false)');
-    expect(body).toContain('setIsIntroFullAccess(false)');
-    expect(body).toContain("emitAppEvent('premium_access_changed', { active: false, source: 'none' })");
+    expect(body).toContain('setAccessResolved(false)');
+    expect(body).toContain('premiumReloadEpochRef.current += 1');
+  });
+
+  it('guards delayed VIP snapshot writes and state commits with the transition epoch', () => {
+    const listenerStart = source.indexOf('Live VIP grants/revokes from admin/index.html');
+    const listenerBody = source.slice(listenerStart, source.indexOf('// Reload when app comes to foreground', listenerStart));
+
+    expect(listenerBody).toContain('runPremiumAccountScopedWork');
+    expect(listenerBody).toContain('const listenerEpoch = getPremiumAccountTransitionEpoch()');
+    expect(listenerBody).toContain('if (!isListenerCurrent()) return;');
+    expect(listenerBody.indexOf('if (!isListenerCurrent()) return;')).toBeLessThan(
+      listenerBody.indexOf('AsyncStorage.multiSet(pairs)'),
+    );
+    expect(listenerBody).toContain('premiumAccountTransitionActiveRef.current');
+  });
+
+  it('discards stale reload completion and resolves access only after RevenueCat confirms the new identity', () => {
+    const reloadStart = source.indexOf('const runReload = useCallback');
+    const reloadBody = source.slice(reloadStart, source.indexOf('const reload = useCallback', reloadStart));
+    const publicReloadBody = source.slice(
+      source.indexOf('const reload = useCallback', reloadStart),
+      source.indexOf('const runReloadAfterCloudRefresh', reloadStart),
+    );
+
+    expect(reloadBody).toContain('const reloadEpoch = premiumReloadEpochRef.current');
+    expect(reloadBody).toContain('isReloadCurrent');
+    expect(reloadBody).toContain('syncRevenueCatIdentity(isReloadCurrent)');
+    expect(reloadBody).toContain('if (!identityReady || !isReloadCurrent()) return;');
+    expect(reloadBody).toContain('resolvedReloadEpochRef.current = reloadEpoch');
+    expect(publicReloadBody).toContain('resolvedReloadEpochRef.current === requestedEpoch');
+    expect(publicReloadBody).toContain('setAccessResolved(true)');
   });
 });

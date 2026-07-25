@@ -36,7 +36,6 @@
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
   <script src="/assets/fx.js?v=4" defer></script>
-  <script src="/assets/demo.js?v=1" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -116,6 +115,7 @@
         <a href="#reviews">Отзывы</a>
         <a href="#faq">Вопросы</a>
         <a href="/guides/">Гайды</a>
+        <a href="/english-level-test/" style="color:var(--gold);font-weight:600">Тест уровня</a>
         <a class="cta" href="/start/">Подобрать план</a>
       </nav>
     </header>
@@ -197,9 +197,9 @@
       <div class="ribbon" aria-hidden="true">
         <div class="ribbon-track">
           <span class="ribbon-seg">
-            Could I get a coffee, please? <i>◆</i> I’m running late <i>◆</i> That works for me
-            <i>◆</i> Sorry, I didn’t catch that <i>◆</i> It’s on me <i>◆</i> No worries at all
-            <i>◆</i> Could you say that again? <i>◆</i> Let’s keep in touch <i>◆</i>
+            Could I get a coffee, please? <i>◆</i> I'm running late <i>◆</i> That works for me
+            <i>◆</i> Sorry, I didn't catch that <i>◆</i> It's on me <i>◆</i> No worries at all
+            <i>◆</i> Could you say that again? <i>◆</i> Let's keep in touch <i>◆</i>
           </span>
         </div>
       </div>
@@ -249,24 +249,11 @@
         </div>
       </section>
 
-      <!-- Живое демо: скрыто, demo.js показывает его только если браузер умеет
-           распознавать речь. Честность: демо работает через распознавание браузера,
-           в приложении — на устройстве (дисклеймер внутри). -->
-      <section id="try" class="block reveal" hidden>
-        <p class="eyebrow">Попробуйте прямо здесь</p>
-        <h2>Скажите фразу — <span class="gold-accent">вас услышат</span></h2>
-        <p class="sub">Так выглядит главная механика Phraseman: произносите фразу вслух —
-          и сразу видите, насколько получилось.</p>
-        <div class="demo-card">
-          <p class="demo-phrase" id="demo-phrase">Could I get a coffee, please?</p>
-          <p class="demo-translation">«Можно мне кофе, пожалуйста?»</p>
-          <button class="btn-gold demo-mic" id="demo-mic" type="button">🎙️ Сказать вслух</button>
-          <p class="demo-status" id="demo-status" role="status"></p>
-          <p class="demo-cta" id="demo-cta" hidden>В приложении таких фраз 10 000+ —
-            <a href="/download/">скачать и начать первый урок →</a></p>
-          <p class="demo-note">Демо использует распознавание речи вашего браузера.
-            В приложении распознавание работает прямо на телефоне — голос никуда не отправляется.</p>
-        </div>
+      <section class="block reveal" style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:20px;margin:40px auto;max-width:900px;padding:48px 32px;text-align:center">
+        <p class="eyebrow" style="color:var(--gold)">Бесплатно · Без регистрации</p>
+        <h2 style="color:#fff;font-size:2rem;margin:12px 0">Узнайте свой уровень английского</h2>
+        <p style="color:#aaa;max-width:520px;margin:0 auto 24px">12–20 адаптивных вопросов A1–C2. Именной сертификат прямо в браузере. 5–7 минут.</p>
+        <a class="btn-gold" href="/english-level-test/" style="display:inline-block">Пройти тест →</a>
       </section>
 
       <section id="timeline" class="block reveal">
@@ -288,7 +275,7 @@
         <div class="quotes">
           <article class="quote">
             <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-            <div class="qmark">“</div>
+            <div class="qmark">"</div>
             <p>Я использовал такие приложения, как Дуолинго, Puzzle English, English Galaxy, Glossika,
               Anki. Только это приложение вдохновляет, мотивирует и делает обучение интересным,
               по-настоящему наделяет способностью понимать и говорить правильно на современном
@@ -297,7 +284,7 @@
           </article>
           <article class="quote">
             <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-            <div class="qmark">“</div>
+            <div class="qmark">"</div>
             <p>Отличная система: учишь не изолированные лексические единицы, а целые фразы
               и словосочетания, которые реально используют носители… Алгоритм подсовывает
               забывающиеся фразы ровно вовремя, так что материал реально уходит в долгую память.
@@ -306,7 +293,7 @@
           </article>
           <article class="quote">
             <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-            <div class="qmark">“</div>
+            <div class="qmark">"</div>
             <p>Увидел приложение у жены. Очень впечатлился. С первого урока уже увлекает и хочется
               продолжать заниматься… Короткие, но очень понятные подсказки при ошибках.
               Приложение рекомендую 👍</p>
@@ -314,7 +301,7 @@
           </article>
           <article class="quote">
             <div class="stars" aria-label="Оценка 5 из 5"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg></div>
-            <div class="qmark">“</div>
+            <div class="qmark">"</div>
             <p>Простые фразы хорошо запоминаются, чётко и кратко подаётся грамматика, а ещё есть
               «фишка» — значения слов приводятся с комментарием, часто с юмором. Рекомендую.</p>
             <footer>— отзыв в Google Play</footer>
@@ -441,6 +428,7 @@
         <a href="/premium/">Premium</a>
         <a href="/gift/">Подарить</a>
         <a href="/guides/">Гайды</a>
+        <a href="/english-level-test/">Тест уровня</a>
         <a href="/contact/">Поддержка</a>
         <a href="/legal/privacy/">Конфиденциальность</a>
         <a href="/legal/terms/">Условия</a>
@@ -454,6 +442,10 @@
     <a href="#" data-top aria-label="Наверх">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg>
       <span class="dock-label">Наверх</span>
+    </a>
+    <a href="/english-level-test/" aria-label="Тест уровня">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span class="dock-label">Тест</span>
     </a>
     <a href="/guides/" aria-label="Гайды">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2V4Z" /><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7V4Z" /></svg>

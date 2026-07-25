@@ -31,6 +31,7 @@ describe('Admin v2 native capability routing', () => {
       ['asset-studio', 'asset-studio'],
       ['coin-center', 'coin-center'],
       ['daily-digest', 'daily-briefing'],
+      ['english-test', 'english-test'],
       ['gmail-support', 'support'],
       ['openai-budget', 'diagnostics'],
       ['paywall-ab', 'application'],
@@ -59,7 +60,7 @@ describe('Admin v2 native capability routing', () => {
     const canonicalHashes = [
       'overview', 'application', 'users', 'money', 'content', 'community', 'diagnostics',
       'support', 'analytics', 'daily-briefing', 'report-center', 'asset-studio', 'campaigns',
-      'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center',
+      'control-panel', 'admin-settings', 'agent-office', 'agent-manager', 'plans', 'coin-center', 'english-test',
     ];
 
     for (const route of canonicalHashes) {

@@ -13,26 +13,33 @@ function deferred() {
 
 const source = fs.readFileSync(new URL('../admin/v2/scripts/admin-firebase.js', import.meta.url), 'utf8');
 
+// Owner decision (2026-07-24): the admin panel must remember the session across
+// browser restarts and devices, so persistence is local, not session-only.
 assert.match(
   source,
-  /import \{[^}]*browserSessionPersistence[^}]*setPersistence[^}]*\} from 'https:\/\/www\.gstatic\.com\/firebasejs\/10\.12\.2\/firebase-auth\.js';/,
-  'Admin V2 must import Firebase session persistence explicitly',
+  /import \{[^}]*browserLocalPersistence[^}]*setPersistence[^}]*\} from 'https:\/\/www\.gstatic\.com\/firebasejs\/10\.12\.2\/firebase-auth\.js';/,
+  'Admin V2 must import Firebase local persistence explicitly',
 );
 assert.doesNotMatch(
   source,
-  /\bbrowserLocalPersistence\b|\binMemoryPersistence\b/,
-  'Admin V2 must not use local or in-memory auth persistence',
+  /\bbrowserSessionPersistence\b|\binMemoryPersistence\b/,
+  'Admin V2 must not downgrade auth persistence to session-only or in-memory',
 );
 assert.match(
   source,
-  /await\s+setPersistence\s*\(\s*auth\s*,\s*browserSessionPersistence\s*\)/,
-  'Admin V2 initialization must await browserSessionPersistence',
+  /await\s+setPersistence\s*\(\s*auth\s*,\s*browserLocalPersistence\s*\)/,
+  'Admin V2 initialization must await browserLocalPersistence',
 );
 assert.equal(
   source.match(/\bsetPersistence\s*\(/g)?.length,
   1,
   'Admin V2 must configure auth persistence exactly once',
 );
+
+// Owner decision (2026-07-24): popup sign-in hangs on phones, so mobile uses
+// redirect sign-in and startup completes any pending redirect result.
+assert.match(source, /\bsignInWithRedirect\b/, 'Admin V2 must support redirect sign-in for mobile browsers');
+assert.match(source, /await\s+getRedirectResult\s*\(\s*auth\s*\)/, 'Admin V2 must complete redirect sign-in during initialization');
 
 const executableSource = source
   .replace(/^import .*;[\r\n]+/gm, '')
@@ -49,7 +56,7 @@ function createHarness() {
       calls.push(['setCustomParameters', parameters]);
     },
   };
-  const browserSessionPersistence = { type: 'SESSION' };
+  const browserLocalPersistence = { type: 'LOCAL' };
 
   const dependencies = {
     initializeApp() {
@@ -60,10 +67,14 @@ function createHarness() {
       calls.push(['getAuth', observedApp]);
       return auth;
     },
-    browserSessionPersistence,
+    browserLocalPersistence,
     setPersistence(observedAuth, persistence) {
       calls.push(['setPersistence', observedAuth, persistence]);
       return persistenceGate.promise;
+    },
+    getRedirectResult(observedAuth) {
+      calls.push(['getRedirectResult', observedAuth]);
+      return Promise.resolve(null);
     },
     GoogleAuthProvider: function GoogleAuthProvider() {
       calls.push(['GoogleAuthProvider']);
@@ -75,6 +86,10 @@ function createHarness() {
     },
     signInWithPopup(observedAuth, observedProvider) {
       calls.push(['signInWithPopup', observedAuth, observedProvider]);
+      return Promise.resolve();
+    },
+    signInWithRedirect(observedAuth, observedProvider) {
+      calls.push(['signInWithRedirect', observedAuth, observedProvider]);
       return Promise.resolve();
     },
     signOut(observedAuth) {
@@ -97,11 +112,13 @@ function createHarness() {
     const {
       initializeApp,
       getAuth,
-      browserSessionPersistence,
+      browserLocalPersistence,
       setPersistence,
+      getRedirectResult,
       GoogleAuthProvider,
       onAuthStateChanged,
       signInWithPopup,
+      signInWithRedirect,
       signOut,
       getFunctions,
       httpsCallable
@@ -112,7 +129,7 @@ function createHarness() {
 
   return {
     auth,
-    browserSessionPersistence,
+    browserLocalPersistence,
     calls,
     createFirebaseAdminActions,
     persistenceGate,
@@ -133,27 +150,29 @@ try {
   assert.deepEqual(success.calls, [
     ['initializeApp'],
     ['getAuth', {}],
-    ['setPersistence', success.auth, success.browserSessionPersistence],
-  ], 'no observer, callable, or action may initialize before session persistence succeeds');
+    ['setPersistence', success.auth, success.browserLocalPersistence],
+  ], 'no observer, callable, or action may initialize before local persistence succeeds');
   assert.equal(actions, undefined, 'sign-in actions must stay unavailable until persistence is configured');
 
   success.persistenceGate.resolve();
   const resolvedActions = await creation;
   const persistenceIndex = success.calls.findIndex(([name]) => name === 'setPersistence');
+  const redirectResultIndex = success.calls.findIndex(([name]) => name === 'getRedirectResult');
   const observerIndex = success.calls.findIndex(([name]) => name === 'onAuthStateChanged');
   const firstCallableIndex = success.calls.findIndex(([name]) => name === 'httpsCallable');
-  assert.ok(firstCallableIndex > persistenceIndex, 'callables must initialize only after session persistence succeeds');
-  assert.ok(observerIndex > persistenceIndex, 'the auth observer must subscribe only after session persistence succeeds');
+  assert.ok(redirectResultIndex > persistenceIndex, 'redirect sign-in must complete only after local persistence succeeds');
+  assert.ok(firstCallableIndex > redirectResultIndex, 'callables must initialize only after redirect completion');
+  assert.ok(observerIndex > redirectResultIndex, 'the auth observer must subscribe only after redirect completion');
 
   await resolvedActions.signIn();
   await resolvedActions.signOut();
   assert.deepEqual(success.calls.slice(-2), [
     ['signInWithPopup', success.auth, success.provider],
     ['signOut', success.auth],
-  ], 'existing sign-in and sign-out actions must remain bound to the same auth instance');
+  ], 'desktop sign-in must use the popup and stay bound to the same auth instance');
 
   const failure = createHarness();
-  const persistenceError = new Error('session_persistence_unavailable');
+  const persistenceError = new Error('local_persistence_unavailable');
   let rejectedActions;
   const failedCreation = failure.createFirebaseAdminActions({ onAuth() {} }).then((value) => {
     rejectedActions = value;
@@ -165,13 +184,13 @@ try {
   await assert.rejects(
     failedCreation,
     (error) => error === persistenceError,
-    'Admin V2 initialization must reject when session persistence cannot be configured',
+    'Admin V2 initialization must reject when local persistence cannot be configured',
   );
   assert.equal(rejectedActions, undefined, 'no Admin V2 actions may be returned after persistence rejection');
   assert.deepEqual(failure.calls, [
     ['initializeApp'],
     ['getAuth', {}],
-    ['setPersistence', failure.auth, failure.browserSessionPersistence],
+    ['setPersistence', failure.auth, failure.browserLocalPersistence],
   ], 'persistence rejection must fail closed before observers, callables, or actions initialize');
 } finally {
   delete globalThis.PHR_MAN_FIREBASE_CONFIG;

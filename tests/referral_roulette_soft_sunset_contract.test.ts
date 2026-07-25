@@ -96,9 +96,13 @@ describe('referral roulette soft sunset integration contract', () => {
     expect(referrals).toContain('marketingVisible');
     expect(referrals).toContain('referrals-sunset-pending-deadline');
     expect(referrals).toContain('referrals-sunset-spin-expiry');
-    expect(friends).toContain('referralUiVisible');
     expect(friends).toContain('referralMarketingVisible');
     expect(friends).toContain('isReferralAccountRequestCurrent(requestToken, referralAccountKey)');
+    // Drain-видимость для входа в рулетку теперь несёт инвайт-баннер настроек.
+    const settings = read('app/(tabs)/settings.tsx');
+    expect(settings).toContain('settingsReferralDrainVisible');
+    expect(settings).toContain('settingsReferralRowVisible');
+    expect(settings).toContain('testID="settings-invite-banner"');
   });
 
   test('Admin V2 exposes separate audited soft and emergency controls', () => {

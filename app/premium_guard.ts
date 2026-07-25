@@ -22,6 +22,10 @@ let _cachedAccessResult: boolean | null = null;
 let _accessCacheTime = 0;
 let _lastCloudAccessRefreshTime = 0;
 let _cloudAccessRefreshInFlight: Promise<boolean> | null = null;
+let _premiumAccountTransitionEpoch = 0;
+const _premiumAccountTransitionListeners = new Set<(epoch: number) => void>();
+let _premiumAccountWorkCount = 0;
+const _premiumAccountWorkIdleWaiters = new Set<() => void>();
 
 /** Invalidate the in-memory cache (call after purchase/restore). */
 export function invalidatePremiumCache(): void {
@@ -31,6 +35,73 @@ export function invalidatePremiumCache(): void {
   _vipCacheTime = 0;
   _cachedAccessResult = null;
   _accessCacheTime = 0;
+}
+
+/**
+ * Starts a fail-closed entitlement boundary before the canonical account changes.
+ * This is intentionally synchronous: mounted UI must stop rendering account A's
+ * Premium/VIP state before any wipe, restore, or RevenueCat request for account B.
+ */
+export function beginPremiumAccountTransition(): number {
+  invalidatePremiumCache();
+  _lastCloudAccessRefreshTime = 0;
+  _cloudAccessRefreshInFlight = null;
+  _premiumAccountTransitionEpoch += 1;
+  const epoch = _premiumAccountTransitionEpoch;
+  for (const listener of _premiumAccountTransitionListeners) {
+    try {
+      listener(epoch);
+    } catch {
+      // A broken UI subscriber must not interrupt an auth/account transition.
+    }
+  }
+  return epoch;
+}
+
+export function onPremiumAccountTransition(
+  listener: (epoch: number) => void,
+): { remove: () => void } {
+  _premiumAccountTransitionListeners.add(listener);
+  return {
+    remove: () => {
+      _premiumAccountTransitionListeners.delete(listener);
+    },
+  };
+}
+
+export function getPremiumAccountTransitionEpoch(): number {
+  return _premiumAccountTransitionEpoch;
+}
+
+/**
+ * Registers delayed entitlement work against the current account epoch. Auth
+ * transitions invalidate the epoch first, then drain registered native writes
+ * before wiping account A, so an old VIP callback cannot finish into account B.
+ */
+export async function runPremiumAccountScopedWork<T>(
+  epoch: number,
+  work: (isCurrent: () => boolean) => Promise<T>,
+): Promise<T | undefined> {
+  if (epoch !== _premiumAccountTransitionEpoch) return undefined;
+  _premiumAccountWorkCount += 1;
+  const isCurrent = () => epoch === _premiumAccountTransitionEpoch;
+  try {
+    if (!isCurrent()) return undefined;
+    return await work(isCurrent);
+  } finally {
+    _premiumAccountWorkCount = Math.max(0, _premiumAccountWorkCount - 1);
+    if (_premiumAccountWorkCount === 0) {
+      for (const resolve of _premiumAccountWorkIdleWaiters) resolve();
+      _premiumAccountWorkIdleWaiters.clear();
+    }
+  }
+}
+
+export function waitForPremiumAccountWorkIdle(): Promise<void> {
+  if (_premiumAccountWorkCount === 0) return Promise.resolve();
+  return new Promise<void>((resolve) => {
+    _premiumAccountWorkIdleWaiters.add(resolve);
+  });
 }
 
 /**

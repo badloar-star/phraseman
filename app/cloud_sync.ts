@@ -126,6 +126,11 @@ import {
   posMasteryKey,
   premiumCourseLevelKey,
   prepositionDrillPerfectKey,
+  quizAchievementCounterKey,
+  quizLifetimeCounterKey,
+  quizNavLevelKey,
+  quizPerfectLevelsTodayKey,
+  quizPerfectStreakKey,
   resolvedPersonalTrainingsKey,
   shareAchievementCounterKey,
   targetKey,
@@ -219,6 +224,15 @@ export const FRENCH_TARGET_SYNC_KEYS = [
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_KEY,
   FRENCH_CLOUD_DAILY_TASKS_PROGRESS_DAY_KEY,
   dailyTasksRerollKey('fr'),
+  quizNavLevelKey('fr'),
+  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'fr'),
+  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_total_count', 'fr'),
+  quizAchievementCounterKey('quiz_hard_count', 'fr'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'fr'),
+  quizPerfectLevelsTodayKey('fr'),
+  quizPerfectStreakKey('fr'),
   ...FRENCH_SYNC_LESSON_IDS.flatMap((lessonId) => [
     lessonBestScoreKey(lessonId, 'fr'),
     lessonPassCountKey(lessonId, 'fr'),
@@ -370,6 +384,14 @@ export const SYNC_KEYS = [
   'achievement_trainer_correct_count',
   'achievement_trainer_correct_streak_v1',
   'achievement_trainer_perfect_session_count',
+  quizAchievementCounterKey('achievement_quiz_total_count', 'en'),
+  quizAchievementCounterKey('quiz_hard_count', 'en'),
+  quizAchievementCounterKey('achievement_quiz_hard_perfect_count', 'en'),
+  quizPerfectLevelsTodayKey('en'),
+  quizPerfectStreakKey('en'),
+  quizLifetimeCounterKey('lifetime_quiz_easy_v1', 'en'),
+  quizLifetimeCounterKey('lifetime_quiz_medium_v1', 'en'),
+  quizLifetimeCounterKey('lifetime_quiz_hard_v1', 'en'),
   'achievement_all_daily_streak_v1',
   'helpful_error_reports_confirmed_v1',
   'achievement_daily_phrase_read_count',
@@ -603,6 +625,15 @@ export function accountLocalDataKeysForToday(todayKey: string = getTodayKey()): 
     fiftyFiftyUsageKey(todayKey, target),
     lessonBonusHintsKey(todayKey, target),
     diagnosticOpenFlagKey(target),
+    quizNavLevelKey(target),
+    quizLifetimeCounterKey('lifetime_quiz_easy_v1', target),
+    quizLifetimeCounterKey('lifetime_quiz_medium_v1', target),
+    quizLifetimeCounterKey('lifetime_quiz_hard_v1', target),
+    quizAchievementCounterKey('achievement_quiz_total_count', target),
+    quizAchievementCounterKey('quiz_hard_count', target),
+    quizAchievementCounterKey('achievement_quiz_hard_perfect_count', target),
+    quizPerfectLevelsTodayKey(target),
+    quizPerfectStreakKey(target),
     irregularVerbsGlobalKey(target),
     lingmanCertificateKey(target),
     flashcardsMarketplaceBuiltCardsCacheKey(target),
@@ -1135,6 +1166,9 @@ const LEGACY_FREE_LESSON_MIGRATION_RESTORE_KEYS = new Set<string>([
 // can reset to 0), dates (streak_last_date, *_period_start), and current-state
 // values (gift_xp_multiplier, wager_discount, weekly_xp which resets weekly).
 export const MONOTONIC_COUNTER_RESTORE_KEYS = [
+  'achievement_quiz_total_count',
+  'quiz_hard_count',
+  'achievement_quiz_hard_perfect_count',
   'achievement_trainer_correct_count',
   'achievement_trainer_perfect_session_count',
   'achievement_active_recall_correct_count',
@@ -1149,6 +1183,11 @@ export const MONOTONIC_COUNTER_RESTORE_KEYS = [
   'shards_lifetime_earned_v1',
 ] as const;
 const MONOTONIC_COUNTER_RESTORE_KEY_SET = new Set<string>(MONOTONIC_COUNTER_RESTORE_KEYS);
+
+function isMonotonicCounterRestoreKey(key: string): boolean {
+  const scoped = targetScopedRestoreInfo(key);
+  return MONOTONIC_COUNTER_RESTORE_KEY_SET.has(scoped?.id ?? key);
+}
 
 function parseLessonProgressArray(raw: unknown): string[] | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
@@ -1296,6 +1335,31 @@ function mergeOwnedRestoreValue(cloudValue: string, localValue: string | null | 
   return JSON.stringify(merged);
 }
 
+/**
+ * #11 multi-device: уроковый прогресс, чей merge в mergeLessonRestoreValue
+ * строго МОНОТОНЕН (union множеств / max / OR / лучшее качество ответов) —
+ * применение такого merge не может откатить достижения ни на одном устройстве.
+ * Поэтому эти семьи ключей restore подмешивает даже в sticky-ветке
+ * (localXP ≥ cloudXP), где полный merge запрещён XP-гейтом.
+ *
+ * Держать СИНХРОННЫМ с монотонными ветками mergeLessonRestoreValue: новое
+ * семейство прогресс-ключей (новый тип контента, напр. Learning V2) добавляется
+ * ОДНОЙ строкой сюда + соответствующей веткой стратегии в mergeLessonRestoreValue.
+ * Ключи с НЕ-монотонной стратегией (lesson*_cellIndex, даты, кап бесплатных
+ * уроков, streak/weekly-скаляры) сюда НЕ входят. Контракт поведения —
+ * tests/cloud_sync_lesson_union_restore.test.ts.
+ */
+function isMonotonicLessonRestoreKey(key: string): boolean {
+  const scoped = targetScopedRestoreInfo(key);
+  const restoreId = scoped?.id ?? key;
+  if (restoreId === 'unlocked_lessons') return true;
+  if (/^level_exam_[A-Za-z0-9_-]+_(?:passed|available|pct|best_pct|pass_count|attempt_count|medal_tier)$/.test(restoreId)) return true;
+  if (/^lesson\d+_(?:pass_count|best_score|progress)$/.test(restoreId)) return true;
+  if (scoped?.domain === 'lesson_progress' && /^\d+$/.test(restoreId)) return true;
+  if (/^achievement_lesson_\d+_perfect_passes_v1$/.test(restoreId)) return true;
+  return false;
+}
+
 function mergeLessonRestoreValue(
   key: string,
   cloudValue: string,
@@ -1318,7 +1382,7 @@ function mergeLessonRestoreValue(
   // #10 multi-device: strictly-additive lifetime counters take the max so a
   // concurrent push of a lower value on another device can't lose progress.
   // Allowlist only (never streaks/dates/multipliers — those can legitimately drop).
-  if (MONOTONIC_COUNTER_RESTORE_KEY_SET.has(key)) {
+  if (isMonotonicCounterRestoreKey(key)) {
     return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
   }
   // K2: владение (покупки/выдачи) строго аддитивно — union вместо перезаписи облаком.
@@ -1425,7 +1489,7 @@ async function buildFrenchTargetStickyRestorePairs(cloudData: Record<string, unk
     const storageValue = cloudProgressStorageValue(key, val);
     // K2: owned-ключи (fr-scoped паки флешкарт и т.п.) мержим union'ом и в sticky-ветке —
     // покупка на другом девайсе догоняет устройство, локальная офлайн-покупка не теряется.
-    if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key)) {
+    if (RESTORE_MERGE_KEY_SET.has(key) || isOwnedUnionRestoreKey(key) || isMonotonicCounterRestoreKey(key)) {
       const merged = mergeLessonRestoreValue(key, storageValue, localValue);
       if (merged !== localValue) pairs.push([key, merged]);
       continue;
@@ -1591,8 +1655,10 @@ export async function ensureAnonUser(): Promise<string | null> {
 async function waitForFirebaseAuthUid(): Promise<string | null> {
   let authUid = getAuthUserId();
   if (authUid) return authUid;
-  for (let i = 0; i < 4; i += 1) {
-    await new Promise((resolve) => setTimeout(resolve, 350));
+  // Холодный старт (Redmi/Android 10): Firebase Auth/мост поднимаются дольше
+  // старых ~1.4с — auth_link обрывался ДО появления uid (инцидент 2026-07-21).
+  for (let i = 0; i < 80; i += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 250));
     authUid = getAuthUserId();
     if (authUid) return authUid;
   }
@@ -1687,6 +1753,34 @@ export async function ensureStableAuthLink(): Promise<boolean> {
   const stableId = await ensureAnonUser();
   if (!stableId) return false;
   return ensureStableAuthLinkForStableId(stableId);
+}
+
+export type AuthRecoveryHint = {
+  found: boolean;
+  linked: boolean;
+  provider?: 'google' | 'apple' | null;
+  maskedEmail?: string | null;
+};
+
+/**
+ * Подсказка «каким аккаунтом входить» для recovery-модалки: сервер отдаёт
+ * только МАСКУ email (usk***@gmail.com) и провайдера по stable_id — полный
+ * email никогда не покидает сервер. Best-effort: любой сбой → null, модалка
+ * просто показывается без подсказки.
+ */
+export async function fetchAuthRecoveryHint(stableIdRaw: string): Promise<AuthRecoveryHint | null> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return null;
+  const stableId = String(stableIdRaw || '').trim();
+  if (!stableId) return null;
+  const authUid = await waitForFirebaseAuthUid();
+  if (!authUid) return null;
+  try {
+    const fn = callable<{ stableId: string }, AuthRecoveryHint>('authRecoveryHint');
+    const res = await withTimeout(fn({ stableId }), STABLE_AUTH_LINK_TIMEOUT_MS, 'recovery_hint');
+    return res?.data ?? null;
+  } catch {
+    return null;
+  }
 }
 
 export type MergeStableAccountsResult = {
@@ -2211,7 +2305,7 @@ async function applyRestoreFromUserDoc(
     // the counter never regresses on this device.
     const localCounterMap = Object.fromEntries(
       await AsyncStorage.multiGet([
-        ...MONOTONIC_COUNTER_RESTORE_KEYS,
+        ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
         'weekly_xp',
         'weekly_xp_period_start',
         'week_points',
@@ -2219,7 +2313,7 @@ async function applyRestoreFromUserDoc(
       ]),
     ) as Record<string, string | null>;
     assertCurrent();
-    for (const key of MONOTONIC_COUNTER_RESTORE_KEYS) {
+    for (const key of getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey)) {
       const cloudVal = cloudData[key];
       if (cloudVal === null || cloudVal === undefined) continue;
       const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localCounterMap[key]);
@@ -2276,6 +2370,28 @@ async function applyRestoreFromUserDoc(
         if (cloudVal === null || cloudVal === undefined || String(cloudVal).trim() === '') continue;
         const merged = mergeOwnedRestoreValue(cloudProgressStorageValue(key, cloudVal), localOwnedMap[key]);
         if (merged !== localOwnedMap[key]) stickyPairs.push([key, merged]);
+      }
+    }
+    // #11 multi-device: уроки с другого устройства догоняют этот девайс даже
+    // когда localXP ≥ cloudXP (обычный случай у активного юзера на втором
+    // устройстве). Уроковый прогресс строго монотонен (union/max/OR — см.
+    // isMonotonicLessonRestoreKey), поэтому подмешивание не может откатить
+    // локальные достижения, а следующий исходящий sync увезёт объединённое
+    // состояние обратно в облако — устройства сходятся. Без этого блока
+    // XP-гейт выше навсегда отрезал уроковый прогресс на более активном
+    // устройстве: Plus/косметика (sticky выше) ездили между девайсами,
+    // а уроки — нет.
+    const stickyLessonKeys = getRuntimeSyncKeys().filter(isMonotonicLessonRestoreKey);
+    if (stickyLessonKeys.length > 0) {
+      const localLessonStickyMap = Object.fromEntries(
+        await AsyncStorage.multiGet(stickyLessonKeys),
+      ) as Record<string, string | null>;
+      assertCurrent();
+      for (const key of stickyLessonKeys) {
+        const cloudVal = cloudData[key];
+        if (cloudVal === null || cloudVal === undefined) continue;
+        const merged = mergeLessonRestoreValue(key, cloudProgressStorageValue(key, cloudVal), localLessonStickyMap[key]);
+        if (merged !== localLessonStickyMap[key]) stickyPairs.push([key, merged]);
       }
     }
     const cloudActiveAura = cloudData[USER_AVATAR_AURA_KEY];
@@ -2372,7 +2488,7 @@ async function applyRestoreFromUserDoc(
   const localLessonRestoreMap = Object.fromEntries(
     await AsyncStorage.multiGet([
       ...RESTORE_MERGE_KEY_SET,
-      ...MONOTONIC_COUNTER_RESTORE_KEYS,
+      ...getRuntimeSyncKeys().filter(isMonotonicCounterRestoreKey),
       ...ownedUnionRuntimeKeys,
       'weekly_xp',
       'weekly_xp_period_start',
@@ -2650,6 +2766,7 @@ export const __cloudSyncTestHooks = {
   completedCloudRestoreAttempt,
   applyRestoreFromUserDoc,
   mergeLessonRestoreValue,
+  isMonotonicLessonRestoreKey,
   mergeOwnedFlagMap,
   mergeOwnedRestoreValue,
   isOwnedUnionRestoreKey,

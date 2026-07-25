@@ -9,18 +9,6 @@ import { IRREGULAR_VERBS_BY_LESSON } from '../app/irregular_verbs_data';
 import { LESSON_WORD_SOURCE_LOCALES_BY_EN } from '../app/lesson_words_source_locales';
 import { getAllDiagnosisTrainings } from '../app/diagnosis_trainings';
 import {
-  getQuizPhrases,
-  getQuizPoolAuditEntries,
-  type QuizDifficulty,
-  type QuizPoolAuditEntry,
-} from '../app/quiz_data';
-import {
-  getStructuredQuizSourceLocalePayload,
-  QUIZ_SOURCE_LOCALE_PAYLOADS,
-  type QuizSourceLocalePayload,
-  type QuizSourceLocalePayloadMap,
-} from '../app/quiz_source_locale_payloads';
-import {
   HEISENBERG_BATCH_SOURCE_LOCALES,
   type HeisenbergSourceLocale,
   type SourceLocale,
@@ -44,7 +32,6 @@ const {
 
 type Severity = 'blocker' | 'warning';
 type Surface =
-  | 'quiz'
   | 'daily_phrase'
   | 'flashcards'
   | 'irregular_verbs'
@@ -56,8 +43,8 @@ type SemanticFinding = {
   severity: Severity;
   code: string;
   surface: Surface;
+  difficulty?: string;
   locale?: SourceLocale | HeisenbergSourceLocale;
-  difficulty?: QuizDifficulty;
   ordinal?: number;
   matchedOrdinal?: number;
   id?: number | string;
@@ -87,7 +74,6 @@ type SemanticReport = {
   findings: SemanticFinding[];
 };
 
-const DIFFICULTIES: QuizDifficulty[] = ['easy', 'medium', 'hard'];
 const ALL_RUNTIME_LOCALES = HEISENBERG_BATCH_SOURCE_LOCALES as readonly SourceLocale[];
 const DAILY_PHRASE_FIELDS = ['literal', 'meaning', 'text'] as const;
 const FLASHCARD_BATCH_REQUIRED_CATEGORY_IDS = new Set([
@@ -151,6 +137,9 @@ function auditTextEncoding(
   }
 }
 
+/* Quiz/Arena was intentionally decommissioned. Keep the former audit logic as
+ * non-executable history until the localization pipeline is split cleanly. */
+/*
 function auditQuizPayload(
   findings: SemanticFinding[],
   difficulty: QuizDifficulty,
@@ -490,6 +479,8 @@ function auditRuntimeEnglishTarget(findings: SemanticFinding[]): void {
   }
 }
 
+function isTriTextLike(value: unknown): value is TriTextLike {
+*/
 function isTriTextLike(value: unknown): value is TriTextLike {
   return Boolean(
     value &&
@@ -1232,8 +1223,6 @@ function writeReport(report: SemanticReport): string {
 
 export function runSemanticAudit(strict = false): { report: SemanticReport; outDir: string } {
   const findings: SemanticFinding[] = [];
-  auditStructuredQuizPayloads(findings);
-  auditRuntimeEnglishTarget(findings);
   auditDailyPhrase(findings);
   auditFlashcards(findings);
   auditIrregularVerbs(findings);

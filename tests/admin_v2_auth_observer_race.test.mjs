@@ -13,7 +13,9 @@ function deferred() {
 
 const source = fs.readFileSync(new URL('../admin/v2/scripts/admin-firebase.js', import.meta.url), 'utf8');
 const functionStart = source.indexOf('export function observeAdminAuthState');
-const functionEnd = source.indexOf('\n\nexport async function createFirebaseAdminActions', functionStart);
+// The file mixes LF and CRLF lines, so the boundary search must tolerate both.
+const separatorMatch = /\r?\n\r?\nexport async function createFirebaseAdminActions/.exec(source.slice(Math.max(functionStart, 0)));
+const functionEnd = separatorMatch ? functionStart + separatorMatch.index : -1;
 assert(functionStart >= 0 && functionEnd > functionStart, 'observeAdminAuthState must be a separately testable boundary');
 const functionSource = source
   .slice(functionStart, functionEnd)

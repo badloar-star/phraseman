@@ -36,7 +36,7 @@ async function installBackend(page: Page) {
       activateFactoryRelease: async () => { backend.activeRelease = 'release-new'; backend.revision += 1; backend.calls.push(['activate']); return { revision: backend.revision }; },
       rollbackFactoryRelease: async () => { backend.activeRelease = 'release-old'; backend.revision += 1; backend.calls.push(['rollback']); return { revision: backend.revision }; },
       getDailyBriefing: async () => null,
-    }, { get(target, key) { if (key === 'then') return undefined; return key in target ? target[key] : async () => ({}); } });
+    }, { get(target, key) { if (key === 'then') return undefined; return typeof key === 'string' && key in target ? (target as Record<string, any>)[key] : async () => ({}); } });
     (globalThis as any).__R7_BACKEND__ = backend;
     (globalThis as any).__PHRASEMAN_ADMIN_E2E__ = { auth: { authorized: true, email: 'e2e@localhost', role: 'admin' }, actions };
   });
@@ -251,7 +251,7 @@ for (const width of [375, 768, 1024, 1440]) {
     const focus = await buttons.first().evaluate((element) => { const style = getComputedStyle(element); return { outline: style.outlineStyle, width: style.outlineWidth, name: element.getAttribute('title') || element.textContent?.trim() }; });
     expect(focus.name).toBeTruthy();
     expect(focus.outline === 'none' && focus.width === '0px').toBe(false);
-    const layout = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth, overlaps: [...document.querySelectorAll('.content-generator-shell button')].some((a, index, all) => all.slice(index + 1).some((b) => { const x = a.getBoundingClientRect(), y = b.getBoundingClientRect(); return x.width > 0 && y.width > 0 && x.left < y.right && x.right > y.left && x.top < y.bottom && x.bottom > y.top; })) }));
+    const layout = await page.evaluate(() => ({ overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth, overlaps: Array.from(document.querySelectorAll('.content-generator-shell button')).some((a, index, all) => all.slice(index + 1).some((b) => { const x = a.getBoundingClientRect(), y = b.getBoundingClientRect(); return x.width > 0 && y.width > 0 && x.left < y.right && x.right > y.left && x.top < y.bottom && x.bottom > y.top; })) }));
     expect(layout).toEqual({ overflow: false, overlaps: false });
     await expect(page.locator('#auth-status')).toHaveAttribute('role', 'status');
     await page.screenshot({ path: `qa-artifacts/r7-admin-e2e/admin-${width}.png`, fullPage: true });

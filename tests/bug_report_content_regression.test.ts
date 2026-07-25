@@ -1,21 +1,10 @@
 import { LESSON_DATA } from '../app/lesson_data_all';
-import { getQuizPoolAuditEntries } from '../app/quiz_data';
 import { phraseAnswerAlternatives, phraseCanonicalAnswer } from '../app/phrase_target_utils';
 import { isCorrectAnswer } from '../constants/contractions';
 import fs from 'fs';
 import path from 'path';
 
 describe('reported content regressions', () => {
-  it('accepts both natural translations for "He listens/is listening to music"', () => {
-    const row = getQuizPoolAuditEntries('easy').find((entry) =>
-      entry.choices.includes('He is listening to music.'),
-    );
-
-    expect(row).toBeTruthy();
-    expect(row?.choices).toContain('He listens to music.');
-    expect(row?.correct).toEqual([0, 1]);
-  });
-
   it('accepts clean up your room for lesson 18 phrase 20', () => {
     const phrase = LESSON_DATA[18].phrases.find((row) => row.id === 'lesson18_phrase_20');
 
@@ -402,40 +391,4 @@ describe('reported content regressions', () => {
     }
   });
 
-  it('accepts every equally-valid quiz choice flagged by the content audit', () => {
-    // Each tuple: [difficulty, a distinctive choice substring to locate the item,
-    //              [the choice texts that MUST all be accepted]].
-    const cases: Array<['easy' | 'medium' | 'hard', string, string[]]> = [
-      ['easy', 'Will we go to snowman?', ['Will we go to cinema?', 'Shall we go to cinema?']],
-      ['easy', 'I will goes to the shop tomorrow.', ['I will go to the shop tomorrow.', 'I am going to the shop tomorrow.']],
-      ['medium', 'I repaired my bike by my shelf.', ['I repaired my bike by myself.', 'I repaired my bike myself.']],
-      ['medium', 'We are at the scenario now.', ['We are in the cinema now.', 'We are at the cinema now.']],
-      ['hard', 'She advocates imploding new teaching methods.', ['She advocates implementing new teaching methods.', 'She advocates for implementing new teaching methods.']],
-      ['hard', 'Swimmingly, he was unaware of the regulations when making the decision.', ['Seemingly, he was unaware of the regulations when making the decision.', 'Seemingly, he was unaware of the regulations when making a decision.']],
-      ['hard', 'Wont coffee?', ['Want coffee?', 'Do you want a coffee?']],
-      ['hard', 'She actively avocados the use of renewable energy sources.', ['She actively advocates the use of renewable energy sources.', 'She actively advocates for the use of renewable energy sources.']],
-      ['hard', 'He is believed to have yearned a fortune from investments.', ['He is believed to have earned a fortune from investments.', 'It is believed that he earned a fortune from investments.']],
-      ['hard', 'Stop walking around and about.', ['Stop beating around the bush.', 'Stop beating about the bush.']],
-    ];
-    for (const [difficulty, locator, mustAccept] of cases) {
-      const entry = getQuizPoolAuditEntries(difficulty).find((e) => e.choices.includes(locator));
-      expect(entry).toBeTruthy();
-      const accepted = (Array.isArray(entry!.correct) ? entry!.correct : [entry!.correct]).map((i) => entry!.choices[i]);
-      for (const choice of mustAccept) {
-        expect(accepted).toContain(choice);
-      }
-      // explanation arrays must still line up with choices (runtime validity guard)
-      expect(entry!.explanations.length).toBe(entry!.choices.length);
-      expect(entry!.explanationsUK.length).toBe(entry!.choices.length);
-    }
-  });
-
-  it('disambiguates the present-continuous coffee quiz so simple present is genuinely wrong', () => {
-    const entry = getQuizPoolAuditEntries('easy').find((e) => e.choices.includes('She is drinking coughy.'));
-    expect(entry).toBeTruthy();
-    // Prompt now carries a now-marker; only the continuous form is correct.
-    expect(entry!.ru).toContain('прямо сейчас');
-    const accepted = (Array.isArray(entry!.correct) ? entry!.correct : [entry!.correct]).map((i) => entry!.choices[i]);
-    expect(accepted).toEqual(['She is drinking coffee.']);
-  });
 });

@@ -142,7 +142,13 @@ jest.mock('../app/stable_id', () => {
   };
 });
 
-jest.mock('../app/premium_guard', () => ({ invalidatePremiumCache: jest.fn() }));
+const beginPremiumAccountTransition = jest.fn();
+const waitForPremiumAccountWorkIdle = jest.fn(async () => undefined);
+jest.mock('../app/premium_guard', () => ({
+  invalidatePremiumCache: jest.fn(),
+  beginPremiumAccountTransition: (...args: unknown[]) => beginPremiumAccountTransition(...args),
+  waitForPremiumAccountWorkIdle: () => waitForPremiumAccountWorkIdle(),
+}));
 const mockLoadShardsFromCloud = jest.fn(async () => {});
 const preparePendingShardDeltasForAccountSwitch = jest.fn(async () => ({
   resolved: 0,
@@ -320,6 +326,8 @@ beforeEach(() => {
   });
   expoDigestStringAsyncImpl.mockReset();
   expoDigestStringAsyncImpl.mockImplementation(async (_algorithm, value) => `sha256:${value}`);
+  beginPremiumAccountTransition.mockClear();
+  waitForPremiumAccountWorkIdle.mockClear();
 });
 
 let lastLoadedAuthProviderStorage: { getItem: (key: string) => Promise<string | null> };
@@ -739,6 +747,21 @@ test('returning account on an empty device skips pointless local upload and acco
   expect(mergeStableAccountsViaServer).not.toHaveBeenCalled();
   expect(quiesceSyncBeforeStableIdSwap).toHaveBeenCalledTimes(1);
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
+});
+
+test('Apple uses the same premium transition boundary when it swaps to a returning account', async () => {
+  ensureStableAuthLinkForStableIdDetailed.mockResolvedValueOnce({
+    ok: true,
+    stableUid: 'remote-stable-id',
+    source: 'server',
+  });
+
+  const { signInWithProvider } = loadAuthProvider(undefined, 'ios');
+  const result = await signInWithProvider('apple');
+
+  expect(result.result).toBe('merged_devices');
+  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 });
 
 test('an enqueue failure is logged in the background without blocking local account exit', async () => {
@@ -983,6 +1006,7 @@ test('account switch with confirmed discard backs up and proceeds despite unreso
     'local-stable-id',
   );
   expect(accountGeneration.invalidateAccountGeneration).toHaveBeenCalled();
+  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
 });
 
@@ -1141,6 +1165,7 @@ test('account deletion waits for authenticated dispatch but not the server ackno
   expect(result).toEqual({ ok: true, cloudDeleted: false });
   expect(authState.calls).toContain('signout');
   expect(wipeLocalAccountData).toHaveBeenCalledTimes(1);
+  expect(beginPremiumAccountTransition).toHaveBeenCalledTimes(1);
 
   resolveAcknowledgement({ ok: true, jobId: 'job-1', status: 'queued', created: true });
   await Promise.resolve();

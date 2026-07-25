@@ -505,11 +505,15 @@ export { adminSeedBotProfiles } from './tournament_bots';
 // публикация в пул, статистика готовности раундов, расписание слотов.
 export {
   adminGenerateTournamentTasks,
+  adminGenerateTournamentTasksAi,
   adminListTournamentTasks,
   adminMutateTournamentTasks,
+  adminEditTournamentTask,
   adminTournamentPoolStats,
   adminGetTournamentSchedule,
   adminSetTournamentSchedule,
+  adminSetTournamentCurated,
+  adminGetTournamentCurated,
 } from './admin_tournament_tasks';
 
 // ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──

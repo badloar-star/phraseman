@@ -8,6 +8,9 @@
  */
 
 import {
+  parseAiGenerateRequest,
+  parseCuratedSetRequest,
+  parseEditRequest,
   parseGenerateRequest,
   parseListRequest,
   parseMutateRequest,
@@ -180,5 +183,76 @@ describe('готовность раундов', () => {
     // 5 вопросов в батче; порог должен давать запас, иначе игроки увидят
     // одни и те же задания в соседних турнирах.
     expect(ROUND_TASK_TARGET).toBeGreaterThanOrEqual(25);
+  });
+});
+
+describe('разбор запроса ИИ-генерации', () => {
+  it('принимает уровень CEFR, нормализуя регистр, и режет подсказку темы', () => {
+    const parsed = parseAiGenerateRequest({ level: 'b1', topicHint: ` аэропорт ${'x'.repeat(200)}`, batches: 2 });
+    expect(parsed.level).toBe('B1');
+    expect(parsed.topicHint.length).toBeLessThanOrEqual(120);
+    expect(parsed.batches).toBe(2);
+    expect(parsed.dryRun).toBe(false);
+  });
+
+  it('отклоняет неизвестный уровень, лишние ключи и завышенные батчи', () => {
+    expectRejected(() => parseAiGenerateRequest({ level: 'D1' }));
+    expectRejected(() => parseAiGenerateRequest({ level: 'A2', extra: true }));
+    expectRejected(() => parseAiGenerateRequest({ level: 'A2', batches: 99 }));
+    expectRejected(() => parseAiGenerateRequest({ level: 'A2', batches: 0 }));
+  });
+});
+
+describe('разбор запроса правки задания', () => {
+  it('принимает валидную правку payload', () => {
+    const parsed = parseEditRequest({
+      taskId: 'ai_choice_abc',
+      payload: { phrase: 'Hello there', options: ['а', 'б', 'в', 'г'], correctIndex: 1 },
+      difficulty: 2,
+    });
+    expect(parsed.taskId).toBe('ai_choice_abc');
+    expect(parsed.difficulty).toBe(2);
+  });
+
+  it('отклоняет пустой payload, кривой id и сложность вне 0-3', () => {
+    expectRejected(() => parseEditRequest({ taskId: 'ok', payload: {} }));
+    expectRejected(() => parseEditRequest({ taskId: 'плохой id!', payload: { a: 1 } }));
+    expectRejected(() => parseEditRequest({ taskId: 'ok', payload: { a: 1 }, difficulty: 9 }));
+  });
+});
+
+describe('разбор кураторского набора', () => {
+  const base = { slotId: 'daily_1900', timezone: 'Europe/Moscow', dateKey: '2026-07-26' };
+
+  it('принимает валидные раунды и пустой набор (снятие)', () => {
+    const parsed = parseCuratedSetRequest({
+      ...base,
+      rounds: [{ roundNo: 1, taskIds: ['t1', 't2', 't3'] }],
+    });
+    expect(parsed.rounds).toHaveLength(1);
+    expect(parsed.rounds[0].taskIds).toEqual(['t1', 't2', 't3']);
+    expect(parseCuratedSetRequest({ ...base, rounds: [] }).rounds).toEqual([]);
+  });
+
+  it('отклоняет кривую дату/таймзону, дубли раундов и переполненный раунд', () => {
+    expectRejected(() => parseCuratedSetRequest({ ...base, dateKey: '26.07.2026', rounds: [] }));
+    expectRejected(() => parseCuratedSetRequest({ ...base, timezone: 'Nowhere/Nope', rounds: [] }));
+    expectRejected(() => parseCuratedSetRequest({
+      ...base,
+      rounds: [{ roundNo: 1, taskIds: ['a'] }, { roundNo: 1, taskIds: ['b'] }],
+    }));
+    expectRejected(() => parseCuratedSetRequest({
+      ...base,
+      rounds: [{ roundNo: 2, taskIds: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'] }],
+    }));
+  });
+});
+
+describe('фильтр источника пула', () => {
+  it('принимает ai и plan_content, отклоняет прочее', () => {
+    expect(parseListRequest({ source: 'ai' }).source).toBe('ai');
+    expect(parseListRequest({ source: 'plan_content' }).source).toBe('plan_content');
+    expect(parseListRequest({}).source).toBe('');
+    expectRejected(() => parseListRequest({ source: 'unknown' }));
   });
 });

@@ -118,6 +118,60 @@ export function tournamentRoomId(slotId: string, timezone: string, dateKey: stri
   return `${slotId}_${timezone.replace(/[^\w]/g, '_')}_${dateKey}`.slice(0, 140);
 }
 
+// ── Кураторские наборы заданий ──────────────────────────────────────────────
+
+/**
+ * зачем: владелец хочет вручную отбирать конкретные задания для конкретного
+ * турнира. Документ-набор живёт под id комнаты (tournamentRoomId): раунды из
+ * набора имеют приоритет над случайной выборкой selectRoundTasks; раунды, не
+ * указанные в наборе, добираются случайно как обычно. Набор — мягкая
+ * подсказка: если задание из набора исчезло/снято с публикации, раунд
+ * откатывается на случайную выборку, а не отменяет турнир.
+ */
+export const TOURNAMENT_CURATED_COLLECTION = 'tournamentCuratedSets';
+
+export type TournamentCuratedRound = {
+  roundNo: number;
+  taskIds: string[];
+};
+
+export type TournamentCuratedSet = {
+  slotId: string;
+  timezone: string;
+  dateKey: string;
+  rounds: TournamentCuratedRound[];
+};
+
+export function normalizeTournamentCuratedSet(raw: unknown): TournamentCuratedSet | null {
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null;
+  const data = raw as Record<string, unknown>;
+  const slotId = String(data.slotId ?? '').trim().slice(0, 60);
+  const timezone = String(data.timezone ?? '').trim().slice(0, 60);
+  const dateKey = String(data.dateKey ?? '').trim();
+  if (!slotId || !timezone || !/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return null;
+
+  const rawRounds = Array.isArray(data.rounds) ? data.rounds : [];
+  if (rawRounds.length > TOURNAMENT_ROUNDS) return null;
+  const seenRounds = new Set<number>();
+  const rounds: TournamentCuratedRound[] = [];
+  for (const entry of rawRounds) {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return null;
+    const e = entry as Record<string, unknown>;
+    const roundNo = Number(e.roundNo);
+    if (!Number.isInteger(roundNo) || roundNo < 1 || roundNo > TOURNAMENT_ROUNDS
+      || seenRounds.has(roundNo)) return null;
+    const idsRaw = Array.isArray(e.taskIds) ? e.taskIds : [];
+    const taskIds = idsRaw.map((id) => String(id ?? '').trim());
+    if (taskIds.length === 0 || taskIds.length > TOURNAMENT_TASK_LIMITS.maxTaskIdsPerRound
+      || new Set(taskIds).size !== taskIds.length
+      || taskIds.some((id) => id.length === 0
+        || Buffer.byteLength(id, 'utf8') > TOURNAMENT_TASK_LIMITS.taskIdBytes)) return null;
+    seenRounds.add(roundNo);
+    rounds.push({ roundNo, taskIds });
+  }
+  return { slotId, timezone, dateKey, rounds };
+}
+
 /** Дата YYYY-MM-DD в таймзоне слота (без Intl-полифиллов — через toLocaleString). */
 export function dateKeyInTimezone(nowMs: number, timezone: string): string {
   try {

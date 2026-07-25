@@ -21,8 +21,8 @@ const CONFIG_COLLECTION = 'admin_runtime_config';
 const CONFIG_DOC = 'openai_jobs';
 
 /** Идентификаторы джобов. dialog здесь — ТОЛЬКО для kill-switch (модель/квоты у него свой док). */
-export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets';
-export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets'];
+export type OpenAiJob = 'weekly' | 'stats' | 'explain' | 'dialog' | 'choice' | 'compass' | 'quiz' | 'digest' | 'support' | 'content_factory' | 'image_assets' | 'tournament';
+export const OPENAI_JOBS: readonly OpenAiJob[] = ['weekly', 'stats', 'explain', 'dialog', 'choice', 'compass', 'quiz', 'digest', 'support', 'content_factory', 'image_assets', 'tournament'];
 
 export const ALLOWED_JOB_MODELS = [
   'gpt-4.1-nano',
@@ -66,6 +66,9 @@ const JOB_DEFAULTS: Record<OpenAiJob, JobDefaults> = {
   support: { model: 'gpt-4o-mini', globalDailyCap: 500 },
   content_factory: { model: 'gpt-4.1-mini', globalDailyCap: 500 },
   image_assets: { model: 'gpt-image-1', globalDailyCap: 40 },
+  // ИИ-генератор турнирных заданий: батчи по 10 вопросов из админки. Кап —
+  // на батчи в сутки; запускает только владелец вручную, 300 — щедрый потолок.
+  tournament: { model: 'gpt-4.1-mini', globalDailyCap: 300 },
 };
 
 export interface JobConfig {

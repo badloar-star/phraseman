@@ -2,7 +2,7 @@
  * ReferralWelcomeHost — глобальный хост приветствия ПРИГЛАШЁННОГО.
  *
  * Показывает один раз на главной (после онбординга) тем, кто пришёл по реферал-ссылке,
- * объясняя условие: «установи → ВВЕДИ КОД (если ещё не) → пройди первый урок →
+ * объясняя условие: «установи → ВВЕДИ КОД (если ещё не) → оформи Plus или Pro →
  * пригласившему откроется один прокрут рулетки с призом Plus от 1 до 365 дней».
  *
  * Монтируется из app/_layout.tsx внутри OverlayArbiterProvider (рядом с
@@ -105,24 +105,24 @@ export default function ReferralWelcomeHost() {
     'Masz zaproszenie — jest prezent',
   );
   const body = L(
-    'Пройди первый урок полностью — пригласивший тебя друг получит 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
-    'Пройди перший урок повністю — друг, який тебе запросив, отримає 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
-    'Completa la primera lección: quien te invitó recibirá 1 giro con premios Plus de 1 a 365 días.',
-    'Conclua a primeira lição: quem convidou você recebe 1 giro com prêmios Plus de 1 a 365 dias.',
-    'Hoàn thành bài học đầu tiên: người mời bạn nhận 1 lượt quay với giải Plus từ 1 đến 365 ngày.',
-    'Selesaikan pelajaran pertama: teman yang mengundangmu mendapat 1 putaran dengan hadiah Plus 1–365 hari.',
-    'İlk dersi bitir: seni davet eden arkadaşın 1 çevirme ve 1–365 gün Plus şansı kazanır.',
-    'Ukończ pierwszą lekcję: osoba, która cię zaprosiła, dostanie 1 los z nagrodą Plus od 1 do 365 dni.',
+    'Оформи Plus или Pro — пригласивший тебя друг получит ключ. Награда — Plus от 1 дня до 365 дней.',
+    'Оформи Plus або Pro — друг, який тебе запросив, отримає ключ. Нагорода — Plus від 1 до 365 днів.',
+    'Compra Plus o Pro: quien te invitó recibirá una llave. Recompensa: Plus de 1 a 365 días.',
+    'Assine Plus ou Pro: quem convidou você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
+    'Mua Plus hoặc Pro: người mời bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
+    'Beli Plus atau Pro: teman yang mengundangmu mendapat kunci. Hadiah: Plus 1–365 hari.',
+    'Plus veya Pro satın al: seni davet eden arkadaşın bir anahtar kazanır. Ödül: 1–365 gün Plus.',
+    'Kup Plus lub Pro: osoba, która cię zaprosiła, dostanie klucz. Nagroda: Plus od 1 do 365 dni.',
   );
   const primaryCta = L(
-    'Пройти первый урок',
-    'Пройти перший урок',
-    'Empezar la primera lección',
-    'Fazer a primeira lição',
-    'Học bài đầu tiên',
-    'Mulai pelajaran pertama',
-    'İlk dersi yap',
-    'Zrób pierwszą lekcję',
+    'Начать учиться',
+    'Почати навчання',
+    'Empezar a aprender',
+    'Começar a aprender',
+    'Bắt đầu học',
+    'Mulai belajar',
+    'Öğrenmeye başla',
+    'Zacznij naukę',
   );
   const codeCta = L(
     'У меня есть код приглашения',

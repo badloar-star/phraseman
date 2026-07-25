@@ -245,11 +245,11 @@ export default function ReferralsScreen() {
         // Успех — без лишней дев-плашки: счётчик обновляется прямо в чипе.
         setSpinCredits(res.spinsTotal);
       } else if (res.reason === 'daily_limit') {
-        setMessage('DEV: лимит 10 прокрутов в сутки исчерпан');
+        setMessage('DEV: лимит 10 ключей в сутки исчерпан');
       } else if (res.reason === 'disabled') {
-        setMessage('DEV: выдача прокрутов выключена (remote_config)');
+        setMessage('DEV: выдача ключей выключена (remote_config)');
       } else {
-        setMessage(`DEV: не удалось выдать прокрут (${res.code ?? 'error'})`);
+        setMessage(`DEV: не удалось выдать ключ (${res.code ?? 'error'})`);
       }
     } finally {
       setDevGrantBusy(false);
@@ -347,10 +347,10 @@ export default function ReferralsScreen() {
     const skipped = invite.status === 'skipped_referrer_cap';
     const spinReady = qualified || skipped;
     const statusText = rewarded
-      ? L('Прокрут начислен', 'Прокрут нараховано', 'Giro añadido', 'Giro adicionado', 'Đã cộng lượt quay', 'Putaran ditambahkan', 'Çevirme eklendi', 'Los dodany')
+      ? L('Ключ начислен', 'Ключ нараховано', 'Llave añadida', 'Chave adicionada', 'Đã cộng chìa khóa', 'Kunci ditambahkan', 'Anahtar eklendi', 'Klucz dodany')
       : spinReady
-        ? L('Прокрут готов', 'Прокрут готовий', 'Giro listo', 'Giro pronto', 'Lượt quay đã sẵn sàng', 'Putaran siap', 'Çevirme hazır', 'Los jest gotowy')
-        : L('Ждём первый урок', 'Чекаємо перший урок', 'Esperando la primera lección', 'Aguardando a primeira lição', 'Đang chờ bài học đầu tiên', 'Menunggu pelajaran pertama', 'İlk ders bekleniyor', 'Czekamy na pierwszą lekcję');
+        ? L('Ключ готов', 'Ключ готовий', 'Llave lista', 'Chave pronta', 'Chìa khóa đã sẵn sàng', 'Kunci siap', 'Anahtar hazır', 'Klucz jest gotowy')
+        : L('Ждём покупку Plus', 'Чекаємо на покупку Plus', 'Esperando la compra de Plus', 'Aguardando a compra do Plus', 'Đang chờ mua Plus', 'Menunggu pembelian Plus', 'Plus satın alımı bekleniyor', 'Czekamy na zakup Plus');
     const displayName = inviteDisplayName(invite, L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn', 'Teman', 'Arkadaş', 'Znajomy'));
 
     return (
@@ -426,19 +426,19 @@ export default function ReferralsScreen() {
               >
                 {drainVisible
                   ? sunsetCopy.drainTitle
-                  : L('Рулетка Plus', 'Рулетка Plus', 'Ruleta Plus', 'Roleta Plus', 'Vòng quay Plus', 'Roulette Plus', 'Plus Ruleti', 'Ruletka Plus')}
+                  : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                 <View style={{ paddingHorizontal: 11, paddingVertical: 7, borderRadius: 12, backgroundColor: t.bgSurface }}>
                   <Text style={{ color: spinCredits > 0 ? t.accent : t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                    {L(`Прокрутов: ${spinCredits}`, `Прокрутів: ${spinCredits}`, `Giros: ${spinCredits}`, `Giros: ${spinCredits}`, `Lượt quay: ${spinCredits}`, `Putaran: ${spinCredits}`, `Çevirme: ${spinCredits}`, `Losy: ${spinCredits}`)}
+                    {L(`Ключей: ${spinCredits}`, `Ключів: ${spinCredits}`, `Llaves: ${spinCredits}`, `Chaves: ${spinCredits}`, `Chìa khóa: ${spinCredits}`, `Kunci: ${spinCredits}`, `Anahtar: ${spinCredits}`, `Klucze: ${spinCredits}`)}
                   </Text>
                 </View>
                 {marketingVisible && __DEV__ && (
                   <TouchableOpacity
                     testID="referrals-roulette-dev-grant"
                     accessibilityRole="button"
-                    accessibilityLabel="DEV: добавить один прокрут"
+                    accessibilityLabel="DEV: добавить один ключ"
                     activeOpacity={0.8}
                     disabled={devGrantBusy}
                     onPress={() => void onDevGrantSpin()}
@@ -467,14 +467,14 @@ export default function ReferralsScreen() {
               </View>}
               <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontFamily: ds.fontFamily, fontWeight: '400' }}>
                 {drainVisible ? sunsetCopy.drainBody : L(
-                  'Пригласи друга — когда он введёт твой код и закончит первый урок, получишь 1 прокрут. В рулетке — Plus от 1 дня до 365 дней.',
-                  'Запроси друга — коли він введе твій код і закінчить перший урок, отримаєш 1 прокрут. У рулетці — Plus від 1 до 365 днів.',
-                  'Invita a un amigo: cuando use tu código y termine la primera lección, recibirás 1 giro. En la ruleta hay Plus de 1 a 365 días.',
-                  'Convide um amigo: quando ele usar seu código e concluir a primeira lição, você recebe 1 giro. Na roleta há Plus de 1 a 365 dias.',
-                  'Mời một người bạn: khi họ nhập mã của bạn và hoàn thành bài học đầu tiên, bạn nhận 1 lượt quay. Phần thưởng Plus từ 1 đến 365 ngày.',
-                  'Undang teman: setelah memasukkan kodemu dan menyelesaikan pelajaran pertama, kamu mendapat 1 putaran. Hadiah Plus dari 1 sampai 365 hari.',
-                  'Bir arkadaşını davet et: kodunu girip ilk dersi bitirdiğinde 1 çevirme kazanırsın. Rulette 1–365 gün Plus var.',
-                  'Zaproś znajomego: gdy wpisze twój kod i ukończy pierwszą lekcję, dostaniesz 1 los. W ruletce wygrywa się od 1 do 365 dni Plus.',
+                  'Пригласи друга — когда он введёт твой код и оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
+                  'Запроси друга — коли він введе твій код і оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
+                  'Invita a un amigo: cuando use tu código y compre Plus o Pro, recibirás una llave. Recompensa: Plus de 1 a 365 días.',
+                  'Convide um amigo: quando ele usar seu código e assinar o Plus ou Pro, você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
+                  'Mời một người bạn: khi họ nhập mã của bạn và mua Plus hoặc Pro, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
+                  'Undang teman: setelah memasukkan kodemu dan membeli Plus atau Pro, kamu mendapat kunci. Hadiah: Plus dari 1 sampai 365 hari.',
+                  'Bir arkadaşını davet et: kodunu girip Plus veya Pro satın aldığında bir anahtar kazanırsın. Ödül: 1–365 gün Plus.',
+                  'Zaproś znajomego: gdy wpisze twój kod i kupi Plus lub Pro, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
                 )}
               </Text>
               {drainVisible && drain.latestPendingDeadlineMs > 0 && (
@@ -500,7 +500,7 @@ export default function ReferralsScreen() {
               >
                 <Ionicons name="refresh-circle" size={20} color={t.correctText} />
                 <Text style={{ color: t.correctText, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                  {L('Крутить', 'Крутити', 'Girar', 'Girar', 'Quay', 'Putar', 'Çevir', 'Zakręć')}
+                  {L('Забрать награду', 'Забрати нагороду', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}
                 </Text>
               </TouchableOpacity>}
               {marketingVisible && <TouchableOpacity
@@ -528,14 +528,14 @@ export default function ReferralsScreen() {
             </Text>
             <Text testID="referrals-condition-hint" style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
               {drainVisible ? sunsetCopy.drainBody : L(
-                'Здесь появятся приглашённые друзья. За каждого друга, который введёт твой код и закончит первый урок, начисляется 1 прокрут.',
-                'Тут з’являться запрошені друзі. За кожного друга, який введе твій код і закінчить перший урок, нараховується 1 прокрут.',
-                'Aquí aparecerán tus amigos invitados. Cada amigo que use tu código y termine la primera lección te da 1 giro.',
-                'Seus amigos convidados aparecerão aqui. Cada amigo que usar seu código e concluir a primeira lição dá 1 giro.',
-                'Bạn bè được mời sẽ xuất hiện ở đây. Mỗi người nhập mã của bạn và hoàn thành bài học đầu tiên sẽ cho bạn 1 lượt quay.',
-                'Teman yang kamu undang muncul di sini. Setiap teman yang memasukkan kodemu dan menyelesaikan pelajaran pertama memberi 1 putaran.',
-                'Davet ettiğin arkadaşlar burada görünür. Kodunu girip ilk dersi bitiren her arkadaş 1 çevirme kazandırır.',
-                'Tutaj pojawią się zaproszeni znajomi. Każdy, kto wpisze twój kod i ukończy pierwszą lekcję, daje ci 1 los.',
+                'Здесь появятся приглашённые друзья. За каждого друга, который введёт твой код и купит Plus или Pro, начисляется ключ.',
+                'Тут з’являться запрошені друзі. За кожного друга, який введе твій код і купить Plus або Pro, нараховується ключ.',
+                'Aquí aparecerán tus amigos invitados. Cada amigo que use tu código y compre Plus o Pro te da una llave.',
+                'Seus amigos convidados aparecerão aqui. Cada amigo que usar seu código e assinar o Plus ou Pro dá uma chave.',
+                'Bạn bè được mời sẽ xuất hiện ở đây. Mỗi người nhập mã của bạn và mua Plus hoặc Pro sẽ cho bạn một chìa khóa.',
+                'Teman yang kamu undang muncul di sini. Setiap teman yang memasukkan kodemu dan membeli Plus atau Pro memberi satu kunci.',
+                'Davet ettiğin arkadaşlar burada görünür. Kodunu girip Plus veya Pro satın alan her arkadaş bir anahtar kazandırır.',
+                'Tutaj pojawią się zaproszeni znajomi. Każdy, kto wpisze twój kod i kupi Plus lub Pro, daje ci klucz.',
               )}
             </Text>
           </TonalSurface>

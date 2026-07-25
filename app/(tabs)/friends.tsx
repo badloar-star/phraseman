@@ -48,6 +48,7 @@ import { monoIcon, MONO_ICON } from '../../constants/monoIcon';
 import { triLang, type Lang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 import {
   normalizeProfileCardLevel,
   normalizeProfileCardMotion,
@@ -136,7 +137,6 @@ import { ReferralAccessEndedModal } from '../referral_access_ended_modal';
 import {
   getClaimableReferralState,
   peekClaimableReferralState,
-  summarizeInvites,
   type ReferralInvite,
 } from '../referral_vip';
 import { buildCloudReferralInviteShare } from '../referral_invite_share';
@@ -704,13 +704,17 @@ function FriendsThemeIcon({
 /** Мягкий пульс (opacity 0.6→1) — для кнопки подарка, когда подарок реально доступен. */
 function PulseOn({ active, children }: { active: boolean; children: React.ReactNode }) {
   const opacity = useSharedValue(1);
+  // зачем: withRepeat(-1) без гарда крутится вечно даже когда вкладка «Друзья»
+  // в фоне или приложение свёрнуто — это грелка батареи. Гардим фокусом экрана
+  // и активностью приложения (контракт tests/perf_freeze_contract.test.ts).
+  const runtimeActive = useRuntimeActive();
   useEffect(() => {
-    if (active) {
+    if (active && runtimeActive) {
       opacity.value = withRepeat(withTiming(0.6, { duration: 900 }), -1, true);
     } else {
       opacity.value = withTiming(1, { duration: 150 });
     }
-  }, [active, opacity]);
+  }, [active, runtimeActive, opacity]);
   const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
   return <Reanimated.View style={style}>{children}</Reanimated.View>;
 }
@@ -759,15 +763,13 @@ function ActivityLikeButton({
 }
 
 function FriendRow({
-  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, referralStatus, giftAvailable,
+  profile, rank, onPress, onDelete, onGift, lang, t, f, chrome, themeMode, giftAvailable,
 }: {
   profile: FriendProfile; rank: number;
   onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
   chrome: FriendsChrome;
   themeMode: ThemeMode;
-  /** Статус приглашения, если друг пришёл по твоему коду. */
-  referralStatus?: 'pending' | 'qualified' | 'rewarded';
   /** Подарок реально доступен (баланс осколков ≥ цены самого дешёвого) — кнопка мягко пульсирует. */
   giftAvailable?: boolean;
 }) {
@@ -815,25 +817,6 @@ function FriendRow({
           </View>
           <ProfileCardBadge level={profile.profileCardLevel} theme={profile.profileCardTheme} style={{ marginTop: 3 }} />
           <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
-          {referralStatus && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 3 }}>
-              <Ionicons
-                name={referralStatus === 'pending' ? 'hourglass-outline' : 'checkmark-circle'}
-                size={12}
-                color={referralStatus === 'pending' ? t.textMuted : t.accent}
-              />
-              <Text
-                style={{ fontSize: f.xs ?? 11, fontWeight: '700', color: referralStatus === 'pending' ? t.textMuted : t.accent }}
-                numberOfLines={1}
-              >
-                {referralStatus === 'pending'
-                  ? triLang(lang as any, { ru: 'По твоему приглашению', uk: 'За твоїм запрошенням', es: 'Por tu invitación', 'pt-BR': 'Pelo seu convite', vi: 'Theo lời mời của bạn', id: 'Lewat undanganmu', tr: 'Senin davetinle', pl: 'Z twojego zaproszenia' })
-                  : referralStatus === 'qualified'
-                  ? triLang(lang as any, { ru: 'Готов открыть доступ', uk: 'Готовий відкрити доступ', es: 'Listo para abrir acceso', 'pt-BR': 'Pronto para abrir acesso', vi: 'Sẵn sàng mở quyền', id: 'Siap buka akses', tr: 'Erişim açmaya hazır', pl: 'Gotowy otworzyć dostęp' })
-                  : triLang(lang as any, { ru: 'Доступ открыт', uk: 'Доступ відкрито', es: 'Acceso abierto', 'pt-BR': 'Acesso aberto', vi: 'Đã mở quyền', id: 'Akses dibuka', tr: 'Erişim açıldı', pl: 'Dostęp otwarty' })}
-              </Text>
-            </View>
-          )}
         </View>
       </TouchableOpacity>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0, marginLeft: 12 }}>
@@ -2088,7 +2071,6 @@ export default function FriendsTabScreen() {
     invites: referralInviteState,
     drain: hasReferralServerDrain ? referralDrain : null,
   });
-  const referralInvites = scopedReferralState.invites;
   const referralCode = selectAccountScopedReferralState(referralAccountKey, {
     accountKey: referralCodeAccountKey,
     referralCode: referralCodeState,
@@ -2099,8 +2081,6 @@ export default function FriendsTabScreen() {
     persistedDrain: scopedReferralState.drain,
   });
   const referralMarketingVisible = referralSurface.marketingVisible;
-  const referralDrainVisible = referralSurface.drainVisible;
-  const referralUiVisible = referralMarketingVisible || referralDrainVisible;
   const referralRefreshInFlightRef = useRef<Promise<void> | null>(null);
   const referralLastRefreshAtRef = useRef(0);
 
@@ -3228,23 +3208,6 @@ export default function FriendsTabScreen() {
 
   const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
 
-  /** uid друга → статус его реферал-приглашения (для метки в строке). */
-  const referralStatusByUid = useMemo(() => {
-    const map = new Map<string, 'pending' | 'qualified' | 'rewarded'>();
-    for (const inv of referralInvites) {
-      if (inv.status === 'pending' || inv.status === 'qualified' || inv.status === 'rewarded') {
-        map.set(inv.refereeStableId, inv.status);
-      } else if (inv.status === 'skipped_referrer_cap') {
-        // legacy «лимит месяца» снова claimable (M1) — показываем как qualified.
-        map.set(inv.refereeStableId, 'qualified');
-      }
-    }
-    return map;
-  }, [referralInvites]);
-
-  /** Сводка по статусам приглашений — для бейджа на кнопке хедера и модалки. */
-  const referralSummary = useMemo(() => summarizeInvites(referralInvites), [referralInvites]);
-
   const friendQuestPeerUid = useMemo(() => {
     if (!activeFriendQuest) return '';
     return activeFriendQuest.participantUids.find(uid => !!profiles[uid] || friends.some(friend => friend.uid === uid)) ?? activeFriendQuest.participantUids[1] ?? '';
@@ -3299,7 +3262,7 @@ export default function FriendsTabScreen() {
           </TapScale>
           <View style={{ flex: 1 }} />
           {/* Разделы одним рядом компактных иконок (как чипы на главной, но свои иконки:
-              на главной — колокольчик/чат/видео, здесь — люди/пульс/мегафон/добавить). */}
+              на главной — колокольчик/чат/видео, здесь — люди/пульс/добавить). */}
           {(['friends', 'activity'] as const).map(tab => {
             const active = activeTab === tab;
             const tabLabel = tab === 'friends'
@@ -3343,38 +3306,6 @@ export default function FriendsTabScreen() {
               </TouchableOpacity>
             );
           })}
-          {referralUiVisible && (
-            <TouchableOpacity
-              testID="friends-open-referrals"
-              accessibilityRole="button"
-              accessibilityLabel={L('Мои рефералы', 'Мої реферали', 'Mis referidos', 'Meus indicados', 'Lời mời của tôi', 'Referal saya', 'Davetlerim', 'Moje polecenia')}
-              onPressIn={() => hapticTap()}
-              onPress={() => router.push('/referrals' as any)}
-              activeOpacity={0.8}
-              style={{
-                width: 40, height: 40, borderRadius: 20,
-                backgroundColor: chrome.button, borderWidth: 0, borderColor: 'transparent',
-                justifyContent: 'center', alignItems: 'center', flexShrink: 0, marginRight: 10,
-              }}
-            >
-              <Ionicons name="megaphone-outline" size={19} color={t.textPrimary} />
-              {referralSummary.qualified > 0 && (
-                <View
-                  style={{
-                    position: 'absolute', top: -3, right: -3,
-                    minWidth: 18, height: 18, borderRadius: 9,
-                    backgroundColor: t.correct ?? '#34C759',
-                    borderWidth: 1.5, borderColor: t.bgPrimary ?? '#000',
-                    alignItems: 'center', justifyContent: 'center', paddingHorizontal: 4,
-                  }}
-                >
-                  <Text style={{ color: t.correctText ?? '#fff', fontSize: 10, fontWeight: '900' }}>
-                    {referralSummary.qualified}
-                  </Text>
-                </View>
-              )}
-            </TouchableOpacity>
-          )}
           <TouchableOpacity
             testID="friends-open-add"
             onPressIn={() => hapticTap()}
@@ -3495,63 +3426,6 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', textAlign: 'center' }}>
                   {L('Учиться вместе веселее', 'Навчатися разом веселіше', 'Aprender juntos es más divertido', 'Aprender junto é mais divertido', 'Học cùng nhau vui hơn', 'Belajar bersama lebih seru', 'Birlikte öğrenmek daha eğlenceli', 'Nauka razem jest fajniejsza')}
                 </Text>
-                {referralMarketingVisible ? (
-                  <>
-                    <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
-                      {L(
-                        'Пригласи друга. Когда он установит приложение, введёт твой код',
-                        'Запроси друга. Коли він встановить застосунок і введе твій код',
-                        'Invita a un amigo. Cuando instale la app e introduzca tu código',
-                        'Convide um amigo. Quando instalar o app e inserir seu código',
-                        'Mời một người bạn. Khi họ cài ứng dụng và nhập mã của bạn',
-                        'Undang teman. Setelah memasang aplikasi dan memasukkan kodemu',
-                        'Bir arkadaşını davet et. Uygulamayı kurup kodunu girerse',
-                        'Zaproś znajomego. Gdy zainstaluje aplikację i wpisze twój kod',
-                      )}
-                      {referralCode ? (
-                        <Text testID="friends-referral-code-inline" style={{ color: t.accent, fontWeight: '900', letterSpacing: 1 }}>
-                          {' '}{referralCode}
-                        </Text>
-                      ) : null}
-                      {L(
-                        ' и закончит первый урок, ты получишь 1 прокрут. Приз — Plus от 1 дня до 365 дней.',
-                        ' і закінчить перший урок, ти отримаєш 1 прокрут. Приз — Plus від 1 до 365 днів.',
-                        ' y termine la primera lección, recibirás 1 giro. El premio es Plus de 1 a 365 días.',
-                        ' e concluir a primeira lição, você recebe 1 giro. O prêmio é Plus de 1 a 365 dias.',
-                        ' và hoàn thành bài học đầu tiên, bạn nhận 1 lượt quay. Giải Plus từ 1 đến 365 ngày.',
-                        ' lalu menyelesaikan pelajaran pertama, kamu mendapat 1 putaran. Hadiah Plus 1–365 hari.',
-                        ' ve ilk dersi bitirirse 1 çevirme kazanırsın. Ödül 1–365 gün Plus.',
-                        ' i ukończy pierwszą lekcję, dostaniesz 1 los. Nagroda to Plus od 1 do 365 dni.',
-                      )}
-                    </Text>
-                    <View style={{ flexDirection: 'row', gap: 10, marginTop: 6, alignSelf: 'stretch', paddingHorizontal: 8 }}>
-                      <DuoPressable
-                        testID="friends-empty-invite"
-                        onPress={() => { void handleReferralInvite(); }}
-                        edgeColor={t.accent}
-                        wrapStyle={{ flex: 1 }}
-                        style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 12 }}
-                      >
-                        <Ionicons name="share-social" size={20} color={t.correctText} />
-                        <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
-                          {L('Пригласить', 'Запросити', 'Invitar', 'Convidar', 'Mời bạn', 'Undang', 'Davet et', 'Zaproś')}
-                        </Text>
-                      </DuoPressable>
-                      <TapScale
-                        testID="friends-empty-enter-code"
-                        onPress={() => { hapticTap(); router.push('/referral_code_entry' as any); }}
-                        style={{ flex: 1, minHeight: 58, backgroundColor: chrome.button, borderRadius: 14, borderWidth: 0, borderColor: 'transparent' }}
-                      >
-                        <View style={{ minHeight: 58, paddingVertical: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, paddingHorizontal: 12 }}>
-                          <Ionicons name="ticket-outline" size={20} color={t.textPrimary} />
-                          <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '900', textAlign: 'center', includeFontPadding: false }} numberOfLines={2}>
-                            {L('Ввести код', 'Ввести код', 'Ingresar código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kod gir', 'Wpisz kod')}
-                          </Text>
-                        </View>
-                      </TapScale>
-                    </View>
-                  </>
-                ) : (
                   <>
                     <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.4), maxWidth: 320 }}>
                       {L(
@@ -3580,7 +3454,6 @@ export default function FriendsTabScreen() {
                       </DuoPressable>
                     </View>
                   </>
-                )}
               </View>
   );
 
@@ -3625,7 +3498,6 @@ export default function FriendsTabScreen() {
                 onGift={() => openGiftPicker(profile)}
                 lang={lang} t={t} f={f} chrome={chrome}
                 themeMode={themeMode}
-                referralStatus={referralUiVisible ? referralStatusByUid.get(profile.uid) : undefined}
                 giftAvailable={giftBalance >= Math.min(...FRIEND_GIFT_CATALOG.map(g => g.costShards))}
               />
             </Reanimated.View>

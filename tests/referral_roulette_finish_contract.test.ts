@@ -73,7 +73,7 @@ describe('referral roulette finish contract', () => {
     ];
     for (const pattern of forbidden) expect(source).not.toMatch(pattern);
 
-    expect(source).toContain('1 прокрут');
+    expect(source).toContain('получу ключ');
     expect(source).toContain('Plus от 1 дня до 365 дней');
     expect(read('app/referral_invite_share.ts')).toContain('${codeLabel}${code}');
   });
@@ -92,9 +92,11 @@ describe('referral roulette finish contract', () => {
     expect(referrals).toContain('{marketingVisible && (');
     expect(friends).toContain('const referralMarketingVisible = referralSurface.marketingVisible');
     expect(friends).toContain('selectReferralSurfaceState');
-    expect(friends).toContain('const referralDrainVisible = referralSurface.drainVisible');
-    expect(friends).toContain('referralUiVisible ? referralStatusByUid.get(profile.uid) : undefined');
-    expect(friends).toContain('{referralUiVisible && (');
+    // Из «Друзей» реферальный UI убран (owner 2026-07-24): статусные чипы и
+    // мегафон-вход удалены; маркетинговый флаг остался только для прогрева
+    // реф-кода и модалки окончания доступа.
+    expect(friends).not.toContain('referralStatusByUid');
+    expect(friends).not.toContain('friends-open-referrals');
     expect(welcome).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(welcome).toContain('const wantShow = rouletteOn &&');
     expect(entry).toContain('const rouletteOn = useReferralRouletteEnabled()');
@@ -150,12 +152,12 @@ describe('referral roulette finish contract', () => {
     expect(client).toContain("msg.includes('REFERRAL_ROULETTE_EMERGENCY_STOP')");
     expect(client).toContain("reason: 'disabled'");
     expect(screen).toContain("outcome.reason === 'disabled'");
-    expect(screen).toContain("showToast(L('Рулетка временно недоступна'");
+    expect(screen).toContain("showToast(L('Награды временно недоступны'");
     expect(about).toContain('const { lang } = useLang()');
     expect(about).toContain('const L = makeL(lang as Lang)');
     expect(about).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(about).toContain('if (!rouletteOn)');
-    for (const marker of ['Рулетка Plus', 'Рулетка Plus', 'Ruleta Plus', 'Roleta Plus', 'Vòng quay Plus', 'Roulette Plus', 'Plus Ruleti', 'Ruletka Plus']) {
+    for (const marker of ['Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego']) {
       expect(about).toContain(marker);
     }
   });
@@ -192,17 +194,62 @@ describe('referral roulette finish contract', () => {
     expect(invite).not.toContain("copyLang === 'ru' ?");
   });
 
-  it('keeps the settings referral row honest in every locale', () => {
+  it('keeps the settings invite banner honest in every locale', () => {
     const settings = read('app/(tabs)/settings.tsx');
-    expect(settings).toContain("'1 прокрут · Plus от 1 до 365 дней'");
-    expect(settings).toContain("'1 прокрут · Plus від 1 до 365 днів'");
-    expect(settings).toContain("'1 giro · Plus de 1 a 365 días'");
-    expect(settings).toContain("'1 giro · Plus de 1 a 365 dias'");
-    expect(settings).toContain("'1 lượt quay · Plus từ 1 đến 365 ngày'");
-    expect(settings).toContain("'1 putaran · Plus 1–365 hari'");
-    expect(settings).toContain("'1 çevirme · 1–365 gün Plus'");
-    expect(settings).toContain("'1 los · Plus od 1 do 365 dni'");
+    expect(settings).toContain('testID="settings-plus-row"');
+    expect(settings).toContain('testID="settings-referral-code-row"');
+    expect(settings).toContain('testID="settings-invite-banner"');
+    expect(settings).toContain("router.push('/referrals' as any)");
+    for (const marker of [
+      "'Пригласи друга — выиграй Plus'",
+      "'Запроси друга — виграй Plus'",
+      "'Invita a un amigo y gana Plus'",
+      "'Convide um amigo e ganhe Plus'",
+      "'M\u1eddi b\u1ea1n b\u00e8 \u2014 th\u1eafng Plus'",
+      "'Undang teman — menangkan Plus'",
+      "'Arkadaşını davet et — Plus kazan'",
+      "'Zaproś znajomego — wygraj Plus'",
+    ]) {
+      expect(settings).toContain(marker);
+    }
+    expect(settings).toContain('Когда друг оформит Plus или Pro');
+    // На самом баннере слова «рулетка»/«крут»/«прокрут» запрещены (owner 2026-07-24).
+    const bannerAt = settings.indexOf('testID="settings-invite-banner"');
+    const bannerEnd = settings.indexOf(') : null}', bannerAt);
+    const bannerBlock = settings.slice(bannerAt, bannerEnd);
+    expect(bannerBlock).not.toMatch(/рулетк|прокрут|крут/i);
     expect(settings).not.toContain('Вы оба получите бонус');
+  });
+
+  // зачем: владелец (2026-07-25) запретил слова «рулетка»/«прокрут»/«крутить» во ВСЁМ
+  // интерфейсе, а не только на баннере настроек. Механика называется «Награда за друга»,
+  // единица счёта — «ключ». Здесь ловим возврат старых слов в видимые строки: берём
+  // только строковые литералы (комментарии/имена файлов и роутов менять не просили).
+  it('keeps roulette wording out of every user-visible referral string', () => {
+    const screens = [
+      'app/referrals.tsx',
+      'app/roulette.tsx',
+      'app/roulette_about.tsx',
+      'app/settings_invite_friend.tsx',
+      'app/referral_code_entry.tsx',
+      'app/referral_invite_share.ts',
+      'app/referral_sunset_copy.ts',
+      'components/EntitlementExpiredHost.tsx',
+      'components/ReferralWelcomeHost.tsx',
+    ];
+    const banned = /рулетк|прокрут|крутить|крути\b/i;
+    const offenders: string[] = [];
+    for (const rel of screens) {
+      const source = read(rel);
+      source.split('\n').forEach((line, i) => {
+        const code = line.replace(/\/\/.*$/, '').replace(/^\s*\*.*$/, '');
+        const literals = code.match(/'[^']*'|`[^`]*`/g) ?? [];
+        for (const lit of literals) {
+          if (banned.test(lit)) offenders.push(`${rel}:${i + 1} ${lit.slice(0, 60)}`);
+        }
+      });
+    }
+    expect(offenders).toEqual([]);
   });
 
   it('wires a permissioned, idempotent and audited server/admin kill switch', () => {

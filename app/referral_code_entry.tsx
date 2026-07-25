@@ -31,14 +31,14 @@ function feedbackForStatus(status: ReferralApplyStatus, L: ReturnType<typeof mak
       return {
         kind: 'ok',
         text: L(
-          'Код принят. Пройди первый урок полностью — другу откроется 1 прокрут. В рулетке можно выиграть Plus от 1 дня до 365 дней.',
-          'Код прийнято. Пройди перший урок повністю — друг отримає 1 прокрут. У рулетці можна виграти Plus від 1 до 365 днів.',
-          'Código aceptado. Completa la primera lección: tu amigo recibirá 1 giro y podrá ganar de 1 a 365 días de Plus.',
-          'Código aceito. Conclua a primeira lição: seu amigo recebe 1 giro e pode ganhar de 1 a 365 dias de Plus.',
-          'Đã nhận mã. Hoàn thành bài học đầu tiên: bạn của bạn nhận 1 lượt quay và có thể thắng từ 1 đến 365 ngày Plus.',
-          'Kode diterima. Selesaikan pelajaran pertama: temanmu mendapat 1 putaran dan bisa menang 1–365 hari Plus.',
-          'Kod kabul edildi. İlk dersi bitir: arkadaşın 1 çevirme kazanır ve 1–365 gün Plus kazanabilir.',
-          'Kod przyjęty. Ukończ pierwszą lekcję: znajomy dostanie 1 los i może wygrać od 1 do 365 dni Plus.',
+          'Код принят. Когда оформишь Plus или Pro — другу откроется ключ. Наградой может стать Plus от 1 дня до 365 дней.',
+          'Код прийнято. Коли оформиш Plus або Pro — друг отримає ключ. Нагородою може стати Plus від 1 до 365 днів.',
+          'Código aceptado. Cuando compres Plus o Pro, tu amigo recibirá una llave y podrá ganar de 1 a 365 días de Plus.',
+          'Código aceito. Quando você assinar Plus ou Pro, seu amigo recebe uma chave e pode ganhar de 1 a 365 dias de Plus.',
+          'Đã nhận mã. Khi bạn mua Plus hoặc Pro, bạn của bạn nhận một chìa khóa và có thể thắng từ 1 đến 365 ngày Plus.',
+          'Kode diterima. Setelah kamu membeli Plus atau Pro, temanmu mendapat kunci dan bisa menang 1–365 hari Plus.',
+          'Kod kabul edildi. Plus veya Pro satın aldığında arkadaşın bir anahtar kazanır ve 1–365 gün Plus kazanabilir.',
+          'Kod przyjęty. Gdy kupisz Plus lub Pro, znajomy dostanie klucz i może wygrać od 1 do 365 dni Plus.',
         ),
       };
     case 'already':
@@ -268,26 +268,26 @@ export default function ReferralCodeEntryScreen() {
               </Text>
               <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, lineHeight: 23, fontWeight: '700' }}>
                 {L(
-                  'Есть код от друга? Введи его здесь и закончи первый урок — другу откроется 1 прокрут.',
-                  'Є код від друга? Введи його тут і закінчи перший урок — друг отримає 1 прокрут.',
-                  '¿Tienes un código de un amigo? Escríbelo aquí y termina la primera lección para darle 1 giro.',
-                  'Tem um código de amigo? Digite aqui e conclua a primeira lição para dar 1 giro a ele.',
-                  'Có mã từ bạn bè? Nhập mã và hoàn thành bài học đầu tiên để bạn của bạn nhận 1 lượt quay.',
-                  'Punya kode dari teman? Masukkan dan selesaikan pelajaran pertama agar temanmu mendapat 1 putaran.',
-                  'Arkadaşından bir kod mu var? Gir ve ilk dersi bitir; arkadaşın 1 çevirme kazansın.',
-                  'Masz kod od znajomego? Wpisz go i ukończ pierwszą lekcję, aby znajomy dostał 1 los.',
+                  'Есть код от друга? Введи его здесь и оформи Plus или Pro — другу откроется ключ.',
+                  'Є код від друга? Введи його тут і оформи Plus або Pro — друг отримає ключ.',
+                  '¿Tienes un código de un amigo? Escríbelo aquí y compra Plus o Pro para darle una llave.',
+                  'Tem um código de amigo? Digite aqui e assine Plus ou Pro para dar uma chave a ele.',
+                  'Có mã từ bạn bè? Nhập mã và mua Plus hoặc Pro để bạn của bạn nhận một chìa khóa.',
+                  'Punya kode dari teman? Masukkan dan beli Plus atau Pro agar temanmu mendapat kunci.',
+                  'Arkadaşından bir kod mu var? Gir ve Plus veya Pro satın al; arkadaşın bir anahtar kazansın.',
+                  'Masz kod od znajomego? Wpisz go i kup Plus lub Pro, aby znajomy dostał klucz.',
                 )}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>
                 {L(
-                  'Мини-квест простой: установить приложение, ввести код и пройти первый урок до конца. После этого друг получит 1 прокрут с шансом выиграть Plus от 1 дня до 365 дней.',
-                  'Мініквест простий: встановити застосунок, ввести код і пройти перший урок до кінця. Після цього друг отримає 1 прокрут із шансом виграти Plus від 1 до 365 днів.',
-                  'El minirreto es simple: instalar la app, introducir el código y completar la primera lección. Tu amigo recibe 1 giro con premios Plus de 1 a 365 días.',
-                  'A missão é simples: instalar o app, inserir o código e concluir a primeira lição. Seu amigo recebe 1 giro com prêmios Plus de 1 a 365 dias.',
-                  'Nhiệm vụ rất đơn giản: cài ứng dụng, nhập mã và hoàn thành bài học đầu tiên. Bạn của bạn nhận 1 lượt quay với giải Plus từ 1 đến 365 ngày.',
-                  'Misinya simpel: pasang aplikasi, masukkan kode, lalu selesaikan pelajaran pertama. Temanmu mendapat 1 putaran dengan hadiah Plus 1–365 hari.',
-                  'Görev basit: uygulamayı kur, kodu gir ve ilk dersi bitir. Arkadaşın 1 çevirme ve 1–365 gün Plus şansı kazanır.',
-                  'Misja jest prosta: zainstaluj aplikację, wpisz kod i ukończ pierwszą lekcję. Znajomy dostaje 1 los z nagrodą Plus od 1 do 365 dni.',
+                  'Мини-квест простой: установить приложение, ввести код и оформить Plus или Pro. После этого друг получит ключ с шансом выиграть Plus от 1 дня до 365 дней.',
+                  'Мініквест простий: встановити застосунок, ввести код і оформити Plus або Pro. Після цього друг отримає ключ із шансом виграти Plus від 1 до 365 днів.',
+                  'El minirreto es simple: instalar la app, introducir el código y comprar Plus o Pro. Tu amigo recibe una llave con recompensas Plus de 1 a 365 días.',
+                  'A missão é simples: instalar o app, inserir o código e assinar Plus ou Pro. Seu amigo recebe uma chave com recompensas Plus de 1 a 365 dias.',
+                  'Nhiệm vụ rất đơn giản: cài ứng dụng, nhập mã và mua Plus hoặc Pro. Bạn của bạn nhận một chìa khóa với phần thưởng Plus từ 1 đến 365 ngày.',
+                  'Misinya simpel: pasang aplikasi, masukkan kode, lalu beli Plus atau Pro. Temanmu mendapat kunci dengan hadiah Plus 1–365 hari.',
+                  'Görev basit: uygulamayı kur, kodu gir ve Plus veya Pro satın al. Arkadaşın bir anahtar ve 1–365 gün Plus şansı kazanır.',
+                  'Misja jest prosta: zainstaluj aplikację, wpisz kod i kup Plus lub Pro. Znajomy dostaje klucz z nagrodą Plus od 1 do 365 dni.',
                 )}
               </Text>
               <TextInput

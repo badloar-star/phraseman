@@ -199,8 +199,8 @@ describe('referral roulette screen contract', () => {
   it('converts qualified invites into spin credits without legacy per-row claiming', () => {
     const source = read('app/referrals.tsx');
     expect(source).toContain('claimReferralSpins');
-    expect(source).toContain("'Прокрут начислен'");
-    expect(source).toContain("'Прокрут готов'");
+    expect(source).toContain("'Ключ начислен'");
+    expect(source).toContain("'Ключ готов'");
     expect(source).not.toContain('testID="referrals-claim-pending"');
     expect(source).not.toContain('claimReferralVipDays');
     expect(source).toContain('readReferralInvites(renderToken)');
@@ -209,7 +209,7 @@ describe('referral roulette screen contract', () => {
     const source = read('app/referral_code_entry.tsx');
 
     expect(source).toContain('testID="screen-referral-code-entry"');
-    expect(source).toContain('Есть код от друга? Введи его здесь и закончи первый урок — другу откроется 1 прокрут.');
+    expect(source).toContain('Есть код от друга? Введи его здесь и оформи Plus или Pro — другу откроется ключ.');
     expect(source).toContain('Plus от 1 дня до 365 дней.');
     expect(source).toContain('const rouletteOn = useReferralRouletteEnabled()');
     expect(source).toContain('testID="referral-code-entry-off"');
@@ -224,8 +224,8 @@ describe('referral roulette screen contract', () => {
     expect(source).toContain('testID="screen-referrals"');
     expect(source).toContain('Твои приглашения');
     expect(source).toContain('testID="referrals-roulette-hero"');
-    expect(source).toContain('Ждём первый урок');
-    expect(source).toContain('Прокрут готов');
+    expect(source).toContain('Ждём покупку Plus');
+    expect(source).toContain('Ключ готов');
     expect(source).not.toContain('Получить Plus');
     expect(source).not.toContain('Получить VIP');
     expect(source).not.toContain('VIP можно забирать');
@@ -236,13 +236,21 @@ describe('referral roulette screen contract', () => {
     expect(source).toContain(') : null}');
   });
 
-  it('wires friends navigation to referral screens instead of old inline modals', () => {
+  it('moves referral entry points from friends to the settings invite banner', () => {
     const friends = read('app/(tabs)/friends.tsx');
+    const settings = read('app/(tabs)/settings.tsx');
     const layout = read('app/_layout.tsx');
 
-    expect(friends).toContain("router.push('/referral_code_entry' as any)");
-    expect(friends).toContain("router.push('/referrals' as any)");
-    expect(friends).toContain('testID="friends-open-referrals"');
+    // Из «Друзей» рулетка/приглашения убраны полностью (owner 2026-07-24):
+    // ни иконки-мегафона, ни переходов на реферальные экраны.
+    expect(friends).not.toContain('testID="friends-open-referrals"');
+    expect(friends).not.toContain("router.push('/referrals' as any)");
+    expect(friends).not.toContain("router.push('/referral_code_entry' as any)");
+    // Входы живут в настройках: ряд «Ввести реферальный код» + инвайт-баннер.
+    expect(settings).toContain('testID="settings-referral-code-row"');
+    expect(settings).toContain('testID="settings-invite-banner"');
+    expect(settings).toContain("router.push('/referral_code_entry' as any)");
+    expect(settings).toContain("router.push('/referrals' as any)");
     expect(layout).toContain('<Stack.Screen name="referral_code_entry"');
     expect(layout).toContain('<Stack.Screen name="referrals"');
   });
@@ -266,9 +274,9 @@ describe('referral roulette screen contract', () => {
     const share = read('app/referral_invite_share.ts');
     const expired = read('components/EntitlementExpiredHost.tsx');
 
-    expect(share).toContain('Установи приложение, введи мой код и пройди первый урок полностью');
+    expect(share).toContain('Установи приложение, введи мой код и оформи Plus или Pro');
     expect(share).toContain('Plus от 1 дня до 365 дней');
-    expect(expired).toContain('1 прокрут');
+    expect(expired).toContain('получишь ключ');
     expect(expired).not.toContain('по 7 дней за каждого');
   });
 

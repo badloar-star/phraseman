@@ -263,11 +263,11 @@ export default function RouletteScreen() {
       setSpinning(false);
       if (outcome.reason === 'no_spins') {
         setSpins(0);
-        showToast(L('Прокруты закончились — пригласи друга', 'Прокрути закінчилися — запроси друга', 'No quedan giros: invita a un amigo', 'Os giros acabaram — convide um amigo', 'Đã hết lượt quay — hãy mời bạn', 'Putaran habis — undang teman', 'Çevirme kalmadı — bir arkadaşını davet et', 'Skończyły się losy — zaproś znajomego'));
+        showToast(L('Ключи закончились — пригласи друга', 'Ключі закінчилися — запроси друга', 'No quedan llaves: invita a un amigo', 'As chaves acabaram — convide um amigo', 'Đã hết chìa khóa — hãy mời bạn', 'Kunci habis — undang teman', 'Anahtar kalmadı — bir arkadaşını davet et', 'Skończyły się klucze — zaproś znajomego'));
       } else if (outcome.reason === 'link_required') {
         showToast(L('Нужно связать аккаунт — загляни в профиль', 'Потрібно прив’язати акаунт — зазирни в профіль', 'Vincula tu cuenta desde el perfil', 'Vincule sua conta no perfil', 'Hãy liên kết tài khoản trong hồ sơ', 'Tautkan akunmu di profil', 'Hesabını profilden bağla', 'Połącz konto w profilu'));
       } else if (outcome.reason === 'disabled') {
-        showToast(L('Рулетка временно недоступна', 'Рулетка тимчасово недоступна', 'La ruleta no está disponible temporalmente', 'A roleta está temporariamente indisponível', 'Vòng quay tạm thời không khả dụng', 'Roulette sementara tidak tersedia', 'Rulet geçici olarak kullanılamıyor', 'Ruletka jest chwilowo niedostępna'));
+        showToast(L('Награды временно недоступны', 'Нагороди тимчасово недоступні', 'Las recompensas no están disponibles temporalmente', 'As recompensas estão temporariamente indisponíveis', 'Phần thưởng tạm thời không khả dụng', 'Hadiah sementara tidak tersedia', 'Ödüller geçici olarak kullanılamıyor', 'Nagrody są chwilowo niedostępne'));
       } else {
         // retry уже выполнен внутри клиента с тем же spinRequestId — не дублируем.
         showToast(L('Сеть подвела — попробуй ещё раз', 'Помилка мережі — спробуй ще раз', 'Falló la red: inténtalo de nuevo', 'Falha na rede — tente novamente', 'Lỗi mạng — hãy thử lại', 'Jaringan bermasalah — coba lagi', 'Ağ hatası — tekrar dene', 'Błąd sieci — spróbuj ponownie'));
@@ -368,28 +368,31 @@ export default function RouletteScreen() {
           <Pressable
             onPress={() => router.back()}
             hitSlop={12}
-            style={[styles.headerBtn, { borderColor: t.border }]}
-            accessibilityLabel="Назад"
+            style={[styles.headerBtn, { backgroundColor: t.bgCard }]}
+            accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
           >
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontFamily: ds.fontFamily, fontWeight: '400' }}>‹</Text>
           </Pressable>
+          {/* зачем: владелец запретил слова «рулетка/прокрут» в интерфейсе —
+              механика называется «Награда за друга», единица счёта — «ключ».
+              Заголовок и accessibility были захардкожены по-русски: локализуем. */}
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontFamily: ds.fontFamily, fontWeight: '700', flex: 1, textAlign: 'center' }}>
-            Рулетка Plus
+            {L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
           </Text>
           <Pressable
             onPress={() => router.push('/roulette_about')}
             hitSlop={12}
-            style={[styles.headerBtn, { borderColor: t.border }]}
-            accessibilityLabel="О рулетке"
+            style={[styles.headerBtn, { backgroundColor: t.bgCard }]}
+            accessibilityLabel={L('О награде', 'Про нагороду', 'Sobre la recompensa', 'Sobre a recompensa', 'Về phần thưởng', 'Tentang hadiah', 'Ödül hakkında', 'O nagrodzie')}
           >
             <Text style={{ color: t.textMuted, fontSize: f.body, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
           </Pressable>
         </View>
 
-        {/* Бейдж прокрутов */}
-        <View style={[styles.spinsBadge, { backgroundColor: t.accentBg, borderColor: t.border }]}>
+        {/* Бейдж ключей */}
+        <View style={[styles.spinsBadge, { backgroundColor: t.accentBg }]}>
           <Text style={{ color: t.accent, fontSize: f.label, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-            Прокрутов: {spins}
+            {L('Ключей', 'Ключів', 'Llaves', 'Chaves', 'Chìa khóa', 'Kunci', 'Anahtar', 'Klucze')}: {spins}
           </Text>
         </View>
 
@@ -450,7 +453,7 @@ export default function RouletteScreen() {
               onPress={onSpin}
               disabled={!canSpin}
               style={({ pressed }: { pressed: boolean }) => [{ borderRadius: 22, overflow: 'hidden', opacity: pressed && canSpin ? 0.92 : 1 }]}
-              accessibilityLabel="Крутить рулетку"
+              accessibilityLabel={L('Забрать награду', 'Забрати нагороду', 'Recibir la recompensa', 'Receber a recompensa', 'Nhận phần thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')}
             >
               <LinearGradient
                 colors={canSpin ? bloomColors : [t.accentBg, t.accentBg]}
@@ -469,10 +472,10 @@ export default function RouletteScreen() {
                   {!assetsReady || !layoutReady
                     ? L('Готовим…', 'Готуємо…', 'Preparando…', 'Preparando…', 'Đang chuẩn bị…', 'Menyiapkan…', 'Hazırlanıyor…', 'Przygotowujemy…')
                     : spinning
-                      ? L('Крутится…', 'Крутиться…', 'Girando…', 'Girando…', 'Đang quay…', 'Berputar…', 'Çevriliyor…', 'Kręci się…')
+                      ? L('Открываем…', 'Відкриваємо…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieramy…')
                       : spins > 0
-                        ? L('Крутить', 'Крутити', 'Girar', 'Girar', 'Quay', 'Putar', 'Çevir', 'Zakręć')
-                        : L('Нет прокрутов', 'Немає прокрутів', 'Sin giros', 'Sem giros', 'Không có lượt quay', 'Tidak ada putaran', 'Çevirme yok', 'Brak losów')}
+                        ? L('Забрать награду', 'Забрати нагороду', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę')
+                        : L('Нет ключей', 'Немає ключів', 'Sin llaves', 'Sem chaves', 'Không có chìa khóa', 'Tidak ada kunci', 'Anahtar yok', 'Brak kluczy')}
                 </Text>
               </LinearGradient>
             </Pressable>
@@ -561,11 +564,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     gap: 12,
   },
+  // зачем: владелец не терпит обводки контейнеров — разделяем тоном (фон-заливка),
+  // поэтому borderWidth убран вместе с borderColor (правило design_no_borders_tone_only).
   headerBtn: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -575,7 +579,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 16,
-    borderWidth: 1,
   },
   tapeViewport: {
     marginTop: 20,

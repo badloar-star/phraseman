@@ -48,7 +48,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus-доступ завершился',
       title: 'Plus закончился',
-      value: 'Пригласи друга: после его первого урока получишь 1 прокрут. Приз — Plus от 1 дня до 365 дней.',
+      value: 'Пригласи друга: когда он оформит Plus или Pro, получишь ключ. Награда — Plus от 1 дня до 365 дней.',
       cta: 'Продлить Plus',
       ghost: 'Позже',
     },
@@ -64,7 +64,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus-доступ завершився',
       title: 'Plus закінчився',
-      value: 'Запроси друга: після його першого уроку отримаєш 1 прокрут. Приз — Plus від 1 до 365 днів.',
+      value: 'Запроси друга: коли він оформить Plus або Pro, отримаєш ключ. Нагорода — Plus від 1 до 365 днів.',
       cta: 'Продовжити Plus',
       ghost: 'Пізніше',
     },
@@ -80,7 +80,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Acceso Plus finalizado',
       title: 'Plus terminó',
-      value: 'Invita a un amigo: tras su primera lección recibirás 1 giro. Premio Plus de 1 a 365 días.',
+      value: 'Invita a un amigo: cuando compre Plus o Pro recibirás una llave. Recompensa: Plus de 1 a 365 días.',
       cta: 'Pasar a Plus',
       ghost: 'Más tarde',
     },
@@ -96,7 +96,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Acesso Plus encerrado',
       title: 'O Plus acabou',
-      value: 'Convide um amigo: após a primeira lição você recebe 1 giro. Prêmio Plus de 1 a 365 dias.',
+      value: 'Convide um amigo: quando ele assinar Plus ou Pro você recebe uma chave. Recompensa: Plus de 1 a 365 dias.',
       cta: 'Assinar Plus',
       ghost: 'Depois',
     },
@@ -112,7 +112,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus đã kết thúc',
       title: 'Plus đã hết hạn',
-      value: 'Mời một người bạn: sau bài học đầu tiên, bạn nhận 1 lượt quay. Giải Plus từ 1 đến 365 ngày.',
+      value: 'Mời một người bạn: khi họ mua Plus hoặc Pro, bạn nhận một chìa khóa. Phần thưởng: Plus từ 1 đến 365 ngày.',
       cta: 'Nâng cấp Plus',
       ghost: 'Để sau',
     },
@@ -128,7 +128,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Akses Plus berakhir',
       title: 'Plus berakhir',
-      value: 'Undang teman: setelah pelajaran pertamanya kamu mendapat 1 putaran. Hadiah Plus 1–365 hari.',
+      value: 'Undang teman: saat dia membeli Plus atau Pro kamu mendapat kunci. Hadiah: Plus 1–365 hari.',
       cta: 'Ambil Plus',
       ghost: 'Nanti',
     },
@@ -144,7 +144,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Plus erişimi sona erdi',
       title: 'Plus bitti',
-      value: 'Bir arkadaşını davet et: ilk dersinden sonra 1 çevirme kazan. Ödül 1–365 gün Plus.',
+      value: 'Bir arkadaşını davet et: Plus veya Pro satın aldığında bir anahtar kazan. Ödül: 1–365 gün Plus.',
       cta: 'Plus’a geç',
       ghost: 'Sonra',
     },
@@ -160,7 +160,7 @@ const TEXTS: Record<string, Record<Kind, Copy>> = {
     vip: {
       kicker: 'Dostęp Plus wygasł',
       title: 'Plus się skończył',
-      value: 'Zaproś znajomego: po jego pierwszej lekcji dostaniesz 1 los. Nagroda Plus od 1 do 365 dni.',
+      value: 'Zaproś znajomego: gdy kupi Plus lub Pro, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
       cta: 'Przejdź na Plus',
       ghost: 'Później',
     },

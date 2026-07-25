@@ -1235,9 +1235,13 @@ const LessonContent = React.memo(function LessonContent({
                 </View>
               )}
               <View style={{ backgroundColor: t.correctBg, padding: linkedSliceCompact ? 10 : 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                {/* зачем: обрезка снята — в компактном режиме плана скролл контейнера
+                    выключен (scrollEnabled={!linkedSliceCompact}), поэтому numberOfLines={2}
+                    делал правильный ответ физически нечитаемым («Правильное предложение:
+                    "The[y]» — репорт по уроку 14). Правильный ответ — суть обучения,
+                    он обязан быть виден целиком; блок растёт по высоте вместо обрезки. */}
                 <Text
                   style={{ color: t.correct, fontSize: resultAnswerFont, flex: 1, textAlign: 'left' }}
-                  numberOfLines={linkedSliceCompact ? 2 : undefined}
                 >
                   {resultCorrectLine}
                 </Text>
@@ -1402,7 +1406,13 @@ const LessonContent = React.memo(function LessonContent({
                         void hapticTap();
                       }}
                     >
-                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={1}>{displayText}</Text>
+                      {/* зачем: 3 юзера писали, что длинные слова в плитках обрезаны
+                          («understands», «documents») и приходится угадывать. Плитка — 48%
+                          ширины, при штатном «среднем» шрифте влезает ~10 знаков, а в данных
+                          уроков есть слова до 15-16 знаков. Шрифт НЕ ужимаем (правило
+                          владельца) — разрешаем вторую строку: фиксированной высоты у плитки
+                          нет (DuoPressable: только minHeight), поэтому обрезки не будет. */}
+                      <Text style={{ color: isFlashing ? (t.correctText ?? '#fff') : t.textPrimary, fontSize: f.numMd, fontWeight: isFlashing ? '700' : '500' }} numberOfLines={2}>{displayText}</Text>
                     </DuoPressable>
                       );
                     })()}
@@ -2470,7 +2480,7 @@ export default function LessonScreen() {
     setShowNoEnergyModal(true);
   }, [setShouldShake, setShowNoEnergyModal]);
   /**
-   * Выход с урока. Не используем replace('/lesson_menu'): при canGoBack() === false
+   * Выход с урока. Не используем replace('/(tabs)/lessons'): при canGoBack() === false
    * replace подменяет только верхний экран, и под ним снова оказывается тот же lesson_menu —
    * визуально «то же окно» и лишний шаг в стеке.
    * НЕ используем router.dismiss(1): это нативный imperative dismiss, который на
@@ -2483,10 +2493,10 @@ export default function LessonScreen() {
     if (from === 'lesson_menu') {
       const popToMenu = () => {
         if (router.canGoBack()) {
-          safeRouterBack(router, { pathname: '/lesson_menu', params: { id: String(lessonId) } } as any);
+          safeRouterBack(router, { pathname: '/(tabs)/lessons', params: { id: String(lessonId) } } as any);
           return;
         }
-        router.dismissTo({ pathname: '/lesson_menu', params: { id: String(lessonId) } });
+        router.dismissTo({ pathname: '/(tabs)/lessons', params: { id: String(lessonId) } });
       };
       void import('./lesson_menu')
         .then((m) => m.prefetchLessonMenuCache(lessonId, studyTargetRef.current))
@@ -3761,7 +3771,7 @@ export default function LessonScreen() {
             </Text>
             <TapScale
               accessibilityRole="button"
-              onPress={() => router.replace('/lesson_menu' as any)}
+              onPress={() => router.replace('/(tabs)/lessons' as any)}
               scaleTo={0.96}
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 18, paddingVertical: 12 }}
             >

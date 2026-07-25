@@ -540,7 +540,8 @@ function PlanPronunciationRecorder({
   // start(), снимается первым событием жизни движка; иначе через 7с гасит попытку.
   const recognizerWatchdogRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const finishAttemptTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const finishAttemptRef = useRef<() => void>(() => undefined);
+  // attemptGen — поколение попытки, от которой пришёл вызов (см. attemptGenRef).
+  const finishAttemptRef = useRef<(attemptGen?: number) => void>(() => undefined);
   const clearRecognizerWatchdog = useCallback(() => {
     if (recognizerWatchdogRef.current != null) {
       clearTimeout(recognizerWatchdogRef.current);
@@ -563,6 +564,14 @@ function PlanPronunciationRecorder({
   const bestConfidenceRef = useRef<number | undefined>(undefined);
   const bestSegmentsRef = useRef<ReadonlyArray<{ segment?: string; confidence?: number }> | undefined>(undefined);
   const scoredRef = useRef(false);
+  // зачем: юзер сообщил «после неидеальной первой попытки следующие не записываются».
+  // Причина — гонка: finishAttempt() старой попытки возвращает аудиосессию в режим
+  // воспроизведения (allowsRecording:false) с задержкой (таймер 1.5с или поздний
+  // нативный 'end' на Android) и глушит микрофон УЖЕ НАЧАВШЕЙСЯ новой попытки.
+  // Счётчик поколений: запоздавший колбэк старой попытки не трогает сессию новой.
+  const attemptGenRef = useRef(0);
+  // Поколение попытки, которую распознаватель слушает сейчас (0 = не слушает).
+  const listeningGenRef = useRef(0);
   // Union of all words heard this attempt — reassembles fast segmented speech so
   // it isn't scored as "only the last word". See TranscriptAccumulator.
   const accRef = useRef(new TranscriptAccumulator());
@@ -797,8 +806,12 @@ function PlanPronunciationRecorder({
     };
 
     // Score the accumulated best transcript exactly once per attempt.
-    const finishAttempt = () => {
+    const finishAttempt = (attemptGen?: number) => {
       clearFinishAttemptTimer();
+      // Запоздавший колбэк УЖЕ ЗАВЕРШЁННОЙ попытки (таймер 1.5с или поздний нативный
+      // 'end') не должен ничего делать: пользователь мог начать новую запись, и возврат
+      // сессии в режим воспроизведения заглушил бы живой микрофон.
+      if (attemptGen !== undefined && attemptGen !== attemptGenRef.current) return;
       // Попытка закончилась (любым исходом) — сессия больше не «запись».
       restoreLoudPlaybackMode();
       if (scoredRef.current) return;
@@ -833,7 +846,9 @@ function PlanPronunciationRecorder({
       }
       // Android segmented sessions can emit a final result for only part of the
       // phrase, then send the tail as another final result. Wait briefly for it.
-      finishAttemptTimerRef.current = setTimeout(finishAttempt, delayMs);
+      // Поколение фиксируем здесь: за 900мс пользователь может начать новую попытку.
+      const pendingGen = attemptGenRef.current;
+      finishAttemptTimerRef.current = setTimeout(() => finishAttempt(pendingGen), delayMs);
     };
 
     // cue играем один раз по первому признаку жизни движка ('start' ИЛИ 'result'
@@ -902,7 +917,19 @@ function PlanPronunciationRecorder({
     // (early silence cut-off), still score whatever best we captured.
     const endSub = speechModule.addListener('end', () => {
       clearRecognizerWatchdog();
-      finishAttempt();
+      // 'end' движка не несёт в себе, к КАКОЙ попытке он относится, а на Android
+      // приходит с задержкой (нативный stop() асинхронный). Поэтому доводим только
+      // если попытка ещё «живая» (listeningGen != 0). Если stopSpeaking её уже закрыл,
+      // доводку делает его таймер, а поздний 'end' обязан молчать — иначе он вернёт
+      // сессию в playback поверх уже начатой НОВОЙ записи и заглушит микрофон.
+      if (listeningGenRef.current === 0) {
+        setPronunciationPreparing(false);
+        equalizerRef.current?.setSample(0);
+        return;
+      }
+      const endGen = listeningGenRef.current;
+      listeningGenRef.current = 0;
+      finishAttempt(endGen);
       setPronunciationPreparing(false);
       setPronunciationListening(false);
       equalizerRef.current?.setSample(0);
@@ -1081,6 +1108,11 @@ function PlanPronunciationRecorder({
       bestSegmentsRef.current = undefined;
       accRef.current.reset();
       scoredRef.current = false;
+      // Новая попытка: всё, что прилетит от предыдущей, теперь считается устаревшим.
+      attemptGenRef.current += 1;
+      // Поколение попытки, которую слушает распознаватель ПРЯМО СЕЙЧАС. Слушатели
+      // ('end'/'error') живут дольше одной попытки, поэтому сверяются именно с ним.
+      listeningGenRef.current = attemptGenRef.current;
       equalizerRef.current?.setSample(0);
       // Hand the audio session from playback ("Послушать") to capture BEFORE
       // starting recognition, so iOS doesn't drop the first ~300ms of speech.
@@ -1171,6 +1203,11 @@ function PlanPronunciationRecorder({
       return;
     }
     const shouldSettleAfterStop = pronunciationListeningRef.current;
+    // Попытка, которую слушали, завершена ЗДЕСЬ. Дальше 'end' может прийти с
+    // задержкой (Android): к тому времени listeningGen уже принадлежит новой
+    // попытке, и без этой фиксации поздний 'end' выдал бы себя за неё.
+    const endingGen = listeningGenRef.current;
+    listeningGenRef.current = 0;
     if (shouldSettleAfterStop) {
       setPronunciationListening(false);
       setPronunciationScoring(true);
@@ -1181,9 +1218,11 @@ function PlanPronunciationRecorder({
       // end/error listener will settle state
     }
     if (shouldSettleAfterStop) {
+      // Запоминаем, ЧЬЯ это отложенная доводка: через 1.5с пользователь может уже
+      // записывать заново — тогда старый таймер обязан промолчать (иначе глушит микрофон).
       schedulePlanSpeechStopSettlement(
         finishAttemptTimerRef,
-        () => finishAttemptRef.current(),
+        () => finishAttemptRef.current(endingGen),
       );
     }
   }, [clearRecognizerWatchdog, setPronunciationScoring, speechModule]);

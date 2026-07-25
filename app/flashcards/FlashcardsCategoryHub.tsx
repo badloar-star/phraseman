@@ -75,6 +75,8 @@ type Props = {
   hubAuthorStableId?: string | null;
   onTrainingPress: () => void;
   onAudioPress: () => void;
+  /** Третий режим отработки — арена-квиз (макет C4). */
+  onArenaPress: () => void;
   hasFlashcardsPlus?: boolean;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
@@ -405,6 +407,7 @@ export default function FlashcardsCategoryHub({
   hubAuthorStableId = null,
   onTrainingPress,
   onAudioPress,
+  onArenaPress,
   hasFlashcardsPlus = false,
   themeMode,
 }: Props) {
@@ -993,6 +996,60 @@ export default function FlashcardsCategoryHub({
     );
   };
 
+  /**
+   * зачем: третий режим отработки из макета (C4 «Арена»). Раньше в разделе было
+   * два режима, и оба — самооценка: в свайпе можно честно жать «знаю» и не
+   * выучить ничего, в аудио проверки нет вовсе. Арена даёт объективный
+   * результат — 4 варианта, таймер, счёт и список слов, которые не даются.
+   */
+  const renderArenaTile = () => {
+    const i = tileAnimIndex++;
+    const label = triLang(lang, {
+      ru: 'Арена',
+      uk: 'Арена',
+      es: 'Arena',
+      'pt-BR': 'Arena',
+      vi: 'Đấu trường',
+      id: 'Arena',
+      tr: 'Arena',
+      pl: 'Arena',
+    });
+
+    return (
+      <Reanimated.View
+        key="arena"
+        {...(!reduceMotion && FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED ? { entering: enteringForIndex(i) } : {})}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
+      >
+        <HubTileShell
+          testID="flashcards-hub-tile-arena"
+          a11y="qa-flashcards-hub-tile-arena"
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={onArenaPress}
+        >
+          <GlassSurface
+            radius={TILE_RADIUS}
+            highlight
+            style={{
+              width: tileW,
+              height: tileW,
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+            }}
+          >
+            <Ionicons name="flash-outline" size={iconSize} color={t.textPrimary} />
+            {!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}
+          </GlassSurface>
+        </HubTileShell>
+        <Text style={labelStyle(true)} numberOfLines={2}>
+          {label}
+        </Text>
+      </Reanimated.View>
+    );
+  };
+
   const renderCollectionTile = () => {
     const i = tileAnimIndex++;
     const label = triLang(lang, {
@@ -1090,6 +1147,7 @@ export default function FlashcardsCategoryHub({
             {renderHubCategoryTiles()}
             {renderTrainingTile()}
             {renderAudioTile()}
+            {renderArenaTile()}
             {isCollectiblesEnabled() && renderCollectionTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>

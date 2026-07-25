@@ -1898,7 +1898,7 @@ export const LESSON_27_INTRO_EXTRA: LessonIntroScreen[] = [
       {
         type: 'text',
         parts: [
-          { text: 'Пряма речь звучит так: ', tone: 'normal' },
+          { text: 'Прямая речь звучит так: ', tone: 'normal' },
           { text: '"I am tired"', tone: 'strong' },
           { text: '.', tone: 'normal' },
         ],

@@ -24,7 +24,7 @@ import GradientProgressBar from '../components/GradientProgressBar';
 import { useTheme } from '../components/ThemeContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { personalPlanPromptForLang } from './personal_plan_prompt_locale';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { awardPlanTaskCompletion } from './personal_plan_xp';
@@ -274,11 +274,13 @@ function PlanListenChooseAudioButton({
   accent,
   actionText,
   mutedText,
+  lang,
 }: {
   item: PersonalPlanListenChooseItem | PersonalPlanListenBuildItem;
   accent: string;
   actionText: string;
   mutedText: string;
+  lang: Lang;
 }) {
   const playback = useMemo(() => buildPlanListeningPlaybackSource(item), [item]);
   const source = playback.source === 'in_app_audio' ? playback.playerSource : null;
@@ -287,12 +289,43 @@ function PlanListenChooseAudioButton({
   const disabled = playback.source !== 'in_app_audio';
   const isPlaying = Boolean(status?.playing);
   const isBuffering = Boolean(status?.isBuffering);
-  const label = disabled ? 'Аудио готовится' : isBuffering ? 'Загрузка' : isPlaying ? 'Слушаю' : 'Слушать';
+  // зачем: юзер-украинец сообщил, что кнопка подписана по-русски «Слушать».
+  // Строки были захардкожены, хотя весь остальной экран уже локализован через triLang.
+  const label = disabled
+    ? triLang(lang, {
+        ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+        'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
+        id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
+      })
+    : isBuffering
+      ? triLang(lang, {
+          ru: 'Загрузка', uk: 'Завантаження', es: 'Cargando',
+          'pt-BR': 'Carregando', vi: 'Đang tải', id: 'Memuat', tr: 'Yükleniyor', pl: 'Ładowanie',
+        })
+      : isPlaying
+        ? triLang(lang, {
+            ru: 'Слушаю', uk: 'Слухаю', es: 'Escuchando',
+            'pt-BR': 'Ouvindo', vi: 'Đang nghe', id: 'Mendengarkan', tr: 'Dinleniyor', pl: 'Słucham',
+          })
+        : triLang(lang, {
+            ru: 'Слушать', uk: 'Слухати', es: 'Escuchar',
+            'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Słuchaj',
+          });
 
   return (
     <TouchableOpacity
       accessibilityRole="button"
-      accessibilityLabel={disabled ? 'Аудио готовится' : 'Слушать фразу'}
+      accessibilityLabel={disabled
+        ? triLang(lang, {
+            ru: 'Аудио готовится', uk: 'Аудіо готується', es: 'Preparando el audio',
+            'pt-BR': 'Preparando o áudio', vi: 'Đang chuẩn bị âm thanh',
+            id: 'Menyiapkan audio', tr: 'Ses hazırlanıyor', pl: 'Przygotowuję audio',
+          })
+        : triLang(lang, {
+            ru: 'Слушать фразу', uk: 'Слухати фразу', es: 'Escuchar la frase',
+            'pt-BR': 'Ouvir a frase', vi: 'Nghe cụm từ', id: 'Dengarkan frasa',
+            tr: 'İfadeyi dinle', pl: 'Posłuchaj frazy',
+          })}
       activeOpacity={0.82}
       disabled={disabled}
       onPress={() => {
@@ -2399,6 +2432,7 @@ export default function PersonalPlanExerciseScreen() {
                   accent={accent}
                   actionText={actionText}
                   mutedText={t.textMuted}
+                  lang={lang}
                 />
                 <View
                   accessibilityLabel="Поле собранной фразы"
@@ -2580,6 +2614,7 @@ export default function PersonalPlanExerciseScreen() {
                     accent={accent}
                     actionText={actionText}
                     mutedText={t.textMuted}
+                    lang={lang}
                   />
                 ) : null}
                 {false && isListeningMode && isPersonalPlanListenChooseItem(item) ? (

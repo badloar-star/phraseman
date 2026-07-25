@@ -22,6 +22,7 @@ import {
   NotifSettings,
   loadNotifSettings, saveNotifSettings, scheduleNotifications,
   getNotifSettingsSnapshot,
+  isNotificationPermissionGranted, requestNotificationPermissionWithFallback,
 } from './notifications';
 import { triLang, type Lang } from '../constants/i18n';
 import { safeRouterBack } from './navigation_back';
@@ -159,6 +160,8 @@ export default function SettingsNotifications() {
 
   const [s, setS]         = useState<NotifSettings>(() => getNotifSettingsSnapshot());
   const [saved, setSaved] = useState(false);
+  // Разрешение на уведомления отсутствует → напоминания не сработают, надо сказать об этом.
+  const [needsPermission, setNeedsPermission] = useState(false);
   const [pickerDay, setPickerDay] = useState<number|null>(null);
   const [pickerH,   setPickerH]   = useState(20);
   const [pickerM,   setPickerM]   = useState(0);
@@ -169,13 +172,29 @@ export default function SettingsNotifications() {
     }, [])
   );
 
+  // зачем: юзеры жаловались «напоминания не срабатывают». Причина — если разрешения на
+  // уведомления нет, scheduleNotifications молча делает return, а экран всё равно рисует
+  // «Сохранено» и включённый переключатель. Теперь при включении дня явно проверяем
+  // разрешение и, если его нет, честно показываем это и ведём в настройки телефона.
   const persist = async (next: NotifSettings) => {
     const previous = s;
+    const wantsReminders = Object.values(next.schedule).some(d => d.enabled);
+    // Оптимистично: переключатель реагирует мгновенно, разрешение догоняем фоном.
     setS(next);
+    setNeedsPermission(false);
     setSaved(true);
     setTimeout(() => setSaved(false), 1400);
     try {
       await saveNotifSettings(next);
+      if (wantsReminders && !(await isNotificationPermissionGranted())) {
+        const res = await requestNotificationPermissionWithFallback();
+        if (!res.granted) {
+          // Настройки сохранены, но напоминания реально не запланированы — не молчим.
+          setSaved(false);
+          setNeedsPermission(true);
+          return;
+        }
+      }
       await scheduleNotifications(next, lang as Lang, 0, { studyTarget });
     } catch {
       setS(previous);
@@ -203,6 +222,16 @@ export default function SettingsNotifications() {
     id: 'Batal',
     tr: 'İptal',
     pl: 'Anuluj',
+  });
+  const permissionLabel = triLang(lang as Lang, {
+    ru: 'Уведомления выключены в настройках телефона. Нажмите, чтобы включить.',
+    uk: 'Сповіщення вимкнені в налаштуваннях телефона. Натисніть, щоб увімкнути.',
+    es: 'Las notificaciones están desactivadas en el teléfono. Toca para activarlas.',
+    'pt-BR': 'As notificações estão desativadas no telefone. Toque para ativar.',
+    vi: 'Thông báo đang tắt trong cài đặt điện thoại. Nhấn để bật.',
+    id: 'Notifikasi dimatikan di pengaturan ponsel. Ketuk untuk mengaktifkan.',
+    tr: 'Bildirimler telefon ayarlarında kapalı. Açmak için dokunun.',
+    pl: 'Powiadomienia są wyłączone w ustawieniach telefonu. Dotknij, aby włączyć.',
   });
   const screenTitle = triLang(lang as Lang, {
     uk: 'Розклад занять',
@@ -265,7 +294,7 @@ export default function SettingsNotifications() {
         <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'700', marginLeft:8, flex:1 }} numberOfLines={1}>
           {screenTitle}
         </Text>
-        {saved && (
+        {saved && !needsPermission && (
           <View style={{ flexDirection:'row', alignItems:'center', gap:4, marginRight: 8 }}>
             <Ionicons name="checkmark-circle" size={16} color={t.correct}/>
             <Text style={{ color:t.correct, fontSize:13 }}>{savedLabel}</Text>
@@ -290,6 +319,36 @@ export default function SettingsNotifications() {
       </View>
 
       <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingBottom:40 }}>
+        {/* зачем: без разрешения напоминания молча не сработают — раньше юзер видел
+            «Сохранено» и был уверен, что всё включено. Тап ведёт в настройки телефона. */}
+        {needsPermission && (
+          <TapScale
+            onPress={async () => {
+              hapticTap();
+              const res = await requestNotificationPermissionWithFallback({ openSettingsIfBlocked: true });
+              if (res.granted) {
+                setNeedsPermission(false);
+                await scheduleNotifications(s, lang as Lang, 0, { studyTarget });
+              }
+            }}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 10,
+              marginHorizontal: 16,
+              marginBottom: 12,
+              paddingVertical: 12,
+              paddingHorizontal: 14,
+              borderRadius: 14,
+              backgroundColor: t.wrongBg ?? t.bgCard,
+            }}
+          >
+            <Ionicons name="notifications-off" size={18} color={t.wrong ?? t.textPrimary} />
+            <Text style={{ color: t.wrong ?? t.textPrimary, fontSize: 13, flex: 1, lineHeight: 18 }}>
+              {permissionLabel}
+            </Text>
+          </TapScale>
+        )}
         {days.map((dayName, d) => {
           const day = s.schedule[d];
           if (!day) return null;

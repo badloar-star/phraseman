@@ -237,6 +237,19 @@ export default function FlashcardsAudioScreen() {
         tr: 'Kullanılabilir set yok.',
         pl: 'Brak dostępnych zestawów.',
       }),
+      // зачем: юзеры писали «не могу получить набор карточек». При сетевой ошибке экран
+      // показывал то же «Нет доступных наборов», что и при реально пустом списке —
+      // человек думал, что карточек нет, вместо «связь подвела, попробуй ещё раз».
+      loadFailed: triLang(lang, {
+        ru: 'Не удалось загрузить наборы. Проверьте связь и попробуйте ещё раз.',
+        uk: 'Не вдалося завантажити набори. Перевірте зв’язок і спробуйте ще раз.',
+        es: 'No se pudieron cargar los packs. Revisa la conexión e inténtalo de nuevo.',
+        'pt-BR': 'Não foi possível carregar os pacotes. Verifique a conexão e tente novamente.',
+        vi: 'Không tải được bộ thẻ. Kiểm tra kết nối và thử lại.',
+        id: 'Gagal memuat paket. Periksa koneksi dan coba lagi.',
+        tr: 'Setler yüklenemedi. Bağlantını kontrol edip tekrar dene.',
+        pl: 'Nie udało się wczytać zestawów. Sprawdź połączenie i spróbuj ponownie.',
+      }),
       nothingSelected: triLang(lang, {
         ru: 'Выбери хотя бы один набор.',
         uk: 'Вибери хоча б один набір.',
@@ -370,7 +383,8 @@ export default function FlashcardsAudioScreen() {
       setSources(next);
       setSelectedIds((current) => reconcileSelectedSourceIds(current, next, requestedSourceId));
     } catch {
-      setLoadError(text.empty);
+      // Сетевая/серверная ошибка — это НЕ «наборов нет». Говорим правду и зовём повторить.
+      setLoadError(text.loadFailed);
     } finally {
       setLoadingSources(false);
     }
@@ -381,7 +395,7 @@ export default function FlashcardsAudioScreen() {
     requestedFilter,
     requestedSourceId,
     studyTarget,
-    text.empty,
+    text.loadFailed,
   ]);
 
   useEffect(() => {

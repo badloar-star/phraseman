@@ -166,6 +166,7 @@ export default function PaywallF() {
                 </View>
               ) : (
                 <PersonalizationProofCard
+                  ctx={ctx}
                   lang={lang as Lang}
                   chrome={chrome}
                   tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}

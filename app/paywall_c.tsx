@@ -270,6 +270,7 @@ export default function PaywallC() {
             {/* ── галерея доказательств: скроллить НЕ обязательно ── */}
             <PaywallEntrance index={5}>
               <PersonalizationProofCard
+                ctx={ctx}
                 lang={lang as Lang}
                 chrome={chrome}
                 tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}

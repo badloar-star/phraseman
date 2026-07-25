@@ -223,6 +223,7 @@ export default function PaywallA() {
 
             <PaywallEntrance index={6}>
               <PersonalizationProofCard
+                ctx={ctx}
                 lang={lang as Lang}
                 chrome={chrome}
                 tagTexts={personalTag ? [LP(personalTag.ru, personalTag.uk, personalTag.es, personalTag)] : []}

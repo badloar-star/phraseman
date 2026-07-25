@@ -236,6 +236,7 @@ export default function PaywallB() {
 
             <PaywallEntrance index={6}>
               <PersonalizationProofCard
+                ctx={ctx}
                 lang={lang as Lang}
                 chrome={chrome}
                 tagTexts={tags.map((tag) => LP(tag.ru, tag.uk, tag.es, tag))}

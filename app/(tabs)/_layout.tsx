@@ -286,20 +286,24 @@ type TabDef = {
 
 /** Суффиксы путей четырёх основных табов. Таб 1 — «Журнал» (статистика);
  *  legacy-суффикс `/lessons` оставлен в маппинге, чтобы старые диплинки не терялись. */
-const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/friends', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/journal', '/lessons', '/tournaments', '/friends', '/settings'] as const;
 
 const PATHNAME_TO_IDX: Record<(typeof TAB_PATH_SUFFIXES)[number], number> = {
   '/home': 0,
   '/journal': 1,
   '/lessons': 1,
-  '/friends': 2,
-  '/settings': 3,
+  // зачем: кубок стоит ПО ЦЕНТРУ (макет 01) — это акцентная вкладка режима,
+  // поэтому друзья и настройки сдвинулись на 3 и 4.
+  '/tournaments': 2,
+  '/friends': 3,
+  '/settings': 4,
 };
 const IDX_TO_TAB_ROUTE: Record<number, string> = {
   0: '/(tabs)/home',
   1: '/(tabs)/journal',
-  2: '/(tabs)/friends',
-  3: '/(tabs)/settings',
+  2: '/(tabs)/tournaments',
+  3: '/(tabs)/friends',
+  4: '/(tabs)/settings',
 };
 
 function addVisitedTab(prev: Set<number>, idx: number): Set<number> {
@@ -369,8 +373,9 @@ const SEGMENT_TO_TAB_IDX: Record<string, number> = {
   home: 0,
   journal: 1,
   lessons: 1,
-  friends: 2,
-  settings: 3,
+  tournaments: 2,
+  friends: 3,
+  settings: 4,
 };
 
 /**
@@ -419,10 +424,12 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
 const TABS: TabDef[] = [
-  { key: 'home',     icon: 'home-outline',        active: 'home' },
-  { key: 'index',    icon: 'stats-chart-outline', active: 'stats-chart' },
-  { key: 'friends',  icon: 'people-outline',      active: 'people' },
-  { key: 'settings', icon: 'settings-outline',    active: 'settings' },
+  { key: 'home',        icon: 'home-outline',        active: 'home' },
+  { key: 'index',       icon: 'stats-chart-outline', active: 'stats-chart' },
+  // Кубок — акцентная вкладка режима «Турниры», по центру (макет 01).
+  { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
+  { key: 'friends',     icon: 'people-outline',      active: 'people' },
+  { key: 'settings',    icon: 'settings-outline',    active: 'settings' },
 ];
 
 

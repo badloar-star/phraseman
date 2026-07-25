@@ -14,10 +14,10 @@ import React, { memo, useCallback, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Card, Cta, Pill, Sheet } from '../components/tournament/tournament_ui';
-import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
-import { T, radius, type } from '../components/tournament/tournament_theme';
+import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
+import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
+import { T, radius, type } from '../../components/tournament/tournament_theme';
 
 type SlotState = 'done' | 'now' | 'next';
 type DaySlot = { time: string; state: SlotState };

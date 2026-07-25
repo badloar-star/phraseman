@@ -15,7 +15,7 @@ const root = path.resolve(__dirname, '..');
 const read = (rel: string) => readFileSync(path.join(root, rel), 'utf8');
 
 const SCREENS = [
-  'app/tournaments.tsx',
+  'app/(tabs)/tournaments.tsx',
   'app/tournament_lobby.tsx',
   'app/tournament_round.tsx',
   'app/tournament_table.tsx',
@@ -218,6 +218,32 @@ describe('экраны режима «Турниры»', () => {
     // Скелетон повторяет геометрию, а не крутит спиннер на весь экран.
     expect(edge).toContain('TournamentSkeleton');
     expect(edge).not.toContain('ActivityIndicator');
+  });
+
+  it('вкладка «Турниры» согласована во ВСЕХ картах индексов', () => {
+    // зачем: индексы вкладок продублированы в пяти местах, включая копию
+    // в home.tsx. Рассинхрон не ломает сборку — просто переходы уводят
+    // не на тот экран, и это замечают только на устройстве.
+    const layout = read('app/(tabs)/_layout.tsx');
+    const home = read('app/(tabs)/home.tsx');
+
+    // Кубок стоит по центру: индекс 2, друзья 3, настройки 4.
+    expect(layout).toMatch(/tournaments:\s*2/);
+    expect(layout).toMatch(/friends:\s*3/);
+    expect(layout).toMatch(/settings:\s*4/);
+    expect(layout).toMatch(/'\/tournaments':\s*2/);
+    expect(layout).toMatch(/2:\s*'\/\(tabs\)\/tournaments'/);
+    expect(layout).toContain("key: 'tournaments'");
+
+    // Копия карты в home.tsx обязана совпадать.
+    expect(home).toMatch(/'\/\(tabs\)\/tournaments':\s*2/);
+    expect(home).toMatch(/'\/\(tabs\)\/friends':\s*3/);
+    expect(home).toMatch(/'\/\(tabs\)\/settings':\s*4/);
+  });
+
+  it('экран турниров лежит внутри папки вкладок', () => {
+    // Вне (tabs) таббар его не подхватит и вкладка будет пустой.
+    expect(() => read('app/(tabs)/tournaments.tsx')).not.toThrow();
   });
 
   it('интерактивные элементы доступны для скринридера', () => {

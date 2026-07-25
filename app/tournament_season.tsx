@@ -5,10 +5,17 @@
 // (красный за 3 часа) и тиры наград. Своя строка подсвечена и всегда видна.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
+import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+// зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
+// что и в shards_shop.tsx/tournaments.tsx, используем везде, где есть кнопка «назад».
+import { safeRouterBack } from './navigation_back';
+import TapScale from '../components/TapScale';
+import AvatarView from '../components/AvatarView';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, placeColor, radius, type } from '../components/tournament/tournament_theme';
@@ -16,33 +23,34 @@ import { T, placeColor, radius, type } from '../components/tournament/tournament
 type SeasonRow = {
   id: number;
   name: string;
-  emoji: string;
+  avatarIndex: number;
   color: string;
   points: number;
   isYou?: boolean;
 };
 
+// зачем: раньше здесь были эмодзи-«аватары» лидеров (👑⚔️🐺…) с хардкод-хексами —
+// правило владельца запрещает эмодзи-аватары; цвета берутся из общих T.leader*
+// токенов режима (components/tournament/tournament_theme.ts), а аватар — из
+// approved AvatarView (те же ассеты, что в лигах/друзьях).
 /** TODO(server): придёт из недельного рейтинга (tournamentSeasons). */
 const SEASON_ROWS: SeasonRow[] = [
-  { id: 1, name: 'КубокБарон', emoji: '👑', color: '#FFD43B', points: 412 },
-  { id: 2, name: 'МолнияPRO', emoji: '⚔️', color: '#FF5B6C', points: 388 },
-  { id: 3, name: 'СловоЖора', emoji: '🐺', color: '#8B8B8B', points: 341 },
-  { id: 4, name: 'Полиглот_77', emoji: '🌍', color: '#3B82F6', points: 305 },
-  { id: 5, name: 'IdiomHunter', emoji: '🏹', color: '#47C870', points: 289 },
-  { id: 6, name: 'Вы', emoji: '🦊', color: '#FB923C', points: 265, isYou: true },
-  { id: 7, name: 'Фразочкина', emoji: '🦉', color: '#47C870', points: 240 },
-  { id: 8, name: 'VerbaVolt', emoji: '⚡', color: '#FFD43B', points: 228 },
-];
-
-const TIERS = [
-  { range: '1 место', reward: '👑 Рамка чемпиона + 200 💎' },
-  { range: 'Топ-3', reward: '100 💎 + титул' },
-  { range: 'Топ-5', reward: '50 💎' },
-  { range: 'Топ-10', reward: '20 💎' },
+  { id: 1, name: 'КубокБарон', avatarIndex: 7, color: T.leaderCrown, points: 412 },
+  { id: 2, name: 'МолнияPRO', avatarIndex: 5, color: T.leaderSword, points: 388 },
+  { id: 3, name: 'СловоЖора', avatarIndex: 3, color: T.leaderWolf, points: 341 },
+  { id: 4, name: 'Полиглот_77', avatarIndex: 2, color: T.leaderGlobe, points: 305 },
+  { id: 5, name: 'IdiomHunter', avatarIndex: 6, color: T.leaderBow, points: 289 },
+  { id: 6, name: 'Вы', avatarIndex: 4, color: T.leaderFox, points: 265, isYou: true },
+  { id: 7, name: 'Фразочкина', avatarIndex: 8, color: T.leaderOwl, points: 240 },
+  { id: 8, name: 'VerbaVolt', avatarIndex: 1, color: T.leaderBolt, points: 228 },
 ];
 
 export default function TournamentSeasonScreen() {
+  const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  // зачем: экран пушится из tournaments.tsx («Сезон» card), но своей кнопки
+  // «назад» не было — трапит пользователя. Паттерн 1:1 как на tournaments.tsx.
+  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
   // Отсчёт до сброса недели.
   const secondsToReset = useCountdown(2 * 3600 + 41 * 60);
   const urgent = secondsToReset <= 3 * 3600;
@@ -62,7 +70,19 @@ export default function TournamentSeasonScreen() {
         ]}
         showsVerticalScrollIndicator={false}
       >
-        <Text style={styles.title}>Сезон</Text>
+        {/* зачем: экран открывался только пушем без выхода — добавлена кнопка
+            «назад», паттерн 1:1 как в shards_shop.tsx/tournaments.tsx. */}
+        <View style={styles.header}>
+          <TapScale
+            onPress={goBack}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+            style={styles.backButton}
+          >
+            <Ionicons name="chevron-back" size={24} color={T.text} />
+          </TapScale>
+          <Text style={styles.title}>Сезон</Text>
+        </View>
 
         {/* Отсчёт до сброса */}
         <Card tone="elev" pad={22}>
@@ -89,16 +109,10 @@ export default function TournamentSeasonScreen() {
           ))}
         </View>
 
-        {/* Тиры наград */}
-        <Card pad={18}>
-          <Text style={styles.tiersTitle}>Награды недели</Text>
-          {TIERS.map((tier) => (
-            <View key={tier.range} style={styles.tierRow}>
-              <Text style={styles.tierRange}>{tier.range}</Text>
-              <Text style={styles.tierReward}>{tier.reward}</Text>
-            </View>
-          ))}
-        </Card>
+        {/* зачем: секция «Награды недели» убрана — перечисленные призы (рамка
+            чемпиона, титулы, 💎) не подкреплены реальной серверной системой
+            начисления наград. Убираем рендер, чтобы не обещать то, чего нет,
+            до появления настоящего бэкенда наград. */}
       </ScrollView>
     </View>
   );
@@ -113,7 +127,7 @@ const SeasonRowItem = memo(function SeasonRowItem({
         {place}
       </Text>
       <View style={[styles.avatar, { backgroundColor: `${row.color}33` }]}>
-        <Text style={styles.avatarEmoji}>{row.emoji}</Text>
+        <AvatarView avatar={String(row.avatarIndex)} size={28} animateAura={false} />
       </View>
       <Text style={[styles.name, row.isYou && { color: T.accent }]} numberOfLines={1}>
         {row.name}
@@ -127,6 +141,8 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: T.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
+  header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
+  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   title: { ...type.title, color: T.text },
 
   resetKicker: {
@@ -152,7 +168,6 @@ const styles = StyleSheet.create({
   rowYou: { backgroundColor: T.accentSoft },
   place: { width: 22, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
   avatar: { width: 34, height: 34, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
-  avatarEmoji: { fontSize: 17 },
   name: { flex: 1, fontSize: 15, fontWeight: '800', color: T.text },
   points: {
     fontSize: 17,
@@ -160,9 +175,4 @@ const styles = StyleSheet.create({
     color: T.text,
     fontVariant: ['tabular-nums'],
   },
-
-  tiersTitle: { fontSize: 17, fontWeight: '800', color: T.text, marginBottom: 10 },
-  tierRow: { flexDirection: 'row', alignItems: 'center', paddingVertical: 7, gap: 12 },
-  tierRange: { width: 80, ...type.body, fontWeight: '800', color: T.gold },
-  tierReward: { flex: 1, ...type.body, color: T.muted },
 });

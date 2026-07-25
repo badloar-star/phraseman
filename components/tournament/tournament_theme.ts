@@ -32,6 +32,17 @@ export const T = Object.freeze({
   dangerSoft: 'rgba(255,91,108,0.12)',
   dangerDark: '#7A2530',
   streak: '#FB923C',
+  // зачем: раньше сезонные лидеры/аватары красились хардкод-хексами прямо в
+  // экранах (tournaments.tsx/tournament_season.tsx) — это ломало единый
+  // токен-набор режима. Выносим палитру аватаров сюда, рядом с остальными T.*.
+  leaderWolf: '#8AB49A',
+  leaderCrown: '#FFD43B',
+  leaderSword: '#FF5B6C',
+  leaderGlobe: '#3B82F6',
+  leaderBow: '#47C870',
+  leaderFox: '#FB923C',
+  leaderOwl: '#47C870',
+  leaderBolt: '#FFD43B',
 });
 
 export const radius = Object.freeze({ lg: 26, md: 18, sm: 12 });

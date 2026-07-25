@@ -19,8 +19,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+// зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
+// что и в shards_shop.tsx/tournaments.tsx/tournament_season.tsx.
+import { safeRouterBack } from './navigation_back';
+import TapScale from '../components/TapScale';
+import AvatarView from '../components/AvatarView';
+import { coinIconForBalance } from './coin_icons';
 import { Card, Cta } from '../components/tournament/tournament_ui';
 import { T, motion, placeColor, radius, type } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
@@ -28,13 +35,16 @@ import { claimReward, useTournamentRoom, type RoomPlayer } from './tournament_cl
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
-type Winner = { name: string; emoji: string; color: string; score: number; place: number };
+type Winner = { name: string; avatar: string; color: string; score: number; place: number };
 
+// зачем: 💎 — запрещённая эмодзи-валюта; призовой текст теперь ссылается на
+// монеты словом «монет», сама иконка монеты рисуется рядом с суммой в UI
+// (не встроена в текст, т.к. это строка из трёх разных призов подряд).
 /** Призы совпадают с TOURNAMENT_PRIZES на сервере (tournament_core.ts). */
 const PRIZES = [
-  { medal: '🥇', text: '🎟 + 50 💎 + титул «Чемпион дня»' },
-  { medal: '🥈', text: '🎟 + 25 💎' },
-  { medal: '🥉', text: '10 💎' },
+  { medal: '🥇', text: '🎟 + 50 монет + титул «Чемпион дня»' },
+  { medal: '🥈', text: '🎟 + 25 монет' },
+  { medal: '🥉', text: '10 монет' },
 ];
 
 /**
@@ -45,8 +55,12 @@ function buildPodium(players: readonly RoomPlayer[]): Winner[] {
   const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
   const top = sorted.slice(0, 3).map((player, index) => ({
     name: player.name || 'Игрок',
-    emoji: player.avatar || '🙂',
-    color: player.color || '#8AB49A',
+    // зачем: был эмодзи-фолбэк '🙂' — approved AvatarView сам рисует дефолтный
+    // LevelBadge, если avatar пуст/невалиден, эмодзи-костыль не нужен.
+    avatar: player.avatar || '',
+    // зачем: было хардкод-hex '#8AB49A' — фолбэк-цвет аватара теперь берётся
+    // из общего токен-набора режима (тот же тон, что T.muted).
+    color: player.color || T.muted,
     score: Number(player.score ?? 0),
     place: index + 1,
   }));
@@ -59,6 +73,10 @@ export default function TournamentResultsScreen() {
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  // зачем: у финального экрана не было пути назад кроме кнопки внизу — добавлена
+  // компактная кнопка в шапке, тот же паттерн, что и в остальных экранах
+  // турниров. Кнопка повторного запуска турнира отсутствует намеренно — см. шапку файла.
+  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
 
   const { room, status, retry } = useTournamentRoom(roomId);
   const [myId, setMyId] = useState<string | null>(null);
@@ -156,6 +174,20 @@ export default function TournamentResultsScreen() {
         ]}
         showsVerticalScrollIndicator={false}
       >
+        {/* зачем: финальный экран не имел выхода назад (только «На главную»
+            снизу) — компактная кнопка в углу, тот же паттерн, что и в
+            остальных экранах турниров. */}
+        <View style={styles.header}>
+          <TapScale
+            onPress={goBack}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+            style={styles.backButton}
+          >
+            <Ionicons name="chevron-back" size={24} color={T.text} />
+          </TapScale>
+        </View>
+
         <Animated.View entering={FadeInDown.duration(280)} style={styles.titleBlock}>
           <Text style={styles.title}>
             {won ? '🏆 Победа!' : 'Турнир завершён'}
@@ -189,8 +221,10 @@ export default function TournamentResultsScreen() {
         {/* Награда игрока */}
         <Card tone="elev" pad={20}>
           <View style={styles.rewardRow}>
-            <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? '#8AB49A'}33` }]}>
-              <Text style={styles.rewardEmoji}>{me?.avatar ?? '🙂'}</Text>
+            {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
+                общий T.muted и настоящий AvatarView, как на подиуме выше. */}
+            <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? T.muted}33` }]}>
+              <AvatarView avatar={me?.avatar ?? ''} size={40} animateAura={false} />
             </View>
             <View style={styles.rewardBody}>
               <Text style={styles.rewardTitle}>Ваша награда</Text>
@@ -260,7 +294,7 @@ const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) 
             first && styles.podiumAvatarFirst,
           ]}
         >
-          <Text style={styles.podiumEmoji}>{winner.emoji}</Text>
+          <AvatarView avatar={winner.avatar} size={first ? 74 : 62} animateAura={false} />
         </View>
       </Animated.View>
 
@@ -289,6 +323,9 @@ const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: T.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
+  header: { flexDirection: 'row', alignItems: 'center' },
+  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+
   titleBlock: { alignItems: 'center', marginBottom: 4 },
   title: { fontSize: 30, fontWeight: '900', color: T.text, letterSpacing: -0.8 },
   subtitle: { ...type.body, color: T.muted, marginTop: 6 },
@@ -313,7 +350,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     elevation: 8,
   },
-  podiumEmoji: { fontSize: 30 },
   podiumName: { fontSize: 14, fontWeight: '800', color: T.text, marginTop: 8 },
   podiumScore: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
   podiumBlock: {
@@ -332,7 +368,6 @@ const styles = StyleSheet.create({
 
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rewardAvatar: { width: 52, height: 52, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
-  rewardEmoji: { fontSize: 26 },
   rewardBody: { flex: 1 },
   rewardTitle: { fontSize: 17, fontWeight: '800', color: T.text },
   rewardSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 3 },

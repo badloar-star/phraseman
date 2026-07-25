@@ -11,10 +11,19 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
+import { Image } from 'expo-image'; // guard-ok: декоративная монета, число рядом — реальный индикатор (a11y на Pill)
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+// зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
+// что и в coin_exchange.tsx, используем везде, где добавляем кнопку «назад».
+import { safeRouterBack } from '../navigation_back';
+import TapScale from '../../components/TapScale';
+import AvatarView from '../../components/AvatarView';
+import { coinIconForBalance } from '../coin_icons';
+import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
 import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
 import { T, radius, type } from '../../components/tournament/tournament_theme';
@@ -84,19 +93,29 @@ function daySlots(slots: ScheduleSlot[], activeSlotId: string | null): DaySlot[]
     });
 }
 
+// зачем: раньше здесь были эмодзи-«аватары» лидеров (🐺👑⚔️) с хардкод-хексами —
+// правило владельца запрещает эмодзи-валюту/аватары, показываем реальные
+// аватарки через approved AvatarView (те же ассеты, что в лигах/друзьях).
 const SEASON_LEADERS = [
-  { emoji: '🐺', color: '#8B8B8B' },
-  { emoji: '👑', color: '#FFD43B' },
-  { emoji: '⚔️', color: '#FF5B6C' },
+  { avatarIndex: 3, color: T.leaderWolf },
+  { avatarIndex: 7, color: T.leaderCrown },
+  { avatarIndex: 5, color: T.leaderSword },
 ];
 
 export default function TournamentsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  // зачем: экран открывается пушем из таббара, но своей кнопки «назад» не было
+  // (только safeRouterBack был импортирован без дела) — паттерн 1:1 как в
+  // shards_shop.tsx: круглая кнопка chevron-back + safeRouterBack с фолбэком.
+  const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
-  // TODO(server): баланс придёт из профиля тем же снимком, что и главная.
+  // TODO(server): баланс билетов/банка придёт из профиля тем же снимком, что и главная.
   const [tickets] = useState<number>(3);
-  const [gems] = useState<number>(124);
+  // зачем: раньше здесь был отдельный эмодзи-«гем» (💎), запрещённая владельцем
+  // валюта. Показываем реальный баланс монет — как на Главной/в Магазине —
+  // синхронно из кэша (Performance Bible: без спиннера и «0 → значение» прыжка).
+  const [coins, setCoins] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
   const [bank] = useState<number>(240);
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [joining, setJoining] = useState(false);
@@ -114,6 +133,11 @@ export default function TournamentsScreen() {
   }, []);
 
   useEffect(reloadSchedule, [reloadSchedule]);
+
+  // Тихая ревалидация баланса монет с сервера — тот же паттерн, что в coin_exchange.tsx.
+  useEffect(() => {
+    void getShardsBalance().then(setCoins).catch(() => {});
+  }, []);
 
   // Ближайший включённый слот и его сегодняшняя комната.
   const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
@@ -197,11 +221,30 @@ export default function TournamentsScreen() {
         contentContainerStyle={[styles.content, contentPadding]}
         showsVerticalScrollIndicator={false}
       >
-        {/* Шапка: название + баланс */}
+        {/* Шапка: назад + название + баланс */}
         <View style={styles.header}>
+          <TapScale
+            onPress={goBack}
+            accessibilityRole="button"
+            accessibilityLabel="Назад"
+            style={styles.backButton}
+          >
+            <Ionicons name="chevron-back" size={24} color={T.text} />
+          </TapScale>
           <Text style={styles.title}>Турниры</Text>
           <View style={styles.headerRight}>
-            <Pill>💎 {gems}</Pill>
+            {/* зачем: был запрещённый эмодзи-«гем» — теперь настоящая монета,
+                как на Главной/в Магазине (coinIconForBalance + число рядом). */}
+            <Pill>
+              <Image
+                source={coinIconForBalance(coins)}
+                style={styles.coinIcon}
+                contentFit="contain"
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
+              {' '}{coins}
+            </Pill>
             <Pill tone={noTickets ? 'danger' : 'card'}>🎟 {tickets}</Pill>
           </View>
         </View>
@@ -260,12 +303,19 @@ export default function TournamentsScreen() {
         <Animated.View entering={FadeIn.duration(220).delay(60)}>
           <Card tone="gold" pad={22}>
             <View style={styles.bankRow}>
-              <Text style={styles.bankIcon}>💰</Text>
+              {/* зачем: было эмодзи 💰 (иконка) + 💎 (запрещённая гем-валюта) —
+                  одна настоящая иконка монеты покрывает обе роли, число — главный
+                  индикатор рядом (тот же паттерн, что на Главной/в Магазине). */}
+              <Image
+                source={coinIconForBalance(bank)}
+                style={styles.bankHeroIcon}
+                contentFit="contain"
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
               <View style={styles.bankBody}>
                 <Text style={styles.bankKicker}>Банк недели</Text>
-                <Text style={styles.bankValue} allowFontScaling={false}>
-                  {bank} <Text style={styles.bankGem}>💎</Text>
-                </Text>
+                <Text style={styles.bankValue} allowFontScaling={false}>{bank}</Text>
               </View>
               <View style={styles.vipBox}>
                 <Text style={styles.vipTitle}>👑 VIP</Text>
@@ -281,15 +331,17 @@ export default function TournamentsScreen() {
           <Card pad={18} onPress={() => router.push('/tournament_season')}>
             <View style={styles.seasonRow}>
               <View style={styles.seasonAvatars}>
+                {/* зачем: эмодзи-«аватары» лидеров заменены на approved AvatarView —
+                    те же ассеты, что в лигах/друзьях, вместо запрещённых эмодзи. */}
                 {SEASON_LEADERS.map((leader, index) => (
                   <View
-                    key={leader.emoji}
+                    key={leader.avatarIndex}
                     style={[
                       styles.seasonAvatar,
                       { backgroundColor: `${leader.color}33`, marginLeft: index ? -10 : 0 },
                     ]}
                   >
-                    <Text style={styles.seasonAvatarText}>{leader.emoji}</Text>
+                    <AvatarView avatar={String(leader.avatarIndex)} size={32} animateAura={false} />
                   </View>
                 ))}
               </View>
@@ -357,8 +409,10 @@ const styles = StyleSheet.create({
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
+  backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   title: { ...type.title, color: T.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
+  coinIcon: { width: 18, height: 18 },
 
   heroTop: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   heroKicker: { ...type.label, letterSpacing: 1, textTransform: 'uppercase' },
@@ -396,7 +450,7 @@ const styles = StyleSheet.create({
   howToText: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
 
   bankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
-  bankIcon: { fontSize: 44 },
+  bankHeroIcon: { width: 44, height: 44 },
   bankBody: { flex: 1 },
   bankKicker: { ...type.label, letterSpacing: 1, textTransform: 'uppercase', color: T.goldText },
   bankValue: {
@@ -407,7 +461,6 @@ const styles = StyleSheet.create({
     fontVariant: ['tabular-nums'],
     lineHeight: 44,
   },
-  bankGem: { fontSize: 22 },
   vipBox: { alignItems: 'flex-end' },
   vipTitle: { ...type.body, fontWeight: '800', color: T.text },
   vipSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
@@ -422,7 +475,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  seasonAvatarText: { fontSize: 18 },
   seasonBody: { flex: 1 },
   seasonTitle: { fontSize: 16, fontWeight: '800', color: T.text },
   seasonSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },

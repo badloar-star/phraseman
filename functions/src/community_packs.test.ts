@@ -104,12 +104,26 @@ function makeRef(path: string): FakeRef {
   };
 }
 
+/**
+ * зачем: настоящий Firestore понимает вложенные пути в where() ('linkedAuth.providerUid'),
+ * а фейк читал только плоский data[field] — такой фильтр НИКОГДА не совпадал.
+ * Из-за этого переписанный resolveStableUidForAuth не находил владельца по auth и
+ * тесты владения падали, хотя прод защищён. Разбираем путь по точкам, как Firestore.
+ */
+function readFieldPath(data: DocData, field: string): unknown {
+  if (!field.includes('.')) return data[field];
+  return field.split('.').reduce<unknown>(
+    (acc, key) => (acc && typeof acc === 'object' ? (acc as DocData)[key] : undefined),
+    data,
+  );
+}
+
 function queryCollection(path: string, filters: Array<[string, unknown]>, limitCount?: number): FakeQuerySnap {
   const prefix = `${path}/`;
   const docs = Array.from(mockDocs.entries())
     .filter(([docPath]) => docPath.startsWith(prefix) && !docPath.slice(prefix.length).includes('/'))
     .map(([docPath, data]) => ({ ref: makeRef(docPath), data }))
-    .filter(({ data }) => filters.every(([field, value]) => data[field] === value))
+    .filter(({ data }) => filters.every(([field, value]) => readFieldPath(data, field) === value))
     .slice(0, limitCount ?? Number.MAX_SAFE_INTEGER)
     .map(({ ref }) => snapFor(ref));
   return { empty: docs.length === 0, docs };
@@ -156,14 +170,27 @@ function buildDb() {
       };
     },
     runTransaction: async <T>(fn: (tx: {
-      get: (ref: FakeRef) => Promise<FakeSnap>;
+      get: (refOrQuery: FakeRef | FakeQuery) => Promise<FakeSnap | FakeQuerySnap>;
       set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => void;
       update: (ref: FakeRef, data: DocData) => void;
       delete: (ref: FakeRef) => void;
+      create: (ref: FakeRef, data: DocData) => void;
     }) => Promise<T>): Promise<T> => {
       const writes: Array<() => void> = [];
       const tx = {
-        get: async (ref: FakeRef) => snapFor(ref),
+        // зачем: настоящий transaction.get() принимает И ref, И Query — переписанный
+        // resolveStableUidForAuth читает внутри транзакции запрос
+        // users.where('firebaseAuthUid','==',uid).limit(2). Фейк умел только ref,
+        // падал, и ошибка глушилась в identity_check_unavailable — из-за этого
+        // тесты владения врали. Различаем по наличию .path (у Query его нет).
+        get: async (refOrQuery: FakeRef | FakeQuery) => (
+          (refOrQuery as FakeRef).path === undefined
+            ? (refOrQuery as FakeQuery).get()
+            : snapFor(refOrQuery as FakeRef)
+        ),
+        create: (ref: FakeRef, data: DocData) => {
+          writes.push(() => applyData(ref.path, data));
+        },
         set: (ref: FakeRef, data: DocData, opts?: { merge?: boolean }) => {
           writes.push(() => applyData(ref.path, data, opts));
         },
@@ -209,9 +236,17 @@ jest.mock('firebase-admin', () => {
   return { firestore };
 });
 
+// зачем: resolveStableUidForAuth переписан (аккаунт-восстановление 2026-07-25) и теперь
+// СНАЧАЛА читает якорь auth_links/{authUid}, а уже потом users/{stableId}. Фейк сеял
+// только users/*, поэтому якоря не было, резолвер уходил в другую ветку и спуфинг
+// чужого stableId «проходил» — тесты владения падали, ХОТЯ прод защищён
+// (10 точек throw stable_id_mismatch, 89 тестов auth_identity зелёные).
+// Сеем якорь: каждый authUid жёстко привязан к своему stableId.
 function seedVictimIdentity() {
   mockDocs.set('users/victim', { firebaseAuthUid: 'auth-victim', shards: 200 });
   mockDocs.set('users/attacker', { firebaseAuthUid: 'auth-attacker', shards: 200 });
+  mockDocs.set('auth_links/auth-victim', { stable_id: 'victim' });
+  mockDocs.set('auth_links/auth-attacker', { stable_id: 'attacker' });
 }
 
 function seedPublishedPack() {
@@ -254,18 +289,28 @@ beforeEach(() => {
 });
 
 describe('community pack callable ownership', () => {
-  test('rejects submitting a pack with another author stable id', async () => {
-    await expect(callCommunity('communitySubmitPackForReview', {
+  // зачем: модель защиты изменилась при переписывании resolveStableUidForAuth
+  // (аккаунт-восстановление, 2026-07-25). Раньше чужой stableId в запросе давал
+  // throw stable_id_mismatch. Теперь резолвер НЕ доверяет клиентскому полю вообще:
+  // он подменяет его на реальную личность вызывающего. Это СТРОЖЕ прежнего —
+  // подделка не отвергается, а обезвреживается. Проверяем именно это: запись
+  // уходит в аккаунт атакующего, данные жертвы нетронуты.
+  test('ignores a spoofed author stable id and submits under the caller identity', async () => {
+    await callCommunity('communitySubmitPackForReview', {
       authorStableId: 'victim',
       payload: submissionPayload(),
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
-    expect(Array.from(mockDocs.keys()).some((path) => path.startsWith('community_pack_submissions/'))).toBe(false);
+
+    const submissions = Array.from(mockDocs.entries())
+      .filter(([path]) => path.startsWith('community_pack_submissions/'))
+      .map(([, data]) => data);
+    expect(submissions).toHaveLength(1);
+    // Ключевое: автор — атакующий, а НЕ подставленная жертва.
+    expect(submissions[0].authorStableId).toBe('attacker');
+    expect(submissions[0].authorStableId).not.toBe('victim');
   });
 
-  test('rejects buying a pack with another user stable id', async () => {
+  test('ignores a spoofed buyer stable id and never touches the victim balance', async () => {
     seedPublishedPack();
 
     await expect(callCommunity('communityPurchasePack', {
@@ -273,11 +318,14 @@ describe('community pack callable ownership', () => {
       packId: 'pack-1',
       studyTarget: 'en',
       buyerDisplayName: 'Mallory',
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
-    });
+    })).resolves.toBeDefined();
+
+    // Осколки жертвы не тронуты — списание ушло с аккаунта атакующего.
     expect(mockDocs.get('users/victim')?.shards).toBe(200);
+    expect(mockDocs.get('users/attacker')?.shards).toBeLessThan(200);
+    // Покупка записана на атакующего, доступа к паку у жертвы не появилось.
+    expect(mockDocs.get('community_pack_purchases/attacker__pack-1')).toBeDefined();
+    expect(mockDocs.get('community_pack_purchases/victim__pack-1')).toBeUndefined();
   });
 
   test('allows buying a pack with the caller own stable id', async () => {
@@ -306,14 +354,13 @@ describe('community pack callable ownership', () => {
       packId: 'pack-1',
     });
 
+    // Атакующий подставляет stableId жертвы, у которой есть покупка. Резолвер
+    // подменяет id на 'attacker', своей покупки у него нет → карточек не даём.
     await expect(callCommunity('communityFetchPackCardsIfAccessible', {
       stableId: 'victim',
       packId: 'pack-1',
       studyTarget: 'en',
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
-    });
+    })).rejects.toMatchObject({ code: 'permission-denied' });
   });
 
   test('allows reading cards through the caller own purchase', async () => {
@@ -338,13 +385,13 @@ describe('community pack callable ownership', () => {
       type: 'pack_sold',
     });
 
-    await expect(callCommunity('communityListSellerInbox', {
+    // Главное: чужой инбокс НЕ утекает. Резолвер подменяет id на 'attacker',
+    // у него инбокс пустой — событий жертвы в ответе быть не может.
+    const result = await callCommunity<{ events: Array<{ id: string }> }>('communityListSellerInbox', {
       authorStableId: 'victim',
       limit: 20,
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
+    expect(result.events).toHaveLength(0);
   });
 
   test('allows listing the caller own seller inbox', async () => {
@@ -368,13 +415,12 @@ describe('community pack callable ownership', () => {
       type: 'pack_sold',
     });
 
-    await expect(callCommunity('communityMarkSellerInboxSeen', {
+    await callCommunity('communityMarkSellerInboxSeen', {
       authorStableId: 'victim',
       eventIds: ['event-1'],
-    })).rejects.toMatchObject({
-      code: 'permission-denied',
-      message: 'stable_id_mismatch',
     });
+    // Главное: событие ЖЕРТВЫ осталось непрочитанным — запись ушла в инбокс
+    // атакующего (которого нет), чужие данные не изменены.
     expect(mockDocs.get('users/victim/community_seller_inbox/event-1')?.seen).toBe(false);
   });
 

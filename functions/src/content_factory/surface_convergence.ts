@@ -60,3 +60,37 @@ export function compareArenaSurfaceArtifacts(input: Input) {
   const basis = { comparatorVersion: input.comparatorVersion, legacyFingerprint: sha({ identity: input.legacyIdentity, artifact: input.legacyArtifact, qa: input.legacyQaOutcome, error: input.legacyError ?? null }), stageFingerprint: sha({ identity: input.stageIdentity, artifact: input.stageArtifact, qa: input.stageQaOutcome, error: input.stageError ?? null }), legacyArtifactHash: input.legacyArtifactHash, stageArtifactHash: input.stageArtifactHash, mismatches: ordered, severity };
   return Object.freeze({ receiptId: sha(basis), ...basis, eligible: ordered.length === 0 });
 }
+
+// зачем: воркер (content_factory_worker.ts) коммитит успешный юнит на legacy-движке и хочет оставить
+// запись о решении роутинга (shadow/canary config) БЕЗ второго обращения к провайдеру — полноценное
+// semantic-сравнение выше (compareArenaSurfaceArtifacts) требует настоящего stage-кандидата, которого
+// здесь нет. Это лёгкая observability-квитанция: фиксирует, что кандидат не генерировался
+// (providerRequestsAdded: 0, shadowComparisonState: 'unavailable'), и остаётся идемпотентной по unitId,
+// чтобы persistArenaComparisonReceipt мог безопасно писать её ровно один раз на юнит.
+export type ArenaShadowComparisonState = 'unavailable' | 'compared';
+export interface ArenaShadowComparisonInput {
+  readonly unitId: string;
+  readonly comparatorVersion: string;
+  readonly engineRequested: string;
+  readonly engineResolved: string;
+  readonly configRevision: number;
+  readonly legacyArtifactHash: string;
+  readonly legacyQaOutcome: string;
+  readonly providerRequestsAdded: number;
+}
+export function buildArenaShadowComparison(input: ArenaShadowComparisonInput) {
+  const shadowComparisonState: ArenaShadowComparisonState = 'unavailable';
+  const candidate = Object.freeze({ providerRequestsAdded: Math.max(0, Math.trunc(input.providerRequestsAdded)) });
+  const basis = {
+    unitId: input.unitId,
+    comparatorVersion: input.comparatorVersion,
+    engineRequested: input.engineRequested,
+    engineResolved: input.engineResolved,
+    configRevision: input.configRevision,
+    legacyArtifactHash: input.legacyArtifactHash,
+    legacyQaOutcome: input.legacyQaOutcome,
+    shadowComparisonState,
+    candidate,
+  };
+  return Object.freeze({ documentId: sha(basis), ...basis, eligible: false });
+}

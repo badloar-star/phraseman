@@ -54,10 +54,19 @@ try {
 Start-Sleep -Seconds 2
 
 # 2. Current LAN IP (dynamic - it changes between networks)
-$lanIp = Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue |
-  Where-Object { $_.IPAddress -notmatch '^127\.' -and $_.IPAddress -notmatch '^169\.254' -and $_.PrefixOrigin -ne 'WellKnown' } |
-  Sort-Object { if ($_.InterfaceAlias -match 'Wi-Fi|Wireless|WLAN') { 0 } else { 1 } } |
-  Select-Object -First 1 -ExpandProperty IPAddress
+# zachem: extracted into a function (not just a one-time variable) so the watchdog
+# loop below can re-resolve it on every restart - Wi-Fi/hotspot can change mid-session
+# (e.g. laptop hops from home Wi-Fi to a phone hotspot) and a stale IP would silently
+# break REACT_NATIVE_PACKAGER_HOSTNAME without any visible error.
+function Get-LanIp {
+  $ip = Get-NetIPAddress -AddressFamily IPv4 -ErrorAction SilentlyContinue |
+    Where-Object { $_.IPAddress -notmatch '^127\.' -and $_.IPAddress -notmatch '^169\.254' -and $_.PrefixOrigin -ne 'WellKnown' } |
+    Sort-Object { if ($_.InterfaceAlias -match 'Wi-Fi|Wireless|WLAN') { 0 } else { 1 } } |
+    Select-Object -First 1 -ExpandProperty IPAddress
+  return $ip
+}
+
+$lanIp = Get-LanIp
 if (-not $lanIp) { Say "WARNING: no LAN IP found. Check Wi-Fi."; $lanIp = "127.0.0.1" }
 Say "Current laptop LAN IP: $lanIp"
 
@@ -103,22 +112,57 @@ if (-not (Test-Path -LiteralPath $localExpoCli)) {
   exit 1
 }
 
-$expoArgs = @("start", "--dev-client", "--port", "$Port")
-if ($Tunnel) {
-  $expoArgs += "--tunnel"
-  Say "TUNNEL mode. URL appears in log as exp://<...>.exp.direct (phone needs internet)."
-} else {
-  $env:REACT_NATIVE_PACKAGER_HOSTNAME = $lanIp
-  $expoArgs += "--lan"
-  Write-Host ""
-  Write-Host "  =====================================================" -ForegroundColor Green
-  Write-Host  ("  ON iPhone enter manually (Enter URL manually):") -ForegroundColor Green
-  Write-Host  ("     http://{0}:{1}" -f $lanIp, $Port) -ForegroundColor Green
-  Write-Host  ("  iPhone must be on the SAME network as the laptop.") -ForegroundColor Green
-  Write-Host "  =====================================================" -ForegroundColor Green
-  Write-Host ""
-}
-if ($Clear) { $expoArgs += "--clear" }
+# zachem: restart watchdog - Metro can die mid-session (EMFILE / heap OOM, seen in
+# practice on this project), and before this change a crash just silently closed the
+# window with no relaunch. This loop restarts Metro automatically and keeps
+# REACT_NATIVE_PACKAGER_HOSTNAME correct even if the network changes between restarts.
+# Runs until Ctrl+C or the window is closed - no automatic exit condition.
+$attempt = 0
+while ($true) {
+  $attempt++
 
-Say ("Start: project-local Expo CLI " + ($expoArgs -join ' '))
-& node $localExpoCli @expoArgs
+  # zachem: re-resolve LAN IP every iteration, not just once at script start -
+  # Wi-Fi/hotspot can change while the watchdog keeps running.
+  $lanIp = Get-LanIp
+  if (-not $lanIp) { Say "WARNING: no LAN IP found. Check Wi-Fi."; $lanIp = "127.0.0.1" }
+
+  $expoArgs = @("start", "--dev-client", "--port", "$Port")
+  if ($Tunnel) {
+    $expoArgs += "--tunnel"
+    Say "TUNNEL mode. URL appears in log as exp://<...>.exp.direct (phone needs internet)."
+  } else {
+    $env:REACT_NATIVE_PACKAGER_HOSTNAME = $lanIp
+    $expoArgs += "--lan"
+    Write-Host ""
+    Write-Host "  =====================================================" -ForegroundColor Green
+    Write-Host  ("  ON iPhone enter manually (Enter URL manually):") -ForegroundColor Green
+    Write-Host  ("     http://{0}:{1}" -f $lanIp, $Port) -ForegroundColor Green
+    Write-Host  ("  iPhone must be on the SAME network as the laptop.") -ForegroundColor Green
+    Write-Host "  =====================================================" -ForegroundColor Green
+    Write-Host ""
+  }
+  # zachem: --clear only on the FIRST attempt - clearing cache on every restart would
+  # slow down every relaunch for no benefit, the user only wants it once per session.
+  if ($Clear -and $attempt -eq 1) { $expoArgs += "--clear" }
+
+  Say ("Start (attempt #$attempt): project-local Expo CLI " + ($expoArgs -join ' '))
+  $startedAt = Get-Date
+  # zachem: call directly, no pipe wrapping (& ... 2>&1 | ForEach-Object {...}) - piping
+  # Metro's stdout breaks interactive keys (r = reload, j = open debugger, etc.), a
+  # defect present in protected-metro-phone.ps1 that must not be copied here.
+  & node $localExpoCli @expoArgs
+  $ranFor = (Get-Date) - $startedAt
+
+  if ($ranFor.TotalSeconds -lt 5) {
+    # zachem: exited almost immediately -> likely a startup/config error (bad args,
+    # missing native module, port already bound elsewhere). Looping instantly would
+    # spin forever and flood the console, so stop and wait for the user instead.
+    Say "Metro exited after less than 5 seconds - looks like a startup/config error."
+    Say "Fix the issue above, then press any key to try again (or close this window to stop)."
+    [void][System.Console]::ReadKey($true)
+  } else {
+    Say "Metro exited after running for $([int]$ranFor.TotalSeconds)s. Restarting in 3s..."
+    Say "NOTE: reload the app on the iPhone after restart (the old HMR socket will not reattach)."
+    Start-Sleep -Seconds 3
+  }
+}

@@ -59,12 +59,21 @@ describe('account deletion rebuilt flow contract', () => {
     const end = authProvider.indexOf('export async function handleAccountDeletedOnAnotherDevice', start);
     const deleteSource = authProvider.slice(start, end);
 
-    expect(deleteSource).toContain("await import('./notifications')");
+    expect(deleteSource).toContain("import('./notifications')");
     expect(deleteSource).toContain('cancelAllNotifications()');
 
-    // Порядок обязателен: удаление push-токена из Firestore требует живой авторизации,
-    // после signOut запись уже не пройдёт по правам.
-    const cancel = deleteSource.indexOf("await import('./notifications')");
+    // Токен обязан чиститься ОТДЕЛЬНЫМ дожидаемым вызовом. cancelAllNotifications внутри
+    // себя пускает clearPushTokenForServerPush через `void` (fire-and-forget): для тумблера
+    // настроек это нормально, но при удалении аккаунта запись поля токена гоняется с
+    // signOut, а после выхода она упирается в permission-denied и токен переживает
+    // удаление. Проверяем именно ОЖИДАНИЕ, а не порядок строк — прошлая версия этого
+    // храповика смотрела на текст и пропустила дефект.
+    expect(deleteSource).toContain("import('./push_token_registration')");
+    expect(deleteSource).toContain('clearPushTokenForServerPush()');
+    expect(deleteSource).toMatch(/await Promise\.all\(\[[\s\S]*?clearPushTokenForServerPush\(\)[\s\S]*?\]\)/);
+
+    // Порядок: очистка идёт до выхода из провайдера, пока авторизация ещё жива.
+    const cancel = deleteSource.indexOf("import('./notifications')");
     const signOutInDelete = deleteSource.indexOf('await signOutCurrentProvider()');
     expect(cancel).toBeGreaterThan(-1);
     expect(signOutInDelete).toBeGreaterThan(-1);

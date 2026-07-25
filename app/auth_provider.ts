@@ -1978,12 +1978,25 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
     // Импорт ленивый: notifications.ts тяжёлый (расписания, локали, шаблоны), а
     // auth_provider участвует в старте приложения — статический импорт утянул бы его
     // в стартовый бандл ради кода, который нужен один раз за всё время жизни аккаунта.
-    await import('./notifications')
-      .then(({ cancelAllNotifications }) => cancelAllNotifications())
-      .catch((e: unknown) => {
-        if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: notifications cleanup failed', e);
-        logAuthEvent('auth_account_delete_notifications_cleanup_failed');
-      });
+    // Токен чистим ОТДЕЛЬНЫМ awaited вызовом: cancelAllNotifications внутри себя пускает
+    // clearPushTokenForServerPush через `void` (fire-and-forget) — для тумблера настроек
+    // это нормально, но здесь гонка с signOut реальна. Запись поля токена требует живой
+    // авторизации, поэтому на медленной сети незавершённый запрос упёрся бы в
+    // permission-denied уже после выхода, и токен пережил бы удаление аккаунта.
+    await Promise.all([
+      import('./notifications')
+        .then(({ cancelAllNotifications }) => cancelAllNotifications())
+        .catch((e: unknown) => {
+          if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: notifications cleanup failed', e);
+          logAuthEvent('auth_account_delete_notifications_cleanup_failed');
+        }),
+      import('./push_token_registration')
+        .then(({ clearPushTokenForServerPush }) => clearPushTokenForServerPush())
+        .catch((e: unknown) => {
+          if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: push token cleanup failed', e);
+          logAuthEvent('auth_account_delete_push_token_cleanup_failed');
+        }),
+    ]);
 
     await beginEntitlementSafeAccountTransition();
     await Promise.all([
@@ -2007,7 +2020,7 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
       firebaseSignedOut,
     );
     let rotatedStableId: string | null = null;
-    if (CLOUD_SYNC_ENABLED && localExitComplete) {
+    if (CLOUD_SYNC_ENABLED && firebaseSignedOut && localExitComplete) {
       try {
         try { resetAnonAuthCacheForSignOut(); } catch { /* ignore */ }
         rotatedStableId = await ensureAnonUser();

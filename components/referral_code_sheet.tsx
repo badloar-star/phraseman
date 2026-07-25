@@ -14,6 +14,8 @@ import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { applyManualReferralCode, type ReferralApplyStatus } from '../app/referral_bootstrap';
+import { lookupUserByFriendCode } from '../app/firestore_friends';
+import { sendFriendRequest } from '../app/firestore_friend_requests';
 import ReferralSheetShell from './referral_sheet_shell';
 
 type Feedback = { kind: 'ok' | 'error'; text: string };
@@ -167,10 +169,11 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
+  const [friendRequested, setFriendRequested] = useState(false);
 
   // Каждое открытие — с чистого листа (код мог быть применён в прошлый раз).
   useEffect(() => {
-    if (visible) { setCode(''); setFeedback(null); }
+    if (visible) { setCode(''); setFeedback(null); setFriendRequested(false); }
   }, [visible]);
 
   const canSubmit = code.trim().length >= 4 && !busy;
@@ -180,9 +183,22 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
     hapticTap();
     setBusy(true);
     setFeedback(null);
+    setFriendRequested(false);
     try {
       const status = await applyManualReferralCode(code);
       setFeedback(feedbackForStatus(status, L));
+      // зачем: «один код» (решение владельца 2026-07-25) — принятый код сразу шлёт
+      // заявку в друзья владельцу кода: 1 lookup + 1 заявка строго по явному
+      // действию, дружба — бонус, награда уже привязана (ошибки глотаем).
+      if (status === 'applied' || status === 'already') {
+        try {
+          const owner = await lookupUserByFriendCode(code);
+          if (owner) {
+            const res = await sendFriendRequest(owner.uid);
+            if (res === 'sent' || res === 'already_sent') setFriendRequested(true);
+          }
+        } catch { /* дружба best-effort */ }
+      }
     } finally {
       setBusy(false);
     }
@@ -260,6 +276,23 @@ export default function ReferralCodeSheet({ visible, onClose }: ReferralCodeShee
           style={{ color: feedback.kind === 'ok' ? t.correct : t.wrong, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700', marginTop: 10 }}
         >
           {feedback.text}
+        </Text>
+      )}
+      {friendRequested && (
+        <Text
+          testID="referral-code-sheet-friend-request"
+          style={{ color: t.textSecond, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '400', marginTop: 6 }}
+        >
+          {L(
+            'Заявка в друзья отправлена — будете видеть прогресс друг друга.',
+            'Заявку в друзі надіслано — бачитимете прогрес одне одного.',
+            'Solicitud de amistad enviada: verán el progreso el uno del otro.',
+            'Pedido de amizade enviado — vocês verão o progresso um do outro.',
+            'Đã gửi lời mời kết bạn — hai bạn sẽ thấy tiến độ của nhau.',
+            'Permintaan pertemanan terkirim — kalian bisa saling melihat progres.',
+            'Arkadaşlık isteği gönderildi — birbirinizin ilerlemesini göreceksiniz.',
+            'Wysłano zaproszenie do znajomych — będziecie widzieć swoje postępy.',
+          )}
         </Text>
       )}
     </ReferralSheetShell>

@@ -2195,6 +2195,9 @@ export default function FriendsTabScreen() {
   const [codeInput, setCodeInput] = useState('');
   const [isSearching, setIsSearching] = useState(false);
   const [foundUser, setFoundUser] = useState<FriendProfile | null>(null);
+  // зачем: «один код» (решение владельца 2026-07-25) — если пользователь нашёл друга
+  // по РЕФЕРАЛЬНОМУ коду, то при добавлении тот же ввод привязывает и приглашение.
+  const lastLookupSourceRef = useRef<string | null>(null);
   const [searchError, setSearchError] = useState<string | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [addFeedback, setAddFeedback] = useState<string | null>(null);
@@ -2631,6 +2634,7 @@ export default function FriendsTabScreen() {
         }
       }
       const result = isCode ? await lookupUserByFriendCode(codeUpper) : await lookupUserByNickname(query);
+      lastLookupSourceRef.current = result?.source ?? null;
       if (!result) {
         await trackActivity('friends:search_result', {
           feature: 'friends',
@@ -2734,6 +2738,18 @@ export default function FriendsTabScreen() {
         result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
         tags: { targetUid: targetUser.uid, requestResult: result },
       });
+      // зачем: «один код» — друг найден по реферальному коду, значит этот же ввод
+      // привязывает приглашение (сервер идемпотентен, invalid/too_old тихо
+      // игнорируются). Один callable строго по явному действию пользователя.
+      if (
+        (result === 'sent' || result === 'already_sent' || result === 'already_friends')
+        && lastLookupSourceRef.current === 'referral_code'
+      ) {
+        lastLookupSourceRef.current = null;
+        void import('../referral_bootstrap')
+          .then(({ applyManualReferralCode }) => applyManualReferralCode(previousCodeInput))
+          .catch(() => {});
+      }
       if (result === 'sent') {
         setFoundUser(null);
         setCodeInput('');

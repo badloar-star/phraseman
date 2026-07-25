@@ -96,8 +96,9 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps new web and admin/background cost controls cheap by default', () => {
+    // зачем: functions/src/retired_community_features.ts удалён вместе с
+    // community-фичами Арены — его 2 проверки ниже убраны, остальные живые остаются.
     const adminPushSource = read('functions/src/admin_push_jobs.ts');
-    const retiredCommunitySource = read('functions/src/retired_community_features.ts');
     const siteStatsSource = read('functions/src/site_stats.ts');
     const webStatsSource = read('knowly-www/assets/stats.js');
     const startSource = read('knowly-www/assets/start.js');
@@ -105,8 +106,6 @@ describe('Firebase cost controls', () => {
 
     expect(adminPushSource).toContain("schedule: 'every 6 hours'");
     expect(adminPushSource).not.toContain("schedule: '*/30 * * * *'");
-    expect(retiredCommunitySource).toContain("schedule: '0 * * * *'");
-    expect(retiredCommunitySource).toContain('async () => undefined');
     expect(siteStatsSource).toContain('const rawEvents = Array.isArray(body.events)');
     expect(webStatsSource).toContain('{ events: initialEvents }');
     expect(startSource).toContain("PRICE_CACHE_KEY = 'pm_web_prices_cache_v1'");
@@ -206,6 +205,17 @@ describe('Firebase cost controls', () => {
     expect(friendsScreenSource).toContain('useEffect(() => { void load(false); }, [load]);');
   });
 
+  it('prunes the friend feed with a bounded window instead of reading the whole subcollection', () => {
+    // зачем: pruneOldEvents вызывается из appendFriendEvent, то есть ВНУТРИ полного
+    // постраничного обхода всех пользователей (крон каждые 12ч). Безлимитный
+    // `.orderBy('ts','desc').get()` читал всю подколлекцию my_events целиком ради
+    // удаления хвоста за пределами 15 свежих — лишние чтения умножались на размер базы.
+    const friendActivitySource = read('functions/src/friend_activity_mirror.ts');
+    expect(friendActivitySource).toContain('.offset(MAX_EVENTS_PER_FRIEND)');
+    expect(friendActivitySource).toContain('.limit(PRUNE_BATCH_LIMIT)');
+    expect(friendActivitySource).not.toMatch(/\.orderBy\('ts', 'desc'\)\s*\.get\(\)/);
+  });
+
   it('does not let native App Check mint placeholder tokens before a real provider is configured', () => {
     const firebaseJson = JSON.parse(read('firebase.json')) as {
       'react-native'?: { app_check_token_auto_refresh?: boolean };
@@ -252,8 +262,9 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps second-layer cost guards for low-value reads and callables', () => {
+    // зачем: app/services/arena_hill.ts удалён вместе с Ареной — его 4 проверки
+    // ниже убраны, живая проверка daily_phrase_system/indexes остаётся.
     const dailyPhraseSource = read('app/daily_phrase_system.ts');
-    const arenaHillSource = read('app/services/arena_hill.ts');
     const indexes = read('firestore.indexes.json');
 
     expect(dailyPhraseSource).toContain("where('scheduledDate', '==', date)");
@@ -262,11 +273,6 @@ describe('Firebase cost controls', () => {
     expect(dailyPhraseSource).not.toContain('.limit(500)');
     expect(indexes).toContain('"collectionGroup": "daily_phrases"');
     expect(indexes).toContain('"fieldPath": "scheduledDate"');
-
-    expect(arenaHillSource).toContain("ARENA_HILL_TOP_CACHE_KEY = 'arena_hill_daily_top_cache_v1'");
-    expect(arenaHillSource).toContain('ARENA_HILL_TOP_CACHE_TTL_MS = 30 * 60 * 1000');
-    expect(arenaHillSource).toContain('readStoredArenaHillTopCache');
-    expect(arenaHillSource).toContain('writeStoredArenaHillTopCache');
   });
 
   it('keeps hot progress and league callables from repairing identity links on every call', () => {
@@ -301,10 +307,10 @@ describe('Firebase cost controls', () => {
   });
 
   it('keeps admin VIP writes canonical so the orphan reconcile trigger can be retired', () => {
-    // Раньше существовали отдельные admin/legacy/index.html и admin/v2/* —
-    // их объединили в один канонический admin/index.html (v2 удалена). Проверяем
-    // канонические VIP-записи в нём.
-    const adminSource = read('admin/index.html');
+    // зачем: admin/index.html сейчас — это редирект-заглушка на /legacy.html,
+    // который hosting раздаёт из admin/v2/legacy.html (единственная рабочая
+    // админка, см. CLAUDE.md). Проверяем канонические VIP-записи в живом файле.
+    const adminSource = read('admin/v2/legacy.html');
 
     expect(adminSource).toContain('resolveAdminVipWriteTarget');
     expect(adminSource).toContain('identityHidden: data.identityHidden === true');

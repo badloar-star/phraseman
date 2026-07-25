@@ -5,7 +5,6 @@ import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
-  ActivityIndicator,
   BackHandler,
   Easing,
   InteractionManager,
@@ -28,6 +27,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import DuoPressable from '../components/DuoPressable';
 import LessonArtBackdrop from '../components/LessonArtBackdrop';
+import LessonLoadingSkeleton from '../components/LessonLoadingSkeleton';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { screenTextOnGradient, ThemeMode } from '../constants/theme';
@@ -979,19 +979,24 @@ const LessonContent = React.memo(function LessonContent({
   const aiMistakeRemaining = mistakeExplain.aiMistakeRemaining;
   const explainCurrentMistake = mistakeExplain.explain;
 
+  // зачем: раньше тут был голый <View flex:1/> без фона (белая/чёрная вспышка
+  // между экраном списка уроков и загруженным уроком) — теперь тот же скелетон,
+  // что и ниже для !phrase, чтобы первый кадр совпадал по фону/геометрии с
+  // финальным контентом (Performance Bible: instant first frame).
   if (!introGateReady) {
-    return <View style={{ flex: 1 }} />;
+    return (
+      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
+    );
   }
 
   // Main lesson UI
+  // зачем: полноэкранный ActivityIndicator дёргал геометрию (спиннер по центру
+  // вместо шапки+карточки+плиток) — заменён на скелетон с зарезервированной
+  // геометрией загруженного урока (шапка, задание, ответная строка, плитки,
+  // прогресс-бар), см. эталон app/review.tsx ~1297-1345.
   if (!phrase) {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color={t.accent} />
-        <Text style={{ color: t.textMuted, marginTop: 12, fontSize: f.body }}>
-          {triLang(lang, { ru: 'Загрузка…', uk: 'Завантаження…', es: 'Cargando…', 'pt-BR': 'Carregando…', vi: 'Đang tải…', id: 'Memuat…', tr: 'Yükleniyor…', pl: 'Ładowanie…' })}
-        </Text>
-      </View>
+      <LessonLoadingSkeleton theme={t} compact={linkedSliceCompact} horizontalPadding={lessonHorizontalPadding} />
     );
   }
 
@@ -3672,27 +3677,20 @@ export default function LessonScreen() {
   const frenchLessonSourceGateBlocked = frenchStudyActive(studyTarget) && !hasPlayableLessonRows && !frenchLessonRemotePending && !frenchLessonRemoteFailed;
   const planPhraseContentReady = !isPlanPhraseLessonTask || planUserNameReady;
 
+  // зачем: тот же полноэкранный ActivityIndicator дёргал геометрию при загрузке
+  // французского урока с сервера — переиспользуем один скелетон-компонент вместо
+  // третьего отдельного спиннерного состояния (было 3 разных состояния подряд).
   if (frenchLessonRemotePending) {
     return (
       <TouchableWithoutFeedback onPress={undefined}>
-        <ScreenGradient>
-          <LessonArtBackdrop variant="practice" />
-          <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-            <ActivityIndicator size="large" color={t.accent} />
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 18 }}>
-              {triLang(lang, {
-                ru: 'Загружаю французский урок',
-                uk: 'Завантажую французький урок',
-                es: 'Cargando la lección de francés',
-                'pt-BR': 'Carregando a aula de francês',
-                vi: 'Đang tải bài học tiếng Pháp',
-                id: 'Memuat pelajaran bahasa Prancis',
-                tr: 'Fransızca dersi yükleniyor',
-                pl: 'Ładowanie lekcji francuskiego',
-              })}
-            </Text>
-          </SafeAreaView>
-        </ScreenGradient>
+        {/* зачем: этот гейт живёт в LessonScreen — переменные linkedSliceCompact/
+            lessonHorizontalPadding из внутреннего компонента тут не видны,
+            выводим ту же геометрию из локального isLinkedLessonSliceTask. */}
+        <LessonLoadingSkeleton
+          theme={t}
+          compact={isLinkedLessonSliceTask}
+          horizontalPadding={isLinkedLessonSliceTask ? 14 : 20}
+        />
       </TouchableWithoutFeedback>
     );
   }

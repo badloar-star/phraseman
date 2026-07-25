@@ -1,5 +1,6 @@
 import { hashCanonicalBody } from '../../../modules/learning-v2/policies/decision_registry';
 import type { PublishedModeTemplateRef } from '../../../modules/learning-v2/contracts/activity';
+import type { V2LanguageProfileRef } from '../../../modules/learning-v2/content/language_profile';
 import {
   buildV2SeasonPlan,
   type V2EpisodeRecipe,
@@ -11,6 +12,7 @@ import {
 const TOP_LEVEL_FIELDS = [
   'schemaVersion', 'seasonId', 'scope', 'episodeIds', 'recipes',
   'studyTarget', 'sourceLocale', 'targetLocales', 'templateBindings', 'idempotencyKey',
+  'languageProfileRef',
 ] as const;
 const SCOPES = new Set<V2GenerationScope>(['vertical_slice', 'chapter_internal', 'full_season']);
 const LOCALE_PATTERN = /^[a-z]{2,12}(?:-[A-Z]{2})?$/;
@@ -30,6 +32,9 @@ export interface V2AdminGenerationRequest extends V2SeasonGenerationInput {
   readonly targetLocales: readonly string[];
   readonly templateBindings: readonly V2EpisodeTemplateBinding[];
   readonly idempotencyKey: string;
+  // зачем: владелец требует неизменяемый языковой профиль как ПРЕДУСЛОВИЕ генерации —
+  // exact ref (id+version+hash), не новая стадия фабрики.
+  readonly languageProfileRef: V2LanguageProfileRef;
 }
 
 export interface V2LocalizationTask {
@@ -115,6 +120,21 @@ function parseRecipes(value: unknown, episodeIds: readonly string[]): readonly V
   return Object.freeze(result);
 }
 
+// зачем: fail-closed разбор exact ref профиля — только три поля, честный sha256,
+// целая версия; битый ref не должен доехать до fingerprint и стадий.
+function parseLanguageProfileRef(value: unknown): V2LanguageProfileRef {
+  if (value === undefined || value === null) throw new Error('v2_generation_language_profile_required');
+  if (!isRecord(value)) throw new Error('v2_generation_language_profile_invalid');
+  if (Object.keys(value).some((key) => !['profileId', 'version', 'contentHash'].includes(key)))
+    throw new Error('v2_generation_language_profile_invalid');
+  const profileId = parseString(value.profileId, 'v2_generation_language_profile_invalid', IDENTIFIER_PATTERN);
+  const contentHash = parseString(value.contentHash, 'v2_generation_language_profile_invalid', HASH_PATTERN);
+  const version = value.version;
+  if (typeof version !== 'number' || !Number.isInteger(version) || version < 1 || version > 100000)
+    throw new Error('v2_generation_language_profile_invalid');
+  return Object.freeze({ profileId, version, contentHash });
+}
+
 export function parseV2AdminGenerationRequest(data: unknown): V2AdminGenerationRequest {
   if (!isRecord(data)) throw new Error('v2_generation_request_invalid');
   assertExactFields(data, TOP_LEVEL_FIELDS);
@@ -134,7 +154,8 @@ export function parseV2AdminGenerationRequest(data: unknown): V2AdminGenerationR
   const recipes = parseRecipes(data.recipes, episodeIds);
   const templateBindings = parseTemplateBindings(data.templateBindings, episodeIds);
   const idempotencyKey = parseString(data.idempotencyKey, 'v2_generation_idempotency_required', IDENTIFIER_PATTERN);
-  return Object.freeze({ schemaVersion: 'v2-admin-generation-request.v1', seasonId, scope: scope as V2GenerationScope, episodeIds: Object.freeze(episodeIds), ...(recipes ? { recipes } : {}), studyTarget, sourceLocale, targetLocales: Object.freeze(locales), templateBindings, idempotencyKey });
+  const languageProfileRef = parseLanguageProfileRef(data.languageProfileRef);
+  return Object.freeze({ schemaVersion: 'v2-admin-generation-request.v1', seasonId, scope: scope as V2GenerationScope, episodeIds: Object.freeze(episodeIds), ...(recipes ? { recipes } : {}), studyTarget, sourceLocale, targetLocales: Object.freeze(locales), templateBindings, idempotencyKey, languageProfileRef });
 }
 
 export function buildV2AdminGenerationPlan(request: V2AdminGenerationRequest): V2AdminGenerationPlan {

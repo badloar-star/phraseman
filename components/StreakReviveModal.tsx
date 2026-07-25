@@ -12,7 +12,9 @@ import {
   View,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+// зачем: сырой useSafeAreaInsets в свежесмонтированном модале даёт 0 до прихода
+// нативных метрик — контент прыгал; стабильная обёртка знает инсеты синхронно.
+import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
@@ -67,7 +69,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
   const router = useRouter();
   const { lang } = useLang();
   const { theme: t, f, themeMode } = useTheme();
-  const insets = useSafeAreaInsets();
+  const insets = useStableSafeAreaInsets();
   const { height: windowHeight, fontScale } = useWindowDimensions();
   const [busy, setBusy] = useState(false);
   const [msLeft, setMsLeft] = useState(0);

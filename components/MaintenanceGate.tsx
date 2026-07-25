@@ -8,6 +8,7 @@ import { useTheme } from './ThemeContext';
 import { monoIcon } from '../constants/monoIcon';
 import { triLang, type Lang } from '../constants/i18n';
 import { onAppEvent } from '../app/events';
+import { animateNextLayoutTransition } from '../app/smooth_layout';
 import {
   getMaintenanceCampaignId,
   getMaintenanceText,
@@ -61,8 +62,17 @@ export default function MaintenanceGate() {
     dismissalKey: '',
   });
 
+  // зачем: баннер техработ стоит в потоке НАД стеком навигации (_layout) —
+  // его асинхронное появление мгновенно сдвигало вниз все открытые экраны.
+  // Flip видимости оборачиваем в плавный layout-переход (Bevel-стабильность).
+  const lastBannerRef = useRef(false);
+
   const refresh = useCallback(() => {
-    void readState(lang).then(setState);
+    void readState(lang).then((next) => {
+      if (lastBannerRef.current !== next.banner) animateNextLayoutTransition();
+      lastBannerRef.current = next.banner;
+      setState(next);
+    });
   }, [lang]);
 
   useEffect(() => {
@@ -79,6 +89,10 @@ export default function MaintenanceGate() {
       useNativeDriver: true,
     }).start(() => {
       translateX.setValue(0);
+      // зачем: после слайда вправо высота баннера схлопывается плавно,
+      // а не мгновенным скачком контента вверх.
+      animateNextLayoutTransition();
+      lastBannerRef.current = false;
       setState((prev) => ({ ...prev, banner: false }));
     });
   }, [state.dismissalKey, translateX]);

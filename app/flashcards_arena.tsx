@@ -19,6 +19,7 @@ import { loadFlashcards } from '../hooks/use-flashcards';
 import { readCustomCards } from './flashcards/storage';
 import { storageStudyTarget } from './target_storage_keys';
 import type { CardItem } from './flashcards/types';
+import { saveArenaRun } from './flashcards/arenaProgress';
 import {
   ARENA_OPTION_COUNT,
   ARENA_QUESTION_COUNT,
@@ -247,12 +248,32 @@ export default function FlashcardsArenaScreen() {
 
   const summary = useMemo(() => summarizeArena(answers), [answers]);
 
+  /**
+   * зачем (решение владельца): забег теперь ВЛИЯЕТ на прогресс — ошибки делают
+   * карточку «слабой», серия верных приближает к «освоено». Три режима копят
+   * один прогресс, и точки статусов в коллекции реагируют на арену.
+   *
+   * Пишем один раз на забег, при переходе в итоги: 10 отдельных записей на
+   * каждый ответ били бы по диску. Гард savedRunRef — от повторной записи,
+   * если экран пере-отрендерится в фазе done (тогда прогресс задвоился бы).
+   * Ошибку записи не показываем: счёт на экране уже верный, а прогресс —
+   * не деньги, из-за него портить момент итогов нечем.
+   */
+  const savedRunRef = useRef(false);
+  useEffect(() => {
+    if (phase !== 'done' || savedRunRef.current || answers.length === 0) return;
+    savedRunRef.current = true;
+    void saveArenaRun(answers, studyTarget);
+  }, [phase, answers, studyTarget]);
+
   const restart = useCallback(() => {
     void hapticTap();
     clearTimers();
     setAnswers([]);
     setIndex(0);
     setPicked(null);
+    // Новый забег — снова разрешаем запись прогресса.
+    savedRunRef.current = false;
     setPhase('loading');
     const target = storageStudyTarget(studyTarget);
     void Promise.all([

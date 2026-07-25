@@ -560,9 +560,6 @@ export default function FlashcardsCategoryHub({
       title: packTitleForInterface(pack, lang),
       mono: packHubCodeName(pack).slice(0, 2).toUpperCase(),
       cover: packCoverGradient(pack.category),
-      // Процента освоения по паку в модели нет — показываем его только для
-      // купленных, где он осмыслен; иначе null и полоса не рисуется.
-      percent: null,
       owned,
       price: owned ? undefined : pack.priceShards,
     }),

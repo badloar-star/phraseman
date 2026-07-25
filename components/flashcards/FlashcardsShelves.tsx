@@ -23,8 +23,6 @@ export interface ShelfPack {
   mono: string;
   /** Два цвета обложки. */
   cover: [string, string];
-  /** Процент освоения 0..100; null — ещё не начат. */
-  percent: number | null;
   /** Куплен ли пак. */
   owned: boolean;
   /** Цена в монетах, если не куплен. */
@@ -87,7 +85,7 @@ function FlashcardsShelvesBase({
                 onPress={() => onPackPress(p.id)}
                 activeOpacity={0.88}
                 accessibilityRole="button"
-                accessibilityLabel={p.percent !== null ? `${p.title}, освоено ${p.percent}%` : p.title}
+                accessibilityLabel={p.title}
                 style={{
                   flex: 1,
                   borderRadius: 18,
@@ -119,19 +117,12 @@ function FlashcardsShelvesBase({
                   )}
                 </LinearGradient>
                 <View style={{ paddingHorizontal: 11, paddingTop: 9, paddingBottom: 11 }}>
+                  {/* зачем: процент освоения убран решением владельца — поля
+                      прогресса по набору в модели нет, а выдуманное число хуже
+                      его отсутствия. Обложка и название самодостаточны. */}
                   <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: 12.5, fontWeight: '800' }}>
                     {p.title}
                   </Text>
-                  {p.percent !== null && (
-                    <>
-                      <View style={{ height: 5, borderRadius: 3, backgroundColor: t.bgCard, marginTop: 8, overflow: 'hidden' }}>
-                        <View style={{ width: `${p.percent}%`, height: '100%', borderRadius: 3, backgroundColor: t.accent }} />
-                      </View>
-                      <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', marginTop: 5, fontVariant: ['tabular-nums'] }}>
-                        {p.percent}%
-                      </Text>
-                    </>
-                  )}
                 </View>
               </TouchableOpacity>
             ))}

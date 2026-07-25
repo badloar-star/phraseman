@@ -79,6 +79,73 @@ describe('генератор турнирных заданий', () => {
     }
   });
 
+  it('правильный ответ не выдаёт себя длиной', () => {
+    // зачем: если верный вариант заметно короче/длиннее остальных, игрок
+    // научится выбирать по длине, не читая. Проверяем на контенте, где длины
+    // фраз намеренно разные.
+    const mixed = day({
+      phrases: [
+        phrase('short', 'Yes', 'Да', WORDS),
+        phrase('mid', 'See you later', 'До встречи позже', WORDS),
+        phrase('long1', 'Both options were chosen', 'Оба варианта набрали одинаковое количество голосов', WORDS),
+        phrase('long2', 'The winner needs a vote', 'Победитель будет определён в ходе второго голосования', WORDS),
+        phrase('long3', 'We should drop the rest', 'Можем ли мы убрать все варианты кроме двух лучших', WORDS),
+        phrase('mid2', 'Call me back', 'Перезвони мне позже', WORDS),
+      ],
+    });
+
+    const { tasks } = generateTournamentTasks([mixed], { kinds: ['choice'] });
+    expect(tasks.length).toBeGreaterThan(0);
+
+    for (const task of tasks) {
+      const options = task.payload.options as string[];
+      const correct = options[task.payload.correctIndex as number];
+      const others = options.filter((_, index) => index !== task.payload.correctIndex);
+
+      // Ближайший по длине вариант должен быть сопоставим с верным. Если в дне
+      // просто нет фраз похожей длины (наш случай «Да» — 2 символа против 16+),
+      // выбирать не из чего: проверяем не абсолютный разрыв, а то, что
+      // генератор взял НАИБОЛЕЕ близкие из доступных.
+      const gaps = others.map((option) => Math.abs(option.length - correct.length));
+      const nearest = Math.min(...gaps);
+
+      const allCandidates = mixed.phrases
+        .map((source) => source.meaning.ru)
+        .filter((meaning) => meaning !== correct);
+      const bestPossible = Math.min(
+        ...allCandidates.map((meaning) => Math.abs(meaning.length - correct.length)),
+      );
+
+      expect(nearest).toBe(bestPossible);
+    }
+  });
+
+  it('на реальном разбросе длин верный ответ не самый короткий и не самый длинный', () => {
+    // Полноценный день: фраз хватает, чтобы подобрать сопоставимые по длине.
+    const realistic = day({
+      phrases: [
+        phrase('a', 'Both options were chosen', 'Оба варианта набрали одинаковое количество голосов', WORDS),
+        phrase('b', 'The winner needs a vote', 'Победитель будет определён в ходе второго голосования', WORDS),
+        phrase('c', 'We should drop the rest', 'Можем ли мы убрать все варианты кроме двух лучших', WORDS),
+        phrase('d', 'Everyone agreed on it', 'Все участники согласились с этим предложением', WORDS),
+        phrase('e', 'The vote ended in a tie', 'Голосование закончилось ничьёй и нужен ещё раунд', WORDS),
+      ],
+    });
+
+    const { tasks } = generateTournamentTasks([realistic], { kinds: ['choice'] });
+    expect(tasks.length).toBeGreaterThan(0);
+
+    for (const task of tasks) {
+      const options = task.payload.options as string[];
+      const correct = options[task.payload.correctIndex as number];
+      const lengths = options.map((option) => option.length);
+      const spread = Math.max(...lengths) - Math.min(...lengths);
+
+      // Разброс длин внутри вопроса мал — по длине не угадать.
+      expect(spread).toBeLessThanOrEqual(Math.max(12, correct.length * 0.35));
+    }
+  });
+
   it('choice берёт правильный перевод именно своей фразы', () => {
     const source = day();
     const { tasks } = generateTournamentTasks([source], { kinds: ['choice'] });

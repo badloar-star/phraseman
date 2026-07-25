@@ -224,17 +224,28 @@ function buildChoiceTask(
 ): TournamentTask | null {
   const correct = normalizedRu(phrase);
   const seen = new Set([correct.toLowerCase()]);
-  const distractors: string[] = [];
 
+  // зачем: если правильный ответ заметно короче или длиннее остальных, игрок
+  // научится выбирать по длине, не читая — знание языка перестаёт требоваться.
+  // Поэтому сначала собираем всех кандидатов, потом берём тех, чья длина ближе
+  // к правильному ответу. Порядок внутри одинаковой близости остаётся
+  // детерминированным (сортировка стабильная по seeded-перемешиванию).
+  const candidates: string[] = [];
   for (const candidate of seededShuffle(pool, `choice:${phrase.id}`)) {
     if (candidate.id === phrase.id) continue;
     const meaning = normalizedRu(candidate);
     const key = meaning.toLowerCase();
     if (!meaning || seen.has(key)) continue;
     seen.add(key);
-    distractors.push(meaning);
-    if (distractors.length === CHOICE_OPTIONS - 1) break;
+    candidates.push(meaning);
   }
+
+  const distractors = candidates
+    .map((text, index) => ({ text, index, gap: Math.abs(text.length - correct.length) }))
+    .sort((a, b) => (a.gap - b.gap) || (a.index - b.index))
+    .slice(0, CHOICE_OPTIONS - 1)
+    .map((entry) => entry.text);
+
   if (distractors.length < CHOICE_OPTIONS - 1) return null;
 
   const options = seededShuffle([correct, ...distractors], `options:${phrase.id}`);
@@ -321,17 +332,22 @@ function buildTimeattackTask(
   for (const phrase of picked) {
     const correct = normalizedRu(phrase);
     const seen = new Set([correct.toLowerCase()]);
-    const options: string[] = [correct];
 
+    // Та же защита от подсказки по длине, что и в choice.
+    const pool: string[] = [];
     for (const candidate of seededShuffle(usable, `ta-opt:${phrase.id}`)) {
       if (candidate.id === phrase.id) continue;
       const meaning = normalizedRu(candidate);
       const key = meaning.toLowerCase();
       if (!meaning || seen.has(key)) continue;
       seen.add(key);
-      options.push(meaning);
-      if (options.length === 3) break; // короткие вопросы — 3 варианта
+      pool.push(meaning);
     }
+    const options = [correct, ...pool
+      .map((text, index) => ({ text, index, gap: Math.abs(text.length - correct.length) }))
+      .sort((a, b) => (a.gap - b.gap) || (a.index - b.index))
+      .slice(0, 2) // короткие вопросы — 3 варианта всего
+      .map((entry) => entry.text)];
     if (options.length < 2) continue;
 
     const shuffled = seededShuffle(options, `ta-shuffle:${phrase.id}`);

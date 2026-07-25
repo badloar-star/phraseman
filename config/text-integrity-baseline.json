@@ -1294,12 +1294,12 @@
       "tag": "Text",
       "kind": "truncation",
       "prop": "numberOfLines",
-      "value": "1",
+      "value": "2",
       "testID": null,
-      "fingerprint": "1d7196d5ad3853e5dca20d9b3a4068a71ddaebda80739d3a47a590b0f8a47f89",
+      "fingerprint": "4784feda9f7d49c7fe95c126942b50f0ab2e394848dce2d09c4e44c9bbda47de",
       "count": 1,
       "lineHints": [
-        216
+        220
       ],
       "intendedMode": "temporary-exception",
       "owner": "text-integrity-migration",

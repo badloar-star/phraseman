@@ -18,7 +18,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
 import {
-  normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy,
+  resolvePaywallContext, getPaywallCopy, getHeroPlannedCopy,
   applyWinBackCopy, applyWinBackPlannedCopy,
   CONTEXT_BENEFITS, getContextBenefitPlanned, makeLP,
 } from './paywall_copy';
@@ -53,7 +53,7 @@ const VARIANT = 'A' as const;
 
 export default function PaywallA() {
   const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string; resume_kind?: string; resume_lesson_id?: string }>();
-  const ctx = normalizePremiumContext(params.context);
+  const ctx = resolvePaywallContext(params.context, params.source);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const resumeLessonId = params.resume_kind === 'course_lesson'

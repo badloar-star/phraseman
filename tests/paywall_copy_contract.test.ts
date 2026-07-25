@@ -9,6 +9,7 @@ import {
   getContextBenefitPlanned,
   PREMIUM_HERO_ART,
   normalizePremiumContext,
+  resolvePaywallContext,
   makeLP,
 } from '../app/paywall_copy';
 
@@ -64,9 +65,11 @@ describe('paywall_copy — контракт покрытия premium-конте�
   it('course_after_lesson3 promises full Plus access, not only the current level', () => {
     const copy = getPaywallCopy('course_after_lesson3');
 
-    expect(copy.titleRu).toBe('Открой полный доступ к Phraseman');
+    // Аудит «пейволы-объясняют» (2026-07-25): заголовок называет момент,
+    // субтайтл (теперь видимый в хиро) обещает весь курс, а не текущий уровень.
+    expect(copy.titleRu).toBe('Дальше — полный курс');
     expect(copy.subtitleRu).toBe(
-      'Plus открывает доступ ко всем урокам, безлимитную практику и все возможности Plus.',
+      'Бесплатная часть пройдена. Plus открывает все уроки и практику без пауз.',
     );
     expect(CONTEXT_BENEFITS.course_after_lesson3?.map((benefit) => benefit.ru)).toEqual([
       'Доступ ко всем урокам',
@@ -95,6 +98,22 @@ describe('paywall_copy — контракт покрытия premium-конте�
     expect(normalizePremiumContext('dialog_locked_level')).toBe('dialog_locked_level');
     expect(normalizePremiumContext('flashcard_training')).toBe('flashcard_training');
     expect(normalizePremiumContext('flashcard_autoplay')).toBe('flashcard_autoplay');
+    // Аудит «пейволы-объясняют»: раньше эти точки падали в generic.
+    expect(normalizePremiumContext('speaking_club')).toBe('speaking_club');
+    expect(normalizePremiumContext('free_lessons_complete')).toBe('free_lessons_complete');
+    expect(normalizePremiumContext('referral_ended')).toBe('referral_ended');
+    expect(normalizePremiumContext('winback')).toBe('winback');
+  });
+
+  it('resolvePaywallContext: source-маппинг для триггеров, чьи файлы не трогаем', () => {
+    // winback-триггер в _layout шлёт context:'streak' + source:'winback' —
+    // вернувшийся после 7+ дней не должен видеть обещание спасти сгоревшую серию.
+    expect(resolvePaywallContext('streak', 'winback')).toBe('winback');
+    expect(resolvePaywallContext('generic', 'referral_ended')).toBe('referral_ended');
+    // Обычные source не влияют на контекст.
+    expect(resolvePaywallContext('streak', 'home_streak')).toBe('streak');
+    expect(resolvePaywallContext('no_energy', undefined)).toBe('no_energy');
+    expect(resolvePaywallContext(undefined, undefined)).toBe('generic');
   });
 
   it('generic всегда есть как фолбэк', () => {

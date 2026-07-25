@@ -15,7 +15,7 @@ import { useLocalSearchParams, Stack } from 'expo-router';
 import * as Crypto from 'expo-crypto';
 import { useLang } from '../components/LangContext';
 import { type Lang } from '../constants/i18n';
-import { normalizePremiumContext, getPaywallCopy, getHeroPlannedCopy, makeLP, applyWinBackCopy, applyWinBackPlannedCopy } from './paywall_copy';
+import { resolvePaywallContext, getPaywallCopy, getHeroPlannedCopy, makeLP, applyWinBackCopy, applyWinBackPlannedCopy } from './paywall_copy';
 import { getStatsCache } from './statsCache';
 import { usePaywallPurchase } from './paywall_purchase';
 import { parseResumeLessonId } from './paywall_lesson_continuation';
@@ -51,7 +51,7 @@ const VARIANT = 'B' as const;
 
 export default function PaywallB() {
   const params = useLocalSearchParams<{ context?: string; source?: string; _force_trial_ui?: string; resume_kind?: string; resume_lesson_id?: string }>();
-  const ctx = normalizePremiumContext(params.context);
+  const ctx = resolvePaywallContext(params.context, params.source);
   const source = (Array.isArray(params.source) ? params.source[0] : params.source) || 'direct';
   const forceTrialUI = (Array.isArray(params._force_trial_ui) ? params._force_trial_ui[0] : params._force_trial_ui) === '1';
   const resumeLessonId = params.resume_kind === 'course_lesson'

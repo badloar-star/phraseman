@@ -1376,6 +1376,127 @@ CONTEXT_BENEFITS_PLANNED.flashcard_autoplay = [
   { 'pt-BR': 'Ótimo para trajetos e pausas curtas', vi: 'Tiện khi di chuyển và nghỉ ngắn', id: 'Nyaman untuk perjalanan dan jeda singkat', tr: 'Yol ve kısa molalar için rahat', pl: 'Wygodne w drodze i krótkich przerwach' },
 ];
 
+// ── Аудит «пейволы-объясняют» (2026-07-25): новые контексты вместо generic ────
+// зачем: speaking_club / free_lessons_complete раньше падали в generic («Учись
+// быстрее с Plus») — юзер не понимал, почему экран появился; winback показывал
+// streak-копию про сгоревшую серию; referral_ended шёл как generic.
+
+PAYWALL_COPY.speaking_club = {
+  titleRu: 'Миссия дня — пройдена',
+  titleUk: 'Місію дня пройдено',
+  titleEs: 'Misión del día completada',
+  subtitleRu: 'Plus открывает все миссии клуба: говори вслух столько, сколько хочешь, — каждый день.',
+  subtitleUk: 'Plus відкриває всі місії клубу: говори вголос стільки, скільки хочеш, — щодня.',
+  subtitleEs: 'Plus abre todas las misiones del club: habla en voz alta cuanto quieras, cada día.',
+};
+PAYWALL_PLANNED_COPY.speaking_club = {
+  title: { 'pt-BR': 'Missão do dia concluída', vi: 'Nhiệm vụ hôm nay đã xong', id: 'Misi hari ini selesai', tr: 'Günün görevi tamamlandı', pl: 'Misja dnia zaliczona' },
+  subtitle: {
+    'pt-BR': 'O Plus abre todas as missões do clube: fale em voz alta o quanto quiser, todos os dias.',
+    vi: 'Plus mở mọi nhiệm vụ của câu lạc bộ: nói thành tiếng bao nhiêu tùy thích, mỗi ngày.',
+    id: 'Plus membuka semua misi klub: bicara lantang sepuasnya, setiap hari.',
+    tr: 'Plus kulübün tüm görevlerini açar: her gün istediğin kadar sesli konuş.',
+    pl: 'Plus otwiera wszystkie misje klubu: mów na głos ile chcesz, codziennie.',
+  },
+};
+CONTEXT_BENEFITS.speaking_club = [
+  { ru: 'Все миссии клуба без дневной паузы', uk: 'Усі місії клубу без денної паузи', es: 'Todas las misiones del club sin pausa diaria', 'pt-BR': 'Todas as missões do clube sem pausa diária', vi: 'Mọi nhiệm vụ câu lạc bộ, không nghỉ theo ngày', id: 'Semua misi klub tanpa jeda harian', tr: 'Günlük ara olmadan tüm kulüp görevleri', pl: 'Wszystkie misje klubu bez dziennej przerwy' },
+  { ru: 'Разбор твоей речи после каждой миссии', uk: 'Розбір твого мовлення після кожної місії', es: 'Análisis de tu habla tras cada misión', 'pt-BR': 'Análise da sua fala após cada missão', vi: 'Phân tích phần nói sau mỗi nhiệm vụ', id: 'Ulasan ucapanmu setelah tiap misi', tr: 'Her görevden sonra konuşma analizi', pl: 'Analiza twojej mowy po każdej misji' },
+  { ru: 'Сценарии под твой уровень', uk: 'Сценарії під твій рівень', es: 'Escenarios según tu nivel', 'pt-BR': 'Cenários no seu nível', vi: 'Kịch bản theo trình độ của bạn', id: 'Skenario sesuai levelmu', tr: 'Seviyene uygun senaryolar', pl: 'Scenariusze pod twój poziom' },
+];
+CONTEXT_BENEFITS_PLANNED.speaking_club = [
+  { 'pt-BR': 'Todas as missões do clube sem pausa diária', vi: 'Mọi nhiệm vụ câu lạc bộ, không nghỉ theo ngày', id: 'Semua misi klub tanpa jeda harian', tr: 'Günlük ara olmadan tüm kulüp görevleri', pl: 'Wszystkie misje klubu bez dziennej przerwy' },
+  { 'pt-BR': 'Análise da sua fala após cada missão', vi: 'Phân tích phần nói sau mỗi nhiệm vụ', id: 'Ulasan ucapanmu setelah tiap misi', tr: 'Her görevden sonra konuşma analizi', pl: 'Analiza twojej mowy po każdej misji' },
+  { 'pt-BR': 'Cenários no seu nível', vi: 'Kịch bản theo trình độ của bạn', id: 'Skenario sesuai levelmu', tr: 'Seviyene uygun senaryolar', pl: 'Scenariusze pod twój poziom' },
+];
+
+PAYWALL_COPY.free_lessons_complete = {
+  titleRu: 'Бесплатные уроки пройдены. Ты готов дальше',
+  titleUk: 'Безкоштовні уроки пройдено. Ти готовий далі',
+  titleEs: 'Lecciones gratis completadas. Estás listo para más',
+  subtitleRu: 'Следующие уроки — сложнее и живее. Plus открывает их сразу, с того же места.',
+  subtitleUk: 'Наступні уроки — складніші й живіші. Plus відкриває їх одразу, з того ж місця.',
+  subtitleEs: 'Las próximas lecciones son más reales y retadoras. Plus las abre al instante, desde donde estás.',
+};
+PAYWALL_PLANNED_COPY.free_lessons_complete = {
+  title: { 'pt-BR': 'Lições grátis concluídas. Você está pronto para mais', vi: 'Đã xong bài miễn phí. Bạn sẵn sàng đi tiếp', id: 'Pelajaran gratis selesai. Kamu siap lanjut', tr: 'Ücretsiz dersler bitti. Devama hazırsın', pl: 'Darmowe lekcje ukończone. Jesteś gotowy na więcej' },
+  subtitle: {
+    'pt-BR': 'As próximas lições são mais vivas e desafiadoras. O Plus abre tudo na hora, do ponto onde você está.',
+    vi: 'Các bài tiếp theo khó hơn và thật hơn. Plus mở ngay, từ đúng chỗ bạn đang học.',
+    id: 'Pelajaran berikutnya lebih hidup dan menantang. Plus membukanya langsung, dari posisimu sekarang.',
+    tr: 'Sonraki dersler daha canlı ve zorlu. Plus onları hemen, kaldığın yerden açar.',
+    pl: 'Kolejne lekcje są żywsze i trudniejsze. Plus otwiera je od razu, od miejsca, gdzie jesteś.',
+  },
+};
+CONTEXT_BENEFITS.free_lessons_complete = [
+  { ru: 'Все следующие уроки — без замков', uk: 'Усі наступні уроки — без замків', es: 'Todas las próximas lecciones sin candados', 'pt-BR': 'Todas as próximas lições sem cadeados', vi: 'Mọi bài tiếp theo không khóa', id: 'Semua pelajaran berikutnya tanpa gembok', tr: 'Sonraki tüm dersler kilitsiz', pl: 'Wszystkie kolejne lekcje bez kłódek' },
+  { ru: 'Практика и разборы без пауз', uk: 'Практика й розбори без пауз', es: 'Práctica y análisis sin pausas', 'pt-BR': 'Prática e análises sem pausas', vi: 'Luyện tập và phân tích không gián đoạn', id: 'Latihan dan ulasan tanpa jeda', tr: 'Kesintisiz pratik ve analiz', pl: 'Praktyka i analizy bez przerw' },
+  { ru: 'Прогресс продолжается, ничего не теряется', uk: 'Прогрес триває, нічого не втрачається', es: 'Tu progreso sigue, no se pierde nada', 'pt-BR': 'Seu progresso continua, nada se perde', vi: 'Tiến độ tiếp tục, không mất gì', id: 'Progres berlanjut, tidak ada yang hilang', tr: 'İlerleme sürer, hiçbir şey kaybolmaz', pl: 'Postęp trwa, nic nie przepada' },
+];
+CONTEXT_BENEFITS_PLANNED.free_lessons_complete = [
+  { 'pt-BR': 'Todas as próximas lições sem cadeados', vi: 'Mọi bài tiếp theo không khóa', id: 'Semua pelajaran berikutnya tanpa gembok', tr: 'Sonraki tüm dersler kilitsiz', pl: 'Wszystkie kolejne lekcje bez kłódek' },
+  { 'pt-BR': 'Prática e análises sem pausas', vi: 'Luyện tập và phân tích không gián đoạn', id: 'Latihan dan ulasan tanpa jeda', tr: 'Kesintisiz pratik ve analiz', pl: 'Praktyka i analizy bez przerw' },
+  { 'pt-BR': 'Seu progresso continua, nada se perde', vi: 'Tiến độ tiếp tục, không mất gì', id: 'Progres berlanjut, tidak ada yang hilang', tr: 'İlerleme sürer, hiçbir şey kaybolmaz', pl: 'Postęp trwa, nic nie przepada' },
+];
+
+PAYWALL_COPY.winback = {
+  titleRu: 'С возвращением',
+  titleUk: 'З поверненням',
+  titleEs: 'Qué bien verte de nuevo',
+  subtitleRu: 'Начать заново проще с открытым курсом. Plus снимает паузы — легче войти в ритм и не выпадать.',
+  subtitleUk: 'Почати знову простіше з відкритим курсом. Plus прибирає паузи — легше увійти в ритм і не випадати.',
+  subtitleEs: 'Volver es más fácil con el curso abierto. Plus quita las pausas: entras en ritmo y no lo pierdes.',
+};
+PAYWALL_PLANNED_COPY.winback = {
+  title: { 'pt-BR': 'Que bom ver você de novo', vi: 'Mừng bạn quay lại', id: 'Senang kamu kembali', tr: 'Yeniden hoş geldin', pl: 'Dobrze, że wracasz' },
+  subtitle: {
+    'pt-BR': 'Recomeçar é mais fácil com o curso aberto. O Plus tira as pausas: você entra no ritmo e não o perde.',
+    vi: 'Bắt đầu lại dễ hơn khi khóa học mở sẵn. Plus bỏ các quãng dừng — dễ vào nhịp và không rớt lại.',
+    id: 'Memulai lagi lebih mudah dengan kursus terbuka. Plus menghapus jeda: mudah masuk ritme dan bertahan.',
+    tr: 'Açık bir kursla yeniden başlamak daha kolay. Plus duraklamaları kaldırır: ritme girer ve düşmezsin.',
+    pl: 'Łatwiej zacząć od nowa z otwartym kursem. Plus usuwa pauzy: wchodzisz w rytm i z niego nie wypadasz.',
+  },
+};
+CONTEXT_BENEFITS.winback = [
+  { ru: 'Всё открыто с первого дня', uk: 'Все відкрито з першого дня', es: 'Todo abierto desde el primer día', 'pt-BR': 'Tudo aberto desde o primeiro dia', vi: 'Mở tất cả từ ngày đầu', id: 'Semua terbuka sejak hari pertama', tr: 'İlk günden her şey açık', pl: 'Wszystko otwarte od pierwszego dnia' },
+  { ru: 'Тренер сам подберёт, что вспомнить', uk: 'Тренер сам добере, що згадати', es: 'El entrenador elige qué repasar', 'pt-BR': 'O treinador escolhe o que relembrar', vi: 'Huấn luyện viên tự chọn phần cần nhớ lại', id: 'Trainer memilihkan yang perlu diingat', tr: 'Antrenör neyi hatırlayacağını seçer', pl: 'Trener sam dobierze, co przypomnieć' },
+  { ru: 'Занятия без пауз энергии', uk: 'Заняття без пауз енергії', es: 'Sesiones sin pausas de energía', 'pt-BR': 'Sessões sem pausas de energia', vi: 'Học không gián đoạn vì năng lượng', id: 'Belajar tanpa jeda energi', tr: 'Enerji molasız çalışma', pl: 'Nauka bez przerw na energię' },
+];
+CONTEXT_BENEFITS_PLANNED.winback = [
+  { 'pt-BR': 'Tudo aberto desde o primeiro dia', vi: 'Mở tất cả từ ngày đầu', id: 'Semua terbuka sejak hari pertama', tr: 'İlk günden her şey açık', pl: 'Wszystko otwarte od pierwszego dnia' },
+  { 'pt-BR': 'O treinador escolhe o que relembrar', vi: 'Huấn luyện viên tự chọn phần cần nhớ lại', id: 'Trainer memilihkan yang perlu diingat', tr: 'Antrenör neyi hatırlayacağını seçer', pl: 'Trener sam dobierze, co przypomnieć' },
+  { 'pt-BR': 'Sessões sem pausas de energia', vi: 'Học không gián đoạn vì năng lượng', id: 'Belajar tanpa jeda energi', tr: 'Enerji molasız çalışma', pl: 'Nauka bez przerw na energię' },
+];
+
+PAYWALL_COPY.referral_ended = {
+  titleRu: 'Подарочный доступ закончился',
+  titleUk: 'Подарунковий доступ завершився',
+  titleEs: 'Tu acceso de regalo terminó',
+  subtitleRu: 'Ты видел, как идёт с полным доступом. Plus возвращает его насовсем.',
+  subtitleUk: 'Ти бачив, як іде з повним доступом. Plus повертає його назавжди.',
+  subtitleEs: 'Ya viste cómo va con acceso completo. Plus lo devuelve para siempre.',
+};
+PAYWALL_PLANNED_COPY.referral_ended = {
+  title: { 'pt-BR': 'Seu acesso de presente acabou', vi: 'Quyền truy cập quà tặng đã hết', id: 'Akses hadiah sudah berakhir', tr: 'Hediye erişimin sona erdi', pl: 'Dostęp z prezentu się skończył' },
+  subtitle: {
+    'pt-BR': 'Você viu como é com acesso completo. O Plus devolve isso para sempre.',
+    vi: 'Bạn đã thấy học với toàn quyền là thế nào. Plus mang nó trở lại mãi mãi.',
+    id: 'Kamu sudah merasakan akses penuh. Plus mengembalikannya untuk selamanya.',
+    tr: 'Tam erişimle nasıl gittiğini gördün. Plus onu kalıcı olarak geri getirir.',
+    pl: 'Widziałeś, jak idzie z pełnym dostępem. Plus przywraca go na stałe.',
+  },
+};
+CONTEXT_BENEFITS.referral_ended = [
+  { ru: 'Всё, чем ты пользовался, снова открыто', uk: 'Усе, чим ти користувався, знову відкрито', es: 'Todo lo que usabas, abierto otra vez', 'pt-BR': 'Tudo o que você usava, aberto de novo', vi: 'Mọi thứ bạn từng dùng lại mở', id: 'Semua yang kamu pakai terbuka lagi', tr: 'Kullandığın her şey yeniden açık', pl: 'Wszystko, z czego korzystałeś, znów otwarte' },
+  { ru: 'Прогресс и серия продолжаются без пауз', uk: 'Прогрес і серія тривають без пауз', es: 'Tu progreso y racha siguen sin pausas', 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan runtutan lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
+  { ru: 'Диалоги и тренировки — без стопов', uk: 'Діалоги й тренування — без стопів', es: 'Diálogos y entrenamientos sin bloqueos', 'pt-BR': 'Diálogos e treinos sem travas', vi: 'Hội thoại và luyện tập không bị chặn', id: 'Dialog dan latihan tanpa hambatan', tr: 'Diyaloglar ve antrenmanlar duraksız', pl: 'Dialogi i treningi bez blokad' },
+];
+CONTEXT_BENEFITS_PLANNED.referral_ended = [
+  { 'pt-BR': 'Tudo o que você usava, aberto de novo', vi: 'Mọi thứ bạn từng dùng lại mở', id: 'Semua yang kamu pakai terbuka lagi', tr: 'Kullandığın her şey yeniden açık', pl: 'Wszystko, z czego korzystałeś, znów otwarte' },
+  { 'pt-BR': 'Progresso e sequência seguem sem pausas', vi: 'Tiến độ và chuỗi ngày tiếp tục không gián đoạn', id: 'Progres dan runtutan lanjut tanpa jeda', tr: 'İlerleme ve seri arasız devam eder', pl: 'Postęp i seria trwają bez przerw' },
+  { 'pt-BR': 'Diálogos e treinos sem travas', vi: 'Hội thoại và luyện tập không bị chặn', id: 'Dialog dan latihan tanpa hambatan', tr: 'Diyaloglar ve antrenmanlar duraksız', pl: 'Dialogi i treningi bez blokad' },
+];
+
 export function getContextBenefitPlanned(ctx: PremiumContext, index: number): PremiumPlannedCopy {
   const rows = CONTEXT_BENEFITS_PLANNED[ctx] ?? CONTEXT_BENEFITS_PLANNED.generic;
   return rows[index] ?? CONTEXT_BENEFITS_PLANNED.generic[Math.min(index, CONTEXT_BENEFITS_PLANNED.generic.length - 1)];

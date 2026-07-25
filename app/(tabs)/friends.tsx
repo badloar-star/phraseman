@@ -4026,7 +4026,9 @@ export default function FriendsTabScreen() {
         onOpenFullAccess={() => {
           setAccessEndedOpen(false);
           void dismissReferralAccessEnded();
-          router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'referral_ended' } } as any);
+          {/* зачем: аудит «пейволы-объясняют» — конец подарочного VIP показывал generic-копию;
+              контекст referral_ended говорит юзеру, что именно закончилось. */}
+          router.push({ pathname: '/premium_modal', params: { context: 'referral_ended', source: 'referral_ended' } } as any);
         }}
         onClose={() => { setAccessEndedOpen(false); void dismissReferralAccessEnded(); }}
         L={L}

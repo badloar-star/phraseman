@@ -26,6 +26,9 @@ const FUNNEL_PAGE_SIZE = 1_000;
 const FUNNEL_ROW_CAP = 30_000;
 const PRICE_PAGE_SIZE = 500;
 const PRICE_ROW_CAP = 10_000;
+/** Верхняя граница строк в разрезе по ситуациям — известных контекстов ~35,
+ *  запас на случай будущих/переходных значений без раздувания ответа. */
+const CONTEXT_ROW_CAP = 200;
 
 /** Окно наблюдения цен не зависит от периода отчёта: цена плана меняется редко,
  *  а за 7 дней покупок может не быть вовсе. */
@@ -45,6 +48,7 @@ export interface PaywallVariantFunnelDoc {
   variant?: unknown;
   plan?: unknown;
   dev?: unknown;
+  context?: unknown;
 }
 
 /** Сырые поля документа revenuecat_premium_events, нужные для оценки цены. */
@@ -75,6 +79,25 @@ export interface PaywallVariantStatsRow {
   readonly unpricedPurchases: number;
 }
 
+/**
+ * Одна ситуация показа пейвола (premium context, см. app/premium_context.ts):
+ * агрегат по всем вариантам вместе (для рейтинга «какая ситуация конвертит
+ * лучше») + покупки в разбивке по варианту (кто выигрывает именно в этой
+ * ситуации). НЕ полная матрица 7×33+ на верхнем уровне — это была бы лишняя
+ * нагрузка на ответ ради ячеек, которые почти всегда нулевые (контекст
+ * показывается на всех вариантах, но большинство пар variant×context за
+ * короткий период просто не набирают трафика).
+ */
+export interface PaywallContextStatsRow {
+  readonly context: string;
+  readonly shown: number;
+  readonly cta: number;
+  readonly purchases: number;
+  readonly conversionPct: number | null;
+  /** Покупки этой ситуации по вариантам — какой экран выигрывает именно здесь. */
+  readonly purchasesByVariant: Readonly<Record<PaywallStatsVariant, number>>;
+}
+
 export interface PaywallVariantStatsReport {
   readonly ok: true;
   readonly rangeDays: PaywallStatsRangeDays;
@@ -91,6 +114,8 @@ export interface PaywallVariantStatsReport {
     readonly priceObservations: { readonly monthly: number; readonly yearly: number; readonly lifetime: number };
   };
   readonly variants: readonly PaywallVariantStatsRow[];
+  /** Ситуации показа, отсортированы по числу показов (самые частые — первые). */
+  readonly contexts: readonly PaywallContextStatsRow[];
   readonly totals: {
     readonly shown: number;
     readonly cta: number;
@@ -178,6 +203,27 @@ export interface BuildPaywallVariantStatsInput {
   readonly priceRowsScanned?: number;
 }
 
+// зачем: 40 символов — тот же лимит, что paywall_funnel.ts кладёт в context
+// на клиенте (String(...).slice(0, 40)); держим агрегатор синхронным с ним.
+const CONTEXT_MAX_LEN = 40;
+
+function normalizeContext(value: unknown): string {
+  const raw = text(value);
+  return (raw || 'generic').slice(0, CONTEXT_MAX_LEN);
+}
+
+interface ContextBucket {
+  shown: number;
+  cta: number;
+  purchasesByVariant: Record<PaywallStatsVariant, number>;
+}
+
+function emptyContextBucket(): ContextBucket {
+  const purchasesByVariant = {} as Record<PaywallStatsVariant, number>;
+  for (const variant of PAYWALL_STATS_VARIANTS) purchasesByVariant[variant] = 0;
+  return { shown: 0, cta: 0, purchasesByVariant };
+}
+
 export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsInput): PaywallVariantStatsReport {
   const shown = new Map<PaywallStatsVariant, number>();
   const cta = new Map<PaywallStatsVariant, number>();
@@ -187,6 +233,7 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
     cta.set(variant, 0);
     purchases.set(variant, { monthly: 0, yearly: 0, lifetime: 0, unknown: 0 });
   }
+  const contexts = new Map<string, ContextBucket>();
 
   for (const doc of input.funnelDocs) {
     if (doc.dev === true) continue; // дев-сборки не считаем, как и в продуктовой воронке
@@ -198,6 +245,18 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
     else if (step === 'purchase_completed') {
       const bucket = purchases.get(variant)!;
       bucket[normalizePlan(doc.plan)] += 1;
+    }
+
+    // Разрез «какая ситуация показа конвертит лучше» — тот же проход, без
+    // повторного скана 30k документов. Не покупки-по-плану — контексту это
+    // не нужно, только показ/клик/покупка на ситуацию + кто выиграл.
+    if (step === 'shown' || step === 'cta_click' || step === 'purchase_completed') {
+      const ctxKey = normalizeContext(doc.context);
+      const ctxBucket = contexts.get(ctxKey) ?? emptyContextBucket();
+      if (step === 'shown') ctxBucket.shown += 1;
+      else if (step === 'cta_click') ctxBucket.cta += 1;
+      else ctxBucket.purchasesByVariant[variant] += 1;
+      contexts.set(ctxKey, ctxBucket);
     }
   }
 
@@ -236,6 +295,25 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
     ? variants.reduce((sum, row) => sum + (row.revenueMicros ?? 0), 0)
     : null;
 
+  // Сортировка по показам (самые частые ситуации сверху) — тот же принцип, что
+  // и у вариантов. CONTEXT_ROW_CAP страхует от раздутого ответа, если в базу
+  // когда-нибудь попадёт мусорный/произвольный context (лимит 40 символов на
+  // клиенте это не исключает — строк может быть много вариантов написания).
+  const contextRows: PaywallContextStatsRow[] = Array.from(contexts.entries())
+    .map(([context, bucket]) => {
+      const purchasesTotal = PAYWALL_STATS_VARIANTS.reduce((sum, v) => sum + bucket.purchasesByVariant[v], 0);
+      return {
+        context,
+        shown: bucket.shown,
+        cta: bucket.cta,
+        purchases: purchasesTotal,
+        conversionPct: conversionPct(purchasesTotal, bucket.shown),
+        purchasesByVariant: Object.freeze({ ...bucket.purchasesByVariant }),
+      };
+    })
+    .sort((a, b) => b.shown - a.shown)
+    .slice(0, CONTEXT_ROW_CAP);
+
   return {
     ok: true,
     rangeDays: input.rangeDays,
@@ -247,6 +325,7 @@ export function buildPaywallVariantStatsReport(input: BuildPaywallVariantStatsIn
     priceRowsScanned: input.priceRowsScanned ?? input.priceRows.length,
     revenue: { kind: revenueKind, currency: 'USD', planPricesMicros, priceObservations },
     variants: Object.freeze(variants),
+    contexts: Object.freeze(contextRows),
     totals: {
       shown: totalsShown,
       cta: totalsCta,

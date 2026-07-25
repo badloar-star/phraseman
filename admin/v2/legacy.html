@@ -9495,8 +9495,8 @@
   <div class="tab" onclick="switchTab('explain-cache')" data-i18n-es="Caché de explicaciones">Explain cache</div>
   <div class="tab" onclick="switchTab('compass')" data-i18n-es="Brújula">🧭 Компас</div>
   <div class="tab" onclick="switchTab('ban-list')" data-i18n-es="Lista de bloqueos">Ban list</div>
-  <div class="tab" onclick="switchTab('premium')" data-i18n-es="Plus">Plus</div>
-  <div class="tab" onclick="switchTab('vip')" data-i18n-es="Plus">Plus</div>
+  <!-- зачем: раньше два таба назывались одинаково "Plus" — владелец попросил объединить в один раздел с подразделами и понятными именами (Real Plus = настоящие покупки RevenueCat, Admin Plus = выдано вручную) -->
+  <div class="tab" onclick="switchTab('premium')" title="Real Plus (RevenueCat/store) и Admin Plus (выдан вручную) — один раздел, два подраздела">💚 Plus</div>
   <div class="tab" onclick="switchTab('plus-radar')" title="Find duplicate or suspicious Plus access cases">Plus Radar</div>
   <div class="tab" onclick="switchTab('promo-codes')">Промокоды</div>
   <div class="tab" onclick="switchTab('cancel-surveys')">Cancel surveys</div>
@@ -9516,10 +9516,16 @@
   <div class="tab" onclick="switchTab('card-packs')" data-i18n-es="Packs de tarjetas">Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')" data-i18n-es="Frases del día">Daily phrases</div>
   <div class="tab" onclick="switchTab('clubs')" data-i18n-es="Ligas">Clubs</div>
+  <!-- зачем: раздел управления режимом «Турниры» — генерация заданий из контента планов,
+       ревью перед публикацией, готовность пула по раундам и включение слотов -->
+  <div class="tab" onclick="switchTab('tournaments')" title="Задания турниров: генерация, проверка, публикация, расписание" style="background:rgba(251,191,36,0.12);border:1px solid rgba(251,191,36,0.35);color:#fbbf24;font-weight:700">🏆 Турниры</div>
   <div class="tab" onclick="switchTab('referrals')" data-i18n-es="Referidos">Referrals</div>
   <div class="tab" onclick="switchTab('app-health')" data-i18n-es="Salud de la app">App Health</div>
   <div class="tab" onclick="switchTab('push-notify')" data-i18n-es="Push">Push</div>
   <div class="tab" onclick="switchTab('changelog-0608')" title="Archived audit checklist from June 8, 2026" style="background:rgba(99,102,241,0.12);border:1px solid rgba(99,102,241,0.35);color:#a5b4fc;font-weight:700">Audit archive</div>
+  <!-- зачем: старая админка стала главной; уникальные разделы v2 (Офис агентов, Центр монет, Фабрика, Брифинг) остаются в один клик -->
+  <!-- зачем: /index.html теперь редиректит на старую (закладки на index.html тоже должны открывать старую) — ссылка на новую ведёт на /v2.html -->
+  <a class="tab" href="/v2.html" target="_blank" rel="noopener" title="Открыть новую админку: Офис агентов, Центр монет, Фабрика языков, Брифинг" style="text-decoration:none;background:rgba(183,227,91,0.10);border:1px solid rgba(183,227,91,0.35);color:#b7e35b;font-weight:700">V2 →</a>
 </div>
 
 <div id="stats-bar" style="display:none">
@@ -10313,7 +10319,6 @@
         <option value="chain_shield_1" data-i18n-es="🛡️ Escudo de racha por 1 día">🛡️ Щит стрика на 1 день</option>
         <option value="chain_shield_3" data-i18n-es="🛡️ Escudo de racha por 3 días">🛡️ Щит стрика на 3 дня</option>
         <option value="club_boost_free" data-i18n-es="👥 Boost de liga gratis">👥 Бесплатный буст лиги</option>
-        <option value="arena_extra_5" data-i18n-es="🎟️ +5 partidas de ranking hoy">🎟️ +5 рейтинг-игр сегодня</option>
         <option value="wager_discount_25" data-i18n-es="🎲 Descuento de apuesta 25%">🎲 Скидка на пари 25%</option>
         <option value="pack_trial_48h" data-i18n-es="📦 Pack de prueba 48 h">📦 Пробный набор 48ч</option>
         <option value="none" data-i18n-es="🎁 Sin regalo (solo mensaje)">🎁 Без подарка (только сообщение)</option>
@@ -10486,7 +10491,7 @@
   <div style="padding:4px 0 14px;max-width:980px">
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">Какой экран оплаты показывать</h2>
     <p style="margin:0;font-size:13.5px;color:#9ca3af;line-height:1.6">
-      У нас 3 новые версии экрана оплаты. Можно показывать их разным людям одновременно и смотреть,
+      У нас 7 версий экрана оплаты. Можно показывать их разным людям одновременно и смотреть,
       с какой покупают чаще. Выбери режим ниже и нажми «Сохранить» — приложение подхватит за пару секунд,
       переустановка и обновление не нужны. У одного человека версия не меняется со временем — так сравнение честное.
     </p>
@@ -10500,15 +10505,15 @@
     <div id="pab-presets" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
       <button type="button" data-preset="off" onclick="pabPreset('off')" class="pab-card">
         <div class="pab-card-t">⏸️ Без A/B</div>
-        <div class="pab-card-s">Все видят новый «Атриум». Старый экран не включается.</div>
+        <div class="pab-card-s">Все видят рекомендованный «Атриум». Остальные не включаются.</div>
       </button>
-      <button type="button" data-preset="soft" onclick="pabPreset('soft')" class="pab-card">
-        <div class="pab-card-t">🐣 Осторожный тест</div>
-        <div class="pab-card-s">10% A, 10% B, 80% C. Только новые экраны.</div>
+      <button type="button" data-preset="abc" onclick="pabPreset('abc')" class="pab-card">
+        <div class="pab-card-t">🐣 Классика A/B/C</div>
+        <div class="pab-card-s">33% Компакт, 33% Стори, 34% Атриум. Проверенная тройка.</div>
       </button>
       <button type="button" data-preset="even" onclick="pabPreset('even')" class="pab-card">
-        <div class="pab-card-t">⚖️ Поровну</div>
-        <div class="pab-card-s">Все три новых экрана: 33 / 33 / 34.</div>
+        <div class="pab-card-t">⚖️ Поровну — все семь</div>
+        <div class="pab-card-s">Компакт / Стори / Атриум / Плитки / Один план / Честный триал / Приманка.</div>
       </button>
       <button type="button" data-preset="atrium" onclick="pabPreset('atrium')" class="pab-card">
         <div class="pab-card-t">★ Только «Атриум»</div>
@@ -10516,21 +10521,12 @@
       </button>
     </div>
 
-    <button type="button" id="pab-custom-toggle" onclick="pabToggleCustom()" style="margin-top:12px;background:none;border:none;color:#818cf8;cursor:pointer;font-size:12.5px;padding:4px 0">⚙️ Настроить проценты вручную</button>
+    <button type="button" id="pab-custom-toggle" onclick="pabToggleCustom()" style="margin-top:12px;background:none;border:none;color:#818cf8;cursor:pointer;font-size:12.5px;padding:4px 0">⚙️ Настроить каждый экран вручную</button>
 
     <!-- ручные проценты — скрыто по умолчанию -->
     <div id="pab-custom" style="display:none;margin-top:8px;padding:14px;background:#0d0f17;border:1px solid #1f2330;border-radius:10px">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px">
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>A · Компакт <span style="color:#6b7280">(коротко)</span></span>
-          <input type="number" id="pab-a" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>B · Стори <span style="color:#6b7280">(длинно)</span></span>
-          <input type="number" id="pab-b" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#cbd5e1"><span>C · Атриум <span style="color:#6b7280">★ совет</span></span>
-          <input type="number" id="pab-c" min="0" max="100" oninput="pabRecalc()" style="background:#1a1a2a;border:1px solid #2a2a3a;color:#fff;padding:9px;border-radius:7px"/></label>
-        <label style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#6b7280"><span>Остаток <span style="color:#555">(тоже Атриум)</span></span>
-          <input type="text" id="pab-v1" disabled style="background:#0c0c16;border:1px solid #222;color:#9ca3af;padding:9px;border-radius:7px"/></label>
-      </div>
-      <div style="font-size:11.5px;color:#6b7280;margin-top:8px">Сумма трёх ≤ 100. Остаток не включает старый экран — он добавляется к «Атриуму» как безопасный новый fallback.</div>
+      <div id="pab-variant-rows" style="display:flex;flex-direction:column;gap:8px"></div>
+      <div style="font-size:11.5px;color:#6b7280;margin-top:10px">Выключенный экран получает 0% и его никто не увидит. Сумма включённых экранов держится на 100% автоматически — двигаешь один ползунок, остальные включённые подстраиваются пропорционально.</div>
     </div>
 
     <!-- что выбрано сейчас -->
@@ -11265,6 +11261,11 @@
 
 <!-- PREMIUM TAB -->
 <div id="tab-premium" class="reports-tab">
+  <!-- зачем: объединили Premium+Vip в один раздел "Plus" с двумя подразделами вместо двух одинаково названных вкладок -->
+  <div class="plus-subtabs" style="display:flex;gap:8px;padding:14px 24px 0">
+    <button type="button" onclick="switchTab('premium')" class="plus-subtab active" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">⭐ Real Plus</button>
+    <button type="button" onclick="switchTab('vip')" class="plus-subtab" style="background:#1f2937;border:1px solid #374151;color:#9ca3af;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">💚 Admin Plus</button>
+  </div>
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadPremiumData(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80" data-i18n-es="🔄 Actualizar">🔄 Обновить</button>
     <button type="button" onclick="exportPremiumCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
@@ -11281,7 +11282,7 @@
   </div>
   <div id="pr-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5" data-i18n-es="Fuente Plus real: RC metadata + progress.premium_plan. Los Plus admin están en la pestaña Plus separada.">
-    Здесь только настоящий Plus: RC metadata (<code data-i18n-es="premium_rc_period_type">premium_rc_period_type</code>, <code data-i18n-es="premium_rc_product_id">premium_rc_product_id</code>) + store-поля <code style="color:#a78bfa" data-i18n-es="users.progress.premium_plan">users.progress.premium_plan</code>. Админская выдача вынесена отдельно во вкладку <strong style="color:#4ade80">💚 Plus</strong> и пишет только <code>progress.vip_*</code>.
+    Здесь только настоящий Plus (Real Plus): RC metadata (<code data-i18n-es="premium_rc_period_type">premium_rc_period_type</code>, <code data-i18n-es="premium_rc_product_id">premium_rc_product_id</code>) + store-поля <code style="color:#a78bfa" data-i18n-es="users.progress.premium_plan">users.progress.premium_plan</code>. Админская выдача — в соседнем подразделе <strong style="color:#86efac">💚 Admin Plus</strong> выше и пишет только <code>progress.vip_*</code>.
   </p>
   <div id="pr-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Cargando usuarios…">⏳ Загружаю пользователей…</div></div>
   <!-- 08.06 NEW -->
@@ -11328,6 +11329,10 @@
 
 <!-- VIP TAB -->
 <div id="tab-vip" class="reports-tab">
+  <div class="plus-subtabs" style="display:flex;gap:8px;padding:14px 24px 0">
+    <button type="button" onclick="switchTab('premium')" class="plus-subtab" style="background:#1f2937;border:1px solid #374151;color:#9ca3af;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">⭐ Real Plus</button>
+    <button type="button" onclick="switchTab('vip')" class="plus-subtab active" style="background:#064e3b;border:1px solid #047857;color:#86efac;padding:8px 16px;border-radius:8px;font-weight:700;cursor:pointer">💚 Admin Plus</button>
+  </div>
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadVipData(true)" style="background:#064e3b;border:1px solid #047857;color:#86efac" data-i18n-es="🔄 Actualizar Plus">🔄 Обновить Plus</button>
     <button type="button" onclick="exportVipCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
@@ -11344,7 +11349,7 @@
   </div>
   <div id="vip-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p style="padding:0 24px 12px;font-size:13px;color:#8fbfa3;max-width:1040px;line-height:1.5">
-    Plus (админский) — это админский доступ с привилегиями Plus, но без настоящего Plus-статуса: в приложении остаётся возможность купить Plus, имя/аура зелёные, paywall не блокирует. Выдача и отзыв пишут только <code>users.progress.vip_active</code>, <code>vip_from</code>, <code>vip_until</code>, <code>vip_admin_override</code>, <code>vip_admin_grant_at</code>. RevenueCat и реальные Plus-поля не трогаются.
+    Admin Plus — это выданный вручную доступ с привилегиями Plus, но без настоящего Plus-статуса: в приложении остаётся возможность купить Plus, имя/аура зелёные, paywall не блокирует. Выдача и отзыв пишут только <code>users.progress.vip_active</code>, <code>vip_from</code>, <code>vip_until</code>, <code>vip_admin_override</code>, <code>vip_admin_grant_at</code>. RevenueCat и реальные Plus-поля (Real Plus, соседний подраздел выше) не трогаются.
   </p>
   <div id="vip-list" style="padding:0 24px 32px"><div class="reports-empty" data-i18n-es="Cargando usuarios…">⏳ Загружаю пользователей…</div></div>
   <!-- 08.06 NEW -->
@@ -12115,6 +12120,83 @@
       <tbody id="dp-tbody"></tbody>
     </table>
     <div id="dp-empty" class="reports-empty" data-i18n-es="Abre la pestaña para cargar.">Открой вкладку для загрузки.</div>
+  </div>
+</div>
+
+<!-- TOURNAMENTS TAB -->
+<!-- зачем: владелец управляет режимом «Турниры» отсюда — собрать задания из
+     контента планов, проверить каждое глазами, опубликовать одобренные,
+     увидеть готовность раундов и включить слоты. Публикация только вручную:
+     ни одно задание не уходит игрокам без явного «Опубликовать». -->
+<div id="tab-tournaments" class="reports-tab">
+  <div style="padding:4px 0 16px;max-width:1080px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🏆 Турниры</h2>
+    <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
+      Задания собираются из фраз обучающих планов — тех же, по которым учатся пользователи.
+      Ничего не выдумывается и не уходит игрокам без вашей проверки.
+    </p>
+  </div>
+
+  <!-- Готовность режима -->
+  <div id="tn-stats" style="margin-bottom:18px"></div>
+
+  <!-- Шаг 1: генерация -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 1 — собрать задания</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="tn-plan" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="">Все планы</option>
+        <option value="mitap">Митап</option>
+        <option value="gavan">Гавань</option>
+        <option value="impuls">Импульс</option>
+        <option value="echo">Эхо</option>
+        <option value="voyazh">Вояж</option>
+      </select>
+      <select id="tn-kind" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="">Все три режима</option>
+        <option value="choice">Угадай перевод</option>
+        <option value="translate">Собери фразу</option>
+        <option value="timeattack">Тайм-атака</option>
+      </select>
+      <button type="button" onclick="tnGenerate(true)" title="Показать, что получится, ничего не сохраняя"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Посмотреть примеры</button>
+      <button type="button" onclick="tnGenerate(false)" title="Собрать задания и положить их на проверку"
+        style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">⚙️ Собрать задания</button>
+      <span id="tn-gen-status" style="font-size:13px;color:#9ca3af"></span>
+    </div>
+    <div id="tn-gen-result" style="margin-top:14px"></div>
+  </div>
+
+  <!-- Шаг 2: проверка -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — проверить и опубликовать</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
+      <select id="tn-status" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="draft">На проверке</option>
+        <option value="published">В игре</option>
+        <option value="">Все</option>
+      </select>
+      <select id="tn-difficulty" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="0">Любая сложность</option>
+        <option value="1">Лёгкие</option>
+        <option value="2">Средние</option>
+        <option value="3">Сложные</option>
+      </select>
+      <button type="button" onclick="tnLoadTasks(true)"
+        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
+      <span style="flex:1"></span>
+      <button type="button" onclick="tnPublishVisible()" title="Опубликовать все отмеченные задания"
+        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">✅ Опубликовать отмеченные</button>
+      <span class="reports-count" id="tn-count"></span>
+    </div>
+    <div id="tn-list"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
+    <div id="tn-more" style="margin-top:12px"></div>
+  </div>
+
+  <!-- Шаг 3: расписание -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 3 — расписание турниров</div>
+    <div id="tn-schedule"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
   </div>
 </div>
 
@@ -13268,6 +13350,14 @@
     }
     return _fnAdminDraftReportReply;
   }
+  // зачем: владелец сделал старую админку главной и попросил перенести из v2 «Единый профиль» — серверную сводку по пользователю (канонический UID, дубли-алиасы, деньги, репорты, диагностика источников)
+  let _fnAdminGetUserProfile = null;
+  function getAdminGetUserProfileCallable() {
+    if (!_fnAdminGetUserProfile) {
+      _fnAdminGetUserProfile = httpsCallable(functionsUs, 'adminGetUserProfile');
+    }
+    return _fnAdminGetUserProfile;
+  }
   let _fnAdminGenerateDailyDigest = null;
   function getAdminGenerateDailyDigestCallable() {
     if (!_fnAdminGenerateDailyDigest) {
@@ -13350,7 +13440,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','ideas-decided','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts','changelog-0608'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -13908,7 +13998,12 @@
     const issuedFallback = source !== 'admin' && !rcPurchasedAt && !!rcUpdatedAt;
     const endsAt = source === 'admin' ? premiumExpiry : (rcExpiry || premiumExpiry);
     const expiresAt = endsAt;
-    const expired = !!(hasPlan && !legacyAdminPremium && expiresAt > 0 && expiresAt < Date.now() && (isTrial || premiumExpiry > 0));
+    // зачем: настоящий баг, найден при аудите Plus Radar по просьбе владельца. RC-подписки (не trial)
+    // пишут срок ТОЛЬКО в premium_rc_expiry_ms — клиент (app/premium_revenuecat_state.ts) всегда шлёт
+    // premium_expiry='0' для активной покупки. Лишнее условие "isTrial || premiumExpiry > 0" делало
+    // expired=false навсегда для всех обычных подписчиков — просроченные RC-подписки никогда не
+    // считались истёкшими. expiresAt уже правильно берёт rcExpiry||premiumExpiry — этого достаточно.
+    const expired = !!(hasPlan && !legacyAdminPremium && expiresAt > 0 && expiresAt < Date.now());
     const active = !!(hasPlan && !legacyAdminPremium && !expired);
     const displayPlan = isTrial ? 'trial' : (plan === 'yearly' ? 'annual' : planRaw);
     return { raw, plan: displayPlan || '', hasPlan, active, expired, source, adminOverride, isTrial, rcPeriod, rcProduct, issuedAt, issuedFallback, endsAt, rcUpdatedAt };
@@ -17131,6 +17226,7 @@
       ${acc('reports', '📝 Content-репорты юзера', lazyPlaceholder, { lazy: 'reports' })}
       ${acc('payments', '💳 Платежи / Plus-история', lazyPlaceholder, { lazy: 'payments' })}
       ${acc('chat', '💬 Чат лиг / UGC / рефералы', lazyPlaceholder, { lazy: 'social' })}
+      ${acc('unified', '🧩 Единый профиль (сервер)', lazyPlaceholder, { lazy: 'unified' })}
       ${acc('auth', '🔐 Аккаунт (auth)', (()=>{
           const la = u.linkedAuth;
           if (!la || !la.provider) { return authDetailHtml(u); }
@@ -17338,6 +17434,28 @@
           ${invitedBy ? `<div class="u360-list-item">Приглашён: <span style="font-family:monospace">${escapeHtml(String(invitedBy))}</span></div>` : ''}
           <div class="u360-list-item">Пригласил: <b>${refByMe.length}</b> чел.</div>
           ${u360List(refByMe.slice(0, 8), r => `<div class="u360-list-item" style="padding:5px 10px"><span style="font-family:monospace;font-size:11px">${escapeHtml(String(r.id))}</span> ${u360Pill(r.status || 'pending')}</div>`, '')}`;
+      } else if (kind === 'unified') {
+        // зачем: перенос «Единого профиля» из v2 — одна серверная функция отдаёт канонический UID, дубли-аккаунты и состояние всех источников; дешевле и полнее, чем N прямых запросов из браузера
+        const result = await getAdminGetUserProfileCallable()({ uid });
+        const p = result && result.data ? result.data : result;
+        if (!p || p.ok !== true) throw new Error('Сервер не вернул профиль');
+        const identity = p.identity || {};
+        const aliases = Array.isArray(identity.aliases) ? identity.aliases : [];
+        const reasonLabel = ({ auth_link: 'найден по привязке аккаунта', canonical_field: 'по каноническому полю', provider_uid: 'по UID провайдера', requested: 'запрошенный UID', unresolved: 'не удалось разрешить' })[String(identity.reason || '')] || '—';
+        const sources = (p.sections && p.sections.diagnostics && p.sections.diagnostics.sourceStates) || {};
+        const SRC_LABELS = { leaderboard: 'Рейтинг', arena: 'Арена', percentileStats: 'Перцентили', premiumEvents: 'Plus-события', shardTransactions: 'Осколки', adminRewardHistory: 'Награды админа', referrals: 'Рефералы', invitedBy: 'Кем приглашён', ugcBuys: 'UGC покупки', ugcSells: 'UGC продажи', errorReports: 'Content-репорты', reportsAgainst: 'Жалобы на него', reportsBy: 'Жалобы от него' };
+        const srcRows = Object.entries(sources).map(([key, src]) => {
+          const st = String((src && src.state) || 'unknown');
+          const cnt = Number((src && src.count) || 0);
+          const color = st === 'ready' ? '#4ade80' : st === 'empty' ? '#8b8b9a' : st === 'error' ? '#f87171' : '#fbbf24';
+          return `<div class="u360-list-item" style="padding:5px 10px"><div class="u360-li-top"><span>${escapeHtml(SRC_LABELS[key] || key)}</span><span style="color:${color};font-size:11px;font-weight:700">${escapeHtml(st)} · ${cnt}</span></div></div>`;
+        }).join('');
+        bodyEl.innerHTML = `
+          ${p.state !== 'ready' ? '<div class="u360-list-item" style="border-color:#5a4a1a;color:#fbbf24">Снимок неполный: часть источников не прочиталась.</div>' : ''}
+          <div class="u360-list-item"><div class="u360-li-top"><span>Канонический UID</span><span style="font-family:monospace;font-size:11px">${escapeHtml(String(p.canonicalUid || uid))}</span></div><div style="color:#7e8494">${escapeHtml(reasonLabel)}</div></div>
+          ${aliases.length ? `<div class="u360-list-item" style="border-color:#5a4a1a"><b style="color:#fbbf24">Дубли-аккаунты (${aliases.length}):</b> ${aliases.map(a => `<span style="font-family:monospace;font-size:11px">${escapeHtml(String(a))}</span>`).join(' · ')}</div>` : '<div class="u360-list-item">Дублей-аккаунтов не найдено</div>'}
+          <div style="font-size:11px;color:#8b8b9a;text-transform:uppercase;letter-spacing:0.5px;margin:10px 0 5px">Состояние источников</div>
+          ${srcRows || '<div class="u360-empty">Источники не вернулись</div>'}`;
       } else {
         bodyEl.innerHTML = '<div class="u360-empty">Неизвестная секция</div>';
       }
@@ -17455,6 +17573,16 @@
     if (premTab) premTab.classList.toggle('active', tab === 'premium');
     const vipTab = document.getElementById('tab-vip');
     if (vipTab) vipTab.classList.toggle('active', tab === 'vip');
+    // зачем: подсветка активного подраздела внутри объединённого раздела "Plus" (Real/Admin)
+    if (tab === 'premium' || tab === 'vip') {
+      document.querySelectorAll('.plus-subtab').forEach((btn) => {
+        const isReal = btn.textContent.includes('Real Plus');
+        btn.classList.toggle('active', (isReal && tab === 'premium') || (!isReal && tab === 'vip'));
+        btn.style.background = btn.classList.contains('active') ? (isReal ? '#1a3a2a' : '#064e3b') : '#1f2937';
+        btn.style.borderColor = btn.classList.contains('active') ? (isReal ? '#2a5a3a' : '#047857') : '#374151';
+        btn.style.color = btn.classList.contains('active') ? (isReal ? '#4ade80' : '#86efac') : '#9ca3af';
+      });
+    }
     const plusRadarTab = document.getElementById('tab-plus-radar');
     if (plusRadarTab) plusRadarTab.classList.toggle('active', tab === 'plus-radar');
     const promoCodesTab = document.getElementById('tab-promo-codes');
@@ -17499,6 +17627,11 @@
     }
     if (tab === 'refunds' && !window._refundsLoaded && typeof window.loadRefunds === 'function') {
       void window.loadRefunds(false);
+    }
+    // зачем: при открытии вкладки сразу показываем готовность режима и очередь
+    // проверки — владельцу не нужно жать «Обновить», чтобы увидеть состояние.
+    if (tab === 'tournaments' && !window._tournamentsLoaded && typeof window.tnOpenTab === 'function') {
+      void window.tnOpenTab();
     }
     if (tab === 'overview' && typeof window.renderAdminOverview === 'function') {
       window.renderAdminOverview();
@@ -19004,7 +19137,6 @@
       chain_shield_1: 'Streak shield for 1 day',
       chain_shield_3: 'Streak shield for 3 days',
       club_boost_free: 'Free league boost',
-      arena_extra_5: '+5 ranked Arena games today',
       wager_discount_25: 'Wager discount 25%',
       pack_trial_48h: 'Pack trial 48h',
       none: 'No gift, message only',
@@ -20953,7 +21085,6 @@
       case 'chain_shield_1': return 'щит стрика 1 день';
       case 'chain_shield_3': return 'щит стрика 3 дня';
       case 'club_boost_free': return 'бесплатный буст лиги';
-      case 'arena_extra_5': return '+5 рейтинг-игр';
       case 'wager_discount_25': return 'скидка на пари 25%';
       case 'pack_trial_48h': return 'пробный набор 48ч';
       default: return rewardType || '—';
@@ -30575,7 +30706,7 @@
   //   xp_boost_2x_48h   → users.gift_xp_multiplier
   //   chain_shield_1    → users.chain_shield
   //   chain_shield_3    → users.chain_shield
-  //   arena_extra_5     → users.arena_extra_plays_today
+  //   (arena_extra_5 снят вместе с Ареной 2026-07-25 — сервер такой тип больше не принимает)
   let _fnAdminGrant = null;
   function getAdminGrantFn() {
     if (!_fnAdminGrant && typeof httpsCallable === 'function' && functionsUs) {
@@ -30587,44 +30718,27 @@
   // ══════════════════════════════════════════════════════════════════════════
   // Опросы за осколки (shard-survey): сводка, лента, редактор, CSV.
   // Читает shard_surveys / shard_survey_stats / shard_survey_responses.
-  // Все изменения проходят через защищённые Voice Research preview/apply.
+  // зачем: раньше звало несуществующие adminPreviewVoiceResearchMutation/
+  // adminApplyVoiceResearchMutation (сервер их никогда не экспортировал —
+  // вкладка падала с internal при любом сохранении/toggle/удалении, аудит
+  // владельца это выявил). Реальный серверный контракт — прямой upsert
+  // adminWriteShardSurvey (без preview/apply в два шага), поэтому подтверждение
+  // теперь делается локально в модалке ДО отправки, а не через серверный preview.
   // ══════════════════════════════════════════════════════════════════════════
-  let _fnPreviewShardSurveyMutation = null;
-  let _fnApplyShardSurveyMutation = null;
-  function getPreviewShardSurveyMutationFn() {
-    if (!_fnPreviewShardSurveyMutation && typeof httpsCallable === 'function' && functionsUs) {
-      _fnPreviewShardSurveyMutation = httpsCallable(functionsUs, 'adminPreviewVoiceResearchMutation');
+  let _fnWriteShardSurvey = null;
+  function getWriteShardSurveyFn() {
+    if (!_fnWriteShardSurvey && typeof httpsCallable === 'function' && functionsUs) {
+      _fnWriteShardSurvey = httpsCallable(functionsUs, 'adminWriteShardSurvey');
     }
-    return _fnPreviewShardSurveyMutation;
-  }
-  function getApplyShardSurveyMutationFn() {
-    if (!_fnApplyShardSurveyMutation && typeof httpsCallable === 'function' && functionsUs) {
-      _fnApplyShardSurveyMutation = httpsCallable(functionsUs, 'adminApplyVoiceResearchMutation');
-    }
-    return _fnApplyShardSurveyMutation;
-  }
-  function ssAdminOperationId(prefix) {
-    const suffix = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID()
-      : `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
-    return `${prefix}-${suffix}`.replace(/[^a-zA-Z0-9_.:-]/g, '').slice(0, 160);
+    return _fnWriteShardSurvey;
   }
   async function ssPreviewAndApplySurveyMutation(action, targetId, payload, reason, danger = false) {
-    const previewFn = getPreviewShardSurveyMutationFn();
-    const applyFn = getApplyShardSurveyMutationFn();
-    if (!previewFn || !applyFn) throw new Error('Защищённые callable недоступны.');
+    const writeFn = getWriteShardSurveyFn();
+    if (!writeFn) throw new Error('Защищённый callable недоступен.');
 
-    const previewResult = await previewFn({
-      action,
-      targetId,
-      payload,
-      reason,
-      requestId: ssAdminOperationId('survey-preview'),
-    });
-    const preview = previewResult && previewResult.data ? previewResult.data : previewResult;
-    if (!preview || !preview.previewId || !preview.confirmation || !preview.fingerprint) {
-      throw new Error('Сервер вернул неполный предпросмотр. Изменения не применены.');
-    }
+    const survey = action === 'survey_toggle'
+      ? { ..._ssSurveys.find((s) => s.surveyId === targetId), ...payload }
+      : (payload && payload.survey) || payload;
 
     const enabledAfter = action === 'survey_toggle' ? payload && payload.enabled === true : null;
     const title = action === 'survey_create'
@@ -30634,20 +30748,14 @@
         : 'Сохранить изменения опроса?';
     const confirmed = await showConfirmModal({
       title,
-      desc: `Сервер подготовил безопасный предпросмотр для ${targetId}. Ответы и статистика не изменятся. Код предпросмотра: ${preview.confirmation}`,
+      desc: `Опрос: ${targetId}. Причина: ${reason}`,
       confirmLabel: action === 'survey_toggle' ? (enabledAfter ? 'Включить показ' : 'Выключить показ') : 'Применить изменения',
       danger,
     });
     if (!confirmed) return null;
 
-    const applyResult = await applyFn({
-      previewId: preview.previewId,
-      confirmation: preview.confirmation,
-      reason: preview.reason || reason,
-      requestId: ssAdminOperationId('survey-apply'),
-      idempotencyKey: `survey-${preview.fingerprint}`.slice(0, 180),
-    });
-    return applyResult && applyResult.data ? applyResult.data : applyResult;
+    const result = await writeFn({ survey });
+    return result && result.data ? result.data : result;
   }
 
   const SS_LANGS = ['ru','uk','es','pt-BR','vi','id','tr','pl'];
@@ -31314,7 +31422,6 @@
     { value: 'xp_boost_2x_48h', label: '🚀 x2 XP на 48 часов',         needsAmount: false },
     { value: 'chain_shield_1',  label: '🛡️ Щит стрика на 1 день',     needsAmount: false },
     { value: 'chain_shield_3',  label: '🛡️ Щит стрика на 3 дня',      needsAmount: false },
-    { value: 'arena_extra_5',   label: '🎟️ +5 рейтинг-игр сегодня',   needsAmount: false },
   ];
 
   window.grantReward = async function grantReward(uid, name) {
@@ -34984,6 +35091,259 @@
   }
 
   enableLocalAdminVisualTest();
+
+  // ═══════════════════════════════════════════════════════════════════════
+  // ТУРНИРЫ — генерация заданий, проверка, публикация, расписание.
+  //
+  // зачем: владелец управляет режимом отсюда. Задания собираются из фраз
+  // обучающих планов (серверный tournament_task_factory) и НИКОГДА не
+  // уходят игрокам сами: сначала «На проверке», публикация — только явным
+  // нажатием. Экономия Firestore: список идёт страницами по 25, статистика
+  // считается серверными агрегатами, повторный вход во вкладку не
+  // перезапрашивает данные (флаг _tournamentsLoaded).
+  // ═══════════════════════════════════════════════════════════════════════
+  let _fnTnGenerate = null, _fnTnList = null, _fnTnMutate = null;
+  let _fnTnStats = null, _fnTnGetSchedule = null, _fnTnSetSchedule = null;
+  const tnFn = (cached, name) => cached || httpsCallable(functionsUs, name);
+
+  let _tnCursor = '';
+  let _tnItems = [];
+
+  const TN_MODE_LABEL = {
+    guess_phrase: 'Угадай перевод',
+    translate_build: 'Собери фразу',
+    time_attack: 'Тайм-атака',
+  };
+  const TN_DIFF_LABEL = { 1: 'Лёгкое', 2: 'Среднее', 3: 'Сложное' };
+
+  function tnError(e) {
+    const code = e && (e.message || e.code) ? String(e.message || e.code) : 'unknown';
+    if (code.includes('tournament_pool_too_small')) {
+      const have = code.split(':').pop();
+      return `Заданий в игре слишком мало (${have}). Опубликуй хотя бы 50, потом включай слоты.`;
+    }
+    if (code.includes('permission-denied')) return 'Недостаточно прав для этого действия.';
+    return code;
+  }
+
+  /** Карточка одного задания: показываем правильный ответ — это экран проверки. */
+  function tnRenderTask(task) {
+    const p = task.payload || {};
+    const mode = TN_MODE_LABEL[task.mode] || task.mode;
+    const diff = TN_DIFF_LABEL[task.difficulty] || task.difficulty;
+    let body = '';
+
+    if (task.mode === 'guess_phrase') {
+      const opts = Array.isArray(p.options) ? p.options : [];
+      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
+        + opts.map((o, i) => {
+          const ok = i === p.correctIndex;
+          return `<div style="font-size:13px;padding:3px 0;color:${ok ? '#4ade80' : '#9ca3af'}">${ok ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`;
+        }).join('');
+    } else if (task.mode === 'translate_build') {
+      const bank = Array.isArray(p.wordBank) ? p.wordBank : [];
+      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
+        + `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Слова: ${bank.map(w => `<span style="background:#1a1a24;border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`).join('')}</div>`
+        + `<div style="font-size:13px;color:#4ade80">✓ ${escapeHtml(p.correctAnswer || '')}</div>`;
+    } else if (task.mode === 'time_attack') {
+      const items = Array.isArray(p.items) ? p.items : [];
+      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.prompt)}</div>`
+        + items.map(it => {
+          const opts = Array.isArray(it.options) ? it.options : [];
+          return `<div style="font-size:13px;padding:2px 0;color:#9ca3af">${escapeHtml(it.prompt)} → <span style="color:#4ade80">${escapeHtml(opts[it.correctIndex] || '')}</span></div>`;
+        }).join('');
+    }
+
+    const badge = task.verified
+      ? '<span style="background:rgba(74,222,128,0.14);color:#4ade80;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">В игре</span>'
+      : '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">На проверке</span>';
+    const invalid = task.valid === false
+      ? '<span style="background:rgba(248,113,113,0.14);color:#fca5a5;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;margin-left:6px">Битое</span>'
+      : '';
+
+    return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
+        <input type="checkbox" class="tn-pick" value="${escapeHtml(task.taskId)}" ${task.verified ? '' : 'checked'} style="width:16px;height:16px;cursor:pointer" />
+        <span style="font-size:12px;color:#6b7280">${escapeHtml(mode)} · ${escapeHtml(String(diff))}</span>
+        <span style="flex:1"></span>${badge}${invalid}
+      </div>
+      ${body}
+    </div>`;
+  }
+
+  window.tnLoadTasks = async function tnLoadTasks(reset) {
+    const list = document.getElementById('tn-list');
+    if (!list) return;
+    if (reset) { _tnCursor = ''; _tnItems = []; list.innerHTML = '<div class="reports-empty">Загружаю…</div>'; }
+    try {
+      _fnTnList = tnFn(_fnTnList, 'adminListTournamentTasks');
+      const status = document.getElementById('tn-status')?.value ?? 'draft';
+      const difficulty = Number(document.getElementById('tn-difficulty')?.value || 0);
+      const payload = { limit: 25, status, cursor: _tnCursor };
+      if (difficulty) payload.difficulty = difficulty;
+
+      const res = await _fnTnList(payload);
+      const data = res?.data || {};
+      _tnItems = _tnItems.concat(data.items || []);
+      _tnCursor = data.nextCursor || '';
+
+      list.innerHTML = _tnItems.length
+        ? _tnItems.map(tnRenderTask).join('')
+        : '<div class="reports-empty">Пока пусто. Собери задания в шаге 1.</div>';
+      const count = document.getElementById('tn-count');
+      if (count) count.textContent = `Показано: ${_tnItems.length}`;
+      const more = document.getElementById('tn-more');
+      if (more) {
+        more.innerHTML = _tnCursor
+          ? '<button type="button" onclick="tnLoadTasks(false)" style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px">Показать ещё</button>'
+          : '';
+      }
+    } catch (e) {
+      list.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
+  window.tnGenerate = async function tnGenerate(dryRun) {
+    const status = document.getElementById('tn-gen-status');
+    const result = document.getElementById('tn-gen-result');
+    if (status) status.textContent = dryRun ? 'Собираю примеры…' : 'Собираю задания…';
+    if (result) result.innerHTML = '';
+    try {
+      _fnTnGenerate = tnFn(_fnTnGenerate, 'adminGenerateTournamentTasks');
+      const plan = document.getElementById('tn-plan')?.value || '';
+      const kind = document.getElementById('tn-kind')?.value || '';
+      const payload = { dryRun: dryRun === true };
+      if (plan) payload.plans = [plan];
+      if (kind) payload.kinds = [kind];
+
+      const res = await _fnTnGenerate(payload);
+      const data = res?.data || {};
+      const s = data.stats || {};
+      if (status) status.textContent = '';
+
+      const head = dryRun
+        ? `Получится <strong style="color:#fafafa">${s.produced ?? 0}</strong> заданий из ${s.phrasesSeen ?? 0} фраз. Ничего не сохранено.`
+        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> заданий на проверке.`
+          + (data.keptPublished ? ` Уже в игре и не тронуты: ${data.keptPublished}.` : '');
+
+      const samples = Array.isArray(data.samples) && data.samples.length
+        ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';
+
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}</div>${samples}`;
+      if (!dryRun) { await window.tnLoadTasks(true); await window.tnLoadStats(); }
+    } catch (e) {
+      if (status) status.textContent = '';
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
+  window.tnPublishVisible = async function tnPublishVisible() {
+    const picked = Array.from(document.querySelectorAll('.tn-pick:checked')).map(el => el.value);
+    if (!picked.length) { showToast('Нечего публиковать: отметь задания галочками.', 'warn'); return; }
+    if (!confirm(`Опубликовать ${picked.length} заданий? Они станут доступны игрокам.`)) return;
+    try {
+      _fnTnMutate = tnFn(_fnTnMutate, 'adminMutateTournamentTasks');
+      const res = await _fnTnMutate({ taskIds: picked, action: 'publish' });
+      const data = res?.data || {};
+      const rejected = Array.isArray(data.rejected) ? data.rejected.length : 0;
+      showToast(`Опубликовано: ${data.affected ?? 0}${rejected ? `, отклонено битых: ${rejected}` : ''}`, 'ok');
+      await window.tnLoadTasks(true);
+      await window.tnLoadStats();
+    } catch (e) {
+      showToast('Не удалось опубликовать: ' + tnError(e), 'err');
+    }
+  };
+
+  window.tnLoadStats = async function tnLoadStats() {
+    const box = document.getElementById('tn-stats');
+    if (!box) return;
+    try {
+      _fnTnStats = tnFn(_fnTnStats, 'adminTournamentPoolStats');
+      const res = await _fnTnStats({});
+      const d = res?.data || {};
+      const rounds = Array.isArray(d.rounds) ? d.rounds : [];
+
+      const ready = d.poolReady
+        ? '<span style="color:#4ade80;font-weight:800">Можно запускать</span>'
+        : '<span style="color:#fbbf24;font-weight:800">Заданий пока мало</span>';
+
+      const cards = rounds.map(r => {
+        const ok = r.ready;
+        return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;min-width:150px">
+          <div style="font-size:12px;color:#6b7280;margin-bottom:4px">Раунд ${r.round}</div>
+          <div style="font-size:20px;font-weight:800;color:${ok ? '#4ade80' : '#fbbf24'}">${r.available}</div>
+        </div>`;
+      }).join('');
+
+      box.innerHTML = `<div style="background:#12121a;border-radius:12px;padding:16px 18px;max-width:1080px">
+        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+          <span style="font-size:15px;font-weight:800;color:#fafafa">Готовность режима</span>
+          <span style="flex:1"></span>${ready}
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px">${cards}</div>
+        <div style="font-size:13px;color:#9ca3af">
+          В игре: <strong style="color:#4ade80">${d.published ?? 0}</strong> ·
+          На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
+        </div>
+      </div>`;
+    } catch (e) {
+      box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
+  window.tnLoadSchedule = async function tnLoadSchedule() {
+    const box = document.getElementById('tn-schedule');
+    if (!box) return;
+    try {
+      _fnTnGetSchedule = tnFn(_fnTnGetSchedule, 'adminGetTournamentSchedule');
+      const res = await _fnTnGetSchedule({});
+      const d = res?.data || {};
+      const slots = Array.isArray(d.slots) && d.slots.length ? d.slots : [
+        { slotId: 'noon', hour: 12, minute: 0, enabled: false },
+        { slotId: 'evening', hour: 19, minute: 0, enabled: false },
+        { slotId: 'night', hour: 21, minute: 0, enabled: false },
+      ];
+
+      box.innerHTML = slots.map((s, i) => {
+        const time = `${String(s.hour).padStart(2, '0')}:${String(s.minute).padStart(2, '0')}`;
+        return `<div style="display:flex;align-items:center;gap:12px;padding:10px 0">
+          <input type="checkbox" class="tn-slot" data-slot="${escapeHtml(s.slotId)}" data-hour="${s.hour}" data-minute="${s.minute}" ${s.enabled ? 'checked' : ''} style="width:18px;height:18px;cursor:pointer" />
+          <span style="font-size:16px;font-weight:700;color:#fafafa;min-width:64px">${time}</span>
+          <span style="font-size:13px;color:${s.enabled ? '#4ade80' : '#6b7280'}">${s.enabled ? 'Турнир идёт' : 'Выключен'}</span>
+        </div>`;
+      }).join('')
+        + `<div style="margin-top:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+            <button type="button" onclick="tnSaveSchedule()" style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Сохранить расписание</button>
+            <span style="font-size:12px;color:#6b7280">Время московское</span>
+          </div>`;
+    } catch (e) {
+      box.innerHTML = `<div class="reports-empty" style="color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
+  window.tnSaveSchedule = async function tnSaveSchedule() {
+    const slots = Array.from(document.querySelectorAll('.tn-slot')).map(el => ({
+      slotId: el.getAttribute('data-slot'),
+      hour: Number(el.getAttribute('data-hour')),
+      minute: Number(el.getAttribute('data-minute')),
+      enabled: el.checked,
+    }));
+    const turningOn = slots.some(s => s.enabled);
+    if (turningOn && !confirm('Включить турниры для живых игроков?')) return;
+    try {
+      _fnTnSetSchedule = tnFn(_fnTnSetSchedule, 'adminSetTournamentSchedule');
+      await _fnTnSetSchedule({ slots, timezone: 'Europe/Moscow' });
+      showToast('Расписание сохранено', 'ok');
+      await window.tnLoadSchedule();
+    } catch (e) {
+      showToast('Не удалось сохранить: ' + tnError(e), 'err');
+    }
+  };
+
+  window.tnOpenTab = async function tnOpenTab() {
+    window._tournamentsLoaded = true;
+    await Promise.all([window.tnLoadStats(), window.tnLoadTasks(true), window.tnLoadSchedule()]);
+  };
 
   // init: onAuthStateChanged + startAdminApp
 </script>

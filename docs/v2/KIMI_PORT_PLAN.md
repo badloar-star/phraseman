@@ -68,20 +68,20 @@ components/learning-v2-lab/
 | 1 | lc-listen-choose | mobile/LcListenChoose.tsx (ChoiceShell) | ✅ |
 | 2 | vd-visual-discovery | mobile/VdVisualDiscovery.tsx | ✅ |
 | 3 | sm-speed-match | mobile/SmSpeedMatch.tsx | ✅ |
-| 4 | pb-phrase-builder | mobile/PbPhraseBuilder.tsx (ComposerShell) | ⬜ |
-| 5 | lb-listen-build | mobile/LbListenBuild.tsx (ComposerShell) | ⬜ |
+| 4 | pb-phrase-builder | mobile/PbPhraseBuilder.tsx (ComposerShell) | ✅ |
+| 5 | lb-listen-build | mobile/LbListenBuild.tsx (ComposerShell) | ✅ |
 | 6 | cg-context-gap | mobile/CgContextGap.tsx | ✅ |
-| 7 | sound-discrimination | mobile/SoundDiscrimination.tsx | ⬜ |
+| 7 | sound-discrimination | mobile/SoundDiscrimination.tsx | ✅ |
 | 8 | sl-sound-syllable-lab | modes2/SlSoundSyllableLab.tsx | ⬜ |
 | 9 | rp-repeat-compare | modes2/RpRepeatCompare.tsx (VoiceShell) | ⬜ |
 | 10 | qr-quick-response | modes2/QrQuickResponse.tsx (VoiceShell) | ⬜ |
 | 11 | sh-shadowing | modes2/ShShadowing.tsx (VoiceShell) | ⬜ |
-| 12 | mr-microstory | modes2/MrMicrostory.tsx | ⬜ |
-| 13 | ba-branching-scene | modes2/BaBranchingScene.tsx | ⬜ |
+| 12 | mr-microstory | modes2/MrMicrostory.tsx | ✅ |
+| 13 | ba-branching-scene | modes2/BaBranchingScene.tsx | ✅ |
 | 14 | sd-scripted-dialogue | modes2/SdScriptedDialogue.tsx (VoiceShell) | ⬜ |
 | 15 | cm-speaking-club | modes2/CmSpeakingClub.tsx (VoiceShell) | ⬜ |
-| 16 | pr-personal-review | modes2/PrPersonalReview.tsx | ⬜ |
-| 17 | cp-checkpoint | modes2/CpCheckpoint.tsx | ⬜ |
+| 16 | pr-personal-review | modes2/PrPersonalReview.tsx | ✅ |
+| 17 | cp-checkpoint | modes2/CpCheckpoint.tsx | ✅ |
 | — | ds-describe-scene | modes2/DsDescribeScene.tsx — СНЯТ владельцем, в каталоге с бейджем | ⬜ |
 
 Скриптовые поверхности (zh/ja/ko/ar, writing-system-hub, episode-map, session-runner,

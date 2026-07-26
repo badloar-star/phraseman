@@ -155,10 +155,16 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
 
 const FUNCTIONS_REGION = 'us-central1';
 
-async function callFunction<T>(name: string, payload: Record<string, unknown> = {}): Promise<T> {
+async function callFunction<T>(
+  name: string,
+  payload: Record<string, unknown> = {},
+  // зачем: дев-функция живёт в europe-west1 — квота CPU us-central1 исчерпана,
+  // новые функции туда не деплоятся. Прод-callable остаются в us-central1.
+  region: string = FUNCTIONS_REGION,
+): Promise<T> {
   const { getApp } = await import('@react-native-firebase/app');
   const { getFunctions, httpsCallable } = await import('@react-native-firebase/functions');
-  const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name);
+  const call = httpsCallable(getFunctions(getApp(), region), name);
   const result = await call(payload);
   return result.data as T;
 }
@@ -198,6 +204,7 @@ export function devStartTournament() {
   return callFunction<{ ok: boolean; roomId: string; startsAt: number }>(
     'adminDevStartTournament',
     {},
+    'europe-west1',
   );
 }
 

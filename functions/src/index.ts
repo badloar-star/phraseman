@@ -518,6 +518,7 @@ export {
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,
+  adminDevStartTournament,
 } from './tournaments';
 export { adminSeedBotProfiles } from './tournament_bots';
 // Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,

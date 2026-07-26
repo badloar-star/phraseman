@@ -359,7 +359,7 @@ function roundsWithActivatedPublicTasks(
 // ── Room creation: missing/invalid config or resources creates nothing. ─────────
 
 export const tournamentCreateRooms = onSchedule(
-  { schedule: '*/5 * * * *', timeZone: 'UTC', region: REGION },
+  { schedule: '*/5 * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
     const db = admin.firestore();
     const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
@@ -846,7 +846,7 @@ export async function processTournamentFillRooms(
 }
 
 export const tournamentFillBots = onSchedule(
-  { schedule: '* * * * *', timeZone: 'UTC', region: REGION },
+  { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
     const db = admin.firestore();
     await processTournamentFillRooms({ db, nowMs: Date.now() });
@@ -1400,7 +1400,7 @@ export async function processDueTournamentRooms(options: {
 }
 
 export const tournamentAdvanceRooms = onSchedule(
-  { schedule: '* * * * *', timeZone: 'UTC', region: REGION },
+  { schedule: '* * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
     const db = admin.firestore();
     const nowMs = Date.now();
@@ -1578,7 +1578,7 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
  * advance-крон поведёт раунды. devRoom:true отключает минимум «8 живых» —
  * иначе комната с одним владельцем отменилась бы с возвратом жемчужин.
  */
-export const adminDevStartTournament = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', maxInstances: 1 }, async (request) => {
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin only');
   }

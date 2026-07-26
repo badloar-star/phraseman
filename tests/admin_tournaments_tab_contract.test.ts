@@ -242,6 +242,35 @@ describe('вкладка «Турниры» в админке', () => {
     }
   });
 
+  it('папки по типам: переключение шлёт фильтр режима на сервер', async () => {
+    // Владелец просил раздел, где вопросы сгруппированы по типам, чтобы зайти
+    // и решить что заменить/удалить. Папка = режим пула.
+    const { sandbox, calls } = runTab();
+    await (sandbox.tnOpenFolder as (mode: string) => void)('fill_gap');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const list = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
+    expect(list?.payload?.mode).toBe('fill_gap');
+  });
+
+  it('папка «Все» фильтр не шлёт', async () => {
+    const { sandbox, calls } = runTab();
+    await (sandbox.tnOpenFolder as (mode: string) => void)('');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+    const list = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
+    expect(list?.payload?.mode).toBeUndefined();
+  });
+
+  it('перегенерация одного вопроса и массовые действия объявлены', () => {
+    const { sandbox } = runTab();
+    for (const name of ['tnOpenFolder', 'tnFolderBulk', 'tnRegenTask']) {
+      expect(typeof sandbox[name]).toBe('function');
+    }
+    // Кнопка замены есть на карточке задания.
+    expect(html).toContain('tnRegenTask(');
+  });
+
   it('генерация собирает ЦЕЛЫЙ турнир одним вызовом', async () => {
     // Требование владельца: «1 фулл готовый турнир, все раунды», а не пачка
     // однотипных вопросов. Кнопка зовёт adminGenerateTournamentAi.

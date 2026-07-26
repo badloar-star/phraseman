@@ -950,6 +950,11 @@ export const adminMutateTournamentTasks = onCall(
 /** Сколько заданий нужно раунду: 5 вопросов × запас на отсутствие повторов. */
 export const ROUND_TASK_TARGET = 50;
 
+/** Папки вопросов в админке = режимы пула (зеркало KIND_TO_MODE). */
+export const TOURNAMENT_FOLDER_MODES: readonly string[] = Object.freeze([
+  'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build',
+]);
+
 /** Раунд → допустимые сложности (зеркало selectRoundTasks на сервере). */
 export const ROUND_DIFFICULTIES: Readonly<Record<number, readonly number[]>> = Object.freeze({
   1: [1], 2: [1, 2], 3: [2], 4: [2, 3],
@@ -999,6 +1004,15 @@ export const adminTournamentPoolStats = onCall(
       sources[source] = { total, published, drafts: total - published };
     }));
 
+    // зачем: счётчики папок в админке — владелец должен видеть, сколько
+    // вопросов каждого типа, не открывая папку. guard-ok: count() — серверные
+    // агрегаты, документы не читаются (4 агрегата вместо выкачивания пула).
+    const byMode: Record<string, number> = {};
+    await Promise.all(TOURNAMENT_FOLDER_MODES.map(async (mode) => {
+      const agg = await collection.where('mode', '==', mode).count().get();
+      byMode[mode] = agg.data().count;
+    }));
+
     // Готовность раунда: хватает ли verified-заданий его сложностей.
     const rounds = Object.entries(ROUND_DIFFICULTIES).map(([round, difficulties]) => {
       const available = difficulties.reduce((sum, d) => sum + (byDifficulty[d] ?? 0), 0);
@@ -1017,6 +1031,7 @@ export const adminTournamentPoolStats = onCall(
       drafts: totalAgg.data().count - publishedAgg.data().count,
       byDifficulty,
       sources,
+      byMode,
       rounds,
       // Режим можно включать, только если каждый раунд наберёт задания.
       poolReady: rounds.every((round) => round.ready),

@@ -18,6 +18,7 @@ import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import { TOURNAMENT_TASKS_COLLECTION, type TournamentTask } from './tournament_core';
 import {
+  TOURNAMENT_AI_KINDS,
   TOURNAMENT_AI_TOTAL_TASKS,
   buildTournamentPlan,
   flattenPlan,
@@ -317,5 +318,153 @@ export const adminGenerateTournamentAi = onCall(
     }
 
     return { ...report, dryRun: false, written };
+  },
+);
+
+// ── Перегенерация одного вопроса и массовые действия по папке ───────────────
+
+/**
+ * Заменяет ОДИН вопрос новым того же типа и сложности.
+ *
+ * зачем: владелец просил «зайти, просмотреть каждое и выбрать что заменять».
+ * Без этого негодный вопрос можно было только удалить, а на его место потом
+ * генерировать целый турнир из 24 заданий. Здесь — один запрос к ИИ на замену.
+ *
+ * Старый вопрос удаляется, новый ложится черновиком: замена не уходит игрокам
+ * без ревью, даже если старый был опубликован.
+ */
+export const adminRegenerateTournamentTask = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
+  async (request) => {
+    requirePermission(request, 'content.draft.write');
+    const record = onlyKeys(request.data, ['taskId', 'topicHint'], 'tournament_regen_invalid');
+    const taskId = String(record.taskId ?? '').trim();
+    if (!/^[A-Za-z0-9._:-]{1,160}$/.test(taskId)) {
+      throw new HttpsError('invalid-argument', 'tournament_regen_task_invalid');
+    }
+    const topicHint = String(record.topicHint ?? '').trim().slice(0, 120);
+
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+    const snap = await collection.doc(taskId).get();
+    if (!snap.exists) throw new HttpsError('not-found', 'tournament_task_not_found');
+
+    const existing = snap.data() as TournamentTask & { source?: string };
+    // Тип берём из тега kind:*, режим — запасной вариант для старых заданий.
+    const kindTag = (existing.tags || []).find((tag) => tag.startsWith('kind:'));
+    const kind = (kindTag?.slice(5) || '') as TournamentAiKind;
+    const level = ((existing.tags || []).find((tag) => tag.startsWith('cefr:'))?.slice(5) || 'a2').toUpperCase();
+    if (!TOURNAMENT_AI_KINDS.includes(kind)) {
+      throw new HttpsError('failed-precondition', 'tournament_regen_kind_unknown');
+    }
+    if (!isTournamentAiLevel(level)) {
+      throw new HttpsError('failed-precondition', 'tournament_regen_level_unknown');
+    }
+
+    const cfg = await resolveJobConfig(db, 'tournament');
+    assertJobEnabled(cfg, 'tournament');
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+
+    const difficulty = Math.max(1, Math.min(3, Math.trunc(Number(existing.difficulty) || 1)));
+    const outcome = await generateKindGroup(apiKey, cfg.model, {
+      kind,
+      level,
+      count: 1,
+      difficulty,
+      topicHint,
+      // Просим не повторить заменяемый вопрос.
+      previousPrompts: [String((existing.payload as Record<string, unknown>)?.phrase ?? '')],
+    });
+
+    // Учёт трат — в тот же дашборд, что и остальная ИИ-генерация.
+    if (outcome.requests > 0) {
+      await db.collection(AI_BILLING_COLLECTION).add({
+        model: cfg.model,
+        promptTokens: outcome.promptTokens,
+        completionTokens: outcome.completionTokens,
+        requests: outcome.requests,
+        level,
+        mode: 'regenerate_one',
+        uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+        createdAtMs: nowMs,
+      }).catch((error) => console.error('[tournament_regen] billing write failed', error));
+    }
+
+    const fresh = outcome.items[0];
+    if (!fresh) {
+      throw new HttpsError('unavailable', `tournament_regen_failed:${outcome.errors.slice(0, 3).join(',')}`);
+    }
+
+    const replacement = kindItemToTask(fresh, { level, difficulty });
+    if (!kindTaskPassesServerContract(replacement)) {
+      throw new HttpsError('unavailable', 'tournament_regen_contract_failed');
+    }
+
+    // Замена атомарна: старый уходит, новый появляется в одной операции.
+    const batch = db.batch();
+    batch.set(collection.doc(replacement.taskId), {
+      ...replacement, source: 'ai', createdAtMs: nowMs, replacedTaskId: taskId,
+    }, { merge: true });
+    if (replacement.taskId !== taskId) batch.delete(collection.doc(taskId));
+    await batch.commit();
+
+    return { ok: true, taskId: replacement.taskId, replaced: taskId, task: publicAdminTask(replacement.taskId, replacement) };
+  },
+);
+
+/**
+ * Массовое действие по ПАПКЕ (режиму): опубликовать или удалить всё.
+ *
+ * зачем: владелец просил работать с папкой целиком, не отмечая галочками по
+ * одному. Публикация проверяет серверный контракт: битое задание в боевом пуле
+ * молча выпало бы из выборки раунда.
+ */
+export const adminBulkTournamentFolder = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300 },
+  async (request) => {
+    const record = onlyKeys(request.data, ['mode', 'action', 'status'], 'tournament_bulk_invalid');
+    const mode = String(record.mode ?? '').trim();
+    const action = String(record.action ?? '').trim();
+    const status = String(record.status ?? '').trim();
+    if (!/^[A-Za-z0-9._:-]{1,40}$/.test(mode) || !['publish', 'delete'].includes(action)
+      || !['', 'draft', 'published'].includes(status)) {
+      throw new HttpsError('invalid-argument', 'tournament_bulk_invalid');
+    }
+    // Публикация в боевой пул — отдельное право.
+    requirePermission(request, action === 'publish' ? 'content.publish' : 'content.draft.write');
+
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    let query: FirebaseFirestore.Query = db.collection(TOURNAMENT_TASKS_COLLECTION)
+      .where('mode', '==', mode);
+    if (status === 'draft') query = query.where('verified', '==', false);
+    if (status === 'published') query = query.where('verified', '==', true);
+
+    // guard-ok: limit — за один вызов не больше пачки, клиент зовёт снова.
+    const snapshot = await query.limit(WRITE_BATCH_SIZE).get();
+    let affected = 0;
+    let rejected = 0;
+    const batch = db.batch();
+
+    for (const doc of snapshot.docs) {
+      if (action === 'delete') {
+        batch.delete(doc.ref);
+        affected += 1;
+        continue;
+      }
+      const task = doc.data() as TournamentTask;
+      // Публикуем только то, что реально пройдёт серверный валидатор.
+      if (!kindTaskPassesServerContract({ ...task, taskId: doc.id })) {
+        rejected += 1;
+        continue;
+      }
+      batch.update(doc.ref, { verified: true, publishedAtMs: nowMs });
+      affected += 1;
+    }
+    await batch.commit();
+
+    return { ok: true, action, mode, affected, rejected, hasMore: snapshot.size === WRITE_BATCH_SIZE };
   },
 );

@@ -53,6 +53,10 @@ export type RemoteNumberKey =
   | 'streak_freeze_cost_shards';
 
 export type RemoteBoolKey =
+  // Онбординг: kill-switch кнопки «Пропустить» (владелец может выключить без
+  // релиза, если увидит просадку показов пейвола) и приветственной шторки.
+  | 'onboarding_skip_enabled'
+  | 'onboarding_welcome_sheet_enabled'
   | 'weekly_review_ai_v2_enabled'
   | 'soft_upsell_first_lesson_enabled'
   | 'soft_upsell_free_lessons_complete_enabled'
@@ -275,6 +279,10 @@ const DEFAULT_NUMBERS: Record<RemoteNumberKey, number> = {
 };
 
 const DEFAULT_FLAGS: Record<RemoteBoolKey, boolean> = {
+  // Дефолт true = kill-switch семантика: фича едет с релизом, админка может
+  // выключить её мгновенно (кнопка «Пропустить» бьёт по показам пейвола).
+  onboarding_skip_enabled: true,
+  onboarding_welcome_sheet_enabled: true,
   // Global client kill-switch only. Server owns percentage rollout by canonical stableUid.
   weekly_review_ai_v2_enabled: true,
   // Verified lesson-completion soft upsells ship enabled; Remote Config remains the kill switch.

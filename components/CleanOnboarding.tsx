@@ -47,15 +47,17 @@ import type { StudyTarget } from '../app/study_target';
 import { setStoredStudyTarget } from '../app/study_target';
 import { emitDevStudyTargetChanged, setDevStudyTargetLang } from '../app/study_target_lang_dev';
 import { onAppEvent } from '../app/events';
-import { getEnabledOnboardingSteps } from '../app/remote_flags';
+import { getEnabledOnboardingSteps, getRemoteBool } from '../app/remote_flags';
 import {
   decideOnboardingTransition,
   getOnboardingProgress,
   resolveEnabledOnboardingOrder,
   resolveOnboardingStep,
   runOnboardingTransitionEffects,
+  MANDATORY_ONBOARDING_STEP,
   type OnboardingStepId,
 } from '../app/onboarding_flow';
+import OnboardingWelcomeSheet from './OnboardingWelcomeSheet';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
@@ -761,6 +763,39 @@ function LanguageCard({
   );
 }
 
+/**
+ * Контекст «пропустить весь онбординг». Держим в контексте, а не прокидываем
+ * пропсом в каждый из 13 экранов: ScreenFrame один, и ссылка появляется сразу
+ * везде, где есть футер.
+ *
+ * зачем: владелец (2026-07-26) — «на каждом экране должно быть Пропустить,
+ * чтобы сразу дойти до имени и согласий». null = ссылку не показываем
+ * (выключено из админки, либо экран оплаты — там свой выход «Продолжить без
+ * плана», второй выход бил бы по конверсии).
+ */
+const OnboardingSkipContext = React.createContext<(() => void) | null>(null);
+
+/** Экран оплаты исключён намеренно: см. комментарий выше. */
+const SKIP_HIDDEN_STEPS: readonly CleanOnboardingStep[] = ['onboardingPaywall', 'name'];
+
+function OnboardingSkipLink({ step, light }: { step: CleanOnboardingStep; light?: boolean }) {
+  const skip = React.useContext(OnboardingSkipContext);
+  if (!skip || SKIP_HIDDEN_STEPS.includes(step)) return null;
+  return (
+    <Pressable
+      testID="onboarding-skip"
+      onPressIn={() => { void hapticTap(); }}
+      onPress={skip}
+      style={({ pressed }) => [styles.skipButton, pressed && styles.pressed]}
+      hitSlop={8}
+      accessibilityRole="button"
+      accessibilityLabel="Пропустить знакомство"
+    >
+      <Text style={[styles.skipLabel, light && styles.skipLabelLight]}>Пропустить</Text>
+    </Pressable>
+  );
+}
+
 function ScreenFrame({
   step,
   title,
@@ -813,7 +848,12 @@ function ScreenFrame({
           ) : null}
           <FadeUp delay={90} style={styles.frameChildren}>{children}</FadeUp>
         </ScrollView>
-        {footer ? <FadeUp delay={150} style={[styles.footer, light && styles.footerLight, { paddingBottom: Math.max(12, bottomInset) }]}>{footer}</FadeUp> : null}
+        {footer ? (
+          <FadeUp delay={150} style={[styles.footer, light && styles.footerLight, { paddingBottom: Math.max(12, bottomInset) }]}>
+            {footer}
+            <OnboardingSkipLink step={step} light={light} />
+          </FadeUp>
+        ) : null}
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
@@ -1017,6 +1057,14 @@ function CleanOnboarding({
   const [analyticsAllowed, setAnalyticsAllowed] = useState(false);
   const [legalError, setLegalError] = useState<string | null>(null);
   const [remoteEnabledSteps, setRemoteEnabledSteps] = useState(getEnabledOnboardingSteps);
+  // зачем: оба рубильника читаются как обычные kill-switch'и и обновляются по
+  // тому же событию remote_config_changed, что и список экранов — владелец
+  // выключает их из админки без релиза, живые сессии подхватывают за секунды.
+  const [skipEnabled, setSkipEnabled] = useState(() => getRemoteBool('onboarding_skip_enabled'));
+  const [welcomeSheetEnabled, setWelcomeSheetEnabled] = useState(
+    () => getRemoteBool('onboarding_welcome_sheet_enabled'),
+  );
+  const [welcomeSheetVisible, setWelcomeSheetVisible] = useState(false);
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
@@ -1075,9 +1123,41 @@ function CleanOnboarding({
     go(previous);
   }, [enabledOrder, go, step]);
 
+  // зачем: владелец (2026-07-26) — «Пропустить» ведёт сразу к обязательному шагу
+  // «Имя и согласия». Пропущенные ответы НЕ ломают план: selectedGoal/Level/
+  // Minutes выше уже имеют дефолты (everyday / a2 / 10), человек поменяет их в
+  // настройках. Флаг для аналитики — чтобы в админке считать % пропустивших.
+  const skippedRef = useRef(false);
+  const skipOnboarding = useCallback(() => {
+    if (skippedRef.current || step === MANDATORY_ONBOARDING_STEP) return; // защита от двойного тапа
+    skippedRef.current = true;
+    trackOnboarding('onboarding_skip', { step });
+    // зачем: процент пропустивших владелец смотрит в админке, а она читает
+    // Firestore. Пишем ОДНУ запись на пользователя (пропустить можно один раз —
+    // защищено skippedRef), поэтому на стоимость это не влияет.
+    void import('../app/app_activity')
+      .then(({ trackActivity }) => trackActivity('onboarding_skip', {
+        feature: 'onboarding',
+        screen: 'onboarding',
+        result: 'info',
+        tags: { step },
+        writeToFirestore: true,
+      }))
+      .catch(() => {});
+    go(MANDATORY_ONBOARDING_STEP);
+  }, [go, step]);
+
+  // null = ссылки нет: выключено из админки (kill-switch) — тогда контекст пуст.
+  const skipHandler = useMemo(
+    () => (skipEnabled ? skipOnboarding : null),
+    [skipEnabled, skipOnboarding],
+  );
+
   useEffect(() => {
     const subscription = onAppEvent('remote_config_changed', () => {
       setRemoteEnabledSteps(getEnabledOnboardingSteps());
+      setSkipEnabled(getRemoteBool('onboarding_skip_enabled'));
+      setWelcomeSheetEnabled(getRemoteBool('onboarding_welcome_sheet_enabled'));
     });
     return () => subscription.remove();
   }, []);
@@ -1419,7 +1499,16 @@ function CleanOnboarding({
       } else {
         await setAnalyticsConsent('denied').catch(() => null);
       }
-      onDone();
+      // зачем: владелец (2026-07-26) — после последнего экрана показываем
+      // приветственную шторку. onDone() откладываем до её закрытия, иначе
+      // родитель размонтирует онбординг и шторку никто не увидит. Рубильник
+      // выключен → поведение ровно как раньше, без задержки.
+      if (welcomeSheetEnabled) {
+        setWelcomeSheetVisible(true);
+        trackOnboarding('onboarding_welcome_sheet_view', { skipped: skippedRef.current });
+      } else {
+        onDone();
+      }
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
       void recordConsentToCloud().catch(() => null);
@@ -1439,7 +1528,18 @@ function CleanOnboarding({
     selectedMinutes,
     source,
     studyTarget,
+    welcomeSheetEnabled,
   ]);
+
+  // зачем: шторка закрыта → отдаём управление приложению. Ровно один вызов
+  // onDone (гард), чтобы свайп + кнопка не увели дважды.
+  const welcomeDoneRef = useRef(false);
+  const handleWelcomeClose = useCallback(() => {
+    setWelcomeSheetVisible(false);
+    if (welcomeDoneRef.current) return;
+    welcomeDoneRef.current = true;
+    onDone();
+  }, [onDone]);
 
   if (!restored) {
     return (
@@ -1927,6 +2027,7 @@ function CleanOnboarding({
 
   return (
     <OnboardingOrderContext.Provider value={enabledOrder}>
+    <OnboardingSkipContext.Provider value={skipHandler}>
     <View style={styles.root}>
       <Background />
       {bare ? (
@@ -1934,7 +2035,15 @@ function CleanOnboarding({
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
+      {/* зачем: имени на последнем шаге нет — там возраст и согласия, ник
+          генерируется автоматически. Поэтому здороваемся без имени, а не
+          подставляем сгенерированный ник, который человек ещё не видел. */}
+      <OnboardingWelcomeSheet
+        visible={welcomeSheetVisible}
+        onClose={handleWelcomeClose}
+      />
     </View>
+    </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>
   );
 }
@@ -2449,6 +2558,23 @@ const styles = StyleSheet.create({
     color: '#B8C1FF',
     fontSize: 16,
     fontWeight: '900',
+  },
+  // зачем: «Пропустить» — вспомогательный выход, а не второе главное действие.
+  // Тише основной кнопки (приглушённый тон, вес 700 по DESIGN.md), но с полной
+  // зоной нажатия 44pt, чтобы попадать пальцем без промаха.
+  skipButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: 44,
+    marginTop: 2,
+  },
+  skipLabel: {
+    color: 'rgba(220,228,255,0.62)',
+    fontSize: 15,
+    fontWeight: '700',
+  },
+  skipLabelLight: {
+    color: 'rgba(31,42,68,0.62)',
   },
   promiseList: {
     gap: 14,

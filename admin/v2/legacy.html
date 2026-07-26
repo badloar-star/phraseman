@@ -12716,6 +12716,23 @@
   <div id="onboarding-screens-status" class="reports-empty revenue-analytics-status" style="margin-bottom:12px">Загружаем настройки экранов…</div>
   <div id="onboarding-screens-list" style="margin-bottom:14px"></div>
 
+  <!-- Рубильники поведения онбординга: булевы флаги remote_config/app.bools.
+       Пишутся мгновенно по клику общим saveControlPanelBool (как остальные
+       рубильники «Пульта»), предпросмотр им не нужен — это обратимый тумблер. -->
+  <div style="margin:0 0 16px">
+    <div style="font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin-bottom:8px">Поведение онбординга</div>
+    <label style="display:flex;align-items:center;gap:12px;padding:11px 14px;margin-bottom:6px;border-radius:10px;background:#12141c;cursor:pointer">
+      <input type="checkbox" id="onb-flag-skip" onchange="saveOnboardingBehaviourFlag('onboarding_skip_enabled', this)" style="width:17px;height:17px;flex:none;accent-color:#6366f1">
+      <span style="flex:1;color:#e2e8f0;font-weight:600;font-size:14px">Кнопка «Пропустить» на экранах онбординга</span>
+      <span id="onb-flag-skip-state" style="font-size:12px;color:#94a3b8"></span>
+    </label>
+    <label style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;background:#12141c;cursor:pointer">
+      <input type="checkbox" id="onb-flag-welcome" onchange="saveOnboardingBehaviourFlag('onboarding_welcome_sheet_enabled', this)" style="width:17px;height:17px;flex:none;accent-color:#6366f1">
+      <span style="flex:1;color:#e2e8f0;font-weight:600;font-size:14px">Приветственная шторка после онбординга</span>
+      <span id="onb-flag-welcome-state" style="font-size:12px;color:#94a3b8"></span>
+    </label>
+  </div>
+
   <div style="margin:0 0 8px">
     <label for="onboarding-screens-reason" style="display:block;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin-bottom:6px">Причина изменения</label>
     <textarea id="onboarding-screens-reason" maxlength="500" rows="2" placeholder="Что отключаем или возвращаем и зачем — попадёт в журнал изменений" style="width:100%;box-sizing:border-box;background:#12141c;color:#e2e8f0;border-radius:10px;padding:10px 12px;font:inherit;font-size:13px;resize:vertical"></textarea>
@@ -12728,9 +12745,9 @@
 
   <div class="reports-toolbar" style="padding:14px 0 12px 0;align-items:flex-start">
     <div style="flex:1;min-width:260px">
-      <h2 style="margin:0 0 4px;color:#fff;font-size:18px">📉 Где чаще всего выходят</h2>
+      <h2 style="margin:0 0 4px;color:#fff;font-size:18px">📉 Выходы и пропуски</h2>
       <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">
-        Последний экран онбординга, который человек видел перед тем, как свернуть или закрыть приложение.
+        Сколько людей нажали «Пропустить», и на каком экране чаще всего сворачивают приложение.
         Чем длиннее полоса — тем чаще на этом экране теряются.
       </div>
     </div>
@@ -30926,6 +30943,12 @@
       const texts = (snap.exists() && snap.data() && snap.data().texts) || {};
       _onboardingScreensSaved = onboardingParseEnabled(texts[ONBOARDING_ENABLED_STEPS_KEY]);
       renderOnboardingScreens(_onboardingScreensSaved);
+      // Рубильники поведения читаем из ТОГО ЖЕ снапшота — отдельного чтения
+      // Firestore не делаем. Отсутствие ключа = true (kill-switch семантика,
+      // как в DEFAULT_FLAGS на клиенте).
+      const bools = (snap.exists() && snap.data() && snap.data().bools) || {};
+      renderOnboardingBehaviourFlag('onb-flag-skip', bools.onboarding_skip_enabled);
+      renderOnboardingBehaviourFlag('onb-flag-welcome', bools.onboarding_welcome_sheet_enabled);
       const off = ONBOARDING_STEP_CATALOG.length - _onboardingScreensSaved.length;
       if (status) {
         status.textContent = off > 0
@@ -30935,6 +30958,39 @@
     } catch (e) {
       _onboardingScreensLoaded = false;
       if (status) status.textContent = `Не удалось прочитать настройки: ${e?.message || String(e)}`;
+    }
+  };
+
+  // Отсутствие ключа в remote_config = включено (kill-switch): фича едет с
+  // релизом, а тумблер существует чтобы её ВЫКЛЮЧИТЬ.
+  function renderOnboardingBehaviourFlag(id, raw) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const on = raw !== false;
+    el.checked = on;
+    const state = document.getElementById(id + '-state');
+    if (state) state.textContent = on ? 'включено' : 'выключено';
+  }
+
+  // Optimistic UI: галочка уже переключилась под пальцем, поэтому сразу пишем
+  // подпись и блокируем повторный клик; при ошибке ОТКАТЫВАЕМ и к галочке, и к
+  // подписи, показывая причину — иначе админка врала бы о состоянии боевого флага.
+  window.saveOnboardingBehaviourFlag = async function saveOnboardingBehaviourFlag(key, input) {
+    const status = document.getElementById('onboarding-screens-status');
+    const id = input?.id;
+    const next = !!input?.checked;
+    const state = document.getElementById(id + '-state');
+    if (input) input.disabled = true;
+    if (state) state.textContent = next ? 'включено' : 'выключено';
+    try {
+      await window.saveControlPanelBool(key, next);
+      if (status) status.textContent = next ? 'Включено. Клиенты подхватят за секунды.' : 'Выключено. Клиенты подхватят за секунды.';
+    } catch (e) {
+      if (input) input.checked = !next;
+      if (state) state.textContent = !next ? 'включено' : 'выключено';
+      if (status) status.textContent = `Не удалось сохранить: ${e?.message || String(e)}`;
+    } finally {
+      if (input) input.disabled = false;
     }
   };
 
@@ -31002,6 +31058,8 @@
     const toMs = Date.now();
     const fromMs = toMs - rangeDays * 24 * 60 * 60 * 1000;
     let rows = [];
+    let skipRows = [];
+    let doneRows = [];
     try {
       const snap = await getDocs(query(
         collection(db, 'app_activity'),
@@ -31009,10 +31067,14 @@
         where('createdAtMs', '<=', toMs),
         limit(3000),
       ));
-      rows = snap.docs
+      // Один проход по снапшоту даёт и выходы, и пропуски, и завершения —
+      // отдельных запросов к Firestore не делаем.
+      const all = snap.docs
         .map((d) => ({ id: d.id, ...d.data() }))
-        .filter((r) => r.action === 'onboarding_exit')
         .filter((r) => revenueMatchesPlatform(r, platform));
+      rows = all.filter((r) => r.action === 'onboarding_exit');
+      skipRows = all.filter((r) => r.action === 'onboarding_skip');
+      doneRows = all.filter((r) => r.action === 'onboarding_complete');
     } catch (e) {
       _onboardingExitsLoaded = false;
       if (status) status.textContent = `Не удалось прочитать статистику: ${e?.message || String(e)}`;
@@ -31037,7 +31099,17 @@
       .map(([step, value]) => ({ step, label: ONBOARDING_STEP_LABELS[step] || step, value }))
       .sort((a, b) => b.value - a.value);
     const top = counts[0] ? `${counts[0].label} (${counts[0].value})` : '—';
+    // Процент пропустивших: доля тех, кто нажал «Пропустить», среди всех, кто
+    // дошёл до конца онбординга (завершил ИЛИ пропустил). Считаем по уникальным
+    // пользователям — один человек не должен весить больше остальных.
+    const uniqUsers = (list) => new Set(list.map((r) => String(r.uid || r.id || 'unknown'))).size;
+    const skipped = uniqUsers(skipRows);
+    const finished = uniqUsers(doneRows);
+    const finishedTotal = skipped + finished;
+    const skipPct = finishedTotal > 0 ? Math.round((skipped / finishedTotal) * 1000) / 10 : null;
     summary.innerHTML = revenueSummaryCards([
+      ['Пропустили онбординг', skipPct === null ? '—' : `${skipPct}%`],
+      ['Пропустили / дошли', `${skipped} / ${finishedTotal}`],
       ['Выходов', latest.length],
       ['Чаще всего уходят', top],
       ['Платформа', platform],

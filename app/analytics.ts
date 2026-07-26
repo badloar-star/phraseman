@@ -106,6 +106,8 @@ export type AnalyticsEvent =
   | 'login_bonus_received'
   // ── ВОРОНКА КОНВЕРСИИ ──────────────────────────────────────────────────
   | 'onboarding_step_view'        // показан шаг онбординга (props.step)
+  | 'onboarding_skip'             // нажал «Пропустить» (props.step — откуда ушёл)
+  | 'onboarding_welcome_sheet_view' // показана приветственная шторка после онбординга
   | 'onboarding_complete'
   | 'onboarding_source_select'
   | 'onboarding_plan_goal_select'    // выбрана цель плана (props.goal)

@@ -3,6 +3,209 @@
 import type { ActivityOption } from '../components';
 import type { StateCopy } from '../ChoiceShell';
 
+export interface CmSpeakingClubVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly mission: {
+    readonly scenario: string;
+    readonly objectivesLabel: string;
+    readonly objectives: readonly { readonly id: string; readonly label: string; readonly done: boolean }[];
+    readonly phrasesLabel: string;
+    readonly usefulPhrases: readonly string[];
+    readonly durationDisplay: string;
+  };
+  /**
+   * ВНИМАНИЕ: сводка приватности поставки описывает СЕТЕВУЮ обработку голоса
+   * (сервер, хранение 30 дней). В приложении она НЕ показывается: владелец выбрал
+   * распознавание только на устройстве. Держим текст дословно (порт без потерь),
+   * но на экране идёт правдивая сводка `onDevicePrivacy` — обещать передачу,
+   * которой нет, нельзя ни по-человечески, ни по политике приватности.
+   */
+  readonly privacy: {
+    readonly title: string;
+    readonly summary: string;
+    readonly rows: readonly { readonly id: string; readonly label: string; readonly value: string }[];
+    readonly consentVersion: string;
+    readonly allowLabel: string;
+    readonly declineLabel: string;
+    readonly declineNote: string;
+  };
+  /** Правдивая сводка для нашего маршрута: голос не покидает устройство. */
+  readonly onDevicePrivacy: {
+    readonly title: string;
+    readonly summary: string;
+    readonly rows: readonly { readonly id: string; readonly label: string; readonly value: string }[];
+  };
+  readonly partner: {
+    readonly name: string;
+    readonly portraitAlt: string;
+    readonly line: { readonly en: string; readonly ru: string };
+  };
+  readonly transcriptPreview: {
+    readonly heardLabel: string;
+    readonly text: string;
+    readonly originAsrLabel: string;
+    readonly originEditedLabel: string;
+    readonly editHint: string;
+    readonly saveEditLabel: string;
+    readonly sendLabel: string;
+    readonly cancelLabel: string;
+    readonly thinkingLabel: string;
+  };
+  readonly objectivesDrawerLabel: string;
+  readonly correctionsLabel: string;
+  readonly analyzeLabel: string;
+  readonly corrections: readonly { readonly id: string; readonly label: string; readonly body: string }[];
+  readonly starBreakdown: {
+    readonly title: string;
+    readonly slots: readonly SdStarSlot[];
+    readonly voiceNote: string;
+    readonly textFallbackNote: string;
+    readonly repeatKeyLineLabel: string;
+    readonly keyLine: { readonly en: string; readonly ru: string };
+  };
+  readonly offlineBanner: {
+    readonly title: string;
+    readonly body: string;
+    readonly scriptedLabel: string;
+    readonly laterLabel: string;
+  };
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile-story/cm-speaking-club.json */
+export const cmSpeakingClubFixture: CmSpeakingClubVM = {
+  id: 'vm-cm-speaking-club',
+  surfaceId: 'cm-speaking-club',
+  title: 'Клуб разговоров · Заказ в кафе',
+  mission: {
+    scenario: 'Ты в кафе у вокзала. Закажи кофе и бутерброд, уточни цену и попроси чек.',
+    objectivesLabel: 'Цели миссии',
+    objectives: [
+      { id: 'cm-obj-1', label: 'Сделай заказ', done: true },
+      { id: 'cm-obj-2', label: 'Уточни цену', done: false },
+      { id: 'cm-obj-3', label: 'Попроси чек', done: false },
+    ],
+    phrasesLabel: 'Полезные фразы',
+    usefulPhrases: ['Could I have…?', 'How much is it?', 'Can I have the receipt, please?'],
+    durationDisplay: 'около 6 минут',
+  },
+  privacy: {
+    title: 'Перед первой отправкой',
+    summary:
+      'Клуб работает через сетевую обработку голоса. Вот короткая сводка — решение за тобой, оба пути равноправны.',
+    rows: [
+      { id: 'pv-1', label: 'Обработчик', value: 'сервер Phraseman (общий голосовой шлюз)' },
+      { id: 'pv-2', label: 'Регион', value: 'ЕС' },
+      { id: 'pv-3', label: 'Хранение', value: 'запись и расшифровка — 30 дней' },
+      { id: 'pv-4', label: 'Удаление', value: 'по запросу в настройках приватности' },
+    ],
+    consentVersion: 'voice-policy v2.1',
+    allowLabel: 'Разрешить сетевую обработку',
+    declineLabel: 'Продолжить без неё',
+    declineNote:
+      'Без сети миссия пройдёт как обычный диалог — цели засчитаются, звезда за голос не выдаётся.',
+  },
+  onDevicePrivacy: {
+    title: 'Как обрабатывается твой голос',
+    summary: 'Распознавание идёт прямо на телефоне. Запись никуда не отправляется и не сохраняется.',
+    rows: [
+      { id: 'od-1', label: 'Где обрабатывается', value: 'на твоём устройстве' },
+      { id: 'od-2', label: 'Передача', value: 'запись не покидает телефон' },
+      { id: 'od-3', label: 'Хранение', value: 'аудио не сохраняется' },
+      { id: 'od-4', label: 'Что проверяется', value: 'слова и их порядок — не акцент' },
+    ],
+  },
+  partner: {
+    name: 'Бариста Нора',
+    portraitAlt: 'Портрет: бариста за стойкой кафе',
+    line: { en: 'Morning! What can I get you today?', ru: 'Доброе утро! Что тебе приготовить?' },
+  },
+  transcriptPreview: {
+    heardLabel: 'Мы услышали:',
+    text: 'Could I have a coffee and a sandwich, please?',
+    originAsrLabel: 'распознано автоматически',
+    originEditedLabel: 'изменено тобой',
+    editHint: 'Проверь текст перед отправкой — можешь поправить.',
+    saveEditLabel: 'Сохранить правку',
+    sendLabel: 'Отправить',
+    cancelLabel: 'Отменить отправку',
+    thinkingLabel: 'Нора печатает…',
+  },
+  objectivesDrawerLabel: 'Цели',
+  correctionsLabel: 'Что улучшить',
+  analyzeLabel: 'Разобрать',
+  corrections: [
+    {
+      id: 'cm-cor-1',
+      label: 'Вежливая просьба',
+      body: '«Could I have…?» звучит мягче, чем «Give me…» — попробуй так в следующей реплике.',
+    },
+    {
+      id: 'cm-cor-2',
+      label: 'Вопрос о цене',
+      body: 'Спроси «How much is it?» после заказа — так ты закроешь вторую цель.',
+    },
+  ],
+  starBreakdown: {
+    title: 'Звёзды за миссию',
+    slots: [
+      {
+        id: 'cm-st-1',
+        kind: 'completion',
+        state: 'earned',
+        earnedLabel: 'Миссия завершена — все нужные реплики пройдены',
+        unlockHint: 'Заверши миссию',
+      },
+      {
+        id: 'cm-st-2',
+        kind: 'quality',
+        state: 'earned',
+        earnedLabel: 'Цели достигнуты: заказ, цена, чек',
+        unlockHint: 'Достигни цели миссии',
+      },
+      {
+        id: 'cm-st-3',
+        kind: 'transfer',
+        state: 'available',
+        earnedLabel: 'Две уверенные голосовые реплики без правок',
+        unlockHint: 'Скажи две реплики голосом без правок текста',
+      },
+    ],
+    voiceNote:
+      'Третья звезда — только за уверенные голосовые попытки из неотредактированной записи.',
+    textFallbackNote:
+      'Текстовый маршрут не даёт звезду за голос — но для открытия эпизода она не обязательна.',
+    repeatKeyLineLabel: 'Повторить ключевую реплику',
+    keyLine: { en: 'Can I have the receipt, please?', ru: 'Можно чек, пожалуйста?' },
+  },
+  offlineBanner: {
+    title: 'Нет сети',
+    body: 'Клубу нужна сеть. Можно продолжить как обычный диалог без оценки голоса — или вернуться позже.',
+    scriptedLabel: 'Продолжить как диалог',
+    laterLabel: 'Вернуться позже',
+  },
+  copy: {
+    primaryActions: {
+      prompt: 'Начать миссию',
+      active: 'Отправить реплику',
+      processing: 'Отправляем…',
+      success: 'Дальше',
+      needs_work: 'Ответить ещё раз',
+      recovery: 'Продолжить миссию',
+    },
+    statusMessages: {
+      prompt: 'Прочитай миссию и сводку приватности — оба действия равноправны.',
+      active: 'Скажи свою реплику, проверь «Мы услышали» и отправь.',
+      processing: 'Отправляем — геометрия чата не прыгает, отправку можно отменить.',
+      success: 'Миссия пройдена — смотри разбор звёзд.',
+      needs_work: 'Партнёр не расслышал цель — попробуй ещё раз или разбери подсказку.',
+      recovery: 'Что-то прервалось. Твоя реплика сохранена.',
+    },
+  },
+};
+
 export interface SdStarSlot {
   readonly id: string;
   readonly kind: 'completion' | 'quality' | 'transfer';

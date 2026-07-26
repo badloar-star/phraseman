@@ -10,7 +10,10 @@ import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import { LAB_GROUPS, LAB_MODE_CATALOG, type LabModeEntry } from './mode_catalog';
 import { getDemoUnit } from './demo_content';
-import { ModeDemoPlayer } from './ModeDemoPlayer';
+// зачем: владелец забраковал первую версию режимов («написана из головы») — теперь
+// открываются ПОРТИРОВАННЫЕ поверхности Kimi V5 вместо старого ModeDemoPlayer.
+import { KimiSurfacePlayer } from './kimi/KimiSurfacePlayer';
+import { kimiSurfaceFor } from './kimi/registry';
 
 interface LearningV2ModesLabProps {
   readonly bottomPadding?: number;
@@ -29,7 +32,12 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({ bottomPadding = 0 
   const unit = useMemo(() => getDemoUnit(), []);
 
   if (openMode) {
-    return <ModeDemoPlayer mode={openMode} onClose={() => setOpenMode(null)} />;
+    // Все живые семьи покрыты реестром; describe_scene снят и не открывается
+    // (тап по нему заблокирован в списке, поэтому сюда он не доходит).
+    const surface = kimiSurfaceFor(openMode.family);
+    if (surface) {
+      return <KimiSurfacePlayer entry={surface} title={openMode.title} onClose={() => setOpenMode(null)} />;
+    }
   }
 
   const zoneTone = (zone: 'understand' | 'use' | 'master'): string =>

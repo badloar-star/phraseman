@@ -47,12 +47,19 @@ export function useLab(): LabValue {
 
 export interface LabProviderProps {
   readonly initialState?: CanonicalState;
+  /**
+   * Управляемое состояние: когда цикл ведёт плеер (как у Duolingo), он передаёт
+   * состояние сюда, и провайдер перестаёт быть его владельцем. Без этого пришлось
+   * бы синхронизировать два источника правды и ловить рассинхрон.
+   */
+  readonly state?: CanonicalState;
   readonly onIntent?: (event: LabIntentEvent) => void;
   readonly children: React.ReactNode;
 }
 
-export function LabProvider({ initialState = 'prompt', onIntent, children }: LabProviderProps) {
-  const [canonicalState, setCanonicalState] = useState<CanonicalState>(initialState);
+export function LabProvider({ initialState = 'prompt', state: controlledState, onIntent, children }: LabProviderProps) {
+  const [uncontrolledState, setCanonicalState] = useState<CanonicalState>(initialState);
+  const canonicalState = controlledState ?? uncontrolledState;
   const [signal, setSignalState] = useState<LabConditions['signal']>('none');
   const [permission, setPermissionState] = useState<LabConditions['permission']>('undetermined');
   // зачем: колбэк живёт в ref — иначе каждый рендер родителя пересоздаёт value контекста

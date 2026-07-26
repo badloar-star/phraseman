@@ -34,6 +34,14 @@ import Animated, {
 import { getVolumetricShadow, useTheme } from '../../components/ThemeContext';
 import type { Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
+// зачем: единая валюта — жемчуг; формы «жемчужина/жемчужины/жемчужин» берём из
+// общего словаря, чтобы склонения не разъезжались между экранами.
+import {
+  ruKnowledgeShardsAccusativeAfterNumber,
+  ruKnowledgeShardsGenitiveAfterNumber,
+  ukKnowledgeShardsAccusativeAfterNumber,
+  ukKnowledgeShardsGenitiveAfterNumber,
+} from '../../constants/shard_plurals';
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { oskolokImageForPackShards } from '../oskolok';
 import {
@@ -104,18 +112,19 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     return {
       cancel: 'Скасувати',
       buy: 'Купити',
-      buyShards: 'Купити монети',
-      forShards: (n: number) => `Купити за ${n} монет`,
-      insufficientTitle: 'Недостатньо монет',
+      buyShards: 'Купити перлини',
+      // зачем: «за» тут управляет знахідним відмінком — «за 1 перлину», не «за 1 перлина».
+      forShards: (n: number) => `Купити за ${n} ${ukKnowledgeShardsAccusativeAfterNumber(n)}`,
+      insufficientTitle: 'Недостатньо перлин',
       insufficientIntro:
-        'Поповніть баланс у магазині монет — кнопка нижче відкриє вкладку з пакетами.',
+        'Поповніть баланс у магазині — кнопка нижче відкриє вкладку з пакетами.',
       balanceBlockTitle: 'Для цього набору',
       ctaSub: 'Покупка в одне торкання',
-      shopCtaSub: 'Пакети монет у магазині',
+      shopCtaSub: 'Пакети перлин у магазині',
       voucherKicker: '🎁 Безкоштовний набір',
       voucherTitle: 'Використати подарунок?',
       voucherIntro:
-        'Цей набір додасться у «Картки» безкоштовно — ціну монет можна не платити.',
+        'Цей набір додасться у «Картки» безкоштовно — перлини витрачати не потрібно.',
       voucherWarn:
         '⚠️ Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
       voucherCta: '🎁 Використати подарунок',
@@ -123,11 +132,13 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherCtaSub: 'Подарунок «згорить» одразу після цього',
       packKindLabel: 'Набір',
       metaCards: (n: number) => `${n} карток`,
-      shortageRemaining: (n: number) => `Не вистачає ще ${n} монет`,
+      // зачем: было русское «жемчужин» в украинском блоке + именительный падеж;
+      // «не вистачає» управляет родовим — «не вистачає ще 1 перлини».
+      shortageRemaining: (n: number) => `Не вистачає ще ${n} ${ukKnowledgeShardsGenitiveAfterNumber(n)}`,
       needLabel: 'Потрібно',
       youHaveLabel: 'У вас',
       costLabel: 'Вартість',
-      shardsUnit: 'монет',
+      shardsUnit: 'жемчужин',
       waitBusy: '',
       reportPack: '⚐ Поскаржитися на набір',
       hidePack: 'Не показувати мені',
@@ -170,18 +181,19 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
   return {
     cancel: 'Отмена',
     buy: 'Открыть',
-    buyShards: 'Пополнить монеты',
-    forShards: (n: number) => `Открыть за ${n} монет`,
-    insufficientTitle: 'Недостаточно монет',
+    buyShards: 'Пополнить жемчуг',
+    // зачем: «за» требует винительного — «Открыть за 1 жемчужину», не «за 1 жемчужина».
+    forShards: (n: number) => `Открыть за ${n} ${ruKnowledgeShardsAccusativeAfterNumber(n)}`,
+    insufficientTitle: 'Недостаточно жемчуга',
     insufficientIntro:
-      'Пополни баланс в магазине монет — кнопка ниже откроет вкладку с пакетами.',
+      'Пополни баланс в магазине — кнопка ниже откроет вкладку с пакетами.',
     balanceBlockTitle: 'Для этого набора',
     ctaSub: 'Откроется в одно касание',
-    shopCtaSub: 'Пакеты монет в магазине',
+    shopCtaSub: 'Пакеты жемчуга в магазине',
     voucherKicker: '🎁 Набор в подарок',
     voucherTitle: 'Использовать подарок?',
     voucherIntro:
-      'Этот набор добавится в «Карточки» бесплатно — монеты тратить не нужно.',
+      'Этот набор добавится в «Карточки» бесплатно — жемчуг тратить не нужно.',
     voucherWarn:
       '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
     voucherCta: '🎁 Использовать подарок',
@@ -189,11 +201,12 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     voucherCtaSub: 'Подарок «сгорит» сразу после этого',
     packKindLabel: 'Набор',
     metaCards: (n: number) => `${n} карточек`,
-    shortageRemaining: (n: number) => `Не хватает ещё ${n} монет`,
+    // зачем: «не хватает» требует родительного — «не хватает ещё 1 жемчужины».
+    shortageRemaining: (n: number) => `Не хватает ещё ${n} ${ruKnowledgeShardsGenitiveAfterNumber(n)}`,
     needLabel: 'Нужно',
     youHaveLabel: 'У тебя',
-    costLabel: 'Нужно монет',
-    shardsUnit: 'монет',
+    costLabel: 'Нужно жемчуга',
+    shardsUnit: 'жемчужин',
     waitBusy: '',
     reportPack: '⚐ Пожаловаться на набор',
     hidePack: 'Не показывать мне',

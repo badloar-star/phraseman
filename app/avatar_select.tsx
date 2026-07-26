@@ -25,6 +25,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import AvatarView from '../components/AvatarView';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
+import { pearlIconForTheme } from './coin_icons';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -131,7 +132,6 @@ const TOP_BAR_CONTENT_HEIGHT = 64;
 const COLLAPSE_START = 120;
 const COLLAPSE_END = 210;
 
-const COIN_ICON = require('../assets/images/currency/coin_1.webp');
 
 const HEX_COLOR = /^#([0-9a-f]{6})$/i;
 const withAlpha = (color: string, alpha: string): string => HEX_COLOR.test(color) ? `${color}${alpha}` : color;
@@ -223,18 +223,22 @@ function slavicPlural(count: number, one: string, few: string, many: string): st
   return many;
 }
 
-/** «1 монета будет списана…» / «2 монеты будут списаны…» / «5 монет будут списаны…». */
+/** «1 жемчужина будет списана…» / «2 жемчужины будут списаны…» / «5 жемчужин будут списаны…». */
 function purchaseCostMessage(cost: number, lang: Lang): string {
   const n = Math.max(0, Math.floor(Number(cost) || 0));
+  // зачем: единственное число ловим по последней цифре, а не по n === 1 —
+  // иначе при 21 выходило «21 жемчужина БУДУТ списаны» (глагол не согласован).
+  const isSingular = n % 10 === 1 && n % 100 !== 11;
   if (lang === 'ru') {
-    if (n === 1) return `${n} монета будет списана после подтверждения.`;
-    return `${n} ${slavicPlural(n, 'монета', 'монеты', 'монет')} будут списаны после подтверждения.`;
+    if (isSingular) return `${n} жемчужина будет списана после подтверждения.`;
+    return `${n} ${slavicPlural(n, 'жемчужина', 'жемчужины', 'жемчужин')} будут списаны после подтверждения.`;
   }
   if (lang === 'uk') {
-    if (n === 1) return `${n} монета буде списана після підтвердження.`;
-    return `${n} ${slavicPlural(n, 'монета', 'монети', 'монет')} будуть списані після підтвердження.`;
+    // зачем: в украинской ветке было русское «жемчужина» — заменено на «перлина».
+    if (isSingular) return `${n} перлина буде списана після підтвердження.`;
+    return `${n} ${slavicPlural(n, 'перлина', 'перлини', 'перлин')} будуть списані після підтвердження.`;
   }
-  return `${n} ${localized(lang, { ru: 'монет будут списаны после подтверждения.', uk: 'монет буде списано після підтвердження.', es: 'monedas se descontarán tras confirmar.', 'pt-BR': 'moedas serão descontados após a confirmação.', vi: 'xu sẽ được trừ sau khi xác nhận.', id: 'koin akan dipotong setelah konfirmasi.', tr: 'jeton onaydan sonra düşülecek.', pl: 'monet zostanie odjętych po potwierdzeniu.' })}`;
+  return `${n} ${localized(lang, { ru: 'жемчужин будут списаны после подтверждения.', uk: 'перлин буде списано після підтвердження.', es: 'perlas se descontarán tras confirmar.', 'pt-BR': 'pérolas serão descontadas após a confirmação.', vi: 'ngọc trai sẽ được trừ sau khi xác nhận.', id: 'mutiara akan dipotong setelah konfirmasi.', tr: 'inci onaydan sonra düşülecek.', pl: 'pereł zostanie odjętych po potwierdzeniu.' })}`;
 }
 
 function auraName(aura: AvatarAuraDef, lang: Lang): string {
@@ -328,7 +332,7 @@ function availabilityStatus(
   switch (item.availability.kind) {
     case 'owned': return copy.owned;
     case 'none': return copy.noAura;
-    case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'монет', uk: 'монет', es: 'monedas', 'pt-BR': 'moedas', vi: 'xu', id: 'koin', tr: 'jeton', pl: 'monet' })}`;
+    case 'shards': return `${item.availability.cost} ${localized(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas', vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł' })}`;
     case 'level': return `${localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' })} ${item.availability.level}`;
     case 'plus': return 'Plus';
     case 'reward': return copy.reward;
@@ -346,7 +350,7 @@ export default function AvatarSelect() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
   const copy = useMemo(() => studioCopy(lang), [lang]);
@@ -791,11 +795,11 @@ export default function AvatarSelect() {
           </View>
           <Pressable
             accessibilityRole="button"
-            accessibilityLabel={localized(lang, { ru: 'Монеты', uk: 'Монети', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jetonlar', pl: 'Monety' })}
+            accessibilityLabel={localized(lang, { ru: 'Жемчуг', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnciler', pl: 'Perły' })}
             onPress={() => router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any)}
             style={[styles.balance, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
           >
-            <Image source={COIN_ICON} style={styles.balanceCoin} contentFit="contain" accessible={false} />
+            <Image source={pearlIconForTheme(themeMode)} style={styles.balanceCoin} contentFit="contain" accessible={false} />
             <Text style={[styles.balanceText, { color: t.textPrimary }]}>{confirmed.shards}</Text>
           </Pressable>
         </View>

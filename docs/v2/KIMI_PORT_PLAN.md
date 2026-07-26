@@ -24,8 +24,10 @@
    (contracts/states.ts). primary-лейблы и statusMessages — ИЗ ФИКСТУР (copy.*).
    Вердикт: submit → processing → success|needs_work по правильности (наш плеер),
    визуал состояний — Kimi.
-5. Речевые режимы — VoiceActivityShell (modes2/VoiceActivityShell.tsx, 541 строк)
-   с симуляцией распознавания; бейдж «симуляция» сохраняем.
+5. ~~Речевые режимы — с симуляцией распознавания~~ — ОТМЕНЕНО решением владельца
+   (см. ниже): VoiceActivityShell портирован полностью, но подключён к НАСТОЯЩЕМУ
+   микрофону (`kimi/use_voice_capture.ts` поверх expo-speech-recognition +
+   `app/speaking_recognition_options.ts`), распознавание только на устройстве.
 6. Запреты владельца поверх: обводки контейнеров из макетов сохраняем ТОЛЬКО как
    тонкие state-границы Kimi (это их дизайн-система,允 в лаборатории), но не
    добавляем своих; adjustsFontSizeToFit — никогда.
@@ -36,7 +38,14 @@
    правильности → «Дальше». Recovery показывается только при реальном сбое.
 2. **Речевые режимы — НАСТОЯЩИЙ микрофон**, распознавание **только на устройстве**
    (голос никуда не отправляется и не хранится). Это отменяет пункт 5 «симуляция».
-   Требует разрешения на микрофон → **Privacy Policy обновить ДО релиза**.
+   **Privacy Policy править НЕ нужно** — проверено 2026-07-26: `privacy.html` §13
+   уже описывает запрос микрофона и распознавание речи, прямо со словами
+   «speech may be processed on device»; §18 называет микрофон основанием «согласие».
+   Разрешения тоже уже настроены — `app.config.js` (плагин expo-speech-recognition).
+   Следствие: экраны Kimi, обещающие СЕТЕВУЮ обработку голоса, НЕ показываются
+   (карточка consent в qr-quick-response и приватность-сводка в cm-speaking-club) —
+   тексты сохранены в фикстурах дословно, но на экране идёт правдивая сводка
+   «обрабатывается на устройстве». Обещать передачу, которой нет, нельзя.
 3. **Порядок сдачи — волнами по 4–5 режимов**, коммит за режимом. Речевые — последней
    волной, после 12 неречевых.
 
@@ -72,14 +81,14 @@ components/learning-v2-lab/
 | 5 | lb-listen-build | mobile/LbListenBuild.tsx (ComposerShell) | ✅ |
 | 6 | cg-context-gap | mobile/CgContextGap.tsx | ✅ |
 | 7 | sound-discrimination | mobile/SoundDiscrimination.tsx | ✅ |
-| 8 | sl-sound-syllable-lab | modes2/SlSoundSyllableLab.tsx | ⬜ |
-| 9 | rp-repeat-compare | modes2/RpRepeatCompare.tsx (VoiceShell) | ⬜ |
-| 10 | qr-quick-response | modes2/QrQuickResponse.tsx (VoiceShell) | ⬜ |
-| 11 | sh-shadowing | modes2/ShShadowing.tsx (VoiceShell) | ⬜ |
+| 8 | sl-sound-syllable-lab | modes2/SlSoundSyllableLab.tsx | ✅ |
+| 9 | rp-repeat-compare | modes2/RpRepeatCompare.tsx (VoiceShell) | ✅ |
+| 10 | qr-quick-response | modes2/QrQuickResponse.tsx (VoiceShell) | ✅ |
+| 11 | sh-shadowing | modes2/ShShadowing.tsx (VoiceShell) | ✅ |
 | 12 | mr-microstory | modes2/MrMicrostory.tsx | ✅ |
 | 13 | ba-branching-scene | modes2/BaBranchingScene.tsx | ✅ |
-| 14 | sd-scripted-dialogue | modes2/SdScriptedDialogue.tsx (VoiceShell) | ⬜ |
-| 15 | cm-speaking-club | modes2/CmSpeakingClub.tsx (VoiceShell) | ⬜ |
+| 14 | sd-scripted-dialogue | modes2/SdScriptedDialogue.tsx (VoiceShell) | ✅ |
+| 15 | cm-speaking-club | modes2/CmSpeakingClub.tsx (VoiceShell) | ✅ |
 | 16 | pr-personal-review | modes2/PrPersonalReview.tsx | ✅ |
 | 17 | cp-checkpoint | modes2/CpCheckpoint.tsx | ✅ |
 | — | ds-describe-scene | modes2/DsDescribeScene.tsx — СНЯТ владельцем, в каталоге с бейджем | ⬜ |

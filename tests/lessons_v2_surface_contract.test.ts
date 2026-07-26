@@ -156,6 +156,36 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
     }
   });
 
+  test('дистракторы не повторяют правильный ответ', () => {
+    // Правило владельца: неверный вариант обязан быть однозначно неверным.
+    // Дубль правильного текста = второй правильный ответ, за который ученик
+    // получит «неверно» — это разрушает доверие к приложению.
+    for (const session of [...SESSION_POOL, mistakeLabFixture]) {
+      for (const card of session.cards) {
+        if (card.engine === 'choice') {
+          const labels = card.options.map((o) => o.label.trim().toLowerCase());
+          expect(new Set(labels).size).toBe(labels.length);
+        }
+        if (card.engine === 'dialogue') {
+          for (const turn of card.turns) {
+            if (turn.speaker !== 'you') continue;
+            const labels = turn.options.map((o) => o.label.trim().toLowerCase());
+            expect(new Set(labels).size).toBe(labels.length);
+          }
+        }
+      }
+    }
+  });
+
+  test('каждый движок реально встречается в контенте', () => {
+    // Смысл тестового контента — прощёлкать ВСЕ режимы. Если движок нигде не
+    // используется, проверить его в приложении невозможно.
+    const used = new Set(SESSION_POOL.flatMap((s) => s.cards.map((c) => c.engine)));
+    for (const engine of ['choice', 'arrange', 'input', 'speech', 'match', 'dialogue']) {
+      expect(used.has(engine as never)).toBe(true);
+    }
+  });
+
   test('«Моя практика»: три блока и рабочий разбор ошибок', () => {
     expect(practiceHomeFixture.blocks).toHaveLength(3);
     // Закрытый блок обязан объяснять, когда откроется, — иначе тупик без причины.

@@ -2,6 +2,7 @@
 // который владелец указал как правильный). Здесь весь контент сессии: карточки,
 // звёзды за исход, лестница подсказок, теги ошибок. UI ничего не придумывает.
 import type { PracticeHomeVM, SessionVM, UnitMapVM } from './contracts';
+import { TEST_SESSIONS } from './fixtures_test_content';
 
 /** fixtures/session/unit-1.json — юнит «Представиться (to be)», 3 зоны × 4 сессии. */
 export const unit1Fixture: UnitMapVM = {
@@ -12,7 +13,9 @@ export const unit1Fixture: UnitMapVM = {
     kicker: 'Юнит 1',
     title: 'Представиться (to be)',
     canDo: 'Ты можешь представиться и спросить, кто перед тобой',
-    progressDisplay: '3 / 12 сессий',
+    // зачем: все 12 узлов открыты (3 из поставки + 9 тестовых) — счётчик обязан
+    // говорить правду, иначе карта обещает меньше, чем реально доступно
+    progressDisplay: '12 / 12 сессий',
     starsDisplay: '21',
   },
   planToggle: {
@@ -51,20 +54,20 @@ export const unit1Fixture: UnitMapVM = {
           id: 'session-3x',
           index: '03',
           title: 'Is — он и она',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-3x',
+          engines: ['choice', 'arrange', 'input', 'match', 'speech'],
           nodeStars: 0,
         },
         {
           id: 'session-4x',
           index: '04',
           title: 'Are — мы и они',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-4x',
+          engines: ['choice', 'arrange', 'input', 'speech'],
           nodeStars: 0,
         },
       ],
@@ -88,30 +91,30 @@ export const unit1Fixture: UnitMapVM = {
           id: 'session-6x',
           index: '06',
           title: 'В аэропорту',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-6x',
+          engines: ['choice', 'dialogue', 'input', 'speech'],
           nodeStars: 0,
         },
         {
           id: 'session-7x',
           index: '07',
           title: 'На вечеринке',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-7x',
+          engines: ['choice', 'arrange', 'dialogue', 'input'],
           nodeStars: 0,
         },
         {
           id: 'session-8x',
           index: '08',
           title: 'Переспроси',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-8x',
+          engines: ['match', 'choice', 'speech', 'dialogue', 'input'],
           nodeStars: 0,
         },
       ],
@@ -125,40 +128,40 @@ export const unit1Fixture: UnitMapVM = {
           id: 'session-9x',
           index: '09',
           title: 'Без подсказок I',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-9x',
+          engines: ['input', 'speech'],
           nodeStars: 0,
         },
         {
           id: 'session-10x',
           index: '10',
           title: 'Без подсказок II',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-10x',
+          engines: ['arrange', 'input', 'choice'],
           nodeStars: 0,
         },
         {
           id: 'session-11x',
           index: '11',
           title: 'Скорость',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-11x',
+          engines: ['match', 'choice', 'input'],
           nodeStars: 0,
         },
         {
           id: 'session-12x',
           index: '12',
           title: 'Экзамен юнита',
-          state: 'locked',
+          state: 'open',
           starsDisplay: '',
-          sessionRef: null,
-          engines: [],
+          sessionRef: 'session-12x',
+          engines: ['match', 'choice', 'arrange', 'input', 'dialogue', 'speech'],
           nodeStars: 0,
         },
       ],
@@ -914,8 +917,19 @@ export const practiceHomeFixture: PracticeHomeVM = {
   continueLabel: 'Продолжить тропу',
 };
 
-/** Пул сессий юнита: все, что перенесены из поставки. */
-export const SESSION_POOL: readonly SessionVM[] = [session1Fixture, session2Fixture, session3Fixture];
+/**
+ * Пул сессий юнита: перенесённые из поставки + тестовый контент для остальных.
+ * зачем: владелец просил возможность прощёлкать ВСЕ режимы — в поставке готовы
+ * только 3 сессии, поэтому остальные 9 добавлены как тестовые (см. заголовок
+ * fixtures_test_content.ts). При переходе на боевой контент E1 второй список
+ * заменяется, первый остаётся.
+ */
+export const SESSION_POOL: readonly SessionVM[] = [
+  session1Fixture,
+  session2Fixture,
+  session3Fixture,
+  ...TEST_SESSIONS,
+];
 
 export function sessionByRef(ref: string): SessionVM | null {
   return SESSION_POOL.find((s) => s.sessionId === ref) ?? null;

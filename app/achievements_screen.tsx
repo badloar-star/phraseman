@@ -502,197 +502,12 @@ const GEM_LEVEL_LABEL: Record<string, string> = {
 };
 
 // ── PNG-изображения для каждого достижения ───────────────────────────────────
-export const ACHIEVEMENT_IMAGE: Record<string, any> = {
-  streak_3:                         require('../assets/images/achievements/streak_3.webp'),
-  streak_7:                         require('../assets/images/achievements/streak_7.webp'),
-  streak_14:                        require('../assets/images/achievements/streak_14.webp'),
-  streak_30:                        require('../assets/images/achievements/streak_30.webp'),
-  streak_60:                        require('../assets/images/achievements/streak_60.webp'),
-  streak_100:                       require('../assets/images/achievements/streak_100.webp'),
-  streak_200:                       require('../assets/images/achievements/streak_200.webp'),
-  streak_365:                       require('../assets/images/achievements/streak_365.webp'),
-  streak_500:                       require('../assets/images/achievements/streak_500.webp'),
-  streak_repair:                    require('../assets/images/achievements/streak_repair.webp'),
-  perfect_week:                     require('../assets/images/achievements/perfect_week.webp'),
-  lesson_1:                         require('../assets/images/achievements/lesson_1.webp'),
-  lesson_3:                         require('../assets/images/achievements/lesson_3.webp'),
-  lesson_5:                         require('../assets/images/achievements/lesson_5.webp'),
-  lesson_10:                        require('../assets/images/achievements/lesson_10.webp'),
-  lesson_15:                        require('../assets/images/achievements/lesson_15.webp'),
-  lesson_20:                        require('../assets/images/achievements/lesson_20.webp'),
-  lesson_all:                       require('../assets/images/achievements/lesson_all.webp'),
-  lesson_perfect:                   require('../assets/images/achievements/lesson_perfect.webp'),
-  lesson_perfect3:                  require('../assets/images/achievements/lesson_perfect3.webp'),
-  lesson_all_perfect:               require('../assets/images/achievements/lesson_all_perfect.webp'),
-  xp_100:                           require('../assets/images/achievements/xp_100.webp'),
-  xp_250:                           require('../assets/images/achievements/xp_250.webp'),
-  xp_500:                           require('../assets/images/achievements/xp_500.webp'),
-  xp_1000:                          require('../assets/images/achievements/xp_1000.webp'),
-  xp_2500:                          require('../assets/images/achievements/xp_2500.webp'),
-  xp_5000:                          require('../assets/images/achievements/xp_5000.webp'),
-  xp_10000:                         require('../assets/images/achievements/xp_10000.webp'),
-  xp_20000:                         require('../assets/images/achievements/xp_20000.webp'),
-  xp_50000:                         require('../assets/images/achievements/xp_50000.webp'),
-  xp_100000:                        require('../assets/images/achievements/xp_100000.webp'),
-  wager_win:                        require('../assets/images/achievements/wager_win.webp'),
-  personal_best:                    require('../assets/images/achievements/personal_best.webp'),
-  combo_3:                          require('../assets/images/achievements/combo_3.webp'),
-  combo_10:                         require('../assets/images/achievements/combo_10.webp'),
-  combo_20:                         require('../assets/images/achievements/combo_20.webp'),
-  combo_50:                         require('../assets/images/achievements/combo_50.webp'),
-  combo_100:                        require('../assets/images/achievements/combo_100.webp'),
-  daily_task_first:                 require('../assets/images/achievements/daily_task_first.webp'),
-  all_daily:                        require('../assets/images/achievements/all_daily.webp'),
-  daily_all_3:                      require('../assets/images/achievements/daily_all_3.webp'),
-  daily_all_7:                      require('../assets/images/achievements/daily_all_7.webp'),
-  daily_no_reroll:                  require('../assets/images/achievements/daily_no_reroll.webp'),
-  daily_phrase_first:               require('../assets/images/achievements/daily_phrase_first.webp'),
-  daily_phrase_save:                require('../assets/images/achievements/daily_phrase_save.webp'),
-  login_7:                          require('../assets/images/achievements/login_7.webp'),
-  login_14:                         require('../assets/images/achievements/login_14.webp'),
-  login_30:                         require('../assets/images/achievements/login_30.webp'),
-  login_60:                         require('../assets/images/achievements/login_60.webp'),
-  login_365:                        require('../assets/images/achievements/login_365.webp'),
-  comeback:                         require('../assets/images/achievements/comeback.webp'),
-  diagnosis:                        require('../assets/images/achievements/diagnosis.webp'),
-  night_owl:                        require('../assets/images/achievements/night_owl.webp'),
-  early_bird:                       require('../assets/images/achievements/early_bird.webp'),
-  exam_first:                       require('../assets/images/achievements/exam_first.webp'),
-  exam_ace:                         require('../assets/images/achievements/exam_ace.webp'),
-  flashcards_session:               require('../assets/images/achievements/flashcards_session.webp'),
-  flashcards_save_25:               require('../assets/images/achievements/flashcards_save_25.webp'),
-  flashcards_save_50:               require('../assets/images/achievements/flashcards_save_50.webp'),
-  flashcards_flip_100:              require('../assets/images/achievements/flashcards_flip_100.webp'),
-  flashcards_view_7_days:           require('../assets/images/achievements/flashcards_view_7_days.webp'),
-  flashcards_sources_4:             require('../assets/images/achievements/flashcards_sources_4.webp'),
-  recall_first:                     require('../assets/images/achievements/recall_first.webp'),
-  recall_50:                        require('../assets/images/achievements/recall_50.webp'),
-  shards_100:                       require('../assets/images/achievements/shards_100.webp'),
-  shards_spent_100:                 require('../assets/images/achievements/shards_spent_100.webp'),
-  energy_refill_first:              require('../assets/images/achievements/energy_refill_first.webp'),
-  energy_refill_5:                  require('../assets/images/achievements/energy_refill_5.webp'),
-  league_result_first:              require('../assets/images/achievements/league_result_first.webp'),
-  league_top3:                      require('../assets/images/achievements/league_top3.webp'),
-  league_champion:                  require('../assets/images/achievements/league_champion.webp'),
-  league_promoted:                  require('../assets/images/achievements/league_promoted.webp'),
-  league_diamond:                   require('../assets/images/achievements/league_diamond.webp'),
-  league_boost_first:               require('../assets/images/achievements/league_boost_first.webp'),
-  league_boost_5:                   require('../assets/images/achievements/league_boost_5.webp'),
-  league_boost_x3:                  require('../assets/images/achievements/league_boost_x3.webp'),
-  gem_a1_ruby:                      require('../assets/images/achievements/gem_a1_ruby.webp'),
-  gem_a1_emerald:                   require('../assets/images/achievements/gem_a1_emerald.webp'),
-  gem_a1_diamond:                   require('../assets/images/achievements/gem_a1_diamond.webp'),
-  gem_a2_ruby:                      require('../assets/images/achievements/gem_a2_ruby.webp'),
-  gem_a2_emerald:                   require('../assets/images/achievements/gem_a2_emerald.webp'),
-  gem_a2_diamond:                   require('../assets/images/achievements/gem_a2_diamond.webp'),
-  gem_b1_ruby:                      require('../assets/images/achievements/gem_b1_ruby.webp'),
-  gem_b1_emerald:                   require('../assets/images/achievements/gem_b1_emerald.webp'),
-  gem_b1_diamond:                   require('../assets/images/achievements/gem_b1_diamond.webp'),
-  gem_b2_ruby:                      require('../assets/images/achievements/gem_b2_ruby.webp'),
-  gem_b2_emerald:                   require('../assets/images/achievements/gem_b2_emerald.webp'),
-  gem_b2_diamond:                   require('../assets/images/achievements/gem_b2_diamond.webp'),
-  gem_a1_obsidian:                  require('../assets/images/achievements/gem_a1_obsidian.webp'),
-  gem_a1_mythic:                    require('../assets/images/achievements/gem_a1_mythic.webp'),
-  gem_a2_obsidian:                  require('../assets/images/achievements/gem_a2_obsidian.webp'),
-  gem_a2_mythic:                    require('../assets/images/achievements/gem_a2_mythic.webp'),
-  gem_b1_obsidian:                  require('../assets/images/achievements/gem_b1_obsidian.webp'),
-  gem_b1_mythic:                    require('../assets/images/achievements/gem_b1_mythic.webp'),
-  gem_b2_obsidian:                  require('../assets/images/achievements/gem_b2_obsidian.webp'),
-  gem_b2_mythic:                    require('../assets/images/achievements/gem_b2_mythic.webp'),
-  gem_all_complete:                 require('../assets/images/achievements/gem_all_complete.webp'),
-  gem_all_obsidian:                 require('../assets/images/achievements/gem_all_obsidian.webp'),
-  gem_all_mythic:                   require('../assets/images/achievements/gem_all_mythic.webp'),
-  social_friend_first:              require('../assets/images/achievements/social_friend_first.webp'),
-  social_friends_3:                 require('../assets/images/achievements/social_friends_3.webp'),
-  social_friends_10:                require('../assets/images/achievements/social_friends_10.webp'),
-  social_gift_send:                 require('../assets/images/achievements/social_gift_send.webp'),
-  social_gift_5:                    require('../assets/images/achievements/social_gift_5.webp'),
-  social_gift_10:                   require('../assets/images/achievements/social_gift_10.webp'),
-  social_like_received:             require('../assets/images/achievements/social_like_received.webp'),
-  social_likes_5:                   require('../assets/images/achievements/social_likes_5.webp'),
-  trainer_session:                  require('../assets/images/achievements/trainer_session.webp'),
-  trainer_100_correct:              require('../assets/images/achievements/trainer_100_correct.webp'),
-  trainer_7_days:                   require('../assets/images/achievements/trainer_7_days.webp'),
-  trainer_500_correct:              require('../assets/images/achievements/trainer_500_correct.webp'),
-  trainer_perfect_session:          require('../assets/images/achievements/trainer_perfect_session.webp'),
-  avatar_custom:                    require('../assets/images/achievements/avatar_custom.webp'),
-  profile_themed:                   require('../assets/images/achievements/profile_themed.webp'),
-  pack_purchased:                   require('../assets/images/achievements/pack_purchased.webp'),
-  pack_5_purchased:                 require('../assets/images/achievements/pack_5_purchased.webp'),
-  share_achievement:                require('../assets/images/achievements/share_achievement.webp'),
-  level_50:                         require('../assets/images/achievements/level_50.webp'),
-  xp_75000:                         require('../assets/images/achievements/xp_75000.webp'),
-  wager_win_3:                      require('../assets/images/achievements/wager_win_3.webp'),
-  streak_150:                       require('../assets/images/achievements/streak_150.webp'),
-  streak_250:                       require('../assets/images/achievements/streak_250.webp'),
-  streak_750:                       require('../assets/images/achievements/streak_750.webp'),
-  streak_1000:                      require('../assets/images/achievements/streak_1000.webp'),
-  streak_clean_365:                 require('../assets/images/achievements/streak_clean_365.webp'),
-  perfect_month:                    require('../assets/images/achievements/perfect_month.webp'),
-  night_week:                       require('../assets/images/achievements/night_week.webp'),
-  early_week:                       require('../assets/images/achievements/early_week.webp'),
-  lesson_all_2x:                    require('../assets/images/achievements/lesson_all_2x.webp'),
-  lesson_all_3x:                    require('../assets/images/achievements/lesson_all_3x.webp'),
-  lesson_all_5x:                    require('../assets/images/achievements/lesson_all_5x.webp'),
-  lesson_perfect10:                 require('../assets/images/achievements/lesson_perfect10.webp'),
-  lesson_b2_perfect:                require('../assets/images/achievements/lesson_b2_perfect.webp'),
-  lesson_marathon_day:              require('../assets/images/achievements/lesson_marathon_day.webp'),
-  lesson_all_perfect_2x:            require('../assets/images/achievements/lesson_all_perfect_2x.webp'),
-  xp_150000:                        require('../assets/images/achievements/xp_150000.webp'),
-  xp_250000:                        require('../assets/images/achievements/xp_250000.webp'),
-  xp_500000:                        require('../assets/images/achievements/xp_500000.webp'),
-  xp_750000:                        require('../assets/images/achievements/xp_750000.webp'),
-  xp_1000000:                       require('../assets/images/achievements/xp_1000000.webp'),
-  xp_2000000:                       require('../assets/images/achievements/xp_2000000.webp'),
-  weekly_xp_5000:                   require('../assets/images/achievements/weekly_xp_5000.webp'),
-  weekly_xp_10000:                  require('../assets/images/achievements/weekly_xp_10000.webp'),
-  wager_win_10:                     require('../assets/images/achievements/wager_win_10.webp'),
-  combo_150:                        require('../assets/images/achievements/combo_150.webp'),
-  combo_250:                        require('../assets/images/achievements/combo_250.webp'),
-  combo_500:                        require('../assets/images/achievements/combo_500.webp'),
-  daily_all_14:                     require('../assets/images/achievements/daily_all_14.webp'),
-  daily_all_30:                     require('../assets/images/achievements/daily_all_30.webp'),
-  daily_no_reroll_7:                require('../assets/images/achievements/daily_no_reroll_7.webp'),
-  daily_no_reroll_30:               require('../assets/images/achievements/daily_no_reroll_30.webp'),
-  daily_phrase_read_30:             require('../assets/images/achievements/daily_phrase_read_30.webp'),
-  daily_phrase_save_30:             require('../assets/images/achievements/daily_phrase_save_30.webp'),
-  daily_phrase_save_100:            require('../assets/images/achievements/daily_phrase_save_100.webp'),
-  login_100:                        require('../assets/images/achievements/login_100.webp'),
-  login_200:                        require('../assets/images/achievements/login_200.webp'),
-  exam_ace_5:                       require('../assets/images/achievements/exam_ace_5.webp'),
-  exam_ace_10:                      require('../assets/images/achievements/exam_ace_10.webp'),
-  flashcards_save_100:              require('../assets/images/achievements/flashcards_save_100.webp'),
-  flashcards_save_250:              require('../assets/images/achievements/flashcards_save_250.webp'),
-  flashcards_flip_500:              require('../assets/images/achievements/flashcards_flip_500.webp'),
-  flashcards_flip_1000:             require('../assets/images/achievements/flashcards_flip_1000.webp'),
-  flashcards_view_14_days:          require('../assets/images/achievements/flashcards_view_14_days.webp'),
-  flashcards_view_30_days:          require('../assets/images/achievements/flashcards_view_30_days.webp'),
-  shards_250:                       require('../assets/images/achievements/shards_250.webp'),
-  shards_500:                       require('../assets/images/achievements/shards_500.webp'),
-  shards_1000:                      require('../assets/images/achievements/shards_1000.webp'),
-  shards_spent_500:                 require('../assets/images/achievements/shards_spent_500.webp'),
-  shards_spent_1000:                require('../assets/images/achievements/shards_spent_1000.webp'),
-  energy_refill_10:                 require('../assets/images/achievements/energy_refill_10.webp'),
-  energy_refill_25:                 require('../assets/images/achievements/energy_refill_25.webp'),
-  league_top3_5:                    require('../assets/images/achievements/league_top3_5.webp'),
-  league_champion_5:                require('../assets/images/achievements/league_champion_5.webp'),
-  league_champion_10:               require('../assets/images/achievements/league_champion_10.webp'),
-  league_diamond_4_weeks:           require('../assets/images/achievements/league_diamond_4_weeks.webp'),
-  social_friends_25:                require('../assets/images/achievements/social_friends_25.webp'),
-  social_friends_50:                require('../assets/images/achievements/social_friends_50.webp'),
-  social_gift_25:                   require('../assets/images/achievements/social_gift_25.webp'),
-  social_gift_100:                  require('../assets/images/achievements/social_gift_100.webp'),
-  social_likes_25:                  require('../assets/images/achievements/social_likes_25.webp'),
-  social_likes_100:                 require('../assets/images/achievements/social_likes_100.webp'),
-  trainer_1000_correct:             require('../assets/images/achievements/trainer_1000_correct.webp'),
-  trainer_2500_correct:             require('../assets/images/achievements/trainer_2500_correct.webp'),
-  trainer_10000_correct:            require('../assets/images/achievements/trainer_10000_correct.webp'),
-  trainer_perfect_10_sessions:      require('../assets/images/achievements/trainer_perfect_10_sessions.webp'),
-  trainer_perfect_50_sessions:      require('../assets/images/achievements/trainer_perfect_50_sessions.webp'),
-  pack_10_purchased:                require('../assets/images/achievements/pack_10_purchased.webp'),
-  pack_25_purchased:                require('../assets/images/achievements/pack_25_purchased.webp'),
-  share_achievement_10:             require('../assets/images/achievements/share_achievement_10.webp'),
-};
+// зачем: раньше здесь лежала ВТОРАЯ копия реестра арта (190 require) — тот же
+// список, что и в constants/achievementImageAssets.ts. Теперь источник правды
+// один: «ядро» бандлится, остальной арт стримится из Storage. Реэкспорт
+// сохранён, чтобы не трогать импорты в AchievementToast и других местах.
+export { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
+import { achievementImageSource } from '../constants/achievementImageAssets';
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
 export const ACHIEVEMENT_ICON: Record<string, any> = {
@@ -1058,14 +873,19 @@ function AchievementImageWithFallback({
   opacity: number;
 }) {
   const [imageFailed, setImageFailed] = useState(false);
+  // зачем: для сетевого арта заглушку нельзя снимать до onLoad — иначе между
+  // «источник появился» и «картинка отрисовалась» мелькнёт пустое место.
+  // Щит держится под картинкой до момента реальной загрузки.
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
     setImageFailed(false);
+    setImageLoaded(false);
   }, [source]);
 
   return (
     <View style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center' }}>
-      {(!source || imageFailed) ? (
+      {(!source || imageFailed || !imageLoaded) ? (
         <View pointerEvents="none" style={{ width: size, height: bodyHeight, alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
           <Image
             source={require('../assets/images/levels/achivement.webp')}
@@ -1087,7 +907,9 @@ function AchievementImageWithFallback({
           style={{ width: size, height: bodyHeight, opacity }}
           contentFit="contain"
           cachePolicy="memory-disk"
-          transition={0}
+          // Мягкое проявление поверх щита — подмена заглушки не «моргает».
+          transition={150}
+          onLoad={() => setImageLoaded(true)}
           onError={() => setImageFailed(true)}
         />
       ) : null}
@@ -1152,7 +974,10 @@ function BadgeShieldInner({
   const lockedIcon  = isDark ? '#383838' : '#FFFFFF';
   const tintColor = isLocked ? lockedTint : inProgress ? color + (isDark ? '55' : '88') : color;
   const iconColor = isLocked ? lockedIcon : inProgress ? color + (isDark ? 'BB' : 'CC') : '#fff';
-  const specificImage = achievementId ? ACHIEVEMENT_IMAGE[achievementId] : null;
+  // зачем: ACHIEVEMENT_IMAGE содержит только «ядро» (бандл). Остальной арт живёт
+  // в Storage, поэтому источник берём через achievementImageSource — она вернёт
+  // либо бандл-ресурс, либо {uri} из прогретого дискового кэша.
+  const specificImage = achievementId ? achievementImageSource(achievementId) : null;
   const levelLabel = achievementId ? GEM_LEVEL_LABEL[achievementId] : null;
 
   if (specificImage) {
@@ -1325,9 +1150,9 @@ function AchievementModal({
                 borderWidth: pendingShard ? 1 : 0,
                 borderColor: pendingShard ? t.correct + '55' : 'transparent',
               }}>
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Монета', uk: 'Монета', es: 'Moneda', 'pt-BR': 'Fragmento', vi: 'Xu', id: 'Fragmen', tr: 'Jeton', pl: 'Fragment' })} />
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Перлина', uk: 'Перлина', es: 'Moneda', 'pt-BR': 'Fragmento', vi: 'Xu', id: 'Fragmen', tr: 'Jeton', pl: 'Fragment' })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 монета', uk: '+1 монета', es: '+1 moneda', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 xu tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi jetonu', pl: '+1 fragment wiedzy' })}
+                  {triLang(lang, { ru: '+1 перлина', uk: '+1 перлина', es: '+1 moneda', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 xu tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi jetonu', pl: '+1 fragment wiedzy' })}
                 </Text>
                 {pendingShard ? (
                   <TapScale
@@ -1353,7 +1178,7 @@ function AchievementModal({
                   </TapScale>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Монета получена', uk: 'Монету отримано', es: 'Moneda reclamada', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận xu', id: 'Fragmen diklaim', tr: 'Jeton alındı', pl: 'Fragment odebrany' })}
+                    {triLang(lang, { ru: 'Перлина получена', uk: 'Перлину отримано', es: 'Moneda reclamada', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận xu', id: 'Fragmen diklaim', tr: 'Jeton alındı', pl: 'Fragment odebrany' })}
                   </Text>
                 )}
               </View>

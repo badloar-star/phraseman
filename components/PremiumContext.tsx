@@ -34,7 +34,7 @@ import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates
 import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
-import { writeVipSnapshotForAccount } from '../app/premium_vip_storage';
+import { readVipSnapshotForAccount, writeVipSnapshotForAccount } from '../app/premium_vip_storage';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -416,6 +416,23 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
             void runPremiumAccountScopedWork(listenerEpoch, async (isEpochCurrent) => {
               const isSnapshotCurrent = () => isListenerCurrent() && isEpochCurrent();
               if (!isSnapshotCurrent()) return;
+              // зачем: владелец (2026-07-26, баг «Plus активирован при КАЖДОМ входе») —
+              // на первом снапшоте запуска vipSnapshotStateRef ещё null, а RevenueCat
+              // не гидрирован, поэтому «доступа не было» выглядело ложно и свежий
+              // grantAt (вчерашний спин) взводил модалку каждый запуск. Празднуем
+              // только переход ФРИ → доступ: прошлое состояние читаем из
+              // ПЕРСИСТЕНТНЫХ свидетельств СТРОГО ДО перезаписи снапшота ниже.
+              let hadAccessBeforeGrant = vipSnapshotStateRef.current === true || isPremiumRef.current;
+              if (!hadAccessBeforeGrant && vipSnapshotStateRef.current === null && vipState.active) {
+                const [persistedVip, persistedPremiumActive, persistedPlan] = await Promise.all([
+                  readVipSnapshotForAccount(listenerStableId).catch(() => null),
+                  AsyncStorage.getItem('premium_active').catch(() => null),
+                  AsyncStorage.getItem('premium_plan').catch(() => null),
+                ]);
+                hadAccessBeforeGrant = persistedVip?.vip_active === 'true'
+                  || persistedPremiumActive === 'true'
+                  || persistedPlan === 'lifetime';
+              }
               if (!isSnapshotCurrent()) return;
               await writeVipSnapshotForAccount(listenerStableId, {
                 vip_active: vipState.active ? 'true' : 'false',
@@ -427,11 +444,10 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
               }).catch(() => {});
               if (!isSnapshotCurrent()) return;
               if (vipState.active) {
-                // зачем: владелец (2026-07-26) — зелёная/жёлтая «Plus активирован»
-                // не должна повторяться, когда подарок (награда за друга) лишь
-                // ПРОДЛЕВАЕТ уже активный Plus/Pro/VIP: празднуем только переход
-                // «не было доступа → появился». Модалка выигрыша уже показала «+N дн.».
-                const hadAccessBeforeGrant = vipSnapshotStateRef.current === true || isPremiumRef.current;
+                // Празднуем только переход «не было доступа → появился»
+                // (hadAccessBeforeGrant вычислен ВЫШЕ из персистентных свидетельств,
+                // до перезаписи снапшота). Продление при активном Plus/Pro/VIP
+                // гасит маркер без модалки — и на этом запуске, и для restore.
                 if (hadAccessBeforeGrant) {
                   await markVipGrantSeenWithoutCelebration(vipState.grantAt).catch(() => {});
                 } else {

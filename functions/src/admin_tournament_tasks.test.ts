@@ -14,6 +14,7 @@ import {
   parseGenerateRequest,
   parseListRequest,
   parseMutateRequest,
+  parsePurgeRequest,
   parseScheduleRequest,
   publicAdminTask,
   ROUND_DIFFICULTIES,
@@ -89,6 +90,25 @@ describe('разбор запроса публикации', () => {
   it('дедуплицирует id — двойная публикация одного задания не нужна', () => {
     const parsed = parseMutateRequest({ taskIds: ['a', 'a', 'b'], action: 'publish' });
     expect(parsed.taskIds).toEqual(['a', 'b']);
+  });
+});
+
+describe('разбор запроса массовой очистки', () => {
+  it('принимает только известные источники — не даёт стереть лишнее', () => {
+    expectRejected(() => parsePurgeRequest({ source: 'everything' }));
+    expectRejected(() => parsePurgeRequest({ source: '' }));
+    expectRejected(() => parsePurgeRequest({}));
+    // Посторонние поля отклоняются: запрос на удаление должен быть точным.
+    expectRejected(() => parsePurgeRequest({ source: 'ai', collection: 'users' }));
+  });
+
+  it('dryRun по умолчанию выключен, но включается явным true', () => {
+    expect(parsePurgeRequest({ source: 'plan_content' })).toMatchObject({
+      source: 'plan_content', dryRun: false,
+    });
+    expect(parsePurgeRequest({ source: 'ai', dryRun: true }).dryRun).toBe(true);
+    // Любое не-true значение считается «боевым» прогоном, а не dryRun.
+    expect(parsePurgeRequest({ source: 'ai', dryRun: 'yes' }).dryRun).toBe(false);
   });
 });
 

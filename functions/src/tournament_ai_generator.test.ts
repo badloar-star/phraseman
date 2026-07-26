@@ -106,11 +106,12 @@ describe('tournament_ai_generator: золотой батч', () => {
       const task = { ...tasks[i], verified: true };
       const validation = validateTournamentTask(task);
       expect(validation).toEqual({ ok: true, kind: 'choice' });
-      // Правильный индекс засчитывается, любой другой — нет.
-      expect(verifyTournamentAnswer(task, { selectedIndex: PLAN[i] })).toBe(true);
-      expect(verifyTournamentAnswer(task, { selectedIndex: (PLAN[i] + 1) % 4 })).toBe(false);
+      // Позицию задаёт сервер (rebalanceCorrectPositions), берём фактическую.
+      const correct = result.items[i].correctIndex;
+      expect(verifyTournamentAnswer(task, { selectedIndex: correct })).toBe(true);
+      expect(verifyTournamentAnswer(task, { selectedIndex: (correct + 1) % 4 })).toBe(false);
       // Голое число вместо объекта — регрессия формата ответа клиента.
-      expect(verifyTournamentAnswer(task, PLAN[i])).toBe(false);
+      expect(verifyTournamentAnswer(task, correct)).toBe(false);
     }
   });
 
@@ -191,7 +192,7 @@ describe('tournament_ai_generator: классы брака', () => {
   it('дистрактор — обрезок правильного ответа → ai_truncated_choice_conflict', () => {
     const options = [
       'открывалка для консервных банок',
-      'для консервных банок',
+      'банок',
       'штопор для винных бутылок',
       'щипцы для салата на кухне',
     ];
@@ -241,30 +242,32 @@ describe('tournament_ai_generator: классы брака', () => {
     expect(errorsOf(batch)).toContain('ai_difficulty_distribution_mismatch');
   });
 
-  it('позиции правильного не 2-3 на индекс → ai_correct_position_distribution', () => {
-    // Индекс 1 навязываем четырежды за счёт индекса 3 (места 3 и 7 плана).
+  it('позиции правильного ответа раскладываются сервером, а не бракуют батч', () => {
+    // 2026-07-26: модель почти никогда не попадала в распределение сама
+    // (6 раскладов из 286), и оплаченный батч терялся целиком. Требование
+    // механическое — чиним перестановкой вариантов внутри вопроса.
     const batch = goldenBatch();
-    for (const place of [3, 7]) {
-      const item = batch.items[place];
-      batch.items[place] = { ...item, correctIndex: 1, correctAnswer: item.options[1] };
-    }
-    expect(errorsOf(batch)).toContain('ai_correct_position_distribution');
-  });
-
-  it('серия длиннее двух одинаковых индексов → ai_correct_position_run', () => {
-    // План 0,1,2,3,0,1,... → делаем 0,0,0 в начале, компенсируя хвостом:
-    // места 1 и 2 переводим на 0, а места 0 и 4 плана (нули) — на 1 и 2? Нет:
-    // проще собрать явный план с серией и валидными количествами.
-    const explicit = [0, 0, 0, 1, 1, 2, 2, 3, 3, 1] as const; // 0×3, 1×3, 2×2, 3×2, серия 0,0,0
-    const batch = goldenBatch();
-    batch.items = batch.items.map((item, index) => ({
-      ...item,
-      correctIndex: explicit[index],
-      correctAnswer: item.options[explicit[index]],
+    batch.items = batch.items.map((item) => ({
+      ...item, correctIndex: 2, correctAnswer: item.options[2],
     }));
-    const errors = errorsOf(batch);
-    expect(errors).toContain('ai_correct_position_run');
-    expect(errors).not.toContain('ai_correct_position_distribution');
+    const result = validateTournamentAiBatch(batch, { level: 'A2' });
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+
+    const counts = [0, 0, 0, 0];
+    result.items.forEach((item) => { counts[item.correctIndex] += 1; });
+    expect(counts.every((count) => count >= 2 && count <= 3)).toBe(true);
+
+    // Серий длиннее двух подряд быть не должно.
+    let run = 1;
+    for (let i = 1; i < result.items.length; i += 1) {
+      run = result.items[i].correctIndex === result.items[i - 1].correctIndex ? run + 1 : 1;
+      expect(run).toBeLessThanOrEqual(2);
+    }
+    // Правильный ответ остаётся тем же текстом, просто на другом месте.
+    result.items.forEach((item) => {
+      expect(item.options[item.correctIndex]).toBe(item.correctAnswer);
+    });
   });
 
   it('сцена пустая или не по-русски → ai_scenario_invalid', () => {
@@ -324,7 +327,7 @@ describe('tournament_ai_generator: промпт', () => {
     expect(packet.task).toContain('CEFR B1');
     expect(packet.task).toContain('level 3 of 6');
     // Ключевые правила качества обязаны быть в тексте задачи.
-    expect(packet.task).toContain('exactly 2 or 3 times');
+    expect(packet.task).toContain('placement is normalised afterwards');
     expect(packet.task).toContain('Length fairness');
     expect(packet.task).toContain('never truncated');
     expect(packet.system).toContain('JSON only');

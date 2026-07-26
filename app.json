@@ -42,20 +42,19 @@
         "assets/images/levels/*.webp",
         "assets/images/lesson_intro/*",
         "assets/images/lessons/*",
-        "assets/images/level_gifts/*",
         "assets/images/level_gift_reward_icons/*",
         "assets/images/messages/*",
         "assets/images/onboarding/*",
         "assets/images/reward_modals/*",
         "assets/images/settings/*",
-        "assets/images/shards/*",
+        "assets/images/currency/*",
         "assets/images/statistics/*.webp",
         "assets/images/statistics/cards/**/*",
         "assets/images/splash-icon.png",
-        "assets/images/streak_overlays/*",
+        "assets/images/streak_overlays/*.webp",
         "assets/images/theo/*",
         "assets/images/weekly_boon_icons/png/**/*",
-        "assets/images/trainer_theme_icons/**/*"
+        "assets/images/trainer_theme_icons/**/*.webp"
       ]
     },
     "android": {

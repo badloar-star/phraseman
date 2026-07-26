@@ -76,6 +76,10 @@ export default function BoonChestModal({
   const lidLift = useRef(new Animated.Value(0)).current;
   const fadeReveal = useRef(new Animated.Value(0)).current;
   const orbRise = useRef(new Animated.Value(0)).current;
+  // зачем: пульсация награды живёт на ОТДЕЛЬНОМ значении от влёта (orbRise).
+  // Раньше цикл гонял сам orbRise 1↔1.12, из-за чего иконка бесконечно
+  // «выезжала» — выглядело как зацикленная анимация появления.
+  const orbPulse = useRef(new Animated.Value(0)).current;
   const idleLoop = useRef<Animated.CompositeAnimation | null>(null);
   const orbHoverLoop = useRef<Animated.CompositeAnimation | null>(null);
 
@@ -95,6 +99,7 @@ export default function BoonChestModal({
     lidLift.setValue(0);
     fadeReveal.setValue(0);
     orbRise.setValue(0);
+    orbPulse.setValue(0);
 
     Animated.spring(modalEntrance, { toValue: 1, useNativeDriver: true, tension: 115, friction: 12 }).start();
 
@@ -118,7 +123,7 @@ export default function BoonChestModal({
       idleLoop.current?.stop();
       orbHoverLoop.current?.stop();
     };
-  }, [visible, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise]);
+  }, [visible, modalEntrance, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, fadeReveal, orbRise, orbPulse]);
 
   const handleTap = () => {
     if (phase !== 'box') return;
@@ -139,15 +144,18 @@ export default function BoonChestModal({
       setPhase('reveal');
       fadeReveal.setValue(0);
       orbRise.setValue(0);
+      orbPulse.setValue(0);
       Animated.parallel([
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
       ]).start(() => {
+        // зачем: после влёта — ТОЛЬКО пульсация масштаба на месте.
+        // Никакого вертикального хода, иначе цикл читается как повтор появления.
         orbHoverLoop.current?.stop();
         orbHoverLoop.current = Animated.loop(
           Animated.sequence([
-            Animated.timing(orbRise, { toValue: 1.12, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-            Animated.timing(orbRise, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
           ]),
         );
         orbHoverLoop.current.start();
@@ -202,8 +210,11 @@ export default function BoonChestModal({
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
-  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [16, 0, -7] });
-  const orbScale = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [0.2, 1, 1] });
+  // Влёт: снизу вверх, 0.2 → 1. Дальше значение не меняется — иконка стоит на месте.
+  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
+  const orbEnterScale = orbRise.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1] });
+  // Пульсация: только масштаб, отдельным значением поверх влёта.
+  const orbPulseScale = orbPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
 
   const solidPanel = (t as { bgCard?: string; bgPrimary?: string }).bgCard
     ?? (t as { bgPrimary?: string }).bgPrimary ?? '#15181a';
@@ -287,7 +298,7 @@ export default function BoonChestModal({
             <Animated.View style={{ opacity: fadeReveal, alignItems: 'center', transform: [{ translateY: revealY }] }}>
               <View style={styles.orbStage}>
                 <GiftOpenBurst key={`${rarity}-burst`} tier={animTierF2p(rarity)} size={STAGE_SIZE} />
-                <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbScale }], zIndex: 2 }}>
+                <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
                   <Image source={rewardIcon} resizeMode="contain" style={styles.orbIcon} />
                 </Animated.View>
               </View>

@@ -162,6 +162,10 @@ function LevelGiftModal({
   const shakeAnim  = useRef(new Animated.Value(0)).current;
   const lidLift    = useRef(new Animated.Value(0)).current;
   const orbRise    = useRef(new Animated.Value(0)).current;
+  // зачем: пульсация награды живёт на ОТДЕЛЬНОМ значении от влёта (orbRise).
+  // Раньше цикл гонял сам orbRise 1↔1.12, из-за чего иконка бесконечно
+  // «выезжала» — выглядело как зацикленная анимация появления.
+  const orbPulse   = useRef(new Animated.Value(0)).current;
   const modalEntrance = useRef(new Animated.Value(0)).current;
   const modalGlow = useRef(new Animated.Value(0)).current;
   const idleLoop   = useRef<Animated.CompositeAnimation | null>(null);
@@ -207,6 +211,7 @@ function LevelGiftModal({
       rockAnim.setValue(0);
       lidLift.setValue(0);
       orbRise.setValue(presentationMode === 'apply' ? 1 : 0);
+      orbPulse.setValue(0);
       modalEntrance.setValue(0);
       modalGlow.setValue(0);
       Animated.spring(modalEntrance, {
@@ -224,7 +229,7 @@ function LevelGiftModal({
       );
       glowLoop.current.start();
     }
-  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, modalEntrance, modalGlow, presentationMode, studyTarget]);
+  }, [visible, level, preRolledGift, fadeReveal, floatAnim, rockAnim, scaleAnim, shakeAnim, lidLift, orbRise, orbPulse, modalEntrance, modalGlow, presentationMode, studyTarget]);
 
   useEffect(() => {
     if (!visible || !gift) {
@@ -320,17 +325,19 @@ function LevelGiftModal({
       setPhase('reveal');
       fadeReveal.setValue(0);
       orbRise.setValue(0);
+      orbPulse.setValue(0);
       Animated.parallel([
         Animated.spring(fadeReveal, { toValue: 1, useNativeDriver: true, tension: 160, friction: 9 }),
         Animated.spring(orbRise, { toValue: 1, useNativeDriver: true, tension: 120, friction: 9 }),
       ]).start(() => {
         if (!isCurrentOpening(accountToken)) return;
-        // мягкое «дыхание» награды после появления
+        // зачем: после влёта — ТОЛЬКО пульсация масштаба на месте.
+        // Никакого вертикального хода, иначе цикл читается как повтор появления.
         orbHoverLoop.current?.stop();
         orbHoverLoop.current = Animated.loop(
           Animated.sequence([
-            Animated.timing(orbRise, { toValue: 1.12, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-            Animated.timing(orbRise, { toValue: 1, duration: 1400, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+            Animated.timing(orbPulse, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
           ])
         );
         orbHoverLoop.current.start();
@@ -469,8 +476,11 @@ function LevelGiftModal({
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
   const glowOpacity = modalGlow.interpolate({ inputRange: [0, 1], outputRange: [0.3, 0.7] });
   const revealY = fadeReveal.interpolate({ inputRange: [0, 1], outputRange: [14, 0] });
-  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [16, 0, -7] });
-  const orbScale = orbRise.interpolate({ inputRange: [0, 1, 1.12], outputRange: [0.2, 1, 1] });
+  // Влёт: снизу вверх, 0.2 → 1. Дальше значение не меняется — иконка стоит на месте.
+  const orbTranslateY = orbRise.interpolate({ inputRange: [0, 1], outputRange: [16, 0] });
+  const orbEnterScale = orbRise.interpolate({ inputRange: [0, 1], outputRange: [0.2, 1] });
+  // Пульсация: только масштаб, отдельным значением поверх влёта.
+  const orbPulseScale = orbPulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
   // Непрозрачный фон панели — обязателен (modal_opaque_surfaces_contract).
   const solidPanel = rewardModalPanelColors(themeMode, t)[1];
   const canCloseWithIcon = phase !== 'opening' && !choiceBusy;
@@ -693,7 +703,7 @@ function LevelGiftModal({
               <View style={{ width: LEVEL_GIFT_STAGE_SIZE, height: LEVEL_GIFT_STAGE_SIZE, alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
                 {gift && <GiftOpenBurst key={`${gift.id}-${rarity}-single`} tier={animTierF2p(rarity)} size={LEVEL_GIFT_STAGE_SIZE} />}
                 {gift && (
-                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbScale }], zIndex: 2 }}>
+                  <Animated.View style={{ transform: [{ translateY: orbTranslateY }, { scale: orbEnterScale }, { scale: orbPulseScale }], zIndex: 2 }}>
                     <Image
                       source={getLevelGiftRewardIcon(gift.id, themeMode)}
                       style={{ width: 108, height: 108 }}

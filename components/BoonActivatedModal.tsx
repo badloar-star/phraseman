@@ -72,8 +72,8 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
     floatLoop.current?.stop();
     floatLoop.current = Animated.loop(
       Animated.sequence([
-        Animated.timing(iconFloat, { toValue: 1, duration: 1600, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
-        Animated.timing(iconFloat, { toValue: 0, duration: 1600, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(iconFloat, { toValue: 1, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
+        Animated.timing(iconFloat, { toValue: 0, duration: 1250, easing: Easing.inOut(Easing.ease), useNativeDriver: true }),
       ]),
     );
     floatLoop.current.start();
@@ -130,8 +130,9 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
   const iconEnterScale = iconEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.3, 1] });
   const iconEnterRotate = iconEntrance.interpolate({ inputRange: [0, 1], outputRange: ['-14deg', '0deg'] });
   const iconEnterOpacity = iconEntrance.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0, 1, 1] });
-  const iconTranslateY = iconFloat.interpolate({ inputRange: [0, 1], outputRange: [3, -6] });
-  const iconBreath = iconFloat.interpolate({ inputRange: [0, 1], outputRange: [1, 1.06] });
+  // зачем: пульсация — ТОЛЬКО масштаб на месте. Вертикальный ход убран:
+  // бесконечное «плавание» иконки читалось как зацикленная анимация появления.
+  const iconBreath = iconFloat.interpolate({ inputRange: [0, 1], outputRange: [1, 1.055] });
   const glowOpacity = iconFloat.interpolate({ inputRange: [0, 1], outputRange: [0.4, 0.7] });
   // Вспышка-всплеск при появлении (мягкое свечение, БЕЗ лучей).
   const flashOpacity = flash.interpolate({ inputRange: [0, 1], outputRange: [0, 0.9] });
@@ -179,7 +180,6 @@ function BoonActivatedModal({ visible, boon, onClose }: BoonActivatedModalProps)
               style={{
                 opacity: iconEnterOpacity,
                 transform: [
-                  { translateY: iconTranslateY },
                   { scale: Animated.multiply(iconEnterScale, iconBreath) },
                   { rotate: iconEnterRotate },
                 ],

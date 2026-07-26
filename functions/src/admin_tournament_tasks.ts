@@ -494,6 +494,15 @@ async function generateOneAiBatch(
     });
     if (validation.ok) return { ok: true, items: validation.items, promptTokens, completionTokens, requests };
     lastErrors = validation.errors;
+    // зачем: без этого лога брак батча неотличим от «модель не ответила» —
+    // владелец видит только «забраковано, деньги потрачены» и не может понять,
+    // какое правило не выполнилось. Пишем ошибки и образец брака.
+    console.warn('[tournament_ai] batch rejected', {
+      attempt: attempt + 1,
+      level: params.level,
+      errors: lastErrors.slice(0, 12),
+      sample: result.text.slice(0, 600),
+    });
     task = buildTournamentAiRepairTask(packet, result.text, lastErrors);
   }
   return { ok: false, errors: lastErrors, promptTokens, completionTokens, requests };

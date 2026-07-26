@@ -36069,15 +36069,15 @@
           На проверке: <strong style="color:#fbbf24">${d.drafts ?? 0}</strong>
         </div>
         ${(() => {
-          // Раздельные пулы владельца: ИИ-генератор и задания из планов.
-          const s = d.sources || {};
-          const ai = s.ai || { total: 0, published: 0, drafts: 0 };
-          const plan = s.plan_content || { total: 0, published: 0, drafts: 0 };
-          const cell = (icon, name, v, color) => `<div style="background:#15151f;border-radius:10px;padding:12px 14px;flex:1;min-width:220px">
-            <div style="font-size:12px;color:#6b7280;margin-bottom:6px">${icon} ${name}</div>
-            <div style="font-size:13px;color:#9ca3af">В игре: <strong style="color:${color}">${v.published}</strong> · На проверке: <strong style="color:#fbbf24">${v.drafts}</strong> · Всего: ${v.total}</div>
+          // зачем: карточка «Пул из планов» убрана — турниры играют только на
+          // вопросах ИИ, и вечные нули по неучаствующему пулу лишь засоряли
+          // экран. Задания из планов остаются в базе и видны через фильтр
+          // источника в списке ниже.
+          const ai = (d.sources || {}).ai || { total: 0, published: 0, drafts: 0 };
+          return `<div style="background:#15151f;border-radius:10px;padding:12px 14px;max-width:360px">
+            <div style="font-size:12px;color:#6b7280;margin-bottom:6px">🤖 Вопросы от ИИ</div>
+            <div style="font-size:13px;color:#9ca3af">В игре: <strong style="color:#c4b5fd">${ai.published}</strong> · На проверке: <strong style="color:#fbbf24">${ai.drafts}</strong> · Всего: ${ai.total}</div>
           </div>`;
-          return `<div style="display:flex;gap:10px;flex-wrap:wrap">${cell('🤖', 'Пул ИИ', ai, '#c4b5fd')}${cell('📚', 'Пул из планов', plan, '#93c5fd')}</div>`;
         })()}
       </div>`;
     } catch (e) {
@@ -36178,8 +36178,15 @@
       const head = dryRun
         ? `ИИ предложил <strong style="color:#fafafa">${data.accepted ?? 0}</strong> вопросов. Ничего не сохранено.`
         : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> вопросов на проверке.`;
+      // зачем: раньше показывали только «забраковано N» без причины —
+      // владелец платил за генерацию и не мог понять, какое правило качества
+      // не выполнилось. Сервер отдаёт причины в rejectedBatches, показываем их.
+      const reasons = rejected
+        ? Array.from(new Set((data.rejectedBatches || []).flat().map(String))).slice(0, 8)
+        : [];
       const warn = rejected
         ? `<div style="color:#fbbf24;margin-top:4px">Батчей забраковано контролем качества: ${rejected} — деньги за них потрачены, но брак в пул не попал.</div>`
+          + (reasons.length ? `<div style="color:#9ca3af;margin-top:4px;font-size:12px">Причины: ${escapeHtml(reasons.join(', '))}</div>` : '')
         : '';
       const samples = Array.isArray(data.samples) && data.samples.length
         ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';

@@ -227,8 +227,18 @@ describe('tournament_ai_generator: классы брака', () => {
     expect(errorsOf(mutate(0, { difficulty: 'extreme' as never }))).toContain('ai_difficulty_invalid');
   });
 
-  it('распределение сложности не 3/4/3 → ai_difficulty_distribution_mismatch', () => {
-    expect(errorsOf(mutate(0, { difficulty: 'medium' }))).toContain('ai_difficulty_distribution_mismatch');
+  it('смещение сложности на 1 допустимо — батч за это не бракуется', () => {
+    // Требовать точного 3/4/3 нереалистично: проходил 1 расклад из 66, и целый
+    // батч терялся вместе с потраченными деньгами. Допуск ±1 (2026-07-26).
+    expect(errorsOf(mutate(0, { difficulty: 'medium' })))
+      .not.toContain('ai_difficulty_distribution_mismatch');
+  });
+
+  it('явный перекос сложности → ai_difficulty_distribution_mismatch', () => {
+    // Все десять «лёгкие»: easy 10 против 3 — за пределами допуска.
+    const batch = goldenBatch();
+    batch.items = batch.items.map((item) => ({ ...item, difficulty: 'easy' as const }));
+    expect(errorsOf(batch)).toContain('ai_difficulty_distribution_mismatch');
   });
 
   it('позиции правильного не 2-3 на индекс → ai_correct_position_distribution', () => {

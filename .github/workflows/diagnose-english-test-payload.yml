@@ -1,0 +1,60 @@
+name: Diagnose English test payload
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  diagnose:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-full-audit' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - name: Inspect release transport and comment on PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY' > /tmp/diag.md
+          from pathlib import Path
+          import base64, hashlib, lzma
+          parts=[]
+          print('## English-test payload diagnostic')
+          print('')
+          print('```text')
+          for i in range(10):
+              p=Path(f'.release/english-test/part-{i:03d}')
+              b=p.read_bytes()
+              parts.append(b)
+              print(f'part-{i:03d}: bytes={len(b)} sha256={hashlib.sha256(b).hexdigest()}')
+          p5=parts[5].decode('utf-8')
+          print(f'part-005 text length={len(p5)} char[3967]={p5[3967]!r} context={p5[3960:3976]!r}')
+          joined=b''.join(parts)
+          print(f'joined bytes={len(joined)} sha256={hashlib.sha256(joined).hexdigest()}')
+          try:
+              raw=base64.b64decode(joined, validate=True)
+              print(f'archive bytes={len(raw)} sha256={hashlib.sha256(raw).hexdigest()}')
+              try:
+                  lzma.decompress(raw)
+                  print('xz=OK')
+              except Exception as exc:
+                  print(f'xz=FAIL {type(exc).__name__}: {exc}')
+          except Exception as exc:
+              print(f'base64=FAIL {type(exc).__name__}: {exc}')
+          print('```')
+          PY
+          gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file /tmp/diag.md

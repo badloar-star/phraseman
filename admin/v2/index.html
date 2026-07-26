@@ -4,33 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Phraseman Admin</title>
+  <title>Аналитика Phraseman</title>
   <link rel="stylesheet" href="/v2/styles/admin.css">
 </head>
-<body>
+<body class="analytics-only">
   <div class="admin-shell">
-    <aside class="sidebar" aria-label="Основная навигация">
-      <a class="brand" href="#overview" aria-label="Phraseman Admin, обзор">
+    <aside class="sidebar" aria-label="Навигация аналитики">
+      <a class="brand" href="#product" aria-label="Phraseman Analytics">
         <span class="brand-mark" aria-hidden="true">P</span>
-        <span><strong>Phraseman</strong><small>операционная панель</small></span>
+        <span><strong>Phraseman</strong><small>read-only аналитика</small></span>
       </a>
-      <nav id="primary-nav" class="primary-nav"></nav>
+      <nav class="primary-nav" aria-label="Разделы">
+        <a href="#product" title="Аналитика продукта">Продукт</a>
+        <a href="#subscriptions" title="Жизненный цикл подписок">Подписки</a>
+        <a href="#monthly" title="Ежемесячный пакет решений">Пакет решений</a>
+      </nav>
       <div class="sidebar-footer">
-        <span class="environment-dot" aria-hidden="true"></span>
-        <span><strong>Production</strong><small>осторожный режим</small></span>
+        <a href="../index.html" title="Открыть текущую полную админку">Legacy‑админка</a>
       </div>
     </aside>
 
     <main class="workspace">
       <header class="topbar">
-        <button id="mobile-nav-toggle" class="icon-button mobile-only" type="button" aria-label="Открыть меню" title="Открыть меню">
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
-        <div id="breadcrumbs" class="breadcrumbs" aria-label="Путь раздела"></div>
+        <div class="breadcrumbs" aria-label="Путь раздела">Админка / Аналитика</div>
         <div class="topbar-actions">
-          <a href="#support" title="Открыть почту поддержки">Почта</a>
-          <a href="#analytics" title="Открыть аналитику">Аналитика</a>
+          <a href="../index.html" title="Вернуться ко всем прежним инструментам">Все инструменты</a>
           <span id="auth-status" class="auth-status" role="status">Проверка доступа…</span>
+          <button id="auth-action" class="button small" type="button" disabled title="Войти или выйти из учётной записи">Войти</button>
         </div>
       </header>
       <div id="global-message" class="global-message" role="status" aria-live="polite" hidden></div>
@@ -38,7 +38,6 @@
     </main>
   </div>
 
-  <div id="dialog-root"></div>
   <script src="/v2/scripts/components/analytics-language.js"></script>
   <script src="/v2/scripts/pages/product-analytics.js"></script>
   <script src="/v2/scripts/pages/product-sessions.js"></script>
@@ -46,6 +45,7 @@
   <script src="/v2/scripts/pages/conversion-diagnostics.js"></script>
   <script src="/v2/scripts/pages/retention-diagnostics.js"></script>
   <script src="/v2/scripts/pages/subscription-analytics.js"></script>
-  <script type="module" src="/v2/scripts/admin-router.js"></script>
+  <script src="/v2/scripts/pages/monthly-decision-pack.js"></script>
+  <script type="module" src="/v2/scripts/admin-analytics-app.js"></script>
 </body>
 </html>

@@ -78,8 +78,21 @@ export function hasPermission(role: unknown, permission: AdminPermission): boole
   return hasAdminRole(role) && ROLE_PERMISSIONS[role].has(permission);
 }
 
-export function hasClaimedPermission(token: unknown, permission: AdminPermission): boolean {
-  if (!token || typeof token !== 'object') return false;
-  const claims = token as { admin?: unknown; adminRole?: unknown };
+/**
+ * Minimal shape of Firebase Functions' server-verified callable auth context.
+ * The onCall SDK validates the Firebase ID token before populating request.auth;
+ * callers must pass `request.auth`, never a client header or request payload.
+ */
+export interface VerifiedCallableAuth {
+  uid: string;
+  token: Readonly<Record<string, unknown>>;
+}
+
+export function hasVerifiedCallablePermission(auth: unknown, permission: AdminPermission): boolean {
+  if (!auth || typeof auth !== 'object') return false;
+  const candidate = auth as { uid?: unknown; token?: unknown };
+  if (typeof candidate.uid !== 'string' || candidate.uid.trim().length === 0) return false;
+  if (!candidate.token || typeof candidate.token !== 'object') return false;
+  const claims = candidate.token as { admin?: unknown; adminRole?: unknown };
   return claims.admin === true && hasPermission(claims.adminRole, permission);
 }

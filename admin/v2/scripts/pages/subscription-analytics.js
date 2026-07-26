@@ -5,6 +5,11 @@
   const esc = language.esc;
   const num = (value) => value != null && value !== '' && Number.isFinite(Number(value)) ? Number(value).toLocaleString('ru-RU') : '–';
   const card = (label, value, note) => language.metricCard(label, num(value), note);
+  const percent = (value) => value != null && Number.isFinite(Number(value)) ? (Number(value) * 100).toLocaleString('ru-RU', { maximumFractionDigits: 1 }) + '%' : '–';
+  const usdMicros = (value) => value != null && Number.isFinite(Number(value))
+    ? (Number(value) / 1000000).toLocaleString('ru-RU', { style: 'currency', currency: 'USD', maximumFractionDigits: 2 })
+    : 'Недоступно';
+  const metric = (label, value, note) => language.metricCard(label, value, note);
 
   function breakdown(title, explanation, items, labelKind) {
     const body = (items || []).map((row) => '<tr><td style="padding:7px;border-bottom:1px solid #1f2937">' + esc(labelKind ? language.label(labelKind, row.id) : row.id || 'Не определено') + '</td><td style="padding:7px;border-bottom:1px solid #1f2937;text-align:right">' + esc(num(row.events)) + '</td></tr>').join('');
@@ -32,7 +37,36 @@
       const response = await window.callAdminSubscriptionAnalytics({ rangeDays, store });
       const data = response?.data || {};
       const m = data.metrics || {};
+      const revenue = data.revenue || {};
+      const money = revenue.money || {};
+      const trial = revenue.trialToPaid || {};
+      const renewals = Array.isArray(revenue.monthlyRenewal) ? revenue.monthlyRenewal : [];
+      const ltv = Array.isArray(revenue.ltv) ? revenue.ltv : [];
+      const coverage = revenue.coverage || {};
+      const renewalCard = (offset) => {
+        const row = renewals.find((item) => Number(item.monthOffset) === offset) || {};
+        return metric('Продление M' + offset, percent(row.rate), 'Только зрелые цепочки месячной подписки: ' + num(row.renewedChains) + ' из ' + num(row.eligibleChains) + '. Годовые и пожизненные планы исключены.');
+      };
+      const ltvCard = (days) => {
+        const row = ltv.find((item) => Number(item.windowDays) === days) || {};
+        return metric('LTV цепочки подписки, ' + days + ' дней', usdMicros(row.ltvGrossUsdMicros), 'Signed gross RevenueCat, включая возвраты. Зрелые цепочки: ' + num(row.maturePaidChains) + '. Это не LTV человека.');
+      };
+      const financialWarning = revenue.status === 'truncated_not_decision_grade'
+        ? '<div class="notice warning section"><strong>Финансовая выборка обрезана безопасным лимитом.</strong><br>Эти показатели имеют статус truncated_not_decision_grade и не подходят для продуктового решения.</div>'
+        : '';
       content.innerHTML = '<div style="padding:10px 12px;border:1px solid #293548;border-radius:9px;color:#cbd5e1;font-size:12px;line-height:1.55;margin:10px 0"><b>Отключение продления</b> означает, что следующего автоматического платежа не будет, но уже оплаченный доступ может продолжаться. <b>Окончание доступа</b> означает, что RevenueCat сообщил о завершении права доступа. Причины доступны только у новых серверных событий после выпуска этой детализации; старую историю восстановить нельзя. Мы не связываем отмену подписки с конкретным экраном приложения.</div>' +
+        financialWarning +
+        '<div class="chart-card" style="margin-bottom:12px"><h3 title="Серверно подтверждённые суммы RevenueCat" tabindex="0">Деньги и покрытие</h3><div class="an2-grid">' +
+          metric('Подтверждённая gross-выручка', usdMicros(money.grossRevenueUsdMicros), 'Signed gross USD из production-вебхуков RevenueCat, включая отрицательные возвраты.') +
+          metric('Оценочные поступления', usdMicros(money.estimatedProceedsUsdMicros), 'Gross минус оценочные налоги и комиссия RevenueCat. Это не чистая прибыль и не финальный отчёт магазина.') +
+          metric('ARPPU цепочки подписки', usdMicros(money.arppuGrossUsdMicros), 'Signed gross на уникальную платящую цепочку подписки; не на человека.') +
+          metric('Trial → paid', percent(trial.rate), 'Зрелые пробные цепочки: ' + num(trial.convertedTrialChains) + ' из ' + num(trial.eligibleTrialChains) + '; незрелые: ' + num(trial.immatureTrialChains) + '.') +
+          metric('Возвраты по транзакциям', percent(money.refundTransactionRate), num(money.refundTransactionCount) + ' возвратов относительно ' + num(money.positiveTransactionCount) + ' положительных транзакций.') +
+          metric('Возвраты по сумме', percent(money.refundAmountRate), 'Абсолютная сумма возвратов относительно положительной gross-суммы.') +
+        '</div><p class="hint">Финансовое покрытие событий: полное — ' + esc(num(coverage.completeEvents)) + ', частичное — ' + esc(num(coverage.partialEvents)) + ', недоступно/историческое — ' + esc(num(coverage.unavailableEvents)) + '. Цепочки без начала внутри окна: ' + esc(num(revenue.leftTruncatedChains)) + '; они входят в деньги периода, но исключены из продлений и LTV. Финальные поступления магазина не импортированы. ARPU недоступен: нет совместимого знаменателя всей monetizable-аудитории.</p></div>' +
+        '<div class="chart-card" style="margin-bottom:12px"><h3 title="Зрелые когорты RevenueCat" tabindex="0">Продления и LTV цепочки подписки</h3><p class="hint">Зрелые цепочки — только те, для которых источник данных уже прошёл конец измеряемого окна. Незрелые когорты не входят в знаменатель.</p><div class="an2-grid">' +
+          renewalCard(1) + renewalCard(2) + renewalCard(3) + ltvCard(30) + ltvCard(60) + ltvCard(90) +
+        '</div></div>' +
         '<div class="an2-grid" style="margin-bottom:12px">' +
           card('Начали подписку', m.purchases, 'Первые покупки возобновляемой подписки.') +
           card('Купили доступ навсегда', m.lifetimePurchases, 'Разовые покупки пожизненного доступа без продления.') +

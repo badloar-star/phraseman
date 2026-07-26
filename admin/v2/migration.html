@@ -73,9 +73,21 @@
       if(!rows.length){$('capabilities').innerHTML='<div class="empty">Модули не найдены по текущему фильтру.</div>';return}
       $('capabilities').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const hash=row.nativeRoute?encodeURIComponent(row.nativeRoute):`${encodeURIComponent(row.route)}:${encodeURIComponent(row.capabilityId)}`;return `<div class="row"><div><b>${esc(row.label)}</b><small>${esc(row.notes)}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span><a class="legacy" href="./index.html#${hash}" title="Открыть модуль в новой админке">Открыть</a></span></div>`}).join('')}</section>`).join('')
     }
+    function linkedFunctionPurpose(names){
+      const joined=(Array.isArray(names)?names:[]).join(' ').toLowerCase();
+      if(!joined)return 'Обработчик пока не привязан';
+      if(/report|complaint|moder/.test(joined))return 'Работа с репортами и модерацией';
+      if(/user|profile|account|auth/.test(joined))return 'Работа с пользователем и его аккаунтом';
+      if(/promo|campaign|message|push/.test(joined))return 'Управление кампанией или сообщением';
+      if(/config|update|maintenance|banner/.test(joined))return 'Изменение настроек приложения';
+      if(/content|lesson|phrase|quiz|asset/.test(joined))return 'Работа с учебным содержимым';
+      if(/analytics|metric|digest|log/.test(joined))return 'Чтение аналитики или журнала';
+      if(/support|reply|mail|gmail/.test(joined))return 'Работа с обращениями поддержки';
+      return 'Серверная операция этого инструмента';
+    }
     function renderButtons(rows){
       if(!rows.length){$('groups').innerHTML='<div class="empty">Кнопки не найдены по текущему фильтру.</div>';return}
-      $('groups').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const tab=row.legacy.tab;const source=row.legacy.provenance==='script-template'?'шаблон в скрипте':tab||'контекст не определён';const link=tab?`<a class="legacy" href="/legacy.html#${encodeURIComponent(tab)}" target="_blank" rel="noopener" title="Открыть рабочий старый интерфейс в отдельной вкладке">Старая версия</a>`:'<span class="muted">Требует контекста</span>';return `<div class="row"><div><b>${esc(row.legacy.text||row.legacy.id||'Без подписи')}</b><small>${esc(source)} · строка ${row.legacy.line} · ${esc(row.linkedFunctions.join(', ')||'обработчик не указан')}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span>${link}</span></div>`}).join('')}</section>`).join('')
+      $('groups').innerHTML=[...groupByRoute(rows).entries()].map(([route,items])=>`<section class="group"><h3>${esc(routeLabels[route]||route)} <span class="muted">· ${items.length}</span></h3>${items.map(row=>{const tab=row.legacy.tab;const source=row.legacy.provenance==='script-template'?'шаблон в скрипте':tab||'контекст не определён';const functions=Array.isArray(row.linkedFunctions)?row.linkedFunctions:[];const link=tab?`<a class="legacy" href="/legacy.html#${encodeURIComponent(tab)}" target="_blank" rel="noopener" title="Открыть рабочий старый интерфейс в отдельной вкладке">Старая версия</a>`:'<span class="muted">Требует контекста</span>';return `<div class="row"><div><b>${esc(row.legacy.text||row.legacy.id||'Без подписи')}</b><small>${esc(source)} · строка ${row.legacy.line} · ${esc(linkedFunctionPurpose(functions))}${functions.length?`<br><span class="muted">Технические функции: <code>${esc(functions.join(', '))}</code></span>`:''}</small></div><span class="row-actions"><span class="status ${esc(row.status)}">${esc(statusLabels[row.status]||row.status)}</span>${link}</span></div>`}).join('')}</section>`).join('')
     }
     ['search','route','status'].forEach(id=>$(id).addEventListener('input',render));
     boot();

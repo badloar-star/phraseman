@@ -1,0 +1,255 @@
+name: Deploy clean English Level Test v3
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+concurrency:
+  group: english-level-test-clean-v3-production
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-production' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    env:
+      FIREBASE_PROJECT_ID: phraseman-ea0b3
+      RELEASE_B64_SHA256: 335c947387febafa6afa9c9968ed272ecaafe2de26e6ab61f5ea75beb8a8b8a1
+      RELEASE_ARCHIVE_SHA256: 222b6805ff21bc19151b49d3884775c2272ee38f6aa7c23b12f00455a613e653
+
+    steps:
+      - name: Check out release payload
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          path: payload
+
+      - name: Check out current master
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          fetch-depth: 0
+          token: ${{ github.token }}
+          path: production
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Decode and verify reviewed source archive
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          source_dir='../payload/.release/english-test-clean'
+          test -s "$source_dir/manifest.json"
+          test "$(find "$source_dir" -maxdepth 1 -type f -name 'part-*' | wc -l | tr -d ' ')" = '10'
+          cat "$source_dir"/part-* > "$RUNNER_TEMP/english-test-clean.b64"
+          echo "$RELEASE_B64_SHA256  $RUNNER_TEMP/english-test-clean.b64" | sha256sum --check --strict
+          base64 --decode "$RUNNER_TEMP/english-test-clean.b64" > "$RUNNER_TEMP/english-test-clean.tar.gz"
+          echo "$RELEASE_ARCHIVE_SHA256  $RUNNER_TEMP/english-test-clean.tar.gz" | sha256sum --check --strict
+          gzip --test "$RUNNER_TEMP/english-test-clean.tar.gz"
+          tar -tzf "$RUNNER_TEMP/english-test-clean.tar.gz" > "$RUNNER_TEMP/english-test-clean-files.txt"
+          sed -n '1,160p' "$RUNNER_TEMP/english-test-clean-files.txt"
+          tar -xzf "$RUNNER_TEMP/english-test-clean.tar.gz" -C .
+          test -s content/english-test/questions.en.json
+          test -s knowly-www/english-level-test/index.html
+          test -s admin/v2/english-test.html
+          test -s functions-english-test/index.js
+
+      - name: Generate and integrate the release
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/generate_english_test_assets.mjs
+          node scripts/install_english_test_release.mjs
+          node scripts/install_english_test_release.mjs
+
+      - name: Run release validation
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check knowly-www/english-level-test/engine.js
+          node --check knowly-www/english-level-test/app.js
+          node --check functions-english-test/index.js
+          node --check functions-english-test/engine.js
+          node --check scripts/generate_english_test_assets.mjs
+          node --check scripts/install_english_test_release.mjs
+          node --test tests/english_test_release.test.mjs
+          python3 - <<'PY'
+          import json
+          from collections import Counter
+          canonical = json.load(open('content/english-test/questions.en.json', encoding='utf-8'))
+          server = json.load(open('functions-english-test/questions.json', encoding='utf-8'))
+          assert canonical == server
+          assert canonical['bankVersion'] == '2026-07-21.8'
+          questions = canonical['questions']
+          assert len(questions) == 240
+          assert len({q['id'] for q in questions}) == 240
+          assert Counter(q['level'] for q in questions) == Counter({'A1':40,'A2':40,'B1':40,'B2':40,'C1':40,'C2':40})
+          assert Counter(q['correctIndex'] for q in questions) == Counter({0:60,1:60,2:60,3:60})
+          assert all(len(q['options']) == 4 and 0 <= q['correctIndex'] <= 3 for q in questions)
+          print('Verified 240-question A1-C2 bank.')
+          PY
+
+      - name: Install and audit isolated Functions codebase
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --prefix functions-english-test --package-lock-only --ignore-scripts
+          npm ci --prefix functions-english-test --omit=dev --ignore-scripts
+          node -e "const f=require('./functions-english-test');if(!f.englishTestApi||!f.adminEnglishTestAnalytics||!f.finalizeStaleEnglishTests||!f.cleanupEnglishTestAnalytics)process.exit(1)"
+          npm audit --prefix functions-english-test --omit=dev --audit-level=moderate
+
+      - name: Discover Firebase credential
+        id: firebase-auth
+        env:
+          REPO_SECRETS_JSON: ${{ toJSON(secrets) }}
+          REPO_VARS_JSON: ${{ toJSON(vars) }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64, json, os, re, sys
+          from pathlib import Path
+          def read_map(name):
+              try:
+                  value = json.loads(os.environ.get(name, '{}'))
+              except Exception:
+                  return {}
+              return value if isinstance(value, dict) else {}
+          secrets = read_map('REPO_SECRETS_JSON')
+          variables = read_map('REPO_VARS_JSON')
+          relevant = sorted(k for k, v in secrets.items() if v and re.search(r'FIREBASE|GOOGLE|GCLOUD|GCP|CLOUD|WORKLOAD|SERVICE_ACCOUNT', k, re.I))
+          print('Available cloud credential keys:', ', '.join(relevant) if relevant else '(none)')
+          credential = Path(os.environ['RUNNER_TEMP']) / 'firebase-deploy-credential.json'
+          for key, value in secrets.items():
+              if not value:
+                  continue
+              candidates = [str(value)]
+              try:
+                  candidates.append(base64.b64decode(''.join(str(value).split()), validate=True).decode('utf-8'))
+              except Exception:
+                  pass
+              for candidate in candidates:
+                  try:
+                      data = json.loads(candidate)
+                  except Exception:
+                      continue
+                  if not isinstance(data, dict):
+                      continue
+                  kind = data.get('type')
+                  project = data.get('project_id') or data.get('quota_project_id')
+                  if kind in {'service_account', 'external_account', 'authorized_user'} and (not project or project == 'phraseman-ea0b3'):
+                      credential.write_text(candidate, encoding='utf-8')
+                      with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+                          env.write(f'GOOGLE_APPLICATION_CREDENTIALS={credential}\n')
+                      with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                          out.write('mode=adc\n')
+                      print(f'Using Google credential from {key} ({kind}).')
+                      sys.exit(0)
+          for key, value in secrets.items():
+              if value and re.search(r'FIREBASE.*TOKEN|TOKEN.*FIREBASE', key, re.I):
+                  print(f'::add-mask::{value}')
+                  with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+                      env.write(f'FIREBASE_DEPLOY_TOKEN={value}\n')
+                  with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                      out.write('mode=token\n')
+                  print(f'Using Firebase token from {key}.')
+                  sys.exit(0)
+          merged = {**variables, **secrets}
+          provider = next((str(v) for k, v in merged.items() if v and re.search(r'WORKLOAD.*IDENTITY.*PROVIDER|WIF.*PROVIDER', k, re.I)), '')
+          account = next((str(v) for k, v in merged.items() if v and re.search(r'(WORKLOAD|WIF|DEPLOY).*SERVICE.*ACCOUNT|SERVICE.*ACCOUNT.*EMAIL', k, re.I)), '')
+          if provider and account:
+              with open(os.environ['GITHUB_ENV'], 'a', encoding='utf-8') as env:
+                  env.write(f'WIF_PROVIDER={provider}\nWIF_SERVICE_ACCOUNT={account}\n')
+              with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as out:
+                  out.write('mode=wif\n')
+              print('Using Workload Identity Federation.')
+              sys.exit(0)
+          print('No Firebase deployment credential is configured.', file=sys.stderr)
+          sys.exit(31)
+          PY
+
+      - name: Authenticate through Workload Identity
+        if: steps.firebase-auth.outputs.mode == 'wif'
+        uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.WIF_SERVICE_ACCOUNT }}
+
+      - name: Deploy Functions, Firestore index and Hosting
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          args=(deploy --project "$FIREBASE_PROJECT_ID" --only 'functions:english-test,firestore:indexes,hosting:knowlywww,hosting:admin' --non-interactive --force)
+          if [[ "${{ steps.firebase-auth.outputs.mode }}" == 'token' ]]; then args+=(--token "$FIREBASE_DEPLOY_TOKEN"); fi
+          npx --yes firebase-tools@15.24.0 "${args[@]}"
+
+      - name: Verify live test, certificate, admin and API
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          verify_page() {
+            local url="$1" marker="$2"
+            for attempt in $(seq 1 24); do
+              code="$(curl --silent --show-error --location --max-time 25 --header 'Cache-Control: no-cache' --output /tmp/page.html --write-out '%{http_code}' "$url?release=$GITHUB_RUN_ID" || true)"
+              if [[ "$code" == '200' ]] && grep --fixed-strings --quiet "$marker" /tmp/page.html; then
+                echo "Verified: $url"
+                return 0
+              fi
+              echo "Attempt $attempt: $url returned $code"
+              sleep 5
+            done
+            return 1
+          }
+          verify_page 'https://knowlyapps.com/english-level-test/' 'Получить сертификат'
+          verify_page 'https://knowlyapps.web.app/english-level-test/' 'Насколько <em>естественно</em>'
+          verify_page 'https://phraseman-ea0b3.web.app/v2/english-test.html' 'Диагностика всех вопросов'
+          verify_page 'https://phraseman-ea0b3.web.app/v2/' 'English Test'
+          curl -fsS -X POST 'https://knowlyapps.com/api/english-test' -H 'Content-Type: application/json' --data '{"action":"landing","bankVersion":"2026-07-21.8","eventId":"production-smoke-'"$GITHUB_RUN_ID"'"}' | grep -Fq '"ok":true'
+
+      - name: Commit exact verified source to master
+        working-directory: production
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf functions-english-test/node_modules
+          find .github/workflows -maxdepth 1 -type f -iname '*english*test*' ! -name 'deploy-english-test-production.yml' -delete
+          printf 'deployed_at=%s\nrelease_archive_sha256=%s\nworkflow_run=%s\n' "$(date -u +%FT%TZ)" "$RELEASE_ARCHIVE_SHA256" "$GITHUB_RUN_ID" > .english-test-production-release
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git diff --cached --check
+          git commit -m 'feat(web): deploy verified English level test [skip ci]'
+          git pull --rebase origin master
+          git push origin HEAD:master
+
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-clean-v3-diagnostics-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/english-test-clean-files.txt
+            /tmp/page.html
+            production/firebase-debug.log
+          if-no-files-found: ignore
+          retention-days: 3

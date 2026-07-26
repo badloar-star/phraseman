@@ -1513,6 +1513,9 @@ export { submitWebsiteContact } from './website_contact';
 export { siteStatsTrack } from './site_stats';
 
 export { revenueCatShardsWebhook } from './revenuecat_shards';
+export { adminProductAnalytics } from './admin_product_analytics';
+export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
+export { adminMonthlyDecisionPack } from './admin_monthly_decision_pack';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
 

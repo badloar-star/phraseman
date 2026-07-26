@@ -1,7 +1,9 @@
 import {
   clampProductAnalyticsDays,
+  hasProductAnalyticsAuth,
   isAnalyticsExportPendingError,
   normalizeProductAnalyticsPlatform,
+  validatedAnalyticsDatasetTable,
 } from './admin_product_analytics';
 import fs from 'fs';
 import path from 'path';
@@ -9,7 +11,62 @@ import path from 'path';
 describe('admin product analytics input contract', () => {
   it('requires the server-side money.read permission', () => {
     const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
-    expect(source).toContain("hasClaimedPermission(request.auth?.token, 'money.read')");
+    expect(source).toContain('hasProductAnalyticsAuth(request.auth)');
+    expect(source).toContain('enforceAppCheck: ENFORCE_APP_CHECK');
+  });
+
+  it('rejects forged or insufficient callable auth and accepts intended analytics roles', () => {
+    expect(hasProductAnalyticsAuth({ admin: true, adminRole: 'owner' })).toBe(false);
+    expect(hasProductAnalyticsAuth({
+      uid: 'support-user',
+      token: { admin: true, adminRole: 'support' },
+    })).toBe(false);
+    expect(hasProductAnalyticsAuth({
+      uid: 'analyst-user',
+      token: {
+        admin: true,
+        adminRole: 'analyst',
+        aud: 'phraseman-ea0b3',
+        iss: 'https://securetoken.google.com/phraseman-ea0b3',
+        firebase: { sign_in_provider: 'google.com' },
+      },
+    })).toBe(true);
+    expect(hasProductAnalyticsAuth({
+      uid: 'foreign-admin',
+      token: {
+        admin: true,
+        adminRole: 'owner',
+        aud: 'other-project',
+        iss: 'https://securetoken.google.com/other-project',
+        firebase: { sign_in_provider: 'google.com' },
+      },
+    })).toBe(false);
+  });
+
+  it('accepts only the exact production GA4 dataset identifier shape', () => {
+    expect(validatedAnalyticsDatasetTable('phraseman-ea0b3.analytics_532376954'))
+      .toBe('`phraseman-ea0b3.analytics_532376954.events_*`');
+    for (const unsafe of [
+      'analytics_532376954',
+      'other-project.analytics_532376954',
+      'phraseman-ea0b3.other_dataset',
+      'phraseman-ea0b3.analytics_1;DROP TABLE x',
+      'phraseman-ea0b3.analytics_１２３４５６',
+      'phraseman-ea0b3.analytics_12345`',
+    ]) {
+      expect(() => validatedAnalyticsDatasetTable(unsafe)).toThrow('Analytics warehouse is not configured');
+    }
+  });
+
+  it('keeps a bounded production runtime envelope for the synchronous query', () => {
+    const source = fs.readFileSync(path.join(process.cwd(), 'src', 'admin_product_analytics.ts'), 'utf8');
+    expect(source).toContain('timeoutSeconds: 300');
+    expect(source).toContain("memory: '1GiB'");
+    expect(source).toContain('maxInstances: 3');
+    expect(source).toContain('maximumBytesBilled: String(MAXIMUM_BYTES_BILLED)');
+    expect(source).toContain('const MAXIMUM_BYTES_BILLED = 5_000_000_000');
+    expect(source).not.toContain('maximumBytesBilled?:');
+    expect(source).toContain('Invalid IANA reporting timezone');
   });
 
   it('limits the query window to supported periods', () => {

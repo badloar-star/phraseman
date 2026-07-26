@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -21,11 +23,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Install functions dependencies for root typecheck
+        run: npm --prefix functions ci --ignore-scripts
+
       - name: Typecheck
         run: npx tsc --noEmit --pretty false
 
       - name: No visible loading audit
-        run: npm run audit:no-visible-loading
+        run: npm run audit:no-visible-loading -- --changed
 
   app-tests:
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'

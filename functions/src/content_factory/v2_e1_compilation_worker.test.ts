@@ -139,6 +139,30 @@ describe('V2 E1 compilation worker', () => {
       .rejects.toThrow('v2_worker_source_missing');
   });
 
+  it('runs a direct vertical-slice compilation without a queued job', async () => {
+    const db = fakeDb();
+    await handleAdminSeedV2E1DemoSource({ auth, data: {} }, { db: db as never, now: () => '2026-07-25T11:00:00.000Z' });
+    const result = await handleAdminRunV2E1Compilation(
+      { auth, data: { direct: true } },
+      { db: db as never, now: () => '2026-07-25T11:00:01.000Z' },
+    );
+    expect(result).toMatchObject({ ok: true, jobId: 'v2-e1-direct', episodeId: 'ep-01', qaOk: true, sessionCount: 12 });
+    const job = db.docs.get('content_v2_generation_jobs/v2-e1-direct') as Record<string, unknown>;
+    expect(job.mode).toBe('direct_vertical_slice');
+    expect(job.state).toBe('compiled');
+    expect(db.docs.get('content_v2_compiled_units/ep-01')).toBeDefined();
+    // Повторный прямой прогон не падает и перекомпилирует детерминированный артефакт.
+    const rerun = await handleAdminRunV2E1Compilation(
+      { auth, data: { direct: true } },
+      { db: db as never, now: () => '2026-07-25T11:00:02.000Z' },
+    );
+    expect(rerun).toMatchObject({ ok: true, qaOk: true });
+    // Прямой прогон без источника — честный отказ.
+    db.docs.delete('content_v2_sources/ep-01');
+    await expect(handleAdminRunV2E1Compilation({ auth, data: { direct: true } }, { db: db as never }))
+      .rejects.toThrow('v2_worker_source_missing');
+  });
+
   it('rejects roles without content draft write access', async () => {
     const db = fakeDb();
     await expect(handleAdminSeedV2E1DemoSource(

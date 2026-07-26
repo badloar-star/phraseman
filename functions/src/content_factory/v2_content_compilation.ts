@@ -24,7 +24,9 @@ export interface V2ResolvedLanguageProfile {
 }
 
 export interface V2CompileEpisodeContentInput {
-  readonly request: V2AdminGenerationRequest;
+  // зачем: компиляции нужны только эпизоды и пин профиля — сужение типа позволяет
+  // прямой E1-прогон без полного запроса генерации (пины шаблонов там не участвуют).
+  readonly request: Pick<V2AdminGenerationRequest, 'episodeIds' | 'languageProfileRef'>;
   readonly episodeId: string;
   readonly canDoOutcomeId: string;
   readonly contentItems: readonly V2ContentItem[];

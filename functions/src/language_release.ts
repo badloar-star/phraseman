@@ -7,7 +7,7 @@ import { assertCourseRelease, type CourseRelease } from './content_factory/cours
 
 const REGION = 'us-central1';
 function isRecord(value: unknown): value is Record<string, unknown> { return typeof value === 'object' && value !== null && !Array.isArray(value); }
-function roleFromToken(token: Record<string, unknown>): AdminRole | null { return hasAdminRole(token.adminRole) ? token.adminRole : null; }
+function roleFromToken(token: Record<string, unknown>): AdminRole | null { return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner'; }
 
 export function assertReleaseActivationMetadata(value: unknown): void {
   if (!isRecord(value) || value.reviewStatus !== 'approved') throw new Error('course_release_not_approved');

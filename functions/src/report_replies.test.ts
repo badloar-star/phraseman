@@ -10,7 +10,10 @@ describe('report reply one-coin contract', () => {
   test('requires the exact server-side permission for draft and send actions', () => {
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'analyst' } } }, 'reports.reply.draft')).toThrow(HttpsError);
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'moderator' } } }, 'reports.reply.send')).toThrow(HttpsError);
-    expect(() => requireReportReplyPermission({ auth: { token: { admin: true } } }, 'reports.reply.send')).toThrow(HttpsError);
+    // Админ без явной роли = owner (adminRole в проекте не выдаётся) — отправка ответов
+    // на репорты не должна блокироваться отсутствием claim'а, которого никто не ставит.
+    expect(() => requireReportReplyPermission({ auth: { token: { admin: true } } }, 'reports.reply.send')).not.toThrow();
+    expect(() => requireReportReplyPermission({ auth: { token: {} } }, 'reports.reply.send')).toThrow(HttpsError);
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'support' } } }, 'reports.reply.draft')).not.toThrow();
     expect(() => requireReportReplyPermission({ auth: { token: { admin: true, adminRole: 'support' } } }, 'reports.reply.send')).not.toThrow();
   });

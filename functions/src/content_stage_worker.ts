@@ -233,7 +233,9 @@ export async function generateContentStageArtifact(input: {
 }
 
 export const adminRunContentStage = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: [CONTENT_STAGE_OPENAI_API_KEY], timeoutSeconds: 300, memory: '1GiB' }, async (request) => {
-  if (!request.auth?.token?.admin || !hasAdminRole(request.auth.token.adminRole) || !hasPermission(request.auth.token.adminRole, 'content.draft.write')) throw new HttpsError('permission-denied', 'Role cannot generate content stages');
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const stageRole = hasAdminRole(request.auth?.token?.adminRole) ? request.auth.token.adminRole : 'owner';
+  if (!request.auth?.token?.admin || !hasPermission(stageRole, 'content.draft.write')) throw new HttpsError('permission-denied', 'Role cannot generate content stages');
   const actorUid = request.auth.uid;
   const role = request.auth.token.adminRole;
   const { stageId } = parseRunContentStageRequest(request.data);

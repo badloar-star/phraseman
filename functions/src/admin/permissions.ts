@@ -88,8 +88,31 @@ export function hasPermission(role: unknown, permission: AdminPermission): boole
   return hasAdminRole(role) && ROLE_PERMISSIONS[role].has(permission);
 }
 
+/**
+ * Роль админа из токена. Флаг `admin === true` без явной роли = owner.
+ *
+ * зачем: 25.07 доступ ужесточили до «admin === true И adminRole», но выдавать
+ * adminRole в проекте нечем — `setCustomUserClaims` не вызывается нигде. У всех
+ * действующих админов роли не оказалось, и разом отвалилось 18 точек входа
+ * (ответы на репорты, награды, рассылки, контент). Возвращаем прежнее поведение:
+ * флаг admin сам по себе даёт полные права, а adminRole — необязательное сужение.
+ */
+export function roleFromAdminToken(token: unknown): AdminRole | null {
+  if (!token || typeof token !== 'object') return null;
+  const claims = token as { admin?: unknown; adminRole?: unknown };
+  if (claims.admin !== true) return null;
+  return hasAdminRole(claims.adminRole) ? claims.adminRole : 'owner';
+}
+
 export function hasClaimedPermission(token: unknown, permission: AdminPermission): boolean {
   if (!token || typeof token !== 'object') return false;
   const claims = token as { admin?: unknown; adminRole?: unknown };
-  return claims.admin === true && hasPermission(claims.adminRole, permission);
+  if (claims.admin !== true) return false;
+  // зачем: 25.07 проверка ужесточилась до «admin === true И adminRole», но механизма
+  // выдачи adminRole в проекте нет (setCustomUserClaims нигде не вызывается), поэтому
+  // у существующих админов роли не оказалось — отвалилась отправка ответов на репорты
+  // и всё остальное с этой проверкой. Флаг admin сам по себе снова даёт полные права;
+  // adminRole остаётся необязательным сужением прав, если его кому-то проставят.
+  if (!hasAdminRole(claims.adminRole)) return true;
+  return hasPermission(claims.adminRole, permission);
 }

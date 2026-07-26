@@ -112,6 +112,11 @@ describe('claimed admin permissions', () => {
     expect(hasClaimedPermission({ admin: true, adminRole: 'moderator' }, 'money.read')).toBe(false);
     expect(hasClaimedPermission({ admin: true, adminRole: 'developer' }, 'money.read')).toBe(false);
     expect(hasClaimedPermission({ admin: false, adminRole: 'owner' }, 'money.read')).toBe(false);
-    expect(hasClaimedPermission({ admin: true }, 'money.read')).toBe(false);
+    // Админ без явной роли = owner: adminRole в проекте никем не выдаётся
+    // (setCustomUserClaims не вызывается нигде), и требование роли разом
+    // заблокировало 18 точек входа админки. Флаг admin снова самодостаточен.
+    expect(hasClaimedPermission({ admin: true }, 'money.read')).toBe(true);
+    expect(hasClaimedPermission({}, 'money.read')).toBe(false);
+    expect(hasClaimedPermission(null, 'money.read')).toBe(false);
   });
 });

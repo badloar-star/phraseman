@@ -21,7 +21,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 }
 
 function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
+  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
 }
 
 function requireContentReader(request: { auth?: { token?: Record<string, unknown> } }): void {

@@ -3,8 +3,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, type AdminPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
-import { ACCOUNT_DELETE_AUTH_MARKERS } from './account_delete_job';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
 
 /**
  * Ручная диагностика/починка/перепривязка auth-привязок из админки.
@@ -50,10 +49,12 @@ function numeric(value: unknown): number {
 function actor(request: { auth?: { uid?: string; token?: Row } | null }): { actorUid: string; role: AdminRole; email: string } {
   const actorUid = text(request.auth?.uid, 160);
   const token = request.auth?.token;
-  if (!actorUid || token?.admin !== true || !hasAdminRole(token.adminRole) || !hasPermission(token.adminRole, AUTH_REPAIR_PERMISSION)) {
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(token?.adminRole) ? token.adminRole : 'owner';
+  if (!actorUid || token?.admin !== true || !hasPermission(role, AUTH_REPAIR_PERMISSION)) {
     throw new HttpsError('permission-denied', 'Admin permission required');
   }
-  return { actorUid, role: token.adminRole, email: text(token.email, 320) || actorUid };
+  return { actorUid, role, email: text(token.email, 320) || actorUid };
 }
 
 function normalizeProvider(value: unknown): 'google' | 'apple' | null {
@@ -63,9 +64,11 @@ function normalizeProvider(value: unknown): 'google' | 'apple' | null {
 
 /** Провайдер из Firebase Auth record (providerData → google.com/apple.com). */
 function providerFromAuthRecord(userRecord: admin.auth.UserRecord | null): 'google' | 'apple' | null {
-  const providerId = text(userRecord?.providerData?.[0]?.providerId, 40).toLowerCase();
-  if (providerId === 'google.com') return 'google';
-  if (providerId === 'apple.com') return 'apple';
+  for (const providerData of userRecord?.providerData ?? []) {
+    const providerId = text(providerData?.providerId, 40).toLowerCase();
+    if (providerId === 'google.com') return 'google';
+    if (providerId === 'apple.com') return 'apple';
+  }
   return null;
 }
 
@@ -121,11 +124,13 @@ export function normalizeAuthLinkRepairInput(data: unknown): AdminAuthLinkRepair
   return Object.freeze({ uid, reason, requestId, idempotencyKey });
 }
 
-export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
   const input = normalizeAuthLinkRepairInput(request.data);
   const a = actor(request as { auth?: { uid?: string; token?: Row } });
   const db = admin.firestore();
   const userRef = db.collection(USERS).doc(input.uid);
+  const targetTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(input.uid);
   const opRef = db.collection('admin_command_operations').doc(`auth_link_repair_${input.idempotencyKey}`);
   const auditRef = db.collection('admin_log').doc();
   const now = Date.now();
@@ -141,7 +146,13 @@ export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: ENF
       return { ...(record(d.result) ? d.result : {}), replayed: true };
     }
 
-    const userSnap = await tx.get(userRef);
+    const [userSnap, targetTombstoneSnap] = await Promise.all([
+      tx.get(userRef),
+      tx.get(targetTombstoneRef),
+    ]);
+    if (targetTombstoneSnap.exists) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
     if (!userSnap.exists) throw new HttpsError('not-found', 'user not found');
     const userData = userSnap.data() ?? {};
     const linked = readLinkedAuth(userData);
@@ -153,8 +164,30 @@ export const adminRepairAuthLink = onCall({ region: REGION, enforceAppCheck: ENF
     }
 
     const linkRef = db.collection(AUTH_LINKS).doc(canonicalAuthUid);
-    const linkSnap = await tx.get(linkRef);
+    const markerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(canonicalAuthUid);
+    const [linkSnap, markerSnap] = await Promise.all([
+      tx.get(linkRef),
+      tx.get(markerRef),
+    ]);
+    if (markerSnap.exists) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
     const linkData = linkSnap.data() ?? {};
+    const linkedStableId = text(linkData.stable_id, 160);
+    if (linkSnap.exists && linkedStableId && linkedStableId !== input.uid) {
+      const displacedUserRef = db.collection(USERS).doc(linkedStableId);
+      const displacedTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(linkedStableId);
+      const [displacedUserSnap, displacedTombstoneSnap] = await Promise.all([
+        tx.get(displacedUserRef),
+        tx.get(displacedTombstoneRef),
+      ]);
+      if (displacedTombstoneSnap.exists) {
+        throw new HttpsError('failed-precondition', 'account_delete_pending');
+      }
+      if (displacedUserSnap.exists && displacedUserSnap.data()?.identityHidden !== true) {
+        throw new HttpsError('failed-precondition', 'provider_link_conflict');
+      }
+    }
 
     // Дрифт-анализ: док привязки отсутствует / указывает не на тот stable_id /
     // не совпадают provider-поля / users-поля не консистентны.
@@ -271,28 +304,34 @@ export function normalizeProviderRelinkInput(data: unknown): AdminProviderRelink
   return Object.freeze({ uid, providerEmail, providerUid, reason, requestId, idempotencyKey });
 }
 
-export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
+export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: true }, async (request) => {
+  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
   const input = normalizeProviderRelinkInput(request.data);
   const a = actor(request as { auth?: { uid?: string; token?: Row } });
 
   // Email → provider uid через Firebase Auth (источник правды для провайдерского
   // email — тот же принцип, что enrichMetadataFromAuth в auth_identity.ts).
-  let resolvedProviderUid = input.providerUid;
+  let resolvedProviderUid: string | null = null;
   let authRecord: admin.auth.UserRecord | null = null;
-  if (input.providerEmail) {
-    try {
+  try {
+    if (input.providerEmail) {
       authRecord = await admin.auth().getUserByEmail(input.providerEmail);
-    } catch {
-      throw new HttpsError('not-found', 'provider_not_found');
+    } else if (input.providerUid) {
+      authRecord = await admin.auth().getUser(input.providerUid);
     }
-    resolvedProviderUid = text(authRecord.uid, 160);
+    resolvedProviderUid = text(authRecord?.uid, 160);
+  } catch {
+    throw new HttpsError('not-found', 'provider_not_found');
   }
   if (!resolvedProviderUid) throw new HttpsError('not-found', 'provider_not_found');
+  const resolvedProvider = providerFromAuthRecord(authRecord);
+  if (!resolvedProvider) throw new HttpsError('failed-precondition', 'provider_unsupported');
 
   const db = admin.firestore();
   const userRef = db.collection(USERS).doc(input.uid);
   const linkRef = db.collection(AUTH_LINKS).doc(resolvedProviderUid);
   const markerRef = db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(resolvedProviderUid);
+  const targetTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(input.uid);
   const opRef = db.collection('admin_command_operations').doc(`auth_provider_relink_${input.idempotencyKey}`);
   const auditRef = db.collection('admin_log').doc();
   const now = Date.now();
@@ -313,13 +352,14 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: ENF
       return { ...(record(d.result) ? d.result : {}), replayed: true };
     }
 
-    const [userSnap, linkSnap, markerSnap] = await Promise.all([
+    const [userSnap, linkSnap, markerSnap, targetTombstoneSnap] = await Promise.all([
       tx.get(userRef),
       tx.get(linkRef),
       tx.get(markerRef),
+      tx.get(targetTombstoneRef),
     ]);
     if (!userSnap.exists) throw new HttpsError('not-found', 'user not found');
-    if (markerSnap.exists) {
+    if (markerSnap.exists || targetTombstoneSnap.exists) {
       // Инвариант ensureAuthLinkDoc: uid с незавершённым удалением не привязываем.
       throw new HttpsError('failed-precondition', 'account_delete_pending');
     }
@@ -330,13 +370,39 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: ENF
     const previousProviderUids = Array.from(new Set(
       [oldFirebaseAuthUid, linked.providerUid].filter((value) => value && value !== resolvedProviderUid),
     ));
+    const previousProviderLinkRefs = previousProviderUids.map((uid) => db.collection(AUTH_LINKS).doc(uid));
+    const previousProviderMarkerRefs = previousProviderUids.map(
+      (uid) => db.collection(ACCOUNT_DELETE_AUTH_MARKERS).doc(uid),
+    );
+    const [previousProviderLinkSnaps, previousProviderMarkerSnaps] = await Promise.all([
+      Promise.all(previousProviderLinkRefs.map((ref) => tx.get(ref))),
+      Promise.all(previousProviderMarkerRefs.map((ref) => tx.get(ref))),
+    ]);
+    if (previousProviderMarkerSnaps.some((snapshot) => snapshot.exists)) {
+      throw new HttpsError('failed-precondition', 'account_delete_pending');
+    }
     const linkData = linkSnap.data() ?? {};
     const previousLinkedStableId = text(linkData.stable_id, 160);
     const displacedStableId = previousLinkedStableId && previousLinkedStableId !== input.uid
       ? previousLinkedStableId
       : null;
 
-    const provider = providerFromAuthRecord(authRecord) ?? linked.provider;
+    if (displacedStableId) {
+      const displacedUserRef = db.collection(USERS).doc(displacedStableId);
+      const displacedTombstoneRef = db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(displacedStableId);
+      const [displacedUserSnap, displacedTombstoneSnap] = await Promise.all([
+        tx.get(displacedUserRef),
+        tx.get(displacedTombstoneRef),
+      ]);
+      if (displacedTombstoneSnap.exists) {
+        throw new HttpsError('failed-precondition', 'account_delete_pending');
+      }
+      if (displacedUserSnap.exists && displacedUserSnap.data()?.identityHidden !== true) {
+        throw new HttpsError('failed-precondition', 'provider_link_conflict');
+      }
+    }
+
+    const provider = resolvedProvider;
     const email = input.providerEmail ?? (text(authRecord?.email, 320) || null) ?? linked.email;
     const displayName = text(authRecord?.displayName, 160) || linked.displayName;
 
@@ -352,6 +418,11 @@ export const adminRelinkProvider = onCall({ region: REGION, enforceAppCheck: ENF
 
     // auth_links/{providerUid} — форма ensureAuthLinkDoc (merge, linkedAt сохраняем).
     const linkedAt = numeric(linkData.linkedAt) > 0 ? numeric(linkData.linkedAt) : now;
+    previousProviderLinkSnaps.forEach((snapshot, index) => {
+      if (snapshot.exists && text(snapshot.data()?.stable_id, 160) === input.uid) {
+        tx.delete(previousProviderLinkRefs[index]);
+      }
+    });
     tx.set(linkRef, {
       stable_id: input.uid,
       updatedAt: now,

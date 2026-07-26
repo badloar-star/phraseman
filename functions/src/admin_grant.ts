@@ -190,10 +190,13 @@ function requireRewardWriter(request: { auth?: { uid?: string; token?: Row } | n
 } {
   const actorUid = text(request.auth?.uid, 160);
   const token = request.auth?.token;
-  if (!actorUid || token?.admin !== true || !hasAdminRole(token.adminRole)) {
+  if (!actorUid || token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin role required');
   }
-  const role = token.adminRole;
+  // зачем: adminRole в проекте никем не проставляется (setCustomUserClaims нет),
+  // поэтому у действующих админов роли нет и выдача наград отваливалась. Флага admin
+  // достаточно — считаем такого админа owner'ом; явная роль, если есть, всё ещё сужает права.
+  const role: AdminRole = hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
   if (!hasPermission(role, 'users.write')) throw new HttpsError('permission-denied', 'Role cannot use users.write');
   return { actorUid, actorEmail: text(token.email, 320) || actorUid, role };
 }

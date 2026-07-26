@@ -177,10 +177,11 @@ function roleFor(request: { auth?: { uid?: string; token?: Row } }, permission: 
 } {
   const actorUid = text(request.auth?.uid, 160);
   const token = request.auth?.token;
-  if (!actorUid || token?.admin !== true || !hasAdminRole(token.adminRole)) {
+  if (!actorUid || token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin role required');
   }
-  const role = token.adminRole;
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
   if (!hasPermission(role, permission)) throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   return { actorUid, actorEmail: text(token.email, 320) || actorUid, role };
 }

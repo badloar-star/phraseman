@@ -63,13 +63,10 @@ export function requireContentDraftWriter(
     | { readonly uid?: string; readonly token?: Record<string, unknown> }
     | undefined,
 ): ContentDraftWriter {
-  if (
-    !auth?.uid ||
-    auth.token?.admin !== true ||
-    !hasAdminRole(auth.token.adminRole)
-  )
+  if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  const role = auth.token.adminRole as AdminRole;
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
   if (!hasPermission(role, "content.draft.write"))
     throw new HttpsError("permission-denied", "Role cannot edit V2 drafts");
   return Object.freeze({ uid: auth.uid, role });
@@ -80,13 +77,10 @@ export function requireContentPublisher(
     | { readonly uid?: string; readonly token?: Record<string, unknown> }
     | undefined,
 ): ContentDraftWriter {
-  if (
-    !auth?.uid ||
-    auth.token?.admin !== true ||
-    !hasAdminRole(auth.token.adminRole)
-  )
+  if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  const role = auth.token.adminRole as AdminRole;
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
   if (!hasPermission(role, "content.publish"))
     throw new HttpsError("permission-denied", "Role cannot publish V2 content");
   return Object.freeze({ uid: auth.uid, role });
@@ -97,13 +91,10 @@ export function requireContentReviewer(
     | { readonly uid?: string; readonly token?: Record<string, unknown> }
     | undefined,
 ): ContentDraftWriter {
-  if (
-    !auth?.uid ||
-    auth.token?.admin !== true ||
-    !hasAdminRole(auth.token.adminRole)
-  )
+  if (!auth?.uid || auth.token?.admin !== true)
     throw new HttpsError("permission-denied", "Admin only");
-  const role = auth.token.adminRole as AdminRole;
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(auth.token.adminRole) ? auth.token.adminRole : "owner";
   if (!hasPermission(role, "content.review"))
     throw new HttpsError("permission-denied", "Role cannot review V2 content");
   return Object.freeze({ uid: auth.uid, role });

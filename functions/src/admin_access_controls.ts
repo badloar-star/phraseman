@@ -49,8 +49,10 @@ export function buildAdminAccessPatch(user: Readonly<Row>, input: AdminAccessInp
 
 function actor(request: { auth?: { uid?: string; token?: Row } | null }, permission: 'money.manual_access.write' | 'community.moderate'): { actorUid: string; role: AdminRole; email: string } {
   const actorUid = text(request.auth?.uid, 160); const token = request.auth?.token;
-  if (!actorUid || token?.admin !== true || !hasAdminRole(token.adminRole) || !hasPermission(token.adminRole, permission)) throw new HttpsError('permission-denied', 'Admin permission required');
-  return { actorUid, role: token.adminRole, email: text(token.email, 320) || actorUid };
+  // зачем: adminRole в проекте никем не выдаётся — флага admin достаточно, роль по умолчанию owner.
+  const role: AdminRole = hasAdminRole(token?.adminRole) ? token.adminRole : 'owner';
+  if (!actorUid || token?.admin !== true || !hasPermission(role, permission)) throw new HttpsError('permission-denied', 'Admin permission required');
+  return { actorUid, role, email: text(token.email, 320) || actorUid };
 }
 
 export const adminGrantAccess = onCall({ region: REGION, enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {

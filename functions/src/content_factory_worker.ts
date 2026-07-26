@@ -49,7 +49,7 @@ export function parseGenerationUnitRequest(data: unknown): GenerationUnitRequest
 }
 
 function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
+  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
 }
 
 function releaseIdForJob(jobId: string, studyTarget: string, learnerSourceLocale: string): string {

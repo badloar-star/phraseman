@@ -72,7 +72,7 @@ async function resolvePublishedFlashcardKeysForReview(tx: FirebaseFirestore.Tran
 }
 
 function roleFromToken(token: Record<string, unknown>): AdminRole | null {
-  return hasAdminRole(token.adminRole) ? token.adminRole : null;
+  return /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(token.adminRole) ? token.adminRole : 'owner';
 }
 
 function requirePermission(request: { auth?: { token?: Record<string, unknown> } }, permission: 'content.read' | 'content.draft.write' | 'content.publish'): AdminRole {

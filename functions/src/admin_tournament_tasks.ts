@@ -66,7 +66,7 @@ function requirePermission(
   permission: 'content.read' | 'content.draft.write' | 'content.publish',
 ): AdminRole {
   if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
-  const role = hasAdminRole(request.auth.token.adminRole) ? request.auth.token.adminRole : null;
+  const role = /* зачем: adminRole в проекте никем не выдаётся (setCustomUserClaims нет) — флага admin достаточно, роль по умолчанию owner */ hasAdminRole(request.auth.token.adminRole) ? request.auth.token.adminRole : 'owner';
   if (!role || !hasPermission(role, permission)) {
     throw new HttpsError('permission-denied', `Role cannot use ${permission}`);
   }

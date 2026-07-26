@@ -41,6 +41,7 @@ import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
+import { pearlIconForTheme } from '../app/coin_icons';
 import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { getCurrentMultiplierBreakdown, peekLastMultiplierBreakdown, MultiplierBreakdown } from '../app/xp_manager';
 import SkeletonBlock from './SkeletonShimmer';
@@ -1937,7 +1938,14 @@ function PlayerProfileModalBody({
                 {upgradeBusy ? (
                   <ActivityIndicator size="small" color="#1A1205" />
                 ) : (
-                  <Ionicons name="diamond" size={16} color="#1A1205" />
+                  // зачем: цена карточки — в жемчужинах, значит и значок обязан быть
+                  // ассетом жемчужины (как в магазине/на Главной), а не Ionicons-«алмазом».
+                  <Image
+                    source={pearlIconForTheme(themeMode)}
+                    style={{ width: 20, height: 20 }}
+                    contentFit="contain"
+                    accessible={false}
+                  />
                 )}
               </TouchableOpacity>
             ) : (

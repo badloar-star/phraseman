@@ -8,6 +8,13 @@
 // чтобы этот модуль был полностью покрыт юнит-тестами без эмулятора.
 // ═══════════════════════════════════════════════════════════════════════════
 
+import {
+  DEFAULT_TOURNAMENT_ECONOMY,
+  tournamentPayouts,
+  tournamentPot,
+  type TournamentEconomyConfig,
+} from './tournament_economy';
+
 // ── Коллекции ───────────────────────────────────────────────────────────────
 
 export const TOURNAMENT_SCHEDULE_COLLECTION = 'tournamentSchedule';
@@ -324,6 +331,8 @@ export type TournamentRound = {
 };
 
 export type TournamentRoomDoc = {
+  /** Банк турнира в жемчужинах: сумма взносов всех участников. */
+  potGems?: number;
   roomId: string;
   slotId: string;
   seed: string;
@@ -1021,6 +1030,8 @@ export type TournamentFinalizationPlan = {
   room: TournamentRoomDoc;
   receiptId: string;
   alreadyFinalized: boolean;
+  /** Сколько жемчужин турнира уходит в недельный банк (доля + неразыгранное). */
+  weeklyBankGems?: number;
   playerEffects: Array<{
     playerId: string;
     place: number;
@@ -1031,7 +1042,11 @@ export type TournamentFinalizationPlan = {
   }>;
 };
 
-export function planTournamentFinalization(room: TournamentRoomDoc, nowMs: number): TournamentFinalizationPlan {
+export function planTournamentFinalization(
+  room: TournamentRoomDoc,
+  nowMs: number,
+  economy: TournamentEconomyConfig = DEFAULT_TOURNAMENT_ECONOMY,
+): TournamentFinalizationPlan {
   const receiptId = `tournament_finalize_${room.roomId}`;
   if (room.finalizationReceiptId || room.state === 'rewards' || room.state === 'closed') {
     return { room, receiptId: room.finalizationReceiptId || receiptId, alreadyFinalized: true, playerEffects: [] };
@@ -1040,21 +1055,33 @@ export function planTournamentFinalization(room: TournamentRoomDoc, nowMs: numbe
   if (!room.stateDeadlineAtMs || room.stateDeadlineAtMs <= 0) throw new Error('results_deadline_missing');
   if (nowMs < room.stateDeadlineAtMs) throw new Error('results_visibility_pending');
   const { realPlacements } = computePlacements(room.players);
+
+  // зачем: приз = доля от РЕАЛЬНОГО банка турнира. Считаем состав по самой
+  // комнате, а не по накопленному полю: так пересчёт финализации даёт тот же
+  // результат, даже если счётчик взносов разошёлся из-за сбоя записи.
+  const realCount = room.players.filter((player) => !player.isBot).length;
+  const botCount = room.players.length - realCount;
+  const pot = tournamentPot(realCount, botCount, economy);
+  const { payouts, unclaimedToWeekly } = tournamentPayouts(pot, realPlacements.length, economy);
+
   const playerEffects = realPlacements.map(({ player, place }) => ({
     playerId: player.id,
     place,
     seasonPoints: seasonPointsForPlace(place),
     tournamentsPlayed: 1 as const,
     won: place === 1,
-    reward: tournamentRewardPlan(place),
+    reward: tournamentRewardPlan(place, payouts),
   }));
   return {
     receiptId,
     alreadyFinalized: false,
     playerEffects,
+    // Сколько уходит в недельный банк: доля с турнира + неразыгранные места.
+    weeklyBankGems: pot.toWeeklyBank + unclaimedToWeekly,
     room: {
       ...room,
       state: 'rewards',
+      potGems: pot.total,
       finalizationReceiptId: receiptId,
       stateStartedAtMs: nowMs,
       stateDeadlineAtMs: nowMs + TOURNAMENT_REWARD_CLAIM_WINDOW_MS,
@@ -1174,12 +1201,24 @@ export type TournamentRewardPlan = {
   };
 };
 
-export function tournamentRewardPlan(place: number): TournamentRewardPlan {
+/**
+ * зачем: приз больше НЕ фиксированный (было 50/25/10 из воздуха). Владелец
+ * перевёл экономику на призовой фонд: все 16 участников вносят жемчужины,
+ * тройка призёров делит собранное. Суммы приходят параметром potPayouts —
+ * их считает tournament_economy.tournamentPayouts из реального банка комнаты.
+ * Без параметра (старые комнаты) откатываемся на прежнюю таблицу.
+ */
+export function tournamentRewardPlan(
+  place: number,
+  potPayouts?: readonly { readonly place: number; readonly gems: number }[],
+): TournamentRewardPlan {
   const prize = prizeForPlace(place);
+  const fromPot = potPayouts?.find((payout) => payout.place === place);
   return {
     place,
-    gems: prize?.gems ?? 0,
-    tickets: prize?.ticketBack ? 1 : 0,
+    gems: fromPot ? fromPot.gems : (prize?.gems ?? 0),
+    // Билеты убраны: возврата билета больше нет, приз целиком в жемчужинах.
+    tickets: 0,
     titleId: prize?.titleId ?? null,
     pending: {
       xpCashback: 'disabled_pending_progress_event_contract',

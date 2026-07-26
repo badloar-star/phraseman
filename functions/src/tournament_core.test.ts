@@ -605,9 +605,11 @@ describe('Phase-1 hardening contracts', () => {
   });
 
   it('exposes implemented rewards and explicit pending gates without unsafe fields', () => {
+    // 2026-07-26: билеты убраны (приз целиком в жемчужинах), а суммы приходят
+    // из банка турнира. Без банка — откат на прежнюю таблицу.
     expect(hardening.tournamentRewardPlan(1)).toMatchObject({
       gems: 50,
-      tickets: 1,
+      tickets: 0,
       titleId: 'tournament_champion_of_day',
       pending: {
         xpCashback: 'disabled_pending_progress_event_contract',
@@ -762,10 +764,14 @@ describe('transaction plan semantics', () => {
     const replay = plans.planTournamentFinalization(first.room, 4_000);
     expect(first.receiptId).toBe('tournament_finalize_room-race');
     expect(first.playerEffects).toHaveLength(2);
+    // Приз считается от банка комнаты: 2 живых × 3 = 6, минус 20% в недельный
+    // банк = 5 призёрам, 60/25/15 → победителю 4. Билетов больше нет.
     expect(first.playerEffects[0]).toMatchObject({
       playerId: 'u1', seasonPoints: 25, tournamentsPlayed: 1, won: true,
-      reward: { gems: 50, tickets: 1 },
+      reward: { gems: 4, tickets: 0 },
     });
+    // В недельный банк уходит доля турнира.
+    expect(first.weeklyBankGems).toBe(1);
     expect(replay).toMatchObject({ alreadyFinalized: true, playerEffects: [] });
   });
 });

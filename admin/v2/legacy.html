@@ -12434,12 +12434,6 @@
         <option value="2">Средние</option>
         <option value="3">Сложные</option>
       </select>
-      <select id="tn-source" onchange="tnLoadTasks(true)" title="Раздельные пулы: вопросы от ИИ и вопросы из планов"
-        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="">Оба пула</option>
-        <option value="ai">🤖 Пул ИИ</option>
-        <option value="plan_content">📚 Пул из планов</option>
-      </select>
       <button type="button" onclick="tnLoadTasks(true)"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
       <span style="flex:1"></span>
@@ -35977,10 +35971,10 @@
       _fnTnList = tnFn(_fnTnList, 'adminListTournamentTasks');
       const status = document.getElementById('tn-status')?.value ?? 'draft';
       const difficulty = Number(document.getElementById('tn-difficulty')?.value || 0);
-      const source = document.getElementById('tn-source')?.value || '';
+      // зачем: фильтр пулов убран — турниры играют только на вопросах ИИ,
+      // выбирать не из чего. Сервер сам отдаёт нужный пул.
       const payload = { limit: 25, status, cursor: _tnCursor };
       if (difficulty) payload.difficulty = difficulty;
-      if (source) payload.source = source;
 
       const res = await _fnTnList(payload);
       const data = res?.data || {};

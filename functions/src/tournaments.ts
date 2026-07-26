@@ -58,6 +58,11 @@ import {
   type TournamentState,
   type TournamentTask,
 } from './tournament_core';
+import {
+  normalizeTournamentEconomy,
+  tournamentPayouts,
+  tournamentPot,
+} from './tournament_economy';
 
 const REGION = 'us-central1';
 const ROOM_SCAN_LIMIT = 50;
@@ -206,6 +211,12 @@ function validBotProfile(id: string, data: FirebaseFirestore.DocumentData): BotP
     rank: sanitizeString(data.rank, 24) || 'silver',
     titles: Array.isArray(data.titles) ? data.titles.map((title: unknown) => sanitizeString(title, 48)).filter(Boolean) : [],
   };
+}
+
+/** Баланс жемчужин игрока — тот же формат, что в shards_apply_delta.ts. */
+function readGemBalance(value: unknown): number {
+  const parsed = Math.trunc(Number(value));
+  return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
 }
 
 async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots: BotProfile[]; tasks: TournamentTask[] }> {
@@ -413,14 +424,15 @@ export async function tournamentJoinTransaction(
 
   const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
   const userRef = db.collection('users').doc(stableUid);
-  const ticketsRef = userRef.collection('inventory').doc('tickets');
   const configRef = db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc(TOURNAMENT_SCHEDULE_CONFIG_DOC);
+  // Настройки экономики (цена входа, доли призов) — правятся из админки.
+  const economyRef = db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy');
   const authLinkRef = db.collection('auth_links').doc(authUid);
   const bannedRef = db.collection('banned_users').doc(stableUid);
 
   return db.runTransaction(async (tx) => {
-    const [roomSnap, userSnap, ticketsSnap, configSnap, authLinkSnap, bannedSnap] = await tx.getAll(
-      roomRef, userRef, ticketsRef, configRef, authLinkRef, bannedRef,
+    const [roomSnap, userSnap, economySnap, configSnap, authLinkSnap, bannedSnap] = await tx.getAll(
+      roomRef, userRef, economyRef, configRef, authLinkRef, bannedRef,
     );
     if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
     assertTransactionalTournamentAccess(authUid, stableUid, authLinkSnap, userSnap, bannedSnap);
@@ -443,18 +455,21 @@ export async function tournamentJoinTransaction(
 
     const config = configSnap.exists ? normalizeTournamentSchedule(configSnap.data()) : normalizeTournamentSchedule(null);
     const slot = config.slots.find((candidate) => candidate.slotId === room.slotId && candidate.enabled);
-    if (!slot || config.ticketGemValue <= 0) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
-    const ticketsRequired = Math.max(1, readInt(roomSnap.data()?.ticketsRequired, slot.ticketsRequired));
+    if (!slot) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+
+    // зачем: вход переведён с билетов на жемчужины (решение владельца
+    // 2026-07-26) — одна валюта вместо двух сущностей. Взнос идёт в банк
+    // турнира целиком: 20% осядет в недельном банке, остальное разыграют
+    // призёры. Билеты как сущность убираются.
+    const economy = normalizeTournamentEconomy(economySnap.data());
+    const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
     const user = userSnap.data() || {};
-    const ticketsBefore = Math.max(0, readInt(ticketsSnap.data()?.count, 0));
-    const useFreeEntry = config.freeWeeklyEntry && ticketsRequired === 1
-      && sanitizeString(user.tournament_free_week, 12) !== weekId;
-    if (!useFreeEntry && ticketsBefore < ticketsRequired) {
-      throw new HttpsError('failed-precondition', 'not_enough_tickets');
+    const gemsBefore = readGemBalance(user.shards);
+    if (gemsBefore < entryGems) {
+      throw new HttpsError('failed-precondition', 'not_enough_gems');
     }
-
-    const contribution = useFreeEntry ? 0 : bankContributionGems(ticketsRequired, config.ticketGemValue);
+    const contribution = entryGems;
     const player: TournamentPlayer = {
       id: stableUid,
       isBot: false,
@@ -464,8 +479,10 @@ export async function tournamentJoinTransaction(
       score: 0,
       streak: 0,
       entry: {
-        kind: useFreeEntry ? 'free_weekly' : 'ticket',
-        ticketsSpent: useFreeEntry ? 0 : ticketsRequired,
+        // kind оставлен 'ticket' для совместимости со старыми комнатами:
+        // поле читается при отмене турнира. Реально списаны жемчужины.
+        kind: 'ticket',
+        ticketsSpent: 0,
         bankContributionGems: contribution,
         weekId,
       },
@@ -477,31 +494,30 @@ export async function tournamentJoinTransaction(
       const message = error instanceof Error ? error.message : 'room_not_joinable';
       throw new HttpsError(message === 'room_full' ? 'resource-exhausted' : 'failed-precondition', message);
     }
-    if (useFreeEntry) {
-      tx.set(userRef, { tournament_free_week: weekId, updatedAt: nowMs }, { merge: true });
-    } else {
-      tx.set(ticketsRef, { count: ticketsBefore - ticketsRequired, updatedAt: nowMs }, { merge: true });
-      if (contribution > 0) {
-        tx.set(db.collection(TOURNAMENT_BANK_COLLECTION).doc(weekId), {
-          weekId,
-          total: admin.firestore.FieldValue.increment(contribution),
-          contributions: admin.firestore.FieldValue.increment(1),
-          updatedAt: nowMs,
-        }, { merge: true });
-      }
-    }
+    // зачем: списываем жемчужины из профиля (то же поле shards, что и везде
+    // в игре), а весь взнос кладём в банк турнира — комната сама посчитает,
+    // сколько уйдёт призёрам и сколько в недельный банк.
+    tx.set(userRef, {
+      shards: admin.firestore.FieldValue.increment(-entryGems),
+      updatedAt: nowMs,
+    }, { merge: true });
+    tx.set(roomRef, {
+      potGems: admin.firestore.FieldValue.increment(entryGems),
+    }, { merge: true });
     tx.set(roomRef, {
       players: nextRoom.players.map(publicTournamentPlayer),
       participantAuthUids: nextRoom.participantAuthUids,
       version: nextRoom.version,
       updatedAt: nowMs,
     }, { merge: true });
+    // Клиенту отдаём новый баланс: экран сразу покажет списание без
+    // отдельного запроса (Optimistic UI догоняет ответом сервера).
     return {
       ok: true,
       joined: true,
       roomId,
-      entry: useFreeEntry ? 'free_weekly' : 'ticket',
-      ticketsLeft: useFreeEntry ? ticketsBefore : ticketsBefore - ticketsRequired,
+      entryGems,
+      gemsLeft: gemsBefore - entryGems,
     };
   });
 }
@@ -1008,8 +1024,24 @@ export async function tournamentFinalizeTransaction(
       });
     }
     const winner = plan.playerEffects.find((effect) => effect.place === 1)?.playerId ?? null;
+
+    // зачем: доля турнира (20% банка + неразыгранные места) копится в
+    // недельном банке — его раздаст крон в ночь воскресенья. Пишем один раз
+    // вместе с финализацией: повторный вызов не пройдёт из-за
+    // finalizationReceiptId, значит банк не удвоится.
+    const weeklyGems = Math.max(0, Math.trunc(plan.weeklyBankGems ?? 0));
+    if (weeklyGems > 0) {
+      tx.set(db.collection(TOURNAMENT_BANK_COLLECTION).doc(weekId), {
+        weekId,
+        total: admin.firestore.FieldValue.increment(weeklyGems),
+        contributions: admin.firestore.FieldValue.increment(1),
+        updatedAt: nowMs,
+      }, { merge: true });
+    }
+
     tx.set(roomRef, {
       state: plan.room.state,
+      potGems: plan.room.potGems ?? 0,
       finalizationReceiptId: plan.room.finalizationReceiptId,
       stateStartedAtMs: plan.room.stateStartedAtMs,
       stateDeadlineAtMs: plan.room.stateDeadlineAtMs,

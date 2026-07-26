@@ -237,7 +237,7 @@ describe('вкладка «Турниры» в админке', () => {
       expect(typeof sandbox[name]).toBe('function');
       expect(html).toContain(`${name}(`);
     }
-    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-source', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
+    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
       expect(html).toContain(`id="${id}"`);
     }
   });
@@ -277,15 +277,11 @@ describe('вкладка «Турниры» в админке', () => {
     expect(names).toContain('adminTournamentPoolStats');
   });
 
-  it('фильтр источника уходит на сервер, пустой — не уходит', async () => {
-    const { sandbox, calls, elements } = runTab();
-    await (sandbox.tnLoadTasks as (reset: boolean) => Promise<void>)(true);
-    expect(calls.find((call) => call.name === 'adminListTournamentTasks')?.payload?.source).toBeUndefined();
-
-    elements['tn-source'].value = 'ai';
-    await (sandbox.tnLoadTasks as (reset: boolean) => Promise<void>)(true);
-    const withSource = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
-    expect(withSource?.payload?.source).toBe('ai');
+  it('фильтр пулов убран — источник на сервер не уходит', () => {
+    // 2026-07-26: турниры играют только на вопросах ИИ, выбирать не из чего.
+    // Раньше выбор «Пул ИИ» падал с tournament_list_invalid.
+    expect(html).not.toContain('id="tn-source"');
+    expect(html).not.toContain('payload.source');
   });
 
   it('удаление вопроса требует подтверждение и шлёт action=delete', async () => {

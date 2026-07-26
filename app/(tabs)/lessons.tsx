@@ -58,7 +58,9 @@ import {
 } from '../lessons_tab_state';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-import LessonsV2TabContent from '../../components/LessonsV2TabContent';
+// зачем: владелец заменил старый хекс-макет V2 на лабораторию всех режимов Learning V2
+// (тест каждого режима руками до прод-контента).
+import LearningV2ModesLab from '../../components/learning-v2-lab/LearningV2ModesLab';
 import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
@@ -1387,7 +1389,7 @@ return (<LessonCard key={`l-${num}`}
 
       {ENABLE_DEV_TOOLS && page === 'v2' ? (
         <View style={{ flex: 1 }}>
-          <LessonsV2TabContent bottomPadding={tabContentBottomPad} />
+          <LearningV2ModesLab bottomPadding={tabContentBottomPad} />
         </View>
       ) : null}
 

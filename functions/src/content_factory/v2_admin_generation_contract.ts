@@ -7,7 +7,7 @@ import {
   type V2GenerationScope,
   type V2GenerationStage,
   type V2SeasonGenerationInput,
-} from './generation_plan';
+} from './v2_generation_plan';
 
 const TOP_LEVEL_FIELDS = [
   'schemaVersion', 'seasonId', 'scope', 'episodeIds', 'recipes',

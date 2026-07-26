@@ -9167,6 +9167,7 @@
         'ops-log': 'system',
         'remote-config': 'system',
         'paywall-ab': 'revenue',
+        'v2-generator': 'community',
         alerts: 'system',
         'community-packs': 'community',
         'card-packs': 'community',
@@ -9719,6 +9720,7 @@
   <div class="tab" onclick="switchTab('helpers-board')">🏆 Топ хелперов</div>
   <div class="tab" onclick="switchTab('remote-config')" data-i18n-es="Configuración remota">Remote Config</div>
   <div class="tab" onclick="switchTab('paywall-ab')">🧪 Paywall A/B</div>
+  <div class="tab" onclick="switchTab('v2-generator')" title="Learning V2: генерация юнита E1 — демо-банк, компиляция 12 сессий, QA и артефакт" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.4);color:#a5b4fc;font-weight:700">🧬 V2 Генератор</div>
   <div class="tab" onclick="switchTab('alerts')" data-i18n-es="Alertas">🔔 Alerts</div>
   <div class="tab" onclick="switchTab('ugc-purchases')" data-i18n-es="Compras UGC">UGC purchases</div>
   <div class="tab" onclick="switchTab('refunds')">↩️ Refunds</div>
@@ -10855,6 +10857,31 @@
   .pab-range:hover{border-color:#3a4150}
   .pab-range.pab-active{background:#1e2a3a;border-color:#3b82f6;color:#fff}
 </style>
+
+<div id="tab-v2-generator" class="reports-tab">
+  <h2 style="margin:0 0 4px">🧬 Learning V2 · Генератор юнитов</h2>
+  <div style="color:#9ca3af;font-size:13px;margin-bottom:14px">Вертикальный срез E1: демо-банк → детерминированная компиляция 12 сессий → блокирующий QA → артефакт. Постановка в очередь с пинами шаблонов включится после публикации шаблонов режимов в Content Studio.</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin-bottom:14px">
+    <div style="background:#111827;border-radius:14px;padding:16px">
+      <div style="font-weight:800;color:#e5e7eb;margin-bottom:8px">Шаг 1 · Источник контента</div>
+      <div id="v2g-source-status" style="min-height:40px;color:#9ca3af;font-size:13px;margin-bottom:10px">—</div>
+      <button type="button" id="v2g-seed-btn" onclick="v2gSeed()" style="background:#312e81;color:#c7d2fe;border:none;padding:9px 16px;border-radius:9px;cursor:pointer;font-weight:700">Загрузить демо-банк E1</button>
+    </div>
+    <div style="background:#111827;border-radius:14px;padding:16px">
+      <div style="font-weight:800;color:#e5e7eb;margin-bottom:8px">Шаг 2 · Компиляция юнита</div>
+      <div id="v2g-job-status" style="min-height:40px;color:#9ca3af;font-size:13px;margin-bottom:10px">—</div>
+      <button type="button" id="v2g-run-btn" onclick="v2gRun()" style="background:#065f46;color:#a7f3d0;border:none;padding:9px 16px;border-radius:9px;cursor:pointer;font-weight:700">Скомпилировать юнит E1</button>
+      <button type="button" onclick="v2gRefresh()" style="background:#1f2937;color:#93c5fd;border:none;padding:9px 14px;border-radius:9px;cursor:pointer;font-weight:600;margin-left:8px">Обновить</button>
+    </div>
+  </div>
+
+  <div style="background:#111827;border-radius:14px;padding:16px">
+    <div style="font-weight:800;color:#e5e7eb;margin-bottom:8px">Артефакт · 12 сессий</div>
+    <div id="v2g-artifact" style="color:#9ca3af;font-size:13px">Артефакта пока нет — выполни шаги 1 и 2.</div>
+    <div id="v2g-sessions" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:10px"></div>
+  </div>
+</div>
 
 <div id="tab-alerts" class="reports-tab">
   <div style="padding:4px 0 16px;max-width:1080px">
@@ -13052,6 +13079,119 @@
     window.renderReadMeter();
   };
   const functionsUs = getFunctions(app, 'us-central1');
+
+  // === Learning V2 · Генератор E1 (вертикальный срез) ===
+  // зачем: владелец решил строить генератор в legacy-админке; Optimistic UI: статус
+  // меняется мгновенно, при ошибке откат с понятным текстом, двойной клик защищён.
+  const _v2gState = { seeding: false, running: false };
+  function _v2gEl(id) { return document.getElementById(id); }
+  function _v2gChip(text, color) {
+    return '<span style="display:inline-block;padding:3px 10px;border-radius:999px;background:' + color + '22;color:' + color + ';font-weight:700;font-size:12px">' + text + '</span>';
+  }
+  function _v2gZoneColor(zone) { return zone === 'understand' ? '#818cf8' : zone === 'use' ? '#fbbf24' : '#34d399'; }
+  function _v2gRenderArtifact(artifactDoc) {
+    const artifactBox = _v2gEl('v2g-artifact');
+    const sessionsBox = _v2gEl('v2g-sessions');
+    if (!artifactBox || !sessionsBox) return;
+    if (!artifactDoc) {
+      artifactBox.textContent = 'Артефакта пока нет — выполни шаги 1 и 2.';
+      sessionsBox.innerHTML = '';
+      return;
+    }
+    const artifact = artifactDoc.artifact || {};
+    const qa = artifact.qualityReport || {};
+    const sessions = Array.isArray(artifact.sessions) ? artifact.sessions : [];
+    artifactBox.innerHTML = (qa.ok ? _v2gChip('QA пройден', '#34d399') : _v2gChip('QA заблокирован', '#f87171'))
+      + ' ' + _v2gChip(sessions.length + ' сессий', '#818cf8')
+      + ' <span style="color:#6b7280">скомпилирован ' + String(artifactDoc.compiledAt || '').replace('T', ' ').slice(0, 16) + '</span>';
+    sessionsBox.innerHTML = sessions.map(function(session) {
+      const color = _v2gZoneColor(session.zone);
+      return '<div style="background:#1f2937;border-radius:10px;padding:8px 12px;text-align:center;min-width:64px">'
+        + '<div style="font-weight:900;font-size:16px;color:' + color + '">' + session.ordinal + '</div>'
+        + '<div style="font-size:11px;color:#9ca3af">' + session.cards.length + ' карт</div>'
+        + '</div>';
+    }).join('');
+  }
+  window.loadV2Generator = async function(force) {
+    window._v2GenLoaded = true;
+    const sourceBox = _v2gEl('v2g-source-status');
+    const jobBox = _v2gEl('v2g-job-status');
+    if (sourceBox) sourceBox.textContent = 'Читаю статус…';
+    if (jobBox) jobBox.textContent = 'Читаю статус…';
+    try {
+      // 3 точечных чтения по входу/кнопке — без подписок и без выкачивания коллекций.
+      const [sourceSnap, jobSnap, artifactSnap] = await Promise.all([
+        getDoc(doc(db, 'content_v2_sources', 'ep-01')),
+        getDoc(doc(db, 'content_v2_generation_jobs', 'v2-e1-direct')),
+        getDoc(doc(db, 'content_v2_compiled_units', 'ep-01')),
+      ]);
+      if (sourceBox) {
+        if (sourceSnap.exists()) {
+          const source = sourceSnap.data();
+          sourceBox.innerHTML = _v2gChip('Банк загружен', '#34d399') + ' <span style="color:#6b7280">' + (Array.isArray(source.contentItems) ? source.contentItems.length : 0) + ' фраз · профиль ' + ((source.languageProfile && source.languageProfile.profileId) || '?') + '</span>';
+        } else {
+          sourceBox.innerHTML = _v2gChip('Банка нет', '#f87171') + ' <span style="color:#6b7280">нажми «Загрузить демо-банк E1»</span>';
+        }
+      }
+      if (jobBox) {
+        if (jobSnap.exists()) {
+          const job = jobSnap.data();
+          jobBox.innerHTML = (job.state === 'compiled' ? _v2gChip('Скомпилирован', '#34d399') : _v2gChip(String(job.state || '?'), '#fbbf24'))
+            + (job.mode === 'direct_vertical_slice' ? ' ' + _v2gChip('прямой прогон', '#818cf8') : '');
+        } else {
+          jobBox.innerHTML = _v2gChip('Прогонов не было', '#6b7280');
+        }
+      }
+      _v2gRenderArtifact(artifactSnap.exists() ? artifactSnap.data() : null);
+    } catch (error) {
+      const message = (error && error.message) ? error.message : 'не удалось прочитать статус';
+      if (sourceBox) sourceBox.innerHTML = _v2gChip('Ошибка чтения', '#f87171') + ' <span style="color:#6b7280">' + message + '</span>';
+      if (jobBox) jobBox.textContent = '—';
+    }
+  };
+  window.v2gSeed = async function() {
+    if (_v2gState.seeding) return; // защита от двойного клика
+    _v2gState.seeding = true;
+    const button = _v2gEl('v2g-seed-btn');
+    const sourceBox = _v2gEl('v2g-source-status');
+    const previous = sourceBox ? sourceBox.innerHTML : '';
+    if (button) { button.disabled = true; button.style.opacity = '0.6'; }
+    if (sourceBox) sourceBox.innerHTML = _v2gChip('Загружаю…', '#fbbf24');
+    try {
+      const seed = httpsCallable(functionsUs, 'adminSeedV2E1DemoSource');
+      const result = await seed({});
+      const data = (result && result.data) ? result.data : {};
+      if (sourceBox) sourceBox.innerHTML = _v2gChip('Банк загружен', '#34d399') + ' <span style="color:#6b7280">' + (data.contentItemCount || 0) + ' фраз · hash ' + String((data.languageProfileRef && data.languageProfileRef.contentHash) || '').slice(0, 8) + '…</span>';
+    } catch (error) {
+      // откат при ошибке + понятное сообщение
+      if (sourceBox) sourceBox.innerHTML = (previous && previous !== '—' ? previous + ' ' : '') + _v2gChip('Ошибка', '#f87171') + ' <span style="color:#6b7280">' + ((error && error.message) || 'сид не прошёл') + '</span>';
+    } finally {
+      _v2gState.seeding = false;
+      if (button) { button.disabled = false; button.style.opacity = '1'; }
+    }
+  };
+  window.v2gRun = async function() {
+    if (_v2gState.running) return; // защита от двойного клика
+    _v2gState.running = true;
+    const button = _v2gEl('v2g-run-btn');
+    const jobBox = _v2gEl('v2g-job-status');
+    const previous = jobBox ? jobBox.innerHTML : '';
+    if (button) { button.disabled = true; button.style.opacity = '0.6'; }
+    if (jobBox) jobBox.innerHTML = _v2gChip('Компилирую…', '#fbbf24');
+    try {
+      const run = httpsCallable(functionsUs, 'adminRunV2E1Compilation');
+      const result = await run({ direct: true });
+      const data = (result && result.data) ? result.data : {};
+      if (jobBox) jobBox.innerHTML = _v2gChip('Скомпилирован', '#34d399') + ' ' + _v2gChip((data.sessionCount || 0) + ' сессий', '#818cf8') + (data.qaOk ? ' ' + _v2gChip('QA пройден', '#34d399') : '');
+      void window.loadV2Generator(true); // согласованность с сервером после ответа
+    } catch (error) {
+      if (jobBox) jobBox.innerHTML = (previous && previous !== '—' ? previous + ' ' : '') + _v2gChip('Ошибка', '#f87171') + ' <span style="color:#6b7280">' + ((error && error.message) || 'компиляция не прошла') + '</span>';
+    } finally {
+      _v2gState.running = false;
+      if (button) { button.disabled = false; button.style.opacity = '1'; }
+    }
+  };
+  window.v2gRefresh = function() { void window.loadV2Generator(true); };
   let _fnCommunityModerate = null;
   function getCommunityModerateCallable() {
     if (!_fnCommunityModerate) {
@@ -13198,7 +13338,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -17451,6 +17591,9 @@
     if (tab === 'paywall-ab' && typeof window.loadPaywallAb === 'function' && !window._paywallAbLoaded) {
       void window.loadPaywallAb(false);
     }
+    if (tab === 'v2-generator' && typeof window.loadV2Generator === 'function' && !window._v2GenLoaded) {
+      void window.loadV2Generator(false);
+    }
     if (tab === 'alerts' && typeof window.loadAlertsConfig === 'function' && !window._alertsLoaded) {
       void window.loadAlertsConfig(false);
     }
@@ -18536,6 +18679,7 @@
     'app-messages': 'Messages',
     'remote-config': 'Remote Config',
     'paywall-ab': 'Paywall A/B',
+    'v2-generator': 'V2 Генератор',
     alerts: 'Alerts',
     'ugc-purchases': 'UGC purchases',
     refunds: 'Refunds',
@@ -18639,6 +18783,7 @@
     'ops-log': 'terminal',
     'remote-config': 'sliders',
     'paywall-ab': 'flask',
+    'v2-generator': 'flask',
     alerts: 'bell',
   };
 
@@ -18714,6 +18859,7 @@
     'ops-log': 'system',
     'remote-config': 'system',
     'paywall-ab': 'revenue',
+    'v2-generator': 'community',
     alerts: 'system',
     'daily-phrases': 'community',
   };

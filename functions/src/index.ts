@@ -49,9 +49,21 @@ const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost, league
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { authEnsureStableLink, authStampAnonOwnership, authRecoveryHint } = require('./auth_identity');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authRequestRecoveryCode, authConfirmRecoveryCode } = require('./auth_recovery');
+const {
+  authRequestRecoveryCode,
+  authConfirmRecoveryCode,
+  authRequestCleanInstallRecoveryCode,
+  authConfirmCleanInstallRecoveryCode,
+  authCleanInstallRecoveryDeliveryWorker,
+  authIssueRecoveryHandoffToken,
+  authCompleteRecoveryHandoff,
+} = require('./auth_recovery');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { authMergeStableAccounts } = require('./auth_merge');
+const {
+  authMergeStableAccounts,
+  accountMergeOutboxWorker,
+  accountMergeOutboxRetryCron,
+} = require('./auth_merge');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { accountDeleteMine, accountDeleteEnqueue } = require('./account_delete');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -168,7 +180,14 @@ exports.authStampAnonOwnership = authStampAnonOwnership;
 exports.authRecoveryHint = authRecoveryHint;
 exports.authRequestRecoveryCode = authRequestRecoveryCode;
 exports.authConfirmRecoveryCode = authConfirmRecoveryCode;
+exports.authRequestCleanInstallRecoveryCode = authRequestCleanInstallRecoveryCode;
+exports.authConfirmCleanInstallRecoveryCode = authConfirmCleanInstallRecoveryCode;
+exports.authCleanInstallRecoveryDeliveryWorker = authCleanInstallRecoveryDeliveryWorker;
+exports.authIssueRecoveryHandoffToken = authIssueRecoveryHandoffToken;
+exports.authCompleteRecoveryHandoff = authCompleteRecoveryHandoff;
 exports.authMergeStableAccounts = authMergeStableAccounts;
+exports.accountMergeOutboxWorker = accountMergeOutboxWorker;
+exports.accountMergeOutboxRetryCron = accountMergeOutboxRetryCron;
 exports.accountDeleteMine = accountDeleteMine;
 exports.accountDeleteEnqueue = accountDeleteEnqueue;
 exports.accountDeleteWorker = accountDeleteWorker;
@@ -548,3 +567,7 @@ export {
   adminSetReferralRouletteEmergencyStop,
   adminReferralHealth,
 } from './admin_referrals';
+
+// Learning V2: генерация юнитов (E1 vertical slice) — очередь плана + воркер
+export { adminCreateV2GenerationPlan, adminQueueV2GenerationPlan } from './admin_v2_generation';
+export { adminSeedV2E1DemoSource, adminRunV2E1Compilation } from './content_factory/v2_e1_compilation_worker';

@@ -60,6 +60,7 @@ describe('admin permission matrix', () => {
       'users.message.write': true,
       'money.read': true, 'money.manual_access.write': true,
       'content.read': true, 'content.draft.write': true, 'content.publish': true,
+    'content.review': true,
       'application.config.write': true, 'campaigns.read': true, 'campaigns.write': true,
       'diagnostics.read': true, 'community.moderate': true, 'admin.roles.write': true,
       'support.inbox.read': true, 'support.inbox.pull': true, 'support.draft.write': true,

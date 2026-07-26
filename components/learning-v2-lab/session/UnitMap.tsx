@@ -3,12 +3,13 @@
 // done (золотой с галкой) · current (приподнят, пилюля «НАЧАТЬ») · open (цветной) ·
 // locked (приглушён, замок). Ленты зон несут формулировки can-do, «Моя практика»
 // и Challenge идут сбоку тропы, под узлами — 0–3 звезды. Все состояния из фикстуры.
-import React, { memo, useState } from 'react';
+import React, { memo, useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
 
 import TapScale from '../../TapScale';
 import { GraphemeText } from '../kimi/primitives';
-import { C, LEADING, RADIUS, SPACE, TEXT, WEIGHT } from '../kimi/tokens';
+import { C, LEADING, RADIUS, SPACE, TEXT, WEIGHT, withAlpha } from '../kimi/tokens';
 import type { UnitMapVM, UnitSessionNode } from './contracts';
 
 /** Вьющаяся кривая: горизонтальные сдвиги узлов, одна волна на 7 узлов. */
@@ -89,6 +90,9 @@ export const UnitMap = memo(function UnitMap({
           </View>
 
           <View style={s.trail}>
+            {/* зачем: пунктирная кривая лежит ПОД узлами и не участвует в потоке —
+                поэтому она не влияет на раскладку и не может сдвинуть кружки */}
+            <TrailCurve offsets={nodes.map((n) => n.offset)} />
             {nodes.map(({ node, offset }) => (
               <PathNode
                 key={node.id}
@@ -112,6 +116,54 @@ export const UnitMap = memo(function UnitMap({
         </View>
       ))}
     </ScrollView>
+  );
+});
+
+/** Высота одной строки тропы: узел 84 + звёзды + подпись + промежуток. */
+const ROW = 152;
+/** Ширина макета кривой (390 px — как в поставке). */
+const TRAIL_W = 390;
+
+/**
+ * Пунктирная кривая между узлами (перенос .umap__trail-path поставки:
+ * точечный пунктир, толщина 5, скруглённые концы). Рисуется абсолютно
+ * позиционированным слоем ПОД узлами — не влияет на поток и не двигает их.
+ */
+const TrailCurve = memo(function TrailCurve({ offsets }: { readonly offsets: readonly number[] }) {
+  const d = useMemo(() => {
+    const pts = offsets.map((off, i) => ({
+      x: TRAIL_W / 2 + off * NODE_SHIFT,
+      // Центр узла: половина высоты кружка от начала строки.
+      y: i * ROW + 42,
+    }));
+    return pts
+      .map((p, i) => {
+        if (i === 0) return `M ${p.x} ${p.y}`;
+        const prev = pts[i - 1];
+        const midY = (prev.y + p.y) / 2;
+        return `C ${prev.x} ${midY}, ${p.x} ${midY}, ${p.x} ${p.y}`;
+      })
+      .join(' ');
+  }, [offsets]);
+
+  const height = Math.max(offsets.length - 1, 0) * ROW + 84;
+
+  return (
+    <Svg
+      style={s.trailSvg}
+      viewBox={`0 0 ${TRAIL_W} ${height}`}
+      preserveAspectRatio="none"
+      pointerEvents="none"
+    >
+      <Path
+        d={d}
+        fill="none"
+        stroke={withAlpha(C.fgSecondary, 0.55)}
+        strokeWidth={5}
+        strokeLinecap="round"
+        strokeDasharray="0.1 16"
+      />
+    </Svg>
   );
 });
 
@@ -251,7 +303,9 @@ const s = StyleSheet.create({
   },
   ribbonTitle: { fontSize: TEXT.lg, fontWeight: WEIGHT.bold, color: C.fgPrimary },
   ribbonCanDo: { fontSize: TEXT.sm, color: C.fgSecondary, lineHeight: TEXT.sm * LEADING.snug },
-  trail: { gap: SPACE.s6, alignItems: 'center' },
+  trail: { gap: SPACE.s6, alignItems: 'center', position: 'relative' },
+  // зачем: кривая — фоновый слой тропы, поэтому вне потока и без перехвата тапов
+  trailSvg: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 },
   spot: { alignItems: 'center', gap: SPACE.s1 },
   startPill: {
     paddingVertical: SPACE.s1,

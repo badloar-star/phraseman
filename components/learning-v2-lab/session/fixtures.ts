@@ -2,7 +2,10 @@
 // который владелец указал как правильный). Здесь весь контент сессии: карточки,
 // звёзды за исход, лестница подсказок, теги ошибок. UI ничего не придумывает.
 import type { PracticeHomeVM, SessionVM, UnitMapVM } from './contracts';
-import { TEST_SESSIONS } from './fixtures_test_content';
+import { TEST_SESSIONS, challengeTest } from './fixtures_test_content';
+
+/** Челлендж 3★ — боковой узел карты, весь юнит без подсказок. */
+export const challengeFixture = challengeTest;
 
 /** fixtures/session/unit-1.json — юнит «Представиться (to be)», 3 зоны × 4 сессии. */
 export const unit1Fixture: UnitMapVM = {
@@ -180,10 +183,9 @@ export const unit1Fixture: UnitMapVM = {
       id: 'challenge',
       title: 'Challenge 3★',
       sub: 'Весь юнит без подсказок',
-      state: 'locked',
-      surfaceRef: null,
+      state: 'open',
+      surfaceRef: 'challenge',
       icon: 'trophy',
-      lockNote: 'Откроется после зоны «Использовать»',
     },
   ],
 };

@@ -1254,6 +1254,152 @@ export const session12Test: SessionVM = {
   ],
 };
 
+/**
+ * Челлендж 3★ — боковой узел карты. Весь юнит без подсказок: лестница скрыта,
+ * ответ не показывается, звёзды только за чистый ответ с первой попытки.
+ * Задания взяты из разных сессий юнита, чтобы проверить перенос.
+ */
+export const challengeTest: SessionVM = {
+  id: 'vm-challenge',
+  surfaceId: 'challenge',
+  kind: 'practice',
+  sessionId: 'challenge',
+  title: 'Челлендж 3★',
+  zone: 'Челлендж',
+  intro: {
+    kicker: 'Челлендж · весь юнит',
+    headline: 'Без подсказок',
+    startLabel: 'Принять вызов',
+    cardsDisplay: '6 карт',
+    canDo: 'Подсказок не будет — только ты и фразы юнита',
+  },
+  finale: {
+    headline: 'Челлендж пройден!',
+    canDo: 'Ты прошёл весь юнит без единой подсказки.',
+    continueLabel: 'К карте юнита',
+  },
+  cards: [
+    {
+      id: 'chc1',
+      engine: 'choice',
+      variant: 'contrast',
+      instruction: 'Выбери форму',
+      phrase: { en: 'She ___ my teacher.', ru: '' },
+      options: [
+        { id: 'is', label: 'is', sub: '' },
+        { id: 'am', label: 'am', sub: '' },
+        { id: 'are', label: 'are', sub: '' },
+      ],
+      correctOptionId: 'is',
+      starsByOutcome: STARS,
+      hints: {
+        first: 'С she только is.',
+        contrast: 'She am и She are — так не говорят.',
+        explain: 'She is my teacher.',
+      },
+      mistakeTags: ['форма'],
+      planInjected: false,
+    },
+    {
+      id: 'chc2',
+      engine: 'arrange',
+      variant: 'distractors',
+      instruction: 'Собери вопрос',
+      promptRu: 'Ты здесь новенький?',
+      targetTokens: ['Are', 'you', 'new', 'here'],
+      bankChips: ['here', 'Is', 'you', 'Are', 'new', 'Am'],
+      preplaced: [],
+      starsByOutcome: STARS,
+      hints: {
+        first: 'Вопрос начинается с формы.',
+        contrast: 'Is you и Am you — так не говорят.',
+        explain: 'Are you new here?',
+      },
+      mistakeTags: ['порядок слов'],
+      planInjected: false,
+    },
+    {
+      id: 'chc3',
+      engine: 'input',
+      variant: 'full',
+      instruction: 'Скажи по-английски',
+      promptRu: 'Они мои друзья',
+      answer: 'They are my friends',
+      placeholder: 'Пиши по-английски…',
+      starsByOutcome: STARS,
+      hints: {
+        first: 'Начни с They.',
+        contrast: 'They are — с they только are.',
+        explain: 'They are my friends.',
+      },
+      mistakeTags: ['форма'],
+      planInjected: false,
+    },
+    {
+      id: 'chc4',
+      engine: 'choice',
+      variant: 'audio',
+      instruction: 'Что ты слышишь?',
+      audio: { label: 'Who is she', playLabel: 'Слушать', slowLabel: 'Медленнее' },
+      options: [
+        { id: 'a1', label: 'Кто она?', sub: 'Who is she?', icon: '👩' },
+        { id: 'a2', label: 'Кто он?', sub: 'Who is he?', icon: '🧑' },
+        { id: 'a3', label: 'Кто они?', sub: 'Who are they?', icon: '👥' },
+      ],
+      correctOptionId: 'a1',
+      starsByOutcome: STARS,
+      hints: {
+        first: 'Слушай последнее слово.',
+        contrast: 'he — «хи», they — с «з». Здесь she — «ши».',
+        explain: 'Who is she?',
+      },
+      mistakeTags: ['слух'],
+      planInjected: false,
+    },
+    {
+      id: 'chc5',
+      engine: 'input',
+      variant: 'full',
+      instruction: 'Скажи по-английски',
+      promptRu: 'Это мой учитель',
+      answer: 'This is my teacher',
+      placeholder: 'Пиши по-английски…',
+      starsByOutcome: STARS,
+      hints: {
+        first: 'Начни с This.',
+        contrast: 'This is — с this только is.',
+        explain: 'This is my teacher.',
+      },
+      mistakeTags: ['форма'],
+      planInjected: false,
+    },
+    {
+      id: 'chc6',
+      engine: 'speech',
+      variant: 'repeat',
+      instruction: 'Скажи вслед',
+      phrase: { en: 'Nice to meet you.', ru: 'Рад знакомству.' },
+      wordFeedback: [
+        { word: 'Nice', result: 'good' },
+        { word: 'to', result: 'good' },
+        { word: 'meet', result: 'weak' },
+        { word: 'you', result: 'good' },
+      ],
+      recognitionNote: 'Так услышал микрофон — без оценки акцента.',
+      skipLabel: 'Сейчас не могу говорить',
+      micLabel: 'Говорить',
+      starsByOutcome: STARS,
+      hints: {
+        first: 'Четыре слова.',
+        contrast: 'meet — с долгим «и».',
+        explain: 'Nice to meet you.',
+      },
+      mistakeTags: ['произношение'],
+      planInjected: false,
+    },
+  ],
+};
+
 /** Все тестовые сессии. Порядок — как на карте юнита. */
 export const TEST_SESSIONS: readonly SessionVM[] = [
   session03Test,

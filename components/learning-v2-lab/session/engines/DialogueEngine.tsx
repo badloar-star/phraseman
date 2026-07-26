@@ -7,6 +7,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import TapScale from '../../../TapScale';
+import { useAudio } from '../../../../hooks/use-audio';
 import { GraphemeText } from '../../kimi/primitives';
 import { C, LEADING, RADIUS, SPACE, TEXT, WEIGHT } from '../../kimi/tokens';
 import type { DialogueCard, DialogueTurnYou } from '../contracts';
@@ -20,6 +21,7 @@ export const DialogueEngine = memo(function DialogueEngine(props: { card: Dialog
   const [slow, setSlow] = useState(false);
   const shaking = useShake(shakeEpoch);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const { speak } = useAudio();
 
   useEffect(() => {
     timers.current.forEach(clearTimeout);
@@ -95,7 +97,11 @@ export const DialogueEngine = memo(function DialogueEngine(props: { card: Dialog
                   <GraphemeText text={turn.ru} maxGraphemes={90} style={s.captions} />
                   <View style={s.audioChips}>
                     <TapScale
-                      onPress={() => onIntent('dialogue.replay', { cardId: card.id, turn: index, slow: false })}
+                      onPress={() => {
+                        onIntent('dialogue.replay', { cardId: card.id, turn: index, slow: false });
+                        // зачем: реплику партнёра нужно услышать, а не только прочитать
+                        speak(turn.en, undefined, { language: 'en-US' });
+                      }}
                       withHaptic
                       scaleTo={0.96}
                       accessibilityLabel={card.replayLabel}
@@ -107,6 +113,7 @@ export const DialogueEngine = memo(function DialogueEngine(props: { card: Dialog
                       onPress={() => {
                         setSlow((v) => !v);
                         onIntent('dialogue.replay', { cardId: card.id, turn: index, slow: !slow });
+                        speak(turn.en, 0.6, { language: 'en-US' });
                       }}
                       withHaptic
                       scaleTo={0.96}

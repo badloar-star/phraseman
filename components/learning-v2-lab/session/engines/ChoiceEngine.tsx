@@ -7,6 +7,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import TapScale from '../../../TapScale';
+import { useAudio } from '../../../../hooks/use-audio';
 import { GraphemeText } from '../../kimi/primitives';
 import { C, LEADING, RADIUS, SPACE, TEXT, TOUCH_MIN, WEIGHT } from '../../kimi/tokens';
 import type { ChoiceCard } from '../contracts';
@@ -17,6 +18,7 @@ export const ChoiceEngine = memo(function ChoiceEngine(props: { card: ChoiceCard
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [playing, setPlaying] = useState<null | 'normal' | 'slow'>(null);
   const playTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { speak } = useAudio();
 
   useEffect(() => {
     setSelectedId(null);
@@ -38,6 +40,9 @@ export const ChoiceEngine = memo(function ChoiceEngine(props: { card: ChoiceCard
     if (playTimer.current) clearTimeout(playTimer.current);
     setPlaying(slow ? 'slow' : 'normal');
     onIntent('choice.play_audio', { cardId: card.id, slow });
+    // зачем: владелец просил настоящий звук вместо симуляции — озвучиваем через
+    // общий движок приложения (он уважает настройку озвучки и скорость речи).
+    if (card.audio?.label) speak(card.audio.label, slow ? 0.6 : undefined, { language: 'en-US' });
     playTimer.current = setTimeout(() => setPlaying(null), slow ? 1500 : 950);
   };
 

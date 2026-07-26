@@ -11,6 +11,7 @@ import React, { memo, useEffect, useMemo, useRef } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 
 import TapScale from '../../../TapScale';
+import { useAudio } from '../../../../hooks/use-audio';
 import { useRuntimeActive } from '../../../../hooks/use_runtime_active';
 import { GraphemeText } from '../../kimi/primitives';
 import { C, LEADING, RADIUS, SPACE, TEXT, WEIGHT } from '../../kimi/tokens';
@@ -23,6 +24,7 @@ export const SpeechEngine = memo(function SpeechEngine(
 ) {
   const { card, locked, resolved, showAnswer, resetEpoch, onReady, onSkip, onIntent } = props;
   const capture = useVoiceCapture({ targetText: card.phrase.en });
+  const { speak } = useAudio();
 
   useEffect(() => {
     capture.reset();
@@ -70,10 +72,19 @@ export const SpeechEngine = memo(function SpeechEngine(
 
   return (
     <View style={s.wrap}>
-      <View style={s.phraseBlock}>
+      {/* зачем: перед тем как повторять, эталон нужно услышать — тап по фразе
+          её проговаривает (озвучка уважает настройки пользователя) */}
+      <TapScale
+        onPress={() => speak(card.phrase.en, undefined, { language: 'en-US' })}
+        withHaptic
+        scaleTo={0.98}
+        accessibilityLabel={`Прослушать: ${card.phrase.en}`}
+        style={s.phraseBlock}
+      >
         <GraphemeText text={card.phrase.en} maxGraphemes={80} style={s.phrase} />
         <GraphemeText text={card.phrase.ru} maxGraphemes={80} style={s.phraseRu} />
-      </View>
+        <Text style={s.listenHint}>▶ Прослушать</Text>
+      </TapScale>
 
       <View style={s.stage}>
         {recording ? <PulseRing /> : null}
@@ -205,6 +216,7 @@ const s = StyleSheet.create({
     lineHeight: TEXT.xxl * LEADING.tight,
   },
   phraseRu: { fontSize: TEXT.md, color: C.fgSecondary, textAlign: 'center' },
+  listenHint: { fontSize: TEXT.sm, color: C.accentPrimary, marginTop: SPACE.s1 },
   stage: { alignItems: 'center', justifyContent: 'center', height: 120 },
   ring: {
     position: 'absolute',

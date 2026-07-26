@@ -9,6 +9,7 @@ import path from 'node:path';
 
 import {
   SESSION_POOL,
+  challengeFixture,
   mistakeLabFixture,
   practiceHomeFixture,
   session1Fixture,
@@ -25,6 +26,9 @@ const runnerSource = read('components/learning-v2-lab/session/SessionRunner.tsx'
 const mapSource = read('components/learning-v2-lab/session/UnitMap.tsx');
 const speechSource = read('components/learning-v2-lab/session/engines/SpeechEngine.tsx');
 const practiceSource = read('components/learning-v2-lab/session/PracticeLab.tsx');
+const choiceSource = read('components/learning-v2-lab/session/engines/ChoiceEngine.tsx');
+const inputSource = read('components/learning-v2-lab/session/engines/InputEngine.tsx');
+const dialogueSource = read('components/learning-v2-lab/session/engines/DialogueEngine.tsx');
 
 describe('lessons V2 — урок MVP (карта юнита + сессия)', () => {
   test('дев-гейт V2 ведёт на лабораторию урока', () => {
@@ -204,9 +208,43 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
     }
   });
 
+  test('челлендж: без подсказок и без показа ответа', () => {
+    // Смысл челленджа — «как в жизни». Если лестница подсказок работает как
+    // обычно, режим ничем не отличается от рядовой сессии.
+    expect(runnerSource).toMatch(/challenge/);
+    expect(runnerSource).toMatch(/attempt=\{challenge \? 0 : attempt\}/);
+    expect(runnerSource).toMatch(/nextAttempt >= 3 && !challenge/);
+    expect(challengeFixture.cards.length).toBeGreaterThanOrEqual(5);
+    // Челлендж собирает разные движки, а не повторяет один тип задания.
+    const engines = new Set(challengeFixture.cards.map((c) => c.engine));
+    expect(engines.size).toBeGreaterThanOrEqual(3);
+  });
+
+  test('церемония зоны играет только за пройденную сессию', () => {
+    // Выход крестиком не должен запускать поздравление — иначе оно обесценится.
+    expect(runnerSource).toMatch(/onExit\(true\)/);
+    expect(labSource).toMatch(/completed && openSession/);
+    expect(labSource).toMatch(/ZoneCeremony/);
+  });
+
+  test('тропа: пунктирная кривая под узлами, без перехвата тапов', () => {
+    expect(mapSource).toMatch(/TrailCurve/);
+    expect(mapSource).toMatch(/strokeDasharray/);
+    // Кривая обязана быть вне потока и не ловить нажатия, иначе узлы не нажать.
+    expect(mapSource).toMatch(/pointerEvents="none"/);
+  });
+
+  test('аудио-карточки реально озвучиваются', () => {
+    // Кнопка «Слушать» без звука бессмысленна — особенно в диктанте.
+    for (const source of [choiceSource, inputSource, dialogueSource, speechSource]) {
+      expect(source).toMatch(/useAudio/);
+      expect(source).toMatch(/speak\(/);
+    }
+  });
+
   test('открытый боковой узел карты ведёт на реальный экран', () => {
     // Экраны, которые реально смонтированы в лаборатории.
-    const wired = new Set(['practice-lab']);
+    const wired = new Set(['practice-lab', 'challenge']);
     for (const node of unit1Fixture.sideNodes) {
       if (node.state === 'locked') {
         expect(node.surfaceRef).toBeNull();

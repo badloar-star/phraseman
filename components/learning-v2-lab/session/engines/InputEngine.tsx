@@ -6,6 +6,7 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 import TapScale from '../../../TapScale';
+import { useAudio } from '../../../../hooks/use-audio';
 import { C, LEADING, RADIUS, SPACE, TEXT, TOUCH_MIN, WEIGHT } from '../../kimi/tokens';
 import type { InputCard } from '../contracts';
 import type { EngineProps } from '../engine_common';
@@ -17,6 +18,7 @@ export const InputEngine = memo(function InputEngine(props: { card: InputCard } 
   const [playing, setPlaying] = useState<null | 'normal' | 'slow'>(null);
   const shaking = useShake(shakeEpoch);
   const playTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { speak } = useAudio();
 
   useEffect(() => {
     setValue('');
@@ -35,6 +37,8 @@ export const InputEngine = memo(function InputEngine(props: { card: InputCard } 
     if (playTimer.current) clearTimeout(playTimer.current);
     setPlaying(slow ? 'slow' : 'normal');
     onIntent('input.play_audio', { cardId: card.id, slow });
+    // зачем: диктант без звука бессмыслен — озвучиваем через общий движок
+    if (card.audio?.label) speak(card.audio.label, slow ? 0.6 : undefined, { language: 'en-US' });
     playTimer.current = setTimeout(() => setPlaying(null), slow ? 1500 : 950);
   };
 

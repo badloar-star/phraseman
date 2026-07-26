@@ -36,15 +36,25 @@ const FINALE_STAR_SLOTS = ['star-1', 'star-2', 'star-3'] as const;
 
 export interface SessionRunnerProps {
   readonly session: SessionVM;
-  readonly onExit: () => void;
+  /**
+   * Выход из сессии. `completed` = true только если ученик дошёл до финала —
+   * по нему карта решает, играть ли церемонию зоны (конфетти).
+   */
+  readonly onExit: (completed?: boolean) => void;
   /** Показать чипы типов ошибок на вступлении (разбор ошибок «Моей практики»). */
   readonly showErrorChips?: boolean;
+  /**
+   * Режим челленджа: подсказки скрыты (как в жизни), ступень «показать ответ»
+   * не наступает, звёзды даются только за чистый ответ с первой попытки.
+   */
+  readonly challenge?: boolean;
 }
 
 export const SessionRunner = memo(function SessionRunner({
   session,
   onExit,
   showErrorChips = false,
+  challenge = false,
 }: SessionRunnerProps) {
   const [stage, setStage] = useState<Stage>('intro');
   const [cardIndex, setCardIndex] = useState(0);
@@ -147,7 +157,9 @@ export const SessionRunner = memo(function SessionRunner({
       setMistakesTotal((t) => t + 1);
 
       const token = ++tokenRef.current;
-      if (nextAttempt >= 3) {
+      // зачем: в челлендже ответ не показывается — ученик идёт без опор, ошибка
+      // просто стоит звёзд. Иначе «без подсказок» превращается в обычную сессию.
+      if (nextAttempt >= 3 && !challenge) {
         setUsedShowAnswer(true);
         later(650, () => {
           if (tokenRef.current !== token) return;
@@ -167,7 +179,7 @@ export const SessionRunner = memo(function SessionRunner({
         });
       }
     },
-    [attempt, later],
+    [attempt, later, challenge],
   );
 
   const check = useCallback(() => {
@@ -273,7 +285,9 @@ export const SessionRunner = memo(function SessionRunner({
         </ScrollView>
         <View style={s.dock}>
           <TapScale
-            onPress={onExit}
+            // зачем: сообщаем карте, что сессия ПРОЙДЕНА — только тогда играет
+            // церемония зоны; выход крестиком её не запускает
+            onPress={() => onExit(true)}
             withHaptic
             scaleTo={0.97}
             accessibilityLabel={session.finale.continueLabel}
@@ -356,10 +370,12 @@ export const SessionRunner = memo(function SessionRunner({
       </ScrollView>
 
       <View style={s.dock}>
+        {/* зачем: в челлендже подсказки скрыты «как в жизни» — но полоса всё
+            равно занимает место, иначе кнопка «Проверить» прыгала бы */}
         <FeedbackLayer
           hints={card.hints}
-          attempt={attempt}
-          showAnswer={phase === 'showAnswer'}
+          attempt={challenge ? 0 : attempt}
+          showAnswer={!challenge && phase === 'showAnswer'}
           resolved={verdict === 'correct'}
         />
         {usesCta ? (

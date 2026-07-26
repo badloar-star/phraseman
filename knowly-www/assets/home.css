@@ -66,6 +66,19 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   @keyframes drift-a { to { transform: translate3d(9vmax, 7vmax, 0) scale(1.12); } }
   @keyframes drift-b { to { transform: translate3d(-8vmax, 5vmax, 0) scale(1.07); } }
 }
+/* зачем: владелец 2026-07-26 — «на телефоне тормозит»: blur(72px)-блобы дороги
+   для мобильного GPU. На узких экранах блобы выключены, фон — лёгкий статичный
+   градиент без filter; текстовые blur-переходы тоже без размытия. */
+@media (max-width: 720px) {
+  .aurora-css::before, .aurora-css::after { animation: none; filter: none; opacity: 0; content: none; }
+  .aurora-css {
+    background:
+      radial-gradient(130% 90% at 25% -12%, rgba(247, 222, 139, .6), transparent 62%),
+      radial-gradient(110% 80% at 95% -5%, rgba(255, 205, 162, .38), transparent 58%);
+  }
+  .js .blur-in { filter: none; transition: opacity .45s var(--ease) .1s; }
+  .grain { opacity: .25; }
+}
 .stage > .wrap { position: relative; z-index: 1; }
 
 /* шапка: на мобиле все вкладки видимы сразу — второй строкой-чипсами */
@@ -124,9 +137,6 @@ button:focus-visible, a:focus-visible, summary:focus-visible {
   @keyframes sheen { 0%, 74% { left: -60%; } 100% { left: 130%; } }
 }
 .fear { font-size: 14.5px; color: var(--soft); font-weight: 500; }
-.proof { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--ink); font-size: 15px; margin-top: 10px; }
-.proof .star { color: var(--gold-deep); }
-.proof small { font-weight: 500; color: var(--soft); }
 
 /* умная кнопка: поповер выбора платформ на десктопе */
 .dl { position: relative; display: inline-block; }

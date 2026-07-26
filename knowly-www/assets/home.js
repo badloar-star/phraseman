@@ -81,8 +81,14 @@
     });
   })();
 
-  /* ===== Заголовок по буквам + проявление подстрок (дефолт видимый без JS) ===== */
+  /* ===== Заголовок по буквам + проявление подстрок (дефолт видимый без JS).
+     зачем: владелец 2026-07-26 — на телефоне 43 WAAPI-анимации букв с blur
+     тормозили; на мобиле буквы не разбиваем вообще, всё появляется сразу ===== */
   (function splitIntro() {
+    if (!DESKTOP) {
+      document.querySelectorAll('.blur-in').forEach(function (el) { el.classList.add('go'); });
+      return;
+    }
     document.querySelectorAll('[data-split]').forEach(function (el) {
       var words = el.textContent.trim().split(' ');
       el.textContent = '';

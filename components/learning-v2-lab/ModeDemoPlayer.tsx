@@ -150,7 +150,8 @@ export const ModeDemoPlayer = memo(function ModeDemoPlayer({ mode, onClose }: Mo
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </View>
         </TapScale>
-        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>{mode.title}</Text>
+        {/* зачем: без numberOfLines — длинное название переносится, не режется (запрет обрезания текста) */}
+        <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h3 }]}>{mode.title}</Text>
         {mode.interaction === 'speak' ? (
           <View style={[styles.simChip, { backgroundColor: t.accentBg }]}>
             <Text style={[styles.simChipText, { color: t.accent }]}>СИМУЛЯЦИЯ</Text>

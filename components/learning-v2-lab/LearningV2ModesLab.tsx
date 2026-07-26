@@ -83,9 +83,9 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({ bottomPadding = 0 
                   <View style={[styles.modeIcon, { backgroundColor: t.bgSurface }]}>
                     <Ionicons name={mode.icon} size={19} color={mode.removedByOwner ? t.textMuted : zoneToneForGroup(group.id, t)} />
                   </View>
+                  {/* зачем: без numberOfLines — название переносится, не режется (запрет обрезания текста) */}
                   <Text
                     style={[styles.modeTitle, { color: mode.removedByOwner ? t.textMuted : t.textPrimary, fontSize: f.body }]}
-                    numberOfLines={2}
                   >
                     {mode.title}
                   </Text>

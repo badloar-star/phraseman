@@ -32,12 +32,13 @@ const PRIORITY_ORDER = Object.freeze(['mistake', 'due', 'personal_plan', 'curren
 type SourcePriority = (typeof PRIORITY_ORDER)[number];
 
 function prioritisedSources(input: V2OptionalPracticeSelectionInput): readonly SourcePriority[] {
-  const available: SourcePriority[] = [];
-  if (input.mistakeContentItemIds.length > 0) available.push('mistake');
-  if (input.dueContentItemIds.length > 0) available.push('due');
-  if (input.personalPlanContentItemIds.length > 0) available.push('personal_plan');
-  available.push('current_unit');
-  return available;
+  const hasSource: Record<SourcePriority, boolean> = {
+    mistake: input.mistakeContentItemIds.length > 0,
+    due: input.dueContentItemIds.length > 0,
+    personal_plan: input.personalPlanContentItemIds.length > 0,
+    current_unit: true,
+  };
+  return PRIORITY_ORDER.filter((source) => hasSource[source]);
 }
 
 export function selectOptionalPracticeSlots(

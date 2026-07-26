@@ -2427,91 +2427,135 @@ export default function HomeScreen() {
             ? (homeDayLessonDone ? '✓' : '')
             : (dueCount > 99 ? '99+' : String(dueCount));
         // зачем: владелец вернул герой-модуль (серия+уровень+XP+неделя) как был.
-        const experimentalStatusWeekDotSize = eliteStatsCompact ? 24 : 28;
+        // Аватар слева занимает место бывшей стрик-колонки, поэтому кружки недели
+        // получают больше ширины и не жмутся (24 → 28 в компактном режиме).
+        const experimentalStatusWeekDotSize = eliteStatsCompact ? 26 : 30;
+        const homeHeroAvatarSize = eliteStatsCompact ? 68 : 76;
+        const homeHeroStreakIconSize = eliteStatsCompact ? 30 : 34;
         const renderHomeHeroStatus = () => (<Animated.View style={{
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
             }}>
-              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: eliteStatsCompact ? 10 : 12 }}>
+              {/* зачем: владелец вернул раскладку «как было раньше» — слева аватарка,
+                  а серия (иконка + число дней) уехала в правый верхний угол карточки.
+                  Освободившиеся ~86px ширины забирает полоса XP и ряд дней недели. */}
+              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: eliteStatsCompact ? 12 : 14, minHeight: eliteStatsCompact ? 138 : 148 }}>
                 <TouchableOpacity
-                  testID="home-streak-status-panel"
+                  testID="home-hero-avatar-button"
                   activeOpacity={0.82}
                   onPress={(event) => {
                     event.stopPropagation?.();
-                    hapticTap();
-                    nav.push('/streak_stats');
+                    openHomeProfile();
                   }}
                   accessibilityRole="button"
-                  accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`}
+                  accessibilityLabel={triLang(lang, {
+                    ru: 'Моя карточка профиля',
+                    uk: 'Моя картка профілю',
+                    es: 'Mi tarjeta de perfil',
+                    'pt-BR': 'Meu cartão de perfil',
+                    vi: 'Thẻ hồ sơ của tôi',
+                    id: 'Kartu profil saya',
+                    tr: 'Profil kartım',
+                    pl: 'Moja karta profilu',
+                  })}
+                  hitSlop={6}
                   style={{
-                    width: eliteStatsCompact ? 86 : 96,
-                    minHeight: eliteStatsCompact ? 138 : 148,
+                    width: homeHeroAvatarSize,
                     flexShrink: 0,
                     alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: eliteStatsCompact ? 5 : 7,
+                    justifyContent: 'flex-start',
+                    paddingTop: eliteStatsCompact ? 2 : 4,
                   }}
                 >
-                  <View style={{
-                    width: eliteStatsCompact ? 68 : 76,
-                    height: eliteStatsCompact ? 68 : 76,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}>
-                    <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={eliteStatsCompact ? 64 : 72}/>
-                    {streakAtRisk && !freezeActive ? (
-                      <Pressable
-                        testID="home-streak-freeze-shield"
-                        accessibilityRole="button"
-                        accessibilityLabel={triLang(lang, {
-                          ru: 'Защитить серию',
-                          uk: 'Захистити серію',
-                          es: 'Proteger la racha',
-                          'pt-BR': 'Proteger a sequência',
-                          vi: 'Bảo vệ chuỗi',
-                          id: 'Lindungi rangkaian',
-                          tr: 'Seriyi koru',
-                          pl: 'Chroń serię',
-                        })}
-                        hitSlop={8}
-                        onPress={(event) => {
-                          event.stopPropagation?.();
-                          hapticTap();
-                          void handleFreezeStreak();
-                        }}
-                        style={({ pressed }) => ({
-                          position: 'absolute',
-                          right: -7,
-                          top: -7,
-                          width: 44,
-                          height: 44,
-                          borderRadius: 16,
-                          overflow: 'hidden',
-                          borderWidth: 0,
-                          opacity: pressed ? 0.82 : 1,
-                          transform: [{ scale: pressed ? 0.96 : 1 }],
-                        })}
-                      >
-                        <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 16 }}>
-                          <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={30}/>
-                        </LinearGradient>
-                      </Pressable>
-                    ) : null}
-                  </View>
-                  <View style={{ alignItems: 'center', justifyContent: 'center', gap: 1 }}>
-                    <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 22 : 25, fontWeight: '800', lineHeight: eliteStatsCompact ? 26 : 30, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
-                      {displayStreak}
-                    </Animated.Text>
-                    <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, textAlign: 'center', includeFontPadding: false }}>
-                      {homeStreakDaysLabel}
-                    </Text>
-                  </View>
+                  <AvatarView
+                    avatar={userAvatar}
+                    level={level}
+                    size={homeHeroAvatarSize}
+                    auraId={effectiveUserAvatarAura}
+                  />
                 </TouchableOpacity>
 
                 <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, justifyContent: 'space-between', paddingVertical: eliteStatsCompact ? 3 : 5 }}>
-                  <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
-                    {experimentalStatusLevelLabel} {level}
-                  </Text>
+                  {/* Ряд «Уровень N» + серия справа: серия больше не занимает
+                      отдельную колонку, поэтому полоса XP тянется во всю ширину. */}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <Text maxFontSizeMultiplier={1} numberOfLines={1} style={{ flexShrink: 1, color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 24, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 29 }}>
+                      {experimentalStatusLevelLabel} {level}
+                    </Text>
+
+                    <TouchableOpacity
+                      testID="home-streak-status-panel"
+                      activeOpacity={0.82}
+                      onPress={(event) => {
+                        event.stopPropagation?.();
+                        hapticTap();
+                        nav.push('/streak_stats');
+                      }}
+                      accessibilityRole="button"
+                      accessibilityLabel={`${displayStreak} ${homeStreakDaysLabel}`}
+                      hitSlop={6}
+                      style={{
+                        flexShrink: 0,
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: eliteStatsCompact ? 4 : 6,
+                      }}
+                    >
+                      <StreakChainIcon themeMode={themeMode} frozen={freezeActive} streakDays={streak} inactive={streakIconInactive} size={homeHeroStreakIconSize}/>
+                      <Animated.Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelText, fontSize: eliteStatsCompact ? 20 : 23, fontWeight: '800', lineHeight: eliteStatsCompact ? 24 : 27, transform: [{ scale: streakScaleAnim }], includeFontPadding: false }}>
+                        {displayStreak}
+                      </Animated.Text>
+                      {/* зачем: на узком экране со щитом и трёхзначной серией ряд
+                          переполнялся и «Уровень N» уходил в многоточие. Слово-единица
+                          — наименее ценная часть (иконка + число читаются сами), поэтому
+                          жертвуем им, а не заголовком. Для озвучки полная формулировка
+                          остаётся в accessibilityLabel кнопки. */}
+                      {homeHeroShowStreakUnit ? (
+                        <Text maxFontSizeMultiplier={1} style={{ color: homeThemePanelMuted, fontSize: eliteStatsCompact ? 12 : 13, fontWeight: '700', lineHeight: eliteStatsCompact ? 15 : 16, includeFontPadding: false }}>
+                          {homeStreakDaysLabel}
+                        </Text>
+                      ) : null}
+                      {/* Щит «защитить серию» — отдельная кнопка рядом с числом, а не
+                          наложение поверх иконки: в компактном ряду перекрытие давало
+                          промахи по тапу. */}
+                      {streakAtRisk && !freezeActive ? (
+                        <Pressable
+                          testID="home-streak-freeze-shield"
+                          accessibilityRole="button"
+                          accessibilityLabel={triLang(lang, {
+                            ru: 'Защитить серию',
+                            uk: 'Захистити серію',
+                            es: 'Proteger la racha',
+                            'pt-BR': 'Proteger a sequência',
+                            vi: 'Bảo vệ chuỗi',
+                            id: 'Lindungi rangkaian',
+                            tr: 'Seriyi koru',
+                            pl: 'Chroń serię',
+                          })}
+                          hitSlop={10}
+                          onPress={(event) => {
+                            event.stopPropagation?.();
+                            hapticTap();
+                            void handleFreezeStreak();
+                          }}
+                          style={({ pressed }) => ({
+                            marginLeft: 2,
+                            width: 34,
+                            height: 34,
+                            borderRadius: 12,
+                            overflow: 'hidden',
+                            borderWidth: 0,
+                            opacity: pressed ? 0.82 : 1,
+                            transform: [{ scale: pressed ? 0.96 : 1 }],
+                          })}
+                        >
+                          <LinearGradient colors={homeThemePanelGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1, alignItems: 'center', justifyContent: 'center', borderRadius: 12 }}>
+                            <StreakChainIcon themeMode={themeMode} frozen streakDays={streak} size={24}/>
+                          </LinearGradient>
+                        </Pressable>
+                      ) : null}
+                    </TouchableOpacity>
+                  </View>
 
                   <View style={{
                     height: 18,
@@ -2806,30 +2850,16 @@ export default function HomeScreen() {
           </View>
           {/* зачем: владелец попросил низ «не плашками» — одно полотно тоном,
               строки внутри разделены hairline (не рамка контейнера). Практика
-              отсюда ушла: её вход — кольцо и Компас. */}
+              отсюда ушла: её вход — кольцо и Компас. Уроки ушли следом
+              (2026-07-26): их вход — таббар и плитки быстрого доступа. */}
           <View style={[{ marginHorizontal: 8, marginBottom: 12, borderRadius: 20, overflow: 'hidden' }, isGoldTheme ? goldShadow(1) : null]}>
             <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, paddingHorizontal: 16, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={20} intensity="quiet"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
-              <TouchableOpacity activeOpacity={0.82} testID="home-open-lessons" onPress={() => { go('/(tabs)/lessons'); }} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
-                <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <LightSketchMenuImage source={menuImages.lesson} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'lesson')} contentFit="contain" cachePolicy="memory-disk"/>
-                </View>
-                <Text style={{ flex: 1, color: homeThemePanelText, fontSize: Math.max(15, f.body), fontWeight: '700' }} numberOfLines={1}>
-                  {triLang(lang, {
-                    ru: 'Уроки',
-                    uk: 'Уроки',
-                    es: 'Lecciones',
-                    'pt-BR': 'Lições',
-                    vi: 'Bài học',
-                    id: 'Pelajaran',
-                    tr: 'Dersler',
-                    pl: 'Lekcje',
-                  })}
-                </Text>
-                <Ionicons name="chevron-forward" size={16} color={t.textGhost}/>
-              </TouchableOpacity>
-              <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)' }}/>
+              {/* зачем: владелец (2026-07-26) — строка «Уроки» убрана из полотна
+                  «Сегодня»: вход в уроки уже есть в таббаре и в плитках быстрого
+                  доступа, третья копия только удлиняла блок. «Сегодня» теперь про
+                  дневную активность (вызовы дня + цель лиги), а не про навигацию. */}
               <TouchableOpacity activeOpacity={0.82} testID="home-activity-daily" onPress={() => { go('/daily_tasks_screen'); }} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
                 <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <LightSketchMenuImage source={menuImages.dayTasks} width={64} height={64} lighten={false} align={getHomeMenuIconAlignment(themeMode, 'dayTasks')} contentFit="contain" cachePolicy="memory-disk"/>

@@ -65,6 +65,7 @@ import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constan
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
+import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications } from './achievements';
 import {
@@ -76,6 +77,7 @@ import {
   type CloudRestoreFailureReason,
 } from './cloud_sync';
 import { processPendingAuthLink } from './pending_auth_link';
+import { runAuthRecoveryBootGate } from './auth_recovery_boot_gate';
 import { isExamBestPctColdRestoreTabSafe } from './exam_best_pct_overlay';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
@@ -133,6 +135,7 @@ import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
+
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
@@ -167,7 +170,7 @@ import {
 } from './services/league_chest_rewards';
 import { lastOpenedLessonKey, type RuntimeStudyTarget } from './target_storage_keys';
 import { syncWidgetData } from './widget_bridge';
-import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE } from '../constants/devRoutes';
+import { DEV_UTILITY_ROUTE_NAMES, DEV_UTILITY_ROUTE_PATHS, PERSONAL_PLAN_RUNTIME_DEV_ROUTE, SETTINGS_TESTERS_ROUTE_NAME } from '../constants/devRoutes';
 import { APP_FONT_FAMILY } from './typography';
 import { getTodayKey } from './daily_tasks';
 import { getLocalDayKey, isSameLocalOrUtcDay, isYesterdayFlexible } from './local_date';
@@ -187,6 +190,63 @@ import {
 } from './intro_full_access';
 import { resumePendingGeneratedNickname } from './nickname_guard';
 import { stableInitialWindowMetrics, useStableSafeAreaInsets } from './stable_safe_area_metrics';
+
+// AUTH_RECOVERY_BOOT_RETRY_POLICY_START
+export const AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS = [1_500, 5_000, 15_000, 30_000] as const;
+
+type AuthRecoveryBootRetrySchedulerOptions = Readonly<{
+  isInFlight: () => boolean;
+  run: () => void;
+  setTimer: (callback: () => void, delayMs: number) => ReturnType<typeof setTimeout>;
+  clearTimer: (timer: ReturnType<typeof setTimeout>) => void;
+}>;
+
+export function createAuthRecoveryBootRetryScheduler(
+  options: AuthRecoveryBootRetrySchedulerOptions,
+) {
+  let nextAttempt = 0;
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  let disposed = false;
+
+  const arm = (delayMs: number): void => {
+    timer = options.setTimer(() => {
+      timer = null;
+      if (disposed) return;
+      if (options.isInFlight()) {
+        // Preserve this already-budgeted retry while the previous call unwinds.
+        arm(250);
+        return;
+      }
+      options.run();
+    }, delayMs);
+  };
+
+  return {
+    schedule(): boolean {
+      if (disposed) return false;
+      if (timer) return true;
+      const delayMs = AUTH_RECOVERY_BOOT_RETRY_DELAYS_MS[nextAttempt];
+      if (delayMs === undefined) return false;
+      nextAttempt += 1;
+      arm(delayMs);
+      return true;
+    },
+    triggerActive(): void {
+      if (disposed || options.isInFlight()) return;
+      if (timer) {
+        options.clearTimer(timer);
+        timer = null;
+      }
+      options.run();
+    },
+    cancel(): void {
+      disposed = true;
+      if (timer) options.clearTimer(timer);
+      timer = null;
+    },
+  };
+}
+// AUTH_RECOVERY_BOOT_RETRY_POLICY_END
 
 // Глобальный фикс: маппинг fontWeight -> начертание Inter (иначе на Android жирный текст не работает).
 // Вызывается на этапе вычисления модуля — до первого рендера любого <Text>.
@@ -1942,6 +2002,11 @@ function AppContent() {
     // deleted account identity/data can reappear beneath the startup shell.
     let safetyTimer: ReturnType<typeof setTimeout> | null = null;
     let accountDeleteRecoveryRetryTimer: ReturnType<typeof setTimeout> | null = null;
+    let authRecoveryBootAppStateSub: { remove: () => void } | null = null;
+    let authRecoveryBootAbort: AbortController | null = null;
+    let authRecoveryBootstrapInFlight = false;
+    let recoveryBootAllowsCloud = false;
+    let heavyInitRequestedWhileBlocked = false;
 
     // Remote Config: ссылку на отписку держим в scope эффекта.
     // effectDisposed нужен, т.к. import() резолвится асинхронно — к этому моменту
@@ -2072,8 +2137,15 @@ function AppContent() {
         // Дотягиваем pending shard-grants после оплаты: вебхук RC мог задержаться
         // дольше окна waitForServerShardGrant в магазине. См. shards_pending_grants.ts.
         void (async () => {
-          const { resumePendingShardGrants } = await import('./shards_pending_grants');
-          await resumePendingShardGrants().catch(() => {});
+          const {
+            resumePendingShardGrants,
+            resumePendingShardRecoveryNeeded,
+            retryPendingShardGrantDeleteCleanup,
+          } = await import('./shards_pending_grants');
+          const resumeAccount = captureAccountGeneration();
+          await retryPendingShardGrantDeleteCleanup(resumeAccount).catch(() => {});
+          await resumePendingShardRecoveryNeeded(resumeAccount).catch(() => {});
+          await resumePendingShardGrants(resumeAccount).catch(() => {});
         })();
         // .catch: единственный незащищённый await в цепочке — его сбой молча
         // обрывал весь остаток пост-загрузки (стрик, pending-события, syncToCloud).
@@ -2195,7 +2267,18 @@ function AppContent() {
       prefetchEasUpdateAfterStartup().catch(() => {});
     };
 
+    const requestHeavyInit = () => {
+      if (!recoveryBootAllowsCloud) {
+        heavyInitRequestedWhileBlocked = true;
+        return;
+      }
+      runHeavyInit();
+    };
+
     const bootstrap = async () => {
+      if (authRecoveryBootstrapInFlight) return;
+      authRecoveryBootstrapInFlight = true;
+      try {
       const pendingDeleteRecovered = await resumePendingAccountDeleteLocalExit();
       if (effectDisposed) return;
       if (!pendingDeleteRecovered) {
@@ -2205,6 +2288,28 @@ function AppContent() {
         }, 1_500);
         return;
       }
+      authRecoveryBootAbort = new AbortController();
+      const recoveryAbort = authRecoveryBootAbort;
+      const recoveryGate = await runAuthRecoveryBootGate({
+        signal: authRecoveryBootAbort.signal,
+      });
+      if (authRecoveryBootAbort === recoveryAbort) authRecoveryBootAbort = null;
+      if (effectDisposed) return;
+      if (recoveryGate.result !== 'proceed') {
+        setReady(true);
+        if (
+          recoveryGate.result === 'blocked_transient'
+          && scheduleAuthRecoveryBootRetry()
+        ) return;
+        clearAuthRecoveryBootRetry();
+        if (!startupAuthRecoveryOfferedRef.current) {
+          startupAuthRecoveryOfferedRef.current = true;
+          setStartupAuthRecoveryVisible(true);
+        }
+        return;
+      }
+      clearAuthRecoveryBootRetry();
+      recoveryBootAllowsCloud = true;
       safetyTimer = setTimeout(() => setReady(true), 1200);
       onboardingPathRef.current = false;
       deferLessonPrimeRef.current = false;
@@ -2229,6 +2334,10 @@ function AppContent() {
         });
         cloudHydratePromise = bootCoordinator.run();
         void runContentDeliveryMigration(cloudHydratePromise);
+      }
+      if (heavyInitRequestedWhileBlocked) {
+        heavyInitRequestedWhileBlocked = false;
+        runHeavyInit();
       }
 
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
@@ -2325,9 +2434,35 @@ function AppContent() {
             .catch(() => {});
         });
       }
+      } finally {
+        authRecoveryBootstrapInFlight = false;
+      }
     };
 
-    runHeavyInitRef.current = runHeavyInit;
+    const authRecoveryBootRetryScheduler = createAuthRecoveryBootRetryScheduler({
+      isInFlight: () => authRecoveryBootstrapInFlight,
+      run: () => { void bootstrap(); },
+      setTimer: (callback, delayMs) => setTimeout(callback, delayMs),
+      clearTimer: timer => clearTimeout(timer),
+    });
+
+    const clearAuthRecoveryBootRetry = () => {
+      authRecoveryBootRetryScheduler.cancel();
+      authRecoveryBootAppStateSub?.remove();
+      authRecoveryBootAppStateSub = null;
+    };
+
+    const scheduleAuthRecoveryBootRetry = (): boolean => {
+      if (!authRecoveryBootRetryScheduler.schedule()) return false;
+      if (!authRecoveryBootAppStateSub) {
+        authRecoveryBootAppStateSub = AppState.addEventListener('change', (state) => {
+          if (state === 'active') authRecoveryBootRetryScheduler.triggerActive();
+        });
+      }
+      return true;
+    };
+
+    runHeavyInitRef.current = requestHeavyInit;
     bootstrap();
 
     // Event-driven flush: слушаем событие от achievements.ts вместо polling каждые 4с.
@@ -2359,6 +2494,9 @@ function AppContent() {
     });
     return () => {
       effectDisposed = true;
+      authRecoveryBootAbort?.abort();
+      authRecoveryBootAbort = null;
+      clearAuthRecoveryBootRetry();
       if (safetyTimer) clearTimeout(safetyTimer);
       if (accountDeleteRecoveryRetryTimer) clearTimeout(accountDeleteRecoveryRetryTimer);
       runHeavyInitRef.current = null;
@@ -2804,14 +2942,22 @@ function AppContent() {
       <Stack.Screen name="lesson_help" />
       <Stack.Screen name="lesson_theory_v2" options={{ presentation: 'card', headerShown: false, ...pushScreenAnimationOptions }} />
       <Stack.Screen name="preposition_drill" />
-      <Stack.Screen name="settings_edu" />
-      <Stack.Screen name="settings_notifications" />
-      <Stack.Screen name="settings_themes" />
-      <Stack.Screen name="settings_language" />
+      {/* «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы
+          настроек/инфо-экраны выезжают снизу как модальная страница и так же
+          закрываются. Опции — app/section_sheet_navigation.ts (под флагом
+          SECTION_SHEET_TRANSITIONS из config.ts), шапка внутри экранов —
+          components/SectionSheetHeader.tsx. */}
+      <Stack.Screen name="settings_edu" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_notifications" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_themes" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_language" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="privacy_settings" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="ideas_submit" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="settings_testers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="language_welcome" />
       <Stack.Screen name="league_screen" />
       <Stack.Screen name="club_screen" />
-      <Stack.Screen name="top_helpers" />
+      <Stack.Screen name="top_helpers" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
       <Stack.Screen name="exam" options={{ freezeOnBlur: false }} />
@@ -2839,9 +2985,10 @@ function AppContent() {
       <Stack.Screen name="paywall_e" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_f" options={paywallScreenStackOptions(onboardingPaywallActive)} />
       <Stack.Screen name="paywall_g" options={paywallScreenStackOptions(onboardingPaywallActive)} />
-      <Stack.Screen name="manage_subscription" options={{ presentation: 'modal', ...bottomModalAnimationOptions, gestureEnabled: true }} />
-      <Stack.Screen name="referrals" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
-      <Stack.Screen name="promo_code_entry" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
+      <Stack.Screen name="manage_subscription" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="account_details" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="referrals" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="promo_code_entry" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_audio" />
@@ -2856,11 +3003,17 @@ function AppContent() {
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES.map((name) => (
-        <Stack.Screen key={name} name={name} />
-      ))}
-      <Stack.Screen name="privacy_screen" />
-      <Stack.Screen name="terms_screen" />
+      {/* зачем: settings_testers объявлен выше как «шторка раздела» и живёт в
+          проде, а не только под дев-тулзами. Повторная регистрация тем же именем
+          здесь роняла приложение («Screen names must be unique»), поэтому имя
+          исключаем из дев-карты — единственный источник правды выше. */}
+      {ENABLE_DEV_TOOLS && DEV_UTILITY_ROUTE_NAMES
+        .filter((name) => name !== SETTINGS_TESTERS_ROUTE_NAME)
+        .map((name) => (
+          <Stack.Screen key={name} name={name} />
+        ))}
+      <Stack.Screen name="privacy_screen" options={SECTION_SHEET_STACK_OPTIONS} />
+      <Stack.Screen name="terms_screen" options={SECTION_SHEET_STACK_OPTIONS} />
       <Stack.Screen name="lingman_videos" />
       <Stack.Screen name="lingman_video_player" />
       <Stack.Screen name="trainer" />

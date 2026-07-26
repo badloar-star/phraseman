@@ -48,8 +48,10 @@ describe('promo codes UI/admin contract', () => {
     expect(settings).toContain('Промокод');
     expect(settings).toContain('Полный доступ на 3 дня');
     expect(settings).toContain('Подарок: полный доступ на 3 дня');
-    expect(settings).toContain('Plus доступ активен');
-    expect(settings).not.toContain('Plus доступ активен\', \'Plus доступ активний\', \'Plus access active\', \'Acesso Plus ativo\', \'Quyền Plus đang hoạt động\', \'Akses Plus aktif\', \'Plus erişim aktif\', \'Dostęp Plus aktywny\')} · ${vipExpiryText}');
+    // 2026-07-26: подпись plusRowSub (включая «Plus доступ активен») удалена
+    // редизайном настроек (запрет владельца на подписи-расшифровки под
+    // названием) — статус теперь в plusRowLabel «… активирован ✓».
+    expect(settings).toContain("${L('активирован', 'активовано'");
   });
 
   it('admin has a promo code section with generation and copy controls', () => {

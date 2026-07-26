@@ -441,6 +441,8 @@ const CARDS = [
     fallback: 'Двое видят друг друга впервые и обмениваются приветствием.',
     en: 'Nice to meet you', ru: 'приятно познакомиться',
     hint: 'Посмотри на рукопожатие: они видятся впервые.',
+    link: 'Вот связь: рукопожатие = знакомство.',
+    praise: 'Верно! Это знакомство.',
     options: [
       { em: '👋😊', lb: 'Знакомство', ok: true },
       { em: '🚪🧳', lb: 'Прощание', ok: false },
@@ -454,6 +456,8 @@ const CARDS = [
     fallback: 'Человек показывает на карте страну, из которой он приехал.',
     en: "I'm from Ireland", ru: 'я из Ирландии',
     hint: 'Карта и флаг: речь о стране, а не о времени.',
+    link: 'Вот связь: карта и флаг = родная страна.',
+    praise: 'Верно! Это родная страна.',
     options: [
       { em: '🌍🏠', lb: 'Родная страна', ok: true },
       { em: '⏰📅', lb: 'Время встречи', ok: false },
@@ -492,7 +496,7 @@ function renderCard(ix, dir) {
   $('revealRu').textContent = c.ru;
   reveal.classList.remove('show');
   scene.classList.remove('asset-fail');
-  fb.className = 'fb';
+  fb.className = 'fb'; fbText.textContent = '';
   optionsEl.innerHTML = '';
   c.options.forEach((o, i) => {
     const b = document.createElement('button');
@@ -550,7 +554,7 @@ function verdictGood() {
   setTimeout(() => reveal.classList.add('show'), 180 * tf());
 
   // Фидбек
-  fbIcon.textContent = '✓'; fbText.textContent = 'Верно! Это знакомство.';
+  fbIcon.textContent = '✓'; fbText.textContent = c.praise;
   fb.className = 'fb good'; requestAnimationFrame(() => fb.classList.add('show'));
 
   streak += 1;
@@ -595,7 +599,7 @@ function verdictMiss() {
     okBtn.classList.add('correct-fill');
     opts.forEach((o, j) => { o.disabled = true; if (j !== okIx && !o.classList.contains('miss')) o.classList.add('dim'); });
     reveal.classList.add('show');
-    fbIcon.textContent = '➜'; fbText.textContent = 'Вот связь: рукопожатие = знакомство.';
+    fbIcon.textContent = '➜'; fbText.textContent = c.link;
     fb.className = 'fb neutral'; requestAnimationFrame(() => fb.classList.add('show'));
     state = 'verdict';
     toAutoNext();

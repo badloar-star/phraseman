@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning V2 · Витрина макетов</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+  background: #0B0E0C; color: #E8EDEA; min-height: 100vh;
+  padding: 48px 24px 80px; display: flex; justify-content: center;
+}
+.wrap { width: 100%; max-width: 760px; }
+h1 { font-size: 28px; font-weight: 800; letter-spacing: 0.2px; }
+h1 span { color: #58CC89; }
+.sub { color: #8AB49A; font-size: 15px; margin-top: 8px; line-height: 1.55; }
+.wave { margin-top: 34px; }
+.wave h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.6px; color: #8AB49A; font-weight: 800; margin-bottom: 12px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
+a.card, div.card {
+  display: flex; align-items: center; gap: 14px;
+  background: #131A15; border-radius: 18px; padding: 16px;
+  text-decoration: none; color: inherit;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  transition: transform 140ms cubic-bezier(0.23,1,0.32,1), box-shadow 140ms;
+}
+a.card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.45); }
+a.card:active { transform: scale(0.98); }
+.em { font-size: 30px; width: 52px; height: 52px; border-radius: 16px; background: #1D2921; display: grid; place-items: center; flex: 0 0 auto; }
+.t { flex: 1; }
+.t .n { font-size: 16px; font-weight: 800; }
+.t .f { font-size: 13px; color: #8AB49A; font-weight: 600; margin-top: 2px; }
+.st { font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 10px; white-space: nowrap; }
+.st.review { background: rgba(255,200,0,0.14); color: #FFC800; }
+.st.queue { background: #1D2921; color: #6E8A7B; }
+.st.approved { background: rgba(71,200,112,0.16); color: #47C870; }
+div.card { opacity: 0.62; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Learning V2 · <span>Витрина макетов</span></h1>
+  <p class="sub">По одному режиму на страницу, волнами, каждая на отдельное одобрение. Внутри каждой страницы: живой прогон всех состояний, три темы приложения, замедление ×4, reduced motion и спецификация для переноса в RN.</p>
+
+  <div class="wave">
+    <h2>Волна М1 · Выбор</h2>
+    <div class="grid">
+      <a class="card" href="01-visual-discovery.html">
+        <div class="em">🖼️</div>
+        <div class="t"><div class="n">Visual Discovery</div><div class="f">выбор по картинке · SB-01</div></div>
+        <div class="st review">На одобрении</div>
+      </a>
+      <div class="card">
+        <div class="em">🎧</div>
+        <div class="t"><div class="n">Listen &amp; Choose</div><div class="f">выбор на слух · SB-02</div></div>
+        <div class="st queue">В очереди</div>
+      </div>
+      <div class="card">
+        <div class="em">👂</div>
+        <div class="t"><div class="n">Sound Contrast</div><div class="f">пары звуков · SB-02</div></div>
+        <div class="st queue">В очереди</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wave">
+    <h2>Волна М2 · Сборка и скорость</h2>
+    <div class="grid">
+      <div class="card"><div class="em">🧩</div><div class="t"><div class="n">Phrase Builder</div><div class="f">сборка фразы · SB-04</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">✍️</div><div class="t"><div class="n">Listen &amp; Build</div><div class="f">диктант · SB-04</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🕳️</div><div class="t"><div class="n">Context Gap</div><div class="f">форма по смыслу · SB-04</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">⚡</div><div class="t"><div class="n">Speed Match</div><div class="f">пары на скорость · SB-03</div></div><div class="st queue">В очереди</div></div>
+    </div>
+  </div>
+
+  <div class="wave">
+    <h2>Волна М3 · Карта и сессия</h2>
+    <div class="grid">
+      <div class="card"><div class="em">🗺️</div><div class="t"><div class="n">Карта юнита</div><div class="f">12 сессий · 3 зоны</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🎉</div><div class="t"><div class="n">Финал сессии</div><div class="f">церемония звёзд</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🩹</div><div class="t"><div class="n">Разбор ошибок</div><div class="f">Mistake Lab · SB-13</div></div><div class="st queue">В очереди</div></div>
+    </div>
+  </div>
+
+  <div class="wave">
+    <h2>Волна М4 · Диалог и истории</h2>
+    <div class="grid">
+      <div class="card"><div class="em">💬</div><div class="t"><div class="n">Scripted Dialogue</div><div class="f">диалог по сценарию · SB-11</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🧭</div><div class="t"><div class="n">Branching Scene</div><div class="f">сцена-приключение · SB-10</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">📻</div><div class="t"><div class="n">Microstory</div><div class="f">аудио-история · SB-09</div></div><div class="st queue">В очереди</div></div>
+    </div>
+  </div>
+
+  <div class="wave">
+    <h2>Волна М5 · Голос</h2>
+    <div class="grid">
+      <div class="card"><div class="em">🎙️</div><div class="t"><div class="n">Repeat &amp; Compare</div><div class="f">повтор за моделью · SB-06</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🗣️</div><div class="t"><div class="n">Quick Response</div><div class="f">быстрый ответ · SB-07</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🔤</div><div class="t"><div class="n">Sound Lab</div><div class="f">звуковая лаборатория · SB-05</div></div><div class="st queue">В очереди</div></div>
+      <div class="card"><div class="em">🌊</div><div class="t"><div class="n">Shadowing</div><div class="f">ритм и ударение · SB-08</div></div><div class="st queue">В очереди</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

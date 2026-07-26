@@ -35,9 +35,12 @@ export type ProgressEventType =
   | 'preposition_drill_perfect'
   | 'review_answer'
   | 'diagnostic_test'
+  // зачем: порядок обязан совпадать с PROGRESS_EVENT_TYPES в functions/src/progress_events.ts —
+  // tests/progress_event_type_contract сверяет списки как упорядоченные, чтобы новый тип события
+  // нельзя было завести только на одной стороне.
   | 'plan_task_complete'
-  | 'club_mission_complete'
-  | 'wager_win';
+  | 'wager_win'
+  | 'club_mission_complete';
 
 export type ProgressEventRequest = {
   eventId?: string;

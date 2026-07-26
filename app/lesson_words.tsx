@@ -49,6 +49,9 @@ import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import { safeRouterBack } from './navigation_back';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
@@ -2873,6 +2876,27 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
     setVictoryShown(true);
   }, [sessionFinished]);
 
+  // ── Дроп коллекционной карточки за закрытый словарь урока ─────────────────
+  // зачем: владелец попросил шанс карточки не только за урок, но и за закрытие
+  // словаря. Шанс/дневной кап/pity — общие с уроком, считает сервер. eventId =
+  // vocab:<цель>:<урок> без дня: словарь урока закрывается один раз, второй
+  // ролл за него не положен (серверный леджер идемпотентен по eventId).
+  // Условие sessionTouchedRef — вход в уже пройденный раздел без ответов
+  // карточку не даёт, иначе фарм повторным открытием экрана.
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const cardDropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
+  useEffect(() => {
+    if (!sessionFinished) return;
+    if (cardDropRolledRef.current) return;
+    if (!sessionTouchedRef.current) return;
+    cardDropRolledRef.current = true;
+    void maybeRollCollectibleDrop('vocab', `${studyTarget}:${lessonId ?? 0}`, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [sessionFinished, studyTarget, lessonId]);
+
   const currentItem: TrainingQueueItem | undefined = validQueue[qIdx % Math.max(validQueue.length, 1)];
   const current: Card | undefined = useMemo(
     () => currentItem ? buildCard(currentItem.word, currentItem.roundIndex, words, lang) : undefined,
@@ -3129,6 +3153,15 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
           <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>{pickTriLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir', 'pt-BR': 'Repetir', vi: 'Lặp lại', id: 'Ulangi', tr: 'Tekrarla', pl: 'Powtórz' })}</Text>
         </TouchableOpacity>
       </View>
+      {/* Карточка за закрытый словарь — сюрприз поверх экрана итога. */}
+      <CollectibleDropModal
+        outcome={cardDropVisible ? cardDrop : null}
+        onClose={() => setCardDrop(null)}
+        onOpenCollection={() => {
+          setCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
+      />
       <ThemedConfirmModal
         visible={practiceRepeatConfirm}
         title={pickTriLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso', 'pt-BR': 'Revisão', vi: 'Ôn tập', id: 'Pengulangan', tr: 'Tekrar', pl: 'Powtórka' })}

@@ -16,6 +16,9 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 import ReportErrorButton from '../components/ReportErrorButton';
 import BouncyScrollView from '../components/BouncyScrollView';
 import ClozeGapText from '../components/ClozeGapText';
@@ -292,6 +295,24 @@ export default function PrepositionDrillScreen() {
     victoryFiredRef.current = true;
     setVictoryShown(true);
   }, [done]);
+
+  // ── Дроп коллекционной карточки за закрытый раздел предлогов ──────────────
+  // зачем: владелец попросил шанс карточки и за закрытие предлогов. Шанс/кап/
+  // pity — общие с уроком, решает сервер. eventId = prep:<цель>:<урок> без дня:
+  // раздел закрывается один раз, режим повтора (reviewMode) второй карточки не
+  // даёт — иначе можно было бы фармить повторными прогонами.
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const cardDropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
+  useEffect(() => {
+    if (!done || reviewMode || total === 0) return;
+    if (cardDropRolledRef.current) return;
+    cardDropRolledRef.current = true;
+    void maybeRollCollectibleDrop('prep', `${studyTarget ?? 'en'}:${lessonId}`, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [done, reviewMode, total, studyTarget, lessonId]);
   const speakSentenceEn = useCallback((template: string, prep: string) => {
     if (!voiceOut) return;
     const line = template.replace(/__/g, prep).replace(/\s+/g, ' ').trim();
@@ -832,6 +853,15 @@ export default function PrepositionDrillScreen() {
         </ContentWrap>
 
         <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} />
+        {/* Карточка за закрытый раздел предлогов — сюрприз поверх экрана итога. */}
+        <CollectibleDropModal
+          outcome={cardDropVisible ? cardDrop : null}
+          onClose={() => setCardDrop(null)}
+          onOpenCollection={() => {
+            setCardDrop(null);
+            router.push('/collectibles_screen' as any);
+          }}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

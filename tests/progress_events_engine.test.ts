@@ -1,12 +1,14 @@
 import {
   applyProgressEvent,
   buildMigrationPatch,
+  getMigrationQuarantinedSensitiveKeys,
   getWeekKey,
   getWeekStartIso,
   isServerOwnedProgressKey,
   normalizeProgressEvent,
   resolveClientDateKey,
 } from '../functions/src/progress_events';
+import { getLevelFromXP } from '../functions/src/xp_levels';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 
@@ -169,7 +171,7 @@ describe('progress_events engine', () => {
     expect(applyProgressEvent({}, event, now).xpDelta).toBe(100);
   });
 
-  it('allows batched lesson completion XP up to the lesson daily cap', () => {
+  it('awards batched lesson completion XP regardless of what was earned today', () => {
     const event = normalizeProgressEvent({
       eventId: 'lesson:7:attempt-1:complete_xp',
       type: 'lesson_complete',
@@ -178,11 +180,16 @@ describe('progress_events engine', () => {
     });
 
     const result = applyProgressEvent({}, event, now);
-    const cappedResult = applyProgressEvent({}, event, now, { sourceXpToday: { lesson_complete: 7900 } });
+    // Суточные потолки сняты: сколько бы уроков игрок ни закрыл сегодня, следующий
+    // засчитывается полностью — иначе серверный total расходился бы с локальным навсегда.
+    const lateInDayResult = applyProgressEvent({}, event, now, {
+      sourceXpToday: { lesson_complete: 7900 },
+      totalXpToday: 100_000,
+    });
 
     expect(result.xpDelta).toBe(2500);
     expect(result.progressPatch.lesson7_pass_count).toBeUndefined();
-    expect(cappedResult.xpDelta).toBe(100);
+    expect(lateInDayResult.xpDelta).toBe(2500);
   });
 
   it('preserves high-tier wager rewards', () => {
@@ -243,18 +250,34 @@ describe('progress_events engine', () => {
       'level_exams_v2::fr::level_exam_A1_passed': 'false',
     }, now);
 
+    // Миграция снапшота переносит ТОЛЬКО структурный прогресс (cellIndex/progress-массивы).
+    // Всё, чем можно себе начислить (XP, стрик, счётчики прохождений, результаты экзаменов),
+    // карантинится — снапшот приходит с телефона и доверять ему как источнику наград нельзя.
     expect(patch.user_total_xp).toBeUndefined();
-    expect(patch.weekly_xp).toBe('55');
+    expect(patch.weekly_xp).toBeUndefined();
     expect(patch.streak_count).toBeUndefined();
-    expect(patch.last_active_date).toBe('2026-06-13');
-    expect(patch.unlocked_lessons).toBe('[1,2,3,4]');
-    expect(patch['lesson_progress_v2::fr::unlocked_lessons']).toBe('[1,2,3]');
+    expect(patch.last_active_date).toBeUndefined();
+    expect(patch.unlocked_lessons).toBeUndefined();
+    expect(patch['lesson_progress_v2::fr::unlocked_lessons']).toBeUndefined();
     expect(patch.lesson4_best_score).toBeUndefined();
-    expect(patch.lesson4_progress).toBe(JSON.stringify(['correct', 'correct', 'empty']));
     expect(patch['lesson_progress_v2::fr::lesson4_best_score']).toBeUndefined();
+    expect(patch.level_exam_A1_passed).toBeUndefined();
+    expect(patch['level_exams_v2::fr::level_exam_A1_passed']).toBeUndefined();
+
+    // Структурный прогресс переносится, и только когда снапшот богаче серверного.
+    expect(patch.lesson4_progress).toBe(JSON.stringify(['correct', 'correct', 'empty']));
     expect(patch['lesson_progress_v2::fr::4']).toBe(JSON.stringify(['correct', 'correct']));
-    expect(patch.level_exam_A1_passed).toBe('true');
-    expect(patch['level_exams_v2::fr::level_exam_A1_passed']).toBe('true');
+
+    // Уровень пересчитывается от УЖЕ серверного XP, а не от присланного снапшотом.
+    expect(patch.user_level).toBe(String(getLevelFromXP(1000)));
+
+    // Всё карантинное перечислено в provenance — миграция обязана быть аудируемой.
+    expect(getMigrationQuarantinedSensitiveKeys({
+      user_total_xp: '900',
+      weekly_xp: '55',
+      streak_count: '4',
+      lesson4_progress: '[]',
+    })).toEqual(['streak_count', 'user_total_xp', 'weekly_xp']);
   });
 
   it('uses fresh client streak evidence to repair stale server streak state', () => {
@@ -299,7 +322,7 @@ describe('progress_events engine', () => {
     expect(result.progressPatch.last_active_date).toBe('2026-06-26');
   });
 
-  it('migrates lesson counters and exam fields with monotonic conflict resolution', () => {
+  it('quarantines lesson counters and exam fields, migrating only monotonic cellIndex', () => {
     const patch = buildMigrationPatch({
       lesson8_pass_count: '3',
       lesson8_cellIndex: '44',
@@ -328,18 +351,22 @@ describe('progress_events engine', () => {
       'level_exams_v2::fr::level_exam_B1_completed_at': '2026-06-01',
     }, now);
 
-    expect(patch.lesson8_pass_count).toBe('3');
-    expect(patch.lesson8_cellIndex).toBeUndefined();
+    // Счётчики прохождений и результаты экзаменов — награждаемые поля, снапшот их не переносит:
+    // иначе подменённый снапшот телефона выдавал бы себе пройденные уроки и сданные экзамены.
+    expect(patch.lesson8_pass_count).toBeUndefined();
     expect(patch['lesson_progress_v2::fr::lesson8_pass_count']).toBeUndefined();
-    expect(patch['lesson_progress_v2::fr::lesson8_cellIndex']).toBe('40');
     expect(patch.level_exam_B2_pct).toBeUndefined();
-    expect(patch.level_exam_B2_best_pct).toBe('92');
-    expect(patch.level_exam_B2_pass_count).toBe('4');
-    expect(patch.level_exam_B2_completed_at).toBe('2026-06-12');
-    expect(patch['level_exams_v2::fr::level_exam_B1_pct']).toBe('81');
+    expect(patch.level_exam_B2_best_pct).toBeUndefined();
+    expect(patch.level_exam_B2_pass_count).toBeUndefined();
+    expect(patch.level_exam_B2_completed_at).toBeUndefined();
+    expect(patch['level_exams_v2::fr::level_exam_B1_pct']).toBeUndefined();
     expect(patch['level_exams_v2::fr::level_exam_B1_best_pct']).toBeUndefined();
     expect(patch['level_exams_v2::fr::level_exam_B1_pass_count']).toBeUndefined();
-    expect(patch['level_exams_v2::fr::level_exam_B1_completed_at']).toBe('2026-06-13');
+    expect(patch['level_exams_v2::fr::level_exam_B1_completed_at']).toBeUndefined();
+
+    // cellIndex — позиция в уроке, наград не даёт: переносится, но только вверх.
+    expect(patch.lesson8_cellIndex).toBeUndefined(); // снапшот 44 < сервер 50
+    expect(patch['lesson_progress_v2::fr::lesson8_cellIndex']).toBe('40'); // 40 > 12
   });
 
   it('recognizes server-owned progress keys for rules and sync filtering', () => {
@@ -358,7 +385,9 @@ describe('progress_events engine', () => {
   it('writes Firestore progress as a nested merge map, not dotted root fields', () => {
     const source = readFileSync(join(__dirname, '../functions/src/progress_events.ts'), 'utf8');
 
-    expect(source).toContain('progress: applied.progressPatch');
+    // Прогресс пишется ОДНОЙ вложенной картой под ключом progress, а не набором корневых полей
+    // вида `progress.user_total_xp` — иначе merge затирал бы соседние ключи и ломал офлайн-слияние.
+    expect(source).toContain('progress: progressPatch');
     expect(source).toContain('progress: patch');
     expect(source).not.toContain('`progress.${key}`');
   });

@@ -185,7 +185,15 @@ function sanitizeRef(ref: string): string {
   return ref.replace(/[^A-Za-z0-9_.:-]/g, '_').slice(0, 60);
 }
 
-export type CollectibleDropKind = 'lesson' | 'plan' | 'quiz' | 'arena' | 'exam' | 'pronounce' | 'dialog';
+// зачем: владелец попросил шанс карточки не только за урок. tournament — за
+// УЧАСТИЕ в турнире (любое место, как и раньше по правилам общего шанса);
+// vocab/verbs/prep — за закрытие словаря / неправильных глаголов / предлогов.
+// Шанс, дневной кап и pity — общие с уроком (серверный collectibles.ts), своей
+// экономики у новых мест нет: карточек в день по-прежнему максимум 3 (4 premium).
+export type CollectibleDropKind =
+  | 'lesson' | 'plan' | 'quiz' | 'arena' | 'exam'
+  | 'tournament' | 'vocab' | 'verbs' | 'prep'
+  | 'pronounce' | 'dialog';
 
 const inFlight = new Set<string>();
 

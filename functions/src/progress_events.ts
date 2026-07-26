@@ -128,37 +128,18 @@ const EVENT_XP_CAP: Record<ProgressEventType, number> = {
 };
 
 /**
- * ECON-2: дневной потолок суммарного XP по «гриндабельным» источникам (ответы в уроках/квизах,
- * тренажёр предлогов, повторение). Множитель сложности урока + стрик + подарки применяются к
- * КАЖДОМУ ответу на клиенте, и при гринде отдельных вопросов в поздних уроках это даёт сотни тысяч
- * XP в день. Per-event cap (EVENT_XP_CAP) не ограничивает фарм количеством — нужен суточный потолок
- * по сумме. Источники, не входящие сюда (lesson_complete, exam_complete, награды), ограничены своими
- * разовыми/механическими лимитами и сюда не попадают.
+ * зачем: суточные потолки XP (ECON-2: GLOBAL_DAILY_XP_CAP = 25 000 и EVENT_DAILY_XP_CAP по каждому
+ * источнику) сняты по решению владельца 2026-07-26. Они срезали XP только на сервере, а клиент
+ * пишет user_total_xp локально без каких-либо суточных лимитов и при зеркалировании берёт
+ * Math.max(local, server) — то есть срезанное серверное значение всегда проигрывало локальному.
+ * Потолки не мешали фарму, но навсегда расщепляли баланс телефона и сервера: активный игрок видел
+ * у себя одно число, сервер хранил другое, и сойтись они уже не могли. Активная игра наказывалась,
+ * античит-эффекта не давалось. От подделанного xpDelta в запросе защищает оставшийся EVENT_XP_CAP
+ * (потолок на одно событие), от бесконечных попыток экзамена — EXAM_DAILY_ATTEMPT_LIMIT, от
+ * неограниченных вызовов функции — DAILY_EVENT_LIMIT. Счётчики sourceXp/totalXp в
+ * progress_daily_counters продолжают писаться — они нужны админ-аналитике и дают возможность
+ * вернуть потолок, не меняя схему данных.
  */
-export const GLOBAL_DAILY_XP_CAP = 25_000;
-
-const EVENT_DAILY_XP_CAP: Record<ProgressEventType, number> = {
-  lesson_answer: 8000,
-  lesson_complete: 8000,
-  quiz_answer: 8000,
-  dialog_complete: 3000,
-  exam_complete: 12_000,
-  daily_task_reward: 2000,
-  achievement_reward: 5000,
-  level_up_bonus: 2000,
-  daily_login_bonus: 500,
-  daily_phrase_quest: 1000,
-  bonus_chest: 5000,
-  vocabulary_learned: 3000,
-  verb_learned: 3000,
-  preposition_drill_answer: 2000,
-  preposition_drill_perfect: 3000,
-  review_answer: 4000,
-  diagnostic_test: 2500,
-  plan_task_complete: 4000,
-  wager_win: 20_000,
-  club_mission_complete: 2000,
-};
 
 /**
  * ECON-3: суточный лимит попыток экзамена. XP начисляется за каждую попытку, осколок — только за
@@ -579,14 +560,19 @@ function setUnlocked(progress: ProgressMap, patch: ProgressMap, lessonId: number
 }
 
 /**
- * Контекст одного дня для серверных лимитов (ECON-2/3/11). Передаётся из транзакции, где читается
+ * Контекст одного дня для серверных лимитов (ECON-3). Передаётся из транзакции, где читается
  * progress_daily_counters/{day}. Чистая функция остаётся тестируемой.
+ *
+ * зачем: суточные потолки XP сняты (см. комментарий у EVENT_XP_CAP), поэтому на начисление здесь
+ * влияет только examAttemptsToday. sourceXpToday/totalXpToday остаются в типе и продолжают
+ * писаться в счётчики — их читает админ-аналитика, и по ним можно вернуть потолок без миграции.
  */
 export type ProgressDailyContext = {
-  /** Уже начисленный сегодня XP по каждому источнику (до текущего события). */
+  /** Уже начисленный сегодня XP по каждому источнику. Аналитика; на начисление не влияет. */
   sourceXpToday?: Partial<Record<ProgressEventType, number>>;
-  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). */
+  /** Сколько попыток экзамена уже зачтено сегодня (любого уровня). Ограничивает XP за экзамен. */
   examAttemptsToday?: number;
+  /** Суммарный XP за сегодня. Аналитика; на начисление не влияет. */
   totalXpToday?: number;
 };
 
@@ -617,12 +603,12 @@ function xpFromPayload(event: ProgressEventInput, daily?: ProgressDailyContext):
     );
   }
 
-  if (requested <= 0) return 0;
-  const usedByType = Math.max(0, daily?.sourceXpToday?.[event.type] ?? 0);
-  const remainingByType = Math.max(0, EVENT_DAILY_XP_CAP[event.type] - usedByType);
-  const usedOverall = Math.max(0, daily?.totalXpToday ?? 0);
-  const remainingOverall = Math.max(0, GLOBAL_DAILY_XP_CAP - usedOverall);
-  return Math.min(requested, remainingByType, remainingOverall);
+  // зачем: здесь суточные потолки срезали уже честно заработанный XP. Сервер отдавал урезанный
+  // total, клиент при зеркалировании брал Math.max(local, server) и оставался со своим большим
+  // числом — потолок не ограничивал игрока, а только разводил два баланса навсегда. Оставляем
+  // единственную проверку, которая защищает от подделки: потолок на одно событие (EVENT_XP_CAP)
+  // применён выше при clampInt.
+  return Math.max(0, requested);
 }
 
 function applyDailyStreak(progress: ProgressMap, patch: ProgressMap, activeDate: string): number {

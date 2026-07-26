@@ -43,12 +43,22 @@ describe('collectible drop overlay contract', () => {
   });
 
   it('gates every production CollectibleDropModal renderer through OverlayArbiter', () => {
-    // app/arena_results.tsx был удалён вместе с ареной; единственный
-    // продакшен-рендерер дропа — экран завершения урока.
-    for (const relativePath of ['app/lesson_complete.tsx']) {
-      const source = read(relativePath);
-      expect(source).toContain("useOverlayVisible('collectibleDrop', shownCardDrop != null)");
-      expect(source).toContain('outcome={collectibleDropVisible ? shownCardDrop : null}');
+    // app/arena_results.tsx был удалён вместе с ареной. Экран завершения урока
+    // держит своё имя состояния (shownCardDrop); остальные точки дропа —
+    // турнир, словарь, неправильные глаголы, предлоги — используют cardDrop.
+    const source = read('app/lesson_complete.tsx');
+    expect(source).toContain("useOverlayVisible('collectibleDrop', shownCardDrop != null)");
+    expect(source).toContain('outcome={collectibleDropVisible ? shownCardDrop : null}');
+
+    for (const relativePath of [
+      'app/tournament_results.tsx',
+      'app/lesson_words.tsx',
+      'app/lesson_irregular_verbs.tsx',
+      'app/preposition_drill.tsx',
+    ]) {
+      const screen = read(relativePath);
+      expect(screen).toContain("useOverlayVisible('collectibleDrop', cardDrop != null)");
+      expect(screen).toContain('outcome={cardDropVisible ? cardDrop : null}');
     }
   });
 
@@ -64,8 +74,29 @@ describe('collectible drop overlay contract', () => {
 
     expect(renderers).toEqual([
       'app/lesson_complete.tsx',
+      'app/lesson_irregular_verbs.tsx',
+      'app/lesson_words.tsx',
+      'app/preposition_drill.tsx',
+      'app/tournament_results.tsx',
       'components/admin_panel/sections/CollectibleDropModalsSection.tsx',
       'components/admin_panel/sections/UxOverhaulModalsSection.tsx',
     ].sort());
+  });
+
+  it('rolls each new drop point once per closed section, not per day', () => {
+    // Турнир/словарь/глаголы/предлоги закрываются один раз — dailyScoped:false,
+    // иначе один и тот же раздел давал бы карточку каждый день заново.
+    const points: Array<[string, string]> = [
+      ['app/tournament_results.tsx', "maybeRollCollectibleDrop('tournament'"],
+      ['app/lesson_words.tsx', "maybeRollCollectibleDrop('vocab'"],
+      ['app/lesson_irregular_verbs.tsx', "maybeRollCollectibleDrop('verbs'"],
+      ['app/preposition_drill.tsx', "maybeRollCollectibleDrop('prep'"],
+    ];
+    for (const [relativePath, call] of points) {
+      const source = read(relativePath);
+      expect(source).toContain(call);
+      const callIndex = source.indexOf(call);
+      expect(source.slice(callIndex, callIndex + 220)).toContain('dailyScoped: false');
+    }
   });
 });

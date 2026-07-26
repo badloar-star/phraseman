@@ -34,6 +34,9 @@ import { TournamentEdgeState } from '../components/tournament/TournamentEdgeStat
 import { claimReward, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
+import CollectibleDropModal from '../components/CollectibleDropModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
+import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collectibles/storage';
 
 type Winner = { name: string; avatar: string; color: string; score: number; place: number };
 
@@ -42,9 +45,9 @@ type Winner = { name: string; avatar: string; color: string; score: number; plac
 // (не встроена в текст, т.к. это строка из трёх разных призов подряд).
 /** Призы совпадают с TOURNAMENT_PRIZES на сервере (tournament_core.ts). */
 const PRIZES = [
-  { medal: '🥇', text: '🎟 + 50 монет + титул «Чемпион дня»' },
-  { medal: '🥈', text: '🎟 + 25 монет' },
-  { medal: '🥉', text: '10 монет' },
+  { medal: '🥇', text: '🎟 + 50 жемчужин + титул «Чемпион дня»' },
+  { medal: '🥈', text: '🎟 + 25 жемчужин' },
+  { medal: '🥉', text: '10 жемчужин' },
 ];
 
 /**
@@ -138,6 +141,31 @@ export default function TournamentResultsScreen() {
     if (claimedRef.current) return;
     void claim();
   }, [roomId, room, room?.state, claim]);
+
+  // ── Дроп коллекционной карточки за участие в турнире ──────────────────────
+  // зачем: владелец попросил давать шанс карточки за УЧАСТИЕ в турнире — всем,
+  // кто играл, независимо от места. Правила выдачи те же, что у урока: общий
+  // шанс, общий дневной кап и pity считает сервер (collectibles.ts). eventId =
+  // tournament:<roomId> — одна комната даёт ровно один ролл навсегда, повторный
+  // вход на экран итогов карточку не дублирует (серверный леджер идемпотентен).
+  const [cardDrop, setCardDrop] = useState<CollectibleDropOutcome | null>(null);
+  const dropRolledRef = useRef(false);
+  const cardDropVisible = useOverlayVisible('collectibleDrop', cardDrop != null);
+
+  useEffect(() => {
+    if (!roomId || !room) return;
+    // Только когда турнир реально доигран — иначе роллим за незавершённое.
+    if (room.state !== 'results' && room.state !== 'rewards' && room.state !== 'closed') return;
+    // Участие = игрок есть в финальной таблице. Зрители карточку не получают.
+    if (myPlace <= 0) return;
+    if (dropRolledRef.current) return;
+    dropRolledRef.current = true;
+    // Сюрприз ПОСЛЕ итогов, а не CTA до них: модалка приходит поверх подиума,
+    // ничего не блокируя. Ошибка/офлайн — тихо, экран итогов не страдает.
+    void maybeRollCollectibleDrop('tournament', roomId, { dailyScoped: false })
+      .then((drop) => { if (drop) setCardDrop(drop); })
+      .catch(() => {});
+  }, [roomId, room, room?.state, myPlace]);
 
   const share = useCallback(async () => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
@@ -250,6 +278,17 @@ export default function TournamentResultsScreen() {
           <Cta ghost onPress={() => router.replace('/tournaments')}>На главную</Cta>
         </View>
       </ScrollView>
+
+      {/* Отдельная модалка карточки после турнира — поверх итогов, через
+          общий арбитр оверлеев (не наслаивается на другие окна). */}
+      <CollectibleDropModal
+        outcome={cardDropVisible ? cardDrop : null}
+        onClose={() => setCardDrop(null)}
+        onOpenCollection={() => {
+          setCardDrop(null);
+          router.push('/collectibles_screen' as any);
+        }}
+      />
     </View>
   );
 }

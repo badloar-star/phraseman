@@ -241,6 +241,18 @@ function submitProgressEventOptimistically(
       emitAppEvent('xp_changed');
     })
     .catch((serverError) => {
+      // зачем: XP уже начислен локально, сервер тут только догоняет. 'progress_event_pending'
+      // и 'progress_server_unavailable' — штатные состояния (нет сети / событие ещё в durable
+      // очереди и уйдёт следующим флашем), а не сбой: они попадали в лог как WARNING и пугали
+      // владельца красным Console Error на экране, хотя опыт не терялся. Настоящие сбои
+      // отправки логируем как раньше.
+      const diagnostic = String((serverError as { message?: string })?.message ?? serverError);
+      const isExpectedRetry = diagnostic.includes('progress_event_pending')
+        || diagnostic.includes('progress_server_unavailable');
+      if (isExpectedRetry) {
+        if (__DEV__) console.info('[xp_manager] progress event queued for retry:', diagnostic);
+        return;
+      }
       DebugLogger.error(logLabel, serverError, 'warning');
     });
 }

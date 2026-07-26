@@ -1,5 +1,6 @@
 import {
   CollectiblesDropState,
+  EVENT_ID_RE,
   parseDropState,
   rollCollectibleDrop,
   collectiblesDropConfigFromData,
@@ -30,6 +31,28 @@ describe('parseDropState', () => {
 
   test('мусор на входе превращается в нулевое состояние', () => {
     expect(parseDropState('not-json', '2026-06-11')).toEqual(freshState());
+  });
+});
+
+describe('EVENT_ID_RE', () => {
+  test('пропускает все точки дропа, включая турнир/словарь/глаголы/предлоги', () => {
+    const valid = [
+      'lesson:5:2026-06-11',
+      'plan:task7',
+      'quiz:q1',
+      'arena:room9',
+      'exam:level3',
+      'tournament:room_abc123',
+      'vocab:en:12',
+      'verbs:en:12',
+      'prep:en:12',
+    ];
+    for (const eventId of valid) expect(EVENT_ID_RE.test(eventId)).toBe(true);
+  });
+
+  test('отвергает неизвестный kind и мусор — клиент не может выдумать активность', () => {
+    const invalid = ['hack:1', 'tournaments:1', 'vocabulary:1', 'lesson', ':5', 'lesson:пять', ''];
+    for (const eventId of invalid) expect(EVENT_ID_RE.test(eventId)).toBe(false);
   });
 });
 

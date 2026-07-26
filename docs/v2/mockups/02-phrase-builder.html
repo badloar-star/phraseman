@@ -31,9 +31,18 @@
   --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
   --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
   --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
-  --chip-grad-a:#243527; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
   --bg-grad-a:#071009; --bg-grad-b:#010101;
   --sheen:rgba(88,204,137,0.05);
+  /* зачем: владелец попросил премиальные градиенты на каждой кнопке —
+     глубокая заливка CTA, металлический перелив, блик сверху (не рамки) */
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
 }
 :root[data-theme="gold"] {
   --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
@@ -43,9 +52,16 @@
   --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
   --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
   --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
-  --chip-grad-a:#1F1B12; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
   --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
   --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
 }
 :root[data-theme="coral"] {
   --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
@@ -55,9 +71,16 @@
   --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
   --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
   --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
-  --chip-grad-a:#33222A; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
   --bg-grad-a:#140709; --bg-grad-b:#010101;
   --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
@@ -79,16 +102,21 @@ svg { display:block; }
     linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
   box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
 }
+/* Глубина сцены: деликатная виньетка по краям, поверх фона, под контентом */
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
 
 /* ---------- ActivityHeader ---------- */
 .hdr { padding:22px 16px 0; }
 .hdr-row { display:flex; align-items:center; gap:12px; }
 .icon-btn {
   width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
-  background:var(--bg-surface); color:var(--text-muted);
+  background:var(--surface-grad); color:var(--text-muted);
   display:grid; place-items:center;
   transition:transform var(--t-press) var(--ease-outquint);
-  box-shadow:0 6px 14px var(--card-shadow);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
 }
 .icon-btn:active { transform:scale(0.94); }
 .hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
@@ -102,14 +130,43 @@ svg { display:block; }
   transition:transform var(--t-slow) var(--ease-slide);
 }
 .seg.done::after { transform:scaleX(1); }
+/* Счётчики: полные пилюли с переливом и бликом (единая премиальная форма) */
 .counter {
-  display:flex; align-items:center; gap:6px; border-radius:12px; padding:5px 10px;
+  display:flex; align-items:center; gap:6px; border-radius:999px; padding:6px 12px;
   font-weight:800; font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.25);
 }
 .counter svg { width:14px; height:14px; }
-.counter.stars { background:var(--gold-bg); color:var(--gold); }
-.counter.miss { background:var(--wrong-bg); color:var(--wrong); opacity:0.4; transition:opacity var(--t-fast); }
+.counter.stars { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--gold-bg); color:var(--gold); }
+.counter.miss { background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--wrong-bg); color:var(--wrong); opacity:0.4; transition:opacity var(--t-fast); }
 .counter.miss.hasmiss { opacity:1; }
+/* Серия (стрик): раскаляющаяся пилюля, три яруса накала */
+.counter.streakp { display:none; color:var(--gold); position:relative; overflow:hidden; }
+.counter.streakp.show { display:flex; animation:pillIn calc(340ms * var(--tf)) var(--ease-spring); }
+@keyframes pillIn { 0%{transform:scale(0.6); opacity:0} 60%{transform:scale(1.12); opacity:1} 100%{transform:scale(1)} }
+.counter.streakp[data-tier="1"] { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.24)), var(--gold-bg); }
+.counter.streakp[data-tier="2"] { background:linear-gradient(155deg, color-mix(in srgb, var(--gold) 42%, transparent), rgba(0,0,0,0.3)); }
+.counter.streakp[data-tier="3"] { background:linear-gradient(150deg, var(--gold), color-mix(in srgb, var(--gold) 52%, #000)); color:var(--text-on-gold); }
+/* Бегущий блик на максимальном ярусе: перелив, а не молния */
+.counter.streakp[data-tier="3"]::after {
+  content:""; position:absolute; top:-40%; bottom:-40%; width:36%;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,0.5), transparent);
+  transform:translateX(-180%) skewX(-18deg);
+  animation:pillSheen calc(1800ms * var(--tf)) ease-in-out infinite;
+}
+@keyframes pillSheen { 0%{transform:translateX(-180%) skewX(-18deg)} 55%,100%{transform:translateX(420%) skewX(-18deg)} }
+/* Золотая волна: световой перелив через весь экран на росте серии */
+.goldwave {
+  position:absolute; top:-12%; bottom:-12%; width:44%; pointer-events:none;
+  background:linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 24%, transparent), transparent);
+  transform:translateX(-170%) skewX(-16deg); filter:blur(2px);
+}
+.bonus-float {
+  position:absolute; font-weight:900; font-size:17px; color:var(--gold);
+  text-shadow:0 3px 14px rgba(0,0,0,0.5); pointer-events:none; will-change:transform, opacity;
+  left:0; top:0;
+}
+.spark-fly { position:absolute; left:0; top:0; color:var(--gold); will-change:transform, opacity; pointer-events:none; }
 .counter.bump svg, .counter.bump b { animation:bump calc(360ms * var(--tf)) var(--ease-spring); }
 @keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 100%{transform:scale(1)} }
 
@@ -117,12 +174,16 @@ svg { display:block; }
 .prompt { padding:26px 20px 0; }
 .task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
 .hero-row { display:flex; align-items:flex-start; gap:14px; margin-top:10px; }
-.hero { flex:1; font-size:31px; line-height:1.22; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; }
+/* Герой-фраза: премиальный градиент по тексту, глубина без обводок */
+.hero {
+  flex:1; font-size:31px; line-height:1.22; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
 .audio-btn {
-  flex:0 0 auto; width:46px; height:46px; border-radius:16px; border:none; cursor:pointer;
+  flex:0 0 auto; width:46px; height:46px; border-radius:18px; border:none; cursor:pointer;
   background:linear-gradient(150deg, var(--chip-grad-a), var(--chip-grad-b));
   color:var(--text-second); display:grid; place-items:center;
-  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
   transition:transform var(--t-press) var(--ease-outquint);
   margin-top:4px;
 }
@@ -134,29 +195,30 @@ svg { display:block; }
   margin:26px 20px 0; min-height:118px; position:relative;
   display:flex; flex-wrap:wrap; align-content:flex-start; gap:10px;
   padding-bottom:12px;
-  border-bottom:1px solid rgba(255,255,255,0.08); /* односторонний разделитель: разрешено */
+  /* Базовая линия: градиентная нить, тающая к краям (вместо жёсткой черты) */
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.16) 16%, rgba(255,255,255,0.16) 84%, transparent) bottom / 100% 1px no-repeat;
 }
 /* ---------- Банк чипов ---------- */
 .bank {
   padding:22px 20px 0; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
 }
 .chip {
-  border:none; cursor:pointer; border-radius:16px; padding:13px 18px;
+  border:none; cursor:pointer; border-radius:18px; padding:13px 18px;
   font-family:inherit; font-size:17.5px; font-weight:700; letter-spacing:0.2px;
   color:var(--text-primary);
-  background:linear-gradient(160deg, var(--chip-grad-a), var(--chip-grad-b));
-  box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.07);
+  background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
   transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast), color var(--t-fast);
   position:relative;
 }
-.chip:active { transform:translateY(3px); box-shadow:0 1px 0 var(--chip-edge), 0 6px 12px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.07); }
+.chip:active { transform:translateY(3px); box-shadow:0 1px 0 var(--chip-edge), 0 6px 12px var(--card-shadow), inset 0 1px 0 var(--chip-hi); }
 /* Гнездо в банке: место чипа сохранено, геометрия банка не прыгает */
 .chip.ghost { background:var(--bg-surface); box-shadow:inset 0 2px 6px rgba(0,0,0,0.35); color:transparent; pointer-events:none; }
 /* Чип в строке ответа */
 .answer .chip { animation:land calc(300ms * var(--tf)) var(--ease-spring); }
 @keyframes land { 0%{transform:scale(1.06)} 55%{transform:scale(0.97)} 100%{transform:scale(1)} }
 /* Вердикты чипов строки */
-.answer .chip.ok { background:linear-gradient(160deg, var(--correct), var(--correct)); color:var(--correct-text); box-shadow:0 4px 0 var(--btn-shadow), 0 12px 22px var(--card-shadow); animation:okPop calc(340ms * var(--tf)) var(--ease-spring); }
+.answer .chip.ok { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 4px 0 var(--btn-shadow), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--cta-hi); animation:okPop calc(340ms * var(--tf)) var(--ease-spring); }
 @keyframes okPop { 0%{transform:scale(1)} 45%{transform:scale(1.1,0.92)} 100%{transform:scale(1)} }
 .answer .chip.bad { background:linear-gradient(160deg, var(--chip-grad-a), var(--chip-grad-b)); box-shadow:0 4px 0 var(--chip-edge), 0 0 0 400px var(--wrong-bg) inset, 0 12px 22px var(--card-shadow); opacity:0.9; }
 .answer .chip.settle { animation:none; }
@@ -164,7 +226,7 @@ svg { display:block; }
 /* ---------- Полоса фидбека: высота зарезервирована ---------- */
 .feedback-lane { min-height:84px; padding:14px 20px 0; display:flex; align-items:stretch; }
 .fb {
-  flex:1; border-radius:18px; padding:12px 14px;
+  flex:1; border-radius:20px; padding:12px 14px;
   display:flex; align-items:center; gap:12px;
   opacity:0; transform:translateY(10px);
   transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint);
@@ -174,9 +236,10 @@ svg { display:block; }
 .fb .fi svg { width:18px; height:18px; }
 .fb .ft { font-size:14.5px; font-weight:700; line-height:1.35; color:var(--text-primary); }
 .fb .ft .w { font-weight:800; color:var(--text-second); }
-.fb.good { background:var(--correct-bg); } .fb.good .fi { background:var(--correct); color:var(--correct-text); }
-.fb.hint { background:var(--wrong-bg); } .fb.hint .fi { background:var(--bg-surface2); color:var(--text-primary); }
-.fb.neutral { background:var(--accent-bg); } .fb.neutral .fi { background:var(--bg-surface2); color:var(--text-second); }
+.fb { box-shadow:inset 0 1px 0 rgba(255,255,255,0.07); }
+.fb.good { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--correct-bg); } .fb.good .fi { background:var(--ok-grad); color:var(--correct-text); box-shadow:inset 0 1px 0 var(--cta-hi); }
+.fb.hint { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--wrong-bg); } .fb.hint .fi { background:var(--surface-grad); color:var(--text-primary); }
+.fb.neutral { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--accent-bg); } .fb.neutral .fi { background:var(--surface-grad); color:var(--text-second); }
 
 /* Комбо */
 .combo {
@@ -197,10 +260,10 @@ svg { display:block; }
 /* ---------- ActionDock ---------- */
 .dock { margin-top:auto; padding:14px 16px 26px; }
 .cta {
-  width:100%; height:56px; border:none; border-radius:18px; cursor:pointer;
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
   font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
-  color:var(--correct-text); background:var(--accent);
-  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow);
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
   position:relative; overflow:hidden;
   transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), background var(--t-fast), color var(--t-fast);
 }
@@ -239,7 +302,8 @@ svg { display:block; }
 :root[data-reduced="1"] .chip, :root[data-reduced="1"] .fb, :root[data-reduced="1"] .seg::after, :root[data-reduced="1"] .cta {
   transition-duration:80ms !important; animation-duration:1ms !important;
 }
-:root[data-reduced="1"] .combo.pop { animation:none; opacity:0; }
+:root[data-reduced="1"] .counter.streakp[data-tier="3"]::after { animation:none; }
+:root[data-reduced="1"] .counter.streakp.show { animation:none; }
 
 @media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
 </style>
@@ -255,6 +319,8 @@ svg { display:block; }
     <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
     <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-3.6 11.9c0.7 0.5 1.1 1.2 1.1 2V18h5v-1.1c0-0.8 0.4-1.5 1.1-2A6.5 6.5 0 0 0 12 3z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5L19.5 12 13 17.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="15" cy="8" r="2.4" fill="currentColor"/><circle cx="9" cy="16" r="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z" fill="currentColor"/></symbol>
   </defs>
 </svg>
 
@@ -264,11 +330,12 @@ svg { display:block; }
       <div class="hdr-row">
         <button class="icon-btn" title="Закрыть"><svg width="17" height="17"><use href="#i-x"/></svg></button>
         <div class="hdr-title" id="skillTitle">Знакомство · сборка фразы</div>
-        <button class="icon-btn" title="Аудио и доступность"><svg width="18" height="18"><use href="#i-sound"/></svg></button>
+        <button class="icon-btn" title="Настройки урока"><svg width="18" height="18"><use href="#i-sliders"/></svg></button>
       </div>
       <div class="progress-row">
         <div class="seg-track" id="segTrack"></div>
         <div class="counter miss" id="missCounter"><svg><use href="#i-dot"/></svg><b id="missVal">0</b></div>
+        <div class="counter streakp" id="streakPill" data-tier="1"><svg><use href="#i-spark"/></svg><b id="streakVal">2</b></div>
         <div class="counter stars" id="starCounter"><svg><use href="#i-star"/></svg><b id="starVal">0</b></div>
       </div>
     </div>
@@ -298,7 +365,6 @@ svg { display:block; }
       </button>
     </div>
 
-    <div class="combo" id="combo"></div>
     <div class="fx" id="fx"></div>
   </div>
 </div>
@@ -341,7 +407,7 @@ svg { display:block; }
       <div class="row"><span>Волна вердикта по чипам</span><span class="val">70 мс/чип · okPop сквош</span></div>
       <div class="row"><span>Полёт звезды + трейл</span><span class="val">700 мс · slide · тик-хаптик</span></div>
       <div class="row"><span>Бамп счётчика</span><span class="val">spring micro · scale 1.28</span></div>
-      <div class="row"><span>Комбо-поп</span><span class="val">900 мс · streakPop 1.28</span></div>
+      <div class="row"><span>Пилюля серии: ярусы 2/4/6+</span><span class="val">накал градиента + искры</span></div><div class="row"><span>Золотая волна (серия 3/5/7)</span><span class="val">700 мс · перелив по экрану</span></div><div class="row"><span>Бонус-звёзды за серию</span><span class="val">×3 = +1 · ×5 = +2 · от пилюли</span></div>
       <div class="row"><span>Ошибка: тонировка слова</span><span class="val">180 мс · без тряски/вибро</span></div>
       <div class="row"><span>Возврат неверного чипа</span><span class="val">320 мс · slide, после паузы 900 мс</span></div>
       <div class="row"><span>Автосборка после 2-й ошибки</span><span class="val">120 мс/чип каскад</span></div>
@@ -531,8 +597,10 @@ function verdictGood() {
   fbText.textContent = c.praise;
   fb.className = 'fb good'; requestAnimationFrame(() => fb.classList.add('show'));
   streak += 1;
-  if (streak >= 2 && !reduced()) comboPop(streak);
-  if (streak >= 3 && !reduced()) confettiBurst();
+  // зачем: владелец потребовал стрик внутри сессии с фирменной анимацией
+  // (не молния): пилюля серии раскаляется, на вехах — золотая волна по экрану
+  updateStreakPill();
+  if ((streak === 3 || streak === 5 || streak === 7) && !reduced()) { goldWave(); confettiBurst(); }
   const waveEnd = (chips.length * 70 + 120) * tf();
   setTimeout(() => {
     flyStar(chips[chips.length - 1].getBoundingClientRect(), () => {
@@ -541,6 +609,19 @@ function verdictGood() {
       if (segDone < SEG_TOTAL) { segs[segDone].classList.add('done'); segDone += 1; }
     });
   }, reduced() ? 0 : waveEnd);
+  // зачем: владелец: «за стрик сразу больше звёзд» — серия 3 даёт +1, серия 5 даёт +2;
+  // бонус летит ОТ пилюли серии, чтобы связь «серия = звёзды» читалась телом анимации
+  const bonus = streak >= 5 ? 2 : streak >= 3 ? 1 : 0;
+  if (bonus > 0) {
+    setTimeout(() => floatLabel('+' + bonus, $('streakPill')), reduced() ? 0 : waveEnd + 180 * tf());
+    for (let b = 0; b < bonus; b++) {
+      setTimeout(() => {
+        flyStar($('streakPill').getBoundingClientRect(), () => {
+          stars += 1; $('starVal').textContent = stars; bump($('starCounter'));
+        });
+      }, reduced() ? 0 : waveEnd + (300 + b * 170) * tf());
+    }
+  }
   toAutoNext();
 }
 
@@ -548,7 +629,7 @@ function verdictMiss(badIx) {
   state = 'verdict';
   const c = CARDS[cardIx % CARDS.length];
   const chips = [...answerEl.children];
-  attempt += 1; streak = 0;
+  attempt += 1; streak = 0; resetStreakPill();
   const badChip = chips[badIx];
   const badWord = badChip.dataset.word;
   // Верное начало подтверждается тихо, проблемное слово тонируется. Без тряски.
@@ -670,10 +751,57 @@ function flyGlyph(fromRect, toEl, symbolId, colorVar, size, done) {
 function flyStar(fromRect, done) { flyGlyph(fromRect, $('starCounter'), 'i-star', 'var(--gold)', 26, done); }
 function flyMissToken(fromRect, done) { flyGlyph(fromRect, $('missCounter'), 'i-dot', 'var(--wrong)', 16, done); }
 function bump(el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
-function comboPop(n) {
-  const c = $('combo');
-  c.textContent = 'x' + n;
-  c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop');
+function updateStreakPill() {
+  const pill = $('streakPill');
+  if (streak < 2) { resetStreakPill(); return; }
+  $('streakVal').textContent = streak;
+  pill.dataset.tier = streak >= 6 ? '3' : streak >= 4 ? '2' : '1';
+  pill.classList.add('show');
+  bump(pill);
+  if (!reduced()) sparkBurst(pill);
+}
+function resetStreakPill() {
+  const pill = $('streakPill');
+  pill.classList.remove('show'); pill.dataset.tier = '1';
+}
+function goldWave() {
+  const w = document.createElement('div');
+  w.className = 'goldwave'; fx.appendChild(w);
+  w.animate([
+    { transform: 'translateX(-170%) skewX(-16deg)', opacity: 0 },
+    { transform: 'translateX(30%) skewX(-16deg)', opacity: 1, offset: 0.45 },
+    { transform: 'translateX(320%) skewX(-16deg)', opacity: 0 },
+  ], { duration: 700 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' }).onfinish = () => w.remove();
+  setTimeout(() => { if (w.isConnected) w.remove(); }, 900 * tf());
+}
+function sparkBurst(pillEl) {
+  const o = phonePoint(pillEl);
+  for (let i = 0; i < 6; i++) {
+    const el = document.createElement('div');
+    el.className = 'spark-fly';
+    el.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24"><use href="#i-spark"/></svg>';
+    fx.appendChild(el);
+    const ang = -Math.PI * (0.15 + 0.7 * (i / 5));
+    const v = 34 + Math.random() * 26;
+    el.animate([
+      { transform: `translate(${o.x}px, ${o.y}px) scale(0.6)`, opacity: 1 },
+      { transform: `translate(${o.x + Math.cos(ang) * v}px, ${o.y + Math.sin(ang) * v}px) scale(1)`, opacity: 0 },
+    ], { duration: 520 * tf(), easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' }).onfinish = () => el.remove();
+    setTimeout(() => { if (el.isConnected) el.remove(); }, 700 * tf());
+  }
+}
+function floatLabel(text, nearEl) {
+  if (reduced()) return;
+  const o = phonePoint(nearEl);
+  const el = document.createElement('div');
+  el.className = 'bonus-float'; el.textContent = text;
+  fx.appendChild(el);
+  el.animate([
+    { transform: `translate(${o.x - 8}px, ${o.y + 10}px)`, opacity: 0 },
+    { transform: `translate(${o.x - 8}px, ${o.y - 8}px)`, opacity: 1, offset: 0.3 },
+    { transform: `translate(${o.x - 8}px, ${o.y - 36}px)`, opacity: 0 },
+  ], { duration: 950 * tf(), easing: 'ease-out', fill: 'forwards' }).onfinish = () => el.remove();
+  setTimeout(() => { if (el.isConnected) el.remove(); }, 1100 * tf());
 }
 function confettiBurst() {
   const origin = phonePoint($('starCounter'));
@@ -736,6 +864,7 @@ $('runReset').addEventListener('click', () => {
   cardIx = 0; segDone = 0; stars = 0; misses = 0; streak = 0;
   $('starVal').textContent = 0; $('missVal').textContent = 0;
   $('missCounter').classList.remove('hasmiss');
+  resetStreakPill();
   segs.forEach((s) => s.classList.remove('done'));
   renderCard(0);
 });

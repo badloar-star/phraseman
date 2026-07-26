@@ -22,7 +22,7 @@ const AnimatedFlashList = Reanimated.createAnimatedComponent(FlashList as any) a
 import TapScale from '../../components/TapScale';
 import DuoPressable from '../../components/DuoPressable';
 // зачем: «добавить друга» — низкий Bevel-шит на общем каркасе шторок рефералки.
-import ReferralSheetShell from '../../components/referral_sheet_shell';
+import CenteredDialogShell from '../../components/centered_dialog_shell';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -154,6 +154,7 @@ import {
 import { useAppSnapshotSelector } from '../app_snapshot_store';
 import { captureAccountGeneration } from '../account_generation';
 import { accountScopeKey } from '../account_scope_key';
+import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import {
   isReferralAccountRequestCurrent,
   readReferralDrain,
@@ -1800,14 +1801,16 @@ function AddFriendModal({
   const searchInputRef = useRef<TextInput>(null);
   useEffect(() => {
     if (!visible) return;
-    const id = setTimeout(() => searchInputRef.current?.focus(), 420);
+    const id = setTimeout(() => searchInputRef.current?.focus(), 260);
     return () => clearTimeout(id);
   }, [visible]);
-  // зачем: владелец (2026-07-25) — «добавить друга» не должен занимать весь экран;
-  // низкий выезжающий шит в стиле Bevel вместо pageSheet-модалки. Каркас общий
-  // с шитами рефералки (drag-to-dismiss, подложка, грабер).
+  // зачем: владелец (2026-07-26) — окно «Добавить друга» должно появляться ПОСРЕДИ
+  // экрана и быть полностью независимым от клавиатуры: клавиатура выезжает под ним
+  // и не двигает его. Раньше был нижний шит (ReferralSheetShell), который рос
+  // паддингом под клавиатуру и визуально «поднимался». Каркас шита остался за
+  // шитами рефералки, а здесь — отдельный центрированный CenteredDialogShell.
   return (
-    <ReferralSheetShell
+    <CenteredDialogShell
       visible={visible}
       onClose={onClose}
       testID="friends-add-sheet"
@@ -1829,13 +1832,15 @@ function AddFriendModal({
                 <TextInput
                   ref={searchInputRef}
                   testID="friends-code-input"
-                  accessibilityLabel="Friend name input"
+                  accessibilityLabel={L('Введите имя друга', 'Введіть імʼя друга', 'Ingresa el nombre de tu amigo', 'Digite o nome do amigo', 'Nhập tên bạn bè', 'Masukkan nama teman', 'Arkadaşının adını gir', 'Wpisz imię znajomego')}
                   style={{
+                    // зачем: без обводки (правило владельца) — поле отделяем тоном
+                    // поверхности, а не рамкой.
                     flex: 1, backgroundColor: chrome.surface, borderRadius: 14,
                     minHeight: 58,
                     paddingHorizontal: 16, paddingVertical: 12,
                     fontSize: 20, fontWeight: '900', color: t.textPrimary,
-                    letterSpacing: codeMode ? 4 : 0, borderWidth: 0.5, borderColor: chrome.border,
+                    letterSpacing: codeMode ? 4 : 0,
                   }}
                   placeholder=""
                   maxLength={FRIEND_SEARCH_MAX_LENGTH}
@@ -1861,8 +1866,6 @@ function AddFriendModal({
                     borderRadius: 14,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    borderWidth: 0.5,
-                    borderColor: searchReady ? t.accent : chrome.border,
                     opacity: isSearching ? 0.6 : 1,
                   }}
                 >
@@ -1887,8 +1890,6 @@ function AddFriendModal({
                       height: row === 0 ? 76 : 20,
                       borderRadius: 14,
                       backgroundColor: chrome.button,
-                      borderWidth: 0.5,
-                      borderColor: chrome.border,
                       width: row === 0 ? '100%' : '60%',
                     }} />
                   </PulseOn>
@@ -1913,7 +1914,7 @@ function AddFriendModal({
               </View>
             )}
       </View>
-    </ReferralSheetShell>
+    </CenteredDialogShell>
   );
 }
 
@@ -2127,10 +2128,10 @@ export default function FriendsTabScreen() {
     // Модал окончания: трекер сам определяет «реферальность» окна (стикки-маркер переживает
     // зануление vip_plan при истечении). Гейт по текущему плану здесь НЕ нужен — это и был баг.
     try {
-      const pairs = await AsyncStorage.multiGet(['vip_plan', 'vip_until']);
+      const vip = await readVipSnapshotForGeneration(requestToken);
       if (!isReferralAccountRequestCurrent(requestToken, referralAccountKey)) return;
-      const plan = pairs.find(p => p[0] === 'vip_plan')?.[1] ?? '';
-      const until = Number(pairs.find(p => p[0] === 'vip_until')?.[1] ?? '0') || 0;
+      const plan = vip?.vip_plan ?? '';
+      const until = Number(vip?.vip_until ?? '0') || 0;
       const show = await shouldShowReferralAccessEnded(plan, until);
       if (show && isReferralAccountRequestCurrent(requestToken, referralAccountKey)) setAccessEndedOpen(true);
     } catch { /* нет данных — пропускаем */ }

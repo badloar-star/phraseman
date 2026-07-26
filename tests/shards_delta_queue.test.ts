@@ -296,6 +296,47 @@ describe('shards_delta_queue v2 account isolation', () => {
     expect(mockStorage[shardDeltaQueueStorageKey(OWNER_A)]).toBeUndefined();
   });
 
+  it('drops an empty legacy v1 queue without ever arming quarantine', async () => {
+    mockStorage[LEGACY_QUEUE_KEY] = '[]';
+
+    expect(await readShardDeltaQueue(OWNER_A)).toEqual([]);
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[LEGACY_QUEUE_KEY]).toBeUndefined();
+    expect(Object.keys(mockStorage).filter((key) =>
+      key.startsWith('shards_delta_queue_v1_quarantine:'),
+    )).toHaveLength(0);
+    // Заработок осколков не должен быть заблокирован пустым остатком миграции.
+    await expect(enqueueShardDelta(entry('op-after-empty-legacy'))).resolves.toBe(true);
+  });
+
+  it('self-heals an already-emptied legacy quarantine instead of blocking forever', async () => {
+    mockStorage[LEGACY_QUARANTINE_KEY] = '[]';
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[LEGACY_QUARANTINE_KEY]).toBeUndefined();
+    await expect(enqueueShardDelta(entry('op-after-empty-quarantine'))).resolves.toBe(true);
+  });
+
+  it('self-heals an already-emptied owner quarantine instead of blocking forever', async () => {
+    const ownerQuarantineKey =
+      `shards_delta_queue_v2_quarantine:${encodeURIComponent(OWNER_A)}`;
+    mockStorage[ownerQuarantineKey] = '[]';
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(false);
+    expect(mockStorage[ownerQuarantineKey]).toBeUndefined();
+    await expect(enqueueShardDelta(entry('op-after-empty-owner-quarantine'))).resolves.toBe(true);
+  });
+
+  it('keeps quarantine armed while a real pending row is still held', async () => {
+    mockStorage[LEGACY_QUARANTINE_KEY] = JSON.stringify([
+      { opId: 'legacy-real-row', delta: 7, type: 'spend', reason: 'avatar_aura', createdAtMs: 5 },
+    ]);
+
+    expect(await hasQuarantinedShardDeltaQueue(OWNER_A)).toBe(true);
+    expect(mockStorage[LEGACY_QUARANTINE_KEY]).toBeDefined();
+    await expect(enqueueShardDelta(entry('op-blocked-by-real-row'))).resolves.toBe(false);
+  });
+
   it('quarantines corrupt legacy JSON verbatim before removing the legacy key', async () => {
     mockStorage[LEGACY_QUEUE_KEY] = '{legacy corrupt bytes';
 

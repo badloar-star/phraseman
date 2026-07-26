@@ -107,6 +107,23 @@ async function readOwnerQueue(ownerStableId: string): Promise<PendingShardDelta[
 }
 
 /**
+ * Пустая очередь не несёт ни одной операции — карантинить её нечего и незачем.
+ * зачем: до этой проверки любой остаток v1-ключа (в т.ч. `[]`) навсегда включал
+ * карантин, а снять его мог только точный recovery-матч, который на пустом
+ * массиве не срабатывает никогда. Юзер получал вечный «Нужна проверка
+ * жемчужин» на выходе из аккаунта и заблокированный заработок осколков.
+ * Дословные байты повреждённого JSON по-прежнему сохраняются: их терять нельзя.
+ */
+function isEmptyShardQueueRaw(raw: string): boolean {
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    return Array.isArray(parsed) && parsed.length === 0;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Ownerless v1 operations cannot be safely attributed after an account switch.
  * Preserve the raw bytes under a fixed quarantine key before removing v1 so a
  * later recovery tool can inspect them without ever assigning them to a user.
@@ -114,6 +131,11 @@ async function readOwnerQueue(ownerStableId: string): Promise<PendingShardDelta[
 async function quarantineLegacyQueueIfPresent(): Promise<void> {
   const legacyRaw = await AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
   if (legacyRaw === null) return;
+  if (isEmptyShardQueueRaw(legacyRaw)) {
+    // Нечего восстанавливать — просто убираем мёртвый ключ миграции.
+    await AsyncStorage.removeItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
+    return;
+  }
   const existingQuarantine = await AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY);
   if (existingQuarantine !== null && existingQuarantine !== legacyRaw) {
     throw new Error('legacy_shard_delta_quarantine_occupied');
@@ -124,6 +146,21 @@ async function quarantineLegacyQueueIfPresent(): Promise<void> {
   await AsyncStorage.removeItem(LEGACY_SHARD_DELTA_QUEUE_KEY);
 }
 
+/**
+ * Карантин считается активным только если в нём лежит хотя бы одна операция.
+ * зачем: раньше блокировал сам факт существования ключа, поэтому пустой
+ * карантин (после того как все строки разобрал recovery, или после миграции
+ * пустой очереди) навечно запирал выход из аккаунта. Пустые ключи снимаем
+ * здесь же — тогда состояние самоисцеляется при следующей же проверке,
+ * без кнопок и без обращения в поддержку.
+ */
+async function isActiveQuarantineRaw(key: string, raw: string | null): Promise<boolean> {
+  if (raw === null) return false;
+  if (!isEmptyShardQueueRaw(raw)) return true;
+  await AsyncStorage.removeItem(key);
+  return false;
+}
+
 async function hasQuarantinedQueueUnlocked(ownerStableId: string): Promise<boolean> {
   const ownerQuarantineKey =
     `${SHARD_DELTA_QUEUE_V2_QUARANTINE_PREFIX}${encodeURIComponent(ownerStableId)}`;
@@ -131,7 +168,11 @@ async function hasQuarantinedQueueUnlocked(ownerStableId: string): Promise<boole
     AsyncStorage.getItem(ownerQuarantineKey),
     AsyncStorage.getItem(LEGACY_SHARD_DELTA_QUARANTINE_KEY),
   ]);
-  return ownerQuarantine !== null || legacyQuarantine !== null;
+  const [ownerActive, legacyActive] = await Promise.all([
+    isActiveQuarantineRaw(ownerQuarantineKey, ownerQuarantine),
+    isActiveQuarantineRaw(LEGACY_SHARD_DELTA_QUARANTINE_KEY, legacyQuarantine),
+  ]);
+  return ownerActive || legacyActive;
 }
 
 type LegacyQuarantinedShardDelta = Required<LegacyShardDeltaRecoveryIdentity>;

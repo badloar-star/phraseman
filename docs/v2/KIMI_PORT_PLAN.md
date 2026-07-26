@@ -30,6 +30,16 @@
    тонкие state-границы Kimi (это их дизайн-система,允 в лаборатории), но не
    добавляем своих; adjustsFontSizeToFit — никогда.
 
+## Решения владельца (2026-07-26) — не переспрашивать
+1. **Состояния — «как у Duolingo»**: живой цикл без служебной панели переключения.
+   Выбрал ответ → «Проверить» → короткий inline-processing → success/needs_work по
+   правильности → «Дальше». Recovery показывается только при реальном сбое.
+2. **Речевые режимы — НАСТОЯЩИЙ микрофон**, распознавание **только на устройстве**
+   (голос никуда не отправляется и не хранится). Это отменяет пункт 5 «симуляция».
+   Требует разрешения на микрофон → **Privacy Policy обновить ДО релиза**.
+3. **Порядок сдачи — волнами по 4–5 режимов**, коммит за режимом. Речевые — последней
+   волной, после 12 неречевых.
+
 ## Целевая структура в приложении (ветка feature/referral-roulette)
 ```
 components/learning-v2-lab/
@@ -55,12 +65,12 @@ components/learning-v2-lab/
 ## Чек-лист режимов (источник → цель → статус)
 | # | Kimi surface | Файл-источник | Статус |
 |---|---|---|---|
-| 1 | lc-listen-choose | mobile/LcListenChoose.tsx (ChoiceShell) | ⬜ |
-| 2 | vd-visual-discovery | mobile/VdVisualDiscovery.tsx | ⬜ |
-| 3 | sm-speed-match | mobile/SmSpeedMatch.tsx | ⬜ |
+| 1 | lc-listen-choose | mobile/LcListenChoose.tsx (ChoiceShell) | ✅ |
+| 2 | vd-visual-discovery | mobile/VdVisualDiscovery.tsx | ✅ |
+| 3 | sm-speed-match | mobile/SmSpeedMatch.tsx | ✅ |
 | 4 | pb-phrase-builder | mobile/PbPhraseBuilder.tsx (ComposerShell) | ⬜ |
 | 5 | lb-listen-build | mobile/LbListenBuild.tsx (ComposerShell) | ⬜ |
-| 6 | cg-context-gap | mobile/CgContextGap.tsx | ⬜ |
+| 6 | cg-context-gap | mobile/CgContextGap.tsx | ✅ |
 | 7 | sound-discrimination | mobile/SoundDiscrimination.tsx | ⬜ |
 | 8 | sl-sound-syllable-lab | modes2/SlSoundSyllableLab.tsx | ⬜ |
 | 9 | rp-repeat-compare | modes2/RpRepeatCompare.tsx (VoiceShell) | ⬜ |

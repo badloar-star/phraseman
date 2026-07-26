@@ -20980,18 +20980,61 @@
     return { title: String(res?.data?.title || ''), body: String(res?.data?.body || '') };
   }
 
-  async function sendReportReplyToUser(report, { title, body, shards }) {
+  /**
+   * Внутренние вердикты админки (9 штук) → 5 значений, которые принимает сервер
+   * (REPORT_RESOLUTIONS в functions/src/report_replies.ts).
+   * зачем: 2026-07-25 бэкенд сменил контракт adminReplyToReport со `shards: 0..100`
+   * на `{resolution, coins: 0|1}`, а админка продолжала слать shards — сервер падал
+   * на первой же проверке ('unsupported report resolution'), и НИ ОДИН ответ не уходил.
+   */
+  const SERVER_RESOLUTION_BY_VERDICT = {
+    confirmed_fixed: 'confirmed_fixed',
+    // зачем: баг ПОДТВЕРЖДЁН, и в тексте ответа юзеру уже обещан осколок. Сервер платит
+    // только за resolution 'confirmed_fixed', а ответить на репорт можно один раз —
+    // поэтому подтверждённую находку проводим как confirmed_fixed, чтобы человек
+    // получил обещанное (решение владельца, 2026-07-26).
+    confirmed_investigating: 'confirmed_fixed',
+    content_review: 'in_progress',
+    duplicate: 'duplicate',
+    stale_content_not_reproduced: 'unconfirmed',
+    not_reproduced: 'unconfirmed',
+    by_design: 'rejected',
+    user_error: 'rejected',
+    no_issue_details: 'rejected',
+  };
+
+  function toServerResolution(verdict) {
+    return SERVER_RESOLUTION_BY_VERDICT[String(verdict || '')] || 'unconfirmed';
+  }
+
+  /**
+   * Награда: сервер принимает строго 0 или 1 и разрешает 1 только при
+   * resolution 'confirmed_fixed' И если сам документ репорта уже помечен
+   * (resolution 'confirmed_fixed' либо status 'fixed').
+   * зачем: приложение в релизе всё равно ограничивает награду одним осколком
+   * (Math.min(1, coins ?? shards) в app_messages.ts / user_notifications.ts),
+   * поэтому 1 осколок == 1 coin, ничего не теряется.
+   */
+  function toServerCoins(shards, serverResolution) {
+    const wanted = Math.floor(Number(shards) || 0) > 0 ? 1 : 0;
+    return serverResolution === 'confirmed_fixed' ? wanted : 0;
+  }
+
+  async function sendReportReplyToUser(report, { title, body, shards, resolution }) {
+    const serverResolution = toServerResolution(resolution);
+    const coins = toServerCoins(shards, serverResolution);
     const res = await getAdminReplyToReportCallable()({
       uid: String(report.uid),
       reportCollection: 'error_reports',
       reportId: String(report.id),
       title,
       body,
-      shards,
+      resolution: serverResolution,
+      coins,
     });
     report.status = 'answered';
     report.replyMessageId = String(res?.data?.messageId || 'sent');
-    report.replyShards = shards;
+    report.replyShards = coins;
     return res;
   }
 
@@ -21198,8 +21241,13 @@
     wrap.querySelector('#rr-cancel').addEventListener('click', close);
 
     const readVerdict = () => (wrap.querySelector('input[name="rr-verdict"]:checked')?.value === 'rejected' ? 'rejected' : 'confirmed');
+    // Точный вердикт из готового ответа; пусто — значит админ решает радиокнопкой.
+    let appliedResolution = '';
     // «Не подтвердилось» → награда 0 автоматически (и обратно 1 при возврате).
     wrap.querySelectorAll('input[name="rr-verdict"]').forEach(el => el.addEventListener('change', () => {
+      // Ручное переключение отменяет точный вердикт готового ответа — иначе на сервер
+      // ушёл бы старый resolution, не совпадающий с тем, что выбрал админ.
+      appliedResolution = '';
       wrap.querySelector('#rr-shards').value = readVerdict() === 'confirmed' ? '1' : '0';
     }));
 
@@ -21211,6 +21259,9 @@
       if (!prep) return false;
       wrap.querySelector('#rr-title').value = prep.title || '';
       wrap.querySelector('#rr-body').value = prep.body || '';
+      // зачем: точный вердикт готового ответа (by_design / duplicate / …) нужен серверу
+      // как resolution; радиокнопка знает только «подтвердилось / нет» и огрубила бы его.
+      appliedResolution = prep.resolution || '';
       const sh = Math.max(0, Math.min(100, Math.floor(Number(prep.shards) || 0)));
       wrap.querySelector('#rr-shards').value = String(sh);
       const verdictVal = ['confirmed_fixed', 'confirmed_investigating'].includes(prep.resolution) ? 'confirmed' : 'rejected';
@@ -21254,12 +21305,17 @@
       if (!title || !body) { showToast('Заполни заголовок и текст (или нажми «Сгенерировать»)', 'warn'); return; }
       const btn = wrap.querySelector('#rr-send');
       btn.disabled = true; btn.textContent = '⏳ Отправляю…';
+      // Точный вердикт готового ответа, иначе — из радиокнопки.
+      const resolution = appliedResolution || (readVerdict() === 'confirmed' ? 'confirmed_fixed' : 'not_reproduced');
       try {
-        await sendReportReplyToUser(report, { title, body, shards });
+        await sendReportReplyToUser(report, { title, body, shards, resolution });
         close();
         filterReports();
-        showToast(shards > 0 ? `📨 Отправлено · юзер заберёт +${shards} 💎 из уведомления` : '📨 Отправлено (без награды)', 'ok');
-        logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, shards });
+        // Сервер даёт награду только при confirmed_fixed и помеченном документе репорта,
+        // поэтому в тосте показываем фактически отправленное значение, а не желаемое.
+        const awarded = Number(report.replyShards) || 0;
+        showToast(awarded > 0 ? `📨 Отправлено · юзер заберёт +${awarded} 💎 из уведомления` : '📨 Отправлено (без награды)', 'ok');
+        logAction('reply_to_report', report.uid || 'unknown', { reportId: report.id, shards: awarded, resolution });
       } catch (e) {
         btn.disabled = false; btn.textContent = '📨 Отправить юзеру';
         showToast('Не отправилось: ' + (e.message || e), 'err');
@@ -21360,7 +21416,31 @@
     const previous = btn ? btn.textContent : '';
     let sent = 0;
     let failed = 0;
+    let firstError = '';
     try {
+      // зачем: сервер разрешает награду только если САМ документ репорта помечен
+      // исправленным (report.resolution 'confirmed_fixed' либо status 'fixed').
+      // Без этого шага все награждённые ответы падали бы на 'report is not
+      // server-confirmed as fixed'. Один батч на всех — не N отдельных записей.
+      const needMark = entries
+        .filter(({ report, prepared }) =>
+          toServerResolution(prepared.resolution) === 'confirmed_fixed'
+          && Math.floor(Number(prepared.shards) || 0) > 0
+          && report.status !== 'fixed'
+          && String(report.resolution || '') !== 'confirmed_fixed')
+        .map(({ report }) => report);
+      if (needMark.length) {
+        if (btn) { btn.disabled = true; btn.textContent = `Помечаю ${needMark.length} исправленных...`; }
+        const marked = await bulkUpdateStatusChunked(
+          'error_reports',
+          needMark.map((r) => r.id),
+          { status: 'fixed', fixedAt: new Date().toISOString() },
+        );
+        if (marked.errN) {
+          showToast(`Не удалось пометить ${marked.errN} репорт(ов) исправленными — их награда не пройдёт проверку сервера.`, 'warn');
+        }
+        needMark.forEach((r) => { r.status = 'fixed'; });
+      }
       for (const { report, prepared } of entries) {
         if (btn) { btn.disabled = true; btn.textContent = `Отправка ${sent + failed + 1}/${entries.length}...`; }
         try {
@@ -21368,16 +21448,22 @@
             title: prepared.title.trim(),
             body: prepared.body.trim(),
             shards: Math.max(0, Math.min(100, Math.floor(Number(prepared.shards) || 0))),
+            resolution: prepared.resolution,
           });
           sent++;
         } catch (error) {
           failed++;
+          // зачем: раньше причина падала только в console.warn, и админ видел голое
+          // «ошибок: 62» без повода — контракт сломался 25.07 и это заметили не сразу.
+          // Запоминаем первую ошибку и показываем её в итоговом тосте.
+          if (!firstError) firstError = String(error?.message || error);
           console.warn('sendAllPreparedReplies failed for', report.id, error);
         }
       }
       filterReports();
       const skippedText = skipped ? ` Пропущено без готового ответа: ${skipped}.` : '';
-      showToast((failed ? `Отправлено: ${sent}, ошибок: ${failed}.` : `Отправлено: ${sent}.`) + skippedText, failed ? 'warn' : 'ok');
+      const reasonText = failed && firstError ? ` Причина: ${firstError}` : '';
+      showToast((failed ? `Отправлено: ${sent}, ошибок: ${failed}.` : `Отправлено: ${sent}.`) + skippedText + reasonText, failed ? 'warn' : 'ok');
       logAction('reply_to_report_prepared_bulk', 'admin', { count: sent, errors: failed, skipped, filteredCount: candidates.length });
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = previous; }

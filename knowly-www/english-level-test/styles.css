@@ -1,18 +1,20 @@
-/* English Level Test — Dark Phraseman Theme + Animations (v3: selling landing + CTA) */
+/* English Level Test — светлая тема в стиле новой главной (v4).
+   зачем: владелец 2026-07-25 потребовал, чтобы раздел теста «не отличался
+   от дизайна сайта вообще» — те же токены, шрифт и золото, что в home.css. */
 
 :root {
-  --bg: #0c0c0e;
-  --card: #141416;
-  --text: #e6e6e6;
-  --text-secondary: #999;
-  --muted: #666;
-  --accent: #2a9d5c;
-  --accent-hover: #238c4f;
-  --accent-light: #4ade80;
-  --on-accent: #07110a;
-  --border: #222;
+  --bg: #fdfdfc;
+  --card: #ffffff;
+  --text: #201c12;
+  --text-secondary: #6f6852;
+  --muted: #8b8371;
+  --accent: #e8a13c;
+  --accent-hover: #d99427;
+  --accent-light: #b8860f;
+  --on-accent: #3a2905;
+  --border: rgba(120,90,20,0.14);
   --radius: 16px;
-  --shadow: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow: 0 12px 34px rgba(120,90,20,0.10), 0 2px 8px rgba(120,90,20,0.05);
   --transition: 0.2s ease;
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-elastic: cubic-bezier(0.34, 1.35, 0.64, 1);
@@ -31,7 +33,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Golos Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.5;
@@ -59,8 +61,8 @@ html, body {
   to   { opacity: 1; transform: translateX(0); }
 }
 @keyframes textGlow {
-  0%, 100% { text-shadow: 0 0 0 rgba(74,222,128,0); }
-  50% { text-shadow: 0 0 22px rgba(74,222,128,0.5); }
+  0%, 100% { text-shadow: 0 0 0 rgba(232,161,60,0); }
+  50% { text-shadow: 0 0 22px rgba(232,161,60,0.45); }
 }
 @keyframes shimmer {
   0% { background-position: -200% 0; }
@@ -147,7 +149,7 @@ html, body {
   transform: translateX(-50%);
   width: 720px;
   height: 480px;
-  background: radial-gradient(closest-side, rgba(42,157,92,0.16), transparent);
+  background: radial-gradient(closest-side, rgba(232,161,60,0.18), transparent);
   pointer-events: none;
 }
 
@@ -268,7 +270,7 @@ html, body {
 .elt-btn-primary:hover {
   background: var(--accent-hover);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(42,157,92,0.35);
+  box-shadow: 0 8px 20px rgba(200,140,30,0.35);
 }
 .elt-btn-primary:active {
   transform: translateY(0);
@@ -289,7 +291,7 @@ html, body {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 .elt-btn-secondary:hover {
-  background: #333;
+  background: rgba(120,90,20,0.20);
   transform: translateY(-1px);
 }
 
@@ -299,7 +301,7 @@ html, body {
   transition: transform 0.15s ease, background 0.2s ease;
 }
 .elt-btn-ghost:hover {
-  background: rgba(255,255,255,0.05);
+  background: rgba(120,90,20,0.08);
   transform: translateY(-1px);
 }
 
@@ -327,14 +329,14 @@ html, body {
 .elt-step:nth-child(3) { animation-delay: 0.5s; }
 .elt-step:hover {
   transform: translateY(-3px);
-  border-color: rgba(74,222,128,0.35);
+  box-shadow: 0 16px 40px rgba(120,90,20,0.14);
 }
 .elt-step-icon {
   width: 48px;
   height: 48px;
   margin: 0 auto 12px;
   border-radius: 12px;
-  background: rgba(42,157,92,0.12);
+  background: rgba(232,161,60,0.16);
   color: var(--accent-light);
   display: flex;
   align-items: center;
@@ -375,7 +377,7 @@ html, body {
   transform-style: preserve-3d;
   border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0,0,0,0.55), 0 0 0 1px rgba(232,213,163,0.12);
+  box-shadow: 0 30px 70px rgba(120,90,20,0.26), 0 0 0 1px rgba(200,160,60,0.16);
   transition: transform 0.55s var(--ease-out-expo);
 }
 .elt-preview-cert:hover {
@@ -697,7 +699,7 @@ html, body {
 .elt-name-section input:focus-visible {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(42,157,92,0.15);
+  box-shadow: 0 0 0 3px rgba(232,161,60,0.28);
 }
 .elt-name-section input::placeholder {
   color: var(--muted);
@@ -728,7 +730,7 @@ html, body {
   transform: translateX(-50%);
   width: 640px;
   height: 420px;
-  background: radial-gradient(closest-side, rgba(42,157,92,0.18), transparent);
+  background: radial-gradient(closest-side, rgba(232,161,60,0.20), transparent);
   pointer-events: none;
 }
 .elt-cta-main {
@@ -786,15 +788,15 @@ html, body {
   padding: 11px 22px 11px 16px;
   border-radius: 14px;
   text-decoration: none;
-  background: #000;
+  background: #201c12;
   color: #fff;
-  border: 1px solid var(--border);
+  border: 1px solid transparent;
   transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
 }
 .elt-store-badge:hover {
   transform: translateY(-2px);
-  border-color: rgba(74,222,128,0.55);
-  box-shadow: 0 14px 44px rgba(0,0,0,0.5);
+  border-color: transparent;
+  box-shadow: 0 14px 44px rgba(120,90,20,0.18);
 }
 .elt-store-badge:focus-visible {
   outline: 2px solid var(--accent);
@@ -843,8 +845,8 @@ html, body {
 .elt-pitch {
   margin-top: 24px;
   padding: 18px;
-  background: rgba(42,157,92,0.07);
-  border: 1px solid rgba(74,222,128,0.25);
+  background: rgba(232,161,60,0.10);
+  border: 1px solid transparent;
   border-radius: 14px;
   text-align: left;
   animation: fadeInUp 0.4s 0.58s both ease;
@@ -918,8 +920,8 @@ html, body {
 .elt-cert-cta {
   margin-top: 18px;
   padding: 14px 18px;
-  background: rgba(42,157,92,0.08);
-  border: 1px solid rgba(74,222,128,0.3);
+  background: rgba(232,161,60,0.10);
+  border: 1px solid transparent;
   border-radius: 14px;
   display: flex;
   align-items: center;
@@ -959,7 +961,7 @@ html, body {
 .elt-cert-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(32,28,18,0.55);
   backdrop-filter: blur(6px);
 }
 
@@ -967,7 +969,7 @@ html, body {
   position: relative;
   background: var(--card);
   border-radius: var(--radius);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+  box-shadow: 0 20px 60px rgba(120,90,20,0.25);
   max-width: 1040px;
   width: 100%;
   padding: 32px 28px 28px;
@@ -1228,3 +1230,36 @@ html, body {
     justify-content: center;
   }
 }
+
+/* ========== Аврора и зерно — как на главной (редизайн 2026-07-25) ==========
+   зачем: владелец потребовал, чтобы тест «не отличался от дизайна сайта вообще».
+   CSS-слои без JS и WebGL: тесту важна лёгкость. */
+body::before {
+  content: "";
+  position: fixed;
+  width: 72vmax;
+  height: 72vmax;
+  border-radius: 50%;
+  top: -38vmax;
+  left: -16vmax;
+  background: radial-gradient(circle, #f7de8b 0%, transparent 60%);
+  filter: blur(72px);
+  opacity: 0.42;
+  pointer-events: none;
+  z-index: 0;
+  will-change: transform;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.022 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+@media (prefers-reduced-motion: no-preference) {
+  body::before { animation: elt-drift 26s ease-in-out infinite alternate; }
+  @keyframes elt-drift { to { transform: translate3d(9vmax, 7vmax, 0) scale(1.1); } }
+}
+#app { position: relative; z-index: 1; }

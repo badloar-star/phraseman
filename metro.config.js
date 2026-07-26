@@ -5,6 +5,18 @@ const { getDefaultConfig } = require('expo/metro-config');
 /** @type {import('expo/metro-config').MetroConfig} */
 const config = getDefaultConfig(__dirname);
 
+// зачем: 2026-07-26 сборка встала с «Unable to resolve module expo-router/entry ...
+// could not be found within the project or in these directories: node_modules» — при том
+// что файл на месте, Node его резолвит, blockList не мешает и ошибка повторялась даже на
+// чистом конфиге Expo. Настоящая причина — Watchman: он аварийно падал на старте
+// (`bind(AppData/Local/watchman/sock): Invalid argument` → `Failed to initialize unix
+// domain listener` → `Exiting from service with res=false`) из-за мёртвого sock-файла с
+// битыми правами. Metro запрашивал у него файловую карту, получал ПУСТОЙ обход и потому
+// «не видел» node_modules — не резолвился даже прямой относительный путь к файлу.
+// Отключаем Watchman: Metro сканирует файлы своим node-крawler'ом и больше не зависит от
+// сбоев внешнего демона. Платой является чуть более долгий первый старт бандлера.
+config.resolver.useWatchman = false;
+
 const existingBlockList = config.resolver.blockList;
 const blockList = Array.isArray(existingBlockList)
   ? existingBlockList

@@ -3,6 +3,324 @@
 import type { ActivityOption } from '../components';
 import type { StateCopy } from '../ChoiceShell';
 
+export interface CpCheckpointVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly intro: {
+    readonly canDoLabel: string;
+    readonly canDoList: readonly string[];
+    readonly mixedNote: string;
+    readonly hintsHiddenNotice: string;
+    readonly noCertNote: string;
+  };
+  readonly progressDisplay: string;
+  readonly progressPercent: number;
+  readonly tasks: readonly {
+    readonly id: string;
+    readonly typeLabel: string;
+    readonly promptLabel: string;
+    readonly options: readonly ActivityOption[];
+    readonly correctOptionId: string;
+  }[];
+  readonly voiceUncertainty: {
+    readonly title: string;
+    readonly body: string;
+    readonly retryLabel: string;
+  };
+  readonly pause: {
+    readonly pauseLabel: string;
+    readonly pausedTitle: string;
+    readonly pausedBody: string;
+    readonly resumeLabel: string;
+  };
+  readonly result: {
+    readonly title: string;
+    readonly rows: readonly {
+      readonly id: string;
+      readonly label: string;
+      readonly status: 'can' | 'practice';
+      readonly note: string;
+    }[];
+    readonly evidenceLabel: string;
+    readonly evidenceRows: readonly string[];
+    readonly reinforcementTitle: string;
+    readonly reinforcementItems: readonly string[];
+    readonly calmNote: string;
+  };
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile-story/cp-checkpoint.json */
+export const cpCheckpointFixture: CpCheckpointVM = {
+  id: 'vm-cp-checkpoint',
+  surfaceId: 'cp-checkpoint',
+  title: 'Чекпоинт · Глава 2',
+  intro: {
+    canDoLabel: 'Что проверяем',
+    canDoList: [
+      'Представиться и назвать цель',
+      'Попросить помощь или повторить',
+      'Понять объявление на вокзале',
+    ],
+    mixedNote: '8 заданий знакомых типов вперемешку — ничего нового',
+    hintsHiddenNotice: 'Подсказки скрыты — как в жизни',
+    noCertNote: 'Это проверка твоих навыков, а не экзамен на сертификат.',
+  },
+  progressDisplay: '3 из 8',
+  progressPercent: 38,
+  tasks: [
+    {
+      id: 'cp-1',
+      typeLabel: 'Понимание',
+      promptLabel:
+        'Объявление: «The 14:30 to Cork leaves from platform two.» Откуда отправляется поезд?',
+      options: [
+        { id: 'cp-1-a', label: 'Со второй платформы' },
+        { id: 'cp-1-b', label: 'С первой платформы' },
+        { id: 'cp-1-c', label: 'От кассы' },
+      ],
+      correctOptionId: 'cp-1-a',
+    },
+    {
+      id: 'cp-2',
+      typeLabel: 'Диалог',
+      promptLabel: 'Тебя не расслышали. Что скажешь?',
+      options: [
+        { id: 'cp-2-a', label: 'Could you say that again?' },
+        { id: 'cp-2-b', label: "I don't hear nothing." },
+        { id: 'cp-2-c', label: 'Speak! Please!' },
+      ],
+      correctOptionId: 'cp-2-a',
+    },
+    {
+      id: 'cp-3',
+      typeLabel: 'Память',
+      promptLabel: 'Собери фразу: попросить чек.',
+      options: [
+        { id: 'cp-3-a', label: 'Can I have the receipt, please?' },
+        { id: 'cp-3-b', label: 'Receipt I can have?' },
+        { id: 'cp-3-c', label: 'Please receipt me.' },
+      ],
+      correctOptionId: 'cp-3-a',
+    },
+    {
+      id: 'cp-4',
+      typeLabel: 'Голос',
+      promptLabel: "Скажи: «I'd like a ticket to Cork, please.»",
+      options: [
+        { id: 'cp-4-a', label: 'Записать голос', hint: 'симуляция' },
+        { id: 'cp-4-b', label: 'Пропустить голосовое задание' },
+      ],
+      correctOptionId: 'cp-4-a',
+    },
+  ],
+  voiceUncertainty: {
+    title: 'Не удалось уверенно расслышать',
+    body: 'Это не ошибка. Попробуй эквивалентную попытку — лучший прежний результат сохранится.',
+    retryLabel: 'Другая попытка (бесплатно)',
+  },
+  pause: {
+    pauseLabel: 'Пауза',
+    pausedTitle: 'Пауза. Всё сохранено.',
+    pausedBody: 'Продолжишь с того же задания — таймера нет, торопиться некуда.',
+    resumeLabel: 'Продолжить',
+  },
+  result: {
+    title: 'Итог чекпоинта',
+    rows: [
+      { id: 'cp-r-1', label: 'Можешь представиться и назвать цель', status: 'can', note: 'уверенно' },
+      { id: 'cp-r-2', label: 'Можешь попросить помощь', status: 'can', note: 'получилось со второй попытки' },
+      { id: 'cp-r-3', label: 'Понимание объявлений', status: 'practice', note: 'стоит повторить числа и время' },
+    ],
+    evidenceLabel: 'Что подтвердилось',
+    evidenceRows: [
+      'Аудирование: подтверждено',
+      'Память: подтверждено',
+      'Говорение: есть над чем поработать',
+    ],
+    reinforcementTitle: 'План повторения',
+    reinforcementItems: ['Повторить время и числа (12 фраз)', 'Один диалог на вокзале завтра'],
+    calmNote:
+      'Заработанные звёзды остаются при тебе — чекпоинт только показывает, куда идти дальше.',
+  },
+  copy: {
+    primaryActions: {
+      prompt: 'Начать чекпоинт',
+      active: 'Ответить',
+      processing: 'Проверяем…',
+      success: 'К плану повторения',
+      needs_work: 'Продолжить',
+      recovery: 'Продолжить чекпоинт',
+    },
+    statusMessages: {
+      prompt: 'Спокойная проверка навыков главы — без таймера и сюрпризов.',
+      active: 'Знакомые типы заданий. Подсказки скрыты, как договаривались.',
+      processing: 'Смотрим ответ…',
+      success: 'Готово — вот что у тебя получается, а что стоит повторить.',
+      needs_work: 'Эта часть просит повторения — план уже собран ниже.',
+      recovery: 'Чекпоинт на паузе. Всё сохранено.',
+    },
+  },
+};
+
+export interface PrReviewItem {
+  readonly id: string;
+  readonly typeLabel: string;
+  readonly dueReason: string;
+  readonly promptLabel: string;
+  readonly options: readonly ActivityOption[];
+  readonly correctOptionId: string;
+  readonly optional: boolean;
+  readonly reason: string;
+  readonly hint: string;
+}
+
+export interface PrPersonalReviewVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly brief: {
+    readonly sizeDisplay: string;
+    readonly reasonDisplay: string;
+    readonly copyLine: string;
+  };
+  readonly queueLabel: string;
+  readonly positionDisplay: string;
+  readonly items: readonly PrReviewItem[];
+  readonly skipLabel: string;
+  readonly completion: { readonly summary: string };
+  readonly offlineNote: string;
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile-story/pr-personal-review.json */
+export const prPersonalReviewFixture: PrPersonalReviewVM = {
+  id: 'vm-pr-personal-review',
+  surfaceId: 'pr-personal-review',
+  title: 'Персональное повторение',
+  brief: {
+    sizeDisplay: '6 заданий · около 5 минут',
+    reasonDisplay: '2 фразы после вчерашнего урока · 3 слова из эпизода 11',
+    copyLine: 'Повторим 5 фраз',
+  },
+  queueLabel: 'Очередь на сегодня',
+  positionDisplay: '2 из 6',
+  items: [
+    {
+      id: 'pr-1',
+      typeLabel: 'Фраза',
+      dueReason: 'после вчерашнего урока',
+      promptLabel: 'Как вежливо попросить чек?',
+      options: [
+        { id: 'pr-1-a', label: 'Can I have the receipt, please?' },
+        { id: 'pr-1-b', label: 'Give me a receipt now.' },
+        { id: 'pr-1-c', label: 'Receipt is me.' },
+      ],
+      correctOptionId: 'pr-1-a',
+      optional: false,
+      reason: 'Вчера эта фраза далась тяжело',
+      hint: 'Начни с «Can I have…?» — так просьба звучит мягко.',
+    },
+    {
+      id: 'pr-2',
+      typeLabel: 'Слово',
+      dueReason: 'слово из эпизода 11',
+      promptLabel: '«boarding» — это…',
+      options: [
+        { id: 'pr-2-a', label: 'посадка на рейс' },
+        { id: 'pr-2-b', label: 'багаж' },
+        { id: 'pr-2-c', label: 'задержка рейса' },
+      ],
+      correctOptionId: 'pr-2-a',
+      optional: false,
+      reason: 'Встретилось в микроистории и отвлекло',
+      hint: 'Вспомни: boarding pass — посадочный талон.',
+    },
+    {
+      id: 'pr-3',
+      typeLabel: 'Фраза',
+      dueReason: 'после вчерашнего урока',
+      promptLabel: 'Спроси дорогу к выходу № 7:',
+      options: [
+        { id: 'pr-3-a', label: 'Where is gate seven?' },
+        { id: 'pr-3-b', label: 'What is gate seven?' },
+        { id: 'pr-3-c', label: 'Gate seven where is?' },
+      ],
+      correctOptionId: 'pr-3-a',
+      optional: true,
+      reason: 'Порядок слов в вопросе',
+      hint: 'Вопрос начинается с «Where is…».',
+    },
+    {
+      id: 'pr-4',
+      typeLabel: 'Слово',
+      dueReason: 'слово из эпизода 11',
+      promptLabel: '«check-in desk» — это…',
+      options: [
+        { id: 'pr-4-a', label: 'стойка регистрации' },
+        { id: 'pr-4-b', label: 'выход на посадку' },
+        { id: 'pr-4-c', label: 'паспортный контроль' },
+      ],
+      correctOptionId: 'pr-4-a',
+      optional: false,
+      reason: 'Новая фраза из микроистории',
+      hint: 'Там ты получаешь посадочный талон.',
+    },
+    {
+      id: 'pr-5',
+      typeLabel: 'Фраза',
+      dueReason: 'возвращается с другим контекстом',
+      promptLabel: 'В кафе: попроси только воду.',
+      options: [
+        { id: 'pr-5-a', label: 'Just a water, please.' },
+        { id: 'pr-5-b', label: 'Only water is me.' },
+        { id: 'pr-5-c', label: 'Water, go!' },
+      ],
+      correctOptionId: 'pr-5-a',
+      optional: true,
+      reason: 'Та же просьба — новая сцена',
+      hint: '«Just a…, please» — короткая вежливая форма.',
+    },
+    {
+      id: 'pr-6',
+      typeLabel: 'Слово',
+      dueReason: 'слово из эпизода 11',
+      promptLabel: '«platform» на вокзале — это…',
+      options: [
+        { id: 'pr-6-a', label: 'платформа' },
+        { id: 'pr-6-b', label: 'касса' },
+        { id: 'pr-6-c', label: 'расписание' },
+      ],
+      correctOptionId: 'pr-6-a',
+      optional: false,
+      reason: 'Пригодится в миссии на вокзале',
+      hint: '«Platform two» — вторая платформа.',
+    },
+  ],
+  skipLabel: 'Пропустить',
+  completion: { summary: '3 навыка стали увереннее · 2 вернутся завтра' },
+  offlineNote: 'Очередь сохранена на устройстве — синхронизация не помешает заниматься.',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать повторение',
+      active: 'Проверить',
+      processing: 'Проверяем…',
+      success: 'Закончить',
+      needs_work: 'Продолжить',
+      recovery: 'Вернуться к очереди',
+    },
+    statusMessages: {
+      prompt: 'Небольшая очередь — только то, что просится назад.',
+      active: 'Одно задание за раз. Подсказка — одна причина и одна подсказка.',
+      processing: 'Смотрим твой ответ…',
+      success: 'Всё на сегодня. Возвращайся завтра за новой порцией.',
+      needs_work: 'Ничего страшного — именно для этого и есть повторение.',
+      recovery: 'Очередь на месте — продолжим с того же задания.',
+    },
+  },
+};
+
 export interface BaHotspot {
   readonly id: string;
   readonly label: string;

@@ -176,32 +176,42 @@ export default function PremiumModalDispatcher() {
   useEffect(() => {
     if (!rootNavReady) return;
     let cancelled = false;
-    let scheduled: ScheduledNavigation | null = null;
     const run = async () => {
       if (firstParam(params.manage) === '1') return;
       if (!isPersonalPlanContext) return;
       if (dispatchedRef.current) return;
       dispatchedRef.current = true;
       // Уже премиум → доводим активацию плана и уходим (thank-you/план/home — внутри).
-      // Не премиум → показываем пейвол ИЗ ЭТОГО ЖЕ эффекта, без предварительного мелькания.
-      const finished = await maybeFinishAlreadyPremiumPersonalPlan(params, router);
-      if (cancelled || finished) return;
-      scheduled = scheduleAfterRootNavigationReady(() => {
-        if (!cancelled) replaceToPaywall(params, router);
-      });
+      // Не премиум → НИЧЕГО не делаем: пейвол уже отрисован этим же компонентом
+      // синхронно (см. renderPaywallRoute ниже). Раньше здесь был replace на
+      // /paywall_*, но теперь он бы РАЗМОНТИРОВАЛ уже показанный пейвол и
+      // смонтировал идентичный заново — видимый скачок + повторный прогон всех
+      // эффектов пейвола (аналитика, collectPaywallStats, отзывы, перцентили).
+      await maybeFinishAlreadyPremiumPersonalPlan(params, router);
+      if (cancelled) return;
     };
     void run();
     return () => {
       cancelled = true;
-      scheduled?.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rootNavReady]);
 
-  // Пока диспетчер решает A/B/C или проверяет personal_plan-доступ, показываем
-  // тот же тип подложки, что и у paywall, а не прозрачный пустой экран: на Android
-  // transparentModal часто просвечивает в чёрный native-stack фон.
-  if (!isPersonalPlanContext && !isManageContext) {
+  // зачем (жалоба владельца «пейвол открывается сначала пустой страницей»):
+  // для personal_plan диспетчер раньше рисовал ГОЛЫЙ градиент, пока ждал
+  // getVerifiedPremiumAccessStatus() — сетевой запрос в RevenueCat с таймаутом
+  // ACCESS_CHECK_TIMEOUT_MS (2.5с). Всё это время юзер видел пустую тёмную
+  // страницу, и только потом — пейвол. Теперь пейвол рендерится СРАЗУ, тем же
+  // синхронным путём, что и обычный контекст: вариант резолвится из кэша в
+  // памяти, без await.
+  //
+  // Ветка «уже премиум» не страдает: эффект выше делает router.replace на
+  // thank-you/план на первом же тике после проверки доступа, и премиум-юзер
+  // видит пейвол не дольше, чем раньше видел пустой градиент.
+  //
+  // Manage-режим (manage=1) оставляем на подложке: он ведёт не на пейвол, а на
+  // /manage_subscription, и рисовать там пейвол было бы обманом кадра.
+  if (!isManageContext) {
     if (paywallRouteRef.current === null) {
       paywallRouteRef.current = resolveCurrentPaywallRoute();
     }

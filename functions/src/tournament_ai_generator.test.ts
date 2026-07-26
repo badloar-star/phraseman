@@ -79,9 +79,17 @@ function mutate(index: number, patch: Partial<TournamentAiItem>): { items: Tourn
   return batch;
 }
 
+/**
+ * Коды брака независимо от исхода батча.
+ *
+ * зачем: с 2026-07-26 плохой вопрос отсеивается ПОШТУЧНО, а батч из
+ * оставшихся принимается — иначе один брак из десяти ронял весь оплаченный
+ * запрос. Коды при этом возвращаются в обоих случаях: как errors при отказе
+ * и как rejected при частичном приёме.
+ */
 function errorsOf(raw: unknown, previousKeys?: ReadonlySet<string>): readonly string[] {
   const result = validateTournamentAiBatch(raw, { level: 'A2', previousKeys });
-  return result.ok ? [] : result.errors;
+  return result.ok ? (result.rejected ?? []) : result.errors;
 }
 
 // ── Золотой путь ────────────────────────────────────────────────────────────
@@ -240,6 +248,29 @@ describe('tournament_ai_generator: классы брака', () => {
     const batch = goldenBatch();
     batch.items = batch.items.map((item) => ({ ...item, difficulty: 'easy' as const }));
     expect(errorsOf(batch)).toContain('ai_difficulty_distribution_mismatch');
+  });
+
+  it('один плохой вопрос не убивает батч — отсеивается поштучно', () => {
+    // Главная жалоба владельца 2026-07-26: «ИИ предложил 0 вопросов, деньги
+    // потрачены». Один брак из десяти ронял весь оплаченный запрос.
+    const batch = mutate(3, { phrase: 'Могу я получить счёт?' }); // кириллица во фразе
+    const result = validateTournamentAiBatch(batch, { level: 'A2' });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.items).toHaveLength(TOURNAMENT_AI_BATCH_SIZE - 1);
+    expect(result.rejected).toContain('ai_phrase_invalid');
+    // Плохой вопрос в принятые не попал.
+    expect(result.items.some((item) => item.phrase === 'Могу я получить счёт?')).toBe(false);
+  });
+
+  it('если уцелело меньше минимума — батч всё же отклоняется', () => {
+    const batch = goldenBatch();
+    // Портим восемь из десяти: принять нечего.
+    for (let i = 0; i < 8; i += 1) {
+      batch.items[i] = { ...batch.items[i], phrase: '' };
+    }
+    expect(validateTournamentAiBatch(batch, { level: 'A2' }).ok).toBe(false);
   });
 
   it('позиции правильного ответа раскладываются сервером, а не бракуют батч', () => {

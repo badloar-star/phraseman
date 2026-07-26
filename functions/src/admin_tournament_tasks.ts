@@ -442,7 +442,7 @@ async function reserveAiDailyBudget(
 }
 
 type AiBatchOutcome =
-  | { ok: true; items: readonly TournamentAiItem[]; promptTokens: number; completionTokens: number; requests: number }
+  | { ok: true; items: readonly TournamentAiItem[]; partialErrors: readonly string[]; promptTokens: number; completionTokens: number; requests: number }
   | { ok: false; errors: readonly string[]; promptTokens: number; completionTokens: number; requests: number };
 
 /** Один батч: генерация → валидация → до 2 починок с конвертом ошибок. */
@@ -492,7 +492,18 @@ async function generateOneAiBatch(
       level: params.level,
       previousKeys: params.previousKeys as Set<string>,
     });
-    if (validation.ok) return { ok: true, items: validation.items, promptTokens, completionTokens, requests };
+    if (validation.ok) {
+      // Частичный приём: часть вопросов могла отсеяться поштучно. Коды брака
+      // отдаём наружу как отчёт, но батч НЕ теряем — деньги уже потрачены.
+      return {
+        ok: true,
+        items: validation.items,
+        partialErrors: validation.rejected ?? [],
+        promptTokens,
+        completionTokens,
+        requests,
+      };
+    }
     lastErrors = validation.errors;
     // зачем: без этого лога брак батча неотличим от «модель не ответила» —
     // владелец видит только «забраковано, деньги потрачены» и не может понять,
@@ -563,6 +574,9 @@ export const adminGenerateTournamentTasksAi = onCall(
           rejectedBatches.push([...outcome.errors]);
           continue;
         }
+        // Часть вопросов батча могла отсеяться поштучно — показываем владельцу,
+        // что именно, но батч засчитан: остальные вопросы сохраняются.
+        if (outcome.partialErrors.length > 0) rejectedBatches.push([...outcome.partialErrors]);
         for (const item of outcome.items) {
           // Второй батч не должен дублировать первый в этом же вызове.
           knownKeys.add(tournamentAiSemanticKey(item));

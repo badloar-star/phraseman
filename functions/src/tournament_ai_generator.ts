@@ -73,6 +73,13 @@ export const TOURNAMENT_AI_DIFFICULTY_DISTRIBUTION = Object.freeze({ easy: 3, me
 export const DIFFICULTY_TOLERANCE = 1;
 
 /**
+ * Сколько вопросов должно уцелеть, чтобы батч считался удачным.
+ * зачем: один брак из десяти раньше ронял весь оплаченный батч — теперь
+ * отсеиваем поштучно и отказываемся, только если уцелело слишком мало.
+ */
+export const TOURNAMENT_AI_MIN_ACCEPTED = 6;
+
+/**
  * Обрубок правильного ответа среди дистракторов: «открывалка для банок» +
  * вариант «банок» — вопрос без единственного верного ответа.
  *
@@ -111,11 +118,12 @@ export function findTournamentTruncatedOption(
  * Правило нужное — «правильный всегда третий» игрок выучивает за пару турниров.
  */
 function rebalanceCorrectPositions(items: TournamentAiItem[]): TournamentAiItem[] {
-  if (items.length !== TOURNAMENT_AI_BATCH_SIZE) return items;
-  // План: 0,1,2,3,0,1,2,3,0,2 — счётчики 3/2/3/2, ни одной серии подряд.
-  const plan = [0, 1, 2, 3, 0, 1, 2, 3, 0, 2];
+  if (items.length < 2) return items;
   return items.map((item, i) => {
-    const target = plan[i];
+    // Циклический обход 0→1→2→3: каждая позиция используется равномерно,
+    // двух одинаковых подряд не бывает. Работает при любом числе принятых
+    // вопросов — батч теперь может прийти неполным после поштучного отсева.
+    const target = i % CHOICE_OPTIONS;
     if (item.correctIndex === target) return item;
     const options = [...item.options];
     // Обмен местами: правильный уезжает на target, тот вариант — на его место.
@@ -305,7 +313,7 @@ export function buildTournamentAiRepairTask(
 // ── Валидация вывода модели ─────────────────────────────────────────────────
 
 export type TournamentAiValidation =
-  | { readonly ok: true; readonly items: readonly TournamentAiItem[] }
+  | { readonly ok: true; readonly items: readonly TournamentAiItem[]; readonly rejected?: readonly string[] }
   | { readonly ok: false; readonly errors: readonly string[] };
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -361,6 +369,9 @@ export function validateTournamentAiBatch(
   let shortestCorrectCount = 0;
 
   for (const value of raw.items) {
+    // зачем: ошибки собираем НА КАЖДЫЙ вопрос отдельно — раньше один брак
+    // из десяти убивал весь оплаченный батч. Плохие отсеиваем, хорошие берём.
+    const itemErrors = new Set<string>();
     if (!isRecord(value)) { errors.add('ai_item_shape_invalid'); continue; }
 
     const phrase = String(value.phrase ?? '').trim();
@@ -374,33 +385,32 @@ export function validateTournamentAiBatch(
     // Фраза: живой английский, без кириллицы, в байтовом лимите пула.
     if (!phrase || bytes(phrase) > TOURNAMENT_TASK_LIMITS.phraseBytes
       || !HAS_LATIN.test(phrase) || HAS_CYRILLIC.test(phrase)) {
-      errors.add('ai_phrase_invalid');
+      itemErrors.add('ai_phrase_invalid');
     }
     const phraseKey = normalized(phrase);
-    if (phraseKey && phraseKeys.has(phraseKey)) errors.add('ai_phrase_duplicate');
-    if (phraseKey) phraseKeys.add(phraseKey);
+    if (phraseKey && phraseKeys.has(phraseKey)) itemErrors.add('ai_phrase_duplicate');
 
     // Опции: ровно 4, непустые, в лимите, на русском, без меток "A)".
     if (options.length !== CHOICE_OPTIONS
       || options.some((option) => !option || bytes(option) > TOURNAMENT_TASK_LIMITS.optionBytes)) {
-      errors.add('ai_options_invalid');
+      itemErrors.add('ai_options_invalid');
     } else {
-      if (new Set(options.map(normalized)).size !== CHOICE_OPTIONS) errors.add('ai_options_not_unique');
-      if (options.some((option) => OPTION_LABEL_PREFIX.test(option))) errors.add('ai_option_label_prefix');
-      if (options.some((option) => !HAS_CYRILLIC.test(option))) errors.add('ai_option_language_invalid');
+      if (new Set(options.map(normalized)).size !== CHOICE_OPTIONS) itemErrors.add('ai_options_not_unique');
+      if (options.some((option) => OPTION_LABEL_PREFIX.test(option))) itemErrors.add('ai_option_label_prefix');
+      if (options.some((option) => !HAS_CYRILLIC.test(option))) itemErrors.add('ai_option_language_invalid');
     }
 
     const indexValid = Number.isInteger(correctIndex)
       && Number(correctIndex) >= 0 && Number(correctIndex) < CHOICE_OPTIONS;
-    if (!indexValid) errors.add('ai_correct_index_invalid');
+    if (!indexValid) itemErrors.add('ai_correct_index_invalid');
 
     if (indexValid && options.length === CHOICE_OPTIONS) {
       const index = Number(correctIndex);
       // Байт-в-байт (паттерн арены): расхождение = модель перепутала ключ.
-      if (options[index] !== correctAnswer) errors.add('ai_correct_mismatch');
+      if (options[index] !== correctAnswer) itemErrors.add('ai_correct_mismatch');
       // «jar opener» → дистрактор «jar»: вопрос без правильного ответа.
-      if (findTournamentTruncatedOption(options, index)) errors.add('ai_truncated_choice_conflict');
-      if (lengthGiveaway(options, index)) errors.add('ai_length_giveaway_item');
+      if (findTournamentTruncatedOption(options, index)) itemErrors.add('ai_truncated_choice_conflict');
+      if (lengthGiveaway(options, index)) itemErrors.add('ai_length_giveaway_item');
 
       const lens = options.map((option) => option.length);
       if (lens[index] === Math.max(...lens) && lens.filter((len) => len === lens[index]).length === 1) {
@@ -409,31 +419,41 @@ export function validateTournamentAiBatch(
       if (lens[index] === Math.min(...lens) && lens.filter((len) => len === lens[index]).length === 1) {
         shortestCorrectCount += 1;
       }
-      correctIndexes.push(index);
     }
 
-    if (!['easy', 'medium', 'hard'].includes(difficulty)) errors.add('ai_difficulty_invalid');
-    else difficultyCounts[difficulty] += 1;
+    const isDifficulty = ['easy', 'medium', 'hard'].includes(difficulty);
+    if (!isDifficulty) itemErrors.add('ai_difficulty_invalid');
 
     if (!scenario || scenario.length > SCENARIO_MAX_CHARS || !HAS_CYRILLIC.test(scenario)) {
-      errors.add('ai_scenario_invalid');
-    } else {
-      scenarioKeys.add(normalized(scenario));
+      itemErrors.add('ai_scenario_invalid');
     }
 
-    if (!ruleNote || bytes(ruleNote) > RULE_NOTE_MAX_BYTES) errors.add('ai_rule_note_invalid');
+    if (!ruleNote || bytes(ruleNote) > RULE_NOTE_MAX_BYTES) itemErrors.add('ai_rule_note_invalid');
 
     const semanticKey = tournamentAiSemanticKey({ phrase, options });
-    if (semanticKeys.has(semanticKey)) errors.add('ai_semantic_duplicate');
+    if (semanticKeys.has(semanticKey)) itemErrors.add('ai_semantic_duplicate');
+    if (previousKeys.has(semanticKey)) itemErrors.add('ai_previous_duplicate');
+
+    if (itemErrors.size > 0) {
+      // Вопрос забракован — его коды идут в общий отчёт для владельца,
+      // но остальные вопросы батча это не роняет.
+      itemErrors.forEach((code) => errors.add(code));
+      continue;
+    }
+
+    // Счётчики батч-инвариантов заполняем только принятыми вопросами.
+    if (indexValid) correctIndexes.push(Number(correctIndex));
+    if (isDifficulty) difficultyCounts[difficulty] += 1;
+    scenarioKeys.add(normalized(scenario));
     semanticKeys.add(semanticKey);
-    if (previousKeys.has(semanticKey)) errors.add('ai_previous_duplicate');
+    phraseKeys.add(phraseKey);
 
     items.push({ phrase, options, correctIndex: Number(correctIndex), correctAnswer, difficulty, scenario, ruleNote });
   }
 
   // Батч-инварианты — только когда все 10 вопросов дали валидный индекс,
   // иначе поштучные ошибки уже объясняют, что чинить.
-  if (correctIndexes.length === TOURNAMENT_AI_BATCH_SIZE) {
+  if (items.length === TOURNAMENT_AI_BATCH_SIZE) {
     // Позиции правильного ответа приводим к плану сами (см.
     // rebalanceCorrectPositions) — механическое требование, которое модель
     // почти никогда не выполняет, а брак стоил бы целого оплаченного батча.
@@ -443,7 +463,7 @@ export function validateTournamentAiBatch(
     if (longestCorrectCount > 5 || shortestCorrectCount > 5) errors.add('ai_length_giveaway_batch');
   }
 
-  if (raw.items.length === TOURNAMENT_AI_BATCH_SIZE) {
+  if (items.length === TOURNAMENT_AI_BATCH_SIZE) {
     // зачем: требовать ТОЧНОГО 3/4/3 оказалось нереалистично — из 66 возможных
     // раскладов проходил ровно один, и целый батч (вместе с уже потраченными
     // деньгами) браковался из-за смещения на единицу. Допуск ±1 не вредит
@@ -459,10 +479,19 @@ export function validateTournamentAiBatch(
     if (scenarioKeys.size < MIN_UNIQUE_SCENARIOS) errors.add('ai_scenarios_too_narrow');
   }
 
-  if (errors.size > 0) return { ok: false, errors: Object.freeze([...errors]) };
+  // зачем: раньше любой брак ронял ВЕСЬ оплаченный батч. Теперь принимаем то,
+  // что прошло; если принятых меньше минимума — только тогда отказ. Коды брака всё равно
+  // возвращаются наружу, чтобы владелец видел, что именно отсеялось.
+  if (items.length < TOURNAMENT_AI_MIN_ACCEPTED) {
+    return { ok: false, errors: Object.freeze([...errors]) };
+  }
   // Позиции правильного ответа раскладываем по плану уже после проверок:
   // перестановка вариантов не влияет ни на одно из правил выше.
-  return { ok: true, items: Object.freeze(rebalanceCorrectPositions(items)) };
+  return {
+    ok: true,
+    items: Object.freeze(rebalanceCorrectPositions(items)),
+    rejected: Object.freeze([...errors]),
+  };
 }
 
 // ── Конверсия в задание пула ────────────────────────────────────────────────

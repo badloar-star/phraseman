@@ -1477,10 +1477,18 @@ export function subscribeUserAppMessages(
         },
       );
 
+    // зачем: этот поток раньше подписывался на ВСЮ коллекцию состояний без лимита,
+    // а она растёт монотонно (документ на каждое прочитанное/скрытое сообщение) и
+    // никогда не чистится. У давнего аккаунта снапшот тянул сотни документов и
+    // маппился в новый массив на каждое изменение — Android падал с OutOfMemoryError
+    // в sendOnSnapshotEvent. Ограничиваем как два соседних потока (limit 80):
+    // состояния нужны только для сообщений из тех же лент, а они сами лимитированы.
     unsubscribeStates = db
       .collection('users')
       .doc(uid)
       .collection(APP_MESSAGE_STATES_COLLECTION)
+      .orderBy('updatedAtMs', 'desc')
+      .limit(APP_MESSAGES_BACKGROUND_FETCH_LIMIT)
       .onSnapshot(
         (snap: any) => {
           states = (snap.docs || []).map((docSnap: any) =>

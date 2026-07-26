@@ -1087,6 +1087,10 @@ export function SpeakingPanel({
           /* no-op */
         }
         cleanupListeners();
+        // зачем: тот же класс бага, что при сворачивании — abort() рушит нативную
+        // сессию, а подписка на 'audioend' переживала её и ловила событие в мёртвый
+        // колбэк (EXC_BAD_ACCESS в мосту). Снимаем вместе с остальными.
+        cleanupAudioEndListener();
         setStatus('stalled');
         hapticError();
         restoreLoudPlaybackMode();
@@ -1523,6 +1527,12 @@ export function SpeakingPanel({
     clearWatchdog();
     clearAutoAdvance();
     cleanupListeners();
+    // зачем: 'audioend' живёт в отдельном ref и снимался только при размонтировании.
+    // При сворачивании приложения прямо во время речи он оставался подписанным, а
+    // speech.abort() ниже рушил нативную сессию — модуль досылал событие в мёртвый
+    // колбэк, и мост падал с EXC_BAD_ACCESS в convertNSStringToJSIString (краш на
+    // 1.5.63: вложенные NSArray со строками из освобождённой памяти).
+    cleanupAudioEndListener();
     cleanupWordListeners();
     try {
       speech?.abort();
@@ -1554,7 +1564,7 @@ export function SpeakingPanel({
     // Сессия захвата больше не нужна — возвращаем громкое воспроизведение.
     restoreLoudPlaybackMode();
     if (mountedRef.current) setStatus('idle');
-  }, [appRuntimeActive, isPreview, speech, clearWatchdog, clearAutoAdvance, cleanupListeners, cleanupWordListeners]);
+  }, [appRuntimeActive, isPreview, speech, clearWatchdog, clearAutoAdvance, cleanupListeners, cleanupAudioEndListener, cleanupWordListeners]);
 
   // Модель whisper не смогла подготовиться (нет сети при первом запуске) —
   // откатываемся на системный путь, чтобы юзер не застрял на «идёт подготовка».

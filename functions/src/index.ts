@@ -1532,6 +1532,8 @@ export {
   adminArchiveV2SeasonRevision,
 } from './admin_content_studio_callables';
 export { adminCreateV2GenerationPlan, adminQueueV2GenerationPlan } from './admin_v2_generation';
+// зачем: владелец решил строить воркер E1 — кнопка генерации в админке даёт артефакт, а не вечное queued.
+export { adminSeedV2E1DemoSource, adminRunV2E1Compilation } from './content_factory/v2_e1_compilation_worker';
 export { adminReviewCourseGeneration, adminSealCourseRelease } from './admin_content_release';
 export { adminActivateCourseRelease, adminRollbackCourseRelease } from './language_release';
 export { openAiDialogModelConfig, openAiDialogQuotaConfig } from './openai_dialog_model_config';

@@ -28,6 +28,13 @@
   let bankVersion = null;
   let engine = null;
   let currentQuestion = null;
+  // зачем: владелец 2026-07-26 — «каждый тест должен иметь отсчёт, иначе можно
+  // загуглить». Дедлайн по настенным часам: фоновая вкладка не ставит таймер
+  // на паузу, уход «погуглить» съедает время. Таймаут = существующий путь
+  // «Не знаю» (skip), который корректно учитывает адаптивный движок.
+  const QUESTION_SECONDS = 45;
+  let questionDeadline = 0;
+  let questionTimerId = 0;
   let attemptToken = null;
   let clientHash = null;
   let consent = false;
@@ -520,6 +527,7 @@
           </div>
 
           <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn">Начать бесплатно</button>
+          <p class="elt-timer-note">На каждый вопрос — 45 секунд: результат честный, подсказки не успеть загуглить</p>
 
           <label class="elt-consent">
             <input type="checkbox" id="consentCheckbox" />
@@ -640,6 +648,7 @@
     }
     questionStartTime = Date.now();
     renderQuestion(currentQuestion);
+    startQuestionTimer();
     if (consent) {
       api('view', { questionId: currentQuestion.id, position: engine.history.length + 1 });
     }
@@ -652,7 +661,16 @@
     const node = el(`
       <div class="elt-test">
         <div class="elt-progress-bar"><div class="elt-progress-fill"></div></div>
-        <div class="elt-question-meta">Вопрос ${position}</div>
+        <div class="elt-question-meta">
+          <span>Вопрос ${position}</span>
+          <span class="elt-timer" id="qTimer" role="timer" aria-label="Осталось времени на вопрос">
+            <svg viewBox="0 0 36 36" aria-hidden="true">
+              <circle class="elt-timer-track" cx="18" cy="18" r="15.5"></circle>
+              <circle class="elt-timer-ring" id="qTimerRing" cx="18" cy="18" r="15.5"></circle>
+            </svg>
+            <b id="qTimerNum">${QUESTION_SECONDS}</b>
+          </span>
+        </div>
         <div class="elt-scenario" lang="ru">${escapeHtml(q.scenarioRu)}</div>
         <div class="elt-instruction" lang="ru">${escapeHtml(q.instructionRu)}</div>
         ${q.stimulus
@@ -702,6 +720,50 @@
     node.querySelector('#skipBtn').addEventListener('click', () => answerQuestion(q, -1, true));
     node.querySelector('#exitBtn').addEventListener('click', confirmExit);
   }
+
+  const TIMER_CIRCUMFERENCE = 2 * Math.PI * 15.5;
+
+  function clearQuestionTimer() {
+    if (questionTimerId) {
+      clearInterval(questionTimerId);
+      questionTimerId = 0;
+    }
+  }
+
+  function startQuestionTimer() {
+    clearQuestionTimer();
+    questionDeadline = Date.now() + QUESTION_SECONDS * 1000;
+    const tick = () => {
+      const view = currentView;
+      const num = view && view.querySelector('#qTimerNum');
+      const ring = view && view.querySelector('#qTimerRing');
+      const box = view && view.querySelector('#qTimer');
+      const leftMs = questionDeadline - Date.now();
+      if (leftMs <= 0) {
+        clearQuestionTimer();
+        if (num) num.textContent = '0';
+        // Таймаут = «Не знаю»: адаптив уже умеет учитывать пропуск.
+        answerQuestion(currentQuestion, -1, true);
+        return;
+      }
+      const leftSec = Math.ceil(leftMs / 1000);
+      if (num) num.textContent = String(leftSec);
+      if (ring) {
+        ring.style.strokeDashoffset = (TIMER_CIRCUMFERENCE * (1 - leftMs / (QUESTION_SECONDS * 1000))).toFixed(1);
+      }
+      if (box) box.classList.toggle('elt-timer--low', leftSec <= 10);
+    };
+    tick();
+    questionTimerId = setInterval(tick, 250);
+    activeTimerTick = tick;
+  }
+
+  // зачем: фоновые вкладки троттлят интервалы — по возвращении сразу
+  // сверяемся с дедлайном, «погуглить в соседней вкладке» не выйдет.
+  let activeTimerTick = null;
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && questionTimerId && activeTimerTick) activeTimerTick();
+  });
 
   function bindQuestionKeys() {
     if (keydownBound) return;
@@ -757,6 +819,7 @@
     // Защита от «протухших» вызовов: клик/клавиша ставят ответ в очередь
     // с задержкой 200 мс; за это время вопрос мог смениться или тест завершиться.
     if (!question || question !== currentQuestion) return;
+    clearQuestionTimer();
     unbindQuestionKeys();
     const responseTime = Date.now() - questionStartTime;
     const responseTimeMs = Math.round(Math.min(120000, Math.max(0, responseTime)) / 250) * 250;
@@ -790,6 +853,7 @@
 
   function confirmExit() {
     if (!confirm('Выйти? Прогресс будет потерян.')) return;
+    clearQuestionTimer();
     unbindQuestionKeys();
     currentQuestion = null; // отменяет отложенные ответы (setTimeout 200 мс)
     if (consent && engine) {

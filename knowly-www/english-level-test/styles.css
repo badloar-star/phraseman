@@ -492,6 +492,67 @@ html, body {
   margin-bottom: 8px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+}
+
+/* ========== Таймер вопроса ==========
+   зачем: владелец 2026-07-26 — отсчёт на каждый вопрос, чтобы ответы нельзя
+   было гуглить. Кольцо + секунды; при ≤10 c — тёплый красный. */
+.elt-timer {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+.elt-timer svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.elt-timer-track {
+  fill: none;
+  stroke: rgba(120, 90, 20, 0.14);
+  stroke-width: 3;
+}
+.elt-timer-ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 97.4;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.25s linear, stroke 0.3s ease;
+}
+.elt-timer b {
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
+}
+.elt-timer--low .elt-timer-ring { stroke: #d64545; }
+.elt-timer--low b { color: #b93636; }
+@media (prefers-reduced-motion: no-preference) {
+  .elt-timer--low { animation: elt-timer-pulse 1s ease-in-out infinite; }
+  @keyframes elt-timer-pulse {
+    50% { transform: scale(1.08); }
+  }
+}
+
+.elt-timer-note {
+  margin: 12px auto 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+  max-width: 340px;
+  animation: fadeInUp 0.55s 0.33s both var(--ease-out-expo);
 }
 
 .elt-scenario {

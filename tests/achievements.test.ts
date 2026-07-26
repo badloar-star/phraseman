@@ -160,18 +160,35 @@ describe('achievements', () => {
     expect(source).not.toContain('ALL_ACHIEVEMENTS.length');
   });
 
-  it('claims achievement reward marker without granting coins (§7: награда +1 монета обнулена)', async () => {
+  // зачем: владелец вернул награду за достижения — экран всё время обещал
+  // «+1 жемчужина», а выплата была обнулена и кнопка «Получить» работала
+  // впустую. Тест закрепляет, что обещание на экране совпадает с начислением.
+  it('grants exactly +1 pearl per achievement and marks it claimed', async () => {
     const id = ALL_ACHIEVEMENTS[0].id;
     await AsyncStorage.setItem('achievements_v1', JSON.stringify([
       { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
     ]));
 
-    // Claim-маркер выставляется (структура сохранена), но монеты не начисляются.
     await expect(claimAchievementShardReward(id)).resolves.toBe(true);
 
-    expect(addShardsRaw).not.toHaveBeenCalled();
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
+    expect(addShardsRaw).toHaveBeenCalledWith(1, `achievement:${id}`, expect.objectContaining({
+      showEarnModal: false,
+      skipServerAwait: true,
+    }));
     const stored = JSON.parse((await AsyncStorage.getItem('achievements_v1')) ?? '[]');
     expect(stored.find((s: { id: string }) => s.id === id)?.shardClaimed).toBe(true);
+  });
+
+  it('does not double-pay when the same achievement is claimed twice', async () => {
+    const id = ALL_ACHIEVEMENTS[0].id;
+    await AsyncStorage.setItem('achievements_v1', JSON.stringify([
+      { id, unlockedAt: '2026-05-18T12:00:00.000Z', notified: true, shardClaimed: false },
+    ]));
+
+    await expect(claimAchievementShardReward(id)).resolves.toBe(true);
+    await expect(claimAchievementShardReward(id)).resolves.toBe(false);
+    expect(addShardsRaw).toHaveBeenCalledTimes(1);
   });
 
   it('updates the achievement reward modal before the claim promise finishes', () => {

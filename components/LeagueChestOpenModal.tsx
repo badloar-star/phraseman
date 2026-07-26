@@ -102,9 +102,9 @@ function slavicPlural(count: number, one: string, few: string, many: string): st
 }
 
 function shardsTitle(amount: number, lang: Lang): string {
-  if (lang === 'es') return `+${amount} monedas`;
-  if (lang === 'uk') return `+${amount} ${slavicPlural(amount, 'монета', 'монети', 'монет')}`;
-  return `+${amount} ${slavicPlural(amount, 'монета', 'монеты', 'монет')}`;
+  if (lang === 'es') return `+${amount} perlas`;
+  if (lang === 'uk') return `+${amount} ${slavicPlural(amount, 'перлина', 'перлини', 'перлин')}`;
+  return `+${amount} ${slavicPlural(amount, 'жемчужина', 'жемчужины', 'жемчужин')}`;
 }
 
 function formatMinutes(ms?: number): number {
@@ -216,7 +216,9 @@ function formatReward(drop: LeagueChestRewardDrop, lang: Lang, themeMode: ThemeM
     case 'shards':
       return {
         title: shardsTitle(rewardAmount(drop), lang),
-        subtitle: triLang(lang, { ru: 'Монеты', uk: 'Монети', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jeton', pl: 'Monety' }),
+        // зачем: RU-интерфейс называет валюту «жемчужины» (constants/shard_plurals.ts),
+        // украинское «Перлины» протекало в русский сундук лиги.
+        subtitle: triLang(lang, { ru: 'Жемчужины', uk: 'Перлини', es: 'Perlas', 'pt-BR': 'Pérolas', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perły' }),
         accent: '#9FDBFF',
         icon: { type: 'image', source: oskolokImageForPackShards(rewardAmount(drop), themeMode), scale: 'large' },
       };

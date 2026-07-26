@@ -1150,9 +1150,11 @@ function AchievementModal({
                 borderWidth: pendingShard ? 1 : 0,
                 borderColor: pendingShard ? t.correct + '55' : 'transparent',
               }}>
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Перлина', uk: 'Перлина', es: 'Moneda', 'pt-BR': 'Fragmento', vi: 'Xu', id: 'Fragmen', tr: 'Jeton', pl: 'Fragment' })} />
+                {/* зачем: RU-интерфейс называет валюту «жемчужина» (constants/shard_plurals.ts),
+                    а здесь оставалось украинское «перлина» — оно протекало в русский экран. */}
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Жемчужина', uk: 'Перлина', es: 'Perla', 'pt-BR': 'Pérola', vi: 'Ngọc trai', id: 'Mutiara', tr: 'İnci', pl: 'Perła' })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 перлина', uk: '+1 перлина', es: '+1 moneda', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 xu tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi jetonu', pl: '+1 fragment wiedzy' })}
+                  {triLang(lang, { ru: '+1 жемчужина', uk: '+1 перлина', es: '+1 perla', 'pt-BR': '+1 pérola', vi: '+1 ngọc trai', id: '+1 mutiara', tr: '+1 inci', pl: '+1 perła' })}
                 </Text>
                 {pendingShard ? (
                   <TapScale
@@ -1178,7 +1180,7 @@ function AchievementModal({
                   </TapScale>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Перлина получена', uk: 'Перлину отримано', es: 'Moneda reclamada', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận xu', id: 'Fragmen diklaim', tr: 'Jeton alındı', pl: 'Fragment odebrany' })}
+                    {triLang(lang, { ru: 'Жемчужина получена', uk: 'Перлину отримано', es: 'Perla reclamada', 'pt-BR': 'Pérola recebida', vi: 'Đã nhận ngọc trai', id: 'Mutiara diklaim', tr: 'İnci alındı', pl: 'Perła odebrana' })}
                   </Text>
                 )}
               </View>

@@ -1483,23 +1483,23 @@ const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
   },
   {
     id: 'shards_100', icon:'💎', category:'special', secret: true, xp:250,
-    nameRu:'Собиратель перлин', nameUk:'Збирач перлин',
-    descRu:'Доведи баланс до 100 перлин.', descUk:'Доведи баланс до 100 перлин.',
+    nameRu:'Собиратель жемчужин', nameUk:'Збирач перлин',
+    descRu:'Доведи баланс до 100 жемчужин.', descUk:'Доведи баланс до 100 перлин.',
   },
   {
     id: 'shards_spent_100', icon:'💠', category:'special', secret: true, xp:220,
-    nameRu:'Перлины в дело', nameUk:'Перлини в діло',
-    descRu:'Потрать суммарно 100 перлин в магазине, лиге или на энергию.', descUk:'Витрать загалом 100 перлин у магазині, лізі або на енергію.',
+    nameRu:'Жемчужины в дело', nameUk:'Перлини в діло',
+    descRu:'Потрать суммарно 100 жемчужин в магазине, лиге или на энергию.', descUk:'Витрать загалом 100 перлин у магазині, лізі або на енергію.',
   },
   {
     id: 'energy_refill_first', icon:'⚡', category:'special', xp:70,
     nameRu:'Второе дыхание', nameUk:'Друге дихання',
-    descRu:'Восстанови энергию за перлины первый раз.', descUk:'Віднови енергію за перлини вперше.',
+    descRu:'Восстанови энергию за жемчужины первый раз.', descUk:'Віднови енергію за перлини вперше.',
   },
   {
     id: 'energy_refill_5', icon:'🔋', category:'special', xp:180,
     nameRu:'На полном заряде', nameUk:'На повному заряді',
-    descRu:'Пять раз восстанови энергию за перлины.', descUk:'П\'ять разів віднови енергію за перлини.',
+    descRu:'Пять раз восстанови энергию за жемчужины.', descUk:'П\'ять разів віднови енергію за перлини.',
     secret: true,
   },
   {
@@ -1728,13 +1728,13 @@ const ACHIEVEMENTS_WITH_RETIRED_FEATURES: Achievement[] = [
   { id: 'flashcards_flip_1000', icon:'♾️', category:'special', xp:1200, nameRu:'Тысяча переворотов', nameUk:'Тисяча переворотів', descRu:'Переверни карточки 1000 раз при повторении.', descUk:'Переверни картки 1000 разів під час повторення.', secret:true },
   { id: 'flashcards_view_14_days', icon:'📆', category:'special', xp:500, nameRu:'Две карточные недели', nameUk:'Два карткові тижні', descRu:'14 дней подряд просматривай карточки в коллекции.', descUk:'14 днів поспіль переглядай картки в колекції.', secret:true },
   { id: 'flashcards_view_30_days', icon:'🗓️', category:'special', xp:1000, nameRu:'Карточный месяц', nameUk:'Картковий місяць', descRu:'30 дней подряд просматривай карточки в коллекции.', descUk:'30 днів поспіль переглядай картки в колекції.', secret:true },
-  { id: 'shards_250', icon:'💎', category:'special', xp:500, nameRu:'250 перлин', nameUk:'250 перлин', descRu:'Доведи баланс до 250 перлин.', descUk:'Доведи баланс до 250 перлин.', secret:true },
-  { id: 'shards_500', icon:'💎', category:'special', xp:900, nameRu:'500 перлин', nameUk:'500 перлин', descRu:'Доведи баланс до 500 перлин.', descUk:'Доведи баланс до 500 перлин.', secret:true },
-  { id: 'shards_1000', icon:'💎', category:'special', xp:1800, nameRu:'Тысяча перлин', nameUk:'Тисяча перлин', descRu:'Доведи баланс до 1000 перлин.', descUk:'Доведи баланс до 1000 перлин.', secret:true },
-  { id: 'shards_spent_500', icon:'💠', category:'special', xp:800, nameRu:'500 перлин в дело', nameUk:'500 перлин у діло', descRu:'Потрать суммарно 500 перлин.', descUk:'Витрать загалом 500 перлин.', secret:true },
-  { id: 'shards_spent_1000', icon:'💠', category:'special', xp:1500, nameRu:'Большой оборот', nameUk:'Великий обіг', descRu:'Потрать суммарно 1000 перлин.', descUk:'Витрать загалом 1000 перлин.', secret:true },
-  { id: 'energy_refill_10', icon:'🔋', category:'special', xp:400, nameRu:'10 зарядок', nameUk:'10 зарядок', descRu:'10 раз восстанови энергию за перлины.', descUk:'10 разів віднови енергію за перлини.', secret:true },
-  { id: 'energy_refill_25', icon:'⚡', category:'special', xp:900, nameRu:'25 зарядок', nameUk:'25 зарядок', descRu:'25 раз восстанови энергию за перлины.', descUk:'25 разів віднови енергію за перлини.', secret:true },
+  { id: 'shards_250', icon:'💎', category:'special', xp:500, nameRu:'250 жемчужин', nameUk:'250 перлин', descRu:'Доведи баланс до 250 жемчужин.', descUk:'Доведи баланс до 250 перлин.', secret:true },
+  { id: 'shards_500', icon:'💎', category:'special', xp:900, nameRu:'500 жемчужин', nameUk:'500 перлин', descRu:'Доведи баланс до 500 жемчужин.', descUk:'Доведи баланс до 500 перлин.', secret:true },
+  { id: 'shards_1000', icon:'💎', category:'special', xp:1800, nameRu:'Тысяча жемчужин', nameUk:'Тисяча перлин', descRu:'Доведи баланс до 1000 жемчужин.', descUk:'Доведи баланс до 1000 перлин.', secret:true },
+  { id: 'shards_spent_500', icon:'💠', category:'special', xp:800, nameRu:'500 жемчужин в дело', nameUk:'500 перлин у діло', descRu:'Потрать суммарно 500 жемчужин.', descUk:'Витрать загалом 500 перлин.', secret:true },
+  { id: 'shards_spent_1000', icon:'💠', category:'special', xp:1500, nameRu:'Большой оборот', nameUk:'Великий обіг', descRu:'Потрать суммарно 1000 жемчужин.', descUk:'Витрать загалом 1000 перлин.', secret:true },
+  { id: 'energy_refill_10', icon:'🔋', category:'special', xp:400, nameRu:'10 зарядок', nameUk:'10 зарядок', descRu:'10 раз восстанови энергию за жемчужины.', descUk:'10 разів віднови енергію за перлини.', secret:true },
+  { id: 'energy_refill_25', icon:'⚡', category:'special', xp:900, nameRu:'25 зарядок', nameUk:'25 зарядок', descRu:'25 раз восстанови энергию за жемчужины.', descUk:'25 разів віднови енергію за перлини.', secret:true },
   { id: 'league_top3_5', icon:'🥉', category:'special', xp:500, nameRu:'Пять недель в топ-3', nameUk:'П’ять тижнів у топ-3', descRu:'5 раз заверши неделю в топ-3 своей лиги.', descUk:'5 разів заверши тиждень у топ-3 своєї ліги.', secret:true },
   { id: 'league_champion_5', icon:'👑', category:'special', xp:850, nameRu:'Пять чемпионств', nameUk:'П’ять чемпіонств', descRu:'5 раз заверши неделю первым в группе лиги.', descUk:'5 разів заверши тиждень першим у групі ліги.', secret:true },
   { id: 'league_champion_10', icon:'🏆', category:'special', xp:1600, nameRu:'Десять чемпионств', nameUk:'Десять чемпіонств', descRu:'10 раз заверши неделю первым в группе лиги.', descUk:'10 разів заверши тиждень першим у групі ліги.', secret:true },
@@ -2988,10 +2988,11 @@ export const claimAchievementShardReward = async (achievementId: string): Promis
   });
   if (!reserved) return false;
 
-  // Экономика «Монеты и Звёзды» (§7): награда +1 монета за достижение обнулена.
-  // Claim-маркер выставляется как раньше (структура достижений и экран сохранены),
-  // но монеты не начисляются — награда за прогресс ушла в звёзды.
-  const ACHIEVEMENT_SHARD_PAYOUT = 0 as number;
+  // зачем: владелец вернул награду за достижения — экран всё это время обещал
+  // «+1 жемчужина» и показывал кнопку «Получить», но выплата была обнулена
+  // экономикой «Монеты и Звёзды», и игрок жал кнопку впустую. Теперь код
+  // совпадает с обещанием на экране: ровно +1 жемчужина за достижение.
+  const ACHIEVEMENT_SHARD_PAYOUT = 1 as number;
   if (ACHIEVEMENT_SHARD_PAYOUT <= 0) return true;
 
   const n = await addShardsRaw(ACHIEVEMENT_SHARD_PAYOUT, `achievement:${achievementId}`, {

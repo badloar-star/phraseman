@@ -71,7 +71,7 @@ function RateHistoryChart({ points, accent, textMuted }: { points: CoinExchangeH
 
 export default function CoinExchangeScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { insets } = useScreen();
 
@@ -127,9 +127,11 @@ export default function CoinExchangeScreen() {
   const coinsWord = useCallback((n: number) => {
     const k = Math.abs(n) % 100;
     const d = Math.abs(n) % 10;
-    if (d === 1 && k !== 11) return triLang(lang, { ru: 'монета', uk: 'монета', es: 'moneda' });
-    if (d >= 2 && d <= 4 && (k < 12 || k > 14)) return triLang(lang, { ru: 'монеты', uk: 'монети', es: 'monedas' });
-    return triLang(lang, { ru: 'монет', uk: 'монет', es: 'monedas' });
+    // зачем: RU-интерфейс называет валюту «жемчужина» — украинское «перлина»
+    // здесь протекало в русский экран обмена.
+    if (d === 1 && k !== 11) return triLang(lang, { ru: 'жемчужина', uk: 'перлина', es: 'perla' });
+    if (d >= 2 && d <= 4 && (k < 12 || k > 14)) return triLang(lang, { ru: 'жемчужины', uk: 'перлини', es: 'perlas' });
+    return triLang(lang, { ru: 'жемчужин', uk: 'перлин', es: 'perlas' });
   }, [lang]);
 
   const onExchange = useCallback(async () => {
@@ -196,7 +198,7 @@ export default function CoinExchangeScreen() {
               accessibilityLabel={balanceA11y}
               accessibilityRole="text"
             >
-              <Image source={coinIconForBalance(coinsBalance)} style={{ width: 28, height: 28 }} contentFit="contain" accessibilityElementsHidden importantForAccessibility="no" />
+              <Image source={coinIconForBalance(coinsBalance, themeMode)} style={{ width: 28, height: 28 }} contentFit="contain" accessibilityElementsHidden importantForAccessibility="no" />
               <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{coinsBalance}</Text>
             </View>
           </View>
@@ -211,18 +213,18 @@ export default function CoinExchangeScreen() {
                 <Text
                   style={{ color: t.textPrimary, fontSize: 26, fontWeight: '900', marginTop: 8, textAlign: 'center' }}
                   accessibilityLabel={triLang(lang, {
-                    ru: `1 монета = ${quote.rate} звёзд`,
-                    uk: `1 монета = ${quote.rate} зірок`,
+                    ru: `1 жемчужина = ${quote.rate} звёзд`,
+                    uk: `1 перлина = ${quote.rate} зірок`,
                     es: `1 moneda = ${quote.rate} estrellas`,
                   })}
                 >
-                  {triLang(lang, { ru: '1 монета = ', uk: '1 монета = ', es: '1 moneda = ' })}
+                  {triLang(lang, { ru: '1 жемчужина = ', uk: '1 перлина = ', es: '1 perla = ' })}
                   <Text style={{ color: t.accent }}>{quote.rate} ⭐</Text>
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 8, textAlign: 'center' }}>
                   {triLang(lang, {
-                    ru: `Коридор курса: ${quote.corridorMin}–${quote.corridorMax} звёзд за монету`,
-                    uk: `Коридор курсу: ${quote.corridorMin}–${quote.corridorMax} зірок за монету`,
+                    ru: `Коридор курса: ${quote.corridorMin}–${quote.corridorMax} звёзд за жемчужину`,
+                    uk: `Коридор курсу: ${quote.corridorMin}–${quote.corridorMax} зірок за перлину`,
                     es: `Corredor: ${quote.corridorMin}–${quote.corridorMax} estrellas por moneda`,
                   })}
                 </Text>
@@ -277,9 +279,9 @@ export default function CoinExchangeScreen() {
             </View>
             <Text style={{ color: t.textSecond, fontSize: f.body, marginTop: 8, lineHeight: 20 }}>
               {triLang(lang, {
-                ru: 'Курс растёт, когда многие игроки обменивают монеты, и плавно возвращается к базовому, когда спрос падает. Пересчёт — раз в сутки, максимум на 10% за день.',
-                uk: 'Курс зростає, коли багато гравців обмінюють монети, і плавно повертається до базового, коли попит падає. Перерахунок — раз на добу, максимум на 10% за день.',
-                es: 'La tasa sube cuando muchos jugadores cambian monedas y vuelve suavemente a la base cuando baja la demanda. Se recalcula una vez al día, máximo un 10% por día.',
+                ru: 'Курс растёт, когда многие игроки обменивают жемчужины, и плавно возвращается к базовому, когда спрос падает. Пересчёт — раз в сутки, максимум на 10% за день.',
+                uk: 'Курс зростає, коли багато гравців обмінюють перлини, і плавно повертається до базового, коли попит падає. Перерахунок — раз на добу, максимум на 10% за день.',
+                es: 'La tasa sube cuando muchos jugadores cambian perlas y vuelve suavemente a la base cuando baja la demanda. Se recalcula una vez al día, máximo un 10% por día.',
               })}
             </Text>
           </View>
@@ -287,7 +289,7 @@ export default function CoinExchangeScreen() {
           {/* Форма обмена */}
           <View style={[cardStyle, { marginTop: 12 }]}>
             <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'Обменять монеты', uk: 'Обміняти монети', es: 'Cambiar monedas' })}
+              {triLang(lang, { ru: 'Обменять жемчужины', uk: 'Обміняти перлини', es: 'Cambiar perlas' })}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 12 }}>
               <TextInput
@@ -296,7 +298,7 @@ export default function CoinExchangeScreen() {
                 keyboardType="number-pad"
                 placeholder="0"
                 placeholderTextColor={t.textGhost}
-                accessibilityLabel={triLang(lang, { ru: 'Сколько монет обменять', uk: 'Скільки монет обміняти', es: 'Cuántas monedas cambiar' })}
+                accessibilityLabel={triLang(lang, { ru: 'Сколько жемчужин обменять', uk: 'Скільки перлин обміняти', es: 'Cuántas perlas cambiar' })}
                 style={{
                   flex: 1,
                   backgroundColor: t.bgSurface,
@@ -313,7 +315,7 @@ export default function CoinExchangeScreen() {
               <TapScale
                 onPress={() => setCoinsInput(String(coinsBalance))}
                 accessibilityRole="button"
-                accessibilityLabel={triLang(lang, { ru: 'Обменять все монеты', uk: 'Обміняти всі монети', es: 'Cambiar todas las monedas' })}
+                accessibilityLabel={triLang(lang, { ru: 'Обменять все жемчужины', uk: 'Обміняти всі перлини', es: 'Cambiar todas las perlas' })}
                 style={{ paddingHorizontal: 12, paddingVertical: 10, borderRadius: 12, borderWidth: 1, borderColor: t.border }}
               >
                 <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
@@ -324,9 +326,9 @@ export default function CoinExchangeScreen() {
             {coinsAmount > coinsBalance ? (
               <Text style={{ color: t.wrong, fontSize: f.caption, marginTop: 6 }}>
                 {triLang(lang, {
-                  ru: 'Недостаточно монет на балансе',
-                  uk: 'Недостатньо монет на балансі',
-                  es: 'No hay monedas suficientes en el saldo',
+                  ru: 'Недостаточно жемчужин на балансе',
+                  uk: 'Недостатньо перлин на балансі',
+                  es: 'No hay perlas suficientes en el saldo',
                 })}
               </Text>
             ) : null}
@@ -341,9 +343,9 @@ export default function CoinExchangeScreen() {
                     es: `Recibirás ≈ ${starsEstimate} estrellas`,
                   })
                 : triLang(lang, {
-                    ru: 'Введите количество монет — покажем оценку в звёздах.',
-                    uk: 'Введіть кількість монет — покажемо оцінку в зірках.',
-                    es: 'Introduce la cantidad de monedas: mostraremos la estimación en estrellas.',
+                    ru: 'Введите количество жемчужин — покажем оценку в звёздах.',
+                    uk: 'Введіть кількість перлин — покажемо оцінку в зірках.',
+                    es: 'Introduce la cantidad de perlas: mostraremos la estimación en estrellas.',
                   })}
             </Text>
             <TapScale
@@ -375,9 +377,9 @@ export default function CoinExchangeScreen() {
           <View style={[cardStyle, { marginTop: 12, borderColor: `${t.accent}40` }]}>
             <Text style={{ color: t.textSecond, fontSize: f.caption, lineHeight: 18, textAlign: 'center' }}>
               {triLang(lang, {
-                ru: 'Монеты ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание',
-                uk: 'Монети пришвидшують доступ до уроків, але не підвищують оцінку і не підтверджують знання',
-                es: 'Las monedas aceleran el acceso a las lecciones, pero no mejoran la nota ni confirman el conocimiento',
+                ru: 'Жемчужины ускоряют доступ к урокам, но не повышают оценку и не подтверждают знание',
+                uk: 'Перлини пришвидшують доступ до уроків, але не підвищують оцінку і не підтверджують знання',
+                es: 'Las perlas aceleran el acceso a las lecciones, pero no mejoran la nota ni confirman el conocimiento',
               })}
             </Text>
           </View>

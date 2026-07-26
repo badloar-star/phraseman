@@ -1936,9 +1936,23 @@ export default function FriendsTabScreen() {
   const notifyTopFade = useCallback((y: number) => {
     topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
   }, [topFadeOnScroll]);
+  // зачем: таббар схлопывается ЗА ПАЛЬЦЕМ, поэтому ему мало порога маски — нужен ход
+  // жеста, включая ОТРИЦАТЕЛЬНЫЙ офсет bounce (на этом экране контент часто короче
+  // экрана: обычного скролла нет, и тяга вниз выражается только им).
+  // Мост будим не каждый кадр, а шагами по 4px — глазом неотличимо от покадрового,
+  // но JS-поток не захлёбывается (ровно та причина, по которой маска дросселирует).
+  const reportTabBarOffset = topFadeScroll?.reportTabBarOffset;
+  const notifyTabBar = useCallback((y: number) => {
+    reportTabBarOffset?.(y);
+  }, [reportTabBarOffset]);
+  const tabBarReportedY = useSharedValue(0);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
     onScrollWorklet: (y: number) => {
       'worklet';
+      if (Math.abs(y - tabBarReportedY.value) >= 4) {
+        tabBarReportedY.value = y;
+        runOnJS(notifyTabBar)(y);
+      }
       const shown = y > 6;
       if (shown !== topFadeShown.value) {
         topFadeShown.value = shown;

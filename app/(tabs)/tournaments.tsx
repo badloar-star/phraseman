@@ -21,6 +21,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 // что и в coin_exchange.tsx, используем везде, где добавляем кнопку «назад».
 import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
+import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
 import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
@@ -105,6 +106,7 @@ const SEASON_LEADERS = [
 export default function TournamentsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
+  const topFadeScroll = useTopFadeScroll();
   // зачем: экран открывается пушем из таббара, но своей кнопки «назад» не было
   // (только safeRouterBack был импортирован без дела) — паттерн 1:1 как в
   // shards_shop.tsx: круглая кнопка chevron-back + safeRouterBack с фолбэком.
@@ -220,6 +222,13 @@ export default function TournamentsScreen() {
       <ScrollView
         contentContainerStyle={[styles.content, contentPadding]}
         showsVerticalScrollIndicator={false}
+        // зачем: таббар схлопывается за пальцем и читает офсет активного таба.
+        // bounces даёт отрицательный офсет, когда контент короче экрана, — без него
+        // на коротком расписании таббар не реагировал бы на тягу вниз вообще.
+        bounces
+        alwaysBounceVertical
+        scrollEventThrottle={16}
+        onScroll={topFadeScroll?.onScroll}
       >
         {/* Шапка: назад + название + баланс */}
         <View style={styles.header}>

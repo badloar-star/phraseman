@@ -82,6 +82,7 @@ import { clearAppCaches } from '../cache_reset';
 
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 const INVITE_GIFT_BANNER = require('../../assets/images/settings/invite_gift_banner.webp');
@@ -358,9 +359,21 @@ export default function SettingsMain() {
   const notifyTopFade = useCallback((y: number) => {
     topFadeOnScroll?.({ nativeEvent: { contentOffset: { y } } });
   }, [topFadeOnScroll]);
+  // зачем: таббар схлопывается ЗА ПАЛЬЦЕМ и должен видеть ход жеста, а не только
+  // пересечение порога маски. Мост будим шагами по 4px — глазом неотличимо от
+  // покадрового, но JS-поток не захлёбывается.
+  const reportTabBarOffset = topFadeScroll?.reportTabBarOffset;
+  const notifyTabBar = useCallback((y: number) => {
+    reportTabBarOffset?.(y);
+  }, [reportTabBarOffset]);
+  const tabBarReportedY = useSharedValue(0);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
     onScrollWorklet: (y: number) => {
       'worklet';
+      if (Math.abs(y - tabBarReportedY.value) >= 4) {
+        tabBarReportedY.value = y;
+        runOnJS(notifyTabBar)(y);
+      }
       const shown = y > 6;
       if (shown !== topFadeShown.value) {
         topFadeShown.value = shown;
@@ -567,10 +580,12 @@ export default function SettingsMain() {
   })();
 
   const refreshSupplementalAccessState = useCallback(() => {
-    AsyncStorage.multiGet(['vip_plan', 'vip_until', 'vip_expiry'])
-      .then(pairs => {
-        setVipPlan(String(pairs[0][1] ?? '').trim().toLowerCase());
-        setVipUntilMs(parseStoredExpiryMs(pairs[1][1] ?? pairs[2][1]));
+    const token = captureAccountGeneration();
+    readVipSnapshotForGeneration(token)
+      .then(vip => {
+        if (!token.stableId || !isCurrentAccountGeneration(token, token.stableId)) return;
+        setVipPlan(String(vip?.vip_plan ?? '').trim().toLowerCase());
+        setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
       })
       .catch(() => {});
   }, []);
@@ -580,9 +595,13 @@ export default function SettingsMain() {
     if (!settingsTabVisible && settingsStorageHydratedRef.current) return;
     settingsStorageHydratedRef.current = true;
     let cancelled = false;
-    AsyncStorage.multiGet(['user_name', 'premium_plan', 'vip_until', 'vip_expiry', 'haptics_tap', 'user_total_xp'])
-      .then(pairs => {
-        if (cancelled) return;
+    const token = captureAccountGeneration();
+    Promise.all([
+      AsyncStorage.multiGet(['user_name', 'premium_plan', 'haptics_tap', 'user_total_xp']),
+      readVipSnapshotForGeneration(token),
+    ])
+      .then(([pairs, vip]) => {
+        if (cancelled || !token.stableId || !isCurrentAccountGeneration(token, token.stableId)) return;
         if (pairs[0][1]) {
           setUserName(pairs[0][1]);
         }
@@ -597,12 +616,12 @@ export default function SettingsMain() {
             ...current.settings,
             source: 'storage',
             updatedAt: Date.now(),
-            tapHaptics: pairs[4][1] === null ? current.settings.tapHaptics : pairs[4][1] !== 'false',
+            tapHaptics: pairs[2][1] === null ? current.settings.tapHaptics : pairs[2][1] !== 'false',
           } : undefined,
         } : {});
         setPremiumPlan(pairs[1][1]);
-        setVipUntilMs(parseStoredExpiryMs(pairs[2][1] ?? pairs[3][1]));
-        if (pairs[4][1] !== null) setHapticTap(pairs[4][1] !== 'false');
+        setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
+        if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
         setNameReady(true);
       })
       .catch(() => {
@@ -938,12 +957,18 @@ export default function SettingsMain() {
   const plusRowPress = () => {
     doHaptic();
     if (hasPremiumAccess) {
+      const account = captureAccountGeneration();
+      if (!account.stableId || !isCurrentAccountGeneration(account, account.stableId)) return;
       // зачем: settings.tsx уже знает premiumPlan синхронно (см. useState выше,
       // подтянут AsyncStorage-эффектом на монтировании таба) — передаём его дальше,
       // чтобы manage_subscription.tsx открылся с готовым планом без спиннера.
       router.push({
         pathname: '/premium_modal',
-        params: { manage: '1', ...(premiumPlan ? { plan: premiumPlan } : {}) },
+        params: {
+          manage: '1',
+          accountGeneration: String(account.generation),
+          ...(premiumPlan ? { plan: premiumPlan } : {}),
+        },
       } as any);
     } else {
       router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any);

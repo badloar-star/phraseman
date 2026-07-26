@@ -343,31 +343,43 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
-// Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this directional,
+// Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this gesture-driven,
 // native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
-// зачем: владелец попросил таббар как у Bevel/iOS 26 — при скролле вниз капсула
-// схлопывается в круглую кнопку («орб») активной вкладки слева; тап по орбу ТОЛЬКО
-// разворачивает, без навигации. Реализация — кроссфейд двух слоёв (капсула ↔ орб)
-// на одном tabScrollProgress: только transform/opacity, width/left не анимируем
-// (layout-анимации уходят на JS-поток — перегрев и фризы уже были больной темой).
-const TAB_CAPSULE_EXIT_SCALE = 0.92;
+// зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
+// к пальцу (медленно тянешь вниз — капсула медленно и частично ужимается), капсула
+// ужимается по ширине в круглую кнопку («орб») активной вкладки СЛЕВА, а разворот
+// происходит только когда страница вернулась наверх. Тап по орбу ТОЛЬКО разворачивает.
+//
+// Ширину не анимируем: layout-анимация уходит на JS-поток (перегрев и фризы уже были
+// больной темой). Тот же визуальный эффект даёт scaleX с transform-origin слева +
+// контр-scaleX на содержимом, чтобы иконки не сплющивались. Всё на нативном драйвере.
 const TAB_COLLAPSED_ORB_ENTER_SCALE = 0.9;
-/** зачем: владелец увидел «мгновенное переключение» вместо анимации — ease-out
- *  съедал ранний фейд. Капсула теперь видна почти весь жест и ЕДЕТ влево к орбу
- *  (translateX — движение даёт «сворачивание», как у Bevel), окна фейдов широко
- *  перекрываются. Это по-прежнему только transform/opacity на нативном драйвере. */
-const TAB_CAPSULE_FADE_OUT_END = 0.8;
-const TAB_ORB_FADE_IN_START = 0.3;
+/** Иконки неактивных вкладок гаснут раньше, чем капсула дожимается в круг: к моменту
+ *  схлопывания в орбе должна остаться ОДНА иконка, а не стопка наложенных. */
+const TAB_ICONS_FADE_OUT_END = 0.55;
+/** Орб проявляется на второй половине жеста — ровно там, где сужающаяся капсула уже
+ *  стала размером с круг, поэтому шва между двумя слоями глаз не ловит. */
+const TAB_ORB_FADE_IN_START = 0.62;
 /** Орб Ø=tabBarHeight (~58): hitSlop добирает цель до комфортных ≥44dp с запасом по краям. */
 const TAB_ORB_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 } as const;
-const TAB_SCROLL_COLLAPSE_TRIGGER_Y = 36;
-const TAB_SCROLL_EXPAND_TRIGGER_Y = 10;
-const TAB_SCROLL_DIRECTION_EPSILON = 5;
-/** 300/340 вместо прежних 220/260: у морфинга с перелётом капсулы движение должно
- *  успеть прочитаться глазом; разворот чуть дольше схлопывания — возврат мягче ухода. */
-const TAB_SCROLL_COLLAPSE_MS = 300;
-const TAB_SCROLL_EXPAND_MS = 340;
-const TAB_SCROLL_TOGGLE_COOLDOWN_MS = 140;
+/** Путь пальца, за который капсула проходит весь путь от развёрнутой до орба.
+ *  92 px ≈ треть большого пальца: медленная тяга читается как частичное сжатие,
+ *  быстрый флик успевает дожать до конца ещё внутри жеста. */
+const TAB_SCROLL_COLLAPSE_DISTANCE = 92;
+/** Ниже этого офсета страница считается «в верхнем положении» — только тут возможен
+ *  разворот. Владелец: «как только страница возвращается в верхнее положение, только
+ *  тогда таббар разворачивается». */
+const TAB_SCROLL_TOP_ZONE_Y = 10;
+/** Порог довода после отпускания пальца: за половиной пути — дожимаем в орб, иначе
+ *  возвращаем в капсулу. Ниже 0.5 нельзя — тогда лёгкое касание схлопывало бы бар. */
+const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
+/** Довод после отпускания. Схлопывание короче разворота: уход системный и быстрый,
+ *  возврат чуть дольше — так возвращение «дороже» на ощупь. Обе кривые ease-out:
+ *  ease-in на UI-элементе всегда читается как подтормаживание. */
+const TAB_SCROLL_COLLAPSE_MS = 260;
+const TAB_SCROLL_EXPAND_MS = 300;
+/** Пауза без единого кадра скролла, после которой жест считается завершённым. */
+const TAB_SCROLL_SETTLE_IDLE_MS = 90;
 const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
 const TAB_DARK_CHROME_BORDER_ALPHA = 0.34;
@@ -466,7 +478,12 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const tabScrollProgress = useRef(new Animated.Value(0)).current;
   const tabScrollCollapsedRef = useRef(false);
   const tabScrollLastYRef = useRef(0);
-  const tabScrollLastToggleAtRef = useRef(0);
+  /** Верхняя точка, достигнутая с начала текущего движения вниз: от неё считается
+   *  путь пальца, а значит и прогресс сжатия. */
+  const tabScrollAnchorYRef = useRef(0);
+  /** true, пока прогресс ведёт палец: в этот момент довод по таймеру ещё уместен,
+   *  а после довода/фиксации — уже нет. */
+  const tabScrollDrivenRef = useRef(false);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   /** Зеркало tabScrollCollapsedRef в state: pointerEvents и доступность слоёв капсула/орб. */
   const [tabChromeCollapsed, setTabChromeCollapsed] = useState(false);
@@ -534,18 +551,17 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     outputRange: [1, 0.92],
   });
 
-  /** Единственная точка переключения капсула↔орб: скролл-триггеры, тап по орбу,
-   *  свайп между табами и программная смена таба идут через неё. */
+  /** Довод до одного из двух устойчивых состояний (капсула ↔ орб). Используется,
+   *  когда прогресс перестал управляться пальцем: отпускание, тап по орбу, свайп,
+   *  программная смена таба. */
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
-    if (tabScrollCollapsedRef.current === collapsed) return;
-    const now = Date.now();
-    if (!immediate && now - tabScrollLastToggleAtRef.current < TAB_SCROLL_TOGGLE_COOLDOWN_MS) {
-      return;
-    }
-    tabScrollLastToggleAtRef.current = now;
     tabScrollCollapsedRef.current = collapsed;
     setTabChromeCollapsed(collapsed);
     tabScrollProgress.stopAnimation();
+    if (immediate) {
+      tabScrollProgress.setValue(collapsed ? 1 : 0);
+      return;
+    }
     Animated.timing(tabScrollProgress, {
       toValue: collapsed ? 1 : 0,
       duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
@@ -554,76 +570,198 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     }).start();
   }, [tabScrollProgress]);
 
+  /**
+   * Скролл ведёт таббар ЗА ПАЛЬЦЕМ (модель Bevel).
+   *
+   * `dragged` — сколько пальцем утянуто вниз от той точки, где движение вниз началось
+   * (`tabScrollAnchorYRef`). Прогресс = dragged / TAB_SCROLL_COLLAPSE_DISTANCE, поэтому
+   * медленная тяга даёт частичное, видимое глазом сжатие, а не мгновенный переброс.
+   *
+   * Разворот НЕ привязан к пальцу намеренно: владелец просил, чтобы бар возвращался
+   * только когда страница вернулась наверх — иначе любое микро-движение вверх посреди
+   * длинной ленты дёргало бы бар туда-сюда.
+   *
+   * Экраны без скролла покрыты тем же кодом: там `bounces`/`alwaysBounceVertical`
+   * (BouncyScrollView и FlashList) дают ОТРИЦАТЕЛЬНЫЙ contentOffset при тяге вниз,
+   * что здесь читается как обычная тяга вниз. Отдельный жест-слой поверх контента
+   * не нужен — он бы конкурировал с нативным скроллом (см. историю BouncyScrollView).
+   */
   useEffect(() => {
-    const scrollY = topFadeScroll?.scrollY;
+    // Отдельный канал, а не scrollY маски: маска дросселирует свои обновления порогом,
+    // а таббару нужен каждый кадр — включая отрицательный bounce на экранах без скролла.
+    const scrollY = topFadeScroll?.tabBarScrollY;
     if (!scrollY) return undefined;
 
+    let settleTimer: ReturnType<typeof setTimeout> | null = null;
+
+    /** Незавершённый жест не должен оставить бар «полусжатым». Таймер перевзводится
+     *  на каждом кадре скролла, поэтому срабатывает ровно один раз — когда движение
+     *  реально замерло (палец отпущен и инерция погасла). */
+    const armSettle = (progress: number) => {
+      if (settleTimer) clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        settleTimer = null;
+        if (!tabScrollDrivenRef.current) return;
+        tabScrollDrivenRef.current = false;
+        animateTabChrome(progress >= TAB_SCROLL_SETTLE_THRESHOLD);
+      }, TAB_SCROLL_SETTLE_IDLE_MS);
+    };
+
     const id = scrollY.addListener(({ value }) => {
-      const y = Math.max(0, value);
-      const delta = y - tabScrollLastYRef.current;
+      const y = value;
+      const previousY = tabScrollLastYRef.current;
       tabScrollLastYRef.current = y;
 
-      if (y <= TAB_SCROLL_EXPAND_TRIGGER_Y) {
-        animateTabChrome(false, true);
+      // Страница наверху — единственная зона, где бар разворачивается.
+      if (y <= TAB_SCROLL_TOP_ZONE_Y) {
+        tabScrollAnchorYRef.current = y;
+        if (tabScrollCollapsedRef.current || tabScrollDrivenRef.current) {
+          if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
+          tabScrollDrivenRef.current = false;
+          animateTabChrome(false);
+        }
         return;
       }
 
-      if (delta >= TAB_SCROLL_DIRECTION_EPSILON && y >= TAB_SCROLL_COLLAPSE_TRIGGER_Y) {
-        animateTabChrome(true);
+      // Движение вверх посреди ленты: якорь встаёт на самую верхнюю достигнутую точку,
+      // чтобы следующая тяга вниз считалась от неё, а не от начала экрана.
+      if (y < previousY) {
+        tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
         return;
       }
 
-      if (delta <= -TAB_SCROLL_DIRECTION_EPSILON) {
-        animateTabChrome(false);
+      if (tabScrollCollapsedRef.current) return;
+
+      const dragged = y - tabScrollAnchorYRef.current;
+      if (dragged <= 0) return;
+
+      const progress = Math.min(1, dragged / TAB_SCROLL_COLLAPSE_DISTANCE);
+      tabScrollDrivenRef.current = true;
+      tabScrollProgress.setValue(progress);
+
+      // Дожали до конца ещё внутри жеста — фиксируем свёрнутое состояние сразу,
+      // чтобы орб стал кликабельным не дожидаясь отпускания пальца.
+      if (progress >= 1) {
+        if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
+        tabScrollDrivenRef.current = false;
+        tabScrollCollapsedRef.current = true;
+        setTabChromeCollapsed(true);
+        return;
       }
+
+      armSettle(progress);
     });
 
     return () => {
       scrollY.removeListener(id);
+      if (settleTimer) clearTimeout(settleTimer);
       tabScrollProgress.stopAnimation();
     };
-  }, [activeIdx, animateTabChrome, tabScrollProgress, topFadeScroll?.scrollY]);
+  }, [animateTabChrome, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
+
 
   // contract: collapsed-tap-expands-only — тап по орбу лишь разворачивает капсулу,
   // навигации нет: видна одна активная вкладка, тап по ней значит «покажи остальные».
+  // Разворот идёт той же анимацией, что и схлопывание (владелец: «точно с такой же
+  // анимацией разворачивается»), поэтому immediate здесь НЕ используется.
+  // Якорь переносим на текущий офсет: иначе первый же кадр скролла увидел бы
+  // «утянуто на пол-ленты вниз» и мгновенно схлопнул бар обратно.
   const handleOrbPress = useCallback(() => {
     hapticTap();
-    animateTabChrome(false, true);
+    tabScrollAnchorYRef.current = tabScrollLastYRef.current;
+    animateTabChrome(false);
   }, [animateTabChrome]);
 
-  /** Свайп между табами — смена контекста: навигация должна быть видна немедленно. */
+  /** Свайп между табами — смена контекста, а не продолжение жеста скролла: бар должен
+   *  быть развёрнут сразу, поэтому здесь immediate. Якорь переносим на офсет нового
+   *  таба, чтобы его первый scroll-кадр не прочитался как «утянуто вниз». */
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
+    tabScrollAnchorYRef.current = tabScrollLastYRef.current;
+    tabScrollDrivenRef.current = false;
     animateTabChrome(false, true);
     onSwipeStart(physicalIdx);
   }, [animateTabChrome, onSwipeStart]);
 
   /** Программная смена таба: новый таб открывается наверху — таббар всегда развёрнут,
-   *  lastY сбрасываем, чтобы первый scroll-кадр нового таба не дал ложную дельту. */
+   *  lastY/якорь сбрасываем, чтобы первый scroll-кадр нового таба не дал ложную тягу. */
   const goToTabExpanded = useCallback((idx: number) => {
     tabScrollLastYRef.current = 0;
+    tabScrollAnchorYRef.current = 0;
+    tabScrollDrivenRef.current = false;
     animateTabChrome(false, true);
     goToTab(idx);
   }, [animateTabChrome, goToTab]);
 
-  const tabCapsuleOpacity = tabScrollProgress.interpolate({
-    inputRange: [0, TAB_CAPSULE_FADE_OUT_END],
-    outputRange: [1, 0],
-    extrapolate: 'clamp',
-  });
-
-  const tabCapsuleScale = tabScrollProgress.interpolate({
+  /* Схлопывание по ширине БЕЗ layout-анимации.
+   *
+   * Капсула растянута left:0/right:0, её transform-origin — центр. Чтобы правый край
+   * ехал влево, а левый стоял на месте (как у Bevel), нужны два transform сразу:
+   * scaleX сжимает капсулу к центру, а translateX возвращает её левый край обратно
+   * к исходной позиции. Смещение = половина «съеденной» ширины.
+   *
+   * До первого onLayout (tabPillWidth=0) геометрия неизвестна — держим развёрнутое
+   * состояние, иначе первый кадр показал бы капсулу неправильной ширины. */
+  const tabCapsuleTargetScaleX = tabPillWidth > 0
+    ? Math.min(1, tabBarHeight / tabPillWidth)
+    : 1;
+  const tabCapsuleScaleX = tabScrollProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [1, TAB_CAPSULE_EXIT_SCALE],
+    outputRange: [1, tabCapsuleTargetScaleX],
     extrapolate: 'clamp',
   });
-
-  /* Перелёт капсулы к позиции орба: центр капсулы смещается к левому краю,
-   * пока она гаснет — читается как «бар сворачивается в кружок», не как подмена.
-   * До первого onLayout (tabPillWidth=0) перелёт нулевой — геометрия ещё неизвестна. */
-  const tabCapsuleTravelX = tabPillWidth > 0 ? -((tabPillWidth - tabBarHeight) / 2) : 0;
+  const tabCapsuleAnchorX = tabPillWidth > 0
+    ? -((tabPillWidth - tabPillWidth * tabCapsuleTargetScaleX) / 2)
+    : 0;
   const tabCapsuleTranslateX = tabScrollProgress.interpolate({
     inputRange: [0, 1],
-    outputRange: [0, tabCapsuleTravelX],
+    outputRange: [0, tabCapsuleAnchorX],
+    extrapolate: 'clamp',
+  });
+
+  /* Контр-масштаб содержимого: scaleX сплющил бы иконки в овалы. Обратный множитель
+   * держит их круглыми на всём пути сжатия. */
+  const tabCapsuleContentScaleX = tabScrollProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [1, tabCapsuleTargetScaleX > 0 ? 1 / tabCapsuleTargetScaleX : 1],
+    extrapolate: 'clamp',
+  });
+
+  /* Ряд иконок сжимается вместе с капсулой (ячейки flex:1), поэтому активная иконка
+   * приезжает в центр СВОЕЙ сузившейся ячейки, а не в центр круга. Доводим ряд так,
+   * чтобы активная ячейка встала ровно по центру орба — иначе в свёрнутом состоянии
+   * иконка стояла бы не по центру кружка, и это первое, что бросается в глаза.
+   * Считаем в координатах ДО scaleX: transform применяется к уже сжатому ряду. */
+  const tabCellWidth = tabPillWidth > 0 ? tabPillWidth / TABS.length : 0;
+  const tabIconsRowTranslateX = tabPillWidth > 0
+    ? tabScrollProgress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [
+          0,
+          // Центр круга в системе координат капсулы / целевой scaleX минус центр
+          // активной ячейки: разница и есть недостающий доезд.
+          tabCapsuleTargetScaleX > 0
+            ? (tabBarHeight / 2) / tabCapsuleTargetScaleX
+              - (visualTabIdx * tabCellWidth + tabCellWidth / 2)
+            : 0,
+        ],
+        extrapolate: 'clamp',
+      })
+    : 0;
+
+  /* Капсула держится видимой почти до конца — её место занимает орб только когда
+   * она уже стала размером с круг. Никакого раннего фейда: исчезновение на середине
+   * жеста и читалось владельцем как «мгновенное переключение вместо анимации». */
+  const tabCapsuleOpacity = tabScrollProgress.interpolate({
+    inputRange: [0, TAB_ORB_FADE_IN_START, 1],
+    outputRange: [1, 1, 0],
+    extrapolate: 'clamp',
+  });
+
+  /* Неактивные иконки гаснут раньше остального: в сузившейся капсуле им уже нет места,
+   * и без этого они наложились бы друг на друга. */
+  const tabInactiveIconOpacity = tabScrollProgress.interpolate({
+    inputRange: [0, TAB_ICONS_FADE_OUT_END],
+    outputRange: [1, 0],
     extrapolate: 'clamp',
   });
 
@@ -700,7 +838,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   opacity: tabCapsuleOpacity,
                   transform: [
                     { translateX: tabCapsuleTranslateX },
-                    { scale: tabCapsuleScale },
+                    { scaleX: tabCapsuleScaleX },
                     { scale: tabPillPressScale },
                   ],
                 },
@@ -709,6 +847,11 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
               {/* 95% scrim: контент едва просвечивает, но затемняется без runtime blur. */}
               <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
 
+              {/* Ряд иконок + подсветка едут одним слоем, чтобы активная вкладка
+                  приехала точно в центр круга. */}
+              <Animated.View
+                style={[s.tabPillRow, { transform: [{ translateX: tabIconsRowTranslateX }] }]}
+              >
               {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && (
                 <Animated.View
                   pointerEvents="none"
@@ -761,7 +904,13 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                         ]}
                       />
                     )}
-                    <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                    <Animated.View
+                      style={{
+                        // Контр-scaleX держит иконку круглой, пока капсула сжимается.
+                        opacity: visuallyFocused ? 1 : tabInactiveIconOpacity,
+                        transform: [{ scaleX: tabCapsuleContentScaleX }, { scale: iconScale }],
+                      }}
+                    >
                       <Ionicons
                         name={visuallyFocused ? tab.active : tab.icon}
                         size={26}
@@ -771,6 +920,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                   </TouchableOpacity>
                 );
               })}
+              </Animated.View>
             </Animated.View>
 
             {/* Орб — свёрнутый таббар (Bevel/iOS 26): круг слева с иконкой активной
@@ -1162,6 +1312,13 @@ const s = StyleSheet.create({
     elevation: 12,
   },
   tabPillFill: { ...StyleSheet.absoluteFillObject },
+  /** Ряд иконок внутри капсулы: едет одним слоем при схлопывании, чтобы активная
+   *  вкладка приехала точно в центр круглого орба. */
+  tabPillRow: {
+    ...StyleSheet.absoluteFillObject,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
   /** Подсветка активного таба внутри капсулы — мягкая пилюля под иконкой. */
   tabActivePill: {

@@ -14,6 +14,8 @@ import { Animated } from 'react-native';
  */
 interface TopFadeScrollCtx {
   scrollY: Animated.Value;
+  /** Покадровый офсет активного таба для таббара (см. reportTabBarOffset). */
+  tabBarScrollY: Animated.Value;
   /**
    * Лёгкий JS-onScroll: пишет вертикальный офсет в scrollY маски через setValue.
    * Подходит и как сам onScroll (home), и как `listener` в Animated.event табов
@@ -21,21 +23,40 @@ interface TopFadeScrollCtx {
    * Маска не ре-рендерится покадрово: scrollY слушается порогом, opacity — native-timing.
    */
   onScroll: (e: { nativeEvent: { contentOffset: { y: number } } }) => void;
+  /**
+   * Покадровый офсет для таббара.
+   *
+   * зачем: маске хватает порога (она гоняет JS только при пересечении 6px), но
+   * таббар в Bevel-режиме ведёт прогресс схлопывания ЗА ПАЛЬЦЕМ — ему нужен каждый
+   * кадр, включая ОТРИЦАТЕЛЬНЫЕ значения bounce на экранах без скролла. Отдельный
+   * канал, чтобы не снимать дросселирование с маски и не платить её ценой.
+   *
+   * Табы, которые дросселируют onScroll ради маски, обязаны звать это на каждом кадре.
+   */
+  reportTabBarOffset: (y: number) => void;
 }
 
 const Ctx = createContext<TopFadeScrollCtx | null>(null);
 
 export function TopFadeScrollProvider({ children }: { children: React.ReactNode }) {
   const scrollY = useRef(new Animated.Value(0)).current;
+  const tabBarScrollY = useRef(new Animated.Value(0)).current;
   const value = useMemo<TopFadeScrollCtx>(
     () => ({
       scrollY,
       onScroll: (e) => {
         const y = e?.nativeEvent?.contentOffset?.y;
-        if (typeof y === 'number') scrollY.setValue(y);
+        if (typeof y === 'number') {
+          scrollY.setValue(y);
+          tabBarScrollY.setValue(y);
+        }
       },
+      reportTabBarOffset: (y) => {
+        if (typeof y === 'number') tabBarScrollY.setValue(y);
+      },
+      tabBarScrollY,
     }),
-    [scrollY],
+    [scrollY, tabBarScrollY],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

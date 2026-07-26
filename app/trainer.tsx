@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
-/* eslint-disable import/no-duplicates -- точная строка default-импорта ниже требуется контрактом tests/bouncy_screen_chrome_contract.test.ts */
+// зачем: точная строка default-импорта требуется контрактом
+// tests/bouncy_screen_chrome_contract.test.ts. Именованный FadeInDown убран вместе с
+// анимациями входа — экран обязан открываться статично, без каскада съезжающих блоков.
 import Reanimated from 'react-native-reanimated';
-import { FadeInDown } from 'react-native-reanimated';
-/* eslint-enable import/no-duplicates */
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
 import TapScale from '../components/TapScale';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -31,16 +31,18 @@ import { isStudyTargetSourceUiLang } from './study_target_lang_dev';
 import { getCachedTrainerPracticeSnapshot, prefetchTrainerPracticeSnapshot } from './trainer_practice_prefetch';
 import { practiceHallDurationMinutes, selectPracticeHallQueue } from './trainer_practice_hall';
 import { GOLD_RICH } from '../constants/goldTheme';
-import { statsHairline, statsThemeAccent, statsThemeSoftBg } from '../constants/statsThemeChrome';
 import { streakCalendarShortWeekdays } from '../constants/streak_stats_i18n';
 import { StatBars, type StatBar } from '../components/stats/StatBars';
-import { StatScoreRing } from '../components/stats/StatScoreRing';
 import { safeRouterBack } from './navigation_back';
 import { startReservedTrainerSession } from './trainer_session_navigation';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import ErrorBoundary from '../components/ErrorBoundary';
 
 type RoutePath = '/trainer_words_session' | '/trainer_phrases_session';
+
+function withThemeAlpha(color: string, alphaHex: string): string {
+    return /^#[0-9a-f]{6}$/i.test(color) ? `${color}${alphaHex}` : color;
+}
 
 /**
  * Очередь «арены» — это фразовые ошибки из быстрых тренировок; отдельного
@@ -59,6 +61,9 @@ const EMPTY_TRAINER_DASHBOARD: TrainerDashboard = {
     active: 0,
     future: 0,
     archived: 0,
+    // зачем: TrainerDashboard получил обязательное archivedPhrases (trainer_store.ts:508)
+    // — пустой дашборд первого кадра обязан его объявлять, иначе не собирается тип.
+    archivedPhrases: 0,
     hardestQueue: null,
     hardestMistakes: 0,
     hardestCategory: null,
@@ -169,12 +174,12 @@ function chooseInlineDiagnosis(stat: WordCategoryStat, resolved: ResolvedPersona
 }
 
 /**
- * «Слабое место» — главная слабая тема бесплатно и сразу: кольцо с долей
- * ошибок, название категории, окно аналитики и ghost-кнопка «Тренировать».
+ * «Слабое место» — главная слабая тема бесплатно и сразу: название категории
+ * одной строкой, вся карточка — тап в тренировку.
  * Если персональные тренировки доступны и для категории есть диагноз — ведёт
  * в /problem_coach, иначе — на полный экран аналитики.
  */
-function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg, ringTrack }: {
+function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, personalTrainingEnabled = true, accent, softBg }: {
     stat: WordCategoryStat;
     lang: Lang;
     t: ReturnType<typeof useTheme>['theme'];
@@ -184,7 +189,6 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
     personalTrainingEnabled?: boolean;
     accent: string;
     softBg: string;
-    ringTrack: string;
 }) {
     const diagnosisId = personalTrainingEnabled ? chooseInlineDiagnosis(stat, resolvedPersonalTrainings) : null;
     const openWeakSpot = () => {
@@ -199,44 +203,27 @@ function WeakSpotCard({ stat, lang, t, f, router, resolvedPersonalTrainings, per
         router.push('/phrase_analytics_screen' as any);
     };
     return (
-      <TouchableOpacity accessibilityRole="button" onPress={openWeakSpot} activeOpacity={0.86} style={[styles.weakCard, { backgroundColor: t.bgCard }]}>
-        <StatScoreRing
-          progress={stat.pct}
-          centerValue={`${stat.pct}%`}
-          accent={accent}
-          trackColor={ringTrack}
-          size={58}
-          strokeWidth={6}
-          centerColor={t.textPrimary}
-          subColor={t.textMuted}
-          centerTextStyle={{ fontSize: 14, lineHeight: 17 }}
-        />
-        {/* зачем: убрали подпись «доля ошибок за N дней» под названием категории — карточка теперь
-            только имя+кольцо+кнопка (просьба владельца, п.2). numberOfLines={2}+flexShrink на самом
-            Text (без шрифт-сжатия, запрещённого в проекте) — длинные категории вроде «Существительные»
-            переносятся по словам, а не режутся посреди слова. guard-ok */}
-        <View style={{ flex: 1, minWidth: 0 }}>
-          <Text
-            style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}
-            numberOfLines={2}
-          >
-            {trainerCategoryLabel(stat.category, lang)}
-          </Text>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={trainerCategoryLabel(stat.category, lang)}
+        onPress={openWeakSpot}
+        activeOpacity={0.86}
+        style={[styles.weakCard, { backgroundColor: t.bgCard }]}
+      >
+        {/* зачем: владелец убрал кольцо с процентом и кнопку «Тренировать» — цифра доли ошибок
+            пользователю ничего не говорила, а кнопка дублировала тап по карточке. Осталась
+            строка «иконка + название + шеврон», один тап по всей карточке ведёт в тренировку.
+            numberOfLines={1} — название не переносится по строке (просьба владельца). guard-ok */}
+        <View style={[styles.queueIcon, { backgroundColor: softBg }]}>
+          <Ionicons name="pulse" size={18} color={accent} />
         </View>
-        <View style={[styles.ghostBtn, { backgroundColor: softBg }]}>
-          <Text style={{ color: accent, fontSize: f.caption, fontWeight: '800' }}>
-            {triLang(lang, {
-              ru: 'Тренировать',
-              uk: 'Тренувати',
-              es: 'Entrenar',
-              'pt-BR': 'Treinar',
-              vi: 'Luyện ngay',
-              id: 'Latih',
-              tr: 'Çalış',
-              pl: 'Trenuj',
-            })}
-          </Text>
-        </View>
+        <Text
+          style={{ flex: 1, minWidth: 0, color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}
+          numberOfLines={1}
+        >
+          {trainerCategoryLabel(stat.category, lang)}
+        </Text>
+        <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
       </TouchableOpacity>
     );
 }
@@ -305,10 +292,10 @@ function TrainerScreenInner() {
     const practiceHallQueue = useMemo(() => selectPracticeHallQueue(dashboard), [dashboard]);
     const practiceHallRoute = useMemo(() => (practiceHallQueue ? routeForQueue(practiceHallQueue) : null), [practiceHallQueue]);
     const practiceHallDuration = useMemo(() => practiceHallDurationMinutes(total), [total]);
-    // Единый акцент темы (тот же, что на экране статистики) — без премиум-жёлтого и мёртвых тем.
-    const accent = statsThemeAccent(themeMode);
-    const accentSoftBg = statsThemeSoftBg(themeMode, 'normal');
-    const quietSoftBg = statsThemeSoftBg(themeMode, 'quiet');
+    // Цвета практики всегда следуют активной теме, а не отдельной палитре статистики.
+    const accent = t.accent;
+    const accentSoftBg = withThemeAlpha(accent, '22');
+    const quietSoftBg = withThemeAlpha(accent, '14');
     const shownAnalytics: PhraseAnalyticsResult = analytics ?? {
         categoryStats: [],
         lessonStats: [],
@@ -482,7 +469,11 @@ function TrainerScreenInner() {
               </View>)}
 
             {/* Hero старта: сколько ошибок собрано на сегодня и одна большая кнопка. */}
-            <Reanimated.View entering={FadeInDown.delay(40).duration(320)} style={[styles.hero, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
+            {/* зачем: раньше здесь и у трёх блоков ниже стоял FadeInDown.delay(40…250) —
+                каскад съезжал снизу вверх на КАЖДОМ открытии раздела, даже когда данные
+                уже готовы (экран «шевелился»). Владелец просил, чтобы при входе всё было
+                сразу на местах и статично, поэтому анимации входа убраны полностью. */}
+            <View style={[styles.hero, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
               <LinearGradient colors={total > 0 ? [`${accent}42`, t.bgCard, t.bgCard] : [t.bgSurface, t.bgCard]} locations={[0, 0.42, 1]} style={StyleSheet.absoluteFillObject} />
               <View style={[styles.heroGlow, { backgroundColor: `${accent}18` }]} />
               <Text style={[styles.heroTag, { color: t.textMuted, fontSize: f.label }]}>
@@ -508,10 +499,10 @@ function TrainerScreenInner() {
                   {triLang(lang, { ru: 'Сейчас в очереди нет ошибок — новые появятся здесь после уроков и карточек.', uk: 'Зараз у черзі немає помилок — нові з’являться тут після уроків і карток.', es: 'Ahora no hay errores en la cola: los nuevos aparecerán aquí después de las lecciones y tarjetas.', 'pt-BR': 'Não há erros na fila agora — novos aparecerão aqui depois das lições e cartões.', vi: 'Hiện không có lỗi nào trong hàng đợi — lỗi mới sẽ xuất hiện ở đây sau bài học và thẻ.', id: 'Saat ini tidak ada kesalahan di antrean — kesalahan baru akan muncul di sini setelah pelajaran dan kartu.', tr: 'Şu anda kuyrukta hata yok — yenileri derslerden ve kartlardan sonra burada görünecek.', pl: 'W kolejce nie ma teraz błędów — nowe pojawią się tutaj po lekcjach i fiszkach.' })}
                 </Text>
               </>)}
-            </Reanimated.View>
+            </View>
 
             {/* Из чего состоит практика: тап по строке запускает сессию только этого типа. */}
-            <Reanimated.View entering={FadeInDown.delay(110).duration(320)} style={{ gap: 8 }}>
+            <View style={{ gap: 8 }}>
               {queueRows.map((row) => (
                 <TouchableOpacity key={row.key} accessibilityRole="button" accessibilityLabel={row.accessibility} onPress={() => { void startQueueRow(row); }} activeOpacity={0.86} style={[styles.queueRow, { backgroundColor: quietSoftBg }]}>
                   <View style={[styles.queueIcon, { backgroundColor: accentSoftBg }]}>
@@ -521,11 +512,11 @@ function TrainerScreenInner() {
                   <Text style={{ color: row.count > 0 ? accent : t.textMuted, fontSize: f.bodyLg, fontWeight: '900', fontVariant: ['tabular-nums'] }}>{row.count}</Text>
                 </TouchableOpacity>
               ))}
-            </Reanimated.View>
+            </View>
 
             {/* Слабые места — бесплатно и сразу, без премиум-стены. */}
             {showWeakSpots ? (
-              <Reanimated.View entering={FadeInDown.delay(180).duration(320)} style={{ gap: 8 }}>
+              <View style={{ gap: 8 }}>
                 <Text style={[styles.weakLabel, { color: t.textGhost, fontSize: f.label - 1 }]}>
                   {weakSpotStats.length > 1
                     ? triLang(lang, { ru: 'Слабые места', uk: 'Слабкі місця', es: 'Puntos débiles', 'pt-BR': 'Pontos fracos', vi: 'Các điểm yếu', id: 'Titik-titik lemah', tr: 'Zayıf noktalar', pl: 'Słabe punkty' })
@@ -543,15 +534,14 @@ function TrainerScreenInner() {
                     personalTrainingEnabled={personalPracticeCoachEnabled}
                     accent={accent}
                     softBg={accentSoftBg}
-                    ringTrack={quietSoftBg}
                   />
                 ))}
-              </Reanimated.View>
+              </View>
             ) : null}
 
             {/* Ритм недели: значения только по зажатию (scrub), как на экране статистики. */}
             {weekBars.length > 0 ? (
-              <Reanimated.View entering={FadeInDown.delay(250).duration(320)} style={[styles.rhythmCard, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
+              <View style={[styles.rhythmCard, { backgroundColor: t.bgCard, borderWidth: 0 }]}>
                 {/* зачем: убрали подпись-инструкцию «зажмите график для значений» — long-press остаётся рабочим, но без обучающей строки над графиком (просьба владельца, п.1) */}
                 <StatBars
                   bars={weekBars}
@@ -567,11 +557,11 @@ function TrainerScreenInner() {
                   scrubEnabled
                   scrubHighlightColor={accent}
                   scrubBubbleBg={t.bgCard}
-                  scrubBubbleBorder={isGoldTheme ? GOLD_RICH.hairlineQuiet : statsHairline(themeMode, 'practiceBalance')}
+                  scrubBubbleBorder={isGoldTheme ? GOLD_RICH.hairlineQuiet : withThemeAlpha(accent, '3D')}
                   scrubValueColor={accent}
                   scrubCaptionColor={t.textMuted}
                 />
-              </Reanimated.View>
+              </View>
             ) : null}
 
             {ENABLE_DEV_TOOLS && (<View style={[styles.devPanel, { backgroundColor: t.bgCard, borderColor: 'transparent', borderRadius: 14 }]}>
@@ -623,7 +613,7 @@ const styles = StyleSheet.create({
     heroGlow: { position: 'absolute', width: 210, height: 210, right: -92, top: -128, borderRadius: 105 },
     heroTag: { fontWeight: '800', letterSpacing: 0.8, textTransform: 'uppercase' },
     heroBigRow: { flexDirection: 'row', alignItems: 'baseline', gap: 8, marginTop: 10 },
-    heroBig: { fontWeight: '900', letterSpacing: -2 },
+    heroBig: { fontWeight: '900', letterSpacing: 0 },
     heroBigSpan: { fontWeight: '700', flexShrink: 1 },
     primaryBtn: {
         minHeight: 52,
@@ -657,14 +647,6 @@ const styles = StyleSheet.create({
         padding: 14,
     },
     weakLabel: { fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' },
-    ghostBtn: {
-        height: 40,
-        paddingHorizontal: 15,
-        borderRadius: 12,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-    },
     rhythmCard: {
         borderRadius: 18,
         padding: 14,

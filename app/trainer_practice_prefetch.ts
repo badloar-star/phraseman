@@ -6,6 +6,10 @@ import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } fr
 import { personalPracticeCoachEnabledForTarget } from './personal_practice_target_gate';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { getTrainerDashboard, type TrainerDashboard } from './trainer_store';
+import {
+  peekRestoredTrainerPracticeSnapshot,
+  rememberTrainerPracticeSnapshotOnDisk,
+} from './trainer_practice_persist';
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import {
   storageSourceLocale,
@@ -45,10 +49,14 @@ export function getCachedTrainerPracticeSnapshot(
   sourceLocale?: RuntimeSourceLocale,
   maxAgeMs = TRAINER_PRACTICE_SNAPSHOT_TTL_MS,
 ): TrainerPracticeSnapshot | null {
-  const snapshot = snapshotCache.get(trainerPracticeSnapshotKey(studyTarget, sourceLocale));
-  if (!snapshot) return null;
-  if (Date.now() - snapshot.createdAt > maxAgeMs) return null;
-  return snapshot;
+  const key = trainerPracticeSnapshotKey(studyTarget, sourceLocale);
+  const snapshot = snapshotCache.get(key);
+  if (snapshot && Date.now() - snapshot.createdAt <= maxAgeMs) return snapshot;
+  // зачем: snapshotCache живёт только в памяти процесса и всего 2 минуты, поэтому раздел
+  // «Моя практика» открывался с нулями при холодном старте и даже при возврате через
+  // 3 минуты. Дисковый снапшот прошлой сессии поднят бутстрапом — отдаём его для первого
+  // кадра; loadData на фокусе всё равно вызывается с force и догонит свежие цифры.
+  return peekRestoredTrainerPracticeSnapshot(key);
 }
 
 async function loadTrainerPracticeAnalytics(
@@ -98,6 +106,9 @@ export async function prefetchTrainerPracticeSnapshot({
       createdAt: Date.now(),
     };
     snapshotCache.set(cacheKey, snapshot);
+    // зачем: зеркалим на диск, чтобы СЛЕДУЮЩЕЕ открытие «Моей практики» (в т.ч. первое
+    // после холодного старта) рисовало цифры сразу. Запись фоновая — UI её не ждёт.
+    rememberTrainerPracticeSnapshotOnDisk(cacheKey, snapshot);
     return snapshot;
   }).finally(() => {
     if (inFlightSnapshots.get(cacheKey) === snapshotPromise) {

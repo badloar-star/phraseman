@@ -5,7 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, DEV_CONTENT_UNLOCK, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
-import Reanimated, { FadeInDown } from 'react-native-reanimated';
+// зачем: Reanimated/FadeInDown остались без потребителей после снятия входного
+// stagger'а со списка карточек — экран обязан открываться статично.
 import { useFeatureAccess } from '../components/PremiumContext';
 import { useAudio } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -1032,10 +1033,10 @@ export default function FlashcardsScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('info', {
-          ru: 'Набор ещё не куплен. Его можно открыть за монеты в магазине (вкладка с наборами карточек).',
-          uk: 'Набір ще не куплено. Його можна відкрити за монети в магазині (вкладка з наборами карток).',
-          es: 'Aún no has comprado este pack. Puedes obtenerlo por monedas en la tienda (pestaña de packs de Tarjetas).',
-          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por moedas na loja (aba de packs de Cartões).',
+          ru: 'Набор ещё не куплен. Его можно открыть за жемчужины в магазине (вкладка с наборами карточек).',
+          uk: 'Набір ще не куплено. Його можна відкрити за перлини в магазині (вкладка з наборами карток).',
+          es: 'Aún no has comprado este pack. Puedes obtenerlo por perlas en la tienda (pestaña de packs de Tarjetas).',
+          'pt-BR': 'Este pack ainda não foi comprado. Você pode abri-lo por pérolas na loja (aba de packs de Cartões).',
           vi: 'Bạn chưa mua pack này. Bạn có thể mở bằng xu trong cửa hàng (tab pack Thẻ).',
           id: 'Pack ini belum dibeli. Kamu bisa membukanya dengan koin di toko (tab pack Kartu).',
           tr: 'Bu paket henüz satın alınmadı. Mağazada jetonlarla açabilirsin (Kart paketleri sekmesi).',
@@ -2187,19 +2188,15 @@ export default function FlashcardsScreen() {
                 setListItemRowRef={setListItemRowRef}
                 packCardTheme={packCardTheme}
                 isRowInFocus={itemIdx === index}
-                chevronHintDelayMs={
-                  packPremiumVisual
-                    ? 500 + Math.min(itemIdx, 24) * 36
-                    : 0
-                }
+                // зачем: задержка была привязана к убранному FadeInDown-stagger'у и
+                // растягивала «шевеление» подсказок по списку. Открытие статично — 0.
+                chevronHintDelayMs={0}
               />
             );
-            if (!packPremiumVisual) return cardEl;
-            return (
-              <Reanimated.View entering={FadeInDown.duration(420).delay(Math.min(itemIdx, 24) * 36)}>
-                {cardEl}
-              </Reanimated.View>
-            );
+            // зачем: раньше премиум-карточки оборачивались в FadeInDown со stagger'ом
+            // до 24*36мс — список «наползал» снизу при каждом входе в раздел. Владелец
+            // просил открывать статично, поэтому обёртка убрана: карточка сразу на месте.
+            return cardEl;
           }}
           ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
           contentContainerStyle={{ paddingHorizontal: 16, paddingTop: listPadTop, paddingBottom: listPadBottom }}

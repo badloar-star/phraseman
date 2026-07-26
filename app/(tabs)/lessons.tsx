@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Animated } from 'react-native';
+// зачем: FadeInDown и withDelay остались без потребителей после снятия входного
+// каскада глав и «наливания» кольца прогресса — вкладка открывается статично.
 import Reanimated, {
-  FadeInDown,
   useSharedValue,
   useAnimatedStyle,
   useAnimatedProps,
-  withDelay,
   withTiming,
   withSpring,
   cancelAnimation,
@@ -306,13 +306,6 @@ const LESSON_CARD_ACCENT_TEXT_SHADOW = {
 };
 const LESSON_CARD_FILLED_META_TEXT = '#07110A';
 const LESSON_CARD_OPEN_META_TEXT = LESSON_CARD_FILLED_META_TEXT;
-const LESSON_CARD_ACCENT_EDGE_SHADOW = {
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.30,
-    shadowRadius: 4,
-    elevation: 2,
-};
 
 interface TabUnderlineButtonProps {
     label: string;
@@ -537,14 +530,6 @@ const LessonCard = React.memo(function LessonCard({
                   borderTopLeftRadius: cardRadius,
                   borderTopRightRadius: cardRadius,
               }}/>)}
-           <View style={{
-                   position: 'absolute', left: 0, right: 0, top: 0,
-                   height: 2,
-                   backgroundColor: lessonAccent,
-                   opacity: isUnlocked ? (isCurrent ? 0.78 : 0.45) : 0.22,
-                   zIndex: 2,
-                   ...LESSON_CARD_ACCENT_EDGE_SHADOW,
-               }}/>
           {/* Content */}
           <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
@@ -631,13 +616,15 @@ function ChapterProgressRing({ pct, locked, accent, trackColor, textColor, lockC
     const center = size / 2;
     const circumference = 2 * Math.PI * radius;
     const clamped = Math.max(0, Math.min(1, pct));
-    const fill = useSharedValue(0);
+    // зачем: кольцо стартовало с 0 и доезжало до факта за 250+delay+1000мс — прогресс
+    // главы «наливался» на глазах при каждом открытии вкладки. Владелец просил статичное
+    // открытие, поэтому дуга сразу отрисована на финальном значении, без анимации.
+    const fill = useSharedValue(clamped);
     useEffect(() => {
-        fill.value = 0;
-        fill.value = withDelay(250 + delayMs, withTiming(clamped, { duration: 1000, easing: Easing.out(Easing.cubic) }));
+        fill.value = clamped;
         return () => cancelAnimation(fill);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [clamped, delayMs]);
+    }, [clamped]);
     const animatedProps = useAnimatedProps(() => ({ strokeDashoffset: circumference * (1 - fill.value) }));
     return (
       <View style={{ width: size, height: size, flexShrink: 0 }}>
@@ -726,8 +713,9 @@ function chapterStatusLine(from: number, to: number, currentLessonNum: number | 
 }
 
 /**
- * Карточка главы-аккордеона: шапка (кольцо + название + статус + Plus-чип +
- * шеврон) и плавно раскрываемое тело с текущими плашками уроков и экзаменом.
+ * Заголовок главы-аккордеона: кольцо, название, статус, Plus-чип и шеврон.
+ * Раскрываемое тело намеренно не имеет общего контейнера: карточки уроков
+ * остаются на полной ширине списка, как и до группировки по главам.
  * Раскрытие — конечная Reanimated-анимация высоты по замеренному контенту.
  */
 const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lockedPlus, expanded, onToggle, accent, isGoldTheme, t, f, themeMode, delayMs = 0, children }: {
@@ -755,18 +743,18 @@ const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lo
         opacity: progress.value,
     }));
     const chevronStyle = useAnimatedStyle(() => ({ transform: [{ rotate: `${progress.value * 180}deg` }] }));
-    const cardColors = isGoldTheme ? goldCardGradient('muted') : [t.bgSurface2, t.bgSurface, t.bgCard];
+    // зачем: раньше каждая глава влетала FadeInDown.delay(60 + index*50) — список глав
+    // «наползал» снизу при каждом открытии вкладки. Владелец просил статичное открытие,
+    // поэтому анимация входа снята: карточка сразу на финальном месте.
     return (
-      <Reanimated.View entering={FadeInDown.delay(delayMs).duration(320)} style={{ borderRadius: 20, overflow: 'hidden', borderWidth: 0 }}>
-        <LinearGradient colors={cardColors as any} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0 }} />
-        {isGoldTheme ? <GoldBevel radius={20} intensity="quiet" /> : null}
+      <View>
         <TouchableOpacity
           accessibilityRole="button"
           accessibilityState={{ expanded }}
           accessibilityLabel={`${title}. ${statusLine}`}
           onPress={() => { hapticTap(); onToggle(); }}
           activeOpacity={0.82}
-          style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 13, paddingHorizontal: 14 }}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginHorizontal: 14, paddingVertical: 13, paddingHorizontal: 14 }}
         >
           <ChapterProgressRing pct={pct} locked={lockedPlus} accent={accent} trackColor={t.bgSurface} textColor={t.textPrimary} lockColor={t.textMuted} delayMs={delayMs} />
           <View style={{ flex: 1, minWidth: 0 }}>
@@ -790,7 +778,7 @@ const ChapterCard = React.memo(function ChapterCard({ title, statusLine, pct, lo
             {children}
           </View>
         </Reanimated.View>
-      </Reanimated.View>
+      </View>
     );
 });
 
@@ -1514,7 +1502,7 @@ return (<LessonCard key={`l-${num}`}
             const chapterDone = chapterCounts.filter((count) => (count ?? 0) >= 50).length;
             const chapterPct = chapterCounts.length > 0 ? chapterDone / chapterCounts.length : 0;
             const chapterIndex = (Object.keys(COURSE_LEVEL_RANGES) as CourseLevel[]).indexOf(chapterLevel);
-            return (<View key={`chap-${chapterLevel}`} style={{ marginTop: chapterIndex === 0 ? 6 : 10, marginHorizontal: 14 }}>
+            return (<View key={`chap-${chapterLevel}`} style={{ marginTop: chapterIndex === 0 ? 6 : 10 }}>
               <ChapterCard
                 title={triLang(lang, {
                     ru: `Глава ${chapterLevel}`,

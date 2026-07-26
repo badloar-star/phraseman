@@ -174,6 +174,45 @@ describe('layout stability contract (первый кадр = финальная 
     );
   });
 
+  /**
+   * зачем: владелец потребовал, чтобы разделы открывались СТАТИЧНО — «всё сразу, ничего
+   * не двигается и не шевелится». На этих экранах входные анимации (FadeInDown со
+   * stagger'ом по индексу, «наливание» кольца прогресса от нуля) проигрывались на КАЖДОМ
+   * открытии, даже когда данные уже готовы, и создавали ровно тот каскад съезжающих
+   * блоков, который просили убрать (2026-07-26). Здесь фиксируем вычищенное состояние.
+   */
+  describe('перечисленные разделы открываются статично (без анимаций входа)', () => {
+    const staticScreens = [
+      'app/trainer.tsx',
+      'app/(tabs)/lessons.tsx',
+      'app/flashcards_collection.tsx',
+      'app/flashcards/FlashcardsCategoryHub.tsx',
+    ];
+
+    it.each(staticScreens)('%s не применяет entering-анимации', (file) => {
+      const source = stripBlockComments(read(file));
+      const applied = source
+        .split('\n')
+        .filter((line) => !isCommentLine(line))
+        .filter((line) => /\bentering[=:]/.test(line));
+      // Хаб карточек держит entering за выключенным флагом — код остаётся, но не
+      // применяется; поэтому такие строки не считаем нарушением.
+      const live = applied.filter((line) => !/FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED/.test(line));
+      expect({ file, live }).toEqual({ file, live: [] });
+    });
+
+    it('кольцо прогресса главы рисуется сразу на финальном значении', () => {
+      const source = read('app/(tabs)/lessons.tsx');
+      expect(source).toContain('const fill = useSharedValue(clamped);');
+      expect(stripBlockComments(source)).not.toContain('withDelay(');
+    });
+
+    it('флаг входной анимации хаба карточек выключен', () => {
+      expect(read('app/flashcards/FlashcardsCategoryHub.tsx'))
+        .toContain('const FLASHCARD_HUB_ENTRANCE_MOTION_ENABLED = false;');
+    });
+  });
+
   describe('вставки в поток анимируются, а не телепортируют контент', () => {
     it('app/smooth_layout.ts существует и экспортирует animateNextLayoutTransition', () => {
       const source = read('app/smooth_layout.ts');

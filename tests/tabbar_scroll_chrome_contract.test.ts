@@ -16,13 +16,18 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('const TAB_SCROLL_COLLAPSE_DISTANCE = 92;');
     expect(source).toContain('const TAB_SCROLL_TOP_ZONE_Y = 10;');
     expect(source).toContain('const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;');
-    expect(source).toContain('const tabScrollProgress = useRef(new Animated.Value(0)).current;');
+    expect(source).toContain('const tabScrollProgress = useSharedValue(0);');
     // Прогресс пишется покадрово из жеста…
-    expect(source).toContain('tabScrollProgress.setValue(progress)');
-    // …а довод после отпускания остаётся нативной анимацией с ease-out.
-    expect(source).toContain('Animated.timing(tabScrollProgress');
-    expect(source).toContain('useNativeDriver: true');
-    expect(source).toContain('Easing.out(Easing.cubic)');
+    expect(source).toContain('tabScrollProgress.value = progress;');
+    // …а довод после отпускания — ПРУЖИНА, не временная кривая: только пружина
+    // перецеливается с текущей скорости при развороте жеста (иначе «клевок»).
+    expect(source).toContain('withSpring(target, TAB_CHROME_SPRING)');
+    expect(source).toContain('const TAB_CHROME_SPRING = { duration: 380, dampingRatio: 1 }');
+    // Кубическая кривая на схлопывании удалена осознанно — владелец забраковал её
+    // как «клюющую»; не возвращать без нового решения владельца.
+    expect(source).not.toContain('Easing.out(Easing.cubic)');
+    expect(source).not.toContain('TAB_SCROLL_COLLAPSE_MS');
+    expect(source).not.toContain('TAB_SCROLL_EXPAND_MS');
 
     // Пороговая модель удалена, а не сосуществует второй веткой.
     expect(source).not.toContain('TAB_SCROLL_COLLAPSE_TRIGGER_Y');
@@ -39,24 +44,31 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('animateTabChrome(false)');
   });
 
-  it('collapses by shrinking width into the left orb, never via layout animation', () => {
+  // 2026-07-26, вторая итерация: владелец забраковал scaleX — иконки видимо
+  // растягивало. Ресёрч боевых реализаций (expo-glass-tabs, SwiftUI Liquid Glass)
+  // подтвердил: анимируется НАСТОЯЩАЯ ширина, иконки не масштабируются вообще.
+  it('shrinks real width and never scales the icons', () => {
     const source = readLayout();
 
-    expect(source).toContain('const TAB_COLLAPSED_ORB_ENTER_SCALE = 0.9;');
     expect(source).toContain('const TAB_ORB_HIT_SLOP');
     expect(source).toContain('tabChromeCollapsed');
     expect(source).toContain('testID="tab-collapsed-orb"');
 
-    // Сужение — scaleX + компенсирующий translateX, чтобы левый край стоял на месте.
-    expect(source).toContain('tabCapsuleScaleX');
-    expect(source).toContain('tabCapsuleTranslateX');
-    // Иконки не сплющиваются: контр-масштаб содержимого.
-    expect(source).toContain('tabCapsuleContentScaleX');
-    // Активная вкладка доезжает ровно в центр круга.
-    expect(source).toContain('tabIconsRowTranslateX');
+    // Ширина капсулы — настоящая, интерполируется от измеренной до диаметра круга.
+    expect(source).toContain('[tabPillWidth, tabBarHeight]');
+    // Лишнее срезается клипом, а не сжатием содержимого.
+    expect(source).toContain("overflow: 'hidden'");
+    // Неактивные иконки гаснут задолго до конца схлопывания.
+    expect(source).toContain('const TAB_ICONS_FADE_OUT_END = 0.34;');
 
-    // Ширину/позицию как layout-свойства не анимируем — это ушло бы на JS-поток.
-    expect(source).not.toMatch(/Animated\.timing\(\s*tabPillWidth/);
+    // НИКАКОГО масштабирования содержимого от прогресса схлопывания.
+    expect(source).not.toContain('tabCapsuleScaleX');
+    expect(source).not.toContain('tabCapsuleContentScaleX');
+    expect(source).not.toContain('TAB_CAPSULE_EXIT_SCALE');
+    expect(source).not.toContain('TAB_COLLAPSED_ORB_ENTER_SCALE');
+
+    // Анимация ширины обязана идти worklet'ом на UI-потоке, не через JS-поток.
+    expect(source).toContain('useAnimatedStyle');
     expect(source).not.toContain('useNativeDriver: false');
 
     // Тап по орбу только разворачивает — навигации нет.
@@ -66,7 +78,6 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('goToTabExpanded');
     // Старый «gentle»-режим удалён, а не сосуществует второй веткой.
     expect(source).not.toContain('TAB_SCROLL_COLLAPSED_OPACITY');
-    expect(source).not.toContain('TAB_CAPSULE_EXIT_SCALE');
   });
 
   it('keeps swipe tab chrome responsive without moving route state early', () => {

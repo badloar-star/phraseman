@@ -1,7 +1,14 @@
 ﻿import React, { useState, useCallback, useEffect, useLayoutEffect, useMemo, useRef } from 'react';
 import { Freeze } from 'react-freeze';
 import { useFocusEffect, usePathname, useRouter, useSegments } from 'expo-router';
-import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, Easing, AppState, BackHandler } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, StatusBar, Animated, AppState, BackHandler } from 'react-native';
+import Reanimated, {
+  useSharedValue,
+  useAnimatedStyle,
+  interpolate,
+  withSpring,
+  Extrapolation,
+} from 'react-native-reanimated';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useTheme } from '../../components/ThemeContext';
@@ -343,49 +350,52 @@ const BACKGROUND_TAB_PREMOUNT_FIRST_DELAY_MS = 160;
 const BACKGROUND_TAB_PREMOUNT_STEP_MS = 180;
 const BACKGROUND_TAB_PREMOUNT_IDLE_TIMEOUT_MS = 1200;
 const BACKGROUND_TAB_PREMOUNT_ORDER = [1, 3, 2] as const;
-// Guarded by tests/tabbar_scroll_chrome_contract.test.ts: keep this gesture-driven,
-// native-driven mode so the tabbar can shrink/grow without per-pixel JS scaling.
-// зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
-// к пальцу (медленно тянешь вниз — капсула медленно и частично ужимается), капсула
-// ужимается по ширине в круглую кнопку («орб») активной вкладки СЛЕВА, а разворот
-// происходит только когда страница вернулась наверх. Тап по орбу ТОЛЬКО разворачивает.
+// Guarded by tests/tabbar_scroll_chrome_contract.test.ts.
 //
-// Ширину не анимируем: layout-анимация уходит на JS-поток (перегрев и фризы уже были
-// больной темой). Тот же визуальный эффект даёт scaleX с transform-origin слева +
-// контр-scaleX на содержимом, чтобы иконки не сплющивались. Всё на нативном драйвере.
-const TAB_COLLAPSED_ORB_ENTER_SCALE = 0.9;
-/** Иконки неактивных вкладок гаснут раньше, чем капсула дожимается в круг: к моменту
- *  схлопывания в орбе должна остаться ОДНА иконка, а не стопка наложенных. */
-const TAB_ICONS_FADE_OUT_END = 0.55;
-/** Орб проявляется на второй половине жеста — ровно там, где сужающаяся капсула уже
- *  стала размером с круг, поэтому шва между двумя слоями глаз не ловит. */
-const TAB_ORB_FADE_IN_START = 0.62;
+// зачем: владелец попросил таббар РОВНО как у Bevel — прогресс схлопывания привязан
+// к пальцу, капсула сжимается в круглую кнопку («орб») активной вкладки СЛЕВА, а
+// разворот происходит только когда страница вернулась наверх. Тап по орбу ТОЛЬКО
+// разворачивает.
+//
+// 2026-07-26, вторая итерация. Первая версия сжимала капсулу через scaleX с контр-
+// масштабом иконок — владелец забраковал: иконки заметно растягивало, и кубическая
+// кривая читалась как «клюющая». Ресёрч боевых реализаций (expo-glass-tabs,
+// SwiftUI Liquid Glass tab bars) показал единый приём, который здесь и применён:
+//   • анимируется НАСТОЯЩАЯ ширина капсулы, а не scaleX — поэтому геометрия иконок
+//     не искажается вообще, ни на одном кадре;
+//   • иконки фиксированного размера, их никто не масштабирует: неактивные ГАСНУТ
+//     заметно раньше, чем капсула дожимается, а лишнее обрезает overflow:hidden;
+//   • движение — ПРУЖИНА с критическим затуханием (без отскока): при развороте
+//     жеста пружина плавно перецеливается с текущей скорости, тогда как временная
+//     кривая рестартовала бы с нуля и давала тот самый «клевок».
+// Layout-анимация здесь безопасна: она идёт worklet'ом на UI-потоке (Reanimated),
+// а не через JS-поток — именно JS-поток был причиной перегрева, а не сам факт
+// изменения ширины.
 /** Орб Ø=tabBarHeight (~58): hitSlop добирает цель до комфортных ≥44dp с запасом по краям. */
 const TAB_ORB_HIT_SLOP = { top: 10, bottom: 10, left: 10, right: 10 } as const;
-/** Путь пальца, за который капсула проходит весь путь от развёрнутой до орба.
- *  92 px ≈ треть большого пальца: медленная тяга читается как частичное сжатие,
- *  быстрый флик успевает дожать до конца ещё внутри жеста. */
+/** Путь пальца, за который капсула проходит весь путь от развёрнутой до орба. */
 const TAB_SCROLL_COLLAPSE_DISTANCE = 92;
 /** Ниже этого офсета страница считается «в верхнем положении» — только тут возможен
  *  разворот. Владелец: «как только страница возвращается в верхнее положение, только
  *  тогда таббар разворачивается». */
 const TAB_SCROLL_TOP_ZONE_Y = 10;
 /** Порог довода после отпускания пальца: за половиной пути — дожимаем в орб, иначе
- *  возвращаем в капсулу. Ниже 0.5 нельзя — тогда лёгкое касание схлопывало бы бар. */
+ *  возвращаем в капсулу. */
 const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
-/** Довод после отпускания. Схлопывание короче разворота: уход системный и быстрый,
- *  возврат чуть дольше — так возвращение «дороже» на ощупь. Обе кривые ease-out:
- *  ease-in на UI-элементе всегда читается как подтормаживание. */
-const TAB_SCROLL_COLLAPSE_MS = 260;
-const TAB_SCROLL_EXPAND_MS = 300;
 /** Пауза без единого кадра скролла, после которой жест считается завершённым. */
 const TAB_SCROLL_SETTLE_IDLE_MS = 90;
+/** Пружина довода. dampingRatio=1 — критическое затухание: доезжает плавно и
+ *  останавливается без отскока. Отскок на изменении РАЗМЕРА читается как дефект
+ *  (на трансформах он уместен, на геометрии — нет). 380 мс вместо прежних 260/300:
+ *  владелец просил медленнее и мягче. */
+const TAB_CHROME_SPRING = { duration: 380, dampingRatio: 1 } as const;
+/** Неактивные иконки должны исчезнуть ЗАДОЛГО до того, как капсула сузится до круга —
+ *  иначе видно, как их «поджимает» краем. 0.34 = гаснут на первой трети пути. */
+const TAB_ICONS_FADE_OUT_END = 0.34;
 const TAB_UNDERLAY_DIM_ALPHA = 0.95;
 const TAB_UNDERLAY_DIM_BG = `rgba(0,0,0,${TAB_UNDERLAY_DIM_ALPHA})`;
-const TAB_DARK_CHROME_BORDER_ALPHA = 0.34;
 const TAB_DARK_ICON_MUTED_ALPHA = 0.74;
 const TAB_DARK_ACTIVE_BG_ALPHA = 0.18;
-const TAB_DARK_ACTIVE_BORDER_ALPHA = 0.32;
 
 /** Имена сегментов expo-router под `app/(tabs)/*.tsx` (без ведущих скобочных групп). */
 const SEGMENT_TO_TAB_IDX: Record<string, number> = {
@@ -465,17 +475,18 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const topFadeScroll = useTopFadeScroll();
   /** Подложка плавающей капсулы: 95% затемнение контента под таббаром
-   *  без runtime blur, с цветной обводкой/иконками от текущей темы. */
-  const tabPillBorder = withAlpha(t.accent, TAB_DARK_CHROME_BORDER_ALPHA);
+   *  без runtime blur, с цветными иконками от текущей темы. Обводок нет —
+   *  разделение тоном и тенью (правило владельца). */
   const tabIconMuted = withAlpha(t.textSecond, TAB_DARK_ICON_MUTED_ALPHA);
   const tabActiveBg = withAlpha(t.accent, TAB_DARK_ACTIVE_BG_ALPHA);
-  const tabActiveBorder = withAlpha(t.accent, TAB_DARK_ACTIVE_BORDER_ALPHA);
   const tabPillBottom = Math.max(PB, ds.spacing.sm) + FLOATING_PILL_BOTTOM_GAP;
   const tabOverlayHeight = tabBarHeight + tabPillBottom + ds.spacing.md;
   const [tabPillWidth, setTabPillWidth] = useState(0);
   const tabHighlightAnim = useRef(new Animated.Value(activeIdx)).current;
   const tabPressAnim = useRef(new Animated.Value(0)).current;
-  const tabScrollProgress = useRef(new Animated.Value(0)).current;
+  /** 0 = развёрнутая капсула, 1 = круглый орб. Reanimated shared value: пишется и
+   *  читается на UI-потоке, поэтому анимация ширины не трогает JS-поток. */
+  const tabScrollProgress = useSharedValue(0);
   const tabScrollCollapsedRef = useRef(false);
   const tabScrollLastYRef = useRef(0);
   /** Верхняя точка, достигнутая с начала текущего движения вниз: от неё считается
@@ -557,17 +568,11 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
     tabScrollCollapsedRef.current = collapsed;
     setTabChromeCollapsed(collapsed);
-    tabScrollProgress.stopAnimation();
-    if (immediate) {
-      tabScrollProgress.setValue(collapsed ? 1 : 0);
-      return;
-    }
-    Animated.timing(tabScrollProgress, {
-      toValue: collapsed ? 1 : 0,
-      duration: collapsed ? TAB_SCROLL_COLLAPSE_MS : TAB_SCROLL_EXPAND_MS,
-      easing: Easing.out(Easing.cubic),
-      useNativeDriver: true,
-    }).start();
+    const target = collapsed ? 1 : 0;
+    // Пружина, а не timing: при развороте жеста на полпути она перецеливается с
+    // ТЕКУЩЕЙ скорости, тогда как временная кривая стартовала бы заново — это и
+    // читалось владельцем как «клюющее» движение.
+    tabScrollProgress.value = immediate ? target : withSpring(target, TAB_CHROME_SPRING);
   }, [tabScrollProgress]);
 
   /**
@@ -637,7 +642,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
 
       const progress = Math.min(1, dragged / TAB_SCROLL_COLLAPSE_DISTANCE);
       tabScrollDrivenRef.current = true;
-      tabScrollProgress.setValue(progress);
+      // Пока ведёт палец — пишем напрямую, без пружины: прогресс обязан совпадать
+      // с жестом кадр в кадр. Пружина включается только на доводе после отпускания.
+      tabScrollProgress.value = progress;
 
       // Дожали до конца ещё внутри жеста — фиксируем свёрнутое состояние сразу,
       // чтобы орб стал кликабельным не дожидаясь отпускания пальца.
@@ -655,7 +662,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     return () => {
       scrollY.removeListener(id);
       if (settleTimer) clearTimeout(settleTimer);
-      tabScrollProgress.stopAnimation();
     };
   }, [animateTabChrome, tabScrollProgress, topFadeScroll?.tabBarScrollY]);
 
@@ -692,91 +698,72 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     goToTab(idx);
   }, [animateTabChrome, goToTab]);
 
-  /* Схлопывание по ширине БЕЗ layout-анимации.
+  /* Схлопывание НАСТОЯЩЕЙ шириной — ключевое отличие от первой версии.
    *
-   * Капсула растянута left:0/right:0, её transform-origin — центр. Чтобы правый край
-   * ехал влево, а левый стоял на месте (как у Bevel), нужны два transform сразу:
-   * scaleX сжимает капсулу к центру, а translateX возвращает её левый край обратно
-   * к исходной позиции. Смещение = половина «съеденной» ширины.
+   * scaleX деформировал бы содержимое, и никакой контр-масштаб этого до конца не
+   * лечит (владелец увидел растягивание иконок). Здесь капсула меняет реальную
+   * ширину: иконки внутри вообще не трогаются трансформами, сохраняют свою
+   * геометрию покадрово, а лишнее срезает overflow:hidden на капсуле.
    *
-   * До первого onLayout (tabPillWidth=0) геометрия неизвестна — держим развёрнутое
-   * состояние, иначе первый кадр показал бы капсулу неправильной ширины. */
-  const tabCapsuleTargetScaleX = tabPillWidth > 0
-    ? Math.min(1, tabBarHeight / tabPillWidth)
-    : 1;
-  const tabCapsuleScaleX = tabScrollProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, tabCapsuleTargetScaleX],
-    extrapolate: 'clamp',
-  });
-  const tabCapsuleAnchorX = tabPillWidth > 0
-    ? -((tabPillWidth - tabPillWidth * tabCapsuleTargetScaleX) / 2)
-    : 0;
-  const tabCapsuleTranslateX = tabScrollProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, tabCapsuleAnchorX],
-    extrapolate: 'clamp',
-  });
+   * Это layout-свойство, но анимация идёт worklet'ом на UI-потоке (Reanimated),
+   * то есть JS-поток не участвует — запрет проекта касался именно JS-потока.
+   *
+   * Ширина берётся из измеренной: до первого onLayout (tabPillWidth=0) держим
+   * развёрнутое состояние, иначе первый кадр показал бы неверную геометрию. */
+  const tabCapsuleStyle = useAnimatedStyle(() => {
+    if (tabPillWidth <= 0) return { width: undefined as unknown as number };
+    return {
+      width: interpolate(
+        tabScrollProgress.value,
+        [0, 1],
+        [tabPillWidth, tabBarHeight],
+        Extrapolation.CLAMP,
+      ),
+    };
+  }, [tabPillWidth, tabBarHeight]);
 
-  /* Контр-масштаб содержимого: scaleX сплющил бы иконки в овалы. Обратный множитель
-   * держит их круглыми на всём пути сжатия. */
-  const tabCapsuleContentScaleX = tabScrollProgress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, tabCapsuleTargetScaleX > 0 ? 1 / tabCapsuleTargetScaleX : 1],
-    extrapolate: 'clamp',
-  });
+  /* Ряд иконок держит ИСХОДНУЮ ширину капсулы (width зафиксирована в px) и прижат
+   * влево. Поэтому при сужении капсулы ячейки не пересчитываются: иконки стоят на
+   * своих местах, а правые просто уходят за край и срезаются overflow:hidden —
+   * ровно так это сделано в боевых реализациях. */
+  const tabIconsRowStyle = useAnimatedStyle(() => {
+    if (tabPillWidth <= 0) return {};
+    const cell = tabPillWidth / TABS.length;
+    // Активная иконка доезжает в центр круга: её ячейка встаёт под центр орба.
+    const activeCellCenter = visualTabIdx * cell + cell / 2;
+    return {
+      transform: [{
+        translateX: interpolate(
+          tabScrollProgress.value,
+          [0, 1],
+          [0, tabBarHeight / 2 - activeCellCenter],
+          Extrapolation.CLAMP,
+        ),
+      }],
+    };
+  }, [tabPillWidth, tabBarHeight, visualTabIdx]);
 
-  /* Ряд иконок сжимается вместе с капсулой (ячейки flex:1), поэтому активная иконка
-   * приезжает в центр СВОЕЙ сузившейся ячейки, а не в центр круга. Доводим ряд так,
-   * чтобы активная ячейка встала ровно по центру орба — иначе в свёрнутом состоянии
-   * иконка стояла бы не по центру кружка, и это первое, что бросается в глаза.
-   * Считаем в координатах ДО scaleX: transform применяется к уже сжатому ряду. */
-  const tabCellWidth = tabPillWidth > 0 ? tabPillWidth / TABS.length : 0;
-  const tabIconsRowTranslateX = tabPillWidth > 0
-    ? tabScrollProgress.interpolate({
-        inputRange: [0, 1],
-        outputRange: [
-          0,
-          // Центр круга в системе координат капсулы / целевой scaleX минус центр
-          // активной ячейки: разница и есть недостающий доезд.
-          tabCapsuleTargetScaleX > 0
-            ? (tabBarHeight / 2) / tabCapsuleTargetScaleX
-              - (visualTabIdx * tabCellWidth + tabCellWidth / 2)
-            : 0,
-        ],
-        extrapolate: 'clamp',
-      })
-    : 0;
+  /* Неактивные иконки гаснут на первой трети пути — задолго до того, как капсула
+   * сузится до круга. Иначе видно, как их поджимает краем. */
+  const tabInactiveIconStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      tabScrollProgress.value,
+      [0, TAB_ICONS_FADE_OUT_END],
+      [1, 0],
+      Extrapolation.CLAMP,
+    ),
+  }));
 
-  /* Капсула держится видимой почти до конца — её место занимает орб только когда
-   * она уже стала размером с круг. Никакого раннего фейда: исчезновение на середине
-   * жеста и читалось владельцем как «мгновенное переключение вместо анимации». */
-  const tabCapsuleOpacity = tabScrollProgress.interpolate({
-    inputRange: [0, TAB_ORB_FADE_IN_START, 1],
-    outputRange: [1, 1, 0],
-    extrapolate: 'clamp',
-  });
-
-  /* Неактивные иконки гаснут раньше остального: в сузившейся капсуле им уже нет места,
-   * и без этого они наложились бы друг на друга. */
-  const tabInactiveIconOpacity = tabScrollProgress.interpolate({
-    inputRange: [0, TAB_ICONS_FADE_OUT_END],
-    outputRange: [1, 0],
-    extrapolate: 'clamp',
-  });
-
-  const tabOrbOpacity = tabScrollProgress.interpolate({
-    inputRange: [TAB_ORB_FADE_IN_START, 1],
-    outputRange: [0, 1],
-    extrapolate: 'clamp',
-  });
-
-  /* Орб входит с 0.9, не с нуля — ничто в физическом мире не появляется из ниоткуда. */
-  const tabOrbScale = tabScrollProgress.interpolate({
-    inputRange: [TAB_ORB_FADE_IN_START, 1],
-    outputRange: [TAB_COLLAPSED_ORB_ENTER_SCALE, 1],
-    extrapolate: 'clamp',
-  });
+  /* Подсветка активной вкладки не нужна в свёрнутом состоянии: круг сам и есть
+   * подсветка. Гаснет вместе с неактивными иконками. */
+  const tabActivePillFadeStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(
+      tabScrollProgress.value,
+      [0, TAB_ICONS_FADE_OUT_END],
+      [1, 0],
+      Extrapolation.CLAMP,
+    ),
+  }));
 
   const orbPressScale = orbPressAnim.interpolate({
     inputRange: [0, 1],
@@ -821,58 +808,69 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
             style={[s.tabBarWrap, { height: tabOverlayHeight }]}
             pointerEvents="box-none"
           >
-            <Animated.View
+            {/* Измеритель ПОЛНОЙ ширины развёрнутой капсулы. Лежит СНАРУЖИ капсулы:
+                та анимирует width и клипует содержимое, поэтому её собственный
+                onLayout выдавал бы промежуточные значения. Нулевая высота, невидим. */}
+            <View
+              pointerEvents="none"
+              style={[s.tabPillMeasure, { left: ds.spacing.lg, right: ds.spacing.lg }]}
               onLayout={(event) => setTabPillWidth(event.nativeEvent.layout.width)}
-              pointerEvents={tabChromeCollapsed ? 'none' : 'auto'}
-              accessibilityElementsHidden={tabChromeCollapsed}
-              importantForAccessibility={tabChromeCollapsed ? 'no-hide-descendants' : 'auto'}
+            />
+
+            {/* Одна капсула на оба состояния: она САМА сужается до круга. Отдельного
+                слоя-орба больше нет — кроссфейд двух слоёв и был источником «шва»,
+                а морфинг одного элемента честнее и дешевле. */}
+            <Reanimated.View
+              pointerEvents="box-none"
               style={[
                 s.tabPill,
+                tabCapsuleStyle,
                 {
                   bottom: tabPillBottom,
-                  marginHorizontal: ds.spacing.lg,
+                  left: ds.spacing.lg,
                   height: tabBarHeight,
                   borderRadius: tabBarHeight / 2,
-                  borderColor: tabPillBorder,
                   shadowColor: t.shadowDark,
-                  opacity: tabCapsuleOpacity,
-                  transform: [
-                    { translateX: tabCapsuleTranslateX },
-                    { scaleX: tabCapsuleScaleX },
-                    { scale: tabPillPressScale },
-                  ],
                 },
               ]}
             >
               {/* 95% scrim: контент едва просвечивает, но затемняется без runtime blur. */}
               <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
 
-              {/* Ряд иконок + подсветка едут одним слоем, чтобы активная вкладка
-                  приехала точно в центр круга. */}
-              <Animated.View
-                style={[s.tabPillRow, { transform: [{ translateX: tabIconsRowTranslateX }] }]}
+              {/* Ряд фиксированной ширины: при сужении капсулы ячейки НЕ пересчитываются,
+                  иконки сохраняют геометрию, правые уходят под overflow:hidden. */}
+              <Reanimated.View
+                pointerEvents={tabChromeCollapsed ? 'none' : 'auto'}
+                accessibilityElementsHidden={tabChromeCollapsed}
+                importantForAccessibility={tabChromeCollapsed ? 'no-hide-descendants' : 'auto'}
+                style={[
+                  s.tabPillRow,
+                  tabIconsRowStyle,
+                  tabPillWidth > 0 ? { width: tabPillWidth } : null,
+                ]}
               >
               {ENABLE_TAB_HIGHLIGHT_TRAVEL && tabPillWidth > 0 && (
-                <Animated.View
-                  pointerEvents="none"
-                  style={[
-                    s.tabActivePill,
-                    {
-                      top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
-                      left: (tabPillWidth / TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
-                      backgroundColor: tabActiveBg,
-                      borderColor: tabActiveBorder,
-                      opacity: tabActivePillPressOpacity,
-                      transform: [{
-                        translateX: tabHighlightAnim.interpolate({
-                          inputRange: TABS.map((_, i) => i),
-                          outputRange: TABS.map((_, i) => i * (tabPillWidth / TABS.length)),
-                          extrapolate: 'clamp',
-                        }),
-                      }, { scale: tabActivePillPressScale }],
-                    },
-                  ]}
-                />
+                <Reanimated.View pointerEvents="none" style={tabActivePillFadeStyle}>
+                  <Animated.View
+                    pointerEvents="none"
+                    style={[
+                      s.tabActivePill,
+                      {
+                        top: (tabBarHeight - TAB_ACTIVE_PILL_HEIGHT) / 2,
+                        left: (tabPillWidth / TABS.length - TAB_ACTIVE_PILL_WIDTH) / 2,
+                        backgroundColor: tabActiveBg,
+                        opacity: tabActivePillPressOpacity,
+                        transform: [{
+                          translateX: tabHighlightAnim.interpolate({
+                            inputRange: TABS.map((_, i) => i),
+                            outputRange: TABS.map((_, i) => i * (tabPillWidth / TABS.length)),
+                            extrapolate: 'clamp',
+                          }),
+                        }, { scale: tabActivePillPressScale }],
+                      },
+                    ]}
+                  />
+                </Reanimated.View>
               )}
 
               {TABS.map((tab, i) => {
@@ -889,7 +887,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                     accessible={true}
                     accessibilityRole="tab"
                     accessibilityState={{ selected: visuallyFocused }}
-                    style={s.tabBtn}
+                    style={[s.tabBtn, tabPillWidth > 0 ? { width: tabPillWidth / TABS.length } : null]}
                     onPressIn={() => beginTabPress(i)}
                     onPressOut={endTabPress}
                     onPress={() => { goToTabExpanded(i); }}
@@ -900,76 +898,55 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
                       <View
                         style={[
                           s.tabActivePill,
-                          { backgroundColor: tabActiveBg, borderColor: tabActiveBorder },
+                          { backgroundColor: tabActiveBg },
                         ]}
                       />
                     )}
-                    <Animated.View
-                      style={{
-                        // Контр-scaleX держит иконку круглой, пока капсула сжимается.
-                        opacity: visuallyFocused ? 1 : tabInactiveIconOpacity,
-                        transform: [{ scaleX: tabCapsuleContentScaleX }, { scale: iconScale }],
-                      }}
-                    >
-                      <Ionicons
-                        name={visuallyFocused ? tab.active : tab.icon}
-                        size={26}
-                        color={color}
-                      />
-                    </Animated.View>
+                    {/* Иконка НИЧЕМ не масштабируется от прогресса схлопывания —
+                        только press-федбек. Неактивные просто гаснут. */}
+                    <Reanimated.View style={visuallyFocused ? undefined : tabInactiveIconStyle}>
+                      <Animated.View style={{ transform: [{ scale: iconScale }] }}>
+                        <Ionicons
+                          name={visuallyFocused ? tab.active : tab.icon}
+                          size={26}
+                          color={color}
+                        />
+                      </Animated.View>
+                    </Reanimated.View>
                   </TouchableOpacity>
                 );
               })}
-              </Animated.View>
-            </Animated.View>
+              </Reanimated.View>
 
-            {/* Орб — свёрнутый таббар (Bevel/iOS 26): круг слева с иконкой активной
-                вкладки. Кроссфейд с капсулой по тому же tabScrollProgress. */}
-            <Animated.View
-              pointerEvents={tabChromeCollapsed ? 'auto' : 'none'}
-              accessibilityElementsHidden={!tabChromeCollapsed}
-              importantForAccessibility={tabChromeCollapsed ? 'auto' : 'no-hide-descendants'}
-              style={[
-                s.tabOrb,
-                {
-                  bottom: tabPillBottom,
-                  left: ds.spacing.lg,
-                  width: tabBarHeight,
-                  height: tabBarHeight,
-                  borderRadius: tabBarHeight / 2,
-                  shadowColor: t.shadowDark,
-                  opacity: tabOrbOpacity,
-                  transform: [
-                    { scale: tabOrbScale },
-                    { scale: orbPressScale },
-                  ],
-                },
-              ]}
-            >
-              <View pointerEvents="none" style={[s.tabPillFill, { backgroundColor: TAB_UNDERLAY_DIM_BG }]} />
-              <TouchableOpacity
-                testID="tab-collapsed-orb"
-                accessibilityLabel="qa-tab-collapsed-orb"
-                accessible={true}
-                accessibilityRole="button"
-                style={s.tabOrbBtn}
-                hitSlop={TAB_ORB_HIT_SLOP}
-                onPressIn={() => {
-                  Animated.spring(orbPressAnim, { toValue: 1, speed: 34, bounciness: 6, useNativeDriver: true }).start();
-                }}
-                onPressOut={() => {
-                  Animated.spring(orbPressAnim, { toValue: 0, speed: 28, bounciness: 4, useNativeDriver: true }).start();
-                }}
-                onPress={handleOrbPress}
-                activeOpacity={1}
+              {/* Кнопка свёрнутого состояния лежит поверх круга: та же геометрия,
+                  что и у капсулы, поэтому «шва» между состояниями нет вовсе. */}
+              <Animated.View
+                pointerEvents={tabChromeCollapsed ? 'auto' : 'none'}
+                accessibilityElementsHidden={!tabChromeCollapsed}
+                importantForAccessibility={tabChromeCollapsed ? 'auto' : 'no-hide-descendants'}
+                style={[
+                  s.tabOrbHit,
+                  { width: tabBarHeight, height: tabBarHeight, transform: [{ scale: orbPressScale }] },
+                ]}
               >
-                <Ionicons
-                  name={(TABS[visualTabIdx] ?? TABS[0]).active}
-                  size={26}
-                  color={t.accent}
+                <TouchableOpacity
+                  testID="tab-collapsed-orb"
+                  accessibilityLabel="qa-tab-collapsed-orb"
+                  accessible={true}
+                  accessibilityRole="button"
+                  style={s.tabOrbBtn}
+                  hitSlop={TAB_ORB_HIT_SLOP}
+                  onPressIn={() => {
+                    Animated.spring(orbPressAnim, { toValue: 1, speed: 34, bounciness: 6, useNativeDriver: true }).start();
+                  }}
+                  onPressOut={() => {
+                    Animated.spring(orbPressAnim, { toValue: 0, speed: 28, bounciness: 4, useNativeDriver: true }).start();
+                  }}
+                  onPress={handleOrbPress}
+                  activeOpacity={1}
                 />
-              </TouchableOpacity>
-            </Animated.View>
+              </Animated.View>
+            </Reanimated.View>
           </View>
         </View>
       </View>
@@ -1296,12 +1273,12 @@ const s = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: 'transparent',
   },
-  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со статичным фоном. */
+  /** Плавающая капсула: отрывается от низа и краёв, полностью скруглена, со статичным фоном.
+   *  Привязана к ЛЕВОМУ краю (не left+right): ширина анимируется, и правый край
+   *  должен уезжать влево, пока левый стоит на месте. overflow:hidden срезает иконки,
+   *  которые не поместились — благодаря этому их не нужно масштабировать. */
   tabPill: {
     position: 'absolute',
-    left: 0,
-    right: 0,
-    flexDirection: 'row',
     alignItems: 'center',
     overflow: 'hidden',
     borderWidth: 0,
@@ -1312,14 +1289,33 @@ const s = StyleSheet.create({
     elevation: 12,
   },
   tabPillFill: { ...StyleSheet.absoluteFillObject },
-  /** Ряд иконок внутри капсулы: едет одним слоем при схлопывании, чтобы активная
-   *  вкладка приехала точно в центр круглого орба. */
+  /** Нулевой по высоте измеритель полной ширины развёрнутой капсулы: сама капсула
+   *  анимирует width и клипует содержимое, поэтому её onLayout давал бы промежуточные
+   *  значения. Прижат к низу — tabBarWrap клипует по своей высоте. */
+  tabPillMeasure: {
+    position: 'absolute',
+    bottom: 0,
+    height: 0,
+  },
+  /** Ряд иконок внутри капсулы: фиксированной ширины (ячейки не пересчитываются при
+   *  сужении), едет одним слоем, чтобы активная вкладка приехала в центр круга. */
   tabPillRow: {
-    ...StyleSheet.absoluteFillObject,
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
     flexDirection: 'row',
     alignItems: 'center',
   },
-  tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
+  /** Прозрачная кнопка поверх круга в свёрнутом состоянии. */
+  tabOrbHit: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+  },
+  /** Ширина ячейки задаётся явно (tabPillWidth / TABS.length), а не flex:1 — иначе
+   *  при сужении капсулы ячейки пересчитывались бы и иконки «съезжались». */
+  tabBtn:     { alignItems: 'center', justifyContent: 'center', alignSelf: 'stretch', position: 'relative', zIndex: 10 },
   /** Подсветка активного таба внутри капсулы — мягкая пилюля под иконкой. */
   tabActivePill: {
     position: 'absolute',
@@ -1327,19 +1323,6 @@ const s = StyleSheet.create({
     height: TAB_ACTIVE_PILL_HEIGHT,
     borderRadius: TAB_ACTIVE_PILL_HEIGHT / 2,
     borderWidth: 0,
-  },
-  /** Орб — свёрнутое состояние таббара: меньше площадь → сильнее «парит»
-   *  (плотнее opacity при том же радиусе, что у капсулы — дороже radius нельзя, перф). */
-  tabOrb: {
-    position: 'absolute',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderWidth: 0,
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.34,
-    shadowRadius: 16,
-    elevation: 12,
   },
   tabOrbBtn: {
     flex: 1,

@@ -6,7 +6,6 @@ import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Mo
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
-import DayRings from '../../components/home/DayRings';
 import { useRouter } from 'expo-router';
 import { useGuardedNav } from '../../hooks/use-guarded-nav';
 import { usePremium, useFeatureAccess } from '../../components/PremiumContext';
@@ -2221,27 +2220,54 @@ export default function HomeScreen() {
         const homeTodayCardPadX = 16;
         const homeTodayCardPadY = 12;
         const homeTodayCardGap = 14;
+        // зачем: владелец вернул «Быстрый старт» вместо трёх колец — три плитки
+        // только с иконками. «Урок» ведёт не в список уроков, а сразу в последний
+        // открытый (lastLesson), чтобы продолжение занимало один тап, а не два.
         const quickItems = [
-            { key: 'lessons', iconKey: 'lesson' as const, testID: 'home-quick-lessons', img: menuImages.lesson, label: s.tabs.lessons, sub: triLang(lang, {
-                    ru: '32 урока',
-                    uk: '32 уроки',
-                    es: '32 lecciones',
-                    'pt-BR': "32 lições",
-                    vi: "32 bài học",
-                    id: "32 pelajaran",
-                    tr: "32 ders",
-                    pl: "32 lekcje",
-                }), path: 'lessons' },
-            { key: 'flashcards', iconKey: 'cards' as const, testID: 'home-quick-flashcards', img: menuImages.cards, label: s.tabs.flashcards, sub: triLang(lang, {
-                    ru: 'Свои фразы',
-                    uk: 'Свої фрази',
-                    es: 'Tus tarjetas',
-                    'pt-BR': "Seus cartões",
-                    vi: "Thẻ của bạn",
-                    id: "Kartumu",
-                    tr: "Kartların",
-                    pl: "Twoje fiszki",
-                }), path: '/flashcards' },
+            {
+                key: 'lesson',
+                iconKey: 'lesson' as const,
+                testID: 'home-quick-lesson',
+                img: menuImages.lesson,
+                label: triLang(lang, {
+                    ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição',
+                    vi: 'Bài học', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja',
+                }),
+                onPress: () => {
+                    if (lastLesson) {
+                        hapticTap();
+                        logFeatureOpened('lesson_menu');
+                        trackFeatureOpened('lesson_menu').catch(() => { });
+                        perfNavStart('lesson_menu');
+                        router.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } } as any);
+                        return;
+                    }
+                    go('/lesson_menu');
+                },
+            },
+            {
+                key: 'practice',
+                iconKey: 'practice' as const,
+                testID: 'home-quick-practice',
+                img: menuImages.practice,
+                label: triLang(lang, {
+                    ru: 'Практика', uk: 'Практика', es: 'Práctica', 'pt-BR': 'Prática',
+                    vi: 'Luyện tập', id: 'Latihan', tr: 'Pratik', pl: 'Praktyka',
+                }),
+                onPress: () => {
+                    // Прогреваем снапшот тренажёра до навигации — первый кадр без спиннера.
+                    void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale });
+                    go('/trainer');
+                },
+            },
+            {
+                key: 'flashcards',
+                iconKey: 'cards' as const,
+                testID: 'home-quick-flashcards',
+                img: menuImages.cards,
+                label: s.tabs.flashcards,
+                onPress: () => { go('/flashcards'); },
+            },
         ];
         const visibleQuickItems = quickItems;
         const themedClubIcon = menuImages.league;
@@ -2405,33 +2431,15 @@ export default function HomeScreen() {
             tr: "Seviye",
             pl: "Poziom",
         });
-        // ── Данные колец дня ──────────────────────────────────────────────
-        // зачем: one-glance статус дня из уже загруженного состояния экрана —
-        // ноль новых чтений Firestore. Правило нуля: пустое кольцо не показывает
-        // «0», у новичка — приглашение в мета-строке.
-        const homeDayLessonDone = !!weekDone[todayIdx];
-        // зачем: владелец убрал кнопку «Продолжить урок» — кольцо «Урок» само
-        // продолжает последний открытый урок и показывает его прогресс (из 50 шагов).
-        const homeDayLessonPct = lastLesson ? Math.max(0, Math.min(1, lastLesson.progress / 50)) : 0;
-        const homeDayLessonRingProgress = homeDayLessonPct > 0 ? homeDayLessonPct : (homeDayLessonDone ? 1 : 0);
-        const homeDayLessonRingLabel = lastLesson
-            ? `${Math.round(homeDayLessonPct * 100)}%`
-            : (homeDayLessonDone ? '\u2713' : '');
-        // Потолок дневной цели практики: кольцо «на 60 повторений» деактивирует.
-        const HOME_PRACTICE_DAY_GOAL = 15;
-        const homeDayPracticeLeft = Math.min(dueCount, HOME_PRACTICE_DAY_GOAL);
-        const homeDayPracticeProgress = dueCount <= 0
-            ? (homeDayLessonDone ? 1 : 0)
-            : (HOME_PRACTICE_DAY_GOAL - homeDayPracticeLeft) / HOME_PRACTICE_DAY_GOAL;
-        const homeDayPracticeLabel = dueCount <= 0
-            ? (homeDayLessonDone ? '✓' : '')
-            : (dueCount > 99 ? '99+' : String(dueCount));
         // зачем: владелец вернул герой-модуль (серия+уровень+XP+неделя) как был.
         // Аватар слева занимает место бывшей стрик-колонки, поэтому кружки недели
         // получают больше ширины и не жмутся (24 → 28 в компактном режиме).
         const experimentalStatusWeekDotSize = eliteStatsCompact ? 26 : 30;
         const homeHeroAvatarSize = eliteStatsCompact ? 68 : 76;
         const homeHeroStreakIconSize = eliteStatsCompact ? 30 : 34;
+        // Единица («дней») уступает место, когда ряд и так плотный: узкий экран
+        // со щитом заморозки, либо трёхзначная серия.
+        const homeHeroShowStreakUnit = !(eliteStatsCompact && (streakAtRisk && !freezeActive)) && displayStreak < 100;
         const renderHomeHeroStatus = () => (<Animated.View style={{
                 opacity: eliteStatusEntrance,
                 transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
@@ -2439,32 +2447,35 @@ export default function HomeScreen() {
               {/* зачем: владелец вернул раскладку «как было раньше» — слева аватарка,
                   а серия (иконка + число дней) уехала в правый верхний угол карточки.
                   Освободившиеся ~86px ширины забирает полоса XP и ряд дней недели. */}
-              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: eliteStatsCompact ? 12 : 14, minHeight: eliteStatsCompact ? 138 : 148 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: eliteStatsCompact ? 12 : 14 }}>
                 <TouchableOpacity
                   testID="home-hero-avatar-button"
                   activeOpacity={0.82}
+                  // зачем: аватар в карточке ведёт в кастомизацию внешнего вида.
+                  // Карточка профиля осталась за бюстом в верхнем хедере — две
+                  // разные цели не должны дублировать друг друга.
                   onPress={(event) => {
                     event.stopPropagation?.();
-                    openHomeProfile();
+                    hapticTap();
+                    nav.push('/avatar_select');
                   }}
                   accessibilityRole="button"
                   accessibilityLabel={triLang(lang, {
-                    ru: 'Моя карточка профиля',
-                    uk: 'Моя картка профілю',
-                    es: 'Mi tarjeta de perfil',
-                    'pt-BR': 'Meu cartão de perfil',
-                    vi: 'Thẻ hồ sơ của tôi',
-                    id: 'Kartu profil saya',
-                    tr: 'Profil kartım',
-                    pl: 'Moja karta profilu',
+                    ru: 'Изменить внешний вид',
+                    uk: 'Змінити зовнішній вигляд',
+                    es: 'Cambiar apariencia',
+                    'pt-BR': 'Alterar aparência',
+                    vi: 'Đổi diện mạo',
+                    id: 'Ubah tampilan',
+                    tr: 'Görünümü değiştir',
+                    pl: 'Zmień wygląd',
                   })}
                   hitSlop={6}
                   style={{
                     width: homeHeroAvatarSize,
                     flexShrink: 0,
                     alignItems: 'center',
-                    justifyContent: 'flex-start',
-                    paddingTop: eliteStatsCompact ? 2 : 4,
+                    justifyContent: 'center',
                   }}
                 >
                   <AvatarView
@@ -2475,7 +2486,7 @@ export default function HomeScreen() {
                   />
                 </TouchableOpacity>
 
-                <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, justifyContent: 'space-between', paddingVertical: eliteStatsCompact ? 3 : 5 }}>
+                <View testID="home-level-progress-panel" style={{ flex: 1, minWidth: 0, gap: eliteStatsCompact ? 10 : 12 }}>
                   {/* Ряд «Уровень N» + серия справа: серия больше не занимает
                       отдельную колонку, поэтому полоса XP тянется во всю ширину. */}
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
@@ -2571,7 +2582,13 @@ export default function HomeScreen() {
                     </LinearGradient>
                   </View>
 
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: eliteStatsCompact ? 0 : 2 }}>
+                </View>
+              </View>
+
+              {/* зачем: владелец выбрал вариант B — дни недели вынесены из правой
+                  колонки на всю ширину карточки, чтобы ряд был отцентрован, а не
+                  прижат вправо под аватаром. */}
+              <View testID="home-week-days-row" style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', marginTop: eliteStatsCompact ? 14 : 16, paddingHorizontal: eliteStatsCompact ? 0 : 2 }}>
                 {weekDays.map((d, i) => {
                   const marker = markerForWeekDay(i);
                   const marked = isWeekDayMarked(i);
@@ -2596,8 +2613,6 @@ export default function HomeScreen() {
                     </Text>
                   </View>);
                 })}
-                  </View>
-                </View>
               </View>
               {showStatsPulseHint && (<Animated.Text accessibilityLiveRegion="polite" style={{
                     color: t.accent,
@@ -2681,38 +2696,53 @@ export default function HomeScreen() {
             </LinearGradient>
           </TouchableOpacity>
 
-          <View style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null]}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', paddingHorizontal: 12, paddingTop: 20, paddingBottom: 16, overflow: 'hidden' }}>
-              {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
-              {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
-              <DayRings
-                lesson={{
-                  progress: homeDayLessonRingProgress,
-                  valueLabel: homeDayLessonRingLabel,
-                  onPress: () => {
-                    if (lastLesson) {
-                      nav.push({ pathname: '/lesson_menu', params: { id: String(lastLesson.id) } });
-                    } else {
-                      nav.push('/lesson_menu');
-                    }
-                  },
-                  testID: 'home-ring-lesson',
-                }}
-                practice={{
-                  progress: homeDayPracticeProgress,
-                  valueLabel: homeDayPracticeLabel,
-                  onPress: () => { void prefetchTrainerPracticeSnapshot({ studyTarget, sourceLocale: trainerPracticeSourceLocale }); nav.push('/trainer'); },
-                  testID: 'home-ring-practice',
-                }}
-                cards={{
-                  progress: 0,
-                  valueLabel: '',
-                  isAnnounce: true,
-                  onPress: () => { nav.push('/flashcards'); },
-                  testID: 'home-ring-cards',
-                }}
-              />
-            </LinearGradient>
+          {/* БЫСТРЫЙ СТАРТ: Урок (последний открытый) / Практика / Карточки.
+              зачем: владелец вернул ряд плиток вместо трёх колец — иконка сама
+              называет действие, подпись под ней короткая (запрет на подписи-
+              расшифровки соблюдён: это label плитки, а не описание). */}
+          <View onTouchStart={() => { tabSwipeLock.blocked = true; }} onTouchEnd={() => { tabSwipeLock.blocked = false; }} onTouchCancel={() => { tabSwipeLock.blocked = false; }}>
+            <View style={{ marginBottom: 12, paddingHorizontal: 8, gap: 14, flexDirection: 'row' }}>
+              {visibleQuickItems.map((item, index) => {
+                const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
+                const tileY = tileOpacity.interpolate({ inputRange: [0, 1], outputRange: [10, 0] });
+                const tilePanelBg = isGoldTheme ? goldPanelBg : isCompassTheme ? compassPanelBg : isPaperHomeTheme ? lightPanelBg : 'rgba(255,255,255,0.055)';
+                const tileIconBg = isGoldTheme ? goldIconPlateBg : isCompassTheme ? compassIconPlateBg : isPaperHomeTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                return (
+                  <Animated.View key={item.key} style={{ flex: 1, opacity: tileOpacity, transform: [{ translateY: tileY }] }}>
+                    <TouchableOpacity
+                      testID={item.testID}
+                      accessible={true}
+                      accessibilityRole="button"
+                      accessibilityLabel={item.label}
+                      activeOpacity={0.78}
+                      onPress={item.onPress}
+                      style={{
+                        flex: 1,
+                        borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18,
+                        overflow: 'hidden',
+                        backgroundColor: tilePanelBg,
+                        ...(isGoldTheme ? goldShadow(1) : isCompassTheme ? compassShadow(1) : {}),
+                      }}>
+                      <View style={{ flex: 1, minHeight: homeQuickIconPlateSize + 52, borderRadius: isGoldTheme ? 14 : isCompassTheme ? compassHomeRadius : 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+                        {isGoldTheme && <GoldBevel radius={14} intensity="quiet"/>}
+                        {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="quiet"/>}
+                        <View style={{
+                          width: homeQuickIconPlateSize,
+                          height: homeQuickIconPlateSize,
+                          borderRadius: homeQuickIconRadius,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          backgroundColor: tileIconBg,
+                        }}>
+                          <LightSketchMenuImage source={item.img} width={homeQuickIconImageSize} height={homeQuickIconImageSize} lighten={false} align={getHomeMenuIconAlignment(themeMode, item.iconKey)} contentFit="contain" cachePolicy="memory-disk"/>
+                        </View>
+                        <Text allowFontScaling={false} style={{ color: isPaperHomeTheme ? homeThemePanelText : t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={1}>{item.label}</Text>
+                      </View>
+                    </TouchableOpacity>
+                  </Animated.View>
+                );
+              })}
+            </View>
           </View>
 
 

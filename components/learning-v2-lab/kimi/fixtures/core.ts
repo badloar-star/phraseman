@@ -107,6 +107,90 @@ export const vdVisualDiscoveryFixture: VisualDiscoveryVM = {
   },
 };
 
+export interface ComposerVM {
+  readonly surfaceId: string;
+  readonly targetTokens: readonly string[];
+  readonly bankChips: readonly string[];
+  readonly successNote: string;
+  readonly missHint: string;
+  readonly copy: StateCopy;
+  /** PB: перевод, который надо собрать. */
+  readonly translationLabel?: string;
+  readonly slotExplanations?: { readonly wrongVerb: string; readonly wrongPrep: string };
+  /** LB: плеер, транскрипт и запасной клавиатурный ввод. */
+  readonly signalLabel?: string;
+  readonly promptLabel?: string;
+  readonly transcript?: string;
+  readonly transcriptNote?: string;
+  readonly keyboardFallbackLabel?: string;
+  readonly offlineNote?: string;
+}
+
+/** fixtures/mobile/pb-phrase-builder.json */
+export const pbPhraseBuilderFixture: ComposerVM = {
+  surfaceId: 'pb-phrase-builder',
+  translationLabel: 'Я работаю в аэропорту по выходным.',
+  targetTokens: ['I', 'work', 'at', 'the', 'airport', 'on', 'weekends'],
+  bankChips: ['I', 'work', 'works', 'at', 'the', 'airport', 'on', 'in', 'weekends', 'yesterday'],
+  slotExplanations: {
+    wrongVerb: 'После I нужен work, не works — works идёт с he/she/it.',
+    wrongPrep: 'on weekends — выходные как дни недели идут с on.',
+  },
+  successNote: 'Фраза собрана! on weekends — устойчивый оборот.',
+  missHint: 'Почти. Попробуй ещё раз с этой подсказкой.',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Проверить',
+      processing: 'Проверяем…',
+      success: 'Дальше',
+      needs_work: 'Ещё раз',
+      recovery: 'Продолжить',
+    },
+    statusMessages: {
+      prompt: 'Собери английскую фразу по переводу.',
+      active: 'Нажимай на слова внизу — они встанут в строку ответа.',
+      processing: 'Проверяем фразу…',
+      success: 'Фраза собрана. Отлично!',
+      needs_work: 'Почти. Попробуй ещё раз с этой подсказкой.',
+      recovery: 'Связь прервалась. Твоя сборка сохранена.',
+    },
+  },
+};
+
+/** fixtures/mobile/lb-listen-build.json */
+export const lbListenBuildFixture: ComposerVM = {
+  surfaceId: 'lb-listen-build',
+  signalLabel: 'Sentence · one speaker',
+  promptLabel: 'Слушай и собери фразу, которую слышишь.',
+  targetTokens: ['My', 'flight', 'leaves', 'at', 'nine'],
+  bankChips: ['My', 'flight', 'fly', 'leaves', 'live', 'at', 'nine', 'night'],
+  transcript: 'My flight leaves at nine.',
+  transcriptNote: 'Текст фразы откроется после первой попытки.',
+  keyboardFallbackLabel: 'Ввести с клавиатуры',
+  successNote: 'Точно! leaves at nine — расписание говорим настоящим временем.',
+  missHint: 'Почти. Второе слово — flight, не fly. Слушай окончание слова.',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Проверить',
+      processing: 'Проверяем…',
+      success: 'Дальше',
+      needs_work: 'Ещё раз',
+      recovery: 'Продолжить',
+    },
+    statusMessages: {
+      prompt: 'Нажми play и слушай фразу.',
+      active: 'Слушай и собирай фразу по словам. Можно замедлить до 0.75×.',
+      processing: 'Проверяем твою сборку…',
+      success: 'Фраза собрана верно!',
+      needs_work: 'Почти. Попробуй ещё раз с этой подсказкой.',
+      recovery: 'Связь прервалась. Аудио доступно — можешь продолжить.',
+    },
+  },
+  offlineNote: 'Аудио уже на устройстве — работает без сети.',
+};
+
 export interface ContextGapVM {
   readonly surfaceId: string;
   readonly situationLabel: string;

@@ -3,6 +3,171 @@
 import type { ActivityOption } from '../components';
 import type { StateCopy } from '../ChoiceShell';
 
+export interface BaHotspot {
+  readonly id: string;
+  readonly label: string;
+  readonly icon: string;
+  readonly x: number;
+  readonly y: number;
+  readonly line: { readonly speaker: string; readonly en: string; readonly ru: string };
+  readonly choices: readonly { readonly id: string; readonly label: string; readonly hint: string }[];
+}
+
+export interface BaBranchingSceneVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly mission: {
+    readonly briefLabel: string;
+    readonly brief: string;
+    readonly objectivesLabel: string;
+    readonly objectives: readonly { readonly id: string; readonly label: string; readonly done: boolean }[];
+    readonly phrasesLabel: string;
+    readonly knownPhrases: readonly string[];
+  };
+  readonly scene: {
+    readonly altRu: string;
+    readonly hotspotsLabel: string;
+    readonly listViewLabel: string;
+    readonly sceneViewLabel: string;
+    readonly hotspots: readonly BaHotspot[];
+  };
+  readonly repair: {
+    readonly speaker: string;
+    readonly en: string;
+    readonly ru: string;
+    readonly note: string;
+  };
+  readonly resume: { readonly nodeLabel: string; readonly chip: string; readonly savedNote: string };
+  readonly objectiveDoneNote: string;
+  readonly offlineFallbackNote: string;
+  readonly completion: {
+    readonly title: string;
+    readonly summary: string;
+    readonly objectivesDisplay: string;
+  };
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile-story/ba-branching-scene.json */
+export const baBranchingSceneFixture: BaBranchingSceneVM = {
+  id: 'vm-ba-branching-scene',
+  surfaceId: 'ba-branching-scene',
+  title: 'Миссия · Купи билет до Корка',
+  mission: {
+    briefLabel: 'Твоя задача',
+    brief: 'Ты на вокзале в Дублине. Купи билет до Корка на сегодня — и успей на поезд.',
+    objectivesLabel: 'Цели миссии',
+    objectives: [
+      { id: 'obj-1', label: 'Спроси билет до Корка', done: true },
+      { id: 'obj-2', label: 'Уточни время отправления', done: false },
+      { id: 'obj-3', label: 'Оплати картой', done: false },
+    ],
+    phrasesLabel: 'Пригодятся фразы',
+    knownPhrases: ['A single to Cork, please.', 'What time does it leave?', 'Can I pay by card?'],
+  },
+  scene: {
+    altRu: 'Вокзал: слева касса, в центре табло с рейсами, справа кафе, вдалеке платформа.',
+    hotspotsLabel: 'Куда пойдёшь?',
+    listViewLabel: 'Показать списком',
+    sceneViewLabel: 'Показать сцену',
+    hotspots: [
+      {
+        id: 'hs-ticket',
+        label: 'Касса',
+        icon: '🎫',
+        x: 12,
+        y: 56,
+        line: { speaker: 'Кассир', en: 'Hi! Where are you travelling today?', ru: 'Привет! Куда едешь сегодня?' },
+        choices: [
+          { id: 'hs-ticket-a', label: 'A single to Cork, please.', hint: 'single = билет в один конец' },
+          { id: 'hs-ticket-b', label: 'I like trains.', hint: '' },
+        ],
+      },
+      {
+        id: 'hs-board',
+        label: 'Табло',
+        icon: '🕑',
+        x: 42,
+        y: 16,
+        line: {
+          speaker: 'Объявление',
+          en: 'The 14:30 to Cork leaves from platform two.',
+          ru: 'Поезд 14:30 до Корка — со второй платформы.',
+        },
+        choices: [
+          { id: 'hs-board-a', label: 'What time does it leave?', hint: '' },
+          { id: 'hs-board-b', label: 'Where is platform two?', hint: '' },
+        ],
+      },
+      {
+        id: 'hs-cafe',
+        label: 'Кафе',
+        icon: '☕',
+        x: 72,
+        y: 52,
+        line: { speaker: 'Бариста', en: 'Anything to drink before your train?', ru: 'Что-нибудь выпить перед поездом?' },
+        choices: [
+          { id: 'hs-cafe-a', label: 'Just a water, please.', hint: '' },
+          { id: 'hs-cafe-b', label: 'I am a ticket.', hint: '' },
+        ],
+      },
+      {
+        id: 'hs-platform',
+        label: 'Платформа',
+        icon: '🚆',
+        x: 56,
+        y: 78,
+        line: {
+          speaker: 'Контролёр',
+          en: 'Tickets, please. Cork, platform two.',
+          ru: 'Билеты, пожалуйста. Корк — вторая платформа.',
+        },
+        choices: [
+          { id: 'hs-platform-a', label: 'Here you are.', hint: 'here you are = вот, пожалуйста' },
+          { id: 'hs-platform-b', label: 'No ticket.', hint: '' },
+        ],
+      },
+    ],
+  },
+  repair: {
+    speaker: 'Кассир',
+    en: 'You wanted a ticket for today, right?',
+    ru: 'Ты хотел билет на сегодня, верно?',
+    note: 'Персонаж не ругает, а уточняет: ответь про день поездки.',
+  },
+  resume: {
+    nodeLabel: 'Касса',
+    chip: 'Продолжишь с узла: Касса',
+    savedNote: 'Выход сохраняет текущий узел — вернёшься ровно туда же.',
+  },
+  objectiveDoneNote: 'Цель отмечена: спросил билет до Корка ✓',
+  offlineFallbackNote: 'Офлайн-режим: сцена заменена текстовым сценарием — задания и реплики те же.',
+  completion: {
+    title: 'Миссия выполнена',
+    summary: 'Билет до Корка у тебя в кармане — поезд в 14:30, вторая платформа.',
+    objectivesDisplay: 'Цели: 3 из 3',
+  },
+  copy: {
+    primaryActions: {
+      prompt: 'Начать миссию',
+      active: 'Ответить',
+      processing: 'Слушаем…',
+      success: 'Продолжить',
+      needs_work: 'Уточнить ответ',
+      recovery: 'Вернуться к узлу',
+    },
+    statusMessages: {
+      prompt: 'Прочитай задачу и цели — потом исследуй вокзал.',
+      active: 'Выбери место на сцене и ответь персонажу своими словами.',
+      processing: 'Персонаж отвечает…',
+      success: 'Цель выполнена — открылась следующая точка.',
+      needs_work: 'Персонаж переспросил — это не ошибка, а живой разговор.',
+      recovery: 'Сцена сохранена. Продолжишь с того же узла.',
+    },
+  },
+};
+
 export interface MrMicrostoryVM {
   readonly id: string;
   readonly surfaceId: string;

@@ -320,12 +320,23 @@ describe('экраны режима «Турниры»', () => {
     expect(server).toContain('slice(0, 140)');
   });
 
-  it('главный экран показывает краевые состояния вместо пустоты', () => {
+  it('главный экран ВСЕГДА рабочий — заглушки на весь экран запрещены', () => {
+    // Требование владельца 2026-07-26: «экран турнира всегда должен быть
+    // рабочим». Раньше «Нет соединения» показывался при ЛЮБОМ отказе (даже
+    // когда интернет есть, а расписания просто нет) — человек упирался в тупик.
     const home = read('app/(tabs)/tournaments.tsx');
-    expect(home).toContain('TournamentSkeleton');
-    expect(home).toContain('kind="offline"');
-    expect(home).toContain('kind="preseason"');
-    expect(home).toContain('kind="cancelled"');
+    expect(home).not.toContain('kind="offline"');
+    expect(home).not.toContain('kind="preseason"');
+    expect(home).not.toContain('TournamentSkeleton />');
+    // Без расписания — «Скоро», а не 00:00 и не заглушка.
+    expect(home).toContain('первый турнир готовится');
+  });
+
+  it('палитра турниров берётся из активной темы приложения', () => {
+    // Жалоба владельца: «турнир не слушает цвета активной темы».
+    const home = read('app/(tabs)/tournaments.tsx');
+    expect(home).toContain('tournamentPaletteFromTheme(theme)');
+    expect(home).toContain('makeStyles(P)');
   });
 
   it('лобби и раунд работают от комнаты, а не от заглушек', () => {

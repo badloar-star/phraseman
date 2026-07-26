@@ -30,7 +30,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeeklyBankInfo, type WeeklyBankInfo } from '../tournament_client';
 import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
-import { T, radius, type } from '../../components/tournament/tournament_theme';
+import { T, radius, type, tournamentPaletteFromTheme, type TournamentPalette } from '../../components/tournament/tournament_theme';
 import { TournamentEdgeState, TournamentSkeleton } from '../../components/tournament/TournamentEdgeState';
 import {
   joinTournament,
@@ -118,7 +118,10 @@ const DEFAULT_ENTRY_GEMS = 3;
 const SCHEDULE_TIMEOUT_MS = 8000;
 
 export default function TournamentsScreen() {
-  const { themeMode } = useTheme();
+  const { themeMode, theme } = useTheme();
+  // Палитра турниров = активная тема приложения (формат T сохранён).
+  const P = useMemo(() => tournamentPaletteFromTheme(theme), [theme]);
+  const styles = useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
@@ -287,7 +290,7 @@ export default function TournamentsScreen() {
             accessibilityLabel="Назад"
             style={styles.backButton}
           >
-            <Ionicons name="chevron-back" size={24} color={T.text} />
+            <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
           <Text style={styles.title}>Турниры</Text>
           <View style={styles.headerRight}>
@@ -310,7 +313,7 @@ export default function TournamentsScreen() {
         <Animated.View entering={FadeIn.duration(220)}>
           <Card tone="elev" pad={24}>
             <View style={styles.heroTop}>
-              <Text style={[styles.heroKicker, { color: live ? T.danger : T.accent }]}>
+              <Text style={[styles.heroKicker, { color: live ? P.danger : P.accent }]}>
                 {live ? 'Турнир идёт' : 'Турнир фраз'}
               </Text>
               <View style={styles.freeBadge}>
@@ -339,7 +342,7 @@ export default function TournamentsScreen() {
 
             <View style={styles.slots}>
               {daySlots(schedule?.slots ?? [], nextSlot?.slotId ?? null).map((slot) => (
-                <SlotCell key={slot.time} slot={slot} live={live} />
+                <SlotCell key={slot.time} slot={slot} live={live} P={P} styles={styles} />
               ))}
             </View>
 
@@ -468,7 +471,9 @@ export default function TournamentsScreen() {
 
 // ── Слот дня ────────────────────────────────────────────────────────────────
 
-const SlotCell = memo(function SlotCell({ slot, live }: { slot: DaySlot; live: boolean }) {
+const SlotCell = memo(function SlotCell({ slot, live, P, styles }: {
+  slot: DaySlot; live: boolean; P: TournamentPalette; styles: ReturnType<typeof makeStyles>;
+}) {
   const isNow = slot.state === 'now';
   const isDone = slot.state === 'done';
 
@@ -477,7 +482,7 @@ const SlotCell = memo(function SlotCell({ slot, live }: { slot: DaySlot; live: b
       style={[
         styles.slot,
         {
-          backgroundColor: isNow ? T.accentSoft : slot.state === 'next' ? T.card : 'transparent',
+          backgroundColor: isNow ? P.accentSoft : slot.state === 'next' ? P.card : 'transparent',
           opacity: isDone ? 0.55 : 1,
         },
       ]}
@@ -486,7 +491,7 @@ const SlotCell = memo(function SlotCell({ slot, live }: { slot: DaySlot; live: b
         style={[
           styles.slotTime,
           {
-            color: isDone ? T.ghost : isNow ? T.accent : T.muted,
+            color: isDone ? P.ghost : isNow ? P.accent : P.muted,
             textDecorationLine: isDone ? 'line-through' : 'none',
           },
         ]}
@@ -499,15 +504,17 @@ const SlotCell = memo(function SlotCell({ slot, live }: { slot: DaySlot; live: b
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg },
+// зачем: цвета берутся из АКТИВНОЙ темы приложения (жалоба владельца:
+// «турнир не слушает цвета темы»). Стили пересобираются при смене темы.
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
   backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
   loadingHeader: { paddingHorizontal: 16, marginBottom: 14 },
-  loadingHint: { ...type.body, color: T.muted, marginTop: 6 },
-  title: { ...type.title, color: T.text },
+  loadingHint: { ...type.body, color: P.muted, marginTop: 6 },
+  title: { ...type.title, color: P.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
   coinIcon: { width: 18, height: 18 },
 
@@ -515,26 +522,26 @@ const styles = StyleSheet.create({
   heroKicker: { ...type.label, letterSpacing: 1, textTransform: 'uppercase' },
   freeBadge: {
     marginLeft: 'auto',
-    backgroundColor: T.goldSoft,
+    backgroundColor: P.goldSoft,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 999,
   },
-  freeBadgeText: { ...type.label, color: T.gold },
+  freeBadgeText: { ...type.label, color: P.gold },
 
   heroCenter: { alignItems: 'center', marginTop: 22, marginBottom: 6 },
-  liveText: { fontSize: 64, fontWeight: '900', letterSpacing: 2, color: T.danger },
-  heroSub: { ...type.body, color: T.muted, marginTop: 8, textAlign: 'center' },
+  liveText: { fontSize: 64, fontWeight: '900', letterSpacing: 2, color: P.danger },
+  heroSub: { ...type.body, color: P.muted, marginTop: 8, textAlign: 'center' },
 
   slots: { flexDirection: 'row', gap: 8, marginTop: 18, marginBottom: 22 },
   slot: { flex: 1, alignItems: 'center', paddingVertical: 12, borderRadius: radius.md },
   slotTime: { fontSize: 17, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  slotNow: { fontSize: 11, fontWeight: '800', letterSpacing: 0.5, marginTop: 2, color: T.accent },
+  slotNow: { fontSize: 11, fontWeight: '800', letterSpacing: 0.5, marginTop: 2, color: P.accent },
 
   howTo: {
     marginTop: 14,
     borderRadius: radius.md,
-    backgroundColor: T.goldSoft,
+    backgroundColor: P.goldSoft,
     paddingHorizontal: 16,
     paddingVertical: 14,
     flexDirection: 'row',
@@ -543,8 +550,8 @@ const styles = StyleSheet.create({
   },
   howToIcon: { fontSize: 22 },
   howToBody: { flex: 1 },
-  howToTitle: { ...type.body, fontWeight: '800', color: T.gold },
-  howToText: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
+  howToTitle: { ...type.body, fontWeight: '800', color: P.gold },
+  howToText: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
 
   bankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   bankHeroIcon: { width: 44, height: 44 },
@@ -554,14 +561,14 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: '900',
     letterSpacing: -1.5,
-    color: T.gold,
+    color: P.gold,
     fontVariant: ['tabular-nums'],
     lineHeight: 44,
   },
   vipBox: { alignItems: 'flex-end' },
-  vipTitle: { ...type.body, fontWeight: '800', color: T.text },
-  vipSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
-  vipCost: { ...type.label, color: T.gold, marginTop: 2 },
+  vipTitle: { ...type.body, fontWeight: '800', color: P.text },
+  vipSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
+  vipCost: { ...type.label, color: P.gold, marginTop: 2 },
 
   seasonRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   seasonAvatars: { flexDirection: 'row' },
@@ -573,23 +580,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   seasonBody: { flex: 1 },
-  seasonTitle: { fontSize: 16, fontWeight: '800', color: T.text },
-  seasonSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
-  chevron: { fontSize: 22, color: T.ghost },
+  seasonTitle: { fontSize: 16, fontWeight: '800', color: P.text },
+  seasonSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
+  chevron: { fontSize: 22, color: P.ghost },
 
   sheetIcon: { fontSize: 44, textAlign: 'center' },
-  sheetTitle: { fontSize: 24, fontWeight: '900', color: T.text, textAlign: 'center', marginTop: 8 },
+  sheetTitle: { fontSize: 24, fontWeight: '900', color: P.text, textAlign: 'center', marginTop: 8 },
   sheetError: {
     fontSize: 15,
     fontWeight: '700',
-    color: T.danger,
+    color: P.danger,
     textAlign: 'center',
     marginTop: 10,
   },
   sheetSub: {
     fontSize: 16,
     fontWeight: '600',
-    color: T.muted,
+    color: P.muted,
     textAlign: 'center',
     marginTop: 10,
     marginBottom: 26,

@@ -107,3 +107,33 @@ export function placeColor(place: number): string {
 export function placeMedal(place: number): string {
   return place === 1 ? '🥇' : place === 2 ? '🥈' : place === 3 ? '🥉' : '';
 }
+
+// ── Палитра от АКТИВНОЙ темы приложения ─────────────────────────────────────
+// зачем: владелец 2026-07-26 — «турнир не слушает цвета активной темы».
+// Раньше T была статичной копией Deep Forest Green из макетов: в золотой,
+// коралловой и любой другой теме турниры оставались тёмно-зелёными.
+// Теперь палитра собирается из полей выбранной темы, формат тот же — экраны
+// переходят заменой `T` на `useTournamentTheme()` без переписывания стилей.
+
+import type { Theme } from '../../constants/theme';
+
+export type TournamentPalette = { readonly [K in keyof typeof T]: string };
+
+export function tournamentPaletteFromTheme(t: Theme): TournamentPalette {
+  return {
+    ...(T as TournamentPalette),
+    bg: t.bgPrimary,
+    card: t.bgCard,
+    elev: t.bgSurface,
+    elev2: t.bgSurface2,
+    text: t.textPrimary,
+    muted: t.textMuted,
+    ghost: t.textGhost,
+    accent: t.accent,
+    accentSoft: t.accentBg,
+    gold: t.gold,
+    goldSoft: t.goldBg,
+    danger: t.wrong,
+    dangerSoft: t.wrongBg,
+  };
+}

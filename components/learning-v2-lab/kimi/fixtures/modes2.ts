@@ -3,6 +3,191 @@
 import type { ActivityOption } from '../components';
 import type { StateCopy } from '../ChoiceShell';
 
+export interface SdStarSlot {
+  readonly id: string;
+  readonly kind: 'completion' | 'quality' | 'transfer';
+  readonly state: 'earned' | 'available' | 'locked';
+  readonly earnedLabel: string;
+  readonly unlockHint: string;
+}
+
+export interface SdScriptedDialogueVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly brief: {
+    readonly situation: string;
+    readonly role: string;
+    readonly turnsDisplay: string;
+    readonly offlineChip: string;
+  };
+  readonly partner: { readonly name: string; readonly portraitAlt: string };
+  readonly controls: {
+    readonly repeatLabel: string;
+    readonly slowerLabel: string;
+    readonly micLabel: string;
+    readonly micHint: string;
+    readonly supportLabel: string;
+    readonly prevTurnLabel: string;
+    readonly nextTurnLabel: string;
+  };
+  readonly turns: readonly {
+    readonly id: string;
+    readonly partner: { readonly en: string; readonly ru: string };
+    readonly yourTurn: {
+      readonly functionLabel: string;
+      readonly supportPhrase: { readonly en: string; readonly ru: string };
+    };
+  }[];
+  readonly repair: { readonly cue: string; readonly partialLabel: string };
+  readonly fallbackNote: string;
+  readonly permissionPanel: {
+    readonly title: string;
+    readonly body: string;
+    readonly actionLabel: string;
+  };
+  readonly summary: {
+    readonly title: string;
+    readonly functionsLabel: string;
+    readonly functionsDone: readonly string[];
+    readonly hardLineLabel: string;
+    readonly hardLine: { readonly en: string; readonly ru: string };
+    readonly repeatLineLabel: string;
+    readonly stars: readonly SdStarSlot[];
+  };
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile-story/sd-scripted-dialogue.json */
+export const sdScriptedDialogueFixture: SdScriptedDialogueVM = {
+  id: 'vm-sd-scripted-dialogue',
+  surfaceId: 'sd-scripted-dialogue',
+  title: 'Диалог · Запись к врачу',
+  brief: {
+    situation: 'Ты звонишь в клинику, чтобы записаться на приём.',
+    role: 'Твоя роль: пациент',
+    turnsDisplay: '5 реплик',
+    offlineChip: 'Работает офлайн',
+  },
+  partner: { name: 'Администратор клиники', portraitAlt: 'Портрет: администратор клиники с гарнитурой' },
+  controls: {
+    repeatLabel: 'Повторить',
+    slowerLabel: 'Медленнее',
+    micLabel: 'Говорить',
+    micHint: 'Нажми — и скажи свою реплику',
+    supportLabel: 'Фраза-поддержка',
+    prevTurnLabel: 'Назад',
+    nextTurnLabel: 'Дальше',
+  },
+  turns: [
+    {
+      id: 'turn-1',
+      partner: { en: 'Good morning, City Clinic. How can I help you?', ru: 'Доброе утро, клиника «Сити». Чем помочь?' },
+      yourTurn: {
+        functionLabel: 'Поздоровайся и объясни цель звонка',
+        supportPhrase: { en: "I'd like to make an appointment.", ru: 'Я хочу записаться на приём.' },
+      },
+    },
+    {
+      id: 'turn-2',
+      partner: { en: 'Sure. Is it for today or later this week?', ru: 'Конечно. На сегодня или на этой неделе?' },
+      yourTurn: {
+        functionLabel: 'Назови удобный день',
+        supportPhrase: { en: 'Later this week, please.', ru: 'Позже на этой неделе, пожалуйста.' },
+      },
+    },
+    {
+      id: 'turn-3',
+      partner: {
+        en: 'We have Friday at nine or at half past eleven.',
+        ru: 'Есть пятница на девять или на половину двенадцатого.',
+      },
+      yourTurn: {
+        functionLabel: 'Выбери время',
+        supportPhrase: { en: 'Friday at nine works for me.', ru: 'Пятница в девять мне подходит.' },
+      },
+    },
+    {
+      id: 'turn-4',
+      partner: { en: 'Sorry, could you say that again?', ru: 'Прости, можешь повторить?' },
+      yourTurn: {
+        functionLabel: 'Повтори спокойно, не торопясь',
+        supportPhrase: { en: 'Friday at nine, please.', ru: 'Пятница, девять, пожалуйста.' },
+      },
+    },
+    {
+      id: 'turn-5',
+      partner: { en: "Perfect — you're booked for Friday at nine.", ru: 'Отлично — ты записан на пятницу на девять.' },
+      yourTurn: {
+        functionLabel: 'Подтверди и попрощайся',
+        supportPhrase: { en: 'Thank you. See you on Friday!', ru: 'Спасибо. До пятницы!' },
+      },
+    },
+  ],
+  repair: {
+    cue: 'Партнёр переспросил — так бывает в живой речи. Попробуй ещё раз, можно с фразой-поддержкой.',
+    partialLabel: 'Подсказка: «Friday at…»',
+  },
+  fallbackNote: 'Диалог можно пройти выбором или текстом — но звезда за голос тогда не выдаётся.',
+  permissionPanel: {
+    title: 'Микрофон выключен',
+    body: 'Диалог можно продолжить выбором или текстом. Чтобы говорить, разреши микрофон в настройках и вернись.',
+    actionLabel: 'Открыть настройки',
+  },
+  summary: {
+    title: 'Итог диалога',
+    functionsLabel: 'Получилось:',
+    functionsDone: ['Поздоровался и объяснил цель', 'Назвал удобное время', 'Подтвердил запись'],
+    hardLineLabel: 'Сложная реплика — повтори её:',
+    hardLine: {
+      en: 'We have Friday at nine or at half past eleven.',
+      ru: 'Есть пятница на девять или на половину двенадцатого.',
+    },
+    repeatLineLabel: 'Прослушать ещё раз',
+    stars: [
+      {
+        id: 'sd-st-1',
+        kind: 'completion',
+        state: 'earned',
+        earnedLabel: 'Диалог завершён до конца',
+        unlockHint: 'Доведи диалог до конца',
+      },
+      {
+        id: 'sd-st-2',
+        kind: 'quality',
+        state: 'earned',
+        earnedLabel: 'Партнёр понял тебя без переспросов в 4 репликах из 5',
+        unlockHint: 'Добейся, чтобы партнёр понял без переспросов',
+      },
+      {
+        id: 'sd-st-3',
+        kind: 'transfer',
+        state: 'available',
+        earnedLabel: 'Свои слова без фразы-поддержки',
+        unlockHint: 'Пройди диалог без фразы-поддержки',
+      },
+    ],
+  },
+  copy: {
+    primaryActions: {
+      prompt: 'Начать диалог',
+      active: 'Готово',
+      processing: 'Слушаем…',
+      success: 'Дальше',
+      needs_work: 'Попробовать ещё раз',
+      recovery: 'Продолжить диалог',
+    },
+    statusMessages: {
+      prompt: 'Короткий предсказуемый разговор — партнёр записан заранее, ждать не придётся.',
+      active: 'Слушай реплику партнёра, потом скажи свою.',
+      processing: 'Партнёр отвечает…',
+      success: 'Диалог состоялся — посмотри итог.',
+      needs_work: 'Партнёр переспросил — это нормально. Ещё одна попытка.',
+      recovery: 'Диалог на паузе. Твоя реплика не потерялась.',
+    },
+  },
+};
+
 export interface CpCheckpointVM {
   readonly id: string;
   readonly surfaceId: string;

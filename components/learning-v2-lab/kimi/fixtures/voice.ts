@@ -3,6 +3,94 @@
 // их порядок — не акцент» — ровно то, что умеет распознавание на устройстве.
 import type { VoiceShellVM } from '../VoiceShell';
 
+export interface ShShadowingVM extends VoiceShellVM {
+  readonly phrase: {
+    readonly text: string;
+    readonly meaningRu: string;
+    readonly ipa: string;
+    readonly chunks: readonly { readonly id: string; readonly text: string; readonly stress: string }[];
+  };
+  readonly lanes: readonly { readonly id: string; readonly label: string; readonly display: string }[];
+  readonly modeNote: string;
+  readonly result: {
+    readonly rows: readonly { readonly id: string; readonly label: string; readonly display: string }[];
+    readonly evidenceLabel: string;
+  };
+  readonly retryChunkId: string;
+}
+
+/** fixtures/mobile-voice/sh-shadowing.json */
+export const shShadowingFixture: ShShadowingVM = {
+  surfaceId: 'sh-shadowing',
+  title: 'Эхо — ритм и ударение',
+  goalLabel: 'Цель: ритм и ударение',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Остановить',
+      processing: 'Проверяем…',
+      success: 'Дальше',
+      needs_work: 'Повторить кусок',
+      recovery: 'Повторить бесплатно',
+    },
+    statusMessages: {
+      prompt: 'Сначала слушай эталон, потом повторяй — как эхо.',
+      active: 'Слушаю… Повторяй фразу по кускам.',
+      processing: 'Проверяем длительность, шум и ритм…',
+      success: 'Ритм совпал — отличная попытка.',
+      needs_work: 'Почти. Повторим один кусок: «the platform».',
+      recovery: 'Мы не уверены из-за шума. Эта попытка не повлияет на звёзды.',
+    },
+  },
+  voice: {
+    instructionLabel: 'Повтори фразу за эталоном — по кускам',
+    timerDisplay: '0:05 / 0:20',
+    routeLabel: 'Микрофон устройства',
+    evidenceLabel: 'Проверяются ритм и паузы — не акцент',
+    passTitle: 'Ритм совпал',
+    passNote: 'Ударение, ритм и паузы близки к эталону. Тебя легко слушать.',
+    needsWorkHint: 'Подсказка: в куске «the platform» ударение на PLAT — послушай и повтори только его.',
+    retryScopeLabel: 'Повторяем один кусок: «the platform»',
+    attemptsDisplay: 'Повтор 1 из 2',
+    uncertainNote: 'Эта попытка не повлияет на звёзды',
+    invalidNote: 'Проверь микрофон или наушники — попытка бесплатная.',
+    offlineNote: 'Сейчас нет сети. Можно продолжить локальное задание или вернуться позже.',
+  },
+  permission: {
+    title: 'Нужен доступ к микрофону',
+    body: 'Чтобы записать твой голос, разреши микрофон в настройках. Можно и без него — слушай и повторяй вслух без записи.',
+    settingsLabel: 'Открыть настройки',
+    noMicLabel: 'Продолжить без микрофона',
+    backLabel: 'Назад',
+  },
+  phrase: {
+    text: "I'm looking for the platform for trains to Cork.",
+    meaningRu: 'Я ищу платформу, с которой отправляются поезда в Корк.',
+    ipa: '/aɪm ˈlʊkɪŋ fɔː ðə ˈplætfɔːm fɔː treɪnz tə kɔːk/',
+    chunks: [
+      { id: 'sh-c1', text: "I'm looking for", stress: 'LOOK-ing' },
+      { id: 'sh-c2', text: 'the platform', stress: 'PLAT-form' },
+      { id: 'sh-c3', text: 'for trains to Cork.', stress: 'CORK' },
+    ],
+  },
+  lanes: [
+    { id: 'stress', label: 'Ударение', display: 'LOOK-ing · PLAT-form · CORK' },
+    { id: 'rhythm', label: 'Ритм', display: '— • • — | — • | • • —' },
+    { id: 'pauses', label: 'Паузы', display: 'короткая после «looking for» и «platform»' },
+  ],
+  modeNote:
+    'Режим «эхо»: сначала слушай эталон, потом повторяй. Одновременное чтение — только в наушниках.',
+  result: {
+    rows: [
+      { id: 'stress', label: 'Ударение', display: 'Совпало в ключевых словах' },
+      { id: 'rhythm', label: 'Ритм', display: 'Близко к эталону' },
+      { id: 'pauses', label: 'Паузы', display: 'На месте' },
+    ],
+    evidenceLabel: 'Показаны только проверенные признаки: длительность, маршрут звука, шум',
+  },
+  retryChunkId: 'sh-c2',
+};
+
 export interface QrQuickResponseVM extends VoiceShellVM {
   readonly goal: {
     readonly contextLabel: string;

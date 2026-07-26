@@ -34,6 +34,18 @@ const CTA_ENGINES = new Set(['choice', 'arrange', 'input', 'speech']);
 /** Три слота звёзд финала — фиксированный набор, стабильные ключи. */
 const FINALE_STAR_SLOTS = ['star-1', 'star-2', 'star-3'] as const;
 
+/**
+ * Сравнение введённого ответа с эталоном: регистр и краевая пунктуация не
+ * наказывают ученика (как в контракте контент-айтемов), порядок слов — важен.
+ */
+function normalizeAnswer(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[.,!?;:]+$/g, '')
+    .replace(/\s+/g, ' ');
+}
+
 export interface SessionRunnerProps {
   readonly session: SessionVM;
   /**
@@ -346,22 +358,36 @@ export const SessionRunner = memo(function SessionRunner({
           <ArrangeEngine
             card={card}
             {...engineProps}
-            onIntent={(type, payload) => {
-              if (type === 'arrange.place' || type === 'arrange.remove') {
-                // Правильность считаем при проверке — по собранной строке.
-                answerRef.current = null;
-              }
-              emit(type, payload);
-            }}
-            onReady={(isReady) => {
-              setReady(isReady);
-              if (isReady) answerRef.current = { correct: true };
+            // зачем: движок сообщает СОБРАННУЮ строку, а не просто «слоты полны» —
+            // иначе любой порядок слов засчитывался бы как верный
+            onAnswer={(assembled) => {
+              const expected = card.targetTokens.join(' ').trim().toLowerCase();
+              const got = assembled.join(' ').trim().toLowerCase();
+              answerRef.current = { correct: got === expected };
             }}
           />
         ) : null}
-        {card.engine === 'input' ? <InputEngine card={card} {...engineProps} /> : null}
+        {card.engine === 'input' ? (
+          <InputEngine
+            card={card}
+            {...engineProps}
+            // зачем: без этого ЛЮБОЙ ввод считался неверным — карточки «Впиши
+            // слово» и «Скажи по-английски» были непроходимы
+            onAnswer={(value) => {
+              answerRef.current = { correct: normalizeAnswer(value) === normalizeAnswer(card.answer) };
+            }}
+          />
+        ) : null}
         {card.engine === 'speech' ? (
-          <SpeechEngine card={card} {...engineProps} onSkip={skipCard} />
+          <SpeechEngine
+            card={card}
+            {...engineProps}
+            onSkip={skipCard}
+            // Речь засчитывается по словам и порядку — как и обещает карточка.
+            onAnswer={(ok) => {
+              answerRef.current = { correct: ok };
+            }}
+          />
         ) : null}
         {/* зачем: match и dialogue судят себя сами — у них нет кнопки «Проверить»,
             промах идёт сразу в лестницу подсказок, завершение закрывает карточку */}

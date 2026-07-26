@@ -12,8 +12,10 @@ import type { InputCard } from '../contracts';
 import type { EngineProps } from '../engine_common';
 import { useShake } from '../FeedbackLayer';
 
-export const InputEngine = memo(function InputEngine(props: { card: InputCard } & EngineProps) {
-  const { card, locked, resolved, showAnswer, resetEpoch, shakeEpoch, onReady, onIntent } = props;
+export const InputEngine = memo(function InputEngine(
+  props: { card: InputCard; onAnswer: (value: string) => void } & EngineProps,
+) {
+  const { card, locked, resolved, showAnswer, resetEpoch, shakeEpoch, onReady, onIntent, onAnswer } = props;
   const [value, setValue] = useState('');
   const [playing, setPlaying] = useState<null | 'normal' | 'slow'>(null);
   const shaking = useShake(shakeEpoch);
@@ -25,7 +27,12 @@ export const InputEngine = memo(function InputEngine(props: { card: InputCard } 
     setPlaying(null);
   }, [resetEpoch, card.id]);
 
-  useEffect(() => onReady(value.trim().length > 0), [value, onReady]);
+  // зачем: поднимаем И готовность, И сам текст — раннер обязан знать, ЧТО
+  // ввели, иначе проверить ответ нечем (был баг: любой ввод = неверно)
+  useEffect(() => {
+    onReady(value.trim().length > 0);
+    onAnswer(value);
+  }, [value, onReady, onAnswer]);
   useEffect(
     () => () => {
       if (playTimer.current) clearTimeout(playTimer.current);

@@ -20,9 +20,9 @@ import type { SpeechCard } from '../contracts';
 import type { EngineProps } from '../engine_common';
 
 export const SpeechEngine = memo(function SpeechEngine(
-  props: { card: SpeechCard; onSkip: () => void } & EngineProps,
+  props: { card: SpeechCard; onSkip: () => void; onAnswer: (ok: boolean) => void } & EngineProps,
 ) {
-  const { card, locked, resolved, showAnswer, resetEpoch, onReady, onSkip, onIntent } = props;
+  const { card, locked, resolved, showAnswer, resetEpoch, onReady, onSkip, onIntent, onAnswer } = props;
   const capture = useVoiceCapture({ targetText: card.phrase.en });
   const { speak } = useAudio();
 
@@ -32,7 +32,13 @@ export const SpeechEngine = memo(function SpeechEngine(
   }, [resetEpoch, card.id]);
 
   const captured = capture.result !== null;
-  useEffect(() => onReady(captured), [captured, onReady]);
+  // зачем: раннер должен знать исход попытки — иначе речь всегда считалась
+  // неверной. Засчитываем по словам и порядку (как обещает карточка), с
+  // допуском: узнали хотя бы 2/3 слов — попытка принята.
+  useEffect(() => {
+    onReady(captured);
+    if (capture.result) onAnswer(capture.result.allMatched || capture.result.ratio >= 0.67);
+  }, [captured, capture.result, onReady, onAnswer]);
 
   const recording = capture.status === 'listening';
   const evaluating = capture.status === 'evaluating';

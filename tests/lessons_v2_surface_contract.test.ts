@@ -29,6 +29,7 @@ const practiceSource = read('components/learning-v2-lab/session/PracticeLab.tsx'
 const choiceSource = read('components/learning-v2-lab/session/engines/ChoiceEngine.tsx');
 const inputSource = read('components/learning-v2-lab/session/engines/InputEngine.tsx');
 const dialogueSource = read('components/learning-v2-lab/session/engines/DialogueEngine.tsx');
+const arrangeSource = read('components/learning-v2-lab/session/engines/ArrangeEngine.tsx');
 
 describe('lessons V2 — урок MVP (карта юнита + сессия)', () => {
   test('дев-гейт V2 ведёт на лабораторию урока', () => {
@@ -206,6 +207,22 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
       expect((card.mistakeNote ?? '').length).toBeGreaterThan(0);
       expect(card.mistakeTags.length).toBeGreaterThan(0);
     }
+  });
+
+  test('каждый движок с проверкой реально сообщает ответ раннеру', () => {
+    // Баг 2026-07-26: input и speech не поднимали ответ (answerRef оставался
+    // null → ЛЮБОЙ ответ считался неверным), а arrange слал correct:true по
+    // факту заполнения слотов → любой порядок слов проходил. Из шести движков
+    // работал только choice. Тест держит контракт: движок обязан отдать ответ.
+    expect(inputSource).toMatch(/onAnswer\(value\)/);
+    expect(arrangeSource).toMatch(/onAnswer\(assembled\)/);
+    expect(speechSource).toMatch(/onAnswer\(/);
+
+    // Раннер обязан СРАВНИВАТЬ ответ, а не доверять движку на слово.
+    expect(runnerSource).toMatch(/normalizeAnswer\(value\) === normalizeAnswer\(card\.answer\)/);
+    expect(runnerSource).toMatch(/got === expected/);
+    // И не должен считать сборку верной просто потому, что слоты заполнены.
+    expect(runnerSource).not.toMatch(/if \(isReady\) answerRef\.current = \{ correct: true \}/);
   });
 
   test('челлендж: без подсказок и без показа ответа', () => {

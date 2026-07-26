@@ -12,8 +12,10 @@ import type { ArrangeCard } from '../contracts';
 import type { EngineProps } from '../engine_common';
 import { useShake } from '../FeedbackLayer';
 
-export const ArrangeEngine = memo(function ArrangeEngine(props: { card: ArrangeCard } & EngineProps) {
-  const { card, locked, resolved, showAnswer, resetEpoch, shakeEpoch, onReady, onIntent } = props;
+export const ArrangeEngine = memo(function ArrangeEngine(
+  props: { card: ArrangeCard; onAnswer: (assembled: readonly string[]) => void } & EngineProps,
+) {
+  const { card, locked, resolved, showAnswer, resetEpoch, shakeEpoch, onReady, onIntent, onAnswer } = props;
   const [placed, setPlaced] = useState<readonly string[]>([]);
   const shaking = useShake(shakeEpoch);
 
@@ -24,7 +26,19 @@ export const ArrangeEngine = memo(function ArrangeEngine(props: { card: ArrangeC
   const slotsTotal = card.targetTokens.length - card.preplaced.length;
   const complete = placed.length === slotsTotal;
 
-  useEffect(() => onReady(complete), [complete, onReady]);
+  // зачем: раннер сравнивает ПОЛНУЮ строку (вместе с заранее поставленными
+  // словами) с целью — иначе любой порядок засчитывался бы как верный
+  useEffect(() => {
+    onReady(complete);
+    let cursor = 0;
+    const assembled = card.targetTokens.map((token) => {
+      if (card.preplaced.includes(token)) return token;
+      const value = placed[cursor];
+      cursor += 1;
+      return value ?? '';
+    });
+    onAnswer(assembled);
+  }, [complete, placed, card.targetTokens, card.preplaced, onReady, onAnswer]);
 
   // Строка ответа: заранее поставленные слова заперты на своих местах,
   // свободные слоты ученик заполняет в порядке тапов.

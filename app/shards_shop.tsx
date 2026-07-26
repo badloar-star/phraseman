@@ -14,6 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
+import * as Crypto from 'expo-crypto';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import Animated, {
   cancelAnimation,
@@ -33,7 +34,11 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { useScreen } from '../hooks/use-screen';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
-import { bundleLang, triLang } from '../constants/i18n';
+import { bundleLang, triLang, type Lang } from '../constants/i18n';
+import {
+  ruKnowledgeShardsAccusativeAfterNumber,
+  ukKnowledgeShardsAccusativeAfterNumber,
+} from '../constants/shard_plurals';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
@@ -46,7 +51,13 @@ import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShad
 import { addShardsRaw, getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import { safeRouterBack } from './navigation_back';
-import { clearPendingShardGrant, recordPendingShardGrant, resumePendingShardGrants } from './shards_pending_grants';
+import {
+  clearPendingShardGrant,
+  clearPendingShardRecoveryNeeded,
+  markPendingShardRecoveryNeeded,
+  recordPendingShardGrant,
+  resumePendingShardGrants,
+} from './shards_pending_grants';
 import {
   getWarmShardsPackagesMap,
   isCompleteShardsPackageMap,
@@ -71,9 +82,16 @@ import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { flashcardsOfficialPacksAvailableForTarget, frenchFlashcardsGateCopy } from './flashcards_target_gate';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
-import { initRevenueCat } from './revenuecat_init';
+import { initRevenueCat, syncRevenueCatIdentity } from './revenuecat_init';
+import {
+  captureAccountGeneration,
+  isCurrentAccountGeneration,
+  subscribeAccountGeneration,
+} from './account_generation';
+import { runRevenueCatOperationForGeneration } from './revenuecat_account_identity';
 import { trackActivity } from './app_activity';
 import BouncyScrollView from '../components/BouncyScrollView';
+import { FlashList } from '@shopify/flash-list';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
@@ -153,16 +171,24 @@ function PulsingShardFrame({
   width: fw,
   height: fh,
   big,
+  active = true,
   children,
 }: {
   width: number;
   height: number;
   borderRadius: number;
   big?: boolean;
+  /**
+   * Вкладка, на которой живёт этот пульс, сейчас видна.
+   * зачем: обе вкладки магазина смонтированы всегда (display:none сохраняет состояние),
+   * поэтому без этого флага скрытая половина продолжала крутить свои лупы вхолостую.
+   */
+  active?: boolean;
   children: React.ReactNode;
 }) {
   const p = useSharedValue(0);
-  const isFocused = useIsScreenFocused();
+  const isFocusedScreen = useIsScreenFocused();
+  const isFocused = isFocusedScreen && active;
   // Пульс живёт только на видимом экране и активном приложении: freezeOnBlur:false
   // держит ушедшие экраны живыми, без гарда луп грел бы телефон в фоне
   // (паттерн components/AvatarAura.tsx).
@@ -210,9 +236,11 @@ function PulsingShardFrame({
   );
 }
 
-function HitBadgeShell({ children, style }: { children: React.ReactNode; style?: object }) {
+function HitBadgeShell({ children, style, active = true }: { children: React.ReactNode; style?: object; active?: boolean }) {
   const hb = useSharedValue(0);
-  const isFocused = useIsScreenFocused();
+  const isFocusedScreen = useIsScreenFocused();
+  // active — та же логика, что у PulsingShardFrame: скрытая вкладка не крутит луп.
+  const isFocused = isFocusedScreen && active;
   // Гард как у PulsingShardFrame выше — луп только на видимом экране/активном приложении.
   useEffect(() => {
     if (!isFocused) {
@@ -269,13 +297,24 @@ type ShopCtaProps = {
   fontSize: number;
   /** Узкая кнопка в карточках паков осколков */
   dense?: boolean;
+  /**
+   * Бегущий блик по кнопке. По умолчанию включён (крупные одиночные CTA).
+   * зачем: в длинном списке наборов карточек каждая кнопка держала свой
+   * бесконечный withRepeat + отдельный AnimatedLinearGradient — при 20-30 паках
+   * это десятки параллельных лупов и слоёв, из-за чего скролл магазина тормозил.
+   * Там передаём shimmer={false}: анимация и слой блика не создаются вовсе.
+   */
+  shimmer?: boolean;
+  /** Вкладка с этой кнопкой видна — иначе блик замирает (см. PulsingShardFrame.active). */
+  active?: boolean;
 };
 
-function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, shadow, fontSize, dense = false }: ShopCtaProps) {
+function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, shadow, fontSize, dense = false, shimmer = true, active = true }: ShopCtaProps) {
   const ctaW = useSharedValue(0);
   const sh = useSharedValue(0);
   const [boxW, setBoxW] = useState(0);
-  const isFocused = useIsScreenFocused();
+  const isFocusedScreen = useIsScreenFocused();
+  const isFocused = isFocusedScreen && shimmer && active;
 
   // Дрожание ширины на 1px гасится в setBoxW (onLayout ниже), поэтому эффект
   // перезапускается только при реальной смене ширины или фокуса. Луп только на
@@ -312,12 +351,16 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
     };
   }, [boxW, sh, isFocused]);
 
-  const onLayoutCta = (e: LayoutChangeEvent) => {
-    const w = Math.round(e.nativeEvent.layout.width);
-    // Игнорируем дрожание ширины на 1px при скролле/layout — иначе сбрасывается блик кнопки
-    setBoxW((prev) => (prev > 0 && Math.abs(prev - w) < 2 ? prev : w));
-    ctaW.value = w;
-  };
+  // зачем: без блика ширина кнопки никому не нужна — не измеряем и не держим
+  // setState на каждый layout строки списка (лишний ре-рендер при скролле).
+  const onLayoutCta = shimmer
+    ? (e: LayoutChangeEvent) => {
+      const w = Math.round(e.nativeEvent.layout.width);
+      // Игнорируем дрожание ширины на 1px при скролле/layout — иначе сбрасывается блик кнопки
+      setBoxW((prev) => (prev > 0 && Math.abs(prev - w) < 2 ? prev : w));
+      ctaW.value = w;
+    }
+    : undefined;
 
   const stripStyle = useAnimatedStyle(() => {
     const wv = ctaW.value;
@@ -360,7 +403,7 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
         )}
         <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text>
       </LinearGradient>
-      {!busy && boxW > 0 ? (
+      {shimmer && !busy && boxW > 0 ? (
         <View
           style={[StyleSheet.absoluteFill, { overflow: 'hidden' }]}
           pointerEvents="none"
@@ -385,6 +428,224 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
     </View>
   );
 }
+
+type MarketPackCardProps = {
+  pack: FlashcardMarketPack;
+  lang: Lang;
+  owned: boolean;
+  busy: boolean;
+  voucherEligible: boolean;
+  width: number;
+  radius: number;
+  smallRadius: number;
+  cardBg: string;
+  surfaceBg: string;
+  cardShadow: object;
+  ctaShadow: object;
+  themeMode: ThemeMode;
+  t: any;
+  f: any;
+  shardsEsLc: string;
+  onPress: (pack: FlashcardMarketPack) => void;
+};
+
+/**
+ * Одна карточка набора карточек в списке магазина.
+ *
+ * зачем: раньше вся разметка жила инлайном в marketPacks.map() внутри экрана —
+ * любое изменение баланса/таба/загрузки перерисовывало ВСЕ карточки разом, а
+ * список не был виртуализован. Вынесено в memo-компонент верхнего уровня, чтобы
+ * FlatList ниже мог реально переиспользовать строки, а не пересобирать дерево.
+ */
+const MarketPackCard = React.memo(function MarketPackCard({
+  pack,
+  lang,
+  owned,
+  busy,
+  voucherEligible,
+  width,
+  radius,
+  smallRadius,
+  cardBg,
+  surfaceBg,
+  cardShadow,
+  ctaShadow,
+  themeMode,
+  t,
+  f,
+  shardsEsLc,
+  onPress,
+}: MarketPackCardProps) {
+  const title = packTitleForInterface(pack, lang);
+  const desc = packDescriptionForInterface(pack, lang);
+  const packArt = packTileImageForPack(pack);
+  const packIon = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
+
+  return (
+    <View
+      style={{
+        width,
+        alignSelf: 'center',
+        marginBottom: 12,
+        borderRadius: radius,
+        borderWidth: 0,
+        backgroundColor: cardBg,
+        padding: 14,
+        overflow: 'hidden',
+        ...cardShadow,
+      }}
+    >
+      <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+        <View
+          style={{
+            width: 60,
+            height: 60,
+            borderRadius: 16,
+            borderWidth: 0,
+            backgroundColor: surfaceBg,
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflow: 'hidden',
+          }}
+        >
+          <ShopIconImageWithFallback
+            source={packArt}
+            size={50}
+            fallbackName={packIon}
+            fallbackColor={t.textPrimary}
+            recyclingKey={pack.id}
+          />
+        </View>
+        <View style={{ flex: 1, minWidth: 0 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
+            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }} numberOfLines={2}>
+              {title}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 6,
+                borderRadius: 10,
+                paddingHorizontal: 10,
+                paddingVertical: 5,
+                backgroundColor: voucherEligible ? `${t.gold}22` : `${t.accent}22`,
+                borderWidth: 0,
+              }}
+            >
+              {voucherEligible ? (
+                <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '900' }}>🎁</Text>
+              ) : (
+                <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 22, height: 22 }} contentFit="contain" />
+              )}
+              <Text style={{ color: voucherEligible ? t.gold : t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
+                {voucherEligible
+                  ? triLang(lang, {
+                    ru: 'беспл.',
+                    uk: 'безкошт.',
+                    es: 'gratis',
+                    'pt-BR': 'grátis',
+                    vi: 'miễn phí',
+                    id: 'gratis',
+                    tr: 'ücretsiz',
+                    pl: 'gratis',
+                  })
+                  : pack.priceShards}
+              </Text>
+            </View>
+          </View>
+          <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 4 }} numberOfLines={3}>
+            {desc}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 6 }}>
+            {pack.cardCount} {triLang(lang, {
+              ru: 'карточек',
+              uk: 'карток',
+              es: 'tarjetas',
+              'pt-BR': 'cartões',
+              vi: 'thẻ',
+              id: 'kartu',
+              tr: 'kart',
+              pl: 'fiszek',
+            })}
+          </Text>
+        </View>
+      </View>
+      {owned ? (
+        <View
+          style={{
+            marginTop: 12,
+            borderRadius: smallRadius,
+            paddingVertical: 12,
+            alignItems: 'center',
+            backgroundColor: `${t.correct}22`,
+            opacity: 0.9,
+          }}
+        >
+          <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
+            {triLang(lang, {
+              ru: 'Уже в карточках',
+              uk: 'Уже в картках',
+              es: 'Ya en Tarjetas',
+              'pt-BR': 'Já nos cartões',
+              vi: 'Đã có trong thẻ',
+              id: 'Sudah ada di Kartu',
+              tr: 'Zaten Kartlarda',
+              pl: 'Już w fiszkach',
+            })}
+          </Text>
+        </View>
+      ) : (
+        <View style={{ marginTop: 12, alignSelf: 'stretch', opacity: busy ? 0.75 : 1 }}>
+          <PressableScale disabled={busy} onPress={() => onPress(pack)} scaleTo={0.97}>
+            <ShopNeonCta
+              accent={voucherEligible ? t.gold : t.accent}
+              accentSoft={
+                voucherEligible
+                  ? `${t.gold}EB`
+                  : themeMode === 'dark'
+                  ? '#5DDC80'
+                  : `${t.accent}EB`
+              }
+              correctText={voucherEligible ? t.bgPrimary : t.correctText}
+              busy={busy}
+              label={
+                voucherEligible
+                  ? triLang(lang, {
+                    ru: '🎁 Использовать подарок',
+                    uk: '🎁 Використати подарунок',
+                    es: '🎁 Usar regalo',
+                    'pt-BR': '🎁 Usar presente',
+                    vi: '🎁 Dùng quà tặng',
+                    id: '🎁 Gunakan hadiah',
+                    tr: '🎁 Hediyeyi kullan',
+                    pl: '🎁 Użyj prezentu',
+                  })
+                  : triLang(lang, {
+                    // зачем: цена пака произвольная, а слово было захардкожено во
+                    // множественном («за 1 жемчужин»). «за» требует винительного.
+                    ru: `Открыть за ${pack.priceShards} ${ruKnowledgeShardsAccusativeAfterNumber(pack.priceShards)}`,
+                    uk: `Відкрити за ${pack.priceShards} ${ukKnowledgeShardsAccusativeAfterNumber(pack.priceShards)}`,
+                    es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
+                    'pt-BR': `Comprar por ${pack.priceShards} pérolas`,
+                    vi: `Mua với ${pack.priceShards} xu`,
+                    id: `Beli dengan ${pack.priceShards} koin`,
+                    tr: `${pack.priceShards} jeton ile satın al`,
+                    pl: `Kup za ${pack.priceShards} monet`,
+                  })
+              }
+              useLockIcon={false}
+              shadow={ctaShadow}
+              fontSize={f.body}
+              /* зачем: в списке блик отключён — см. комментарий у ShopCtaProps.shimmer */
+              shimmer={false}
+            />
+          </PressableScale>
+        </View>
+      )}
+    </View>
+  );
+});
 
 export default function ShardsShopScreen() {
   const router = useRouter();
@@ -534,6 +795,10 @@ export default function ShardsShopScreen() {
   const [balance, setBalance] = useState(() => peekLastKnownShardsBalance() ?? 0);
   const [packTrialHours, setPackTrialHours] = useState<number | null>(null);
   const [processingPackId, setProcessingPackId] = useState<string | null>(null);
+  useEffect(() => {
+    const subscription = subscribeAccountGeneration(() => setProcessingPackId(null));
+    return () => subscription.remove();
+  }, []);
   const [packagesByProductId, setPackagesByProductId] = useState<Record<string, PurchasesPackage>>(() => getWarmShardsPackagesMap() ?? {});
   /** Завершён getOfferings (успех или нет) — кнопки/подсказки, не мешаем с кэшем с диска. */
   const [storeChecked, setStoreChecked] = useState(
@@ -571,7 +836,18 @@ export default function ShardsShopScreen() {
   );
 
   const cardShadow = useMemo(() => isCompassTheme ? compassShadow(2) : getVolumetricShadow(themeMode, t, 2), [isCompassTheme, themeMode, t]);
+  // зачем: тень кнопки в карточке набора раньше считалась инлайном на каждый рендер —
+  // новый объект каждый раз ломал бы memo у MarketPackCard и заставлял перерисовывать
+  // весь список при любом обновлении экрана (баланс, таб, загрузка).
+  const packCtaShadow = useMemo(() => isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1), [isCompassTheme, themeMode, t]);
 
+  /**
+   * Сигнал перерисовки строк списка наборов.
+   * зачем: MarketPackCard обёрнут в memo — без этого FlashList не обновит уже
+   * отрисованные карточки после покупки (owned), во время покупки (busy),
+   * при появлении подарка или смене языка/темы. Держим только то, что реально
+   * влияет на вид строки, иначе теряется весь смысл мемоизации.
+   */
   /** Явная ширина: в ScrollView на Android «100%»/stretch иногда даёт разную ширину строк по контенту. */
   const packCardWidth = useMemo(() => {
     const safeInner = winW - insets.left - insets.right;
@@ -580,8 +856,10 @@ export default function ShardsShopScreen() {
     return Math.max(280, Math.floor(column - scrollPad));
   }, [winW, contentMaxW, insets.left, insets.right]);
 
-  const refreshBalance = useCallback(async () => {
+
+  const refreshBalance = useCallback(async (isCurrent: () => boolean = () => true) => {
     const next = await getShardsBalance();
+    if (!isCurrent()) return;
     setBalance(next);
   }, []);
 
@@ -663,29 +941,51 @@ export default function ShardsShopScreen() {
     }
   }, [officialCardPacksEnabled, studyTarget]);
 
-  const syncAfterStoreAction = useCallback(async () => {
-    await loadShardsFromCloud();
-    await refreshBalance();
+  const syncAfterStoreAction = useCallback(async (isCurrent: () => boolean = () => true) => {
+    await loadShardsFromCloud(isCurrent);
+    if (!isCurrent()) return;
+    await refreshBalance(isCurrent);
+    if (!isCurrent()) return;
     /** Не блокує UI paywall — оновлення каталогу асинхронно (Firestore інколи не відповідає). */
     if (shopTab === 'paid' || cardMarketFetchedOnce.current) {
       void loadCardMarket({ background: true, force: true });
     }
   }, [refreshBalance, loadCardMarket, shopTab]);
 
-  const waitForServerShardGrant = useCallback(async (startingBalance: number, expectedShards: number): Promise<number> => {
+  const waitForServerShardGrant = useCallback(async (
+    startingBalance: number,
+    expectedShards: number,
+    isCurrent: () => boolean = () => true,
+  ): Promise<number> => {
     const expectedBalance = startingBalance + expectedShards;
     for (let i = 0; i < 8; i += 1) {
       await new Promise(resolve => setTimeout(resolve, i === 0 ? 1200 : 2500));
-      await loadShardsFromCloud();
+      if (!isCurrent()) return startingBalance;
+      await loadShardsFromCloud(isCurrent);
+      if (!isCurrent()) return startingBalance;
       const next = await getShardsBalance();
+      if (!isCurrent()) return startingBalance;
       setBalance(next);
       if (next >= expectedBalance) return next;
     }
-    return getShardsBalance();
+    const finalBalance = await getShardsBalance();
+    return isCurrent() ? finalBalance : startingBalance;
   }, []);
 
   /** Активний 48-год ваучер: на вкладці «Картки» ціни замінюються іконкою подарка, paywall відкривається в voucher-режимі. */
   const hasActiveVoucher = packTrialHours != null && packTrialHours > 0;
+
+  /**
+   * Сигнал перерисовки строк списка наборов.
+   * зачем: MarketPackCard обёрнут в memo — без этого FlashList не обновит уже
+   * отрисованные карточки после покупки (owned), во время покупки (busy),
+   * при появлении подарка или смене языка/темы/ширины. Держим только то, что
+   * реально влияет на вид строки, иначе теряется весь смысл мемоизации.
+   */
+  const marketListExtraData = useMemo(
+    () => ({ ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, lang, themeMode, packCardWidth }),
+    [ownedPackIds, ownedResolved, buyingShardPackId, hasActiveVoucher, lang, themeMode, packCardWidth],
+  );
 
   const { openPaywall: openCardPackPaywall, CardPackPaywallModalEl: cardPackPaywallModal } = useCardPackShardPaywall({
     balance,
@@ -722,7 +1022,8 @@ export default function ShardsShopScreen() {
         // Дотягиваем pending-начисления из прошлых покупок (если вебхук задержался
         // дольше окна waitForServerShardGrant ~18с). resumePendingShardGrants сам
         // обновит баланс и покажет toast «+N осколков», когда облако подтвердит.
-        void resumePendingShardGrants().catch(() => {});
+        const resumeAccount = captureAccountGeneration();
+        void resumePendingShardGrants(resumeAccount).catch(() => {});
       })();
       // Повторный визит на экран: тихо обновляем список наборов; первый fetch только из useEffect ниже.
       if (shopTab === 'paid' && cardMarketFetchedOnce.current) {
@@ -822,27 +1123,27 @@ export default function ShardsShopScreen() {
   }, []);
 
   const shardTerm = triLang(lang, {
-    ru: 'монет',
-    uk: 'монет',
+    ru: 'жемчужин',
+    uk: 'перлин',
     es: shardsEsLc,
-    'pt-BR': 'moedas',
+    'pt-BR': 'pérolas',
     vi: 'xu',
     id: 'koin',
     tr: 'jeton',
     pl: 'monet',
   });
   const heroTitle = triLang(lang, {
-    ru: 'Монеты',
-    uk: 'Монети',
+    ru: 'Жемчуг',
+    uk: 'Перлини',
     es: `${BRAND_SHARDS_ES} de conocimiento`,
-    'pt-BR': 'Moedas de conhecimento',
+    'pt-BR': 'Pérolas de conhecimento',
     vi: 'Xu kiến thức',
     id: 'Koin pengetahuan',
     tr: 'Bilgi jetonları',
     pl: 'Monety wiedzy',
   });
   const heroSub = triLang(lang, {
-    ru: 'Трать монеты на вызовы, клуб и всё, что нужно прямо сейчас.',
+    ru: 'Трать жемчуг на вызовы, клуб и всё, что нужно прямо сейчас.',
     uk: 'Один пакет — більше дій: бонуси, клуб і швидкі покупки в застосунку.',
     es: 'Un paquete, más acciones: bonificaciones, club y compras rápidas en la app.',
     'pt-BR': 'Um pacote, mais ações: bônus, clube e compras rápidas no app.',
@@ -871,10 +1172,10 @@ export default function ShardsShopScreen() {
   const needLine = useMemo(() => {
     if (remainingNeed <= 0) return null;
     return triLang(lang, {
-      ru: `Нужно ещё ${remainingNeed} монет — выбери пакет ниже.`,
-      uk: `Не вистачає ще ${remainingNeed} монет — обери пакет нижче.`,
+      ru: `Нужно ещё ${remainingNeed} жемчужин — выбери пакет ниже.`,
+      uk: `Не вистачає ще ${remainingNeed} перлин — обери пакет нижче.`,
       es: `Te faltan ${remainingNeed} ${shardsEsLc} — elige un paquete abajo.`,
-      'pt-BR': `Faltam mais ${remainingNeed} moedas — escolha um pacote abaixo.`,
+      'pt-BR': `Faltam mais ${remainingNeed} pérolas — escolha um pacote abaixo.`,
       vi: `Bạn còn thiếu ${remainingNeed} xu — hãy chọn một gói bên dưới.`,
       id: `Masih kurang ${remainingNeed} koin — pilih paket di bawah.`,
       tr: `${remainingNeed} jeton daha gerekiyor — aşağıdan bir paket seç.`,
@@ -882,10 +1183,6 @@ export default function ShardsShopScreen() {
     });
   }, [lang, remainingNeed, shardsEsLc]);
 
-  const paidListY = useMemo(
-    () => paidListEnt.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }),
-    [paidListEnt],
-  );
   const heroY = useMemo(
     () => heroEnt.interpolate({ inputRange: [0, 1], outputRange: [24, 0] }),
     [heroEnt],
@@ -894,6 +1191,12 @@ export default function ShardsShopScreen() {
   const buyPack = useCallback(
     async (packId: string, productId: string, shards: number) => {
       if (processingPackId) return;
+      const operationAccount = captureAccountGeneration();
+      const isOperationCurrent = () => (
+        !!operationAccount.stableId
+        && isCurrentAccountGeneration(operationAccount, operationAccount.stableId)
+      );
+      if (!isOperationCurrent()) return;
       setProcessingPackId(packId);
       try {
         if (isDevStoreBypass) {
@@ -910,10 +1213,10 @@ export default function ShardsShopScreen() {
           void loadCardMarket({ background: true, force: true }).catch(() => {});
           emitAppEvent('action_toast', {
             type: 'success',
-            messageRu: `DEV: начислено ${shards} монет.`,
-            messageUk: `DEV: нараховано ${shards} монет.`,
+            messageRu: `DEV: начислено ${shards} жемчужин.`,
+            messageUk: `DEV: нараховано ${shards} перлин.`,
             messageEs: `DEV: se añadieron ${shards} ${BRAND_SHARDS_ES.toLowerCase()}.`,
-            messagePtBr: `DEV: ${shards} monedas adicionados.`,
+            messagePtBr: `DEV: ${shards} perlas adicionados.`,
             messageVi: `DEV: đã cộng ${shards} mảnh.`,
             messageId: `DEV: ${shards} shard ditambahkan.`,
             messageTr: `DEV: ${shards} parça eklendi.`,
@@ -921,8 +1224,13 @@ export default function ShardsShopScreen() {
           });
           return;
         }
-        await initRevenueCat();
-        if (!(await Purchases.isConfigured())) {
+        await initRevenueCat(isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        if (!(await syncRevenueCatIdentity(isOperationCurrent))) return;
+        if (!isOperationCurrent()) return;
+        const purchasesConfigured = await Purchases.isConfigured();
+        if (!isOperationCurrent()) return;
+        if (!purchasesConfigured) {
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Платежи временно недоступны. Подожди несколько секунд и попробуй снова.',
@@ -953,20 +1261,70 @@ export default function ShardsShopScreen() {
           return;
         }
         const beforePurchaseBalance = await getShardsBalance();
-        const purchaseResult = await Purchases.purchasePackage(pkg);
+        if (!isOperationCurrent()) return;
+        const purchaseOperation = await runRevenueCatOperationForGeneration(
+          operationAccount,
+          () => Purchases.purchasePackage(pkg),
+        );
+        if (purchaseOperation.status !== 'ok') return;
+        const purchaseResult = purchaseOperation.value;
         // СРАЗУ записываем pending — даже если вебхук задержится или упадёт,
         // `resumePendingShardGrants` при следующем заходе в магазин/на главную
         // дотянет осколки. Без этого деньги списывались, а осколки молча терялись.
-        const purchaseTxId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
-          ?.transaction?.transactionIdentifier
-          ?? `${productId}:${Date.now()}`;
-        await recordPendingShardGrant({
+        const storeTransactionId = (purchaseResult as { transaction?: { transactionIdentifier?: string } } | undefined)
+          ?.transaction?.transactionIdentifier?.trim() || null;
+        const journalResult = await recordPendingShardGrant(operationAccount, {
+          journalId: Crypto.randomUUID(),
+          storeTransactionId: storeTransactionId,
           productId,
-          transactionId: purchaseTxId,
           expectedShards: shards,
           beforeBalance: beforePurchaseBalance,
           createdAtMs: Date.now(),
-        }).catch(() => {});
+        }).catch(() => ({ status: 'storage_unavailable' as const }));
+        if (!isOperationCurrent() || journalResult.status === 'stale') return;
+        if (journalResult.status !== 'recorded') {
+          await markPendingShardRecoveryNeeded(operationAccount).catch(() => false);
+          if (!isOperationCurrent()) return;
+          emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Оплата прошла, автоматическое восстановление не сохранено; не повторяйте покупку, обновим баланс автоматически.',
+            messageUk: 'Оплата пройшла, автоматичне відновлення не збережено; не повторюйте покупку, баланс оновимо автоматично.',
+            messageEs: 'El pago se completó, pero no se guardó la recuperación automática. No repitas la compra; actualizaremos el saldo automáticamente.',
+            messagePtBr: 'O pagamento foi concluído, mas a recuperação automática não foi salva. Não repita a compra; atualizaremos o saldo automaticamente.',
+            messageVi: 'Thanh toán đã hoàn tất nhưng chưa lưu được khôi phục tự động. Đừng mua lại; số dư sẽ tự cập nhật.',
+            messageId: 'Pembayaran berhasil, tetapi pemulihan otomatis tidak tersimpan. Jangan ulangi pembelian; saldo akan diperbarui otomatis.',
+            messageTr: 'Ödeme tamamlandı ancak otomatik kurtarma kaydedilemedi. Satın almayı tekrarlamayın; bakiye otomatik güncellenecek.',
+            messagePl: 'Płatność zakończona, ale automatyczne odzyskiwanie nie zostało zapisane. Nie kupuj ponownie; saldo zaktualizujemy automatycznie.',
+          });
+          const recoveredBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
+          if (!isOperationCurrent()) return;
+          await syncAfterStoreAction(isOperationCurrent);
+          if (!isOperationCurrent()) return;
+          if (recoveredBalance >= beforePurchaseBalance + shards) {
+            const eligibleAchievementBalance = await getShardAchievementEligibleBalance(recoveredBalance);
+            if (!isOperationCurrent()) return;
+            emitAppEvent('shards_balance_updated', {
+              balance: recoveredBalance,
+              op: 'earn',
+              reason: 'shards_store_purchase',
+              eligibleAchievementBalance,
+            });
+            await clearPendingShardRecoveryNeeded(operationAccount).catch(() => false);
+            if (!isOperationCurrent()) return;
+            emitAppEvent('action_toast', {
+              type: 'success',
+              messageRu: `Готово: +${shards} жемчужин`,
+              messageUk: `Готово: +${shards} перлин`,
+              messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
+              messagePtBr: `Pronto: +${shards} perlas`,
+              messageVi: `Xong: +${shards} mảnh`,
+              messageId: `Selesai: +${shards} shard`,
+              messageTr: `Tamam: +${shards} parça`,
+              messagePl: `Gotowe: +${shards} monet`,
+            });
+          }
+          return;
+        }
         logShardsPurchased(productId, shards);
         void trackShardPackPurchase(packId).catch(() => {});
         void trackActivity('shards_shop:purchase_success', {
@@ -987,23 +1345,28 @@ export default function ShardsShopScreen() {
           messageTr: 'Satın alma onaylandı.',
           messagePl: 'Zakup potwierdzony.',
         });
-        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards);
-        await syncAfterStoreAction();
+        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards, isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        await syncAfterStoreAction(isOperationCurrent);
+        if (!isOperationCurrent()) return;
+        const eligibleAchievementBalance = await getShardAchievementEligibleBalance(nextBalance);
+        if (!isOperationCurrent()) return;
         emitAppEvent('shards_balance_updated', {
           balance: nextBalance,
           op: 'earn',
           reason: 'shards_store_purchase',
-          eligibleAchievementBalance: await getShardAchievementEligibleBalance(nextBalance),
+          eligibleAchievementBalance,
         });
         if (nextBalance >= beforePurchaseBalance + shards) {
           // Дошёл — закрываем pending запись.
-          void clearPendingShardGrant(purchaseTxId).catch(() => {});
+          const cleared = await clearPendingShardGrant(operationAccount, journalResult.journalId).catch(() => false);
+          if (!cleared || !isOperationCurrent()) return;
           emitAppEvent('action_toast', {
             type: 'success',
-            messageRu: `Готово: +${shards} монет`,
-            messageUk: `Готово: +${shards} монет`,
+            messageRu: `Готово: +${shards} жемчужин`,
+            messageUk: `Готово: +${shards} перлин`,
             messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
-            messagePtBr: `Pronto: +${shards} monedas`,
+            messagePtBr: `Pronto: +${shards} perlas`,
             messageVi: `Xong: +${shards} mảnh`,
             messageId: `Selesai: +${shards} shard`,
             messageTr: `Tamam: +${shards} parça`,
@@ -1012,10 +1375,10 @@ export default function ShardsShopScreen() {
         } else {
           emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Оплата принята. Монеты появятся через пару минут.',
-            messageUk: 'Оплату прийнято. Монети з\'являться за пару хвилин.',
-            messageEs: 'Pago recibido. Los monedas aparecerán en un par de minutos.',
-            messagePtBr: 'Pagamento recebido. Os monedas aparecerão em alguns minutos.',
+            messageRu: 'Оплата принята. Жемчуг появится через пару минут.',
+            messageUk: 'Оплату прийнято. Перлини з\'являться за пару хвилин.',
+            messageEs: 'Pago recibido. Los perlas aparecerán en un par de minutos.',
+            messagePtBr: 'Pagamento recebido. Os perlas aparecerão em alguns minutos.',
             messageVi: 'Đã nhận thanh toán. Mảnh sẽ xuất hiện sau vài phút.',
             messageId: 'Pembayaran diterima. Shard akan muncul dalam beberapa menit.',
             messageTr: 'Ödeme alındı. Parçalar birkaç dakika içinde görünecek.',
@@ -1023,6 +1386,7 @@ export default function ShardsShopScreen() {
           });
         }
       } catch (e: any) {
+        if (!isOperationCurrent()) return;
         if (e?.userCancelled) return;
         emitAppEvent('action_toast', {
           type: 'error',
@@ -1036,7 +1400,7 @@ export default function ShardsShopScreen() {
           messagePl: 'Błąd zakupu. Spróbuj ponownie.',
         });
       } finally {
-        setProcessingPackId(null);
+        if (isOperationCurrent()) setProcessingPackId(null);
       }
     },
     [syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket, waitForServerShardGrant],
@@ -1052,6 +1416,11 @@ export default function ShardsShopScreen() {
   );
 
   const renderPackCard = (pack: ShardsPack, cardW: number) => {
+    // зачем: витрина обещала «35 осколков +5 бонус», хотя 35 — это УЖЕ база 30 + бонус 5
+    // (см. shards_shop_catalog.ts и сервер SHARD_PACKS_BY_PRODUCT_ID: начисляется ровно 35).
+    // Бонус считался дважды в подаче, человек ждал 40 и получал 35 — обман в витрине.
+    // Теперь слева база (pack.shards), справа бонус (pack.bonusShards), сумма = totalShards
+    // = ровно то, что зачислит сервер. totalShards остаётся для самой покупки и аналитики.
     const totalShards = totalShardsFromPack(pack);
     const pkg = packagesByProductId[pack.productId];
     const priceHint = pricesFromDisk[pack.productId];
@@ -1197,7 +1566,7 @@ export default function ShardsShopScreen() {
                     }}
                     numberOfLines={2}
                   >
-                    {totalShards} {shardsLabel}
+                    {pack.shards} {shardsLabel}
                   </Text>
                   {pack.bonusShards > 0 ? (
                     <View
@@ -1322,7 +1691,7 @@ export default function ShardsShopScreen() {
               >
                 {isGoldTheme && <GoldBevel radius={17} intensity="normal" />}
                 {isCompassTheme && <CompassBevel radius={9} intensity="normal" />}
-                <Image source={coinIconForBalance(balance)} style={{ width: 24, height: 24 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: `Баланс: ${balance} монет`, uk: `Баланс: ${balance} монет`, es: `Saldo: ${balance} monedas`, 'pt-BR': `Saldo: ${balance} moedas`, vi: `Số dư: ${balance} xu`, id: `Saldo: ${balance} koin`, tr: `Bakiye: ${balance} jeton`, pl: `Saldo: ${balance} monet` })} />
+                <Image source={coinIconForBalance(balance, themeMode)} style={{ width: 24, height: 24 }} contentFit="contain" accessibilityLabel={triLang(lang, { ru: `Баланс: ${balance} жемчужин`, uk: `Баланс: ${balance} перлин`, es: `Saldo: ${balance} perlas`, 'pt-BR': `Saldo: ${balance} pérolas`, vi: `Số dư: ${balance} ngọc trai`, id: `Saldo: ${balance} mutiara`, tr: `Bakiye: ${balance} inci`, pl: `Saldo: ${balance} pereł` })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{balance}</Text>
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
                 {hasActiveVoucher && shopTab === 'paid' && (
@@ -1357,10 +1726,10 @@ export default function ShardsShopScreen() {
               const label =
                 key === 'catalog'
                   ? triLang(lang, {
-                    ru: 'Монеты',
-                    uk: 'Монети',
+                    ru: 'Жемчуг',
+                    uk: 'Перлини',
                     es: BRAND_SHARDS_ES,
-                    'pt-BR': 'Moedas',
+                    'pt-BR': 'Pérolas',
                     vi: 'Xu',
                     id: 'Koin',
                     tr: 'Jetonlar',
@@ -1417,7 +1786,7 @@ export default function ShardsShopScreen() {
             {/* Вход на «Биржу» — обмен монет на звёзды (спека §6).
                 зачем: фича скрыта из публичной сборки по решению владельца, но код/маршрут
                 остаются рабочими для dev/QA — тот же флаг, что и остальные dev-only входы. */}
-            {ENABLE_DEV_TOOLS && (
+            {false && ENABLE_DEV_TOOLS && (
             <View style={{ minWidth: 0, minHeight: 48, justifyContent: 'center' }}>
               <PressableScale
                 onPress={() => router.push('/coin_exchange' as any)}
@@ -1425,10 +1794,10 @@ export default function ShardsShopScreen() {
                 withHaptic
                 accessibilityRole="button"
                 accessibilityLabel={triLang(lang, {
-                  ru: 'Биржа: обмен монет на звёзды',
-                  uk: 'Біржа: обмін монет на зірки',
-                  es: 'Intercambio: cambia monedas por estrellas',
-                  'pt-BR': 'Câmbio: troque moedas por estrelas',
+                  ru: 'Биржа: обмен жемчуга на звёзды',
+                  uk: 'Біржа: обмін перлин на зірки',
+                  es: 'Intercambio: cambia perlas por estrellas',
+                  'pt-BR': 'Câmbio: troque pérolas por estrelas',
                   vi: 'Sàn giao dịch: đổi xu lấy sao',
                   id: 'Bursa: tukar koin dengan bintang',
                   tr: 'Borsa: jetonları yıldızla değiştir',
@@ -1471,35 +1840,31 @@ export default function ShardsShopScreen() {
           </View>
           </View>
 
-          <BouncyScrollView
-            style={{ zIndex: 0 }}
-            decelerationRate="normal"
-            contentContainerStyle={{
-              paddingHorizontal: 16,
-              paddingBottom: 40,
-              paddingTop: 2,
-              alignItems: 'stretch',
-              flexGrow: 1,
-              width: '100%',
-            }}
-            showsVerticalScrollIndicator={false}
-            scrollEventThrottle={16}
-          >
-            {/**
-             * Обе вкладки рендерятся всегда — переключение через display:none.
-             * Это сохраняет состояние Image / Animated values / shimmer и убирает «моргание»
-             * при ре-маунте дерева, который происходил при условном рендере.
-             */}
-            <View style={{ display: shopTab === 'paid' ? 'flex' : 'none' }}>
-              <>
+          {/**
+            * Вкладка «Карточки» — собственный виртуализованный список (FlashList).
+            * зачем: раньше обе вкладки жили внутри одного ScrollView и все наборы
+            * рендерились разом — при 20-30 паках скролл ощутимо лагал. Теперь в памяти
+            * только видимые карточки. Вкладка «Жемчуг» осталась в ScrollView ниже:
+            * там короткий статичный контент, виртуализация не нужна.
+            * Обе вкладки по-прежнему смонтированы всегда (display:none) — это сохраняет
+            * состояние картинок и убирает «моргание» при переключении.
+            */}
+          <View style={{ flex: 1, display: shopTab === 'paid' ? 'flex' : 'none' }}>
+            <FlashList
+              data={marketPacks}
+              keyExtractor={(item) => `mkt_${item.id}`}
+              extraData={marketListExtraData}
+              showsVerticalScrollIndicator={false}
+              contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, paddingTop: 2 }}
+              ListHeaderComponent={
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                   <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                     {triLang(lang, {
-                      ru: 'Наборы за монеты',
-                      uk: 'Набори за монети',
+                      ru: 'Наборы за жемчуг',
+                      uk: 'Набори за перлини',
                       es: `Paquetes por ${shardsEsLc}`,
-                      'pt-BR': 'Pacotes por moedas',
+                      'pt-BR': 'Pacotes por pérolas',
                       vi: 'Gói đổi bằng xu',
                       id: 'Paket dengan koin',
                       tr: 'Jetonlarla paketler',
@@ -1509,7 +1874,8 @@ export default function ShardsShopScreen() {
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                 </View>
 
-                {marketPacks.length === 0 ? (
+              }
+              ListEmptyComponent={
                   <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginBottom: 16 }}>
                     {!officialCardPacksEnabled
                       ? frenchCardPacksGateCopy.body
@@ -1524,205 +1890,8 @@ export default function ShardsShopScreen() {
                           pl: 'Lista pakietów jest tymczasowo niedostępna.',
                         })}
                   </Text>
-                ) : (
-                  <RNAnim.View
-                    style={{
-                      opacity: paidListEnt,
-                      transform: [{ translateY: paidListY }],
-                    }}
-                  >
-                  {marketPacks.map((pack) => {
-                    // зачем: пока owned-статус не подтверждён (ownedResolved=false — ни warm-кэш,
-                    // ни fetch ещё не отдали ответ), НЕ считаем пак «не куплен» — раньше здесь
-                    // всегда было ownedPackIds.includes(...) с [] по умолчанию, из-за чего все
-                    // карточки на миг показывали «не куплено», а через доли секунды перекрашивались
-                    // в «куплено». Теперь до resolve owned трактуем как «неизвестно» = не owned-purchased UI,
-                    // но и не блокируем повторный тап (buyingShardPackId разрулит гонки).
-                    const owned = ownedResolved && ownedPackIds.includes(pack.id);
-                    const busy = buyingShardPackId === pack.id;
-                    const title = packTitleForInterface(pack, lang);
-                    const desc = packDescriptionForInterface(pack, lang);
-                    const packArt = packTileImageForPack(pack);
-                    const packIon = packCategoryIonIcon(pack.category) as keyof typeof Ionicons.glyphMap;
-                    /** Цей пак можна забрати безкоштовно за активним 48-год подарунком (лише офіційні, не community). */
-                    const voucherEligible = hasActiveVoucher && !pack.isCommunityUgc && !owned;
-                    return (
-                      <View
-                        key={`mkt_${pack.id}`}
-                        style={{
-                          width: packCardWidth,
-                          alignSelf: 'center',
-                          marginBottom: 12,
-                          borderRadius: shopRadius,
-                          borderWidth: 0,
-                          borderColor: owned ? `${t.correct}55` : isCompassTheme ? COMPASS_RICH.hairlineQuiet : isPaywallAtmosphereMode(themeMode) ? `${t.accent}1F` : t.border,
-                          backgroundColor: shopCardBg,
-                          padding: 14,
-                          overflow: 'hidden',
-                          ...cardShadow,
-                        }}
-                      >
-                        {isCompassTheme ? <CompassBevel radius={shopRadius} /> : null}
-                        <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
-                          <View
-                            style={{
-                              width: 60,
-                              height: 60,
-                              borderRadius: isCompassTheme ? 9 : 16,
-                              borderWidth: 0,
-                              borderColor: isCompassTheme ? COMPASS_RICH.hairline : t.border,
-                              backgroundColor: shopSurfaceBg,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              overflow: 'hidden',
-                            }}
-                          >
-                            <ShopIconImageWithFallback
-                              source={packArt}
-                              size={50}
-                              fallbackName={packIon}
-                              fallbackColor={t.textPrimary}
-                              recyclingKey={pack.id}
-                            />
-                          </View>
-                          <View style={{ flex: 1, minWidth: 0 }}>
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', gap: 10 }}>
-                              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h3, fontWeight: '700' }} numberOfLines={2}>
-                                {title}
-                              </Text>
-                              <View
-                                style={{
-                                  flexDirection: 'row',
-                                  alignItems: 'center',
-                                  gap: 6,
-                                  borderRadius: isCompassTheme ? 7 : 10,
-                                  paddingHorizontal: 10,
-                                  paddingVertical: 5,
-                                  backgroundColor: isCompassTheme ? COMPASS_RICH.washStrong : voucherEligible ? `${t.gold}22` : `${t.accent}22`,
-                                  borderWidth: 0,
-                                  borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : voucherEligible ? `${t.gold}66` : `${t.accent}44`,
-                                }}
-                              >
-                                {voucherEligible ? (
-                                  <Text style={{ color: t.gold, fontSize: f.caption, fontWeight: '900' }}>🎁</Text>
-                                ) : (
-                                  <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 22, height: 22 }} contentFit="contain" />
-                                )}
-                                <Text style={{ color: isCompassTheme ? COMPASS_RICH.champagne : voucherEligible ? t.gold : t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>
-                                  {voucherEligible
-                                    ? triLang(lang, {
-                                      ru: 'беспл.',
-                                      uk: 'безкошт.',
-                                      es: 'gratis',
-                                      'pt-BR': 'grátis',
-                                      vi: 'miễn phí',
-                                      id: 'gratis',
-                                      tr: 'ücretsiz',
-                                      pl: 'gratis',
-                                    })
-                                    : pack.priceShards}
-                                </Text>
-                              </View>
-                            </View>
-                            <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 4 }} numberOfLines={3}>
-                              {desc}
-                            </Text>
-                            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 6 }}>
-                              {pack.cardCount} {triLang(lang, {
-                                ru: 'карточек',
-                                uk: 'карток',
-                                es: 'tarjetas',
-                                'pt-BR': 'cartões',
-                                vi: 'thẻ',
-                                id: 'kartu',
-                                tr: 'kart',
-                                pl: 'fiszek',
-                              })}
-                            </Text>
-                          </View>
-                        </View>
-                        {owned ? (
-                          <View
-                            style={{
-                              marginTop: 12,
-                              borderRadius: shopSmallRadius,
-                              paddingVertical: 12,
-                              alignItems: 'center',
-                              backgroundColor: `${t.correct}22`,
-                              opacity: 0.9,
-                            }}
-                          >
-                            <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                              {triLang(lang, {
-                                ru: 'Уже в карточках',
-                                uk: 'Уже в картках',
-                                es: 'Ya en Tarjetas',
-                                'pt-BR': 'Já nos cartões',
-                                vi: 'Đã có trong thẻ',
-                                id: 'Sudah ada di Kartu',
-                                tr: 'Zaten Kartlarda',
-                                pl: 'Już w fiszkach',
-                              })}
-                            </Text>
-                          </View>
-                        ) : (
-                          <View style={{ marginTop: 12, alignSelf: 'stretch', opacity: busy ? 0.75 : 1 }}>
-                            <PressableScale
-                              disabled={busy}
-                              onPress={() => promptBuyCardPack(pack)}
-                              scaleTo={0.97}
-                            >
-                              <ShopNeonCta
-                                accent={isCompassTheme ? COMPASS_RICH.champagne : voucherEligible ? t.gold : t.accent}
-                                accentSoft={
-                                  isCompassTheme
-                                    ? COMPASS_RICH.cream
-                                    : voucherEligible
-                                    ? `${t.gold}EB`
-                                    : false
-                                    ? '#DFFF4A'
-                                    : themeMode === 'dark'
-                                    ? '#5DDC80'
-                                    : `${t.accent}EB`
-                                }
-                                correctText={isCompassTheme ? COMPASS_RICH.textDark : voucherEligible ? t.bgPrimary : t.correctText}
-                                busy={busy}
-                                label={
-                                  voucherEligible
-                                    ? triLang(lang, {
-                                      ru: '🎁 Использовать подарок',
-                                      uk: '🎁 Використати подарунок',
-                                      es: '🎁 Usar regalo',
-                                      'pt-BR': '🎁 Usar presente',
-                                      vi: '🎁 Dùng quà tặng',
-                                      id: '🎁 Gunakan hadiah',
-                                      tr: '🎁 Hediyeyi kullan',
-                                      pl: '🎁 Użyj prezentu',
-                                    })
-                                    : triLang(lang, {
-                                      ru: `Открыть за ${pack.priceShards} монет`,
-                                      uk: `Відкрити за ${pack.priceShards} монет`,
-                                      es: `Comprar por ${pack.priceShards} ${shardsEsLc}`,
-                                      'pt-BR': `Comprar por ${pack.priceShards} moedas`,
-                                      vi: `Mua với ${pack.priceShards} xu`,
-                                      id: `Beli dengan ${pack.priceShards} koin`,
-                                      tr: `${pack.priceShards} jeton ile satın al`,
-                                      pl: `Kup za ${pack.priceShards} monet`,
-                                    })
-                                }
-                                useLockIcon={false}
-                                shadow={isCompassTheme ? compassShadow(1) : getVolumetricShadow(themeMode, t, 1)}
-                                fontSize={f.body}
-                              />
-                            </PressableScale>
-                          </View>
-                        )}
-                      </View>
-                    );
-                  })}
-                  </RNAnim.View>
-                )}
-
+              }
+              ListFooterComponent={
                 <View
                   style={{
                     flexDirection: 'row',
@@ -1737,8 +1906,58 @@ export default function ShardsShopScreen() {
                     {storePaymentCopy.cardPurchase}
                   </Text>
                 </View>
-              </>
-            </View>
+              }
+              renderItem={({ item: pack }) => {
+                // зачем: пока owned-статус не подтверждён (ownedResolved=false — ни warm-кэш,
+                // ни fetch ещё не отдали ответ), НЕ считаем пак «не куплен» — иначе все
+                // карточки на миг показывают «не куплено» и через доли секунды перекрашиваются.
+                const owned = ownedResolved && ownedPackIds.includes(pack.id);
+                /** Цей пак можна забрати безкоштовно за активним 48-год подарунком (лише офіційні, не community). */
+                const voucherEligible = hasActiveVoucher && !pack.isCommunityUgc && !owned;
+                return (
+                  <MarketPackCard
+                    pack={pack}
+                    lang={lang}
+                    owned={owned}
+                    busy={buyingShardPackId === pack.id}
+                    voucherEligible={voucherEligible}
+                    width={packCardWidth}
+                    radius={shopRadius}
+                    smallRadius={shopSmallRadius}
+                    cardBg={shopCardBg}
+                    surfaceBg={shopSurfaceBg}
+                    cardShadow={cardShadow}
+                    ctaShadow={packCtaShadow}
+                    themeMode={themeMode}
+                    t={t}
+                    f={f}
+                    shardsEsLc={shardsEsLc}
+                    onPress={promptBuyCardPack}
+                  />
+                );
+              }}
+            />
+          </View>
+
+          {/**
+            * Вкладка «Жемчуг». Дерево остаётся смонтированным при переключении
+            * (display:none, а не размонтирование) — сохраняются картинки и анимации,
+            * нет «моргания». На скрытой вкладке лупы стоят: см. active-пропсы ниже.
+            */}
+          <BouncyScrollView
+            style={{ zIndex: 0, display: shopTab === 'catalog' ? 'flex' : 'none' }}
+            decelerationRate="normal"
+            contentContainerStyle={{
+              paddingHorizontal: 16,
+              paddingBottom: 40,
+              paddingTop: 2,
+              alignItems: 'stretch',
+              flexGrow: 1,
+              width: '100%',
+            }}
+            showsVerticalScrollIndicator={false}
+            scrollEventThrottle={16}
+          >
             <View style={{ display: shopTab === 'catalog' ? 'flex' : 'none' }}>
               <>
             <RNAnim.View
@@ -1757,7 +1976,7 @@ export default function ShardsShopScreen() {
                   <View style={{ position: 'absolute', top: -40, right: -30, width: 140, height: 140, borderRadius: 70, backgroundColor: isCompassTheme ? COMPASS_RICH.wash : `${t.accent}12` }} />
                   <View style={{ position: 'absolute', bottom: -50, left: -20, width: 120, height: 120, borderRadius: 60, backgroundColor: isCompassTheme ? COMPASS_RICH.copperWash : `${t.gold}10` }} />
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
-                    <PulsingShardFrame width={72} height={72} borderRadius={22} big>
+                    <PulsingShardFrame width={72} height={72} borderRadius={22} big active={shopTab === 'catalog'}>
                       <View
                         style={{
                           width: 72,
@@ -1770,7 +1989,7 @@ export default function ShardsShopScreen() {
                           justifyContent: 'center',
                         }}
                       >
-                        <Image source={coinIconForBalance(balance)} style={{ width: 52, height: 52 }} contentFit="contain" />
+                        <Image source={coinIconForBalance(balance, themeMode)} style={{ width: 52, height: 52 }} contentFit="contain" />
                       </View>
                     </PulsingShardFrame>
                     <View style={{ flex: 1, minWidth: 0 }}>
@@ -1822,10 +2041,10 @@ export default function ShardsShopScreen() {
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '800', letterSpacing: 1, textTransform: 'uppercase' }}>
                 {triLang(lang, {
-                  ru: 'Монеты за деньги',
-                  uk: 'Монети за гроші',
+                  ru: 'Жемчуг за деньги',
+                  uk: 'Перлини за гроші',
                   es: `${BRAND_SHARDS_ES} (pago)`,
-                  'pt-BR': 'Moedas (pagamento)',
+                  'pt-BR': 'Pérolas (pagamento)',
                   vi: 'Xu (thanh toán)',
                   id: 'Koin (pembayaran)',
                   tr: 'Jetonlar (ödeme)',

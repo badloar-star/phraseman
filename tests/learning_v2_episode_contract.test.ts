@@ -12,9 +12,16 @@ import { buildLearningEvidenceTupleKey } from "../modules/learning-v2/contracts/
 import {
   validateV2CheckpointContract,
   validateV2CurriculumProjection,
+  validateV2EpisodeContract,
   validateV2LearningPackage,
 } from "../modules/learning-v2/contracts/validation";
+import {
+  buildValidSessionSet,
+  buildV2E1,
+  readLegacyE1,
+} from "./support/learning_v2_session_builders";
 import { hashCanonicalBody } from "../modules/learning-v2/policies/decision_registry";
+import { FUNCTIONS_V2_CONTRACT_MANIFEST } from "../functions/src/learning_v2/contracts";
 
 type JsonRecord = Record<string, unknown>;
 type Mutation = {
@@ -523,6 +530,15 @@ const validCheckpoint = {
 };
 
 describe("Learning V2 Task 1.2 — canonical activity and E1 contract", () => {
+  test("publishes the same schema/hash manifest to the Functions mirror", () => {
+    expect(FUNCTIONS_V2_CONTRACT_MANIFEST).toMatchObject({
+      packageSchemaVersion: "learning-v2-contract-fixture.v1",
+      episodeSchemaVersion: "v2-episode-contract.v1",
+      curriculumSchemaVersion: "v2-curriculum-contract.v1",
+      canonicalJsonVersion: "canonical-json.v1",
+      hashAlgorithm: "sha256-utf8",
+    });
+  });
   test("exports the exact exhaustive 17-family taxonomy and no checkpoint family", () => {
     expect(V2_ACTIVITY_FAMILIES).toEqual(exactFamilies);
     expect(V2_ACTIVITY_FAMILIES).toHaveLength(17);
@@ -3464,5 +3480,512 @@ describe("Learning V2 Task 1.2 — compile and purity boundaries", () => {
     expect(source).not.toMatch(
       /(?:from|require\s*\()\s*['"](?:react|react-native|expo|firebase|firebase-admin|@firebase|@react-native-firebase|admin\/|functions\/)/,
     );
+  });
+});
+
+describe("Learning V2 Task 0 — explicit Episode v1/v2 dispatch", () => {
+  test("keeps the legacy v1 fixture readable without reinterpretation", () => {
+    const legacy = readLegacyE1();
+    expect(validateV2EpisodeContract(legacy)).toMatchObject({
+      ok: true,
+      value: { schemaVersion: "v2-episode-contract.v1" },
+    });
+    expect(legacy).not.toHaveProperty("sessionSetRef");
+  });
+
+  test("preserves legacy v1 missing-field issue order", () => {
+    const candidate = clone(validFixture);
+    const episode = candidate.episode as JsonRecord;
+    delete episode.episodeId;
+    delete episode.title;
+
+    expect(validateV2LearningPackage(candidate, validationContext)).toEqual({
+      ok: false,
+      issues: [
+        {
+          code: "field_missing",
+          path: "$.episode.episodeId",
+          severity: "blocking",
+          waivable: false,
+        },
+        {
+          code: "field_missing",
+          path: "$.episode.title",
+          severity: "blocking",
+          waivable: false,
+        },
+      ],
+    });
+  });
+
+  test.each([30, 36, 48])(
+    "accepts standalone v2 aggregate estimatedMinutes=%s without using the legacy package registry range",
+    (estimatedMinutes) => {
+      const result = validateV2EpisodeContract({
+        ...buildV2E1(),
+        estimatedMinutes,
+      });
+      if (!result.ok) throw new Error(JSON.stringify(result.issues));
+      expect(result).toMatchObject({
+        ok: true,
+        value: {
+          schemaVersion: "v2-episode-contract.v2",
+          estimatedMinutes,
+        },
+      });
+    },
+  );
+
+  test("pins the v2 Episode ref to the canonical SessionSet body hash", () => {
+    const sessionSet = buildValidSessionSet();
+    expect(buildV2E1().sessionSetRef).toEqual({
+      episodeId: sessionSet.episodeId,
+      version: sessionSet.version,
+      contentHash: hashCanonicalBody(sessionSet),
+    });
+  });
+
+  test("accepts v2 package structural/ref shape while runtime SessionSet body/hash resolution remains deferred", () => {
+    const candidate = clone(validFixture);
+    candidate.episode = {
+      ...(candidate.episode as JsonRecord),
+      schemaVersion: "v2-episode-contract.v2",
+      estimatedMinutes: 36,
+      sessionSetRef: clone(buildV2E1().sessionSetRef),
+    };
+    setEpisodeContentHash(candidate);
+
+    expect(validateV2LearningPackage(candidate, validationContext)).toEqual({
+      ok: true,
+      issues: [],
+      value: candidate,
+    });
+  });
+
+  test("reports the same required-ref issue for standalone and packaged v2 episodes", () => {
+    const standalone = clone(buildV2E1()) as unknown as JsonRecord;
+    delete standalone.sessionSetRef;
+
+    const packaged = clone(validFixture);
+    packaged.episode = {
+      ...(packaged.episode as JsonRecord),
+      schemaVersion: "v2-episode-contract.v2",
+      estimatedMinutes: 36,
+    };
+    delete (packaged.episode as JsonRecord).sessionSetRef;
+    setEpisodeContentHash(packaged);
+
+    const expected = {
+      ok: false,
+      issues: [
+        {
+          code: "episode_session_set_ref_required",
+          path: "$.episode.sessionSetRef",
+          severity: "blocking",
+          waivable: false,
+        },
+      ],
+    };
+    expect(validateV2EpisodeContract(standalone)).toEqual(expected);
+    expect(validateV2LearningPackage(packaged, validationContext)).toEqual(
+      expected,
+    );
+  });
+
+  test("reports the same required-ref issue for explicit undefined in standalone and packaged v2 episodes", () => {
+    const standalone = clone(buildV2E1()) as unknown as JsonRecord;
+    Object.defineProperty(standalone, "sessionSetRef", {
+      enumerable: true,
+      value: undefined,
+      writable: true,
+    });
+
+    const packaged = clone(validFixture);
+    packaged.episode = {
+      ...(packaged.episode as JsonRecord),
+      schemaVersion: "v2-episode-contract.v2",
+      estimatedMinutes: 36,
+      sessionSetRef: undefined,
+    };
+
+    const expected = {
+      ok: false,
+      issues: [
+        {
+          code: "episode_session_set_ref_required",
+          path: "$.episode.sessionSetRef",
+          severity: "blocking",
+          waivable: false,
+        },
+      ],
+    };
+    expect(validateV2EpisodeContract(standalone)).toEqual(expected);
+    expect(validateV2LearningPackage(packaged, validationContext)).toEqual(
+      expected,
+    );
+  });
+
+  test("rejects a session-set ref accessor at the same exact path without invoking it", () => {
+    const standalone = clone(buildV2E1()) as unknown as JsonRecord;
+    const packaged = clone(validFixture);
+    packaged.episode = {
+      ...(packaged.episode as JsonRecord),
+      schemaVersion: "v2-episode-contract.v2",
+      estimatedMinutes: 36,
+      sessionSetRef: clone(buildV2E1().sessionSetRef),
+    };
+    let getterCalled = false;
+    for (const episode of [standalone, packaged.episode as JsonRecord]) {
+      Object.defineProperty(episode, "sessionSetRef", {
+        configurable: true,
+        enumerable: true,
+        get: () => {
+          getterCalled = true;
+          throw new TypeError("sessionSetRef accessor must not run");
+        },
+      });
+    }
+
+    const expected = [
+      {
+        code: "contract_input_invalid",
+        path: "$.episode.sessionSetRef",
+      },
+    ];
+    expect(issueSummary(validateV2EpisodeContract(standalone))).toEqual(
+      expected,
+    );
+    expect(getterCalled).toBe(false);
+    expect(
+      issueSummary(validateV2LearningPackage(packaged, validationContext)),
+    ).toEqual(expected);
+    expect(getterCalled).toBe(false);
+  });
+
+  test.each(["missing", "undefined"] as const)(
+    "keeps %s session-set ref below a hostile title accessor for standalone/package parity",
+    (sessionSetRefState) => {
+      const standalone = clone(buildV2E1()) as unknown as JsonRecord;
+      const packaged = clone(validFixture);
+      packaged.episode = {
+        ...(packaged.episode as JsonRecord),
+        schemaVersion: "v2-episode-contract.v2",
+        estimatedMinutes: 36,
+        sessionSetRef: clone(buildV2E1().sessionSetRef),
+      };
+      const episodes = [standalone, packaged.episode as JsonRecord];
+      let getterCalled = false;
+      for (const episode of episodes) {
+        if (sessionSetRefState === "missing") {
+          delete episode.sessionSetRef;
+        } else {
+          Object.defineProperty(episode, "sessionSetRef", {
+            configurable: true,
+            enumerable: true,
+            value: undefined,
+            writable: true,
+          });
+        }
+        Object.defineProperty(episode, "title", {
+          configurable: true,
+          enumerable: true,
+          get: () => {
+            getterCalled = true;
+            throw new TypeError("title accessor must not run");
+          },
+        });
+      }
+
+      const expected = [
+        { code: "contract_input_invalid", path: "$.episode.title" },
+      ];
+      expect(issueSummary(validateV2EpisodeContract(standalone))).toEqual(
+        expected,
+      );
+      expect(getterCalled).toBe(false);
+      expect(
+        issueSummary(validateV2LearningPackage(packaged, validationContext)),
+      ).toEqual(expected);
+      expect(getterCalled).toBe(false);
+    },
+  );
+
+  test("keeps legacy v1 explicit undefined in the canonical input-invalid domain", () => {
+    const packaged = clone(validFixture);
+    (packaged.episode as JsonRecord).sessionSetRef = undefined;
+
+    expect(
+      issueSummary(validateV2LearningPackage(packaged, validationContext)),
+    ).toEqual([
+      {
+        code: "contract_input_invalid",
+        path: "$.episode.sessionSetRef",
+      },
+    ]);
+  });
+
+  test.each([
+    [
+      "accessor",
+      (episode: JsonRecord) => {
+        Object.defineProperty(episode, "title", {
+          enumerable: true,
+          get: () => {
+            throw new TypeError("episode accessor must not run");
+          },
+        });
+      },
+      "$.episode.title",
+    ],
+    [
+      "symbol",
+      (episode: JsonRecord) => {
+        Object.defineProperty(episode, Symbol("hostile"), {
+          enumerable: true,
+          value: true,
+        });
+      },
+      "$.episode",
+    ],
+    [
+      "non-enumerable property",
+      (episode: JsonRecord) => {
+        Object.defineProperty(episode, "hidden", {
+          enumerable: false,
+          value: true,
+        });
+      },
+      "$.episode",
+    ],
+    [
+      "cycle",
+      (episode: JsonRecord) => {
+        episode.self = episode;
+      },
+      "$.episode.self",
+    ],
+  ] as const)(
+    "keeps packaged v2 explicit undefined with a hostile %s in the canonical input-invalid domain",
+    (_label, mutate, expectedPath) => {
+      const packaged = clone(validFixture);
+      const episode = packaged.episode as JsonRecord;
+      episode.schemaVersion = "v2-episode-contract.v2";
+      episode.estimatedMinutes = 36;
+      episode.sessionSetRef = undefined;
+      mutate(episode);
+
+      expect(
+        issueSummary(validateV2LearningPackage(packaged, validationContext)),
+      ).toEqual([{ code: "contract_input_invalid", path: expectedPath }]);
+    },
+  );
+
+  test("does not invoke packaged v2 accessors while classifying explicit undefined", () => {
+    const packaged = clone(validFixture);
+    const episode = packaged.episode as JsonRecord;
+    episode.schemaVersion = "v2-episode-contract.v2";
+    episode.estimatedMinutes = 36;
+    episode.sessionSetRef = undefined;
+    let getterCalled = false;
+    Object.defineProperty(episode, "title", {
+      enumerable: true,
+      get: () => {
+        getterCalled = true;
+        return "unsafe";
+      },
+    });
+
+    expect(
+      issueSummary(validateV2LearningPackage(packaged, validationContext)),
+    ).toEqual([{ code: "contract_input_invalid", path: "$.episode.title" }]);
+    expect(getterCalled).toBe(false);
+  });
+
+  test("keeps a hostile packaged v2 Episode proxy in the canonical input-invalid domain", () => {
+    const packaged = clone(validFixture);
+    const episode = packaged.episode as JsonRecord;
+    episode.schemaVersion = "v2-episode-contract.v2";
+    episode.estimatedMinutes = 36;
+    episode.sessionSetRef = undefined;
+    packaged.episode = new Proxy(episode, {
+      ownKeys: () => {
+        throw new TypeError("hostile episode proxy");
+      },
+    });
+
+    expect(
+      issueSummary(validateV2LearningPackage(packaged, validationContext)),
+    ).toEqual([{ code: "contract_input_invalid", path: "$.episode" }]);
+  });
+
+  test.each(["v1", "v2"] as const)(
+    "rejects a malformed %s package required container at its exact path",
+    (schemaVersion) => {
+      const candidate = clone(validFixture);
+      const episode = candidate.episode as JsonRecord;
+      if (schemaVersion === "v2") {
+        episode.schemaVersion = "v2-episode-contract.v2";
+        episode.estimatedMinutes = 36;
+        episode.sessionSetRef = clone(buildV2E1().sessionSetRef);
+      }
+      episode.phraseFrames = null;
+      setEpisodeContentHash(candidate);
+
+      expect(validateV2LearningPackage(candidate, validationContext)).toEqual({
+        ok: false,
+        issues: [
+          {
+            code: "field_type_invalid",
+            path: "$.episode.phraseFrames",
+            severity: "blocking",
+            waivable: false,
+          },
+        ],
+      });
+    },
+  );
+
+  test("keeps a malformed v2 session-set ref ahead of a malformed activity container for standalone/package parity", () => {
+    const standalone = clone(buildV2E1()) as unknown as JsonRecord;
+    standalone.sessionSetRef = null;
+    standalone.activities = null;
+
+    const packaged = clone(validFixture);
+    packaged.episode = clone(standalone);
+    setEpisodeContentHash(packaged);
+
+    const expected = [
+      {
+        code: "episode_session_set_ref_invalid",
+        path: "$.episode.sessionSetRef",
+      },
+    ];
+    expect(issueSummary(validateV2EpisodeContract(standalone))).toEqual(
+      expected,
+    );
+    expect(
+      issueSummary(validateV2LearningPackage(packaged, validationContext)),
+    ).toEqual(expected);
+  });
+
+  test.each([29, 49])(
+    "rejects v2 aggregate estimatedMinutes=%s outside 30–48",
+    (estimatedMinutes) => {
+      expect(
+        validateV2EpisodeContract({ ...buildV2E1(), estimatedMinutes }),
+      ).toMatchObject({
+        ok: false,
+        issues: expect.arrayContaining([
+          expect.objectContaining({
+            code: "episode_estimated_minutes_invalid",
+          }),
+        ]),
+      });
+    },
+  );
+
+  test.each([
+    ["phraseFrames", null],
+    ["semanticSlots", null],
+    ["criticalConstraints", null],
+    ["activities", null],
+    ["starSlots", null],
+    ["delayedProbeDefinitions", null],
+    ["reviewLinks", null],
+    ["accessibilityRoutes", null],
+    ["scenario", null],
+    ["graph", null],
+    ["requiredLoops", null],
+    ["assessmentNodes", null],
+    ["capstoneContract", null],
+    ["learningDesign", null],
+    ["masteryContract", null],
+  ] as const)(
+    "rejects malformed v2 required container %s at its exact path",
+    (field, malformedValue) => {
+      const candidate = clone(buildV2E1()) as unknown as JsonRecord;
+      candidate[field] = malformedValue;
+
+      const result = validateV2EpisodeContract(candidate);
+
+      expect(result).toEqual({
+        ok: false,
+        issues: [
+          {
+            code: "field_type_invalid",
+            path: `$.episode.${field}`,
+            severity: "blocking",
+            waivable: false,
+          },
+        ],
+      });
+      expect(result.issues).not.toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ code: "contract_internal_error" }),
+        ]),
+      );
+    },
+  );
+
+  test("rejects a mismatched or malformed exact session-set ref", () => {
+    const value = buildV2E1();
+    expect(
+      validateV2EpisodeContract({
+        ...value,
+        sessionSetRef: { ...value.sessionSetRef, episodeId: "episode-02" },
+      }),
+    ).toMatchObject({
+      ok: false,
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: "episode_session_set_ref_invalid" }),
+      ]),
+    });
+    expect(
+      validateV2EpisodeContract({
+        ...value,
+        sessionSetRef: { ...value.sessionSetRef, contentHash: "not-a-hash" },
+      }),
+    ).toMatchObject({
+      ok: false,
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: "episode_session_set_ref_invalid" }),
+      ]),
+    });
+    expect(
+      validateV2EpisodeContract({
+        ...value,
+        sessionSetRef: {
+          ...value.sessionSetRef,
+          contentHash: value.sessionSetRef.contentHash.toUpperCase(),
+        },
+      }),
+    ).toMatchObject({
+      ok: false,
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: "episode_session_set_ref_invalid" }),
+      ]),
+    });
+    expect(
+      validateV2EpisodeContract({
+        ...value,
+        sessionSetRef: { ...value.sessionSetRef, version: 0 },
+      }),
+    ).toMatchObject({
+      ok: false,
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: "episode_session_set_ref_invalid" }),
+      ]),
+    });
+    expect(
+      validateV2EpisodeContract({
+        ...value,
+        sessionSetRef: { ...value.sessionSetRef, latest: true },
+      }),
+    ).toMatchObject({
+      ok: false,
+      issues: expect.arrayContaining([
+        expect.objectContaining({ code: "episode_session_set_ref_invalid" }),
+      ]),
+    });
   });
 });

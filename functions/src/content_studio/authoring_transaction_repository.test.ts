@@ -32,6 +32,13 @@ class FakeStore implements AuthoringTransactionStore {
       throw new Error("authoring_revision_stale");
     this.records.set(id, value);
   }
+  async createIfAbsent(
+    id: string,
+    value: { ownerId: string; draft: ReturnType<typeof createEpisodeDraft> },
+  ) {
+    if (this.records.has(id)) throw new Error("authoring_create_conflict");
+    this.records.set(id, value);
+  }
 }
 
 describe("authoring transaction repository", () => {
@@ -64,5 +71,58 @@ describe("authoring transaction repository", () => {
         },
       ),
     ).rejects.toThrow("authoring_owner_forbidden");
+  });
+
+  it("creates the first draft exactly once with the zero-head precondition", async () => {
+    const store = new FakeStore();
+    const base = createEpisodeDraft({
+      draftId: "draft-new",
+      episodeId: "ep-new",
+      seasonId: "season-new",
+      ordinal: 1,
+      chapterId: "chapter-new",
+    });
+    const candidate = {
+      ...base,
+      body: {
+        ...base.body,
+        activities: [{ activityId: "activity-new" }] as never,
+        graph: {
+          ...base.body.graph,
+          startNodeId: "node-new",
+          capstoneNodeId: "node-new",
+          nodes: [
+            {
+              nodeId: "node-new",
+              activityId: "activity-new",
+              position: 1,
+              visible: true,
+              requiredForCore: true,
+              voiceEvidenceOptional: true,
+              phase: "encounter_build" as const,
+              evidenceDeclarations: [],
+              gateEligible: false,
+              maxStars: 0,
+            },
+          ],
+          edges: [],
+        },
+      },
+    };
+    const repository = new FirestoreEpisodeDraftRepository(store, {
+      ownerId: "owner-1",
+    });
+    const saved = await repository.save("draft-new", candidate, {
+      expectedRevision: 0,
+      expectedFingerprint: "",
+    });
+    expect(saved.record.revision).toBe(1);
+    expect(store.records.get("draft-new")?.ownerId).toBe("owner-1");
+    await expect(
+      repository.save("draft-new", candidate, {
+        expectedRevision: 0,
+        expectedFingerprint: "",
+      }),
+    ).rejects.toThrow("authoring_revision_stale");
   });
 });

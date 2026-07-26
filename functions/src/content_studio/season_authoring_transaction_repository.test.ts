@@ -8,13 +8,28 @@ import {
   FirestoreSeasonDraftRepository,
   type SeasonAuthoringTransactionStore,
 } from "./season_authoring_transaction_repository";
+import {
+  episodeRevisionFingerprint,
+  episodeRevisionObjectPath,
+} from "./episode_revision_resolver";
 
-const episodeBody = {};
+const episodeBody = {
+  draftId: "draft-1",
+  episodeId: "ep-01",
+  seasonId: "season-2",
+  revision: 1,
+  ordinal: 1,
+  chapterId: "chapter-1",
+};
 const ref: ApprovedEpisodeRevision = {
   draftId: "draft-1",
   episodeId: "ep-01",
   revision: 1,
-  revisionFingerprint: "fingerprint-1",
+  revisionFingerprint: episodeRevisionFingerprint(
+    "draft-1",
+    1,
+    hashCanonicalBody(episodeBody),
+  ),
   contentHash: hashCanonicalBody(episodeBody),
   ordinal: 1,
   chapterId: "chapter-1",
@@ -93,8 +108,47 @@ describe("season authoring transaction repository", () => {
       {
         resolve: async (requested) => ({
           ...requested,
+          record: {
+            schemaVersion: "episode-authoring-record.v1" as const,
+            draftId: requested.draftId,
+            episodeId: requested.episodeId,
+            revision: requested.revision,
+            contentHash: requested.contentHash,
+            revisionFingerprint: requested.revisionFingerprint,
+            object: {
+              objectPath: episodeRevisionObjectPath(
+                requested.draftId,
+                requested.revision,
+                requested.contentHash,
+              ),
+              contentHash: requested.contentHash,
+              objectGeneration: "generation-1",
+              byteSize: 2,
+            },
+            provenance: {
+              createdBy: "owner-1",
+              createdAt: "2026-07-16T00:00:00.000Z",
+            },
+            createdAt: "2026-07-16T00:00:00.000Z",
+          },
+          lifecycle: {
+            schemaVersion: "episode-lifecycle.v1" as const,
+            draftId: requested.draftId,
+            episodeId: requested.episodeId,
+            revision: requested.revision,
+            revisionFingerprint: requested.revisionFingerprint,
+            status: "approved" as const,
+            changedBy: "owner-1",
+            changedAt: "2026-07-16T00:00:00.000Z",
+            lifecycleRevision: 1,
+          },
           body: episodeBody,
           bodyHash: requested.contentHash,
+          objectPath: episodeRevisionObjectPath(
+            requested.draftId,
+            requested.revision,
+            requested.contentHash,
+          ),
           objectGeneration: "generation-1",
         }),
       },

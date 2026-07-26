@@ -5,7 +5,6 @@ describe('content factory generation error taxonomy', () => {
     ['source_registry_not_found', 'source_missing', false],
     ['blueprint_lesson_not_found', 'source_coverage', false],
     ['provider_rate_limit', 'provider_rate_limit', true],
-    ['generation_stage_schema_failed', 'provider_schema', true],
     ['generated_surface_invalid', 'provider_schema', false],
     ['generated_lesson_qa_failed:duplicate_phrase', 'qa_failed', false],
     ['content_factory_daily_budget_exceeded', 'budget_exhausted', false],

@@ -382,10 +382,16 @@ const TAB_SCROLL_TOP_ZONE_Y = 10;
 /** Порог довода после отпускания пальца: за половиной пути — дожимаем в орб, иначе
  *  возвращаем в капсулу. */
 const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
-/** Глубина ВЕРХНЕГО overscroll, начиная с которой бар, свёрнутый резинкой на экране
- *  без скролла, считает, что экран приподняли осознанно. Отскок сам по себе нуля не
- *  переходит, так что 14 px — просто запас против дребезга на самой границе. */
+/** Глубина ВЕРХНЕГО overscroll, начиная с которой подъём страницы на «Друзьях»
+ *  считается осознанным. Отскок резинки сам по себе нуля не переходит, так что
+ *  14 px — просто запас против дребезга на самой границе. */
 const TAB_SCROLL_LIFT_TO_EXPAND = 14;
+/** зачем: владелец попросил особую логику РОВНО для раздела «Друзья» — там бар,
+ *  однажды свернувшись, не разворачивается сам (в т.ч. от отскока резинки), а ждёт,
+ *  пока страницу поднимут вверх: подъём работает как кнопка «верни таббар».
+ *  Привязка по индексу таба, а не по вычисляемому признаку «нет скролла»: автодетект
+ *  по офсету угадывал неверно и залипал на обычных лентах. Индекс = TABS[3]. */
+const TAB_MANUAL_LIFT_TAB_IDX = 3;
 /** Пауза без единого кадра скролла, после которой жест считается завершённым. */
 const TAB_SCROLL_SETTLE_IDLE_MS = 90;
 /** Пружина довода. dampingRatio=1 — критическое затухание: доезжает плавно и
@@ -499,16 +505,14 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   /** true, пока прогресс ведёт палец: в этот момент довод по таймеру ещё уместен,
    *  а после довода/фиксации — уже нет. */
   const tabScrollDrivenRef = useRef(false);
-  /** Бар свернулся резинкой на экране БЕЗ скролла — такой бар НЕ разворачивается сам,
-   *  когда резинка отпружинит к нулю: владелец просил, чтобы он ждал, пока экран
-   *  приподнимут вручную. Ставится ТОЛЬКО когда доказано, что скроллить нечего. */
+  /** Бар свернулся на «Друзьях» — такой бар НЕ разворачивается сам: владелец просил,
+   *  чтобы там подъём страницы вверх работал как кнопка «верни таббар». */
   const tabScrollCollapsedFromBounceRef = useRef(false);
-  /** Максимальный положительный офсет, который видел текущий таб. Пока он остаётся
-   *  нулевым — контент короче экрана, то есть скроллить нечего и вся вертикальная
-   *  тяга там выражается только резинкой. Это надёжнее, чем смотреть на знак офсета
-   *  в одном кадре: при быстром флике вниз на длинной ленте офсет тоже проскакивает
-   *  через ноль, и по одному кадру бар залипал бы свёрнутым на обычных экранах. */
-  const tabScrollMaxSeenYRef = useRef(0);
+  /** Активный таб для скролл-слушателя. Через реф, а не через замыкание: эффект не
+   *  пересоздаётся при смене таба (иначе терялся бы накопленный якорь), поэтому
+   *  захваченное значение устарело бы. */
+  const activeTabIdxRef = useRef(activeIdx);
+  activeTabIdxRef.current = activeIdx;
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   /** Зеркало tabScrollCollapsedRef в state: pointerEvents и доступность слоёв капсула/орб. */
   const [tabChromeCollapsed, setTabChromeCollapsed] = useState(false);
@@ -638,19 +642,15 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       const previousY = tabScrollLastYRef.current;
       tabScrollLastYRef.current = y;
 
-      // Запоминаем, поднимался ли офсет выше нуля: это и есть доказательство, что
-      // экран скроллится. Пока максимум нулевой — контент короче экрана.
-      if (y > tabScrollMaxSeenYRef.current) tabScrollMaxSeenYRef.current = y;
-      const screenScrolls = tabScrollMaxSeenYRef.current > TAB_SCROLL_TOP_ZONE_Y;
+      // зачем: владелец попросил особую логику РОВНО для «Друзей» — там свёрнутый
+      // бар не разворачивается сам, а подъём страницы вверх работает как кнопка
+      // «верни таббар». Во всех остальных разделах поведение прежнее и не трогается.
+      const manualLiftTab = activeTabIdxRef.current === TAB_MANUAL_LIFT_TAB_IDX;
 
-      // зачем: на экране БЕЗ скролла бар, свёрнутый резинкой, ждёт, пока экран
-      // приподнимут САМИ. Тяга вниз там уводит офсет в минус, а после отпускания
-      // резинка сама возвращает его к нулю — этот пассивный возврат разворачивал бар
-      // без участия пользователя. Отскок физически не переходит ноль, поэтому уход в
-      // ВЕРХНИЙ overscroll — надёжный признак живой тяги вверх (скорость таким
-      // признаком не является: её даёт и сам отскок).
-      // На скроллящихся экранах эта ветка не работает вовсе — там всё по-старому.
-      if (!screenScrolls && tabScrollCollapsedFromBounceRef.current) {
+      if (manualLiftTab && tabScrollCollapsedFromBounceRef.current) {
+        // Отскок резинки идёт К НУЛЮ и на нём замирает — он физически не уводит офсет
+        // НИЖЕ нуля. Поэтому уход в верхний overscroll — надёжный признак живого
+        // подъёма страницы (скорость таким признаком не является: её даёт и отскок).
         if (y > -TAB_SCROLL_LIFT_TO_EXPAND) {
           tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
           return;
@@ -672,10 +672,10 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
           tabScrollDrivenRef.current = false;
           animateTabChrome(false);
         }
-        // На скроллящемся экране выходим: верхняя зона там означает «мы наверху»,
-        // считать оттуда схлопывание нечего. А на экране без скролла офсет ВСЕГДА
-        // в этой зоне — там нужно идти дальше и считать прогресс от якоря.
-        if (screenScrolls) return;
+        // На «Друзьях» контент короче экрана: офсет ВСЕГДА в этой зоне, и выходить
+        // здесь нельзя — иначе схлопывание там не сработало бы вообще. На остальных
+        // экранах верхняя зона означает «мы наверху», считать оттуда нечего.
+        if (!manualLiftTab) return;
       }
 
       // Движение вверх посреди ленты: якорь встаёт на самую верхнюю достигнутую точку,
@@ -696,10 +696,8 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       // с жестом кадр в кадр. Пружина включается только на доводе после отпускания.
       tabScrollProgress.value = progress;
 
-      // Признак «ждём ручного подъёма» ставим ТОЛЬКО там, где доказано нечего
-      // скроллить. На обычных лентах он не появляется никогда — иначе быстрый флик,
-      // проскакивающий через ноль, залипал бы бар в свёрнутом состоянии.
-      const collapsedFromBounce = !screenScrolls;
+      // Признак «ждём ручного подъёма» живёт ТОЛЬКО на «Друзьях».
+      const collapsedFromBounce = manualLiftTab;
 
       // Дожали до конца ещё внутри жеста — фиксируем свёрнутое состояние сразу,
       // чтобы орб стал кликабельным не дожидаясь отпускания пальца.
@@ -740,9 +738,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
     tabScrollAnchorYRef.current = tabScrollLastYRef.current;
     tabScrollDrivenRef.current = false;
-    // У нового таба своя высота контента: накопленный максимум обнуляем, иначе
-    // длинная лента «заразила» бы короткий экран признаком скроллящегося.
-    tabScrollMaxSeenYRef.current = 0;
     animateTabChrome(false, true);
     onSwipeStart(physicalIdx);
   }, [animateTabChrome, onSwipeStart]);
@@ -753,7 +748,6 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     tabScrollLastYRef.current = 0;
     tabScrollAnchorYRef.current = 0;
     tabScrollDrivenRef.current = false;
-    tabScrollMaxSeenYRef.current = 0;
     animateTabChrome(false, true);
     goToTab(idx);
   }, [animateTabChrome, goToTab]);

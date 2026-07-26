@@ -44,23 +44,31 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('animateTabChrome(false)');
   });
 
-  // 2026-07-26: на экране БЕЗ скролла (друзья) отскок резинки разворачивал бар сам.
-  // Владелец: там бар должен ждать, пока экран приподнимут вручную. Критично, что
-  // это НЕ распространяется на скроллящиеся экраны — иначе бар залипал свёрнутым.
-  it('waits for a manual lift only on non-scrolling screens', () => {
+  // 2026-07-26: на «Друзьях» отскок резинки разворачивал бар сам. Владелец: там бар
+  // должен ждать, пока страницу поднимут вверх — подъём работает как кнопка «верни
+  // таббар». Привязка ЖЁСТКО к индексу таба: автодетект «нет скролла» по офсету
+  // угадывал неверно и залипал на обычных лентах — не возвращать его.
+  it('waits for a manual lift only on the friends tab', () => {
     const source = readLayout();
 
     expect(source).toContain('const TAB_SCROLL_LIFT_TO_EXPAND = 14;');
+    expect(source).toContain('const TAB_MANUAL_LIFT_TAB_IDX = 3;');
+    // Индекс обязан указывать именно на «Друзья»: если табы переставят, константа
+    // молча включила бы особую логику в чужом разделе.
+    expect(source).toContain("'/friends': 3,");
+    expect(source).toContain("  friends: 3,");
     expect(source).toContain('tabScrollCollapsedFromBounceRef');
-    // Скроллящийся экран определяется по ФАКТУ (офсет поднимался выше нуля), а не по
-    // знаку офсета в одном кадре: быстрый флик на длинной ленте тоже проскакивает ноль.
-    expect(source).toContain('tabScrollMaxSeenYRef');
-    expect(source).toContain('const screenScrolls = tabScrollMaxSeenYRef.current > TAB_SCROLL_TOP_ZONE_Y;');
-    // Ожидание ручного подъёма включается ТОЛЬКО когда скроллить нечего.
-    expect(source).toContain('if (!screenScrolls && tabScrollCollapsedFromBounceRef.current) {');
-    expect(source).toContain('const collapsedFromBounce = !screenScrolls;');
+    // Признак включается по ТАБУ, а не по вычисляемому «нет скролла».
+    expect(source).toContain('const manualLiftTab = activeTabIdxRef.current === TAB_MANUAL_LIFT_TAB_IDX;');
+    expect(source).toContain('if (manualLiftTab && tabScrollCollapsedFromBounceRef.current) {');
+    expect(source).toContain('const collapsedFromBounce = manualLiftTab;');
+    // Остальные разделы уходят из верхней зоны сразу — их поведение не меняется.
+    expect(source).toContain('if (!manualLiftTab) return;');
     // Признак не переживает разворот — иначе залип бы навсегда.
     expect(source).toContain('if (!collapsed) tabScrollCollapsedFromBounceRef.current = false;');
+    // Автодетект по офсету удалён, а не сосуществует второй веткой.
+    expect(source).not.toContain('tabScrollMaxSeenYRef');
+    expect(source).not.toContain('screenScrolls');
   });
 
   // 2026-07-26, вторая итерация: владелец забраковал scaleX — иконки видимо

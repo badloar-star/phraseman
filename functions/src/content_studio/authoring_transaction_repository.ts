@@ -19,6 +19,10 @@ export interface AuthoringTransactionStore {
     expectedFingerprint: string,
     value: { readonly ownerId: string; readonly draft: EpisodeDraft },
   ): Promise<void>;
+  createIfAbsent?(
+    id: string,
+    value: { readonly ownerId: string; readonly draft: EpisodeDraft },
+  ): Promise<void>;
 }
 
 export class FirestoreEpisodeDraftRepository {
@@ -37,10 +41,53 @@ export class FirestoreEpisodeDraftRepository {
   ): Promise<EpisodeDraft> {
     return this.store.runTransaction(async (tx) => {
       const current = await tx.read(id);
-      if (!current || current.ownerId !== this.actor.ownerId)
+      if (!current) {
+        if (
+          expected.expectedRevision !== 0 ||
+          expected.expectedFingerprint !== ""
+        )
+          throw new Error("authoring_head_missing");
+        if (candidate.body.draftId !== id)
+          throw new Error("authoring_draft_id_mismatch");
+        const issues = validateEpisodeDraft(candidate);
+        if (issues.length)
+          throw new Error(`episode_authoring_invalid:${issues[0]}`);
+        const contentHash = hashCanonicalBody(candidate.body);
+        const next: EpisodeDraft = {
+          body: candidate.body,
+          record: {
+            schemaVersion: "episode-draft-record.v1",
+            draftId: candidate.body.draftId,
+            episodeId: candidate.body.episodeId,
+            revision: 1,
+            contentHash,
+            fingerprint: hashCanonicalBody({
+              draftId: candidate.body.draftId,
+              revision: 1,
+              contentHash,
+            }),
+            status: "draft",
+          },
+        };
+        if (!tx.createIfAbsent)
+          throw new Error("authoring_create_not_supported");
+        await tx.createIfAbsent(id, {
+          ownerId: this.actor.ownerId,
+          draft: next,
+        });
+        return next;
+      }
+      if (current.ownerId !== this.actor.ownerId)
         throw new Error("authoring_owner_forbidden");
       if (candidate.body.draftId !== id)
         throw new Error("authoring_draft_id_mismatch");
+      if (
+        candidate.body.episodeId !== current.draft.body.episodeId ||
+        candidate.body.seasonId !== current.draft.body.seasonId ||
+        candidate.body.ordinal !== current.draft.body.ordinal ||
+        candidate.body.chapterId !== current.draft.body.chapterId
+      )
+        throw new Error("authoring_identity_mismatch");
       if (
         current.draft.record.revision !== expected.expectedRevision ||
         current.draft.record.fingerprint !== expected.expectedFingerprint
@@ -54,7 +101,9 @@ export class FirestoreEpisodeDraftRepository {
       const next: EpisodeDraft = {
         body: candidate.body,
         record: {
-          ...candidate.record,
+          schemaVersion: "episode-draft-record.v1",
+          draftId: candidate.body.draftId,
+          episodeId: candidate.body.episodeId,
           revision,
           contentHash,
           fingerprint: hashCanonicalBody({
@@ -62,6 +111,7 @@ export class FirestoreEpisodeDraftRepository {
             revision,
             contentHash,
           }),
+          status: "draft",
         },
       };
       await tx.compareAndSet(

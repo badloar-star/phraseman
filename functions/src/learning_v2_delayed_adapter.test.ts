@@ -46,17 +46,30 @@ const assignmentRef = {
 const launchReceiptRef = { launchId: "launch-1", contentHash: "b".repeat(64) };
 const probeRef = { probeId: "probe-1", contentHash: "c".repeat(64) };
 
-function repository(seed: Record<string, unknown>): DelayedReceiptRepository {
+function repository(seed: Record<string, unknown>): DelayedReceiptRepository & {
+  readonly documents: Map<string, unknown>;
+  readonly reads: string[];
+  readonly writes: string[];
+} {
   const documents = new Map(Object.entries(seed));
+  const reads: string[] = [];
+  const writes: string[] = [];
   return {
+    documents,
+    reads,
+    writes,
     runTransaction: async (fn) =>
       fn({
-        get: async <T>(key: string) => ({
-          exists: documents.has(key),
-          data: documents.get(key) as T | undefined,
-        }),
+        get: async <T>(key: string) => {
+          reads.push(key);
+          return {
+            exists: documents.has(key),
+            data: documents.get(key) as T | undefined,
+          };
+        },
         create: (key, value) => {
           if (documents.has(key)) throw new Error("already_exists");
+          writes.push(key);
           documents.set(key, value);
         },
       }),
@@ -66,6 +79,7 @@ function repository(seed: Record<string, unknown>): DelayedReceiptRepository {
 const input = (overrides: Record<string, unknown> = {}) => ({
   operationId: "operation-1",
   fingerprint: "d".repeat(64),
+  authUid: "provider-auth-1",
   stableId: "stable-1",
   accountGeneration: 3,
   candidate,
@@ -85,7 +99,13 @@ const input = (overrides: Record<string, unknown> = {}) => ({
   ...overrides,
 });
 const records = {
-  "learning_v2_assignments:assignment-1": {
+  "auth_links:provider-auth-1": {
+    stable_id: "stable-1",
+  },
+  "users:stable-1": {
+    accountGeneration: 3,
+  },
+  "learning_v2_assignments:stable-1:assignment-1": {
     ref: assignmentRef,
     stableId: "stable-1",
     accountGeneration: 3,
@@ -94,7 +114,7 @@ const records = {
     assessableWindowOpensAtMs: 1000,
     assessableWindowClosesAtMs: 2000,
   },
-  "learning_v2_launches:launch-1": {
+  "learning_v2_launches:stable-1:launch-1": {
     ref: launchReceiptRef,
     stableId: "stable-1",
     accountGeneration: 3,
@@ -104,6 +124,54 @@ const records = {
 };
 
 describe("Learning V2 delayed Functions adapter", () => {
+  test.each([
+    [
+      "provider relink",
+      {
+        ...records,
+        "auth_links:provider-auth-1": { stable_id: "different-stable" },
+      },
+      "delayed_stable_identity_mismatch",
+    ],
+    [
+      "account generation change",
+      {
+        ...records,
+        "users:stable-1": { accountGeneration: 4 },
+      },
+      "delayed_account_generation_mismatch",
+    ],
+    [
+      "deletion tombstone",
+      {
+        ...records,
+        "account_deletion_tombstones:stable-1": { status: "pending" },
+      },
+      "delayed_account_delete_pending",
+    ],
+  ])(
+    "fails closed with ordered barrier reads and zero writes after a pre-read %s",
+    async (_label, racedRecords, expectedError) => {
+      const repo = repository(racedRecords);
+
+      await expect(finalizeDelayedCandidate(repo, input()))
+        .rejects.toThrow(expectedError);
+
+      expect(repo.reads).toEqual([
+        "auth_links:provider-auth-1",
+        "users:stable-1",
+        "account_deletion_tombstones:stable-1",
+      ]);
+      expect(repo.writes).toEqual([]);
+      expect([...repo.documents.keys()].some((key) =>
+        key.startsWith("learning-v2:delayed:stable-1:"))).toBe(false);
+      expect([...repo.documents.keys()].some((key) =>
+        key.startsWith("learning_v2_delayed_terminals:stable-1:"))).toBe(false);
+      expect([...repo.documents.keys()].some((key) =>
+        key.startsWith("learning_v2_timing_receipts:stable-1:"))).toBe(false);
+    },
+  );
+
   test("persists receipt and replays idempotently", async () => {
     const repo = repository(records);
     const first = await finalizeDelayedCandidate(repo, input());
@@ -111,6 +179,29 @@ describe("Learning V2 delayed Functions adapter", () => {
     expect(first.replayed).toBe(false);
     expect(second.replayed).toBe(true);
     expect(second.receipt).toEqual(first.receipt);
+  });
+
+  test("blocks replay success and replay repair after a deletion tombstone", async () => {
+    const repo = repository(records);
+    await finalizeDelayedCandidate(repo, input());
+    repo.documents.delete("learning_v2_timing_receipts:stable-1:timing-1");
+    repo.documents.set("account_deletion_tombstones:stable-1", {
+      status: "pending",
+    });
+    repo.reads.length = 0;
+    repo.writes.length = 0;
+
+    await expect(finalizeDelayedCandidate(repo, input()))
+      .rejects.toThrow("delayed_account_delete_pending");
+
+    expect(repo.reads).toEqual([
+      "auth_links:provider-auth-1",
+      "users:stable-1",
+      "account_deletion_tombstones:stable-1",
+    ]);
+    expect(repo.writes).toEqual([]);
+    expect(repo.documents.has("learning_v2_timing_receipts:stable-1:timing-1"))
+      .toBe(false);
   });
 
   test("rejects same operation id with a different fingerprint", async () => {
@@ -122,7 +213,10 @@ describe("Learning V2 delayed Functions adapter", () => {
   });
 
   test("fails closed when assignment binding is unavailable", async () => {
-    const repo = repository({});
+    const repo = repository({
+      "auth_links:provider-auth-1": { stable_id: "stable-1" },
+      "users:stable-1": { accountGeneration: 3 },
+    });
     await expect(
       finalizeDelayedCandidate(
         repo,
@@ -176,5 +270,18 @@ describe("Learning V2 delayed Functions adapter", () => {
     expect(first.replayed).toBe(false);
     const replay = await finalizeDelayedCandidate(repo, input());
     expect(replay).toMatchObject({ replayed: true, receipt: first.receipt });
+  });
+
+  test("repairs missing canonical receipt and terminal artifacts before delayed replay success", async () => {
+    const repo = repository(records);
+    const first = await finalizeDelayedCandidate(repo, input());
+    repo.documents.delete("learning_v2_timing_receipts:stable-1:timing-1");
+    repo.documents.delete(`learning_v2_delayed_terminals:stable-1:${require("./learning_v2/progress_event").deriveProgressAccountScopeHash("stable-1", 3)}__operation-1`);
+
+    await expect(finalizeDelayedCandidate(repo, input()))
+      .resolves.toEqual({ replayed: true, receipt: first.receipt });
+    expect(repo.documents.has("learning_v2_timing_receipts:stable-1:timing-1")).toBe(true);
+    expect([...repo.documents.keys()].some((key) =>
+      key.startsWith("learning_v2_delayed_terminals:stable-1:"))).toBe(true);
   });
 });

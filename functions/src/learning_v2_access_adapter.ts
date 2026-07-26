@@ -61,19 +61,33 @@ export interface V2AccessPurchaseTransaction {
 
 export interface V2AccessPurchaseRepository {
   runTransaction<T>(fn: (transaction: V2AccessPurchaseTransaction) => Promise<T>): Promise<T>;
+  /** Server-side deterministic race seam; never populated from callable input. */
+  readonly testHooks?: Readonly<{
+    readonly afterBindingReads?: () => void | Promise<void>;
+  }>;
 }
 
 export const firestoreV2AccessPath = (key: string): string => {
   const safeSegment = (value: string): boolean => /^[A-Za-z0-9._-]{1,160}$/.test(value) && value !== '.' && value !== '..';
+  if (key.startsWith('auth_links:')) {
+    const authUid = key.slice('auth_links:'.length);
+    if (!authUid || authUid.length > 128 || authUid.includes('/')) throw new Error('access_firestore_key_invalid');
+    return `auth_links/${authUid}`;
+  }
+  if (key.startsWith('account_deletion_tombstones:')) {
+    const stableId = key.slice('account_deletion_tombstones:'.length);
+    if (!safeSegment(stableId)) throw new Error('access_firestore_key_invalid');
+    return `account_deletion_tombstones/${stableId}`;
+  }
   if (key.startsWith('learning-v2:access-operation:')) {
     const parts = key.slice('learning-v2:access-operation:'.length).split(':');
     if (parts.length !== 2 || parts.some((part) => !safeSegment(part))) throw new Error('access_firestore_key_invalid');
     return `users/${parts[0]}/v2_access_operations/${parts[1]}`;
   }
   if (key.startsWith('learning-v2:access-quote:')) {
-    const quoteId = key.slice('learning-v2:access-quote:'.length);
-    if (!safeSegment(quoteId)) throw new Error('access_firestore_key_invalid');
-    return `learning_v2_access_quotes/${quoteId}`;
+    const parts = key.slice('learning-v2:access-quote:'.length).split(':');
+    if (parts.length !== 2 || parts.some((part) => !safeSegment(part))) throw new Error('access_firestore_key_invalid');
+    return `users/${parts[0]}/v2_access_quotes/${parts[1]}`;
   }
   if (key.startsWith('learning-v2:access-gate:')) {
     const parts = key.slice('learning-v2:access-gate:'.length).split(':');
@@ -96,6 +110,8 @@ export const firestoreV2AccessPath = (key: string): string => {
 export interface FinalizeV2AccessPurchaseInput {
   readonly operationId: string;
   readonly fingerprint: string;
+  /** Firebase Auth UID used only to re-read the canonical anchor at commit time. */
+  readonly authUid: string;
   readonly stableId: string;
   readonly accountGeneration: number;
   readonly request: V2AccessPurchaseRequest;
@@ -105,7 +121,11 @@ export interface FinalizeV2AccessPurchaseInput {
 
 const operationKey = (stableId: string, operationId: string): string =>
   `learning-v2:access-operation:${stableId}:${operationId}`;
-const quoteKey = (quoteId: string): string => `learning-v2:access-quote:${quoteId}`;
+const authLinkKey = (authUid: string): string => `auth_links:${authUid}`;
+const tombstoneKey = (stableId: string): string =>
+  `account_deletion_tombstones:${stableId}`;
+const quoteKey = (stableId: string, quoteId: string): string =>
+  `learning-v2:access-quote:${stableId}:${quoteId}`;
 const gateKey = (stableId: string, seasonId: string, gateId: string): string =>
   `learning-v2:access-gate:${stableId}:${seasonId}:${gateId}`;
 const accountKey = (stableId: string): string => `users:${stableId}`;
@@ -130,6 +150,10 @@ export async function finalizeV2AccessPurchase(
   if (
     !/^[A-Za-z0-9._-]{8,160}$/.test(input.operationId) ||
     !/^[a-f0-9]{64}$/.test(input.fingerprint) ||
+    typeof input.authUid !== 'string' ||
+    input.authUid.trim().length === 0 ||
+    input.authUid.length > 128 ||
+    input.authUid.includes('/') ||
     typeof input.stableId !== 'string' ||
     input.stableId.length === 0 ||
     input.request.stableId !== input.stableId ||
@@ -142,6 +166,43 @@ export async function finalizeV2AccessPurchase(
     throw new Error('access_purchase_identity_invalid');
   }
   return repository.runTransaction(async (transaction) => {
+    const [authLinkDocument, accountDocument, tombstoneDocument] =
+      await Promise.all([
+        transaction.get<{ readonly stable_id?: unknown }>(
+          authLinkKey(input.authUid),
+        ),
+        transaction.get<V2AccessAccountRecord>(accountKey(input.stableId)),
+        transaction.get(tombstoneKey(input.stableId)),
+      ]);
+    await repository.testHooks?.afterBindingReads?.();
+    if (!authLinkDocument.exists) {
+      throw new Error('access_identity_anchor_missing');
+    }
+    if (
+      typeof authLinkDocument.data?.stable_id !== 'string' ||
+      authLinkDocument.data.stable_id.trim() !== input.stableId
+    ) {
+      throw new Error('access_stable_identity_mismatch');
+    }
+    if (tombstoneDocument.exists) {
+      throw new Error('access_account_delete_pending');
+    }
+    const account = accountDocument.data;
+    const liveGeneration = Number(
+      account?.accountGeneration ??
+        (account as unknown as { readonly generation?: unknown } | undefined)
+          ?.generation,
+    );
+    if (
+      !accountDocument.exists ||
+      !account ||
+      !Number.isSafeInteger(liveGeneration) ||
+      liveGeneration < 1 ||
+      liveGeneration !== input.accountGeneration
+    ) {
+      throw new Error('access_account_generation_mismatch');
+    }
+
     const operation = await transaction.get<V2AccessOperationRecord>(
       operationKey(input.stableId, input.operationId),
     );
@@ -153,14 +214,12 @@ export async function finalizeV2AccessPurchase(
       return { replayed: true, receipt: operation.data.receipt };
     }
 
-    const [quoteDocument, gateDocument, accountDocument] = await Promise.all([
-      transaction.get<V2AccessQuote>(quoteKey(input.request.quoteId)),
+    const [quoteDocument, gateDocument] = await Promise.all([
+      transaction.get<V2AccessQuote>(quoteKey(input.stableId, input.request.quoteId)),
       transaction.get<V2AccessGateRecord>(gateKey(input.stableId, input.request.seasonId, input.request.gateId)),
-      transaction.get<V2AccessAccountRecord>(accountKey(input.stableId)),
     ]);
     const quote = quoteDocument.data;
     const gate = gateDocument.data;
-    const account = accountDocument.data;
     if (!quoteDocument.exists || !quote || !gateDocument.exists || !gate || !accountDocument.exists || !account) {
       throw new Error('access_purchase_binding_unavailable');
     }

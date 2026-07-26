@@ -90,6 +90,14 @@ const requiredDecisionIds = [
   "HYP-V2-008",
 ] as const;
 const HASH_PATTERN = /^[a-f0-9]{64}$/;
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === "object" && value !== null && !Array.isArray(value);
+const hasExactKeys = (
+  value: Record<string, unknown>,
+  keys: readonly string[],
+): boolean =>
+  Object.keys(value).length === keys.length &&
+  keys.every((key) => Object.prototype.hasOwnProperty.call(value, key));
 const makeFingerprint = (body: SeasonDraftBody, revision: number): string =>
   hashCanonicalBody({
     draftId: body.draftId,
@@ -112,6 +120,145 @@ const persist = (
     status,
   },
 });
+
+/**
+ * Validates the immutable Season body/record pair used by a release pin.
+ *
+ * The mutable draft head is deliberately not accepted: only an approved or
+ * released record whose identity, body hash and revision fingerprint all
+ * recompute exactly may be considered an active immutable pin.
+ */
+export function validateSeasonImmutablePin(
+  value: unknown,
+): value is SeasonDraft {
+  try {
+    if (!isRecord(value) || !hasExactKeys(value, ["body", "record"]))
+      return false;
+    if (!isRecord(value.body) || !isRecord(value.record)) return false;
+    const body = value.body;
+    const record = value.record;
+    if (
+      !hasExactKeys(body, [
+        "schemaVersion",
+        "draftId",
+        "seasonId",
+        "releaseScope",
+        "episodeRevisionRefs",
+        "chapters",
+        "gates",
+        "gatePolicyVersion",
+        "decisionRegistryRef",
+      ]) ||
+      body.schemaVersion !== "season-draft-body.v1" ||
+      typeof body.draftId !== "string" ||
+      body.draftId.length === 0 ||
+      typeof body.seasonId !== "string" ||
+      body.seasonId.length === 0 ||
+      typeof body.gatePolicyVersion !== "string" ||
+      body.gatePolicyVersion.length === 0 ||
+      !isRecord(body.releaseScope) ||
+      !hasExactKeys(body.releaseScope, [
+        "kind",
+        "includedChapterOrdinals",
+        "includedEpisodeOrdinals",
+      ]) ||
+      !["vertical_slice", "chapter_internal", "full_season"].includes(
+        String(body.releaseScope.kind),
+      ) ||
+      !Array.isArray(body.releaseScope.includedChapterOrdinals) ||
+      !Array.isArray(body.releaseScope.includedEpisodeOrdinals) ||
+      !body.releaseScope.includedChapterOrdinals.every((item) =>
+        Number.isSafeInteger(item),
+      ) ||
+      !body.releaseScope.includedEpisodeOrdinals.every((item) =>
+        Number.isSafeInteger(item),
+      ) ||
+      !Array.isArray(body.episodeRevisionRefs) ||
+      !Array.isArray(body.chapters) ||
+      !Array.isArray(body.gates) ||
+      !isRecord(body.decisionRegistryRef) ||
+      !hasExactKeys(body.decisionRegistryRef, ["id", "version", "contentHash"]) ||
+      typeof body.decisionRegistryRef.id !== "string" ||
+      body.decisionRegistryRef.id.length === 0 ||
+      !Number.isSafeInteger(body.decisionRegistryRef.version) ||
+      Number(body.decisionRegistryRef.version) < 1 ||
+      typeof body.decisionRegistryRef.contentHash !== "string" ||
+      !HASH_PATTERN.test(body.decisionRegistryRef.contentHash)
+    )
+      return false;
+    if (
+      !body.episodeRevisionRefs.every((item) => {
+        if (!isRecord(item)) return false;
+        return (
+          hasExactKeys(item, [
+            "draftId",
+            "episodeId",
+            "revision",
+            "revisionFingerprint",
+            "contentHash",
+            "ordinal",
+            "chapterId",
+            "approvalStatus",
+          ]) &&
+          typeof item.draftId === "string" &&
+          item.draftId.length > 0 &&
+          typeof item.episodeId === "string" &&
+          item.episodeId.length > 0 &&
+          Number.isSafeInteger(item.revision) &&
+          Number(item.revision) >= 1 &&
+          typeof item.revisionFingerprint === "string" &&
+          HASH_PATTERN.test(item.revisionFingerprint) &&
+          typeof item.contentHash === "string" &&
+          HASH_PATTERN.test(item.contentHash) &&
+          Number.isSafeInteger(item.ordinal) &&
+          Number(item.ordinal) >= 1 &&
+          typeof item.chapterId === "string" &&
+          item.chapterId.length > 0 &&
+          item.approvalStatus === "approved"
+        );
+      })
+    )
+      return false;
+    if (
+      !hasExactKeys(record, [
+        "schemaVersion",
+        "draftId",
+        "seasonId",
+        "revision",
+        "contentHash",
+        "fingerprint",
+        "status",
+      ]) ||
+      record.schemaVersion !== "season-draft-record.v1" ||
+      record.draftId !== body.draftId ||
+      record.seasonId !== body.seasonId ||
+      !Number.isSafeInteger(record.revision) ||
+      Number(record.revision) < 1 ||
+      typeof record.contentHash !== "string" ||
+      !HASH_PATTERN.test(record.contentHash) ||
+      record.contentHash !== hashCanonicalBody(body) ||
+      typeof record.fingerprint !== "string" ||
+      !HASH_PATTERN.test(record.fingerprint) ||
+      record.fingerprint !==
+        makeFingerprint(body as unknown as SeasonDraftBody, Number(record.revision)) ||
+      !["approved", "released"].includes(String(record.status))
+    )
+      return false;
+    return (
+      validateSeasonComposition({
+        body: body as unknown as SeasonDraftBody,
+        record: record as unknown as SeasonDraftRecord,
+      }) satisfies string[]
+    ).length === 0;
+  } catch {
+    return false;
+  }
+}
+
+export function assertSeasonImmutablePin(value: unknown): asserts value is SeasonDraft {
+  if (!validateSeasonImmutablePin(value))
+    throw new Error("season_immutable_pin_invalid");
+}
 
 const ordinalsFor = (scope: SeasonScope): number[] =>
   scope === "vertical_slice"

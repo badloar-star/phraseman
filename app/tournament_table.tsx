@@ -72,8 +72,15 @@ function mapPlayersToRows(
 export default function TournamentTableScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
-  const params = useLocalSearchParams<{ roomId?: string }>();
+  const params = useLocalSearchParams<{ roomId?: string; spectate?: string }>();
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
+  /**
+   * зачем: зрителю (решение владельца 2026-07-26) показываем ТУ ЖЕ таблицу,
+   * что игроки видят между раундами, но постоянно — она не уводит в раунд и
+   * живёт весь турнир. Один экран вместо второго такого же: перестановки,
+   * полосы отрыва и чипы обгона уже здесь, дублировать их было бы ошибкой.
+   */
+  const spectating = params.spectate === '1';
 
   const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
   const [myId, setMyId] = useState<string | null>(null);
@@ -112,18 +119,22 @@ export default function TournamentTableScreen() {
   // обратный отсчёт, решение о смене этапа принимает сервер.
   useEffect(() => {
     if (!room || !roomId) return;
+    // Зритель не играет: в раунд его не уводим, он остаётся на табло.
+    if (spectating) return;
     if (room.state === 'round') {
       router.replace({ pathname: '/tournament_round', params: { roomId } });
     }
     if (room.state === 'results' || room.state === 'rewards' || room.state === 'closed') {
       router.replace({ pathname: '/tournament_results', params: { roomId } });
     }
-  }, [room?.state, roomId, router, room]);
+  }, [room?.state, roomId, router, room, spectating]);
 
   const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
   const listHeight = Math.max(1, rows.length) * (ROW_HEIGHT + ROW_GAP);
   const maxScore = rows[0]?.score || 1;
   const isFinal = roundNo >= TOTAL_ROUNDS;
+  // Зрителю показываем, что происходит прямо сейчас: идёт раунд или пауза.
+  const liveLabel = room?.state === 'round' ? `Раунд ${roundNo} идёт` : 'Перерыв';
 
   if (status === 'offline') {
     return (
@@ -144,11 +155,14 @@ export default function TournamentTableScreen() {
     <View style={styles.root}>
       <View style={[styles.header, { paddingTop: insets.top + 12 }]}>
         <View style={styles.headerText}>
-          <Text style={styles.title}>Таблица</Text>
+          <Text style={styles.title}>{spectating ? 'Смотрим турнир' : 'Таблица'}</Text>
           <Text style={styles.subtitle}>Раунд {roundNo} из {TOTAL_ROUNDS}</Text>
         </View>
+        {/* Зритель не играет — своих очков у него нет, показываем лидера. */}
         <View style={styles.myScoreBadge}>
-          <Text style={styles.myScoreValue} allowFontScaling={false}>{myScore}</Text>
+          <Text style={styles.myScoreValue} allowFontScaling={false}>
+            {spectating ? (rows[0]?.score ?? 0) : myScore}
+          </Text>
         </View>
       </View>
 
@@ -160,7 +174,9 @@ export default function TournamentTableScreen() {
       </View>
 
       <Text style={styles.hint}>
-        {isFinal ? 'Считаем итоги…' : `Следующий раунд через ${secondsLeft}`}
+        {spectating
+          ? (isFinal ? 'Финал — считаем итоги…' : `${liveLabel} · ${secondsLeft}`)
+          : (isFinal ? 'Считаем итоги…' : `Следующий раунд через ${secondsLeft}`)}
       </Text>
     </View>
   );

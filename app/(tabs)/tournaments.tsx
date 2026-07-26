@@ -341,7 +341,17 @@ export default function TournamentsScreen() {
               ))}
             </View>
 
-            {notEnoughGems ? (
+            {live ? (
+              /* зачем: турнир уже начался — вход закрыт, кнопка «В игру» вела
+                 в тупик. Вместо неё зритель смотрит табло: человек остаётся в
+                 игре вместо того чтобы уйти, и приходит на следующий слот. */
+              <Cta onPress={() => router.push({
+                pathname: '/tournament_table',
+                params: { roomId: roomId ?? '', spectate: '1' },
+              })} disabled={!roomId}>
+                Смотреть турнир
+              </Cta>
+            ) : notEnoughGems ? (
               <>
                 <Cta ghost disabled>Не хватает жемчужин</Cta>
                 <View style={styles.howTo}>
@@ -354,7 +364,7 @@ export default function TournamentsScreen() {
               </>
             ) : (
               <Cta onPress={openConfirm} disabled={!roomId || joining}>
-                {live ? `В игру · ${entryGems}` : `Начать турнир · ${entryGems}`}
+                {`Начать турнир · ${entryGems}`}
               </Cta>
             )}
           </Card>

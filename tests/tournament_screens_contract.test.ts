@@ -449,3 +449,30 @@ describe('экраны режима «Турниры»', () => {
     }
   });
 });
+
+describe('режим зрителя (2026-07-26)', () => {
+  const table = readFileSync(path.resolve(__dirname, '..', 'app', 'tournament_table.tsx'), 'utf8');
+  const home = readFileSync(path.resolve(__dirname, '..', 'app', '(tabs)', 'tournaments.tsx'), 'utf8');
+  const rules = readFileSync(path.resolve(__dirname, '..', 'firestore.rules'), 'utf8');
+
+  it('зритель смотрит ТУ ЖЕ таблицу, отдельного экрана не заводим', () => {
+    expect(table).toContain("params.spectate === '1'");
+    expect(home).toContain("spectate: '1'");
+  });
+
+  it('зрителя НЕ уводит в раунд — он остаётся на табло', () => {
+    // Иначе зритель попал бы на экран вопросов, где ему нечего делать.
+    expect(table).toContain('if (spectating) return;');
+  });
+
+  it('смотреть можно только после закрытия входа — зритель не отнимает игрока', () => {
+    // Турниру нужно 8 живых, иначе отмена: пока лобби открыто — только играть.
+    expect(rules).toContain("resource.data.state.matches('round[1-4]')");
+    expect(home).toContain('Смотреть турнир');
+  });
+
+  it('правильные ответы зрителю недоступны', () => {
+    // taskSecrets закрыты для всех, включая участников.
+    expect(rules).toMatch(/taskSecrets\/\{taskId\}[\s\S]{0,120}allow read, write: if false/);
+  });
+});

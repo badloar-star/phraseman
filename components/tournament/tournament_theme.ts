@@ -138,12 +138,123 @@ export function tournamentPaletteFromTheme(t: Theme): TournamentPalette {
   };
 }
 
+// ── Производные V2 ──────────────────────────────────────────────────────────
+// зачем: владелец утвердил макеты «Турниры в языке Learning V2»
+// (эталон docs/v2/mockups/02-phrase-builder.html): градиентные чипы с
+// 3D-кромкой, CTA с переливом и полкой, sheen-фон, hero-градиент по цифрам.
+// Все производные считаются из токенов АКТИВНОЙ темы — как color-mix в макете.
+
+/** Смешение hex-цветов: t — доля цвета a (0..1). Только #RRGGBB. */
+export function mixHex(a: string, b: string, t: number): string {
+  const pa = parseInt(a.slice(1), 16);
+  const pb = parseInt(b.slice(1), 16);
+  const ch = (sa: number, sb: number) => Math.round(sa * t + sb * (1 - t));
+  const r = ch((pa >> 16) & 255, (pb >> 16) & 255);
+  const g = ch((pa >> 8) & 255, (pb >> 8) & 255);
+  const bl = ch(pa & 255, pb & 255);
+  return `#${((1 << 24) | (r << 16) | (g << 8) | bl).toString(16).slice(1).toUpperCase()}`;
+}
+
+const tint = (c: string, t: number) => mixHex('#FFFFFF', c, t);
+const shade = (c: string, keep: number) => mixHex(c, '#000000', keep);
+
+/** rgba() от hex — для sheen/переливов, где нужна прозрачность акцента. */
+export function hexToRgba(hex: string, alpha: number): string {
+  const p = parseInt(hex.slice(1), 16);
+  return `rgba(${(p >> 16) & 255},${(p >> 8) & 255},${p & 255},${alpha})`;
+}
+
+/** Металл наград: 3 стопа, тёплый блик (НЕ белый). Не темизируется. */
+export const METAL = Object.freeze({
+  gold: ['#D19E1D', '#FFD86E', '#E3A812'] as const,
+  silver: ['#93A1AE', '#E9EFF5', '#8B98A4'] as const,
+  bronze: ['#A96F3D', '#E7B587', '#9C6434'] as const,
+  /** Тёмный текст поверх металла. */
+  ink: '#241A05',
+  /** Золотая CTA «Забрать приз» + её полка. */
+  ctaGold: ['#F6E3A1', '#E9C86A', '#C99B33'] as const,
+  ctaGoldShelf: '#7A5C14',
+  ctaGoldInk: '#231A04',
+});
+
+/** Тайминги/кривые V2 (мс) — те же, что в эталоне и constants/motion.ts. */
+export const v2motion = Object.freeze({
+  press: 120,
+  fast: 180,
+  normal: 240,
+  slow: 320,
+  celebrate: 420,
+  /** Полёт звезды в счётчик. */
+  starFlightMs: 700,
+  /** Задержка трейл-копий звезды. */
+  starTrailStepMs: 55,
+  /** Автопереход «Дальше» после вердикта. */
+  autoNextMs: 1400,
+  /** Волна вердикта по опциям. */
+  verdictWaveStepMs: 70,
+  bezierSlide: [0.33, 0.52, 0.25, 0.99] as const,
+  bezierOutQuint: [0.23, 1, 0.32, 1] as const,
+  bezierSpring: [0.38, 0.7, 0.125, 1.0] as const,
+});
+
+export type TournamentV2 = TournamentPalette & {
+  /** Градиент чипа/плиты-опции (160°) + нижняя 3D-кромка. */
+  chipGradA: string; chipGradB: string; chipEdge: string;
+  /** Блик поверх чипов и карточек. */
+  chipHi: string;
+  /** Поверхность карточек (surface-grad). */
+  surfaceGradA: string; surfaceGradB: string;
+  /** CTA: перелив сверху-вниз + полка. */
+  ctaGradA: string; ctaGradB: string; ctaGradC: string; ctaHi: string; ctaShelf: string;
+  /** Верная заливка (ok-grad) и текст на ней. */
+  okGradA: string; okGradB: string; okInk: string;
+  /** Градиент по тексту героя (цифры таймера, заголовок финала). */
+  heroGradA: string; heroGradB: string;
+  /** Дыхание фона сверху экрана. */
+  sheen: string;
+  /** Фон экрана: глубокий вертикальный градиент. */
+  bgGradA: string; bgGradB: string;
+  /** Текст на золотой пилюле max-яруса серии. */
+  onGold: string;
+};
+
+export function tournamentV2FromTheme(t: Theme): TournamentV2 {
+  const base = tournamentPaletteFromTheme(t);
+  const accent = t.accent;
+  return {
+    ...base,
+    accentText: t.correctText,
+    accentDark: t.btnShadow,
+    chipGradA: mixHex(accent, t.bgSurface2, 0.16),
+    chipGradB: mixHex(accent, t.bgCard, 0.07),
+    chipEdge: shade(t.bgCard, 0.45),
+    chipHi: 'rgba(255,255,255,0.12)',
+    surfaceGradA: mixHex(accent, t.bgSurface, 0.1),
+    surfaceGradB: shade(t.bgCard, 0.94),
+    ctaGradA: tint(accent, 0.22),
+    ctaGradB: shade(accent, 0.94),
+    ctaGradC: shade(accent, 0.72),
+    ctaHi: 'rgba(255,255,255,0.34)',
+    ctaShelf: t.btnShadow,
+    okGradA: tint(accent, 0.14),
+    okGradB: shade(accent, 0.88),
+    okInk: t.correctText,
+    heroGradA: '#FFFFFF',
+    heroGradB: tint(accent, 0.62),
+    sheen: hexToRgba(accent, 0.05),
+    bgGradA: mixHex(accent, t.bgPrimary, 0.045),
+    bgGradB: shade(t.bgPrimary, 0.3),
+    onGold: t.textOnGold,
+  };
+}
+
 // Хук: палитра активной темы, мемоизирована по объекту темы.
 // Каждый экран/компонент турниров зовёт его сам — один источник истины.
+// Возвращает НАДмножество старой палитры: старые поля целы, V2-поля добавлены.
 import { useMemo } from 'react';
 import { useTheme } from '../ThemeContext';
 
-export function useTournamentPalette(): TournamentPalette {
+export function useTournamentPalette(): TournamentV2 {
   const { theme } = useTheme();
-  return useMemo(() => tournamentPaletteFromTheme(theme), [theme]);
+  return useMemo(() => tournamentV2FromTheme(theme), [theme]);
 }

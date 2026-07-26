@@ -1,24 +1,33 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// tournaments.tsx — главный экран режима «Турниры» (макеты 01-05).
+// tournaments.tsx — хаб режима «Турниры». НАПИСАН С НУЛЯ в языке Learning V2.
 //
-// зачем: точка входа режима. Hero-отсчёт до старта, слоты дня, вход за билет,
-// банк недели, тизер сезона. Порт утверждённого прототипа
-// (docs/design/tournaments/prototype/src/screens/TournamentHome.tsx) 1:1.
+// зачем: владелец 2026-07-26 — «хаб неудобен, переделать не отталкиваясь от
+// текущего, писать с нуля»; дизайн — ТОЧНО как эталон соседней сессии
+// docs/v2/mockups/02-phrase-builder.html (утверждённые макеты турниров).
 //
-// Performance Bible: первый кадр = финальная геометрия. Данные тянутся ОДНИМ
-// снимком расписания, скелетон с зарезервированными размерами, никаких
-// «0 → значение» прыжков и полноэкранных спиннеров.
+// Структура (сверху вниз, по важности решения игрока):
+//   1. шапка: звёзды сезона + жемчужины;
+//   2. hero: крупный отсчёт градиентом → одна кнопка действия;
+//   3. таймлайн слотов дня точками (вместо ряда плиток — читается за взгляд);
+//   4. банк недели;
+//   5. лидеры сезона полосами-рейтингами (длина = звёзды, оттенок темы).
+//
+// Performance Bible: первый кадр = финальная геометрия (баланс из кэша,
+// hero-карточка одной высоты во всех состояниях), никаких полноэкранных
+// заглушек — экран ВСЕГДА рабочий (требование владельца).
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор (a11y на Pill)
+import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
+import { LinearGradient } from 'expo-linear-gradient';
+import MaskedView from '@react-native-masked-view/masked-view';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
-// зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
-// что и в coin_exchange.tsx, используем везде, где добавляем кнопку «назад».
+// зачем: голый router.back() крашит Android/Fabric при teardown — общий контракт.
 import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
@@ -26,12 +35,23 @@ import { useTheme } from '../../components/ThemeContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
 import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeeklyBankInfo, type WeeklyBankInfo } from '../tournament_client';
-import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
-import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
-import { T, radius, type, tournamentPaletteFromTheme, type TournamentPalette } from '../../components/tournament/tournament_theme';
-import { TournamentEdgeState, TournamentSkeleton } from '../../components/tournament/TournamentEdgeState';
+import { Sheet } from '../../components/tournament/tournament_ui';
+import { useCountdown } from '../../components/tournament/TournamentCountdown';
+import {
+  METAL,
+  formatTimeLeft,
+  radius,
+  useTournamentPalette,
+  type TournamentV2,
+} from '../../components/tournament/tournament_theme';
+import { StarGlyph } from '../../components/tournament/TournamentFx';
+import {
+  V2Card,
+  V2Counter,
+  V2Cta,
+  V2RatingRow,
+} from '../../components/tournament/tournament_v2_ui';
 import {
   devStartTournament,
   joinTournament,
@@ -41,167 +61,106 @@ import {
   useTournamentRoom,
 } from '../tournament_client';
 
-type SlotState = 'done' | 'now' | 'next';
-type DaySlot = { time: string; state: SlotState };
-
 /** Слот расписания — форма совпадает с TournamentSlotConfig на сервере. */
 type ScheduleSlot = {
   slotId: string;
   localTime: string;
   timezone?: string;
-  /** Цена входа в жемчужинах — приходит из настроек экономики. */
   entryGems?: number;
   enabled?: boolean;
-  /** Вычисляется на клиенте: когда сегодня стартует этот слот. */
   startsAtMs?: number;
 };
-type ScheduleConfig = {
-  slots: ScheduleSlot[];
-  /** Цена входа в жемчужинах из настроек экономики. */
-  entryGems?: number;
-};
+type ScheduleConfig = { slots: ScheduleSlot[]; entryGems?: number };
 
-/** Момент сегодняшнего старта слота в его таймзоне. */
+/** Момент сегодняшнего старта слота. */
 function slotStartMs(slot: ScheduleSlot): number {
   const match = /^(\d{2}):(\d{2})$/.exec(slot.localTime ?? '');
   if (!match) return 0;
-  const now = new Date();
-  const target = new Date(now);
+  const target = new Date();
   target.setHours(Number(match[1]), Number(match[2]), 0, 0);
   return target.getTime();
 }
 
-/**
- * Ближайший включённый слот: тот, что ещё не прошёл. Если на сегодня всё
- * отыграно — берём первый завтрашний, чтобы отсчёт не показывал ноль.
- */
-function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
-  const enabled = slots
+function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number })[] {
+  return slots
     .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
     .map((slot) => ({ ...slot, startsAtMs: slotStartMs(slot) }))
     .sort((a, b) => a.startsAtMs - b.startsAtMs);
-  if (enabled.length === 0) return null;
+}
 
-  const now = Date.now();
-  const upcoming = enabled.find((slot) => slot.startsAtMs > now - 20 * 60 * 1000);
+/**
+ * Ближайший слот: ещё не прошедший. Если день отыгран — первый завтрашний,
+ * чтобы отсчёт никогда не показывал ноль.
+ */
+function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
+  const list = enabledSlots(slots);
+  if (list.length === 0) return null;
+  const upcoming = list.find((slot) => slot.startsAtMs > Date.now() - 20 * 60 * 1000);
   if (upcoming) return upcoming;
-  const first = enabled[0];
-  return { ...first, startsAtMs: first.startsAtMs + 24 * 60 * 60 * 1000 };
+  return { ...list[0], startsAtMs: list[0].startsAtMs + 24 * 60 * 60 * 1000 };
 }
 
-/** Слоты дня для полосы под отсчётом: пройден / идёт / следующий. */
-function daySlots(slots: ScheduleSlot[], activeSlotId: string | null): DaySlot[] {
-  const now = Date.now();
-  return slots
-    .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
-    .map((slot) => {
-      const startsAtMs = slotStartMs(slot);
-      const state: SlotState = slot.slotId === activeSlotId
-        ? 'now'
-        : startsAtMs < now ? 'done' : 'next';
-      return { time: slot.localTime, state };
-    });
-}
-
-// зачем: раньше здесь были эмодзи-«аватары» лидеров (🐺👑⚔️) с хардкод-хексами —
-// правило владельца запрещает эмодзи-валюту/аватары, показываем реальные
-// аватарки через approved AvatarView (те же ассеты, что в лигах/друзьях).
-const SEASON_LEADERS = [
-  { avatarIndex: 3, color: T.leaderWolf },
-  { avatarIndex: 7, color: T.leaderCrown },
-  { avatarIndex: 5, color: T.leaderSword },
-];
-
-/** Базовая цена входа: показываем до ответа сервера, чтобы кнопка не прыгала. */
 const DEFAULT_ENTRY_GEMS = 3;
-
-/** Дольше этого ждать расписание бессмысленно — показываем «Повторить». */
 const SCHEDULE_TIMEOUT_MS = 8000;
 
+/** Демо-лидеры сезона до появления серверной таблицы (аватары — приложения). */
+const SEASON_LEADERS = [
+  { avatar: '3', name: 'Виктория К.', stars: 432 },
+  { avatar: '7', name: 'Артём Р.', stars: 398 },
+  { avatar: '5', name: 'Максим', stars: 126, me: true },
+];
+
 export default function TournamentsScreen() {
-  const { themeMode, theme } = useTheme();
-  // Палитра турниров = активная тема приложения (формат T сохранён).
-  const P = useMemo(() => tournamentPaletteFromTheme(theme), [theme]);
+  const { themeMode } = useTheme();
+  const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
-  // зачем: экран открывается пушем из таббара, но своей кнопки «назад» не было
-  // (только safeRouterBack был импортирован без дела) — паттерн 1:1 как в
-  // shards_shop.tsx: круглая кнопка chevron-back + safeRouterBack с фолбэком.
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
-  // зачем: раньше здесь был отдельный эмодзи-«гем» (💎), запрещённая владельцем
-  // валюта. Показываем реальный баланс монет — как на Главной/в Магазине —
-  // синхронно из кэша (Performance Bible: без спиннера и «0 → значение» прыжка).
+  // Баланс синхронно из кэша: без «0 → значение» прыжка на первом кадре.
   const [coins, setCoins] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
-  // зачем: банк был захардкожен числом 240 — показывали выдумку. Теперь
-  // реальная сумма с сервера; null до ответа, чтобы не мигать нулём.
   const [bankInfo, setBankInfo] = useState<WeeklyBankInfo | null>(null);
   const bank = bankInfo?.bankGems ?? 0;
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState('');
-  // Модалка выигрыша недельного банка: показываем один раз на неделю.
   const [weeklyPrize, setWeeklyPrize] = useState<{ place: number; gems: number } | null>(null);
 
-  // Расписание читается снимком и кэшируется на 6 часов — оно меняется раз
-  // в недели, live-подписка на нём была бы тратой чтений.
   const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
-  const [scheduleFailed, setScheduleFailed] = useState(false);
-
-  // зачем: билеты убраны (решение владельца 2026-07-26) — вход стоит
-  // жемчужины, одна валюта вместо двух сущностей. Цену отдаёт сервер;
-  // до ответа показываем базовую, чтобы кнопка не прыгала с «—» на число.
   const entryGems = schedule?.entryGems ?? DEFAULT_ENTRY_GEMS;
 
-  const reloadSchedule = useCallback(() => {
-    setScheduleFailed(false);
-    // зачем: без таймаута зависший запрос оставлял экран на скелетоне
-    // навсегда — а скелетон на тёмной теме читается как пустой чёрный экран.
-    // Через 8 секунд показываем понятное состояние с кнопкой «Повторить».
+  useEffect(() => {
+    // Расписание меняется раз в недели — снимок, не подписка (экономия чтений).
+    // зачем cleanup: без него таймер тикал после ухода с экрана и держал промис
+    // (Performance Bible: guarded loops — таймеры не жгут батарею в фоне).
+    let alive = true;
+    let timerId: ReturnType<typeof setTimeout> | undefined;
     const timeout = new Promise<never>((_, reject) => {
-      setTimeout(() => reject(new Error('schedule_timeout')), SCHEDULE_TIMEOUT_MS);
+      timerId = setTimeout(() => reject(new Error('schedule_timeout')), SCHEDULE_TIMEOUT_MS);
     });
     void Promise.race([loadSchedule(), timeout])
-      .then((value) => setSchedule((value as ScheduleConfig | null) ?? { slots: [] }))
-      .catch(() => setScheduleFailed(true));
+      .then((value) => { if (alive) setSchedule((value as ScheduleConfig | null) ?? { slots: [] }); })
+      .catch(() => { if (alive) setSchedule({ slots: [] }); });
+    return () => { alive = false; if (timerId) clearTimeout(timerId); };
   }, []);
 
-  useEffect(reloadSchedule, [reloadSchedule]);
-
-  /**
-   * зачем: если запрос расписания завис (нет сети, спит сокет), экран оставался
-   * в загрузке БЕСКОНЕЧНО — на тёмной теме это выглядит как пустой чёрный
-   * экран, и человек думает, что приложение сломалось. Через 8 секунд
-   * показываем состояние «нет связи» с кнопкой повтора.
-   */
-  useEffect(() => {
-    if (schedule || scheduleFailed) return;
-    const timer = setTimeout(() => setScheduleFailed(true), 8000);
-    return () => clearTimeout(timer);
-  }, [schedule, scheduleFailed]);
-
-  // Тихая ревалидация баланса монет с сервера — тот же паттерн, что в coin_exchange.tsx.
   useEffect(() => {
     void getShardsBalance().then(setCoins).catch(() => {});
-    // Банк недели + моя доля за прошлую неделю: кэш 30 минут внутри клиента.
     void loadWeeklyBankInfo().then(async (info) => {
       setBankInfo(info);
-      // зачем: недельный банк начисляется кроном ночью — без этой модалки
-      // игрок узнал бы о награде только по изменившемуся балансу, то есть
-      // почти никак. Показываем один раз: ключ по неделе в локальном хранилище.
+      // зачем: банк начисляется кроном ночью — без шторки игрок узнал бы о
+      // награде только по изменившемуся балансу. Показ один раз на неделю.
       const last = info?.lastWeek;
       if (!last?.paidOut || last.myGems <= 0) return;
       const seenKey = `tournament_weekly_prize_seen:${last.weekId}`;
-      const seen = await AsyncStorage.getItem(seenKey);
-      if (seen) return;
+      if (await AsyncStorage.getItem(seenKey)) return;
       await AsyncStorage.setItem(seenKey, '1');
       setWeeklyPrize({ place: last.myPlace, gems: last.myGems });
     }).catch(() => {});
   }, []);
 
-  // Ближайший включённый слот и его сегодняшняя комната.
   const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
   const roomId = useMemo(() => {
     if (!nextSlot) return null;
@@ -209,7 +168,7 @@ export default function TournamentsScreen() {
     return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone));
   }, [nextSlot]);
 
-  const { room, status, retry } = useTournamentRoom(roomId);
+  const { room } = useTournamentRoom(roomId);
 
   const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
   const secondsToStart = useCountdown(
@@ -217,33 +176,24 @@ export default function TournamentsScreen() {
     Boolean(startsAt),
   );
   const live = room?.state === 'round' || room?.state === 'table' || room?.state === 'final';
-  // Не хватает на вход — кнопка меняется на подсказку, а не на тупик.
   const notEnoughGems = coins < entryGems;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   const closeConfirm = useCallback(() => setConfirmVisible(false), []);
 
   /**
-   * Вход: билет списывает СЕРВЕР, клиент только просит. Пока запрос летит,
-   * кнопка заблокирована — иначе двойной тап спишет два билета.
-   */
-  /**
    * Вход: жемчужины списывает СЕРВЕР, клиент только просит.
-   *
-   * зачем Optimistic UI: баланс уменьшается СРАЗУ, чтобы шапка не показывала
-   * старое число, пока летит запрос. При ошибке — откат к прежнему значению и
-   * понятное сообщение вместо молчания (раньше отказ выглядел как «ничего не
-   * произошло»). Двойной тап отсекается флагом joining: иначе спишется дважды.
+   * Optimistic UI: баланс падает СРАЗУ, при ошибке — откат и причина текстом.
+   * Двойной тап отсекается флагом joining, иначе спишется дважды.
    */
   const enterLobby = useCallback(async () => {
     if (!roomId || joining) return;
     setJoining(true);
     const balanceBefore = coins;
-    setCoins((current) => Math.max(0, current - entryGems));
+    setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
     try {
       const result = await joinTournament(roomId) as { gemsLeft?: number } | undefined;
-      // Сервер вернул точный баланс — согласуем, чтобы не было расхождения.
-      if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft));
+      if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
       setConfirmVisible(false);
       setJoinError('');
       router.push({ pathname: '/tournament_lobby', params: { roomId } });
@@ -260,8 +210,8 @@ export default function TournamentsScreen() {
 
   /**
    * зачем: дев-кнопка владельца — «нажал и сразу играю с ботами», не дожидаясь
-   * слота расписания. Сервер (admin-only) мгновенно создаёт комнату в лобби со
-   * стартом через 3 минуты и снятым минимумом «8 живых»; дальше штатный вход.
+   * слота. Сервер (admin-only) мгновенно создаёт комнату в лобби со стартом
+   * через 3 минуты и снятым минимумом «8 живых»; дальше штатный вход.
    */
   const [devStarting, setDevStarting] = useState(false);
   const startDevTournament = useCallback(async () => {
@@ -290,27 +240,27 @@ export default function TournamentsScreen() {
     [insets.top, insets.bottom],
   );
 
-  // зачем: экран турниров ВСЕГДА рабочий (требование владельца 2026-07-26).
-  // Раньше он подменялся заглушками: «Нет соединения» при любом отказе (даже
-  // когда интернет есть, а просто нет расписания), скелетон на время загрузки,
-  // «Скоро первый турнир» при выключенных слотах. Человек упирался в тупик
-  // вместо экрана. Теперь заглушек нет — контент рисуется всегда, а состояние
-  // показывается ВНУТРИ hero-карточки, не перекрывая остальное.
+  const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
+  const myStars = SEASON_LEADERS.find((leader) => leader.me)?.stars ?? 0;
+  const topStars = Math.max(1, ...SEASON_LEADERS.map((leader) => leader.stars));
 
   return (
     <View style={styles.root}>
+      {/* Дыхание фона: мягкий свет акцента сверху — глубина без обводок. */}
+      <LinearGradient
+        colors={[P.sheen, 'transparent']}
+        style={styles.sheen}
+        pointerEvents="none"
+      />
       <ScrollView
         contentContainerStyle={[styles.content, contentPadding]}
         showsVerticalScrollIndicator={false}
-        // зачем: таббар схлопывается за пальцем и читает офсет активного таба.
-        // bounces даёт отрицательный офсет, когда контент короче экрана, — без него
-        // на коротком расписании таббар не реагировал бы на тягу вниз вообще.
         bounces
         alwaysBounceVertical
         scrollEventThrottle={16}
         onScroll={topFadeScroll?.onScroll}
       >
-        {/* Шапка: назад + название + баланс */}
+        {/* Шапка: назад · название · звёзды сезона · жемчужины */}
         <View style={styles.header}>
           <TapScale
             onPress={goBack}
@@ -320,323 +270,375 @@ export default function TournamentsScreen() {
           >
             <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
-          <Text style={styles.title}>Турниры</Text>
+          <Text style={styles.title} allowFontScaling={false}>Турниры</Text>
           <View style={styles.headerRight}>
-            {/* зачем: был запрещённый эмодзи-«гем» — теперь настоящая монета,
-                как на Главной/в Магазине (coinIconForBalance + число рядом). */}
-            <Pill>
-              <Image
-                source={coinIconForBalance(coins, themeMode)}
-                style={styles.coinIcon}
-                contentFit="contain"
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-              />
-              {' '}{coins}
-            </Pill>
+            <V2Counter value={myStars} tone="stars" />
+            <V2Counter
+              value={coins}
+              tone="gems"
+              icon={(
+                <Image
+                  source={coinIconForBalance(coins, themeMode)}
+                  style={styles.coinIcon}
+                  contentFit="contain"
+                  accessible={false}
+                  accessibilityElementsHidden
+                  importantForAccessibility="no"
+                />
+              )}
+            />
           </View>
         </View>
 
-        {/* HERO: отсчёт, слоты дня, вход */}
+        {/* HERO: одно решение на экран — крупный отсчёт и одна кнопка */}
         <Animated.View entering={FadeIn.duration(220)}>
-          <Card tone="elev" pad={24}>
-            <View style={styles.heroTop}>
-              <Text style={[styles.heroKicker, { color: live ? P.danger : P.accent }]}>
-                {live ? 'Турнир идёт' : 'Турнир фраз'}
-              </Text>
-              <View style={styles.freeBadge}>
-                <Text style={styles.freeBadgeText}>🎁 первый вход — бесплатно</Text>
-              </View>
-            </View>
+          <V2Card pad={22}>
+            <Text style={[styles.kicker, live && { color: P.danger }]} allowFontScaling={false}>
+              {live ? 'Сейчас играют' : nextSlot ? `Сегодня · ${nextSlot.localTime}` : 'Турниры'}
+            </Text>
 
-            <View style={styles.heroCenter}>
-              {/* зачем: без расписания отсчёт показывал бы 00:00 — вместо нулей
-                  честный текст, но экран остаётся живым и рабочим. */}
-              {live ? (
-                <Text style={styles.liveText} allowFontScaling={false}>LIVE</Text>
-              ) : nextSlot ? (
-                <TimeLeft seconds={secondsToStart} />
-              ) : (
-                <Text style={styles.liveText} allowFontScaling={false}>Скоро</Text>
-              )}
-              <Text style={styles.heroSub}>
-                {live
-                  ? `${room?.players?.length ?? 0} из 16 мест занято — успей зайти!`
-                  : nextSlot
-                    ? 'до старта · 16 игроков · 4 раунда'
-                    : 'первый турнир готовится · 16 игроков · 4 раунда'}
-              </Text>
-            </View>
-
-            <View style={styles.slots}>
-              {daySlots(schedule?.slots ?? [], nextSlot?.slotId ?? null).map((slot) => (
-                <SlotCell key={slot.time} slot={slot} live={live} P={P} styles={styles} />
-              ))}
-            </View>
+            {/* Цифры отсчёта — градиентом по тексту (hero-grad эталона). */}
+            <HeroValue
+              text={live ? `Раунд ${room?.rounds?.length ?? 1} из 4` : nextSlot ? formatTimeLeft(secondsToStart) : 'Скоро'}
+              big={!live && Boolean(nextSlot)}
+              P={P}
+              styles={styles}
+            />
+            <Text style={styles.heroSub} allowFontScaling={false}>
+              {live
+                ? `${room?.players?.length ?? 0} игроков · банк комнаты ${(room?.players?.length ?? 0) * entryGems}`
+                : nextSlot
+                  ? '16 игроков · 4 раунда · около 7 минут'
+                  : 'первый турнир готовится · 16 игроков · 4 раунда'}
+            </Text>
 
             {live ? (
-              /* зачем: турнир уже начался — вход закрыт, кнопка «В игру» вела
-                 в тупик. Вместо неё зритель смотрит табло: человек остаётся в
-                 игре вместо того чтобы уйти, и приходит на следующий слот. */
-              <Cta onPress={() => router.push({
-                pathname: '/tournament_table',
-                params: { roomId: roomId ?? '', spectate: '1' },
-              })} disabled={!roomId}>
+              <V2Cta
+                tone="ghost"
+                onPress={() => router.push({
+                  pathname: '/tournament_table',
+                  params: { roomId: roomId ?? '', spectate: '1' },
+                })}
+                disabled={!roomId}
+                left={<Ionicons name="eye-outline" size={18} color={P.accent} />}
+              >
                 Смотреть турнир
-              </Cta>
-            ) : notEnoughGems ? (
-              <>
-                <Cta ghost disabled>Не хватает жемчужин</Cta>
-                <View style={styles.howTo}>
-                  <View style={styles.howToBody}>
-                    <Text style={styles.howToTitle}>
-                      Нужно ещё {entryGems - coins} — за уроки и задания
+              </V2Cta>
+            ) : (
+              <V2Cta
+                onPress={openConfirm}
+                disabled={!roomId || joining || notEnoughGems}
+                right={nextSlot && !notEnoughGems ? (
+                  <View style={styles.ctaPrice}>
+                    <Image
+                      source={coinIconForBalance(entryGems, themeMode)}
+                      style={styles.ctaCoin}
+                      contentFit="contain"
+                      accessible={false}
+                      accessibilityElementsHidden
+                      importantForAccessibility="no"
+                    />
+                    <Text style={[styles.ctaPriceText, { color: P.okInk }]} allowFontScaling={false}>
+                      {entryGems}
                     </Text>
                   </View>
-                </View>
-              </>
-            ) : (
-              <Cta onPress={openConfirm} disabled={!roomId || joining}>
-                {nextSlot ? `Начать турнир · ${entryGems}` : 'Скоро откроем'}
-              </Cta>
+                ) : undefined}
+              >
+                {notEnoughGems ? `Нужно ещё ${entryGems - coins}` : nextSlot ? 'Играть' : 'Скоро откроем'}
+              </V2Cta>
             )}
-            {/* Дев-кнопка владельца: мгновенный турнир с ботами. Видна только
-                в dev-сборке; сервер дополнительно требует admin-claim. */}
+            {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}
             {__DEV__ ? (
-              <Cta ghost onPress={startDevTournament} disabled={devStarting}
-                style={styles.devCta}>
-                {devStarting ? 'Создаём комнату…' : '🤖 Дев-турнир с ботами'}
-              </Cta>
+              <V2Cta
+                tone="ghost"
+                onPress={startDevTournament}
+                disabled={devStarting}
+                style={styles.devCta}
+              >
+                {devStarting ? 'Создаём комнату…' : 'Дев-турнир с ботами'}
+              </V2Cta>
             ) : null}
-          </Card>
+          </V2Card>
         </Animated.View>
+
+        {/* Таймлайн слотов дня: точки вместо плиток — читается за взгляд */}
+        {daySlotList.length > 0 ? (
+          <View style={styles.timeline}>
+            {daySlotList.map((slot, index) => {
+              const isNext = slot.slotId === nextSlot?.slotId;
+              const isPast = slot.startsAtMs < Date.now() && !isNext;
+              return (
+                <React.Fragment key={slot.slotId}>
+                  {index > 0 ? (
+                    <View style={[styles.tlLink, isPast || isNext ? { backgroundColor: P.accent } : null]} />
+                  ) : null}
+                  <View style={styles.tlNode}>
+                    <View style={[
+                      styles.tlDot,
+                      isPast ? { backgroundColor: P.accent } : null,
+                      isNext ? styles.tlDotNext : null,
+                    ]} />
+                    <Text
+                      style={[
+                        styles.tlLabel,
+                        isNext ? { color: P.accent } : isPast ? { color: P.muted } : null,
+                      ]}
+                      allowFontScaling={false}
+                    >
+                      {slot.localTime}
+                    </Text>
+                  </View>
+                </React.Fragment>
+              );
+            })}
+          </View>
+        ) : null}
 
         {/* Банк недели */}
         <Animated.View entering={FadeIn.duration(220).delay(60)}>
-          <Card tone="gold" pad={22}>
+          <V2Card pad={18}>
             <View style={styles.bankRow}>
-              {/* зачем: было эмодзи 💰 (иконка) + 💎 (запрещённая гем-валюта) —
-                  одна настоящая иконка жемчужины покрывает обе роли, число — главный
-                  индикатор рядом (тот же паттерн, что на Главной/в Магазине). */}
-              <Image
-                source={coinIconForBalance(bank, themeMode)}
-                style={styles.bankHeroIcon}
-                contentFit="contain"
-                accessibilityElementsHidden
-                importantForAccessibility="no"
-              />
+              <LinearGradient
+                colors={METAL.gold}
+                start={{ x: 0.15, y: 0 }}
+                end={{ x: 0.85, y: 1 }}
+                style={styles.bankMedal}
+              >
+                <Ionicons name="trophy" size={20} color={METAL.ink} />
+              </LinearGradient>
               <View style={styles.bankBody}>
-                <Text style={styles.bankKicker}>Банк недели</Text>
-                <Text style={styles.bankValue} allowFontScaling={false}>{bank}</Text>
+                <Text style={styles.kicker} allowFontScaling={false}>Банк недели</Text>
+                <View style={styles.bankValueRow}>
+                  <Text style={styles.bankValue} allowFontScaling={false}>{bank}</Text>
+                  <Image
+                    source={coinIconForBalance(bank, themeMode)}
+                    style={styles.bankCoin}
+                    contentFit="contain"
+                    accessible={false}
+                    accessibilityElementsHidden
+                    importantForAccessibility="no"
+                  />
+                </View>
               </View>
-              {/* зачем: раньше здесь был VIP-блок с ценой в билетах, которых
-                  больше нет. Показываем, когда и кому достанется банк — иначе
-                  игрок не понимает, за что борется. */}
-              <View style={styles.vipBox}>
-                <Text style={styles.vipTitle}>🏆 Топ-3</Text>
-                <Text style={styles.vipSub}>вс, ночью</Text>
-              </View>
+              <Text style={styles.bankWhen} allowFontScaling={false}>топ-3{'\n'}в понедельник</Text>
             </View>
-          </Card>
+          </V2Card>
         </Animated.View>
 
-        {/* Сезон */}
-        <Animated.View entering={FadeIn.duration(220).delay(120)}>
-          <Card pad={18} onPress={() => router.push('/tournament_season')}>
-            <View style={styles.seasonRow}>
-              <View style={styles.seasonAvatars}>
-                {/* зачем: эмодзи-«аватары» лидеров заменены на approved AvatarView —
-                    те же ассеты, что в лигах/друзьях, вместо запрещённых эмодзи. */}
-                {SEASON_LEADERS.map((leader, index) => (
-                  <View
-                    key={leader.avatarIndex}
-                    style={[
-                      styles.seasonAvatar,
-                      { backgroundColor: `${leader.color}33`, marginLeft: index ? -10 : 0 },
-                    ]}
-                  >
-                    <AvatarView avatar={String(leader.avatarIndex)} size={32} animateAura={false} />
-                  </View>
-                ))}
+        {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы */}
+        <Text style={[styles.kicker, styles.sectionKicker]} allowFontScaling={false}>
+          Сезон · мои звёзды {myStars}
+        </Text>
+        <View style={styles.seasonList}>
+          {SEASON_LEADERS.map((leader, index) => (
+            <V2RatingRow
+              key={leader.avatar}
+              ratio={leader.stars / topStars}
+              mix={0.46 - index * 0.07}
+              highlighted={leader.me}
+            >
+              <Text style={[styles.place, leader.me && { color: P.accent }]} allowFontScaling={false}>
+                {index + 1}
+              </Text>
+              <AvatarView avatar={leader.avatar} size={36} animateAura={false} />
+              <Text
+                style={[styles.rowName, leader.me && { color: P.accent }]}
+                numberOfLines={1}
+              >
+                {leader.name}
+              </Text>
+              <View style={styles.rowStars}>
+                <StarGlyph size={13} color={P.gold} />
+                <Text style={styles.rowStarsText} allowFontScaling={false}>{leader.stars}</Text>
               </View>
-              <View style={styles.seasonBody}>
-                <Text style={styles.seasonTitle}>Сезон · вы 6-е</Text>
-                <Text style={styles.seasonSub}>до топ-5 — 24 очка</Text>
-              </View>
-              <Text style={styles.chevron}>›</Text>
-            </View>
-          </Card>
-        </Animated.View>
+            </V2RatingRow>
+          ))}
+        </View>
+        <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
+          <Text style={styles.seasonMoreText} allowFontScaling={false}>Таблица сезона</Text>
+          <Ionicons name="chevron-forward" size={18} color={P.muted} />
+        </TapScale>
       </ScrollView>
 
-      {/* зачем: недельный банк приходит ночью кроном — без этой шторки игрок
-          не узнал бы, что выиграл. Показывается один раз на неделю. */}
+      {/* Недельный банк пришёл ночью — показываем один раз на неделю */}
       <Sheet visible={!!weeklyPrize} onClose={() => setWeeklyPrize(null)}>
-        <Text style={styles.sheetIcon}>🏆</Text>
-        <Text style={styles.sheetTitle}>
-          {weeklyPrize?.place === 1 ? 'Первое место недели!'
-            : weeklyPrize?.place === 2 ? 'Второе место недели!'
-              : 'Третье место недели!'}
+        <Text style={styles.sheetTitle} allowFontScaling={false}>
+          {weeklyPrize?.place === 1 ? 'Первое место недели'
+            : weeklyPrize?.place === 2 ? 'Второе место недели'
+              : 'Третье место недели'}
         </Text>
         <Text style={styles.sheetSub}>
-          Ваша доля банка: {weeklyPrize?.gems ?? 0} — уже на счету
+          Доля банка: {weeklyPrize?.gems ?? 0} — уже на счету
         </Text>
         <View style={styles.sheetActions}>
-          <Cta onPress={() => setWeeklyPrize(null)}>Отлично</Cta>
+          <V2Cta tone="gold" onPress={() => setWeeklyPrize(null)}>Отлично</V2Cta>
         </View>
       </Sheet>
 
-      {/* Подтверждение входа (макет 04) */}
+      {/* Подтверждение входа */}
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
-        <Text style={styles.sheetIcon}>🏆</Text>
-        <Text style={styles.sheetTitle}>Войти в турнир?</Text>
-        <Text style={styles.sheetSub}>Списание: {entryGems} · останется {Math.max(0, coins - entryGems)}</Text>
-        {/* зачем: отказ сервера раньше выглядел как «ничего не произошло» —
-            шторка просто закрывалась. Показываем причину прямо здесь. */}
+        <Text style={styles.sheetTitle} allowFontScaling={false}>Вход в турнир</Text>
+        <Text style={styles.sheetSub}>
+          {nextSlot ? `Сегодня · ${nextSlot.localTime} · 16 игроков` : 'Ближайшая комната'}
+        </Text>
+        <View style={styles.sheetPrice}>
+          <Image
+            source={coinIconForBalance(entryGems, themeMode)}
+            style={styles.sheetCoin}
+            contentFit="contain"
+            accessible={false}
+            accessibilityElementsHidden
+            importantForAccessibility="no"
+          />
+          <Text style={styles.sheetPriceLabel} allowFontScaling={false}>Участие</Text>
+          <Text style={styles.sheetPriceValue} allowFontScaling={false}>{entryGems}</Text>
+        </View>
+        <View style={styles.sheetBalance}>
+          <Text style={styles.sheetBalanceText} allowFontScaling={false}>У тебя {coins}</Text>
+          <Text style={styles.sheetBalanceText} allowFontScaling={false}>
+            останется {Math.max(0, coins - entryGems)}{/* guard-ok: превью списания, баланс не пишется */}
+          </Text>
+        </View>
         {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}
         <View style={styles.sheetActions}>
-          <Cta onPress={enterLobby} disabled={joining}>
-            {joining ? 'Заходим…' : 'Погнали!'}
-          </Cta>
-          <Cta ghost onPress={closeConfirm}>Отмена</Cta>
+          <V2Cta onPress={enterLobby} disabled={joining}>
+            {joining ? 'Заходим…' : 'Войти'}
+          </V2Cta>
+          <V2Cta tone="ghost" onPress={closeConfirm}>Отмена</V2Cta>
         </View>
       </Sheet>
     </View>
   );
 }
 
-// ── Слот дня ────────────────────────────────────────────────────────────────
+// ── Hero-значение с градиентом по тексту ────────────────────────────────────
 
-const SlotCell = memo(function SlotCell({ slot, live, P, styles }: {
-  slot: DaySlot; live: boolean; P: TournamentPalette; styles: ReturnType<typeof makeStyles>;
-}) {
-  const isNow = slot.state === 'now';
-  const isDone = slot.state === 'done';
-
+/**
+ * Цифры отсчёта залиты градиентом (hero-grad эталона V2). MaskedView вместо
+ * плоского цвета: перелив читается «дорого», и это не обводка.
+ */
+const HeroValue = memo(function HeroValue({
+  text, big, P, styles,
+}: { text: string; big: boolean; P: TournamentV2; styles: ReturnType<typeof makeStyles> }) {
+  const textStyle = big ? styles.heroBig : styles.heroMid;
   return (
-    <View
-      style={[
-        styles.slot,
-        {
-          backgroundColor: isNow ? P.accentSoft : slot.state === 'next' ? P.card : 'transparent',
-          opacity: isDone ? 0.55 : 1,
-        },
-      ]}
+    <MaskedView
+      style={big ? styles.heroMaskBig : styles.heroMaskMid}
+      maskElement={(
+        <View style={styles.heroMaskInner}>
+          <Text style={textStyle} allowFontScaling={false}>{text}</Text>
+        </View>
+      )}
     >
-      <Text
-        style={[
-          styles.slotTime,
-          {
-            color: isDone ? P.ghost : isNow ? P.accent : P.muted,
-            textDecorationLine: isDone ? 'line-through' : 'none',
-          },
-        ]}
-        allowFontScaling={false}
-      >
-        {slot.time}
-      </Text>
-      {isNow ? <Text style={styles.slotNow}>{live ? 'ИДЁТ' : 'СЕЙЧАС'}</Text> : null}
-    </View>
+      <LinearGradient
+        colors={[P.heroGradA, P.heroGradB]}
+        start={{ x: 0.5, y: 0.2 }}
+        end={{ x: 0.5, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+    </MaskedView>
   );
 });
 
-// зачем: цвета берутся из АКТИВНОЙ темы приложения (жалоба владельца:
-// «турнир не слушает цвета темы»). Стили пересобираются при смене темы.
-const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+const makeStyles = (P: TournamentV2) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg },
+  sheen: { position: 'absolute', left: 0, right: 0, top: 0, height: 260 },
   content: { paddingHorizontal: 16, gap: 14 },
 
-  header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
+  header: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 2 },
   backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  loadingHeader: { paddingHorizontal: 16, marginBottom: 14 },
-  loadingHint: { ...type.body, color: P.muted, marginTop: 6 },
-  title: { ...type.title, color: P.text },
+  title: { fontSize: 24, fontWeight: '900', letterSpacing: -0.3, color: P.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
-  coinIcon: { width: 18, height: 18 },
+  coinIcon: { width: 15, height: 15 },
 
-  heroTop: { flexDirection: 'row', alignItems: 'center', gap: 8 },
-  heroKicker: { ...type.label, letterSpacing: 1, textTransform: 'uppercase' },
-  freeBadge: {
-    marginLeft: 'auto',
-    backgroundColor: P.goldSoft,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 999,
+  kicker: {
+    fontSize: 13,
+    fontWeight: '800',
+    letterSpacing: 1.6,
+    textTransform: 'uppercase',
+    color: P.ghost,
   },
-  freeBadgeText: { ...type.label, color: P.gold },
+  sectionKicker: { marginTop: 6, marginLeft: 4 },
 
-  heroCenter: { alignItems: 'center', marginTop: 22, marginBottom: 6 },
-  liveText: { fontSize: 64, fontWeight: '900', letterSpacing: 2, color: P.danger },
-  heroSub: { ...type.body, color: P.muted, marginTop: 8, textAlign: 'center' },
+  heroMaskBig: { height: 70, marginTop: 8 },
+  heroMaskMid: { height: 40, marginTop: 8 },
+  heroMaskInner: { flex: 1, backgroundColor: 'transparent', justifyContent: 'center' },
+  heroBig: {
+    fontSize: 62,
+    lineHeight: 66,
+    fontWeight: '900',
+    letterSpacing: -1.6,
+    color: '#000',
+    fontVariant: ['tabular-nums'],
+  },
+  heroMid: { fontSize: 32, lineHeight: 38, fontWeight: '900', letterSpacing: -0.8, color: '#000' },
+  heroSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 2, marginBottom: 18 },
+  ctaPrice: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  ctaCoin: { width: 16, height: 16 },
+  ctaPriceText: { fontSize: 17, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  devCta: { marginTop: 12 },
 
-  slots: { flexDirection: 'row', gap: 8, marginTop: 18, marginBottom: 22 },
-  slot: { flex: 1, alignItems: 'center', paddingVertical: 12, borderRadius: radius.md },
-  slotTime: { fontSize: 17, fontWeight: '800', fontVariant: ['tabular-nums'] },
-  slotNow: { fontSize: 11, fontWeight: '800', letterSpacing: 0.5, marginTop: 2, color: P.accent },
+  timeline: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 8 },
+  tlNode: { alignItems: 'center', gap: 7 },
+  tlDot: { width: 14, height: 14, borderRadius: 7, backgroundColor: P.elev2 },
+  tlDotNext: {
+    width: 18,
+    height: 18,
+    borderRadius: 9,
+    backgroundColor: P.accent,
+    shadowColor: P.accent,
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    shadowOffset: { width: 0, height: 0 },
+    elevation: 3,
+  },
+  tlLink: { flex: 1, height: 3, borderRadius: 2, backgroundColor: P.elev2, marginHorizontal: 6, marginBottom: 22 },
+  tlLabel: { fontSize: 12, fontWeight: '800', color: P.ghost, fontVariant: ['tabular-nums'] },
 
-  howTo: {
-    marginTop: 14,
-    borderRadius: radius.md,
-    backgroundColor: P.goldSoft,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
+  bankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
+  bankMedal: { width: 42, height: 42, borderRadius: 21, alignItems: 'center', justifyContent: 'center' },
+  bankBody: { flex: 1 },
+  bankValueRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginTop: 2 },
+  bankValue: { fontSize: 24, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
+  bankCoin: { width: 16, height: 16 },
+  bankWhen: { fontSize: 12, fontWeight: '700', color: P.ghost, textAlign: 'right' },
+
+  seasonList: { gap: 8 },
+  place: { width: 24, textAlign: 'center', fontSize: 14, fontWeight: '900', color: P.ghost, fontVariant: ['tabular-nums'] },
+  rowName: { flex: 1, fontSize: 15, fontWeight: '700', color: P.text },
+  rowStars: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  rowStarsText: { fontSize: 15, fontWeight: '900', color: P.gold, fontVariant: ['tabular-nums'] },
+  seasonMore: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 4,
+    paddingVertical: 12,
+  },
+  seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted },
+
+  sheetTitle: { fontSize: 21, fontWeight: '900', letterSpacing: -0.2, color: P.text },
+  sheetSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 4, marginBottom: 16 },
+  sheetPrice: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    borderRadius: radius.md,
+    backgroundColor: P.card,
+    paddingHorizontal: 16,
+    paddingVertical: 15,
   },
-  howToIcon: { fontSize: 22 },
-  howToBody: { flex: 1 },
-  howToTitle: { ...type.body, fontWeight: '800', color: P.gold },
-  howToText: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
-
-  bankRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
-  bankHeroIcon: { width: 44, height: 44 },
-  bankBody: { flex: 1 },
-  bankKicker: { ...type.label, letterSpacing: 1, textTransform: 'uppercase', color: T.goldText },
-  bankValue: {
-    fontSize: 40,
-    fontWeight: '900',
-    letterSpacing: -1.5,
-    color: P.gold,
-    fontVariant: ['tabular-nums'],
-    lineHeight: 44,
+  sheetCoin: { width: 20, height: 20 },
+  sheetPriceLabel: { flex: 1, fontSize: 15, fontWeight: '800', color: P.text },
+  sheetPriceValue: { fontSize: 19, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
+  sheetBalance: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 4,
+    marginTop: 8,
+    marginBottom: 14,
   },
-  vipBox: { alignItems: 'flex-end' },
-  vipTitle: { ...type.body, fontWeight: '800', color: P.text },
-  vipSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
-  vipCost: { ...type.label, color: P.gold, marginTop: 2 },
-
-  seasonRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  seasonAvatars: { flexDirection: 'row' },
-  seasonAvatar: {
-    width: 38,
-    height: 38,
-    borderRadius: 999,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  seasonBody: { flex: 1 },
-  seasonTitle: { fontSize: 16, fontWeight: '800', color: P.text },
-  seasonSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
-  chevron: { fontSize: 22, color: P.ghost },
-
-  sheetIcon: { fontSize: 44, textAlign: 'center' },
-  sheetTitle: { fontSize: 24, fontWeight: '900', color: P.text, textAlign: 'center', marginTop: 8 },
-  sheetError: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: P.danger,
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  sheetSub: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: P.muted,
-    textAlign: 'center',
-    marginTop: 10,
-    marginBottom: 26,
-  },
+  sheetBalanceText: { fontSize: 12.5, fontWeight: '700', color: P.ghost },
+  sheetError: { fontSize: 14, fontWeight: '700', color: P.danger, marginBottom: 12 },
   sheetActions: { gap: 10 },
-  devCta: { marginTop: 10 },
 });

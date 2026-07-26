@@ -334,9 +334,15 @@ describe('экраны режима «Турниры»', () => {
 
   it('палитра турниров берётся из активной темы приложения', () => {
     // Жалоба владельца: «турнир не слушает цвета активной темы».
+    // 2026-07-26: палитра берётся ХУКОМ useTournamentPalette (он же считает
+    // производные V2-градиенты), а не прямым вызовом фабрики в каждом экране.
     const home = read('app/(tabs)/tournaments.tsx');
-    expect(home).toContain('tournamentPaletteFromTheme(theme)');
+    expect(home).toContain('useTournamentPalette()');
     expect(home).toContain('makeStyles(P)');
+    // Сам хук обязан собирать палитру из активной темы приложения.
+    const theme = read('components/tournament/tournament_theme.ts');
+    expect(theme).toContain('tournamentV2FromTheme(theme)');
+    expect(theme).toContain('useTheme()');
   });
 
   it('лобби и раунд работают от комнаты, а не от заглушек', () => {

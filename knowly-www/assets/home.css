@@ -267,8 +267,14 @@ section { padding: clamp(46px, 8vh, 92px) 0; text-align: center; }
 .footer nav { display: flex; gap: 16px 18px; flex-wrap: wrap; }
 .footer a:hover { color: var(--ink); }
 
-/* липкая мобильная кнопка */
-.mbar { position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 80; display: none; }
+/* липкая мобильная кнопка.
+   зачем: владелец 2026-07-26 — «одна кнопка на экране»: липкая прячется,
+   пока видна любая CTA в потоке, и выезжает только между секциями */
+.mbar {
+  position: fixed; left: 14px; right: 14px; bottom: 14px; z-index: 80; display: none;
+  transition: transform .3s var(--ease), opacity .3s var(--ease);
+}
+.mbar.mbar-hidden { transform: translateY(130%); opacity: 0; pointer-events: none; }
 .mbar .btn { width: 100%; padding: 19px; }
 @media (max-width: 720px) { .mbar { display: block; } }
 
@@ -282,5 +288,6 @@ section { padding: clamp(46px, 8vh, 92px) 0; text-align: center; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .js .blur-in { opacity: 1; filter: none; transition: none; }
   .btn::after { animation: none; display: none; }
+  .mbar { transition: none; }
 }
 .spark { position: absolute; width: 3px; height: 14px; border-radius: 2px; background: #fff; pointer-events: none; z-index: 9; left: 0; top: 0; }

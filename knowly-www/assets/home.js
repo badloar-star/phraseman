@@ -248,6 +248,27 @@
     el.textContent = String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + '+';
   })();
 
+  /* ===== Липкая кнопка: «одна кнопка на экране» (требование владельца).
+     Прячем, пока в вьюпорте видна любая CTA из потока страницы. ===== */
+  (function stickyBarGuard() {
+    var mbar = document.querySelector('.mbar');
+    if (!mbar) return;
+    /* «одна кнопка» буквально: прячемся при ЛЮБОЙ видимой кнопке страницы */
+    var flowCtas = [].slice.call(document.querySelectorAll('.btn')).filter(function (b) {
+      return !mbar.contains(b);
+    });
+    if (!flowCtas.length) return;
+    var visible = new Set();
+    var ctaIo = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      });
+      mbar.classList.toggle('mbar-hidden', visible.size > 0);
+    }, { threshold: .35 });
+    flowCtas.forEach(function (b) { ctaIo.observe(b); });
+  })();
+
   /* появления секций при скролле */
   var io = new IntersectionObserver(function (es) {
     es.forEach(function (e) {

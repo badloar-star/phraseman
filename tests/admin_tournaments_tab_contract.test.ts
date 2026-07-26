@@ -95,7 +95,7 @@ describe('вкладка «Турниры» в админке', () => {
 
   it('все функции вкладки объявлены и доступны из разметки', () => {
     const { sandbox } = runTab();
-    for (const name of ['tnGenerate', 'tnLoadTasks', 'tnPublishVisible', 'tnLoadStats', 'tnLoadSchedule', 'tnSaveSchedule', 'tnOpenTab']) {
+    for (const name of ['tnAiGenerate', 'tnLoadTasks', 'tnPublishVisible', 'tnLoadStats', 'tnLoadSchedule', 'tnSaveSchedule', 'tnOpenTab']) {
       expect(typeof sandbox[name]).toBe('function');
       expect(html).toContain(`${name}(`);
     }
@@ -132,14 +132,22 @@ describe('вкладка «Турниры» в админке', () => {
     expect(rendered).toContain('На проверке');
   });
 
-  it('предпросмотр генерации ничего не сохраняет', async () => {
+  it('предпросмотр ИИ-генерации ничего не сохраняет', async () => {
     const { sandbox, calls } = runTab();
-    await (sandbox.tnGenerate as (dryRun: boolean) => Promise<void>)(true);
+    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(true);
 
-    const generate = calls.find((call) => call.name === 'adminGenerateTournamentTasks');
+    const generate = calls.find((call) => call.name === 'adminGenerateTournamentTasksAi');
     expect(generate?.payload?.dryRun).toBe(true);
     // Предпросмотр не должен дёргать список и статистику — записи не было.
     expect(calls.filter((call) => call.name === 'adminListTournamentTasks')).toHaveLength(0);
+  });
+
+  it('генератор из планов удалён: только ИИ создаёт турнирные задания', () => {
+    // Решение владельца 2026-07-26: фразы уроков негодны для соревнования —
+    // дистракторы не конкурировали, ответ угадывался без знания языка.
+    expect(html).not.toContain('tnGenerate(');
+    expect(html).not.toContain('adminGenerateTournamentTasks\'');
+    expect(html).toContain('tnAiGenerate(');
   });
 
   it('без отмеченных заданий публикация не уходит на сервер', async () => {

@@ -323,6 +323,20 @@ describe('tournament_ai_generator: промпт', () => {
     expect(format.json_schema.strict).toBe(true);
   });
 
+  it('промпт называет типы ловушек и требует разнообразия внутри вопроса', () => {
+    // Регрессия 2026-07-26: владелец забраковал задания, где дистракторы брались
+    // из соседних фраз урока и отсеивались без знания языка. Именованная
+    // таксономия ловушек — главное отличие v2, её нельзя молча потерять.
+    const packet = buildTournamentAiPromptPacket({ level: 'B1' });
+    for (const trap of ['PARADIGMATIC', 'FALSE_FRIEND', 'L1_LITERAL', 'COLLOCATION', 'GRAMMAR_NUANCE']) {
+      expect(packet.task).toContain(trap);
+    }
+    expect(packet.task).toContain('THREE DIFFERENT trap types');
+    // Запрет «отсева без знания языка» и «школьности».
+    expect(packet.task).toContain('must not be able to eliminate any option');
+    expect(packet.task).toContain('Never make the item feel like a school exam');
+  });
+
   it('topicHint и прошлые фразы попадают в задачу, фразы ограничены 120', () => {
     const previousPhrases = Array.from({ length: 300 }, (_, index) => `Phrase number ${index}`);
     const packet = buildTournamentAiPromptPacket({ level: 'A2', topicHint: 'аэропорт', previousPhrases });

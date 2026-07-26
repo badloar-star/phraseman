@@ -12379,42 +12379,19 @@
   <div style="padding:4px 0 16px;max-width:1080px">
     <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa">🏆 Турниры</h2>
     <p style="margin:0;font-size:13px;color:#9ca3af;line-height:1.5">
-      Задания собираются из фраз обучающих планов — тех же, по которым учатся пользователи.
-      Ничего не выдумывается и не уходит игрокам без вашей проверки.
+      Вопросы придумывает ИИ специально для соревнования. Ничего не уходит игрокам без вашей проверки.
     </p>
   </div>
 
   <!-- Готовность режима -->
   <div id="tn-stats" style="margin-bottom:18px"></div>
 
-  <!-- Шаг 1: генерация -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 1 — собрать задания</div>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <select id="tn-plan" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="">Все планы</option>
-        <option value="mitap">Митап</option>
-        <option value="gavan">Гавань</option>
-        <option value="impuls">Импульс</option>
-        <option value="echo">Эхо</option>
-        <option value="voyazh">Вояж</option>
-      </select>
-      <select id="tn-kind" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="">Все три режима</option>
-        <option value="choice">Угадай перевод</option>
-        <option value="translate">Собери фразу</option>
-        <option value="timeattack">Тайм-атака</option>
-      </select>
-      <button type="button" onclick="tnGenerate(true)" title="Показать, что получится, ничего не сохраняя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Посмотреть примеры</button>
-      <button type="button" onclick="tnGenerate(false)" title="Собрать задания и положить их на проверку"
-        style="background:#4338ca;border:1px solid #6366f1;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">⚙️ Собрать задания</button>
-      <span id="tn-gen-status" style="font-size:13px;color:#9ca3af"></span>
-    </div>
-    <div id="tn-gen-result" style="margin-top:14px"></div>
-  </div>
+  <!-- зачем: генератор «из планов» удалён по решению владельца 2026-07-26.
+       Фразы уроков («Hi, I am Anna») не работают как соревновательные вопросы:
+       дистракторы не конкурируют, ответ угадывается без знания языка.
+       Турнирные задания создаются ТОЛЬКО ИИ-генератором ниже. -->
 
-  <!-- Шаг 1.5: ИИ-генератор (новый контент отныне создаётся здесь) -->
+  <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
     <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 ИИ-генератор — новые вопросы</div>
     <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
@@ -35901,7 +35878,7 @@
   // считается серверными агрегатами, повторный вход во вкладку не
   // перезапрашивает данные (флаг _tournamentsLoaded).
   // ═══════════════════════════════════════════════════════════════════════
-  let _fnTnGenerate = null, _fnTnList = null, _fnTnMutate = null;
+  let _fnTnList = null, _fnTnMutate = null;
   let _fnTnStats = null, _fnTnGetSchedule = null, _fnTnSetSchedule = null;
   let _fnTnAiGenerate = null, _fnTnEdit = null, _fnTnCurGet = null, _fnTnCurSet = null;
   const tnFn = (cached, name) => cached || httpsCallable(functionsUs, name);
@@ -36030,39 +36007,10 @@
     }
   };
 
-  window.tnGenerate = async function tnGenerate(dryRun) {
-    const status = document.getElementById('tn-gen-status');
-    const result = document.getElementById('tn-gen-result');
-    if (status) status.textContent = dryRun ? 'Собираю примеры…' : 'Собираю задания…';
-    if (result) result.innerHTML = '';
-    try {
-      _fnTnGenerate = tnFn(_fnTnGenerate, 'adminGenerateTournamentTasks');
-      const plan = document.getElementById('tn-plan')?.value || '';
-      const kind = document.getElementById('tn-kind')?.value || '';
-      const payload = { dryRun: dryRun === true };
-      if (plan) payload.plans = [plan];
-      if (kind) payload.kinds = [kind];
-
-      const res = await _fnTnGenerate(payload);
-      const data = res?.data || {};
-      const s = data.stats || {};
-      if (status) status.textContent = '';
-
-      const head = dryRun
-        ? `Получится <strong style="color:#fafafa">${s.produced ?? 0}</strong> заданий из ${s.phrasesSeen ?? 0} фраз. Ничего не сохранено.`
-        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> заданий на проверке.`
-          + (data.keptPublished ? ` Уже в игре и не тронуты: ${data.keptPublished}.` : '');
-
-      const samples = Array.isArray(data.samples) && data.samples.length
-        ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';
-
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}</div>${samples}`;
-      if (!dryRun) { await window.tnLoadTasks(true); await window.tnLoadStats(); }
-    } catch (e) {
-      if (status) status.textContent = '';
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">Ошибка: ${escapeHtml(tnError(e))}</div>`;
-    }
-  };
+  // зачем: window.tnGenerate (генератор заданий из фраз обучающих планов)
+  // удалён 2026-07-26 вместе со своим блоком UI — владелец забраковал такие
+  // задания для турниров: фразы уроков не работают как соревновательные
+  // вопросы. Единственный источник теперь — tnAiGenerate ниже.
 
   window.tnPublishVisible = async function tnPublishVisible() {
     // зачем: только список ревью (#tn-list) — карточки-примеры в панелях

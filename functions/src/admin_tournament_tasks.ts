@@ -291,14 +291,27 @@ export function publicAdminTask(taskId: string, task: TournamentTask): Record<st
 // ── Генерация ───────────────────────────────────────────────────────────────
 
 /**
- * Собирает черновики и складывает их в пул как verified: false.
- * dryRun: true — только статистика и образцы, без единой записи (владелец
- * сначала смотрит, что получится, и лишь потом тратит записи).
+ * ОТКЛЮЧЁН 2026-07-26 по решению владельца.
+ *
+ * зачем: генератор собирал турнирные задания из фраз обучающих планов, и это
+ * давало негодный для соревнования контент — дистракторы не конкурировали
+ * («Hi, I am Anna» против «Привет, ты здесь?»), ответ угадывался без знания
+ * языка, форматы дублировали одну фразу трижды. Учебный контент и
+ * соревновательный — разные жанры.
+ *
+ * Функция оставлена задеплоенной, но отвечает отказом: у владельца может быть
+ * открыта старая вкладка админки, и молчаливое «ничего не произошло» хуже
+ * внятной ошибки. Единственный источник заданий — adminGenerateTournamentTasksAi.
  */
 export const adminGenerateTournamentTasks = onCall(
   { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, memory: '1GiB', timeoutSeconds: 300 },
   async (request) => {
     requirePermission(request, 'content.draft.write');
+    throw new HttpsError(
+      'failed-precondition',
+      'Генератор из планов отключён: турнирные задания создаются только ИИ-генератором.',
+    );
+    // eslint-disable-next-line no-unreachable
     const params = parseGenerateRequest(request.data);
 
     const days: SourceDay[] = loadTournamentSourceDays(params.plans);

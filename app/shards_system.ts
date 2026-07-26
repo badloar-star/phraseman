@@ -55,7 +55,7 @@ export type ShardSource =
   | 'arena_win'             // +1 Победа в Арене
   | 'arena_10_wins'         // +1 Каждые 10 побед в Арене
   | 'arena_rank_up_streak'  // +1 Повышение ранга при серии 3+ побед (только новый пик)
-  | 'daily_tasks_all'       // +1 Все 3 дневных задания (кнопка «Забрать» на экране заданий)
+  | 'daily_tasks_all'       // +1 ВСЕ задания дня закрыты (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
   | 'exam_excellent'        // +3 Экзамен 90%+ (единоразово)
   | 'diagnostic_test'       // +1 Диагностический тест (единоразово)
@@ -64,9 +64,9 @@ export type ShardSource =
   | 'preposition_drill_perfect' // +1 Идеальный проход тренажёра предлогов (разово на урок)
   | 'plan_day_complete'     // +2 Завершён день персонального плана (разово на день плана)
   | 'trainer_perfect_session' // +1 Идеальная сессия умной тренировки (0 ошибок, кап в день)
-  | 'survey_completed';     // Пройден опрос за осколки (сервер submitShardSurvey, идемпотентно).
-                            // ВНИМАНИЕ: 3 ниже — лишь дефолт каталога для UI/справки;
-                            // реальная награда берётся из конфига опроса (rewardShards 1..20).
+  | 'survey_completed';     // +1 Пройден опрос (сервер submitShardSurvey, идемпотентно).
+                            // Сумма фиксирована на сервере (SURVEY_SHARD_AMOUNT = 1);
+                            // rewardShards из конфига опроса на выплату НЕ влияет.
   // Награда за баг-репорт начисляется админом вручную при подтверждении (admin/index.html,
   // reason 'bug_fixed', shards += 1) — отдельного ShardSource в каталоге для неё нет.
 
@@ -74,11 +74,21 @@ export type ShardSource =
  * Экономика «Монеты и Звёзды» (docs/plans/2026-07-20-coins-stars-economy-plan.ru.md §7):
  * игровые начисления монет обнулены — учебная награда ушла в звёзды, монеты только
  * покупаются. Структура каталога и ShardSource сохранены: addShards() при amount <= 0
- * завершается no-op, вызывающие не меняются. Единственный оставшийся источник —
- * подтверждённый баг-репорт (+1 монета), начисляется админом вручную на сервере
- * (admin/index.html, reason 'bug_fixed') и в этом каталоге не представлен.
- * Серверный каталог functions/src/shard_reward_catalog.ts НЕ синхронизирован —
- * требуется отдельное серверное изменение.
+ * завершается no-op, вызывающие не меняются.
+ *
+ * ИСКЛЮЧЕНИЯ (решение владельца 2026-07-26) — две ежедневные награды возвращены:
+ *   daily_tasks_all  = 1  — все задания дня закрыты (включая опрос, если он активен);
+ *   survey_completed = 1  — опрос пройден.
+ * Обе идут МИМО generic-каталога resolveShardEarnPolicy (он остаётся закрытым для
+ * client-initiated earn): выплату делают отдельные callable с маркером идемпотентности —
+ * dailyTasksAllShardsClaim (маркер на UTC-день) и submitShardSurvey (маркер на surveyId).
+ * Значение здесь — источник истины для UI (подписи «Забрать 1 жемчужину») и для
+ * оптимистичного локального инкремента; серверные суммы продублированы в
+ * functions/src/daily_tasks_shards.ts и functions/src/shard_survey.ts — менять парой.
+ *
+ * Остальные источники по-прежнему нулевые. Подтверждённый баг-репорт (+1 монета)
+ * начисляется админом вручную (admin/v2/legacy.html, reason 'bug_fixed') и в каталоге
+ * не представлен.
  */
 export const SHARD_REWARDS: Record<ShardSource, number> = {
   lesson_first: 0,
@@ -90,7 +100,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   arena_win: 0,
   arena_10_wins: 0,
   arena_rank_up_streak: 0,
-  daily_tasks_all: 0,
+  daily_tasks_all: 1,
   topic_completed: 0,
   exam_excellent: 0,
   diagnostic_test: 0,
@@ -99,7 +109,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   preposition_drill_perfect: 0,
   plan_day_complete: 0,
   trainer_perfect_session: 0,
-  survey_completed: 0,
+  survey_completed: 1,
 };
 
 const STORAGE_KEY = 'shards_balance';
@@ -1808,6 +1818,55 @@ const scopedShardReplayInFlight = new Map<
   Promise<{ resolved: number; pending: number }>
 >();
 
+/**
+ * Отказы, которые повтором НЕ лечатся: сервер отверг саму операцию, а не связь.
+ * зачем: незавершённых покупок быть не должно. Раньше любой отказ считался
+ * временным, поэтому перманентно отклонённая строка навсегда вставала в голове
+ * очереди и блокировала все записи за собой — покупка висела «незавершённой»
+ * вечно и запирала выход из аккаунта. Такую строку снимаем с очереди: локально
+ * она уже применена, а сверка баланса ниже подтянет облачное значение.
+ * 'unauthenticated' и 'unavailable' сюда НЕ входят — это чинится повтором.
+ */
+const PERMANENT_SHARD_DELTA_REJECTIONS = new Set([
+  'permission-denied',
+  'invalid-argument',
+  'failed-precondition',
+  'not-found',
+]);
+
+/**
+ * Прочитать авторитетный облачный баланс для сверки после перманентного отказа.
+ * зачем: обычный loadShardsFromCloud берёт облако только если оно НОВЕЕ локальной
+ * метки, а наша оптимистичная запись всегда свежее — поэтому он бы не исправил
+ * заниженный локальный баланс. Здесь нужен именно факт «сервер списание не
+ * принял», поэтому читаем значение напрямую. Одно чтение документа и только
+ * когда отказ реально случился — на обычном пути расхода нет.
+ */
+const readCloudShardBalanceForReconcile = async (
+  ownerStableId: string,
+): Promise<number | null> => {
+  try {
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+    const uid = await getCanonicalUserId().catch(() => null);
+    if (uid !== ownerStableId) return null;
+    const snap = await runWithTimeout(
+      firestore().collection('users').doc(ownerStableId).get(),
+      SHARD_CLOUD_TX_TIMEOUT_MS,
+    );
+    if (!snap.exists) return null;
+    return parseShardBalance(snap.data()?.shards);
+  } catch {
+    return null;
+  }
+};
+
+const isPermanentShardDeltaRejection = (error: unknown): boolean => {
+  const code = String(
+    (error as { code?: unknown })?.code ?? '',
+  ).replace(/^functions\//, '');
+  return PERMANENT_SHARD_DELTA_REJECTIONS.has(code);
+};
+
 export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pending: number }> => {
   const accountToken = captureAccountGeneration();
   const ownerStableId = accountToken.stableId;
@@ -1827,15 +1886,16 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
   const replay = (async (): Promise<{ resolved: number; pending: number }> => {
     let queueLength = 0;
     try {
-      const quarantinedBeforeRead = await hasQuarantinedShardDeltaQueue(ownerStableId);
-      if (!isCurrent()) return { resolved: 0, pending: 0 };
       const queue = await readShardDeltaQueue(ownerStableId);
       queueLength = queue.length;
-      const quarantinedAfterRead = await hasQuarantinedShardDeltaQueue(ownerStableId);
       if (!isCurrent()) return { resolved: 0, pending: queue.length };
-      if (quarantinedBeforeRead || quarantinedAfterRead) {
-        return { resolved: 0, pending: queue.length };
-      }
+      // зачем: незавершённых покупок быть не должно. Раньше досылка целиком
+      // глохла при любом карантине — а карантин относится к ДРУГОМУ, отдельно
+      // отложенному хранилищу и никак не делает записи текущей очереди
+      // невалидными. Получался замкнутый круг: карантин выключал досылку,
+      // из-за чего живые списания висели «незавершёнными» вечно и запирали
+      // выход из аккаунта. Читаемая очередь проигрывается всегда; сами
+      // карантинные строки по-прежнему не трогаем — их разбирает recovery.
       if (!isCurrent() || queue.length === 0) {
         return { resolved: 0, pending: isCurrent() ? 0 : queue.length };
       }
@@ -1848,6 +1908,7 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
 
       const confirmed: string[] = [];
       let latestBalance: number | null = null;
+      let droppedPermanently = false;
       let pendingStartIndex = queue.length;
       for (let index = 0; index < queue.length; index += 1) {
         const entry = queue[index];
@@ -1875,8 +1936,21 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
             pendingStartIndex = index;
             break;
           }
-        } catch {
+        } catch (error) {
           if (!isCurrent()) return { resolved: 0, pending: queue.length };
+          if (isPermanentShardDeltaRejection(error)) {
+            // Повтор ничего не изменит — снимаем строку, чтобы она не держала
+            // очередь и не висела незавершённой покупкой. Пишем в лог: это
+            // расхождение локального и облачного баланса, его надо видеть.
+            DebugLogger.error(
+              'shards_system.ts:resumePendingShardDeltas:permanent_rejection',
+              error,
+              'warning',
+            );
+            confirmed.push(entry.opId);
+            droppedPermanently = true;
+            continue;
+          }
           pendingStartIndex = index;
           break;
         }
@@ -1888,6 +1962,15 @@ export const resumePendingShardDeltas = async (): Promise<{ resolved: number; pe
         const removed = await removeShardDeltas(ownerStableId, confirmed);
         if (!isCurrent()) return { resolved: 0, pending: queue.length };
         if (!removed) return { resolved: 0, pending: queue.length };
+      }
+
+      // зачем: перманентно отклонённая строка означает, что локально осколки
+      // уже списаны оптимистично, а облако эту операцию не приняло. Без сверки
+      // юзер остался бы с заниженным балансом — то есть просто потерял бы
+      // жемчужины. Сервер здесь авторитетен, поэтому берём его значение.
+      if (latestBalance === null && droppedPermanently) {
+        latestBalance = await readCloudShardBalanceForReconcile(ownerStableId);
+        if (!isCurrent()) return { resolved: 0, pending: pendingEntries.length };
       }
 
       if (latestBalance !== null) {

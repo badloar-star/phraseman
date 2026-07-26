@@ -69,7 +69,7 @@
         "assets/images/messages/*",
         "assets/images/onboarding/*",
         "assets/images/reward_modals/*",
-        "assets/images/settings/*",
+        "assets/images/settings/**/*",
         "assets/images/currency/*",
         "assets/images/statistics/*.webp",
         "assets/images/statistics/cards/**/*",

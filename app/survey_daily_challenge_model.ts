@@ -27,7 +27,11 @@ export function computeSurveyDailyCounts(input: {
   const baseDone = Math.min(baseTotal, count(input.baseDone));
   const total = baseTotal + (input.survey ? 1 : 0);
   const done = Math.min(total, baseDone + (input.survey?.phase === 'completed' ? 1 : 0));
-  return { total, done, rewardThreshold: input.survey ? Math.min(3, total) : baseTotal };
+  // зачем: владелец (2026-07-26) требует «кнопка Забрать появляется только когда
+  // выполнены ВСЕ задания дня». Раньше при активном опросе порог был min(3, total),
+  // т.е. хватало любых 3 из 4 и опрос можно было пропустить. Теперь порог = total:
+  // опрос — полноценное задание набора, без него бонус не открывается.
+  return { total, done, rewardThreshold: total };
 }
 
 export const computeSurveyDailyChallengeCounts = computeSurveyDailyCounts;

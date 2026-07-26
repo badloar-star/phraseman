@@ -14,12 +14,27 @@ describe('survey daily challenge model', () => {
     });
   });
 
-  it('adds an active survey without counting it done', () => {
-    expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey, phase: 'active' } })).toEqual({ total: 4, done: 2, rewardThreshold: 3 });
+  // Порог = весь набор (решение владельца 2026-07-26): активный опрос обязателен,
+  // послабления «любые 3 из 4» больше нет — бонус только когда закрыто ВСЁ.
+  it('adds an active survey without counting it done, and requires it for the reward', () => {
+    expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey, phase: 'active' } })).toEqual({ total: 4, done: 2, rewardThreshold: 4 });
   });
 
-  it('counts a completed survey while retaining the three-task threshold', () => {
-    expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey: null, phase: 'completed' } })).toEqual({ total: 4, done: 3, rewardThreshold: 3 });
+  it('keeps five progress indicators for a four-task weekend set with an active survey', () => {
+    expect(computeSurveyDailyChallengeCounts({ baseTotal: 4, baseDone: 0, survey: { survey, phase: 'active' } })).toEqual({ total: 5, done: 0, rewardThreshold: 5 });
+  });
+
+  it('counts a completed survey toward the full-set threshold', () => {
+    expect(computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 2, survey: { survey: null, phase: 'completed' } })).toEqual({ total: 4, done: 3, rewardThreshold: 4 });
+  });
+
+  it('opens the reward only when every task including the survey is done', () => {
+    const withSurvey = { survey, phase: 'completed' } as const;
+    const all = computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 3, survey: withSurvey });
+    expect(all.done).toBe(all.rewardThreshold);
+    // Все обычные закрыты, но опрос ещё активен → бонус НЕ открыт.
+    const surveyPending = computeSurveyDailyChallengeCounts({ baseTotal: 3, baseDone: 3, survey: { survey, phase: 'active' } });
+    expect(surveyPending.done).toBeLessThan(surveyPending.rewardThreshold);
   });
 
   it('clamps counts to non-negative integers', () => {

@@ -14,6 +14,12 @@ import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
+import {
+    ruKnowledgeShardsAccusativeAfterNumber,
+    ruKnowledgeShardsAfterNumber,
+    ukKnowledgeShardsAccusativeAfterNumber,
+    ukKnowledgeShardsAfterNumber,
+} from '../constants/shard_plurals';
 import { screenTextOnGradient } from '../constants/theme';
 import { GOLD_RICH, goldTaskAccent, goldShadow } from '../constants/goldTheme';
 import { localizedDailyTaskStrings } from './daily_tasks_es_locale';
@@ -2795,8 +2801,7 @@ export default function DailyTasksScreen() {
     const handleClaimTrioShards = useCallback(async () => {
         if (tasks.length === 0)
             return;
-        // Порог с учётом опроса-4-го-задания: активен опрос → достаточно любых 3
-        // из 4 (пройденный опрос считается за выполненное). Без опроса — все N.
+        // Порог = весь набор: активен опрос → его тоже надо пройти (2026-07-26).
         const realDone = tasks.filter((task) => {
             const row = progress.find((p) => p.taskId === task.id);
             return row?.completed === true || row?.claimed === true;
@@ -2854,9 +2859,10 @@ export default function DailyTasksScreen() {
             setTrioClaimBusy(false);
         }
     }, [tasks, progress, trioShardsClaimed, trioClaimBusy, refreshTasksAndProgress, studyTarget, surveySnapshot]);
-    // Опрос-как-4-е-задание: когда активен, набор = 3 обычных + опрос (всего 4),
-    // а награду «за все» дают за ЛЮБЫЕ 3 из 4. Порог = 3, а «выполнено» считает и
-    // пройденный опрос. Когда опроса нет — поведение прежнее (все N из N).
+    // Опрос как дополнительное задание: когда активен, набор = обычные N + опрос,
+    // и порог = ВЕСЬ набор (решение владельца 2026-07-26 — «выполнить надо все»).
+    // Раньше порог был min(3, total), т.е. опрос можно было пропустить.
+    // Когда опроса нет — поведение прежнее (все N из N).
     const realObjectivesDone = tasks.filter((task) => {
         const row = progress.find((p) => p.taskId === task.id);
         return row?.completed === true || row?.claimed === true;
@@ -3154,16 +3160,20 @@ export default function DailyTasksScreen() {
     });
     const bonusTitle = triLang(lang, { ru: 'Бонус за день', uk: 'Бонус за день', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Thưởng trong ngày', id: 'Bonus harian', tr: 'Günlük bonus', pl: 'Bonus dnia' });
     const bonusDescription = triLang(lang, {
-        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'жемчужина', 'жемчужины', 'жемчужин')}.`,
-        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'перлина', 'перлини', 'перлин')}.`,
+        // зачем: после «забери» нужен винительный падеж — «забери 1 жемчужину»,
+        // а не именительный «забери 1 жемчужина» (жалоба владельца на скриншот).
+        ru: `Выполни все вызовы и забери ${trioRewardCount} ${ruKnowledgeShardsAccusativeAfterNumber(trioRewardCount)}.`,
+        uk: `Виконай усі завдання і забери ${trioRewardCount} ${ukKnowledgeShardsAccusativeAfterNumber(trioRewardCount)}.`,
         es: `Completa todas las tareas y reclama ${trioRewardCount} perlas.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} pérolas.`,
         vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} xu.`, id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
         tr: `Tüm görevleri tamamla ve ${trioRewardCount} jeton al.`, pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} monet.`,
     });
     const bonusClaimLabel = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' });
     const bonusClaimAccessibilityLabel = triLang(lang, {
-        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'жемчужина', 'жемчужины', 'жемчужин')}`,
-        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'перлина', 'перлини', 'перлин')}`,
+        // зачем: после двоеточия — приложение к «бонус», падеж именительный
+        // («бонус за день: 1 жемчужина»), поэтому здесь НЕ винительный.
+        ru: `Забрать бонус за день: ${trioRewardCount} ${ruKnowledgeShardsAfterNumber(trioRewardCount)}`,
+        uk: `Забрати бонус за день: ${trioRewardCount} ${ukKnowledgeShardsAfterNumber(trioRewardCount)}`,
         es: `Reclamar bono del día: ${trioRewardCount} perlas`,
         'pt-BR': `Coletar bônus do dia: ${trioRewardCount} pérolas`,
         vi: `Nhận thưởng trong ngày: ${trioRewardCount} xu`,
@@ -3301,8 +3311,11 @@ export default function DailyTasksScreen() {
             тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка
             висела только при trioClaimButtonEnabled||trioShardsClaimed, из-за чего в
             обычном «в процессе» состоянии она вообще пропадала.
-            Гард trioRewardCount > 0: экономика «Жемчужины и Звёзды» (docs/plans/2026-07-20)
-            обнулила каталог — без гарда кнопка показывала «Забрать 0 жемчужин» и молча фейлилась. */}
+            Гард trioRewardCount > 0 оставлен как страховка: если каталог когда-нибудь снова
+            обнулят, плашка не покажет «Забрать 0 жемчужин» и не будет молча фейлиться.
+            зачем (2026-07-26): сама КНОПКА активна только при allTasksObjectivesDone —
+            т.е. когда закрыты ВСЕ задания дня, включая опрос, если он активен. До этого
+            карточка видна как прогресс к награде, но забрать нельзя (disabled). */}
         {tasks.length > 0 && trioRewardCount > 0 && (<DailyBonusCard
           testID="daily-bonus"
           title={bonusTitle}

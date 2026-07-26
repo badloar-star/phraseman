@@ -35,6 +35,12 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 // Анти-спам: не больше N сабмитов опросов в сутки на пользователя (спека §2.2).
 // Легальный поток — единицы опросов в день; 20 покрывает ретраи с запасом.
 const SUBMIT_MAX_PER_DAY = 20;
+// зачем: решение владельца 2026-07-26 — за опрос ровно 1 жемчужина, ФИКСИРОВАННО.
+// config.rewardShards (1..20 из админки) сознательно НЕ используется для выплаты:
+// владелец не хочет, чтобы редактор опроса мог случайно выдать 20 монет. Поле
+// оставлено в конфиге/валидации ради обратной совместимости уже сохранённых
+// документов shard_surveys. Клиентский дубль: SHARD_REWARDS.survey_completed.
+const SURVEY_SHARD_AMOUNT = 1;
 
 function text(value: unknown, max: number): string {
   return String(value ?? '').trim().slice(0, max);
@@ -230,10 +236,10 @@ export const submitShardSurvey = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
     }
 
     const currentBalance = readShardBalance(userSnap.data()?.shards);
-    // Новая экономика (план 2026-07-20, §7): опросы больше не дают монет
-    // (награда — звёзды или отсутствует). Конфиг опроса и его валидация
-    // сохранены; серверная выплата принудительно 0, баланс не меняется.
-    const reward = 0;
+    // Фиксированная выплата (см. SURVEY_SHARD_AMOUNT): config.rewardShards
+    // намеренно игнорируется. Повторная отправка сюда не доходит — выше стоит
+    // проверка claimSnap.exists в этой же транзакции.
+    const reward = SURVEY_SHARD_AMOUNT;
     const newBalance = currentBalance + reward;
     const shardsUpdatedAtMs = nowMs;
 

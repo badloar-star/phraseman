@@ -20,7 +20,7 @@ import { screenTextOnGradient } from '../constants/theme';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { safeRouterBack } from './navigation_back';
 import { getCanonicalUserId } from './user_id_policy';
-import { replaceShardsBalanceForAccountGeneration } from './shards_system';
+import { replaceShardsBalanceForAccountGeneration, SHARD_REWARDS } from './shards_system';
 import { emitAppEvent } from './events';
 import { submitSurvey, type SurveyQuestionClient } from './survey_client';
 import { takePrimedSurvey, clearPrimedSurvey } from './survey_handoff';
@@ -144,7 +144,11 @@ export default function SurveyScreen() {
     requestActiveRef.current = true;
     attemptIdRef.current += 1;
     const attemptId = attemptIdRef.current;
-    dispatchSubmission({ type: 'submit_started', attemptId, expectedReward: survey.rewardShards });
+    // зачем: оптимистично показываем РОВНО ту сумму, которую выдаст сервер
+    // (SURVEY_SHARD_AMOUNT = 1, фиксировано). Раньше здесь стоял survey.rewardShards
+    // из конфига опроса (дефолт 3) — сервер его игнорирует, и панель на долю секунды
+    // мигала «+3», а затем схлопывалась в реальную выплату. Прыжок цифры убран.
+    dispatchSubmission({ type: 'submit_started', attemptId, expectedReward: SHARD_REWARDS.survey_completed });
     try {
       const stableId = scope?.stableId ?? await getCanonicalUserId();
       if (!stableId) throw new Error('no_profile');

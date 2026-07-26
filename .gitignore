@@ -39,6 +39,12 @@ yarn-error.*
 .env.bak*
 *.env.bak*
 .env.backup*
+# зачем: per-project env (functions/.env.<projectId>) — тоже локальная конфигурация,
+# не должна ехать в репозиторий. В истории такой файл уже есть (d70513c77), но там
+# лежат только имена датасетов и флаги, боевых ключей нет — ротация не требуется.
+functions/.env.*
+!functions/.env.example
+!functions/.env*.template
 
 # Telegram Premium bot local secrets/state
 /tools/telegram-premium-bot/config.json

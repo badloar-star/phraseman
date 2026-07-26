@@ -290,7 +290,8 @@ svg { display:block; }
 .fb .fi svg { width:18px; height:18px; }
 .fb .ft { font-size:14px; font-weight:700; line-height:1.35; color:var(--text-primary); }
 .fb .ft .w { font-weight:800; color:var(--text-second); }
-.fb .ft .sub { display:block; font-size:12.5px; font-weight:600; color:var(--text-muted); margin-top:2px; }
+/* зачем: правило владельца - подпись мелким кеглем под текстом запрещена, минимум 15px */
+.fb .ft .sub { display:block; font-size:15px; font-weight:600; color:var(--text-muted); margin-top:2px; }
 .fb { box-shadow:inset 0 1px 0 rgba(255,255,255,0.07); }
 .fb.good { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--correct-bg); } .fb.good .fi { background:var(--ok-grad); color:var(--correct-text); box-shadow:inset 0 1px 0 var(--cta-hi); }
 .fb.hint { background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--wrong-bg); } .fb.hint .fi { background:var(--surface-grad); color:var(--text-primary); }

@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 Макет · Модалы и промежуточные состояния</title>
+<style>
+/* ============================================================
+   Витрина Learning V2 · Сборник: модалы и промежуточные состояния
+   Источник системы: 02-phrase-builder.html (токены/телефон/панель 1:1),
+   .cta-secondary скопирован из 09-session-finale.html.
+   8 кадров переключаются панелью, в телефоне виден один. Фон кадров -
+   упрощённая сцена сессии из эталона, приглушённая скримом при модалах.
+   Закон G27-G30: без картинок/эмодзи, без обводок (кроме односторонних),
+   без подписей-расшифровок мелким шрифтом, типографика - герой.
+   Layout stability: скелетон повторяет точную геометрию финала (кадр 5).
+   Optimistic UI: тост синка никогда не ждёт сервер (кадр 7).
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
+  --skel-a:rgba(255,255,255,0.05); --skel-b:rgba(255,255,255,0.13);
+}
+:root[data-theme="gold"] {
+  --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
+  --text-primary:#F7F1E4; --text-second:#E9CE7A; --text-muted:#B8AD92; --text-ghost:#6D6554;
+  --correct:#D6B35A; --correct-bg:rgba(214,179,90,0.16);
+  --wrong:#B65A4A; --wrong-bg:rgba(182,90,74,0.13);
+  --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
+  --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
+  --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
+  --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
+  --skel-a:rgba(255,255,255,0.045); --skel-b:rgba(255,255,255,0.12);
+}
+:root[data-theme="coral"] {
+  --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
+  --text-primary:#FFFFFF; --text-second:#FF8A66; --text-muted:#B9A6AE; --text-ghost:#75656C;
+  --correct:#4A90FF; --correct-bg:rgba(74,144,255,0.14);
+  --wrong:#FF6464; --wrong-bg:rgba(255,100,100,0.14);
+  --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
+  --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
+  --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --bg-grad-a:#140709; --bg-grad-b:#010101;
+  --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
+  --skel-a:rgba(255,255,255,0.05); --skel-b:rgba(255,255,255,0.14);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh;
+  display:flex; gap:40px; align-items:flex-start; justify-content:center;
+  padding:36px 24px 80px; flex-wrap:wrap;
+}
+svg { display:block; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:800px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ---------- Упрощённая сцена сессии (фон для всех кадров) ---------- */
+.hdr { padding:22px 16px 0; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
+.progress-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+.bar-track {
+  flex:1; height:10px; border-radius:999px; background:var(--bg-surface2);
+  overflow:hidden; position:relative;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,0.35);
+}
+.bar-fill {
+  position:absolute; inset:0; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent), var(--correct));
+  transform-origin:left;
+  box-shadow:0 0 14px var(--accent-bg);
+}
+.counter {
+  display:flex; align-items:center; gap:6px; border-radius:999px; padding:6px 12px;
+  font-weight:800; font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.25);
+}
+.counter svg { width:14px; height:14px; }
+.counter.stars { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--gold-bg); color:var(--gold); }
+.counter.miss { background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--wrong-bg); color:var(--wrong); opacity:0.4; }
+
+.prompt { padding:26px 20px 0; }
+.task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
+.hero-row { display:flex; align-items:flex-start; gap:14px; margin-top:10px; }
+.hero {
+  flex:1; font-size:31px; line-height:1.22; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.audio-btn {
+  flex:0 0 auto; width:46px; height:46px; border-radius:18px; border:none; cursor:pointer;
+  background:linear-gradient(150deg, var(--chip-grad-a), var(--chip-grad-b));
+  color:var(--text-second); display:grid; place-items:center;
+  box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  margin-top:4px;
+}
+.audio-btn svg { width:20px; height:20px; }
+
+.answer {
+  margin:26px 20px 0; min-height:118px; position:relative;
+  display:flex; flex-wrap:wrap; align-content:flex-start; gap:10px;
+  padding-bottom:12px;
+  background:linear-gradient(90deg, transparent, rgba(255,255,255,0.16) 16%, rgba(255,255,255,0.16) 84%, transparent) bottom / 100% 1px no-repeat;
+}
+.bank { padding:22px 20px 0; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.chip {
+  border:none; cursor:pointer; border-radius:18px; padding:13px 18px;
+  font-family:inherit; font-size:17.5px; font-weight:700; letter-spacing:0.2px;
+  color:var(--text-primary);
+  background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.chip.ok { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 4px 0 var(--btn-shadow), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
+
+.dock { margin-top:auto; padding:14px 16px 26px; display:flex; flex-direction:column; gap:10px; }
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  position:relative; overflow:hidden;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint);
+}
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta:disabled { background:var(--bg-surface2); color:var(--text-ghost); box-shadow:0 5px 0 rgba(0,0,0,0.35), 0 10px 20px var(--card-shadow); cursor:default; }
+/* Скопировано из 09-session-finale.html 1:1: тонированное стекло, без обводки */
+.cta-secondary {
+  width:100%; height:48px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:15px; font-weight:700; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.09), rgba(255,255,255,0.02)), var(--bg-surface2);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.25);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.cta-secondary:active { transform:scale(0.98); }
+/* Третичная: голый текст, для «Назад» / низкоприоритетных выходов */
+.cta-tertiary {
+  width:100%; height:44px; border:none; background:transparent; cursor:pointer;
+  font-family:inherit; font-size:14.5px; font-weight:700; color:var(--text-muted);
+  transition:opacity var(--t-press);
+}
+.cta-tertiary:active { opacity:0.6; }
+
+/* ================= СЦЕНА-СЦЕНКА (фон для модалов) ================= */
+.scene { position:absolute; inset:0; display:flex; flex-direction:column; }
+/* Скрим под модалом: приглушает сцену, никогда не выглядит как наказание - ровный нейтральный тон */
+.scrim {
+  position:absolute; inset:0; background:rgba(3,6,4,0.58); opacity:0; pointer-events:none;
+  transition:opacity var(--t-normal) ease; z-index:2;
+}
+.scrim.show { opacity:1; pointer-events:auto; }
+
+/* ================= НИЖНИЙ ЛИСТ (bottom sheet) ================= */
+.sheet-layer { position:absolute; inset:0; z-index:3; pointer-events:none; display:flex; align-items:flex-end; }
+.sheet {
+  width:100%; padding:26px 22px calc(26px + env(safe-area-inset-bottom, 0px));
+  border-radius:28px 28px 0 0;
+  background:linear-gradient(180deg, var(--bg-card), var(--bg-primary));
+  box-shadow:0 -18px 50px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  transform:translateY(100%);
+  transition:transform var(--t-slow) var(--ease-spring);
+  pointer-events:auto;
+}
+.sheet-layer.show { pointer-events:auto; }
+.sheet-layer.show .sheet { transform:translateY(0); }
+.sheet-grabber { width:36px; height:4px; border-radius:99px; background:rgba(255,255,255,0.16); margin:0 auto 18px; }
+.sheet-icon-wrap { display:flex; justify-content:center; margin-bottom:16px; }
+.sheet-title { font-size:21px; font-weight:800; color:var(--text-primary); text-align:center; letter-spacing:0.1px; }
+.sheet-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); text-align:center; margin-top:10px; }
+.sheet-actions { margin-top:24px; display:flex; flex-direction:column; gap:10px; }
+
+/* Иконка-медальон премиум-градиент (микрофон, облако) */
+.medal {
+  width:76px; height:76px; border-radius:26px; display:grid; place-items:center;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  box-shadow:0 14px 30px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  color:var(--text-second);
+}
+.medal svg { width:34px; height:34px; }
+.medal.ok { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 14px 30px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
+.medal.neutral { background:var(--surface-grad); color:var(--text-primary); }
+
+/* ================= КАРТОЧКА В ТЕЛЕ СЕССИИ (не bottom sheet) ================= */
+.inbody-layer {
+  position:absolute; inset:0; z-index:3; display:flex; align-items:center; justify-content:center;
+  padding:0 22px; pointer-events:none;
+}
+.inbody-layer.show { pointer-events:auto; }
+.inbody-card {
+  width:100%; padding:28px 24px; border-radius:26px;
+  background:linear-gradient(160deg, #1A241C, #0E140F);
+  box-shadow:0 24px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.05);
+  text-align:center;
+  transform:scale(0.9) translateY(14px); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.inbody-layer.show .inbody-card { transform:none; opacity:1; }
+.inbody-title { font-size:20px; font-weight:800; color:var(--text-primary); margin-top:16px; }
+.inbody-body { font-size:14.5px; line-height:1.5; color:var(--text-muted); margin-top:8px; }
+.inbody-medal-wrap { display:flex; justify-content:center; }
+
+/* Пилюля-факт (например размер эпизода) */
+.fact-pill {
+  display:inline-flex; align-items:center; gap:6px; margin-top:14px; padding:7px 14px;
+  border-radius:999px; font-size:13px; font-weight:800; color:var(--text-second);
+  background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.2)), var(--accent-bg);
+}
+
+/* Ряд-кнопка строкой (для карточки "микрофон отказан") */
+.row-actions { margin-top:22px; display:flex; flex-direction:column; }
+.row-btn {
+  display:flex; align-items:center; gap:12px; width:100%; padding:15px 6px;
+  background:transparent; border:none; cursor:pointer; text-align:left;
+  font-family:inherit; font-size:15.5px; font-weight:700; color:var(--text-primary);
+  transition:opacity var(--t-press);
+}
+.row-btn:active { opacity:0.6; }
+.row-btn .ri { width:34px; height:34px; border-radius:12px; flex:0 0 auto; display:grid; place-items:center;
+  background:var(--surface-grad); color:var(--text-second); }
+.row-btn .ri svg { width:16px; height:16px; }
+.row-btn.muted { color:var(--text-muted); }
+.row-btn.muted .ri { color:var(--text-muted); }
+/* Разделитель тоном, не обводкой (закон владельца: без border вокруг блоков) */
+.row-actions .row-btn + .row-btn { border-top:1px solid rgba(255,255,255,0.045); }
+
+/* ================= КАРТОЧКА ЗАГРУЗКИ ЭПИЗОДА (кадр 4) ================= */
+.dl-cta {
+  width:100%; height:54px; border:none; border-radius:18px; cursor:pointer;
+  font-family:inherit; font-size:16px; font-weight:800; color:var(--correct-text);
+  background:var(--cta-grad); position:relative; overflow:hidden;
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.dl-cta:active { transform:translateY(3px); }
+.dl-cta .dl-fill {
+  position:absolute; inset:0; background:rgba(255,255,255,0.24);
+  transform:scaleX(0); transform-origin:left; pointer-events:none;
+}
+.dl-cta.filling .dl-fill { transition:transform var(--dl-dur, 2000ms) linear; transform:scaleX(1); }
+.dl-cta .dl-label { position:relative; }
+.dl-cta.pop { animation:dlPop calc(360ms * var(--tf)) var(--ease-spring); }
+@keyframes dlPop { 0%{transform:scale(1)} 45%{transform:scale(1.045)} 100%{transform:scale(1)} }
+/* Облако-загрузка: дуга орбитой, transform-only, останавливается в reduced */
+.cloud-orbit { transform-origin:50% 50%; animation:orbit calc(2400ms * var(--tf)) linear infinite; }
+@keyframes orbit { to { transform:rotate(360deg); } }
+
+/* ================= СКЕЛЕТОН (кадр 5) - точная геометрия финала ================= */
+.skel {
+  position:relative; overflow:hidden; border-radius:12px;
+  background:var(--skel-a);
+}
+.skel::after {
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(100deg, transparent 30%, var(--skel-b) 50%, transparent 70%);
+  transform:translateX(-100%);
+  animation:shimmer calc(1600ms * var(--tf)) ease-in-out infinite;
+}
+@keyframes shimmer { to { transform:translateX(100%); } }
+.skel-hero-l1 { height:26px; width:88%; border-radius:8px; }
+.skel-hero-l2 { height:26px; width:56%; border-radius:8px; margin-top:10px; }
+.skel-answer-line { height:44px; width:100%; border-radius:16px; }
+.skel-chip { height:46px; border-radius:18px; }
+.skel-cta { height:56px; width:100%; border-radius:20px; }
+
+/* ================= ТОСТ СИНХРОНИЗАЦИИ (кадр 7) ================= */
+.toast-layer {
+  position:absolute; left:0; right:0; bottom:96px; z-index:3;
+  display:flex; justify-content:center; padding:0 20px; pointer-events:none;
+}
+.toast {
+  display:inline-flex; align-items:center; gap:10px; padding:11px 18px 11px 12px;
+  border-radius:999px; max-width:100%;
+  background:linear-gradient(160deg, #1E2B21, #10160F);
+  box-shadow:0 16px 34px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.08);
+  transform:translateY(28px) scale(0.94); opacity:0;
+  transition:transform var(--t-normal) var(--ease-spring), opacity var(--t-fast) ease;
+}
+.toast-layer.show .toast { transform:none; opacity:1; }
+.toast .ti { width:26px; height:26px; border-radius:9px; flex:0 0 auto; display:grid; place-items:center;
+  background:var(--ok-grad); color:var(--correct-text); }
+.toast.wait .ti { background:var(--surface-grad); color:var(--text-second); }
+.toast .ti svg { width:14px; height:14px; }
+.toast .tt { font-size:13.5px; font-weight:700; color:var(--text-primary); white-space:nowrap; }
+
+/* ================= НЕТ СЕТИ - строка в карточке ================= */
+.offline-row {
+  display:flex; align-items:flex-start; gap:10px; margin-top:16px; padding:12px 14px;
+  border-radius:16px; text-align:left;
+  background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(0,0,0,0.14)), var(--accent-bg);
+}
+.offline-row svg { width:17px; height:17px; color:var(--text-second); flex:0 0 auto; margin-top:1px; }
+.offline-row span { font-size:13.5px; line-height:1.45; color:var(--text-primary); font-weight:600; }
+
+/* ================= ПАНЕЛЬ ================= */
+.panel { width:400px; max-width:92vw; display:flex; flex-direction:column; gap:18px; }
+.panel h1 { font-size:22px; font-weight:800; }
+.panel h1 span { color:#58CC89; }
+.pcard { background:#131A15; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,0.35); }
+.pcard h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.4px; color:#8AB49A; margin-bottom:12px; font-weight:800; }
+.chiprow { display:flex; flex-wrap:wrap; gap:8px; }
+.pbtn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 14px;
+  background:#1D2921; color:#DDE8E0; font-size:13.5px; font-weight:700; font-family:inherit;
+  transition:transform 120ms cubic-bezier(0.23,1,0.32,1), background 150ms;
+}
+.pbtn:active { transform:scale(0.95); }
+.pbtn.on { background:#47C870; color:#042010; }
+.framebtn { text-align:left; display:flex; flex-direction:column; gap:2px; padding:11px 14px; width:100%; }
+.framebtn b { font-size:13.5px; font-weight:800; }
+.framebtn small { font-size:11.5px; font-weight:600; color:#7FA090; }
+.framebtn.on small { color:#0A3D1E; }
+.framelist { display:flex; flex-direction:column; gap:7px; }
+.variantrow { display:flex; flex-wrap:wrap; gap:7px; margin-top:8px; padding-top:10px; border-top:1px solid rgba(255,255,255,0.05); }
+.spec { font-size:13px; line-height:1.65; color:#B9C8BE; }
+.spec .row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; }
+.spec .row + .row { border-top:1px solid rgba(255,255,255,0.05); }
+.spec .val { color:#58CC89; font-weight:700; text-align:right; white-space:nowrap; }
+.note { font-size:12.5px; color:#8AA394; line-height:1.6; margin-top:10px; }
+
+:root[data-reduced="1"] .sheet, :root[data-reduced="1"] .scrim, :root[data-reduced="1"] .inbody-card,
+:root[data-reduced="1"] .toast, :root[data-reduced="1"] .dl-cta .dl-fill, :root[data-reduced="1"] .dl-cta.pop {
+  transition-duration:60ms !important; animation-duration:1ms !important;
+}
+:root[data-reduced="1"] .skel::after { animation:none; opacity:0; }
+:root[data-reduced="1"] .cloud-orbit { animation:none; }
+
+@media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5H4z" fill="currentColor"/><path d="M16 8.6a5 5 0 0 1 0 6.8M18.6 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 15a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 0 0-7 0v5.5A3.5 3.5 0 0 0 12 15z" fill="currentColor"/><path d="M6 11v0.5a6 6 0 0 0 12 0V11M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="M12 15a3.5 3.5 0 0 0 3.5-3.5V8.4M15.3 6.2A3.5 3.5 0 0 0 8.5 8v3.5c0 0.5 0.08 0.98 0.24 1.42" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/><path d="M6 11v0.5a6 6 0 0 0 9.6 4.8M18 11.5A6 6 0 0 1 16.7 15" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/><path d="M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><path d="M4 4l16 16" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="3.5" y="6.5" width="17" height="11" rx="2.4" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M7 10h.01M10.2 10h.01M13.4 10h.01M16.6 10h.01M7.5 13.6h9" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.8" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M12 4.6v2M12 17.4v2M19.4 12h-2M6.6 12h-2M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4M17.3 17.3l-1.4-1.4M8.1 8.1L6.7 6.7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5L8 12l7 7" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-cloud-down" viewBox="0 0 24 24"><path d="M7 17.5A4.2 4.2 0 0 1 6.4 9.2a5.4 5.4 0 0 1 10.4-1.4A4.1 4.1 0 0 1 17.6 17.5H7z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M12 10.4v5.4m0 0l-2.1-2.1m2.1 2.1l2.1-2.1" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-cloud-check" viewBox="0 0 24 24"><path d="M7 17A4.2 4.2 0 0 1 6.4 8.7a5.4 5.4 0 0 1 10.4-1.4A4.1 4.1 0 0 1 17.6 17H7z" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M9.3 12.6l1.8 1.8 3.6-3.7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 17A4.2 4.2 0 0 1 6.4 8.7a5.4 5.4 0 0 1 10.4-1.4A4.1 4.1 0 0 1 17.6 17H10" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linejoin="round"/><path d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-phone-off" viewBox="0 0 24 24"><path d="M8.3 5.2c.6-.3 1.2-.1 1.6.5l1.2 1.9c.3.5.2 1.1-.2 1.5l-1 .9c.6 1.4 1.6 2.6 3 3.4l1-.9c.4-.4 1-.5 1.5-.2l2 1.2c.6.4.8 1.1.4 1.7l-1 1.6c-.4.6-1.1.9-1.8.8-4.4-.7-8-4.1-8.9-8.4-.1-.7.2-1.4.8-1.8l1.4-.2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/><path d="M4 4l16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M4.5 11a7.5 7.5 0 1 0 2.1-5.2" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/><path d="M4.2 4.6v3.8H8" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M12 8v4.2l2.8 1.7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5.5" y="10.5" width="13" height="9" rx="2.2" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M8 10.5V7.8a4 4 0 0 1 8 0v2.7" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linecap="round"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <!-- ===== ФОНОВАЯ СЦЕНА: упрощённый экран сессии (эталон 02) ===== -->
+    <div class="scene">
+      <div class="hdr">
+        <div class="hdr-row">
+          <button class="icon-btn"><svg width="17" height="17"><use href="#i-x"/></svg></button>
+          <div class="hdr-title">Знакомство · сборка фразы</div>
+          <button class="icon-btn"><svg width="18" height="18"><use href="#i-gear"/></svg></button>
+        </div>
+        <div class="progress-row">
+          <div class="bar-track"><div class="bar-fill" style="transform:scaleX(0.5)"></div></div>
+          <div class="counter miss"><svg><use href="#i-dot"/></svg><b>0</b></div>
+          <div class="counter stars"><svg><use href="#i-star"/></svg><b>3</b></div>
+        </div>
+      </div>
+      <div class="prompt">
+        <div class="task-label">Собери фразу</div>
+        <div class="hero-row">
+          <div class="hero">Приятно познакомиться</div>
+          <button class="audio-btn"><svg><use href="#i-sound"/></svg></button>
+        </div>
+      </div>
+      <div class="answer">
+        <button class="chip ok" style="pointer-events:none">Nice</button>
+        <button class="chip ok" style="pointer-events:none">to</button>
+      </div>
+      <div class="bank">
+        <button class="chip" style="pointer-events:none">meet</button>
+        <button class="chip" style="pointer-events:none">you</button>
+        <button class="chip" style="pointer-events:none">meets</button>
+      </div>
+      <div class="dock">
+        <button class="cta" disabled><span class="dl-label">Проверить</span></button>
+      </div>
+    </div>
+
+    <!-- ===== СКЕЛЕТОН (кадр 5): та же геометрия, содержимое - плейсхолдеры ===== -->
+    <div class="scene" id="skelScene" style="display:none">
+      <div class="hdr">
+        <div class="hdr-row">
+          <button class="icon-btn"><svg width="17" height="17"><use href="#i-x"/></svg></button>
+          <div class="hdr-title">&nbsp;</div>
+          <button class="icon-btn"><svg width="18" height="18"><use href="#i-gear"/></svg></button>
+        </div>
+        <div class="progress-row">
+          <div class="bar-track"><div class="bar-fill" style="transform:scaleX(0.18); opacity:0.5"></div></div>
+          <div class="counter miss" style="opacity:0.25"><svg><use href="#i-dot"/></svg><b>0</b></div>
+          <div class="counter stars" style="opacity:0.25"><svg><use href="#i-star"/></svg><b>0</b></div>
+        </div>
+      </div>
+      <div class="prompt">
+        <div class="skel skel-hero-l1"></div>
+        <div class="skel skel-hero-l2"></div>
+      </div>
+      <div class="answer" style="background:none">
+        <div class="skel skel-answer-line"></div>
+      </div>
+      <div class="bank">
+        <div class="skel skel-chip" style="width:78px"></div>
+        <div class="skel skel-chip" style="width:56px"></div>
+        <div class="skel skel-chip" style="width:96px"></div>
+        <div class="skel skel-chip" style="width:64px"></div>
+        <div class="skel skel-chip" style="width:88px"></div>
+        <div class="skel skel-chip" style="width:70px"></div>
+      </div>
+      <div class="dock">
+        <div class="skel skel-cta"></div>
+      </div>
+    </div>
+
+    <!-- ===== СКРИМ ===== -->
+    <div class="scrim" id="scrim"></div>
+
+    <!-- ===== КАДР 1: Выход из сессии (bottom sheet) ===== -->
+    <div class="sheet-layer" id="frame1" data-sheet>
+      <div class="sheet">
+        <div class="sheet-grabber"></div>
+        <div class="sheet-title">Выйти из сессии?</div>
+        <div class="sheet-body">Пройденные карточки сохранятся, вернёшься на это же место</div>
+        <div class="sheet-actions">
+          <button class="cta" data-close-frame>Остаться</button>
+          <button class="cta-secondary" data-close-frame>Выйти</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 2: Микрофон - объяснение (bottom sheet) ===== -->
+    <div class="sheet-layer" id="frame2" data-sheet>
+      <div class="sheet">
+        <div class="sheet-grabber"></div>
+        <div class="sheet-icon-wrap"><div class="medal"><svg><use href="#i-mic"/></svg></div></div>
+        <div class="sheet-title">Говорим вслух</div>
+        <div class="sheet-body">Проверяем твою речь прямо на устройстве<br>Запись не сохраняется и никуда не отправляется</div>
+        <div class="sheet-actions">
+          <button class="cta" data-close-frame>Разрешить микрофон</button>
+          <button class="cta-secondary" data-close-frame>Позже: заниматься без голоса</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 3: Микрофон - отказано (карточка в теле) ===== -->
+    <div class="inbody-layer" id="frame3" data-inbody>
+      <div class="inbody-card">
+        <div class="inbody-medal-wrap"><div class="medal neutral"><svg><use href="#i-mic-off"/></svg></div></div>
+        <div class="inbody-title">Микрофон выключен</div>
+        <div class="inbody-body">Голосовые задания заменятся на печатные, прогресс не пострадает</div>
+        <div class="row-actions">
+          <button class="row-btn" data-close-frame><span class="ri"><svg><use href="#i-gear"/></svg></span>Открыть настройки</button>
+          <button class="row-btn" data-close-frame><span class="ri"><svg><use href="#i-keyboard"/></svg></span>Продолжить без микрофона</button>
+          <button class="row-btn muted" data-close-frame><span class="ri"><svg><use href="#i-back"/></svg></span>Назад</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 4: Эпизод не загружен (карточка в теле, 2 варианта) ===== -->
+    <div class="inbody-layer" id="frame4" data-inbody>
+      <div class="inbody-card">
+        <div class="inbody-medal-wrap"><div class="medal"><svg class="cloud-orbit" id="cloudIcon"><use href="#i-cloud-down"/></svg></div></div>
+        <div class="inbody-title">Эпизод ещё не скачан</div>
+        <div class="fact-pill" id="episodeSizePill"><svg width="13" height="13"><use href="#i-cloud-down"/></svg>1.4 МБ</div>
+        <div id="frame4main" style="margin-top:22px">
+          <button class="dl-cta" id="dlBtn"><span class="dl-fill"></span><span class="dl-label" id="dlLabel">Скачать</span></button>
+        </div>
+        <div id="frame4offline" style="display:none">
+          <div class="offline-row"><svg><use href="#i-cloud-off"/></svg><span>Нет соединения, попробуем сами, когда сеть вернётся</span></div>
+          <div style="margin-top:12px"><button class="cta-secondary" data-close-frame>Повторить сейчас</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 6: Звонок прервал запись (карточка в теле) ===== -->
+    <div class="inbody-layer" id="frame6" data-inbody>
+      <div class="inbody-card">
+        <div class="inbody-medal-wrap"><div class="medal neutral"><svg><use href="#i-phone-off"/></svg></div></div>
+        <div class="inbody-title">Запись прервана звонком</div>
+        <div class="inbody-body">Это не ошибка, попытка не потрачена</div>
+        <div class="sheet-actions">
+          <button class="cta" data-close-frame>Записать заново</button>
+          <button class="cta-secondary" data-close-frame>Ввести текстом</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 8: Восстановление сессии (bottom sheet) ===== -->
+    <div class="sheet-layer" id="frame8" data-sheet>
+      <div class="sheet">
+        <div class="sheet-grabber"></div>
+        <div class="sheet-icon-wrap"><div class="medal"><svg><use href="#i-history"/></svg></div></div>
+        <div class="sheet-title">Продолжим с 5-й карточки?</div>
+        <div class="sheet-body">Ты вышел на середине, всё сохранено</div>
+        <div class="sheet-actions">
+          <button class="cta" data-close-frame>Продолжить</button>
+          <button class="cta-secondary" data-close-frame>Начать сессию заново</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== КАДР 7: Тост синхронизации (поверх живой сцены, без скрима) ===== -->
+    <div class="toast-layer" id="frame7">
+      <div class="toast" id="toastEl">
+        <div class="ti"><svg><use href="#i-cloud-check"/></svg></div>
+        <div class="tt" id="toastText">Прогресс сохранён</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="panel">
+  <h1>V2 · Сборник · <span>Модалы и состояния</span></h1>
+
+  <div class="pcard">
+    <h2>Тема приложения</h2>
+    <div class="chiprow">
+      <button class="pbtn on" data-theme-btn="dark">Тёмная</button>
+      <button class="pbtn" data-theme-btn="gold">Золотая</button>
+      <button class="pbtn" data-theme-btn="coral">Коралловая</button>
+    </div>
+    <div class="chiprow" style="margin-top:10px">
+      <button class="pbtn" id="slowBtn">Замедлить ×4</button>
+      <button class="pbtn" id="rmBtn">Reduced motion</button>
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Кадры (8)</h2>
+    <div class="framelist" id="frameList">
+      <button class="pbtn framebtn" data-show="1"><b>1 · Выход из сессии</b><small>bottom sheet · «Остаться» первична</small></button>
+      <button class="pbtn framebtn" data-show="2"><b>2 · Микрофон: объяснение</b><small>bottom sheet · до системного диалога</small></button>
+      <button class="pbtn framebtn" data-show="3"><b>3 · Микрофон: отказано</b><small>карточка в теле · 3 строки-действия</small></button>
+      <button class="pbtn framebtn" data-show="4"><b>4 · Эпизод не загружен</b><small>карточка · скачать / нет сети</small></button>
+      <button class="pbtn framebtn" data-show="5"><b>5 · Скелетон сессии</b><small>первый кадр загрузки · shimmer</small></button>
+      <button class="pbtn framebtn" data-show="6"><b>6 · Звонок прервал запись</b><small>карточка · нейтральное восстановление</small></button>
+      <button class="pbtn framebtn" data-show="7"><b>7 · Тост синхронизации</b><small>поверх живой сцены · Optimistic UI</small></button>
+      <button class="pbtn framebtn" data-show="8"><b>8 · Восстановление сессии</b><small>bottom sheet · resume</small></button>
+    </div>
+    <div class="variantrow" id="variantsFrame4" style="display:none">
+      <button class="pbtn on" data-variant="4" data-v="main">Скачать</button>
+      <button class="pbtn" data-variant="4" data-v="offline">Нет сети</button>
+    </div>
+    <div class="variantrow" id="variantsFrame7" style="display:none">
+      <button class="pbtn on" data-variant="7" data-v="ok">Сохранено</button>
+      <button class="pbtn" data-variant="7" data-v="wait">Ждём сеть</button>
+    </div>
+    <div class="note">Тап по скриму на кадрах 1/2/8 = «Остаться»/безопасный дефолт (первая кнопка). На кадрах-карточках (3/4/6) скрим не закрывает - решение делается явной кнопкой.</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Тайминги и Optimistic UI</h2>
+    <div class="spec">
+      <div class="row"><span>Bottom sheet: вход/выход</span><span class="val">320 мс spring / 200 мс ease</span></div>
+      <div class="row"><span>Карточка в теле: вход</span><span class="val">240 мс spring, scale 0.9→1</span></div>
+      <div class="row"><span>Скрим: проявление</span><span class="val">240 мс ease, нейтральный тон</span></div>
+      <div class="row"><span>Скачивание эпизода</span><span class="val">прогресс-заливка 2000 мс, без спиннера</span></div>
+      <div class="row"><span>«Скачать» → «Начать»</span><span class="val">поп-анимация 360 мс spring</span></div>
+      <div class="row"><span>Скелетон: бегущий блик</span><span class="val">1600 мс ease-in-out, loop, transform-only</span></div>
+      <div class="row"><span>Тост: вход/автоскрытие</span><span class="val">240 мс slide-up / держится 2500 мс</span></div>
+      <div class="row"><span>Optimistic UI (тост)</span><span class="val">звёзды/прогресс уже на экране, синк - фон</span></div>
+    </div>
+    <div class="note">Только transform/opacity (UI-тред). Скелетон повторяет точную геометрию финального кадра: шапка, полоса, герой, банк, CTA - те же отступы и высоты, контент не прыгнет при гидратации. Reduced motion: shimmer и orbit гасятся, листы/карточки/тост проявляются мгновенным кроссфейдом.</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Контракт (RN, Reanimated 4)</h2>
+    <div class="spec">
+      <div class="row"><span>Sheet</span><span class="val">withSpring(d22 s280), interruptible</span></div>
+      <div class="row"><span>Inbody card</span><span class="val">withSpring(d20 s260) + fade</span></div>
+      <div class="row"><span>Скрим</span><span class="val">Pressable, hitSlop = весь экран</span></div>
+      <div class="row"><span>Скелетон</span><span class="val">SkeletonBlock, размеры = baseline финала</span></div>
+      <div class="row"><span>Тост</span><span class="val">overlay, не сдвигает контент (absolute)</span></div>
+      <div class="row"><span>Первичная кнопка листа</span><span class="val">безопасный дефолт (Остаться/Продолжить)</span></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const phone = $('phone'), scrim = $('scrim');
+let current = 1;
+let dlTimer = null;
+
+const tf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tf')) || 1;
+const reduced = () => document.documentElement.dataset.reduced === '1' ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const ALL_FRAMES = [1,2,3,4,5,6,7,8];
+
+function hideAll() {
+  ALL_FRAMES.forEach((n) => {
+    const el = $('frame' + n);
+    if (!el) return;
+    el.classList.remove('show');
+  });
+  scrim.classList.remove('show');
+  $('skelScene').style.display = 'none';
+  clearTimeout(dlTimer);
+}
+
+/* Кадр 5 - не модал, а полноэкранная замена сцены (первый кадр загрузки) */
+function showFrame(n) {
+  hideAll();
+  current = n;
+  document.querySelectorAll('[data-show]').forEach((b) => b.classList.toggle('on', Number(b.dataset.show) === n));
+  $('variantsFrame4').style.display = n === 4 ? 'flex' : 'none';
+  $('variantsFrame7').style.display = n === 7 ? 'flex' : 'none';
+
+  if (n === 5) { $('skelScene').style.display = 'flex'; return; }
+
+  const el = $('frame' + n);
+  if (!el) return;
+  const isModal = el.hasAttribute('data-sheet') || el.hasAttribute('data-inbody');
+  if (isModal) scrim.classList.add('show');
+  // n=7 (тост) - никогда не скрим: живёт поверх активной сцены, не блокирует
+  requestAnimationFrame(() => el.classList.add('show'));
+
+  if (n === 4) resetFrame4();
+  if (n === 7) autoHideToast();
+}
+
+/* Тап по скриму = безопасный дефолт (первая/первичная кнопка листа).
+   На карточках 3/4/6 (не sheet) скрим не закрывает - решение явной кнопкой. */
+scrim.addEventListener('click', () => {
+  const el = $('frame' + current);
+  if (!el || !el.hasAttribute('data-sheet')) return;
+  const primary = el.querySelector('.cta[data-close-frame]');
+  if (primary) primary.click(); else showFrame(current);
+});
+
+document.querySelectorAll('[data-close-frame]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const layer = btn.closest('[data-sheet],[data-inbody]');
+    if (!layer) return;
+    layer.classList.remove('show');
+    scrim.classList.remove('show');
+    setTimeout(() => { if (!document.querySelector('.sheet-layer.show,.inbody-layer.show')) scrim.classList.remove('show'); }, 340 * tf());
+  });
+});
+
+/* ===== Кадр 4: скачивание эпизода ===== */
+function resetFrame4() {
+  const btn = $('dlBtn');
+  btn.classList.remove('filling', 'pop');
+  btn.querySelector('.dl-fill').style.transition = 'none';
+  btn.querySelector('.dl-fill').style.transform = 'scaleX(0)';
+  $('dlLabel').textContent = 'Скачать';
+  btn.onclick = startDownload;
+  void btn.offsetWidth;
+  btn.querySelector('.dl-fill').style.transition = '';
+}
+function startDownload() {
+  const btn = $('dlBtn');
+  btn.onclick = null;
+  document.documentElement.style.setProperty('--dl-dur', (2000 * tf()) + 'ms');
+  btn.classList.add('filling');
+  dlTimer = setTimeout(() => {
+    $('dlLabel').textContent = 'Начать';
+    btn.classList.add('pop');
+    btn.onclick = () => showFrame(current); // «Начать» замыкает прогон
+  }, 2000 * tf());
+}
+function setFrame4Variant(v) {
+  $('frame4main').style.display = v === 'main' ? 'block' : 'none';
+  $('frame4offline').style.display = v === 'offline' ? 'block' : 'none';
+  if (v === 'main') resetFrame4();
+}
+
+/* ===== Кадр 7: тост ===== */
+let toastTimer = null;
+function autoHideToast() {
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { $('frame7').classList.remove('show'); }, 2500 * tf());
+}
+function setToastVariant(v) {
+  const toast = $('toastEl');
+  if (v === 'wait') {
+    toast.classList.add('wait');
+    toast.querySelector('.ti').innerHTML = '<svg><use href="#i-cloud-off"/></svg>';
+    $('toastText').textContent = 'Сохраним, когда появится сеть';
+  } else {
+    toast.classList.remove('wait');
+    toast.querySelector('.ti').innerHTML = '<svg><use href="#i-cloud-check"/></svg>';
+    $('toastText').textContent = 'Прогресс сохранён';
+  }
+  $('frame7').classList.remove('show');
+  requestAnimationFrame(() => { $('frame7').classList.add('show'); autoHideToast(); });
+}
+
+/* ===== Панель ===== */
+document.querySelectorAll('[data-show]').forEach((b) => {
+  b.addEventListener('click', () => showFrame(Number(b.dataset.show)));
+});
+document.querySelectorAll('[data-variant="4"]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-variant="4"]').forEach((x) => x.classList.toggle('on', x === b));
+    setFrame4Variant(b.dataset.v);
+  });
+});
+document.querySelectorAll('[data-variant="7"]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.querySelectorAll('[data-variant="7"]').forEach((x) => x.classList.toggle('on', x === b));
+    setToastVariant(b.dataset.v);
+  });
+});
+document.querySelectorAll('[data-theme-btn]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.themeBtn;
+    document.querySelectorAll('[data-theme-btn]').forEach((x) => x.classList.toggle('on', x === b));
+  });
+});
+$('slowBtn').addEventListener('click', () => {
+  const on = $('slowBtn').classList.toggle('on');
+  document.documentElement.style.setProperty('--tf', on ? 4 : 1);
+});
+$('rmBtn').addEventListener('click', () => {
+  const on = $('rmBtn').classList.toggle('on');
+  document.documentElement.dataset.reduced = on ? '1' : '';
+});
+
+showFrame(1);
+</script>
+</body>
+</html>

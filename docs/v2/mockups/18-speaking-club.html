@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V2 Макет · Разговорная миссия (SB-12)</title>
+<style>
+/* ============================================================
+   Витрина Learning V2 · Режим: Speaking Club Mission (SB-12, ScenarioShell)
+   Капстоун эпизода: перенос изученных фраз в ограниченную вариативную
+   коммуникативную миссию. Копия системы 02-phrase-builder.html:
+   CSS-токены трёх тем, телефон-рама, сплошная barFill, пилюли,
+   fx-слой с flyStar/flyMissToken и страховочными таймерами.
+   Закон G27-G30: никаких картинок и эмодзи, типографика как герой,
+   градиенты и переливы тона вместо рамок. Ошибка: без тряски.
+   КРИТИЧНО: голос ТОЛЬКО on-device в этом макете, партнёр отвечает
+   по сценарию (заготовленные реплики), см. карточку спецификации.
+   ============================================================ */
+:root {
+  --tf: 1;
+  --t-press: calc(120ms * var(--tf));
+  --t-fast: calc(180ms * var(--tf));
+  --t-normal: calc(240ms * var(--tf));
+  --t-slow: calc(320ms * var(--tf));
+  --t-celebrate: calc(420ms * var(--tf));
+  --ease-slide: cubic-bezier(0.33, 0.52, 0.25, 0.99);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+:root[data-theme="dark"] {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --correct:#47C870; --correct-bg:rgba(71,200,112,0.16);
+  --wrong:#F05454; --wrong-bg:rgba(240,84,84,0.12);
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --btn-shadow:#1E6B3A; --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.05);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --ok-grad:linear-gradient(180deg,#5BD991 0%,#38B96A 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --text-on-gold:#1A1A1A;
+  --partner-grad:linear-gradient(150deg,#3E5C46 0%,#16231A 100%);
+  --bubble-partner:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.14)), var(--bg-surface2);
+}
+:root[data-theme="gold"] {
+  --bg-primary:#030303; --bg-card:#0A0A0A; --bg-surface:#111111; --bg-surface2:#171717;
+  --text-primary:#F7F1E4; --text-second:#E9CE7A; --text-muted:#B8AD92; --text-ghost:#6D6554;
+  --correct:#D6B35A; --correct-bg:rgba(214,179,90,0.16);
+  --wrong:#B65A4A; --wrong-bg:rgba(182,90,74,0.13);
+  --gold:#D6B35A; --gold-bg:rgba(214,179,90,0.14);
+  --accent:#B8903A; --accent-bg:rgba(184,144,58,0.12); --correct-text:#0A0702;
+  --btn-shadow:#3C2A0B; --card-shadow:rgba(0,0,0,0.78);
+  --chip-grad-a:#242012; --chip-grad-b:#0E0C07; --chip-edge:#060503;
+  --bg-grad-a:#0D0A04; --bg-grad-b:#010101;
+  --sheen:rgba(214,179,90,0.05);
+  --cta-grad:linear-gradient(180deg,#F6E3A1 0%,#D6B35A 52%,#A87F30 100%);
+  --cta-hi:rgba(255,255,255,0.5);
+  --ok-grad:linear-gradient(180deg,#EED592 0%,#C8A44C 100%);
+  --chip-hi:rgba(246,227,161,0.12);
+  --surface-grad:linear-gradient(160deg,#1B1710,#0A0906);
+  --hero-grad:linear-gradient(180deg,#FFF9E8 15%,#E9CE7A 100%);
+  --text-on-gold:#0A0702;
+  --partner-grad:linear-gradient(150deg,#4A3E22 0%,#161207 100%);
+  --bubble-partner:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2)), var(--bg-surface2);
+}
+:root[data-theme="coral"] {
+  --bg-primary:#090405; --bg-card:#171013; --bg-surface:#22171B; --bg-surface2:#302126;
+  --text-primary:#FFFFFF; --text-second:#FF8A66; --text-muted:#B9A6AE; --text-ghost:#75656C;
+  --correct:#4A90FF; --correct-bg:rgba(74,144,255,0.14);
+  --wrong:#FF6464; --wrong-bg:rgba(255,100,100,0.14);
+  --gold:#FFD060; --gold-bg:rgba(255,208,96,0.14);
+  --accent:#FF7F50; --accent-bg:rgba(255,127,80,0.12); --correct-text:#FFFFFF;
+  --btn-shadow:#7A2E14; --card-shadow:rgba(0,0,0,0.6);
+  --chip-grad-a:#3A2630; --chip-grad-b:#180E12; --chip-edge:#0B0608;
+  --bg-grad-a:#140709; --bg-grad-b:#010101;
+  --sheen:rgba(255,127,80,0.05);
+  --cta-grad:linear-gradient(180deg,#FF9E76 0%,#FF7F50 50%,#E45E31 100%);
+  --cta-hi:rgba(255,255,255,0.42);
+  --ok-grad:linear-gradient(180deg,#6FA6FF 0%,#3F82F2 100%);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#2B1C23,#130A0E);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#F3C9B8 100%);
+  --text-on-gold:#1A1208;
+  --partner-grad:linear-gradient(150deg,#5A3630 0%,#1E1012 100%);
+  --bubble-partner:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.18)), var(--bg-surface2);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:#0B0E0C; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:#E8EDEA; min-height:100vh;
+  display:flex; gap:40px; align-items:flex-start; justify-content:center;
+  padding:36px 24px 80px; flex-wrap:wrap;
+}
+svg { display:block; }
+
+/* ================= ТЕЛЕФОН ================= */
+.phone {
+  width:390px; height:800px; position:relative; overflow:hidden;
+  border-radius:46px; display:flex; flex-direction:column; user-select:none;
+  background:
+    radial-gradient(120% 60% at 50% -8%, var(--sheen), transparent 60%),
+    linear-gradient(175deg, var(--bg-grad-a), var(--bg-grad-b));
+  box-shadow:0 34px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+.phone::before {
+  content:""; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
+}
+
+/* ---------- ActivityHeader: единый для всех сцен миссии ---------- */
+.hdr { padding:22px 16px 0; position:relative; z-index:2; }
+.hdr-row { display:flex; align-items:center; gap:12px; }
+.icon-btn {
+  width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-muted);
+  display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+  box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.icon-btn:active { transform:scale(0.94); }
+.hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
+.progress-row { display:flex; align-items:center; gap:12px; margin-top:14px; }
+.bar-track {
+  flex:1; height:10px; border-radius:999px; background:var(--bg-surface2);
+  overflow:hidden; position:relative;
+  box-shadow:inset 0 1px 3px rgba(0,0,0,0.35);
+}
+.bar-fill {
+  position:absolute; inset:0; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent), var(--correct));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform var(--t-slow) var(--ease-slide);
+  box-shadow:0 0 14px var(--accent-bg);
+}
+.counter {
+  display:flex; align-items:center; gap:6px; border-radius:999px; padding:6px 12px;
+  font-weight:800; font-size:14px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.1), 0 4px 12px rgba(0,0,0,0.25);
+}
+.counter svg { width:14px; height:14px; }
+.counter.stars { background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.22)), var(--gold-bg); color:var(--gold); }
+.counter.turns { background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--accent-bg); color:var(--text-second); }
+.counter.bump svg, .counter.bump b { animation:bump calc(360ms * var(--tf)) var(--ease-spring); }
+@keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 100%{transform:scale(1)} }
+
+/* Мини-чеклист целей пилюлями в шапке (обновляется по ходу диалога) */
+.goal-pills { display:flex; gap:7px; margin-top:12px; }
+.goal-pill {
+  flex:1; height:6px; border-radius:999px; background:var(--bg-surface2);
+  position:relative; overflow:hidden; box-shadow:inset 0 1px 2px rgba(0,0,0,0.3);
+}
+.goal-pill .fill {
+  position:absolute; inset:0; border-radius:999px; background:linear-gradient(90deg, var(--accent), var(--correct));
+  transform:scaleX(0); transform-origin:left; transition:transform var(--t-slow) var(--ease-spring);
+}
+.goal-pill.done .fill { transform:scaleX(1); }
+
+/* ---------- Сцена: контейнер меняющегося контента (brief / chat / finale) ---------- */
+.scene { position:relative; z-index:2; flex:1; display:flex; flex-direction:column; min-height:0; }
+.view { display:none; flex-direction:column; flex:1; min-height:0; }
+.view.active { display:flex; }
+
+/* ================= BRIEF (бриф миссии) ================= */
+.brief { padding:24px 20px 0; display:flex; flex-direction:column; flex:1; min-height:0; overflow-y:auto; }
+.task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
+.brief-hero {
+  margin-top:10px; font-size:29px; line-height:1.2; font-weight:800; letter-spacing:0.1px;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.scenario-card {
+  margin-top:18px; border-radius:20px; padding:16px 17px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(0,0,0,0.16)), var(--bg-card);
+  box-shadow:0 10px 24px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.scenario-card p { font-size:15px; line-height:1.5; font-weight:600; color:var(--text-primary); }
+
+.goals-card { margin-top:14px; }
+.goal-row { display:flex; align-items:center; gap:12px; padding:10px 0; }
+.goal-row + .goal-row { position:relative; }
+.goal-row + .goal-row::before {
+  content:""; position:absolute; top:0; left:34px; right:0; height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,0.08), transparent);
+}
+.goal-dot {
+  flex:0 0 auto; width:26px; height:26px; border-radius:50%;
+  display:grid; place-items:center;
+  background:var(--surface-grad); color:var(--text-ghost);
+  box-shadow:inset 0 1px 0 var(--chip-hi);
+}
+.goal-dot svg { width:13px; height:13px; }
+.goal-text { font-size:15px; font-weight:700; color:var(--text-primary); }
+
+/* Карточка «Полезные фразы»: сворачиваемая, геометрия ленты стабильна */
+.phrases-card {
+  margin-top:14px; border-radius:20px; overflow:hidden;
+  background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(0,0,0,0.16)), var(--bg-card);
+  box-shadow:0 8px 20px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.phrases-head {
+  display:flex; align-items:center; gap:10px; padding:14px 16px; cursor:pointer; border:none; width:100%;
+  background:transparent; font-family:inherit; text-align:left;
+}
+.phrases-head .ph-title { flex:1; font-size:13px; font-weight:800; letter-spacing:1.1px; text-transform:uppercase; color:var(--text-muted); }
+.phrases-head .chev { color:var(--text-ghost); transition:transform var(--t-fast) var(--ease-outquint); flex:0 0 auto; }
+.phrases-head .chev svg { width:15px; height:15px; }
+.phrases-card.collapsed .phrases-head .chev { transform:rotate(-90deg); }
+/* Геометрия ленты стабильна: место зарезервировано через max-height + clip-path, не через display */
+.phrases-body {
+  overflow:hidden;
+  max-height:220px;
+  transition:max-height var(--t-normal) var(--ease-outquint), opacity var(--t-fast) ease;
+  opacity:1;
+}
+.phrases-card.collapsed .phrases-body { max-height:0; opacity:0; }
+.phrase-item { padding:0 16px 13px; display:flex; align-items:baseline; gap:10px; }
+.phrase-item .en { font-size:15.5px; font-weight:800; color:var(--text-second); }
+.phrase-item .ru { font-size:13px; font-weight:600; color:var(--text-muted); }
+
+.brief-foot { margin-top:auto; padding:18px 0 6px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.turns-pill {
+  display:inline-flex; align-items:center; gap:6px; border-radius:999px; padding:8px 14px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)), var(--bg-surface2);
+  color:var(--text-muted); font-size:12.5px; font-weight:800;
+  box-shadow:inset 0 1px 0 var(--chip-hi);
+}
+
+/* ================= CHAT ================= */
+.chat-scene { display:flex; flex-direction:column; flex:1; min-height:0; }
+.chat-scroll {
+  flex:1; overflow-y:auto; padding:16px 16px 8px;
+  display:flex; flex-direction:column; gap:14px;
+  -webkit-mask-image:linear-gradient(180deg, transparent 0, #000 16px, #000 calc(100% - 10px), transparent 100%);
+  mask-image:linear-gradient(180deg, transparent 0, #000 16px, #000 calc(100% - 10px), transparent 100%);
+}
+.turn { display:flex; gap:10px; align-items:flex-end; max-width:100%; }
+.turn.partner { justify-content:flex-start; }
+.turn.learner { justify-content:flex-end; }
+.avatar {
+  flex:0 0 auto; width:34px; height:34px; border-radius:12px;
+  display:grid; place-items:center; font-weight:900; font-size:15px; letter-spacing:0.3px;
+  background:var(--partner-grad); color:var(--text-second);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 4px 10px var(--card-shadow);
+}
+.bubble-col { display:flex; flex-direction:column; gap:5px; max-width:76%; }
+.turn.learner .bubble-col { align-items:flex-end; }
+.bubble {
+  border-radius:18px; padding:11px 14px; font-size:15.5px; font-weight:600; line-height:1.38;
+  opacity:0; transform:translateY(14px) scale(0.97);
+  animation:bubbleIn calc(320ms * var(--tf)) var(--ease-spring) forwards;
+}
+@keyframes bubbleIn { 0%{opacity:0; transform:translateY(14px) scale(0.97);} 60%{opacity:1;} 100%{opacity:1; transform:none;} }
+.turn.partner .bubble { background:var(--bubble-partner); color:var(--text-primary); border-bottom-left-radius:6px; }
+.turn.learner .bubble { background:var(--ok-grad); color:var(--correct-text); border-bottom-right-radius:6px; }
+.bubble-tools { display:flex; align-items:center; gap:8px; }
+.turn.learner .bubble-tools { flex-direction:row-reverse; }
+.bplay {
+  width:26px; height:26px; border-radius:9px; border:none; cursor:pointer; flex:0 0 auto;
+  background:var(--surface-grad); color:var(--text-second); display:grid; place-items:center;
+  box-shadow:inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.bplay:active { transform:scale(0.9); }
+.bplay svg { width:12px; height:12px; }
+.tr-line { font-size:13.5px; font-weight:600; color:var(--text-muted); max-width:220px; }
+.tag-edited {
+  font-size:10.5px; font-weight:800; letter-spacing:0.5px; text-transform:uppercase;
+  color:var(--text-ghost);
+}
+
+/* Пузырь с RU-переводом внутри реплики партнёра (кегль 14+) */
+.bubble .ru-inline { display:block; margin-top:5px; font-size:14px; font-weight:600; opacity:0.72; }
+
+/* Индикатор «печатает»: конечный, три точки */
+.typing-row { display:flex; }
+.typing-bubble {
+  background:var(--bubble-partner); border-radius:18px; border-bottom-left-radius:6px;
+  padding:13px 16px; display:flex; gap:5px; align-items:center;
+}
+.typing-bubble .dot { width:7px; height:7px; border-radius:50%; background:var(--text-muted); opacity:0.5; }
+.typing-bubble.animate .dot { animation:typeDot calc(900ms * var(--tf)) ease-in-out infinite; }
+.typing-bubble .dot:nth-child(2) { animation-delay:calc(150ms * var(--tf)); }
+.typing-bubble .dot:nth-child(3) { animation-delay:calc(300ms * var(--tf)); }
+@keyframes typeDot { 0%,60%,100%{ transform:translateY(0); opacity:0.4;} 30%{ transform:translateY(-4px); opacity:1;} }
+
+/* Галочка цели: SVG check с поп-анимацией, всплывает поверх сообщений */
+.goal-toast {
+  align-self:center; display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:999px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.07), rgba(0,0,0,0.2)), var(--correct-bg);
+  color:var(--correct); font-size:13px; font-weight:800;
+  opacity:0; transform:scale(0.7);
+  animation:goalToast calc(560ms * var(--tf)) var(--ease-spring) forwards;
+}
+.goal-toast svg { width:15px; height:15px; }
+@keyframes goalToast { 0%{opacity:0; transform:scale(0.7);} 55%{opacity:1; transform:scale(1.08);} 100%{opacity:1; transform:scale(1);} }
+
+/* ---------- ТВОЙ ХОД: зарезервированная зона снизу ---------- */
+.turn-zone { position:relative; z-index:2; padding:14px 16px 22px; min-height:150px; display:flex; flex-direction:column; justify-content:flex-end; gap:12px; }
+
+.side-btn-row { display:flex; align-items:center; justify-content:space-between; }
+.side-btn {
+  display:flex; align-items:center; gap:8px; border:none; cursor:pointer; border-radius:14px;
+  padding:10px 14px; font-family:inherit; font-size:13px; font-weight:800; color:var(--text-muted);
+  background:var(--surface-grad); box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  transition:transform var(--t-press) var(--ease-outquint), color var(--t-fast);
+}
+.side-btn:active { transform:scale(0.95); }
+.side-btn svg { width:15px; height:15px; }
+.side-btn.on { color:var(--text-second); }
+
+.mic-row { display:flex; align-items:center; justify-content:center; position:relative; height:80px; }
+.mic-btn {
+  width:80px; height:80px; border-radius:50%; border:none; cursor:pointer;
+  background:var(--cta-grad); color:var(--correct-text);
+  display:grid; place-items:center; position:relative;
+  box-shadow:0 6px 0 var(--btn-shadow), 0 16px 30px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), background var(--t-fast);
+}
+.mic-btn svg { width:28px; height:28px; }
+.mic-btn:active { transform:scale(0.95) translateY(2px); box-shadow:0 2px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.mic-btn.recording { background:linear-gradient(180deg, #F27272 0%, var(--wrong) 60%, #C23F3F 100%); box-shadow:0 6px 0 #8A2C2C, 0 16px 30px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.32); }
+/* Пульс кольца записи: конечная петля, останавливается вместе с записью */
+.mic-ring { position:absolute; inset:-8px; border-radius:50%; pointer-events:none; }
+.mic-ring::before, .mic-ring::after {
+  /* зачем: закон владельца - без обводок; кольцо записи = радиальная заливка,
+     тающая к центру, тот же визуальный эффект без border */
+  content:""; position:absolute; inset:0; border-radius:50%; opacity:0;
+  background:radial-gradient(circle, transparent 62%, var(--wrong) 68%, transparent 76%);
+}
+.mic-btn.recording ~ .mic-ring::before { animation:micPulse calc(1600ms * var(--tf)) ease-out infinite; }
+.mic-btn.recording ~ .mic-ring::after { animation:micPulse calc(1600ms * var(--tf)) ease-out infinite calc(800ms * var(--tf)); }
+@keyframes micPulse { 0%{ transform:scale(1); opacity:0.55;} 100%{ transform:scale(1.55); opacity:0;} }
+
+/* Амплитудные столбики вокруг записи */
+.amp-wrap { position:absolute; left:50%; top:50%; width:120px; height:120px; transform:translate(-50%,-50%); pointer-events:none; }
+.amp-bar {
+  position:absolute; width:3px; border-radius:2px; background:var(--wrong); opacity:0;
+  left:50%; top:50%; transform-origin:center;
+}
+.mic-btn.recording ~ .amp-wrap .amp-bar { opacity:0.85; }
+
+.rec-timer {
+  position:absolute; top:-30px; left:50%; transform:translateX(-50%);
+  font-size:13px; font-weight:800; color:var(--wrong); opacity:0; transition:opacity var(--t-fast) ease;
+  font-variant-numeric:tabular-nums;
+}
+.mic-btn.recording ~ .rec-timer { opacity:1; }
+
+/* ---------- ТРАНСКРИПТ-ПРЕВЬЮ ---------- */
+.transcript-card {
+  border-radius:20px; padding:16px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.18)), var(--bg-card);
+  box-shadow:0 12px 26px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  opacity:0; transform:translateY(14px) scale(0.98);
+}
+.transcript-card.show { animation:tcardIn calc(320ms * var(--tf)) var(--ease-spring) forwards; }
+@keyframes tcardIn { 0%{opacity:0; transform:translateY(14px) scale(0.98);} 60%{opacity:1;} 100%{opacity:1; transform:none;} }
+.tc-label { font-size:12px; font-weight:800; letter-spacing:1px; text-transform:uppercase; color:var(--text-ghost); }
+.tc-text {
+  margin-top:8px; font-size:17px; font-weight:700; line-height:1.4; color:var(--text-primary);
+  outline:none; border-radius:10px; padding:2px 0;
+}
+.tc-text[contenteditable="true"] { background:linear-gradient(160deg, rgba(255,255,255,0.03), transparent); box-shadow:0 0 0 2px var(--accent-bg); padding:6px 8px; margin-top:6px; margin-left:-8px; }
+.tc-editnote { margin-top:8px; font-size:12px; font-weight:700; color:var(--gold); display:none; align-items:center; gap:6px; }
+.tc-editnote.show { display:flex; }
+.tc-editnote svg { width:12px; height:12px; }
+.tc-actions { margin-top:14px; display:flex; gap:8px; }
+.tc-btn {
+  flex:1; border:none; cursor:pointer; border-radius:13px; padding:11px 10px;
+  font-family:inherit; font-size:13.5px; font-weight:800; text-align:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.tc-btn:active { transform:scale(0.95); }
+.tc-btn.primary { background:var(--ok-grad); color:var(--correct-text); box-shadow:0 4px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.tc-btn.ghost { background:var(--surface-grad); color:var(--text-muted); box-shadow:inset 0 1px 0 var(--chip-hi); }
+
+/* Fallback: ввод текстом */
+.typed-card {
+  border-radius:20px; padding:14px 16px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(0,0,0,0.16)), var(--bg-card);
+  box-shadow:0 10px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  opacity:0; transform:translateY(10px);
+}
+.typed-card.show { animation:tcardIn calc(280ms * var(--tf)) var(--ease-spring) forwards; }
+.typed-input {
+  width:100%; border:none; outline:none; background:transparent; font-family:inherit;
+  font-size:16px; font-weight:600; color:var(--text-primary); padding:6px 0; min-height:26px;
+}
+.typed-input:empty::before { content:attr(data-ph); color:var(--text-ghost); }
+.typed-foot { margin-top:10px; display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.typed-hint { font-size:11.5px; font-weight:700; color:var(--text-ghost); }
+.typed-send {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 16px;
+  font-family:inherit; font-size:13.5px; font-weight:800;
+  background:var(--ok-grad); color:var(--correct-text);
+  box-shadow:0 4px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow);
+  transition:transform var(--t-press) var(--ease-outquint), opacity var(--t-fast);
+}
+.typed-send:active { transform:scale(0.94); }
+.typed-send:disabled { opacity:0.4; cursor:default; }
+
+/* Opener row: мик + фразы-опоры слева + текстом справа */
+.opener-row { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+
+/* Фразы-опоры выезжающая панель над зоной хода */
+.phrasehelp {
+  border-radius:18px; padding:6px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(0,0,0,0.16)), var(--bg-card);
+  box-shadow:0 10px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+  max-height:0; overflow:hidden; opacity:0;
+  transition:max-height var(--t-normal) var(--ease-outquint), opacity var(--t-fast) ease;
+}
+.phrasehelp.open { max-height:180px; opacity:1; }
+.phrasehelp-inner { padding:8px 10px; display:flex; flex-direction:column; gap:2px; }
+.phrasehelp-item { display:flex; align-items:baseline; gap:8px; padding:6px 0; }
+.phrasehelp-item .en { font-size:14.5px; font-weight:800; color:var(--text-second); }
+.phrasehelp-item .ru { font-size:12.5px; font-weight:600; color:var(--text-muted); }
+
+/* ================= FINALE ================= */
+.finale { padding:24px 20px 0; display:flex; flex-direction:column; flex:1; min-height:0; overflow-y:auto; }
+.finale-badge {
+  align-self:center; width:88px; height:88px; border-radius:28px; margin-top:6px;
+  background:var(--cta-grad); display:grid; place-items:center;
+  box-shadow:0 8px 0 var(--btn-shadow), 0 20px 40px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+}
+.finale-badge svg { width:42px; height:42px; color:var(--correct-text); }
+.finale-title { margin-top:18px; text-align:center; font-size:22px; font-weight:800; color:var(--text-primary); }
+.finale-sub { margin-top:6px; text-align:center; font-size:14px; font-weight:700; color:var(--text-second); }
+
+.stars-card {
+  margin-top:20px; border-radius:20px; padding:16px;
+  background:linear-gradient(160deg, rgba(255,255,255,0.045), rgba(0,0,0,0.16)), var(--bg-card);
+  box-shadow:0 10px 24px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
+}
+.star-row { display:flex; align-items:center; gap:12px; padding:9px 0; }
+.star-row + .star-row { position:relative; }
+.star-row + .star-row::before {
+  content:""; position:absolute; top:0; left:0; right:0; height:1px;
+  background:linear-gradient(90deg, rgba(255,255,255,0.07), transparent);
+}
+.star-slot {
+  flex:0 0 auto; width:30px; height:30px; display:grid; place-items:center; position:relative;
+}
+.star-slot svg { width:22px; height:22px; color:var(--text-ghost); transition:color var(--t-fast) ease; }
+.star-row.earned .star-slot svg { color:var(--gold); }
+.star-row.earned .star-slot { animation:starPop calc(420ms * var(--tf)) var(--ease-spring); }
+@keyframes starPop { 0%{ transform:scale(0.5);} 60%{ transform:scale(1.18);} 100%{ transform:scale(1);} }
+.star-copy { flex:1; }
+.star-copy .st-title { font-size:14.5px; font-weight:800; color:var(--text-primary); }
+.star-copy .st-cond { font-size:12.5px; font-weight:600; color:var(--text-muted); margin-top:1px; }
+.star-row.locked .star-copy .st-title { color:var(--text-muted); }
+.star-row .st-info {
+  flex:0 0 auto; width:24px; height:24px; border-radius:50%; border:none; cursor:pointer;
+  background:var(--surface-grad); color:var(--text-ghost); display:none; place-items:center;
+}
+.star-row.locked .st-info { display:grid; }
+.star-row .st-info svg { width:11px; height:11px; }
+.st-explain {
+  max-height:0; overflow:hidden; opacity:0; margin-top:0;
+  transition:max-height var(--t-normal) var(--ease-outquint), opacity var(--t-fast) ease, margin-top var(--t-normal) var(--ease-outquint);
+  font-size:12.5px; font-weight:600; color:var(--text-ghost); line-height:1.5;
+}
+.st-explain.open { max-height:80px; opacity:1; margin-top:8px; }
+
+.actionable-card {
+  margin-top:14px; border-radius:18px; padding:14px 16px; display:flex; gap:12px; align-items:flex-start;
+  background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--accent-bg);
+}
+.actionable-card svg { width:18px; height:18px; color:var(--text-second); flex:0 0 auto; margin-top:1px; }
+.actionable-card p { font-size:13.5px; font-weight:700; line-height:1.45; color:var(--text-primary); }
+.actionable-card b { color:var(--text-second); font-weight:800; }
+
+.repeat-line {
+  margin-top:12px; display:flex; align-items:center; gap:12px; border-radius:16px; padding:12px 14px;
+  background:var(--surface-grad); box-shadow:inset 0 1px 0 var(--chip-hi);
+}
+.repeat-line .rl-text { flex:1; font-size:14.5px; font-weight:700; color:var(--text-primary); }
+.repeat-line .rl-play {
+  flex:0 0 auto; width:34px; height:34px; border-radius:11px; border:none; cursor:pointer;
+  background:var(--ok-grad); color:var(--correct-text); display:grid; place-items:center;
+  transition:transform var(--t-press) var(--ease-outquint);
+}
+.repeat-line .rl-play:active { transform:scale(0.9); }
+.repeat-line .rl-play svg { width:14px; height:14px; }
+
+/* ---------- ActionDock ---------- */
+.dock { position:relative; z-index:2; margin-top:auto; padding:14px 16px 26px; }
+.cta {
+  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  font-family:inherit; font-size:17px; font-weight:800; letter-spacing:0.3px;
+  color:var(--correct-text); background:var(--cta-grad);
+  box-shadow:0 5px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  position:relative; overflow:hidden;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), background var(--t-fast), color var(--t-fast);
+}
+.cta:active { transform:translateY(4px); box-shadow:0 1px 0 var(--btn-shadow), 0 8px 16px var(--card-shadow); }
+.cta:disabled { background:var(--bg-surface2); color:var(--text-ghost); box-shadow:0 5px 0 rgba(0,0,0,0.35), 0 10px 20px var(--card-shadow); cursor:default; }
+.cta .cta-label { position:relative; }
+
+/* Слой полётов */
+.fx { position:absolute; inset:0; pointer-events:none; overflow:hidden; z-index:6; }
+.fly { position:absolute; will-change:transform, opacity; left:0; top:0; }
+.confetto { position:absolute; width:9px; height:9px; border-radius:2.5px; will-change:transform, opacity; left:0; top:0; }
+
+/* ================= ПАНЕЛЬ ================= */
+.panel { width:380px; max-width:92vw; display:flex; flex-direction:column; gap:18px; }
+.panel h1 { font-size:22px; font-weight:800; }
+.panel h1 span { color:#58CC89; }
+.pcard { background:#131A15; border-radius:18px; padding:16px; box-shadow:0 10px 24px rgba(0,0,0,0.35); }
+.pcard h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.4px; color:#8AB49A; margin-bottom:12px; font-weight:800; }
+.chiprow { display:flex; flex-wrap:wrap; gap:8px; }
+.pbtn {
+  border:none; cursor:pointer; border-radius:12px; padding:9px 14px;
+  background:#1D2921; color:#DDE8E0; font-size:13.5px; font-weight:700; font-family:inherit;
+  transition:transform 120ms cubic-bezier(0.23,1,0.32,1), background 150ms;
+}
+.pbtn:active { transform:scale(0.95); }
+.pbtn.on { background:#47C870; color:#042010; }
+.spec { font-size:13px; line-height:1.65; color:#B9C8BE; }
+.spec .row { display:flex; justify-content:space-between; gap:12px; padding:7px 0; }
+.spec .row + .row { border-top:1px solid rgba(255,255,255,0.05); }
+.spec .val { color:#58CC89; font-weight:700; text-align:right; white-space:nowrap; }
+.note { font-size:12.5px; color:#8AA394; line-height:1.6; margin-top:10px; }
+
+:root[data-reduced="1"] .chip, :root[data-reduced="1"] .fb, :root[data-reduced="1"] .bar-fill, :root[data-reduced="1"] .cta,
+:root[data-reduced="1"] .bubble, :root[data-reduced="1"] .goal-toast, :root[data-reduced="1"] .transcript-card, :root[data-reduced="1"] .typed-card,
+:root[data-reduced="1"] .star-slot {
+  transition-duration:80ms !important; animation-duration:1ms !important;
+}
+:root[data-reduced="1"] .typing-bubble.animate .dot { animation:none; opacity:0.6; }
+:root[data-reduced="1"] .mic-btn.recording ~ .mic-ring::before,
+:root[data-reduced="1"] .mic-btn.recording ~ .mic-ring::after { animation:none; opacity:0; }
+
+@media (max-width:900px) { body { gap:24px; } .panel { width:390px; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-sound" viewBox="0 0 24 24"><path d="M4 9.5v5h3.5L13 19V5L7.5 9.5H4z" fill="currentColor"/><path d="M16 8.6a5 5 0 0 1 0 6.8M18.6 6a9 9 0 0 1 0 12" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z" fill="currentColor"/></symbol>
+    <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 3a6.5 6.5 0 0 0-3.6 11.9c0.7 0.5 1.1 1.2 1.1 2V18h5v-1.1c0-0.8 0.4-1.5 1.1-2A6.5 6.5 0 0 0 12 3z" stroke="currentColor" stroke-width="1.9" fill="none" stroke-linejoin="round"/><path d="M10 21h4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5L19.5 12 13 17.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 8h9M17 8h3M4 16h3M11 16h9" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/><circle cx="15" cy="8" r="2.4" fill="currentColor"/><circle cx="9" cy="16" r="2.4" fill="currentColor"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z" fill="currentColor"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 19v2.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2.5" fill="currentColor"/></symbol>
+    <symbol id="i-cards" viewBox="0 0 24 24"><rect x="4" y="6" width="13" height="14" rx="3" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M9 3h9a2 2 0 0 1 2 2v11" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" fill="none"/></symbol>
+    <symbol id="i-keyboard" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="3" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M7 10h.01M11 10h.01M15 10h.01M17 10h.01M7 14h10" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20l0.9-3.6L15.6 5.7a1.6 1.6 0 0 1 2.3 0l0.4 0.4a1.6 1.6 0 0 1 0 2.3L7.6 19.1 4 20z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 13.9-5.4M20 12a8 8 0 0 1-13.9 5.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M17 3v4.4h-4.4M7 21v-4.4h4.4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 11v5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7.7" r="1.15" fill="currentColor"/></symbol>
+    <symbol id="i-medal" viewBox="0 0 24 24"><circle cx="12" cy="14" r="6.4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M9.6 3l1.9 6.3M14.4 3l-1.9 6.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M12 11.2l1.15 2.3 2.55 0.35-1.85 1.8 0.45 2.5-2.3-1.2-2.3 1.2 0.45-2.5-1.85-1.8 2.55-0.35z" fill="currentColor"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="10.5" width="14" height="9.5" rx="2.6" stroke="currentColor" stroke-width="1.9" fill="none"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.9" fill="none"/></symbol>
+  </defs>
+</svg>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <div class="hdr">
+      <div class="hdr-row">
+        <button class="icon-btn" title="Завершить миссию" id="closeBtn"><svg width="17" height="17"><use href="#i-x"/></svg></button>
+        <div class="hdr-title" id="hdrTitle">Вечеринка у соседей</div>
+        <button class="icon-btn" title="Фразы-опоры" id="hdrHelpBtn"><svg width="18" height="18"><use href="#i-cards"/></svg></button>
+      </div>
+      <div class="progress-row">
+        <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+        <div class="counter turns" id="turnCounter"><svg><use href="#i-arrow"/></svg><b id="turnVal">0/2</b></div>
+        <div class="counter stars" id="starCounter"><svg><use href="#i-star"/></svg><b id="starVal">0</b></div>
+      </div>
+      <div class="goal-pills" id="goalPills">
+        <div class="goal-pill" data-goal="0"><div class="fill"></div></div>
+        <div class="goal-pill" data-goal="1"><div class="fill"></div></div>
+        <div class="goal-pill" data-goal="2"><div class="fill"></div></div>
+      </div>
+    </div>
+
+    <div class="scene">
+      <!-- ============ 1. БРИФ МИССИИ ============ -->
+      <div class="view active" id="viewBrief">
+        <div class="brief">
+          <div class="task-label">Миссия</div>
+          <div class="brief-hero">Вечеринка у соседей</div>
+
+          <div class="scenario-card">
+            <p>Ты пришёл на вечеринку. Познакомься с Томом: узнай его имя и расскажи о себе.</p>
+          </div>
+
+          <div class="goals-card">
+            <div class="goal-row">
+              <div class="goal-dot" data-brief-goal="0"><svg><use href="#i-dot"/></svg></div>
+              <div class="goal-text">Поздороваться</div>
+            </div>
+            <div class="goal-row">
+              <div class="goal-dot" data-brief-goal="1"><svg><use href="#i-dot"/></svg></div>
+              <div class="goal-text">Представиться и сказать, откуда ты</div>
+            </div>
+            <div class="goal-row">
+              <div class="goal-dot" data-brief-goal="2"><svg><use href="#i-dot"/></svg></div>
+              <div class="goal-text">Задать вопрос собеседнику</div>
+            </div>
+          </div>
+
+          <div class="phrases-card" id="phrasesCard">
+            <button class="phrases-head" id="phrasesToggle">
+              <span class="ph-title">Полезные фразы</span>
+              <span class="chev"><svg width="15" height="15"><use href="#i-arrow" style="transform:rotate(90deg)"/></svg></span>
+            </button>
+            <div class="phrases-body" id="phrasesBody">
+              <div class="phrase-item"><span class="en">Nice to meet you</span><span class="ru">приятно познакомиться</span></div>
+              <div class="phrase-item"><span class="en">I am from...</span><span class="ru">я из...</span></div>
+              <div class="phrase-item"><span class="en">And you?</span><span class="ru">а ты?</span></div>
+            </div>
+          </div>
+
+          <div class="brief-foot">
+            <span class="turns-pill">3-5 ходов</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ 2. ЧАТ ============ -->
+      <div class="view" id="viewChat">
+        <div class="chat-scene">
+          <div class="chat-scroll" id="chatScroll"></div>
+        </div>
+      </div>
+
+      <!-- ============ 3. ФИНАЛ ============ -->
+      <div class="view" id="viewFinale">
+        <div class="finale">
+          <div class="finale-badge"><svg><use href="#i-medal"/></svg></div>
+          <div class="finale-title">Миссия выполнена</div>
+          <div class="finale-sub" id="finaleSub">3 цели из 3</div>
+
+          <div class="stars-card" id="starsCard">
+            <div class="star-row" id="starRow1">
+              <div class="star-slot"><svg><use href="#i-star"/></svg></div>
+              <div class="star-copy"><div class="st-title">Ходы пройдены</div><div class="st-cond">Диалог доведён до конца</div></div>
+            </div>
+            <div class="star-row" id="starRow2">
+              <div class="star-slot"><svg><use href="#i-star"/></svg></div>
+              <div class="star-copy"><div class="st-title">Цели достигнуты</div><div class="st-cond">Все три цели миссии выполнены</div></div>
+            </div>
+            <div>
+              <div class="star-row" id="starRow3">
+                <div class="star-slot"><svg><use href="#i-star"/></svg></div>
+                <div class="star-copy"><div class="st-title">Голосом, без правок</div><div class="st-cond" id="star3Cond">Все ходы голосом, без правок транскрипта</div></div>
+                <button class="st-info" id="star3Info" title="Почему не засчитано"><svg><use href="#i-info"/></svg></button>
+              </div>
+              <div class="st-explain" id="star3Explain">Транскрипт был изменён вручную перед отправкой хотя бы один раз, поэтому третья звезда не засчитана: она учитывает только нередактированный голос, чтобы отражать реальную устную попытку.</div>
+            </div>
+          </div>
+
+          <div class="actionable-card">
+            <svg><use href="#i-bulb"/></svg>
+            <p>Попробуй в след раз сказать <b>What about you?</b>: звучит теплее.</p>
+          </div>
+
+          <div class="repeat-line">
+            <span class="rl-text">I am from Ireland. And you?</span>
+            <button class="rl-play" title="Повторить ключевую реплику" id="repeatKeyLine"><svg><use href="#i-sound"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ ЗОНА ХОДА (только во время chat) ============ -->
+    <div class="turn-zone" id="turnZone" style="display:none">
+      <div class="phrasehelp" id="phraseHelp">
+        <div class="phrasehelp-inner">
+          <div class="phrasehelp-item"><span class="en">Nice to meet you</span><span class="ru">приятно познакомиться</span></div>
+          <div class="phrasehelp-item"><span class="en">I am from...</span><span class="ru">я из...</span></div>
+          <div class="phrasehelp-item"><span class="en">And you?</span><span class="ru">а ты?</span></div>
+        </div>
+      </div>
+
+      <div class="typed-card" id="typedCard">
+        <div class="typed-input" contenteditable="true" id="typedInput" data-ph="Напиши ответ текстом…"></div>
+        <div class="typed-foot">
+          <span class="typed-hint">Завершит цели без голосовой звезды</span>
+          <button class="typed-send" id="typedSend" disabled>Отправить</button>
+        </div>
+      </div>
+
+      <div class="transcript-card" id="transcriptCard">
+        <div class="tc-label">Мы услышали</div>
+        <div class="tc-text" id="tcText" contenteditable="false">Hi! I am Anna. Nice to meet you!</div>
+        <div class="tc-editnote" id="tcEditNote"><svg><use href="#i-pencil"/></svg>Правка учтётся как цель, но не как голосовая попытка</div>
+        <div class="tc-actions">
+          <button class="tc-btn ghost" id="tcRetry"><svg width="13" height="13" style="display:inline;vertical-align:-2px;margin-right:5px"><use href="#i-refresh"/></svg>Ещё раз</button>
+          <button class="tc-btn ghost" id="tcEdit"><svg width="13" height="13" style="display:inline;vertical-align:-2px;margin-right:5px"><use href="#i-pencil"/></svg>Изменить</button>
+          <button class="tc-btn primary" id="tcSend">Отправить</button>
+        </div>
+      </div>
+
+      <div class="opener-row" id="micRow">
+        <button class="side-btn" id="phraseHelpBtn"><svg><use href="#i-cards"/></svg>Фразы-опоры</button>
+        <div class="mic-row">
+          <div class="mic-ring"></div>
+          <div class="amp-wrap" id="ampWrap"></div>
+          <div class="rec-timer" id="recTimer">0:00</div>
+          <button class="mic-btn" id="micBtn" title="Записать ответ"><svg><use href="#i-mic"/></svg></button>
+        </div>
+        <button class="side-btn" id="typedToggleBtn"><svg><use href="#i-keyboard"/></svg>Текстом</button>
+      </div>
+    </div>
+
+    <div class="dock" id="dock">
+      <button class="cta" id="cta"><span class="cta-label" id="ctaLabel">Начать миссию</span></button>
+    </div>
+
+    <div class="fx" id="fx"></div>
+  </div>
+</div>
+
+<div class="panel">
+  <h1>V2 · Волна М4 · <span>Разговорная миссия</span></h1>
+
+  <div class="pcard">
+    <h2>Тема приложения</h2>
+    <div class="chiprow">
+      <button class="pbtn on" data-theme-btn="dark">Тёмная</button>
+      <button class="pbtn" data-theme-btn="gold">Золотая</button>
+      <button class="pbtn" data-theme-btn="coral">Коралловая</button>
+    </div>
+    <div class="chiprow" style="margin-top:10px">
+      <button class="pbtn" id="slowBtn">Замедлить ×4</button>
+      <button class="pbtn" id="rmBtn">Reduced motion</button>
+    </div>
+  </div>
+
+  <div class="pcard">
+    <h2>Прогон состояний</h2>
+    <div class="chiprow">
+      <button class="pbtn" id="runIdeal">Идеальная миссия</button>
+      <button class="pbtn" id="runOfftopic">Невпопад + repair</button>
+      <button class="pbtn" id="runEdited">Изменить транскрипт</button>
+      <button class="pbtn" id="runTyped">Текстом</button>
+      <button class="pbtn" id="runNoisy">Шумно (UNCERTAIN)</button>
+      <button class="pbtn" id="runReset">Сброс</button>
+    </div>
+    <div class="note">Или руками: на брифе тапни по заголовку карточки «Полезные фразы», чтобы свернуть/развернуть (место в ленте сохраняется). В чате тапни микрофон: начнётся запись (амплитуда + таймер), повторный тап останавливает запись и открывает транскрипт-превью. В превью «Отправить» уходит в ленту, «Ещё раз» запускает перезапись, «Изменить» открывает правку текста (тогда голосовая звезда за ход не идёт). Кнопки по бокам мика: «Фразы-опоры» разворачивает опорные фразы, «Текстом» открывает typed fallback (тоже без голосовой звезды).</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Спецификация для RN (Reanimated 4)</h2>
+    <div class="spec">
+      <div class="row"><span>Переход брифа → чат</span><span class="val">240 мс · slide + fade, geometry на месте</span></div>
+      <div class="row"><span>Сворачивание «Полезных фраз»</span><span class="val">240 мс · max-height + opacity, без прыжка</span></div>
+      <div class="row"><span>Реплика партнёра: вход</span><span class="val">320 мс · spring slide-up</span></div>
+      <div class="row"><span>«Печатает»: три точки</span><span class="val">900 мс конечно · максимум 1 цикл на реплику</span></div>
+      <div class="row"><span>Запись: пульс кольца</span><span class="val">1600 мс · looping, стоп с записью</span></div>
+      <div class="row"><span>Амплитудные столбики</span><span class="val">60 мс тик · высота от RMS сигнала</span></div>
+      <div class="row"><span>Транскрипт-карточка: вход</span><span class="val">320 мс · spring, contenteditable на «Изменить»</span></div>
+      <div class="row"><span>Твой пузырь: улёт в ленту</span><span class="val">280 мс · FLIP из зоны хода в чат</span></div>
+      <div class="row"><span>Галочка цели: поп</span><span class="val">560 мс · spring scale + toast</span></div>
+      <div class="row"><span>Пилюли целей в шапке</span><span class="val">320 мс · scaleX spring на выполнении</span></div>
+      <div class="row"><span>Финал: значок + звёзды</span><span class="val">420 мс · stagger 90 мс/звезда</span></div>
+      <div class="row"><span>Финал: конфетти + полёт звёзд</span><span class="val">700 мс · как в 02, от финального значка</span></div>
+      <div class="row"><span>Ошибка/невпопад</span><span class="val">без тряски · нейтральная тонировка, uточнение партнёра</span></div>
+    </div>
+    <div class="note">Только transform / opacity (UI-тред). Reduced motion заменяет перелёты и «печатает» на мгновенную замену/статичное состояние; looping-пульсы выключены. Waveform скрыт от accessibility tree: вместо неё объявляется «Идёт запись, N секунд» (см. 04, Accessibility CaptureCard).</div>
+  </div>
+
+  <div class="pcard">
+    <h2>Политика звёзд SB-12 (04 · Star policy)</h2>
+    <div class="spec">
+      <div class="row"><span>Звезда 1: ходы пройдены</span><span class="val">завершены нужные ходы, voice/text не важно</span></div>
+      <div class="row"><span>Звезда 2: цели достигнуты</span><span class="val">коммуникативные цели выполнены</span></div>
+      <div class="row"><span>Звезда 3: голосом, без правок</span><span class="val">от двух уверенных неотредактированных voice-ходов</span></div>
+      <div class="row"><span>typed / learner_edited</span><span class="val">закрывает цели, третью звезду не даёт</span></div>
+      <div class="row"><span>UNCERTAIN / шум</span><span class="val">нейтрально, бесплатный retry, без штрафа</span></div>
+    </div>
+    <div class="note">
+      <b>В проде:</b> ответ партнёра формируется как AI-генерация по тексту транскрипта пользователя (LLM), а не заготовленный скрипт. Распознавание речи выполняется <b>только on-device</b> (expo-speech-recognition), сопоставление цели работает через <b>speaking_word_match</b> локально. Аудио пользователя не покидает устройство ни на одном шаге; на сервер (если используется генерация ответа) уходит только текст распознанного транскрипта, никогда не сама запись. В этом макете партнёр отвечает по сценарию (заготовленные реплики): это допущение витрины, а не описание финальной архитектуры.
+    </div>
+  </div>
+</div>
+
+<script>
+/* ===== Контент миссии: одна витринная сцена SB-12 из 04 (капстоун эпизода) ===== */
+const MISSION = {
+  title: 'Вечеринка у соседей',
+  partnerName: 'Tom',
+  partnerMono: 'T',
+  goals: ['Поздороваться', 'Представиться и сказать, откуда ты', 'Задать вопрос собеседнику'],
+  phrases: [
+    { en: 'Nice to meet you', ru: 'приятно познакомиться' },
+    { en: 'I am from...', ru: 'я из...' },
+    { en: 'And you?', ru: 'а ты?' },
+  ],
+  opener: { en: 'Oh, hi! I have not seen you before. I am Tom.', ru: 'О, привет! Я тебя раньше не видел. Я Том.' },
+  askOrigin: { en: 'Anna! Nice to meet you too. Where are you from?', ru: 'Анна! Мне тоже приятно познакомиться. Ты откуда?' },
+  smallWorld: { en: 'I am from Cork! Small world!', ru: 'А я из Корка! Тесен мир!' },
+  repair: { en: 'Sorry, what is your name?', ru: 'Извини, как тебя зовут?' },
+  turn1Ideal: 'Hi! I am Anna. Nice to meet you!',
+  turn2Ideal: 'I am from Ireland. And you?',
+  keyLine: 'I am from Ireland. And you?',
+  advice: 'Попробуй в след раз сказать <b>What about you?</b>: звучит теплее.',
+};
+
+const $ = (id) => document.getElementById(id);
+const phone = $('phone'), fx = $('fx');
+const cta = $('cta'), ctaLabel = $('ctaLabel');
+const chatScroll = $('chatScroll');
+const barFill = $('barFill');
+
+let stage = 'brief'; // brief | chat | finale
+let turnIx = 0; // 0 = ждём 1-й голосовой ход, 1 = ждём 2-й
+let starsEarned = 0;
+let goalsDone = [false, false, false];
+let usedTypedOrEdited = false; // блокирует третью звезду навсегда в этой миссии
+let micState = 'idle'; // idle | recording | preview
+let recTimerHandle = null, recSeconds = 0, ampHandle = null;
+let helpOpen = false, typedOpen = false;
+
+const tf = () => parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--tf')) || 1;
+const reduced = () => document.documentElement.dataset.reduced === '1' ||
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function icon(name, size) { return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#${name}"/></svg>`; }
+
+/* ===== Прогресс сессии (переиспользует систему 02: сплошная заливка) ===== */
+function syncBar() {
+  const pct = stage === 'brief' ? 0.08 : stage === 'finale' ? 1 : 0.2 + (turnIx / 2) * 0.68;
+  barFill.style.transform = `scaleX(${pct})`;
+}
+function syncTurnCounter() {
+  $('turnVal').textContent = `${turnIx}/2`;
+}
+function bump(el) { el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); }
+
+/* ===== Пилюли целей в шапке ===== */
+function markGoal(ix) {
+  if (goalsDone[ix]) return;
+  goalsDone[ix] = true;
+  document.querySelector(`.goal-pill[data-goal="${ix}"]`).classList.add('done');
+}
+
+/* ============ 1. БРИФ ============ */
+const phrasesCard = $('phrasesCard'), phrasesBody = $('phrasesBody');
+$('phrasesToggle').addEventListener('click', () => {
+  phrasesCard.classList.toggle('collapsed');
+});
+
+/* ============ Переключение сцен ============ */
+function showView(name) {
+  ['viewBrief', 'viewChat', 'viewFinale'].forEach((id) => $(id).classList.toggle('active', id === 'view' + name[0].toUpperCase() + name.slice(1)));
+}
+
+function goToChat() {
+  stage = 'chat';
+  showView('chat');
+  $('turnZone').style.display = 'flex';
+  $('hdrTitle').textContent = MISSION.partnerName;
+  syncBar();
+  ctaLabel.textContent = 'Завершить миссию';
+  cta.disabled = true; // финал доступен только по завершении целей, до тех пор скрыт визуально мягко
+  $('dock').style.opacity = '0.001'; // ход управляется зоной хода, не CTA, но геометрия дока сохранена (зачем: не ломать зарезервированную высоту дока)
+  chatScroll.innerHTML = '';
+  micState = 'idle'; renderMicRow();
+  updateSideButtonsVisibility();
+  setTimeout(() => partnerSay(MISSION.opener, () => {
+    // Готово к первому ходу пользователя
+  }), 260 * tf());
+}
+
+cta.addEventListener('click', () => {
+  if (stage === 'brief') return goToChat();
+  if (stage === 'chat') return; // недоступно, ход через зону снизу
+  if (stage === 'finale') return finishMission();
+});
+
+function finishMission() {
+  // В реальном приложении: закрыть миссию и вернуться в карту эпизода.
+  // Витрина: просто сбрасываем на бриф следующей попытки.
+  runReset();
+}
+
+/* ===== Реплика партнёра: пузырь + play + RU-перевод + «печатает» ===== */
+function scrollToBottom() {
+  chatScroll.scrollTop = chatScroll.scrollHeight;
+}
+
+function typingIndicator(show, then) {
+  if (!show) return;
+  const row = document.createElement('div');
+  row.className = 'turn partner typing-row';
+  row.innerHTML = `<div class="avatar">${MISSION.partnerMono}</div><div class="typing-bubble ${reduced() ? '' : 'animate'}"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>`;
+  chatScroll.appendChild(row);
+  scrollToBottom();
+  const dur = reduced() ? 60 : 900 * tf(); // «печатает» конечно: ровно один цикл ~900мс
+  setTimeout(() => { row.remove(); then && then(); }, dur);
+}
+
+function partnerSay(line, after) {
+  typingIndicator(true, () => {
+    const row = document.createElement('div');
+    row.className = 'turn partner';
+    row.innerHTML = `
+      <div class="avatar">${MISSION.partnerMono}</div>
+      <div class="bubble-col">
+        <div class="bubble">${line.en}<span class="ru-inline">${line.ru}</span></div>
+        <div class="bubble-tools"><button class="bplay" title="Прослушать">${icon('i-sound', 12)}</button></div>
+      </div>`;
+    chatScroll.appendChild(row);
+    scrollToBottom();
+    after && setTimeout(after, 260 * tf());
+  });
+}
+
+function learnerBubble(text, opts) {
+  opts = opts || {};
+  const row = document.createElement('div');
+  row.className = 'turn learner';
+  const tagHtml = opts.edited ? `<span class="tag-edited">Правка</span>` : '';
+  row.innerHTML = `
+    <div class="bubble-col">
+      <div class="bubble">${text}</div>
+      <div class="bubble-tools">${tagHtml}</div>
+    </div>`;
+  chatScroll.appendChild(row);
+  scrollToBottom();
+  return row;
+}
+
+function goalToast(label) {
+  const el = document.createElement('div');
+  el.className = 'goal-toast';
+  el.innerHTML = `${icon('i-check', 14)}<span>${label}</span>`;
+  chatScroll.appendChild(el);
+  scrollToBottom();
+  setTimeout(() => { if (el.isConnected) el.remove(); }, reduced() ? 700 : 1600 * tf());
+}
+
+/* ============ ЗОНА ХОДА: мик / фразы-опоры / текстом ============ */
+const micBtn = $('micBtn'), recTimer = $('recTimer'), ampWrap = $('ampWrap');
+const transcriptCard = $('transcriptCard'), tcText = $('tcText');
+const phraseHelp = $('phraseHelp'), typedCard = $('typedCard'), typedInput = $('typedInput');
+
+function renderMicRow() {
+  micBtn.classList.toggle('recording', micState === 'recording');
+  micBtn.innerHTML = micState === 'recording' ? icon('i-stop', 28) : icon('i-mic', 28);
+  $('micRow').style.display = (micState === 'preview' || typedOpen) ? 'none' : 'flex';
+  transcriptCard.classList.toggle('show', micState === 'preview');
+  transcriptCard.style.display = micState === 'preview' ? 'block' : 'none';
+}
+function updateSideButtonsVisibility() {
+  phraseHelp.classList.toggle('open', helpOpen && micState === 'idle' && !typedOpen);
+  typedCard.classList.toggle('show', typedOpen);
+  typedCard.style.display = typedOpen ? 'block' : 'none';
+}
+
+$('phraseHelpBtn').addEventListener('click', () => {
+  helpOpen = !helpOpen;
+  $('phraseHelpBtn').classList.toggle('on', helpOpen);
+  updateSideButtonsVisibility();
+});
+$('hdrHelpBtn').addEventListener('click', () => {
+  if (stage !== 'chat') return;
+  helpOpen = !helpOpen;
+  updateSideButtonsVisibility();
+});
+$('typedToggleBtn').addEventListener('click', () => {
+  if (micState === 'recording') return;
+  typedOpen = !typedOpen;
+  $('typedToggleBtn').classList.toggle('on', typedOpen);
+  if (typedOpen) helpOpen = false;
+  renderMicRow(); updateSideButtonsVisibility();
+  if (typedOpen) typedInput.focus();
+});
+typedInput.addEventListener('input', () => {
+  $('typedSend').disabled = typedInput.textContent.trim().length === 0;
+});
+$('typedSend').addEventListener('click', () => {
+  const text = typedInput.textContent.trim();
+  if (!text) return;
+  typedInput.textContent = '';
+  $('typedSend').disabled = true;
+  typedOpen = false; $('typedToggleBtn').classList.remove('on');
+  renderMicRow(); updateSideButtonsVisibility();
+  submitLearnerTurn(text, { origin: 'typed' });
+});
+
+/* ===== Запись: тап-старт / тап-стоп (default interaction по 04, не hold-only) ===== */
+let ampBars = [];
+function buildAmpBars() {
+  ampWrap.innerHTML = '';
+  ampBars = [];
+  const n = 20;
+  for (let i = 0; i < n; i++) {
+    const ang = (Math.PI * 2 * i) / n;
+    const bar = document.createElement('div');
+    bar.className = 'amp-bar';
+    bar.style.height = '10px';
+    bar.style.transform = `rotate(${ang}rad) translate(0, -52px)`;
+    ampWrap.appendChild(bar);
+    ampBars.push(bar);
+  }
+}
+function tickAmplitude() {
+  ampBars.forEach((bar, i) => {
+    const h = 6 + Math.random() * 20;
+    const ang = (Math.PI * 2 * i) / ampBars.length;
+    bar.style.height = h + 'px';
+    bar.style.transform = `rotate(${ang}rad) translate(0, -52px)`;
+  });
+}
+
+micBtn.addEventListener('click', () => {
+  if (stage !== 'chat') return;
+  if (micState === 'idle') startRecording();
+  else if (micState === 'recording') stopRecording();
+});
+
+function startRecording() {
+  if (typedOpen) { typedOpen = false; $('typedToggleBtn').classList.remove('on'); }
+  helpOpen = false;
+  micState = 'recording';
+  recSeconds = 0;
+  recTimer.textContent = '0:00';
+  buildAmpBars();
+  renderMicRow(); updateSideButtonsVisibility();
+  clearInterval(recTimerHandle);
+  recTimerHandle = setInterval(() => {
+    recSeconds += 1;
+    const m = Math.floor(recSeconds / 60), s = recSeconds % 60;
+    recTimer.textContent = `${m}:${String(s).padStart(2, '0')}`;
+  }, 1000 / tf());
+  if (!reduced()) { clearInterval(ampHandle); ampHandle = setInterval(tickAmplitude, 90 * tf()); }
+}
+
+let pendingScript = null; // выбранная витринная реплика для авто-транскрипта
+function stopRecording() {
+  clearInterval(recTimerHandle); clearInterval(ampHandle);
+  micState = 'preview';
+  renderMicRow(); updateSideButtonsVisibility();
+  const text = pendingScript || defaultTranscriptFor(turnIx);
+  pendingScript = null;
+  tcText.textContent = text;
+  tcText.contentEditable = 'false';
+  $('tcEditNote').classList.remove('show');
+}
+function defaultTranscriptFor(ix) {
+  return ix === 0 ? MISSION.turn1Ideal : MISSION.turn2Ideal;
+}
+
+$('tcRetry').addEventListener('click', () => {
+  micState = 'idle';
+  renderMicRow(); updateSideButtonsVisibility();
+});
+$('tcEdit').addEventListener('click', () => {
+  const editing = tcText.contentEditable === 'true';
+  if (!editing) {
+    tcText.contentEditable = 'true';
+    tcText.focus();
+    document.execCommand && placeCaretAtEnd(tcText);
+  } else {
+    tcText.contentEditable = 'false';
+    usedTypedOrEdited = true;
+    $('tcEditNote').classList.add('show');
+  }
+});
+function placeCaretAtEnd(el) {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  range.collapse(false);
+  const sel = window.getSelection();
+  sel.removeAllRanges(); sel.addRange(range);
+}
+$('tcSend').addEventListener('click', () => {
+  const edited = $('tcEditNote').classList.contains('show') || tcText.contentEditable === 'true';
+  if (tcText.contentEditable === 'true') { tcText.contentEditable = 'false'; usedTypedOrEdited = true; }
+  const text = tcText.textContent.trim();
+  micState = 'idle';
+  submitLearnerTurn(text, { origin: edited || usedTypedOrEdited ? 'learner_edited' : 'asr_raw', wasEditedThisTurn: edited });
+});
+
+/* ===== Отправка хода: пузырь улетает в ленту, цели отмечаются, партнёр отвечает ===== */
+function submitLearnerTurn(text, meta) {
+  renderMicRow(); updateSideButtonsVisibility();
+  const isVoice = meta.origin === 'asr_raw';
+  learnerBubble(escapeHtml(text), { edited: meta.origin === 'learner_edited' });
+
+  const lower = text.toLowerCase();
+  const scriptedRun = window.__forceOfftopic;
+  window.__forceOfftopic = false;
+
+  if (scriptedRun) {
+    // Прогон «Невпопад»: партнёр вежливо уточняет, цель не отмечается, без красного
+    setTimeout(() => partnerSay(MISSION.repair), 300 * tf());
+    return;
+  }
+
+  if (turnIx === 0) {
+    // Первый ход закрывает цель 1 (поздороваться) и часть цели 2 (представиться)
+    markGoal(0);
+    setTimeout(() => { goalToast('Поздоровался(-ась)'); }, 120 * tf());
+    setTimeout(() => { markGoal(1); goalToast('Представился(-ась)'); }, reduced() ? 60 : 620 * tf());
+    turnIx = 1; syncTurnCounter(); syncBar();
+    setTimeout(() => partnerSay(MISSION.askOrigin), reduced() ? 200 : 1300 * tf());
+  } else {
+    // Второй ход закрывает остаток цели 2 (откуда ты) и цель 3 (вопрос собеседнику)
+    setTimeout(() => { markGoal(2); goalToast('Задал(а) вопрос'); }, 120 * tf());
+    turnIx = 2; syncTurnCounter(); syncBar();
+    setTimeout(() => partnerSay(MISSION.smallWorld, () => {
+      setTimeout(showFinale, 500 * tf());
+    }), reduced() ? 200 : 1300 * tf());
+  }
+}
+
+function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+/* ============ 3. ФИНАЛ ============ */
+function showFinale() {
+  stage = 'finale';
+  showView('finale');
+  $('turnZone').style.display = 'none';
+  $('dock').style.opacity = '1';
+  $('hdrTitle').textContent = MISSION.title;
+  syncBar();
+  ctaLabel.textContent = 'Завершить';
+  cta.disabled = false;
+
+  const allGoals = goalsDone.every(Boolean);
+  $('finaleSub').textContent = `${goalsDone.filter(Boolean).length} цели из 3`;
+
+  const star1 = true; // ходы всегда пройдены на этой ветке (мы дошли до финала)
+  const star2 = allGoals;
+  const star3 = star2 && !usedTypedOrEdited;
+
+  [{ id: 'starRow1', ok: star1 }, { id: 'starRow2', ok: star2 }, { id: 'starRow3', ok: star3 }].forEach((s, i) => {
+    const row = $(s.id);
+    setTimeout(() => {
+      row.classList.toggle('earned', s.ok);
+      row.classList.toggle('locked', !s.ok);
+    }, reduced() ? 0 : i * 110 * tf());
+  });
+
+  $('star3Info').style.display = star3 ? 'none' : 'grid';
+  $('star3Explain').classList.remove('open');
+
+  const earned = [star1, star2, star3].filter(Boolean).length;
+  setTimeout(() => {
+    for (let i = starsEarned; i < earned; i++) { starsEarned += 1; }
+    $('starVal').textContent = starsEarned;
+    bump($('starCounter'));
+    if (!reduced() && earned >= 2) confettiBurst();
+    if (!reduced()) flyStarsFromBadge(earned);
+  }, reduced() ? 0 : 420 * tf());
+}
+
+$('star3Info').addEventListener('click', () => {
+  $('star3Explain').classList.toggle('open');
+});
+
+/* ===== Повтор ключевой реплики ===== */
+$('repeatKeyLine').addEventListener('click', (e) => { bumpPlay(e.currentTarget); });
+function bumpPlay(btn) { btn.style.transform = 'scale(0.85)'; setTimeout(() => { btn.style.transform = ''; }, 140 * tf()); }
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.bplay')) bumpPlay(e.target.closest('.bplay'));
+});
+
+/* ===== Полёты наград (переиспользование системы 02) ===== */
+function phonePoint(el) {
+  const p = phone.getBoundingClientRect(), r = el.getBoundingClientRect();
+  return { x: r.left - p.left + r.width / 2, y: r.top - p.top + r.height / 2 };
+}
+function flyStarsFromBadge(count) {
+  const badge = document.querySelector('.finale-badge');
+  const target = $('starCounter');
+  for (let i = 0; i < count; i++) {
+    setTimeout(() => flyGlyphOnce(badge.getBoundingClientRect(), target, 'i-star', 'var(--gold)', 24), i * 160 * tf());
+  }
+}
+function flyGlyphOnce(fromRect, toEl, symbolId, colorVar, size) {
+  const p = phone.getBoundingClientRect();
+  const from = { x: fromRect.left - p.left + fromRect.width / 2, y: fromRect.top - p.top + fromRect.height / 2 };
+  const to = phonePoint(toEl);
+  const el = document.createElement('div');
+  el.className = 'fly';
+  el.innerHTML = `<svg width="${size}" height="${size}" viewBox="0 0 24 24" style="color:${colorVar}"><use href="#${symbolId}"/></svg>`;
+  fx.appendChild(el);
+  const midX = (from.x + to.x) / 2, arcY = Math.min(from.y, to.y) - 80;
+  let finished = false;
+  const finish = () => { if (finished) return; finished = true; el.remove(); };
+  const anim = el.animate([
+    { transform: `translate(${from.x}px, ${from.y}px) scale(1)` },
+    { transform: `translate(${midX}px, ${arcY}px) scale(1.2)`, offset: 0.55 },
+    { transform: `translate(${to.x}px, ${to.y}px) scale(0.4)` },
+  ], { duration: 700 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' });
+  anim.onfinish = finish;
+  setTimeout(finish, 700 * tf() + 200);
+}
+function confettiBurst() {
+  const origin = phonePoint(document.querySelector('.finale-badge'));
+  const colors = ['var(--gold)', 'var(--correct)', 'var(--text-second)', 'var(--accent)'];
+  for (let i = 0; i < 18; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetto';
+    el.style.background = colors[i % colors.length];
+    fx.appendChild(el);
+    const ang = (Math.PI * 2 * i) / 18 + (Math.random() - 0.5) * 0.6;
+    const v = 90 + Math.random() * 130;
+    const dx = Math.cos(ang) * v, dy = Math.sin(ang) * v - 60;
+    const rot = (Math.random() - 0.5) * 540;
+    el.animate([
+      { transform: `translate(${origin.x}px, ${origin.y}px) rotate(0deg) scale(1)`, opacity: 1 },
+      { transform: `translate(${origin.x + dx}px, ${origin.y + dy + 40}px) rotate(${rot * 0.6}deg) scale(1)`, opacity: 1, offset: 0.55 },
+      { transform: `translate(${origin.x + dx * 1.25}px, ${origin.y + dy + 190}px) rotate(${rot}deg) scale(0.72)`, opacity: 0 },
+    ], { duration: (650 + Math.random() * 350) * tf(), easing: 'cubic-bezier(0.23,1,0.32,1)', fill: 'forwards' })
+    .onfinish = () => el.remove();
+  }
+}
+
+/* ===== Панель ===== */
+document.querySelectorAll('[data-theme-btn]').forEach((b) => {
+  b.addEventListener('click', () => {
+    document.documentElement.dataset.theme = b.dataset.themeBtn;
+    document.querySelectorAll('[data-theme-btn]').forEach((x) => x.classList.toggle('on', x === b));
+  });
+});
+$('slowBtn').addEventListener('click', () => {
+  const on = $('slowBtn').classList.toggle('on');
+  document.documentElement.style.setProperty('--tf', on ? 4 : 1);
+});
+$('rmBtn').addEventListener('click', () => {
+  const on = $('rmBtn').classList.toggle('on');
+  document.documentElement.dataset.reduced = on ? '1' : '';
+});
+
+function runReset() {
+  stage = 'brief'; turnIx = 0; starsEarned = 0;
+  goalsDone = [false, false, false];
+  usedTypedOrEdited = false;
+  micState = 'idle'; helpOpen = false; typedOpen = false;
+  document.querySelectorAll('.goal-pill').forEach((p) => p.classList.remove('done'));
+  document.querySelectorAll('.star-row').forEach((r) => r.classList.remove('earned', 'locked'));
+  $('star3Explain').classList.remove('open');
+  $('starVal').textContent = 0;
+  syncTurnCounter();
+  phrasesCard.classList.remove('collapsed');
+  showView('brief');
+  $('turnZone').style.display = 'none';
+  $('dock').style.opacity = '1';
+  $('hdrTitle').textContent = MISSION.title;
+  ctaLabel.textContent = 'Начать миссию';
+  cta.disabled = false;
+  syncBar();
+}
+$('runReset').addEventListener('click', runReset);
+$('closeBtn').addEventListener('click', () => { if (stage !== 'brief') runReset(); });
+
+/* ===== Витринные прогоны: управляемая автоматизация ходов ===== */
+function autoRunTurn(text, meta, delay) {
+  setTimeout(() => {
+    if (micState !== 'idle') return;
+    startRecording();
+    setTimeout(() => {
+      stopRecording();
+      tcText.textContent = text;
+      setTimeout(() => {
+        if (meta.edit) {
+          tcText.contentEditable = 'true'; placeCaretAtEnd(tcText);
+          setTimeout(() => {
+            tcText.textContent = meta.editedText;
+            tcText.contentEditable = 'false';
+            usedTypedOrEdited = true;
+            $('tcEditNote').classList.add('show');
+            setTimeout(() => $('tcSend').click(), 500 * tf());
+          }, 500 * tf());
+        } else {
+          setTimeout(() => $('tcSend').click(), 500 * tf());
+        }
+      }, 400 * tf());
+    }, reduced() ? 200 : 900 * tf());
+  }, delay);
+}
+
+$('runIdeal').addEventListener('click', () => {
+  runReset(); goToChat();
+  autoRunTurn(MISSION.turn1Ideal, {}, 1400 * tf());
+  autoRunTurn(MISSION.turn2Ideal, {}, 5200 * tf());
+});
+$('runOfftopic').addEventListener('click', () => {
+  runReset(); goToChat();
+  setTimeout(() => {
+    window.__forceOfftopic = true;
+    autoRunTurn('I like pizza a lot actually', {}, 0);
+  }, 1400 * tf());
+  setTimeout(() => { autoRunTurn(MISSION.turn1Ideal, {}, 0); }, 5400 * tf());
+  setTimeout(() => { autoRunTurn(MISSION.turn2Ideal, {}, 0); }, 9600 * tf());
+});
+$('runEdited').addEventListener('click', () => {
+  runReset(); goToChat();
+  autoRunTurn(MISSION.turn1Ideal, { edit: true, editedText: 'Hi! I am Anna, nice to meet you' }, 1400 * tf());
+  autoRunTurn(MISSION.turn2Ideal, {}, 6600 * tf());
+});
+$('runTyped').addEventListener('click', () => {
+  runReset(); goToChat();
+  setTimeout(() => {
+    typedOpen = true; $('typedToggleBtn').classList.add('on'); renderMicRow(); updateSideButtonsVisibility();
+    typedInput.textContent = MISSION.turn1Ideal;
+    $('typedSend').disabled = false;
+    setTimeout(() => $('typedSend').click(), 500 * tf());
+  }, 1200 * tf());
+  autoRunTurn(MISSION.turn2Ideal, {}, 5400 * tf());
+});
+$('runNoisy').addEventListener('click', () => {
+  runReset(); goToChat();
+  setTimeout(() => {
+    startRecording();
+    setTimeout(() => {
+      stopRecording();
+      tcText.textContent = '[неразборчиво из-за шума]';
+      setTimeout(() => { $('tcRetry').click(); }, 900 * tf());
+      setTimeout(() => { autoRunTurn(MISSION.turn1Ideal, {}, 0); }, 1600 * tf());
+    }, 900 * tf());
+  }, 1400 * tf());
+  autoRunTurn(MISSION.turn2Ideal, {}, 6800 * tf());
+});
+
+/* Инициализация */
+syncTurnCounter();
+syncBar();
+</script>
+</body>
+</html>

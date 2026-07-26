@@ -66,10 +66,19 @@ describe('achievements', () => {
     const missingEs = ids.filter(id => !ACHIEVEMENT_ES[id]);
     expect(missingEs).toEqual([]);
 
-    const imagePath = path.join(__dirname, '..', 'constants', 'achievementImageAssets.ts');
-    const imageBlock = fs.readFileSync(imagePath, 'utf8');
-    const imageIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
-    const missingImages = ids.filter(id => !imageIds.has(id));
+    // зачем: арт больше не бандлится целиком — «ядро» лежит в require-реестре,
+    // остальное стримится из Storage по сгенерированной карте URL. Требование
+    // прежнее: у КАЖДОГО достижения должен быть источник картинки, иначе
+    // пользователь увидит заглушку вместо награды.
+    const imageBlock = fs.readFileSync(
+      path.join(__dirname, '..', 'constants', 'achievementImageAssets.ts'), 'utf8');
+    const urlMap = fs.readFileSync(
+      path.join(__dirname, '..', 'constants', 'achievementImageUrlMap.generated.ts'), 'utf8');
+
+    const bundledIds = new Set([...imageBlock.matchAll(/^\s*([a-z0-9_]+):\s*require/gm)].map(m => m[1]));
+    const remoteIds = new Set([...urlMap.matchAll(/^\s{2}"([a-z0-9_]+)":\s*"https:/gm)].map(m => m[1]));
+
+    const missingImages = ids.filter(id => !bundledIds.has(id) && !remoteIds.has(id));
     expect(missingImages).toEqual([]);
   });
 
@@ -77,8 +86,15 @@ describe('achievements', () => {
     const statsSource = fs.readFileSync(path.join(__dirname, '..', 'app', 'streak_stats.tsx'), 'utf8');
     const toastSource = fs.readFileSync(path.join(__dirname, '..', 'components', 'AchievementToast.tsx'), 'utf8');
 
-    expect(statsSource).toContain("import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets'");
-    expect(toastSource).toContain("import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets'");
+    // зачем: цель контракта прежняя — компактные поверхности берут арт из общего
+    // источника, а не заводят свою копию реестра. Изменился только вход: теперь
+    // это achievementImageSource (бандл + URL) либо общий компонент AchievementArt.
+    expect(statsSource).toContain("import AchievementArt from '../components/AchievementArt'");
+    expect(toastSource).toContain("import { achievementImageSource } from '../constants/achievementImageAssets'");
+
+    // Ни одна поверхность не должна require-ить арт напрямую в обход реестра.
+    expect(statsSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
+    expect(toastSource).not.toMatch(/require\('\.\.\/assets\/images\/achievements\//);
   });
 
   it('renders generated achievement art immediately and keeps fallback only for image errors', () => {
@@ -89,8 +105,16 @@ describe('achievements', () => {
 
     expect(source).toContain("import { Image as ExpoImage } from 'expo-image';");
     expect(achievementImageComponent).toContain('source && !imageFailed');
-    expect(achievementImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
     expect(achievementImageComponent).toContain('onError={() => setImageFailed(true)}');
+
+    // зачем: раньше здесь стоял запрет на onLoad — он имел смысл, пока весь арт
+    // лежал в бандле и появлялся в первом же кадре. Теперь арт достижения может
+    // приходить из сети, и заглушку нужно держать ИМЕННО до onLoad, иначе между
+    // «источник появился» и «картинка отрисовалась» мелькнёт пустое место.
+    expect(achievementImageComponent).toContain('onLoad={() => setImageLoaded(true)}');
+    expect(achievementImageComponent).toContain('!imageLoaded');
+
+    // Иконки категорий остаются бандлёнными — там ожидание onLoad не нужно.
     expect(categoryImageComponent).toContain('source && !imageFailed');
     expect(categoryImageComponent).not.toContain('onLoad={() => setLoaded(true)}');
     expect(categoryImageComponent).toContain('onError={() => setImageFailed(true)}');

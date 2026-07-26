@@ -64,12 +64,12 @@ import {
   captureAccountGeneration,
   invalidateAccountGeneration,
   isCurrentAccountGeneration,
-  withAccountTransitionLock,
+  withAccountTransitionLockWithDeadline,
   waitForRestoreApplicationIdleWithDeadline,
 } from './account_generation';
 import {
   beginPremiumAccountTransition, invalidatePremiumCache,
-  waitForPremiumAccountWorkIdle,
+  waitForPremiumAccountWorkIdleWithDeadline,
 } from './premium_guard';
 import {
   forceSyncShardsToCloud,
@@ -82,6 +82,10 @@ import {
 } from './shards_delta_queue';
 import { restoreAccountSwitchEmergencyBackupIfSafe } from './account_switch_backup_restore';
 import { clearPendingAuthLink, recordPendingAuthLink } from './pending_auth_link';
+import {
+  assertNoCleanInstallRecoveryTransition,
+  reserveCleanInstallRecoveryAccountTransition,
+} from './auth_clean_install_recovery_transition';
 import { logEvent, recordError } from './firebase';
 import { logAppError } from './app_health';
 import { emitAppEvent } from './events';
@@ -182,7 +186,14 @@ function emitAuthProviderLinked(): void {
 async function beginEntitlementSafeAccountTransition(): Promise<void> {
   invalidateAccountGeneration();
   beginPremiumAccountTransition();
-  await waitForPremiumAccountWorkIdle();
+  const premiumWorkDrained = await waitForPremiumAccountWorkIdleWithDeadline(
+    ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS,
+  );
+  if (!premiumWorkDrained) {
+    logAuthEvent('auth_premium_account_work_drain_timed_out', {
+      timeoutMs: ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS,
+    });
+  }
 }
 
 // ── Lazy native modules ───────────────────────────────────────────────────────
@@ -404,6 +415,17 @@ async function tryRestoreAccountSwitchBackup(
 
 const REMOTE_ACCOUNT_DELETED_NOTICE_KEY = 'remote_account_deleted_notice_v1';
 let localAccountDeletionInProgress = false;
+let localAccountDeletionAttemptCount = 0;
+
+function beginLocalAccountDeletionAttempt(): void {
+  localAccountDeletionAttemptCount += 1;
+  localAccountDeletionInProgress = true;
+}
+
+function endLocalAccountDeletionAttempt(): void {
+  localAccountDeletionAttemptCount = Math.max(0, localAccountDeletionAttemptCount - 1);
+  localAccountDeletionInProgress = localAccountDeletionAttemptCount > 0;
+}
 
 export function isLocalAccountDeletionInProgress(): boolean {
   return localAccountDeletionInProgress;
@@ -651,6 +673,33 @@ function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
     lastSignInAt,
     devicePlatform,
   };
+}
+
+/**
+ * Синхронный peek привязки из auth.currentUser — для мгновенной гидрации
+ * первого кадра экрана «Аккаунт» (без Firestore; уточнение — getLinkedAuthInfo).
+ */
+export function peekLinkedAuthFromCurrentUser(): LinkedAuth | null {
+  try {
+    return getLinkedAuthFromCurrentUser();
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Синхронный peek даты создания аккаунта (metadata.creationTime текущего
+ * Firebase-юзера, включая анонимного) — строка «С нами с …» на экране
+ * «Аккаунт» без единого сетевого запроса. null — когда auth ещё не поднялся.
+ */
+export function peekAccountCreatedAtMs(): number | null {
+  try {
+    const u = getAuth()?.currentUser;
+    const ms = coerceFirebaseMetaTime(u?.metadata?.creationTime, 0);
+    return ms > 0 ? ms : null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -1074,6 +1123,11 @@ export async function signInWithProvider(
   provider: AuthProviderId,
   options: SignInWithProviderOptions = {},
 ): Promise<SignInResult> {
+  try {
+    await assertNoCleanInstallRecoveryTransition();
+  } catch {
+    return { result: 'error', error: 'clean_recovery_transition_active' };
+  }
   if (providerCredentialModeReservation?.mode === 'recovery') {
     return {
       result: 'error',
@@ -1695,6 +1749,7 @@ async function markOnboardedAfterSignIn(isCurrent: () => boolean = () => true): 
  */
 export type SignOutSwitchResult =
   | { ok: true; synced: boolean }
+  | { ok: false; reason: 'clean_recovery_transition_active' }
   | { ok: false; reason: 'sync_failed' }
   | { ok: false; reason: 'pending_shard_spend' }
   | { ok: false; reason: 'shard_queue_quarantined' }
@@ -1723,6 +1778,22 @@ export type SignOutSwitchOptions = {
 };
 
 export async function signOutAndWipeForAccountSwitch(
+  options?: SignOutSwitchOptions,
+): Promise<SignOutSwitchResult> {
+  let releaseTransitionReservation: () => void;
+  try {
+    releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
+  } catch {
+    return { ok: false, reason: 'clean_recovery_transition_active' };
+  }
+  try {
+    return await signOutAndWipeForAccountSwitchReserved(options);
+  } finally {
+    releaseTransitionReservation();
+  }
+}
+
+async function signOutAndWipeForAccountSwitchReserved(
   options?: SignOutSwitchOptions,
 ): Promise<SignOutSwitchResult> {
   if (!CLOUD_SYNC_ENABLED) {
@@ -1824,7 +1895,7 @@ export async function signOutAndWipeForAccountSwitch(
       pendingShardSpend: false,
       quarantinedShardQueue: false,
     };
-    const transitionReady = await withAccountTransitionLock(async (): Promise<boolean> => {
+    const transitionLock = await withAccountTransitionLockWithDeadline(async (): Promise<boolean> => {
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
       const finalShardQueue = await readShardDeltaQueue(switchOwnerStableId);
       if (!isCurrentAccountGeneration(switchToken, switchOwnerStableId)) return false;
@@ -1852,7 +1923,12 @@ export async function signOutAndWipeForAccountSwitch(
       }
       await beginEntitlementSafeAccountTransition();
       return true;
-    });
+    }, ACCOUNT_TRANSITION_DRAIN_TIMEOUT_MS);
+    if (!transitionLock.completed) {
+      logAuthEvent('auth_signout_wipe_sync_failed_aborted', { stage: 'account_transition_lock_timeout' });
+      return { ok: false, reason: 'sync_failed' };
+    }
+    const transitionReady = transitionLock.value;
     if (!transitionReady) {
       if (transitionFailure.quarantinedShardQueue) {
         logAuthEvent('auth_signout_wipe_sync_failed_aborted', {
@@ -1943,9 +2019,26 @@ export type DeleteAccountResult =
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
-  localAccountDeletionInProgress = true;
+  beginLocalAccountDeletionAttempt();
+  let releaseTransitionReservation: () => void;
   try {
-    const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
+    try {
+      releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
+    } catch {
+      return { ok: false, reason: 'clean_recovery_transition_active' };
+    }
+    try {
+      return await deleteAccountAndWipeReserved();
+    } finally {
+      releaseTransitionReservation();
+    }
+  } finally {
+    endLocalAccountDeletionAttempt();
+  }
+}
+
+async function deleteAccountAndWipeReserved(): Promise<DeleteAccountResult> {
+  const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
     const pendingDeleteStableId = await getStableId().catch(() => null);
     const pendingDeleteLock = await persistAccountDeletePendingAuth(
       pendingDeleteProviderUid,
@@ -1956,6 +2049,13 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
       return { ok: false, reason: 'pending_guard_persist_failed' };
     }
     const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId);
+    if (pendingDeleteStableId) {
+      await import('./shards_pending_grants')
+        .then(({ removePendingShardGrantsForAccount }) => (
+          removePendingShardGrantsForAccount(pendingDeleteStableId)
+        ))
+        .catch(() => {});
+    }
     void cloudDeleteEnqueueOperation.acknowledgment
       .then((ack) => {
         logAuthEvent('auth_account_delete_enqueued', { status: ack.status });
@@ -2049,10 +2149,7 @@ export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
       return { ok: false, reason: 'local_exit_unverified' };
     }
     logAuthEvent('auth_account_deleted', { cloudDeleted: 0 });
-    return { ok: true, cloudDeleted: false };
-  } finally {
-    localAccountDeletionInProgress = false;
-  }
+  return { ok: true, cloudDeleted: false };
 }
 
 export type RemoteAccountDeleteResult =

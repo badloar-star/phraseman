@@ -558,7 +558,11 @@ export default function SettingsMain() {
 
   useEffect(() => {
     if (appSnapshot.profile) {
-      setUserName(current => current || appSnapshot.profile!.name);
+      // зачем: ник теперь меняется и в шторке «Аккаунт» (account_details) —
+      // непустое имя из снапшота синхронизируем всегда, иначе ряд в настройках
+      // показывал бы старое имя до перезапуска. Пустое имя из снапшота не
+      // затирает локально загруженное (историческая защита гидрации).
+      setUserName(current => appSnapshot.profile!.name || current);
       setNameReady(true);
     }
     if (appSnapshot.settings?.tapHaptics != null) {
@@ -1459,11 +1463,10 @@ export default function SettingsMain() {
                 : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono'))
               : ' '}
             onPress={() => {
-              if (!linkedAuth) {
-                setAuthPromptVisible(true);
-                return;
-              }
-              setAccountModalVisible(true);
+              // зачем: раздел аккаунта — отдельная «шторка» (стандарт владельца,
+              // референс Bevel): аватар-инициалы, данные, «Выйти»/«Удалить».
+              // Привязку непривязанного аккаунта шторка предлагает сама.
+              router.push('/account_details' as never);
             }}
           />
           <SettingsRow

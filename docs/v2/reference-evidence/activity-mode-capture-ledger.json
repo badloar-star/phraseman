@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "learning-v2-reference-capture-ledger.v1",
+  "status": "capture_required",
+  "selectedModes": [
+    {
+      "modeId": "sound-discrimination",
+      "captures": []
+    },
+    {
+      "modeId": "guided-phrase-pronunciation",
+      "captures": []
+    },
+    {
+      "modeId": "prompted-translation-by-voice",
+      "captures": []
+    },
+    {
+      "modeId": "contextual-dialogue-mission",
+      "captures": []
+    },
+    {
+      "modeId": "speaking-club-mission",
+      "captures": []
+    }
+  ]
+}

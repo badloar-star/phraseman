@@ -1521,3 +1521,9 @@ export { webCheckoutCreate, stripeWebhook, paypalOrderCreate, paypalOrderCapture
 
 // ── Email-лиды квиза /start/ (письмо с планом + догоняющие) ───────────────────
 export { webLeadCapture, webLeadNudgeCron } from './web_leads';
+
+// ── Learning V2: генерация юнитов (E1 vertical slice) — очередь плана + воркер ─
+// зачем: владелец свёл ветку пилота в master; кнопки «V2 Генератор» в админке.
+export { adminCreateV2GenerationPlan, adminQueueV2GenerationPlan } from './admin_v2_generation';
+export { adminSeedV2E1DemoSource, adminRunV2E1Compilation } from './content_factory/v2_e1_compilation_worker';
+export { finalizeLearningV2AccessPurchase } from './learning_v2_access_production_callable';

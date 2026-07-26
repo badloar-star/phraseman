@@ -1,0 +1,77 @@
+{
+  "schema": "phraseman.learning-v2.disposable-app-check-cleanup-receipt.v1",
+  "receiptId": "phase02-disposable-app-check-cleanup-20260718",
+  "attestedOn": "2026-07-18",
+  "timePrecision": "day",
+  "evidenceBasis": "retained_sanitized_handover_attestation",
+  "freshProviderQueryPerformed": false,
+  "scope": {
+    "projectId": "phraseman-v2-ac-test-20260718",
+    "projectNumber": "769668545998",
+    "region": "us-central1",
+    "callable": "v2ProgressTransport",
+    "environment": "disposable_non_production"
+  },
+  "transportOutcomes": [
+    {
+      "appCheck": "missing",
+      "httpStatus": 401,
+      "outcome": "UNAUTHENTICATED"
+    },
+    {
+      "appCheck": "invalid",
+      "httpStatus": 401,
+      "outcome": "UNAUTHENTICATED"
+    },
+    {
+      "appCheck": "authentic",
+      "requestBody": "malformed",
+      "httpStatus": 400,
+      "outcome": "INVALID_ARGUMENT"
+    }
+  ],
+  "cleanup": {
+    "remainingFunctions": 0,
+    "remainingDebugTokenResources": 0,
+    "temporaryAuthUsersRemaining": 0,
+    "anonymousAuthEnabled": false,
+    "artifactRegistryPolicy": {
+      "deleteArtifactsOlderThanDays": 1
+    }
+  },
+  "productionBoundary": {
+    "projectTouched": false,
+    "functionDeployed": false,
+    "firestoreWritten": false,
+    "rulesChanged": false,
+    "indexesChanged": false,
+    "callableExported": false
+  },
+  "evidenceSummaries": [
+    {
+      "sourcePath": "docs/v2/HANDOVER.md",
+      "sourceSection": "14.70 / Verified outcomes",
+      "summary": "Retained attestation records the disposable App Check transport outcomes and completed cleanup."
+    },
+    {
+      "sourcePath": "docs/v2/HANDOVER.md",
+      "sourceSection": "14.70 / Repository/release state",
+      "summary": "Retained attestation records no live disposable or production V2 progress endpoint and no production export."
+    }
+  ],
+  "redactions": {
+    "applied": true,
+    "containsSecrets": false,
+    "omittedCategories": [
+      "jwt",
+      "app_check_debug_secret",
+      "api_key",
+      "authorization_header",
+      "firebase_auth_uid",
+      "email",
+      "billing_details",
+      "dpapi_ciphertext",
+      "raw_command_output"
+    ]
+  }
+}

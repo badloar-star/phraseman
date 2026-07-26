@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": "learning-v2-invalid-corpus.v1",
+  "invalidCases": [
+    {
+      "caseId": "unknown_package_field",
+      "mutations": [{ "op": "set", "path": ["unexpected"], "value": true }],
+      "expectedIssues": [{ "code": "field_unknown", "path": "$.unexpected" }]
+    },
+    {
+      "caseId": "missing_episode",
+      "mutations": [{ "op": "delete", "path": ["episode"] }],
+      "expectedIssues": [{ "code": "field_missing", "path": "$.episode" }]
+    },
+    {
+      "caseId": "activity_family_checkpoint_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "family"],
+          "value": "checkpoint"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_family_invalid",
+          "path": "$.episode.activities[0].family"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_graph_field_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "phase"],
+          "value": "encounter_build"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_forbidden_field",
+          "path": "$.episode.activities[0].phase"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_lifecycle_field_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "status"],
+          "value": "published"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_forbidden_field",
+          "path": "$.episode.activities[0].status"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_missing",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": ["dependencies", "templates", 0, "body", "policies", "reward"]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_set_invalid",
+          "path": "$.dependencies.templates[0].body.policies.reward"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_kind_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "dependencies",
+            "templates",
+            0,
+            "body",
+            "policies",
+            "reward",
+            "kind"
+          ],
+          "value": "scoring"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_ref_mismatch",
+          "path": "$.dependencies.templates[0].body.policies.reward.kind"
+        }
+      ]
+    },
+    {
+      "caseId": "template_hash_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "templateRef", "contentHash"],
+          "value": "1211111111111111111111111111111111111111111111111111111111111111"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].templateRef"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_activity_id",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 1, "activityId"],
+          "value": "ep01.a01"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_duplicate_id",
+          "path": "$.episode.activities[1].activityId"
+        }
+      ]
+    },
+    {
+      "caseId": "declaration_node_id_is_not_wire_field",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            0,
+            "evidenceDeclarations",
+            0,
+            "nodeId"
+          ],
+          "value": "ep01.n01"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_unknown",
+          "path": "$.episode.graph.nodes[0].evidenceDeclarations[0].nodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "declaration_result_field_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            0,
+            "evidenceDeclarations",
+            0,
+            "outcome"
+          ],
+          "value": "success"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_unknown",
+          "path": "$.episode.graph.nodes[0].evidenceDeclarations[0].outcome"
+        }
+      ]
+    },
+    {
+      "caseId": "node_context_phase_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            0,
+            "pedagogicalContextContract",
+            "phase"
+          ],
+          "value": "near_transfer"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "phase_contract_mismatch",
+          "path": "$.episode.graph.nodes[0].pedagogicalContextContract.phase"
+        }
+      ]
+    },
+    {
+      "caseId": "optional_review_assessment_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "phase"],
+          "value": "optional_review"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "optional_review_assessment_forbidden",
+          "path": "$.episode.graph.nodes[8]"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_node_id",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 1, "nodeId"],
+          "value": "ep01.n01"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_duplicate_id",
+          "path": "$.episode.graph.nodes[1].nodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "dangling_edge",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "edges", 0, "toNodeId"],
+          "value": "ep01.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_reference_missing",
+          "path": "$.episode.graph.edges[0].toNodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "graph_cycle",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "edges", 8, "toNodeId"],
+          "value": "ep01.n01"
+        }
+      ],
+      "expectedIssues": [
+        { "code": "graph_cycle", "path": "$.episode.graph.edges" }
+      ]
+    },
+    {
+      "caseId": "second_entry",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "graph", "edges", 0] }
+      ],
+      "expectedIssues": [
+        { "code": "graph_entry_count_invalid", "path": "$.episode.graph" }
+      ]
+    },
+    {
+      "caseId": "capstone_not_terminal",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "capstoneNodeId"],
+          "value": "ep01.n07"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_capstone_count_invalid",
+          "path": "$.episode.graph.capstoneNodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "unreachable_required_node",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "edges", 1, "toNodeId"],
+          "value": "ep01.n04"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_unreachable_required",
+          "path": "$.episode.graph.nodes[2]"
+        }
+      ]
+    },
+    {
+      "caseId": "non_capstone_dead_end",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "graph", "edges", 2] }
+      ],
+      "expectedIssues": [
+        { "code": "graph_dead_end", "path": "$.episode.graph.nodes[2]" }
+      ]
+    },
+    {
+      "caseId": "loop_phase_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "requiredLoops", "nearTransferNodeIds", 0],
+          "value": "ep01.n03"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "loop_phase_mismatch",
+          "path": "$.episode.requiredLoops.nearTransferNodeIds[0]"
+        }
+      ]
+    },
+    {
+      "caseId": "independent_probe_in_required_loop",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "requiredLoops", "nearTransferNodeIds", 0],
+          "value": "ep01.n09"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "loop_phase_mismatch",
+          "path": "$.episode.requiredLoops.nearTransferNodeIds[0]"
+        }
+      ]
+    },
+    {
+      "caseId": "ordinary_probe_gates_access",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "requiredForCore"],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "ordinary_probe_gates_access",
+          "path": "$.episode.graph.nodes[8].requiredForCore"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_probe_inside_graph",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "phase"],
+          "value": "delayed_probe"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "phase_contract_mismatch",
+          "path": "$.episode.graph.nodes[8].phase"
+        }
+      ]
+    },
+    {
+      "caseId": "visible_node_count_below_registry",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 7, "visible"],
+          "value": false
+        },
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "visible"],
+          "value": false
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "node_count_policy_mismatch",
+          "path": "$.episode.graph.nodes"
+        }
+      ]
+    },
+    {
+      "caseId": "star_slot_count_below_registry",
+      "mutations": [{ "op": "delete", "path": ["episode", "starSlots", 7] }],
+      "expectedIssues": [
+        { "code": "star_slot_policy_mismatch", "path": "$.episode.starSlots" }
+      ]
+    },
+    {
+      "caseId": "star_slot_cap_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "starSlots", 0, "maxStars"],
+          "value": 2
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "star_slot_policy_mismatch",
+          "path": "$.episode.starSlots[0].maxStars"
+        }
+      ]
+    },
+    {
+      "caseId": "starless_node_has_slot",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "starSlotId"],
+          "value": "ep01.slot09"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "starless_binding_invalid",
+          "path": "$.episode.graph.nodes[8].starSlotId"
+        }
+      ]
+    },
+    {
+      "caseId": "alternate_mints_star_slot",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 4, "fallback", "policy"],
+          "value": "alternate_node"
+        },
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            4,
+            "fallback",
+            "alternateNodeId"
+          ],
+          "value": "ep01.n09"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "alternate_star_slot_mismatch",
+          "path": "$.episode.graph.nodes[4].fallback.alternateNodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "accessibility_route_loses_gate_slots",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": [
+            "episode",
+            "accessibilityRoutes",
+            1,
+            "reachableStarSlotIds",
+            7
+          ]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "accessibility_route_unreachable",
+          "path": "$.episode.accessibilityRoutes[1]"
+        }
+      ]
+    },
+    {
+      "caseId": "near_transfer_replays_prompt",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            3,
+            "pedagogicalContextContract",
+            "context",
+            "contextId"
+          ],
+          "value": "ctx.n03"
+        },
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            3,
+            "pedagogicalContextContract",
+            "context",
+            "surfaceFormId"
+          ],
+          "value": "surface.build.name"
+        },
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "graph",
+            "nodes",
+            3,
+            "pedagogicalContextContract",
+            "prompt",
+            "promptId"
+          ],
+          "value": "prompt.n03"
+        },
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 3, "variedSemanticSlotIds"],
+          "value": []
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "near_transfer_replay_forbidden",
+          "path": "$.episode.graph.nodes[3]"
+        }
+      ]
+    },
+    {
+      "caseId": "phrase_dosage_below_registry",
+      "mutations": [{ "op": "delete", "path": ["episode", "phraseFrames", 7] }],
+      "expectedIssues": [
+        {
+          "code": "episode_dosage_policy_mismatch",
+          "path": "$.episode.phraseFrames"
+        }
+      ]
+    },
+    {
+      "caseId": "semantic_slot_dosage_below_registry",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "semanticSlots", 11] }
+      ],
+      "expectedIssues": [
+        {
+          "code": "episode_dosage_policy_mismatch",
+          "path": "$.episode.semanticSlots"
+        }
+      ]
+    },
+    {
+      "caseId": "grammar_load_exceeded",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "grammarDistinctionIds", 2],
+          "value": "grammar.extra"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "grammar_load_exceeded",
+          "path": "$.episode.grammarDistinctionIds"
+        }
+      ]
+    },
+    {
+      "caseId": "multiple_sound_focuses",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "soundFocusIds", 1],
+          "value": "sound.extra"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "episode_dosage_policy_mismatch",
+          "path": "$.episode.soundFocusIds"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_probe_hash_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "ref",
+            "contentHash"
+          ],
+          "value": "1010101010101010101010101010101010101010101010101010101010101010"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "delayed_probe_hash_mismatch",
+          "path": "$.episode.delayedProbeDefinitions[0].ref.contentHash"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_probe_reuses_graph_node",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "body",
+            "probeNodeId"
+          ],
+          "value": "ep01.n09"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "delayed_probe_namespace_invalid",
+          "path": "$.episode.delayedProbeDefinitions[0].body.probeNodeId"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_activity_binding_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "body",
+            "activityBinding",
+            "progressCompatibilityKey"
+          ],
+          "value": "wrong.compatibility"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "delayed_probe_binding_mismatch",
+          "path": "$.episode.delayedProbeDefinitions[0].body.activityBinding"
+        }
+      ]
+    },
+    {
+      "caseId": "review_link_invalid_delay",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "reviewLinks", 0, "delay"],
+          "value": "d_plus_3"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "review_link_invalid",
+          "path": "$.episode.reviewLinks[0].delay"
+        }
+      ]
+    },
+    {
+      "caseId": "review_link_serializes_success",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "reviewLinks", 0, "outcome"],
+          "value": "success"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "review_link_materialization_forbidden",
+          "path": "$.episode.reviewLinks[0].outcome"
+        }
+      ]
+    },
+    {
+      "caseId": "mastery_uses_performance_stars",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "masteryContract",
+            "performanceStarsAreLearningEvidence"
+          ],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "mastery_contract_invalid",
+          "path": "$.episode.masteryContract.performanceStarsAreLearningEvidence"
+        }
+      ]
+    },
+    {
+      "caseId": "prerequisite_self_cycle",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "learningDesign", "prerequisiteEdges", 0],
+          "value": {
+            "from": {
+              "kind": "objective",
+              "id": "objective.introduce-self",
+              "sourceEpisodeId": "ep-01"
+            },
+            "toObjectiveId": "objective.introduce-self",
+            "requiredState": "independent_evidence"
+          }
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "prerequisite_cycle",
+          "path": "$.episode.learningDesign.prerequisiteEdges"
+        }
+      ]
+    },
+    {
+      "caseId": "support_rule_missing",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "learningDesign", "supportPlan", 0, "fadeRuleId"],
+          "value": "fade.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "support_rule_missing",
+          "path": "$.episode.learningDesign.supportPlan[0].fadeRuleId"
+        }
+      ]
+    },
+    {
+      "caseId": "vertical_scope_contains_ep2",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["curriculum", "scope", "includedEpisodeOrdinals"],
+          "value": [1, 2]
+        }
+      ],
+      "expectedIssues": [
+        { "code": "curriculum_scope_invalid", "path": "$.curriculum.scope" }
+      ]
+    },
+    {
+      "caseId": "curriculum_episode_ref_duplicate",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["curriculum", "episodeRefs", 1],
+          "value": {
+            "episodeId": "ep-01",
+            "ordinal": 1,
+            "chapterId": "chapter-01",
+            "episodeKind": "ordinary",
+            "contentHash": "9999999999999999999999999999999999999999999999999999999999999999",
+            "prerequisiteEpisodeIds": [],
+            "introducedMaterial": {
+              "skillIds": [],
+              "phraseFrameIds": [],
+              "grammarDistinctionIds": [],
+              "semanticSlotIds": [],
+              "criticalConstraintIds": []
+            },
+            "requiredCheckpointMaterial": {
+              "skillIds": [],
+              "phraseFrameIds": [],
+              "grammarDistinctionIds": [],
+              "semanticSlotIds": [],
+              "criticalConstraintIds": []
+            }
+          }
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "curriculum_episode_sequence_invalid",
+          "path": "$.curriculum.episodeRefs[1]"
+        }
+      ]
+    },
+    {
+      "caseId": "decision_registry_hash_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["curriculum", "decisionRegistryRef", "contentHash"],
+          "value": "2258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "decision_registry_mismatch",
+          "path": "$.curriculum.decisionRegistryRef"
+        }
+      ]
+    },
+    {
+      "caseId": "mutable_latest_registry_forbidden",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["curriculum", "decisionRegistryRef", "latest"],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "decision_registry_ref_invalid",
+          "path": "$.curriculum.decisionRegistryRef.latest"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_unknown_fields_preserved",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "renderer"],
+          "value": "RemoteRenderer"
+        },
+        {
+          "op": "set",
+          "path": ["episode", "activities", 1, "renderer"],
+          "value": "RemoteRenderer"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_forbidden_field",
+          "path": "$.episode.activities[0].renderer"
+        },
+        {
+          "code": "activity_forbidden_field",
+          "path": "$.episode.activities[1].renderer"
+        }
+      ]
+    },
+    {
+      "caseId": "missing_activity_payload",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "activities", 0, "payload"] }
+      ],
+      "expectedIssues": [
+        { "code": "field_missing", "path": "$.episode.activities[0].payload" }
+      ]
+    },
+    {
+      "caseId": "missing_node_phase",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "graph", "nodes", 0, "phase"] }
+      ],
+      "expectedIssues": [
+        { "code": "field_missing", "path": "$.episode.graph.nodes[0].phase" }
+      ]
+    },
+    {
+      "caseId": "missing_edge_condition",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": ["episode", "graph", "edges", 0, "condition"]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_missing",
+          "path": "$.episode.graph.edges[0].condition"
+        }
+      ]
+    },
+    {
+      "caseId": "missing_required_loop",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": ["episode", "requiredLoops", "nearTransferNodeIds"]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_missing",
+          "path": "$.episode.requiredLoops.nearTransferNodeIds"
+        }
+      ]
+    },
+    {
+      "caseId": "missing_assessment_nodes",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": ["episode", "assessmentNodes", "independentProbeNodeIds"]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_missing",
+          "path": "$.episode.assessmentNodes.independentProbeNodeIds"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_extra",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "dependencies",
+            "templates",
+            0,
+            "body",
+            "policies",
+            "analytics"
+          ],
+          "value": {
+            "kind": "analytics",
+            "key": "policy.analytics",
+            "version": 1,
+            "contentHash": "abababababababababababababababababababababababababababababababab"
+          }
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_set_invalid",
+          "path": "$.dependencies.templates[0].body.policies.analytics"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_key_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "dependencies",
+            "templates",
+            0,
+            "body",
+            "policies",
+            "reward",
+            "key"
+          ],
+          "value": "policy.reward.wrong"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_ref_mismatch",
+          "path": "$.dependencies.templates[0].body.policies.reward.key"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_version_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "dependencies",
+            "templates",
+            0,
+            "body",
+            "policies",
+            "reward",
+            "version"
+          ],
+          "value": 2
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_ref_mismatch",
+          "path": "$.dependencies.templates[0].body.policies.reward.version"
+        }
+      ]
+    },
+    {
+      "caseId": "template_policy_hash_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "dependencies",
+            "templates",
+            0,
+            "body",
+            "policies",
+            "reward",
+            "contentHash"
+          ],
+          "value": "edededededededededededededededededededededededededededededededed"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_policy_ref_mismatch",
+          "path": "$.dependencies.templates[0].body.policies.reward.contentHash"
+        }
+      ]
+    },
+    {
+      "caseId": "template_id_unresolved",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "templateRef", "templateId"],
+          "value": "template.missing.v1"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].templateRef"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_template_family_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "family"],
+          "value": "listen_choose"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].family"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_template_kernel_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "kernelVersion"],
+          "value": 2
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].kernelVersion"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_template_payload_schema_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "payloadSchemaVersion"],
+          "value": 2
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].payloadSchemaVersion"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_template_capability_mismatch",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "capabilities", "audioPlayback"],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "activity_template_mismatch",
+          "path": "$.episode.activities[0].capabilities"
+        }
+      ]
+    },
+    {
+      "caseId": "node_activity_reference_missing",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 0, "activityId"],
+          "value": "ep01.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_reference_missing",
+          "path": "$.episode.graph.nodes[0].activityId"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_star_slot_id",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "starSlots", 1, "starSlotId"],
+          "value": "ep01.slot01"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "graph_duplicate_id",
+          "path": "$.episode.starSlots[1].starSlotId"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_evidence_tuple",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 0, "evidenceDeclarations", 1],
+          "value": {
+            "objectiveId": "objective.introduce-self",
+            "skillId": "skill.greet",
+            "construct": "semantic",
+            "phase": "encounter_build",
+            "target": {
+              "targetKind": "objective",
+              "targetId": "objective.introduce-self"
+            }
+          }
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "evidence_tuple_duplicate",
+          "path": "$.episode.graph.nodes[0].evidenceDeclarations[1]"
+        }
+      ]
+    },
+    {
+      "caseId": "duplicate_loop_node",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "requiredLoops", "nearTransferNodeIds", 1],
+          "value": "ep01.n04"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "loop_duplicate_id",
+          "path": "$.episode.requiredLoops.nearTransferNodeIds[1]"
+        }
+      ]
+    },
+    {
+      "caseId": "ordinary_probe_gate_eligible",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "gateEligible"],
+          "value": true
+        },
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "starSlotId"],
+          "value": "ep01.slot08"
+        },
+        {
+          "op": "set",
+          "path": ["episode", "graph", "nodes", 8, "maxStars"],
+          "value": 3
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "ordinary_probe_gates_access",
+          "path": "$.episode.graph.nodes[8].gateEligible"
+        }
+      ]
+    },
+    {
+      "caseId": "episode_duration_above_registry",
+      "mutations": [
+        { "op": "set", "path": ["episode", "estimatedMinutes"], "value": 19 }
+      ],
+      "expectedIssues": [
+        {
+          "code": "episode_dosage_policy_mismatch",
+          "path": "$.episode.estimatedMinutes"
+        }
+      ]
+    },
+    {
+      "caseId": "sound_focus_missing",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "soundFocusIds", 0] }
+      ],
+      "expectedIssues": [
+        {
+          "code": "episode_dosage_policy_mismatch",
+          "path": "$.episode.soundFocusIds"
+        }
+      ]
+    },
+    {
+      "caseId": "accessibility_route_requires_network",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "accessibilityRoutes", 1, "requiresNetwork"],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "accessibility_route_unreachable",
+          "path": "$.episode.accessibilityRoutes[1]"
+        }
+      ]
+    },
+    {
+      "caseId": "accessibility_false_spoken_claim",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "accessibilityRoutes",
+            1,
+            "measuredConstructs",
+            3
+          ],
+          "value": "spoken"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "accessibility_false_claim",
+          "path": "$.episode.accessibilityRoutes[1].measuredConstructs"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_probe_string_ref",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "learningDesign", "delayedProbeRef"],
+          "value": "latest"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "delayed_probe_ref_invalid",
+          "path": "$.episode.learningDesign.delayedProbeRef"
+        }
+      ]
+    },
+    {
+      "caseId": "delayed_probe_context_reused",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "body",
+            "pedagogicalContextContract",
+            "context",
+            "newSurfaceForm"
+          ],
+          "value": false
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "delayed_probe_context_invalid",
+          "path": "$.episode.delayedProbeDefinitions[0].body.pedagogicalContextContract"
+        }
+      ]
+    },
+    {
+      "caseId": "mastery_uses_voice_turn_count",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "masteryContract",
+            "confidentVoiceTurnCountAloneIsSufficient"
+          ],
+          "value": true
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "mastery_contract_invalid",
+          "path": "$.episode.masteryContract.confidentVoiceTurnCountAloneIsSufficient"
+        }
+      ]
+    },
+    {
+      "caseId": "escalation_rule_missing",
+      "mutations": [
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "learningDesign",
+            "supportPlan",
+            0,
+            "escalationRuleId"
+          ],
+          "value": "escalate.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "support_rule_missing",
+          "path": "$.episode.learningDesign.supportPlan[0].escalationRuleId"
+        }
+      ]
+    },
+    {
+      "caseId": "decision_registry_id_missing",
+      "mutations": [
+        { "op": "delete", "path": ["curriculum", "decisionRegistryRef", "id"] }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_missing",
+          "path": "$.curriculum.decisionRegistryRef.id"
+        }
+      ]
+    },
+    {
+      "caseId": "scenario_title_missing",
+      "mutations": [
+        { "op": "delete", "path": ["episode", "scenario", "title"] }
+      ],
+      "expectedIssues": [
+        { "code": "field_missing", "path": "$.episode.scenario.title" }
+      ]
+    },
+    {
+      "caseId": "semantic_slot_values_missing",
+      "mutations": [
+        {
+          "op": "delete",
+          "path": ["episode", "semanticSlots", 0, "acceptedTargetValues"]
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_missing",
+          "path": "$.episode.semanticSlots[0].acceptedTargetValues"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_tag_unknown",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "tags", "renderer"],
+          "value": "remote"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "field_unknown",
+          "path": "$.episode.activities[0].tags.renderer"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_asset_reference_missing",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "assetIds", 0],
+          "value": "asset.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "asset_reference_missing",
+          "path": "$.episode.activities[0].assetIds[0]"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_content_reference_missing",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 0, "contentUnitIds", 0],
+          "value": "cu.missing"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "content_reference_missing",
+          "path": "$.episode.activities[0].contentUnitIds[0]"
+        }
+      ]
+    },
+    {
+      "caseId": "activity_identity_invalid",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "activities", 9, "activityId"],
+          "value": "bad/id"
+        },
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "body",
+            "activityBinding",
+            "activityId"
+          ],
+          "value": "bad/id"
+        },
+        {
+          "op": "set",
+          "path": [
+            "episode",
+            "delayedProbeDefinitions",
+            0,
+            "body",
+            "accessibilityAlternateActivityId"
+          ],
+          "value": "bad/id"
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "identity_invalid",
+          "path": "$.episode.activities[9].activityId"
+        }
+      ]
+    },
+    {
+      "caseId": "prerequisite_missing_exposure",
+      "mutations": [
+        {
+          "op": "set",
+          "path": ["episode", "learningDesign", "prerequisiteEdges", 0],
+          "value": {
+            "from": {
+              "kind": "outcome",
+              "id": "outcome.prior",
+              "sourceEpisodeId": "ep-00"
+            },
+            "toObjectiveId": "objective.introduce-self",
+            "requiredState": "independent_evidence"
+          }
+        }
+      ],
+      "expectedIssues": [
+        {
+          "code": "prerequisite_exposure_missing",
+          "path": "$.episode.learningDesign.prerequisiteEdges[0]"
+        }
+      ]
+    }
+  ],
+  "syntheticCases": [
+    {
+      "caseId": "chapter_internal_requires_e1_to_e8_and_checkpoint_e8",
+      "builder": "chapter_internal_invalid",
+      "expectedCode": "curriculum_checkpoint_invalid",
+      "expectedPath": "$.curriculum.checkpointOrdinals"
+    },
+    {
+      "caseId": "full_season_requires_32_four_by_eight",
+      "builder": "full_season_invalid",
+      "expectedCode": "curriculum_scope_invalid",
+      "expectedPath": "$.curriculum.scope"
+    },
+    {
+      "caseId": "production_rejects_partial_scope",
+      "builder": "partial_production",
+      "expectedCode": "curriculum_scope_invalid",
+      "expectedPath": "$.curriculum.scope"
+    },
+    {
+      "caseId": "chapter_checkpoint_ordinal_is_exact",
+      "builder": "chapter_checkpoint_wrong_ordinal",
+      "expectedCode": "curriculum_checkpoint_invalid",
+      "expectedPath": "$.curriculum.checkpointOrdinals"
+    },
+    {
+      "caseId": "chapter_membership_is_exact",
+      "builder": "chapter_membership_invalid",
+      "expectedCode": "curriculum_chapter_invalid",
+      "expectedPath": "$.curriculum.chapters[0]"
+    },
+    {
+      "caseId": "curriculum_prerequisite_must_resolve",
+      "builder": "curriculum_prerequisite_orphan",
+      "expectedCode": "curriculum_prerequisite_invalid",
+      "expectedPath": "$.curriculum.episodeRefs[0].prerequisiteEpisodeIds[0]"
+    },
+    {
+      "caseId": "checkpoint_requirement_set_mismatch",
+      "builder": "checkpoint_set_mismatch",
+      "expectedCode": "checkpoint_set_mismatch",
+      "expectedPath": "$.checkpoint.assessmentNodeIds"
+    },
+    {
+      "caseId": "checkpoint_requirement_not_declared",
+      "builder": "checkpoint_requirement_mismatch",
+      "expectedCode": "checkpoint_requirement_mismatch",
+      "expectedPath": "$.checkpoint.evidenceRequirements[0]"
+    },
+    {
+      "caseId": "checkpoint_missing_critical_coverage",
+      "builder": "checkpoint_critical_coverage",
+      "expectedCode": "checkpoint_critical_coverage_invalid",
+      "expectedPath": "$.checkpoint.criticalRepairRoutes"
+    },
+    {
+      "caseId": "checkpoint_introduces_new_skill",
+      "builder": "checkpoint_new_material",
+      "expectedCode": "checkpoint_new_material_forbidden",
+      "expectedPath": "$.checkpointContext.requiredCheckpointMaterial.skillIds"
+    },
+    {
+      "caseId": "checkpoint_objective_set_is_exact",
+      "builder": "checkpoint_objective_set",
+      "expectedCode": "checkpoint_set_mismatch",
+      "expectedPath": "$.checkpoint.assessedObjectiveIds"
+    },
+    {
+      "caseId": "checkpoint_alternate_is_independent",
+      "builder": "checkpoint_alternate_phase",
+      "expectedCode": "checkpoint_alternate_invalid",
+      "expectedPath": "$.checkpoint.deterministicAlternateRoutes[0].alternateNodeId"
+    },
+    {
+      "caseId": "checkpoint_reassessment_is_independent",
+      "builder": "checkpoint_reassessment_phase",
+      "expectedCode": "checkpoint_critical_coverage_invalid",
+      "expectedPath": "$.checkpoint.criticalRepairRoutes[0].reassessmentNodeId"
+    },
+    {
+      "caseId": "checkpoint_delayed_requirement_forbidden",
+      "builder": "checkpoint_delayed_requirement",
+      "expectedCode": "checkpoint_requirement_mismatch",
+      "expectedPath": "$.checkpoint.evidenceRequirements[0]"
+    }
+  ]
+}

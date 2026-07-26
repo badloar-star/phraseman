@@ -1,0 +1,3178 @@
+{
+  "schemaVersion": "learning-v2-contract-fixture.v1",
+  "dependencies": {
+    "templates": [
+      {
+        "templateRef": {
+          "templateId": "template.visual.v1",
+          "version": 1,
+          "contentHash": "f67fd44440ccc61cdd005f3ac0a021927b81e281bec6bbe15ce61e3b340d6f65"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.visual.v1",
+          "version": 1,
+          "family": "visual_discovery",
+          "humanName": "Visual greeting discovery",
+          "description": "Introduces the greeting through a concrete neighbor scene.",
+          "pedagogicalPurpose": {
+            "phase": "discover",
+            "primarySkillIds": ["skill.greet"],
+            "modalities": ["reading"],
+            "estimatedSeconds": 60
+          },
+          "kernel": {
+            "activityTypeKey": "visual.discovery.v1",
+            "kernelVersion": 1,
+            "rendererKey": "choice.visual-discovery.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.visual-discovery.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "0a557be22178ed7b9a47c66918ec41665fb008287bd1c9dbf11ee2071216aec4"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "tap" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "none",
+            "speechRecognition": "none",
+            "audioPlayback": false,
+            "network": "none"
+          },
+          "evidenceClaims": ["completion", "accuracy"],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Look at the scene and choose the greeting.",
+                "sourceHash": "6e3fbfdb14b80b355e6cecf5e77f95b5d4443517e4c89026049d6d2a7628b16b"
+              },
+              {
+                "locale": "ru",
+                "value": "Посмотри на сцену и выбери приветствие.",
+                "sourceHash": "6e3fbfdb14b80b355e6cecf5e77f95b5d4443517e4c89026049d6d2a7628b16b"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Choose",
+                "sourceHash": "4a37a96dda6dfce9c631e334b08980cf02cba4afa4a6dfa442782555e41c4364"
+              },
+              {
+                "locale": "ru",
+                "value": "Выбрать",
+                "sourceHash": "4a37a96dda6dfce9c631e334b08980cf02cba4afa4a6dfa442782555e41c4364"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Try again",
+                "sourceHash": "8dd113ac6e3b49641c54fcfc35429df7528208a26e4c292f9ff0ba3353e17a5f"
+              },
+              {
+                "locale": "ru",
+                "value": "Попробовать ещё раз",
+                "sourceHash": "8dd113ac6e3b49641c54fcfc35429df7528208a26e4c292f9ff0ba3353e17a5f"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "You found the greeting.",
+                "sourceHash": "02501cc2e334beac5c3a46cdeffb16c28a77facfde010a9d880336a2d63659c1"
+              },
+              {
+                "locale": "ru",
+                "value": "Ты нашёл приветствие.",
+                "sourceHash": "02501cc2e334beac5c3a46cdeffb16c28a77facfde010a9d880336a2d63659c1"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Look at the people and try once more.",
+                "sourceHash": "660cf50510a154f11eb9460e6ca8130c4b08dbf96d9be064ac8e081395841a3f"
+              },
+              {
+                "locale": "ru",
+                "value": "Посмотри на людей и попробуй ещё раз.",
+                "sourceHash": "660cf50510a154f11eb9460e6ca8130c4b08dbf96d9be064ac8e081395841a3f"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Use the text-only scene.",
+                "sourceHash": "e10f2d1499e78a854a78bd8237c441592d6be67784bb238112774f1af3351cbd"
+              },
+              {
+                "locale": "ru",
+                "value": "Используй сцену только с текстом.",
+                "sourceHash": "e10f2d1499e78a854a78bd8237c441592d6be67784bb238112774f1af3351cbd"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.visual.prompt",
+              "label": "Greeting scene prompt",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a01",
+                "phraseFrameIds": ["pf.hi"],
+                "inputMode": "tap"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.visual-discovery.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          }
+        }
+      },
+      {
+        "templateRef": {
+          "templateId": "template.listen.v1",
+          "version": 1,
+          "contentHash": "c526c2b03e47ea45a2cb7a1c13e0e6471885eae024bab3c928e1c6acc74f2489"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.listen.v1",
+          "version": 1,
+          "family": "listen_choose",
+          "humanName": "Listen and choose a greeting",
+          "description": "Checks recognition of the greeting and introduction phrases by ear.",
+          "pedagogicalPurpose": {
+            "phase": "comprehend",
+            "primarySkillIds": ["skill.greet", "skill.name"],
+            "modalities": ["listening"],
+            "estimatedSeconds": 70
+          },
+          "kernel": {
+            "activityTypeKey": "listen.choose.v1",
+            "kernelVersion": 1,
+            "rendererKey": "choice.listen-choose.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.listen-choose.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "926f56958a011ee4c056de9b815b6208129794b1c313cc95f2edaa0d953bf83d"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "tap" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "none",
+            "speechRecognition": "none",
+            "audioPlayback": true,
+            "network": "none"
+          },
+          "evidenceClaims": ["completion", "accuracy"],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Listen and choose what you hear.",
+                "sourceHash": "f1713ed0b4c20e67f8d45dd6edb1f0025f2179460d263a616ec13054413e99de"
+              },
+              {
+                "locale": "ru",
+                "value": "Послушай и выбери услышанную фразу.",
+                "sourceHash": "f1713ed0b4c20e67f8d45dd6edb1f0025f2179460d263a616ec13054413e99de"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Play and choose",
+                "sourceHash": "f25a65ef768bdcf381208ef5fb4f754a540e347486671cc9f2cb01708aa94f5f"
+              },
+              {
+                "locale": "ru",
+                "value": "Послушать и выбрать",
+                "sourceHash": "f25a65ef768bdcf381208ef5fb4f754a540e347486671cc9f2cb01708aa94f5f"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Listen again",
+                "sourceHash": "7509b28f16b74a463b790212a64b676c7469d91a07d8ead9458c4b861a68f592"
+              },
+              {
+                "locale": "ru",
+                "value": "Послушать ещё раз",
+                "sourceHash": "7509b28f16b74a463b790212a64b676c7469d91a07d8ead9458c4b861a68f592"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "You recognised the phrase.",
+                "sourceHash": "394e43dd4a2f4334a24e07c8e025b4b1739bf3f205f0d27cb68360f9b0d5751d"
+              },
+              {
+                "locale": "ru",
+                "value": "Ты узнал фразу.",
+                "sourceHash": "394e43dd4a2f4334a24e07c8e025b4b1739bf3f205f0d27cb68360f9b0d5751d"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Focus on the first words and listen again.",
+                "sourceHash": "adab5009c17dd4c671fc4b17dd2504f1fbb4972cc38f3c5adaec2483037f90bb"
+              },
+              {
+                "locale": "ru",
+                "value": "Сосредоточься на первых словах и послушай снова.",
+                "sourceHash": "adab5009c17dd4c671fc4b17dd2504f1fbb4972cc38f3c5adaec2483037f90bb"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Use replay or the written fallback.",
+                "sourceHash": "d423571ec0b7754725a0075e5b3d1a608ef5b23eef19cc3cd05d9b63cc720be2"
+              },
+              {
+                "locale": "ru",
+                "value": "Используй повтор или письменный вариант.",
+                "sourceHash": "d423571ec0b7754725a0075e5b3d1a608ef5b23eef19cc3cd05d9b63cc720be2"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.listen.prompt",
+              "label": "Greeting audio prompt",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a02",
+                "phraseFrameIds": ["pf.hi", "pf.my-name"],
+                "inputMode": "tap"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.listen-choose.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          }
+        }
+      },
+      {
+        "templateRef": {
+          "templateId": "template.builder.v1",
+          "version": 1,
+          "contentHash": "bb0fdd93127f2588fa1aa7ae46ed00656e45ec1d7257f02f61f6364d2fda02b9"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.builder.v1",
+          "version": 1,
+          "family": "phrase_builder",
+          "humanName": "Build an introduction phrase",
+          "description": "Builds the name and origin phrases from ordered word blocks.",
+          "pedagogicalPurpose": {
+            "phase": "controlled_production",
+            "primarySkillIds": ["skill.name", "skill.origin"],
+            "modalities": ["reading", "writing"],
+            "estimatedSeconds": 80
+          },
+          "kernel": {
+            "activityTypeKey": "phrase.builder.v1",
+            "kernelVersion": 1,
+            "rendererKey": "composer.phrase-builder.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.phrase-builder.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "8aee965eefe8b0f401b9f08316e9643bef2fad68618d25959ee78f2293310ade"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "word_bank" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "none",
+            "speechRecognition": "none",
+            "audioPlayback": false,
+            "network": "none"
+          },
+          "evidenceClaims": ["completion", "accuracy"],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Build the introduction from the word blocks.",
+                "sourceHash": "82a0351115171a9665f093745e147b65ccb2113a6d442758e5a1677f52ef00cc"
+              },
+              {
+                "locale": "ru",
+                "value": "Собери представление из блоков слов.",
+                "sourceHash": "82a0351115171a9665f093745e147b65ccb2113a6d442758e5a1677f52ef00cc"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Build phrase",
+                "sourceHash": "5bc1eae141250f6e27d368d9530114bc00369c3595871c2cd3362142a2ea6013"
+              },
+              {
+                "locale": "ru",
+                "value": "Собрать фразу",
+                "sourceHash": "5bc1eae141250f6e27d368d9530114bc00369c3595871c2cd3362142a2ea6013"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Rebuild",
+                "sourceHash": "c356df5c468becf5b9840815730d47a18ee7f32dba936fea774e9df1244c0f08"
+              },
+              {
+                "locale": "ru",
+                "value": "Собрать заново",
+                "sourceHash": "c356df5c468becf5b9840815730d47a18ee7f32dba936fea774e9df1244c0f08"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "The phrase is complete.",
+                "sourceHash": "5398ae3bac9a9a86a47cb888c21e289af10179d55fa9a29722c6034d5def650f"
+              },
+              {
+                "locale": "ru",
+                "value": "Фраза собрана.",
+                "sourceHash": "5398ae3bac9a9a86a47cb888c21e289af10179d55fa9a29722c6034d5def650f"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Start with the speaker and then add the detail.",
+                "sourceHash": "6b7d51239ba411a0f4466cdcb46ddbf108ad7693888198a2d86c1c826e120263"
+              },
+              {
+                "locale": "ru",
+                "value": "Начни с говорящего, затем добавь подробность.",
+                "sourceHash": "6b7d51239ba411a0f4466cdcb46ddbf108ad7693888198a2d86c1c826e120263"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Use tap controls instead of dragging.",
+                "sourceHash": "918e03512ddd7c3cbb3b0acf0dccb61935fab5c8142181053cfd8ed54388c442"
+              },
+              {
+                "locale": "ru",
+                "value": "Нажимай на блоки вместо перетаскивания.",
+                "sourceHash": "918e03512ddd7c3cbb3b0acf0dccb61935fab5c8142181053cfd8ed54388c442"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.builder.prompt",
+              "label": "Name phrase blocks",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a03",
+                "phraseFrameIds": ["pf.my-name", "pf.from"],
+                "inputMode": "word_bank"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.phrase-builder.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          }
+        }
+      },
+      {
+        "templateRef": {
+          "templateId": "template.repeat.v1",
+          "version": 1,
+          "contentHash": "73c225036fb08b4d4df5d6b4e07d356efcc0e96e9241be958d9c3b269faa2472"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.repeat.v1",
+          "version": 1,
+          "family": "scripted_repeat_compare",
+          "humanName": "Repeat the introduction",
+          "description": "Supports a scripted spoken attempt after listening to the model.",
+          "pedagogicalPurpose": {
+            "phase": "controlled_production",
+            "primarySkillIds": ["skill.name", "skill.origin"],
+            "modalities": ["listening", "speaking"],
+            "estimatedSeconds": 90
+          },
+          "kernel": {
+            "activityTypeKey": "voice.repeat.compare.v1",
+            "kernelVersion": 1,
+            "rendererKey": "voice.repeat-compare.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.voice-repeat.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "200f2533e9f38135f99c648544c5f26ab1677766031e0435c338e55ca2fdcd7c"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "record_or_typed" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "optional",
+            "speechRecognition": "optional",
+            "audioPlayback": true,
+            "network": "none"
+          },
+          "evidenceClaims": [
+            "completion",
+            "spoken_attempt",
+            "spoken_confident"
+          ],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Listen, then repeat the introduction.",
+                "sourceHash": "f19cc7e4dbefddb1f148108c8b47d14f86dfbfb394c34f4a7d31e73ab1cfbc09"
+              },
+              {
+                "locale": "ru",
+                "value": "Послушай, затем повтори представление.",
+                "sourceHash": "f19cc7e4dbefddb1f148108c8b47d14f86dfbfb394c34f4a7d31e73ab1cfbc09"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Start recording",
+                "sourceHash": "339d87e21cc93a6a143cbde69666db3380c54247499d59b0f367d8775960e4a5"
+              },
+              {
+                "locale": "ru",
+                "value": "Начать запись",
+                "sourceHash": "339d87e21cc93a6a143cbde69666db3380c54247499d59b0f367d8775960e4a5"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Record again",
+                "sourceHash": "ad6b95eca60859d8f87ce30283e06e45f6b12e0f33003cc42f307c5ae8136446"
+              },
+              {
+                "locale": "ru",
+                "value": "Записать ещё раз",
+                "sourceHash": "ad6b95eca60859d8f87ce30283e06e45f6b12e0f33003cc42f307c5ae8136446"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "Your spoken attempt was captured.",
+                "sourceHash": "d841b9142ec6c3a404ab01b01cedcad1d1f61bd8d258b41b6495c2c9eabab4a6"
+              },
+              {
+                "locale": "ru",
+                "value": "Твоя голосовая попытка записана.",
+                "sourceHash": "d841b9142ec6c3a404ab01b01cedcad1d1f61bd8d258b41b6495c2c9eabab4a6"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Try once more with the model.",
+                "sourceHash": "773331f3e278ed2c2cfe1b42ee9552d34e8f00df8a65abcdabe0ab336eabd09b"
+              },
+              {
+                "locale": "ru",
+                "value": "Попробуй ещё раз вместе с образцом.",
+                "sourceHash": "773331f3e278ed2c2cfe1b42ee9552d34e8f00df8a65abcdabe0ab336eabd09b"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Continue with the typed response.",
+                "sourceHash": "79f2cf857f2a01a7f8e9ed5d25e3ad20f3a3d41c6b736a3662600f934662f216"
+              },
+              {
+                "locale": "ru",
+                "value": "Продолжи с печатным ответом.",
+                "sourceHash": "79f2cf857f2a01a7f8e9ed5d25e3ad20f3a3d41c6b736a3662600f934662f216"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.repeat.prompt",
+              "label": "Scripted introduction model",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a05",
+                "phraseFrameIds": ["pf.im", "pf.from"],
+                "inputMode": "record_or_typed"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.scripted-repeat.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          },
+          "voiceReleaseRequirements": {
+            "allowedTaskTypes": ["scripted"],
+            "processingMode": "on_device_only"
+          }
+        }
+      },
+      {
+        "templateRef": {
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "family": "quick_spoken_response",
+          "humanName": "Quick introduction response",
+          "description": "Elicits a short spontaneous name or origin response with a typed fallback.",
+          "pedagogicalPurpose": {
+            "phase": "guided_transfer",
+            "primarySkillIds": ["skill.name", "skill.origin"],
+            "modalities": ["speaking"],
+            "estimatedSeconds": 70
+          },
+          "kernel": {
+            "activityTypeKey": "voice.quick.response.v1",
+            "kernelVersion": 1,
+            "rendererKey": "voice.quick-response.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.voice-quick-response.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "fa1732dcb1d25b96389b04e0683cc80b46a218de98e75b382ebfb8841f6d34bf"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "record_or_typed" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "optional",
+            "speechRecognition": "optional",
+            "audioPlayback": true,
+            "network": "none"
+          },
+          "evidenceClaims": ["completion", "spoken_attempt", "transfer"],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Answer the question in your own words.",
+                "sourceHash": "8f782ca780174d750e80f79e95d74ccc102bdff6e03e9c6f0629b43fdcb9966c"
+              },
+              {
+                "locale": "ru",
+                "value": "Ответь на вопрос своими словами.",
+                "sourceHash": "8f782ca780174d750e80f79e95d74ccc102bdff6e03e9c6f0629b43fdcb9966c"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Answer",
+                "sourceHash": "c69ade03ed97d8a210281c7ed4a7db0946793a75ced591f110b986617b10a4a4"
+              },
+              {
+                "locale": "ru",
+                "value": "Ответить",
+                "sourceHash": "c69ade03ed97d8a210281c7ed4a7db0946793a75ced591f110b986617b10a4a4"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Answer again",
+                "sourceHash": "480251525a308551442174690be9e59ebab514523ac36cc1742154b2c6149979"
+              },
+              {
+                "locale": "ru",
+                "value": "Ответить ещё раз",
+                "sourceHash": "480251525a308551442174690be9e59ebab514523ac36cc1742154b2c6149979"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "Your response was captured.",
+                "sourceHash": "dada17e56e48f968cdb7230f3d01fb0c199c9e4b92efebc3acce706e7b07e20b"
+              },
+              {
+                "locale": "ru",
+                "value": "Твой ответ записан.",
+                "sourceHash": "dada17e56e48f968cdb7230f3d01fb0c199c9e4b92efebc3acce706e7b07e20b"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Use the meaning cue and answer once more.",
+                "sourceHash": "774b7bf2c5a60bf6e67b845c16bfd8022be60ab5663ee327c680a4c80d193f24"
+              },
+              {
+                "locale": "ru",
+                "value": "Используй смысловую подсказку и ответь снова.",
+                "sourceHash": "774b7bf2c5a60bf6e67b845c16bfd8022be60ab5663ee327c680a4c80d193f24"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Type the same communicative answer.",
+                "sourceHash": "ba37ca9561b06d6c0a9696fd3c0cdd19178d6a71dd589fef8758cbeaea9535b3"
+              },
+              {
+                "locale": "ru",
+                "value": "Напечатай тот же смысловой ответ.",
+                "sourceHash": "ba37ca9561b06d6c0a9696fd3c0cdd19178d6a71dd589fef8758cbeaea9535b3"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.quick.prompt",
+              "label": "Quick name response",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a06.varied",
+                "phraseFrameIds": ["pf.my-name", "pf.from"],
+                "inputMode": "record_or_typed"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.quick-response.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          },
+          "voiceReleaseRequirements": {
+            "allowedTaskTypes": ["spontaneous"],
+            "processingMode": "on_device_only"
+          }
+        }
+      },
+      {
+        "templateRef": {
+          "templateId": "template.dialogue.v1",
+          "version": 1,
+          "contentHash": "db4466f6ae52e24cbb2b7947c7ebda79d6a5d4f899af43affd5a12d0c953eedb"
+        },
+        "body": {
+          "schemaVersion": "v2-mode-template-body.v1",
+          "templateId": "template.dialogue.v1",
+          "version": 1,
+          "family": "scripted_dialogue",
+          "humanName": "Scripted neighbor introduction",
+          "description": "Runs the prepared introduction as a deterministic turn-taking dialogue.",
+          "pedagogicalPurpose": {
+            "phase": "guided_transfer",
+            "primarySkillIds": [
+              "skill.greet",
+              "skill.name",
+              "skill.origin",
+              "skill.language",
+              "skill.polite-close"
+            ],
+            "modalities": ["listening", "speaking"],
+            "estimatedSeconds": 150
+          },
+          "kernel": {
+            "activityTypeKey": "dialogue.scripted.v1",
+            "kernelVersion": 1,
+            "rendererKey": "scenario.scripted-dialogue.v1",
+            "rendererSchemaVersion": 1,
+            "payloadSchemaKey": "payload.scripted-dialogue.v1",
+            "payloadSchemaVersion": 1,
+            "payloadSchemaHash": "b92a7cc406cd7615772b23cf95cd81b6011cbeb10db3f9d34c29253c155d06ef"
+          },
+          "policies": {
+            "evidence": {
+              "kind": "evidence",
+              "key": "policy.evidence.core",
+              "version": 1,
+              "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+            },
+            "scoring": {
+              "kind": "scoring",
+              "key": "policy.scoring.core",
+              "version": 1,
+              "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+            },
+            "progress": {
+              "kind": "progress",
+              "key": "policy.progress.core",
+              "version": 1,
+              "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+            },
+            "reward": {
+              "kind": "reward",
+              "key": "policy.reward.core",
+              "version": 1,
+              "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+            },
+            "recovery": {
+              "kind": "recovery",
+              "key": "policy.recovery.core",
+              "version": 1,
+              "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+            }
+          },
+          "authoring": {
+            "editableFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "requiredFieldPaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ],
+            "defaultValues": { "inputMode": "turn_taking_or_typed" },
+            "allowedOverridePaths": [
+              "payload.promptId",
+              "payload.phraseFrameIds"
+            ]
+          },
+          "capabilityContract": {
+            "microphone": "optional",
+            "speechRecognition": "optional",
+            "audioPlayback": true,
+            "network": "none"
+          },
+          "evidenceClaims": ["completion", "spoken_attempt", "transfer"],
+          "learnerCopy": {
+            "instruction": [
+              {
+                "locale": "en",
+                "value": "Complete the introduction dialogue.",
+                "sourceHash": "2f41f2487f4a2dd312a959420433185e32f91d5b8a68ee9eb613f9600c03024c"
+              },
+              {
+                "locale": "ru",
+                "value": "Заверши диалог-знакомство.",
+                "sourceHash": "2f41f2487f4a2dd312a959420433185e32f91d5b8a68ee9eb613f9600c03024c"
+              }
+            ],
+            "primaryAction": [
+              {
+                "locale": "en",
+                "value": "Start dialogue",
+                "sourceHash": "ea82cb2f8cc0611e0d483bd6a21b770c4f651fc299ab2ba6ab147798230fd0a5"
+              },
+              {
+                "locale": "ru",
+                "value": "Начать диалог",
+                "sourceHash": "ea82cb2f8cc0611e0d483bd6a21b770c4f651fc299ab2ba6ab147798230fd0a5"
+              }
+            ],
+            "retryAction": [
+              {
+                "locale": "en",
+                "value": "Replay dialogue",
+                "sourceHash": "46be62669764332209082fb30cf1395cbeebb186b12c834319c8dd12d6a084f1"
+              },
+              {
+                "locale": "ru",
+                "value": "Повторить диалог",
+                "sourceHash": "46be62669764332209082fb30cf1395cbeebb186b12c834319c8dd12d6a084f1"
+              }
+            ],
+            "successMessage": [
+              {
+                "locale": "en",
+                "value": "You completed the introduction.",
+                "sourceHash": "3a199eeb298bedd830cabc1aa92927894cc2ae815787551ea569da5483fdb181"
+              },
+              {
+                "locale": "ru",
+                "value": "Ты завершил знакомство.",
+                "sourceHash": "3a199eeb298bedd830cabc1aa92927894cc2ae815787551ea569da5483fdb181"
+              }
+            ],
+            "needsWorkMessage": [
+              {
+                "locale": "en",
+                "value": "Follow the turn cue and try the reply again.",
+                "sourceHash": "b1876a23171bc501c641a43677b0c7c0025f3aa3c2066204eaddfe4b4c2e0fca"
+              },
+              {
+                "locale": "ru",
+                "value": "Следуй подсказке очереди и повтори ответ.",
+                "sourceHash": "b1876a23171bc501c641a43677b0c7c0025f3aa3c2066204eaddfe4b4c2e0fca"
+              }
+            ],
+            "recoveryMessage": [
+              {
+                "locale": "en",
+                "value": "Continue through the typed dialogue route.",
+                "sourceHash": "02c9a5ce4ca76602cf029af2ea39c08e2bdb2d58807135002a826b2a2e53f5b5"
+              },
+              {
+                "locale": "ru",
+                "value": "Продолжи по печатному маршруту диалога.",
+                "sourceHash": "02c9a5ce4ca76602cf029af2ea39c08e2bdb2d58807135002a826b2a2e53f5b5"
+              }
+            ]
+          },
+          "fixtures": [
+            {
+              "fixtureId": "fixture.dialogue.prompt",
+              "label": "Neighbor dialogue opening",
+              "state": "prompt",
+              "payload": {
+                "promptId": "prompt.a08.capstone",
+                "phraseFrameIds": [
+                  "pf.hi",
+                  "pf.my-name",
+                  "pf.from",
+                  "pf.speak",
+                  "pf.nice-to-meet",
+                  "pf.and-you",
+                  "pf.see-you"
+                ],
+                "inputMode": "turn_taking_or_typed"
+              }
+            }
+          ],
+          "compatibility": {
+            "minAppVersion": "2.0.0",
+            "requiredSupportManifestHashes": [
+              "7974e4f464498688c7eacfb6ccf468480fa1627733234301561f222ed08b1944",
+              "a9a8a63f0f5ef29058e72e3fdcf0a49576d4dca3156e41d3a1f36720d9db948c"
+            ],
+            "progressCompatibilityNamespace": "mode.scripted-dialogue.v1"
+          },
+          "learningContractRefs": {
+            "learningEvidenceContractRef": {
+              "id": "learning-evidence-contract.core",
+              "version": 1,
+              "contentHash": "959586945e25e22099a95d06aa28a73f11fe344c599971eda1d72d5605a05b4d"
+            },
+            "prerequisiteGraphRef": {
+              "id": "prerequisite-graph.core",
+              "version": 1,
+              "contentHash": "e9b3ff287ac5ae6c0186082f5ba3864b558c3f94ebf88c362139b90898edbcdd"
+            },
+            "supportFadePolicyRef": {
+              "id": "support-fade-policy.core",
+              "version": 1,
+              "contentHash": "f010640fa3a636fbd0a21f3c90cf672c90beab94c5208fdb3f70dea806c65448"
+            }
+          },
+          "voiceReleaseRequirements": {
+            "allowedTaskTypes": ["scripted"],
+            "processingMode": "on_device_only"
+          }
+        }
+      }
+    ],
+    "policies": [
+      {
+        "ref": {
+          "kind": "evidence",
+          "key": "policy.evidence.core",
+          "version": 1,
+          "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+        },
+        "body": {
+          "schemaVersion": "content-studio-policy-body.v1",
+          "kind": "evidence",
+          "key": "policy.evidence.core",
+          "version": 1,
+          "humanName": "Core learning evidence",
+          "description": "Declares which measured learning constructs may become evidence.",
+          "compatibleFamilies": [
+            "visual_discovery",
+            "listen_choose",
+            "phrase_builder",
+            "scripted_repeat_compare",
+            "quick_spoken_response",
+            "scripted_dialogue"
+          ],
+          "compatibleKernelKeys": [
+            "visual.discovery.v1",
+            "listen.choose.v1",
+            "phrase.builder.v1",
+            "voice.repeat.compare.v1",
+            "voice.quick.response.v1",
+            "dialogue.scripted.v1"
+          ],
+          "configurableFieldPaths": [],
+          "evidenceKinds": [
+            "semantic",
+            "listening",
+            "recall",
+            "spoken",
+            "interaction"
+          ],
+          "claims": [
+            "completion",
+            "accuracy",
+            "spoken_attempt",
+            "spoken_confident",
+            "transfer"
+          ]
+        }
+      },
+      {
+        "ref": {
+          "kind": "scoring",
+          "key": "policy.scoring.core",
+          "version": 1,
+          "contentHash": "4f3834f35089252da0c87cc77cb0faff76f358573b1320b853b32547da94f2be"
+        },
+        "body": {
+          "schemaVersion": "content-studio-policy-body.v1",
+          "kind": "scoring",
+          "key": "policy.scoring.core",
+          "version": 1,
+          "humanName": "Core scoring",
+          "description": "Maps deterministic activity observations to bounded result classifications.",
+          "compatibleFamilies": [
+            "visual_discovery",
+            "listen_choose",
+            "phrase_builder",
+            "scripted_repeat_compare",
+            "quick_spoken_response",
+            "scripted_dialogue"
+          ],
+          "compatibleKernelKeys": [
+            "visual.discovery.v1",
+            "listen.choose.v1",
+            "phrase.builder.v1",
+            "voice.repeat.compare.v1",
+            "voice.quick.response.v1",
+            "dialogue.scripted.v1"
+          ],
+          "configurableFieldPaths": [],
+          "evidenceKinds": [
+            "semantic",
+            "listening",
+            "recall",
+            "spoken",
+            "interaction"
+          ],
+          "claims": [
+            "completion",
+            "accuracy",
+            "spoken_attempt",
+            "spoken_confident",
+            "transfer"
+          ]
+        }
+      },
+      {
+        "ref": {
+          "kind": "progress",
+          "key": "policy.progress.core",
+          "version": 1,
+          "contentHash": "17f8e69cc5e2c447938720423e1098b32a932eb0ec623114dc7ce0c54ec0b990"
+        },
+        "body": {
+          "schemaVersion": "content-studio-policy-body.v1",
+          "kind": "progress",
+          "key": "policy.progress.core",
+          "version": 1,
+          "humanName": "Core progress",
+          "description": "Defines completion-compatible progress without claiming mastery.",
+          "compatibleFamilies": [
+            "visual_discovery",
+            "listen_choose",
+            "phrase_builder",
+            "scripted_repeat_compare",
+            "quick_spoken_response",
+            "scripted_dialogue"
+          ],
+          "compatibleKernelKeys": [
+            "visual.discovery.v1",
+            "listen.choose.v1",
+            "phrase.builder.v1",
+            "voice.repeat.compare.v1",
+            "voice.quick.response.v1",
+            "dialogue.scripted.v1"
+          ],
+          "configurableFieldPaths": [],
+          "evidenceKinds": [],
+          "claims": ["completion"]
+        }
+      },
+      {
+        "ref": {
+          "kind": "reward",
+          "key": "policy.reward.core",
+          "version": 1,
+          "contentHash": "12a8ac49349cfada0ae0d6ca9130f9956081ee05e020eee0631b6dacae399239"
+        },
+        "body": {
+          "schemaVersion": "content-studio-policy-body.v1",
+          "kind": "reward",
+          "key": "policy.reward.core",
+          "version": 1,
+          "humanName": "Core performance reward",
+          "description": "Maps bounded activity performance to non-mastery reward output.",
+          "compatibleFamilies": [
+            "visual_discovery",
+            "listen_choose",
+            "phrase_builder",
+            "scripted_repeat_compare",
+            "quick_spoken_response",
+            "scripted_dialogue"
+          ],
+          "compatibleKernelKeys": [
+            "visual.discovery.v1",
+            "listen.choose.v1",
+            "phrase.builder.v1",
+            "voice.repeat.compare.v1",
+            "voice.quick.response.v1",
+            "dialogue.scripted.v1"
+          ],
+          "configurableFieldPaths": [],
+          "evidenceKinds": [],
+          "claims": ["completion", "accuracy"]
+        }
+      },
+      {
+        "ref": {
+          "kind": "recovery",
+          "key": "policy.recovery.core",
+          "version": 1,
+          "contentHash": "4cfec2b3a747ae6b8aad4a6c145ce70a146a8d9055be2854886accbfbda359c4"
+        },
+        "body": {
+          "schemaVersion": "content-studio-policy-body.v1",
+          "kind": "recovery",
+          "key": "policy.recovery.core",
+          "version": 1,
+          "humanName": "Core deterministic recovery",
+          "description": "Selects bounded retry and deterministic accessibility fallback behavior.",
+          "compatibleFamilies": [
+            "visual_discovery",
+            "listen_choose",
+            "phrase_builder",
+            "scripted_repeat_compare",
+            "quick_spoken_response",
+            "scripted_dialogue"
+          ],
+          "compatibleKernelKeys": [
+            "visual.discovery.v1",
+            "listen.choose.v1",
+            "phrase.builder.v1",
+            "voice.repeat.compare.v1",
+            "voice.quick.response.v1",
+            "dialogue.scripted.v1"
+          ],
+          "configurableFieldPaths": [],
+          "evidenceKinds": [],
+          "claims": ["completion"]
+        }
+      }
+    ],
+    "fadeRuleIds": ["fade.model-to-partial.v1"],
+    "escalationRuleIds": ["escalate.targeted-repair.v1"],
+    "assetIds": ["asset.ep01.neighbor-scene"],
+    "contentUnitIds": [
+      "cu.greeting",
+      "cu.name",
+      "cu.origin",
+      "cu.country",
+      "cu.language",
+      "cu.partner-name",
+      "cu.partner-origin",
+      "cu.meeting-reaction",
+      "cu.turn-return",
+      "cu.closing",
+      "cu.time-reference",
+      "cu.role"
+    ]
+  },
+  "episode": {
+    "schemaVersion": "v2-episode-contract.v1",
+    "episodeId": "ep-01",
+    "seasonId": "season-pilot-en-ru",
+    "episodeKind": "ordinary",
+    "ordinal": 1,
+    "chapterId": "chapter-01",
+    "estimatedMinutes": 12,
+    "title": [
+      {
+        "locale": "en",
+        "value": "Hello, I'm…",
+        "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      }
+    ],
+    "canDoOutcome": [
+      {
+        "locale": "en",
+        "value": "Greet someone, say my name, country and language, and close the introduction.",
+        "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      }
+    ],
+    "scenario": {
+      "scenarioId": "scenario.ep01.new-neighbor",
+      "title": [
+        {
+          "locale": "en",
+          "value": "Meet a new neighbor",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "setting": [
+        {
+          "locale": "en",
+          "value": "Meeting a new neighbor",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "learnerRole": [
+        {
+          "locale": "en",
+          "value": "New neighbor",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "partnerRole": [
+        {
+          "locale": "en",
+          "value": "Neighbor",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "communicativeGoal": [
+        {
+          "locale": "en",
+          "value": "Introduce yourself and invite a reply",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "successCondition": [
+        {
+          "locale": "en",
+          "value": "Exchange names and origins and close politely",
+          "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "criticalConstraintIds": ["constraint.polite-close"]
+    },
+    "objectiveIds": ["objective.introduce-self"],
+    "skillIds": [
+      "skill.greet",
+      "skill.name",
+      "skill.origin",
+      "skill.language",
+      "skill.polite-close"
+    ],
+    "phraseFrames": [
+      {
+        "phraseFrameId": "pf.hi",
+        "targetPattern": "Hi",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "A friendly greeting",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.greeting"],
+        "skillIds": ["skill.greet"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.im",
+        "targetPattern": "I'm …",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Introduce a detail about yourself",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.role"],
+        "skillIds": ["skill.name"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.my-name",
+        "targetPattern": "My name is …",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Say your name",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.name"],
+        "skillIds": ["skill.name"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.from",
+        "targetPattern": "I'm from …",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Say where you are from",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.origin", "slot.country"],
+        "skillIds": ["skill.origin"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.speak",
+        "targetPattern": "I speak …",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Say a language you speak",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.language"],
+        "skillIds": ["skill.language"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.nice-to-meet",
+        "targetPattern": "Nice to meet you",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "React politely",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.meeting-reaction"],
+        "skillIds": ["skill.polite-close"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.and-you",
+        "targetPattern": "And you?",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Invite the other person to answer",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": [
+          "slot.turn-return",
+          "slot.partner-name",
+          "slot.partner-origin"
+        ],
+        "skillIds": ["skill.greet"],
+        "required": true
+      },
+      {
+        "phraseFrameId": "pf.see-you",
+        "targetPattern": "See you later",
+        "learnerMeaning": [
+          {
+            "locale": "en",
+            "value": "Close the exchange",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "semanticSlotIds": ["slot.closing", "slot.time-reference"],
+        "skillIds": ["skill.polite-close"],
+        "required": true
+      }
+    ],
+    "semanticSlots": [
+      {
+        "semanticSlotId": "slot.greeting",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Greeting",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["hi", "hello"],
+        "allowedContentUnitIds": ["cu.greeting"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.name",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Learner name",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<learner_name>"],
+        "allowedContentUnitIds": ["cu.name"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.origin",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Learner origin",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["from"],
+        "allowedContentUnitIds": ["cu.origin"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.country",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Country",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<country>"],
+        "allowedContentUnitIds": ["cu.country"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.language",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Language",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<language>"],
+        "allowedContentUnitIds": ["cu.language"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.partner-name",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Partner name",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<partner_name>"],
+        "allowedContentUnitIds": ["cu.partner-name"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": false,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.partner-origin",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Partner origin",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<partner_origin>"],
+        "allowedContentUnitIds": ["cu.partner-origin"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": false,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.meeting-reaction",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Polite meeting reaction",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["nice_to_meet_you"],
+        "allowedContentUnitIds": ["cu.meeting-reaction"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.turn-return",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Return the turn",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["and_you"],
+        "allowedContentUnitIds": ["cu.turn-return"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.closing",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Polite closing",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["see_you_later"],
+        "allowedContentUnitIds": ["cu.closing"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": true,
+        "critical": true
+      },
+      {
+        "semanticSlotId": "slot.time-reference",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Time reference",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["later"],
+        "allowedContentUnitIds": ["cu.time-reference"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": false,
+        "critical": false
+      },
+      {
+        "semanticSlotId": "slot.role",
+        "role": [
+          {
+            "locale": "en",
+            "value": "Learner role",
+            "sourceHash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+          }
+        ],
+        "acceptedTargetValues": ["<role>"],
+        "allowedContentUnitIds": ["cu.role"],
+        "minimumDistinctValues": 1,
+        "requiredInCapstone": false,
+        "critical": false
+      }
+    ],
+    "criticalConstraints": [
+      {
+        "criticalConstraintId": "constraint.polite-close",
+        "description": "Close the introduction politely"
+      }
+    ],
+    "grammarDistinctionIds": ["grammar.i-am", "grammar.you-are"],
+    "soundFocusIds": ["sound.intelligible-introduction"],
+    "assetIds": ["asset.ep01.neighbor-scene"],
+    "activities": [
+      {
+        "activityId": "ep01.a01",
+        "progressCompatibilityKey": "ep01.visual.greeting.v1",
+        "family": "visual_discovery",
+        "activityTypeKey": "visual.discovery.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.visual.v1",
+          "version": 1,
+          "contentHash": "f67fd44440ccc61cdd005f3ac0a021927b81e281bec6bbe15ce61e3b340d6f65"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 60,
+        "contentUnitIds": ["cu.greeting"],
+        "assetIds": ["asset.ep01.neighbor-scene"],
+        "capabilities": {
+          "microphone": "none",
+          "speechRecognition": "none",
+          "audioPlayback": false,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a01"],
+          "media": ["asset.ep01.neighbor-scene"],
+          "input": ["tap"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.greet"],
+          "phraseFrameIds": ["pf.hi"],
+          "semanticSlotIds": ["slot.greeting"]
+        },
+        "tags": {
+          "skillIds": ["skill.greet"],
+          "grammar": [],
+          "vocabulary": ["cu.greeting"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["reading"]
+        },
+        "payload": {
+          "promptId": "prompt.a01",
+          "phraseFrameIds": ["pf.hi"],
+          "inputMode": "tap"
+        }
+      },
+      {
+        "activityId": "ep01.a02",
+        "progressCompatibilityKey": "ep01.listen.greeting.v1",
+        "family": "listen_choose",
+        "activityTypeKey": "listen.choose.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.listen.v1",
+          "version": 1,
+          "contentHash": "c526c2b03e47ea45a2cb7a1c13e0e6471885eae024bab3c928e1c6acc74f2489"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 70,
+        "contentUnitIds": ["cu.greeting", "cu.name"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "none",
+          "speechRecognition": "none",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a02"],
+          "media": [],
+          "input": ["tap"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.greet", "skill.name"],
+          "phraseFrameIds": ["pf.hi", "pf.my-name"],
+          "semanticSlotIds": ["slot.greeting", "slot.name"]
+        },
+        "tags": {
+          "skillIds": ["skill.greet", "skill.name"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.greeting", "cu.name"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["listening"]
+        },
+        "payload": {
+          "promptId": "prompt.a02",
+          "phraseFrameIds": ["pf.hi", "pf.my-name"],
+          "inputMode": "tap"
+        }
+      },
+      {
+        "activityId": "ep01.a03",
+        "progressCompatibilityKey": "ep01.builder.name.v1",
+        "family": "phrase_builder",
+        "activityTypeKey": "phrase.builder.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.builder.v1",
+          "version": 1,
+          "contentHash": "bb0fdd93127f2588fa1aa7ae46ed00656e45ec1d7257f02f61f6364d2fda02b9"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 80,
+        "contentUnitIds": ["cu.name", "cu.origin"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "none",
+          "speechRecognition": "none",
+          "audioPlayback": false,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a03"],
+          "media": [],
+          "input": ["word_bank"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "phraseFrameIds": ["pf.my-name", "pf.from"],
+          "semanticSlotIds": ["slot.name", "slot.origin", "slot.country"]
+        },
+        "tags": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.name", "cu.origin"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["reading", "writing"]
+        },
+        "payload": {
+          "promptId": "prompt.a03",
+          "phraseFrameIds": ["pf.my-name", "pf.from"],
+          "inputMode": "word_bank"
+        }
+      },
+      {
+        "activityId": "ep01.a04",
+        "progressCompatibilityKey": "ep01.builder.varied.v1",
+        "family": "phrase_builder",
+        "activityTypeKey": "phrase.builder.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.builder.v1",
+          "version": 1,
+          "contentHash": "bb0fdd93127f2588fa1aa7ae46ed00656e45ec1d7257f02f61f6364d2fda02b9"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 80,
+        "contentUnitIds": ["cu.country", "cu.language"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "none",
+          "speechRecognition": "none",
+          "audioPlayback": false,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a04.varied"],
+          "media": [],
+          "input": ["word_bank"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.origin", "skill.language"],
+          "phraseFrameIds": ["pf.from", "pf.speak"],
+          "semanticSlotIds": ["slot.origin", "slot.country", "slot.language"]
+        },
+        "tags": {
+          "skillIds": ["skill.origin", "skill.language"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.country", "cu.language"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["reading", "writing"]
+        },
+        "payload": {
+          "promptId": "prompt.a04.varied",
+          "phraseFrameIds": ["pf.from", "pf.speak"],
+          "inputMode": "word_bank"
+        }
+      },
+      {
+        "activityId": "ep01.a05",
+        "progressCompatibilityKey": "ep01.repeat.intro.v1",
+        "family": "scripted_repeat_compare",
+        "activityTypeKey": "voice.repeat.compare.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.repeat.v1",
+          "version": 1,
+          "contentHash": "73c225036fb08b4d4df5d6b4e07d356efcc0e96e9241be958d9c3b269faa2472"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 90,
+        "contentUnitIds": ["cu.name", "cu.origin"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a05"],
+          "media": [],
+          "input": ["record_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "phraseFrameIds": ["pf.im", "pf.from"],
+          "semanticSlotIds": ["slot.role", "slot.origin", "slot.country"]
+        },
+        "tags": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.name", "cu.origin"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["listening", "speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a05",
+          "phraseFrameIds": ["pf.im", "pf.from"],
+          "inputMode": "record_or_typed"
+        }
+      },
+      {
+        "activityId": "ep01.a06",
+        "progressCompatibilityKey": "ep01.quick.name.v1",
+        "family": "quick_spoken_response",
+        "activityTypeKey": "voice.quick.response.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 70,
+        "contentUnitIds": ["cu.name", "cu.country"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a06.varied"],
+          "media": [],
+          "input": ["record_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "phraseFrameIds": ["pf.my-name", "pf.from"],
+          "semanticSlotIds": ["slot.name", "slot.origin", "slot.country"]
+        },
+        "tags": {
+          "skillIds": ["skill.name", "skill.origin"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.name", "cu.country"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a06.varied",
+          "phraseFrameIds": ["pf.my-name", "pf.from"],
+          "inputMode": "record_or_typed"
+        }
+      },
+      {
+        "activityId": "ep01.a07",
+        "progressCompatibilityKey": "ep01.quick.reply.v1",
+        "family": "quick_spoken_response",
+        "activityTypeKey": "voice.quick.response.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 70,
+        "contentUnitIds": ["cu.language", "cu.turn-return"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a07.varied"],
+          "media": [],
+          "input": ["record_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.language", "skill.greet"],
+          "phraseFrameIds": ["pf.speak", "pf.and-you"],
+          "semanticSlotIds": [
+            "slot.language",
+            "slot.turn-return",
+            "slot.partner-name",
+            "slot.partner-origin"
+          ]
+        },
+        "tags": {
+          "skillIds": ["skill.language", "skill.greet"],
+          "grammar": ["grammar.i-am", "grammar.you-are"],
+          "vocabulary": ["cu.language", "cu.turn-return"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a07.varied",
+          "phraseFrameIds": ["pf.speak", "pf.and-you"],
+          "inputMode": "record_or_typed"
+        }
+      },
+      {
+        "activityId": "ep01.a08",
+        "progressCompatibilityKey": "ep01.dialogue.capstone.v1",
+        "family": "scripted_dialogue",
+        "activityTypeKey": "dialogue.scripted.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.dialogue.v1",
+          "version": 1,
+          "contentHash": "db4466f6ae52e24cbb2b7947c7ebda79d6a5d4f899af43affd5a12d0c953eedb"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 150,
+        "contentUnitIds": [
+          "cu.greeting",
+          "cu.name",
+          "cu.origin",
+          "cu.language",
+          "cu.turn-return",
+          "cu.closing"
+        ],
+        "assetIds": ["asset.ep01.neighbor-scene"],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a08.capstone"],
+          "media": ["asset.ep01.neighbor-scene"],
+          "input": ["turn_taking_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": [
+            "skill.greet",
+            "skill.name",
+            "skill.origin",
+            "skill.language",
+            "skill.polite-close"
+          ],
+          "phraseFrameIds": [
+            "pf.hi",
+            "pf.my-name",
+            "pf.from",
+            "pf.speak",
+            "pf.nice-to-meet",
+            "pf.and-you",
+            "pf.see-you"
+          ],
+          "semanticSlotIds": [
+            "slot.greeting",
+            "slot.name",
+            "slot.origin",
+            "slot.country",
+            "slot.language",
+            "slot.meeting-reaction",
+            "slot.turn-return",
+            "slot.partner-name",
+            "slot.partner-origin",
+            "slot.closing",
+            "slot.time-reference"
+          ]
+        },
+        "tags": {
+          "skillIds": [
+            "skill.greet",
+            "skill.name",
+            "skill.origin",
+            "skill.language",
+            "skill.polite-close"
+          ],
+          "grammar": ["grammar.i-am", "grammar.you-are"],
+          "vocabulary": [
+            "cu.greeting",
+            "cu.name",
+            "cu.origin",
+            "cu.language",
+            "cu.turn-return",
+            "cu.closing"
+          ],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["listening", "speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a08.capstone",
+          "phraseFrameIds": [
+            "pf.hi",
+            "pf.my-name",
+            "pf.from",
+            "pf.speak",
+            "pf.nice-to-meet",
+            "pf.and-you",
+            "pf.see-you"
+          ],
+          "inputMode": "turn_taking_or_typed"
+        }
+      },
+      {
+        "activityId": "ep01.a09",
+        "progressCompatibilityKey": "ep01.independent.v1",
+        "family": "quick_spoken_response",
+        "activityTypeKey": "voice.quick.response.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 90,
+        "contentUnitIds": ["cu.greeting", "cu.name", "cu.origin"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a09.independent"],
+          "media": [],
+          "input": ["record_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.greet", "skill.name", "skill.origin"],
+          "phraseFrameIds": ["pf.hi", "pf.my-name", "pf.from"],
+          "semanticSlotIds": [
+            "slot.greeting",
+            "slot.name",
+            "slot.origin",
+            "slot.country"
+          ]
+        },
+        "tags": {
+          "skillIds": ["skill.greet", "skill.name", "skill.origin"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.greeting", "cu.name", "cu.origin"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a09.independent",
+          "phraseFrameIds": ["pf.hi", "pf.my-name", "pf.from"],
+          "inputMode": "record_or_typed"
+        }
+      },
+      {
+        "activityId": "ep01.a10",
+        "progressCompatibilityKey": "ep01.delayed.v1",
+        "family": "quick_spoken_response",
+        "activityTypeKey": "voice.quick.response.v1",
+        "kernelVersion": 1,
+        "templateRef": {
+          "templateId": "template.quick.v1",
+          "version": 1,
+          "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+        },
+        "payloadSchemaVersion": 1,
+        "estimatedSeconds": 90,
+        "contentUnitIds": ["cu.greeting", "cu.name", "cu.origin"],
+        "assetIds": [],
+        "capabilities": {
+          "microphone": "optional",
+          "speechRecognition": "optional",
+          "audioPlayback": true,
+          "network": "none"
+        },
+        "requirements": {
+          "prompt": ["prompt.a10.delayed"],
+          "media": [],
+          "input": ["record_or_typed"],
+          "fallback": {
+            "deterministicScripted": true,
+            "offline": "full",
+            "nonVoiceCoreEquivalent": true
+          }
+        },
+        "targets": {
+          "skillIds": ["skill.greet", "skill.name", "skill.origin"],
+          "phraseFrameIds": ["pf.hi", "pf.my-name", "pf.from"],
+          "semanticSlotIds": [
+            "slot.greeting",
+            "slot.name",
+            "slot.origin",
+            "slot.country"
+          ]
+        },
+        "tags": {
+          "skillIds": ["skill.greet", "skill.name", "skill.origin"],
+          "grammar": ["grammar.i-am"],
+          "vocabulary": ["cu.greeting", "cu.name", "cu.origin"],
+          "scenario": ["scenario.ep01.new-neighbor"],
+          "modalities": ["speaking"]
+        },
+        "payload": {
+          "promptId": "prompt.a10.delayed",
+          "phraseFrameIds": ["pf.hi", "pf.my-name", "pf.from"],
+          "inputMode": "record_or_typed"
+        }
+      }
+    ],
+    "graph": {
+      "startNodeId": "ep01.n01",
+      "capstoneNodeId": "ep01.n08",
+      "nodes": [
+        {
+          "nodeId": "ep01.n01",
+          "activityId": "ep01.a01",
+          "position": 1,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "phase": "encounter_build",
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.greet",
+              "construct": "semantic",
+              "phase": "encounter_build",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "encounter_build",
+            "allowedSupportLevels": ["model", "full_text"],
+            "maximumHints": 2,
+            "answerExposure": "allowed",
+            "context": {
+              "contextId": "ctx.n01",
+              "surfaceFormId": "surface.greeting.scene",
+              "novelty": "trained"
+            },
+            "prompt": { "promptId": "prompt.n01", "reusedFromTraining": true }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot01",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n02",
+          "activityId": "ep01.a02",
+          "position": 2,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "phase": "encounter_build",
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.name",
+              "construct": "listening",
+              "phase": "encounter_build",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "encounter_build",
+            "allowedSupportLevels": ["model", "full_text"],
+            "maximumHints": 2,
+            "answerExposure": "allowed",
+            "context": {
+              "contextId": "ctx.n02",
+              "surfaceFormId": "surface.listen.intro",
+              "novelty": "trained"
+            },
+            "prompt": { "promptId": "prompt.n02", "reusedFromTraining": true }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot02",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n03",
+          "activityId": "ep01.a03",
+          "position": 3,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "phase": "encounter_build",
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.name",
+              "construct": "recall",
+              "phase": "encounter_build",
+              "target": {
+                "targetKind": "semantic_slot",
+                "targetId": "slot.name"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "encounter_build",
+            "allowedSupportLevels": ["model", "full_text"],
+            "maximumHints": 2,
+            "answerExposure": "allowed",
+            "context": {
+              "contextId": "ctx.n03",
+              "surfaceFormId": "surface.build.name",
+              "novelty": "trained"
+            },
+            "prompt": { "promptId": "prompt.n03", "reusedFromTraining": true }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot03",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n04",
+          "activityId": "ep01.a04",
+          "position": 4,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "phase": "near_transfer",
+          "transferFromNodeId": "ep01.n03",
+          "variedSemanticSlotIds": ["slot.country", "slot.language"],
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.origin",
+              "construct": "recall",
+              "phase": "near_transfer",
+              "target": {
+                "targetKind": "semantic_slot",
+                "targetId": "slot.origin"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "near_transfer",
+            "allowedSupportLevels": ["partial_cue", "visual_only"],
+            "maximumHints": 1,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.n04.varied",
+              "surfaceFormId": "surface.build.origin.varied",
+              "novelty": "varied"
+            },
+            "prompt": {
+              "promptId": "prompt.n04.varied",
+              "reusedFromTraining": false
+            }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot04",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n05",
+          "activityId": "ep01.a05",
+          "position": 5,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "fallback": {
+            "policy": "same_node",
+            "reasonCodes": [
+              "permission_denied",
+              "microphone_unavailable",
+              "accessibility_preference"
+            ],
+            "coreCompletionEquivalent": true,
+            "voiceEvidenceEquivalent": false
+          },
+          "phase": "encounter_build",
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.origin",
+              "construct": "spoken",
+              "phase": "encounter_build",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "encounter_build",
+            "allowedSupportLevels": ["model", "full_text"],
+            "maximumHints": 2,
+            "answerExposure": "allowed",
+            "context": {
+              "contextId": "ctx.n05",
+              "surfaceFormId": "surface.repeat.intro",
+              "novelty": "trained"
+            },
+            "prompt": { "promptId": "prompt.n05", "reusedFromTraining": true }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot05",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n06",
+          "activityId": "ep01.a06",
+          "position": 6,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "fallback": {
+            "policy": "same_node",
+            "reasonCodes": [
+              "permission_denied",
+              "microphone_unavailable",
+              "accessibility_preference"
+            ],
+            "coreCompletionEquivalent": true,
+            "voiceEvidenceEquivalent": false
+          },
+          "phase": "near_transfer",
+          "transferFromNodeId": "ep01.n05",
+          "variedSemanticSlotIds": ["slot.name", "slot.country"],
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.name",
+              "construct": "spoken",
+              "phase": "near_transfer",
+              "target": {
+                "targetKind": "semantic_slot",
+                "targetId": "slot.name"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "near_transfer",
+            "allowedSupportLevels": ["partial_cue", "visual_only", "none"],
+            "maximumHints": 1,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.n06.varied",
+              "surfaceFormId": "surface.quick.name.varied",
+              "novelty": "varied"
+            },
+            "prompt": {
+              "promptId": "prompt.n06.varied",
+              "reusedFromTraining": false
+            }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot06",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n07",
+          "activityId": "ep01.a07",
+          "position": 7,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "fallback": {
+            "policy": "same_node",
+            "reasonCodes": [
+              "permission_denied",
+              "microphone_unavailable",
+              "accessibility_preference"
+            ],
+            "coreCompletionEquivalent": true,
+            "voiceEvidenceEquivalent": false
+          },
+          "phase": "near_transfer",
+          "transferFromNodeId": "ep01.n02",
+          "variedSemanticSlotIds": ["slot.language", "slot.turn-return"],
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.language",
+              "construct": "interaction",
+              "phase": "near_transfer",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "near_transfer",
+            "allowedSupportLevels": ["partial_cue", "visual_only", "none"],
+            "maximumHints": 1,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.n07.varied",
+              "surfaceFormId": "surface.quick.reply.varied",
+              "novelty": "varied"
+            },
+            "prompt": {
+              "promptId": "prompt.n07.varied",
+              "reusedFromTraining": false
+            }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot07",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n08",
+          "activityId": "ep01.a08",
+          "position": 8,
+          "visible": true,
+          "requiredForCore": true,
+          "voiceEvidenceOptional": true,
+          "fallback": {
+            "policy": "same_node",
+            "reasonCodes": [
+              "permission_denied",
+              "microphone_unavailable",
+              "network_unavailable",
+              "accessibility_preference"
+            ],
+            "coreCompletionEquivalent": true,
+            "voiceEvidenceEquivalent": false
+          },
+          "phase": "near_transfer",
+          "transferFromNodeId": "ep01.n01",
+          "variedSemanticSlotIds": [
+            "slot.partner-name",
+            "slot.partner-origin",
+            "slot.closing"
+          ],
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.polite-close",
+              "construct": "interaction",
+              "phase": "near_transfer",
+              "target": {
+                "targetKind": "critical_constraint",
+                "targetId": "constraint.polite-close"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "near_transfer",
+            "allowedSupportLevels": ["partial_cue", "visual_only", "none"],
+            "maximumHints": 1,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.n08.capstone",
+              "surfaceFormId": "surface.dialogue.new-neighbor",
+              "novelty": "novel"
+            },
+            "prompt": {
+              "promptId": "prompt.n08.capstone",
+              "reusedFromTraining": false
+            }
+          },
+          "gateEligible": true,
+          "starSlotId": "ep01.slot08",
+          "maxStars": 3
+        },
+        {
+          "nodeId": "ep01.n09",
+          "activityId": "ep01.a09",
+          "position": 9,
+          "visible": true,
+          "requiredForCore": false,
+          "voiceEvidenceOptional": true,
+          "fallback": {
+            "policy": "same_node",
+            "reasonCodes": [
+              "permission_denied",
+              "microphone_unavailable",
+              "accessibility_preference"
+            ],
+            "coreCompletionEquivalent": true,
+            "voiceEvidenceEquivalent": false
+          },
+          "phase": "independent_probe",
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.origin",
+              "construct": "spoken",
+              "phase": "independent_probe",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "independent_probe",
+            "allowedSupportLevels": ["partial_cue", "visual_only", "none"],
+            "maximumHints": 0,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.n09.independent",
+              "surfaceFormId": "surface.independent.new-person",
+              "novelty": "novel"
+            },
+            "prompt": {
+              "promptId": "prompt.n09.independent",
+              "reusedFromTraining": false,
+              "separatePrompt": true
+            }
+          },
+          "gateEligible": false,
+          "maxStars": 0
+        }
+      ],
+      "edges": [
+        {
+          "edgeId": "edge.01-02",
+          "fromNodeId": "ep01.n01",
+          "toNodeId": "ep01.n02",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.02-03",
+          "fromNodeId": "ep01.n02",
+          "toNodeId": "ep01.n03",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.03-04",
+          "fromNodeId": "ep01.n03",
+          "toNodeId": "ep01.n04",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.04-05",
+          "fromNodeId": "ep01.n04",
+          "toNodeId": "ep01.n05",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.05-06",
+          "fromNodeId": "ep01.n05",
+          "toNodeId": "ep01.n06",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.06-07",
+          "fromNodeId": "ep01.n06",
+          "toNodeId": "ep01.n07",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.07-08",
+          "fromNodeId": "ep01.n07",
+          "toNodeId": "ep01.n08",
+          "condition": "completed"
+        },
+        {
+          "edgeId": "edge.07-09",
+          "fromNodeId": "ep01.n07",
+          "toNodeId": "ep01.n09",
+          "condition": "needs_reinforcement"
+        },
+        {
+          "edgeId": "edge.09-08",
+          "fromNodeId": "ep01.n09",
+          "toNodeId": "ep01.n08",
+          "condition": "completed"
+        }
+      ]
+    },
+    "starSlots": [
+      {
+        "starSlotId": "ep01.slot01",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n01"]
+      },
+      {
+        "starSlotId": "ep01.slot02",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n02"]
+      },
+      {
+        "starSlotId": "ep01.slot03",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n03"]
+      },
+      {
+        "starSlotId": "ep01.slot04",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n04"]
+      },
+      {
+        "starSlotId": "ep01.slot05",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n05"]
+      },
+      {
+        "starSlotId": "ep01.slot06",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n06"]
+      },
+      {
+        "starSlotId": "ep01.slot07",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n07"]
+      },
+      {
+        "starSlotId": "ep01.slot08",
+        "maxStars": 3,
+        "acceptedNodeIds": ["ep01.n08"]
+      }
+    ],
+    "requiredLoops": {
+      "encounterBuildNodeIds": ["ep01.n01", "ep01.n02", "ep01.n03", "ep01.n05"],
+      "nearTransferNodeIds": ["ep01.n04", "ep01.n06", "ep01.n07", "ep01.n08"]
+    },
+    "assessmentNodes": {
+      "independentProbeNodeIds": ["ep01.n09"],
+      "optionalReviewNodeIds": []
+    },
+    "capstoneContract": {
+      "objectiveIds": ["objective.introduce-self"],
+      "requiredSemanticSlotIds": [
+        "slot.greeting",
+        "slot.name",
+        "slot.origin",
+        "slot.country",
+        "slot.language",
+        "slot.meeting-reaction",
+        "slot.turn-return",
+        "slot.closing"
+      ],
+      "criticalConstraintIds": ["constraint.polite-close"],
+      "primaryNodeIds": ["ep01.n08"],
+      "deterministicAlternateNodeIds": []
+    },
+    "learningDesign": {
+      "primaryOutcomeId": "outcome.ep01.introduction",
+      "objectiveIds": ["objective.introduce-self"],
+      "prerequisiteEdges": [],
+      "supportPlan": [
+        {
+          "objectiveId": "objective.introduce-self",
+          "initialSupport": "model",
+          "fadeRuleId": "fade.model-to-partial.v1",
+          "escalationRuleId": "escalate.targeted-repair.v1"
+        }
+      ],
+      "independentProbeRef": "ep01.n09",
+      "delayedProbeRef": {
+        "probeId": "probe.ep01.introduction",
+        "contentHash": "6decc4ec1aa1cbd198d71aff5b2c14b13c0b7fb4e5e627a6c8e931cec8faeb65"
+      },
+      "delayedWindowPolicyId": "dts-7.d3-d7.v1"
+    },
+    "masteryContract": {
+      "evidencePolicyRef": {
+        "kind": "evidence",
+        "key": "policy.evidence.core",
+        "version": 1,
+        "contentHash": "e6d4d1b2faba2bf38f1852528868546cce2024f7c18e14bba4141cb0888ec12b"
+      },
+      "requirements": [
+        {
+          "objectiveId": "objective.introduce-self",
+          "construct": "interaction",
+          "phase": "near_transfer",
+          "requiredValidity": "assessed",
+          "requiredOutcome": "success",
+          "maximumSupport": "partial_cue"
+        },
+        {
+          "objectiveId": "objective.introduce-self",
+          "construct": "spoken",
+          "phase": "independent_probe",
+          "requiredValidity": "assessed",
+          "requiredOutcome": "success",
+          "maximumSupport": "visual_only"
+        },
+        {
+          "objectiveId": "objective.introduce-self",
+          "construct": "spoken",
+          "phase": "delayed_probe",
+          "requiredValidity": "assessed",
+          "requiredOutcome": "success",
+          "maximumSupport": "visual_only"
+        }
+      ],
+      "durableClaimRequiresDelayedProbe": true,
+      "accessibilityHandling": "learning_non_assessment_no_failure",
+      "numericCutoffHypothesisRef": "HYP-V2-003",
+      "performanceStarsAreLearningEvidence": false,
+      "confidentVoiceTurnCountAloneIsSufficient": false
+    },
+    "delayedProbeDefinitions": [
+      {
+        "ref": {
+          "probeId": "probe.ep01.introduction",
+          "contentHash": "6decc4ec1aa1cbd198d71aff5b2c14b13c0b7fb4e5e627a6c8e931cec8faeb65"
+        },
+        "body": {
+          "schemaVersion": "v2-delayed-probe-definition.v1",
+          "probeId": "probe.ep01.introduction",
+          "targetEpisodeId": "ep-01",
+          "probeNodeId": "probe-node.ep01.introduction",
+          "activityBinding": {
+            "activityId": "ep01.a10",
+            "progressCompatibilityKey": "ep01.delayed.v1",
+            "templateRef": {
+              "templateId": "template.quick.v1",
+              "version": 1,
+              "contentHash": "c537c0c4f15cbbf3d672b4b05028d28e937cb96df7935ea22fd7e3cd1160b7c3"
+            }
+          },
+          "evidenceDeclarations": [
+            {
+              "objectiveId": "objective.introduce-self",
+              "skillId": "skill.origin",
+              "construct": "spoken",
+              "phase": "delayed_probe",
+              "target": {
+                "targetKind": "objective",
+                "targetId": "objective.introduce-self"
+              }
+            }
+          ],
+          "pedagogicalContextContract": {
+            "phase": "delayed_probe",
+            "allowedSupportLevels": ["partial_cue", "visual_only", "none"],
+            "maximumHints": 0,
+            "answerExposure": "forbidden",
+            "context": {
+              "contextId": "ctx.delayed.ep01",
+              "surfaceFormId": "surface.delayed.new-neighbor",
+              "novelty": "novel",
+              "newSurfaceForm": true
+            },
+            "prompt": {
+              "promptId": "prompt.delayed.ep01",
+              "reusedFromTraining": false,
+              "separatePrompt": true
+            }
+          },
+          "accessibilityAlternateActivityId": "ep01.a10"
+        }
+      }
+    ],
+    "reviewLinks": [
+      {
+        "scheduleKind": "delayed_probe",
+        "targetEpisodeId": "ep-01",
+        "delay": "d_plus_7",
+        "probeRef": {
+          "probeId": "probe.ep01.introduction",
+          "contentHash": "6decc4ec1aa1cbd198d71aff5b2c14b13c0b7fb4e5e627a6c8e931cec8faeb65"
+        },
+        "windowPolicyId": "dts-7.d3-d7.v1",
+        "skillIds": ["skill.greet", "skill.name", "skill.origin"]
+      }
+    ],
+    "accessibilityRoutes": [
+      {
+        "routeId": "route.primary",
+        "routeKind": "primary",
+        "nodeIds": [
+          "ep01.n01",
+          "ep01.n02",
+          "ep01.n03",
+          "ep01.n04",
+          "ep01.n05",
+          "ep01.n06",
+          "ep01.n07",
+          "ep01.n08"
+        ],
+        "reachableStarSlotIds": [
+          "ep01.slot01",
+          "ep01.slot02",
+          "ep01.slot03",
+          "ep01.slot04",
+          "ep01.slot05",
+          "ep01.slot06",
+          "ep01.slot07",
+          "ep01.slot08"
+        ],
+        "completesRequiredLoops": true,
+        "usesAccessBoost": false,
+        "requiresNetwork": false,
+        "requiresAi": false,
+        "requiresVoiceSpecificStar": false,
+        "measuredConstructs": [
+          "semantic",
+          "listening",
+          "recall",
+          "spoken",
+          "interaction"
+        ]
+      },
+      {
+        "routeId": "route.non-voice",
+        "routeKind": "accessibility",
+        "nodeIds": [
+          "ep01.n01",
+          "ep01.n02",
+          "ep01.n03",
+          "ep01.n04",
+          "ep01.n05",
+          "ep01.n06",
+          "ep01.n07",
+          "ep01.n08"
+        ],
+        "reachableStarSlotIds": [
+          "ep01.slot01",
+          "ep01.slot02",
+          "ep01.slot03",
+          "ep01.slot04",
+          "ep01.slot05",
+          "ep01.slot06",
+          "ep01.slot07",
+          "ep01.slot08"
+        ],
+        "completesRequiredLoops": true,
+        "usesAccessBoost": false,
+        "requiresNetwork": false,
+        "requiresAi": false,
+        "requiresVoiceSpecificStar": false,
+        "measuredConstructs": ["semantic", "recall", "interaction"]
+      }
+    ]
+  },
+  "curriculum": {
+    "schemaVersion": "v2-curriculum-contract.v1",
+    "curriculumId": "curriculum-pilot-en-ru",
+    "seasonId": "season-pilot-en-ru",
+    "scope": {
+      "kind": "vertical_slice",
+      "includedChapterOrdinals": [1],
+      "includedEpisodeOrdinals": [1]
+    },
+    "environment": "lab",
+    "decisionRegistryRef": {
+      "id": "phraseman-v2-product-decisions",
+      "version": 1,
+      "contentHash": "1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a"
+    },
+    "studyTarget": "en",
+    "learnerSourceLocale": "en",
+    "requiredLocales": ["en"],
+    "chapters": [
+      { "chapterId": "chapter-01", "ordinal": 1, "episodeIds": ["ep-01"] }
+    ],
+    "episodeRefs": [
+      {
+        "episodeId": "ep-01",
+        "ordinal": 1,
+        "chapterId": "chapter-01",
+        "episodeKind": "ordinary",
+        "contentHash": "26ca5c61bdcd67a8aa4773030973ae13b04d491cd51aa00b0b4d2f0c59b7d496",
+        "prerequisiteEpisodeIds": [],
+        "introducedMaterial": {
+          "skillIds": [
+            "skill.greet",
+            "skill.name",
+            "skill.origin",
+            "skill.language",
+            "skill.polite-close"
+          ],
+          "phraseFrameIds": [
+            "pf.hi",
+            "pf.im",
+            "pf.my-name",
+            "pf.from",
+            "pf.speak",
+            "pf.nice-to-meet",
+            "pf.and-you",
+            "pf.see-you"
+          ],
+          "grammarDistinctionIds": ["grammar.i-am", "grammar.you-are"],
+          "semanticSlotIds": [
+            "slot.greeting",
+            "slot.name",
+            "slot.origin",
+            "slot.country",
+            "slot.language",
+            "slot.partner-name",
+            "slot.partner-origin",
+            "slot.meeting-reaction",
+            "slot.turn-return",
+            "slot.closing",
+            "slot.time-reference",
+            "slot.role"
+          ],
+          "criticalConstraintIds": ["constraint.polite-close"]
+        },
+        "requiredCheckpointMaterial": {
+          "skillIds": [],
+          "phraseFrameIds": [],
+          "grammarDistinctionIds": [],
+          "semanticSlotIds": [],
+          "criticalConstraintIds": []
+        }
+      }
+    ],
+    "checkpointOrdinals": [],
+    "requiredAssetIds": ["asset.ep01.neighbor-scene"],
+    "requiredCapabilityKeys": [
+      "visual.discovery.v1",
+      "listen.choose.v1",
+      "phrase.builder.v1",
+      "voice.repeat.compare.v1",
+      "voice.quick.response.v1",
+      "dialogue.scripted.v1"
+    ]
+  }
+}

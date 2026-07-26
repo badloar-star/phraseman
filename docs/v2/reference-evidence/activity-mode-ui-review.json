@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "learning-v2-reference-ui-review.v1",
+  "selectedModeIds": [
+    "sound-discrimination",
+    "guided-phrase-pronunciation",
+    "prompted-translation-by-voice",
+    "contextual-dialogue-mission",
+    "speaking-club-mission"
+  ],
+  "decisions": []
+}

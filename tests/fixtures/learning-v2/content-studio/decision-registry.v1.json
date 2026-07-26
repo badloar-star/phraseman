@@ -1,0 +1,351 @@
+{
+  "schemaVersion": "decision-registry-conformance-corpus.v1",
+  "goldenVector": {
+    "value": {
+      "schemaVersion": "hash-golden-vector.v1",
+      "value": "Phraseman V2",
+      "version": 1
+    },
+    "canonicalJson": "{\"schemaVersion\":\"hash-golden-vector.v1\",\"value\":\"Phraseman V2\",\"version\":1}",
+    "sha256": "12ac7b1d9d7c2c06fc88a1b99abfc42f1c21fa48dc8e6c9cea88c639c1291160",
+    "utf8ByteSize": 76
+  },
+  "registryIdSha256": "82912547a29a8e9bb7e8cc7459709d91d409c9af9e689233515b28060c0ea79f",
+  "baseline": {
+    "body": {
+      "schemaVersion": "v2-decision-registry-body.v1",
+      "registryId": "phraseman-v2-product-decisions",
+      "version": 1,
+      "decisions": {
+        "HYP-V2-001": {
+          "decisionId": "HYP-V2-001",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Product + Curriculum",
+          "evidenceRefs": [],
+          "settings": {
+            "seasonEpisodeCount": 32,
+            "chapterCount": 4,
+            "episodesPerChapter": 8,
+            "checkpointOrdinals": [8, 16, 24, 32],
+            "visibleNodeCount": { "min": 8, "max": 9 },
+            "targetEpisodeMinutes": { "min": 12, "max": 18 }
+          }
+        },
+        "HYP-V2-002": {
+          "decisionId": "HYP-V2-002",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Curriculum",
+          "evidenceRefs": [],
+          "settings": {
+            "newPhraseFrames": { "min": 8, "max": 10 },
+            "newSemanticSlots": { "min": 12, "max": 18 },
+            "newSoundContrasts": { "min": 0, "max": 1 },
+            "targetVoiceTurns": { "min": 3, "max": 10 },
+            "maxMandatoryLearningRetries": 2
+          }
+        },
+        "HYP-V2-003": {
+          "decisionId": "HYP-V2-003",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Learning + Analytics",
+          "evidenceRefs": [],
+          "settings": {
+            "completionCutoff": 0.7,
+            "independentMasteryCutoff": 0.8,
+            "checkpointCutoffById": {
+              "ep-08": 0.8,
+              "ep-16": 0.8,
+              "ep-24": 0.8,
+              "ep-32": 0.8
+            }
+          }
+        },
+        "HYP-V2-004": {
+          "decisionId": "HYP-V2-004",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Product + Learning",
+          "evidenceRefs": [],
+          "settings": {
+            "maxStarsPerSlot": 3,
+            "gateEligibleSlotsPerEpisode": 8,
+            "maxStarsPerEpisode": 24,
+            "maxStarsPerSeason": 768
+          }
+        },
+        "HYP-V2-005": {
+          "decisionId": "HYP-V2-005",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Product + Learning",
+          "evidenceRefs": [],
+          "settings": {
+            "requiredLoopKinds": ["encounter_build", "near_transfer"],
+            "localEarnedMinimumByEpisodeOrdinal": [
+              { "episodeOrdinal": 1, "value": 14 },
+              { "episodeOrdinal": 2, "value": 14 },
+              { "episodeOrdinal": 3, "value": 14 },
+              { "episodeOrdinal": 4, "value": 14 },
+              { "episodeOrdinal": 5, "value": 14 },
+              { "episodeOrdinal": 6, "value": 14 },
+              { "episodeOrdinal": 7, "value": 14 },
+              { "episodeOrdinal": 8, "value": 14 },
+              { "episodeOrdinal": 9, "value": 15 },
+              { "episodeOrdinal": 10, "value": 15 },
+              { "episodeOrdinal": 11, "value": 15 },
+              { "episodeOrdinal": 12, "value": 15 },
+              { "episodeOrdinal": 13, "value": 15 },
+              { "episodeOrdinal": 14, "value": 15 },
+              { "episodeOrdinal": 15, "value": 15 },
+              { "episodeOrdinal": 16, "value": 15 },
+              { "episodeOrdinal": 17, "value": 16 },
+              { "episodeOrdinal": 18, "value": 16 },
+              { "episodeOrdinal": 19, "value": 16 },
+              { "episodeOrdinal": 20, "value": 16 },
+              { "episodeOrdinal": 21, "value": 16 },
+              { "episodeOrdinal": 22, "value": 16 },
+              { "episodeOrdinal": 23, "value": 16 },
+              { "episodeOrdinal": 24, "value": 16 },
+              { "episodeOrdinal": 25, "value": 17 },
+              { "episodeOrdinal": 26, "value": 17 },
+              { "episodeOrdinal": 27, "value": 17 },
+              { "episodeOrdinal": 28, "value": 17 },
+              { "episodeOrdinal": 29, "value": 17 },
+              { "episodeOrdinal": 30, "value": 17 },
+              { "episodeOrdinal": 31, "value": 17 },
+              { "episodeOrdinal": 32, "value": 17 }
+            ],
+            "cumulativeAccessByEpisodeOrdinal": [
+              { "episodeOrdinal": 2, "value": 14 },
+              { "episodeOrdinal": 3, "value": 27 },
+              { "episodeOrdinal": 4, "value": 41 },
+              { "episodeOrdinal": 5, "value": 54 },
+              { "episodeOrdinal": 6, "value": 68 },
+              { "episodeOrdinal": 7, "value": 82 },
+              { "episodeOrdinal": 8, "value": 96 },
+              { "episodeOrdinal": 9, "value": 111 },
+              { "episodeOrdinal": 10, "value": 125 },
+              { "episodeOrdinal": 11, "value": 140 },
+              { "episodeOrdinal": 12, "value": 154 },
+              { "episodeOrdinal": 13, "value": 169 },
+              { "episodeOrdinal": 14, "value": 185 },
+              { "episodeOrdinal": 15, "value": 200 },
+              { "episodeOrdinal": 16, "value": 215 },
+              { "episodeOrdinal": 17, "value": 231 },
+              { "episodeOrdinal": 18, "value": 247 },
+              { "episodeOrdinal": 19, "value": 263 },
+              { "episodeOrdinal": 20, "value": 279 },
+              { "episodeOrdinal": 21, "value": 295 },
+              { "episodeOrdinal": 22, "value": 311 },
+              { "episodeOrdinal": 23, "value": 328 },
+              { "episodeOrdinal": 24, "value": 345 },
+              { "episodeOrdinal": 25, "value": 361 },
+              { "episodeOrdinal": 26, "value": 379 },
+              { "episodeOrdinal": 27, "value": 396 },
+              { "episodeOrdinal": 28, "value": 413 },
+              { "episodeOrdinal": 29, "value": 431 },
+              { "episodeOrdinal": 30, "value": 448 },
+              { "episodeOrdinal": 31, "value": 466 },
+              { "episodeOrdinal": 32, "value": 484 }
+            ],
+            "seasonAccessTarget": 500
+          }
+        },
+        "HYP-V2-006": {
+          "decisionId": "HYP-V2-006",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Economy + Analytics",
+          "evidenceRefs": [],
+          "settings": {
+            "accessBoostPriceShards": 3,
+            "maxBoostsPerGate": 3,
+            "maxBoostsPerChapter": 3,
+            "maxBoostsPerSeason": 12,
+            "eligibleDeficit": { "min": 1, "max": 3 },
+            "recoveryImpressionCount": 2,
+            "quoteTtlSeconds": 300
+          }
+        },
+        "HYP-V2-007": {
+          "decisionId": "HYP-V2-007",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Learning + Analytics",
+          "evidenceRefs": [],
+          "settings": {
+            "delayedWindowPolicyId": "dts-7.d3-d7.v1",
+            "assessableWindowDays": { "min": 3, "max": 7 },
+            "postSeasonReviewDays": [1, 7, 21],
+            "successPolicyId": "dts-7.independent-transfer-success.v1"
+          }
+        },
+        "HYP-V2-008": {
+          "decisionId": "HYP-V2-008",
+          "claimLabel": "PRODUCT_HYPOTHESIS",
+          "owner": "Release + Analytics",
+          "evidenceRefs": [],
+          "settings": {
+            "rolloutMilestones": [
+              {
+                "rolloutPercent": 0,
+                "minimumObservationHours": 0,
+                "minimumEligibleAssignments": 0
+              }
+            ]
+          }
+        }
+      }
+    },
+    "record": {
+      "schemaVersion": "v2-decision-registry-record.v1",
+      "ref": {
+        "id": "phraseman-v2-product-decisions",
+        "version": 1,
+        "contentHash": "1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a"
+      },
+      "object": {
+        "objectPath": "content-studio/decision-registries/82912547a29a8e9bb7e8cc7459709d91d409c9af9e689233515b28060c0ea79f/v1/1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a.json",
+        "contentHash": "1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a",
+        "objectGeneration": "1",
+        "byteSize": 4488
+      },
+      "createdAt": "2026-07-15T00:00:00.000Z"
+    }
+  },
+  "validCases": [
+    {
+      "caseId": "valid.baseline.v1",
+      "mutations": [],
+      "expectedContentHash": "1258d89600563b394431ff77180d93f1b4489d1b57d5f871a85f5d99724e294a",
+      "expectedUtf8ByteSize": 4488
+    },
+    {
+      "caseId": "valid.nonbaseline.values.v2",
+      "mutations": [
+        { "op": "set", "path": ["version"], "value": 2 },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "seasonEpisodeCount"], "value": 8 },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "chapterCount"], "value": 2 },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "episodesPerChapter"], "value": 4 },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "checkpointOrdinals"], "value": [4, 8] },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "visibleNodeCount"], "value": { "min": 6, "max": 7 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-001", "settings", "targetEpisodeMinutes"], "value": { "min": 10, "max": 14 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-002", "settings", "newPhraseFrames"], "value": { "min": 4, "max": 6 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-002", "settings", "newSemanticSlots"], "value": { "min": 6, "max": 10 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-002", "settings", "newSoundContrasts"], "value": { "min": 0, "max": 2 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-002", "settings", "targetVoiceTurns"], "value": { "min": 2, "max": 8 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-002", "settings", "maxMandatoryLearningRetries"], "value": 1 },
+        { "op": "set", "path": ["decisions", "HYP-V2-003", "settings", "completionCutoff"], "value": 0.65 },
+        { "op": "set", "path": ["decisions", "HYP-V2-003", "settings", "independentMasteryCutoff"], "value": 0.75 },
+        { "op": "set", "path": ["decisions", "HYP-V2-003", "settings", "checkpointCutoffById"], "value": { "ep-04": 0.75, "ep-08": 0.75 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-004", "settings", "maxStarsPerSlot"], "value": 2 },
+        { "op": "set", "path": ["decisions", "HYP-V2-004", "settings", "gateEligibleSlotsPerEpisode"], "value": 6 },
+        { "op": "set", "path": ["decisions", "HYP-V2-004", "settings", "maxStarsPerEpisode"], "value": 12 },
+        { "op": "set", "path": ["decisions", "HYP-V2-004", "settings", "maxStarsPerSeason"], "value": 96 },
+        { "op": "set", "path": ["decisions", "HYP-V2-005", "settings", "localEarnedMinimumByEpisodeOrdinal"], "value": [{ "episodeOrdinal": 1, "value": 6 }, { "episodeOrdinal": 2, "value": 6 }, { "episodeOrdinal": 3, "value": 6 }, { "episodeOrdinal": 4, "value": 6 }, { "episodeOrdinal": 5, "value": 6 }, { "episodeOrdinal": 6, "value": 6 }, { "episodeOrdinal": 7, "value": 6 }, { "episodeOrdinal": 8, "value": 6 }] },
+        { "op": "set", "path": ["decisions", "HYP-V2-005", "settings", "cumulativeAccessByEpisodeOrdinal"], "value": [{ "episodeOrdinal": 2, "value": 6 }, { "episodeOrdinal": 3, "value": 12 }, { "episodeOrdinal": 4, "value": 18 }, { "episodeOrdinal": 5, "value": 24 }, { "episodeOrdinal": 6, "value": 30 }, { "episodeOrdinal": 7, "value": 36 }, { "episodeOrdinal": 8, "value": 42 }] },
+        { "op": "set", "path": ["decisions", "HYP-V2-005", "settings", "seasonAccessTarget"], "value": 48 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "accessBoostPriceShards"], "value": 4 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "maxBoostsPerGate"], "value": 2 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "maxBoostsPerChapter"], "value": 4 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "maxBoostsPerSeason"], "value": 8 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "eligibleDeficit"], "value": { "min": 1, "max": 2 } },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "recoveryImpressionCount"], "value": 1 },
+        { "op": "set", "path": ["decisions", "HYP-V2-006", "settings", "quoteTtlSeconds"], "value": 600 },
+        { "op": "set", "path": ["decisions", "HYP-V2-007", "settings", "postSeasonReviewDays"], "value": [2, 5, 14] },
+        { "op": "set", "path": ["decisions", "HYP-V2-008", "settings", "rolloutMilestones"], "value": [{ "rolloutPercent": 0, "minimumObservationHours": 0, "minimumEligibleAssignments": 0 }, { "rolloutPercent": 1, "minimumObservationHours": 168, "minimumEligibleAssignments": 100 }, { "rolloutPercent": 5, "minimumObservationHours": 336, "minimumEligibleAssignments": 500 }] }
+      ],
+      "expectedContentHash": "bfd7e0df2483a713580ed5f5b355ce84301fcbe02355a8a91db4182211d5fb37",
+      "expectedUtf8ByteSize": 3007
+    },
+    {
+      "caseId": "valid.calibrated.with_evidence",
+      "mutations": [
+        { "op": "set", "path": ["version"], "value": 3 },
+        { "op": "set", "path": ["decisions", "HYP-V2-003", "claimLabel"], "value": "CALIBRATED" },
+        { "op": "set", "path": ["decisions", "HYP-V2-003", "evidenceRefs"], "value": [{ "id": "checkpoint-cutoff-calibration", "version": 1, "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }] }
+      ],
+      "expectedContentHash": "cf8ea91a451ca2530c92403ef1e1996ccdab0c12e5196518a9a45f5ef56ac577",
+      "expectedUtf8ByteSize": 4611
+    }
+  ],
+  "invalidCases": [
+    { "caseId": "invalid.input.type", "replaceInput": null, "mutations": [], "expectedIssueCodes": ["decision_registry_body_type_invalid"] },
+    { "caseId": "invalid.body.type", "mutations": [{ "op": "set", "path": ["body"], "value": null }], "expectedIssueCodes": ["decision_registry_body_type_invalid"] },
+    { "caseId": "invalid.body.missing_field", "mutations": [{ "op": "delete", "path": ["body", "schemaVersion"] }], "expectedIssueCodes": ["decision_registry_field_missing"] },
+    { "caseId": "invalid.body.unknown_field", "mutations": [{ "op": "set", "path": ["body", "browserOverride"], "value": 1 }], "expectedIssueCodes": ["decision_registry_field_unknown"] },
+    { "caseId": "invalid.body.self_hash", "mutations": [{ "op": "set", "path": ["body", "contentHash"], "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }], "expectedIssueCodes": ["decision_registry_field_unknown"] },
+    { "caseId": "invalid.body.schema", "mutations": [{ "op": "set", "path": ["body", "schemaVersion"], "value": "v2-decision-registry-body.latest" }], "expectedIssueCodes": ["decision_registry_schema_version_invalid"] },
+    { "caseId": "invalid.decisions.missing", "mutations": [{ "op": "delete", "path": ["body", "decisions", "HYP-V2-008"] }], "expectedIssueCodes": ["decision_registry_incomplete"] },
+    { "caseId": "invalid.decisions.extra", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-009"], "value": {} }], "expectedIssueCodes": ["decision_registry_incomplete"] },
+    { "caseId": "invalid.decision.key_mismatch", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-002", "decisionId"], "value": "HYP-V2-001" }], "expectedIssueCodes": ["decision_registry_decision_key_mismatch"] },
+    { "caseId": "invalid.entry.missing_setting", "mutations": [{ "op": "delete", "path": ["body", "decisions", "HYP-V2-006", "settings", "maxBoostsPerChapter"] }], "expectedIssueCodes": ["decision_registry_field_missing"] },
+    { "caseId": "invalid.entry.unknown_setting", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-006", "settings", "maxBoostsPerInstall"], "value": 99 }], "expectedIssueCodes": ["decision_registry_field_unknown"] },
+    { "caseId": "invalid.entry.claim_label", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "claimLabel"], "value": "PROVEN" }], "expectedIssueCodes": ["decision_registry_claim_label_invalid"] },
+    { "caseId": "invalid.entry.owner_whitespace", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "owner"], "value": " Product + Curriculum " }], "expectedIssueCodes": ["decision_registry_entry_invalid"] },
+    { "caseId": "invalid.entry.evidence_ref_null", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "evidenceRefs"], "value": [null] }], "expectedIssueCodes": ["decision_registry_evidence_ref_invalid"] },
+    { "caseId": "invalid.entry.evidence_ref_id", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "evidenceRefs"], "value": [{ "id": "bad id", "version": 1, "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }] }], "expectedIssueCodes": ["decision_registry_evidence_ref_invalid"] },
+    { "caseId": "invalid.entry.evidence_ref_version", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "evidenceRefs"], "value": [{ "id": "calibration", "version": 0, "contentHash": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }] }], "expectedIssueCodes": ["decision_registry_evidence_ref_invalid"] },
+    { "caseId": "invalid.entry.evidence_ref_hash", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "evidenceRefs"], "value": [{ "id": "calibration", "version": 1, "contentHash": "not-a-hash" }] }], "expectedIssueCodes": ["decision_registry_evidence_ref_invalid"] },
+    { "caseId": "invalid.range.null", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-002", "settings", "newPhraseFrames"], "value": null }], "expectedIssueCodes": ["decision_registry_setting_invalid"] },
+    { "caseId": "invalid.range.reversed", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-002", "settings", "newPhraseFrames"], "value": { "min": 10, "max": 8 } }], "expectedIssueCodes": ["decision_registry_range_invalid"] },
+    { "caseId": "invalid.fraction.out_of_bounds", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-003", "settings", "completionCutoff"], "value": 1.01 }], "expectedIssueCodes": ["decision_registry_fraction_invalid"] },
+    { "caseId": "invalid.integer.fractional", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "settings", "chapterCount"], "value": 4.5 }], "expectedIssueCodes": ["decision_registry_integer_invalid"] },
+    { "caseId": "invalid.integer.unsafe", "mutations": [{ "op": "set", "path": ["body", "version"], "value": 9007199254740992 }], "expectedIssueCodes": ["decision_registry_integer_invalid"] },
+    { "caseId": "invalid.001.chapter_arithmetic", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "settings", "seasonEpisodeCount"], "value": 31 }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.001.huge_chapter_count_no_throw", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "settings", "chapterCount"], "value": 4294967296 }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.003.checkpoint_count", "mutations": [{ "op": "delete", "path": ["body", "decisions", "HYP-V2-003", "settings", "checkpointCutoffById", "ep-32"] }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.003.checkpoint_id_mismatch", "mutations": [{ "op": "delete", "path": ["body", "decisions", "HYP-V2-003", "settings", "checkpointCutoffById", "ep-32"] }, { "op": "set", "path": ["body", "decisions", "HYP-V2-003", "settings", "checkpointCutoffById", "checkpoint-32"], "value": 0.8 }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.004.episode_star_total", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-004", "settings", "maxStarsPerEpisode"], "value": 23 }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.004.season_star_total", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-004", "settings", "maxStarsPerSeason"], "value": 767 }], "expectedIssueCodes": ["decision_registry_derived_total_mismatch"] },
+    { "caseId": "invalid.005.loop_tuple", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "requiredLoopKinds"], "value": ["near_transfer", "encounter_build"] }], "expectedIssueCodes": ["decision_registry_setting_invalid"] },
+    { "caseId": "invalid.005.local_duplicate", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "localEarnedMinimumByEpisodeOrdinal", 1, "episodeOrdinal"], "value": 1 }], "expectedIssueCodes": ["decision_registry_array_duplicate"] },
+    { "caseId": "invalid.005.local_decrease", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "localEarnedMinimumByEpisodeOrdinal", 1, "value"], "value": 13 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.005.cumulative_unsorted", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "cumulativeAccessByEpisodeOrdinal", 1, "episodeOrdinal"], "value": 1 }], "expectedIssueCodes": ["decision_registry_array_order_invalid"] },
+    { "caseId": "invalid.005.cumulative_unreachable", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "cumulativeAccessByEpisodeOrdinal", 2, "value"], "value": 1000 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.005.season_target", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-005", "settings", "seasonAccessTarget"], "value": 400 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.006.deficit_exceeds_gate_cap", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-006", "settings", "eligibleDeficit", "max"], "value": 4 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.006.deficit_exceeds_chapter_cap", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-006", "settings", "maxBoostsPerChapter"], "value": 2 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.006.deficit_exceeds_season_cap", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-006", "settings", "maxBoostsPerSeason"], "value": 2 }], "expectedIssueCodes": ["decision_registry_curve_unreachable"] },
+    { "caseId": "invalid.007.window_unknown", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-007", "settings", "delayedWindowPolicyId"], "value": "latest" }], "expectedIssueCodes": ["decision_registry_window_policy_invalid"] },
+    { "caseId": "invalid.007.success_policy_unknown", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-007", "settings", "successPolicyId"], "value": "latest" }], "expectedIssueCodes": ["decision_registry_window_policy_invalid"] },
+    { "caseId": "invalid.007.review_days_duplicate", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-007", "settings", "postSeasonReviewDays"], "value": [1, 7, 7] }], "expectedIssueCodes": ["decision_registry_array_duplicate"] },
+    { "caseId": "invalid.008.milestone_type", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-008", "settings", "rolloutMilestones"], "value": [null] }], "expectedIssueCodes": ["decision_registry_setting_invalid"], "expectedIssuePaths": ["$.body.decisions.HYP-V2-008.settings.rolloutMilestones[0]"] },
+    { "caseId": "invalid.008.v1_nonzero_rollout", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-008", "settings", "rolloutMilestones"], "value": [{ "rolloutPercent": 0, "minimumObservationHours": 0, "minimumEligibleAssignments": 0 }, { "rolloutPercent": 1, "minimumObservationHours": 168, "minimumEligibleAssignments": 100 }] }], "expectedIssueCodes": ["decision_registry_rollout_milestone_invalid"] },
+    { "caseId": "invalid.008.percent_unknown", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-008", "settings", "rolloutMilestones", 0, "rolloutPercent"], "value": 2 }], "expectedIssueCodes": ["decision_registry_rollout_milestone_invalid"] },
+    { "caseId": "invalid.008.milestone_unsorted", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-008", "settings", "rolloutMilestones"], "value": [{ "rolloutPercent": 5, "minimumObservationHours": 336, "minimumEligibleAssignments": 500 }, { "rolloutPercent": 1, "minimumObservationHours": 168, "minimumEligibleAssignments": 100 }] }], "expectedIssueCodes": ["decision_registry_array_order_invalid"] },
+    { "caseId": "invalid.008.milestone_minima_decrease", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-008", "settings", "rolloutMilestones"], "value": [{ "rolloutPercent": 0, "minimumObservationHours": 0, "minimumEligibleAssignments": 0 }, { "rolloutPercent": 1, "minimumObservationHours": 168, "minimumEligibleAssignments": 100 }, { "rolloutPercent": 5, "minimumObservationHours": 100, "minimumEligibleAssignments": 500 }] }], "expectedIssueCodes": ["decision_registry_rollout_milestone_invalid"] },
+    { "caseId": "invalid.body.non_nfc", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-001", "owner"], "value": "Café" }], "expectedIssueCodes": ["canonical_json_non_nfc"] },
+    { "caseId": "invalid.record.schema", "mutations": [{ "op": "set", "path": ["record", "schemaVersion"], "value": "v2-decision-registry-record.latest" }], "expectedIssueCodes": ["decision_registry_record_invalid"] },
+    { "caseId": "invalid.record.type", "mutations": [{ "op": "set", "path": ["record"], "value": null }], "expectedIssueCodes": ["decision_registry_record_invalid"] },
+    { "caseId": "invalid.record.ref_null", "mutations": [{ "op": "set", "path": ["record", "ref"], "value": null }], "expectedIssueCodes": ["decision_registry_record_invalid"] },
+    { "caseId": "invalid.record.object_null", "mutations": [{ "op": "set", "path": ["record", "object"], "value": null }], "expectedIssueCodes": ["decision_registry_record_invalid"] },
+    { "caseId": "invalid.ref.id_mismatch", "mutations": [{ "op": "set", "path": ["record", "ref", "id"], "value": "another-registry" }], "expectedIssueCodes": ["decision_registry_id_invalid"] },
+    { "caseId": "invalid.ref.version_mismatch", "mutations": [{ "op": "set", "path": ["record", "ref", "version"], "value": 2 }], "expectedIssueCodes": ["decision_registry_version_invalid"] },
+    { "caseId": "invalid.ref.hash_mismatch", "mutations": [{ "op": "set", "path": ["record", "ref", "contentHash"], "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }], "expectedIssueCodes": ["decision_registry_hash_mismatch"] },
+    { "caseId": "invalid.object.hash_mismatch", "mutations": [{ "op": "set", "path": ["record", "object", "contentHash"], "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" }], "expectedIssueCodes": ["decision_registry_object_hash_mismatch"] },
+    { "caseId": "invalid.object.path_mismatch", "mutations": [{ "op": "set", "path": ["record", "object", "objectPath"], "value": "content-studio/decision-registries/latest.json" }], "expectedIssueCodes": ["decision_registry_object_path_mismatch"] },
+    { "caseId": "invalid.object.generation_empty", "mutations": [{ "op": "set", "path": ["record", "object", "objectGeneration"], "value": "" }], "expectedIssueCodes": ["decision_registry_object_generation_invalid"] },
+    { "caseId": "invalid.object.byte_size", "mutations": [{ "op": "set", "path": ["record", "object", "byteSize"], "value": 7 }], "expectedIssueCodes": ["decision_registry_object_byte_size_invalid"] },
+    { "caseId": "invalid.record.created_at", "mutations": [{ "op": "set", "path": ["record", "createdAt"], "value": "yesterday" }], "expectedIssueCodes": ["decision_registry_created_at_invalid"] },
+    { "caseId": "invalid.record.created_at_impossible", "mutations": [{ "op": "set", "path": ["record", "createdAt"], "value": "2026-02-30T00:00:00.000Z" }], "expectedIssueCodes": ["decision_registry_created_at_invalid"] },
+    { "caseId": "invalid.record.created_at_overprecision", "mutations": [{ "op": "set", "path": ["record", "createdAt"], "value": "2026-07-15T00:00:00.000000Z" }], "expectedIssueCodes": ["decision_registry_created_at_invalid"] },
+    { "caseId": "invalid.resolution.latest", "replaceInput": { "latest": { "registryId": "phraseman-v2-product-decisions" } }, "mutations": [], "expectedIssueCodes": ["decision_registry_latest_ref_forbidden"] },
+    { "caseId": "invalid.multi_error.order", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-003", "settings", "completionCutoff"], "value": 2 }, { "op": "set", "path": ["body", "decisions", "HYP-V2-004", "settings", "maxStarsPerEpisode"], "value": 1 }, { "op": "set", "path": ["body", "decisions", "HYP-V2-007", "settings", "delayedWindowPolicyId"], "value": "latest" }], "expectedIssueCodes": ["decision_registry_fraction_invalid", "decision_registry_derived_total_mismatch", "decision_registry_window_policy_invalid"] },
+    { "caseId": "invalid.multi_same_code_paths", "mutations": [{ "op": "set", "path": ["body", "decisions", "HYP-V2-003", "settings", "completionCutoff"], "value": 2 }, { "op": "set", "path": ["body", "decisions", "HYP-V2-003", "settings", "independentMasteryCutoff"], "value": 2 }], "expectedIssueCodes": ["decision_registry_fraction_invalid", "decision_registry_fraction_invalid"], "expectedIssuePaths": ["$.body.decisions.HYP-V2-003.settings.completionCutoff", "$.body.decisions.HYP-V2-003.settings.independentMasteryCutoff"] }
+  ],
+  "runtimeInvalidCases": [
+    { "caseId": "invalid.runtime.non_nfc", "kind": "non_nfc", "expectedCode": "canonical_json_non_nfc" },
+    { "caseId": "invalid.runtime.lone_surrogate", "kind": "lone_surrogate", "expectedCode": "canonical_json_lone_surrogate" },
+    { "caseId": "invalid.runtime.undefined", "kind": "undefined", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.nan", "kind": "nan", "expectedCode": "canonical_json_non_finite_number" },
+    { "caseId": "invalid.runtime.infinity", "kind": "infinity", "expectedCode": "canonical_json_non_finite_number" },
+    { "caseId": "invalid.runtime.negative_zero", "kind": "negative_zero", "expectedCode": "canonical_json_negative_zero" },
+    { "caseId": "invalid.runtime.sparse", "kind": "sparse", "expectedCode": "canonical_json_sparse_array" },
+    { "caseId": "invalid.runtime.date", "kind": "date", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.map", "kind": "map", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.function", "kind": "function", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.symbol", "kind": "symbol", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.bigint", "kind": "bigint", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.cycle", "kind": "cycle", "expectedCode": "canonical_json_cycle" },
+    { "caseId": "invalid.runtime.array_subclass", "kind": "array_subclass", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.array_accessor", "kind": "array_accessor", "expectedCode": "canonical_json_non_json_value" },
+    { "caseId": "invalid.runtime.array_non_enumerable", "kind": "array_non_enumerable", "expectedCode": "canonical_json_non_json_value" }
+  ]
+}

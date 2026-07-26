@@ -3,6 +3,7 @@ export const ADMIN_ROLES = [
   'admin',
   'support',
   'content_editor',
+  'content_reviewer',
   'moderator',
   'analyst',
   'developer',

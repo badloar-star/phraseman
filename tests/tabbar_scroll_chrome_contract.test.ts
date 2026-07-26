@@ -44,6 +44,25 @@ describe('tabbar scroll chrome contract', () => {
     expect(source).toContain('animateTabChrome(false)');
   });
 
+  // 2026-07-26: на экране БЕЗ скролла (друзья) отскок резинки разворачивал бар сам.
+  // Владелец: там бар должен ждать, пока экран приподнимут вручную. Критично, что
+  // это НЕ распространяется на скроллящиеся экраны — иначе бар залипал свёрнутым.
+  it('waits for a manual lift only on non-scrolling screens', () => {
+    const source = readLayout();
+
+    expect(source).toContain('const TAB_SCROLL_LIFT_TO_EXPAND = 14;');
+    expect(source).toContain('tabScrollCollapsedFromBounceRef');
+    // Скроллящийся экран определяется по ФАКТУ (офсет поднимался выше нуля), а не по
+    // знаку офсета в одном кадре: быстрый флик на длинной ленте тоже проскакивает ноль.
+    expect(source).toContain('tabScrollMaxSeenYRef');
+    expect(source).toContain('const screenScrolls = tabScrollMaxSeenYRef.current > TAB_SCROLL_TOP_ZONE_Y;');
+    // Ожидание ручного подъёма включается ТОЛЬКО когда скроллить нечего.
+    expect(source).toContain('if (!screenScrolls && tabScrollCollapsedFromBounceRef.current) {');
+    expect(source).toContain('const collapsedFromBounce = !screenScrolls;');
+    // Признак не переживает разворот — иначе залип бы навсегда.
+    expect(source).toContain('if (!collapsed) tabScrollCollapsedFromBounceRef.current = false;');
+  });
+
   // 2026-07-26, вторая итерация: владелец забраковал scaleX — иконки видимо
   // растягивало. Ресёрч боевых реализаций (expo-glass-tabs, SwiftUI Liquid Glass)
   // подтвердил: анимируется НАСТОЯЩАЯ ширина, иконки не масштабируются вообще.

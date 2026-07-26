@@ -382,6 +382,10 @@ const TAB_SCROLL_TOP_ZONE_Y = 10;
 /** Порог довода после отпускания пальца: за половиной пути — дожимаем в орб, иначе
  *  возвращаем в капсулу. */
 const TAB_SCROLL_SETTLE_THRESHOLD = 0.5;
+/** Глубина ВЕРХНЕГО overscroll, начиная с которой бар, свёрнутый резинкой на экране
+ *  без скролла, считает, что экран приподняли осознанно. Отскок сам по себе нуля не
+ *  переходит, так что 14 px — просто запас против дребезга на самой границе. */
+const TAB_SCROLL_LIFT_TO_EXPAND = 14;
 /** Пауза без единого кадра скролла, после которой жест считается завершённым. */
 const TAB_SCROLL_SETTLE_IDLE_MS = 90;
 /** Пружина довода. dampingRatio=1 — критическое затухание: доезжает плавно и
@@ -495,6 +499,16 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   /** true, пока прогресс ведёт палец: в этот момент довод по таймеру ещё уместен,
    *  а после довода/фиксации — уже нет. */
   const tabScrollDrivenRef = useRef(false);
+  /** Бар свернулся резинкой на экране БЕЗ скролла — такой бар НЕ разворачивается сам,
+   *  когда резинка отпружинит к нулю: владелец просил, чтобы он ждал, пока экран
+   *  приподнимут вручную. Ставится ТОЛЬКО когда доказано, что скроллить нечего. */
+  const tabScrollCollapsedFromBounceRef = useRef(false);
+  /** Максимальный положительный офсет, который видел текущий таб. Пока он остаётся
+   *  нулевым — контент короче экрана, то есть скроллить нечего и вся вертикальная
+   *  тяга там выражается только резинкой. Это надёжнее, чем смотреть на знак офсета
+   *  в одном кадре: при быстром флике вниз на длинной ленте офсет тоже проскакивает
+   *  через ноль, и по одному кадру бар залипал бы свёрнутым на обычных экранах. */
+  const tabScrollMaxSeenYRef = useRef(0);
   const [pressedTabIdx, setPressedTabIdx] = useState<number | null>(null);
   /** Зеркало tabScrollCollapsedRef в state: pointerEvents и доступность слоёв капсула/орб. */
   const [tabChromeCollapsed, setTabChromeCollapsed] = useState(false);
@@ -567,6 +581,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
    *  программная смена таба. */
   const animateTabChrome = useCallback((collapsed: boolean, immediate = false) => {
     tabScrollCollapsedRef.current = collapsed;
+    // Любой разворот снимает «ждём тяги вверх»: признак касается только текущего
+    // свёрнутого состояния и не должен пережить его (иначе залипнет навсегда).
+    if (!collapsed) tabScrollCollapsedFromBounceRef.current = false;
     setTabChromeCollapsed(collapsed);
     const target = collapsed ? 1 : 0;
     // Пружина, а не timing: при развороте жеста на полпути она перецеливается с
@@ -602,13 +619,17 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     /** Незавершённый жест не должен оставить бар «полусжатым». Таймер перевзводится
      *  на каждом кадре скролла, поэтому срабатывает ровно один раз — когда движение
      *  реально замерло (палец отпущен и инерция погасла). */
-    const armSettle = (progress: number) => {
+    const armSettle = (progress: number, fromBounce: boolean) => {
       if (settleTimer) clearTimeout(settleTimer);
       settleTimer = setTimeout(() => {
         settleTimer = null;
         if (!tabScrollDrivenRef.current) return;
         tabScrollDrivenRef.current = false;
-        animateTabChrome(progress >= TAB_SCROLL_SETTLE_THRESHOLD);
+        const collapsed = progress >= TAB_SCROLL_SETTLE_THRESHOLD;
+        // Признак ставим только если реально свернулись — иначе он «залип» бы
+        // на развёрнутом баре и заблокировал будущий обычный разворот.
+        tabScrollCollapsedFromBounceRef.current = collapsed && fromBounce;
+        animateTabChrome(collapsed);
       }, TAB_SCROLL_SETTLE_IDLE_MS);
     };
 
@@ -617,15 +638,44 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       const previousY = tabScrollLastYRef.current;
       tabScrollLastYRef.current = y;
 
-      // Страница наверху — единственная зона, где бар разворачивается.
+      // Запоминаем, поднимался ли офсет выше нуля: это и есть доказательство, что
+      // экран скроллится. Пока максимум нулевой — контент короче экрана.
+      if (y > tabScrollMaxSeenYRef.current) tabScrollMaxSeenYRef.current = y;
+      const screenScrolls = tabScrollMaxSeenYRef.current > TAB_SCROLL_TOP_ZONE_Y;
+
+      // зачем: на экране БЕЗ скролла бар, свёрнутый резинкой, ждёт, пока экран
+      // приподнимут САМИ. Тяга вниз там уводит офсет в минус, а после отпускания
+      // резинка сама возвращает его к нулю — этот пассивный возврат разворачивал бар
+      // без участия пользователя. Отскок физически не переходит ноль, поэтому уход в
+      // ВЕРХНИЙ overscroll — надёжный признак живой тяги вверх (скорость таким
+      // признаком не является: её даёт и сам отскок).
+      // На скроллящихся экранах эта ветка не работает вовсе — там всё по-старому.
+      if (!screenScrolls && tabScrollCollapsedFromBounceRef.current) {
+        if (y > -TAB_SCROLL_LIFT_TO_EXPAND) {
+          tabScrollAnchorYRef.current = Math.min(tabScrollAnchorYRef.current, y);
+          return;
+        }
+        tabScrollCollapsedFromBounceRef.current = false;
+        tabScrollAnchorYRef.current = y;
+        animateTabChrome(false);
+        return;
+      }
+
+      // Страница наверху — зона, где бар разворачивается.
       if (y <= TAB_SCROLL_TOP_ZONE_Y) {
+        // Якорь встаёт РОВНО на текущий офсет, а не min(): иначе он навсегда застревал
+        // бы на минимуме, и следующая прокрутка вниз давала бы гигантский путь —
+        // бар схлопывался бы рывком вместо плавного хода за пальцем.
         tabScrollAnchorYRef.current = y;
         if (tabScrollCollapsedRef.current || tabScrollDrivenRef.current) {
           if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
           tabScrollDrivenRef.current = false;
           animateTabChrome(false);
         }
-        return;
+        // На скроллящемся экране выходим: верхняя зона там означает «мы наверху»,
+        // считать оттуда схлопывание нечего. А на экране без скролла офсет ВСЕГДА
+        // в этой зоне — там нужно идти дальше и считать прогресс от якоря.
+        if (screenScrolls) return;
       }
 
       // Движение вверх посреди ленты: якорь встаёт на самую верхнюю достигнутую точку,
@@ -646,17 +696,23 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
       // с жестом кадр в кадр. Пружина включается только на доводе после отпускания.
       tabScrollProgress.value = progress;
 
+      // Признак «ждём ручного подъёма» ставим ТОЛЬКО там, где доказано нечего
+      // скроллить. На обычных лентах он не появляется никогда — иначе быстрый флик,
+      // проскакивающий через ноль, залипал бы бар в свёрнутом состоянии.
+      const collapsedFromBounce = !screenScrolls;
+
       // Дожали до конца ещё внутри жеста — фиксируем свёрнутое состояние сразу,
       // чтобы орб стал кликабельным не дожидаясь отпускания пальца.
       if (progress >= 1) {
         if (settleTimer) { clearTimeout(settleTimer); settleTimer = null; }
         tabScrollDrivenRef.current = false;
         tabScrollCollapsedRef.current = true;
+        tabScrollCollapsedFromBounceRef.current = collapsedFromBounce;
         setTabChromeCollapsed(true);
         return;
       }
 
-      armSettle(progress);
+      armSettle(progress, collapsedFromBounce);
     });
 
     return () => {
@@ -684,6 +740,9 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
   const handleSwipeStartChrome = useCallback((physicalIdx: number) => {
     tabScrollAnchorYRef.current = tabScrollLastYRef.current;
     tabScrollDrivenRef.current = false;
+    // У нового таба своя высота контента: накопленный максимум обнуляем, иначе
+    // длинная лента «заразила» бы короткий экран признаком скроллящегося.
+    tabScrollMaxSeenYRef.current = 0;
     animateTabChrome(false, true);
     onSwipeStart(physicalIdx);
   }, [animateTabChrome, onSwipeStart]);
@@ -694,6 +753,7 @@ function TabScaffold({ tabScreens, currentRouteIsTab, visualIdx, physicalPageIdx
     tabScrollLastYRef.current = 0;
     tabScrollAnchorYRef.current = 0;
     tabScrollDrivenRef.current = false;
+    tabScrollMaxSeenYRef.current = 0;
     animateTabChrome(false, true);
     goToTab(idx);
   }, [animateTabChrome, goToTab]);

@@ -34,7 +34,9 @@ import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getDeviceBootstrapLocale, type Lang } from '../constants/i18n';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
-import { setBirthYear, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
+// зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
+// рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
+import { confirmAdultAgeAttestation, MIN_FULL_ACCESS_AGE } from '../app/age_gate';
 import { setAnalyticsConsent } from '../app/analytics_consent';
 import { recordConsentToCloud } from '../app/age_consent_cloud';
 import { trackEvent, type AnalyticsEvent } from '../app/analytics';
@@ -1320,7 +1322,11 @@ function CleanOnboarding({
     if (finishingRef.current) return;
     setLegalError(null);
     if (ageAnswer !== 'yes') {
-      setLegalError(ageAnswer === 'no' ? 'Приложение доступно с 16 лет.' : 'Подтверди, что тебе уже есть 16.');
+      setLegalError(
+        ageAnswer === 'no'
+          ? `Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`
+          : `Подтверди, что тебе уже есть ${MIN_FULL_ACCESS_AGE}.`,
+      );
       return;
     }
     if (!legalAccepted) {
@@ -1356,7 +1362,11 @@ function CleanOnboarding({
         [DONE_KEY, '1'],
         [FLOW_VERSION_KEY, CLEAN_ONBOARDING_FLOW_VERSION],
       ]);
-      await setBirthYear(new Date().getFullYear() - MIN_FULL_ACCESS_AGE).catch(() => null);
+      // зачем: онбординг спрашивает только «есть ли 16» (self-attestation), а не год
+      // рождения. Раньше здесь синтезировался фиктивный год (текущий − 16) и уезжал в
+      // Firestore как персональные данные — бесполезный (у всех одинаковый) и лишний
+      // по GDPR ст. 5(1)(c). Пишем ровно тот факт, который пользователь подтвердил.
+      await confirmAdultAgeAttestation().catch(() => null);
       if (analyticsAllowed) {
         await setAnalyticsConsent('granted').catch(() => null);
         if (source) {
@@ -1798,18 +1808,18 @@ function CleanOnboarding({
           onPress={() => { setAgeAnswer('yes'); setLegalError(null); }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'yes' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне есть 16</Text>
+          <Text style={styles.ageButtonText}>Мне есть {MIN_FULL_ACCESS_AGE}</Text>
         </Pressable>
         <Pressable
           testID="onboarding-age-no"
           onPressIn={() => { void hapticTap(); }}
           onPress={() => {
             setAgeAnswer('no');
-            setLegalError('Приложение доступно с 16 лет.');
+            setLegalError(`Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.`);
           }}
           style={({ pressed }) => [styles.ageButton, ageAnswer === 'no' && styles.ageButtonSelected, pressed && styles.pressed]}
         >
-          <Text style={styles.ageButtonText}>Мне нет 16</Text>
+          <Text style={styles.ageButtonText}>Мне нет {MIN_FULL_ACCESS_AGE}</Text>
         </Pressable>
       </View>
       <Text style={styles.consentSectionLabel}>ТВОЙ ВЫБОР</Text>

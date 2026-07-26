@@ -31,7 +31,9 @@ describe('consent reverify modal contract', () => {
   it('keeps the under-16 correction path only in new-user onboarding', () => {
     expect(onboardingSource).toContain('testID="onboarding-age-yes"');
     expect(onboardingSource).toContain('testID="onboarding-age-no"');
-    expect(onboardingSource).toContain("setLegalError('Приложение доступно с 16 лет.')");
+    // зачем: возраст берётся из MIN_FULL_ACCESS_AGE (единый источник правды), а не
+    // хардкодится в копирайте — проверяем шаблонную форму той же самой фразы.
+    expect(onboardingSource).toContain('Приложение доступно с ${MIN_FULL_ACCESS_AGE} лет.');
     expect(onboardingSource).toContain("if (ageAnswer !== 'yes')");
     expect(onboardingSource).not.toContain('BackHandler.exitApp()');
     expect(onboardingSource).not.toContain("label={ageAnswer === 'no'");

@@ -155,7 +155,21 @@ async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<
   let state: StoredEnergy = { current: dynMax, lastRecoveryTime: Date.now() };
 
   if (raw) {
-    state = JSON.parse(raw) as StoredEnergy;
+    // зачем: битый JSON в AsyncStorage (обрыв записи, миграция, ручная правка) раньше
+    // бросал исключение и обрывал ВЕСЬ runLoad — энергия оставалась не загруженной до
+    // переустановки. Падаем на дефолт и самолечимся, а не роняем загрузку.
+    try {
+      state = JSON.parse(raw) as StoredEnergy;
+    } catch {
+      state = { current: dynMax, lastRecoveryTime: Date.now() };
+      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state)).catch(() => {});
+      return state;
+    }
+    if (state === null || typeof state !== 'object') {
+      state = { current: dynMax, lastRecoveryTime: Date.now() };
+      await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state)).catch(() => {});
+      return state;
+    }
     // Guard against corrupt/stale storage (NaN, negative, above cap)
     if (!Number.isFinite(state.current) || state.current < 0) state.current = dynMax;
     else if (state.current > dynMax) state.current = dynMax;

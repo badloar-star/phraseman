@@ -78,6 +78,14 @@ export function hasPermission(role: unknown, permission: AdminPermission): boole
   return hasAdminRole(role) && ROLE_PERMISSIONS[role].has(permission);
 }
 
+// зачем: union слияния 26.07 — локальная линия (admin_daily_digest) зовёт
+// hasClaimedPermission, GitHub-линия ввела hasVerifiedCallablePermission; живут обе.
+export function hasClaimedPermission(token: unknown, permission: AdminPermission): boolean {
+  if (!token || typeof token !== 'object') return false;
+  const claims = token as { admin?: unknown; adminRole?: unknown };
+  return claims.admin === true && hasPermission(claims.adminRole, permission);
+}
+
 /**
  * Minimal shape of Firebase Functions' server-verified callable auth context.
  * The onCall SDK validates the Firebase ID token before populating request.auth;

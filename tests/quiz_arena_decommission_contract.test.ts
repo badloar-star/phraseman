@@ -35,6 +35,14 @@ function listFiles(relativeRoot: string): string[] {
 }
 
 const CLIENT_FEATURE_PATH = /(?:^|[\/_-])(?:arena|quiz(?:zes)?)(?:[\/_\.-]|[A-Z])|use[-_]matchmaking|MatchmakingContext/i;
+// зачем: «Арена флешкарт» — ЖИВАЯ фича (app/flashcards*), не остаток удалённой
+// PvP-Арены. Имя совпадает по слову «arena», поэтому исключаем её явным списком,
+// а не ослаблением регулярки — иначе тест перестанет ловить возврат старой Арены.
+const LIVE_FLASHCARDS_ARENA_FILES: ReadonlySet<string> = new Set([
+  'app/flashcards_arena.tsx',
+  'app/flashcards/arenaQuiz.ts',
+  'app/flashcards/arenaProgress.ts',
+]);
 const LEGACY_COLLECTION_MATCHES = [
   'arena_profiles/{userId}',
   'arena_sessions/{sessionId}',
@@ -73,7 +81,9 @@ describe('Quiz and Arena decommission contract', () => {
       ...listFiles('constants'),
     ];
 
-    expect(clientFiles.filter((file) => CLIENT_FEATURE_PATH.test(file))).toEqual([]);
+    expect(clientFiles.filter(
+      (file) => CLIENT_FEATURE_PATH.test(file) && !LIVE_FLASHCARDS_ARENA_FILES.has(file),
+    )).toEqual([]);
     expect(clientFiles).not.toContain('components/MatchFoundToast.tsx');
     expect(clientFiles).not.toContain('components/matchFoundToastPaths.ts');
 

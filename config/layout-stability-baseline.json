@@ -1,8 +1,6 @@
 {
   "adjustsFontSizeToFit": {},
-  "rawSafeAreaInsets": {
-    "components/RegistrationPromptModal.tsx": 1
-  },
+  "rawSafeAreaInsets": {},
   "loadingReturnsNull": {
     "app/streak_stats.tsx": 1
   }

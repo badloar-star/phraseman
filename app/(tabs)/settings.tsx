@@ -6,6 +6,7 @@ import {
   Alert,
   Keyboard,
   InteractionManager,
+  Platform,
   Pressable,
   StyleSheet,
   ActivityIndicator,
@@ -17,7 +18,7 @@ import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../components/ThemeContext';
+import { useTheme } from '../../components/ThemeContext';
 import { useBouncy, useBouncyStyle } from '../../components/BouncyScrollView';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
@@ -79,6 +80,7 @@ import { Image } from 'expo-image';
 import Constants from 'expo-constants';
 import { getAppReleaseBuildId } from '../app_build_id';
 import { clearAppCaches } from '../cache_reset';
+import { openStoreReviewPage } from '../store_review';
 
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
@@ -119,6 +121,13 @@ type SettingsSurfacePalette = {
   border: string;
   divider: string;
   notice: string;
+  /** зачем: владелец попросил «нивелированные» цвета в настройках — у каждой
+   *  темы свой акцент, но здесь он осознанно приглушён (не ядовитый t.correct:
+   *  в лайме/кенди тот слепит). Им красим выбранные чипы и активные значения. */
+  accent: string;
+  /** Мягкая тональная заливка выбранного чипа — состояние читается тоном,
+   *  без обводок (запрет владельца на рамки контейнеров). */
+  chipOn: string;
 };
 
 const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
@@ -128,6 +137,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(214,255,226,0.10)',
     divider: 'rgba(214,255,226,0.07)',
     notice: '#1C281F',
+    accent: '#84C39B',
+    chipOn: '#233729',
   },
   gold: {
     panel: '#1C1912',
@@ -135,6 +146,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(232,205,139,0.14)',
     divider: 'rgba(232,205,139,0.08)',
     notice: '#211C12',
+    accent: '#D6BE8B',
+    chipOn: '#2B2515',
   },
   coral: {
     panel: '#24191D',
@@ -142,6 +155,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(255,220,228,0.11)',
     divider: 'rgba(255,220,228,0.07)',
     notice: '#2A1C20',
+    accent: '#E39FAC',
+    chipOn: '#322028',
   },
   minimalDark: {
     panel: '#1C1C1E',
@@ -149,6 +164,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(255,255,255,0.12)',
     divider: 'rgba(255,255,255,0.08)',
     notice: '#202124',
+    accent: '#8FB6E8',
+    chipOn: '#24292F',
   },
   business: {
     panel: '#0A0A0A',
@@ -156,6 +173,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(255,255,255,0.10)',
     divider: 'rgba(255,255,255,0.07)',
     notice: '#121212',
+    accent: '#E4E4E4',
+    chipOn: '#1E1E1E',
   },
   businessLight: {
     panel: '#FFFFFF',
@@ -163,6 +182,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(0,0,0,0.10)',
     divider: 'rgba(0,0,0,0.06)',
     notice: '#FAFAFA',
+    accent: '#2B2B2B',
+    chipOn: '#EDEDED',
   },
   midnight: {
     panel: '#1B1D25',
@@ -170,6 +191,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(225,232,255,0.12)',
     divider: 'rgba(225,232,255,0.07)',
     notice: '#202330',
+    accent: '#A3B2E4',
+    chipOn: '#242939',
   },
   ember: {
     panel: '#241B18',
@@ -177,6 +200,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(255,222,205,0.12)',
     divider: 'rgba(255,222,205,0.07)',
     notice: '#2B201B',
+    accent: '#DFA985',
+    chipOn: '#33251D',
   },
   aurora: {
     panel: '#182222',
@@ -184,6 +209,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(215,255,244,0.12)',
     divider: 'rgba(215,255,244,0.07)',
     notice: '#1B2828',
+    accent: '#8FC8BC',
+    chipOn: '#20332F',
   },
   volt: {
     panel: '#1F2417',
@@ -191,6 +218,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(226,255,122,0.13)',
     divider: 'rgba(226,255,122,0.07)',
     notice: '#242B19',
+    accent: '#BCCB85',
+    chipOn: '#2B331D',
   },
   candyBlue: {
     panel: '#16282F',
@@ -198,6 +227,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(178,213,229,0.13)',
     divider: 'rgba(178,213,229,0.07)',
     notice: '#1A2E36',
+    accent: '#9DC4D6',
+    chipOn: '#1F3742',
   },
   indigo: {
     panel: '#222140',
@@ -205,6 +236,8 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     border: 'rgba(200,195,255,0.13)',
     divider: 'rgba(200,195,255,0.07)',
     notice: '#26254A',
+    accent: '#B5AFE2',
+    chipOn: '#2D2C55',
   },
 };
 // Ключи карточек-подсказок главной — общие с home.tsx, см. app/home_feature_tips.ts.
@@ -226,7 +259,6 @@ export default function SettingsMain() {
   const isGradientLight = false;
   const screenPrimary = t.textPrimary;
   const screenMuted = t.textMuted;
-  const screenSecond = t.textSecond;
   const screenGhost = t.textGhost;
   const settingsSurface = SETTINGS_SURFACES[themeMode];
   const settingsPanelBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.panel;
@@ -237,15 +269,15 @@ export default function SettingsMain() {
   const screenBorder = settingsBorder;
   /**
    * Settings-плашки отделены от tabbar chrome: как в Telegram, это один спокойный
-   * surface-слой для каждой темы, а выбранность читается рамкой и текстом.
+   * surface-слой для каждой темы. зачем: по референсу владельца выбранность
+   * читается ТОНОМ (мягкая заливка chipOn + приглушённый accent-текст), а не
+   * рамкой и не ядовитым t.correct — раздел настроек не должен «кричать».
    */
-  const chipSurfaceOff = settingsChipBg;
+  const chipSurfaceOff = settingsSurface.notice;
   const chipTextOff = isGradientLight ? t.textPrimary : screenPrimary;
-  /** Плотная заливка: сакура — яркая магента (#B0105C на тёмном фоне почти сливалась с белым при грязном рендере / субпиксели). */
-  const chipSurfaceOn = settingsChipBg;
-  const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
-  const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
-  /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне. */
+  const chipSurfaceOn = settingsSurface.chipOn;
+  const chipTextOn = isGradientLight ? '#FFFFFF' : settingsSurface.accent;
+  /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне (dev-пикер языка). */
   const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
   const [notifHour,    setNotifHour]    = React.useState(19);
@@ -940,20 +972,20 @@ export default function SettingsMain() {
   // Список настроек переведён на Telegram-стиль: сгруппированные карточки
   // (components/settings/SettingsGroup). Старые локальные Row/SectionTitle удалены.
 
-  // Верх экрана — по референсу Bevel: плашка Plus + ввод реферального кода +
-  // промокод одной группой, под ней широкий инвайт-баннер с картинкой.
+  // Верх экрана — по референсу Bevel: отдельная карточка Plus, под ней отдельная
+  // карточка ввода кода, ниже широкий инвайт-баннер с картинкой.
+  // зачем: подпись-расшифровка под названием убрана (запрет владельца + чистота
+  // референса) — ряд Plus однострочный; при активном Plus справа короткий план.
   const plusRowLabel = hasPremiumAccess
     ? `${premiumPlan === 'lifetime' ? 'Pro' : 'Plus'} ${L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓`
     : 'Phraseman Plus';
-  const plusRowSub = hasPremiumAccess
-    ? (isPremium && premiumPlan === 'lifetime'
-      ? L('Phraseman Pro · разовая покупка', 'Phraseman Pro · разова покупка', 'Phraseman Pro · compra única', 'Phraseman Pro · compra única', 'Phraseman Pro · mua một lần', 'Phraseman Pro · pembelian sekali', 'Phraseman Pro · tek seferlik satın alma', 'Phraseman Pro · zakup jednorazowy')
-      : isPremium && premiumPlan === 'yearly'
-      ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
-      : isPremium && premiumPlan === 'monthly'
-        ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
-        : L('Plus доступ активен', 'Plus доступ активний', 'Plus access active', 'Acesso Plus ativo', 'Quyền Plus đang hoạt động', 'Akses Plus aktif', 'Plus erişim aktif', 'Dostęp Plus aktywny'))
-    : L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny');
+  const plusRowValue = hasPremiumAccess && isPremium
+    ? (premiumPlan === 'yearly'
+      ? L('Год', 'Рік', 'Anual', 'Anual', 'Năm', 'Tahunan', 'Yıllık', 'Rok')
+      : premiumPlan === 'monthly'
+        ? L('Месяц', 'Місяць', 'Mensual', 'Mensal', 'Tháng', 'Bulanan', 'Aylık', 'Miesiąc')
+        : undefined)
+    : undefined;
   const plusRowPress = () => {
     doHaptic();
     if (hasPremiumAccess) {
@@ -1001,14 +1033,11 @@ export default function SettingsMain() {
             testID="settings-plus-access-details"
             style={{
               marginHorizontal: SETTINGS_GROUP_MARGIN,
-              marginTop: 8,
-              marginBottom: 16,
+              marginTop: 12,
               paddingVertical: 6,
               paddingHorizontal: 12,
-              borderRadius: isCompassTheme ? 8 : 12,
+              borderRadius: isCompassTheme ? 8 : 16,
               backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsPanelBg,
-              borderWidth: 0,
-              borderColor: isCompassTheme ? COMPASS_RICH.hairlineStrong : settingsBorder,
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
@@ -1040,12 +1069,13 @@ export default function SettingsMain() {
                   <Ionicons name={detail.icon} size={18} color={isCompassTheme ? COMPASS_RICH.champagne : t.accent} />
                 </View>
                 <View style={{ flex: 1, minWidth: 0 }}>
+                  {/* зачем: вес 900/700 кричал — выравниваем с типографикой рядов (600/400). */}
                   <Text
                     testID={detail.titleTestID}
                     style={{
                       color: isCompassTheme ? COMPASS_RICH.cream : t.textPrimary,
                       fontSize: f.caption,
-                      fontWeight: '900',
+                      fontWeight: '600',
                     }}
                   >
                     {detail.title}
@@ -1056,7 +1086,6 @@ export default function SettingsMain() {
                       color: isCompassTheme ? COMPASS_RICH.textMuted : t.textSecond,
                       fontSize: f.caption,
                       lineHeight: 18,
-                      fontWeight: '700',
                       marginTop: 2,
                     }}
                   >
@@ -1085,8 +1114,8 @@ export default function SettingsMain() {
         onScroll={onAnimatedScroll}
       >
 
-        {/* Хедер */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
+        {/* Хедер. зачем: паддинг 16 — заголовок и карточки стоят на одной оси (референс). */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: SETTINGS_GROUP_MARGIN, paddingTop: 12, paddingBottom: 8 }}>
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chính', 'Beranda', 'Ana sayfa', 'Strona główna')}
@@ -1111,78 +1140,60 @@ export default function SettingsMain() {
           </Text>
         </View>
 
-        {/* Верхняя группа по референсу Bevel: Plus + ввод реферального кода + промокод. */}
+        {/* Верх по референсу Bevel: Plus — своя отдельная карточка. */}
         <SettingsGroup marginTop={8} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
             testID="settings-plus-row"
             icon={hasPremiumAccess ? 'diamond' : 'diamond-outline'}
             color="yellow"
             label={plusRowLabel}
-            sub={plusRowSub}
+            value={plusRowValue}
             onPress={plusRowPress}
           />
-          {/*
-            зачем: раньше «Ввести реферальный код» и «Ввести промокод» были двумя
-            рядами, будто это разные вещи — визуально уже была одна карточка
-            (SettingsGroup), но воспринимались отдельно. Владелец попросил
-            смерджить их в ОДИН ряд с переключателем «реферальный / промокод»
-            внутри одной карточки: юзер выбирает тип кода тут же, тап ведёт на
-            соответствующий готовый экран ввода (referrals?enter=1 /
-            promo_code_entry). Отдельный инпут-инлайн не заводим: у промокода
-            своя серверная логика (redeemPromoCode → promoCodeRedeem, VIP-грант,
-            celebration-модалка), а у реферального кода — свой шит на экране
-            /referrals; переиспользуем готовые проверенные потоки вместо
-            дублирования сетевых вызовов тут.
-          */}
-          {(settingsReferralSurface.marketingVisible || (!hasPremiumAccess && promoCodesOn)) ? (
-            <SettingsCustomRow>
-              <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? 12 : 0 }}>
+        </SettingsGroup>
+        {/*
+          зачем: «Ввести код» — отдельная карточка под Plus (как «Enter referral
+          code» в референсе Bevel). Один ряд с переключателем «реферальный /
+          промокод» (решение владельца о мердже сохранено): весь ряд — тап-цель,
+          подписи-расшифровки убраны (запрет владельца), тип кода читается по
+          названию и выбранному чипу. Тап ведёт на готовый экран ввода
+          (referrals?enter=1 / promo_code_entry) — серверные потоки без дублей.
+        */}
+        {(settingsReferralSurface.marketingVisible || (!hasPremiumAccess && promoCodesOn)) ? (
+          <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+            <SettingsCustomRow style={{ paddingVertical: 0 }}>
+              <TouchableOpacity
+                testID="settings-code-entry-submit"
+                accessibilityRole="button"
+                accessibilityLabel={codeEntryMode === 'promo'
+                  ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
+                  : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
+                activeOpacity={0.6}
+                onPress={() => {
+                  doHaptic();
+                  if (codeEntryMode === 'promo') {
+                    router.push('/promo_code_entry' as any);
+                  } else {
+                    // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
+                    // ?enter=1 сразу выдвигает шит «Код от друга».
+                    router.push('/referrals?enter=1' as any);
+                  }
+                }}
+                style={{ flexDirection: 'row', alignItems: 'center', minHeight: 56, paddingVertical: 13 }}
+              >
                 <SettingsIconTile icon={codeEntryMode === 'promo' ? 'ticket-outline' : 'gift'} color={codeEntryMode === 'promo' ? 'purple' : 'pink'} />
-                <View style={{ flex: 1, marginLeft: 12 }}>
-                  <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>
-                    {codeEntryMode === 'promo'
-                      ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
-                      : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
-                  </Text>
-                  <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
-                    {codeEntryMode === 'promo'
-                      ? L('Код от Phraseman — активирует Plus', 'Код від Phraseman — активує Plus', 'Código de Phraseman: activa Plus', 'Código da Phraseman: ativa o Plus', 'Mã từ Phraseman — kích hoạt Plus', 'Kode dari Phraseman — mengaktifkan Plus', 'Phraseman kodu — Plus etkinleştirir', 'Kod od Phraseman — aktywuje Plus')
-                      : L('Код от друга — шанс выиграть Plus', 'Код від друга — шанс виграти Plus', 'Código de un amigo: opción de ganar Plus', 'Código de um amigo: chance de ganhar Plus', 'Mã từ bạn bè — cơ hội thắng Plus', 'Kode dari teman — kesempatan menangkan Plus', 'Arkadaş kodu — Plus kazanma şansı', 'Kod od znajomego — szansa na wygranie Plus')}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  testID="settings-code-entry-submit"
-                  accessibilityRole="button"
-                  accessibilityLabel={codeEntryMode === 'promo'
+                <Text style={{ flex: 1, marginLeft: 12, marginRight: 8, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }} numberOfLines={2}>
+                  {codeEntryMode === 'promo'
                     ? L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')
                     : L('Ввести реферальный код', 'Ввести реферальний код', 'Introducir código de invitación', 'Inserir código de indicação', 'Nhập mã giới thiệu', 'Masukkan kode referal', 'Davet kodunu gir', 'Wpisz kod polecenia')}
-                  activeOpacity={0.8}
-                  onPress={() => {
-                    doHaptic();
-                    if (codeEntryMode === 'promo') {
-                      router.push('/promo_code_entry' as any);
-                    } else {
-                      // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
-                      // ?enter=1 сразу выдвигает шит «Код от друга».
-                      router.push('/referrals?enter=1' as any);
-                    }
-                  }}
-                  style={{
-                    width: 34, height: 34, borderRadius: 17,
-                    alignItems: 'center', justifyContent: 'center',
-                    backgroundColor: chipSurfaceOn,
-                  }}
-                >
-                  <Ionicons name="chevron-forward" size={17} color={t.textGhost} />
-                </TouchableOpacity>
-              </View>
+                </Text>
+                <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+              </TouchableOpacity>
               {/* Переключатель показываем только если оба типа кода доступны — иначе
-                  переключать нечего (только промокоды выключены/премиум, или
-                  реферальная маркетинговая строка скрыта флагом). Разделяем состояния
-                  ТОЛЬКО заливкой/тоном — без обводки (правило владельца: никаких
-                  borderWidth/borderColor вокруг контейнеров-переключателей). */}
+                  переключать нечего. Состояния разделяем ТОЛЬКО тоном (chipOn +
+                  приглушённый accent) — без обводки (правило владельца). */}
               {settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? (
-                <View style={{ flexDirection: 'row', gap: 8 }}>
+                <View style={{ flexDirection: 'row', gap: 8, paddingBottom: 13 }}>
                   {(['referral', 'promo'] as const).map(mode => (
                     <TouchableOpacity
                       key={mode}
@@ -1197,7 +1208,7 @@ export default function SettingsMain() {
                       style={{
                         flex: 1,
                         alignItems: 'center',
-                        paddingVertical: 8,
+                        paddingVertical: 9,
                         borderRadius: 10,
                         backgroundColor: codeEntryMode === mode ? chipSurfaceOn : chipSurfaceOff,
                       }}
@@ -1216,8 +1227,8 @@ export default function SettingsMain() {
                 </View>
               ) : null}
             </SettingsCustomRow>
-          ) : null}
-        </SettingsGroup>
+          </SettingsGroup>
+        ) : null}
         {premiumDetails}
         {settingsReferralRowVisible ? (
           <TouchableOpacity
@@ -1232,14 +1243,13 @@ export default function SettingsMain() {
               borderRadius: 16,
               overflow: 'hidden',
               backgroundColor: settingsPanelBg,
-              borderWidth: 0,
-              borderColor: settingsBorder,
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
           >
             {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
             <Image
               source={INVITE_GIFT_BANNER}
+              accessible={false}
               style={{ width: '100%', height: 132 }}
               contentFit="cover"
               cachePolicy="memory-disk"
@@ -1247,7 +1257,7 @@ export default function SettingsMain() {
             />
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, gap: 10 }}>
               <View style={{ flex: 1, minWidth: 0 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '800' }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                   {L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2, lineHeight: 17 }}>
@@ -1266,7 +1276,8 @@ export default function SettingsMain() {
             (ENABLE_DEV_STUDY_TARGET_LANG) поведение и вид секции остаются как были. */}
         {ENABLE_DEV_STUDY_TARGET_LANG && isStudyTargetSourceUiLang(lang) && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
-            <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
+            {/* зачем: заголовок в одном стиле с SettingsSectionTitle — обычный регистр, без капса. */}
+            <Text style={{ color: screenMuted, fontSize: f.body, fontWeight: '600', marginBottom: 10 }}>
               {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
             <StudyLanguagePicker
@@ -1325,63 +1336,58 @@ export default function SettingsMain() {
             icon="color-palette"
             color="purple"
             label={L('Темы', 'Теми', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
-            sub={currentThemeLabel}
+            value={currentThemeLabel}
             onPress={() => router.push('/settings_themes' as any)}
           />
 
           {/* РАЗМЕР ШРИФТА — в плоском IG-режиме типографика фиксирована, настройка скрыта */}
           {isFlatUi ? null : (
           <SettingsCustomRow>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
+            {/* зачем: подпись-значение под названием убрана (запрет владельца) —
+                текущий размер и так виден по выбранной плитке ниже. */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, minHeight: 30 }}>
               <SettingsIconTile icon="text" color="pink" />
-              <View style={{ flex: 1, marginLeft: 12 }}>
-                <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}</Text>
-                <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
-                  {triLang(lang, {
-                    ru: FONT_SIZE_LABELS[fontSize].ru,
-                    uk: FONT_SIZE_LABELS[fontSize].uk,
-                    es: FONT_SIZE_LABELS[fontSize].es,
-                    'pt-BR': FONT_SIZE_LABELS[fontSize]['pt-BR'],
-                    vi: FONT_SIZE_LABELS[fontSize].vi,
-                    id: FONT_SIZE_LABELS[fontSize].id,
-                    tr: FONT_SIZE_LABELS[fontSize].tr,
-                    pl: FONT_SIZE_LABELS[fontSize].pl,
-                  })}
-                </Text>
-              </View>
+              <Text style={{ flex: 1, marginLeft: 12, color: screenPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+                {L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}
+              </Text>
             </View>
             <View style={{ flexDirection: 'row', gap: 8 }}>
               {(['small','medium','large'] as const).map(sz => (
                 <TouchableOpacity
                   key={sz}
+                  accessibilityRole="button"
+                  accessibilityState={{ selected: fontSize === sz }}
+                  accessibilityLabel={L(
+                    sz === 'small' ? 'Малый шрифт' : sz === 'medium' ? 'Средний шрифт' : 'Большой шрифт',
+                    sz === 'small' ? 'Малий шрифт' : sz === 'medium' ? 'Середній шрифт' : 'Великий шрифт',
+                    sz === 'small' ? 'Letra pequeña' : sz === 'medium' ? 'Letra mediana' : 'Letra grande',
+                    sz === 'small' ? 'Fonte pequena' : sz === 'medium' ? 'Fonte média' : 'Fonte grande',
+                    sz === 'small' ? 'Chữ nhỏ' : sz === 'medium' ? 'Chữ vừa' : 'Chữ lớn',
+                    sz === 'small' ? 'Font kecil' : sz === 'medium' ? 'Font sedang' : 'Font besar',
+                    sz === 'small' ? 'Küçük yazı' : sz === 'medium' ? 'Orta yazı' : 'Büyük yazı',
+                    sz === 'small' ? 'Mała czcionka' : sz === 'medium' ? 'Średnia czcionka' : 'Duża czcionka',
+                  )}
                   onPress={() => { doHaptic(); setFontSize(sz); }}
                   activeOpacity={0.8}
                   style={{
                     flex: 1,
                     alignItems: 'center',
                     paddingVertical: 10,
-                    borderRadius: isCompassTheme ? 8 : 10,
-                    borderWidth: fontSize === sz ? (isCompassTheme ? 1 : 2) : 0.5,
-                    borderColor: isCompassTheme
-                      ? (fontSize === sz ? COMPASS_RICH.hairlineStrong : COMPASS_RICH.hairlineQuiet)
-                      : fontSize === sz ? chipBorderOn : chipBorderOff,
-                    backgroundColor: isCompassTheme
-                      ? (fontSize === sz ? COMPASS_RICH.champagne : COMPASS_RICH.charcoalRaised)
-                      : fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
-                    overflow: 'hidden',
-                    ...(isCompassTheme && fontSize === sz ? compassShadow(1) : {}),
+                    borderRadius: 10,
+                    // зачем: выбранность тоном (chipOn + приглушённый accent), обводки
+                    // убраны — раньше рамка 2px кричала цветом t.correct.
+                    backgroundColor: fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
                   }}
                 >
-                  {isCompassTheme ? <CompassDepthSurface radius={8} quiet={fontSize !== sz} cream={fontSize === sz} /> : null}
                   <Text style={{
                     fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : sz === 'large' ? 17 : 20,
                     fontWeight: '700',
-                    color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenSecond) : fontSize === sz ? chipTextOn : t.textSecond,
+                    color: fontSize === sz ? chipTextOn : t.textSecond,
                   }}>A</Text>
                   {/* зачем: динамическое сжатие шрифта убрано (запрещённый паттерн) — подпись
                       короткое слово в равнодолевой (flex:1) плитке без фиксированной высоты,
                       при нехватке места просто перенесётся на 2 строки, guard-ok */}
-                  <Text numberOfLines={2} style={{ fontSize: f.label, color: isCompassTheme ? (fontSize === sz ? COMPASS_RICH.textDark : screenMuted) : fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                  <Text numberOfLines={2} style={{ fontSize: f.label, color: fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                     {L(
                       sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                       sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
@@ -1430,23 +1436,28 @@ export default function SettingsMain() {
         <SettingsSectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          {/* зачем: значения (ник/провайдер/язык) переехали направо detail-текстом —
+              ряды однострочные, без подписей под названием (запрет владельца).
+              nameReady/authReady защищают от кадра «Не задано»/«Не привязан». */}
           <SettingsRow
             testID="settings-profile-row"
             icon="person"
             color="blue"
             label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
-            sub={userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono')}
+            value={nameReady
+              ? (userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono'))
+              : ' '}
             onPress={() => { setNewName(userName); setNameChangeNotice(null); setNameModal(true); }}
           />
           <SettingsRow
             icon="key"
             color="green"
             label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
-            sub={
-              linkedAuth
-                ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
-                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')
-            }
+            value={authReady
+              ? (linkedAuth
+                ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google')
+                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono'))
+              : ' '}
             onPress={() => {
               if (!linkedAuth) {
                 setAuthPromptVisible(true);
@@ -1460,7 +1471,7 @@ export default function SettingsMain() {
             icon="language"
             color="teal"
             label={L('Язык интерфейса', 'Мова інтерфейсу', 'Idioma de la interfaz', 'Idioma da interface', 'Ngôn ngữ giao diện', 'Bahasa antarmuka', 'Arayüz dili', 'Język interfejsu')}
-            sub={LANG_NATIVE[lang]}
+            value={LANG_NATIVE[lang]}
             onPress={() => router.push('/settings_language' as any)}
           />
         </SettingsGroup>
@@ -1474,8 +1485,7 @@ export default function SettingsMain() {
               marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
               flexDirection: 'row', alignItems: 'center', gap: 10,
               backgroundColor: settingsNoticeBg,
-              borderRadius: 12, padding: 12,
-              borderWidth: 0, borderColor: 'transparent',
+              borderRadius: 16, padding: 12,
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
@@ -1496,8 +1506,7 @@ export default function SettingsMain() {
               marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
               flexDirection: 'row', alignItems: 'center', gap: 10,
               backgroundColor: settingsNoticeBg,
-              borderRadius: 12, padding: 12,
-              borderWidth: 0, borderColor: 'transparent',
+              borderRadius: 16, padding: 12,
               overflow: 'hidden',
               ...(isCompassTheme ? compassShadow(1) : {}),
             }}
@@ -1570,16 +1579,33 @@ export default function SettingsMain() {
               onPress={() => router.push('/ideas_submit' as any)}
             />
           ) : null}
+          {/* зачем: адрес-подпись под названием убран (запрет владельца + чистота
+              референса) — тап и так открывает почту с подставленным адресом. */}
           <SettingsRow
             icon="mail"
             color="blue"
             label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
-            sub="support.phraseman@gmail.com"
             onPress={() => {
               doHaptic();
               void Linking.openURL(
                 'mailto:support.phraseman@gmail.com?subject=' + encodeURIComponent('Phraseman'),
               );
+            }}
+          />
+          {/* зачем: владелец попросил ряд «Оценить в сторе» как в референсе Bevel
+              («Rate Bevel in the App Store»). Открываем страницу отзыва напрямую
+              (openStoreReviewPage: deep-link + веб-фолбэк) — для явной кнопки это
+              надёжнее квотируемого системного requestReview. */}
+          <SettingsRow
+            testID="settings-rate-app-row"
+            icon="star"
+            color="blue"
+            label={Platform.OS === 'ios'
+              ? L('Оценить в App Store', 'Оцінити в App Store', 'Valorar en el App Store', 'Avaliar na App Store', 'Đánh giá trên App Store', 'Beri nilai di App Store', "App Store'da değerlendir", 'Oceń w App Store')
+              : L('Оценить в Google Play', 'Оцінити в Google Play', 'Valorar en Google Play', 'Avaliar no Google Play', 'Đánh giá trên Google Play', 'Beri nilai di Google Play', "Google Play'de değerlendir", 'Oceń w Google Play')}
+            onPress={() => {
+              doHaptic();
+              void openStoreReviewPage();
             }}
           />
           {ENABLE_DEV_TOOLS ? (

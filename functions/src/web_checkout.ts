@@ -25,6 +25,7 @@ import { defineSecret, defineString } from 'firebase-functions/params';
 import { onRequest } from 'firebase-functions/v2/https';
 
 import { upsertEmailContact } from './email_contacts';
+import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
 
 const REGION = 'us-central1';
@@ -39,8 +40,7 @@ const STRIPE_WEBHOOK_SECRET = defineSecret('STRIPE_WEBHOOK_SECRET');
 const PAYPAL_CLIENT_ID = defineSecret('PAYPAL_CLIENT_ID');
 const PAYPAL_CLIENT_SECRET = defineSecret('PAYPAL_CLIENT_SECRET');
 const PHRASEMAN_PREMIUM_BOT_TOKEN = defineSecret('PHRASEMAN_PREMIUM_BOT_TOKEN');
-const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
-const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: 'Phraseman <onboarding@resend.dev>' });
+const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: '' });
 const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 type WebPlan = 'monthly' | 'yearly' | 'lifetime';
@@ -50,6 +50,29 @@ const PLAN_LABELS: Record<WebPlan, string> = {
   yearly: 'год',
   lifetime: 'навсегда',
 };
+
+// зачем: владелец 2026-07-26 — на витрине и в письмах продукты называются
+// «Phraseman Plus» (подписочные периоды) и «Phraseman Pro» (разовая, навсегда).
+// Внутренние ключи планов (monthly/yearly/lifetime) НЕ меняются — на них
+// завязаны цены, вебхуки и админка.
+export function productNameForPlan(plan: WebPlan, gift: boolean): string {
+  const base = plan === 'lifetime' ? 'Phraseman Pro — навсегда' : `Phraseman Plus — ${PLAN_LABELS[plan]}`;
+  return gift ? `${base} (подарок)` : base;
+}
+
+/** Название подарка на сертификате: «Год Phraseman Plus», «Phraseman Pro — навсегда». */
+export function giftPlanTitle(plan: WebPlan): string {
+  if (plan === 'lifetime') return 'Phraseman Pro — навсегда';
+  return plan === 'monthly' ? 'Месяц Phraseman Plus' : 'Год Phraseman Plus';
+}
+
+// зачем: владелец 2026-07-26 — подарочный код действует 12 месяцев (стандарт
+// сертификатов); обычные коды покупки «себе» остаются бессрочными, как раньше.
+export const GIFT_CODE_TTL_DAYS = 365;
+
+export function giftCodeExpiryMs(nowMs: number, gift: boolean): number {
+  return gift ? nowMs + GIFT_CODE_TTL_DAYS * 24 * 60 * 60 * 1000 : 0;
+}
 
 const DEFAULT_PRICE_CENTS: Record<WebPlan, number> = {
   monthly: 999,
@@ -220,6 +243,9 @@ interface NewOrderInput {
   answers: Record<string, unknown> | null;
   /** Подарочная покупка (/gift/): код перешлёт покупатель, автопродления нет. */
   gift?: boolean;
+  /** Имя получателя/дарителя для именного сертификата (необязательные). */
+  giftTo?: string;
+  giftFrom?: string;
 }
 
 async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderInput): Promise<string> {
@@ -231,6 +257,8 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
     planDuration: PLAN_LABELS[input.plan],
     email: input.email,
     gift: input.gift === true,
+    giftTo: input.giftTo || null,
+    giftFrom: input.giftFrom || null,
     appNickname: input.nickname || null,
     amountCents: input.amountCents,
     currency: input.currency,
@@ -304,13 +332,105 @@ async function markActivationEmailStatus(
   }
 }
 
+/** ДД.ММ.ГГГГ по UTC — детерминированно для тестов и одинаково для всех получателей. */
+function formatRuDate(ms: number): string {
+  return new Date(ms).toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', timeZone: 'UTC' });
+}
+
+/**
+ * Письмо с кодом активации. Для подарка — именной «золотой сертификат»
+ * (владелец 2026-07-26): Для/От, название подарка (Plus/Pro), код крупно,
+ * срок действия, шаги активации. Чистая функция — покрыта тестами.
+ * Вёрстка инлайновая, без рамок-обводок (запрет владельца), совместима
+ * с почтовыми клиентами (только div + inline-стили, без внешних ресурсов).
+ */
+export function buildActivationEmail(
+  order: FirebaseFirestore.DocumentData,
+  support: string,
+): { subject: string; text: string; html: string } {
+  const activationCode = cleanShortText(order.activationCode, 48);
+  const isGift = order.gift === true;
+  const plan: WebPlan = isWebPlan(order.plan) ? order.plan : 'monthly';
+  const productTitle = isGift ? giftPlanTitle(plan) : productNameForPlan(plan, false);
+  const giftTo = cleanShortText(order.giftTo, 60);
+  const giftFrom = cleanShortText(order.giftFrom, 60);
+  const expiresAtMs = Math.max(0, Math.trunc(Number(order.codeExpiresAtMs ?? 0)) || 0);
+  const expiresLine = expiresAtMs > 0 ? `Сертификат действует до ${formatRuDate(expiresAtMs)}.` : '';
+
+  const subject = isGift
+    ? `🎁 Подарочный сертификат Phraseman — код ${activationCode}`
+    : `Ваш код активации Phraseman: ${activationCode}`;
+
+  const steps = [
+    '1. Скачайте Phraseman: knowlyapps.com/download/',
+    '2. Откройте Настройки -> Промокоды.',
+    '3. Введите код и нажмите «Активировать».',
+  ];
+  const text = [
+    isGift ? 'Подарочный сертификат Phraseman' : 'Спасибо за покупку Phraseman!',
+    '',
+    ...(isGift && giftTo ? [`Для: ${giftTo}`] : []),
+    ...(isGift && giftFrom ? [`От: ${giftFrom}`] : []),
+    `Подарок: ${productTitle}`,
+    '',
+    `Код активации: ${activationCode}`,
+    ...(expiresLine ? [expiresLine] : []),
+    '',
+    isGift
+      ? 'Перешлите этот сертификат тому, кому дарите. Как получателю включить доступ:'
+      : 'Как включить доступ:',
+    ...steps,
+    '',
+    isGift ? 'Разовый платёж: ничего не спишется повторно.' : '',
+    `Если что-то не получилось, напишите: ${support}`,
+  ].filter((line, i, arr) => line !== '' || arr[i - 1] !== '').join('\n');
+
+  const codeBlock = `<div style="background:#201c12;border-radius:16px;padding:20px 16px;margin:20px 0;text-align:center;font-size:26px;font-weight:800;letter-spacing:4px;color:#f7de8b;font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
+  const stepsHtml = `<ol style="margin:12px 0 0;padding-left:20px;color:#4c4636;line-height:1.7"><li>Скачайте Phraseman: <a href="https://knowlyapps.com/download/" style="color:#b8860f;font-weight:bold">knowlyapps.com/download/</a></li><li>Откройте Настройки → Промокоды.</li><li>Введите код и нажмите «Активировать».</li></ol>`;
+  const supportHtml = `<p style="margin:22px 0 0;color:#6f6852;font-size:13px">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`;
+
+  const html = isGift
+    ? [
+      '<div style="background:#f6f3ea;padding:28px 12px;font-family:Arial,Helvetica,sans-serif">',
+      '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:24px;overflow:hidden">',
+      '<div style="background:#f2c14e;padding:26px 28px;text-align:center">',
+      '<div style="font-size:12px;letter-spacing:3px;color:#3a2905;font-weight:bold">ПОДАРОЧНЫЙ СЕРТИФИКАТ</div>',
+      '<div style="font-size:26px;font-weight:800;color:#201c12;margin-top:6px">Phraseman</div>',
+      '</div>',
+      '<div style="padding:28px 28px 26px;color:#201c12">',
+      giftTo ? `<div style="font-size:22px;font-weight:800;margin:0 0 2px">Для: ${htmlEscape(giftTo)}</div>` : '<div style="font-size:22px;font-weight:800;margin:0 0 2px">Вам подарили английский</div>',
+      giftFrom ? `<div style="color:#6f6852;font-size:15px;margin:0 0 16px">от ${htmlEscape(giftFrom)}</div>` : '<div style="margin:0 0 16px"></div>',
+      `<div style="font-size:17px;font-weight:800;color:#b8860f">${htmlEscape(productTitle)}</div>`,
+      codeBlock,
+      expiresLine ? `<div style="color:#6f6852;font-size:13.5px;margin:-8px 0 16px">${htmlEscape(expiresLine)}</div>` : '',
+      '<div style="font-weight:bold;margin-top:6px">Как включить доступ:</div>',
+      stepsHtml,
+      '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Разовый платёж: ничего не спишется повторно. Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
+      supportHtml,
+      '</div></div></div>',
+    ].filter(Boolean).join('')
+    : [
+      '<div style="background:#f6f3ea;padding:28px 12px;font-family:Arial,Helvetica,sans-serif">',
+      '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:24px;padding:28px;color:#201c12">',
+      '<h1 style="font-size:22px;margin:0 0 8px">Ваш код активации Phraseman</h1>',
+      `<p style="margin:0;color:#4c4636">Спасибо за покупку! Ваш тариф: <b>${htmlEscape(productTitle)}</b>.</p>`,
+      codeBlock,
+      '<div style="font-weight:bold">Как включить доступ:</div>',
+      stepsHtml,
+      supportHtml,
+      '</div></div>',
+    ].join('');
+
+  return { subject, text, html };
+}
+
 async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promise<boolean> {
   const orderId = cleanShortText(order.orderId, 120);
   const activationCode = cleanShortText(order.activationCode, 48);
   const to = cleanEmail(order.email) ?? cleanEmail(order.customerEmail) ?? cleanEmail(order.payerEmail);
   if (!activationCode || !to) return false;
 
-  const key = resendApiKey.value();
+  const key = RESEND_API_KEY.value();
   if (!key) {
     await markActivationEmailStatus(orderId, {
       customerEmailStatus: 'skipped_no_resend_key',
@@ -318,51 +438,24 @@ async function sendActivationEmail(order: FirebaseFirestore.DocumentData): Promi
     });
     return false;
   }
+  const from = webCheckoutEmailFrom.value().trim();
+  if (!from) {
+    await markActivationEmailStatus(orderId, {
+      customerEmailStatus: 'skipped_no_resend_from',
+      customerEmailSentTo: to,
+    });
+    return false;
+  }
 
   const support = webCheckoutSupportEmail.value() || 'support.phraseman@gmail.com';
-  const plan = cleanShortText(order.planDuration || order.plan || 'Premium', 80) || 'Premium';
-  const isGift = order.gift === true;
-  const subject = isGift
-    ? `Ваш подарочный код Phraseman: ${activationCode}`
-    : `Ваш код активации Phraseman: ${activationCode}`;
-  const text = [
-    isGift ? 'Спасибо за подарок — Phraseman Premium!' : 'Спасибо за оплату Phraseman Premium!',
-    '',
-    isGift ? `Подарочный код: ${activationCode}` : `Ваш код активации: ${activationCode}`,
-    '',
-    ...(isGift
-      ? [
-        'Перешлите этот код тому, кому дарите (запиской, сообщением — как удобно).',
-        '',
-        'Как получателю включить Premium:',
-      ]
-      : ['Как включить Premium:']),
-    '1. Откройте приложение Phraseman.',
-    '2. Перейдите в Настройки -> Промокоды.',
-    '3. Вставьте код и нажмите "Активировать".',
-    '',
-    `Тариф: ${plan}.${isGift ? ' Разовый платёж, ничего не спишется повторно.' : ''}`,
-    `Если что-то не получилось, напишите: ${support}`,
-  ].join('\n');
-  const html = [
-    '<div style="font-family:Arial,sans-serif;line-height:1.55;color:#111827">',
-    isGift
-      ? '<h1 style="font-size:22px;margin:0 0 12px">Ваш подарочный код Phraseman</h1><p>Спасибо за подарок! Перешлите код тому, кому дарите, — запиской или сообщением.</p>'
-      : '<h1 style="font-size:22px;margin:0 0 12px">Ваш код активации Phraseman</h1><p>Спасибо за оплату Phraseman Premium.</p>',
-    `<div style="font-size:28px;font-weight:800;letter-spacing:2px;background:#fff7d6;border:1px solid #e8c566;border-radius:10px;padding:18px 20px;margin:18px 0;color:#111827">${htmlEscape(activationCode)}</div>`,
-    isGift ? '<p><b>Как получателю включить Premium:</b></p>' : '<p><b>Как включить Premium:</b></p>',
-    '<ol><li>Откройте приложение Phraseman.</li><li>Перейдите в Настройки -> Промокоды.</li><li>Вставьте код и нажмите "Активировать".</li></ol>',
-    `<p style="color:#4b5563">Тариф: ${htmlEscape(plan)}.${isGift ? ' Разовый платёж, ничего не спишется повторно.' : ''}</p>`,
-    `<p style="color:#4b5563">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`,
-    '</div>',
-  ].join('');
+  const { subject, text, html } = buildActivationEmail(order, support);
 
   try {
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: webCheckoutEmailFrom.value() || 'Phraseman <onboarding@resend.dev>',
+        from,
         to: [to],
         subject,
         text,
@@ -456,6 +549,9 @@ async function markOrderPaid(
     // Коллизия 32^10 практически невозможна; если код занят — заявка остаётся
     // оплаченной БЕЗ кода (ручной путь), деньги не теряются.
     const activationCode = codeSnap.exists ? null : candidateCode;
+    // зачем: владелец 2026-07-26 — подарочный код живёт 12 месяцев (печатается
+    // на сертификате), обычный код покупки «себе» — бессрочный, как раньше.
+    const codeExpiresAtMs = giftCodeExpiryMs(Date.now(), data.gift === true);
     if (activationCode) {
       const reward = activationRewardForPlan(effectivePlan);
       tx.set(codeRef, {
@@ -464,7 +560,7 @@ async function markOrderPaid(
         enabled: true,
         maxRedemptions: 1,
         usedCount: 0,
-        expiresAtMs: 0,
+        expiresAtMs: codeExpiresAtMs,
         note: `web_checkout ${ORDERS_COLLECTION}/${orderId}`,
         createdAtMs: Date.now(),
         createdBy: 'web_checkout',
@@ -474,6 +570,7 @@ async function markOrderPaid(
     const patch = {
       status: 'paid_pending_activation',
       activationCode,
+      codeExpiresAtMs: activationCode ? codeExpiresAtMs : null,
       paidAt: FieldValue.serverTimestamp(),
       paidAtIso: new Date().toISOString(),
       ...(snap.exists ? {} : { recoveredFromWebhook: true, plan: effectivePlan, planDuration: PLAN_LABELS[effectivePlan] }),
@@ -510,7 +607,7 @@ async function stripeCreateSession(params: {
   const form = new URLSearchParams();
   // Подарок — всегда разовый платёж: дарителю нельзя вешать автопродление.
   const oneTime = params.plan === 'lifetime' || params.gift === true;
-  const productName = `Phraseman Premium — ${PLAN_LABELS[params.plan]}${params.gift ? ' (подарок)' : ''}`;
+  const productName = productNameForPlan(params.plan, params.gift === true);
   form.set('mode', oneTime ? 'payment' : 'subscription');
   form.set('line_items[0][quantity]', '1');
   form.set('line_items[0][price_data][currency]', params.currency);
@@ -587,6 +684,8 @@ export const webCheckoutCreate = onRequest(
         utm: cleanAttribution(body.utm),
         answers: cleanAttribution(body.answers),
         gift,
+        giftTo: cleanShortText(body.giftTo, 60),
+        giftFrom: cleanShortText(body.giftFrom, 60),
       });
       const session = await stripeCreateSession({ plan, email, orderId, amountCents, currency: config.currency, gift });
       await db.collection(ORDERS_COLLECTION).doc(orderId).update({
@@ -706,7 +805,7 @@ export const stripeWebhook = onRequest(
     timeoutSeconds: 30,
     maxInstances: 3,
     invoker: 'public',
-    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [STRIPE_WEBHOOK_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
   },
   async (req, res) => {
     if (req.method !== 'POST') {
@@ -854,6 +953,8 @@ export const paypalOrderCreate = onRequest(
         utm: cleanAttribution(body.utm),
         answers: cleanAttribution(body.answers),
         gift: body.gift === true,
+        giftTo: cleanShortText(body.giftTo, 60),
+        giftFrom: cleanShortText(body.giftFrom, 60),
       });
       const token = await paypalAccessToken(config.paypalLive);
       const resp = await fetch(`${paypalBase(config.paypalLive)}/v2/checkout/orders`, {
@@ -866,7 +967,7 @@ export const paypalOrderCreate = onRequest(
           intent: 'CAPTURE',
           purchase_units: [{
             custom_id: orderId,
-            description: `Phraseman Premium — ${PLAN_LABELS[plan]}`,
+            description: productNameForPlan(plan, body.gift === true),
             amount: {
               currency_code: config.currency.toUpperCase(),
               value: (amountCents / 100).toFixed(2),
@@ -895,7 +996,7 @@ export const paypalOrderCapture = onRequest(
     timeoutSeconds: 30,
     maxInstances: 5,
     invoker: 'public',
-    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN],
+    secrets: [PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET, PHRASEMAN_PREMIUM_BOT_TOKEN, RESEND_API_KEY],
   },
   async (req, res) => {
     if (applyCors(req as unknown as AnyRequest, res as unknown as AnyResponse)) return;

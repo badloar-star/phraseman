@@ -7,6 +7,8 @@ const data = {
   studyTarget: 'en', sourceLocale: 'ru', targetLocales: ['de'],
   templateBindings: [{ episodeId: 'episode-01', templateRefs: [{ templateId: 'phrase-builder', version: 1, contentHash: hash }] }],
   idempotencyKey: 'v2-generate-01',
+  // зачем: с Task 6 языковой профиль — обязательное предусловие генерации.
+  languageProfileRef: { profileId: 'english-general-a1', version: 1, contentHash: 'b'.repeat(64) },
 };
 
 type Doc = { exists: boolean; data: () => Record<string, unknown> | undefined };

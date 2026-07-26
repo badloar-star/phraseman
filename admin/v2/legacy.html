@@ -12393,10 +12393,11 @@
 
   <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 ИИ-генератор — новые вопросы</div>
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Собрать турнир целиком</div>
     <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      ИИ придумывает живые вопросы «угадай перевод» под выбранный уровень. Всё попадает «На проверку» —
-      в игру без вашего одобрения не уходит. Батч = 10 вопросов.
+      Одно нажатие — готовый турнир: 4 раунда по 6 заданий. Четыре типа вопросов под режимы турнира:
+      живая ситуация, пропущенное слово, «так не говорят» и сборка фразы. Сложность растёт от раунда к раунду.
+      Всё попадает «На проверку» — в игру без вашего одобрения не уходит.
     </p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <select id="tn-ai-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
@@ -12409,15 +12410,10 @@
       </select>
       <input type="text" id="tn-ai-topic" placeholder="Тема (необязательно): аэропорт, собеседование…" maxlength="120"
         style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;min-width:260px" />
-      <select id="tn-ai-batches" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="1">10 вопросов</option>
-        <option value="2">20 вопросов</option>
-        <option value="3">30 вопросов</option>
-      </select>
-      <button type="button" onclick="tnAiGenerate(true)" title="Сгенерировать и показать, ничего не сохраняя"
+      <button type="button" onclick="tnAiTournament(true)" title="Собрать турнир и показать, ничего не сохраняя"
         style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Примеры</button>
-      <button type="button" onclick="tnAiGenerate(false)" title="Сгенерировать и положить на проверку"
-        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🤖 Сгенерировать</button>
+      <button type="button" onclick="tnAiTournament(false)" title="Собрать турнир: 4 раунда × 6 заданий на проверку"
+        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🏆 Собрать турнир</button>
       <span id="tn-ai-status" style="font-size:13px;color:#9ca3af"></span>
     </div>
     <div id="tn-ai-result" style="margin-top:14px"></div>
@@ -36155,57 +36151,69 @@
   };
 
   // ── ИИ-генерация ────────────────────────────────────────────────────────
-  window.tnAiGenerate = async function tnAiGenerate(dryRun) {
+  /**
+   * зачем: владелец просил, чтобы генерация выдавала СРАЗУ готовый турнир, а не
+   * пачку однотипных вопросов: «1 фулл готовый турнир, все раунды, и для
+   * каждого режима своё». Один вызов = 4 раунда × 6 заданий, четыре типа
+   * вопросов, каждый ложится в свой раздел пула по режиму.
+   */
+  let _fnTnAiTournament = null;
+  window.tnAiTournament = async function tnAiTournament(dryRun) {
     const status = document.getElementById('tn-ai-status');
     const result = document.getElementById('tn-ai-result');
-    if (status) status.textContent = dryRun ? 'ИИ придумывает примеры…' : 'ИИ придумывает вопросы…';
+    if (status) status.textContent = dryRun ? 'Собираю турнир…' : 'Собираю турнир, это до минуты…';
     if (result) result.innerHTML = '';
     try {
-      _fnTnAiGenerate = tnFn(_fnTnAiGenerate, 'adminGenerateTournamentTasksAi');
-      const payload = {
-        level: document.getElementById('tn-ai-level')?.value || 'A2',
-        batches: Number(document.getElementById('tn-ai-batches')?.value || 1),
-        dryRun: dryRun === true,
-      };
+      _fnTnAiTournament = tnFn(_fnTnAiTournament, 'adminGenerateTournamentAi');
+      const payload = { level: document.getElementById('tn-ai-level')?.value || 'A2', dryRun: dryRun === true };
       const topic = (document.getElementById('tn-ai-topic')?.value || '').trim();
       if (topic) payload.topicHint = topic;
 
-      const res = await _fnTnAiGenerate(payload);
+      const res = await _fnTnAiTournament(payload);
       const data = res?.data || {};
       if (status) status.textContent = '';
 
-      const rejected = Array.isArray(data.rejectedBatches) ? data.rejectedBatches.length : 0;
+      // Раскладка по режимам: владелец сразу видит, что турнир разнообразный.
+      const MODE_NAMES = {
+        guess_phrase: 'Живая ситуация',
+        fill_gap: 'Пропущенное слово',
+        find_oddity: '«Так не говорят»',
+        translate_build: 'Собери фразу',
+      };
+      const byMode = data.byMode || {};
+      const modeRows = Object.keys(byMode).map((mode) =>
+        `<span style="background:#1a1a24;border-radius:7px;padding:3px 9px;margin-right:6px;font-size:12px;color:#cbd5e1">${escapeHtml(MODE_NAMES[mode] || mode)}: <strong style="color:#c4b5fd">${byMode[mode]}</strong></span>`
+      ).join('');
+
       const head = dryRun
-        ? `ИИ предложил <strong style="color:#fafafa">${data.accepted ?? 0}</strong> вопросов. Ничего не сохранено.`
-        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> вопросов на проверке.`;
-      // зачем: раньше показывали только «забраковано N» без причины —
-      // владелец платил за генерацию и не мог понять, какое правило качества
-      // не выполнилось. Сервер отдаёт причины в rejectedBatches, показываем их.
-      const reasons = rejected
-        ? Array.from(new Set((data.rejectedBatches || []).flat().map(String))).slice(0, 8)
-        : [];
-      const warn = rejected
-        ? `<div style="color:#fbbf24;margin-top:4px">Батчей забраковано контролем качества: ${rejected} — деньги за них потрачены, но брак в пул не попал.</div>`
-          + (reasons.length ? `<div style="color:#9ca3af;margin-top:4px;font-size:12px">Причины: ${escapeHtml(reasons.join(', '))}</div>` : '')
+        ? `Турнир собран: <strong style="color:#fafafa">${data.produced ?? 0}</strong> из ${data.planned ?? 24} заданий. Ничего не сохранено.`
+        : `Готово: <strong style="color:#4ade80">${data.written ?? 0}</strong> заданий на проверке (из ${data.planned ?? 24}).`;
+
+      const reasons = Array.isArray(data.rejected) && data.rejected.length
+        ? `<div style="color:#9ca3af;margin-top:6px;font-size:12px">Отсеяно контролем качества: ${escapeHtml(data.rejected.slice(0, 8).join(', '))}</div>`
         : '';
       const samples = Array.isArray(data.samples) && data.samples.length
         ? `<div style="margin-top:12px">${data.samples.map(tnRenderTask).join('')}</div>` : '';
 
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}${warn}</div>${samples}`;
+      if (result) {
+        result.innerHTML = `<div style="font-size:13px;color:#9ca3af;line-height:1.6">${head}</div>`
+          + (modeRows ? `<div style="margin-top:8px">${modeRows}</div>` : '') + reasons + samples;
+      }
       if (!dryRun) { await window.tnLoadTasks(true); await window.tnLoadStats(); }
     } catch (e) {
       if (status) status.textContent = '';
       const code = tnError(e);
       const nice = code.includes('tournament_ai_daily_cap')
-        ? 'Дневной лимит ИИ-генераций исчерпан. Завтра счётчик обнулится.'
-        : (code.includes('tournament_disabled_by_admin') ? 'ИИ-генератор выключен рубильником в настройках OpenAI-джобов.' : code);
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">Ошибка: ${escapeHtml(nice)}</div>`;
+        ? 'Дневной лимит генераций исчерпан. Попробуйте завтра.'
+        : 'Ошибка: ' + code;
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#fca5a5">${escapeHtml(nice)}</div>`;
     }
   };
 
-  // ── Редактирование вопроса ──────────────────────────────────────────────
-  const tnInput = (id, value, width) =>
-    `<input type="text" id="${id}" value="${escapeHtml(value)}" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;width:${width || '100%'};box-sizing:border-box;margin-bottom:6px" />`;
+  // зачем: старая пакетная генерация (10/20/30 однотипных вопросов) убрана —
+  // владелец забраковал её как однотипную. Турнир теперь собирается целиком
+  // одной кнопкой: window.tnAiTournament выше. Серверная callable осталась
+  // задеплоенной, но из интерфейса не вызывается.
 
   window.tnEditStart = function tnEditStart(rawTaskId) {
     // Тот же фильтр, что при отрисовке: id в разметке всегда «чистый».

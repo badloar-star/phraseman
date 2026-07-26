@@ -52,7 +52,14 @@ function runTab() {
       if (name === 'adminGenerateTournamentTasks') {
         return { data: { stats: { produced: 10, phrasesSeen: 5 }, written: 10, keptPublished: 3, samples: [] } };
       }
-      if (name === 'adminGenerateTournamentTasksAi') {
+      if (name === 'adminGenerateTournamentAi') {
+        return { data: {
+          planned: 24, produced: 24, written: 24,
+          byMode: { guess_phrase: 4, fill_gap: 4, find_oddity: 8, translate_build: 8 },
+          rejected: [], samples: [],
+        } };
+      }
+      if (name === 'adminGenerateTournamentAi') {
         return { data: { accepted: 10, written: 10, rejectedBatches: [], requests: 1, samples: [] } };
       }
       if (name === 'adminGetTournamentCurated') {
@@ -95,7 +102,7 @@ describe('вкладка «Турниры» в админке', () => {
 
   it('все функции вкладки объявлены и доступны из разметки', () => {
     const { sandbox } = runTab();
-    for (const name of ['tnAiGenerate', 'tnLoadTasks', 'tnPublishVisible', 'tnLoadStats', 'tnLoadSchedule', 'tnSaveSchedule', 'tnOpenTab']) {
+    for (const name of ['tnAiTournament', 'tnLoadTasks', 'tnPublishVisible', 'tnLoadStats', 'tnLoadSchedule', 'tnSaveSchedule', 'tnOpenTab']) {
       expect(typeof sandbox[name]).toBe('function');
       expect(html).toContain(`${name}(`);
     }
@@ -134,9 +141,9 @@ describe('вкладка «Турниры» в админке', () => {
 
   it('предпросмотр ИИ-генерации ничего не сохраняет', async () => {
     const { sandbox, calls } = runTab();
-    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(true);
+    await (sandbox.tnAiTournament as (dryRun: boolean) => Promise<void>)(true);
 
-    const generate = calls.find((call) => call.name === 'adminGenerateTournamentTasksAi');
+    const generate = calls.find((call) => call.name === 'adminGenerateTournamentAi');
     expect(generate?.payload?.dryRun).toBe(true);
     // Предпросмотр не должен дёргать список и статистику — записи не было.
     expect(calls.filter((call) => call.name === 'adminListTournamentTasks')).toHaveLength(0);
@@ -147,7 +154,7 @@ describe('вкладка «Турниры» в админке', () => {
     // дистракторы не конкурировали, ответ угадывался без знания языка.
     expect(html).not.toContain('tnGenerate(');
     expect(html).not.toContain('adminGenerateTournamentTasks\'');
-    expect(html).toContain('tnAiGenerate(');
+    expect(html).toContain('tnAiTournament(');
   });
 
   it('без отмеченных заданий публикация не уходит на сервер', async () => {
@@ -225,22 +232,35 @@ describe('вкладка «Турниры» в админке', () => {
 
   it('ИИ-генератор: функции объявлены, разметка на месте', () => {
     const { sandbox } = runTab();
-    for (const name of ['tnAiGenerate', 'tnEditStart', 'tnEditSave', 'tnDeleteTask',
+    for (const name of ['tnAiTournament', 'tnEditStart', 'tnEditSave', 'tnDeleteTask',
       'tnCuratedLoad', 'tnCuratedAdd', 'tnCuratedSave', 'tnCuratedClear']) {
       expect(typeof sandbox[name]).toBe('function');
       expect(html).toContain(`${name}(`);
     }
-    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-ai-batches', 'tn-source', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
+    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-source', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
       expect(html).toContain(`id="${id}"`);
     }
+  });
+
+  it('генерация собирает ЦЕЛЫЙ турнир одним вызовом', async () => {
+    // Требование владельца: «1 фулл готовый турнир, все раунды», а не пачка
+    // однотипных вопросов. Кнопка зовёт adminGenerateTournamentAi.
+    const { sandbox, calls } = runTab();
+    await (sandbox.tnAiTournament as (dryRun: boolean) => Promise<void>)(true);
+
+    const call = calls.find((c) => c.name === 'adminGenerateTournamentAi');
+    expect(call).toBeDefined();
+    expect(call?.payload?.dryRun).toBe(true);
+    // Количество вопросов больше не задаётся руками — его определяет турнир.
+    expect(call?.payload).not.toHaveProperty('batches');
   });
 
   it('ИИ-предпросмотр ничего не сохраняет и не перезагружает список', async () => {
     const { sandbox, calls, elements } = runTab();
     elements['tn-ai-level'] = { id: 'tn-ai-level', value: 'B1', innerHTML: '', textContent: '', querySelector: () => null };
-    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(true);
+    await (sandbox.tnAiTournament as (dryRun: boolean) => Promise<void>)(true);
 
-    const generate = calls.find((call) => call.name === 'adminGenerateTournamentTasksAi');
+    const generate = calls.find((call) => call.name === 'adminGenerateTournamentAi');
     expect(generate?.payload?.dryRun).toBe(true);
     expect(generate?.payload?.level).toBe('B1');
     expect(calls.filter((call) => call.name === 'adminListTournamentTasks')).toHaveLength(0);
@@ -249,10 +269,10 @@ describe('вкладка «Турниры» в админке', () => {
   it('ИИ-генерация без dryRun кладёт черновики и обновляет список со статистикой', async () => {
     const { sandbox, calls, elements } = runTab();
     elements['tn-ai-level'] = { id: 'tn-ai-level', value: 'A2', innerHTML: '', textContent: '', querySelector: () => null };
-    await (sandbox.tnAiGenerate as (dryRun: boolean) => Promise<void>)(false);
+    await (sandbox.tnAiTournament as (dryRun: boolean) => Promise<void>)(false);
 
     const names = calls.filter((call) => call.name).map((call) => call.name);
-    expect(names).toContain('adminGenerateTournamentTasksAi');
+    expect(names).toContain('adminGenerateTournamentAi');
     expect(names).toContain('adminListTournamentTasks');
     expect(names).toContain('adminTournamentPoolStats');
   });

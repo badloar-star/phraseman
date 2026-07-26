@@ -535,6 +535,10 @@ export {
   adminGetTournamentCurated,
 } from './admin_tournament_tasks';
 
+// Генерация ЦЕЛОГО турнира одним вызовом: 4 раунда × 6 заданий, каждому
+// режиму свой тип вопроса (ситуация / пропуск / поиск ошибки / сборка).
+export { adminGenerateTournamentAi } from './admin_tournament_full';
+
 // ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
 export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';
 

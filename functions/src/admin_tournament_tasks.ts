@@ -61,7 +61,7 @@ function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-function requirePermission(
+export function requirePermission(
   request: CallRequest,
   permission: 'content.read' | 'content.draft.write' | 'content.publish',
 ): AdminRole {
@@ -73,7 +73,7 @@ function requirePermission(
   return role;
 }
 
-function onlyKeys(data: unknown, allowed: readonly string[], errorCode: string): Record<string, unknown> {
+export function onlyKeys(data: unknown, allowed: readonly string[], errorCode: string): Record<string, unknown> {
   if (data === undefined || data === null) return {};
   if (!isRecord(data) || Object.keys(data).some((key) => !allowed.includes(key))) {
     throw new HttpsError('invalid-argument', errorCode);

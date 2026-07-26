@@ -22,6 +22,8 @@ export interface IntentButtonProps {
   readonly pressed?: boolean;
   /** data-reveal из OptionGrid: показ правильного/неправильного после проверки. */
   readonly reveal?: 'correct' | 'incorrect';
+  /** Акцент режима (Phase 6 Kimi) — перекрашивает primary-кнопку поверхности. */
+  readonly accentColor?: string;
   readonly style?: StyleProp<ViewStyle>;
   readonly accessibilityLabel?: string;
   readonly testID?: string;
@@ -43,6 +45,7 @@ export const IntentButton = memo(function IntentButton(props: IntentButtonProps)
     disabled = false,
     pressed = false,
     reveal,
+    accentColor,
     style,
     accessibilityLabel,
     testID,
@@ -51,7 +54,11 @@ export const IntentButton = memo(function IntentButton(props: IntentButtonProps)
 
   const containerStyle = useMemo<StyleProp<ViewStyle>>(() => {
     const base: ViewStyle[] = [ibtn.base];
-    if (variant === 'primary') base.push(ibtn.primary);
+    if (variant === 'primary') {
+      base.push(ibtn.primary);
+      // зачем: акцент режима Kimi перекрашивает primary целиком (фон + кромка)
+      if (accentColor) base.push({ backgroundColor: accentColor, borderColor: accentColor }); // guard-ok: кромка = цвет заливки, отдельной обводки нет
+    }
     if (variant === 'secondary') base.push(ibtn.secondary);
     if (variant === 'ghost') base.push(ibtn.ghost);
     if (variant === 'option') base.push(ibtn.option);

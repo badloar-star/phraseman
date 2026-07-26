@@ -11,6 +11,7 @@ import type { LabIntentEvent } from './LabState';
 import {
   C,
   LEADING,
+  MODE_ACCENT,
   RADIUS,
   SPACE,
   STATE_COLORS,
@@ -64,12 +65,16 @@ export const ActivityShell = memo(function ActivityShell(props: ActivityShellPro
     secondaryAction,
     onIntent,
     conditionChips,
+    mode,
     children,
   } = props;
 
   const meta = STATE_META[state];
   const isProcessing = state === 'processing';
   const stateColor = STATE_COLORS[state];
+  // зачем: Phase 6 Kimi — акцент режима перекрашивает primary-кнопку поверхности
+  // (на скриншотах vd жёлтая natural-choice, sm — синяя базовая).
+  const accent = mode ? MODE_ACCENT[mode] : C.accentPrimary;
 
   return (
     <View style={s.shell}>
@@ -116,6 +121,7 @@ export const ActivityShell = memo(function ActivityShell(props: ActivityShellPro
           payload={primaryAction.payload}
           onIntent={onIntent}
           variant="primary"
+          accentColor={accent}
           disabled={isProcessing || primaryDisabled}
           style={s.primary}
           accessibilityLabel={primaryAction.label}

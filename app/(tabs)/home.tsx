@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { normalizeSafeAreaBottomInset } from '../../hooks/use-screen';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { getStreakFreezeCostShards } from '../remote_flags';
-import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
+import { View, Text, StyleSheet, Pressable, ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager, Easing, Platform, type GestureResponderEvent, type PressableProps, type PressableStateCallbackType, type StyleProp, type ViewStyle, } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from '../../components/SafeLinearGradient';
 import TapScale from '../../components/TapScale';
@@ -33,7 +33,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
-import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
+import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
 import { configureAccordionLayout } from '../../constants/layoutAnimation';
@@ -95,7 +95,7 @@ import { emitAppEvent, onAppEvent } from '../events';
 import { ensureAnonUser } from '../cloud_sync';
 import { FOREGROUND_CLOUD_REFRESH_DELAY_MS, FOREGROUND_LIGHT_REFRESH_DELAY_MS, getForegroundRefreshKind } from '../app_resume_policy';
 import { fetchActiveLeagueCrowns, fetchLeagueBonusProgressSnapshot, getLeagueChestGoal } from '../services/league_chest_rewards';
-import { shouldShowLeagueRace } from '../league_race_visibility';
+import { getCachedLeagueStateSync } from '../league_open_cache_policy';
 import { getHomeMenuImages } from '../home_menu_icons';
 import { isStreakFreezeActiveToday } from '../streak_freeze';
 import { isStudyTargetSourceUiLang } from '../study_target_lang_dev';
@@ -111,6 +111,12 @@ import { getStreakFireIconVariant, getStreakFreezeIconVariant } from '../../cons
 import { COMPASS_GRADIENTS, COMPASS_RICH, COMPASS_SURFACE_LOCATIONS, compassShadow } from '../../constants/compassTheme';
 import { themedToastChrome } from '../../constants/themedToastChrome';
 import { themedWeekDot } from '../../constants/weekDotTheme';
+import { isSurveyCloudEnabled, fetchActiveSurveyWithRetry } from '../survey_client';
+import { isSurveyDailyTaskDone, migrateLegacySurveyCompletion } from '../survey_daily_task';
+import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, computeSurveyDailyCounts } from '../survey_daily_challenge_model';
+import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
+import { getCanonicalUserId } from '../user_id_policy';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -127,6 +133,30 @@ const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
 const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
+/**
+ * Сессионный флаг: нижняя часть главной («Вызовы дня», «Цель лиги», фраза дня, подвал)
+ * уже проходила отложенный второй проход.
+ *
+ * зачем: второй проход через InteractionManager экономит бюджет ХОЛОДНОГО СТАРТА, но
+ * useState(false) выполнялся заново на каждом маунте таба. Возврат с любого раздела
+ * размораживает главную → флаг снова false → блоки исчезали и вставлялись кадром позже,
+ * толкая верстку («элементы появляются с задержкой»). Флаг в module-scope переживает
+ * маунты/ремаунты в рамках процесса, поэтому отложенный проход бывает ровно один раз —
+ * так же, как homeStatsLoadedOnce выше. Сбрасывать при смене аккаунта НЕ нужно: флаг
+ * говорит только «можно ли рендерить эти блоки», а сами цифры внутри берутся из
+ * account-scoped состояния и кэшей, поэтому чужие данные он показать не может.
+ */
+let homeBelowFoldReadyOnce = false;
+/**
+ * Единая высота карточки статистики на главной.
+ *
+ * зачем: было `minHeight: homeStatsReady ? 184 : 196` — пока данные не готовы, панель на
+ * 12px ВЫШЕ, а при готовности сжимается, и весь контент под ней подскакивает вверх. Ровно
+ * то «подпрыгивание при открытии/возврате на главную», на которое жаловался владелец
+ * (ориентир — Bevel: открыл и статично). Держим одну высоту в обоих состояниях: берём
+ * бОльшую из двух, чтобы готовое содержимое гарантированно влезало без обрезки.
+ */
+const HOME_STATS_CARD_MIN_HEIGHT = 196;
 const GREETINGS_RU = [
     'Твой лингвистический дзен', 'Время покорять вершины', 'Зарядись знаниями', 'Твой мозг скажет «спасибо»',
     'Готов к новым инсайтам?', 'Мир ждет твоего слова', 'На шаг ближе к цели', 'Твой интеллект в тонусе',
@@ -353,9 +383,7 @@ function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId
     myContribution: number;
     leaderName: string;
     leaderPoints: number;
-} | null {
-    if (!group.length)
-        return null;
+} {
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
     const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
@@ -623,8 +651,14 @@ export default function HomeScreen() {
     // раньше стартовал с 0 и «прыгал» на реальное число вторым проходом (belowFoldReady),
     // заметно на каждом повторном открытии Home. Холодный первый-в-жизни запуск (hh=null) — 0.
     const [tasksCompleted, setTasksCompleted] = useState(() => hh?.tasksCompleted ?? 0);
+    const initialSurveyDailyTask = (() => {
+        const stableId = captureAccountGeneration().stableId;
+        return stableId ? peekSurveyDailyTask({ stableId, dayKey: getTodayKey(), lang }) : null;
+    })();
     /** Сколько сегментов на плитке «Задания» — как на экране заданий (тот же getTodayTasksSafe). */
-    const [dailyTaskBarCount, setDailyTaskBarCount] = useState(3);
+    // This strip is fixed for the visible Home session. Late survey responses are
+    // cached for the next mount and must not add or remove dots under the user.
+    const [dailyTaskBarCount] = useState(initialSurveyDailyTask ? 5 : 4);
     const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
     const { isPremium, isVip, hasPremiumAccess } = usePremium();
     // Доступ именно к «Личному плану» с учётом «Пульта»: true = премиум ИЛИ фича
@@ -805,8 +839,8 @@ export default function HomeScreen() {
             const progress = await loadTodayProgress(taskList, studyTarget);
             if (!mountedRef.current)
                 return;
+            const baseTotal = taskList.length > 0 ? taskList.length : 4;
             setTaskProgress(progress);
-            setDailyTaskBarCount(taskList.length > 0 ? taskList.length : 3);
             const progressById = new Map(progress.map((row) => [row.taskId, row]));
             const nextTasksCompleted = taskList.filter((task) => progressById.get(task.id)?.completed === true).length;
             setTasksCompleted(nextTasksCompleted);
@@ -814,11 +848,48 @@ export default function HomeScreen() {
             // иначе выполнение задания между полными загрузками не долетает до кэша,
             // и следующее открытие Home снова покажет устаревшее число до второго прохода.
             patchHomeScreenHydration({ tasksCompleted: nextTasksCompleted }, studyTarget);
+            void (async () => {
+                try {
+                    const accountToken = captureAccountGeneration();
+                    const stableId = await getCanonicalUserId();
+                    if (!stableId || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const dayKey = getTodayKey();
+                    const scope = { stableId, dayKey, lang };
+                    let survey = peekSurveyDailyTask(scope);
+                    const completed = await isSurveyDailyTaskDone({ stableId, dayKey });
+                    if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                    if (completed) {
+                        survey = buildServerConfirmedLegacyCompletion(lang);
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        commitSurveyDailyTaskRequest(scope, requestId, survey);
+                    } else if (!survey && isSurveyCloudEnabled()) {
+                        const requestId = beginSurveyDailyTaskRequest(scope);
+                        const lookup = await fetchActiveSurveyWithRetry({ stableId, platform: Platform.OS, lang });
+                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        const migrated = await migrateLegacySurveyCompletion({ stableId, dayKey, completion: lookup.completion, lang });
+                        if (!isCurrentAccountGeneration(accountToken, stableId)) return;
+                        survey = migrated
+                            ? buildServerConfirmedLegacyCompletion(lang)
+                            : lookup.survey && lookup.survey.questions.length > 0
+                                ? buildActiveSurveyDailyChallenge({ survey: lookup.survey, lang })
+                                : null;
+                        if (!commitSurveyDailyTaskRequest(scope, requestId, survey)) {
+                            survey = peekSurveyDailyTask(scope);
+                        }
+                    }
+                    if (!mountedRef.current || !isCurrentAccountGeneration(accountToken, stableId)) return;
+                    const counts = computeSurveyDailyCounts({ baseTotal, baseDone: nextTasksCompleted, survey });
+                    setTasksCompleted(counts.done);
+                    patchHomeScreenHydration({ tasksCompleted: counts.done }, studyTarget);
+                } catch {
+                    /* Keep the already-rendered ordinary task summary. */
+                }
+            })();
         }
         catch {
             /* keep previous summary */
         }
-    }, [studyTarget]);
+    }, [lang, studyTarget]);
     const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? snapshotShards);
     const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
     const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
@@ -830,7 +901,15 @@ export default function HomeScreen() {
         myContribution: number;
         leaderName: string;
         leaderPoints: number;
-    } | null>(() => hh?.homeLeagueChest ?? null);
+    }>(() => {
+        const cachedLeagueState = getCachedLeagueStateSync();
+        const cachedLeague = cachedLeagueState
+            ? LEAGUES.find((league) => league.id === cachedLeagueState.leagueId) ?? null
+            : null;
+        return cachedLeagueState
+            ? buildHomeLeagueChest(cachedLeagueState.group, cachedLeague ? clubTierShortName(cachedLeague, lang) : 'Лига недели', cachedLeagueState.leagueId)
+            : hh?.homeLeagueChest ?? buildHomeLeagueChest([], clubTierShortName(LEAGUES[0], lang), LEAGUES[0].id);
+    });
     const shardsAnim = useRef(new Animated.Value(1)).current;
     const shardsBonusAnim = useRef(new Animated.Value(0)).current;
     const [shardsBonusText, setShardsBonusText] = useState('');
@@ -961,9 +1040,17 @@ export default function HomeScreen() {
     // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
     // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
     // фраза дня, подвал) монтируются вторым проходом после первого кадра.
-    const [belowFoldReady, setBelowFoldReady] = useState(false);
+    // зачем: флаг стартовал с false на КАЖДОМ маунте главной. При возврате с любого
+    // раздела таб размораживается заново, флаг опять false — и «Вызовы дня», «Цель лиги»,
+    // фраза дня, подвал пропадали, а через кадр (runAfterInteractions) вставлялись в поток,
+    // толкая верстку. Владелец: «возврат на главную — элементы появляются с задержкой,
+    // хочу как в Bevel: сразу видно всю страницу». Второй проход нужен ТОЛЬКО первому
+    // маунту в сессии (бюджет холодного старта): дальше отдаём готовую страницу сразу.
+    const [belowFoldReady, setBelowFoldReady] = useState(homeBelowFoldReadyOnce);
     useEffect(() => {
+        if (homeBelowFoldReadyOnce) return undefined;
         const task = InteractionManager.runAfterInteractions(() => {
+            homeBelowFoldReadyOnce = true;
             setBelowFoldReady(true);
         });
         return () => { task?.cancel?.(); };
@@ -1033,7 +1120,9 @@ export default function HomeScreen() {
         }) => {
             getShardsBalance().then(bal => {
                 setShardsBalance(bal);
-                setShardsBonusText(`+${payload.amount} 💎`);
+                // зачем: надпись всплывает прямо над иконкой баланса жемчужин —
+                // эмодзи-алмаз 💎 дублировал бы ассет, который уже на экране.
+                setShardsBonusText(`+${payload.amount}`);
                 shardsBonusAnim.setValue(0);
                 Animated.sequence([
                     Animated.timing(shardsBonusAnim, { toValue: 1, duration: 300, useNativeDriver: HOME_ANIMATION_USE_NATIVE_DRIVER }),
@@ -1298,6 +1387,8 @@ export default function HomeScreen() {
     const deferredReadyTaskRef = useRef<{ cancel?: () => void } | null>(null);
     const homeRefreshTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const lastHomeRefreshRef = useRef<{ key: string; at: number }>({ key: '', at: 0 });
+    const homeRefreshKeyRef = useRef<string | null>(null);
+    const homeLeagueCrownLoadedRef = useRef(false);
     const markHomeStatsReady = useCallback(() => {
         deferredReadyTaskRef.current?.cancel?.();
         deferredReadyTaskRef.current = InteractionManager.runAfterInteractions(() => {
@@ -1308,18 +1399,23 @@ export default function HomeScreen() {
     }, []);
     useEffect(() => {
         if (!isHomeOwner) return;
+        const homeRefreshKey = `${studyTarget}:${lang}`;
+        // Returning from a section must reveal the preserved Home tree, not
+        // restart its data pipeline. A real study-target/UI-language change is
+        // the only reason this effect performs a fresh full load.
+        if (homeRefreshKeyRef.current === homeRefreshKey) return;
+        homeRefreshKeyRef.current = homeRefreshKey;
         if (homeRefreshTimerRef.current) {
             clearTimeout(homeRefreshTimerRef.current);
             homeRefreshTimerRef.current = null;
         }
         homeRefreshTimerRef.current = setTimeout(() => {
             homeRefreshTimerRef.current = null;
-            const key = `${studyTarget}:${lang}`;
             const now = Date.now();
-            if (lastHomeRefreshRef.current.key === key && now - lastHomeRefreshRef.current.at < 750) {
+            if (lastHomeRefreshRef.current.key === homeRefreshKey && now - lastHomeRefreshRef.current.at < 750) {
                 return;
             }
-            lastHomeRefreshRef.current = { key, at: now };
+            lastHomeRefreshRef.current = { key: homeRefreshKey, at: now };
             void Promise.all([refreshDailyTaskSummary(), loadData()]);
         }, 80);
         return () => {
@@ -1328,8 +1424,10 @@ export default function HomeScreen() {
                 homeRefreshTimerRef.current = null;
             }
         };
-    }, [focusTick, isHomeOwner, studyTarget, lang, refreshDailyTaskSummary]);
+    }, [isHomeOwner, studyTarget, lang, refreshDailyTaskSummary]);
     useEffect(() => {
+        if (!isHomeOwner || homeLeagueCrownLoadedRef.current) return;
+        homeLeagueCrownLoadedRef.current = true;
         let cancelled = false;
         void ensureAnonUser()
             .then((uid) => {
@@ -1353,7 +1451,7 @@ export default function HomeScreen() {
         return () => {
             cancelled = true;
         };
-    }, [focusTick]);
+    }, [isHomeOwner]);
     /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
     useEffect(() => {
         if (!homeStatsReady || !homeRuntimeActive)
@@ -1709,7 +1807,10 @@ export default function HomeScreen() {
                 tasksCompleted: hh?.tasksCompleted,
                 homeLeagueCrownExpiresAt,
                 homeLeagueCrownCount,
-                homeLeagueChest,
+                // The long-lived event subscriptions call the first loadData closure,
+                // which can still have a null React value. Preserve the newest cache
+                // rather than letting that stale closure erase the league row.
+                homeLeagueChest: homeLeagueChest ?? peekHomeScreenHydration(studyTarget)?.homeLeagueChest ?? null,
                 personalPlanSnapshot: planSnapshot ?? (activePlanState ? personalPlanSnapshot : null),
             }, studyTarget);
             patchAppSnapshot({
@@ -1768,25 +1869,24 @@ export default function HomeScreen() {
                 ? leagueOpenResult.result
                 : await loadPendingResult().catch(() => null);
             setTaskProgress(tp);
-            const nSlots = taskList.length > 0 ? taskList.length : 3;
-            setDailyTaskBarCount(nSlots);
             const taskProgressById = new Map(tp.map((row) => [row.taskId, row]));
             const loadedTasksCompleted = taskList.filter((task) => taskProgressById.get(task.id)?.completed).length;
             setTasksCompleted(loadedTasksCompleted);
             // зачем: обновляем снапшот сразу после свежих данных — при следующем открытии
             // Home второй проход (belowFoldReady) стартует с этого числа, а не с 0.
             patchHomeScreenHydration({ tasksCompleted: loadedTasksCompleted }, studyTarget);
+            // The full Home load can finish after the light summary request. Run the
+            // summary again so this late base update cannot hide the survey indicator.
+            void refreshDailyTaskSummary();
             if (leagueState) {
                 const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
-                const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
                 const freshLeagueBonus = await fetchLeagueBonusProgressSnapshot().catch(() => null);
                 const matchingFreshBonus = freshLeagueBonus
                     && freshLeagueBonus.weekId === leagueState.weekId
                     && freshLeagueBonus.leagueId === leagueState.leagueId
                     ? freshLeagueBonus
                     : null;
-                const nextHomeLeagueChest = showLeagueRace
-                    ? buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
+                const nextHomeLeagueChest = buildHomeLeagueChest(leagueState.group ?? [], league ? clubTierShortName(league, lang) : triLang(lang, {
                         ru: 'Лига недели',
                         uk: 'Ліга тижня',
                         es: 'Liga semanal',
@@ -1795,8 +1895,7 @@ export default function HomeScreen() {
                         id: "Liga mingguan",
                         tr: "Haftalık lig",
                         pl: "Liga tygodnia",
-                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints)
-                    : null;
+                    }), leagueState.leagueId, matchingFreshBonus?.leaguePoints);
                 setEngineLeague(league);
                 setHomeLeagueChest((prev) => nextHomeLeagueChest ?? prev);
                 patchHomeScreenHydration({
@@ -1983,23 +2082,25 @@ export default function HomeScreen() {
             const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
             if (!ok) {
                 await enqueueThemedBlockingInfoAlert(triLang(lang, {
-                    ru: 'Недостаточно монет',
-                    uk: 'Недостатньо монет',
+                    ru: 'Недостаточно жемчужин',
+                    uk: 'Недостатньо перлин',
                     es: `No tienes suficientes ${BRAND_SHARDS_ES}`,
-                    'pt-BR': "Você não tem moedas suficientes",
+                    'pt-BR': "Você não tem pérolas suficientes",
                     vi: "Bạn không có đủ xu",
-                    id: "Koin kamu tidak cukup",
-                    tr: "Yeterli jetonun yok",
+                    id: "Mutiara kamu tidak cukup",
+                    tr: "Yeterli incin yok",
                     pl: "Nie masz wystarczająco monet",
+                // зачем: системный алерт принимает только текст — валюту называем
+                // словом («жемчужин»), как в магазине, а не эмодзи-алмазом 💎.
                 }), triLang(lang, {
-                    ru: `Заморозка стоит ${FREEZE_COST_SHARDS} 💎. У тебя ${shardsBalance} 💎.`,
-                    uk: `Заморозка коштує ${FREEZE_COST_SHARDS} 💎. У тебе ${shardsBalance} 💎.`,
-                    es: `Congelar la racha cuesta ${FREEZE_COST_SHARDS} 💎 · Tienes ${shardsBalance} 💎`,
-                    'pt-BR': `Congelar a sequência custa ${FREEZE_COST_SHARDS} 💎 · Você tem ${shardsBalance} 💎`,
-                    vi: `Đóng băng chuỗi tốn ${FREEZE_COST_SHARDS} 💎 · Bạn có ${shardsBalance} 💎`,
-                    id: `Bekukan rangkaian seharga ${FREEZE_COST_SHARDS} 💎 · Kamu punya ${shardsBalance} 💎`,
-                    tr: `Seriyi dondurmak ${FREEZE_COST_SHARDS} 💎 · Sende ${shardsBalance} 💎 var`,
-                    pl: `Zamrożenie serii kosztuje ${FREEZE_COST_SHARDS} 💎 · Masz ${shardsBalance} 💎`,
+                    ru: `Заморозка стоит ${FREEZE_COST_SHARDS} жемчужин. У тебя ${shardsBalance}.`,
+                    uk: `Заморозка коштує ${FREEZE_COST_SHARDS} перлин. У тебе ${shardsBalance}.`,
+                    es: `Congelar la racha cuesta ${FREEZE_COST_SHARDS} perlas · Tienes ${shardsBalance}`,
+                    'pt-BR': `Congelar a sequência custa ${FREEZE_COST_SHARDS} pérolas · Você tem ${shardsBalance}`,
+                    vi: `Đóng băng chuỗi tốn ${FREEZE_COST_SHARDS} ngọc trai · Bạn có ${shardsBalance}`,
+                    id: `Bekukan rangkaian seharga ${FREEZE_COST_SHARDS} mutiara · Kamu punya ${shardsBalance}`,
+                    tr: `Seriyi dondurmak ${FREEZE_COST_SHARDS} inci · Sende ${shardsBalance} var`,
+                    pl: `Zamrożenie serii kosztuje ${FREEZE_COST_SHARDS} pereł · Masz ${shardsBalance}`,
                 }), 'OK');
                 return;
             }
@@ -2270,69 +2371,11 @@ export default function HomeScreen() {
             },
         ];
         const visibleQuickItems = quickItems;
-        const themedClubIcon = menuImages.league;
-        /** Второй ряд быстрых плиток — тот же визуал, что «Уроки / Квизы / Карточки». */
-        const activityQuickItems = [
-            {
-                key: 'daily',
-                kind: 'tasks' as const,
-                iconKey: 'dayTasks' as const,
-                label: triLang(lang, {
-                    ru: 'Вызовы дня',
-                    uk: 'Виклики дня',
-                    es: 'Tareas del día',
-                    'pt-BR': "Tarefas do dia",
-                    vi: "Nhiệm vụ hôm nay",
-                    id: "Tugas harian",
-                    tr: "Günün görevleri",
-                    pl: "Zadania dnia",
-                }),
-                path: '/daily_tasks_screen' as const,
-                img: menuImages.dayTasks,
-            },
-            {
-                key: 'league',
-                kind: 'league' as const,
-                iconKey: 'league' as const,
-                label: triLang(lang, {
-                    ru: 'Лига недели',
-                    uk: 'Ліга тижня',
-                    es: 'Liga de la semana',
-                    'pt-BR': "Liga da semana",
-                    vi: "Giải đấu trong tuần",
-                    id: "Liga minggu ini",
-                    tr: "Haftanın ligi",
-                    pl: "Liga tygodnia",
-                }),
-                path: '/league_screen' as const,
-            },
-            {
-                key: 'attest',
-                kind: 'image' as const,
-                iconKey: 'test' as const,
-                label: s.home.attestTile,
-                path: '/diagnostic_test' as const,
-                img: menuImages.test,
-            },
-            {
-                key: 'speaking_club',
-                kind: 'image' as const,
-                iconKey: 'dialogs' as const,
-                label: triLang(lang, {
-                    ru: 'Разговорный клуб',
-                    uk: 'Розмовний клуб',
-                    es: 'Club de charla',
-                    'pt-BR': "Clube de conversa",
-                    vi: "CLB hội thoại",
-                    id: "Klub bicara",
-                    tr: "Konuşma kulübü",
-                    pl: "Klub rozmów",
-                }),
-                path: '/speaking_club_home' as const,
-                img: menuImages.dialogs,
-            },
-        ];
-        const visibleActivityQuickItems = activityQuickItems;
+        // зачем: удалён мёртвый второй ряд плиток (activityQuickItems /
+        // visibleActivityQuickItems / themedClubIcon) — он объявлялся, но никогда
+        // не рендерился, поэтому «Аттестация» и «Разговорный клуб» числились в
+        // коде как разделы главной, которых пользователь не видит. Реальный ряд —
+        // visibleQuickItems (Урок / Практика / Карточки), см. рендер ниже.
         const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
         const eliteStatsCompact = CONTENT_W < 370;
         const eliteAvatarSize = eliteStatsCompact ? 54 : 60;
@@ -2358,7 +2401,7 @@ export default function HomeScreen() {
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
         const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
-        const homeHeaderShardIconSource = coinIconForBalance(shardsBalance);
+        const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
         const homeHeaderShardIconSize = 34;
         const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
         // Компактная энергия: ОДНА иконка + «3/5» цифрами (вместо ряда иконок) —
@@ -2640,7 +2683,7 @@ export default function HomeScreen() {
                     nav.push('/shards_shop');
                   }} style={{ flexDirection: 'row', alignItems: 'center', gap: 3, minHeight: 46, paddingHorizontal: 2 }}>
                   <Animated.View style={{ transform: [{ scale: shardsAnim }], flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-                    <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} монет`} />
+                          <Image source={homeHeaderShardIconSource} style={{ width: homeHeaderShardIconWidth, height: homeHeaderShardIconSize }} contentFit="contain" contentPosition="center" accessibilityLabel={`Баланс: ${shardsBalance} жемчужин`} />
                     <Text style={{ color: isGoldTheme ? GOLD_RICH.paleGold : sketchShardAccent, fontSize: 14, fontWeight: '900' }}>{shardsBalance}</Text>
                   </Animated.View>
                 </TouchableOpacity>
@@ -2689,7 +2732,7 @@ export default function HomeScreen() {
           <Animated.View style={sectionStyle(1)}>
           {/* Герой: серия + уровень + XP + неделя (вернул владелец) — тап открывает статистику */}
           <TouchableOpacity testID="home-stats-card" activeOpacity={0.88} onPress={() => { hapticTap(); nav.push('/streak_stats'); }} style={[{ marginHorizontal: 8, marginBottom: 12 }, isGoldTheme ? goldShadow(3) : null]} accessibilityRole="button" accessibilityLabel={s.home.statsCardTitle} accessibilityHint={s.home.statsPulseHint}>
-            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: homeStatsReady ? 184 : 196, overflow: 'hidden' }}>
+            <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 1, y: 1 }} end={{ x: 0, y: 0 }} style={{ borderRadius: isGoldTheme ? 18 : isCompassTheme ? compassHomeRadius : 24, borderWidth: 0, borderColor: 'transparent', padding: 18, minHeight: HOME_STATS_CARD_MIN_HEIGHT, overflow: 'hidden' }}>
               {isGoldTheme && <GoldBevel radius={18} intensity="strong"/>}
               {isCompassTheme && <CompassBevel radius={compassHomeRadius} intensity="strong"/>}
               {renderHomeHeroStatus()}
@@ -2927,7 +2970,7 @@ export default function HomeScreen() {
                   {tasksCompleted}/{dailyTaskBarCount}
                 </Text>
               </TouchableOpacity>
-              {homeLeagueChest && (<>
+              <>
                 <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.08)' }}/>
                 <TouchableOpacity testID="home-league-open" activeOpacity={0.82} onPress={() => { hapticTap(); nav.push('/league_screen'); }} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 12, minHeight: 72 }}>
                   <View style={{ width: 64, height: 64, alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
@@ -2956,7 +2999,7 @@ export default function HomeScreen() {
                     </View>
                   </View>
                 </TouchableOpacity>
-              </>)}
+              </>
             </LinearGradient>
           </View>
 

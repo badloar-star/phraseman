@@ -34,6 +34,7 @@ import { registerXP } from './xp_manager';
 import { claimDailyTasksAllShardsRewardDetailed, isDailyTasksAllShardsRewardClaimedForDay, SHARD_REWARDS, getShardsBalance, } from './shards_system';
 import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
+import { pearlIconForTheme } from './coin_icons';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
 import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
@@ -2252,7 +2253,6 @@ export default function DailyTasksScreen() {
     const isBusinessTheme = themeMode === 'business' || themeMode === 'businessLight';
     const goldAccent = GOLD_RICH.metalGold;
     const goldHairline = GOLD_RICH.hairline;
-    const goldSoftBg = GOLD_RICH.wash;
     const rewardActionBg = isGoldTheme ? GOLD_RICH.paleGold : t.correct;
     const rewardActionText = isGoldTheme ? t.textOnGold : t.correctText;
     const { lang } = useLang();
@@ -2524,11 +2524,14 @@ export default function DailyTasksScreen() {
             const r = await rerollDailyTask(target.id, studyTarget);
             if (r.ok) {
                 invalidateDailyTasksScreenSnapshot(captureAccountGeneration(), getTodayKey(), studyTarget);
+                // зачем: тост — только текст (ActionToast не принимает картинку),
+                // поэтому валюту называем словом, как в магазине жемчуга,
+                // а не эмодзи-алмазом 💎.
                 emitAppEvent('action_toast', {
                     type: 'success',
-                    messageRu: `🔄 Задание заменено · −${r.cost} 💎`,
-                    messageUk: `🔄 Завдання замінено · −${r.cost} 💎`,
-                    messageEs: `🔄 Tarea reemplazada · −${r.cost} 💎`,
+                    messageRu: `Задание заменено · −${r.cost} ${slavicPlural(r.cost, 'жемчужина', 'жемчужины', 'жемчужин')}`,
+                    messageUk: `Завдання замінено · −${r.cost} ${slavicPlural(r.cost, 'перлина', 'перлини', 'перлин')}`,
+                    messageEs: `Tarea reemplazada · −${r.cost} ${r.cost === 1 ? 'perla' : 'perlas'}`,
                 });
                 setRerollConfirm(null);
                 refreshTasksAndProgress(true);
@@ -2833,8 +2836,8 @@ export default function DailyTasksScreen() {
                 emitAppEvent('action_toast', {
                     type: 'info',
                     messageRu: 'Не получилось получить награду. Попробуй ещё раз.',
-                    messageUk: 'Не вдалося отримати монети. Спробуйте ще раз.',
-                    messageEs: 'No se pudieron obtener monedas. Inténtalo de nuevo.',
+                    messageUk: 'Не вдалося отримати перлини. Спробуйте ще раз.',
+                    messageEs: 'No se pudieron obtener perlas. Inténtalo de nuevo.',
                 });
             }
         }
@@ -3151,18 +3154,18 @@ export default function DailyTasksScreen() {
     });
     const bonusTitle = triLang(lang, { ru: 'Бонус за день', uk: 'Бонус за день', es: 'Bono del día', 'pt-BR': 'Bônus do dia', vi: 'Thưởng trong ngày', id: 'Bonus harian', tr: 'Günlük bonus', pl: 'Bonus dnia' });
     const bonusDescription = triLang(lang, {
-        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монеты', 'монет')}.`,
-        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монети', 'монет')}.`,
-        es: `Completa todas las tareas y reclama ${trioRewardCount} monedas.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} moedas.`,
+        ru: `Выполни все вызовы и забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'жемчужина', 'жемчужины', 'жемчужин')}.`,
+        uk: `Виконай усі завдання і забери ${trioRewardCount} ${slavicPlural(trioRewardCount, 'перлина', 'перлини', 'перлин')}.`,
+        es: `Completa todas las tareas y reclama ${trioRewardCount} perlas.`, 'pt-BR': `Conclua todas as tarefas e colete ${trioRewardCount} pérolas.`,
         vi: `Hoàn thành tất cả nhiệm vụ và nhận ${trioRewardCount} xu.`, id: `Selesaikan semua tugas dan klaim ${trioRewardCount} fragmen.`,
         tr: `Tüm görevleri tamamla ve ${trioRewardCount} jeton al.`, pl: `Ukończ wszystkie zadania i odbierz ${trioRewardCount} monet.`,
     });
     const bonusClaimLabel = triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' });
     const bonusClaimAccessibilityLabel = triLang(lang, {
-        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монеты', 'монет')}`,
-        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'монета', 'монети', 'монет')}`,
-        es: `Reclamar bono del día: ${trioRewardCount} monedas`,
-        'pt-BR': `Coletar bônus do dia: ${trioRewardCount} moedas`,
+        ru: `Забрать бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'жемчужина', 'жемчужины', 'жемчужин')}`,
+        uk: `Забрати бонус за день: ${trioRewardCount} ${slavicPlural(trioRewardCount, 'перлина', 'перлини', 'перлин')}`,
+        es: `Reclamar bono del día: ${trioRewardCount} perlas`,
+        'pt-BR': `Coletar bônus do dia: ${trioRewardCount} pérolas`,
         vi: `Nhận thưởng trong ngày: ${trioRewardCount} xu`,
         id: `Klaim bonus harian: ${trioRewardCount} fragmen`,
         tr: `Günlük bonusu al: ${trioRewardCount} jeton`,
@@ -3298,8 +3301,8 @@ export default function DailyTasksScreen() {
             тремя состояниями (в процессе / готово забрать / забрано). Раньше плашка
             висела только при trioClaimButtonEnabled||trioShardsClaimed, из-за чего в
             обычном «в процессе» состоянии она вообще пропадала.
-            Гард trioRewardCount > 0: экономика «Монеты и Звёзды» (docs/plans/2026-07-20)
-            обнулила каталог — без гарда кнопка показывала «Забрать 0 монет» и молча фейлилась. */}
+            Гард trioRewardCount > 0: экономика «Жемчужины и Звёзды» (docs/plans/2026-07-20)
+            обнулила каталог — без гарда кнопка показывала «Забрать 0 жемчужин» и молча фейлилась. */}
         {tasks.length > 0 && trioRewardCount > 0 && (<DailyBonusCard
           testID="daily-bonus"
           title={bonusTitle}
@@ -3352,21 +3355,18 @@ export default function DailyTasksScreen() {
             const taskTrackColor = isGoldTheme ? 'rgba(12,10,8,0.78)' : isBusinessTheme ? 'rgba(13,13,13,0.92)' : 'rgba(15,14,18,0.90)';
             const taskHairline = isGoldTheme ? goldHairline : `${taskAccent}${completed || claimed ? '8A' : '70'}`;
             const taskSurfaceGlow = isGoldTheme ? GOLD_RICH.wash : `${taskAccent}14`;
-            const taskIconPlateBg = isGoldTheme ? goldSoftBg : `${taskAccent}18`;
-            const taskIconPlateBorder = isGoldTheme ? goldHairline : `${taskAccent}55`;
             const claimLabel = triLang(lang, {
                 ru: 'Забрать', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Coletar',
                 vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz',
             });
-            // зачем: п.3 — кнопка обещала «монеты», а confirm-модалка (ниже, ~rerollConfirm)
-            // списывает и показывает ОСКОЛКИ (DAILY_TASK_REROLL_COST_SHARDS →
-            // spendShards(..., 'daily_task_reroll') в app/daily_tasks.ts) — это единственная
-            // серверная логика оплаты реролла, монеты тут вообще не участвуют. Правим кнопку
-            // под реальность (осколки), а не наоборот.
+            // зачем: единая валюта приложения — ЖЕМЧУГ. Кнопка раньше обещала «монеты»,
+            // потом её починили на «осколки», но и это устарело: DAILY_TASK_REROLL_COST_SHARDS →
+            // spendShards(..., 'daily_task_reroll') списывает именно жемчуг (техническое имя
+            // shards в коде сохранено ради данных/импортов, см. constants/shard_plurals.ts).
             const rerollLabel = triLang(lang, {
-                ru: 'Заменить вызов за осколки', uk: 'Замінити завдання за скалки', es: 'Reemplazar tarea por fragmentos',
-                'pt-BR': 'Substituir tarefa por fragmentos', vi: 'Đổi nhiệm vụ bằng mảnh vỡ', id: 'Ganti tugas dengan pecahan',
-                tr: 'Görevi kırıklarla değiştir', pl: 'Zamień zadanie za odłamki',
+                ru: 'Заменить вызов за жемчуг', uk: 'Замінити завдання за перлини', es: 'Reemplazar tarea por perlas',
+                'pt-BR': 'Substituir tarefa por pérolas', vi: 'Đổi nhiệm vụ bằng ngọc trai', id: 'Ganti tugas dengan mutiara',
+                tr: 'Görevi incilerle değiştir', pl: 'Zamień zadanie za perły',
             });
             const entranceAnim = cardEntrances.current[task.id] ?? (cardEntrances.current[task.id] = new Animated.Value(entrancePlayedRef.current || reduceMotion ? 1 : 0));
             // зачем: п.1 — trackAnim (анимация отдельного прогресс-трека) удалён вместе
@@ -3385,7 +3385,6 @@ export default function DailyTasksScreen() {
                 outerStyle={dailyTaskStyles.taskCapsuleCard}
                 titleTextProps={{ style: [dailyTaskStyles.taskCapsuleTitle, { fontSize: f.body + 2 }] }}
                 descriptionTextProps={{ style: { fontSize: f.body, lineHeight: f.body * 1.28 } }}
-                iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
                 icon={metaIconFallback
                     ? <Ionicons name={metaIconFallback} size={30} color={taskAccent} accessible={false} />
@@ -3529,16 +3528,27 @@ export default function DailyTasksScreen() {
               {rerollBusyId ? <ActivityIndicator size="small" color={isGoldTheme ? t.textOnGold : t.correctText} /> : null}
               <Text style={[rerollStyles.btnPrimaryText, { color: isGoldTheme ? t.textOnGold : t.correctText, fontSize: f.body }]}>
                 {triLang(lang, {
-            ru: `Заменить · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            uk: `Замінити · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            es: `Reemplazar · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            'pt-BR': `Substituir · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            vi: `Đổi nhiệm vụ · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            id: `Ganti · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            tr: `Değiştir · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
-            pl: `Zamień · ${DAILY_TASK_REROLL_COST_SHARDS} 💎`,
+            ru: `Заменить · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            uk: `Замінити · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            es: `Reemplazar · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            'pt-BR': `Substituir · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            vi: `Đổi nhiệm vụ · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            id: `Ganti · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            tr: `Değiştir · ${DAILY_TASK_REROLL_COST_SHARDS}`,
+            pl: `Zamień · ${DAILY_TASK_REROLL_COST_SHARDS}`,
         })}
               </Text>
+              {/* зачем: цена замены — в жемчужинах, значит и значок обязан быть
+                  ассетом жемчужины (как в магазине и на карточке профиля),
+                  а не эмодзи-алмазом 💎, который в каждой ОС рисуется по-своему. */}
+              {rerollBusyId ? null : (
+                <Image
+                  source={pearlIconForTheme(themeMode)}
+                  style={{ width: 18, height: 18 }}
+                  contentFit="contain"
+                  accessible={false}
+                />
+              )}
             </TouchableOpacity>
 
             <TouchableOpacity onPress={() => {
@@ -3670,18 +3680,9 @@ const dailyTaskStyles = StyleSheet.create({
         marginLeft: 24,
         marginRight: 18,
     },
-    taskCapsuleIconPlate: {
-        width: 56,
-        height: 56,
-        borderRadius: 18,
-        borderWidth: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-    },
     taskCapsuleHeroIcon: {
-        width: 45,
-        height: 45,
+        width: 68,
+        height: 68,
         flexShrink: 0,
     },
     taskCapsuleRight: {

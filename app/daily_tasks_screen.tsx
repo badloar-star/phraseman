@@ -2363,9 +2363,17 @@ export default function DailyTasksScreen() {
         return () => { loop.stop(); };
     }, [chipPulse, reduceMotion, screenFocused]);
     // Входная stagger-анимация героя и карточек — один раз за показ списка.
-    const heroEntrance = useRef(new Animated.Value(0)).current;
+    // зачем: при тёплом открытии (initialSnapshot уже был в кэше — см.
+    // peekDailyTasksScreenSnapshot выше) данные готовы с первого рендера, но
+    // heroEntrance раньше ВСЕГДА стартовал с 0 и проигрывал fade+rise 450мс —
+    // это и создавало ощущение "загрузки" даже когда грузить было нечего.
+    // Теперь стартовое значение и entrancePlayedRef сразу считаются "сыгранными",
+    // если экран открылся не с пустого места (visibleLoadingTasks изначально false),
+    // и анимация полностью пропускается для тёплого открытия.
+    const skipEntranceOnMount = !visibleLoadingTasks;
+    const heroEntrance = useRef(new Animated.Value(skipEntranceOnMount ? 1 : 0)).current;
     const cardEntrances = useRef<Record<string, Animated.Value>>({});
-    const entrancePlayedRef = useRef(false);
+    const entrancePlayedRef = useRef(skipEntranceOnMount);
     useEffect(() => {
         if (!screenFocused) {
             premiumPulse.stopAnimation(); premiumPulse.setValue(1);
@@ -3403,14 +3411,10 @@ export default function DailyTasksScreen() {
               />
               {/* зачем: п.1 — убран отдельный трек прогресса (taskProgressTrack) и повторный
                   числовой пилюля (taskProgressValuePill): карточка уже показывает прогресс через
-                  свою заливку (taskCapsuleFill) + угловой бейдж done/total (см. background выше),
-                  так что отдельная полоса была вторым, лишним индикатором того же самого числа.
-                  Оставлена только XP-пилюля — она несёт другую информацию (награда, не прогресс). */}
-              <View style={[dailyTaskStyles.taskMetaRow, { justifyContent: 'flex-end' }]}>
-                <View style={[dailyTaskStyles.xpBadge, { backgroundColor: t.goldBg }]}>
-                  <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '800', includeFontPadding: false, textAlign: 'center', fontVariant: ['tabular-nums'] }}>+{task.xp} XP</Text>
-                </View>
-              </View>
+                  свою заливку (taskCapsuleFill) + угловой бейдж done/total (см. background выше).
+                  зачем: по просьбе владельца убран сам числовой XP-бейдж под карточкой
+                  ("+N XP") — это только визуальное отображение, начисление XP при клейме
+                  (registerXP/handleClaim выше) не тронуто, награда выдаётся как прежде. */}
               </Animated.View>
             </Animated.View>);
 
@@ -3731,16 +3735,6 @@ const dailyTaskStyles = StyleSheet.create({
         flex: 1,
         minWidth: 0,
     },
-    xpBadge: {
-        minWidth: 62,
-        height: 30,
-        borderRadius: 15,
-        borderWidth: 0,
-        paddingHorizontal: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexShrink: 0,
-    },
     heroBlock: {
         alignItems: 'center',
         gap: 12,
@@ -3772,13 +3766,6 @@ const dailyTaskStyles = StyleSheet.create({
         width: 6,
         height: 6,
         borderRadius: 3,
-    },
-    taskMetaRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 8,
-        marginTop: 6,
-        paddingHorizontal: 4,
     },
     taskRightColumn: {
         minWidth: 58,

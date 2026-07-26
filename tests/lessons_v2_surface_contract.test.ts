@@ -1,75 +1,112 @@
-// зачем: 2026-07-25 владелец заменил старый хекс-макет V2 на лабораторию всех режимов
-// Learning V2. Контракт переписан осознанно под новую поверхность: дев-гейт остаётся,
-// каталог покрывает ВСЕ семьи активностей, снятый владельцем режим не запускается,
-// стили не нарушают запреты владельца (обводки контейнеров, adjustsFontSizeToFit).
+// зачем: 2026-07-26 владелец забраковал витрину «скриптовых режимов» и указал на
+// правильный слой поставки Kimi — «УРОК — НОВОЕ (MVP)»: карта юнита → сессия →
+// раннер с карточками, звёздами и лестницей подсказок. Контракт переписан под эту
+// поверхность: дев-гейт остаётся, карта отдаёт 12 сессий тремя зонами, сессия
+// содержит полный набор карточек с исходами и подсказками, стили не нарушают
+// запреты владельца (обводки контейнеров, adjustsFontSizeToFit).
 import fs from 'node:fs';
 import path from 'node:path';
 
-import {
-  LAB_MODE_CATALOG,
-  labCatalogCoversAllFamilies,
-} from '../components/learning-v2-lab/mode_catalog';
-import { V2_ACTIVITY_FAMILIES } from '../modules/learning-v2/contracts/activity';
-import { buildDemoRound, getDemoUnit, isAssembledCorrect } from '../components/learning-v2-lab/demo_content';
+import { session1Fixture, unit1Fixture, sessionByRef } from '../components/learning-v2-lab/session/fixtures';
+import type { SessionCard } from '../components/learning-v2-lab/session/contracts';
 
-const lessonsSource = fs.readFileSync(path.join(process.cwd(), 'app/(tabs)/lessons.tsx'), 'utf8');
-const labSource = fs.readFileSync(path.join(process.cwd(), 'components/learning-v2-lab/LearningV2ModesLab.tsx'), 'utf8');
-const playerSource = fs.readFileSync(path.join(process.cwd(), 'components/learning-v2-lab/ModeDemoPlayer.tsx'), 'utf8');
+const read = (rel: string) => fs.readFileSync(path.join(process.cwd(), rel), 'utf8');
 
-describe('lessons V2 modes lab surface', () => {
-  test('exposes a dev-gated V2 page wired to the modes lab', () => {
+const lessonsSource = read('app/(tabs)/lessons.tsx');
+const labSource = read('components/learning-v2-lab/LearningV2ModesLab.tsx');
+const runnerSource = read('components/learning-v2-lab/session/SessionRunner.tsx');
+const mapSource = read('components/learning-v2-lab/session/UnitMap.tsx');
+const speechSource = read('components/learning-v2-lab/session/engines/SpeechEngine.tsx');
+
+describe('lessons V2 — урок MVP (карта юнита + сессия)', () => {
+  test('дев-гейт V2 ведёт на лабораторию урока', () => {
     expect(lessonsSource).toMatch(/ENABLE_DEV_TOOLS/);
     expect(lessonsSource).toMatch(/useState<\s*'lessons'\s*\|\s*'dialogs'\s*\|\s*'v2'/);
     expect(lessonsSource).toMatch(/label="V2"/);
     expect(lessonsSource).toMatch(/LearningV2ModesLab/);
-    expect(lessonsSource).not.toMatch(/LessonsV2TabContent/);
   });
 
-  test('catalog covers every activity family exactly once', () => {
-    expect(labCatalogCoversAllFamilies()).toBe(true);
-    expect(LAB_MODE_CATALOG).toHaveLength(V2_ACTIVITY_FAMILIES.length);
-    const removed = LAB_MODE_CATALOG.filter((entry) => entry.removedByOwner);
-    expect(removed.map((entry) => entry.family)).toEqual(['describe_scene']);
+  test('вход показывает карту юнита и открывает по ней сессию', () => {
+    expect(labSource).toMatch(/UnitMap/);
+    expect(labSource).toMatch(/SessionRunner/);
+    expect(labSource).toMatch(/onOpenSession/);
+    // Забракованная витрина режимов не должна вернуться ни под каким видом.
+    expect(labSource).not.toMatch(/ModeDemoPlayer|LAB_MODE_CATALOG|kimi\/registry/);
   });
 
-  test('every launchable mode builds a deterministic demo round', () => {
-    for (const entry of LAB_MODE_CATALOG) {
-      if (entry.removedByOwner) continue;
-      const first = buildDemoRound(entry.family, entry.interaction);
-      const second = buildDemoRound(entry.family, entry.interaction);
-      expect(second).toEqual(first);
-      expect(first.instruction.length).toBeGreaterThan(0);
-      expect(first.answer.length).toBeGreaterThan(0);
-      if (entry.interaction === 'choice' || entry.interaction === 'listen') {
-        expect(first.options.filter((option) => option.correct)).toHaveLength(1);
-        expect(first.options.length).toBeGreaterThanOrEqual(3);
+  test('карта юнита: три зоны, двенадцать сессий, боковые узлы', () => {
+    expect(unit1Fixture.zones).toHaveLength(3);
+    const nodes = unit1Fixture.zones.flatMap((zone) => zone.sessions);
+    expect(nodes).toHaveLength(12);
+    // Ровно один текущий узел — иначе тропа теряет точку входа.
+    expect(nodes.filter((node) => node.state === 'current')).toHaveLength(1);
+    // У каждой зоны есть формулировка can-do, а не «этап N».
+    for (const zone of unit1Fixture.zones) expect(zone.canDo.length).toBeGreaterThan(0);
+    expect(unit1Fixture.sideNodes.map((node) => node.id)).toEqual(['practice-lab', 'challenge']);
+  });
+
+  test('открываемые узлы ссылаются на существующие сессии', () => {
+    const nodes = unit1Fixture.zones.flatMap((zone) => zone.sessions);
+    for (const node of nodes) {
+      if (node.state === 'locked') {
+        expect(node.sessionRef).toBeNull();
+        continue;
       }
-      if (entry.interaction === 'assemble') {
-        expect(first.tiles.length).toBeGreaterThan(1);
-        const restored = first.answer.replace(/[.?!]/g, '').split(' ').filter(Boolean);
-        expect([...first.tiles].sort()).toEqual([...restored].sort());
-      }
+      expect(node.sessionRef).toBeTruthy();
+    }
+    // Текущая сессия обязана быть перенесена целиком — её владелец открывает первой.
+    expect(sessionByRef('session-1')).not.toBeNull();
+  });
+
+  test('сессия: карточки, исходы звёзд и полная лестница подсказок', () => {
+    expect(session1Fixture.cards).toHaveLength(8);
+    expect(session1Fixture.intro.cardsDisplay).toBe('8 карт');
+
+    for (const card of session1Fixture.cards as readonly SessionCard[]) {
+      // Звёзды убывают по мере помощи: чисто > с подсказкой > после показа.
+      const { clean, hint, shown } = card.starsByOutcome;
+      expect(clean).toBeGreaterThan(hint);
+      expect(hint).toBeGreaterThan(shown);
+      expect(shown).toBeGreaterThan(0);
+
+      // Все три ступени лестницы заполнены — иначе ученик упрётся в пустоту.
+      expect(card.hints.first.length).toBeGreaterThan(0);
+      expect(card.hints.contrast.length).toBeGreaterThan(0);
+      expect(card.hints.explain.length).toBeGreaterThan(0);
+
+      expect(card.instruction.length).toBeGreaterThan(0);
+      expect(card.mistakeTags.length).toBeGreaterThan(0);
     }
   });
 
-  test('demo unit comes from the real compiler with twelve sessions', () => {
-    const unit = getDemoUnit();
-    expect(unit.sessions).toHaveLength(12);
-    expect(unit.episodeId).toBe('ep-01');
+  test('у карточек выбора ровно один правильный вариант', () => {
+    for (const card of session1Fixture.cards) {
+      if (card.engine !== 'choice') continue;
+      expect(card.options.length).toBeGreaterThanOrEqual(2);
+      expect(card.options.filter((option) => option.id === card.correctOptionId)).toHaveLength(1);
+    }
   });
 
-  test('assemble check normalizes case and punctuation but not word order', () => {
-    expect(isAssembledCorrect(['i', 'am', 'anna'], 'I am Anna.')).toBe(true);
-    expect(isAssembledCorrect(['am', 'i', 'anna'], 'I am Anna.')).toBe(false);
+  test('сборка фразы: цель собирается из банка, лишние чипы допустимы', () => {
+    for (const card of session1Fixture.cards) {
+      if (card.engine !== 'arrange') continue;
+      for (const token of card.targetTokens) {
+        expect(card.bankChips).toContain(token);
+      }
+      expect(card.bankChips.length).toBeGreaterThanOrEqual(card.targetTokens.length);
+    }
   });
 
-  test('lab styling respects owner bans', () => {
-    for (const source of [labSource, playerSource]) {
+  test('стиль урока уважает запреты владельца', () => {
+    for (const source of [labSource, runnerSource, mapSource, speechSource]) {
       expect(source).not.toMatch(/adjustsFontSizeToFit/);
       // Обводки контейнеров запрещены; разделитель одной стороны разрешён.
-      expect(source).not.toMatch(/(?<!Bottom)borderWidth/);
-      expect(source).not.toMatch(/(?<!borderBottom)borderColor/);
+      expect(source).not.toMatch(/(?<!Bottom)(?<!Top)(?<!Left)(?<!Right)borderWidth/);
+      expect(source).not.toMatch(/(?<!borderBottom)(?<!borderTop)(?<!borderLeft)borderColor/);
     }
-    expect(playerSource).toMatch(/useRuntimeActive/);
+  });
+
+  test('речевая карточка глушит анимации на фоне (perf-контракт)', () => {
+    expect(speechSource).toMatch(/useRuntimeActive/);
   });
 });

@@ -96,7 +96,17 @@ function StatusFilterChipsBase({
       horizontal
       showsHorizontalScrollIndicator={false}
       keyboardShouldPersistTaps="handled"
-      contentContainerStyle={{ gap: 7, paddingHorizontal: 16, paddingBottom: 10 }}
+      // зачем: горизонтальный ScrollView без flexGrow:0 забирает ВСЮ свободную
+      // высоту родителя — чипы растягивались в вертикальные «столбы» на пол-экрана
+      // (видно на скриншоте владельца). Прижимаем полосу к высоте содержимого.
+      style={{ flexGrow: 0, flexShrink: 0 }}
+      contentContainerStyle={{
+        gap: 7,
+        paddingHorizontal: 16,
+        paddingBottom: 10,
+        // Чипы по центру полосы, а не растянуты по её высоте.
+        alignItems: 'center',
+      }}
     >
       {/* guard-ok: чипов максимум 5 (Все + 4 статуса) — список фиксированный
           и короткий, виртуализация здесь дала бы только overhead. */}

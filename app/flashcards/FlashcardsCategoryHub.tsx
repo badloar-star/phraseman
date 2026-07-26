@@ -44,8 +44,6 @@ import { packTileImageForPack } from './packMarketplaceIcons';
 import { hasActivePackGiftVoucher } from './pack_trial_gift';
 import DuoPressable from '../../components/DuoPressable';
 import FlashcardsHubHeader from '../../components/flashcards/FlashcardsHubHeader';
-import FlashcardsShelves, { type ShelfPack } from '../../components/flashcards/FlashcardsShelves';
-import { packCoverGradient } from './marketplace';
 import GlassSurface, { glassFill } from '../../components/GlassSurface';
 import PlusBadge from '../../components/PlusBadge';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -551,71 +549,6 @@ export default function FlashcardsCategoryHub({
   );
 
   const isPackInMineOwned = useCallback((p: FlashcardMarketPack) => mineOwnedPacks.some((m) => m.id === p.id), [mineOwnedPacks]);
-
-  // ── Данные полок хаба (макет A1) ───────────────────────────────────────────
-  // зачем: полки строятся из УЖЕ загруженных паков — ни одного нового запроса.
-  const packToShelf = useCallback(
-    (pack: FlashcardMarketPack, owned: boolean): ShelfPack => ({
-      id: pack.id,
-      title: packTitleForInterface(pack, lang),
-      mono: packHubCodeName(pack).slice(0, 2).toUpperCase(),
-      cover: packCoverGradient(pack.category),
-      owned,
-      price: owned ? undefined : pack.priceShards,
-    }),
-    [lang],
-  );
-
-  /** «Продолжи» — купленные паки, к которым уже есть доступ. */
-  const continueShelfPacks = useMemo(
-    () => mineOwnedPacks.slice(0, 2).map((p) => packToShelf(p, true)),
-    [mineOwnedPacks, packToShelf],
-  );
-
-  /** Полка обложек: сначала некупленные (витрина), потом остальные. */
-  const cinemaShelfPacks = useMemo(
-    () =>
-      marketPacks
-        .filter((p) => !p.isCommunityUgc)
-        .map((p) => packToShelf(p, ownedPackIds.includes(p.id))),
-    [marketPacks, ownedPackIds, packToShelf],
-  );
-
-  /** Чипы тем — категории, которые реально представлены в каталоге. */
-  const themeShelfChips = useMemo(() => {
-    const emoji: Record<string, string> = {
-      daily: '☀️', business: '💼', slang: '🔥', travel: '✈️', exam: '🎓', verbs: '⚡',
-    };
-    const present = Array.from(new Set(marketPacks.map((p) => p.category))).slice(0, 3);
-    return present.map((cat) => ({ id: cat, emoji: emoji[cat] ?? '📘', label: cat }));
-  }, [marketPacks]);
-
-  const shelfLabels = useMemo(
-    () => ({
-      continue: triLang(lang, {
-        ru: 'Продолжи', uk: 'Продовжи', es: 'Continúa', 'pt-BR': 'Continue',
-        vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj',
-      }),
-      cinema: triLang(lang, {
-        ru: 'Наборы', uk: 'Набори', es: 'Packs', 'pt-BR': 'Pacotes',
-        vi: 'Bộ thẻ', id: 'Paket', tr: 'Paketler', pl: 'Zestawy',
-      }),
-      themes: triLang(lang, {
-        ru: 'Темы', uk: 'Теми', es: 'Temas', 'pt-BR': 'Temas',
-        vi: 'Chủ đề', id: 'Tema', tr: 'Temalar', pl: 'Tematy',
-      }),
-      opened: triLang(lang, {
-        ru: 'открыт', uk: 'відкритий', es: 'abierto', 'pt-BR': 'aberto',
-        vi: 'đã mở', id: 'terbuka', tr: 'açık', pl: 'otwarty',
-      }),
-    }),
-    [lang],
-  );
-
-  /** Тап по теме — переключаем на витрину, где список фильтруется. */
-  const openThemeById = useCallback(() => {
-    setHubPackSegment('showcase');
-  }, []);
 
   useEffect(() => {
     if (Platform.OS === 'web') {
@@ -1219,23 +1152,10 @@ export default function FlashcardsCategoryHub({
         t={t}
       />
 
-      {/* зачем (макет A1): экран был сеткой одинаковых круглых значков — по ней
-          нельзя понять ни что начато, ни насколько продвинулся, ни что вообще
-          есть в разделе. Полки превращают его в витрину: «Продолжи» с обложками
-          и процентом, ряд обложек по темам, чипы категорий. Показываем только
-          на вкладке «Мои» — на «Витрине» и «Сообществе» свои списки. */}
-      {hubPackSegment === 'mine' && (
-        <FlashcardsShelves
-          continuePacks={continueShelfPacks}
-          cinemaPacks={cinemaShelfPacks}
-          themes={themeShelfChips}
-          labels={shelfLabels}
-          onPackPress={openPackById}
-          onThemePress={openThemeById}
-          t={t}
-        />
-      )}
-
+      {/* зачем: полки «Продолжи / Наборы / Темы» из макета A1 УБРАНЫ решением
+          владельца — они дублировали вкладки «Мои / Витрина / Сообщество» и
+          сетку плиток под ними, экран становился длинным и повторяющимся.
+          Оставлена привычная структура: шапка с балансом → вкладки → плитки. */}
       {hubSegmentTabs}
 
       {cloudCommunityEnabled ? (

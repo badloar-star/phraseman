@@ -876,6 +876,17 @@ export default function FlashcardsSwipeScreen() {
   const planFlashcardsCompletionTracked = useRef(false);
   const quickStartDoneRef = useRef(false);
   const draftRestoreAttemptedRef = useRef(false);
+  /**
+   * зачем: найденный черновик незавершённой тренировки. Держим НАГОТОВЕ, но не
+   * применяем сами — иначе экран прыгает в сессию без спроса. Юзер решает
+   * кнопкой «Продолжить тренировку»; данные уже в памяти, поэтому переход
+   * мгновенный, без повторной загрузки.
+   */
+  const [pendingDraft, setPendingDraft] = useState<{
+    restored: NonNullable<ReturnType<typeof restoreSessionDraft>>;
+    info: SessionInfo;
+    memory: SwipeMemory;
+  } | null>(null);
   const hasVisibleSourcesRef = useRef(initialSources.length > 0);
   const position = useRef(new Animated.ValueXY()).current;
   // зачем: A-39 — карта при улёте растворяется (opacity 1→0 за 400мс).
@@ -1759,6 +1770,33 @@ export default function FlashcardsSwipeScreen() {
     [answerFor, planFlashcardsRequiredCards, planFlashcardsTaskId],
   );
 
+  /**
+   * Применить отложенный черновик по тапу «Продолжить тренировку».
+   * Всё уже в памяти — переход мгновенный, без сети и без загрузки.
+   */
+  const resumePendingDraft = useCallback(() => {
+    if (!pendingDraft) return;
+    void hapticTap();
+    const { restored, info, memory } = pendingDraft;
+    memoryRef.current = memory;
+    progressRef.current = restored.progress;
+    position.setValue({ x: 0, y: 0 });
+    setFeedback(restored.feedback);
+    setTrainingCards(restored.trainingCards);
+    setQueue(restored.queue);
+    setStats(restored.stats);
+    setSessionInfo(info);
+    setPendingDraft(null);
+    setPhase('play');
+  }, [pendingDraft, position]);
+
+  /** Отказ от черновика: чистим его и начинаем заново с текущим выбором. */
+  const discardPendingDraft = useCallback(() => {
+    void hapticTap();
+    setPendingDraft(null);
+    void clearFlashcardsSwipeSessionDraft(studyTarget).catch(() => {});
+  }, [studyTarget]);
+
   const startSession = useCallback(async () => {
     if (!flashcardsAccess) {
       openFlashcardsPlusPaywall('flashcards_training_start');
@@ -1824,15 +1862,13 @@ export default function FlashcardsSwipeScreen() {
         return;
       }
 
-      memoryRef.current = memory;
-      progressRef.current = restored.progress;
-      position.setValue({ x: 0, y: 0 });
-      setFeedback(restored.feedback);
-      setTrainingCards(restored.trainingCards);
-      setQueue(restored.queue);
-      setStats(restored.stats);
-      setSessionInfo(info);
-      setPhase('play');
+      // зачем: раньше здесь стоял setPhase('play') — экран выбора успевал
+      // показаться и ТУТ ЖЕ прыгал в сессию сам, без спроса. Юзер видел мигание
+      // и оказывался в незапрошенной тренировке. Теперь черновик держим наготове
+      // в памяти, а решение оставляем за юзером: на экране выбора появляется
+      // «Продолжить тренировку». Тап по ней — и восстановленное состояние
+      // применяется мгновенно, без повторной загрузки.
+      setPendingDraft({ restored, info, memory });
     })();
 
     return () => {
@@ -2337,6 +2373,59 @@ export default function FlashcardsSwipeScreen() {
             «Кнопка начать не сработала» (репорт 25.07). Теперь сама подпись говорит,
             чего ждать или что сделать: грузятся наборы / не выбран набор / идёт запуск.
             Геометрия не меняется — только текст и иконка, прыжка лэйаута нет. */}
+        {/* зачем (жалоба владельца 26.07): найденный черновик РАНЬШЕ применялся
+            сам — экран выбора мигал и тут же прыгал в тренировку без спроса.
+            Теперь решение за юзером: «Продолжить» возвращает в незаконченную
+            сессию, кнопка старта рядом начинает новую. Данные уже в памяти,
+            переход мгновенный. */}
+        {pendingDraft && (
+          <View style={{ marginTop: 14, gap: 8 }}>
+            <DuoPressable
+              onPress={resumePendingDraft}
+              edgeColor={t.accent}
+              style={[styles.heroStart, { backgroundColor: t.accent }]}
+            >
+              <Ionicons name="play-forward" size={20} color={t.correctText} />
+              <Text style={[styles.heroStartText, { color: t.correctText, fontSize: f.body }]}>
+                {triLang(lang, {
+                  ru: 'Продолжить тренировку',
+                  uk: 'Продовжити тренування',
+                  es: 'Continuar entrenamiento',
+                  'pt-BR': 'Continuar treino',
+                  vi: 'Tiếp tục luyện tập',
+                  id: 'Lanjutkan latihan',
+                  tr: 'Antrenmana devam et',
+                  pl: 'Kontynuuj trening',
+                })}
+              </Text>
+            </DuoPressable>
+            <TouchableOpacity
+              onPress={discardPendingDraft}
+              activeOpacity={0.75}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Начать заново', uk: 'Почати заново', es: 'Empezar de nuevo',
+                'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai ulang',
+                tr: 'Baştan başla', pl: 'Zacznij od nowa',
+              })}
+              hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+              style={{ minHeight: 44, justifyContent: 'center', alignItems: 'center' }}
+            >
+              <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: 'Начать заново',
+                  uk: 'Почати заново',
+                  es: 'Empezar de nuevo',
+                  'pt-BR': 'Começar de novo',
+                  vi: 'Bắt đầu lại',
+                  id: 'Mulai ulang',
+                  tr: 'Baştan başla',
+                  pl: 'Zacznij od nowa',
+                })}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
         {(() => {
           const startBlockReason = loadingSources
             ? { label: text.startLoading, icon: 'albums-outline' as const }

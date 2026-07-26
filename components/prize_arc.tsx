@@ -72,9 +72,9 @@ const SPIN_SETTLE_GRACE_MS = 600;
 const MIN_TURNS = 3;
 const ENTER_MS = 480;
 /** Крейсерский оборот 360° — фон, пока сервер выбирает приз. */
-const CRUISE_TURN_MS = 780;
+const CRUISE_TURN_MS = 560;
 /** Разгон до крейсерской скорости (первый оборот длиннее). */
-const CRUISE_START_EXTRA_MS = 380;
+const CRUISE_START_EXTRA_MS = 240;
 /**
  * Крейсер ОГРАНИЧЕН по времени (~31 с), НЕ withRepeat(-1): вечная анимация в
  * фоне запрещена perf-контрактом (perf_freeze / runtime_lifecycle_ratchet).
@@ -89,11 +89,12 @@ const CRUISE_STOP_MS = 420;
  * торможения, затем quad-out, у которого начальная скорость 2·D/T равна
  * крейсерской (D = LANDING_DECEL_DEGREES, T выводится из скорости) — стык
  * фаз без скачка скорости. Из покоя spinTo крутит старым бурным профилем.
- * Владелец: «анимация слишком длинная» → посадка укорочена до 1 оборота
- * торможения и ≤1 доводочного оборота (~1.6–2.3 с + фиксация).
+ * Владелец (дважды): «анимация слишком длинная, много оборотов» → крейсер
+ * ускорен (560 мс/оборот), торможение 300° (~0.93 с), доводочный оборот
+ * добавляется ТОЛЬКО если до приза ближе дистанции торможения. Посадка
+ * ~0.9–1.5 с + фиксация; всего от тапа ~2.5–3.5 оборота.
  */
-const LANDING_DECEL_DEGREES = 360; // 1 оборот торможения (2·360/(360/780) = 1560 мс)
-const LANDING_EXTRA_TURNS = 1; // минимальная дистанция посадки от крейсера
+const LANDING_DECEL_DEGREES = 300; // дистанция торможения (2·300/(360/560) ≈ 933 мс)
 
 export interface PrizeArcHandle {
   /**
@@ -248,7 +249,11 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
         // на крейсерской скорости + торможение со сшитой начальной скоростью.
         const slotDeg = POSITION_OF_PRIZE[prizeIndex] * SLOT_DEG;
         const alreadyBehind = ((normalized + slotDeg) % 360 + 360) % 360;
-        const landingTurns = fromCruise ? LANDING_EXTRA_TURNS : MIN_TURNS;
+        // Доводочный оборот добавляется ТОЛЬКО когда до приза ближе дистанции
+        // торможения — иначе тормозим сразу (владелец: минимум оборотов).
+        const landingTurns = fromCruise
+          ? (alreadyBehind >= LANDING_DECEL_DEGREES ? 0 : 1)
+          : MIN_TURNS;
         const target = normalized - alreadyBehind - landingTurns * 360;
         const overshootTarget = target - FINAL_OVERSHOOT_DEGREES;
         const cruiseDegPerMs = 360 / CRUISE_TURN_MS;

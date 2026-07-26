@@ -208,6 +208,39 @@ export function claimReward(roomId: string) {
   );
 }
 
+export type WeeklyBankInfo = {
+  ok: boolean;
+  weekId: string;
+  bankGems: number;
+  lastWeek: { weekId: string; paidOut: boolean; myPlace: number; myGems: number };
+};
+
+/**
+ * Банк недели + моя доля за прошлую неделю.
+ *
+ * зачем: банк на экране был захардкожен числом, а о выигрыше недельного банка
+ * игрок не узнавал вовсе — начисление идёт кроном ночью. Кэш на 30 минут:
+ * банк меняется по мере турниров, чаще дёргать сервер незачем.
+ */
+let weeklyBankCache: { at: number; value: WeeklyBankInfo | null } | null = null;
+const WEEKLY_BANK_TTL_MS = 30 * 60 * 1000;
+
+export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo | null> {
+  const now = Date.now();
+  if (!force && weeklyBankCache && now - weeklyBankCache.at < WEEKLY_BANK_TTL_MS) {
+    return weeklyBankCache.value;
+  }
+  try {
+    const result = await callFunction<WeeklyBankInfo>('tournamentWeeklyBankInfo', {});
+    weeklyBankCache = { at: now, value: result ?? null };
+    return weeklyBankCache.value;
+  } catch {
+    // Банк — украшение экрана, его недоступность не должна ломать турниры.
+    weeklyBankCache = { at: now, value: null };
+    return null;
+  }
+}
+
 /**
  * Расписание слотов. Кэшируется на 6 часов: оно меняется раз в недели, и
  * дёргать сервер на каждом открытии экрана — пустая трата чтений.

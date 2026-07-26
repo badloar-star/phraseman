@@ -539,6 +539,16 @@ export {
 // режиму свой тип вопроса (ситуация / пропуск / поиск ошибки / сборка).
 export { adminGenerateTournamentAi } from './admin_tournament_full';
 
+// Недельный банк турниров: копится с каждого турнира, раздаётся тройке лучших
+// по сумме очков в ночь воскресенья (крон) либо вручную из админки.
+export {
+  tournamentWeeklyBankCron,
+  adminPayoutTournamentWeeklyBank,
+  adminSetTournamentEconomy,
+  adminGetTournamentEconomy,
+  tournamentWeeklyBankInfo,
+} from './tournament_weekly_payout';
+
 // ── Arena question pool (генератор/пул вопросов, админ-инструментарий; сама игра Арена выведена из эксплуатации) ──
 export { adminListArenaQuestionPool, adminPublishArenaQuestionBatch, adminRemoveArenaPoolQuestion, adminRestoreArenaPoolQuestion } from './admin_arena_question_pool';
 

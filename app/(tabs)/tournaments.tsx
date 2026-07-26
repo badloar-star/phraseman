@@ -11,7 +11,7 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
-import { Image } from 'expo-image'; // guard-ok: декоративная монета, число рядом — реальный индикатор (a11y на Pill)
+import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор (a11y на Pill)
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
@@ -22,9 +22,12 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
 import { useTopFadeScroll } from '../../components/TopFadeScrollContext';
+import { useTheme } from '../../components/ThemeContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
 import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { loadWeeklyBankInfo, type WeeklyBankInfo } from '../tournament_client';
 import { Card, Cta, Pill, Sheet } from '../../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCountdown';
 import { T, radius, type } from '../../components/tournament/tournament_theme';
@@ -45,12 +48,17 @@ type ScheduleSlot = {
   slotId: string;
   localTime: string;
   timezone?: string;
-  ticketsRequired?: number;
+  /** Цена входа в жемчужинах — приходит из настроек экономики. */
+  entryGems?: number;
   enabled?: boolean;
   /** Вычисляется на клиенте: когда сегодня стартует этот слот. */
   startsAtMs?: number;
 };
-type ScheduleConfig = { slots: ScheduleSlot[] };
+type ScheduleConfig = {
+  slots: ScheduleSlot[];
+  /** Цена входа в жемчужинах из настроек экономики. */
+  entryGems?: number;
+};
 
 /** Момент сегодняшнего старта слота в его таймзоне. */
 function slotStartMs(slot: ScheduleSlot): number {
@@ -103,7 +111,11 @@ const SEASON_LEADERS = [
   { avatarIndex: 5, color: T.leaderSword },
 ];
 
+/** Базовая цена входа: показываем до ответа сервера, чтобы кнопка не прыгала. */
+const DEFAULT_ENTRY_GEMS = 3;
+
 export default function TournamentsScreen() {
+  const { themeMode } = useTheme();
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
@@ -112,20 +124,29 @@ export default function TournamentsScreen() {
   // shards_shop.tsx: круглая кнопка chevron-back + safeRouterBack с фолбэком.
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/home' as any), [router]);
 
-  // TODO(server): баланс билетов/банка придёт из профиля тем же снимком, что и главная.
-  const [tickets] = useState<number>(3);
   // зачем: раньше здесь был отдельный эмодзи-«гем» (💎), запрещённая владельцем
   // валюта. Показываем реальный баланс монет — как на Главной/в Магазине —
   // синхронно из кэша (Performance Bible: без спиннера и «0 → значение» прыжка).
   const [coins, setCoins] = useState<number>(() => peekLastKnownShardsBalance() ?? 0);
-  const [bank] = useState<number>(240);
+  // зачем: банк был захардкожен числом 240 — показывали выдумку. Теперь
+  // реальная сумма с сервера; null до ответа, чтобы не мигать нулём.
+  const [bankInfo, setBankInfo] = useState<WeeklyBankInfo | null>(null);
+  const bank = bankInfo?.bankGems ?? 0;
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [joining, setJoining] = useState(false);
+  const [joinError, setJoinError] = useState('');
+  // Модалка выигрыша недельного банка: показываем один раз на неделю.
+  const [weeklyPrize, setWeeklyPrize] = useState<{ place: number; gems: number } | null>(null);
 
   // Расписание читается снимком и кэшируется на 6 часов — оно меняется раз
   // в недели, live-подписка на нём была бы тратой чтений.
   const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
   const [scheduleFailed, setScheduleFailed] = useState(false);
+
+  // зачем: билеты убраны (решение владельца 2026-07-26) — вход стоит
+  // жемчужины, одна валюта вместо двух сущностей. Цену отдаёт сервер;
+  // до ответа показываем базовую, чтобы кнопка не прыгала с «—» на число.
+  const entryGems = schedule?.entryGems ?? DEFAULT_ENTRY_GEMS;
 
   const reloadSchedule = useCallback(() => {
     setScheduleFailed(false);
@@ -139,6 +160,20 @@ export default function TournamentsScreen() {
   // Тихая ревалидация баланса монет с сервера — тот же паттерн, что в coin_exchange.tsx.
   useEffect(() => {
     void getShardsBalance().then(setCoins).catch(() => {});
+    // Банк недели + моя доля за прошлую неделю: кэш 30 минут внутри клиента.
+    void loadWeeklyBankInfo().then(async (info) => {
+      setBankInfo(info);
+      // зачем: недельный банк начисляется кроном ночью — без этой модалки
+      // игрок узнал бы о награде только по изменившемуся балансу, то есть
+      // почти никак. Показываем один раз: ключ по неделе в локальном хранилище.
+      const last = info?.lastWeek;
+      if (!last?.paidOut || last.myGems <= 0) return;
+      const seenKey = `tournament_weekly_prize_seen:${last.weekId}`;
+      const seen = await AsyncStorage.getItem(seenKey);
+      if (seen) return;
+      await AsyncStorage.setItem(seenKey, '1');
+      setWeeklyPrize({ place: last.myPlace, gems: last.myGems });
+    }).catch(() => {});
   }, []);
 
   // Ближайший включённый слот и его сегодняшняя комната.
@@ -157,28 +192,46 @@ export default function TournamentsScreen() {
     Boolean(startsAt),
   );
   const live = room?.state === 'round' || room?.state === 'table' || room?.state === 'final';
-  const noTickets = tickets <= 0;
+  // Не хватает на вход — кнопка меняется на подсказку, а не на тупик.
+  const notEnoughGems = coins < entryGems;
 
-  const openConfirm = useCallback(() => setConfirmVisible(true), []);
+  const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   const closeConfirm = useCallback(() => setConfirmVisible(false), []);
 
   /**
    * Вход: билет списывает СЕРВЕР, клиент только просит. Пока запрос летит,
    * кнопка заблокирована — иначе двойной тап спишет два билета.
    */
+  /**
+   * Вход: жемчужины списывает СЕРВЕР, клиент только просит.
+   *
+   * зачем Optimistic UI: баланс уменьшается СРАЗУ, чтобы шапка не показывала
+   * старое число, пока летит запрос. При ошибке — откат к прежнему значению и
+   * понятное сообщение вместо молчания (раньше отказ выглядел как «ничего не
+   * произошло»). Двойной тап отсекается флагом joining: иначе спишется дважды.
+   */
   const enterLobby = useCallback(async () => {
     if (!roomId || joining) return;
     setJoining(true);
+    const balanceBefore = coins;
+    setCoins((current) => Math.max(0, current - entryGems));
     try {
-      await joinTournament(roomId);
+      const result = await joinTournament(roomId) as { gemsLeft?: number } | undefined;
+      // Сервер вернул точный баланс — согласуем, чтобы не было расхождения.
+      if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft));
       setConfirmVisible(false);
+      setJoinError('');
       router.push({ pathname: '/tournament_lobby', params: { roomId } });
-    } catch {
-      setConfirmVisible(false);
+    } catch (error) {
+      setCoins(balanceBefore);
+      const code = String((error as { message?: string })?.message ?? '');
+      setJoinError(code.includes('not_enough_gems')
+        ? 'Не хватает жемчужин'
+        : 'Не удалось войти. Попробуйте ещё раз');
     } finally {
       setJoining(false);
     }
-  }, [roomId, joining, router]);
+  }, [roomId, joining, router, coins, entryGems]);
 
   const contentPadding = useMemo(
     () => ({ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 120 }),
@@ -246,7 +299,7 @@ export default function TournamentsScreen() {
                 как на Главной/в Магазине (coinIconForBalance + число рядом). */}
             <Pill>
               <Image
-                source={coinIconForBalance(coins)}
+                source={coinIconForBalance(coins, themeMode)}
                 style={styles.coinIcon}
                 contentFit="contain"
                 accessibilityElementsHidden
@@ -254,7 +307,6 @@ export default function TournamentsScreen() {
               />
               {' '}{coins}
             </Pill>
-            <Pill tone={noTickets ? 'danger' : 'card'}>🎟 {tickets}</Pill>
           </View>
         </View>
 
@@ -289,20 +341,20 @@ export default function TournamentsScreen() {
               ))}
             </View>
 
-            {noTickets ? (
+            {notEnoughGems ? (
               <>
-                <Cta ghost>Нет билетов 😔</Cta>
+                <Cta ghost disabled>Не хватает жемчужин</Cta>
                 <View style={styles.howTo}>
-                  <Text style={styles.howToIcon}>🎟</Text>
                   <View style={styles.howToBody}>
-                    <Text style={styles.howToTitle}>Как получить билеты</Text>
-                    <Text style={styles.howToText}>ежедневные задания · уровни · банк недели</Text>
+                    <Text style={styles.howToTitle}>
+                      Нужно ещё {entryGems - coins} — за уроки и задания
+                    </Text>
                   </View>
                 </View>
               </>
             ) : (
-              <Cta onPress={openConfirm} disabled={!roomId}>
-                {live ? 'В игру · 1 🎟' : `Играть за ${nextSlot?.ticketsRequired ?? 1} 🎟`}
+              <Cta onPress={openConfirm} disabled={!roomId || joining}>
+                {live ? `В игру · ${entryGems}` : `Начать турнир · ${entryGems}`}
               </Cta>
             )}
           </Card>
@@ -313,10 +365,10 @@ export default function TournamentsScreen() {
           <Card tone="gold" pad={22}>
             <View style={styles.bankRow}>
               {/* зачем: было эмодзи 💰 (иконка) + 💎 (запрещённая гем-валюта) —
-                  одна настоящая иконка монеты покрывает обе роли, число — главный
+                  одна настоящая иконка жемчужины покрывает обе роли, число — главный
                   индикатор рядом (тот же паттерн, что на Главной/в Магазине). */}
               <Image
-                source={coinIconForBalance(bank)}
+                source={coinIconForBalance(bank, themeMode)}
                 style={styles.bankHeroIcon}
                 contentFit="contain"
                 accessibilityElementsHidden
@@ -326,10 +378,12 @@ export default function TournamentsScreen() {
                 <Text style={styles.bankKicker}>Банк недели</Text>
                 <Text style={styles.bankValue} allowFontScaling={false}>{bank}</Text>
               </View>
+              {/* зачем: раньше здесь был VIP-блок с ценой в билетах, которых
+                  больше нет. Показываем, когда и кому достанется банк — иначе
+                  игрок не понимает, за что борется. */}
               <View style={styles.vipBox}>
-                <Text style={styles.vipTitle}>👑 VIP</Text>
-                <Text style={styles.vipSub}>вс, 20:00</Text>
-                <Text style={styles.vipCost}>вход 3 🎟</Text>
+                <Text style={styles.vipTitle}>🏆 Топ-3</Text>
+                <Text style={styles.vipSub}>вс, ночью</Text>
               </View>
             </View>
           </Card>
@@ -364,11 +418,31 @@ export default function TournamentsScreen() {
         </Animated.View>
       </ScrollView>
 
+      {/* зачем: недельный банк приходит ночью кроном — без этой шторки игрок
+          не узнал бы, что выиграл. Показывается один раз на неделю. */}
+      <Sheet visible={!!weeklyPrize} onClose={() => setWeeklyPrize(null)}>
+        <Text style={styles.sheetIcon}>🏆</Text>
+        <Text style={styles.sheetTitle}>
+          {weeklyPrize?.place === 1 ? 'Первое место недели!'
+            : weeklyPrize?.place === 2 ? 'Второе место недели!'
+              : 'Третье место недели!'}
+        </Text>
+        <Text style={styles.sheetSub}>
+          Ваша доля банка: {weeklyPrize?.gems ?? 0} — уже на счету
+        </Text>
+        <View style={styles.sheetActions}>
+          <Cta onPress={() => setWeeklyPrize(null)}>Отлично</Cta>
+        </View>
+      </Sheet>
+
       {/* Подтверждение входа (макет 04) */}
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
         <Text style={styles.sheetIcon}>🏆</Text>
         <Text style={styles.sheetTitle}>Войти в турнир?</Text>
-        <Text style={styles.sheetSub}>Списание: 1 🎟 · останется {Math.max(0, tickets - 1)}</Text>
+        <Text style={styles.sheetSub}>Списание: {entryGems} · останется {Math.max(0, coins - entryGems)}</Text>
+        {/* зачем: отказ сервера раньше выглядел как «ничего не произошло» —
+            шторка просто закрывалась. Показываем причину прямо здесь. */}
+        {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}
         <View style={styles.sheetActions}>
           <Cta onPress={enterLobby} disabled={joining}>
             {joining ? 'Заходим…' : 'Погнали!'}
@@ -491,6 +565,13 @@ const styles = StyleSheet.create({
 
   sheetIcon: { fontSize: 44, textAlign: 'center' },
   sheetTitle: { fontSize: 24, fontWeight: '900', color: T.text, textAlign: 'center', marginTop: 8 },
+  sheetError: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: T.danger,
+    textAlign: 'center',
+    marginTop: 10,
+  },
   sheetSub: {
     fontSize: 16,
     fontWeight: '600',

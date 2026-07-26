@@ -7,7 +7,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { session1Fixture, unit1Fixture, sessionByRef } from '../components/learning-v2-lab/session/fixtures';
+import {
+  SESSION_POOL,
+  session1Fixture,
+  unit1Fixture,
+  sessionByRef,
+} from '../components/learning-v2-lab/session/fixtures';
 import type { SessionCard } from '../components/learning-v2-lab/session/contracts';
 
 const read = (rel: string) => fs.readFileSync(path.join(process.cwd(), rel), 'utf8');
@@ -45,24 +50,65 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
     expect(unit1Fixture.sideNodes.map((node) => node.id)).toEqual(['practice-lab', 'challenge']);
   });
 
-  test('открываемые узлы ссылаются на существующие сессии', () => {
+  test('каждый открываемый узел ведёт в перенесённую сессию', () => {
     const nodes = unit1Fixture.zones.flatMap((zone) => zone.sessions);
     for (const node of nodes) {
       if (node.state === 'locked') {
         expect(node.sessionRef).toBeNull();
         continue;
       }
+      // Открытый узел без контента = тупик для владельца. Ссылка обязана вести
+      // в реально перенесённую сессию, а не в пустоту.
       expect(node.sessionRef).toBeTruthy();
+      expect(sessionByRef(node.sessionRef as string)).not.toBeNull();
     }
-    // Текущая сессия обязана быть перенесена целиком — её владелец открывает первой.
-    expect(sessionByRef('session-1')).not.toBeNull();
+  });
+
+  test('движки каждой сессии покрыты реализацией', () => {
+    const implemented = new Set(['choice', 'arrange', 'input', 'speech', 'match', 'dialogue']);
+    for (const session of SESSION_POOL) {
+      for (const card of session.cards) {
+        expect(implemented.has(card.engine)).toBe(true);
+      }
+    }
+  });
+
+  test('диалог: у каждого хода ученика есть верный вариант', () => {
+    for (const session of SESSION_POOL) {
+      for (const card of session.cards) {
+        if (card.engine !== 'dialogue') continue;
+        const youTurns = card.turns.filter((turn) => turn.speaker === 'you');
+        expect(youTurns.length).toBeGreaterThan(0);
+        for (const turn of youTurns) {
+          if (turn.speaker !== 'you') continue;
+          expect(turn.options.filter((o) => o.id === turn.correctOptionId)).toHaveLength(1);
+        }
+      }
+    }
+  });
+
+  test('пары: у каждой пары есть обе стороны', () => {
+    for (const session of SESSION_POOL) {
+      for (const card of session.cards) {
+        if (card.engine !== 'match') continue;
+        expect(card.pairs.length).toBeGreaterThanOrEqual(3);
+        for (const pair of card.pairs) {
+          expect(pair.en.length).toBeGreaterThan(0);
+          expect(pair.ru.length).toBeGreaterThan(0);
+        }
+      }
+    }
   });
 
   test('сессия: карточки, исходы звёзд и полная лестница подсказок', () => {
     expect(session1Fixture.cards).toHaveLength(8);
     expect(session1Fixture.intro.cardsDisplay).toBe('8 карт');
 
-    for (const card of session1Fixture.cards as readonly SessionCard[]) {
+    // Проверяем ВСЕ перенесённые сессии, а не только первую.
+    const allCards = SESSION_POOL.flatMap((session) => session.cards) as readonly SessionCard[];
+    expect(allCards.length).toBeGreaterThanOrEqual(23);
+
+    for (const card of allCards) {
       // Звёзды убывают по мере помощи: чисто > с подсказкой > после показа.
       const { clean, hint, shown } = card.starsByOutcome;
       expect(clean).toBeGreaterThan(hint);
@@ -75,25 +121,35 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
       expect(card.hints.explain.length).toBeGreaterThan(0);
 
       expect(card.instruction.length).toBeGreaterThan(0);
-      expect(card.mistakeTags.length).toBeGreaterThan(0);
+      // Теги ошибок обязательны для проверяемых карточек, но НЕ для разминки
+      // на пары: она намеренно не кормит работу над ошибками (так в поставке).
+      if (card.engine !== 'match') {
+        expect(card.mistakeTags.length).toBeGreaterThan(0);
+      }
     }
   });
 
   test('у карточек выбора ровно один правильный вариант', () => {
-    for (const card of session1Fixture.cards) {
-      if (card.engine !== 'choice') continue;
-      expect(card.options.length).toBeGreaterThanOrEqual(2);
-      expect(card.options.filter((option) => option.id === card.correctOptionId)).toHaveLength(1);
+    for (const session of SESSION_POOL) {
+      for (const card of session.cards) {
+        if (card.engine !== 'choice') continue;
+        expect(card.options.length).toBeGreaterThanOrEqual(2);
+        expect(card.options.filter((option) => option.id === card.correctOptionId)).toHaveLength(1);
+      }
     }
   });
 
-  test('сборка фразы: цель собирается из банка, лишние чипы допустимы', () => {
-    for (const card of session1Fixture.cards) {
-      if (card.engine !== 'arrange') continue;
-      for (const token of card.targetTokens) {
-        expect(card.bankChips).toContain(token);
+  test('сборка фразы: свободные слоты закрываются чипами банка', () => {
+    for (const session of SESSION_POOL) {
+      for (const card of session.cards) {
+        if (card.engine !== 'arrange') continue;
+        // Заранее поставленные слова в банке не нужны — их ставить не надо.
+        const free = card.targetTokens.filter((token) => !card.preplaced.includes(token));
+        for (const token of free) {
+          expect(card.bankChips).toContain(token);
+        }
+        expect(card.bankChips.length).toBeGreaterThanOrEqual(free.length);
       }
-      expect(card.bankChips.length).toBeGreaterThanOrEqual(card.targetTokens.length);
     }
   });
 

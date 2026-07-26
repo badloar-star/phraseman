@@ -17,7 +17,9 @@ import { C, LEADING, RADIUS, SPACE, TEXT, TOUCH_MIN, WEIGHT } from '../kimi/toke
 import type { OutcomeId, SessionCard, SessionVM } from './contracts';
 import { ChoiceEngine } from './engines/ChoiceEngine';
 import { ArrangeEngine } from './engines/ArrangeEngine';
+import { DialogueEngine } from './engines/DialogueEngine';
 import { InputEngine } from './engines/InputEngine';
+import { MatchEngine } from './engines/MatchEngine';
 import { SpeechEngine } from './engines/SpeechEngine';
 import type { EngineProps } from './engine_common';
 import { FeedbackLayer } from './FeedbackLayer';
@@ -192,10 +194,12 @@ export const SessionRunner = memo(function SessionRunner({ session, onExit }: Se
       shakeEpoch,
       onReady: setReady,
       onWrong: () => registerWrong(false),
-      onAutoComplete: () => resolveCard('clean'),
+      // зачем: match/dialogue завершаются сами, но звёзды всё равно должны
+      // зависеть от числа ошибок — иначе за пары с промахами давали бы 3★
+      onAutoComplete: () => resolveCard(usedShowAnswer ? 'shown' : attempt === 0 ? 'clean' : 'hint'),
       onIntent: emit,
     }),
-    [phase, verdict, resetEpoch, shakeEpoch, registerWrong, resolveCard, emit],
+    [phase, verdict, resetEpoch, shakeEpoch, registerWrong, resolveCard, emit, usedShowAnswer, attempt],
   );
 
   /* ------------------------------------------------------------- intro -- */
@@ -326,6 +330,10 @@ export const SessionRunner = memo(function SessionRunner({ session, onExit }: Se
         {card.engine === 'speech' ? (
           <SpeechEngine card={card} {...engineProps} onSkip={skipCard} />
         ) : null}
+        {/* зачем: match и dialogue судят себя сами — у них нет кнопки «Проверить»,
+            промах идёт сразу в лестницу подсказок, завершение закрывает карточку */}
+        {card.engine === 'match' ? <MatchEngine card={card} {...engineProps} /> : null}
+        {card.engine === 'dialogue' ? <DialogueEngine card={card} {...engineProps} /> : null}
       </ScrollView>
 
       <View style={s.dock}>

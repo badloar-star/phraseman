@@ -1,6 +1,12 @@
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import type { DailyTask, TaskProgress } from './daily_tasks';
+import {
+  invalidateDailyTasksScreenSnapshotOnDisk,
+  patchDailyTasksScreenSnapshotOnDisk,
+  peekRestoredDailyTasksScreenSnapshot,
+  rememberDailyTasksScreenSnapshotOnDisk,
+} from './daily_tasks_screen_persist';
 
 export type DailyTasksScreenSnapshot = Readonly<{
   tasks: DailyTask[];
@@ -43,9 +49,17 @@ export function peekDailyTasksScreenSnapshot(
   now = Date.now(),
 ): { value: DailyTasksScreenSnapshot; isFresh: boolean } | null {
   const key = dailyTasksScreenCacheKey(token, dayKey, studyTarget);
-  const cached = key ? entries.get(key) : undefined;
-  if (!key || !cached || !isCurrentAccountGeneration(token)) return null;
-  return { value: cached.value, isFresh: now - cached.updatedAt <= TTL_MS };
+  if (!key || !isCurrentAccountGeneration(token)) return null;
+  const cached = entries.get(key);
+  if (cached) return { value: cached.value, isFresh: now - cached.updatedAt <= TTL_MS };
+  // зачем: на ПЕРВОМ открытии после холодного старта Map выше пуста (она живёт только
+  // внутри процесса) — раньше экран из-за этого показывал скелетоны и входную анимацию.
+  // Дисковый снапшот прошлой сессии поднят бутстрапом, отдаём его как «есть данные, но
+  // не свежие»: карточки видны с первого кадра, а фоновый пересчёт всё равно запустится
+  // (isFresh:false ⇒ refreshTasksAndProgress не делает ранний return) и догонит правду.
+  const restoredValue = peekRestoredDailyTasksScreenSnapshot(key, now);
+  if (!restoredValue) return null;
+  return { value: restoredValue, isFresh: false };
 }
 
 export function beginDailyTasksScreenRequest(
@@ -86,6 +100,9 @@ export function commitDailyTasksScreenSnapshot(
     : value;
   entries.delete(request.key!);
   entries.set(request.key!, { value: committedValue, updatedAt: now });
+  // зачем: зеркалим свежий результат на диск, чтобы СЛЕДУЮЩИЙ холодный старт открыл
+  // экран мгновенно (см. daily_tasks_screen_persist). Запись фоновая — UI не ждёт.
+  rememberDailyTasksScreenSnapshotOnDisk(request.key!, committedValue, now);
   while (entries.size > MAX_ENTRIES) {
     const oldestKey = entries.keys().next().value as string | undefined;
     if (!oldestKey) break;
@@ -112,6 +129,9 @@ export function patchDailyTasksScreenProgress(
       progress: cached.value.progress.map((row) => row.taskId === taskId ? { ...row, ...patch } : row),
     },
   });
+  // зачем: optimistic-клейм должен пережить холодный старт — иначе первое открытие
+  // после перезапуска показало бы уже забранную награду как незабранную.
+  patchDailyTasksScreenSnapshotOnDisk(key, taskId, patch);
   return true;
 }
 
@@ -121,7 +141,11 @@ export function invalidateDailyTasksScreenSnapshot(
   studyTarget: string,
 ): void {
   const key = dailyTasksScreenCacheKey(token, dayKey, studyTarget);
-  if (key) entries.delete(key);
+  if (!key) return;
+  entries.delete(key);
+  // зачем: после реролла/смены набора дисковая копия устарела — если её не убрать,
+  // следующий холодный старт нарисует на первом кадре ЗАМЕНЁННОЕ задание.
+  invalidateDailyTasksScreenSnapshotOnDisk(key);
 }
 
 export function resetDailyTasksScreenCacheForTests(): void {

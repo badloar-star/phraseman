@@ -1,22 +1,25 @@
-import React, { useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
 import { hapticTap } from '../../hooks/use-haptics';
-import type { CatalogFilter } from '../../app/customization_catalog';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
+
+const COIN_ICON = require('../../assets/images/currency/coin_1.webp');
 
 type Segment<T extends string> = { id: T; label: string };
 
 function Segmented<T extends string>({ items, value, onChange }: { items: Segment<T>[]; value: T; onChange: (value: T) => void }) {
   const { theme: t } = useTheme();
   return (
-    <View style={[styles.segmented, { backgroundColor: t.bgSurface }]}>
+    <View style={[styles.segmented, { backgroundColor: t.bgCard }]}>
       {items.map((item) => {
         const selected = item.id === value;
         return (
-          <TapScale key={item.id} onPress={() => onChange(item.id)} scaleTo={0.97} style={[styles.segment, selected && { backgroundColor: t.bgCard }]}
+          <TapScale key={item.id} onPress={() => onChange(item.id)} scaleTo={0.97}
+            style={[styles.segment, selected && { backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.28, shadowRadius: 8, shadowOffset: { width: 0, height: 3 }, elevation: 3 }]}
             accessibilityRole="button"
             accessibilityState={{ selected }} accessibilityLabel={item.label}>
             <Text style={{ color: selected ? t.textPrimary : t.textMuted, fontWeight: '800', fontSize: 14 }}>{item.label}</Text>
@@ -33,64 +36,71 @@ export function CustomizationTabs({ value, onChange, avatarsLabel, aurasLabel }:
   return <Segmented items={[{ id: 'avatars', label: avatarsLabel }, { id: 'auras', label: aurasLabel }]} value={value} onChange={onChange} />;
 }
 
-export function OwnershipFilters({ value, onChange, allLabel, mineLabel }: {
-  value: CatalogFilter; onChange: (value: CatalogFilter) => void; allLabel: string; mineLabel: string;
-}) {
-  return <Segmented items={[{ id: 'all', label: allLabel }, { id: 'mine', label: mineLabel }]} value={value} onChange={onChange} />;
-}
-
-export function CustomizationOverflowMenu({
-  onResetLevelAvatar, levelAvatarLabel, showLevelAvatar,
-}: {
-  onResetLevelAvatar: () => void; levelAvatarLabel: string; showLevelAvatar: boolean;
+/**
+ * зачем: владелец убрал «бар в рамке, который всегда висит серым» — кнопка теперь
+ * появляется снизу только когда есть действие (применить/купить/открыть Plus), и цена
+ * живёт прямо в ней монетой, а не текстом «· 35». Нет действия — нет кнопки, каталог дышит.
+ */
+export function CustomizationActionBar({ action, label, cost, busy, bottomOffset, onPress }: {
+  action: CustomizationAction; label: string; cost: number | null; busy: boolean;
+  bottomOffset: number; onPress: () => void;
 }) {
   const { theme: t } = useTheme();
-  const [open, setOpen] = useState(false);
-  if (!showLevelAvatar) return <View style={styles.menuButton} />;
+  const reduceMotion = useReduceMotion();
+  const visible = action.kind !== 'unchanged';
+  const shown = useRef(new Animated.Value(visible ? 1 : 0)).current;
+
+  useEffect(() => {
+    Animated.timing(shown, {
+      toValue: visible ? 1 : 0,
+      duration: reduceMotion ? 0 : 220,
+      easing: Easing.bezier(0.23, 1, 0.32, 1),
+      useNativeDriver: true,
+    }).start();
+  }, [visible, shown, reduceMotion]);
+
+  const translateY = shown.interpolate({ inputRange: [0, 1], outputRange: [96, 0] });
+
   return (
-    <>
-      <TapScale onPress={() => setOpen(true)} style={[styles.menuButton, { backgroundColor: t.bgSurface }]} accessibilityRole="button" accessibilityLabel={levelAvatarLabel}>
-        <Ionicons name="ellipsis-horizontal" size={22} color={t.textPrimary} />
-      </TapScale>
-      <Modal visible={open} transparent animationType="fade" onRequestClose={() => setOpen(false)}>
-        <Pressable style={styles.backdrop} onPress={() => setOpen(false)}>
-          <View style={[styles.menu, { backgroundColor: t.bgCard }]}>
-            <Pressable accessibilityRole="button" style={styles.menuRow} onPress={() => { setOpen(false); onResetLevelAvatar(); }}>
-              <Ionicons name="refresh-outline" size={20} color={t.textPrimary} />
-              <Text style={[styles.menuText, { color: t.textPrimary }]}>{levelAvatarLabel}</Text>
-            </Pressable>
+    <Animated.View
+      pointerEvents={visible ? 'auto' : 'none'}
+      style={[styles.actionWrap, { bottom: bottomOffset, opacity: shown, transform: [{ translateY }] }]}
+    >
+      <Pressable
+        accessibilityRole="button"
+        accessibilityState={{ disabled: busy }}
+        disabled={busy}
+        onPress={onPress}
+        onPressIn={() => { if (!busy) hapticTap(); }}
+        style={({ pressed }) => [
+          styles.action,
+          { backgroundColor: t.accent, shadowColor: t.accent },
+          pressed && { transform: [{ scale: 0.97 }] },
+          busy && { opacity: 0.72 },
+        ]}
+      >
+        <Text style={[styles.actionText, { color: t.correctText }]} numberOfLines={1}>{label}</Text>
+        {cost !== null ? (
+          <View style={styles.priceBox}>
+            <Image source={COIN_ICON} style={styles.priceCoin} contentFit="contain" accessible={false} />
+            <Text style={[styles.actionText, { color: t.correctText }]}>{cost}</Text>
           </View>
-        </Pressable>
-      </Modal>
-    </>
-  );
-}
-
-export function CustomizationActionBar({ action, label, busy, onPress }: {
-  action: CustomizationAction; label: string; busy: boolean; onPress: () => void;
-}) {
-  const { theme: t } = useTheme();
-  const disabled = busy || action.kind === 'unchanged';
-  return (
-    <View style={[styles.actionShell, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-      <Pressable accessibilityRole="button" accessibilityState={{ disabled }} disabled={disabled} onPress={onPress}
-        onPressIn={() => { if (!disabled) hapticTap(); }}
-        style={[styles.action, { backgroundColor: disabled ? t.bgSurface : t.accent }]}>
-        <Text style={[styles.actionText, { color: disabled ? t.textMuted : t.correctText }]}>{label}</Text>
+        ) : null}
       </Pressable>
-    </View>
+    </Animated.View>
   );
 }
 
 const styles = StyleSheet.create({
   segmented: { flexDirection: 'row', borderRadius: 15, padding: 4, gap: 4 },
   segment: { minHeight: 44, flex: 1, borderRadius: 12, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 12 },
-  menuButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  backdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.48)', alignItems: 'flex-end', justifyContent: 'flex-start', paddingTop: 84, paddingRight: 16 },
-  menu: { width: 246, borderRadius: 18, padding: 8, shadowColor: '#000', shadowOpacity: 0.25, shadowRadius: 18, elevation: 8 },
-  menuRow: { minHeight: 50, flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 12 },
-  menuText: { flex: 1, fontSize: 14, lineHeight: 19, fontWeight: '700' },
-  actionShell: { position: 'absolute', left: 12, right: 12, bottom: 8, borderRadius: 22, borderWidth: 1, padding: 8, shadowColor: '#000', shadowOpacity: 0.18, shadowRadius: 18, elevation: 10 },
-  action: { minHeight: 54, borderRadius: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 },
+  actionWrap: { position: 'absolute', left: 16, right: 16 },
+  action: {
+    minHeight: 56, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+    gap: 8, paddingHorizontal: 20,
+    shadowOpacity: 0.32, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 8,
+  },
   actionText: { fontSize: 16, lineHeight: 21, fontWeight: '900', textAlign: 'center' },
+  priceBox: { flexDirection: 'row', alignItems: 'center', gap: 5 },
+  priceCoin: { width: 18, height: 18 },
 });

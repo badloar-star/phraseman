@@ -1,23 +1,85 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Image } from 'expo-image';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import TapScale from '../TapScale';
 import AvatarView from '../AvatarView';
 import CustomAvatarBadge from '../CustomAvatarBadge';
 import { useTheme } from '../ThemeContext';
+import { LinearGradient } from '../SafeLinearGradient';
 import type { CustomizationCatalogItem } from '../../app/customization_catalog';
 
+const COIN_ICON = require('../../assets/images/currency/coin_1.webp');
+
+/**
+ * зачем: «Вернуть аватар уровня» переехал из скрытого меню-трёх-точек в первую плитку
+ * каталога — выбор уровня работает так же, как выбор любого другого аватара.
+ */
+export type LevelAvatarTileItem = {
+  kind: 'level-avatar';
+  id: 'level-avatar';
+  previewAvatar: string;
+  isOwned: true;
+  isActive: boolean;
+  availability: { kind: 'owned' };
+};
+
+export type CatalogCardItem = CustomizationCatalogItem | LevelAvatarTileItem;
+
 interface Props {
-  item: CustomizationCatalogItem;
+  item: CatalogCardItem;
   selected: boolean;
   label: string;
   statusLabel: string;
   onPress: (id: string) => void;
 }
 
+/**
+ * зачем: владельцу не нравились «шумные» карточки — две строки текста и рамка на каждой.
+ * Теперь плитка немая: только превью; имя показывает сцена, а цена/замок/награда — один
+ * компактный чип. Тексты label/statusLabel остаются в accessibilityLabel для VoiceOver.
+ */
+function AvailabilityChip({ item }: { item: CatalogCardItem }) {
+  const a = item.availability;
+  if (a.kind === 'shards') {
+    return (
+      <View style={styles.chip}>
+        <Image source={COIN_ICON} style={styles.chipCoin} contentFit="contain" accessible={false} />
+        <Text style={[styles.chipText, styles.chipPrice]}>{a.cost}</Text>
+      </View>
+    );
+  }
+  if (a.kind === 'level') {
+    return (
+      <View style={styles.chip}>
+        <Ionicons name="lock-closed" size={10} color="#CFE2D4" />
+        <Text style={[styles.chipText, styles.chipLevel]}>{a.level}</Text>
+      </View>
+    );
+  }
+  if (a.kind === 'reward') {
+    return (
+      <View style={styles.chip}>
+        <Ionicons name="trophy" size={11} color="#FFD98A" />
+      </View>
+    );
+  }
+  if (a.kind === 'plus') {
+    return (
+      <View style={styles.chip}>
+        <Ionicons name="sparkles" size={10} color="#FACC15" />
+        <Text style={[styles.chipText, styles.chipPlus]}>Plus</Text>
+      </View>
+    );
+  }
+  return null;
+}
+
 export const CustomizationCatalogCard = React.memo(function CustomizationCatalogCard({
   item, selected, label, statusLabel, onPress,
 }: Props) {
   const { theme: t } = useTheme();
+  const owned = item.isOwned && !selected && item.kind !== 'none-aura';
   return (
     <TapScale
       accessibilityRole="button"
@@ -26,25 +88,56 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
       onPress={() => onPress(item.id)}
       scaleTo={0.96}
       style={[
-        styles.card,
-        { backgroundColor: t.bgCard, borderColor: selected ? t.accent : t.border },
-        selected && { shadowColor: t.accent, shadowOpacity: 0.24, shadowRadius: 12, elevation: 4 },
+        styles.ring,
+        selected && { backgroundColor: t.accent, shadowColor: t.accent, shadowOpacity: 0.3, shadowRadius: 10, elevation: 5 },
       ]}
     >
-      <View style={styles.preview}>
+      <LinearGradient colors={[t.bgSurface, t.bgCard]} start={{ x: 0.2, y: 0 }} end={{ x: 0.8, y: 1 }} style={styles.tile}>
         {item.kind === 'custom-avatar'
-          ? <CustomAvatarBadge value={item.previewValue} size={72} />
-          : <AvatarView avatar={item.previewAvatar} auraId={item.kind === 'aura' ? item.auraId : null} size={66} animateAura={false} />}
-      </View>
-      <Text style={[styles.label, { color: t.textPrimary }]}>{label}</Text>
-      <Text style={[styles.status, { color: selected ? t.accent : t.textMuted }]}>{statusLabel}</Text>
+          ? <CustomAvatarBadge value={item.previewValue} size={68} />
+          : <AvatarView
+              avatar={item.previewAvatar}
+              auraId={item.kind === 'aura' ? item.auraId : null}
+              size={64}
+              animateAura={false}
+            />}
+        {!selected ? <AvailabilityChip item={item} /> : null}
+        {selected ? (
+          <View style={[styles.mark, { backgroundColor: t.accent }]}>
+            <Ionicons name="checkmark" size={12} color={t.correctText} />
+          </View>
+        ) : owned ? (
+          <View style={[styles.mark, styles.markOwned, { backgroundColor: t.bgSurface2 }]}>
+            <Ionicons name="checkmark" size={10} color={t.textMuted} />
+          </View>
+        ) : null}
+      </LinearGradient>
     </TapScale>
   );
 });
 
 const styles = StyleSheet.create({
-  card: { flex: 1, height: 166, borderRadius: 18, borderWidth: 1, paddingHorizontal: 7, paddingVertical: 12, alignItems: 'center' },
-  preview: { height: 76, alignItems: 'center', justifyContent: 'center' },
-  label: { marginTop: 5, minHeight: 30, fontSize: 12, lineHeight: 15, fontWeight: '800', textAlign: 'center' },
-  status: { marginTop: 3, minHeight: 26, fontSize: 10, lineHeight: 13, fontWeight: '700', textAlign: 'center' },
+  // зачем: «кольцо выбора» — это подложка с отступом, а не borderWidth (запрет владельца
+  // на обводки); отступ одинаков в обоих состояниях, чтобы выбор не сдвигал сетку.
+  ring: { borderRadius: 22, padding: 2.5 },
+  tile: {
+    aspectRatio: 1, borderRadius: 19.5, alignItems: 'center', justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  chip: {
+    position: 'absolute', bottom: 7, alignSelf: 'center',
+    minHeight: 21, borderRadius: 11, paddingHorizontal: 8,
+    flexDirection: 'row', alignItems: 'center', gap: 4,
+    backgroundColor: 'rgba(2,7,3,0.55)',
+  },
+  chipCoin: { width: 12, height: 12 },
+  chipText: { fontSize: 11, lineHeight: 15, fontWeight: '800' },
+  chipPrice: { color: '#FFE9A8' },
+  chipLevel: { color: '#CFE2D4' },
+  chipPlus: { color: '#FACC15' },
+  mark: {
+    position: 'absolute', top: 7, right: 7, width: 20, height: 20, borderRadius: 11,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  markOwned: { width: 18, height: 18 },
 });

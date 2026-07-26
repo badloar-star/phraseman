@@ -1,8 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { LinearGradient } from '../SafeLinearGradient';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import Svg, { Defs, RadialGradient as SvgRadialGradient, Stop, Rect } from 'react-native-svg';
 import AvatarView from '../AvatarView';
+import TapScale from '../TapScale';
+import { useTheme } from '../ThemeContext';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
+import { getAvatarAuraById } from '../../constants/avatar_auras';
 
 export interface CustomizationHeroProps {
   avatarValue: string;
@@ -13,68 +17,90 @@ export interface CustomizationHeroProps {
   themeAccent: string;
   motionEnabled: boolean;
   minHeight: number;
+  /** null → у выбранного аватара нет настроек цвета (аватар уровня). */
+  onEdit: (() => void) | null;
+  editLabel: string;
 }
 
 const hex = /^#([0-9a-f]{6})$/i;
 const withAlpha = (color: string, alpha: string): string => hex.test(color) ? `${color}${alpha}` : color;
 
-export function buildConstellationPalette(accent: string): {
-  background: readonly [string, string, string]; glow: string;
-} {
-  return {
-    background: ['#080B18', '#101329', withAlpha(accent, '30')],
-    glow: accent,
-  };
-}
+const GLOW_SIZE = 330;
 
-function ConstellationOrbits({ accent }: { accent: string }) {
+/**
+ * зачем: владелец попросил убрать «коробку»-хиро с рамкой и космосом — сцена теперь
+ * бесшовная: аватар живёт прямо на фоне экрана, а свечение берёт ЦВЕТ выбранной ауры,
+ * так примерка ауры ощущается мгновенно всей сценой, а не только колечком.
+ */
+function StageGlow({ color }: { color: string }) {
   return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      <View style={[styles.glow, { backgroundColor: withAlpha(accent, '20') }]} />
-      <View style={[styles.orbitLarge, { borderColor: withAlpha(accent, '42') }]} />
-      <View style={[styles.orbitSmall, { borderColor: withAlpha(accent, '66') }]} />
-      <View style={[styles.star, styles.starOne, { backgroundColor: accent }]} />
-      <View style={[styles.star, styles.starTwo, { backgroundColor: accent }]} />
-      <View style={[styles.star, styles.starThree, { backgroundColor: accent }]} />
+    <View pointerEvents="none" style={styles.glowBox}>
+      <Svg width={GLOW_SIZE} height={GLOW_SIZE}>
+        <Defs>
+          <SvgRadialGradient id="stage-glow" cx="50%" cy="50%" rx="50%" ry="50%">
+            <Stop offset="0%" stopColor={color} stopOpacity={0.30} />
+            <Stop offset="55%" stopColor={color} stopOpacity={0.10} />
+            <Stop offset="100%" stopColor={color} stopOpacity={0} />
+          </SvgRadialGradient>
+        </Defs>
+        <Rect x="0" y="0" width={GLOW_SIZE} height={GLOW_SIZE} fill="url(#stage-glow)" />
+      </Svg>
     </View>
   );
 }
 
 export const CustomizationHero = React.memo(function CustomizationHero(props: CustomizationHeroProps) {
+  const { theme: t } = useTheme();
   const reduceMotion = useReduceMotion();
-  const colors = buildConstellationPalette(props.themeAccent);
+  const auraColor = getAvatarAuraById(props.auraId)?.color ?? props.themeAccent;
+  const chipBg = withAlpha(t.bgSurface, 'D9');
   return (
-    <LinearGradient
-      colors={colors.background}
-      style={[styles.hero, { minHeight: props.minHeight, borderColor: withAlpha(props.themeAccent, '55') }]}
-    >
-      <ConstellationOrbits accent={colors.glow} />
-      <View style={[styles.avatarHalo, { shadowColor: props.themeAccent }]}>
+    <View style={[styles.stage, { minHeight: props.minHeight }]}>
+      <StageGlow color={auraColor} />
+      <View>
         <AvatarView
           avatar={props.avatarValue}
           level={props.level}
           auraId={props.auraId}
-          size={176}
+          size={168}
           animateAura={props.motionEnabled && !reduceMotion}
         />
       </View>
-      <Text style={styles.name}>{props.avatarLabel}</Text>
-      <Text style={styles.meta}>{props.auraLabel} · {props.level}</Text>
-    </LinearGradient>
+      <Text style={[styles.name, { color: t.heroTextPrimary }]} numberOfLines={1}>{props.avatarLabel}</Text>
+      <View style={styles.chips}>
+        <View style={[styles.chip, { backgroundColor: chipBg }]}>
+          <View style={[styles.auraDot, { backgroundColor: auraColor, shadowColor: auraColor }]} />
+          <Text style={[styles.chipText, { color: t.heroTextMuted }]} numberOfLines={1}>{props.auraLabel}</Text>
+        </View>
+        {props.onEdit ? (
+          <TapScale
+            accessibilityRole="button"
+            accessibilityLabel={props.editLabel}
+            onPress={props.onEdit}
+            scaleTo={0.95}
+            style={[styles.chip, { backgroundColor: chipBg }]}
+          >
+            <Ionicons name="color-palette-outline" size={14} color={t.heroTextPrimary} />
+            <Text style={[styles.chipText, { color: t.heroTextPrimary }]} numberOfLines={1}>{props.editLabel}</Text>
+          </TapScale>
+        ) : null}
+      </View>
+    </View>
   );
 });
 
 const styles = StyleSheet.create({
-  hero: {
-    marginHorizontal: 12, borderRadius: 30, borderWidth: 1, overflow: 'hidden',
-    alignItems: 'center', justifyContent: 'center', paddingHorizontal: 24, paddingVertical: 36,
+  stage: { alignItems: 'center', justifyContent: 'flex-start', paddingTop: 14, paddingHorizontal: 24 },
+  glowBox: {
+    position: 'absolute', top: -58, alignSelf: 'center',
+    width: GLOW_SIZE, height: GLOW_SIZE, alignItems: 'center', justifyContent: 'center',
   },
-  glow: { position: 'absolute', width: 310, height: 310, borderRadius: 155, top: '22%' },
-  orbitLarge: { position: 'absolute', width: 330, height: 220, borderRadius: 180, borderWidth: 1, transform: [{ rotate: '-18deg' }], top: '31%' },
-  orbitSmall: { position: 'absolute', width: 235, height: 235, borderRadius: 120, borderWidth: 1, top: '29%' },
-  star: { position: 'absolute', width: 5, height: 5, borderRadius: 3, shadowOpacity: 0.9, shadowRadius: 8 },
-  starOne: { left: '18%', top: '28%' }, starTwo: { right: '16%', top: '39%' }, starThree: { left: '28%', bottom: '25%' },
-  avatarHalo: { shadowOpacity: 0.65, shadowRadius: 34, shadowOffset: { width: 0, height: 0 }, elevation: 10 },
-  name: { marginTop: 18, color: '#FFFFFF', fontSize: 25, lineHeight: 31, fontWeight: '900', textAlign: 'center' },
-  meta: { marginTop: 8, color: 'rgba(255,255,255,0.68)', fontSize: 14, lineHeight: 20, fontWeight: '700', textAlign: 'center' },
+  name: { marginTop: 16, fontSize: 22, lineHeight: 28, fontWeight: '900', textAlign: 'center', letterSpacing: -0.2 },
+  chips: { marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 8 },
+  chip: {
+    minHeight: 30, borderRadius: 15, paddingHorizontal: 12,
+    flexDirection: 'row', alignItems: 'center', gap: 7,
+  },
+  auraDot: { width: 8, height: 8, borderRadius: 4, shadowOpacity: 0.9, shadowRadius: 5, shadowOffset: { width: 0, height: 0 } },
+  chipText: { fontSize: 12.5, lineHeight: 17, fontWeight: '800' },
 });

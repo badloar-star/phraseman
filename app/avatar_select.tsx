@@ -18,9 +18,12 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { Image } from 'expo-image';
 import { useFocusEffect, useRouter } from 'expo-router';
-import Reanimated from 'react-native-reanimated';
+import Reanimated, { Extrapolation, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
+import AvatarView from '../components/AvatarView';
+import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
@@ -38,6 +41,7 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   customAvatarGradientNameForLang,
   customAvatarNameForLang,
+  getCustomAvatarById,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
   type CustomAvatarDef,
@@ -46,13 +50,12 @@ import {
 import {
   CUSTOMIZATION_STORAGE_KEYS,
 } from '../constants/customization_storage_keys';
-import { getBestFrameForLevel } from '../constants/avatars';
+import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import {
   buildAuraCatalog,
   buildAvatarCatalog,
   type CatalogAvailability,
-  type CustomizationCatalogItem,
 } from './customization_catalog';
 import {
   resolveCustomizationAction,
@@ -103,20 +106,35 @@ import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
 import { actionToastTri, emitAppEvent } from './events';
 import { CustomizationHero } from '../components/customization/CustomizationHero';
-import { CustomizationCatalogCard } from '../components/customization/CustomizationCatalogCard';
+import {
+  CustomizationCatalogCard,
+  type CatalogCardItem,
+  type LevelAvatarTileItem,
+} from '../components/customization/CustomizationCatalogCard';
 import {
   CustomizationActionBar,
-  CustomizationOverflowMenu,
   CustomizationTabs,
 } from '../components/customization/CustomizationControls';
 import { AvatarEditorSheet } from '../components/customization/AvatarEditorSheet';
 import { CustomizationPurchaseConfirmModal } from '../components/customization/CustomizationPurchaseConfirmModal';
 
 const GRID_GAP = 10;
-const GRID_PAD = 14;
+const GRID_PAD = 16;
 const ACTION_BAR_HEIGHT = 82;
 const AVATAR_DISPLAY_CLOUD_SYNC_DEFER_MS = 30_000;
 const REVALIDATE_TTL_MS = 30_000;
+/** Фиксированная высота сцены: первый кадр = финальная геометрия (layout stability). */
+const STAGE_MIN_HEIGHT = 288;
+/** Высота контентной части закреплённого верхнего бара (без safe-инсета). */
+const TOP_BAR_CONTENT_HEIGHT = 64;
+/** Диапазон скролла, на котором сцена «передаёт» превью в мини-бар. */
+const COLLAPSE_START = 120;
+const COLLAPSE_END = 210;
+
+const COIN_ICON = require('../assets/images/currency/coin_1.webp');
+
+const HEX_COLOR = /^#([0-9a-f]{6})$/i;
+const withAlpha = (color: string, alpha: string): string => HEX_COLOR.test(color) ? `${color}${alpha}` : color;
 
 const RU_STUDIO_COPY = {
   title: 'Студия', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
@@ -205,7 +223,7 @@ function slavicPlural(count: number, one: string, few: string, many: string): st
   return many;
 }
 
-/** «1 осколок будет списан…» / «2 осколка будут списаны…» / «5 осколков будут списаны…». */
+/** «1 монета будет списана…» / «2 монеты будут списаны…» / «5 монет будут списаны…». */
 function purchaseCostMessage(cost: number, lang: Lang): string {
   const n = Math.max(0, Math.floor(Number(cost) || 0));
   if (lang === 'ru') {
@@ -301,7 +319,7 @@ function encodeOwnedStyle(avatarValue: string): string {
 }
 
 function availabilityStatus(
-  item: CustomizationCatalogItem,
+  item: CatalogCardItem,
   lang: Lang,
   copy: ReturnType<typeof studioCopy>,
   selected: boolean,
@@ -317,7 +335,8 @@ function availabilityStatus(
   }
 }
 
-function itemLabel(item: CustomizationCatalogItem, lang: Lang, copy: ReturnType<typeof studioCopy>): string {
+function itemLabel(item: CatalogCardItem, lang: Lang, copy: ReturnType<typeof studioCopy>): string {
+  if (item.kind === 'level-avatar') return copy.levelAvatar;
   if (item.kind === 'custom-avatar') return customAvatarNameForLang(item.avatar, lang);
   if (item.kind === 'none-aura') return copy.noAura;
   return auraName(item.aura, lang);
@@ -331,7 +350,7 @@ export default function AvatarSelect() {
   const { lang } = useLang();
   const { isPremium, isVip } = usePremium();
   const copy = useMemo(() => studioCopy(lang), [lang]);
-  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy();
+  const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll, scrollY } = useBouncy();
   const bouncyStyle = useBouncyStyle(bouncyStretch);
   const focused = useIsScreenFocused();
   const [appState, setAppState] = useState<AppStateStatus>(AppState.currentState);
@@ -448,6 +467,17 @@ export default function AvatarSelect() {
   }, [purchaseDeps]);
 
   const effectivePreviewAuraId = resolveEffectivePreviewAuraId(previewStoredAuraSelection, isPremium, isVip);
+  // зачем: «Аватар уровня» — первая плитка каталога вместо скрытого меню-трёх-точек:
+  // возврат к уровню выбирается так же, как любой другой аватар («Вернуть аватар уровня»
+  // больше не прячется за многоточием).
+  const levelTile = useMemo<LevelAvatarTileItem>(() => ({
+    kind: 'level-avatar',
+    id: 'level-avatar',
+    previewAvatar: getBestAvatarForLevel(confirmed.level),
+    isOwned: true,
+    isActive: parseCustomAvatarValue(confirmed.activeAvatar) === null,
+    availability: { kind: 'owned' },
+  }), [confirmed.level, confirmed.activeAvatar]);
   const avatarItems = useMemo(() => buildAvatarCatalog({
     ownedAvatars: confirmed.ownedAvatars,
     giftedAvatarId: confirmed.giftedAvatarId,
@@ -461,12 +491,13 @@ export default function AvatarSelect() {
     isPremium,
     isVip,
   }), [previewAvatarValue, confirmed.storedAuraSelection, confirmed.level, confirmed.ownedAuras, isPremium, isVip]);
-  const catalogItems = useMemo(
-    () => activeTab === 'avatars' ? avatarItems : auraItems,
-    [activeTab, avatarItems, auraItems],
+  const catalogItems = useMemo<CatalogCardItem[]>(
+    () => activeTab === 'avatars' ? [levelTile, ...avatarItems] : auraItems,
+    [activeTab, levelTile, avatarItems, auraItems],
   );
 
   const selectedAvatar = parseCustomAvatarValue(previewAvatarValue);
+  const isLevelAvatarPreview = selectedAvatar === null;
   const selectedAvatarItem = avatarItems.find((item) => item.kind === 'custom-avatar' && item.id === selectedAvatar?.avatarId);
   const selectedAuraItem = previewStoredAuraSelection === null
     ? undefined
@@ -489,43 +520,50 @@ export default function AvatarSelect() {
   const previewAuraLabel = previewStoredAuraSelection === NO_AVATAR_AURA_ID
     ? copy.noAura
     : previewAura ? auraName(previewAura, lang) : copy.noAura;
+  const levelWord = localized(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel', 'pt-BR': 'Nível', vi: 'Cấp', id: 'Level', tr: 'Seviye', pl: 'Poziom' });
+  const stageAuraLabel = `${previewAuraLabel} · ${levelWord} ${confirmed.level}`;
 
   const actionLabel = useMemo(() => {
     switch (resolvedAction.kind) {
       case 'unchanged': return copy.applied;
       case 'apply': return copy.apply;
-      case 'buy-and-apply': return `${copy.buyApply} · ${resolvedAction.cost}`;
-      case 'buy-only': return `${copy.buy} · ${resolvedAction.cost}`;
+      case 'buy-and-apply': return copy.buyApply;
+      case 'buy-only': return copy.buy;
       case 'open-plus': return copy.plus;
       case 'explain-level': return `${localized(lang, { ru: 'Откроется на уровне', uk: 'Відкриється на рівні', es: 'Se desbloquea en el nivel', 'pt-BR': 'Desbloqueia no nível', vi: 'Mở khóa ở cấp', id: 'Terbuka di level', tr: 'Açılacağı seviye', pl: 'Odblokuje się na poziomie' })} ${resolvedAction.level}`;
       case 'explain-reward': return copy.reward;
     }
   }, [resolvedAction, copy, lang]);
+  const actionCost = resolvedAction.kind === 'buy-and-apply' || resolvedAction.kind === 'buy-only'
+    ? resolvedAction.cost
+    : null;
 
-  const applyInput = useCallback((): ApplyCustomizationInput => ({
+  const applyInput = useCallback((cloudSyncMode: 'immediate' | 'deferred'): ApplyCustomizationInput => ({
     avatarValue: previewAvatarValue,
     storedAuraSelection: previewStoredAuraSelection,
     level: confirmed.level,
     frameId: getBestFrameForLevel(confirmed.level).id,
-    cloudSyncMode: 'immediate',
+    cloudSyncMode,
   }), [previewAvatarValue, previewStoredAuraSelection, confirmed.level]);
 
   const purchaseInputForAction = useCallback((action: Extract<CustomizationAction, { kind: 'buy-only' | 'buy-and-apply' }>): PurchaseCustomizationInput | null => {
     if (action.target === 'avatar') {
       const parsed = parseCustomAvatarValue(previewAvatarValue);
       if (!parsed) return null;
+      const cost = action.cost;
       const base = {
         target: 'avatar' as const,
         itemId: parsed.avatarId,
-        cost: action.cost,
+        cost,
         spendReason: action.purchaseKind === 'restyle' ? 'custom_avatar_restyle' as const : 'custom_avatar' as const,
         ownedValue: encodeOwnedStyle(previewAvatarValue),
       };
       return action.kind === 'buy-and-apply'
-        ? { ...base, mode: 'buy-and-apply', applyInput: applyInput() }
+        ? { ...base, mode: 'buy-and-apply', applyInput: applyInput(cost > 0 ? 'immediate' : 'deferred') }
         : { ...base, mode: 'buy-only' };
     }
     if (!previewStoredAuraSelection || previewStoredAuraSelection === NO_AVATAR_AURA_ID) return null;
+    const purchasedAura = action.cost > 0;
     const base = {
       target: 'aura' as const,
       itemId: previewStoredAuraSelection,
@@ -534,7 +572,7 @@ export default function AvatarSelect() {
       ownedValue: true as const,
     };
     return action.kind === 'buy-and-apply'
-      ? { ...base, mode: 'buy-and-apply', applyInput: applyInput() }
+      ? { ...base, mode: 'buy-and-apply', applyInput: applyInput(purchasedAura ? 'immediate' : 'deferred') }
       : { ...base, mode: 'buy-only' };
   }, [previewAvatarValue, previewStoredAuraSelection, applyInput]);
 
@@ -564,15 +602,23 @@ export default function AvatarSelect() {
     }
     setBusy(true);
     try {
-      await applyCustomizationDraft(applyInput(), serviceDeps);
-      emitAppEvent('xp_changed');
-      showToast('success', copy.applied);
+      if (parseCustomAvatarValue(previewAvatarValue) === null) {
+        // зачем: возврат к аватару уровня идёт через resetToLevelAvatar (тот же путь,
+        // что и раньше из меню), а не через общий apply — он сам считает значение уровня.
+        await resetToLevelAvatar({ level: confirmed.level, storedAuraSelection: previewStoredAuraSelection }, serviceDeps);
+        emitAppEvent('xp_changed');
+        showToast('success', copy.levelAvatarEnabled);
+      } else {
+        await applyCustomizationDraft(applyInput('deferred'), serviceDeps);
+        emitAppEvent('xp_changed');
+        showToast('success', copy.applied);
+      }
     } catch {
       showToast('error', copy.applyError);
     } finally {
       setBusy(false);
     }
-  }, [busy, resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, applyInput, serviceDeps]);
+  }, [busy, resolvedAction, router, showToast, actionLabel, copy, purchaseInputForAction, previewAvatarValue, previewStoredAuraSelection, confirmed.level, applyInput, serviceDeps]);
 
   const handleConfirmPurchase = useCallback(async () => {
     const pendingPurchase = purchaseState.pending;
@@ -602,47 +648,51 @@ export default function AvatarSelect() {
     }
   }, [purchaseState, busy, purchaseDeps, showToast, copy, router]);
 
-  const handleResetLevelAvatar = useCallback(async () => {
-    if (busy) return;
-    setBusy(true);
-    try {
-      await resetToLevelAvatar({ level: confirmed.level, storedAuraSelection: confirmed.storedAuraSelection }, serviceDeps);
-      emitAppEvent('xp_changed');
-      showToast('success', copy.levelAvatarEnabled);
-    } catch {
-      showToast('error', copy.applyError);
-    } finally {
-      setBusy(false);
-    }
-  }, [busy, confirmed.level, confirmed.storedAuraSelection, serviceDeps, showToast, copy]);
+  const openEditor = useCallback(() => {
+    const parsed = parseCustomAvatarValue(previewRef.current.avatar);
+    if (!parsed) return;
+    const def = getCustomAvatarById(parsed.avatarId);
+    if (!def) return;
+    setEditorGradientId(parsed.gradientId);
+    setEditorLogoColor(parsed.logoColor);
+    setEditorAvatar(def);
+  }, []);
 
   const selectCatalogItem = useCallback((id: string) => {
     const item = catalogItems.find((candidate) => candidate.id === id);
     if (!item) return;
+    if (item.kind === 'level-avatar') {
+      setPreviewAvatarValue(item.previewAvatar);
+      return;
+    }
     if (item.kind === 'custom-avatar') {
+      // зачем: тап по плитке — только примерка; редактор цвета открывается осознанно
+      // кнопкой «Настроить» на сцене (раньше шторка выскакивала на каждый тап).
       setPreviewAvatarValue(item.previewValue);
-      const parsed = parseCustomAvatarValue(item.previewValue);
-      setEditorAvatar(item.avatar);
-      setEditorGradientId(parsed?.gradientId ?? CUSTOM_AVATAR_GRADIENTS[0].id);
-      setEditorLogoColor(parsed?.logoColor ?? 'black');
       return;
     }
     setPreviewStoredAuraSelection(item.kind === 'none-aura' ? NO_AVATAR_AURA_ID : item.auraId);
   }, [catalogItems]);
 
+  const heroHeight = Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52)));
   const scrollToCatalog = useCallback(() => {
-    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52))), animated: false }));
-  }, []);
+    // зачем: раньше вкладки телепортировали список даже с верха экрана; теперь позиция
+    // трогается только когда пользователь уже углубился в каталог.
+    if (scrollY.value <= heroHeight) return;
+    requestAnimationFrame(() => listRef.current?.scrollToOffset({ offset: heroHeight, animated: false }));
+  }, [scrollY, heroHeight]);
 
   const handleTabChange = useCallback((tab: CustomizationTab) => {
     setActiveTab(tab);
     scrollToCatalog();
   }, [scrollToCatalog]);
 
-  const renderCatalogItem = useCallback(({ item }: { item: CustomizationCatalogItem }) => {
-    const selected = item.kind === 'custom-avatar'
-      ? item.id === selectedAvatar?.avatarId
-      : item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection);
+  const renderCatalogItem = useCallback(({ item }: { item: CatalogCardItem }) => {
+    const selected = item.kind === 'level-avatar'
+      ? isLevelAvatarPreview
+      : item.kind === 'custom-avatar'
+        ? item.id === selectedAvatar?.avatarId
+        : item.id === (previewStoredAuraSelection === NO_AVATAR_AURA_ID ? 'none' : previewStoredAuraSelection);
     return (
       <View style={styles.cell}>
         <CustomizationCatalogCard
@@ -654,37 +704,42 @@ export default function AvatarSelect() {
         />
       </View>
     );
-  }, [selectedAvatar?.avatarId, previewStoredAuraSelection, lang, copy, selectCatalogItem]);
+  }, [isLevelAvatarPreview, selectedAvatar?.avatarId, previewStoredAuraSelection, lang, copy, selectCatalogItem]);
 
-  const heroHeight = Math.max(300, Math.min(430, Math.round(Dimensions.get('window').height * 0.52)));
   const listHeader = useMemo(() => (
     <View>
-      <View style={[styles.topBar, { paddingTop: insets.top + 8 }]}>
-        <Pressable accessibilityRole="button" accessibilityLabel={localized(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })} onPress={() => safeRouterBack(router)} style={[styles.iconButton, { backgroundColor: t.bgSurface }]}>
-          <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
-        </Pressable>
-        <Text style={[styles.title, { color: t.textPrimary }]}>{copy.title}</Text>
-        <CustomizationOverflowMenu
-          onResetLevelAvatar={handleResetLevelAvatar}
-          levelAvatarLabel={copy.resetLevelAvatar}
-          showLevelAvatar={parseCustomAvatarValue(confirmed.activeAvatar) !== null}
-        />
-      </View>
+      <View style={{ height: insets.top + TOP_BAR_CONTENT_HEIGHT }} />
       <CustomizationHero
         avatarValue={previewAvatarValue}
         auraId={effectivePreviewAuraId}
         level={confirmed.level}
         avatarLabel={previewAvatarLabel}
-        auraLabel={previewAuraLabel}
+        auraLabel={stageAuraLabel}
         themeAccent={t.accent}
         motionEnabled={focused && appState === 'active'}
-        minHeight={heroHeight}
+        minHeight={STAGE_MIN_HEIGHT}
+        onEdit={selectedAvatar ? openEditor : null}
+        editLabel={copy.editAvatar}
       />
       <View style={styles.controls}>
         <CustomizationTabs value={activeTab} onChange={handleTabChange} avatarsLabel={copy.avatars} aurasLabel={copy.auras} />
       </View>
     </View>
-  ), [insets.top, lang, router, t, copy, handleResetLevelAvatar, confirmed.activeAvatar, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, previewAuraLabel, focused, appState, heroHeight, activeTab, handleTabChange]);
+  ), [insets.top, t, copy, confirmed.level, previewAvatarValue, effectivePreviewAuraId, previewAvatarLabel, stageAuraLabel, focused, appState, selectedAvatar, openEditor, activeTab, handleTabChange]);
+
+  // зачем: сцена «передаёт» превью в закреплённый бар при скролле — образ всегда на
+  // глазах, пока листаешь каталог (главная боль старого экрана). Интерполяции живут на
+  // UI-потоке (Reanimated), ре-рендеров при скролле нет.
+  const largeTitleStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(scrollY.value, [90, COLLAPSE_START + 40], [1, 0], Extrapolation.CLAMP),
+  }));
+  const miniPreviewStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(scrollY.value, [COLLAPSE_START, COLLAPSE_END], [0, 1], Extrapolation.CLAMP),
+    transform: [{ translateY: interpolate(scrollY.value, [COLLAPSE_START, COLLAPSE_END], [10, 0], Extrapolation.CLAMP) }],
+  }));
+  const topBarBackdropStyle = useAnimatedStyle(() => ({
+    opacity: interpolate(scrollY.value, [30, 110], [0, 1], Extrapolation.CLAMP),
+  }));
 
   const purchaseMessage = purchaseState.pending
     ? purchaseCostMessage(purchaseState.pending.cost, lang)
@@ -713,7 +768,50 @@ export default function AvatarSelect() {
             />
           </Reanimated.View>
         </BouncyWrap>
-        <CustomizationActionBar action={resolvedAction} label={actionLabel} busy={busy} onPress={handleAction} />
+        <View style={[styles.topBar, { paddingTop: insets.top + 6 }]} pointerEvents="box-none">
+          <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, topBarBackdropStyle]}>
+            <View style={[StyleSheet.absoluteFill, { backgroundColor: withAlpha(t.bgPrimary, 'F0') }]} />
+          </Reanimated.View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={localized(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
+            onPress={() => safeRouterBack(router)}
+            style={[styles.iconButton, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
+          >
+            <Ionicons name="chevron-back" size={23} color={t.textPrimary} />
+          </Pressable>
+          <View style={styles.topCenter} pointerEvents="none">
+            <Reanimated.Text style={[styles.title, { color: t.textPrimary }, largeTitleStyle]} numberOfLines={1}>
+              {copy.title}
+            </Reanimated.Text>
+            <Reanimated.View style={[styles.miniPreview, miniPreviewStyle]}>
+              <AvatarView avatar={previewAvatarValue} level={confirmed.level} auraId={effectivePreviewAuraId} size={34} animateAura={false} />
+              <Text style={[styles.miniName, { color: t.textPrimary }]} numberOfLines={1}>{previewAvatarLabel}</Text>
+            </Reanimated.View>
+          </View>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={localized(lang, { ru: 'Монеты', uk: 'Монети', es: 'Monedas', 'pt-BR': 'Moedas', vi: 'Xu', id: 'Koin', tr: 'Jetonlar', pl: 'Monety' })}
+            onPress={() => router.push({ pathname: '/shards_shop', params: { source: 'avatar_customization' } } as any)}
+            style={[styles.balance, { backgroundColor: withAlpha(t.bgSurface, 'D9') }]}
+          >
+            <Image source={COIN_ICON} style={styles.balanceCoin} contentFit="contain" accessible={false} />
+            <Text style={[styles.balanceText, { color: t.textPrimary }]}>{confirmed.shards}</Text>
+          </Pressable>
+        </View>
+        <LinearGradient
+          pointerEvents="none"
+          colors={[withAlpha(t.bgPrimary, '00'), withAlpha(t.bgPrimary, 'D9')]}
+          style={[styles.bottomScrim, { height: bottomInset + 108 }]}
+        />
+        <CustomizationActionBar
+          action={resolvedAction}
+          label={actionLabel}
+          cost={actionCost}
+          busy={busy}
+          bottomOffset={bottomInset + 10}
+          onPress={handleAction}
+        />
         <AvatarEditorSheet
           visible={editorAvatar !== null}
           avatar={editorAvatar}
@@ -749,10 +847,26 @@ export default function AvatarSelect() {
 
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  topBar: { minHeight: 72, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingBottom: 10, gap: 10 },
+  topBar: {
+    position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10,
+    flexDirection: 'row', alignItems: 'center', gap: 10,
+    paddingHorizontal: 14, paddingBottom: 10,
+  },
   iconButton: { width: 44, height: 44, borderRadius: 14, alignItems: 'center', justifyContent: 'center' },
-  title: { flex: 1, fontSize: 22, lineHeight: 28, fontWeight: '900', textAlign: 'center' },
-  controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12, gap: 14 },
+  topCenter: { flex: 1, height: 44, alignItems: 'center', justifyContent: 'center' },
+  title: { fontSize: 20, lineHeight: 26, fontWeight: '900', textAlign: 'center', letterSpacing: -0.2 },
+  miniPreview: {
+    position: 'absolute', flexDirection: 'row', alignItems: 'center', gap: 8, maxWidth: 190,
+  },
+  miniName: { flexShrink: 1, fontSize: 14.5, lineHeight: 19, fontWeight: '800' },
+  balance: {
+    minWidth: 44, height: 36, borderRadius: 13, paddingHorizontal: 11,
+    flexDirection: 'row', alignItems: 'center', gap: 6,
+  },
+  balanceCoin: { width: 17, height: 17 },
+  balanceText: { fontSize: 13.5, lineHeight: 18, fontWeight: '800' },
+  controls: { paddingHorizontal: GRID_PAD, paddingTop: 18, paddingBottom: 12 },
   row: { paddingHorizontal: GRID_PAD, gap: GRID_GAP, marginBottom: GRID_GAP },
   cell: { flex: 1, maxWidth: `${100 / 3}%` as any },
+  bottomScrim: { position: 'absolute', left: 0, right: 0, bottom: 0 },
 });

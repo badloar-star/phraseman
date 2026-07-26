@@ -24,6 +24,11 @@
       "runtimeExecutable": "python",
       "runtimeArgs": ["-m", "http.server", "8842", "--directory", "C:/appsprojects/phraseman/admin"],
       "port": 8842
+    },
+    {
+      "name": "studio-mockups",
+      "url": "http://localhost:4173",
+      "port": 4173
     }
   ]
 }

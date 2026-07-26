@@ -107,6 +107,68 @@ export const vdVisualDiscoveryFixture: VisualDiscoveryVM = {
   },
 };
 
+export interface ContextGapVM {
+  readonly surfaceId: string;
+  readonly situationLabel: string;
+  readonly sentence: {
+    readonly before: string;
+    readonly after: string;
+    readonly slotOptions: readonly {
+      readonly id: string;
+      readonly label: string;
+      readonly correct: boolean;
+    }[];
+  };
+  readonly sentenceRu: string;
+  readonly slotFeedback: Readonly<Record<string, string>>;
+  readonly successNote: string;
+  readonly missHint: string;
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile/cg-context-gap.json */
+export const cgContextGapFixture: ContextGapVM = {
+  surfaceId: 'cg-context-gap',
+  situationLabel: 'В аэропорту · разговор',
+  sentence: {
+    before: 'She ___ to Madrid every month for work.',
+    after: '',
+    slotOptions: [
+      { id: 'cg-a', label: 'flies', correct: true },
+      { id: 'cg-b', label: 'fly', correct: false },
+      { id: 'cg-c', label: 'flying', correct: false },
+      { id: 'cg-d', label: 'flew', correct: false },
+    ],
+  },
+  sentenceRu: 'Она летает в Мадрид каждый месяц по работе.',
+  slotFeedback: {
+    'cg-a': 'Верно: every month → обычное настоящее, she flies.',
+    'cg-b': 'После she нужен flies, не fly.',
+    'cg-c': 'flying — продолженное время, но every month = привычка.',
+    'cg-d': 'flew — прошедшее, а every month происходит регулярно.',
+  },
+  successNote: 'Точно! Регулярные действия — Present Simple: she flies.',
+  missHint: 'Почти. Посмотри на every month — это привычка, не одно действие.',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Проверить',
+      processing: 'Проверяем…',
+      success: 'Дальше',
+      needs_work: 'Ещё раз',
+      recovery: 'Продолжить',
+    },
+    statusMessages: {
+      prompt: 'Выбери правильную форму слова в пропуске.',
+      active: 'Прочитай ситуацию и выбери форму.',
+      processing: 'Проверяем форму…',
+      success: 'Форма верная. Отлично!',
+      needs_work: 'Почти. Попробуй ещё раз с этой подсказкой.',
+      recovery: 'Связь прервалась. Предложение сохранено.',
+    },
+  },
+};
+
 export interface SpeedMatchVM {
   readonly surfaceId: string;
   readonly briefLabel: string;

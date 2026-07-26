@@ -33,6 +33,7 @@ import { TimeLeft, useCountdown } from '../../components/tournament/TournamentCo
 import { T, radius, type, tournamentPaletteFromTheme, type TournamentPalette } from '../../components/tournament/tournament_theme';
 import { TournamentEdgeState, TournamentSkeleton } from '../../components/tournament/TournamentEdgeState';
 import {
+  devStartTournament,
   joinTournament,
   loadSchedule,
   tournamentDateKey,
@@ -257,6 +258,33 @@ export default function TournamentsScreen() {
     }
   }, [roomId, joining, router, coins, entryGems]);
 
+  /**
+   * зачем: дев-кнопка владельца — «нажал и сразу играю с ботами», не дожидаясь
+   * слота расписания. Сервер (admin-only) мгновенно создаёт комнату в лобби со
+   * стартом через 3 минуты и снятым минимумом «8 живых»; дальше штатный вход.
+   */
+  const [devStarting, setDevStarting] = useState(false);
+  const startDevTournament = useCallback(async () => {
+    if (devStarting || joining) return;
+    setDevStarting(true);
+    try {
+      const created = await devStartTournament();
+      if (!created?.roomId) throw new Error('no_room');
+      await joinTournament(created.roomId);
+      router.push({ pathname: '/tournament_lobby', params: { roomId: created.roomId } });
+    } catch (error) {
+      const code = String((error as { message?: string })?.message ?? '');
+      setJoinError(code.includes('no_published_ai_tasks')
+        ? 'Пул пуст: опубликуй ИИ-вопросы в админке'
+        : code.includes('not_enough_gems')
+          ? 'Не хватает жемчужин'
+          : `Дев-турнир не создался: ${code || 'ошибка'}`);
+      setConfirmVisible(true);
+    } finally {
+      setDevStarting(false);
+    }
+  }, [devStarting, joining, router]);
+
   const contentPadding = useMemo(
     () => ({ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 120 }),
     [insets.top, insets.bottom],
@@ -372,6 +400,14 @@ export default function TournamentsScreen() {
                 {nextSlot ? `Начать турнир · ${entryGems}` : 'Скоро откроем'}
               </Cta>
             )}
+            {/* Дев-кнопка владельца: мгновенный турнир с ботами. Видна только
+                в dev-сборке; сервер дополнительно требует admin-claim. */}
+            {__DEV__ ? (
+              <Cta ghost onPress={startDevTournament} disabled={devStarting}
+                style={styles.devCta}>
+                {devStarting ? 'Создаём комнату…' : '🤖 Дев-турнир с ботами'}
+              </Cta>
+            ) : null}
           </Card>
         </Animated.View>
 
@@ -602,4 +638,5 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     marginBottom: 26,
   },
   sheetActions: { gap: 10 },
+  devCta: { marginTop: 10 },
 });

@@ -190,6 +190,17 @@ export function joinTournament(roomId: string) {
   return callFunction<{ ok: boolean; roomId: string }>('tournamentJoin', { roomId });
 }
 
+/**
+ * Дев-турнир (только владелец, admin claim): сервер мгновенно создаёт комнату
+ * с ботами и возвращает roomId — вход доступен сразу, без ожидания слота.
+ */
+export function devStartTournament() {
+  return callFunction<{ ok: boolean; roomId: string; startsAt: number }>(
+    'adminDevStartTournament',
+    {},
+  );
+}
+
 /** Отправка ответов батча. Сервер сам считает очки — клиенту нельзя доверять. */
 export function submitAnswers(roomId: string, roundNo: number, answers: unknown[]) {
   return callFunction<{ ok: boolean }>('tournamentSubmitAnswers', { roomId, roundNo, answers });

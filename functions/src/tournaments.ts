@@ -719,7 +719,10 @@ export async function tournamentFillRoomTransaction(
     const nowMs = clock();
     const fillDeadlineAtMs = room.state === 'scheduled' ? room.stateDeadlineAtMs! : room.startsAt;
     const realCount = room.players.filter((player) => !player.isBot).length;
-    if (realCount < TOURNAMENT_MIN_REAL_PLAYERS) {
+    // зачем: дев-комната (кнопка владельца «пройти турнир с ботами») играется
+    // одним живым — минимум 8 живых для неё не действует, боты добирают всё.
+    const isDevRoom = snap.data()?.devRoom === true;
+    if (!isDevRoom && realCount < TOURNAMENT_MIN_REAL_PLAYERS) {
       if (nowMs < room.startsAt - TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS) return 'skip';
       dependencies.beforeWrites?.();
       const cancelled = await cancelRoomInTransaction(db, tx, roomRef, room, 'not_enough_players', nowMs);
@@ -1199,7 +1202,7 @@ export async function advanceRoomAtDeadline(
       return 'advanced';
     }
     if (room.state === 'lobby') {
-      if (room.players.filter((player) => !player.isBot).length < TOURNAMENT_MIN_REAL_PLAYERS) return 'cancel_players';
+      if (snap.data()?.devRoom !== true && room.players.filter((player) => !player.isBot).length < TOURNAMENT_MIN_REAL_PLAYERS) return 'cancel_players';
       if (snap.data()?.ready !== true || room.rounds.length !== 4 || room.rounds.some((round) => round.taskIds.length === 0)) {
         return 'cancel_resources';
       }
@@ -1563,4 +1566,68 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
   return tournamentClaimTransaction(db, stableUid, roomId, undefined, request.auth.uid);
+});
+
+// ── Дев-турнир: мгновенная комната с ботами (кнопка владельца) ──────────────
+
+/**
+ * зачем: владельцу нужно проходить турнир с ботами НЕ дожидаясь слота
+ * расписания: «нажав дев-кнопку сразу доступен вход, играю с ботами».
+ * Комната создаётся сразу в лобби со стартом через 3 минуты: fill-крон в
+ * штатном режиме доберёт ботов за 2 минуты до старта и скопирует задания,
+ * advance-крон поведёт раунды. devRoom:true отключает минимум «8 живых» —
+ * иначе комната с одним владельцем отменилась бы с возвратом жемчужин.
+ */
+export const adminDevStartTournament = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  if (request.auth?.token?.admin !== true) {
+    throw new HttpsError('permission-denied', 'Admin only');
+  }
+  const db = admin.firestore();
+  const nowMs = Date.now();
+  const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
+  const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
+  if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
+  if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
+    throw new HttpsError('failed-precondition', 'not_enough_bots');
+  }
+
+  const startsAt = nowMs + 3 * 60 * 1000;
+  const dateKey = dateKeyInTimezone(nowMs, slot.timezone);
+  // Свой суффикс: дев-комната не конфликтует со штатной комнатой слота.
+  const roomId = tournamentRoomId(`dev-${slot.slotId}-${nowMs}`, slot.timezone, dateKey);
+
+  // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
+  // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
+  if (!buildRounds(roomId, resources.tasks)) {
+    throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
+  }
+
+  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+  const room: TournamentRoomDoc = {
+    roomId,
+    slotId: slot.slotId,
+    seed: roomId,
+    state: 'lobby',
+    startsAt,
+    players: [],
+    rounds: [],
+    participantAuthUids: [],
+    participantAuthUidsComplete: true,
+    stateStartedAtMs: nowMs,
+    stateDeadlineAtMs: startsAt,
+    version: 0,
+    createdAtMs: nowMs,
+    expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
+  };
+  await roomRef.create({
+    ...room,
+    devRoom: true,
+    ticketsRequired: slot.ticketsRequired,
+    timezone: slot.timezone,
+    ready: false,
+    featureGates: tournamentFeatureGates(),
+    expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
+  });
+
+  return { ok: true, roomId, startsAt };
 });

@@ -15,7 +15,7 @@ import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
 import { useCountdown } from '../components/tournament/TournamentCountdown';
-import { T, formatTimeLeft, radius, type } from '../components/tournament/tournament_theme';
+import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
@@ -69,6 +69,8 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
 }
 
 export default function TournamentLobbyScreen() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
@@ -148,7 +150,7 @@ export default function TournamentLobbyScreen() {
         {/* Статус сбора + таймер */}
         <Card tone="elev" pad={20}>
           <View style={styles.statusRow}>
-            <Text style={[styles.statusText, { color: full ? T.accent : T.text }]}>
+            <Text style={[styles.statusText, { color: full ? P.accent : P.text }]}>
               {full ? 'Все на месте!' : 'Собираем игроков…'}
             </Text>
             <Text style={styles.statusTimer} allowFontScaling={false}>
@@ -230,6 +232,8 @@ export default function TournamentLobbyScreen() {
 }
 
 const ProfileStat = memo(function ProfileStat({ label, value }: { label: string; value: string }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <View style={styles.profileStat}>
       <Text style={styles.profileStatValue} allowFontScaling={false}>{value}</Text>
@@ -239,6 +243,8 @@ const ProfileStat = memo(function ProfileStat({ label, value }: { label: string;
 });
 
 const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress: () => void }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <Animated.View entering={ZoomIn.springify().damping(14).stiffness(190)} style={styles.seatFill}>
       <Pressable
@@ -252,7 +258,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
         </View>
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}
         <Text
-          style={[styles.seatName, seat.isYou && { color: T.accent }]}
+          style={[styles.seatName, seat.isYou && { color: P.accent }]}
           numberOfLines={1}
         >
           {seat.name}
@@ -262,17 +268,17 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg },
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center' },
-  title: { ...type.title, color: T.text },
+  title: { ...type.title, color: P.text },
   counter: {
     marginLeft: 'auto',
     fontSize: 17,
     fontWeight: '800',
-    color: T.muted,
+    color: P.muted,
     fontVariant: ['tabular-nums'],
   },
 
@@ -282,17 +288,17 @@ const styles = StyleSheet.create({
     marginLeft: 'auto',
     fontSize: 30,
     fontWeight: '900',
-    color: T.text,
+    color: P.text,
     fontVariant: ['tabular-nums'],
   },
   progressTrack: {
     height: 8,
     borderRadius: 999,
-    backgroundColor: T.elev2,
+    backgroundColor: P.elev2,
     marginTop: 14,
     overflow: 'hidden',
   },
-  progressFill: { height: '100%', borderRadius: 999, backgroundColor: T.accent },
+  progressFill: { height: '100%', borderRadius: 999, backgroundColor: P.accent },
 
   grid: { flexDirection: 'row', flexWrap: 'wrap' },
   // Ровно 4 в ряд: ширина 25% и квадратное соотношение — сетка не «плывёт».
@@ -301,25 +307,25 @@ const styles = StyleSheet.create({
   seat: {
     flex: 1,
     borderRadius: radius.md,
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 4,
     gap: 6,
   },
-  seatYou: { backgroundColor: T.accentSoft },
+  seatYou: { backgroundColor: P.accentSoft },
   seatEmpty: { flex: 1, borderRadius: radius.md, backgroundColor: 'rgba(255,255,255,0.03)' },
   seatAvatar: { width: 44, height: 44, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   seatEmoji: { fontSize: 22 },
   seatStreak: { position: 'absolute', top: 6, right: 8, fontSize: 13 },
-  seatName: { fontSize: 11, fontWeight: '800', color: T.text, textAlign: 'center' },
+  seatName: { fontSize: 11, fontWeight: '800', color: P.text, textAlign: 'center' },
 
   reactions: { flexDirection: 'row', gap: 10, justifyContent: 'center', marginTop: 6 },
   reactionButton: {
     width: 52,
     height: 52,
     borderRadius: 999,
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -335,10 +341,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   profileEmoji: { fontSize: 34 },
-  profileName: { fontSize: 22, fontWeight: '900', color: T.text, textAlign: 'center', marginTop: 12 },
-  profileRank: { ...type.body, color: T.muted, textAlign: 'center', marginTop: 4 },
+  profileName: { fontSize: 22, fontWeight: '900', color: P.text, textAlign: 'center', marginTop: 12 },
+  profileRank: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 4 },
   profileStats: { flexDirection: 'row', gap: 10, marginTop: 20, marginBottom: 20 },
-  profileStat: { flex: 1, alignItems: 'center', paddingVertical: 14, borderRadius: radius.md, backgroundColor: T.card },
-  profileStatValue: { fontSize: 20, fontWeight: '900', color: T.text, fontVariant: ['tabular-nums'] },
-  profileStatLabel: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 4 },
+  profileStat: { flex: 1, alignItems: 'center', paddingVertical: 14, borderRadius: radius.md, backgroundColor: P.card },
+  profileStatValue: { fontSize: 20, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
+  profileStatLabel: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 4 },
 });

@@ -29,7 +29,7 @@ import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import { coinIconForBalance } from './coin_icons';
 import { Card, Cta } from '../components/tournament/tournament_ui';
-import { T, motion, placeColor, radius, type } from '../components/tournament/tournament_theme';
+import { T, motion, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { claimReward, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
@@ -54,7 +54,7 @@ const PRIZES = [
  * Итоговые места по очкам. Подиум ставится 2-1-3, как в макете 17: первое
  * место визуально по центру и выше.
  */
-function buildPodium(players: readonly RoomPlayer[]): Winner[] {
+function buildPodium(players: readonly RoomPlayer[], P: TournamentPalette): Winner[] {
   const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
   const top = sorted.slice(0, 3).map((player, index) => ({
     name: player.name || 'Игрок',
@@ -62,8 +62,8 @@ function buildPodium(players: readonly RoomPlayer[]): Winner[] {
     // LevelBadge, если avatar пуст/невалиден, эмодзи-костыль не нужен.
     avatar: player.avatar || '',
     // зачем: было хардкод-hex '#8AB49A' — фолбэк-цвет аватара теперь берётся
-    // из общего токен-набора режима (тот же тон, что T.muted).
-    color: player.color || T.muted,
+    // из общего токен-набора режима (тот же тон, что P.muted).
+    color: player.color || P.muted,
     score: Number(player.score ?? 0),
     place: index + 1,
   }));
@@ -72,6 +72,8 @@ function buildPodium(players: readonly RoomPlayer[]): Winner[] {
 }
 
 export default function TournamentResultsScreen() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
@@ -93,7 +95,7 @@ export default function TournamentResultsScreen() {
   }, []);
 
   const players = room?.players ?? [];
-  const podium = useMemo(() => buildPodium(players), [players]);
+  const podium = useMemo(() => buildPodium(players, P), [players]);
 
   const standings = useMemo(
     () => [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0)),
@@ -212,7 +214,7 @@ export default function TournamentResultsScreen() {
             accessibilityLabel="Назад"
             style={styles.backButton}
           >
-            <Ionicons name="chevron-back" size={24} color={T.text} />
+            <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
         </View>
 
@@ -250,8 +252,8 @@ export default function TournamentResultsScreen() {
         <Card tone="elev" pad={20}>
           <View style={styles.rewardRow}>
             {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
-                общий T.muted и настоящий AvatarView, как на подиуме выше. */}
-            <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? T.muted}33` }]}>
+                общий P.muted и настоящий AvatarView, как на подиуме выше. */}
+            <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? P.muted}33` }]}>
               <AvatarView avatar={me?.avatar ?? ''} size={40} animateAura={false} />
             </View>
             <View style={styles.rewardBody}>
@@ -298,6 +300,8 @@ export default function TournamentResultsScreen() {
 const PODIUM_HEIGHT: Record<number, number> = { 1: 96, 2: 72, 3: 60 };
 
 const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const first = winner.place === 1;
   const crownScale = useSharedValue(0);
   const avatarY = useSharedValue(24);
@@ -346,7 +350,7 @@ const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) 
           styles.podiumBlock,
           {
             height: PODIUM_HEIGHT[winner.place],
-            backgroundColor: `${placeColor(winner.place)}22`,
+            backgroundColor: `${placeColor(winner.place, P)}22`,
           },
         ]}
       >
@@ -358,16 +362,16 @@ const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) 
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg },
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center' },
   backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
 
   titleBlock: { alignItems: 'center', marginBottom: 4 },
-  title: { fontSize: 30, fontWeight: '900', color: T.text, letterSpacing: -0.8 },
-  subtitle: { ...type.body, color: T.muted, marginTop: 6 },
+  title: { fontSize: 30, fontWeight: '900', color: P.text, letterSpacing: -0.8 },
+  subtitle: { ...type.body, color: P.muted, marginTop: 6 },
 
   podium: { flexDirection: 'row', alignItems: 'flex-end', gap: 8 },
   podiumColumn: { flex: 1, alignItems: 'center' },
@@ -383,14 +387,14 @@ const styles = StyleSheet.create({
   podiumAvatarFirst: {
     width: 74,
     height: 74,
-    shadowColor: T.gold,
+    shadowColor: P.gold,
     shadowOpacity: 0.6,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 0 },
     elevation: 8,
   },
-  podiumName: { fontSize: 14, fontWeight: '800', color: T.text, marginTop: 8 },
-  podiumScore: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
+  podiumName: { fontSize: 14, fontWeight: '800', color: P.text, marginTop: 8 },
+  podiumScore: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
   podiumBlock: {
     width: '100%',
     marginTop: 10,
@@ -403,21 +407,21 @@ const styles = StyleSheet.create({
 
   prizeRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 7 },
   prizeMedal: { fontSize: 20 },
-  prizeText: { flex: 1, ...type.body, color: T.text },
+  prizeText: { flex: 1, ...type.body, color: P.text },
 
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rewardAvatar: { width: 52, height: 52, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   rewardBody: { flex: 1 },
-  rewardTitle: { fontSize: 17, fontWeight: '800', color: T.text },
-  rewardSub: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 3 },
+  rewardTitle: { fontSize: 17, fontWeight: '800', color: P.text },
+  rewardSub: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 3 },
   rewardValueBox: { alignItems: 'flex-end' },
   rewardValue: {
     fontSize: 26,
     fontWeight: '900',
-    color: T.accent,
+    color: P.accent,
     fontVariant: ['tabular-nums'],
   },
-  rewardValueLabel: { ...type.label, fontWeight: '600', color: T.muted, marginTop: 2 },
+  rewardValueLabel: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2 },
 
   actions: { gap: 10, marginTop: 4 },
 });

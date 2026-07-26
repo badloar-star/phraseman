@@ -21,7 +21,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { T, motion, placeColor, radius, type } from '../components/tournament/tournament_theme';
+import { T, motion, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
@@ -70,6 +70,8 @@ function mapPlayersToRows(
 }
 
 export default function TournamentTableScreen() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string; spectate?: string }>();
@@ -187,6 +189,8 @@ export default function TournamentTableScreen() {
 const TableRow = memo(function TableRow({
   row, place, maxScore,
 }: { row: Row; place: number; maxScore: number }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   // FLIP: строка стартует на СТАРОЙ позиции и пружиной переезжает на новую —
   // видно, кто кого обогнал, а не просто финальный порядок.
   const fromY = (row.prevPlace - 1) * (ROW_HEIGHT + ROW_GAP);
@@ -215,19 +219,19 @@ const TableRow = memo(function TableRow({
           styles.rowFill,
           {
             width: `${fillRatio * 100}%`,
-            backgroundColor: row.isYou ? T.accentSoft : `${row.color}22`,
+            backgroundColor: row.isYou ? P.accentSoft : `${row.color}22`,
           },
         ]}
         pointerEvents="none"
       />
-      <Text style={[styles.place, { color: placeColor(place) }]} allowFontScaling={false}>
+      <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
         {place}
       </Text>
       <View style={[styles.avatar, { backgroundColor: `${row.color}33` }]}>
         <Text style={styles.avatarEmoji}>{row.emoji}</Text>
       </View>
       <Text
-        style={[styles.name, row.isYou && { color: T.accent }]}
+        style={[styles.name, row.isYou && { color: P.accent }]}
         numberOfLines={1}
       >
         {row.name}
@@ -245,25 +249,25 @@ const TableRow = memo(function TableRow({
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg, paddingHorizontal: 16 },
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg, paddingHorizontal: 16 },
 
   header: { flexDirection: 'row', alignItems: 'center', paddingBottom: 16 },
   headerText: { flex: 1 },
-  title: { ...type.title, color: T.text },
-  subtitle: { ...type.body, color: T.muted, marginTop: 2 },
+  title: { ...type.title, color: P.text },
+  subtitle: { ...type.body, color: P.muted, marginTop: 2 },
   myScoreBadge: {
     width: 56,
     height: 56,
     borderRadius: 999,
-    backgroundColor: T.accentSoft,
+    backgroundColor: P.accentSoft,
     alignItems: 'center',
     justifyContent: 'center',
   },
   myScoreValue: {
     fontSize: 22,
     fontWeight: '900',
-    color: T.accent,
+    color: P.accent,
     fontVariant: ['tabular-nums'],
   },
 
@@ -274,7 +278,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: ROW_HEIGHT,
     borderRadius: radius.md,
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
@@ -290,23 +294,23 @@ const styles = StyleSheet.create({
   },
   avatar: { width: 34, height: 34, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
   avatarEmoji: { fontSize: 17 },
-  name: { flex: 1, fontSize: 15, fontWeight: '800', color: T.text },
+  name: { flex: 1, fontSize: 15, fontWeight: '800', color: P.text },
   streak: { fontSize: 13 },
   overtakeChip: {
-    backgroundColor: T.accent,
+    backgroundColor: P.accent,
     paddingHorizontal: 9,
     paddingVertical: 3,
     borderRadius: 999,
   },
-  overtakeText: { fontSize: 11, fontWeight: '900', color: T.accentText },
+  overtakeText: { fontSize: 11, fontWeight: '900', color: P.accentText },
   score: {
     width: 40,
     textAlign: 'right',
     fontSize: 17,
     fontWeight: '900',
-    color: T.text,
+    color: P.text,
     fontVariant: ['tabular-nums'],
   },
 
-  hint: { textAlign: 'center', ...type.body, color: T.ghost, marginTop: 18 },
+  hint: { textAlign: 'center', ...type.body, color: P.ghost, marginTop: 18 },
 });

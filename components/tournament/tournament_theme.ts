@@ -96,11 +96,11 @@ export function formatTimeLeft(totalSeconds: number): string {
 }
 
 /** Цвет медали по месту — для подиума и таблицы. */
-export function placeColor(place: number): string {
-  if (place === 1) return T.gold;
-  if (place === 2) return T.silver;
-  if (place === 3) return T.bronze;
-  return T.muted;
+export function placeColor(place: number, P: TournamentPalette = T as TournamentPalette): string {
+  if (place === 1) return P.gold;
+  if (place === 2) return P.silver;
+  if (place === 3) return P.bronze;
+  return P.muted;
 }
 
 /** Медаль-эмодзи призовых мест. */
@@ -136,4 +136,14 @@ export function tournamentPaletteFromTheme(t: Theme): TournamentPalette {
     danger: t.wrong,
     dangerSoft: t.wrongBg,
   };
+}
+
+// Хук: палитра активной темы, мемоизирована по объекту темы.
+// Каждый экран/компонент турниров зовёт его сам — один источник истины.
+import { useMemo } from 'react';
+import { useTheme } from '../ThemeContext';
+
+export function useTournamentPalette(): TournamentPalette {
+  const { theme } = useTheme();
+  return useMemo(() => tournamentPaletteFromTheme(theme), [theme]);
 }

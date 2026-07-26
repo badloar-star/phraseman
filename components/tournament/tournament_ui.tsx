@@ -27,7 +27,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import * as Haptics from 'expo-haptics';
-import { INNER_LIGHT, T, motion, radius, type } from './tournament_theme';
+import { INNER_LIGHT, T, motion, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 
@@ -43,17 +43,20 @@ type CardProps = {
   style?: StyleProp<ViewStyle>;
 };
 
-const TONE_BG: Record<CardTone, string> = {
-  card: T.card,
-  elev: T.elev,
-  gold: 'rgba(255,212,59,0.07)',
-  danger: 'rgba(255,91,108,0.07)',
-};
+// Фоны тонов считаются от активной палитры — карточки следуют теме.
+const toneBg = (tone: CardTone, P: TournamentPalette): string => ({
+  card: P.card,
+  elev: P.elev,
+  gold: P.goldSoft,
+  danger: P.dangerSoft,
+}[tone]);
 
 /** Контейнер без обводки: тон + мягкая тень + блик сверху. */
 export const Card = memo(function Card({
   children, tone = 'card', pad = 18, onPress, style,
 }: CardProps) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const scale = useSharedValue(1);
   const animatedStyle = useAnimatedStyle(() => ({ transform: [{ scale: scale.value }] }));
 
@@ -74,7 +77,7 @@ export const Card = memo(function Card({
 
   if (!onPress) {
     return (
-      <View style={[styles.card, { backgroundColor: TONE_BG[tone], padding: pad }, style]}>
+      <View style={[styles.card, { backgroundColor: toneBg(tone, P), padding: pad }, style]}>
         {body}
       </View>
     );
@@ -85,7 +88,7 @@ export const Card = memo(function Card({
       onPress={onPress}
       onPressIn={onPressIn}
       onPressOut={onPressOut}
-      style={[styles.card, { backgroundColor: TONE_BG[tone], padding: pad }, animatedStyle, style]}
+      style={[styles.card, { backgroundColor: toneBg(tone, P), padding: pad }, animatedStyle, style]}
     >
       {body}
     </AnimatedPressable>
@@ -110,12 +113,14 @@ type CtaProps = {
 export const Cta = memo(function Cta({
   children, onPress, ghost, danger, disabled, style,
 }: CtaProps) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const depth = useSharedValue(0);
   const shellStyle = useAnimatedStyle(() => ({ transform: [{ translateY: depth.value }] }));
 
-  const bg = ghost ? T.elev : danger ? T.danger : T.accent;
-  const shelf = ghost ? T.card : danger ? T.dangerDark : T.accentDark;
-  const fg = ghost ? T.text : danger ? '#FFFFFF' : T.accentText;
+  const bg = ghost ? P.elev : danger ? P.danger : P.accent;
+  const shelf = ghost ? P.card : danger ? P.dangerDark : P.accentDark;
+  const fg = ghost ? P.text : danger ? '#FFFFFF' : P.accentText;
 
   const handlePressIn = useCallback(() => {
     depth.value = withTiming(4, { duration: 70 });
@@ -160,6 +165,8 @@ type SheetProps = {
 
 /** Нижняя шторка: подтверждение входа, профиль игрока. Свайп-вниз закрывает. */
 export const Sheet = memo(function Sheet({ visible, onClose, children }: SheetProps) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <Modal visible={visible} transparent animationType="slide" onRequestClose={onClose}>
       <Pressable style={styles.sheetBackdrop} onPress={onClose} accessibilityLabel="Закрыть" />
@@ -176,12 +183,14 @@ export const Sheet = memo(function Sheet({ visible, onClose, children }: SheetPr
 export const Pill = memo(function Pill({
   children, tone = 'card', color,
 }: { children: React.ReactNode; tone?: 'card' | 'accent' | 'gold' | 'danger'; color?: string }) {
-  const bg = tone === 'accent' ? T.accentSoft
-    : tone === 'gold' ? T.goldSoft
-      : tone === 'danger' ? T.dangerSoft : T.card;
-  const fg = color ?? (tone === 'accent' ? T.accent
-    : tone === 'gold' ? T.gold
-      : tone === 'danger' ? T.danger : T.text);
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+  const bg = tone === 'accent' ? P.accentSoft
+    : tone === 'gold' ? P.goldSoft
+      : tone === 'danger' ? P.dangerSoft : P.card;
+  const fg = color ?? (tone === 'accent' ? P.accent
+    : tone === 'gold' ? P.gold
+      : tone === 'danger' ? P.danger : P.text);
   return (
     <View style={[styles.pill, { backgroundColor: bg }]}>
       <View style={styles.innerLight} pointerEvents="none" />
@@ -192,7 +201,7 @@ export const Pill = memo(function Pill({
 
 // ── Стили ───────────────────────────────────────────────────────────────────
 
-const styles = StyleSheet.create({
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   card: {
     borderRadius: radius.lg,
     overflow: 'hidden',
@@ -228,7 +237,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.6)',
   },
   sheet: {
-    backgroundColor: T.elev,
+    backgroundColor: P.elev,
     borderTopLeftRadius: radius.lg,
     borderTopRightRadius: radius.lg,
     paddingHorizontal: 20,
@@ -240,7 +249,7 @@ const styles = StyleSheet.create({
     width: 40,
     height: 4,
     borderRadius: 999,
-    backgroundColor: T.ghost,
+    backgroundColor: P.ghost,
     marginBottom: 18,
     opacity: 0.6,
   },

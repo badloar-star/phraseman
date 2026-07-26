@@ -18,7 +18,7 @@ import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
-import { T, motion, radius, type } from '../components/tournament/tournament_theme';
+import { T, motion, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
@@ -106,6 +106,8 @@ function taskToQuestions(task: PublicTask): Question[] {
 type Phase = 'intro' | 'question' | 'feedback';
 
 export default function TournamentRoundScreen() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const params = useLocalSearchParams<{ roomId?: string }>();
@@ -415,8 +417,8 @@ export default function TournamentRoundScreen() {
         <View style={styles.feedbackSlot}>
           {phase === 'feedback' ? (
             <Animated.View entering={FadeIn.duration(160)}>
-              <Card pad={18} style={{ backgroundColor: answered ? T.accentSoft : T.dangerSoft }}>
-                <Text style={[styles.feedbackTitle, { color: answered ? T.accent : T.danger }]}>
+              <Card pad={18} style={{ backgroundColor: answered ? P.accentSoft : P.dangerSoft }}>
+                <Text style={[styles.feedbackTitle, { color: answered ? P.accent : P.danger }]}>
                   {answered ? 'Ответ принят' : 'Время вышло'}
                 </Text>
                 <Text style={styles.feedbackSub}>
@@ -445,11 +447,13 @@ const OptionRow = memo(function OptionRow({
   revealed: boolean;
   onPress: (index: number) => void;
 }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   // Подсвечиваем ТОЛЬКО выбранный вариант: правильный ответ придёт с
   // сервером в таблице, показывать его здесь нечем и не нужно.
   const isPicked = picked === index;
-  const background = isPicked ? T.accentSoft : T.card;
-  const textColor = isPicked ? T.accent : T.text;
+  const background = isPicked ? P.accentSoft : P.card;
+  const textColor = isPicked ? P.accent : P.text;
 
   return (
     <Pressable
@@ -461,8 +465,8 @@ const OptionRow = memo(function OptionRow({
       accessibilityLabel={`Вариант ${letter}: ${text}`}
     >
       <View style={styles.optionInnerLight} pointerEvents="none" />
-      <View style={[styles.optionLetter, isPicked && { backgroundColor: T.accent }]}>
-        <Text style={[styles.optionLetterText, isPicked && { color: T.accentText }]}>{letter}</Text>
+      <View style={[styles.optionLetter, isPicked && { backgroundColor: P.accent }]}>
+        <Text style={[styles.optionLetterText, isPicked && { color: P.accentText }]}>{letter}</Text>
       </View>
       <Text style={[styles.optionText, { color: textColor }]}>{text}</Text>
       {isPicked ? <Text style={styles.optionMark}>✓</Text> : null}
@@ -489,6 +493,8 @@ const WordBank = memo(function WordBank({
   revealed: boolean;
   onSubmit: (tokens: string[]) => void;
 }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   // usedPositions — индексы слов банка, уже перенесённых в собранную фразу,
   // в порядке переноса. Сбрасывается при смене самого banklWords (новый
   // вопрос) через key={question.taskId} на родителе.
@@ -577,26 +583,26 @@ const WordBank = memo(function WordBank({
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg },
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
   introRoot: { alignItems: 'center', justifyContent: 'center' },
-  introRound: { fontSize: 44, fontWeight: '900', color: T.text, letterSpacing: -1 },
-  introMode: { ...type.section, color: T.accent, marginTop: 10 },
+  introRound: { fontSize: 44, fontWeight: '900', color: P.text, letterSpacing: -1 },
+  introMode: { ...type.section, color: P.accent, marginTop: 10 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10 },
-  progressLabel: { fontSize: 15, fontWeight: '800', color: T.text },
-  progressLabelDim: { color: T.muted, fontWeight: '600' },
+  progressLabel: { fontSize: 15, fontWeight: '800', color: P.text },
+  progressLabelDim: { color: P.muted, fontWeight: '600' },
   dots: { flexDirection: 'row', gap: 5, alignItems: 'center' },
-  dot: { width: 7, height: 7, borderRadius: 999, backgroundColor: T.elev2 },
-  dotDone: { backgroundColor: T.accent, opacity: 0.5 },
-  dotActive: { width: 18, backgroundColor: T.accent },
-  multiplier: { marginLeft: 'auto', fontSize: 15, fontWeight: '800', color: T.muted },
+  dot: { width: 7, height: 7, borderRadius: 999, backgroundColor: P.elev2 },
+  dotDone: { backgroundColor: P.accent, opacity: 0.5 },
+  dotActive: { width: 18, backgroundColor: P.accent },
+  multiplier: { marginLeft: 'auto', fontSize: 15, fontWeight: '800', color: P.muted },
 
   questionCard: { minHeight: 128, justifyContent: 'center' },
-  questionPrompt: { ...type.body, color: T.muted },
-  questionPhrase: { fontSize: 28, fontWeight: '900', color: T.text, marginTop: 10, letterSpacing: -0.6 },
+  questionPrompt: { ...type.body, color: P.muted },
+  questionPhrase: { fontSize: 28, fontWeight: '900', color: P.text, marginTop: 10, letterSpacing: -0.6 },
 
   options: { gap: 10 },
   option: {
@@ -620,24 +626,24 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: radius.sm,
-    backgroundColor: T.elev2,
+    backgroundColor: P.elev2,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  optionLetterText: { fontSize: 15, fontWeight: '900', color: T.muted },
+  optionLetterText: { fontSize: 15, fontWeight: '900', color: P.muted },
   optionText: { flex: 1, fontSize: 16, fontWeight: '700' },
-  optionMark: { fontSize: 20, color: T.accent, fontWeight: '900' },
+  optionMark: { fontSize: 20, color: P.accent, fontWeight: '900' },
 
   // Высота под фидбек зарезервирована заранее — иначе список вариантов
   // дёргался бы вверх при каждом ответе.
   feedbackSlot: { minHeight: 92 },
   feedbackTitle: { fontSize: 20, fontWeight: '900' },
-  feedbackSub: { ...type.body, color: T.muted, marginTop: 6 },
+  feedbackSub: { ...type.body, color: P.muted, marginTop: 6 },
 
   scoreLine: {
     textAlign: 'center',
     ...type.body,
-    color: T.ghost,
+    color: P.ghost,
     fontVariant: ['tabular-nums'],
   },
 
@@ -650,14 +656,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
   },
-  assembledPlaceholder: { ...type.body, color: T.ghost },
+  assembledPlaceholder: { ...type.body, color: P.ghost },
   assembledChip: {
-    backgroundColor: T.accentSoft,
+    backgroundColor: P.accentSoft,
     borderRadius: radius.sm,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
-  assembledChipText: { fontSize: 16, fontWeight: '800', color: T.accent },
+  assembledChipText: { fontSize: 16, fontWeight: '800', color: P.accent },
 
   bank: {
     flexDirection: 'row',
@@ -666,22 +672,22 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   bankChip: {
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     borderRadius: radius.sm,
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
   bankChipUsed: { opacity: 0.25 },
-  bankChipText: { fontSize: 16, fontWeight: '700', color: T.text },
-  bankChipTextUsed: { color: T.ghost },
+  bankChipText: { fontSize: 16, fontWeight: '700', color: P.text },
+  bankChipTextUsed: { color: P.ghost },
 
   submitSlot: { minHeight: 58, marginTop: 16, justifyContent: 'center' },
   submitButton: {
-    backgroundColor: T.accent,
+    backgroundColor: P.accent,
     borderRadius: radius.md,
     minHeight: 58,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  submitButtonText: { fontSize: 17, fontWeight: '900', color: T.accentText },
+  submitButtonText: { fontSize: 17, fontWeight: '900', color: P.accentText },
 });

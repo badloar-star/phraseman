@@ -16,7 +16,7 @@ import Animated, {
   Easing,
 } from 'react-native-reanimated';
 import Svg, { Circle } from 'react-native-svg';
-import { T, formatTimeLeft, type } from './tournament_theme';
+import { T, formatTimeLeft, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
 
 const AnimatedCircle = Animated.createAnimatedComponent(Circle);
 
@@ -50,12 +50,16 @@ export function useCountdown(initialSeconds: number, running = true): number {
 // ── Крупный отсчёт (hero главной) ───────────────────────────────────────────
 
 export const TimeLeft = memo(function TimeLeft({
-  seconds, size = 64, color = T.text,
+  seconds, size = 64, color,
 }: { seconds: number; size?: number; color?: string }) {
+  const P = useTournamentPalette();
+  // Цвет по умолчанию — из активной темы; проп остаётся переопределением.
+  const resolvedColor = color ?? P.text;
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const text = useMemo(() => formatTimeLeft(seconds), [seconds]);
   return (
     <Text
-      style={[styles.timer, { fontSize: size, color, lineHeight: size * 1.05 }]}
+      style={[styles.timer, { fontSize: size, color: resolvedColor, lineHeight: size * 1.05 }]}
       // Ужимать нельзя (правило владельца) — размер фиксированный,
       // формат гарантирует, что строка не станет длиннее.
       allowFontScaling={false}
@@ -80,6 +84,8 @@ type RingProps = {
  * предупреждение без текста, чтобы не отвлекать от вопроса.
  */
 export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: RingProps) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const stroke = 3;
   const r = (size - stroke) / 2;
   const circumference = 2 * Math.PI * r;
@@ -99,11 +105,11 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
       <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
         <Circle
           cx={size / 2} cy={size / 2} r={r}
-          stroke={T.elev2} strokeWidth={stroke} fill="none"
+          stroke={P.elev2} strokeWidth={stroke} fill="none"
         />
         <AnimatedCircle
           cx={size / 2} cy={size / 2} r={r}
-          stroke={low ? T.danger : T.accent}
+          stroke={low ? P.danger : P.accent}
           strokeWidth={stroke}
           fill="none"
           strokeLinecap="round"
@@ -113,7 +119,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
         />
       </Svg>
       <Text
-        style={[styles.ringText, { color: low ? T.danger : T.text }]}
+        style={[styles.ringText, { color: low ? P.danger : P.text }]}
         allowFontScaling={false}
       >
         {Math.max(0, Math.ceil(seconds))}
@@ -122,7 +128,7 @@ export const TimerRing = memo(function TimerRing({ seconds, total, size = 44 }: 
   );
 });
 
-const styles = StyleSheet.create({
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   timer: {
     ...type.hero,
     textAlign: 'center',

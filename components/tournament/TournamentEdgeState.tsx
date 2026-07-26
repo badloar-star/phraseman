@@ -14,7 +14,7 @@ import React, { memo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { Cta } from './tournament_ui';
-import { T, radius, type } from './tournament_theme';
+import { T, radius, type, useTournamentPalette, type TournamentPalette} from './tournament_theme';
 
 export type EdgeKind = 'offline' | 'preseason' | 'cancelled' | 'alreadyIn' | 'emptyPool';
 
@@ -62,6 +62,8 @@ const COPY: Record<EdgeKind, { icon: string; title: string; body: string; action
 export const TournamentEdgeState = memo(function TournamentEdgeState({
   kind, detail, onRetry, onSecondary,
 }: Props) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const copy = COPY[kind];
 
   return (
@@ -94,6 +96,8 @@ export const TournamentEdgeState = memo(function TournamentEdgeState({
  * Так экран не «схлопывается» в спиннер и не прыгает при появлении данных.
  */
 export const TournamentSkeleton = memo(function TournamentSkeleton() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <View style={styles.skeleton}>
       <View style={[styles.skeletonBlock, { height: 300 }]} />
@@ -103,7 +107,7 @@ export const TournamentSkeleton = memo(function TournamentSkeleton() {
   );
 });
 
-const styles = StyleSheet.create({
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   root: {
     flex: 1,
     alignItems: 'center',
@@ -114,25 +118,25 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '900',
-    color: T.text,
+    color: P.text,
     textAlign: 'center',
     letterSpacing: -0.6,
   },
   body: {
     ...type.body,
-    color: T.muted,
+    color: P.muted,
     textAlign: 'center',
     marginTop: 12,
     lineHeight: 22,
   },
   action: { alignSelf: 'stretch', marginTop: 28 },
   secondary: { alignSelf: 'stretch', marginTop: 10 },
-  detail: { ...type.label, fontWeight: '600', color: T.ghost, marginTop: 18 },
+  detail: { ...type.label, fontWeight: '600', color: P.ghost, marginTop: 18 },
 
   skeleton: { paddingHorizontal: 16, gap: 14 },
   skeletonBlock: {
     borderRadius: radius.lg,
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     opacity: 0.5,
   },
 });

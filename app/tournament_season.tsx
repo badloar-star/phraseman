@@ -18,7 +18,7 @@ import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
-import { T, placeColor, radius, type } from '../components/tournament/tournament_theme';
+import { T, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 
 type SeasonRow = {
   id: number;
@@ -46,6 +46,8 @@ const SEASON_ROWS: SeasonRow[] = [
 ];
 
 export default function TournamentSeasonScreen() {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   // зачем: экран пушится из tournaments.tsx («Сезон» card), но своей кнопки
@@ -79,18 +81,18 @@ export default function TournamentSeasonScreen() {
             accessibilityLabel="Назад"
             style={styles.backButton}
           >
-            <Ionicons name="chevron-back" size={24} color={T.text} />
+            <Ionicons name="chevron-back" size={24} color={P.text} />
           </TapScale>
           <Text style={styles.title}>Сезон</Text>
         </View>
 
         {/* Отсчёт до сброса */}
         <Card tone="elev" pad={22}>
-          <Text style={[styles.resetKicker, urgent && { color: T.danger }]}>
+          <Text style={[styles.resetKicker, urgent && { color: P.danger }]}>
             {urgent ? 'Сезон почти закончился' : 'До конца сезона'}
           </Text>
           <View style={styles.resetTimer}>
-            <TimeLeft seconds={secondsToReset} size={44} color={urgent ? T.danger : T.text} />
+            <TimeLeft seconds={secondsToReset} size={44} color={urgent ? P.danger : P.text} />
           </View>
           {toTop5 > 0 ? (
             <Text style={styles.resetHint}>До топ-5 осталось {toTop5} очков</Text>
@@ -121,15 +123,17 @@ export default function TournamentSeasonScreen() {
 const SeasonRowItem = memo(function SeasonRowItem({
   row, place,
 }: { row: SeasonRow; place: number }) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
     <View style={[styles.row, row.isYou && styles.rowYou]}>
-      <Text style={[styles.place, { color: placeColor(place) }]} allowFontScaling={false}>
+      <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
         {place}
       </Text>
       <View style={[styles.avatar, { backgroundColor: `${row.color}33` }]}>
         <AvatarView avatar={String(row.avatarIndex)} size={28} animateAura={false} />
       </View>
-      <Text style={[styles.name, row.isYou && { color: T.accent }]} numberOfLines={1}>
+      <Text style={[styles.name, row.isYou && { color: P.accent }]} numberOfLines={1}>
         {row.name}
       </Text>
       <Text style={styles.points} allowFontScaling={false}>{row.points}</Text>
@@ -137,42 +141,42 @@ const SeasonRowItem = memo(function SeasonRowItem({
   );
 });
 
-const styles = StyleSheet.create({
-  root: { flex: 1, backgroundColor: T.bg },
+const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+  root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
   backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
-  title: { ...type.title, color: T.text },
+  title: { ...type.title, color: P.text },
 
   resetKicker: {
     ...type.label,
     letterSpacing: 1,
     textTransform: 'uppercase',
-    color: T.muted,
+    color: P.muted,
     textAlign: 'center',
   },
   resetTimer: { marginTop: 10 },
-  resetHint: { ...type.body, color: T.muted, textAlign: 'center', marginTop: 10 },
+  resetHint: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 10 },
 
   list: { gap: 8 },
   row: {
     height: 56,
     borderRadius: radius.md,
-    backgroundColor: T.card,
+    backgroundColor: P.card,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
     gap: 10,
   },
-  rowYou: { backgroundColor: T.accentSoft },
+  rowYou: { backgroundColor: P.accentSoft },
   place: { width: 22, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
   avatar: { width: 34, height: 34, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
-  name: { flex: 1, fontSize: 15, fontWeight: '800', color: T.text },
+  name: { flex: 1, fontSize: 15, fontWeight: '800', color: P.text },
   points: {
     fontSize: 17,
     fontWeight: '900',
-    color: T.text,
+    color: P.text,
     fontVariant: ['tabular-nums'],
   },
 });

@@ -135,7 +135,7 @@ describe('вкладка «Турниры» в админке', () => {
     const rendered = String(elements['tn-list']?.innerHTML ?? '');
     expect(rendered).toContain('I am here');
     expect(rendered).toContain('Я здесь');
-    expect(rendered).toContain('Угадай перевод');
+    expect(rendered).toContain('Живая ситуация');
     expect(rendered).toContain('На проверке');
   });
 
@@ -240,6 +240,30 @@ describe('вкладка «Турниры» в админке', () => {
     for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
       expect(html).toContain(`id="${id}"`);
     }
+  });
+
+  it('новые типы вопросов рисуются, а не выходят пустой карточкой', () => {
+    // Регрессия 2026-07-26: рендер знал только три старых режима, поэтому
+    // fill_gap и find_oddity показывались голым заголовком без вопроса.
+    const { sandbox } = runTab();
+    const render = sandbox.tnRenderTask as (task: unknown) => string;
+
+    const gap = render({
+      taskId: 'g1', mode: 'fill_gap', difficulty: 3, verified: false, valid: true,
+      payload: { phrase: 'I am looking ___ my keys', options: ['for', 'at', 'after', 'to'], correctIndex: 0 },
+    });
+    expect(gap).toContain('Пропущенное слово');
+    expect(gap).toContain('I am looking ___ my keys');
+    expect(gap).toContain('for');
+
+    const oddity = render({
+      taskId: 'o1', mode: 'find_oddity', difficulty: 2, verified: false, valid: true,
+      payload: { phrase: 'Какая фраза звучит неправильно?', options: ['I feel good', 'I feel myself good', 'I am fine', 'I feel tired'], correctIndex: 1 },
+    });
+    expect(oddity).toContain('Так не говорят');
+    expect(oddity).toContain('I feel myself good');
+    // У «так не говорят» верный ответ — ОШИБОЧНАЯ фраза, помечается иначе.
+    expect(oddity).toContain('✗');
   });
 
   it('папки по типам: переключение шлёт фильтр режима на сервер', async () => {

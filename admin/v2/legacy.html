@@ -9702,6 +9702,7 @@
   <div class="tab" onclick="location.href='full.html'" title="plan_content: server vs bundled, fallback frequency, situations and percents, with dates" style="background:rgba(129,140,248,0.12);border:1px solid rgba(129,140,248,0.35);color:#818cf8;font-weight:700">📊 FULL</div>
   <div class="tab" onclick="location.href='site.html'" title="Сайт knowlyapps.com: цены веб-оплаты, заказы Stripe/PayPal, коды активации, воронка /start/" style="background:rgba(232,197,102,0.12);border:1px solid rgba(232,197,102,0.4);color:#e8c566;font-weight:700">🌐 Сайт</div>
   <div class="tab" onclick="switchTab('analytics')" data-i18n-es="Analítica">Analytics</div>
+  <div class="tab" onclick="switchTab('onboarding-screens')" title="Включение и отключение экранов онбординга без обновления приложения">🧭 Экраны онбординга</div>
   <div class="tab" onclick="switchTab('onboarding-sources')" title="Откуда новые пользователи узнали о Phraseman (экран онбординга)" style="background:rgba(52,211,153,0.12);border:1px solid rgba(52,211,153,0.4);color:#6ee7b7;font-weight:700">📣 Откуда узнали</div>
   <div class="tab" onclick="switchTab('openai-budget')">OpenAI budget</div>
   <div class="tab" onclick="switchTab('reports')" data-i18n-es="Reportes">Reports</div>
@@ -12695,6 +12696,69 @@
 
 <!-- CHANGELOG 2026-06-08 TAB — ARCHIVED AUDIT -->
 
+<!-- ONBOARDING SCREENS TAB — тумблеры экранов (remote_config, без OTA) + воронка выходов -->
+<div id="tab-onboarding-screens" class="reports-tab">
+  <div class="reports-toolbar" style="padding:0 0 12px 0;align-items:flex-start">
+    <div style="flex:1;min-width:260px">
+      <h2 style="margin:0 0 4px;color:#fff;font-size:20px">🧭 Экраны онбординга</h2>
+      <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">
+        Снимите галочку, чтобы экран перестал показываться новым пользователям. Онбординг продолжится
+        со следующего включённого шага — ничего не ломается. Пишется в
+        <code style="color:#818cf8">remote_config/app.texts.onboarding_enabled_steps_v1</code>,
+        клиенты подхватывают за секунды, без обновления приложения и без OTA.
+      </div>
+    </div>
+    <div class="revenue-controls">
+      <button type="button" onclick="loadOnboardingScreens(true)" title="Перечитать текущие настройки из remote_config">Обновить</button>
+    </div>
+  </div>
+
+  <div id="onboarding-screens-status" class="reports-empty revenue-analytics-status" style="margin-bottom:12px">Загружаем настройки экранов…</div>
+  <div id="onboarding-screens-list" style="margin-bottom:14px"></div>
+
+  <div style="margin:0 0 8px">
+    <label for="onboarding-screens-reason" style="display:block;font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:#5b6472;font-weight:700;margin-bottom:6px">Причина изменения</label>
+    <textarea id="onboarding-screens-reason" maxlength="500" rows="2" placeholder="Что отключаем или возвращаем и зачем — попадёт в журнал изменений" style="width:100%;box-sizing:border-box;background:#12141c;color:#e2e8f0;border-radius:10px;padding:10px 12px;font:inherit;font-size:13px;resize:vertical"></textarea>
+  </div>
+  <div id="onboarding-screens-preview" style="margin-bottom:12px"></div>
+  <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-bottom:22px">
+    <button type="button" id="onboarding-screens-preview-btn" onclick="previewOnboardingScreens()" title="Показать точные изменения до публикации">Предпросмотр</button>
+    <button type="button" id="onboarding-screens-publish-btn" onclick="publishOnboardingScreens()" style="display:none;background:#4f46e5;color:#fff;font-weight:700" title="Опубликовать изменения в remote_config">Опубликовать</button>
+  </div>
+
+  <div class="reports-toolbar" style="padding:14px 0 12px 0;align-items:flex-start">
+    <div style="flex:1;min-width:260px">
+      <h2 style="margin:0 0 4px;color:#fff;font-size:18px">📉 Где чаще всего выходят</h2>
+      <div class="tab-desc" style="font-size:13px;color:#888;line-height:1.45">
+        Последний экран онбординга, который человек видел перед тем, как свернуть или закрыть приложение.
+        Чем длиннее полоса — тем чаще на этом экране теряются.
+      </div>
+    </div>
+    <div class="revenue-controls">
+      <div class="revenue-field">
+        <label for="onboarding-exit-range">Период</label>
+        <select id="onboarding-exit-range" onchange="loadOnboardingExits(true)" title="Выбрать период для воронки выходов">
+          <option value="7">7 дней</option>
+          <option value="28" selected>28 дней</option>
+          <option value="90">90 дней</option>
+        </select>
+      </div>
+      <div class="revenue-field">
+        <label for="onboarding-exit-platform">Платформа</label>
+        <select id="onboarding-exit-platform" onchange="loadOnboardingExits(true)" title="Фильтр воронки выходов по платформе">
+          <option value="all">Все</option>
+          <option value="ios">iPhone / iOS</option>
+          <option value="android">Android</option>
+        </select>
+      </div>
+      <button type="button" onclick="loadOnboardingExits(true)" title="Перечитать статистику выходов из Firestore">Обновить</button>
+    </div>
+  </div>
+  <div id="onboarding-exit-status" class="reports-empty revenue-analytics-status" style="margin-bottom:12px">Статистика выходов загружается при открытии вкладки.</div>
+  <div id="onboarding-exit-summary" class="stats" style="padding:0;margin-bottom:12px"></div>
+  <div id="onboarding-exit-grid"></div>
+</div>
+
 <!-- ONBOARDING SOURCES TAB -->
 <div id="tab-onboarding-sources" class="reports-tab">
   <div class="reports-toolbar" style="padding:0 0 12px 0;align-items:flex-start">
@@ -13336,7 +13400,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'control-panel';
-  const ADMIN_TAB_KEYS = ['control-panel','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
+  const ADMIN_TAB_KEYS = ['control-panel','onboarding-screens','onboarding-sources','safety-flags','age-consent','compliance-radar','daily-digest','gmail-support','overview','mod-queue','ideas','analytics','openai-budget','app-health','users','testers','reports','emails','website-inbox','user-reports','explain-reports','explain-cache','compass','ban-list','premium','vip','plus-radar','promo-codes','cancel-surveys','surveys','review-promo','referrals','app-messages','helpers-board','ugc-purchases','refunds','community-packs','card-packs','daily-phrases','french-quizzes','push-notify','clubs','tournaments','arena-ranks','arena-live','arena-bets','arena-rooms','archive','audit','ops-log','remote-config','paywall-ab','v2-generator','alerts'];
 
   function isAdminSwitchableTab(tab) {
     return ADMIN_TAB_KEYS.includes(tab) && tab !== 'testers';
@@ -17602,6 +17666,10 @@
     if (tab === 'onboarding-sources' && typeof window.loadOnboardingSources === 'function') {
       void window.loadOnboardingSources();
     }
+    if (tab === 'onboarding-screens') {
+      if (typeof window.loadOnboardingScreens === 'function') void window.loadOnboardingScreens();
+      if (typeof window.loadOnboardingExits === 'function') void window.loadOnboardingExits();
+    }
     if (tab === 'openai-budget' && typeof window.loadOpenAiBudgetDashboard === 'function') {
       void window.loadOpenAiBudgetDashboard();
     }
@@ -18706,6 +18774,7 @@
 
   const ADMIN_CLEAN_TAB_LABELS = {
     'control-panel': 'Control panel',
+    'onboarding-screens': 'Onboarding screens',
     'onboarding-sources': 'Onboarding sources',
     overview: 'Overview',
     'mod-queue': 'Moderation queue',
@@ -18793,6 +18862,7 @@
 
   const ADMIN_TAB_ICON_BY_KEY = {
     'control-panel': 'sliders',
+    'onboarding-screens': 'sliders',
     'onboarding-sources': 'globe',
     'safety-flags': 'shield',
     'age-consent': 'shield',
@@ -18877,6 +18947,7 @@
     overview: 'core',
     'mod-queue': 'users',
     analytics: 'core',
+    'onboarding-screens': 'core',
     'onboarding-sources': 'core',
     'openai-budget': 'revenue',
     'app-health': 'core',
@@ -30770,6 +30841,231 @@
     ].join('');
   };
 
+  // ── 🧭 Экраны онбординга: тумблеры + воронка выходов ────────────────────────
+  // Держится в синхроне с app/onboarding_flow.ts (ONBOARDING_STEP_CATALOG,
+  // MANDATORY_ONBOARDING_STEP, ONBOARDING_ENABLED_STEPS_TEXT_KEY). Порядок ВАЖЕН:
+  // клиент строит путь, фильтруя этот же каталог, поэтому список здесь = список там.
+  const ONBOARDING_ENABLED_STEPS_KEY = 'onboarding_enabled_steps_v1';
+  const ONBOARDING_MANDATORY_STEP = 'name';
+  const ONBOARDING_STEP_CATALOG = [
+    ['welcome', 'Приветствие'],
+    ['source', 'Источник'],
+    ['language', 'Язык'],
+    ['level', 'Уровень'],
+    ['goal', 'Цель'],
+    ['minutes', 'Время занятий'],
+    ['aha', 'Демонстрация'],
+    ['notifications', 'Уведомления'],
+    ['plusBenefits', 'Преимущества Plus'],
+    ['startMode', 'Режим старта'],
+    ['planComparison', 'Сравнение планов'],
+    ['onboardingPaywall', 'Предложение подписки'],
+    ['name', 'Имя и согласия'],
+  ];
+  const ONBOARDING_STEP_LABELS = Object.fromEntries(ONBOARDING_STEP_CATALOG);
+  let _onboardingScreensLoaded = false;
+  let _onboardingExitsLoaded = false;
+  let _onboardingScreensSaved = null; // что реально лежит в remote_config
+
+  // Пустая строка/битый JSON = «включено всё» (та же логика, что в
+  // parseEnabledOnboardingSteps на клиенте) — иначе админка показала бы всё
+  // выключенным там, где приложение показывает всё включённым.
+  function onboardingParseEnabled(raw) {
+    const all = ONBOARDING_STEP_CATALOG.map(([id]) => id);
+    if (!raw) return all;
+    try {
+      const parsed = JSON.parse(String(raw));
+      if (!Array.isArray(parsed)) return all;
+      const set = new Set(parsed.filter((x) => typeof x === 'string'));
+      set.add(ONBOARDING_MANDATORY_STEP);
+      return all.filter((id) => set.has(id));
+    } catch (_) { return all; }
+  }
+
+  function onboardingCheckedSteps() {
+    return ONBOARDING_STEP_CATALOG
+      .map(([id]) => id)
+      .filter((id) => id === ONBOARDING_MANDATORY_STEP || document.getElementById(`onb-step-${id}`)?.checked);
+  }
+
+  function renderOnboardingScreens(enabled) {
+    const list = document.getElementById('onboarding-screens-list');
+    if (!list) return;
+    const on = new Set(enabled);
+    list.innerHTML = ONBOARDING_STEP_CATALOG.map(([id, label]) => {
+      // зачем: экран «Имя и согласия» собирает возраст и юридические согласия —
+      // без него сборка согласий ломается и это риск отказа в ревью сторов.
+      // Поэтому он всегда включён и недоступен для выключения.
+      const mandatory = id === ONBOARDING_MANDATORY_STEP;
+      const checked = mandatory || on.has(id);
+      return `<label style="display:flex;align-items:center;gap:12px;padding:11px 14px;margin-bottom:6px;border-radius:10px;background:${checked ? 'rgba(79,70,229,0.14)' : '#12141c'};cursor:${mandatory ? 'not-allowed' : 'pointer'};opacity:${mandatory ? '.75' : '1'}">
+        <input type="checkbox" id="onb-step-${id}" ${checked ? 'checked' : ''} ${mandatory ? 'disabled' : ''} onchange="onboardingScreensDirty()" style="width:17px;height:17px;flex:none;accent-color:#6366f1">
+        <span style="flex:1;color:#e2e8f0;font-weight:600;font-size:14px">${escapeHtml(label)}</span>
+        ${mandatory ? '<span style="font-size:11px;color:#fbbf24;font-weight:700;letter-spacing:.4px">ОБЯЗАТЕЛЬНЫЙ</span>' : ''}
+      </label>`;
+    }).join('');
+  }
+
+  // Любое изменение галочки сбрасывает готовый предпросмотр: публиковать можно
+  // только то, что владелец реально видел в списке изменений.
+  window.onboardingScreensDirty = function onboardingScreensDirty() {
+    const box = document.getElementById('onboarding-screens-preview');
+    const publish = document.getElementById('onboarding-screens-publish-btn');
+    if (box) box.innerHTML = '';
+    if (publish) publish.style.display = 'none';
+    renderOnboardingScreens(onboardingCheckedSteps());
+  };
+
+  window.loadOnboardingScreens = async function loadOnboardingScreens(force = false) {
+    const status = document.getElementById('onboarding-screens-status');
+    if (_onboardingScreensLoaded && !force) return;
+    _onboardingScreensLoaded = true;
+    if (status) status.textContent = 'Загружаем настройки экранов…';
+    try {
+      const snap = await getDoc(doc(db, 'remote_config', 'app'));
+      const texts = (snap.exists() && snap.data() && snap.data().texts) || {};
+      _onboardingScreensSaved = onboardingParseEnabled(texts[ONBOARDING_ENABLED_STEPS_KEY]);
+      renderOnboardingScreens(_onboardingScreensSaved);
+      const off = ONBOARDING_STEP_CATALOG.length - _onboardingScreensSaved.length;
+      if (status) {
+        status.textContent = off > 0
+          ? `Сейчас отключено экранов: ${off}. Остальные показываются новым пользователям.`
+          : 'Сейчас показываются все экраны онбординга.';
+      }
+    } catch (e) {
+      _onboardingScreensLoaded = false;
+      if (status) status.textContent = `Не удалось прочитать настройки: ${e?.message || String(e)}`;
+    }
+  };
+
+  window.previewOnboardingScreens = function previewOnboardingScreens() {
+    const box = document.getElementById('onboarding-screens-preview');
+    const publish = document.getElementById('onboarding-screens-publish-btn');
+    if (!box || !_onboardingScreensSaved) return;
+    const next = onboardingCheckedSteps();
+    const was = new Set(_onboardingScreensSaved);
+    const now = new Set(next);
+    const changes = ONBOARDING_STEP_CATALOG
+      .filter(([id]) => was.has(id) !== now.has(id))
+      .map(([id, label]) => `${now.has(id) ? '🟢 включаем' : '🔴 отключаем'} — ${label}`);
+    if (!changes.length) {
+      box.innerHTML = '<div class="reports-empty" style="padding:10px 0">Изменений нет — список совпадает с опубликованным.</div>';
+      if (publish) publish.style.display = 'none';
+      return;
+    }
+    box.innerHTML = `<div style="background:rgba(251,191,36,0.12);border-radius:10px;padding:12px 14px;color:#fcd34d;font-size:13px;line-height:1.6">
+      <b style="display:block;margin-bottom:6px;color:#fbbf24">Будет опубликовано</b>${changes.map(escapeHtml).join('<br>')}
+      <div style="margin-top:8px;color:#94a3b8">После публикации останется ${next.length} экран(ов). Путь продолжится без отключённых.</div>
+    </div>`;
+    if (publish) publish.style.display = '';
+  };
+
+  window.publishOnboardingScreens = async function publishOnboardingScreens() {
+    const status = document.getElementById('onboarding-screens-status');
+    const publish = document.getElementById('onboarding-screens-publish-btn');
+    const next = onboardingCheckedSteps();
+    if (publish) { publish.disabled = true; publish.textContent = 'Публикуем…'; }
+    try {
+      // Переиспользуем общий писатель texts: он читает prev без глушилки и
+      // сохраняет numbers/bools/остальные texts (merge:false + ручное слияние).
+      await window.saveControlPanelTexts({ [ONBOARDING_ENABLED_STEPS_KEY]: JSON.stringify(next) });
+      const reason = String(document.getElementById('onboarding-screens-reason')?.value || '').trim();
+      if (reason && typeof logAction === 'function') {
+        logAction('onboarding_steps_publish', 'remote_config/app', { steps: next, reason });
+      }
+      _onboardingScreensSaved = next;
+      const box = document.getElementById('onboarding-screens-preview');
+      if (box) box.innerHTML = '<div style="background:rgba(52,211,153,0.12);border-radius:10px;padding:12px 14px;color:#6ee7b7;font-size:13px">Опубликовано. Клиенты подхватят изменения за секунды.</div>';
+      if (publish) publish.style.display = 'none';
+      const off = ONBOARDING_STEP_CATALOG.length - next.length;
+      if (status) status.textContent = off > 0 ? `Сейчас отключено экранов: ${off}.` : 'Сейчас показываются все экраны онбординга.';
+    } catch (e) {
+      if (status) status.textContent = `Не удалось опубликовать: ${e?.message || String(e)}`;
+    } finally {
+      if (publish) { publish.disabled = false; publish.textContent = 'Опубликовать'; }
+    }
+  };
+
+  // Воронка выходов. Читает событие onboarding_exit (одна запись на пользователя,
+  // пишется клиентом при уходе в фон) — where+limit по периоду, как у остальных
+  // разделов аналитики, плюс кэш на сессию, чтобы не платить за каждое открытие.
+  window.loadOnboardingExits = async function loadOnboardingExits(force = false) {
+    const grid = document.getElementById('onboarding-exit-grid');
+    const summary = document.getElementById('onboarding-exit-summary');
+    const status = document.getElementById('onboarding-exit-status');
+    if (!grid || !summary) return;
+    if (_onboardingExitsLoaded && !force) return;
+    _onboardingExitsLoaded = true;
+    const rangeDays = Number(document.getElementById('onboarding-exit-range')?.value || 28);
+    const platform = document.getElementById('onboarding-exit-platform')?.value || 'all';
+    if (status) status.textContent = 'Загружаем статистику выходов…';
+    const toMs = Date.now();
+    const fromMs = toMs - rangeDays * 24 * 60 * 60 * 1000;
+    let rows = [];
+    try {
+      const snap = await getDocs(query(
+        collection(db, 'app_activity'),
+        where('createdAtMs', '>=', fromMs),
+        where('createdAtMs', '<=', toMs),
+        limit(3000),
+      ));
+      rows = snap.docs
+        .map((d) => ({ id: d.id, ...d.data() }))
+        .filter((r) => r.action === 'onboarding_exit')
+        .filter((r) => revenueMatchesPlatform(r, platform));
+    } catch (e) {
+      _onboardingExitsLoaded = false;
+      if (status) status.textContent = `Не удалось прочитать статистику: ${e?.message || String(e)}`;
+      grid.innerHTML = '';
+      return;
+    }
+    // На пользователя берём последний выход, иначе один и тот же человек,
+    // заходивший несколько раз, перекошивал бы воронку в свою сторону.
+    const latestByUser = new Map();
+    rows.forEach((r) => {
+      const key = String(r.uid || r.id || 'unknown');
+      const prev = latestByUser.get(key);
+      if (!prev || revenueMs(r) >= revenueMs(prev)) latestByUser.set(key, r);
+    });
+    const latest = [...latestByUser.values()];
+    const countsMap = new Map();
+    latest.forEach((r) => {
+      const step = String(revenueTags(r).step || 'unknown');
+      countsMap.set(step, (countsMap.get(step) || 0) + 1);
+    });
+    const counts = [...countsMap.entries()]
+      .map(([step, value]) => ({ step, label: ONBOARDING_STEP_LABELS[step] || step, value }))
+      .sort((a, b) => b.value - a.value);
+    const top = counts[0] ? `${counts[0].label} (${counts[0].value})` : '—';
+    summary.innerHTML = revenueSummaryCards([
+      ['Выходов', latest.length],
+      ['Чаще всего уходят', top],
+      ['Платформа', platform],
+      ['Период', `${rangeDays} дн.`],
+    ]);
+    if (status) {
+      status.textContent = latest.length
+        ? `Учтено ${latest.length} пользователь(ей) за последние ${rangeDays} дн.`
+        : `Пока нет данных за ${rangeDays} дн. Событие пишется при сворачивании приложения на онбординге — данные появятся после релиза сборки с этим кодом.`;
+    }
+    if (!counts.length) { grid.innerHTML = ''; return; }
+    const max = Math.max(1, ...counts.map((c) => c.value));
+    grid.innerHTML = `<div style="background:#12141c;border-radius:12px;padding:16px 18px">
+      ${counts.map((c) => {
+        const pct = Math.round((c.value / latest.length) * 1000) / 10;
+        return `<div style="margin-bottom:12px">
+          <div style="display:flex;justify-content:space-between;gap:12px;margin-bottom:5px;font-size:13px">
+            <span style="color:#e2e8f0;font-weight:600">${escapeHtml(c.label)}</span>
+            <span style="color:#94a3b8">${c.value} · ${pct}%</span>
+          </div>
+          <div style="height:9px;border-radius:5px;background:#1e2130;overflow:hidden">
+            <div style="height:100%;width:${Math.round((c.value / max) * 100)}%;border-radius:5px;background:linear-gradient(90deg,#f87171,#ef4444)"></div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  };
+
   function revenueCountByDay(rows, days, predicate) {
     const bucketed = revenueBuildDateBuckets(days);
     const m = Object.fromEntries(bucketed.buckets.map((bucket) => [bucket.key, 0]));
@@ -35884,7 +36180,9 @@
   let _tnCurated = { 1: [], 2: [], 3: [], 4: [] };
 
   const TN_MODE_LABEL = {
-    guess_phrase: 'Угадай перевод',
+    guess_phrase: 'Живая ситуация',
+    fill_gap: 'Пропущенное слово',
+    find_oddity: 'Так не говорят',
     translate_build: 'Собери фразу',
     time_attack: 'Тайм-атака',
   };
@@ -35921,6 +36219,20 @@
         + opts.map((o, i) => {
           const ok = i === p.correctIndex;
           return `<div style="font-size:13px;padding:3px 0;color:${ok ? '#4ade80' : '#9ca3af'}">${ok ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`;
+        }).join('');
+    } else if (task.mode === 'fill_gap' || task.mode === 'find_oddity') {
+      // зачем: новые типы хранятся в том же choice-контракте (phrase + 4
+      // опции + индекс верного), но раньше рендер их не знал — карточка
+      // выходила пустой, виден был только режим и сложность.
+      const opts = Array.isArray(p.options) ? p.options : [];
+      body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
+        + opts.map((o, i) => {
+          const ok = i === p.correctIndex;
+          // У «так не говорят» верный ответ — ОШИБОЧНАЯ фраза: помечаем иначе,
+          // чтобы ревьюер не принял подсветку за «правильный английский».
+          const mark = ok ? (task.mode === 'find_oddity' ? '✗' : '✓') : '&nbsp;&nbsp;';
+          const color = ok ? (task.mode === 'find_oddity' ? '#fca5a5' : '#4ade80') : '#9ca3af';
+          return `<div style="font-size:13px;padding:3px 0;color:${color}">${mark} ${escapeHtml(o)}</div>`;
         }).join('');
     } else if (task.mode === 'translate_build') {
       const bank = Array.isArray(p.wordBank) ? p.wordBank : [];

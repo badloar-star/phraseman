@@ -356,8 +356,6 @@ describe('achievements', () => {
     for (let i = 0; i < 100; i += 1) {
       await checkAchievements({ type: 'arena_win' });
     }
-    await checkAchievements({ type: 'arena_win_streak', streak: 25 });
-    await checkAchievements({ type: 'arena_duel_friend_win' });
     for (let i = 0; i < 25; i += 1) {
       await checkAchievements({ type: 'arena_wager_win', count: i + 1 });
     }
@@ -537,7 +535,9 @@ describe('achievements', () => {
     expect(await AsyncStorage.getItem('streak_count')).toBe('500');
     expect(await AsyncStorage.getItem('user_total_xp')).toBe('100000');
     expect(await AsyncStorage.getItem('achievement_active_recall_correct_count')).toBe('50');
-    expect(await AsyncStorage.getItem('achievement_arena_win_count')).toBe('10');
+    // зачем: Арена удалена — achievement_arena_win_count больше не сеется.
+    // Проверяем живой счётчик ставок на серию (открывает wager_win_3 и _10).
+    expect(await AsyncStorage.getItem('achievement_wager_win_count')).toBe('10');
     expect(await AsyncStorage.getItem('shards_balance')).toBe('100');
 
     const loginRaw = await AsyncStorage.getItem('login_bonus_v1');

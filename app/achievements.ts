@@ -2460,8 +2460,6 @@ export type AchievementEvent =
   | { type: 'friend_added';   totalFriends: number }
   | { type: 'gift_sent' }
   | { type: 'achievement_liked'; likeTotal?: number }
-  | { type: 'arena_win_streak'; streak: number }
-  | { type: 'arena_duel_friend_win' }
   | { type: 'arena_wager_win'; count?: number }
   | { type: 'trainer_correct'; correct: number; studyTarget?: RuntimeStudyTarget }
   | { type: 'trainer_session_result'; correct: number; wrong: number; total: number; studyTarget?: RuntimeStudyTarget }
@@ -2734,10 +2732,9 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         break;
       }
       case 'arena_win': {
-        const key = 'achievement_arena_win_count';
-        const current = parseInt((await AsyncStorage.getItem(key)) ?? '0', 10) || 0;
-        const next = current + 1;
-        await AsyncStorage.setItem(key, String(next));
+        // зачем: Арена удалена — достижения арены выпилены, счётчик
+        // achievement_arena_win_count никто не читал. Заглушка ради совместимости
+        // типа события; каждая запись зря раздувала achievements_state в Firestore.
         break;
       }
       case 'shards': {
@@ -2833,13 +2830,6 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if ((event.likeTotal ?? 0) >= 5) u('social_likes_5');
         if ((event.likeTotal ?? 0) >= 25) u('social_likes_25');
         if ((event.likeTotal ?? 0) >= 100) u('social_likes_100');
-        break;
-      }
-      case 'arena_win_streak': {
-        const ws = event.streak;
-        break;
-      }
-      case 'arena_duel_friend_win': {
         break;
       }
       case 'arena_wager_win': {
@@ -3102,9 +3092,7 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     ['user_total_xp', '100000'],
     ['login_bonus_v1', JSON.stringify({ consecutiveDays: 365, lastClaimDate: now })],
     ['achievement_active_recall_correct_count', '50'],
-    ['achievement_arena_win_count', '10'],
     ['shards_balance', '100'],
-    ['quiz_hard_count', '5'],
     // Новые счётчики для новых достижений
     ['achievement_all_daily_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
     ['achievement_gift_sent_count', '10'],
@@ -3115,12 +3103,11 @@ export const devSeedAchievementsSmoke = async (): Promise<{ total: number; unloc
     ['achievement_flashcards_flip_count', '100'],
     ['achievement_flashcards_view_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
     ['achievement_flashcards_source_set_v1', JSON.stringify(['lesson', 'word', 'verb', 'daily_phrase'])],
-    ['achievement_arena_wager_win_count', '5'],
     ['achievement_trainer_correct_count', '500'],
     ['achievement_trainer_correct_streak_v1', JSON.stringify({ lastDay: localDayKey(), streak: 7 })],
-    ['achievement_arena_win_streak', '10'],
-    ['quiz_session_count', '10'],
-    ['achievement_wager_win_count', '3'],
+    // зачем: 10 — порог верхнего достижения wager_win_10, чтобы QA-сид открывал
+    // оба живых достижения по ставкам (wager_win_3 и wager_win_10).
+    ['achievement_wager_win_count', '10'],
     ['pack_purchased_count', '5'],
     ...lessonPairs,
   ]);

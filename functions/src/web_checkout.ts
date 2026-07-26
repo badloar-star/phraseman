@@ -398,9 +398,11 @@ export function buildActivationEmail(
       '<div style="font-size:26px;font-weight:800;color:#201c12;margin-top:6px">Phraseman</div>',
       '</div>',
       '<div style="padding:28px 28px 26px;color:#201c12">',
-      giftTo ? `<div style="font-size:22px;font-weight:800;margin:0 0 2px">Для: ${htmlEscape(giftTo)}</div>` : '<div style="font-size:22px;font-weight:800;margin:0 0 2px">Вам подарили английский</div>',
+      /* зачем: владелец 2026-07-26 — без имени заголовок называет КОНКРЕТНЫЙ
+         подарок («Год Phraseman Plus»), а не абстрактное «вам подарили английский» */
+      giftTo ? `<div style="font-size:22px;font-weight:800;margin:0 0 2px">Для: ${htmlEscape(giftTo)}</div>` : `<div style="font-size:22px;font-weight:800;margin:0 0 2px">${htmlEscape(productTitle)}</div>`,
       giftFrom ? `<div style="color:#6f6852;font-size:15px;margin:0 0 16px">от ${htmlEscape(giftFrom)}</div>` : '<div style="margin:0 0 16px"></div>',
-      `<div style="font-size:17px;font-weight:800;color:#b8860f">${htmlEscape(productTitle)}</div>`,
+      giftTo ? `<div style="font-size:17px;font-weight:800;color:#b8860f">${htmlEscape(productTitle)}</div>` : '',
       codeBlock,
       expiresLine ? `<div style="color:#6f6852;font-size:13.5px;margin:-8px 0 16px">${htmlEscape(expiresLine)}</div>` : '',
       '<div style="font-weight:bold;margin-top:6px">Как включить доступ:</div>',

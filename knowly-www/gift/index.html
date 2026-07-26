@@ -155,9 +155,11 @@
         <aside class="cert" aria-label="Предпросмотр сертификата">
           <div class="cert-head"><small>ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
           <div class="cert-body">
-            <div class="cert-to" id="pvTo">Вам подарили английский</div>
+            <!-- зачем: владелец 2026-07-26 — без имени заголовок называет
+                 КОНКРЕТНЫЙ подарок, а не «вам подарили английский» -->
+            <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
             <div class="cert-from" id="pvFrom"></div>
-            <div class="cert-plan" id="pvPlan">Год Phraseman Plus</div>
+            <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
             <div class="cert-code">WEB-••••••••••</div>
             <p class="cert-note">Код появится в письме сразу после оплаты. Так сертификат будет выглядеть на почте.</p>
           </div>
@@ -166,16 +168,16 @@
 
       <div class="gift-faq faq" style="margin-inline:0;max-width:46em">
         <details>
-          <summary>Как получатель включит подарок?</summary>
-          <p>Скачает Phraseman бесплатно, откроет Настройки → Промокоды и введёт код с сертификата. Plus или Pro включится сразу, карта получателю не нужна.</p>
+          <summary>Как активируется код</summary>
+          <p>Получатель устанавливает Phraseman (бесплатно), открывает Настройки → Промокоды и вводит код с сертификата. Plus или Pro включается сразу, карта получателю не нужна.</p>
         </details>
         <details>
-          <summary>Письмо с кодом потерялось. Что делать?</summary>
-          <p>Напишите в поддержку с почты, на которую покупали, — восстановим код по заказу.</p>
+          <summary>Письмо с кодом не пришло или потерялось</summary>
+          <p>Напишите на support.phraseman@gmail.com с почты, указанной при оплате, — вышлем код повторно по вашему заказу.</p>
         </details>
         <details>
-          <summary>Можно купить себе?</summary>
-          <p>Да. Оплатите, введите код в своём приложении — сработает так же.</p>
+          <summary>Можно активировать код самому?</summary>
+          <p>Да. Код не привязан к имени на сертификате: введите его в своём приложении.</p>
         </details>
       </div>
     </section>
@@ -213,6 +215,17 @@
     function showError(message) { err.textContent = message; err.classList.add('show'); }
     function clearError() { err.classList.remove('show'); }
 
+    /* живой предпросмотр: без имени заголовок = конкретный подарок (не абстракция),
+       с именем — «Для: Имя» + подарок золотой строкой ниже */
+    function syncPreview() {
+      var to = $('giftTo').value.trim();
+      var from = $('giftFrom').value.trim();
+      $('pvTo').textContent = to ? 'Для: ' + to : PLAN_TITLES[state.plan];
+      $('pvPlan').textContent = PLAN_TITLES[state.plan];
+      $('pvPlan').style.display = to ? '' : 'none';
+      $('pvFrom').textContent = from ? 'от ' + from : '';
+    }
+
     /* выбор подарка: мгновенно, без сети */
     function selectPlan(plan) {
       state.plan = plan;
@@ -221,7 +234,7 @@
         card.classList.toggle('sel', sel);
         card.setAttribute('aria-checked', sel ? 'true' : 'false');
       });
-      $('pvPlan').textContent = PLAN_TITLES[plan];
+      syncPreview();
       clearError();
     }
     plans.forEach(function (card) {
@@ -230,16 +243,8 @@
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPlan(card.dataset.plan); }
       });
     });
-
-    /* живой предпросмотр имён */
-    $('giftTo').addEventListener('input', function () {
-      var v = this.value.trim();
-      $('pvTo').textContent = v ? 'Для: ' + v : 'Вам подарили английский';
-    });
-    $('giftFrom').addEventListener('input', function () {
-      var v = this.value.trim();
-      $('pvFrom').textContent = v ? 'от ' + v : '';
-    });
+    $('giftTo').addEventListener('input', syncPreview);
+    $('giftFrom').addEventListener('input', syncPreview);
 
     /* цены с сервера (то, что реально спишется); фолбэк — site-config */
     function money(cents, currency) {

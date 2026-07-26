@@ -89,17 +89,17 @@ describe('buildActivationEmail', () => {
     expect(text).toContain('Сертификат действует до 26.07.2027');
   });
 
-  it('без имён — фолбэк «Вам подарили», строк Для/От нет', () => {
+  it('без имён — заголовок называет конкретный подарок, без дубля и без «вам подарили английский»', () => {
     const { html, text } = buildActivationEmail({
       activationCode: 'WEB-ABCDEFGHJK',
       plan: 'monthly',
       gift: true,
       codeExpiresAtMs: Date.UTC(2027, 0, 1),
     }, support);
-    expect(html).toContain('Вам подарили английский');
+    expect(html).not.toContain('Вам подарили');
     expect(html).not.toContain('Для: ');
     expect(text).not.toContain('Для: ');
-    expect(html).toContain('Месяц Phraseman Plus');
+    expect((html.match(/Месяц Phraseman Plus/g) ?? []).length).toBe(1);
   });
 
   it('обычная покупка: нейминг Plus/Pro, без слова «сертификат», без срока', () => {

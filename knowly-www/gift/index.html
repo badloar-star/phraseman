@@ -3,58 +3,361 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Подарить Phraseman Premium — код активации за минуту</title>
+  <title>Подарочный сертификат Phraseman — подарите живой английский</title>
   <meta
     name="description"
-    content="Подарите английский: один платёж — и у вас код активации Phraseman Premium. Перешлите его получателю, Premium включится сразу. Без автопродлений, 7 дней гарантии."
+    content="Подарите английский: месяц или год Phraseman Plus, либо Phraseman Pro навсегда. Именной сертификат с кодом придёт на почту за минуту. Разовый платёж, без автопродлений."
   />
   <link rel="canonical" href="https://knowlyapps.com/gift/" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://knowlyapps.com/gift/" />
-  <meta property="og:title" content="Подарить Phraseman Premium" />
-  <meta property="og:description" content="Один платёж — код активации в подарок. Без автопродлений, 7 дней гарантии." />
+  <meta property="og:title" content="Подарочный сертификат Phraseman" />
+  <meta property="og:description" content="Месяц или год Plus, либо Pro навсегда. Именной сертификат с кодом — на почту за минуту. Без автопродлений." />
   <meta property="og:image" content="https://knowlyapps.com/assets/og-banner.png" />
   <meta name="robots" content="index, follow" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="/assets/phraseman.css?v=wow5" />
-  <link rel="stylesheet" href="/assets/theme.css?v=wow4" />
-  <link rel="stylesheet" href="/assets/start.css?v=3" />
-  <script src="/assets/theme.js?v=1"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/home.css?v=2" />
   <script src="/assets/site-config.js?v=6764800879" defer></script>
   <script src="/assets/stats.js?v=3" defer></script>
-  <script src="/assets/start.js?v=3" defer></script>
-</head>
-<body data-quiz-mode="gift">
-  <div class="bg" aria-hidden="true"></div>
+  <style>
+    /* зачем: раздел «Подарочный сертификат» (решение владельца 2026-07-26) —
+       светлый стиль сайта, выбор подарка Plus/Pro, именной live-предпросмотр. */
+    .gift-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(24px, 4vw, 56px); align-items: start; margin-top: 34px; text-align: left; }
+    @media (max-width: 860px) { .gift-grid { grid-template-columns: 1fr; } }
 
-  <div class="shell quiz-shell">
-    <header class="topbar quiz-topbar">
-      <a class="brand" href="/" aria-label="Phraseman">
-        <img src="/assets/phraseman-icon-128.png" alt="" width="40" height="40" decoding="async" />
-        <span><b>Phraseman</b><small>Живой английский</small></span>
-      </a>
+    .plans { display: grid; gap: 12px; }
+    .plan {
+      position: relative; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      background: var(--surface); border-radius: 20px; box-shadow: var(--shadow);
+      padding: 18px 22px; cursor: pointer;
+      transition: box-shadow .18s var(--ease), transform .12s var(--ease), background .18s;
+    }
+    .plan:active { transform: scale(.985); }
+    .plan b { display: block; color: var(--ink); font-size: 1.06rem; }
+    .plan span.sub { color: var(--soft); font-size: 13.5px; font-weight: 500; }
+    .plan .price { font-weight: 900; color: var(--ink); font-size: 1.15rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .plan.sel { background: linear-gradient(135deg, #fdf4d8, #f9e9bd); box-shadow: 0 16px 40px rgba(200, 140, 30, .22); }
+    .plan .best {
+      position: absolute; top: -10px; right: 16px;
+      background: var(--ink); color: #f7edd6; font-size: 11.5px; font-weight: 700;
+      padding: 5px 12px; border-radius: var(--pill);
+    }
+
+    .gform { margin-top: 22px; display: grid; gap: 10px; }
+    .gform label { display: grid; gap: 6px; font-weight: 600; color: var(--ink); font-size: 14.5px; }
+    .gform input {
+      border: 0; background: var(--surface); box-shadow: var(--shadow);
+      border-radius: 14px; padding: 15px 16px;
+      font: 500 16px "Golos Text", system-ui, sans-serif; color: var(--ink);
+    }
+    .gform input:focus-visible { outline: 3px solid rgba(184, 134, 15, .55); outline-offset: 1px; }
+    .gform input::placeholder { color: #a09a88; }
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    @media (max-width: 480px) { .row2 { grid-template-columns: 1fr; } }
+
+    .pay { margin-top: 20px; display: grid; gap: 12px; }
+    .pay .btn { width: 100%; }
+    .pay .btn[disabled] { opacity: .6; cursor: default; transform: none; }
+    #paypal-buttons { min-height: 44px; }
+    .err { display: none; color: #b93636; font-weight: 600; font-size: 14.5px; background: #fdecec; border-radius: 12px; padding: 12px 14px; margin: 0; }
+    .err.show { display: block; }
+    .fine { color: var(--soft); font-size: 13.5px; line-height: 1.6; }
+    .fine a { color: var(--gold-deep); font-weight: 600; }
+
+    /* живой предпросмотр сертификата */
+    .cert { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-lg); overflow: hidden; position: sticky; top: 18px; }
+    .cert-head { background: linear-gradient(120deg, #f7de8b, #f2c14e 60%, #e3b84b); text-align: center; padding: 22px 24px; }
+    .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
+    .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
+    .cert-body { padding: 24px 26px 22px; }
+    .cert-to { font-size: 20px; font-weight: 900; color: var(--ink); min-height: 1.3em; }
+    .cert-from { color: var(--soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
+    .cert-plan { font-weight: 800; color: var(--gold-deep); font-size: 15.5px; }
+    .cert-code { background: #201c12; border-radius: 14px; padding: 16px; margin: 14px 0 10px; text-align: center; font: 800 19px/1 Consolas, Menlo, monospace; letter-spacing: 3px; color: #f7de8b; }
+    .cert-note { color: var(--soft); font-size: 12.5px; text-align: center; margin: 0; }
+    @media (max-width: 860px) { .cert { position: static; } }
+
+    .gift-faq { margin-top: clamp(40px, 7vh, 70px); }
+  </style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="stage">
+  <div class="aurora-css" aria-hidden="true"></div>
+  <div class="wrap">
+    <header>
+      <div class="top">
+        <a class="brand" href="/" aria-label="Phraseman"><img src="/assets/phraseman-icon-128.png" alt="" width="36" height="36" decoding="async" />Phraseman</a>
+        <nav class="nav" aria-label="Навигация">
+          <a href="/">На главную</a>
+          <a href="/contact/">Поддержка</a>
+        </nav>
+      </div>
     </header>
 
-    <main id="quiz-root" class="quiz-root" aria-live="polite">
-      <noscript>
-        <div class="panel" style="margin-top:40px">
-          <h1>Нужен JavaScript</h1>
-          <p>Чтобы оформить подарок, включите JavaScript — или напишите в
-            <a href="/contact/">поддержку</a>: оформим вручную.</p>
-        </div>
-      </noscript>
+    <main>
+      <section class="hero" style="padding-bottom:clamp(30px,5vh,56px)">
+        <h1>Подарите живой английский</h1>
+        <p class="sub">Выберите подарок, оплатите за минуту: именной сертификат с кодом придёт на вашу почту.</p>
+      </section>
     </main>
-
-    <footer class="footer quiz-footer">
-      <p>© 2026 Knowly · <a href="/legal/privacy/">Конфиденциальность</a> · <a href="/legal/terms/">Условия</a> · <a href="/contact/">Поддержка</a></p>
-    </footer>
   </div>
+</div>
+
+<div class="wrap">
+  <main>
+    <section style="padding-top:0">
+      <div class="gift-grid">
+        <div>
+          <div class="plans" role="radiogroup" aria-label="Выбор подарка">
+            <div class="plan" data-plan="monthly" role="radio" aria-checked="false" tabindex="0">
+              <span><b>Месяц Phraseman Plus</b><span class="sub">все уроки и темы на 31 день</span></span>
+              <span class="price" data-price="monthly">$9.99</span>
+            </div>
+            <div class="plan sel" data-plan="yearly" role="radio" aria-checked="true" tabindex="0">
+              <span class="best">Выгоднее всего</span>
+              <span><b>Год Phraseman Plus</b><span class="sub">все уроки и темы на 366 дней</span></span>
+              <span class="price" data-price="yearly">$49.99</span>
+            </div>
+            <div class="plan" data-plan="lifetime" role="radio" aria-checked="false" tabindex="0">
+              <span><b>Phraseman Pro</b><span class="sub">полный доступ навсегда, один платёж</span></span>
+              <span class="price" data-price="lifetime">$99.99</span>
+            </div>
+          </div>
+
+          <form class="gform" id="giftForm" novalidate>
+            <div class="row2">
+              <label>Кому (имя на сертификате)
+                <input type="text" id="giftTo" maxlength="60" placeholder="Например: Маша" autocomplete="off" />
+              </label>
+              <label>От кого
+                <input type="text" id="giftFrom" maxlength="60" placeholder="Например: Саша" autocomplete="off" />
+              </label>
+            </div>
+            <label>Ваш email — на него придёт сертификат
+              <input type="email" id="buyerEmail" required maxlength="200" placeholder="you@example.com" autocomplete="email" inputmode="email" />
+            </label>
+
+            <div class="pay">
+              <p class="err" id="payErr" role="alert"></p>
+              <button class="btn" type="submit" id="cardBtn"><span>Оплатить картой</span></button>
+              <div id="paypal-buttons" aria-label="Оплата через PayPal"></div>
+              <p class="fine">Разовый платёж: автопродления нет · Код действует 12 месяцев · 7 дней гарантии возврата.<br />
+                Карта российского банка не проходит? <a href="/contact/">Напишите в поддержку</a> — оформим вручную.</p>
+            </div>
+          </form>
+        </div>
+
+        <aside class="cert" aria-label="Предпросмотр сертификата">
+          <div class="cert-head"><small>ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
+          <div class="cert-body">
+            <div class="cert-to" id="pvTo">Вам подарили английский</div>
+            <div class="cert-from" id="pvFrom"></div>
+            <div class="cert-plan" id="pvPlan">Год Phraseman Plus</div>
+            <div class="cert-code">WEB-••••••••••</div>
+            <p class="cert-note">Код появится в письме сразу после оплаты. Так сертификат будет выглядеть на почте.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="gift-faq faq" style="margin-inline:0;max-width:46em">
+        <details>
+          <summary>Как получатель включит подарок?</summary>
+          <p>Скачает Phraseman бесплатно, откроет Настройки → Промокоды и введёт код с сертификата. Plus или Pro включится сразу, карта получателю не нужна.</p>
+        </details>
+        <details>
+          <summary>Письмо с кодом потерялось. Что делать?</summary>
+          <p>Напишите в поддержку с почты, на которую покупали, — восстановим код по заказу.</p>
+        </details>
+        <details>
+          <summary>Можно купить себе?</summary>
+          <p>Да. Оплатите, введите код в своём приложении — сработает так же.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Knowly · Phraseman</span>
+    <nav aria-label="Ссылки">
+      <a href="/">О приложении</a>
+      <a href="/contact/">Поддержка</a>
+      <a href="/legal/privacy/">Конфиденциальность</a>
+      <a href="/legal/terms/">Условия</a>
+    </nav>
+  </footer>
+</div>
+
+<script>
+  // зачем: своя лёгкая логика вместо start.js — выбор подарка и предпросмотр
+  // мгновенные (optimistic), сеть только в момент оплаты. Контракт оплат тот же:
+  // webCheckoutCreate / paypalOrderCreate(+Capture) с gift:true + giftTo/giftFrom.
+  (function () {
+    'use strict';
+    var PLAN_TITLES = {
+      monthly: 'Месяц Phraseman Plus',
+      yearly: 'Год Phraseman Plus',
+      lifetime: 'Phraseman Pro — навсегда',
+    };
+    var state = { plan: 'yearly', currency: 'USD', busy: false };
+
+    var $ = function (id) { return document.getElementById(id); };
+    var plans = [].slice.call(document.querySelectorAll('.plan'));
+    var err = $('payErr');
+
+    function cfg() { return window.KNOWLY_SITE || {}; }
+    function showError(message) { err.textContent = message; err.classList.add('show'); }
+    function clearError() { err.classList.remove('show'); }
+
+    /* выбор подарка: мгновенно, без сети */
+    function selectPlan(plan) {
+      state.plan = plan;
+      plans.forEach(function (card) {
+        var sel = card.dataset.plan === plan;
+        card.classList.toggle('sel', sel);
+        card.setAttribute('aria-checked', sel ? 'true' : 'false');
+      });
+      $('pvPlan').textContent = PLAN_TITLES[plan];
+      clearError();
+    }
+    plans.forEach(function (card) {
+      card.addEventListener('click', function () { selectPlan(card.dataset.plan); });
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectPlan(card.dataset.plan); }
+      });
+    });
+
+    /* живой предпросмотр имён */
+    $('giftTo').addEventListener('input', function () {
+      var v = this.value.trim();
+      $('pvTo').textContent = v ? 'Для: ' + v : 'Вам подарили английский';
+    });
+    $('giftFrom').addEventListener('input', function () {
+      var v = this.value.trim();
+      $('pvFrom').textContent = v ? 'от ' + v : '';
+    });
+
+    /* цены с сервера (то, что реально спишется); фолбэк — site-config */
+    function money(cents, currency) {
+      try {
+        return new Intl.NumberFormat('ru-RU', { style: 'currency', currency: currency.toUpperCase(), maximumFractionDigits: 2 }).format(cents / 100);
+      } catch (e) { return (cents / 100).toFixed(2) + ' ' + currency.toUpperCase(); }
+    }
+    function boot() {
+      var c = cfg();
+      var wp = c.webPrices || {};
+      ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
+        if (wp[plan] && wp[plan].label) document.querySelector('[data-price="' + plan + '"]').textContent = wp[plan].label;
+      });
+      if (!c.pricesEndpoint) { loadPaypal(); return; }
+      fetch(c.pricesEndpoint)
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.ok && data.priceCents) {
+            state.currency = String(data.currency || 'usd').toUpperCase();
+            ['monthly', 'yearly', 'lifetime'].forEach(function (plan) {
+              var cents = Number(data.priceCents[plan]);
+              if (cents > 0) document.querySelector('[data-price="' + plan + '"]').textContent = money(cents, state.currency);
+            });
+          }
+          loadPaypal();
+        })
+        .catch(function () { loadPaypal(); });
+    }
+    /* site-config.js подключён с defer — ждём DOM, тогда KNOWLY_SITE уже есть */
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+    else boot();
+
+    function payload() {
+      return {
+        plan: state.plan,
+        email: $('buyerEmail').value.trim(),
+        gift: true,
+        giftTo: $('giftTo').value.trim(),
+        giftFrom: $('giftFrom').value.trim(),
+      };
+    }
+    function validEmail() {
+      var email = $('buyerEmail').value.trim();
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return true;
+      showError('Укажите email — на него придёт сертификат с кодом.');
+      $('buyerEmail').focus();
+      return false;
+    }
+
+    /* карта: мгновенная реакция кнопки, guard от двойного клика, откат при ошибке */
+    $('giftForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (state.busy || !validEmail()) return;
+      clearError();
+      state.busy = true;
+      var btn = $('cardBtn');
+      btn.disabled = true;
+      btn.firstElementChild.textContent = 'Открываем оплату…';
+      fetch(cfg().checkoutEndpoint, { method: 'POST', body: JSON.stringify(payload()) })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.ok && data.url) { location.href = data.url; return; }
+          throw new Error('checkout_failed');
+        })
+        .catch(function () {
+          state.busy = false;
+          btn.disabled = false;
+          btn.firstElementChild.textContent = 'Оплатить картой';
+          showError('Оплата не открылась. Попробуйте ещё раз или напишите в поддержку.');
+        });
+    });
+
+    /* PayPal — те же серверные ручки, что и раньше */
+    var paypalLoaded = false;
+    function loadPaypal() {
+      var c = cfg();
+      if (paypalLoaded || !c.paypalClientId) return;
+      paypalLoaded = true;
+      var script = document.createElement('script');
+      script.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(c.paypalClientId)
+        + '&currency=' + encodeURIComponent(state.currency) + '&intent=capture&components=buttons';
+      script.onload = function () {
+        if (!window.paypal || !window.paypal.Buttons) return;
+        window.paypal.Buttons({
+          style: { layout: 'horizontal', color: 'gold', shape: 'pill', label: 'paypal', height: 44, tagline: false },
+          onClick: function (_data, actions) {
+            clearError();
+            if (!validEmail()) return actions.reject();
+            return actions.resolve();
+          },
+          createOrder: function () {
+            return fetch(c.paypalCreateEndpoint, { method: 'POST', body: JSON.stringify(payload()) })
+              .then(function (r) { return r.json(); })
+              .then(function (data) {
+                if (data && data.ok && data.orderId) return data.orderId;
+                throw new Error('paypal_create_failed');
+              });
+          },
+          onApprove: function (data) {
+            return fetch(c.paypalCaptureEndpoint, { method: 'POST', body: JSON.stringify({ orderId: data.orderID }) })
+              .then(function (r) { return r.json(); })
+              .then(function (res) {
+                if (res && res.ok) {
+                  location.href = '/start/thanks/?provider=paypal&order=' + encodeURIComponent(data.orderID)
+                    + '&plan=' + encodeURIComponent(state.plan) + '&gift=1';
+                  return;
+                }
+                throw new Error('paypal_capture_failed');
+              });
+          },
+          onError: function () {
+            showError('PayPal не ответил. Попробуйте карту или напишите в поддержку.');
+          },
+        }).render('#paypal-buttons');
+      };
+      document.head.appendChild(script);
+    }
+  })();
+</script>
 </body>
 </html>

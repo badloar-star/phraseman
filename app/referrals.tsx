@@ -91,10 +91,10 @@ function makeL(lang: Lang) {
  * потеряться за декоративной анимацией (UI-thread callback может не прийти —
  * см. контракт referral_roulette_finish). Promise.race гарантирует показ
  * модалки не позже дедлайна.
- * Худшая посадка из крейсера ≈ 1.17с (линейный довод) + 2.34с (торможение)
- * + 0.35с (фиксация) ≈ 3.9с — дедлайн с запасом сверху.
+ * Худшая посадка из крейсера ≈ 0.78с (линейный довод) + 1.56с (торможение)
+ * + 0.35с (фиксация) ≈ 2.7с — дедлайн с запасом сверху.
  */
-const SPIN_SETTLE_DEADLINE_MS = 4_600;
+const SPIN_SETTLE_DEADLINE_MS = 3_400;
 function settlePrizeArcAnimation(startLanding: () => Promise<void> | undefined): Promise<void> {
   const landing = startLanding();
   if (!landing) return Promise.resolve();

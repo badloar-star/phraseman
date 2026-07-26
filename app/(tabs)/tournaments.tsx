@@ -259,47 +259,12 @@ export default function TournamentsScreen() {
     [insets.top, insets.bottom],
   );
 
-  // Краевые состояния до основного рендера: скелетон повторяет геометрию,
-  // поэтому появление данных не двигает вёрстку.
-  if (scheduleFailed || status === 'offline') {
-    return (
-      <View style={styles.root}>
-        <TournamentEdgeState kind="offline" onRetry={() => { reloadSchedule(); retry(); }} />
-      </View>
-    );
-  }
-  if (!schedule) {
-    // зачем: скелетон здесь — три блока цвета card на фоне bg с прозрачностью
-    // 0.5, на тёмной теме они почти неразличимы, и экран читается как пустой
-    // чёрный. Добавляем заголовок и подпись: человек видит, что идёт загрузка,
-    // а не «приложение сломалось». Геометрия скелетона сохранена (Performance
-    // Bible: первый кадр = финальная геометрия), поэтому появление данных не
-    // двигает вёрстку.
-    return (
-      <View style={[styles.root, { paddingTop: insets.top + 12 }]}>
-        <View style={styles.loadingHeader}>
-          <Text style={styles.title}>Турниры</Text>
-          <Text style={styles.loadingHint}>Загружаем расписание…</Text>
-        </View>
-        <TournamentSkeleton />
-      </View>
-    );
-  }
-  if (!nextSlot) {
-    // Слоты выключены в админке — режим ещё не запущен.
-    return (
-      <View style={styles.root}>
-        <TournamentEdgeState kind="preseason" />
-      </View>
-    );
-  }
-  if (room?.state === 'cancelled') {
-    return (
-      <View style={styles.root}>
-        <TournamentEdgeState kind="cancelled" onRetry={reloadSchedule} />
-      </View>
-    );
-  }
+  // зачем: экран турниров ВСЕГДА рабочий (требование владельца 2026-07-26).
+  // Раньше он подменялся заглушками: «Нет соединения» при любом отказе (даже
+  // когда интернет есть, а просто нет расписания), скелетон на время загрузки,
+  // «Скоро первый турнир» при выключенных слотах. Человек упирался в тупик
+  // вместо экрана. Теперь заглушек нет — контент рисуется всегда, а состояние
+  // показывается ВНУТРИ hero-карточки, не перекрывая остальное.
 
   return (
     <View style={styles.root}>
@@ -354,15 +319,21 @@ export default function TournamentsScreen() {
             </View>
 
             <View style={styles.heroCenter}>
+              {/* зачем: без расписания отсчёт показывал бы 00:00 — вместо нулей
+                  честный текст, но экран остаётся живым и рабочим. */}
               {live ? (
                 <Text style={styles.liveText} allowFontScaling={false}>LIVE</Text>
-              ) : (
+              ) : nextSlot ? (
                 <TimeLeft seconds={secondsToStart} />
+              ) : (
+                <Text style={styles.liveText} allowFontScaling={false}>Скоро</Text>
               )}
               <Text style={styles.heroSub}>
                 {live
                   ? `${room?.players?.length ?? 0} из 16 мест занято — успей зайти!`
-                  : 'до старта · 16 игроков · 4 раунда'}
+                  : nextSlot
+                    ? 'до старта · 16 игроков · 4 раунда'
+                    : 'первый турнир готовится · 16 игроков · 4 раунда'}
               </Text>
             </View>
 
@@ -395,7 +366,7 @@ export default function TournamentsScreen() {
               </>
             ) : (
               <Cta onPress={openConfirm} disabled={!roomId || joining}>
-                {`Начать турнир · ${entryGems}`}
+                {nextSlot ? `Начать турнир · ${entryGems}` : 'Скоро откроем'}
               </Cta>
             )}
           </Card>

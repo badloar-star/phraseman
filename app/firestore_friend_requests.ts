@@ -356,8 +356,18 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   // Достижения: считаем текущих друзей после принятия заявки
   try {
     const { checkAchievements } = await import('./achievements');
-    const friendsSnap = await db.collection('users').doc(myUid).collection('friends').get();
-    const totalFriends = friendsSnap.size;
+    // зачем: нужно ТОЛЬКО количество друзей, а не сами документы. Полное чтение
+    // подколлекции тарифицируется как N чтений (50 друзей = 50 чтений на каждое
+    // принятие заявки); count() — это одно агрегатное чтение независимо от размера.
+    // Фолбэк на .get() оставлен на случай, если count() недоступен в рантайме.
+    const friendsRef = db.collection('users').doc(myUid).collection('friends');
+    let totalFriends: number;
+    try {
+      const countSnap = await friendsRef.count().get();
+      totalFriends = Number(countSnap.data()?.count ?? 0) || 0;
+    } catch {
+      totalFriends = (await friendsRef.get()).size;
+    }
     void checkAchievements({ type: 'friend_added', totalFriends });
   } catch {}
 }

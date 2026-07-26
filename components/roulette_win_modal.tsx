@@ -24,7 +24,7 @@ import Animated, {
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { ROULETTE_PRIZES } from '../app/roulette_prizes';
+import { ROULETTE_PRIZES, roulettePrizeLabel } from '../app/roulette_prizes';
 
 export interface RouletteWinData {
   prizeIndex: number;
@@ -49,20 +49,7 @@ const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
   pl: 'pl-PL',
 };
 
-/** Локализованное имя приза («1 месяц», не «30 дн.») — зеркало ROULETTE_PRIZES.days. */
-function prizeTitle(days: number, lang: Lang): string {
-  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
-    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
-  switch (days) {
-    case 1: return L('1 день', '1 день', '1 día', '1 dia', '1 ngày', '1 hari', '1 gün', '1 dzień');
-    case 7: return L('7 дней', '7 днів', '7 días', '7 dias', '7 ngày', '7 hari', '7 gün', '7 dni');
-    case 30: return L('1 месяц', '1 місяць', '1 mes', '1 mês', '1 tháng', '1 bulan', '1 ay', '1 miesiąc');
-    case 90: return L('3 месяца', '3 місяці', '3 meses', '3 meses', '3 tháng', '3 bulan', '3 ay', '3 miesiące');
-    case 180: return L('6 месяцев', '6 місяців', '6 meses', '6 meses', '6 tháng', '6 bulan', '6 ay', '6 miesięcy');
-    case 365: return L('1 год', '1 рік', '1 año', '1 ano', '1 năm', '1 tahun', '1 yıl', '1 rok');
-    default: return `${days} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
-  }
-}
+// Локализованное имя приза («1 месяц», не «30 дн.») — канон в roulette_prizes.ts.
 
 export default function RouletteWinModal({ data, onClose }: Props) {
   const { theme: t, f, ds } = useTheme();
@@ -129,7 +116,7 @@ export default function RouletteWinModal({ data, onClose }: Props) {
             maxFontSizeMultiplier={1.2}
             style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
           >
-            +{prizeTitle(data.prizeDays, lang as Lang)} Plus
+            +{roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus
           </Text>
           <Text
             maxFontSizeMultiplier={1.2}

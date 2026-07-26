@@ -86,5 +86,31 @@ export async function processVipGrantForCelebration(grantAt: string | null | und
   }
 }
 
+/**
+ * зачем: владелец (2026-07-26) — «Plus активирован» празднуем только при
+ * АКТИВАЦИИ доступа. Продление подарком (награда за друга) при уже активном
+ * Plus/Pro/VIP гасим: маркер помечается «увиденным» БЕЗ модалки, чтобы
+ * restoreFromCloud/слушатель позже не подняли её повторно тем же grantAt.
+ */
+export async function markVipGrantSeenWithoutCelebration(grantAt: string | null | undefined): Promise<void> {
+  const marker = normalizeMarker(grantAt);
+  if (!marker) return;
+  try {
+    const seen = await getLastSeenVipMarker();
+    const seenMs = markerMs(seen);
+    const grantMs = markerMs(marker);
+    // Не понижаем seen: более новый маркер уже записан — выходим.
+    if (seen === marker || (seenMs !== null && grantMs !== null && seenMs >= grantMs)) return;
+    // Гонка с другим путём взвода: этот же grant уже стоит pending — гасим целиком.
+    if (await getPendingVipCelebrationMarker() === marker) {
+      await consumeVipCelebration(marker);
+      return;
+    }
+    await AsyncStorage.setItem(SEEN_KEY, marker);
+  } catch (error) {
+    DebugLogger.error('vip_celebration_state:markVipGrantSeenWithoutCelebration', error, 'warning');
+  }
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

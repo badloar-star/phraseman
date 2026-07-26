@@ -24,6 +24,7 @@ import React, {
   useRef,
 } from 'react';
 import { StyleSheet, View, useWindowDimensions } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
 import Animated, {
   Easing,
@@ -82,6 +83,15 @@ const CRUISE_START_EXTRA_MS = 380;
 const CRUISE_MAX_TURNS = 40;
 /** Мягкий докат до ближайшего слота при остановке без приза (ошибка сети). */
 const CRUISE_STOP_MS = 420;
+/**
+ * зачем: владелец (2026-07-26) — сшить скорости крейсера и докрутки без рывка.
+ * Посадка из крейсера: линейный довод НА КРЕЙСЕРСКОЙ скорости до точки
+ * торможения, затем quad-out, у которого начальная скорость 2·D/T равна
+ * крейсерской (D = LANDING_DECEL_DEGREES, T выводится из скорости) — стык
+ * фаз без скачка скорости. Из покоя spinTo крутит старым бурным профилем.
+ */
+const LANDING_DECEL_DEGREES = 540; // 1.5 оборота торможения
+const LANDING_EXTRA_TURNS = 2; // минимальная дистанция посадки от крейсера
 
 export interface PrizeArcHandle {
   /**
@@ -222,6 +232,8 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
     },
     spinTo(prizeIndex: number) {
       if (targetRotationRef.current !== null) return Promise.resolve();
+      // Крейсер (startSpin) помечает spinningRef — по нему выбираем профиль посадки.
+      const fromCruise = spinningRef.current;
       cancelAnimation(rotation);
       spinningRef.current = true;
       return new Promise<void>((resolve) => {
@@ -229,24 +241,50 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
         // Нормализация: эквивалентная позиция в (-360, 0] — числа не растут бесконечно.
         const normalized = rotation.value % 360;
         rotation.value = normalized;
-        // Целевой слот приза (в первом цикле), финал ≡ -slot·30 (mod 360), минимум MIN_TURNS оборотов.
+        // Целевой слот приза (в первом цикле), финал ≡ -slot·30 (mod 360).
+        // Из покоя — бурный профиль на MIN_TURNS; из крейсера — линейный довод
+        // на крейсерской скорости + торможение со сшитой начальной скоростью.
         const slotDeg = POSITION_OF_PRIZE[prizeIndex] * SLOT_DEG;
         const alreadyBehind = ((normalized + slotDeg) % 360 + 360) % 360;
-        const target = normalized - alreadyBehind - MIN_TURNS * 360;
+        const landingTurns = fromCruise ? LANDING_EXTRA_TURNS : MIN_TURNS;
+        const target = normalized - alreadyBehind - landingTurns * 360;
         const overshootTarget = target - FINAL_OVERSHOOT_DEGREES;
+        const cruiseDegPerMs = 360 / CRUISE_TURN_MS;
+        // Стык фаз без рывка: quad-out стартует со скоростью 2·D/T = крейсерской.
+        const linearDistance = fromCruise ? Math.max(0, normalized - target - LANDING_DECEL_DEGREES) : 0;
+        const linearDurationMs = Math.round(linearDistance / cruiseDegPerMs);
+        const decelDurationMs = fromCruise
+          ? Math.round((2 * LANDING_DECEL_DEGREES) / cruiseDegPerMs)
+          : SPIN_DURATION_MS;
         targetRotationRef.current = target;
-        spinFallbackTimerRef.current = setTimeout(finishSpin, SPIN_DURATION_MS + SPIN_SETTLE_GRACE_MS);
+        const fallbackDelayMs = linearDurationMs + decelDurationMs
+          + FINAL_OVERSHOOT_DURATION_MS + FINAL_SETTLE_DURATION_MS + SPIN_SETTLE_GRACE_MS;
+        spinFallbackTimerRef.current = setTimeout(finishSpin, fallbackDelayMs);
         if (reduceMotion) {
           rotation.value = target;
           finishSpin();
           return;
         }
         spinningSV.value = 1;
+        const mainLegs = fromCruise
+          ? [
+              withTiming(normalized - linearDistance, {
+                duration: linearDurationMs,
+                easing: Easing.linear,
+              }),
+              withTiming(target, {
+                duration: decelDurationMs,
+                easing: Easing.out(Easing.quad),
+              }),
+            ]
+          : [
+              withTiming(target, {
+                duration: SPIN_DURATION_MS,
+                easing: Easing.bezier(0.08, 0.78, 0.12, 1),
+              }),
+            ];
         rotation.value = withSequence(
-          withTiming(target, {
-            duration: SPIN_DURATION_MS,
-            easing: Easing.bezier(0.08, 0.78, 0.12, 1),
-          }),
+          ...mainLegs,
           withTiming(overshootTarget, {
             duration: FINAL_OVERSHOOT_DURATION_MS,
             easing: Easing.out(Easing.quad),
@@ -287,15 +325,9 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
       testID="prize-arc"
     >
       {/* Свечение под центральной карточкой — тон, не обводка. */}
-      {!dimmed && (
-        <LinearGradient
-          colors={[`${t.accent}3D`, 'transparent']}
-          start={{ x: 0.5, y: 0 }}
-          end={{ x: 0.5, y: 1 }}
-          style={styles.glow}
-          pointerEvents="none"
-        />
-      )}
+      <View style={styles.pointer}>
+        <Ionicons name="caret-down" size={28} color={dimmed ? t.textMuted : t.accent} />
+      </View>
       <View style={[styles.pivotAnchor, { left: windowWidth / 2 }]}>
         <Animated.View style={pivotStyle}>
           {slots.map(({ slot, prize }) => (
@@ -348,14 +380,15 @@ const styles = StyleSheet.create({
     // рамкой телефона, как у Kimi), поэтому зона всегда в full-bleed обёртке.
     alignSelf: 'stretch',
   },
-  glow: {
+  pointer: {
     position: 'absolute',
-    top: 0,
+    top: 14,
     left: '50%',
-    marginLeft: -110,
-    width: 220,
-    height: 170,
-    borderRadius: 24,
+    marginLeft: -14,
+    width: 28,
+    height: 28,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   pivotAnchor: {
     position: 'absolute',

@@ -79,11 +79,23 @@ export default function ReferralSheetShell({
 
   const handleCloseRef = useRef(onClose);
   handleCloseRef.current = onClose;
+  const dismissFallbackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => () => {
+    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
+  }, []);
 
   const dismissSheet = useCallback(() => {
     hapticTap();
     backdropO.value = withTiming(0, { duration: 200 });
     sheetOpacity.value = withTiming(0, { duration: 180 });
+    // зачем: владелец (2026-07-26) — callback Reanimated приходит с finished=false
+    // при отмене, onClose не вызывался и шит «зависал открытым» невидимо (кнопка
+    // повторного открытия выглядела мёртвой). JS-страховка закрывает всегда.
+    if (dismissFallbackRef.current) clearTimeout(dismissFallbackRef.current);
+    dismissFallbackRef.current = setTimeout(() => {
+      dismissFallbackRef.current = null;
+      handleCloseRef.current();
+    }, 320);
     sheetY.value = withTiming(SHEET_HIDDEN, { duration: 240, easing: REasing.out(REasing.cubic) }, (finished) => {
       if (finished) runOnJS(handleCloseRef.current)();
     });
@@ -200,16 +212,16 @@ const styles = StyleSheet.create({
     borderRadius: 2,
   },
   header: {
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     alignItems: 'center',
     gap: 12,
     marginTop: 2,
     marginBottom: 12,
   },
   closeBtn: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },

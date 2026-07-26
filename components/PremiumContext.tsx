@@ -26,13 +26,15 @@ import {
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
 import { resolvePremiumPackages, syncRevenueCatIdentity } from '../app/revenuecat_init';
-import { processVipGrantForCelebration } from '../app/vip_celebration_state';
+import { markVipGrantSeenWithoutCelebration, processVipGrantForCelebration } from '../app/vip_celebration_state';
 import { getVipProgressState } from '../app/premium_progress';
 import { ensureAnonUser, ensureStableAuthLinkForStableIdDetailed, restoreFromCloud } from '../app/cloud_sync';
 import { getIntroFullAccessState } from '../app/intro_full_access';
 import { isFeatureFreeForEveryone, type FeatureGate } from '../app/feature_gates';
 import { isFeatureGrantedByWeeklyBoon } from '../app/boons/boon_feature_grants';
 import { getAppSnapshot } from '../app/app_snapshot_store';
+import { captureAccountGeneration, isCurrentAccountGeneration } from '../app/account_generation';
+import { writeVipSnapshotForAccount } from '../app/premium_vip_storage';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -341,10 +343,14 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     let retryTimer: ReturnType<typeof setTimeout> | null = null;
     let retryAttempt = 0;
     const listenerEpoch = getPremiumAccountTransitionEpoch();
+    const listenerGeneration = captureAccountGeneration();
+    const listenerStableId = listenerGeneration.stableId ?? '';
     const isListenerCurrent = () => (
       !cancelled
       && !premiumAccountTransitionActiveRef.current
       && getPremiumAccountTransitionEpoch() === listenerEpoch
+      && !!listenerStableId
+      && isCurrentAccountGeneration(listenerGeneration, listenerStableId)
     );
 
     const clearRetry = () => {
@@ -410,19 +416,27 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
             void runPremiumAccountScopedWork(listenerEpoch, async (isEpochCurrent) => {
               const isSnapshotCurrent = () => isListenerCurrent() && isEpochCurrent();
               if (!isSnapshotCurrent()) return;
-              const pairs: [string, string][] = [
-                ['vip_active', vipState.active ? 'true' : 'false'],
-                ['vip_plan', vipState.active ? vipState.plan : ''],
-                ['vip_from', vipState.active ? vipState.fromValue : '0'],
-                ['vip_until', vipState.active ? vipState.untilValue : '0'],
-                ['vip_admin_override', vipState.active ? 'true' : 'false'],
-              ];
-              if (vipState.grantAt) pairs.push(['vip_admin_grant_at', vipState.grantAt]);
               if (!isSnapshotCurrent()) return;
-              await AsyncStorage.multiSet(pairs).catch(() => {});
+              await writeVipSnapshotForAccount(listenerStableId, {
+                vip_active: vipState.active ? 'true' : 'false',
+                vip_plan: vipState.active ? vipState.plan : '',
+                vip_from: vipState.active ? vipState.fromValue : '0',
+                vip_until: vipState.active ? vipState.untilValue : '0',
+                vip_admin_override: vipState.active ? 'true' : 'false',
+                vip_admin_grant_at: vipState.grantAt ?? '',
+              }).catch(() => {});
               if (!isSnapshotCurrent()) return;
               if (vipState.active) {
-                await processVipGrantForCelebration(vipState.grantAt).catch(() => {});
+                // зачем: владелец (2026-07-26) — зелёная/жёлтая «Plus активирован»
+                // не должна повторяться, когда подарок (награда за друга) лишь
+                // ПРОДЛЕВАЕТ уже активный Plus/Pro/VIP: празднуем только переход
+                // «не было доступа → появился». Модалка выигрыша уже показала «+N дн.».
+                const hadAccessBeforeGrant = vipSnapshotStateRef.current === true || isPremiumRef.current;
+                if (hadAccessBeforeGrant) {
+                  await markVipGrantSeenWithoutCelebration(vipState.grantAt).catch(() => {});
+                } else {
+                  await processVipGrantForCelebration(vipState.grantAt).catch(() => {});
+                }
                 if (!isSnapshotCurrent()) return;
               }
               invalidatePremiumCache();

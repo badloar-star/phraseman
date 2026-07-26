@@ -13,6 +13,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ActivityIndicator,
+  InteractionManager,
   RefreshControl,
   ScrollView,
   Share,
@@ -89,8 +90,10 @@ function makeL(lang: Lang) {
  * потеряться за декоративной анимацией (UI-thread callback может не прийти —
  * см. контракт referral_roulette_finish). Promise.race гарантирует показ
  * модалки не позже дедлайна.
+ * Худшая посадка из крейсера ≈ 1.17с (линейный довод) + 2.34с (торможение)
+ * + 0.35с (фиксация) ≈ 3.9с — дедлайн с запасом сверху.
  */
-const SPIN_SETTLE_DEADLINE_MS = 3_600;
+const SPIN_SETTLE_DEADLINE_MS = 4_600;
 function settlePrizeArcAnimation(startLanding: () => Promise<void> | undefined): Promise<void> {
   const landing = startLanding();
   if (!landing) return Promise.resolve();
@@ -226,7 +229,12 @@ export default function ReferralsScreen() {
     if (enterParamHandledRef.current) return;
     if (params.enter === '1' && marketingVisible) {
       enterParamHandledRef.current = true;
-      setCodeSheetOpen(true);
+      // зачем: владелец (2026-07-26) — «кнопка не нажимается»: iOS молча теряет
+      // RN Modal, показанный во время навигационного перехода (state остаётся
+      // true, шит невидим, повторный setCodeSheetOpen(true) — no-op). Открываем
+      // шит только ПОСЛЕ завершения перехода.
+      const task = InteractionManager.runAfterInteractions(() => setCodeSheetOpen(true));
+      return () => task.cancel();
     }
   }, [params.enter, marketingVisible]);
 
@@ -728,7 +736,14 @@ export default function ReferralsScreen() {
                   testID="referrals-enter-code"
                   accessibilityRole="button"
                   activeOpacity={0.8}
-                  onPress={() => { hapticTap(); setCodeSheetOpen(true); }}
+                  onPress={() => {
+                    hapticTap();
+                    // зачем: самолечение зависшего шита — если Modal «открыт»
+                    // невидимо (iOS-потеря во время перехода), сброс + повтор
+                    // на следующем кадре гарантированно показывает шит.
+                    setCodeSheetOpen(false);
+                    requestAnimationFrame(() => setCodeSheetOpen(true));
+                  }}
                   style={{
                     minHeight: 46,
                     borderRadius: 16,

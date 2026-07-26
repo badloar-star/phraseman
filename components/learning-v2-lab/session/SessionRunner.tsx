@@ -37,9 +37,15 @@ const FINALE_STAR_SLOTS = ['star-1', 'star-2', 'star-3'] as const;
 export interface SessionRunnerProps {
   readonly session: SessionVM;
   readonly onExit: () => void;
+  /** Показать чипы типов ошибок на вступлении (разбор ошибок «Моей практики»). */
+  readonly showErrorChips?: boolean;
 }
 
-export const SessionRunner = memo(function SessionRunner({ session, onExit }: SessionRunnerProps) {
+export const SessionRunner = memo(function SessionRunner({
+  session,
+  onExit,
+  showErrorChips = false,
+}: SessionRunnerProps) {
   const [stage, setStage] = useState<Stage>('intro');
   const [cardIndex, setCardIndex] = useState(0);
   const [attempt, setAttempt] = useState(0);
@@ -211,6 +217,19 @@ export const SessionRunner = memo(function SessionRunner({ session, onExit }: Se
           <GraphemeText text={session.intro.headline} maxGraphemes={60} style={s.introHeadline} />
           {session.intro.canDo ? (
             <GraphemeText text={session.intro.canDo} maxGraphemes={90} style={s.introCanDo} />
+          ) : null}
+          {/* зачем: в разборе ошибок ученик сразу видит, ЧТО именно разбираем —
+              типы ошибок с количеством, а не абстрактное «5 карт» */}
+          {showErrorChips && session.errorChips ? (
+            <View style={s.errorChips} accessibilityLabel="Типы ошибок">
+              {session.errorChips.map((chip) => (
+                <View key={chip.tag} style={s.errorChip}>
+                  <Text style={s.errorChipText}>
+                    {chip.tag} ×{chip.count}
+                  </Text>
+                </View>
+              ))}
+            </View>
           ) : null}
           <View style={s.introMeta}>
             <View style={s.tagMuted}>
@@ -386,6 +405,14 @@ const s = StyleSheet.create({
     backgroundColor: C.bgSubtle,
   },
   tagMutedText: { fontSize: TEXT.sm, color: C.fgSecondary },
+  errorChips: { flexDirection: 'row', flexWrap: 'wrap', gap: SPACE.s2, marginTop: SPACE.s2 },
+  errorChip: {
+    paddingVertical: SPACE.s1,
+    paddingHorizontal: SPACE.s3,
+    borderRadius: RADIUS.pill,
+    backgroundColor: '#2A2729',
+  },
+  errorChipText: { fontSize: TEXT.sm, color: C.gold, fontWeight: WEIGHT.semibold },
   cardBody: { padding: SPACE.s4, gap: SPACE.s4, flexGrow: 1 },
   cardHead: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: SPACE.s2 },
   kicker: { flex: 1, fontSize: TEXT.md, color: C.fgSecondary },

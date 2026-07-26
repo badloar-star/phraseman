@@ -7,6 +7,7 @@ import React, { memo, useCallback, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { unit1Fixture, sessionByRef } from './session/fixtures';
+import { PracticeLab } from './session/PracticeLab';
 import { SessionRunner } from './session/SessionRunner';
 import { UnitMap } from './session/UnitMap';
 import type { SessionVM } from './session/contracts';
@@ -18,6 +19,8 @@ interface LearningV2ModesLabProps {
 
 const LearningV2ModesLab = memo(function LearningV2ModesLab({ bottomPadding = 0 }: LearningV2ModesLabProps) {
   const [openSession, setOpenSession] = useState<SessionVM | null>(null);
+  /** Боковой узел тропы: сейчас это «Моя практика». */
+  const [openSurface, setOpenSurface] = useState<string | null>(null);
   /** Сессия, которая есть в карте, но ещё не перенесена из поставки. */
   const [pendingRef, setPendingRef] = useState<string | null>(null);
 
@@ -34,14 +37,24 @@ const LearningV2ModesLab = memo(function LearningV2ModesLab({ bottomPadding = 0 
   }, []);
 
   const handleExit = useCallback(() => setOpenSession(null), []);
+  const handleSurfaceExit = useCallback(() => setOpenSurface(null), []);
 
   if (openSession) {
     return <SessionRunner session={openSession} onExit={handleExit} />;
   }
 
+  if (openSurface === 'practice-lab') {
+    return <PracticeLab onExit={handleSurfaceExit} bottomPadding={bottomPadding} />;
+  }
+
   return (
     <View style={s.root}>
-      <UnitMap vm={unit1Fixture} onOpenSession={handleOpen} bottomPadding={bottomPadding} />
+      <UnitMap
+        vm={unit1Fixture}
+        onOpenSession={handleOpen}
+        onOpenSurface={setOpenSurface}
+        bottomPadding={bottomPadding}
+      />
       {pendingRef ? (
         <View style={s.toast} accessibilityRole="alert">
           <Text style={s.toastText}>Эта сессия ещё готовится — открой «I am — о себе».</Text>

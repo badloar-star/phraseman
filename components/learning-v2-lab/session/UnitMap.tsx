@@ -18,10 +18,17 @@ const NODE_SHIFT = 42;
 export interface UnitMapProps {
   readonly vm: UnitMapVM;
   readonly onOpenSession: (sessionRef: string) => void;
+  /** Боковой узел тропы («Моя практика»). */
+  readonly onOpenSurface: (surfaceRef: string) => void;
   readonly bottomPadding?: number;
 }
 
-export const UnitMap = memo(function UnitMap({ vm, onOpenSession, bottomPadding = 0 }: UnitMapProps) {
+export const UnitMap = memo(function UnitMap({
+  vm,
+  onOpenSession,
+  onOpenSurface,
+  bottomPadding = 0,
+}: UnitMapProps) {
   const [plan, setPlan] = useState<'free' | 'plus'>('free');
 
   // Индекс волны идёт сквозь зоны, чтобы кривая не начиналась заново.
@@ -96,7 +103,11 @@ export const UnitMap = memo(function UnitMap({ vm, onOpenSession, bottomPadding 
           </View>
 
           {zoneIndex < vm.sideNodes.length ? (
-            <TreasureNode node={vm.sideNodes[zoneIndex]} side={zoneIndex % 2 === 0 ? 'end' : 'start'} />
+            <TreasureNode
+              node={vm.sideNodes[zoneIndex]}
+              side={zoneIndex % 2 === 0 ? 'end' : 'start'}
+              onOpen={onOpenSurface}
+            />
           ) : null}
         </View>
       ))}
@@ -158,12 +169,25 @@ const NODE_STAR_SLOTS = ['ns-1', 'ns-2', 'ns-3'] as const;
 const TreasureNode = memo(function TreasureNode(props: {
   readonly node: UnitMapVM['sideNodes'][number];
   readonly side: 'start' | 'end';
+  readonly onOpen: (surfaceRef: string) => void;
 }) {
-  const { node, side } = props;
+  const { node, side, onOpen } = props;
   const locked = node.state === 'locked';
   return (
     <View style={[s.treasureRow, side === 'end' ? s.treasureEnd : s.treasureStart]}>
-      <View style={[s.treasure, locked ? s.treasureLocked : null]}>
+      <TapScale
+        onPress={() => {
+          if (locked || !node.surfaceRef) return;
+          onOpen(node.surfaceRef);
+        }}
+        disabled={locked || !node.surfaceRef}
+        withHaptic
+        scaleTo={0.96}
+        accessibilityLabel={locked ? `${node.title} — закрыто` : `${node.title}. ${node.sub}`}
+        accessibilityState={{ disabled: locked }}
+        style={[s.treasure, locked ? s.treasureLocked : null]}
+        testID={`v2-map-side-${node.id}`}
+      >
         <Text style={s.treasureGlyph}>{locked ? '🔒' : node.icon === 'target' ? '🎯' : '🏆'}</Text>
         <View style={s.treasureTexts}>
           <GraphemeText text={node.title} maxGraphemes={24} style={s.treasureTitle} />
@@ -173,7 +197,7 @@ const TreasureNode = memo(function TreasureNode(props: {
             style={s.treasureSub}
           />
         </View>
-      </View>
+      </TapScale>
     </View>
   );
 });

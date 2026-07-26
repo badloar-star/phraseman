@@ -1,7 +1,7 @@
 // зачем: дословная копия fixtures/session/*.json поставки Kimi (блок «УРОК MVP»,
 // который владелец указал как правильный). Здесь весь контент сессии: карточки,
 // звёзды за исход, лестница подсказок, теги ошибок. UI ничего не придумывает.
-import type { SessionVM, UnitMapVM } from './contracts';
+import type { PracticeHomeVM, SessionVM, UnitMapVM } from './contracts';
 
 /** fixtures/session/unit-1.json — юнит «Представиться (to be)», 3 зоны × 4 сессии. */
 export const unit1Fixture: UnitMapVM = {
@@ -748,6 +748,170 @@ export const session3Fixture: SessionVM = {
       planInjected: false,
     },
   ],
+};
+
+/**
+ * fixtures/session/mistake-lab.json — «Моя практика», разбор ошибок юнита.
+ * 5 карточек с бейджем «Разбираем ошибку» и заметкой о прошлом промахе.
+ */
+export const mistakeLabFixture: SessionVM = {
+  id: 'vm-mistake-lab',
+  surfaceId: 'practice-lab',
+  kind: 'practice',
+  sessionId: 'mistake-lab',
+  title: 'Моя практика',
+  zone: 'Mistake Lab',
+  intro: {
+    kicker: 'Mistake Lab',
+    headline: 'Разбор твоих ошибок',
+    startLabel: 'Начать',
+    cardsDisplay: '5 карт',
+    canDo: 'Закроешь 4 типа ошибок этого юнита',
+  },
+  finale: {
+    headline: 'Ошибки разобраны!',
+    canDo: 'Ты исправил все 4 типа ошибок этого юнита.',
+    continueLabel: 'К карте юнита',
+  },
+  errorChips: [
+    { tag: 'форма', count: 2 },
+    { tag: 'порядок слов', count: 1 },
+    { tag: 'слух', count: 1 },
+    { tag: 'произношение', count: 1 },
+  ],
+  cards: [
+    {
+      id: 'mlc1',
+      engine: 'choice',
+      variant: 'contrast',
+      instruction: 'Где ошибка?',
+      phrase: { en: 'She ___ ready.', ru: '' },
+      options: [
+        { id: 'is', label: 'is', sub: 'пара к she' },
+        { id: 'are', label: 'are', sub: 'твой прошлый ответ' },
+        { id: 'am', label: 'am', sub: 'пара к I' },
+      ],
+      correctOptionId: 'is',
+      mistakeNote: 'В прошлый раз: She are ready',
+      starsByOutcome: { clean: 3, hint: 2, shown: 1 },
+      hints: {
+        first: 'Подсказка: are или is?',
+        contrast: 'are дружит с you/they. she — только с is.',
+        explain: 'She is ready. They are ready.',
+      },
+      mistakeTags: ['форма'],
+      planInjected: false,
+      returnsMistake: true,
+    },
+    {
+      id: 'mlc2',
+      engine: 'input',
+      variant: 'cloze',
+      instruction: 'Исправь сам',
+      sentence: 'They ___ ready.',
+      answer: 'are',
+      placeholder: '…',
+      mistakeNote: 'Та же ошибка: форма к they',
+      starsByOutcome: { clean: 3, hint: 2, shown: 1 },
+      hints: {
+        first: 'they — как you: своя форма.',
+        contrast: 'They are — как you are. is здесь не живёт.',
+        explain: 'They are ready.',
+      },
+      mistakeTags: ['форма'],
+      planInjected: false,
+      returnsMistake: true,
+    },
+    {
+      id: 'mlc3',
+      engine: 'arrange',
+      variant: 'distractors',
+      instruction: 'Собери правильно',
+      promptRu: 'Я готов.',
+      targetTokens: ['I', 'am', 'ready'],
+      bankChips: ['ready', 'am', 'I', 'is'],
+      preplaced: [],
+      mistakeNote: 'В прошлый раз: ready I am',
+      starsByOutcome: { clean: 3, hint: 2, shown: 1 },
+      hints: {
+        first: 'Начни с местоимения.',
+        contrast: 'I am ready — местоимение, форма, слово. Не наоборот.',
+        explain: 'Порядок: I · am · ready.',
+      },
+      mistakeTags: ['порядок слов'],
+      planInjected: false,
+      returnsMistake: true,
+    },
+    {
+      id: 'mlc4',
+      engine: 'choice',
+      variant: 'audio',
+      instruction: 'Что ты слышишь?',
+      audio: { label: 'They are ready', playLabel: 'Слушать', slowLabel: 'Медленнее' },
+      options: [
+        { id: 'a1', label: 'They are ready.', sub: '' },
+        { id: 'a2', label: 'You are ready.', sub: '' },
+        { id: 'a3', label: 'We are ready.', sub: '' },
+      ],
+      correctOptionId: 'a1',
+      mistakeNote: 'На слух путал they и you',
+      starsByOutcome: { clean: 3, hint: 2, shown: 1 },
+      hints: {
+        first: 'Первое слово решает всё.',
+        contrast: 'They — с мягким «з» в начале. You короче.',
+        explain: 'They are ready — «они готовы».',
+      },
+      mistakeTags: ['слух'],
+      planInjected: false,
+      returnsMistake: true,
+    },
+    {
+      id: 'mlc5',
+      engine: 'speech',
+      variant: 'repeat',
+      instruction: 'Скажи правильно',
+      phrase: { en: 'She is ready.', ru: 'Она готова.' },
+      wordFeedback: [
+        { word: 'She', result: 'good' },
+        { word: 'is', result: 'weak' },
+        { word: 'ready', result: 'good' },
+      ],
+      recognitionNote: 'Так услышал микрофон — без оценки акцента.',
+      skipLabel: 'Сейчас не могу говорить',
+      micLabel: 'Говорить',
+      mistakeNote: 'is проглатывался',
+      starsByOutcome: { clean: 3, hint: 2, shown: 1 },
+      hints: {
+        first: 'Три слова: She · is · ready.',
+        contrast: 'is — короткое, но слышное: She-iz-ready.',
+        explain: 'She is ready.',
+      },
+      mistakeTags: ['произношение'],
+      planInjected: false,
+      returnsMistake: true,
+    },
+  ],
+};
+
+/** fixtures/session/practice-home.json — дом «Моей практики»: три блока + CTA. */
+export const practiceHomeFixture: PracticeHomeVM = {
+  id: 'vm-practice-home',
+  surfaceId: 'practice-lab',
+  kind: 'practice-home',
+  title: 'Практика по юниту «Представиться»',
+  blocks: [
+    { id: 'review', title: 'Повторить сегодня', countDisplay: '12 фраз', icon: 'review', state: 'open' },
+    { id: 'mistakes', title: 'Работа над ошибками', countDisplay: '4 ошибки', icon: 'target', state: 'open' },
+    {
+      id: 'challenge',
+      title: 'Челлендж на 3 звезды',
+      countDisplay: 'Весь юнит без подсказок',
+      icon: 'trophy',
+      state: 'locked',
+      lockNote: 'После зоны «Использовать»',
+    },
+  ],
+  continueLabel: 'Продолжить тропу',
 };
 
 /** Пул сессий юнита: все, что перенесены из поставки. */

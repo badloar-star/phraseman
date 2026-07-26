@@ -9,6 +9,8 @@ import path from 'node:path';
 
 import {
   SESSION_POOL,
+  mistakeLabFixture,
+  practiceHomeFixture,
   session1Fixture,
   unit1Fixture,
   sessionByRef,
@@ -22,6 +24,7 @@ const labSource = read('components/learning-v2-lab/LearningV2ModesLab.tsx');
 const runnerSource = read('components/learning-v2-lab/session/SessionRunner.tsx');
 const mapSource = read('components/learning-v2-lab/session/UnitMap.tsx');
 const speechSource = read('components/learning-v2-lab/session/engines/SpeechEngine.tsx');
+const practiceSource = read('components/learning-v2-lab/session/PracticeLab.tsx');
 
 describe('lessons V2 — урок MVP (карта юнита + сессия)', () => {
   test('дев-гейт V2 ведёт на лабораторию урока', () => {
@@ -153,8 +156,40 @@ describe('lessons V2 — урок MVP (карта юнита + сессия)', (
     }
   });
 
+  test('«Моя практика»: три блока и рабочий разбор ошибок', () => {
+    expect(practiceHomeFixture.blocks).toHaveLength(3);
+    // Закрытый блок обязан объяснять, когда откроется, — иначе тупик без причины.
+    for (const block of practiceHomeFixture.blocks) {
+      expect(block.countDisplay.length).toBeGreaterThan(0);
+      if (block.state === 'locked') expect(block.lockNote?.length ?? 0).toBeGreaterThan(0);
+    }
+
+    // Разбор ошибок: карточки помечены как возврат ошибки и несут заметку о промахе.
+    expect(mistakeLabFixture.cards).toHaveLength(5);
+    expect(mistakeLabFixture.errorChips?.length).toBeGreaterThan(0);
+    for (const card of mistakeLabFixture.cards) {
+      expect(card.returnsMistake).toBe(true);
+      expect((card.mistakeNote ?? '').length).toBeGreaterThan(0);
+      expect(card.mistakeTags.length).toBeGreaterThan(0);
+    }
+  });
+
+  test('открытый боковой узел карты ведёт на реальный экран', () => {
+    // Экраны, которые реально смонтированы в лаборатории.
+    const wired = new Set(['practice-lab']);
+    for (const node of unit1Fixture.sideNodes) {
+      if (node.state === 'locked') {
+        expect(node.surfaceRef).toBeNull();
+        expect(node.lockNote?.length ?? 0).toBeGreaterThan(0);
+        continue;
+      }
+      expect(node.surfaceRef).toBeTruthy();
+      expect(wired.has(node.surfaceRef as string)).toBe(true);
+    }
+  });
+
   test('стиль урока уважает запреты владельца', () => {
-    for (const source of [labSource, runnerSource, mapSource, speechSource]) {
+    for (const source of [labSource, runnerSource, mapSource, speechSource, practiceSource]) {
       expect(source).not.toMatch(/adjustsFontSizeToFit/);
       // Обводки контейнеров запрещены; разделитель одной стороны разрешён.
       expect(source).not.toMatch(/(?<!Bottom)(?<!Top)(?<!Left)(?<!Right)borderWidth/);

@@ -164,6 +164,24 @@ export interface UnitZone {
   readonly sessions: readonly UnitSessionNode[];
 }
 
+/** Дом «Моей практики»: три больших блока + одна главная кнопка. */
+export interface PracticeHomeVM {
+  readonly id: string;
+  readonly surfaceId: string;
+  readonly kind: 'practice-home';
+  readonly title: string;
+  readonly blocks: readonly {
+    readonly id: 'review' | 'mistakes' | 'challenge';
+    readonly title: string;
+    /** Крупное значение («12 фраз», «4 ошибки») — запечено в фикстуре. */
+    readonly countDisplay: string;
+    readonly icon: 'review' | 'target' | 'trophy';
+    readonly state: 'open' | 'locked';
+    readonly lockNote?: string;
+  }[];
+  readonly continueLabel: string;
+}
+
 export interface UnitMapVM {
   readonly id: string;
   readonly surfaceId: string;

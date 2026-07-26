@@ -221,6 +221,41 @@ Guarded by `tests/layout_stability_contract.test.ts` + baseline `config/layout-s
 - Long lists (>~30 items, user-growable feeds/collections) use `FlashList`/`FlatList` with fixed-size rows — not `.map()` inside a `ScrollView`. Reference: `app/flashcards_collection.tsx`.
 - Keep screens under ~800 lines where practical; extract sections into memoized subcomponents and defer below-the-fold mounting via `InteractionManager.runAfterInteractions`.
 
+## Firestore Thread-Leak Invariant (`android_task_executor_maximum_pool_size: 0`)
+
+`firebase.json` → `react-native` → **`android_task_executor_maximum_pool_size: 0` — не удалять и не менять
+на другое значение без разбора нижеописанного бага.**
+
+Зачем (Crashlytics, 2026-07-26, 1.5.63 — 12 событий / 4 пользователя, «Repetitive crashes»):
+`java.lang.OutOfMemoryError: pthread_create (1040KB stack) failed` в
+`ReactNativeFirebaseFirestoreCollectionModule.sendOnSnapshotEvent`. Это исчерпание лимита
+ПОТОКОВ процесса, а не нехватка памяти под данные.
+
+Механизм — апстрим-баг RNFirebase (публичного тикета нет):
+`sendOnSnapshotEvent` берёт executor через `getTransactionalExecutor(listenerId)`
+(`ReactNativeFirebaseFirestoreCollectionModule.java:386`) — единственное место в модуле, где
+передаётся уникальный identifier. `TaskExecutorService` кэширует executors в статической
+`HashMap` по имени `...TransactionalExecutor<listenerId>` и при отписке листенера НЕ удаляет их
+(`shutdown()` — только при уничтожении модуля). Итог: каждая пере-подписка коллекционного
+`onSnapshot` = +1 вечный однопоточный пул (~1 МБ стека). В дампе краша нумерация `pool-N-thread-1`
+дошла до 6533, все спят на `LinkedBlockingQueue.take()`.
+
+Почему помогает `0`: в `TaskExecutorService.getTransactionalExecutor(String identifier)` стоит
+`maximumPoolSize != 0 ? identifier : ""` — при нуле identifier обнуляется, и все листенеры делят
+ОДИН общий executor. Утечка исчезает по конструкции, без патча нативного кода.
+Цена: операции Firestore сериализуются в один поток — поэтому коллекционные листенеры обязаны
+оставаться дешёвыми (см. ниже).
+
+Инварианты для нового кода:
+- Коллекционные `onSnapshot` (`.collection(...)`, а не `.doc(...)`) ВСЕГДА с `limit()` — они и
+  текут, и сериализуются. Doc-листенеры общий пул не плодят. На 2026-07-26 таких листенеров пять:
+  три в `app/app_messages.ts`, два в `app/firestore_friend_requests.ts`.
+- Не пере-подписывайся на коллекции чаще, чем нужно: нестабильные зависимости `useEffect`
+  умножают утечку (в `components/AppMessagesInbox.tsx` подписка завязана на `effectiveVisible`,
+  т.е. на открытие/закрытие ящика).
+- Настройка читается из `firebase.json` в build-time → после её изменения нужна ПЕРЕСБОРКА
+  Android-бинарника, JS-релиз её не подхватит.
+
 ## Session Communication And Impact-Analysis Protocol
 
 - Every session report and progress update must be written in the user's language and in plain, highly understandable language. Explain what changed, why it changed, what it affects, and what was checked. Avoid unexplained technical jargon; if a technical term is necessary, explain it immediately in ordinary words.

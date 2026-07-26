@@ -100,7 +100,8 @@
   ],
   "react-native": {
     "app_check_token_auto_refresh": false,
-    "analytics_auto_collection_enabled": false
+    "analytics_auto_collection_enabled": false,
+    "android_task_executor_maximum_pool_size": 0
   },
   "emulators": {
     "functions": { "port": 5001 },

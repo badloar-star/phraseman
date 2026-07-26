@@ -14,6 +14,10 @@
   var IOS = cfg.storeIos || 'https://apps.apple.com/app/id6764800879';
   var AND = cfg.storeAndroid || 'https://play.google.com/store/apps/details?id=app.phraseman';
   var isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent || '');
+  var isAndroid = /Android/i.test(navigator.userAgent || '');
+  // зачем: телефон в ландшафте шире 720px — редирект решаем по устройству,
+  // а не по ширине, чтобы телефон НИКОГДА не видел поповер с QR (вопрос владельца)
+  var isPhoneOrTablet = isIos || isAndroid;
 
   /* ===== Аврора (WebGL, только десктоп; мобила и reduced-motion — CSS-фолбэк).
      Пауза, когда сцены нет на экране или вкладка в фоне: экономим GPU. ===== */
@@ -170,7 +174,7 @@
   var dl = document.getElementById('dl');
   var storeUrl = isIos ? IOS : AND;
   function markMobileButtons() {
-    if (matchMedia('(max-width:720px)').matches) {
+    if (isPhoneOrTablet || matchMedia('(max-width:720px)').matches) {
       document.querySelectorAll('.js-cta, #dlBtn').forEach(function (b) {
         b.setAttribute('data-store', isIos ? 'ios' : 'android');
       });
@@ -198,7 +202,7 @@
   }
 
   function smart(e) {
-    if (matchMedia('(max-width:720px)').matches) { location.href = storeUrl; return; }
+    if (isPhoneOrTablet || matchMedia('(max-width:720px)').matches) { location.href = storeUrl; return; }
     var r = dl.getBoundingClientRect();
     if (r.top < 0 || r.top > innerHeight - 80) scrollTo({ top: 0, behavior: 'smooth' });
     dl.classList.toggle('open');

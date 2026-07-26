@@ -107,6 +107,68 @@ export const vdVisualDiscoveryFixture: VisualDiscoveryVM = {
   },
 };
 
+export interface SoundDiscriminationVM {
+  readonly surfaceId: string;
+  readonly title: string;
+  readonly promptLabel: string;
+  readonly signalLabel: string;
+  readonly options: readonly ActivityOption[];
+  readonly correctOptionId: string;
+  readonly successNote: string;
+  readonly needsWorkHint: string;
+  readonly offlineChip: string;
+  readonly downloadActionLabel: string;
+  readonly permissionPanel: {
+    readonly title: string;
+    readonly body: string;
+    readonly actionLabel: string;
+  };
+  readonly displayValues: { readonly masteryBadge: string };
+  readonly copy: StateCopy;
+}
+
+/** fixtures/mobile/sound-discrimination.json */
+export const soundDiscriminationFixture: SoundDiscriminationVM = {
+  surfaceId: 'sound-discrimination',
+  title: 'Which syllable did you hear?',
+  promptLabel: 'Play the signal, then choose the matching syllable.',
+  signalLabel: 'Signal A-07 · one syllable',
+  options: [
+    { id: 'opt-a', label: 'shī', annotation: 'sh · 1st tone', hint: 'retroflex' },
+    { id: 'opt-b', label: 'xī', annotation: 'x · 1st tone', hint: 'alveolo-palatal' },
+    { id: 'opt-c', label: 'sī', annotation: 's · 1st tone', hint: 'dental sibilant' },
+  ],
+  correctOptionId: 'opt-a',
+  successNote: 'Pre-baked result: correct — shī it was. Retroflex locked in.',
+  needsWorkHint: 'Pre-baked: you picked xī. sh curls the tongue back; x smiles it flat.',
+  offlineChip: 'offline · audio pack not downloaded',
+  downloadActionLabel: 'Queue audio pack',
+  permissionPanel: {
+    title: 'Microphone access is off',
+    body: 'Listening still works, but shadowing practice needs the mic. Grant access in your system settings, then resume.',
+    actionLabel: 'Open settings',
+  },
+  displayValues: { masteryBadge: '68%' },
+  copy: {
+    primaryActions: {
+      prompt: 'Start drill',
+      active: 'Check answer',
+      processing: 'Checking…',
+      success: 'Next pair',
+      needs_work: 'Hear it again',
+      recovery: 'Resume drill',
+    },
+    statusMessages: {
+      prompt: 'Three similar syllables. One signal. Warm up your ears.',
+      active: 'Signal ready — play it as often as you like, then choose.',
+      processing: 'Checking your choice in place…',
+      success: 'Correct. Nice ear.',
+      needs_work: 'Not quite — the contrast hint is below.',
+      recovery: 'Something interrupted the drill. Nothing was lost.',
+    },
+  },
+};
+
 export interface ComposerVM {
   readonly surfaceId: string;
   readonly targetTokens: readonly string[];

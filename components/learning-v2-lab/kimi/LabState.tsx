@@ -15,6 +15,10 @@ export interface LabConditions {
   /** Симулированный сигнал плеера (Kimi: playing/paused/none). */
   readonly signal: 'playing' | 'paused' | 'none';
   readonly online: boolean;
+  // зачем: владелец выбрал НАСТОЯЩИЙ микрофон (распознавание на устройстве) —
+  // разрешение станет реальным в речевой волне; поверхности читают его уже сейчас,
+  // чтобы панель «микрофон выключен» не пришлось вшивать задним числом.
+  readonly permission: 'granted' | 'denied' | 'undetermined';
 }
 
 export interface LabValue {
@@ -23,14 +27,16 @@ export interface LabValue {
   readonly logIntent: (event: LabIntentEvent) => void;
   readonly setState: (next: CanonicalState) => void;
   readonly setSignal: (next: LabConditions['signal']) => void;
+  readonly setPermission: (next: LabConditions['permission']) => void;
 }
 
 const FALLBACK: LabValue = {
   canonicalState: 'prompt',
-  conditions: { signal: 'none', online: true },
+  conditions: { signal: 'none', online: true, permission: 'undetermined' },
   logIntent: () => {},
   setState: () => {},
   setSignal: () => {},
+  setPermission: () => {},
 };
 
 const LabContext = createContext<LabValue>(FALLBACK);
@@ -48,6 +54,7 @@ export interface LabProviderProps {
 export function LabProvider({ initialState = 'prompt', onIntent, children }: LabProviderProps) {
   const [canonicalState, setCanonicalState] = useState<CanonicalState>(initialState);
   const [signal, setSignalState] = useState<LabConditions['signal']>('none');
+  const [permission, setPermissionState] = useState<LabConditions['permission']>('undetermined');
   // зачем: колбэк живёт в ref — иначе каждый рендер родителя пересоздаёт value контекста
   // и перерисовывает всю поверхность (лишние ре-рендеры на каждый тап).
   const intentRef = useRef(onIntent);
@@ -61,15 +68,20 @@ export function LabProvider({ initialState = 'prompt', onIntent, children }: Lab
     setSignalState(next);
   }, []);
 
+  const setPermission = useCallback((next: LabConditions['permission']) => {
+    setPermissionState(next);
+  }, []);
+
   const value = useMemo<LabValue>(
     () => ({
       canonicalState,
-      conditions: { signal, online: true },
+      conditions: { signal, online: true, permission },
       logIntent,
       setState: setCanonicalState,
       setSignal,
+      setPermission,
     }),
-    [canonicalState, signal, logIntent, setSignal],
+    [canonicalState, signal, permission, logIntent, setSignal],
   );
 
   return <LabContext.Provider value={value}>{children}</LabContext.Provider>;

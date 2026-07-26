@@ -1,106 +1,398 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Learning V2 · Витрина макетов</title>
 <style>
-/* Закон G27-G30: без эмодзи и картинок; типографика и тон. */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ============================================================
+   Витрина Learning V2 · Индекс всех макетов.
+   Токены темы, типографика-герой и премиальные градиенты взяты 1:1
+   у эталона 02-phrase-builder.html (одобрен владельцем).
+   Законы: без эмодзи и картинок (только SVG), без обводок контейнеров,
+   без подписей-расшифровок мелким шрифтом под названием.
+   ============================================================ */
+:root {
+  --bg-primary:#030604; --bg-card:#101710; --bg-surface:#17241A; --bg-surface2:#203028;
+  --text-primary:#F0F7F2; --text-second:#58CC89; --text-muted:#8AB49A; --text-ghost:#506A5C;
+  --gold:#FFC800; --gold-bg:rgba(255,200,0,0.14);
+  --accent:#47C870; --accent-bg:rgba(71,200,112,0.14); --correct-text:#042010;
+  --card-shadow:rgba(0,0,0,0.55);
+  --chip-grad-a:#2A4230; --chip-grad-b:#131D14; --chip-edge:#0B120C;
+  --bg-grad-a:#071009; --bg-grad-b:#010101;
+  --sheen:rgba(88,204,137,0.06);
+  --cta-grad:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34);
+  --chip-hi:rgba(255,255,255,0.12);
+  --surface-grad:linear-gradient(160deg,#1E2E22,#0F1810);
+  --hero-grad:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --ease-outquint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-spring: cubic-bezier(0.38, 0.70, 0.125, 1.0);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+html, body { background:var(--bg-primary); }
 body {
-  font-family: -apple-system, "SF Pro Text", "Segoe UI", Roboto, sans-serif;
-  background: #0B0E0C; color: #E8EDEA; min-height: 100vh;
-  padding: 48px 24px 80px; display: flex; justify-content: center;
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+  color:var(--text-primary); min-height:100vh;
+  padding:56px 24px 100px; display:flex; justify-content:center;
+  background:
+    radial-gradient(120% 46% at 50% -6%, var(--sheen), transparent 62%),
+    linear-gradient(180deg, var(--bg-grad-a), var(--bg-grad-b));
 }
-.wrap { width: 100%; max-width: 760px; }
-h1 { font-size: 28px; font-weight: 800; letter-spacing: 0.2px; }
-h1 span { color: #58CC89; }
-.sub { color: #8AB49A; font-size: 15px; margin-top: 8px; line-height: 1.55; max-width: 62ch; }
-.wave { margin-top: 34px; }
-.wave h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 1.6px; color: #8AB49A; font-weight: 800; margin-bottom: 12px; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
-a.card, div.card {
-  display: flex; align-items: center; gap: 14px;
-  background: linear-gradient(160deg, #151D17, #101511);
-  border-radius: 18px; padding: 16px;
-  text-decoration: none; color: inherit;
-  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
-  transition: transform 140ms cubic-bezier(0.23,1,0.32,1), box-shadow 140ms;
+.wrap { width:100%; max-width:980px; }
+svg { display:block; }
+
+/* ---------- Герой ---------- */
+.hero-block { max-width:74ch; }
+h1 {
+  font-size:clamp(34px, 5vw, 50px); font-weight:900; letter-spacing:0.2px; line-height:1.08;
+  background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent;
 }
-a.card:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(0,0,0,0.45); }
-a.card:active { transform: scale(0.98); }
+.sub {
+  color:var(--text-muted); font-size:16px; margin-top:16px; line-height:1.6; max-width:64ch; font-weight:600;
+}
+
+/* ---------- Секции ---------- */
+.section { margin-top:52px; }
+.section-head {
+  display:flex; align-items:center; gap:14px; margin-bottom:18px;
+}
+.section-bar {
+  width:5px; height:22px; border-radius:999px; flex:0 0 auto;
+  background:linear-gradient(180deg, var(--text-second), var(--accent));
+  box-shadow:0 0 12px var(--accent-bg);
+}
+.section-head h2 {
+  font-size:13px; text-transform:uppercase; letter-spacing:1.8px; color:var(--text-muted); font-weight:800;
+}
+
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media (max-width: 760px) { .grid { grid-template-columns:1fr; } }
+
+/* ---------- Карточки ---------- */
+a.card {
+  display:flex; align-items:center; gap:16px;
+  background:linear-gradient(160deg, #151D17, #0D120E);
+  border-radius:20px; padding:18px;
+  text-decoration:none; color:inherit;
+  box-shadow:0 10px 26px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+  position:relative; overflow:hidden;
+  opacity:0; transform:translateY(14px);
+  transition:transform 220ms var(--ease-outquint), box-shadow 220ms var(--ease-outquint), background 220ms var(--ease-outquint);
+  animation:cardIn 480ms var(--ease-outquint) forwards;
+  animation-delay:calc(var(--i, 0) * 30ms);
+}
+@keyframes cardIn {
+  from { opacity:0; transform:translateY(14px); }
+  to { opacity:1; transform:translateY(0); }
+}
+a.card:hover {
+  transform:translateY(-2px);
+  box-shadow:0 18px 36px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
+  background:linear-gradient(160deg, #1A2620, #101610);
+}
+a.card:active { transform:translateY(0) scale(0.99); }
+
 .mono {
-  width: 52px; height: 52px; border-radius: 16px; flex: 0 0 auto;
-  background: linear-gradient(160deg, #22301F, #131C13);
-  display: grid; place-items: center;
-  font-size: 17px; font-weight: 900; letter-spacing: 0.5px; color: #58CC89;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  width:54px; height:54px; border-radius:17px; flex:0 0 auto;
+  background:linear-gradient(155deg, var(--chip-grad-a), var(--chip-grad-b));
+  display:grid; place-items:center;
+  font-size:16px; font-weight:900; letter-spacing:0.3px; color:var(--text-second);
+  box-shadow:inset 0 1px 0 var(--chip-hi), 0 6px 14px rgba(0,0,0,0.3);
 }
-.t { flex: 1; }
-.t .n { font-size: 16px; font-weight: 800; }
-.t .f { font-size: 13px; color: #8AB49A; font-weight: 600; margin-top: 2px; }
-.st { font-size: 12px; font-weight: 800; padding: 6px 10px; border-radius: 10px; white-space: nowrap; }
-.st.review { background: rgba(255,200,0,0.14); color: #FFC800; }
-.st.queue { background: #1D2921; color: #6E8A7B; }
-.st.approved { background: rgba(71,200,112,0.16); color: #47C870; }
-div.card { opacity: 0.62; }
+.t { flex:1; min-width:0; }
+.t .n { font-size:17px; font-weight:800; letter-spacing:0.1px; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.t .d { font-size:14px; color:var(--text-muted); font-weight:600; margin-top:4px; line-height:1.45; }
+
+.pill {
+  font-size:10.5px; font-weight:800; padding:4px 9px; border-radius:999px; white-space:nowrap;
+  letter-spacing:0.3px; text-transform:uppercase;
+}
+.pill.approved { background:linear-gradient(155deg, rgba(255,255,255,0.12), rgba(0,0,0,0.1)), var(--gold-bg); color:var(--gold); }
+.pill.wip { background:var(--bg-surface2); color:var(--text-ghost); }
+
+.arrow {
+  flex:0 0 auto; width:34px; height:34px; border-radius:12px;
+  display:grid; place-items:center; color:var(--text-muted);
+  background:var(--surface-grad);
+  box-shadow:inset 0 1px 0 var(--chip-hi);
+  transition:transform 220ms var(--ease-outquint), color 220ms var(--ease-outquint);
+}
+a.card:hover .arrow { transform:translateX(3px); color:var(--text-second); }
+
+/* ---------- Памятка законов ---------- */
+.laws {
+  margin-top:64px; border-radius:22px; padding:26px 24px;
+  background:linear-gradient(160deg, #131C15, #0B100C);
+  box-shadow:0 14px 32px var(--card-shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+.laws h2 {
+  font-size:13px; text-transform:uppercase; letter-spacing:1.8px; color:var(--text-second); font-weight:800; margin-bottom:16px;
+}
+.laws ul { list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px; }
+@media (max-width:700px) { .laws ul { grid-template-columns:1fr; } }
+.laws li {
+  display:flex; align-items:flex-start; gap:10px;
+  font-size:14.5px; color:var(--text-muted); font-weight:600; line-height:1.5;
+}
+.laws li svg { flex:0 0 auto; width:18px; height:18px; margin-top:1px; color:var(--text-second); }
+.laws li b { color:var(--text-primary); font-weight:800; }
+
+@media (prefers-reduced-motion: reduce) {
+  a.card { animation:none; opacity:1; transform:none; transition-duration:1ms; }
+  a.card:hover { transform:none; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Learning V2 · <span>Витрина макетов</span></h1>
-  <p class="sub">По одному режиму на страницу, волнами, каждая на отдельное одобрение. Внутри: живой прогон всех состояний, три темы приложения, замедление и reduced motion, спецификация для RN. Весь контент режимов: типографика и аудио, без картинок и эмодзи (закон G27-G28).</p>
 
-  <div class="wave">
-    <h2>Волна М1 · Сборка и выбор</h2>
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M13 6.5L19.5 12 13 17.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M4.5 13l5 5L19.5 7" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <div class="hero-block">
+    <h1>Learning V2 · Витрина макетов</h1>
+    <p class="sub">Эталон одобрен владельцем: Сборка фразы. Остальные построены от него.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Режимы: выбор и восстановление</h2></div>
     <div class="grid">
       <a class="card" href="02-phrase-builder.html">
-        <div class="mono">PB</div>
-        <div class="t"><div class="n">Сборка фразы</div><div class="f">Phrase Builder · SB-04</div></div>
-        <div class="st review">На одобрении</div>
+        <div class="mono">02</div>
+        <div class="t">
+          <div class="n">Сборка фразы <span class="pill approved">Эталон · одобрен</span></div>
+          <div class="d">Собери фразу из чипов слов в правильном порядке.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
       </a>
-      <div class="card"><div class="mono">LC</div><div class="t"><div class="n">Выбор на слух</div><div class="f">Listen &amp; Choose · SB-02</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">SC</div><div class="t"><div class="n">Пары звуков</div><div class="f">Sound Contrast · SB-02</div></div><div class="st queue">В очереди</div></div>
+      <a class="card" href="03-listen-choose.html">
+        <div class="mono">03</div>
+        <div class="t">
+          <div class="n">Выбор на слух</div>
+          <div class="d">Прослушай фразу и выбери верный вариант перевода.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="04-sound-contrast.html">
+        <div class="mono">04</div>
+        <div class="t">
+          <div class="n">Пары звуков</div>
+          <div class="d">Различи на слух похожие звуки английского языка.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="05-listen-build.html">
+        <div class="mono">05</div>
+        <div class="t">
+          <div class="n">Диктант</div>
+          <div class="d">Прослушай фразу и собери её по памяти из чипов.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="06-context-gap.html">
+        <div class="mono">06</div>
+        <div class="t">
+          <div class="n">Контекстный пропуск</div>
+          <div class="d">Вставь недостающее слово в пропуск по смыслу фразы.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="07-speed-match.html">
+        <div class="mono">07</div>
+        <div class="t">
+          <div class="n">Пары на скорость</div>
+          <div class="d">Собери как можно больше пар фраз с переводом на время.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
     </div>
   </div>
 
-  <div class="wave">
-    <h2>Волна М2 · Восстановление и скорость</h2>
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Режимы: сценарные и аудио</h2></div>
     <div class="grid">
-      <div class="card"><div class="mono">LB</div><div class="t"><div class="n">Диктант</div><div class="f">Listen &amp; Build · SB-04</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">CG</div><div class="t"><div class="n">Контекстный пропуск</div><div class="f">Context Gap · SB-04</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">SM</div><div class="t"><div class="n">Пары на скорость</div><div class="f">Speed Match · SB-03</div></div><div class="st queue">В очереди</div></div>
+      <a class="card" href="11-scripted-dialogue.html">
+        <div class="mono">11</div>
+        <div class="t">
+          <div class="n">Диалог по сценарию</div>
+          <div class="d">Проведи диалог с собеседником, выбирая реплики по очереди.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="12-branching-scene.html">
+        <div class="mono">12</div>
+        <div class="t">
+          <div class="n">Сцена-приключение</div>
+          <div class="d">Выбирай реплики и веди историю по разным веткам сюжета.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="13-microstory.html">
+        <div class="mono">13</div>
+        <div class="t">
+          <div class="n">Аудио-история</div>
+          <div class="d">Прослушай короткую историю и ответь на вопросы по ней.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
     </div>
   </div>
 
-  <div class="wave">
-    <h2>Волна М3 · Карта и сессия</h2>
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Режимы: голосовые</h2></div>
     <div class="grid">
-      <div class="card"><div class="mono">КЮ</div><div class="t"><div class="n">Карта юнита</div><div class="f">12 сессий · 3 зоны</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">ФС</div><div class="t"><div class="n">Финал сессии</div><div class="f">церемония звёзд</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">РО</div><div class="t"><div class="n">Разбор ошибок</div><div class="f">Mistake Lab · SB-13</div></div><div class="st queue">В очереди</div></div>
+      <a class="card" href="14-repeat-compare.html">
+        <div class="mono">14</div>
+        <div class="t">
+          <div class="n">Повтор за моделью</div>
+          <div class="d">Повтори фразу вслух и сравни своё произношение с образцом.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="15-quick-response.html">
+        <div class="mono">15</div>
+        <div class="t">
+          <div class="n">Быстрый ответ <span class="pill wip">В работе</span></div>
+          <div class="d">Ответь голосом на вопрос собеседника без подготовки.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="16-sound-lab.html">
+        <div class="mono">16</div>
+        <div class="t">
+          <div class="n">Звуковая лаборатория</div>
+          <div class="d">Отработай сложный звук отдельно, до фразы целиком.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="17-shadowing.html">
+        <div class="mono">17</div>
+        <div class="t">
+          <div class="n">Ритм и ударение</div>
+          <div class="d">Проговори фразу одновременно с диктором, попадая в ритм.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="18-speaking-club.html">
+        <div class="mono">18</div>
+        <div class="t">
+          <div class="n">Разговорная миссия</div>
+          <div class="d">Свободный голосовой разговор на тему с обратной связью.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
     </div>
   </div>
 
-  <div class="wave">
-    <h2>Волна М4 · Диалог и истории</h2>
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Экраны пути</h2></div>
     <div class="grid">
-      <div class="card"><div class="mono">SD</div><div class="t"><div class="n">Диалог по сценарию</div><div class="f">Scripted Dialogue · SB-11</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">BA</div><div class="t"><div class="n">Сцена-приключение</div><div class="f">Branching Scene · SB-10</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">MR</div><div class="t"><div class="n">Аудио-история</div><div class="f">Microstory · SB-09</div></div><div class="st queue">В очереди</div></div>
+      <a class="card" href="08-unit-map.html">
+        <div class="mono">08</div>
+        <div class="t">
+          <div class="n">Карта юнита</div>
+          <div class="d">Путь из сессий юнита с прогрессом и текущей точкой.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="22-season-map.html">
+        <div class="mono">22</div>
+        <div class="t">
+          <div class="n">Карта сезона</div>
+          <div class="d">Общий обзор всех юнитов сезона и прогресса по нему.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="19-episode-gate.html">
+        <div class="mono">19</div>
+        <div class="t">
+          <div class="n">Ворота эпизода</div>
+          <div class="d">Экран перед новым эпизодом с кратким анонсом содержания.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="21-checkpoint.html">
+        <div class="mono">21</div>
+        <div class="t">
+          <div class="n">Проверка юнита</div>
+          <div class="d">Контрольная сессия, закрывающая юнит перед переходом дальше.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
     </div>
   </div>
 
-  <div class="wave">
-    <h2>Волна М5 · Голос</h2>
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Экраны награды и возврата</h2></div>
     <div class="grid">
-      <div class="card"><div class="mono">RP</div><div class="t"><div class="n">Повтор за моделью</div><div class="f">Repeat &amp; Compare · SB-06</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">QR</div><div class="t"><div class="n">Быстрый ответ</div><div class="f">Quick Response · SB-07</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">SL</div><div class="t"><div class="n">Звуковая лаборатория</div><div class="f">Sound Lab · SB-05</div></div><div class="st queue">В очереди</div></div>
-      <div class="card"><div class="mono">SH</div><div class="t"><div class="n">Ритм и ударение</div><div class="f">Shadowing · SB-08</div></div><div class="st queue">В очереди</div></div>
+      <a class="card" href="09-session-finale.html">
+        <div class="mono">09</div>
+        <div class="t">
+          <div class="n">Финал сессии</div>
+          <div class="d">Церемония звёзд и итогов по завершении сессии.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="10-mistake-lab.html">
+        <div class="mono">10</div>
+        <div class="t">
+          <div class="n">Разбор ошибок</div>
+          <div class="d">Разбор допущенных ошибок с объяснением и повтором.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
     </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><div class="section-bar"></div><h2>Монетизация и состояния</h2></div>
+    <div class="grid">
+      <a class="card" href="20-paywall-limit.html">
+        <div class="mono">20</div>
+        <div class="t">
+          <div class="n">Лимит Free и Plus</div>
+          <div class="d">Экран лимита бесплатного тарифа с переходом на платный.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+      <a class="card" href="23-modals-states.html">
+        <div class="mono">23</div>
+        <div class="t">
+          <div class="n">Модалы и состояния</div>
+          <div class="d">Библиотека модальных окон и системных состояний экрана.</div>
+        </div>
+        <div class="arrow"><svg width="16" height="16"><use href="#i-arrow"/></svg></div>
+      </a>
+    </div>
+  </div>
+
+  <div class="laws">
+    <h2>Законы витрины</h2>
+    <ul>
+      <li><svg><use href="#i-check"/></svg><span><b>Без эмодзи и картинок:</b> только типографика и SVG-глифы.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Без обводок контейнеров:</b> разделение тоном, тенью и скруглением.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Типографика-герой:</b> крупный градиентный заголовок, чёткая иерархия.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Премиальные градиенты везде:</b> глубокая заливка, а не плоский цвет.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Сплошная полоса прогресса:</b> без сегментов, заливка растёт непрерывно.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Стрик золотой волной:</b> растущая серия даёт перелив по экрану и бонус-звёзды.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Ошибка без тряски:</b> тонировка и объяснение, никакой вибрации макета.</span></li>
+      <li><svg><use href="#i-check"/></svg><span><b>Голос только on-device:</b> распознавание и синтез речи без внешних серверов.</span></li>
+    </ul>
   </div>
 </div>
+
+<script>
+// зачем: каскадное появление карточек без ручной расстановки delay в разметке,
+// нумеруем все карточки подряд по документу и передаём индекс в CSS-переменную
+document.querySelectorAll('a.card').forEach((el, i) => {
+  el.style.setProperty('--i', i);
+});
+</script>
 </body>
 </html>

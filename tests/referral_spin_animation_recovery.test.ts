@@ -102,7 +102,31 @@ describe('referral reward animation recovery', () => {
     expect(CLIENT).toContain('await cacheClaimedSpinCredits(stableId, res.data.spinsTotal, requestEpoch);');
     expect(CLIENT).toContain('beginSpinCreditMutation(stableId);');
     expect(REFERRALS).toContain('const outcome = await spinReferralRoulette();');
-    expect(REFERRALS).toContain('setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil });');
+    expect(REFERRALS).toContain('setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizePearls: outcome.prizePearls });');
+  });
+
+  // зачем: владелец (2026-07-26) — Pro (lifetime) получает жемчужины вместо дней:
+  // сервер помечает prizeKind='pearls', клиент начисляет идемпотентной claim-
+  // транзакцией по spinRequestId и НЕ трогает vip_* (нет «Plus активирован»).
+  it('credits Pro pearls through an idempotent claim keyed by spinRequestId', () => {
+    const onSpin = onSpinSlice();
+    const CLIENT_PRIZES = fs.readFileSync(path.join(ROOT, 'app', 'roulette_prizes.ts'), 'utf8');
+    const SHARDS = fs.readFileSync(path.join(ROOT, 'app', 'shards_system.ts'), 'utf8');
+    const SPIN_FN = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'referral_spin.ts'), 'utf8');
+    const SPIN_LOGIC = fs.readFileSync(path.join(ROOT, 'functions', 'src', 'referral_spin_logic.ts'), 'utf8');
+
+    // Лестница согласована владельцем и зеркалится клиент↔сервер.
+    expect(SPIN_LOGIC).toContain('REFERRAL_SPIN_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800]');
+    expect(CLIENT_PRIZES).toContain('ROULETTE_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800]');
+    // Сервер: Pro определяется по progress.premium_plan, vip_* пишутся только для days.
+    expect(SPIN_FN).toContain("=== 'lifetime'");
+    expect(SPIN_FN).toContain("...(prizeKind === 'days' ? {");
+    expect(SPIN_FN).toContain('prizePearls');
+    // Клиент: начисление стартует после server ok и идемпотентно по spinRequestId.
+    expect(onSpin).toContain("if (outcome.prizeKind === 'pearls')");
+    expect(onSpin).toContain('claimReferralSpinPearls(outcome.spinRequestId, outcome.prizePearls)');
+    expect(SHARDS).toContain('const claimId = `referral_spin_${requestId}`;');
+    expect(SHARDS).toContain("shards_updated_reason: 'referral_spin'");
   });
 
   it('keeps reward cards bright and shows a disabled claim button when no keys remain', () => {

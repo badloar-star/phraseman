@@ -62,6 +62,22 @@ export const ROULETTE_PRIZES: readonly RoulettePrize[] = [
   { index: 5, days: 365, num: '1', unit: 'год', label: '1 год', weight: 0.05, image: require('../assets/roulette/card-1y.webp') },
 ];
 
+/**
+ * зачем: владелец (2026-07-26) — у Pro (lifetime) вместо дней Plus те же
+ * prizeIndex дают жемчужины. Номиналы согласованы владельцем; СТРОГО зеркало
+ * functions/src/referral_spin_logic.ts (REFERRAL_SPIN_PRIZE_PEARLS).
+ */
+export const ROULETTE_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800];
+
+/** «N жемчужин» на 8 языках (для номиналов лестницы формы совпадают). */
+export function roulettePearlsLabel(amount: number, lang: Lang): string {
+  const unit = triLang(lang, {
+    ru: 'жемчужин', uk: 'перлин', es: 'perlas', 'pt-BR': 'pérolas',
+    vi: 'ngọc trai', id: 'mutiara', tr: 'inci', pl: 'pereł',
+  });
+  return `${Math.max(0, Math.floor(Number(amount) || 0))} ${unit}`;
+}
+
 /** Фиксированный «перемешанный» порядок одного цикла ленты (seeded, стабилен между запусками). */
 export const TAPE_CYCLE: readonly number[] = [3, 0, 4, 1, 5, 2];
 

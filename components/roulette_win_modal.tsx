@@ -24,13 +24,16 @@ import Animated, {
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
-import { ROULETTE_PRIZES, roulettePrizeLabel } from '../app/roulette_prizes';
+import { ROULETTE_PRIZES, roulettePearlsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
 
 export interface RouletteWinData {
   prizeIndex: number;
   prizeDays: number;
   /** vipUntil из ответа referralSpin (ms). */
   vipUntil: number;
+  /** зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо дней. */
+  prizeKind?: 'days' | 'pearls';
+  prizePearls?: number;
 }
 
 interface Props {
@@ -84,6 +87,11 @@ export default function RouletteWinModal({ data, onClose }: Props) {
   const dateLocale = DATE_LOCALE_BY_LANG[lang as Lang] ?? 'ru-RU';
   const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString(dateLocale) : '—';
   const daysShort = `+${data.prizeDays} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
+  // Pro (lifetime): приз — жемчужины, строка про дату Plus не показывается.
+  const isPearls = data.prizeKind === 'pearls' && (data.prizePearls ?? 0) > 0;
+  const heroLine = isPearls
+    ? `+${roulettePearlsLabel(data.prizePearls ?? 0, lang as Lang)}`
+    : `+${roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus`;
 
   return (
     <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent navigationBarTranslucent>
@@ -116,17 +124,23 @@ export default function RouletteWinModal({ data, onClose }: Props) {
             maxFontSizeMultiplier={1.2}
             style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
           >
-            +{roulettePrizeLabel(data.prizeDays, lang as Lang)} Plus
+            {heroLine}
           </Text>
           <Text
             maxFontSizeMultiplier={1.2}
             style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
           >
-            {L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
-            {' '}
-            <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
-            {' · '}
-            <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
+            {isPearls ? (
+              L('Жемчужины уже на балансе', 'Перлини вже на балансі', 'Las perlas ya están en tu saldo', 'As pérolas já estão no seu saldo', 'Ngọc trai đã vào số dư của bạn', 'Mutiara sudah masuk saldomu', 'İnciler bakiyene eklendi', 'Perły są już na twoim saldzie')
+            ) : (
+              <>
+                {L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
+                {' '}
+                <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
+                {' · '}
+                <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
+              </>
+            )}
           </Text>
 
           <Pressable

@@ -32,6 +32,7 @@ import {
   BIG_PRIZE_INDEX,
   JACKPOT_INDEX,
   REFERRAL_SPIN_PRIZE_DAYS,
+  REFERRAL_SPIN_PRIZE_PEARLS,
   referralSpinWeightsFromData,
   spinDraw,
 } from './referral_spin_logic';
@@ -85,6 +86,9 @@ type SpinResult = {
   ok: true;
   prizeIndex: number;
   prizeDays: number;
+  /** зачем: владелец (2026-07-26) — Pro (lifetime) получает жемчужины вместо дней. */
+  prizeKind: 'days' | 'pearls';
+  prizePearls: number;
   spinsLeft: number;
   vipUntil: number;
   idempotent?: boolean;
@@ -156,6 +160,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       const s = existingSpin.data() as {
         prizeIndex?: number;
         prizeDays?: number;
+        prizeKind?: string;
+        prizePearls?: number;
         spinsLeftAfter?: number;
         vipUntilMs?: number;
       };
@@ -163,6 +169,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         ok: true,
         prizeIndex: Math.max(0, Math.floor(Number(s.prizeIndex ?? 0))),
         prizeDays: Math.max(0, Math.floor(Number(s.prizeDays ?? 0))),
+        prizeKind: s.prizeKind === 'pearls' ? 'pearls' : 'days',
+        prizePearls: Math.max(0, Math.floor(Number(s.prizePearls ?? 0))),
         spinsLeft: Math.max(0, Math.floor(Number(s.spinsLeftAfter ?? 0))),
         vipUntil: Math.max(0, Math.floor(Number(s.vipUntilMs ?? 0))),
         idempotent: true,
@@ -287,9 +295,22 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
     const draw = spinDraw({ weights, spinsUsedTotal, forbidden, rng });
     const { prizeIndex, prizeDays, pity, reroll } = draw;
 
+    // зачем: владелец (2026-07-26) — у Pro (lifetime, разовая оплата) дни Plus
+    // бессмысленны: тот же prizeIndex конвертируется в жемчужины, vip_* НЕ
+    // трогаем (заодно не дёргается «Plus активирован»). Признак Pro — тот же,
+    // что в admin_analytics_core: progress.premium_plan === 'lifetime'.
+    const isProLifetime = String((progress as { premium_plan?: unknown }).premium_plan ?? '')
+      .trim().toLowerCase() === 'lifetime';
+    const prizeKind: 'days' | 'pearls' = isProLifetime ? 'pearls' : 'days';
+    const prizePearls = isProLifetime
+      ? Math.max(0, Math.floor(Number(REFERRAL_SPIN_PRIZE_PEARLS[prizeIndex] ?? 0)))
+      : 0;
+
     // Стак VIP — тот же подход, что referralClaimVipReward: от max(текущее окно, now).
     const currentUntil = vipUntilFromProgress(progress);
-    const vipUntil = stackVipUntilMs(currentUntil, nowMs, prizeDays);
+    const vipUntil = prizeKind === 'pearls'
+      ? Math.max(0, currentUntil)
+      : stackVipUntilMs(currentUntil, nowMs, prizeDays);
     // The compatibility aggregate keeps every unexpired source, including dev
     // grants. The callable response is narrower: under soft OFF it reports only
     // production-drain credits so a dev-only balance cannot keep roulette open.
@@ -307,13 +328,17 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       userRef,
       {
         progress: {
-          vip_active: 'true',
-          vip_plan: 'referral_spin',
-          vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
-          vip_until: String(vipUntil),
-          vip_admin_override: 'true',
-          vip_admin_grant_at: String(nowMs),
-          referral_vip_last_source: 'referral_spin',
+          // Дни Plus стакаются только для prizeKind='days'; жемчужный приз
+          // Pro не пишет vip_* вовсе (начисление — клиентский claim по логу).
+          ...(prizeKind === 'days' ? {
+            vip_active: 'true',
+            vip_plan: 'referral_spin',
+            vip_from: String(Math.min(currentUntil || nowMs, nowMs)),
+            vip_until: String(vipUntil),
+            vip_admin_override: 'true',
+            vip_admin_grant_at: String(nowMs),
+            referral_vip_last_source: 'referral_spin',
+          } : {}),
           referral_spin_credits: aggregateSpinsLeft,
           referral_spin_ledger_version: REFERRAL_SPIN_LEDGER_VERSION,
           ...(migrateLegacyAggregate
@@ -329,6 +354,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
     tx.set(spinRef, {
       prizeIndex,
       prizeDays,
+      prizeKind,
+      prizePearls,
       pity,
       reroll,
       seedHash: sha256Hex(seed),
@@ -347,6 +374,8 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
         stableId,
         prizeIndex,
         prizeDays,
+        prizeKind,
+        prizePearls,
         pity,
         reroll,
         creditId: selectedCredit.id,
@@ -363,7 +392,7 @@ export const referralSpin = onCall(CALLABLE_BASE, async (request): Promise<SpinR
       consumedAtMs: nowMs,
     }));
 
-    return { ok: true, prizeIndex, prizeDays, spinsLeft, vipUntil };
+    return { ok: true, prizeIndex, prizeDays, prizeKind, prizePearls, spinsLeft, vipUntil };
   });
   if ('noCredit' in outcome) {
     throw new HttpsError('failed-precondition', 'NO_SPIN_CREDITS');

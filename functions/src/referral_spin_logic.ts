@@ -10,6 +10,13 @@
 
 /** Призы рулетки в днях VIP. Индекс массива = prizeIndex на клиенте. */
 export const REFERRAL_SPIN_PRIZE_DAYS: readonly number[] = [1, 7, 30, 90, 180, 365];
+/**
+ * зачем: владелец (2026-07-26) — у Pro (lifetime) дни Plus бессмысленны,
+ * вместо них те же prizeIndex дают жемчужины (номиналы согласованы владельцем).
+ * Начисляет клиентская claim-транзакция (shards_system.claimReferralSpinPearls),
+ * сервер лишь фиксирует prizeKind/prizePearls в логе спина и ответе.
+ */
+export const REFERRAL_SPIN_PRIZE_PEARLS: readonly number[] = [10, 25, 70, 150, 350, 800];
 /** Дефолтные веса (%), если в «Пульте» мусор/отсутствует. Сумма = 100. */
 export const REFERRAL_SPIN_DEFAULT_WEIGHTS: readonly number[] = [55, 30, 11.5, 2.9, 0.55, 0.05];
 

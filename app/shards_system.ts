@@ -1622,6 +1622,69 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
   }
 };
 
+/**
+ * зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает в «Награде за друга»
+ * жемчужины вместо дней Plus. Приз авторитетно выбрал сервер (referralSpin,
+ * prizeKind='pearls'), а начисление делает эта claim-транзакция: doc
+ * reward_claims/referral_spin_{spinRequestId} делает повтор идемпотентным
+ * (ретрай сети / двойной вызов не задвоят баланс). Паттерн — awardOneTime.
+ */
+export const claimReferralSpinPearls = async (
+  spinRequestId: string,
+  amount: number,
+): Promise<number> => {
+  const safeAmount = Math.max(0, Math.floor(Number(amount) || 0));
+  const requestId = String(spinRequestId ?? '').trim();
+  if (safeAmount <= 0 || requestId.length < 8 || requestId.length > 128) return 0;
+  try {
+    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return 0;
+    const uid = await getCanonicalUserId();
+    if (!uid) return 0;
+    const localBalance = await getShardsBalance();
+    const db = firestore();
+    const updatedAtMs = Date.now();
+    const claimId = `referral_spin_${requestId}`;
+    const newBalance = await db.runTransaction(async (transaction) => {
+      const userRef = db.collection('users').doc(uid); // guard-ok: doc-get, не коллекция
+      const claimRef = userRef.collection(REWARD_CLAIMS_COLLECTION).doc(claimId); // guard-ok: doc-get
+      const claimSnap = await transaction.get(claimRef);
+      if (claimSnap.exists) return null as number | null;
+
+      const userSnap = await transaction.get(userRef);
+      const cloudShards = userSnap.exists ? parseShardBalance(userSnap.data()?.shards) : null;
+      const base = Math.max(localBalance, cloudShards ?? 0);
+      const next = base + safeAmount;
+
+      // guard-ok: новый выделенный claim-doc (create-семантика, как в awardOneTime);
+      // запись коммитится вместе с транзакцией, которую await'ит runTransaction.
+      transaction.set(claimRef, {
+        source: 'referral_spin',
+        amount: safeAmount,
+        spinRequestId: requestId,
+        createdAt: firestore.FieldValue.serverTimestamp(),
+      });
+      transaction.set(userRef, {
+        shards: next,
+        shards_updated_at_ms: updatedAtMs,
+        shards_updated_op: 'earn',
+        shards_updated_reason: 'referral_spin',
+      }, { merge: true });
+      return next;
+    });
+
+    if (newBalance === null || newBalance === undefined) return 0;
+    const meta: ShardBalanceMeta = { updatedAtMs, op: 'earn', reason: 'referral_spin' };
+    await mirrorServerShardBalanceLocal(newBalance, meta);
+    void bumpLifetimeShardsEarned(safeAmount);
+    logShardTransaction('earn', safeAmount, 'referral_spin', newBalance, newBalance - safeAmount);
+    emitAppEvent('shards_earned', { amount: safeAmount, reasonKey: 'referral_spin' });
+    return safeAmount;
+  } catch (e) {
+    if (__DEV__) console.warn('[shards_system] claimReferralSpinPearls', e);
+    return 0;
+  }
+};
+
 export type OnArenaWinOpts = {
   /**
    * Вместо стандартного +1 за победу в арене — начислить это число (ставка на матч: выплата S×2).

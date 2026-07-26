@@ -23,6 +23,7 @@ const REGION = 'us-central1';
 const SPIN_CREDITS_CACHE_KEY = 'referral_spin_credits_v1';
 const SPIN_CREDITS_MEMORY_MAX_ENTRIES = 2;
 const spinCreditsMemoryByScope = new Map<string, number>();
+const spinCreditMutationEpochByScope = new Map<string, number>();
 /** Сетевые повторы одного спина (с тем же spinRequestId!) — не более двух. */
 const SPIN_NETWORK_RETRIES = 2;
 
@@ -34,6 +35,27 @@ function activeSpinCreditsScope(stableId?: string): string | null {
   const token = captureAccountGeneration();
   if (stableId && token.stableId !== stableId) return null;
   return accountScopeKey(token);
+}
+
+function spinCreditScope(stableId: string): string {
+  return activeSpinCreditsScope(stableId) ?? `stable:${stableId}`;
+}
+
+function beginSpinCreditMutation(stableId: string): number {
+  const scope = spinCreditScope(stableId);
+  const next = (spinCreditMutationEpochByScope.get(scope) ?? 0) + 1;
+  spinCreditMutationEpochByScope.delete(scope);
+  spinCreditMutationEpochByScope.set(scope, next);
+  while (spinCreditMutationEpochByScope.size > SPIN_CREDITS_MEMORY_MAX_ENTRIES) {
+    const oldest = spinCreditMutationEpochByScope.keys().next().value as string | undefined;
+    if (!oldest) break;
+    spinCreditMutationEpochByScope.delete(oldest);
+  }
+  return next;
+}
+
+function currentSpinCreditMutationEpoch(stableId: string): number {
+  return spinCreditMutationEpochByScope.get(spinCreditScope(stableId)) ?? 0;
 }
 
 function rememberSpinCredits(stableId: string, rawValue: number): number {
@@ -56,6 +78,26 @@ async function cacheSpinCredits(stableId: string, rawValue: number): Promise<num
   return value;
 }
 
+/** An old claim response must never erase a newer DEV grant/spin cache. */
+async function cacheClaimedSpinCredits(stableId: string, rawValue: number, requestEpoch: number): Promise<number> {
+  if (currentSpinCreditMutationEpoch(stableId) !== requestEpoch) {
+    return readCachedSpinCreditsForStableId(stableId);
+  }
+  // Без конкурирующей мутации ответ сервера авторитетен: он также снимает истёкшие ключи.
+  return cacheSpinCredits(stableId, rawValue);
+}
+
+async function readCachedSpinCreditsForStableId(stableId: string): Promise<number> {
+  try {
+    const raw = await AsyncStorage.getItem(spinCreditsStorageKey(stableId));
+    const persisted = Math.max(0, Math.floor(Number(raw) || 0));
+    const inMemory = spinCreditsMemoryByScope.get(spinCreditScope(stableId)) ?? 0;
+    return rememberSpinCredits(stableId, Math.max(persisted, inMemory));
+  } catch {
+    return spinCreditsMemoryByScope.get(spinCreditScope(stableId)) ?? 0;
+  }
+}
+
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), REGION), name);
 }
@@ -74,13 +116,26 @@ export type SpinResult = {
   ok?: boolean;
   prizeIndex: number;
   prizeDays: number;
+  /** зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо дней. */
+  prizeKind?: 'days' | 'pearls';
+  prizePearls?: number;
   spinsLeft: number;
   vipUntil: number;
   idempotent?: boolean;
 };
 
 export type SpinOutcome =
-  | { ok: true; prizeIndex: number; prizeDays: number; spinsLeft: number; vipUntil: number }
+  | {
+    ok: true;
+    prizeIndex: number;
+    prizeDays: number;
+    prizeKind: 'days' | 'pearls';
+    prizePearls: number;
+    spinsLeft: number;
+    vipUntil: number;
+    /** Идентификатор спина — им же идемпотентно начисляются жемчужины Pro. */
+    spinRequestId: string;
+  }
   | { ok: false; reason: 'disabled' | 'no_user' | 'no_spins' | 'link_required' | 'error'; code?: string };
 
 function callableErrorCode(e: unknown): string | null {
@@ -112,11 +167,12 @@ export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
   if (!isReferralCloudEnabled()) return null;
   const stableId = await getCanonicalUserId();
   if (!stableId) return null;
+  const requestEpoch = currentSpinCreditMutationEpoch(stableId);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ referrerStableId: string }, ClaimSpinResult>('referralClaimSpin');
   const res = await fn({ referrerStableId: stableId });
   if (typeof res.data?.spinsTotal === 'number') {
-    await cacheSpinCredits(stableId, res.data.spinsTotal);
+    await cacheClaimedSpinCredits(stableId, res.data.spinsTotal, requestEpoch);
   }
   return res.data;
 }
@@ -125,13 +181,7 @@ export async function claimReferralSpins(): Promise<ClaimSpinResult | null> {
 export async function readCachedSpinCredits(): Promise<number> {
   const stableId = await getCanonicalUserId();
   if (!stableId) return 0;
-  try {
-    const raw = await AsyncStorage.getItem(spinCreditsStorageKey(stableId));
-    const n = Math.floor(Number(raw));
-    return rememberSpinCredits(stableId, Number.isFinite(n) && n >= 0 ? n : 0);
-  } catch {
-    return 0;
-  }
+  return readCachedSpinCreditsForStableId(stableId);
 }
 
 export function peekCachedSpinCredits(): number {
@@ -157,6 +207,7 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
   if (!isReferralCloudEnabled()) return { ok: false, reason: 'disabled' };
   const stableId = await getCanonicalUserId();
   if (!stableId) return { ok: false, reason: 'no_user' };
+  beginSpinCreditMutation(stableId);
 
   const spinRequestId = await newSpinRequestId();
   let lastError: unknown = null;
@@ -168,8 +219,11 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
         ok: true as const,
         prizeIndex: Math.max(0, Math.floor(data.prizeIndex ?? 0)),
         prizeDays: Math.max(0, Math.floor(data.prizeDays ?? 0)),
+        prizeKind: data.prizeKind === 'pearls' ? 'pearls' as const : 'days' as const,
+        prizePearls: Math.max(0, Math.floor(data.prizePearls ?? 0)),
         spinsLeft: Math.max(0, Math.floor(data.spinsLeft ?? 0)),
         vipUntil: Math.max(0, Math.floor(data.vipUntil ?? 0)),
+        spinRequestId,
       };
       await cacheSpinCredits(stableId, outcome.spinsLeft);
       return outcome;
@@ -193,20 +247,21 @@ export async function spinReferralRoulette(): Promise<SpinOutcome> {
   return { ok: false, reason: 'error', code: callableErrorCode(lastError) ?? 'network' };
 }
 
-// ── DEV: +1 прокрут (кнопка видна только в dev-сборке; гейт/лимит — на сервере) ──
+// ── DEV: +1 прокрут (кнопка видна только в dev-сборке; гейт — на сервере) ──
 
 export type DevGrantOutcome =
   | { ok: true; spinsTotal: number }
-  | { ok: false; reason: 'disabled' | 'daily_limit' | 'no_user' | 'error'; code?: string };
+  | { ok: false; reason: 'disabled' | 'no_user' | 'error'; code?: string };
 
 /**
  * DEV-выдача +1 спин-кредита (functions/src/referral_dev_grant.ts).
- * Серверный гейт remote_config/app.numbers.referral_dev_grant_enabled и лимит 10/сутки.
+ * Серверный гейт remote_config/app.numbers.referral_dev_grant_enabled.
  */
 export async function devGrantReferralSpin(): Promise<DevGrantOutcome> {
   if (!isReferralCloudEnabled()) return { ok: false, reason: 'error', code: 'cloud_disabled' };
   const stableId = await getCanonicalUserId();
   if (!stableId) return { ok: false, reason: 'no_user' };
+  beginSpinCreditMutation(stableId);
   try {
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = callable<{ stableId: string }, { ok?: boolean; spinsTotal: number }>('referralDevGrantSpin');
@@ -218,7 +273,6 @@ export async function devGrantReferralSpin(): Promise<DevGrantOutcome> {
     const code = callableErrorCode(e);
     const msg = e && typeof e === 'object' && 'message' in e ? String((e as { message: string }).message) : '';
     if (code === 'failed-precondition') {
-      if (msg.includes('DEV_GRANT_DAILY_LIMIT')) return { ok: false, reason: 'daily_limit', code };
       if (msg.includes('DEV_GRANT_DISABLED')) return { ok: false, reason: 'disabled', code };
     }
     return { ok: false, reason: 'error', code: code ?? 'unknown' };

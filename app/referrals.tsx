@@ -54,6 +54,7 @@ import {
   spinReferralRoulette,
 } from './roulette_spin_client';
 import { preloadRoulettePrizeImages } from './roulette_prizes';
+import { claimReferralSpinPearls } from './shards_system';
 import { useReferralRoulettePolicy } from './referral_roulette_flag';
 import { formatReferralSunsetDate, referralSunsetCopy } from './referral_sunset_copy';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from './referral_surface_state';
@@ -188,6 +189,16 @@ export default function ReferralsScreen() {
   const arcRef = useRef<PrizeArcHandle>(null);
   const [spinning, setSpinning] = useState(false);
   const spinningRef = useRef(false);
+  // зачем: владелец (2026-07-26) — Pro (lifetime) выигрывает жемчужины вместо
+  // дней Plus; экран лишь подписывает это под дугой (тот же ключ, что настройки).
+  const [isProLifetime, setIsProLifetime] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    void AsyncStorage.getItem('premium_plan')
+      .then((plan) => { if (alive) setIsProLifetime(plan === 'lifetime'); })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, [renderAccountScope]);
   const [win, setWin] = useState<RouletteWinData | null>(null);
   const [winCelebrationVisible, setWinCelebrationVisible] = useState(false);
   const winTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -414,12 +425,17 @@ export default function ReferralsScreen() {
       }
       devGrantedCreditsFloorRef.current = outcome.spinsLeft;
       setSpinCredits(outcome.spinsLeft);
+      if (outcome.prizeKind === 'pearls') {
+        // Pro: жемчужины начисляет клиентская claim-транзакция, идемпотентная
+        // по spinRequestId — стартуем параллельно с докруткой, не ждём.
+        void claimReferralSpinPearls(outcome.spinRequestId, outcome.prizePearls).catch(() => {});
+      }
       // Сервер уже списал ключ и авторитетно выбрал приз — докручиваем дугу до
       // него с текущей скорости; JS-дедлайн не даст модалке потеряться.
       await settlePrizeArcAnimation(() => arcRef.current?.spinTo(outcome.prizeIndex));
       if (!isCurrentAccountGeneration(spinAccount)) return;
       void hapticSuccess();
-      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil });
+      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil, prizeKind: outcome.prizeKind, prizePearls: outcome.prizePearls });
     } finally {
       spinningRef.current = false;
       setSpinning(false);
@@ -681,6 +697,23 @@ export default function ReferralsScreen() {
                   'Zaproś znajomego: gdy wpisze twój kod i kupi Plus lub Pro, dostaniesz klucz. Nagroda: Plus od 1 do 365 dni.',
                 )}
               </Text>
+
+              {/* зачем: владелец (2026-07-26) — у Pro дни Plus бессмысленны, призы
+                  приходят жемчужинами; карточки те же, конверсию объясняет подпись. */}
+              {isProLifetime && !drainVisible && (
+                <Text testID="referrals-pro-pearls-hint" style={{ color: t.accent, fontSize: f.sub ?? 13, lineHeight: 19, fontFamily: ds.fontFamily, fontWeight: '700', textAlign: 'center', paddingHorizontal: 8, marginTop: -6 }}>
+                  {L(
+                    'У тебя Pro — каждый приз приходит жемчужинами.',
+                    'У тебе Pro — кожен приз приходить перлинами.',
+                    'Tienes Pro: cada premio llega en perlas.',
+                    'Você tem Pro: cada prêmio vem em pérolas.',
+                    'Bạn có Pro — mỗi phần thưởng là ngọc trai.',
+                    'Kamu punya Pro — setiap hadiah berupa mutiara.',
+                    'Pro üyesin — her ödül inci olarak gelir.',
+                    'Masz Pro — każda nagroda przychodzi w perłach.',
+                  )}
+                </Text>
+              )}
 
               <TouchableOpacity
                 testID="referrals-roulette-spin"

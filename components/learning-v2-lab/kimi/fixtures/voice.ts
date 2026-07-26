@@ -3,6 +3,213 @@
 // их порядок — не акцент» — ровно то, что умеет распознавание на устройстве.
 import type { VoiceShellVM } from '../VoiceShell';
 
+export interface QrQuickResponseVM extends VoiceShellVM {
+  readonly goal: {
+    readonly contextLabel: string;
+    readonly promptLabel: string;
+    readonly supportLabel: string;
+    readonly supportPhrase: string;
+    readonly supportNote: string;
+  };
+  readonly transcript: {
+    readonly heardLabel: string;
+    readonly text: string;
+    readonly originLabel: string;
+    readonly editLabel: string;
+    readonly rerecordLabel: string;
+    readonly sendLabel: string;
+    readonly cancelSendLabel: string;
+    readonly editedNote: string;
+  };
+  readonly typed: {
+    readonly label: string;
+    readonly placeholder: string;
+    readonly note: string;
+    readonly submitLabel: string;
+  };
+  readonly result: {
+    readonly goalMetLabel: string;
+    readonly evidenceLabel: string;
+    readonly naturalnessTip: string;
+  };
+  /**
+   * ВНИМАНИЕ: карточка согласия на СЕТЕВУЮ обработку голоса — из поставки Kimi.
+   * В приложении она НЕ показывается: владелец выбрал распознавание только на
+   * устройстве, запись никуда не уходит. Держим текст дословно (порт без потерь),
+   * но подключать нельзя — иначе интерфейс обещает передачу, которой нет, и это
+   * разошлось бы с политикой приватности.
+   */
+  readonly consent: {
+    readonly title: string;
+    readonly body: string;
+    readonly acceptLabel: string;
+    readonly declineLabel: string;
+  };
+}
+
+/** fixtures/mobile-voice/qr-quick-response.json */
+export const qrQuickResponseFixture: QrQuickResponseVM = {
+  surfaceId: 'qr-quick-response',
+  title: 'Быстрый ответ',
+  goalLabel: 'Цель: ответ по смыслу',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Остановить',
+      processing: 'Отправляем…',
+      success: 'Дальше',
+      needs_work: 'Ещё раз',
+      recovery: 'Повторить бесплатно',
+    },
+    statusMessages: {
+      prompt: 'Подумай и ответь своими словами. Таймера нет.',
+      active: 'Слушаю… Говори спокойно, как получается.',
+      processing: 'Проверяем попытку… Промпт и transcript остаются на месте.',
+      success: 'Цель выполнена — тебя поняли.',
+      needs_work: 'Почти. Попробуй ещё раз — можно с подсказкой.',
+      recovery: 'Мы не уверены из-за шума. Эта попытка не повлияет на звёзды.',
+    },
+  },
+  voice: {
+    instructionLabel: 'Скажи, что ты хочешь заказать',
+    timerDisplay: '0:06 / 0:30',
+    routeLabel: 'Микрофон устройства',
+    evidenceLabel: 'Проверяются смысл и понятность — не акцент',
+    passTitle: 'Цель выполнена — тебя поняли',
+    passNote: 'Ответ по смыслу подходит к ситуации. Фраза распознана уверенно.',
+    needsWorkHint: 'Подсказка: начни с «I would like…» и назови напиток.',
+    retryScopeLabel: 'Повторяем тот же ответ — только его',
+    attemptsDisplay: 'Повтор 1 из 2',
+    uncertainNote: 'Эта попытка не повлияет на звёзды',
+    invalidNote: 'Проверь микрофон или введи ответ текстом — попытка бесплатная.',
+    offlineNote: 'Сейчас нет сети. Черновик сохранится локально, звёзды не уменьшатся.',
+  },
+  permission: {
+    title: 'Нужен доступ к микрофону',
+    body: 'Чтобы записать твой голос, разреши микрофон в настройках. Можно и без него — ответь текстом.',
+    settingsLabel: 'Открыть настройки',
+    noMicLabel: 'Продолжить без микрофона',
+    backLabel: 'Назад',
+  },
+  goal: {
+    contextLabel: 'Кафе в аэропорту',
+    promptLabel: 'Скажи, что ты хочешь заказать',
+    supportLabel: 'Нужна фраза-подсказка',
+    supportPhrase: 'I would like a …, please.',
+    supportNote: 'Опора: начни с «I would like…» и добавь напиток.',
+  },
+  transcript: {
+    heardLabel: 'Мы услышали:',
+    text: 'I would like a coffee, please.',
+    originLabel: 'transcriptOrigin: asr_raw',
+    editLabel: 'Изменить',
+    rerecordLabel: 'Записать ещё раз',
+    sendLabel: 'Отправить',
+    cancelSendLabel: 'Отменить отправку',
+    editedNote: 'Ты изменил текст — transcriptOrigin: learner_edited',
+  },
+  typed: {
+    label: 'Ввести текстом',
+    placeholder: 'Напиши ответ текстом…',
+    note: 'inputSource=keyboard · transcriptOrigin=typed — без голосовой звезды',
+    submitLabel: 'Отправить текст',
+  },
+  result: {
+    goalMetLabel: 'Цель выполнена — тебя поняли',
+    evidenceLabel: 'Понятность: фраза распознана уверенно',
+    naturalnessTip: 'Естественнее звучит: «Can I get a coffee?»',
+  },
+  consent: {
+    title: 'Сетевая обработка голоса',
+    body: 'Чтобы распознать ответ, запись уходит на сервер (обработчик: Phraseman Voice, регион: ЕС). Запись удаляется сразу после результата. Можно продолжить и без сетевой обработки — задание засчитается.',
+    acceptLabel: 'Разрешить сетевую обработку',
+    declineLabel: 'Продолжить без неё',
+  },
+};
+
+export interface RpRepeatCompareVM extends VoiceShellVM {
+  readonly phrase: {
+    readonly text: string;
+    readonly meaningRu: string;
+    readonly ipa: string;
+    readonly chunks: readonly { readonly id: string; readonly text: string }[];
+  };
+  readonly wordChips: readonly string[];
+  readonly compare: {
+    readonly ownLabel: string;
+    readonly refLabel: string;
+    readonly ownDurationDisplay: string;
+    readonly refDurationDisplay: string;
+    readonly nowPlayingLabel: string;
+    readonly slowerLabel: string;
+  };
+}
+
+/** fixtures/mobile-voice/rp-repeat-compare.json */
+export const rpRepeatCompareFixture: RpRepeatCompareVM = {
+  surfaceId: 'rp-repeat-compare',
+  title: 'Повтори и сравни',
+  goalLabel: 'Цель: понятность фразы',
+  copy: {
+    primaryActions: {
+      prompt: 'Начать',
+      active: 'Остановить',
+      processing: 'Проверяем…',
+      success: 'Дальше',
+      needs_work: 'Ещё раз',
+      recovery: 'Повторить бесплатно',
+    },
+    statusMessages: {
+      prompt: 'Сначала послушай эталон, потом повтори.',
+      active: 'Слушаю… Говори фразу целиком.',
+      processing: 'Проверяем качество записи и слова…',
+      success: 'Фраза распознана — слова и порядок совпали.',
+      needs_work: 'Почти. Одна подсказка — и ещё раз.',
+      recovery: 'Мы не уверены из-за шума. Эта попытка не повлияет на звёзды.',
+    },
+  },
+  voice: {
+    instructionLabel: 'Повтори фразу после эталона',
+    timerDisplay: '0:04 / 0:15',
+    routeLabel: 'Микрофон устройства',
+    evidenceLabel: 'Проверяются слова и их порядок — не акцент',
+    passTitle: 'Фраза распознана',
+    passNote: 'Слова и порядок совпали. Тебя легко понять.',
+    needsWorkHint: 'Подсказка: скажи чётче «again» — /əˈɡen/. Послушай эталон ещё раз.',
+    retryScopeLabel: 'Повторяем всю фразу — только её',
+    attemptsDisplay: 'Повтор 1 из 2',
+    uncertainNote: 'Эта попытка не повлияет на звёзды',
+    invalidNote: 'Проверь микрофон или выбери другой способ — попытка бесплатная.',
+    offlineNote: 'Сейчас нет сети. Можно продолжить локальное задание или вернуться позже.',
+  },
+  permission: {
+    title: 'Нужен доступ к микрофону',
+    body: 'Чтобы записать твой голос, разреши микрофон в настройках. Можно и без него — тогда слушай эталон и повторяй вслух без записи.',
+    settingsLabel: 'Открыть настройки',
+    noMicLabel: 'Продолжить без микрофона',
+    backLabel: 'Назад',
+  },
+  phrase: {
+    text: 'Could you say that again, please?',
+    meaningRu: 'Можешь повторить, пожалуйста?',
+    ipa: '/kʊd juː seɪ ðæt əˈɡen pliːz/',
+    chunks: [
+      { id: 'rp-c1', text: 'Could you' },
+      { id: 'rp-c2', text: 'say that' },
+      { id: 'rp-c3', text: 'again, please?' },
+    ],
+  },
+  wordChips: ['Could', 'you', 'say', 'that', 'again,', 'please?'],
+  compare: {
+    ownLabel: 'Моя запись',
+    refLabel: 'Эталон',
+    ownDurationDisplay: '0:03',
+    refDurationDisplay: '0:03',
+    nowPlayingLabel: 'Сейчас играет',
+    slowerLabel: 'Медленнее',
+  },
+};
+
 export interface SlSoundSyllableLabVM extends VoiceShellVM {
   readonly word: {
     readonly text: string;

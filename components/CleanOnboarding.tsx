@@ -394,6 +394,24 @@ function trackOnboardingPlanTrialCta(tags: OnboardingAnalyticsTags) {
   trackOnboardingActivity('onboarding_plan_trial_cta', tags);
 }
 
+// зачем: владельцу нужно видеть в админке, на каком экране онбординга чаще всего
+// уходят из приложения. Показы каждого шага (onboarding_step_view) в Firestore НЕ
+// пишутся — это было бы ~10 платных записей на каждого нового пользователя. Вместо
+// этого при сворачивании/закрытии приложения пишем ОДНУ запись с последним
+// увиденным экраном: ~1 запись на пользователя вместо ~10, а воронка выходов
+// строится именно по ней. Согласие на аналитику проверяет сам trackActivity.
+function trackOnboardingExit(step: OnboardingStepId) {
+  void import('../app/app_activity')
+    .then(({ trackActivity }) => trackActivity('onboarding_exit', {
+      feature: 'onboarding',
+      screen: 'onboarding',
+      result: 'info',
+      tags: { step },
+      writeToFirestore: true,
+    }))
+    .catch(() => {});
+}
+
 function Background() {
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -1062,6 +1080,22 @@ function CleanOnboarding({
       setRemoteEnabledSteps(getEnabledOnboardingSteps());
     });
     return () => subscription.remove();
+  }, []);
+
+  // зачем: воронка «где чаще всего выходят» в админке. Пишем последний увиденный
+  // экран ОДИН раз при уходе в фон — подписка не пересоздаётся на каждом шаге
+  // (шаг читаем из ref), и запись не делается, если онбординг уже завершён.
+  const exitStepRef = useRef(step);
+  exitStepRef.current = step;
+  const exitLoggedRef = useRef(false);
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (next) => {
+      if (next === 'active') { exitLoggedRef.current = false; return; }
+      if (exitLoggedRef.current || finishingRef.current) return;
+      exitLoggedRef.current = true;
+      trackOnboardingExit(exitStepRef.current);
+    });
+    return () => sub.remove();
   }, []);
 
   useEffect(() => {

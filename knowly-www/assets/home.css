@@ -276,7 +276,12 @@ section { padding: clamp(46px, 8vh, 92px) 0; text-align: center; }
 }
 .mbar.mbar-hidden { transform: translateY(130%); opacity: 0; pointer-events: none; }
 .mbar .btn { width: 100%; padding: 19px; }
-@media (max-width: 720px) { .mbar { display: block; } }
+@media (max-width: 720px) {
+  .mbar { display: block; }
+  /* зачем: владелец 2026-07-26 — на телефоне одна кнопка: тёмная «Скачать»
+     из шапки убрана, действие несёт золотая CTA героя (+липкая между секциями) */
+  .nav .b { display: none; }
+}
 
 /* появления: включаются только при JS, дефолт видимый */
 .js .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s var(--ease), transform .6s var(--ease); }

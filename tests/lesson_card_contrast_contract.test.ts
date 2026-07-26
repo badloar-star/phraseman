@@ -26,4 +26,11 @@ describe('lesson card contrast contract', () => {
     expect(metaBlock).toContain(': LESSON_CARD_OPEN_META_TEXT;');
     expect(metaBlock).not.toContain(': rgbaHexCached(lessonAccent, 0.82);');
   });
+
+  it('does not overlay an accent strip across rounded lesson-card corners', () => {
+    const source = read('app/(tabs)/lessons.tsx');
+
+    expect(source).not.toContain('LESSON_CARD_ACCENT_EDGE_SHADOW');
+  });
+
 });

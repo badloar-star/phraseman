@@ -166,6 +166,24 @@ export const ENABLE_SCREEN_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_TRANSITI
 export const SCREEN_FADE_TRANSITIONS = process.env.EXPO_PUBLIC_SCREEN_FADE !== '0';
 
 /**
+ * «Шторки разделов» (стандарт владельца, ориентир — Bevel): разделы настроек и
+ * инфо-экраны открываются как модальная страница с выездом снизу и закрываются
+ * вниз (iOS — нативный pageSheet со скруглёнными углами и свайпом-вниз).
+ *
+ * Это анимация MODAL-презентации — тот же класс, что годами в проде у пейволов
+ * (components/paywall/paywallShared.tsx: presentation:'modal' +
+ * slide_from_bottom на ОБЕИХ платформах), а НЕ card-push slide, ронявший
+ * Android/Fabric (см. ENABLE_SCREEN_TRANSITIONS выше). Опции собраны в
+ * app/section_sheet_navigation.ts и закреплены контрактом
+ * tests/navigation_back_underlay_contract.test.ts.
+ *
+ * Kill-switch: EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS=0 → выезд отключается
+ * (fade на iOS / мгновенно на Android), сама modal-презентация сохраняется —
+ * это поведение manage_subscription до редизайна, тоже продовое.
+ */
+export const SECTION_SHEET_TRANSITIONS = process.env.EXPO_PUBLIC_SECTION_SHEET_TRANSITIONS !== '0';
+
+/**
  * Spanish interface/explanation locale.
  *
  * This is a source/UI language for learning English. It is intentionally

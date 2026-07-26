@@ -46,7 +46,7 @@ import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { isFeatureFreeForEveryone } from './feature_gates';
-import { getVerifiedPremiumStatus } from './premium_guard';
+// зачем: premium_guard больше не нужен — тренажёр бесплатный, гейт smart_trainer снят.
 import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import { useCorrectSound } from '../hooks/use-correct-sound';
@@ -332,18 +332,12 @@ export default function TrainerWordsSession() {
           setLoading(false);
           return;
         }
+        // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
+        // премиум-гейт smart_trainer снят и для задач персонального плана тоже.
+        // Ветку planTrainerContext.taskId оставляем: она не про доступ, а про то,
+        // что дневной лимит к плановым задачам не применяется (см. else ниже).
         if (planTrainerContext.taskId) {
-          const planAllowed = isFeatureFreeForEveryone('smart_trainer') || await getVerifiedPremiumStatus();
           if (cancelled) return;
-          if (!planAllowed) {
-            logTrainerDirectGateBlocked('/trainer_words_session');
-            // Снимаем экран тренажёра со стека «назад»: при закрытии пейвола
-            // возврат сюда снова упёрся бы в этот же гейт → пейвол открывался бы
-            // заново «на месте» бесконечно. Уходим на реальный предыдущий экран.
-            markNextNavigationAsReplace();
-            router.replace({ pathname: '/premium_modal', params: { context: 'smart_trainer', source: 'smart_trainer_lock' } } as any);
-            return;
-          }
         } else {
           const allowed = await consumeTrainerSessionEntry('/trainer_words_session', studyTarget);
           if (cancelled) return;

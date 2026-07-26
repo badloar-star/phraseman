@@ -679,26 +679,13 @@ export default function FlashcardsCategoryHub({
     if (isCollectiblesEnabled()) void getCollectiblesOwnedMap();
   }, []);
 
-  const openOwnedPack = async (pack: FlashcardMarketPack) => {
+  // зачем: тап по своему набору должен открывать карточки сразу. Раньше UGC-ветка
+  // ждала ответ Firestore перед router.push — экран «залипал» на тапе. Теперь
+  // staging уходит в фон, а коллекция показывает первый кадр из кэша.
+  const openOwnedPack = (pack: FlashcardMarketPack) => {
     setUgcReportHintPackId(null);
     if (pack.isCommunityUgc) {
-      const ok = await stageCommunityPackCardsForNavigation(pack.id, studyTarget);
-      if (!ok) {
-        emitAppEvent(
-          'action_toast',
-          actionToastTri('error', {
-            ru: 'Карточки набора не загрузились.',
-            uk: 'Не вдалося завантажити картки набору.',
-            es: 'No se pudieron cargar las tarjetas del pack.',
-            'pt-BR': 'Não foi possível carregar os cartões do pack.',
-            vi: 'Không thể tải thẻ của pack.',
-            id: 'Gagal memuat kartu dari pack.',
-            tr: 'Paket kartları yüklenemedi.',
-            pl: 'Nie udało się załadować kart pakietu.',
-          }),
-        );
-        return;
-      }
+      stageCommunityPackCardsForNavigation(pack.id, studyTarget);
     } else {
       const staged = stageOwnedPackCardsForNavigation(pack.id, studyTarget);
       if (!staged) {
@@ -739,7 +726,7 @@ export default function FlashcardsCategoryHub({
       const pack = [...marketPacks, ...communityPacks].find((p) => p.id === id);
       if (!pack) return;
       if (ownedPackIds.includes(pack.id) || isPackInMineOwned(pack)) {
-        void openOwnedPack(pack);
+        openOwnedPack(pack);
       } else {
         onLockedPackPress(pack);
       }
@@ -843,7 +830,7 @@ export default function FlashcardsCategoryHub({
             width={tileW}
             reduceMotion={reduceMotion}
             disabled={!owned && !!buyingPackId}
-            onPress={() => (owned ? void openOwnedPack(pack) : onLockedPackPress(pack))}
+            onPress={() => (owned ? openOwnedPack(pack) : onLockedPackPress(pack))}
             onLongPress={
               showUgcReportShortcut
                 ? () => {

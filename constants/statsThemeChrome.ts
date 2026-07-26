@@ -1,6 +1,19 @@
 import { GOLD_RICH } from './goldTheme';
 import { COMPASS_RICH } from './compassTheme';
-import type { ThemeMode } from './theme';
+import {
+  AURORA,
+  BUSINESS,
+  BUSINESS_LIGHT,
+  CANDY_BLUE,
+  CORAL,
+  DARK,
+  EMBER,
+  GOLD,
+  INDIGO,
+  MIDNIGHT,
+  VOLT,
+  type ThemeMode,
+} from './theme';
 
 export type StatsChromeTone =
   | 'streak'
@@ -16,18 +29,18 @@ export type StatsChromeTone =
 type StatsAccentPalette = Record<StatsChromeTone, string>;
 
 const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
-  dark: '#4EA3FF',
-  gold: GOLD_RICH.champagne,
-  coral: '#FF7A7A',
+  dark: DARK.accent,
+  gold: GOLD.accent,
+  coral: CORAL.accent,
   minimalDark: '#6EA8FF',
-  business: '#0095F6',
-  businessLight: '#0095F6',
-  midnight: '#8FA0FF',
-  ember: '#FFCC55',
-  aurora: '#3DE8A6',
-  volt: '#C6FF34',
-  candyBlue: '#B2D5E5',
-  indigo: '#C8C3FF',
+  business: BUSINESS.accent,
+  businessLight: BUSINESS_LIGHT.accent,
+  midnight: MIDNIGHT.accent,
+  ember: EMBER.accent,
+  aurora: AURORA.accent,
+  volt: VOLT.accent,
+  candyBlue: CANDY_BLUE.accent,
+  indigo: INDIGO.accent,
 };
 
 // Statistics deliberately uses a quieter page field than the shared app backdrop so
@@ -186,8 +199,8 @@ function alphaColor(color: string, alphaHex: string): string {
   return /^#[0-9a-f]{6}$/i.test(color) ? `${color}${alphaHex}` : color;
 }
 
-export function statsAccent(themeMode: ThemeMode, tone: StatsChromeTone): string {
-  return STATS_ACCENTS_BY_THEME[themeMode]?.[tone] ?? STATS_ACCENTS_BY_THEME.dark[tone];
+export function statsAccent(themeMode: ThemeMode, _tone: StatsChromeTone): string {
+  return statsThemeAccent(themeMode);
 }
 
 export function statsThemeAccent(themeMode: ThemeMode): string {

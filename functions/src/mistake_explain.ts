@@ -62,7 +62,14 @@ const MAX_WORD = 80;
 const MAX_DIFF_PAIRS = 8;
 // Keep the paid hook human-sized: enough for one real nuance plus the corrected sentence,
 // tight enough that the model cannot turn a small near-miss into a lecture.
-const MAX_OUTPUT_TOKENS = 220;
+// зачем: 220 обрывало ответ на полуслове — промпт требует ставить исправленную фразу
+// ПОСЛЕДНЕЙ, поэтому при длинном разборе именно она и терялась (репорт «Правильное
+// предложение: "The[y]» — урок 14). 340 хватает на разбор + фразу, но всё ещё не даёт
+// развернуть лекцию. Ретрай ниже добирает редкие случаи, где и этого мало.
+const MAX_OUTPUT_TOKENS = 340;
+// Один повтор с увеличенным лимитом, когда провайдер обрубил ответ по длине.
+// Дороже только на редких длинных разборах: обычный путь по-прежнему один вызов.
+const RETRY_OUTPUT_TOKENS = 520;
 
 interface DiffPair {
   expected: string;
@@ -102,7 +109,9 @@ interface ExplainMistakePayload {
 }
 
 interface OpenAIChatResponse {
-  choices?: { message?: { content?: unknown } }[];
+  // зачем: finish_reason не читался вовсе — обрезанный по лимиту ответ молча уходил
+  // в кэш mistake_explanations и раздавался ВСЕМ, кто повторит ту же ошибку.
+  choices?: { message?: { content?: unknown }; finish_reason?: unknown }[];
   usage?: { prompt_tokens?: number; completion_tokens?: number; total_tokens?: number };
 }
 
@@ -432,11 +441,14 @@ function buildEli5Messages(payload: ExplainMistakePayload): Array<{ role: 'syste
   ];
 }
 
-async function generate(
+type RawGeneration = { answer: string; usage: OpenAIUsage; truncated: boolean };
+
+async function requestGeneration(
   apiKey: string,
   model: string,
   messages: Array<{ role: 'system' | 'user'; content: string }>,
-): Promise<GenerateResult> {
+  maxTokens: number,
+): Promise<RawGeneration> {
   const response = await fetch(OPENAI_CHAT_URL, {
     method: 'POST',
     headers: {
@@ -446,7 +458,7 @@ async function generate(
     body: JSON.stringify({
       model,
       temperature: 0.2,
-      max_tokens: MAX_OUTPUT_TOKENS,
+      max_tokens: maxTokens,
       messages,
     }),
   });
@@ -458,9 +470,46 @@ async function generate(
   }
 
   const json = (await response.json()) as OpenAIChatResponse;
-  const answer = text(json.choices?.[0]?.message?.content, 900);
+  const answer = text(json.choices?.[0]?.message?.content, 1400);
   if (!answer) throw new HttpsError('unavailable', 'mistake_explain_empty_reply');
-  return { answer, usage: json.usage ?? {} };
+  return {
+    answer,
+    usage: json.usage ?? {},
+    truncated: json.choices?.[0]?.finish_reason === 'length',
+  };
+}
+
+async function generate(
+  apiKey: string,
+  model: string,
+  messages: Array<{ role: 'system' | 'user'; content: string }>,
+): Promise<GenerateResult> {
+  const first = await requestGeneration(apiKey, model, messages, MAX_OUTPUT_TOKENS);
+  if (!first.truncated) return { answer: first.answer, usage: first.usage };
+
+  // зачем: обрубленный по длине разбор нельзя ни показывать, ни кэшировать — он
+  // испортит контент для всех, кто повторит ту же ошибку. Один повтор с большим
+  // лимитом; если и он обрублен — лучше честная ошибка, чем вечный обрубок в кэше.
+  console.warn('mistake_explain truncated by length, retrying', {
+    model,
+    firstAttemptTokens: MAX_OUTPUT_TOKENS,
+  });
+  const retry = await requestGeneration(apiKey, model, messages, RETRY_OUTPUT_TOKENS);
+  if (retry.truncated) {
+    console.error('mistake_explain still truncated after retry', { model });
+    throw new HttpsError('unavailable', 'mistake_explain_truncated');
+  }
+  // зачем: в биллинг должны попасть ОБА вызова, иначе учёт расхода OpenAI занижен —
+  // первый (обрубленный) тоже оплачен провайдеру.
+  return {
+    answer: retry.answer,
+    usage: {
+      prompt_tokens: Number(first.usage.prompt_tokens ?? 0) + Number(retry.usage.prompt_tokens ?? 0),
+      completion_tokens:
+        Number(first.usage.completion_tokens ?? 0) + Number(retry.usage.completion_tokens ?? 0),
+      total_tokens: Number(first.usage.total_tokens ?? 0) + Number(retry.usage.total_tokens ?? 0),
+    },
+  };
 }
 
 function assertMistakeGeneratedText(answer: string, payload: ExplainMistakePayload): void {

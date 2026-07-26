@@ -10,13 +10,24 @@ describe('legacy monetization copy contract', () => {
     expect(source).not.toContain("title: '8 бесплатных уроков пройдено'");
   });
 
-  it('describes one free quiz per day across paywall copy', () => {
-    const paywallCopy = read('app', 'paywall_copy.ts');
-    const proofCards = read('components', 'paywall', 'PaywallProofCards.tsx');
-    expect(paywallCopy).toContain('В бесплатной версии доступен 1 квиз в день.');
-    expect(paywallCopy).not.toContain('В бесплатной версии доступно 3 квиза в день.');
-    expect(proofCards).toContain('free-лимита 1/день');
-    expect(proofCards).not.toContain('free-лимита 3/день');
+  // зачем: раздел квизов удалён из приложения — обещания про «N квизов в день»
+  // стали ложными и вычищены из всех продающих текстов. Контракт перевёрнут:
+  // теперь он охраняет ОТСУТСТВИЕ упоминаний, чтобы квизы не вернулись в копирайт.
+  it('never promises quizzes in monetization copy', () => {
+    const surfaces = [
+      read('app', 'paywall_copy.ts'),
+      read('components', 'paywall', 'PaywallProofCards.tsx'),
+      read('app', 'manage_subscription.tsx'),
+    ];
+    for (const source of surfaces) {
+      // Комментарии-объяснения («раздела квизов нет») допустимы, обещания — нет.
+      const userFacing = source
+        .split('\n')
+        .filter((line) => !line.trimStart().startsWith('//'))
+        .join('\n');
+      expect(userFacing).not.toMatch(/квиз/i);
+      expect(userFacing).not.toMatch(/\bquiz(es|zes)?\b/i);
+    }
   });
 
   it('keeps the admin preview aligned with the third-lesson boundary', () => {

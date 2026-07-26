@@ -3,11 +3,10 @@ import { Animated, Easing, Pressable, StyleSheet, Text, View } from 'react-nativ
 import { Image } from 'expo-image';
 import TapScale from '../TapScale';
 import { useTheme } from '../ThemeContext';
+import { pearlIconForTheme } from '../../app/coin_icons';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
-
-const COIN_ICON = require('../../assets/images/currency/coin_1.webp');
 
 type Segment<T extends string> = { id: T; label: string };
 
@@ -45,7 +44,7 @@ export function CustomizationActionBar({ action, label, cost, busy, bottomOffset
   action: CustomizationAction; label: string; cost: number | null; busy: boolean;
   bottomOffset: number; onPress: () => void;
 }) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const reduceMotion = useReduceMotion();
   const visible = action.kind !== 'unchanged';
   const shown = useRef(new Animated.Value(visible ? 1 : 0)).current;
@@ -82,7 +81,7 @@ export function CustomizationActionBar({ action, label, cost, busy, bottomOffset
         <Text style={[styles.actionText, { color: t.correctText }]} numberOfLines={1}>{label}</Text>
         {cost !== null ? (
           <View style={styles.priceBox}>
-            <Image source={COIN_ICON} style={styles.priceCoin} contentFit="contain" accessible={false} />
+            <Image source={pearlIconForTheme(themeMode)} style={styles.priceCoin} contentFit="contain" accessible={false} />
             <Text style={[styles.actionText, { color: t.correctText }]}>{cost}</Text>
           </View>
         ) : null}

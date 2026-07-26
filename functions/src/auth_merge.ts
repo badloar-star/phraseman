@@ -1,12 +1,26 @@
 import * as admin from 'firebase-admin';
+import { createHash, randomUUID } from 'crypto';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
+import { onDocumentCreated } from 'firebase-functions/v2/firestore';
+import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
-import { ACCOUNT_DELETE_AUTH_MARKERS, ACCOUNT_DELETE_TOMBSTONES } from './account_delete_job';
+import {
+  ACCOUNT_DELETE_AUTH_MARKERS,
+  ACCOUNT_DELETE_PERMANENT_DENIALS,
+  ACCOUNT_DELETE_TOMBSTONES,
+  accountDeletePermanentDenialId,
+} from './account_delete_job';
 import {
   cleanupLegacyAuthIdentityDuplicates,
   describeAppCheckHeader,
   readAnonMergeClaim,
 } from './auth_identity';
+import {
+  aggregatePremiumLineages,
+  chooseAuthoritativePremiumLineageState,
+  MAX_OWNER_LINEAGES,
+  type PremiumLineageState,
+} from './revenuecat_premium_lineage';
 
 const USERS = 'users';
 
@@ -41,6 +55,8 @@ const PREMIUM_KEYS = [
   'premium_rc_expiry_ms',
   'premium_rc_purchased_at_ms',
   'premium_rc_cancelled_at',
+  'premium_rc_active_lineage',
+  'premium_rc_reconcile_needed',
   'admin_premium_override',
   'premium_admin_grant_at',
 ] as const;
@@ -364,6 +380,26 @@ type TransactionMergeOutcome = MergeResult & {
 };
 
 const MAX_MERGE_CANONICAL_HOPS = 8;
+const MAX_MERGE_PREMIUM_LINEAGES = 64;
+const ACCOUNT_IDENTITY_OWNER_MAP = 'account_identity_owner_map';
+const ACCOUNT_MERGE_OUTBOX = 'account_merge_outbox';
+
+function premiumLineageDocId(uid: string, lineageHash: string): string {
+  const ownerHash = createHash('sha256').update(uid).digest('hex').slice(0, 32);
+  return `lin_${ownerHash}_${lineageHash}`;
+}
+
+function revenueCatProjectionStrength(progress: ProgressMap): number {
+  const plan = cleanStr(progress.premium_plan).toLowerCase();
+  if (plan === 'lifetime') return Number.MAX_SAFE_INTEGER;
+  if (!isStorePremiumPlan(plan)) return 0;
+  const expiryMs = Math.max(parseMs(progress.premium_expiry), parseMs(progress.premium_rc_expiry_ms));
+  return expiryMs > 0 ? expiryMs : Number.MAX_SAFE_INTEGER;
+}
+
+function accountMergeOutboxId(winnerStableId: string, loserStableId: string): string {
+  return `merge_${createHash('sha256').update(`${winnerStableId}\0${loserStableId}`).digest('hex')}`;
+}
 
 async function mergeStableAccountsTransactionally(
   db: admin.firestore.Firestore,
@@ -446,7 +482,7 @@ async function mergeStableAccountsTransactionally(
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
       }
       const linkedIdentity = await resolveCanonical(linkedStableId);
-      if (!userDataOwnedByAuth(linkedIdentity.data, authUid) && linkedStableId !== linkedIdentity.stableId) {
+      if (!userDataOwnedByAuth(linkedIdentity.data, authUid)) {
         throw new HttpsError('permission-denied', 'stable_id_mismatch');
       }
       return {
@@ -488,14 +524,68 @@ async function mergeStableAccountsTransactionally(
       }
     }
 
+    const loserLineageQuery = db.collection('revenuecat_premium_lineages')
+      .where('ownerUid', '==', loser.stableId)
+      .limit(MAX_MERGE_PREMIUM_LINEAGES + 1);
+    const winnerLineageQuery = db.collection('revenuecat_premium_lineages')
+      .where('ownerUid', '==', winner.stableId)
+      .limit(MAX_MERGE_PREMIUM_LINEAGES + 1);
+    const [loserLineages, winnerLineages] = await Promise.all([
+      tx.get(loserLineageQuery),
+      tx.get(winnerLineageQuery),
+    ]);
+    if (loserLineages.docs.length > MAX_MERGE_PREMIUM_LINEAGES
+      || winnerLineages.docs.length > MAX_MERGE_PREMIUM_LINEAGES) {
+      throw new HttpsError('resource-exhausted', 'premium_lineage_limit');
+    }
+
+    const canonicalLineages = new Map<string, {
+      targetRef: FirebaseFirestore.DocumentReference;
+      state: PremiumLineageState;
+      obsoleteRefs: FirebaseFirestore.DocumentReference[];
+    }>();
+    for (const lineage of [...winnerLineages.docs, ...loserLineages.docs]) {
+      const state = lineage.data() as PremiumLineageState;
+      const targetRef = db.collection('revenuecat_premium_lineages')
+        .doc(premiumLineageDocId(winner.stableId, state.lineageHash));
+      const existing = canonicalLineages.get(state.lineageHash);
+      canonicalLineages.set(state.lineageHash, {
+        targetRef,
+        state: existing
+          ? chooseAuthoritativePremiumLineageState(existing.state, state)
+          : state,
+        obsoleteRefs: [
+          ...(existing?.obsoleteRefs ?? []),
+          ...(lineage.ref.path === targetRef.path ? [] : [lineage.ref]),
+        ],
+      });
+    }
+    if (canonicalLineages.size > MAX_MERGE_PREMIUM_LINEAGES) {
+      throw new HttpsError('resource-exhausted', 'premium_lineage_limit');
+    }
+
     const mergedProgress = mergeUserProgress(
       winner.data.progress as ProgressMap | undefined,
       loser.data.progress as ProgressMap | undefined,
       now,
     );
+    const canonicalAggregate = canonicalLineages.size > 0
+      ? aggregatePremiumLineages(
+        [...canonicalLineages.values()].map(({ state }) => state),
+        mergedProgress,
+        now,
+      )
+      : null;
+    const mergedHasStrictLegacySentinel = isStorePremiumPlan(cleanStr(mergedProgress.premium_plan).toLowerCase())
+      && !cleanStr(mergedProgress.premium_rc_active_lineage);
+    const reconciledMergedProgress = canonicalAggregate
+      && !(mergedHasStrictLegacySentinel
+        && revenueCatProjectionStrength(mergedProgress) >= revenueCatProjectionStrength(canonicalAggregate.progressPatch))
+      ? canonicalAggregate.progressPatch
+      : mergedProgress;
     const mergedShards = mergeShards(winner.data.shards, loser.data.shards);
     const winnerUpdate: Record<string, unknown> = {
-      progress: mergedProgress,
+      progress: reconciledMergedProgress,
       firebaseAuthUid: authUid,
       updatedAt: now,
       identityMergedAt: now,
@@ -507,14 +597,33 @@ async function mergeStableAccountsTransactionally(
       winnerUpdate.shards_updated_op = 'replace';
       winnerUpdate.shards_updated_reason = 'account_merge';
     }
+    for (const lineage of canonicalLineages.values()) {
+      tx.set(lineage.targetRef, { ...lineage.state, ownerUid: winner.stableId, updatedAt: now }, { merge: false });
+      for (const obsoleteRef of lineage.obsoleteRefs) tx.delete(obsoleteRef);
+    }
     tx.set(winner.ref, winnerUpdate, { merge: true });
-    tx.set(loser.ref, {
+    const loserUpdate: Record<string, unknown> = {
       identityHidden: true,
       canonicalStableId: winner.stableId,
       duplicateOfStableId: winner.stableId,
       identityMergedAt: now,
       updatedAt: now,
       anon_merge_claim: admin.firestore.FieldValue.delete(),
+    };
+    for (const key of PREMIUM_KEYS) loserUpdate[`progress.${key}`] = admin.firestore.FieldValue.delete();
+    tx.update(loser.ref, loserUpdate);
+    tx.set(db.collection(ACCOUNT_IDENTITY_OWNER_MAP).doc(loser.stableId), {
+      canonicalStableId: winner.stableId,
+      loserStableId: loser.stableId,
+      updatedAt: now,
+    }, { merge: true });
+    tx.set(db.collection(ACCOUNT_MERGE_OUTBOX).doc(accountMergeOutboxId(winner.stableId, loser.stableId)), {
+      winnerStableId: winner.stableId,
+      loserStableId: loser.stableId,
+      status: 'pending',
+      tasks: ['historical_revenuecat_receipts', 'derived_identity_cleanup'],
+      createdAt: now,
+      updatedAt: now,
     }, { merge: true });
     tx.set(authLinkRef, { stable_id: winner.stableId, updatedAt: now }, { merge: true });
     return {
@@ -580,6 +689,203 @@ export async function mergeStableAccounts(
   if (!a || !b) throw new HttpsError('invalid-argument', 'stable_ids_required');
   return mergeStableAccountsTransactionally(db, authUid, a, b, now);
 }
+
+const ACCOUNT_MERGE_LEASE_MS = 5 * 60_000;
+const ACCOUNT_MERGE_RECEIPT_PAGE_SIZE = 100;
+
+const ACCOUNT_MERGE_RECEIPT_FIELDS: Array<{
+  collection: string;
+  field: string;
+  array?: boolean;
+}> = [
+  { collection: 'revenuecat_premium_events', field: 'uid' },
+  { collection: 'revenuecat_premium_events', field: 'recipientId' },
+  { collection: 'revenuecat_premium_events', field: 'candidates', array: true },
+  { collection: 'revenuecat_premium_events', field: 'donorIds', array: true },
+  { collection: 'revenuecat_premium_events', field: 'transferredFrom', array: true },
+  { collection: 'revenuecat_premium_events', field: 'transferredTo', array: true },
+  { collection: 'revenuecat_premium_denials', field: 'ownerUid' },
+  { collection: 'revenuecat_premium_denials', field: 'candidates', array: true },
+  { collection: 'revenuecat_shard_transactions', field: 'uid' },
+  { collection: 'revenuecat_shard_transactions', field: 'candidates', array: true },
+  { collection: 'revenuecat_shard_refunds', field: 'uid' },
+  { collection: 'revenuecat_shard_refunds', field: 'sourceUid' },
+];
+
+export async function processAccountMergeOutboxJob(
+  db: FirebaseFirestore.Firestore,
+  outboxId: string,
+  now = Date.now(),
+): Promise<{ status: 'completed' | 'already_completed' | 'cancelled'; updated: number }> {
+  const ref = db.collection(ACCOUNT_MERGE_OUTBOX).doc(outboxId);
+  const leaseToken = randomUUID();
+  const claim = await db.runTransaction(async (tx) => {
+    const snap = await tx.get(ref);
+    if (!snap.exists) return null;
+    const data = snap.data() ?? {};
+    if (data.status === 'completed') return { alreadyCompleted: true as const, winner: '', loser: '' };
+    if (data.status === 'running' && Number(data.leaseUntilMs ?? 0) > now) {
+      throw new Error('account_merge_outbox_lease_active');
+    }
+    const winner = cleanStr(data.winnerStableId);
+    const loser = cleanStr(data.loserStableId);
+    if (!winner || !loser || winner === loser) throw new Error('account_merge_outbox_invalid');
+    const deletionGuards = await Promise.all([
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(winner)),
+      tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(loser)),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(winner))),
+      tx.get(db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(loser))),
+    ]);
+    if (deletionGuards.some((guard) => guard.exists)) {
+      tx.set(ref, { status: 'cancelled_by_deletion', leaseUntilMs: 0, updatedAt: now }, { merge: true });
+      return { cancelled: true as const, winner, loser };
+    }
+    tx.set(ref, {
+      status: 'running',
+      leaseToken,
+      leaseUntilMs: now + ACCOUNT_MERGE_LEASE_MS,
+      attempts: Number(data.attempts ?? 0) + 1,
+      updatedAt: now,
+    }, { merge: true });
+    return { winner, loser };
+  });
+  if (!claim) return { status: 'already_completed', updated: 0 };
+  if ('alreadyCompleted' in claim) return { status: 'already_completed', updated: 0 };
+  if ('cancelled' in claim) return { status: 'cancelled', updated: 0 };
+
+  let updated = 0;
+  try {
+    for (const spec of ACCOUNT_MERGE_RECEIPT_FIELDS) {
+      for (;;) {
+        const snapshot = await db.collection(spec.collection)
+          .where(spec.field, spec.array ? 'array-contains' : '==', claim.loser)
+          .limit(ACCOUNT_MERGE_RECEIPT_PAGE_SIZE)
+          .get();
+        if (snapshot.empty) break;
+        const pageResult = await db.runTransaction(async (tx) => {
+          const outboxSnap = await tx.get(ref);
+          if (!outboxSnap.exists || outboxSnap.data()?.leaseToken !== leaseToken) {
+            throw new Error('account_merge_outbox_lease_lost');
+          }
+
+          let canonicalWinner = claim.winner;
+          const seenOwners = new Set<string>();
+          for (let depth = 0; depth <= MAX_OWNER_LINEAGES; depth += 1) {
+            if (seenOwners.has(canonicalWinner)) throw new Error('account_merge_owner_map_cycle');
+            seenOwners.add(canonicalWinner);
+            const ownerMap = await tx.get(db.collection(ACCOUNT_IDENTITY_OWNER_MAP).doc(canonicalWinner));
+            const nextOwner = cleanStr(ownerMap.data()?.canonicalStableId);
+            if (!ownerMap.exists || !nextOwner || nextOwner === canonicalWinner) break;
+            if (depth === MAX_OWNER_LINEAGES) throw new Error('account_merge_owner_map_overflow');
+            canonicalWinner = nextOwner;
+          }
+
+          const guardedIdentities = [...new Set([claim.loser, claim.winner, canonicalWinner])];
+          const deletionGuards: FirebaseFirestore.DocumentSnapshot[] = [];
+          for (const identity of guardedIdentities) {
+            deletionGuards.push(await tx.get(db.collection(ACCOUNT_DELETE_TOMBSTONES).doc(identity)));
+            deletionGuards.push(await tx.get(
+              db.collection(ACCOUNT_DELETE_PERMANENT_DENIALS).doc(accountDeletePermanentDenialId(identity)),
+            ));
+          }
+          const currentDocs: FirebaseFirestore.DocumentSnapshot[] = [];
+          for (const doc of snapshot.docs) currentDocs.push(await tx.get(doc.ref));
+          if (deletionGuards.some((guard) => guard.exists)) {
+            tx.set(ref, {
+              status: 'cancelled_by_deletion',
+              leaseToken: admin.firestore.FieldValue.delete(),
+              leaseUntilMs: 0,
+              updatedAt: now,
+            }, { merge: true });
+            return { cancelled: true as const, changed: 0 };
+          }
+
+          let changed = 0;
+          for (const currentDoc of currentDocs) {
+            if (!currentDoc.exists) continue;
+            const raw = currentDoc.data()?.[spec.field];
+            const stillOwnedByLoser = spec.array
+              ? Array.isArray(raw) && raw.some((value) => cleanStr(value) === claim.loser)
+              : cleanStr(raw) === claim.loser;
+            if (!stillOwnedByLoser) continue;
+            const replacement = spec.array
+              ? [...new Set((raw as unknown[]).map((value) => (
+                cleanStr(value) === claim.loser ? canonicalWinner : cleanStr(value)
+              )).filter(Boolean))]
+              : canonicalWinner;
+            tx.update(currentDoc.ref, {
+              [spec.field]: replacement,
+              canonicalOwnerUid: canonicalWinner,
+              previousOwnerUidHash: createHash('sha256').update(claim.loser).digest('hex'),
+              ownerRepointedAt: now,
+            });
+            changed += 1;
+          }
+          return { cancelled: false as const, changed };
+        });
+        if (pageResult.cancelled) return { status: 'cancelled', updated };
+        updated += pageResult.changed;
+        if (snapshot.size < ACCOUNT_MERGE_RECEIPT_PAGE_SIZE) break;
+      }
+    }
+
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (!snap.exists || snap.data()?.leaseToken !== leaseToken) {
+        throw new Error('account_merge_outbox_lease_lost');
+      }
+      tx.set(ref, {
+        status: 'completed',
+        updatedDocs: updated,
+        completedAt: now,
+        leaseToken: admin.firestore.FieldValue.delete(),
+        leaseUntilMs: 0,
+        updatedAt: now,
+      }, { merge: true });
+    });
+    return { status: 'completed', updated };
+  } catch (error) {
+    await db.runTransaction(async (tx) => {
+      const snap = await tx.get(ref);
+      if (!snap.exists || snap.data()?.status !== 'running' || snap.data()?.leaseToken !== leaseToken) return;
+      tx.set(ref, {
+        status: 'pending',
+        lastError: String((error as { message?: unknown })?.message ?? error).slice(0, 160),
+        leaseToken: admin.firestore.FieldValue.delete(),
+        leaseUntilMs: 0,
+        updatedAt: Date.now(),
+      }, { merge: true });
+    }).catch(() => undefined);
+    throw error;
+  }
+}
+
+export const accountMergeOutboxWorker = onDocumentCreated({
+  document: `${ACCOUNT_MERGE_OUTBOX}/{outboxId}`,
+  region: 'us-central1',
+  retry: true,
+}, async (event) => {
+  await processAccountMergeOutboxJob(admin.firestore(), event.params.outboxId);
+});
+
+export const accountMergeOutboxRetryCron = onSchedule({
+  schedule: 'every 5 minutes',
+  timeZone: 'UTC',
+  region: 'us-central1',
+  memory: '256MiB',
+  timeoutSeconds: 300,
+}, async () => {
+  const db = admin.firestore();
+  const [pending, running] = await Promise.all([
+    db.collection(ACCOUNT_MERGE_OUTBOX).where('status', '==', 'pending').limit(20).get(),
+    db.collection(ACCOUNT_MERGE_OUTBOX).where('status', '==', 'running').limit(20).get(),
+  ]);
+  const now = Date.now();
+  for (const doc of [...pending.docs, ...running.docs]) {
+    if (doc.data()?.status === 'running' && Number(doc.data()?.leaseUntilMs ?? 0) > now) continue;
+    await processAccountMergeOutboxJob(db, doc.id, now);
+  }
+});
 
 const REFERRAL_ATTRIBUTIONS = 'referral_attributions';
 const REFERRAL_CODES = 'referral_codes';

@@ -3,7 +3,7 @@
     "name": "Phraseman",
     "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.63",
+    "version": "1.6.0",
     "orientation": "default",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -83,7 +83,7 @@
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 103,
+      "versionCode": 104,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -130,7 +130,7 @@
     "ios": {
       "bundleIdentifier": "app.phraseman",
       "icon": "./assets/images/ios-icon.png",
-      "buildNumber": "103",
+      "buildNumber": "104",
       "supportsTablet": true,
       "usesAppleSignIn": true,
       "associatedDomains": [

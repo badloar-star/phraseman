@@ -3,10 +3,11 @@ import * as logger from 'firebase-functions/logger';
 import { getFirestore, FieldValue } from 'firebase-admin/firestore';
 import { defineString } from 'firebase-functions/params';
 import { createHash } from 'crypto';
+import { RESEND_API_KEY } from './resend_secret';
 
 /** Опционально: ключ Resend для письма на почту при новом обращении (Firebase params / secrets env). */
-const resendApiKey = defineString('RESEND_API_KEY', { default: '' });
 const notifyEmail = defineString('WEB_CONTACT_NOTIFY_EMAIL', { default: 'support.phraseman@gmail.com' });
+const contactEmailFrom = defineString('WEB_CONTACT_EMAIL_FROM', { default: '' });
 
 const EMAIL_RE =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
@@ -124,15 +125,17 @@ async function reserveContactRateLimit(
 }
 
 async function notifyViaResend(subject: string, text: string): Promise<boolean> {
-  const key = resendApiKey.value();
+  const key = RESEND_API_KEY.value();
   if (!key) return false;
+  const from = contactEmailFrom.value().trim();
+  if (!from) return false;
   const to = notifyEmail.value();
   try {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: 'PhraseMan Website <onboarding@resend.dev>',
+        from,
         to: [to],
         subject,
         text,
@@ -156,6 +159,7 @@ export const submitWebsiteContact = onRequest(
     timeoutSeconds: 30,
     maxInstances: 10,
     invoker: 'public',
+    secrets: [RESEND_API_KEY],
   },
   async (req, res) => {
     const ao = pickAllowOrigin(typeof req.headers.origin === 'string' ? req.headers.origin : undefined);

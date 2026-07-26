@@ -4374,7 +4374,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
       { text: 'Llevaré', correct: 'Llevaré', distractors: ['Llevé', 'Llevo', 'Llevaba', 'Llevará', 'Llevaríamos'], category: 'futuro_simple' },
       { text: 'dinero', correct: 'dinero', distractors: ['comida', 'agua', 'café', 'pan', 'libros'], category: 'sustantivo' },
       { text: 'en', correct: 'en', distractors: ['a', 'de', 'por', 'con', 'sin'], category: 'preposicion' },
-      { text: 'efectivo', correct: 'efectivo', distractors: ['tarjeta', 'cheque', 'banco', 'monedas', 'billete'], category: 'sustantivo' },
+      { text: 'efectivo', correct: 'efectivo', distractors: ['tarjeta', 'cheque', 'banco', 'perlas', 'billete'], category: 'sustantivo' },
       { text: 'mañana', correct: 'mañana', distractors: ['ayer', 'hoy', 'pronto', 'tarde', 'ahora'], category: 'adverbio' },
       { text: '.', correct: '.', distractors: [',', '?', '!', ';', ':'], category: 'puntuacion' },
     ],
@@ -4938,7 +4938,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
       { text: 'Necesitaré', correct: 'Necesitaré', distractors: ['Necesité', 'Necesito', 'Necesitaba', 'Necesitará', 'Necesitaríamos'], category: 'futuro_simple' },
       { text: 'dinero', correct: 'dinero', distractors: ['comida', 'agua', 'café', 'pan', 'libros'], category: 'sustantivo' },
       { text: 'en', correct: 'en', distractors: ['a', 'de', 'por', 'con', 'sin'], category: 'preposicion' },
-      { text: 'efectivo', correct: 'efectivo', distractors: ['tarjeta', 'cheque', 'banco', 'monedas', 'billete'], category: 'sustantivo' },
+      { text: 'efectivo', correct: 'efectivo', distractors: ['tarjeta', 'cheque', 'banco', 'perlas', 'billete'], category: 'sustantivo' },
       { text: '?', correct: '?', distractors: ['¿', '!', '.', ',', ';'], category: 'puntuacion' },
     ],
     wordsEn: [

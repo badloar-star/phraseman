@@ -1,5 +1,5 @@
 /**
- * age_consent_cloud.ts — облачная запись возраста и согласий в Firestore
+ * age_consent_cloud.ts — облачная запись возрастной метки и согласий в Firestore
  * `user_consents/{stableId}` для учёта в админке (accountability перед регулятором).
  *
  * Отдельная коллекция (не users/{id}) — чтобы не упираться в field-whitelist правил
@@ -15,10 +15,7 @@ import { IS_EXPO_GO } from './config';
 import { getStableId } from './stable_id';
 import { ensureStableAuthLink } from './cloud_sync';
 import {
-  getBirthYearSnapshot,
   getAgeBracketSnapshot,
-  isPlausibleBirthYear,
-  setBirthYear,
   restoreAgeBracket,
   type AgeBracket,
 } from './age_gate';
@@ -65,7 +62,6 @@ export async function recordConsentToCloud(): Promise<void> {
     // и юзер пропал бы из учёта админки. Гарантируем линк ДО записи (best-effort).
     await ensureStableAuthLink().catch(() => false);
 
-    const birthYear = getBirthYearSnapshot();
     const analyticsConsent = getAnalyticsConsentState();
     const legalAccepted =
       (await AsyncStorage.getItem(LEGAL_ACCEPTED_STORAGE_KEY).catch(() => null)) === '1';
@@ -86,8 +82,11 @@ export async function recordConsentToCloud(): Promise<void> {
       /* нет доступа/документа — пишем как первый раз */
     }
 
+    // зачем: год рождения мы не спрашиваем (онбординг = бинарное «есть ли 16»), поэтому
+    // и в облако его не пишем — раньше сюда уезжала синтетика (текущий год − 16),
+    // одинаковая у всех и бесполезная для учёта. Для accountability достаточно bracket.
     const payload: Record<string, unknown> = {
-      birthYear: birthYear ?? null,
+      birthYear: null,
       ageBracket: getAgeBracketSnapshot(),
       analyticsConsent,
       platform: require('react-native').Platform.OS,
@@ -143,13 +142,11 @@ export async function restoreConsentStateFromCloud(): Promise<boolean> {
 
     let restored = false;
 
-    const birthYear = typeof data.birthYear === 'number' ? data.birthYear : NaN;
+    // зачем: восстанавливаем только метку согласия. Год рождения игнорируем даже если
+    // он лежит в старом документе — это синтетика прошлых версий, не настоящий возраст.
     const bracket = data.ageBracket as AgeBracket | undefined;
-    if (Number.isFinite(birthYear) && isPlausibleBirthYear(birthYear)) {
-      await setBirthYear(birthYear);
-      restored = true;
-    } else if (bracket === 'under13' || bracket === 'teen_safe' || bracket === 'adult') {
-      await restoreAgeBracket(bracket);
+    if (bracket === 'adult') {
+      await restoreAgeBracket('adult');
       restored = true;
     }
 

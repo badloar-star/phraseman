@@ -1,11 +1,13 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
 import type { SurveyDailyChallengeSnapshot } from './survey_daily_challenge_model';
 
 export type SurveyDailyTaskScope = { stableId: string; dayKey: string; lang: Lang };
 type Entry = { snapshot: SurveyDailyChallengeSnapshot | null; writtenAtMs: number; requestId: number };
 
-const TTL_MS = 60_000;
+const TTL_MS = 26 * 60 * 60_000;
 const MAX_ENTRIES = 4;
+const STORAGE_KEY = 'survey_daily_task_cache_v1';
 const cache = new Map<string, Entry>();
 let nextRequestId = 0;
 
@@ -18,6 +20,33 @@ function prune(nowMs: number): void {
     if (nowMs - entry.writtenAtMs > TTL_MS) cache.delete(entryKey);
   }
   while (cache.size > MAX_ENTRIES) cache.delete(cache.keys().next().value as string);
+}
+
+function persist(): void {
+  const entries = [...cache.entries()].slice(-MAX_ENTRIES);
+  void AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(entries)).catch(() => {});
+}
+
+/** Loads the last known survey decision before Home mounts, so 4/5 never flips visibly. */
+export async function primeSurveyDailyTaskCacheFromStorage(nowMs = Date.now()): Promise<void> {
+  try {
+    const raw = await AsyncStorage.getItem(STORAGE_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    if (!Array.isArray(parsed)) return;
+    for (const item of parsed) {
+      if (!Array.isArray(item) || typeof item[0] !== 'string' || !item[1] || typeof item[1] !== 'object') continue;
+      const entry = item[1] as Partial<Entry>;
+      if (typeof entry.writtenAtMs !== 'number' || nowMs - entry.writtenAtMs > TTL_MS) continue;
+      cache.set(item[0], {
+        snapshot: entry.snapshot && typeof entry.snapshot === 'object' ? entry.snapshot as SurveyDailyChallengeSnapshot : null,
+        writtenAtMs: entry.writtenAtMs,
+        requestId: typeof entry.requestId === 'number' ? entry.requestId : 0,
+      });
+    }
+    prune(nowMs);
+  } catch {
+    // Cached survey state is best-effort only.
+  }
 }
 
 export function peekSurveyDailyTask(scope: SurveyDailyTaskScope, nowMs = Date.now()): SurveyDailyChallengeSnapshot | null {
@@ -44,6 +73,7 @@ export function commitSurveyDailyTaskRequest(scope: SurveyDailyTaskScope, reques
   cache.delete(entryKey);
   cache.set(entryKey, { snapshot, writtenAtMs: nowMs, requestId });
   prune(nowMs);
+  persist();
   return true;
 }
 

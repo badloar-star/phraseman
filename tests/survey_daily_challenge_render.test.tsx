@@ -11,6 +11,13 @@ jest.mock('@expo/vector-icons', () => ({
     return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
   },
 }));
+jest.mock('@expo/vector-icons/Ionicons', () => ({
+  __esModule: true,
+  default: ({ name, ...props }: { name: string }) => {
+    const { Text: MockText } = require('react-native');
+    return <MockText {...props} testID={`ionicon-${name}`}>{name}</MockText>;
+  },
+}));
 jest.mock('expo-image', () => ({
   Image: (props: any) => {
     const { Image: MockImage } = require('react-native');
@@ -100,7 +107,7 @@ test('bonus progress remains required and renders as the aggregate bar', async (
   expect(view.getByTestId('daily-bonus-progress').props.accessibilityRole).toBe('progressbar');
 });
 
-test('active survey reuses task geometry, violet palette, complete Polish copy, and active press', async () => {
+test('active survey reuses task geometry, DALL·E task art without an icon plate, complete Polish copy, and active press', async () => {
   const onOpen = jest.fn();
   const view = await render(<SurveyTaskCard challenge={activeChallenge} onOpen={onOpen} />);
 
@@ -109,14 +116,15 @@ test('active survey reuses task geometry, violet palette, complete Polish copy, 
     backgroundColor: '#211B31',
   });
   expect(StyleSheet.flatten(view.getByTestId('daily-survey-task-icon').props.style)).toMatchObject({
-    backgroundColor: '#493466',
-    borderColor: '#B98CFF',
+    width: 72,
+    minHeight: 72,
   });
+  expect(view.getByTestId('daily-survey-task-art')).toBeTruthy();
   expect(view.getByTestId('daily-survey-task-title').props.children).toBe(activeChallenge.title);
   expect(view.getByTestId('daily-survey-task-description').props.children).toBe(activeChallenge.description);
   expect(view.getByTestId('daily-survey-task-title').props.numberOfLines).toBeUndefined();
   expect(view.getByTestId('daily-survey-task-description').props.ellipsizeMode).toBeUndefined();
-  expect(view.getByTestId('ionicon-chatbubble-ellipses-outline').props.children).toBe('chatbubble-ellipses-outline');
+  expect(view.queryByTestId('ionicon-chatbubble-ellipses-outline')).toBeNull();
   expect(`${view.getByTestId('daily-survey-task-title').props.children}${view.getByTestId('daily-survey-task-description').props.children}`)
     .not.toMatch(/[\p{Extended_Pictographic}\uFE0F]/u);
   expect(view.queryByRole('progressbar')).toBeNull();

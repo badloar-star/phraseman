@@ -81,10 +81,10 @@ const REPORT_ERROR_CATEGORY_LABELS: Record<string, Record<ReportErrorCategoryLan
     pl: 'Nieprawidłowa odpowiedź albo logika ćwiczenia',
   },
   payment_premium: {
-    ru: 'Подписка, покупка или монеты',
-    uk: 'Підписка, покупка або монети',
-    es: 'Suscripción, compra o monedas',
-    'pt-BR': 'Assinatura, compra ou moedas',
+    ru: 'Подписка, покупка или жемчужины',
+    uk: 'Підписка, покупка або перлини',
+    es: 'Suscripción, compra o perlas',
+    'pt-BR': 'Assinatura, compra ou pérolas',
     vi: 'Gói đăng ký, giao dịch mua hoặc xu thưởng',
     id: 'Langganan, pembelian, atau koin',
     tr: 'Abonelik, satın alma veya jetonlar',
@@ -372,8 +372,8 @@ function ReportErrorButton({
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Если ошибка подтвердится — получишь монету.',
-                      uk: 'Якщо помилка підтвердиться — отримаєш монету.',
+                      ru: 'Если ошибка подтвердится — получишь жемчужину.',
+                      uk: 'Якщо помилка підтвердиться — отримаєш перлину.',
                       es: 'Si confirmamos el error, recibirás un fragmento de conocimiento.',
                       'pt-BR': 'Se confirmarmos o erro, você receberá um fragmento de conhecimento.',
                       vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một xu kiến thức.',

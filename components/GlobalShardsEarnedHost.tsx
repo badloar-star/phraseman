@@ -12,10 +12,10 @@ import { useLang } from './LangContext';
  * Очередь/дедуп/арбитр — внутри ActionToast.
  */
 const SHARDS_WORD: Record<string, (n: number) => string> = {
-  ru: (n) => `+${n} монет`,
-  uk: (n) => `+${n} монет`,
-  es: (n) => `+${n} monedas`,
-  'pt-BR': (n) => `+${n} monedas`,
+  ru: (n) => `+${n} жемчужин`,
+  uk: (n) => `+${n} перлин`,
+  es: (n) => `+${n} perlas`,
+  'pt-BR': (n) => `+${n} perlas`,
   vi: (n) => `+${n} xu`,
   id: (n) => `+${n} shard`,
   tr: (n) => `+${n} jeton`,

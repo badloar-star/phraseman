@@ -10,17 +10,22 @@ const {
   removeFromFriendGiftDailyLimits,
   deleteCrossUserDocumentIdMatches,
   deleteArenaSeasonEntries,
+  resolveAccountDeleteIdentityClosure,
 } = __accountDeleteTestHooks;
 
 function makeDbStub(opts: {
   users?: Record<string, Record<string, unknown>>;
   authLinks?: Record<string, Record<string, unknown>>;
+  ownerMaps?: Record<string, Record<string, unknown>>;
+  mergeOutbox?: Record<string, Record<string, unknown>>;
 }) {
   const users = opts.users ?? {};
   const authLinks = opts.authLinks ?? {};
   const collections: Record<string, Record<string, Record<string, unknown>>> = {
     users,
     auth_links: authLinks,
+    account_identity_owner_map: opts.ownerMaps ?? {},
+    account_merge_outbox: opts.mergeOutbox ?? {},
   };
 
   const snapFor = (id: string, data: Record<string, unknown> | undefined) => ({
@@ -180,6 +185,24 @@ describe('accountDelete query plan', () => {
 });
 
 describe('accountDelete stable id resolver', () => {
+  it('keeps merged loser aliases in the deletion closure after hidden user docs are gone', async () => {
+    const db = makeDbStub({
+      users: { winner: { firebaseAuthUid: 'auth-1' } },
+      ownerMaps: { loser: { canonicalStableId: 'winner' } },
+      mergeOutbox: { merge1: { winnerStableId: 'winner', loserStableId: 'loser' } },
+    });
+
+    const identities = await resolveAccountDeleteIdentityClosure(db as any, 'winner', 'auth-1');
+    expect(new Set(identities)).toEqual(new Set(['winner', 'loser', 'auth-1']));
+
+    const plans = identities.flatMap((identity) => accountDeleteQueryPlan(identity, 'auth-1'));
+    expect(plans).toEqual(expect.arrayContaining([
+      expect.objectContaining({ collection: 'revenuecat_premium_lineages', field: 'ownerUid', value: 'loser' }),
+      expect.objectContaining({ collection: 'revenuecat_premium_events', field: 'uid', value: 'loser' }),
+      expect.objectContaining({ collection: 'revenuecat_shard_transactions', field: 'uid', value: 'loser' }),
+    ]));
+  });
+
   it('accepts the requested stable id when it is linked to the current auth uid', async () => {
     const db = makeDbStub({ users: { stable123: { firebaseAuthUid: 'auth456' } } });
 

@@ -1,8 +1,7 @@
 import Slider from '@react-native-community/slider';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { useRouter, useFocusEffect } from 'expo-router';
 import React, { useCallback, useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import BouncyScrollView from '../components/BouncyScrollView';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -10,9 +9,9 @@ import CustomSwitch from '../components/CustomSwitch';
 import CompassDepthSurface from '../components/CompassDepthSurface';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import { useTheme } from '../components/ThemeContext';
 import { useAudio } from '../hooks/use-audio';
-import { hapticTap } from '../hooks/use-haptics';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 import {
   applyUserSettingsNow,
@@ -182,33 +181,12 @@ export default function SettingsEdu() {
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, marginBottom: 8 }}>
-            <TouchableOpacity
-              onPress={() => {
-                hapticTap();
-                safeRouterBack(router, '/(tabs)/settings' as any);
-              }}
-              style={{
-                width: 38,
-                height: 38,
-                borderRadius: isCompassTheme ? 8 : 19,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: isCompassTheme ? COMPASS_RICH.charcoalRaised : 'transparent',
-                borderWidth: 0,
-                borderColor: isCompassTheme ? COMPASS_RICH.hairlineQuiet : 'transparent',
-                overflow: 'hidden',
-                ...(isCompassTheme ? compassShadow(1) : {}),
-              }}
-            >
-              {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '600' }}>
-              {loc.edu.title}
-            </Text>
-            <View style={{ width: 28 }} />
-          </View>
+          {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+              с центрированным заголовком и крестиком вместо стрелки «назад». */}
+          <SectionSheetHeader
+            title={loc.edu.title}
+            onClose={() => safeRouterBack(router, '/(tabs)/settings' as any)}
+          />
 
           <BouncyScrollView decelerationRate="normal" showsVerticalScrollIndicator={false} scrollEventThrottle={16}>
             {rows.map(row => {

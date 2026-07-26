@@ -1,5 +1,6 @@
 import type { ImageSourcePropType } from 'react-native';
 import type { ThemeMode } from './theme';
+import { PEARL_ICONS } from '../app/coin_icons';
 
 const LEVEL_GIFT_REWARD_ICON_KEYS = [
   'arena_extra_5',
@@ -60,20 +61,12 @@ const SHARD_GIFT_AMOUNTS: Partial<Record<LevelGiftRewardIconId, number>> = {
   prem_shards_20: 20,
 };
 
-const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/shards/dark-80.webp'),
-  gold: require('../assets/images/shards/gold-80.webp'),
-  coral: require('../assets/images/shards/coral-80.webp'),
-  minimalDark: require('../assets/images/shards/minimalDark-80.webp'),
-  business: require('../assets/images/shards/business-80.webp'),
-  businessLight: require('../assets/images/shards/businessLight-80.webp'),
-  midnight: require('../assets/images/shards/midnight-80.webp'),
-  ember: require('../assets/images/shards/ember-80.webp'),
-  aurora: require('../assets/images/shards/aurora-80.webp'),
-  volt: require('../assets/images/shards/volt-80.webp'),
-  candyBlue: require('../assets/images/shards/candyBlue-80.webp'),
-  indigo: require('../assets/images/shards/indigo-80.webp'),
-};
+// зачем (2026-07-26, владелец): валюта — жемчуг, а награды-орбы рисовали синие
+// кристаллы-осколки старой валюты. Переиспользуем единый набор жемчужных иконок
+// (app/coin_icons.ts) вместо собственной копии путей — один источник на всё
+// приложение, новые темы больше не требуют правки в двух местах.
+const THEMED_SHARD_GIFT_ICONS: Record<ThemeMode, ImageSourcePropType> = PEARL_ICONS;
+
 
 const LEVEL_GIFT_REWARD_ICONS: Record<LevelGiftRewardIconId, ImageSourcePropType> = {
   arena_extra_5: require('../assets/images/level_gift_reward_icons/shards_6.webp'),

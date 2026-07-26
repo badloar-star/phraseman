@@ -89,10 +89,10 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
       Alert.alert(
         L('Покупка ещё синхронизируется', 'Покупка ще синхронізується', 'La compra aún se está sincronizando', 'A compra ainda está sincronizando', 'Giao dịch mua vẫn đang đồng bộ', 'Pembelian masih disinkronkan', 'Satın alma hâlâ eşitleniyor', 'Zakup nadal się synchronizuje'),
         L(
-          'Выход отменён: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-          'Вихід скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-          'Salida cancelada: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
-          'Saída cancelada: um gasto de moedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
+          'Выход отменён: незавершённое списание жемчужин нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
+          'Вихід скасовано: незавершене списання жемчужин не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+          'Salida cancelada: un gasto de perlas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
+          'Saída cancelada: um gasto de pérolas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
           'Đã hủy đăng xuất: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
           'Keluar dibatalkan: pengeluaran koin yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
           'Çıkış iptal edildi: bekleyen jeton harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
@@ -104,12 +104,12 @@ export default function AccountLogoutFlow({ stage, onStageChange, onSignedOut }:
     }
     if (!res.ok && res.reason === 'shard_queue_quarantined') {
       Alert.alert(
-        L('Нужна проверка монет', 'Потрібна перевірка монет', 'Hay que revisar las monedas', 'É preciso verificar as moedas', 'Cần kiểm tra xu', 'Koin perlu diperiksa', 'Jetonların kontrol edilmesi gerekiyor', 'Monety wymagają sprawdzenia'),
+        L('Нужна проверка жемчужин', 'Потрібна перевірка жемчужин', 'Hay que revisar las perlas', 'É preciso verificar as pérolas', 'Cần kiểm tra xu', 'Koin perlu diperiksa', 'Jetonların kontrol edilmesi gerekiyor', 'Monety wymagają sprawdzenia'),
         L(
-          'Выход отменён: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
-          'Вихід скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
-          'Salida cancelada: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
-          'Saída cancelada: a fila local de moedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
+          'Выход отменён: локальная очередь жемчужин повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
+          'Вихід скасовано: локальна черга жемчужин пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+          'Salida cancelada: la cola local de perlas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
+          'Saída cancelada: a fila local de pérolas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
           'Đã hủy đăng xuất: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
           'Keluar dibatalkan: antrean koin lokal rusak atau milik akun yang tidak diketahui. Data disimpan untuk pemulihan.',
           'Çıkış iptal edildi: yerel jeton kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',

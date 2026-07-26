@@ -139,10 +139,12 @@ const withAlpha = (color: string, alpha: string): string => HEX_COLOR.test(color
 const RU_STUDIO_COPY = {
   title: 'Студия', preview: 'Предпросмотр образа', avatars: 'Аватары', auras: 'Ауры', all: 'Все', mine: 'Мои', catalog: 'Каталог',
   apply: 'Применить образ', applied: 'Образ применён', purchased: 'Добавлено в коллекцию', buy: 'Купить', buyApply: 'Купить и применить', plus: 'Открыть Plus',
-  reward: 'Награда Арены', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
+  reward: 'Особая награда', owned: 'В коллекции', selected: 'Выбрано', noAura: 'Без ауры', levelAvatar: 'Аватар уровня', resetLevelAvatar: 'Вернуть аватар уровня',
   levelAvatarEnabled: 'Аватар уровня включён', editAvatar: 'Настроить аватар', applyStyle: 'Выбрать оформление', dark: 'Тёмное', light: 'Светлое',
   cancel: 'Отмена', confirm: 'Подтвердить', purchaseTitle: 'Подтвердить покупку', purchaseError: 'Не удалось завершить покупку. Попробуй ещё раз.',
-  applyError: 'Образ не применился. Попробуй ещё раз.', arenaHint: 'Эту награду можно заработать в Арене',
+  // зачем: арена-ауры стали уровневыми, «наградной» остался только «Нимб» бета-тестеров —
+  // подпись и подсказка больше не отсылают к Арене.
+  applyError: 'Образ не применился. Попробуй ещё раз.', rewardHint: 'Эта награда вручается за особые заслуги',
 };
 type StudioCopy = { [K in keyof typeof RU_STUDIO_COPY]: string };
 
@@ -151,58 +153,58 @@ const STUDIO_COPY: Record<Lang, StudioCopy> = {
   uk: {
     title: 'Студія', preview: 'Попередній перегляд', avatars: 'Аватари', auras: 'Аури', all: 'Усі', mine: 'Мої', catalog: 'Каталог',
     apply: 'Застосувати образ', applied: 'Образ застосовано', purchased: 'Додано до колекції', buy: 'Купити', buyApply: 'Купити й застосувати', plus: 'Відкрити Plus',
-    reward: 'Нагорода Арени', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
+    reward: 'Особлива нагорода', owned: 'У колекції', selected: 'Вибрано', noAura: 'Без аури', levelAvatar: 'Аватар рівня', resetLevelAvatar: 'Повернути аватар рівня',
     levelAvatarEnabled: 'Аватар рівня ввімкнено', editAvatar: 'Налаштувати аватар', applyStyle: 'Обрати оформлення', dark: 'Темне', light: 'Світле',
     cancel: 'Скасувати', confirm: 'Підтвердити', purchaseTitle: 'Підтвердити покупку', purchaseError: 'Не вдалося завершити покупку. Спробуй ще раз.',
-    applyError: 'Образ не застосовано. Спробуй ще раз.', arenaHint: 'Цю нагороду можна заробити на Арені',
+    applyError: 'Образ не застосовано. Спробуй ще раз.', rewardHint: 'Ця нагорода вручається за особливі заслуги',
   },
   es: {
     title: 'Estudio', preview: 'Vista previa', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Míos', catalog: 'Catálogo',
     apply: 'Aplicar estilo', applied: 'Estilo aplicado', purchased: 'Añadido a la colección', buy: 'Comprar', buyApply: 'Comprar y aplicar', plus: 'Abrir Plus',
-    reward: 'Recompensa de Arena', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
+    reward: 'Recompensa especial', owned: 'En la colección', selected: 'Seleccionado', noAura: 'Sin aura', levelAvatar: 'Avatar de nivel', resetLevelAvatar: 'Volver al avatar de nivel',
     levelAvatarEnabled: 'Avatar de nivel restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Elegir estilo', dark: 'Oscuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'No se pudo completar la compra. Inténtalo de nuevo.',
-    applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', arenaHint: 'Consigue esta recompensa en la Arena',
+    applyError: 'No se pudo aplicar el estilo. Inténtalo de nuevo.', rewardHint: 'Esta recompensa se otorga por méritos especiales',
   },
   'pt-BR': {
     title: 'Estúdio', preview: 'Prévia do visual', avatars: 'Avatares', auras: 'Auras', all: 'Todos', mine: 'Meus', catalog: 'Catálogo',
     apply: 'Aplicar visual', applied: 'Visual aplicado', purchased: 'Adicionado à coleção', buy: 'Comprar', buyApply: 'Comprar e aplicar', plus: 'Abrir Plus',
-    reward: 'Recompensa da Arena', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
+    reward: 'Recompensa especial', owned: 'Na coleção', selected: 'Selecionado', noAura: 'Sem aura', levelAvatar: 'Avatar de nível', resetLevelAvatar: 'Restaurar avatar de nível',
     levelAvatarEnabled: 'Avatar de nível restaurado', editAvatar: 'Personalizar avatar', applyStyle: 'Escolher estilo', dark: 'Escuro', light: 'Claro',
     cancel: 'Cancelar', confirm: 'Confirmar', purchaseTitle: 'Confirmar compra', purchaseError: 'Não foi possível concluir a compra. Tente novamente.',
-    applyError: 'Não foi possível aplicar o visual. Tente novamente.', arenaHint: 'Ganhe esta recompensa na Arena',
+    applyError: 'Não foi possível aplicar o visual. Tente novamente.', rewardHint: 'Esta recompensa é concedida por méritos especiais',
   },
   vi: {
     title: 'Studio', preview: 'Xem trước diện mạo', avatars: 'Avatar', auras: 'Hào quang', all: 'Tất cả', mine: 'Của tôi', catalog: 'Danh mục',
     apply: 'Áp dụng diện mạo', applied: 'Đã áp dụng diện mạo', purchased: 'Đã thêm vào bộ sưu tập', buy: 'Mua', buyApply: 'Mua và áp dụng', plus: 'Mở Plus',
-    reward: 'Phần thưởng Đấu trường', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
+    reward: 'Phần thưởng đặc biệt', owned: 'Trong bộ sưu tập', selected: 'Đã chọn', noAura: 'Không hào quang', levelAvatar: 'Avatar theo cấp', resetLevelAvatar: 'Khôi phục avatar theo cấp',
     levelAvatarEnabled: 'Đã khôi phục avatar theo cấp', editAvatar: 'Tùy chỉnh avatar', applyStyle: 'Chọn phong cách', dark: 'Tối', light: 'Sáng',
     cancel: 'Hủy', confirm: 'Xác nhận', purchaseTitle: 'Xác nhận mua', purchaseError: 'Không thể hoàn tất giao dịch. Hãy thử lại.',
-    applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', arenaHint: 'Nhận phần thưởng này trong Đấu trường',
+    applyError: 'Không thể áp dụng diện mạo. Hãy thử lại.', rewardHint: 'Phần thưởng này được trao vì đóng góp đặc biệt',
   },
   id: {
     title: 'Studio', preview: 'Pratinjau tampilan', avatars: 'Avatar', auras: 'Aura', all: 'Semua', mine: 'Milik saya', catalog: 'Katalog',
     apply: 'Terapkan tampilan', applied: 'Tampilan diterapkan', purchased: 'Ditambahkan ke koleksi', buy: 'Beli', buyApply: 'Beli dan terapkan', plus: 'Buka Plus',
-    reward: 'Hadiah Arena', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
+    reward: 'Hadiah spesial', owned: 'Dalam koleksi', selected: 'Dipilih', noAura: 'Tanpa aura', levelAvatar: 'Avatar level', resetLevelAvatar: 'Kembalikan avatar level',
     levelAvatarEnabled: 'Avatar level dipulihkan', editAvatar: 'Sesuaikan avatar', applyStyle: 'Pilih gaya', dark: 'Gelap', light: 'Terang',
     cancel: 'Batal', confirm: 'Konfirmasi', purchaseTitle: 'Konfirmasi pembelian', purchaseError: 'Pembelian tidak dapat diselesaikan. Coba lagi.',
-    applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', arenaHint: 'Dapatkan hadiah ini di Arena',
+    applyError: 'Tampilan tidak dapat diterapkan. Coba lagi.', rewardHint: 'Hadiah ini diberikan atas jasa istimewa',
   },
   tr: {
     title: 'Stüdyo', preview: 'Görünüm önizlemesi', avatars: 'Avatarlar', auras: 'Auralar', all: 'Tümü', mine: 'Benimkiler', catalog: 'Katalog',
     apply: 'Görünümü uygula', applied: 'Görünüm uygulandı', purchased: 'Koleksiyona eklendi', buy: 'Satın al', buyApply: 'Satın al ve uygula', plus: "Plus'ı aç",
-    reward: 'Arena ödülü', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
+    reward: 'Özel ödül', owned: 'Koleksiyonda', selected: 'Seçildi', noAura: 'Aurasız', levelAvatar: 'Seviye avatarı', resetLevelAvatar: 'Seviye avatarına dön',
     levelAvatarEnabled: 'Seviye avatarı geri yüklendi', editAvatar: 'Avatarı özelleştir', applyStyle: 'Stili seç', dark: 'Koyu', light: 'Açık',
     cancel: 'İptal', confirm: 'Onayla', purchaseTitle: 'Satın almayı onayla', purchaseError: 'Satın alma tamamlanamadı. Tekrar dene.',
-    applyError: 'Görünüm uygulanamadı. Tekrar dene.', arenaHint: "Bu ödülü Arena'da kazan",
+    applyError: 'Görünüm uygulanamadı. Tekrar dene.', rewardHint: 'Bu ödül özel katkılar için verilir',
   },
   pl: {
     title: 'Studio', preview: 'Podgląd wyglądu', avatars: 'Awatary', auras: 'Aury', all: 'Wszystkie', mine: 'Moje', catalog: 'Katalog',
     apply: 'Zastosuj wygląd', applied: 'Wygląd zastosowany', purchased: 'Dodano do kolekcji', buy: 'Kup', buyApply: 'Kup i zastosuj', plus: 'Otwórz Plus',
-    reward: 'Nagroda Areny', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
+    reward: 'Nagroda specjalna', owned: 'W kolekcji', selected: 'Wybrano', noAura: 'Bez aury', levelAvatar: 'Awatar poziomu', resetLevelAvatar: 'Przywróć awatar poziomu',
     levelAvatarEnabled: 'Przywrócono awatar poziomu', editAvatar: 'Dostosuj awatar', applyStyle: 'Wybierz styl', dark: 'Ciemne', light: 'Jasne',
     cancel: 'Anuluj', confirm: 'Potwierdź', purchaseTitle: 'Potwierdź zakup', purchaseError: 'Nie udało się dokończyć zakupu. Spróbuj ponownie.',
-    applyError: 'Nie udało się zastosować wyglądu. Spróbuj ponownie.', arenaHint: 'Zdobądź tę nagrodę na Arenie',
+    applyError: 'Nie udało się zastosować wyglądu. Spróbuj ponownie.', rewardHint: 'Ta nagroda jest przyznawana za szczególne zasługi',
   },
 };
 
@@ -596,7 +598,7 @@ export default function AvatarSelect() {
       return;
     }
     if (resolvedAction.kind === 'explain-reward') {
-      showToast('info', copy.arenaHint);
+      showToast('info', copy.rewardHint);
       return;
     }
     if (resolvedAction.kind === 'buy-only' || resolvedAction.kind === 'buy-and-apply') {

@@ -178,7 +178,7 @@ export default function AdminTasksLab() {
         <TextInput value={title} onChangeText={setTitle} placeholder="Напр. «Первое впечатление»" placeholderTextColor={t.textMuted} style={inputStyle} />
 
         <Text style={[styles.label, { color: t.textSecond }]}>Описание (подпись под названием)</Text>
-        <TextInput value={subtitle} onChangeText={setSubtitle} placeholder="Напр. «Пара вопросов — и осколки твои»" placeholderTextColor={t.textMuted} style={inputStyle} />
+        <TextInput value={subtitle} onChangeText={setSubtitle} placeholder="Напр. «Пара вопросов — и жемчуг твой»" placeholderTextColor={t.textMuted} style={inputStyle} />
 
         <Text style={[styles.label, { color: t.textSecond }]}>Цвет плашки</Text>
         <View style={styles.swatchRow}>

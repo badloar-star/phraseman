@@ -4,7 +4,7 @@ Run: `2026-05-19_fr_inventory_v0a1`
 
 Status: `PASS`
 
-Generated at: 2026-07-05T18:49:47.736Z
+Generated at: 2026-07-26T16:14:19.064Z
 
 ## Summary
 

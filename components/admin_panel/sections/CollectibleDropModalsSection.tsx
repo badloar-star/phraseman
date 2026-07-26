@@ -1,6 +1,6 @@
 // Секция QA-панели: модалки получения карточки «Сокровищницы» (дроп в коллекцию).
 // Открывает CollectibleDropModal с мок-outcome по каждой редкости + случай
-// «сет собран» (секретка + бонус-осколки). Только превью: ничего не начисляет,
+// «сет собран» (секретка + бонус-жемчуг). Только превью: ничего не начисляет,
 // claim-запросы не уходят — собираем outcome из каталога локально.
 import React, { useMemo, useState } from 'react';
 import { useLang } from '../../LangContext';
@@ -95,7 +95,7 @@ export default function CollectibleDropModalsSection({ open, onToggle }: Props) 
     }
 
     // Случай «сет собран»: последняя карточка сета закрывает набор, открывается
-    // секретка и капают бонус-осколки — особый блок внутри модалки.
+    // секретка и капают бонус-жемчуг — особый блок внутри модалки.
     const setWithSecret = COLLECTIBLE_SETS.find((s) => s.cards.length > 0 && s.secret);
     if (setWithSecret) {
       const lastCard = setWithSecret.cards[setWithSecret.cards.length - 1];
@@ -114,7 +114,7 @@ export default function CollectibleDropModalsSection({ open, onToggle }: Props) 
           pl: 'Komplet + sekretna karta',
         }),
         sub: triLang(lang, {
-          ru: `«${setWithSecret.titleRu}» закрыт: блок «Сет собран», секретная карточка, +15 осколков.`,
+          ru: `«${setWithSecret.titleRu}» закрыт: блок «Сет собран», секретная карточка, +15 жемчужин.`,
           uk: `«${setTitle}» закрито: блок «Сет зібрано», секретна картка, +15 уламків.`,
           es: `«${setTitle}» completado: bloque «Set completo», carta secreta, +15 fragmentos.`,
           'pt-BR': `«${setTitle}» concluído: bloco «Conjunto completo», carta secreta, +15 fragmentos.`,
@@ -157,7 +157,7 @@ export default function CollectibleDropModalsSection({ open, onToggle }: Props) 
     >
       <AdminHint>
         {triLang(lang, {
-          ru: 'Окно «Новая карточка!» Сокровищницы — сюрприз после активности. Превью каждой редкости и случай «сет собран». Только просмотр: карточка в коллекцию не пишется, осколки не начисляются.',
+          ru: 'Окно «Новая карточка!» Сокровищницы — сюрприз после активности. Превью каждой редкости и случай «сет собран». Только просмотр: карточка в коллекцию не пишется, жемчуг не начисляется.',
           uk: 'Вікно «Нова картка!» Скарбниці — сюрприз після активності. Превʼю кожної рідкості й випадок «сет зібрано». Лише перегляд: картка в колекцію не пишеться, уламки не нараховуються.',
           es: 'La ventana «¡Nueva carta!» de la Tesorería aparece como sorpresa después de la actividad. Vista previa de cada rareza y del caso «set completo». Solo vista: no se guarda la carta ni se añaden fragmentos.',
           'pt-BR': 'A janela «Nova carta!» da Tesouraria aparece como surpresa depois da atividade. Prévia de cada raridade e do caso «conjunto completo». Só visualização: a carta não é salva e os fragmentos não são creditados.',

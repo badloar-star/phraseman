@@ -15,6 +15,7 @@ const dashboard = (due: Partial<TrainerDashboard['due']>, nextQueue: TrainerDash
   active: 0,
   future: 0,
   archived: 0,
+  archivedPhrases: 0,
   hardestQueue: null,
   hardestMistakes: 0,
   hardestCategory: null,

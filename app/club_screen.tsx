@@ -943,22 +943,22 @@ export default function ClubScreen() {
           ru: hasGold
             ? `Бонус лиги открыт: ${rewardCount} подарков, среди них Gold`
             : hasGoldDuplicate
-              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал монетами`
+              ? `Бонус лиги открыт: ${rewardCount} подарков, дубль Gold стал жемчугом`
               : `Бонус лиги открыт: выпало ${rewardCount} подарков`,
           uk: hasGold
             ? `Бонус ліги відкрито: ${rewardCount} подарунків, серед них Gold`
             : hasGoldDuplicate
-              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став монетами`
+              ? `Бонус ліги відкрито: ${rewardCount} подарунків, дубль Gold став перлинами`
               : `Бонус ліги відкрито: випало ${rewardCount} подарунків`,
           es: hasGold
             ? `Bono de liga abierto: ${rewardCount} regalos, incluido Gold`
             : hasGoldDuplicate
-              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en monedas`
+              ? `Bono de liga abierto: ${rewardCount} regalos, Gold doble convertido en perlas`
               : `Bono de liga abierto: cayeron ${rewardCount} regalos`,
           'pt-BR': hasGold
             ? `Bônus da liga aberto: ${rewardCount} presentes, incluindo Gold`
             : hasGoldDuplicate
-              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou monedas`
+              ? `Bônus da liga aberto: ${rewardCount} presentes, Gold duplicado virou pérolas`
               : `Bônus da liga aberto: caíram ${rewardCount} presentes`,
           vi: hasGold
             ? `Đã mở thưởng giải đấu: ${rewardCount} quà, có Gold`
@@ -968,12 +968,12 @@ export default function ClubScreen() {
           id: hasGold
             ? `Bonus liga dibuka: ${rewardCount} hadiah, termasuk Gold`
             : hasGoldDuplicate
-              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi koin`
+              ? `Bonus liga dibuka: ${rewardCount} hadiah, duplikat Gold menjadi mutiara`
               : `Bonus liga dibuka: mendapat ${rewardCount} hadiah`,
           tr: hasGold
             ? `Lig bonusu açıldı: ${rewardCount} hediye, içinde Gold var`
             : hasGoldDuplicate
-              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold jetona dönüştü`
+              ? `Lig bonusu açıldı: ${rewardCount} hediye, çift Gold inciye dönüştü`
               : `Lig bonusu açıldı: ${rewardCount} hediye düştü`,
           pl: hasGold
             ? `Bonus ligi otwarty: ${rewardCount} prezentów, w tym Gold`
@@ -1112,7 +1112,7 @@ export default function ClubScreen() {
     // активация бесплатна, баланс не трогаем.
     const giftVoucher = await hasClubGiftFreeBoostFromLevel().catch(() => false);
     if (!giftVoucher && previousBalance !== null && previousBalance < LEAGUE_GROUP_BOOST_COST_SHARDS) {
-      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} монет`, 'error');
+      showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, 'error');
       return;
     }
     const optimisticBoost = makeOptimisticGroupBoost();
@@ -1148,7 +1148,7 @@ export default function ClubScreen() {
       if (res.reason === 'active') {
         showLeagueToast('Буст уже активен. Новый можно купить после таймера.', 'info');
       } else if (res.reason === 'not_enough_shards') {
-        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} монет`, 'error');
+        showLeagueToast(`Нужно ${LEAGUE_GROUP_BOOST_COST_SHARDS} жемчуга`, 'error');
       } else if (res.reason === 'no_current_group') {
         showLeagueToast('Сначала обнови лигу недели и попробуй снова.', 'info');
       } else {

@@ -56,9 +56,9 @@ export async function purchaseCardPackWithShards(
     }
     emitAppEvent('action_toast', {
       type: 'error',
-      messageRu: 'Монеты не списались. Попробуй ещё раз.',
-      messageUk: 'Не вдалося списати монети.',
-      messageEs: 'No ha sido posible gastar monedas.',
+      messageRu: 'Жемчужины не списались. Попробуй ещё раз.',
+      messageUk: 'Не вдалося списати перлини.',
+      messageEs: 'No ha sido posible gastar perlas.',
     });
     return 'spend_failed';
   }
@@ -81,9 +81,10 @@ export async function purchaseCardPackWithShards(
     emitAppEvent('shards_balance_updated', { balance: balanceBack });
     emitAppEvent('action_toast', {
       type: 'error',
-      messageRu: 'Набор не удалось сохранить. Монеты возвращены.',
-      messageUk: 'Не вдалося зберегти набір. Монети повернуто.',
-      messageEs: 'No se pudo guardar el pack. Monedas devueltas.',
+      // зачем: единая валюта — жемчуг; тост обещал возврат «монет», которых в приложении нет.
+      messageRu: 'Набор не удалось сохранить. Жемчуг возвращён.',
+      messageUk: 'Не вдалося зберегти набір. Перлини повернуто.',
+      messageEs: 'No se pudo guardar el pack. Perlas devueltas.',
     });
     return 'spend_failed';
   }

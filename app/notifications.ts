@@ -477,6 +477,7 @@ export const scheduleDailyReminder = async (
 
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
+    if (!(await isNotifMasterEnabled())) return;
 
     // Clean up both daily and old per-day reminders before creating the active reminder mode.
     await cancelScheduledNotificationsByType(N, ['reminder']);
@@ -580,6 +581,7 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
     // Запрос разрешения идёт только через NotificationPermissionModal по условиям из _layout.tsx.
     const notifEnabled = await AsyncStorage.getItem('notifications_enabled');
     if (notifEnabled !== 'true') return;
+    if (!(await isNotifCategoryEnabled('streak'))) return;
     const hasPermission = await canUseNotifications(false);
     if (!hasPermission) return;
     const canShowNow = await claimImmediateNotificationSlot('streak_warning');
@@ -696,6 +698,7 @@ export const scheduleD1PersonalizedReminder = async (
     // Запрос разрешения идёт только через NotificationPermissionModal (см. _layout.tsx).
     const hasPermission = await canUseNotifications(false);
     if (!hasPermission) return;
+    if (!(await isNotifMasterEnabled())) return;
 
     const title = pickNotif(lang, notificationCopy({
       ru: `Вчера ты выучил ${phrasesLearned} фраз 🔥`,
@@ -847,7 +850,7 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
  */
 export type ConversionPushResult =
   | { ok: true; scheduled: number }
-  | { ok: false; reason: 'no_module' | 'no_permission' | 'too_soon' | 'schedule_failed'; error?: string };
+  | { ok: false; reason: 'no_module' | 'no_permission' | 'too_soon' | 'schedule_failed' | 'disabled'; error?: string };
 
 export const scheduleIntroExpiringNotification = async (
   endsAtMs: number,
@@ -859,6 +862,7 @@ export const scheduleIntroExpiringNotification = async (
     if (!N) return { ok: false, reason: 'no_module' };
     const hasPermission = await canUseNotifications(true);
     if (!hasPermission) return { ok: false, reason: 'no_permission' };
+    if (!(await isNotifCategoryEnabled('offers'))) return { ok: false, reason: 'disabled' };
 
     const twoHoursBeforeMs = endsAtMs - 2 * 60 * 60 * 1000;
     const secondsUntil = Math.floor((twoHoursBeforeMs - Date.now()) / 1000);
@@ -931,6 +935,7 @@ export const scheduleUpsellNotifications = async (
     if (!N) return { ok: false, reason: 'no_module' };
     const hasPermission = await canUseNotifications(true);
     if (!hasPermission) return { ok: false, reason: 'no_permission' };
+    if (!(await isNotifCategoryEnabled('offers'))) return { ok: false, reason: 'disabled' };
 
     const nowMs = Date.now();
 
@@ -1068,6 +1073,7 @@ export const schedulePaywallAbandonedNotification = async (
     const N = await getNotifications();
     if (!N) return;
     if (!(await canUseNotifications(true))) return;
+    if (!(await isNotifCategoryEnabled('offers'))) return;
     // не спамим: общий слот + per-type кулдаун
     if (!(await claimImmediateNotificationSlot('paywall_abandoned', Date.now()))) return;
 
@@ -1154,6 +1160,186 @@ export const saveNotifSettings = async (s: NotifSettings): Promise<void> => {
   }
 };
 
+// ── Категории уведомлений: выбор юзера «какие уведомления получать» ──────────
+// зачем: владелец попросил дать юзеру выбор по типам. Раньше экран настроек
+// управлял только типом 'reminder', а остальные ~12 типов жили без выключателя —
+// отсюда жалоба «уведомления приходят как попало». Теперь у каждого типа есть
+// категория, у категории — тумблер. Мастер = легаси-флаг 'notifications_enabled'
+// (его уже читают bootstrap, streak, league и weekly-refresh — не ломаем связи).
+export type NotifCategory =
+  | 'streak'
+  | 'phrase_of_day'
+  | 'energy'
+  | 'weekly_recap'
+  | 'monthly_recap'
+  | 'league'
+  | 'offers';
+
+export type NotifPrefs = { master: boolean; categories: Record<NotifCategory, boolean> };
+
+export const DEFAULT_NOTIF_PREFS: NotifPrefs = {
+  master: true,
+  categories: {
+    streak: true,
+    phrase_of_day: true,
+    energy: true,
+    weekly_recap: true,
+    monthly_recap: true,
+    league: true,
+    offers: true,
+  },
+};
+
+const NOTIF_PREFS_KEY = 'notif_prefs_v1';
+
+/** Маппинг категория → типы локальных уведомлений (для отмены при выключении). */
+const CATEGORY_LOCAL_TYPES: Record<NotifCategory, LocalNotificationType[]> = {
+  streak: ['streak_warning'],
+  phrase_of_day: ['phrase_of_day'],
+  energy: ['energy_full'],
+  weekly_recap: ['weekly_recap'],
+  monthly_recap: ['monthly_recap'],
+  league: ['league_overtake'],
+  offers: ['intro_expiring', 'upsell_d4', 'upsell_d7', 'upsell_d14', 'paywall_abandoned', 'premium'],
+};
+
+function normalizeNotifPrefs(raw: unknown): NotifPrefs {
+  const src = (raw ?? {}) as Partial<NotifPrefs> & { categories?: Partial<Record<NotifCategory, boolean>> };
+  const categories = { ...DEFAULT_NOTIF_PREFS.categories };
+  for (const key of Object.keys(categories) as NotifCategory[]) {
+    const v = src.categories?.[key];
+    if (typeof v === 'boolean') categories[key] = v;
+  }
+  return { master: typeof src.master === 'boolean' ? src.master : true, categories };
+}
+
+let notifPrefsMemory: NotifPrefs | null = null;
+
+export function getNotifPrefsSnapshot(): NotifPrefs {
+  const p = notifPrefsMemory ?? DEFAULT_NOTIF_PREFS;
+  return { master: p.master, categories: { ...p.categories } };
+}
+
+/**
+ * Гидрация префов при старте (вызывается из bootstrap рядом с
+ * hydrateNotifSettingsFromStorage). Миграция для существующих юзеров:
+ * master выводим из легаси-флага, а если юзер никогда не решал — из системного
+ * разрешения (тем, кто выдал разрешение, ничего не выключаем — поведение
+ * energy/offers/d1 не меняется).
+ */
+export async function hydrateNotifPrefsFromStorage(): Promise<NotifPrefs> {
+  try {
+    const raw = await AsyncStorage.getItem(NOTIF_PREFS_KEY);
+    if (raw) {
+      notifPrefsMemory = normalizeNotifPrefs(JSON.parse(raw));
+      return getNotifPrefsSnapshot();
+    }
+    const legacy = await AsyncStorage.getItem('notifications_enabled');
+    let master: boolean;
+    if (legacy === 'true') master = true;
+    else if (legacy === 'false') master = false;
+    else master = await isNotificationPermissionGranted();
+    const migrated: NotifPrefs = { ...DEFAULT_NOTIF_PREFS, master, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
+    notifPrefsMemory = migrated;
+    await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(migrated));
+    // Синхронизируем легаси-флаг: его читают streak/league/weekly-refresh/bootstrap.
+    if (master && legacy !== 'true') await AsyncStorage.setItem('notifications_enabled', 'true');
+    return getNotifPrefsSnapshot();
+  } catch {
+    notifPrefsMemory = notifPrefsMemory ?? { ...DEFAULT_NOTIF_PREFS, categories: { ...DEFAULT_NOTIF_PREFS.categories } };
+    return getNotifPrefsSnapshot();
+  }
+}
+
+export const saveNotifPrefs = async (p: NotifPrefs): Promise<void> => {
+  const normalized = normalizeNotifPrefs(p);
+  notifPrefsMemory = normalized;
+  try {
+    await AsyncStorage.setItem(NOTIF_PREFS_KEY, JSON.stringify(normalized));
+    // Легаси-флаг = мастер: его уже читают все старые проверки, включая bootstrap.
+    await AsyncStorage.setItem('notifications_enabled', normalized.master ? 'true' : 'false');
+  } catch (e) {
+    if (__DEV__) console.warn('[notifications]', e);
+  }
+  // Зеркалим выбор в облако для серверных пушей — best-effort, 1 write и только
+  // при реальном изменении (кэш внутри updateServerPushPrefs). Firebase-экономия:
+  // кроны и так читают users-док ради токена, лишних чтений не появляется.
+  void import('./push_token_registration')
+    .then(({ updateServerPushPrefs }) => updateServerPushPrefs({
+      streak: normalized.master && normalized.categories.streak,
+      offers: normalized.master && normalized.categories.offers,
+    }))
+    .catch(() => {});
+};
+
+async function getNotifPrefs(): Promise<NotifPrefs> {
+  if (notifPrefsMemory) return notifPrefsMemory;
+  return hydrateNotifPrefsFromStorage();
+}
+
+export async function isNotifMasterEnabled(): Promise<boolean> {
+  const p = await getNotifPrefs();
+  return p.master;
+}
+
+export async function isNotifCategoryEnabled(category: NotifCategory): Promise<boolean> {
+  const p = await getNotifPrefs();
+  return p.master && p.categories[category] !== false;
+}
+
+/**
+ * Применить смену префов: отменить уже запланированное для выключенных категорий
+ * и перепланировать стандартный набор для включённых. Вызывается экраном настроек
+ * ПОСЛЕ saveNotifPrefs; сам экран обновляет состояние мгновенно (optimistic).
+ */
+export const applyNotifPrefsSideEffects = async (
+  prefs: NotifPrefs,
+  lang: Lang,
+  opts: { studyTarget?: RuntimeStudyTarget } = {},
+): Promise<void> => {
+  if (!prefs.master) {
+    // cancelAllNotifications гасит всё локальное, чистит ключи планирования
+    // и удаляет push-токен из облака (сервер перестаёт слать).
+    await cancelAllNotifications();
+    return;
+  }
+  const N = await getNotifications();
+  if (!N) return;
+  for (const key of Object.keys(CATEGORY_LOCAL_TYPES) as NotifCategory[]) {
+    if (prefs.categories[key] !== false) continue;
+    await cancelScheduledNotificationsByType(N, CATEGORY_LOCAL_TYPES[key]);
+  }
+  // Чистим scheduled-маркеры выключенных категорий, чтобы повторное включение
+  // не думало «уже запланировано».
+  const staleKeys: string[] = [];
+  if (prefs.categories.streak === false) staleKeys.push('streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY);
+  if (prefs.categories.phrase_of_day === false) staleKeys.push('phrase_notif_scheduled', PHRASE_OF_DAY_NOTIF_ID_KEY);
+  if (prefs.categories.weekly_recap === false) staleKeys.push('weekly_recap_scheduled', WEEKLY_RECAP_NOTIF_ID_KEY);
+  if (prefs.categories.monthly_recap === false) staleKeys.push('monthly_recap_scheduled', MONTHLY_RECAP_NOTIF_ID_KEY);
+  if (prefs.categories.energy === false) staleKeys.push(ENERGY_FULL_NOTIF_ID_KEY);
+  if (prefs.categories.offers === false) {
+    staleKeys.push(
+      INTRO_EXPIRING_NOTIF_ID_KEY,
+      'notification_upsell_d4_scheduled_at',
+      'notification_upsell_d7_scheduled_at',
+      'notification_upsell_d14_scheduled_at',
+    );
+  }
+  if (staleKeys.length) await AsyncStorage.multiRemove(staleKeys).catch(() => {});
+
+  // Включённые категории: перепланируем стандартный набор (как bootstrap в _layout).
+  const scheduleOpts = { requestPermission: false as const, studyTarget: opts.studyTarget };
+  if (prefs.categories.streak) scheduleStreakWarningIfNeeded(lang, scheduleOpts).catch(() => {});
+  if (prefs.categories.phrase_of_day) schedulePhraseOfDayNotification(lang, scheduleOpts).catch(() => {});
+  if (prefs.categories.weekly_recap) scheduleWeeklyRecapNotification(lang, scheduleOpts).catch(() => {});
+  if (prefs.categories.monthly_recap) scheduleMonthlyRecapNotification(lang, scheduleOpts).catch(() => {});
+
+  // Мастер включён — вернём push-токен в облако (мог быть удалён при выключении).
+  void import('./push_token_registration')
+    .then(({ registerPushTokenForServerPush }) => registerPushTokenForServerPush(lang))
+    .catch(() => {});
+};
+
 // app day index 0=Mon..6=Sun → expo weekday 1=Sun,2=Mon..7=Sat
 const appDayToExpoWeekday = (d: number): number => d === 6 ? 1 : d + 2;
 
@@ -1169,9 +1355,27 @@ export const scheduleNotifications = async (
   const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
   if (!hasPermission) return;
 
+  if (!(await isNotifMasterEnabled())) return;
+
   const anyEnabled = Object.values(s.schedule).some(d => d.enabled);
   if (!anyEnabled) {
-    await cancelAllScheduledLocalNotifications(N);
+    // зачем: выключение «Ежедневного напоминания» раньше вызывало
+    // cancelAllScheduledLocalNotifications и гасило ВСЕ категории (фразу дня,
+    // итоги, серию) + сбрасывало мастер-флаг. Теперь тумблер расписания
+    // управляет только своим типом 'reminder'.
+    await cancelScheduledNotificationsByType(N, ['reminder']);
+    const stalePerDayRaw = await AsyncStorage.getItem('per_day_notif_ids');
+    if (stalePerDayRaw) {
+      try {
+        const ids: string[] = JSON.parse(stalePerDayRaw);
+        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
+      } catch (e) {
+        if (__DEV__) console.warn('[notifications]', e);
+      }
+    }
+    const staleDailyId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
+    if (staleDailyId) await N.cancelScheduledNotificationAsync(staleDailyId).catch(() => {});
+    await AsyncStorage.multiRemove(['per_day_notif_ids', DAILY_REMINDER_ID_KEY]);
     return;
   }
 
@@ -1242,6 +1446,14 @@ export const scheduleStreakWarningIfNeeded = async (
     ]);
 
     if (notifEnabledRaw !== 'true') return;
+    if (!(await isNotifCategoryEnabled('streak'))) {
+      // Категория выключена — вычищаем уже запланированное предупреждение.
+      await cancelScheduledNotificationsByType(N, ['streak_warning']);
+      const staleWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
+      if (staleWarningId) await N.cancelScheduledNotificationAsync(staleWarningId).catch(() => {});
+      await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
+      return;
+    }
     const streak = parseInt(streakRaw || '0') || 0;
     if (streak === 0) return;
 
@@ -1669,6 +1881,10 @@ export const scheduleEnergyFullNotification = async (
       await cancelEnergyFullNotification();
       return;
     }
+    if (!(await isNotifCategoryEnabled('energy'))) {
+      await cancelEnergyFullNotification();
+      return;
+    }
 
     // Энергия уже полная или некорректный ввод — ничего не планируем.
     if (!Number.isFinite(secondsUntilFull) || secondsUntilFull <= 0) {
@@ -1737,6 +1953,10 @@ const scheduleWeeklyRecapNotificationUnlocked = async (
     if (!N) return;
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
+    if (!(await isNotifCategoryEnabled('weekly_recap'))) {
+      await cancelScheduledNotificationsByType(N, ['weekly_recap']);
+      return;
+    }
 
     const now = new Date();
     const { weekXP, streak } = await readWeeklyRecapStatsForNotification(now);
@@ -1857,6 +2077,10 @@ export const scheduleMonthlyRecapNotification = async (
     if (!N) return;
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
+    if (!(await isNotifCategoryEnabled('monthly_recap'))) {
+      await cancelScheduledNotificationsByType(N, ['monthly_recap']);
+      return;
+    }
 
     const studyTarget = await resolveNotificationStudyTarget(lang, opts.studyTarget);
     const [xpRaw, streakRaw, lessons] = await Promise.all([
@@ -1930,6 +2154,10 @@ export const checkLeagueOvertakeNotification = async (
 
     // Ранг ухудшился (число больше = ниже в таблице)
     if (savedRank === null || currentRank <= savedRank) return;
+
+    // Гейт ПОСЛЕ записи ранга: слежение за позицией не останавливается,
+    // чтобы повторное включение категории не выстрелило устаревшим «обогнали».
+    if (!(await isNotifCategoryEnabled('league'))) return;
 
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
@@ -2065,6 +2293,13 @@ export const schedulePhraseOfDayNotification = async (
     }
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
+    if (!(await isNotifCategoryEnabled('phrase_of_day'))) {
+      await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
+      const stalePhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
+      if (stalePhraseId) await N.cancelScheduledNotificationAsync(stalePhraseId).catch(() => {});
+      await AsyncStorage.multiRemove(['phrase_notif_scheduled', PHRASE_OF_DAY_NOTIF_ID_KEY]);
+      return;
+    }
 
     const today = new Date().toISOString().split('T')[0];
 
@@ -2262,6 +2497,9 @@ export const scheduleTrialEndReminder = async (
     if (!N || Platform.OS === 'web') return false;
     const { status } = await N.getPermissionsAsync();
     if (status !== 'granted') return false;
+    // Сервисное напоминание о конце триала: гейт только мастером (не «Предложениями») —
+    // «скоро спишутся деньги» должно дойти, даже если маркетинг выключен.
+    if (!(await isNotifMasterEnabled())) return false;
 
     const prevId = await AsyncStorage.getItem(TRIAL_END_REMINDER_ID_KEY).catch(() => null);
     if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});

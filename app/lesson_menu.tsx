@@ -99,6 +99,20 @@ type LessonMenuCache = {
 const lessonMenuCacheById: Record<string, LessonMenuCache> = {};
 const LESSON_MENU_PREP_HINT_SEEN_KEY = 'lesson_menu_prep_hint_seen_v1';
 
+// зачем: владелец жаловался на «прыжки» при входе в урок — подсказка про Словарь/Теорию
+// прилетала в поток после async getItem и сдвигала плитки под собой. Флаг «уже видел»
+// кэшируется в модуле: после первого чтения он доступен СИНХРОННО, поэтому на первом
+// кадре подсказка либо уже есть, либо её нет вовсе — геометрия не меняется.
+let prepHintSeenCache: boolean | null = null;
+
+function peekPrepHintSeen(): boolean | null {
+  return prepHintSeenCache;
+}
+
+function rememberPrepHintSeen(seen: boolean): void {
+  prepHintSeenCache = seen;
+}
+
 function lessonMenuCacheKey(lessonId: number, studyTarget?: RuntimeStudyTarget): string {
   return `${storageStudyTarget(studyTarget)}:${lessonId}`;
 }
@@ -358,7 +372,6 @@ export default function LessonMenu() {
   const [theoryProgressPct, setTheoryProgressPct] = useState(cachedMenu?.theoryProgressPct ?? 0);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
-  const [uiReady, setUiReady] = useState(Boolean(cachedMenu));
   const [soonOpen, setSoonOpen] = useState<null | 'frenchLesson' | 'frenchTheory' | 'vocab' | 'verbs' | 'prepositions'>(null);
 
   // Состояние блокировки урока
@@ -390,7 +403,10 @@ export default function LessonMenu() {
 
   // Служебный флаг первого завершения: после него основной CTA подписывается как replay.
   const [finishedOnce, setFinishedOnce] = useState(false);
-  const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(false);
+  // Первый кадр = финальная геометрия: если флаг уже прочитан в этой сессии, берём его
+  // синхронно. Первый вход за сессию (кэш пуст) — считаем, что подсказку показываем:
+  // так она не «влетает» позже, а сразу стоит на своём месте.
+  const [lessonPrepHintVisible, setLessonPrepHintVisible] = useState(() => peekPrepHintSeen() !== true);
 
   const showReplayCta = finishedOnce && !isLessonLocked;
   const canShowLessonPrepHint = !frenchAuxiliarySourceGated && !frenchTheorySourceGated;
@@ -419,12 +435,16 @@ export default function LessonMenu() {
       setLessonPrepHintVisible(false);
       return;
     }
+    // Кэш уже прогрет — состояние выставлено синхронно в useState, второй раз не читаем.
+    if (peekPrepHintSeen() !== null) return;
     let cancelled = false;
     AsyncStorage.getItem(LESSON_MENU_PREP_HINT_SEEN_KEY)
       .then((seen) => {
+        rememberPrepHintSeen(seen === '1');
         if (!cancelled) setLessonPrepHintVisible(seen !== '1');
       })
       .catch(() => {
+        rememberPrepHintSeen(false);
         if (!cancelled) setLessonPrepHintVisible(true);
       });
     return () => { cancelled = true; };
@@ -433,6 +453,9 @@ export default function LessonMenu() {
   useEffect(() => {
     if (!lessonPrepHintVisible || !canShowLessonPrepHint || isLessonLocked || !lockStateLoaded) return;
     const timer = setTimeout(() => {
+      // Кэш обновляем сразу вместе с диском: следующий вход в урок решит судьбу
+      // подсказки синхронно, на первом кадре, без сдвига плиток.
+      rememberPrepHintSeen(true);
       void AsyncStorage.setItem(LESSON_MENU_PREP_HINT_SEEN_KEY, '1').catch(() => {});
     }, 1200);
     return () => clearTimeout(timer);
@@ -609,31 +632,37 @@ export default function LessonMenu() {
       .catch(() => setTheoryProgressPct(0));
   }, [lessonId, studyTarget]);
 
+  // зачем: гидратация из прогретого кэша раньше ждала runAfterInteractions — цифры и
+  // кольца догоняли вёрстку уже после анимации перехода. Кэш лежит в памяти, читается
+  // синхронно, поэтому применяем его сразу при монтировании: первый кадр уже финальный.
+  useEffect(() => {
+    // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
+    // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
+    const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
+    if (warm) {
+      setScore(warm.score);
+      setProgress(warm.progress);
+      setProgressArr(warm.progressArr);
+      setWordsLearned(warm.wordsLearned);
+      setIrregularLearned(warm.irregularLearned);
+      setPrepositionAnswered(warm.prepositionAnswered);
+      setPrepositionTotal(warm.prepositionTotal);
+      setTheoryProgressPct(warm.theoryProgressPct);
+      setPassCount(warm.passCount);
+      setDataLoaded(true);
+    } else {
+      setDataLoaded(false);
+    }
+  }, [lessonId, studyTarget]);
+
+  // Запись «последний открытый урок» на первый кадр не влияет — откладываем её за
+  // анимацию перехода, чтобы не занимать поток в момент открытия экрана.
   useEffect(() => {
     const task = InteractionManager.runAfterInteractions(() => {
-      setUiReady(true);
       void AsyncStorage.setItem(lastOpenedLessonKey(studyTarget), String(lessonId));
-      loadLockState();
-      // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
-      // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
-      const warm = lessonMenuCacheById[lessonMenuCacheKey(lessonId, studyTarget)];
-      if (warm) {
-        setScore(warm.score);
-        setProgress(warm.progress);
-        setProgressArr(warm.progressArr);
-        setWordsLearned(warm.wordsLearned);
-        setIrregularLearned(warm.irregularLearned);
-        setPrepositionAnswered(warm.prepositionAnswered);
-        setPrepositionTotal(warm.prepositionTotal);
-        setTheoryProgressPct(warm.theoryProgressPct);
-        setPassCount(warm.passCount);
-        setDataLoaded(true);
-      } else {
-        setDataLoaded(false);
-      }
     });
     return () => task.cancel();
-  }, [lessonId, loadLockState, studyTarget]);
+  }, [lessonId, studyTarget]);
 
   const openLessonFromMenu = useCallback(() => {
     if (frenchLessonSourceGated) {
@@ -1236,10 +1265,10 @@ export default function LessonMenu() {
     );
   }
 
-  if (!uiReady && !cachedMenu) {
-    return <View style={{ flex: 1 }} />;
-  }
-
+  // зачем: тут стоял `return <View style={{flex:1}}/>` до окончания анимации перехода —
+  // push доигрывал на пустом прозрачном экране, а вёрстка влетала уже после (главный
+  // источник «прыжков» при входе в урок). Разметка не зависит от uiReady: имя урока,
+  // плитки и хедер известны синхронно, поэтому рисуем финальный кадр сразу.
   return (
     <ScreenGradient>
     <LessonArtBackdrop variant="menu" />
@@ -1409,7 +1438,10 @@ export default function LessonMenu() {
         ))}
       </View>
 
-      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked && lockStateLoaded ? (
+      {/* зачем: раньше здесь стоял ещё и lockStateLoaded — подсказка появлялась только
+          после async-проверки замка и сдвигала всё под собой. isLessonLocked уже гарантирует,
+          что на закрытом уроке этот блок вообще не рендерится (см. ранние return выше). */}
+      {lessonPrepHintVisible && canShowLessonPrepHint && !isLessonLocked ? (
         <View testID="lesson-menu-prep-hint" style={{ paddingHorizontal: 16, marginTop: 12 }}>
           <LinearGradient
             colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : isCompassTheme ? COMPASS_GRADIENTS.recessedPanel : ['rgba(255,255,255,0.070)', 'rgba(255,255,255,0.045)', 'rgba(255,255,255,0.035)']}

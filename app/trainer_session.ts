@@ -1,8 +1,8 @@
 // Утилиты дневного лимита сессий Тренера (вынесено из trainer.tsx для тестируемости)
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { getEffectiveFreeTrainerSessions, FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT } from './remote_flags';
-import { getCanonicalUserId } from './user_id_policy';
+// зачем: getEffectiveFreeTrainerSessions/getCanonicalUserId/FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT
+// больше не импортируются — тренажёр стал бесплатным без дневного лимита (см. dailyFreeSessionCap).
 import { trainerSessionContentAvailableForTarget } from './trainer_target_gate';
 import { trainerFreeSessionKey, trainerSessionEntryKey, type RuntimeStudyTarget } from './target_storage_keys';
 
@@ -24,10 +24,20 @@ interface TrainerSessionEntry {
 
 const todayKey = (): string => new Date().toISOString().split('T')[0];
 
-/** Сколько бесплатных сессий тренажёра в день доступно пользователю (флаг + A/B). */
+/**
+ * Сколько бесплатных сессий тренажёра в день доступно пользователю.
+ *
+ * зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
+ * дневного лимита больше нет ни у кого. Возвращаем Infinity, поэтому
+ * hasUsedFreeSessionToday никогда не даёт true, getFreeSessionsLeftToday
+ * всегда > 0, а reserve/consume пропускают вход без проверки премиума.
+ * Счётчик в AsyncStorage продолжает писаться (аналитика/откат), но ни на
+ * что не влияет. Remote-ключ free_trainer_sessions_per_day и A/B-функция
+ * getEffectiveFreeTrainerSessions намеренно больше не читаются здесь —
+ * вернуть лимит = вернуть этот вызов.
+ */
 async function dailyFreeSessionCap(): Promise<number> {
-  const userId = await getCanonicalUserId().catch(() => null);
-  return getEffectiveFreeTrainerSessions(userId);
+  return Number.POSITIVE_INFINITY;
 }
 
 export function hasReservedTrainerSessionEntrySync(
@@ -76,8 +86,9 @@ export async function getFreeSessionsLeftToday(studyTarget?: RuntimeStudyTarget)
     if (data.date !== todayKey()) return cap;
     return Math.max(0, cap - data.count);
   } catch {
-    // Согласованность с дефолтом (раньше было хардкод 1, что урезало группы B/C).
-    return FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT;
+    // зачем: тренажёр бесплатный без лимита — сбой чтения хранилища не должен
+    // внезапно возвращать дневной кап и запирать вход (fail-open, как cap выше).
+    return Number.POSITIVE_INFINITY;
   }
 }
 

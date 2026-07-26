@@ -114,20 +114,20 @@ function EnergyRefillShardModal({ visible, onClose }: Props) {
   });
 
   const hintUnlimited = triLang(lang, {
-    ru: 'У тебя безлимит энергии (Plus или тестовый режим). Монеты на заряд не тратятся.',
-    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Монети на заряд не витрачаються.',
-    es: 'Tienes energía ilimitada (Plus o modo de prueba). Los monedas no se gastan en la recarga.',
-    'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Moedas não são gastos na recarga.',
+    ru: 'У тебя безлимит энергии (Plus или тестовый режим). Жемчуг на заряд не тратится.',
+    uk: 'У тебе безліміт енергії (Plus або тестовий режим). Перлини на заряд не витрачаються.',
+    es: 'Tienes energía ilimitada (Plus o modo de prueba). Los perlas no se gastan en la recarga.',
+    'pt-BR': 'Você tem energia ilimitada (Plus ou modo de teste). Pérolas não são gastos na recarga.',
     vi: 'Bạn có năng lượng không giới hạn (Plus hoặc chế độ thử nghiệm). Xu sẽ không bị dùng để nạp.',
     id: 'Kamu punya energi tanpa batas (Plus atau mode uji). Koin tidak dipakai untuk isi ulang.',
     tr: 'Sınırsız enerjin var (Plus veya test modu). Yenileme için jeton harcanmaz.',
     pl: 'Masz energię bez limitu (Plus albo tryb testowy). Monety nie są wydawane na odnowienie.',
   });
   const hintFull = triLang(lang, {
-    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за монеты.`,
-    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за монети.`,
-    es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de monedas.`,
-    'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com moedas.`,
+    ru: `Базовая энергия уже полная (${maxEnergy} ⚡). Сначала потрать заряд в раунде или вызове — тогда сможешь открыть полное восстановление за жемчуг.`,
+    uk: `Базова енергія вже повна (${maxEnergy} ⚡). Спочатку витрать заряд у раунді або виклику — тоді зможеш відкрити повне відновлення за перлини.`,
+    es: `Tu reserva base de energía ya está llena (${maxEnergy} ⚡). Primero gasta ⚡ en una lección o un cuestionario; después podrás recuperarla a cambio de perlas.`,
+    'pt-BR': `Sua energia base já está cheia (${maxEnergy} ⚡). Primeiro gaste ⚡ em uma lição ou quiz; depois você poderá restaurar tudo com pérolas.`,
     vi: `Năng lượng cơ bản đã đầy (${maxEnergy} ⚡). Trước tiên hãy dùng ⚡ trong bài học hoặc quiz; sau đó bạn có thể khôi phục đầy bằng xu.`,
     id: `Energi dasar sudah penuh (${maxEnergy} ⚡). Gunakan ⚡ dulu di pelajaran atau kuis; setelah itu kamu bisa memulihkan penuh dengan koin.`,
     tr: `Temel enerji zaten dolu (${maxEnergy} ⚡). Önce bir ders veya quizde ⚡ harca; sonra jetonlarla tamamen yenileyebilirsin.`,

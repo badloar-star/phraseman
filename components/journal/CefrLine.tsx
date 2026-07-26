@@ -5,6 +5,7 @@ import type { Theme, ThemeMode } from '../../constants/theme';
 import type { Fonts } from '../ThemeContext';
 import { statsAccent, statsSoftBg } from '../../constants/statsThemeChrome';
 import { GOLD_RICH } from '../../constants/goldTheme';
+import { phraseProgressStatusForCount, type PhraseProgressStatus } from './progress_status';
 
 export interface CefrLineProps {
   t: Theme;
@@ -12,41 +13,9 @@ export interface CefrLineProps {
   lang: Lang;
   themeMode: ThemeMode;
   isGoldTheme: boolean;
-  /** Освоенных (архивных, «выучено») фраз+слов в тренажёре — основа уровня. */
-  masteredCount: number;
+  /** Phrases retained through spaced repetition. */
+  masteredPhraseCount: number;
   onPress?: () => void;
-}
-
-type CefrLevel = 'A1' | 'A2' | 'A2+' | 'B1' | 'B1+';
-
-/**
- * Пороги уровня по числу освоенных фраз — ПРЕДВАРИТЕЛЬНЫЕ (эвристика на глаз,
- * не откалиброваны по внешней CEFR-шкале словарного запаса). Можно уточнить
- * позже, когда накопится статистика реальных пользователей по уровням.
- */
-const CEFR_THRESHOLDS: ReadonlyArray<{ level: CefrLevel; min: number }> = [
-  { level: 'B1+', min: 900 },
-  { level: 'B1', min: 550 },
-  { level: 'A2+', min: 250 },
-  { level: 'A2', min: 80 },
-  { level: 'A1', min: 0 },
-];
-
-const CEFR_ORDER: readonly CefrLevel[] = ['A1', 'A2', 'A2+', 'B1', 'B1+'];
-
-function levelForMasteredCount(n: number): CefrLevel {
-  const found = CEFR_THRESHOLDS.find((entry) => n >= entry.min);
-  return found ? found.level : 'A1';
-}
-
-/** Сколько фраз не хватает до следующего уровня; null — уже потолок шкалы (B1+). */
-function toNextLevel(n: number, level: CefrLevel): { next: CefrLevel; remaining: number } | null {
-  const idx = CEFR_ORDER.indexOf(level);
-  const next = CEFR_ORDER[idx + 1];
-  if (!next) return null;
-  const nextThreshold = CEFR_THRESHOLDS.find((entry) => entry.level === next);
-  if (!nextThreshold) return null;
-  return { next, remaining: Math.max(0, nextThreshold.min - n) };
 }
 
 function pluralPhrasesRu(n: number): string {
@@ -65,98 +34,46 @@ function pluralPhrasesUk(n: number): string {
   return 'фраз';
 }
 
-/**
- * Строка-карточка «Уровень A2 · 340 фраз · до B1 — 210».
- * Название самодостаточно — никакой подписи-расшифровки мелким шрифтом ниже.
- */
-function CefrLine({ t, f, lang, themeMode, isGoldTheme, masteredCount, onPress }: CefrLineProps) {
-  const safeCount = Math.max(0, Math.floor(masteredCount));
-  const level = levelForMasteredCount(safeCount);
-  const progress = toNextLevel(safeCount, level);
+function progressStatusLabel(lang: Lang, status: PhraseProgressStatus): string {
+  // зачем: `ReturnType<typeof triLang>` у дженерика без аргументов резолвится в
+  // `unknown` — возврат labels[status] переставал быть string. Тип строк выводится
+  // из самих литералов, отдельная аннотация не нужна.
+  const labels: Record<PhraseProgressStatus, string> = {
+    start: triLang(lang, { ru: 'Начало', uk: 'Початок', es: 'Inicio', 'pt-BR': 'Começo', vi: 'Khởi đầu', id: 'Awal', tr: 'Başlangıç', pl: 'Początek' }),
+    moving: triLang(lang, { ru: 'В движении', uk: 'У русі', es: 'En marcha', 'pt-BR': 'Em movimento', vi: 'Đang tiến lên', id: 'Terus maju', tr: 'İlerliyorsun', pl: 'W ruchu' }),
+    confident: triLang(lang, { ru: 'Уверенно', uk: 'Впевнено', es: 'Con seguridad', 'pt-BR': 'Com confiança', vi: 'Tự tin', id: 'Percaya diri', tr: 'Kendinden emin', pl: 'Pewnie' }),
+    strong: triLang(lang, { ru: 'Сильно', uk: 'Сильно', es: 'Sólido', 'pt-BR': 'Forte', vi: 'Vững vàng', id: 'Kuat', tr: 'Güçlü', pl: 'Mocno' }),
+    impressive: triLang(lang, { ru: 'Впечатляюще', uk: 'Вражаюче', es: 'Impresionante', 'pt-BR': 'Impressionante', vi: 'Ấn tượng', id: 'Mengesankan', tr: 'Etkileyici', pl: 'Imponująco' }),
+    expert: triLang(lang, { ru: 'Экспертно', uk: 'Експертно', es: 'Experto', 'pt-BR': 'Especialista', vi: 'Chuyên nghiệp', id: 'Ahli', tr: 'Uzman', pl: 'Ekspercko' }),
+    outstanding: triLang(lang, { ru: 'Выдающийся результат', uk: 'Видатний результат', es: 'Resultado excepcional', 'pt-BR': 'Resultado excepcional', vi: 'Kết quả xuất sắc', id: 'Hasil luar biasa', tr: 'Olağanüstü sonuç', pl: 'Wybitny wynik' }),
+  };
+  return labels[status];
+}
 
+function CefrLine({ t, f, lang, themeMode, isGoldTheme, masteredPhraseCount, onPress }: CefrLineProps) {
+  const safeCount = Math.max(0, Math.floor(masteredPhraseCount));
+  const status = phraseProgressStatusForCount(safeCount);
   const accent = isGoldTheme ? GOLD_RICH.metalGold : statsAccent(themeMode, 'archiveMap');
   const chipBg = isGoldTheme ? GOLD_RICH.wash : statsSoftBg(themeMode, 'archiveMap');
-
-  const levelLabel = triLang(lang, {
-    ru: `Уровень ${level}`,
-    uk: `Рівень ${level}`,
-    es: `Nivel ${level}`,
-    'pt-BR': `Nível ${level}`,
-    vi: `Trình độ ${level}`,
-    id: `Level ${level}`,
-    tr: `Seviye ${level}`,
-    pl: `Poziom ${level}`,
-  });
-
   const phraseCountLabel = triLang(lang, {
-    ru: `${safeCount} ${pluralPhrasesRu(safeCount)}`,
-    uk: `${safeCount} ${pluralPhrasesUk(safeCount)}`,
-    es: `${safeCount} frases`,
-    'pt-BR': `${safeCount} frases`,
-    vi: `${safeCount} cụm từ`,
-    id: `${safeCount} frasa`,
-    tr: `${safeCount} ifade`,
-    pl: `${safeCount} fraz`,
-  });
-
-  const nextLevelLabel = progress
-    ? triLang(lang, {
-        ru: `до ${progress.next} — ${progress.remaining}`,
-        uk: `до ${progress.next} — ${progress.remaining}`,
-        es: `a ${progress.next} — ${progress.remaining}`,
-        'pt-BR': `até ${progress.next} — ${progress.remaining}`,
-        vi: `còn ${progress.remaining} đến ${progress.next}`,
-        id: `${progress.remaining} lagi ke ${progress.next}`,
-        tr: `${progress.next}'e — ${progress.remaining}`,
-        pl: `do ${progress.next} — ${progress.remaining}`,
-      })
-    : triLang(lang, {
-        ru: 'вершина шкалы',
-        uk: 'вершина шкали',
-        es: 'nivel máximo',
-        'pt-BR': 'nível máximo',
-        vi: 'mức cao nhất',
-        id: 'level tertinggi',
-        tr: 'zirve seviye',
-        pl: 'szczyt skali',
-      });
-
-  const chipText = triLang(lang, {
-    ru: level,
-    uk: level,
-    es: level,
-    'pt-BR': level,
-    vi: level,
-    id: level,
-    tr: level,
-    pl: level,
+    ru: `${safeCount} закреплённых ${pluralPhrasesRu(safeCount)}`,
+    uk: `${safeCount} закріплених ${pluralPhrasesUk(safeCount)}`,
+    es: `${safeCount} frases reforzadas`,
+    'pt-BR': `${safeCount} frases consolidadas`,
+    vi: `${safeCount} cụm từ đã củng cố`,
+    id: `${safeCount} frasa yang dikuasai`,
+    tr: `${safeCount} pekiştirilmiş ifade`,
+    pl: `${safeCount} utrwalonych fraz`,
   });
 
   return (
-    <View
-      accessibilityRole={onPress ? 'button' : undefined}
-      style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        gap: 12,
-        borderRadius: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 14,
-        backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface,
-      }}
-    >
+    <View accessibilityRole={onPress ? 'button' : undefined} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface }}>
       <View style={{ width: 40, height: 40, borderRadius: 13, backgroundColor: chipBg, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }} numberOfLines={1}>
-          {chipText}
-        </Text>
+        <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>{safeCount}</Text>
       </View>
       <View style={{ flex: 1, minWidth: 0 }}>
-        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-          {levelLabel}
-        </Text>
-        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600', marginTop: 2 }} numberOfLines={1}>
-          {`${phraseCountLabel} · ${nextLevelLabel}`}
-        </Text>
+        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>{progressStatusLabel(lang, status)}</Text>
+        <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600', marginTop: 2 }}>{phraseCountLabel}</Text>
       </View>
     </View>
   );

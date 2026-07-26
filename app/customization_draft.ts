@@ -28,7 +28,7 @@ export type CustomizationAction =
   | { kind: 'buy-only'; target: 'avatar' | 'aura'; purchaseKind: 'purchase' | 'restyle'; cost: number }
   | { kind: 'open-plus' }
   | { kind: 'explain-level'; level: number }
-  | { kind: 'explain-reward'; source: 'arena' | 'gift' }
+  | { kind: 'explain-reward' }
   | { kind: 'unchanged' };
 
 export function resolveEffectivePreviewAuraId(
@@ -52,7 +52,7 @@ function nonPurchaseBlocker(availability: CatalogAvailability): CustomizationAct
     case 'level':
       return { kind: 'explain-level', level: availability.level };
     case 'reward':
-      return { kind: 'explain-reward', source: availability.source };
+      return { kind: 'explain-reward' };
     default:
       return null;
   }

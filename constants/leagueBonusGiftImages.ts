@@ -11,6 +11,8 @@ export const LEAGUE_BONUS_GIFT_IMAGE_THEMES = [
   'ember',
   'aurora',
   'volt',
+  'candyBlue',
+  'indigo',
 ] as const;
 
 export type LeagueBonusGiftImageTheme = typeof LEAGUE_BONUS_GIFT_IMAGE_THEMES[number];
@@ -28,6 +30,8 @@ const LEAGUE_BONUS_GIFT_IMAGES: Record<LeagueBonusGiftImageTheme, ImageSourcePro
   ember: require('../assets/images/league_bonus/ember-chest.webp'),
   aurora: require('../assets/images/league_bonus/aurora-chest.webp'),
   volt: require('../assets/images/league_bonus/volt-chest.webp'),
+  candyBlue: require('../assets/images/league_bonus/candyBlue-chest.webp'),
+  indigo: require('../assets/images/league_bonus/indigo-chest.webp'),
 };
 
 const isLeagueBonusGiftImageTheme = (

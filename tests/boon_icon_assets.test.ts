@@ -17,6 +17,18 @@ const WEEKLY_BOON_ICON_IDS: readonly WeeklyBoonIconId[] = [
 ];
 
 describe('weekly boon DALL-E icon assets', () => {
+  it('keeps every Metro require path backed by a real asset file', () => {
+    const assetMapSource = readFileSync(path.join(process.cwd(), 'constants', 'boonIconAssets.ts'), 'utf8');
+    const requiredAssets = [...assetMapSource.matchAll(/require\('\.\.\/(assets\/images\/weekly_boon_icons\/png\/[\w/.-]+\.webp)'\)/g)].map(
+      (match) => match[1],
+    );
+
+    expect(requiredAssets).toHaveLength(132);
+    for (const relativeAssetPath of requiredAssets) {
+      expect(existsSync(path.join(process.cwd(), relativeAssetPath))).toBe(true);
+    }
+  });
+
   it('has a generated icon for every bonus and every app theme', async () => {
     const seen = new Set<string>();
 

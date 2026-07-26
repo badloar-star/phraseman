@@ -15,6 +15,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { useReduceMotion } from '../hooks/use_reduce_motion';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
+import { safeRouterBack } from './navigation_back';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { readCustomCards } from './flashcards/storage';
 import { storageStudyTarget } from './target_storage_keys';
@@ -324,7 +325,10 @@ export default function FlashcardsArenaScreen() {
   const leave = useCallback(() => {
     void hapticTap();
     clearTimers();
-    router.back();
+    // зачем: router.back() на native-stack крашит Android/Fabric при Back
+    // (см. app/navigation_back.ts) — тот же паттерн, что у flashcards_swipe.tsx,
+    // экран открывается только из /flashcards (app/flashcards.tsx), туда и возвращаем.
+    safeRouterBack(router, '/flashcards' as any);
   }, [clearTimers, router]);
 
   // Слова, где ошиблись — для экрана итогов.

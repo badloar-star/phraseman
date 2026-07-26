@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { HttpsError } from 'firebase-functions/v2/https';
 import {
   assertReferralDevGrantAcquisitionAllowed,
@@ -5,6 +7,28 @@ import {
 } from './referral_dev_grant_policy';
 
 describe('referral dev grant acquisition policy', () => {
+  test('keeps DEV grants unlimited without weakening server authorization gates', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'referral_dev_grant.ts'), 'utf8');
+    const client = fs.readFileSync(path.resolve(__dirname, '..', '..', 'app', 'roulette_spin_client.ts'), 'utf8');
+    const screen = fs.readFileSync(path.resolve(__dirname, '..', '..', 'app', 'referrals.tsx'), 'utf8');
+    const transactionBody = source.slice(source.indexOf('return db.runTransaction(async (tx)'));
+    const transactionalDevGate = transactionBody.indexOf('configData?.numbers?.referral_dev_grant_enabled !== true');
+    const firstWrite = transactionBody.indexOf('tx.create(');
+
+    expect(source).toContain("throw new HttpsError('unauthenticated', 'Auth required')");
+    expect(source).toContain('await assertAuthStableLink(db, authUid, stableId)');
+    expect(source).toContain('await isDevGrantEnabled(db)');
+    expect(transactionalDevGate).toBeGreaterThan(0);
+    expect(firstWrite).toBeGreaterThan(transactionalDevGate);
+    expect(source).not.toContain('MAX_GRANTS_PER_DAY');
+    expect(source).not.toContain('referral_dev_grants_daily');
+    expect(source).not.toContain('DEV_GRANT_DAILY_LIMIT');
+    expect(client).not.toContain("reason: 'daily_limit'");
+    expect(client).not.toContain('DEV_GRANT_DAILY_LIMIT');
+    expect(screen).not.toContain("res.reason === 'daily_limit'");
+    expect(screen).not.toContain('лимит 10 ключей в сутки');
+  });
+
   test('allows issuance only while roulette acquisition is enabled', () => {
     expect(() => assertReferralDevGrantAcquisitionAllowed({
       softEnabled: true,

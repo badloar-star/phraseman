@@ -45,7 +45,7 @@ describe('league bonus themed gift images', () => {
     expect(patterns).toContain('assets/images/league/league_crown.webp');
     expect(patterns).toContain('assets/images/league_bonus/*');
     expect(patterns).toContain('assets/images/level_gift_reward_icons/*');
-    expect(patterns).toContain('assets/images/shards/*');
+    expect(patterns).toContain('assets/images/currency/*');
   });
 
   it('keeps the league screen bonus gift art visible in the mission card', () => {

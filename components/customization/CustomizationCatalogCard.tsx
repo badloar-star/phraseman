@@ -6,10 +6,9 @@ import TapScale from '../TapScale';
 import AvatarView from '../AvatarView';
 import CustomAvatarBadge from '../CustomAvatarBadge';
 import { useTheme } from '../ThemeContext';
+import { pearlIconForTheme } from '../../app/coin_icons';
 import { LinearGradient } from '../SafeLinearGradient';
 import type { CustomizationCatalogItem } from '../../app/customization_catalog';
-
-const COIN_ICON = require('../../assets/images/currency/coin_1.webp');
 
 /**
  * зачем: «Вернуть аватар уровня» переехал из скрытого меню-трёх-точек в первую плитку
@@ -39,12 +38,12 @@ interface Props {
  * Теперь плитка немая: только превью; имя показывает сцена, а цена/замок/награда — один
  * компактный чип. Тексты label/statusLabel остаются в accessibilityLabel для VoiceOver.
  */
-function AvailabilityChip({ item }: { item: CatalogCardItem }) {
+function AvailabilityChip({ item, pearlIcon }: { item: CatalogCardItem; pearlIcon: ReturnType<typeof pearlIconForTheme> }) {
   const a = item.availability;
   if (a.kind === 'shards') {
     return (
       <View style={styles.chip}>
-        <Image source={COIN_ICON} style={styles.chipCoin} contentFit="contain" accessible={false} />
+        <Image source={pearlIcon} style={styles.chipCoin} contentFit="contain" accessible={false} />
         <Text style={[styles.chipText, styles.chipPrice]}>{a.cost}</Text>
       </View>
     );
@@ -78,7 +77,7 @@ function AvailabilityChip({ item }: { item: CatalogCardItem }) {
 export const CustomizationCatalogCard = React.memo(function CustomizationCatalogCard({
   item, selected, label, statusLabel, onPress,
 }: Props) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const owned = item.isOwned && !selected && item.kind !== 'none-aura';
   return (
     <TapScale
@@ -101,7 +100,7 @@ export const CustomizationCatalogCard = React.memo(function CustomizationCatalog
               size={64}
               animateAura={false}
             />}
-        {!selected ? <AvailabilityChip item={item} /> : null}
+        {!selected ? <AvailabilityChip item={item} pearlIcon={pearlIconForTheme(themeMode)} /> : null}
         {selected ? (
           <View style={[styles.mark, { backgroundColor: t.accent }]}>
             <Ionicons name="checkmark" size={12} color={t.correctText} />

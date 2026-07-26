@@ -317,7 +317,7 @@ export const LESSON_WORD_ES_BY_EN: Record<string, string> = {
   'coffee': 'café',
   'coffeemaker': 'cafetera',
   'coin': 'acuñar',
-  'coins': 'monedas',
+  'coins': 'perlas',
   'cold': 'frío',
   'coldest': 'más frío',
   'collapse': 'colapsar',

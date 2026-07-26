@@ -202,6 +202,16 @@ export function reportRecipientCandidate(
   return '';
 }
 
+export function reportRecipientIdentityLookup(
+  reportCollection: string,
+  report: FirebaseFirestore.DocumentData,
+): { originalUid: string; authUid: string; requestedStableId?: string } {
+  const originalUid = reportRecipientCandidate(reportCollection, report);
+  const storedAuthUid = cleanString(report.authUid || report.reporterAuthUid, 128);
+  if (!storedAuthUid) return { originalUid, authUid: originalUid };
+  return { originalUid, authUid: storedAuthUid, requestedStableId: originalUid };
+}
+
 /**
  * adminReplyToReport — отправить юзеру персональный ответ на его репорт.
  *
@@ -247,11 +257,20 @@ export const adminReplyToReport = onCall(
     if (!initialReportSnap.exists) {
       throw new HttpsError('not-found', `report ${reportCollection}/${reportId} not found`);
     }
-    const originalUid = reportRecipientCandidate(reportCollection, initialReportSnap.data() ?? {});
+    const recipientIdentity = reportRecipientIdentityLookup(
+      reportCollection,
+      initialReportSnap.data() ?? {},
+    );
+    const { originalUid } = recipientIdentity;
     if (!originalUid || originalUid === 'unknown') {
       throw new HttpsError('failed-precondition', 'report recipient identity is missing');
     }
-    const uid = await resolveStableUidForAuth(db, originalUid, undefined, { requireKnownIdentity: true });
+    const uid = await resolveStableUidForAuth(
+      db,
+      recipientIdentity.authUid,
+      recipientIdentity.requestedStableId,
+      { requireKnownIdentity: true, repairLinks: false },
+    );
     const userRef = db.collection('users').doc(uid);
     const messageRef = userRef.collection(USER_MESSAGES_COLLECTION).doc();
     const notificationRef = userNotificationRef(db, uid, `report_reply_${messageRef.id}`);

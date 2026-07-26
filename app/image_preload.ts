@@ -4,6 +4,7 @@ import { FIRST_LESSON_SHEET_IMAGES } from '../components/firstLessonSheetAssets'
 import { LEVEL_GIFT_IMAGE_SOURCES } from '../constants/levelGiftImages';
 import { LEVEL_GIFT_REWARD_ICON_SOURCES } from '../constants/levelGiftRewardIcons';
 import { OSKOLOK_IMAGE_SOURCES } from './oskolok';
+import { REFERRAL_INVITE_BANNER_IMAGES } from '../components/ReferralInviteBannerArt';
 
 // Pre-load critical bundled images so Metro-served assets are already cached in dev.
 // Image.getSize() only works with network URIs, not require() assets.
@@ -88,6 +89,7 @@ export const preloadPrimaryTabImages = async () => {
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
+      ...REFERRAL_INVITE_BANNER_IMAGES,
     ]);
   } catch {
     // Silently fail - preloading is entirely optional.
@@ -113,6 +115,7 @@ export const preloadImages = async () => {
       ...MEDAL_IMAGES,
       ...FIRST_LESSON_SHEET_IMAGES,
       ...LESSON_INTRO_CTA_IMAGES,
+      ...REFERRAL_INVITE_BANNER_IMAGES,
       ...LEVEL_GIFT_IMAGE_SOURCES,
       ...LEVEL_GIFT_REWARD_ICON_SOURCES,
       ...OSKOLOK_IMAGE_SOURCES,

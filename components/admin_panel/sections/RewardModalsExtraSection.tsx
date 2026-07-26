@@ -73,7 +73,7 @@ export default function RewardModalsExtraSection({ open, onToggle }: Props) {
         testID="admin-extra-energy-refill"
         icon="battery-charging-outline"
         label="EnergyRefillShardModal"
-        sub="Покупка энергии за осколки (долгий тап по индикатору энергии в проде). Читает реальный баланс."
+        sub="Покупка энергии за жемчуг (долгий тап по индикатору энергии в проде). Читает реальный баланс."
         onPress={() => setEnergyRefillVisible(true)}
       />
       <ReleaseWaveBonusModal

@@ -19,7 +19,7 @@ const previousSnapshot: CustomizationSnapshot = {
 };
 
 const purchaseInput: PurchaseCustomizationInput = {
-  target: 'aura', itemId: 'aura-aurora', cost: 50,
+  target: 'aura', itemId: 'aura-aurora', cost: 120,
   spendReason: 'avatar_aura', mode: 'buy-only', ownedValue: true,
 };
 

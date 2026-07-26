@@ -3,6 +3,7 @@ import {
   normalizeReportReplyReward,
   normalizeStoredReportReplyClaimAmount,
   reportDocumentAllowsCoin,
+  reportRecipientIdentityLookup,
   requireReportReplyPermission,
 } from './report_replies';
 
@@ -49,5 +50,23 @@ describe('report reply one-coin contract', () => {
     expect(reportDocumentAllowsCoin({ resolution: 'confirmed_fixed' }, 'confirmed_fixed')).toBe(true);
     expect(reportDocumentAllowsCoin({ status: 'reviewed' }, 'confirmed_fixed')).toBe(false);
     expect(reportDocumentAllowsCoin({ status: 'fixed' }, 'duplicate')).toBe(false);
+  });
+
+  test('resolves a stored stable uid through its distinct report auth uid', () => {
+    expect(reportRecipientIdentityLookup('error_reports', {
+      uid: 'stable-user',
+      authUid: 'firebase-auth-user',
+    })).toEqual({
+      originalUid: 'stable-user',
+      authUid: 'firebase-auth-user',
+      requestedStableId: 'stable-user',
+    });
+  });
+
+  test('keeps the bounded legacy recipient fallback when a report has no auth uid', () => {
+    expect(reportRecipientIdentityLookup('error_reports', { uid: 'legacy-identity' })).toEqual({
+      originalUid: 'legacy-identity',
+      authUid: 'legacy-identity',
+    });
   });
 });

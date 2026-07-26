@@ -60,8 +60,8 @@ export const CLUBS: ClubDef[] = [
     nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
     shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
-    descRU: 'Твое любопытство — твой двигатель. Ты ищешь новые знания, и это круто. На этом этапе многие сдаются, но ты блестишь на их фоне, как начищенная монета. Не бойся ошибаться, ведь именно так рождается истина и приятный бонус в +20% опыта.',
-    descUK: 'Твоя допитливість — твій двигун. Ти шукаєш нові знання, і це круто. На цьому етапі багато хто здається, але ти сяєш на їхньому фоні, як начищена монета. Не бійся помилятися, адже саме так народжується істина і приємний бонус у +20% досвіду.',
+    descRU: 'Твое любопытство — твой двигатель. Ты ищешь новые знания, и это круто. На этом этапе многие сдаются, но ты блестишь на их фоне, как начищенная жемчужина. Не бойся ошибаться, ведь именно так рождается истина и приятный бонус в +20% опыта.',
+    descUK: 'Твоя допитливість — твій двигун. Ти шукаєш нові знання, і це круто. На цьому етапі багато хто здається, але ти сяєш на їхньому фоні, як начищена жемчужина. Не бійся помилятися, адже саме так народжується істина і приємний бонус у +20% досвіду.',
     greetingRU: 'Ты на верном пути, искатель! Каждый новый урок — это открытие нового горизонта.',
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
@@ -848,6 +848,25 @@ const buildServerResultChain = (
   return chain;
 };
 
+/**
+ * Ограничивает переход лиги ОДНОЙ ступенью за ролловер.
+ *
+ * зачем: buildServerResultChain валидирует шаг каждого звена (<=1), но суммарный переход
+ * раньше не ограничивался — несколько пропущенных недель с promoted складывались в +3
+ * лиги за один ролловер (репорт 20.07.2026: Золотая id3 → Сапфировая id6 «одним разом»,
+ * пользователь прочитал это как понижение и потерю очков). Одиночный путь такую проверку
+ * имеет, цепочечный — нет. Остальные звенья остаются историей для модалки, но лигу не
+ * двигают: иначе отпуск на месяц = подъём через полстолбца лестницы без единой игры.
+ *
+ * XP-режим усиливает проблему: в нём demoted всегда false, а promoted выдаётся при
+ * достижении порога, то есть у активного игрока повышение накапливается каждую неделю.
+ */
+export const capLeagueStep = (fromLeagueId: number, targetLeagueId: number): number => {
+  if (targetLeagueId === fromLeagueId) return fromLeagueId;
+  const stepped = fromLeagueId + Math.sign(targetLeagueId - fromLeagueId);
+  return Math.max(0, Math.min(CLUBS.length - 1, stepped));
+};
+
 export const checkLeagueOnAppOpen = async (
   myName: string,
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
@@ -927,13 +946,20 @@ export const checkLeagueOnAppOpen = async (
       : [];
     if (serverChain.length > 0) {
       const last = serverChain[serverChain.length - 1];
+      const chainTargetLeagueId = last.newLeagueId;
+      const cappedLeagueId = capLeagueStep(state.leagueId, chainTargetLeagueId);
+      if (cappedLeagueId !== chainTargetLeagueId) {
+        console.warn('[league_engine] multi-week chain capped to a single league step', {
+          fromLeagueId: state.leagueId, chainTargetLeagueId, cappedLeagueId, weeks: serverChain.length,
+        });
+      }
       result = {
         prevLeagueId: state.leagueId,
-        newLeagueId: last.newLeagueId,
+        newLeagueId: cappedLeagueId,
         myRank: last.rank,
         totalInGroup: last.total,
-        promoted: last.newLeagueId > state.leagueId,
-        demoted: last.newLeagueId < state.leagueId,
+        promoted: cappedLeagueId > state.leagueId,
+        demoted: cappedLeagueId < state.leagueId,
         group: rolloverGroup,
       };
     } else {

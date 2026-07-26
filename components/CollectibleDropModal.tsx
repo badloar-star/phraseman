@@ -113,7 +113,7 @@ export default function CollectibleDropModal({ outcome, onClose, onOpenCollectio
           {outcome.setCompleted && (
             <View style={styles.setCompletedBox}>
               <Text style={[styles.setCompletedTitle, { fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Сет собран! +15 монет', uk: 'Сет зібрано! +15 монет', es: '¡Set completo! +15 monedas', 'pt-BR': 'Conjunto completo! +15 moedas', vi: 'Đủ bộ! +15 xu', id: 'Set lengkap! +15 koin', tr: 'Set tamam! +15 jeton', pl: 'Komplet! +15 monet' })}
+                {triLang(lang, { ru: 'Сет собран! +15 жемчужин', uk: 'Сет зібрано! +15 перлин', es: '¡Set completo! +15 perlas', 'pt-BR': 'Conjunto completo! +15 pérolas', vi: 'Đủ bộ! +15 ngọc trai', id: 'Set lengkap! +15 mutiara', tr: 'Set tamam! +15 inci', pl: 'Komplet! +15 pereł' })}
               </Text>
               {!!secret && (
                 <Text style={[styles.setCompletedSub, { color: t.textSecond, fontSize: f.sub }]}>

@@ -31,27 +31,30 @@ describe('customization catalog', () => {
     }).some((item) => item.id === secretGiftId)).toBe(true);
   });
 
-  it('prices an unowned shop avatar at 35 shards', () => {
+  it('prices an unowned shop avatar at 90 shards', () => {
     const item = buildAvatarCatalog({
       ownedAvatars: {},
       giftedAvatarId: null,
       activeAvatar: '1',
     }).find((candidate) => candidate.id === 'custom-gen-41');
 
-    expect(item?.availability).toEqual({ kind: 'shards', cost: 35 });
+    expect(item?.availability).toEqual({ kind: 'shards', cost: 90 });
   });
 
-  it('prices a purchasable aura at 50 shards', () => {
+  it('prices a purchasable aura at 120 shards', () => {
     const item = buildAuraCatalog(baseContext)
       .find((candidate) => candidate.id === 'aura-aurora');
 
-    expect(item?.availability).toEqual({ kind: 'shards', cost: 50 });
+    expect(item?.availability).toEqual({ kind: 'shards', cost: 120 });
   });
 
   it.each([
     ['aura-premium', 'plus'],
     ['aura-flame-51', 'level'],
-    ['aura-season', 'reward'],
+    // зачем: бывшие «Награды Арены» стали уровневыми (52-55), наградным остался только «Нимб».
+    ['aura-arena-starvortex', 'level'],
+    ['aura-season', 'level'],
+    ['aura-nimbus', 'reward'],
     ['aura-aurora', 'shards'],
   ] as const)('classifies %s as %s', (id, expected) => {
     expect(buildAuraCatalog(baseContext).find((item) => item.id === id)?.availability.kind).toBe(expected);

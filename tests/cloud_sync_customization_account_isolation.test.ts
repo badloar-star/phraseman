@@ -3,6 +3,7 @@ import {
   accountLocalDataKeysForToday,
   saveAccountSwitchEmergencyBackup,
   wipeLocalAccountData,
+  wipeLocalAccountDataForCleanInstallRecovery,
 } from '../app/cloud_sync';
 import { shardDeltaQueueStorageKey } from '../app/shards_delta_queue';
 import { getAppSnapshot, patchAppSnapshot } from '../app/app_snapshot_store';
@@ -92,6 +93,31 @@ it('removes fixed and wildcard personal-plan replay state without clearing devic
   oldAccountKeys.forEach((key) => expect(store[key]).toBeUndefined());
   deviceKeys.forEach((key) => expect(store[key]).toBe(`sentinel:${key}`));
   expect(store.unrelated_device_cache_v1).toBe('sentinel:unrelated_device_cache_v1');
+});
+
+it('dedicated clean-install wipe preserves both recovery journals while removing source data', async () => {
+  store.auth_clean_install_recovery_v1 = 'confirmed-clean-journal';
+  store.auth_clean_install_recovery_adoption_v1 = 'prepared-adoption-journal';
+  store.personal_plan_attempt_events_v1 = 'source-account-data';
+
+  await wipeLocalAccountDataForCleanInstallRecovery();
+
+  expect(store.auth_clean_install_recovery_v1).toBe('confirmed-clean-journal');
+  expect(store.auth_clean_install_recovery_adoption_v1).toBe('prepared-adoption-journal');
+  expect(store.personal_plan_attempt_events_v1).toBeUndefined();
+});
+
+it('dedicated clean-install wipe removes every computed source account key', async () => {
+  store.auth_clean_install_recovery_v1 = 'confirmed-clean-journal';
+  store.auth_clean_install_recovery_adoption_v1 = 'prepared-adoption-journal';
+  const sourceKeys = accountLocalDataKeysForToday();
+  sourceKeys.forEach((key) => { store[key] = `source:${key}`; });
+
+  await wipeLocalAccountDataForCleanInstallRecovery();
+
+  sourceKeys.forEach((key) => expect(store[key]).toBeUndefined());
+  expect(store.auth_clean_install_recovery_v1).toBe('confirmed-clean-journal');
+  expect(store.auth_clean_install_recovery_adoption_v1).toBe('prepared-adoption-journal');
 });
 
 it('keeps account B isolated when a deferred account A callback writes replay state during the wipe', async () => {

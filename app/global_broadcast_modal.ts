@@ -178,13 +178,13 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'shards':
       return {
         icon: '💎',
-        labelRu: `+${amount} монет`,
-        labelUk: `+${amount} монет`,
+        labelRu: `+${amount} жемчужин`,
+        labelUk: `+${amount} перлин`,
         labelEs:
           amount === 1
             ? '+1 fragmento'
-            : `+${amount} monedas`,
-        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} monedas`,
+            : `+${amount} perlas`,
+        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} perlas`,
         labelVi: `+${amount} xu`,
         labelId: `+${amount} koin`,
         labelTr: `+${amount} jeton`,

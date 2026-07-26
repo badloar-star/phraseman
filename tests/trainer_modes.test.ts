@@ -299,20 +299,18 @@ describe('getTrainerModeCounts', () => {
 });
 
 describe('trainer — free session limit', () => {
-  // Дефолт = 1 бесплатная сессия/день (remote_flags, FREE_TRAINER_SESSIONS_PER_DAY_DEFAULT).
-  it('starts with 1 session available', async () => {
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
+  // зачем: владелец сделал тренажёр («Моя практика») полностью бесплатным —
+  // дневного лимита сессий больше нет ни у кого (trainer_session.ts →
+  // dailyFreeSessionCap() = Infinity). Тесты ниже фиксируют именно это:
+  // вход в тренажёр не может быть заблокирован исчерпанным лимитом.
+  it('never runs out of free sessions', async () => {
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
   });
 
-  it('returns 0 after the session is marked used today', async () => {
+  it('stays unlimited after sessions were used today', async () => {
     const today = new Date().toISOString().split('T')[0];
-    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 1 });
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
-  });
-
-  it('resets to 1 on a new day', async () => {
-    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: '2000-01-01', count: 1 });
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
+    mockStorage.trainer_free_session_v1 = JSON.stringify({ date: today, count: 99 });
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
   });
 
   it('requires a reserved entry for non-premium direct session access', async () => {
@@ -320,27 +318,25 @@ describe('trainer — free session limit', () => {
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(false);
   });
 
-  it('does not spend the free session while only reserving navigation', async () => {
+  it('reserves navigation without spending anything', async () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
+    await expect(getFreeSessionsLeftToday()).resolves.toBe(Number.POSITIVE_INFINITY);
   });
 
-  it('consumes the reserved free entry and blocks the next reservation', async () => {
+  it('allows reserving again right after consuming an entry', async () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
     await expect(consumeTrainerSessionEntry('/trainer_words_session')).resolves.toBe(true);
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(0);
-    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(false);
+    // Раньше здесь лимит исчерпывался и вторая резервация падала в пейвол.
+    await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
   });
 
   it('rejects a reserved entry for a different trainer route', async () => {
     mockStorage.tester_no_premium = 'true';
     await expect(reserveTrainerSessionEntry('/trainer_words_session', false)).resolves.toBe(true);
+    // Защита от подмены маршрута остаётся: она не про лимит, а про целостность входа.
     await expect(consumeTrainerSessionEntry('/trainer_phrases_session')).resolves.toBe(false);
-    // Неверный маршрут не списывает сессию — остаётся полный дневной лимит (1).
-    await expect(getFreeSessionsLeftToday()).resolves.toBe(1);
   });
 });
 
@@ -417,6 +413,19 @@ describe('trainer_store premium modes', () => {
       category: 'article',
       xp: 16,
     }));
+  });
+
+  it('dashboard counts retained phrases separately from words and arena items', async () => {
+    seedTrainerStore([
+      makeTrainerStoreItem({ key: 'saved phrase', queue: 'phrases', archived: true }),
+      makeTrainerStoreItem({ key: 'saved word', queue: 'words', archived: true }),
+      makeTrainerStoreItem({ key: 'saved arena', queue: 'arena', archived: true }),
+    ]);
+
+    const dashboard = await getTrainerDashboard();
+
+    expect(dashboard.archived).toBe(3);
+    expect(dashboard.archivedPhrases).toBe(1);
   });
 
   it('dashboard separates overdue items from everything due today', async () => {

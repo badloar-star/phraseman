@@ -38,16 +38,16 @@ const isPackUnlockGift = (g: GiftDef) => g.id.startsWith('prem_level_unlock_');
 
 /** Награды сундука лиги — зеркало серверного ролла (functions/src/league_chest.ts). */
 const LEAGUE_CHEST_ROWS: { icon: string; title: string; desc: string; chance: string }[] = [
-  { icon: 'diamond-outline', title: 'Осколки 15–35', desc: 'Базовая награда финала недели', chance: 'всегда' },
+  { icon: 'diamond-outline', title: 'Жемчуг 15–35', desc: 'Базовая награда финала недели', chance: 'всегда' },
   { icon: 'flame-outline', title: 'Буст ×2 XP', desc: '3 применения, действует неделю', chance: '45%' },
   { icon: 'flash-outline', title: 'Быстрая энергия', desc: 'Слот за 5 минут, действует неделю', chance: '35%' },
   { icon: 'shield-checkmark-outline', title: 'Щит цепочки +1 день', desc: 'Один пропуск не прервёт серию', chance: '22%' },
   { icon: 'ticket-outline', title: '+5 игр арены', desc: 'Дополнительные рейтинговые матчи', chance: '20%' },
-  { icon: 'diamond', title: 'Бонус-осколки 10–22', desc: 'Сверх базовой награды', chance: '15%' },
+  { icon: 'diamond', title: 'Бонус-жемчуг 10–22', desc: 'Сверх базовой награды', chance: '15%' },
   { icon: 'cube-outline', title: 'Набор на 48 часов', desc: 'Полный доступ к платному набору', chance: '8%' },
   { icon: 'sparkles-outline', title: 'Аура аватара', desc: 'Новая аура — навсегда', chance: '10% · корона 22%' },
   { icon: 'person-circle-outline', title: 'Аватар', desc: 'Новый аватар — навсегда', chance: '6% · корона 12%' },
-  { icon: 'trophy-outline', title: 'Золотая тема', desc: 'Навсегда; дубль → +25 осколков', chance: '5% · корона 8%' },
+  { icon: 'trophy-outline', title: 'Золотая тема', desc: 'Навсегда; дубль → +25 жемчужин', chance: '5% · корона 8%' },
 ];
 
 /** Прочие подарочные механики вне каталогов уровня. */
@@ -55,7 +55,7 @@ const OTHER_GIFT_ROWS: { icon: string; title: string; desc: string }[] = [
   { icon: 'people-outline', title: 'VIP за друга — 7 дней', desc: 'Друг прошёл первую сессию на бронзу — тебе неделя VIP. До 30 друзей в месяц.' },
   { icon: 'cube-outline', title: 'Ваучер набора 48 ч', desc: 'Открой любой платный набор бесплатно. Сгорает при активации — один раз.' },
   { icon: 'checkbox-outline', title: 'XP за миссии дня', desc: 'Забери награду тостом после выполненной миссии.' },
-  { icon: 'ribbon-outline', title: 'Осколки за достижения', desc: 'Готовые награды ждут на экране достижений.' },
+  { icon: 'ribbon-outline', title: 'Жемчуг за достижения', desc: 'Готовые награды ждут на экране достижений.' },
 ];
 
 function GroupHeader({ label, count }: { label: string; count?: number }) {

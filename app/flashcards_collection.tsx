@@ -778,9 +778,14 @@ export default function FlashcardsScreen() {
     // Швидке відображення: одразу з AsyncStorage, без import lesson data / маркету.
     const mappedSavedQuick = saved.map(savedToCard);
     const cacheKeyEarly = marketOwnedIdsCacheKey([...ownedIdsEarly, ...communityOwnedEarly].sort());
+    /**
+     * зачем: раньше UGC-наборы исключались из кэша (`communityOwnedEarly.length === 0`),
+     * потому что хаб гарантированно подкладывал карточки через `await` перед переходом.
+     * Теперь переход мгновенный и staging догоняет фоном, поэтому первый кадр UGC берём
+     * из кэша — ключ `cacheKeyEarly` уже включает community-id, так что подмены наборов нет.
+     */
     const cacheHit =
-      communityOwnedEarly.length === 0 &&
-      builtMarketCache &&
+      !!builtMarketCache &&
       builtMarketCache.ownedKey === cacheKeyEarly &&
       builtMarketCache.cards.length > 0;
     if (cacheHit) {
@@ -1891,7 +1896,9 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
         )}
 
-        {filteredCards.length > 0 && (
+        {/* зачем: в «Создать мои карточки» (custom) прячем «Тренировать»/«Слушать» —
+            эти режимы уже доступны в других разделах, здесь экран только про создание */}
+        {filteredCards.length > 0 && activeCat !== 'custom' && (
           <View style={{ flexDirection: 'row', gap: 10, marginHorizontal: 16, marginTop: 10, marginBottom: 4 }}>
           <TouchableOpacity
             onPress={openSwipeGame}

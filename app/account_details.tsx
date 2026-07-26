@@ -172,6 +172,16 @@ export default function AccountDetailsScreen() {
   const initials = initialsFromName(userName);
   const providerLabel = linkedAuth?.provider === 'apple' ? 'Apple' : 'Google';
   const namePlaceholder = L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono');
+  const logoutActionLabel = L(
+    'Выйти и войти под другим аккаунтом',
+    'Вийти й увійти під іншим акаунтом',
+    'Salir e iniciar sesión con otra cuenta',
+    'Sair e entrar com outra conta',
+    'Đăng xuất và đăng nhập bằng tài khoản khác',
+    'Keluar dan masuk dengan akun lain',
+    'Çıkış yapıp başka bir hesapla giriş yap',
+    'Wyloguj się i zaloguj na inne konto',
+  );
 
   return (
     <ScreenGradient>
@@ -306,6 +316,7 @@ export default function AccountDetailsScreen() {
             <TouchableOpacity
               testID="account-logout-button"
               accessibilityRole="button"
+              accessibilityLabel={logoutActionLabel}
               activeOpacity={0.7}
               onPress={() => { doHaptic(); setLogoutStage('confirm'); }}
               style={{
@@ -315,7 +326,7 @@ export default function AccountDetailsScreen() {
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {L('Выйти', 'Вийти', 'Cerrar sesión', 'Sair', 'Đăng xuất', 'Keluar', 'Çıkış yap', 'Wyloguj się')}
+                {logoutActionLabel}
               </Text>
             </TouchableOpacity>
           ) : null}

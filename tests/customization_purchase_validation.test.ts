@@ -21,7 +21,7 @@ function intent(overrides: Partial<CustomizationPurchaseIntent> = {}): Customiza
     createdAt: 1,
     target: 'aura',
     itemId: 'aura-aurora',
-    cost: 50,
+    cost: 120,
     spendReason: 'avatar_aura',
     mode: 'buy-only',
     ownedValue: true,
@@ -45,7 +45,7 @@ describe('customization purchase validation', () => {
     expect(validateCustomizationPurchase(intent({
       target: 'avatar',
       itemId: 'custom-gen-01',
-      cost: 35,
+      cost: 90,
       spendReason: 'custom_avatar',
       ownedValue: 'violet:black',
     }), noPlus)).toBe(false);
@@ -55,7 +55,7 @@ describe('customization purchase validation', () => {
     const staleApply = intent({
       target: 'avatar',
       itemId: 'custom-gen-41',
-      cost: 35,
+      cost: 90,
       spendReason: 'custom_avatar',
       ownedValue: 'violet:black',
       mode: 'buy-and-apply',

@@ -151,10 +151,10 @@ function LeagueBonusAvailableModal({
                       pl: `Masz najwięcej punktów. Liga zamknęła cel, a korona nie udaje skromności: jest twoja.`,
                     })
                     : triLang(lang, {
-                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри монеты, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
-                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині монети, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
-                      es: `La liga completó la meta semanal. El bono ya está listo: monedas, boosts y recompensas raras para cada jugador.`,
-                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: moedas, boosts e recompensas raras para cada jogador.`,
+                      ru: `Лига закрыла цель недели. Бонус уже готов: внутри жемчужины, усилители и редкие награды, которые выпадают отдельно для каждого игрока.`,
+                      uk: `Ліга закрила ціль тижня. Бонус уже готовий: усередині перлини, підсилювачі й рідкісні нагороди, що випадають окремо для кожного гравця.`,
+                      es: `La liga completó la meta semanal. El bono ya está listo: perlas, boosts y recompensas raras para cada jugador.`,
+                      'pt-BR': `A liga completou a meta semanal. O bônus já está pronto: pérolas, boosts e recompensas raras para cada jogador.`,
                       vi: `Giải đấu đã hoàn thành mục tiêu tuần. Phần thưởng đã sẵn sàng: xu, boost và phần thưởng hiếm cho từng người chơi.`,
                       id: `Liga menyelesaikan target mingguan. Bonus sudah siap: koin, boost, dan hadiah langka untuk setiap pemain.`,
                       tr: `Lig haftalık hedefi tamamladı. Bonus hazır: her oyuncu için jetonlar, boostlar ve nadir ödüller var.`,

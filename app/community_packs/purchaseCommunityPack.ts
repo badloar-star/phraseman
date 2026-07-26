@@ -61,10 +61,10 @@ function formatCommunityPurchaseError(e: unknown): Parameters<typeof actionToast
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      ru: 'Недостаточно монет на балансе. Проверь баланс и попробуй снова.',
-      uk: 'Недостатньо монет на балансі. Перевір баланс і спробуй ще раз.',
-      es: 'Saldo de monedas insuficiente. Comprueba el saldo e inténtalo de nuevo.',
-      'pt-BR': 'Saldo de moedas insuficiente. Confira o saldo e tente novamente.',
+      ru: 'Недостаточно жемчужин на балансе. Проверь баланс и попробуй снова.',
+      uk: 'Недостатньо перлин на балансі. Перевір баланс і спробуй ще раз.',
+      es: 'Saldo de perlas insuficiente. Comprueba el saldo e inténtalo de nuevo.',
+      'pt-BR': 'Saldo de pérolas insuficiente. Confira o saldo e tente novamente.',
       vi: 'Không đủ xu trong số dư. Kiểm tra số dư rồi thử lại.',
       id: 'Saldo koin tidak cukup. Periksa saldo lalu coba lagi.',
       tr: 'Jeton bakiyesi yetersiz. Bakiyeni kontrol edip tekrar dene.',

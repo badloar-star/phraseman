@@ -106,6 +106,7 @@ function dependencies(overrides: Partial<BuildBriefingDependencies> = {}): Build
       active: 20,
       future: 8,
       archived: 3,
+      archivedPhrases: 2,
       hardestQueue: 'phrases',
       hardestMistakes: 7,
       hardestCategory: 'verb',

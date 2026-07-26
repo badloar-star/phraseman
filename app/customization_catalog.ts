@@ -1,7 +1,6 @@
 import {
   AVATAR_AURA_BUY_COST,
   AVATAR_AURAS,
-  ARENA_PASS_AURA_PREFIX,
   NO_AVATAR_AURA_ID,
   type AvatarAuraDef,
 } from '../constants/avatar_auras';
@@ -22,7 +21,7 @@ export type CatalogAvailability =
   | { kind: 'shards'; cost: number }
   | { kind: 'level'; level: number }
   | { kind: 'plus' }
-  | { kind: 'reward'; source: 'arena' | 'gift' }
+  | { kind: 'reward' }
   | { kind: 'none' };
 
 type CatalogBase = {
@@ -123,14 +122,10 @@ function auraAvailability(
     || (plusAura && hasPlusAuraAccess)
     || unlockedByLevel;
   if (isOwned) return { isOwned: true, availability: { kind: 'owned' } };
+  // зачем: rewardOnly остался только у ручных наград админки («Нимб») — арена-ауры
+  // владелец перевёл на уровни 52-55, деление source arena/gift стало мёртвым.
   if (aura.rewardOnly) {
-    return {
-      isOwned: false,
-      availability: {
-        kind: 'reward',
-        source: aura.id.startsWith(ARENA_PASS_AURA_PREFIX) || aura.id.startsWith('aura-season') ? 'arena' : 'gift',
-      },
-    };
+    return { isOwned: false, availability: { kind: 'reward' } };
   }
   if (aura.unlockLevel !== undefined) {
     return { isOwned: false, availability: { kind: 'level', level: aura.unlockLevel } };

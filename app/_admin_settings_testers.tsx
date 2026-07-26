@@ -526,10 +526,10 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
   return (
     <View style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 18 }}>
       <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
-        Новые аватары за осколки
+        Новые аватары за жемчуг
       </Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 18 }}>
-        {CUSTOM_AVATAR_SHOP.map((avatar) => renderCustomAvatarPreview(avatar, 'shop', 'Осколки'))}
+        {CUSTOM_AVATAR_SHOP.map((avatar) => renderCustomAvatarPreview(avatar, 'shop', 'Жемчуг'))}
       </View>
 
       <Text style={{ color: ADMIN_TEXT, fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
@@ -1295,10 +1295,10 @@ export default function SettingsTestersFunctions() {
     emitAppEvent('shards_earned', {
       amount: 5,
       reasonText: triLang(lang, {
-  ru: 'Admin preview: актуальная глобальная модалка осколков',
+  ru: 'Admin preview: актуальная глобальная модалка жемчуга',
   uk: 'Admin preview: актуальна глобальна модалка уламків',
-  es: 'Admin preview: modal global actual de monedas',
-  "pt-BR": 'Admin preview: modal global atual de monedas',
+  es: 'Admin preview: modal global actual de perlas',
+  "pt-BR": 'Admin preview: modal global atual de perlas',
   vi: 'Admin preview: modal xu toàn cục hiện tại',
   id: 'Admin preview: modal koin global saat ini',
   tr: 'Admin preview: güncel global jeton modalı',
@@ -3549,7 +3549,7 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
-          {/* ── 7. ОСКОЛКИ ── */}
+          {/* ── 7. ЖЕМЧУГ ── */}
 
           {/* -- 8. NEW ONBOARDING -- */}
           <AccordionSection id="onboarding" icon="sparkles-outline" title="Новый онбординг" badge={2}
@@ -3719,12 +3719,12 @@ export default function SettingsTestersFunctions() {
               sub="Как при нуле энергии в уроке (текст + Понятно + Premium)"
               onPress={() => { setNoEnergyPreview({}); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="diamond-outline" label="⚡ NoEnergy + осколки (превью)"
+            <ButtonRow icon="diamond-outline" label="⚡ NoEnergy + жемчуг (превью)"
               sub="Принудительно показать кнопку «Восстановить за 💎» даже при полном баке"
               onPress={() => { setNoEnergyPreview({ qaForceShardCta: true, paywallContext: 'no_energy' }); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="school-outline" label="⚡ NoEnergy — экзамен (8 ⚡)"
-              sub="Как у Лингмана: «Недостаточно энергии», порог 8 + восстановление за осколки (превью)"
+              sub="Как у Лингмана: «Недостаточно энергии», порог 8 + восстановление за жемчуг (превью)"
               onPress={() => { setNoEnergyPreview({ minRequired: 8, paywallContext: 'no_energy', qaForceShardCta: true }); markQa('noEnergy'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="home-outline" label="⚡ NoEnergy — кнопка «На главную»"
@@ -3739,7 +3739,7 @@ export default function SettingsTestersFunctions() {
               sub="Текущий production-путь: emitAppEvent('shards_earned') → GlobalShardsEarnedHost"
               onPress={showShardsEarnedPreview}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="cash-outline" label="🪙 Миграция монет — превью (демо-анимация)"
+            <ButtonRow icon="cash-outline" label="🪙 Миграция жемчужин — превью (демо-анимация)"
               sub="Играет анимацию на демо-числах 1 250 → 63 БЕЗ сервера и без seen-флага; флаг сбрасывается, чтобы автотриггер тоже можно было проверить"
               onPress={() => {
                 void resetCoinsMigrationModalSeen().finally(() => {
@@ -3748,8 +3748,8 @@ export default function SettingsTestersFunctions() {
                 markQa('coinsMigration');
               }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="cash-outline" label="🪙 Миграция монет — выполнить конвертацию сейчас"
-              sub="Реальный claimCoinMigration() на этом аккаунте (20 осколков = 1 монета, идемпотентно); при уже выполненной миграции сервер вернёт alreadyMigrated"
+            <ButtonRow icon="cash-outline" label="🪙 Миграция жемчужин — выполнить конвертацию сейчас"
+              sub="Реальный claimCoinMigration() на этом аккаунте (20 осколков = 1 жемчужина, идемпотентно); при уже выполненной миграции сервер вернёт alreadyMigrated"
               onPress={() => {
                 void resetCoinsMigrationModalSeen().finally(() => {
                   emitAppEvent('coins_migration_run', undefined);
@@ -4458,7 +4458,7 @@ export default function SettingsTestersFunctions() {
         rewards={[
           { key: 'demo_level', icon: '⭐', title: 'Новый уровень 13', value: 'Ты достиг 13-го уровня', semantic: 'gold' },
           { key: 'demo_medal', icon: '🏅', title: 'Золотая медаль', value: 'Урок 14 пройден идеально', semantic: 'gold' },
-          { key: 'demo_shards', icon: '💎', title: '+25 осколков', value: 'Задание дня выполнено', semantic: 'shards' },
+          { key: 'demo_shards', icon: '💎', title: '+25 жемчужин', value: 'Задание дня выполнено', semantic: 'shards' },
         ]}
         onClaimReward={() => {}}
         onFinished={() => setRewardStackPreview(false)}

@@ -27,17 +27,17 @@ describe('resolveCustomizationAction', () => {
   it('buys and applies one shard blocker', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
-      avatarAvailability: { kind: 'shards', cost: 35 },
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 35 });
+      avatarAvailability: { kind: 'shards', cost: 90 },
+    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'purchase', cost: 90 });
   });
 
   it('resolves two shard blockers one at a time from active tab', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
       activeTab: 'auras',
-      avatarAvailability: { kind: 'shards', cost: 35 },
-      auraAvailability: { kind: 'shards', cost: 50 },
-    })).toEqual({ kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 50 });
+      avatarAvailability: { kind: 'shards', cost: 90 },
+      auraAvailability: { kind: 'shards', cost: 120 },
+    })).toEqual({ kind: 'buy-only', target: 'aura', purchaseKind: 'purchase', cost: 120 });
   });
 
   it('does not partially apply a level blocker', () => {
@@ -54,11 +54,11 @@ describe('resolveCustomizationAction', () => {
     })).toEqual({ kind: 'open-plus' });
   });
 
-  it('explains an Arena reward without applying the avatar half', () => {
+  it('explains a special reward without applying the avatar half', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
-      auraAvailability: { kind: 'reward', source: 'arena' },
-    })).toEqual({ kind: 'explain-reward', source: 'arena' });
+      auraAvailability: { kind: 'reward' },
+    })).toEqual({ kind: 'explain-reward' });
   });
 
   it('returns unchanged when stored selections equal confirmed state', () => {
@@ -71,21 +71,21 @@ describe('resolveCustomizationAction', () => {
     })).toEqual({ kind: 'unchanged' });
   });
 
-  it('charges 10 shards for a style delta on the same owned avatar', () => {
+  it('charges 25 shards for a style delta on the same owned avatar', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
       previewAvatarValue: 'custom:custom-gen-41:aurora:white',
       avatarAvailability: owned,
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 10 });
+    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 25 });
   });
 
-  it('charges 10 shards for restyling a non-active owned avatar', () => {
+  it('charges 25 shards for restyling a non-active owned avatar', () => {
     expect(resolveCustomizationAction({
       ...availableDraft,
       previewAvatarValue: 'custom:custom-gen-42:aurora:white',
       ownedAvatarStyles: { 'custom-gen-42': 'violet:black' },
       avatarAvailability: owned,
-    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 10 });
+    })).toEqual({ kind: 'buy-and-apply', target: 'avatar', purchaseKind: 'restyle', cost: 25 });
   });
 
   it.each([

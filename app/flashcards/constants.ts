@@ -4,7 +4,7 @@ import { CardItem, Category, CategoryId } from './types';
 export const STR = {
   ru: {
     title: 'Карточки',
-    hubTitle: 'Монеты',
+    hubTitle: 'Жемчужины',
     empty: 'Нет карточек', emptySub: '',
     done: 'Все карточки просмотрены!', doneSub: 'Отличная работа', restart: 'Начать заново',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
@@ -21,7 +21,7 @@ export const STR = {
   },
   uk: {
     title: 'Картки',
-    hubTitle: 'Монети',
+    hubTitle: 'Жемчужини',
     empty: 'Немає карток', emptySub: '',
     done: 'Всі картки переглянуто!', doneSub: 'Чудова робота', restart: 'Почати знову',
     cardOf: (a: number, b: number) => `${a} / ${b}`,
@@ -38,7 +38,7 @@ export const STR = {
   },
   es: {
     title: 'Tarjetas',
-    hubTitle: 'Monedas',
+    hubTitle: 'Perlas',
     empty: 'No hay tarjetas',
     emptySub: '',
     done: '¡Has visto todas las tarjetas!',
@@ -67,7 +67,7 @@ export const STR = {
   },
   'pt-BR': {
     title: 'Cartões',
-    hubTitle: 'Monedas',
+    hubTitle: 'Perlas',
     empty: 'Nenhum cartão',
     emptySub: '',
     done: 'Todos os cartões foram vistos!',

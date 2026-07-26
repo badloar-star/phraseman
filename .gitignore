@@ -33,6 +33,12 @@ yarn-error.*
 # local env files
 .env
 .env*.local
+# зачем: бэкапы .env (functions/.env.bak-ГГГГММДД и т.п.) содержат боевые ключи
+# OpenAI/RevenueCat/Resend. Без этой строки они попадали в коммит — секреты ушли бы
+# в историю навсегда, с обязательной ротацией всех ключей. Файлы остаются на диске.
+.env.bak*
+*.env.bak*
+.env.backup*
 
 # Telegram Premium bot local secrets/state
 /tools/telegram-premium-bot/config.json
@@ -227,6 +233,10 @@ functions/scripts/diag_*
 
 # Compiled JS sourcemaps for Cloud Functions (generated from TypeScript).
 /functions/lib/*.js.map
+# зачем: вложенная сборка /functions/lib/functions/** (180 сгенерированных .js/.map)
+# не покрывалась правилом выше и лезла в коммит. Это артефакт `tsc`, воспроизводимый
+# из исходников — в репозитории ему не место (шум в диффах, конфликты между сессиями).
+/functions/lib/functions/
 
 # Nested tool node_modules (intro_remotion has its own package install).
 /tools/intro_remotion/node_modules/

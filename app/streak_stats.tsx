@@ -52,7 +52,7 @@ import { ALL_ACHIEVEMENTS, achievementNameForLang, loadAchievementStates } from 
 import { getTrainerDashboard } from './trainer_store';
 import CefrLine from '../components/journal/CefrLine';
 import SkeletonBlock from '../components/SkeletonShimmer';
-import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
+import AchievementArt from '../components/AchievementArt';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { getLevelFromXP, TOTAL_XP_FOR_LEVEL, type ThemeMode } from '../constants/theme';
@@ -931,8 +931,8 @@ function LifetimeTotalsBlock({ t, f, lang, data, expandedKind, onToggleMetric, c
         { kind: 'phrases_learned', numValue: data.phrasesLearned, label: triLang(lang, { ru: 'Фраз выучено', uk: 'Фраз вивчено', es: 'Frases aprendidas', 'pt-BR': 'Frases aprendidas', vi: 'Cụm từ đã học', id: 'Frasa dipelajari', tr: 'Öğrenilen ifadeler', pl: 'Nauczone zwroty' }) },
         { kind: 'flashcards_saved', numValue: data.flashcardsSaved, label: triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas', 'pt-BR': 'Cartões salvos', vi: 'Thẻ đã lưu', id: 'Kartu disimpan', tr: 'Kaydedilen kartlar', pl: 'Zapisane fiszki' }) },
         { kind: 'daily_tasks_claimed', numValue: data.dailyTasksClaimed, label: triLang(lang, { ru: 'Заданий дня выполнено', uk: 'Завдань дня виконано', es: 'Misiones diarias hechas', 'pt-BR': 'Missões diárias feitas', vi: 'Nhiệm vụ hằng ngày đã làm', id: 'Misi harian selesai', tr: 'Tamamlanan günlük görevler', pl: 'Wykonane misje dzienne' }) },
-        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Монет заработано', uk: 'Монет зароблено', es: 'Monedas ganadas', 'pt-BR': 'Moedas ganhos', vi: 'Xu đã kiếm', id: 'Fragmen diperoleh', tr: 'Kazanılan jetonlar', pl: 'Zdobyte monety' }) },
-        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Монет потрачено', uk: 'Монет витрачено', es: 'Monedas gastadas', 'pt-BR': 'Moedas gastos', vi: 'Xu đã dùng', id: 'Fragmen dipakai', tr: 'Harcanan jetonlar', pl: 'Wydane monety' }) },
+        { kind: 'shards_earned', numValue: data.shardsEarned, label: triLang(lang, { ru: 'Жемчуга заработано', uk: 'Перлин зароблено', es: 'Perlas ganadas', 'pt-BR': 'Pérolas ganhas', vi: 'Ngọc trai đã kiếm', id: 'Mutiara diperoleh', tr: 'Kazanılan inciler', pl: 'Zdobyte perły' }) },
+        { kind: 'shards_spent', numValue: data.shardsSpent, label: triLang(lang, { ru: 'Жемчуга потрачено', uk: 'Перлин витрачено', es: 'Perlas gastadas', 'pt-BR': 'Pérolas gastas', vi: 'Ngọc trai đã dùng', id: 'Mutiara dipakai', tr: 'Harcanan inciler', pl: 'Wydane perły' }) },
     ];
     // В dev/teaser-режимах (gateExpandAll / showAllPathCharts) показываем все строки
     // без сворачивания, иначе прячем нулевые под раскрывашку, чтобы у новичка
@@ -1057,6 +1057,7 @@ let recentAchievementIdsPeek: string[] | null = null;
 interface JournalMemorySnapshot {
     totalTracked: number;
     masteredCount: number;
+    masteredPhraseCount: number;
     dueToday: number;
 }
 let journalMemorySnapshotPeek: JournalMemorySnapshot | null = null;
@@ -1497,13 +1498,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
               </View>
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 14, lineHeight: 20 }}>
                 {triLang(lang, {
-            ru: 'Выбери срок и сделай ставку монетами. Удержишь цепочку — заберёшь опыт.',
-            uk: 'Обери строк і зроби ставку монетами. Утримаєш ланцюжок — забереш досвід.',
-            es: 'Elige un plazo y aporta monedas. Si mantienes la racha, ganas monedas netos y XP.',
-            'pt-BR': "Escolha um prazo e aposte moedas. Se mantiver a sequência, você ganha moedas líquidos e XP.",
-            vi: "Chọn thời hạn và đặt xu. Nếu giữ chuỗi, bạn nhận xu ròng và XP.",
+            ru: 'Выбери срок и сделай ставку жемчугом. Удержишь цепочку — заберёшь опыт.',
+            uk: 'Обери строк і зроби ставку перлинами. Утримаєш ланцюжок — забереш досвід.',
+            es: 'Elige un plazo y aporta perlas. Si mantienes la racha, ganas XP.',
+            'pt-BR': "Escolha um prazo e aposte pérolas. Se mantiver a sequência, você ganha XP.",
+            vi: "Chọn thời hạn và đặt ngọc trai. Nếu giữ chuỗi, bạn nhận XP.",
             id: "Pilih durasi dan setorkan fragmen. Jika rangkaian terjaga, kamu mendapat fragmen neto dan XP.",
-            tr: "Bir süre seç ve jeton yatır. Seriyi korursan net jeton ve XP kazanırsın.",
+            tr: "Bir süre seç ve inci yatır. Seriyi korursan XP kazanırsın.",
             pl: "Wybierz czas i wpłać monety. Jeśli utrzymasz serię, zyskasz monety netto i XP.",
         })}
               </Text>
@@ -1625,10 +1626,10 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                             ru: `Нужно ещё ${deficit} мон.`,
                             uk: `Ще ${deficit} мон.`,
                             es: `Faltan ${deficit} mon.`,
-                            'pt-BR': `Faltam ${deficit} moedas`,
-                            vi: `Còn thiếu ${deficit} xu`,
-                            id: `Kurang ${deficit} koin`,
-                            tr: `${deficit} jeton eksik`,
+                            'pt-BR': `Faltam ${deficit} pérolas`,
+                            vi: `Còn thiếu ${deficit} ngọc trai`,
+                            id: `Kurang ${deficit} mutiara`,
+                            tr: `${deficit} inci eksik`,
                             pl: `Brakuje ${deficit} monet`,
                         })}
                             </Text>)}
@@ -1685,13 +1686,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                       <Ionicons name="lock-closed-outline" size={18} color={t.textGhost}/>
                       <Text style={{ color: t.textGhost, fontSize: f.body, fontWeight: '800' }}>
                         {triLang(lang, {
-                ru: 'Недостаточно монет',
-                uk: 'Недостатньо монет',
-                es: 'No tienes suficientes monedas',
-                'pt-BR': "Você não tem moedas suficientes",
-                vi: "Bạn không có đủ xu",
-                id: "Koin kamu tidak cukup",
-                tr: "Yeterli jetonun yok",
+                ru: 'Недостаточно жемчуга',
+                uk: 'Недостатньо перлин',
+                es: 'No tienes suficientes perlas',
+                'pt-BR': "Você não tem pérolas suficientes",
+                vi: "Bạn không có đủ ngọc trai",
+                id: "Mutiara kamu tidak cukup",
+                tr: "Yeterli incin yok",
                 pl: "Nie masz wystarczająco monet",
             })}
                       </Text>
@@ -1704,13 +1705,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
         </View>
       </Modal>
       <ThemedConfirmModal visible={wagerNeedShards} title={triLang(lang, {
-            ru: 'Недостаточно монет',
-            uk: 'Недостатньо монет',
-            es: 'No tienes suficientes monedas',
-            'pt-BR': "Você não tem moedas suficientes",
-            vi: "Bạn không có đủ xu",
-            id: "Koin kamu tidak cukup",
-            tr: "Yeterli jetonun yok",
+            ru: 'Недостаточно жемчуга',
+            uk: 'Недостатньо перлин',
+            es: 'No tienes suficientes perlas',
+            'pt-BR': "Você não tem pérolas suficientes",
+            vi: "Bạn không có đủ ngọc trai",
+            id: "Mutiara kamu tidak cukup",
+            tr: "Yeterli incin yok",
             pl: "Nie masz wystarczająco monet",
         })} messageNode={<View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginBottom: 22 }}>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
@@ -1728,13 +1729,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             <ShardsInline n={effectiveBetShards} size={f.body} textColor={isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'percentiles')}/>
             <Text style={{ color: t.textMuted, fontSize: f.body }}>
               {triLang(lang, {
-                ru: 'монет',
-                uk: 'монет',
-                es: 'monedas',
-                'pt-BR': "moedas",
+                ru: 'жемчужин',
+                uk: 'перлин',
+                es: 'perlas',
+                'pt-BR': "pérolas",
                 vi: "xu",
                 id: "fragmen",
-                tr: "jeton",
+                tr: "inci",
                 pl: "monet",
             })}
             </Text>
@@ -1814,13 +1815,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
                   <Text style={{ color: t.textGhost, fontSize: f.sub }}>
                     {triLang(lang, {
                 // §7: монетный выигрыш пари отключён — честно говорим об этом.
-                ru: 'Монетный выигрыш пари отключён — награда только опытом',
-                uk: 'Монетний виграш парі вимкнено — нагорода лише досвідом',
-                es: 'La ganancia en monedas está desactivada: la recompensa es solo XP',
-                'pt-BR': 'O ganho em moedas está desativado: a recompensa é só XP',
-                vi: 'Phần thưởng xu đã tắt — chỉ nhận XP',
-                id: 'Hadiah koin dinonaktifkan — hadiah hanya XP',
-                tr: 'Jeton kazancı kapalı — ödül yalnızca XP',
+                ru: 'Жемчужный выигрыш пари отключён — награда только опытом',
+                uk: 'Перлинний виграш парі вимкнено — нагорода лише досвідом',
+                es: 'La ganancia en perlas está desactivada: la recompensa es solo XP',
+                'pt-BR': 'O ganho em pérolas está desativado: a recompensa é só XP',
+                vi: 'Phần thưởng ngọc trai đã tắt — chỉ nhận XP',
+                id: 'Hadiah mutiara dinonaktifkan — hadiah hanya XP',
+                tr: 'İnci kazancı kapalı — ödül yalnızca XP',
                 pl: 'Wygrana monet jest wyłączona — nagroda to tylko XP',
             })}
                   </Text>
@@ -1907,13 +1908,13 @@ function WagerCard({ lang, t, f, totalStreak, isGoldTheme, themeMode, hideCta = 
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.4), marginTop: 2 }} numberOfLines={2}>
               {triLang(lang, {
-            ru: 'Поставь монеты — удержи серию и забери опыт',
-            uk: 'Постав монети — утримай серію й забери досвід',
-            es: 'Aporta monedas: mantén la racha y cobra la recompensa',
-            'pt-BR': "Aposte moedas: mantenha a sequência e receba a recompensa",
-            vi: "Đặt xu: giữ chuỗi và nhận thưởng",
+            ru: 'Поставь жемчуг — удержи серию и забери опыт',
+            uk: 'Постав перлини — утримай серію й забери досвід',
+            es: 'Aporta perlas: mantén la racha y cobra la recompensa',
+            'pt-BR': "Aposte pérolas: mantenha a sequência e receba a recompensa",
+            vi: "Đặt ngọc trai: giữ chuỗi và nhận thưởng",
             id: "Setorkan fragmen: jaga rangkaian dan ambil hadiah",
-            tr: "Jeton yatır: seriyi koru ve ödülü al",
+            tr: "İnci yatır: seriyi koru ve ödülü al",
             pl: "Wpłać monety: utrzymaj serię i odbierz nagrodę",
         })}
             </Text>
@@ -3112,7 +3113,7 @@ function RecentAchievementsCard({
           {(latest.length > 0 ? latest : [null, null, null, null]).map((achievement, index) => (
             <View key={achievement?.id ?? `empty-${index}`} accessibilityLabel={achievement ? achievementNameForLang(achievement, lang) : undefined} style={{ width: 58, height: 58, marginLeft: index === 0 ? 0 : -9, zIndex: 10 - index, backgroundColor: 'transparent', borderWidth: 0, alignItems: 'center', justifyContent: 'center' }}>
               {achievement
-                ? <Image source={ACHIEVEMENT_IMAGE[achievement.id]} contentFit="contain" transition={0} style={{ width: 58, height: 58 }}/>
+                ? <AchievementArt achievementId={achievement.id} size={58} fallbackIconName="trophy" tintColor={t.textGhost} iconColor={t.bgPrimary} />
                 : <Ionicons name="trophy-outline" size={22} color={t.textGhost}/>}
             </View>
           ))}
@@ -3193,7 +3194,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
     // зачем: MemoryGauge/CefrLine — то же правило «первый кадр = финальные
     // числа», что и achievementCount выше (см. journalMemorySnapshotPeek).
     const [journalMemory, setJournalMemory] = useState<JournalMemorySnapshot>(
-        () => journalMemorySnapshotPeek ?? { totalTracked: 0, masteredCount: 0, dueToday: 0 },
+        () => journalMemorySnapshotPeek ?? { totalTracked: 0, masteredCount: 0, masteredPhraseCount: 0, dueToday: 0 },
     );
     const [pendingGiftCount, setPendingGiftCount] = useState(_sc.pendingGiftCount);
     const [freezeConfirmVisible, setFreezeConfirmVisible] = useState(false);
@@ -3279,6 +3280,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
                 const snapshot: JournalMemorySnapshot = {
                     totalTracked: dash.totalTracked,
                     masteredCount: dash.archived,
+                    masteredPhraseCount: dash.archivedPhrases,
                     dueToday: dash.due.words + dash.due.phrases,
                 };
                 journalMemorySnapshotPeek = snapshot;
@@ -3682,6 +3684,89 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         // Ежедневное задание «Щит стрика»: ручная заморозка (бесплатная или за осколки).
         void updateTaskProgress('streak_freeze_use', 1, studyTarget).catch(() => {});
     };
+    // зачем: у бесплатного пользователя закрытые блоки (недельная аналитика и
+    // «Среди других») уезжают в конец списка, чтобы сверху сразу шли его реальные
+    // доступные данные, а не заглушки с замком. У Plus порядок прежний.
+    const weekAnalyticsBlock = (
+        <Reanimated.View key="week-analytics" entering={FadeInDown.duration(420).delay(210)}>
+          <WeekAnalyticsCard
+            t={t}
+            f={f}
+            lang={lang}
+            metrics={coachMetrics}
+            isGoldTheme={isGoldTheme}
+            themeMode={themeMode}
+            isPremium={isPremium}
+            statsDevUnlock={statsDevUnlock}
+            weekDeltaMinutes={weekDeltaMinutes}
+            metric={primaryMetric}
+            onSelectMetric={selectPrimaryMetric}
+          />
+        </Reanimated.View>
+    );
+    const percentilesBlock = (() => {
+        const pItems: {
+            icon: keyof typeof Ionicons.glyphMap;
+            color: string;
+            label: string;
+            percent: number;
+        }[] = [];
+        const xp = visiblePercentile(percentiles.xp);
+        const xp7 = visiblePercentile(percentiles.daily7xp, myXp7 > 0);
+        const time7 = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
+        if (xp !== null) pItems.push({
+            icon: 'trophy-outline',
+            color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'),
+            percent: xp,
+            label: triLang(lang, { ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP' }),
+        });
+        if (xp7 !== null) pItems.push({
+            icon: 'trending-up-outline',
+            color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'),
+            percent: xp7,
+            label: triLang(lang, { ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni' }),
+        });
+        if (time7 !== null) pItems.push({
+            icon: 'time-outline',
+            color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'),
+            percent: time7,
+            label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
+        });
+        if (pItems.length === 0) return null;
+        return (
+          <Reanimated.View key="percentiles" entering={FadeInDown.duration(420).delay(420)}>
+          <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
+            <StatsCardArtSurface testID="stats-comparison-content" name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
+                  {triLang(lang, { ru: 'Среди других', uk: 'Серед інших', es: 'Entre otros', 'pt-BR': 'Entre outros', vi: 'So với người khác', id: 'Di antara yang lain', tr: 'Diğerleri arasında', pl: 'Na tle innych' })}
+                </Text>
+                {!isPremium && <PlusBadge themeMode={themeMode} size="xs"/>}
+              </View>
+              {(() => {
+                  const bestItem = pItems.reduce((best, item) => (item.percent > best.percent ? item : best));
+                  const topN = Math.max(1, 100 - bestItem.percent);
+                  return (
+                    <View style={{ marginBottom: 14, gap: 2 }}>
+                      <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode), fontSize: f.numLg, fontWeight: '900' }}>
+                        {`${triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{bestItem.label}</Text>
+                    </View>
+                  );
+              })()}
+              <View style={{ gap: 16 }}>
+                {pItems.map((item, idx) => (
+                  <StatProgressRow key={item.label} percent={item.percent} label={item.label} icon={item.icon} accent={item.color} accentSoft={item.color + 'AA'} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'percentiles', 'quiet')} iconChipBg={item.color + '24'} labelColor={t.textPrimary} valueColor={item.color} delayMs={120 + idx * 110}/>
+                ))}
+              </View>
+            </StatsCardArtSurface>
+          </StatsPremiumBlur>
+          </Reanimated.View>
+        );
+    })();
+    /** Закрытые блоки: у Plus — на своих местах, у free — единым хвостом внизу. */
+    const lockedBlocksInline = isPremium || statsDevUnlock;
     return (<View style={{ flex: 1, backgroundColor: statsPageField(themeMode) }}>
     <StatsArtBackdrop />
     <SafeAreaView testID="screen-streak-stats" style={{ flex: 1 }}>
@@ -3862,7 +3947,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
               lang={lang}
               themeMode={themeMode}
               isGoldTheme={isGoldTheme}
-              masteredCount={journalMemory.masteredCount}
+              masteredPhraseCount={journalMemory.masteredPhraseCount}
             />
           </StatsCardArtSurface>
         </Reanimated.View>
@@ -3913,21 +3998,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
-        <Reanimated.View entering={FadeInDown.duration(420).delay(210)}>
-          <WeekAnalyticsCard
-            t={t}
-            f={f}
-            lang={lang}
-            metrics={coachMetrics}
-            isGoldTheme={isGoldTheme}
-            themeMode={themeMode}
-            isPremium={isPremium}
-            statsDevUnlock={statsDevUnlock}
-            weekDeltaMinutes={weekDeltaMinutes}
-            metric={primaryMetric}
-            onSelectMetric={selectPrimaryMetric}
-          />
-        </Reanimated.View>
+        {lockedBlocksInline ? weekAnalyticsBlock : null}
 
         <Reanimated.View entering={FadeInDown.duration(420).delay(280)}>
           <AllMetricsFoldCard
@@ -3958,67 +4029,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         />
         </Reanimated.View>
 
-        {(() => {
-            const pItems: {
-                icon: keyof typeof Ionicons.glyphMap;
-                color: string;
-                label: string;
-                percent: number;
-            }[] = [];
-            const xp = visiblePercentile(percentiles.xp);
-            const xp7 = visiblePercentile(percentiles.daily7xp, myXp7 > 0);
-            const time7 = visiblePercentile(percentiles.daily7timeMs, myTime7ms > 0);
-            if (xp !== null) pItems.push({
-                icon: 'trophy-outline',
-                color: isGoldTheme ? GOLD_RICH.champagne : statsAccent(themeMode, 'multipliers'),
-                percent: xp,
-                label: triLang(lang, { ru: 'Суммарный опыт', uk: 'Сумарний досвід', es: 'XP total', 'pt-BR': 'XP total', vi: 'Tổng XP', id: 'Total XP', tr: 'Toplam XP', pl: 'Łączne XP' }),
-            });
-            if (xp7 !== null) pItems.push({
-                icon: 'trending-up-outline',
-                color: isGoldTheme ? GOLD_RICH.antiqueGold : statsAccent(themeMode, 'percentiles'),
-                percent: xp7,
-                label: triLang(lang, { ru: 'Опыт за 7 дней', uk: 'Досвід за 7 днів', es: 'XP en 7 días', 'pt-BR': 'XP em 7 dias', vi: 'XP trong 7 ngày', id: 'XP 7 hari', tr: '7 günde XP', pl: 'XP w 7 dni' }),
-            });
-            if (time7 !== null) pItems.push({
-                icon: 'time-outline',
-                color: isGoldTheme ? GOLD_RICH.paleGold : statsAccent(themeMode, 'freeze'),
-                percent: time7,
-                label: triLang(lang, { ru: 'Время за 7 дней', uk: 'Час за 7 днів', es: 'Tiempo en 7 días', 'pt-BR': 'Tempo em 7 dias', vi: 'Thời gian 7 ngày', id: 'Waktu 7 hari', tr: '7 günde süre', pl: 'Czas w 7 dni' }),
-            });
-            if (pItems.length === 0) return null;
-            return (
-              <Reanimated.View entering={FadeInDown.duration(420).delay(420)}>
-              <StatsPremiumBlur isPremium={isPremium} context="percentiles" snapshotKey="percentiles" devUnlock={statsDevUnlock}>
-                <StatsCardArtSurface testID="stats-comparison-content" name="percentiles" theme={t} isGoldTheme={isGoldTheme} gradientColors={statsCardGradient(t)} radius={statsSurfaceRadius(themeMode, 22)} style={[{ borderRadius: statsSurfaceRadius(themeMode, 22), padding: 16, borderWidth: 0, overflow: 'hidden' }, !isGoldTheme ? statsGlowStyle(themeMode, 'percentiles') : null]}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>
-                      {triLang(lang, { ru: 'Среди других', uk: 'Серед інших', es: 'Entre otros', 'pt-BR': 'Entre outros', vi: 'So với người khác', id: 'Di antara yang lain', tr: 'Diğerleri arasında', pl: 'Na tle innych' })}
-                    </Text>
-                    {!isPremium && <PlusBadge themeMode={themeMode} size="xs"/>}
-                  </View>
-                  {(() => {
-                      const bestItem = pItems.reduce((best, item) => (item.percent > best.percent ? item : best));
-                      const topN = Math.max(1, 100 - bestItem.percent);
-                      return (
-                        <View style={{ marginBottom: 14, gap: 2 }}>
-                          <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : statsThemeAccent(themeMode), fontSize: f.numLg, fontWeight: '900' }}>
-                            {`${triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })}‑${topN}%`}
-                          </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600' }}>{bestItem.label}</Text>
-                        </View>
-                      );
-                  })()}
-                  <View style={{ gap: 16 }}>
-                    {pItems.map((item, idx) => (
-                      <StatProgressRow key={item.label} percent={item.percent} label={item.label} icon={item.icon} accent={item.color} accentSoft={item.color + 'AA'} trackColor={isGoldTheme ? GOLD_RICH.bronzeWash : statsSoftBg(themeMode, 'percentiles', 'quiet')} iconChipBg={item.color + '24'} labelColor={t.textPrimary} valueColor={item.color} delayMs={120 + idx * 110}/>
-                    ))}
-                  </View>
-                </StatsCardArtSurface>
-              </StatsPremiumBlur>
-              </Reanimated.View>
-            );
-        })()}
+        {lockedBlocksInline ? percentilesBlock : null}
 
         <Modal transparent visible={wagerOpen} animationType="fade" onRequestClose={() => setWagerOpen(false)}>
           <Pressable testID="stats-series-wager-modal" style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.62)', justifyContent: 'flex-end' }} onPress={() => setWagerOpen(false)}>
@@ -4657,7 +4668,14 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
         </View>)}
         </React.Fragment>)}
 
-
+        {/* Хвост для free: всё, что закрыто замком, — единым блоком в конце,
+            чтобы доступные данные читались сверху без прокрутки через заглушки. */}
+        {!lockedBlocksInline ? (
+          <View style={{ gap: 12 }}>
+            {weekAnalyticsBlock}
+            {percentilesBlock}
+          </View>
+        ) : null}
 
         <View style={{ alignItems: 'center', paddingVertical: 12 }}>
           <ReportErrorButton screen="streak_stats" dataId="streak_stats_main" dataText={triLang(lang, {
@@ -4683,13 +4701,13 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           (clubDescVisible никогда не выставлялся в true) и удалён. */}
 
       <ThemedConfirmModal visible={freezeNeedShardsModal} title={triLang(lang, {
-            ru: 'Недостаточно монет',
-            uk: 'Недостатньо монет',
-            es: 'No tienes suficientes monedas',
-            'pt-BR': "Você não tem moedas suficientes",
-            vi: "Bạn không có đủ xu",
-            id: "Koin kamu tidak cukup",
-            tr: "Yeterli jetonun yok",
+            ru: 'Недостаточно жемчуга',
+            uk: 'Недостатньо перлин',
+            es: 'No tienes suficientes perlas',
+            'pt-BR': "Você não tem pérolas suficientes",
+            vi: "Bạn không có đủ ngọc trai",
+            id: "Mutiara kamu tidak cukup",
+            tr: "Yeterli incin yok",
             pl: "Nie masz wystarczająco monet",
         })} messageNode={<View style={{ gap: 4, marginBottom: 22 }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>

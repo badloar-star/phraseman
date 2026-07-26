@@ -2280,6 +2280,12 @@ export async function signOutCurrentProvider(): Promise<void> {
     const { clearDailyTasksScreenSnapshotOnDisk } = await import('./daily_tasks_screen_persist');
     clearDailyTasksScreenSnapshotOnDisk();
   } catch { /* ignore */ }
+  // зачем: снапшот «Моей практики» ключуется только target+языком, без uid, поэтому
+  // после выхода его тоже надо стереть — иначе первый кадр покажет чужую статистику.
+  try {
+    const { clearTrainerPracticeSnapshotOnDisk } = await import('./trainer_practice_persist');
+    clearTrainerPracticeSnapshotOnDisk();
+  } catch { /* ignore */ }
   logAuthEvent('auth_signout');
 }
 

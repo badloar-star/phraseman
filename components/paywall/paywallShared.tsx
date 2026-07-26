@@ -555,8 +555,8 @@ const S = StyleSheet.create({
     transform: [{ rotate: '-12deg' }],
   },
   closeBtn: {
-    alignSelf: 'flex-end', marginBottom: 7,
-    width: 36, height: 36, borderRadius: 18, borderWidth: 0,
+    alignSelf: 'flex-start', marginBottom: 7,
+    width: 40, height: 40, borderRadius: 20, borderWidth: 1,
     alignItems: 'center', justifyContent: 'center',
   },
   priceRetryBox: {

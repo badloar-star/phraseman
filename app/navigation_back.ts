@@ -2,7 +2,9 @@ export const HOME_BACK_FALLBACK = '/(tabs)/home';
 
 type SafeBackRouter = {
   canGoBack?: () => boolean;
+  canDismiss?: () => boolean;
   back: () => void;
+  dismiss?: (count?: number) => void;
   replace: (fallback: any) => void;
 };
 
@@ -230,7 +232,10 @@ export function safeRouterBack(
   while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
     navigationStack.pop();
   }
-  const target = currentPath() ?? fallback;
+  // Settings sheets must always return to Settings. Their opener can be a cached
+  // tab, which is not guaranteed to be present in the reconstructed history.
+  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
+  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
 
   // Если по какой-то причине предыдущий совпал с местом, где мы стоим, или
   // стек опустел — уходим на fallback (главную), чтобы не было no-op/петли.
@@ -238,6 +243,13 @@ export function safeRouterBack(
   // не возвращаемся на него, а уходим на fallback.
   const safeTarget =
     target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
+
+  // A Settings sheet is opened above the already-mounted Settings tab. Dismiss it
+  // instead of replacing the route so the tab instance and its scroll offset stay intact.
+  if (forceSettingsFallback && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+    router.dismiss(1);
+    return;
+  }
 
   // Гасим запись следующего rememberNavigationPath, иначе целевой маршрут
   // запушится заново и стек снова закольцуется.
@@ -259,14 +271,17 @@ export function dismissPaywallModal(
   while (navigationStack.length > 0 && isNonBackTargetPath(currentPath()!)) {
     navigationStack.pop();
   }
-  const target = currentPath() ?? fallback;
+  // The Plus modal opened from Settings goes through a transient dispatcher, so
+  // use its explicit Settings fallback instead of stale tab history.
+  const forceSettingsFallback = basePath(String(fallback ?? '')) === '/(tabs)/settings';
+  const target = forceSettingsFallback ? fallback : (currentPath() ?? fallback);
   const safeTarget =
     target && target.length > 0 && !isNonBackTargetPath(target) ? target : fallback;
 
   const shouldReplace = paywallDismissShouldReplace;
   paywallDismissShouldReplace = false;
   suppressNextRemember = true;
-  if (!shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
+  if (!forceSettingsFallback && !shouldReplace && typeof router.canDismiss === 'function' && typeof router.dismiss === 'function' && router.canDismiss()) {
     router.dismiss(1);
     return;
   }

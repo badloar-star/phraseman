@@ -56,6 +56,7 @@ import {
   getDevStudyTargetLang,
   isStudyTargetSourceUiLang,
   type StudyTargetLang,
+  type StudyTargetSourceUiLang,
 } from '../study_target_lang_dev';
 import { getStoredStudyTarget } from '../study_target';
 import StudyLanguagePicker from '../../components/settings/StudyLanguagePicker';
@@ -76,7 +77,7 @@ import { accountScopeKey } from '../account_scope_key';
 import { readReferralDrain } from '../referrals_cache';
 import { isReferralCloudEnabled } from '../referral_cloud';
 import { selectAccountScopedReferralState, selectReferralSurfaceState } from '../referral_surface_state';
-import { Image } from 'expo-image';
+import ReferralInviteBannerArt from '../../components/ReferralInviteBannerArt';
 import Constants from 'expo-constants';
 import { getAppReleaseBuildId } from '../app_build_id';
 import { clearAppCaches } from '../cache_reset';
@@ -87,7 +88,6 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
-const INVITE_GIFT_BANNER = require('../../assets/images/settings/invite_gift_banner.webp');
 
 function parseStoredExpiryMs(value: string | null | undefined): number {
   const n = Number(value || 0);
@@ -265,7 +265,6 @@ export default function SettingsMain() {
   const settingsChipBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.chip;
   const settingsBorder = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.border;
   const settingsDivider = isCompassTheme ? COMPASS_RICH.hairlineQuiet : settingsSurface.divider;
-  const settingsNoticeBg = isCompassTheme ? COMPASS_RICH.charcoalRaised : settingsSurface.notice;
   const screenBorder = settingsBorder;
   /**
    * Settings-плашки отделены от tabbar chrome: как в Telegram, это один спокойный
@@ -293,6 +292,12 @@ export default function SettingsMain() {
   }, []);
 
   const { lang, s } = useLang();
+  // зачем: сужение lang до 'ru'|'uk' для StudyLanguagePicker. Отдельная переменная,
+  // а не type-guard прямо в JSX: секция выключена константным `false &&`, а внутри
+  // недостижимой ветки TS не применяет сужение из условия (см. секцию «Изучаемый язык»).
+  // Фолбэк 'ru', а не null: пропс не допускает null, а ветка всё равно не рендерится.
+  const studyTargetSourceLang: StudyTargetSourceUiLang =
+    isStudyTargetSourceUiLang(lang) ? lang : 'ru';
   const L = (
     ru: string,
     uk: string,
@@ -382,6 +387,7 @@ export default function SettingsMain() {
 
 
   const scrollRef = useRef<any>(null);
+  const settingsScrollYRef = useRef(0);
   const insets = useStableSafeAreaInsets();
   const topFadeScroll = useTopFadeScroll();
   // Маска шапки (TopFadeMask) слушает scrollY порогом showThreshold=6, поэтому JS
@@ -398,6 +404,9 @@ export default function SettingsMain() {
   const notifyTabBar = useCallback((y: number) => {
     reportTabBarOffset?.(y);
   }, [reportTabBarOffset]);
+  const rememberSettingsScroll = useCallback((y: number) => {
+    settingsScrollYRef.current = Math.max(0, y);
+  }, []);
   const tabBarReportedY = useSharedValue(0);
   const { GestureWrap: BouncyWrap, stretch: bouncyStretch, onAnimatedScroll } = useBouncy({
     onScrollWorklet: (y: number) => {
@@ -405,6 +414,7 @@ export default function SettingsMain() {
       if (Math.abs(y - tabBarReportedY.value) >= 4) {
         tabBarReportedY.value = y;
         runOnJS(notifyTabBar)(y);
+        runOnJS(rememberSettingsScroll)(y);
       }
       const shown = y > 6;
       if (shown !== topFadeShown.value) {
@@ -450,7 +460,7 @@ export default function SettingsMain() {
 
   useEffect(() => {
     if (settingsTabVisible && scrollRef.current) {
-      scrollRef.current.scrollTo({ y: 0, animated: false });
+      scrollRef.current.scrollTo({ y: settingsScrollYRef.current, animated: false });
     }
   }, [settingsTabVisible]);
 
@@ -460,7 +470,6 @@ export default function SettingsMain() {
   }), (a, b) => a.profile === b.profile && a.settings === b.settings);
   const [userName, setUserName] = useState(() => appSnapshot.profile?.name ?? '');
   /** Пока false — ник ещё не прочитан из AsyncStorage (избегаем кадра «Не задано»). */
-  const [nameReady, setNameReady] = useState(() => !!appSnapshot.profile);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
   const [nameSaving, setNameSaving] = useState(false);
@@ -475,7 +484,7 @@ export default function SettingsMain() {
    * nameChangeGuardRef — last-write-guard: поздний ответ устаревшей попытки
    * не может откатить уже более свежее локальное имя (гонка double-tap/повтор).
    */
-  const [nameChangeNotice, setNameChangeNotice] = useState<string | null>(null);
+  const [, setNameChangeNotice] = useState<string | null>(null);
   const nameChangeGuardRef = useRef(0);
   const settingsStorageHydratedRef = useRef(false);
   useEffect(() => {
@@ -486,7 +495,10 @@ export default function SettingsMain() {
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
-  const [promoCodesOn, setPromoCodesOn] = useState(isPromoCodesEnabled());
+  // The row must not be inserted into an already visible Settings screen. The
+  // persisted Remote Config cache is primed before tabs render; live changes
+  // take effect on the next Settings mount.
+  const [promoCodesOn] = useState(isPromoCodesEnabled());
   /** зачем: единый ряд «Ввести код» вверху настроек переключается между
    *  реферальным и промокодом одним тумблером внутри той же карточки —
    *  тип берём не из отдельного экрана, а из этого локального состояния. */
@@ -563,7 +575,6 @@ export default function SettingsMain() {
       // показывал бы старое имя до перезапуска. Пустое имя из снапшота не
       // затирает локально загруженное (историческая защита гидрации).
       setUserName(current => appSnapshot.profile!.name || current);
-      setNameReady(true);
     }
     if (appSnapshot.settings?.tapHaptics != null) {
       setHapticTap(appSnapshot.settings.tapHaptics);
@@ -658,13 +669,10 @@ export default function SettingsMain() {
         setPremiumPlan(pairs[1][1]);
         setVipUntilMs(parseStoredExpiryMs(vip?.vip_until));
         if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
-        setNameReady(true);
       })
       .catch(() => {
-        if (!cancelled) setNameReady(true);
       });
     setIdeasOn(isIdeasEnabled());
-    setPromoCodesOn(isPromoCodesEnabled());
     setTopHelpersOn(isTopHelpersEnabled());
     refreshSupplementalAccessState();
     return () => { cancelled = true; };
@@ -673,7 +681,6 @@ export default function SettingsMain() {
   useEffect(() => {
     const refreshRemoteFlags = () => {
       setIdeasOn(isIdeasEnabled());
-      setPromoCodesOn(isPromoCodesEnabled());
       setTopHelpersOn(isTopHelpersEnabled());
     };
     const sub = DeviceEventEmitter.addListener('remote_config_changed', refreshRemoteFlags);
@@ -999,9 +1006,9 @@ export default function SettingsMain() {
       // подтянут AsyncStorage-эффектом на монтировании таба) — передаём его дальше,
       // чтобы manage_subscription.tsx открылся с готовым планом без спиннера.
       router.push({
-        pathname: '/premium_modal',
+        pathname: '/manage_subscription',
         params: {
-          manage: '1',
+          source: 'settings',
           accountGeneration: String(account.generation),
           ...(premiumPlan ? { plan: premiumPlan } : {}),
         },
@@ -1155,6 +1162,20 @@ export default function SettingsMain() {
             onPress={plusRowPress}
           />
         </SettingsGroup>
+        {promoCodesOn ? (
+          <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+            <SettingsRow
+              testID="settings-promo-code-row"
+              icon="ticket-outline"
+              color="purple"
+              label={L('Ввести промокод', 'Ввести промокод', 'Introducir código', 'Inserir código', 'Nhập mã', 'Masukkan kode', 'Kodu gir', 'Wpisz kod')}
+              onPress={() => {
+                doHaptic();
+                router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
+              }}
+            />
+          </SettingsGroup>
+        ) : null}
         {/*
           зачем: «Ввести код» — отдельная карточка под Plus (как «Enter referral
           code» в референсе Bevel). Один ряд с переключателем «реферальный /
@@ -1163,7 +1184,7 @@ export default function SettingsMain() {
           названию и выбранному чипу. Тап ведёт на готовый экран ввода
           (referrals?enter=1 / promo_code_entry) — серверные потоки без дублей.
         */}
-        {(settingsReferralSurface.marketingVisible || (!hasPremiumAccess && promoCodesOn)) ? (
+        {false ? (
           <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
             <SettingsCustomRow style={{ paddingVertical: 0 }}>
               <TouchableOpacity
@@ -1176,11 +1197,11 @@ export default function SettingsMain() {
                 onPress={() => {
                   doHaptic();
                   if (codeEntryMode === 'promo') {
-                    router.push('/promo_code_entry' as any);
+                    router.push({ pathname: '/promo_code_entry', params: { source: 'settings' } } as any);
                   } else {
                     // зачем: отдельный экран ввода удалён — тот же единый экран рефералов,
                     // ?enter=1 сразу выдвигает шит «Код от друга».
-                    router.push('/referrals?enter=1' as any);
+                    router.push({ pathname: '/referrals', params: { enter: '1', source: 'settings' } } as any);
                   }
                 }}
                 style={{ flexDirection: 'row', alignItems: 'center', minHeight: 56, paddingVertical: 13 }}
@@ -1196,7 +1217,7 @@ export default function SettingsMain() {
               {/* Переключатель показываем только если оба типа кода доступны — иначе
                   переключать нечего. Состояния разделяем ТОЛЬКО тоном (chipOn +
                   приглушённый accent) — без обводки (правило владельца). */}
-              {settingsReferralSurface.marketingVisible && !hasPremiumAccess && promoCodesOn ? (
+              {false ? (
                 <View style={{ flexDirection: 'row', gap: 8, paddingBottom: 13 }}>
                   {(['referral', 'promo'] as const).map(mode => (
                     <TouchableOpacity
@@ -1233,14 +1254,16 @@ export default function SettingsMain() {
             </SettingsCustomRow>
           </SettingsGroup>
         ) : null}
-        {premiumDetails}
         {settingsReferralRowVisible ? (
           <TouchableOpacity
             testID="settings-invite-banner"
             accessibilityRole="button"
             accessibilityLabel={L('Пригласи друга — выиграй Plus', 'Запроси друга — виграй Plus', 'Invita a un amigo y gana Plus', 'Convide um amigo e ganhe Plus', 'Mời bạn bè — thắng Plus', 'Undang teman — menangkan Plus', 'Arkadaşını davet et — Plus kazan', 'Zaproś znajomego — wygraj Plus')}
             activeOpacity={0.88}
-            onPress={() => { doHaptic(); router.push('/referrals' as any); }}
+            onPress={() => {
+              doHaptic();
+              router.push({ pathname: '/referrals', params: { source: 'settings' } } as any);
+            }}
             style={{
               marginHorizontal: SETTINGS_GROUP_MARGIN,
               marginTop: 12,
@@ -1251,14 +1274,7 @@ export default function SettingsMain() {
             }}
           >
             {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Image
-              source={INVITE_GIFT_BANNER}
-              accessible={false}
-              style={{ width: '100%', height: 132 }}
-              contentFit="cover"
-              cachePolicy="memory-disk"
-              transition={120}
-            />
+            <ReferralInviteBannerArt />
             <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, gap: 10 }}>
               <View style={{ flex: 1, minWidth: 0 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1274,18 +1290,22 @@ export default function SettingsMain() {
             </View>
           </TouchableOpacity>
         ) : null}
-
         {/* зачем: в паблик-сборке выбор языка изучения не готов (открыт только английский) —
             секция должна не рендериться ВООБЩЕ, а не просто прятать подписи. В DEV
             (ENABLE_DEV_STUDY_TARGET_LANG) поведение и вид секции остаются как были. */}
-        {ENABLE_DEV_STUDY_TARGET_LANG && isStudyTargetSourceUiLang(lang) && (
+        {/* зачем: константный `false &&` делает ветку недостижимой, и TS перестаёт
+            применять сужение от isStudyTargetSourceUiLang внутри неё — пропс lang
+            у StudyLanguagePicker переставал сходиться по типу. Сужаем явной
+            переменной studyTargetSourceLang: она остаётся 'ru'|'uk' независимо
+            от того, вычисляется ветка или нет. */}
+        {studyTargetSourceLang && ENABLE_DEV_STUDY_TARGET_LANG && false && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
             {/* зачем: заголовок в одном стиле с SettingsSectionTitle — обычный регистр, без капса. */}
             <Text style={{ color: screenMuted, fontSize: f.body, fontWeight: '600', marginBottom: 10 }}>
               {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
             <StudyLanguagePicker
-              lang={lang}
+              lang={studyTargetSourceLang}
               activeTarget={studyTarget}
               labelFontSize={f.caption}
               palette={{
@@ -1444,16 +1464,6 @@ export default function SettingsMain() {
               ряды однострочные, без подписей под названием (запрет владельца).
               nameReady/authReady защищают от кадра «Не задано»/«Не привязан». */}
           <SettingsRow
-            testID="settings-profile-row"
-            icon="person"
-            color="blue"
-            label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
-            value={nameReady
-              ? (userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono'))
-              : ' '}
-            onPress={() => { setNewName(userName); setNameChangeNotice(null); setNameModal(true); }}
-          />
-          <SettingsRow
             icon="key"
             color="green"
             label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
@@ -1481,57 +1491,6 @@ export default function SettingsMain() {
         {/* зачем (Optimistic UI): модалка смены ника теперь закрывается сразу
             (см. saveName) — если сервер потом откажет (кулдаун/занято/сеть),
             откат виден здесь некритичной инлайн-плашкой, а не блокирующим Alert. */}
-        {nameChangeNotice ? (
-          <View
-            testID="settings-nickname-inline-notice"
-            style={{
-              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
-              flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: settingsNoticeBg,
-              borderRadius: 16, padding: 12,
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
-            }}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="alert-circle-outline" size={20} color={t.wrong} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
-              {nameChangeNotice}
-            </Text>
-          </View>
-        ) : null}
-        {/* Баннер: нет ника */}
-        {nameReady && !userName && (
-          <TouchableOpacity
-            activeOpacity={0.85}
-            onPress={() => { doHaptic(); setNewName(''); setNameChangeNotice(null); setNameModal(true); }}
-            style={{
-              marginHorizontal: SETTINGS_GROUP_MARGIN, marginTop: 8, marginBottom: 4,
-              flexDirection: 'row', alignItems: 'center', gap: 10,
-              backgroundColor: settingsNoticeBg,
-              borderRadius: 16, padding: 12,
-              overflow: 'hidden',
-              ...(isCompassTheme ? compassShadow(1) : {}),
-            }}
-          >
-            {isCompassTheme ? <CompassDepthSurface radius={8} quiet /> : null}
-            <Ionicons name="information-circle-outline" size={20} color={t.accent} />
-            <Text style={{ flex: 1, color: t.textSecond, fontSize: f.caption, lineHeight: 18 }}>
-              {L(
-                'Установите никнейм, чтобы участвовать в клубах и рейтинге',
-                'Встановіть нікнейм, щоб брати участь у клубах та рейтингу',
-                'Añade un nombre o apodo para participar en el club y en la clasificación.',
-                'Adicione um apelido para participar dos clubes e do ranking.',
-                'Đặt biệt danh để tham gia câu lạc bộ và bảng xếp hạng.',
-                'Tambahkan nama panggilan untuk ikut klub dan peringkat.',
-                'Kulüplere ve sıralamaya katılmak için bir takma ad ekle.',
-                'Ustaw pseudonim, aby brać udział w klubach i rankingach.',
-              )}
-            </Text>
-            <Ionicons name="chevron-forward" size={16} color={t.accent} />
-          </TouchableOpacity>
-        )}
-
         <SettingsSectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
         <SettingsGroup surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
           <SettingsRow
@@ -1543,7 +1502,9 @@ export default function SettingsMain() {
           <SettingsRow
             icon="notifications"
             color="red"
-            label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')}
+            // зачем: экран расширился с расписания напоминаний до полноценного раздела
+            // уведомлений (мастер + категории) — название пункта меню теперь ему соответствует.
+            label={L('Уведомления', 'Сповіщення', 'Notificaciones', 'Notificações', 'Thông báo', 'Notifikasi', 'Bildirimler', 'Powiadomienia')}
             onPress={() => router.push('/settings_notifications')}
           />
           {homeTipsReplayAvailable ? (
@@ -1570,7 +1531,7 @@ export default function SettingsMain() {
               icon="ribbon"
               color="yellow"
               label={L('Топ хелперов', 'Топ хелперів', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers', 'Top Helpers')}
-              onPress={() => router.push('/top_helpers' as any)}
+              onPress={() => router.push({ pathname: '/top_helpers', params: { source: 'settings' } } as any)}
             />
           ) : null}
           {ideasOn ? (
@@ -1646,6 +1607,8 @@ export default function SettingsMain() {
             onPress={confirmClearCache}
           />
         </SettingsGroup>
+
+        {premiumDetails}
 
         {/* Подвал — бренд и версия (юр. документы переехали в «Приватность и данные»). */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
@@ -1879,13 +1842,13 @@ export default function SettingsMain() {
                         'Zakup nadal się synchronizuje',
                       ),
                       L(
-                        'Смена аккаунта отменена: незавершённое списание монет нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
-                        'Зміну акаунту скасовано: незавершене списання монет не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
-                        'El cambio de cuenta se canceló: un gasto de monedas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
-                        'A troca de conta foi cancelada: um gasto de monedas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
+                        'Смена аккаунта отменена: незавершённое списание жемчуга нельзя переносить или пропускать. Подключись к интернету и попробуй снова.',
+                        'Зміну акаунту скасовано: незавершене списання перлин не можна переносити або пропускати. Підключися до інтернету й спробуй ще раз.',
+                        'El cambio de cuenta se canceló: un gasto de perlas pendiente no se puede trasladar ni omitir. Conéctate a internet e inténtalo de nuevo.',
+                        'A troca de conta foi cancelada: um gasto de pérolas pendente não pode ser transferido nem ignorado. Conecte-se à internet e tente novamente.',
                         'Đã hủy đổi tài khoản: khoản trừ xu đang chờ không thể chuyển hoặc bỏ qua. Hãy kết nối internet rồi thử lại.',
                         'Pergantian akun dibatalkan: pengeluaran shard yang tertunda tidak dapat dipindahkan atau dilewati. Sambungkan internet lalu coba lagi.',
-                        'Hesap değişimi iptal edildi: bekleyen jeton harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
+                        'Hesap değişimi iptal edildi: bekleyen inci harcaması taşınamaz veya atlanamaz. İnternete bağlanıp tekrar dene.',
                         'Zmiana konta została anulowana: oczekującego wydatku monet nie można przenieść ani pominąć. Połącz się z internetem i spróbuj ponownie.',
                       ),
                       [
@@ -1905,23 +1868,23 @@ export default function SettingsMain() {
                   if (!res.ok && res.reason === 'shard_queue_quarantined') {
                     Alert.alert(
                       L(
-                        'Нужна проверка монет',
-                        'Потрібна перевірка монет',
-                        'Se deben revisar los monedas',
-                        'É preciso verificar os monedas',
+                        'Нужна проверка жемчуга',
+                        'Потрібна перевірка перлин',
+                        'Se deben revisar las perlas',
+                        'É preciso verificar as pérolas',
                         'Cần kiểm tra xu',
                         'Shard perlu diperiksa',
                         'Parçaların kontrol edilmesi gerekiyor',
                         'Odłamki wymagają sprawdzenia',
                       ),
                       L(
-                        'Смена аккаунта отменена: локальная очередь монет повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
-                        'Зміну акаунту скасовано: локальна черга монет пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
-                        'El cambio de cuenta se canceló: la cola local de monedas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
-                        'A troca de conta foi cancelada: a fila local de monedas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
+                        'Смена аккаунта отменена: локальная очередь жемчуга повреждена или принадлежит неизвестному аккаунту. Данные сохранены для восстановления.',
+                        'Зміну акаунту скасовано: локальна черга перлин пошкоджена або належить невідомому акаунту. Дані збережено для відновлення.',
+                        'El cambio de cuenta se canceló: la cola local de perlas está dañada o pertenece a una cuenta desconocida. Los datos se conservaron para recuperarlos.',
+                        'A troca de conta foi cancelada: a fila local de pérolas está danificada ou pertence a uma conta desconhecida. Os dados foram preservados para recuperação.',
                         'Đã hủy đổi tài khoản: hàng đợi xu cục bộ bị hỏng hoặc thuộc về tài khoản không xác định. Dữ liệu đã được giữ lại để khôi phục.',
                         'Pergantian akun dibatalkan: antrean shard lokal rusak atau milik akun yang tidak diketahui. Data disimpan untuk pemulihan.',
-                        'Hesap değişimi iptal edildi: yerel jeton kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',
+                        'Hesap değişimi iptal edildi: yerel inci kuyruğu bozuk veya bilinmeyen bir hesaba ait. Veriler kurtarma için saklandı.',
                         'Zmiana konta została anulowana: lokalna kolejka monet jest uszkodzona lub należy do nieznanego konta. Dane zachowano do odzyskania.',
                       ),
                       [

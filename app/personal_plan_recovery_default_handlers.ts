@@ -18,9 +18,22 @@ function lessonIdForPlanPayload(payload: PlanRecoveryLegacyPayload): number {
     : 1;
 }
 
-function fallbackTranslation(payload: PlanRecoveryLegacyPayload): string {
-  return payload.expectedAnswer?.trim() || payload.phrase;
-}
+/**
+ * зачем: PlanRecoveryLegacyPayload НЕ содержит поля перевода вообще — ни translationRu,
+ * ни аналога. Раньше в слот перевода подставляли `expectedAnswer || phrase`, но это
+ * ожидаемый ответ на ЦЕЛЕВОМ языке (см. phraseForAction в legacy_handlers:38), а не
+ * перевод. В приложении есть испаноязычный контент, поэтому в разделе ошибок вылезал
+ * испанский текст там, где ждали русский («Составь фразу: Tengo una bolsa» при
+ * английских плитках — репорты «Нет русского текста», «Что переводить?»).
+ *
+ * Честного перевода тут взять негде, поэтому слот остаётся ПУСТЫМ: потребители уже
+ * умеют показать нейтральную подсказку на языке интерфейса при пустом переводе
+ * (trainer_phrases_session.tsx promptText). Пустое поле лучше чужого языка.
+ *
+ * TODO: прокинуть настоящий перевод в PlanRecoveryLegacyPayload от источника плана —
+ * тогда здесь появится реальный текст вместо заглушки.
+ */
+const PLAN_RECOVERY_TRANSLATION_UNKNOWN = '';
 
 /**
  * payload.category is a grammar tag (e.g. "present_perfect", "word_order"), NOT a
@@ -52,12 +65,15 @@ export function createPlanRecoveryDefaultHandlers(
 
   return createPlanRecoveryLegacyHandlers({
     recall: async (payload) => {
-      const fallback = fallbackTranslation(payload);
+      // зачем: uk больше НЕ дублирует ru — раньше ОДНО значение писалось в оба поля,
+      // и интерфейс показывал один и тот же перевод дважды («2ды дан перевод одного
+      // и того же предложения»). Пустой uk честно падает на ru по ||-цепочке в
+      // trainerTranslationForLang, дубля больше нет.
       await recordRecallMistake(
         payload.phrase,
-        fallback,
+        PLAN_RECOVERY_TRANSLATION_UNKNOWN,
         lessonIdForPlanPayload(payload),
-        fallback,
+        undefined,
         'lesson',
         undefined,
         mistakeMetaForPayload(payload),
@@ -65,11 +81,10 @@ export function createPlanRecoveryDefaultHandlers(
       );
     },
     trainer: async (payload) => {
-      const fallback = fallbackTranslation(payload);
       await recordPhraseMistake(
         payload.phrase,
-        fallback,
-        fallback,
+        PLAN_RECOVERY_TRANSLATION_UNKNOWN,
+        PLAN_RECOVERY_TRANSLATION_UNKNOWN,
         lessonIdForPlanPayload(payload),
         payload.expectedAnswer,
         // rawCategory must be a part of speech, not a grammar tag. Only forward the tag

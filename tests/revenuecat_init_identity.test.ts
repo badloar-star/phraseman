@@ -13,6 +13,10 @@ describe('RevenueCat identity bootstrap', () => {
       captureAccountGeneration: jest.fn(() => ({ generation: 1, stableId, phase: 'active' })),
       isCurrentAccountGeneration: jest.fn(() => true),
       withAccountTransitionLock: jest.fn(async (work: () => Promise<unknown>) => work()),
+      withAccountTransitionLockWithDeadline: jest.fn(async (work: () => Promise<unknown>) => ({
+        completed: true,
+        value: await work(),
+      })),
     }));
     jest.doMock('../app/premium_revenuecat_state', () => ({
       inferPremiumPlanFromProductId: jest.fn(() => 'yearly'),

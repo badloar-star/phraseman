@@ -17,12 +17,14 @@ describe('RevenueCat Premium access wiring', () => {
     expect(initSource).toContain('const eventAccount = captureAccountGeneration();');
     expect(initSource).toContain('const isEventAccountCurrent = () => isCurrentAccountGeneration(eventAccount);');
     expect(initSource).toContain('readCurrentRevenueCatCustomerInfo(isEventAccountCurrent)');
+    expect(initSource).toContain('readCurrentRevenueCatCustomerInfo(isInitAccountCurrent)');
     expect(initSource).toContain('if (!identityReady || !isInitAccountCurrent()) return;');
-    expect(initSource).toContain('withAccountTransitionLock(');
+    expect(initSource).toContain('withAccountTransitionLockWithDeadline(');
     expect(initSource).toContain('applyPushedCustomerInfo(currentInfo, isEventAccountCurrent)');
-    expect(initSource).toContain('persistStorePremiumLocally(plan, metadata, isCurrent, false)');
-    expect(initSource).toContain('persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false)');
+    expect(initSource).toContain('persistStorePremiumLocally(plan, metadata, isCurrent, false, true)');
+    expect(initSource).toContain('persistStorePremiumLocally(plan, metadata, isInitAccountCurrent, false, true)');
     expect(initSource).toContain('isCurrentAccountGeneration(syncAccount)');
+    expect(initSource).not.toContain('Purchases.getCustomerInfo(),');
     expect(initSource).not.toContain('persistStorePremiumLocally(plan, metadata, isCurrent);');
   });
 });

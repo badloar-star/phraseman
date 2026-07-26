@@ -256,8 +256,9 @@ export async function callPremiumDialogSend(req: PremiumDialogRequest): Promise<
   // Глобальный рубильник ИИ: не бьём сеть, сразу бросаем — вызывающий UI
   // покажет забавную заглушку (ручной вызов) или тихо скроет (авто-вызов).
   if (aiOffline()) throw new AiOfflineError();
-  // Возрастная группа берётся из единого источника (age_gate) и уходит на сервер
-  // для safety-флага и возрастного гейта (defense-in-depth поверх клиентского блока).
+  // зачем: возрастную группу сюда НЕ добавлять. После онбординга возраст ничего не
+  // блокирует (см. age_gate.isFullAccess), а лишняя отправка метки — это передача
+  // персональных данных без цели. Закреплено age_post_onboarding_no_blockers_contract.
   const key = premiumDialogSendRequestKey(req);
   const existing = premiumDialogSendInFlight.get(key);
   if (existing) return existing;

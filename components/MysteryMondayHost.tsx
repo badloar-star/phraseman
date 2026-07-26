@@ -107,10 +107,10 @@ export default function MysteryMondayHost() {
     'Rương của tuần', 'Peti minggu ini', 'Haftanın sandığı', 'Skrzynia tygodnia',
   );
   const rewardLine = L(
-    `${reward.shards} монет — теперь твои`,
-    `${reward.shards} монет — тепер твої`,
-    `${reward.shards} monedas — ahora son tuyos`,
-    `${reward.shards} monedas — agora são seus`,
+    `${reward.shards} жемчужин — теперь твои`,
+    `${reward.shards} жемчужин — тепер твої`,
+    `${reward.shards} perlas — ahora son tuyos`,
+    `${reward.shards} perlas — agora são seus`,
     `${reward.shards} mảnh — giờ là của bạn`,
     `${reward.shards} serpihan — kini milikmu`,
     `${reward.shards} parça — artık senin`,

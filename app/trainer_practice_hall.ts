@@ -1,4 +1,4 @@
-import { getCachedDueItems, getDueItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
+import { getCachedDueItems, getDueItems, hasCachedTrainerItems, type TrainerDashboard, type TrainerItem, type TrainerQueue } from './trainer_store';
 import type { RuntimeSourceLocale, RuntimeStudyTarget } from './target_storage_keys';
 import { shuffleWordBankTiles, tokenizeRecallPhrase, type WordBankTile } from './review_evaluator';
 
@@ -186,4 +186,25 @@ export function buildTrainerSessionDeck(items: TrainerItem[]): SessionCard[] {
     deck.push({ item, mode });
   });
   return deck;
+}
+
+/**
+ * Колода фразовой сессии из УЖЕ прогретого кэша — синхронно, без await.
+ *
+ * зачем: экран практики (trainer.tsx) на каждом фокусе делает
+ * prefetchTrainerPracticeSnapshot, поэтому к моменту перехода в сессию все
+ * айтемы лежат в памяти. Экран сессии всё равно стартовал с `loading = true`
+ * и показывал скелет «Загружаем…» — юзер видел загрузку там, где грузить
+ * нечего. Здесь отдаём первую колоду сразу; `null` означает «кэш холодный,
+ * нужен полноценный async-путь», и его нельзя путать с пустой колодой.
+ */
+export function getWarmPhraseSessionDeck(
+  limit = PHRASE_SESSION_LIMIT,
+  studyTarget?: RuntimeStudyTarget,
+  sourceLocale?: RuntimeSourceLocale,
+): SessionCard[] | null {
+  if (!hasCachedTrainerItems(studyTarget)) return null;
+  const items = getCachedPhraseSessionItems(limit, studyTarget, sourceLocale);
+  if (items.length === 0) return null;
+  return buildTrainerSessionDeck(items);
 }

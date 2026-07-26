@@ -61,6 +61,25 @@ describe('прогрев ассетов разделов и стабильная
     expect(codeLines.some((line) => /minHeight:\s*homeStatsReady\s*\?/.test(line))).toBe(false);
   });
 
+  /**
+   * зачем: «Вызовы дня», «Цель лиги», фраза дня и подвал жили под belowFoldReady, который
+   * стартовал с false на КАЖДОМ маунте. Возврат с раздела размораживает таб → флаг снова
+   * false → блоки исчезали и вставлялись кадром позже, толкая верстку. Отложенный второй
+   * проход нужен только первому маунту в сессии (бюджет холодного старта).
+   */
+  it('нижняя часть главной не пересобирается при каждом возврате', () => {
+    const source = read('app/(tabs)/home.tsx');
+    expect(source).toContain('let homeBelowFoldReadyOnce = false;');
+    expect(source).toContain('useState(homeBelowFoldReadyOnce)');
+    expect(source).toContain('homeBelowFoldReadyOnce = true;');
+    // Ранний выход: на повторных маунтах отложенный проход не планируется заново.
+    expect(source).toContain('if (homeBelowFoldReadyOnce) return undefined;');
+    const codeLines = source
+      .split('\n')
+      .filter((line) => !/^\s*(\/\/|\*|\/\*)/.test(line));
+    expect(codeLines.some((line) => /useState\(false\)[^\n]*belowFold/i.test(line))).toBe(false);
+  });
+
   it('реестр иконок хаба экспортирован для прогрева', () => {
     expect(read('app/flashcards/FlashcardsCategoryHub.tsx'))
       .toContain('export const FLASHCARDS_MODE_ICON_ASSETS');

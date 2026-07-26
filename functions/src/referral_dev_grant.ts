@@ -4,8 +4,6 @@
  * Только для тестовых dev-сборок. Защита:
  *   - гейт «Пульта»: remote_config/app.numbers.referral_dev_grant_enabled === true,
  *     иначе failed-precondition 'DEV_GRANT_DISABLED' (в проде флаг выключен — см. scripts/enable_dev_grant.mjs);
- *   - лимит ≤10/сутки (UTC) на юзера: progress.referral_dev_grants_daily{yyyy-mm-dd},
- *     тот же паттерн, что referral_vip_claims_daily (prunePeriodCounter, храним ~10 последних дней);
  *   - та же привязка auth↔stableId, что у referralSpin (assertAuthStableLink).
  *
  * Пишет progress.referral_spin_credits тем же путём, что referralClaimSpin,
@@ -14,7 +12,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
-import { assertAuthStableLink, prunePeriodCounter } from './referral';
+import { assertAuthStableLink } from './referral';
 import { randomUUID } from 'node:crypto';
 import {
   assertReferralDevGrantAcquisitionAllowed,
@@ -38,12 +36,6 @@ const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
 
 const USERS = 'users';
-const MAX_GRANTS_PER_DAY = 10;
-
-function yyyymmddNow(): string {
-  const d = new Date();
-  return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(d.getUTCDate()).padStart(2, '0')}`;
-}
 
 /** Гейт «Пульта». Строго === true; отсутствие/мусор/ошибка чтения → запрещено (безопасный дефолт). */
 async function isDevGrantEnabled(db: admin.firestore.Firestore): Promise<boolean> {
@@ -65,7 +57,7 @@ type DevGrantResult = {
 /**
  * +1 спин-кредит для dev-теста. Ошибки:
  * unauthenticated / invalid-argument / failed-precondition
- * (DEV_GRANT_DISABLED, DEV_GRANT_DAILY_LIMIT, LINK_ACCOUNT_REQUIRED).
+ * (DEV_GRANT_DISABLED, LINK_ACCOUNT_REQUIRED).
  */
 export const referralDevGrantSpin = onCall(CALLABLE_BASE, async (request): Promise<DevGrantResult> => {
   if (!request.auth?.uid) {
@@ -85,26 +77,20 @@ export const referralDevGrantSpin = onCall(CALLABLE_BASE, async (request): Promi
 
   const userRef = db.collection(USERS).doc(stableId);
   const configRef = db.collection('remote_config').doc('app');
-  const ymd = yyyymmddNow();
   const devCreditRef = userRef.collection(REFERRAL_SPIN_LEDGER).doc(`dev_${randomUUID()}`);
 
   return db.runTransaction(async (tx): Promise<DevGrantResult> => {
     const [configSnap, userSnap] = await Promise.all([tx.get(configRef), tx.get(userRef)]);
-    const policy = referralRoulettePolicyFromData(
-      configSnap.data() as { numbers?: Record<string, unknown> } | undefined,
-    );
+    const configData = configSnap.data() as { numbers?: Record<string, unknown> } | undefined;
+    if (configData?.numbers?.referral_dev_grant_enabled !== true) {
+      throw new HttpsError('failed-precondition', 'DEV_GRANT_DISABLED');
+    }
+    const policy = referralRoulettePolicyFromData(configData);
     assertReferralDevGrantAcquisitionAllowed(policy);
     const userData = userSnap.data() ?? {};
     const progress = (userData as { progress?: Record<string, unknown> }).progress ?? {};
 
-    const daily = (progress.referral_dev_grants_daily ?? {}) as Record<string, number>;
-    const usedToday = Math.max(0, Math.floor(Number(daily[ymd] ?? 0)));
-    if (usedToday >= MAX_GRANTS_PER_DAY) {
-      throw new HttpsError('failed-precondition', 'DEV_GRANT_DAILY_LIMIT');
-    }
-
     const aggregateBefore = Math.max(0, Math.floor(Number(progress.referral_spin_credits ?? 0)));
-    const ledgerVersion = Math.max(0, Math.floor(Number(progress.referral_spin_ledger_version ?? 0)));
     const nowMs = Date.now();
     const ledgerCollection = userRef.collection(REFERRAL_SPIN_LEDGER);
     const migrationMarkerRef = ledgerCollection.doc(REFERRAL_SPIN_LEDGER_MIGRATION_MARKER_ID);
@@ -210,8 +196,6 @@ export const referralDevGrantSpin = onCall(CALLABLE_BASE, async (request): Promi
           ...(migrateLegacyAggregate
             ? { referral_spin_ledger_migrated_at_ms: nowMs }
             : {}),
-          // Дневной счётчик: чистим старые дни, чтобы map не рос бесконечно (как vip_claims_daily).
-          referral_dev_grants_daily: prunePeriodCounter({ ...daily, [ymd]: usedToday + 1 }, 10),
         },
         updatedAt: nowMs,
       },

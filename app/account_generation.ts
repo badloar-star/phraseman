@@ -97,6 +97,45 @@ export async function withAccountTransitionLock<T>(work: () => Promise<T>): Prom
   }
 }
 
+export type AccountTransitionDeadlineResult<T> =
+  | { completed: true; value: T }
+  | { completed: false };
+
+/**
+ * A deadline-capable lock acquisition for native calls that cannot be
+ * cancelled. Timeout cancels only work that has not started. Once acquired,
+ * work retains exclusivity through completion/rollback.
+ */
+export async function withAccountTransitionLockWithDeadline<T>(
+  work: () => Promise<T>,
+  timeoutMs: number,
+): Promise<AccountTransitionDeadlineResult<T>> {
+  const previous = accountTransitionLockTail;
+  let release!: () => void;
+  accountTransitionLockTail = new Promise<void>((resolve) => { release = resolve; });
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  const acquired = await Promise.race([
+    previous.then(() => true),
+    new Promise<boolean>((resolve) => {
+      timer = setTimeout(() => resolve(false), Math.max(0, timeoutMs));
+    }),
+  ]);
+  if (timer) clearTimeout(timer);
+  if (!acquired) {
+    // Cancel this queued slot without bypassing the still-active predecessor.
+    // Future callers remain blocked by this slot until the predecessor settles.
+    void previous.then(release, release);
+    return { completed: false };
+  }
+  try {
+    // The deadline governs acquisition only. Once work starts, the caller owns
+    // it through completion/rollback and cannot abandon a half-transition.
+    return { completed: true, value: await work() };
+  } finally {
+    release();
+  }
+}
+
 export async function waitForRestoreApplicationIdle(): Promise<void> {
   await restoreLockTail;
 }

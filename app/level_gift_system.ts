@@ -114,8 +114,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Uma dica extra nas lições de hoje', vi: 'Một gợi ý thêm trong các bài học hôm nay', id: 'Satu petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde ekstra bir ipucu', pl: 'Dodatkowa podpowiedź w dzisiejszych lekcjach' },
   },
   shards_3: {
-    title: { 'pt-BR': '+3 moedas', vi: '+3 xu', id: '+3 koin', tr: '+3 jeton', pl: '+3 monety' },
-    desc: { 'pt-BR': 'Três moedas de conhecimento', vi: 'Ba xu tri thức', id: 'Tiga koin pengetahuan', tr: 'Üç bilgi jetonu', pl: 'Trzy monety wiedzy' },
+    title: { 'pt-BR': '+3 pérolas', vi: '+3 xu', id: '+3 koin', tr: '+3 jeton', pl: '+3 monety' },
+    desc: { 'pt-BR': 'Três pérolas de conhecimento', vi: 'Ba xu tri thức', id: 'Tiga koin pengetahuan', tr: 'Üç bilgi jetonu', pl: 'Trzy monety wiedzy' },
   },
   xp_bank_150: {
     title: { 'pt-BR': 'Bônus ×2 para 150 XP', vi: 'Thưởng ×2 cho 150 XP', id: 'Bonus ×2 untuk 150 XP', tr: '150 XP için ×2 bonus', pl: 'Bonus ×2 na 150 XP' },
@@ -146,8 +146,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Três dicas extras nas lições de hoje', vi: 'Ba gợi ý thêm trong các bài học hôm nay', id: 'Tiga petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde üç ekstra ipucu', pl: 'Trzy dodatkowe podpowiedzi w dzisiejszych lekcjach' },
   },
   shards_6: {
-    title: { 'pt-BR': '+6 moedas', vi: '+6 xu', id: '+6 koin', tr: '+6 jeton', pl: '+6 monet' },
-    desc: { 'pt-BR': 'Seis moedas: recompensa rara', vi: 'Sáu xu: phần thưởng hiếm', id: 'Enam koin: hadiah langka', tr: 'Altı jeton: nadir ödül', pl: 'Sześć monet: rzadka nagroda' },
+    title: { 'pt-BR': '+6 pérolas', vi: '+6 xu', id: '+6 koin', tr: '+6 jeton', pl: '+6 monet' },
+    desc: { 'pt-BR': 'Seis pérolas: recompensa rara', vi: 'Sáu xu: phần thưởng hiếm', id: 'Enam koin: hadiah langka', tr: 'Altı jeton: nadir ödül', pl: 'Sześć monet: rzadka nagroda' },
   },
   xp_bank_300: {
     title: { 'pt-BR': 'Bônus ×2 para 300 XP', vi: 'Thưởng ×2 cho 300 XP', id: 'Bonus ×2 untuk 300 XP', tr: '300 XP için ×2 bonus', pl: 'Bonus ×2 na 300 XP' },
@@ -167,7 +167,7 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
   },
   club_boost_free: {
     title: { 'pt-BR': 'Boost de clube grátis', vi: 'Tăng lực câu lạc bộ miễn phí', id: 'Boost klub gratis', tr: 'Ücretsiz kulüp boostu', pl: 'Darmowy boost klubu' },
-    desc: { 'pt-BR': 'A próxima ativação de boost no clube não custa moedas', vi: 'Lần kích hoạt tăng lực tiếp theo trong câu lạc bộ không tốn xu', id: 'Aktivasi boost klub berikutnya tidak membutuhkan koin', tr: 'Kulüpteki sonraki boost etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu w klubie nie kosztuje monet' },
+    desc: { 'pt-BR': 'A próxima ativação de boost no clube não custa pérolas', vi: 'Lần kích hoạt tăng lực tiếp theo trong câu lạc bộ không tốn xu', id: 'Aktivasi boost klub berikutnya tidak membutuhkan koin', tr: 'Kulüpteki sonraki boost etkinleştirmesi jeton harcamaz', pl: 'Następna aktywacja boostu w klubie nie kosztuje monet' },
   },
   xp_2x_48h: {
     title: { 'pt-BR': '+100% XP por 48 horas', vi: '+100% XP trong 48 giờ', id: '+100% XP selama 48 jam', tr: '48 saat +%100 XP', pl: '+100% XP przez 48 godz.' },
@@ -186,8 +186,8 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'A próxima aposta custa 25% menos (uma vez; usado ao apostar)', vi: 'Lần cược tiếp theo rẻ hơn 25% (một lần; dùng khi đặt cược)', id: 'Taruhan berikutnya 25% lebih murah (sekali; dipakai saat bertaruh)', tr: 'Sonraki bahis %25 daha ucuz (tek seferlik; bahis yapınca kullanılır)', pl: 'Następny zakład kosztuje 25% mniej (jednorazowo, używa się przy zakładzie)' },
   },
   shards_10: {
-    title: { 'pt-BR': '+10 moedas', vi: '+10 xu', id: '+10 koin', tr: '+10 jeton', pl: '+10 monet' },
-    desc: { 'pt-BR': 'Dez moedas', vi: 'Mười xu', id: 'Sepuluh koin', tr: 'On jeton', pl: 'Dziesięć monet' },
+    title: { 'pt-BR': '+10 pérolas', vi: '+10 xu', id: '+10 koin', tr: '+10 jeton', pl: '+10 monet' },
+    desc: { 'pt-BR': 'Dez pérolas', vi: 'Mười xu', id: 'Sepuluh koin', tr: 'On jeton', pl: 'Dziesięć monet' },
   },
   xp_bank_600: {
     title: { 'pt-BR': 'Bônus ×2 para 600 XP', vi: 'Thưởng ×2 cho 600 XP', id: 'Bonus ×2 untuk 600 XP', tr: '600 XP için ×2 bonus', pl: 'Bonus ×2 na 600 XP' },
@@ -202,16 +202,16 @@ const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy
     desc: { 'pt-BR': 'Abra e escolha uma de três recompensas', vi: 'Mở và chọn một trong ba phần thưởng', id: 'Buka dan pilih satu dari tiga hadiah', tr: 'Aç ve üç ödülden birini seç', pl: 'Otwórz i wybierz jedną z trzech nagród' },
   },
   prem_shards_10: {
-    title: { 'pt-BR': '+10 moedas (Plus)', vi: '+10 xu (Plus)', id: '+10 koin (Plus)', tr: '+10 jeton (Plus)', pl: '+10 monet (Plus)' },
+    title: { 'pt-BR': '+10 pérolas (Plus)', vi: '+10 xu (Plus)', id: '+10 koin (Plus)', tr: '+10 jeton (Plus)', pl: '+10 monet (Plus)' },
     desc: { 'pt-BR': 'Recompensa generosa para Plus', vi: 'Phần thưởng hào phóng cho Plus', id: 'Hadiah besar untuk Plus', tr: 'Plus için cömert ödül', pl: 'Hojna nagroda dla Plus' },
   },
   prem_shards_15: {
-    title: { 'pt-BR': '+15 moedas (Plus)', vi: '+15 xu (Plus)', id: '+15 koin (Plus)', tr: '+15 jeton (Plus)', pl: '+15 monet (Plus)' },
+    title: { 'pt-BR': '+15 pérolas (Plus)', vi: '+15 xu (Plus)', id: '+15 koin (Plus)', tr: '+15 jeton (Plus)', pl: '+15 monet (Plus)' },
     desc: { 'pt-BR': 'Recompensa generosa', vi: 'Phần thưởng hào phóng', id: 'Hadiah besar', tr: 'Cömert ödül', pl: 'Hojna nagroda' },
   },
   prem_shards_20: {
-    title: { 'pt-BR': '+20 moedas (Plus)', vi: '+20 xu (Plus)', id: '+20 koin (Plus)', tr: '+20 jeton (Plus)', pl: '+20 monet (Plus)' },
-    desc: { 'pt-BR': 'Muitos moedas por subir de nível', vi: 'Nhiều xu khi lên cấp', id: 'Banyak koin karena naik level', tr: 'Seviye atladığın için bol jeton', pl: 'Dużo monet za poziom' },
+    title: { 'pt-BR': '+20 pérolas (Plus)', vi: '+20 xu (Plus)', id: '+20 koin (Plus)', tr: '+20 jeton (Plus)', pl: '+20 monet (Plus)' },
+    desc: { 'pt-BR': 'Muitos pérolas por subir de nível', vi: 'Nhiều xu khi lên cấp', id: 'Banyak koin karena naik level', tr: 'Seviye atladığın için bol jeton', pl: 'Dużo monet za poziom' },
   },
   premium_xp_bank_1000: {
     title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Plus)', vi: 'Thưởng ×2 cho 1000 XP (Plus)', id: 'Bonus ×2 untuk 1000 XP (Plus)', tr: '1000 XP için ×2 bonus (Plus)', pl: 'Bonus ×2 na 1000 XP (Plus)' },
@@ -415,8 +415,8 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_3', rarity: 'common', icon: '💎', weight: 7,
-    titleRU: '+3 монеты', titleUK: '+3 монети', titleES: '+3 monedas',
-    descRU: 'Три монеты', descUK: 'Три монети', descES: 'Tres monedas',
+    titleRU: '+3 жемчужины', titleUK: '+3 жемчужини', titleES: '+3 perlas',
+    descRU: 'Три жемчужины', descUK: 'Три жемчужини', descES: 'Tres perlas',
   },
   {
     id: 'xp_bank_150', rarity: 'common', icon: '⚡', weight: 6,
@@ -467,9 +467,9 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_6', rarity: 'rare', icon: '💎', weight: 6,
-    titleRU: '+6 монет', titleUK: '+6 монет', titleES: '+6 monedas',
-    descRU: 'Шесть монет — редкая награда', descUK: 'Шість монет — рідкісна нагорода',
-    descES: 'Seis monedas — premio poco habitual',
+    titleRU: '+6 жемчужин', titleUK: '+6 жемчужин', titleES: '+6 perlas',
+    descRU: 'Шесть жемчужин — редкая награда', descUK: 'Шість жемчужин — рідкісна нагорода',
+    descES: 'Seis perlas — premio poco habitual',
   },
   {
     id: 'xp_bank_300', rarity: 'rare', icon: '⚡', weight: 6,
@@ -502,9 +502,9 @@ const GIFT_F2P: GiftDef[] = [
   {
     id: 'club_boost_free', rarity: 'rare', icon: '👥', weight: 6,
     titleRU: 'Буст клуба бесплатно', titleUK: 'Буст клубу безкоштовно', titleES: 'Impulso de liga gratis',
-    descRU: 'Следующая активация буста в клубе без монет',
-    descUK: 'Наступна активація буста в клубі без монет',
-    descES: 'La próxima activación del impulso en la liga no cuesta monedas',
+    descRU: 'Следующая активация буста в клубе без жемчужин',
+    descUK: 'Наступна активація буста в клубі без жемчужин',
+    descES: 'La próxima activación del impulso en la liga no cuesta perlas',
   },
   {
     id: 'xp_2x_48h', rarity: 'epic', icon: '🚀', weight: 3,
@@ -532,8 +532,8 @@ const GIFT_F2P: GiftDef[] = [
   },
   {
     id: 'shards_10', rarity: 'epic', icon: '💎', weight: 2,
-    titleRU: '+10 монет', titleUK: '+10 монет', titleES: '+10 monedas',
-    descRU: 'Десять монет', descUK: 'Десять монет', descES: 'Diez monedas',
+    titleRU: '+10 жемчужин', titleUK: '+10 жемчужин', titleES: '+10 perlas',
+    descRU: 'Десять жемчужин', descUK: 'Десять жемчужин', descES: 'Diez perlas',
   },
   {
     id: 'xp_bank_600', rarity: 'epic', icon: '⚡', weight: 2,
@@ -585,21 +585,21 @@ const GIFT_F2P: GiftDef[] = [
 const GIFT_PREMIUM: GiftDef[] = [
   {
     id: 'prem_shards_10', rarity: 'common', icon: '💎', weight: 5,
-    titleRU: '+10 монет (плюс)', titleUK: '+10 монет (плюс)', titleES: '+10 monedas (Plus)',
+    titleRU: '+10 жемчужин (плюс)', titleUK: '+10 жемчужин (плюс)', titleES: '+10 perlas (Plus)',
     descRU: 'Щедрая награда для плюс',
     descUK: 'Щедра нагорода для плюс',
     descES: 'Recompensa generosa para usuarios Plus',
   },
   {
     id: 'prem_shards_15', rarity: 'rare', icon: '💎', weight: 4,
-    titleRU: '+15 монет (плюс)', titleUK: '+15 монет (плюс)', titleES: '+15 monedas (Plus)',
+    titleRU: '+15 жемчужин (плюс)', titleUK: '+15 жемчужин (плюс)', titleES: '+15 perlas (Plus)',
     descRU: 'Щедрая награда', descUK: 'Щедра нагорода', descES: 'Recompensa generosa',
   },
   {
     id: 'prem_shards_20', rarity: 'epic', icon: '💎', weight: 4,
-    titleRU: '+20 монет (плюс)', titleUK: '+20 монет (плюс)', titleES: '+20 monedas (Plus)',
-    descRU: 'Много монет за уровень', descUK: 'Багато монет за рівень',
-    descES: 'Muchos monedas por subir de nivel',
+    titleRU: '+20 жемчужин (плюс)', titleUK: '+20 жемчужин (плюс)', titleES: '+20 perlas (Plus)',
+    descRU: 'Много жемчужин за уровень', descUK: 'Багато жемчужин за рівень',
+    descES: 'Muchos perlas por subir de nivel',
   },
   {
     id: 'premium_xp_bank_1000', rarity: 'epic', icon: '⚡', weight: 2,
@@ -1090,7 +1090,7 @@ const grantLevelGiftShards = async (
   amount: number,
   accountToken?: AccountGenerationToken,
 ): Promise<void> => {
-  const safe = Math.max(0, Math.floor(amount)) * 0; // §7: выплата монет отключена
+  const safe = Math.max(0, Math.floor(amount)) * 0; // §7: выплата жемчужин отключена
   if (safe <= 0) return;
   const before = await getShardsBalance();
   await addShardsRaw(safe, 'level_gift', { skipServerAwait: true });

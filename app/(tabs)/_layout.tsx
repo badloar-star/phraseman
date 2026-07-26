@@ -464,7 +464,9 @@ function routerShowsTab(pathnameRaw: string, segments: readonly string[], tabIdx
 // Иконки-капсулы (как в Instagram, без подписей). Порядок = индексам табов.
 const TABS: TabDef[] = [
   { key: 'home',        icon: 'home-outline',        active: 'home' },
-  { key: 'index',       icon: 'stats-chart-outline', active: 'stats-chart' },
+  // зачем: вкладка ведёт на список уроков (`journal.tsx` ре-экспортирует `lessons`),
+  // а иконка осталась от прежнего «Журнала» — столбики статистики вводили в заблуждение.
+  { key: 'index',       icon: 'book-outline',        active: 'book' },
   // Кубок — акцентная вкладка режима «Турниры», по центру (макет 01).
   { key: 'tournaments', icon: 'trophy-outline',      active: 'trophy' },
   { key: 'friends',     icon: 'people-outline',      active: 'people' },

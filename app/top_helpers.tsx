@@ -19,10 +19,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { FlashList } from '@shopify/flash-list';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useLocalSearchParams, useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -133,6 +134,7 @@ function HelperSkeletonRows({ borderColor, bgCard }: { borderColor: string; bgCa
 
 export default function TopHelpersScreen() {
   const router = useRouter();
+  const { source } = useLocalSearchParams<{ source?: string }>();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const insets = useStableSafeAreaInsets();
@@ -325,29 +327,12 @@ export default function TopHelpersScreen() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right']}>
-        {/* Шапка: назад + заголовок */}
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            paddingHorizontal: 12,
-            paddingVertical: 10,
-            gap: 8,
-          }}
-        >
-          <Pressable
-            onPress={() => {
-              hapticTap();
-              safeRouterBack(router);
-            }}
-            hitSlop={10}
-            style={{ padding: 6 }}
-          >
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
-          </Pressable>
-          <Ionicons name="ribbon" size={22} color={HELPERS_ACCENT} />
-          <Text style={{ fontSize: 20, fontWeight: '800', color: t.textPrimary }}>{boardTitle(lang)}</Text>
-        </View>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу, шапка
+            с центрированным заголовком и крестиком вместо стрелки «назад». */}
+        <SectionSheetHeader
+          title={boardTitle(lang)}
+          onClose={() => safeRouterBack(router, source === 'settings' ? '/(tabs)/settings' as any : undefined)}
+        />
 
         <ContentWrap>
           {!enabled ? (

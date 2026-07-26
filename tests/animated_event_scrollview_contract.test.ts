@@ -3,9 +3,9 @@ import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
 
+// зачем: app/arena_results.tsx и app/arena_room.tsx удалены вместе с Ареной;
+// остальные живые экраны ниже сохраняют проверку Animated.ScrollView.
 const TSX_FILES = [
-  'app/arena_results.tsx',
-  'app/arena_room.tsx',
   'app/flashcards_swipe.tsx',
   'app/lesson_help.tsx',
   'app/lesson_help_theory_ui.tsx',

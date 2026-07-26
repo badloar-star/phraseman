@@ -36,6 +36,7 @@ import { useLang } from './LangContext';
 import { useOverlayVisible } from './OverlayArbiter';
 import { onAppEvent } from '../app/events';
 import { triLang, type Lang } from '../constants/i18n';
+import { ruKnowledgeShardsAfterNumber, ukKnowledgeShardsAfterNumber } from '../constants/shard_plurals';
 import { loadShardsFromCloud } from '../app/shards_system';
 import { coinIconForBalance } from '../app/coin_icons';
 import { getThemedShardIcon } from '../constants/levelGiftRewardIcons';
@@ -59,14 +60,10 @@ function makeL(lang: Lang) {
     triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
-/** RU-плюрализация «N осколков» в строке поздравления. */
-function ruShardsWord(n: number): string {
-  const k = Math.abs(n) % 100;
-  const d = Math.abs(n) % 10;
-  if (d === 1 && k !== 11) return 'осколок';
-  if (d >= 2 && d <= 4 && (k < 12 || k > 14)) return 'осколка';
-  return 'осколков';
-}
+/** RU-плюрализация «N жемчужин» в строке поздравления.
+ * зачем: единая валюта — жемчуг; переиспользуем общий словарь, чтобы формы
+ * не разъезжались между экранами (constants/shard_plurals.ts — источник истины). */
+const ruShardsWord = ruKnowledgeShardsAfterNumber;
 
 export default function CoinsMigrationHost() {
   const { theme: t, themeMode } = useTheme();
@@ -197,28 +194,31 @@ export default function CoinsMigrationHost() {
     'Bạn giỏi lắm!', 'Kamu hebat!', 'Harikasın!', 'Świetna robota!',
   );
   const explanation = L(
-    'Осколки становятся Монетами — новой, очень ценной валютой Phraseman. Её нельзя нафармить: монеты только покупаются, поэтому твой баланс особенно ценен.',
-    'Уламки стають Монетами — новою, дуже цінною валютою Phraseman. Її не можна нафармити: монети лише купуються, тому твій баланс особливо цінний.',
-    'Los fragmentos se convierten en Monedas, la nueva y valiosa moneda de Phraseman. No se puede farmear: solo se compra, así que tu saldo vale mucho.',
-    'Os fragmentos viram Moedas — a nova e valiosa moeda do Phraseman. Não dá para farmar: moedas só se compra, então seu saldo é muito valioso.',
-    'Mảnh trở thành Xu — loại tiền mới, rất quý giá của Phraseman. Không thể cày được: xu chỉ mua được, nên số dư của bạn rất đáng quý.',
-    'Shard menjadi Koin — mata uang baru yang sangat berharga di Phraseman. Tidak bisa difarm: koin hanya bisa dibeli, jadi saldomu sangat berharga.',
-    'Parçalar, Phraseman\'ın yeni ve çok değerli para birimi Jetonlara dönüşüyor. Farm yapılamaz: jeton yalnızca satın alınır, bu yüzden bakiyen çok değerli.',
-    'Odłamki stają się Monetami — nową, bardzo cenną walutą Phraseman. Nie da się ich nafarmić: monety można tylko kupić, więc twoje saldo jest bardzo cenne.',
+    'Осколки становятся Жемчугом — новой, очень ценной валютой Phraseman. Его нельзя нафармить: жемчуг только покупается, поэтому твой баланс особенно ценен.',
+    'Уламки стають Перлинами — новою, дуже цінною валютою Phraseman. Їх не можна нафармити: перлини лише купуються, тому твій баланс особливо цінний.',
+    'Los fragmentos se convierten en Perlas, la nueva y valiosa moneda de Phraseman. No se puede farmear: solo se compra, así que tu saldo vale mucho.',
+    'Os fragmentos viram Pérolas — a nova e valiosa moeda do Phraseman. Não dá para farmar: pérolas só se compra, então seu saldo é muito valioso.',
+    'Mảnh trở thành Ngọc trai — loại tiền mới, rất quý giá của Phraseman. Không thể cày được: ngọc trai chỉ mua được, nên số dư của bạn rất đáng quý.',
+    'Shard menjadi Mutiara — mata uang baru yang sangat berharga di Phraseman. Tidak bisa difarm: mutiara hanya bisa dibeli, jadi saldomu sangat berharga.',
+    'Parçalar, Phraseman\'ın yeni ve çok değerli para birimi İncilere dönüşüyor. Farm yapılamaz: inci yalnızca satın alınır, bu yüzden bakiyen çok değerli.',
+    'Odłamki stają się Perłami — nową, bardzo cenną walutą Phraseman. Nie da się ich nafarmić: perły można tylko kupić, więc twoje saldo jest bardzo cenne.',
   );
+  // зачем: единая валюта — ЖЕМЧУГ. RU/UK уже перевели, остальные 6 языков остались
+  // на «Монеты/Xu/Koin/Jeton», а строка курса на всех 8 обещала «1 монету» —
+  // игрок видел валюту, которой в приложении нет. Курс 20:1 не менялся.
   const rateLine = L(
-    'Курс обмена: 20 осколков = 1 монета (округляем в твою пользу).',
-    'Курс обміну: 20 уламків = 1 монета (заокруглюємо на твою користь).',
-    'Cambio: 20 fragmentos = 1 moneda (redondeamos a tu favor).',
-    'Câmbio: 20 fragmentos = 1 moeda (arredondamos a seu favor).',
-    'Tỷ giá: 20 mảnh = 1 xu (làm tròn có lợi cho bạn).',
-    'Kurs: 20 shard = 1 koin (dibulatkan untukmu).',
-    'Kur: 20 parça = 1 jeton (senin lehine yuvarlanır).',
-    'Kurs: 20 odłamków = 1 moneta (zaokrąglamy na twoją korzyść).',
+    'Курс обмена: 20 осколков = 1 жемчужина (округляем в твою пользу).',
+    'Курс обміну: 20 уламків = 1 перлина (заокруглюємо на твою користь).',
+    'Cambio: 20 fragmentos = 1 perla (redondeamos a tu favor).',
+    'Câmbio: 20 fragmentos = 1 pérola (arredondamos a seu favor).',
+    'Tỷ giá: 20 mảnh = 1 ngọc trai (làm tròn có lợi cho bạn).',
+    'Kurs: 20 shard = 1 mutiara (dibulatkan untukmu).',
+    'Kur: 20 parça = 1 inci (senin lehine yuvarlanır).',
+    'Kurs: 20 odłamków = 1 perła (zaokrąglamy na twoją korzyść).',
   );
   const loadingLine = L(
-    'Считаем твой переход на монеты…', 'Рахуємо твій перехід на монети…', 'Calculando tu cambio a monedas…', 'Calculando sua mudança para moedas…',
-    'Đang tính việc chuyển sang xu…', 'Menghitung konversimu ke koin…', 'Jetona geçişin hesaplanıyor…', 'Liczenie twojej wymiany na monety…',
+    'Считаем твой переход на жемчуг…', 'Рахуємо твій перехід на перлини…', 'Calculando tu cambio a perlas…', 'Calculando sua mudança para pérolas…',
+    'Đang tính việc chuyển sang ngọc trai…', 'Menghitung konversimu ke mutiara…', 'İnciye geçişin hesaplanıyor…', 'Liczenie twojej wymiany na perły…',
   );
   const errorLine = L(
     'Не получилось выполнить обмен — проверь интернет. Ничего не потерялось: попробуем ещё раз сейчас или при следующем запуске.',
@@ -232,12 +232,12 @@ export default function CoinsMigrationHost() {
   );
   const retryCta = L('Повторить', 'Повторити', 'Reintentar', 'Tentar de novo', 'Thử lại', 'Coba lagi', 'Tekrar dene', 'Spróbuj ponownie');
   const cta = L(
-    'Забрать монеты', 'Забрати монети', 'Recoger monedas', 'Pegar moedas',
-    'Nhận xu', 'Ambil koin', 'Jetonları al', 'Odbierz monety',
+    'Забрать жемчуг', 'Забрати перлини', 'Recoger perlas', 'Pegar pérolas',
+    'Nhận ngọc trai', 'Ambil mutiara', 'İncileri al', 'Odbierz perły',
   );
   const closeA11y = L(
-    'Забрать монеты и закрыть', 'Забрати монети й закрити', 'Recoger monedas y cerrar', 'Pegar moedas e fechar',
-    'Nhận xu và đóng', 'Ambil koin dan tutup', 'Jetonları al ve kapat', 'Odbierz monety i zamknij',
+    'Забрать жемчуг и закрыть', 'Забрати перлини й закрити', 'Recoger perlas y cerrar', 'Pegar pérolas e fechar',
+    'Nhận ngọc trai và đóng', 'Ambil mutiara dan tutup', 'İncileri al ve kapat', 'Odbierz perły i zamknij',
   );
 
   const renderResult = () => {
@@ -253,25 +253,28 @@ export default function CoinsMigrationHost() {
       `${result.shardsBefore} parça biriktirdin`,
       `Uzbierałeś ${result.shardsBefore} odłamków`,
     );
+    // зачем: баланс после обмена — главное число модалки; 6 из 8 языков называли
+    // его «монетами/xu/koin/jeton», валютой, которой в приложении нет. Склонения
+    // RU/UK берём из общего словаря, чтобы не выходило «1 жемчужин»/«1 перлин».
     const resultLine = L(
-      `Твой баланс: ${newBalance} монет`,
-      `Твій баланс: ${newBalance} монет`,
-      `Tu saldo: ${newBalance} monedas`,
-      `Seu saldo: ${newBalance} moedas`,
-      `Số dư của bạn: ${newBalance} xu`,
-      `Saldomu: ${newBalance} koin`,
-      `Bakiyen: ${newBalance} jeton`,
-      `Twoje saldo: ${newBalance} monet`,
+      `Твой баланс: ${newBalance} ${ruShardsWord(newBalance)}`,
+      `Твій баланс: ${newBalance} ${ukKnowledgeShardsAfterNumber(newBalance)}`,
+      `Tu saldo: ${newBalance} perlas`,
+      `Seu saldo: ${newBalance} pérolas`,
+      `Số dư của bạn: ${newBalance} ngọc trai`,
+      `Saldomu: ${newBalance} mutiara`,
+      `Bakiyen: ${newBalance} inci`,
+      `Twoje saldo: ${newBalance} pereł`,
     );
     const balanceA11y = L(
-      `Конверсия завершена. Твой баланс: ${newBalance} монет`,
-      `Конверсія завершена. Твій баланс: ${newBalance} монет`,
-      `Conversión completada. Tu saldo: ${newBalance} monedas`,
-      `Conversão concluída. Seu saldo: ${newBalance} moedas`,
-      `Đã chuyển xong. Số dư của bạn: ${newBalance} xu`,
-      `Konversi selesai. Saldomu: ${newBalance} koin`,
-      `Dönüşüm tamamlandı. Bakiyen: ${newBalance} jeton`,
-      `Wymiana zakończona. Twoje saldo: ${newBalance} monet`,
+      `Конверсия завершена. Твой баланс: ${newBalance} ${ruShardsWord(newBalance)}`,
+      `Конверсія завершена. Твій баланс: ${newBalance} ${ukKnowledgeShardsAfterNumber(newBalance)}`,
+      `Conversión completada. Tu saldo: ${newBalance} perlas`,
+      `Conversão concluída. Seu saldo: ${newBalance} pérolas`,
+      `Đã chuyển xong. Số dư của bạn: ${newBalance} ngọc trai`,
+      `Konversi selesai. Saldomu: ${newBalance} mutiara`,
+      `Dönüşüm tamamlandı. Bakiyen: ${newBalance} inci`,
+      `Wymiana zakończona. Twoje saldo: ${newBalance} pereł`,
     );
     return (
       <View accessibilityLabel={balanceA11y}>
@@ -304,7 +307,7 @@ export default function CoinsMigrationHost() {
           </View>
           <View style={{ alignItems: 'center', width: 64 }}>
             <Image
-              source={coinIconForBalance(newBalance)}
+              source={coinIconForBalance(newBalance, themeMode)}
               style={{ width: 44, height: 44 }}
               contentFit="contain"
               accessibilityElementsHidden

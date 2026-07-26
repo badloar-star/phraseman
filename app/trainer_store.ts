@@ -505,6 +505,7 @@ export interface TrainerDashboard {
   active: number;
   future: number;
   archived: number;
+  archivedPhrases: number;
   hardestQueue: TrainerQueue | null;
   hardestMistakes: number;
   hardestCategory: WordCategory | null;
@@ -532,6 +533,7 @@ export async function getTrainerDashboard(
     : [];
   const dueItems = activeItems.filter(i => i.nextDue <= end);
   const archived = sessionContentEnabled ? items.filter(i => i.archived).length : 0;
+  const archivedPhrases = sessionContentEnabled ? items.filter(i => i.archived && i.queue === 'phrases').length : 0;
   const due: Record<TrainerQueue, number> = {
     words: dueItems.filter(i => i.queue === 'words').length,
     phrases: dueItems.filter(i => i.queue === 'phrases').length,
@@ -577,6 +579,7 @@ export async function getTrainerDashboard(
     active: activeItems.length,
     future: activeItems.filter(i => i.nextDue > end).length,
     archived,
+    archivedPhrases,
     hardestQueue: hardest && hardest.mistakes > 0 ? hardest.queue : null,
     hardestMistakes: hardest?.mistakes ?? 0,
     hardestCategory: analyticsHardestCategory?.category ?? fallbackCategoryForTarget?.[0] ?? null,
@@ -609,6 +612,19 @@ export async function getDueItems(
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
+}
+
+/**
+ * Прогрет ли in-memory кэш очереди для этого таргета.
+ *
+ * зачем: getCachedDueItems на холодном кэше возвращает `[]` — неотличимо от
+ * «сегодня нечего повторять». Экранам сессий нужно различать эти два случая,
+ * чтобы синхронно отрисовать первую карточку на прогретом кэше и не показать
+ * по ошибке экран «всё сделано» на холодном. Map.has различает «не грузили»
+ * и «загрузили пустое».
+ */
+export function hasCachedTrainerItems(studyTarget?: RuntimeStudyTarget): boolean {
+  return trainerStoreCache.has(trainerStoreKey(studyTarget));
 }
 
 export function getCachedDueItems(

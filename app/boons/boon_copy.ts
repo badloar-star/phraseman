@@ -128,22 +128,22 @@ const BOON_COPY: Record<BoonId, BoonCopySource> = {
     },
     detail: {
       ru: [
-        'Сегодня тебя ждёт сундук с сюрпризом. Что внутри — заранее неизвестно: иногда монеты, иногда что-то приятное сверху.',
+        'Сегодня тебя ждёт сундук с сюрпризом. Что внутри — заранее неизвестно: иногда жемчужины, иногда что-то приятное сверху.',
         'Открыть можно один раз. Просто загляни в приложение — сундук сам предложит себя открыть, и награда сразу станет твоей.',
         'Это маленький праздник без всяких условий: ничего покупать не нужно, подарок уже приготовлен для тебя.',
       ],
       uk: [
-        'Сьогодні на тебе чекає скриня із сюрпризом. Що всередині — заздалегідь невідомо: інколи монети, інколи щось приємне понад те.',
+        'Сьогодні на тебе чекає скриня із сюрпризом. Що всередині — заздалегідь невідомо: інколи жемчужини, інколи щось приємне понад те.',
         'Відкрити можна один раз. Просто зазирни в застосунок — скриня сама запропонує відкрити її, і нагорода одразу стане твоєю.',
         'Це маленьке свято без жодних умов: нічого купувати не треба, подарунок уже приготовлено для тебе.',
       ],
       es: [
-        'Hoy te espera un cofre sorpresa. Lo que hay dentro es un misterio: a veces monedas, a veces algo extra agradable.',
+        'Hoy te espera un cofre sorpresa. Lo que hay dentro es un misterio: a veces perlas, a veces algo extra agradable.',
         'Se abre una sola vez. Solo entra a la app: el cofre te pedirá abrirlo y la recompensa será tuya al instante.',
         'Es una pequeña fiesta sin condiciones: no hay que comprar nada, el regalo ya está listo para ti.',
       ],
       'pt-BR': [
-        'Hoje tem um baú surpresa esperando por você. O que tem dentro é mistério: às vezes monedas, às vezes algo extra bacana.',
+        'Hoje tem um baú surpresa esperando por você. O que tem dentro é mistério: às vezes perlas, às vezes algo extra bacana.',
         'Dá pra abrir uma vez. É só entrar no app: o baú vai se oferecer para abrir e a recompensa já vira sua.',
         'É uma pequena festa sem condições: não precisa comprar nada, o presente já está pronto para você.',
       ],

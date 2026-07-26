@@ -199,7 +199,10 @@ export default function ConsentsSection({ open, onToggle }: Props) {
               </View>
             </View>
             <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 17 }}>
-              {`Возраст: ${r.ageBracket}${r.birthYear ? ` · ${r.birthYear} г.` : ''} · ${r.platform}`}
+              {/* зачем: год рождения мы не спрашиваем — в старых записях там синтетика
+                  (текущий год − 16), одинаковая у всех. Показывать её как возраст =
+                  вводить админа в заблуждение, поэтому выводим только метку согласия. */}
+              {`Возраст: ${r.ageBracket === 'adult' ? '16+ подтверждено' : r.ageBracket} · ${r.platform}`}
             </Text>
             <Text style={{ color: ADMIN_TEXT_MUTED, fontSize: 11, lineHeight: 17 }}>
               {`Terms/Privacy: ${r.legalAccepted ? `приняты ✓ (${fmtDate(r.legalAcceptedAt)})` : '—'}`}

@@ -64,6 +64,7 @@ import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import { getLevelFromXP, getMaxEnergyForLevel, type ThemeMode } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
+import { getInstalledAppVersion } from './app_version';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO, ENABLE_SCREEN_TRANSITIONS, SCREEN_FADE_TRANSITIONS } from './config';
 import { SECTION_SHEET_STACK_OPTIONS } from './section_sheet_navigation';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
@@ -85,7 +86,7 @@ import { PlayInstallReferrer } from 'react-native-play-install-referrer';
 import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fame_utils';
 import { preloadDeferredNonPrimaryImages, preloadPrimaryTabImages } from './image_preload';
 import {
-  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
+  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, getNotifPrefsSnapshot, hydrateNotifSettingsFromStorage, hydrateNotifPrefsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, saveNotifPrefs, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhraseOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
@@ -127,6 +128,7 @@ import { startRemoteAccountDeletionMonitor } from './remote_account_deletion_mon
 import { getCanonicalUserId } from './user_id_policy';
 import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { prefetchEasUpdateAfterStartup } from './eas_update_prefetch';
+import { prefetchAchievementArtInBackground } from './achievement_art_prefetch';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
@@ -141,6 +143,10 @@ import { installForegroundUsageMsTracker } from './foreground_usage_ms';
 import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
+import { primeSurveyDailyTaskCacheFromStorage } from './survey_daily_task_cache';
+import { primeDailyTasksScreenSnapshotFromStorage } from './daily_tasks_screen_persist';
+import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_persist';
+import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
 import { hasMeaningfulLocalAccountData } from './local_account_data';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
@@ -1004,6 +1010,20 @@ function GlobalLevelUpHandler() {
     });
     return () => sub.remove();
   }, [studyTarget, lang, themeMode]);
+
+  // зачем: владелец: «открываю раздел — он чуть подпрыгивает, будто ассеты грузятся».
+  // Иконки разделов и плитки хаба карточек не входили в image_preload, поэтому
+  // декодировались уже во время показа экрана. Греем их для АКТИВНОЙ темы строго после
+  // первого кадра (главная уже видна), и повторно при смене темы — к моменту тапа по
+  // разделу картинки лежат в кэше и первый кадр раздела сразу финальный.
+  useEffect(() => {
+    const task = InteractionManager.runAfterInteractions(() => {
+      void import('./section_asset_preload')
+        .then((m) => m.preloadSectionAssets(themeMode))
+        .catch(() => {});
+    });
+    return () => task.cancel();
+  }, [themeMode]);
 
   const dismissLevelUp = () => {
     const accountToken = modalAccountTokenRef.current;
@@ -2043,7 +2063,12 @@ function AppContent() {
       return contentDeliveryMigrationPromise;
     };
 
-    const runHeavyInit = () => {
+    // зачем: внутри тела появились `await` (AsyncStorage.multiSet и Promise.race
+    // гидратации), но функция оставалась синхронной — Metro падал на
+    // «Unexpected reserved word 'await'», и приложение не собиралось вообще.
+    // Все три вызова — fire-and-forget (результат никто не ждёт), поэтому
+    // возврат промиса безопасен; на местах вызова он явно гасится через void.
+    const runHeavyInit = async () => {
       // Remote Config: apply cached/live admin-tuned flags ASAP, then keep live.
       void import('./remote_config_client')
         .then((m) => {
@@ -2098,9 +2123,9 @@ function AppContent() {
         void initFirebaseAppCheckIfAvailable().catch(() => {});
       }
 
-      AsyncStorage.multiSet([
+      await AsyncStorage.multiSet([
         ['device_platform', Platform.OS],
-        ['app_version', Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown'],
+        ['app_version', getInstalledAppVersion(Constants)],
       ]).catch(() => {});
 
       // Дожидаемся (или дублируем при отсутствии) гидратации из облака,
@@ -2257,6 +2282,13 @@ function AppContent() {
           preloadDeferredNonPrimaryImages().catch(() => {});
         }, 2500);
       });
+      // зачем: арт достижений живёт в Storage (−5.5 МБ из бандла) — прогреваем
+      // дисковый кэш заранее, чтобы к моменту награды картинка уже была на
+      // устройстве и пользователь никогда не увидел заглушку. Один раз на
+      // устройство, малыми пачками, строго после первого кадра.
+      InteractionManager.runAfterInteractions(() => {
+        prefetchAchievementArtInBackground();
+      });
       InteractionManager.runAfterInteractions(() => {
         void import('./flashcards_swipe').catch(() => {});
         import('./flashcards_collection')
@@ -2272,7 +2304,7 @@ function AppContent() {
         heavyInitRequestedWhileBlocked = true;
         return;
       }
-      runHeavyInit();
+      void runHeavyInit();
     };
 
     const bootstrap = async () => {
@@ -2337,15 +2369,32 @@ function AppContent() {
       }
       if (heavyInitRequestedWhileBlocked) {
         heavyInitRequestedWhileBlocked = false;
-        runHeavyInit();
+        void runHeavyInit();
       }
 
       // Tiny local hydration budget: keep first paint fast even if storage is slow.
       const startupLocalHydration = Promise.all([
         primeAppSnapshotFromStorage(studyTarget).catch(() => {}),
+        primeSurveyDailyTaskCacheFromStorage().catch(() => {}),
+        // зачем: «Вызовы дня» открывались со скелетонами при ПЕРВОМ входе после
+        // холодного старта (кэш экрана жил только в памяти процесса). Поднимаем
+        // снапшот прошлой сессии здесь — задолго до тапа по разделу, поэтому даже
+        // первое открытие рисует карточки сразу, без загрузки.
+        primeDailyTasksScreenSnapshotFromStorage().catch(() => {}),
+        // зачем: та же беда была у «Моей практики» — её кэш жил в памяти всего 2 минуты,
+        // поэтому раздел открывался с нулями и после холодного старта, и просто через
+        // 3 минуты. Поднимаем дисковый снапшот здесь, до входа в раздел.
+        primeTrainerPracticeSnapshotFromStorage().catch(() => {}),
+        primeRemoteConfigCacheFromStorage().catch(() => {}),
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
         hydrateNotifSettingsFromStorage().catch(() => {}),
+        // зачем: раздел «Уведомления» — гейты категорий (isNotifCategoryEnabled)
+        // сами лениво гидрируют при первом вызове, но их вызывают ~10 разных
+        // schedule*-функций россыпью. Греем один раз здесь вместе с остальным
+        // bootstrap-бюджетом — экономит N параллельных AsyncStorage.getItem
+        // на первом запуске приложения (тот же паттерн, что у notifSettings строкой выше).
+        hydrateNotifPrefsFromStorage().catch(() => {}),
         // Согласие на аналитику — гидрируем ДО первого события, чтобы гейт
         // (firebase.ts logEvent / posthog capture) работал с первого кадра.
         hydrateAnalyticsConsentFromStorage().catch(() => {}),
@@ -2883,10 +2932,18 @@ function AppContent() {
   const appOverlaysEnabled = ready && !effectiveShowOnboarding && !isBanned;
   const startupSplashVisible = !ready || (!effectiveShowOnboarding && !isBanned && !firstContentReady);
   // «Чёрный кадр» между экранами: при 'none' native-stack мгновенно меняет контейнер до того,
-  // как JS дорендерил новый экран. На iOS маскируем зазор коротким fade; Android остаётся
-  // на 'none' (история крашей Fabric на transitions) — там зазор закрывает константный
-  // фон стека (contentStyle ниже всегда = tTheme.bgPrimary, а не почти-чёрный сплэш-цвет).
-  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && Platform.OS === 'ios' && !ENABLE_SCREEN_TRANSITIONS;
+  // как JS дорендерил новый экран, и в зазоре виден голый contentStyle (bgPrimary, почти
+  // чёрный) — на тёмных экранах это читается как вспышка темноты.
+  //
+  // зачем: владелец жаловался, что при входе в урок «мелькает пустой/тёмный экран». На
+  // Android fade был выключен гейтом Platform.OS === 'ios' из-за истории крашей Fabric,
+  // но краши были на CARD-PUSH slide (ENABLE_SCREEN_TRANSITIONS), а не на любых анимациях:
+  // slide_from_bottom годами едет на ОБЕИХ платформах у пейволов
+  // (components/paywall/paywallShared.tsx) и шторок разделов (app/section_sheet_navigation.ts).
+  // fade — самый безобидный класс (кроссфейд, без пересчёта геометрии), поэтому включаем
+  // его и на Android: зазор маскируется, «мелькание» уходит.
+  // Kill-switch прежний: EXPO_PUBLIC_SCREEN_FADE=0.
+  const screenFadeEnabled = SCREEN_FADE_TRANSITIONS && !ENABLE_SCREEN_TRANSITIONS;
   const defaultScreenAnimationOptions = ENABLE_SCREEN_TRANSITIONS
     ? ({ animation: 'slide_from_right', animationDuration: 220 } as const)
     : screenFadeEnabled
@@ -2973,7 +3030,7 @@ function AppContent() {
       <Stack.Screen name="personal_plan_theory" options={{ headerShown: false, ...pushScreenAnimationOptions }} />
       {/* Диспетчер после готовности root-навигации делает replace на нужный пейвол.
           Сам он без анимации и с paywall-подложкой, чтобы native-stack не показывал чёрный кадр. */}
-      <Stack.Screen name="premium_modal" options={{ presentation: 'transparentModal', animation: 'none', animationDuration: 0, contentStyle: { backgroundColor: '#111827' } }} />
+      <Stack.Screen name="premium_modal" options={SECTION_SHEET_STACK_OPTIONS} />
       {/* Эксперимент пейволов: варианты A/B/C + D/E/F/G (диспетчер — premium_modal). По умолчанию
           выезжают снизу как модал. НА ОНБОРДИНГЕ (onboardingPaywallActive) — открываются как
           обычный экран онбординга (card, без анимации/выезда снизу); presentation задаётся
@@ -3096,6 +3153,14 @@ function AppContent() {
         const ok = perm.granted;
         setNotifNudgeVisible(false);
         if (!ok) return;
+        // зачем: юзер мог заранее выключить общий мастер в разделе «Уведомления».
+        // Без этой синхронизации scheduleNotifications ниже тихо блокируется гейтом
+        // isNotifMasterEnabled(), а юзер видит «разрешение дал» и думает, что включил.
+        // Этот модал — явное намерение «включить напоминания», поэтому чиним обе стороны.
+        const prefsSnap = getNotifPrefsSnapshot();
+        if (!prefsSnap.master) {
+          await saveNotifPrefs({ ...prefsSnap, master: true });
+        }
         const snap = getNotifSettingsSnapshot();
         const hasPerDay = Object.values(snap.schedule).some(d => d.enabled);
         if (hasPerDay) {

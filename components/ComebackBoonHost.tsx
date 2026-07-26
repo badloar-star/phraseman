@@ -75,10 +75,10 @@ export default function ComebackBoonHost() {
     'Bạn quay lại rồi. Tốt.', 'Kamu kembali. Bagus.', 'Geri döndün. Güzel.', 'Wróciłeś. Dobrze.',
   );
   const rewardLine = L(
-    `Серия под защитой и ${COMEBACK_REWARD.shards} монет твои`,
-    `Серія під захистом і ${COMEBACK_REWARD.shards} монет твої`,
-    `Racha protegida y ${COMEBACK_REWARD.shards} monedas tuyos`,
-    `Sequência protegida e ${COMEBACK_REWARD.shards} monedas seus`,
+    `Серия под защитой и ${COMEBACK_REWARD.shards} жемчужин твои`,
+    `Серія під захистом і ${COMEBACK_REWARD.shards} жемчужин твої`,
+    `Racha protegida y ${COMEBACK_REWARD.shards} perlas tuyos`,
+    `Sequência protegida e ${COMEBACK_REWARD.shards} perlas seus`,
     `Chuỗi được bảo vệ và ${COMEBACK_REWARD.shards} xu là của bạn`,
     `Streak aman dan ${COMEBACK_REWARD.shards} serpihan jadi milikmu`,
     `Serin korumada ve ${COMEBACK_REWARD.shards} jeton senin`,

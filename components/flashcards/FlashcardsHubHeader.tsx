@@ -1,7 +1,8 @@
 import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { Image } from 'expo-image';
-import type { Theme } from '../../constants/theme';
+import type { Theme, ThemeMode } from '../../constants/theme';
+import { pearlIconForTheme } from '../../app/coin_icons';
 
 /**
  * Шапка раздела «Карточки» — заголовок + баланс монет (макет
@@ -16,16 +17,15 @@ import type { Theme } from '../../constants/theme';
  * Обводки капсулы из макета НЕ переносим (§0.D) — держим тоном подложки.
  */
 
-const COIN_ICON = require('../../assets/images/currency/coin_1.webp');
-
 interface FlashcardsHubHeaderProps {
   title: string;
   /** Баланс монет пользователя. */
   balance: number;
   t: Theme;
+  themeMode: ThemeMode;
 }
 
-function FlashcardsHubHeaderBase({ title, balance, t }: FlashcardsHubHeaderProps) {
+function FlashcardsHubHeaderBase({ title, balance, t, themeMode }: FlashcardsHubHeaderProps) {
   return (
     <View
       style={{
@@ -65,9 +65,9 @@ function FlashcardsHubHeaderBase({ title, balance, t }: FlashcardsHubHeaderProps
         }}
       >
         {/* Монета декоративная: сумма уже озвучена меткой на капсуле выше,
-            вторая озвучка «картинка монета» только мешала бы скринридеру. */}
+            вторая озвучка «картинка жемчужина» только мешала бы скринридеру. */}
         <Image
-          source={COIN_ICON}
+          source={pearlIconForTheme(themeMode)}
           style={{ width: 18, height: 18 }}
           contentFit="contain"
           accessible={false}

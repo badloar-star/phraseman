@@ -181,9 +181,13 @@ describe('auth provider stable-id linking', () => {
     const transitionHelperStart = source.indexOf('function beginEntitlementSafeAccountTransition');
     const transitionHelperEnd = source.indexOf('const getAuth =', transitionHelperStart);
     const transitionHelperSource = source.slice(transitionHelperStart, transitionHelperEnd);
-    expect(transitionHelperSource).toContain('invalidateAccountGeneration();');
-    expect(transitionHelperSource).toContain('beginPremiumAccountTransition();');
-    expect(transitionHelperSource).toContain('await waitForPremiumAccountWorkIdle();');
+    const invalidateGeneration = transitionHelperSource.indexOf('invalidateAccountGeneration();');
+    const invalidatePremium = transitionHelperSource.indexOf('beginPremiumAccountTransition();');
+    const boundedDrain = transitionHelperSource.indexOf('waitForPremiumAccountWorkIdleWithDeadline(');
+    expect(invalidateGeneration).toBeGreaterThanOrEqual(0);
+    expect(invalidateGeneration).toBeLessThan(invalidatePremium);
+    expect(invalidatePremium).toBeLessThan(boundedDrain);
+    expect(transitionHelperSource).not.toContain('await waitForPremiumAccountWorkIdle();');
 
     for (const branch of [mergeSwapSource, mergeKeepLocalSource]) {
       const invalidate = branch.indexOf('await beginEntitlementSafeAccountTransition();');

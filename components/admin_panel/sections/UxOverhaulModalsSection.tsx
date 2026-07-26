@@ -200,7 +200,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         testID="admin-ux-collectible-set-completed"
         icon="trophy-outline"
         label="CollectibleDropModal — сет собран"
-        sub="Секретная карточка + блок бонусных осколков"
+        sub="Секретная карточка + блок бонусного жемчуга"
         onPress={() => {
           const outcome = buildSetCompletedOutcome();
           if (outcome) setDropOutcome(outcome);
@@ -213,7 +213,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         testID="admin-ux-boon-chest"
         icon="cube-outline"
         label="BoonChestModal"
-        sub="Сундук недели/идеальной недели: парение → тап → орб с осколком. Claim не начисляет."
+        sub="Сундук недели/идеальной недели: парение → тап → орб с жемчужиной. Claim не начисляет."
         onPress={() => setBoonChestVisible(true)}
       />
       <ButtonRow
@@ -229,7 +229,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         testID="admin-ux-streak-revive"
         icon="flame-outline"
         label="StreakReviveModal — drag-to-dismiss"
-        sub="Шторка восстановления стрика (мок: 47 дней, 50 осколков). ⚠️ «Восстановить» внутри настоящая — без реального оффера просто вернёт no_offer."
+        sub="Шторка восстановления стрика (мок: 47 дней, 50 жемчужин). ⚠️ «Восстановить» внутри настоящая — без реального оффера просто вернёт no_offer."
         onPress={() => setReviveOffer(buildMockReviveOffer())}
       />
 
@@ -294,7 +294,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         onPress={() => setCustomPurchaseOpen(true)}
       />
 
-      {/* ── Пейвол пака карточек за осколки ── */}
+      {/* ── Пейвол пака карточек за жемчуг ── */}
       <ButtonRow
         testID="admin-ux-pack-paywall-confirm"
         icon="albums-outline"
@@ -306,7 +306,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         testID="admin-ux-pack-paywall-insufficient"
         icon="wallet-outline"
         label="CardPackShardPaywallModal — не хватает"
-        sub="Вариант insufficient (мок: 30 💎) с переходом в магазин осколков (в превью отключён)"
+        sub="Вариант insufficient (мок: 30 💎) с переходом в магазин жемчуга (в превью отключён)"
         onPress={() => setPackPaywall({ mode: 'insufficient', balance: 30 })}
       />
       <ButtonRow
@@ -354,7 +354,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
         rarity="epic"
         rewardIcon={getThemedShardIcon(themeMode)}
         title="Сундук идеальной недели"
-        rewardLine="25 осколков — теперь твои (превью, без начисления)"
+        rewardLine="25 жемчужин — теперь твои (превью, без начисления)"
         tapHint="Нажми, чтобы открыть"
         claimCta="Забрать"
         closeLabel="Закрыть"
@@ -446,7 +446,7 @@ export default function UxOverhaulModalsSection({ open, onToggle }: Props) {
           }}
           onGoToShards={() => {
             setPackPaywall(null);
-            qaToast('info', 'QA: переход в магазин осколков отключён в превью');
+            qaToast('info', 'QA: переход в магазин жемчуга отключён в превью');
           }}
         />
       )}

@@ -114,6 +114,9 @@ const SEASON_LEADERS = [
 /** Базовая цена входа: показываем до ответа сервера, чтобы кнопка не прыгала. */
 const DEFAULT_ENTRY_GEMS = 3;
 
+/** Дольше этого ждать расписание бессмысленно — показываем «Повторить». */
+const SCHEDULE_TIMEOUT_MS = 8000;
+
 export default function TournamentsScreen() {
   const { themeMode } = useTheme();
   const router = useRouter();
@@ -150,12 +153,30 @@ export default function TournamentsScreen() {
 
   const reloadSchedule = useCallback(() => {
     setScheduleFailed(false);
-    void loadSchedule()
+    // зачем: без таймаута зависший запрос оставлял экран на скелетоне
+    // навсегда — а скелетон на тёмной теме читается как пустой чёрный экран.
+    // Через 8 секунд показываем понятное состояние с кнопкой «Повторить».
+    const timeout = new Promise<never>((_, reject) => {
+      setTimeout(() => reject(new Error('schedule_timeout')), SCHEDULE_TIMEOUT_MS);
+    });
+    void Promise.race([loadSchedule(), timeout])
       .then((value) => setSchedule((value as ScheduleConfig | null) ?? { slots: [] }))
       .catch(() => setScheduleFailed(true));
   }, []);
 
   useEffect(reloadSchedule, [reloadSchedule]);
+
+  /**
+   * зачем: если запрос расписания завис (нет сети, спит сокет), экран оставался
+   * в загрузке БЕСКОНЕЧНО — на тёмной теме это выглядит как пустой чёрный
+   * экран, и человек думает, что приложение сломалось. Через 8 секунд
+   * показываем состояние «нет связи» с кнопкой повтора.
+   */
+  useEffect(() => {
+    if (schedule || scheduleFailed) return;
+    const timer = setTimeout(() => setScheduleFailed(true), 8000);
+    return () => clearTimeout(timer);
+  }, [schedule, scheduleFailed]);
 
   // Тихая ревалидация баланса монет с сервера — тот же паттерн, что в coin_exchange.tsx.
   useEffect(() => {
@@ -248,8 +269,18 @@ export default function TournamentsScreen() {
     );
   }
   if (!schedule) {
+    // зачем: скелетон здесь — три блока цвета card на фоне bg с прозрачностью
+    // 0.5, на тёмной теме они почти неразличимы, и экран читается как пустой
+    // чёрный. Добавляем заголовок и подпись: человек видит, что идёт загрузка,
+    // а не «приложение сломалось». Геометрия скелетона сохранена (Performance
+    // Bible: первый кадр = финальная геометрия), поэтому появление данных не
+    // двигает вёрстку.
     return (
       <View style={[styles.root, { paddingTop: insets.top + 12 }]}>
+        <View style={styles.loadingHeader}>
+          <Text style={styles.title}>Турниры</Text>
+          <Text style={styles.loadingHint}>Загружаем расписание…</Text>
+        </View>
         <TournamentSkeleton />
       </View>
     );
@@ -503,6 +534,8 @@ const styles = StyleSheet.create({
 
   header: { flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 4 },
   backButton: { width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' },
+  loadingHeader: { paddingHorizontal: 16, marginBottom: 14 },
+  loadingHint: { ...type.body, color: T.muted, marginTop: 6 },
   title: { ...type.title, color: T.text },
   headerRight: { marginLeft: 'auto', flexDirection: 'row', gap: 8, alignItems: 'center' },
   coinIcon: { width: 18, height: 18 },

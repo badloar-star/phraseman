@@ -22,9 +22,24 @@ jest.mock('@react-native-firebase/functions', () => ({
   httpsCallable,
 }));
 jest.mock('@react-native-firebase/app', () => ({ getApp: jest.fn(() => ({})) }));
+// Облачный документ пользователя: нужен для сверки баланса после перманентного
+// отказа сервера (сервер там авторитетен, читаем его значение напрямую).
+const cloudUserDoc: { shards?: number } = {};
 jest.mock('@react-native-firebase/firestore', () => ({
   __esModule: true,
-  default: Object.assign(jest.fn(() => ({})), { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } }),
+  default: Object.assign(
+    jest.fn(() => ({
+      collection: jest.fn(() => ({
+        doc: jest.fn(() => ({
+          get: jest.fn(async () => ({
+            exists: true,
+            data: () => cloudUserDoc,
+          })),
+        })),
+      })),
+    })),
+    { FieldValue: { serverTimestamp: jest.fn(() => 'ts') } },
+  ),
 }));
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/app_check_init', () => ({
@@ -89,6 +104,7 @@ beforeEach(() => {
   hasQuarantinedShardDeltaQueue.mockImplementation(async () => queueQuarantined);
   accountGeneration = { generation: 1, stableId: 'u1', phase: 'active' };
   queueStore.items = [];
+  delete cloudUserDoc.shards;
   Object.keys(mockStorage).forEach((k) => delete mockStorage[k]);
   (AsyncStorage.getItem as jest.Mock).mockImplementation((k: string) => Promise.resolve(mockStorage[k] ?? null));
   (AsyncStorage.setItem as jest.Mock).mockImplementation((k: string, v: string) => { mockStorage[k] = v; return Promise.resolve(); });
@@ -117,28 +133,88 @@ describe('resumePendingShardDeltas — authoritative server balance wins (K3 fin
     expect(queueStore.items.map((item: any) => item.opId)).toEqual(['op-earn', 'op-spend']);
   });
 
-  it('does not replay any operation while the owner or legacy queue is quarantined', async () => {
+  // Раньше эти два кейса требовали «не досылать НИЧЕГО, пока есть карантин».
+  // Это и создавало вечно незавершённые покупки: карантин относится к другому,
+  // отложенному хранилищу, но выключал досылку целиком — живое списание висело
+  // в очереди навсегда и запирало выход из аккаунта. Незавершённых покупок быть
+  // не должно, поэтому читаемая очередь проигрывается независимо от карантина.
+  it('replays a readable queue even while a separate quarantine exists', async () => {
     queueQuarantined = true;
+    mockStorage[STORAGE_KEY] = '40';
     queueStore.items = [
       { opId: 'op-quarantined', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
     ];
+    applyResult.mockReturnValue({
+      ok: true, alreadyApplied: false, insufficient: false, balance: 45,
+    });
 
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
-    expect(httpsCallable).not.toHaveBeenCalled();
-    expect(queueStore.items).toHaveLength(1);
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 0 });
+    expect(queueStore.items).toHaveLength(0);
   });
 
-  it('stops before transport when reading the queue creates a quarantine', async () => {
-    queueStore.items = [
-      { opId: 'op-quarantined-during-read', ownerStableId: 'u1', delta: 5, type: 'earn', reason: 'r', createdAtMs: 1 },
-    ];
+  // Защита при порче СВОЕЙ очереди никуда не делась и работает сама по себе:
+  // readShardDeltaQueue уносит нечитаемые записи в карантин и возвращает пусто,
+  // поэтому отправлять просто нечего — недоверенные байты в транспорт не уходят.
+  it('sends nothing when reading the queue quarantines its own rows', async () => {
+    queueStore.items = [];
     hasQuarantinedShardDeltaQueue
       .mockResolvedValueOnce(false)
       .mockResolvedValueOnce(true);
 
-    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 0 });
     expect(callable).not.toHaveBeenCalled();
+  });
+
+  // Незавершённых покупок быть не должно: строку, которую сервер отверг
+  // ОКОНЧАТЕЛЬНО, повтор не спасёт. Раньше она навсегда вставала в голове
+  // очереди и блокировала всё за собой.
+  it.each([
+    ['permission-denied'],
+    ['invalid-argument'],
+    ['failed-precondition'],
+    ['functions/permission-denied'],
+  ])('drops a row the server rejected permanently (%s) instead of queueing it forever', async (code) => {
+    mockStorage[STORAGE_KEY] = '40';
+    cloudUserDoc.shards = 50;
+    queueStore.items = [
+      { opId: 'op-rejected', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
+    ];
+    applyResult.mockImplementation(() => { throw Object.assign(new Error('rejected'), { code }); });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 1, pending: 0 });
+    expect(queueStore.items).toHaveLength(0);
+    // Списание не состоялось на сервере — локальный баланс возвращается к облачному,
+    // иначе юзер просто потерял бы жемчужины.
+    expect(await getShardsBalance()).toBe(50);
+  });
+
+  it('keeps retrying a transient failure instead of dropping the operation', async () => {
+    mockStorage[STORAGE_KEY] = '40';
+    queueStore.items = [
+      { opId: 'op-offline', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
+    ];
+    applyResult.mockImplementation(() => { throw Object.assign(new Error('offline'), { code: 'unavailable' }); });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 0, pending: 1 });
     expect(queueStore.items).toHaveLength(1);
+  });
+
+  it('drops a permanently rejected row but still replays the healthy rows behind it', async () => {
+    mockStorage[STORAGE_KEY] = '40';
+    queueStore.items = [
+      { opId: 'op-rejected', ownerStableId: 'u1', delta: 10, type: 'spend', reason: 'r', createdAtMs: 1 },
+      { opId: 'op-good', ownerStableId: 'u1', delta: 4, type: 'spend', reason: 'r', createdAtMs: 2 },
+    ];
+    applyResult.mockImplementation((payload: any) => {
+      if (payload.opId === 'op-rejected') {
+        throw Object.assign(new Error('rejected'), { code: 'permission-denied' });
+      }
+      return { ok: true, alreadyApplied: false, insufficient: false, balance: 46 };
+    });
+
+    await expect(resumePendingShardDeltas()).resolves.toEqual({ resolved: 2, pending: 0 });
+    expect(queueStore.items).toHaveLength(0);
+    expect(await getShardsBalance()).toBe(46);
   });
 
   it('stops at the first unknown failure and keeps the full optimistic suffix in the local balance', async () => {

@@ -544,10 +544,12 @@ html, body {
   gap: 12px;
   padding: 16px;
   background: var(--card);
-  border: 1px solid var(--border);
+  /* зачем: запрет владельца на обводки контейнеров — разделяем тенью, не рамкой */
+  border: 1px solid transparent;
+  box-shadow: var(--shadow);
   border-radius: 12px;
   cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
   text-align: left;
   font-size: 1rem;
   min-height: 56px;
@@ -563,8 +565,8 @@ html, body {
    вариант в том же месте как будто выбранный. Hover — только для мыши. */
 @media (hover: hover) {
   .elt-option:hover {
-    border-color: var(--accent);
-    background: rgba(42, 157, 92, 0.08);
+    background: rgba(232, 161, 60, 0.10);
+    box-shadow: 0 14px 34px rgba(120, 90, 20, 0.16);
     transform: translateX(4px);
   }
   .elt-option:hover .elt-option-letter {
@@ -579,8 +581,8 @@ html, body {
 }
 
 .elt-option--picked {
-  border-color: var(--accent);
-  background: rgba(42, 157, 92, 0.15);
+  background: rgba(232, 161, 60, 0.18);
+  box-shadow: 0 10px 26px rgba(120, 90, 20, 0.16);
   transform: scale(0.98);
 }
 

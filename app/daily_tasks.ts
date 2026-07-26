@@ -106,15 +106,10 @@ const RETIRED_QUIZ_ARENA_TASK_TYPES: ReadonlySet<TaskType> = new Set([
 export const isRetiredQuizArenaTaskType = (type: TaskType): boolean =>
   RETIRED_QUIZ_ARENA_TASK_TYPES.has(type);
 
-/** Типы заданий, которые считаются «про Арену» (лимит 1 на день в DAILY_SETS_*). */
-export function isArenaDailyTaskType(type: TaskType): boolean {
-  return (
-    type === 'arena_play'
-    || type === 'arena_win'
-    || type === 'arena_plays_wins_combo'
-    || type === 'arena_rank_promoted'
-  );
-}
+// зачем: ArenaComboRequirement и comboPlays/comboWins ниже НЕ удаляем — их поля
+// живут в облачном снимке прогресса (cloud_sync.ts), и старые устройства ещё
+// присылают их при слиянии. Тип-хелпер isArenaDailyTaskType удалён: он обслуживал
+// политику «одна Арена в день», которой больше нет.
 
 /** Пороги для type arena_plays_wins_combo (PvP, не бот). */
 export type ArenaComboRequirement = { minPlays: number; minWins: number };
@@ -334,88 +329,8 @@ const ALL_TASKS: DailyTask[] = [
     descUK:'Збери 20 фраз поспіль без жодної помилки.' },
 
   // quiz_hard — правильные ответы в квизе уровня «Сложно»
-  { id:'qh1', type:'quiz_hard', icon:'💪', target:3, xp:36, minPlayerLevel:15,
-    titleRU:'Первый вызов', titleUK:'Перший виклик',
-    titlePtBr:'Primeiro desafio', titleVi:'Thử thách đầu tiên', titleId:'Tantangan pertama', titleTr:'İlk meydan okuma', titlePl:'Pierwsze wyzwanie',
-    descRU:'Открой Вызовы → Сложно и ответь правильно на 3 вопроса.',
-    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 3 perguntas.',
-    descVi:'Mở Quiz → Khó và trả lời đúng 3 câu hỏi.',
-    descId:'Buka Kuis → Sulit dan jawab 3 pertanyaan dengan benar.',
-    descTr:'Quizler → Zor bölümünü aç ve 3 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 3 pytania.',
-    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 3 запитання.' },
-  { id:'qh2', type:'quiz_hard', icon:'🗡️', target:5, xp:54, minPlayerLevel:15,
-    titleRU:'Принял вызов', titleUK:'Прийняв виклик',
-    titlePtBr:'Desafio aceito', titleVi:'Đã nhận thử thách', titleId:'Tantangan diterima', titleTr:'Meydan okumayı kabul ettin', titlePl:'Wyzwanie przyjęte',
-    descRU:'Открой Вызовы → Сложно и ответь правильно на 5 вопросов.',
-    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 5 perguntas.',
-    descVi:'Mở Quiz → Khó và trả lời đúng 5 câu hỏi.',
-    descId:'Buka Kuis → Sulit dan jawab 5 pertanyaan dengan benar.',
-    descTr:'Quizler → Zor bölümünü aç ve 5 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 5 pytań.',
-    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 5 запитань.' },
-  { id:'qh3', type:'quiz_hard', icon:'🏆', target:10, xp:78, minPlayerLevel:15,
-    titleRU:'Хардкорщик', titleUK:'Хардкорщик',
-    titlePtBr:'Fã do modo difícil', titleVi:'Người chơi khó', titleId:'Pemain hardcore', titleTr:'Zor mod oyuncusu', titlePl:'Hardkorowiec',
-    descRU:'Открой Вызовы → Сложно и ответь правильно на 10 вопросов.',
-    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 10 perguntas.',
-    descVi:'Mở Quiz → Khó và trả lời đúng 10 câu hỏi.',
-    descId:'Buka Kuis → Sulit dan jawab 10 pertanyaan dengan benar.',
-    descTr:'Quizler → Zor bölümünü aç ve 10 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 10 pytań.',
-    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 10 запитань.' },
-  { id:'qh4', type:'quiz_hard', icon:'👑', target:15, xp:102, minPlayerLevel:15,
-    titleRU:'Легенда', titleUK:'Легенда',
-    titlePtBr:'Lenda', titleVi:'Huyền thoại', titleId:'Legenda', titleTr:'Efsane', titlePl:'Legenda',
-    descRU:'Открой Вызовы → Сложно и ответь правильно на 15 вопросов.',
-    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 15 perguntas.',
-    descVi:'Mở Quiz → Khó và trả lời đúng 15 câu hỏi.',
-    descId:'Buka Kuis → Sulit dan jawab 15 pertanyaan dengan benar.',
-    descTr:'Quizler → Zor bölümünü aç ve 15 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 15 pytań.',
-    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 15 запитань.' },
 
   // quiz_score — XP заработанный в квизах за день
-  { id:'qs1', type:'quiz_score', icon:'⭐', target:10, xp:30,
-    titleRU:'Первый опыт', titleUK:'Перший досвід',
-    titlePtBr:'Primeira experiência', titleVi:'Trải nghiệm đầu tiên', titleId:'Pengalaman pertama', titleTr:'İlk deneyim', titlePl:'Pierwsze doświadczenie',
-    descRU:'Заработай 10 XP в Вызовах за день.',
-    descPtBr:'Ganhe 10 XP em Quizzes durante o dia.',
-    descVi:'Kiếm 10 XP trong Quiz trong ngày.',
-    descId:'Dapatkan 10 XP di Kuis dalam sehari.',
-    descTr:'Gün içinde Quizlerde 10 XP kazan.',
-    descPl:'Zdobądź 10 XP w Quizach w ciągu dnia.',
-    descUK:'Зароби 10 XP у Квізах за день.' },
-  { id:'qs2', type:'quiz_score', icon:'🌟', target:20, xp:48,
-    titleRU:'Набираю обороты', titleUK:'Набираю оберти',
-    titlePtBr:'Ganhando ritmo', titleVi:'Tăng nhịp', titleId:'Mulai cepat', titleTr:'Hız kazanıyorum', titlePl:'Nabieram tempa',
-    descRU:'Заработай 20 XP в Вызовах за день.',
-    descPtBr:'Ganhe 20 XP em Quizzes durante o dia.',
-    descVi:'Kiếm 20 XP trong Quiz trong ngày.',
-    descId:'Dapatkan 20 XP di Kuis dalam sehari.',
-    descTr:'Gün içinde Quizlerde 20 XP kazan.',
-    descPl:'Zdobądź 20 XP w Quizach w ciągu dnia.',
-    descUK:'Зароби 20 XP у Квізах за день.' },
-  { id:'qs3', type:'quiz_score', icon:'💫', target:30, xp:66,
-    titleRU:'Вызов-машина', titleUK:'Квіз-машина',
-    titlePtBr:'Máquina dos quizzes', titleVi:'Cỗ máy quiz', titleId:'Mesin kuis', titleTr:'Quiz makinesi', titlePl:'Maszyna quizowa',
-    descRU:'Заработай 30 XP в Вызовах за день.',
-    descPtBr:'Ganhe 30 XP em Quizzes durante o dia.',
-    descVi:'Kiếm 30 XP trong Quiz trong ngày.',
-    descId:'Dapatkan 30 XP di Kuis dalam sehari.',
-    descTr:'Gün içinde Quizlerde 30 XP kazan.',
-    descPl:'Zdobądź 30 XP w Quizach w ciągu dnia.',
-    descUK:'Зароби 30 XP у Квізах за день.' },
-  { id:'qs4', type:'quiz_score', icon:'💥', target:50, xp:90, minPlayerLevel:15,
-    titleRU:'Неудержимый', titleUK:'Нестримний',
-    titlePtBr:'Imparável', titleVi:'Không thể cản', titleId:'Tak terbendung', titleTr:'Durdurulamaz', titlePl:'Nie do zatrzymania',
-    descRU:'Заработай 50 XP в Квизах за день — играй на Сложно, держи серию.',
-    descPtBr:'Ganhe 50 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
-    descVi:'Kiếm 50 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
-    descId:'Dapatkan 50 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
-    descTr:'Gün içinde Quizlerde 50 XP kazan: Zor modda oyna ve seriyi koru.',
-    descPl:'Zdobądź 50 XP w Quizach w ciągu dnia: graj na poziomie Trudne i utrzymaj serię.',
-    descUK:'Зароби 50 XP у Квізах за день — грай на Складно і тримай серію.' },
 
   // words_learned — правильные ответы в разделе Слова (каждое выученное слово = +1)
   { id:'wl1', type:'words_learned', icon:'📖', target:3, xp:30,
@@ -682,82 +597,12 @@ const ALL_TASKS: DailyTask[] = [
     descUK:'Пройди діагностичний тест повністю — усі 20 питань до кінця.' },
 
   // quiz_easy — правильные ответы в квизе уровня «Легко» (бесплатно)
-  { id:'qe1', type:'quiz_easy', icon:'🌱', target:5, xp:18,
-    titleRU:'Лёгкий старт', titleUK:'Легкий старт',
-    titlePtBr:'Começo fácil', titleVi:'Khởi đầu dễ', titleId:'Awal mudah', titleTr:'Kolay başlangıç', titlePl:'Łatwy start',
-    descRU:'Ответь правильно на 5 вопросов в Вызовах на уровне Легко.',
-    descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Fácil.',
-    descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Dễ.',
-    descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 5 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 5 pytań w Quizach na poziomie Łatwe.',
-    descUK:'Дай правильну відповідь на 5 запитань у Квізах на рівні Легко.' },
-  { id:'qe2', type:'quiz_easy', icon:'🌱', target:10, xp:30,
-    titleRU:'Разогрев в вызове', titleUK:'Розігрів у квізі',
-    titlePtBr:'Aquecimento no quiz', titleVi:'Khởi động trong quiz', titleId:'Pemanasan di kuis', titleTr:'Quiz ısınması', titlePl:'Rozgrzewka w quizie',
-    descRU:'Ответь правильно на 10 вопросов в Вызовах на уровне Легко.',
-    descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Fácil.',
-    descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Dễ.',
-    descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 10 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 10 pytań w Quizach na poziomie Łatwe.',
-    descUK:'Дай правильну відповідь на 10 запитань у Квізах на рівні Легко.' },
-  { id:'qe3', type:'quiz_easy', icon:'🌱', target:20, xp:48,
-    titleRU:'Уверенный игрок', titleUK:'Впевнений гравець',
-    titlePtBr:'Jogador confiante', titleVi:'Người chơi tự tin', titleId:'Pemain percaya diri', titleTr:'Kendinden emin oyuncu', titlePl:'Pewny gracz',
-    descRU:'Ответь правильно на 20 вопросов в Вызовах на уровне Легко.',
-    descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Fácil.',
-    descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Dễ.',
-    descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 20 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 20 pytań w Quizach na poziomie Łatwe.',
-    descUK:'Дай правильну відповідь на 20 запитань у Квізах на рівні Легко.' },
 
   // quiz_medium — правильные ответы в квизе уровня «Средне»
-  { id:'qm1', type:'quiz_medium', icon:'⚔️', target:5, xp:24, minPlayerLevel:8,
-    titleRU:'Средний уровень', titleUK:'Середній рівень',
-    titlePtBr:'Nível médio', titleVi:'Cấp độ trung bình', titleId:'Level menengah', titleTr:'Orta seviye', titlePl:'Średni poziom',
-    descRU:'Ответь правильно на 5 вопросов в Вызовах на уровне Средне.',
-    descPtBr:'Responda corretamente a 5 perguntas em Quizzes no nível Médio.',
-    descVi:'Trả lời đúng 5 câu hỏi trong Quiz ở mức Trung bình.',
-    descId:'Jawab 5 pertanyaan dengan benar di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 5 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 5 pytań w Quizach na poziomie Średnie.',
-    descUK:'Дай правильну відповідь на 5 запитань у Квізах на рівні Середньо.' },
-  { id:'qm2', type:'quiz_medium', icon:'⚔️', target:10, xp:42, minPlayerLevel:8,
-    titleRU:'Средний мастер', titleUK:'Середній майстер',
-    titlePtBr:'Mestre do médio', titleVi:'Bậc thầy trung bình', titleId:'Ahli level menengah', titleTr:'Orta seviye ustası', titlePl:'Mistrz średniego poziomu',
-    descRU:'Ответь правильно на 10 вопросов в Вызовах на уровне Средне.',
-    descPtBr:'Responda corretamente a 10 perguntas em Quizzes no nível Médio.',
-    descVi:'Trả lời đúng 10 câu hỏi trong Quiz ở mức Trung bình.',
-    descId:'Jawab 10 pertanyaan dengan benar di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 10 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 10 pytań w Quizach na poziomie Średnie.',
-    descUK:'Дай правильну відповідь на 10 запитань у Квізах на рівні Середньо.' },
 
   // quiz_perfect — раунд квиза без ошибок, любой уровень
-  { id:'qp1', type:'quiz_perfect', icon:'✨', target:1, xp:54, minPlayerLevel:8,
-    titleRU:'Идеальный раунд', titleUK:'Ідеальний раунд',
-    titlePtBr:'Rodada perfeita', titleVi:'Vòng hoàn hảo', titleId:'Ronde sempurna', titleTr:'Mükemmel tur', titlePl:'Idealna runda',
-    descRU:'Заверши раунд в Вызовах без единой ошибки — любой уровень.',
-    descPtBr:'Conclua uma rodada em Quizzes sem nenhum erro, em qualquer nível.',
-    descVi:'Hoàn thành một vòng Quiz không mắc lỗi nào, ở bất kỳ mức nào.',
-    descId:'Selesaikan ronde di Kuis tanpa satu pun kesalahan, di level apa pun.',
-    descTr:'Quizlerde herhangi bir seviyede bir turu tek hata yapmadan tamamla.',
-    descPl:'Ukończ rundę w Quizach bez ani jednego błędu, na dowolnym poziomie.',
-    descUK:'Заверши раунд у Квізах без жодної помилки — будь-який рівень.' },
 
   // quiz_hard_perfect — раунд сложного квиза без ошибок
-  { id:'qhp1', type:'quiz_hard_perfect', icon:'👑', target:1, xp:84, minPlayerLevel:15,
-    titleRU:'Хардкор без ошибок', titleUK:'Хардкор без помилок',
-    titlePtBr:'Difícil sem erros', titleVi:'Khó mà không sai', titleId:'Sulit tanpa kesalahan', titleTr:'Hatasız zor mod', titlePl:'Trudny bez błędów',
-    descRU:'Заверши раунд Вызовов на уровне Сложно без единой ошибки.',
-    descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
-    descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
-    descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
-    descTr:'Quizlerde Zor seviyedeki bir turu tek hata yapmadan tamamla.',
-    descPl:'Ukończ rundę Quizów na poziomie Trudne bez ani jednego błędu.',
-    descUK:'Заверши раунд Квізів на рівні Складно без жодної помилки.' },
 
   // different_lessons — позаниматься в N разных уроках за день
   { id:'dl1', type:'different_lessons', icon:'📚', target:2, xp:48,
@@ -986,136 +831,16 @@ const ALL_TASKS: DailyTask[] = [
     descUK:'Збери 8 фраз поспіль в уроці — гарна серія.' },
 
   // Дополнительные quiz_easy
-  { id:'qe4', type:'quiz_easy', icon:'🌿', target:7, xp:22,
-    titleRU:'Семёрка в вызове', titleUK:'Сімка в квізі',
-    titlePtBr:'Sete no quiz', titleVi:'Bảy câu trong quiz', titleId:'Tujuh di kuis', titleTr:'Quizde yedili', titlePl:'Siódemka w quizie',
-    descRU:'Ответь правильно на 7 вопросов в Вызовах на уровне Легко.',
-    descPtBr:'Responda corretamente a 7 perguntas em Quizzes no nível Fácil.',
-    descVi:'Trả lời đúng 7 câu hỏi trong Quiz ở mức Dễ.',
-    descId:'Jawab 7 pertanyaan dengan benar di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 7 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 7 pytań w Quizach na poziomie Łatwe.',
-    descUK:'Дай правильну відповідь на 7 запитань у Квізах на рівні Легко.' },
-  { id:'qe5', type:'quiz_easy', icon:'🌱', target:15, xp:38,
-    titleRU:'Полтора раунда', titleUK:'Півтора раунду',
-    titlePtBr:'Uma rodada e meia', titleVi:'Một vòng rưỡi', titleId:'Satu setengah ronde', titleTr:'Bir buçuk tur', titlePl:'Półtorej rundy',
-    descRU:'Ответь правильно на 15 вопросов в Квизах на уровне Легко — примерно 1,5 раунда.',
-    descPtBr:'Responda corretamente a 15 perguntas em Quizzes no nível Fácil: cerca de 1,5 rodada.',
-    descVi:'Trả lời đúng 15 câu hỏi trong Quiz ở mức Dễ: khoảng 1,5 vòng.',
-    descId:'Jawab 15 pertanyaan dengan benar di Kuis pada level Mudah: sekitar 1,5 ronde.',
-    descTr:'Quizlerde Kolay seviyede 15 soruyu doğru yanıtla: yaklaşık 1,5 tur.',
-    descPl:'Odpowiedz poprawnie na 15 pytań w Quizach na poziomie Łatwe: około 1,5 rundy.',
-    descUK:'Дай правильну відповідь на 15 запитань у Квізах на рівні Легко — приблизно півтора раунду.' },
-  { id:'qe6', type:'quiz_easy', icon:'🌱', target:4, xp:14,
-    titleRU:'Разгон', titleUK:'Розгін',
-    titlePtBr:'Arranque', titleVi:'Tăng tốc ban đầu', titleId:'Pemacu awal', titleTr:'Hızlanma', titlePl:'Rozpęd',
-    descRU:'Ответь правильно на 4 вопроса в Квизах на уровне Легко — быстрый разгон.',
-    descPtBr:'Responda corretamente a 4 perguntas em Quizzes no nível Fácil: um arranque rápido.',
-    descVi:'Trả lời đúng 4 câu hỏi trong Quiz ở mức Dễ: tăng tốc nhanh.',
-    descId:'Jawab 4 pertanyaan dengan benar di Kuis pada level Mudah: pemanasan cepat.',
-    descTr:'Quizlerde Kolay seviyede 4 soruyu doğru yanıtla: hızlı bir başlangıç.',
-    descPl:'Odpowiedz poprawnie na 4 pytania w Quizach na poziomie Łatwe: szybki rozpęd.',
-    descUK:'Дай правильну відповідь на 4 запитання у Квізах на рівні Легко — швидкий розгін.' },
 
   // Дополнительные quiz_medium
-  { id:'qm3', type:'quiz_medium', icon:'⚔️', target:3, xp:18, minPlayerLevel:8,
-    titleRU:'Вход на средний', titleUK:'Вхід на середній',
-    titlePtBr:'Entrada no médio', titleVi:'Vào mức trung bình', titleId:'Masuk level menengah', titleTr:'Orta seviyeye giriş', titlePl:'Wejście na średni',
-    descRU:'Открой Вызовы → Средне и ответь правильно на 3 вопроса.',
-    descPtBr:'Abra Quizzes → Médio e responda corretamente a 3 perguntas.',
-    descVi:'Mở Quiz → Trung bình và trả lời đúng 3 câu hỏi.',
-    descId:'Buka Kuis → Menengah dan jawab 3 pertanyaan dengan benar.',
-    descTr:'Quizler → Orta bölümünü aç ve 3 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Średnie i odpowiedz poprawnie na 3 pytania.',
-    descUK:'Відкрий Квізи → Середньо й дай правильну відповідь на 3 запитання.' },
-  { id:'qm4', type:'quiz_medium', icon:'⚔️', target:15, xp:60, minPlayerLevel:8,
-    titleRU:'Средний мастер плюс', titleUK:'Середній майстер плюс',
-    titlePtBr:'Mestre médio plus', titleVi:'Bậc thầy trung bình plus', titleId:'Ahli menengah plus', titleTr:'Orta seviye ustası plus', titlePl:'Mistrz średniego plus',
-    descRU:'Ответь правильно на 15 вопросов в Вызовах на уровне Средне.',
-    descPtBr:'Responda corretamente a 15 perguntas em Quizzes no nível Médio.',
-    descVi:'Trả lời đúng 15 câu hỏi trong Quiz ở mức Trung bình.',
-    descId:'Jawab 15 pertanyaan dengan benar di Kuis pada level Menengah.',
-    descTr:'Quizlerde Orta seviyede 15 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 15 pytań w Quizach na poziomie Średnie.',
-    descUK:'Дай правильну відповідь на 15 запитань у Квізах на рівні Середньо.' },
 
   // Дополнительные quiz_hard
-  { id:'qh5', type:'quiz_hard', icon:'💪', target:7, xp:66, minPlayerLevel:15,
-    titleRU:'Семь на сложном', titleUK:'Сім на складному',
-    titlePtBr:'Sete no difícil', titleVi:'Bảy câu mức khó', titleId:'Tujuh di level sulit', titleTr:'Zorda yedili', titlePl:'Siedem na trudnym',
-    descRU:'Открой Вызовы → Сложно и ответь правильно на 7 вопросов.',
-    descPtBr:'Abra Quizzes → Difícil e responda corretamente a 7 perguntas.',
-    descVi:'Mở Quiz → Khó và trả lời đúng 7 câu hỏi.',
-    descId:'Buka Kuis → Sulit dan jawab 7 pertanyaan dengan benar.',
-    descTr:'Quizler → Zor bölümünü aç ve 7 soruyu doğru yanıtla.',
-    descPl:'Otwórz Quizy → Trudne i odpowiedz poprawnie na 7 pytań.',
-    descUK:'Відкрий Квізи → Складно й дай правильну відповідь на 7 запитань.' },
-  { id:'qh6', type:'quiz_hard', icon:'👑', target:20, xp:108, minPlayerLevel:15,
-    titleRU:'Двадцать на сложном', titleUK:'Двадцять на складному',
-    titlePtBr:'Vinte no difícil', titleVi:'Hai mươi câu mức khó', titleId:'Dua puluh di level sulit', titleTr:'Zorda yirmi', titlePl:'Dwadzieścia na trudnym',
-    descRU:'Ответь правильно на 20 вопросов в Вызовах на уровне Сложно.',
-    descPtBr:'Responda corretamente a 20 perguntas em Quizzes no nível Difícil.',
-    descVi:'Trả lời đúng 20 câu hỏi trong Quiz ở mức Khó.',
-    descId:'Jawab 20 pertanyaan dengan benar di Kuis pada level Sulit.',
-    descTr:'Quizlerde Zor seviyede 20 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 20 pytań w Quizach na poziomie Trudne.',
-    descUK:'Дай правильну відповідь на 20 запитань у Квізах на рівні Складно.' },
 
   // Дополнительные quiz_score
-  { id:'qs5', type:'quiz_score', icon:'💥', target:70, xp:114, minPlayerLevel:15,
-    titleRU:'Семь десятков', titleUK:'Сім десятків',
-    titlePtBr:'Sete dezenas', titleVi:'Bảy chục', titleId:'Tujuh puluh', titleTr:'Yedi onluk', titlePl:'Siedem dziesiątek',
-    descRU:'Заработай 70 XP в Квизах за день — играй на Сложно, держи серию.',
-    descPtBr:'Ganhe 70 XP em Quizzes durante o dia: jogue no Difícil e mantenha a sequência.',
-    descVi:'Kiếm 70 XP trong Quiz trong ngày: chơi mức Khó và giữ chuỗi.',
-    descId:'Dapatkan 70 XP di Kuis dalam sehari: mainkan mode Sulit dan pertahankan rangkaian.',
-    descTr:'Gün içinde Quizlerde 70 XP kazan: Zor modda oyna ve seriyi koru.',
-    descPl:'Zdobądź 70 XP w Quizach w ciągu dnia: graj na poziomie Trudne i utrzymaj serię.',
-    descUK:'Зароби 70 XP у Квізах за день — грай на Складно і тримай серію.' },
-  { id:'qs6', type:'quiz_score', icon:'⭐', target:5, xp:14,
-    titleRU:'Первые очки', titleUK:'Перші очки',
-    titlePtBr:'Primeiros pontos', titleVi:'Điểm đầu tiên', titleId:'Poin pertama', titleTr:'İlk puanlar', titlePl:'Pierwsze punkty',
-    descRU:'Заработай 5 XP в Квизах за день — любой уровень.',
-    descPtBr:'Ganhe 5 XP em Quizzes durante o dia, em qualquer nível.',
-    descVi:'Kiếm 5 XP trong Quiz trong ngày, ở bất kỳ mức nào.',
-    descId:'Dapatkan 5 XP di Kuis dalam sehari, di level apa pun.',
-    descTr:'Gün içinde Quizlerde herhangi bir seviyede 5 XP kazan.',
-    descPl:'Zdobądź 5 XP w Quizach w ciągu dnia, na dowolnym poziomie.',
-    descUK:'Зароби 5 XP у Квізах за день — будь-який рівень.' },
-  { id:'qs7', type:'quiz_score', icon:'🌟', target:15, xp:36,
-    titleRU:'Пятнашки', titleUK:'П\'ятнашки',
-    titlePtBr:'Quinze pontos', titleVi:'Mười lăm điểm', titleId:'Lima belas poin', titleTr:'On beşlik', titlePl:'Piętnastka',
-    descRU:'Заработай 15 XP в Вызовах за день.',
-    descPtBr:'Ganhe 15 XP em Quizzes durante o dia.',
-    descVi:'Kiếm 15 XP trong Quiz trong ngày.',
-    descId:'Dapatkan 15 XP di Kuis dalam sehari.',
-    descTr:'Gün içinde Quizlerde 15 XP kazan.',
-    descPl:'Zdobądź 15 XP w Quizach w ciągu dnia.',
-    descUK:'Зароби 15 XP у Квізах за день.' },
 
   // Дополнительные quiz_perfect
-  { id:'qp2', type:'quiz_perfect', icon:'✨', target:2, xp:96, minPlayerLevel:8,
-    titleRU:'Дважды идеально', titleUK:'Двічі ідеально',
-    titlePtBr:'Duas vezes perfeito', titleVi:'Hai lần hoàn hảo', titleId:'Dua kali sempurna', titleTr:'İki kez mükemmel', titlePl:'Dwa razy idealnie',
-    descRU:'Заверши 2 раунда в Квизах без единой ошибки сегодня.',
-    descPtBr:'Conclua 2 rodadas em Quizzes sem nenhum erro hoje.',
-    descVi:'Hoàn thành 2 vòng Quiz không mắc lỗi nào hôm nay.',
-    descId:'Selesaikan 2 ronde di Kuis tanpa satu pun kesalahan hari ini.',
-    descTr:'Bugün Quizlerde 2 turu tek hata yapmadan tamamla.',
-    descPl:'Ukończ dziś 2 rundy w Quizach bez ani jednego błędu.',
-    descUK:'Заверши 2 раунди в Квізах без жодної помилки сьогодні.' },
 
   // Дополнительный quiz_hard_perfect
-  { id:'qhp2', type:'quiz_hard_perfect', icon:'💥', target:1, xp:108, minPlayerLevel:15,
-    titleRU:'Сложно и чисто', titleUK:'Складно і чисто',
-    titlePtBr:'Difícil e limpo', titleVi:'Khó và sạch lỗi', titleId:'Sulit dan bersih', titleTr:'Zor ve temiz', titlePl:'Trudno i czysto',
-    descRU:'Пройди раунд Вызовов на уровне Сложно без единой ошибки.',
-    descPtBr:'Conclua uma rodada de Quizzes no nível Difícil sem nenhum erro.',
-    descVi:'Hoàn thành một vòng Quiz ở mức Khó mà không mắc lỗi nào.',
-    descId:'Selesaikan ronde Kuis pada level Sulit tanpa satu pun kesalahan.',
-    descTr:'Quizlerde Zor seviyedeki bir turu tek hata yapmadan tamamla.',
-    descPl:'Ukończ rundę Quizów na poziomie Trudne bez ani jednego błędu.',
-    descUK:'Пройди раунд Квізів на рівні Складно без жодної помилки.' },
 
   // Дополнительные flashcard_view
   { id:'fv4', type:'flashcard_view', icon:'🃏', target:3, xp:14,
@@ -1618,16 +1343,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'2 farklı dersi aç ve her birinde en az bir ifadeyi kur.',
     descPl:'Otwórz 2 różne lekcje i ułóż co najmniej jedną frazę w każdej.',
     descUK:'Відкрий 2 різні уроки й збери хоча б по одній фразі в кожному.' },
-  { id:'qe7', type:'quiz_easy', icon:'🍀', target:8, xp:24,
-    titleRU:'Восемь лёгких', titleUK:'Вісім легких',
-    titlePtBr:'Oito fáceis', titleVi:'Tám câu dễ', titleId:'Delapan mudah', titleTr:'Sekiz kolay', titlePl:'Osiem łatwych',
-    descRU:'Ответь правильно на 8 вопросов в Вызовах на уровне Легко.',
-    descPtBr:'Responda corretamente a 8 perguntas em Quizzes no nível Fácil.',
-    descVi:'Trả lời đúng 8 câu hỏi trong Quiz ở mức Dễ.',
-    descId:'Jawab 8 pertanyaan dengan benar di Kuis pada level Mudah.',
-    descTr:'Quizlerde Kolay seviyede 8 soruyu doğru yanıtla.',
-    descPl:'Odpowiedz poprawnie na 8 pytań w Quizach na poziomie Łatwe.',
-    descUK:'Дай правильну відповідь на 8 запитань у Квізах на рівні Легко.' },
   { id:'vl7', type:'verb_learned', icon:'📋', target:5, xp:66,
     titleRU:'Пять глаголов', titleUK:'П\'ять дієслів',
     titlePtBr:'Cinco verbos', titleVi:'Năm động từ', titleId:'Lima kata kerja', titleTr:'Beş fiil', titlePl:'Pięć czasowników',
@@ -1690,26 +1405,6 @@ const ALL_TASKS: DailyTask[] = [
     descTr:'Pratiğim → "İfadeler" bölümünü aç. 5 kartı doğru yanıtla.',
     descPl:'Otwórz Moja praktyka → „Frazy”. Odpowiedz poprawnie na 5 fiszek.',
     descUK:'Відкрий Мою практику → «Фрази». Відповідай правильно на 5 карток.' },
-  { id:'tar1', type:'trainer_arena', icon:'🛡️', target:2, xp:42,
-    titleRU:'Разбор ошибок', titleUK:'Розбір помилок',
-    titlePtBr:'Revisão de erros', titleVi:'Phân tích lỗi', titleId:'Ulas kesalahan', titleTr:'Hata analizi', titlePl:'Analiza błędów',
-    descRU:'Нажми сюда — откроется разбор твоих ошибок. Ответь верно на 2 вопроса.',
-    descPtBr:'Toque aqui para abrir a revisão dos seus erros. Acerte 2 perguntas.',
-    descVi:'Chạm vào đây để mở phần luyện lại lỗi sai. Trả lời đúng 2 câu hỏi.',
-    descId:'Ketuk di sini untuk membuka ulasan kesalahanmu. Jawab 2 pertanyaan dengan benar.',
-    descTr:'Buraya dokun — hata analizin açılsın. 2 soruyu doğru yanıtla.',
-    descPl:'Stuknij tutaj — otworzy się przegląd twoich błędów. Odpowiedz poprawnie na 2 pytania.',
-    descUK:'Натисни сюди — відкриється розбір твоїх помилок. Відповідай правильно на 2 питання.' },
-  { id:'tar2', type:'trainer_arena', icon:'⚔️', target:4, xp:72,
-    titleRU:'Без старых ошибок', titleUK:'Без старих помилок',
-    titlePtBr:'Sem erros antigos', titleVi:'Không lỗi cũ', titleId:'Tanpa kesalahan lama', titleTr:'Eski hatalar yok', titlePl:'Bez starych błędów',
-    descRU:'Нажми сюда — откроется разбор твоих ошибок. Ответь верно на 4 вопроса.',
-    descPtBr:'Toque aqui para abrir a revisão dos seus erros. Acerte 4 perguntas.',
-    descVi:'Chạm vào đây để mở phần luyện lại lỗi sai. Trả lời đúng 4 câu hỏi.',
-    descId:'Ketuk di sini untuk membuka ulasan kesalahanmu. Jawab 4 pertanyaan dengan benar.',
-    descTr:'Buraya dokun — hata analizin açılsın. 4 soruyu doğru yanıtla.',
-    descPl:'Stuknij tutaj — otworzy się przegląd twoich błędów. Odpowiedz poprawnie na 4 pytania.',
-    descUK:'Натисни сюди — відкриється розбір твоїх помилок. Відповідай правильно на 4 питання.' },
 
   // energy_spend — потратить N единиц энергии (только Free-аккаунт, Premium — безлимит)
   { id:'es1', type:'energy_spend', icon:'⚡', target:3, xp:30, freeOnly:true,
@@ -1754,141 +1449,9 @@ const ALL_TASKS: DailyTask[] = [
     descUK:'Витрать 7 одиниць енергії за день — інтенсивні тренування на уроках.' },
 
   // arena_play — N рейтинг-матчей в день против другого игрока (см. arena_results: не bot_)
-  { id:'dp1', type:'arena_play', icon:'⚔️', target:1, xp:24,
-    titleRU:'Первая арена', titleUK:'Перша арена',
-    titlePtBr:'Primeira Arena', titleVi:'Arena đầu tiên', titleId:'Arena pertama', titleTr:'İlk arena', titlePl:'Pierwsza arena',
-    descRU:'Сыграй 1 рейтинговый матч в Арене против другого игрока.',
-    descPtBr:'Jogue 1 partida ranqueada na Arena contra outro jogador.',
-    descVi:'Chơi 1 trận xếp hạng trong Arena với người chơi khác.',
-    descId:'Mainkan 1 pertandingan berperingkat di Arena melawan pemain lain.',
-    descTr:'Arenada başka bir oyuncuya karşı 1 dereceli maç oyna.',
-    descPl:'Zagraj 1 mecz rankingowy na Arenie przeciwko innemu graczowi.',
-    descUK:'Зіграй 1 рейтинговий матч в Арені проти іншого гравця.' },
-  { id:'dp2', type:'arena_play', icon:'⚔️', target:3, xp:54,
-    titleRU:'Боец', titleUK:'Боєць',
-    titlePtBr:'Lutador', titleVi:'Chiến binh', titleId:'Petarung', titleTr:'Savaşçı', titlePl:'Wojownik',
-    descRU:'Сыграй 3 рейтинговых матча в Арене за день против других игроков.',
-    descPtBr:'Jogue 3 partidas ranqueadas na Arena durante o dia contra outros jogadores.',
-    descVi:'Chơi 3 trận xếp hạng trong Arena trong ngày với người chơi khác.',
-    descId:'Mainkan 3 pertandingan berperingkat di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 3 dereceli maç oyna.',
-    descPl:'Zagraj w ciągu dnia 3 mecze rankingowe na Arenie przeciwko innym graczom.',
-    descUK:'Зіграй 3 рейтингові матчі в Арені за день проти інших гравців.' },
-  { id:'dp3', type:'arena_play', icon:'⚔️', target:5, xp:84,
-    titleRU:'Боец арены', titleUK:'Боєць арени',
-    titlePtBr:'Lutador da Arena', titleVi:'Chiến binh Arena', titleId:'Petarung Arena', titleTr:'Arena savaşçısı', titlePl:'Wojownik areny',
-    descRU:'Сыграй 5 рейтинговых матчей в Арене за день против других игроков.',
-    descPtBr:'Jogue 5 partidas ranqueadas na Arena durante o dia contra outros jogadores.',
-    descVi:'Chơi 5 trận xếp hạng trong Arena trong ngày với người chơi khác.',
-    descId:'Mainkan 5 pertandingan berperingkat di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 5 dereceli maç oyna.',
-    descPl:'Zagraj w ciągu dnia 5 meczów rankingowych na Arenie przeciwko innym graczom.',
-    descUK:'Зіграй 5 рейтингових матчів в Арені за день проти інших гравців.' },
-  { id:'dp4', type:'arena_play', icon:'⚔️', target:2, xp:42,
-    titleRU:'Два поединка', titleUK:'Два поєдинки',
-    titlePtBr:'Dois duelos', titleVi:'Hai trận đấu', titleId:'Dua duel', titleTr:'İki düello', titlePl:'Dwa pojedynki',
-    descRU:'Сыграй 2 матча в Арене за день против других игроков.',
-    descPtBr:'Jogue 2 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Chơi 2 trận trong Arena trong ngày với người chơi khác.',
-    descId:'Mainkan 2 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 2 maç oyna.',
-    descPl:'Zagraj w ciągu dnia 2 mecze na Arenie przeciwko innym graczom.',
-    descUK:'Зіграй 2 матчі в Арені за день проти інших гравців.' },
-  { id:'dp2w1', type:'arena_plays_wins_combo', icon:'🎯', target:2, xp:62,
-    arenaCombo: { minPlays: 2, minWins: 1 },
-    titleRU:'Два матча и победа', titleUK:'Два матчі й перемога',
-    titlePtBr:'Dois jogos e uma vitória', titleVi:'Hai trận, một chiến thắng', titleId:'Dua pertandingan dan satu kemenangan', titleTr:'İki maç ve bir zafer', titlePl:'Dwa mecze i zwycięstwo',
-    descRU:'Сыграй 2 матча в Арене против других игроков и выиграй хотя бы в одном.',
-    descPtBr:'Jogue 2 partidas na Arena contra outros jogadores e vença pelo menos uma.',
-    descVi:'Chơi 2 trận trong Arena với người chơi khác và thắng ít nhất một trận.',
-    descId:'Mainkan 2 pertandingan di Arena melawan pemain lain dan menangkan setidaknya satu.',
-    descTr:'Arenada başka oyunculara karşı 2 maç oyna ve en az birini kazan.',
-    descPl:'Zagraj 2 mecze na Arenie przeciwko innym graczom i wygraj co najmniej jeden.',
-    descUK:'Зіграй 2 матчі в Арені проти інших гравців і виграй хоча б в одному.' },
-  { id:'dp3w2', type:'arena_plays_wins_combo', icon:'🎖️', target:3, xp:82,
-    arenaCombo: { minPlays: 3, minWins: 2 },
-    titleRU:'Три матча, две победы', titleUK:'Три матчі, дві перемоги',
-    titlePtBr:'Três jogos, duas vitórias', titleVi:'Ba trận, hai chiến thắng', titleId:'Tiga pertandingan, dua kemenangan', titleTr:'Üç maç, iki zafer', titlePl:'Trzy mecze, dwa zwycięstwa',
-    descRU:'Сыграй 3 матча в Арене против других игроков и выиграй как минимум в двух.',
-    descPtBr:'Jogue 3 partidas na Arena contra outros jogadores e vença pelo menos duas.',
-    descVi:'Chơi 3 trận trong Arena với người chơi khác và thắng ít nhất hai trận.',
-    descId:'Mainkan 3 pertandingan di Arena melawan pemain lain dan menangkan setidaknya dua.',
-    descTr:'Arenada başka oyunculara karşı 3 maç oyna ve en az ikisini kazan.',
-    descPl:'Zagraj 3 mecze na Arenie przeciwko innym graczom i wygraj co najmniej dwa.',
-    descUK:'Зіграй 3 матчі в Арені проти інших гравців і виграй щонайменше в двох.' },
-  { id:'dp5', type:'arena_play', icon:'⚔️', target:4, xp:70,
-    titleRU:'Четыре боя', titleUK:'Чотири бої',
-    titlePtBr:'Quatro batalhas', titleVi:'Bốn trận chiến', titleId:'Empat pertarungan', titleTr:'Dört savaş', titlePl:'Cztery walki',
-    descRU:'Сыграй 4 матча в Арене за день против других игроков.',
-    descPtBr:'Jogue 4 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Chơi 4 trận trong Arena trong ngày với người chơi khác.',
-    descId:'Mainkan 4 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 4 maç oyna.',
-    descPl:'Zagraj w ciągu dnia 4 mecze na Arenie przeciwko innym graczom.',
-    descUK:'Зіграй 4 матчі в Арені за день проти інших гравців.' },
 
   // arena_win — N побед в рейтинге за день
-  { id:'dw1', type:'arena_win', icon:'🏅', target:1, xp:36,
-    titleRU:'Победитель', titleUK:'Переможець',
-    titlePtBr:'Vencedor', titleVi:'Người chiến thắng', titleId:'Pemenang', titleTr:'Kazanan', titlePl:'Zwycięzca',
-    descRU:'Выиграй 1 матч в Арене против другого игрока — набери больше очков, чем соперник.',
-    descPtBr:'Vença 1 partida na Arena contra outro jogador: marque mais pontos que o adversário.',
-    descVi:'Thắng 1 trận trong Arena trước người chơi khác: ghi nhiều điểm hơn đối thủ.',
-    descId:'Menangkan 1 pertandingan di Arena melawan pemain lain: raih skor lebih tinggi dari lawan.',
-    descTr:'Arenada başka bir oyuncuya karşı 1 maç kazan: rakibinden daha fazla puan al.',
-    descPl:'Wygraj 1 mecz na Arenie przeciwko innemu graczowi: zdobądź więcej punktów niż rywal.',
-    descUK:'Виграй 1 матч в Арені проти іншого гравця — набери більше очок, ніж суперник.' },
-  { id:'dw2', type:'arena_win', icon:'🥇', target:2, xp:66,
-    titleRU:'Двойная победа', titleUK:'Подвійна перемога',
-    titlePtBr:'Vitória dupla', titleVi:'Chiến thắng kép', titleId:'Kemenangan ganda', titleTr:'Çifte zafer', titlePl:'Podwójne zwycięstwo',
-    descRU:'Выиграй 2 матча в Арене за день против других игроков.',
-    descPtBr:'Vença 2 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Thắng 2 trận trong Arena trong ngày trước người chơi khác.',
-    descId:'Menangkan 2 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 2 maç kazan.',
-    descPl:'Wygraj w ciągu dnia 2 mecze na Arenie przeciwko innym graczom.',
-    descUK:'Виграй 2 матчі в Арені за день проти інших гравців.' },
-  { id:'dw3', type:'arena_win', icon:'🏆', target:3, xp:96,
-    titleRU:'Непобедимый', titleUK:'Непереможний',
-    titlePtBr:'Invencível', titleVi:'Bất bại', titleId:'Tak terkalahkan', titleTr:'Yenilmez', titlePl:'Niepokonany',
-    descRU:'Выиграй 3 матча в Арене за день против других игроков.',
-    descPtBr:'Vença 3 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Thắng 3 trận trong Arena trong ngày trước người chơi khác.',
-    descId:'Menangkan 3 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 3 maç kazan.',
-    descPl:'Wygraj w ciągu dnia 3 mecze na Arenie przeciwko innym graczom.',
-    descUK:'Виграй 3 матчі в Арені за день проти інших гравців.' },
-  { id:'dw4', type:'arena_win', icon:'⚡', target:4, xp:114,
-    titleRU:'Четыре победы', titleUK:'Чотири перемоги',
-    titlePtBr:'Quatro vitórias', titleVi:'Bốn chiến thắng', titleId:'Empat kemenangan', titleTr:'Dört zafer', titlePl:'Cztery zwycięstwa',
-    descRU:'Выиграй 4 матча в Арене за день против других игроков.',
-    descPtBr:'Vença 4 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Thắng 4 trận trong Arena trong ngày trước người chơi khác.',
-    descId:'Menangkan 4 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 4 maç kazan.',
-    descPl:'Wygraj w ciągu dnia 4 mecze na Arenie przeciwko innym graczom.',
-    descUK:'Виграй 4 матчі в Арені за день проти інших гравців.' },
-  { id:'dw5', type:'arena_win', icon:'🌟', target:5, xp:138,
-    titleRU:'Пять побед', titleUK:'П\'ять перемог',
-    titlePtBr:'Cinco vitórias', titleVi:'Năm chiến thắng', titleId:'Lima kemenangan', titleTr:'Beş zafer', titlePl:'Pięć zwycięstw',
-    descRU:'Выиграй 5 матчей в Арене за день против других игроков.',
-    descPtBr:'Vença 5 partidas na Arena durante o dia contra outros jogadores.',
-    descVi:'Thắng 5 trận trong Arena trong ngày trước người chơi khác.',
-    descId:'Menangkan 5 pertandingan di Arena dalam sehari melawan pemain lain.',
-    descTr:'Gün içinde Arenada başka oyunculara karşı 5 maç kazan.',
-    descPl:'Wygraj w ciągu dnia 5 meczów na Arenie przeciwko innym graczom.',
-    descUK:'Виграй 5 матчів в Арені за день проти інших гравців.' },
 
-  { id:'arup1', type:'arena_rank_promoted', icon:'🚀', target:1, xp:66,
-    titleRU:'Вверх по рангу', titleUK:'Вгору за рангом',
-    titlePtBr:'Subindo no ranking', titleVi:'Tăng hạng', titleId:'Naik peringkat', titleTr:'Rütbede yüksel', titlePl:'W górę rankingu',
-    descRU:'Повысь ранг в Арене за день: выиграй рейтинговый матч против другого игрока и получи новую ступень ранга.',
-    descPtBr:'Suba de ranque na Arena durante o dia: ganhe promoção de nível ou liga em uma partida ranqueada contra outro jogador.',
-    descVi:'Tăng hạng trong Arena trong ngày: được thăng cấp hoặc lên liga trong trận xếp hạng với người chơi khác.',
-    descId:'Naik peringkat di Arena dalam sehari: dapatkan kenaikan level atau liga di pertandingan berperingkat melawan pemain lain.',
-    descTr:'Gün içinde Arenada rütbeni yükselt: başka bir oyuncuya karşı dereceli maçta seviye veya lig terfisi al.',
-    descPl:'Awansuj w rankingu Areny w ciągu dnia: zdobądź awans poziomu lub ligi w meczu rankingowym przeciwko innemu graczowi.',
-    descUK:'Підвищ ранг в Арені за день: виграй рейтинговий матч проти іншого гравця й отримай нову сходинку рангу.' },
 
   { id:'inv1', type:'invite_friend', icon:'👥', target:1, xp:42,
     titleRU:'Пригласи друга', titleUK:'Запроси друга',
@@ -2081,104 +1644,104 @@ const ALL_TASKS: DailyTask[] = [
 
 // Тир 1: уровни 1–15 — базовые активности, лёгкие квизы, карточки, глаголы
 const DAILY_SETS_TIER1: string[][] = [
-  ['da1','ta9','dp1'],         // день 1
-  ['da2','qe6','dp4'],         // день 2
-  ['da3','ta1','dw1'],        // день 3
-  ['da4','qs6','dp3'],         // день 4
-  ['ead1','cs1','dp5'],        // день 5 — early_all_done
-  ['da6','wl6','dw2'],         // день 6
-  ['da7','lnm1','dw3'],        // день 7
-  ['da8','ta8','dp2w1'],         // день 8
-  ['da1','cs6','dw4'],         // день 9
-  ['da2','tw1','dw5'],         // день 10
-  ['da3','ta1','dp1'],        // день 11
-  ['rv1','qe4','dp4'],        // день 12 — revision_lesson
-  ['da5','inv1','dw1'],       // день 13 — пригласить друга
-  ['da6','cs1','dp3'],         // день 14
-  ['da7','fs6','dp5'],         // день 15
-  ['da8','ta9','dw2'],        // день 16
-  ['lch1','ot1','dp2w1'],        // день 17 — last_chance
-  ['da2','fv4','arup1'],         // день 18
-  ['da3','vl1','dp1'],         // день 19
-  ['da4','dl4','dw1'],        // день 20
-  ['bs1','cs2','dp3'],        // день 21 — blitz_speed
-  ['da6','qe1','dp5'],         // день 22
-  ['da7','ta8','dw2'],         // день 23
-  ['da8','es3','dw1'],         // день 24
-  ['da1','lnm6','dp2w1'],       // день 25
-  ['pg1','ta9','arup1'],       // день 26 — polyglot_day
-  ['da3','tp1','dp1'],         // день 27
-  ['da4','dl1','dw1'],         // день 28
-  ['ca1','fs1','dp3'],       // день 29 — club_attend
-  ['da6','qe4','dp4'],         // день 30
+  ['da1','ta9','bs2'],         // день 1
+  ['da2','cs3','dc1'],         // день 2
+  ['da3','ta1','cs4'],        // день 3
+  ['da4','cs5','dc2'],         // день 4
+  ['ead1','cs1','ff1'],        // день 5 — early_all_done
+  ['da6','wl6','cs7'],         // день 6
+  ['da7','lnm1','ff2'],        // день 7
+  ['da8','ta8','cs8'],         // день 8
+  ['da1','cs6','ff3'],         // день 9
+  ['da2','tw1','ff4'],         // день 10
+  ['da3','ta1','ff5'],        // день 11
+  ['rv1','ff6','lnm2'],        // день 12 — revision_lesson
+  ['da5','inv1','fs2'],       // день 13 — пригласить друга
+  ['da6','cs1','fs4'],         // день 14
+  ['da7','fs6','lnm3'],         // день 15
+  ['da8','ta9','fs5'],        // день 16
+  ['lch1','ot1','fv1'],        // день 17 — last_chance
+  ['da2','fv4','lnm4'],         // день 18
+  ['da3','vl1','fv2'],         // день 19
+  ['da4','dl4','fv3'],        // день 20
+  ['bs1','cs2','cb1'],        // день 21 — blitz_speed
+  ['da6','fv5','lnm5'],         // день 22
+  ['da7','ta8','fv6'],         // день 23
+  ['da8','es3','fv7'],         // день 24
+  ['da1','lnm6','mf1'],       // день 25
+  ['fs3','ta9','pbl1'],       // день 26 — polyglot_day пока скрыт: второй язык ещё недоступен
+  ['da3','tp1','pbl2'],         // день 27
+  ['da4','dl1','pbl3'],         // день 28
+  ['ca1','fs1','dl2'],       // день 29 — club_attend
+  ['da6','ra1','tp2'],         // день 30
 ];
 
 // Тир 2: уровни 16–30 — средние квизы, арены, серии, повторения
 const DAILY_SETS_TIER2: string[][] = [
-  ['da1','ta2','dp1'],         // день 1
-  ['da2','qm3','dw1'],         // день 2
-  ['da3','ta7','dp4'],        // день 3
-  ['ead2','qs2','dp3'],        // день 4 — early_all_done
-  ['da5','cs3','dp5'],         // день 5
-  ['da6','arup1','qm1'],       // день 6 — повышение ранга в Арене
-  ['da7','lnm2','dw2'],        // день 7
-  ['da8','ta4','dw3'],         // день 8
-  ['sf1','cs7','dp2w1'],        // день 9 — streak_freeze_use
-  ['da2','tw2','dw4'],         // день 10
-  ['da3','inv1','dw5'],       // день 11 — пригласить друга
-  ['da4','qe5','dp1'],         // день 12
-  ['da5','vl5','dp4'],        // день 13
-  ['rv2','cs2','dw1'],        // день 14 — revision_lesson
-  ['da7','fs4','dp3'],         // день 15
-  ['da8','ta7','dp5'],        // день 16
-  ['da1','ot2','dw2'],         // день 17
-  ['da2','qm3','dp2w1'],         // день 18
-  ['pbl1','vl2','arup1'],       // день 19 — perfect_big_lesson
-  ['da4','dl2','dp1'],        // день 20
-  ['da5','cs3','dw1'],         // день 21
-  ['lch2','qp1','dp4'],        // день 22 — last_chance
-  ['da7','ta5','dp3'],         // день 23
-  ['da8','ot2','dp1'],         // день 24
-  ['da1','lnm3','dp5'],       // день 25
-  ['da2','ta3','dp1'],         // день 26
-  ['cb1','tp2','dp5'],        // день 27 — comeback_lesson
-  ['da4','dl1','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
-  ['da5','fs2','dp2'],        // день 29
-  ['bs2','dp2','ta10'],        // день 30 — blitz_speed
+  ['da1','ta2','bs1'],         // день 1
+  ['da2','ca1','cs1'],         // день 2
+  ['da3','ta7','cs4'],        // день 3
+  ['ead2','cs5','dc1'],        // день 4 — early_all_done
+  ['da5','cs3','dc2'],         // день 5
+  ['da6','cs6','ff1'],       // день 6 — повышение ранга в Арене
+  ['da7','lnm2','ff2'],        // день 7
+  ['da8','ta4','cs8'],         // день 8
+  ['sf1','cs7','ff3'],        // день 9 — streak_freeze_use
+  ['da2','tw2','ff4'],         // день 10
+  ['da3','inv1','ff5'],       // день 11 — пригласить друга
+  ['da4','ff6','lnm1'],         // день 12
+  ['da5','vl5','fs1'],        // день 13
+  ['rv2','cs2','fs3'],        // день 14 — revision_lesson
+  ['da7','fs4','lnm4'],         // день 15
+  ['da8','ta7','fs5'],        // день 16
+  ['da1','ot2','fs6'],         // день 17
+  ['da2','fv1','lnm5'],         // день 18
+  ['pbl1','vl2','dl3'],       // день 19 — perfect_big_lesson
+  ['da4','dl2','fv2'],        // день 20
+  ['da5','cs3','fv3'],         // день 21
+  ['lch2','fv4','lnm6'],        // день 22 — last_chance
+  ['da7','ta5','fv5'],         // день 23
+  ['da8','ot2','fv6'],         // день 24
+  ['da1','lnm3','fv7'],       // день 25
+  ['da2','ta3','mf1'],         // день 26
+  ['cb1','tp2','pbl2'],        // день 27 — comeback_lesson
+  ['da4','dl1','pbl3'],       // день 28 — 2 матча в Арене + ≥1 победа
+  ['da5','fs2','ra1'],        // день 29
+  ['bs2','ra2','ta10'],        // день 30 — blitz_speed
 ];
 
 // Тир 3: уровни 31–50 — сложные квизы, арены, перфекты, хардкор
 const DAILY_SETS_TIER3: string[][] = [
-  ['da1','ta11','dp1'],        // день 1
-  ['da2','qh1','dw1'],         // день 2
-  ['da3','ta6','dp4'],        // день 3
-  ['ead1','qs4','dp3'],        // день 4 — early_all_done
-  ['da5','cs4','dp5'],         // день 5
-  ['ca1','wl4','dw2'],        // день 6 — club_attend
-  ['da7','lnm3','dw3'],        // день 7
-  ['pbl2','ta5','dp2w1'],       // день 8 — perfect_big_lesson
-  ['da1','cs8','dw4'],         // день 9
-  ['da2','tar1','dw5'],         // день 10
-  ['da3','ta6','dp1'],        // день 11
-  ['ead2','qh5','dp4'],        // день 12 — early_all_done
-  ['da5','vl6','dw1'],        // день 13
-  ['cb1','arup1','qh4'],      // день 14 — comeback_lesson
-  ['da7','fs5','dp3'],         // день 15
-  ['rv1','ta11','dp5'],      // день 16 — revision_lesson
-  ['da1','ot2','dw2'],         // день 17
-  ['da2','qhp1','dp2w1'],        // день 18
-  ['da3','vl3','arup1'],         // день 19
-  ['pbl3','dl3','dp1'],       // день 20 — perfect_big_lesson
-  ['da5','dp3w2','ms3'],       // день 21 — 3 матча в Арене + ≥2 победы
-  ['da6','qp2','dw1'],         // день 22
-  ['lch1','ta6','dp4'],        // день 23 — last_chance
-  ['da8','ot2','dp1'],         // день 24
-  ['sf1','lnm5','dp5'],      // день 25 — streak_freeze_use
-  ['da2','ta5','dp3'],         // день 26
-  ['bs2','tar2','dp5'],        // день 27 — blitz_speed
-  ['da4','dl2','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
-  ['pg1','fs3','dw5'],        // день 29 — polyglot_day
-  ['da6','dp2','ta10'],         // день 30
+  ['da1','ta11','bs1'],        // день 1
+  ['da2','cs1','dc1'],         // день 2
+  ['da3','ta6','cs2'],        // день 3
+  ['ead1','cs3','dc2'],        // день 4 — early_all_done
+  ['da5','cs4','ff1'],         // день 5
+  ['ca1','wl4','cs5'],        // день 6 — club_attend
+  ['da7','lnm3','ff2'],        // день 7
+  ['pbl2','ta5','ff3'],       // день 8 — perfect_big_lesson
+  ['da1','cs8','ff4'],         // день 9
+  ['da2','cs6','ff5'],         // день 10
+  ['da3','ta6','cs7'],        // день 11
+  ['ead2','ff6','inv1'],        // день 12 — early_all_done
+  ['da5','vl6','fs1'],        // день 13
+  ['cb1','fs2','lnm1'],      // день 14 — comeback_lesson
+  ['da7','fs5','lnm2'],         // день 15
+  ['rv1','ta11','fs4'],      // день 16 — revision_lesson
+  ['da1','ot2','fs6'],         // день 17
+  ['da2','fv1','lnm4'],        // день 18
+  ['da3','vl3','fv2'],         // день 19
+  ['pbl3','dl3','fv3'],       // день 20 — perfect_big_lesson
+  ['da5','fv4','ms3'],       // день 21 — 3 матча в Арене + ≥2 победы
+  ['da6','fv5','lnm6'],         // день 22
+  ['lch1','ta6','fv6'],        // день 23 — last_chance
+  ['da8','ot2','fv7'],         // день 24
+  ['sf1','lnm5','mf1'],      // день 25 — streak_freeze_use
+  ['da2','ta5','pbl1'],         // день 26
+  ['bs2','dl1','ra1'],        // день 27 — blitz_speed
+  ['da4','dl2','ra2'],       // день 28 — 2 матча в Арене + ≥1 победа
+  ['lnm5','fs3','dl4'],       // день 29 — polyglot_day пока скрыт: второй язык ещё недоступен
+  ['da6','ra3','ta10'],         // день 30
 ];
 
 /** Выбирает набор наборов заданий по игровому уровню. */
@@ -2371,6 +1934,13 @@ const getTodayTasksByLevel = (playerLevel: number): DailyTask[] => {
 // Оставляем для обратной совместимости (используется в паре мест)
 export const getTodayTasks = (): DailyTask[] => getTodayTasksByLevel(1);
 
+// зачем: дисковый снапшот экрана «Вызовы дня» (daily_tasks_screen_persist) хранит
+// только id заданий, а сами объекты (тексты/переводы/target/xp) восстанавливает из
+// кода — так на диске лежит минимум байт, а после обновления приложения снапшот
+// сразу отдаёт АКТУАЛЬНЫЕ формулировки, а не замороженные копии прошлой версии.
+export const findDailyTaskById = (id: string): DailyTask | undefined =>
+  ALL_TASKS.find((task) => task.id === id);
+
 // Резервные задания на случай если verb_learned недоступно (все глаголы выучены)
 const VERB_FALLBACKS: Record<string, string> = {
   vl1: 'ta1',  vl2: 'ta2',  vl3: 'ta3',
@@ -2396,6 +1966,14 @@ export const FRENCH_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Se
   'daily_phrase_read',
   'daily_phrase_save',
   'diagnostic_complete',
+]);
+
+/**
+ * Задания, которые требуют ещё не выпущенной возможности. Не показываем их
+ * пользователям до запуска второго языка, но сохраняем данные для возврата.
+ */
+export const TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
+  'polyglot_day',
 ]);
 
 export const FRENCH_LESSON_CONTENT_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
@@ -2424,27 +2002,20 @@ export const FRENCH_THEORY_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
   'open_theory',
 ]);
 
-// Замены для заданий, недоступных по игровому уровню
-const LEVEL_FALLBACKS: Record<string, string> = {
-  // quiz_hard (уровень 15+) → quiz_easy
-  qh1: 'qe1',  qh2: 'qe2',  qh3: 'qe3',  qh4: 'qe3',
-  qh5: 'qe2',  qh6: 'qe3',
-  // quiz_medium (уровень 8+) → quiz_easy
-  qm1: 'qe1',  qm2: 'qe2',  qm3: 'qe6',  qm4: 'qe5',
-  // quiz_perfect (уровень 8+) → total_answers
-  qp1: 'ta1',  qp2: 'ta2',
-  // quiz_hard_perfect (уровень 15+) → total_answers
-  qhp1: 'ta2', qhp2: 'ta2',
-  // quiz_score высокий (уровень 15+) → пониже
-  qs4: 'qs2',  qs5: 'qs3',
-};
+// Замены для заданий, недоступных по игровому уровню.
+// зачем: пусто — все прежние записи вели с удалённых квизов на удалённые квизы.
+// Таблица оставлена как точка расширения для будущих level-gated заданий.
+const LEVEL_FALLBACKS: Record<string, string> = {};
 
-// Замены freeOnly заданий для Premium-пользователей
+// Замены freeOnly заданий для Premium-пользователей.
+// зачем: раньше es1/es2/es4 вели на задания Арены (dp1/dp2/dp3) — после удаления
+// Арены Premium получал бы «битую» подмену (задания нет в каталоге → слот терялся).
+// Переведены на живые цели того же духа «поиграй/потренируйся».
 const PREMIUM_FALLBACKS: Record<string, string> = {
-  es1: 'dp1',  // energy_spend 3 → arena_play 1
-  es2: 'dp2',  // energy_spend 5 → arena_play 3
+  es1: 'ta1',  // energy_spend 3 → total_answers
+  es2: 'cs1',  // energy_spend 5 → correct_streak
   es3: 'rs1',  // energy_spend 2 → recall_session
-  es4: 'dp3',  // energy_spend 7 → arena_play 5
+  es4: 'ta8',  // energy_spend 7 → total_answers (крупнее)
 };
 
 const RECALL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
@@ -2456,7 +2027,6 @@ const RECALL_DAILY_TASK_TYPES: ReadonlySet<TaskType> = new Set([
 const TRAINER_QUEUE_BY_TASK_TYPE: Readonly<Partial<Record<TaskType, TrainerQueue>>> = {
   trainer_words: 'words',
   trainer_phrases: 'phrases',
-  trainer_arena: 'arena',
 };
 
 const TRAINER_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
@@ -2464,8 +2034,6 @@ const TRAINER_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
   tw2: ['ta2', 'ot1', 'cs1', 'ta1'],
   tp1: ['ta1', 'ot1', 'cs1', 'ta8'],
   tp2: ['ta2', 'ot1', 'cs1', 'ta1'],
-  tar1: ['ta1', 'ot1', 'cs1', 'ta8'],
-  tar2: ['ta2', 'ot1', 'cs1', 'ta1'],
 };
 
 const RECALL_TASK_FALLBACK_IDS: Record<string, readonly string[]> = {
@@ -2515,51 +2083,8 @@ const replaceRecallTasksWhenNoDueItems = async (
   });
 };
 
-/** Сколько слотов «про Арену» в тройке после подмены freeOnly для Premium (как в getTodayTasksSafe). */
-const countResolvedArenaSlots = (rawIds: string[], usePremiumResolution: boolean): number => {
-  const resolved = rawIds.map(id => {
-    if (!usePremiumResolution) return id;
-    const def = ALL_TASKS.find(t => t.id === id);
-    if (def?.freeOnly) {
-      const rep = PREMIUM_FALLBACKS[id];
-      if (rep) return rep;
-    }
-    return id;
-  });
-  let n = 0;
-  for (const id of resolved) {
-    const def = ALL_TASKS.find(t => t.id === id);
-    if (def && isArenaDailyTaskType(def.type)) n += 1;
-  }
-  return n;
-};
-
-/**
- * Проверка политики: ровно одно задание типа арены в каждой дневной тройке для Free и Premium
- * (Premium — с учётом PREMIUM_FALLBACKS для freeOnly).
- */
-export function getDailySetsArenaPolicyErrors(): string[] {
-  const tiers: { label: string; sets: string[][] }[] = [
-    { label: 'DAILY_SETS_TIER1', sets: DAILY_SETS_TIER1 },
-    { label: 'DAILY_SETS_TIER2', sets: DAILY_SETS_TIER2 },
-    { label: 'DAILY_SETS_TIER3', sets: DAILY_SETS_TIER3 },
-  ];
-  const out: string[] = [];
-  for (const { label, sets } of tiers) {
-    sets.forEach((row, i) => {
-      const day = i + 1;
-      const freeN = countResolvedArenaSlots(row, false);
-      if (freeN !== 1) {
-        out.push(`${label} день ${day} (free): арена×${freeN}, ids=[${row.join(',')}]`);
-      }
-      const premN = countResolvedArenaSlots(row, true);
-      if (premN !== 1) {
-        out.push(`${label} день ${day} (premium): арена×${premN}, ids=[${row.join(',')}]`);
-      }
-    });
-  }
-  return out;
-}
+// зачем: политика «ровно одна Арена в дневной тройке» удалена вместе с самой
+// Ареной — проверять больше нечего, все 90 наборов состоят из живых заданий.
 
 /** Читает игровой уровень (1–50) пользователя из AsyncStorage. */
 export const getUserPlayerLevel = async (): Promise<number> => {
@@ -2855,17 +2380,16 @@ export function dailyTaskAvailableForStudyTarget(
   taskOrType: DailyTask | TaskType,
   studyTarget?: RuntimeStudyTarget,
 ): boolean {
-  if (storageStudyTarget(studyTarget) !== 'fr') return true;
-  void taskOrType;
-  return true;
+  void studyTarget;
+  const type = typeof taskOrType === 'string' ? taskOrType : taskOrType.type;
+  return !TEMPORARILY_UNAVAILABLE_DAILY_TASK_TYPES.has(type);
 }
 
 export function filterDailyTasksForStudyTarget(
   tasks: DailyTask[],
   studyTarget?: RuntimeStudyTarget,
 ): DailyTask[] {
-  if (storageStudyTarget(studyTarget) !== 'fr') return tasks;
-  return tasks;
+  return tasks.filter((task) => dailyTaskAvailableForStudyTarget(task, studyTarget));
 }
 
 /**
@@ -3215,6 +2739,31 @@ const appendWeekendMarathonTask = (tasks: DailyTask[], studyTarget?: RuntimeStud
   return [...tasks, wm];
 };
 
+const DAILY_TASK_BASE_COUNT = 4;
+const DAILY_TASK_BASE_FILLER_IDS = ['dpr1', 'dps1', 'da1', 'fs1', 'ta1'] as const;
+
+/** Ensures the daily surface has four real objectives; a weekend task keeps its slot. */
+export function ensureDailyTaskBaseCount(
+  tasks: DailyTask[],
+  studyTarget?: RuntimeStudyTarget,
+): DailyTask[] {
+  if (tasks.length >= DAILY_TASK_BASE_COUNT) return tasks;
+  const result = [...tasks];
+  const usedIds = new Set(result.map((task) => task.id));
+  const usedTypes = new Set(result.map((task) => task.type));
+
+  for (const id of DAILY_TASK_BASE_FILLER_IDS) {
+    if (result.length >= DAILY_TASK_BASE_COUNT) break;
+    const task = ALL_TASKS.find((candidate) => candidate.id === id);
+    if (!task || usedIds.has(task.id) || usedTypes.has(task.type)) continue;
+    if (!dailyTaskAvailableForStudyTarget(task, studyTarget)) continue;
+    result.push(task);
+    usedIds.add(task.id);
+    usedTypes.add(task.type);
+  }
+  return result;
+}
+
 /**
  * Async версия getTodayTasks с тремя проверками:
  * 1. Если уровень пользователя ниже minLevel задания — заменяет на более лёгкое.
@@ -3281,10 +2830,10 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   const hasVerbTask = result.some(t => t.type === 'verb_learned');
   if (!hasVerbTask) {
     result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-    return appendWeekendMarathonTask(
+    return ensureDailyTaskBaseCount(appendWeekendMarathonTask(
       filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
       studyTarget,
-    );
+    ), studyTarget);
   }
 
   const raw = await AsyncStorage.getItem(irregularVerbsGlobalKey(studyTarget));
@@ -3303,10 +2852,10 @@ export const getTodayTasksSafe = async (studyTarget?: RuntimeStudyTarget): Promi
   });
 
   result = await replaceConditionallyUnavailableDailyTasks(result, isPremium, studyTarget);
-  return appendWeekendMarathonTask(
+  return ensureDailyTaskBaseCount(appendWeekendMarathonTask(
     filterDailyTasksForStudyTarget(replaceRetiredQuizArenaTasks(result), studyTarget),
     studyTarget,
-  );
+  ), studyTarget);
 };
 
 const STORAGE_PREFIX = 'daily_tasks_';

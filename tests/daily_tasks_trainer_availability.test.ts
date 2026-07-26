@@ -52,14 +52,17 @@ describe('daily tasks trainer queue availability', () => {
     jest.useRealTimers();
   });
 
-  it('replaces an arena trainer task when its queue cannot satisfy the target', async () => {
+  // зачем: trainer_arena удалён вместе с Ареной, задания такого типа больше нет
+  // в каталоге. Тест сохранён как страховка: тип не должен вернуться, а выдача
+  // остаётся полной (DAILY_TASK_BASE_COUNT = 4).
+  it('never serves the retired arena trainer task and keeps the daily surface full', async () => {
     jest.setSystemTime(new Date('2026-05-27T12:00:00Z'));
     await AsyncStorage.setItem('user_total_xp', '1000000000');
 
     const tasks = await getTodayTasksSafe('en');
 
     expect(tasks.some((task) => task.type === 'trainer_arena')).toBe(false);
-    expect(tasks).toHaveLength(3);
+    expect(tasks).toHaveLength(4);
   });
 
   it('does not charge for a reroll when every replacement trainer queue is insufficient', async () => {

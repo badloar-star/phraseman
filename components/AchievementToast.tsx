@@ -13,7 +13,7 @@ import { useLang } from './LangContext';
 import { markAchievementsNotified } from '../app/achievements';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
 import { ACHIEVEMENT_ICON, CAT_COLOR, BadgeShield } from '../app/achievements_screen';
-import { ACHIEVEMENT_IMAGE } from '../constants/achievementImageAssets';
+import { achievementImageSource } from '../constants/achievementImageAssets';
 import { STORE_URL } from '../app/config';
 import { buildAchievementShareMessage } from '../app/achievement_share';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
@@ -294,7 +294,10 @@ function AchievementToast() {
   const color = CAT_COLOR[displayedToast.category] ?? '#888';
   const modalAccent = rewardModalAccentColor(themeMode, t);
   const achievementBorderColor = color.startsWith('#') && color.length === 7 ? `${color}88` : color;
-  const toastImageSource = ACHIEVEMENT_IMAGE[displayedToast.id];
+  // зачем: арт «первых» достижений лежит в бандле (мгновенно, офлайн), остальной
+  // стримится из Storage и берётся из прогретого дискового кэша. Пока картинки
+  // нет — тост показывает векторную иконку категории, а не пустоту.
+  const toastImageSource = achievementImageSource(displayedToast.id);
 
   return (
     <>

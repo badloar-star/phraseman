@@ -135,6 +135,9 @@ const PUBLIC_STORAGE_URL_MAP_FILES = new Set([
   'app/plan_audio_url_map.generated.ts',
   'app/phrase_audio_url_map.generated.ts',
   'app/collectibles/collectible_image_url_map.generated.ts',
+  // То же самое для арта достижений: /achievement-images/** объявлен публичным
+  // на чтение в storage.rules, токен в URL — обычный публичный read-token.
+  'constants/achievementImageUrlMap.generated.ts',
 ]);
 const FIREBASE_STORAGE_DOWNLOAD_URL = /firebasestorage\.googleapis\.com\/.*[?&]alt=media&token=/;
 function isExemptFinding(ruleId, line, relPath) {

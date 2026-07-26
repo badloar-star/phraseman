@@ -916,81 +916,11 @@ export const adminMutateTournamentTasks = onCall(
   },
 );
 
-// ── Массовая очистка пула по источнику ──────────────────────────────────────
-
-/** Сколько документов удаляем за один вызов — дальше клиент зовёт снова. */
-const PURGE_PAGE_SIZE = 2_000;
-
-export type PurgeRequest = {
-  readonly source: 'plan_content' | 'ai';
-  readonly dryRun: boolean;
-};
-
-export function parsePurgeRequest(data: unknown): PurgeRequest {
-  const record = onlyKeys(data, ['source', 'dryRun'], 'tournament_purge_invalid');
-  const source = String(record.source ?? '').trim();
-  if (!['plan_content', 'ai'].includes(source)) {
-    throw new HttpsError('invalid-argument', 'tournament_purge_source_invalid');
-  }
-  return Object.freeze({ source: source as PurgeRequest['source'], dryRun: record.dryRun === true });
-}
-
-/**
- * Массово удаляет задания пула по источнику.
- *
- * зачем: владелец забраковал весь контент, собранный из фраз обучающих планов
- * («негодные задания для турниров»), и попросил удалить его целиком. Ручное
- * удаление через adminMutateTournamentTasks требует перечислять id — для
- * тысяч записей неприменимо.
- *
- * Безопасность удаления: идущие турниры читают задания из СВОЕЙ копии в
- * подколлекции комнаты (TOURNAMENT_TASK_SECRETS_SUBCOLLECTION, см.
- * tournaments.ts:150), поэтому чистка общего пула не может сломать активную
- * игру и не отменяет комнаты с возвратом билетов.
- *
- * Удаляет страницами по 2000: dryRun сначала показывает, сколько найдено.
- */
-export const adminPurgeTournamentTasks = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540 },
-  async (request) => {
-    // Удаление боевого контента — право публикации, не черновиков.
-    requirePermission(request, 'content.publish');
-    const params = parsePurgeRequest(request.data);
-
-    const db = admin.firestore();
-    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
-    // Старые задания из планов писались до появления поля source, поэтому
-    // «из планов» = всё, что НЕ помечено source:'ai'.
-    const query = params.source === 'ai'
-      ? collection.where('source', '==', 'ai')
-      : collection.where('source', '!=', 'ai');
-
-    if (params.dryRun) {
-      // guard-ok: count() — серверный агрегат, документы не читаются.
-      const agg = await query.count().get();
-      return { ok: true, dryRun: true, source: params.source, found: agg.data().count, deleted: 0 };
-    }
-
-    // guard-ok: select() без полей намеренно — для удаления нужны только
-    // ссылки, тела документов не нужны (иначе тянули бы payload тысяч заданий).
-    const snapshot = await query.select().limit(PURGE_PAGE_SIZE).get();
-    let deleted = 0;
-    for (let i = 0; i < snapshot.docs.length; i += WRITE_BATCH_SIZE) {
-      const batch = db.batch();
-      for (const doc of snapshot.docs.slice(i, i + WRITE_BATCH_SIZE)) batch.delete(doc.ref);
-      await batch.commit();
-      deleted += Math.min(WRITE_BATCH_SIZE, snapshot.docs.length - i);
-    }
-
-    return {
-      ok: true,
-      dryRun: false,
-      source: params.source,
-      deleted,
-      hasMore: snapshot.size === PURGE_PAGE_SIZE,
-    };
-  },
-);
+// зачем: функция массового удаления пула убрана — владелец уточнил, что
+// задания из планов должны ОСТАТЬСЯ в базе, они просто не участвуют в
+// турнирах. Неучастие обеспечено фильтром source:'ai' в loadResourcePool
+// (tournaments.ts). Возможности стереть пул не существует намеренно:
+// неиспользование обратимо, удаление — нет.
 
 // ── Статистика пула ─────────────────────────────────────────────────────────
 

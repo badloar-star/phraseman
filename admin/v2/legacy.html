@@ -12446,8 +12446,6 @@
       </select>
       <button type="button" onclick="tnLoadTasks(true)"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
-      <button type="button" onclick="tnPurgePlanPool()" title="Удалить из базы все задания, собранные из фраз обучающих планов"
-        style="background:#2a1518;border:1px solid #4a2a2e;color:#fca5a5;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🧹 Удалить пул из планов</button>
       <span style="flex:1"></span>
       <button type="button" onclick="tnPublishVisible()" title="Опубликовать все отмеченные задания"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">✅ Опубликовать отмеченные</button>
@@ -36014,36 +36012,10 @@
   // задания для турниров: фразы уроков не работают как соревновательные
   // вопросы. Единственный источник теперь — tnAiGenerate ниже.
 
-  /**
-   * зачем: владелец забраковал весь пул, собранный из фраз обучающих планов,
-   * и попросил удалить его целиком. Удаление необратимо, поэтому два барьера:
-   * сначала показываем точное число найденного (dryRun), и лишь потом просим
-   * подтверждение на удаление. Идущие турниры не пострадают — они играют по
-   * своей копии заданий внутри комнаты.
-   */
-  window.tnPurgePlanPool = async function tnPurgePlanPool() {
-    let fn = tnFn(null, 'adminPurgeTournamentTasks');
-    try {
-      const probe = await fn({ source: 'plan_content', dryRun: true });
-      const found = Number(probe?.data?.found || 0);
-      if (!found) { showToast('Пул из планов уже пуст — удалять нечего.', 'ok'); return; }
-      if (!confirm(`Удалить ${found} заданий, собранных из планов?\n\nЭто необратимо. Вопросы от ИИ не тронуты, идущие турниры не пострадают.`)) return;
-
-      let deleted = 0;
-      // Страницами по 2000, пока сервер не скажет, что больше нет.
-      for (let guard = 0; guard < 50; guard += 1) {
-        const res = await fn({ source: 'plan_content', dryRun: false });
-        deleted += Number(res?.data?.deleted || 0);
-        showToast(`Удалено ${deleted} из ${found}…`, 'ok');
-        if (!res?.data?.hasMore) break;
-      }
-      showToast(`Готово: удалено ${deleted} заданий из планов.`, 'ok');
-      await window.tnLoadTasks(true);
-      await window.tnLoadStats();
-    } catch (e) {
-      showToast('Не удалось удалить: ' + tnError(e), 'err');
-    }
-  };
+  // зачем: кнопка удаления пула из планов убрана — владелец уточнил, что
+  // задания должны ОСТАТЬСЯ в базе, просто не использоваться в турнирах.
+  // Неучастие обеспечено на сервере: loadResourcePool берёт только source:'ai'
+  // (tournaments.ts). Неиспользование обратимо, удаление — нет.
 
   window.tnPublishVisible = async function tnPublishVisible() {
     // зачем: только список ревью (#tn-list) — карточки-примеры в панелях

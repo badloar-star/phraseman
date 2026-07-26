@@ -122,6 +122,20 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain("cancelRoomInTransaction(db, tx, roomRef, room, 'resources_unavailable'");
   });
 
+  it('играет только на вопросах от ИИ — задания из планов в турнир не попадают', () => {
+    // Решение владельца 2026-07-26: задания, нарезанные из фраз обучающих
+    // планов, ОСТАЮТСЯ в базе, но не участвуют в турнирах — фраза урока не
+    // работает как соревновательный вопрос. Фильтр стоит в двух местах:
+    // общий пул и кураторский дочит по id (иначе набор протащил бы их в обход).
+    const poolStart = source.indexOf('async function loadResourcePool');
+    const poolEnd = source.indexOf('CuratedRoomSelection', poolStart);
+    expect(source.slice(poolStart, poolEnd)).toContain("where('source', '==', 'ai')");
+
+    const curatedStart = source.indexOf('async function loadCuratedForRoom');
+    const curatedEnd = source.indexOf('function buildRounds', curatedStart);
+    expect(source.slice(curatedStart, curatedEnd)).toContain("taskSnap.get('source') === 'ai'");
+  });
+
   it('cancels deterministic legacy resource failure without retrying the same fill path', () => {
     const start = source.indexOf("if (outcome === 'cancel_resources')");
     const end = source.indexOf("if (outcome === 'cancel_legacy')", start);

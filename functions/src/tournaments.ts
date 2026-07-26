@@ -209,9 +209,15 @@ function validBotProfile(id: string, data: FirebaseFirestore.DocumentData): BotP
 }
 
 async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots: BotProfile[]; tasks: TournamentTask[] }> {
+  // зачем: турниры играют ТОЛЬКО на вопросах, созданных ИИ специально для
+  // соревнования (решение владельца 2026-07-26). Задания, нарезанные из фраз
+  // обучающих планов, остаются в базе нетронутыми — они просто не участвуют:
+  // фраза урока не работает как соревновательный вопрос (дистракторы не
+  // конкурируют, ответ угадывается без знания языка).
   const [botsSnap, tasksSnap] = await Promise.all([
     db.collection(BOT_PROFILES_COLLECTION).limit(TOURNAMENT_ROOM_SIZE * 2).get(),
-    db.collection(TOURNAMENT_TASKS_COLLECTION).where('verified', '==', true).limit(200).get(),
+    db.collection(TOURNAMENT_TASKS_COLLECTION)
+      .where('verified', '==', true).where('source', '==', 'ai').limit(200).get(),
   ]);
   const bots = botsSnap.docs.map((doc) => validBotProfile(doc.id, doc.data())).filter((bot): bot is BotProfile => !!bot);
   const tasks = tasksSnap.docs.map(parseTask).filter((task): task is TournamentTask => !!task);
@@ -253,7 +259,10 @@ async function loadCuratedForRoom(
     for (const taskSnap of snaps) {
       // parseTask пропускает только verified-задания с валидным контрактом.
       const task = parseTask(taskSnap);
-      if (task) extraTasks.push(task);
+      // зачем: кураторский набор дочитывает задания по id напрямую, минуя
+      // фильтр источника в loadResourcePool — без этой проверки через него
+      // в турнир просочились бы задания из планов, которые мы убрали.
+      if (task && taskSnap.get('source') === 'ai') extraTasks.push(task);
     }
   }
 

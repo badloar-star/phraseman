@@ -76,7 +76,11 @@ describe('referral roulette soft sunset integration contract', () => {
     expect(referrals).toContain('readReferralDrain(renderToken)');
     expect(referrals).toContain('selectReferralSurfaceState');
     expect(referrals).not.toContain("progress?.referral_spin_credits");
-    expect(referrals).toContain('setSpinCredits(state.drain.availableCreditCount)');
+    // зачем: источник счётчика — серверный drain (state.drain.availableCreditCount);
+    // protectedCredits лишь не даёт СТАРОМУ ответу сервера затереть свежий
+    // DEV-грант (floor), сам floor тоже подтверждён сервером.
+    expect(referrals).toContain('const serverCredits = state.drain.availableCreditCount;');
+    expect(referrals).toContain('setSpinCredits(protectedCredits)');
     expect(spin).toContain('eligibleSummary.availableCount - 1');
   });
 

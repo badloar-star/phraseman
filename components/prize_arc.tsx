@@ -32,6 +32,7 @@ import Animated, {
   useAnimatedStyle,
   useReducedMotion,
   useSharedValue,
+  withSequence,
   withTiming,
 } from 'react-native-reanimated';
 // зачем: домашний стандарт JS-колбэков из worklet — scheduleOnRN (см. контракт
@@ -58,10 +59,29 @@ const RADIUS = 330;
 const CENTER_Y = 108;
 /** Фиксированная высота зоны — ±30°-карточки видны, ±60° уходят за низ/края. */
 export const PRIZE_ARC_HEIGHT = 212;
-const SPIN_DURATION_MS = 4200;
+/** Основное вращение: короткое, но с заметным торможением к призу. */
+const SPIN_DURATION_MS = 2_450;
+/** Лёгкий перелёт и возврат имитируют фиксацию барабана в слоте. */
+const FINAL_OVERSHOOT_DEGREES = 8;
+const FINAL_OVERSHOOT_DURATION_MS = 130;
+const FINAL_SETTLE_DURATION_MS = 220;
+/** JS-страховка поверх нативного callback: приз важнее декоративной анимации. */
+const SPIN_SETTLE_GRACE_MS = 600;
 /** Минимум полных оборотов за спин. */
 const MIN_TURNS = 3;
 const ENTER_MS = 480;
+/** Крейсерский оборот 360° — фон, пока сервер выбирает приз. */
+const CRUISE_TURN_MS = 780;
+/** Разгон до крейсерской скорости (первый оборот длиннее). */
+const CRUISE_START_EXTRA_MS = 380;
+/**
+ * Крейсер ОГРАНИЧЕН по времени (~31 с), НЕ withRepeat(-1): вечная анимация в
+ * фоне запрещена perf-контрактом (perf_freeze / runtime_lifecycle_ratchet).
+ * Сервер отвечает за секунды; если нет — дуга сама докатится и встанет.
+ */
+const CRUISE_MAX_TURNS = 40;
+/** Мягкий докат до ближайшего слота при остановке без приза (ошибка сети). */
+const CRUISE_STOP_MS = 420;
 
 export interface PrizeArcHandle {
   /**
@@ -69,6 +89,14 @@ export interface PrizeArcHandle {
    * анимации (или сразу при reduced motion). Параллельные вызовы игнорируются.
    */
   spinTo(prizeIndex: number): Promise<void>;
+  /**
+   * зачем: владелец (2026-07-26) — «Получить приз» без загрузки: вращение
+   * стартует МГНОВЕННО по нажатию, сервер выбирает приз в фоне, spinTo потом
+   * бесшовно докручивает с текущей скорости. При reduced motion — no-op.
+   */
+  startSpin(): void;
+  /** Плавная остановка БЕЗ приза (сервер отказал): докат до ближайшего слота. */
+  stopSpin(): void;
 }
 
 interface PrizeArcProps {
@@ -104,10 +132,7 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
   // фоном, чтобы спин не ловил догрузку.
   useEffect(() => {
     void preloadRoulettePrizeImages().catch(() => {});
-    return () => {
-      cancelAnimation(rotation);
-    };
-  }, [rotation]);
+  }, []);
 
   // Вход: дуга выкатывается снизу с лёгким довором (как полукруг у Kimi).
   // зачем: вход только через transform, БЕЗ opacity-гейта — если анимация входа
@@ -128,16 +153,76 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
   );
 
   const resolveRef = useRef<(() => void) | null>(null);
+  const targetRotationRef = useRef<number | null>(null);
+  const spinFallbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const finishSpin = useCallback(() => {
+    if (spinFallbackTimerRef.current) {
+      clearTimeout(spinFallbackTimerRef.current);
+      spinFallbackTimerRef.current = null;
+    }
+    const target = targetRotationRef.current;
+    targetRotationRef.current = null;
+    // Если UI-thread анимация была отменена/не стартовала, всё равно ставим
+    // серверный приз в центральный слот перед показом результата.
+    if (target !== null) rotation.value = target;
+    spinningSV.value = 0;
     spinningRef.current = false;
     const resolve = resolveRef.current;
     resolveRef.current = null;
     resolve?.();
-  }, []);
+  }, [rotation, spinningSV]);
+
+  useEffect(() => () => {
+    cancelAnimation(rotation);
+    finishSpin();
+  }, [finishSpin, rotation]);
 
   useImperativeHandle(ref, () => ({
+    startSpin() {
+      // Уже идёт докрутка до приза — не сбиваем её декоративной петлёй.
+      if (targetRotationRef.current !== null || spinningRef.current) return;
+      cancelAnimation(rotation);
+      const normalized = rotation.value % 360;
+      rotation.value = normalized;
+      // Reduced motion: без крейсерского вращения — spinTo доставит приз мгновенно.
+      if (reduceMotion) return;
+      spinningRef.current = true;
+      spinningSV.value = 1;
+      // Разгон + длинный равномерный крейсер. Ограничен CRUISE_MAX_TURNS —
+      // spinTo/stopSpin перехватывают его задолго до конца.
+      rotation.value = withSequence(
+        withTiming(normalized - 360, {
+          duration: CRUISE_TURN_MS + CRUISE_START_EXTRA_MS,
+          easing: Easing.in(Easing.quad),
+        }),
+        withTiming(normalized - 360 * CRUISE_MAX_TURNS, {
+          duration: CRUISE_TURN_MS * (CRUISE_MAX_TURNS - 1),
+          easing: Easing.linear,
+        }),
+      );
+    },
+    stopSpin() {
+      // Докрутка до приза важнее мягкой остановки — её не прерываем.
+      if (targetRotationRef.current !== null) return;
+      cancelAnimation(rotation);
+      spinningRef.current = false;
+      spinningSV.value = 0;
+      const normalized = rotation.value % 360;
+      // Докат ВПЕРЁД по ходу вращения до ближайшего слота — без отскока назад.
+      const settle = normalized - (((normalized % SLOT_DEG) + SLOT_DEG) % SLOT_DEG);
+      if (reduceMotion || settle === normalized) {
+        rotation.value = settle;
+        return;
+      }
+      rotation.value = normalized;
+      rotation.value = withTiming(settle, {
+        duration: CRUISE_STOP_MS,
+        easing: Easing.out(Easing.cubic),
+      });
+    },
     spinTo(prizeIndex: number) {
-      if (spinningRef.current) return Promise.resolve();
+      if (targetRotationRef.current !== null) return Promise.resolve();
+      cancelAnimation(rotation);
       spinningRef.current = true;
       return new Promise<void>((resolve) => {
         resolveRef.current = resolve;
@@ -148,20 +233,35 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
         const slotDeg = POSITION_OF_PRIZE[prizeIndex] * SLOT_DEG;
         const alreadyBehind = ((normalized + slotDeg) % 360 + 360) % 360;
         const target = normalized - alreadyBehind - MIN_TURNS * 360;
+        const overshootTarget = target - FINAL_OVERSHOOT_DEGREES;
+        targetRotationRef.current = target;
+        spinFallbackTimerRef.current = setTimeout(finishSpin, SPIN_DURATION_MS + SPIN_SETTLE_GRACE_MS);
         if (reduceMotion) {
           rotation.value = target;
           finishSpin();
           return;
         }
         spinningSV.value = 1;
-        rotation.value = withTiming(
-          target,
-          { duration: SPIN_DURATION_MS, easing: Easing.bezier(0.1, 0.72, 0.06, 1) },
-          (finished) => {
-            'worklet';
-            spinningSV.value = 0;
-            if (finished) scheduleOnRN(finishSpin);
-          },
+        rotation.value = withSequence(
+          withTiming(target, {
+            duration: SPIN_DURATION_MS,
+            easing: Easing.bezier(0.08, 0.78, 0.12, 1),
+          }),
+          withTiming(overshootTarget, {
+            duration: FINAL_OVERSHOOT_DURATION_MS,
+            easing: Easing.out(Easing.quad),
+          }),
+          withTiming(
+            target,
+            { duration: FINAL_SETTLE_DURATION_MS, easing: Easing.out(Easing.cubic) },
+            () => {
+              'worklet';
+              spinningSV.value = 0;
+              // Reanimated вызывает callback и при отмене. В обоих случаях
+              // освобождаем Promise; finishSpin сам докрутит до серверного слота.
+              scheduleOnRN(finishSpin);
+            },
+          ),
         );
       });
     },
@@ -205,6 +305,7 @@ const PrizeArc = forwardRef<PrizeArcHandle, PrizeArcProps>(function PrizeArc(
                 styles.card,
                 {
                   backgroundColor: t.bgSurface,
+                  borderColor: t.border,
                   opacity: dimmed ? 0.42 : 1,
                   transform: [
                     { rotate: `${slot * SLOT_DEG}deg` },
@@ -269,6 +370,7 @@ const styles = StyleSheet.create({
     width: CARD_W,
     height: CARD_H,
     borderRadius: 14,
+    borderWidth: 2,
     overflow: 'hidden',
   },
   cardImage: {

@@ -1,96 +1,30 @@
 /**
- * Полноэкранная модалка выигрыша рулетки Plus.
+ * Модалка выигрыша «Награда за друга».
  *
- * RN Modal (transparent): затемнение, карточка приза крупно (spring scale-in),
- * конфетти (~24 View-частицы, Reanimated translate/rotate/opacity на UI-треде,
- * само-унmount по завершении), «+N дн. Plus», строка суммирования
- * «Твой Plus теперь до {vipUntil} · +N дн.», кнопка «Забрать».
+ * зачем: владелец (2026-07-26) — прежний вариант растягивался на весь экран и
+ * вылезал за рамки (картинка и системное масштабирование шрифтов не были
+ * ограничены). Теперь это компактная центрированная карточка: ассет клипается
+ * внутри карточки (max 220pt), все тексты с maxFontSizeMultiplier, кнопка
+ * всегда в пределах экрана. Праздничная анимация живёт отдельно в
+ * RouletteWinCelebration и запускается только после закрытия этой модалки.
  *
- * Все цвета — токены темы; fontWeight только 400/700; тени shadowColor '#000000'.
+ * Все цвета — токены темы; fontWeight только 400/700; тени shadowColor '#000000';
+ * без обводок — карточка отделяется тоном и тенью.
  */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { Image } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, {
-  Easing,
-  interpolate,
-  runOnJS,
   useAnimatedStyle,
+  useReducedMotion,
   useSharedValue,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
 import { useTheme } from './ThemeContext';
+import { useLang } from './LangContext';
+import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES } from '../app/roulette_prizes';
-
-const CONFETTI_COUNT = 24;
-const CONFETTI_COLORS = ['#FFFFFF', '#FFC800']; // + акцент темы добавляется в компоненте
-
-interface ConfettiPieceProps {
-  index: number;
-  colors: string[];
-  onDone: () => void;
-}
-
-/** Одна частица конфетти: старт из центра верхней трети, разлёт + затухание. */
-function ConfettiPiece({ index, colors, onDone }: ConfettiPieceProps) {
-  const progress = useSharedValue(0);
-  // Детерминированный разброс по индексу (без Math.random в рендере).
-  const params = useMemo(() => {
-    const angle = ((index * 137.5) % 360) * (Math.PI / 180);
-    const dist = 110 + ((index * 53) % 130);
-    return {
-      dx: Math.cos(angle) * dist,
-      dy: Math.sin(angle) * dist - 90,
-      rot: (index % 2 === 0 ? 1 : -1) * (180 + (index * 47) % 360),
-      color: colors[index % colors.length],
-      w: 6 + (index % 3) * 2,
-      h: 10 + (index % 4) * 3,
-      delay: (index % 6) * 40,
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
-
-  useEffect(() => {
-    progress.value = withTiming(
-      1,
-      { duration: 1500 + params.delay, easing: Easing.out(Easing.cubic) },
-      (finished) => {
-        'worklet';
-        if (finished) runOnJS(onDone)();
-      },
-    );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const style = useAnimatedStyle(() => ({
-    transform: [
-      { translateX: interpolate(progress.value, [0, 1], [0, params.dx]) },
-      { translateY: interpolate(progress.value, [0, 1], [0, params.dy]) },
-      { rotate: `${interpolate(progress.value, [0, 1], [0, params.rot])}deg` },
-    ],
-    opacity: interpolate(progress.value, [0, 0.75, 1], [1, 1, 0]),
-  }));
-
-  return (
-    <Animated.View
-      style={[
-        confettiStyles.piece,
-        style,
-        { backgroundColor: params.color, width: params.w, height: params.h },
-      ]}
-    />
-  );
-}
-
-const confettiStyles = StyleSheet.create({
-  piece: {
-    position: 'absolute',
-    left: '50%',
-    top: '32%',
-    borderRadius: 2,
-  },
-});
 
 export interface RouletteWinData {
   prizeIndex: number;
@@ -104,24 +38,54 @@ interface Props {
   onClose: () => void;
 }
 
+const DATE_LOCALE_BY_LANG: Record<Lang, string> = {
+  ru: 'ru-RU',
+  uk: 'uk-UA',
+  es: 'es-ES',
+  'pt-BR': 'pt-BR',
+  vi: 'vi-VN',
+  id: 'id-ID',
+  tr: 'tr-TR',
+  pl: 'pl-PL',
+};
+
+/** Локализованное имя приза («1 месяц», не «30 дн.») — зеркало ROULETTE_PRIZES.days. */
+function prizeTitle(days: number, lang: Lang): string {
+  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
+  switch (days) {
+    case 1: return L('1 день', '1 день', '1 día', '1 dia', '1 ngày', '1 hari', '1 gün', '1 dzień');
+    case 7: return L('7 дней', '7 днів', '7 días', '7 dias', '7 ngày', '7 hari', '7 gün', '7 dni');
+    case 30: return L('1 месяц', '1 місяць', '1 mes', '1 mês', '1 tháng', '1 bulan', '1 ay', '1 miesiąc');
+    case 90: return L('3 месяца', '3 місяці', '3 meses', '3 meses', '3 tháng', '3 bulan', '3 ay', '3 miesiące');
+    case 180: return L('6 месяцев', '6 місяців', '6 meses', '6 meses', '6 tháng', '6 bulan', '6 ay', '6 miesięcy');
+    case 365: return L('1 год', '1 рік', '1 año', '1 ano', '1 năm', '1 tahun', '1 yıl', '1 rok');
+    default: return `${days} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
+  }
+}
+
 export default function RouletteWinModal({ data, onClose }: Props) {
   const { theme: t, f, ds } = useTheme();
+  const { lang } = useLang();
+  const reduceMotion = useReducedMotion();
   const scale = useSharedValue(0.85);
   const opacity = useSharedValue(0);
-  const [confettiGone, setConfettiGone] = useState(false);
-  const doneCount = React.useRef(0);
+  const L = (ru: string, uk: string, es: string, ptBr: string, vi: string, id: string, tr: string, pl: string) =>
+    triLang(lang as Lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   useEffect(() => {
-    if (data) {
-      setConfettiGone(false);
-      doneCount.current = 0;
-      scale.value = 0.85;
-      opacity.value = 0;
-      scale.value = withSpring(1, { damping: 13, stiffness: 160 });
-      opacity.value = withTiming(1, { duration: 220 });
+    if (!data) return;
+    if (reduceMotion) {
+      scale.value = 1;
+      opacity.value = 1;
+      return;
     }
+    scale.value = 0.85;
+    opacity.value = 0;
+    scale.value = withSpring(1, { damping: 13, stiffness: 160 });
+    opacity.value = withTiming(1, { duration: 220 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, reduceMotion]);
 
   const cardAnim = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
@@ -130,52 +94,68 @@ export default function RouletteWinModal({ data, onClose }: Props) {
 
   if (!data) return null;
   const prize = ROULETTE_PRIZES[data.prizeIndex] ?? ROULETTE_PRIZES[0];
-  const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString('ru-RU') : '—';
-  const confettiColors = [t.accent, t.gold, ...CONFETTI_COLORS];
+  const dateLocale = DATE_LOCALE_BY_LANG[lang as Lang] ?? 'ru-RU';
+  const vipDate = data.vipUntil > 0 ? new Date(data.vipUntil).toLocaleDateString(dateLocale) : '—';
+  const daysShort = `+${data.prizeDays} ${L('дн.', 'дн.', 'd.', 'd.', 'ngày', 'hari', 'gün', 'dn.')}`;
 
   return (
-    <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent>
+    <Modal transparent visible animationType="fade" onRequestClose={onClose} statusBarTranslucent navigationBarTranslucent>
       <View style={styles.backdrop}>
-        {!confettiGone &&
-          Array.from({ length: CONFETTI_COUNT }).map((_, i) => (
-            <ConfettiPiece
-              key={i}
-              index={i}
-              colors={confettiColors}
-              onDone={() => {
-                doneCount.current += 1;
-                if (doneCount.current >= CONFETTI_COUNT) setConfettiGone(true);
-              }}
+        <Animated.View
+          style={[
+            styles.card,
+            { backgroundColor: t.bgCard, shadowColor: '#000000' },
+            cardAnim,
+          ]}
+        >
+          {/* Ассет клипается скруглением внутри карточки — всегда в рамках экрана. */}
+          <View style={styles.prizeImageWrap}>
+            <Image
+              source={prize.image}
+              style={styles.prizeImage}
+              contentFit="cover"
+              cachePolicy="memory-disk"
+              accessible={false}
             />
-          ))}
-
-        <Animated.View style={[styles.cardWrap, cardAnim]}>
-          {/* outer = тень; inner = clip (UI_STANDARD: overflow:'hidden' убивает elevation) */}
-          <View style={[styles.prizeCardOuter, { shadowColor: '#000000' }]}>
-            <View style={[styles.prizeCardInner, { borderColor: t.accent }]}>
-              <Image source={prize.image} style={styles.prizeImage} resizeMode="cover" />
-            </View>
           </View>
 
-          <Text style={[styles.winDays, { color: t.accent, fontSize: f.numLg + 2, fontFamily: ds.fontFamily }]}>
-            +{prize.label} Plus
+          <Text
+            maxFontSizeMultiplier={1.2}
+            style={[styles.winTitle, { color: t.textPrimary, fontSize: f.h2 ?? 22, fontFamily: ds.fontFamily }]}
+          >
+            {L('Поздравляем!', 'Вітаємо!', '¡Felicidades!', 'Parabéns!', 'Chúc mừng!', 'Selamat!', 'Tebrikler!', 'Gratulacje!')}
           </Text>
-          <Text style={[styles.winSub, { color: t.textMuted, fontSize: f.sub, fontFamily: ds.fontFamily }]}>
-            Твой Plus теперь до <Text style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
+          <Text
+            maxFontSizeMultiplier={1.2}
+            style={[styles.winDays, { color: t.accent, fontSize: (f.numLg ?? 28) + 2, fontFamily: ds.fontFamily }]}
+          >
+            +{prizeTitle(data.prizeDays, lang as Lang)} Plus
+          </Text>
+          <Text
+            maxFontSizeMultiplier={1.2}
+            style={[styles.winSub, { color: t.textMuted, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily }]}
+          >
+            {L('Твой Plus теперь до', 'Твій Plus тепер до', 'Tu Plus ahora hasta', 'Seu Plus agora até', 'Plus của bạn đến', 'Plus-mu sampai', 'Plus artık şu tarihe kadar:', 'Twój Plus teraz do')}
+            {' '}
+            <Text maxFontSizeMultiplier={1.2} style={{ color: t.textPrimary, fontWeight: '700' }}>{vipDate}</Text>
             {' · '}
-            <Text style={{ color: t.accent, fontWeight: '700' }}>+{data.prizeDays} дн.</Text>
+            <Text maxFontSizeMultiplier={1.2} style={{ color: t.accent, fontWeight: '700' }}>{daysShort}</Text>
           </Text>
 
           <Pressable
             onPress={onClose}
+            accessibilityRole="button"
             style={({ pressed }: { pressed: boolean }) => [
               styles.claimBtn,
               ds.shadow.medium,
               { backgroundColor: t.accent, opacity: pressed ? 0.92 : 1, height: ds.buttonHeight },
             ]}
           >
-            <Text style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg, fontFamily: ds.fontFamily }]}>
-              Забрать
+            <Text
+              maxFontSizeMultiplier={1.2}
+              style={[styles.claimBtnText, { color: t.correctText, fontSize: f.bodyLg ?? 16, fontFamily: ds.fontFamily }]}
+            >
+              {L('Готово', 'Готово', 'Listo', 'Pronto', 'Xong', 'Selesai', 'Tamam', 'Gotowe')}
             </Text>
           </Pressable>
         </Animated.View>
@@ -190,43 +170,52 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.72)',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 32,
+    paddingHorizontal: 28,
+    paddingVertical: 48,
   },
-  cardWrap: {
-    alignItems: 'center',
+  card: {
     width: '100%',
+    maxWidth: 330,
+    borderRadius: 28,
+    paddingTop: 22,
+    paddingBottom: 20,
+    paddingHorizontal: 20,
+    alignItems: 'center',
+    shadowOffset: { width: 0, height: 12 },
+    shadowOpacity: 0.38,
+    shadowRadius: 16,
+    elevation: 12,
   },
-  prizeCardOuter: {
-    shadowOffset: { width: 0, height: 14 },
-    shadowOpacity: 0.5,
-    shadowRadius: 30,
-    elevation: 18,
-    borderRadius: 20,
-  },
-  prizeCardInner: {
+  prizeImageWrap: {
+    width: '100%',
+    maxWidth: 220,
+    borderRadius: 18,
     overflow: 'hidden',
-    borderRadius: 20,
-    borderWidth: 2,
   },
   prizeImage: {
-    width: 240,
+    width: '100%',
     aspectRatio: 3 / 2,
   },
+  winTitle: {
+    marginTop: 18,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
   winDays: {
-    marginTop: 24,
+    marginTop: 6,
     fontWeight: '700',
     textAlign: 'center',
   },
   winSub: {
-    marginTop: 10,
+    marginTop: 8,
     textAlign: 'center',
     lineHeight: 20,
     fontWeight: '400',
   },
   claimBtn: {
-    marginTop: 26,
+    marginTop: 20,
     alignSelf: 'stretch',
-    borderRadius: 22,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
   },

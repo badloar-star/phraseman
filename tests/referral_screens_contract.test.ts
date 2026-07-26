@@ -149,7 +149,7 @@ describe('referral roulette screen contract', () => {
     expect(friends).toContain('readReferralDrain(referralAccountToken)');
     expect(friends).toContain('isReferralAccountRequestCurrent(requestToken, referralAccountKey)');
     expect(settings).toContain('readReferralDrain(settingsReferralToken)');
-    expect(settings).toContain("router.push('/referrals' as any)");
+    expect(settings).toContain("pathname: '/referrals'");
     expect(bootstrap).toContain('REFERRAL_STATE_STORAGE_KEY');
     expect(bootstrap).toContain('hydrateReferralStateFromRaw');
   });
@@ -229,7 +229,9 @@ describe('referral roulette screen contract', () => {
     expect(sheet).not.toContain('testID="referral-code-seven-plus-seven-note"');
     expect(referrals).toContain("params.enter === '1' && marketingVisible");
     expect(referrals).toContain('testID="referrals-enter-code"');
-    expect(settings).toContain("router.push('/referrals?enter=1' as any)");
+    // зачем: настройки после редизайна (2026-07-26) открывают шит объектным
+    // push({ pathname, params }) — строковый '/referrals?enter=1' остался только у welcome.
+    expect(settings).toContain("params: { enter: '1'");
     expect(welcome).toContain("router.push('/referrals?enter=1' as never)");
   });
 
@@ -261,12 +263,15 @@ describe('referral roulette screen contract', () => {
     expect(friends).not.toContain('testID="friends-open-referrals"');
     expect(friends).not.toContain("router.push('/referrals' as any)");
     expect(friends).not.toContain("router.push('/referral_code_entry' as any)");
-    // Входы живут в настройках: ряд «Ввести реферальный код» (тот же экран,
-    // шит открыт через ?enter=1) + инвайт-баннер.
-    expect(settings).toContain('testID="settings-referral-code-row"');
+    // зачем: владелец (2026-07-26) — отдельный ряд «Ввести реферальный код»
+    // из настроек убран; ввод кода живёт кнопкой на самом экране /referrals,
+    // а в настройках остаются инвайт-баннер и объектные push на /referrals.
+    expect(settings).not.toContain('testID="settings-referral-code-row"');
     expect(settings).toContain('testID="settings-invite-banner"');
-    expect(settings).toContain("router.push('/referrals?enter=1' as any)");
-    expect(settings).toContain("router.push('/referrals' as any)");
+    expect(settings).toContain("params: { enter: '1'");
+    expect(settings).toContain("pathname: '/referrals'");
+    const referrals = read('app/referrals.tsx');
+    expect(referrals).toContain('testID="referrals-enter-code"');
     expect(layout).not.toContain('<Stack.Screen name="referral_code_entry"');
     expect(layout).toContain('<Stack.Screen name="referrals"');
   });

@@ -146,6 +146,29 @@ describe('referral roulette finish contract', () => {
     expect(prizes).toContain('export async function preloadRoulettePrizeImages');
   });
 
+  it('cannot lose a successful award behind asset preload or a missing animation callback', () => {
+    const referrals = read('app/referrals.tsx');
+    const arc = read('components/prize_arc.tsx');
+
+    // Карточки уже рендерятся через expo-image: preload — только прогрев и не имеет
+    // права задерживать серверный spin до бесконечности.
+    expect(referrals).not.toContain('await preloadRoulettePrizeImages().catch(() => {});');
+    expect(referrals).toContain('void preloadRoulettePrizeImages().catch(() => {});');
+
+    // После server ok показ приза ограничен JS-дедлайном и не зависит от того,
+    // доставит ли UI-thread callback завершения анимации.
+    expect(referrals).toContain('settlePrizeArcAnimation');
+    expect(referrals).toContain('Promise.race');
+    expect(referrals).toContain('arcRef.current?.spinTo(outcome.prizeIndex)');
+
+    // Сам imperative-контракт дуги тоже fail-safe: interruption и потерянный
+    // callback освобождают pending Promise, а fallback доводит карточку до приза.
+    expect(arc).toContain('SPIN_SETTLE_GRACE_MS');
+    expect(arc).toContain('setTimeout(finishSpin');
+    expect(arc).toContain('clearTimeout(spinFallbackTimerRef.current)');
+    expect(arc).not.toContain('if (finished) scheduleOnRN(finishSpin)');
+  });
+
   it('maps a server-side disable race distinctly and localizes the how-it-works sheet', () => {
     const client = read('app/roulette_spin_client.ts');
     const referrals = read('app/referrals.tsx');
@@ -195,9 +218,11 @@ describe('referral roulette finish contract', () => {
   it('keeps the settings invite banner honest in every locale', () => {
     const settings = read('app/(tabs)/settings.tsx');
     expect(settings).toContain('testID="settings-plus-row"');
-    expect(settings).toContain('testID="settings-referral-code-row"');
+    // зачем: владелец (2026-07-26) — ряд «Ввести реферальный код» из настроек
+    // убран, ввод кода живёт кнопкой на /referrals; в настройках — баннер.
+    expect(settings).not.toContain('testID="settings-referral-code-row"');
     expect(settings).toContain('testID="settings-invite-banner"');
-    expect(settings).toContain("router.push('/referrals' as any)");
+    expect(settings).toContain("pathname: '/referrals'");
     for (const marker of [
       "'Пригласи друга — выиграй Plus'",
       "'Запроси друга — виграй Plus'",

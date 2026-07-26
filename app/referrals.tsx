@@ -27,6 +27,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import ScreenGradient from '../components/ScreenGradient';
+import SectionSheetHeader from '../components/SectionSheetHeader';
 import SkeletonBlock from '../components/SkeletonShimmer';
 import TapScale from '../components/TapScale';
 import PrizeArc, { type PrizeArcHandle } from '../components/prize_arc';
@@ -34,6 +35,7 @@ import ReferralCodeSheet from '../components/referral_code_sheet';
 import ReferralHowSheet from '../components/referral_how_sheet';
 import RouletteWinModal from '../components/roulette_win_modal';
 import type { RouletteWinData } from '../components/roulette_win_modal';
+import RouletteWinCelebration from '../components/roulette_win_celebration';
 import ReferralFriendRewardModal from '../components/referral_friend_reward_modal';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -82,6 +84,25 @@ function makeL(lang: Lang) {
   ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 }
 
+/**
+ * Докрутка дуги с JS-дедлайном: выданный сервером приз не имеет права
+ * потеряться за декоративной анимацией (UI-thread callback может не прийти —
+ * см. контракт referral_roulette_finish). Promise.race гарантирует показ
+ * модалки не позже дедлайна.
+ */
+const SPIN_SETTLE_DEADLINE_MS = 3_600;
+function settlePrizeArcAnimation(startLanding: () => Promise<void> | undefined): Promise<void> {
+  const landing = startLanding();
+  if (!landing) return Promise.resolve();
+  let deadlineTimer: ReturnType<typeof setTimeout> | null = null;
+  const deadline = new Promise<void>((resolve) => {
+    deadlineTimer = setTimeout(resolve, SPIN_SETTLE_DEADLINE_MS);
+  });
+  return Promise.race([landing, deadline]).finally(() => {
+    if (deadlineTimer) clearTimeout(deadlineTimer);
+  });
+}
+
 function shortInviteName(invite: ReferralInvite): string {
   const id = String(invite.refereeStableId || '').trim();
   if (!id) return '----';
@@ -97,7 +118,8 @@ function inviteDisplayName(invite: ReferralInvite, fallbackPrefix: string): stri
 /** Кэш последнего успешного списка приглашений — экран рисуется мгновенно, без скелетонов. */
 export default function ReferralsScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ enter?: string }>();
+  const params = useLocalSearchParams<{ enter?: string; source?: string }>();
+  const closeFallback = params.source === 'settings' ? '/(tabs)/settings' : '/(tabs)/friends';
   const { theme: t, f, ds } = useTheme();
   const { lang } = useLang();
   const L = makeL(lang as Lang);
@@ -127,6 +149,9 @@ export default function ReferralsScreen() {
   const [spinCreditState, setSpinCredits] = useState(() => (
     initialDrain?.value.availableCreditCount ?? warmReferralState?.drain.availableCreditCount ?? 0
   ));
+  // Серверный список приглашений может прийти позже DEV-гранта со старым нулём.
+  // До первого свежего подтверждения он не имеет права отнять уже выданный ключ.
+  const devGrantedCreditsFloorRef = useRef(0);
   const scopedReferralState = selectAccountScopedReferralState(renderAccountScope, {
     accountKey: loadedAccountScope,
     invites: inviteState,
@@ -161,6 +186,7 @@ export default function ReferralsScreen() {
   const [spinning, setSpinning] = useState(false);
   const spinningRef = useRef(false);
   const [win, setWin] = useState<RouletteWinData | null>(null);
+  const [winCelebrationVisible, setWinCelebrationVisible] = useState(false);
   const winTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [codeSheetOpen, setCodeSheetOpen] = useState(false);
   const [howSheetOpen, setHowSheetOpen] = useState(false);
@@ -226,11 +252,17 @@ export default function ReferralsScreen() {
       const state = await getClaimableReferralState({ force: options.force });
     // ok:false = сеть/сервер не ответили — не затираем показанный кэш пустотой.
       if (!state.ok || !commitReferralState(request, state.invites, state.drain)) return;
+        const serverCredits = state.drain.availableCreditCount;
+        const protectedCredits = Math.max(serverCredits, devGrantedCreditsFloorRef.current);
+        if (serverCredits >= devGrantedCreditsFloorRef.current) {
+          devGrantedCreditsFloorRef.current = 0;
+        }
+        const protectedDrain = { ...state.drain, availableCreditCount: protectedCredits };
         setLoadedAccountScope(requestScope);
         setInvites(state.invites);
-        setDrain(state.drain);
+        setDrain(protectedDrain);
         setHasServerDrain(true);
-        setSpinCredits(state.drain.availableCreditCount);
+        setSpinCredits(protectedCredits);
     } finally {
       if (isReferralInvitesRequestCurrent(request)) setLoading(false);
     }
@@ -255,9 +287,18 @@ export default function ReferralsScreen() {
             if (!current || !currentDrain) return;
             setLoadedAccountScope(accountScopeKey(token));
             setInvites(current.value);
-            setDrain(currentDrain.value);
+            setDrain({
+              ...currentDrain.value,
+              availableCreditCount: Math.max(
+                currentDrain.value.availableCreditCount,
+                devGrantedCreditsFloorRef.current,
+              ),
+            });
             setHasServerDrain(true);
-            setSpinCredits(currentDrain.value.availableCreditCount);
+            setSpinCredits(Math.max(
+              currentDrain.value.availableCreditCount,
+              devGrantedCreditsFloorRef.current,
+            ));
             setLoading(false);
           }
         } catch { /* битый кэш — просто ждём сеть */ }
@@ -290,12 +331,16 @@ export default function ReferralsScreen() {
       const claim = await claimReferralSpins().catch(() => null);
       if (!alive || !isCurrentAccountGeneration(requestToken)) return;
       if (claim && typeof claim.spinsTotal === 'number') {
-        setSpinCredits(claim.spinsTotal);
+        const cached = await readCachedSpinCredits();
+        if (!alive || !isCurrentAccountGeneration(requestToken)) return;
+        setSpinCredits(Math.max(claim.spinsTotal, cached, devGrantedCreditsFloorRef.current));
         await load({ force: true }).catch(() => {});
       }
       else {
         const cached = await readCachedSpinCredits();
-        if (alive && isCurrentAccountGeneration(requestToken)) setSpinCredits(cached);
+        if (alive && isCurrentAccountGeneration(requestToken)) {
+          setSpinCredits(Math.max(cached, devGrantedCreditsFloorRef.current));
+        }
       }
     })();
     return () => { alive = false; };
@@ -310,22 +355,46 @@ export default function ReferralsScreen() {
     if (winTimerRef.current) clearTimeout(winTimerRef.current);
   }, []);
 
-  // ── Спин прямо на экране: сервер решает приз, дуга докручивается до него ────
+  // ── Серверный выигрыш: дуга стартует мгновенно, сервер решает в фоне ────────
   const onSpin = useCallback(async () => {
     if (spinningRef.current || spinCredits <= 0) return;
     hapticTap();
     const spinAccount = captureAccountGeneration();
     spinningRef.current = true;
     setSpinning(true);
+    // зачем: владелец (2026-07-26) — на «Получить приз» НЕТ загрузки: вращение
+    // дуги и локальное списание ключа происходят сразу по нажатию, сервер
+    // подтверждает в фоне. Ошибка → мягкая остановка дуги и откат ключа.
+    // guard-ok: списание чисто локальное (в кэш/сервер не пишется), при ошибке
+    // откатывается ниже, при успехе перезаписывается серверным spinsLeft.
+    const creditsBeforeSpin = spinCredits;
+    const floorBeforeSpin = devGrantedCreditsFloorRef.current;
+    devGrantedCreditsFloorRef.current = Math.min(floorBeforeSpin, Math.max(0, creditsBeforeSpin - 1)); // guard-ok
+    setSpinCredits(Math.max(0, creditsBeforeSpin - 1)); // guard-ok
+
+    arcRef.current?.startSpin();
     try {
-      await preloadRoulettePrizeImages().catch(() => {});
+      // Карточки уже рендерятся через expo-image; preload — только прогрев.
+      // Asset.loadAsync иногда не завершает Promise, поэтому ждать его перед
+      // серверным spin нельзя: сервер сначала должен подтвердить и списать ключ.
+      void preloadRoulettePrizeImages().catch(() => {});
       const outcome = await spinReferralRoulette();
-      if (!isCurrentAccountGeneration(spinAccount)) return;
+      if (!isCurrentAccountGeneration(spinAccount)) {
+        arcRef.current?.stopSpin();
+        return;
+      }
       if (!outcome.ok) {
+        arcRef.current?.stopSpin();
         if (outcome.reason === 'no_spins') {
+          devGrantedCreditsFloorRef.current = 0;
           setSpinCredits(0);
           setMessage(L('Ключи закончились — пригласи друга', 'Ключі закінчилися — запроси друга', 'No quedan llaves: invita a un amigo', 'As chaves acabaram — convide um amigo', 'Đã hết chìa khóa — hãy mời bạn', 'Kunci habis — undang teman', 'Anahtar kalmadı — bir arkadaşını davet et', 'Skończyły się klucze — zaproś znajomego'));
-        } else if (outcome.reason === 'link_required') {
+          return;
+        }
+        // Ключ НЕ потрачен — возвращаем оптимистично списанный счётчик.
+        devGrantedCreditsFloorRef.current = floorBeforeSpin;
+        setSpinCredits(creditsBeforeSpin);
+        if (outcome.reason === 'link_required') {
           setMessage(L('Нужно связать аккаунт — загляни в профиль', 'Потрібно прив’язати акаунт — зазирни в профіль', 'Vincula tu cuenta desde el perfil', 'Vincule sua conta no perfil', 'Hãy liên kết tài khoản trong hồ sơ', 'Tautkan akunmu di profil', 'Hesabını profilden bağla', 'Połącz konto w profilu'));
         } else if (outcome.reason === 'disabled') {
           setMessage(L('Награды временно недоступны', 'Нагороди тимчасово недоступні', 'Las recompensas no están disponibles temporalmente', 'As recompensas estão temporariamente indisponíveis', 'Phần thưởng tạm thời không khả dụng', 'Hadiah sementara tidak tersedia', 'Ödüller geçici olarak kullanılamıyor', 'Nagrody są chwilowo niedostępne'));
@@ -335,18 +404,29 @@ export default function ReferralsScreen() {
         }
         return;
       }
+      devGrantedCreditsFloorRef.current = outcome.spinsLeft;
       setSpinCredits(outcome.spinsLeft);
-      await arcRef.current?.spinTo(outcome.prizeIndex);
+      // Сервер уже списал ключ и авторитетно выбрал приз — докручиваем дугу до
+      // него с текущей скорости; JS-дедлайн не даст модалке потеряться.
+      await settlePrizeArcAnimation(() => arcRef.current?.spinTo(outcome.prizeIndex));
       if (!isCurrentAccountGeneration(spinAccount)) return;
       void hapticSuccess();
-      winTimerRef.current = setTimeout(() => {
-        setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil });
-      }, 420);
+      setWin({ prizeIndex: outcome.prizeIndex, prizeDays: outcome.prizeDays, vipUntil: outcome.vipUntil });
     } finally {
       spinningRef.current = false;
       setSpinning(false);
     }
   }, [L, spinCredits]);
+
+  const closeWinAndStartCelebration = useCallback(() => {
+    setWin(null);
+    if (winTimerRef.current) clearTimeout(winTimerRef.current);
+    // Даём fade-закрытию модалки закончиться, затем запускаем отдельную Kimi-анимацию.
+    winTimerRef.current = setTimeout(() => {
+      winTimerRef.current = null;
+      setWinCelebrationVisible(true);
+    }, 220);
+  }, []);
 
   // DEV: кнопка «+1 ключ» (только __DEV__; гейт/лимит 10-в-сутки — на сервере).
   const [devGrantBusy, setDevGrantBusy] = useState(false);
@@ -356,9 +436,19 @@ export default function ReferralsScreen() {
     try {
       const res = await devGrantReferralSpin();
       if (res.ok) {
-        setSpinCredits(res.spinsTotal);
-      } else if (res.reason === 'daily_limit') {
-        setMessage('DEV: лимит 10 ключей в сутки исчерпан');
+        // DEV-грант уже подтверждён сервером. Обновляем оба источника этого экрана
+        // синхронно: иначе ранний load() с прежним drain.availableCreditCount = 0
+        // способен перерисовать кнопку неактивной прямо после «DEV +1».
+        const grantedSpins = Math.max(1, res.spinsTotal);
+        devGrantedCreditsFloorRef.current = Math.max(devGrantedCreditsFloorRef.current, grantedSpins);
+        setLoadedAccountScope(renderAccountScope);
+        setSpinCredits((current) => Math.max(current, grantedSpins));
+        setDrain((current) => ({
+          ...current,
+          availableCreditCount: Math.max(current.availableCreditCount, grantedSpins),
+        }));
+        setHasServerDrain(true);
+        setMessage('DEV: ключ добавлен — нажми «Получить приз», чтобы увидеть серверный выигрыш.');
       } else if (res.reason === 'disabled') {
         setMessage('DEV: выдача ключей выключена (remote_config)');
       } else {
@@ -367,7 +457,7 @@ export default function ReferralsScreen() {
     } finally {
       setDevGrantBusy(false);
     }
-  }, [devGrantBusy]);
+  }, [devGrantBusy, renderAccountScope]);
 
   // Реф-код: тот же серверный код, что в /friends. Ретрай/бэкофф — внутри синглтона
   // (dedupe с friends.tsx — один сетевой проход на процесс).
@@ -503,64 +593,48 @@ export default function ReferralsScreen() {
   // механика называется «Награда за друга», действие — «Забрать награду».
   const spinCtaLabel = spinning
     ? L('Открываем…', 'Відкриваємо…', 'Abriendo…', 'Abrindo…', 'Đang mở…', 'Membuka…', 'Açılıyor…', 'Otwieramy…')
-    : L('Забрать награду', 'Забрати нагороду', 'Recibir recompensa', 'Receber recompensa', 'Nhận thưởng', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę');
+    : L('Получить приз', 'Отримати приз', 'Recibir premio', 'Receber prêmio', 'Nhận quà', 'Ambil hadiah', 'Ödülü al', 'Odbierz nagrodę');
 
   return (
     <ScreenGradient artBackdrop="friends">
       <SafeAreaView testID="screen-referrals" style={{ flex: 1 }}>
+        {/* зачем: стандарт «шторки раздела» — модал с выездом снизу; шапка
+            фиксированная над скроллом, «как это работает» — аксессуар у крестика. */}
+        <SectionSheetHeader
+          title={drainVisible
+            ? sunsetCopy.drainTitle
+            : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
+          onClose={() => safeRouterBack(router, closeFallback as any)}
+          accessory={referralUiVisible ? (
+            <TapScale
+              testID="referrals-roulette-about"
+              accessibilityRole="button"
+              accessibilityLabel={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
+              onPress={() => setHowSheetOpen(true)}
+              style={{
+                width: 32,
+                height: 32,
+                borderRadius: 16,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: t.bgCard,
+              }}
+            >
+              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
+            </TapScale>
+          ) : undefined}
+        />
         <ScrollView
           showsVerticalScrollIndicator={false}
           refreshControl={<RefreshControl refreshing={refreshing} onRefresh={refresh} tintColor={t.accent} />}
-          contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 34, gap: 16 }}
+          contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 16, paddingBottom: 34, gap: 16 }}
         >
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TapScale
-              accessibilityRole="button"
-              accessibilityLabel={L('Назад', 'Назад', 'Atrás', 'Voltar', 'Quay lại', 'Kembali', 'Geri', 'Wstecz')}
-              onPress={() => safeRouterBack(router, '/(tabs)/friends' as any)}
-              style={{
-                width: 44,
-                height: 44,
-                borderRadius: 22,
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: t.bgSurface,
-                marginRight: 12,
-              }}
-            >
-              <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
-            </TapScale>
-            <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '700' }} numberOfLines={1}>
-              {drainVisible
-                ? sunsetCopy.drainTitle
-                : L('Награда за друга', 'Нагорода за друга', 'Recompensa por amigo', 'Recompensa por amigo', 'Phần thưởng mời bạn', 'Hadiah undang teman', 'Arkadaş ödülü', 'Nagroda za znajomego')}
-            </Text>
-            {referralUiVisible && (
-              <TapScale
-                testID="referrals-roulette-about"
-                accessibilityRole="button"
-                accessibilityLabel={L('Как это работает', 'Як це працює', 'Cómo funciona', 'Como funciona', 'Cách hoạt động', 'Cara kerjanya', 'Nasıl çalışır', 'Jak to działa')}
-                onPress={() => { hapticTap(); setHowSheetOpen(true); }}
-                style={{
-                  width: 44,
-                  height: 44,
-                  borderRadius: 22,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: t.bgSurface,
-                  marginLeft: 12,
-                }}
-              >
-                <Text style={{ color: t.textSecond, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>?</Text>
-              </TapScale>
-            )}
-          </View>
 
           {referralUiVisible && (
             <View testID="referrals-roulette-hero" style={{ gap: 12 }}>
               {/* Дуга bleeds до физических краёв экрана — карточки клипаются рамкой, как у Kimi. */}
               <View style={{ marginHorizontal: -20 }}>
-                <PrizeArc ref={arcRef} dimmed={spinCredits <= 0} />
+                <PrizeArc ref={arcRef} dimmed={false} />
               </View>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, paddingHorizontal: 12, paddingVertical: 7, borderRadius: 12, backgroundColor: spinCredits > 0 ? t.accentBg : glassFill(t.bgSurface, 0.46) }}>
@@ -600,24 +674,23 @@ export default function ReferralsScreen() {
                 )}
               </Text>
 
-              {spinCredits > 0 && (
-                <TouchableOpacity
-                  testID="referrals-roulette-spin"
-                  accessibilityRole="button"
-                  accessibilityState={{ disabled: spinning }}
-                  activeOpacity={0.84}
-                  disabled={spinning}
-                  onPress={() => { void onSpin(); }}
-                  style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: t.accent, opacity: spinning ? 0.7 : 1 }}
-                >
-                  {spinning
-                    ? <ActivityIndicator color={t.correctText} />
-                    : <Ionicons name="sparkles" size={18} color={t.correctText} />}
-                  <Text style={{ color: t.correctText, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
-                    {spinCtaLabel}
-                  </Text>
-                </TouchableOpacity>
-              )}
+              <TouchableOpacity
+                testID="referrals-roulette-spin"
+                accessibilityRole="button"
+                accessibilityState={{ disabled: spinning || spinCredits <= 0 }}
+                activeOpacity={0.84}
+                disabled={spinning || spinCredits <= 0}
+                onPress={() => { void onSpin(); }}
+                style={{ minHeight: 52, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, backgroundColor: spinCredits > 0 || spinning ? t.accent : t.bgSurface2, opacity: spinning ? 0.84 : 1 }}
+              >
+                {/* зачем: владелец (2026-07-26) — никакого спиннера на «Получить приз»:
+                    отклик на нажатие — мгновенное вращение дуги, кнопка лишь меняет
+                    подпись на «Открываем…» и остаётся в цвете действия. */}
+                <Ionicons name="sparkles" size={18} color={spinCredits > 0 || spinning ? t.correctText : t.textMuted} />
+                <Text style={{ color: spinCredits > 0 || spinning ? t.correctText : t.textMuted, fontSize: f.body ?? 16, fontFamily: ds.fontFamily, fontWeight: '700' }}>
+                  {spinCtaLabel}
+                </Text>
+              </TouchableOpacity>
 
               {marketingVisible && (
                 <TouchableOpacity
@@ -643,6 +716,32 @@ export default function ReferralsScreen() {
                     : <Ionicons name="share-social" size={19} color={spinCredits > 0 ? t.accent : t.correctText} />}
                   <Text style={{ color: spinCredits > 0 ? t.textPrimary : t.correctText, fontSize: f.body ?? 16, fontWeight: '700' }}>
                     {L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo', 'Convidar um amigo', 'Mời bạn bè', 'Undang teman', 'Arkadaş davet et', 'Zaproś znajomego')}
+                  </Text>
+                </TouchableOpacity>
+              )}
+
+              {/* зачем: владелец (2026-07-26) — ряд «Ввести реферальный код» убран из
+                  настроек, а тихая строка внизу экрана не находилась. Ввод кода —
+                  полноценная кнопка прямо в hero, под «Пригласить друга». */}
+              {marketingVisible && (
+                <TouchableOpacity
+                  testID="referrals-enter-code"
+                  accessibilityRole="button"
+                  activeOpacity={0.8}
+                  onPress={() => { hapticTap(); setCodeSheetOpen(true); }}
+                  style={{
+                    minHeight: 46,
+                    borderRadius: 16,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 8,
+                    backgroundColor: glassFill(t.bgSurface, 0.46),
+                  }}
+                >
+                  <Ionicons name="ticket-outline" size={18} color={t.accent} />
+                  <Text style={{ color: t.textPrimary, fontSize: f.body ?? 16, fontWeight: '700' }}>
+                    {L('Ввести код друга', 'Ввести код друга', 'Ingresar código de amigo', 'Inserir código de amigo', 'Nhập mã của bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -701,23 +800,6 @@ export default function ReferralsScreen() {
             </TonalSurface>
           ) : null}
 
-          {marketingVisible && (
-            <TouchableOpacity
-              testID="referrals-enter-code"
-              accessibilityRole="button"
-              activeOpacity={0.8}
-              onPress={() => { hapticTap(); setCodeSheetOpen(true); }}
-              style={{ minHeight: 44, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}
-            >
-              <Text style={{ color: t.textSecond, fontSize: f.sub ?? 13, fontWeight: '400' }}>
-                {L('Есть код от друга?', 'Є код від друга?', '¿Tienes un código de un amigo?', 'Tem um código de amigo?', 'Có mã từ bạn bè?', 'Punya kode dari teman?', 'Arkadaşından kod mu var?', 'Masz kod od znajomego?')}
-              </Text>
-              <Text style={{ color: t.accent, fontSize: f.sub ?? 13, fontWeight: '700' }}>
-                {L('Ввести', 'Ввести', 'Ingresar', 'Inserir', 'Nhập', 'Masukkan', 'Gir', 'Wpisz')}
-              </Text>
-            </TouchableOpacity>
-          )}
-
           {referralUiVisible && message && (
             <View style={{ borderRadius: 16, padding: 12, backgroundColor: t.bgSurface }}>
               <Text testID="referrals-feedback" style={{ color: t.textPrimary, fontSize: f.sub ?? 13, lineHeight: 20, fontWeight: '700' }}>{message}</Text>
@@ -751,7 +833,11 @@ export default function ReferralsScreen() {
 
         <ReferralCodeSheet visible={codeSheetOpen} onClose={() => setCodeSheetOpen(false)} />
         <ReferralHowSheet visible={howSheetOpen} onClose={() => setHowSheetOpen(false)} />
-        <RouletteWinModal data={win} onClose={() => setWin(null)} />
+        <RouletteWinModal data={win} onClose={closeWinAndStartCelebration} />
+        <RouletteWinCelebration
+          visible={winCelebrationVisible}
+          onComplete={() => setWinCelebrationVisible(false)}
+        />
         <ReferralFriendRewardModal
           data={rewardCelebration}
           onClose={() => setRewardCelebration(null)}

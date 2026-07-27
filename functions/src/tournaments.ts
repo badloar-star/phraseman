@@ -1907,9 +1907,12 @@ export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request
 
   const db = admin.firestore();
   const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
-  const roomSnap = await roomRef.get();
-  if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
-  const room = readRoom(roomSnap);
+  // ЧТЕНИЕ БЕЗ ТРАНЗАКЦИИ ОСОЗНАННО: разбор ничего не меняет — ни очков, ни
+  // состояния комнаты. Транзакция нужна мутациям (submit/fill/finalize), а
+  // здесь она была бы лишней блокировкой на горячем документе.
+  const reviewRoomSnap = await roomRef.get();
+  if (!reviewRoomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
+  const room = readRoom(reviewRoomSnap);
 
   // Разбор доступен только после игры: во время раунда это подсказка.
   if (!['final', 'results', 'rewards', 'closed'].includes(room.state)) {

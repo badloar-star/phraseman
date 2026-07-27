@@ -157,7 +157,9 @@ function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
   // (сервер закрывает вход ровно в startsAt), поэтому кнопка «Играть» вела в
   // отменённый/идущий турнир и всегда падала с «Не удалось войти». Ближайший —
   // только тот, в который реально можно войти: старт ещё впереди.
-  const upcoming = list.find((slot) => slot.startsAtMs > Date.now());
+  // tournamentNow(): часы сервера. При сбитых часах устройства обычный
+  // Date.now() выбрал бы не тот слот и открыл вход не в то время.
+  const upcoming = list.find((slot) => slot.startsAtMs > tournamentNow());
   if (upcoming) return upcoming;
   return { ...list[0], startsAtMs: list[0].startsAtMs + 24 * 60 * 60 * 1000 };
 }
@@ -173,7 +175,7 @@ function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
 const LIVE_SLOT_WINDOW_MS = 20 * 60 * 1000;
 
 function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string }) | null {
-  const now = Date.now();
+  const now = tournamentNow();
   return enabledSlots(slots)
     .filter((slot) => slot.startsAtMs <= now && now - slot.startsAtMs < LIVE_SLOT_WINDOW_MS)
     .pop() ?? null;
@@ -181,11 +183,12 @@ function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
 
 const DEFAULT_ENTRY_GEMS = 3;
 /**
- * За сколько до старта сервер открывает вход. Копия TOURNAMENT_LOBBY_OPEN_MS
- * (functions/src/tournament_core.ts) — числа обязаны совпадать, иначе кнопка
- * снова разойдётся с реальностью.
+ * Запасные значения на случай, если банк ещё не загрузился. Как только приходит
+ * ответ tournamentWeeklyBankInfo, используются СЕРВЕРНЫЕ числа — на клиенте
+ * копий экономики не держим (иначе правка в админке разойдётся с экраном).
  */
-const LOBBY_OPEN_SEC = 5 * 60;
+const FALLBACK_LOBBY_OPEN_SEC = 5 * 60;
+const FALLBACK_SHARES = [0.6, 0.25, 0.15] as const;
 const SCHEDULE_TIMEOUT_MS = 8000;
 
 /**
@@ -299,7 +302,11 @@ export default function TournamentsScreen() {
    * Теперь окно входа считается на клиенте той же формулой, что на сервере:
    * до открытия кнопка честно говорит, через сколько откроется вход.
    */
-  const joinOpensInSec = Math.max(0, secondsToStart - LOBBY_OPEN_SEC);
+  // Окно входа — из ответа сервера; своя константа только пока банк не пришёл.
+  const lobbyOpenSec = bankInfo?.lobbyOpenMs
+    ? Math.round(bankInfo.lobbyOpenMs / 1000)
+    : FALLBACK_LOBBY_OPEN_SEC;
+  const joinOpensInSec = Math.max(0, secondsToStart - lobbyOpenSec);
   const joinWindowOpen = Boolean(joinRoomId) && secondsToStart > 0 && joinOpensInSec === 0;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
@@ -404,7 +411,7 @@ export default function TournamentsScreen() {
    * Округляем вниз, как сервер (Math.trunc), чтобы не обещать лишнюю жемчужину.
    */
   const bankShares = useMemo(() => {
-    const shares = [0.6, 0.25, 0.15];
+    const shares = bankInfo?.weeklyShares ?? FALLBACK_SHARES;
     return shares.map((share, index) => ({
       place: index + 1,
       gems: Math.trunc(bank * share),
@@ -528,7 +535,7 @@ export default function TournamentsScreen() {
                     : joinWindowOpen
                       ? 'Играть'
                       // Без таймера: крупный отсчёт уже стоит выше, дубль лишний.
-                      : 'Вход за 5 минут до старта'}
+                      : `Вход за ${Math.max(1, Math.round(lobbyOpenSec / 60))} минут до старта`}
               </V2Cta>
             )}
             {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}

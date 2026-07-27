@@ -2,6 +2,7 @@
 // transactional and idempotent. Product contract: docs/tournaments/2026-07-21-tournaments-mode-spec.md.
 
 import * as admin from 'firebase-admin';
+import { TOURNAMENT_MODES } from './tournament_pool_plan';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
@@ -74,6 +75,13 @@ const BOT_SIMULATION_METADATA_DOC = '__bot_simulation_v1';
 const LIFECYCLE_RECOVERY_BACKOFF_MS = 60 * 1000;
 const LEGACY_RECOVERY_CURSOR_DOC = '_legacy_recovery_cursor_v1';
 const DEFAULT_TASKS_PER_ROUND = 6;
+
+/**
+ * Сколько заданий читать НА КАЖДЫЙ режим при сборке комнаты.
+ * зачем 40: раунду нужно 6, но выборка идёт по сиду — запас даёт разные
+ * наборы разным комнатам. Больше читать незачем: это деньги за чтения.
+ */
+const TASKS_PER_MODE_SLICE = 40;
 const DEFAULT_MAX_MS_PER_TASK = 10_000;
 const PLAYER_COLORS = ['#47C870', '#FFC800', '#FF5B6C', '#16B7D9', '#B78CFF', '#FF9F43'] as const;
 const ACTIVE_DEADLINE_STATES: TournamentState[] = [
@@ -227,13 +235,27 @@ async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots
   // обучающих планов, остаются в базе нетронутыми — они просто не участвуют:
   // фраза урока не работает как соревновательный вопрос (дистракторы не
   // конкурируют, ответ угадывается без знания языка).
-  const [botsSnap, tasksSnap] = await Promise.all([
+  // зачем 2026-07-27: РАНЬШЕ здесь был один запрос с limit(200) — и это тихо
+  // ломало разнообразие. В пуле 603 задания, из них 342 guess_phrase; первые
+  // 200 документов оказывались почти целиком одним режимом, а аудио, диктант
+  // и пары НЕ ДОХОДИЛИ до жребия вообще. Турниры выглядели однообразными при
+  // полном пуле. Теперь берём срез ПО КАЖДОМУ режиму: лимит держит стоимость,
+  // но ни один режим не может вытеснить остальные.
+  const [botsSnap, ...modeSnaps] = await Promise.all([
     db.collection(BOT_PROFILES_COLLECTION).limit(TOURNAMENT_ROOM_SIZE * 2).get(),
-    db.collection(TOURNAMENT_TASKS_COLLECTION)
-      .where('verified', '==', true).where('source', '==', 'ai').limit(200).get(),
+    ...TOURNAMENT_MODES.map((mode) => db.collection(TOURNAMENT_TASKS_COLLECTION)
+      .where('verified', '==', true)
+      .where('source', '==', 'ai')
+      .where('mode', '==', mode)
+      // guard-ok: 40 на режим × 8 режимов = 320 документов вместо выкачивания
+      // всей коллекции; на раунд нужно 6, запаса хватает с избытком.
+      .limit(TASKS_PER_MODE_SLICE)
+      .get()),
   ]);
   const bots = botsSnap.docs.map((doc) => validBotProfile(doc.id, doc.data())).filter((bot): bot is BotProfile => !!bot);
-  const tasks = tasksSnap.docs.map(parseTask).filter((task): task is TournamentTask => !!task);
+  const tasks = modeSnaps
+    .flatMap((snap) => snap.docs.map(parseTask))
+    .filter((task): task is TournamentTask => !!task);
   return { bots, tasks };
 }
 
@@ -457,12 +479,25 @@ export async function tournamentJoinTransaction(
       }
       return { ok: true, joined: true, alreadyJoined: true, roomId };
     }
-    if (room.state !== 'lobby') throw new HttpsError('failed-precondition', 'room_not_joinable');
-    if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
+    // зачем 2026-07-27 (владелец: «дев — это чтобы ты тестил, никаких
+    // ограничений»): дев-комната стартует через 12 секунд после нажатия, и
+    // штатные правила входа («только лобби» + «вход закрыт в момент старта»)
+    // делали её непроходимой — пока открывалась шторка подтверждения, комната
+    // уже уходила в round1, и игрок получал «Не удалось войти». Для дев-комнаты
+    // впускаем и после старта. На боевые комнаты это не влияет: там devRoom нет.
+    const isDevRoom = roomSnap.data()?.devRoom === true;
+    if (!isDevRoom) {
+      if (room.state !== 'lobby') throw new HttpsError('failed-precondition', 'room_not_joinable');
+      if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
+    } else if (room.state === TOURNAMENT_STATE_CANCELLED || room.state === 'closed') {
+      throw new HttpsError('failed-precondition', 'room_not_joinable');
+    }
 
     const config = configSnap.exists ? normalizeTournamentSchedule(configSnap.data()) : normalizeTournamentSchedule(null);
     const slot = config.slots.find((candidate) => candidate.slotId === room.slotId && candidate.enabled);
-    if (!slot) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+    // Дев-комната живёт под своим slotId (dev-…), которого нет в расписании —
+    // проверку конфига для неё пропускаем, иначе вход всегда падал бы.
+    if (!slot && !isDevRoom) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
 
     // зачем: вход переведён с билетов на жемчужины (решение владельца
     // 2026-07-26) — одна валюта вместо двух сущностей. Взнос идёт в банк

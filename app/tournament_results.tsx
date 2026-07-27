@@ -28,8 +28,18 @@ import { safeRouterBack } from './navigation_back';
 import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import { coinIconForBalance } from './coin_icons';
-import { Card, Cta } from '../components/tournament/tournament_ui';
-import { T, motion, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
+import { StarGlyph, TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
+import {
+  METAL,
+  motion,
+  placeColor,
+  radius,
+  type,
+  useTournamentPalette,
+  type TournamentV2,
+} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import { claimReward, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
@@ -54,7 +64,7 @@ const PRIZES = [
  * Итоговые места по очкам. Подиум ставится 2-1-3, как в макете 17: первое
  * место визуально по центру и выше.
  */
-function buildPodium(players: readonly RoomPlayer[], P: TournamentPalette): Winner[] {
+function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] {
   const sorted = [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0));
   const top = sorted.slice(0, 3).map((player, index) => ({
     name: player.name || 'Игрок',
@@ -105,7 +115,22 @@ export default function TournamentResultsScreen() {
   const myPlace = myIndex >= 0 ? myIndex + 1 : 0;
   const me = myIndex >= 0 ? standings[myIndex] : null;
   const won = myPlace > 0 && myPlace <= 3;
+  // зачем: момент победы должен ощущаться — конфетти и золотая волна на
+  // призовом месте, как в эталоне V2. Только для топ-3: салют за 12-е место
+  // обесценивает награду.
+  const fxRef = useRef<TournamentFxApi>(null);
+  const [fxSize, setFxSize] = useState({ width: 0, height: 0 });
   const beaten = myPlace > 0 ? Math.max(0, standings.length - myPlace) : 0;
+
+  useEffect(() => {
+    if (!won || fxSize.width <= 0) return;
+    const origin = { x: fxSize.width / 2, y: fxSize.height * 0.3 };
+    const timer = setTimeout(() => {
+      fxRef.current?.goldWave(P.gold);
+      fxRef.current?.confetti(origin, [P.gold, P.accent, P.okGradA, P.text]);
+    }, 900);
+    return () => clearTimeout(timer);
+  }, [won, fxSize, P.gold, P.accent, P.okGradA, P.text]);
 
   useEffect(() => {
     if (!won) return;
@@ -196,7 +221,14 @@ export default function TournamentResultsScreen() {
   }
 
   return (
-    <View style={styles.root}>
+    <View
+      style={styles.root}
+      onLayout={(event) => {
+        const { width, height } = event.nativeEvent.layout;
+        setFxSize((prev) => (prev.width === width && prev.height === height
+          ? prev : { width, height }));
+      }}
+    >
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -230,26 +262,26 @@ export default function TournamentResultsScreen() {
         </Animated.View>
 
         {/* Подиум */}
-        <Card tone="elev" pad={20}>
+        <V2Card pad={20}>
           <View style={styles.podium}>
             {podium.map((winner) => (
               <PodiumColumn key={`${winner.place}-${winner.name}`} winner={winner} />
             ))}
           </View>
-        </Card>
+        </V2Card>
 
         {/* Призы */}
-        <Card pad={18}>
+        <V2Card pad={18}>
           {PRIZES.map((prize) => (
             <View key={prize.medal} style={styles.prizeRow}>
               <Text style={styles.prizeMedal}>{prize.medal}</Text>
               <Text style={styles.prizeText}>{prize.text}</Text>
             </View>
           ))}
-        </Card>
+        </V2Card>
 
         {/* Награда игрока */}
-        <Card tone="elev" pad={20}>
+        <V2Card pad={20}>
           <View style={styles.rewardRow}>
             {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
                 общий P.muted и настоящий AvatarView, как на подиуме выше. */}
@@ -269,15 +301,15 @@ export default function TournamentResultsScreen() {
               <Text style={styles.rewardValueLabel}>очков</Text>
             </View>
           </View>
-        </Card>
+        </V2Card>
 
         <View style={styles.actions}>
           {claimState === 'failed' ? (
-            <Cta onPress={claim}>Забрать награду</Cta>
+            <V2Cta onPress={claim}>Забрать награду</V2Cta>
           ) : (
-            <Cta onPress={share}>Поделиться 📤</Cta>
+            <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           )}
-          <Cta ghost onPress={() => router.replace('/tournaments')}>На главную</Cta>
+          <V2Cta tone="ghost" onPress={() => router.replace('/tournaments')}>На главную</V2Cta>
         </View>
       </ScrollView>
 
@@ -291,6 +323,8 @@ export default function TournamentResultsScreen() {
           router.push('/collectibles_screen' as any);
         }}
       />
+      {/* Салют за призовое место. Слой не перехватывает тапы. */}
+      <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
     </View>
   );
 }
@@ -342,27 +376,30 @@ const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) 
       </Animated.View>
 
       <Text style={styles.podiumName} numberOfLines={1}>{winner.name}</Text>
-      <Text style={styles.podiumScore} allowFontScaling={false}>{winner.score} очк.</Text>
+      <View style={styles.podiumScoreRow}>
+        <StarGlyph size={13} color={P.gold} />
+        <Text style={styles.podiumScore} allowFontScaling={false}>{winner.score}</Text>
+      </View>
 
+      {/* зачем: пьедестал — металл с тёплым бликом (три стопа), а не плоская
+          заливка с эмодзи-медалью. Награда должна читаться материалом. */}
       <Animated.View
         entering={FadeIn.delay(300).duration(300)}
-        style={[
-          styles.podiumBlock,
-          {
-            height: PODIUM_HEIGHT[winner.place],
-            backgroundColor: `${placeColor(winner.place, P)}22`,
-          },
-        ]}
+        style={[styles.podiumBlock, { height: PODIUM_HEIGHT[winner.place] }]}
       >
-        <Text style={styles.podiumPlace}>
-          {winner.place === 1 ? '🥇' : winner.place === 2 ? '🥈' : '🥉'}
-        </Text>
+        <LinearGradient
+          colors={winner.place === 1 ? METAL.gold : winner.place === 2 ? METAL.silver : METAL.bronze}
+          start={{ x: 0.2, y: 0 }}
+          end={{ x: 0.8, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <Text style={styles.podiumPlace} allowFontScaling={false}>{winner.place}</Text>
       </Animated.View>
     </View>
   );
 });
 
-const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+const makeStyles = (P: TournamentV2) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg },
   content: { paddingHorizontal: 16, gap: 14 },
 
@@ -394,6 +431,7 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     elevation: 8,
   },
   podiumName: { fontSize: 14, fontWeight: '800', color: P.text, marginTop: 8 },
+  podiumScoreRow: { flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 2 },
   podiumScore: { ...type.label, fontWeight: '600', color: P.muted, marginTop: 2, fontVariant: ['tabular-nums'] },
   podiumBlock: {
     width: '100%',
@@ -402,6 +440,12 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     borderTopRightRadius: radius.sm,
     alignItems: 'center',
     paddingTop: 8,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOpacity: 0.4,
+    shadowRadius: 14,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 5,
   },
   podiumPlace: { fontSize: 20 },
 

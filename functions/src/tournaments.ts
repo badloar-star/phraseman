@@ -1956,119 +1956,130 @@ const INSTANT_ROOM_START_DELAY_MS = 12 * 1000;
  *
  * Стоимость: одна запись батчем на турнир, никаких пустых документов заранее.
  */
-export const tournamentStartNow = onCall({ ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', maxInstances: 1 }, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
-  const db = admin.firestore();
-  const nowMs = Date.now();
-  const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
-  const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
-  if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
-  if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
-    throw new HttpsError('failed-precondition', 'not_enough_bots');
-  }
+// зачем 2026-07-27: HOT_CALLABLE_OPTIONS даёт timeout 15с и здесь стоял
+// maxInstances: 1 — под мгновенный турнир это мало. Функция делает несколько
+// чтений пула, батч из комнаты + до 16 секретов заданий и ТРАНЗАКЦИЮ входа;
+// на холодном старте 15с реально не хватает, и игрок получает «Не удалось
+// войти» на исправном сервере. maxInstances: 1 к тому же ставил второго
+// игрока в очередь за первым — второй ждал и отваливался по таймауту.
+// 60с + 10 инстансов: расход тот же (платим за использование, не за лимит),
+// но вход перестаёт падать на ровном месте.
+export const tournamentStartNow = onCall(
+  { ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', timeoutSeconds: 60, maxInstances: 10 },
+  async (request) => {
+    if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
+    const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
+    if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
+    if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
+      throw new HttpsError('failed-precondition', 'not_enough_bots');
+    }
 
-  // Комната собирается за одну операцию: боты, раунды и секреты заданий пишутся
-  // сразу, комната ready. Старт через 12 секунд — ровно чтобы экран лобби успел
-  // показать состав и не мигнул.
-  const startsAt = nowMs + INSTANT_ROOM_START_DELAY_MS;
-  const dateKey = dateKeyInTimezone(nowMs, slot.timezone);
-  // Своя метка времени в slotId: комната не конфликтует с комнатой расписания
-  // и не занимает игроку его штатный слот.
-  const roomId = tournamentRoomId(`now-${slot.slotId}-${nowMs}`, slot.timezone, dateKey);
+    // Комната собирается за одну операцию: боты, раунды и секреты заданий пишутся
+    // сразу, комната ready. Старт через 12 секунд — ровно чтобы экран лобби успел
+    // показать состав и не мигнул.
+    const startsAt = nowMs + INSTANT_ROOM_START_DELAY_MS;
+    const dateKey = dateKeyInTimezone(nowMs, slot.timezone);
+    // Своя метка времени в slotId: комната не конфликтует с комнатой расписания
+    // и не занимает игроку его штатный слот.
+    const roomId = tournamentRoomId(`now-${slot.slotId}-${nowMs}`, slot.timezone, dateKey);
 
-  // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
-  // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
-  const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
-  if (!rounds) {
-    throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
-  }
+    // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
+    // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
+    const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
+    if (!rounds) {
+      throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
+    }
 
-  // Боты: комнату заполняем целиком, одно место оставляем живому игроку.
-  const botPlayers: TournamentPlayer[] = resources.bots
-    .slice(0, TOURNAMENT_ROOM_SIZE - 1)
-    .map((bot, index) => ({
-      id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
-      isBot: true,
-      name: bot.name,
-      avatar: bot.avatarEmoji,
-      color: bot.color || PLAYER_COLORS[index % PLAYER_COLORS.length],
-      score: 0,
-      streak: 0,
-      botWinRate: bot.winRate,
-    }));
+    // Боты: комнату заполняем целиком, одно место оставляем живому игроку.
+    const botPlayers: TournamentPlayer[] = resources.bots
+      .slice(0, TOURNAMENT_ROOM_SIZE - 1)
+      .map((bot, index) => ({
+        id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
+        isBot: true,
+        name: bot.name,
+        avatar: bot.avatarEmoji,
+        color: bot.color || PLAYER_COLORS[index % PLAYER_COLORS.length],
+        score: 0,
+        streak: 0,
+        botWinRate: bot.winRate,
+      }));
 
-  const taskMap = new Map(resources.tasks.map((task) => [task.taskId, task]));
-  const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
-    .map((taskId) => taskMap.get(taskId))
-    .filter((task): task is TournamentTask => !!task);
+    const taskMap = new Map(resources.tasks.map((task) => [task.taskId, task]));
+    const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
+      .map((taskId) => taskMap.get(taskId))
+      .filter((task): task is TournamentTask => !!task);
 
-  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
-  const room: TournamentRoomDoc = {
-    roomId,
-    // зачем: собственный slotId с меткой времени — именно он снимает лимит
-    // «один турнир на слот в день». slotKey в транзакции входа собирается как
-    // `${slotId}_${дата}`, поэтому у каждого турнира по требованию он свой и
-    // маркер профиля никогда не совпадает: играть можно сколько угодно раз.
-    slotId: `now-${slot.slotId}-${nowMs}`,
-    seed: roomId,
-    state: 'lobby',
-    startsAt,
-    players: botPlayers.map(publicTournamentPlayer),
-    rounds,
-    participantAuthUids: [],
-    participantAuthUidsComplete: true,
-    stateStartedAtMs: nowMs,
-    stateDeadlineAtMs: startsAt,
-    version: 0,
-    createdAtMs: nowMs,
-    expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
-  };
+    const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+    const room: TournamentRoomDoc = {
+      roomId,
+      // зачем: собственный slotId с меткой времени — именно он снимает лимит
+      // «один турнир на слот в день». slotKey в транзакции входа собирается как
+      // `${slotId}_${дата}`, поэтому у каждого турнира по требованию он свой и
+      // маркер профиля никогда не совпадает: играть можно сколько угодно раз.
+      slotId: `now-${slot.slotId}-${nowMs}`,
+      seed: roomId,
+      state: 'lobby',
+      startsAt,
+      players: botPlayers.map(publicTournamentPlayer),
+      rounds,
+      participantAuthUids: [],
+      participantAuthUidsComplete: true,
+      stateStartedAtMs: nowMs,
+      stateDeadlineAtMs: startsAt,
+      version: 0,
+      createdAtMs: nowMs,
+      expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
+    };
 
-  // Батч вместо серии запросов: комната + секреты заданий + метаданные ботов
-  // уезжают одним round-trip — это и есть «за секунду».
-  const batch = db.batch();
-  batch.create(roomRef, {
-    ...room,
-    // devRoom НЕ ставится: это обычная комната, идущая по штатным правилам.
-    ticketsRequired: slot.ticketsRequired,
-    timezone: slot.timezone,
-    ready: true,
-    readyAtMs: nowMs,
-    // зачем: комната создана «под игрока», который сейчас в неё войдёт. Крон
-    // добора ботами отсчитывает окно сбора от этого момента — состав уже полон,
-    // поэтому добирать нечего, но поле держим заполненным для единообразия.
-    gatherStartedAtMs: nowMs,
-    featureGates: tournamentFeatureGates(),
-    expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
-  });
-  for (const task of selectedTasks) {
-    batch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
-  }
-  batch.create(
-    roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
-    {
-      kind: 'bot_simulation_v1',
-      bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
-    },
-  );
-  await batch.commit();
+    // Батч вместо серии запросов: комната + секреты заданий + метаданные ботов
+    // уезжают одним round-trip — это и есть «за секунду».
+    const batch = db.batch();
+    batch.create(roomRef, {
+      ...room,
+      // devRoom НЕ ставится: это обычная комната, идущая по штатным правилам.
+      ticketsRequired: slot.ticketsRequired,
+      timezone: slot.timezone,
+      ready: true,
+      readyAtMs: nowMs,
+      // зачем: комната создана «под игрока», который сейчас в неё войдёт. Крон
+      // добора ботами отсчитывает окно сбора от этого момента — состав уже полон,
+      // поэтому добирать нечего, но поле держим заполненным для единообразия.
+      gatherStartedAtMs: nowMs,
+      featureGates: tournamentFeatureGates(),
+      expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
+    });
+    for (const task of selectedTasks) {
+      batch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
+    }
+    batch.create(
+      roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
+      {
+        kind: 'bot_simulation_v1',
+        bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
+      },
+    );
+    await batch.commit();
 
-  // зачем: комната стартует через 12 секунд, а штатный вход требует
-  // state === 'lobby' И nowMs < startsAt. Если оставить вход на отдельный тап,
-  // игрок, задержавшийся на шторке подтверждения, получал бы join_cutoff_elapsed
-  // на комнате, созданной ровно для него. Поэтому сажаем его здесь же — тем же
-  // tournamentJoinTransaction, что и обычный вход: жемчужины списываются как
-  // всегда, взнос идёт в банк, правила одни и те же.
-  const stableUid = await resolveStableUid(db, request.auth.uid);
-  await assertNotBanned(db, stableUid);
-  const joined = await tournamentJoinTransaction(db, {
-    authUid: request.auth.uid,
-    stableUid,
-    roomId,
-  });
+    // зачем: комната стартует через 12 секунд, а штатный вход требует
+    // state === 'lobby' И nowMs < startsAt. Если оставить вход на отдельный тап,
+    // игрок, задержавшийся на шторке подтверждения, получал бы join_cutoff_elapsed
+    // на комнате, созданной ровно для него. Поэтому сажаем его здесь же — тем же
+    // tournamentJoinTransaction, что и обычный вход: жемчужины списываются как
+    // всегда, взнос идёт в банк, правила одни и те же.
+    const stableUid = await resolveStableUid(db, request.auth.uid);
+    await assertNotBanned(db, stableUid);
+    const joined = await tournamentJoinTransaction(db, {
+      authUid: request.auth.uid,
+      stableUid,
+      roomId,
+    });
 
-  return { ok: true, roomId, startsAt, ...joined };
-});
+    return { ok: true, roomId, startsAt, ...joined };
+  },
+);
 
 
 // ── Разбор ответов после турнира ────────────────────────────────────────────

@@ -12,6 +12,8 @@ describe('coin_exchange module exports', () => {
     expect(mod.adminSetCoinExchangeRate).toBeDefined();
     expect(mod.recalcCoinExchangeRate).toBeDefined();
     expect(mod.adminGetCoinExchangeCenter).toBeDefined();
-    expect(mod.claimCoinMigration).toBeDefined();
+    // зачем: миграция «осколки → жемчуг 20:1» удалена — переименование валюты
+    // 1:1, конвертировать нечего. Ратчет: callable не должен вернуться.
+    expect((mod as Record<string, unknown>).claimCoinMigration).toBeUndefined();
   });
 });

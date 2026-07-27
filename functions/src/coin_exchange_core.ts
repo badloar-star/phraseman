@@ -378,24 +378,3 @@ export function projectCoinCenterOverrideAudit(raw: unknown): CoinCenterManualOv
     atMs: readIsoMs(d.timestamp),
   });
 }
-
-// ── Миграция осколков → монет (решение владельца 2026-07-21) ────────────────
-//
-// Конвертация НЕ 1:1: 20 осколков = 1 монета, округление ВВЕРХ, минимум
-// 1 монета любому с балансом > 0. Старый баланс осколков полностью
-// поглощается конвертацией (заменяется начисленными монетами).
-// Планируемый backfill для пользователей, которые не открывают приложение,
-// обязан переиспользовать именно эту чистую функцию (batch-скрипт — отдельное
-// решение владельца, сейчас НЕ запускается).
-
-export const COIN_MIGRATION_RATE = 20;
-export const COIN_MIGRATIONS_COLLECTION = 'coin_migrations';
-export const COIN_MIGRATION_FLAG_FIELD = 'coins_migration_v1';
-export const COIN_MIGRATION_RECORD_FIELD = 'coins_migration_v1_record';
-
-/** shardsBefore → coinsGranted. Чистая функция миграции 20:1, ceil, min 1. */
-export function computeCoinMigration(shardsBefore: number): number {
-  const balance = readNonNegativeBalance(shardsBefore);
-  if (balance <= 0) return 0;
-  return Math.max(1, Math.ceil(balance / COIN_MIGRATION_RATE));
-}

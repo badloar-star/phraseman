@@ -143,7 +143,6 @@ const {
   adminSetCoinExchangeRate,
   recalcCoinExchangeRate,
   adminGetCoinExchangeCenter,
-  claimCoinMigration,
 } = require('./coin_exchange');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { profileCardUpgrade } = require('./profile_card_upgrade');
@@ -279,7 +278,6 @@ exports.exchangeCoinsForStars = exchangeCoinsForStars;
 exports.adminSetCoinExchangeRate = adminSetCoinExchangeRate;
 exports.recalcCoinExchangeRate = recalcCoinExchangeRate;
 exports.adminGetCoinExchangeCenter = adminGetCoinExchangeCenter;
-exports.claimCoinMigration = claimCoinMigration;
 exports.profileCardUpgrade = profileCardUpgrade;
 exports.submitUserIdea = submitUserIdea;
 exports.adminListUserIdeas = adminListUserIdeas;

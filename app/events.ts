@@ -41,10 +41,6 @@ export type AppEventMap = {
   remote_config_changed: undefined;
   /** «Сундук недели» (mystery_monday) забран — плашка TodaysBoonStrip должна сразу сменить текст на «уже открыт». */
   mystery_chest_claimed: undefined;
-  /** Тестерский превью модала «Осколки → Монеты» (seen-флаг НЕ ставится, сервер НЕ вызывается). */
-  coins_migration_preview: { demoBalance?: number } | undefined;
-  /** Тестерский запуск РЕАЛЬНОЙ конверсии «Осколки → Монеты» (callable claimCoinMigration). */
-  coins_migration_run: undefined;
   /** «Сокровищница»: инвентарь карточек изменился (дроп/restore) — обновить счётчики и сетки. */
   collectibles_changed: undefined;
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */

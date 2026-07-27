@@ -39,12 +39,7 @@ import {
   RECALC_TIMEZONE,
   V2_ACCESS_STARS_FIELD,
   V2_ACCESS_STARS_UPDATED_AT_MS_FIELD,
-  COIN_MIGRATIONS_COLLECTION,
-  COIN_MIGRATION_FLAG_FIELD,
-  COIN_MIGRATION_RATE,
-  COIN_MIGRATION_RECORD_FIELD,
   V2_STAR_JOURNAL_SUBCOLLECTION,
-  computeCoinMigration,
   computeExchangeOutcome,
   computeNextExchangeRate,
   computeNextRecalcAtMs,
@@ -411,65 +406,4 @@ export const adminGetCoinExchangeCenter = onCall(HOT_CALLABLE_OPTIONS, async (re
       .map((doc) => projectCoinCenterOverrideAudit(doc.data()))
       .filter((entry) => entry !== null),
   };
-});
-
-// ── claimCoinMigration (разовая миграция осколков → монет 20:1) ─────────────
-//
-// Контракт (app-модалка миграции собирается под него):
-//   → { alreadyMigrated, shardsBefore, coinsGranted, newBalance }
-// Идемпотентность: флаг users/{uid}.coins_migration_v1 + runTransaction.
-// Пользователь с нулевым балансом тоже получает флаг (coinsGranted 0), чтобы
-// никогда не входить в flow позже. Пользователи, которые НЕ открывают
-// приложение, здесь не мигрируются — backfill (отдельное решение владельца)
-// переиспользует чистую computeCoinMigration из coin_exchange_core.ts.
-
-export const claimCoinMigration = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
-  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Not authenticated');
-  const uid = await resolveCallerStableUid(request.auth.uid);
-  const db = admin.firestore();
-  const userRef = db.collection('users').doc(uid);
-  const migrationRef = db.collection(COIN_MIGRATIONS_COLLECTION).doc(uid);
-
-  return db.runTransaction(async (tx) => {
-    const userSnap = await tx.get(userRef);
-    const data = userSnap.data() ?? {};
-
-    if (data[COIN_MIGRATION_FLAG_FIELD] === true) {
-      const record = (data[COIN_MIGRATION_RECORD_FIELD] ?? {}) as Row;
-      return {
-        alreadyMigrated: true,
-        shardsBefore: readNonNegativeBalance(record.shardsBefore),
-        coinsGranted: readNonNegativeBalance(record.coinsGranted),
-        newBalance: readNonNegativeBalance(data.shards),
-      };
-    }
-
-    const shardsBefore = readNonNegativeBalance(data.shards);
-    const coinsGranted = computeCoinMigration(shardsBefore);
-    const nowMs = Date.now();
-    const nowIso = new Date(nowMs).toISOString();
-
-    tx.set(userRef, {
-      shards: coinsGranted,
-      shards_updated_at_ms: nowMs,
-      shards_updated_op: shardsBefore > 0 ? 'spend' : 'earn',
-      shards_updated_reason: 'coins_migration_v1',
-      [COIN_MIGRATION_FLAG_FIELD]: true,
-      [COIN_MIGRATION_RECORD_FIELD]: { shardsBefore, coinsGranted, at: nowIso },
-    }, { merge: true });
-    tx.set(migrationRef, {
-      uid,
-      rate: COIN_MIGRATION_RATE,
-      shardsBefore,
-      coinsGranted,
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
-    });
-
-    return {
-      alreadyMigrated: false,
-      shardsBefore,
-      coinsGranted,
-      newBalance: coinsGranted,
-    };
-  });
 });

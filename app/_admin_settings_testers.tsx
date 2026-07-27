@@ -70,7 +70,6 @@ import {
   PROFILE_CARD_THEME_KEY,
 } from './profile_card_system';
 import { actionToastTri, emitAppEvent } from './events';
-import { resetCoinsMigrationModalSeen } from './coins_migration_modal';
 import { getFreeDialogsLifetime, isAiDialogEnabled } from './ai_dialog_flags';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import ConsentReverifyHost from '../components/ConsentReverifyHost';
@@ -3738,24 +3737,6 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="diamond-outline" label="💎 ShardsEarnedModal — глобальный поток"
               sub="Текущий production-путь: emitAppEvent('shards_earned') → GlobalShardsEarnedHost"
               onPress={showShardsEarnedPreview}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="cash-outline" label="🪙 Миграция жемчужин — превью (демо-анимация)"
-              sub="Играет анимацию на демо-числах 1 250 → 63 БЕЗ сервера и без seen-флага; флаг сбрасывается, чтобы автотриггер тоже можно было проверить"
-              onPress={() => {
-                void resetCoinsMigrationModalSeen().finally(() => {
-                  emitAppEvent('coins_migration_preview', { demoBalance: 1250 });
-                });
-                markQa('coinsMigration');
-              }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="cash-outline" label="🪙 Миграция жемчужин — выполнить конвертацию сейчас"
-              sub="Реальный claimCoinMigration() на этом аккаунте (20 осколков = 1 жемчужина, идемпотентно); при уже выполненной миграции сервер вернёт alreadyMigrated"
-              onPress={() => {
-                void resetCoinsMigrationModalSeen().finally(() => {
-                  emitAppEvent('coins_migration_run', undefined);
-                });
-                markQa('coinsMigrationRun');
-              }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="flag-outline" label="🚩 ReportUserModal (safe preview)"
               sub="Только UI, без записи репорта"

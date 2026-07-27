@@ -13,7 +13,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { onAppEvent } from '../app/events';
 import { scheduleCoalescedForegroundTask } from '../app/app_resume_policy';
 import { getTodaysBoons } from '../app/boons/boon_engine';
-import { getBoonCopy, getMysteryChestClaimedSubtitle } from '../app/boons/boon_copy';
+import { getBoonCopy } from '../app/boons/boon_copy';
 import { currentWeekId, MYSTERY_MONDAY_CLAIM_KEY } from '../app/boons/boon_rewards';
 import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
@@ -30,7 +30,10 @@ export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: To
   const { theme: t, themeMode } = useTheme();
   const { lang } = useLang();
   const [primary, setPrimary] = useState<BoonId | null>(() => getTodaysBoons().primary);
-  const [mysteryClaimed, setMysteryClaimed] = useState(false);
+  // зачем: null = «ещё не читали claim-флаг». Стартовый false заставлял плитку
+  // сундука мигнуть зовом «открой и забери» на один кадр до ответа AsyncStorage,
+  // хотя награда уже забрана. Плитку сундука рисуем только на известном флаге.
+  const [mysteryClaimed, setMysteryClaimed] = useState<boolean | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
   const scheduledRefreshRef = React.useRef<{ cancel: () => void } | null>(null);
 
@@ -72,10 +75,16 @@ export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: To
 
   if (!primary) return null;
 
+  // зачем: «Сундук недели» — одноразовое событие. Модалка при входе уже отдала
+  // награду, поэтому плашка в «Бонусе дня» больше не нужна: она либо звала
+  // открыть уже открытое, либо занимала место статусом. Прячем до следующей
+  // недели (флаг сбрасывается сменой weekId). Прочие бонусы дня — постоянные
+  // множители, их плашка остаётся всегда.
+  const isMysteryChest = primary === 'mystery_monday';
+  if (isMysteryChest && mysteryClaimed !== false) return null;
+
   const copy = getBoonCopy(primary, lang);
-  // Для «Сундука недели» после получения награды — текст «уже открыт», без зова к действию.
-  const showClaimedSubtitle = primary === 'mystery_monday' && mysteryClaimed;
-  const subtitle = showClaimedSubtitle ? getMysteryChestClaimedSubtitle(lang) : copy.subtitle;
+  const subtitle = copy.subtitle;
   const iconSource = weeklyBoonIconSource(primary, themeMode);
 
   const openDetail = () => {
@@ -128,10 +137,12 @@ export default function TodaysBoonStrip({ marginTop = 14, embedded = false }: To
           ›
         </Text>
       </TouchableOpacity>
+      {/* зачем: плитка забранного сундука отфильтрована выше, поэтому подробности
+          всегда открываются в состоянии «ещё не забрано». */}
       <WeeklyBoonDetailModal
         visible={detailOpen}
         boon={primary}
-        claimed={showClaimedSubtitle}
+        claimed={false}
         onClose={() => setDetailOpen(false)}
       />
     </>

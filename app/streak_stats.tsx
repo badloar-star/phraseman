@@ -4013,6 +4013,10 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           />
         </Reanimated.View>
 
+        {/* зачем: пока достижений нет ни одного — раздел скрыт целиком (заголовок и
+            ряд пустых кубков). Четыре серые заглушки в первый день выглядели как
+            «ты ничего не добился», а не как цель. Появляется сразу с первым. */}
+        {achievementCount > 0 ? (
         <Reanimated.View entering={FadeInDown.duration(420).delay(350)}>
         <RecentAchievementsCard
           t={t}
@@ -4028,6 +4032,7 @@ export default function StreakStats({ embedded = false }: { embedded?: boolean }
           }}
         />
         </Reanimated.View>
+        ) : null}
 
         {lockedBlocksInline ? percentilesBlock : null}
 

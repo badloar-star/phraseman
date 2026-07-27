@@ -66,8 +66,12 @@ function CefrLine({ t, f, lang, themeMode, isGoldTheme, masteredPhraseCount, onP
     pl: `${safeCount} utrwalonych fraz`,
   });
 
+  // зачем: строка живёт внутри StatsCardArtSurface, у которой уже есть градиент,
+  // радиус и свечение. Свой фон + радиус 16 давал карточку в карточке (двойная
+  // поверхность). Фон снят, отделение держит тонированный чип с числом; паддинги
+  // тоже сняты — внешняя карточка даёт свои.
   return (
-    <View accessibilityRole={onPress ? 'button' : undefined} style={{ flexDirection: 'row', alignItems: 'center', gap: 12, borderRadius: 16, paddingVertical: 12, paddingHorizontal: 14, backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface }}>
+    <View accessibilityRole={onPress ? 'button' : undefined} style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
       <View style={{ width: 40, height: 40, borderRadius: 13, backgroundColor: chipBg, alignItems: 'center', justifyContent: 'center' }}>
         <Text style={{ color: accent, fontSize: f.caption, fontWeight: '900' }}>{safeCount}</Text>
       </View>

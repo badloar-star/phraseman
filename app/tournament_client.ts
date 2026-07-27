@@ -16,7 +16,9 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 export type PublicTask = {
   taskId: string;
   mode: string;
-  kind: 'choice' | 'translate' | 'timeattack' | 'voice';
+  // зачем 2026-07-27: аудио-режимы владельца. listen = услышал → выбрал,
+  // dictate = диктант. Имена совпадают с серверным taskKind буква в букву.
+  kind: 'choice' | 'translate' | 'timeattack' | 'voice' | 'listen' | 'dictate';
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
@@ -214,9 +216,19 @@ export function tournamentDateKey(timezone: string, at: Date = new Date()): stri
   }
 }
 
-/** Вход в турнир: списывает билет и сажает игрока в комнату. */
+/**
+ * Вход в турнир: списывает жемчужины и сажает игрока в комнату.
+ *
+ * зачем 2026-07-27: сервер может посадить игрока НЕ в ту комнату, id которой
+ * прислал клиент — комната слота вмещает 16 человек, при заполнении вход
+ * уходит в следующую комнату того же слота. Поэтому roomId из ответа — это
+ * фактическая комната, и открывать надо именно её.
+ */
 export function joinTournament(roomId: string) {
-  return callFunction<{ ok: boolean; roomId: string }>('tournamentJoin', { roomId });
+  return callFunction<{ ok: boolean; roomId: string; entryGems?: number; gemsLeft?: number }>(
+    'tournamentJoin',
+    { roomId },
+  );
 }
 
 /**

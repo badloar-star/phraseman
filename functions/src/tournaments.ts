@@ -14,6 +14,7 @@ import {
   TOURNAMENT_FILL_BOTS_AHEAD_MS,
   TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS,
   TOURNAMENT_LOBBY_OPEN_MS,
+  TOURNAMENT_MAX_SHARDS_PER_SLOT,
   TOURNAMENT_MIN_REAL_PLAYERS,
   TOURNAMENT_RECEIPTS_SUBCOLLECTION,
   TOURNAMENT_ROOMS_COLLECTION,
@@ -466,6 +467,19 @@ export async function tournamentJoinTransaction(
     const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
     const user = userSnap.data() || {};
+
+    // зачем 2026-07-27 (решение владельца): один турнир на слот на человека.
+    // С шардингом комнат слота стало много, и без этого лимита можно было бы
+    // за один слот пройти пять турниров подряд и нафармить банк недели —
+    // тогда банк перестаёт быть про умение и достаётся тому, кто дольше сидит
+    // в приложении. Маркер пишем в профиль в ЭТОЙ же транзакции: отдельная
+    // коллекция стоила бы лишних чтений на каждом входе.
+    const roomTimezone = sanitizeString(roomSnap.data()?.timezone, 64) || 'Europe/Moscow';
+    const slotKey = `${room.slotId}_${dateKeyInTimezone(room.startsAt, roomTimezone)}`;
+    if (sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
+      throw new HttpsError('failed-precondition', 'slot_already_played');
+    }
+
     const gemsBefore = readGemBalance(user.shards);
     if (gemsBefore < entryGems) {
       throw new HttpsError('failed-precondition', 'not_enough_gems');
@@ -500,6 +514,9 @@ export async function tournamentJoinTransaction(
     // сколько уйдёт призёрам и сколько в недельный банк.
     tx.set(userRef, {
       shards: admin.firestore.FieldValue.increment(-entryGems),
+      // Маркер «этот слот сегодня уже сыгран» — основа лимита один-турнир-на-слот.
+      tournament_last_slot_key: slotKey,
+      tournament_last_slot_room_id: room.roomId,
       updatedAt: nowMs,
     }, { merge: true });
     tx.set(roomRef, {
@@ -523,6 +540,98 @@ export async function tournamentJoinTransaction(
   });
 }
 
+/**
+ * Разбор id комнаты обратно на слот/таймзону/дату/номер шарда.
+ *
+ * зачем: клиент присылает id базовой комнаты слота (shard 0) — формулу он
+ * считает сам, без лишнего чтения. Чтобы посадить игрока в свободную комнату,
+ * серверу нужно из этого id получить составные части и перебрать шарды.
+ * Разбор идёт с КОНЦА: slotId сам может содержать '_'.
+ */
+function parseTournamentRoomId(
+  roomId: string,
+): { slotId: string; timezone: string; dateKey: string; shard: number } | null {
+  const shardMatch = /^(.*)_r(\d{1,3})$/.exec(roomId);
+  const base = shardMatch ? shardMatch[1] : roomId;
+  const shard = shardMatch ? Number(shardMatch[2]) : 0;
+  // Хвост базового id — '<timezone>_<YYYY-MM-DD>', таймзона записана с '_'
+  // вместо небуквенных символов (Europe_Moscow).
+  const parts = base.split('_');
+  const dateKey = parts.pop();
+  if (!dateKey || !/^\d{4}-\d{2}-\d{2}$/.test(dateKey)) return null;
+  // Таймзона — минимум один сегмент; всё, что левее, это slotId.
+  if (parts.length < 2) return null;
+  const timezone = parts.slice(-2).join('/');
+  const slotId = parts.slice(0, -2).join('_');
+  if (!slotId) return null;
+  return { slotId, timezone, dateKey, shard };
+}
+
+/**
+ * Создаёт дополнительную комнату слота (шард N>0) под уже идущий набор.
+ *
+ * зачем: комнаты-шарды не создаются пачкой заранее — это были бы пустые
+ * документы на каждом слоте каждый день. Шард появляется ровно в тот момент,
+ * когда в предыдущую комнату не влез живой игрок.
+ *
+ * Возвращает false, если создавать нельзя (нет базовой комнаты слота, слот
+ * уже стартовал, шард 0). Тогда вызывающий отдаёт игроку исходную ошибку.
+ */
+async function createTournamentShardRoom(
+  db: FirebaseFirestore.Firestore,
+  input: { slotId: string; timezone: string; dateKey: string; shard: number },
+): Promise<boolean> {
+  const { slotId, timezone, dateKey, shard } = input;
+  if (shard <= 0) return false;
+  // Базовая комната слота — источник правды по времени старта и цене входа.
+  const baseRef = db.collection(TOURNAMENT_ROOMS_COLLECTION)
+    .doc(tournamentRoomId(slotId, timezone, dateKey, 0));
+  const baseSnap = await baseRef.get();
+  if (!baseSnap.exists) return false;
+  const base = baseSnap.data() || {};
+  const startsAt = readInt(base.startsAt, 0);
+  const nowMs = Date.now();
+  // Вход закрывается в момент старта — опоздавшему новый шард не поможет.
+  if (startsAt <= 0 || nowMs >= startsAt) return false;
+
+  const roomId = tournamentRoomId(slotId, timezone, dateKey, shard);
+  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+  const resources = await loadResourcePool(db);
+  // Кураторский набор владельца принадлежит конкретной комнате: в шардах его
+  // нет — они играют на общем пуле заданий.
+  if (!buildRounds(roomId, resources.tasks)) {
+    console.warn('[tournaments] shard create skipped: task_pool_unavailable', { roomId });
+    return false;
+  }
+  return db.runTransaction(async (tx) => {
+    const existing = await tx.get(roomRef);
+    if (existing.exists) return true;
+    tx.create(roomRef, {
+      roomId,
+      slotId,
+      seed: roomId,
+      state: 'scheduled',
+      startsAt,
+      players: [],
+      rounds: [],
+      participantAuthUids: [],
+      participantAuthUidsComplete: true,
+      stateStartedAtMs: nowMs,
+      stateDeadlineAtMs: startsAt - TOURNAMENT_LOBBY_OPEN_MS,
+      version: 0,
+      createdAtMs: nowMs,
+      expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
+      ticketsRequired: readInt(base.ticketsRequired, 1) || 1,
+      timezone,
+      ready: false,
+      shard,
+      featureGates: tournamentFeatureGates(),
+      expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
+    });
+    return true;
+  });
+}
+
 export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
@@ -531,7 +640,47 @@ export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   await assertNotBanned(db, stableUid);
   const roomId = sanitizeString(request.data?.roomId, 160);
   if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
-  return tournamentJoinTransaction(db, { authUid, stableUid, roomId });
+
+  // зачем 2026-07-27 (шардинг): комната вмещает 16 игроков. Раньше 17-й
+  // получал room_full и не мог играть вовсе — при большой аудитории на слот
+  // играли бы 16 человек, а остальные только смотрели. Теперь при полной
+  // комнате садим игрока в следующую комнату того же слота, создавая её на
+  // лету. Комнаты создаются ПО МЕРЕ НАДОБНОСТИ, а не пачкой заранее: пустые
+  // документы стоили бы денег на каждом слоте каждый день.
+  const parsed = parseTournamentRoomId(roomId);
+  if (!parsed) return tournamentJoinTransaction(db, { authUid, stableUid, roomId });
+
+  let lastError: unknown = null;
+  for (let shard = parsed.shard; shard < TOURNAMENT_MAX_SHARDS_PER_SLOT; shard += 1) {
+    const shardRoomId = tournamentRoomId(parsed.slotId, parsed.timezone, parsed.dateKey, shard);
+    try {
+      return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId });
+    } catch (error) {
+      const code = error instanceof HttpsError ? error.code : '';
+      const message = error instanceof Error ? error.message : '';
+      // Комната занята — пробуем следующую. Комнаты ещё нет — создаём её и
+      // повторяем вход в неё же. Любая другая ошибка (нет жемчужин, бан,
+      // отменённый турнир) обязана дойти до игрока как есть.
+      const isFull = code === 'resource-exhausted' || message.includes('room_full');
+      const isMissing = code === 'not-found' || message.includes('room_not_found');
+      if (!isFull && !isMissing) throw error;
+      lastError = error;
+      if (isMissing) {
+        const created = await createTournamentShardRoom(db, {
+          slotId: parsed.slotId,
+          timezone: parsed.timezone,
+          dateKey: parsed.dateKey,
+          shard,
+        });
+        // Шард 0 отсутствует — значит слот не наступил/выключен, а не переполнен.
+        if (!created) throw error;
+        return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId });
+      }
+    }
+  }
+  throw lastError instanceof HttpsError
+    ? lastError
+    : new HttpsError('resource-exhausted', 'all_shards_full');
 });
 
 // ── Cancellation: transaction marker + per-player receipts make refunds exact-once. ─

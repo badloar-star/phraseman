@@ -194,17 +194,25 @@ export default function TournamentsScreen() {
     const balanceBefore = coins;
     setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
     try {
-      const result = await joinTournament(roomId) as { gemsLeft?: number } | undefined;
+      const result = await joinTournament(roomId) as { gemsLeft?: number; roomId?: string } | undefined;
       if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
       setConfirmVisible(false);
       setJoinError('');
-      router.push({ pathname: '/tournament_lobby', params: { roomId } });
+      // зачем 2026-07-27 (шардинг): комната слота вмещает 16 человек, и сервер
+      // при заполнении сажает игрока в СЛЕДУЮЩУЮ комнату того же слота. Идём в
+      // ту комнату, которую вернул сервер, иначе игрок открыл бы лобби чужой
+      // (полной) комнаты и не увидел бы себя среди участников.
+      router.push({ pathname: '/tournament_lobby', params: { roomId: result?.roomId || roomId } });
     } catch (error) {
       setCoins(balanceBefore);
       const code = String((error as { message?: string })?.message ?? '');
       setJoinError(code.includes('not_enough_gems')
         ? 'Не хватает жемчужин'
-        : 'Не удалось войти. Попробуйте ещё раз');
+        : code.includes('slot_already_played')
+          ? 'В этом турнире вы уже играли. Ждём вас в следующем'
+          : code.includes('join_cutoff_elapsed')
+            ? 'Турнир уже начался. Ждём вас в следующем'
+            : 'Не удалось войти. Попробуйте ещё раз');
     } finally {
       setJoining(false);
     }

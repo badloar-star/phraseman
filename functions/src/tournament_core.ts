@@ -139,10 +139,30 @@ export function normalizeTournamentSchedule(raw: unknown): TournamentScheduleCon
   };
 }
 
-/** Детерминированный id комнаты: повторный запуск scheduler'а не создаёт дубль. */
-export function tournamentRoomId(slotId: string, timezone: string, dateKey: string): string {
-  return `${slotId}_${timezone.replace(/[^\w]/g, '_')}_${dateKey}`.slice(0, 140);
+/**
+ * Детерминированный id комнаты: повторный запуск scheduler'а не создаёт дубль.
+ *
+ * зачем 2026-07-27 (шардинг): на слот существовала РОВНО одна комната на 16
+ * мест — при большой аудитории играли бы 16 человек, остальные только смотрели.
+ * Теперь у слота есть параллельные комнаты: shard 0, 1, 2… Игрок садится в
+ * первую незаполненную, заполнилась — крон создаёт следующую.
+ *
+ * Shard 0 намеренно даёт СТАРЫЙ id без суффикса: уже созданные комнаты,
+ * кураторские наборы (они лежат под id комнаты) и формула на клиенте
+ * продолжают работать без миграции.
+ */
+export function tournamentRoomId(
+  slotId: string,
+  timezone: string,
+  dateKey: string,
+  shard = 0,
+): string {
+  const base = `${slotId}_${timezone.replace(/[^\w]/g, '_')}_${dateKey}`;
+  return (shard > 0 ? `${base}_r${Math.trunc(shard)}` : base).slice(0, 140);
 }
+
+/** Максимум параллельных комнат на один слот — предохранитель от разрастания. */
+export const TOURNAMENT_MAX_SHARDS_PER_SLOT = 50;
 
 // ── Кураторские наборы заданий ──────────────────────────────────────────────
 

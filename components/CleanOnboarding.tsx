@@ -32,7 +32,9 @@ import TypewriterText from './onboarding_aha/TypewriterText';
 import { hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
-import { getDeviceBootstrapLocale, type Lang } from '../constants/i18n';
+import { getDeviceBootstrapLocale, triLang, type Lang } from '../constants/i18n';
+import AccountDeletedNotice from './AccountDeletedNotice';
+import { consumeAccountDeletedNotice } from '../app/account_deleted_notice';
 import { softShadow } from '../constants/androidGlow';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
@@ -190,6 +192,13 @@ export const CLEAN_ONBOARDING_ORDER: readonly CleanOnboardingStep[] = [
   'name',
 ];
 
+// зачем: эти три ключа снимаются при удалении аккаунта ДО показа онбординга —
+// иначе он восстановит старый шаг вместо первого экрана. Значения ОБЯЗАНЫ
+// совпадать с ONBOARDING_RESET_KEYS_ON_ACCOUNT_DELETE в app/account_deleted_notice.ts;
+// совпадение стережёт тест account_delete_flow_contract.
+// Литералы, а НЕ деструктуризация импорта: этот модуль и auth_provider образуют
+// цикл, и на устройстве константа приходила undefined — модуль падал с
+// ReferenceError, кнопка «Удалить» переставала работать вовсе.
 const FLOW_VERSION_KEY = 'onboarding_flow_version_v1';
 const STEP_KEY = 'onboarding_step';
 const DONE_KEY = 'onboarding_done';
@@ -1045,11 +1054,20 @@ function CleanOnboarding({
   startAtNameStep,
 }: OnboardingProps) {
   const lang = initialLang ?? getDeviceBootstrapLocale();
+  // зачем: подтверждение только что выполненного удаления аккаунта. Забираем
+  // пометку в инициализаторе useState — ровно один раз за монтирование, ДО
+  // первого кадра, поэтому плашка не «доезжает» вторым кадром и не дёргает
+  // геометрию (layout stability). Повторные ре-рендеры пометку уже не увидят.
+  const [accountDeletedNotice, setAccountDeletedNotice] = useState(consumeAccountDeletedNotice);
   const [step, setStep] = useState<CleanOnboardingStep>(startAtNameStep ? 'name' : 'welcome');
   const [restored, setRestored] = useState(false);
   const [authMode, setAuthMode] = useState(false);
   const [authLoading, setAuthLoading] = useState<AuthProviderId | null>(null);
   const [authError, setAuthError] = useState<string | null>(null);
+  // зачем: почта провайдера, под которой аккаунта не нашлось. Не null → показываем
+  // вопрос «такого аккаунта нет, создать?» вместо кнопок входа. Пустая строка —
+  // валидное значение (провайдер не отдал email), поэтому признак именно null/не-null.
+  const [unknownAccountEmail, setUnknownAccountEmail] = useState<string | null>(null);
   const [googleAvailable, setGoogleAvailable] = useState(false);
   const [appleAvailable, setAppleAvailable] = useState(false);
   const [source, setSource] = useState<DiscoverySource | null>(null);
@@ -1241,9 +1259,27 @@ function CleanOnboarding({
       if (result.result === 'error') {
         setAuthError(result.error === 'account_delete_pending'
           ? 'Этот аккаунт ещё удаляется. Попробуй позже.'
-          : result.error.includes('google_signin_timeout')
-            ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
-            : 'Не получилось войти. Попробуй ещё раз.');
+          // зачем: удаление аккаунта двухфазное — Firebase-юзер сначала блокируется
+          // (disabled), а стирается фоновым воркером через 2-3 минуты. Вход в это окно
+          // возвращает auth/user-disabled и раньше падал в общую заглушку «не получилось
+          // войти» — владелец удалил аккаунт, попробовал войти и не понял, что происходит.
+          : result.error.includes('user-disabled')
+            ? 'Этот аккаунт ещё удаляется. Попробуй войти через пару минут.'
+            : result.error.includes('google_signin_timeout')
+              ? 'Google не ответил вовремя. Закрой окно входа, вернись в приложение и попробуй ещё раз.'
+              : 'Не получилось войти. Попробуй ещё раз.');
+        return;
+      }
+      // зачем: юзер нажал «У меня уже есть аккаунт» — он ЗАЯВИЛ, что возвращается.
+      // created_new означает, что аккаунта с этой почтой у нас нет (первый вход этим
+      // Google/Apple). Молча завести новый профиль — обмануть его ожидание: он ждёт
+      // свой прогресс, а получит пустой экран и решит, что прогресс потерян. Поэтому
+      // честно говорим «такого аккаунта нет» и спрашиваем, создавать ли. Привязка к
+      // этому моменту УЖЕ произошла (signInWithProvider её выполнил), поэтому «Да»
+      // ничего не делает заново — просто пускает дальше по обычному онбордингу,
+      // но уже с привязанным аккаунтом. Отказ возвращает на выбор провайдера.
+      if (result.result === 'created_new') {
+        setUnknownAccountEmail(result.email ?? '');
         return;
       }
       await AsyncStorage.multiSet([
@@ -1261,6 +1297,17 @@ function CleanOnboarding({
       setAuthLoading(null);
     }
   }, [authLoading, onDone]);
+
+  // зачем: «Создать аккаунт» после того, как вход не нашёл существующий профиль.
+  // Провайдер к этому моменту УЖЕ привязан (это сделал signInWithProvider), поэтому
+  // здесь никакой сетевой работы нет — просто уводим человека в обычный онбординг
+  // с первого шага. Отклик мгновенный, ждать нечего.
+  const continueAsNewAccount = useCallback(() => {
+    setUnknownAccountEmail(null);
+    setAuthMode(false);
+    setAuthError(null);
+    go('source');
+  }, [go]);
 
   const ensureEnglishStudyTarget = useCallback(async () => {
     setStudyTarget('en');
@@ -1565,7 +1612,12 @@ function CleanOnboarding({
               style={styles.welcomeTitle}
               numberOfLines={3}
             >
-              {authMode ? 'Вернём твой прогресс' : 'От первых слов до свободной речи.'}
+              {/* зачем: обещание «вернём прогресс» противоречит тому, что аккаунта не
+                  нашлось — на этой развилке заголовок меняется на нейтральный, иначе
+                  экран сам себе противоречит. */}
+              {authMode
+                ? (unknownAccountEmail !== null ? 'Начнём с чистого листа' : 'Вернём твой прогресс')
+                : 'От первых слов до свободной речи.'}
             </Text>
             {authMode ? null : (
               <FadeUp delay={520}>
@@ -1574,7 +1626,25 @@ function CleanOnboarding({
             )}
           </View>
 
-          {authMode ? (
+          {authMode && unknownAccountEmail !== null ? (
+            <View style={styles.authButtons}>
+              <Text style={styles.unknownAccountText}>
+                {unknownAccountEmail
+                  ? `Аккаунта ${unknownAccountEmail} у нас нет.`
+                  : 'Такого аккаунта у нас нет.'}
+              </Text>
+              <PrimaryButton
+                label="Создать аккаунт"
+                onPress={continueAsNewAccount}
+                testID="onboarding-unknown-account-create"
+              />
+              <SecondaryButton
+                label="Войти другим способом"
+                onPress={() => setUnknownAccountEmail(null)}
+                testID="onboarding-unknown-account-retry"
+              />
+            </View>
+          ) : authMode ? (
             <View style={styles.authButtons}>
               {googleAvailable ? (
                 <GoogleSignInButton
@@ -1597,7 +1667,11 @@ function CleanOnboarding({
                 <Text style={styles.errorText}>Вход через Google или Apple недоступен на этом устройстве.</Text>
               ) : null}
               {authError ? <Text style={styles.errorText}>{authError}</Text> : null}
-              <SecondaryButton label="Назад" onPress={() => setAuthMode(false)} testID="onboarding-auth-back" />
+              <SecondaryButton
+                label="Назад"
+                onPress={() => { setAuthMode(false); setAuthError(null); }}
+                testID="onboarding-auth-back"
+              />
             </View>
           ) : (
             <View style={styles.welcomeButtons}>
@@ -2032,6 +2106,21 @@ function CleanOnboarding({
         renderStep(displayStep)
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
+      )}
+      {accountDeletedNotice && (
+        <AccountDeletedNotice
+          onDone={() => setAccountDeletedNotice(false)}
+          message={triLang(lang, {
+            ru: 'Вы удалили все свои данные',
+            uk: 'Ви видалили всі свої дані',
+            es: 'Has eliminado todos tus datos',
+            'pt-BR': 'Você excluiu todos os seus dados',
+            vi: 'Bạn đã xóa toàn bộ dữ liệu của mình',
+            id: 'Kamu telah menghapus semua datamu',
+            tr: 'Tüm verilerini sildin',
+            pl: 'Usunięto wszystkie Twoje dane',
+          })}
+        />
       )}
     </View>
     </OnboardingSkipContext.Provider>
@@ -3371,6 +3460,17 @@ const styles = StyleSheet.create({
   linkText: {
     color: '#DCE7FF',
     textDecorationLine: 'underline',
+  },
+  // зачем: это НЕ ошибка, а нормальная развилка («аккаунта нет — создать?»), поэтому
+  // не красный errorText. Тон спокойный и светлый, вес и кегль — на уровне основного
+  // текста экрана, чтобы сообщение читалось как утверждение, а не как мелкая сноска.
+  unknownAccountText: {
+    color: '#E7ECFF',
+    fontSize: 17,
+    lineHeight: 24,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 6,
   },
   errorText: {
     color: '#FF9AAE',

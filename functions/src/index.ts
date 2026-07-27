@@ -513,6 +513,7 @@ export {
   tournamentFillBots,
   tournamentAdvanceRooms,
   tournamentAdvanceRound,
+  tournamentRoundReview,
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,

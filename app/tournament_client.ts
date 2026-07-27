@@ -235,6 +235,29 @@ export function joinTournament(roomId: string) {
  * Дев-турнир (только владелец, admin claim): сервер мгновенно создаёт комнату
  * с ботами и возвращает roomId — вход доступен сразу, без ожидания слота.
  */
+/** Разбор моих ответов после турнира: что выбрал, что было верно. */
+export type ReviewItem = {
+  roundNo: number;
+  taskId: string;
+  mode: string;
+  correct: boolean;
+  given: unknown;
+  phrase: string;
+  options: string[];
+  correctIndex: number | null;
+  correctTokens: string[];
+  audioUri: string;
+};
+
+/**
+ * зачем: владелец — «после турнира можно смотреть свои ответы, ошибки и
+ * правильные варианты». Сервер отдаёт их только когда турнир окончен и
+ * только свои: во время игры это была бы подсказка.
+ */
+export function loadRoundReview(roomId: string) {
+  return callFunction<{ ok: boolean; items: ReviewItem[] }>('tournamentRoundReview', { roomId });
+}
+
 export function devStartTournament() {
   return callFunction<{ ok: boolean; roomId: string; startsAt: number }>(
     'adminDevStartTournament',
@@ -290,6 +313,159 @@ export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo 
   } catch {
     // Банк — украшение экрана, его недоступность не должна ломать турниры.
     weeklyBankCache = { at: now, value: null };
+    return null;
+  }
+}
+
+// ── Недельный рейтинг сезона ────────────────────────────────────────────────
+
+/**
+ * ISO-неделя. Формула обязана совпадать с серверной `tournamentWeekId`
+ * (functions/src/tournament_core.ts) и с `getWeekId` лиг — иначе клиент читал
+ * бы документ несуществующей недели и таблица всегда была бы пустой.
+ */
+export function tournamentSeasonWeekId(at: number = Date.now()): string {
+  const d = new Date(at);
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+
+/**
+ * Момент раздачи банка: ближайший понедельник 00:10 UTC — ровно расписание
+ * крона `tournamentWeeklyBankCron` ('10 0 * * 1', timeZone UTC).
+ *
+ * зачем: таймер на экране сезона отсчитывал от выдуманной константы
+ * (2ч 41м) и «сбрасывался» при каждом заходе. Считаем локально от той же
+ * точки, что и сервер, — ноль чтений и цифра совпадает с реальностью.
+ */
+export function weeklyBankPayoutAtMs(at: number = Date.now()): number {
+  const now = new Date(at);
+  const next = new Date(Date.UTC(
+    now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 0, 10, 0, 0,
+  ));
+  // getUTCDay(): 0=вс, 1=пн. Сдвигаем на ближайший будущий понедельник.
+  const daysToMonday = (8 - (next.getUTCDay() || 7)) % 7;
+  next.setUTCDate(next.getUTCDate() + daysToMonday);
+  if (next.getTime() <= at) next.setUTCDate(next.getUTCDate() + 7);
+  return next.getTime();
+}
+
+/** Строка недельного рейтинга. Боты сюда не попадают — сервер их отсекает. */
+export type SeasonEntry = {
+  uid: string;
+  name: string;
+  points: number;
+  /** Аватар из профиля игрока; сервер пишет только имя, поэтому опционален. */
+  avatar?: string;
+};
+
+export type SeasonStandings = {
+  weekId: string;
+  /** Верх таблицы, отсортирован по очкам. */
+  top: SeasonEntry[];
+  /** Моя строка — даже если я ниже лимита. null, если я ещё не играл. */
+  me: SeasonEntry | null;
+  /** Моё место в НЕДЕЛЕ; 0 — если я вне прочитанного верха и не играл. */
+  myPlace: number;
+};
+
+/**
+ * Сколько строк тянем. Владелец выбрал топ-20 + закреплённая своя строка:
+ * экран прокручивается недолго, а своя позиция видна всегда.
+ */
+const SEASON_TOP_LIMIT = 20;
+
+/**
+ * Кэш рейтинга: 15 минут. Один снимок кормит ТРИ места — хаб, шторку банка и
+ * таблицу сезона, поэтому три экрана стоят одного чтения.
+ *
+ * зачем именно 15 минут: очки меняются только после сыгранного турнира
+ * (~7 минут), чаще дёргать сервер незачем. Сразу после своего турнира кэш
+ * сбрасывается явно — см. invalidateSeasonStandingsCache().
+ */
+let seasonCache: { at: number; weekId: string; value: SeasonStandings | null } | null = null;
+const SEASON_TTL_MS = 15 * 60 * 1000;
+
+/** Последний известный рейтинг — для синхронной гидрации первого кадра. */
+export function peekSeasonStandings(): SeasonStandings | null {
+  if (!seasonCache) return null;
+  // Неделя сменилась — прошлый снимок больше не про эту таблицу.
+  return seasonCache.weekId === tournamentSeasonWeekId() ? seasonCache.value : null;
+}
+
+/**
+ * Сброс кэша — вызывается после сыгранного турнира, чтобы игрок увидел свои
+ * новые очки сразу, а не через 15 минут.
+ */
+export function invalidateSeasonStandingsCache(): void {
+  seasonCache = null;
+}
+
+/**
+ * Недельный рейтинг: топ-N + моя строка.
+ *
+ * Стоимость: 1 запрос с orderBy+limit (до 20 документов) + 1 чтение своей
+ * записи, и только если меня нет в прочитанном верху. Выкачивать коллекцию
+ * недели целиком нельзя — она растёт с аудиторией.
+ */
+export async function loadSeasonStandings(force = false): Promise<SeasonStandings | null> {
+  const now = Date.now();
+  const weekId = tournamentSeasonWeekId(now);
+  if (!force && seasonCache && seasonCache.weekId === weekId && now - seasonCache.at < SEASON_TTL_MS) {
+    return seasonCache.value;
+  }
+  try {
+    const { getApp } = await import('@react-native-firebase/app');
+    const { getAuth } = await import('@react-native-firebase/auth');
+    const firestore = (await import('@react-native-firebase/firestore')).default;
+    const myUid = getAuth(getApp()).currentUser?.uid ?? '';
+    const entries = firestore()
+      .collection('tournamentSeasons').doc(weekId)
+      .collection('entries');
+
+    // guard-ok: orderBy + limit — читаем только верх таблицы, не всю неделю.
+    const topSnap = await entries.orderBy('points', 'desc').limit(SEASON_TOP_LIMIT).get();
+    const top: SeasonEntry[] = topSnap.docs.map((doc) => {
+      const data = doc.data() ?? {};
+      return {
+        uid: doc.id,
+        name: String(data.name ?? 'Игрок'),
+        points: Math.max(0, Math.trunc(Number(data.points) || 0)),
+        avatar: typeof data.avatar === 'string' ? data.avatar : undefined,
+      };
+    });
+
+    const myIndex = myUid ? top.findIndex((entry) => entry.uid === myUid) : -1;
+    let me: SeasonEntry | null = myIndex >= 0 ? top[myIndex] : null;
+    let myPlace = myIndex >= 0 ? myIndex + 1 : 0;
+
+    // Я ниже топ-20 — дочитываем ОДИН свой документ, а не всю таблицу.
+    // Точное место при этом неизвестно (потребовало бы count-запроса по неделе),
+    // поэтому строка показывается без номера — честнее, чем выдуманная цифра.
+    if (!me && myUid) {
+      const mySnap = await entries.doc(myUid).get();
+      const data = mySnap.exists ? mySnap.data() ?? {} : null;
+      if (data) {
+        me = {
+          uid: myUid,
+          name: String(data.name ?? 'Вы'),
+          points: Math.max(0, Math.trunc(Number(data.points) || 0)),
+          avatar: typeof data.avatar === 'string' ? data.avatar : undefined,
+        };
+        myPlace = 0;
+      }
+    }
+
+    const value: SeasonStandings = { weekId, top, me, myPlace };
+    seasonCache = { at: now, weekId, value };
+    return value;
+  } catch {
+    // Рейтинг недоступен — экран обязан остаться рабочим (правило владельца).
+    seasonCache = { at: now, weekId, value: null };
     return null;
   }
 }

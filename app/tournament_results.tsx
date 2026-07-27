@@ -41,7 +41,12 @@ import {
   type TournamentV2,
 } from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { claimReward, useTournamentRoom, type RoomPlayer } from './tournament_client';
+import {
+  claimReward,
+  invalidateSeasonStandingsCache,
+  useTournamentRoom,
+  type RoomPlayer,
+} from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import CollectibleDropModal from '../components/CollectibleDropModal';
@@ -309,6 +314,18 @@ export default function TournamentResultsScreen() {
           ) : (
             <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           )}
+          {/* зачем: владелец — «после турнира можно смотреть свои ответы,
+              ошибки и правильные варианты». Ставим ВЫШЕ «На главную»: разбор
+              полезнее выхода, и уйти можно на шаг ниже. */}
+          <V2Cta
+            tone="ghost"
+            // as any: типы маршрутов expo-router генерируются при сборке,
+            // новый экран появится в них после перезапуска Metro.
+            onPress={() => router.push({ pathname: '/tournament_review' as any, params: { roomId: roomId ?? '' } })}
+            left={<Ionicons name="list-outline" size={18} color={P.accent} />}
+          >
+            Разбор ответов
+          </V2Cta>
           <V2Cta tone="ghost" onPress={() => router.replace('/tournaments')}>На главную</V2Cta>
         </View>
       </ScrollView>

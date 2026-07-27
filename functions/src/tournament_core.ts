@@ -351,6 +351,18 @@ export type TournamentRoundResult = {
   total: number;
   roundScore: number;
   submittedAtMs: number;
+  /**
+   * Разбор ответов игрока — для экрана «что я ответил» после турнира.
+   * зачем: раньше хранился только счёт, и разобрать ошибки было негде.
+   * Пишем только СВОЙ разбор (в результате игрока), не чужой: подсмотреть
+   * ответы соперника нельзя.
+   */
+  review?: Array<{
+    taskId: string;
+    correct: boolean;
+    /** Что выбрал/собрал игрок — как есть, для показа. */
+    given?: unknown;
+  }>;
   /** Compatible lifecycle marker; timedOut remains for older room documents. */
   submissionStatus?: 'submitted' | 'timed_out' | 'simulated';
   /** Streak snapshot restored when an on-time submit races a timeout write. */
@@ -957,12 +969,24 @@ export function applyTournamentSubmission(
   const player = room.players[playerIndex];
   const streakBefore = replacingTimedOut ? existing.streakBefore ?? player.streak : player.streak;
   const scored = scoreInputsWithStartingStreak(inputs, streakBefore);
+  // Разбор: что игрок ответил на каждое задание и верно ли. Верный ответ
+  // здесь НЕ храним — он лежит в taskSecrets, экран разбора берёт его оттуда
+  // уже после турнира, когда подсматривать нечего.
+  const review = room.rounds[roundIndex].taskIds.map((taskId) => {
+    const task = taskMap.get(taskId);
+    return {
+      taskId,
+      correct: !!task && verifyTournamentAnswer(task, answerMap.get(taskId)),
+      given: answerMap.get(taskId),
+    };
+  });
   const result: TournamentRoundResult = {
     playerId: submission.playerId,
     correct: scored.correct,
     total: room.rounds[roundIndex].taskIds.length,
     roundScore: scored.roundScore,
     submittedAtMs: submission.receivedAtMs,
+    review,
     submissionStatus: 'submitted',
     streakBefore,
     roundStartedAtMs,

@@ -1829,3 +1829,84 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
 
   return { ok: true, roomId, startsAt };
 });
+
+
+// ── Разбор ответов после турнира ────────────────────────────────────────────
+
+/**
+ * Что игрок ответил, что было верно и почему.
+ *
+ * зачем (владелец 2026-07-27): «после турнира можно смотреть свои ответы,
+ * ошибки и правильные варианты, чтобы проанализировать» — как было в арене.
+ *
+ * БЕЗОПАСНОСТЬ: правильные ответы живут в taskSecrets, закрытых от клиента.
+ * Отдаём их ТОЛЬКО когда турнир окончен (results/rewards/closed) и ТОЛЬКО
+ * свои: во время игры это был бы чит, а чужие ответы не нужны никому.
+ */
+export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
+  const uid = request.auth?.uid;
+  if (!uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const roomId = sanitizeString((request.data as { roomId?: unknown })?.roomId, 140);
+  if (!roomId) throw new HttpsError('invalid-argument', 'room_required');
+
+  const db = admin.firestore();
+  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+  const roomSnap = await roomRef.get();
+  if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
+  const room = readRoom(roomSnap);
+
+  // Разбор доступен только после игры: во время раунда это подсказка.
+  if (!['final', 'results', 'rewards', 'closed'].includes(room.state)) {
+    throw new HttpsError('failed-precondition', 'tournament_not_finished');
+  }
+
+  // Игрок ищется по стабильному uid — тому же, что при отправке ответов
+  // (анонимный аккаунт мог быть связан с почтой, id при этом не меняется).
+  const playerId = await resolveStableUid(db, uid);
+  const player = room.players.find((entry) => !entry.isBot && entry.id === playerId);
+  if (!player) throw new HttpsError('permission-denied', 'not_a_participant');
+
+  // Собираем свои ответы по всем раундам.
+  const reviewed: Array<Record<string, unknown>> = [];
+  const neededTaskIds: string[] = [];
+  for (const round of room.rounds) {
+    const result = (round.results || {})[playerId] as
+      { review?: Array<{ taskId: string; correct: boolean; given?: unknown }> } | undefined;
+    for (const entry of result?.review ?? []) {
+      neededTaskIds.push(entry.taskId);
+      reviewed.push({ roundNo: round.roundNo, ...entry });
+    }
+  }
+  if (reviewed.length === 0) return { ok: true, items: [] };
+
+  // Задания с ответами — из секретов комнаты (не из общего пула: задание могло
+  // быть отредактировано после турнира, а разбор обязан показать сыгранное).
+  const uniqueIds = Array.from(new Set(neededTaskIds));
+  const secretSnaps = await db.getAll(
+    ...uniqueIds.map((taskId) => roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(taskId)),
+  );
+  const secrets = new Map<string, FirebaseFirestore.DocumentData>();
+  for (const snap of secretSnaps) {
+    if (snap.exists) secrets.set(snap.id, snap.data() || {});
+  }
+
+  const items = reviewed.map((entry) => {
+    const task = secrets.get(String(entry.taskId));
+    const payload = (task?.payload || {}) as Record<string, unknown>;
+    return {
+      roundNo: entry.roundNo,
+      taskId: entry.taskId,
+      mode: String(task?.mode ?? ''),
+      correct: entry.correct === true,
+      given: entry.given ?? null,
+      // Всё нужное для показа карточки: сам вопрос и верный ответ.
+      phrase: String(payload.phrase ?? ''),
+      options: Array.isArray(payload.options) ? payload.options : [],
+      correctIndex: typeof payload.correctIndex === 'number' ? payload.correctIndex : null,
+      correctTokens: Array.isArray(payload.correctTokens) ? payload.correctTokens : [],
+      audioUri: String(payload.audioUri ?? ''),
+    };
+  });
+
+  return { ok: true, items };
+});

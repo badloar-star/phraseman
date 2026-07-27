@@ -647,6 +647,12 @@ export default function ClubScreen() {
       // [...safeGroup] / .sort упадут TypeError и глобальный ErrorBoundary уронит всё приложение.
       const safeGroup = Array.isArray(state.group) ? state.group : [];
       setGroup(safeGroup);
+      // зачем: скелетон снимается ЛЮБЫМИ реальными данными, а не только кэшем.
+      // Раньше setLocalLeagueHydrated(true) стоял в одной ветке — кэшевой. При
+      // первом входе без кэша данные приходили из сети сюда, флаг оставался false,
+      // и владелец видел БЕСКОНЕЧНЫЙ скелетон вместо подиума. Ставим флаг в общей
+      // точке применения состояния — её проходят и кэш, и сеть, и таймаут-ветка.
+      setLocalLeagueHydrated(true);
       // Если пришёл свежий результат недели (после смены ISO-недели) — показываем модалку
       // прямо здесь. Раньше модалка жила только на home.tsx, поэтому захождение в Лиги
       // в понедельник не давало анимацию.
@@ -718,14 +724,14 @@ export default function ClubScreen() {
           null,
           false,
         );
-        setLocalLeagueHydrated(true);
-      } else {
-        // Do not manufacture a zero-score league while the authoritative
-        // weekly state is still loading. A fake zero is indistinguishable from
-        // a real reset and was the source of several user-visible reports.
-        // Пустоты на экране это больше не даёт — рисуется скелетон (см. рендер).
-        setLocalLeagueHydrated(false);
       }
+      // зачем: ветки else здесь БОЛЬШЕ НЕТ намеренно. Раньше отсутствие кэша звало
+      // setLocalLeagueHydrated(false) — и при повторном входе (loadData на фокусе)
+      // это гасило уже показанный подиум обратно в скелетон. Флаг теперь только
+      // поднимается (в applyLeagueOpen) и никогда не опускается за время жизни
+      // экрана: показанные данные не могут «разгидратироваться».
+      // Фальшивый нулевой счёт по-прежнему не выдумываем — при отсутствии кэша
+      // просто ждём первых реальных данных.
 
       // ── Фаза 2: сетевой апдейт не чаще 6 часов (или по force) ───────────────
       // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку

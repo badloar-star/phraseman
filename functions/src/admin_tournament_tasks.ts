@@ -45,6 +45,12 @@ import {
   type TournamentAiItem,
   type TournamentAiLevel,
 } from './tournament_ai_generator';
+import {
+  TOURNAMENT_AUDIO_SECRETS,
+  checkTournamentAudioFreshness,
+  ensureTournamentAudio,
+  modeNeedsAudio,
+} from './tournament_audio';
 import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 
@@ -715,7 +721,8 @@ export function parseEditRequest(data: unknown): EditRequest {
  * задания в taskSecrets при заполнении.
  */
 export const adminEditTournamentTask = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  // secrets: правка текста аудио-задания перегенерирует озвучку.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, secrets: TOURNAMENT_AUDIO_SECRETS },
   async (request) => {
     requirePermission(request, 'content.draft.write');
     const params = parseEditRequest(request.data);
@@ -744,12 +751,35 @@ export const adminEditTournamentTask = onCall(
       throw new HttpsError('invalid-argument', `tournament_edit_contract:${validation.reason}`);
     }
 
-    await ref.set({
+    // зачем: СТРАЖ СВЕЖЕСТИ. Правка фразы аудио-задания оставляла бы старую
+    // озвучку — игрок слышал бы одно, а варианты были бы от другого текста
+    // (известный класс бага в проекте). Сверяем хэш текста и, если он
+    // изменился, перегенерируем звук ДО записи. Дедуп внутри ensure*: если
+    // такую фразу уже озвучивали, повторного вызова OpenAI не будет.
+    const update: Record<string, unknown> = {
       payload: params.payload,
       difficulty: candidate.difficulty,
       editedAtMs: Date.now(),
       editedBy: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
-    }, { merge: true });
+    };
+    if (modeNeedsAudio(existing.mode)) {
+      const payloadRecord = params.payload as Record<string, unknown>;
+      const freshness = checkTournamentAudioFreshness({
+        downloadUrl: String(payloadRecord.audioUri ?? ''),
+        textHash: String(snap.get('audioTextHash') ?? ''),
+        voice: String(snap.get('audioVoice') ?? ''),
+      }, String(payloadRecord.phrase ?? ''));
+      if (!freshness.fresh) {
+        const audio = await ensureTournamentAudio(existing.mode, payloadRecord);
+        if (!audio) throw new HttpsError('failed-precondition', 'tournament_audio_unavailable');
+        update.payload = { ...payloadRecord, audioUri: audio.downloadUrl };
+        update.audioSourceText = audio.sourceText;
+        update.audioTextHash = audio.textHash;
+        update.audioVoice = audio.voice;
+        update.audioGeneratedAtMs = audio.createdAtMs;
+      }
+    }
+    await ref.set(update, { merge: true });
 
     return { ok: true, task: publicAdminTask(params.taskId, candidate) };
   },

@@ -16,6 +16,11 @@ import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { defineSecret } from 'firebase-functions/params';
 import { ENFORCE_APP_CHECK } from './callable_options';
+import {
+  TOURNAMENT_AUDIO_SECRETS,
+  ensureTournamentAudio,
+  modeNeedsAudio,
+} from './tournament_audio';
 import { TOURNAMENT_TASKS_COLLECTION, type TournamentTask } from './tournament_core';
 import {
   TOURNAMENT_AI_KINDS,
@@ -422,7 +427,8 @@ export const adminRegenerateTournamentTask = onCall(
  * молча выпало бы из выборки раунда.
  */
 export const adminBulkTournamentFolder = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300 },
+  // secrets: публикация аудио-режима генерит озвучку через OpenAI TTS.
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: TOURNAMENT_AUDIO_SECRETS },
   async (request) => {
     const record = onlyKeys(request.data, ['mode', 'action', 'status'], 'tournament_bulk_invalid');
     const mode = String(record.mode ?? '').trim();
@@ -455,8 +461,39 @@ export const adminBulkTournamentFolder = onCall(
         continue;
       }
       const task = doc.data() as TournamentTask;
-      // Публикуем только то, что реально пройдёт серверный валидатор.
-      if (!kindTaskPassesServerContract({ ...task, taskId: doc.id })) {
+
+      // зачем: владелец 2026-07-27 — «озвучка может генерироваться сразу,
+      // когда фразы одобрены». Аудио-режим без звука неиграбелен, поэтому
+      // генерим ДО публикации: не получилось — задание остаётся черновиком,
+      // и владелец видит это в счётчике rejected, а не игрок в раунде.
+      // Дедуп по хэшу текста внутри ensureTournamentAudio: одна фраза
+      // озвучивается один раз, повторные публикации бесплатны.
+      let payload = task.payload as Record<string, unknown>;
+      if (modeNeedsAudio(task.mode)) {
+        try {
+          const audio = await ensureTournamentAudio(task.mode, payload);
+          if (!audio) { rejected += 1; continue; }
+          payload = { ...payload, audioUri: audio.downloadUrl };
+          batch.update(doc.ref, {
+            payload,
+            // Рядом с заданием держим текст и хэш озвучки: страж свежести
+            // сверяет их при правке фразы (иначе звучало бы одно, а
+            // написано другое — известный класс бага в проекте).
+            audioSourceText: audio.sourceText,
+            audioTextHash: audio.textHash,
+            audioVoice: audio.voice,
+            audioGeneratedAtMs: audio.createdAtMs,
+          });
+        } catch (error) {
+          console.error('[tournaments] audio generation failed', doc.id, error);
+          rejected += 1;
+          continue;
+        }
+      }
+
+      // Публикуем только то, что реально пройдёт серверный валидатор
+      // (проверяем payload УЖЕ с озвучкой — без неё аудио-режим не валиден).
+      if (!kindTaskPassesServerContract({ ...task, payload, taskId: doc.id })) {
         rejected += 1;
         continue;
       }

@@ -1735,9 +1735,13 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
 const DEV_ROOM_START_DELAY_MS = 12 * 1000;
 
 export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', maxInstances: 1 }, async (request) => {
-  if (request.auth?.token?.admin !== true) {
-    throw new HttpsError('permission-denied', 'Admin only');
-  }
+  // зачем 2026-07-27 (владелец): проверка admin-claim снята. Кнопка «Дев-турнир
+  // с ботами» существует РОВНО для тестирования и в релиз не уходит — она
+  // отрисовывается только под __DEV__ (app/(tabs)/tournaments.tsx). Требование
+  // admin-claim ломало сам смысл: на тестовом аккаунте эмулятора claim'а нет, и
+  // кнопка отвечала «Admin only» вместо того, чтобы дать пройти турнир.
+  // Осталась только проверка входа: комната пишет игрока и списывает жемчужины.
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const nowMs = Date.now();
   const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);

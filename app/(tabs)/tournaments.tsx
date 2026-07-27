@@ -20,13 +20,23 @@
 import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import { Image } from 'expo-image'; // guard-ok: декоративная жемчужина, число рядом — реальный индикатор
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeIn } from 'react-native-reanimated';
+import Animated, {
+  cancelAnimation,
+  Easing,
+  FadeIn,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withRepeat,
+  withTiming,
+} from 'react-native-reanimated';
 import { LinearGradient } from 'expo-linear-gradient';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { useRouter } from 'expo-router';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
+import { useRuntimeActive } from '../../hooks/use_runtime_active';
 // зачем: голый router.back() крашит Android/Fabric при teardown — общий контракт.
 import { safeRouterBack } from '../navigation_back';
 import TapScale from '../../components/TapScale';
@@ -44,6 +54,13 @@ import {
   type SeasonStandings,
   type WeeklyBankInfo,
 } from '../tournament_client';
+import { resolveTournamentWindowState } from '../tournament_window_state';
+import { resolveTournamentHeroCopy } from '../tournament_hero_copy';
+import {
+  loadPlayedWindowStartMs,
+  peekPlayedWindowStartMs,
+  rememberPlayedWindow,
+} from '../tournament_played_window';
 import { Sheet } from '../../components/tournament/tournament_ui';
 import { useCountdown } from '../../components/tournament/TournamentCountdown';
 import {
@@ -287,6 +304,51 @@ export default function TournamentsScreen() {
 
   const { room } = useTournamentRoom(roomId);
 
+  /**
+   * зачем 2026-07-27 (владелец): слот — это ОКНО в полчаса, а не точка старта.
+   * Раньше экран знал только «отсчёт» и «сейчас играют», поэтому после старта
+   * слота таймер досчитывал до нуля и ЗАСТРЕВАЛ на 00:00 до следующего дня.
+   * Теперь состояние окна считает чистая функция (покрыта контрактным тестом):
+   * окно идёт → таймера нет, окно кончилось → таймер вернулся, уже отыграл →
+   * отсчёт до следующего окна.
+   */
+  const [playedWindowStartMs, setPlayedWindowStartMs] = useState<number>(() => peekPlayedWindowStartMs());
+  useEffect(() => {
+    void loadPlayedWindowStartMs().then(setPlayedWindowStartMs).catch(() => {});
+  }, []);
+
+  const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
+
+  /**
+   * Секундный тик — только чтобы состояние окна пересчитывалось по ходу
+   * времени (окно открылось / окно кончилось). Один interval на экран,
+   * чистится при уходе (Performance Bible: guarded loops — фоновый таймер
+   * не жжёт батарею).
+   */
+  const [tick, setTick] = useState(0);
+  const runtimeActive = useRuntimeActive();
+  useEffect(() => {
+    if (!runtimeActive) return;
+    const id = setInterval(() => setTick((value) => value + 1), 1000);
+    return () => clearInterval(id);
+  }, [runtimeActive]);
+
+  const windowStartsMs = useMemo(
+    () => daySlotList.map((slot) => slot.startsAtMs),
+    [daySlotList],
+  );
+  // Пересчёт раз в секунду — тем же тиком, что и отсчёт: отдельного таймера нет.
+  const windowState = useMemo(
+    () => resolveTournamentWindowState({
+      windowStartsMs,
+      nowMs: tournamentNow(),
+      entryWindowMs: bankInfo?.entryWindowMs,
+      playedWindowStartMs,
+    }),
+    // tick заставляет пересчитать состояние по ходу времени (см. ниже).
+    [windowStartsMs, bankInfo?.entryWindowMs, playedWindowStartMs, tick],
+  );
+
   const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
   const secondsToStart = useCountdown(
     startsAt ? Math.max(0, Math.round((startsAt - tournamentNow()) / 1000)) : 0,
@@ -294,6 +356,27 @@ export default function TournamentsScreen() {
   );
   const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
   const notEnoughGems = coins < entryGems;
+  const windowOpen = windowState.phase === 'open';
+  const windowPlayed = windowState.phase === 'played';
+
+  // Тексты hero — чистой функцией (покрыта контрактным тестом), чтобы в JSX
+  // не росла лестница тернарников на пять состояний.
+  const hero = useMemo(() => resolveTournamentHeroCopy({
+    phase: windowState.phase,
+    live,
+    roundNo: room?.rounds?.length ?? 1,
+    playersInRoom: room?.players?.length ?? 0,
+    entryGems,
+    secondsToShow: windowState.phase === 'countdown' && nextSlot
+      // До открытия арены считаем по комнате: она знает точный старт.
+      ? secondsToStart
+      : windowState.secondsToShow,
+    secondsToWindowEnd: windowState.secondsToWindowEnd,
+    nextSlotDisplayTime: nextSlot?.displayTime,
+  }), [
+    windowState.phase, windowState.secondsToShow, windowState.secondsToWindowEnd,
+    live, room?.rounds?.length, room?.players?.length, entryGems, secondsToStart, nextSlot,
+  ]);
 
   /**
    * зачем 2026-07-27: кнопка «Играть» была активна ЗА ЧАС до турнира, хотя
@@ -308,7 +391,19 @@ export default function TournamentsScreen() {
     ? Math.round(bankInfo.lobbyOpenMs / 1000)
     : FALLBACK_LOBBY_OPEN_SEC;
   const joinOpensInSec = Math.max(0, secondsToStart - lobbyOpenSec);
-  const joinWindowOpen = Boolean(joinRoomId) && secondsToStart > 0 && joinOpensInSec === 0;
+  /**
+   * зачем 2026-07-27 (владелец): вход живой ВСЁ ОКНО, до последней секунды.
+   * Раньше условие требовало secondsToStart > 0, то есть ровно в момент старта
+   * слота кнопка умирала на все оставшиеся полчаса — при том что сервер сажает
+   * опоздавшего в следующую свободную комнату того же окна (шардинг).
+   * Вошедший в последнюю секунду доигрывает нормально: окно закрывается только
+   * для НОВЫХ входов, идущий турнир оно не обрывает.
+   * Отыграл в этом окне — кнопка гаснет: сервер всё равно ответит
+   * slot_already_played, и живая кнопка была бы обманом.
+   */
+  const joinWindowOpen = Boolean(joinRoomId)
+    && !windowPlayed
+    && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0));
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
@@ -330,6 +425,14 @@ export default function TournamentsScreen() {
       if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
       setConfirmVisible(false);
       setJoinError('');
+      // зачем 2026-07-27 (владелец: один турнир на окно): помечаем окно как
+      // отыгранное СРАЗУ. Вернувшись с турнира, игрок увидит отсчёт до
+      // следующей арены, а не живую кнопку, которая упадёт slot_already_played.
+      const playedWindow = windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
+      if (playedWindow) {
+        setPlayedWindowStartMs(playedWindow);
+        void rememberPlayedWindow(playedWindow);
+      }
       // зачем 2026-07-27 (шардинг): комната слота вмещает 16 человек, и сервер
       // при заполнении сажает игрока в СЛЕДУЮЩУЮ комнату того же слота. Идём в
       // ту комнату, которую вернул сервер, иначе игрок открыл бы лобби чужой
@@ -338,6 +441,16 @@ export default function TournamentsScreen() {
     } catch (error) {
       setCoins(balanceBefore);
       const code = String((error as { message?: string })?.message ?? '');
+      // зачем: сервер — истина. Если он говорит «в этом окне уже играл» (а
+      // локальная память об этом не знала, например после переустановки),
+      // догоняем состояние, чтобы кнопка не звала жать повторно.
+      if (code.includes('slot_already_played')) {
+        const playedWindow = windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
+        if (playedWindow) {
+          setPlayedWindowStartMs(playedWindow);
+          void rememberPlayedWindow(playedWindow);
+        }
+      }
       setJoinError(code.includes('not_enough_gems')
         ? 'Не хватает жемчужин'
         : code.includes('slot_already_played')
@@ -348,7 +461,7 @@ export default function TournamentsScreen() {
     } finally {
       setJoining(false);
     }
-  }, [joinRoomId, joining, router, coins, entryGems]);
+  }, [joinRoomId, joining, router, coins, entryGems, windowState.activeWindowStartMs, nextSlot]);
 
   /**
    * зачем: дев-кнопка владельца — «нажал и сразу играю с ботами», не дожидаясь
@@ -381,8 +494,6 @@ export default function TournamentsScreen() {
     () => ({ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 120 }),
     [insets.top, insets.bottom],
   );
-
-  const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
 
   // Рейтинг сезона: первый кадр — из кэша, сеть догоняет фоном (без прыжка нуля).
   const [standings, setStandings] = useState<SeasonStandings | null>(() => peekSeasonStandings());
@@ -471,23 +582,26 @@ export default function TournamentsScreen() {
         {/* HERO: одно решение на экран — крупный отсчёт и одна кнопка */}
         <Animated.View entering={FadeIn.duration(220)}>
           <V2Card pad={22}>
-            <Text style={[styles.kicker, live && { color: P.danger }]} allowFontScaling={false}>
-              {live ? 'Сейчас играют' : nextSlot ? `Сегодня · ${nextSlot.displayTime}` : 'Турниры'}
-            </Text>
+            {/* Пульсирующая точка «в эфире» — статус читается боковым зрением. */}
+            <View style={styles.kickerRow}>
+              {hero.pulsing ? <LiveDot color={P.accent} /> : null}
+              <Text
+                style={[styles.kicker, hero.tone === 'live' && { color: P.accent }]}
+                allowFontScaling={false}
+              >
+                {hero.kicker}
+              </Text>
+            </View>
 
             {/* Цифры отсчёта — градиентом по тексту (hero-grad эталона). */}
             <HeroValue
-              text={live ? `Раунд ${room?.rounds?.length ?? 1} из 4` : nextSlot ? formatTimeLeft(secondsToStart) : 'Скоро'}
-              big={!live && Boolean(nextSlot)}
+              text={hero.value}
+              big={hero.big}
               P={P}
               styles={styles}
             />
             <Text style={styles.heroSub} allowFontScaling={false}>
-              {live
-                ? `${room?.players?.length ?? 0} игроков · банк комнаты ${(room?.players?.length ?? 0) * entryGems}`
-                : nextSlot
-                  ? '16 игроков · 4 раунда · около 7 минут'
-                  : 'первый турнир готовится · 16 игроков · 4 раунда'}
+              {hero.sub}
             </Text>
 
             {live ? (
@@ -531,12 +645,15 @@ export default function TournamentsScreen() {
               >
                 {notEnoughGems
                   ? `Пополнить · нужно ещё ${entryGems - coins}`
-                  : !joinRoomId
-                    ? 'Скоро откроем'
-                    : joinWindowOpen
-                      ? 'Играть'
-                      // Без таймера: крупный отсчёт уже стоит выше, дубль лишний.
-                      : `Вход за ${Math.max(1, Math.round(lobbyOpenSec / 60))} минут до старта`}
+                  : windowPlayed
+                    // Честно: в этом окне игрок своё уже отыграл.
+                    ? 'Вы уже играли в этой арене'
+                    : !joinRoomId
+                      ? 'Скоро откроем'
+                      : joinWindowOpen
+                        ? 'Играть'
+                        // Без таймера: крупный отсчёт уже стоит выше, дубль лишний.
+                        : `Вход за ${Math.max(1, Math.round(lobbyOpenSec / 60))} минут до старта`}
               </V2Cta>
             )}
             {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}
@@ -790,6 +907,57 @@ export default function TournamentsScreen() {
   );
 }
 
+// ── Пульс «в эфире» ─────────────────────────────────────────────────────────
+
+/**
+ * Мягко дышащая точка рядом со статусом окна.
+ *
+ * зачем: пока арена открыта, таймера нет — статичный текст не отличить от
+ * заголовка. Пульс даёт понять «прямо сейчас» боковым зрением, не требуя
+ * читать. Анимация живёт в UI-потоке (Reanimated), поэтому не грузит JS и не
+ * мешает скроллу.
+ *
+ * Дыхание, а не мигание: длинный симметричный цикл без резких включений —
+ * иначе точка дёргает внимание на весь экран.
+ */
+const LiveDot = memo(function LiveDot({ color }: { color: string }) {
+  const pulse = useSharedValue(0.45);
+  const reduceMotion = useReducedMotion();
+  // Performance Bible (guarded loops): бесконечная анимация обязана замирать,
+  // когда экран не в фокусе или приложение в фоне — иначе она жжёт батарею на
+  // невидимом экране. Контракт tests/perf_freeze_contract.test.ts это стережёт.
+  const runtimeActive = useRuntimeActive();
+
+  useEffect(() => {
+    // Доступность: с «уменьшить движение» точка просто горит ровным светом.
+    if (reduceMotion || !runtimeActive) {
+      cancelAnimation(pulse);
+      pulse.value = 1;
+      return;
+    }
+    pulse.value = withRepeat(
+      withTiming(1, { duration: 1100, easing: Easing.inOut(Easing.quad) }),
+      -1,
+      true,
+    );
+    return () => cancelAnimation(pulse);
+  }, [pulse, reduceMotion, runtimeActive]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    opacity: pulse.value,
+    transform: [{ scale: 0.86 + pulse.value * 0.14 }],
+  }));
+
+  return (
+    <Animated.View
+      style={[{ width: 8, height: 8, borderRadius: 4, backgroundColor: color }, animatedStyle]}
+      accessible={false}
+      accessibilityElementsHidden
+      importantForAccessibility="no"
+    />
+  );
+});
+
 // ── Hero-значение с градиентом по тексту ────────────────────────────────────
 
 /**
@@ -837,6 +1005,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     textTransform: 'uppercase',
     color: P.ghost,
   },
+  // Строка статуса с точкой «в эфире». gap вместо отступа у точки — она
+  // появляется не всегда, и текст не должен «прыгать» при её отсутствии.
+  kickerRow: { flexDirection: 'row', alignItems: 'center', gap: 7, marginBottom: 2 },
+  liveDot: { width: 8, height: 8, borderRadius: 4 },
   sectionKicker: { marginTop: 6, marginLeft: 4 },
 
   heroMaskBig: { height: 70, marginTop: 8 },

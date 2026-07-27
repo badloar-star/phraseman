@@ -13,6 +13,7 @@ import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { Sheet } from '../components/tournament/tournament_ui';
 import AvatarView from '../components/AvatarView';
 import {
@@ -27,7 +28,7 @@ import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentP
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
   isRoundState,
-  isTableState, useTournamentRoom, type RoomPlayer } from './tournament_client';
+  isTableState, tournamentNow, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -62,6 +63,22 @@ function rankForPlayed(played: number): string {
  * Порядок сохраняем как пришёл — сервер сажает игроков в порядке входа, и
  * пересортировка заставила бы карточки прыгать при каждом обновлении.
  */
+/**
+ * Кто уже «зашёл» на данный момент.
+ *
+ * зачем 2026-07-27 (владелец: «не должно быть ощущения фальши, поэтому боты
+ * добираются не сразу все»): сервер дописывает ботов в комнату одной
+ * транзакцией, но каждому проставляет своё joinAtMs (первая волна сразу,
+ * остальные врассыпную по 2–30 секунд). Раньше игрок видел себя одного, а
+ * затем мгновенно 16 из 16 — и сразу понимал, что соперники ненастоящие.
+ *
+ * Игроки без joinAtMs (старые комнаты, созданные до этой правки) считаются
+ * присутствующими всегда — иначе лобби таких комнат осталось бы пустым.
+ */
+function visiblePlayersAt(players: readonly RoomPlayer[], nowMs: number): RoomPlayer[] {
+  return players.filter((player) => !player.joinAtMs || player.joinAtMs <= nowMs);
+}
+
 function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null): Seat[] {
   return players.slice(0, SEATS).map((player, index) => {
     const played = Number((player as { played?: number }).played ?? 0);
@@ -110,7 +127,32 @@ export default function TournamentLobbyScreen() {
     }
   }, [room?.state, roomId, router, room]);
 
-  const seats = useMemo(() => mapPlayersToSeats(room?.players ?? [], myId), [room?.players, myId]);
+  /**
+   * Секундный тик — по нему в лобби «подсаживаются» игроки, чьё время входа
+   * наступило. Один interval на экран, чистится при уходе (Performance Bible:
+   * guarded loops). Останавливается, как только комната укомплектована, —
+   * дальше тикать незачем.
+   */
+  const [lobbyTick, setLobbyTick] = useState(0);
+  const roomPlayers = room?.players;
+  const everyoneArrived = useMemo(
+    () => (roomPlayers ?? []).every((player) => !player.joinAtMs || player.joinAtMs <= tournamentNow()),
+    [roomPlayers, lobbyTick],
+  );
+  const runtimeActive = useRuntimeActive();
+  useEffect(() => {
+    // Не тикаем в фоне и когда все уже собрались (Performance Bible).
+    if (everyoneArrived || !runtimeActive) return;
+    const id = setInterval(() => setLobbyTick((value) => value + 1), 1000);
+    return () => clearInterval(id);
+  }, [everyoneArrived, runtimeActive]);
+
+  const seats = useMemo(
+    // tournamentNow(): часы сервера — иначе при сбитых часах устройства лобби
+    // показало бы всех сразу или не показало никого.
+    () => mapPlayersToSeats(visiblePlayersAt(roomPlayers ?? [], tournamentNow()), myId),
+    [roomPlayers, myId, lobbyTick],
+  );
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;

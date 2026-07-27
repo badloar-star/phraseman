@@ -14,6 +14,10 @@ import {
   generateBotProfiles,
   nextHotStreak,
   nextTournamentState,
+  planBotJoinTimes,
+  TOURNAMENT_BOT_FIRST_WAVE,
+  TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS,
+  TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS,
   normalizeTournamentSchedule,
   prizeForPlace,
   roundSeed,
@@ -860,5 +864,51 @@ describe('bot personas (§3)', () => {
     expect(run1).toEqual(run2);
     expect(run1[1].isVoice).toBe(true);
     for (const ans of run1) expect(ans.elapsedMs).toBeLessThanOrEqual(8000);
+  });
+});
+
+/**
+ * зачем (владелец 2026-07-27): «не должно быть ощущения фальши, поэтому боты
+ * добираются не сразу все». До этого все 15 ботов появлялись одномоментно —
+ * игрок видел себя одного, потом мгновенно 16 из 16.
+ */
+describe('bot join spread (анти-фальшь лобби)', () => {
+  const from = 1_000_000;
+  const startsAt = from + 2 * 60 * 1000;
+
+  it('боты НЕ появляются все одновременно', () => {
+    const times = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: startsAt });
+    expect(new Set(times).size).toBeGreaterThan(1);
+  });
+
+  it('первая волна уже в лобби, остальные растянуты во времени', () => {
+    const times = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: startsAt });
+    const immediate = times.filter((value: number) => value === from);
+    expect(immediate).toHaveLength(TOURNAMENT_BOT_FIRST_WAVE);
+    for (const value of times.slice(TOURNAMENT_BOT_FIRST_WAVE)) {
+      expect(value).toBeGreaterThanOrEqual(from + TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS);
+      expect(value).toBeLessThanOrEqual(from + TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS);
+    }
+  });
+
+  it('детерминированно: у всех клиентов комнаты одна картина', () => {
+    const a = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: startsAt });
+    const b = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: startsAt });
+    expect(a).toEqual(b);
+    const other = planBotJoinTimes({ seed: 'room-b', botCount: 15, fromMs: from, startsAtMs: startsAt });
+    expect(other).not.toEqual(a);
+  });
+
+  it('никто не появляется позже старта — иначе комната играет неполной', () => {
+    // Добор впритык: разлёт обязан сжаться, а не вылезти за старт.
+    const tight = planBotJoinTimes({ seed: 'room-a', botCount: 15, fromMs: from, startsAtMs: from + 5000 });
+    for (const value of tight) {
+      expect(value).toBeGreaterThanOrEqual(from);
+      expect(value).toBeLessThanOrEqual(from + 5000);
+    }
+  });
+
+  it('пустой добор не падает', () => {
+    expect(planBotJoinTimes({ seed: 'room-a', botCount: 0, fromMs: from, startsAtMs: startsAt })).toEqual([]);
   });
 });

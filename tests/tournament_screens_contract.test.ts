@@ -332,7 +332,12 @@ describe('экраны режима «Турниры»', () => {
     expect(home).not.toContain('kind="preseason"');
     expect(home).not.toContain('TournamentSkeleton />');
     // Без расписания — «Скоро», а не 00:00 и не заглушка.
-    expect(home).toContain('первый турнир готовится');
+    // зачем 2026-07-27: тексты hero переехали в app/tournament_hero_copy.ts
+    // (пять состояний окна вместо двух — в JSX не помещалась лестница
+    // тернарников). Правило то же, изменился только адрес.
+    const heroCopy = read('app/tournament_hero_copy.ts');
+    expect(heroCopy).toContain('первый турнир готовится');
+    expect(home).toContain('resolveTournamentHeroCopy');
   });
 
   it('палитра турниров берётся из активной темы приложения', () => {

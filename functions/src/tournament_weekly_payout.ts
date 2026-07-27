@@ -18,6 +18,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   TOURNAMENT_BANK_COLLECTION,
+  TOURNAMENT_ENTRY_WINDOW_MS,
   TOURNAMENT_LOBBY_OPEN_MS,
   TOURNAMENT_SEASONS_COLLECTION,
   TOURNAMENT_SEASON_ENTRIES_SUBCOLLECTION,
@@ -316,6 +317,10 @@ export const tournamentWeeklyBankInfo = onCall(
       // своим копиям — так экран не может разойтись с реальной экономикой.
       weeklyShares: economy.weeklyShares,
       lobbyOpenMs: TOURNAMENT_LOBBY_OPEN_MS,
+      // зачем 2026-07-27 (владелец): слот — это ОКНО в полчаса, внутри которого
+      // можно зайти, а не одна точка старта. Без этого числа экран показывал
+      // мёртвый 00:00 всё окно вместо честного статуса «турниры идут».
+      entryWindowMs: TOURNAMENT_ENTRY_WINDOW_MS,
       /** Серверные часы: клиент сверяет свои и не врёт при сбитом времени. */
       serverNowMs: nowMs,
       lastWeek: {

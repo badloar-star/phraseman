@@ -79,7 +79,7 @@ const LIFECYCLE_CURSOR_DOC = '_lifecycle_due_cursor_v1';
 const BOT_SIMULATION_METADATA_DOC = '__bot_simulation_v1';
 const LIFECYCLE_RECOVERY_BACKOFF_MS = 60 * 1000;
 const LEGACY_RECOVERY_CURSOR_DOC = '_legacy_recovery_cursor_v1';
-const DEFAULT_TASKS_PER_ROUND = 6;
+const DEFAULT_TASKS_PER_ROUND = 4; // зеркало TASKS_PER_ROUND (tournament_pool_plan.ts)
 
 /**
  * Сколько заданий читать НА КАЖДЫЙ режим при сборке комнаты.

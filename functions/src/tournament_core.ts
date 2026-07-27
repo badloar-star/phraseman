@@ -52,6 +52,42 @@ export const TOURNAMENT_LOBBY_OPEN_MS = 5 * 60 * 1000; // лобби за 5 ми
 export const TOURNAMENT_CREATE_AHEAD_MS = 24 * 60 * 60 * 1000; // комнаты на сутки вперёд
 export const TOURNAMENT_FILL_BOTS_AHEAD_MS = 2 * 60 * 1000; // два тика минутного scheduler до старта
 export const TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS = 30 * 1000;
+
+/**
+ * Окно входа в турниры (решение владельца 2026-07-27).
+ *
+ * зачем: слот — это не «один турнир в 15:20», а ПОЛЧАСА, в течение которых
+ * можно зайти. Комнаты набираются волнами: заполнилась одна (16 мест) — сервер
+ * заводит следующий шард, и опоздавший попадает в неё, а не упирается в
+ * room_full. Один игрок за окно играет РОВНО ОДИН турнир (маркер
+ * tournament_last_slot_key), но за день может пройти все окна.
+ * Клиент берёт это число с сервера (tournamentWeeklyBankInfo → entryWindowMs),
+ * чтобы «таймер до старта» не превращался в мёртвый 00:00 на всё окно.
+ */
+export const TOURNAMENT_ENTRY_WINDOW_MS = 30 * 60 * 1000;
+
+/**
+ * Сколько комната СОБИРАЕТСЯ, прежде чем её добьют ботами.
+ *
+ * зачем: за это время в комнату успевают зайти живые. Раньше добор шёл за
+ * 2 минуты до старта одним куском — теперь это точка отсчёта «волны».
+ */
+export const TOURNAMENT_ROOM_GATHER_MS = 60 * 1000;
+
+/**
+ * Разлёт появления ботов в лобби (владелец: «не должно быть ощущения фальши»).
+ *
+ * зачем: боты пишутся в комнату ОДНОЙ транзакцией (16 отдельных записей стоили
+ * бы денег и рвали бы атомарность), но каждый несёт свой joinAtMs — клиент
+ * показывает бота только когда его время наступило. Первая волна заходит сразу
+ * (BOT_FIRST_WAVE), остальные растекаются по 2–30 секунд в случайном порядке.
+ * Без этого игрок видел: сам один → мгновенно 16 из 16, и сразу понимал, что
+ * соперники ненастоящие.
+ */
+export const TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS = 2 * 1000;
+export const TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS = 30 * 1000;
+/** Сколько ботов уже «сидят» в лобби к моменту добора (иначе комната пуста). */
+export const TOURNAMENT_BOT_FIRST_WAVE = 3;
 export const TOURNAMENT_CANCEL_COMPENSATION_GEMS = 3; // «за ожидание» (§2)
 export const TOURNAMENT_TABLE_DISPLAY_MS = 12 * 1000;
 export const TOURNAMENT_FINAL_DISPLAY_MS = 5 * 1000;
@@ -336,6 +372,16 @@ export type TournamentPlayer = {
   entry?: TournamentEntryProvenance;
   /** Snapshot of the seeded bot profile; avoids mutable profile reads mid-room. */
   botWinRate?: number;
+  /**
+   * Когда игрок «появляется» в лобби. Живому — момент реального входа, боту —
+   * рассчитанное время из волны (см. planBotJoinTimes).
+   *
+   * зачем: поле ПУБЛИЧНОЕ и есть у всех — по нему нельзя отличить бота от
+   * живого (isBot из документа комнаты вырезается намеренно). Клиент рисует
+   * игрока только когда joinAtMs наступил, поэтому лобби заполняется постепенно,
+   * а не мгновенной стеной из 16 аватаров.
+   */
+  joinAtMs?: number;
 };
 
 export type TournamentEntryProvenance = {
@@ -1249,6 +1295,49 @@ export function tournamentPrng(seed: string): () => number {
 
 export function roundSeed(roomId: string, roundNo: number): string {
   return `${roomId}:${roundNo}`;
+}
+
+/**
+ * Когда каждый бот «заходит» в лобби.
+ *
+ * зачем (владелец 2026-07-27): «не должно быть ощущения фальши, поэтому боты
+ * добираются не сразу все — типа если за минуту в комнату пришёл 1 игрок или
+ * два, то потом хуяк и сразу +15 ботов». Раньше было ровно так: одна запись,
+ * все 15 ботов одновременно. Теперь первая волна уже «сидит» в лобби (иначе
+ * комната выглядит пустой), а остальные растекаются по 2–30 секунд.
+ *
+ * Времена считаются ДЕТЕРМИНИРОВАННО из seed комнаты: запись в Firestore
+ * по-прежнему одна, а все клиенты независимо получают одинаковую картину —
+ * иначе у двух игроков одной комнаты лобби заполнялось бы по-разному.
+ *
+ * Возвращает массив той же длины, что botCount, в исходном порядке ботов.
+ * Никогда не выходит за startsAt: бот, не успевший «зайти» до старта, не
+ * появился бы вовсе и комната играла бы неполной.
+ */
+export function planBotJoinTimes(input: {
+  seed: string;
+  botCount: number;
+  /** Момент добора — от него отсчитывается разлёт. */
+  fromMs: number;
+  /** Старт турнира: позже него не появляется никто. */
+  startsAtMs: number;
+  /** Сколько ботов видно сразу (по умолчанию TOURNAMENT_BOT_FIRST_WAVE). */
+  firstWave?: number;
+}): number[] {
+  const { seed, botCount, fromMs, startsAtMs } = input;
+  if (botCount <= 0) return [];
+  const firstWave = Math.max(0, Math.trunc(input.firstWave ?? TOURNAMENT_BOT_FIRST_WAVE));
+  // Разлёт не может пережить старт: если добор идёт впритык, сжимаем окно.
+  const room = Math.max(0, startsAtMs - fromMs);
+  const spreadMax = Math.min(TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS, room);
+  const spreadMin = Math.min(TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS, spreadMax);
+  const rand = tournamentPrng(`${seed}:bot_join`);
+  return Array.from({ length: botCount }, (_unused, index) => {
+    // Первая волна — уже в лобби на момент добора.
+    if (index < firstWave) return fromMs;
+    const offset = spreadMin + rand() * Math.max(0, spreadMax - spreadMin);
+    return fromMs + Math.round(offset);
+  });
 }
 
 /** Детерминированный shuffle (Fisher–Yates на seeded PRNG). */

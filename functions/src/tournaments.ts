@@ -18,6 +18,7 @@ import {
   TOURNAMENT_RECEIPTS_SUBCOLLECTION,
   TOURNAMENT_ROOMS_COLLECTION,
   TOURNAMENT_ROOM_SIZE,
+  TOURNAMENT_DEV_START_DELAY_MS,
   TOURNAMENT_ROOM_TTL_MS,
   TOURNAMENT_ROUND_MODE_KINDS,
   TOURNAMENT_SCHEDULE_COLLECTION,
@@ -1578,6 +1579,12 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
  * advance-крон поведёт раунды. devRoom:true отключает минимум «8 живых» —
  * иначе комната с одним владельцем отменилась бы с возвратом жемчужин.
  */
+/**
+ * Старт дев-комнаты после создания. Не ноль: экран лобби должен успеть
+ * отрисовать состав, иначе игрок видит мигание «пусто → 16 игроков».
+ */
+const DEV_ROOM_START_DELAY_MS = 12 * 1000;
+
 export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', maxInstances: 1 }, async (request) => {
   if (request.auth?.token?.admin !== true) {
     throw new HttpsError('permission-denied', 'Admin only');
@@ -1591,16 +1598,42 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
     throw new HttpsError('failed-precondition', 'not_enough_bots');
   }
 
-  const startsAt = nowMs + 3 * 60 * 1000;
+  // зачем 2026-07-27 (владелец: «комната должна создаваться за секунду»):
+  // раньше здесь создавалась ПУСТАЯ комната со стартом через 3 минуты, а ботов
+  // и задания досыпал крон tournamentFillBots — то есть владелец ждал минуты.
+  // Теперь всё делается прямо здесь: боты, раунды и секреты заданий пишутся
+  // одной операцией, комната сразу ready. Старт через 12 секунд — ровно чтобы
+  // экран лобби успел показать состав и не мигнул.
+  const startsAt = nowMs + DEV_ROOM_START_DELAY_MS;
   const dateKey = dateKeyInTimezone(nowMs, slot.timezone);
   // Свой суффикс: дев-комната не конфликтует со штатной комнатой слота.
   const roomId = tournamentRoomId(`dev-${slot.slotId}-${nowMs}`, slot.timezone, dateKey);
 
   // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
   // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
-  if (!buildRounds(roomId, resources.tasks)) {
+  const rounds = buildRounds(roomId, resources.tasks);
+  if (!rounds) {
     throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
   }
+
+  // Боты: комнату заполняем целиком, одно место оставляем владельцу.
+  const botPlayers: TournamentPlayer[] = resources.bots
+    .slice(0, TOURNAMENT_ROOM_SIZE - 1)
+    .map((bot, index) => ({
+      id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
+      isBot: true,
+      name: bot.name,
+      avatar: bot.avatarEmoji,
+      color: bot.color || PLAYER_COLORS[index % PLAYER_COLORS.length],
+      score: 0,
+      streak: 0,
+      botWinRate: bot.winRate,
+    }));
+
+  const taskMap = new Map(resources.tasks.map((task) => [task.taskId, task]));
+  const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
+    .map((taskId) => taskMap.get(taskId))
+    .filter((task): task is TournamentTask => !!task);
 
   const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
   const room: TournamentRoomDoc = {
@@ -1609,8 +1642,8 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
     seed: roomId,
     state: 'lobby',
     startsAt,
-    players: [],
-    rounds: [],
+    players: botPlayers.map(publicTournamentPlayer),
+    rounds,
     participantAuthUids: [],
     participantAuthUidsComplete: true,
     stateStartedAtMs: nowMs,
@@ -1619,15 +1652,31 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
     createdAtMs: nowMs,
     expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
   };
-  await roomRef.create({
+
+  // Батч вместо серии запросов: комната + секреты заданий + метаданные ботов
+  // уезжают одним round-trip — это и есть «за секунду».
+  const batch = db.batch();
+  batch.create(roomRef, {
     ...room,
     devRoom: true,
     ticketsRequired: slot.ticketsRequired,
     timezone: slot.timezone,
-    ready: false,
+    ready: true,
+    readyAtMs: nowMs,
     featureGates: tournamentFeatureGates(),
     expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
   });
+  for (const task of selectedTasks) {
+    batch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
+  }
+  batch.create(
+    roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
+    {
+      kind: 'bot_simulation_v1',
+      bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
+    },
+  );
+  await batch.commit();
 
   return { ok: true, roomId, startsAt };
 });

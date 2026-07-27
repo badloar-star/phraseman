@@ -52,6 +52,13 @@ export const TOURNAMENT_RESULTS_DISPLAY_MS = 5 * 1000;
 export const TOURNAMENT_REWARD_CLAIM_WINDOW_MS = 24 * 60 * 60 * 1000;
 export const TOURNAMENT_ROOM_TTL_MS = 7 * 24 * 60 * 60 * 1000;
 
+/**
+ * Задержка старта дев-комнаты (кнопка владельца «сыграть с ботами сейчас»).
+ * зачем 5 секунд: комната уже создаётся заполненной, ждать нечего — нужен лишь
+ * зазор, чтобы клиент успел войти и отрисовать лобби до первого раунда.
+ */
+export const TOURNAMENT_DEV_START_DELAY_MS = 5 * 1000;
+
 // ── Расписание (§2) ─────────────────────────────────────────────────────────
 
 export type TournamentSlotConfig = {

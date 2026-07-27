@@ -32,6 +32,16 @@ export type RoomPlayer = {
   color: string;
   score: number;
   streak: number;
+  /**
+   * Когда игрок появляется в лобби (часы сервера).
+   *
+   * зачем 2026-07-27 (владелец: «не должно быть ощущения фальши»): боты
+   * дописываются в комнату одной транзакцией, но каждый несёт своё время
+   * входа. Лобби показывает игрока только когда это время наступило —
+   * места занимаются постепенно, а не мгновенной стеной из 16 аватаров.
+   * Поле есть и у живых, поэтому по нему нельзя отличить бота от человека.
+   */
+  joinAtMs?: number;
 };
 
 export type RoomRound = {
@@ -154,10 +164,44 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
     return () => clearInterval(id);
   }, [room?.stateDeadlineAtMs]);
 
+  /**
+   * Дедлайн истёк — просим сервер перевести комнату дальше.
+   *
+   * зачем 2026-07-27 (владелец: «раунды все перепрыгивают через друг друга»):
+   * см. комментарий у advanceRound. Крон раз в минуту не успевает за фазами по
+   * 5–12 секунд. Здесь — общий для всех экранов будильник, поэтому лобби,
+   * раунд и таблица перестают залипать одинаково.
+   *
+   * Один вызов на фазу (ключ state+дедлайн) и случайная задержка до 400 мс:
+   * иначе все 16 участников ударили бы в функцию в одну миллисекунду, а платим
+   * мы за каждый вызов. Ошибку глотаем: waiting от сервера — норма (значит
+   * чужие часы спешат), а крон всё равно подстрахует.
+   */
+  const nudgedRef = useRef<string | null>(null);
+  useEffect(() => {
+    const deadline = room?.stateDeadlineAtMs;
+    const state = room?.state;
+    if (!roomId || !deadline || !state) return;
+    if (!ADVANCEABLE_STATES.test(state)) return;
+    if (secondsLeft > 0) return;
+
+    const key = `${state}:${deadline}`;
+    if (nudgedRef.current === key) return;
+    nudgedRef.current = key;
+
+    const id = setTimeout(() => {
+      void advanceRound(roomId, state, deadline).catch(() => {});
+    }, Math.floor(Math.random() * 400));
+    return () => clearTimeout(id);
+  }, [roomId, room?.state, room?.stateDeadlineAtMs, secondsLeft]);
+
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
 
   return useMemo(() => ({ room, status, secondsLeft, retry }), [room, status, secondsLeft, retry]);
 }
+
+/** Состояния, которые сервер умеет двигать по дедлайну (см. tournamentAdvanceRound). */
+const ADVANCEABLE_STATES = /^(round[1-4]|table[1-3]|final|results)$/;
 
 
 /** Идёт раунд (любой из четырёх). Сервер: round1..round4. */
@@ -271,9 +315,25 @@ export function submitAnswers(roomId: string, roundNo: number, answers: unknown[
   return callFunction<{ ok: boolean }>('tournamentSubmitAnswers', { roomId, roundNo, answers });
 }
 
-/** Точный переход к следующему состоянию после показа таблицы. */
-export function advanceRound(roomId: string) {
-  return callFunction<{ ok: boolean }>('tournamentAdvanceRound', { roomId });
+/**
+ * Точный переход к следующему состоянию, когда серверный дедлайн истёк.
+ *
+ * зачем 2026-07-27 (владелец: «раунды все перепрыгивают через друг друга, а не
+ * идут последовательно» + «Следующий раунд через 0»): фазы короткие (таблица
+ * 12с, финал и результаты по 5с), а крон tournamentAdvanceRooms стоит на
+ * '* * * * *' — раз в МИНУТУ. Комната висела на нуле до следующей минуты, после
+ * чего крон догонял и проскакивал несколько фаз одним тиком. Чаще минуты крон
+ * не бывает, поэтому фазу двигает клиент, а крон остаётся страховкой для
+ * комнат, где живых игроков не осталось.
+ *
+ * Ускорить турнир этим нельзя: сервер сверяет expectedState и
+ * expectedDeadlineAtMs со своими и на досрочный вызов отвечает waiting.
+ */
+export function advanceRound(roomId: string, expectedState: string, expectedDeadlineAtMs: number) {
+  return callFunction<{ ok: boolean; state?: string; outcome?: string }>(
+    'tournamentAdvanceRound',
+    { roomId, expectedState, expectedDeadlineAtMs },
+  );
 }
 
 /** Забрать награду. Идемпотентно: повторный вызов не выдаёт приз дважды. */

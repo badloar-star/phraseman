@@ -574,7 +574,13 @@ export async function tournamentJoinTransaction(
     // коллекция стоила бы лишних чтений на каждом входе.
     const roomTimezone = sanitizeString(roomSnap.data()?.timezone, 64) || 'Europe/Moscow';
     const slotKey = `${room.slotId}_${dateKeyInTimezone(room.startsAt, roomTimezone)}`;
-    if (sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
+    // зачем 2026-07-27 (владелец: «дев турнир не создался slot_already_played,
+    // такого не должно быть, дев без ограничений»): лимит «один турнир на слот
+    // в день» правильный для боевых слотов, но дев-комнаты живут под общим
+    // ключом dev-…, поэтому ВТОРОЙ тестовый турнир за день всегда упирался в
+    // этот же slotKey и войти было нельзя. Дев-комнату из лимита исключаем —
+    // она не влияет ни на банк недели, ни на сезонный рейтинг.
+    if (!isDevRoom && sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
       throw new HttpsError('failed-precondition', 'slot_already_played');
     }
 
@@ -621,8 +627,13 @@ export async function tournamentJoinTransaction(
     tx.set(userRef, {
       shards: admin.firestore.FieldValue.increment(-entryGems),
       // Маркер «этот слот сегодня уже сыгран» — основа лимита один-турнир-на-слот.
-      tournament_last_slot_key: slotKey,
-      tournament_last_slot_room_id: room.roomId,
+      // зачем 2026-07-27: дев-комната маркер НЕ ставит. Иначе один тестовый
+      // прогон занимал бы боевое окно на весь день — и владелец, и любой тестер
+      // лишались бы настоящего турнира из-за проверки.
+      ...(isDevRoom ? {} : {
+        tournament_last_slot_key: slotKey,
+        tournament_last_slot_room_id: room.roomId,
+      }),
       updatedAt: nowMs,
     }, { merge: true });
     tx.set(roomRef, {

@@ -20,6 +20,39 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).not.toContain('const roomSnap = await roomRef.get();\n  if (!roomSnap.exists)');
   });
 
+  /**
+   * зачем 2026-07-27 (владелец: «дев турнир не создался slot_already_played,
+   * такого не должно быть, дев без ограничений»): лимит «один турнир на слот в
+   * день» правильный для боевых окон, но дев-комнаты живут под общим ключом
+   * dev-…, поэтому второй тестовый прогон за день всегда упирался в свой же
+   * slotKey. Обе половины исключения фиксируем тестом: и проверку, и запись
+   * маркера — иначе дев-прогон занял бы владельцу настоящее окно на весь день.
+   */
+  it('exempts dev rooms from the once-per-slot limit, both check and marker', () => {
+    expect(source).toContain("const isDevRoom = roomSnap.data()?.devRoom === true;");
+    expect(source).toContain("if (!isDevRoom && sanitizeString(user.tournament_last_slot_key, 200) === slotKey)");
+    expect(source).toContain('...(isDevRoom ? {} : {');
+    expect(source).toContain('tournament_last_slot_key: slotKey,');
+    // Маркер обязан жить ВНУТРИ условной ветки, иначе дев снова сожжёт окно.
+    const markerAt = source.indexOf('tournament_last_slot_key: slotKey,');
+    const guardAt = source.indexOf('...(isDevRoom ? {} : {');
+    expect(guardAt).toBeGreaterThan(0);
+    expect(markerAt).toBeGreaterThan(guardAt);
+  });
+
+  /**
+   * зачем 2026-07-27 (владелец: «раунды все перепрыгивают через друг друга»):
+   * фазы длятся 5–12 секунд, а крон стоит на минуте. Переход обязан быть
+   * защищён ожидаемым состоянием и дедлайном — тогда клиенту безопасно его
+   * дёргать, и он не может ускорить турнир, только не дать залипнуть.
+   */
+  it('guards the client-driven phase advance with expected state and deadline', () => {
+    expect(source).toContain('export const tournamentAdvanceRound = onCall');
+    expect(source).toContain("const expectedState = sanitizeString(request.data?.expectedState, 20);");
+    expect(source).toContain('const expectedDeadlineAtMs = readInt(request.data?.expectedDeadlineAtMs, -1);');
+    expect(source).toContain("if (outcome === 'waiting') throw new HttpsError('failed-precondition', 'deadline_not_elapsed');");
+  });
+
   it('does not use client elapsedMs to mint a speed bonus', () => {
     expect(source).not.toContain('given?.elapsedMs');
     expect(source).toContain('applyTournamentSubmission');

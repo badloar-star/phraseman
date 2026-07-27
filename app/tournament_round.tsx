@@ -12,7 +12,7 @@
 
 import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
+import Animated, { Easing, FadeIn, SlideInRight, SlideOutLeft, ZoomIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
@@ -21,6 +21,7 @@ import {
   V2Card,
   V2Chip,
   V2Counter,
+  V2Cta,
   V2Segments,
   V2StreakPill,
 } from '../components/tournament/tournament_v2_ui';
@@ -30,11 +31,13 @@ import {
   type FxPoint,
   type TournamentFxApi,
 } from '../components/tournament/TournamentFx';
-import { T, motion, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { T, motion, radius, type, useTournamentPalette, v2motion, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentRoundIntro } from '../components/tournament/TournamentRoundIntro';
 import {
-  isTableState, submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
+  isTableState, submitAnswers, useTournamentReactions, useTournamentRoom,
+  type PublicTask } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
 
 // зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
@@ -173,6 +176,7 @@ export default function TournamentRoundScreen() {
   const roomId = typeof params.roomId === 'string' ? params.roomId : null;
 
   const { room, status, secondsLeft: stateSecondsLeft, retry } = useTournamentRoom(roomId);
+  const { incoming: incomingReactions, consume: consumeReaction } = useTournamentReactions(roomId);
 
   const [index, setIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>('intro');
@@ -259,12 +263,11 @@ export default function TournamentRoundScreen() {
     });
   }, [questions]);
 
-  // Интро раунда: показываем режим, затем первый вопрос.
-  useEffect(() => {
-    if (phase !== 'intro') return;
-    const id = setTimeout(() => setPhase('question'), 1600);
-    return () => clearTimeout(id);
-  }, [phase]);
+  // зачем 2026-07-27 (владелец: «потом отсчёт перед началом типа 3 2 1, потом
+  // начинается первый вопрос»): фиксированная пауза 1600 мс заменена живым
+  // отсчётом. Момент старта задаёт сам отсчёт (onDone), поэтому таймера здесь
+  // больше нет — иначе два независимых таймера разошлись бы между собой.
+  const startQuestions = useCallback(() => setPhase('question'), []);
 
   /**
    * Прослушано ли аудио текущего вопроса.
@@ -325,6 +328,33 @@ export default function TournamentRoundScreen() {
     setTimedOut(false);
     setPhase('question');
   }, [index, total, flushAnswers, roomId, router]);
+
+  /**
+   * «Готово» — игрок закончил раунд раньше дедлайна.
+   *
+   * зачем 2026-07-27 (владелец: «можно внизу нажать на кнопку готово… и это
+   * учитывается в скорость выполнения; если юзер ответил раньше всех, он идёт
+   * на турнирную таблицу, где видит таймер, пока все не доделают»): сервер
+   * считает бонус скорости от времени ПРИХОДА пачки, поэтому ранняя отправка
+   * реально прибавляет очки. Ждать общего дедлайна, сидя на отвеченном
+   * вопросе, было бы прямой потерей.
+   *
+   * Optimistic UI: уходим на таблицу СРАЗУ, не дожидаясь сети — пачка летит
+   * фоном (flushAnswers не ждёт ответа). Двойной тап закрыт submittedRef
+   * внутри flushAnswers и локальным finishing.
+   */
+  const [finishing, setFinishing] = useState(false);
+  const allAnswered = index + 1 >= total;
+
+  const finishEarly = useCallback(() => {
+    if (finishing) return;
+    setFinishing(true);
+    void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    flushAnswers();
+    router.replace(roomId
+      ? { pathname: '/tournament_table', params: { roomId } }
+      : '/tournament_table');
+  }, [finishing, flushAnswers, roomId, router]);
 
   /**
    * Полёт звезды от места ответа к счётчику + бонусы за серию.
@@ -474,14 +504,11 @@ export default function TournamentRoundScreen() {
         : firstKind === 'dictate' ? 'Диктант'
           : firstKind === 'translate' ? 'Собери фразу' : 'Угадай перевод';
     return (
-      <View style={[styles.root, styles.introRoot]}>
-        <Animated.Text entering={ZoomIn.duration(320)} style={styles.introRound}>
-          Раунд {roundNo}
-        </Animated.Text>
-        <Animated.Text entering={FadeIn.delay(200)} style={styles.introMode}>
-          {modeLabel}
-        </Animated.Text>
-      </View>
+      <TournamentRoundIntro
+        roundNo={roundNo}
+        modeLabel={modeLabel}
+        onDone={startQuestions}
+      />
     );
   }
 
@@ -503,10 +530,16 @@ export default function TournamentRoundScreen() {
           ? prev : { width, height }));
       }}
     >
+      {/* зачем 2026-07-27 (владелец: «почему всё так высоко задрано вверх, а
+          внизу куча пустого пространства»): контент лип к верху, а низ экрана
+          пустовал. Теперь высота распределена — вопрос занимает свою долю и
+          центрируется, ответы идут следом, а управление прижато к низу
+          (см. bottomBar под ScrollView). flexGrow позволяет содержимому
+          дышать на больших экранах и скроллиться на маленьких. */}
       <ScrollView
         contentContainerStyle={[
           styles.content,
-          { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 40 },
+          { paddingTop: insets.top + 8, paddingBottom: 12 },
         ]}
         showsVerticalScrollIndicator={false}
       >
@@ -537,7 +570,20 @@ export default function TournamentRoundScreen() {
           <TimerRing seconds={secondsLeft} total={SECONDS_PER_QUESTION} />
         </View>
 
-        {/* Вопрос */}
+        {/* Вопрос.
+            зачем 2026-07-27 (владелец: «просто анимация перехода на след
+            задание как в Learning V2»): key={questionKey} пересоздаёт блок на
+            каждом задании, поэтому entering/exiting отрабатывают как смена
+            карточки в эталоне — уходящее уезжает влево, новое приходит справа.
+            Кривые те же, что в макете (--ease-slide / --ease-spring). */}
+        <Animated.View
+          key={questionKey ?? 'q'}
+          entering={SlideInRight.duration(v2motion.taskSwapMs)
+            .easing(Easing.bezier(...v2motion.bezierSlide).factory())}
+          exiting={SlideOutLeft.duration(v2motion.press)
+            .easing(Easing.bezier(...v2motion.bezierSlide).factory())}
+          style={styles.questionZone}
+        >
         <V2Card pad={22} style={styles.questionCard}>
           <Text style={styles.questionPrompt}>{question.prompt}</Text>
           {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
@@ -553,6 +599,7 @@ export default function TournamentRoundScreen() {
             <Text style={styles.questionPhrase}>{question.phrase}</Text>
           )}
         </V2Card>
+        </Animated.View>
 
         {/* Варианты (choice/timeattack) или сборка слов (translate) */}
         {question.kind === 'translate' || question.kind === 'dictate' ? (
@@ -578,27 +625,34 @@ export default function TournamentRoundScreen() {
           </View>
         )}
 
-        {/* Фидбек — место зарезервировано, поэтому варианты не прыгают.
-            зачем: правильность знает только сервер (ключи ответов клиенту не
-            приходят), поэтому подтверждаем ПРИЁМ ответа, а результат игрок
-            видит в таблице — это же и защита от подглядывания ответов. */}
-        <View style={styles.feedbackSlot}>
-          {phase === 'feedback' ? (
-            <Animated.View entering={FadeIn.duration(160)}>
-              <V2Card pad={18} style={{ backgroundColor: answered ? P.accentSoft : P.dangerSoft }}>
-                <Text style={[styles.feedbackTitle, { color: answered ? P.accent : P.danger }]}>
-                  {answered ? 'Ответ принят' : 'Время вышло'}
-                </Text>
-                <Text style={styles.feedbackSub}>
-                  {index + 1 < total
-                    ? `дальше вопрос ${index + 2} из ${total}`
-                    : 'считаем результаты…'}
-                </Text>
-              </V2Card>
-            </Animated.View>
-          ) : null}
-        </View>
+        {/* зачем 2026-07-27 (владелец: «время вышло писать не надо, просто
+            анимация перехода на след задание как в Learning V2»): плашка
+            «Ответ принят / Время вышло» убрана. Приём ответа читается телом
+            движения — плита проседает, звезда улетает в счётчик, задание
+            уезжает влево, — как в эталоне 02-phrase-builder. Место больше не
+            резервируем: карточка вопроса теперь в своей зоне и варианты не
+            прыгают без этой распорки. */}
       </ScrollView>
+
+      {/* Низ экрана: «Готово».
+          зачем 2026-07-27 (владелец: «можно внизу нажать на кнопку готово…
+          и это учитывается в скорость выполнения; если юзер ответил раньше
+          всех, он идёт на турнирную таблицу, где видит таймер, пока все не
+          доделают»): кнопка отмечает, что игрок закончил, и отправляет пачку
+          РАНЬШЕ дедлайна. Сервер считает бонус скорости от времени прихода
+          пачки (serverBoundedElapsedMs), поэтому ранний финиш действительно
+          даёт больше очков — это не декорация.
+          Заодно кнопка занимает низ, который раньше пустовал. */}
+      <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
+        <V2Cta
+          onPress={finishEarly}
+          disabled={finishing}
+          tone={allAnswered ? 'accent' : 'ghost'}
+        >
+          {finishing ? 'Отправляем…' : allAnswered ? 'Готово' : 'Готово · пропустить остальные'}
+        </V2Cta>
+      </View>
+
       {/* Слой полётов поверх экрана: звёзды, конфетти, золотая волна.
           pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
       <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
@@ -748,7 +802,15 @@ const WordBank = memo(function WordBank({
 
 const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg },
-  content: { paddingHorizontal: 16, gap: 14 },
+  // зачем 2026-07-27 (владелец: «почему всё так высоко задрано вверх, а внизу
+  // куча пустого пространства»): flexGrow отдаёт содержимому всю высоту, а
+  // зона вопроса забирает свободное место и центрирует фразу. На маленьком
+  // экране всё так же скроллится, на большом — не липнет к шапке.
+  content: { paddingHorizontal: 16, gap: 14, flexGrow: 1 },
+  /** Вопрос занимает свободную высоту между шапкой и вариантами. */
+  questionZone: { flex: 1, justifyContent: 'center', minHeight: 132 },
+  /** Полоса управления у нижнего края. Разделяем тоном, без обводки. */
+  bottomBar: { paddingHorizontal: 16, paddingTop: 10, backgroundColor: P.bg },
 
   introRoot: { alignItems: 'center', justifyContent: 'center' },
   introRound: { fontSize: 44, fontWeight: '900', color: P.text, letterSpacing: -1 },
@@ -799,7 +861,6 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
 
   // Высота под фидбек зарезервирована заранее — иначе список вариантов
   // дёргался бы вверх при каждом ответе.
-  feedbackSlot: { minHeight: 92 },
   feedbackTitle: { fontSize: 20, fontWeight: '900' },
   feedbackSub: { ...type.body, color: P.muted, marginTop: 6 },
 

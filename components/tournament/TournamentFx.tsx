@@ -16,6 +16,7 @@ import React, {
   forwardRef,
   memo,
   useCallback,
+  useEffect,
   useImperativeHandle,
   useRef,
   useState,
@@ -23,6 +24,7 @@ import React, {
 import { AccessibilityInfo, StyleSheet, Text, View } from 'react-native';
 import Animated, {
   Easing,
+  cancelAnimation,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
@@ -33,7 +35,11 @@ import Animated, {
 import Svg, { Path } from 'react-native-svg';
 import { v2motion } from './tournament_theme';
 
-// Глифы V2 (SVG-символы эталона; эмодзи запрещены правилом владельца).
+// Глифы V2 (SVG-символы эталона; эмодзи запрещены правилом владельца в
+// НАГРАДНЫХ эффектах — звёзды, конфетти, волна рисуются векторами).
+// Исключение 2026-07-27: реакции игроков это и есть эмодзи по прямому
+// требованию владельца («эмодзи отправляются, улетают вверх, все их видят»),
+// поэтому ReactionFlight рисует символ, а не глиф.
 const STAR_PATH = 'M12 2.6l2.9 5.9 6.5 0.9-4.7 4.6 1.1 6.4L12 17.4l-5.8 3 1.1-6.4L2.6 9.4l6.5-0.9L12 2.6z';
 const SPARK_PATH = 'M12 2.8c0.9 4.4 2.2 6.8 4.4 8 1.6 0.9 3.1 1.1 4.8 1.2-1.7 0.1-3.2 0.3-4.8 1.2-2.2 1.2-3.5 3.6-4.4 8-0.9-4.4-2.2-6.8-4.4-8-1.6-0.9-3.1-1.1-4.8-1.2 1.7-0.1 3.2-0.3 4.8-1.2 2.2-1.2 3.5-3.6 4.4-8z';
 
@@ -64,13 +70,24 @@ export type TournamentFxApi = {
   goldWave: (color: string) => void;
   /** «+N» всплывает от точки (пилюля серии). */
   floatLabel: (text: string, at: FxPoint, color: string) => void;
+  /**
+   * Реакция-эмодзи улетает вверх.
+   *
+   * зачем 2026-07-27 (владелец: «чтобы они отправлялись, улетали вверх и все
+   * их видели»): реакцию шлёт один игрок, а полёт видят ВСЕ участники —
+   * поэтому эффект живёт в общем слое, а не внутри кнопки отправителя.
+   * lane разводит одновременные реакции по горизонтали, чтобы эмодзи разных
+   * игроков не наложились друг на друга.
+   */
+  flyReaction: (emoji: string, lane: number) => void;
 };
 
 type Effect =
   | { kind: 'star'; id: number; from: FxPoint; to: FxPoint; color: string; trail: number; onLand?: () => void }
   | { kind: 'confetto'; id: number; origin: FxPoint; color: string; angle: number; velocity: number; rotate: number; duration: number }
   | { kind: 'wave'; id: number; color: string }
-  | { kind: 'label'; id: number; text: string; at: FxPoint; color: string };
+  | { kind: 'label'; id: number; text: string; at: FxPoint; color: string }
+  | { kind: 'reaction'; id: number; emoji: string; lane: number };
 
 let effectSeq = 1;
 
@@ -136,6 +153,10 @@ export const TournamentFxHost = memo(forwardRef<TournamentFxApi, { width: number
         if (reduceMotionRef.current) return;
         setEffects((prev) => [...prev, { kind: 'label', id: effectSeq++, text, at: toLocal(at), color }]);
       },
+      flyReaction(emoji, lane) {
+        if (reduceMotionRef.current) return;
+        setEffects((prev) => [...prev, { kind: 'reaction', id: effectSeq++, emoji, lane }]);
+      },
     }), [toLocal]);
 
     const onLayout = useCallback(() => {
@@ -148,12 +169,76 @@ export const TournamentFxHost = memo(forwardRef<TournamentFxApi, { width: number
           if (e.kind === 'star') return <StarFlight key={e.id} fx={e} onDone={remove} />;
           if (e.kind === 'confetto') return <Confetto key={e.id} fx={e} onDone={remove} />;
           if (e.kind === 'wave') return <GoldWave key={e.id} fx={e} onDone={remove} width={width} height={height} />;
+          if (e.kind === 'reaction') {
+            return <ReactionFlight key={e.id} fx={e} onDone={remove} width={width} height={height} />;
+          }
           return <FloatLabel key={e.id} fx={e} onDone={remove} />;
         })}
       </View>
     );
   },
 ));
+
+// ── Реакция: эмодзи поднимается от низа экрана и тает ───────────────────────
+
+/**
+ * Полёт реакции снизу вверх.
+ *
+ * зачем 2026-07-27 (владелец: «эмодзи отправляются, улетают вверх и все их
+ * видят»): движение читается как «сообщение улетело» — старт от нижней
+ * четверти, подъём на две трети высоты, лёгкий снос вбок, чтобы полёт не был
+ * линейкой. Дорожка (lane) разводит одновременные реакции разных игроков.
+ * Живёт ровно столько, сколько длится анимация, и сам себя убирает.
+ */
+const ReactionFlight = memo(function ReactionFlight({
+  fx, onDone, width, height,
+}: {
+  fx: Extract<Effect, { kind: 'reaction' }>;
+  onDone: (id: number) => void;
+  width: number;
+  height: number;
+}) {
+  const progress = useSharedValue(0);
+  // Дорожки идут по нижней трети ширины, а не от края: так эмодзи не липнут
+  // к рамке экрана и читаются группой.
+  const laneX = width * (0.16 + 0.17 * (fx.lane % 5));
+  const drift = (jitter(fx.id, 3) - 0.5) * 46;
+  const startY = height * 0.78;
+  const rise = height * 0.62;
+
+  useEffect(() => {
+    progress.value = withTiming(
+      1,
+      { duration: REACTION_FLIGHT_MS, easing: Easing.bezier(0.23, 1, 0.32, 1) },
+      (finished) => { if (finished) runOnJS(onDone)(fx.id); },
+    );
+    return () => cancelAnimation(progress);
+  }, [progress, onDone, fx.id]);
+
+  const style = useAnimatedStyle(() => {
+    const p = progress.value;
+    return {
+      transform: [
+        { translateX: laneX + drift * p },
+        { translateY: startY - rise * p },
+        // Подача: чуть подрастает на старте, к концу слегка уменьшается.
+        { scale: 0.7 + 0.5 * Math.min(1, p * 4) - 0.2 * p },
+      ],
+      // Держится почти весь полёт, тает только в конце — иначе не успеваешь
+      // разглядеть, кто что отправил.
+      opacity: p < 0.72 ? 1 : 1 - (p - 0.72) / 0.28,
+    };
+  });
+
+  return (
+    <Animated.View style={[styles.abs, style]} pointerEvents="none">
+      <Text style={styles.reaction} allowFontScaling={false}>{fx.emoji}</Text>
+    </Animated.View>
+  );
+});
+
+/** Длительность полёта реакции. Согласована с REACTION_TTL_MS клиента. */
+const REACTION_FLIGHT_MS = 2400;
 
 // ── Звезда: дуга по квадратичной Безье, апекс на 90px выше ──────────────────
 
@@ -301,4 +386,5 @@ const styles = StyleSheet.create({
   abs: { position: 'absolute', left: 0, top: 0 },
   confetto: { width: 9, height: 9, borderRadius: 2.5 },
   label: { fontSize: 17, fontWeight: '900' },
+  reaction: { fontSize: 40 },
 });

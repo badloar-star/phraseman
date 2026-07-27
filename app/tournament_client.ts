@@ -70,6 +70,19 @@ export type Room = {
   rounds: RoomRound[];
   stateDeadlineAtMs?: number;
   cancelReason?: string;
+  /**
+   * Реальная экономика турнира — приходит с сервера при финализации.
+   *
+   * зачем 2026-07-27 (владелец: «сейчас там захардкоженные цифры, их надо
+   * убрать»): экран результатов рисовал выдуманные «50/25/10 жемчужин», хотя
+   * сервер платит долю фактического банка (при 16 игроках — 24/9/6).
+   */
+  /** Весь банк турнира: взносы всех участников. */
+  potGems?: number;
+  /** Сколько из банка ушло призёрам — цифра под подиумом. */
+  prizePoolGems?: number;
+  /** Фактические выплаты по местам: [1-е, 2-е, 3-е]. */
+  prizeGems?: number[];
 };
 
 export type RoomStatus = 'idle' | 'loading' | 'ready' | 'offline' | 'error';
@@ -202,6 +215,137 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
 
 /** Состояния, которые сервер умеет двигать по дедлайну (см. tournamentAdvanceRound). */
 const ADVANCEABLE_STATES = /^(round[1-4]|table[1-3]|final|results)$/;
+
+// ── Реакции-эмодзи, которые видят все ───────────────────────────────────────
+
+/** Прилетевшая реакция: кто отправил, что и когда. */
+export type LiveReaction = {
+  /** authUid отправителя — по нему отличаем свои реакции от чужих. */
+  id: string;
+  emoji: string;
+  atMs: number;
+  name: string;
+};
+
+/** Потолок подписки: в комнате 16 мест, больше документов быть не может. */
+const TOURNAMENT_ROOM_SIZE_CAP = 16;
+
+/** Реакция живёт на экране столько же, сколько летит вверх. */
+export const REACTION_TTL_MS = 2600;
+/** Кулдаун между своими реакциями: спам-защита и защита от лишних записей. */
+export const REACTION_COOLDOWN_MS = 900;
+
+/**
+ * Общие реакции комнаты: отправка своей и поток чужих.
+ *
+ * зачем 2026-07-27 (владелец: «анимации эмодзи нет, как было задумано на
+ * макетах — чтобы они отправлялись, улетали вверх и все их видели»): раньше
+ * реакция была локальным setState, её не видел никто. Теперь это документ на
+ * игрока в подколлекции комнаты.
+ *
+ * FIREBASE-ЭКОНОМИЯ: документ ОДИН на игрока и перезаписывается, а не пишется
+ * новый на каждый тап — стоимость не растёт от частоты нажатий. Кулдаун
+ * отсекает спам ещё до записи. Подписываемся только пока экран открыт, и
+ * показываем лишь свежие реакции (старше TTL игнорируем): при входе в комнату
+ * не сыплется история чужих тапов.
+ */
+export function useTournamentReactions(roomId: string | null) {
+  const [incoming, setIncoming] = useState<LiveReaction[]>([]);
+  const lastSentAtRef = useRef(0);
+  const seenRef = useRef<Map<string, number>>(new Map());
+  const mountedAtRef = useRef(Date.now());
+
+  useEffect(() => {
+    if (!roomId) return;
+    let cancelled = false;
+    let unsubscribe: null | (() => void) = null;
+    mountedAtRef.current = Date.now();
+
+    void (async () => {
+      try {
+        const firestore = (await import('@react-native-firebase/firestore')).default;
+        if (cancelled) return;
+        unsubscribe = firestore()
+          .collection('tournamentRooms').doc(roomId).collection('reactions')
+          // guard-ok: подколлекция ограничена размером комнаты (16 игроков =
+          // максимум 16 документов, по одному на человека). limit всё равно
+          // ставим явно — он защищает от разрастания, если состав вырастет.
+          .limit(TOURNAMENT_ROOM_SIZE_CAP)
+          .onSnapshot((snapshot: any) => {
+            if (cancelled || !snapshot) return;
+            const fresh: LiveReaction[] = [];
+            const now = Date.now();
+            snapshot.docChanges?.().forEach((change: any) => {
+              if (change.type === 'removed') return;
+              const data = change.doc.data() || {};
+              const atMs = Number(data.atMs ?? 0);
+              // Только свежие и только те, что мы ещё не показывали: иначе
+              // при переподписке экран засыпало бы старыми реакциями.
+              if (now - atMs > REACTION_TTL_MS) return;
+              if (atMs < mountedAtRef.current) return;
+              if (seenRef.current.get(change.doc.id) === atMs) return;
+              seenRef.current.set(change.doc.id, atMs);
+              fresh.push({
+                id: String(change.doc.id),
+                emoji: String(data.emoji ?? ''),
+                atMs,
+                name: String(data.name ?? ''),
+              });
+            });
+            if (fresh.length > 0) setIncoming((prev) => [...prev, ...fresh].slice(-12));
+          }, () => { /* нет доступа или сеть — реакции не критичны, молчим */ });
+      } catch {
+        // Модуль не загрузился — экран работает и без реакций.
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+      unsubscribe?.();
+      seenRef.current.clear();
+    };
+  }, [roomId]);
+
+  /** Реакция отыграна — убираем из очереди, чтобы список не рос. */
+  const consume = useCallback((id: string, atMs: number) => {
+    setIncoming((prev) => prev.filter((item) => !(item.id === id && item.atMs === atMs)));
+  }, []);
+
+  /**
+   * Отправка своей реакции.
+   * Optimistic: анимацию у себя экран рисует СРАЗУ по возврату true, не
+   * дожидаясь записи. Ошибка записи не откатывает ничего — чужие просто не
+   * увидят этот тап, а свой полёт уже честно показан.
+   */
+  const send = useCallback(async (emoji: string, name: string): Promise<boolean> => {
+    if (!roomId) return false;
+    const now = Date.now();
+    if (now - lastSentAtRef.current < REACTION_COOLDOWN_MS) return false;
+    lastSentAtRef.current = now;
+    try {
+      const [{ default: firestore }, { default: auth }] = await Promise.all([
+        import('@react-native-firebase/firestore'),
+        import('@react-native-firebase/auth'),
+      ]);
+      const uid = auth().currentUser?.uid;
+      if (!uid) return true;
+      await firestore()
+        .collection('tournamentRooms').doc(roomId).collection('reactions').doc(uid)
+        // guard-ok: документ реакции ПОЛНОСТЬЮ принадлежит одному игроку и
+        // состоит ровно из трёх полей — новая реакция обязана заменить
+        // предыдущую целиком. Терять нечего: ни баланса, ни прогресса здесь
+        // нет, а merge оставил бы протухшие поля от прошлого тапа.
+        // Гонки двух устройств тоже не страшны: побеждает последний тап, что
+        // и есть желаемое поведение для реакции.
+        .set({ emoji, atMs: now, name });
+    } catch {
+      // Молча: реакция — украшение, ронять из-за неё экран нельзя.
+    }
+    return true;
+  }, [roomId]);
+
+  return { incoming, send, consume };
+}
 
 
 /** Идёт раунд (любой из четырёх). Сервер: round1..round4. */

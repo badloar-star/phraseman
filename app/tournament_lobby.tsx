@@ -26,9 +26,11 @@ import { tournamentAvatarValue } from '../components/tournament/tournament_avata
 import { useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
+import { TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
 import {
   isRoundState,
-  isTableState, tournamentNow, useTournamentRoom, type RoomPlayer } from './tournament_client';
+  isTableState, tournamentNow, useTournamentReactions, useTournamentRoom,
+  type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -108,13 +110,28 @@ export default function TournamentLobbyScreen() {
 
   const { room, status, secondsLeft, retry } = useTournamentRoom(roomId);
   const [selected, setSelected] = useState<Seat | null>(null);
-  const [reaction, setReaction] = useState<string | null>(null);
   const [myId, setMyId] = useState<string | null>(null);
+  // authUid нужен, чтобы не проигрывать СВОЮ реакцию дважды: один раз
+  // оптимистично при тапе и второй — когда она вернётся из подписки.
+  const [myAuthUid, setMyAuthUid] = useState<string | null>(null);
+  const fxRef = useRef<TournamentFxApi | null>(null);
+  const [fxSize, setFxSize] = useState({ width: 0, height: 0 });
+  const {
+    incoming: incomingReactions,
+    send: sendLiveReaction,
+    consume: consumeReaction,
+  } = useTournamentReactions(roomId);
 
   // Свой id нужен, чтобы подсветить своё место в сетке.
   useEffect(() => {
     let cancelled = false;
     void getStableId().then((id) => { if (!cancelled) setMyId(id); });
+    void (async () => {
+      try {
+        const auth = (await import('@react-native-firebase/auth')).default;
+        if (!cancelled) setMyAuthUid(auth().currentUser?.uid ?? null);
+      } catch { /* без авторизации реакции просто не отправятся */ }
+    })();
     return () => { cancelled = true; };
   }, []);
 
@@ -153,25 +170,54 @@ export default function TournamentLobbyScreen() {
     () => mapPlayersToSeats(visiblePlayersAt(roomPlayers ?? [], tournamentNow()), myId),
     [roomPlayers, myId, lobbyTick],
   );
+  // Имя для реакции: как игрок подписан в этой комнате.
+  const myName = useMemo(
+    () => seats.find((seat) => seat.isYou)?.name ?? 'Игрок',
+    [seats],
+  );
   const joined = seats.length;
   const full = joined >= SEATS;
   const secondsToStart = secondsLeft;
 
-  // зачем: таймер реакции держим в ref и чистим при уходе — иначе он дёрнет
-  // состояние уже размонтированного экрана (частый случай: тапнул реакцию и
-  // сразу стартовал раунд).
-  const reactionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  /**
+   * Отправка реакции.
+   *
+   * зачем 2026-07-27 (владелец: «анимации эмодзи нет, как было задумано на
+   * макетах — чтобы они отправлялись, улетали вверх и все их видели»): раньше
+   * реакция была локальным setState на 900 мс, её не видел НИКТО, кроме
+   * автора. Теперь тап пишет реакцию в комнату, а полёт рисует общий слой
+   * эффектов — и у себя, и у всех остальных.
+   *
+   * Optimistic UI: свой полёт запускаем СРАЗУ, не дожидаясь записи. Кулдаун
+   * внутри хука отбивает двойной тап и лишние записи; при отказе (рано)
+   * анимацию не пускаем, иначе экран сыпал бы эмодзи вхолостую.
+   */
+  const myLaneRef = useRef(0);
   const sendReaction = useCallback((emoji: string) => {
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-    setReaction(emoji);
-    if (reactionTimerRef.current) clearTimeout(reactionTimerRef.current);
-    reactionTimerRef.current = setTimeout(() => setReaction(null), 900);
-  }, []);
+    void sendLiveReaction(emoji, myName).then((accepted) => {
+      if (!accepted) return;
+      myLaneRef.current = (myLaneRef.current + 1) % 5;
+      fxRef.current?.flyReaction(emoji, myLaneRef.current);
+    });
+  }, [sendLiveReaction, myName]);
 
-  useEffect(() => () => {
-    if (reactionTimerRef.current) clearTimeout(reactionTimerRef.current);
-  }, []);
+  /**
+   * Чужие реакции — тем же полётом, что и свои.
+   * Каждая отыгрывается один раз и вычищается из очереди (consume), иначе
+   * список рос бы всё лобби.
+   */
+  useEffect(() => {
+    if (incomingReactions.length === 0) return;
+    incomingReactions.forEach((item, index) => {
+      // Свою реакцию уже показали оптимистично — второй полёт был бы дублем.
+      if (item.id === myAuthUid) { consumeReaction(item.id, item.atMs); return; }
+      fxRef.current?.flyReaction(item.emoji, index % 5);
+      consumeReaction(item.id, item.atMs);
+    });
+  }, [incomingReactions, consumeReaction, myAuthUid]);
+
 
   if (status === 'offline') {
     return (
@@ -189,7 +235,14 @@ export default function TournamentLobbyScreen() {
   }
 
   return (
-    <View style={styles.root}>
+    <View
+      style={styles.root}
+      onLayout={(event) => {
+        const { width, height } = event.nativeEvent.layout;
+        setFxSize((prev) => (prev.width === width && prev.height === height
+          ? prev : { width, height }));
+      }}
+    >
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -261,12 +314,11 @@ export default function TournamentLobbyScreen() {
         </V2Cta>
       </ScrollView>
 
-      {/* Летящая реакция */}
-      {reaction ? (
-        <Animated.Text entering={ZoomIn.duration(220)} style={styles.flyingReaction}>
-          {reaction}
-        </Animated.Text>
-      ) : null}
+      {/* Летящие реакции — общий слой: свои и чужие рисуются одинаково.
+          зачем 2026-07-27: раньше здесь висел ОДИН эмодзи автора на 900 мс,
+          остальные его не видели. Теперь полёт идёт через слой эффектов, и
+          реакции всех 16 участников поднимаются по своим дорожкам. */}
+      <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
 
       {/* Профиль игрока (макет 08) */}
       <Sheet visible={!!selected} onClose={() => setSelected(null)}>
@@ -387,7 +439,6 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     justifyContent: 'center',
   },
   reactionEmoji: { fontSize: 24 },
-  flyingReaction: { position: 'absolute', alignSelf: 'center', bottom: 200, fontSize: 64 },
 
   profileAvatar: {
     alignSelf: 'center',

@@ -2387,6 +2387,24 @@ service cloud.firestore {
     match /tournamentRooms/{roomId}/taskSecrets/{taskId} {
       allow read, write: if false;
     }
+    // зачем 2026-07-27 (владелец: «анимации эмодзи нет, как было задумано на
+    // макетах — чтобы они отправлялись, улетали вверх и все их видели»):
+    // реакция это ОДИН документ на игрока, а не запись на каждый тап. Игрок
+    // перезаписывает свой док, остальные видят изменение через подписку —
+    // так стоимость не растёт от частоты тапов (кулдаун держит и клиент).
+    // Пишет только сам автор и только в свой документ; чужой перебить нельзя.
+    // Читают все, кому открыта комната, — реакции не секрет, ответы лежат
+    // в закрытой taskSecrets и сюда не попадают.
+    match /tournamentRooms/{roomId}/reactions/{authUid} {
+      allow read: if request.auth != null
+        && exists(/databases/$(database)/documents/tournamentRooms/$(roomId));
+      allow write: if request.auth != null
+        && request.auth.uid == authUid
+        && request.resource.data.keys().hasOnly(['emoji', 'atMs', 'name'])
+        && request.resource.data.emoji is string
+        && request.resource.data.emoji.size() <= 8
+        && request.resource.data.atMs is int;
+    }
     match /tournamentTasks/{taskId} {
       allow read, write: if false;
     }

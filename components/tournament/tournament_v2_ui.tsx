@@ -161,6 +161,8 @@ type ChipProps = {
   style?: StyleProp<ViewStyle>;
   textStyle?: StyleProp<TextStyle>;
   disabled?: boolean;
+  /** Читалка экрана: без метки вариант ответа звучит как «кнопка». */
+  accessibilityLabel?: string;
 };
 
 /**
@@ -168,7 +170,7 @@ type ChipProps = {
  * Нажатие — просадка на кромку (translateY 3px), как в эталоне.
  */
 export const V2Chip = memo(function V2Chip({
-  children, onPress, verdict = 'idle', block, style, textStyle, disabled,
+  children, onPress, verdict = 'idle', block, style, textStyle, disabled, accessibilityLabel,
 }: ChipProps) {
   const P = useTournamentPalette();
   const depth = useSharedValue(0);
@@ -212,6 +214,8 @@ export const V2Chip = memo(function V2Chip({
     ]}>
       <AnimatedPressable
         accessibilityRole="button"
+        accessibilityLabel={accessibilityLabel}
+        accessibilityState={{ disabled: disabled || verdict === 'dim', selected: verdict === 'ok' }}
         disabled={disabled || verdict === 'dim'}
         onPress={handlePress}
         onPressIn={handlePressIn}

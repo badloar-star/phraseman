@@ -16,8 +16,20 @@ import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Card } from '../components/tournament/tournament_ui';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
+import {
+  V2Card,
+  V2Chip,
+  V2Counter,
+  V2Segments,
+  V2StreakPill,
+} from '../components/tournament/tournament_v2_ui';
+import {
+  StarGlyph,
+  TournamentFxHost,
+  type FxPoint,
+  type TournamentFxApi,
+} from '../components/tournament/TournamentFx';
 import { T, motion, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
@@ -169,6 +181,15 @@ export default function TournamentRoundScreen() {
    */
   const [timedOut, setTimedOut] = useState(false);
   const [streak, setStreak] = useState(0);
+  // зачем 2026-07-27: звёзды и серия в языке Learning V2. ВАЖНО про честность:
+  // правильность ответа знает только сервер, поэтому звезда летит за ДАННЫЙ
+  // ответ (участие), а не за верный — иначе экран врал бы игроку. Итоговый
+  // счёт всё равно приходит с сервера в таблице между раундами.
+  const [stars, setStars] = useState(0);
+  const fxRef = useRef<TournamentFxApi>(null);
+  const starCounterRef = useRef<View>(null);
+  const streakPillRef = useRef<View>(null);
+  const [fxSize, setFxSize] = useState({ width: 0, height: 0 });
   const [secondsLeft, setSecondsLeft] = useState(SECONDS_PER_QUESTION);
   const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /**
@@ -280,6 +301,44 @@ export default function TournamentRoundScreen() {
     setPhase('question');
   }, [index, total, flushAnswers, roomId, router]);
 
+  /**
+   * Полёт звезды от места ответа к счётчику + бонусы за серию.
+   * Координаты меряем в окне: слой эффектов сам переводит их в свои.
+   */
+  const flyStar = useCallback((from: FxPoint) => {
+    const counter = starCounterRef.current;
+    if (!counter) { setStars((value) => value + 1); return; }
+    counter.measureInWindow((x, y, width, height) => {
+      fxRef.current?.flyStar(from, { x: x + width / 2, y: y + height / 2 }, P.gold, () => {
+        setStars((value) => value + 1);
+      });
+    });
+  }, [P.gold]);
+
+  /** Веха серии: золотая волна + конфетти, как в эталоне V2. */
+  const celebrateStreak = useCallback((nextStreak: number) => {
+    if (nextStreak !== 3 && nextStreak !== 5 && nextStreak !== 7) return;
+    fxRef.current?.goldWave(P.gold);
+    const counter = starCounterRef.current;
+    counter?.measureInWindow((x, y, width, height) => {
+      fxRef.current?.confetti(
+        { x: x + width / 2, y: y + height / 2 },
+        [P.gold, P.accent, P.okGradA, P.text],
+      );
+    });
+    // Бонус-звёзды летят ОТ пилюли серии — связь «серия = звёзды» читается
+    // телом анимации, а не подписью.
+    const bonus = nextStreak >= 5 ? 2 : 1;
+    const pill = streakPillRef.current;
+    pill?.measureInWindow((x, y, width, height) => {
+      const origin = { x: x + width / 2, y: y + height / 2 };
+      fxRef.current?.floatLabel(`+${bonus}`, origin, P.gold);
+      for (let i = 0; i < bonus; i += 1) {
+        setTimeout(() => flyStar(origin), 300 + i * 170);
+      }
+    });
+  }, [P.gold, P.accent, P.okGradA, P.text, flyStar]);
+
   const answer = useCallback((optionIndex: number) => {
     if (phase !== 'question' || !question) return;
 
@@ -291,13 +350,22 @@ export default function TournamentRoundScreen() {
 
     // Серию ведём локально для множителя; правильность знает только сервер,
     // поэтому серию считаем по факту ответа, а очки не показываем до таблицы.
-    setStreak((value) => value + 1);
+    setStreak((value) => {
+      const next = value + 1;
+      celebrateStreak(next);
+      return next;
+    });
+    // Звезда стартует из центра экрана вопроса — точное место плиты не
+    // измеряем, чтобы не платить лишним measure на каждом тапе.
+    if (fxSize.width > 0) {
+      flyStar({ x: fxSize.width / 2, y: fxSize.height * 0.62 });
+    }
     // guard-ok: это Map.set() в памяти (локальный буфер ответов), не запись
     // в Firestore — итоговая пачка уходит одним submitAnswers ниже.
     answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, optionIndex);
 
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, question, goNext]);
+  }, [phase, question, goNext, celebrateStreak, flyStar, fxSize]);
 
   /**
    * Подтверждение сборки фразы (translate) — вызывается, когда игрок собрал
@@ -309,11 +377,18 @@ export default function TournamentRoundScreen() {
     if (phase !== 'question' || !question) return;
     setPhase('feedback');
     void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-    setStreak((value) => value + 1);
+    setStreak((value) => {
+      const next = value + 1;
+      celebrateStreak(next);
+      return next;
+    });
+    if (fxSize.width > 0) {
+      flyStar({ x: fxSize.width / 2, y: fxSize.height * 0.5 });
+    }
     // guard-ok: Map.set() в памяти (локальный буфер ответов), не Firestore.
     answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, tokens);
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
-  }, [phase, question, goNext]);
+  }, [phase, question, goNext, celebrateStreak, flyStar, fxSize]);
 
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
@@ -395,7 +470,14 @@ export default function TournamentRoundScreen() {
   }
 
   return (
-    <View style={styles.root}>
+    <View
+      style={styles.root}
+      onLayout={(event) => {
+        const { width, height } = event.nativeEvent.layout;
+        setFxSize((prev) => (prev.width === width && prev.height === height
+          ? prev : { width, height }));
+      }}
+    >
       <ScrollView
         contentContainerStyle={[
           styles.content,
@@ -423,12 +505,15 @@ export default function TournamentRoundScreen() {
               />
             ))}
           </View>
-          <Text style={styles.multiplier}>×{multiplier}</Text>
+          {/* Серия и звёзды — язык V2: пилюля накаляется по ярусам, счётчик
+              подпрыгивает при начислении. Множитель ушёл в пилюлю. */}
+          <V2StreakPill ref={streakPillRef} streak={streak} />
+          <V2Counter ref={starCounterRef} value={stars} tone="stars" />
           <TimerRing seconds={secondsLeft} total={SECONDS_PER_QUESTION} />
         </View>
 
         {/* Вопрос */}
-        <Card tone="elev" pad={22} style={styles.questionCard}>
+        <V2Card pad={22} style={styles.questionCard}>
           <Text style={styles.questionPrompt}>{question.prompt}</Text>
           {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
               его нельзя. Вместо него кнопка: услышать можно только ушами. */}
@@ -440,7 +525,7 @@ export default function TournamentRoundScreen() {
           ) : (
             <Text style={styles.questionPhrase}>{question.phrase}</Text>
           )}
-        </Card>
+        </V2Card>
 
         {/* Варианты (choice/timeattack) или сборка слов (translate) */}
         {question.kind === 'translate' || question.kind === 'dictate' ? (
@@ -473,7 +558,7 @@ export default function TournamentRoundScreen() {
         <View style={styles.feedbackSlot}>
           {phase === 'feedback' ? (
             <Animated.View entering={FadeIn.duration(160)}>
-              <Card pad={18} style={{ backgroundColor: answered ? P.accentSoft : P.dangerSoft }}>
+              <V2Card pad={18} style={{ backgroundColor: answered ? P.accentSoft : P.dangerSoft }}>
                 <Text style={[styles.feedbackTitle, { color: answered ? P.accent : P.danger }]}>
                   {answered ? 'Ответ принят' : 'Время вышло'}
                 </Text>
@@ -482,11 +567,14 @@ export default function TournamentRoundScreen() {
                     ? `дальше вопрос ${index + 2} из ${total}`
                     : 'считаем результаты…'}
                 </Text>
-              </Card>
+              </V2Card>
             </Animated.View>
           ) : null}
         </View>
       </ScrollView>
+      {/* Слой полётов поверх экрана: звёзды, конфетти, золотая волна.
+          pointerEvents=none внутри — тапы проходят сквозь него к вариантам. */}
+      <TournamentFxHost ref={fxRef} width={fxSize.width} height={fxSize.height} />
     </View>
   );
 }
@@ -503,30 +591,22 @@ const OptionRow = memo(function OptionRow({
   revealed: boolean;
   onPress: (index: number) => void;
 }) {
-  const P = useTournamentPalette();
-  const styles = React.useMemo(() => makeStyles(P), [P]);
-  // Подсвечиваем ТОЛЬКО выбранный вариант: правильный ответ придёт с
-  // сервером в таблице, показывать его здесь нечем и не нужно.
+  // зачем 2026-07-27: плита варианта переведена на язык Learning V2 —
+  // градиент, нижняя 3D-кромка, просадка на неё при нажатии. Выбранный
+  // вариант получает okPop-сквош; правильный ответ здесь НЕ раскрывается,
+  // он придёт с сервером в таблице.
   const isPicked = picked === index;
-  const background = isPicked ? P.accentSoft : P.card;
-  const textColor = isPicked ? P.accent : P.text;
 
   return (
-    <Pressable
-      onPress={() => onPress(index)}
+    <V2Chip
+      block
+      verdict={isPicked ? 'ok' : revealed ? 'dim' : 'idle'}
       disabled={revealed}
-      style={[styles.option, { backgroundColor: background }]}
-      accessibilityRole="button"
-      accessibilityState={{ disabled: revealed, selected: picked === index }}
+      onPress={() => onPress(index)}
       accessibilityLabel={`Вариант ${letter}: ${text}`}
     >
-      <View style={styles.optionInnerLight} pointerEvents="none" />
-      <View style={[styles.optionLetter, isPicked && { backgroundColor: P.accent }]}>
-        <Text style={[styles.optionLetterText, isPicked && { color: P.accentText }]}>{letter}</Text>
-      </View>
-      <Text style={[styles.optionText, { color: textColor }]}>{text}</Text>
-      {isPicked ? <Text style={styles.optionMark}>✓</Text> : null}
-    </Pressable>
+      {text}
+    </V2Chip>
   );
 });
 

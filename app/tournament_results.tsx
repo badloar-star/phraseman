@@ -109,6 +109,11 @@ export default function TournamentResultsScreen() {
     return () => { cancelled = true; };
   }, []);
 
+  // зачем: турнир только что изменил недельные очки. Без сброса кэша игрок
+  // вернулся бы в хаб и увидел СТАРУЮ таблицу ещё 15 минут — выглядит как
+  // «очки не засчитались». Сброс бесплатный: следующее чтение и так плановое.
+  useEffect(() => { invalidateSeasonStandingsCache(); }, []);
+
   const players = room?.players ?? [];
   const podium = useMemo(() => buildPodium(players, P), [players]);
 

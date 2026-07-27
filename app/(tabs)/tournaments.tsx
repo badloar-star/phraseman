@@ -35,12 +35,21 @@ import { useTheme } from '../../components/ThemeContext';
 import AvatarView from '../../components/AvatarView';
 import { coinIconForBalance } from '../coin_icons';
 import { getShardsBalance, peekLastKnownShardsBalance } from '../shards_system';
-import { loadWeeklyBankInfo, type WeeklyBankInfo } from '../tournament_client';
+import {
+  loadSeasonStandings,
+  loadWeeklyBankInfo,
+  peekSeasonStandings,
+  weeklyBankPayoutAtMs,
+  type SeasonEntry,
+  type SeasonStandings,
+  type WeeklyBankInfo,
+} from '../tournament_client';
 import { Sheet } from '../../components/tournament/tournament_ui';
 import { useCountdown } from '../../components/tournament/TournamentCountdown';
 import {
   METAL,
   formatTimeLeft,
+  placeColor,
   radius,
   useTournamentPalette,
   type TournamentV2,
@@ -127,12 +136,22 @@ function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
 const DEFAULT_ENTRY_GEMS = 3;
 const SCHEDULE_TIMEOUT_MS = 8000;
 
-/** Демо-лидеры сезона до появления серверной таблицы (аватары — приложения). */
-const SEASON_LEADERS = [
-  { avatar: '3', name: 'Виктория К.', stars: 432 },
-  { avatar: '7', name: 'Артём Р.', stars: 398 },
-  { avatar: '5', name: 'Максим', stars: 126, me: true },
-];
+/**
+ * зачем 2026-07-27: блок «Сезон» показывал ТРИ ВЫДУМАННЫХ строки (Виктория К.,
+ * Артём Р., Максим) и фальшивое «мои звёзды 126», хотя банк недели сервер
+ * раздаёт по реальным очкам. Владелец выбрал: топ-3 лидеров + отдельно моя
+ * строка. Данные берём из общего кэша рейтинга — тот же снимок кормит и
+ * «Таблицу сезона», поэтому второго чтения Firestore не возникает.
+ */
+const SEASON_HUB_TOP = 3;
+
+/** Аватар из профиля; сервер пишет только имя — иначе стабильная подстановка. */
+function hubAvatar(entry: SeasonEntry): string {
+  if (entry.avatar) return entry.avatar;
+  let hash = 0;
+  for (let i = 0; i < entry.uid.length; i += 1) hash = (hash * 31 + entry.uid.charCodeAt(i)) >>> 0;
+  return String((hash % 8) + 1);
+}
 
 export default function TournamentsScreen() {
   const { themeMode } = useTheme();
@@ -151,6 +170,12 @@ export default function TournamentsScreen() {
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState('');
   const [weeklyPrize, setWeeklyPrize] = useState<{ place: number; gems: number } | null>(null);
+  // зачем 2026-07-27: карточка банка была мёртвой — игрок видел цифру 338 и не
+  // мог узнать, как её делят и где он сам. Тап открывает шторку (владелец
+  // выбрал шторку, а не отдельный экран: не уводит с хаба).
+  const [bankVisible, setBankVisible] = useState(false);
+  const openBank = useCallback(() => setBankVisible(true), []);
+  const closeBank = useCallback(() => setBankVisible(false), []);
 
   const [schedule, setSchedule] = useState<ScheduleConfig | null>(null);
   const entryGems = schedule?.entryGems ?? DEFAULT_ENTRY_GEMS;
@@ -287,8 +312,54 @@ export default function TournamentsScreen() {
   );
 
   const daySlotList = useMemo(() => enabledSlots(schedule?.slots ?? []), [schedule]);
-  const myStars = SEASON_LEADERS.find((leader) => leader.me)?.stars ?? 0;
-  const topStars = Math.max(1, ...SEASON_LEADERS.map((leader) => leader.stars));
+
+  // Рейтинг сезона: первый кадр — из кэша, сеть догоняет фоном (без прыжка нуля).
+  const [standings, setStandings] = useState<SeasonStandings | null>(() => peekSeasonStandings());
+  useEffect(() => {
+    let alive = true;
+    void loadSeasonStandings().then((value) => {
+      if (alive && value) setStandings(value);
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  const seasonTop = useMemo(
+    () => (standings?.top ?? []).slice(0, SEASON_HUB_TOP),
+    [standings],
+  );
+  const me = standings?.me ?? null;
+  const myPlace = standings?.myPlace ?? 0;
+  // Своя строка идёт отдельно, если я не в показанной тройке.
+  const myRowSeparate = me && myPlace > SEASON_HUB_TOP ? me : myPlace === 0 ? me : null;
+  const myStars = me?.points ?? 0;
+  const topStars = Math.max(1, seasonTop[0]?.points ?? 1);
+
+  /**
+   * Доли банка в ЖЕМЧУЖИНАХ. Проценты 60/25/15 повторяют серверный
+   * weeklyShares (functions/src/tournament_economy.ts) — если владелец поменяет
+   * их в админке, цифры разойдутся, поэтому это единственное место с копией.
+   * Округляем вниз, как сервер (Math.trunc), чтобы не обещать лишнюю жемчужину.
+   */
+  const bankShares = useMemo(() => {
+    const shares = [0.6, 0.25, 0.15];
+    return shares.map((share, index) => ({
+      place: index + 1,
+      gems: Math.trunc(bank * share),
+      // Имя претендента или «место свободно» — пустое место тоже мотивирует.
+      name: seasonTop[index] ? (seasonTop[index].uid === me?.uid ? 'Вы' : seasonTop[index].name) : 'место свободно',
+    }));
+  }, [bank, seasonTop, me]);
+
+  /** Одна живая строка про мою позицию — с юмором, как просил владелец. */
+  const bankMeLine = useMemo(() => {
+    if (!me) return 'Вас в таблице пока нет. Один турнир — и вы в игре за банк.';
+    if (myPlace === 1) return 'Вы первый. Держитесь — за спиной дышат.';
+    if (myPlace === 2 || myPlace === 3) return `Вы ${myPlace}-й и уже в призах. Не расслабляйтесь.`;
+    const third = seasonTop[2]?.points ?? 0;
+    const gap = third > me.points ? third - me.points + 1 : 0;
+    if (gap > 0) return `До призовой тройки — ${gap} очков. Это пара турниров.`;
+    return 'Вы у самой тройки. Ещё рывок.';
+  }, [me, myPlace, seasonTop]);
 
   return (
     <View style={styles.root}>
@@ -446,9 +517,14 @@ export default function TournamentsScreen() {
           </View>
         ) : null}
 
-        {/* Банк недели */}
+        {/* Банк недели — тап открывает шторку с долями и моей позицией */}
         <Animated.View entering={FadeIn.duration(220).delay(60)}>
-          <V2Card pad={18}>
+          <TapScale
+            onPress={openBank}
+            accessibilityRole="button"
+            accessibilityLabel={`Банк недели, ${bank} жемчужин. Подробности`}
+          >
+            <V2Card pad={18}>
             <View style={styles.bankRow}>
               <LinearGradient
                 colors={METAL.gold}
@@ -473,44 +549,129 @@ export default function TournamentsScreen() {
                 </View>
               </View>
               <Text style={styles.bankWhen} allowFontScaling={false}>топ-3{'\n'}в понедельник</Text>
+              {/* Шеврон — единственный намёк, что карточку можно открыть. */}
+              <Ionicons name="chevron-forward" size={18} color={P.ghost} />
             </View>
-          </V2Card>
+            </V2Card>
+          </TapScale>
         </Animated.View>
 
         {/* Сезон: полосы-рейтинги — длина по звёздам, оттенок активной темы */}
         <Text style={[styles.kicker, styles.sectionKicker]} allowFontScaling={false}>
           Сезон · мои звёзды {myStars}
         </Text>
-        <View style={styles.seasonList}>
-          {SEASON_LEADERS.map((leader, index) => (
-            <V2RatingRow
-              key={leader.avatar}
-              ratio={leader.stars / topStars}
-              mix={0.46 - index * 0.07}
-              highlighted={leader.me}
-            >
-              <Text style={[styles.place, leader.me && { color: P.accent }]} allowFontScaling={false}>
-                {index + 1}
-              </Text>
-              <AvatarView avatar={leader.avatar} size={36} animateAura={false} />
-              <Text
-                style={[styles.rowName, leader.me && { color: P.accent }]}
-                numberOfLines={1}
-              >
-                {leader.name}
-              </Text>
-              <View style={styles.rowStars}>
-                <StarGlyph size={13} color={P.gold} />
-                <Text style={styles.rowStarsText} allowFontScaling={false}>{leader.stars}</Text>
-              </View>
-            </V2RatingRow>
-          ))}
-        </View>
+        {seasonTop.length > 0 ? (
+          <View style={styles.seasonList}>
+            {seasonTop.map((leader, index) => {
+              const isMe = leader.uid === me?.uid;
+              return (
+                <V2RatingRow
+                  key={leader.uid}
+                  ratio={leader.points / topStars}
+                  mix={0.46 - index * 0.07}
+                  highlighted={isMe}
+                >
+                  <Text style={[styles.place, isMe && { color: P.accent }]} allowFontScaling={false}>
+                    {index + 1}
+                  </Text>
+                  <AvatarView avatar={hubAvatar(leader)} size={36} animateAura={false} />
+                  <Text style={[styles.rowName, isMe && { color: P.accent }]} numberOfLines={1}>
+                    {isMe ? 'Вы' : leader.name}
+                  </Text>
+                  <View style={styles.rowStars}>
+                    <StarGlyph size={13} color={P.gold} />
+                    <Text style={styles.rowStarsText} allowFontScaling={false}>{leader.points}</Text>
+                  </View>
+                </V2RatingRow>
+              );
+            })}
+            {/* Своя строка ниже тройки — игрок видит себя без перехода в таблицу. */}
+            {myRowSeparate ? (
+              <V2RatingRow ratio={myRowSeparate.points / topStars} mix={0.2} highlighted>
+                <Text style={[styles.place, { color: P.accent }]} allowFontScaling={false}>
+                  {myPlace > 0 ? myPlace : '—'}
+                </Text>
+                <AvatarView avatar={hubAvatar(myRowSeparate)} size={36} animateAura={false} />
+                <Text style={[styles.rowName, { color: P.accent }]} numberOfLines={1}>Вы</Text>
+                <View style={styles.rowStars}>
+                  <StarGlyph size={13} color={P.gold} />
+                  <Text style={styles.rowStarsText} allowFontScaling={false}>
+                    {myRowSeparate.points}
+                  </Text>
+                </View>
+              </V2RatingRow>
+            ) : null}
+          </View>
+        ) : (
+          // Начало недели: таблица честно пуста (боты в рейтинг не попадают).
+          <Text style={styles.seasonEmpty}>
+            Неделя только началась — сыграйте турнир, и вы окажетесь в таблице первым.
+          </Text>
+        )}
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
           <Text style={styles.seasonMoreText} allowFontScaling={false}>Таблица сезона</Text>
           <Ionicons name="chevron-forward" size={18} color={P.muted} />
         </TapScale>
       </ScrollView>
+
+      {/* Шторка банка недели: доли, претенденты и моя позиция. */}
+      <Sheet visible={bankVisible} onClose={closeBank}>
+        <View style={styles.bankSheetTop}>
+          <LinearGradient
+            colors={METAL.gold}
+            start={{ x: 0.15, y: 0 }}
+            end={{ x: 0.85, y: 1 }}
+            style={styles.bankMedal}
+          >
+            <Ionicons name="trophy" size={20} color={METAL.ink} />
+          </LinearGradient>
+          <View style={styles.bankBody}>
+            <Text style={styles.sheetTitle} allowFontScaling={false}>Банк недели</Text>
+            <View style={styles.bankValueRow}>
+              <Text style={styles.bankSheetValue} allowFontScaling={false}>{bank}</Text>
+              <Image
+                source={coinIconForBalance(bank, themeMode)}
+                style={styles.bankSheetCoin}
+                contentFit="contain"
+                accessible={false}
+                accessibilityElementsHidden
+                importantForAccessibility="no"
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Доли в ЖЕМЧУЖИНАХ, а не в процентах: видно, за что играешь.
+            Формула 60/25/15 совпадает с серверной weeklyShares. */}
+        <View style={styles.seasonList}>
+          {bankShares.map((share) => (
+            <View key={share.place} style={styles.bankShareRow}>
+              <Text
+                style={[styles.bankSharePlace, { color: placeColor(share.place, P) }]}
+                allowFontScaling={false}
+              >
+                {share.place}
+              </Text>
+              <Text style={styles.bankShareName} numberOfLines={1}>
+                {share.name}
+              </Text>
+              <Text style={styles.bankShareGems} allowFontScaling={false}>{share.gems}</Text>
+            </View>
+          ))}
+        </View>
+
+        {/* Моя позиция: главный мотиватор — сколько очков до призовой тройки. */}
+        <Text style={styles.bankSheetMe}>{bankMeLine}</Text>
+
+        <Text style={styles.bankSheetHint}>
+          С каждого турнира пятая часть взносов падает сюда и копится всю неделю.
+          В ночь на понедельник тройка лучших забирает всё — и банк начинается заново.
+        </Text>
+
+        <View style={styles.sheetActions}>
+          <V2Cta tone="gold" onPress={closeBank}>Понятно</V2Cta>
+        </View>
+      </Sheet>
 
       {/* Недельный банк пришёл ночью — показываем один раз на неделю */}
       <Sheet visible={!!weeklyPrize} onClose={() => setWeeklyPrize(null)}>
@@ -668,6 +829,42 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     paddingVertical: 12,
   },
   seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted },
+  // зачем: пустая таблица в начале недели — нормальное состояние (боты в
+  // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
+  seasonEmpty: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: P.muted,
+    lineHeight: 20,
+    paddingHorizontal: 4,
+    paddingVertical: 10,
+  },
+
+  // ── Шторка банка недели ───────────────────────────────────────────────────
+  bankSheetTop: { flexDirection: 'row', alignItems: 'center', gap: 14, marginBottom: 18 },
+  bankSheetValue: { fontSize: 30, fontWeight: '900', color: P.text, fontVariant: ['tabular-nums'] },
+  bankSheetCoin: { width: 20, height: 20 },
+  bankShareRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    minHeight: 52,
+    borderRadius: radius.md,
+    backgroundColor: P.card,
+    paddingHorizontal: 14,
+    overflow: 'hidden',
+  },
+  bankSharePlace: { width: 22, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  bankShareName: { flex: 1, fontSize: 15, fontWeight: '700', color: P.text },
+  bankShareGems: { fontSize: 17, fontWeight: '900', color: P.gold, fontVariant: ['tabular-nums'] },
+  bankSheetHint: { fontSize: 14, fontWeight: '700', color: P.muted, lineHeight: 20, marginTop: 16 },
+  bankSheetMe: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: P.text,
+    lineHeight: 21,
+    marginTop: 14,
+  },
 
   sheetTitle: { fontSize: 21, fontWeight: '900', letterSpacing: -0.2, color: P.text },
   sheetSub: { fontSize: 14, fontWeight: '700', color: P.muted, marginTop: 4, marginBottom: 16 },

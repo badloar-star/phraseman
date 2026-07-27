@@ -5,7 +5,7 @@
 // (красный за 3 часа) и тиры наград. Своя строка подсвечена и всегда видна.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useCallback } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
@@ -18,32 +18,31 @@ import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
-import { T, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import {
+  loadSeasonStandings,
+  peekSeasonStandings,
+  weeklyBankPayoutAtMs,
+  type SeasonEntry,
+  type SeasonStandings,
+} from './tournament_client';
+import { placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 
-type SeasonRow = {
-  id: number;
-  name: string;
-  avatarIndex: number;
-  color: string;
-  points: number;
-  isYou?: boolean;
-};
+/**
+ * зачем 2026-07-27: экран показывал ВЫДУМАННЫЙ топ-8 (КубокБарон, МолнияPRO…)
+ * с фальшивым «вы — 6 место», пока банк недели сервер раздаёт по РЕАЛЬНЫМ
+ * очкам из tournamentSeasons. Игрок видел одно, а деньги уходили другим.
+ * Теперь строки приходят с сервера; аватар берём из профиля, а если сервер его
+ * не записал — из детерминированной подстановки по uid, чтобы список не был
+ * безликим и не «прыгал» между заходами.
+ */
+const AVATAR_POOL = ['1', '2', '3', '4', '5', '6', '7', '8'] as const;
 
-// зачем: раньше здесь были эмодзи-«аватары» лидеров (👑⚔️🐺…) с хардкод-хексами —
-// правило владельца запрещает эмодзи-аватары; цвета берутся из общих T.leader*
-// токенов режима (components/tournament/tournament_theme.ts), а аватар — из
-// approved AvatarView (те же ассеты, что в лигах/друзьях).
-/** TODO(server): придёт из недельного рейтинга (tournamentSeasons). */
-const SEASON_ROWS: SeasonRow[] = [
-  { id: 1, name: 'КубокБарон', avatarIndex: 7, color: T.leaderCrown, points: 412 },
-  { id: 2, name: 'МолнияPRO', avatarIndex: 5, color: T.leaderSword, points: 388 },
-  { id: 3, name: 'СловоЖора', avatarIndex: 3, color: T.leaderWolf, points: 341 },
-  { id: 4, name: 'Полиглот_77', avatarIndex: 2, color: T.leaderGlobe, points: 305 },
-  { id: 5, name: 'IdiomHunter', avatarIndex: 6, color: T.leaderBow, points: 289 },
-  { id: 6, name: 'Вы', avatarIndex: 4, color: T.leaderFox, points: 265, isYou: true },
-  { id: 7, name: 'Фразочкина', avatarIndex: 8, color: T.leaderOwl, points: 240 },
-  { id: 8, name: 'VerbaVolt', avatarIndex: 1, color: T.leaderBolt, points: 228 },
-];
+function avatarFor(entry: SeasonEntry): string {
+  if (entry.avatar) return entry.avatar;
+  let hash = 0;
+  for (let i = 0; i < entry.uid.length; i += 1) hash = (hash * 31 + entry.uid.charCodeAt(i)) >>> 0;
+  return AVATAR_POOL[hash % AVATAR_POOL.length];
+}
 
 export default function TournamentSeasonScreen() {
   const P = useTournamentPalette();
@@ -53,14 +52,37 @@ export default function TournamentSeasonScreen() {
   // зачем: экран пушится из tournaments.tsx («Сезон» card), но своей кнопки
   // «назад» не было — трапит пользователя. Паттерн 1:1 как на tournaments.tsx.
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
-  // Отсчёт до сброса недели.
-  const secondsToReset = useCountdown(2 * 3600 + 41 * 60);
+
+  // Первый кадр — из общего кэша рейтинга (его же читает хаб), без «пусто → прыжок».
+  const [standings, setStandings] = useState<SeasonStandings | null>(() => peekSeasonStandings());
+  const [loaded, setLoaded] = useState(() => peekSeasonStandings() !== null);
+
+  useEffect(() => {
+    let alive = true;
+    void loadSeasonStandings().then((value) => {
+      if (!alive) return;
+      if (value) setStandings(value);
+      setLoaded(true);
+    }).catch(() => { if (alive) setLoaded(true); });
+    return () => { alive = false; };
+  }, []);
+
+  // Отсчёт до РЕАЛЬНОЙ раздачи банка (пн 00:10 UTC), а не до выдуманной константы.
+  const secondsToReset = useCountdown(
+    Math.max(0, Math.round((weeklyBankPayoutAtMs() - Date.now()) / 1000)),
+    true,
+  );
   const urgent = secondsToReset <= 3 * 3600;
 
-  const myRow = SEASON_ROWS.find((row) => row.isYou);
-  const myPlace = myRow ? SEASON_ROWS.indexOf(myRow) + 1 : 0;
-  const toTop5 = myPlace > 5 && myRow
-    ? (SEASON_ROWS[4]?.points ?? 0) - myRow.points + 1
+  const rows = standings?.top ?? [];
+  const me = standings?.me ?? null;
+  const myPlace = standings?.myPlace ?? 0;
+  // Моя строка закрепляется отдельно, только если я не попал в показанный верх.
+  const pinnedMe = me && myPlace === 0 ? me : null;
+  // Сколько очков до призовой тройки — единственная цифра, которая реально мотивирует.
+  const thirdPoints = rows[2]?.points ?? 0;
+  const toPrize = me && myPlace > 3 && thirdPoints > me.points
+    ? thirdPoints - me.points + 1
     : 0;
 
   return (
@@ -94,47 +116,91 @@ export default function TournamentSeasonScreen() {
           <View style={styles.resetTimer}>
             <TimeLeft seconds={secondsToReset} size={44} color={urgent ? P.danger : P.text} />
           </View>
-          {toTop5 > 0 ? (
-            <Text style={styles.resetHint}>До топ-5 осталось {toTop5} очков</Text>
+          {toPrize > 0 ? (
+            <Text style={styles.resetHint}>До призовой тройки — {toPrize} очков</Text>
           ) : null}
         </Card>
 
-        {/* Лидерборд */}
-        <View style={styles.list}>
-          {SEASON_ROWS.map((row, index) => (
-            <Animated.View
-              key={row.id}
-              entering={FadeInDown.delay(index * 40).duration(240)}
+        {/* Лидерборд. Первые три места — призовые: банк недели делится 60/25/15. */}
+        {rows.length > 0 ? (
+          <View style={styles.list}>
+            {rows.map((row, index) => (
+              <Animated.View
+                key={row.uid}
+                entering={FadeInDown.delay(Math.min(index, 8) * 40).duration(240)}
+              >
+                <SeasonRowItem
+                  row={row}
+                  place={index + 1}
+                  isYou={row.uid === me?.uid}
+                />
+              </Animated.View>
+            ))}
+          </View>
+        ) : loaded ? (
+          // зачем: боты в недельный рейтинг не попадают (сервер отсекает их в
+          // computePlacements), поэтому в начале недели таблица ЧЕСТНО пуста.
+          // Пустое состояние обязано учить интерфейсу, а не говорить «пусто».
+          <Card tone="elev" pad={22}>
+            <Text style={styles.emptyTitle} allowFontScaling={false}>Неделя только началась</Text>
+            <Text style={styles.emptyText}>
+              Таблица пока пустая — и это ваш шанс. Сыграйте турнир, и ваше имя
+              окажется здесь первым.
+            </Text>
+            <TapScale
+              onPress={goBack}
+              accessibilityRole="button"
+              accessibilityLabel="К турнирам"
+              style={styles.emptyCta}
             >
-              <SeasonRowItem row={row} place={index + 1} />
-            </Animated.View>
-          ))}
-        </View>
+              <Text style={styles.emptyCtaText} allowFontScaling={false}>К турнирам</Text>
+              <Ionicons name="chevron-forward" size={16} color={P.accent} />
+            </TapScale>
+          </Card>
+        ) : (
+          // Скелетон с зарезервированной геометрией: первый кадр = финальный.
+          <View style={styles.list}>
+            {[0, 1, 2, 3, 4].map((key) => (
+              <View key={key} style={styles.rowSkeleton} />
+            ))}
+          </View>
+        )}
 
-        {/* зачем: секция «Награды недели» убрана — перечисленные призы (рамка
-            чемпиона, титулы, 💎) не подкреплены реальной серверной системой
-            начисления наград. Убираем рендер, чтобы не обещать то, чего нет,
-            до появления настоящего бэкенда наград. */}
+        {/* Моя строка закреплена, если я ниже показанного верха: игрок всегда
+            видит себя, не прокручивая таблицу до конца. */}
+        {pinnedMe ? (
+          <View style={styles.pinnedWrap}>
+            <SeasonRowItem row={pinnedMe} place={0} isYou />
+          </View>
+        ) : null}
       </ScrollView>
     </View>
   );
 }
 
 const SeasonRowItem = memo(function SeasonRowItem({
-  row, place,
-}: { row: SeasonRow; place: number }) {
+  row, place, isYou,
+}: { row: SeasonEntry; place: number; isYou?: boolean }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   return (
-    <View style={[styles.row, row.isYou && styles.rowYou]}>
+    <View
+      style={[styles.row, isYou && styles.rowYou]}
+      accessibilityRole="text"
+      accessibilityLabel={
+        // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
+        `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков`
+      }
+    >
+      {/* Место вне показанного верха неизвестно точно — ставим тире, не выдумываем номер. */}
       <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
-        {place}
+        {place > 0 ? place : '—'}
       </Text>
-      <View style={[styles.avatar, { backgroundColor: `${row.color}33` }]}>
-        <AvatarView avatar={String(row.avatarIndex)} size={28} animateAura={false} />
+      <View style={styles.avatar}>
+        <AvatarView avatar={avatarFor(row)} size={28} animateAura={false} />
       </View>
-      <Text style={[styles.name, row.isYou && { color: P.accent }]} numberOfLines={1}>
-        {row.name}
+      <Text style={[styles.name, isYou && { color: P.accent }]} numberOfLines={1}>
+        {isYou ? 'Вы' : row.name}
       </Text>
       <Text style={styles.points} allowFontScaling={false}>{row.points}</Text>
     </View>
@@ -160,6 +226,21 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   resetHint: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 10 },
 
   list: { gap: 8 },
+  // Скелетон повторяет высоту строки — первый кадр равен финальному.
+  rowSkeleton: { height: 56, borderRadius: radius.md, backgroundColor: P.card, opacity: 0.5 },
+  emptyTitle: { ...type.section, color: P.text, textAlign: 'center' },
+  emptyText: { ...type.body, color: P.muted, textAlign: 'center', marginTop: 8, lineHeight: 20 },
+  emptyCta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 4,
+    marginTop: 16,
+    minHeight: 44,
+  },
+  emptyCtaText: { ...type.body, fontWeight: '700', color: P.accent },
+  // Отбивка закреплённой строки — тоном и отступом, без разделительной линии.
+  pinnedWrap: { marginTop: 6 },
   row: {
     height: 56,
     borderRadius: radius.md,

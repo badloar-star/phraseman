@@ -184,7 +184,7 @@ svg { display:block; }
 .ring-svg { position:absolute; inset:0; transform:rotate(-90deg); }
 .ring-track { fill:none; stroke:var(--bg-surface2); stroke-width:5; }
 .ring-fill { fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round;
-  stroke-dasharray:408; stroke-dashoffset:408; transition:stroke-dashoffset linear; }
+  stroke-dasharray:408; stroke-dashoffset:408; transition:stroke-dashoffset 120ms linear; }
 .play-btn {
   position:absolute; inset:10px; border:none; cursor:pointer; border-radius:50%;
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
@@ -197,8 +197,8 @@ svg { display:block; }
    треугольник play не смещает оптический центр соседней иконки; margin-left компенсирует
    визуальный перекос самого треугольника (вершина смещена вправо от геометрического центра) */
 .play-btn { display:grid; grid-template:1fr / 1fr; place-items:center; }
-.play-btn svg { grid-area:1 / 1; width:34px; height:34px; transition:opacity var(--t-fast); }
-.play-btn .ic-play { grid-area:1 / 1; margin-left:3px; }
+.play-btn svg { grid-area:1 / 1; place-self:center; width:34px; height:34px; transition:opacity var(--t-fast); }
+.play-btn .ic-play { grid-area:1 / 1; place-self:center; margin-left:3px; }
 .play-btn .ic-sound { grid-area:1 / 1; opacity:0; }
 .play-btn.playing .ic-play { grid-area:1 / 1; opacity:0; }
 .play-btn.playing .ic-sound { grid-area:1 / 1; opacity:1; }

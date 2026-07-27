@@ -179,7 +179,7 @@ svg { display:block; }
 .ring-fill {
   fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round;
   stroke-dasharray:294; stroke-dashoffset:294;
-  transition:stroke-dashoffset linear;
+  transition:stroke-dashoffset 120ms linear;
 }
 .play-btn {
   position:absolute; inset:9px; border:none; cursor:pointer; border-radius:50%;
@@ -191,7 +191,9 @@ svg { display:block; }
 .play-btn:active { transform:scale(0.94); }
 /* зачем: обе иконки в одной grid-ячейке - скрытая через display:none смещала
    видимую из центра круга; кладём их друг на друга и переключаем прозрачностью */
-.play-btn svg { width:30px; height:30px; grid-area:1 / 1; transition:opacity var(--t-press) ease; }
+/* зачем: grid-area один не центрирует SVG в ячейке (он растягивается по краю) -
+   нужен явный place-self:center, иначе иконка уезжает в угол круга */
+.play-btn svg { width:30px; height:30px; grid-area:1 / 1; place-self:center; transition:opacity var(--t-press) ease; }
 .play-btn svg.i-play { margin-left:3px; } /* оптическая компенсация треугольника */
 .play-btn.playing svg.i-play { opacity:0; }
 .play-btn:not(.playing) svg.i-pause { opacity:0; }
@@ -623,13 +625,24 @@ function playAudio(unavailable) {
   const a = new Audio(src);
   audioEl = a;
   a.playbackRate = slowMode && !c.audioFileSlow ? 0.75 : 1;
-  a.ontimeupdate = () => {
-    if (runId !== audioRunIdCounter || !a.duration) return;
-    const frac = Math.min(1, a.currentTime / a.duration);
-    ringFill.style.transition = 'none';
-    ringFill.style.strokeDashoffset = String(RING_CIRC * (1 - frac));
+  // зачем: владелец - «анимация заполнения кружочка дёрганая». timeupdate
+  // приходит рывками (~4 раза в секунду), и кольцо прыгало ступенями. Теперь
+  // рисуем каждый кадр через requestAnimationFrame - заполнение плавное.
+  let ringRaf = 0;
+  const tickRing = () => {
+    if (runId !== audioRunIdCounter || a.paused || a.ended) { ringRaf = 0; return; }
+    if (a.duration) {
+      const frac = Math.min(1, a.currentTime / a.duration);
+      ringFill.style.strokeDashoffset = String(RING_CIRC * (1 - frac));
+    }
+    ringRaf = requestAnimationFrame(tickRing);
   };
-  a.onended = () => { if (runId === audioRunIdCounter) finishPlayback(); };
+  a.onplaying = () => {
+    ringFill.style.transition = 'none';
+    if (!ringRaf) ringRaf = requestAnimationFrame(tickRing);
+  };
+  a.onpause = () => { if (ringRaf) { cancelAnimationFrame(ringRaf); ringRaf = 0; } };
+  a.onended = () => { if (ringRaf) { cancelAnimationFrame(ringRaf); ringRaf = 0; } if (runId === audioRunIdCounter) finishPlayback(); };
   a.onerror = () => { if (runId === audioRunIdCounter) emulate(); };
   const p = a.play();
   if (p && p.catch) p.catch(() => { if (runId === audioRunIdCounter) emulate(); });

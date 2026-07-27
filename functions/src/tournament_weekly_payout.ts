@@ -18,6 +18,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { ENFORCE_APP_CHECK } from './callable_options';
 import {
   TOURNAMENT_BANK_COLLECTION,
+  TOURNAMENT_LOBBY_OPEN_MS,
   TOURNAMENT_SEASONS_COLLECTION,
   TOURNAMENT_SEASON_ENTRIES_SUBCOLLECTION,
   tournamentWeekId,
@@ -288,10 +289,16 @@ export const tournamentWeeklyBankInfo = onCall(
     const currentWeek = tournamentWeekId(nowMs);
     const lastWeek = previousWeekId(nowMs);
 
-    const [currentSnap, lastSnap] = await db.getAll(
+    // зачем 2026-07-27: доли банка и окно входа были ЗАХАРДКОЖЕНЫ на клиенте
+    // (60/25/15 и 5 минут). Поменяй владелец экономику в админке — экран стал
+    // бы врать про деньги. Отдаём настройки вместе с банком: источник истины
+    // один, лишнего чтения нет (документ economy читается тем же getAll).
+    const [currentSnap, lastSnap, economySnap] = await db.getAll(
       db.collection(TOURNAMENT_BANK_COLLECTION).doc(currentWeek),
       db.collection(TOURNAMENT_BANK_COLLECTION).doc(lastWeek),
+      db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy'),
     );
+    const economy = normalizeTournamentEconomy(economySnap.data());
 
     // Моя доля прошлой недели — если раздача уже прошла.
     const uid = String(request.auth.uid);
@@ -305,6 +312,12 @@ export const tournamentWeeklyBankInfo = onCall(
       ok: true,
       weekId: currentWeek,
       bankGems: Math.max(0, readInt(currentSnap.data()?.total, 0)),
+      // Клиент рисует доли и открывает кнопку входа ПО ЭТИМ числам, а не по
+      // своим копиям — так экран не может разойтись с реальной экономикой.
+      weeklyShares: economy.weeklyShares,
+      lobbyOpenMs: TOURNAMENT_LOBBY_OPEN_MS,
+      /** Серверные часы: клиент сверяет свои и не врёт при сбитом времени. */
+      serverNowMs: nowMs,
       lastWeek: {
         weekId: lastWeek,
         paidOut: Boolean(lastSnap.data()?.paidOutAtMs),

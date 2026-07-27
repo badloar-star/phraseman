@@ -20,7 +20,9 @@ import { Card } from '../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
 import {
   loadSeasonStandings,
+  loadWeeklyBankInfo,
   peekSeasonStandings,
+  tournamentNow,
   weeklyBankPayoutAtMs,
   type SeasonEntry,
   type SeasonStandings,
@@ -64,12 +66,17 @@ export default function TournamentSeasonScreen() {
       if (value) setStandings(value);
       setLoaded(true);
     }).catch(() => { if (alive) setLoaded(true); });
+    // зачем: этот же вызов синхронизирует часы сервера (serverNowMs). Экран
+    // сезона можно открыть напрямую, минуя хаб, — без него таймер считал бы от
+    // часов устройства. Из кэша (30 мин) чтения обычно не будет вовсе.
+    void loadWeeklyBankInfo().catch(() => {});
     return () => { alive = false; };
   }, []);
 
   // Отсчёт до РЕАЛЬНОЙ раздачи банка (пн 00:10 UTC), а не до выдуманной константы.
   const secondsToReset = useCountdown(
-    Math.max(0, Math.round((weeklyBankPayoutAtMs() - Date.now()) / 1000)),
+    // От часов СЕРВЕРА: при сбитых часах устройства отсчёт врал бы так же.
+    Math.max(0, Math.round((weeklyBankPayoutAtMs(tournamentNow()) - tournamentNow()) / 1000)),
     true,
   );
   const urgent = secondsToReset <= 3 * 3600;

@@ -288,8 +288,36 @@ export type WeeklyBankInfo = {
   ok: boolean;
   weekId: string;
   bankGems: number;
+  /** Доли призёров банка (60/25/15 по умолчанию) — приходят с сервера. */
+  weeklyShares?: readonly [number, number, number];
+  /** За сколько до старта открывается вход. Раньше было копией на клиенте. */
+  lobbyOpenMs?: number;
+  /** Часы сервера в момент ответа — база для честного отсчёта. */
+  serverNowMs?: number;
   lastWeek: { weekId: string; paidOut: boolean; myPlace: number; myGems: number };
 };
+
+/**
+ * Поправка часов устройства.
+ *
+ * зачем 2026-07-27 (владелец): всё время на экране считалось от Date.now().
+ * У игрока со сбитыми часами (а на Android это не редкость) отсчёт до турнира
+ * врал на те же минуты, и кнопка входа открывалась не тогда. Сервер присылает
+ * своё время вместе с банком — держим разницу и считаем от неё.
+ */
+let serverClockSkewMs = 0;
+
+/** «Сейчас» глазами сервера. Использовать вместо Date.now() для расписания. */
+export function tournamentNow(): number {
+  return Date.now() + serverClockSkewMs;
+}
+
+function rememberServerClock(serverNowMs?: number): void {
+  if (!serverNowMs || !Number.isFinite(serverNowMs)) return;
+  const skew = serverNowMs - Date.now();
+  // Правим только заметный сдвиг: мелкая разница — это задержка сети, не сбой.
+  serverClockSkewMs = Math.abs(skew) > 30_000 ? skew : 0;
+}
 
 /**
  * Банк недели + моя доля за прошлую неделю.
@@ -308,6 +336,8 @@ export async function loadWeeklyBankInfo(force = false): Promise<WeeklyBankInfo 
   }
   try {
     const result = await callFunction<WeeklyBankInfo>('tournamentWeeklyBankInfo', {});
+    // Тот же ответ несёт часы сервера — синхронизируем расписание бесплатно.
+    rememberServerClock(result?.serverNowMs);
     weeklyBankCache = { at: now, value: result ?? null };
     return weeklyBankCache.value;
   } catch {

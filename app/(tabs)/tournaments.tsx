@@ -68,6 +68,7 @@ import {
   joinTournament,
   loadSchedule,
   tournamentDateKey,
+  tournamentNow,
   tournamentRoomId,
   useTournamentRoom,
 } from '../tournament_client';
@@ -275,20 +276,20 @@ export default function TournamentsScreen() {
   const roomId = useMemo(() => {
     if (!watchSlot) return null;
     const timezone = watchSlot.timezone || 'Europe/Moscow';
-    return tournamentRoomId(watchSlot.slotId, timezone, tournamentDateKey(timezone));
+    return tournamentRoomId(watchSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
   }, [watchSlot]);
   // Комната, в которую реально идёт вход (будущий слот) — она же для лобби.
   const joinRoomId = useMemo(() => {
     if (!nextSlot) return null;
     const timezone = nextSlot.timezone || 'Europe/Moscow';
-    return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone));
+    return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
   }, [nextSlot]);
 
   const { room } = useTournamentRoom(roomId);
 
   const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
   const secondsToStart = useCountdown(
-    startsAt ? Math.max(0, Math.round((startsAt - Date.now()) / 1000)) : 0,
+    startsAt ? Math.max(0, Math.round((startsAt - tournamentNow()) / 1000)) : 0,
     Boolean(startsAt),
   );
   const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
@@ -557,7 +558,7 @@ export default function TournamentsScreen() {
           <View style={styles.timeline}>
             {daySlotList.map((slot, index) => {
               const isNext = slot.slotId === nextSlot?.slotId;
-              const isPast = slot.startsAtMs < Date.now() && !isNext;
+              const isPast = slot.startsAtMs < tournamentNow() && !isNext;
               return (
                 <React.Fragment key={slot.slotId}>
                   {index > 0 ? (

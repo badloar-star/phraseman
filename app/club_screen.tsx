@@ -82,7 +82,7 @@ import {
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
 import { visibleWallClock } from './visible_wall_clock';
-import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants } from './league_open_cache_policy';
+import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants, shouldShowLeagueSoloParticipant } from './league_open_cache_policy';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
@@ -850,6 +850,10 @@ export default function ClubScreen() {
     localLeagueHydrated,
     participantCount: sortedGroup.length,
   });
+  const showSoloParticipant = shouldShowLeagueSoloParticipant({
+    localLeagueHydrated,
+    participantCount: sortedGroup.length,
+  });
   const leagueXpPromotionMode = leagueXpPromotionRemote.enabled;
   const leagueXpPromotionThreshold = leagueXpPromotionRemote.threshold;
   const zoneSize = getLeagueResultZoneSize(sortedGroup.length);
@@ -1579,6 +1583,44 @@ export default function ClubScreen() {
                   vi: 'Chưa có người tham gia', id: 'Belum ada peserta', tr: 'Henüz katılımcı yok', pl: 'Nie ma jeszcze uczestników',
                 })}
               </Text>
+            ) : null}
+            {/* зачем: в лиге игрок ОДИН — раньше здесь была немая пустота, читалась
+                как баг. Объясняем ситуацию и превращаем её в комплимент. Тон
+                разделяем фоном/скруглением, без обводки (запрет владельца). */}
+            {showSoloParticipant ? (
+              <View style={{
+                marginTop: 8,
+                paddingVertical: 18,
+                paddingHorizontal: 18,
+                borderRadius: 20,
+                backgroundColor: t.bgSurface,
+                gap: 6,
+              }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Упс, ты здесь один',
+                    uk: 'Упс, ти тут сам',
+                    es: 'Vaya, estás solo aquí',
+                    'pt-BR': 'Opa, você está sozinho aqui',
+                    vi: 'Ối, chỉ có mình bạn ở đây',
+                    id: 'Ups, kamu sendirian di sini',
+                    tr: 'Hoppa, burada tek kişisin',
+                    pl: 'Ups, jesteś tu sam',
+                  })}
+                </Text>
+                <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: f.sub * 1.45, textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Так быть не должно. Похоже, ты слишком долго держался в лидерах прошлых лиг и обогнал всех, кто мог бы сюда попасть. Что ж, тогда ты крутой.',
+                    uk: 'Так бути не повинно. Схоже, ти надто довго тримався в лідерах попередніх ліг і випередив усіх, хто міг би сюди потрапити. Що ж, тоді ти крутий.',
+                    es: 'Esto no debería pasar. Parece que llevas demasiado tiempo liderando tus ligas anteriores y has dejado atrás a todos los que podrían estar aquí. Bueno, entonces eres genial.',
+                    'pt-BR': 'Isso não deveria acontecer. Parece que você liderou suas ligas anteriores por tempo demais e deixou para trás todos que poderiam estar aqui. Bom, então você é demais.',
+                    vi: 'Điều này lẽ ra không nên xảy ra. Có vẻ bạn đã dẫn đầu các giải trước quá lâu và vượt qua tất cả những ai có thể ở đây. Vậy thì bạn thật tuyệt.',
+                    id: 'Ini seharusnya tidak terjadi. Sepertinya kamu terlalu lama memimpin liga sebelumnya dan meninggalkan semua orang yang bisa ada di sini. Kalau begitu, kamu hebat.',
+                    tr: 'Böyle olmamalıydı. Görünüşe göre önceki liglerinde çok uzun süre lider kaldın ve buraya gelebilecek herkesi geride bıraktın. O hâlde sen harikasın.',
+                    pl: 'Tak nie powinno być. Wygląda na to, że zbyt długo byłeś liderem poprzednich lig i wyprzedziłeś wszystkich, którzy mogliby tu trafić. Cóż, w takim razie jesteś świetny.',
+                  })}
+                </Text>
+              </View>
             ) : null}
           </View>
         </View>

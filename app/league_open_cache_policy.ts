@@ -45,4 +45,12 @@ export function shouldShowLeagueEmptyParticipants(input: EmptyParticipantsInput)
   return input.localLeagueHydrated && input.participantCount <= 0;
 }
 
+// зачем: владелец увидел под «Участники клуба» пустоту — в лиге он ОДИН, и при
+// participantCount === 1 старое пустое состояние (<= 0) не показывалось, а
+// список рисует только игроков после топ-3. Пустой экран читался как поломка.
+// Отдельное состояние: объясняем, что так вышло, и подаём это как комплимент.
+export function shouldShowLeagueSoloParticipant(input: EmptyParticipantsInput): boolean {
+  return input.localLeagueHydrated && input.participantCount === 1;
+}
+
 export default function __RouteShim() { return null; }

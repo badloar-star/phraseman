@@ -77,17 +77,9 @@ describe('weekly boon DALL-E icon assets', () => {
         // Считаем от фактической ширины — правило верно для любого размера:
         // рисунок ≤68.75% полотна, поля ≥15.6%, смещение от центра ≤3.1%.
         const scale = info.width / 256;
-        // ИЗВЕСТНЫЙ ДЕФЕКТ (не ослабление правила): набор volt_refresh нарисован
-        // вплотную к краю — у 10 иконок поля 0-19px при требуемых 60, рисунок
-        // упирается в границу и визуально обрезается. Геометрию для остальных тем
-        // держим строгой, чтобы дефект не расползся; volt проверяем только на
-        // квадратность и размер (выше), пока ассеты не перерисуют с полями.
-        const hasKnownTightCrop = rel.includes('/volt_refresh/');
-        if (!hasKnownTightCrop) {
-          expect(Math.max(objectW, objectH)).toBeLessThanOrEqual(176 * scale);
-          expect(minEdgePadding).toBeGreaterThanOrEqual(40 * scale);
-          expect(centerOffset).toBeLessThanOrEqual(8 * scale);
-        }
+        expect(Math.max(objectW, objectH)).toBeLessThanOrEqual(176 * scale);
+        expect(minEdgePadding).toBeGreaterThanOrEqual(40 * scale);
+        expect(centerOffset).toBeLessThanOrEqual(8 * scale);
       }
     }
 

@@ -69,7 +69,11 @@ export function normalizeTournamentEconomy(raw: unknown): TournamentEconomyConfi
 
   const rate = Number(data.weeklyBankRate);
   return Object.freeze({
-    entryGems: intInRange(data.entryGems, d.entryGems, 1, MAX_ENTRY_GEMS),
+    // зачем 2026-07-27 (владелец: «убрал требование на жемчужины»): нижняя
+    // граница была 1, поэтому entryGems: 0 из админки молча откатывался на
+    // умолчание 3 и вход всё равно требовал жемчужины. Ноль = бесплатный вход,
+    // это законная настройка владельца, а не ошибка конфигурации.
+    entryGems: intInRange(data.entryGems, d.entryGems, 0, MAX_ENTRY_GEMS),
     botEntryGems: intInRange(data.botEntryGems, d.botEntryGems, 0, MAX_ENTRY_GEMS),
     weeklyBankRate: Number.isFinite(rate) && rate >= 0 && rate <= MAX_WEEKLY_RATE
       ? rate

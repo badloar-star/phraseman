@@ -46,6 +46,14 @@ import {
   type TournamentAiLevel,
 } from './tournament_ai_generator';
 import {
+  AUDIO_BATCH_SIZE,
+  audioTasksFrom,
+  buildAudioPromptPacket,
+  isTournamentAudioMode,
+  validateAudioBatch,
+  type TournamentAudioMode,
+} from './tournament_ai_audio_generator';
+import {
   TOURNAMENT_AUDIO_SECRETS,
   checkTournamentAudioFreshness,
   ensureTournamentAudio,
@@ -1133,6 +1141,191 @@ export const adminGetTournamentSchedule = onCall(
       slots: Array.isArray(data.slots) ? data.slots : [],
       timezone: typeof data.timezone === 'string' ? data.timezone : 'Europe/Moscow',
       updatedAtMs: Number(data.updatedAtMs ?? 0),
+    };
+  },
+);
+
+
+// ── Генератор аудио-заданий ─────────────────────────────────────────────────
+
+/**
+ * зачем отдельный callable: у аудио-режимов свой промпт (похожесть НА СЛУХ),
+ * своя валидация (минимальная пара, дистракторы диктанта) и свой реестр
+ * повторов — смешивать с текстовым генератором значило бы получать фразы,
+ * которые на слух не различаются. Бюджет, учёт трат и запись в пул общие.
+ */
+export const adminGenerateTournamentAudioTasksAi = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
+  async (request) => {
+    requirePermission(request, 'content.draft.write');
+    const record = onlyKeys(request.data, ['mode', 'level', 'batches', 'topicHint', 'dryRun'],
+      'tournament_audio_ai_invalid');
+    const mode = String(record.mode ?? '').trim();
+    const level = String(record.level ?? '').trim().toUpperCase();
+    const batches = Math.max(1, Math.min(3, Math.trunc(Number(record.batches ?? 1))));
+    const topicHint = String(record.topicHint ?? '').trim().slice(0, 120);
+    const dryRun = record.dryRun === true;
+    if (!isTournamentAudioMode(mode) || !isTournamentAiLevel(level)) {
+      throw new HttpsError('invalid-argument', 'tournament_audio_ai_invalid');
+    }
+
+    const db = admin.firestore();
+    const nowMs = Date.now();
+    const cfg = await resolveJobConfig(db, 'tournament');
+    assertJobEnabled(cfg, 'tournament');
+    const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+    if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+
+    await reserveAiDailyBudget(db, cfg.globalDailyCap, batches, nowMs);
+
+    // Реестр повторов — СВОЙ на режим: одна и та же фраза уместна и в выборе
+    // на слух, и в диктанте; запрещать её во втором из-за первого незачем.
+    const ledgerRef = db.collection(AI_LEDGER_COLLECTION).doc(`${mode}_${level}`);
+    const ledgerData = (await ledgerRef.get()).data() ?? {};
+    const knownPhrases: string[] = Array.isArray(ledgerData.phrases)
+      ? ledgerData.phrases.map((phrase: unknown) => String(phrase))
+      : [];
+
+    const accepted: Record<string, unknown>[] = [];
+    const rejectedBatches: string[][] = [];
+    let promptTokens = 0;
+    let completionTokens = 0;
+    let requests = 0;
+
+    // Учёт трат в finally: токены сгоревших запросов должны попасть в дашборд
+    // даже при падении посреди цикла (иначе повторяем баг недосчёта расходов).
+    try {
+      for (let batchNo = 0; batchNo < batches; batchNo += 1) {
+        const packet = buildAudioPromptPacket({
+          mode: mode as TournamentAudioMode,
+          level,
+          topicHint,
+          previousPhrases: knownPhrases.slice(-80),
+        });
+        const result = await openAiChat({
+          apiKey,
+          model: cfg.model,
+          messages: [
+            { role: 'system', content: packet.system },
+            { role: 'user', content: packet.task },
+          ],
+          maxTokens: AI_MAX_TOKENS,
+          temperature: AI_TEMPERATURE,
+          responseFormat: packet.responseFormat,
+        });
+        requests += 1;
+        promptTokens += result.promptTokens;
+        completionTokens += result.completionTokens;
+
+        let parsed: unknown;
+        try {
+          parsed = JSON.parse(result.text);
+        } catch {
+          rejectedBatches.push(['model returned invalid JSON']);
+          continue;
+        }
+        const validation = validateAudioBatch(mode as TournamentAudioMode, parsed);
+        if (!validation.ok) {
+          rejectedBatches.push([...validation.errors].slice(0, 12));
+          continue;
+        }
+        for (const item of validation.items as Record<string, unknown>[]) {
+          knownPhrases.push(String(item.phrase ?? ''));
+          accepted.push(item);
+        }
+      }
+    } finally {
+      if (requests > 0) {
+        await db.collection(AI_BILLING_COLLECTION).add({
+          model: cfg.model,
+          promptTokens,
+          completionTokens,
+          requests,
+          level,
+          mode,
+          batchesRequested: batches,
+          batchesAccepted: batches - rejectedBatches.length,
+          dryRun,
+          uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+          createdAtMs: nowMs,
+        }).catch((error) => console.error('[tournament_audio_ai] billing write failed', error));
+      }
+    }
+
+    const tasks = audioTasksFrom(mode as TournamentAudioMode, accepted, level) ?? [];
+    if (accepted.length > 0 && tasks.length === 0) {
+      // Валидация прошла, а контракт пула — нет: это баг генератора, кричим.
+      throw new HttpsError('internal', 'tournament_audio_contract_mismatch');
+    }
+
+    const samples = tasks.slice(0, AUDIO_BATCH_SIZE).map((task, index) => ({
+      ...publicAdminTask(task.taskId, task),
+      aiMeta: {
+        note: String(accepted[index]?.confusionNote ?? accepted[index]?.contrast ?? ''),
+      },
+    }));
+
+    if (dryRun) {
+      return { ok: true, dryRun: true, mode, accepted: accepted.length, rejectedBatches, requests, samples };
+    }
+
+    let written = 0;
+    let keptPublished = 0;
+    if (tasks.length > 0) {
+      const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+      for (let i = 0; i < tasks.length; i += WRITE_BATCH_SIZE) {
+        const chunk = tasks.slice(i, i + WRITE_BATCH_SIZE);
+        const existing = await db.getAll(
+          ...chunk.map((task) => collection.doc(task.taskId)),
+          { fieldMask: ['verified'] },
+        );
+        // Опубликованное задание не должно откатиться в черновик: озвучка за
+        // него оплачена, а игроки могут быть в комнате прямо сейчас.
+        const alreadyPublished = new Set(
+          existing.filter((doc) => doc.exists && doc.data()?.verified === true).map((doc) => doc.id),
+        );
+        const batch = db.batch();
+        for (let j = 0; j < chunk.length; j += 1) {
+          const task = chunk[j];
+          const item = accepted[i + j];
+          const wasPublished = alreadyPublished.has(task.taskId);
+          if (wasPublished) keptPublished += 1;
+          batch.set(collection.doc(task.taskId), {
+            taskId: task.taskId,
+            mode: task.mode,
+            isVoice: task.isVoice,
+            difficulty: task.difficulty,
+            payload: task.payload,
+            tags: task.tags,
+            verified: wasPublished,
+            generatedAtMs: nowMs,
+            source: 'ai',
+            aiMeta: {
+              note: String(item?.confusionNote ?? item?.contrast ?? ''),
+              level,
+              model: cfg.model,
+            },
+          }, { merge: true });
+          written += 1;
+        }
+        await batch.commit();
+      }
+      await ledgerRef.set({
+        phrases: knownPhrases.slice(-AI_LEDGER_MAX_PHRASES),
+        updatedAtMs: nowMs,
+      }, { merge: true });
+    }
+
+    return {
+      ok: true,
+      dryRun: false,
+      mode,
+      accepted: accepted.length,
+      rejectedBatches,
+      requests,
+      written,
+      keptPublished,
+      samples,
     };
   },
 );

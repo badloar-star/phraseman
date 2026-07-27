@@ -37,7 +37,12 @@ export const TOURNAMENT_ROOM_SIZE = 16;
 export const TOURNAMENT_MIN_REAL_PLAYERS = 8;
 export const TOURNAMENT_ROUNDS = 4;
 export const TOURNAMENT_LOBBY_OPEN_MS = 5 * 60 * 1000; // лобби за 5 мин до старта (§2)
-export const TOURNAMENT_CREATE_AHEAD_MS = 10 * 60 * 1000; // комнаты за 10 мин до слота
+// зачем 2026-07-27: было 10 минут — комната существовала лишь 10 мин в сутки
+// на слот, и владелец, заходя в любое другое время, упирался в «Не удалось
+// войти» (комнаты за кнопкой просто нет). Сутки вперёд: комната ждёт игрока
+// весь день, лобби всё равно открывается за 5 мин до старта, стоимость —
+// 3 документа в день (создание идёт транзакцией с проверкой существования).
+export const TOURNAMENT_CREATE_AHEAD_MS = 24 * 60 * 60 * 1000; // комнаты на сутки вперёд
 export const TOURNAMENT_FILL_BOTS_AHEAD_MS = 2 * 60 * 1000; // два тика минутного scheduler до старта
 export const TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS = 30 * 1000;
 export const TOURNAMENT_CANCEL_COMPENSATION_GEMS = 3; // «за ожидание» (§2)
@@ -1160,10 +1165,25 @@ export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] 
   });
   let candidates = verified;
   if (modeKind === 'single' && verified.length > 0) {
-    const modes = Array.from(new Set(verified.map((t) => t.mode))).sort();
-    const rand = tournamentPrng(`${seed}:mode`);
-    const mode = modes[Math.floor(rand() * modes.length)];
-    candidates = verified.filter((t) => t.mode === mode);
+    // зачем 2026-07-27: режим выбирался среди ВСЕХ встреченных, включая те, где
+    // заданий меньше, чем нужно раунду — тогда buildRounds возвращал null и
+    // комната отменялась, хотя пул в целом был полон. Теперь жребий бросается
+    // только среди режимов, которые реально закрывают раунд; если ни один не
+    // закрывает — раунд играется смешанным, лишь бы турнир состоялся.
+    const byMode = new Map<string, TournamentTask[]>();
+    for (const task of verified) {
+      const list = byMode.get(task.mode);
+      if (list) list.push(task); else byMode.set(task.mode, [task]);
+    }
+    const complete = Array.from(byMode.entries())
+      .filter(([, tasks]) => tasks.length >= count)
+      .map(([mode]) => mode)
+      .sort();
+    if (complete.length > 0) {
+      const rand = tournamentPrng(`${seed}:mode`);
+      const mode = complete[Math.floor(rand() * complete.length)];
+      candidates = verified.filter((t) => t.mode === mode);
+    }
   }
   return seededShuffle(candidates, seed).slice(0, Math.max(0, count));
 }

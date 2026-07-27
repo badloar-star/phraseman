@@ -22,6 +22,8 @@
     "metro:protected:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-emu.ps1 -Clear",
     "metro:phone": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-phone.ps1 -Port 8085",
     "metro:phone:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/protected-metro-phone.ps1 -Port 8085 -Clear",
+    "metro": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-always-on.ps1 -Port 8085",
+    "metro:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-always-on.ps1 -Port 8085 -Clear",
     "metro:iphone": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-iphone-lan.ps1 -Port 8085",
     "metro:iphone:clear": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-iphone-lan.ps1 -Port 8085 -Clear",
     "metro:iphone:tunnel": "powershell.exe -NoProfile -ExecutionPolicy Bypass -File ./scripts/metro-iphone-lan.ps1 -Port 8085 -Tunnel",

@@ -4,6 +4,12 @@ import type { ThemeMode } from './theme';
 
 export type WeeklyBoonIconId = BoonId | BoonModifierId | 'comeback';
 
+// зачем: список тем, чью геометрию иконок стережёт tests/boon_icon_assets.test.ts.
+// Здесь ТОЛЬКО живые темы — те, что пользователь реально может выбрать
+// (см. CYCLE/PREMIUM_ONLY_THEMES в components/ThemeContext.tsx). business и
+// businessLight сознательно не включены: они в REMOVED_THEME_MODES с 2026-07-02,
+// их иконки никому не показываются, и чинить их геометрию сейчас незачем.
+// Добавляешь тему в выбор — добавь её и сюда, иначе её иконки не проверяются.
 export const WEEKLY_BOON_ICON_THEMES: readonly ThemeMode[] = [
   'dark',
   'gold',
@@ -13,6 +19,8 @@ export const WEEKLY_BOON_ICON_THEMES: readonly ThemeMode[] = [
   'ember',
   'aurora',
   'volt',
+  'candyBlue',
+  'indigo',
 ] as const;
 
 export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIconId, string>> = {

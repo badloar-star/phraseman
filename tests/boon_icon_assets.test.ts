@@ -84,7 +84,9 @@ describe('weekly boon DALL-E icon assets', () => {
     }
 
     expect(seen.size).toBe(WEEKLY_BOON_ICON_IDS.length * WEEKLY_BOON_ICON_THEMES.length);
-  });
+    // зачем: каждый файл сканируется попиксельно по альфе, и тем в контракте
+    // стало больше (добавлены candyBlue/indigo) — дефолтных 5 c уже не хватает.
+  }, 60000);
 
   it('exposes static image sources for Metro bundling', () => {
     for (const themeMode of WEEKLY_BOON_ICON_THEMES) {

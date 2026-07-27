@@ -109,6 +109,7 @@ import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
 import GlobalFriendGiftHost from '../components/GlobalFriendGiftHost';
 import GlobalCompassSocialHost from '../components/GlobalCompassSocialHost';
 import ReferralWelcomeHost from '../components/ReferralWelcomeHost';
+import OnboardingWelcomeHost from '../components/OnboardingWelcomeHost';
 import MysteryMondayHost from '../components/MysteryMondayHost';
 import ComebackBoonHost from '../components/ComebackBoonHost';
 import PerfectWeekHost from '../components/PerfectWeekHost';
@@ -144,6 +145,8 @@ import { applyContentDeliveryMigration } from './content_delivery_migration';
 import { primeAppSnapshotFromStorage } from './app_snapshot_bootstrap';
 import { primeSurveyDailyTaskCacheFromStorage } from './survey_daily_task_cache';
 import { primeDailyTasksScreenSnapshotFromStorage } from './daily_tasks_screen_persist';
+import { primeScreenSnapshotsFromStorage } from './screen_snapshot_store';
+import { hydrateStatsCacheFromStorage } from './statsCache';
 import { primeTrainerPracticeSnapshotFromStorage } from './trainer_practice_persist';
 import { primeRemoteConfigCacheFromStorage } from './remote_config_client';
 import { createBootCloudRestoreCoordinator, type BootCloudRestoreOutcome } from './cloud_restore_coordinator';
@@ -2384,6 +2387,17 @@ function AppContent() {
         // поэтому раздел открывался с нулями и после холодного старта, и просто через
         // 3 минуты. Поднимаем дисковый снапшот здесь, до входа в раздел.
         primeTrainerPracticeSnapshotFromStorage().catch(() => {}),
+        // зачем: общий снапшот остальных экранов (стрик, рефералы, топ помощников,
+        // аналитика, план, разбор, подписка, видео, сезон). Владелец потребовал, чтобы
+        // НИ ОДИН экран не показывал скелетон. Это ОДНО чтение диска на все экраны
+        // сразу — в той же параллельной пачке, поэтому запуск не удлиняется.
+        primeScreenSnapshotsFromStorage().catch(() => {}),
+        // зачем: кэш статистики УЖЕ лежал на диске, но поднимался только внутри
+        // streak_stats.loadAll() — то есть после первого кадра, поэтому экран стрика
+        // успевал показать скелетон на весь экран. Поднимаем здесь: к моменту тапа
+        // данные в памяти, statsReady=true с первого кадра. Лишних чтений нет —
+        // экран всё равно звал эту же функцию, просто позже.
+        hydrateStatsCacheFromStorage().catch(() => {}),
         primeRemoteConfigCacheFromStorage().catch(() => {}),
         hydrateUserSettingsFromStorage().catch(() => {}),
         hydrateHapticsTapFromStorage().catch(() => {}),
@@ -3336,6 +3350,11 @@ export default function RootLayout() {
               <AchievementProvider>
                 <OverlayArbiterProvider>
                     <AppContent />
+                    {/* зачем: приветствие после онбординга — над ГЛАВНОЙ, а не
+                        поверх последнего экрана анкеты (владелец, 2026-07-27).
+                        Ключ onboardingWelcome стоит первым в приоритете арбитра,
+                        поэтому новичок видит его раньше наград и обновлений. */}
+                    <OnboardingWelcomeHost />
                     <AchievementToast />
                     <DailyTaskRewardToast />
                     <ActionToast />

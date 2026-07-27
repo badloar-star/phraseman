@@ -1,6 +1,11 @@
 import { isCurrentAccountGeneration, type AccountGenerationToken } from './account_generation';
 import { accountScopeKey } from './account_scope_key';
 import type { ReferralDrainState, ReferralInvite } from './referral_cloud';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
 
 type Entry = Readonly<{
   value: ReferralInvite[];
@@ -30,6 +35,8 @@ type PersistedStatePayload = Readonly<{
 
 const TTL_MS = 60_000;
 const MAX_ENTRIES = 2;
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const SCREEN_ID = 'referral-invites';
 export const REFERRAL_STATE_STORAGE_KEY = 'referrals_state_cache_v3';
 const entries = new Map<string, Entry>();
 let latestRequestId = 0;
@@ -45,8 +52,16 @@ export function readReferralInvites(
 ): { value: ReferralInvite[]; isFresh: boolean } | null {
   const key = referralInvitesCacheKey(token);
   const cached = key ? entries.get(key) : undefined;
-  if (!key || !cached || !isCurrentAccountGeneration(token)) return null;
-  return { value: cached.value, isFresh: now - cached.updatedAt <= TTL_MS };
+  if (!key || !isCurrentAccountGeneration(token)) return null;
+  if (cached) return { value: cached.value, isFresh: now - cached.updatedAt <= TTL_MS };
+  // зачем: Map выше живёт только внутри процесса, поэтому на ПЕРВОМ открытии после
+  // холодного старта она пуста — экран показывал скелетоны приглашений. Поднимаем
+  // снапшот прошлой сессии (его положил бутстрап одним общим чтением) и отдаём как
+  // «данные есть, но не свежие»: список виден с первого кадра, а фоновая загрузка
+  // всё равно идёт (isFresh:false) и тихо уточняет. Firestore не трогаем.
+  const restored = peekScreenSnapshotForToken<ReferralInvite[]>(SCREEN_ID, token, { nowMs: now });
+  if (!restored) return null;
+  return { value: restored, isFresh: false };
 }
 
 export function readReferralDrain(
@@ -79,6 +94,13 @@ export function commitReferralInvites(
   const previous = entries.get(request.key!);
   entries.delete(request.key!);
   entries.set(request.key!, { value, ...(previous?.drain ? { drain: previous.drain } : {}), updatedAt });
+  // зачем: зеркалим результат на диск, чтобы СЛЕДУЮЩИЙ холодный старт открыл экран
+  // мгновенно, без скелетонов. Запись фоновая и отложенная — UI её не ждёт.
+  rememberScreenSnapshot(
+    screenSnapshotKey(SCREEN_ID, request.token),
+    value,
+    updatedAt,
+  );
   while (entries.size > MAX_ENTRIES) {
     const oldest = entries.keys().next().value as string | undefined;
     if (!oldest) break;

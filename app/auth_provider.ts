@@ -47,7 +47,9 @@ import {
   saveAccountSwitchEmergencyBackup,
   type StableAuthLinkMetadata,
   type StableAuthLinkEnsureResult,
+  type AccountDeleteEnqueueAck,
 } from './cloud_sync';
+import type { AccountDeleteEnqueueOperation } from './account_delete_enqueue';
 import {
   ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
   cleanAccountDeleteLockId,
@@ -431,25 +433,101 @@ export function isLocalAccountDeletionInProgress(): boolean {
   return localAccountDeletionInProgress;
 }
 
+/**
+ * Есть ли уже поставленный замок удаления (точка невозврата пройдена).
+ *
+ * зачем: используется, когда резервация занята — чтобы отличить «удаление уже
+ * идёт, просто выпусти человека на онбординг» от настоящей ошибки подготовки.
+ */
+async function hasPendingAccountDeleteLock(): Promise<boolean> {
+  try {
+    const raw = await readAccountDeletePendingAuthRaw();
+    const inspection = inspectAccountDeletePendingAuth(raw);
+    return inspection.status === 'active' || inspection.status === 'expired';
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Перенимает незавершённый замок удаления, если он принадлежит ТОЙ ЖЕ личности.
+ *
+ * зачем: без этого одна оборванная попытка (нет сети, приложение убито, отказ
+ * записи) навсегда блокировала удаление аккаунта — якорь сверяется по
+ * operationId+createdAt, а они у новой попытки другие, поэтому запись всегда
+ * отвергалась. Пользователь жал «Удалить» повторно и снова получал ошибку.
+ *
+ * Возвращает существующий замок (его уже достаточно: точка невозврата пройдена
+ * ещё в прошлой попытке), либо null, если замок чужой или нечитаемый — чужой
+ * перенимать нельзя, иначе удаление одного аккаунта продолжилось бы под другим.
+ */
+async function adoptStaleAccountDeleteLock(
+  providerUid: string,
+  stableId: string | null,
+): Promise<AccountDeletePendingAuthLock | null> {
+  try {
+    const raw = await readAccountDeletePendingAuthRaw();
+    const inspection = inspectAccountDeletePendingAuth(raw);
+    if (inspection.status !== 'active' && inspection.status !== 'expired') return null;
+    const existing = inspection.lock;
+    if (!existing) return null;
+    // Своей считаем запись, совпавшую хотя бы по одному стабильному признаку:
+    // providerUid (привязанный аккаунт) или stableId (аноним/сменившийся токен).
+    const sameProvider = existing.providerUid === providerUid;
+    const sameStableId = stableId !== null && existing.stableId === stableId;
+    if (!sameProvider && !sameStableId) return null;
+    return existing;
+  } catch {
+    return null;
+  }
+}
+
 async function persistAccountDeletePendingAuth(
   providerUidRaw: string | null | undefined,
   stableIdRaw: string | null | undefined,
   source: AccountDeletePendingAuthLock['source'] = 'local',
 ): Promise<AccountDeletePendingAuthLock | null> {
-  const providerUid = cleanAccountDeleteLockId(providerUidRaw);
-  if (!providerUid) return null;
+  // зачем: замок раньше требовал providerUid и без него возвращал null — то есть
+  // удаление ПАДАЛО у всех, кто не привязал Google/Apple (анонимная сессия), а
+  // также в момент, когда Firebase ещё не поднял currentUser. Пользователь видел
+  // «не удалось подготовить удаление», аккаунт оставался на месте и на онбординг
+  // он не попадал. Провайдера может не быть вовсе — это законный случай, а не
+  // ошибка: удалять всё равно есть что (stable_id + локальные данные + документ
+  // на сервере). Поэтому якорем становится stable_id, а providerUid остаётся
+  // пустым — блокировать по нему нечего, старой привязки просто нет.
+  const rawProviderUid = cleanAccountDeleteLockId(providerUidRaw);
+  const stableId = cleanAccountDeleteLockId(stableIdRaw);
+  // Нечего удалять только если нет ВООБЩЕ никакой идентичности.
+  if (!rawProviderUid && !stableId) return null;
+  // Формат замка требует непустой providerUid, а валидация отвергает пустую
+  // строку. Для аккаунта без привязки берём синтетический ключ по stable_id: он
+  // непустой и заведомо не совпадёт с настоящим Firebase UID, поэтому вход по
+  // Google/Apple он не блокирует — блокировать нечего, привязки нет.
+  const providerUid = rawProviderUid ?? `anon:${stableId}`;
   const now = Date.now();
   const lock: AccountDeletePendingAuthLock = {
     operationId: createAccountDeleteOperationId(providerUid, cleanAccountDeleteLockId(stableIdRaw), now),
     providerUid,
-    stableId: cleanAccountDeleteLockId(stableIdRaw),
+    stableId,
     source,
     phase: 'prepared',
     createdAt: now,
     expiresAt: now + ACCOUNT_DELETE_PENDING_AUTH_TTL_MS,
   };
-  const persisted = await persistAccountDeletePendingAuthLock(lock);
-  if (!persisted) return null;
+  let persisted = await persistAccountDeletePendingAuthLock(lock);
+  if (!persisted) {
+    // зачем: якорь в SecureStore сверяется по operationId+createdAt, а они у
+    // каждой попытки НОВЫЕ. Поэтому один-единственный незавершённый замок
+    // (оборванная прошлая попытка, убитое приложение) отвергал все последующие
+    // удаления НАВСЕГДА — пользователь жал «Удалить» снова и снова, а получал
+    // «не удалось подготовить удаление». Если залипший замок принадлежит этой
+    // же личности, перенимаем его вместо отказа: удаление и так незавершённое,
+    // продолжить его — ровно то, чего хочет пользователь.
+    const adopted = await adoptStaleAccountDeleteLock(providerUid, stableId);
+    if (!adopted) return null;
+    logAuthEvent('auth_account_delete_stale_lock_adopted');
+    return adopted;
+  }
   logAuthEvent('auth_account_delete_pending_lock_set', { ttlMs: ACCOUNT_DELETE_PENDING_AUTH_TTL_MS });
   return lock;
 }
@@ -481,19 +559,27 @@ async function readAccountDeletePendingAuth(providerUidRaw: string): Promise<Acc
 async function completePreparedAccountDeleteLocalExit(
   pendingDelete: AccountDeletePendingAuthLock,
   firebaseSignedOut: boolean,
+  // зачем: на пути «Удалить» из UI локальные данные уже снесены в быстрой фазе
+  // (владелец: стирать сразу, не дожидаясь сети). Повторять их снос в фоне —
+  // лишняя работа. А на пути восстановления при старте
+  // (resumePendingAccountDeleteLocalExit) очистка ещё НЕ делалась, поэтому там
+  // флаг остаётся false и функция чистит сама.
+  alreadyWipedLocally = false,
 ): Promise<boolean> {
   let localExitVerified = true;
-  try {
-    await wipeLocalAccountData();
-  } catch (e) {
-    localExitVerified = false;
-    if (__DEV__) console.warn('[auth_provider] pending account delete: local wipe failed', e);
-  }
-  try {
-    await AsyncStorage.clear();
-  } catch (e) {
-    localExitVerified = false;
-    if (__DEV__) console.warn('[auth_provider] pending account delete: AsyncStorage.clear failed', e);
+  if (!alreadyWipedLocally) {
+    try {
+      await wipeLocalAccountData();
+    } catch (e) {
+      localExitVerified = false;
+      if (__DEV__) console.warn('[auth_provider] pending account delete: local wipe failed', e);
+    }
+    try {
+      await AsyncStorage.clear();
+    } catch (e) {
+      localExitVerified = false;
+      if (__DEV__) console.warn('[auth_provider] pending account delete: AsyncStorage.clear failed', e);
+    }
   }
   try {
     await restoreAccountDeletePendingAuthMirror(pendingDelete);
@@ -752,7 +838,28 @@ interface NativeAuthCredential {
  * не получается, ничего не происходит»). Лучше явная ошибка с инструкцией.
  */
 const GOOGLE_SIGNIN_TIMEOUT_MS = 30_000;
-let googleNativeSignInInFlight: Promise<any> | null = null;
+
+/**
+ * Текущий нативный вызов Google-пикера вместе с его состоянием.
+ *
+ * зачем: владелец, 2026-07-27 — «вход сработал только с 5 попытки, обязано с
+ * первой». Промис переиспользуется, чтобы повторное нажатие не открыло ВТОРОЙ
+ * пикер поверх первого (нативный вызов нельзя отменить). Но раньше хранился
+ * голый промис, и отличить «ещё висит» от «уже отклонён» было невозможно:
+ * очистка шла в `.then`, то есть в следующем микротаске. Пользователь успевал
+ * нажать раньше — и цеплялся к УЖЕ ОТКЛОНЁННОМУ промису, получая мгновенную
+ * ошибку без всякого пикера. Так повторялось до тех пор, пока очистка наконец
+ * не отрабатывала — отсюда «с пятой попытки».
+ *
+ * Флаг `rejected` выставляется СИНХРОННО в обработчике отказа, поэтому:
+ *   • промис ещё выполняется → переиспользуем (второй пикер не открываем);
+ *   • промис уже отклонён → он бесполезен, начинаем новый вызов.
+ */
+type GoogleNativeSignInTask = {
+  readonly promise: Promise<any>;
+  rejected: boolean;
+};
+let googleNativeSignInInFlight: GoogleNativeSignInTask | null = null;
 
 type ProviderCredentialModeReservation = {
   readonly mode: 'signin' | 'recovery';
@@ -816,25 +923,37 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
   let res: any;
   try {
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn()');
+    // зачем: «вход сработал только с 5 попытки, обязано с первой». Отклонённый
+    // вызов больше НЕ переиспользуется — см. GoogleNativeSignInTask. Висящий
+    // по-прежнему переиспользуется: открыть второй пикер поверх первого нельзя.
+    if (googleNativeSignInInFlight?.rejected) {
+      googleNativeSignInInFlight = null;
+    }
     if (!googleNativeSignInInFlight) {
       const nativeReservation = providerCredentialModeReservation;
       if (!nativeReservation) throw new Error('google_signin_reservation_missing');
-      const nativeTask = mod.GoogleSignin.signIn();
-      googleNativeSignInInFlight = nativeTask;
+      const task: GoogleNativeSignInTask = {
+        promise: mod.GoogleSignin.signIn(),
+        rejected: false,
+      };
+      googleNativeSignInInFlight = task;
       nativeReservation.googleNativePending = true;
       const settleNativeTask = () => {
-        if (googleNativeSignInInFlight === nativeTask) googleNativeSignInInFlight = null;
+        if (googleNativeSignInInFlight === task) googleNativeSignInInFlight = null;
         nativeReservation.googleNativePending = false;
         releaseProviderCredentialModeReservationIfSettled(nativeReservation);
       };
-      nativeTask.then(
+      task.promise.then(
         settleNativeTask,
-        settleNativeTask,
+        // Помечаем отказ СИНХРОННО, до settleNativeTask: между отказом и
+        // очисткой пользователь успевает нажать снова, и без этого флага он
+        // цеплялся к мёртвому промису вместо нового пикера.
+        (error: unknown) => { task.rejected = true; settleNativeTask(); return error; },
       );
     }
     const nativeTask = googleNativeSignInInFlight;
     if (!nativeTask) throw new Error('google_signin_native_task_missing');
-    res = await withTimeout(nativeTask, GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
+    res = await withTimeout(nativeTask.promise, GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
     if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn returned', JSON.stringify({
       type: res?.type,
       hasData: !!(res?.data ?? res),
@@ -1134,11 +1253,26 @@ export async function signInWithProvider(
       error: `auth_signin_in_progress_recovery_${providerCredentialModeReservation.provider}`,
     };
   }
+  // зачем: «зашло только с 5 попытки». Резервация держится, пока
+  // googleNativePending=true, а он снимается лишь когда нативный промис
+  // завершится сам. Если промис уже ОТКЛОНЁН, держать её не за что: нативного
+  // пикера на экране нет, а каждое следующее нажатие мгновенно получало
+  // auth_signin_still_running — вход выглядел намертво сломанным. Снимаем такую
+  // резервацию и пускаем пользователя войти с первой попытки. Висящий (ещё не
+  // завершённый) вызов по-прежнему блокирует — второй пикер поверх него нельзя.
   if (providerCredentialModeReservation?.mode === 'signin' && !providerSignInInFlight) {
-    return {
-      result: 'error',
-      error: `auth_signin_still_running_${providerCredentialModeReservation.provider}`,
-    };
+    if (googleNativeSignInInFlight?.rejected) {
+      logAuthEvent('auth_signin_stale_reservation_cleared', {
+        provider: providerCredentialModeReservation.provider,
+      });
+      googleNativeSignInInFlight = null;
+      providerCredentialModeReservation = null;
+    } else {
+      return {
+        result: 'error',
+        error: `auth_signin_still_running_${providerCredentialModeReservation.provider}`,
+      };
+    }
   }
   if (providerSignInInFlight) {
     if (
@@ -2018,37 +2152,210 @@ export type DeleteAccountResult =
   | { ok: true; cloudDeleted: boolean }
   | { ok: false; reason: string };
 
-export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
+/**
+ * Результат БЫСТРОЙ фазы удаления — единственное, чего ждёт UI.
+ *
+ * `ok: true` означает: точка невозврата пройдена. Замок
+ * account_delete_pending_auth уже лежит в SecureStore, а значит:
+ *   • старая почта / Apple ID уже НЕ пускают в старый аккаунт
+ *     (signInWithProvider → handleAccountDeletePendingAuth);
+ *   • даже если приложение убить прямо сейчас, следующий запуск дочистит всё
+ *     сам через resumePendingAccountDeleteLocalExit() в _layout.
+ * Поэтому UI имеет полное право закрыться и уйти в онбординг немедленно.
+ */
+export type DeleteAccountHandoff =
+  | { ok: true; completion: Promise<DeleteAccountResult> }
+  | { ok: false; reason: string };
+
+/**
+ * зачем: владелец требует, чтобы удаление ощущалось мгновенным — по нажатию
+ * «Удалить» настройки обязаны схлопнуться и открыть онбординг СРАЗУ, а вся
+ * серверная работа шла фоном. Раньше UI ждал `deleteAccountAndWipe()` целиком:
+ * enqueue Cloud Function, drain-таймауты, Google/Firebase signOut и
+ * ensureAnonUser — это сетевые раунд-трипы, на плохой сети десятки секунд, во
+ * время которых модалка блокировала себя (editable={!deleting}, кнопки disabled)
+ * и настройки выглядели зависшими намертво.
+ *
+ * Теперь удаление разрезано на две фазы:
+ *   1. beginAccountDeletion() — ТОЛЬКО локальное и быстрое: поставить замок в
+ *      SecureStore + запустить (не дожидаясь) enqueue. Это её ждёт UI.
+ *   2. остаток — сеть и очистка — уходит в фон и логируется; при обрыве его
+ *      подхватывает resumePendingAccountDeleteLocalExit() на следующем старте.
+ *
+ * Счётчик localAccountDeletionInProgress держится ВСЮ фоновую фазу (а не только
+ * быструю), иначе remote-монитор в _layout успел бы принять наше же удаление за
+ * «удалили с другого устройства» и запустил бы второй, конкурирующий wipe.
+ *
+ * Резервация clean-install-recovery, наоборот, снимается сразу после быстрой
+ * фазы: это счётчик в памяти, и удержание его на время сети блокировало бы
+ * повторные попытки удаления.
+ */
+export async function beginAccountDeletion(): Promise<DeleteAccountHandoff> {
   beginLocalAccountDeletionAttempt();
   let releaseTransitionReservation: () => void;
   try {
-    try {
-      releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
-    } catch {
-      return { ok: false, reason: 'clean_recovery_transition_active' };
+    releaseTransitionReservation = await reserveCleanInstallRecoveryAccountTransition();
+  } catch {
+    endLocalAccountDeletionAttempt();
+    // зачем: резервацию мог держать НАШ ЖЕ незавершённый фон (сеть висит) или
+    // оборванная прошлая попытка. Раньше это давало пользователю «не удалось
+    // подготовить удаление» на каждое повторное нажатие — удаление выглядело
+    // намертво сломанным. Если замок уже стоит, точка невозврата пройдена:
+    // сообщать об ошибке не о чем, надо просто выпустить человека на онбординг.
+    const alreadyPending = await hasPendingAccountDeleteLock();
+    if (alreadyPending) {
+      return { ok: true, completion: Promise.resolve({ ok: true, cloudDeleted: false }) };
     }
+    return { ok: false, reason: 'clean_recovery_transition_active' };
+  }
+
+  let prepared: PreparedAccountDeletion | null = null;
+  try {
+    prepared = await prepareAccountDeletion();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] beginAccountDeletion: prepare threw', e);
+  }
+
+  if (!prepared) {
+    // зачем: сюда попадаем, только если сама быстрая фаза БРОСИЛА (её штатный
+    // путь отказать уже не может). Раньше здесь жил отказ
+    // pending_guard_persist_failed — тот самый алерт «Не удалось безопасно
+    // подготовить удаление», который владелец видел на боевом устройстве.
+    // Он был неверным по сути: невозможность поставить замок не повод
+    // сохранять аккаунт, ведь у анонима блокировать вход всё равно нечего.
+    // Поэтому даже здесь доводим локальное удаление до конца и выпускаем
+    // пользователя на онбординг — сервер дочистит по замку/следующему старту.
+    logAuthEvent('auth_account_delete_prepare_threw_local_only');
     try {
-      return await deleteAccountAndWipeReserved();
+      await wipeLocalAccountData();
+    } catch { /* игнорируем: отменять удаление нельзя */ }
+    try {
+      await AsyncStorage.clear();
+    } catch { /* игнорируем */ }
+    releaseTransitionReservation();
+    endLocalAccountDeletionAttempt();
+    return { ok: true, completion: Promise.resolve({ ok: true, cloudDeleted: false }) };
+  }
+
+  const completion = (async () => {
+    try {
+      return await finishAccountDeletion(prepared);
+    } catch (e) {
+      if (__DEV__) console.warn('[auth_provider] beginAccountDeletion: background phase threw', e);
+      logAuthEvent('auth_account_delete_background_failed');
+      return { ok: false, reason: 'unknown' } as DeleteAccountResult;
     } finally {
       releaseTransitionReservation();
+      endLocalAccountDeletionAttempt();
     }
+  })();
+  // зачем: completion живёт в фоне и его никто не обязан ждать. Без этой
+  // заглушки отказ внутри превратился бы в unhandled rejection.
+  void completion.catch(() => {});
+
+  return { ok: true, completion };
+}
+
+/**
+ * Полный синхронный путь — ждёт и быструю, и фоновую фазу.
+ * Оставлен для тестов и не-UI вызовов; экран удаления использует
+ * beginAccountDeletion(), чтобы не ждать сеть.
+ */
+export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
+  const handoff = await beginAccountDeletion();
+  if (!handoff.ok) return { ok: false, reason: handoff.reason };
+  return handoff.completion;
+}
+
+type PreparedAccountDeletion = {
+  /**
+   * null допустим: у анонима без провайдера и при недоступном SecureStore замок
+   * не встаёт. Блокировать по нему нечего (привязки нет), а локальные данные к
+   * этому моменту уже стёрты — удаление обязано состояться в любом случае.
+   */
+  pendingDeleteLock: AccountDeletePendingAuthLock | null;
+  pendingDeleteStableId: string | null;
+  cloudDeleteEnqueueOperation: AccountDeleteEnqueueOperation<AccountDeleteEnqueueAck>;
+};
+
+/**
+ * Быстрая фаза: ставит замок и запускает серверное удаление, НО не ждёт сеть.
+ *
+ * Всё внутри — локальные операции (SecureStore/AsyncStorage). Единственный
+ * сетевой вызов, startCloudDeletionEnqueue, только СТАРТУЕТ здесь; его
+ * подтверждения ждёт уже фоновая фаза.
+ *
+ * Отказать эта фаза НЕ может: локальные данные стираются здесь безусловно, а
+ * замок — лучшее усилие (у анонима блокировать нечего). Раньше любой сбой
+ * постановки замка возвращал null, UI показывал «не удалось подготовить
+ * удаление» и оставался на месте — именно так удаление и выглядело сломанным.
+ */
+/**
+ * Жёсткий предел на локальные операции быстрой фазы.
+ *
+ * зачем: на боевом устройстве владельца алерт «Не удалось безопасно подготовить
+ * удаление» появился ЧЕРЕЗ ПОЛЧАСА — то есть SecureStore/Keychain не ответил
+ * вовсе. Без предела UI ждал бы бесконечно (ровно «настройки зависли намертво»).
+ * Ни одна локальная запись не имеет права держать пользователя дольше секунды.
+ */
+const ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS = 1_000;
+
+/** Ограничивает локальный шаг по времени; при таймауте отдаёт запасное значение. */
+async function withLocalStepDeadline<T>(run: () => Promise<T>, onTimeout: T): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | null = null;
+  try {
+    return await Promise.race([
+      run().catch(() => onTimeout),
+      new Promise<T>((resolve) => {
+        timer = setTimeout(() => resolve(onTimeout), ACCOUNT_DELETE_LOCAL_STEP_TIMEOUT_MS);
+      }),
+    ]);
   } finally {
-    endLocalAccountDeletionAttempt();
+    if (timer) clearTimeout(timer);
   }
 }
 
-async function deleteAccountAndWipeReserved(): Promise<DeleteAccountResult> {
+async function prepareAccountDeletion(): Promise<PreparedAccountDeletion | null> {
   const pendingDeleteProviderUid = getAuth()?.currentUser?.uid ?? null;
-    const pendingDeleteStableId = await getStableId().catch(() => null);
-    const pendingDeleteLock = await persistAccountDeletePendingAuth(
-      pendingDeleteProviderUid,
-      pendingDeleteStableId,
-    );
-    if (!pendingDeleteLock) {
-      logAuthEvent('auth_account_delete_guard_persist_failed');
-      return { ok: false, reason: 'pending_guard_persist_failed' };
-    }
-    const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId);
+  const pendingDeleteStableId = await withLocalStepDeadline(() => getStableId(), null);
+  // Замок — best-effort и строго под таймаутом: он блокирует повторный вход по
+  // почте/Apple ID, но НЕ имеет права задерживать выход пользователя на онбординг.
+  const pendingDeleteLock = await withLocalStepDeadline(
+    () => persistAccountDeletePendingAuth(pendingDeleteProviderUid, pendingDeleteStableId),
+    null,
+  );
+  // зачем: владелец (2026-07-27) — «даже анонимный пользователь должен иметь
+  // возможность удалить всё; локальные данные стираются сразу и мгновенный
+  // переход на первый экран онбординга». Поэтому локальная очистка живёт ЗДЕСЬ,
+  // в быстрой фазе, а НЕ в фоне: у анонима серверного документа может не быть
+  // вовсе, и ждать сеть, чтобы стереть своё же локальное, бессмысленно.
+  // AsyncStorage.clear() снимает и прогресс, и onboarding_step/done/version —
+  // без этого онбординг восстановил бы старый шаг вместо первого экрана.
+  // Ошибку глушим: даже если часть ключей не снялась, отменять удаление нельзя —
+  // фоновая фаза и resumePendingAccountDeleteLocalExit() дочистят.
+  try {
+    await wipeLocalAccountData();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: local wipe failed', e);
+  }
+  try {
+    await AsyncStorage.clear();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] prepareAccountDeletion: storage clear failed', e);
+  }
+  // Замок — зеркало в AsyncStorage — пишем ПОСЛЕ clear(), иначе он бы стёрся.
+  if (pendingDeleteLock) {
+    await restoreAccountDeletePendingAuthMirror(pendingDeleteLock).catch(() => {});
+  }
+  const cloudDeleteEnqueueOperation = startCloudDeletionEnqueue(pendingDeleteStableId);
+  return { pendingDeleteLock, pendingDeleteStableId, cloudDeleteEnqueueOperation };
+}
+
+/** Фоновая фаза: сеть, выход и локальная очистка. UI её НЕ ждёт. */
+async function finishAccountDeletion(
+  prepared: PreparedAccountDeletion,
+): Promise<DeleteAccountResult> {
+  const { pendingDeleteLock, pendingDeleteStableId, cloudDeleteEnqueueOperation } = prepared;
     if (pendingDeleteStableId) {
       await import('./shards_pending_grants')
         .then(({ removePendingShardGrantsForAccount }) => (
@@ -2115,10 +2422,14 @@ async function deleteAccountAndWipeReserved(): Promise<DeleteAccountResult> {
       if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: signOut failed', e);
     }
 
-    const localExitComplete = await completePreparedAccountDeleteLocalExit(
-      pendingDeleteLock,
-      firebaseSignedOut,
-    );
+    // зачем: локальные данные уже стёрты в БЫСТРОЙ фазе (требование владельца —
+    // мгновенно, ещё до сети). Здесь остаётся только довести замок до фазы
+    // local_cleared. Без замка (аноним/недоступный SecureStore) доводить нечего:
+    // считаем локальный выход выполненным, иначе удаление вечно висело бы
+    // «незавершённым» и блокировало следующие попытки.
+    const localExitComplete = pendingDeleteLock
+      ? await completePreparedAccountDeleteLocalExit(pendingDeleteLock, firebaseSignedOut, true)
+      : firebaseSignedOut;
     let rotatedStableId: string | null = null;
     if (CLOUD_SYNC_ENABLED && firebaseSignedOut && localExitComplete) {
       try {
@@ -2285,6 +2596,13 @@ export async function signOutCurrentProvider(): Promise<void> {
   try {
     const { clearTrainerPracticeSnapshotOnDisk } = await import('./trainer_practice_persist');
     clearTrainerPracticeSnapshotOnDisk();
+  } catch { /* ignore */ }
+  // зачем: общий снапшот экранов рисует первый кадр синхронно, поэтому после выхода
+  // его надо убрать — иначе следующий вошедший на общем девайсе увидит чужие цифры
+  // (та же защита, что у снапшотов «Вызовов дня» и практики выше).
+  try {
+    const { clearScreenSnapshots } = await import('./screen_snapshot_store');
+    clearScreenSnapshots();
   } catch { /* ignore */ }
   logAuthEvent('auth_signout');
 }

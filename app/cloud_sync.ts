@@ -54,6 +54,7 @@ import { resetMultiplierBreakdownCache } from './xp_manager';
 // ранга/группы/участников лиги предыдущего аккаунта в club_screen).
 import { clearCachedLeagueStateSnapshot } from './league_open_cache_policy';
 import { clearDailyTasksScreenSnapshotOnDisk } from './daily_tasks_screen_persist';
+import { clearScreenSnapshots } from './screen_snapshot_store';
 import { clearTrainerPracticeSnapshotOnDisk } from './trainer_practice_persist';
 import {
   isVipSnapshotStorageKey,
@@ -3179,6 +3180,10 @@ async function wipeLocalAccountDataUnsafe(): Promise<void> {
   // зачем: ключ снапшота практики содержит только target+язык, БЕЗ uid — без сброса
   // следующий вошедший увидел бы на первом кадре чужую статистику ошибок.
   clearTrainerPracticeSnapshotOnDisk();
+  // зачем: общий снапшот экранов (стрик, рефералы, топ, аналитика и др.) поднимается
+  // в память при старте и синхронно рисует первый кадр — при wipe его надо стереть
+  // вместе с остальным, иначе на диске останутся чужие цифры.
+  clearScreenSnapshots();
   if (syncTimer) {
     clearTimeout(syncTimer);
     syncTimer = null;

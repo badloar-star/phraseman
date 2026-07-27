@@ -13,7 +13,15 @@ import Animated, { FadeIn, ZoomIn } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
+import { Sheet } from '../components/tournament/tournament_ui';
+import AvatarView from '../components/AvatarView';
+import {
+  V2Card,
+  V2Counter,
+  V2Cta,
+  V2Segments,
+} from '../components/tournament/tournament_v2_ui';
+import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
@@ -29,7 +37,8 @@ const REACTIONS = ['👍', '🔥', '😎', '⚔️', '🍀'] as const;
 type Seat = {
   id: number;
   name: string;
-  emoji: string;
+  /** Значение для AvatarView: индекс или custom:... — НЕ эмодзи. */
+  avatar: string;
   color: string;
   streak: number;
   rank: string;
@@ -59,7 +68,9 @@ function mapPlayersToSeats(players: readonly RoomPlayer[], myId: string | null):
     return {
       id: index + 1,
       name: player.name || 'Игрок',
-      emoji: player.avatar || '🙂',
+      // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
+      // НАСТОЯЩИЕ аватары приложения (те же, что в лигах и друзьях).
+      avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
       color: player.color || '#8AB49A',
       streak: Number(player.streak ?? 0),
       rank: rankForPlayed(played),
@@ -146,23 +157,27 @@ export default function TournamentLobbyScreen() {
       >
         <View style={styles.header}>
           <Text style={styles.title}>Лобби</Text>
-          <Text style={styles.counter} allowFontScaling={false}>{joined}/{SEATS}</Text>
+          <V2Counter value={`${joined}/${SEATS}`} tone={full ? 'gems' : 'plain'} />
         </View>
 
         {/* Статус сбора + таймер */}
-        <Card tone="elev" pad={20}>
+        <V2Card pad={20}>
           <View style={styles.statusRow}>
             <Text style={[styles.statusText, { color: full ? P.accent : P.text }]}>
-              {full ? 'Все на месте!' : 'Собираем игроков…'}
+              {full ? 'Все на месте' : 'Собираем игроков'}
             </Text>
             <Text style={styles.statusTimer} allowFontScaling={false}>
               {formatTimeLeft(secondsToStart)}
             </Text>
           </View>
-          <View style={styles.progressTrack}>
-            <View style={[styles.progressFill, { width: `${(joined / SEATS) * 100}%` }]} />
-          </View>
-        </Card>
+          {/* Сегменты V2 вместо сплошной шкалы: каждый сегмент — четверть
+              комнаты, заполняется отдельно, видно динамику сбора. */}
+          <V2Segments
+            total={4}
+            done={Math.floor((joined / SEATS) * 4)}
+            style={styles.progressTrack}
+          />
+        </V2Card>
 
         {/* Фиксированная сетка 4×4: места зарезервированы с первого кадра */}
         <View style={styles.grid}>
@@ -199,9 +214,9 @@ export default function TournamentLobbyScreen() {
 
         {/* зачем: старт даёт СЕРВЕР по дедлайну — кнопка лишь сообщает статус.
             Ручной переход раньше сервера показал бы вопросы, которых ещё нет. */}
-        <Cta disabled>
-          {full ? 'Все на месте — начинаем!' : `Ждём ещё ${Math.max(0, SEATS - joined)}`}
-        </Cta>
+        <V2Cta disabled>
+          {full ? 'Начинаем' : `Ждём ещё ${Math.max(0, SEATS - joined)}`}
+        </V2Cta>
       </ScrollView>
 
       {/* Летящая реакция */}
@@ -215,8 +230,8 @@ export default function TournamentLobbyScreen() {
       <Sheet visible={!!selected} onClose={() => setSelected(null)}>
         {selected ? (
           <>
-            <View style={[styles.profileAvatar, { backgroundColor: `${selected.color}33` }]}>
-              <Text style={styles.profileEmoji}>{selected.emoji}</Text>
+            <View style={styles.profileAvatar}>
+              <AvatarView avatar={selected.avatar} size={72} animateAura={false} />
             </View>
             <Text style={styles.profileName}>{selected.name}</Text>
             <Text style={styles.profileRank}>{selected.rank}</Text>
@@ -225,7 +240,7 @@ export default function TournamentLobbyScreen() {
               <ProfileStat label="Турниров" value={String(selected.played)} />
               <ProfileStat label="Серия" value={selected.streak ? `${selected.streak} 🔥` : '—'} />
             </View>
-            {!selected.isYou ? <Cta ghost onPress={() => setSelected(null)}>В друзья</Cta> : null}
+            {!selected.isYou ? <V2Cta tone="ghost" onPress={() => setSelected(null)}>В друзья</V2Cta> : null}
           </>
         ) : null}
       </Sheet>
@@ -255,9 +270,7 @@ const SeatCard = memo(function SeatCard({ seat, onPress }: { seat: Seat; onPress
         accessibilityRole="button"
         accessibilityLabel={`Профиль ${seat.name}`}
       >
-        <View style={[styles.seatAvatar, { backgroundColor: `${seat.color}33` }]}>
-          <Text style={styles.seatEmoji}>{seat.emoji}</Text>
-        </View>
+        <AvatarView avatar={seat.avatar} size={44} animateAura={false} />
         {seat.streak > 0 ? <Text style={styles.seatStreak}>🔥</Text> : null}
         <Text
           style={[styles.seatName, seat.isYou && { color: P.accent }]}

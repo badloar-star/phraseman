@@ -38,6 +38,8 @@ import { bundleLang, triLang, type Lang } from '../constants/i18n';
 import {
   ruKnowledgeShardsAccusativeAfterNumber,
   ukKnowledgeShardsAccusativeAfterNumber,
+  ruKnowledgeShardsAfterNumber,
+  ukKnowledgeShardsAfterNumber,
 } from '../constants/shard_plurals';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import ScreenGradient from '../components/ScreenGradient';
@@ -97,6 +99,9 @@ import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
 import { oskolokImageForPackShards, oskolokImageForShardIapRow } from './oskolok';
 import { coinIconForBalance } from './coin_icons';
+// зачем: дев-начисление обязано доезжать до сервера — иначе турнир и другие
+// серверные проверки баланса не видят жемчужины (см. dev_shards_grant.ts).
+import { grantShardsOnServerForDev } from './dev_shards_grant';
 import {
   trackCardPackClick,
   trackShardPackClick,
@@ -1200,7 +1205,34 @@ export default function ShardsShopScreen() {
       setProcessingPackId(packId);
       try {
         if (isDevStoreBypass) {
+          // зачем 2026-07-27 (владелец: «я в дев добавил 500, они ОБЯЗАНЫ быть
+          // валидны»): раньше здесь была только локальная запись, и серверный
+          // баланс не менялся — shardsApplyDelta отклоняет причину
+          // 'shards_store_purchase' (её нет в каталоге начислений, он намеренно
+          // закрыт от клиентских earn). Из-за этого турнир, читающий
+          // users/{uid}.shards, видел старый баланс и отвечал «не хватает
+          // жемчужин». Теперь начисляем ещё и на сервер, админской функцией.
+          //
+          // Порядок важен: локальная запись идёт ПЕРВОЙ и мгновенно двигает
+          // баланс на экране (Optimistic UI), сервер догоняет следом.
           await addShardsRaw(shards, 'shards_store_purchase', { skipServerAwait: true });
+          const serverGrant = await grantShardsOnServerForDev(shards);
+          if (!serverGrant.ok && serverGrant.reason === 'not_admin') {
+            // Честно говорим, что на сервере жемчужин НЕ прибавилось: иначе
+            // владелец снова упрётся в «не хватает жемчужин» в турнире и будет
+            // искать поломку там, где её нет.
+            emitAppEvent('action_toast', {
+              type: 'error',
+              messageRu: `DEV: локально +${shards}, но на сервере НЕТ — нужен админ-доступ. Турнир не увидит эти жемчужины.`,
+              messageUk: `DEV: локально +${shards}, але на сервері НЕМАЄ — потрібен адмін-доступ.`,
+              messageEs: `DEV: +${shards} local, pero no en el servidor — se requiere acceso de admin.`,
+              messagePtBr: `DEV: +${shards} local, mas não no servidor — precisa de acesso admin.`,
+              messageVi: `DEV: +${shards} cục bộ, nhưng không có trên máy chủ — cần quyền admin.`,
+              messageId: `DEV: +${shards} lokal, tetapi tidak di server — perlu akses admin.`,
+              messageTr: `DEV: yerel +${shards}, ancak sunucuda yok — yönetici erişimi gerekiyor.`,
+              messagePl: `DEV: lokalnie +${shards}, ale nie na serwerze — wymagany dostęp administratora.`,
+            });
+          }
           void trackShardPackPurchase(packId).catch(() => {});
           void trackActivity('shards_shop:purchase_success', {
             feature: 'revenue',
@@ -1313,8 +1345,9 @@ export default function ShardsShopScreen() {
             if (!isOperationCurrent()) return;
             emitAppEvent('action_toast', {
               type: 'success',
-              messageRu: `Готово: +${shards} жемчужин`,
-              messageUk: `Готово: +${shards} перлин`,
+              // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+              messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
+              messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
               messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
               messagePtBr: `Pronto: +${shards} perlas`,
               messageVi: `Xong: +${shards} mảnh`,
@@ -1363,8 +1396,9 @@ export default function ShardsShopScreen() {
           if (!cleared || !isOperationCurrent()) return;
           emitAppEvent('action_toast', {
             type: 'success',
-            messageRu: `Готово: +${shards} жемчужин`,
-            messageUk: `Готово: +${shards} перлин`,
+            // зачем: склонение по числу — «+1 жемчужина», а не «+1 жемчужин».
+            messageRu: `Готово: +${shards} ${ruKnowledgeShardsAfterNumber(shards)}`,
+            messageUk: `Готово: +${shards} ${ukKnowledgeShardsAfterNumber(shards)}`,
             messageEs: `Listo: +${shards} ${BRAND_SHARDS_ES.toLowerCase()}`,
             messagePtBr: `Pronto: +${shards} perlas`,
             messageVi: `Xong: +${shards} mảnh`,

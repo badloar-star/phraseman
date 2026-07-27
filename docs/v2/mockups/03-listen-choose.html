@@ -178,7 +178,9 @@ svg { display:block; }
 }
 
 /* Play-кнопка с прогресс-кольцом (SVG stroke-dashoffset): 108px, было 148px */
-.play-wrap { position:relative; width:108px; height:108px; margin:18px auto 0; }
+/* зачем: SVG-кольцо было шире обёртки и наезжало на подпись под кнопкой */
+.play-wrap { position:relative; width:108px; height:108px; margin:18px auto 14px; }
+.play-wrap .ring-svg { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
 .ring-svg { position:absolute; inset:0; transform:rotate(-90deg); }
 .ring-track { fill:none; stroke:var(--bg-surface2); stroke-width:5; }
 .ring-fill { fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round;
@@ -194,12 +196,12 @@ svg { display:block; }
 /* Play/sound иконки в ОДНОЙ grid-ячейке (обе в DOM всегда), переключение через opacity —
    треугольник play не смещает оптический центр соседней иконки; margin-left компенсирует
    визуальный перекос самого треугольника (вершина смещена вправо от геометрического центра) */
-.play-btn { display:grid; }
+.play-btn { display:grid; grid-template:1fr / 1fr; place-items:center; }
 .play-btn svg { grid-area:1 / 1; width:34px; height:34px; transition:opacity var(--t-fast); }
-.play-btn .ic-play { margin-left:3px; }
-.play-btn .ic-sound { opacity:0; }
-.play-btn.playing .ic-play { opacity:0; }
-.play-btn.playing .ic-sound { opacity:1; }
+.play-btn .ic-play { grid-area:1 / 1; margin-left:3px; }
+.play-btn .ic-sound { grid-area:1 / 1; opacity:0; }
+.play-btn.playing .ic-play { grid-area:1 / 1; opacity:0; }
+.play-btn.playing .ic-sound { grid-area:1 / 1; opacity:1; }
 .play-btn.playing { color:var(--accent); }
 /* Пока играет: деликатный пульс кольца-подложки, останавливается вместе с audioend/blur */
 .play-wrap.playing .play-btn { animation:playPulse calc(1100ms * var(--tf)) ease-in-out infinite; }
@@ -405,7 +407,7 @@ svg { display:block; }
       <div class="hero" id="hero">Прослушай фразу</div>
 
       <div class="play-wrap" id="playWrap">
-        <svg class="ring-svg" viewBox="0 0 140 140" width="148" height="148">
+        <svg class="ring-svg" viewBox="0 0 140 140" width="108" height="108">
           <circle class="ring-track" cx="70" cy="70" r="65"/>
           <circle class="ring-fill" id="ringFill" cx="70" cy="70" r="65"/>
         </svg>

@@ -184,7 +184,7 @@ svg { display:block; }
 .play-btn {
   position:absolute; inset:9px; border:none; cursor:pointer; border-radius:50%;
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
-  color:var(--text-second); display:grid; place-items:center;
+  color:var(--text-second); display:grid; place-items:center; grid-template:1fr / 1fr;
   box-shadow:0 10px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
   transition:transform var(--t-press) var(--ease-outquint);
 }

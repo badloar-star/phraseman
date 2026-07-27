@@ -386,13 +386,11 @@ svg { display:block; }
         <div class="selected-dot"></div>
         <div class="pair-word">ship</div>
         <div class="pair-ipa">/ʃɪp/</div>
-        <button class="pair-listen" id="listenA" title="Прослушать ship" tabindex="-1"><svg><use href="#i-sound"/></svg></button>
       </button>
       <button class="pair-card" id="cardB" data-word="sheep">
         <div class="selected-dot"></div>
         <div class="pair-word">sheep</div>
         <div class="pair-ipa">/ʃiːp/</div>
-        <button class="pair-listen" id="listenB" title="Прослушать sheep" tabindex="-1"><svg><use href="#i-sound"/></svg></button>
       </button>
     </div>
 
@@ -509,7 +507,6 @@ const ROUND_TOTAL = SEQUENCE.length;
 const $ = (id) => document.getElementById(id);
 const phone = $('phone'), fx = $('fx');
 const cardA = $('cardA'), cardB = $('cardB');
-const listenA = $('listenA'), listenB = $('listenB');
 const cta = $('cta'), ctaLabel = $('ctaLabel');
 const fb = $('fb'), fbIcon = $('fbIcon'), fbText = $('fbText');
 const fbActions = $('fbActions'), fbListenA = $('fbListenA'), fbListenB = $('fbListenB');
@@ -584,12 +581,11 @@ function playRound() {
 }
 function playCard(which) {
   if (offlineMode) { showOfflineFeedback(); return; }
-  const btn = which === 'A' ? listenA : listenB;
   const word = which === 'A' ? 'ship' : 'sheep';
   playRealOrFallback(AUDIO_SRC[word], 900 * tf(), (a) => { cardAudioEl = a; }, () => {
-    btn.classList.remove('playing');
+    /* подсветки кнопки нет: кнопки у слов сняты */
   }, () => {
-    btn.classList.add('playing');
+    /* подсветки кнопки нет: кнопки у слов сняты */
   });
 }
 /* Общий проигрыватель: реальный <audio> с fallback на таймер-эмуляцию.
@@ -639,8 +635,6 @@ function showOfflineFeedback() {
 }
 
 playBtn.addEventListener('click', playRound);
-listenA.addEventListener('click', (e) => { e.stopPropagation(); playCard('A'); });
-listenB.addEventListener('click', (e) => { e.stopPropagation(); playCard('B'); });
 fbListenA.addEventListener('click', () => playCard('A'));
 fbListenB.addEventListener('click', () => playCard('B'));
 

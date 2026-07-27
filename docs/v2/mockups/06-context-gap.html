@@ -573,12 +573,16 @@ function flyClone(fromRect, toRect, chipLike, done, extraClass) {
   const dx0 = fromRect.left - p.left, dy0 = fromRect.top - p.top;
   const dx1 = toRect.left - p.left, dy1 = toRect.top - p.top;
   const sx = toRect.width / fromRect.width, sy = toRect.height / fromRect.height;
-  const lift = dy1 < dy0 ? -14 : 14;
   let finished = false;
   const finish = () => { if (finished) return; finished = true; clone.remove(); done(); };
+  // зачем: баг владельца «слово перед тем как залететь в слот перелетает дальше».
+  // Прежний средний кадр уводил клон на Math.min(dy0,dy1)+lift, то есть ВЫШЕ обеих
+  // точек: чип проскакивал мимо слота и падал назад. Теперь дуга строго между
+  // началом и целью (лёгкий подъём на трети пути), финиш точно в слот без отката.
+  const arcY = dy0 + (dy1 - dy0) * 0.34 - 10;
   clone.animate([
     { transform: `translate(${dx0}px, ${dy0}px) scale(1,1)` },
-    { transform: `translate(${(dx0 + dx1) / 2}px, ${Math.min(dy0, dy1) + lift}px) scale(${(1 + sx) / 2},${(1 + sy) / 2})`, offset: 0.55 },
+    { transform: `translate(${dx0 + (dx1 - dx0) * 0.42}px, ${arcY}px) scale(${1 + (sx - 1) * 0.35},${1 + (sy - 1) * 0.35})`, offset: 0.45 },
     { transform: `translate(${dx1}px, ${dy1}px) scale(${sx},${sy})` },
   ], { duration: 280 * tf(), easing: 'cubic-bezier(0.33,0.52,0.25,0.99)', fill: 'forwards' })
   .onfinish = finish;

@@ -119,6 +119,8 @@ svg { display:block; }
   flex:0 0 auto;
 }
 .icon-btn:active { transform:scale(0.94); }
+/* Таймер отключён: кнопка гасит акцент и притухает (без обводок) */
+#noTimerToggle.on { background:var(--surface-grad); color:var(--text-ghost); opacity:0.75; }
 .hdr-title { flex:1; text-align:center; font-size:15px; font-weight:700; color:var(--text-muted); letter-spacing:0.2px; }
 .progress-row { display:flex; align-items:center; gap:8px; margin-top:14px; }
 .bar-track {
@@ -388,6 +390,7 @@ svg { display:block; }
       <div class="hdr-row">
         <button class="icon-btn" title="Закрыть"><svg width="17" height="17"><use href="#i-x"/></svg></button>
         <div class="hdr-title" id="skillTitle">Знакомство · пары на скорость</div>
+        <button class="icon-btn" id="noTimerToggle" title="Играть без таймера"><svg width="17" height="17"><use href="#i-clock"/></svg></button>
         <button class="icon-btn" id="pauseBtn" title="Пауза"><svg width="17" height="17"><use href="#i-pause"/></svg></button>
       </div>
       <div class="progress-row">
@@ -399,19 +402,6 @@ svg { display:block; }
     </div>
 
     <!-- ===== Экран 1: Brief ===== -->
-    <div class="screen active" id="screenBrief">
-      <div class="brief">
-        <div class="brief-icon"><svg><use href="#i-cards"/></svg></div>
-        <div class="brief-title">Соедини 10 пар.<br>Таймер можно отключить</div>
-        <div class="brief-row">
-          <div class="brief-row-label">Без таймера</div>
-          <button class="toggle" id="noTimerToggle" title="Без таймера"></button>
-        </div>
-      </div>
-      <div class="dock">
-        <button class="cta" id="startCta"><span class="cta-label">Начать</span></button>
-      </div>
-    </div>
 
     <!-- ===== Экран 2: Active (игровое поле) ===== -->
     <div class="screen" id="screenActive">
@@ -562,7 +552,7 @@ let personalBestSpeed = null; // сек, null = ещё нет рекорда в 
 function icon(name, size) { return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><use href="#${name}"/></svg>`; }
 
 function showScreen(id) {
-  ['screenBrief', 'screenActive', 'screenFinish'].forEach((s) => $(s).classList.toggle('active', s === id));
+  ['screenActive', 'screenFinish'].forEach((s) => $(s).classList.toggle('active', s === id));
 }
 
 /* Перемешивание фиксированным порядком: витрина детерминирована */
@@ -865,9 +855,8 @@ $('noTimerToggle').addEventListener('click', () => {
   noTimer = !noTimer;
   $('noTimerToggle').classList.toggle('on', noTimer);
 });
-$('startCta').addEventListener('click', startRound);
 $('againCta').addEventListener('click', startRound);
-$('doneCta').addEventListener('click', () => { showScreen('screenBrief'); phase = 'brief'; });
+$('doneCta').addEventListener('click', () => { startRound(); });
 
 /* ===== Панель ===== */
 document.querySelectorAll('[data-theme-btn]').forEach((b) => {
@@ -927,10 +916,10 @@ $('runReset').addEventListener('click', () => {
   pauseOverlay.classList.remove('show');
   noTimer = false; $('noTimerToggle').classList.remove('on');
   personalBestSpeed = null;
-  showScreen('screenBrief'); phase = 'brief';
+  startRound();
 });
 
-showScreen('screenBrief');
+startRound();
 </script>
 </body>
 </html>

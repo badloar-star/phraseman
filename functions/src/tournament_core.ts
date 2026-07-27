@@ -430,6 +430,16 @@ export type TournamentRound = {
 export type TournamentRoomDoc = {
   /** Банк турнира в жемчужинах: сумма взносов всех участников. */
   potGems?: number;
+  /**
+   * Фактические выплаты призёрам по местам (1-е, 2-е, 3-е).
+   *
+   * зачем: экран результатов раньше рисовал захардкоженные «50/25/10», хотя
+   * сервер платит долю реального банка. Здесь лежит правда — её и показываем,
+   * и по ней анимируем начисление жемчужин из банка к аватарам.
+   */
+  prizeGems?: number[];
+  /** Сколько всего ушло призёрам — «банк под подиумом» на экране результатов. */
+  prizePoolGems?: number;
   roomId: string;
   slotId: string;
   seed: string;
@@ -1370,7 +1380,16 @@ export function planTournamentFinalization(
   const realCount = room.players.filter((player) => !player.isBot).length;
   const botCount = room.players.length - realCount;
   const pot = tournamentPot(realCount, botCount, economy);
-  const { payouts, unclaimedToWeekly } = tournamentPayouts(pot, realPlacements.length, economy);
+  // зачем 2026-07-27 (владелец): при равных звёздах доли призёров складываются
+  // и делятся поровну — «если у одного 70 и у другого 70, пусть начисляется
+  // поровну». Для этого выплатам нужны очки призёров в порядке мест.
+  const winnerScores = realPlacements.slice(0, 3).map(({ player }) => Number(player.score ?? 0));
+  const { payouts, unclaimedToWeekly } = tournamentPayouts(
+    pot,
+    realPlacements.length,
+    economy,
+    winnerScores,
+  );
 
   const playerEffects = realPlacements.map(({ player, place }) => ({
     playerId: player.id,
@@ -1390,6 +1409,13 @@ export function planTournamentFinalization(
       ...room,
       state: 'rewards',
       potGems: pot.total,
+      // зачем 2026-07-27 (владелец: «сейчас там захардкоженные цифры, их надо
+      // убрать»): экран результатов рисовал выдуманные «50/25/10 жемчужин»,
+      // хотя сервер платит долю РЕАЛЬНОГО банка (при 16 игроках — 24/9/6).
+      // Кладём фактические выплаты в комнату: экран показывает правду и может
+      // анимировать начисление из банка к каждому призёру.
+      prizeGems: payouts.map((payout) => payout.gems),
+      prizePoolGems: pot.toPrizes,
       finalizationReceiptId: receiptId,
       stateStartedAtMs: nowMs,
       stateDeadlineAtMs: nowMs + TOURNAMENT_REWARD_CLAIM_WINDOW_MS,

@@ -27,7 +27,9 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { safeRouterBack } from './navigation_back';
 import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
-import { coinIconForBalance } from './coin_icons';
+import { Image } from 'expo-image'; // guard-ok: жемчужина декоративная, число рядом — реальный индикатор
+import { coinIconForBalance, pearlIconForTheme } from './coin_icons';
+import { useTheme } from '../components/ThemeContext';
 import { LinearGradient } from 'expo-linear-gradient';
 import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { StarGlyph, TournamentFxHost, type TournamentFxApi } from '../components/tournament/TournamentFx';
@@ -55,15 +57,16 @@ import { maybeRollCollectibleDrop, type CollectibleDropOutcome } from './collect
 
 type Winner = { name: string; avatar: string; color: string; score: number; place: number };
 
-// зачем: 💎 — запрещённая эмодзи-валюта; призовой текст теперь ссылается на
-// монеты словом «монет», сама иконка монеты рисуется рядом с суммой в UI
-// (не встроена в текст, т.к. это строка из трёх разных призов подряд).
-/** Призы совпадают с TOURNAMENT_PRIZES на сервере (tournament_core.ts). */
-const PRIZES = [
-  { medal: '🥇', text: '🎟 + 50 жемчужин + титул «Чемпион дня»' },
-  { medal: '🥈', text: '🎟 + 25 жемчужин' },
-  { medal: '🥉', text: '10 жемчужин' },
-];
+// зачем 2026-07-27 (владелец): блок PRIZES удалён целиком. В нём были
+// захардкоженные «🎟 + 50 жемчужин + титул «Чемпион дня»» — три ошибки разом:
+// иконка билета (билетов больше нет, вход за жемчужины), эмодзи-медальки
+// 🥇🥈🥉 и титул, которого в игре не существует. Суммы тоже были выдуманы:
+// сервер платит долю РЕАЛЬНОГО банка (при 16 игроках — 24/9/6, а не 50/25/10).
+// Теперь награда показывается там, где ей место: счётчиком над аватаром
+// призёра, с анимацией начисления из банка под подиумом.
+
+/** Доли призёров на случай, если сервер ещё не прислал фактические выплаты. */
+const PRIZE_SHARES = [0.6, 0.25, 0.15] as const;
 
 /**
  * Итоговые места по очкам. Подиум ставится 2-1-3, как в макете 17: первое
@@ -125,8 +128,35 @@ export default function TournamentResultsScreen() {
   // «очки не засчитались». Сброс бесплатный: следующее чтение и так плановое.
   useEffect(() => { invalidateSeasonStandingsCache(); }, []);
 
+  const { themeMode } = useTheme();
   const players = room?.players ?? [];
   const podium = useMemo(() => buildPodium(players, P), [players]);
+
+  /**
+   * Реальная экономика турнира вместо захардкоженных «50/25/10».
+   *
+   * зачем 2026-07-27 (владелец): сервер платит долю ФАКТИЧЕСКОГО банка — при
+   * 16 игроках по 3 жемчужины это 48, из них 20% в недельный банк, а призёрам
+   * 39 в долях 60/25/15 → 24/9/6. Числа приходят в комнате (prizeGems,
+   * prizePoolGems). Фолбэк по долям нужен для старых комнат, финализированных
+   * до этой правки: там полей ещё нет, но банк можно восстановить из potGems.
+   */
+  const prizePool = useMemo(() => {
+    if (typeof room?.prizePoolGems === 'number') return Math.max(0, room.prizePoolGems);
+    const pot = Math.max(0, room?.potGems ?? 0);
+    return pot > 0 ? Math.floor(pot * 0.8) : 0;
+  }, [room?.prizePoolGems, room?.potGems]);
+
+  const prizeByPlace = useMemo(() => {
+    if (Array.isArray(room?.prizeGems) && room.prizeGems.length > 0) {
+      return room.prizeGems.map((gems) => Math.max(0, Math.trunc(Number(gems) || 0)));
+    }
+    if (prizePool <= 0) return [0, 0, 0];
+    const raw = PRIZE_SHARES.map((share) => Math.floor(prizePool * share));
+    // Остаток от округления — победителю, чтобы сумма сходилась с банком.
+    const remainder = prizePool - raw.reduce((sum, value) => sum + value, 0);
+    return raw.map((value, index) => (index === 0 ? value + remainder : value));
+  }, [room?.prizeGems, prizePool]);
 
   const standings = useMemo(
     () => [...players].sort((a, b) => Number(b.score ?? 0) - Number(a.score ?? 0)),
@@ -286,20 +316,34 @@ export default function TournamentResultsScreen() {
         <V2Card pad={20}>
           <View style={styles.podium}>
             {podium.map((winner) => (
-              <PodiumColumn key={`${winner.place}-${winner.name}`} winner={winner} />
+              <PodiumColumn
+                key={`${winner.place}-${winner.name}`}
+                winner={winner}
+                gems={prizeByPlace[winner.place - 1] ?? 0}
+              />
             ))}
           </View>
+
+          {/* зачем 2026-07-27 (владелец): «показывается, сколько общий банк
+              собрался с этого турнира», и из него анимация отсчитывает
+              жемчужины к призёрам. Это же убирает выдуманные цифры: сумма
+              счётчиков над аватарами всегда равна банку под подиумом. */}
+          {prizePool > 0 ? (
+            <View style={styles.bankRow}>
+              <Text style={styles.bankLabel} allowFontScaling={false}>Банк турнира</Text>
+              <View style={styles.bankValue}>
+                <Text style={styles.bankAmount} allowFontScaling={false}>{prizePool}</Text>
+                <Image
+                  source={pearlIconForTheme(themeMode)}
+                  style={styles.bankPearl}
+                  contentFit="contain"
+                  accessibilityLabel={`Банк турнира: ${prizePool} жемчужин`}
+                />
+              </View>
+            </View>
+          ) : null}
         </V2Card>
 
-        {/* Призы */}
-        <V2Card pad={18}>
-          {PRIZES.map((prize) => (
-            <View key={prize.medal} style={styles.prizeRow}>
-              <Text style={styles.prizeMedal}>{prize.medal}</Text>
-              <Text style={styles.prizeText}>{prize.text}</Text>
-            </View>
-          ))}
-        </V2Card>
 
         {/* Награда игрока */}
         <V2Card pad={20}>
@@ -359,12 +403,27 @@ export default function TournamentResultsScreen() {
 
 const PODIUM_HEIGHT: Record<number, number> = { 1: 96, 2: 72, 3: 60 };
 
-const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) {
+const PodiumColumn = memo(function PodiumColumn({
+  winner, gems = 0,
+}: { winner: Winner; gems?: number }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
+  const { themeMode } = useTheme();
   const first = winner.place === 1;
   const crownScale = useSharedValue(0);
   const avatarY = useSharedValue(24);
+  const gemsScale = useSharedValue(0);
+
+  /**
+   * Счётчик жемчужин над аватаром: число отсчитывается от нуля.
+   *
+   * зачем 2026-07-27 (владелец): «три отдельных счёта, у каждого своё
+   * количество, анимированно счётчик начисляет». Считаем в JS-состоянии, а не
+   * в shared value: нужно рисовать ЦЕЛЫЕ жемчужины, дробных не бывает.
+   * Интервал редкий (~28 кадров на всю анимацию) и живёт только пока экран
+   * открыт — на производительность не влияет.
+   */
+  const [shownGems, setShownGems] = useState(0);
 
   useEffect(() => {
     const delay = first ? 420 : winner.place === 2 ? 220 : 320;
@@ -378,11 +437,52 @@ const PodiumColumn = memo(function PodiumColumn({ winner }: { winner: Winner }) 
     }
   }, [first, winner.place, avatarY, crownScale]);
 
+  useEffect(() => {
+    if (gems <= 0) { setShownGems(0); return; }
+    // Жемчужины «долетают» из банка под подиумом — стартуем после аватара.
+    const startDelay = (first ? 900 : winner.place === 2 ? 700 : 800);
+    const steps = Math.min(gems, 24);
+    const stepMs = Math.max(28, Math.round(700 / steps));
+    let done = 0;
+    let interval: ReturnType<typeof setInterval> | null = null;
+
+    const startTimer = setTimeout(() => {
+      gemsScale.value = withSequence(withSpring(1.18, motion.popIn), withSpring(1, motion.popIn));
+      interval = setInterval(() => {
+        done += 1;
+        // Последний шаг обязан дать РОВНО gems: округление не должно врать.
+        setShownGems(done >= steps ? gems : Math.round((gems * done) / steps));
+        if (done >= steps && interval) { clearInterval(interval); interval = null; }
+      }, stepMs);
+    }, startDelay);
+
+    return () => {
+      clearTimeout(startTimer);
+      if (interval) clearInterval(interval);
+    };
+  }, [gems, first, winner.place, gemsScale]);
+
   const avatarStyle = useAnimatedStyle(() => ({ transform: [{ translateY: avatarY.value }] }));
   const crownStyle = useAnimatedStyle(() => ({ transform: [{ scale: crownScale.value }] }));
+  const gemsStyle = useAnimatedStyle(() => ({ transform: [{ scale: 0.9 + gemsScale.value * 0.1 }] }));
 
   return (
     <View style={styles.podiumColumn}>
+      {/* Награда призёра: настоящая сумма с сервера, а не выдуманная. */}
+      {gems > 0 ? (
+        <Animated.View style={[styles.podiumGems, gemsStyle]}>
+          <Text style={styles.podiumGemsText} allowFontScaling={false}>{shownGems}</Text>
+          <Image
+            source={pearlIconForTheme(themeMode)}
+            style={styles.podiumGemsPearl}
+            contentFit="contain"
+            accessibilityLabel={`Награда: ${gems} жемчужин`}
+          />
+        </Animated.View>
+      ) : (
+        <View style={styles.podiumGemsSpacer} />
+      )}
+
       {first ? (
         <Animated.Text style={[styles.crown, crownStyle]}>👑</Animated.Text>
       ) : (
@@ -475,9 +575,44 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
   podiumPlace: { fontSize: 20 },
 
-  prizeRow: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingVertical: 7 },
-  prizeMedal: { fontSize: 20 },
-  prizeText: { flex: 1, ...type.body, color: P.text },
+  // ── Награды призёров и банк турнира ──────────────────────────────────────
+  // зачем: блок выдуманных призов удалён, вместо него счётчик над аватаром и
+  // банк под подиумом. Разделение тоном и скруглением — без обводок.
+  podiumGems: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    borderRadius: 999, // пилюля: в теме нет токена pill, только lg/md/sm
+    backgroundColor: `${P.accent}22`,
+  },
+  podiumGemsText: {
+    fontSize: 15,
+    fontWeight: '900',
+    color: P.accent,
+    fontVariant: ['tabular-nums'],
+  },
+  podiumGemsPearl: { width: 14, height: 14 },
+  // Место под счётчик у непризовых колонн — подиум не «прыгает».
+  podiumGemsSpacer: { height: 26 },
+
+  bankRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 16,
+    paddingTop: 14,
+  },
+  bankLabel: { ...type.label, color: P.muted },
+  bankValue: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  bankAmount: {
+    fontSize: 20,
+    fontWeight: '900',
+    color: P.text,
+    fontVariant: ['tabular-nums'],
+  },
+  bankPearl: { width: 18, height: 18 },
 
   rewardRow: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   rewardAvatar: { width: 52, height: 52, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },

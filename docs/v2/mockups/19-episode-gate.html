@@ -117,7 +117,7 @@ svg { display:block; }
 }
 
 /* ---------- Шапка ---------- */
-.hdr { padding:22px 18px 0; flex:0 0 auto; position:relative; z-index:2; }
+.hdr { padding:18px 18px 0; flex:0 0 auto; position:relative; z-index:2; }
 .hdr-row { display:flex; align-items:center; gap:12px; }
 .icon-btn {
   width:40px; height:40px; border-radius:14px; border:none; cursor:pointer;
@@ -135,23 +135,23 @@ svg { display:block; }
 .scroller::-webkit-scrollbar { display:none; }
 
 /* ---------- Герой: закрытый эпизод ---------- */
-.prompt { padding:20px 22px 0; }
+.prompt { padding:14px 22px 0; }
 .task-label { font-size:13px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:var(--text-ghost); }
-.hero { margin-top:10px; font-size:29px; line-height:1.2; font-weight:800; letter-spacing:0.1px; background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
-.candoo { margin-top:9px; font-size:15px; font-weight:600; line-height:1.42; color:var(--text-muted); }
+.hero { margin-top:8px; font-size:27px; line-height:1.18; font-weight:800; letter-spacing:0.1px; background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.candoo { margin-top:7px; font-size:15px; font-weight:600; line-height:1.4; color:var(--text-muted); }
 
 /* ---------- Карточка звёзд доступа: премиум-градиент ---------- */
 .stars-card {
-  margin:22px 20px 0; border-radius:24px; padding:22px 20px 20px;
+  margin:16px 20px 0; border-radius:22px; padding:17px 20px 16px;
   background:linear-gradient(155deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
   box-shadow:0 4px 0 var(--chip-edge), 0 18px 34px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
   position:relative; overflow:hidden;
 }
-.stars-headline { font-size:22px; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; }
+.stars-headline { font-size:20px; font-weight:800; color:var(--text-primary); letter-spacing:0.1px; }
 .stars-headline b { color:var(--gold); }
 
 .bar-track {
-  margin-top:16px; height:12px; border-radius:999px; background:rgba(0,0,0,0.28);
+  margin-top:13px; height:11px; border-radius:999px; background:rgba(0,0,0,0.28);
   overflow:hidden; position:relative; box-shadow:inset 0 1px 3px rgba(0,0,0,0.4);
 }
 .bar-fill {
@@ -167,9 +167,9 @@ svg { display:block; }
 }
 
 /* Раздельные строки earned / purchased / до открытия — закон 05 §9.2 */
-.star-rows { margin-top:16px; display:flex; flex-direction:column; gap:10px; }
+.star-rows { margin-top:13px; display:flex; flex-direction:column; gap:8px; }
 .star-row { display:flex; align-items:center; gap:10px; }
-.star-row .si { width:26px; height:26px; border-radius:9px; display:grid; place-items:center; flex:0 0 auto; }
+.star-row .si { width:24px; height:24px; border-radius:8px; display:grid; place-items:center; flex:0 0 auto; }
 .star-row .si svg { width:15px; height:15px; }
 .star-row.earned .si { background:var(--gold-bg); color:var(--gold); }
 .star-row.boost .si { background:var(--boost-bg); color:var(--boost); }
@@ -182,7 +182,7 @@ svg { display:block; }
 .boost-star-icon { color:var(--boost); }
 
 /* ---------- Кнопки: бесплатный путь ПЕРВЫЙ (закон 05 §6.1) ---------- */
-.actions { padding:20px 20px 0; display:flex; flex-direction:column; gap:12px; }
+.actions { padding:16px 20px 0; display:flex; flex-direction:column; gap:10px; }
 .cta {
   width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
   font-family:inherit; font-size:16.5px; font-weight:800; letter-spacing:0.2px;
@@ -197,7 +197,7 @@ svg { display:block; }
 .cta.expanded .chev { transform:rotate(90deg); }
 
 .boost-btn {
-  width:100%; height:56px; border:none; border-radius:20px; cursor:pointer;
+  width:100%; height:50px; border:none; border-radius:18px; cursor:pointer;
   font-family:inherit; font-size:16px; font-weight:800; letter-spacing:0.2px;
   color:var(--text-primary);
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
@@ -211,16 +211,19 @@ svg { display:block; }
 .boost-btn.locked:active { transform:none; }
 
 /* Полоса объяснения блокировки буста (высота зарезервирована) */
-.boost-lock-lane { min-height:40px; padding:8px 4px 0; }
+.boost-lock-lane { min-height:34px; padding:6px 4px 0; }
 .boost-lock-note { font-size:13px; font-weight:600; color:var(--text-ghost); line-height:1.5; text-align:center; opacity:0; transition:opacity var(--t-fast) ease; }
 .boost-lock-note.show { opacity:1; }
 
-/* ---------- Список слабых сессий: раскрывается под CTA ---------- */
+/* ---------- Список слабых сессий: раскрывается под CTA ----------
+   зачем: экран 19 без скролла ни в одном состоянии (правка владельца) -
+   max-height 360px и padding 13px закладывали больше, чем нужно для
+   3 строк, и вместе с картой звёзд эпизод не помещался в 800px. */
 .weak-list { max-height:0; overflow:hidden; transition:max-height var(--t-slow) var(--ease-outquint); }
-.weak-list.open { max-height:360px; }
-.weak-inner { padding-top:12px; display:flex; flex-direction:column; gap:8px; }
+.weak-list.open { max-height:260px; }
+.weak-inner { padding-top:10px; display:flex; flex-direction:column; gap:6px; }
 .weak-item {
-  border:none; cursor:pointer; width:100%; text-align:left; border-radius:16px; padding:13px 14px;
+  border:none; cursor:pointer; width:100%; text-align:left; border-radius:14px; padding:10px 14px;
   background:var(--surface-grad); color:var(--text-primary);
   display:flex; align-items:center; gap:12px;
   box-shadow:inset 0 1px 0 var(--chip-hi);
@@ -236,16 +239,22 @@ svg { display:block; }
 .weak-item .warrow { color:var(--text-ghost); flex:0 0 auto; }
 .weak-item .warrow svg { width:16px; height:16px; }
 
-/* ---------- Полоса подсказки (нижняя, зарезервирована) ---------- */
+/* ---------- Полоса подсказки (нижняя) ----------
+   зачем: экран 19 обязан вмещаться в 800px БЕЗ скролла в любом состоянии
+   (правка владельца) - полная резервация высоты блока даже когда он скрыт
+   (margin 14/22 + padding + текст = ~76px) не помещалась в бюджет вместе
+   с открытым списком слабых сессий. Схлопываем margin/padding до нуля,
+   когда сообщение не показано - высота полосы 0px, никакого прыжка CTA
+   нет, т.к. сама полоса лежит НИЖЕ dock-а, не толкает его. */
 .hint-lane { flex:0 0 auto; min-height:0; padding:0 20px; position:relative; z-index:2; }
 .blocklog {
-  margin:14px 0 22px; border-radius:16px; padding:11px 14px;
+  margin:0; max-height:0; border-radius:16px; padding:0 14px;
   background:linear-gradient(160deg, rgba(255,255,255,0.05), rgba(0,0,0,0.16)), var(--bg-surface2);
   color:var(--text-muted); font-size:13px; font-weight:600; text-align:center;
-  opacity:0; transform:translateY(8px); pointer-events:none;
-  transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint);
+  opacity:0; transform:translateY(8px); pointer-events:none; overflow:hidden;
+  transition:opacity var(--t-fast) ease, transform var(--t-fast) var(--ease-outquint), max-height var(--t-fast) ease, margin var(--t-fast) ease, padding var(--t-fast) ease;
 }
-.blocklog.show { opacity:1; transform:none; }
+.blocklog.show { opacity:1; transform:none; max-height:60px; margin:10px 0 16px; padding:11px 14px; }
 
 /* ---------- Успех: раскрытые ворота ---------- */
 .gate-success { padding:26px 20px 20px; text-align:center; display:none; }
@@ -868,19 +877,26 @@ $('runBlock2').addEventListener('click', () => {
 });
 $('runFullPurchase').addEventListener('click', () => {
   resetAll();
-  freeBlockCount = 2; purchaseMode = 'normal';
+  // зачем: дефолтный снепшот (earned 24 + purchased 2, deficit 4) превышает
+  // cap буста в 3 звезды и держит кнопку .locked - клик по "Полный флоу
+  // покупки" раньше просто логировал отказ и лист не открывался (баг).
+  // Дефицит 3 - пограничный валидный кейс для демонстрации покупки.
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'normal';
+  syncStarsCard();
   syncBoostGate();
   $('ctaBoost').click();
 });
 $('runQuoteExpired').addEventListener('click', () => {
   resetAll();
-  freeBlockCount = 2; purchaseMode = 'expired';
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'expired';
+  syncStarsCard();
   syncBoostGate();
   $('ctaBoost').click();
 });
 $('runInsufficient').addEventListener('click', () => {
   resetAll();
-  freeBlockCount = 2; purchaseMode = 'insufficient';
+  earned = 27; purchased = 0; freeBlockCount = 2; purchaseMode = 'insufficient';
+  syncStarsCard();
   syncBoostGate();
   $('ctaBoost').click();
 });

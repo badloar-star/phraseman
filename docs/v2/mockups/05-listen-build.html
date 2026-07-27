@@ -203,12 +203,20 @@ svg { display:block; }
   font-family:inherit; font-size:13.5px; font-weight:700; color:var(--text-muted);
   background:var(--surface-grad);
   box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
-  transition:transform var(--t-press) var(--ease-outquint), color var(--t-fast);
+  transition:transform var(--t-press) var(--ease-outquint), color var(--t-fast) ease,
+    background var(--t-fast) ease, box-shadow var(--t-fast) var(--ease-outquint);
   display:flex; align-items:center; gap:6px;
 }
 .slow-btn svg { width:14px; height:14px; }
 .slow-btn:active { transform:scale(0.95); }
-.slow-btn.on { color:var(--text-second); }
+/* зачем: владелец - выбранное "Медленнее" должно читаться мгновенно без обводок:
+   светлый премиум-градиент, подъём, усиленная тень (вместо одной смены цвета текста) */
+.slow-btn.on {
+  color:var(--correct-text); transform:translateY(-2px);
+  background:var(--ok-grad);
+  box-shadow:0 10px 20px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+}
+.slow-btn.on:active { transform:translateY(-2px) scale(0.95); }
 
 /* ---------- Строка ответа ---------- */
 .answer {
@@ -505,6 +513,8 @@ const CARDS = [
     },
     hintOrder: 'Начни с My: это начало фразы.',
     link: 'My name is Anna: меня зовут Анна.',
+    audioFile: 'audio/my_name_is_anna.mp3',
+    audioFileSlow: 'audio/my_name_is_anna_slow.mp3',
   },
   {
     skill: 'Диктант · что я умею',
@@ -518,6 +528,8 @@ const CARDS = [
     },
     hintOrder: 'Начни с I: кто говорит.',
     link: 'I speak English: я говорю по-английски.',
+    audioFile: 'audio/i_speak_english.mp3',
+    audioFileSlow: 'audio/i_speak_english_slow.mp3',
   },
 ];
 const SEG_TOTAL = 8;
@@ -557,10 +569,12 @@ function orderBank(card) {
 const RING_CIRC = 294;
 
 let audioRunIdCounter = 0;
+let audioEl = null;
 function resetAudioStage() {
   // зачем: гасим любой ещё не завершившийся таймер playAudio через смену runId,
   // а не через clearTimeout — реальный handle таймера не хранится наружу
   audioRunIdCounter++;
+  if (audioEl) { audioEl.pause(); audioEl.onended = null; audioEl.ontimeupdate = null; audioEl.onerror = null; audioEl = null; }
   isPlaying = false; hasPlayedOnce = false; slowMode = false;
   playBtn.classList.remove('playing');
   $('slowerBtn').classList.remove('on');
@@ -569,7 +583,8 @@ function resetAudioStage() {
   audioCaption.textContent = 'Нажми, чтобы услышать фразу';
 }
 
-/* ===== Эмуляция TTS: play-кнопка + кольцо прогресса (в RN: phrase_audio_player/TTS) ===== */
+/* ===== Аудио: реальный phrase_audio_player (mp3), с фолбэком на эмуляцию таймером,
+   если файла нет/он не грузится (onerror) — витрина не должна ломаться без записей ===== */
 function playAudio(unavailable) {
   if (isPlaying) return;
   const runId = ++audioRunIdCounter;
@@ -582,20 +597,42 @@ function playAudio(unavailable) {
   }
   isPlaying = true; hasPlayedOnce = true;
   playBtn.classList.add('playing');
-  const dur = (slowMode ? PLAY_MS * 2 : PLAY_MS) * tf();
   const c = CARDS[cardIx % CARDS.length];
   audioCaption.innerHTML = `Играет: <span class="w">«${c.target.join(' ')}»</span>`;
   ringFill.style.transition = 'none';
   ringFill.style.strokeDashoffset = String(RING_CIRC);
   void ringFill.offsetWidth;
-  ringFill.style.transition = `stroke-dashoffset ${dur}ms linear`;
-  ringFill.style.strokeDashoffset = '0';
-  setTimeout(() => {
+
+  const src = slowMode ? c.audioFileSlow : c.audioFile;
+  const finishPlayback = () => {
     if (runId !== audioRunIdCounter) return;
     isPlaying = false;
     playBtn.classList.remove('playing');
+    ringFill.style.transition = 'none';
+    ringFill.style.strokeDashoffset = '0';
     audioCaption.textContent = 'Прослушано. Собери фразу из чипов';
-  }, dur);
+  };
+  const emulate = () => {
+    const dur = (slowMode ? PLAY_MS * 2 : PLAY_MS) * tf();
+    ringFill.style.transition = `stroke-dashoffset ${dur}ms linear`;
+    ringFill.style.strokeDashoffset = '0';
+    setTimeout(finishPlayback, dur);
+  };
+
+  if (!src) { emulate(); return; }
+  const a = new Audio(src);
+  audioEl = a;
+  a.playbackRate = slowMode && !c.audioFileSlow ? 0.75 : 1;
+  a.ontimeupdate = () => {
+    if (runId !== audioRunIdCounter || !a.duration) return;
+    const frac = Math.min(1, a.currentTime / a.duration);
+    ringFill.style.transition = 'none';
+    ringFill.style.strokeDashoffset = String(RING_CIRC * (1 - frac));
+  };
+  a.onended = () => { if (runId === audioRunIdCounter) finishPlayback(); };
+  a.onerror = () => { if (runId === audioRunIdCounter) emulate(); };
+  const p = a.play();
+  if (p && p.catch) p.catch(() => { if (runId === audioRunIdCounter) emulate(); });
 }
 playBtn.addEventListener('click', () => playAudio(false));
 $('slowerBtn').addEventListener('click', () => {

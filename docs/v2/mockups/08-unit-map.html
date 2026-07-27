@@ -421,7 +421,7 @@ svg { display:block; }
     <div class="sheet-scrim" id="scrim"></div>
     <div class="sheet" id="sheet">
       <div class="sheet-grip"></div>
-      <div class="sheet-title" id="sheetTitle">Сессия 7: Быстрый ответ</div>
+      <div class="sheet-title" id="sheetTitle">Сессия 7: Пары на скорость</div>
       <div class="sheet-meta" id="sheetMeta">8 карточек &middot; 4 минуты</div>
       <div class="sheet-stars" id="sheetStars" style="display:none">
         <svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg><use href="#i-star"/></svg>
@@ -492,20 +492,25 @@ svg { display:block; }
 </div>
 
 <script>
-/* ===== Контент: 12 сессий Эпизода 1 в 3 зонах. Состав из session_compiler.ts. ===== */
+/* ===== Контент: 12 сессий Эпизода 1 в 3 зонах. Состав из session_compiler.ts.
+   зачем: владелец отменил режимы 11/12/13/15/16/17/18 (нет однозначно верного
+   ответа без ИИ) - остались только 7: сборка фразы, выбор на слух, пары
+   звуков, диктант, контекстный пропуск, пары на скорость, повтор за моделью.
+   Названия сессий переписаны, чтобы не ссылаться на отменённые режимы
+   (были "Быстрый ответ"/"Мини-диалог"/"Диалог и ритм" и т.п.). ===== */
 const SESSIONS = [
   { n: 1, zone: 'understand', title: 'Первые слова', cards: 7, min: 3 },
   { n: 2, zone: 'understand', title: 'Кто ты', cards: 8, min: 4 },
   { n: 3, zone: 'understand', title: 'Откуда ты', cards: 8, min: 4 },
   { n: 4, zone: 'understand', title: 'Собери знакомство', cards: 9, min: 4 },
-  { n: 5, zone: 'use', title: 'Ответь без подсказки', cards: 8, min: 4 },
-  { n: 6, zone: 'use', title: 'Диктант на слух', cards: 8, min: 4 },
-  { n: 7, zone: 'use', title: 'Быстрый ответ', cards: 8, min: 4 },
-  { n: 8, zone: 'use', title: 'Мини-диалог', cards: 9, min: 4 },
-  { n: 9, zone: 'master', title: 'Без текста', cards: 8, min: 4 },
-  { n: 10, zone: 'master', title: 'Диалог без опоры', cards: 8, min: 4 },
-  { n: 11, zone: 'master', title: 'Диалог и ритм', cards: 9, min: 5 },
-  { n: 12, zone: 'master', title: 'Финальный разговор', cards: 9, min: 5 },
+  { n: 5, zone: 'use', title: 'Выбор на слух', cards: 8, min: 4 },
+  { n: 6, zone: 'use', title: 'Диктант', cards: 8, min: 4 },
+  { n: 7, zone: 'use', title: 'Пары на скорость', cards: 8, min: 4 },
+  { n: 8, zone: 'use', title: 'Контекстный пропуск', cards: 9, min: 4 },
+  { n: 9, zone: 'master', title: 'Пары звуков', cards: 8, min: 4 },
+  { n: 10, zone: 'master', title: 'Повтор за моделью', cards: 8, min: 4 },
+  { n: 11, zone: 'master', title: 'Сборка фразы', cards: 9, min: 5 },
+  { n: 12, zone: 'master', title: 'Финальный повтор', cards: 9, min: 5 },
 ];
 const TOTAL_SESSIONS = SESSIONS.length;
 const UNIT_STAR_CAP = TOTAL_SESSIONS * 3; // 36: слот = сессия (R-01)

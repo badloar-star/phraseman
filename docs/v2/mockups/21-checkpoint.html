@@ -275,13 +275,29 @@ svg { display:block; }
 .chip {
   border:none; cursor:pointer; border-radius:18px; padding:15px 20px;
   font-family:inherit; font-size:17px; font-weight:700; letter-spacing:0.2px;
-  color:var(--text-primary); flex:1; max-width:118px;
+  color:var(--text-primary); flex:1; max-width:118px; position:relative;
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
   box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
-  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast);
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast), background var(--t-fast) ease;
 }
 .chip:active { transform:translateY(3px); box-shadow:0 1px 0 var(--chip-edge), 0 6px 12px var(--card-shadow), inset 0 1px 0 var(--chip-hi); }
-.chip.ghost { background:var(--bg-surface); box-shadow:inset 0 2px 6px rgba(0,0,0,0.35); color:transparent; pointer-events:none; }
+/* Выбранный вариант: мгновенно читается без обводки - светлее градиент,
+   подъём, акцентный бейдж-галочка, самый яркий текст (правка владельца:
+   "выбранные никак не выделяются"). Невыбранные соседи слегка притухают. */
+.chip.selected {
+  color:var(--text-primary);
+  background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 42%, var(--chip-grad-a)) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--btn-shadow), 0 14px 26px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  transform:translateY(-2px);
+}
+.chip.selected:active { transform:translateY(1px); }
+.chip.selected::after {
+  content:""; position:absolute; top:-6px; right:-6px; width:20px; height:20px; border-radius:50%;
+  background:var(--ok-grad); box-shadow:0 2px 6px rgba(0,0,0,0.35);
+  background-image:var(--ok-grad), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 13l5 5L19.5 7' stroke='%23042010' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:center, center; background-size:cover, 11px 11px;
+}
+.chip.dim { opacity:0.82; pointer-events:none; }
 
 .act-dock { padding:18px 16px 26px; }
 
@@ -750,7 +766,14 @@ function renderMiniTask() {
     b.addEventListener('click', () => {
       if (miniFilled) return;
       miniFilled = word;
-      b.classList.add('ghost');
+      // зачем: выбор обязан читаться мгновенно (правка владельца) - раньше
+      // выбранный чип "ghost"-ился (становился невидимым), и глазами нельзя
+      // было понять, что именно выбрано. Теперь выбранный получает светлый
+      // премиум-градиент + подъём + бейдж-галочку, соседи слегка притухают.
+      [...variantsEl.querySelectorAll('.chip')].forEach((chip) => {
+        if (chip === b) chip.classList.add('selected');
+        else chip.classList.add('dim');
+      });
       $('miniSlot').textContent = word;
       $('miniSlot').classList.add('filled');
     });

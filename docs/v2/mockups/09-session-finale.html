@@ -123,9 +123,15 @@ svg { display:block; }
 @keyframes bump { 0%{transform:scale(1)} 40%{transform:scale(1.28)} 100%{transform:scale(1)} }
 
 /* ---------- Центральная сцена ---------- */
+/* зачем: flex:1 + justify-content:center растягивал контент по всей высоте
+   свободной зоны и создавал пустую дыру сверху/снизу блока (владелец: "в
+   середине зияет пустота"); контент теперь собран у верхней трети с фиксированным
+   отступом - плотная композиция без дыры, а остаток пространства достаётся
+   низу сцены естественно через margin-top:auto на доке */
 .stage-center {
-  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding:0 24px; position:relative; z-index:2; text-align:center;
+  flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+  padding:34px 24px 0; position:relative; z-index:2; text-align:center;
+  overflow:hidden;
 }
 .f-label {
   font-size:13px; font-weight:800; letter-spacing:1.8px; text-transform:uppercase; color:var(--text-ghost);
@@ -304,7 +310,7 @@ svg { display:block; }
 
     <div class="stage-center" id="centerZone">
       <div class="f-label" id="fLabel">Сессия 7 пройдена</div>
-      <div class="f-hero" id="fHero">Быстрый ответ</div>
+      <div class="f-hero" id="fHero">Повтор за моделью</div>
 
       <div class="stars-row" id="starsRow">
         <div class="star-slot" data-star="1" data-slot-label="Первая звезда: сессия завершена">
@@ -407,7 +413,7 @@ svg { display:block; }
 const RUNS = {
   full: {
     label: 'Сессия 7 пройдена',
-    hero: 'Быстрый ответ',
+    hero: 'Повтор за моделью',
     lit: [1, 2, 3],
     accuracy: '9 из 10',
     streak: 5,

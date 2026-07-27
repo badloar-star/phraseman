@@ -229,7 +229,12 @@ svg { display:block; }
 .listen-pill span { font-size:13.5px; font-weight:700; color:var(--text-second); }
 
 /* ---------- Зона капчура (CaptureCard): резервированная высота ---------- */
-.capture { margin:24px 20px 0; min-height:150px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:14px; }
+.capture { margin:24px 20px 0; min-height:150px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; gap:14px; transition:min-height var(--t-fast) ease; }
+/* зачем: в состояниях verdict/recovery всё содержимое .capture скрыто
+   (ready-line/rec-status/waveform/proc-line), а 150px резерва оставались
+   мёртвой зоной ровно там, где снизу появляется панель сравнения -
+   это и создавало переполнение рамы; схлопываем резерв, когда внутри пусто */
+.capture.compact { min-height:0; margin-top:8px; }
 .ready-line { font-size:15px; font-weight:600; color:var(--text-muted); text-align:center; padding-top:36px; }
 
 /* Waveform: только амплитуда, не «правильность» (закон 04) */
@@ -302,17 +307,34 @@ svg { display:block; }
 .compare.show { display:flex; }
 .cmp-btn {
   flex:1; border:none; cursor:pointer; border-radius:16px; padding:12px 14px;
-  display:flex; align-items:center; gap:10px; font-family:inherit;
-  background:var(--surface-grad); color:var(--text-primary);
+  display:flex; align-items:center; gap:10px; font-family:inherit; position:relative;
+  background:var(--surface-grad); color:var(--text-muted);
   box-shadow:0 6px 14px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
-  transition:transform var(--t-press) var(--ease-outquint);
+  transition:transform var(--t-press) var(--ease-outquint), background var(--t-fast) ease,
+    box-shadow var(--t-fast) var(--ease-outquint), color var(--t-fast) ease, opacity var(--t-fast) ease;
 }
 .cmp-btn:active { transform:scale(0.97); }
-.cmp-btn .ci { width:30px; height:30px; border-radius:10px; display:grid; place-items:center; background:rgba(255,255,255,0.06); color:var(--text-second); flex:0 0 auto; }
+.cmp-btn .ci { width:30px; height:30px; border-radius:10px; display:grid; place-items:center; background:rgba(255,255,255,0.06); color:var(--text-second); flex:0 0 auto; transition:background var(--t-fast) ease, color var(--t-fast) ease; }
 .cmp-btn .cl { text-align:left; }
-.cmp-btn .cl b { display:block; font-size:13.5px; font-weight:800; }
-.cmp-btn.playing { background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 22%, var(--bg-surface)), var(--bg-surface)); }
+.cmp-btn .cl b { display:block; font-size:13.5px; font-weight:800; color:var(--text-primary); }
+/* зачем: владелец - выбранное состояние должно читаться мгновенно без обводок:
+   ощутимо более светлый градиент, подъём, усиленная тень, акцентный бейдж-галочка;
+   невыбранный сосед слегка притухает, чтобы контраст был очевиден с первого взгляда */
+.compare.show .cmp-btn:not(.playing) { opacity:0.82; }
+.cmp-btn.playing {
+  background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 46%, var(--bg-surface2)), color-mix(in srgb, var(--accent) 14%, var(--bg-surface)));
+  color:var(--text-primary); opacity:1;
+  transform:translateY(-2px);
+  box-shadow:0 12px 24px var(--card-shadow), 0 0 0 1px color-mix(in srgb, var(--accent) 40%, transparent) inset, inset 0 1px 0 var(--cta-hi);
+}
+.cmp-btn.playing .cl b { color:var(--text-primary); }
 .cmp-btn.playing .ci { background:var(--ok-grad); color:var(--correct-text); }
+.cmp-btn.playing::after {
+  content:""; position:absolute; top:-6px; right:-6px; width:18px; height:18px; border-radius:50%;
+  box-shadow:0 3px 8px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+  background-image:var(--ok-grad), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4.5 13l5 5L19.5 7' stroke='white' stroke-width='3.4' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+  background-repeat:no-repeat, no-repeat; background-position:center, center; background-size:100% 100%, 60% 60%;
+}
 
 /* ---------- ActionDock: mic 80px по центру ---------- */
 .dock { margin-top:auto; padding:10px 16px 24px; display:flex; flex-direction:column; align-items:center; gap:14px; min-height:150px; justify-content:flex-end; }
@@ -558,6 +580,8 @@ const CARDS = [
     missWord: 'meet',
     missHint: 'Не хватает meet: nice to MEET you',
     praise: 'Фраза распознана',
+    audioFile: 'audio/nice_to_meet_you.mp3',
+    audioFileSlow: 'audio/nice_to_meet_you_slow.mp3',
   },
   {
     skill: 'Знакомство · рады видеть',
@@ -567,6 +591,10 @@ const CARDS = [
     missWord: 'again',
     missHint: 'Не хватает again: see you AGAIN',
     praise: 'Фраза распознана',
+    /* зачем: mp3 для этой фразы ещё не сгенерирован — graceful fallback на
+       эмуляцию таймером (playReference сам это обрабатывает через audioFile==null) */
+    audioFile: null,
+    audioFileSlow: null,
   },
 ];
 
@@ -623,6 +651,8 @@ function stopWaveform() {
 }
 
 function renderCard(ix) {
+  stopReferenceAudio(); refRunId++;
+  if (cmpAudioEl) { cmpAudioEl.pause(); cmpAudioEl = null; }
   const c = CARDS[ix % CARDS.length];
   $('skillTitle').textContent = c.skill;
   hero.innerHTML = c.words.map((w, i) => `<span class="w" data-i="${i}">${w}</span>`).join('');
@@ -638,6 +668,7 @@ function renderCard(ix) {
 
 function toReady() {
   state = 'ready';
+  capture.classList.remove('compact');
   readyLine.style.display = '';
   readyLine.textContent = 'Когда будешь готов, нажми и скажи';
   recStatus.classList.remove('show');
@@ -650,31 +681,64 @@ function toReady() {
   micRing.classList.remove('pulse');
 }
 
-/* ===== Эталон: chunk highlight, мик заблокирован во время проигрывания ===== */
+/* ===== Эталон: chunk highlight, мик заблокирован во время проигрывания.
+   Реальный аудио-файл ведёт подсветку слов по timeupdate; если файла нет
+   или он не грузится (onerror/catch) — прежняя эмуляция таймером по словам,
+   страница не ломается ===== */
+let refAudioEl = null;
+let refRunId = 0;
+function stopReferenceAudio() {
+  if (refAudioEl) { refAudioEl.pause(); refAudioEl.onended = null; refAudioEl.ontimeupdate = null; refAudioEl.onerror = null; refAudioEl = null; }
+}
 function playReference(slow) {
   if (state === 'recording' || state === 'processing') return;
   state = 'reference_playing';
+  const runId = ++refRunId;
   listenPill.classList.add('show');
   micBtn.disabled = true;
   micBtn.classList.add('locked');
   playBtn.disabled = true; slowPlayBtn.disabled = true;
   const words = [...hero.querySelectorAll('.w')];
   hero.classList.add('playing');
-  const per = (slow ? 420 : 200) * tf();
-  words.forEach((w, i) => {
-    setTimeout(() => {
-      words.forEach((x) => x.classList.remove('lit'));
-      w.classList.add('lit');
-    }, reduced() ? 0 : i * per);
-  });
-  const total = reduced() ? 60 : (words.length * per + 260);
-  setTimeout(() => {
+
+  const finish = () => {
+    if (runId !== refRunId) return;
     hero.classList.remove('playing');
     words.forEach((x) => x.classList.remove('lit'));
     listenPill.classList.remove('show');
     playBtn.disabled = false; slowPlayBtn.disabled = false;
     if (state === 'reference_playing') toReady();
-  }, total);
+  };
+
+  const emulate = () => {
+    const per = (slow ? 420 : 200) * tf();
+    words.forEach((w, i) => {
+      setTimeout(() => {
+        if (runId !== refRunId) return;
+        words.forEach((x) => x.classList.remove('lit'));
+        w.classList.add('lit');
+      }, reduced() ? 0 : i * per);
+    });
+    const total = reduced() ? 60 : (words.length * per + 260);
+    setTimeout(finish, total);
+  };
+
+  const c = CARDS[cardIx % CARDS.length];
+  const src = slow ? c.audioFileSlow : c.audioFile;
+  if (reduced() || !src) { emulate(); return; }
+  const a = new Audio(src);
+  refAudioEl = a;
+  a.playbackRate = slow && !c.audioFileSlow ? 0.72 : 1;
+  a.ontimeupdate = () => {
+    if (runId !== refRunId || !a.duration || !words.length) return;
+    const frac = Math.min(0.999, a.currentTime / a.duration);
+    const ix = Math.floor(frac * words.length);
+    words.forEach((x, i) => x.classList.toggle('lit', i === ix));
+  };
+  a.onended = finish;
+  a.onerror = () => { if (runId === refRunId) emulate(); };
+  const p = a.play();
+  if (p && p.catch) p.catch(() => { if (runId === refRunId) emulate(); });
 }
 playBtn.addEventListener('click', () => playReference(false));
 slowPlayBtn.addEventListener('click', () => playReference(true));
@@ -718,6 +782,9 @@ function stopRecording() {
   micBtn.disabled = true;
   state = 'processing';
   procLine.classList.add('show');
+  // зачем: капчур схлопывается сразу на processing - дальше в verdict/recovery
+  // внутри .capture всё равно ничего не показывается, резерв только мешал бы
+  capture.classList.add('compact');
   setTimeout(() => { runOutcome(pendingOutcome || 'good'); pendingOutcome = null; }, 400 * tf());
 }
 
@@ -905,11 +972,26 @@ function nextCard() {
 }
 
 /* ===== Панель сравнения: подсветка активного плеера ===== */
+/* зачем: «Эталон» проигрывает настоящий mp3 (тот же источник, что playReference),
+   с фолбэком на 900мс-имитацию, если файла нет. «Моя запись» в статичной витрине
+   не имеет реального аудио пользователя — имитация длительности сохранена. */
+let cmpAudioEl = null;
 [cmpMine, cmpRef].forEach((btn) => {
   btn.addEventListener('click', () => {
     if (state === 'recording') return; // TTS/мик взаимоисключены
     [cmpMine, cmpRef].forEach((b) => b.classList.remove('playing'));
     btn.classList.add('playing');
+    if (cmpAudioEl) { cmpAudioEl.pause(); cmpAudioEl = null; }
+    const c = CARDS[cardIx % CARDS.length];
+    if (btn === cmpRef && c.audioFile) {
+      const a = new Audio(c.audioFile);
+      cmpAudioEl = a;
+      const stop = () => btn.classList.remove('playing');
+      a.onended = stop; a.onerror = () => setTimeout(stop, 900 * tf());
+      const p = a.play();
+      if (p && p.catch) p.catch(() => setTimeout(stop, 900 * tf()));
+      return;
+    }
     setTimeout(() => btn.classList.remove('playing'), 900 * tf());
   });
 });

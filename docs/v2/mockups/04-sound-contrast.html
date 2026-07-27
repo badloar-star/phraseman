@@ -202,7 +202,23 @@ svg { display:block; }
 .pair-listen svg { width:16px; height:16px; }
 .pair-listen.playing { color:var(--accent); animation:cardPulse calc(900ms * var(--tf)) ease-in-out infinite; }
 @keyframes cardPulse { 0%,100%{ box-shadow:0 4px 10px var(--card-shadow), inset 0 1px 0 var(--chip-hi);} 50%{ box-shadow:0 4px 10px var(--card-shadow), inset 0 1px 0 var(--chip-hi), 0 0 0 8px var(--accent-bg);} }
-.pair-card.selected { transform:translateY(-2px); box-shadow:0 4px 0 var(--chip-edge), 0 18px 30px var(--card-shadow), inset 0 1px 0 var(--chip-hi), 0 0 0 3px var(--accent-bg); }
+/* Выбранное: читается мгновенно — светлее фон, подъём+тень, акцентная точка-маркер (ответ ещё не дан,
+   галочка была бы неверна по смыслу), самый яркий текст; невыбранное притухает. Без обводок. */
+.pair-card { opacity:1; }
+.pair-row.has-selection .pair-card:not(.selected) { opacity:0.82; }
+.pair-card.selected {
+  transform:translateY(-2px);
+  background:linear-gradient(160deg, color-mix(in srgb, var(--accent) 34%, var(--chip-grad-a)) 0%, var(--chip-grad-b) 100%);
+  box-shadow:0 4px 0 var(--chip-edge), 0 20px 34px var(--card-shadow), inset 0 1px 0 var(--chip-hi), 0 0 0 3px var(--accent-bg);
+}
+.pair-card.selected .pair-word { color:var(--text-primary); }
+.pair-card.selected .pair-ipa { color:var(--text-primary); opacity:0.86; }
+.pair-card .selected-dot {
+  position:absolute; top:12px; right:12px; width:20px; height:20px; border-radius:50%;
+  background:var(--bg-surface2); opacity:0; transform:scale(0.6);
+  transition:opacity var(--t-fast), transform var(--t-fast) var(--ease-spring), background var(--t-fast);
+}
+.pair-card.selected .selected-dot { opacity:1; transform:scale(1); background:var(--ok-grad); }
 /* Success: заливка ok-градиентом */
 .pair-card.ok { background:var(--ok-grad); box-shadow:0 4px 0 var(--btn-shadow), 0 14px 24px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
 .pair-card.ok .pair-word, .pair-card.ok .pair-ipa { color:var(--correct-text); }
@@ -367,11 +383,13 @@ svg { display:block; }
 
     <div class="pair-row" id="pairRow">
       <button class="pair-card" id="cardA" data-word="ship">
+        <div class="selected-dot"></div>
         <div class="pair-word">ship</div>
         <div class="pair-ipa">/ʃɪp/</div>
         <button class="pair-listen" id="listenA" title="Прослушать ship" tabindex="-1"><svg><use href="#i-sound"/></svg></button>
       </button>
       <button class="pair-card" id="cardB" data-word="sheep">
+        <div class="selected-dot"></div>
         <div class="pair-word">sheep</div>
         <div class="pair-ipa">/ʃiːp/</div>
         <button class="pair-listen" id="listenB" title="Прослушать sheep" tabindex="-1"><svg><use href="#i-sound"/></svg></button>
@@ -524,6 +542,7 @@ function renderRound(ix) {
   fb.className = 'fb'; fbText.textContent = '';
   fbActions.classList.remove('show');
   [cardA, cardB].forEach((c) => c.className = 'pair-card');
+  $('pairRow').classList.remove('has-selection');
   cardA.dataset.target = target === 'ship' ? '0' : '1';
   hasPlayedOnce = false; attempt = 0; selectedWord = null;
   ringFill.style.transition = 'none'; ringFill.style.strokeDashoffset = RING_LEN;
@@ -535,31 +554,82 @@ function renderRound(ix) {
   playWrap.dataset.currentTarget = target;
 }
 
-/* ===== Проигрывание раунда: реальный прогресс по кольцу (эмуляция аудио) ===== */
+/* ===== Проигрывание: настоящее аудио (OpenAI TTS, audio/*.mp3), кольцо/пульс синхронизированы
+   с timeupdate/ended реального <audio>. Если файл не грузится — откат на эмуляцию по таймеру,
+   страница не ломается и не зависает в состоянии "играет". ===== */
+let roundAudioEl = null, cardAudioEl = null;
+const AUDIO_SRC = { ship: 'audio/ship.mp3', sheep: 'audio/sheep.mp3' };
+
 function playRound() {
   if (offlineMode) { showOfflineFeedback(); return; }
   if (state !== 'idle') return;
-  const dur = 1400 * tf();
-  playWrap.classList.add('playing');
-  ringFill.style.transition = 'none';
-  ringFill.style.strokeDashoffset = RING_LEN;
-  void ringFill.getBoundingClientRect();
-  ringFill.style.transition = `stroke-dashoffset ${dur}ms linear`;
-  ringFill.style.strokeDashoffset = '0';
-  playSub.textContent = 'Звучит…';
-  setTimeout(() => {
+  const target = playWrap.dataset.currentTarget;
+  playRealOrFallback(AUDIO_SRC[target], 1400 * tf(), (a) => { roundAudioEl = a; }, () => {
     playWrap.classList.remove('playing');
     playSub.textContent = 'Выбери карточку';
     hasPlayedOnce = true;
     syncCta();
-  }, dur);
+  }, (dur) => {
+    playWrap.classList.add('playing');
+    playSub.textContent = 'Звучит…';
+    ringFill.style.transition = 'none';
+    ringFill.style.strokeDashoffset = RING_LEN;
+    void ringFill.getBoundingClientRect();
+    ringFill.style.transition = `stroke-dashoffset ${dur}ms linear`;
+    ringFill.style.strokeDashoffset = '0';
+  }, (progress) => {
+    ringFill.style.transition = 'none';
+    ringFill.style.strokeDashoffset = String(RING_LEN * (1 - progress));
+  });
 }
 function playCard(which) {
   if (offlineMode) { showOfflineFeedback(); return; }
   const btn = which === 'A' ? listenA : listenB;
-  const dur = 900 * tf();
-  btn.classList.add('playing');
-  setTimeout(() => btn.classList.remove('playing'), dur);
+  const word = which === 'A' ? 'ship' : 'sheep';
+  playRealOrFallback(AUDIO_SRC[word], 900 * tf(), (a) => { cardAudioEl = a; }, () => {
+    btn.classList.remove('playing');
+  }, () => {
+    btn.classList.add('playing');
+  });
+}
+/* Общий проигрыватель: реальный <audio> с fallback на таймер-эмуляцию.
+   onStart(dur) вызывается синхронно перед стартом (для запуска CSS-переходов);
+   onProgress(0..1) — необязательный колбэк на timeupdate (реальном) для точной синхронизации кольца. */
+function playRealOrFallback(src, fallbackDur, setRef, onEnd, onStart, onProgress) {
+  let ended = false;
+  const finish = () => { if (ended) return; ended = true; onEnd(); };
+  let audio;
+  try { audio = new Audio(src); } catch (e) { audio = null; }
+  if (!audio) { onStart(fallbackDur); setTimeout(finish, fallbackDur); return; }
+  setRef(audio);
+  let usedFallback = false;
+  const fallbackTimer = setTimeout(() => {
+    if (ended) return;
+    usedFallback = true;
+    finish();
+  }, fallbackDur + 2500); // страховка: если файл завис/не отдал events, не залипаем в "играет"
+  audio.addEventListener('timeupdate', () => {
+    if (usedFallback || !audio.duration || !isFinite(audio.duration)) return;
+    if (onProgress) onProgress(audio.currentTime / audio.duration);
+  });
+  audio.addEventListener('ended', () => { clearTimeout(fallbackTimer); finish(); });
+  audio.addEventListener('error', () => {
+    clearTimeout(fallbackTimer);
+    if (ended) return;
+    usedFallback = true;
+    onStart(fallbackDur);
+    setTimeout(finish, fallbackDur);
+  });
+  onStart(fallbackDur);
+  const p = audio.play();
+  if (p && p.catch) {
+    p.catch(() => {
+      clearTimeout(fallbackTimer);
+      if (ended) return;
+      usedFallback = true;
+      setTimeout(finish, fallbackDur);
+    });
+  }
 }
 function showOfflineFeedback() {
   fbIcon.innerHTML = icon('i-nowifi', 18);
@@ -582,6 +652,7 @@ function selectCard(word) {
   selectedWord = word;
   cardA.classList.toggle('selected', word === 'ship');
   cardB.classList.toggle('selected', word === 'sheep');
+  $('pairRow').classList.add('has-selection'); // зачем: владелец — выбор должен читаться мгновенно
   syncCta();
 }
 function syncCta() {
@@ -668,6 +739,7 @@ function verdictMiss(target) {
     setTimeout(() => {
       chosen.classList.remove('bad');
       [cardA, cardB].forEach((c) => c.classList.remove('selected'));
+      $('pairRow').classList.remove('has-selection');
       selectedWord = null;
       state = 'idle';
       fbActions.classList.remove('show');

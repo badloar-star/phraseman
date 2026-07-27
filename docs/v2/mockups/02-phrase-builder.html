@@ -192,6 +192,7 @@ svg { display:block; }
   margin-top:4px;
 }
 .audio-btn:active { transform:scale(0.92); }
+.audio-btn.sounding { background:var(--cta-grad); color:var(--correct-text); box-shadow:0 8px 18px var(--card-shadow), inset 0 1px 0 var(--cta-hi); }
 .audio-btn svg { width:20px; height:20px; }
 
 /* ---------- Строка ответа: 2 строки зарезервированы, нижняя базовая линия ---------- */
@@ -348,7 +349,7 @@ svg { display:block; }
       <div class="task-label" id="taskLabel">Собери фразу</div>
       <div class="hero-row">
         <div class="hero" id="hero">Приятно познакомиться</div>
-        <button class="audio-btn" title="Прослушать"><svg><use href="#i-sound"/></svg></button>
+        <button class="audio-btn" id="audioBtn" title="Прослушать"><svg><use href="#i-sound"/></svg></button>
       </div>
     </div>
 
@@ -442,6 +443,7 @@ const CARDS = [
     ru: 'Приятно познакомиться',
     target: ['Nice', 'to', 'meet', 'you'],
     extra: ['meets', 'meeting'],
+    audio: 'nice_to_meet_you',
     praise: 'Собрано! Nice to meet you.',
     hintFor: { meets: 'После to глагол без окончания: meet.', meeting: 'После to нужна форма meet, не meeting.' },
     hintOrder: 'Начни с Nice: это начало фразы.',
@@ -452,6 +454,7 @@ const CARDS = [
     ru: 'Я из Ирландии',
     target: ["I'm", 'from', 'Ireland'],
     extra: ['froms', 'mine'],
+    audio: 'i_am_from_ireland',
     praise: "Собрано! I'm from Ireland.",
     hintFor: { froms: 'Предлог from не меняется: froms не существует.', mine: 'Mine здесь невозможно: нужно from.' },
     hintOrder: "Начни с I'm: кто говорит.",
@@ -870,6 +873,24 @@ $('runReset').addEventListener('click', () => {
   resetStreakPill();
   syncBar();
   renderCard(0);
+});
+
+/* ===== Реальная озвучка (OpenAI TTS). Владелец должен слышать фразу,
+   а не эмуляцию. Fallback: если файл не отдался - кнопка просто мигает. ===== */
+let currentAudio = null;
+function playPhraseAudio(slug, btn) {
+  if (!slug) return;
+  if (currentAudio) { currentAudio.pause(); currentAudio = null; }
+  const a = new Audio('audio/' + slug + '.mp3');
+  currentAudio = a;
+  btn.classList.add('sounding');
+  const done = () => { btn.classList.remove('sounding'); if (currentAudio === a) currentAudio = null; };
+  a.addEventListener('ended', done);
+  a.addEventListener('error', () => { done(); setTimeout(() => btn.classList.remove('sounding'), 400); });
+  a.play().catch(done);
+}
+$('audioBtn').addEventListener('click', () => {
+  playPhraseAudio(CARDS[cardIx % CARDS.length].audio, $('audioBtn'));
 });
 
 renderCard(0);

@@ -46,6 +46,13 @@ import {
   type TournamentAiLevel,
 } from './tournament_ai_generator';
 import {
+  TOURNAMENT_MODES,
+  planGenerationOrders,
+  planPoolGaps,
+  poolIsTournamentReady,
+  roundReadiness,
+} from './tournament_pool_plan';
+import {
   AUDIO_BATCH_SIZE,
   audioTasksFrom,
   buildAudioPromptPacket,
@@ -538,11 +545,24 @@ async function generateOneAiBatch(
  * черновики verified:false в общий пул с source:'ai'. Публикация — только
  * руками через существующее ревью (adminMutateTournamentTasks).
  */
-export const adminGenerateTournamentTasksAi = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
-  async (request) => {
-    requirePermission(request, 'content.draft.write');
-    const params = parseAiGenerateRequest(request.data);
+/** Параметры текстовой генерации — та же причина выноса, что у аудио. */
+export type TextGenerationParams = {
+  level: TournamentAiLevel;
+  batches: number;
+  topicHint: string;
+  dryRun: boolean;
+  actor: string;
+};
+
+export async function runTextGeneration(input: TextGenerationParams): Promise<Record<string, unknown>> {
+  const params = {
+    level: input.level,
+    batches: input.batches,
+    topicHint: input.topicHint,
+    dryRun: input.dryRun,
+  };
+  const actor = input.actor;
+  {
     const db = admin.firestore();
     const nowMs = Date.now();
 
@@ -610,7 +630,7 @@ export const adminGenerateTournamentTasksAi = onCall(
           batchesRequested: params.batches,
           batchesAccepted: params.batches - rejectedBatches.length,
           dryRun: params.dryRun,
-          uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+          uid: actor,
           createdAtMs: nowMs,
         }).catch((error) => console.error('[tournament_ai] billing write failed', error));
       }
@@ -699,6 +719,22 @@ export const adminGenerateTournamentTasksAi = onCall(
       keptPublished,
       samples,
     };
+  }
+}
+
+/** Тонкая обёртка: разбор входа и права, работа — в runTextGeneration. */
+export const adminGenerateTournamentTasksAi = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
+  async (request) => {
+    requirePermission(request, 'content.draft.write');
+    const parsed = parseAiGenerateRequest(request.data);
+    return runTextGeneration({
+      level: parsed.level,
+      batches: parsed.batches,
+      topicHint: parsed.topicHint,
+      dryRun: parsed.dryRun,
+      actor: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+    });
   },
 );
 
@@ -1051,16 +1087,46 @@ export const adminTournamentPoolStats = onCall(
       byMode[mode] = agg.data().count;
     }));
 
-    // Готовность раунда: хватает ли verified-заданий его сложностей.
-    const rounds = Object.entries(ROUND_DIFFICULTIES).map(([round, difficulties]) => {
-      const available = difficulties.reduce((sum, d) => sum + (byDifficulty[d] ?? 0), 0);
-      return {
-        round: Number(round),
-        difficulties: [...difficulties],
-        available,
-        ready: available >= ROUND_TASK_TARGET,
-      };
-    });
+    // зачем 2026-07-27: раньше готовность считалась по СУММЕ заданий нужных
+    // сложностей, без учёта режима. Это давало ложную зелёную галочку: пул из
+    // 44 заданий выглядел готовым, а раунд не собирался, потому что раунду с
+    // одним режимом нужно TASKS_PER_ROUND заданий ОДНОГО режима, и ни в одной
+    // ячейке их столько не было. Считаем по ячейкам режим×сложность.
+    // guard-ok: агрегаты count(), документы не читаются.
+    const cellCounts: Record<string, number> = {};
+    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
+      const agg = await collection
+        .where('verified', '==', true)
+        .where('mode', '==', mode)
+        .where('difficulty', '==', difficulty)
+        .count().get();
+      cellCounts[`${mode}:${difficulty}`] = agg.data().count;
+    })));
+
+    const readiness = roundReadiness(cellCounts);
+    const rounds = readiness.map((round) => ({
+      round: round.roundNo,
+      difficulties: [...ROUND_DIFFICULTIES[round.roundNo as 1 | 2 | 3 | 4]],
+      available: round.totalTasks,
+      // Какими режимами раунд реально может быть сыгран прямо сейчас —
+      // владельцу видно, что раунд 1 всегда «Собери фразу», и почему.
+      readyModes: round.readyModes,
+      ready: round.ok,
+    }));
+
+    // Что дозаказать генератору: сначала ячейки, блокирующие сборку раунда,
+    // затем добор до запаса (иначе каждый турнир играет один и тот же набор).
+    const gaps = planPoolGaps(cellCounts)
+      .filter((gap) => gap.missing > 0 || gap.missingHealthy > 0)
+      .map((gap) => ({
+        mode: gap.mode,
+        difficulty: gap.difficulty,
+        have: gap.have,
+        missing: gap.missing,
+        missingHealthy: gap.missingHealthy,
+        blocking: gap.blocking,
+      }));
+    const nextOrders = planGenerationOrders(cellCounts, { maxTasks: 60 });
 
     return {
       ok: true,
@@ -1070,9 +1136,14 @@ export const adminTournamentPoolStats = onCall(
       byDifficulty,
       sources,
       byMode,
+      // Ячейки режим×сложность: сырые числа для сетки в админке.
+      cells: cellCounts,
       rounds,
-      // Режим можно включать, только если каждый раунд наберёт задания.
-      poolReady: rounds.every((round) => round.ready),
+      // Чего не хватает и что заказать — владелец не гадает, а видит список.
+      gaps,
+      nextOrders,
+      // Режим можно включать, только если КАЖДЫЙ раунд реально собирается.
+      poolReady: poolIsTournamentReady(cellCounts),
     };
   },
 );
@@ -1154,21 +1225,24 @@ export const adminGetTournamentSchedule = onCall(
  * повторов — смешивать с текстовым генератором значило бы получать фразы,
  * которые на слух не различаются. Бюджет, учёт трат и запись в пул общие.
  */
-export const adminGenerateTournamentAudioTasksAi = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
-  async (request) => {
-    requirePermission(request, 'content.draft.write');
-    const record = onlyKeys(request.data, ['mode', 'level', 'batches', 'topicHint', 'dryRun'],
-      'tournament_audio_ai_invalid');
-    const mode = String(record.mode ?? '').trim();
-    const level = String(record.level ?? '').trim().toUpperCase();
-    const batches = Math.max(1, Math.min(3, Math.trunc(Number(record.batches ?? 1))));
-    const topicHint = String(record.topicHint ?? '').trim().slice(0, 120);
-    const dryRun = record.dryRun === true;
-    if (!isTournamentAudioMode(mode) || !isTournamentAiLevel(level)) {
-      throw new HttpsError('invalid-argument', 'tournament_audio_ai_invalid');
-    }
+/**
+ * Параметры генерации аудио-заданий. Вынесены из callable, чтобы автодобор
+ * комплекта звал ту же логику напрямую: callable из callable — это лишний
+ * сетевой round-trip и повторная проверка прав на ту же операцию.
+ */
+export type AudioGenerationParams = {
+  mode: TournamentAudioMode;
+  level: TournamentAiLevel;
+  batches: number;
+  topicHint: string;
+  dryRun: boolean;
+  /** Кто запустил — пишется в учёт трат. */
+  actor: string;
+};
 
+export async function runAudioGeneration(params: AudioGenerationParams): Promise<Record<string, unknown>> {
+  const { mode, level, batches, topicHint, dryRun, actor } = params;
+  {
     const db = admin.firestore();
     const nowMs = Date.now();
     const cfg = await resolveJobConfig(db, 'tournament');
@@ -1246,7 +1320,7 @@ export const adminGenerateTournamentAudioTasksAi = onCall(
           batchesRequested: batches,
           batchesAccepted: batches - rejectedBatches.length,
           dryRun,
-          uid: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+          uid: actor,
           createdAtMs: nowMs,
         }).catch((error) => console.error('[tournament_audio_ai] billing write failed', error));
       }
@@ -1327,5 +1401,137 @@ export const adminGenerateTournamentAudioTasksAi = onCall(
       keptPublished,
       samples,
     };
+  }
+}
+
+/** Тонкая обёртка: разбор входа и права, вся работа — в runAudioGeneration. */
+export const adminGenerateTournamentAudioTasksAi = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 300, secrets: [OPENAI_API_KEY] },
+  async (request) => {
+    requirePermission(request, 'content.draft.write');
+    const record = onlyKeys(request.data, ['mode', 'level', 'batches', 'topicHint', 'dryRun'],
+      'tournament_audio_ai_invalid');
+    const mode = String(record.mode ?? '').trim();
+    const level = String(record.level ?? '').trim().toUpperCase();
+    if (!isTournamentAudioMode(mode) || !isTournamentAiLevel(level)) {
+      throw new HttpsError('invalid-argument', 'tournament_audio_ai_invalid');
+    }
+    return runAudioGeneration({
+      mode,
+      level,
+      batches: Math.max(1, Math.min(3, Math.trunc(Number(record.batches ?? 1)))),
+      topicHint: String(record.topicHint ?? '').trim().slice(0, 120),
+      dryRun: record.dryRun === true,
+      actor: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+    });
+  },
+);
+
+
+// ── Автодобор комплекта ─────────────────────────────────────────────────────
+
+/**
+ * Один вызов вместо ручного перебора режимов.
+ *
+ * зачем (владелец 2026-07-27): «генератор должен быть переписан — блокер
+ * снимается, если генератор будет сразу создавать все задания». Раньше
+ * владелец жал «сгенерировать» по одному режиму и не знал, хватает ли пула
+ * на раунд: готовность считалась по сумме сложностей и врала. Теперь сервер
+ * сам смотрит, каких ячеек режим×сложность не хватает, и заказывает только их.
+ *
+ * Дороговизна под контролем: за вызов закрывается не больше maxTasks заданий,
+ * дневной кап OpenAI тот же, что у остальных генераторов. Владелец жмёт
+ * повторно, пока комплект не станет зелёным.
+ */
+export const adminFillTournamentPool = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK, timeoutSeconds: 540, secrets: [OPENAI_API_KEY] },
+  async (request) => {
+    requirePermission(request, 'content.draft.write');
+    const record = onlyKeys(request.data, ['level', 'maxTasks', 'healthy', 'dryRun'],
+      'tournament_fill_invalid');
+    const level = String(record.level ?? 'A2').trim().toUpperCase();
+    // Потолок за вызов: 60 заданий ≈ 6 батчей. Больше — риск таймаута функции
+    // и неожиданного счёта за OpenAI одним нажатием.
+    const maxTasks = Math.max(6, Math.min(60, Math.trunc(Number(record.maxTasks ?? 30))));
+    const healthy = record.healthy === true;
+    const dryRun = record.dryRun === true;
+    if (!isTournamentAiLevel(level)) {
+      throw new HttpsError('invalid-argument', 'tournament_fill_invalid');
+    }
+
+    const db = admin.firestore();
+    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+
+    // Текущий комплект: агрегаты, документы не читаются.
+    // guard-ok: count() — серверные агрегаты.
+    const cellCounts: Record<string, number> = {};
+    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
+      const agg = await collection
+        .where('verified', '==', true)
+        .where('mode', '==', mode)
+        .where('difficulty', '==', difficulty)
+        .count().get();
+      cellCounts[`${mode}:${difficulty}`] = agg.data().count;
+    })));
+
+    const orders = planGenerationOrders(cellCounts, { maxTasks, healthy });
+    if (orders.length === 0) {
+      return {
+        ok: true,
+        complete: true,
+        poolReady: poolIsTournamentReady(cellCounts),
+        orders: [],
+        results: [],
+      };
+    }
+
+    if (dryRun) {
+      // Показать план, ничего не потратив: сколько и чего будет заказано.
+      return {
+        ok: true,
+        dryRun: true,
+        poolReady: poolIsTournamentReady(cellCounts),
+        orders,
+        results: [],
+      };
+    }
+
+    // Заказы выполняются ПОСЛЕДОВАТЕЛЬНО: параллельные вызовы OpenAI съели бы
+    // дневной кап рывком и мешали бы друг другу в реестре повторов.
+    const actor = String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin');
+    const results: Array<Record<string, unknown>> = [];
+    for (const order of orders) {
+      const isAudio = isTournamentAudioMode(order.mode);
+      // Один батч даёт ~10 заданий; сколько батчей нужно на дыру.
+      const batches = Math.max(1, Math.min(3, Math.ceil(order.count / 10)));
+      try {
+        // Вызываем ОБЩУЮ логику напрямую: callable нельзя звать из callable
+        // (это был бы сетевой round-trip и вторая проверка прав на ту же
+        // операцию). Бюджет и учёт трат внутри самих runner-функций.
+        const response = isAudio
+          ? await runAudioGeneration({
+            mode: order.mode as TournamentAudioMode,
+            level,
+            batches,
+            topicHint: '',
+            dryRun: false,
+            actor,
+          })
+          : await runTextGeneration({ level, batches, topicHint: '', dryRun: false, actor });
+        results.push({ mode: order.mode, difficulty: order.difficulty, ok: true, ...response });
+      } catch (error) {
+        // Одна упавшая ячейка не должна отменять остальные: владелец увидит,
+        // что именно не сгенерилось, и повторит только это.
+        console.error('[tournament_fill] order failed', order.mode, error);
+        results.push({
+          mode: order.mode,
+          difficulty: order.difficulty,
+          ok: false,
+          error: String((error as { message?: string })?.message ?? 'failed'),
+        });
+      }
+    }
+
+    return { ok: true, dryRun: false, orders, results };
   },
 );

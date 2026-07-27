@@ -1501,6 +1501,62 @@ export function nextHotStreak(current: number, won: boolean): number {
   return won ? Math.max(0, current) + 1 : 0;
 }
 
+// ── Профиль игрока для комнаты и рейтинга ───────────────────────────────────
+
+/** Заглушка последней надежды. Показывать её игрокам нельзя — см. ниже. */
+export const TOURNAMENT_FALLBACK_NAME = 'Player';
+
+/**
+ * Ник для комнаты и недельного рейтинга.
+ *
+ * зачем 2026-07-27: имя искали ТОЛЬКО в users/{uid}, а настоящий ник живёт в
+ * leaderboard/{uid} (туда пишет онбординг и синк XP). Поля не совпадали, и в
+ * рейтинг уезжала заглушка «Player» — её видели ВСЕ игроки таблицы сезона.
+ * Порядок источников зафиксирован здесь и покрыт тестами, чтобы приоритет
+ * нельзя было поменять случайной правкой внутри транзакции.
+ */
+export function resolveTournamentPlayerName(
+  leaderboard: Record<string, unknown> | null | undefined,
+  user: Record<string, unknown> | null | undefined,
+): string {
+  const candidates = [leaderboard?.name, user?.name, user?.displayName];
+  for (const candidate of candidates) {
+    const name = String(candidate ?? '').normalize('NFKC').replace(/\s+/g, ' ').trim().slice(0, 48);
+    if (name) return name;
+  }
+  return TOURNAMENT_FALLBACK_NAME;
+}
+
+/** Аватар в том же порядке источников, что и ник. Пусто — берётся дефолт. */
+export function resolveTournamentPlayerAvatar(
+  leaderboard: Record<string, unknown> | null | undefined,
+  user: Record<string, unknown> | null | undefined,
+): string {
+  const candidates = [leaderboard?.avatar, user?.avatar_emoji, user?.avatar];
+  for (const candidate of candidates) {
+    const avatar = String(candidate ?? '').trim().slice(0, 16);
+    if (avatar) return avatar;
+  }
+  return '';
+}
+
+/**
+ * Имя, которое уйдёт в запись недели.
+ *
+ * Заглушка НЕ должна затирать уже сохранённый настоящий ник: игрок мог сыграть
+ * первый турнир до фикса, а второй — после. Поэтому порядок именно такой.
+ */
+export function resolveSeasonEntryName(
+  roomPlayerName: unknown,
+  storedSeasonName: unknown,
+): string {
+  const fromRoom = String(roomPlayerName ?? '').trim().slice(0, 48);
+  if (fromRoom && fromRoom !== TOURNAMENT_FALLBACK_NAME) return fromRoom;
+  const stored = String(storedSeasonName ?? '').trim().slice(0, 48);
+  if (stored && stored !== TOURNAMENT_FALLBACK_NAME) return stored;
+  return fromRoom || stored || TOURNAMENT_FALLBACK_NAME;
+}
+
 // ── Бот-персоны (§3) ────────────────────────────────────────────────────────
 
 export type BotProfile = {

@@ -17,10 +17,14 @@ import {
   normalizeTournamentSchedule,
   prizeForPlace,
   roundSeed,
+  resolveSeasonEntryName,
+  resolveTournamentPlayerAvatar,
+  resolveTournamentPlayerName,
   roundStateFor,
   scoreAnswer,
   scoreRound,
   seasonPointsForPlace,
+  TOURNAMENT_FALLBACK_NAME,
   seededShuffle,
   selectRoundTasks,
   simulateBotAnswers,
@@ -226,6 +230,56 @@ describe('season / bank / hot streak (§8, §9)', () => {
 
   it('week id matches ISO week format used by league functions', () => {
     expect(tournamentWeekId(Date.UTC(2026, 6, 21))).toMatch(/^2026-W\d{2}$/);
+  });
+});
+
+// зачем 2026-07-27: боевой баг — в таблице сезона у живого игрока стояло
+// «Player». Имя искали только в users/{uid}, а настоящий ник лежит в
+// leaderboard/{uid}. Заглушка уходила в рейтинг, где её видели ВСЕ.
+// Эти тесты фиксируют приоритет источников, чтобы он не уехал снова.
+describe('имя игрока в комнате и рейтинге', () => {
+  it('берёт ник из leaderboard — там настоящий профиль', () => {
+    expect(resolveTournamentPlayerName({ name: 'Radium 95935' }, {})).toBe('Radium 95935');
+  });
+
+  it('РЕГРЕССИЯ: пустой users/{uid} больше не даёт заглушку', () => {
+    // Ровно боевой случай: users пуст, ник есть только в лидерборде.
+    const user = { name: undefined, displayName: undefined };
+    expect(resolveTournamentPlayerName({ name: 'Vertex 65924' }, user)).toBe('Vertex 65924');
+  });
+
+  it('падает на users, если лидерборда ещё нет', () => {
+    expect(resolveTournamentPlayerName(null, { name: 'Аня' })).toBe('Аня');
+    expect(resolveTournamentPlayerName({}, { displayName: 'Борис' })).toBe('Борис');
+  });
+
+  it('заглушка — только когда ника нет нигде', () => {
+    expect(resolveTournamentPlayerName(null, null)).toBe(TOURNAMENT_FALLBACK_NAME);
+    expect(resolveTournamentPlayerName({ name: '   ' }, { name: '' })).toBe(TOURNAMENT_FALLBACK_NAME);
+  });
+
+  it('чистит пробелы и режет слишком длинный ник', () => {
+    expect(resolveTournamentPlayerName({ name: '  Ро  ма  ' }, {})).toBe('Ро ма');
+    expect(resolveTournamentPlayerName({ name: 'я'.repeat(80) }, {})).toHaveLength(48);
+  });
+
+  it('аватар идёт тем же порядком источников', () => {
+    expect(resolveTournamentPlayerAvatar({ avatar: '7' }, { avatar_emoji: '🦊' })).toBe('7');
+    expect(resolveTournamentPlayerAvatar({}, { avatar_emoji: '🦊' })).toBe('🦊');
+    expect(resolveTournamentPlayerAvatar(null, null)).toBe('');
+  });
+
+  it('ГЛАВНОЕ: заглушка не затирает уже сохранённый настоящий ник', () => {
+    // Игрок сыграл первый турнир ДО фикса (в недели лежит «Player»), второй —
+    // после. Запись обязана получить настоящее имя, а не остаться заглушкой.
+    expect(resolveSeasonEntryName('Radium 95935', 'Player')).toBe('Radium 95935');
+    // И наоборот: старая комната прислала заглушку — сохранённое имя сильнее.
+    expect(resolveSeasonEntryName('Player', 'Radium 95935')).toBe('Radium 95935');
+  });
+
+  it('обе стороны пусты — остаётся заглушка, но не пустое имя', () => {
+    expect(resolveSeasonEntryName('Player', 'Player')).toBe(TOURNAMENT_FALLBACK_NAME);
+    expect(resolveSeasonEntryName('', '')).toBe(TOURNAMENT_FALLBACK_NAME);
   });
 });
 

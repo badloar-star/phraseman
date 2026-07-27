@@ -3,6 +3,7 @@
 
 import * as admin from 'firebase-admin';
 import { TOURNAMENT_MODES } from './tournament_pool_plan';
+import { defaultRoundMix, mixToSlots, normalizeRoundMix, type RoundMixConfig } from './tournament_mode_mix';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { onSchedule } from 'firebase-functions/v2/scheduler';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
@@ -42,6 +43,9 @@ import {
   loadCompleteTournamentTasks,
   planTournamentCancellation,
   planTournamentFinalization,
+  resolveSeasonEntryName,
+  resolveTournamentPlayerAvatar,
+  resolveTournamentPlayerName,
   selectRoundTasks,
   slotStartMs,
   stateAfterTournamentDeadline,
@@ -229,7 +233,7 @@ function readGemBalance(value: unknown): number {
   return Number.isFinite(parsed) && parsed >= 0 ? parsed : 0;
 }
 
-async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots: BotProfile[]; tasks: TournamentTask[] }> {
+async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots: BotProfile[]; tasks: TournamentTask[]; roundMix?: RoundMixConfig }> {
   // зачем: турниры играют ТОЛЬКО на вопросах, созданных ИИ специально для
   // соревнования (решение владельца 2026-07-26). Задания, нарезанные из фраз
   // обучающих планов, остаются в базе нетронутыми — они просто не участвуют:
@@ -241,6 +245,10 @@ async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots
   // и пары НЕ ДОХОДИЛИ до жребия вообще. Турниры выглядели однообразными при
   // полном пуле. Теперь берём срез ПО КАЖДОМУ режиму: лимит держит стоимость,
   // но ни один режим не может вытеснить остальные.
+  // Микс читаем тем же заходом: один документ, лишнего чтения нет.
+  const mixSnap = await db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('modeMix').get();
+  const roundMix = mixSnap.exists ? normalizeRoundMix(mixSnap.data()) : undefined;
+
   const [botsSnap, ...modeSnaps] = await Promise.all([
     db.collection(BOT_PROFILES_COLLECTION).limit(TOURNAMENT_ROOM_SIZE * 2).get(),
     ...TOURNAMENT_MODES.map((mode) => db.collection(TOURNAMENT_TASKS_COLLECTION)
@@ -256,7 +264,7 @@ async function loadResourcePool(db: FirebaseFirestore.Firestore): Promise<{ bots
   const tasks = modeSnaps
     .flatMap((snap) => snap.docs.map(parseTask))
     .filter((task): task is TournamentTask => !!task);
-  return { bots, tasks };
+  return { bots, tasks, roundMix };
 }
 
 /** Кураторский набор комнаты: раунды с ручным списком заданий + дочитанные задания. */
@@ -319,6 +327,10 @@ function buildRounds(
   roomId: string,
   pool: TournamentTask[],
   curatedRounds?: Map<number, string[]>,
+  // зачем 2026-07-27: владелец настраивает ПРОЦЕНТЫ типов заданий на каждый
+  // раунд в админке. Без микса раунд собирался жребием одного режима, и
+  // настройка была бы бутафорией. Микс необязателен: нет — старое поведение.
+  roundMix?: RoundMixConfig,
 ): TournamentRound[] | null {
   const poolMap = new Map(pool.map((task) => [task.taskId, task]));
   const rounds = TOURNAMENT_ROUND_MODE_KINDS.map((modeKind, index) => {
@@ -334,6 +346,51 @@ function buildRounds(
         results: {},
       };
     }
+    // Микс задан — набираем слоты по процентам владельца. Каждый слот берёт
+    // задание СВОЕГО режима; если в пуле для режима не хватило, слот добирается
+    // из общего отбора, чтобы раунд всё равно собрался.
+    const mixForRound = roundMix?.rounds?.[roundNo];
+    if (mixForRound) {
+      const slots = mixToSlots(mixForRound, DEFAULT_TASKS_PER_ROUND);
+      const used = new Set<string>();
+      const byMix: TournamentTask[] = [];
+      for (const slotMode of slots) {
+        const candidates = selectRoundTasks({
+          pool: pool.filter((task) => task.mode === slotMode),
+          roomId,
+          roundNo,
+          count: DEFAULT_TASKS_PER_ROUND,
+          modeKind: 'mix',
+        }).filter((task) => !used.has(task.taskId));
+        const picked = candidates[0];
+        if (picked) {
+          used.add(picked.taskId);
+          byMix.push(picked);
+        }
+      }
+      if (byMix.length < DEFAULT_TASKS_PER_ROUND) {
+        // Добор из общего пула: пустая ячейка не должна отменять турнир.
+        const filler = selectRoundTasks({
+          pool, roomId, roundNo, count: DEFAULT_TASKS_PER_ROUND * 2, modeKind: 'mix',
+        }).filter((task) => !used.has(task.taskId));
+        for (const task of filler) {
+          if (byMix.length >= DEFAULT_TASKS_PER_ROUND) break;
+          used.add(task.taskId);
+          byMix.push(task);
+        }
+      }
+      if (byMix.length === DEFAULT_TASKS_PER_ROUND) {
+        const modes = new Set(byMix.map((task) => task.mode));
+        return {
+          roundNo,
+          mode: modes.size === 1 ? byMix[0].mode : 'mix',
+          taskIds: byMix.map((task) => task.taskId),
+          results: {},
+        };
+      }
+      // Не собралось даже с добором — падаем на старую логику ниже.
+    }
+
     const selected = selectRoundTasks({ pool, roomId, roundNo, count: DEFAULT_TASKS_PER_ROUND, modeKind });
     if (selected.length !== DEFAULT_TASKS_PER_ROUND) return null;
     return {
@@ -400,7 +457,7 @@ export const tournamentCreateRooms = onSchedule(
       const roomId = tournamentRoomId(slot.slotId, slot.timezone, dateKey);
       const curated = await loadCuratedForRoom(db, roomId, resources.tasks);
       const roomPool = curated ? [...resources.tasks, ...curated.extraTasks] : resources.tasks;
-      if (!buildRounds(roomId, roomPool, curated?.rounds)) {
+      if (!buildRounds(roomId, roomPool, curated?.rounds, resources.roundMix)) {
         console.warn('[tournaments] create skipped: task_pool_unavailable', { roomId });
         continue;
       }
@@ -526,12 +583,13 @@ export async function tournamentJoinTransaction(
     }
     const contribution = entryGems;
     // Ник и аватар: сначала лидерборд (там настоящий профиль), потом users.
+    // Порядок источников вынесен в tournament_core и покрыт тестами.
     const profile = leaderboardSnap.exists ? leaderboardSnap.data() || {} : {};
     const player: TournamentPlayer = {
       id: stableUid,
       isBot: false,
-      name: sanitizeString(profile.name || user.name || user.displayName, 48) || 'Player',
-      avatar: sanitizeString(profile.avatar || user.avatar_emoji || user.avatar, 16) || '🙂',
+      name: resolveTournamentPlayerName(profile, user),
+      avatar: resolveTournamentPlayerAvatar(profile, user) || '🙂',
       color: PLAYER_COLORS[room.players.length % PLAYER_COLORS.length],
       score: 0,
       streak: 0,
@@ -896,7 +954,7 @@ type TournamentFillDependencies = {
 export async function tournamentFillRoomTransaction(
   db: FirebaseFirestore.Firestore,
   roomRef: FirebaseFirestore.DocumentReference,
-  resources: { bots: BotProfile[]; tasks: TournamentTask[]; curatedRounds?: Map<number, string[]> },
+  resources: { bots: BotProfile[]; tasks: TournamentTask[]; curatedRounds?: Map<number, string[]>; roundMix?: RoundMixConfig },
   dependencies: TournamentFillDependencies = {},
 ): Promise<TournamentFillOutcome> {
   const clock = dependencies.nowMs ?? Date.now;
@@ -920,7 +978,7 @@ export async function tournamentFillRoomTransaction(
       const cancelled = await cancelRoomInTransaction(db, tx, roomRef, room, 'not_enough_players', nowMs);
       return cancelled ? 'cancelled_players' : 'skip';
     }
-    const rounds = buildRounds(room.roomId, resources.tasks, resources.curatedRounds);
+    const rounds = buildRounds(room.roomId, resources.tasks, resources.curatedRounds, resources.roundMix);
     const needed = TOURNAMENT_ROOM_SIZE - room.players.length;
     const picked = resources.bots
       .filter((bot) => !room.players.some((player) => player.id === bot.botId))
@@ -1196,9 +1254,7 @@ export async function tournamentFinalizeTransaction(
       // записанное имя недели → только в крайнем случае заглушка. Аватар
       // сохраняем рядом, иначе таблица рисует подстановку по хэшу uid.
       const roomPlayer = room.players.find((player) => player.id === effect.playerId);
-      const seasonName = sanitizeString(roomPlayer?.name, 48)
-        || sanitizeString(season.name, 48)
-        || 'Player';
+      const seasonName = resolveSeasonEntryName(roomPlayer?.name, season.name);
       const seasonAvatar = sanitizeString(roomPlayer?.avatar, 16) || sanitizeString(season.avatar, 16);
       tx.set(seasonRef, {
         uid: effect.playerId,
@@ -1816,7 +1872,7 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
 
   // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
   // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
-  const rounds = buildRounds(roomId, resources.tasks);
+  const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
   if (!rounds) {
     throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
   }

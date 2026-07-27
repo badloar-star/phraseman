@@ -69,7 +69,7 @@ export function resolveTournamentHeroCopy(input: TournamentHeroInput): Tournamen
   // Окно идёт, играть можно прямо сейчас: таймера нет — есть событие.
   if (input.phase === 'open') {
     return {
-      kicker: 'Арена открыта',
+      kicker: 'Турнир открыт',
       value: 'ВХОД ОТКРЫТ',
       sub: `до закрытия ${minutesLeft(input.secondsToWindowEnd)} мин · заходите и играйте`,
       big: false,
@@ -83,14 +83,14 @@ export function resolveTournamentHeroCopy(input: TournamentHeroInput): Tournamen
     return {
       kicker: 'Этот турнир отыгран',
       value: formatTimeLeft(input.secondsToShow),
-      sub: 'следующая арена · один турнир в каждой',
+      sub: 'следующий турнир · один вход в каждое окно',
       big: true,
       tone: 'idle',
       pulsing: false,
     };
   }
 
-  // Обычный отсчёт до открытия арены.
+  // Обычный отсчёт до открытия турнира.
   if (input.phase === 'countdown') {
     return {
       kicker: input.nextSlotDisplayTime ? `Сегодня · ${input.nextSlotDisplayTime}` : 'Скоро',

@@ -368,7 +368,7 @@ export default function TournamentsScreen() {
     playersInRoom: room?.players?.length ?? 0,
     entryGems,
     secondsToShow: windowState.phase === 'countdown' && nextSlot
-      // До открытия арены считаем по комнате: она знает точный старт.
+      // До открытия турнира считаем по комнате: она знает точный старт.
       ? secondsToStart
       : windowState.secondsToShow,
     secondsToWindowEnd: windowState.secondsToWindowEnd,
@@ -427,7 +427,7 @@ export default function TournamentsScreen() {
       setJoinError('');
       // зачем 2026-07-27 (владелец: один турнир на окно): помечаем окно как
       // отыгранное СРАЗУ. Вернувшись с турнира, игрок увидит отсчёт до
-      // следующей арены, а не живую кнопку, которая упадёт slot_already_played.
+      // следующего турнира, а не живую кнопку, которая упадёт slot_already_played.
       const playedWindow = windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
       if (playedWindow) {
         setPlayedWindowStartMs(playedWindow);
@@ -647,7 +647,7 @@ export default function TournamentsScreen() {
                   ? `Пополнить · нужно ещё ${entryGems - coins}`
                   : windowPlayed
                     // Честно: в этом окне игрок своё уже отыграл.
-                    ? 'Вы уже играли в этой арене'
+                    ? 'Вы уже играли в этом турнире'
                     : !joinRoomId
                       ? 'Скоро откроем'
                       : joinWindowOpen
@@ -912,7 +912,7 @@ export default function TournamentsScreen() {
 /**
  * Мягко дышащая точка рядом со статусом окна.
  *
- * зачем: пока арена открыта, таймера нет — статичный текст не отличить от
+ * зачем: пока турнир открыт, таймера нет — статичный текст не отличить от
  * заголовка. Пульс даёт понять «прямо сейчас» боковым зрением, не требуя
  * читать. Анимация живёт в UI-потоке (Reanimated), поэтому не грузит JS и не
  * мешает скроллу.

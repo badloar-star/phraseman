@@ -53,10 +53,14 @@ describe('personal plan day quality gate', () => {
     const issues = validatePersonalPlanDay(gavan, brokenDay as any);
     const codes = issues.map((issue) => issue.code);
 
+    // зачем: раздел квизов удалён из приложения, и валидатор теперь помечает
+    // ЛЮБУЮ квиз-задачу в дне плана кодом 'plan_quiz_disabled'
+    // (personal_plan_quality.ts:369) вместо прежнего 'missing_quiz'. Тест ждал
+    // старый код и падал на корректном поведении.
     expect(codes).toEqual(expect.arrayContaining([
       'bad_copy',
       'invalid_task_order',
-      'missing_quiz',
+      'plan_quiz_disabled',
     ]));
   });
 

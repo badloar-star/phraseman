@@ -176,12 +176,42 @@ describe('account deletion rebuilt flow contract', () => {
   });
 
   it('reports verified local exit while durable deletion continues asynchronously', () => {
-    expect(modalSource).toContain('Аккаунт удаляется');
-    expect(modalSource).toContain('Безопасный выход с этого телефона завершён');
-    expect(modalSource).toContain('при необходимости повторится автоматически');
     expect(modalSource).toContain('Безопасный локальный выход не завершён');
     expect(modalSource).not.toContain('Профиль сброшен');
     expect(modalSource).not.toContain('res.cloudDeleted');
+  });
+
+  // зачем: боевой фриз (TestFlight iOS) — после подтверждения удаления модалка
+  // закрывалась, и приложение застывало на экране настроек: тапы мертвы, онбординг не
+  // появлялся. Причина — present-during-dismiss: успешный путь в ОДНОМ тике закрывал
+  // свой нативный <Modal>, эмитил account_deleted (монтирование онбординга) и ставил в
+  // очередь ВТОРОЙ нативный <Modal> (themedAlert), плюс пускал reloadAsync() посреди
+  // dismiss-анимации. OverlayArbiter от этого не защищает: модалка удаления живёт мимо
+  // арбитра, поэтому его NATIVE_MODAL_HANDOFF_GAP_MS здесь не работает.
+  it('never presents a second native modal while the delete dialog is dismissing', () => {
+    const start = modalSource.indexOf('const handleConfirmDelete');
+    const end = modalSource.indexOf('const handleCancel', start);
+    const confirmSource = modalSource.slice(start, end);
+    const successStart = confirmSource.indexOf('onRequestClose();');
+    const successEnd = confirmSource.indexOf('} catch', successStart);
+    const successPath = confirmSource.slice(successStart, successEnd);
+
+    // Успешный путь не ставит алерт в очередь вовсе — подтверждение даёт перезапуск.
+    expect(successPath).toContain('emitAppEvent(\'account_deleted\')');
+    expect(successPath).toContain('void reloadAfterAccountDelete()');
+    expect(successPath).not.toContain('enqueueThemedBlockingInfoAlert');
+    expect(successPath).not.toContain('showInfoAlert(');
+
+    // Перезапуск ждёт докрытия нативной модалки, а не стартует в том же тике.
+    expect(modalSource).toContain('ACCOUNT_DELETE_DISMISS_SETTLE_MS = 360');
+    expect(modalSource).toMatch(
+      /async function reloadAfterAccountDelete[\s\S]*?setTimeout\(resolve, ACCOUNT_DELETE_DISMISS_SETTLE_MS\)[\s\S]*?reloadAsync\(\)/,
+    );
+
+    // Путь ОШИБКИ тоже сначала закрывает окно, потом показывает алерт.
+    expect(modalSource).toMatch(
+      /const showInfoAlert = useCallback\([\s\S]*?onRequestClose\(\);[\s\S]*?setTimeout\(\(\) => enqueueInfoAlert\(title, message\), ACCOUNT_DELETE_DISMISS_SETTLE_MS\)/,
+    );
   });
 
   it('covers Firestore cleanup paths that were easy to miss', () => {

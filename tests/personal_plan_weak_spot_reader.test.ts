@@ -1,5 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// зачем: appendPersonalPlanAttemptEvent защищён «поколением аккаунта» — гардом от
+// гонки, когда пользователь сменился посреди записи (throw 'stale_account_generation').
+// В тесте настоящего аккаунта нет, поэтому гард срабатывал и ронял все три кейса,
+// хотя логика слабых мест исправна. Мокаем поколение стабильным «текущим», как в
+// auth_clean_install_recovery_*.test.ts — сам гард отдельно покрыт своими тестами.
+jest.mock('../app/account_generation', () => ({
+  captureAccountGeneration: () => ({ generation: 1, phase: 'active', stableId: 'test_uid' }),
+  isCurrentAccountGeneration: () => true,
+  withAccountTransitionLock: async (fn: () => Promise<unknown>) => fn(),
+}));
+
 import { appendPersonalPlanAttemptEvent } from '../app/personal_plan_attempt_events';
 import { createPlanAttemptEvent, type PlanExerciseBlock } from '../app/personal_plan_engine_contracts';
 import { readPlanWeakSpotView } from '../app/personal_plan_weak_spot_reader';

@@ -20,6 +20,8 @@ import {
   TOURNAMENT_MIN_REAL_PLAYERS,
   TOURNAMENT_RECEIPTS_SUBCOLLECTION,
   TOURNAMENT_ROOMS_COLLECTION,
+  TOURNAMENT_BOT_FILL_WINDOW_MS,
+  TOURNAMENT_ROOM_GATHER_MS,
   TOURNAMENT_ROOM_SIZE,
   TOURNAMENT_DEV_START_DELAY_MS,
   TOURNAMENT_ROOM_TTL_MS,
@@ -89,6 +91,28 @@ const DEFAULT_TASKS_PER_ROUND = 4; // зеркало TASKS_PER_ROUND (tournament
 const TASKS_PER_MODE_SLICE = 40;
 const DEFAULT_MAX_MS_PER_TASK = 10_000;
 const PLAYER_COLORS = ['#47C870', '#FFC800', '#FF5B6C', '#16B7D9', '#B78CFF', '#FF9F43'] as const;
+/**
+ * Когда сбор комнаты заканчивается и турнир обязан стартовать.
+ *
+ * зачем 2026-07-27 (владелец): «юзер заходит и ждёт 30 секунд… после 30 секунд
+ * добирается ботами на протяжении следующих 45 секунд… когда в комнате 16
+ * начинается отсчёт. Суммарное время ожидания не более полутора минут».
+ * Отсчёт идёт от ВХОДА ПЕРВОГО ЖИВОГО (gatherStartedAtMs), поэтому ожидание
+ * одинаково для всех, кто бы когда ни зашёл. Время слота (startsAt) на старт
+ * больше не влияет — оно осталось только окном, внутри которого можно зайти.
+ */
+function lobbyDeadlineAtMs(
+  data: FirebaseFirestore.DocumentData | undefined,
+  room: { startsAt: number },
+  nowMs: number,
+): number {
+  const gatherStartedAtMs = readInt(data?.gatherStartedAtMs, 0)
+    // Комната без отметки входа (никто ещё не зашёл или старый документ):
+    // считаем от «сейчас», иначе дедлайн окажется в прошлом и лобби залипнет.
+    || Math.max(nowMs, room.startsAt);
+  return gatherStartedAtMs + TOURNAMENT_ROOM_GATHER_MS + TOURNAMENT_BOT_FILL_WINDOW_MS;
+}
+
 const ACTIVE_DEADLINE_STATES: TournamentState[] = [
   'scheduled', 'lobby', 'round1', 'table1', 'round2', 'table2',
   'round3', 'table3', 'round4', 'final', 'results', 'rewards',
@@ -540,25 +564,20 @@ export async function tournamentJoinTransaction(
       }
       return { ok: true, joined: true, alreadyJoined: true, roomId };
     }
-    // зачем 2026-07-27 (владелец: «дев — это чтобы ты тестил, никаких
-    // ограничений»): дев-комната стартует через 12 секунд после нажатия, и
-    // штатные правила входа («только лобби» + «вход закрыт в момент старта»)
-    // делали её непроходимой — пока открывалась шторка подтверждения, комната
-    // уже уходила в round1, и игрок получал «Не удалось войти». Для дев-комнаты
-    // впускаем и после старта. На боевые комнаты это не влияет: там devRoom нет.
-    const isDevRoom = roomSnap.data()?.devRoom === true;
-    if (!isDevRoom) {
-      if (room.state !== 'lobby') throw new HttpsError('failed-precondition', 'room_not_joinable');
-      if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
-    } else if (room.state === TOURNAMENT_STATE_CANCELLED || room.state === 'closed') {
-      throw new HttpsError('failed-precondition', 'room_not_joinable');
-    }
+    // зачем 2026-07-27 (владелец: «убирай дев полностью»): поблажки для
+    // devRoom удалены. Вход открыт только в лобби и только до старта — ровно
+    // те правила, которые увидит игрок. Комната по кнопке им подчиняется.
+    if (room.state !== 'lobby') throw new HttpsError('failed-precondition', 'room_not_joinable');
+    if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
 
     const config = configSnap.exists ? normalizeTournamentSchedule(configSnap.data()) : normalizeTournamentSchedule(null);
     const slot = config.slots.find((candidate) => candidate.slotId === room.slotId && candidate.enabled);
-    // Дев-комната живёт под своим slotId (dev-…), которого нет в расписании —
-    // проверку конфига для неё пропускаем, иначе вход всегда падал бы.
-    if (!slot && !isDevRoom) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+    // зачем: комната, созданная по кнопке, живёт под собственным slotId с
+    // меткой времени — в расписании такого слота нет по построению. Требовать
+    // его наличия значило бы запретить вход в турнир «прямо сейчас», ради
+    // которого функция и существует. Настройки берём из самой комнаты.
+    const roomHasOwnSlot = !slot && Number(roomSnap.data()?.ticketsRequired ?? 0) > 0;
+    if (!slot && !roomHasOwnSlot) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
 
     // зачем: вход переведён с билетов на жемчужины (решение владельца
     // 2026-07-26) — одна валюта вместо двух сущностей. Взнос идёт в банк
@@ -583,7 +602,7 @@ export async function tournamentJoinTransaction(
     // ключом dev-…, поэтому ВТОРОЙ тестовый турнир за день всегда упирался в
     // этот же slotKey и войти было нельзя. Дев-комнату из лимита исключаем —
     // она не влияет ни на банк недели, ни на сезонный рейтинг.
-    if (!isDevRoom && sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
+    if (sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
       throw new HttpsError('failed-precondition', 'slot_already_played');
     }
 
@@ -630,13 +649,12 @@ export async function tournamentJoinTransaction(
     tx.set(userRef, {
       shards: admin.firestore.FieldValue.increment(-entryGems),
       // Маркер «этот слот сегодня уже сыгран» — основа лимита один-турнир-на-слот.
-      // зачем 2026-07-27: дев-комната маркер НЕ ставит. Иначе один тестовый
-      // прогон занимал бы боевое окно на весь день — и владелец, и любой тестер
-      // лишались бы настоящего турнира из-за проверки.
-      ...(isDevRoom ? {} : {
-        tournament_last_slot_key: slotKey,
-        tournament_last_slot_room_id: room.roomId,
-      }),
+      // зачем 2026-07-27 (владелец: «убирай дев полностью»): исключение для
+      // дев-комнат снято, маркер ставится всегда. Комнаты, созданные кнопкой,
+      // под лимит не попадают сами: у каждой собственный slotId с меткой
+      // времени, поэтому slotKey каждый раз новый.
+      tournament_last_slot_key: slotKey,
+      tournament_last_slot_room_id: room.roomId,
       updatedAt: nowMs,
     }, { merge: true });
     tx.set(roomRef, {
@@ -645,6 +663,14 @@ export async function tournamentJoinTransaction(
     tx.set(roomRef, {
       players: nextRoom.players.map(publicTournamentPlayer),
       participantAuthUids: nextRoom.participantAuthUids,
+      // зачем 2026-07-27 (владелец: «юзер заходит и ждёт 30 секунд, за которые
+      // могут подключиться реальные игроки, после 30 секунд добирается ботами»):
+      // отметка входа ПЕРВОГО живого — от неё считаются обе фазы сбора. Ставим
+      // только один раз: второй зашедший не должен продлевать ожидание первому
+      // (владелец: окно жёсткое, живые его не продлевают).
+      ...(readInt(roomSnap.data()?.gatherStartedAtMs, 0) > 0
+        ? {}
+        : { gatherStartedAtMs: nowMs }),
       version: nextRoom.version,
       updatedAt: nowMs,
     }, { merge: true });
@@ -987,17 +1013,29 @@ export async function tournamentFillRoomTransaction(
     if (snap.data()?.ready === true) return 'filled';
     if (room.state === 'scheduled' && !room.stateDeadlineAtMs) return 'skip';
     const nowMs = clock();
-    const fillDeadlineAtMs = room.state === 'scheduled' ? room.stateDeadlineAtMs! : room.startsAt;
+
     const realCount = room.players.filter((player) => !player.isBot).length;
-    // зачем: дев-комната (кнопка владельца «пройти турнир с ботами») играется
-    // одним живым — минимум 8 живых для неё не действует, боты добирают всё.
-    const isDevRoom = snap.data()?.devRoom === true;
-    if (!isDevRoom && realCount < TOURNAMENT_MIN_REAL_PLAYERS) {
-      if (nowMs < room.startsAt - TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS) return 'skip';
-      dependencies.beforeWrites?.();
-      const cancelled = await cancelRoomInTransaction(db, tx, roomRef, room, 'not_enough_players', nowMs);
-      return cancelled ? 'cancelled_players' : 'skip';
-    }
+
+    // зачем 2026-07-27 (владелец: «НИКАКОГО турнир отменяют, это невозможно,
+    // боты ВСЕГДА добивают»): раньше комната без живых отменялась за 30 секунд
+    // до старта (not_enough_players) — игрок мог получить отмену вместо игры.
+    // Отмены по нехватке людей больше нет.
+    //
+    // зачем без исключения для дев-комнаты (владелец: «поведение дев с ботами
+    // должно быть такое как обычная игра в плане добора ботами, иначе как я
+    // проверю»): дев идёт по ТОМУ ЖЕ пути — 30 секунд ожидания, затем добор.
+    // Отличие дев-комнаты только одно: она создаётся сразу и не ждёт слота.
+    //
+    // Добор запускает первый зашедший живой: отсчёт идёт от его входа, а не от
+    // времени слота — поэтому ожидание одинаково, когда бы игрок ни зашёл.
+    if (realCount < 1) return 'skip';
+
+    // Момент, от которого считаются обе фазы (30с ожидания + 45с добора).
+    // gatherStartedAtMs проставляет вход первого живого; у старых комнат поля
+    // нет — откатываемся на «сейчас», чтобы они не залипли навсегда.
+    const gatherStartedAtMs = readInt(snap.data()?.gatherStartedAtMs, 0) || nowMs;
+    // Окно ожидания ещё идёт — не добираем раньше срока, пусть заходят живые.
+    if (nowMs < gatherStartedAtMs + TOURNAMENT_ROOM_GATHER_MS) return 'skip';
     const rounds = buildRounds(room.roomId, resources.tasks, resources.curatedRounds, resources.roundMix);
     const needed = TOURNAMENT_ROOM_SIZE - room.players.length;
     const picked = resources.bots
@@ -1017,6 +1055,14 @@ export async function tournamentFillRoomTransaction(
       fromMs: nowMs,
       startsAtMs: room.startsAt,
     });
+    // зачем 2026-07-27 (владелец: «когда в комнате 16 начинается отсчёт»):
+    // после добора комната ПОЛНАЯ, ждать больше нечего — дедлайн равен моменту
+    // посадки последнего бота (+1 секунда на осадку). Раньше здесь стояло время
+    // слота: комната набиралась за полторы минуты, все 16 были на месте, а
+    // таймер стоял на нулях — это и есть «все на месте, ничего не начинается».
+    const lastBotAtMs = botJoinTimes.length > 0 ? Math.max(...botJoinTimes) : nowMs;
+    const fillDeadlineAtMs = Math.max(nowMs, lastBotAtMs) + 1000;
+
     const botPlayers: TournamentPlayer[] = picked.map((bot, index) => ({
       id: `p_${tournamentHash32(`${room.roomId}:${bot.botId}`).toString(36)}`,
       isBot: true,
@@ -1496,7 +1542,15 @@ export async function advanceRoomAtDeadline(
       tx.set(roomRef, {
         state: 'lobby',
         stateStartedAtMs: nowMs,
-        stateDeadlineAtMs: room.startsAt,
+        // зачем 2026-07-27 (владелец: точные правила подбора): дедлайн лобби —
+        // это КОНЕЦ сбора (30с ожидания + 45с добора от входа первого живого),
+        // а не время слота. Раньше здесь стоял room.startsAt: комната
+        // набиралась за полторы минуты, все 16 были на месте, таймер показывал
+        // 00:00 — и ничего не происходило, потому что дедлайном оставалось
+        // время слота. Именно это владелец видел как «все на месте, время по
+        // нулям, но ничего не начинается». Ниже (state === 'lobby') комната
+        // стартует ещё раньше, как только мест не осталось.
+        stateDeadlineAtMs: lobbyDeadlineAtMs(snap.data(), room, nowMs),
         lifecycleRetryAtMs: admin.firestore.FieldValue.delete(),
         version: room.version + 1,
         updatedAt: nowMs,
@@ -1504,7 +1558,10 @@ export async function advanceRoomAtDeadline(
       return 'advanced';
     }
     if (room.state === 'lobby') {
-      if (snap.data()?.devRoom !== true && room.players.filter((player) => !player.isBot).length < TOURNAMENT_MIN_REAL_PLAYERS) return 'cancel_players';
+      // зачем 2026-07-27 (владелец: «НИКАКОГО турнир отменяют, это невозможно,
+      // боты ВСЕГДА добивают»): здесь комната отменялась по нехватке живых
+      // (cancel_players). Отмена убрана — если живых мало, комнату добьют
+      // боты, а не выкинут игрока с экрана.
       if (snap.data()?.ready !== true || room.rounds.length !== 4 || room.rounds.some((round) => round.taskIds.length === 0)) {
         return 'cancel_resources';
       }
@@ -1870,19 +1927,34 @@ export const tournamentClaimReward = onCall(HOT_CALLABLE_OPTIONS, async (request
   return tournamentClaimTransaction(db, stableUid, roomId, undefined, request.auth.uid);
 });
 
-// ── Дев-турнир: мгновенная комната с ботами (кнопка владельца) ──────────────
+// ── Турнир по требованию: обычная комната, создаваемая мгновенно ────────────
 
 /**
- * зачем: владельцу нужно проходить турнир с ботами НЕ дожидаясь слота
- * расписания: «нажав дев-кнопку сразу доступен вход, играю с ботами».
- * Комната создаётся сразу в лобби со стартом через 3 минуты: fill-крон в
- * штатном режиме доберёт ботов за 2 минуты до старта и скопирует задания,
- * advance-крон поведёт раунды. devRoom:true отключает минимум «8 живых» —
- * иначе комната с одним владельцем отменилась бы с возвратом жемчужин.
- */
-/**
- * Старт дев-комнаты после создания. Не ноль: экран лобби должен успеть
+ * Старт комнаты после создания. Не ноль: экран лобби должен успеть
  * отрисовать состав, иначе игрок видит мигание «пусто → 16 игроков».
+ */
+const INSTANT_ROOM_START_DELAY_MS = 12 * 1000;
+
+/**
+ * Мгновенный турнир: играть можно в любое время, сколько угодно раз.
+ *
+ * зачем 2026-07-27 (владелец): «сделай, чтобы без расписания было доступно
+ * начать игру в турнире в любое время» + «убери ограничение на количество игр
+ * в слот». Штатные комнаты создаёт крон tournamentCreateRooms только внутри
+ * окна слота — вне окна комнаты просто НЕТ, и любая кнопка упиралась бы в
+ * room_not_found. Поэтому комнату собираем здесь и сразу целиком.
+ *
+ * ВАЖНО (прямое требование владельца): это ОБЫЧНЫЙ турнир, а не дев-режим —
+ * devRoom здесь не ставится и дев-логика не используется. Комната идентична
+ * штатной: те же задания из пула, те же боты, тот же ход раундов и наград.
+ * Разница только в том, что она рождается по нажатию, а не по расписанию.
+ *
+ * Ограничение «один турнир на слот» её не касается по построению: у комнаты
+ * собственный slotId с меткой времени, поэтому slotKey каждый раз новый и
+ * маркер tournament_last_slot_key никогда не совпадает. Отдельного обхода
+ * лимита в транзакции входа не потребовалось.
+ *
+ * Стоимость: одна запись батчем на турнир, никаких пустых документов заранее.
  */
 const DEV_ROOM_START_DELAY_MS = 12 * 1000;
 
@@ -1963,7 +2035,10 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
   const batch = db.batch();
   batch.create(roomRef, {
     ...room,
-    devRoom: true,
+    // зачем 2026-07-27 (владелец: «убирай дев полностью»): флаг devRoom снят.
+    // Комната по кнопке — ОБЫЧНЫЙ турнир и играется по штатным правилам, без
+    // поблажек. Дев-ветка маскировала бы баги боевого пути: тестировать надо
+    // ровно то, что увидит игрок.
     ticketsRequired: slot.ticketsRequired,
     timezone: slot.timezone,
     ready: true,
@@ -1984,6 +2059,132 @@ export const adminDevStartTournament = onCall({ ...HOT_CALLABLE_OPTIONS, region:
   await batch.commit();
 
   return { ok: true, roomId, startsAt };
+});
+
+
+// ── Разбор ответов после турнира ────────────────────────────────────────────
+
+/**
+ * Что игрок ответил, что было верно и почему.
+ *
+ * зачем (владелец 2026-07-27): «после турнира можно смотреть свои ответы,
+ * ошибки и правильные варианты, чтобы проанализировать» — как было в арене.
+ *
+ * БЕЗОПАСНОСТЬ: правильные ответы живут в taskSecrets, закрытых от клиента.
+ * Отдаём их ТОЛЬКО когда турнир окончен (results/rewards/closed) и ТОЛЬКО
+ * свои: во время игры это был бы чит, а чужие ответы не нужны никому.
+ */export const tournamentStartNow = onCall({ ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', maxInstances: 1 }, async (request) => {
+  if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
+  const db = admin.firestore();
+  const nowMs = Date.now();
+  const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
+  const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
+  if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
+  if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
+    throw new HttpsError('failed-precondition', 'not_enough_bots');
+  }
+
+  // Комната собирается за одну операцию: боты, раунды и секреты заданий пишутся
+  // сразу, комната ready. Старт через 12 секунд — ровно чтобы экран лобби успел
+  // показать состав и не мигнул.
+  const startsAt = nowMs + INSTANT_ROOM_START_DELAY_MS;
+  const dateKey = dateKeyInTimezone(nowMs, slot.timezone);
+  // Своя метка времени в slotId: комната не конфликтует с комнатой расписания
+  // и не занимает игроку его штатный слот.
+  const roomId = tournamentRoomId(`now-${slot.slotId}-${nowMs}`, slot.timezone, dateKey);
+
+  // Пул проверяем ДО создания: без опубликованных ИИ-вопросов комната
+  // отменилась бы после входа — лучше честная ошибка до списания жемчужин.
+  const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
+  if (!rounds) {
+    throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
+  }
+
+  // Боты: комнату заполняем целиком, одно место оставляем живому игроку.
+  const botPlayers: TournamentPlayer[] = resources.bots
+    .slice(0, TOURNAMENT_ROOM_SIZE - 1)
+    .map((bot, index) => ({
+      id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
+      isBot: true,
+      name: bot.name,
+      avatar: bot.avatarEmoji,
+      color: bot.color || PLAYER_COLORS[index % PLAYER_COLORS.length],
+      score: 0,
+      streak: 0,
+      botWinRate: bot.winRate,
+    }));
+
+  const taskMap = new Map(resources.tasks.map((task) => [task.taskId, task]));
+  const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
+    .map((taskId) => taskMap.get(taskId))
+    .filter((task): task is TournamentTask => !!task);
+
+  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+  const room: TournamentRoomDoc = {
+    roomId,
+    // зачем: собственный slotId с меткой времени — именно он снимает лимит
+    // «один турнир на слот в день». slotKey в транзакции входа собирается как
+    // `${slotId}_${дата}`, поэтому у каждого турнира по требованию он свой и
+    // маркер профиля никогда не совпадает: играть можно сколько угодно раз.
+    slotId: `now-${slot.slotId}-${nowMs}`,
+    seed: roomId,
+    state: 'lobby',
+    startsAt,
+    players: botPlayers.map(publicTournamentPlayer),
+    rounds,
+    participantAuthUids: [],
+    participantAuthUidsComplete: true,
+    stateStartedAtMs: nowMs,
+    stateDeadlineAtMs: startsAt,
+    version: 0,
+    createdAtMs: nowMs,
+    expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
+  };
+
+  // Батч вместо серии запросов: комната + секреты заданий + метаданные ботов
+  // уезжают одним round-trip — это и есть «за секунду».
+  const batch = db.batch();
+  batch.create(roomRef, {
+    ...room,
+    // devRoom НЕ ставится: это обычная комната, идущая по штатным правилам.
+    ticketsRequired: slot.ticketsRequired,
+    timezone: slot.timezone,
+    ready: true,
+    readyAtMs: nowMs,
+    // зачем: комната создана «под игрока», который сейчас в неё войдёт. Крон
+    // добора ботами отсчитывает окно сбора от этого момента — состав уже полон,
+    // поэтому добирать нечего, но поле держим заполненным для единообразия.
+    gatherStartedAtMs: nowMs,
+    featureGates: tournamentFeatureGates(),
+    expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
+  });
+  for (const task of selectedTasks) {
+    batch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
+  }
+  batch.create(
+    roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
+    {
+      kind: 'bot_simulation_v1',
+      bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
+    },
+  );
+  await batch.commit();
+
+  // зачем: комната стартует через 12 секунд, а штатный вход требует
+  // state === 'lobby' И nowMs < startsAt. Если оставить вход на отдельный тап,
+  // игрок, задержавшийся на шторке подтверждения, получал бы join_cutoff_elapsed
+  // на комнате, созданной ровно для него. Поэтому сажаем его здесь же — тем же
+  // tournamentJoinTransaction, что и обычный вход: жемчужины списываются как
+  // всегда, взнос идёт в банк, правила одни и те же.
+  const stableUid = await resolveStableUid(db, request.auth.uid);
+  await assertNotBanned(db, stableUid);
+  const joined = await tournamentJoinTransaction(db, {
+    authUid: request.auth.uid,
+    stableUid,
+    roomId,
+  });
+
+  return { ok: true, roomId, startsAt, ...joined };
 });
 
 

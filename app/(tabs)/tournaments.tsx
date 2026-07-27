@@ -79,11 +79,11 @@ import {
   V2RatingRow,
 } from '../../components/tournament/tournament_v2_ui';
 import {
-  devStartTournament,
   isRoundState,
   isTableState,
   joinTournament,
   loadSchedule,
+  startTournamentNow,
   tournamentDateKey,
   tournamentNow,
   tournamentRoomId,
@@ -405,6 +405,18 @@ export default function TournamentsScreen() {
     && !windowPlayed
     && (windowOpen || (secondsToStart > 0 && joinOpensInSec === 0));
 
+  /**
+   * зачем 2026-07-27 (владелец): «сделай, чтобы без расписания было доступно
+   * начать игру в турнире в любое время» и «убери ограничение на количество
+   * игр в слот». Вход больше не упирается ни в окно, ни в «уже играли»: когда
+   * штатное окно закрыто, сервер собирает ОБЫЧНУЮ комнату по требованию
+   * (tournamentStartNow) — те же задания, боты, раунды и награды.
+   *
+   * Расписание при этом живо: пока окно идёт, играем именно комнату слота,
+   * чтобы игроки попадали друг к другу, а не расходились по личным комнатам.
+   */
+  const instantEntry = !joinWindowOpen;
+
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
   const goToShop = useCallback(() => router.push('/shards_shop' as any), [router]);
@@ -416,19 +428,31 @@ export default function TournamentsScreen() {
    * Двойной тап отсекается флагом joining, иначе спишется дважды.
    */
   const enterLobby = useCallback(async () => {
-    if (!joinRoomId || joining) return;
+    if (joining) return;
+    if (!instantEntry && !joinRoomId) return;
     setJoining(true);
     const balanceBefore = coins;
     setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
     try {
-      const result = await joinTournament(joinRoomId) as { gemsLeft?: number; roomId?: string } | undefined;
+      // Окно закрыто — сервер соберёт обычную комнату прямо сейчас и сразу
+      // посадит в неё игрока (вход и списание идут одной транзакцией, иначе
+      // комната успевала бы стартовать, пока открыта шторка подтверждения).
+      const result = (instantEntry
+        ? await startTournamentNow()
+        : await joinTournament(joinRoomId as string)) as { gemsLeft?: number; roomId?: string } | undefined;
       if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
       setConfirmVisible(false);
       setJoinError('');
       // зачем 2026-07-27 (владелец: один турнир на окно): помечаем окно как
       // отыгранное СРАЗУ. Вернувшись с турнира, игрок увидит отсчёт до
       // следующего турнира, а не живую кнопку, которая упадёт slot_already_played.
-      const playedWindow = windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
+      //
+      // зачем 2026-07-27 (владелец: «убери ограничение на количество игр в
+      // слот»): для мгновенного турнира окно НЕ помечается — иначе один прогон
+      // закрывал бы кнопку на всё окно, а играть можно сколько угодно раз.
+      const playedWindow = instantEntry
+        ? 0
+        : windowState.activeWindowStartMs || nextSlot?.startsAtMs || 0;
       if (playedWindow) {
         setPlayedWindowStartMs(playedWindow);
         void rememberPlayedWindow(playedWindow);
@@ -457,38 +481,18 @@ export default function TournamentsScreen() {
           ? 'В этом турнире вы уже играли. Ждём вас в следующем'
           : code.includes('join_cutoff_elapsed')
             ? 'Турнир уже начался. Ждём вас в следующем'
-            : 'Не удалось войти. Попробуйте ещё раз');
+            // Пул заданий пуст — турнир собрать не из чего. Общее «попробуйте
+            // ещё раз» тут врёт: повтор не поможет, нужны опубликованные вопросы.
+            : code.includes('no_published_ai_tasks')
+              ? 'Вопросы для турнира ещё не опубликованы'
+              : 'Не удалось войти. Попробуйте ещё раз');
     } finally {
       setJoining(false);
     }
-  }, [joinRoomId, joining, router, coins, entryGems, windowState.activeWindowStartMs, nextSlot]);
-
-  /**
-   * зачем: дев-кнопка владельца — «нажал и сразу играю с ботами», не дожидаясь
-   * слота. Сервер (admin-only) мгновенно создаёт комнату в лобби со стартом
-   * через 3 минуты и снятым минимумом «8 живых»; дальше штатный вход.
-   */
-  const [devStarting, setDevStarting] = useState(false);
-  const startDevTournament = useCallback(async () => {
-    if (devStarting || joining) return;
-    setDevStarting(true);
-    try {
-      const created = await devStartTournament();
-      if (!created?.roomId) throw new Error('no_room');
-      await joinTournament(created.roomId);
-      router.push({ pathname: '/tournament_lobby', params: { roomId: created.roomId } });
-    } catch (error) {
-      const code = String((error as { message?: string })?.message ?? '');
-      setJoinError(code.includes('no_published_ai_tasks')
-        ? 'Пул пуст: опубликуй ИИ-вопросы в админке'
-        : code.includes('not_enough_gems')
-          ? 'Не хватает жемчужин'
-          : `Дев-турнир не создался: ${code || 'ошибка'}`);
-      setConfirmVisible(true);
-    } finally {
-      setDevStarting(false);
-    }
-  }, [devStarting, joining, router]);
+  }, [
+    joinRoomId, joining, router, coins, entryGems,
+    windowState.activeWindowStartMs, nextSlot, instantEntry,
+  ]);
 
   const contentPadding = useMemo(
     () => ({ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 120 }),
@@ -622,12 +626,14 @@ export default function TournamentsScreen() {
                 // жемчужин — игрок упирался в мёртвую кнопку и не понимал, что
                 // делать. Теперь она всегда живая: не хватает — ведём в
                 // магазин, где проблему можно решить в один тап.
-                // Вход ещё не открыт — не даём жать: сервер всё равно откажет.
-                // Нехватка жемчужин при этом остаётся живой кнопкой в магазин:
-                // это единственная проблема, которую игрок может решить сейчас.
+                //
+                // зачем 2026-07-27 (владелец: играть в любое время, без лимита
+                // на слот): кнопка больше не гаснет вне окна и не гаснет после
+                // отыгранного турнира — вне окна вход идёт в комнату, которую
+                // сервер соберёт по требованию. Мёртвых состояний не осталось.
                 onPress={notEnoughGems ? goToShop : openConfirm}
-                disabled={joining || (!notEnoughGems && !joinWindowOpen)}
-                right={nextSlot && !notEnoughGems && joinWindowOpen ? (
+                disabled={joining}
+                right={!notEnoughGems ? (
                   <View style={styles.ctaPrice}>
                     <Image
                       source={coinIconForBalance(entryGems, themeMode)}
@@ -656,17 +662,11 @@ export default function TournamentsScreen() {
                         : `Вход за ${Math.max(1, Math.round(lobbyOpenSec / 60))} минут до старта`}
               </V2Cta>
             )}
-            {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}
-            {__DEV__ ? (
-              <V2Cta
-                tone="ghost"
-                onPress={startDevTournament}
-                disabled={devStarting}
-                style={styles.devCta}
-              >
-                {devStarting ? 'Создаём комнату…' : 'Дев-турнир с ботами'}
-              </V2Cta>
-            ) : null}
+            {/* зачем 2026-07-27 (владелец: «убирай дев полностью»): дев-кнопка
+                «Турнир с ботами» удалена. Она была костылём, пока обычный вход
+                работал только по расписанию; теперь вход в турнир доступен в
+                любое время, и отдельная дев-ветка только маскировала бы баги
+                боевого пути — тестировать надо ровно то, что увидит игрок. */}
           </V2Card>
         </Animated.View>
 

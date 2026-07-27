@@ -142,10 +142,19 @@ describe('экраны режима «Турниры»', () => {
     expect(lobby).toMatch(/Array\.from\(\{ length: SEATS \}/);
   });
 
-  it('раунд: батч из 5 вопросов и пауза перед следующим', () => {
+  it('раунд: батч из 4 вопросов и пауза перед следующим', () => {
+    // зачем 2026-07-27: было 5 — тест отстал от решения владельца. Правда
+    // теперь одна на обе стороны: сервер раздаёт TASKS_PER_ROUND = 4
+    // (functions/src/tournament_ai_blueprint.ts, зеркало DEFAULT_TASKS_PER_ROUND
+    // в tournaments.ts), экран показывает столько же. Раунд из 4 вопросов
+    // × 4 раунда = 16 заданий на турнир.
     const round = read('app/tournament_round.tsx');
-    expect(round).toContain('const QUESTIONS_PER_ROUND = 5');
+    expect(round).toContain('const QUESTIONS_PER_ROUND = 4');
     expect(round).toContain('motion.answerFeedbackMs');
+
+    // Клиент и сервер обязаны сходиться: расхождение = раунд не наберётся.
+    const blueprint = read('functions/src/tournament_ai_blueprint.ts');
+    expect(blueprint).toContain('export const TASKS_PER_ROUND = 4');
 
     const theme = read('components/tournament/tournament_theme.ts');
     // 1.4с — согласованный тайминг автоперехода после фидбека.

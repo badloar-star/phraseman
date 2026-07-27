@@ -26,6 +26,7 @@ import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
 import { triLang } from '../constants/i18n';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   onClose: () => void;
@@ -280,7 +281,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.45,
     shadowRadius: 28,
-    elevation: 24,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 23.5,

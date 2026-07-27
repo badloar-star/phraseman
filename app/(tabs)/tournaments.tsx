@@ -72,6 +72,7 @@ import {
   useTournamentRoom,
 } from '../tournament_client';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 /** Слот расписания — форма совпадает с TournamentSlotConfig на сервере. */
 type ScheduleSlot = {
   slotId: string;
@@ -83,19 +84,64 @@ type ScheduleSlot = {
 };
 type ScheduleConfig = { slots: ScheduleSlot[]; entryGems?: number };
 
-/** Момент сегодняшнего старта слота. */
+/**
+ * Момент сегодняшнего старта слота — В ТАЙМЗОНЕ СЛОТА, а не устройства.
+ *
+ * зачем 2026-07-27: было `target.setHours(15, 20)` — «15:20» трактовалось как
+ * МЕСТНОЕ время игрока. Для расписания в Europe/Moscow это значит, что игрок в
+ * Киеве видел отсчёт на час мимо, а в Алматы — на три: таймер врал, «Играть»
+ * открывалась не тогда, и roomId (он собирается по дате в таймзоне слота) мог
+ * указывать на чужой день. Считаем смещение таймзоны слота честно.
+ */
 function slotStartMs(slot: ScheduleSlot): number {
   const match = /^(\d{2}):(\d{2})$/.exec(slot.localTime ?? '');
   if (!match) return 0;
-  const target = new Date();
-  target.setHours(Number(match[1]), Number(match[2]), 0, 0);
-  return target.getTime();
+  const timezone = slot.timezone || 'Europe/Moscow';
+  const hours = Number(match[1]);
+  const minutes = Number(match[2]);
+  try {
+    // Сегодняшняя дата ГЛАЗАМИ таймзоны слота (там уже может быть другой день).
+    const dateKey = new Date().toLocaleDateString('en-CA', { timeZone: timezone });
+    const [year, month, day] = dateKey.split('-').map(Number);
+    // Пробное UTC-время → смотрим, сколько показывают часы в таймзоне слота,
+    // и сдвигаем на разницу. Так учитывается и переход на летнее время.
+    const probe = Date.UTC(year, month - 1, day, hours, minutes, 0, 0);
+    const shown = new Date(probe).toLocaleString('en-US', { timeZone: timezone, hour12: false });
+    const shownMs = new Date(shown.replace(/(\d+)\/(\d+)\/(\d+)/, '$3-$1-$2')).getTime();
+    const localMs = new Date(`${dateKey}T${match[1]}:${match[2]}:00`).getTime();
+    if (!Number.isFinite(shownMs) || !Number.isFinite(localMs)) throw new Error('tz_parse');
+    return probe + (localMs - shownMs);
+  } catch {
+    // Экзотическая таймзона или сломанный Intl — экран обязан остаться рабочим.
+    const target = new Date();
+    target.setHours(hours, minutes, 0, 0);
+    return target.getTime();
+  }
 }
 
-function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number })[] {
+/**
+ * Время старта на ЧАСАХ ИГРОКА.
+ *
+ * зачем 2026-07-27 (владелец): расписание задано в таймзоне слота (Москва), но
+ * игрок должен видеть время своего города — иначе он считает разницу в уме и
+ * опаздывает. «15:20 МСК» для Алматы показывается как «17:20».
+ */
+function slotDisplayTime(startsAtMs: number, fallback: string): string {
+  if (!startsAtMs) return fallback;
+  try {
+    return new Date(startsAtMs).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
+  } catch {
+    return fallback;
+  }
+}
+
+function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string })[] {
   return slots
     .filter((slot) => slot.enabled === true && /^\d{2}:\d{2}$/.test(slot.localTime ?? ''))
-    .map((slot) => ({ ...slot, startsAtMs: slotStartMs(slot) }))
+    .map((slot) => {
+      const startsAtMs = slotStartMs(slot);
+      return { ...slot, startsAtMs, displayTime: slotDisplayTime(startsAtMs, slot.localTime) };
+    })
     .sort((a, b) => a.startsAtMs - b.startsAtMs);
 }
 
@@ -134,6 +180,12 @@ function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
 }
 
 const DEFAULT_ENTRY_GEMS = 3;
+/**
+ * За сколько до старта сервер открывает вход. Копия TOURNAMENT_LOBBY_OPEN_MS
+ * (functions/src/tournament_core.ts) — числа обязаны совпадать, иначе кнопка
+ * снова разойдётся с реальностью.
+ */
+const LOBBY_OPEN_SEC = 5 * 60;
 const SCHEDULE_TIMEOUT_MS = 8000;
 
 /**
@@ -238,6 +290,17 @@ export default function TournamentsScreen() {
   );
   const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
   const notEnoughGems = coins < entryGems;
+
+  /**
+   * зачем 2026-07-27: кнопка «Играть» была активна ЗА ЧАС до турнира, хотя
+   * сервер открывает вход только за 5 минут до старта (TOURNAMENT_LOBBY_OPEN_MS,
+   * состояние комнаты 'lobby'). Тап раньше времени гарантированно возвращал
+   * room_not_joinable — игрок жал живую кнопку и получал «Не удалось войти».
+   * Теперь окно входа считается на клиенте той же формулой, что на сервере:
+   * до открытия кнопка честно говорит, через сколько откроется вход.
+   */
+  const joinOpensInSec = Math.max(0, secondsToStart - LOBBY_OPEN_SEC);
+  const joinWindowOpen = Boolean(joinRoomId) && secondsToStart > 0 && joinOpensInSec === 0;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
@@ -350,16 +413,6 @@ export default function TournamentsScreen() {
     }));
   }, [bank, seasonTop, me]);
 
-  /** Одна живая строка про мою позицию — с юмором, как просил владелец. */
-  const bankMeLine = useMemo(() => {
-    if (!me) return 'Вас в таблице пока нет. Один турнир — и вы в игре за банк.';
-    if (myPlace === 1) return 'Вы первый. Держитесь — за спиной дышат.';
-    if (myPlace === 2 || myPlace === 3) return `Вы ${myPlace}-й и уже в призах. Не расслабляйтесь.`;
-    const third = seasonTop[2]?.points ?? 0;
-    const gap = third > me.points ? third - me.points + 1 : 0;
-    if (gap > 0) return `До призовой тройки — ${gap} очков. Это пара турниров.`;
-    return 'Вы у самой тройки. Ещё рывок.';
-  }, [me, myPlace, seasonTop]);
 
   return (
     <View style={styles.root}>
@@ -447,9 +500,12 @@ export default function TournamentsScreen() {
                 // жемчужин — игрок упирался в мёртвую кнопку и не понимал, что
                 // делать. Теперь она всегда живая: не хватает — ведём в
                 // магазин, где проблему можно решить в один тап.
+                // Вход ещё не открыт — не даём жать: сервер всё равно откажет.
+                // Нехватка жемчужин при этом остаётся живой кнопкой в магазин:
+                // это единственная проблема, которую игрок может решить сейчас.
                 onPress={notEnoughGems ? goToShop : openConfirm}
-                disabled={!joinRoomId || joining}
-                right={nextSlot && !notEnoughGems ? (
+                disabled={joining || (!notEnoughGems && !joinWindowOpen)}
+                right={nextSlot && !notEnoughGems && joinWindowOpen ? (
                   <View style={styles.ctaPrice}>
                     <Image
                       source={coinIconForBalance(entryGems, themeMode)}
@@ -467,7 +523,12 @@ export default function TournamentsScreen() {
               >
                 {notEnoughGems
                   ? `Пополнить · нужно ещё ${entryGems - coins}`
-                  : joinRoomId ? 'Играть' : 'Скоро откроем'}
+                  : !joinRoomId
+                    ? 'Скоро откроем'
+                    : joinWindowOpen
+                      ? 'Играть'
+                      // Без таймера: крупный отсчёт уже стоит выше, дубль лишний.
+                      : 'Вход за 5 минут до старта'}
               </V2Cta>
             )}
             {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}
@@ -660,9 +721,6 @@ export default function TournamentsScreen() {
           ))}
         </View>
 
-        {/* Моя позиция: главный мотиватор — сколько очков до призовой тройки. */}
-        <Text style={styles.bankSheetMe}>{bankMeLine}</Text>
-
         <Text style={styles.bankSheetHint}>
           С каждого турнира пятая часть взносов падает сюда и копится всю неделю.
           В ночь на понедельник тройка лучших забирает всё — и банк начинается заново.
@@ -803,7 +861,7 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 3,
+    ...noAndroidOutline,
   },
   tlLink: { flex: 1, height: 3, borderRadius: 2, backgroundColor: P.elev2, marginHorizontal: 6, marginBottom: 22 },
   tlLabel: { fontSize: 12, fontWeight: '800', color: P.ghost, fontVariant: ['tabular-nums'] },
@@ -823,12 +881,15 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   rowStarsText: { fontSize: 15, fontWeight: '900', color: P.gold, fontVariant: ['tabular-nums'] },
   seasonMore: {
     flexDirection: 'row',
+    // зачем: шевронку выдавливало на вторую строку под текст — текст занимал
+    // всю ширину ряда. nowrap + shrink у подписи держат их в одну строку.
+    flexWrap: 'nowrap',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 4,
     paddingVertical: 12,
   },
-  seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted },
+  seasonMoreText: { fontSize: 15, fontWeight: '800', color: P.muted, flexShrink: 1 },
   // зачем: пустая таблица в начале недели — нормальное состояние (боты в
   // рейтинг не идут), текст объясняет это вместо заглушки с выдуманными людьми.
   seasonEmpty: {
@@ -857,7 +918,16 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   bankSharePlace: { width: 22, fontSize: 15, fontWeight: '900', fontVariant: ['tabular-nums'] },
   bankShareName: { flex: 1, fontSize: 15, fontWeight: '700', color: P.text },
   bankShareGems: { fontSize: 17, fontWeight: '900', color: P.gold, fontVariant: ['tabular-nums'] },
-  bankSheetHint: { fontSize: 14, fontWeight: '700', color: P.muted, lineHeight: 20, marginTop: 16 },
+  // зачем: подсказка прилипала к кнопке «Понятно» — воздух снизу больше,
+  // чем сверху, чтобы текст читался отдельно от управляющего элемента.
+  bankSheetHint: {
+    fontSize: 14,
+    fontWeight: '700',
+    color: P.muted,
+    lineHeight: 20,
+    marginTop: 18,
+    marginBottom: 8,
+  },
   bankSheetMe: {
     fontSize: 15,
     fontWeight: '700',

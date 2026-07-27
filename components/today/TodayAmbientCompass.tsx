@@ -14,6 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 type Props = {
   ownerVisible: boolean;
   entryEpoch: number;
@@ -148,6 +149,6 @@ const styles = StyleSheet.create({
   glow: { position: 'absolute', width: 126, height: 126, borderRadius: 63 },
   outerRing: { position: 'absolute', width: OUTER_RING_SIZE, height: OUTER_RING_SIZE, borderRadius: OUTER_RING_SIZE / 2, borderWidth: 1 },
   innerRing: { position: 'absolute', width: INNER_RING_SIZE, height: INNER_RING_SIZE, borderRadius: INNER_RING_SIZE / 2, borderWidth: 1, borderStyle: 'dashed' },
-  core: { width: CORE_SIZE, height: CORE_SIZE, borderRadius: CORE_SIZE / 2, borderWidth: 1, alignItems: 'center', justifyContent: 'center', shadowColor: '#79A92B', shadowOpacity: 0.18, shadowRadius: 24, shadowOffset: { width: 0, height: 12 }, elevation: 3 },
+  core: { width: CORE_SIZE, height: CORE_SIZE, borderRadius: CORE_SIZE / 2, borderWidth: 1, alignItems: 'center', justifyContent: 'center', shadowColor: '#79A92B', shadowOpacity: 0.18, shadowRadius: 24, shadowOffset: { width: 0, height: 12 }, ...noAndroidOutline,},
   needle: { width: 14, height: 50 },
 });

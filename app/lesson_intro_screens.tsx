@@ -57,6 +57,7 @@ import {
   levelColor,
 } from './lesson_intro_rich';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
   lessonId: number;
@@ -960,7 +961,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.35,
     shadowRadius: 10,
-    elevation: 4,
+    ...noAndroidOutline,
   },
   cardTitle: {
     fontWeight: '800',
@@ -1034,7 +1035,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.45,
     shadowRadius: 16,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   ctaText: {
     fontWeight: '800',

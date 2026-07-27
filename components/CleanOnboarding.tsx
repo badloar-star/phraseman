@@ -33,6 +33,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 import { getDeviceBootstrapLocale, type Lang } from '../constants/i18n';
+import { softShadow } from '../constants/androidGlow';
 import { ENABLE_DEV_STUDY_TARGET_LANG, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 // зачем: онбординг подтверждает только факт «есть ли 16» (self-attestation), года
 // рождения не спрашиваем — поэтому импортируем attestation-API, а не запись года.
@@ -57,7 +58,7 @@ import {
   MANDATORY_ONBOARDING_STEP,
   type OnboardingStepId,
 } from '../app/onboarding_flow';
-import OnboardingWelcomeSheet from './OnboardingWelcomeSheet';
+import { markOnboardingWelcomePending } from '../app/onboarding_welcome_state';
 import {
   ONBOARDING_REQUESTED_STUDY_TARGET_KEY,
   prefetchAndRecordStudyTargetServerPack,
@@ -87,6 +88,7 @@ import {
   type AuthProviderId,
 } from '../app/auth_provider';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const WELCOME_LOGO_SOURCE = require('../assets/images/flow_clean_202607/logo_cutout.webp');
 const ONBOARDING_ASSETS = {
   sourceTiktok: require('../assets/images/flow_clean_202607/source_tiktok.webp'),
@@ -615,13 +617,19 @@ function WelcomeLogo() {
 
   return (
     <Animated.View style={{ opacity: enter, transform: [{ scale }] }}>
+      {/* зачем: на Android elevation погашен (иначе система рисует квадрат),
+          поэтому свечение даёт отдельный скруглённый слой под плиткой —
+          форма под нашим контролем, как на iOS. Статичный: у плитки уже есть
+          свой breathe-луп, второй анимации здесь не нужно. */}
+      <View pointerEvents="none" style={styles.logoTileGlow} />
       <LinearGradient
         colors={['rgba(238,245,255,0.34)', 'rgba(123,140,255,0.16)', 'rgba(201,92,255,0.12)']}
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.logoTileLarge}
       >
-        <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" />
+        {/* декоративный логотип: смысл несёт заголовок под плиткой */}
+        <Image source={WELCOME_LOGO_SOURCE} style={styles.logoImageLarge} resizeMode="contain" accessible={false} />
       </LinearGradient>
     </Animated.View>
   );
@@ -1064,7 +1072,6 @@ function CleanOnboarding({
   const [welcomeSheetEnabled, setWelcomeSheetEnabled] = useState(
     () => getRemoteBool('onboarding_welcome_sheet_enabled'),
   );
-  const [welcomeSheetVisible, setWelcomeSheetVisible] = useState(false);
   const finishingRef = useRef(false);
   const paywallTransitionBusyRef = useRef(false);
 
@@ -1499,16 +1506,16 @@ function CleanOnboarding({
       } else {
         await setAnalyticsConsent('denied').catch(() => null);
       }
-      // зачем: владелец (2026-07-26) — после последнего экрана показываем
-      // приветственную шторку. onDone() откладываем до её закрытия, иначе
-      // родитель размонтирует онбординг и шторку никто не увидит. Рубильник
-      // выключен → поведение ровно как раньше, без задержки.
+      // зачем: владелец (2026-07-27) — приветственную шторку показываем НЕ поверх
+      // последнего экрана анкеты, а когда уже открылась главная. Поэтому здесь
+      // только ставим одноразовый флаг и сразу отдаём управление; шторку поднимет
+      // OnboardingWelcomeHost из _layout.tsx через OverlayArbiter. Рубильник
+      // выключен → флага нет, поведение ровно как раньше.
       if (welcomeSheetEnabled) {
-        setWelcomeSheetVisible(true);
+        await markOnboardingWelcomePending();
         trackOnboarding('onboarding_welcome_sheet_view', { skipped: skippedRef.current });
-      } else {
-        onDone();
       }
+      onDone();
       void resumePendingGeneratedNickname();
       void AsyncStorage.multiRemove([STEP_KEY, PERSONAL_PLAN_ONBOARDING_NICKNAME_PENDING_KEY]).catch(() => {});
       void recordConsentToCloud().catch(() => null);
@@ -1531,15 +1538,6 @@ function CleanOnboarding({
     welcomeSheetEnabled,
   ]);
 
-  // зачем: шторка закрыта → отдаём управление приложению. Ровно один вызов
-  // onDone (гард), чтобы свайп + кнопка не увели дважды.
-  const welcomeDoneRef = useRef(false);
-  const handleWelcomeClose = useCallback(() => {
-    setWelcomeSheetVisible(false);
-    if (welcomeDoneRef.current) return;
-    welcomeDoneRef.current = true;
-    onDone();
-  }, [onDone]);
 
   if (!restored) {
     return (
@@ -2035,13 +2033,6 @@ function CleanOnboarding({
       ) : (
         <Animated.View style={[styles.stepSlide, slideStyle]}>{renderStep(displayStep)}</Animated.View>
       )}
-      {/* зачем: имени на последнем шаге нет — там возраст и согласия, ник
-          генерируется автоматически. Поэтому здороваемся без имени, а не
-          подставляем сгенерированный ник, который человек ещё не видел. */}
-      <OnboardingWelcomeSheet
-        visible={welcomeSheetVisible}
-        onClose={handleWelcomeClose}
-      />
     </View>
     </OnboardingSkipContext.Provider>
     </OnboardingOrderContext.Provider>
@@ -2215,16 +2206,33 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 0,
-    borderColor: 'rgba(231,238,255,0.42)',
     backgroundColor: 'rgba(255,255,255,0.08)',
     marginBottom: 36,
-    shadowColor: '#B7C8FF',
-    shadowOpacity: 0.34,
-    shadowRadius: 30,
-    shadowOffset: { width: 0, height: 16 },
-    elevation: 10,
+    // зачем: фон плитки рисует LinearGradient поверх полупрозрачного bg, поэтому
+    // Android не может вывести скруглённый outline и заливал КВАДРАТ 148×148
+    // вокруг логотипа. iOS-свечение (эталон владельца) оставляем как было,
+    // на Android elevation гасим — мягкий ореол даёт GlowHalo ниже.
+    ...softShadow({
+      color: '#B7C8FF',
+      opacity: 0.34,
+      radius: 30,
+      offsetY: 16,
+      backgroundColor: 'rgba(255,255,255,0.08)',
+      elevation: 10,
+    }),
     overflow: 'hidden',
+  },
+  // зачем: Android-замена elevation-свечению. Скруглённый слой на 10px шире
+  // плитки, лежит под ней (по потоку — до неё) и повторяет её радиус 32+10.
+  // На iOS не мешает: там работает родная shadow-тень, слой лишь чуть мягче.
+  logoTileGlow: {
+    position: 'absolute',
+    alignSelf: 'center',
+    top: -10,
+    width: 168,
+    height: 168,
+    borderRadius: 42,
+    backgroundColor: 'rgba(183,200,255,0.16)',
   },
   logoImageLarge: {
     width: 140,
@@ -2672,7 +2680,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.04,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: 5 },
-    elevation: 1,
+    ...noAndroidOutline,
   },
   plusBenefitIcon: {
     width: 40,
@@ -2936,7 +2944,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.06,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 2,
+    ...noAndroidOutline,
   },
   paywallPlanCardSelected: {
     borderColor: '#8B7CFF',

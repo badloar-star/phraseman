@@ -76,6 +76,7 @@ import {
     patchDailyTasksScreenProgress,
     peekDailyTasksScreenSnapshot,
 } from './daily_tasks_screen_cache';
+import { noAndroidOutline } from '../constants/androidGlow';
 const PREMIUM_TASK_TYPES = new Set<TaskType>([]);
 const EMPTY_DAILY_TASKS: DailyTask[] = [];
 const EMPTY_DAILY_PROGRESS: TaskProgress[] = [];
@@ -3862,7 +3863,7 @@ const dailyTaskStyles = StyleSheet.create({
         shadowOffset: { width: 0, height: 4 },
         shadowOpacity: 0.22,
         shadowRadius: 8,
-        elevation: 2,
+        ...noAndroidOutline,
     },
     claimedPill: {
         minHeight: 30,
@@ -3889,7 +3890,7 @@ const rerollStyles = StyleSheet.create({
         padding: 24,
         alignItems: 'center',
         gap: 12,
-        elevation: 20,
+        ...noAndroidOutline,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 8 },
         shadowOpacity: 0.35,

@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
 interface ReferralAccessEndedModalProps {
@@ -236,7 +237,7 @@ function makeStyles(t: ReferralAccessEndedModalProps['t']) {
       shadowOffset: { width: 0, height: 8 },
       shadowOpacity: 0.18,
       shadowRadius: 20,
-      elevation: 10,
+      ...noAndroidOutline,
     },
     closeButton: {
       position: 'absolute',

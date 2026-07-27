@@ -40,6 +40,7 @@ import { LinearGradient } from './SafeLinearGradient';
 import PremiumCard from './PremiumCard';
 import RegistrationPromptModal from './RegistrationPromptModal';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const DISMISSED_AT_KEY = 'auth_save_banner_dismissed_at';
 const XP_THRESHOLD = 1000;
 const DISMISS_COOLDOWN_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
@@ -262,7 +263,7 @@ function SaveProgressBanner() {
               shadowOpacity: 0.34,
               shadowRadius: 12,
               shadowOffset: { width: 0, height: 6 },
-              elevation: 5,
+              ...noAndroidOutline,
             }}
           >
             <LinearGradient

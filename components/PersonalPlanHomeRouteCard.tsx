@@ -10,6 +10,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import type { PersonalPlanHomeSnapshot } from '../app/personal_plan_state';
 import { getPersonalPlanArt } from '../app/personal_plan_art';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   compactMargin?: boolean;
   snapshot: PersonalPlanHomeSnapshot;
@@ -177,7 +178,7 @@ const styles = StyleSheet.create<{
     shadowOpacity: 0.24,
     shadowRadius: 12,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 5,
+    ...noAndroidOutline,
   },
   compactMargin: {
     marginHorizontal: 8,

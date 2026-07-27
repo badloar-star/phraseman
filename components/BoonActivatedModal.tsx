@@ -22,6 +22,7 @@ import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 import { GiftOpenBurst } from './GiftOpenEffects';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface BoonActivatedModalProps {
   visible: boolean;
   /** Тихий бонус дня (null = нечего показывать). */
@@ -238,7 +239,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 30,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 16,
+    ...noAndroidOutline,
   },
   topGlow: { position: 'absolute', top: 0, left: 0, right: 0, height: 90 },
   iconFrame: {

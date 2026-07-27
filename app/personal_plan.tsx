@@ -59,6 +59,7 @@ import { getTrainerCounts } from './trainer_store';
 import { resolvePersonalPlanTrainerWeakSpotDueCount } from './personal_plan_trainer_weak_spot_gate';
 import { resolvePersonalPlanFlashcardsReviewCount } from './personal_plan_flashcards_review_gate';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type LoadedPlan = {
   plan: PersonalPlanDefinition;
   state: PersonalPlanState;
@@ -996,7 +997,7 @@ const styles = StyleSheet.create({
   heroCard: {
     borderRadius: 14, borderWidth: 0,
     padding: 18, gap: 0,
-    elevation: 8, shadowOffset: { width: 0, height: 8 },
+    ...noAndroidOutline, shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18, shadowRadius: 20,
   },
   heroRow: { flexDirection: 'row', gap: 16, alignItems: 'flex-start' },

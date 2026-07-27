@@ -77,6 +77,7 @@ import { safeRouterBack } from './navigation_back';
 import { visiblePercentile } from './stats_percentile_display';
 import { getReviveOffer, type StreakReviveOffer } from './streak_revive';
 import { doubleXpMultiplier, earlyBirdMultiplier } from './boons/boon_effects_xp';
+import { noAndroidOutline } from '../constants/androidGlow';
 const CHART_H = 110;
 const DAYS_SHOW = 14;
 function debugStatsRoute(stage: string, extra?: unknown) {
@@ -1982,7 +1983,7 @@ function StreakStatsHero({ t, f, lang, themeMode, totalStreak, bestStreak, days,
         shadowOpacity: 0.28,
         shadowRadius: 8,
         shadowOffset: { width: 0, height: 2 },
-        elevation: 5,
+        ...noAndroidOutline,
     };
     const freezeChainIconFrameStyle = {
         width: freezeActionIconBoxSize,

@@ -10,6 +10,7 @@ import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 /**
  * Арена-сцена Лиги: парящая эмблема, прожекторы, подиум топ-3, падающая корона,
  * конфетти при готовом сундуке.
@@ -285,7 +286,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.45,
     shadowRadius: 14,
     shadowOffset: { width: 0, height: 6 },
-    elevation: 8,
+    ...noAndroidOutline,
   },
   crown: { position: 'absolute', top: -20, fontSize: 22, zIndex: 3 },
   personName: { fontSize: 12, fontWeight: '900', marginTop: 7, maxWidth: 92, textAlign: 'center' },

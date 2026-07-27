@@ -32,6 +32,7 @@ import LeagueCrownName from './LeagueCrownName';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   crownName?: string;
@@ -569,7 +570,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.32,
     shadowRadius: 22,
     shadowOffset: { width: 0, height: 12 },
-    elevation: 14,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 22,

@@ -8,6 +8,7 @@ import { useIsScreenFocused } from '../../hooks/use_is_screen_focused';
 import { gapLabel, gapValue, useCountUp, zoneLabel, type LeagueHeroGap, type LeagueHeroZone } from './leagueStatusShared';
 import type { LeagueHubPalette } from './leagueHubPalette';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 /**
  * Липкая карточка «моя позиция» внизу экрана Лиги.
  * Большая сияющая цифра места, зона, отрыв до следующего места, мини-бар.
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.45,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 10 },
-    elevation: 12,
+    ...noAndroidOutline,
   },
   rankWrap: { width: 52, alignItems: 'center', justifyContent: 'center' },
   rankGlow: { position: 'absolute', width: 46, height: 34, borderRadius: 17 },

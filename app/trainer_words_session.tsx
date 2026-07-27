@@ -62,6 +62,7 @@ import {
   type TrainerPlanTaskRouteParams,
 } from './trainer_plan_task_route';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const { width: SCREEN_W } = Dimensions.get('window');
 const SWIPE_THRESHOLD = SCREEN_W * 0.3;
 const SWIPE_OUT_DURATION = 220;
@@ -685,7 +686,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18,
     shadowRadius: 20,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   cardBack: {
     transform: [{ scale: 0.93 }, { translateY: 8 }],

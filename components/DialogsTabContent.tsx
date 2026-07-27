@@ -39,6 +39,7 @@ import PlusBadge from './PlusBadge';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const CARD_RADIUS = 16;
 
 // Статус карточки сценария — кодирует и подачу, и доступность.
@@ -591,7 +592,7 @@ export default function DialogsTabContent({
             shadowOffset: { width: 0, height: 2 },
             shadowOpacity: 0.18,
             shadowRadius: 8,
-            elevation: 3,
+            ...noAndroidOutline,
           }}
         >
           <View

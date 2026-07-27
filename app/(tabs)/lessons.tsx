@@ -62,6 +62,7 @@ import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 // (тест каждого режима руками до прод-контента).
 import LearningV2ModesLab from '../../components/learning-v2-lab/LearningV2ModesLab';
 import { peekCurrentExamBestPct } from '../exam_best_pct_overlay';
+import { noAndroidOutline } from '../../constants/androidGlow';
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 let lessonsUiSessionCacheByTarget: Partial<Record<string, LessonsTabSnapshot>> = {};
 /**
@@ -682,34 +683,27 @@ function chapterLessonsWord(count: number, lang: Lang): string {
     }
 }
 
-/** «8 уроков · идёт урок 7» для текущей главы, иначе «10 уроков · уроки 9–18». */
-function chapterStatusLine(from: number, to: number, currentLessonNum: number | null, lang: Lang): string {
+/**
+ * «8 уроков · пройдено 3»; при нулевом прогрессе — просто «8 уроков».
+ * зачем: прежний вариант «идёт урок 1» дублировал кольцо процентов и вводил в
+ * заблуждение — урок с нулевым прогрессом ещё не начат. Число пройденных уроков
+ * — честная и полезная величина, которой в кольце нет.
+ */
+function chapterStatusLine(from: number, to: number, doneCount: number, lang: Lang): string {
     const count = to - from + 1;
     const countPart = `${count} ${chapterLessonsWord(count, lang)}`;
-    if (currentLessonNum != null && currentLessonNum >= from && currentLessonNum <= to) {
-        const current = triLang(lang, {
-            ru: `идёт урок ${currentLessonNum}`,
-            uk: `йде урок ${currentLessonNum}`,
-            es: `lección ${currentLessonNum} en curso`,
-            'pt-BR': `lição ${currentLessonNum} em andamento`,
-            vi: `đang học bài ${currentLessonNum}`,
-            id: `pelajaran ${currentLessonNum} berjalan`,
-            tr: `${currentLessonNum}. ders sürüyor`,
-            pl: `lekcja ${currentLessonNum} w toku`,
-        });
-        return `${countPart} · ${current}`;
-    }
-    const range = triLang(lang, {
-        ru: `уроки ${from}–${to}`,
-        uk: `уроки ${from}–${to}`,
-        es: `lecciones ${from}–${to}`,
-        'pt-BR': `lições ${from}–${to}`,
-        vi: `bài ${from}–${to}`,
-        id: `pelajaran ${from}–${to}`,
-        tr: `dersler ${from}–${to}`,
-        pl: `lekcje ${from}–${to}`,
+    if (doneCount <= 0) return countPart;
+    const done = triLang(lang, {
+        ru: `пройдено ${doneCount}`,
+        uk: `пройдено ${doneCount}`,
+        es: `${doneCount} completadas`,
+        'pt-BR': `${doneCount} concluídas`,
+        vi: `đã xong ${doneCount}`,
+        id: `${doneCount} selesai`,
+        tr: `${doneCount} tamamlandı`,
+        pl: `ukończono ${doneCount}`,
     });
-    return `${countPart} · ${range}`;
+    return `${countPart} · ${done}`;
 }
 
 /**
@@ -1443,7 +1437,7 @@ return (<LessonCard key={`l-${num}`}
                     shadowOffset: { width: 0, height: 6 },
                     shadowOpacity: isGoldTheme ? 0 : 0.16,
                     shadowRadius: 14,
-                    elevation: 5,
+                    ...noAndroidOutline,
                     ...(isGoldTheme ? goldShadow(2) : {}),
                     ...({}),
                 }}>
@@ -1514,7 +1508,7 @@ return (<LessonCard key={`l-${num}`}
                     tr: `Bölüm ${chapterLevel}`,
                     pl: `Rozdział ${chapterLevel}`,
                 })}
-                statusLine={chapterStatusLine(chapFrom, chapTo, currentLessonNum, lang)}
+                statusLine={chapterStatusLine(chapFrom, chapTo, chapterDone, lang)}
                 pct={chapterPct}
                 lockedPlus={chapterPremiumLocked}
                 expanded={openChapters.has(chapterLevel)}

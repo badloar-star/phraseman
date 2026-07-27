@@ -33,6 +33,7 @@ import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 import { normalizeSafeAreaBottomInset } from '../hooks/use-screen';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const { width: W, height: H } = Dimensions.get('window');
 const CARD_W = Math.min(W - 24, 420);
 
@@ -1062,7 +1063,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       shadowOffset: { width: 0, height: 6 },
                       shadowOpacity: 0.45,
                       shadowRadius: 10,
-                      elevation: 8,
+                      ...noAndroidOutline,
                     }}>
                       <LinearGradient
                         colors={ctaGradient}

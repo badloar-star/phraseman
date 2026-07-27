@@ -42,6 +42,7 @@ import { StreakChainIcon } from '../../components/StreakChainIcon';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { softShadow } from '../../constants/androidGlow';
 import { getLevelGiftRewardIcon } from '../../constants/levelGiftRewardIcons';
 import { getSocialFriendsIcon } from '../../constants/socialIconAssets';
 import { PREMIUM_AVATAR_AURA_ID, USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
@@ -3883,11 +3884,9 @@ export default function FriendsTabScreen() {
               maxWidth: 372,
               borderRadius: 28,
               padding: 1,
-              shadowColor: '#D9A441',
-              shadowOpacity: 0.32,
-              shadowRadius: 28,
-              shadowOffset: { width: 0, height: 16 },
-              elevation: 18,
+              // зачем: фон рисует LinearGradient, поэтому Android не выводил
+              // скруглённый outline и заливал квадрат вокруг карточки.
+              ...softShadow({ color: '#D9A441', opacity: 0.32, radius: 28, offsetY: 16, elevation: 18 }),
             }}
           >
           <View style={{ borderRadius: 27, overflow: 'hidden', backgroundColor: '#FFF9EE', borderWidth: 0, borderColor: 'rgba(156,115,45,0.32)' }}>

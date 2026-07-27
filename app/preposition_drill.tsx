@@ -42,6 +42,7 @@ import { safeRouterBack } from './navigation_back';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { glassFill } from '../components/GlassSurface';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
 
@@ -824,7 +825,7 @@ export default function PrepositionDrillScreen() {
                 transform: [{ translateY: xpTranslateY }],
                 opacity: xpOpacity,
                 zIndex: 99999,
-                elevation: 24,
+                ...noAndroidOutline,
               }}
             >
               <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>

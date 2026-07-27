@@ -5,6 +5,7 @@ import Svg, { Circle, Polygon, Polyline } from 'react-native-svg';
 import { getAvatarAuraById, PREMIUM_AVATAR_AURA_ID, VIP_AVATAR_AURA_ID } from '../constants/avatar_auras';
 import { useIsScreenFocused } from '../hooks/use_is_screen_focused';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   auraId?: string | null;
   size: number;
@@ -322,7 +323,7 @@ function AvatarAura({ auraId, size, children, style, animate = true }: Props) {
             shadowColor: '#F97316',
             shadowOpacity: 0.54,
             shadowRadius: 18,
-            elevation: 8,
+            ...noAndroidOutline,
           }}
         />
         <View

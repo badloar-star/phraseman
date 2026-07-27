@@ -14,6 +14,7 @@ import type { LeagueBonusAvailability } from '../app/services/league_chest_rewar
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   visible: boolean;
   availability: LeagueBonusAvailability | null;
@@ -215,7 +216,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.38,
     shadowRadius: 28,
     shadowOffset: { width: 0, height: 16 },
-    elevation: 16,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 24,

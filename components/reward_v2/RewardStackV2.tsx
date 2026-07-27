@@ -11,6 +11,7 @@ import {
   type RewardCardSemantic,
 } from './RewardCardV2';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 /**
  * RewardStackV2 — очередь наград единого стандарта (утверждено 2026-06-10):
  * вместо парада модалок — ОДНА карточка с очередью-стопкой позади и точками «1 из N».
@@ -426,7 +427,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 8,
+    ...noAndroidOutline,
   },
   bubbleEmoji: {
     fontSize: 26,

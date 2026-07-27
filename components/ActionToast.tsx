@@ -15,6 +15,7 @@ import {
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
 import { themedToastChrome } from '../constants/themedToastChrome';
+import { noAndroidOutline } from '../constants/androidGlow';
 
 type ToastPayload = {
   type: ToastType;
@@ -343,7 +344,6 @@ const styles = StyleSheet.create({
     width: '100%',
     maxWidth: 560,
     minHeight: 66,
-    borderWidth: 0,
     borderRadius: 16,
     paddingVertical: 12,
     paddingLeft: 16,
@@ -352,7 +352,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 12,
     overflow: 'hidden',
-    elevation: 8,
+    // зачем: фон тоста задаёт themedToastChrome (там все shadowColor — rgba
+    // с alpha < 1), поэтому Android не выводил скруглённый outline и рисовал
+    // квадрат вокруг радиуса 16.
+    ...noAndroidOutline,
   },
   accentRail: {
     position: 'absolute',

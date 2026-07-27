@@ -12,6 +12,7 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 
 interface Props {
@@ -335,8 +336,11 @@ export default function PaywallPlanCards({
 const S = StyleSheet.create({
   wrap: { gap: 11, marginTop: 16 },
   card: {
-    borderRadius: 18, borderWidth: 0, paddingHorizontal: 17, paddingVertical: 15,
-    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12, elevation: 5,
+    borderRadius: 18, paddingHorizontal: 17, paddingVertical: 15,
+    // зачем: фон карточки тарифа приходит из темы (может быть полупрозрачным) —
+    // Android рисовал квадрат вокруг скругления 18.
+    shadowOffset: { width: 0, height: 5 }, shadowOpacity: 0.3, shadowRadius: 12,
+    ...noAndroidOutline,
     overflow: 'hidden',
   },
   cardHighlight: { position: 'absolute', top: 0, left: 18, right: 18, height: 1, opacity: 0.72 },

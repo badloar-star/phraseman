@@ -13,6 +13,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallBadgePop } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 import type { PaywallPlan } from '../../app/paywall_purchase';
 
 interface Props {
@@ -184,10 +185,12 @@ const S = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start',
     gap: 4,
+    // зачем: фон плитки тарифа задаёт тема — Android не выводил скруглённый
+    // outline и рисовал квадрат вокруг радиуса 16.
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.28,
     shadowRadius: 10,
-    elevation: 4,
+    ...noAndroidOutline,
   },
   // Выбранная плитка доминирует статично (без анимаций): чуть крупнее и выше.
   tileSelected: {

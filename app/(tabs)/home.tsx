@@ -57,6 +57,7 @@ import PlusBadge from '../../components/PlusBadge';
 import { hapticTap } from '../../hooks/use-haptics';
 import { useTabContentBottomPad } from '../../hooks/use-tab-content-bottom-pad';
 import { useRuntimeActive } from '../../hooks/use_runtime_active';
+import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
@@ -117,6 +118,7 @@ import { buildActiveSurveyDailyChallenge, buildServerConfirmedLegacyCompletion, 
 import { beginSurveyDailyTaskRequest, commitSurveyDailyTaskRequest, peekSurveyDailyTask } from '../survey_daily_task_cache';
 import { getCanonicalUserId } from '../user_id_policy';
 import { captureAccountGeneration, isCurrentAccountGeneration } from '../account_generation';
+import { noAndroidOutline } from '../../constants/androidGlow';
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
@@ -125,10 +127,6 @@ const CARD_W = (CONTENT_W - 32 - 10) / 2;
 // Rollback: set false to return to the previous elite home status card.
 // Android Fabric/Yoga can abort when NativeAnimated mutates Home view props during startup.
 const HOME_ANIMATION_USE_NATIVE_DRIVER = true;
-// Бесконечный shimmer прогресс-бара гоняем на НАТИВНОМ драйвере: это чистый transform
-// (translateX), безопасный для Fabric, и он НЕ должен крутиться на JS-потоке всю сессию —
-// иначе главный экран (всегда смонтирован) греет телефон и тормозит нажатия кнопок.
-const HOME_SHIMMER_USE_NATIVE_DRIVER = true;
 const HOME_SELECTED_TITLE_KEY = 'home_selected_title_key_v1';
 const STREAK_WEEK_FREEZE_ICE = require('../../assets/images/streak_overlays/streak-freeze-ice.webp');
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
@@ -627,7 +625,17 @@ export default function HomeScreen() {
     const homeFeatureTipSwipeHandledRef = useRef(false);
     const homeFeatureTipHintPulse = useRef(new Animated.Value(0)).current;
     // Кросс-фейд содержимого карточки при смене подсказки (1 = видно, 0 = скрыто на миг перехода).
-    const homeFeatureTipContentAnim = useRef(new Animated.Value(1)).current;
+    // 0 = карточка на месте (видна), -1 = уехала (старая), 1 = ещё не приехала (новая).
+    const homeFeatureTipContentAnim = useRef(new Animated.Value(0)).current;
+    // зачем: владелец попросил, чтобы подсказка не подменялась мгновенно, а «уезжала»
+    // и уступала место следующей из стопки. Направление задаёт знак сдвига: вперёд
+    // (тап / свайп влево) — старая уходит влево, новая приходит справа; назад — наоборот.
+    const homeFeatureTipDirectionRef = useRef(1);
+    // Системное «Уменьшение движения» — переезд заменяем мягким фейдом (DESIGN.md: ветка обязательна).
+    const homeFeatureTipReduceMotion = useReduceMotion();
+    // Подложка-стопка: на миг перехода приподнимается и подаётся вперёд, будто нижняя
+    // карточка выходит на место верхней. 0 = покой, 1 = пик подмены.
+    const homeFeatureTipStackAnim = useRef(new Animated.Value(0)).current;
     // Ключ текущей подсказки — источник для проигрывания кросс-фейда при её смене.
     const homeFeatureTipContentKey = `${homeFeatureTipsReplayCount}:${homeFeatureTipIndex}`;
     const homeFeatureTipContentKeyRef = useRef(homeFeatureTipContentKey);
@@ -814,7 +822,7 @@ export default function HomeScreen() {
             shadowOpacity: 0.36,
             shadowRadius: 9,
             shadowOffset: { width: 0, height: 2 },
-            elevation: 6,
+            ...noAndroidOutline,
         }
         : null;
     const homeStreakIconFrameStyle = homeFrozenStreakIconFrameStyle ?? streakIconGlowStyle;
@@ -947,7 +955,6 @@ export default function HomeScreen() {
     const statsPulseSessionRef = useRef(false);
     const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
     const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
-    const eliteStatusShimmer = useRef(new Animated.Value(0)).current;
     const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
     const showEnergyTooltip = () => {
@@ -1005,37 +1012,11 @@ export default function HomeScreen() {
         eliteStatusEntrance.setValue(1);
         eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
         eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
-        let shimmerLoop: Animated.CompositeAnimation | null = null;
-        let shimmerStopTimer: ReturnType<typeof setTimeout> | null = null;
-        const startShimmer = () => {
-            if (shimmerLoop) return;
-            shimmerLoop = Animated.loop(Animated.sequence([
-                Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
-                Animated.delay(1100),
-                Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: HOME_SHIMMER_USE_NATIVE_DRIVER }),
-            ]));
-            shimmerLoop.start();
-            shimmerStopTimer = setTimeout(stopShimmer, 7600);
-        };
-        const stopShimmer = () => {
-            if (shimmerStopTimer) {
-                clearTimeout(shimmerStopTimer);
-                shimmerStopTimer = null;
-            }
-            shimmerLoop?.stop();
-            shimmerLoop = null;
-        };
-        // Крутим только когда приложение на переднем плане — нет смысла греть телефон в кармане.
-        if (AppState.currentState === 'active') startShimmer();
-        const appSub = AppState.addEventListener('change', (state) => {
-            if (state === 'active') startShimmer();
-            else stopShimmer();
-        });
-        return () => {
-            appSub.remove();
-            stopShimmer();
-        };
-    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, homeRuntimeActive, lang]);
+        // зачем: владелец (2026-07-27) — «свечение на главной, которое стихает за
+        // пару секунд, убрать». Это был бегущий блик по XP-полосе героя: цикл на
+        // 2.8 c + пауза, глушился таймером на 7.6 c — отсюда и ощущение затухания.
+        // Вместе с ним ушли таймер, AppState-подписка и вечный кадр анимации.
+    }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, homeRuntimeActive, lang]);
     // Миграция xp_migration_v2 переехала из экрана в xp_manager.migrateXPFormulaV2()
     // (вызывается на старте из _layout.tsx) — one-shot миграциям не место в маунте таба (D4).
     // D4: секции ниже первого экрана (подсказки, быстрый доступ, SRS-ряд, тренер,
@@ -1232,10 +1213,14 @@ export default function HomeScreen() {
             completeHomeFeatureTips();
             return;
         }
+        // Направление подмены фиксируем ДО setState — эффект анимации читает его уже по новому ключу.
+        homeFeatureTipDirectionRef.current = 1;
         persistHomeFeatureTipIndex(nextIndex);
     }, [completeHomeFeatureTips, homeFeatureTipIndex, homeFeatureTips.length, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
     const previousHomeFeatureTip = useCallback(() => {
         if (homeFeatureTipsDone) return;
+        if (homeFeatureTipIndex <= 0) return;
+        homeFeatureTipDirectionRef.current = -1;
         persistHomeFeatureTipIndex(homeFeatureTipIndex - 1);
     }, [homeFeatureTipIndex, homeFeatureTipsDone, persistHomeFeatureTipIndex]);
     const handleHomeFeatureTipNext = useCallback(() => {
@@ -1337,29 +1322,66 @@ export default function HomeScreen() {
     useEffect(() => {
         if (!homeFeatureTipCardVisible) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-            homeFeatureTipContentAnim.setValue(1);
+            homeFeatureTipContentAnim.setValue(0);
+            homeFeatureTipStackAnim.setValue(0);
             return;
         }
         // Первое появление карточки: контент уже въезжает вместе с самим блоком (LayoutAnimation),
         // отдельный кросс-фейд не запускаем — только фиксируем текущий ключ.
         if (!homeFeatureTipCardWasVisibleRef.current || homeFeatureTipContentKeyRef.current === homeFeatureTipContentKey) {
             homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-            homeFeatureTipContentAnim.setValue(1);
+            homeFeatureTipContentAnim.setValue(0);
+            homeFeatureTipStackAnim.setValue(0);
             return;
         }
         homeFeatureTipContentKeyRef.current = homeFeatureTipContentKey;
-        homeFeatureTipContentAnim.setValue(0);
-        const anim = Animated.timing(homeFeatureTipContentAnim, {
-            toValue: 1,
-            duration: MOTION_DURATION.normal,
-            easing: Easing.out(Easing.cubic),
-            useNativeDriver: true,
-        });
+        // При reduce-motion — только мягкий фейд без горизонтального переезда (движение укачивает).
+        if (homeFeatureTipReduceMotion) {
+            homeFeatureTipStackAnim.setValue(0);
+            homeFeatureTipContentAnim.setValue(1);
+            const fade = Animated.timing(homeFeatureTipContentAnim, {
+                toValue: 0,
+                duration: MOTION_DURATION.fast,
+                easing: Easing.out(Easing.cubic),
+                useNativeDriver: true,
+            });
+            fade.start();
+            return () => {
+                fade.stop();
+            };
+        }
+        // Подмена карточки: новая приезжает со своей стороны (1 → 0) — текст к этому моменту
+        // уже сменился состоянием, поэтому «уход» старой играет подложка-стопка под карточкой.
+        homeFeatureTipContentAnim.setValue(1);
+        homeFeatureTipStackAnim.setValue(0);
+        const anim = Animated.parallel([
+            Animated.timing(homeFeatureTipContentAnim, {
+                toValue: 0,
+                duration: MOTION_DURATION.normal,
+                easing: Easing.out(Easing.cubic),
+                useNativeDriver: true,
+            }),
+            // Стопка «подаёт» следующую карточку и возвращается — конечная длительность, без цикла.
+            Animated.sequence([
+                Animated.timing(homeFeatureTipStackAnim, {
+                    toValue: 1,
+                    duration: MOTION_DURATION.fast,
+                    easing: Easing.out(Easing.cubic),
+                    useNativeDriver: true,
+                }),
+                Animated.timing(homeFeatureTipStackAnim, {
+                    toValue: 0,
+                    duration: MOTION_DURATION.normal,
+                    easing: Easing.out(Easing.cubic),
+                    useNativeDriver: true,
+                }),
+            ]),
+        ]);
         anim.start();
         return () => {
             anim.stop();
         };
-    }, [homeFeatureTipCardVisible, homeFeatureTipContentAnim, homeFeatureTipContentKey]);
+    }, [homeFeatureTipCardVisible, homeFeatureTipContentAnim, homeFeatureTipContentKey, homeFeatureTipReduceMotion, homeFeatureTipStackAnim]);
     // Синхронизируем «была ли видна карточка» для ветки первого появления в кросс-фейде.
     // Появление/исчезновение карточки со сдвигом контента ниже анимируется через
     // configureAccordionLayout(), вызываемый в call-site'ах ПЕРЕД setState (LayoutAnimation
@@ -1731,7 +1753,22 @@ export default function HomeScreen() {
             let snapLastLessonId: number | null = null;
             let snapLastLessonProgress = 0;
             let snapLastLessonScore = '0.0';
-            const lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
+            let lastId = lastLessonIdKey ? parseInt(lastLessonIdKey, 10) : null;
+            // зачем: у пользователей, успевших заглянуть в заблокированный урок до
+            // фикса в lesson_menu, в сторе остался его id — кнопка «Урок» вела на
+            // экран «Урок заблокирован» каждый раз и выглядела как поломка. Если
+            // запомненный урок недоступен — откатываемся к ближайшему доступному
+            // ниже по списку, чтобы кнопка всегда открывала то, что можно учить.
+            if (lastId && lastId >= 1 && lastId <= 32) {
+                try {
+                    const { isLessonUnlockedByEarnedProgress } = await import('../lesson_lock_system');
+                    while (lastId > 1 && !(await isLessonUnlockedByEarnedProgress(lastId, studyTarget))) {
+                        lastId -= 1;
+                    }
+                } catch {
+                    // не смогли проверить — оставляем как есть, экран урока сам покажет гейт
+                }
+            }
             if (lastId && lastId >= 1 && lastId <= 32) {
                 const lessonNames = lessonNamesForStudyTarget(lang, studyTarget);
                 const saved = lessonEntries[lastId - 1]?.[1] ?? null;
@@ -2400,7 +2437,6 @@ export default function HomeScreen() {
         const eliteWeekDayFontSize = Math.max(12, f.label - 1);
         const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
         const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
-        const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
         const homeHeaderShardIconSource = coinIconForBalance(shardsBalance, themeMode);
         const homeHeaderShardIconSize = 34;
         const homeHeaderShardIconWidth = isCompassTheme ? 42 : homeHeaderShardIconSize;
@@ -2464,6 +2500,37 @@ export default function HomeScreen() {
         const homeFeatureTipA11y = currentHomeFeatureTip
             ? `${currentHomeFeatureTip.title}. ${currentHomeFeatureTip.body}`
             : '';
+        // -1 = позиция «ушедшей» карточки, 0 = покой, 1 = позиция «пришедшей».
+        // Знак сдвига берём из направления листания: вперёд новая приезжает справа, назад — слева.
+        const homeFeatureTipSwapOffset = 26 * homeFeatureTipDirectionRef.current;
+        const homeFeatureTipContentTranslate = homeFeatureTipReduceMotion
+            ? 0
+            : homeFeatureTipContentAnim.interpolate({
+                inputRange: [-1, 0, 1],
+                outputRange: [-homeFeatureTipSwapOffset, 0, homeFeatureTipSwapOffset],
+            });
+        // Гаснет на обоих краях — и когда уходит, и когда приходит; в покое (0) полностью видна.
+        const homeFeatureTipContentOpacity = homeFeatureTipContentAnim.interpolate({
+            inputRange: [-1, 0, 1],
+            outputRange: [0, 1, 0],
+        });
+        // Подложка-стопка на миг подмены подтягивается вверх и «раскрывается» ближе к верхней карточке.
+        const homeFeatureTipStackTranslate = homeFeatureTipStackAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, -5],
+        });
+        const homeFeatureTipStackOpacity = homeFeatureTipStackAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0.55, 0.82],
+        });
+        // Сама плашка на миг подмены слегка «садится» — читается как замена карточки целиком,
+        // а не как подмена одного текста внутри неподвижной панели. Не ниже 0.97 (правило пресса).
+        const homeFeatureTipCardScale = homeFeatureTipReduceMotion
+            ? 1
+            : homeFeatureTipStackAnim.interpolate({
+                inputRange: [0, 1],
+                outputRange: [1, 0.975],
+            });
         const experimentalStatusLevelLabel = triLang(lang, {
             ru: 'Уровень',
             uk: 'Рівень',
@@ -2619,9 +2686,6 @@ export default function HomeScreen() {
                     borderWidth: 0,
                   }}>
                     <LinearGradient colors={isPaperHomeTheme ? [t.accent, t.correct] : isGoldTheme ? GOLD_GRADIENTS.progressMetal : [t.gold, '#FFF2B0', t.accent]} locations={isGoldTheme ? [0, 0.48, 1] : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ width: `${xpPct}%` as any, height: '100%', borderRadius: 999, overflow: 'hidden' }}>
-                      <Animated.View style={{ width: 72, height: '100%', transform: [{ translateX: eliteShimmerX }] }}>
-                        <LinearGradient colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={{ flex: 1 }}/>
-                      </Animated.View>
                     </LinearGradient>
                   </View>
 
@@ -2814,10 +2878,11 @@ export default function HomeScreen() {
             <View style={{ marginHorizontal: 8, marginBottom: 18 }}>
               {/* стопка как у Bevel: под текущей подсказкой виден край следующей */}
               {clampHomeFeatureTipIndex(homeFeatureTipIndex, homeFeatureTips.length) < homeFeatureTips.length - 1 && (
-                <View pointerEvents="none" style={{ position: 'absolute', left: 14, right: 14, top: 12, bottom: -8, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden', opacity: 0.55 }}>
+                <Animated.View pointerEvents="none" style={{ position: 'absolute', left: 14, right: 14, top: 12, bottom: -8, borderRadius: isGoldTheme ? 18 : 24, overflow: 'hidden', opacity: homeFeatureTipStackOpacity, transform: [{ translateY: homeFeatureTipStackTranslate }] }}>
                   <LinearGradient colors={homeThemePanelGradient} locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : isCompassTheme ? COMPASS_SURFACE_LOCATIONS : undefined} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flex: 1 }}/>
-                </View>
+                </Animated.View>
               )}
+            <Animated.View style={{ transform: [{ scale: homeFeatureTipCardScale }] }}>
             <TouchableOpacity
               testID="home-feature-tip-card"
               accessible={true}
@@ -2860,8 +2925,8 @@ export default function HomeScreen() {
                   gap: 9,
                   justifyContent: 'center',
                   minHeight: 92,
-                  opacity: homeFeatureTipContentAnim,
-                  transform: [{ translateY: homeFeatureTipContentAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+                  opacity: homeFeatureTipContentOpacity,
+                  transform: [{ translateX: homeFeatureTipContentTranslate }],
                 }}>
                   <Text style={{ color: homeThemePanelText, fontSize: Math.max(22, f.bodyLg + 4), fontWeight: '900', lineHeight: Math.max(27, f.bodyLg + 9) }} numberOfLines={2}>
                     {currentHomeFeatureTip.title}
@@ -2900,6 +2965,7 @@ export default function HomeScreen() {
                 </Animated.View>
               </LinearGradient>
             </TouchableOpacity>
+            </Animated.View>
             </View>
           ) : null}
           </Animated.View>)}
@@ -3253,7 +3319,7 @@ export default function HomeScreen() {
         <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.62)', paddingHorizontal: 18 }}>
           <Pressable style={StyleSheet.absoluteFillObject} onPress={() => setTitleModalVisible(false)} />
           <View style={{ maxHeight: Math.min(SCREEN_H * 0.74, 620), width: '100%', maxWidth: 560, alignSelf: 'center' }}>
-            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, elevation: 24 }}>
+            <View style={{ borderRadius: 22, padding: 16, backgroundColor: t.bgCard, shadowColor: '#000', shadowOpacity: 0.34, shadowRadius: 22, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}>
               <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12, marginBottom: 12 }}>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', lineHeight: f.h2 + 5 }} numberOfLines={1}>

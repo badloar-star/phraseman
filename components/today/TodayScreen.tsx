@@ -15,6 +15,7 @@ import { useStudyTarget } from '../StudyTargetContext';
 import { useTheme } from '../ThemeContext';
 import TodayAmbientCompass from './TodayAmbientCompass';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 type TaskKind = 'lesson_dive' | 'mistake_repair' | 'flashcards_review' | 'pronunciation' | 'plan_continue';
 type TodayTask = { kind: TaskKind; focus?: string; minutes: number };
 type TodayRoute = { pathname: string; params?: Record<string, string> };
@@ -349,7 +350,7 @@ const styles = StyleSheet.create({
   direction: { fontSize: 10, lineHeight: 14, fontWeight: '800', letterSpacing: 1.3 },
   resumeTitle: { marginTop: 5, fontSize: 24, lineHeight: 28, fontWeight: '800', letterSpacing: -0.65, textAlign: 'center' },
   resumeMeta: { marginTop: 4, fontSize: 11, lineHeight: 15, fontWeight: '500' },
-  cta: { minHeight: 56, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, paddingVertical: 14, shadowColor: '#7FAF2C', shadowOpacity: 0.18, shadowRadius: 18, shadowOffset: { width: 0, height: 9 }, elevation: 4 },
+  cta: { minHeight: 56, borderRadius: 17, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, paddingVertical: 14, shadowColor: '#7FAF2C', shadowOpacity: 0.18, shadowRadius: 18, shadowOffset: { width: 0, height: 9 }, ...noAndroidOutline,},
   ctaTitle: { fontSize: 16, lineHeight: 20, fontWeight: '900', letterSpacing: -0.2, textAlign: 'center' },
   progressSummary: { minHeight: 34, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 2, paddingTop: 8 },
   progressText: { fontSize: 11, lineHeight: 15, fontWeight: '500' },

@@ -1,4 +1,3 @@
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_e.tsx — вариант E «Один план» (эксперимент paywall_ab).
 //
@@ -42,6 +41,7 @@ import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallM
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const VARIANT = 'E' as const;
 
 export default function PaywallE() {
@@ -58,7 +58,6 @@ export default function PaywallE() {
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
-  const insets = useStableSafeAreaInsets();
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
@@ -148,7 +147,6 @@ export default function PaywallE() {
             <PaywallCloseButton
               onPress={() => { hapticTap(); closeWithDim('close'); }}
               chrome={chrome}
-              style={{ marginTop: Math.max(insets.top - 38, 6) }}
             />
           ) : null}
 
@@ -346,7 +344,7 @@ const S = StyleSheet.create({
     shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.3,
     shadowRadius: 12,
-    elevation: 5,
+    ...noAndroidOutline,
   },
   saveBadge: {
     position: 'absolute', top: -11, alignSelf: 'center',

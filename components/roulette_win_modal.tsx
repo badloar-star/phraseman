@@ -26,6 +26,7 @@ import { useLang } from './LangContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { ROULETTE_PRIZES, roulettePearlsLabel, roulettePrizeLabel } from '../app/roulette_prizes';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 export interface RouletteWinData {
   prizeIndex: number;
   prizeDays: number;
@@ -185,7 +186,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.38,
     shadowRadius: 16,
-    elevation: 12,
+    ...noAndroidOutline,
   },
   prizeImageWrap: {
     width: '100%',

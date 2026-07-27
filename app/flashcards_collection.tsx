@@ -104,6 +104,7 @@ import {
 import { ensureFrenchRemoteFlashcards, prefetchFrenchRemoteFlashcards } from './french_flashcard_remote_runtime';
 import { safeRouterBack } from './navigation_back';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
 const flashcardFlipEasing = Easing.out(Easing.cubic);
@@ -1789,7 +1790,7 @@ export default function FlashcardsScreen() {
               shadowOpacity: 0.32,
               shadowRadius: 14,
               shadowOffset: { width: 0, height: 6 },
-              elevation: 10,
+              ...noAndroidOutline,
             }}
           >
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }} numberOfLines={1}>

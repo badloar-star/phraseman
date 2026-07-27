@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -315,7 +316,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.25,
     shadowRadius: 20,
-    elevation: 12,
+    ...noAndroidOutline,
   },
   icon: {
     fontSize: 64,

@@ -15,6 +15,7 @@ import {
   type ScheduledAnimatedStateUpdate,
 } from './animationScheduling';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface CoachToastProps {
   category: WordCategory;
   labelRu: string;
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.28,
     shadowRadius: 18,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   headerRow: {
     flexDirection: 'row',

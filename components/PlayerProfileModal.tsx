@@ -37,6 +37,7 @@ import PremiumAvatarHalo from './PremiumAvatarHalo';
 import LeagueCrownName from './LeagueCrownName';
 import { memberNameStatusStyle } from './premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { noAndroidOutline } from '../constants/androidGlow';
 import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
@@ -1280,11 +1281,13 @@ function PlayerProfileModalBody({
                 (бывшее «усиленное кольцо», переосмысленное под стекло). */}
             <View style={displayCardLevel >= 3 ? {
               borderRadius: 999,
+              // зачем: КРУГЛЫЙ аватар без непрозрачного фона — Android рисовал
+              // вокруг него квадрат вместо свечения. На iOS ореол как был.
               shadowColor: cardVisual.shadowColor,
               shadowOpacity: 0.55,
               shadowRadius: 16,
               shadowOffset: { width: 0, height: 0 },
-              elevation: 9,
+              ...noAndroidOutline,
             } : null}>
               <PremiumAvatarHalo enabled={usesPremiumAura} avatarSize={76} maskColor={prestigeActive ? cardVisual.gradient[1] : t.bgCard}>
                 <AvatarView
@@ -1309,7 +1312,7 @@ function PlayerProfileModalBody({
               shadowOpacity: auroraGlass ? 0.5 : 0.18,
               shadowRadius: 6,
               shadowOffset: { width: 0, height: 2 },
-              elevation: 4,
+              ...noAndroidOutline,
             }}>
               <Text style={{ color: cardVisual.accent, fontSize: 10.5, fontWeight: '800', letterSpacing: 0.7 }}>
                 LV {level}
@@ -1745,7 +1748,7 @@ function PlayerProfileModalBody({
                 <View style={{
                   width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
                   backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
                   <Ionicons name="book" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
@@ -1776,7 +1779,7 @@ function PlayerProfileModalBody({
                 <View style={{
                   width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
                   backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
                   <Ionicons name="shield-checkmark" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
@@ -1807,7 +1810,7 @@ function PlayerProfileModalBody({
                 <View style={{
                   width: 33, height: 33, borderRadius: 11, alignItems: 'center', justifyContent: 'center',
                   backgroundColor: cardVisual.accentSoft,
-                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, elevation: 4,
+                  shadowColor: cardVisual.shadowColor, shadowOpacity: 0.5, shadowRadius: 8, shadowOffset: { width: 0, height: 0 }, ...noAndroidOutline,
                 }}>
                   <Ionicons name="compass" size={16} color={monoIcon(themeMode, cardVisual.accent)} />
                 </View>
@@ -1884,12 +1887,14 @@ function PlayerProfileModalBody({
             borderRadius: 20,
             // зачем: §0.D — плавающая панель превью отделяется тенью ниже
             // (она уже сильная), кромка не нужна.
+            // зачем: фон панели полупрозрачный (alpha 0.94) — Android не мог
+            // вывести скруглённый outline и заливал квадрат под панелью.
             backgroundColor: 'rgba(8,10,16,0.94)',
             shadowColor: '#000',
             shadowOpacity: 0.4,
             shadowRadius: 16,
             shadowOffset: { width: 0, height: 6 },
-            elevation: 10,
+            ...noAndroidOutline,
             opacity: previewPanelAnim,
             transform: [{ translateY: previewPanelAnim.interpolate({ inputRange: [0, 1], outputRange: [90, 0] }) }],
           }}>

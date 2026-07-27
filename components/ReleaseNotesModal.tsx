@@ -22,6 +22,7 @@ import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const TEXT = {
   title: {
     ru: 'PhraseMan стал удобнее',
@@ -444,7 +445,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.24,
     shadowRadius: 28,
-    elevation: 18,
+    ...noAndroidOutline,
     overflow: 'hidden',
   },
   shine: {

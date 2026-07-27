@@ -53,6 +53,7 @@ import {
 } from '../app/account_generation';
 import { isCurrentLevelGiftOpening } from '../app/level_gift_opening_guard';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 export {
   CLAIMED_GIFTS_KEY,
   loadClaimedGiftRarities,
@@ -504,7 +505,7 @@ function LevelGiftModal({
           shadowOpacity: 0.42,
           shadowRadius: 34,
           shadowOffset: { width: 0, height: 0 },
-          elevation: 24,
+          ...noAndroidOutline,
           transform: [{ scale: modalScale }, { translateY: modalY }],
         }}>
           {/* Базовый материал reward-панели (непрозрачная подложка уже задана выше) */}

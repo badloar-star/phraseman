@@ -87,6 +87,7 @@ import { buildSpeakingStartOptions } from './speaking_recognition_options';
 import { TranscriptAccumulator } from './speaking_transcript_accumulator';
 import { useRecordStartCue } from '../hooks/use-record-start-cue';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const RECOMMENDED_EXCHANGES = 8;
 // 'unavailable' — устройство/движок реально не умеет распознавание (жёсткий отказ).
 // 'error' — транзиентный сбой (движок дал error/nomatch без текста, start() кинул):
@@ -1601,7 +1602,7 @@ export default function AiDialogSession() {
                         shadowOpacity: 0.25,
                         shadowRadius: 6,
                         shadowOffset: { width: 0, height: 2 },
-                        elevation: 2,
+                        ...noAndroidOutline,
                       }}
                     >
                       <Text
@@ -1631,7 +1632,7 @@ export default function AiDialogSession() {
                         shadowOpacity: 0.18,
                         shadowRadius: 6,
                         shadowOffset: { width: 0, height: 2 },
-                        elevation: 1,
+                        ...noAndroidOutline,
                       }}
                     >
                       <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 8, flexShrink: 1 }}>

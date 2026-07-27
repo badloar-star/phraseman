@@ -73,6 +73,7 @@ import {
 import { frenchVocabularyGateCopy, vocabularyContentAvailableForTarget } from './vocabulary_target_gate';
 import { loadFrenchRemoteLessonWordBank } from './french_lesson_words_remote_runtime';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const lessonWordsProgressCache = new Map<string, Record<string, number>>();
 
 const safeVocabularyEventPart = (value: unknown, max = 60): string =>
@@ -3112,7 +3113,7 @@ function Training({ words, storageKey, wordsShardGrantKey, lessonId, lang, initi
       style={{
         position: 'absolute', top: 100, alignSelf: 'center',
         backgroundColor: isLightTheme ? '#92400E' : '#FFC800', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10,
-        transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, elevation: 24,
+        transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, ...noAndroidOutline,
       }}
     >
       <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>+{xpToastAmount} XP</Text>

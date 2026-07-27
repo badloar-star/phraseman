@@ -29,6 +29,7 @@ import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { triLang, type Lang } from '../constants/i18n';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface StreakReviveModalProps {
   visible: boolean;
   offer: StreakReviveOffer | null;
@@ -385,7 +386,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.48,
     shadowRadius: 34,
     shadowOffset: { width: 0, height: 20 },
-    elevation: 20,
+    ...noAndroidOutline,
   },
   passCompact: {
     maxHeight: '96%',

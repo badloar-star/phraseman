@@ -102,6 +102,7 @@ import { evaluateRecallAnswer } from './review_evaluator';
 import BouncyScrollView from '../components/BouncyScrollView';
 import TopFadeMask from '../components/TopFadeMask';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 function firstParam(value: string | string[] | undefined): string {
   return Array.isArray(value) ? value[0] ?? '' : value ?? '';
 }
@@ -2983,7 +2984,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 22,
     gap: 14,
-    elevation: 6,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.2,
     shadowRadius: 22,
@@ -2997,7 +2998,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minHeight: 196,
     justifyContent: 'center',
     gap: 16,
-    elevation: 10,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.26,
     shadowRadius: 26,
@@ -3014,7 +3015,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     alignItems: 'center',
     justifyContent: 'center',
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.18,
     shadowRadius: 14,
@@ -3076,7 +3077,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 18,
     gap: 12,
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.16,
     shadowRadius: 18,
@@ -3089,7 +3090,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     borderWidth: 0,
     padding: 18,
     gap: 14,
-    elevation: 12,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.24,
     shadowRadius: 22,
@@ -3183,7 +3184,7 @@ const styles = StyleSheet.create<PersonalPlanExerciseStyles>({
     minHeight: 72,
     borderRadius: 22,
     borderWidth: 0,
-    elevation: 5,
+    ...noAndroidOutline,
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.22,
     shadowRadius: 18,

@@ -21,6 +21,7 @@ import { GiftBox3D, paletteForRarity } from './level_gift_box';
 import { GiftOpenBurst, animTierF2p } from './GiftOpenEffects';
 import { RewardModalLiquidGlass } from './RewardModalBackdrop';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const STAGE_SIZE = 150;
 /** Подстраховка: даже если spring не доиграет колбэк — раскрытие произойдёт. */
 const OPEN_SAFETY_MS = 520;
@@ -322,16 +323,11 @@ export default function BoonChestModal({
                 <View pointerEvents="none" style={styles.claimBtnGloss} />
                 <Text style={[styles.claimBtnText, { color: palette.buttonInk }]}>{claimCta}</Text>
               </TouchableOpacity>
-
-              <TouchableOpacity
-                testID="boon-chest-later"
-                accessibilityRole="button"
-                activeOpacity={0.7}
-                onPress={requestClose}
-                style={styles.laterBtn}
-              >
-                <Text style={[styles.laterText, { color: textMuted }]}>{laterLabel}</Text>
-              </TouchableOpacity>
+              {/* зачем: «Позже» в фазе reveal вела на тот же requestClose, что и
+                  «Продолжить» — награда уже начислена, откладывать нечего. Две
+                  кнопки с одинаковым исходом только заставляли выбирать впустую.
+                  В фазе закрытого сундука «Позже» остаётся: там это честное
+                  «не открывать сейчас». */}
             </Animated.View>
           )}
         </Animated.View>
@@ -360,7 +356,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.42,
     shadowRadius: 34,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 24,
+    ...noAndroidOutline,
   },
   topGlow: { position: 'absolute', top: 0, left: 0, right: 0, height: 80 },
   closeX: {

@@ -55,6 +55,7 @@ import {
   readPhraseAnalyticsWarm,
 } from './phrase_analytics_warm_cache';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
 // ── Дизайн-токены ─────────────────────────────────────────────────────────────
@@ -822,7 +823,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 12 },
     shadowOpacity: 0.4,
     shadowRadius: 20,
-    elevation: 16,
+    ...noAndroidOutline,
     gap: 18,
   },
   gateHeader: { flexDirection: 'row', alignItems: 'flex-start' },

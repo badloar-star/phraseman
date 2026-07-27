@@ -17,6 +17,7 @@ import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 /** Фиксированная высота контентной части шапки — без прыжков геометрии. */
 export const SECTION_SHEET_HEADER_HEIGHT = 56;
 
@@ -107,7 +108,7 @@ export default function SectionSheetHeader({
             shadowOpacity: 0.24,
             shadowRadius: 8,
             shadowOffset: { width: 0, height: 3 },
-            elevation: 3,
+            ...noAndroidOutline,
           }}
         >
           <Ionicons name="close" size={20} color={t.textPrimary} />

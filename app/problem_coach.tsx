@@ -41,6 +41,7 @@ import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 import { markNextNavigationAsReplace, safeRouterBack } from './navigation_back';
 import { buildPracticeOptionsByStepId } from './practice_option_shuffle';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Stage = 'intro' | 'practice' | 'done';
 
 export default function ProblemCoach() {
@@ -768,7 +769,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.35,
     shadowRadius: 14,
-    elevation: 8,
+    ...noAndroidOutline,
   },
   primaryButtonText: { fontWeight: '800', textAlign: 'center', letterSpacing: 0.3 },
   ctaIconWrap: {

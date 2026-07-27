@@ -131,6 +131,7 @@ import { useMistakeExplain } from './use_mistake_explain';
 import { isExplainEnabled } from './explain_phrase_flags';
 import { resolveLessonAnswerFontSize } from '../lib/lesson_answer_layout';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const GRAMMAR_HINTS = [
   {
     key: 'grammar_hint_articles',
@@ -460,7 +461,7 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
           shadowColor: '#000',
           shadowOpacity: 0.25,
           shadowRadius: 20,
-          elevation: 12,
+          ...noAndroidOutline,
         }}>
           <Text style={{ fontSize: 48, marginBottom: 12 }}>🏆</Text>
           <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, textAlign: 'center', marginBottom: 10 }}>
@@ -3934,7 +3935,7 @@ export default function LessonScreen() {
       <View style={{ flex: 1, justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.68)', paddingHorizontal: 18, paddingVertical: 28 }}>
         <Pressable style={{ ...StyleSheet.absoluteFillObject }} onPress={() => setPlanLessonDoneVisible(false)} />
         <View style={{ width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-          <View style={{ borderRadius: 30, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, elevation: 12 }}>
+          <View style={{ borderRadius: 30, backgroundColor: t.bgCard, padding: 22, shadowColor: t.correct, shadowOpacity: 0.28, shadowRadius: 30, shadowOffset: { width: 0, height: 16 }, ...noAndroidOutline,}}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, lineHeight: f.h2 + 5, fontWeight: '900' }}>
               {isLinkedLessonSliceTask
                 ? triLang(lang, { ru: 'Часть урока готова', uk: 'Частина уроку готова', es: 'Parte de la lección lista', 'pt-BR': 'Parte da lição pronta', vi: 'Phần bài học đã xong', id: 'Bagian pelajaran selesai', tr: 'Dersin bölümü hazır', pl: 'Część lekcji gotowa' })
@@ -3954,7 +3955,7 @@ export default function LessonScreen() {
                   router.push('/personal_plan' as any);
                 }}
                 scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, elevation: 8 }}
+                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.correct, shadowColor: t.correct, shadowOpacity: 0.35, shadowRadius: 18, shadowOffset: { width: 0, height: 10 }, ...noAndroidOutline,}}
               >
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'К плану', uk: 'До плану', es: 'Al plan', 'pt-BR': 'Ao plano', vi: 'Tới kế hoạch', id: 'Ke rencana', tr: 'Plana', pl: 'Do planu' })}</Text>
               </TapScale>
@@ -3963,7 +3964,7 @@ export default function LessonScreen() {
                 accessibilityLabel={triLang(lang, { ru: 'Продолжить урок', uk: 'Продовжити урок', es: 'Continuar la lección', 'pt-BR': 'Continuar a lição', vi: 'Tiếp tục bài học', id: 'Lanjut pelajaran', tr: 'Derse devam et', pl: 'Kontynuuj lekcję' })}
                 onPress={() => setPlanLessonDoneVisible(false)}
                 scaleTo={0.96}
-                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 6 }}
+                style={{ flex: 1, minHeight: 64, borderRadius: 22, alignItems: 'center', justifyContent: 'center', backgroundColor: t.bgSurface2, shadowColor: '#000', shadowOpacity: 0.22, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline,}}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}>{triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjut', tr: 'Devam et', pl: 'Kontynuuj' })}</Text>
               </TapScale>

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface AiTypingBubbleProps {
   bubbleColor: string;
   borderColor: string;
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 24,
     borderWidth: 0,
-    elevation: 5,
+    ...noAndroidOutline,
     flexDirection: 'row',
     gap: 10,
     height: 62,

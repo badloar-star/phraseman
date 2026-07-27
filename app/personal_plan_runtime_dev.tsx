@@ -29,6 +29,7 @@ import {
   type GavanWeek1RuntimeBridgeDayIndex,
 } from './personal_plan_gavan_week1_runtime_bridge';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 const minuteChoices: PlanMinutesChoice[] = [5, 10, 15, 20];
 const dayChoices: GavanWeek1RuntimeBridgeDayIndex[] = [1, 2, 3, 4, 5, 6, 7];
 
@@ -690,7 +691,7 @@ const styles = StyleSheet.create({
     marginBottom: 14,
     shadowOpacity: 0.28,
     shadowRadius: 18,
-    elevation: 3,
+    ...noAndroidOutline,
   },
   exerciseTitle: {
     fontSize: 24,

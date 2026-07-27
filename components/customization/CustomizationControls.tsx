@@ -8,6 +8,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import { useReduceMotion } from '../../hooks/use_reduce_motion';
 import type { CustomizationAction, CustomizationTab } from '../../app/customization_draft';
 
+import { noAndroidOutline } from '../../constants/androidGlow';
 type Segment<T extends string> = { id: T; label: string };
 
 function Segmented<T extends string>({ items, value, onChange }: { items: Segment<T>[]; value: T; onChange: (value: T) => void }) {
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
   action: {
     minHeight: 56, borderRadius: 18, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
     gap: 8, paddingHorizontal: 20,
-    shadowOpacity: 0.32, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, elevation: 8,
+    shadowOpacity: 0.32, shadowRadius: 16, shadowOffset: { width: 0, height: 8 }, ...noAndroidOutline,
   },
   actionText: { fontSize: 16, lineHeight: 21, fontWeight: '900', textAlign: 'center' },
   priceBox: { flexDirection: 'row', alignItems: 'center', gap: 5 },

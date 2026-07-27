@@ -70,6 +70,7 @@ import {
   flashcardsOfficialPacksAvailableForTarget,
 } from './flashcards_target_gate';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type SourceKind = 'saved' | 'custom' | 'official' | 'community';
 type Phase = 'select' | 'play';
 
@@ -3063,7 +3064,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.16,
     shadowRadius: 18,
-    elevation: 5,
+    ...noAndroidOutline,
   },
   heroTop: {
     flexDirection: 'row',
@@ -3282,7 +3283,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.08,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
-    elevation: 2,
+    ...noAndroidOutline,
   },
   swipeHintText: {
     flex: 1,
@@ -3310,14 +3311,14 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.22,
     shadowRadius: 20,
-    elevation: 7,
+    ...noAndroidOutline,
   },
   planTrainingCard: {
     borderRadius: 18,
     padding: 12,
     shadowOpacity: 0.14,
     shadowRadius: 12,
-    elevation: 4,
+    ...noAndroidOutline,
   },
   swipeBadge: {
     position: 'absolute',

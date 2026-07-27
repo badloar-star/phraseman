@@ -32,6 +32,7 @@ import type { ThemeMode } from '../constants/theme';
 import CompassDepthSurface from './CompassDepthSurface';
 import { COMPASS_RICH, compassShadow } from '../constants/compassTheme';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type NoEnergyModalChrome = {
   glow: string;
   borderColor: string;
@@ -557,7 +558,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 14,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 20,
+    ...noAndroidOutline,
     overflow: 'hidden',
   },
   cardGlow: {

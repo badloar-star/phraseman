@@ -32,6 +32,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import type { ThemeMode } from '../constants/theme';
 import { COMPASS_RICH } from '../constants/compassTheme';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 // Голос Компаса (канон): окно обновления говорит от первого лица, по-человечески —
 // не казённое «Доступно обновление», а «это Компас, я подрос, обнови меня».
 const TEXTS = {
@@ -390,7 +391,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.24,
     shadowRadius: 30,
-    elevation: 18,
+    ...noAndroidOutline,
   },
   card: {
     borderRadius: 29,
@@ -469,7 +470,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.18,
     shadowRadius: 18,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   updateBtnFill: {
     minHeight: 66,

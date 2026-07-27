@@ -14,6 +14,7 @@ import { LinearGradient } from '../SafeLinearGradient';
 import { triLang, type Lang } from '../../constants/i18n';
 import type { PaywallChrome } from './paywallShared';
 import { PaywallCtaShine } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 interface Props {
   lang: Lang;
@@ -190,7 +191,10 @@ export default function PaywallCtaBlock({
 const S = StyleSheet.create({
   cta: {
     borderRadius: 32, paddingVertical: 18, alignItems: 'center', overflow: 'hidden',
-    shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16, elevation: 9,
+    // зачем: главная CTA-кнопка пейвола — фон рисует градиент внутри, поэтому
+    // Android заливал квадрат вокруг скругления 32. На iOS тень как была.
+    shadowOffset: { width: 0, height: 6 }, shadowOpacity: 0.42, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   ctaText: { fontSize: 19, fontWeight: '900', letterSpacing: 0, paddingHorizontal: 14 },
   subLine: { textAlign: 'center', fontSize: 13, lineHeight: 17.5, marginTop: 10, fontVariant: ['tabular-nums'] },

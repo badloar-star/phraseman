@@ -9,6 +9,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { monoIcon, MONO_ICON } from '../constants/monoIcon';
 import { useRuntimeActive } from '../hooks/use_runtime_active';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 type Props = {
   f: { body: number };
   /** Explicit owner visibility; hidden React Native modals remain mounted. */
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.45,
     shadowRadius: 12,
-    elevation: 10,
+    ...noAndroidOutline,
   },
   premiumShineTrack: {
     position: 'absolute',

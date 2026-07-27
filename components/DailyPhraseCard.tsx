@@ -17,6 +17,7 @@ import { syncWidgetData } from '../app/widget_bridge';
 import { dailyPhraseChromeFor } from '../app/daily_phrase_chrome';
 import { LinearGradient } from './SafeLinearGradient';
 import { triLang } from '../constants/i18n';
+import { softShadow, noAndroidOutline } from '../constants/androidGlow';
 import { checkAchievements } from '../app/achievements';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import {
@@ -763,10 +764,11 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     padding: 14,
     overflow: 'hidden',
+    // зачем: фон плашки рисует градиент внутри — Android заливал квадрат.
     shadowOpacity: 0.12,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 8 },
-    elevation: 4,
+    ...noAndroidOutline,
   },
   homeAdditionalPlaque: {
     minHeight: 134,
@@ -774,14 +776,15 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 16,
     borderRadius: 24,
-    borderWidth: 0,
     paddingHorizontal: 20,
     paddingVertical: 17,
     overflow: 'hidden',
+    // зачем: та же плашка на главном — квадрат вокруг скругления 24.
+    // Радиус 16 — потолок DESIGN.md (perf-guard).
     shadowOpacity: 0.14,
-    shadowRadius: 18,
+    shadowRadius: 16,
     shadowOffset: { width: 0, height: 9 },
-    elevation: 4,
+    ...noAndroidOutline,
   },
   pressed: {
     opacity: 0.78,
@@ -892,7 +895,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 24,
     shadowOffset: { width: 0, height: 12 },
-    elevation: 16,
+    ...noAndroidOutline,
   },
   successOverlay: {
     position: 'absolute',
@@ -916,11 +919,9 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#22C55E',
-    shadowOpacity: 0.38,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 8 },
-    elevation: 9,
+    // зачем: круг (radius 35) без непрозрачного фона — Android рисовал
+    // квадратный outline вокруг него. На iOS зелёное свечение как было.
+    ...softShadow({ color: '#22C55E', opacity: 0.38, radius: 18, offsetY: 8, elevation: 9 }),
   },
   sheetHeader: {
     flexDirection: 'row',

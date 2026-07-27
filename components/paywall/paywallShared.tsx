@@ -24,6 +24,7 @@ import { BG_GRADIENTS as SCREEN_BG_GRADIENTS } from '../../constants/screenBackg
 import type { ThemeMode } from '../../constants/theme';
 import { compassIconSource } from '../../constants/weeklyCompassIcons';
 import { PaywallIdleFloat } from './PaywallMotion';
+import { noAndroidOutline } from '../../constants/androidGlow';
 
 // ── фоновые градиенты активных A/B/C paywall-экранов; незнакомая тема → dark ──
 function screenBgTuple(themeMode: string): [string, string, string] {
@@ -233,11 +234,19 @@ export function contextGlyph(ctx: PremiumContext): keyof typeof Ionicons.glyphMa
 /** Капсула с глифом контекста + тёплое свечение акцента. Парит (PaywallIdleFloat —
  *  общий лифт для всех пейволов A–G; луп гейтится фокусом/AppState/reduce-motion). */
 export function PaywallGlyphCapsule({ ctx, chrome }: { ctx: PremiumContext; chrome: PaywallChrome }) {
-  const { tc, cardBorder } = chrome;
+  // зачем: borderColor у капсулы убран — запрет владельца на обводку контейнеров;
+  // форму держат фон-тон + гало PaywallIdleFloat.
+  const { tc } = chrome;
   const isDialogLimit = ctx === 'dialog_limit';
   return (
-    <PaywallIdleFloat haloColor={`${tc.heroAccent}2E`} haloRadius={42} haloInset={6}>
-      <View style={[S.glyphCap, { borderColor: cardBorder, shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
+    // зачем: владелец жаловался, что иконка «упирается в полоску сверху и
+    // обрезается». Капсула парит на ±5px (PaywallIdleFloat), а её гало выступает
+    // ещё на 6px за края — итого ~11px выходят ВЫШЕ бокса. ScrollView режет всё,
+    // что вылезло за верх вьюпорта, поэтому клиппинг был виден как полоса-срез.
+    // Резервируем клиренс в самой капсуле: фикс едет вместе с компонентом во все
+    // варианты A–G и не зависит от отступов конкретного экрана.
+    <PaywallIdleFloat style={S.glyphFloat} haloColor={`${tc.heroAccent}2E`} haloRadius={42} haloInset={6}>
+      <View style={[S.glyphCap, { shadowColor: tc.heroAccent, backgroundColor: `${tc.heroAccent}10` }]}>
         {isDialogLimit ? (
           <Image source={compassIconSource(chrome.themeMode as ThemeMode)} style={S.glyphCompassImage} contentFit="contain" />
         ) : (
@@ -577,10 +586,18 @@ const S = StyleSheet.create({
   testimonialTitle: { fontSize: 12, fontWeight: '900', letterSpacing: 0, marginBottom: 10 },
   testimonialText: { fontSize: 14, lineHeight: 20, fontStyle: 'italic' },
   testimonialAuthor: { fontSize: 12, marginTop: 5 },
+  // Клиренс под парение (±5px) + вылет гало (6px), чтобы ScrollView не срезал
+  // верх капсулы. Держим геометрию стабильной с первого кадра (Perf Bible).
+  glyphFloat: { marginTop: 11 },
   glyphCap: {
-    alignSelf: 'center', width: 70, height: 70, borderRadius: 35, borderWidth: 0,
+    alignSelf: 'center', width: 70, height: 70, borderRadius: 35,
     alignItems: 'center', justifyContent: 'center',
-    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 20, elevation: 7,
+    // зачем: фон капсулы задаётся динамически как `${tc.heroAccent}10`
+    // (полупрозрачный), поэтому Android рисовал КВАДРАТ вокруг круга.
+    // Свечение здесь и так даёт гало из PaywallIdleFloat — elevation не нужен.
+    // радиус 16 — потолок DESIGN.md; свечение добирает гало PaywallIdleFloat
+    shadowOffset: { width: 0, height: 0 }, shadowOpacity: 0.38, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   glyphCompassImage: { height: 62, width: 62 },
   // хиро-объяснение (субтайтл + выгоды момента) — фиксированная геометрия с
@@ -600,8 +617,12 @@ const S = StyleSheet.create({
   sticky: {
     position: 'absolute', left: 10, right: 10, bottom: 12, zIndex: 50,
     flexDirection: 'row', alignItems: 'center', gap: 10,
-    borderRadius: 20, borderWidth: 0, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
-    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 22, elevation: 14,
+    borderRadius: 20, paddingVertical: 12, paddingLeft: 16, paddingRight: 11,
+    // зачем: фон sticky-панели приходит из темы (может быть полупрозрачным),
+    // а radius 20 + elevation давали квадрат под панелью на Android.
+    // Радиус 16 — потолок DESIGN.md (perf-guard).
+    shadowColor: '#000', shadowOffset: { width: 0, height: 10 }, shadowOpacity: 0.45, shadowRadius: 16,
+    ...noAndroidOutline,
   },
   stickyTextWrap: { flex: 1, minWidth: 0 },
   stickyTitle: { fontSize: 14, fontWeight: '900' },

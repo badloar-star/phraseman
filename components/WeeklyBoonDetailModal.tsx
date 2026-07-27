@@ -21,6 +21,7 @@ import { getBoonCopy, getMysteryChestClaimedDetail } from '../app/boons/boon_cop
 import type { BoonId } from '../app/boons/boon_types';
 import { weeklyBoonIconSource } from '../constants/boonIconAssets';
 
+import { noAndroidOutline } from '../constants/androidGlow';
 interface WeeklyBoonDetailModalProps {
   visible: boolean;
   /** Бонус, по которому показываем подробности (null = нечего показывать). */
@@ -186,7 +187,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 30,
     shadowOffset: { width: 0, height: 0 },
-    elevation: 14,
+    ...noAndroidOutline,
   },
   iconRow: {
     alignItems: 'center',

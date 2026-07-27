@@ -2,12 +2,13 @@ import React, { memo, useEffect, useRef, useState } from 'react';
 import {
   View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, PanResponder, Share,
 } from 'react-native';
+import { router } from 'expo-router';
 import { LinearGradient } from './SafeLinearGradient';
 import TapScale from './TapScale';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image as ExpoImage } from 'expo-image';
-import { useAchievement } from './AchievementContext';
+import { useAchievement, isAchievementSummaryToast } from './AchievementContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { markAchievementsNotified } from '../app/achievements';
@@ -20,6 +21,7 @@ import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING_LEGACY as MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
+import { noAndroidOutline } from '../constants/androidGlow';
 import { useOverlayVisible } from './OverlayArbiter';
 import {
   cancelScheduledAnimatedStateUpdates,
@@ -165,8 +167,11 @@ function AchievementToast() {
       // Вибрация
       hapticSuccess();
 
-      // Пометить как notified
-      markAchievementsNotified([currentToast.id]);
+      // Пометить как notified. У сводки гасим ВСЮ свёрнутую пачку разом — иначе
+      // следующий flushPending поднял бы те же достижения снова и лента вернулась бы.
+      markAchievementsNotified(
+        isAchievementSummaryToast(currentToast) ? currentToast.summaryIds : [currentToast.id],
+      );
 
       // Slide up + fade in + scale
       translateY.setValue(160);
@@ -227,6 +232,14 @@ function AchievementToast() {
     hapticTap();
     if (timerRef.current) clearTimeout(timerRef.current);
     cancelScheduledAnimatedStateUpdates(scheduledStateUpdatesRef);
+    // зачем: у сводки нет одного «своего» достижения, поэтому детальная модалка ей
+    // не подходит — по тапу ведём на экран достижений, где видна вся открытая пачка.
+    // Тост убираем сразу (animateOut), чтобы он не висел поверх нового экрана.
+    if (isAchievementSummaryToast(displayedToast)) {
+      animateOut(true);
+      router.push('/achievements_screen' as never);
+      return;
+    }
     modalVisibleRef.current = true;
     setModalVisible(true);
   };
@@ -239,6 +252,9 @@ function AchievementToast() {
   };
 
   if (!displayedToast || !toastOverlayVisible) return null;
+
+  // Сводка целой пачки: одна карточка «Открыто N достижений» вместо ленты тостов.
+  const summary = isAchievementSummaryToast(displayedToast) ? displayedToast : null;
 
   const name = triLang(lang, {
     uk: displayedToast.nameUk,
@@ -270,6 +286,46 @@ function AchievementToast() {
     tr: 'Başarım açıldı!',
     pl: 'Osiągnięcie odblokowane!',
   });
+  // Сводка: имя = счётчик, описание = приглашение открыть список. Славянская
+  // плюрализация обязательна — «5 достижения» читается как брак.
+  const n = summary?.summaryCount ?? 0;
+  const slavicPlural = (one: string, few: string, many: string): string => {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    if (mod10 === 1 && mod100 !== 11) return one;
+    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+    return many;
+  };
+  const summaryName = summary ? triLang(lang, {
+    uk: `Відкрито ${n} ${slavicPlural('досягнення', 'досягнення', 'досягнень')}`,
+    ru: `Открыто ${n} ${slavicPlural('достижение', 'достижения', 'достижений')}`,
+    es: `${n} logros desbloqueados`,
+    'pt-BR': `${n} conquistas desbloqueadas`,
+    vi: `Đã mở khóa ${n} thành tích`,
+    id: `${n} pencapaian terbuka`,
+    tr: `${n} başarım açıldı`,
+    pl: `Odblokowano ${n} ${slavicPlural('osiągnięcie', 'osiągnięcia', 'osiągnięć')}`,
+  }) : '';
+  const summaryLabel = triLang(lang, {
+    uk: 'Нові досягнення',
+    ru: 'Новые достижения',
+    es: 'Nuevos logros',
+    'pt-BR': 'Novas conquistas',
+    vi: 'Thành tích mới',
+    id: 'Pencapaian baru',
+    tr: 'Yeni başarımlar',
+    pl: 'Nowe osiągnięcia',
+  });
+  const summaryDesc = triLang(lang, {
+    uk: 'Торкніться, щоб переглянути',
+    ru: 'Нажмите, чтобы посмотреть',
+    es: 'Toca para verlos',
+    'pt-BR': 'Toque para ver',
+    vi: 'Chạm để xem',
+    id: 'Ketuk untuk melihat',
+    tr: 'Görmek için dokun',
+    pl: 'Dotknij, aby zobaczyć',
+  });
   const shareLabel = triLang(lang, {
     uk: 'Поділитися',
     ru: 'Поделиться',
@@ -290,14 +346,16 @@ function AchievementToast() {
     tr: 'Kapat',
     pl: 'Zamknij',
   });
-  const iconName = ACHIEVEMENT_ICON[displayedToast.id] ?? 'star';
-  const color = CAT_COLOR[displayedToast.category] ?? '#888';
+  // У сводки нет собственного арта и категории — берём трофей и золото темы,
+  // чтобы пачка читалась как отдельная сущность, а не как одно из достижений.
+  const iconName = summary ? 'trophy' : (ACHIEVEMENT_ICON[displayedToast.id] ?? 'star');
+  const color = summary ? t.gold : (CAT_COLOR[displayedToast.category] ?? '#888');
   const modalAccent = rewardModalAccentColor(themeMode, t);
   const achievementBorderColor = color.startsWith('#') && color.length === 7 ? `${color}88` : color;
   // зачем: арт «первых» достижений лежит в бандле (мгновенно, офлайн), остальной
   // стримится из Storage и берётся из прогретого дискового кэша. Пока картинки
   // нет — тост показывает векторную иконку категории, а не пустоту.
-  const toastImageSource = achievementImageSource(displayedToast.id);
+  const toastImageSource = summary ? null : achievementImageSource(displayedToast.id);
 
   return (
     <>
@@ -347,12 +405,14 @@ function AchievementToast() {
 
           {/* Текст */}
           <View style={s.textWrap}>
-            <Text style={[s.label, { color: t.textSecond, fontSize: f.label }]}>{label}</Text>
+            <Text style={[s.label, { color: t.textSecond, fontSize: f.label }]}>
+              {summary ? summaryLabel : label}
+            </Text>
             <Text style={[s.name, { color: t.textPrimary, fontSize: f.bodyLg }]} numberOfLines={1}>
-              {name}
+              {summary ? summaryName : name}
             </Text>
             <Text style={[s.desc, { color: t.textMuted, fontSize: f.sub }]} numberOfLines={1}>
-              {desc}
+              {summary ? summaryDesc : desc}
             </Text>
           </View>
 
@@ -455,14 +515,15 @@ const s = StyleSheet.create({
     flexDirection:  'row',
     alignItems:     'center',
     borderRadius:   20,
-    borderWidth:    0,
     paddingVertical: 12,
     paddingHorizontal: 14,
     gap:            12,
+    // зачем: фон плашки достижения приходит из темы — Android рисовал квадрат
+    // вокруг скругления 20. На iOS тень остаётся как была.
     shadowOffset:   { width: 0, height: 4 },
     shadowOpacity:  0.18,
     shadowRadius:   8,
-    elevation:      6,
+    ...noAndroidOutline,
   },
   iconWrap: {
     width:         TOAST_ICON_SLOT_SIZE,
@@ -515,7 +576,7 @@ const s = StyleSheet.create({
     shadowOffset: { width: 0, height: 18 },
     shadowOpacity: 0.28,
     shadowRadius: 26,
-    elevation: 18,
+    ...noAndroidOutline,
   },
   modalTopRail: {
     position: 'absolute',

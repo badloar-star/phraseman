@@ -3,16 +3,15 @@
 // (белое ядро → bloomA → bloomB ореолом) + звёздная пыль. Референс: tools/
 // docs/design/black_cinema_themes_2026-06-10.html (макеты, утверждены 2026-06-11).
 //
-// Один движок — пять спектров:
+// Один движок — четыре спектра:
 //   midnight — белый → электрик-синий → фиолетовый (флагман, референс юзера)
 //   ember    — белый → янтарь → малиновый (закат)
 //   aurora   — белый → мята → лазурь (северное сияние)
 //   volt     — белый → лайм → изумруд (кислота, наследник «Неона»)
-//   horizon  — белый → персик → роза на сливовом сумраке (бесплатная витрина)
 
-export type CinemaMode = 'midnight' | 'ember' | 'aurora' | 'volt' | 'horizon';
+export type CinemaMode = 'midnight' | 'ember' | 'aurora' | 'volt';
 
-export const CINEMA_MODES: readonly CinemaMode[] = ['midnight', 'ember', 'aurora', 'volt', 'horizon'] as const;
+export const CINEMA_MODES: readonly CinemaMode[] = ['midnight', 'ember', 'aurora', 'volt'] as const;
 
 export function isCinemaMode(mode: string): mode is CinemaMode {
   return (CINEMA_MODES as readonly string[]).includes(mode);
@@ -122,27 +121,6 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
       easy: { gradA: '#08241B', gradB: '#02100B', accent: '#4FE8AC' },
       medium: { gradA: '#1C2406', gradB: '#0B0F02', accent: '#C6FF34' },
       hard: { gradA: '#2A1606', gradB: '#100802', accent: '#FF8A3D' },
-    },
-  },
-  // зачем: владелец выбрал «Горизонт» бесплатной темой-витриной (2026-07-27,
-  // утверждён по макетам): тёпло-холодный дуотон — персик на сливово-синем
-  // сумраке, блум персик → роза. Ниша, которой нет у остальных 12 тем.
-  horizon: {
-    accent: '#FFAD7A', second: '#F7A6C6', onAccent: '#2A1408',
-    cta: ['#FFD4B0', '#FFAD7A', '#F28C50'],
-    bloomA: '#FF9E6B', bloomB: '#FF5E8A',
-    correct: '#5FE0B0', onCorrect: '#062619', wrong: '#FF5C64',
-    gold: '#FFC96B', onGold: '#221604',
-    card: '#130E1E', surface: '#1D1630', surface2: '#282040', borderLight: '#342A52',
-    // ghost поднят до 4.53:1 на карточке — как у соседних кино-тем (4.1–4.9),
-    // тема-витрина не должна читаться хуже премиальных.
-    textMuted: '#B3A6BE', textGhost: '#847791', btnShadow: '#9A5A2E',
-    cardGradient: ['#3A2450', '#080510'],
-    bgGradient3: ['#120C1E', '#070510', '#010102'],
-    quiz: {
-      easy: { gradA: '#08241B', gradB: '#02100B', accent: '#5FE0B0' },
-      medium: { gradA: '#2A1808', gradB: '#100903', accent: '#FFAD7A' },
-      hard: { gradA: '#2A0C1A', gradB: '#12040A', accent: '#FF5E8A' },
     },
   },
 };

@@ -150,9 +150,6 @@ export function rewardModalPanelColors(themeMode: ThemeMode, _t: Theme): [string
       return ['#0B161B', '#122229', '#04090C'];
     case 'indigo':
       return ['#14131F', '#1C1B2E', '#060510'];
-    // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), сливовые панели под закатный акцент.
-    case 'horizon':
-      return ['#130E1E', '#1D1630', '#050310'];
     case 'dark':
     default:
       return ['#15231A', '#0A120E', '#040906'];
@@ -181,8 +178,6 @@ export function rewardModalAccentColor(themeMode: ThemeMode, t: Theme): string {
       return '#B2D5E5';
     case 'indigo':
       return '#C8C3FF';
-    case 'horizon':
-      return '#FFAD7A';
     case 'dark':
     default:
       return t.gold;
@@ -212,8 +207,6 @@ export function rewardModalPanelBorder(themeMode: ThemeMode, _t: Theme, priority
       return 'rgba(178,213,229,0.30)';
     case 'indigo':
       return 'rgba(200,195,255,0.30)';
-    case 'horizon':
-      return 'rgba(255,173,122,0.34)';
     case 'dark':
     default:
       return 'rgba(88,204,137,0.30)';
@@ -242,8 +235,6 @@ export function rewardModalSoftSurface(themeMode: ThemeMode, _t: Theme): string 
       return 'rgba(178,213,229,0.08)';
     case 'indigo':
       return 'rgba(200,195,255,0.08)';
-    case 'horizon':
-      return 'rgba(255,173,122,0.09)';
     case 'dark':
     default:
       return 'rgba(255,255,255,0.055)';
@@ -272,8 +263,6 @@ export function rewardModalPrimaryButtonColors(themeMode: ThemeMode): [string, s
       return ['#E4F2F8', '#B2D5E5'];
     case 'indigo':
       return ['#ECEAFF', '#C8C3FF'];
-    case 'horizon':
-      return ['#FFD4B0', '#F28C50'];
     case 'dark':
     default:
       return ['#F0F7F2', '#8FE5AD'];
@@ -351,8 +340,6 @@ function rewardModalBackdropGradientColors(themeMode: ThemeMode): [string, strin
       return ['#122229', '#0B161B', '#020506'];
     case 'indigo':
       return ['#1C1B2E', '#14131F', '#040309'];
-    case 'horizon':
-      return ['#2A1638', '#150D22', '#04020A'];
     case 'dark':
     default:
       return ['#0F2718', '#07110C', '#020503'];
@@ -381,8 +368,6 @@ function rewardModalPanelGradientColors(themeMode: ThemeMode): [string, string, 
       return ['#1C323B', '#0E1C22', '#020506'];
     case 'indigo':
       return ['#2A2952', '#16152A', '#040309'];
-    case 'horizon':
-      return ['#3A2450', '#1D1630', '#050310'];
     case 'dark':
     default:
       return ['#13301D', '#0A150F', '#030604'];

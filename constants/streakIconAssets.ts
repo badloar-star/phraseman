@@ -94,19 +94,6 @@ const STREAK_FIRE_ICON_ASSET_PATHS: ThemeTierMap<string> = {
     60: 'assets/images/streak_icons/ember/streak-fire-ember-060.webp',
     100: 'assets/images/streak_icons/ember/streak-fire-ember-100.webp',
   },
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: {
-    1: 'assets/images/streak_icons/ember/streak-fire-ember-001.webp',
-    2: 'assets/images/streak_icons/ember/streak-fire-ember-002.webp',
-    3: 'assets/images/streak_icons/ember/streak-fire-ember-003.webp',
-    5: 'assets/images/streak_icons/ember/streak-fire-ember-005.webp',
-    7: 'assets/images/streak_icons/ember/streak-fire-ember-007.webp',
-    10: 'assets/images/streak_icons/ember/streak-fire-ember-010.webp',
-    20: 'assets/images/streak_icons/ember/streak-fire-ember-020.webp',
-    35: 'assets/images/streak_icons/ember/streak-fire-ember-035.webp',
-    60: 'assets/images/streak_icons/ember/streak-fire-ember-060.webp',
-    100: 'assets/images/streak_icons/ember/streak-fire-ember-100.webp',
-  },
   aurora: {
     1: 'assets/images/streak_icons/aurora/streak-fire-aurora-001.webp',
     2: 'assets/images/streak_icons/aurora/streak-fire-aurora-002.webp',
@@ -254,19 +241,6 @@ const STREAK_FIRE_ICON_SOURCES: ThemeTierMap<ImageSourcePropType> = {
     60: require('../assets/images/streak_icons/ember/streak-fire-ember-060.webp'),
     100: require('../assets/images/streak_icons/ember/streak-fire-ember-100.webp'),
   },
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: {
-    1: require('../assets/images/streak_icons/ember/streak-fire-ember-001.webp'),
-    2: require('../assets/images/streak_icons/ember/streak-fire-ember-002.webp'),
-    3: require('../assets/images/streak_icons/ember/streak-fire-ember-003.webp'),
-    5: require('../assets/images/streak_icons/ember/streak-fire-ember-005.webp'),
-    7: require('../assets/images/streak_icons/ember/streak-fire-ember-007.webp'),
-    10: require('../assets/images/streak_icons/ember/streak-fire-ember-010.webp'),
-    20: require('../assets/images/streak_icons/ember/streak-fire-ember-020.webp'),
-    35: require('../assets/images/streak_icons/ember/streak-fire-ember-035.webp'),
-    60: require('../assets/images/streak_icons/ember/streak-fire-ember-060.webp'),
-    100: require('../assets/images/streak_icons/ember/streak-fire-ember-100.webp'),
-  },
   aurora: {
     1: require('../assets/images/streak_icons/aurora/streak-fire-aurora-001.webp'),
     2: require('../assets/images/streak_icons/aurora/streak-fire-aurora-002.webp'),
@@ -354,7 +328,6 @@ const FIRE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; a
   volt: { rgb: [255, 232, 92], accent: '#FFE85C' },
   candyBlue: { rgb: [178, 213, 229], accent: '#B2D5E5' },
   indigo: { rgb: [200, 195, 255], accent: '#C8C3FF' },
-  horizon: { rgb: [255, 173, 122], accent: '#FFAD7A' },
 };
 
 const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number]; accent: string }> = {
@@ -370,7 +343,6 @@ const FREEZE_CHROME: Record<ThemeMode, { rgb: readonly [number, number, number];
   volt: { rgb: [111, 231, 220], accent: '#6FE7DC' },
   candyBlue: { rgb: [122, 200, 232], accent: '#7AC8E8' },
   indigo: { rgb: [154, 149, 194], accent: '#9A95C2' },
-  horizon: { rgb: [255, 111, 165], accent: '#FF6FA5' },
 };
 
 const STREAK_FREEZE_ICON_ASSET_PATH = 'assets/images/streak_icons/streak-freeze.webp';
@@ -390,8 +362,6 @@ const STREAK_FREEZE_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   // Новые темы показывают freeze-иконку minimalDark без новых ассетов.
   candyBlue: 'assets/images/streak_icons/candyBlue/streak-freeze-candyBlue.webp',
   indigo: 'assets/images/streak_icons/indigo/streak-freeze-indigo.webp',
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: 'assets/images/streak_icons/ember/streak-freeze-ember.webp',
 };
 
 const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
@@ -407,8 +377,6 @@ const STREAK_FREEZE_ICON_SOURCES: Record<ThemeMode, ImageSourcePropType> = {
   volt: require('../assets/images/streak_icons/volt/streak-freeze-volt.webp'),
   candyBlue: require('../assets/images/streak_icons/candyBlue/streak-freeze-candyBlue.webp'),
   indigo: require('../assets/images/streak_icons/indigo/streak-freeze-indigo.webp'),
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: require('../assets/images/streak_icons/ember/streak-freeze-ember.webp'),
 };
 
 const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
@@ -424,8 +392,6 @@ const STREAK_FREEZE_ICON_SOURCE_PROMPTS: Record<ThemeMode, string> = {
   volt: 'assets/images/cinema_dalle_sources/volt-object-rewards-dalle.png#streak-icons',
   candyBlue: 'assets/images/streak_icons/sources/streak-freeze-minimalDark-dalle-source.png',
   indigo: 'assets/images/streak_icons/sources/streak-freeze-minimalDark-dalle-source.png',
-  // TODO(horizon-assets): заменить на исходник «Горизонта» после генерации.
-  horizon: 'assets/images/cinema_dalle_sources/ember-object-rewards-dalle.png#streak-icons',
 };
 
 function rgba(rgb: readonly [number, number, number], alpha: number): string {

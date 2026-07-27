@@ -306,9 +306,6 @@ export const MIDNIGHT = buildCinemaTheme(CINEMA.midnight);
 export const EMBER    = buildCinemaTheme(CINEMA.ember);
 export const AURORA   = buildCinemaTheme(CINEMA.aurora);
 export const VOLT     = buildCinemaTheme(CINEMA.volt);
-// зачем: «Горизонт» — бесплатная тема-витрина для новых юзеров (2026-07-27);
-// пятый спектр «чёрного кино», персик #FFAD7A + блум персик → роза.
-export const HORIZON  = buildCinemaTheme(CINEMA.horizon);
 
 // ─── «БИЗНЕС» (business) ─────────────────────────────────────────────────────
 // Инстаграм-язык, тёмный: чистый чёрный фон, БЕЗ карточек-контейнеров с
@@ -483,7 +480,7 @@ export const INDIGO = {
   bgGradient: ['#14131F', '#0C0B16', '#010102'] as unknown as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo' | 'horizon';
+export type ThemeMode = 'dark' | 'gold' | 'coral' | 'minimalDark' | 'midnight' | 'ember' | 'aurora' | 'volt' | 'business' | 'businessLight' | 'candyBlue' | 'indigo';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -512,7 +509,6 @@ const _checkBUSINESS: Theme = BUSINESS as any;
 const _checkBUSINESS_LIGHT: Theme = BUSINESS_LIGHT as any;
 const _checkCANDY_BLUE: Theme = CANDY_BLUE as any;
 const _checkINDIGO: Theme = INDIGO as any;
-const _checkHORIZON: Theme = HORIZON as any;
 
 // ─── COLOURS ALIAS (for Expo template components) ────────────────────────────
 export const Colors = {

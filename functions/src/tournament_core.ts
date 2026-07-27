@@ -386,7 +386,17 @@ export type TournamentTask = {
   verified: boolean;
 };
 
-export type TournamentTaskKind = 'choice' | 'translate' | 'timeattack' | 'voice';
+/**
+ * зачем 2026-07-27: владелец отобрал аудио-режимы Learning V2 (макеты 03/04/05)
+ * — «Выбор на слух», «Пары звуков», «Диктант». Они отличаются от текстовых
+ * ОДНИМ: игроку проигрывается озвучка, а сам текст фразы — и есть ответ,
+ * поэтому в публичную версию он попасть НЕ должен.
+ *   listen  — услышал фразу → выбрал вариант из списка (03, 04);
+ *   dictate — услышал фразу → собрал из чипов (05), проверка как у translate.
+ */
+export type TournamentTaskKind =
+  | 'choice' | 'translate' | 'timeattack' | 'voice'
+  | 'listen' | 'dictate';
 
 export type TournamentPublicTask = {
   taskId: string;
@@ -405,6 +415,8 @@ export const TOURNAMENT_TASK_LIMITS = Object.freeze({
   phraseBytes: 512,
   promptBytes: 512,
   referenceBytes: 1_024,
+  /** Ссылка на озвучку в Storage: Firebase-URL с токеном длиннее обычного. */
+  audioUriBytes: 512,
   answerBytes: 1_024,
   optionBytes: 128,
   tokenBytes: 128,
@@ -450,8 +462,12 @@ function hasOnlyKeys(value: Record<string, unknown>, allowed: readonly string[])
 
 function taskKind(task: TournamentTask): TournamentTaskKind {
   const mode = String(task.mode || '').toLowerCase();
+  // voice = игрок ГОВОРИТ (скоринг отключён). listen/dictate = игрок СЛУШАЕТ:
+  // это разные вещи, поэтому проверка isVoice идёт после аудио-режимов.
+  if (mode === 'listen_build') return 'dictate';
+  if (mode === 'listen_choose' || mode === 'sound_contrast') return 'listen';
   if (task.isVoice || mode.includes('voice')) return 'voice';
-  if (mode.includes('time')) return 'timeattack';
+  if (mode.includes('time') || mode === 'speed_match') return 'timeattack';
   if (mode.includes('translate')) return 'translate';
   return 'choice';
 }
@@ -481,6 +497,47 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
       || !boundedString(task.payload.phrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
       || !boundedString(task.payload.reference, TOURNAMENT_TASK_LIMITS.referenceBytes)) {
       return { ok: false, reason: 'voice_contract_invalid' };
+    }
+    return { ok: true, kind };
+  }
+  if (kind === 'listen') {
+    // Услышал → выбрал. Текст фразы В ОТВЕТЕ НЕ УЧАСТВУЕТ, но хранится в
+    // секрете: он нужен стражу свежести (текст поменяли → озвучка протухла)
+    // и экрану разбора после турнира.
+    if (!hasOnlyKeys(task.payload, ['audioUri', 'phrase', 'options', 'correctIndex'])) {
+      return { ok: false, reason: 'task_payload_fields_invalid' };
+    }
+    const listenOptions = task.payload.options;
+    const listenIndex = task.payload.correctIndex;
+    if (!boundedString(task.payload.audioUri, TOURNAMENT_TASK_LIMITS.audioUriBytes)
+      || !boundedString(task.payload.phrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
+      || !boundedStringArray(listenOptions, {
+        maxItems: 4, maxItemBytes: TOURNAMENT_TASK_LIMITS.optionBytes,
+      })
+      // 2 варианта — «Пары звуков» (ship/sheep), 3-4 — «Выбор на слух».
+      || listenOptions.length < 2 || !Number.isInteger(listenIndex)
+      || Number(listenIndex) < 0 || Number(listenIndex) >= listenOptions.length) {
+      return { ok: false, reason: 'listen_contract_invalid' };
+    }
+    return { ok: true, kind };
+  }
+  if (kind === 'dictate') {
+    // Диктант: услышал → собрал из чипов. Проверка ответа как у translate,
+    // но вместо видимой фразы игрок получает только озвучку.
+    if (!hasOnlyKeys(task.payload, ['audioUri', 'phrase', 'wordBank', 'correctTokens'])) {
+      return { ok: false, reason: 'task_payload_fields_invalid' };
+    }
+    if (!boundedString(task.payload.audioUri, TOURNAMENT_TASK_LIMITS.audioUriBytes)
+      || !boundedString(task.payload.phrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
+      || !boundedStringArray(task.payload.wordBank, {
+        maxItems: TOURNAMENT_TASK_LIMITS.maxWordBankItems,
+        maxItemBytes: TOURNAMENT_TASK_LIMITS.tokenBytes,
+      })
+      || !boundedStringArray(task.payload.correctTokens, {
+        maxItems: TOURNAMENT_TASK_LIMITS.maxCorrectTokens,
+        maxItemBytes: TOURNAMENT_TASK_LIMITS.tokenBytes,
+      })) {
+      return { ok: false, reason: 'dictate_contract_invalid' };
     }
     return { ok: true, kind };
   }
@@ -561,6 +618,19 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
         prompt: String(item.prompt),
         options: (item.options as string[]).slice(),
       })),
+    };
+  }
+  if (kind === 'listen') {
+    // Ключевое: phrase НЕ отдаём — услышанный текст и есть предмет задания.
+    return {
+      audioUri: String(task.payload.audioUri),
+      options: (task.payload.options as string[]).slice(),
+    };
+  }
+  if (kind === 'dictate') {
+    return {
+      audioUri: String(task.payload.audioUri),
+      wordBank: (task.payload.wordBank as string[]).slice(),
     };
   }
   return { phrase: String(task.payload.phrase) };
@@ -672,10 +742,12 @@ function normalizedTokens(value: unknown): string[] | null {
 export function verifyTournamentAnswer(task: TournamentTask, answer: unknown): boolean {
   const validation = validateTournamentTask(task);
   if (!validation.ok || validation.kind === 'voice' || !isRecord(answer)) return false;
-  if (validation.kind === 'choice') {
+  if (validation.kind === 'choice' || validation.kind === 'listen') {
+    // listen проверяется как choice: игрок выбрал индекс варианта. Разница
+    // только в стимуле (озвучка вместо текста) — она на клиенте, не здесь.
     return Number.isInteger(answer.selectedIndex) && answer.selectedIndex === task.payload.correctIndex;
   }
-  if (validation.kind === 'translate') {
+  if (validation.kind === 'translate' || validation.kind === 'dictate') {
     const given = normalizedTokens(answer.tokens);
     if (!given) return false;
     const expectedTokens = normalizedTokens(task.payload.correctTokens)

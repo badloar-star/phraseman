@@ -122,15 +122,6 @@ const THEME_CHROME: Record<ThemeMode, ThemeChrome> = {
     taskGlow: 'rgba(255,179,106,0.10)',
     taskBorder: 'rgba(255,179,106,0.30)',
   },
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  horizon: {
-    accent: '#FFAD7A',
-    accentSoft: 'rgba(255,173,122,0.18)',
-    chipBg: 'rgba(255,173,122,0.15)',
-    chipText: '#FFD4B0',
-    taskGlow: 'rgba(255,173,122,0.10)',
-    taskBorder: 'rgba(255,173,122,0.30)',
-  },
   aurora: {
     accent: '#7CF4D2',
     accentSoft: 'rgba(124,244,210,0.17)',

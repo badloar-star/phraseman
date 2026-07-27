@@ -121,16 +121,6 @@ const WEEK_DOTS: Record<ThemeMode, Omit<WeekDotTheme, 'freezeBg' | 'freezeBorder
     todayBorder: 'rgba(200,195,255,0.56)',
     checkColor: '#17162B',
   },
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  horizon: {
-    completeBg: '#FFAD7A',
-    completeBorder: 'rgba(255,212,176,0.74)',
-    emptyBg: 'rgba(255,173,122,0.08)',
-    todayBg: 'rgba(255,173,122,0.17)',
-    emptyBorder: 'rgba(255,173,122,0.24)',
-    todayBorder: 'rgba(255,173,122,0.56)',
-    checkColor: '#2A1408',
-  },
 };
 
 export function themedWeekDot(themeMode: ThemeMode, theme: Theme): WeekDotTheme {

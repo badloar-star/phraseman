@@ -12,9 +12,6 @@ const ENERGY_IMAGES: Record<ThemeMode, any> = {
   businessLight: require('../assets/images/energy/energy-businessLight.webp'),
   midnight: require('../assets/images/energy/energy-midnight.webp'),
   ember: require('../assets/images/energy/energy-ember.webp'),
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: require('../assets/images/energy/energy-ember.webp'),
   aurora: require('../assets/images/energy/energy-aurora.webp'),
   volt: require('../assets/images/energy/energy-volt.webp'),
   // Новые темы переиспользуют ассет minimalDark (graphite), без новых файлов.

@@ -9,7 +9,6 @@ import {
   DARK,
   EMBER,
   GOLD,
-  HORIZON,
   INDIGO,
   MIDNIGHT,
   VOLT,
@@ -42,8 +41,6 @@ const STATS_CHROME_ACCENT_BY_THEME: Record<ThemeMode, string> = {
   volt: VOLT.accent,
   candyBlue: CANDY_BLUE.accent,
   indigo: INDIGO.accent,
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  horizon: HORIZON.accent,
 };
 
 // Statistics deliberately uses a quieter page field than the shared app backdrop so
@@ -61,7 +58,6 @@ const STATS_PAGE_FIELD_BY_THEME: Record<ThemeMode, string> = {
   volt: '#20250E',
   candyBlue: '#1C323B',
   indigo: '#2A2952',
-  horizon: '#1D1630',
 };
 
 const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
@@ -196,17 +192,6 @@ const STATS_ACCENTS_BY_THEME: Record<ThemeMode, StatsAccentPalette> = {
     percentiles: '#E4A6FF',
     archiveMap: '#C8C3FF',
     wager: '#FFC53D',
-  },
-  horizon: {
-    streak: '#FFAD7A',
-    freeze: '#F7A6C6',
-    multipliers: '#FFC96B',
-    practiceBalance: '#5FE0B0',
-    weekRhythm: '#FF9E6B',
-    activity: '#5FE0B0',
-    percentiles: '#FF6FA5',
-    archiveMap: '#FFD4B0',
-    wager: '#F28C50',
   },
 };
 

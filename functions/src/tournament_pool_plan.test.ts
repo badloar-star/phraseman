@@ -79,12 +79,17 @@ describe('планировщик комплекта турнира', () => {
     expect(healthyCell?.count).toBe(CELL_HEALTHY - TASKS_PER_ROUND);
   });
 
-  it('режимы Learning V2 не подключены до отбора владельцем', () => {
-    // Владелец 2026-07-27: «не спеши перенимать задания из Learning V2, я ещё
-    // не разобрался какие там нормальные, скажу сам». Плюс аудио/голос в турнир
-    // не идут в принципе — таймер 15с не терпит загрузки звука.
-    expect([...TOURNAMENT_MODES]).toEqual(['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build']);
-    for (const banned of ['context_gap', 'speed_match', 'listen_choose', 'sound_contrast', 'shadowing', 'speaking_club']) {
+  it('состав режимов — ровно тот, что отобрал владелец', () => {
+    // Отбор владельца 2026-07-27 по макетам Learning V2. Список закреплён:
+    // случайное добавление режима меняет требования к пулу и может тихо
+    // сломать сборку раунда, поэтому изменение состава — осознанное действие.
+    expect([...TOURNAMENT_MODES]).toEqual([
+      'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build',
+      'listen_choose', 'sound_contrast', 'listen_build', 'speed_match',
+    ]);
+    // Голосовые ответы игрока и диалоги в турнир не идут: не проверяются
+    // сервером объективно (verifyTournamentAnswer для voice всегда false).
+    for (const banned of ['shadowing', 'speaking_club', 'quick_response', 'repeat_compare']) {
       expect(TOURNAMENT_MODES).not.toContain(banned);
     }
   });

@@ -11,9 +11,6 @@ const SOCIAL_FRIENDS_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   businessLight: require('../assets/images/social_icons/social-friends-businessLight.webp'),
   midnight: require('../assets/images/social_icons/social-friends-midnight.webp'),
   ember: require('../assets/images/social_icons/social-friends-ember.webp'),
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: require('../assets/images/social_icons/social-friends-ember.webp'),
   aurora: require('../assets/images/social_icons/social-friends-aurora.webp'),
   volt: require('../assets/images/social_icons/social-friends-volt.webp'),
   // Новые темы переиспользуют ассет minimalDark, без новых файлов.
@@ -30,8 +27,6 @@ const SOCIAL_CHAT_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   businessLight: require('../assets/images/social_icons/social-chat-businessLight.webp'),
   midnight: require('../assets/images/social_icons/social-chat-midnight.webp'),
   ember: require('../assets/images/social_icons/social-chat-ember.webp'),
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: require('../assets/images/social_icons/social-chat-ember.webp'),
   aurora: require('../assets/images/social_icons/social-chat-aurora.webp'),
   volt: require('../assets/images/social_icons/social-chat-volt.webp'),
   candyBlue: require('../assets/images/social_icons/social-chat-candyBlue.webp'),

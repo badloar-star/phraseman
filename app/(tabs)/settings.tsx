@@ -203,16 +203,6 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     accent: '#DFA985',
     chipOn: '#33251D',
   },
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  horizon: {
-    panel: '#1D1630',
-    chip: '#1D1630',
-    border: 'rgba(255,212,176,0.12)',
-    divider: 'rgba(255,212,176,0.07)',
-    notice: '#231A38',
-    accent: '#FFAD7A',
-    chipOn: '#342A52',
-  },
   aurora: {
     panel: '#182222',
     chip: '#182222',

@@ -211,31 +211,6 @@ function shellGold(): CardPackPaywallTheme {
   };
 }
 
-// зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-/** HORIZON: закатний дуотон — персик + рожевий блум на сливовому фоні. */
-function shellHorizon(): CardPackPaywallTheme {
-  return {
-    backdropBase: 'rgba(1,1,2,0.9)',
-    outerGlow: [
-      'rgba(255,158,107,0.38)',
-      'rgba(255,94,138,0.24)',
-      'rgba(19,14,30,0.55)',
-    ],
-    borderAccent: 'rgba(255,173,122,0.24)',
-    handleColorLight: 'rgba(255,173,122,0.18)',
-    handleColorDark: 'rgba(255,111,165,0.32)',
-    iconBg: ['#282040', '#1D1630'],
-    iconBorder: 'rgba(255,173,122,0.26)',
-    priceBorder: 'rgba(255,173,122,0.2)',
-    priceGradient: ['rgba(255,173,122,0.1)', 'rgba(0,0,0,0)'],
-    ctaColors: ['#FFD4B0', '#F28C50'],
-    ctaForeground: '#2A1408',
-    ctaGlowTop: 'rgba(255,158,107,0.32)',
-    goShopCta: ['#FFAD7A', '#F28C50'],
-    goShopForeground: '#2A1408',
-  };
-}
-
 /** COMPASS: default free shell, simple graphite plates with warm onboarding CTA. */
 function shellOnboardingGraphite(): CardPackPaywallTheme {
   return {
@@ -343,7 +318,6 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   ember: shellOnboardingGraphite(),
   aurora: shellOnboardingGraphite(),
   volt: shellOnboardingGraphite(),
-  horizon: shellHorizon(),
   // Новые тёмные темы: графитовая оболочка.
   candyBlue: shellOnboardingGraphite(),
   indigo: shellOnboardingGraphite(),

@@ -103,10 +103,7 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/home_menu/midnight/home-midnight-hero-map.webp'),
     };
   }
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27). До генерации своих
-  // ассетов берёт тёплый набор ember, а не зелёный лесной fallback.
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  if (themeMode === 'ember' || themeMode === 'horizon') {
+  if (themeMode === 'ember') {
     return {
       lesson: require('../assets/images/home_menu/ember/home-ember-lessons.webp'),
       cards: require('../assets/images/home_menu/ember/home-ember-cards.webp'),

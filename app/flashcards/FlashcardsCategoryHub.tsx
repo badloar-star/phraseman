@@ -119,16 +119,6 @@ export const FLASHCARDS_MODE_ICON_ASSETS: Record<ThemeMode, Record<FlashcardsMod
     arena: require('../../assets/images/flashcards/mode_icons/ember/arena.webp'),
     collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
   },
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
-  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
-  horizon: {
-    saved: require('../../assets/images/flashcards/mode_icons/ember/saved.webp'),
-    custom: require('../../assets/images/flashcards/mode_icons/ember/custom.webp'),
-    training: require('../../assets/images/flashcards/mode_icons/ember/training.webp'),
-    audio: require('../../assets/images/flashcards/mode_icons/ember/audio.webp'),
-    arena: require('../../assets/images/flashcards/mode_icons/ember/arena.webp'),
-    collection: require('../../assets/images/flashcards/mode_icons/ember/collection.webp'),
-  },
   aurora: {
     saved: require('../../assets/images/flashcards/mode_icons/aurora/saved.webp'),
     custom: require('../../assets/images/flashcards/mode_icons/aurora/custom.webp'),

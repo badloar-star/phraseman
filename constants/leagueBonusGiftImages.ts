@@ -13,7 +13,6 @@ export const LEAGUE_BONUS_GIFT_IMAGE_THEMES = [
   'volt',
   'candyBlue',
   'indigo',
-  'horizon',
 ] as const;
 
 export type LeagueBonusGiftImageTheme = typeof LEAGUE_BONUS_GIFT_IMAGE_THEMES[number];
@@ -33,8 +32,6 @@ const LEAGUE_BONUS_GIFT_IMAGES: Record<LeagueBonusGiftImageTheme, ImageSourcePro
   volt: require('../assets/images/league_bonus/volt-chest.webp'),
   candyBlue: require('../assets/images/league_bonus/candyBlue-chest.webp'),
   indigo: require('../assets/images/league_bonus/indigo-chest.webp'),
-  // TODO(horizon-assets): заменить на сундук «Горизонта» после генерации.
-  horizon: require('../assets/images/league_bonus/ember-chest.webp'),
 };
 
 const isLeagueBonusGiftImageTheme = (

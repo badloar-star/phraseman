@@ -42,10 +42,7 @@ type ThemeOption = {
 const DEV_THEME_UNLOCKS = ENABLE_DEV_TOOLS;
 
 const THEME_OPTIONS: ThemeOption[] = [
-  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27); «Полночь» ушла в
-  // премиум, но у «дедушек» (жили на ней бесплатно) остаётся открытой.
-  { mode: 'horizon', labelRU: 'Горизонт', labelUK: 'Горизонт', labelES: 'Horizonte', labelPtBr: 'Horizonte', labelVi: 'Chân trời', labelId: 'Cakrawala', labelTr: 'Ufuk', labelPl: 'Horyzont', bg: '#010102', accent: '#FFAD7A', text: '#FFFFFF', preview2: '#FF9E6B', preview3: '#FF5E8A' },
-  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF', premiumOnly: true },
+  { mode: 'midnight', labelRU: 'Полночь', labelUK: 'Північ', labelES: 'Medianoche', labelPtBr: 'Meia-noite', labelVi: 'Nửa đêm', labelId: 'Tengah malam', labelTr: 'Gece yarısı', labelPl: 'Północ', bg: '#010102', accent: '#8FA0FF', text: '#FFFFFF', preview2: '#5B7CFF', preview3: '#A95BFF' },
   { mode: 'ember', labelRU: 'Янтарь', labelUK: 'Бурштин', labelES: 'Ámbar', labelPtBr: 'Âmbar', labelVi: 'Hổ phách', labelId: 'Amber', labelTr: 'Kehribar', labelPl: 'Bursztyn', bg: '#010101', accent: '#FFA245', text: '#FFFFFF', preview2: '#FF8A2A', preview3: '#FF3D6E', premiumOnly: true },
   { mode: 'aurora', labelRU: 'Сияние', labelUK: 'Сяйво', labelES: 'Aurora', labelPtBr: 'Aurora', labelVi: 'Cực quang', labelId: 'Aurora', labelTr: 'Aurora', labelPl: 'Zorza', bg: '#010201', accent: '#3DE8A6', text: '#FFFFFF', preview2: '#2EE6A0', preview3: '#2E9DFF', premiumOnly: true },
   { mode: 'volt', labelRU: 'Лайм', labelUK: 'Лайм', labelES: 'Lima', labelPtBr: 'Lima', labelVi: 'Chanh', labelId: 'Lime', labelTr: 'Limon', labelPl: 'Limetka', bg: '#010200', accent: '#C6FF34', text: '#FFFFFF', preview2: '#A8E81E', preview3: '#2EE08C', premiumOnly: true },
@@ -65,8 +62,6 @@ function themeSwatches(item: ThemeOption): [string, string, string] {
       return ['#D9EDF5', item.accent, '#3A5A68'];
     case 'indigo':
       return ['#E4E1FF', item.accent, '#273468'];
-    case 'horizon':
-      return ['#FFD4B0', item.accent, '#FF5E8A'];
     case 'midnight':
     case 'ember':
     case 'aurora':
@@ -125,7 +120,7 @@ function themeRowColors(item: ThemeOption, active: boolean) {
 
 export default function SettingsThemes() {
   const router = useRouter();
-  const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked, isMidnightGrandfathered } = useTheme();
+  const { theme: t, themeMode, setThemeMode, isGoldThemeUnlocked } = useTheme();
   const { lang } = useLang();
   // «Пульт»: замок премиум-тем снимается, когда фича переведена в «Фри».
   const isPremium = useFeatureAccess('themes');
@@ -155,8 +150,7 @@ export default function SettingsThemes() {
           <BouncyScrollView decelerationRate="normal" contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }} scrollEventThrottle={16}>
             {THEME_OPTIONS.filter(item => !item.rewardOnly || DEV_THEME_UNLOCKS || (item.mode === 'gold' && isGoldThemeUnlocked)).map((item) => {
               const active = themeMode === item.mode;
-              const grandfathered = item.mode === 'midnight' && isMidnightGrandfathered;
-              const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS && !grandfathered;
+              const locked = !!item.premiumOnly && !isPremium && !DEV_THEME_UNLOCKS;
               const row = themeRowColors(item, active);
               return (
                 <TouchableOpacity

@@ -431,10 +431,15 @@ export async function tournamentJoinTransaction(
   const economyRef = db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy');
   const authLinkRef = db.collection('auth_links').doc(authUid);
   const bannedRef = db.collection('banned_users').doc(stableUid);
+  // зачем 2026-07-27: в users/{uid} ника нет — настоящее имя и аватар живут в
+  // leaderboard/{uid} (туда их пишет онбординг и синк XP). Без этого документа
+  // турнир подставлял заглушку 'Player', и она уезжала в недельный рейтинг,
+  // где её видели все. Читаем в ТОЙ ЖЕ транзакции — лишнего запроса нет.
+  const leaderboardRef = db.collection('leaderboard').doc(stableUid);
 
   return db.runTransaction(async (tx) => {
-    const [roomSnap, userSnap, economySnap, configSnap, authLinkSnap, bannedSnap] = await tx.getAll(
-      roomRef, userRef, economyRef, configRef, authLinkRef, bannedRef,
+    const [roomSnap, userSnap, economySnap, configSnap, authLinkSnap, bannedSnap, leaderboardSnap] = await tx.getAll(
+      roomRef, userRef, economyRef, configRef, authLinkRef, bannedRef, leaderboardRef,
     );
     if (!roomSnap.exists) throw new HttpsError('not-found', 'room_not_found');
     assertTransactionalTournamentAccess(authUid, stableUid, authLinkSnap, userSnap, bannedSnap);
@@ -485,11 +490,13 @@ export async function tournamentJoinTransaction(
       throw new HttpsError('failed-precondition', 'not_enough_gems');
     }
     const contribution = entryGems;
+    // Ник и аватар: сначала лидерборд (там настоящий профиль), потом users.
+    const profile = leaderboardSnap.exists ? leaderboardSnap.data() || {} : {};
     const player: TournamentPlayer = {
       id: stableUid,
       isBot: false,
-      name: sanitizeString(user.name || user.displayName, 48) || 'Player',
-      avatar: sanitizeString(user.avatar_emoji || user.avatar, 16) || '🙂',
+      name: sanitizeString(profile.name || user.name || user.displayName, 48) || 'Player',
+      avatar: sanitizeString(profile.avatar || user.avatar_emoji || user.avatar, 16) || '🙂',
       color: PLAYER_COLORS[room.players.length % PLAYER_COLORS.length],
       score: 0,
       streak: 0,
@@ -1149,9 +1156,19 @@ export async function tournamentFinalizeTransaction(
       const season = byPath.get(seasonRef.path)?.data() || {};
       const hotStreak = effect.won ? Math.max(0, readInt(user.tournament_hot_streak, 0)) + 1 : 0;
       const hotTier = hotStreak >= 10 ? 10 : hotStreak >= 5 ? 5 : hotStreak >= 3 ? 3 : 0;
+      // зачем 2026-07-27: имя в рейтинге показывается ВСЕМ игрокам, поэтому
+      // заглушка 'Player' здесь недопустима. Порядок: ник из комнаты → уже
+      // записанное имя недели → только в крайнем случае заглушка. Аватар
+      // сохраняем рядом, иначе таблица рисует подстановку по хэшу uid.
+      const roomPlayer = room.players.find((player) => player.id === effect.playerId);
+      const seasonName = sanitizeString(roomPlayer?.name, 48)
+        || sanitizeString(season.name, 48)
+        || 'Player';
+      const seasonAvatar = sanitizeString(roomPlayer?.avatar, 16) || sanitizeString(season.avatar, 16);
       tx.set(seasonRef, {
         uid: effect.playerId,
-        name: room.players.find((player) => player.id === effect.playerId)?.name || 'Player',
+        name: seasonName,
+        ...(seasonAvatar ? { avatar: seasonAvatar } : {}),
         points: Math.max(0, readInt(season.points, 0)) + effect.seasonPoints,
         tournamentsPlayed: Math.max(0, readInt(season.tournamentsPlayed, 0)) + 1,
         bestPlace: season.bestPlace ? Math.min(readInt(season.bestPlace, effect.place), effect.place) : effect.place,

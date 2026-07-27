@@ -149,7 +149,7 @@ function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
  * Ближайший слот: ещё не прошедший. Если день отыгран — первый завтрашний,
  * чтобы отсчёт никогда не показывал ноль.
  */
-function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
+function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string }) | null {
   const list = enabledSlots(slots);
   if (list.length === 0) return null;
   // зачем 2026-07-27: было `startsAtMs > Date.now() - 20 мин` — экран считал
@@ -172,7 +172,7 @@ function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
  */
 const LIVE_SLOT_WINDOW_MS = 20 * 60 * 1000;
 
-function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
+function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number; displayTime: string }) | null {
   const now = Date.now();
   return enabledSlots(slots)
     .filter((slot) => slot.startsAtMs <= now && now - slot.startsAtMs < LIVE_SLOT_WINDOW_MS)
@@ -464,7 +464,7 @@ export default function TournamentsScreen() {
         <Animated.View entering={FadeIn.duration(220)}>
           <V2Card pad={22}>
             <Text style={[styles.kicker, live && { color: P.danger }]} allowFontScaling={false}>
-              {live ? 'Сейчас играют' : nextSlot ? `Сегодня · ${nextSlot.localTime}` : 'Турниры'}
+              {live ? 'Сейчас играют' : nextSlot ? `Сегодня · ${nextSlot.displayTime}` : 'Турниры'}
             </Text>
 
             {/* Цифры отсчёта — градиентом по тексту (hero-grad эталона). */}
@@ -569,7 +569,7 @@ export default function TournamentsScreen() {
                       ]}
                       allowFontScaling={false}
                     >
-                      {slot.localTime}
+                      {slot.displayTime}
                     </Text>
                   </View>
                 </React.Fragment>
@@ -669,9 +669,9 @@ export default function TournamentsScreen() {
             Неделя только началась — сыграйте турнир, и вы окажетесь в таблице первым.
           </Text>
         )}
+        {/* зачем 2026-07-27 (владелец): без стрелки — просто кнопка «Таблица сезона». */}
         <TapScale onPress={() => router.push('/tournament_season')} style={styles.seasonMore}>
           <Text style={styles.seasonMoreText} allowFontScaling={false}>Таблица сезона</Text>
-          <Ionicons name="chevron-forward" size={18} color={P.muted} />
         </TapScale>
       </ScrollView>
 
@@ -750,7 +750,7 @@ export default function TournamentsScreen() {
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
         <Text style={styles.sheetTitle} allowFontScaling={false}>Вход в турнир</Text>
         <Text style={styles.sheetSub}>
-          {nextSlot ? `Сегодня · ${nextSlot.localTime} · 16 игроков` : 'Ближайшая комната'}
+          {nextSlot ? `Сегодня · ${nextSlot.displayTime} · 16 игроков` : 'Ближайшая комната'}
         </Text>
         <View style={styles.sheetPrice}>
           <Image

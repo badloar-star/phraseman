@@ -490,6 +490,12 @@ export type TournamentPublicTask = {
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
+  /**
+   * Необратимые отпечатки правильных ответов (по подвопросам).
+   * Клиент сравнивает с отпечатком СВОЕГО ответа и мгновенно красит кнопку;
+   * сам ответ по отпечатку не восстановить. См. answerFingerprint().
+   */
+  answerFingerprints?: string[];
 };
 
 type TaskValidation = { ok: true; kind: TournamentTaskKind } | { ok: false; reason: string };
@@ -721,7 +727,53 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
   return { phrase: String(task.payload.phrase) };
 }
 
-export function toPublicTournamentTask(task: TournamentTask): TournamentPublicTask | null {
+/**
+ * Отпечаток правильного ответа — чтобы клиент мог МГНОВЕННО покрасить кнопку
+ * «Готово» зелёным или красным, не зная самого ответа.
+ *
+ * зачем (владелец 2026-07-27: «если неправильно, то кнопка становится красной,
+ * а не зелёной»): сервер намеренно не присылает правильный ответ — иначе его
+ * вытащат из трафика и будут выигрывать все турниры, а призы реальные. Но и
+ * ждать сеть на каждом ответе нельзя: это задержка и ×6 вызовов функций.
+ * Компромисс: отдаём необратимый хэш ответа, солёный roomId. Клиент хэширует
+ * СВОЙ ответ и сравнивает — совпало значит верно. Подобрать ответ по хэшу
+ * нельзя, а соль по комнате не даёт переиспользовать отпечатки в другом
+ * турнире. Очки всё равно считает сервер: подделка хэша ничего не даёт.
+ */
+export function answerFingerprint(roomId: string, taskId: string, answer: string): string {
+  return tournamentHash32(`${roomId}|${taskId}|${answer}`).toString(36);
+}
+
+/** Канонический вид ответа: одинаковый на сервере и на клиенте. */
+export function canonicalAnswerValue(value: unknown): string {
+  if (Array.isArray(value)) return value.map((item) => String(item).trim().toLowerCase()).join('');
+  return String(value ?? '').trim().toLowerCase();
+}
+
+/** Отпечатки правильных ответов задания (по подвопросам для timeattack). */
+function answerFingerprintsForTask(
+  task: TournamentTask,
+  kind: TournamentTaskKind,
+  roomId: string,
+): string[] {
+  const fp = (value: unknown) => answerFingerprint(roomId, task.taskId, canonicalAnswerValue(value));
+  if (kind === 'choice' || kind === 'listen') return [fp(task.payload.correctIndex)];
+  if (kind === 'translate' || kind === 'dictate') {
+    const tokens = task.payload.correctTokens as string[] | undefined;
+    return [fp(tokens ?? task.payload.correctAnswer)];
+  }
+  if (kind === 'timeattack') {
+    const items = (task.payload.items as Record<string, unknown>[]) ?? [];
+    return items.map((item) => fp(item.correctIndex));
+  }
+  return [];
+}
+
+export function toPublicTournamentTask(
+  task: TournamentTask,
+  // roomId нужен как соль отпечатков; без него отпечатки не отдаются вовсе.
+  roomId?: string,
+): TournamentPublicTask | null {
   const validation = validateTournamentTask(task);
   if (!validation.ok) return null;
   return {
@@ -731,6 +783,9 @@ export function toPublicTournamentTask(task: TournamentTask): TournamentPublicTa
     isVoice: task.isVoice,
     difficulty: task.difficulty,
     payload: publicPayloadForTask(task, validation.kind),
+    ...(roomId
+      ? { answerFingerprints: answerFingerprintsForTask(task, validation.kind, roomId) }
+      : {}),
   };
 }
 

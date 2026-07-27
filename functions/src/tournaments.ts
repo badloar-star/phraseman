@@ -427,8 +427,11 @@ function roundsWithActivatedPublicTasks(
   rounds: TournamentRound[],
   roundNo: number,
   tasks: TournamentTask[],
+  // зачем: roomId — соль отпечатков ответов (см. answerFingerprint). Без него
+  // клиент не сможет мгновенно покрасить кнопку «Готово» красным при ошибке.
+  roomId?: string,
 ): TournamentRound[] {
-  const publicTasks = tasks.map(toPublicTournamentTask);
+  const publicTasks = tasks.map((task) => toPublicTournamentTask(task, roomId));
   if (publicTasks.some((task) => task === null)) throw new HttpsError('failed-precondition', 'round_tasks_unavailable');
   return rounds.map((round) => {
     if (round.roundNo === roundNo) return { ...round, tasks: publicTasks as NonNullable<typeof publicTasks[number]>[] };
@@ -1511,7 +1514,7 @@ export async function advanceRoomAtDeadline(
         state: 'round1',
         stateStartedAtMs: nowMs,
         stateDeadlineAtMs: nowMs + duration,
-        rounds: roundsWithActivatedPublicTasks(room.rounds, activationRound.roundNo, activationTasks),
+        rounds: roundsWithActivatedPublicTasks(room.rounds, activationRound.roundNo, activationTasks, room.roomId),
         lifecycleRetryAtMs: admin.firestore.FieldValue.delete(),
         version: room.version + 1,
         updatedAt: nowMs,
@@ -1564,7 +1567,7 @@ export async function advanceRoomAtDeadline(
       state: nextState,
       stateStartedAtMs: nowMs,
       stateDeadlineAtMs: duration === null ? admin.firestore.FieldValue.delete() : nowMs + duration,
-      ...(nextRound ? { rounds: roundsWithActivatedPublicTasks(room.rounds, nextRound.roundNo, activationTasks as TournamentTask[]) } : {}),
+      ...(nextRound ? { rounds: roundsWithActivatedPublicTasks(room.rounds, nextRound.roundNo, activationTasks as TournamentTask[], room.roomId) } : {}),
       lifecycleRetryAtMs: admin.firestore.FieldValue.delete(),
       version: room.version + 1,
       updatedAt: nowMs,

@@ -40,6 +40,7 @@ import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure
 import { PaywallEntrance, PaywallBadgePop } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 const VARIANT = 'E' as const;
@@ -320,6 +321,20 @@ export default function PaywallE() {
           />
         </View>
       </SafeAreaView>
+      {/* зачем: exit-intent оффер триала рисуем НАШЕЙ модалкой, а не нативным
+          Alert — системный диалог игнорирует тему приложения (белый лист с
+          капс-кнопками) и выбивался из дизайна. Копия и колбэки приходят
+          готовыми из usePaywallPurchase. */}
+      <ThemedConfirmModal
+        visible={!!p.exitOffer}
+        title={p.exitOffer?.title ?? ''}
+        message={p.exitOffer?.message ?? ''}
+        confirmLabel={p.exitOffer?.confirmLabel ?? ''}
+        cancelLabel={p.exitOffer?.cancelLabel ?? ''}
+        onConfirm={() => p.exitOffer?.onConfirm()}
+        onCancel={() => p.exitOffer?.onCancel()}
+        testIDPrefix="paywall-exit-offer"
+      />
     </PaywallBackground>
   );
 }

@@ -73,6 +73,17 @@ import {
 } from './revenuecat_account_identity';
 
 export type PaywallPlan = 'monthly' | 'yearly' | 'lifetime';
+
+/** Exit-intent оффер триала: готовая копия + колбэки под <ThemedConfirmModal>.
+ *  Хук — .ts и JSX не рендерит, поэтому отдаёт состояние, а рисует его экран. */
+export type ExitTrialOfferState = {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  onConfirm: () => void;
+  onCancel: () => void;
+};
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
@@ -779,6 +790,12 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // бесплатно?» — без давления, с честным «платить не нужно, отмени за день».
   // Показываем ОДИН раз на устройство (кулдаун-ключ), и только если триал есть в
   // сторе — иначе это была бы пустая всплывашка. Не в онбординге.
+  // зачем: владелец увидел на экране СИСТЕМНЫЙ Alert вместо нашей модалки —
+  // нативный диалог игнорирует тему приложения (белый лист с зелёными
+  // капс-кнопками на Android). Оффер теперь живёт в состоянии, а рисует его
+  // <ThemedConfirmModal> в экране пейвола — тот же компонент, что во всех
+  // остальных подтверждениях приложения.
+  const [exitOffer, setExitOffer] = useState<ExitTrialOfferState | null>(null);
   const exitOfferShownRef = useRef(false);
   const handleClose = useCallback((reason: 'close' | 'continue_free') => {
     hapticTap();
@@ -813,8 +830,8 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
         } catch { /* при сбое чтения — просто закрываем без оффера */ doClose(reason); return; }
         void trackEvent('paywall_exit_offer_shown', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
         const days = trialDays ?? 3;
-        Alert.alert(
-          triLang(lang, {
+        setExitOffer({
+          title: triLang(lang, {
             ru: `Точно уходишь? ${days} дня доступа — бесплатно`,
             uk: `Точно йдеш? ${days} дні доступу — безкоштовно`,
             es: `¿Seguro que te vas? ${days} días de acceso gratis`,
@@ -824,7 +841,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             tr: `Gerçekten çıkıyor musun? ${days} gün ücretsiz erişim`,
             pl: `Na pewno wychodzisz? ${days} dni dostępu za darmo`,
           }),
-          triLang(lang, {
+          message: triLang(lang, {
             ru: 'Платить сейчас не нужно — просто отмени подписку за день до конца пробного периода, и не спишется ничего.',
             uk: 'Платити зараз не треба — просто скасуй підписку за день до кінця пробного періоду, і нічого не спишеться.',
             es: 'No pagas ahora: solo cancela la suscripción un día antes de que acabe la prueba y no se cobrará nada.',
@@ -834,37 +851,32 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
             tr: 'Şimdi ödeme yok — deneme bitmeden bir gün önce aboneliği iptal et, hiçbir ücret alınmaz.',
             pl: 'Teraz nie płacisz — wystarczy anulować subskrypcję dzień przed końcem okresu próbnego i nic nie pobierzemy.',
           }),
-          [
-            {
-              text: triLang(lang, {
-                ru: `Попробовать ${days} дня бесплатно`,
-                uk: `Спробувати ${days} дні безкоштовно`,
-                es: `Probar ${days} días gratis`,
-                'pt-BR': `Testar ${days} dias grátis`,
-                vi: `Dùng thử ${days} ngày miễn phí`,
-                id: `Coba ${days} hari gratis`,
-                tr: `${days} gün ücretsiz dene`,
-                pl: `Wypróbuj ${days} dni za darmo`,
-              }),
-              onPress: () => {
-                void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-                void handlePurchase();
-              },
-            },
-            {
-              text: triLang(lang, {
-                ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
-                vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
-              }),
-              style: 'cancel',
-              onPress: () => {
-                void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
-                doClose(reason);
-              },
-            },
-          ],
-          { cancelable: false },
-        );
+          confirmLabel: triLang(lang, {
+            ru: `Попробовать ${days} дня бесплатно`,
+            uk: `Спробувати ${days} дні безкоштовно`,
+            es: `Probar ${days} días gratis`,
+            'pt-BR': `Testar ${days} dias grátis`,
+            vi: `Dùng thử ${days} ngày miễn phí`,
+            id: `Coba ${days} hari gratis`,
+            tr: `${days} gün ücretsiz dene`,
+            pl: `Wypróbuj ${days} dni za darmo`,
+          }),
+          cancelLabel: triLang(lang, {
+            ru: 'Не сейчас', uk: 'Не зараз', es: 'Ahora no', 'pt-BR': 'Agora não',
+            vi: 'Để sau', id: 'Nanti saja', tr: 'Şimdi değil', pl: 'Nie teraz',
+          }),
+          onConfirm: () => {
+            // Оффер убираем СРАЗУ (оптимистично), чтобы тап не ждал стора.
+            setExitOffer(null);
+            void trackEvent('paywall_exit_offer_accepted', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
+            void handlePurchase();
+          },
+          onCancel: () => {
+            setExitOffer(null);
+            void trackEvent('paywall_exit_offer_declined', { context, source, paywall: variant, ...paywallImpressionParams(impression) });
+            doClose(reason);
+          },
+        });
       })();
       return;
     }
@@ -881,6 +893,7 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
     trial, trialDays, ctaDisabled,
     urgency, futurePrice,
     handlePurchase, handleRestore, handleClose,
+    exitOffer,
   };
 }
 

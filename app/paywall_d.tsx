@@ -1,4 +1,3 @@
-import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // ════════════════════════════════════════════════════════════════════════════
 // paywall_d.tsx — вариант D «Плитки» (эксперимент paywall_ab).
 //
@@ -45,6 +44,7 @@ import PaywallLegalDisclosure from '../components/paywall/PaywallLegalDisclosure
 import { PaywallEntrance } from '../components/paywall/PaywallMotion';
 import { ctaLabelFor, ctaSubLineFor, periodLabelFor, stickyStringsFor } from '../components/paywall/paywallScreenCopy';
 import { hapticTap } from '../hooks/use-haptics';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 
 const VARIANT = 'D' as const;
 
@@ -62,7 +62,6 @@ export default function PaywallD() {
   const { lang } = useLang();
   const LP = makeLP(lang as Lang);
   const chrome = usePaywallChrome(isOnboarding ? 'midnight' : undefined);
-  const insets = useStableSafeAreaInsets();
   const [analyticsImpression] = useState(() => createPaywallAnalyticsImpression(Crypto.randomUUID));
   const p = usePaywallPurchase({ variant: VARIANT, context: ctx, source, lang: lang as Lang, forceTrialUI, resumeLessonId, impression: analyticsImpression });
   const sticky = useStickyCta();
@@ -138,7 +137,6 @@ export default function PaywallD() {
             <PaywallCloseButton
               onPress={() => { hapticTap(); closeWithDim('close'); }}
               chrome={chrome}
-              style={{ marginTop: Math.max(insets.top - 38, 6) }}
             />
           ) : null}
 
@@ -254,6 +252,20 @@ export default function PaywallD() {
           />
         </View>
       </SafeAreaView>
+      {/* зачем: exit-intent оффер триала рисуем НАШЕЙ модалкой, а не нативным
+          Alert — системный диалог игнорирует тему приложения (белый лист с
+          капс-кнопками) и выбивался из дизайна. Копия и колбэки приходят
+          готовыми из usePaywallPurchase. */}
+      <ThemedConfirmModal
+        visible={!!p.exitOffer}
+        title={p.exitOffer?.title ?? ''}
+        message={p.exitOffer?.message ?? ''}
+        confirmLabel={p.exitOffer?.confirmLabel ?? ''}
+        cancelLabel={p.exitOffer?.cancelLabel ?? ''}
+        onConfirm={() => p.exitOffer?.onConfirm()}
+        onCancel={() => p.exitOffer?.onCancel()}
+        testIDPrefix="paywall-exit-offer"
+      />
     </PaywallBackground>
   );
 }

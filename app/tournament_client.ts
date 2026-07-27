@@ -292,6 +292,12 @@ export type WeeklyBankInfo = {
   weeklyShares?: readonly [number, number, number];
   /** За сколько до старта открывается вход. Раньше было копией на клиенте. */
   lobbyOpenMs?: number;
+  /**
+   * Длина ОКНА входа (владелец: «полчаса, в которые можно зайти»).
+   * Внутри окна комнаты набираются волнами — заполнилась одна, следующий
+   * игрок попадает в следующую. Один игрок за окно играет один турнир.
+   */
+  entryWindowMs?: number;
   /** Часы сервера в момент ответа — база для честного отсчёта. */
   serverNowMs?: number;
   lastWeek: { weekId: string; paidOut: boolean; myPlace: number; myGems: number };
@@ -389,8 +395,17 @@ export type SeasonEntry = {
   uid: string;
   name: string;
   points: number;
-  /** Аватар из профиля игрока; сервер пишет только имя, поэтому опционален. */
+  /** Аватар из профиля игрока; у старых записей может отсутствовать. */
   avatar?: string;
+  // ── Поля для карточки игрока (пишутся при финализации турнира) ────────────
+  // зачем: карточка открывается по тапу МГНОВЕННО из уже загруженной строки.
+  // Дочитывать чужой профиль на каждый тап — лишние чтения на ровном месте.
+  profileAvatar?: string;
+  frame?: string;
+  totalXp?: number;
+  hotStreak?: number;
+  tournamentsPlayed?: number;
+  bestPlace?: number;
 };
 
 export type SeasonStandings = {

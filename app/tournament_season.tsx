@@ -14,8 +14,10 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 // зачем: голый router.back() крашит Android/Fabric при teardown — тот же контракт,
 // что и в shards_shop.tsx/tournaments.tsx, используем везде, где есть кнопка «назад».
 import { safeRouterBack } from './navigation_back';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import TapScale from '../components/TapScale';
 import AvatarView from '../components/AvatarView';
+import UnifiedPlayerModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimeLeft, useCountdown } from '../components/tournament/TournamentCountdown';
 import {
@@ -81,6 +83,53 @@ export default function TournamentSeasonScreen() {
   );
   const urgent = secondsToReset <= 3 * 3600;
 
+  /**
+   * Карточка игрока по тапу (владелец 2026-07-27).
+   *
+   * Данные берём из УЖЕ загруженной строки рейтинга — сервер кладёт туда
+   * аватар, рамку, опыт и серию при финализации турнира. Поэтому карточка
+   * открывается мгновенно и не стоит ни одного чтения на тап.
+   */
+  const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
+  const [myProfile, setMyProfile] = useState<{ name: string; avatar: string; frame: string; totalXP: number }>(
+    () => ({ name: 'Я', avatar: '1', frame: '', totalXP: 0 }),
+  );
+
+  useEffect(() => {
+    // Свой профиль — из локального снимка, без сети: он нужен карточке лишь
+    // для сравнения «вы против него».
+    let alive = true;
+    void AsyncStorage.multiGet(['user_name', 'user_avatar', 'user_frame', 'user_total_xp'])
+      .then((pairs: readonly (readonly [string, string | null])[]) => {
+        if (!alive) return;
+        const map = new Map(pairs.map(([key, value]) => [key, value ?? '']));
+        setMyProfile({
+          name: (map.get('user_name') ?? '').trim() || 'Я',
+          avatar: (map.get('user_avatar') ?? '').trim() || '1',
+          frame: (map.get('user_frame') ?? '').trim(),
+          totalXP: Number(map.get('user_total_xp') ?? 0) || 0,
+        });
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+
+  const openPlayer = useCallback((entry: SeasonEntry) => {
+    setSelectedPlayer({
+      name: entry.name,
+      // points у карточки — это опыт игрока, а не очки недели: она рисует
+      // уровень. Очки недели там были бы бессмыслицей (25 XP = 1 уровень).
+      points: entry.totalXp ?? 0,
+      totalXp: entry.totalXp ?? 0,
+      isMe: false,
+      uid: entry.uid,
+      avatar: avatarFor(entry),
+      frame: entry.frame,
+      streak: entry.hotStreak ?? null,
+    });
+  }, []);
+  const closePlayer = useCallback(() => setSelectedPlayer(null), []);
+
   const rows = standings?.top ?? [];
   const me = standings?.me ?? null;
   const myPlace = standings?.myPlace ?? 0;
@@ -140,6 +189,8 @@ export default function TournamentSeasonScreen() {
                   row={row}
                   place={index + 1}
                   isYou={row.uid === me?.uid}
+                  // Свою строку открывать незачем — это профиль игрока, а не свой.
+                  onPress={row.uid === me?.uid ? undefined : openPlayer}
                 />
               </Animated.View>
             ))}
@@ -181,22 +232,40 @@ export default function TournamentSeasonScreen() {
           </View>
         ) : null}
       </ScrollView>
+
+      {/* Карточка игрока по тапу — тот же компонент, что в друзьях и лигах. */}
+      <UnifiedPlayerModal
+        player={selectedPlayer}
+        myInfo={{
+          name: myProfile.name,
+          avatar: myProfile.avatar,
+          frame: myProfile.frame,
+          totalXP: myProfile.totalXP,
+          streak: null,
+        }}
+        onClose={closePlayer}
+      />
     </View>
   );
 }
 
 const SeasonRowItem = memo(function SeasonRowItem({
-  row, place, isYou,
-}: { row: SeasonEntry; place: number; isYou?: boolean }) {
+  row, place, isYou, onPress,
+}: { row: SeasonEntry; place: number; isYou?: boolean; onPress?: (row: SeasonEntry) => void }) {
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
+  const handlePress = useCallback(() => onPress?.(row), [onPress, row]);
+  // зачем 2026-07-27 (владелец): «по игрокам можно нажимать и открывать их
+  // карточку». Строка становится кнопкой; данные уже в row, поэтому карточка
+  // открывается мгновенно — без запроса на каждый тап.
+  const Row = onPress ? TapScale : View;
   return (
-    <View
+    <Row
+      {...(onPress ? { onPress: handlePress, accessibilityRole: 'button' as const } : { accessibilityRole: 'text' as const })}
       style={[styles.row, isYou && styles.rowYou]}
-      accessibilityRole="text"
       accessibilityLabel={
         // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
-        `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков`
+        `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`
       }
     >
       {/* Место вне показанного верха неизвестно точно — ставим тире, не выдумываем номер. */}
@@ -210,7 +279,7 @@ const SeasonRowItem = memo(function SeasonRowItem({
         {isYou ? 'Вы' : row.name}
       </Text>
       <Text style={styles.points} allowFontScaling={false}>{row.points}</Text>
-    </View>
+    </Row>
   );
 });
 

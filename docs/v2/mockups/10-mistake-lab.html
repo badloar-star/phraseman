@@ -108,7 +108,10 @@ svg { display:block; }
   content:""; position:absolute; inset:0; pointer-events:none;
   background:radial-gradient(135% 92% at 50% 46%, transparent 62%, rgba(0,0,0,0.38) 100%);
 }
-.screen { position:absolute; inset:0; display:flex; flex-direction:column; }
+/* зачем: экран очереди раньше не имел active-гейтинга и оставался видимым поверх
+   item/done/gate экранов (баг наложения layouts) - теперь единая схема display:none/.active */
+.screen { position:absolute; inset:0; display:none; flex-direction:column; }
+.screen.active { display:flex; }
 
 /* ---------- Header ---------- */
 .hdr { padding:22px 16px 0; position:relative; z-index:2; }
@@ -202,13 +205,35 @@ svg { display:block; }
 .item-choices { margin-top:30px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
 .g-chip {
   border:none; cursor:pointer; border-radius:16px; padding:12px 22px;
-  font-family:inherit; font-size:17px; font-weight:700; color:var(--text-primary);
+  font-family:inherit; font-size:17px; font-weight:700; color:var(--text-muted);
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
   box-shadow:0 4px 0 var(--chip-edge), 0 12px 22px var(--card-shadow), inset 0 1px 0 var(--chip-hi);
-  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast);
+  position:relative;
+  transition:transform var(--t-press) var(--ease-outquint), box-shadow var(--t-press) var(--ease-outquint), opacity var(--t-fast), background var(--t-fast), color var(--t-fast), padding-right var(--t-fast);
 }
 .g-chip:active { transform:translateY(3px); box-shadow:0 1px 0 var(--chip-edge), 0 6px 12px var(--card-shadow), inset 0 1px 0 var(--chip-hi); }
-.g-chip.used { opacity:0.35; pointer-events:none; }
+/* зачем (владелец: "выбранные никак не выделяются"): выбор читается контрастом -
+   светлее фон, подъём, акцентный бейдж-галочка, самый яркий текст; невыбранные
+   слегка притухают. БЕЗ обводок (закон владельца), только тон/подъём/тень/бейдж. */
+.g-chip.selected {
+  padding-right:40px; color:var(--text-primary);
+  background:linear-gradient(160deg, rgba(255,255,255,0.22), rgba(255,255,255,0.04)), var(--ok-grad);
+  transform:translateY(-2px);
+  box-shadow:0 6px 0 var(--btn-shadow), 0 16px 28px var(--card-shadow), inset 0 1px 0 var(--cta-hi);
+}
+.g-chip.selected .chip-check {
+  opacity:1; transform:translateY(-50%) scale(1);
+}
+.g-chip.unselected { opacity:0.82; }
+.g-chip.used { pointer-events:none; }
+.chip-check {
+  position:absolute; right:10px; top:50%; transform:translateY(-50%) scale(0.6);
+  width:20px; height:20px; border-radius:50%; display:grid; place-items:center;
+  background:var(--ok-grad); color:var(--correct-text); opacity:0;
+  box-shadow:0 2px 6px rgba(0,0,0,0.3);
+  transition:opacity var(--t-fast) var(--ease-outquint), transform var(--t-fast) var(--ease-spring);
+}
+.chip-check svg { width:11px; height:11px; }
 
 /* Полоса результата мини-задания: галочка мягкая, БЕЗ звезды/полёта (04 §SB-13) */
 .item-result { min-height:74px; margin-top:28px; display:flex; align-items:center; }
@@ -327,7 +352,7 @@ svg { display:block; }
   <div class="phone" id="phone">
 
     <!-- ===== Экран 1: Queue brief + список ===== -->
-    <div class="screen" id="screenQueue">
+    <div class="screen active" id="screenQueue">
       <div class="hdr">
         <div class="hdr-row">
           <button class="icon-btn" title="Закрыть"><svg width="17" height="17"><use href="#i-x"/></svg></button>
@@ -494,7 +519,8 @@ function renderItem() {
   itemChoices.innerHTML = '';
   GAP_ITEM.options.forEach((word) => {
     const b = document.createElement('button');
-    b.className = 'g-chip'; b.textContent = word; b.dataset.word = word;
+    b.className = 'g-chip'; b.dataset.word = word;
+    b.innerHTML = `${word}<span class="chip-check">${icon('i-check', 11)}</span>`;
     b.addEventListener('click', () => selectGapChoice(b));
     itemChoices.appendChild(b);
   });
@@ -502,7 +528,13 @@ function renderItem() {
 function selectGapChoice(chip) {
   if (gapFilled || ctaCheck.textContent === 'Дальше') return;
   gapFilled = chip.dataset.word;
-  [...itemChoices.children].forEach((c) => c.classList.toggle('used', c !== chip));
+  /* зачем: выбор обязан читаться с одного взгляда (владелец) - выбранный чип
+     получает светлый градиент/подъём/бейдж-галочку, остальные слегка притухают */
+  [...itemChoices.children].forEach((c) => {
+    c.classList.toggle('selected', c === chip);
+    c.classList.toggle('unselected', c !== chip);
+    c.classList.toggle('used', c !== chip);
+  });
   gapSlot.textContent = gapFilled;
   gapSlot.classList.add('filled');
   if (!reduced()) { gapSlot.classList.remove('landed'); void gapSlot.offsetWidth; gapSlot.classList.add('landed'); }
@@ -536,7 +568,7 @@ function itemError() {
     gapSlot.classList.remove('bad', 'filled');
     gapSlot.textContent = '';
     gapFilled = null;
-    [...itemChoices.children].forEach((c) => c.classList.remove('used'));
+    [...itemChoices.children].forEach((c) => c.classList.remove('used', 'selected', 'unselected'));
     itemResult.classList.remove('show');
     ctaCheck.disabled = true; ctaCheck.textContent = 'Проверить';
   }, 1400 * tf());

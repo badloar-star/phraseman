@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Озвучка V2 · Проверка на слух</title>
+<style>
+/* зачем: владелец не мог протестировать аудио-режимы (была эмуляция);
+   эта страница даёт послушать всю сгенерированную озвучку до сборки макетов */
+:root {
+  --bg-a:#071009; --bg-b:#010101; --text:#F0F7F2; --muted:#8AB49A; --second:#58CC89;
+  --card-a:#151D17; --card-b:#0D120E; --chip-hi:rgba(255,255,255,0.12);
+  --cta:linear-gradient(180deg,#5EDC94 0%,#3FC172 48%,#289654 100%);
+  --cta-hi:rgba(255,255,255,0.34); --on-cta:#042010; --shadow:rgba(0,0,0,0.55);
+  --hero:linear-gradient(180deg,#FFFFFF 20%,#BFE5CC 100%);
+  --ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+body {
+  font-family:-apple-system,"SF Pro Text","Segoe UI",Roboto,sans-serif; color:var(--text);
+  min-height:100vh; padding:48px 24px 80px; display:flex; justify-content:center;
+  background:radial-gradient(120% 46% at 50% -6%, rgba(88,204,137,0.06), transparent 62%),
+             linear-gradient(180deg, var(--bg-a), var(--bg-b));
+}
+.wrap { width:100%; max-width:760px; }
+h1 {
+  font-size:clamp(30px,5vw,44px); font-weight:900; line-height:1.1;
+  background:var(--hero); -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.sub { color:var(--muted); font-size:16px; font-weight:600; margin-top:14px; line-height:1.6; }
+.sec { margin-top:40px; }
+.sec h2 { font-size:13px; text-transform:uppercase; letter-spacing:1.8px; color:var(--muted); font-weight:800; margin-bottom:16px; }
+.row {
+  display:flex; align-items:center; gap:14px; padding:16px 18px; border-radius:20px;
+  background:linear-gradient(160deg, var(--card-a), var(--card-b));
+  box-shadow:0 10px 26px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.05);
+  margin-bottom:12px;
+  transition:transform 200ms var(--ease), box-shadow 200ms var(--ease);
+}
+.row.playing { transform:translateY(-2px); box-shadow:0 18px 36px rgba(0,0,0,0.6), inset 0 1px 0 var(--cta-hi); }
+.txt { flex:1; min-width:0; }
+.en { font-size:19px; font-weight:800; letter-spacing:0.1px; }
+.ru { font-size:14.5px; color:var(--muted); font-weight:600; margin-top:3px; }
+button {
+  border:none; cursor:pointer; font-family:inherit; font-weight:800; color:var(--on-cta);
+  background:var(--cta); border-radius:16px; padding:12px 18px; font-size:15px;
+  box-shadow:0 4px 0 #1E6B3A, 0 10px 20px var(--shadow), inset 0 1px 0 var(--cta-hi);
+  transition:transform 120ms var(--ease), box-shadow 120ms var(--ease);
+  flex:0 0 auto;
+}
+button:active { transform:translateY(3px); box-shadow:0 1px 0 #1E6B3A, 0 6px 12px var(--shadow); }
+button.ghost {
+  background:linear-gradient(160deg,#2A4230,#131D14); color:var(--second);
+  box-shadow:0 4px 0 #0B120C, 0 10px 20px var(--shadow), inset 0 1px 0 var(--chip-hi);
+}
+.bar { height:5px; border-radius:999px; background:#203028; overflow:hidden; margin-top:10px; }
+.fill { height:100%; width:0; background:linear-gradient(90deg,#47C870,#58CC89); transition:width 90ms linear; }
+.status { margin-top:26px; font-size:15px; font-weight:700; color:var(--second); min-height:22px; }
+@media (max-width:620px) { .row { flex-wrap:wrap; } .txt { flex-basis:100%; } }
+@media (prefers-reduced-motion: reduce) { .row, button { transition-duration:1ms; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Озвучка V2 · Проверка на слух</h1>
+  <p class="sub">Сгенерировано нейросетью OpenAI, голос nova. Обычная скорость и замедленная для кнопки «Медленнее». Эти же файлы подключаются в макеты режимов.</p>
+
+  <div class="sec">
+    <h2>Фразы первого эпизода</h2>
+    <div id="phrases"></div>
+  </div>
+
+  <div class="sec">
+    <h2>Минимальные пары для режима «Пары звуков»</h2>
+    <div id="pairs"></div>
+  </div>
+
+  <div class="status" id="status">Нажми «Слушать» на любой строке.</div>
+</div>
+
+<script>
+const PHRASES = [
+  ['nice_to_meet_you', 'Nice to meet you', 'Приятно познакомиться'],
+  ['hi_im_anna', "Hi, I'm Anna", 'Привет, я Анна'],
+  ['my_name_is_anna', 'My name is Anna', 'Меня зовут Анна'],
+  ['my_name_is_tom', 'My name is Tom', 'Меня зовут Том'],
+  ['i_am_from_ireland', "I'm from Ireland", 'Я из Ирландии'],
+  ['i_speak_english', 'I speak English', 'Я говорю по-английски'],
+  ['and_you', 'And you?', 'А ты?'],
+  ['see_you_later', 'See you later', 'До встречи'],
+];
+const PAIRS = [
+  ['ship', 'ship', 'корабль: короткий и'],
+  ['sheep', 'sheep', 'овца: долгий и-и'],
+  ['meet', 'meet', 'встретить: долгий и-и'],
+  ['see', 'see', 'видеть: долгий и-и'],
+];
+
+let current = null;
+const status = document.getElementById('status');
+
+function build(list, host) {
+  list.forEach(([slug, en, ru]) => {
+    const row = document.createElement('div');
+    row.className = 'row';
+    row.innerHTML =
+      '<div class="txt"><div class="en"></div><div class="ru"></div><div class="bar"><div class="fill"></div></div></div>';
+    row.querySelector('.en').textContent = en;
+    row.querySelector('.ru').textContent = ru;
+    const fill = row.querySelector('.fill');
+
+    const mk = (label, suffix, cls) => {
+      const b = document.createElement('button');
+      b.className = cls; b.textContent = label;
+      b.addEventListener('click', () => play(slug + suffix, row, fill, en + (suffix ? ' (медленно)' : '')));
+      return b;
+    };
+    row.appendChild(mk('Слушать', '', ''));
+    row.appendChild(mk('Медленнее', '_slow', 'ghost'));
+    host.appendChild(row);
+  });
+}
+
+function play(file, row, fill, label) {
+  if (current) { current.audio.pause(); current.row.classList.remove('playing'); current.fill.style.width = '0'; }
+  const audio = new Audio('audio/' + file + '.mp3');
+  current = { audio, row, fill };
+  row.classList.add('playing');
+  status.textContent = 'Играет: ' + label;
+  audio.addEventListener('timeupdate', () => {
+    if (audio.duration) fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+  });
+  audio.addEventListener('ended', () => {
+    row.classList.remove('playing'); fill.style.width = '0';
+    status.textContent = 'Готово: ' + label;
+    current = null;
+  });
+  audio.addEventListener('error', () => {
+    row.classList.remove('playing'); fill.style.width = '0';
+    status.textContent = 'Не удалось загрузить файл: ' + file + '.mp3';
+    current = null;
+  });
+  audio.play().catch(() => {
+    status.textContent = 'Браузер заблокировал автозапуск. Нажми ещё раз.';
+  });
+}
+
+build(PHRASES, document.getElementById('phrases'));
+build(PAIRS, document.getElementById('pairs'));
+</script>
+</body>
+</html>

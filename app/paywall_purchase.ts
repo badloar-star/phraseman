@@ -86,6 +86,15 @@ export type ExitTrialOfferState = {
 };
 type PremiumPackages = { monthly?: PurchasesPackage; yearly?: PurchasesPackage; lifetime?: PurchasesPackage };
 
+/**
+ * Источники пейвола, где разовая покупка «Phraseman Pro» (lifetime) НЕ показывается.
+ * Онбординг: новичок на первом экране выбирает из двух планов (месяц/год) —
+ * третий вариант с ценой ×20 от годовой перегружает решение и роняет конверсию.
+ * Во всех остальных точках входа (после урока, энергия, профиль, win-back) Pro
+ * остаётся: там пользователь уже вовлечён и разовая покупка уместна.
+ */
+const LIFETIME_HIDDEN_SOURCES: ReadonlySet<string> = new Set(['onboarding_plan']);
+
 /** Exit-intent триал-оффер показываем не чаще одного раза на устройство. */
 const EXIT_TRIAL_OFFER_SEEN_KEY = 'paywall_exit_trial_offer_seen_v1';
 const ONBOARDING_TRIAL_REMINDER_CHOICE_KEY = 'onboarding_trial_reminder_choice_v1';
@@ -326,7 +335,13 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
   // Кнопка Phraseman Pro показывается, когда админ-флаг включён И пакет lifetime
   // реально пришёл из RevenueCat (продукт заведён). В dev-сборке пакета нет —
   // показываем превью кнопки, чтобы вёрстка была видна и в Metro.
-  const lifetimeAvailable = lifetimeEnabled && (!!packages.lifetime || DEV_IAP_BYPASS);
+  // зачем: владелец попросил убрать разовую покупку Pro с пейвола ОНБОРДИНГА —
+  // новичку на первом экране нужен выбор из двух (месяц/год), третий вариант
+  // с ценой ×20 перегружает решение. Вне онбординга (после урока, энергия,
+  // профиль) Pro остаётся — там пользователь уже вовлечён.
+  const lifetimeAvailable = lifetimeEnabled
+    && !LIFETIME_HIDDEN_SOURCES.has(source)
+    && (!!packages.lifetime || DEV_IAP_BYPASS);
 
   useEffect(() => {
     if (!lifetimeAvailable && selected === 'lifetime') setSelected('yearly');
@@ -408,7 +423,9 @@ export function usePaywallPurchase({ variant, context, source, lang, forceTrialU
 
   const handlePurchase = useCallback(async () => {
     if (operationRef.current) return;
-    if (selected === 'lifetime' && !isLifetimeButtonEnabled()) {
+    // зачем: скрытый вариант нельзя купить ни при каких гонках — проверяем и
+    // глобальный флаг, и гейт по источнику (в онбординге Pro скрыт).
+    if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {
       setSelected('yearly');
       return;
     }

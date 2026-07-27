@@ -104,8 +104,25 @@ let scheduleCache: { at: number; value: unknown } | null = null;
  *
  * Сознательно не подписываемся, пока roomId не известен: пустая подписка —
  * это лишнее соединение и лишние чтения при каждом рендере экрана.
+ *
+ * зачем 2026-07-27 (владелец: «приложение греет телефон, всё подобное запрещено
+ * строжайше»): комната переписывается сервером каждые 5–12 секунд, и КАЖДАЯ
+ * запись будит JS-поток подписчика. Таб турниров премаунтится в фоне
+ * (BACKGROUND_TAB_PREMOUNT_ORDER в app/(tabs)/_layout.tsx), поэтому подписка
+ * открывалась у всех, кто просто запустил приложение и остался на главной.
+ * react-freeze тут не помогает — он гасит рендеры, но не подписки.
+ *
+ * `active` — гвард видимости. По умолчанию true: push-экраны турнира (лобби,
+ * раунд, таблица, результаты) лежат под корневым Stack с freezeOnBlur:true и
+ * гейтятся навигацией, им гвард не нужен. Хаб-таб живёт внутри одного роутного
+ * экрана со всеми табами, поэтому он ОБЯЗАН передать сюда свою настоящую
+ * видимость (runtimeOwnerId === 'tournaments').
+ *
+ * Функционал не теряется: последняя пришедшая комната остаётся в state, экран
+ * не мигает пустотой при возврате, а новая подписка поднимается мгновенно и
+ * первым же снимком догоняет актуальное состояние.
  */
-export function useTournamentRoom(roomId: string | null): RoomHook {
+export function useTournamentRoom(roomId: string | null, active = true): RoomHook {
   const [room, setRoom] = useState<Room | null>(null);
   const [status, setStatus] = useState<RoomStatus>(roomId ? 'loading' : 'idle');
   const [attempt, setAttempt] = useState(0);
@@ -117,6 +134,10 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
       setRoom(null);
       return;
     }
+    // Экран не виден — не держим сокет. Комнату в state НЕ чистим: при возврате
+    // пользователь видит последние данные, а не скелетон (Performance Bible:
+    // первый кадр = финальная геометрия).
+    if (!active) return;
 
     let cancelled = false;
     setStatus('loading');
@@ -160,10 +181,14 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
       unsubscribeRef.current?.();
       unsubscribeRef.current = null;
     };
-  }, [roomId, attempt]);
+  }, [roomId, attempt, active]);
 
   // Отсчёт ведём от СЕРВЕРНОГО дедлайна: локальные часы могут врать, и тогда
   // игрок увидит «0» раньше или позже реального перехода раунда.
+  //
+  // зачем гвард active: секундный тик на невидимом экране — это 60 пробуждений
+  // JS-потока в минуту впустую. Считаем от дедлайна, а не накопительно, поэтому
+  // после паузы первый же tick() выдаёт ПРАВИЛЬНОЕ число — счётчик не отстаёт.
   const [secondsLeft, setSecondsLeft] = useState(0);
   useEffect(() => {
     const deadline = room?.stateDeadlineAtMs;
@@ -173,9 +198,10 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
     }
     const tick = () => setSecondsLeft(Math.max(0, Math.round((deadline - Date.now()) / 1000)));
     tick();
+    if (!active) return;
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
-  }, [room?.stateDeadlineAtMs]);
+  }, [room?.stateDeadlineAtMs, active]);
 
   /**
    * Дедлайн истёк — просим сервер перевести комнату дальше.
@@ -195,6 +221,10 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
     const deadline = room?.stateDeadlineAtMs;
     const state = room?.state;
     if (!roomId || !deadline || !state) return;
+    // FIREBASE-ЭКОНОМИЯ: невидимый экран не двигает турнир. Будильник нужен
+    // ИГРОКАМ в комнате; зритель на другом табе платил бы за вызов функции,
+    // ничего при этом не видя. Крон и активные участники подстрахуют.
+    if (!active) return;
     if (!ADVANCEABLE_STATES.test(state)) return;
     if (secondsLeft > 0) return;
 
@@ -206,7 +236,7 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
       void advanceRound(roomId, state, deadline).catch(() => {});
     }, Math.floor(Math.random() * 400));
     return () => clearTimeout(id);
-  }, [roomId, room?.state, room?.stateDeadlineAtMs, secondsLeft]);
+  }, [roomId, room?.state, room?.stateDeadlineAtMs, secondsLeft, active]);
 
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
 

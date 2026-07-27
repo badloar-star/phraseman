@@ -63,6 +63,12 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   // useRuntimeActive нельзя было потерять снова незаметно.
   'app/(tabs)/friends.tsx': runtime('Gift pulse and search skeleton loops require focused foreground runtime.', ['if (active && runtimeActive)']),
   'app/(tabs)/home.tsx': runtime('Home motion is active only on the visible Home tab.', ['useRuntimeActive(isHomeOwner)', '!homeRuntimeActive']),
+  // зачем 2026-07-27 (владелец: «приложение стало греть телефон»): пульс LiveDot
+  // гардился одним useRuntimeActive(), но внутри `(tabs)` useIsFocused() истинен
+  // для ВСЕХ табов сразу — точка «дышала» и на невидимом табе. Требуем именно
+  // гвард по владельцу таба, чтобы подмена обратно на голый useRuntimeActive()
+  // роняла этот тест.
+  'app/(tabs)/tournaments.tsx': runtime('Live dot pulse is active only on the visible Tournaments tab.', ["useRuntimeActive(runtimeOwnerId === 'tournaments')", 'cancelAnimation(pulse)']),
   'app/LeagueResultModal.tsx': owned('Every result loop is owned by modal visibility, including child sparkles and halo.', ['active={visible}', 'if (!active) return', 'if (!visible) return']),
   'app/_admin_celebration_lab.tsx': { owner: 'dev_only', reason: 'Administrator animation laboratory.' },
   'app/_anim_demo_lab.tsx': { owner: 'dev_only', reason: 'Development-only animation laboratory.' },

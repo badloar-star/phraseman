@@ -711,7 +711,13 @@ function PulseOn({ active, children }: { active: boolean; children: React.ReactN
   // зачем: withRepeat(-1) без гарда крутится вечно даже когда вкладка «Друзья»
   // в фоне или приложение свёрнуто — это грелка батареи. Гардим фокусом экрана
   // и активностью приложения (контракт tests/perf_freeze_contract.test.ts).
-  const runtimeActive = useRuntimeActive();
+  //
+  // зачем ownerVisible 2026-07-27 (владелец: «приложение греет телефон»): все
+  // табы живут в ОДНОМ роутном экране, поэтому useIsFocused() возвращает true
+  // и для невидимых — одного useRuntimeActive() было мало, пульс крутился,
+  // пока пользователь сидел на главной. runtimeOwnerId — честный сигнал.
+  const { runtimeOwnerId } = useTabNav();
+  const runtimeActive = useRuntimeActive(runtimeOwnerId === 'friends');
   useEffect(() => {
     if (active && runtimeActive) {
       opacity.value = withRepeat(withTiming(0.6, { duration: 900 }), -1, true);

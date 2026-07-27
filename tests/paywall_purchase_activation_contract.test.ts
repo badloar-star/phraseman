@@ -107,7 +107,11 @@ describe('new paywalls activate Premium locally after RevenueCat success', () =>
 
   it('enforces the lifetime kill-switch in selection and purchase, not only in UI', () => {
     expect(sharedHook).toContain("if (plan === 'lifetime' && !lifetimeAvailable) return;");
-    expect(sharedHook).toContain("if (selected === 'lifetime' && !isLifetimeButtonEnabled()) {");
+    // Гейт покупки усилен 2026-07-27: помимо админ-килл-свитча учитывает источник
+    // пейвола (в онбординге lifetime скрыт — значит и купить его нельзя).
+    expect(sharedHook).toContain(
+      "if (selected === 'lifetime' && (!isLifetimeButtonEnabled() || LIFETIME_HIDDEN_SOURCES.has(source))) {",
+    );
     expect(sharedHook).toContain("onAppEvent('remote_config_changed'");
     expect(sharedHook).toContain("if (!lifetimeAvailable && selected === 'lifetime') setSelected('yearly');");
   });

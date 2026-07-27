@@ -90,6 +90,8 @@ import {
   useTournamentRoom,
 } from '../tournament_client';
 
+import { useTabNav } from '../TabContext';
+
 import { noAndroidOutline } from '../../constants/androidGlow';
 /** Слот расписания — форма совпадает с TournamentSlotConfig на сервере. */
 type ScheduleSlot = {
@@ -302,7 +304,22 @@ export default function TournamentsScreen() {
     return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone, new Date(tournamentNow())));
   }, [nextSlot]);
 
-  const { room } = useTournamentRoom(roomId);
+  /**
+   * зачем 2026-07-27 (владелец: «приложение греет телефон»): все пять табов
+   * живут внутри ОДНОГО роутного экрана `(tabs)`, поэтому useIsFocused()
+   * возвращает true для каждого из них одновременно — даже для невидимых.
+   * Единственный честный сигнал «этот таб сейчас на экране» — runtimeOwnerId
+   * из TabContext (его уже так использует components/today/TodayScreen.tsx).
+   *
+   * Это гейт для ВСЕЙ живой части хаба: подписки на комнату и секундных
+   * таймеров. Функционал сохраняется полностью — при возврате на таб подписка
+   * поднимается мгновенно и первым снимком догоняет актуальное состояние.
+   */
+  const { runtimeOwnerId } = useTabNav();
+  const tabVisible = runtimeOwnerId === 'tournaments';
+  const runtimeActive = useRuntimeActive(tabVisible);
+
+  const { room } = useTournamentRoom(roomId, runtimeActive);
 
   /**
    * зачем 2026-07-27 (владелец): слот — это ОКНО в полчаса, а не точка старта.
@@ -326,9 +343,13 @@ export default function TournamentsScreen() {
    * не жжёт батарею).
    */
   const [tick, setTick] = useState(0);
-  const runtimeActive = useRuntimeActive();
   useEffect(() => {
     if (!runtimeActive) return;
+    // зачем 2026-07-27: тик спит на невидимом табе, поэтому при ВОЗВРАТЕ первый
+    // кадр иначе показал бы состояние окна, «замороженное» в момент ухода
+    // (окно могло за это время открыться или закончиться). Пересчитываем сразу,
+    // до первого интервала — Performance Bible: первый кадр = финальные данные.
+    setTick((value) => value + 1);
     const id = setInterval(() => setTick((value) => value + 1), 1000);
     return () => clearInterval(id);
   }, [runtimeActive]);
@@ -350,9 +371,12 @@ export default function TournamentsScreen() {
   );
 
   const startsAt = room?.startsAt ?? nextSlot?.startsAtMs ?? 0;
+  // Третий секундный таймер хаба — тоже под гвардом видимости. useCountdown
+  // считает от целевого момента, а не накопительно, поэтому после паузы
+  // отсчёт возвращается сразу с ВЕРНЫМ числом, без отставания.
   const secondsToStart = useCountdown(
     startsAt ? Math.max(0, Math.round((startsAt - tournamentNow()) / 1000)) : 0,
-    Boolean(startsAt),
+    Boolean(startsAt) && runtimeActive,
   );
   const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
   const notEnoughGems = coins < entryGems;
@@ -945,7 +969,12 @@ const LiveDot = memo(function LiveDot({ color }: { color: string }) {
   // Performance Bible (guarded loops): бесконечная анимация обязана замирать,
   // когда экран не в фокусе или приложение в фоне — иначе она жжёт батарею на
   // невидимом экране. Контракт tests/perf_freeze_contract.test.ts это стережёт.
-  const runtimeActive = useRuntimeActive();
+  //
+  // зачем ownerVisible 2026-07-27: useIsFocused() внутри `(tabs)` истинен для
+  // ВСЕХ табов сразу, поэтому точка «дышала» и на невидимом табе. Настоящую
+  // видимость знает только runtimeOwnerId.
+  const { runtimeOwnerId } = useTabNav();
+  const runtimeActive = useRuntimeActive(runtimeOwnerId === 'tournaments');
 
   useEffect(() => {
     // Доступность: с «уменьшить движение» точка просто горит ровным светом.

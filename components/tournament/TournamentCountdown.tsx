@@ -36,10 +36,19 @@ export function useCountdown(initialSeconds: number, running = true): number {
 
   useEffect(() => {
     if (!running) return;
-    const id = setInterval(() => {
+    // зачем 2026-07-27: `running` теперь ещё и гвард видимости (экран скрыт —
+    // таймер спит, не греет телефон). Пересчёт ВЫНЕСЕН перед setInterval:
+    // иначе после паузы первую секунду висело бы устаревшее число, «пойманное»
+    // в момент скрытия. Считаем от целевого момента, поэтому возврат на экран
+    // сразу показывает правильный отсчёт.
+    const compute = () => {
       const remain = Math.max(0, Math.round((targetRef.current - Date.now()) / 1000));
       setLeft(remain);
-      if (remain <= 0) clearInterval(id);
+      return remain;
+    };
+    if (compute() <= 0) return;
+    const id = setInterval(() => {
+      if (compute() <= 0) clearInterval(id);
     }, 1000);
     return () => clearInterval(id);
   }, [running, initialSeconds]);

@@ -17,7 +17,9 @@ import { Card, Cta, Sheet } from '../components/tournament/tournament_ui';
 import { useCountdown } from '../components/tournament/TournamentCountdown';
 import { T, formatTimeLeft, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { useTournamentRoom, type RoomPlayer } from './tournament_client';
+import {
+  isRoundState,
+  isTableState, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -92,7 +94,7 @@ export default function TournamentLobbyScreen() {
   // иначе игроки с неточными часами уйдут в раунд раньше или позже остальных.
   useEffect(() => {
     if (!room || !roomId) return;
-    if (room.state === 'round' || room.state === 'table') {
+    if (isRoundState(room.state) || isTableState(room.state)) {
       router.replace({ pathname: '/tournament_round', params: { roomId } });
     }
   }, [room?.state, roomId, router, room]);

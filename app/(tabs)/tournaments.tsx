@@ -54,6 +54,8 @@ import {
 } from '../../components/tournament/tournament_v2_ui';
 import {
   devStartTournament,
+  isRoundState,
+  isTableState,
   joinTournament,
   loadSchedule,
   tournamentDateKey,
@@ -175,7 +177,7 @@ export default function TournamentsScreen() {
     startsAt ? Math.max(0, Math.round((startsAt - Date.now()) / 1000)) : 0,
     Boolean(startsAt),
   );
-  const live = room?.state === 'round' || room?.state === 'table' || room?.state === 'final';
+  const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
   const notEnoughGems = coins < entryGems;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);

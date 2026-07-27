@@ -23,7 +23,8 @@ import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { T, motion, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { useTournamentRoom, type RoomPlayer } from './tournament_client';
+import {
+  isRoundState, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 
@@ -123,7 +124,7 @@ export default function TournamentTableScreen() {
     if (!room || !roomId) return;
     // Зритель не играет: в раунд его не уводим, он остаётся на табло.
     if (spectating) return;
-    if (room.state === 'round') {
+    if (isRoundState(room.state)) {
       router.replace({ pathname: '/tournament_round', params: { roomId } });
     }
     if (room.state === 'results' || room.state === 'rewards' || room.state === 'closed') {
@@ -136,7 +137,7 @@ export default function TournamentTableScreen() {
   const maxScore = rows[0]?.score || 1;
   const isFinal = roundNo >= TOTAL_ROUNDS;
   // Зрителю показываем, что происходит прямо сейчас: идёт раунд или пауза.
-  const liveLabel = room?.state === 'round' ? `Раунд ${roundNo} идёт` : 'Перерыв';
+  const liveLabel = isRoundState(room?.state) ? `Раунд ${roundNo} идёт` : 'Перерыв';
 
   if (status === 'offline') {
     return (

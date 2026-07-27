@@ -359,12 +359,24 @@ describe('экраны режима «Турниры»', () => {
     // Иначе игроки с неточными часами уходят в раунд раньше остальных
     // и видят вопросы, которых сервер ещё не выдал.
     const lobby = read('app/tournament_lobby.tsx');
-    expect(lobby).toMatch(/room\.state === 'round'/);
+    // 2026-07-27: сервер нумерует фазы (round1..round4), клиент сравнивал с
+    // 'round' — совпадения не было НИКОГДА, лобби не уводило в раунд. Переход
+    // идёт через общий хелпер isRoundState, он же закрывает table1..table3.
+    expect(lobby).toMatch(/isRoundState\(room\.state\)/);
+    const client = read('app/tournament_client.ts');
+    expect(client).toMatch(/\^round\[1-4\]\$/);
+    expect(client).toMatch(/\^table\[1-3\]\$/);
+    // Голых сравнений со старыми именами не должно остаться нигде.
+    for (const screen of ['app/tournament_lobby.tsx', 'app/tournament_round.tsx',
+      'app/tournament_table.tsx', 'app/(tabs)/tournaments.tsx']) {
+      expect(read(screen)).not.toMatch(/state === 'round'(?!\d)/);
+      expect(read(screen)).not.toMatch(/state === 'table'(?!\d)/);
+    }
     // Кнопка «Начать сейчас» не должна дублировать серверный старт.
     expect(lobby).not.toMatch(/onPress=\{\(\) => router\.replace\(.*tournament_round/);
 
     const round = read('app/tournament_round.tsx');
-    expect(round).toMatch(/room\.state === 'table'/);
+    expect(round).toMatch(/isTableState\(room\.state\)/);
     expect(round).toMatch(/room\.state === 'results'/);
   });
 

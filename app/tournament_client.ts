@@ -40,7 +40,13 @@ export type RoomRound = {
 };
 
 export type RoomState =
-  | 'scheduled' | 'lobby' | 'round' | 'table' | 'final'
+  // зачем 2026-07-27: сервер (TOURNAMENT_STATES) нумерует фазы — round1..round4
+  // и table1..table3. Клиент сравнивал с 'round'/'table', совпадения не было
+  // НИКОГДА: лобби не уводило в раунд, таймер честно доходил до 00:00 и всё
+  // замирало. Имена обязаны совпадать с сервером буква в букву.
+  | 'scheduled' | 'lobby'
+  | 'round1' | 'table1' | 'round2' | 'table2' | 'round3' | 'table3' | 'round4'
+  | 'final'
   | 'results' | 'rewards' | 'closed' | 'cancelled';
 
 export type Room = {
@@ -149,6 +155,23 @@ export function useTournamentRoom(roomId: string | null): RoomHook {
   const retry = useCallback(() => setAttempt((value) => value + 1), []);
 
   return useMemo(() => ({ room, status, secondsLeft, retry }), [room, status, secondsLeft, retry]);
+}
+
+
+/** Идёт раунд (любой из четырёх). Сервер: round1..round4. */
+export function isRoundState(state?: string | null): boolean {
+  return typeof state === 'string' && /^round[1-4]$/.test(state);
+}
+
+/** Показывается таблица между раундами. Сервер: table1..table3. */
+export function isTableState(state?: string | null): boolean {
+  return typeof state === 'string' && /^table[1-3]$/.test(state);
+}
+
+/** Номер раунда из состояния: round3 → 3. Вне раунда — 0. */
+export function roundNoFromState(state?: string | null): number {
+  const match = /^round([1-4])$/.exec(String(state ?? ''));
+  return match ? Number(match[1]) : 0;
 }
 
 // ── Callable-обёртки ────────────────────────────────────────────────────────

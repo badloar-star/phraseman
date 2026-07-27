@@ -20,7 +20,8 @@ import { Card } from '../components/tournament/tournament_ui';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
 import { T, motion, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
-import { submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
+import {
+  isTableState, submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
 
 const QUESTIONS_PER_ROUND = 5;
@@ -288,7 +289,7 @@ export default function TournamentRoundScreen() {
   // Сервер перевёл комнату дальше — уходим, даже если локально не досчитали.
   useEffect(() => {
     if (!room || !roomId) return;
-    if (room.state === 'table' || room.state === 'final') {
+    if (isTableState(room.state) || room.state === 'final') {
       flushAnswers();
       router.replace({ pathname: '/tournament_table', params: { roomId } });
     }

@@ -1205,32 +1205,37 @@ export default function ShardsShopScreen() {
       setProcessingPackId(packId);
       try {
         if (isDevStoreBypass) {
-          // зачем 2026-07-27 (владелец: «я в дев добавил 500, они ОБЯЗАНЫ быть
-          // валидны»): раньше здесь была только локальная запись, и серверный
-          // баланс не менялся — shardsApplyDelta отклоняет причину
-          // 'shards_store_purchase' (её нет в каталоге начислений, он намеренно
-          // закрыт от клиентских earn). Из-за этого турнир, читающий
-          // users/{uid}.shards, видел старый баланс и отвечал «не хватает
-          // жемчужин». Теперь начисляем ещё и на сервер, админской функцией.
+          // ЖЕЛЕЗНОЕ ПРАВИЛО ВЛАДЕЛЬЦА (2026-07-27): дев-начисление ВСЕГДА
+          // админское и ВСЕГДА идёт на сервер, на ЛЮБОЙ аккаунт. Раньше здесь
+          // была только локальная запись — серверный баланс не менялся
+          // (shardsApplyDelta отклоняет причину 'shards_store_purchase': её нет
+          // в каталоге начислений, он намеренно закрыт от клиентских earn), и
+          // турнир, читающий users/{uid}.shards, отвечал «не хватает жемчужин»
+          // при «500» на экране. Правило закреплено контрактным тестом
+          // tests/dev_shards_grant_contract.test.ts.
           //
           // Порядок важен: локальная запись идёт ПЕРВОЙ и мгновенно двигает
-          // баланс на экране (Optimistic UI), сервер догоняет следом.
+          // баланс на экране (Optimistic UI), сервер догоняет следом и
+          // становится источником правды через refreshBalance() ниже.
           await addShardsRaw(shards, 'shards_store_purchase', { skipServerAwait: true });
           const serverGrant = await grantShardsOnServerForDev(shards);
-          if (!serverGrant.ok && serverGrant.reason === 'not_admin') {
+          if (!serverGrant.ok) {
             // Честно говорим, что на сервере жемчужин НЕ прибавилось: иначе
             // владелец снова упрётся в «не хватает жемчужин» в турнире и будет
             // искать поломку там, где её нет.
+            const tail = serverGrant.reason === 'disabled'
+              ? 'дев-начисление выключено на сервере'
+              : 'сервер не ответил';
             emitAppEvent('action_toast', {
               type: 'error',
-              messageRu: `DEV: локально +${shards}, но на сервере НЕТ — нужен админ-доступ. Турнир не увидит эти жемчужины.`,
-              messageUk: `DEV: локально +${shards}, але на сервері НЕМАЄ — потрібен адмін-доступ.`,
-              messageEs: `DEV: +${shards} local, pero no en el servidor — se requiere acceso de admin.`,
-              messagePtBr: `DEV: +${shards} local, mas não no servidor — precisa de acesso admin.`,
-              messageVi: `DEV: +${shards} cục bộ, nhưng không có trên máy chủ — cần quyền admin.`,
-              messageId: `DEV: +${shards} lokal, tetapi tidak di server — perlu akses admin.`,
-              messageTr: `DEV: yerel +${shards}, ancak sunucuda yok — yönetici erişimi gerekiyor.`,
-              messagePl: `DEV: lokalnie +${shards}, ale nie na serwerze — wymagany dostęp administratora.`,
+              messageRu: `DEV: локально +${shards}, но НА СЕРВЕРЕ НЕТ (${tail}). Турнир не увидит эти жемчужины.`,
+              messageUk: `DEV: локально +${shards}, але НА СЕРВЕРІ НЕМАЄ (${tail}).`,
+              messageEs: `DEV: +${shards} local, pero NO en el servidor (${tail}).`,
+              messagePtBr: `DEV: +${shards} local, mas NÃO no servidor (${tail}).`,
+              messageVi: `DEV: +${shards} cục bộ, nhưng KHÔNG có trên máy chủ (${tail}).`,
+              messageId: `DEV: +${shards} lokal, tetapi TIDAK di server (${tail}).`,
+              messageTr: `DEV: yerel +${shards}, ancak SUNUCUDA YOK (${tail}).`,
+              messagePl: `DEV: lokalnie +${shards}, ale NIE na serwerze (${tail}).`,
             });
           }
           void trackShardPackPurchase(packId).catch(() => {});

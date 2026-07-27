@@ -136,6 +136,11 @@ const { submitShardSurvey, getActiveShardSurvey, adminWriteShardSurvey, adminDel
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { shardsApplyDelta } = require('./shards_apply_delta');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+// зачем: железное правило владельца — дев-начисление ВСЕГДА идёт на сервер и
+// работает для ЛЮБОГО аккаунта. В проде путь мёртв: серверный рубильник
+// remote_config/app.numbers.dev_shards_grant_enabled по умолчанию выключен.
+const { devShardsGrant } = require('./dev_shards_grant');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const {
   getCoinExchangeQuote,
   getCoinExchangeHistory,
@@ -272,6 +277,7 @@ exports.getActiveShardSurvey = getActiveShardSurvey;
 exports.adminWriteShardSurvey = adminWriteShardSurvey;
 exports.adminDeleteShardSurvey = adminDeleteShardSurvey;
 exports.shardsApplyDelta = shardsApplyDelta;
+exports.devShardsGrant = devShardsGrant;
 exports.getCoinExchangeQuote = getCoinExchangeQuote;
 exports.getCoinExchangeHistory = getCoinExchangeHistory;
 exports.exchangeCoinsForStars = exchangeCoinsForStars;

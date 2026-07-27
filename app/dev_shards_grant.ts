@@ -1,48 +1,53 @@
 // ═══════════════════════════════════════════════════════════════════════════
-// ДЕВ-НАЧИСЛЕНИЕ ЖЕМЧУЖИН НА СЕРВЕР
+// ДЕВ-НАЧИСЛЕНИЕ ЖЕМЧУЖИН — КЛИЕНТСКАЯ СТОРОНА
 //
-// зачем 2026-07-27 (владелец: «не хватает жемчужин, я в дев добавил 500, они
-// ОБЯЗАНЫ быть валидны»): дев-кнопка магазина писала баланс ТОЛЬКО в телефон
-// (addShardsRaw + skipServerAwait). Серверная запись шла через shardsApplyDelta,
-// а тот сверяет причину и сумму с каталогом shard_reward_catalog — каталог
-// намеренно обнулён и причины 'shards_store_purchase' в нём нет вовсе, поэтому
-// сервер отклонял начисление. Локальный баланс показывал 500, серверный
-// оставался прежним — и турнир, который читает users/{uid}.shards, честно
-// отвечал not_enough_gems.
+// ЖЕЛЕЗНОЕ ПРАВИЛО ВЛАДЕЛЬЦА (2026-07-27, дословно): «когда я в дев режиме —
+// начисление на ЛЮБОЙ аккаунт через дев ВСЕГДА админское и ВСЕГДА идёт на
+// сервер». Закреплено контрактным тестом tests/dev_shards_grant_contract.test.ts
+// — менять нельзя без решения владельца.
 //
-// Каталог НЕ расширяем: он защищает экономику от накрутки для всех
-// пользователей. Вместо этого зовём adminGrantReward — существующую
-// админ-функцию, которая пишет баланс легально, идемпотентно и с записью в
-// аудит. Она требует claim admin: true в токене, поэтому обычный пользователь
-// с дев-сборкой ничего себе не начислит: сервер откажет.
+// Из правила следуют три требования, и все три проверяются тестом:
+//   1. дев-начисление ОБЯЗАНО звать сервер (devShardsGrant), а не только писать
+//      в телефон — иначе турнир и другие серверные проверки баланса жемчужин
+//      не увидят (именно из-за этого «500 в деве» давали not_enough_gems);
+//   2. НЕТ проверки админ-роли на клиенте — правило говорит «на ЛЮБОЙ аккаунт»;
+//   3. отказ сервера НЕ проглатывается молча — экран обязан сказать правду,
+//      иначе владелец снова упрётся в турнир и будет искать поломку не там.
+//
+// Гейт безопасности живёт на СЕРВЕРЕ (remote_config/app.numbers
+// .dev_shards_grant_enabled, по умолчанию выключен), а не здесь: клиентский
+// флаг подделывается, серверный — нет.
 // ═══════════════════════════════════════════════════════════════════════════
 
 import { DebugLogger } from './debug-logger';
-import { getCanonicalUserId } from './user_id_policy';
 
-/** Регион админских callable — тот же, что у остальных прод-функций. */
-const ADMIN_FUNCTIONS_REGION = 'us-central1';
+/** Регион прод-callable — тот же, что у shardsApplyDelta. */
+const FUNCTIONS_REGION = 'us-central1';
 
 export type DevShardsGrantResult =
-  /** granted — сколько сервер реально начислил (он же источник правды). */
-  | { ok: true; granted: number }
-  | { ok: false; reason: 'no_user' | 'not_admin' | 'failed' };
+  /** balance — серверный баланс ПОСЛЕ начисления (он же источник правды). */
+  | { ok: true; balance: number; granted: number }
+  /**
+   * disabled — серверный рубильник выключен (штатное состояние прода).
+   * failed — сеть/сервер не ответили.
+   */
+  | { ok: false; reason: 'disabled' | 'failed' };
+
+/** opId делает вызов идемпотентным: сетевой ретрай не удвоит начисление. */
+function newDevGrantOpId(): string {
+  const random = Math.floor(Math.random() * 1e9).toString(36);
+  return `devgrant_${Date.now().toString(36)}_${random}`;
+}
 
 /**
- * Начисляет жемчужины на СЕРВЕР через админскую функцию.
+ * Начисляет жемчужины НА СЕРВЕР. Работает для любого авторизованного аккаунта
+ * — админ-роль не требуется и НЕ проверяется (правило владельца).
  *
- * Идемпотентность: ключ операции содержит метку времени и uid, поэтому повтор
- * нажатия создаёт новую операцию (это осознанно — дев-кнопка должна начислять
- * каждый раз), а сетевой ретрай одного и того же вызова — нет.
- *
- * Стоимость: один вызов функции на нажатие дев-кнопки. В релизной сборке путь
- * не используется вовсе (вызывается только под isDevStoreBypass).
+ * Стоимость: один вызов функции на нажатие дев-кнопки. В проде серверный
+ * рубильник выключен, поэтому вызов сразу отклоняется без записей.
  */
 export async function grantShardsOnServerForDev(amount: number): Promise<DevShardsGrantResult> {
   if (!Number.isSafeInteger(amount) || amount <= 0) return { ok: false, reason: 'failed' };
-
-  const uid = await getCanonicalUserId();
-  if (!uid) return { ok: false, reason: 'no_user' };
 
   try {
     const { getFunctions, httpsCallable } = require('@react-native-firebase/functions') as {
@@ -50,33 +55,20 @@ export async function grantShardsOnServerForDev(amount: number): Promise<DevShar
       httpsCallable: (
         fns: unknown,
         name: string,
-      ) => (data: unknown) => Promise<{ data: { amount?: number } }>;
+      ) => (data: unknown) => Promise<{ data: { balance?: number; granted?: number } }>;
     };
     const { getApp } = require('@react-native-firebase/app') as { getApp: () => unknown };
-    const call = httpsCallable(getFunctions(getApp(), ADMIN_FUNCTIONS_REGION), 'adminGrantReward');
-
-    // Ключи обязаны пройти TOKEN_RE на сервере — только буквы, цифры, дефис и
-    // подчёркивание. Метка времени делает каждое нажатие отдельной операцией.
-    const stamp = `${Date.now()}_${Math.floor(Math.random() * 1e6)}`;
-    const result = await call({
-      uid,
-      type: 'shards',
-      amount,
-      reason: 'dev_store_bypass_grant',
-      comment: 'DEV: начисление из магазина',
-      idempotencyKey: `dev_grant_${stamp}`,
-      requestId: `dev_req_${stamp}`,
-    });
-    return { ok: true, granted: Number(result.data?.amount ?? amount) };
+    const call = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), 'devShardsGrant');
+    const result = await call({ amount, opId: newDevGrantOpId() });
+    return {
+      ok: true,
+      balance: Number(result.data?.balance ?? 0),
+      granted: Number(result.data?.granted ?? amount),
+    };
   } catch (error) {
-    const code = String((error as { code?: string })?.code ?? '');
     const message = String((error as { message?: string })?.message ?? '');
-    // Нет админской роли — это НЕ поломка: обычный дев-билд без claim просто не
-    // может начислять на сервер. Отличаем от настоящей ошибки, чтобы экран
-    // сказал внятное, а не «попробуйте ещё раз».
-    if (code.includes('permission-denied') || message.includes('Admin role required')) {
-      return { ok: false, reason: 'not_admin' };
-    }
+    // Рубильник выключен — это НЕ поломка, а штатное состояние прод-проекта.
+    if (message.includes('dev_shards_grant_disabled')) return { ok: false, reason: 'disabled' };
     DebugLogger.error('dev_shards_grant:grantShardsOnServerForDev', error, 'warning');
     return { ok: false, reason: 'failed' };
   }

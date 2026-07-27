@@ -36458,10 +36458,18 @@
       : '';
   }
 
+  /**
+   * зачем 2026-07-27: владелец — «клик по папке должен открывать ОТДЕЛЬНУЮ
+   * СТРАНИЦУ с фул пулом и удобным управлением всего». Внутри админки список
+   * тонул под панелями генерации, а фильтр «На проверке» показывал пусто при
+   * полном пуле. Открываем новую вкладку: можно держать несколько пулов
+   * рядом и сравнивать, а админка не теряет место.
+   */
   window.tnOpenFolder = function tnOpenFolder(mode) {
-    _tnFolder = String(mode || '');
-    tnRenderFolders(_tnFolderCounts);
-    void window.tnLoadTasks(true);
+    const url = mode
+      ? `tournament_pool.html?mode=${encodeURIComponent(mode)}`
+      : 'tournament_pool.html';
+    window.open(url, '_blank', 'noopener');
   };
 
   let _tnFolderCounts = null;
@@ -36714,6 +36722,10 @@
    * пунктом выпадашки: непонятно, что реально играет, а что ждёт проверки.
    */
   window.tnOpenApprovedPool = function tnOpenApprovedPool() {
+    // Полный пул — на отдельной странице, там же настройка распределения.
+    window.open('tournament_pool.html', '_blank', 'noopener');
+    return;
+    // eslint-disable-next-line no-unreachable
     const status = document.getElementById('tn-status');
     if (status) status.value = 'published';
     const diff = document.getElementById('tn-difficulty');

@@ -9,8 +9,10 @@
 // списка known заранее, поэтому перестановка не двигает соседние блоки.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import TapScale from '../components/TapScale';
 import Animated, {
   FadeIn,
   useAnimatedStyle,
@@ -156,6 +158,11 @@ export default function TournamentTableScreen() {
     }
   }, [room?.state, roomId, router, room, spectating]);
 
+  // зачем: зритель должен уметь выйти с таблицы в любой момент — сервер его
+  // отсюда не уводит. Возврат в хаб турниров, а не router.back(): на этот
+  // экран попадают и по прямой ссылке, где истории навигации нет.
+  const leaveTable = useCallback(() => router.replace('/tournaments'), [router]);
+
   const myScore = useMemo(() => rows.find((row) => row.isYou)?.score ?? 0, [rows]);
   const listHeight = Math.max(1, rows.length) * (ROW_HEIGHT + ROW_GAP);
   const maxScore = rows[0]?.score || 1;
@@ -188,16 +195,33 @@ export default function TournamentTableScreen() {
         {/* Зритель не играет — своих очков у него нет, показываем лидера.
             Счётчик в языке V2: пилюля со звездой и bump при изменении. */}
         <V2Counter value={spectating ? (rows[0]?.score ?? 0) : myScore} tone="stars" />
+        {/* зачем 2026-07-27 (владелец: «экран таблицы невозможно закрыть, нет
+            крестика»): у ЗРИТЕЛЯ таблица — тупик, сервер его никуда не уводит
+            (см. `if (spectating) return` выше), и выйти было нечем. Игроку
+            крестик не даём: он в турнире, экран сменит сервер сам. */}
+        {spectating ? (
+          <TapScale onPress={leaveTable} style={styles.closeButton}>
+            <Ionicons name="close" size={22} color={P.text} />
+          </TapScale>
+        ) : null}
       </View>
 
-      {/* Высота списка известна заранее — соседние блоки не двигаются */}
-      <View style={[styles.list, { height: listHeight }]}>
+      {/* зачем 2026-07-27 (владелец: «экран таблицы невозможно скролить»):
+          список из 16 плашек не помещается на экран, а лежал в View
+          фиксированной высоты — нижние места были недоступны. ScrollView с
+          известной высотой контента: перестановки FLIP по-прежнему не двигают
+          соседние блоки, но список теперь прокручивается. */}
+      <ScrollView
+        style={styles.listScroll}
+        contentContainerStyle={[styles.listContent, { height: listHeight }]}
+        showsVerticalScrollIndicator={false}
+      >
         {rows.map((row, index) => (
           <TableRow key={row.id} row={row} place={index + 1} maxScore={maxScore} />
         ))}
-      </View>
+      </ScrollView>
 
-      <Text style={styles.hint}>
+      <Text style={[styles.hint, { paddingBottom: insets.bottom + 12 }]}>
         {spectating
           ? (isFinal ? 'Финал — считаем итоги…' : `${liveLabel} · ${secondsLeft}`)
           : (isFinal ? 'Считаем итоги…' : `Следующий раунд через ${secondsLeft}`)}
@@ -312,6 +336,20 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   },
 
   list: { position: 'relative' },
+  // Прокрутка занимает всё свободное место между шапкой и подсказкой.
+  listScroll: { flex: 1 },
+  // height приходит из listHeight: плашки позиционированы абсолютно, поэтому
+  // контейнеру нужна явная высота, иначе ScrollView считает контент нулевым.
+  listContent: { position: 'relative' },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    marginLeft: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: P.card,
+  },
   row: {
     position: 'absolute',
     left: 0,

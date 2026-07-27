@@ -46,6 +46,12 @@ import {
   type TournamentAiLevel,
 } from './tournament_ai_generator';
 import {
+  defaultRoundMix,
+  normalizeModeMix,
+  normalizeRoundMix,
+  ROUND_NUMBERS,
+} from './tournament_mode_mix';
+import {
   TOURNAMENT_MODES,
   planGenerationOrders,
   planPoolGaps,
@@ -1717,5 +1723,88 @@ export const adminFillTournamentPool = onCall(
     }
 
     return { ok: true, dryRun: false, orders, results };
+  },
+);
+
+
+// ── Проценты распределения типов по раундам ─────────────────────────────────
+
+const MODE_MIX_DOC = 'modeMix';
+
+/**
+ * Текущие проценты + сколько заданий каждого типа реально есть.
+ *
+ * зачем счётчики рядом: владелец ставит 50% на режим, у которого в пуле
+ * 2 задания — раунд соберётся не так, как он ожидает. Показываем правду
+ * сразу, чтобы настройка не расходилась с реальностью.
+ */
+export const adminGetTournamentModeMix = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    requirePermission(request, 'content.read');
+    onlyKeys(request.data, [], 'tournament_mix_invalid');
+
+    const db = admin.firestore();
+    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+    const snap = await db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc(MODE_MIX_DOC).get();
+    const mix = snap.exists ? normalizeRoundMix(snap.data()) : defaultRoundMix();
+
+    // guard-ok: count() — серверные агрегаты, документы не читаются.
+    const cells: Record<string, number> = {};
+    await Promise.all(TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map(async (difficulty) => {
+      const agg = await collection
+        .where('verified', '==', true)
+        .where('mode', '==', mode)
+        .where('difficulty', '==', difficulty)
+        .count().get();
+      cells[`${mode}:${difficulty}`] = agg.data().count;
+    })));
+
+    const byMode: Record<string, number> = {};
+    for (const mode of TOURNAMENT_MODES) {
+      byMode[mode] = [1, 2, 3].reduce((sum, d) => sum + (cells[`${mode}:${d}`] ?? 0), 0);
+    }
+
+    return {
+      ok: true,
+      configured: snap.exists,
+      rounds: mix.rounds,
+      modes: TOURNAMENT_MODES,
+      byMode,
+      cells,
+    };
+  },
+);
+
+/** Сохранение процентов. Нормализация обязательна: клиент мог прислать 99. */
+export const adminSetTournamentModeMix = onCall(
+  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  async (request) => {
+    // Микс влияет на состав живых турниров — право уровня публикации.
+    requirePermission(request, 'content.publish');
+    const record = onlyKeys(request.data, ['rounds', 'reset'], 'tournament_mix_invalid');
+
+    const db = admin.firestore();
+    const ref = db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc(MODE_MIX_DOC);
+
+    if (record.reset === true) {
+      // Сброс к равным долям = удаление настройки: сервер вернётся к жребию.
+      await ref.delete().catch(() => {});
+      return { ok: true, reset: true, rounds: defaultRoundMix().rounds };
+    }
+
+    const normalized = normalizeRoundMix({ rounds: record.rounds });
+    const payload: Record<string, unknown> = {};
+    for (const roundNo of ROUND_NUMBERS) {
+      payload[String(roundNo)] = normalizeModeMix(normalized.rounds[roundNo]);
+    }
+
+    await ref.set({
+      rounds: payload,
+      updatedAtMs: Date.now(),
+      updatedBy: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
+    }, { merge: true });
+
+    return { ok: true, rounds: normalized.rounds };
   },
 );

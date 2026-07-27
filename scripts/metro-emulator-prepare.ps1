@@ -75,15 +75,16 @@ if ($serials.Count -lt 1) {
       #   -cores 6         — из 24 ядер. Больше не даёт прироста, но отнимает CPU
       #                      у Metro, который собирает бандл параллельно;
       #   -no-boot-anim    — минус несколько секунд загрузки;
-      #   -no-audio        — звук эмулятора не нужен и жрёт такты;
       #   -netdelay/-netspeed none/full — сеть без искусственных задержек.
+      # зачем 2026-07-27: флаг -no-audio УБРАН. Он экономил копейки тактов, но
+      # полностью глушил звук эмулятора — аудио-режимы турнира («Послушай и
+      # собери фразу») стали непроходимыми: владелец не слышал ничего.
       Start-Process -FilePath $emulatorExe -ArgumentList @(
         "-avd", $pick,
         "-gpu", "host",
         "-memory", "8192",
         "-cores", "6",
         "-no-boot-anim",
-        "-no-audio",
         "-netdelay", "none",
         "-netspeed", "full"
       ) | Out-Null

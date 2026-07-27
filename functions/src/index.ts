@@ -529,6 +529,8 @@ export {
   adminMutateTournamentTasks,
   adminEditTournamentTask,
   adminFillTournamentPool,
+  adminGetTournamentModeMix,
+  adminSetTournamentModeMix,
   adminGenerateTournamentAudioTasksAi,
   adminTournamentPoolStats,
   adminGetTournamentSchedule,

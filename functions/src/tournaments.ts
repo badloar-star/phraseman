@@ -41,6 +41,7 @@ import {
   normalizeTournamentCuratedSet,
   legacyTournamentRecoveryAction,
   loadCompleteTournamentTasks,
+  planBotJoinTimes,
   planTournamentCancellation,
   planTournamentFinalization,
   resolveSeasonEntryName,
@@ -593,6 +594,11 @@ export async function tournamentJoinTransaction(
       color: PLAYER_COLORS[room.players.length % PLAYER_COLORS.length],
       score: 0,
       streak: 0,
+      // зачем 2026-07-27: живой игрок появляется в лобби в момент реального
+      // входа. Поле есть у ВСЕХ (и у ботов) — иначе по его наличию клиент
+      // отличал бы бота от человека, а isBot из документа комнаты вырезается
+      // намеренно (publicTournamentPlayer).
+      joinAtMs: nowMs,
       entry: {
         // kind оставлен 'ticket' для совместимости со старыми комнатами:
         // поле читается при отмене турнира. Реально списаны жемчужины.
@@ -987,6 +993,16 @@ export async function tournamentFillRoomTransaction(
     const selectedTasks = rounds
       ? Array.from(new Set(rounds.flatMap((round) => round.taskIds))).map((taskId) => taskMap.get(taskId))
       : [];
+    // зачем 2026-07-27 (владелец): боты больше не появляются пачкой. Времена
+    // входа считаются детерминированно из seed комнаты — запись по-прежнему
+    // одна (Firestore-экономия), но клиент показывает бота только когда его
+    // joinAtMs наступил, поэтому лобби наполняется постепенно.
+    const botJoinTimes = planBotJoinTimes({
+      seed: room.roomId,
+      botCount: picked.length,
+      fromMs: nowMs,
+      startsAtMs: room.startsAt,
+    });
     const botPlayers: TournamentPlayer[] = picked.map((bot, index) => ({
       id: `p_${tournamentHash32(`${room.roomId}:${bot.botId}`).toString(36)}`,
       isBot: true,
@@ -996,6 +1012,7 @@ export async function tournamentFillRoomTransaction(
       score: 0,
       streak: 0,
       botWinRate: bot.winRate,
+      joinAtMs: botJoinTimes[index] ?? nowMs,
     }));
     const privateBotMetadata = {
       kind: 'bot_simulation_v1',
@@ -1256,10 +1273,23 @@ export async function tournamentFinalizeTransaction(
       const roomPlayer = room.players.find((player) => player.id === effect.playerId);
       const seasonName = resolveSeasonEntryName(roomPlayer?.name, season.name);
       const seasonAvatar = sanitizeString(roomPlayer?.avatar, 16) || sanitizeString(season.avatar, 16);
+      // зачем 2026-07-27 (владелец): «по игрокам в таблице можно нажимать и
+      // открывать их карточку». Карточке нужны аватар, рамка, уровень и серия —
+      // кладём их РЯДОМ с очками, чтобы тап открывал карточку мгновенно, без
+      // дочитывания чужого профиля (это было бы N чтений на прокрутку списка).
+      // Всё берётся из уже прочитанных документов: лишних чтений ноль.
+      const profileAvatar = sanitizeString(user.user_avatar, 16);
+      const profileFrame = sanitizeString(user.user_avatar_frame, 24);
+      const profileXp = Math.max(0, readInt((user.progress as Record<string, unknown> | undefined)?.total_xp, 0));
       tx.set(seasonRef, {
         uid: effect.playerId,
         name: seasonName,
         ...(seasonAvatar ? { avatar: seasonAvatar } : {}),
+        // Профиль для карточки. Пустые поля не пишем — не засоряем документ.
+        ...(profileAvatar ? { profileAvatar } : {}),
+        ...(profileFrame ? { frame: profileFrame } : {}),
+        ...(profileXp > 0 ? { totalXp: profileXp } : {}),
+        hotStreak,
         points: Math.max(0, readInt(season.points, 0)) + effect.seasonPoints,
         tournamentsPlayed: Math.max(0, readInt(season.tournamentsPlayed, 0)) + 1,
         bestPlace: season.bestPlace ? Math.min(readInt(season.bestPlace, effect.place), effect.place) : effect.place,

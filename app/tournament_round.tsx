@@ -262,10 +262,31 @@ export default function TournamentRoundScreen() {
     return () => clearTimeout(id);
   }, [phase]);
 
+  /**
+   * Прослушано ли аудио текущего вопроса.
+   *
+   * зачем 2026-07-27 (владелец: «таймер запускается не после первого
+   * воспроизведения, а сразу, и на ввод фразы остаётся меньше 2 секунд»):
+   * в режимах listen/dictate фраза звучит несколько секунд, и всё это время
+   * таймер уже тикал — на сам ответ (собрать фразу из слов!) не оставалось
+   * ничего. Теперь для аудио отсчёт стартует ПОСЛЕ первого проигрывания.
+   * Ключ по вопросу, иначе следующий вопрос унаследовал бы флаг предыдущего.
+   */
+  const [audioReadyKey, setAudioReadyKey] = useState<string | null>(null);
+  const isAudioQuestion = question?.kind === 'listen' || question?.kind === 'dictate';
+  const questionKey = question ? `${question.taskId}:${question.itemIndex}` : null;
+  const audioPlayed = !isAudioQuestion || audioReadyKey === questionKey;
+
+  const handleAudioPlayed = useCallback(() => {
+    if (questionKey) setAudioReadyKey(questionKey);
+  }, [questionKey]);
+
   // Таймер вопроса. Ноль = ответа не было, идём дальше без очков.
   useEffect(() => {
     if (phase !== 'question') return;
     setSecondsLeft(SECONDS_PER_QUESTION);
+    // Аудио ещё не прозвучало — держим полное время на табло и не тикаем.
+    if (!audioPlayed) return;
     const id = setInterval(() => {
       setSecondsLeft((value) => {
         if (value <= 1) { clearInterval(id); return 0; }
@@ -273,7 +294,7 @@ export default function TournamentRoundScreen() {
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [phase, index]);
+  }, [phase, index, audioPlayed]);
 
   /**
    * Отправка пачки. Ровно один раз за раунд: сервер идемпотентен, но лишний
@@ -521,6 +542,8 @@ export default function TournamentRoundScreen() {
             <TournamentAudioButton
               key={question.taskId}
               audioUri={question.audioUri ?? ''}
+              // Первое проигрывание запускает таймер вопроса (см. audioPlayed).
+              onPlayed={handleAudioPlayed}
             />
           ) : (
             <Text style={styles.questionPhrase}>{question.phrase}</Text>

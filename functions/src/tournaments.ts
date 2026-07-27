@@ -567,7 +567,17 @@ export async function tournamentJoinTransaction(
     // зачем 2026-07-27 (владелец: «убирай дев полностью»): поблажки для
     // devRoom удалены. Вход открыт только в лобби и только до старта — ровно
     // те правила, которые увидит игрок. Комната по кнопке им подчиняется.
-    if (room.state !== 'lobby') throw new HttpsError('failed-precondition', 'room_not_joinable');
+    // зачем 2026-07-27 (владелец: «турнир попытка войти дала ошибку»): комната
+    // живёт в 'scheduled', пока крон tournamentAdvanceRooms не переведёт её в
+    // 'lobby' за 5 минут до старта. Игрок, нажавший «Играть» до этого тика,
+    // получал room_not_joinable на исправной комнате — вход зависел от
+    // расписания КРОНА, а не от расписания турниров. Пускаем и в 'scheduled':
+    // единственное, что действительно закрывает вход — наступивший старт
+    // (проверка строкой ниже). Идущий или отменённый турнир по-прежнему
+    // недоступен, потому что его состояние уже не scheduled/lobby.
+    if (room.state !== 'lobby' && room.state !== 'scheduled') {
+      throw new HttpsError('failed-precondition', 'room_not_joinable');
+    }
     if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
 
     const config = configSnap.exists ? normalizeTournamentSchedule(configSnap.data()) : normalizeTournamentSchedule(null);
@@ -728,15 +738,33 @@ async function createTournamentShardRoom(
   input: { slotId: string; timezone: string; dateKey: string; shard: number },
 ): Promise<boolean> {
   const { slotId, timezone, dateKey, shard } = input;
-  if (shard <= 0) return false;
-  // Базовая комната слота — источник правды по времени старта и цене входа.
-  const baseRef = db.collection(TOURNAMENT_ROOMS_COLLECTION)
-    .doc(tournamentRoomId(slotId, timezone, dateKey, 0));
-  const baseSnap = await baseRef.get();
-  if (!baseSnap.exists) return false;
-  const base = baseSnap.data() || {};
-  const startsAt = readInt(base.startsAt, 0);
   const nowMs = Date.now();
+  let startsAt = 0;
+  let baseTicketsRequired = 1;
+
+  if (shard <= 0) {
+    // зачем 2026-07-27 (владелец: «турнир попытка войти дала ошибку»): комнату
+    // шарда 0 создаёт ТОЛЬКО крон tournamentCreateRooms раз в 5 минут. Игрок,
+    // нажавший «Играть» до его тика, упирался в room_not_found — вход был
+    // ЗАВИСИМ от расписания крона, а не от расписания турниров. Раньше эта
+    // ветка просто отвечала false («шард 0 не создаём»), и ошибка доходила до
+    // экрана. Теперь вход создаёт комнату слота сам, по тем же данным, что и
+    // крон: расписание — источник правды, крон лишь делает это заранее.
+    const config = await loadScheduleConfig(db);
+    const slot = config.slots.find((candidate) => candidate.slotId === slotId && candidate.enabled);
+    if (!slot) return false;
+    startsAt = slotStartMs(dateKey, slot.localTime, slot.timezone);
+    baseTicketsRequired = slot.ticketsRequired;
+  } else {
+    // Базовая комната слота — источник правды по времени старта и цене входа.
+    const baseRef = db.collection(TOURNAMENT_ROOMS_COLLECTION)
+      .doc(tournamentRoomId(slotId, timezone, dateKey, 0));
+    const baseSnap = await baseRef.get();
+    if (!baseSnap.exists) return false;
+    const base = baseSnap.data() || {};
+    startsAt = readInt(base.startsAt, 0);
+    baseTicketsRequired = readInt(base.ticketsRequired, 1) || 1;
+  }
   // Вход закрывается в момент старта — опоздавшему новый шард не поможет.
   if (startsAt <= 0 || nowMs >= startsAt) return false;
 
@@ -745,37 +773,187 @@ async function createTournamentShardRoom(
   const resources = await loadResourcePool(db);
   // Кураторский набор владельца принадлежит конкретной комнате: в шардах его
   // нет — они играют на общем пуле заданий.
-  if (!buildRounds(roomId, resources.tasks)) {
+  const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
+  if (!rounds) {
     console.warn('[tournaments] shard create skipped: task_pool_unavailable', { roomId });
     return false;
   }
-  return db.runTransaction(async (tx) => {
+
+  /**
+   * зачем 2026-07-27 (владелец: «турнир попытка войти дала ошибку»): комната
+   * рождалась ПУСТОЙ — state 'scheduled', rounds [], ready false. Наполняли её
+   * кроны (tournamentFillBots + tournamentAdvanceRooms), каждый со своим тиком.
+   * Игрок, нажавший «Играть» между созданием и тиком крона, получал
+   * room_not_joinable: вход требует state === 'lobby'. Раз комнату создаёт сам
+   * вход — она обязана быть сразу играбельной, иначе игрок платит за то, что
+   * кроны не успели.
+   *
+   * Стоимость: та же одна запись батчем (комната + секреты заданий), что и у
+   * мгновенного турнира. Лишних документов заранее не появляется — комната
+   * создаётся ТОЛЬКО когда в неё реально входят.
+   */
+  const taskMap = new Map(resources.tasks.map((task) => [task.taskId, task]));
+  const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
+    .map((taskId) => taskMap.get(taskId))
+    .filter((task): task is TournamentTask => !!task);
+
+  const botPlayers: TournamentPlayer[] = resources.bots
+    .slice(0, TOURNAMENT_ROOM_SIZE - 1)
+    .map((bot, index) => ({
+      id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
+      isBot: true,
+      name: bot.name,
+      avatar: bot.avatarEmoji,
+      color: PLAYER_COLORS[index % PLAYER_COLORS.length],
+      score: 0,
+      streak: 0,
+      botWinRate: bot.winRate,
+    }));
+
+  const created = await db.runTransaction(async (tx) => {
     const existing = await tx.get(roomRef);
-    if (existing.exists) return true;
+    if (existing.exists) return false;
     tx.create(roomRef, {
       roomId,
       slotId,
       seed: roomId,
-      state: 'scheduled',
+      // Комната сразу в лобби: вход открыт, старт по расписанию слота.
+      state: 'lobby',
       startsAt,
-      players: [],
-      rounds: [],
+      players: botPlayers.map(publicTournamentPlayer),
+      rounds,
       participantAuthUids: [],
       participantAuthUidsComplete: true,
       stateStartedAtMs: nowMs,
-      stateDeadlineAtMs: startsAt - TOURNAMENT_LOBBY_OPEN_MS,
+      stateDeadlineAtMs: startsAt,
       version: 0,
       createdAtMs: nowMs,
       expireAtMs: startsAt + TOURNAMENT_ROOM_TTL_MS,
-      ticketsRequired: readInt(base.ticketsRequired, 1) || 1,
+      ticketsRequired: baseTicketsRequired,
       timezone,
-      ready: false,
+      ready: true,
+      readyAtMs: nowMs,
+      gatherStartedAtMs: nowMs,
       shard,
       featureGates: tournamentFeatureGates(),
       expireAt: admin.firestore.Timestamp.fromMillis(startsAt + TOURNAMENT_ROOM_TTL_MS),
     });
     return true;
   });
+  // Комната уже была (успел крон или соседний вызов) — она играбельна, входим.
+  if (!created) return true;
+
+  // Секреты заданий отдельным батчем: в транзакцию они не нужны — комната без
+  // них не стартует, а лишние 16 документов в транзакции удорожили бы вход.
+  const secretsBatch = db.batch();
+  for (const task of selectedTasks) {
+    secretsBatch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
+  }
+  secretsBatch.create(
+    roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
+    {
+      kind: 'bot_simulation_v1',
+      bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
+    },
+  );
+  await secretsBatch.commit();
+  return true;
+}
+
+/**
+ * Достраивает комнату, созданную кроном пустой, до играбельной.
+ *
+ * зачем 2026-07-27 (владелец: «турнир попытка войти дала ошибку»):
+ * tournamentCreateRooms кладёт комнату как каркас — state 'scheduled',
+ * rounds [], players [], ready false. Заданиями и ботами её наполняли ДРУГИЕ
+ * кроны, каждый со своим тиком. Вход теперь не ждёт кронов (иначе игрок видел
+ * ошибку на исправном расписании), поэтому наполнить комнату обязан он сам —
+ * иначе игрок заплатит жемчужины и попадёт в турнир без вопросов.
+ *
+ * Стоимость: одно чтение комнаты на вход. Наполнение (чтение пула + запись)
+ * происходит ТОЛЬКО если комната действительно пуста — то есть один раз на
+ * комнату, а не на каждого входящего.
+ */
+async function ensureRoomPlayable(db: FirebaseFirestore.Firestore, roomId: string): Promise<void> {
+  const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
+  const snap = await roomRef.get();
+  if (!snap.exists) return; // Нет комнаты — её создаст ветка шардов ниже.
+  const data = snap.data() || {};
+  const state = sanitizeString(data.state, 32);
+  // Наполняем только каркас: идущий/готовый турнир не трогаем.
+  if (state !== 'scheduled') return;
+  if (data.ready === true && Array.isArray(data.rounds) && data.rounds.length === 4) return;
+
+  const startsAt = readInt(data.startsAt, 0);
+  const nowMs = Date.now();
+  if (startsAt <= 0 || nowMs >= startsAt) return; // Вход всё равно закрыт по времени.
+
+  const resources = await loadResourcePool(db);
+  const curated = await loadCuratedForRoom(db, roomId, resources.tasks);
+  const roomPool = curated ? [...resources.tasks, ...curated.extraTasks] : resources.tasks;
+  const rounds = buildRounds(roomId, roomPool, curated?.rounds, resources.roundMix);
+  if (!rounds) throw new HttpsError('failed-precondition', 'no_published_ai_tasks');
+  if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
+    throw new HttpsError('failed-precondition', 'not_enough_bots');
+  }
+
+  const taskMap = new Map(roomPool.map((task) => [task.taskId, task]));
+  const selectedTasks = Array.from(new Set(rounds.flatMap((round) => round.taskIds)))
+    .map((taskId) => taskMap.get(taskId))
+    .filter((task): task is TournamentTask => !!task);
+
+  const botPlayers: TournamentPlayer[] = resources.bots
+    .slice(0, TOURNAMENT_ROOM_SIZE - 1)
+    .map((bot, index) => ({
+      id: `p_${tournamentHash32(`${roomId}:${bot.botId}`).toString(36)}`,
+      isBot: true,
+      name: bot.name,
+      avatar: bot.avatarEmoji,
+      color: PLAYER_COLORS[index % PLAYER_COLORS.length],
+      score: 0,
+      streak: 0,
+      botWinRate: bot.winRate,
+    }));
+
+  // Гонка двух одновременных входов безопасна: наполняем только пока комната
+  // всё ещё пустой каркас — второй вызов увидит готовую и выйдет.
+  const filled = await db.runTransaction(async (tx) => {
+    const fresh = await tx.get(roomRef);
+    if (!fresh.exists) return false;
+    const current = fresh.data() || {};
+    if (sanitizeString(current.state, 32) !== 'scheduled') return false;
+    if (current.ready === true) return false;
+    tx.set(roomRef, {
+      state: 'lobby',
+      rounds,
+      // Живые игроки, уже сидящие в каркасе, сохраняются — дописываем ботов.
+      players: [
+        ...(Array.isArray(current.players) ? current.players : []),
+        ...botPlayers.map(publicTournamentPlayer),
+      ],
+      ready: true,
+      readyAtMs: nowMs,
+      gatherStartedAtMs: nowMs,
+      stateStartedAtMs: nowMs,
+      stateDeadlineAtMs: startsAt,
+      updatedAt: nowMs,
+    }, { merge: true });
+    return true;
+  });
+  if (!filled) return;
+
+  const batch = db.batch();
+  for (const task of selectedTasks) {
+    batch.create(roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(task.taskId), task);
+  }
+  batch.create(
+    roomRef.collection(TOURNAMENT_TASK_SECRETS_SUBCOLLECTION).doc(BOT_SIMULATION_METADATA_DOC),
+    {
+      kind: 'bot_simulation_v1',
+      bots: botPlayers.map((player) => ({ playerId: player.id, winRate: player.botWinRate })),
+    },
+  );
+  await batch.commit();
 }
 
 export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
@@ -793,8 +971,30 @@ export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   // комнате садим игрока в следующую комнату того же слота, создавая её на
   // лету. Комнаты создаются ПО МЕРЕ НАДОБНОСТИ, а не пачкой заранее: пустые
   // документы стоили бы денег на каждом слоте каждый день.
+  // зачем 2026-07-27: вход падал у владельца, а в логах не было НИ ОДНОГО кода
+  // причины — только предупреждения App Check. Причину приходилось угадывать по
+  // исходникам. Логируем отказ ровно один раз, с кодом: это одна строка лога на
+  // неудачный вход (успешные молчат), зато поломка видна сразу.
+  const logJoinFailure = (error: unknown, where: string): void => {
+    const code = error instanceof Error ? error.message : String(error);
+    console.warn(`[tournaments] join failed: ${code} (${where}, room=${roomId})`);
+  };
+
+  // зачем 2026-07-27: крон tournamentCreateRooms создаёт комнату ПУСТОЙ (rounds
+  // [], ready false) — заданиями и ботами её наполняет уже другой крон. Вход
+  // теперь пускает и в 'scheduled', поэтому пустая комната пустила бы игрока в
+  // турнир без вопросов, СПИСАВ жемчужины. Достраиваем её до играбельной прямо
+  // здесь: одна проверка на вход, наполнение — только если реально пусто.
+  await ensureRoomPlayable(db, roomId).catch((error) => {
+    logJoinFailure(error, 'prepare');
+    throw error;
+  });
+
   const parsed = parseTournamentRoomId(roomId);
-  if (!parsed) return tournamentJoinTransaction(db, { authUid, stableUid, roomId });
+  if (!parsed) {
+    return tournamentJoinTransaction(db, { authUid, stableUid, roomId })
+      .catch((error) => { logJoinFailure(error, 'direct'); throw error; });
+  }
 
   let lastError: unknown = null;
   for (let shard = parsed.shard; shard < TOURNAMENT_MAX_SHARDS_PER_SLOT; shard += 1) {
@@ -809,7 +1009,7 @@ export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
       // отменённый турнир) обязана дойти до игрока как есть.
       const isFull = code === 'resource-exhausted' || message.includes('room_full');
       const isMissing = code === 'not-found' || message.includes('room_not_found');
-      if (!isFull && !isMissing) throw error;
+      if (!isFull && !isMissing) { logJoinFailure(error, `shard${shard}`); throw error; }
       lastError = error;
       if (isMissing) {
         const created = await createTournamentShardRoom(db, {
@@ -819,8 +1019,12 @@ export const tournamentJoin = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
           shard,
         });
         // Шард 0 отсутствует — значит слот не наступил/выключен, а не переполнен.
-        if (!created) throw error;
-        return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId });
+        if (!created) {
+          console.warn(`[tournaments] join failed: room_create_refused (shard${shard}, room=${roomId})`);
+          throw error;
+        }
+        return await tournamentJoinTransaction(db, { authUid, stableUid, roomId: shardRoomId })
+          .catch((joinError) => { logJoinFailure(joinError, `shard${shard}_created`); throw joinError; });
       }
     }
   }

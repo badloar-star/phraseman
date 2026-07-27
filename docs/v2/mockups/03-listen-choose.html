@@ -184,7 +184,7 @@ svg { display:block; }
 .ring-svg { position:absolute; inset:0; transform:rotate(-90deg); }
 .ring-track { fill:none; stroke:var(--bg-surface2); stroke-width:5; }
 .ring-fill { fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round;
-  stroke-dasharray:408; stroke-dashoffset:408; transition:stroke-dashoffset 120ms linear; }
+  stroke-dasharray:408; stroke-dashoffset:408; transition:none; }
 .play-btn {
   position:absolute; inset:10px; border:none; cursor:pointer; border-radius:50%;
   background:linear-gradient(160deg, var(--chip-grad-a) 0%, var(--chip-grad-b) 100%);
@@ -651,9 +651,14 @@ function playAudio(rateSlow) {
     void ringFill.getBoundingClientRect();
     ringFill.style.transition = `stroke-dashoffset ${dur}ms linear`;
     ringFill.style.strokeDashoffset = '0';
-  }, (progress) => {
+  }, (progress, remainMs) => {
+    // зачем: одна плавная интерполяция браузером на весь остаток трека вместо
+    // перерисовки каждый кадр (rAF замирает в фоне и даёт рывки)
     ringFill.style.transition = 'none';
     ringFill.style.strokeDashoffset = String(RING_LEN * (1 - progress));
+    void ringFill.offsetWidth;
+    ringFill.style.transition = `stroke-dashoffset ${Math.max(120, remainMs || 0)}ms linear`;
+    ringFill.style.strokeDashoffset = '0';
   });
 }
 /* Общий проигрыватель: реальный <audio> с graceful fallback на таймер-эмуляцию, чтобы страница
@@ -667,11 +672,20 @@ function playRealOrFallback(src, fallbackDur, setRef, onEnd, onStart, onProgress
   setRef(audio);
   let usedFallback = false;
   const fallbackTimer = setTimeout(() => { if (!ended) { usedFallback = true; finish(); } }, fallbackDur + 2500);
-  audio.addEventListener('timeupdate', () => {
-    if (usedFallback || !audio.duration || !isFinite(audio.duration)) return;
-    if (onProgress) onProgress(audio.currentTime / audio.duration);
+  // зачем: владелец - «кружок дёргается». timeupdate приходит рывками (~4 раза
+  // в секунду), кольцо прыгало ступенями. Рисуем каждый кадр экрана через rAF;
+  // цикл сам гаснет на паузе/конце, поэтому лишней нагрузки нет.
+  // зачем: владелец - «кружок дёргается ещё сильнее». timeupdate шлёт рывки
+  // ~4 раза/сек, а requestAnimationFrame замирает в неактивной вкладке. Отдаём
+  // интерполяцию браузеру: один сигнал onProgressSmooth(остатокМс) на старте,
+  // дальше кольцо едет css-переходом само, независимо от кадров JS.
+  const stopProgress = () => {};
+  audio.addEventListener('playing', () => {
+    if (usedFallback || ended || !audio.duration || !isFinite(audio.duration)) return;
+    const remainMs = Math.max(120, (audio.duration - audio.currentTime) * 1000 / (audio.playbackRate || 1));
+    if (onProgress) onProgress(audio.currentTime / audio.duration, remainMs);
   });
-  audio.addEventListener('ended', () => { clearTimeout(fallbackTimer); finish(); });
+  audio.addEventListener('ended', () => { stopProgress(); clearTimeout(fallbackTimer); finish(); });
   audio.addEventListener('error', () => {
     clearTimeout(fallbackTimer);
     if (ended) return;

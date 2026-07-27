@@ -179,7 +179,7 @@ svg { display:block; }
 .ring-fill {
   fill:none; stroke:url(#ringGrad); stroke-width:5; stroke-linecap:round;
   stroke-dasharray:294; stroke-dashoffset:294;
-  transition:stroke-dashoffset 120ms linear;
+  transition:none;
 }
 .play-btn {
   position:absolute; inset:9px; border:none; cursor:pointer; border-radius:50%;
@@ -628,21 +628,29 @@ function playAudio(unavailable) {
   // зачем: владелец - «анимация заполнения кружочка дёрганая». timeupdate
   // приходит рывками (~4 раза в секунду), и кольцо прыгало ступенями. Теперь
   // рисуем каждый кадр через requestAnimationFrame - заполнение плавное.
-  let ringRaf = 0;
-  const tickRing = () => {
-    if (runId !== audioRunIdCounter || a.paused || a.ended) { ringRaf = 0; return; }
-    if (a.duration) {
-      const frac = Math.min(1, a.currentTime / a.duration);
-      ringFill.style.strokeDashoffset = String(RING_CIRC * (1 - frac));
-    }
-    ringRaf = requestAnimationFrame(tickRing);
-  };
-  a.onplaying = () => {
+  // зачем: владелец - «кружок дёргается ещё сильнее». Ни timeupdate (рывки
+  // 4 раза/сек), ни requestAnimationFrame (замирает в неактивной вкладке) не
+  // дают гладкости. Решение: ОДИН css-переход на всю длительность трека -
+  // браузер интерполирует его сам, независимо от кадров JS.
+  const startRing = () => {
+    if (runId !== audioRunIdCounter || !a.duration || !isFinite(a.duration)) return;
+    const remainMs = Math.max(120, (a.duration - a.currentTime) * 1000 / (a.playbackRate || 1));
+    const frac = Math.min(1, a.currentTime / a.duration);
     ringFill.style.transition = 'none';
-    if (!ringRaf) ringRaf = requestAnimationFrame(tickRing);
+    ringFill.style.strokeDashoffset = String(RING_CIRC * (1 - frac));
+    void ringFill.offsetWidth; // фиксируем стартовую точку до запуска перехода
+    ringFill.style.transition = `stroke-dashoffset ${remainMs}ms linear`;
+    ringFill.style.strokeDashoffset = '0';
   };
-  a.onpause = () => { if (ringRaf) { cancelAnimationFrame(ringRaf); ringRaf = 0; } };
-  a.onended = () => { if (ringRaf) { cancelAnimationFrame(ringRaf); ringRaf = 0; } if (runId === audioRunIdCounter) finishPlayback(); };
+  a.onplaying = startRing;
+  a.onloadedmetadata = () => { if (!a.paused) startRing(); };
+  a.onpause = () => {
+    // замораживаем кольцо там, где оно сейчас
+    const cur = getComputedStyle(ringFill).strokeDashoffset;
+    ringFill.style.transition = 'none';
+    ringFill.style.strokeDashoffset = cur;
+  };
+  a.onended = () => { if (runId === audioRunIdCounter) finishPlayback(); };
   a.onerror = () => { if (runId === audioRunIdCounter) emulate(); };
   const p = a.play();
   if (p && p.catch) p.catch(() => { if (runId === audioRunIdCounter) emulate(); });

@@ -21,7 +21,11 @@ describe('bouncy screen chrome contract', () => {
     const wrapEnd = source.indexOf('</BouncyWrap>', wrapStart);
     const layerEnd = source.indexOf('</Reanimated.View>', wrapEnd);
 
-    expect(source).toContain("import Reanimated from 'react-native-reanimated';");
+    // зачем: проверяем сам факт дефолтного импорта Reanimated, а не точную строку.
+    // Буквальное сравнение падало на живых экранах (streak_stats,
+    // personal_plan_stats_screen), где импорт с именованными членами:
+    // `import Reanimated, { FadeInDown, ... } from 'react-native-reanimated'`.
+    expect(source).toMatch(/import Reanimated(?:,\s*\{[^}]*\})?\s+from 'react-native-reanimated';/);
     expect(source).not.toContain('<BouncyWrap style={bouncyStyle}>');
     expect(layerStart).toBeGreaterThan(-1);
     expect(wrapStart).toBeGreaterThan(layerStart);

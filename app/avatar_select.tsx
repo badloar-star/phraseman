@@ -754,25 +754,29 @@ export default function AvatarSelect() {
   return (
     <ScreenGradient>
       <View style={styles.flex}>
+        {/* зачем: FlatList должен быть ПРЯМЫМ ребёнком BouncyWrap — обёртка клонирует
+            ребёнка (overScrollMode) и вешает на него GestureDetector с нативным
+            жестом скролла. Промежуточный Reanimated.View забирал жест себе: на
+            Android список только тянулся резинкой и не скроллился (каталог ниже
+            первого экрана был недоступен). bouncyStyle переехал в style списка. */}
         <BouncyWrap>
-          <Reanimated.View style={[styles.flex, bouncyStyle]}>
-            <Reanimated.FlatList
-              ref={listRef}
-              data={catalogItems}
-              keyExtractor={(item) => item.id}
-              renderItem={renderCatalogItem}
-              numColumns={3}
-              ListHeaderComponent={listHeader}
-              columnWrapperStyle={styles.row}
-              contentContainerStyle={{ paddingBottom: bottomInset + ACTION_BAR_HEIGHT + 20 }}
-              onScroll={onAnimatedScroll}
-              scrollEventThrottle={16}
-              bounces
-              alwaysBounceVertical
-              overScrollMode="always"
-              showsVerticalScrollIndicator={false}
-            />
-          </Reanimated.View>
+          <Reanimated.FlatList
+            ref={listRef}
+            data={catalogItems}
+            keyExtractor={(item) => item.id}
+            renderItem={renderCatalogItem}
+            numColumns={3}
+            ListHeaderComponent={listHeader}
+            columnWrapperStyle={styles.row}
+            style={[styles.flex, bouncyStyle]}
+            contentContainerStyle={{ paddingBottom: bottomInset + ACTION_BAR_HEIGHT + 20 }}
+            onScroll={onAnimatedScroll}
+            scrollEventThrottle={16}
+            bounces
+            alwaysBounceVertical
+            overScrollMode="always"
+            showsVerticalScrollIndicator={false}
+          />
         </BouncyWrap>
         <View style={[styles.topBar, { paddingTop: insets.top + 6 }]} pointerEvents="box-none">
           <Reanimated.View pointerEvents="none" style={[StyleSheet.absoluteFill, topBarBackdropStyle]}>

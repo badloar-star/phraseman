@@ -333,8 +333,12 @@ export default function PersonalPlanStatsScreen() {
           </View>
         </View>
 
-        <BouncyWrap>
+        {/* зачем: BouncyWrap клонирует СВОЕГО ребёнка (overScrollMode) и вешает на него
+            нативный жест скролла — прослойка между обёрткой и списком забирала жест
+            себе, и на Android экран только тянулся резинкой, не скроллясь. Анимация
+            появления уехала НАРУЖУ обёртки, список стал прямым ребёнком. */}
         <Animated.View style={{ flex: 1, opacity: fade, transform: [{ translateY: slide }] }}>
+        <BouncyWrap>
         <Reanimated.ScrollView
           showsVerticalScrollIndicator={false}
           decelerationRate="normal"
@@ -462,8 +466,8 @@ export default function PersonalPlanStatsScreen() {
             </LinearGradient>
           ) : null}
         </Reanimated.ScrollView>
-        </Animated.View>
         </BouncyWrap>
+        </Animated.View>
         </Reanimated.View>
       </LinearGradient>
 

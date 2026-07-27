@@ -43,6 +43,23 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { safeRouterBack } from './navigation_back';
 import { logFeatureOpened } from './firebase';
 import { loadTopHelpers, type TopHelperRow } from './firestore_top_helpers';
+import { captureAccountGeneration } from './account_generation';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
+
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const TOP_HELPERS_SCREEN_ID = 'top-helpers';
+
+/** Ровно то, что нужно нарисовать первый кадр без скелетонов. */
+type TopHelpersWarmSnapshot = Readonly<{
+  rows: TopHelperRow[];
+  myUid: string;
+  description: string;
+  enabled: boolean;
+}>;
 import SkeletonBlock from '../components/SkeletonShimmer';
 
 const HELPERS_AVATAR_SIZE = 52;
@@ -140,11 +157,20 @@ export default function TopHelpersScreen() {
   const insets = useStableSafeAreaInsets();
   const bottomInset = normalizeSafeAreaBottomInset(insets.bottom);
 
-  const [rows, setRows] = useState<TopHelperRow[]>([]);
-  const [myUid, setMyUid] = useState('');
-  const [description, setDescription] = useState('');
-  const [enabled, setEnabled] = useState(true);
-  const [loading, setLoading] = useState(true);
+  // зачем: экран открывался со скелетон-строками при КАЖДОМ холодном старте —
+  // данных не было вообще до ответа сети. Читаем снапшот прошлой сессии синхронно
+  // (его положил бутстрап одним общим чтением) и рисуем настоящий список с первого
+  // кадра; loadTopHelpers ниже всё равно отработает и тихо уточнит цифры.
+  const renderToken = captureAccountGeneration();
+  const helpersWarm = peekScreenSnapshotForToken<TopHelpersWarmSnapshot>(
+    TOP_HELPERS_SCREEN_ID,
+    renderToken,
+  );
+  const [rows, setRows] = useState<TopHelperRow[]>(() => helpersWarm?.rows ?? []);
+  const [myUid, setMyUid] = useState(() => helpersWarm?.myUid ?? '');
+  const [description, setDescription] = useState(() => helpersWarm?.description ?? '');
+  const [enabled, setEnabled] = useState(() => helpersWarm?.enabled ?? true);
+  const [loading, setLoading] = useState(() => helpersWarm == null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
 
   const load = useCallback(async () => {
@@ -154,12 +180,24 @@ export default function TopHelpersScreen() {
       setMyUid(snap.myUid);
       setDescription(snap.description);
       setEnabled(snap.enabled);
+      // зачем: зеркалим результат на диск, чтобы СЛЕДУЮЩЕЕ открытие (в том числе
+      // после холодного старта) нарисовало список сразу, без скелетон-строк.
+      // Запись фоновая и отложенная — UI её не ждёт, Firestore не трогается.
+      rememberScreenSnapshot<TopHelpersWarmSnapshot>(
+        screenSnapshotKey(TOP_HELPERS_SCREEN_ID, renderToken),
+        {
+          rows: snap.rows,
+          myUid: snap.myUid,
+          description: snap.description,
+          enabled: snap.enabled,
+        },
+      );
     } catch {
       // сеть/парсинг упали — оставляем что было (в т.ч. кэш из snap)
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [renderToken]);
 
   useEffect(() => {
     logFeatureOpened('top_helpers');

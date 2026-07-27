@@ -8,6 +8,12 @@ import TopFadeMask from '../components/TopFadeMask';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { safeRouterBack } from './navigation_back';
+import { captureAccountGeneration } from './account_generation';
+import {
+  peekScreenSnapshotForToken,
+  rememberScreenSnapshot,
+  screenSnapshotKey,
+} from './screen_snapshot_store';
 import { LinearGradient } from '../components/SafeLinearGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
@@ -124,27 +130,50 @@ function WeekBar({
 
 /** B7: тёплая память статистики плана на процесс — повторные заходы рисуют контент
  * первым кадром; без неё каждый заход начинался с «Нет данных о плане». */
-let planStatsWarm: {
+type PlanStatsWarm = {
   planInstanceId: string;
   plan: PersonalPlanDefinition;
   stats: PersonalPlanStatsSummary;
   weakSpots: PlanWeakSpotView | null;
   xpLedger: PlanXpLedgerEntry | null;
-} | null = null;
+};
+
+let planStatsWarm: PlanStatsWarm | null = null;
+
+/** Идентификатор экрана в общем дисковом снапшоте (screen_snapshot_store). */
+const PLAN_STATS_SCREEN_ID = 'personal-plan-stats';
+
+/**
+ * Тёплая память + дисковый снапшот прошлой сессии.
+ *
+ * зачем: planStatsWarm живёт только внутри процесса, поэтому ПЕРВЫЙ заход после
+ * холодного старта рисовал скелетон на весь экран. Диск поднят бутстрапом одним
+ * общим чтением, поэтому здесь это синхронное чтение из памяти — без нагрузки.
+ */
+function readPlanStatsWarm(): PlanStatsWarm | null {
+  if (planStatsWarm) return planStatsWarm;
+  return peekScreenSnapshotForToken<PlanStatsWarm>(
+    PLAN_STATS_SCREEN_ID,
+    captureAccountGeneration(),
+  );
+}
 
 export default function PersonalPlanStatsScreen() {
   const router = useRouter();
   const insets = useStableSafeAreaInsets();
   const { theme: t, themeMode } = useTheme();
-  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => planStatsWarm?.stats ?? null);
-  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => planStatsWarm?.weakSpots ?? null);
-  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => planStatsWarm?.xpLedger ?? null);
-  const [plan, setPlan] = useState<PersonalPlanDefinition | null>(() => planStatsWarm?.plan ?? null);
-  const [planInstanceId, setPlanInstanceId] = useState<string | null>(() => planStatsWarm?.planInstanceId ?? null);
+  // зачем: один синхронный снимок на монтирование — и память процесса, и дисковый
+  // снапшот прошлой сессии. Даёт настоящий контент первым кадром вместо скелетона.
+  const warm = readPlanStatsWarm();
+  const [stats, setStats] = useState<PersonalPlanStatsSummary | null>(() => warm?.stats ?? null);
+  const [weakSpots, setWeakSpots] = useState<PlanWeakSpotView | null>(() => warm?.weakSpots ?? null);
+  const [xpLedger, setXpLedger] = useState<PlanXpLedgerEntry | null>(() => warm?.xpLedger ?? null);
+  const [plan, setPlan] = useState<PersonalPlanDefinition | null>(() => warm?.plan ?? null);
+  const [planInstanceId, setPlanInstanceId] = useState<string | null>(() => warm?.planInstanceId ?? null);
   // Открытый на просмотр прошлый день (read-only): тема, фразы, задания + «пройти
   // заново». null = лист закрыт.
   const [reviewDay, setReviewDay] = useState<PlanDay | null>(null);
-  const [loading, setLoading] = useState(() => planStatsWarm == null);
+  const [loading, setLoading] = useState(() => warm == null);
   const chrome = useMemo(() => resolveChrome(themeMode, t), [themeMode, t]);
   const isGold = themeMode === 'gold';
   const screenBg = isGold ? '#090704' : t.bgPrimary;
@@ -198,6 +227,12 @@ export default function PersonalPlanStatsScreen() {
       weakSpots: nextWeakSpots,
       xpLedger: nextXpLedger,
     };
+    // зачем: зеркалим на диск — следующий холодный старт откроет статистику плана
+    // мгновенно, без скелетона. Запись фоновая и отложенная, UI её не ждёт.
+    rememberScreenSnapshot(
+      screenSnapshotKey(PLAN_STATS_SCREEN_ID, captureAccountGeneration()),
+      planStatsWarm,
+    );
     setStats(nextStats);
     setWeakSpots(nextWeakSpots);
     setXpLedger(nextXpLedger);

@@ -66,6 +66,13 @@ import {
   ensureTournamentAudio,
   modeNeedsAudio,
 } from './tournament_audio';
+import {
+  SPEED_MATCH_PAIRS,
+  buildSpeedMatchPromptPacket,
+  speedMatchTasksFrom,
+  validateSpeedMatchBatch,
+  type SpeedMatchItem,
+} from './tournament_ai_generator';
 import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 
@@ -1045,9 +1052,11 @@ export const adminMutateTournamentTasks = onCall(
 export const ROUND_TASK_TARGET = 50;
 
 /** Папки вопросов в админке = режимы пула (зеркало KIND_TO_MODE). */
-export const TOURNAMENT_FOLDER_MODES: readonly string[] = Object.freeze([
-  'guess_phrase', 'fill_gap', 'find_oddity', 'translate_build',
-]);
+// зачем 2026-07-27: список отстал от пула — новые режимы (аудио и пары)
+// существовали в базе, но счётчики папок в админке показывали для них НОЛЬ,
+// и владелец видел пустые папки при полном пуле. Берём режимы из единого
+// источника — планировщика комплекта, чтобы список не разъезжался снова.
+export const TOURNAMENT_FOLDER_MODES: readonly string[] = TOURNAMENT_MODES;
 
 /** Раунд → допустимые сложности (зеркало selectRoundTasks на сервере). */
 export const ROUND_DIFFICULTIES: Readonly<Record<number, readonly number[]>> = Object.freeze({
@@ -1448,6 +1457,155 @@ export const adminGenerateTournamentAudioTasksAi = onCall(
 );
 
 
+/**
+ * Генерация полей «Пары на скорость».
+ *
+ * зачем отдельный раннер: одно задание здесь — это ЦЕЛОЕ ПОЛЕ из пар, то есть
+ * целый раунд (решение владельца 2026-07-27). Батч из 10 пар даёт одно поле,
+ * поэтому пачек нужно больше, чем у обычных вопросов.
+ */
+export async function runSpeedMatchGeneration(params: {
+  level: TournamentAiLevel;
+  batches: number;
+  topicHint: string;
+  dryRun: boolean;
+  actor: string;
+}): Promise<Record<string, unknown>> {
+  const { level, batches, topicHint, dryRun, actor } = params;
+  const db = admin.firestore();
+  const nowMs = Date.now();
+  const cfg = await resolveJobConfig(db, 'tournament');
+  assertJobEnabled(cfg, 'tournament');
+  const apiKey = String(OPENAI_API_KEY.value() || process.env.OPENAI_API_KEY || '').trim();
+  if (!apiKey) throw new HttpsError('failed-precondition', 'OPENAI_API_KEY not configured');
+
+  await reserveAiDailyBudget(db, cfg.globalDailyCap, batches, nowMs);
+
+  const ledgerRef = db.collection(AI_LEDGER_COLLECTION).doc(`speed_match_${level}`);
+  const ledgerData = (await ledgerRef.get()).data() ?? {};
+  const knownPhrases: string[] = Array.isArray(ledgerData.phrases)
+    ? ledgerData.phrases.map((phrase: unknown) => String(phrase))
+    : [];
+
+  const pairs: SpeedMatchItem[] = [];
+  const rejectedBatches: string[][] = [];
+  let promptTokens = 0;
+  let completionTokens = 0;
+  let requests = 0;
+
+  try {
+    for (let batchNo = 0; batchNo < batches; batchNo += 1) {
+      const packet = buildSpeedMatchPromptPacket({
+        level,
+        topicHint,
+        previousPhrases: knownPhrases.slice(-120),
+      });
+      const result = await openAiChat({
+        apiKey,
+        model: cfg.model,
+        messages: [
+          { role: 'system', content: packet.system },
+          { role: 'user', content: packet.task },
+        ],
+        maxTokens: AI_MAX_TOKENS,
+        temperature: AI_TEMPERATURE,
+        responseFormat: packet.responseFormat,
+      });
+      requests += 1;
+      promptTokens += result.promptTokens;
+      completionTokens += result.completionTokens;
+
+      let parsed: unknown;
+      try {
+        parsed = JSON.parse(result.text);
+      } catch {
+        rejectedBatches.push(['model returned invalid JSON']);
+        continue;
+      }
+      const validation = validateSpeedMatchBatch(parsed);
+      if (!validation.ok) {
+        rejectedBatches.push([...validation.errors].slice(0, 12));
+        continue;
+      }
+      for (const pair of validation.items as unknown as SpeedMatchItem[]) {
+        knownPhrases.push(pair.en);
+        pairs.push(pair);
+      }
+    }
+  } finally {
+    if (requests > 0) {
+      await db.collection(AI_BILLING_COLLECTION).add({
+        model: cfg.model,
+        promptTokens,
+        completionTokens,
+        requests,
+        level,
+        mode: 'speed_match',
+        batchesRequested: batches,
+        batchesAccepted: batches - rejectedBatches.length,
+        dryRun,
+        uid: actor,
+        createdAtMs: nowMs,
+      }).catch((error) => console.error('[speed_match] billing write failed', error));
+    }
+  }
+
+  const tasks = speedMatchTasksFrom(pairs, level);
+  const samples = tasks.slice(0, 3).map((task) => publicAdminTask(task.taskId, task));
+
+  if (dryRun) {
+    return { ok: true, dryRun: true, mode: 'speed_match', accepted: pairs.length, rejectedBatches, requests, samples };
+  }
+
+  let written = 0;
+  let keptPublished = 0;
+  if (tasks.length > 0) {
+    const collection = db.collection(TOURNAMENT_TASKS_COLLECTION);
+    const existing = await db.getAll(
+      ...tasks.map((task) => collection.doc(task.taskId)),
+      { fieldMask: ['verified'] },
+    );
+    const alreadyPublished = new Set(
+      existing.filter((doc) => doc.exists && doc.data()?.verified === true).map((doc) => doc.id),
+    );
+    const batch = db.batch();
+    for (const task of tasks) {
+      const wasPublished = alreadyPublished.has(task.taskId);
+      if (wasPublished) keptPublished += 1;
+      batch.set(collection.doc(task.taskId), {
+        taskId: task.taskId,
+        mode: task.mode,
+        isVoice: task.isVoice,
+        difficulty: task.difficulty,
+        payload: task.payload,
+        tags: task.tags,
+        verified: wasPublished,
+        generatedAtMs: nowMs,
+        source: 'ai',
+        aiMeta: { note: `${SPEED_MATCH_PAIRS} пар`, level, model: cfg.model },
+      }, { merge: true });
+      written += 1;
+    }
+    await batch.commit();
+    await ledgerRef.set({
+      phrases: knownPhrases.slice(-AI_LEDGER_MAX_PHRASES),
+      updatedAtMs: nowMs,
+    }, { merge: true });
+  }
+
+  return {
+    ok: true,
+    dryRun: false,
+    mode: 'speed_match',
+    accepted: pairs.length,
+    rejectedBatches,
+    requests,
+    written,
+    keptPublished,
+    samples,
+  };
+}
+
 // ── Автодобор комплекта ─────────────────────────────────────────────────────
 
 /**
@@ -1522,13 +1680,19 @@ export const adminFillTournamentPool = onCall(
     const results: Array<Record<string, unknown>> = [];
     for (const order of orders) {
       const isAudio = isTournamentAudioMode(order.mode);
-      // Один батч даёт ~10 заданий; сколько батчей нужно на дыру.
-      const batches = Math.max(1, Math.min(3, Math.ceil(order.count / 10)));
+      const isSpeedMatch = order.mode === 'speed_match';
+      // Обычный батч даёт ~10 заданий, а в парах 10 пар = ОДНО поле (раунд),
+      // поэтому пачек нужно столько же, сколько заказано полей.
+      const batches = isSpeedMatch
+        ? Math.max(1, Math.min(3, order.count))
+        : Math.max(1, Math.min(3, Math.ceil(order.count / 10)));
       try {
         // Вызываем ОБЩУЮ логику напрямую: callable нельзя звать из callable
         // (это был бы сетевой round-trip и вторая проверка прав на ту же
         // операцию). Бюджет и учёт трат внутри самих runner-функций.
-        const response = isAudio
+        const response = isSpeedMatch
+          ? await runSpeedMatchGeneration({ level, batches, topicHint: '', dryRun: false, actor })
+          : isAudio
           ? await runAudioGeneration({
             mode: order.mode as TournamentAudioMode,
             level,

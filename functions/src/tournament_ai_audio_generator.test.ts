@@ -108,13 +108,27 @@ describe('генератор аудио-заданий', () => {
     }
   });
 
-  it('дистрактор диктанта не может быть словом из фразы', () => {
+  it('дистракторы-дубли ВЫЧИЩАЮТСЯ, а не бракуют задание', () => {
     // Иначе лишний чип оказывается валидным словом и сборка ломается.
-    const broken = { ...dictationItem, extraWords: ['name', 'am'] };
+    // Но браковать всё задание нельзя: на простых уровнях модель почти всегда
+    // кладёт хотя бы один такой чип — терялся весь батч.
+    const item = { ...dictationItem, extraWords: ['name', 'names', 'am'] };
+    const result = validateAudioBatch('listen_build', batch(repeatDictation(item, 10)));
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      const first = result.items[0] as Record<string, unknown>;
+      // «name» есть во фразе — выкинут; «names» и «am» остались.
+      expect(first.extraWords).toEqual(['names', 'am']);
+    }
+  });
+
+  it('задание без годных дистракторов отклоняется', () => {
+    // Меньше двух чипов-ловушек — собирать нечего, задание вырождается.
+    const broken = { ...dictationItem, extraWords: ['name', 'is'] };
     const result = validateAudioBatch('listen_build', batch(repeatDictation(broken, 10)));
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.errors.join(' ')).toContain('decoy word appears in the phrase');
+      expect(result.errors.join(' ')).toContain('decoys duplicate phrase words');
     }
   });
 

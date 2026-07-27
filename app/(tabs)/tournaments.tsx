@@ -215,6 +215,8 @@ export default function TournamentsScreen() {
   const notEnoughGems = coins < entryGems;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
+  // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
+  const goToShop = useCallback(() => router.push('/shards_shop' as any), [router]);
   const closeConfirm = useCallback(() => setConfirmVisible(false), []);
 
   /**
@@ -370,8 +372,12 @@ export default function TournamentsScreen() {
               </V2Cta>
             ) : (
               <V2Cta
-                onPress={openConfirm}
-                disabled={!joinRoomId || joining || notEnoughGems}
+                // зачем 2026-07-27: раньше кнопка БЛОКИРОВАЛАСЬ при нехватке
+                // жемчужин — игрок упирался в мёртвую кнопку и не понимал, что
+                // делать. Теперь она всегда живая: не хватает — ведём в
+                // магазин, где проблему можно решить в один тап.
+                onPress={notEnoughGems ? goToShop : openConfirm}
+                disabled={!joinRoomId || joining}
                 right={nextSlot && !notEnoughGems ? (
                   <View style={styles.ctaPrice}>
                     <Image
@@ -388,7 +394,9 @@ export default function TournamentsScreen() {
                   </View>
                 ) : undefined}
               >
-                {notEnoughGems ? `Нужно ещё ${entryGems - coins}` : nextSlot ? 'Играть' : 'Скоро откроем'}
+                {notEnoughGems
+                  ? `Пополнить · нужно ещё ${entryGems - coins}`
+                  : joinRoomId ? 'Играть' : 'Скоро откроем'}
               </V2Cta>
             )}
             {/* Дев-кнопка владельца: мгновенный турнир с ботами (только dev). */}

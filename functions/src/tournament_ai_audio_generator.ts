@@ -212,8 +212,10 @@ export function buildAudioPromptPacket(params: {
     lines.push(
       '"phrase" is one natural English sentence of 3-6 words for a dictation task: the player hears it and rebuilds it from word chips.',
       'Keep it short: the player reconstructs it from memory under a timer.',
-      '"extraWords" are 2-3 decoy chips that do NOT appear in the phrase but sound close to words that do (their/there, is/his, are/our, has/as).',
-      'Decoys must be plausible mishearings, never random unrelated words.',
+      '"extraWords" are 2-3 decoy chips that sound close to words in the phrase but are DIFFERENT words.',
+      'ABSOLUTE RULE: no decoy may be a word that already appears in "phrase". Before writing extraWords, list the words of the phrase and make sure every decoy is missing from that list. A decoy identical to a phrase word breaks the task: the player would have two valid chips for one slot.',
+      'Example — phrase "My name is Anna": GOOD decoys ["names", "am"]; FORBIDDEN decoys ["name", "is"] because those words are already in the phrase.',
+      'Decoys must be plausible mishearings (their/there, is/his, are/our, has/as), never random unrelated words.',
       '"confusionNote" (Russian, up to 160 chars) explains which mishearing the decoys target.',
     );
   }
@@ -356,10 +358,17 @@ export function validateAudioBatch(mode: TournamentAudioMode, raw: unknown): Aud
       }
       // Дистрактор, который есть во фразе, ломает сборку: игрок соберёт
       // правильный ответ, а лишний чип останется валидным словом.
+      //
+      // зачем чистка вместо брака: на простых уровнях модель почти всегда
+      // кладёт хотя бы один такой чип, и браковка целого элемента убивала
+      // до 100% батча. Выкидываем плохие чипы, оставляем годные — задание
+      // остаётся полноценным, если дистракторов осталось хотя бы два.
       const lowerTokens = new Set(tokens.map((token) => token.toLowerCase()));
-      if (extras.some((word) => lowerTokens.has(word.toLowerCase()))) {
-        errors.push(`${label}: decoy word appears in the phrase`); return;
+      const cleanExtras = extras.filter((word) => !lowerTokens.has(word.toLowerCase()));
+      if (cleanExtras.length < 2) {
+        errors.push(`${label}: decoys duplicate phrase words`); return;
       }
+      item.extraWords = cleanExtras;
     }
 
     seenPhrases.add(phraseKey);

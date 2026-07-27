@@ -12394,75 +12394,12 @@
 
   <!-- Шаг 1: ИИ-генератор (единственный источник турнирных заданий) -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Собрать турнир целиком</div>
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🤖 Наполнить пул заданиями</div>
     <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Одно нажатие — готовый турнир: 4 раунда по 6 заданий. Четыре типа вопросов под режимы турнира:
-      живая ситуация, пропущенное слово, «так не говорят» и сборка фразы. Сложность растёт от раунда к раунду.
-      Всё попадает «На проверку» — в игру без вашего одобрения не уходит.
-    </p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <select id="tn-ai-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="A1">A1 — новичок</option>
-        <option value="A2" selected>A2 — базовый</option>
-        <option value="B1">B1 — средний</option>
-        <option value="B2">B2 — уверенный</option>
-        <option value="C1">C1 — продвинутый</option>
-        <option value="C2">C2 — свободный</option>
-      </select>
-      <input type="text" id="tn-ai-topic" placeholder="Тема (необязательно): аэропорт, собеседование…" maxlength="120"
-        style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px;min-width:260px" />
-      <button type="button" onclick="tnAiTournament(true)" title="Собрать турнир и показать, ничего не сохраняя"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Примеры</button>
-      <button type="button" onclick="tnAiTournament(false)" title="Собрать турнир: 4 раунда × 6 заданий на проверку"
-        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🏆 Собрать турнир</button>
-      <span id="tn-ai-status" style="font-size:13px;color:#9ca3af"></span>
-    </div>
-    <div id="tn-ai-result" style="margin-top:14px"></div>
-  </div>
-
-  <!-- зачем 2026-07-27: аудио-режимы Learning V2, отобранные владельцем.
-       Отдельная панель, потому что у них свой генератор: ловушки строятся
-       на слух (долгота гласного, звонкость, слипание слов), а не на письме. -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🎧 Задания на слух</div>
-    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Три режима: выбор на слух, пары звуков (ship/sheep) и диктант. Варианты похожи именно
-      ЗВУЧАНИЕМ — прочитав их глазами, ответ угадать нельзя. Озвучка записывается голосом
-      обучения при публикации, поэтому черновики бесплатны.
-    </p>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-      <select id="tn-audio-mode" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="listen_choose">🎧 Выбор на слух</option>
-        <option value="sound_contrast">🔊 Пары звуков</option>
-        <option value="listen_build">✍️ Диктант</option>
-      </select>
-      <select id="tn-audio-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="A1">A1 — новичок</option>
-        <option value="A2" selected>A2 — базовый</option>
-        <option value="B1">B1 — средний</option>
-        <option value="B2">B2 — уверенный</option>
-      </select>
-      <select id="tn-audio-batches" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="1" selected>1 пачка (~10)</option>
-        <option value="2">2 пачки (~20)</option>
-        <option value="3">3 пачки (~30)</option>
-      </select>
-      <button type="button" onclick="tnAudioGen(true)" title="Показать примеры, ничего не сохраняя и не тратя на озвучку"
-        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Примеры</button>
-      <button type="button" onclick="tnAudioGen(false)" title="Создать задания на проверку"
-        style="background:#0891b2;border:1px solid #22d3ee;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🎧 Создать</button>
-      <span id="tn-audio-status" style="font-size:13px;color:#9ca3af"></span>
-    </div>
-    <div id="tn-audio-result" style="margin-top:14px"></div>
-  </div>
-
-  <!-- Автодобор: сервер сам смотрит, каких заданий не хватает раундам. -->
-  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
-    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🧩 Добрать до полного комплекта</div>
-    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
-      Сервер сам считает, каких заданий не хватает каждому раунду, и заказывает только их —
-      сначала те, без которых раунд не соберётся. Сначала посмотрите план: он показывает
-      заказ, ничего не тратя.
+      Одна кнопка делает всё: сервер смотрит, каких заданий не хватает раундам, и создаёт
+      их — все типы сразу, и текстовые, и на слух. Сначала закрывает то, без чего раунд не
+      соберётся. Всё попадает «На проверку»: в игру без вашего одобрения не уходит.
+      Озвучка записывается при публикации, поэтому черновики бесплатны.
     </p>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
       <select id="tn-fill-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
@@ -12476,13 +12413,34 @@
         <option value="30" selected>до 30 заданий</option>
         <option value="60">до 60 заданий</option>
       </select>
-      <button type="button" onclick="tnFillPool(true)" title="Показать план заказа, ничего не тратя"
+      <button type="button" onclick="tnFillPool(true)" title="Показать, что будет создано — ничего не тратя"
         style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 План</button>
-      <button type="button" onclick="tnFillPool(false)" title="Заказать недостающие задания"
-        style="background:#16a34a;border:1px solid #22c55e;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🧩 Добрать</button>
+      <button type="button" onclick="tnFillPool(false)" title="Создать недостающие задания всех типов"
+        style="background:#7c3aed;border:1px solid #8b5cf6;color:#fff;padding:9px 20px;border-radius:8px;cursor:pointer;font-weight:800;font-size:14px">🤖 Наполнить пул</button>
       <span id="tn-fill-status" style="font-size:13px;color:#9ca3af"></span>
     </div>
     <div id="tn-fill-result" style="margin-top:14px"></div>
+  </div>
+
+  <!-- зачем 2026-07-27: владелец просил ОТДЕЛЬНЫЙ вход в пул одобренных
+       заданий — тех, что реально попадают в игру. Раньше это был неприметный
+       пункт фильтра, и было непонятно, что уже играет, а что ждёт проверки. -->
+  <div onclick="tnOpenApprovedPool()" style="background:linear-gradient(135deg,#0d2818,#12121a);border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px;cursor:pointer">
+    <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+      <div style="font-size:28px">🎮</div>
+      <div style="flex:1;min-width:220px">
+        <div style="font-size:15px;font-weight:800;color:#4ade80;margin-bottom:3px">Задания в игре</div>
+        <div style="font-size:12px;color:#9ca3af;line-height:1.5">
+          Одобренные задания, из которых собираются турниры. Для каждой комнаты набор
+          берётся случайно: чем больше здесь заданий, тем разнообразнее игра.
+        </div>
+      </div>
+      <div style="text-align:right">
+        <div id="tn-approved-count" style="font-size:26px;font-weight:900;color:#4ade80;line-height:1">—</div>
+        <div style="font-size:11px;color:#6b7280">в игре</div>
+      </div>
+      <div style="font-size:22px;color:#4ade80">›</div>
+    </div>
   </div>
 
   <!-- Шаг 2: проверка -->
@@ -36622,6 +36580,10 @@
       _fnTnStats = tnFn(_fnTnStats, 'adminTournamentPoolStats');
       const res = await _fnTnStats({});
       const d = res?.data || {};
+      // Счётчик на карточке «Задания в игре»: владелец видит объём пула,
+      // не открывая список. Чем больше — тем разнообразнее турниры.
+      const approvedBox = document.getElementById('tn-approved-count');
+      if (approvedBox) approvedBox.textContent = String(d.published ?? 0);
       // Счётчики папок: сколько вопросов каждого типа лежит в пуле.
       _tnFolderCounts = { ...(d.byMode || {}), __all: Number(d.published || 0) + Number(d.drafts || 0) };
       tnRenderFolders(_tnFolderCounts);
@@ -36743,68 +36705,22 @@
    * вопросов, каждый ложится в свой раздел пула по режиму.
    */
   /**
-   * Генерация заданий на слух.
+   * Вход в пул одобренных заданий.
    *
-   * зачем отдельная кнопка: у аудио-режимов свой генератор — ловушки строятся
-   * на ЗВУЧАНИИ (долгота гласного, звонкость, слипание слов), а не на письме.
-   * Общий промпт давал бы варианты, неразличимые ухом, и задание превращалось
-   * бы в подбрасывание монеты.
+   * зачем: владелец просил отдельную кнопку — «пул одобренных заданий, которые
+   * уже будут попадать в игру». Фильтр «В игре» существовал, но был неприметным
+   * пунктом выпадашки: непонятно, что реально играет, а что ждёт проверки.
    */
-  let _fnTnAudioGen = null;
-  window.tnAudioGen = async function tnAudioGen(dryRun) {
-    const status = document.getElementById('tn-audio-status');
-    const result = document.getElementById('tn-audio-result');
-    const mode = document.getElementById('tn-audio-mode')?.value || 'listen_choose';
-    if (status) status.textContent = dryRun ? 'Придумываю…' : 'Придумываю, это до минуты…';
-    if (result) result.innerHTML = '';
-    try {
-      _fnTnAudioGen = tnFn(_fnTnAudioGen, 'adminGenerateTournamentAudioTasksAi');
-      const res = await _fnTnAudioGen({
-        mode,
-        level: document.getElementById('tn-audio-level')?.value || 'A2',
-        batches: Number(document.getElementById('tn-audio-batches')?.value || 1),
-        dryRun: dryRun === true,
-      });
-      const data = res?.data || {};
-      if (status) status.textContent = '';
-
-      const samples = Array.isArray(data.samples) ? data.samples : [];
-      const head = dryRun
-        ? `<div style="font-size:13px;color:#93c5fd;margin-bottom:10px">Примеры (не сохранены): принято <b>${data.accepted || 0}</b></div>`
-        : `<div style="font-size:13px;color:#4ade80;margin-bottom:10px">Создано <b>${data.written || 0}</b> заданий — лежат «На проверку». Озвучка запишется при публикации.</div>`;
-
-      const cards = samples.map((task) => {
-        const pl = task.payload || {};
-        const note = task.aiMeta && task.aiMeta.note ? task.aiMeta.note : '';
-        let inner = '';
-        if (mode === 'listen_build') {
-          const correct = Array.isArray(pl.correctTokens) ? pl.correctTokens : [];
-          const bank = Array.isArray(pl.wordBank) ? pl.wordBank : [];
-          inner = `<div style="font-size:14px;font-weight:700;color:#fafafa">${escapeHtml(pl.phrase || '')}</div>`
-            + `<div style="font-size:12px;color:#9ca3af;margin-top:6px">Чипы: ${bank.map((w) => {
-              const decoy = !correct.includes(w);
-              return `<span style="background:${decoy ? 'rgba(251,191,36,0.14)' : '#1a1a24'};color:${decoy ? '#fbbf24' : '#e5e7eb'};border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`;
-            }).join('')}</div>`;
-        } else {
-          const opts = Array.isArray(pl.options) ? pl.options : [];
-          inner = `<div style="font-size:12px;color:#9ca3af">Прозвучит: <b style="color:#fafafa">${escapeHtml(pl.phrase || '')}</b></div>`
-            + opts.map((o, i) => `<div style="font-size:13px;padding:2px 0;color:${i === pl.correctIndex ? '#4ade80' : '#9ca3af'}">${i === pl.correctIndex ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`).join('');
-        }
-        const noteRow = note
-          ? `<div style="font-size:11.5px;color:#c4b5fd;margin-top:6px">${escapeHtml(note)}</div>` : '';
-        return `<div style="background:#0f0f16;border-radius:10px;padding:11px 13px;margin-bottom:8px">${inner}${noteRow}</div>`;
-      }).join('');
-
-      const rejected = Array.isArray(data.rejectedBatches) ? data.rejectedBatches.flat() : [];
-      const rejectedRow = rejected.length
-        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Отсеяно проверкой: ${escapeHtml(rejected.slice(0, 4).join(' · '))}</div>` : '';
-
-      if (result) result.innerHTML = head + cards + rejectedRow;
-      if (!dryRun) tnOpenTab();
-    } catch (e) {
-      if (status) status.textContent = '';
-      if (result) result.innerHTML = `<div style="font-size:13px;color:#f87171">${escapeHtml(tnError(e))}</div>`;
-    }
+  window.tnOpenApprovedPool = function tnOpenApprovedPool() {
+    const status = document.getElementById('tn-status');
+    if (status) status.value = 'published';
+    const diff = document.getElementById('tn-difficulty');
+    if (diff) diff.value = '0';
+    if (typeof tnLoadTasks === 'function') tnLoadTasks(true);
+    // Прокручиваем к списку: иначе клик по карточке выглядит как «ничего
+    // не произошло» — таблица ниже экрана.
+    const list = document.getElementById('tn-list') || document.getElementById('tn-count');
+    if (list && list.scrollIntoView) list.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   /**

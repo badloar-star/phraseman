@@ -19,6 +19,7 @@ import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
 import { Card } from '../components/tournament/tournament_ui';
 import { TimerRing } from '../components/tournament/TournamentCountdown';
 import { T, motion, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
   isTableState, submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
@@ -31,9 +32,15 @@ const LETTERS = ['A', 'B', 'C', 'D'] as const;
 type Question = {
   /** taskId исходного задания — на него ссылается ответ. */
   taskId: string;
-  kind: 'choice' | 'timeattack' | 'translate';
+  // зачем 2026-07-27: аудио-режимы владельца. listen = услышал → выбрал,
+  // dictate = услышал → собрал из чипов. Отвечают как choice/translate,
+  // но вместо текста фразы игроку даётся ТОЛЬКО звук.
+  kind: 'choice' | 'timeattack' | 'translate' | 'listen' | 'dictate';
   prompt: string;
+  /** Для аудио-режимов ПУСТО: услышанный текст и есть ответ. */
   phrase: string;
+  /** Озвучка задания (аудио-режимы). Пусто для текстовых. */
+  audioUri?: string;
   /** Варианты для choice/timeattack; пусто для translate. */
   options: string[];
   /** Банк слов вразнобой для translate; пусто для choice/timeattack. */
@@ -98,6 +105,41 @@ function taskToQuestions(task: PublicTask): Question[] {
     return [{
       taskId: task.taskId, kind: 'translate', prompt: 'Собери фразу', phrase,
       options: [], wordBank, itemIndex: 0, itemCount: 1,
+    }];
+  }
+  if (task.kind === 'listen') {
+    // зачем: без этой ветки аудио-задание давало пустой список вопросов, и
+    // турнир зависал на «Готовим вопросы…» — ровно тот класс бага, что уже
+    // ловили аудитом на translate_build.
+    const options = Array.isArray(payload.options) ? (payload.options as string[]) : [];
+    const audioUri = String(payload.audioUri ?? '');
+    if (!audioUri || options.length < 2) return [];
+    return [{
+      taskId: task.taskId,
+      kind: 'listen',
+      prompt: task.mode === 'sound_contrast' ? 'Какое слово прозвучало?' : 'Что ты слышишь?',
+      phrase: '',
+      audioUri,
+      options,
+      wordBank: [],
+      itemIndex: 0,
+      itemCount: 1,
+    }];
+  }
+  if (task.kind === 'dictate') {
+    const wordBank = Array.isArray(payload.wordBank) ? (payload.wordBank as string[]) : [];
+    const audioUri = String(payload.audioUri ?? '');
+    if (!audioUri || wordBank.length < 2) return [];
+    return [{
+      taskId: task.taskId,
+      kind: 'dictate',
+      prompt: 'Послушай и собери фразу',
+      phrase: '',
+      audioUri,
+      options: [],
+      wordBank,
+      itemIndex: 0,
+      itemCount: 1,
     }];
   }
   // voice рисуется отдельной раскладкой — фаза 2 (серверный скоринг выключен).
@@ -179,10 +221,10 @@ export default function TournamentRoundScreen() {
       byTask.set(q.taskId, entry);
     }
     return Array.from(byTask.entries()).map(([taskId, entry]) => {
-      if (entry.kind === 'translate') {
+      if (entry.kind === 'dictate' || entry.kind === 'translate') {
         return { taskId, answer: { tokens: entry.values[0] ?? [] } };
       }
-      if (entry.kind === 'choice') {
+      if (entry.kind === 'choice' || entry.kind === 'listen') {
         return { taskId, answer: { selectedIndex: entry.values[0] } };
       }
       return {
@@ -326,7 +368,11 @@ export default function TournamentRoundScreen() {
   if (phase === 'intro') {
     // зачем: раньше здесь было захардкожено «Угадай перевод» для любого
     // раунда — интро тайм-атаки лгало о своём режиме (найдено аудитом).
-    const modeLabel = questions[0]?.kind === 'timeattack' ? 'Тайм-атака' : 'Угадай перевод';
+    const firstKind = questions[0]?.kind;
+    const modeLabel = firstKind === 'timeattack' ? 'Тайм-атака'
+      : firstKind === 'listen' ? 'На слух'
+        : firstKind === 'dictate' ? 'Диктант'
+          : firstKind === 'translate' ? 'Собери фразу' : 'Угадай перевод';
     return (
       <View style={[styles.root, styles.introRoot]}>
         <Animated.Text entering={ZoomIn.duration(320)} style={styles.introRound}>
@@ -384,11 +430,20 @@ export default function TournamentRoundScreen() {
         {/* Вопрос */}
         <Card tone="elev" pad={22} style={styles.questionCard}>
           <Text style={styles.questionPrompt}>{question.prompt}</Text>
-          <Text style={styles.questionPhrase}>{question.phrase}</Text>
+          {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
+              его нельзя. Вместо него кнопка: услышать можно только ушами. */}
+          {question.kind === 'listen' || question.kind === 'dictate' ? (
+            <TournamentAudioButton
+              key={question.taskId}
+              audioUri={question.audioUri ?? ''}
+            />
+          ) : (
+            <Text style={styles.questionPhrase}>{question.phrase}</Text>
+          )}
         </Card>
 
         {/* Варианты (choice/timeattack) или сборка слов (translate) */}
-        {question.kind === 'translate' ? (
+        {question.kind === 'translate' || question.kind === 'dictate' ? (
           <WordBank
             key={question.taskId}
             wordBank={question.wordBank}

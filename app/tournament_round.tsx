@@ -344,7 +344,6 @@ export default function TournamentRoundScreen() {
    * внутри flushAnswers и локальным finishing.
    */
   const [finishing, setFinishing] = useState(false);
-  const allAnswered = index + 1 >= total;
 
   const finishEarly = useCallback(() => {
     if (finishing) return;
@@ -584,8 +583,12 @@ export default function TournamentRoundScreen() {
             .easing(Easing.bezier(...v2motion.bezierSlide).factory())}
           style={styles.questionZone}
         >
+        {/* зачем 2026-07-27 (владелец): формулировка задания — НАД контейнером,
+            а не внутри него. Внутри карточки она конкурировала с самим
+            заданием (плеером/фразой) за первое место в чтении; вынесенная
+            наверх, она читается как подпись к блоку. */}
+        <Text style={styles.questionPrompt}>{question.prompt}</Text>
         <V2Card pad={22} style={styles.questionCard}>
-          <Text style={styles.questionPrompt}>{question.prompt}</Text>
           {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
               его нельзя. Вместо него кнопка: услышать можно только ушами. */}
           {question.kind === 'listen' || question.kind === 'dictate' ? (
@@ -642,14 +645,17 @@ export default function TournamentRoundScreen() {
           РАНЬШЕ дедлайна. Сервер считает бонус скорости от времени прихода
           пачки (serverBoundedElapsedMs), поэтому ранний финиш действительно
           даёт больше очков — это не декорация.
-          Заодно кнопка занимает низ, который раньше пустовал. */}
+          Заодно кнопка занимает низ, который раньше пустовал.
+
+          зачем 2026-07-27 (владелец: «на кнопке текст просто ГОТОВО, и он
+          только отмечает что юзер ответил, а не пропускает что-то»): подпись
+          и тон больше не зависят от числа отвеченных вопросов. Прежнее
+          «Готово · пропустить остальные» и приглушённый ghost-тон читались как
+          штраф за досрочный финиш, хотя действие ровно одно — отметить, что
+          игрок закончил, и отправить ответы. */}
       <View style={[styles.bottomBar, { paddingBottom: insets.bottom + 12 }]}>
-        <V2Cta
-          onPress={finishEarly}
-          disabled={finishing}
-          tone={allAnswered ? 'accent' : 'ghost'}
-        >
-          {finishing ? 'Отправляем…' : allAnswered ? 'Готово' : 'Готово · пропустить остальные'}
+        <V2Cta onPress={finishEarly} disabled={finishing} tone="accent">
+          {finishing ? 'Отправляем…' : 'Готово'}
         </V2Cta>
       </View>
 
@@ -741,25 +747,24 @@ const WordBank = memo(function WordBank({
   return (
     <View>
       {/* Собранная фраза — зарезервированное место фиксированной высоты,
-          чтобы банк слов ниже не прыгал по мере сборки. */}
+          чтобы банк слов ниже не прыгал по мере сборки.
+          зачем 2026-07-27 (владелец): подсказка «Собирай слова снизу…» убрана —
+          действие очевидно из самого экрана. Пустая зона ОСТАЁТСЯ (высота
+          зарезервирована), иначе первое слово сдвинуло бы банк вверх. */}
       <View style={styles.assembled}>
-        {collected.length === 0 ? (
-          <Text style={styles.assembledPlaceholder}>Собирай слова снизу…</Text>
-        ) : (
-          collected.map((word, slotIndex) => (
-            <Pressable
-              key={slotIndex}
-              onPress={() => returnWord(slotIndex)}
-              disabled={revealed}
-              style={styles.assembledChip}
-              accessibilityRole="button"
-              accessibilityState={{ disabled: revealed }}
-              accessibilityLabel={`Убрать слово ${word}`}
-            >
-              <Text style={styles.assembledChipText}>{word}</Text>
-            </Pressable>
-          ))
-        )}
+        {collected.map((word, slotIndex) => (
+          <Pressable
+            key={slotIndex}
+            onPress={() => returnWord(slotIndex)}
+            disabled={revealed}
+            style={styles.assembledChip}
+            accessibilityRole="button"
+            accessibilityState={{ disabled: revealed }}
+            accessibilityLabel={`Убрать слово ${word}`}
+          >
+            <Text style={styles.assembledChipText}>{word}</Text>
+          </Pressable>
+        ))}
       </View>
 
       {/* Банк слов вразнобой */}
@@ -826,8 +831,12 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   multiplier: { marginLeft: 'auto', fontSize: 15, fontWeight: '800', color: P.muted },
 
   questionCard: { minHeight: 128, justifyContent: 'center' },
-  questionPrompt: { ...type.body, color: P.muted },
-  questionPhrase: { fontSize: 28, fontWeight: '900', color: P.text, marginTop: 10, letterSpacing: -0.6 },
+  // Подпись к блоку задания: живёт НАД карточкой, поэтому нужен свой отступ
+  // снизу и лёгкий отступ слева, чтобы она не липла к кромке карточки.
+  questionPrompt: { ...type.body, color: P.muted, marginBottom: 10, marginLeft: 4 },
+  // marginTop убран вместе с выносом подписи наверх: внутри карточки фраза
+  // теперь единственный элемент и центрируется сама.
+  questionPhrase: { fontSize: 28, fontWeight: '900', color: P.text, letterSpacing: -0.6 },
 
   options: { gap: 10 },
   option: {
@@ -880,7 +889,6 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,
   },
-  assembledPlaceholder: { ...type.body, color: P.ghost },
   assembledChip: {
     backgroundColor: P.accentSoft,
     borderRadius: radius.sm,

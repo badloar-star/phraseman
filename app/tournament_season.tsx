@@ -255,19 +255,17 @@ const SeasonRowItem = memo(function SeasonRowItem({
   const P = useTournamentPalette();
   const styles = React.useMemo(() => makeStyles(P), [P]);
   const handlePress = useCallback(() => onPress?.(row), [onPress, row]);
-  // зачем 2026-07-27 (владелец): «по игрокам можно нажимать и открывать их
-  // карточку». Строка становится кнопкой; данные уже в row, поэтому карточка
-  // открывается мгновенно — без запроса на каждый тап.
-  const Row = onPress ? TapScale : View;
-  return (
-    <Row
-      {...(onPress ? { onPress: handlePress, accessibilityRole: 'button' as const } : { accessibilityRole: 'text' as const })}
-      style={[styles.row, isYou && styles.rowYou]}
-      accessibilityLabel={
-        // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
-        `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`
-      }
-    >
+  const accessibilityLabel =
+    // Читалке нужна связная фраза: колонки по отдельности звучат как набор цифр.
+    `${place > 0 ? `Место ${place}. ` : ''}${isYou ? 'Вы' : row.name}, ${row.points} очков${onPress ? '. Открыть карточку' : ''}`;
+
+  // зачем 2026-07-27: строка РИСУЕТСЯ этим View, а не самим TapScale. TapScale
+  // кладёт детей в свой внутренний Animated.View и вешает style только на
+  // внешний Pressable — при `Row = TapScale` флекс-стили строки до колонок не
+  // доходили, и место/аватар/имя/очки выстраивались в столбик, вылезая за
+  // карточку высотой 56 (сломанный экран сезона у владельца).
+  const body = (
+    <View style={[styles.row, isYou && styles.rowYou]}>
       {/* Место вне показанного верха неизвестно точно — ставим тире, не выдумываем номер. */}
       <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
         {place > 0 ? place : '—'}
@@ -279,7 +277,31 @@ const SeasonRowItem = memo(function SeasonRowItem({
         {isYou ? 'Вы' : row.name}
       </Text>
       <Text style={styles.points} allowFontScaling={false}>{row.points}</Text>
-    </Row>
+    </View>
+  );
+
+  // зачем 2026-07-27 (владелец): «по игрокам можно нажимать и открывать их
+  // карточку». Данные уже в row, поэтому карточка открывается мгновенно —
+  // без запроса на каждый тап.
+  if (!onPress) {
+    return (
+      <View accessibilityRole="text" accessibilityLabel={accessibilityLabel}>
+        {body}
+      </View>
+    );
+  }
+
+  return (
+    <TapScale
+      onPress={handlePress}
+      accessibilityRole="button"
+      accessibilityLabel={accessibilityLabel}
+      // Широкая строка: 0.88 по умолчанию — рывок. 0.97 читается как нажатие,
+      // тот же масштаб, что у крупных карточек режима.
+      scaleTo={0.97}
+    >
+      {body}
+    </TapScale>
   );
 });
 

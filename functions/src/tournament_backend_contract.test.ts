@@ -21,23 +21,30 @@ describe('tournament backend hardening source contracts', () => {
   });
 
   /**
-   * зачем 2026-07-27 (владелец: «дев турнир не создался slot_already_played,
-   * такого не должно быть, дев без ограничений»): лимит «один турнир на слот в
-   * день» правильный для боевых окон, но дев-комнаты живут под общим ключом
-   * dev-…, поэтому второй тестовый прогон за день всегда упирался в свой же
-   * slotKey. Обе половины исключения фиксируем тестом: и проверку, и запись
-   * маркера — иначе дев-прогон занял бы владельцу настоящее окно на весь день.
+   * зачем 2026-07-27 (владелец: «дев удалить, и никогда логику дев не
+   * использовать — обычный турнир»): раньше здесь фиксировалось исключение для
+   * devRoom. Дев-режим удалён целиком, поэтому тест сторожит обратное: никаких
+   * поблажек по флагу комнаты в транзакции входа не осталось.
    */
-  it('exempts dev rooms from the once-per-slot limit, both check and marker', () => {
-    expect(source).toContain("const isDevRoom = roomSnap.data()?.devRoom === true;");
-    expect(source).toContain("if (!isDevRoom && sanitizeString(user.tournament_last_slot_key, 200) === slotKey)");
-    expect(source).toContain('...(isDevRoom ? {} : {');
+  it('keeps the join path free of dev-room exemptions', () => {
+    expect(source).not.toContain('devRoom === true');
+    expect(source).not.toContain('isDevRoom');
+  });
+
+  /**
+   * зачем 2026-07-27 (владелец: «убери ограничение на количество игр в слот»):
+   * играть можно сколько угодно раз, но лимит для комнат РАСПИСАНИЯ снимать
+   * нельзя — иначе банк недели достаётся тому, кто дольше сидит в приложении.
+   * Развязка сделана без исключений в транзакции: у турнира по требованию
+   * собственный slotId с меткой времени, поэтому его slotKey каждый раз новый
+   * и маркер профиля не совпадает. Тест держит обе половины этой развязки.
+   */
+  it('lets on-demand tournaments bypass the once-per-slot limit via their own slotId', () => {
+    // Лимит для комнат расписания на месте — безусловный, без флагов-поблажек.
+    expect(source).toContain('sanitizeString(user.tournament_last_slot_key, 200) === slotKey');
     expect(source).toContain('tournament_last_slot_key: slotKey,');
-    // Маркер обязан жить ВНУТРИ условной ветки, иначе дев снова сожжёт окно.
-    const markerAt = source.indexOf('tournament_last_slot_key: slotKey,');
-    const guardAt = source.indexOf('...(isDevRoom ? {} : {');
-    expect(guardAt).toBeGreaterThan(0);
-    expect(markerAt).toBeGreaterThan(guardAt);
+    // Турнир по требованию живёт под своим slotId с меткой времени.
+    expect(source).toContain('slotId: `now-${slot.slotId}-${nowMs}`');
   });
 
   /**

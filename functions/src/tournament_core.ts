@@ -861,11 +861,50 @@ export const TOURNAMENT_ROUND_MODE_KINDS = ['single', 'mix', 'single', 'mix'] as
 
 // ── Скоринг (§5): база + бонус скорости ≤+40% + стрик ×1.5/×2 ───────────────
 
+// зачем 2026-07-27 (владелец): шкала звёзд переписана на «максимум 3 за
+// задание». Старые константы (база 100, ×1.5 голос, +40% скорость, ×2 стрик)
+// давали до ~10 000 очков за турнир — нечитаемые числа. Оставлены как
+// историческая ссылка для старых комнат, новый скоринг их не использует.
 export const TOURNAMENT_BASE_SCORE = 100;
 export const TOURNAMENT_VOICE_BASE_MULTIPLIER = 1.5;
 export const TOURNAMENT_MAX_SPEED_BONUS_RATIO = 0.4;
 export const TOURNAMENT_STREAK_X15_THRESHOLD = 3;
 export const TOURNAMENT_STREAK_X2_THRESHOLD = 5;
+
+// ── Звёзды (владелец 2026-07-27) ────────────────────────────────────────────
+//
+// Правило владельца дословно: «кто первый ответил — тот три звезды получит,
+// кто второй — две, кто третий и все остальные — одну» + «плюс бонусные звёзды
+// за стрики» + «за камбэк: если было три подряд неправильно, а потом правильно,
+// можно +1 звезду».
+//
+// Скорость меряется НЕ секундами, а МЕСТОМ среди правильно ответивших в этом
+// задании — это прямое соревнование между игроками, и одинаковых сумм почти не
+// бывает. Неправильный ответ = 0 звёзд.
+
+/** Первый правильный ответ в задании. */
+export const TOURNAMENT_STAR_FIRST = 3;
+/** Второй правильный ответ. */
+export const TOURNAMENT_STAR_SECOND = 2;
+/** Третий и все последующие правильные ответы. */
+export const TOURNAMENT_STAR_REST = 1;
+/** Бонус за серию: +1 звезда начиная с 3-го правильного подряд. */
+export const TOURNAMENT_STAR_STREAK = 1;
+export const TOURNAMENT_STREAK_STAR_THRESHOLD = 3;
+/** Бонус за камбэк: +1 звезда за правильный ответ после 3 ошибок подряд. */
+export const TOURNAMENT_STAR_COMEBACK = 1;
+export const TOURNAMENT_COMEBACK_MISS_THRESHOLD = 3;
+/**
+ * Тай-брейка НЕТ: звёзды целые, ничьи разрешены честно.
+ *
+ * зачем (владелец 2026-07-27): сначала обсуждали дробную добавку за скорость,
+ * но владелец справедливо возразил: «если у одного 70 звёзд и у другого 70, то
+ * будут возмущения — почему ему больше, а мне меньше». Поэтому при равных
+ * звёздах игроки ДЕЛЯТ место, а их призовые доли складываются и делятся
+ * поровну (см. tournamentPayouts). Скорость влияет на сами звёзды — быстрый
+ * ответ даёт +1 ⭐, — и этого достаточно, чтобы награждать темп.
+ */
+export const TOURNAMENT_TIEBREAK_WEIGHT = 0;
 
 export type ScoreInput = {
   correct: boolean;
@@ -877,6 +916,16 @@ export type ScoreInput = {
   streakBefore: number;
   isVoice: boolean;
   baseScore?: number;
+  /**
+   * Место среди ПРАВИЛЬНО ответивших на это задание: 1 = ответил первым.
+   *
+   * зачем (владелец 2026-07-27): «кто первый ответил — тот три звезды, кто
+   * второй — две, кто третий и остальные — одну». Скорость меряется местом в
+   * гонке, а не секундами: это прямое соревнование и почти исключает ничьи.
+   */
+  answerRank?: number;
+  /** Серия ОШИБОК до этого ответа — для бонуса за камбэк. */
+  missStreakBefore?: number;
 };
 
 export function serverBoundedElapsedMs(input: {
@@ -893,38 +942,61 @@ export function serverBoundedElapsedMs(input: {
 }
 
 /**
- * Очки за один ответ.
- * - неверный ответ = 0 (и сброс серии на уровне раунда);
- * - база 100, голосовые задания ×1.5 (компенсация времени ответа, §5);
- * - бонус скорости линейный до +40% (мгновенный ответ = полный бонус);
- * - стрик-множитель применяется к (база+бонус): ×1.5 с серии 3, ×2 с серии 5.
+ * Звёзды за один ответ. МАКСИМУМ 3 (решение владельца 2026-07-27).
+ *
+ * зачем: старая формула (база 100 × голос 1.5 × скорость 1.4 × стрик 2 = 420
+ * за задание) давала до ~10 000 очков за турнир — владелец увидел «4474» и
+ * справедливо сказал, что таких чисел быть не должно. Новая шкала читаемая:
+ *   +1 ⭐ — правильный ответ;
+ *   +1 ⭐ — ответил быстро (уложился в половину времени);
+ *   +1 ⭐ — серия от 3 правильных подряд.
+ * Максимум за турнир при 4 раундах × 4 задания = 48 звёзд.
+ *
+ * Ничьи РАЗРЕШЕНЫ: одинаковые звёзды = одинаковое место, а призовые доли таких
+ * игроков складываются и делятся поровну (см. tournamentPayouts). Владелец:
+ * «если у одного 70 звёзд и у другого 70 — будут возмущения, почему ему больше;
+ * пусть начисляется поровну».
+ *
+ * @param input.answerRank место среди ПРАВИЛЬНО ответивших на это задание:
+ *   1 = ответил первым (3⭐), 2 = вторым (2⭐), 3+ = остальные (1⭐).
+ *   Не передан — считаем как «остальные»: одиночная игра не даёт форы.
  */
 export function scoreAnswer(input: ScoreInput): number {
   if (!input.correct) return 0;
-  const base = Math.max(1, Math.trunc(input.baseScore ?? TOURNAMENT_BASE_SCORE));
-  const baseWithVoice = base * (input.isVoice ? TOURNAMENT_VOICE_BASE_MULTIPLIER : 1);
-  const maxMs = Math.max(1, input.maxMs);
-  const elapsed = Math.min(Math.max(0, input.elapsedMs), maxMs);
-  const speedBonus = baseWithVoice * TOURNAMENT_MAX_SPEED_BONUS_RATIO * (1 - elapsed / maxMs);
+
+  const rank = Math.max(1, Math.trunc(input.answerRank ?? Number.MAX_SAFE_INTEGER));
+  let stars = rank === 1
+    ? TOURNAMENT_STAR_FIRST
+    : rank === 2
+      ? TOURNAMENT_STAR_SECOND
+      : TOURNAMENT_STAR_REST;
+
   // streakBefore — серия ДО этого ответа; текущий ответ = streakBefore + 1.
-  // ×1.5 начинается с 3-го правильного подряд, ×2 — с 5-го (§5).
-  const streakWithCurrent = input.streakBefore + 1;
-  const streakMult = streakWithCurrent >= TOURNAMENT_STREAK_X2_THRESHOLD
-    ? 2
-    : streakWithCurrent >= TOURNAMENT_STREAK_X15_THRESHOLD
-      ? 1.5
-      : 1;
-  return Math.round((baseWithVoice + speedBonus) * streakMult);
+  if (input.streakBefore + 1 >= TOURNAMENT_STREAK_STAR_THRESHOLD) stars += TOURNAMENT_STAR_STREAK;
+
+  // Камбэк: правильный ответ после серии ошибок — «не сдался» тоже награда.
+  if ((input.missStreakBefore ?? 0) >= TOURNAMENT_COMEBACK_MISS_THRESHOLD) {
+    stars += TOURNAMENT_STAR_COMEBACK;
+  }
+
+  return stars;
 }
 
 /** Итог раунда: очки и новая серия. Неверный ответ сбрасывает серию. */
 export function scoreRound(answers: ScoreInput[]): { roundScore: number; streakAfter: number } {
   let roundScore = 0;
   let streak = 0;
+  // Серия ОШИБОК подряд — для бонуса за камбэк (владелец 2026-07-27).
+  let missStreak = 0;
   for (const a of answers) {
-    const effective = { ...a, streakBefore: a.correct ? streak : a.streakBefore };
+    const effective = {
+      ...a,
+      streakBefore: a.correct ? streak : a.streakBefore,
+      missStreakBefore: missStreak,
+    };
     roundScore += scoreAnswer(effective);
     streak = a.correct ? streak + 1 : 0;
+    missStreak = a.correct ? 0 : missStreak + 1;
   }
   return { roundScore, streakAfter: streak };
 }

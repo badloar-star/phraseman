@@ -58,49 +58,64 @@ const player = (id: string, score: number, isBot = false): TournamentPlayer => (
   id, isBot, name: id, avatar: '🦊', color: '#47C870', score, streak: 0,
 });
 
-describe('scoring (§5)', () => {
-  it('base correct answer at zero elapsed gets full +40% speed bonus', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 0, maxMs: 10_000, streakBefore: 0, isVoice: false });
-    expect(s).toBe(Math.round(TOURNAMENT_BASE_SCORE * (1 + TOURNAMENT_MAX_SPEED_BONUS_RATIO)));
+// зачем 2026-07-27: шкала звёзд переписана по правилам владельца — «кто первый
+// ответил, тот три звезды, кто второй — две, кто третий и остальные — одну»,
+// плюс бонусы за стрик и камбэк. Старые тесты проверяли формулу «база 100 ×
+// скорость × стрик» (до 420 за задание) — она давала нечитаемые тысячи очков.
+describe('звёзды за ответ (владелец 2026-07-27)', () => {
+  const answer = (over: Partial<Parameters<typeof scoreAnswer>[0]> = {}) => scoreAnswer({
+    correct: true, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, ...over,
   });
 
-  it('answer at the time limit gets no speed bonus', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 10_000, maxMs: 10_000, streakBefore: 0, isVoice: false });
-    expect(s).toBe(TOURNAMENT_BASE_SCORE);
+  it('первый правильный ответ — 3 звезды', () => {
+    expect(answer({ answerRank: 1 })).toBe(3);
   });
 
-  it('elapsed beyond the limit is clamped, never negative bonus', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 99_000, maxMs: 10_000, streakBefore: 0, isVoice: false });
-    expect(s).toBe(TOURNAMENT_BASE_SCORE);
+  it('второй правильный ответ — 2 звезды', () => {
+    expect(answer({ answerRank: 2 })).toBe(2);
   });
 
-  it('voice tasks get ×1.5 base (and bonus scales from it)', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 10_000, maxMs: 10_000, streakBefore: 0, isVoice: true });
-    expect(s).toBe(Math.round(TOURNAMENT_BASE_SCORE * 1.5));
+  it('третий и все последующие — 1 звезда', () => {
+    expect(answer({ answerRank: 3 })).toBe(1);
+    expect(answer({ answerRank: 16 })).toBe(1);
   });
 
-  it('wrong answer scores zero regardless of speed/streak', () => {
-    expect(scoreAnswer({ correct: false, elapsedMs: 0, maxMs: 10_000, streakBefore: 9, isVoice: false })).toBe(0);
+  it('без ранга (одиночная игра) форы нет — 1 звезда', () => {
+    expect(answer()).toBe(1);
   });
 
-  it('streak ×1.5 applies from 3rd correct in a row', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 10_000, maxMs: 10_000, streakBefore: 2, isVoice: false });
-    expect(s).toBe(Math.round(TOURNAMENT_BASE_SCORE * 1.5));
+  it('неверный ответ — ноль, сколько бы ни было серии', () => {
+    expect(answer({ correct: false, answerRank: 1, streakBefore: 9 })).toBe(0);
   });
 
-  it('streak ×2 applies from 5th correct in a row', () => {
-    const s = scoreAnswer({ correct: true, elapsedMs: 10_000, maxMs: 10_000, streakBefore: 4, isVoice: false });
-    expect(s).toBe(TOURNAMENT_BASE_SCORE * 2);
+  it('серия от 3 подряд добавляет звезду', () => {
+    expect(answer({ answerRank: 3, streakBefore: 2 })).toBe(1 + 1);
+    // Первому серия тоже добавляет: 3 + 1.
+    expect(answer({ answerRank: 1, streakBefore: 2 })).toBe(4);
   });
 
-  it('scoreRound accumulates running streak and resets on a mistake', () => {
+  it('камбэк после 3 ошибок подряд добавляет звезду', () => {
+    expect(answer({ answerRank: 3, missStreakBefore: 3 })).toBe(1 + 1);
+    // Двух ошибок мало — бонуса нет.
+    expect(answer({ answerRank: 3, missStreakBefore: 2 })).toBe(1);
+  });
+
+  it('scoreRound копит серию и сбрасывает её на ошибке', () => {
     const answers = [true, true, true, false, true].map((correct) => ({
-      correct, elapsedMs: 10_000, maxMs: 10_000, streakBefore: 0, isVoice: false,
+      correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
     }));
     const { roundScore, streakAfter } = scoreRound(answers);
-    // 100 + 100 + 150 (стрик 3-й) + 0 + 100 = 450
-    expect(roundScore).toBe(450);
+    // 1 + 1 + 2 (звезда за серию с 3-го) + 0 + 1 = 5
+    expect(roundScore).toBe(5);
     expect(streakAfter).toBe(1);
+  });
+
+  it('scoreRound даёт камбэк-звезду после трёх ошибок подряд', () => {
+    const answers = [false, false, false, true].map((correct) => ({
+      correct, elapsedMs: 1_000, maxMs: 10_000, streakBefore: 0, isVoice: false, answerRank: 3,
+    }));
+    // 0 + 0 + 0 + (1 базовая + 1 за камбэк) = 2
+    expect(scoreRound(answers).roundScore).toBe(2);
   });
 });
 

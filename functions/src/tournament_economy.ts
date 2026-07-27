@@ -146,6 +146,11 @@ export function tournamentPayouts(
   pot: TournamentPot,
   winnersCount: number,
   config: TournamentEconomyConfig = DEFAULT_TOURNAMENT_ECONOMY,
+  // зачем 2026-07-27 (владелец): «если у одного 70 звёзд и у другого 70 — будут
+  // возмущения, почему ему больше; пусть начисляется поровну», и «если все трое
+  // одинаковы, то всё, что между ними, распределяется тоже поровну». Передаём
+  // очки призёров по порядку мест — по ним склеиваем группы ничьих.
+  winnerScores?: readonly number[],
 ): { readonly payouts: readonly TournamentPayout[]; readonly unclaimedToWeekly: number } {
   const winners = Math.max(0, Math.min(3, Math.trunc(winnersCount)));
   if (winners === 0) {
@@ -153,7 +158,31 @@ export function tournamentPayouts(
   }
 
   const full = splitByShares(pot.toPrizes, [...config.prizeShares]);
-  const payouts = full.slice(0, winners).map((gems, index) => ({ place: index + 1, gems }));
+  let payouts = full.slice(0, winners).map((gems, index) => ({ place: index + 1, gems }));
+
+  // Ничьи: игроки с равными очками делят СУММУ своих долей поровну. Остаток от
+  // деления отдаём верхнему в группе — жемчужины целые, потерять их нельзя.
+  if (winnerScores && winnerScores.length >= winners) {
+    const merged: TournamentPayout[] = [];
+    for (let i = 0; i < winners;) {
+      let j = i;
+      while (j + 1 < winners && winnerScores[j + 1] === winnerScores[i]) j += 1;
+      const groupSize = j - i + 1;
+      if (groupSize === 1) {
+        merged.push(payouts[i]);
+      } else {
+        const groupTotal = payouts.slice(i, j + 1).reduce((sum, p) => sum + p.gems, 0);
+        const each = Math.floor(groupTotal / groupSize);
+        const remainder = groupTotal - each * groupSize;
+        for (let k = i; k <= j; k += 1) {
+          merged.push({ place: payouts[k].place, gems: each + (k === i ? remainder : 0) });
+        }
+      }
+      i = j + 1;
+    }
+    payouts = merged;
+  }
+
   const claimed = payouts.reduce((sum, payout) => sum + payout.gems, 0);
 
   return {

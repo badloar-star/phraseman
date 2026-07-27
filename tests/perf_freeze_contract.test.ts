@@ -108,10 +108,13 @@ describe('perf freeze contract', () => {
    * закрываем: подписки и интервалы теперь под тем же храповиком, что и
    * withRepeat.
    */
+  // Только НАСТОЯЩИЕ табы: экраны, которые живут внутри общего роутного экрана
+  // `(tabs)` и потому не различимы через useIsFocused(). Хаб турниров сюда НЕ
+  // входит — с 27.07 он push-экран (релиз без турниров) и гейтится честным
+  // фокусом; список синхронизирован с LOGICAL_TAB_IDS.
   const TAB_SCREENS = [
     'app/(tabs)/home.tsx',
     'app/(tabs)/lessons.tsx',
-    'app/(tabs)/tournaments.tsx',
     'app/(tabs)/friends.tsx',
     'app/(tabs)/settings.tsx',
   ];
@@ -181,10 +184,11 @@ describe('perf freeze contract', () => {
     // …и что гвард попал в зависимости эффекта — иначе смена видимости не
     // поднимет подписку обратно и экран «залипнет» на старых данных.
     expect(client).toMatch(/\[roomId, attempt, active\]/);
-    // Хаб обязан передавать настоящую видимость таба, а не константу.
+    // Хаб обязан передавать настоящую видимость экрана, а не константу.
     const hub = read('app/(tabs)/tournaments.tsx');
     expect(hub).toMatch(/useTournamentRoom\(roomId,\s*runtimeActive\)/);
-    expect(hub).toContain("runtimeOwnerId === 'tournaments'");
+    // Гвард питается фокусом экрана (хаб — push поверх `(tabs)`), а не `true`.
+    expect(hub).toContain('useRuntimeActive(screenFocused)');
   });
 
   it('catches up instantly when a gated screen becomes visible again', () => {

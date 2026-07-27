@@ -155,15 +155,38 @@ describe('owner runtime direction contract', () => {
 
   it('keeps setInterval call sites owner-reviewed so new polling cannot appear silently', () => {
     const allowlist: Record<string, number> = {
-      // Arena-файлы и matchmaking удалены вместе с фичей — их тики ушли из кода.
+      // зачем 2026-07-27 (владелец: «переключая экраны всё лагает и греется»):
+      // турнирный движок и арена приехали 27.07 МИМО этого ревью — реестр не
+      // обновляли, поэтому восемь новых тиков не заметил никто. Каждый разобран
+      // и либо загарден, либо признан осознанным исключением.
+      // Один тик хаба под гвардом видимости таба (runtimeOwnerId), пересчёт
+      // состояния окна; на невидимом табе спит.
+      'app/(tabs)/tournaments.tsx': 1,
       'app/club_screen.tsx': 1,
       // Конечный 40мс count-up результатов: сам останавливается примерно за 600мс
       // и дополнительно очищается при unmount.
       'app/exam.tsx': 1,
+      // Таймер вопроса арены: живёт только в активной игре, останавливается на
+      // последней секунде и чистится при unmount.
+      'app/flashcards_arena.tsx': 1,
       'app/foreground_usage_ms.ts': 1,
       'app/shards_shop.tsx': 1,
+      // Секундный отсчёт до серверного дедлайна фазы — под гвардом active,
+      // который хаб питает видимостью таба (см. useTournamentRoom).
+      'app/tournament_client.ts': 1,
+      // Тик лобби под `everyoneArrived || !runtimeActive` — спит на неактивном
+      // экране и когда все уже собрались.
+      'app/tournament_lobby.tsx': 1,
+      // Конечный count-up «долетающих» жемчужин (~700мс), сам себя гасит.
+      'app/tournament_results.tsx': 1,
+      // ОСОЗНАННОЕ ИСКЛЮЧЕНИЕ: боевой таймер ответа. Гвард по видимости здесь
+      // ЗАПРЕЩЁН — пауза подарила бы игроку лишнее время на ответ, это дыра в
+      // честности турнира. Экран живёт под freezeOnBlur:true и размонтируется
+      // при выходе; таймер сам останавливается на нуле.
+      'app/tournament_round.tsx': 1,
       // Shared visible wall-clock factory/type/wiring contain three textual call
       // sites but create at most one live interval for all current subscribers.
+      // Интервал стартует ТОЛЬКО на переднем плане (AppState-гвард, 2026-07-27).
       'app/visible_wall_clock.ts': 3,
       // Конечный 16мс XP count-up (1200мс), очищается при завершении и unmount.
       'components/DialogVictoryCelebration.tsx': 1,
@@ -172,7 +195,13 @@ describe('owner runtime direction contract', () => {
       'components/energy_countdown_clock.ts': 3,
       // Конечный 16мс XP count-up результата, очищается по достижении цели/unmount.
       'components/HomeTheoAdvisorCard.tsx': 1,
+      // Отсчёт жизни кода восстановления — уже под `screenFocused &&
+      // recoveryAppActive`, вне модалки не тикает.
+      'components/RegistrationPromptModal.tsx': 1,
       'components/StreakReviveModal.tsx': 1,
+      // Общий секундный отсчёт турнира: считает от целевого момента, поэтому
+      // гвард видимости не ломает точность (при возврате догоняет сразу).
+      'components/tournament/TournamentCountdown.tsx': 1,
     };
     const found: Record<string, number> = {};
 
@@ -256,6 +285,13 @@ describe('owner runtime direction contract', () => {
       'app/league_group_boosts.ts': 2,
       'app/remote_account_deletion_monitor.ts': 1,
       'app/remote_config_client.ts': 1,
+      // зачем 2026-07-27 (владелец: «приложение греет телефон»): две живые
+      // подписки турнира (комната + реакции) приехали 27.07 мимо этого ревью.
+      // Комната переписывается сервером каждые 5–12 секунд и будит JS-поток на
+      // каждую запись, поэтому обе гейтятся: комната — параметром active (хаб
+      // питает его видимостью таба), реакции — только на push-экранах лобби и
+      // раунда под freezeOnBlur:true, которые размонтируются при выходе.
+      'app/tournament_client.ts': 2,
       'components/PremiumContext.tsx': 1,
     };
     const found: Record<string, number> = {};
@@ -565,6 +601,10 @@ describe('owner runtime direction contract', () => {
       'app/firestore_friend_requests.ts': 1,
       'app/shards_shop.tsx': 3,
       'app/streak_wager.ts': 1,
+      // Два шага онбординга пишут веху в Firestore. Событие разовое на
+      // пользователя (не на кадр и не на тап), поэтому по стоимости безопасно;
+      // фиксируем счётчик, чтобы третья запись не появилась молча.
+      'components/CleanOnboarding.tsx': 2,
     };
     const found: Record<string, number> = {};
 

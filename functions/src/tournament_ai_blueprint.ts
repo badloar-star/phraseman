@@ -52,7 +52,7 @@ export const KIND_TO_FORMAT: Readonly<Record<TournamentAiKind, 'choice' | 'trans
 // ── Размер турнира ──────────────────────────────────────────────────────────
 
 /** Заданий в раунде — зеркало DEFAULT_TASKS_PER_ROUND в tournaments.ts. */
-export const TASKS_PER_ROUND = 6;
+export const TASKS_PER_ROUND = 4;
 
 /** Полный турнир: 4 раунда × 6 заданий. */
 export const TOURNAMENT_AI_TOTAL_TASKS = TOURNAMENT_ROUNDS * TASKS_PER_ROUND;
@@ -95,6 +95,9 @@ export function buildTournamentPlan(): readonly RoundPlan[] {
   // тогда каждый тип представлен достойно (8/8/4/4 вместо 10/10/2/2).
   const singleKinds: readonly TournamentAiKind[] = ['assembly', 'oddity'];
   let singleIndex = 0;
+  // Сквозной курсор по типам для микс-раундов: круг НЕ начинается заново в
+  // каждом раунде, иначе редкие типы не доходят до плана (см. ниже).
+  let mixCursor = 0;
 
   return TOURNAMENT_ROUND_MODE_KINDS.map((modeKind, index) => {
     const roundNo = index + 1;
@@ -107,9 +110,20 @@ export function buildTournamentPlan(): readonly RoundPlan[] {
       singleIndex += 1;
       for (let i = 0; i < TASKS_PER_ROUND; i += 1) kinds.push(kind);
     } else {
-      // Микс: все четыре типа по кругу — 6 заданий дают 4+2.
+      // Микс: даём слоты РЕДКИМ типам — тем, которым не достался свой
+      // single-раунд.
+      // зачем 2026-07-27: раньше микс гнал все типы по кругу. При 6 заданиях
+      // выходило 4+2 и сходило с рук, но после перевода раунда на 4 задания
+      // single-типы забирали по 4 своих задания плюс ещё по одному из каждого
+      // микса — 6 против 2 у situation и gap, то есть ровно та регрессия
+      // «редкие типы вырождаются в довесок», ради которой писался тест
+      // разнообразия. Микс-раунды отдаём тем, кто обделён, и турнир
+      // раскладывается ровно: по 4 задания на каждый из четырёх типов.
+      const rareKinds = TOURNAMENT_AI_KINDS.filter((kind) => !singleKinds.includes(kind));
+      const cycle = rareKinds.length > 0 ? rareKinds : TOURNAMENT_AI_KINDS;
       for (let i = 0; i < TASKS_PER_ROUND; i += 1) {
-        kinds.push(TOURNAMENT_AI_KINDS[i % TOURNAMENT_AI_KINDS.length]);
+        kinds.push(cycle[mixCursor % cycle.length]);
+        mixCursor += 1;
       }
     }
 

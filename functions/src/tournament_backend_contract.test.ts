@@ -53,6 +53,24 @@ describe('tournament backend hardening source contracts', () => {
     expect(source).toContain("if (outcome === 'waiting') throw new HttpsError('failed-precondition', 'deadline_not_elapsed');");
   });
 
+  /**
+   * zachem 2026-07-27 (vladelec: «4 voprosa v raunde»): odno i to zhe chislo
+   * lezhalo v TRYOH mestah i uspelo razoytis' — server sobiral 6 zadaniy, a
+   * klient schital 5, otsyuda «Vopros 5 iz 6» v shapke. Zakreplyaem ravenstvo:
+   * lyuboe rashozhdenie snova dast vranyo v progresse raunda.
+   */
+  it('keeps tasks-per-round equal to 4 across server, planner and blueprint', () => {
+    const planner = fs.readFileSync(path.join(__dirname, 'tournament_pool_plan.ts'), 'utf8');
+    const blueprint = fs.readFileSync(path.join(__dirname, 'tournament_ai_blueprint.ts'), 'utf8');
+    const round = fs.readFileSync(
+      path.join(__dirname, '..', '..', 'app', 'tournament_round.tsx'), 'utf8');
+
+    expect(planner).toContain('export const TASKS_PER_ROUND = 4;');
+    expect(blueprint).toContain('export const TASKS_PER_ROUND = 4;');
+    expect(source).toContain('const DEFAULT_TASKS_PER_ROUND = 4;');
+    expect(round).toContain('const QUESTIONS_PER_ROUND = 4;');
+  });
+
   it('does not use client elapsedMs to mint a speed bonus', () => {
     expect(source).not.toContain('given?.elapsedMs');
     expect(source).toContain('applyTournamentSubmission');

@@ -8,6 +8,7 @@
 import {
   TASKS_PER_ROUND,
   CELL_HEALTHY,
+  ROUND_DIFFICULTIES,
   TOURNAMENT_MODES,
   planGenerationOrders,
   planPoolGaps,
@@ -43,10 +44,22 @@ describe('планировщик комплекта турнира', () => {
     };
     const rounds = roundReadiness(counts);
     expect(rounds.every((round) => round.ok)).toBe(true);
-    // Раунд 1 (сложность 1, один режим) закрывается только translate_build.
-    expect(rounds[0].readyModes).toEqual(['translate_build']);
-    // Раунд 3 (сложность 2, один режим) — только find_oddity.
-    expect(rounds[2].readyModes).toEqual(['find_oddity']);
+    // зачем 2026-07-27: раньше здесь был снимок готовых режимов при пороге 6
+    // (только translate_build и find_oddity). После перевода раунда на 4
+    // задания планку проходят и другие ячейки — это и есть смысл правки.
+    // Поэтому проверяем ПРАВИЛО, а не замороженный список: готов ровно тот
+    // режим, у которого в ячейке набралось TASKS_PER_ROUND заданий.
+    expect(rounds[0].readyModes).toEqual(
+      expect.arrayContaining(['translate_build', 'guess_phrase']));
+    expect(rounds[2].readyModes).toContain('find_oddity');
+    const cells: Record<string, number> = counts;
+    rounds.forEach((round, index) => {
+      for (const mode of round.readyModes) {
+        const available = ROUND_DIFFICULTIES[index]
+          .reduce((sum: number, d: number) => sum + (cells[`${mode}:${d}`] ?? 0), 0);
+        expect(available).toBeGreaterThanOrEqual(TASKS_PER_ROUND);
+      }
+    });
   });
 
   it('ячейка ровно в минимуме не блокирует, на единицу меньше — блокирует', () => {

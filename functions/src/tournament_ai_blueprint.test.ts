@@ -74,9 +74,15 @@ describe('план турнира: разнообразие', () => {
     // Регрессия расчёта: с single-раундами на situation/gap выходило 10/10/2/2 —
     // редкие типы вырождались в довесок.
     const counts = planKindCounts(buildTournamentPlan());
+    // зачем 2026-07-27: нижняя планка была числом 4, которое молча значило
+    // «четверть турнира из 24 заданий». После перевода раунда на 4 задания
+    // турнир стал 16 заданий, и это число превратилось в требование, которое
+    // арифметически невыполнимо. Считаем от общего объёма: смысл правила —
+    // ни один тип не вырождается в довесок, а не конкретная цифра.
+    const minShare = Math.max(1, Math.floor(TOURNAMENT_AI_TOTAL_TASKS / TOURNAMENT_AI_KINDS.length));
     for (const kind of TOURNAMENT_AI_KINDS) {
       expect(counts[kind]).toBeLessThanOrEqual(TOURNAMENT_AI_TOTAL_TASKS / 2);
-      expect(counts[kind]).toBeGreaterThanOrEqual(4);
+      expect(counts[kind]).toBeGreaterThanOrEqual(minShare);
     }
   });
 

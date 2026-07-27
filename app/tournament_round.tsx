@@ -37,7 +37,11 @@ import {
   isTableState, submitAnswers, useTournamentRoom, type PublicTask } from './tournament_client';
 import { useLocalSearchParams } from 'expo-router';
 
-const QUESTIONS_PER_ROUND = 5;
+// зачем 2026-07-27 (владелец: «4 вопроса в раунде»): здесь лежала третья
+// версия одного и того же числа — сервер собирал 6 заданий, а клиент считал 5.
+// Значение используется только как запасное, пока задания не пришли; реальное
+// число берётся из questions.length, но расходиться они больше не должны.
+const QUESTIONS_PER_ROUND = 4;
 const SECONDS_PER_QUESTION = 15;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
 

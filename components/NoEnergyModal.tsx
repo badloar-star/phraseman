@@ -106,6 +106,15 @@ const NO_ENERGY_MODAL_CHROME: Record<ThemeMode, NoEnergyModalChrome> = {
     titleColor: '#FFFFFF',
     subtitleColor: '#C9B4A4',
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: {
+    glow: '#FFAD7A',
+    borderColor: 'rgba(255,173,122,0.34)',
+    surfaceColors: ['rgba(58,36,80,0.9)', 'rgba(19,14,30,0.94)', 'rgba(1,1,2,0.96)'],
+    cardGlowColors: ['rgba(255,158,107,0.22)', 'rgba(255,94,138,0.08)', 'transparent'],
+    titleColor: '#FFFFFF',
+    subtitleColor: '#F7A6C6',
+  },
   aurora: {
     glow: '#3DE8A6',
     borderColor: 'rgba(61,232,166,0.34)',

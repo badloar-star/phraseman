@@ -8,7 +8,9 @@ import type { ThemeMode } from '../constants/theme';
  * Доступность: VoiceOver/TalkBack-текст обязателен («Баланс: 42 жемчужины»), не полагаемся на картинку.
  */
 export const PEARL_ICONS: Record<ThemeMode, ImageSourcePropType> = {
-  dark: require('../assets/images/currency/pearl_dark.webp'), gold: require('../assets/images/currency/pearl_gold.webp'), coral: require('../assets/images/currency/pearl_coral.webp'), minimalDark: require('../assets/images/currency/pearl_minimalDark.webp'), midnight: require('../assets/images/currency/pearl_midnight.webp'), ember: require('../assets/images/currency/pearl_ember.webp'), aurora: require('../assets/images/currency/pearl_aurora.webp'), volt: require('../assets/images/currency/pearl_volt.webp'), business: require('../assets/images/currency/pearl_business.webp'), businessLight: require('../assets/images/currency/pearl_businessLight.webp'), candyBlue: require('../assets/images/currency/pearl_candyBlue.webp'), indigo: require('../assets/images/currency/pearl_indigo.webp'),
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  dark: require('../assets/images/currency/pearl_dark.webp'), gold: require('../assets/images/currency/pearl_gold.webp'), coral: require('../assets/images/currency/pearl_coral.webp'), minimalDark: require('../assets/images/currency/pearl_minimalDark.webp'), midnight: require('../assets/images/currency/pearl_midnight.webp'), ember: require('../assets/images/currency/pearl_ember.webp'), horizon: require('../assets/images/currency/pearl_ember.webp'), aurora: require('../assets/images/currency/pearl_aurora.webp'), volt: require('../assets/images/currency/pearl_volt.webp'), business: require('../assets/images/currency/pearl_business.webp'), businessLight: require('../assets/images/currency/pearl_businessLight.webp'), candyBlue: require('../assets/images/currency/pearl_candyBlue.webp'), indigo: require('../assets/images/currency/pearl_indigo.webp'),
 } as const;
 
 export type PearlIconKey = keyof typeof PEARL_ICONS;

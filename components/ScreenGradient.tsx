@@ -35,6 +35,7 @@ const MOTION_OVERLAY_OPACITY: Record<ThemeMode, number> = {
   ember: 1,
   aurora: 1,
   volt: 1,
+  horizon: 1,
   candyBlue: 1,
   indigo: 1,
 };
@@ -65,6 +66,7 @@ const THEME_BLOOMS: Record<ThemeMode, BloomSpec> = {
   ember: { bloomA: CINEMA.ember.bloomA, bloomB: CINEMA.ember.bloomB },
   aurora: { bloomA: CINEMA.aurora.bloomA, bloomB: CINEMA.aurora.bloomB },
   volt: { bloomA: CINEMA.volt.bloomA, bloomB: CINEMA.volt.bloomB },
+  horizon: { bloomA: CINEMA.horizon.bloomA, bloomB: CINEMA.horizon.bloomB },
   candyBlue: { bloomA: '#B2D5E5', bloomB: '#3A5A68' },
   indigo: { bloomA: '#C8C3FF', bloomB: '#273468' },
 };
@@ -105,6 +107,7 @@ const THEME_ORBS: Record<ThemeMode, OrbSpec[]> = {
   ember: [],
   aurora: [],
   volt: [],
+  horizon: [],
   // «Кенди Блу»: холодные голубые орбы на тёмной синеве.
   candyBlue: [
     { x: W * 0.82, y: 84,       r: 205, color: '#7FA0AD', opacity: 0.14 },

@@ -97,6 +97,14 @@ const THEME_ICON_PALETTES: Record<ThemeMode, TrainerThemeIconPalette> = {
     stroke: '#F1EFFF',
     muted: '#3D3A72',
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: {
+    primary: '#FFAD7A',
+    secondary: '#FF6FA5',
+    tertiary: '#FFD4B0',
+    stroke: '#FFEEE0',
+    muted: '#5A3A4E',
+  },
 };
 
 export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThemeIconKind, string>> = {
@@ -160,6 +168,12 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
     words: 'assets/images/trainer_theme_icons/indigo/words.webp',
     analytics: 'assets/images/trainer_theme_icons/indigo/analytics.webp',
   },
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
+    phrases: 'assets/images/trainer_theme_icons/ember/phrases.webp',
+    words: 'assets/images/trainer_theme_icons/ember/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/ember/analytics.webp',
+  },
 };
 
 const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind, ImageSourcePropType>> = {
@@ -222,6 +236,12 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
     phrases: require('../assets/images/trainer_theme_icons/indigo/phrases.webp'),
     words: require('../assets/images/trainer_theme_icons/indigo/words.webp'),
     analytics: require('../assets/images/trainer_theme_icons/indigo/analytics.webp'),
+  },
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
+    phrases: require('../assets/images/trainer_theme_icons/ember/phrases.webp'),
+    words: require('../assets/images/trainer_theme_icons/ember/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/ember/analytics.webp'),
   },
 };
 

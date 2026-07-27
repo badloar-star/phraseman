@@ -103,6 +103,16 @@ const CHROME_BY_THEME: Record<ThemeMode, Omit<ThemedToastChrome, 'title' | 'body
     shadowColor: 'rgba(0,0,0,0.78)',
     radius: 16,
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: {
+    cardColors: ['rgba(58,36,80,0.98)', 'rgba(29,22,48,0.97)', 'rgba(8,5,16,0.95)'],
+    accent: '#FFAD7A',
+    accentSoft: 'rgba(255,173,122,0.15)',
+    border: 'rgba(255,173,122,0.36)',
+    closeBg: 'rgba(255,173,122,0.09)',
+    shadowColor: 'rgba(0,0,0,0.78)',
+    radius: 16,
+  },
   candyBlue: {
     cardColors: ['rgba(22,40,47,0.98)', 'rgba(14,28,34,0.97)', 'rgba(7,13,16,0.95)'],
     accent: '#B2D5E5',

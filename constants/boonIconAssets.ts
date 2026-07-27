@@ -21,6 +21,7 @@ export const WEEKLY_BOON_ICON_THEMES: readonly ThemeMode[] = [
   'volt',
   'candyBlue',
   'indigo',
+  'horizon',
 ] as const;
 
 export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIconId, string>> = {
@@ -116,6 +117,21 @@ export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIc
     comeback: 'assets/images/weekly_boon_icons/png/midnight/comeback.webp',
   },
   ember: {
+    streak_saver: 'assets/images/weekly_boon_icons/png/ember/streak_saver.webp',
+    mystery_monday: 'assets/images/weekly_boon_icons/png/ember/mystery_monday.webp',
+    turbo_regen: 'assets/images/weekly_boon_icons/png/ember/turbo_regen.webp',
+    energy_free_window: 'assets/images/weekly_boon_icons/png/ember/energy_free_window.webp',
+    double_xp: 'assets/images/weekly_boon_icons/png/ember/double_xp.webp',
+    flashcard_friday: 'assets/images/weekly_boon_icons/png/ember/flashcard_friday.webp',
+    arena_saturday: 'assets/images/weekly_boon_icons/png/ember/arena_saturday.webp',
+    speaking_saturday: 'assets/images/weekly_boon_icons/png/ember/speaking_saturday.webp',
+    early_bird: 'assets/images/weekly_boon_icons/png/ember/early_bird.webp',
+    perfect_week: 'assets/images/weekly_boon_icons/png/ember/perfect_week.webp',
+    comeback: 'assets/images/weekly_boon_icons/png/ember/comeback.webp',
+  },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
     streak_saver: 'assets/images/weekly_boon_icons/png/ember/streak_saver.webp',
     mystery_monday: 'assets/images/weekly_boon_icons/png/ember/mystery_monday.webp',
     turbo_regen: 'assets/images/weekly_boon_icons/png/ember/turbo_regen.webp',
@@ -275,6 +291,20 @@ const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, Image
     comeback: require('../assets/images/weekly_boon_icons/png/midnight/comeback.webp'),
   },
   ember: {
+    streak_saver: require('../assets/images/weekly_boon_icons/png/ember/streak_saver.webp'),
+    mystery_monday: require('../assets/images/weekly_boon_icons/png/ember/mystery_monday.webp'),
+    turbo_regen: require('../assets/images/weekly_boon_icons/png/ember/turbo_regen.webp'),
+    energy_free_window: require('../assets/images/weekly_boon_icons/png/ember/energy_free_window.webp'),
+    double_xp: require('../assets/images/weekly_boon_icons/png/ember/double_xp.webp'),
+    flashcard_friday: require('../assets/images/weekly_boon_icons/png/ember/flashcard_friday.webp'),
+    arena_saturday: require('../assets/images/weekly_boon_icons/png/ember/arena_saturday.webp'),
+    speaking_saturday: require('../assets/images/weekly_boon_icons/png/ember/speaking_saturday.webp'),
+    early_bird: require('../assets/images/weekly_boon_icons/png/ember/early_bird.webp'),
+    perfect_week: require('../assets/images/weekly_boon_icons/png/ember/perfect_week.webp'),
+    comeback: require('../assets/images/weekly_boon_icons/png/ember/comeback.webp'),
+  },
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
     streak_saver: require('../assets/images/weekly_boon_icons/png/ember/streak_saver.webp'),
     mystery_monday: require('../assets/images/weekly_boon_icons/png/ember/mystery_monday.webp'),
     turbo_regen: require('../assets/images/weekly_boon_icons/png/ember/turbo_regen.webp'),

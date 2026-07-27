@@ -445,6 +445,44 @@ export const PAYWALL_THEME_CONFIG: Record<ThemeMode, ThemePaywallConfig> = {
     socialProofText: '#BFC6A3',
     socialProofStarColor: '#FFE85C',
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // ── HORIZON (закатный персик / роза на сливовом сумраке) ──────────────────
+  horizon: {
+    heroAccent: '#FFAD7A',
+
+    selectedCardBorder: 'rgba(255,173,122,0.46)',
+    selectedCardBg: 'rgba(255,173,122,0.1)',
+    unselectedCardBg: 'rgba(255,255,255,0.06)',
+    panelBg: 'rgba(19,14,30,0.78)',
+    panelBgStrong: 'rgba(40,32,64,0.86)',
+    selectedCardShadow: '#9A5A2E',
+
+    savingsBadgeBg: '#FFC96B',
+    savingsBadgeText: '#221604',
+
+    popularBadgeBg: '#FFD4B0',
+    popularBadgeText: '#2A1408',
+
+    ctaBg: '#FFAD7A',
+    ctaText: '#2A1408',
+    ctaShadow: 'transparent',
+
+    pillBg: 'rgba(255,173,122,0.1)',
+    pillText: '#FFAD7A',
+    pillBorder: 'rgba(255,173,122,0.18)',
+
+    urgencyBg: 'rgba(255,173,122,0.08)',
+    urgencyTimerText: '#FFD4B0',
+    urgencyLabelText: '#B3A6BE',
+    urgencyStrikethroughColor: '#786C86',
+    urgencyCurrentPriceText: '#FFAD7A',
+
+    expandBtnText: '#FFAD7A',
+    expandBtnBorder: 'rgba(255,173,122,0.22)',
+
+    socialProofText: '#F7A6C6',
+    socialProofStarColor: '#FFC96B',
+  },
   // ── CANDY BLUE (тёмная синева / леденцовый голубой) ───────────────────────
   candyBlue: {
     heroAccent: '#D9EDF5',

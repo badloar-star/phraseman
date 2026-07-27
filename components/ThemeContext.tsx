@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, Theme, ThemeMode } from '../constants/theme';
+import { DARK, GOLD, CORAL, MINIMAL_DARK, MIDNIGHT, EMBER, AURORA, VOLT, BUSINESS, BUSINESS_LIGHT, CANDY_BLUE, INDIGO, HORIZON, Theme, ThemeMode } from '../constants/theme';
 import { goldShadow } from '../constants/goldTheme';
 import { compassShadow } from '../constants/compassTheme';
 import { cinemaShadow, isCinemaMode } from '../constants/cinemaThemes';
@@ -145,6 +145,8 @@ interface ThemeCtx {
   statusBarLight: boolean;
   themeMode:    ThemeMode;
   isGoldThemeUnlocked: boolean;
+  /** «Дедушка»: юзер жил на бесплатной «Полночи» до её ухода в премиум — тема остаётся ему доступной. */
+  isMidnightGrandfathered: boolean;
   toggle:       () => void;  // cycles available app themes
   setThemeMode: (m: ThemeMode) => void;
   fontSize:     FontSize;
@@ -177,6 +179,7 @@ const ThemeContext = createContext<ThemeCtx>({
   statusBarLight: true,
   themeMode:    'dark',
   isGoldThemeUnlocked: false,
+  isMidnightGrandfathered: false,
   toggle:       () => {},
   setThemeMode: () => {},
   fontSize:     'medium',
@@ -210,12 +213,16 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   businessLight: BUSINESS_LIGHT,
   candyBlue: CANDY_BLUE,
   indigo: INDIGO,
+  horizon: HORIZON,
 };
-const CYCLE: ThemeMode[] = ['midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'dark', 'coral', 'gold'];
-/** Premium themes. Free theme: `midnight`; `gold` is unlocked only by reward. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo'];
+const CYCLE: ThemeMode[] = ['horizon', 'midnight', 'minimalDark', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo', 'dark', 'coral', 'gold'];
+/** Premium themes. Free theme: `horizon`; `gold` is unlocked only by reward. */
+// зачем: с 2026-07-27 бесплатная витрина — «Горизонт»; «Полночь» ушла в премиум,
+// но у старых бесплатных юзеров, живших на ней, не отбирается (флаг-«дедушка»).
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'coral', 'minimalDark', 'midnight', 'ember', 'aurora', 'volt', 'candyBlue', 'indigo'];
 const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
-const DEFAULT_THEME_MODE: ThemeMode = 'midnight';
+const DEFAULT_THEME_MODE: ThemeMode = 'horizon';
+const MIDNIGHT_GRANDFATHER_KEY = 'app_theme_midnight_grandfather';
 // business/businessLight удалены из выбора (2026-07-02): пользователю не зашли.
 // vanilla удалена полностью (2026-07-25): владелец решил снять светлую тему из выбора.
 const REMOVED_THEME_MODES = new Set(['neon', 'minimalLight', 'compass', 'business', 'businessLight', 'vanilla']);
@@ -231,6 +238,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
   const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
   const [premiumThemeAccess, setPremiumThemeAccess] = useState(false);
+  const [midnightGrandfathered, setMidnightGrandfathered] = useState(false);
 
   useEffect(() => {
     setOskolokThemeMode(themeMode);
@@ -239,9 +247,15 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size']);
+      const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size', MIDNIGHT_GRANDFATHER_KEY]);
       const themeStr = pairs[0]?.[1] ?? null;
       const fontStr = pairs[1]?.[1] ?? null;
+      // зачем: «Полночь» стала премиум, но кто уже жил на ней бесплатно —
+      // получает пожизненный флаг-«дедушка» и не теряет тему после апдейта.
+      const grandfathered = pairs[2]?.[1] === '1' || themeStr === 'midnight';
+      if (grandfathered && pairs[2]?.[1] !== '1') {
+        void AsyncStorage.setItem(MIDNIGHT_GRANDFATHER_KEY, '1');
+      }
       // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
       const [isPremium, hasGoldReward] = await Promise.all([
         getVerifiedPremiumStatus(),
@@ -250,6 +264,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       if (cancelled) return;
       setPremiumThemeAccess(isPremium);
       setGoldThemeUnlocked(hasGoldReward);
+      setMidnightGrandfathered(grandfathered);
       // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
       let migrated = themeStr;
       if (themeStr === 'ocean' || themeStr === 'sakura') {
@@ -267,11 +282,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const valid =
         false || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || false || migrated === 'minimalDark' || false ||
         migrated === 'midnight' || migrated === 'ember' || migrated === 'aurora' || migrated === 'volt' ||
-        migrated === 'candyBlue' || migrated === 'indigo';
+        migrated === 'candyBlue' || migrated === 'indigo' || migrated === 'horizon';
       if (valid) {
         const t = migrated as ThemeMode;
         const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
-        if ((!isPremium && !DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(t)) || goldLocked) {
+        // «Полночь» у «дедушки» премиум-замком не считается.
+        const premiumLocked = PREMIUM_ONLY_THEMES.includes(t) && !(t === 'midnight' && grandfathered);
+        if ((!isPremium && !DEV_THEME_UNLOCKS && premiumLocked) || goldLocked) {
           setThemeModeState(DEFAULT_THEME_MODE);
           void AsyncStorage.setItem('app_theme', DEFAULT_THEME_MODE);
         } else {
@@ -303,6 +320,12 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setThemeMode = useCallback((m: ThemeMode) => {
     if (m === 'gold' && !goldThemeUnlocked && !DEV_THEME_UNLOCKS) return;
+    if (m === 'midnight' && midnightGrandfathered) {
+      // «Дедушка»: старый бесплатный юзер «Полночи» может вернуться на неё всегда.
+      setThemeModeState(m);
+      void AsyncStorage.setItem('app_theme', m);
+      return;
+    }
     if (!DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(m) && !premiumThemeAccess) {
       void getVerifiedPremiumStatus()
         .then((isPremium) => {
@@ -319,12 +342,13 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     }
     setThemeModeState(m);
     void AsyncStorage.setItem('app_theme', m);
-  }, [goldThemeUnlocked, premiumThemeAccess]);
+  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
       const cycle = CYCLE.filter((mode) => {
         if (mode === 'gold') return goldThemeUnlocked || DEV_THEME_UNLOCKS;
+        if (mode === 'midnight' && midnightGrandfathered) return true;
         if (PREMIUM_ONLY_THEMES.includes(mode)) return premiumThemeAccess || DEV_THEME_UNLOCKS;
         return true;
       });
@@ -332,7 +356,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, [goldThemeUnlocked, premiumThemeAccess]);
+  }, [goldThemeUnlocked, premiumThemeAccess, midnightGrandfathered]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);
@@ -400,6 +424,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       statusBarLight,
       themeMode,
       isGoldThemeUnlocked: goldThemeUnlocked,
+      isMidnightGrandfathered: midnightGrandfathered,
       toggle,
       setThemeMode,
       fontSize,
@@ -409,7 +434,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
+    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, midnightGrandfathered, toggle, setThemeMode, fontSize, setFontSize, uiScale, isFlat, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

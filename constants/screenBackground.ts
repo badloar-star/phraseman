@@ -18,10 +18,12 @@ const THEME_BG_GRADIENTS: Record<ThemeMode, string[]> = {
   // «Бизнес светлый»: тёплая бумажная подложка.
   businessLight: ['#FFFFFF', '#FFFFFF'],
   // «Чёрное кино»: чистый чёрный; блум рисуется слоем CinemaBloom поверх.
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
   midnight: [...CINEMA.midnight.bgGradient3],
   ember: [...CINEMA.ember.bgGradient3],
   aurora: [...CINEMA.aurora.bgGradient3],
   volt: [...CINEMA.volt.bgGradient3],
+  horizon: [...CINEMA.horizon.bgGradient3],
   // «Кенди Блу»: тёмный сине-графитовый холод.
   candyBlue: ['#0B161B', '#050C0F', '#010203'],
   // «Индиго»: тёмный индиго-сумрак.

@@ -157,6 +157,19 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     ornament: '#C6FF34',
     shadow: '#C6FF34',
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: {
+    colors: ['#3A2450', '#1D1630', '#080510'],
+    border: 'rgba(255,173,122,0.42)',
+    glow: 'rgba(255,158,107,0.16)',
+    title: '#FFD4B0',
+    phrase: '#FFFFFF',
+    sub: '#F7A6C6',
+    iconBg: 'rgba(255,173,122,0.15)',
+    iconBorder: 'rgba(255,173,122,0.31)',
+    ornament: '#FFAD7A',
+    shadow: '#FFAD7A',
+  },
   candyBlue: {
     colors: ['#16282F', '#101E24', '#070D10'],
     border: 'rgba(178,213,229,0.34)',

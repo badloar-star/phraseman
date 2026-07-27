@@ -124,6 +124,21 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     trainer: require('../assets/images/personal_plan_tasks_fit/ember/trainer.webp'),
     flashcards: require('../assets/images/personal_plan_tasks_fit/ember/flashcards.webp'),
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/ember/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/ember/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/ember/choice.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/ember/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/ember/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/ember/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/ember/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/ember/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/ember/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/ember/flashcards.webp'),
+  },
   aurora: {
     core_lesson: require('../assets/images/personal_plan_tasks_fit/aurora/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/aurora/route_gavan.webp'),
@@ -225,6 +240,15 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     echo: require('../assets/images/personal_plan_tasks_fit/businessLight/route_echo.webp'),
   },
   ember: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/ember/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/ember/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/ember/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/ember/route_echo.webp'),
+  },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: {
     gavan: require('../assets/images/personal_plan_tasks_fit/ember/route_gavan.webp'),
     voyazh: require('../assets/images/personal_plan_tasks_fit/ember/route_voyazh.webp'),
     mitap: require('../assets/images/personal_plan_tasks_fit/ember/route_mitap.webp'),

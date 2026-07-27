@@ -13,6 +13,9 @@ const THEME_BANNERS: Record<ThemeMode, number> = {
   businessLight: require('../assets/images/settings/referral_theme/invite-businessLight-v2.webp'),
   midnight: require('../assets/images/settings/referral_theme/invite-midnight-v2.webp'),
   ember: require('../assets/images/settings/referral_theme/invite-ember-v2.webp'),
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: require('../assets/images/settings/referral_theme/invite-ember-v2.webp'),
   aurora: require('../assets/images/settings/referral_theme/invite-aurora-v2.webp'),
   volt: require('../assets/images/settings/referral_theme/invite-volt-v2.webp'),
   candyBlue: require('../assets/images/settings/referral_theme/invite-candyBlue-v2.webp'),

@@ -11,6 +11,9 @@ const LESSON_EXAM_ICONS: Record<ThemeMode, ImageSourcePropType> = {
   businessLight: require('../assets/images/generated_theme_icons/lesson-exam-businessLight.webp'),
   midnight: require('../assets/images/generated_theme_icons/lesson-exam-midnight.webp'),
   ember: require('../assets/images/generated_theme_icons/lesson-exam-ember.webp'),
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  // TODO(horizon-assets): заменить на ассеты «Горизонта» после генерации.
+  horizon: require('../assets/images/generated_theme_icons/lesson-exam-ember.webp'),
   aurora: require('../assets/images/generated_theme_icons/lesson-exam-aurora.webp'),
   volt: require('../assets/images/generated_theme_icons/lesson-exam-volt.webp'),
   candyBlue: require('../assets/images/generated_theme_icons/lesson-exam-candyBlue.webp'),

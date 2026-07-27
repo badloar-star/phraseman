@@ -227,6 +227,27 @@ export const DAILY_TASK_REWARD_TOAST_THEME_STYLES: Record<ThemeMode, DailyTaskRe
     claimBorderColor: '#E4E1FF',
     buttonIconName: 'gift-outline',
   },
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: {
+    cardColors: ['#3A2450', '#080510'],
+    sheenColors: ['rgba(255,173,122,0.2)', 'rgba(255,173,122,0.05)', 'rgba(255,173,122,0)'],
+    accentRailColor: '#FFAD7A',
+    auraColor: 'rgba(242,140,80,0.18)',
+    borderColor: 'rgba(255,173,122,0.3)', // guard-ok: параллель с полем borderColor во всех соседних темах файла (midnight/ember/aurora/volt); в рендере card всегда borderWidth: 0, видимой обводки нет
+    radius: 12,
+    shadowColor: 'rgba(0,0,0,0.74)',
+    iconName: 'sparkles-outline',
+    iconBg: 'rgba(255,173,122,0.12)',
+    iconBorderColor: 'rgba(255,173,122,0.3)',
+    iconColor: '#FFAD7A',
+    titleColor: '#FFFFFF',
+    taskColor: '#B3A6BE',
+    xpColor: '#FFC96B',
+    claimBg: '#FFAD7A',
+    claimText: '#2A1408',
+    claimBorderColor: '#FFD4B0',
+    buttonIconName: 'sparkles-outline',
+  },
   midnight: {
     cardColors: ['#1A1D2C', '#0D0E16'],
     sheenColors: ['rgba(143,160,255,0.2)', 'rgba(143,160,255,0.05)', 'rgba(143,160,255,0)'],

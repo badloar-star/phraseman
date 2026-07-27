@@ -17,6 +17,8 @@ export const WEEKLY_COMPASS_ICON_ASSET_PATHS: Record<ThemeMode, string> = {
   // Новые темы показывают иконку minimalDark (новые ассеты не требуются).
   candyBlue: 'assets/images/weekly_compass_icons/candyBlue.webp',
   indigo: 'assets/images/weekly_compass_icons/indigo.webp',
+  // TODO(horizon-assets): заменить на ассет «Горизонта» после генерации.
+  horizon: 'assets/images/weekly_compass_icons/ember.webp',
 };
 
 export const WEEKLY_COMPASS_ICON_GENERATION_ORDER: readonly ThemeMode[] = [
@@ -45,6 +47,8 @@ export const WEEKLY_COMPASS_ICON_DALLE_PROMPTS: Record<ThemeMode, string> = {
   volt: 'Centered 3D compass icon for a language learning app, black cinema finish, electric lime volt glow, neon luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   candyBlue: 'Centered 3D compass icon for a language learning app, deep blue-charcoal enamel, candy blue glass glow, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
   indigo: 'Centered 3D compass icon for a language learning app, dusk indigo enamel, soft lavender glow, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
+  // зачем: «Горизонт» — бесплатная тема-витрина (2026-07-27), закатный персик/роза на сливовом сумраке.
+  horizon: 'Centered 3D compass icon for a language learning app, plum-black cinema finish, warm peach metal (#FFAD7A) and rose glow (#FF5E8A), sunset-lit luminous needle, premium object cutout, transparent background, no text, no letters, no logo, no hands, no map, soft studio rim light, 1024 square.',
 };
 
 // Add one generated asset at a time, then move its require from fallback to the

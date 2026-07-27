@@ -12420,6 +12420,71 @@
     <div id="tn-ai-result" style="margin-top:14px"></div>
   </div>
 
+  <!-- зачем 2026-07-27: аудио-режимы Learning V2, отобранные владельцем.
+       Отдельная панель, потому что у них свой генератор: ловушки строятся
+       на слух (долгота гласного, звонкость, слипание слов), а не на письме. -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🎧 Задания на слух</div>
+    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
+      Три режима: выбор на слух, пары звуков (ship/sheep) и диктант. Варианты похожи именно
+      ЗВУЧАНИЕМ — прочитав их глазами, ответ угадать нельзя. Озвучка записывается голосом
+      обучения при публикации, поэтому черновики бесплатны.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="tn-audio-mode" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="listen_choose">🎧 Выбор на слух</option>
+        <option value="sound_contrast">🔊 Пары звуков</option>
+        <option value="listen_build">✍️ Диктант</option>
+      </select>
+      <select id="tn-audio-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="A1">A1 — новичок</option>
+        <option value="A2" selected>A2 — базовый</option>
+        <option value="B1">B1 — средний</option>
+        <option value="B2">B2 — уверенный</option>
+      </select>
+      <select id="tn-audio-batches" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="1" selected>1 пачка (~10)</option>
+        <option value="2">2 пачки (~20)</option>
+        <option value="3">3 пачки (~30)</option>
+      </select>
+      <button type="button" onclick="tnAudioGen(true)" title="Показать примеры, ничего не сохраняя и не тратя на озвучку"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 Примеры</button>
+      <button type="button" onclick="tnAudioGen(false)" title="Создать задания на проверку"
+        style="background:#0891b2;border:1px solid #22d3ee;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🎧 Создать</button>
+      <span id="tn-audio-status" style="font-size:13px;color:#9ca3af"></span>
+    </div>
+    <div id="tn-audio-result" style="margin-top:14px"></div>
+  </div>
+
+  <!-- Автодобор: сервер сам смотрит, каких заданий не хватает раундам. -->
+  <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
+    <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:4px">🧩 Добрать до полного комплекта</div>
+    <p style="margin:0 0 12px;font-size:12px;color:#9ca3af;line-height:1.5">
+      Сервер сам считает, каких заданий не хватает каждому раунду, и заказывает только их —
+      сначала те, без которых раунд не соберётся. Сначала посмотрите план: он показывает
+      заказ, ничего не тратя.
+    </p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <select id="tn-fill-level" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="A1">A1 — новичок</option>
+        <option value="A2" selected>A2 — базовый</option>
+        <option value="B1">B1 — средний</option>
+        <option value="B2">B2 — уверенный</option>
+      </select>
+      <select id="tn-fill-max" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
+        <option value="12">до 12 заданий</option>
+        <option value="30" selected>до 30 заданий</option>
+        <option value="60">до 60 заданий</option>
+      </select>
+      <button type="button" onclick="tnFillPool(true)" title="Показать план заказа, ничего не тратя"
+        style="background:#1a2a3a;border:1px solid #2a4a6a;color:#93c5fd;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">👁 План</button>
+      <button type="button" onclick="tnFillPool(false)" title="Заказать недостающие задания"
+        style="background:#16a34a;border:1px solid #22c55e;color:#fff;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🧩 Добрать</button>
+      <span id="tn-fill-status" style="font-size:13px;color:#9ca3af"></span>
+    </div>
+    <div id="tn-fill-result" style="margin-top:14px"></div>
+  </div>
+
   <!-- Шаг 2: проверка -->
   <div style="background:#12121a;border-radius:12px;padding:16px 18px;margin-bottom:16px;max-width:1080px">
     <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — проверить и опубликовать</div>
@@ -36257,7 +36322,15 @@
     find_oddity: 'Так не говорят',
     translate_build: 'Собери фразу',
     time_attack: 'Тайм-атака',
+    // зачем 2026-07-27: аудио-режимы Learning V2, отобранные владельцем.
+    // Озвучка генерится при публикации задания, не при создании черновика.
+    listen_choose: 'Выбор на слух',
+    sound_contrast: 'Пары звуков',
+    listen_build: 'Диктант',
+    speed_match: 'Пары на скорость',
   };
+  /** Режимы, которым нужна озвучка — у них своя кнопка генерации. */
+  const TN_AUDIO_MODES = ['listen_choose', 'sound_contrast', 'listen_build'];
   const TN_DIFF_LABEL = { 1: 'Лёгкое', 2: 'Среднее', 3: 'Сложное' };
 
   function tnError(e) {
@@ -36306,6 +36379,36 @@
           const color = ok ? (task.mode === 'find_oddity' ? '#fca5a5' : '#4ade80') : '#9ca3af';
           return `<div style="font-size:13px;padding:3px 0;color:${color}">${mark} ${escapeHtml(o)}</div>`;
         }).join('');
+    } else if (task.mode === 'listen_choose' || task.mode === 'sound_contrast') {
+      // зачем 2026-07-27: аудио-режимы. Ревьюер обязан УСЛЫШАТЬ озвучку —
+      // на глаз нельзя проверить, различимы ли варианты на слух. Плеер прямо
+      // в карточке; у черновика озвучки ещё нет (делается при публикации).
+      const opts = Array.isArray(p.options) ? p.options : [];
+      const audio = String(p.audioUri || '');
+      body = audio
+        ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
+        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Озвучка появится при публикации</div>`;
+      body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Прозвучит: <b style="color:#fafafa">${escapeHtml(p.phrase || '')}</b></div>`;
+      body += opts.map((o, i) => {
+        const ok = i === p.correctIndex;
+        return `<div style="font-size:13px;padding:3px 0;color:${ok ? '#4ade80' : '#9ca3af'}">${ok ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`;
+      }).join('');
+    } else if (task.mode === 'listen_build') {
+      const bank = Array.isArray(p.wordBank) ? p.wordBank : [];
+      const correct = Array.isArray(p.correctTokens) ? p.correctTokens : [];
+      const audio = String(p.audioUri || '');
+      body = audio
+        ? `<audio controls preload="none" src="${escapeHtml(audio)}" style="width:100%;height:32px;margin-bottom:8px"></audio>`
+        : `<div style="font-size:12px;color:#fbbf24;background:rgba(251,191,36,0.1);border-radius:6px;padding:6px 9px;margin-bottom:8px">Озвучка появится при публикации</div>`;
+      body += `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase || '')}</div>`;
+      body += `<div style="font-size:13px;color:#9ca3af;margin-bottom:6px">Чипы: ${bank.map((w) => {
+        // Дистрактор (нет в правильном ответе) подсвечен — видно ловушку.
+        const isDecoy = !correct.includes(w);
+        const bg = isDecoy ? 'rgba(251,191,36,0.14)' : '#1a1a24';
+        const color = isDecoy ? '#fbbf24' : '#e5e7eb';
+        return `<span style="background:${bg};color:${color};border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`;
+      }).join('')}</div>`;
+      body += `<div style="font-size:13px;color:#4ade80">Ответ: ${escapeHtml(correct.join(' '))}</div>`;
     } else if (task.mode === 'translate_build') {
       const bank = Array.isArray(p.wordBank) ? p.wordBank : [];
       body = `<div style="font-size:15px;font-weight:700;color:#fafafa;margin-bottom:8px">${escapeHtml(p.phrase)}</div>`
@@ -36364,6 +36467,10 @@
     { mode: 'fill_gap', icon: '␣', name: 'Пропущенное слово' },
     { mode: 'find_oddity', icon: '🔍', name: 'Так не говорят' },
     { mode: 'translate_build', icon: '🧩', name: 'Собери фразу' },
+    // Аудио-режимы: у карточек появляется плашка озвучки.
+    { mode: 'listen_choose', icon: '🎧', name: 'Выбор на слух' },
+    { mode: 'sound_contrast', icon: '🔊', name: 'Пары звуков' },
+    { mode: 'listen_build', icon: '✍️', name: 'Диктант' },
   ];
   let _tnFolder = '';
   let _fnTnBulk = null, _fnTnRegen = null;
@@ -36635,6 +36742,125 @@
    * каждого режима своё». Один вызов = 4 раунда × 6 заданий, четыре типа
    * вопросов, каждый ложится в свой раздел пула по режиму.
    */
+  /**
+   * Генерация заданий на слух.
+   *
+   * зачем отдельная кнопка: у аудио-режимов свой генератор — ловушки строятся
+   * на ЗВУЧАНИИ (долгота гласного, звонкость, слипание слов), а не на письме.
+   * Общий промпт давал бы варианты, неразличимые ухом, и задание превращалось
+   * бы в подбрасывание монеты.
+   */
+  let _fnTnAudioGen = null;
+  window.tnAudioGen = async function tnAudioGen(dryRun) {
+    const status = document.getElementById('tn-audio-status');
+    const result = document.getElementById('tn-audio-result');
+    const mode = document.getElementById('tn-audio-mode')?.value || 'listen_choose';
+    if (status) status.textContent = dryRun ? 'Придумываю…' : 'Придумываю, это до минуты…';
+    if (result) result.innerHTML = '';
+    try {
+      _fnTnAudioGen = tnFn(_fnTnAudioGen, 'adminGenerateTournamentAudioTasksAi');
+      const res = await _fnTnAudioGen({
+        mode,
+        level: document.getElementById('tn-audio-level')?.value || 'A2',
+        batches: Number(document.getElementById('tn-audio-batches')?.value || 1),
+        dryRun: dryRun === true,
+      });
+      const data = res?.data || {};
+      if (status) status.textContent = '';
+
+      const samples = Array.isArray(data.samples) ? data.samples : [];
+      const head = dryRun
+        ? `<div style="font-size:13px;color:#93c5fd;margin-bottom:10px">Примеры (не сохранены): принято <b>${data.accepted || 0}</b></div>`
+        : `<div style="font-size:13px;color:#4ade80;margin-bottom:10px">Создано <b>${data.written || 0}</b> заданий — лежат «На проверку». Озвучка запишется при публикации.</div>`;
+
+      const cards = samples.map((task) => {
+        const pl = task.payload || {};
+        const note = task.aiMeta && task.aiMeta.note ? task.aiMeta.note : '';
+        let inner = '';
+        if (mode === 'listen_build') {
+          const correct = Array.isArray(pl.correctTokens) ? pl.correctTokens : [];
+          const bank = Array.isArray(pl.wordBank) ? pl.wordBank : [];
+          inner = `<div style="font-size:14px;font-weight:700;color:#fafafa">${escapeHtml(pl.phrase || '')}</div>`
+            + `<div style="font-size:12px;color:#9ca3af;margin-top:6px">Чипы: ${bank.map((w) => {
+              const decoy = !correct.includes(w);
+              return `<span style="background:${decoy ? 'rgba(251,191,36,0.14)' : '#1a1a24'};color:${decoy ? '#fbbf24' : '#e5e7eb'};border-radius:5px;padding:2px 7px;margin:0 3px 4px 0;display:inline-block">${escapeHtml(w)}</span>`;
+            }).join('')}</div>`;
+        } else {
+          const opts = Array.isArray(pl.options) ? pl.options : [];
+          inner = `<div style="font-size:12px;color:#9ca3af">Прозвучит: <b style="color:#fafafa">${escapeHtml(pl.phrase || '')}</b></div>`
+            + opts.map((o, i) => `<div style="font-size:13px;padding:2px 0;color:${i === pl.correctIndex ? '#4ade80' : '#9ca3af'}">${i === pl.correctIndex ? '✓' : '&nbsp;&nbsp;'} ${escapeHtml(o)}</div>`).join('');
+        }
+        const noteRow = note
+          ? `<div style="font-size:11.5px;color:#c4b5fd;margin-top:6px">${escapeHtml(note)}</div>` : '';
+        return `<div style="background:#0f0f16;border-radius:10px;padding:11px 13px;margin-bottom:8px">${inner}${noteRow}</div>`;
+      }).join('');
+
+      const rejected = Array.isArray(data.rejectedBatches) ? data.rejectedBatches.flat() : [];
+      const rejectedRow = rejected.length
+        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Отсеяно проверкой: ${escapeHtml(rejected.slice(0, 4).join(' · '))}</div>` : '';
+
+      if (result) result.innerHTML = head + cards + rejectedRow;
+      if (!dryRun) tnOpenTab();
+    } catch (e) {
+      if (status) status.textContent = '';
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#f87171">${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
+  /**
+   * Автодобор комплекта.
+   *
+   * зачем: раньше приходилось угадывать, каких заданий не хватает — статистика
+   * считала готовность по сумме сложностей и врала. Сервер сам смотрит ячейки
+   * «режим × сложность» и заказывает только дырявые, сначала блокирующие.
+   */
+  let _fnTnFill = null;
+  window.tnFillPool = async function tnFillPool(dryRun) {
+    const status = document.getElementById('tn-fill-status');
+    const result = document.getElementById('tn-fill-result');
+    if (status) status.textContent = dryRun ? 'Считаю план…' : 'Добираю, это может занять пару минут…';
+    if (result) result.innerHTML = '';
+    try {
+      _fnTnFill = tnFn(_fnTnFill, 'adminFillTournamentPool');
+      const res = await _fnTnFill({
+        level: document.getElementById('tn-fill-level')?.value || 'A2',
+        maxTasks: Number(document.getElementById('tn-fill-max')?.value || 30),
+        dryRun: dryRun === true,
+      });
+      const data = res?.data || {};
+      if (status) status.textContent = '';
+
+      if (data.complete) {
+        if (result) result.innerHTML = '<div style="font-size:13px;color:#4ade80">Комплект полный — добирать нечего.</div>';
+        return;
+      }
+
+      const orders = Array.isArray(data.orders) ? data.orders : [];
+      const orderRows = orders.map((o) =>
+        `<div style="font-size:13px;padding:3px 0;color:#cbd5e1">${escapeHtml(TN_MODE_LABEL[o.mode] || o.mode)} · ${TN_DIFF_LABEL[o.difficulty] || o.difficulty} → <b style="color:#93c5fd">${o.count}</b></div>`).join('');
+
+      if (dryRun) {
+        if (result) {
+          result.innerHTML = `<div style="font-size:13px;color:#93c5fd;margin-bottom:8px">Будет заказано (ничего не потрачено):</div>${orderRows}`;
+        }
+        return;
+      }
+
+      const results = Array.isArray(data.results) ? data.results : [];
+      const done = results.filter((r) => r.ok).reduce((sum, r) => sum + (r.written || 0), 0);
+      const failed = results.filter((r) => !r.ok);
+      const failRow = failed.length
+        ? `<div style="font-size:12px;color:#fbbf24;margin-top:8px">Не получилось: ${failed.map((r) => escapeHtml(TN_MODE_LABEL[r.mode] || r.mode)).join(', ')} — можно повторить.</div>` : '';
+      if (result) {
+        result.innerHTML = `<div style="font-size:13px;color:#4ade80;margin-bottom:8px">Создано <b>${done}</b> заданий — лежат «На проверку».</div>${orderRows}${failRow}`;
+      }
+      tnOpenTab();
+    } catch (e) {
+      if (status) status.textContent = '';
+      if (result) result.innerHTML = `<div style="font-size:13px;color:#f87171">${escapeHtml(tnError(e))}</div>`;
+    }
+  };
+
   let _fnTnAiTournament = null;
   window.tnAiTournament = async function tnAiTournament(dryRun) {
     const status = document.getElementById('tn-ai-status');

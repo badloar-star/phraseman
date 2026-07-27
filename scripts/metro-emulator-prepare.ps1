@@ -67,12 +67,41 @@ if ($serials.Count -lt 1) {
     if (-not $pick) { $pick = $avds | Select-Object -First 1 }
     if ($pick) {
       Say "Эмулятор не запущен — поднимаю «$pick» (это ~1 минута)..."
-      Start-Process -FilePath $emulatorExe `
-        -ArgumentList @("-avd", $pick, "-gpu", "host", "-no-boot-anim") | Out-Null
+      # зачем (владелец 2026-07-27: «максимум ОЗУ и чтобы не лагало»):
+      #   -gpu host        — рисует видеокарта хоста, а не процессор (главный
+      #                      источник лагов: без него Android рендерит софтварно);
+      #   -memory 8192     — 8 ГБ. На машине 31 ГБ, но свободно ~6, и ставить 16
+      #                      нельзя: Windows уйдёт в своп и станет МЕДЛЕННЕЕ;
+      #   -cores 6         — из 24 ядер. Больше не даёт прироста, но отнимает CPU
+      #                      у Metro, который собирает бандл параллельно;
+      #   -no-boot-anim    — минус несколько секунд загрузки;
+      #   -no-audio        — звук эмулятора не нужен и жрёт такты;
+      #   -netdelay/-netspeed none/full — сеть без искусственных задержек.
+      Start-Process -FilePath $emulatorExe -ArgumentList @(
+        "-avd", $pick,
+        "-gpu", "host",
+        "-memory", "8192",
+        "-cores", "6",
+        "-no-boot-anim",
+        "-no-audio",
+        "-netdelay", "none",
+        "-netspeed", "full"
+      ) | Out-Null
+      # зачем: `adb shell getprop` БЕЗ -s падает с «more than one device», как
+      # только запущено два эмулятора — цикл ждал бы впустую. Опрашиваем каждый
+      # серийник поимённо и ждём, пока хоть один догрузится.
       for ($i = 0; $i -lt 120; $i++) {
         Start-Sleep -Seconds 2
-        $booted = (& $adb shell getprop sys.boot_completed 2>$null | Select-Object -First 1)
-        if ("$booted".Trim() -eq "1") { break }
+        $found = @()
+        foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
+          if ($line -match '^(emulator-\d+)\s+device\s*$') { $found += $Matches[1] }
+        }
+        $ready = $false
+        foreach ($cand in $found) {
+          $booted = (& $adb -s $cand shell getprop sys.boot_completed 2>$null | Select-Object -First 1)
+          if ("$booted".Trim() -eq "1") { $ready = $true }
+        }
+        if ($ready) { break }
       }
       $serials = @()
       foreach ($line in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
@@ -83,10 +112,19 @@ if ($serials.Count -lt 1) {
   }
 }
 
-# ── 3. adb reverse ──────────────────────────────────────────────────────────
-foreach ($emu in ($serials | Select-Object -Unique)) {
+# ── 3. adb reverse на КАЖДЫЙ эмулятор ───────────────────────────────────────
+# зачем (владелец: «два эмулятора не должны мешать друг другу»): reverse — это
+# настройка КОНКРЕТНОГО устройства, а не глобальная. Один Metro спокойно кормит
+# сколько угодно эмуляторов, но каждому нужен свой проброс порта; раньше его
+# получал только первый, и второй показывал «Failed to download remote update».
+# Эмуляторы живут на разных портах (5554, 5556, …) и друг друга не вытесняют.
+$unique = @($serials | Select-Object -Unique)
+foreach ($emu in $unique) {
   & $adb -s $emu reverse "tcp:$Port" "tcp:$Port" | Out-Null
   Ok "$emu — adb reverse tcp:$Port готов."
+}
+if ($unique.Count -gt 1) {
+  Say "Эмуляторов в работе: $($unique.Count). Metro один на всех, приложение откроется на каждом."
 }
 
 if ($serials.Count -lt 1) {

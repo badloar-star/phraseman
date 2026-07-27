@@ -13509,7 +13509,19 @@
   }
 
   const _googleProvider = new GoogleAuthProvider();
+  // зачем: владелец заходит с разных устройств и аккаунтов Google в одном
+  // браузере — без select_account Google молча берёт «последний» аккаунт и
+  // логин уходит не в тот, что имеет права admin.
+  _googleProvider.setCustomParameters({ prompt: 'select_account' });
   setAdminSignInBusy(false);
+
+  // зачем: на телефоне popup-вход блокируется/зависает, поэтому там сразу
+  // редирект. Редирект возвращает пользователя обратно на эту же страницу, и
+  // без getRedirectResult вход просто теряется — экран логина показывался
+  // снова по кругу. Это и была потеря доступа с телефона.
+  function isMobileAdminBrowser() {
+    return /Android|iPhone|iPad|iPod|Mobile/i.test(String(navigator.userAgent || ''));
+  }
 
   const _adminAuthPersistenceReady = setPersistence(auth, browserLocalPersistence)
     .catch((e) => {
@@ -13523,12 +13535,26 @@
       return null;
     });
 
+  // Завершаем начатый на прошлой загрузке редирект-вход до того, как экран
+  // логина успеет моргнуть. Ошибку не показываем: если редирект не начинался,
+  // итоговое состояние всё равно разберёт onAuthStateChanged.
+  const _adminRedirectSignInReady = _adminAuthPersistenceReady
+    .then(() => getRedirectResult(auth))
+    .catch((e) => {
+      console.warn('admin redirect sign-in', e);
+      return null;
+    });
+
   async function handleAdminGoogleSignIn() {
     setLoginError('');
     setAdminSignInBusy(true, 'ОТКРЫВАЕМ GOOGLE...');
     try {
       await _adminAuthPersistenceReady;
       await setPersistence(auth, browserLocalPersistence);
+      if (isMobileAdminBrowser()) {
+        await signInWithRedirect(auth, _googleProvider);
+        return;
+      }
       await signInWithPopup(auth, _googleProvider);
     } catch (err) {
       const c = err?.code;
@@ -13539,6 +13565,7 @@
       const tryRedirect =
         c === 'auth/popup-blocked' ||
         c === 'auth/operation-not-supported-in-this-environment' ||
+        c === 'auth/web-storage-unsupported' ||
         c === 'auth/internal-error';
       if (tryRedirect) {
         try {
@@ -13748,6 +13775,11 @@
         enableLocalAdminVisualTest();
         return;
       }
+      // зачем: после возврата с Google observer сначала стреляет с user=null и
+      // только потом с реальным пользователем. Без ожидания редиректа телефон
+      // видел экран логина и выглядел так, будто доступ пропал.
+      await _adminRedirectSignInReady;
+      if (auth.currentUser) return;
       setAdminSignInBusy(false);
       _adminAppStarted = false;
       showAdminLoginShell();

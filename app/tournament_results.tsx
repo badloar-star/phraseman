@@ -47,7 +47,7 @@ import {
   useTournamentRoom,
   type RoomPlayer,
 } from './tournament_client';
-import { getStableId } from './stable_id';
+import { getStableId, peekStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
 import CollectibleDropModal from '../components/CollectibleDropModal';
 import { useOverlayVisible } from '../components/OverlayArbiter';
@@ -99,7 +99,18 @@ export default function TournamentResultsScreen() {
   const goBack = useCallback(() => safeRouterBack(router, '/(tabs)/tournaments' as any), [router]);
 
   const { room, status, retry } = useTournamentRoom(roomId);
-  const [myId, setMyId] = useState<string | null>(null);
+  /**
+   * Свой id — СИНХРОННО с первого кадра.
+   *
+   * зачем 2026-07-27 (владелец: «если открыть разбор или поделиться, а потом
+   * закрыть и вернуться на подиум, то он пропал и написано „результаты
+   * считаются“»): id грузился только в эффекте, поэтому на первом кадре был
+   * null → своё место не находилось → подиум подменялся заглушкой. Видно это
+   * было именно при ВОЗВРАТЕ, когда экран монтируется заново, а данные комнаты
+   * уже есть. peekStableId — тот же приём, что в остальном приложении
+   * (Performance Bible: первый кадр сразу в финальном виде).
+   */
+  const [myId, setMyId] = useState<string | null>(() => peekStableId());
   const [claimState, setClaimState] = useState<'idle' | 'claiming' | 'done' | 'failed'>('idle');
   const claimedRef = useRef(false);
 
@@ -319,18 +330,11 @@ export default function TournamentResultsScreen() {
           ) : (
             <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           )}
-          {/* зачем: владелец — «после турнира можно смотреть свои ответы,
-              ошибки и правильные варианты». Ставим ВЫШЕ «На главную»: разбор
-              полезнее выхода, и уйти можно на шаг ниже. */}
-          <V2Cta
-            tone="ghost"
-            // as any: типы маршрутов expo-router генерируются при сборке,
-            // новый экран появится в них после перезапуска Metro.
-            onPress={() => router.push({ pathname: '/tournament_review' as any, params: { roomId: roomId ?? '' } })}
-            left={<Ionicons name="list-outline" size={18} color={P.accent} />}
-          >
-            Разбор ответов
-          </V2Cta>
+          {/* зачем 2026-07-27 (владелец: «разбор ответов пока убери кнопку
+              после турнира, удали её, она пока не нужна»): вход в разбор снят.
+              Сам экран tournament_review и серверный callable оставлены — они
+              рабочие, и вернуть кнопку будет одной строкой, если владелец
+              передумает. */}
           <V2Cta tone="ghost" onPress={() => router.replace('/tournaments')}>На главную</V2Cta>
         </View>
       </ScrollView>

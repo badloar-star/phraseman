@@ -127,6 +127,11 @@ const REVIEWED_MOTION_OWNERS: Record<string, MotionReview> = {
   'components/premium_celebration/AuroraBackground.tsx': owned('Aurora receives an explicit active owner prop and cancels both worklets.', ['if (!active)', 'cancelAnimation(drift)', 'cancelAnimation(breathe)']),
   'components/reward_v2/RewardCardV2.tsx': runtime('Reward halo requires focused foreground runtime without replaying its entrance.', ['!rewardRuntimeActive', 'entrancePlayedRef.current', 'haloLoop.stop()']),
   'components/stats/AiBlockNote.tsx': guarded('AI note motion uses screen focus and AppState.'),
+  // зачем 2026-07-27: кнопка озвучки турнира (аудио-режимы) пришла с бесконечным
+  // пульсом и не была внесена в реестр — рэтчет валился. Гард в файле уже есть:
+  // пульс живёт только пока звук реально играет И экран в фокусе, а уход с
+  // экрана глушит и анимацию, и сам плеер.
+  'components/tournament/TournamentAudioButton.tsx': runtime('Audio pulse runs only while the clip plays on a focused foreground screen.', ['if (!isPlaying || !isFocused)', 'pulse.value = 1']),
   'components/today/TodayAmbientCompass.tsx': runtime('Compass breath/drift loops require focused foreground runtime and respect reduced motion.', ['if (active && !reduceMotion)', 'cancelAnimation(breath)']),
 };
 

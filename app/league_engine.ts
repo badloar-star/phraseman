@@ -638,6 +638,33 @@ export const invalidateLeagueGroupCache = () => {
 };
 
 /**
+ * Схлопнулась ли свежая группа относительно уже известной.
+ *
+ * зачем: 2026-07-27 владелец видел «2 участника → сразу 1 → упс, ты тут один →
+ * бесконечный скелет». Причина: getOrCreateLeagueGroup отдаёт результат
+ * fetchGroupMembers БЕЗ проверки размера. Если документ league_groups ещё не
+ * долетел до реплики (или всех, кроме меня, отфильтровал identityHidden), в ответ
+ * приходит массив из одного меня — и checkLeagueOnAppOpen честно писал его в
+ * league_state_v3, УНИЧТОЖАЯ реальных участников. Дальше 6-часовой троттл
+ * консервировал испорченный кэш, поэтому симптом не лечился перезаходом.
+ *
+ * Правило: группа из одного меня НИКОГДА не затирает группу, где людей больше.
+ * Реальный уход участников так не теряется — их вычищает недельный ролловер и
+ * серверный leagueFinalizeCron, а не разовое чтение. Чистая функция.
+ */
+export const isCollapsedLeagueGroup = (
+  fresh: GroupMember[] | null | undefined,
+  known: GroupMember[] | null | undefined,
+): boolean => {
+  const freshList = Array.isArray(fresh) ? fresh : [];
+  const knownList = Array.isArray(known) ? known : [];
+  // Схлопыванием считаем только падение до «меня одного»: любой ответ с двумя и
+  // более участниками — нормальные данные, даже если кто-то действительно вышел.
+  if (freshList.length > 1) return false;
+  return freshList.length < knownList.length;
+};
+
+/**
  * Возвращает группу из Firestore. null = remote недоступен / пуст —
  * вызывающий должен решить (использовать предыдущий state, резервную группу и т.д.).
  * Раньше при недоступности возвращалась локальная группа с одним пользователем,
@@ -665,7 +692,12 @@ const fetchGroupForUser = async (
   );
   if (remoteGroup && remoteGroup.length > 0) {
     const repairedRemoteGroup = ensureCurrentUserInGroup(remoteGroup, myName, myWeekPoints, myUid);
-    _groupCache = { group: repairedRemoteGroup, ts: Date.now() };
+    // зачем: схлопнутый ответ (только я) не должен попадать в 60-секундный кэш —
+    // иначе повторные входы в течение минуты гарантированно получали бы «ты тут
+    // один», даже когда следующий запрос вернул бы полную группу.
+    if (!isCollapsedLeagueGroup(repairedRemoteGroup, _groupCache?.group)) {
+      _groupCache = { group: repairedRemoteGroup, ts: Date.now() };
+    }
     return repairedRemoteGroup;
   }
   return null;
@@ -1006,7 +1038,10 @@ export const checkLeagueOnAppOpen = async (
       group:    rolloverGroup,
     });
 
-    const remote = await fetchGroupForUser(result.newLeagueId, myName, 0);
+    // зачем: та же защита от схлопывания, что и в ветке «та же неделя» ниже —
+    // неполный ответ не должен затирать перенесённую группу (см. isCollapsedLeagueGroup).
+    const rawRemote = await fetchGroupForUser(result.newLeagueId, myName, 0);
+    const remote = isCollapsedLeagueGroup(rawRemote, rolloverGroup) ? null : rawRemote;
     const finalGroup = remote ?? rolloverGroup;
     const newState: LeagueState = {
       leagueId: result.newLeagueId,
@@ -1031,7 +1066,12 @@ export const checkLeagueOnAppOpen = async (
   // При откате часов назад (currentWeekId < state.weekId) тоже попадаем сюда:
   // ролловер не делаем и группу тянем за state.weekId — за «настоящую» неделю.
   const effectiveWeekId = compareWeekIds(currentWeekId, state.weekId) >= 0 ? currentWeekId : state.weekId;
-  const freshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, effectiveWeekId);
+  const rawFreshGroup = await fetchGroupForUser(state.leagueId, myName, myWeekPoints, effectiveWeekId);
+  // зачем: неполный ответ Firestore (документ группы не долетел до реплики) приходил
+  // как валидная группа из одного меня и затирал реальных участников в кэше — владелец
+  // видел «2 участника → 1 → упс, ты тут один». Схлопнутый ответ отбрасываем и живём
+  // на прошлой группе, как при полном отказе сети. Лишних чтений это не создаёт.
+  const freshGroup = isCollapsedLeagueGroup(rawFreshGroup, state.group) ? null : rawFreshGroup;
   const updatedGroup = freshGroup ?? ensureCurrentUserInGroup(state.group, myName, myWeekPoints, myUid)
     .sort((a, b) => b.points - a.points);
 

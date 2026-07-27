@@ -97,9 +97,31 @@ function enabledSlots(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: numb
 function pickNextSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
   const list = enabledSlots(slots);
   if (list.length === 0) return null;
-  const upcoming = list.find((slot) => slot.startsAtMs > Date.now() - 20 * 60 * 1000);
+  // зачем 2026-07-27: было `startsAtMs > Date.now() - 20 мин` — экран считал
+  // ближайшим слот, который УЖЕ начался до 20 минут назад. Войти в него нельзя
+  // (сервер закрывает вход ровно в startsAt), поэтому кнопка «Играть» вела в
+  // отменённый/идущий турнир и всегда падала с «Не удалось войти». Ближайший —
+  // только тот, в который реально можно войти: старт ещё впереди.
+  const upcoming = list.find((slot) => slot.startsAtMs > Date.now());
   if (upcoming) return upcoming;
   return { ...list[0], startsAtMs: list[0].startsAtMs + 24 * 60 * 60 * 1000 };
+}
+
+/**
+ * Слот, который идёт прямо сейчас — для режима зрителя.
+ *
+ * зачем: турнир длится ~7 минут (4 раунда + таблицы + награды). Берём слот,
+ * стартовавший не более 20 минут назад: раньше это же окно ошибочно
+ * использовалось для ВХОДА, из-за чего кнопка «Играть» вела в турнир с уже
+ * закрытым входом. Для просмотра окно корректно, для входа — нет.
+ */
+const LIVE_SLOT_WINDOW_MS = 20 * 60 * 1000;
+
+function pickLiveSlot(slots: ScheduleSlot[]): (ScheduleSlot & { startsAtMs: number }) | null {
+  const now = Date.now();
+  return enabledSlots(slots)
+    .filter((slot) => slot.startsAtMs <= now && now - slot.startsAtMs < LIVE_SLOT_WINDOW_MS)
+    .pop() ?? null;
 }
 
 const DEFAULT_ENTRY_GEMS = 3;
@@ -164,7 +186,19 @@ export default function TournamentsScreen() {
   }, []);
 
   const nextSlot = useMemo(() => pickNextSlot(schedule?.slots ?? []), [schedule]);
+  // зачем 2026-07-27: слот для ВХОДА и комната для ПРОСМОТРА — разные вещи.
+  // nextSlot теперь строго будущий (иначе кнопка «Играть» вела в турнир с
+  // закрытым входом), но зритель должен видеть идущий прямо сейчас турнир.
+  // Поэтому слушаем комнату недавно стартовавшего слота, если он есть, и
+  // только иначе — комнату ближайшего будущего.
+  const watchSlot = useMemo(() => pickLiveSlot(schedule?.slots ?? []) ?? nextSlot, [schedule, nextSlot]);
   const roomId = useMemo(() => {
+    if (!watchSlot) return null;
+    const timezone = watchSlot.timezone || 'Europe/Moscow';
+    return tournamentRoomId(watchSlot.slotId, timezone, tournamentDateKey(timezone));
+  }, [watchSlot]);
+  // Комната, в которую реально идёт вход (будущий слот) — она же для лобби.
+  const joinRoomId = useMemo(() => {
     if (!nextSlot) return null;
     const timezone = nextSlot.timezone || 'Europe/Moscow';
     return tournamentRoomId(nextSlot.slotId, timezone, tournamentDateKey(timezone));
@@ -189,12 +223,12 @@ export default function TournamentsScreen() {
    * Двойной тап отсекается флагом joining, иначе спишется дважды.
    */
   const enterLobby = useCallback(async () => {
-    if (!roomId || joining) return;
+    if (!joinRoomId || joining) return;
     setJoining(true);
     const balanceBefore = coins;
     setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
     try {
-      const result = await joinTournament(roomId) as { gemsLeft?: number; roomId?: string } | undefined;
+      const result = await joinTournament(joinRoomId) as { gemsLeft?: number; roomId?: string } | undefined;
       if (typeof result?.gemsLeft === 'number') setCoins(Math.max(0, result.gemsLeft)); // guard-ok: согласование с серверным балансом
       setConfirmVisible(false);
       setJoinError('');
@@ -202,7 +236,7 @@ export default function TournamentsScreen() {
       // при заполнении сажает игрока в СЛЕДУЮЩУЮ комнату того же слота. Идём в
       // ту комнату, которую вернул сервер, иначе игрок открыл бы лобби чужой
       // (полной) комнаты и не увидел бы себя среди участников.
-      router.push({ pathname: '/tournament_lobby', params: { roomId: result?.roomId || roomId } });
+      router.push({ pathname: '/tournament_lobby', params: { roomId: result?.roomId || joinRoomId } });
     } catch (error) {
       setCoins(balanceBefore);
       const code = String((error as { message?: string })?.message ?? '');
@@ -216,7 +250,7 @@ export default function TournamentsScreen() {
     } finally {
       setJoining(false);
     }
-  }, [roomId, joining, router, coins, entryGems]);
+  }, [joinRoomId, joining, router, coins, entryGems]);
 
   /**
    * зачем: дев-кнопка владельца — «нажал и сразу играю с ботами», не дожидаясь
@@ -337,7 +371,7 @@ export default function TournamentsScreen() {
             ) : (
               <V2Cta
                 onPress={openConfirm}
-                disabled={!roomId || joining || notEnoughGems}
+                disabled={!joinRoomId || joining || notEnoughGems}
                 right={nextSlot && !notEnoughGems ? (
                   <View style={styles.ctaPrice}>
                     <Image

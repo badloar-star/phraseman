@@ -1873,7 +1873,6 @@ export default function HomeScreen() {
             });
             if (mountedRef.current)
                 markHomeStatsReady();
-            const taskList = await getTodayTasksSafe(studyTarget);
             // Имя для лиги: либо настоящее, либо анонимная подстановка на основе уровня (как в club_screen.tsx),
             // чтобы checkLeagueOnAppOpen не записал в Firestore "пустого" пользователя.
             const leagueName = (name && name.trim())
@@ -1882,11 +1881,18 @@ export default function HomeScreen() {
                     const lvl = getXPProgress(xpNum).level;
                     return `${getTitleString(lvl, lang ?? 'ru')} #${Math.floor(1000 + Math.random() * 9000)}`;
                 })();
+            // зачем: префетч лиги СТАРТУЕТ здесь, до await getTodayTasksSafe, а не внутри
+            // Promise.all ниже. Раньше он ждал загрузку задач, и пользователь, успевший
+            // тапнуть «Лиги» раньше, попадал на пустой экран — кэш ещё не был наполнен.
+            // Промис уходит в работу сразу, а Promise.all ниже просто дожидается его.
+            // Firestore-чтений это не добавляет: вызов ровно один, просто раньше.
+            const leagueOpenPromise = checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null);
+            const taskList = await getTodayTasksSafe(studyTarget);
             const [tp, leagueOpenResult, dueItems, allMedals, repairEligible, bannerStoragePairs] = await Promise.all([
                 loadTodayProgress(taskList, studyTarget),
                 // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
                 // Если remote недоступен — функция сама перейдет на локальный state.
-                checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
+                leagueOpenPromise,
                 // SRS-счётчик считается из локального стора (AsyncStorage, без сети) —
                 // дёшево и безопасно, поэтому показываем реальное число и в проде,
                 // а не всегда 0. При сбое — пустой массив (подпись «Ошибки под контролем»).

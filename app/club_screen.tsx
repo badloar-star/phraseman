@@ -82,7 +82,8 @@ import {
 } from './services/league_chest_rewards';
 import { shouldShowLeagueRace } from './league_race_visibility';
 import { visibleWallClock } from './visible_wall_clock';
-import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants, shouldShowLeagueSoloParticipant } from './league_open_cache_policy';
+import { getCachedLeagueStateSync, shouldShowLeagueEmptyParticipants, shouldShowLeagueSoloParticipant, withMyLivePoints } from './league_open_cache_policy';
+import { LeagueHubSkeleton } from '../components/league/LeagueHubSkeleton';
 import { checkAchievements } from './achievements';
 import { GOLD_RICH } from '../constants/goldTheme';
 import { safeRouterBack } from './navigation_back';
@@ -581,7 +582,10 @@ export default function ClubScreen() {
     };
   }, [leagueBonusAdminPreview, leagueGroupMeta?.groupId, leagueGroupMeta?.weekId]);
 
-  const LEAGUE_LOAD_TIMEOUT_MS = 22_000;
+  // зачем: было 22 с — столько экран мог ждать сеть, показывая пустоту. Теперь под
+  // ожиданием есть кэш/скелетон, поэтому сдаёмся быстро: запрос продолжает жить в
+  // фоне и допишет данные, когда придёт (см. ветку winner === 'timeout' ниже).
+  const LEAGUE_LOAD_TIMEOUT_MS = 6_000;
 
   useEffect(() => {
     if (!rankDelta) {
@@ -666,7 +670,11 @@ export default function ClubScreen() {
 
     try {
       // ── Фаза 1: мгновенно читаем локальный кеш ──────────────────────────────
-      const [name, avatar, frame, aura, phrasm, xp, canonicalUid, cachedLeague, cachedPending] = await Promise.all([
+      // зачем: раньше myWeekPoints и метка последнего рефреша читались ПОСЛЕ этого
+      // блока, каждый своим await — экран ждал их по очереди. Они ни от чего здесь
+      // не зависят, поэтому едут в той же пачке: на два round-trip меньше до первого
+      // кадра, без единого лишнего чтения Firestore.
+      const [name, avatar, frame, aura, phrasm, xp, canonicalUid, cachedLeague, cachedPending, myPoints, lastRemoteAtRaw] = await Promise.all([
         AsyncStorage.getItem('user_name'),
         AsyncStorage.getItem('user_avatar'),
         AsyncStorage.getItem('user_frame'),
@@ -676,6 +684,8 @@ export default function ClubScreen() {
         getCanonicalUserId(),
         loadLeagueState(),
         loadPendingResult(),
+        getMyWeekPoints().catch(() => 0),
+        AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY),
       ]);
       if (!isMountedRef.current) return;
       // Если на этом устройстве уже был сохранён pending (например, home.tsx посчитал
@@ -698,14 +708,22 @@ export default function ClubScreen() {
         if (isMountedRef.current && meta) setLeagueGroupMeta(meta);
       }).catch(() => {});
 
-      // Показываем кешированные данные лиги сразу, без ожидания сети
+      // Показываем кешированные данные лиги сразу, без ожидания сети.
+      // зачем: свои очки лежат локально и стоят 0 чтений Firestore — подставляем их
+      // в кэш при каждом входе. Так СВОИ цифры всегда актуальны, а чужие обновляются
+      // раз в 6 часов (требование владельца: не платить за чужие цифры чаще).
       if (cachedLeague) {
-        applyLeagueOpen(cachedLeague, null, false);
+        applyLeagueOpen(
+          { ...cachedLeague, group: withMyLivePoints(cachedLeague.group, myPoints, canonicalUid, n) },
+          null,
+          false,
+        );
         setLocalLeagueHydrated(true);
       } else {
         // Do not manufacture a zero-score league while the authoritative
         // weekly state is still loading. A fake zero is indistinguishable from
         // a real reset and was the source of several user-visible reports.
+        // Пустоты на экране это больше не даёт — рисуется скелетон (см. рендер).
         setLocalLeagueHydrated(false);
       }
 
@@ -713,15 +731,18 @@ export default function ClubScreen() {
       // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку
       // смены ISO-недели. Иначе после полуночи понедельника (новая неделя) пользователь
       // может зайти в Лиги и не увидеть LeagueResultModal, если последний refresh был <6h.
-      const lastRemoteAtRaw = await AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY);
       const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
       const withinRefreshTtl = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
       const weekChanged = !!cachedLeague && cachedLeague.weekId !== getWeekId();
       const shouldRefreshRemote = !!opts?.forceRemote || !withinRefreshTtl || weekChanged;
       if (!shouldRefreshRemote) return;
-      invalidateLeagueGroupCache();
-      const wp = await getMyWeekPoints();
-      if (!isMountedRef.current) return;
+      // зачем: раньше invalidateLeagueGroupCache() звался ВСЕГДА и убивал 60-секундный
+      // кэш группы, который только что наполнил префетч с главного экрана — та же
+      // группа тянулась из Firestore заново при каждом входе. Теперь сбрасываем кэш
+      // только при явном принудительном обновлении; обычный вход довольствуется
+      // 6-часовым троттлом (экономия чтений).
+      if (opts?.forceRemote) invalidateLeagueGroupCache();
+      const wp = myPoints;
 
       const leagueWork = checkLeagueOnAppOpen(n, wp);
       const timeoutRace = new Promise<'timeout'>((resolve) => {
@@ -1530,18 +1551,25 @@ export default function ClubScreen() {
           </View>
         )}
 
-        <LeagueArenaScene
-          lang={lang}
-          palette={hubPalette}
-          leagueName={leagueNameForLang(myLeague, lang)}
-          participantLabel={participantsLabel(lang, publicSortedGroup.length)}
-          leagueIcon={<LeagueIcon league={myLeague} size={84} active alignContent={false} themeMode={themeMode} />}
-          topMembers={publicSortedGroup.slice(0, 3)}
-          renderAvatar={renderLeagueMemberAvatar}
-          hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
-          onOpenProfile={openLeagueMemberProfile}
-          chestReady={leagueChestReady}
-        />
+        {/* зачем: пока нет ни кэша, ни ответа сети — рисуем заглушки той же
+            геометрии вместо пустоты (владелец видел ~10 с пустого экрана и
+            принял это за поломку). Приход данных не двигает вёрстку. */}
+        {localLeagueHydrated ? (
+          <LeagueArenaScene
+            lang={lang}
+            palette={hubPalette}
+            leagueName={leagueNameForLang(myLeague, lang)}
+            participantLabel={participantsLabel(lang, publicSortedGroup.length)}
+            leagueIcon={<LeagueIcon league={myLeague} size={84} active alignContent={false} themeMode={themeMode} />}
+            topMembers={publicSortedGroup.slice(0, 3)}
+            renderAvatar={renderLeagueMemberAvatar}
+            hasCrown={(uid?: string) => hasLeagueCrownForMember({ uid })}
+            onOpenProfile={openLeagueMemberProfile}
+            chestReady={leagueChestReady}
+          />
+        ) : (
+          <LeagueHubSkeleton palette={hubPalette} />
+        )}
 
         {rankDelta && (
           <RankChangeBanner
@@ -1575,7 +1603,9 @@ export default function ClubScreen() {
           {leagueRaceVisible && (
             <LeagueRaceFeed lang={lang} palette={hubPalette} items={raceFeedItems} />
           )}
-          <View style={{ marginTop: 6, marginBottom: 2, gap: 3 }}>
+          {/* зачем: пока показан скелетон, у него уже есть свои строки-заглушки —
+              заголовок над ними дал бы вторую «пустую» секцию. */}
+          <View style={{ marginTop: 6, marginBottom: 2, gap: 3, display: localLeagueHydrated ? 'flex' : 'none' }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
               {triLang(lang, {
                 ru: 'Участники клуба', uk: 'Учасники клубу', es: 'Miembros del club', 'pt-BR': 'Membros do clube',

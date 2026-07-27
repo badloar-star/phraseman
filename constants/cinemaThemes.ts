@@ -134,7 +134,9 @@ export const CINEMA: Record<CinemaMode, CinemaPalette> = {
     correct: '#5FE0B0', onCorrect: '#062619', wrong: '#FF5C64',
     gold: '#FFC96B', onGold: '#221604',
     card: '#130E1E', surface: '#1D1630', surface2: '#282040', borderLight: '#342A52',
-    textMuted: '#B3A6BE', textGhost: '#786C86', btnShadow: '#9A5A2E',
+    // ghost поднят до 4.53:1 на карточке — как у соседних кино-тем (4.1–4.9),
+    // тема-витрина не должна читаться хуже премиальных.
+    textMuted: '#B3A6BE', textGhost: '#847791', btnShadow: '#9A5A2E',
     cardGradient: ['#3A2450', '#080510'],
     bgGradient3: ['#120C1E', '#070510', '#010102'],
     quiz: {

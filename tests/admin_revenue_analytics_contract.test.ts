@@ -3,7 +3,7 @@ import path from 'path';
 
 describe('admin revenue analytics contract', () => {
   const root = process.cwd();
-  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
+  const adminHtml = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const adminModuleScript = adminHtml.match(/<script type="module">([\s\S]*?)<\/script>/)?.[1] || '';
   const firebaseSource = fs.readFileSync(path.join(root, 'app', 'firebase.ts'), 'utf8');
   const premiumModalSource = fs.readFileSync(path.join(root, 'app', 'premium_modal.tsx'), 'utf8');

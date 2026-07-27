@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'index.html'), 'utf8');
+const adminHtml = fs.readFileSync(path.join(__dirname, '..', 'admin', 'v2', 'legacy.html'), 'utf8');
 
 test('admin report AI action prepares drafts without sending them', () => {
   expect(adminHtml).toContain('Подготовить черновики (ИИ)');

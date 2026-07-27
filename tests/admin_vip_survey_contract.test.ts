@@ -4,7 +4,7 @@ import path from 'path';
 const root = process.cwd();
 
 describe('admin VIP survey contract', () => {
-  const html = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const appMessagesSource = fs.readFileSync(path.join(root, 'app', 'app_messages.ts'), 'utf8');
   const inboxSource = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const callableSource = fs.readFileSync(path.join(root, 'functions', 'src', 'vip_survey.ts'), 'utf8');

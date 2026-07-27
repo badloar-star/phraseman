@@ -10,7 +10,13 @@ describe('personal plan fill progress Mitap day 11', () => {
       'utf8',
     ));
 
-    expect(data.latestCheckpoint).toBe('P3.215 Mitap Day 11 generator-backed certified content');
+    // зачем: раньше здесь стояло жёсткое равенство latestCheckpoint именно этой
+    // метке (P3.215). Поле в отчёте ОДНО на все планы, а таких тестов 16 —
+    // одновременно проходил только последний, остальные 15 были красными по
+    // построению, а не из-за реальной проблемы. Проверяем то, что осмысленно:
+    // прогресс дошёл до этого дня (номер чекпоинта не меньше) — и ниже сам день.
+    const checkpointSeq = Number(String(data.latestCheckpoint).match(/P3\.(\d+)/)?.[1] ?? 0);
+    expect(checkpointSeq).toBeGreaterThanOrEqual(215);
 
     const day11 = data.dayQuality.find((row: { label: string }) => row.label === 'Mitap Day 11');
     expect(day11).toEqual(expect.objectContaining({

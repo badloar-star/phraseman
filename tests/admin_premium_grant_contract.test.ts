@@ -2,7 +2,12 @@ import fs from 'fs';
 import path from 'path';
 
 describe('admin premium grant contract', () => {
-  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'index.html'), 'utf8');
+  // зачем: тест читал admin/index.html — ЗАМОРОЖЕННУЮ админку (CLAUDE.md: рабочая
+  // одна — admin/v2/legacy.html, её и публикует hosting). Весь проверяемый
+  // функционал (switchTab('vip'), repairAdminGrantPremiumCompat, VIP-поля) живёт
+  // именно там, а в index.html его нет вовсе — тест падал на семи проверках,
+  // сверяя контракт с файлом, который не попадает на боевую.
+  const html = fs.readFileSync(path.join(process.cwd(), 'admin', 'v2', 'legacy.html'), 'utf8');
 
   it('writes admin grants as VIP fields instead of premium fields', () => {
     expect(html).toMatch(/'progress\.vip_active'\s*:\s*'true'/);

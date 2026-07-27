@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const ROOT = path.join(__dirname, '..');
-const adminIndexPath = path.join(ROOT, 'admin', 'index.html');
+const adminIndexPath = path.join(ROOT, 'admin', 'v2', 'legacy.html');
 const adminSurfacePath = path.join(ROOT, 'admin', 'french-daily-phrases-admin.js');
 const workflowPath = path.join(ROOT, 'admin', 'french-daily-phrases-workflow.js');
 

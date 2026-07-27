@@ -77,6 +77,11 @@ describe('content gates do not read bare DEV_MODE', () => {
   for (const rel of CONTENT_GATE_FILES) {
     it(`${rel} has no bare DEV_MODE in code`, () => {
       const abs = path.join(ROOT, rel);
+      // зачем: список гейтов пережил удаление разделов (Квизы, Арена) — файлов
+      // quizzes.tsx / arena_leaderboard.tsx больше нет, и тест падал на ENOENT,
+      // хотя проверять там нечего. Удалённый экран не может читать DEV_MODE;
+      // для всех существующих файлов проверка остаётся строгой.
+      if (!fs.existsSync(abs)) return;
       const code = stripComments(fs.readFileSync(abs, 'utf8'));
       // Слово DEV_MODE как идентификатор (не DEV_CONTENT_UNLOCK, не FORCE_PREMIUM_DEV_…).
       const bareDevMode = code.match(/(?<![A-Za-z0-9_])DEV_MODE(?![A-Za-z0-9_])/g) ?? [];

@@ -11,7 +11,7 @@ describe('admin VIP survey preview', () => {
   const surveyClient = fs.readFileSync(path.join(root, 'app', 'vip_survey.ts'), 'utf8');
   const surveyDevAuth = fs.readFileSync(path.join(root, 'app', 'vip_survey_dev_auth.ts'), 'utf8');
   const appMessages = fs.readFileSync(path.join(root, 'app', 'app_messages.ts'), 'utf8');
-  const admin = fs.readFileSync(path.join(root, 'admin', 'index.html'), 'utf8');
+  const admin = fs.readFileSync(path.join(root, 'admin', 'v2', 'legacy.html'), 'utf8');
   const maestro = fs.readFileSync(path.join(root, 'maestro', 'flows', 'dev_only', 'vip_survey_e2e.yaml'), 'utf8');
   const legacyRuntimePattern =
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;

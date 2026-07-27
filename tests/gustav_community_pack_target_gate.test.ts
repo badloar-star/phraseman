@@ -156,7 +156,7 @@ describe('Gustav community pack target gate', () => {
     const alertsSource = fs.readFileSync(path.join(ROOT, 'app', 'community_packs', 'communityModerationAlerts.ts'), 'utf8');
     const reportModalSource = fs.readFileSync(path.join(ROOT, 'components', 'ReportPackModal.tsx'), 'utf8');
     const userReportSource = fs.readFileSync(path.join(ROOT, 'app', 'user_report.ts'), 'utf8');
-    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const adminSource = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(createSource).toContain('const { studyTarget } = useStudyTarget()');
     expect(createSource).toContain('flashcardsCommunityPacksAvailableForTarget(studyTarget)');

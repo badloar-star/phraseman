@@ -26,7 +26,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not seed pt-BR/vi/id/tr/pl VIP survey copy from generic admin text', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     for (const id of [
       'vs-title-ptbr',
@@ -51,7 +51,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('keeps admin Google login persistent across page reloads', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('setPersistence(auth, browserLocalPersistence)');
     expect(source).toContain("setAdminSignInBusy(true, 'ПРОВЕРЯЕМ СЕССИЮ...')");
@@ -77,7 +77,7 @@ describe('web and admin runtime locale fallback audit', () => {
   });
 
   it('does not label Firebase-authenticated users as anonymous when provider metadata is missing', () => {
-    const source = fs.readFileSync(path.join(ROOT, 'admin', 'index.html'), 'utf8');
+    const source = fs.readFileSync(path.join(ROOT, 'admin', 'v2', 'legacy.html'), 'utf8');
 
     expect(source).toContain('firebaseAuthUid: snap.data().firebaseAuthUid || null');
     expect(source).toContain('firebaseAuthUid: doc.data().firebaseAuthUid || null');

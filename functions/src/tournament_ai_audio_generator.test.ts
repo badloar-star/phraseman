@@ -14,6 +14,7 @@ import {
   buildAudioPromptPacket,
   dictationTokens,
   isTournamentAudioMode,
+  phoneticKey,
   validateAudioBatch,
 } from './tournament_ai_audio_generator';
 
@@ -115,6 +116,38 @@ describe('генератор аудио-заданий', () => {
     if (!result.ok) {
       expect(result.errors.join(' ')).toContain('decoy word appears in the phrase');
     }
+  });
+
+  it('НАЙДЕНО В ТЕСТОВОЙ ГЕНЕРАЦИИ: варианты, одинаковые НА СЛУХ, отклоняются', () => {
+    // Первая же живая генерация выдала «It's time to go now» против «Its time
+    // to go now»: на письме разные, на слух идентичные — правильного ответа не
+    // существует. Апостроф и пунктуация не слышны, значит не различают.
+    const broken = repeatListen({
+      ...listenItem,
+      phrase: "It's time to go now",
+      options: ["It's time to go now", 'Its time to go now', 'Its time to go know'],
+      correctIndex: 0,
+    }, 10);
+    const result = validateAudioBatch('listen_choose', batch(broken));
+    expect(result.ok).toBe(false);
+    if (!result.ok) {
+      expect(result.errors.join(' ')).toContain('phonetically identical');
+    }
+  });
+
+  it('фонетический ключ игнорирует апостроф, регистр и пунктуацию', () => {
+    expect(phoneticKey("It's time.")).toBe(phoneticKey('Its  time'));
+    expect(phoneticKey('Hello!')).toBe(phoneticKey('hello'));
+    // Но реально разные слова остаются разными.
+    expect(phoneticKey('ship')).not.toBe(phoneticKey('sheep'));
+  });
+
+  it('минимальная пара, неразличимая на слух, отклоняется', () => {
+    const broken = repeatContrast({
+      ...contrastItem, wordA: 'its', wordB: "it's", phrase: "it's", correctIndex: 1,
+    }, 10);
+    const result = validateAudioBatch('sound_contrast', batch(broken));
+    expect(result.ok).toBe(false);
   });
 
   it('дубли фраз внутри батча не проходят', () => {

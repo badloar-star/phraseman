@@ -292,6 +292,12 @@ export function parseScheduleRequest(data: unknown): ScheduleRequest {
  * СПЕЦИАЛЬНО: это админский экран, ревьюер обязан видеть, что проверяет.
  * Клиент игры этих данных не получает — там public payload сервера.
  */
+/**
+ * Пробный адрес озвучки для валидации черновика. Реальный появляется при
+ * публикации (tournament_audio), но контракт требует непустой audioUri.
+ */
+const AUDIO_PROBE_URI = 'https://firebasestorage.googleapis.com/pending.mp3';
+
 export function publicAdminTask(taskId: string, task: TournamentTask): Record<string, unknown> {
   const doc = task as TournamentTask & { source?: unknown; aiMeta?: unknown };
   return {
@@ -302,7 +308,21 @@ export function publicAdminTask(taskId: string, task: TournamentTask): Record<st
     verified: task.verified === true,
     tags: Array.isArray(task.tags) ? [...task.tags] : [],
     payload: task.payload,
-    valid: validateTournamentTask({ ...task, verified: true }).ok,
+    // зачем 2026-07-27: у аудио-черновика audioUri ПУСТОЙ — озвучка делается
+    // при публикации, чтобы не платить за то, что владелец не одобрил. Без
+    // подстановки пробного адреса контракт валится, и КАЖДАЯ карточка в
+    // админке выглядела бы сломанной. Проверяем форму задания, а наличие
+    // звука — отдельным флагом needsAudio.
+    valid: validateTournamentTask({
+      ...task,
+      verified: true,
+      payload: modeNeedsAudio(task.mode) && !task.payload.audioUri
+        ? { ...task.payload, audioUri: AUDIO_PROBE_URI }
+        : task.payload,
+    }).ok,
+    // Владельцу видно, что озвучка появится при публикации, а не потеряна.
+    needsAudio: modeNeedsAudio(task.mode),
+    hasAudio: modeNeedsAudio(task.mode) ? Boolean(task.payload.audioUri) : null,
     // Раздельные пулы и карточка ревью ИИ-заданий (сцена + заметка редактору).
     source: typeof doc.source === 'string' ? doc.source : '',
     aiMeta: doc.aiMeta && typeof doc.aiMeta === 'object' && !Array.isArray(doc.aiMeta) ? doc.aiMeta : null,

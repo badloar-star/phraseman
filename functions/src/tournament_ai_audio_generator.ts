@@ -192,6 +192,7 @@ export function buildAudioPromptPacket(params: {
   if (mode === 'listen_choose') {
     lines.push(
       '"phrase" is one natural English sentence of 3-7 words that a real person would say in an everyday moment.',
+      `CRITICAL: the three options must be distinguishable BY EAR. Never build a decoy that differs only in spelling or an apostrophe (a contraction against its possessive twin, or homophones like there/their) - spoken aloud they are identical and the item has no correct answer.`,
       'Exactly 3 "options": the phrase itself plus two decoys that SOUND confusingly similar when spoken aloud.',
       `The decoys must be real, grammatical English sentences and must differ from the phrase only in ways the EAR can miss:\n${LISTENING_TRAPS.map((trap) => `  - ${trap}`).join('\n')}`,
       'Hardest requirement: a player who reads the three options WITHOUT audio must not be able to tell which one was spoken. If a decoy is about a different topic, or is obviously ungrammatical, the item is broken.',
@@ -247,6 +248,23 @@ function trimmed(value: unknown): string {
   return typeof value === 'string' ? value.trim() : '';
 }
 
+/**
+ * Фонетический ключ: то, что реально слышит игрок.
+ *
+ * зачем 2026-07-27: первая же тестовая генерация выдала пару «It's time» /
+ * «Its time» — на письме разные, на слух АБСОЛЮТНО одинаковые. Такое задание
+ * нерешаемо: правильного ответа не существует. Отбрасываем апострофы, регистр
+ * и пунктуацию — если после этого два варианта совпали, они неразличимы.
+ */
+export function phoneticKey(text: string): string {
+  return String(text ?? '')
+    .toLowerCase()
+    .replace(/['’]/g, '')
+    .replace(/[.,!?;:]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 /** Слова фразы для диктанта: пунктуация не должна попадать в чипы. */
 export function dictationTokens(phrase: string): string[] {
   return phrase
@@ -289,6 +307,11 @@ export function validateAudioBatch(mode: TournamentAudioMode, raw: unknown): Aud
       if (new Set(options.map((option) => option.toLowerCase())).size !== 3) {
         errors.push(`${label}: duplicate options`); return;
       }
+      // Варианты, неразличимые НА СЛУХ, делают задание нерешаемым: игрок
+      // слышит одно и то же, а «правильный» лишь один (It's time / Its time).
+      if (new Set(options.map(phoneticKey)).size !== 3) {
+        errors.push(`${label}: options are phonetically identical`); return;
+      }
       if (!Number.isInteger(correctIndex) || correctIndex < 0 || correctIndex > 2) {
         errors.push(`${label}: correctIndex out of range`); return;
       }
@@ -305,6 +328,10 @@ export function validateAudioBatch(mode: TournamentAudioMode, raw: unknown): Aud
       const correctIndex = Number(item.correctIndex);
       if (!wordA || !wordB || wordA.toLowerCase() === wordB.toLowerCase()) {
         errors.push(`${label}: minimal pair must be two different words`); return;
+      }
+      // Пара обязана различаться на слух, а не только на письме.
+      if (phoneticKey(wordA) === phoneticKey(wordB)) {
+        errors.push(`${label}: pair is phonetically identical`); return;
       }
       if (correctIndex !== 0 && correctIndex !== 1) {
         errors.push(`${label}: correctIndex must be 0 or 1`); return;

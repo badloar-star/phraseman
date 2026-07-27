@@ -189,9 +189,12 @@ svg { display:block; }
   transition:transform var(--t-press) var(--ease-outquint);
 }
 .play-btn:active { transform:scale(0.94); }
-.play-btn svg { width:30px; height:30px; }
-.play-btn.playing svg.i-play { display:none; }
-.play-btn:not(.playing) svg.i-pause { display:none; }
+/* зачем: обе иконки в одной grid-ячейке - скрытая через display:none смещала
+   видимую из центра круга; кладём их друг на друга и переключаем прозрачностью */
+.play-btn svg { width:30px; height:30px; grid-area:1 / 1; transition:opacity var(--t-press) ease; }
+.play-btn svg.i-play { margin-left:3px; } /* оптическая компенсация треугольника */
+.play-btn.playing svg.i-play { opacity:0; }
+.play-btn:not(.playing) svg.i-pause { opacity:0; }
 .audio-caption { font-size:14px; font-weight:700; color:var(--text-muted); min-height:20px; text-align:center; }
 .audio-caption .w { color:var(--text-second); font-weight:800; }
 .audio-controls { display:flex; gap:10px; }

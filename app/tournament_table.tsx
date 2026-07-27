@@ -21,12 +21,31 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useRouter } from 'expo-router';
 import { useStableSafeAreaInsets } from './stable_safe_area_metrics';
-import { T, motion, placeColor, radius, type, useTournamentPalette, type TournamentPalette} from '../components/tournament/tournament_theme';
+import { LinearGradient } from 'expo-linear-gradient';
+import AvatarView from '../components/AvatarView';
+import {
+  METAL,
+  motion,
+  placeColor,
+  radius,
+  type,
+  useTournamentPalette,
+  type TournamentV2,
+} from '../components/tournament/tournament_theme';
+import { StarGlyph } from '../components/tournament/TournamentFx';
+import { V2Counter } from '../components/tournament/tournament_v2_ui';
+import { tournamentAvatarValue } from '../components/tournament/tournament_avatars';
 import { TournamentEdgeState } from '../components/tournament/TournamentEdgeState';
 import {
   isRoundState, useTournamentRoom, type RoomPlayer } from './tournament_client';
 import { getStableId } from './stable_id';
 import { useLocalSearchParams } from 'expo-router';
+
+/** Ступень оттенка акцента для полосы-рейтинга (прозрачность = насыщенность). */
+function barTint(hex: string, alpha: number): string {
+  const value = parseInt(hex.slice(1), 16);
+  return `rgba(${(value >> 16) & 255},${(value >> 8) & 255},${value & 255},${Math.max(0.05, Math.min(0.55, alpha))})`;
+}
 
 const ROW_HEIGHT = 56;
 const ROW_GAP = 8;
@@ -35,7 +54,9 @@ const TOTAL_ROUNDS = 4;
 type Row = {
   id: string;
   name: string;
-  emoji: string;
+  /** Значение для AvatarView: индекс или custom:... — НЕ эмодзи. */
+  avatar: string;
+  isBot: boolean;
   color: string;
   score: number;
   streak: number;
@@ -60,7 +81,10 @@ function mapPlayersToRows(
   return sorted.map((player, index) => ({
     id: player.id,
     name: player.name || 'Игрок',
-    emoji: player.avatar || '🙂',
+    // зачем 2026-07-27: было эмодзи-«лицо» — правило владельца требует
+    // НАСТОЯЩИЕ аватары приложения. Ботам они выдаются детерминированно.
+    avatar: tournamentAvatarValue({ id: player.id, isBot: player.isBot, avatar: player.avatar }),
+    isBot: player.isBot === true,
     color: player.color || '#8AB49A',
     score: Number(player.score ?? 0),
     streak: Number(player.streak ?? 0),
@@ -161,12 +185,9 @@ export default function TournamentTableScreen() {
           <Text style={styles.title}>{spectating ? 'Смотрим турнир' : 'Таблица'}</Text>
           <Text style={styles.subtitle}>Раунд {roundNo} из {TOTAL_ROUNDS}</Text>
         </View>
-        {/* Зритель не играет — своих очков у него нет, показываем лидера. */}
-        <View style={styles.myScoreBadge}>
-          <Text style={styles.myScoreValue} allowFontScaling={false}>
-            {spectating ? (rows[0]?.score ?? 0) : myScore}
-          </Text>
-        </View>
+        {/* Зритель не играет — своих очков у него нет, показываем лидера.
+            Счётчик в языке V2: пилюля со звездой и bump при изменении. */}
+        <V2Counter value={spectating ? (rows[0]?.score ?? 0) : myScore} tone="stars" />
       </View>
 
       {/* Высота списка известна заранее — соседние блоки не двигаются */}
@@ -214,43 +235,61 @@ const TableRow = memo(function TableRow({
 
   return (
     <Animated.View style={[styles.row, animatedStyle]}>
-      {/* Заливка пропорционально очкам — «полоса силы» вместо шкалы */}
-      <View
-        style={[
-          styles.rowFill,
-          {
-            width: `${fillRatio * 100}%`,
-            backgroundColor: row.isYou ? P.accentSoft : `${row.color}22`,
-          },
-        ]}
-        pointerEvents="none"
-      />
-      <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
-        {place}
-      </Text>
-      <View style={[styles.avatar, { backgroundColor: `${row.color}33` }]}>
-        <Text style={styles.avatarEmoji}>{row.emoji}</Text>
+      {/* Полоса-рейтинг: длина по очкам, оттенок — своя ступень акцента
+          активной темы (требование владельца: «не только очки справа»). */}
+      <View style={[styles.rowFill, { width: `${Math.max(12, fillRatio * 100)}%` }]} pointerEvents="none">
+        <LinearGradient
+          colors={[
+            barTint(P.accent, row.isYou ? 0.42 : 0.34 - Math.min(0.2, place * 0.02)),
+            barTint(P.accent, row.isYou ? 0.3 : 0.2 - Math.min(0.14, place * 0.015)),
+          ]}
+          start={{ x: 0.15, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
       </View>
+      <View style={styles.rowTopHi} pointerEvents="none" />
+
+      {/* Призовое место — металл с тёплым бликом, остальные просто цифрой. */}
+      {place <= 3 ? (
+        <LinearGradient
+          colors={place === 1 ? METAL.gold : place === 2 ? METAL.silver : METAL.bronze}
+          start={{ x: 0.15, y: 0 }}
+          end={{ x: 0.85, y: 1 }}
+          style={styles.medal}
+        >
+          <Text style={styles.medalText} allowFontScaling={false}>{place}</Text>
+        </LinearGradient>
+      ) : (
+        <Text style={[styles.place, { color: placeColor(place, P) }]} allowFontScaling={false}>
+          {place}
+        </Text>
+      )}
+
+      <AvatarView avatar={row.avatar} size={34} animateAura={false} />
+
       <Text
         style={[styles.name, row.isYou && { color: P.accent }]}
         numberOfLines={1}
       >
         {row.name}
       </Text>
-      {row.streak > 0 ? <Text style={styles.streak}>🔥</Text> : null}
 
       {overtook ? (
         <Animated.View entering={FadeIn.delay(700).duration(240)} style={styles.overtakeChip}>
-          <Text style={styles.overtakeText}>обгон! ⚡</Text>
+          <Text style={styles.overtakeText}>обгон</Text>
         </Animated.View>
       ) : null}
 
-      <Text style={styles.score} allowFontScaling={false}>{row.score}</Text>
+      <View style={styles.scoreRow}>
+        <StarGlyph size={13} color={P.gold} />
+        <Text style={styles.score} allowFontScaling={false}>{row.score}</Text>
+      </View>
     </Animated.View>
   );
 });
 
-const makeStyles = (P: TournamentPalette) => StyleSheet.create({
+const makeStyles = (P: TournamentV2) => StyleSheet.create({
   root: { flex: 1, backgroundColor: P.bg, paddingHorizontal: 16 },
 
   header: { flexDirection: 'row', alignItems: 'center', paddingBottom: 16 },
@@ -280,21 +319,34 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
     height: ROW_HEIGHT,
     borderRadius: radius.md,
     backgroundColor: P.card,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 5 },
+    elevation: 3,
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 12,
     gap: 10,
     overflow: 'hidden',
   },
-  rowFill: { position: 'absolute', left: 0, top: 0, bottom: 0 },
+  rowFill: { position: 'absolute', left: 0, top: 0, bottom: 0, borderRadius: radius.md, overflow: 'hidden' },
   place: {
     width: 22,
     fontSize: 15,
     fontWeight: '900',
     fontVariant: ['tabular-nums'],
   },
-  avatar: { width: 34, height: 34, borderRadius: 999, alignItems: 'center', justifyContent: 'center' },
-  avatarEmoji: { fontSize: 17 },
+  medal: {
+    width: 26, height: 26, borderRadius: 13,
+    alignItems: 'center', justifyContent: 'center',
+  },
+  medalText: { fontSize: 12.5, fontWeight: '900', color: METAL.ink },
+  rowTopHi: {
+    position: 'absolute', top: 0, left: 0, right: 0,
+    height: StyleSheet.hairlineWidth, backgroundColor: P.chipHi,
+  },
+  scoreRow: { flexDirection: 'row', alignItems: 'center', gap: 5 },
   name: { flex: 1, fontSize: 15, fontWeight: '800', color: P.text },
   streak: { fontSize: 13 },
   overtakeChip: {

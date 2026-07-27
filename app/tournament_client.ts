@@ -446,12 +446,26 @@ export function loadRoundReview(roomId: string) {
   return callFunction<{ ok: boolean; items: ReviewItem[] }>('tournamentRoundReview', { roomId });
 }
 
-export function devStartTournament() {
-  return callFunction<{ ok: boolean; roomId: string; startsAt: number }>(
-    'adminDevStartTournament',
-    {},
-    'europe-west1',
-  );
+/**
+ * Турнир по требованию: сервер мгновенно собирает ОБЫЧНУЮ комнату и сразу
+ * сажает в неё игрока — вход доступен в любое время, без ожидания слота.
+ *
+ * зачем 2026-07-27 (владелец): «чтобы без расписания было доступно начать игру
+ * в турнире в любое время» + «убери ограничение на количество игр в слот».
+ * Дев-режим для этого не используется: у комнаты свой slotId с меткой времени,
+ * поэтому лимит один-турнир-на-слот к ней просто не применяется.
+ *
+ * Жемчужины списывает эта же серверная транзакция — отдельный вызов входа не
+ * нужен (иначе комната успевала стартовать, пока игрок читает подтверждение).
+ */
+export function startTournamentNow() {
+  return callFunction<{
+    ok: boolean;
+    roomId: string;
+    startsAt: number;
+    entryGems?: number;
+    gemsLeft?: number;
+  }>('tournamentStartNow', {}, 'europe-west1');
 }
 
 /** Отправка ответов батча. Сервер сам считает очки — клиенту нельзя доверять. */

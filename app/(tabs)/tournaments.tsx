@@ -428,8 +428,10 @@ export default function TournamentsScreen() {
    * Двойной тап отсекается флагом joining, иначе спишется дважды.
    */
   const enterLobby = useCallback(async () => {
-    if (joining) return;
-    if (!instantEntry && !joinRoomId) return;
+    // Комната нужна только для входа по расписанию: мгновенный турнир сервер
+    // создаёт сам, поэтому там пустой joinRoomId — нормальное состояние.
+    const targetRoomId = instantEntry ? 'instant' : joinRoomId;
+    if (!targetRoomId || joining) return;
     setJoining(true);
     const balanceBefore = coins;
     setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
@@ -649,17 +651,17 @@ export default function TournamentsScreen() {
                   </View>
                 ) : undefined}
               >
+                {/* зачем 2026-07-27 (владелец: играть в любое время, без
+                    лимита на слот): состояний осталось два. «Скоро откроем»,
+                    «Вы уже играли» и отсчёт до открытия входа убраны — они
+                    описывали запреты, которых больше нет, и врали бы игроку.
+                    Вне окна расписания подпись честно говорит «сейчас»: турнир
+                    соберётся по нажатию. */}
                 {notEnoughGems
                   ? `Пополнить · нужно ещё ${entryGems - coins}`
-                  : windowPlayed
-                    // Честно: в этом окне игрок своё уже отыграл.
-                    ? 'Вы уже играли в этом турнире'
-                    : !joinRoomId
-                      ? 'Скоро откроем'
-                      : joinWindowOpen
-                        ? 'Играть'
-                        // Без таймера: крупный отсчёт уже стоит выше, дубль лишний.
-                        : `Вход за ${Math.max(1, Math.round(lobbyOpenSec / 60))} минут до старта`}
+                  : joinWindowOpen
+                    ? 'Играть'
+                    : 'Играть сейчас'}
               </V2Cta>
             )}
             {/* зачем 2026-07-27 (владелец: «убирай дев полностью»): дев-кнопка
@@ -874,8 +876,14 @@ export default function TournamentsScreen() {
       {/* Подтверждение входа */}
       <Sheet visible={confirmVisible} onClose={closeConfirm}>
         <Text style={styles.sheetTitle} allowFontScaling={false}>Вход в турнир</Text>
+        {/* зачем 2026-07-27: при входе вне окна время слота показывать нельзя —
+            турнир начнётся сейчас, а не в 15:20, и подпись бы врала. */}
         <Text style={styles.sheetSub}>
-          {nextSlot ? `Сегодня · ${nextSlot.displayTime} · 16 игроков` : 'Ближайшая комната'}
+          {instantEntry
+            ? 'Начнём сразу · 16 игроков'
+            : nextSlot
+              ? `Сегодня · ${nextSlot.displayTime} · 16 игроков`
+              : 'Ближайшая комната'}
         </Text>
         <View style={styles.sheetPrice}>
           <Image

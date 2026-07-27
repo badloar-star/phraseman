@@ -517,7 +517,9 @@ export {
   tournamentSubmitAnswers,
   tournamentFinalize,
   tournamentClaimReward,
-  adminDevStartTournament,
+  // зачем 2026-07-27 (владелец): дев-турнир убран, дев-логика не используется.
+  // Мгновенный вход теперь даёт ОБЫЧНЫЙ турнир по требованию.
+  tournamentStartNow,
 } from './tournaments';
 export { adminSeedBotProfiles } from './tournament_bots';
 // Раздел «Турниры» в админке: генерация заданий из контента планов, ревью-очередь,

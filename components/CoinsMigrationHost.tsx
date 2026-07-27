@@ -189,10 +189,19 @@ export default function CoinsMigrationHost() {
 
   if (!visible) return null;
 
-  const title = L(
+  // зачем: заголовок был фиксированно праздничным во ВСЕХ фазах — при сбое обмена
+  // игрок видел «Ты молодец!» прямо над текстом «Не получилось выполнить обмен».
+  // Честное состояние: у ошибки собственный спокойный заголовок без восклицания,
+  // тело и кнопки «Повторить»/«Позже» не трогаем.
+  const successTitle = L(
     'Ты молодец!', 'Ти молодець!', '¡Lo lograste!', 'Você arrasou!',
     'Bạn giỏi lắm!', 'Kamu hebat!', 'Harikasın!', 'Świetna robota!',
   );
+  const errorTitle = L(
+    'Обмен не прошёл', 'Обмін не пройшов', 'El cambio no se completó', 'O câmbio não foi concluído',
+    'Chưa đổi được', 'Konversi belum berhasil', 'Dönüşüm tamamlanmadı', 'Wymiana się nie udała',
+  );
+  const title = phase === 'error' ? errorTitle : successTitle;
   const explanation = L(
     'Осколки становятся Жемчугом — новой, очень ценной валютой Phraseman. Его нельзя нафармить: жемчуг только покупается, поэтому твой баланс особенно ценен.',
     'Уламки стають Перлинами — новою, дуже цінною валютою Phraseman. Їх не можна нафармити: перлини лише купуються, тому твій баланс особливо цінний.',
@@ -352,12 +361,26 @@ export default function CoinsMigrationHost() {
             maxWidth: 380,
             backgroundColor: t.bgCard,
             borderRadius: 20,
-            borderWidth: 1,
-            borderColor: t.border,
             padding: 22,
+            // зачем: правило владельца — контейнеры без обводки. Карточка и так
+            // читается тоном на затемнении 0.82; тень держим компактной, чтобы не
+            // платить размытием за кадр (радиус 24 просаживает Android).
+            shadowColor: '#000',
+            shadowOpacity: 0.22,
+            shadowRadius: 10,
+            shadowOffset: { width: 0, height: 4 },
+            elevation: 6,
           }}
         >
-          <Text style={{ color: t.textPrimary, fontSize: 24, fontWeight: '900', textAlign: 'center' }}>{title}</Text>
+          {/* зачем: заголовок меняется между фазами (успех ↔ ошибка) — озвучиваем
+              смену, иначе VoiceOver оставит игрока с прежним «Ты молодец!». */}
+          <Text
+            accessibilityRole="header"
+            accessibilityLiveRegion="polite"
+            style={{ color: t.textPrimary, fontSize: 24, fontWeight: '900', textAlign: 'center' }}
+          >
+            {title}
+          </Text>
 
           {/* Финальная геометрия карточки сохраняется во всех фазах — без прыжков. */}
           {phase === 'loading' ? (

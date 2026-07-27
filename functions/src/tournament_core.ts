@@ -67,12 +67,26 @@ export const TOURNAMENT_FILL_CANCELLATION_CUTOFF_MS = 30 * 1000;
 export const TOURNAMENT_ENTRY_WINDOW_MS = 30 * 60 * 1000;
 
 /**
- * Сколько комната СОБИРАЕТСЯ, прежде чем её добьют ботами.
+ * Сколько комната СОБИРАЕТСЯ, прежде чем её начнут добивать ботами.
  *
- * зачем: за это время в комнату успевают зайти живые. Раньше добор шёл за
- * 2 минуты до старта одним куском — теперь это точка отсчёта «волны».
+ * зачем 2026-07-27 (владелец, точные правила): «юзер заходит и ждёт 30 секунд,
+ * за которые могут подключиться реальные игроки, после 30 секунд добирается
+ * ботами». Отсчёт идёт от ВХОДА ПЕРВОГО ЖИВОГО, а не от времени слота —
+ * поэтому ожидание одинаково для всех, кто бы когда ни зашёл.
+ * Окно жёсткое: новые живые его НЕ продлевают (решение владельца), иначе
+ * время ожидания стало бы непредсказуемым.
  */
-export const TOURNAMENT_ROOM_GATHER_MS = 60 * 1000;
+export const TOURNAMENT_ROOM_GATHER_MS = 30 * 1000;
+
+/**
+ * Сколько длится добор ботами после окна ожидания.
+ *
+ * зачем (владелец): «после 30 секунд добирается ботами на протяжении следующих
+ * 45 секунд (рандомно вразброс), так же в этот зазор ещё могут зайти люди,
+ * пока комната не добралась ботами до конца». Итого ожидание для любого
+ * вошедшего — не более полутора минут.
+ */
+export const TOURNAMENT_BOT_FILL_WINDOW_MS = 45 * 1000;
 
 /**
  * Разлёт появления ботов в лобби (владелец: «не должно быть ощущения фальши»).
@@ -86,8 +100,15 @@ export const TOURNAMENT_ROOM_GATHER_MS = 60 * 1000;
  */
 export const TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS = 2 * 1000;
 export const TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS = 30 * 1000;
-/** Сколько ботов уже «сидят» в лобби к моменту добора (иначе комната пуста). */
-export const TOURNAMENT_BOT_FIRST_WAVE = 3;
+/**
+ * Сколько ботов может зайти в ПЕРВЫЕ 30 секунд (окно ожидания живых).
+ *
+ * зачем 2026-07-27 (владелец: «в эти первые 30 секунд может подключиться тоже
+ * до 5 ботов»): пока ждём реальных игроков, комната не должна выглядеть
+ * мёртвой — но и забивать её ботами сразу нельзя, иначе живым не останется
+ * мест. Пять из шестнадцати — комната ожила, одиннадцать мест ещё свободны.
+ */
+export const TOURNAMENT_BOT_FIRST_WAVE = 5;
 export const TOURNAMENT_CANCEL_COMPENSATION_GEMS = 3; // «за ожидание» (§2)
 export const TOURNAMENT_TABLE_DISPLAY_MS = 12 * 1000;
 export const TOURNAMENT_FINAL_DISPLAY_MS = 5 * 1000;
@@ -491,7 +512,13 @@ export type TournamentTask = {
  */
 export type TournamentTaskKind =
   | 'choice' | 'translate' | 'timeattack' | 'voice'
-  | 'listen' | 'dictate';
+  | 'listen' | 'dictate'
+  // зачем 2026-07-27 (владелец: «соедини пары — это СРАЗУ на одном экране
+  // слева и справа слова на двух языках, и так было по макету»): speed_match
+  // (макет 07) схлопывался в 'timeattack' и рисовался вертикальным списком —
+  // одно слово сверху, варианты снизу. Игрок видел «Вопрос 9 из 24» вместо
+  // одного поля пар, а карточки уезжали за экран. Поле пар — отдельный вид.
+  | 'match';
 
 export type TournamentPublicTask = {
   taskId: string;
@@ -568,7 +595,14 @@ function taskKind(task: TournamentTask): TournamentTaskKind {
   if (mode === 'listen_build') return 'dictate';
   if (mode === 'listen_choose' || mode === 'sound_contrast') return 'listen';
   if (task.isVoice || mode.includes('voice')) return 'voice';
-  if (mode.includes('time') || mode === 'speed_match') return 'timeattack';
+  // зачем 2026-07-27 (владелец: «соедини пары — это сразу на одном экране слева
+  // и справа слова на двух языках, и так было по макету»): speed_match раньше
+  // попадал в 'timeattack' и разворачивался в 6 отдельных вопросов с 4
+  // вариантами — игрок видел «Вопрос 9 из 24» и вертикальный список вместо
+  // поля пар 2×5 (макет 07). Проверка стоит ДО mode.includes('time'), иначе
+  // она бы снова перехватила его как timeattack.
+  if (mode === 'speed_match' || mode.includes('match')) return 'match';
+  if (mode.includes('time')) return 'timeattack';
   if (mode.includes('translate')) return 'translate';
   return 'choice';
 }
@@ -661,7 +695,11 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
     }
     return { ok: true, kind };
   }
-  if (kind === 'timeattack') {
+  // зачем 2026-07-27: у поля пар (match) payload ТОТ ЖЕ, что у timeattack —
+  // items[] с prompt/options/correctIndex. Клиент рисует их по-разному (сетка
+  // пар против списка вопросов), но контракт данных и проверка ответов общие,
+  // поэтому валидация переиспользуется, а не дублируется.
+  if (kind === 'timeattack' || kind === 'match') {
     if (!hasOnlyKeys(task.payload, ['prompt', 'items'])) {
       return { ok: false, reason: 'task_payload_fields_invalid' };
     }
@@ -712,7 +750,7 @@ function publicPayloadForTask(task: TournamentTask, kind: TournamentTaskKind): R
       wordBank: (task.payload.wordBank as string[]).slice(),
     };
   }
-  if (kind === 'timeattack') {
+  if (kind === 'timeattack' || kind === 'match') {
     return {
       prompt: String(task.payload.prompt),
       items: (task.payload.items as Record<string, unknown>[]).map((item) => ({
@@ -1480,16 +1518,32 @@ export function planBotJoinTimes(input: {
   const { seed, botCount, fromMs, startsAtMs } = input;
   if (botCount <= 0) return [];
   const firstWave = Math.max(0, Math.trunc(input.firstWave ?? TOURNAMENT_BOT_FIRST_WAVE));
-  // Разлёт не может пережить старт: если добор идёт впритык, сжимаем окно.
-  const room = Math.max(0, startsAtMs - fromMs);
-  const spreadMax = Math.min(TOURNAMENT_BOT_JOIN_SPREAD_MAX_MS, room);
-  const spreadMin = Math.min(TOURNAMENT_BOT_JOIN_SPREAD_MIN_MS, spreadMax);
   const rand = tournamentPrng(`${seed}:bot_join`);
+
+  // зачем 2026-07-27 (владелец, точные правила подбора): раньше все боты
+  // появлялись от момента ДОБОРА и упирались в время слота. Теперь две фазы,
+  // обе отсчитываются от входа первого живого (fromMs = момент открытия
+  // комнаты для сбора):
+  //   • первые 30 секунд — окно ожидания живых, туда заходит НЕ БОЛЬШЕ пяти
+  //     ботов вразброс: комната оживает, но 11 мест ещё ждут людей;
+  //   • следующие 45 секунд — добор остальных, тоже вразброс.
+  // Живые могут занимать места в обеих фазах, поэтому ботов сажаем только на
+  // те места, которые к моменту расчёта ещё свободны.
+  const fillEnd = fromMs + TOURNAMENT_ROOM_GATHER_MS + TOURNAMENT_BOT_FILL_WINDOW_MS;
+  // Позже старта не появляется никто: если комната стартует раньше расчётного
+  // окна (все места заняли живые), обе фазы сжимаются пропорционально — иначе
+  // бот «зайдёт» в уже играющую комнату.
+  const hardStop = startsAtMs > fromMs ? Math.min(fillEnd, startsAtMs) : fillEnd;
+  // Граница фаз тоже не может пережить старт.
+  const gatherEnd = Math.min(fromMs + TOURNAMENT_ROOM_GATHER_MS, hardStop);
+
   return Array.from({ length: botCount }, (_unused, index) => {
-    // Первая волна — уже в лобби на момент добора.
-    if (index < firstWave) return fromMs;
-    const offset = spreadMin + rand() * Math.max(0, spreadMax - spreadMin);
-    return fromMs + Math.round(offset);
+    if (index < firstWave) {
+      // Окно ожидания: вразброс по первым 30 секундам, а не стеной сразу —
+      // иначе игрок видит мгновенные пять аватаров и понимает, что это боты.
+      return fromMs + Math.round(rand() * (gatherEnd - fromMs));
+    }
+    return gatherEnd + Math.round(rand() * Math.max(0, hardStop - gatherEnd));
   });
 }
 

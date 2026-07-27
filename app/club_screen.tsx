@@ -850,9 +850,15 @@ export default function ClubScreen() {
     localLeagueHydrated,
     participantCount: sortedGroup.length,
   });
+  // зачем: список участников рисует только тех, кто ПОСЛЕ топ-3 (publicListGroup =
+  // slice(3)). Когда в лиге один игрок (или все влезли в топ-3), список пуст и под
+  // заголовком «Участники клуба» была немая пустота — читалось как поломка.
+  // Завязываемся на факт «в списке никого», а не на точное число участников:
+  // showEmptyParticipants уже закрывает случай полностью пустой лиги.
   const showSoloParticipant = shouldShowLeagueSoloParticipant({
     localLeagueHydrated,
     participantCount: sortedGroup.length,
+    visibleListCount: publicListGroup.length,
   });
   const leagueXpPromotionMode = leagueXpPromotionRemote.enabled;
   const leagueXpPromotionThreshold = leagueXpPromotionRemote.threshold;

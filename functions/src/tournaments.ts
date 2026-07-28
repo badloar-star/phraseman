@@ -190,6 +190,9 @@ function parseTask(snap: FirebaseFirestore.DocumentSnapshot): TournamentTask | n
     isVoice: data.isVoice === true,
     difficulty: readInt(data.difficulty, 0),
     payload: data.payload && typeof data.payload === 'object' && !Array.isArray(data.payload) ? data.payload as Row : {},
+    explanation: data.explanation && typeof data.explanation === 'object' && !Array.isArray(data.explanation)
+      ? { ruleNote: sanitizeString((data.explanation as Row).ruleNote, 600), example: sanitizeString((data.explanation as Row).example, 600) }
+      : undefined,
     tags: Array.isArray(data.tags) ? data.tags.map((tag: unknown) => sanitizeString(tag, 40)).filter(Boolean) : [],
     verified: data.verified === true,
   };
@@ -2419,6 +2422,12 @@ export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request
       correctIndex: typeof payload.correctIndex === 'number' ? payload.correctIndex : null,
       correctTokens: Array.isArray(payload.correctTokens) ? payload.correctTokens : [],
       audioUri: String(payload.audioUri ?? ''),
+      explanation: task?.explanation && typeof task.explanation === 'object'
+        ? {
+          ruleNote: sanitizeString((task.explanation as Row).ruleNote, 600),
+          example: sanitizeString((task.explanation as Row).example, 600),
+        }
+        : null,
     };
   });
 

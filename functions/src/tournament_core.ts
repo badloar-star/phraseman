@@ -494,6 +494,13 @@ export type TournamentRoomDoc = {
 
 // ── Пул заданий (§6) ────────────────────────────────────────────────────────
 
+export type TournamentTaskExplanation = {
+  /** Human-readable reason shown only after the tournament. */
+  ruleNote: string;
+  /** A natural English usage example with its Russian meaning. */
+  example: string;
+};
+
 export type TournamentTask = {
   taskId: string;
   /** Режим Learning v2 (quiz/flashcard/voice/...), голосовые ×1.5 базы (§5). */
@@ -501,6 +508,8 @@ export type TournamentTask = {
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
+  /** Frozen into room secrets; never included in an active public task. */
+  explanation?: TournamentTaskExplanation;
   tags: string[];
   verified: boolean;
 };
@@ -549,6 +558,7 @@ export const TOURNAMENT_TASK_LIMITS = Object.freeze({
   /** Ссылка на озвучку в Storage: Firebase-URL с токеном длиннее обычного. */
   audioUriBytes: 512,
   answerBytes: 1_024,
+  explanationBytes: 600,
   optionBytes: 128,
   tokenBytes: 128,
   tagBytes: 64,
@@ -625,6 +635,12 @@ export function validateTournamentTask(task: TournamentTask): TaskValidation {
   })) return { ok: false, reason: 'task_tags_invalid' };
   if (!Number.isInteger(task.difficulty) || task.difficulty < 1 || task.difficulty > 3) {
     return { ok: false, reason: 'task_difficulty_invalid' };
+  }
+  if (task.explanation !== undefined && (!isRecord(task.explanation)
+    || !boundedString(task.explanation.ruleNote, TOURNAMENT_TASK_LIMITS.explanationBytes)
+    || !boundedString(task.explanation.example, TOURNAMENT_TASK_LIMITS.explanationBytes)
+    || !hasOnlyKeys(task.explanation, ['ruleNote', 'example']))) {
+    return { ok: false, reason: 'task_explanation_invalid' };
   }
   const kind = taskKind(task);
   if (kind === 'voice') {

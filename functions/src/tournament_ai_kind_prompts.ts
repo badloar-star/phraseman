@@ -90,7 +90,7 @@ const CHOICE_SCHEMA = Object.freeze({
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['prompt', 'options', 'correctIndex', 'correctAnswer', 'scenario', 'ruleNote'],
+        required: ['prompt', 'options', 'correctIndex', 'correctAnswer', 'scenario', 'ruleNote', 'example'],
         properties: {
           prompt: { type: 'string' },
           options: { type: 'array', items: { type: 'string' } },
@@ -98,6 +98,7 @@ const CHOICE_SCHEMA = Object.freeze({
           correctAnswer: { type: 'string' },
           scenario: { type: 'string' },
           ruleNote: { type: 'string' },
+          example: { type: 'string' },
         },
       },
     },
@@ -115,7 +116,7 @@ const ASSEMBLY_SCHEMA = Object.freeze({
       items: {
         type: 'object',
         additionalProperties: false,
-        required: ['prompt', 'answer', 'tokens', 'decoys', 'scenario', 'ruleNote'],
+        required: ['prompt', 'answer', 'tokens', 'decoys', 'scenario', 'ruleNote', 'example'],
         properties: {
           prompt: { type: 'string' },
           answer: { type: 'string' },
@@ -123,6 +124,7 @@ const ASSEMBLY_SCHEMA = Object.freeze({
           decoys: { type: 'array', items: { type: 'string' } },
           scenario: { type: 'string' },
           ruleNote: { type: 'string' },
+          example: { type: 'string' },
         },
       },
     },
@@ -185,6 +187,7 @@ export function buildKindTask(params: KindPromptParams): string {
     `Difficulty: all ${params.count} items must be "${params.difficultyWord}" for this level — easy is direct recognition, medium needs one contextual or grammatical distinction, hard needs a subtle tense, preposition or collocation call with strong competitors.`,
     'Write "scenario" as 1-3 Russian words naming the everyday area (кафе, аэропорт, работа). Vary it across items.',
     'Write "ruleNote" in Russian, up to 200 characters: why the answer is right and what trap each wrong option sets.',
+    'Write "example" as one natural English sentence followed by a Russian translation, up to 240 characters. It must illustrate the correct construction, not repeat an option verbatim.',
     ...FAIRNESS_RULES,
   );
 

@@ -20,6 +20,7 @@ import { KIND_TO_FORMAT, KIND_TO_MODE, type TournamentAiKind } from './tournamen
 const CHOICE_OPTIONS = 4;
 const SCENARIO_MAX_CHARS = 48;
 const RULE_NOTE_MAX_BYTES = 500;
+const EXAMPLE_MAX_BYTES = 500;
 const MIN_ASSEMBLY_TOKENS = 4;
 const MAX_ASSEMBLY_TOKENS = 12;
 const MIN_DECOYS = 2;
@@ -75,6 +76,7 @@ export type ParsedKindItem = {
   readonly correctTokens: readonly string[];
   readonly scenario: string;
   readonly ruleNote: string;
+  readonly example: string;
 };
 
 export type KindItemResult =
@@ -97,12 +99,14 @@ export function parseKindItem(raw: unknown, kind: TournamentAiKind): KindItemRes
   const prompt = String(raw.prompt ?? '').trim();
   const scenario = String(raw.scenario ?? '').trim();
   const ruleNote = String(raw.ruleNote ?? '').trim();
+  const example = String(raw.example ?? '').trim();
 
   if (!prompt || bytes(prompt) > TOURNAMENT_TASK_LIMITS.promptBytes) errors.push('kind_prompt_invalid');
   if (!scenario || scenario.length > SCENARIO_MAX_CHARS || !HAS_CYRILLIC.test(scenario)) {
     errors.push('kind_scenario_invalid');
   }
   if (!ruleNote || bytes(ruleNote) > RULE_NOTE_MAX_BYTES) errors.push('kind_rule_note_invalid');
+  if (!example || bytes(example) > EXAMPLE_MAX_BYTES || !HAS_LATIN.test(example)) errors.push('kind_example_invalid');
 
   // Условие каждого типа проверяется отдельно: у «пропущенного слова» обязан
   // быть пропуск, у ситуации — русский текст, у поиска ошибки — инструкция.
@@ -111,11 +115,11 @@ export function parseKindItem(raw: unknown, kind: TournamentAiKind): KindItemRes
   if (kind === 'situation' && !HAS_CYRILLIC.test(prompt)) errors.push('kind_situation_prompt_not_russian');
 
   return KIND_TO_FORMAT[kind] === 'translate'
-    ? parseAssembly(raw, kind, { prompt, scenario, ruleNote }, errors)
-    : parseChoice(raw, kind, { prompt, scenario, ruleNote }, errors);
+    ? parseAssembly(raw, kind, { prompt, scenario, ruleNote, example }, errors)
+    : parseChoice(raw, kind, { prompt, scenario, ruleNote, example }, errors);
 }
 
-type Common = { prompt: string; scenario: string; ruleNote: string };
+type Common = { prompt: string; scenario: string; ruleNote: string; example: string };
 
 function parseChoice(
   raw: Record<string, unknown>,
@@ -161,6 +165,7 @@ function parseChoice(
       correctTokens: Object.freeze([]),
       scenario: common.scenario,
       ruleNote: common.ruleNote,
+      example: common.example,
     }),
   };
 }
@@ -220,6 +225,7 @@ function parseAssembly(
       correctTokens: Object.freeze(tokens),
       scenario: common.scenario,
       ruleNote: common.ruleNote,
+      example: common.example,
     }),
   };
 }
@@ -280,6 +286,10 @@ export function kindItemToTask(
     isVoice: false,
     difficulty: params.difficulty,
     payload,
+    explanation: {
+      ruleNote: item.ruleNote,
+      example: item.example,
+    },
     tags: [
       'source:ai',
       `kind:${item.kind}`,

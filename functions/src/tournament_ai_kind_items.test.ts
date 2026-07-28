@@ -31,6 +31,7 @@ const SITUATION = {
   correctAnswer: 'Sorry, I think this is not what I ordered.',
   scenario: 'кафе',
   ruleNote: 'Верно первое: вежливое сомнение. Остальные грамматичны, но звучат грубо.',
+  example: 'I think this is not what I ordered. — Кажется, это не то, что я заказывал.',
 };
 
 const GAP = {
@@ -40,6 +41,7 @@ const GAP = {
   correctAnswer: 'for',
   scenario: 'дом',
   ruleNote: 'look for — искать. look after — заботиться, look at — смотреть на.',
+  example: 'I am looking for my phone. — Я ищу телефон.',
 };
 
 const ODDITY = {
@@ -54,6 +56,7 @@ const ODDITY = {
   correctAnswer: 'I feel myself good today.',
   scenario: 'самочувствие',
   ruleNote: 'Калька с русского: feel myself — грубая ошибка, feel не требует myself.',
+  example: 'I feel good today. — Сегодня я хорошо себя чувствую.',
 };
 
 const ASSEMBLY = {
@@ -63,6 +66,7 @@ const ASSEMBLY = {
   decoys: ['will', 'him', 'yesterday'],
   scenario: 'планы',
   ruleNote: 'be going to — намерение. will — другое значение, him и yesterday не подходят.',
+  example: 'We are going to visit them tomorrow. — Мы собираемся навестить их завтра.',
 };
 
 const RAW_BY_KIND = {
@@ -86,6 +90,7 @@ describe('четыре типа: золотой путь до турнира', (
     expect(task.verified).toBe(false);
     expect(task.tags).toContain('source:ai');
     expect(task.tags).toContain(`kind:${kind}`);
+    expect(task.explanation).toEqual({ ruleNote: parsed.item.ruleNote, example: parsed.item.example });
 
     const live = { ...task, verified: true };
     if (kind === 'assembly') {
@@ -178,6 +183,13 @@ describe('четыре типа: брак ловится', () => {
   it('мусор вместо задания → kind_item_shape_invalid', () => {
     expect(parseKindItem(null, 'gap').ok).toBe(false);
     expect(parseKindItem('строка', 'situation').ok).toBe(false);
+  });
+
+  it('задание без примера для разбора отклоняется до записи в пул', () => {
+    const { example: _example, ...withoutExample } = GAP;
+    const result = parseKindItem(withoutExample, 'gap');
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.errors).toContain('kind_example_invalid');
   });
 });
 

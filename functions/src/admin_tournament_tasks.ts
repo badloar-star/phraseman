@@ -321,6 +321,7 @@ export function publicAdminTask(taskId: string, task: TournamentTask): Record<st
     verified: task.verified === true,
     tags: Array.isArray(task.tags) ? [...task.tags] : [],
     payload: task.payload,
+    explanation: task.explanation ?? null,
     // зачем 2026-07-27: у аудио-черновика audioUri ПУСТОЙ — озвучка делается
     // при публикации, чтобы не платить за то, что владелец не одобрил. Без
     // подстановки пробного адреса контракт валится, и КАЖДАЯ карточка в
@@ -720,6 +721,7 @@ export async function runTextGeneration(input: TextGenerationParams): Promise<Re
             isVoice: task.isVoice,
             difficulty: task.difficulty,
             payload: task.payload,
+            ...(task.explanation ? { explanation: task.explanation } : {}),
             tags: task.tags,
             verified: wasPublished,
             generatedAtMs: nowMs,
@@ -727,6 +729,7 @@ export async function runTextGeneration(input: TextGenerationParams): Promise<Re
             aiMeta: {
               scenario: item.scenario,
               ruleNote: item.ruleNote,
+              example: task.explanation?.example ?? '',
               level: params.level,
               model: cfg.model,
             },

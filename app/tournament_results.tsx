@@ -374,11 +374,14 @@ export default function TournamentResultsScreen() {
           ) : (
             <V2Cta onPress={share}>Поделиться 📤</V2Cta>
           )}
-          {/* зачем 2026-07-27 (владелец: «разбор ответов пока убери кнопку
-              после турнира, удали её, она пока не нужна»): вход в разбор снят.
-              Сам экран tournament_review и серверный callable оставлены — они
-              рабочие, и вернуть кнопку будет одной строкой, если владелец
-              передумает. */}
+          {roomId ? (
+            <V2Cta
+              tone="ghost"
+              onPress={() => router.push({ pathname: '/tournament_review', params: { roomId } } as any)}
+            >
+              Разобрать ответы
+            </V2Cta>
+          ) : null}
           <V2Cta tone="ghost" onPress={() => router.replace('/tournaments')}>На главную</V2Cta>
         </View>
       </ScrollView>

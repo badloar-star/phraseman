@@ -153,6 +153,7 @@ export default function TournamentReviewScreen() {
 const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
   const P = useTournamentPalette();
   const styles = useMemo(() => makeStyles(P), [P]);
+  const [expanded, setExpanded] = useState(!item.correct);
 
   const isAudio = item.mode === 'listen_choose'
     || item.mode === 'sound_contrast'
@@ -242,6 +243,39 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
           ) : null}
         </View>
       )}
+
+      {item.explanation ? (
+        <View style={styles.explanation}>
+          {!expanded ? (
+            <TapScale
+              onPress={() => setExpanded(true)}
+              accessibilityRole="button"
+              accessibilityLabel="Показать разбор ответа"
+              style={styles.explanationToggle}
+            >
+              <Text style={styles.explanationToggleText}>Почему это верно</Text>
+              <Ionicons name="chevron-down" size={16} color={P.accent} />
+            </TapScale>
+          ) : (
+            <>
+              <Text style={styles.explanationTitle}>Разбор</Text>
+              <Text style={styles.explanationText}>{item.explanation.ruleNote}</Text>
+              <Text style={styles.exampleText}>{item.explanation.example}</Text>
+              {item.correct ? (
+                <TapScale
+                  onPress={() => setExpanded(false)}
+                  accessibilityRole="button"
+                  accessibilityLabel="Свернуть разбор ответа"
+                  style={styles.explanationToggle}
+                >
+                  <Text style={styles.explanationToggleText}>Свернуть</Text>
+                  <Ionicons name="chevron-up" size={16} color={P.accent} />
+                </TapScale>
+              ) : null}
+            </>
+          )}
+        </View>
+      ) : null}
     </V2Card>
   );
 });
@@ -305,6 +339,12 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   phrase: { flex: 1, fontSize: 18, fontWeight: '800', color: P.text, lineHeight: 24 },
 
   answers: { gap: 6 },
+  explanation: { gap: 6, paddingTop: 4, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: P.muted },
+  explanationTitle: { color: P.text, fontSize: 14, fontWeight: '900' },
+  explanationText: { color: P.text, fontSize: 14, lineHeight: 20 },
+  exampleText: { color: P.muted, fontSize: 13, lineHeight: 19, fontStyle: 'italic' },
+  explanationToggle: { minHeight: 36, flexDirection: 'row', alignItems: 'center', gap: 6 },
+  explanationToggleText: { color: P.accent, fontSize: 13, fontWeight: '800' },
   answerRow: {
     flexDirection: 'row',
     alignItems: 'center',

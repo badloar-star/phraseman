@@ -46,7 +46,12 @@ import { useLocalSearchParams } from 'expo-router';
 // число берётся из questions.length, но расходиться они больше не должны.
 const QUESTIONS_PER_ROUND = 4;
 const SECONDS_PER_QUESTION = 15;
+const SECONDS_PER_MATCH = 20;
+const SPEED_MATCH_PAIRS = 6;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
+
+type MatchPair = { prompt: string; options: string[] };
+type MatchStatus = { verdict: 'correct' | 'wrong'; selectedIndex: number };
 
 type Question = {
   /** taskId исходного задания — на него ссылается ответ. */
@@ -54,7 +59,7 @@ type Question = {
   // зачем 2026-07-27: аудио-режимы владельца. listen = услышал → выбрал,
   // dictate = услышал → собрал из чипов. Отвечают как choice/translate,
   // но вместо текста фразы игроку даётся ТОЛЬКО звук.
-  kind: 'choice' | 'timeattack' | 'translate' | 'listen' | 'dictate';
+  kind: 'choice' | 'timeattack' | 'translate' | 'listen' | 'dictate' | 'match';
   prompt: string;
   /** Для аудио-режимов ПУСТО: услышанный текст и есть ответ. */
   phrase: string;
@@ -75,6 +80,10 @@ type Question = {
   itemIndex: number;
   /** Сколько всего подвопросов в этом задании — 1 для choice/translate. */
   itemCount: number;
+  /** One speed-match task is a single board with six independently answered pairs. */
+  matchPairs?: MatchPair[];
+  /** Server-issued, room-salted answer fingerprints; never expose answer keys. */
+  answerFingerprints?: string[];
 };
 
 /**
@@ -112,6 +121,28 @@ function taskToQuestions(task: PublicTask): Question[] {
         };
       })
       .filter((question): question is Question => question !== null);
+  }
+  if (task.kind === 'match') {
+    const items = Array.isArray(payload.items) ? (payload.items as Record<string, unknown>[]) : [];
+    const matchPairs = items.map((item): MatchPair | null => {
+      const prompt = String(item?.prompt ?? '');
+      const options = Array.isArray(item?.options) ? (item.options as string[]) : [];
+      return prompt && options.length >= 2 ? { prompt, options } : null;
+    }).filter((pair): pair is MatchPair => pair !== null);
+    // A partial field is unplayable: every speed round is exactly six pairs.
+    if (items.length !== SPEED_MATCH_PAIRS || matchPairs.length !== SPEED_MATCH_PAIRS) return [];
+    return [{
+      taskId: task.taskId,
+      kind: 'match',
+      prompt: String(payload.prompt ?? 'Соедини пары'),
+      phrase: '',
+      options: [],
+      wordBank: [],
+      itemIndex: 0,
+      itemCount: matchPairs.length,
+      matchPairs,
+      answerFingerprints: task.answerFingerprints,
+    }];
   }
   if (task.kind === 'translate') {
     // зачем: генератор кладёт в пул 3276 заданий translate_build (столько же,
@@ -165,6 +196,16 @@ function taskToQuestions(task: PublicTask): Question[] {
   return [];
 }
 
+function answerFingerprint(roomId: string, taskId: string, selectedIndex: number): string {
+  const seed = `${roomId}|${taskId}|${String(selectedIndex).trim().toLowerCase()}`;
+  let hash = 2166136261;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
 type Phase = 'intro' | 'question' | 'feedback';
 
 export default function TournamentRoundScreen() {
@@ -194,6 +235,10 @@ export default function TournamentRoundScreen() {
   // ответ (участие), а не за верный — иначе экран врал бы игроку. Итоговый
   // счёт всё равно приходит с сервера в таблице между раундами.
   const [stars, setStars] = useState(0);
+  // Match rounds start perfect; every incorrect attempt removes one star permanently,
+  // while the row itself remains available so the player can correct it.
+  const [matchStars, setMatchStars] = useState(3);
+  const [matchStatus, setMatchStatus] = useState<Record<number, MatchStatus>>({});
   const fxRef = useRef<TournamentFxApi>(null);
   const starCounterRef = useRef<View>(null);
   const streakPillRef = useRef<View>(null);
@@ -232,6 +277,7 @@ export default function TournamentRoundScreen() {
 
   const total = questions.length || QUESTIONS_PER_ROUND;
   const question = questions[index] ?? null;
+  const secondsForQuestion = question?.kind === 'match' ? SECONDS_PER_MATCH : SECONDS_PER_QUESTION;
   const multiplier = streak >= 4 ? 2 : streak >= 2 ? 1.5 : 1;
 
   /**
@@ -246,7 +292,13 @@ export default function TournamentRoundScreen() {
     const byTask = new Map<string, { kind: Question['kind']; values: (number | string[] | null)[] }>();
     for (const q of questions) {
       const entry = byTask.get(q.taskId) ?? { kind: q.kind, values: [] };
-      entry.values[q.itemIndex] = answersByKeyRef.current.get(`${q.taskId}:${q.itemIndex}`) ?? null;
+      if (q.kind === 'match') {
+        for (let pairIndex = 0; pairIndex < q.itemCount; pairIndex += 1) {
+          entry.values[pairIndex] = answersByKeyRef.current.get(`${q.taskId}:${pairIndex}`) ?? null;
+        }
+      } else {
+        entry.values[q.itemIndex] = answersByKeyRef.current.get(`${q.taskId}:${q.itemIndex}`) ?? null;
+      }
       byTask.set(q.taskId, entry);
     }
     return Array.from(byTask.entries()).map(([taskId, entry]) => {
@@ -288,10 +340,15 @@ export default function TournamentRoundScreen() {
     if (questionKey) setAudioReadyKey(questionKey);
   }, [questionKey]);
 
+  useEffect(() => {
+    setMatchStars(3);
+    setMatchStatus({});
+  }, [questionKey]);
+
   // Таймер вопроса. Ноль = ответа не было, идём дальше без очков.
   useEffect(() => {
     if (phase !== 'question') return;
-    setSecondsLeft(SECONDS_PER_QUESTION);
+    setSecondsLeft(secondsForQuestion);
     // Аудио ещё не прозвучало — держим полное время на табло и не тикаем.
     if (!audioPlayed) return;
     const id = setInterval(() => {
@@ -301,7 +358,7 @@ export default function TournamentRoundScreen() {
       });
     }, 1000);
     return () => clearInterval(id);
-  }, [phase, index, audioPlayed]);
+  }, [phase, index, audioPlayed, secondsForQuestion]);
 
   /**
    * Отправка пачки. Ровно один раз за раунд: сервер идемпотентен, но лишний
@@ -326,6 +383,7 @@ export default function TournamentRoundScreen() {
     setIndex((value) => value + 1);
     setPicked(null);
     setTimedOut(false);
+    setMatchStatus({});
     setPhase('question');
   }, [index, total, flushAnswers, roomId, router]);
 
@@ -444,6 +502,38 @@ export default function TournamentRoundScreen() {
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
   }, [phase, question, goNext, celebrateStreak, flyStar, fxSize]);
 
+  const answerMatch = useCallback((pairIndex: number, selectedIndex: number) => {
+    if (phase !== 'question' || question?.kind !== 'match' || !roomId) return;
+    if (matchStatus[pairIndex]?.verdict === 'correct') return;
+
+    const fingerprint = answerFingerprint(roomId, question.taskId, selectedIndex);
+    const isCorrect = fingerprint === question.answerFingerprints?.[pairIndex];
+    setMatchStatus((current) => ({
+      ...current,
+      [pairIndex]: { verdict: isCorrect ? 'correct' : 'wrong', selectedIndex },
+    }));
+    // A wrong tile is deliberately not locked. The next tap replaces its stored
+    // answer, allowing correction without restoring the lost star.
+    answersByKeyRef.current.set(`${question.taskId}:${pairIndex}`, selectedIndex);
+    if (isCorrect) {
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    } else {
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
+      setMatchStars((value) => Math.max(0, value - 1));
+    }
+  }, [phase, question, roomId, matchStatus]);
+
+  const matchComplete = question?.kind === 'match'
+    && question.matchPairs?.every((_, pairIndex) => matchStatus[pairIndex]?.verdict === 'correct');
+
+  useEffect(() => {
+    if (!matchComplete || phase !== 'question') return;
+    advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
+    return () => {
+      if (advanceRef.current) clearTimeout(advanceRef.current);
+    };
+  }, [matchComplete, phase, goNext]);
+
   // Время вышло — пропуск, серия обнуляется.
   useEffect(() => {
     if (phase !== 'question' || secondsLeft > 0 || !question) return;
@@ -453,7 +543,13 @@ export default function TournamentRoundScreen() {
     setStreak(0);
     // Пропуск — оставляем null в буфере (в timeattack это станет -1 в
     // selectedIndexes при сборке пачки, см. buildAnswerRows).
-    answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, null);
+    if (question.kind === 'match') {
+      for (let pairIndex = 0; pairIndex < question.itemCount; pairIndex += 1) {
+        answersByKeyRef.current.set(`${question.taskId}:${pairIndex}`, null);
+      }
+    } else {
+      answersByKeyRef.current.set(`${question.taskId}:${question.itemIndex}`, null);
+    }
     advanceRef.current = setTimeout(goNext, motion.answerFeedbackMs);
   }, [phase, secondsLeft, question, goNext]);
 
@@ -565,8 +661,8 @@ export default function TournamentRoundScreen() {
           {/* Серия и звёзды — язык V2: пилюля накаляется по ярусам, счётчик
               подпрыгивает при начислении. Множитель ушёл в пилюлю. */}
           <V2StreakPill ref={streakPillRef} streak={streak} />
-          <V2Counter ref={starCounterRef} value={stars} tone="stars" />
-          <TimerRing seconds={secondsLeft} total={SECONDS_PER_QUESTION} />
+          <V2Counter ref={starCounterRef} value={question.kind === 'match' ? matchStars : stars} tone="stars" />
+          <TimerRing seconds={secondsLeft} total={secondsForQuestion} />
         </View>
 
         {/* Вопрос.
@@ -588,7 +684,7 @@ export default function TournamentRoundScreen() {
             заданием (плеером/фразой) за первое место в чтении; вынесенная
             наверх, она читается как подпись к блоку. */}
         <Text style={styles.questionPrompt}>{question.prompt}</Text>
-        <V2Card pad={22} style={styles.questionCard}>
+        {question.kind !== 'match' ? <V2Card pad={22} style={styles.questionCard}>
           {/* зачем: в аудио-режиме текст фразы — это и есть ответ, показывать
               его нельзя. Вместо него кнопка: услышать можно только ушами. */}
           {question.kind === 'listen' || question.kind === 'dictate' ? (
@@ -601,11 +697,17 @@ export default function TournamentRoundScreen() {
           ) : (
             <Text style={styles.questionPhrase}>{question.phrase}</Text>
           )}
-        </V2Card>
+        </V2Card> : null}
         </Animated.View>
 
         {/* Варианты (choice/timeattack) или сборка слов (translate) */}
-        {question.kind === 'translate' || question.kind === 'dictate' ? (
+        {question.kind === 'match' ? (
+          <MatchBoard
+            matchPairs={question.matchPairs ?? []}
+            status={matchStatus}
+            onSelect={answerMatch}
+          />
+        ) : question.kind === 'translate' || question.kind === 'dictate' ? (
           <WordBank
             key={question.taskId}
             wordBank={question.wordBank}
@@ -709,6 +811,49 @@ const OptionRow = memo(function OptionRow({
  * содержать повторяющееся слово («I am, I think»), поэтому ключ — индекс
  * исходного банка, а не сам текст.
  */
+const MatchBoard = memo(function MatchBoard({
+  matchPairs, status, onSelect,
+}: {
+  matchPairs: MatchPair[];
+  status: Record<number, MatchStatus>;
+  onSelect: (pairIndex: number, selectedIndex: number) => void;
+}) {
+  const P = useTournamentPalette();
+  const styles = React.useMemo(() => makeStyles(P), [P]);
+
+  return (
+    <View style={styles.matchBoard} accessibilityLabel="Шесть пар слов на скорость">
+      {matchPairs.map((pair, pairIndex) => {
+        const pairStatus = status[pairIndex];
+        return (
+          <View key={`${pair.prompt}:${pairIndex}`} style={styles.matchRow}>
+            <View style={styles.matchPrompt}>
+              <Text style={styles.matchPromptText}>{pair.prompt}</Text>
+            </View>
+            <View style={styles.matchOptions}>
+              {pair.options.map((option, optionIndex) => (
+                <V2Chip
+                  key={`${option}:${optionIndex}`}
+                  block
+                  verdict={pairStatus?.selectedIndex === optionIndex
+                    ? pairStatus.verdict === 'correct' ? 'ok' : 'bad'
+                    : 'idle'}
+                  disabled={pairStatus?.verdict === 'correct'}
+                  onPress={() => onSelect(pairIndex, optionIndex)}
+                  accessibilityLabel={`${pair.prompt}: ${option}`}
+                  style={styles.matchOption}
+                >
+                  {option}
+                </V2Chip>
+              ))}
+            </View>
+          </View>
+        );
+      })}
+    </View>
+  );
+});
+
 const WordBank = memo(function WordBank({
   wordBank, revealed, onSubmit,
 }: {
@@ -839,6 +984,18 @@ const makeStyles = (P: TournamentPalette) => StyleSheet.create({
   questionPhrase: { fontSize: 28, fontWeight: '900', color: P.text, letterSpacing: -0.6 },
 
   options: { gap: 10 },
+  matchBoard: { gap: 12 },
+  matchRow: { gap: 8 },
+  matchPrompt: {
+    minHeight: 42,
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+    borderRadius: radius.sm,
+    backgroundColor: P.card,
+  },
+  matchPromptText: { fontSize: 17, fontWeight: '900', color: P.text },
+  matchOptions: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
+  matchOption: { flexGrow: 1, flexBasis: '44%', minHeight: 42 },
   option: {
     minHeight: 62,
     borderRadius: radius.md,

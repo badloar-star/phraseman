@@ -18,10 +18,12 @@ export type PublicTask = {
   mode: string;
   // зачем 2026-07-27: аудио-режимы владельца. listen = услышал → выбрал,
   // dictate = диктант. Имена совпадают с серверным taskKind буква в букву.
-  kind: 'choice' | 'translate' | 'timeattack' | 'voice' | 'listen' | 'dictate';
+  kind: 'choice' | 'translate' | 'timeattack' | 'voice' | 'listen' | 'dictate' | 'match';
   isVoice: boolean;
   difficulty: number;
   payload: Record<string, unknown>;
+  /** Room-salted hashes enable immediate UI feedback without exposing answer keys. */
+  answerFingerprints?: string[];
 };
 
 export type RoomPlayer = {
@@ -465,6 +467,7 @@ export type ReviewItem = {
   correctIndex: number | null;
   correctTokens: string[];
   audioUri: string;
+  explanation: { ruleNote: string; example: string } | null;
 };
 
 /**

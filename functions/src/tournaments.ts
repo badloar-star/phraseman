@@ -56,7 +56,9 @@ import {
   stateDeadlineDurationMs,
   toPublicTournamentTask,
   tournamentFeatureGates,
+  tournamentEconomySnapshotForMode,
   tournamentHash32,
+  tournamentRoomAdmissionMode,
   tournamentRoomId,
   tournamentWeekId,
   validateTournamentFillMutation,
@@ -159,6 +161,7 @@ function readRoom(snap: FirebaseFirestore.DocumentSnapshot): TournamentRoomDoc {
     economySnapshot: data.economySnapshot
       ? normalizeTournamentEconomy(data.economySnapshot)
       : undefined,
+    testMode: data.testMode === true,
     ticketsRequired: Math.max(0, readInt(data.ticketsRequired, 0)) || undefined,
     players: Array.isArray(data.players) ? data.players as TournamentPlayer[] : [],
     rounds: Array.isArray(data.rounds) ? data.rounds as TournamentRound[] : [],
@@ -604,19 +607,23 @@ export async function tournamentJoinTransaction(
     if (nowMs >= room.startsAt) throw new HttpsError('failed-precondition', 'join_cutoff_elapsed');
 
     const config = configSnap.exists ? normalizeTournamentSchedule(configSnap.data()) : normalizeTournamentSchedule(null);
-    const slot = config.slots.find((candidate) => candidate.slotId === room.slotId && candidate.enabled);
-    // зачем: комната, созданная по кнопке, живёт под собственным slotId с
-    // меткой времени — в расписании такого слота нет по построению. Требовать
-    // его наличия значило бы запретить вход в турнир «прямо сейчас», ради
-    // которого функция и существует. Настройки берём из самой комнаты.
-    const roomHasOwnSlot = !slot && Number(roomSnap.data()?.ticketsRequired ?? 0) > 0;
-    if (!slot && !roomHasOwnSlot) throw new HttpsError('failed-precondition', 'tournament_config_disabled');
+    // On-demand test rooms are admitted only by their immutable mode snapshot
+    // plus the current server switch. Scheduled and legacy paid rooms keep their
+    // original slot-based admission contract.
+    const admissionMode = tournamentRoomAdmissionMode(room, config);
+    if (!admissionMode) {
+      throw new HttpsError(
+        'failed-precondition',
+        room.testMode === true ? 'tournament_testing_disabled' : 'tournament_config_disabled',
+      );
+    }
 
-    // зачем: вход переведён с билетов на жемчужины (решение владельца
-    // 2026-07-26) — одна валюта вместо двух сущностей. Взнос идёт в банк
-    // турнира целиком: 20% осядет в недельном банке, остальное разыграют
-    // призёры. Билеты как сущность убираются.
-    const economy = normalizeTournamentEconomy(room.economySnapshot ?? economySnap.data());
+    // Test mode is also enforced here, inside the transaction: a forged room id
+    // or stale client cannot turn a paid room free or bypass a disabled switch.
+    const economy = tournamentEconomySnapshotForMode(
+      room.economySnapshot ?? economySnap.data(),
+      admissionMode === 'test',
+    );
     const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
     const user = userSnap.data() || {};
@@ -635,7 +642,7 @@ export async function tournamentJoinTransaction(
     // ключом dev-…, поэтому ВТОРОЙ тестовый турнир за день всегда упирался в
     // этот же slotKey и войти было нельзя. Дев-комнату из лимита исключаем —
     // она не влияет ни на банк недели, ни на сезонный рейтинг.
-    if (sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
+    if (admissionMode === 'scheduled' && sanitizeString(user.tournament_last_slot_key, 200) === slotKey) {
       throw new HttpsError('failed-precondition', 'slot_already_played');
     }
 
@@ -679,20 +686,17 @@ export async function tournamentJoinTransaction(
     // зачем: списываем жемчужины из профиля (то же поле shards, что и везде
     // в игре), а весь взнос кладём в банк турнира — комната сама посчитает,
     // сколько уйдёт призёрам и сколько в недельный банк.
-    tx.set(userRef, {
-      shards: admin.firestore.FieldValue.increment(-entryGems),
-      // Маркер «этот слот сегодня уже сыгран» — основа лимита один-турнир-на-слот.
-      // зачем 2026-07-27 (владелец: «убирай дев полностью»): исключение для
-      // дев-комнат снято, маркер ставится всегда. Комнаты, созданные кнопкой,
-      // под лимит не попадают сами: у каждой собственный slotId с меткой
-      // времени, поэтому slotKey каждый раз новый.
-      tournament_last_slot_key: slotKey,
-      tournament_last_slot_room_id: room.roomId,
-      updatedAt: nowMs,
-    }, { merge: true });
-    tx.set(roomRef, {
-      potGems: admin.firestore.FieldValue.increment(entryGems),
-    }, { merge: true });
+    if (admissionMode === 'scheduled') {
+      tx.set(userRef, {
+        shards: admin.firestore.FieldValue.increment(-entryGems),
+        tournament_last_slot_key: slotKey,
+        tournament_last_slot_room_id: room.roomId,
+        updatedAt: nowMs,
+      }, { merge: true });
+      tx.set(roomRef, {
+        potGems: admin.firestore.FieldValue.increment(entryGems),
+      }, { merge: true });
+    }
     tx.set(roomRef, {
       players: nextRoom.players.map(publicTournamentPlayer),
       participantAuthUids: nextRoom.participantAuthUids,
@@ -2221,18 +2225,26 @@ const INSTANT_ROOM_START_DELAY_MS = 12 * 1000;
 // игрока в очередь за первым — второй ждал и отваливался по таймауту.
 // 60с + 10 инстансов: расход тот же (платим за использование, не за лимит),
 // но вход перестаёт падать на ровном месте.
+// Current contract (2026-07-28): this callable is a temporary, signed-in-user
+// test surface. It is fail-closed behind schedule.testingEnabled and snapshots
+// a zero-value economy so repeated tests cannot affect paid play or rankings.
 export const tournamentStartNow = onCall(
   { ...HOT_CALLABLE_OPTIONS, region: 'europe-west1', timeoutSeconds: 60, maxInstances: 10 },
   async (request) => {
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const nowMs = Date.now();
-    const [config, resources, economySnap] = await Promise.all([
-      loadScheduleConfig(db),
+    const config = await loadScheduleConfig(db);
+    if (config.testingEnabled !== true) {
+      throw new HttpsError('failed-precondition', 'tournament_testing_disabled');
+    }
+    const stableUid = await resolveStableUid(db, request.auth.uid);
+    await assertNotBanned(db, stableUid);
+    const [resources, economySnap] = await Promise.all([
       loadResourcePool(db),
       db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
     ]);
-    const economySnapshot = normalizeTournamentEconomy(economySnap.data());
+    const economySnapshot = tournamentEconomySnapshotForMode(economySnap.data(), true);
     const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
     if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
     if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
@@ -2277,6 +2289,7 @@ export const tournamentStartNow = onCall(
     const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
     const room: TournamentRoomDoc = {
       economySnapshot,
+      testMode: true,
       roomId,
       // зачем: собственный slotId с меткой времени — именно он снимает лимит
       // «один турнир на слот в день». slotKey в транзакции входа собирается как
@@ -2302,8 +2315,8 @@ export const tournamentStartNow = onCall(
     const batch = db.batch();
     batch.create(roomRef, {
       ...room,
-      // devRoom НЕ ставится: это обычная комната, идущая по штатным правилам.
-      ticketsRequired: slot.ticketsRequired,
+      // Immutable server-owned mode; clients cannot convert scheduled rooms into free rooms.
+      ticketsRequired: 0,
       timezone: slot.timezone,
       ready: true,
       readyAtMs: nowMs,
@@ -2326,14 +2339,8 @@ export const tournamentStartNow = onCall(
     );
     await batch.commit();
 
-    // зачем: комната стартует через 12 секунд, а штатный вход требует
-    // state === 'lobby' И nowMs < startsAt. Если оставить вход на отдельный тап,
-    // игрок, задержавшийся на шторке подтверждения, получал бы join_cutoff_elapsed
-    // на комнате, созданной ровно для него. Поэтому сажаем его здесь же — тем же
-    // tournamentJoinTransaction, что и обычный вход: жемчужины списываются как
-    // всегда, взнос идёт в банк, правила одни и те же.
-    const stableUid = await resolveStableUid(db, request.auth.uid);
-    await assertNotBanned(db, stableUid);
+    // Join in the same request so the creator cannot miss the short lobby cutoff.
+    // The transaction rechecks the current switch and the immutable zero economy.
     const joined = await tournamentJoinTransaction(db, {
       authUid: request.auth.uid,
       stableUid,

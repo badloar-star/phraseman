@@ -139,6 +139,8 @@ export type TournamentSlotConfig = {
 
 export type TournamentScheduleConfig = {
   slots: TournamentSlotConfig[];
+  /** Temporary server-authoritative access gate for free, on-demand test rooms. */
+  testingEnabled?: boolean;
   /** Один бесплатный вход в неделю для всех (§4). */
   freeWeeklyEntry: boolean;
   /** Стоимость одного билета в 💎 для банка/покупки (малые числа, §4). */
@@ -194,7 +196,31 @@ export function normalizeTournamentSchedule(raw: unknown): TournamentScheduleCon
     slots,
     freeWeeklyEntry: data.freeWeeklyEntry === true,
     ticketGemValue: Math.max(0, Math.trunc(Number(data.ticketGemValue)) || 0),
+    ...(data.testingEnabled === true ? { testingEnabled: true } : {}),
   };
+}
+
+export type TournamentRoomAdmissionMode = 'scheduled' | 'test';
+
+/** Resolve admission from immutable room mode and the current server config. */
+export function tournamentRoomAdmissionMode(
+  room: Pick<TournamentRoomDoc, 'slotId' | 'ticketsRequired' | 'testMode'>,
+  config: TournamentScheduleConfig,
+): TournamentRoomAdmissionMode | null {
+  if (room.testMode === true) return config.testingEnabled === true ? 'test' : null;
+  const scheduledSlot = config.slots.some((slot) => slot.slotId === room.slotId && slot.enabled);
+  return scheduledSlot || Number(room.ticketsRequired ?? 0) > 0 ? 'scheduled' : null;
+}
+
+/** Test rooms never charge users, mint bot-funded prizes, or feed the weekly bank. */
+export function tournamentEconomySnapshotForMode(
+  raw: unknown,
+  testMode: boolean,
+): TournamentEconomyConfig {
+  const economy = normalizeTournamentEconomy(raw);
+  return testMode
+    ? Object.freeze({ ...economy, entryGems: 0, botEntryGems: 0 })
+    : economy;
 }
 
 /**
@@ -452,6 +478,8 @@ export type TournamentRound = {
 export type TournamentRoomDoc = {
   /** Immutable economy terms captured when the room is created. */
   economySnapshot?: TournamentEconomyConfig;
+  /** Immutable on-demand testing mode; never inferred from room id or caller input. */
+  testMode?: boolean;
   /** Банк турнира в жемчужинах: сумма взносов всех участников. */
   potGems?: number;
   /**
@@ -1445,9 +1473,10 @@ export function planTournamentFinalization(
   const { standings, realPlacements } = computePlacements(room.players);
   // New rooms always carry this snapshot. The argument remains only as a compatibility
   // fallback for legacy documents created before the snapshot contract existed.
-  const frozenEconomy = room.economySnapshot
-    ? normalizeTournamentEconomy(room.economySnapshot)
-    : normalizeTournamentEconomy(economy);
+  const frozenEconomy = tournamentEconomySnapshotForMode(
+    room.economySnapshot ?? economy,
+    room.testMode === true,
+  );
 
   // зачем: приз = доля от РЕАЛЬНОГО банка турнира. Считаем состав по самой
   // комнате, а не по накопленному полю: так пересчёт финализации даёт тот же
@@ -1470,7 +1499,7 @@ export function planTournamentFinalization(
     player.isBot ? total + (payoutByPlace.get(index + 1) ?? 0) : total
   ), 0);
 
-  const playerEffects = realPlacements.map(({ player, place }) => ({
+  const playerEffects = (room.testMode === true ? [] : realPlacements).map(({ player, place }) => ({
     playerId: player.id,
     place,
     seasonPoints: seasonPointsForPlace(place),
@@ -1493,7 +1522,7 @@ export function planTournamentFinalization(
       // хотя сервер платит долю РЕАЛЬНОГО банка (при 16 игроках — 24/9/6).
       // Кладём фактические выплаты в комнату: экран показывает правду и может
       // анимировать начисление из банка к каждому призёру.
-      prizeGems: payouts.map((payout) => payout.gems),
+      prizeGems: room.testMode === true ? [] : payouts.map((payout) => payout.gems),
       prizePoolGems: pot.toPrizes,
       finalizationReceiptId: receiptId,
       stateStartedAtMs: nowMs,

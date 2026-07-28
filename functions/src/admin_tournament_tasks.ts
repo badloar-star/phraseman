@@ -340,6 +340,9 @@ export function publicAdminTask(taskId: string, task: TournamentTask): Record<st
     // Раздельные пулы и карточка ревью ИИ-заданий (сцена + заметка редактору).
     source: typeof doc.source === 'string' ? doc.source : '',
     aiMeta: doc.aiMeta && typeof doc.aiMeta === 'object' && !Array.isArray(doc.aiMeta) ? doc.aiMeta : null,
+    lifecycle: typeof (doc as any).lifecycle === 'string' ? (doc as any).lifecycle : (task.verified === true ? 'published' : 'generated'),
+    aiVerdict: typeof (doc as any).aiVerdict === 'string' ? (doc as any).aiVerdict : null,
+    aiReason: typeof (doc as any).aiReason === 'string' ? (doc as any).aiReason : null,
   };
 }
 
@@ -724,6 +727,10 @@ export async function runTextGeneration(input: TextGenerationParams): Promise<Re
             ...(task.explanation ? { explanation: task.explanation } : {}),
             tags: task.tags,
             verified: wasPublished,
+            lifecycle: wasPublished ? 'published' : 'awaiting_approval',
+            aiVerdict: 'approved',
+            aiReason: 'Passed server AI contract validation.',
+            aiCheckedAtMs: nowMs,
             generatedAtMs: nowMs,
             source: 'ai',
             aiMeta: {
@@ -842,6 +849,13 @@ export const adminEditTournamentTask = onCall(
       editedAtMs: Date.now(),
       editedBy: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
     };
+    if ((existing as TournamentTask & { source?: unknown }).source === 'ai') {
+      update.verified = false;
+      update.lifecycle = 'awaiting_approval';
+      update.aiVerdict = 'approved';
+      update.aiReason = 'Passed server AI contract validation after edit.';
+      update.aiCheckedAtMs = Date.now();
+    }
     if (modeNeedsAudio(existing.mode)) {
       const payloadRecord = params.payload as Record<string, unknown>;
       const freshness = checkTournamentAudioFreshness({
@@ -1039,7 +1053,13 @@ export const adminMutateTournamentTasks = onCall(
           rejected.push(snapshot.id);
           continue;
         }
-        batch.update(snapshot.ref, { verified: true, publishedAtMs: Date.now() });
+        const existing = snapshot.data() as TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown };
+        if (existing.source === 'ai'
+          && (existing.lifecycle !== 'awaiting_approval' || existing.aiVerdict !== 'approved')) {
+          rejected.push(snapshot.id);
+          continue;
+        }
+        batch.update(snapshot.ref, { verified: true, publishedAtMs: Date.now(), lifecycle: 'published' });
         affected += 1;
       }
       await batch.commit();

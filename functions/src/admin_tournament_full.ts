@@ -427,6 +427,10 @@ export const adminRegenerateTournamentTask = onCall(
     const batch = db.batch();
     batch.set(collection.doc(replacement.taskId), {
       ...replacement, source: 'ai', createdAtMs: nowMs, replacedTaskId: taskId,
+      lifecycle: 'awaiting_approval',
+      aiVerdict: 'approved',
+      aiReason: 'Passed server AI contract validation after regeneration.',
+      aiCheckedAtMs: nowMs,
     }, { merge: true });
     if (replacement.taskId !== taskId) batch.delete(collection.doc(taskId));
     await batch.commit();

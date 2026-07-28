@@ -161,6 +161,8 @@ export function parseGenerateRequest(data: unknown): GenerateRequest {
 export type ListRequest = {
   readonly limit: number;
   readonly status: '' | 'draft' | 'published';
+  /** Exact server-side lifecycle filter; empty preserves the existing all-lifecycles list. */
+  readonly lifecycle: '' | 'awaiting_approval';
   readonly mode: string;
   readonly difficulty: number;
   readonly cursor: string;
@@ -169,10 +171,11 @@ export type ListRequest = {
 };
 
 export function parseListRequest(data: unknown): ListRequest {
-  const record = onlyKeys(data, ['limit', 'status', 'mode', 'difficulty', 'cursor', 'source'], 'tournament_list_invalid');
+  const record = onlyKeys(data, ['limit', 'status', 'lifecycle', 'mode', 'difficulty', 'cursor', 'source'], 'tournament_list_invalid');
 
   const limit = record.limit === undefined ? 25 : Number(record.limit);
   const status = String(record.status ?? '').trim() as ListRequest['status'];
+  const lifecycle = String(record.lifecycle ?? '').trim() as ListRequest['lifecycle'];
   const mode = String(record.mode ?? '').trim();
   const difficulty = record.difficulty === undefined ? 0 : Number(record.difficulty);
   const cursor = String(record.cursor ?? '').trim();
@@ -180,13 +183,14 @@ export function parseListRequest(data: unknown): ListRequest {
 
   if (!Number.isSafeInteger(limit) || limit < 1 || limit > MAX_LIST_LIMIT
     || !['', 'draft', 'published'].includes(status)
+    || !['', 'awaiting_approval'].includes(lifecycle)
     || (mode && !ID_RE.test(mode))
     || !Number.isSafeInteger(difficulty) || difficulty < 0 || difficulty > 3
     || (cursor && !ID_RE.test(cursor))
     || !['', 'ai', 'plan_content'].includes(source)) {
     throw new HttpsError('invalid-argument', 'tournament_list_invalid');
   }
-  return Object.freeze({ limit, status, mode, difficulty, cursor, source });
+  return Object.freeze({ limit, status, lifecycle, mode, difficulty, cursor, source });
 }
 
 export type MutateRequest = {
@@ -993,6 +997,7 @@ export const adminListTournamentTasks = onCall(
     let query: FirebaseFirestore.Query = db.collection(TOURNAMENT_TASKS_COLLECTION);
     if (params.status === 'draft') query = query.where('verified', '==', false);
     if (params.status === 'published') query = query.where('verified', '==', true);
+    if (params.lifecycle) query = query.where('lifecycle', '==', params.lifecycle);
     if (params.mode) query = query.where('mode', '==', params.mode);
     if (params.difficulty) query = query.where('difficulty', '==', params.difficulty);
     if (params.source) query = query.where('source', '==', params.source);

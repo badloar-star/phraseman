@@ -37,6 +37,7 @@ function runTab() {
       if (name === 'adminListTournamentTasks') {
         return { data: { items: [{
           taskId: 't1', mode: 'guess_phrase', difficulty: 1, verified: false, valid: true,
+          lifecycle: 'awaiting_approval', aiVerdict: 'approved',
           payload: { phrase: 'I am here', options: ['Я здесь', 'Как дела', 'Спасибо', 'Пока'], correctIndex: 0 },
         }], nextCursor: '' } };
       }
@@ -71,6 +72,7 @@ function runTab() {
     showToast: (message: string) => { calls.push({ toast: message }); },
     escapeHtml: (value: unknown) => String(value ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;'),
     confirm: () => true,
+    open: (url: string) => { calls.push({ name: 'window.open', payload: { url } }); },
   };
 
   sandbox.document = {
@@ -167,6 +169,7 @@ describe('вкладка «Турниры» в админке', () => {
 
   it('публикация уходит только по явному действию и только с отмеченными', async () => {
     const { sandbox, calls, checkboxes } = runTab();
+    await (sandbox.tnLoadTasks as (reset: boolean) => Promise<void>)(true);
     checkboxes.push({ value: 't1', checked: true, getAttribute: () => '' });
 
     await (sandbox.tnPublishVisible as () => Promise<void>)();
@@ -237,7 +240,7 @@ describe('вкладка «Турниры» в админке', () => {
       expect(typeof sandbox[name]).toBe('function');
       expect(html).toContain(`${name}(`);
     }
-    for (const id of ['tn-ai-level', 'tn-ai-topic', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
+    for (const id of ['tn-fill-level', 'tn-cur-slot', 'tn-cur-date', 'tn-cur-round']) {
       expect(html).toContain(`id="${id}"`);
     }
   });
@@ -271,19 +274,15 @@ describe('вкладка «Турниры» в админке', () => {
     // и решить что заменить/удалить. Папка = режим пула.
     const { sandbox, calls } = runTab();
     await (sandbox.tnOpenFolder as (mode: string) => void)('fill_gap');
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const list = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
-    expect(list?.payload?.mode).toBe('fill_gap');
+    const opened = calls.find((call) => call.name === 'window.open');
+    expect(opened?.payload?.url).toBe('tournament_pool.html?mode=fill_gap');
   });
 
   it('папка «Все» фильтр не шлёт', async () => {
     const { sandbox, calls } = runTab();
     await (sandbox.tnOpenFolder as (mode: string) => void)('');
-    await new Promise((resolve) => setTimeout(resolve, 0));
-
-    const list = calls.filter((call) => call.name === 'adminListTournamentTasks').pop();
-    expect(list?.payload?.mode).toBeUndefined();
+    const opened = calls.find((call) => call.name === 'window.open');
+    expect(opened?.payload?.url).toBe('tournament_pool.html');
   });
 
   it('перегенерация одного вопроса и массовые действия объявлены', () => {

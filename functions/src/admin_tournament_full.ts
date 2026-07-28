@@ -42,7 +42,12 @@ import {
 } from './tournament_ai_kind_items';
 import { judgeTournamentTask } from './tournament_ai_validator';
 import { isTournamentAiLevel, type TournamentAiLevel } from './tournament_ai_generator';
-import { onlyKeys, publicAdminTask, requirePermission } from './admin_tournament_tasks';
+import {
+  canPublishTournamentTask,
+  onlyKeys,
+  publicAdminTask,
+  requirePermission,
+} from './admin_tournament_tasks';
 import { openAiChat } from './explain/explain_provider';
 import { assertJobEnabled, resolveJobConfig } from './openai_jobs_config';
 
@@ -53,6 +58,13 @@ const AI_BILLING_COLLECTION = 'tournament_ai_billing';
 const AI_BUDGET_COLLECTION = 'tournament_ai_budget';
 const AI_MAX_REPAIRS = 2;
 const AI_TEMPERATURE = 0.35;
+
+/** Explicit wrapper keeps folder publication tied to the normal publish gate. */
+export function bulkTournamentTaskCanPublish(
+  task: TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown },
+): boolean {
+  return canPublishTournamentTask(task);
+}
 const AI_MAX_TOKENS = 6_000;
 
 /** Уровень словами — модель держит сложность точнее, чем по голой метке CEFR. */
@@ -513,11 +525,13 @@ export const adminBulkTournamentFolder = onCall(
 
       // Публикуем только то, что реально пройдёт серверный валидатор
       // (проверяем payload УЖЕ с озвучкой — без неё аудио-режим не валиден).
-      if (!kindTaskPassesServerContract({ ...task, payload, taskId: doc.id })) {
+      const publishCandidate = { ...task, payload, taskId: doc.id };
+      if (!kindTaskPassesServerContract(publishCandidate)
+        || !bulkTournamentTaskCanPublish(publishCandidate)) {
         rejected += 1;
         continue;
       }
-      batch.update(doc.ref, { verified: true, publishedAtMs: nowMs });
+      batch.update(doc.ref, { verified: true, publishedAtMs: nowMs, lifecycle: 'published' });
       affected += 1;
     }
     await batch.commit();

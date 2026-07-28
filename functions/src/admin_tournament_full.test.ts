@@ -10,7 +10,9 @@ import {
   difficultyWord,
   groupPlannedTasks,
   parseTournamentFullRequest,
+  bulkTournamentTaskCanPublish,
 } from './admin_tournament_full';
+import type { TournamentTask } from './tournament_core';
 import {
   ROUND_DIFFICULTY,
   TASKS_PER_ROUND,
@@ -86,5 +88,24 @@ describe('слово сложности для промпта', () => {
     // Края не должны падать в undefined.
     expect(difficultyWord(0)).toBe('easy');
     expect(difficultyWord(9)).toBe('hard');
+  });
+});
+
+describe('bulk folder publication lifecycle gate', () => {
+  const task = {
+    taskId: 'ai-choice-1',
+    mode: 'guess_phrase',
+    isVoice: false,
+    difficulty: 1,
+    payload: { phrase: 'I am here', options: ['Я здесь', 'Как дела', 'Спасибо', 'Пока'], correctIndex: 0 },
+    tags: ['kind:choice'],
+    verified: false,
+    source: 'ai',
+  } as TournamentTask & { source: string; lifecycle?: string; aiVerdict?: string };
+
+  it('enforces the same awaiting-approval and approved verdict required by normal publish', () => {
+    expect(bulkTournamentTaskCanPublish({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'approved' })).toBe(true);
+    expect(bulkTournamentTaskCanPublish({ ...task, lifecycle: 'generated', aiVerdict: 'approved' })).toBe(false);
+    expect(bulkTournamentTaskCanPublish({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'pending' })).toBe(false);
   });
 });

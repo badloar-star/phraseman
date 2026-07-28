@@ -582,6 +582,28 @@ describe('Phase-1 hardening contracts', () => {
     expect(hardening.verifyTournamentAnswer(timeattack, { selectedIndexes: [1, 1] })).toBe(false);
   });
 
+  it('publishes one answer fingerprint per speed-match pair', () => {
+    const match = {
+      ...choiceTask,
+      taskId: 'match-1',
+      mode: 'speed_match',
+      payload: {
+        prompt: 'Match the pairs',
+        items: [
+          { prompt: 'one', options: ['один', 'два'], correctIndex: 0 },
+          { prompt: 'two', options: ['один', 'два'], correctIndex: 1 },
+        ],
+      },
+    };
+
+    const publicTask = hardening.toPublicTournamentTask(match, 'room-match');
+    expect(publicTask?.kind).toBe('match');
+    expect(publicTask?.answerFingerprints).toEqual([
+      hardening.answerFingerprint('room-match', 'match-1', hardening.canonicalAnswerValue(0)),
+      hardening.answerFingerprint('room-match', 'match-1', hardening.canonicalAnswerValue(1)),
+    ]);
+  });
+
   it('never credits voice from a client-supplied reference string', () => {
     const voice = {
       ...choiceTask,

@@ -16,6 +16,8 @@ import {
   parseMutateRequest,
   parseScheduleRequest,
   publicAdminTask,
+  aiLifecycleAfterTournamentTaskEdit,
+  canPublishTournamentTask,
   ROUND_DIFFICULTIES,
   ROUND_TASK_TARGET,
 } from './admin_tournament_tasks';
@@ -218,6 +220,36 @@ describe('разбор запроса правки задания', () => {
     expectRejected(() => parseEditRequest({ taskId: 'ok', payload: {} }));
     expectRejected(() => parseEditRequest({ taskId: 'плохой id!', payload: { a: 1 } }));
     expectRejected(() => parseEditRequest({ taskId: 'ok', payload: { a: 1 }, difficulty: 9 }));
+  });
+
+  it('manual AI edits invalidate the old judge approval instead of self-approving', () => {
+    expect(aiLifecycleAfterTournamentTaskEdit({ source: 'ai' })).toEqual({
+      verified: false,
+      lifecycle: 'generated',
+      aiVerdict: 'pending',
+      aiReason: 'Manual edit requires AI validation before approval.',
+      aiCheckedAtMs: null,
+    });
+    expect(aiLifecycleAfterTournamentTaskEdit({ source: 'plan_content' })).toEqual({});
+  });
+});
+
+describe('AI publication lifecycle gate', () => {
+  const task = {
+    taskId: 'ai-choice-1',
+    mode: 'guess_phrase',
+    isVoice: false,
+    difficulty: 1,
+    payload: { phrase: 'I am here', options: ['Я здесь', 'Как дела', 'Спасибо', 'Пока'], correctIndex: 0 },
+    tags: ['kind:choice'],
+    verified: false,
+    source: 'ai',
+  } as TournamentTask & { source: string; lifecycle?: string; aiVerdict?: string };
+
+  it('allows AI publication only after validation and approval', () => {
+    expect(canPublishTournamentTask({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'approved' })).toBe(true);
+    expect(canPublishTournamentTask({ ...task, lifecycle: 'generated', aiVerdict: 'approved' })).toBe(false);
+    expect(canPublishTournamentTask({ ...task, lifecycle: 'awaiting_approval', aiVerdict: 'pending' })).toBe(false);
   });
 });
 

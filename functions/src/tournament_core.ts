@@ -883,7 +883,7 @@ function answerFingerprintsForTask(
     const tokens = task.payload.correctTokens as string[] | undefined;
     return [fp(tokens ?? task.payload.correctAnswer)];
   }
-  if (kind === 'timeattack') {
+  if (kind === 'timeattack' || kind === 'match') {
     const items = (task.payload.items as Record<string, unknown>[]) ?? [];
     return items.map((item) => fp(item.correctIndex));
   }

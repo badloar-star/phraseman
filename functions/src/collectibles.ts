@@ -25,6 +25,12 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { isPremiumAccessActive } from './premium_status';
 import {
+  isTournamentTestRoom,
+  TOURNAMENT_ROOMS_COLLECTION,
+  type TournamentRoomDoc,
+} from './tournament_core';
+import { normalizeTournamentEconomy } from './tournament_economy';
+import {
   COLLECTIBLE_POOL,
   COLLECTIBLE_SECRET_BY_SET,
   COLLECTIBLE_SET_CARD_IDS,
@@ -347,6 +353,48 @@ async function assertNotBanned(db: FirebaseFirestore.Firestore, stableUid: strin
   }
 }
 
+type TournamentCollectibleRoom = Pick<
+  TournamentRoomDoc,
+  'roomId' | 'slotId' | 'ticketsRequired' | 'testMode' | 'economySnapshot'
+>;
+
+/**
+ * Tournament event ids are server-authoritative: a client-supplied room id is
+ * eligible only when it resolves to the same persisted, paid, rewarding room.
+ * Other collectible event kinds retain their existing behavior and perform no
+ * tournament read.
+ */
+export async function assertCollectibleRewardEventEligible(
+  eventId: string,
+  loadRoom: (roomId: string) => Promise<unknown>,
+): Promise<void> {
+  if (!eventId.startsWith('tournament:')) return;
+
+  const roomId = eventId.slice('tournament:'.length);
+  const rawRoom = await loadRoom(roomId);
+  if (!rawRoom || typeof rawRoom !== 'object' || Array.isArray(rawRoom)) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_room_invalid');
+  }
+
+  const room = rawRoom as Partial<TournamentCollectibleRoom>;
+  if (room.roomId !== roomId || typeof room.slotId !== 'string' || room.slotId.length === 0) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_room_invalid');
+  }
+
+  const persistedRoom = room as TournamentCollectibleRoom;
+  const entryGems = persistedRoom.economySnapshot
+    ? normalizeTournamentEconomy(persistedRoom.economySnapshot).entryGems
+    : null;
+  const ticketsRequired = persistedRoom.ticketsRequired;
+  if (isTournamentTestRoom(persistedRoom)
+    || typeof ticketsRequired !== 'number'
+    || !Number.isSafeInteger(ticketsRequired)
+    || ticketsRequired <= 0
+    || entryGems === 0) {
+    throw new HttpsError('failed-precondition', 'tournament_collectible_reward_disabled');
+  }
+}
+
 export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request) => {
   const authUid = request.auth?.uid;
   if (!authUid) throw new HttpsError('unauthenticated', 'auth_required');
@@ -357,6 +405,10 @@ export const collectiblesClaimDrop = onCall(HOT_CALLABLE_OPTIONS, async (request
   }
 
   const db = admin.firestore();
+  await assertCollectibleRewardEventEligible(eventIdRaw, async (roomId) => {
+    const roomSnap = await db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId).get();
+    return roomSnap.exists ? roomSnap.data() : null;
+  });
   // stableId НИКОГДА не берём из тела запроса (см. phraseman security audit).
   const stableUid = await resolveStableUidForAuth(db, authUid);
   await assertNotBanned(db, stableUid);

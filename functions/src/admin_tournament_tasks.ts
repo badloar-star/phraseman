@@ -804,6 +804,29 @@ export function parseEditRequest(data: unknown): EditRequest {
   return Object.freeze({ taskId, payload: record.payload, difficulty });
 }
 
+/** Manual edits invalidate the independent AI judge receipt. */
+export function aiLifecycleAfterTournamentTaskEdit(
+  task: unknown,
+): Record<string, unknown> {
+  if (!isRecord(task) || task.source !== 'ai') return {};
+  return {
+    verified: false,
+    lifecycle: 'generated',
+    aiVerdict: 'pending',
+    aiReason: 'Manual edit requires AI validation before approval.',
+    aiCheckedAtMs: null,
+  };
+}
+
+/** Shared publication boundary used by both individual and folder publish. */
+export function canPublishTournamentTask(
+  task: TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown },
+): boolean {
+  if (!validateTournamentTask({ ...task, verified: true }).ok) return false;
+  return task.source !== 'ai'
+    || (task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved');
+}
+
 /**
  * Правка вопроса/вариантов/ответа в админке. Сохраняем только то, что пройдёт
  * серверный контракт — иначе испорченное задание молча выпало бы из выборки
@@ -853,13 +876,7 @@ export const adminEditTournamentTask = onCall(
       editedAtMs: Date.now(),
       editedBy: String(request.auth?.token?.email ?? request.auth?.uid ?? 'admin'),
     };
-    if ((existing as TournamentTask & { source?: unknown }).source === 'ai') {
-      update.verified = false;
-      update.lifecycle = 'awaiting_approval';
-      update.aiVerdict = 'approved';
-      update.aiReason = 'Passed server AI contract validation after edit.';
-      update.aiCheckedAtMs = Date.now();
-    }
+    Object.assign(update, aiLifecycleAfterTournamentTaskEdit(existing));
     if (modeNeedsAudio(existing.mode)) {
       const payloadRecord = params.payload as Record<string, unknown>;
       const freshness = checkTournamentAudioFreshness({
@@ -1053,14 +1070,8 @@ export const adminMutateTournamentTasks = onCall(
         // publish: пускаем в боевой пул только то, что реально пройдёт
         // серверный валидатор — иначе задание молча выпадет из выборки или
         // отменит комнату с возвратом билетов.
-        const task = snapshot.data() as TournamentTask;
-        if (!validateTournamentTask({ ...task, verified: true }).ok) {
-          rejected.push(snapshot.id);
-          continue;
-        }
-        const existing = snapshot.data() as TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown };
-        if (existing.source === 'ai'
-          && (existing.lifecycle !== 'awaiting_approval' || existing.aiVerdict !== 'approved')) {
+        const task = snapshot.data() as TournamentTask & { source?: unknown; lifecycle?: unknown; aiVerdict?: unknown };
+        if (!canPublishTournamentTask(task)) {
           rejected.push(snapshot.id);
           continue;
         }

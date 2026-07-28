@@ -40,6 +40,7 @@ import {
   parseKindItem,
   type ParsedKindItem,
 } from './tournament_ai_kind_items';
+import { judgeTournamentTask } from './tournament_ai_validator';
 import { isTournamentAiLevel, type TournamentAiLevel } from './tournament_ai_generator';
 import { onlyKeys, publicAdminTask, requirePermission } from './admin_tournament_tasks';
 import { openAiChat } from './explain/explain_provider';
@@ -147,6 +148,7 @@ async function generateKindGroup(
   let requests = 0;
   let currentTask = baseTask;
   const errors = new Set<string>();
+  const repairHints = new Set<string>();
   let best: readonly ParsedKindItem[] = [];
 
   for (let attempt = 0; attempt <= AI_MAX_REPAIRS; attempt += 1) {
@@ -178,8 +180,22 @@ async function generateKindGroup(
     const accepted: ParsedKindItem[] = [];
     for (const raw of rawItems) {
       const item = parseKindItem(raw, params.kind);
-      if (item.ok) accepted.push(item.item);
-      else item.errors.forEach((code) => errors.add(code));
+      if (!item.ok) {
+        item.errors.forEach((code) => errors.add(code));
+        continue;
+      }
+      // Separate judge: syntactically valid content still cannot reach the owner
+      // before an independent model has checked the answer, traps and explanation.
+      const verdict = await judgeTournamentTask({ apiKey, model, item: item.item });
+      requests += 1;
+      promptTokens += verdict.promptTokens;
+      completionTokens += verdict.completionTokens;
+      if (verdict.ok) {
+        accepted.push(item.item);
+        continue;
+      }
+      errors.add(`kind_validator_${verdict.reason}`);
+      repairHints.add(`${verdict.reason}: ${verdict.feedback}`);
     }
     if (accepted.length > best.length) best = accepted;
 
@@ -194,7 +210,7 @@ async function generateKindGroup(
     }
     // зачем: не хватило — просим починить, но лучший результат уже сохранён.
     // Так последняя неудачная попытка не обнуляет то, что уже оплачено.
-    currentTask = `${baseTask}\nRepair: fix these violations and return the full corrected JSON: ${JSON.stringify([...errors].slice(0, 10))}`;
+    currentTask = `${baseTask}\nRepair: fix these concrete validator findings and return the full corrected JSON: ${JSON.stringify([...repairHints.size ? repairHints : errors].slice(0, 10))}`;
   }
 
   return { items: best, errors: Object.freeze([...errors]), promptTokens, completionTokens, requests };

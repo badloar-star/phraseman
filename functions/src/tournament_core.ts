@@ -202,12 +202,38 @@ export function normalizeTournamentSchedule(raw: unknown): TournamentScheduleCon
 
 export type TournamentRoomAdmissionMode = 'scheduled' | 'test';
 
+function hasZeroEntryEconomySnapshot(
+  room: Pick<TournamentRoomDoc, 'economySnapshot'>,
+): boolean {
+  return !!room.economySnapshot
+    && normalizeTournamentEconomy(room.economySnapshot).entryGems === 0;
+}
+
+/**
+ * New test rooms carry an explicit immutable marker. The constrained fallback
+ * recognizes only pre-marker start-now rooms whose persisted economy was fully
+ * zero, so a scheduled or paid room cannot become a test room from its id alone.
+ */
+export function isTournamentTestRoom(
+  room: Pick<TournamentRoomDoc, 'roomId' | 'slotId' | 'testMode' | 'economySnapshot'>,
+): boolean {
+  if (room.testMode === true) return true;
+  if (room.testMode === false || !room.economySnapshot) return false;
+  if (!room.roomId.startsWith('now-') && !room.slotId.startsWith('now-')) return false;
+  const economy = normalizeTournamentEconomy(room.economySnapshot);
+  return economy.entryGems === 0 && economy.botEntryGems === 0;
+}
+
 /** Resolve admission from immutable room mode and the current server config. */
 export function tournamentRoomAdmissionMode(
-  room: Pick<TournamentRoomDoc, 'slotId' | 'ticketsRequired' | 'testMode'>,
+  room: Pick<TournamentRoomDoc, 'roomId' | 'slotId' | 'ticketsRequired' | 'testMode' | 'economySnapshot'>,
   config: TournamentScheduleConfig,
 ): TournamentRoomAdmissionMode | null {
-  if (room.testMode === true) return config.testingEnabled === true ? 'test' : null;
+  if (isTournamentTestRoom(room)) return config.testingEnabled === true ? 'test' : null;
+  // Historical/forged zero-price scheduled snapshots are quarantined. New paid
+  // rooms are pinned to three at creation, so admitting one would revive the
+  // free-reward farming path this boundary closes.
+  if (hasZeroEntryEconomySnapshot(room)) return null;
   const scheduledSlot = config.slots.some((slot) => slot.slotId === room.slotId && slot.enabled);
   return scheduledSlot || Number(room.ticketsRequired ?? 0) > 0 ? 'scheduled' : null;
 }
@@ -220,7 +246,7 @@ export function tournamentEconomySnapshotForMode(
   const economy = normalizeTournamentEconomy(raw);
   return testMode
     ? Object.freeze({ ...economy, entryGems: 0, botEntryGems: 0 })
-    : economy;
+    : Object.freeze({ ...economy, entryGems: DEFAULT_TOURNAMENT_ECONOMY.entryGems });
 }
 
 /**
@@ -478,7 +504,7 @@ export type TournamentRound = {
 export type TournamentRoomDoc = {
   /** Immutable economy terms captured when the room is created. */
   economySnapshot?: TournamentEconomyConfig;
-  /** Immutable on-demand testing mode; never inferred from room id or caller input. */
+  /** Immutable on-demand testing mode. Only legacy zero-economy now rooms may omit it. */
   testMode?: boolean;
   /** Банк турнира в жемчужинах: сумма взносов всех участников. */
   potGems?: number;
@@ -1331,15 +1357,17 @@ export function planTournamentCancellation(
   }
   if (!canCancelTournament(room.state) && !options.allowActive) throw new Error('room_not_cancellable');
   // Legacy rooms predate the immutable snapshot and keep the historical paid-room compensation.
-  const frozenEntryGems = room.economySnapshot
+  const nonRewardingRoom = isTournamentTestRoom(room) || hasZeroEntryEconomySnapshot(room);
+  const persistedEntryGems = room.economySnapshot
     ? normalizeTournamentEconomy(room.economySnapshot).entryGems
     : undefined;
-  const compensationGems = frozenEntryGems !== undefined
-    ? (frozenEntryGems > 0
-      ? TOURNAMENT_CANCEL_COMPENSATION_GEMS
-      : 0)
-    : TOURNAMENT_CANCEL_COMPENSATION_GEMS;
   const refunds = room.players.flatMap((player) => {
+    const frozenEntryGems = persistedEntryGems === undefined
+      ? undefined
+      : tournamentEconomySnapshotForMode(room.economySnapshot, nonRewardingRoom).entryGems;
+    const compensationGems = frozenEntryGems !== undefined
+      ? (frozenEntryGems > 0 ? TOURNAMENT_CANCEL_COMPENSATION_GEMS : 0)
+      : TOURNAMENT_CANCEL_COMPENSATION_GEMS;
     const refund = cancellationRefundForPlayer(player, {
       fallbackTickets: options.fallbackTickets,
       compensationGems,
@@ -1473,9 +1501,10 @@ export function planTournamentFinalization(
   const { standings, realPlacements } = computePlacements(room.players);
   // New rooms always carry this snapshot. The argument remains only as a compatibility
   // fallback for legacy documents created before the snapshot contract existed.
+  const nonRewardingRoom = isTournamentTestRoom(room) || hasZeroEntryEconomySnapshot(room);
   const frozenEconomy = tournamentEconomySnapshotForMode(
     room.economySnapshot ?? economy,
-    room.testMode === true,
+    nonRewardingRoom,
   );
 
   // зачем: приз = доля от РЕАЛЬНОГО банка турнира. Считаем состав по самой
@@ -1499,7 +1528,7 @@ export function planTournamentFinalization(
     player.isBot ? total + (payoutByPlace.get(index + 1) ?? 0) : total
   ), 0);
 
-  const playerEffects = (room.testMode === true ? [] : realPlacements).map(({ player, place }) => ({
+  const playerEffects = (nonRewardingRoom ? [] : realPlacements).map(({ player, place }) => ({
     playerId: player.id,
     place,
     seasonPoints: seasonPointsForPlace(place),
@@ -1522,7 +1551,7 @@ export function planTournamentFinalization(
       // хотя сервер платит долю РЕАЛЬНОГО банка (при 16 игроках — 24/9/6).
       // Кладём фактические выплаты в комнату: экран показывает правду и может
       // анимировать начисление из банка к каждому призёру.
-      prizeGems: room.testMode === true ? [] : payouts.map((payout) => payout.gems),
+      prizeGems: nonRewardingRoom ? [] : payouts.map((payout) => payout.gems),
       prizePoolGems: pot.toPrizes,
       finalizationReceiptId: receiptId,
       stateStartedAtMs: nowMs,

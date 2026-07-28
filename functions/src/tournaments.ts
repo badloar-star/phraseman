@@ -58,6 +58,7 @@ import {
   tournamentFeatureGates,
   tournamentEconomySnapshotForMode,
   tournamentHash32,
+  isTournamentTestRoom,
   tournamentRoomAdmissionMode,
   tournamentRoomId,
   tournamentWeekId,
@@ -161,7 +162,7 @@ function readRoom(snap: FirebaseFirestore.DocumentSnapshot): TournamentRoomDoc {
     economySnapshot: data.economySnapshot
       ? normalizeTournamentEconomy(data.economySnapshot)
       : undefined,
-    testMode: data.testMode === true,
+    testMode: data.testMode === true ? true : data.testMode === false ? false : undefined,
     ticketsRequired: Math.max(0, readInt(data.ticketsRequired, 0)) || undefined,
     players: Array.isArray(data.players) ? data.players as TournamentPlayer[] : [],
     rounds: Array.isArray(data.rounds) ? data.rounds as TournamentRound[] : [],
@@ -496,7 +497,7 @@ export const tournamentCreateRooms = onSchedule(
       loadResourcePool(db),
       db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
     ]);
-    const economySnapshot = normalizeTournamentEconomy(economySnap.data());
+    const economySnapshot = tournamentEconomySnapshotForMode(economySnap.data(), false);
     if (config.slots.length === 0 || resources.bots.length < TOURNAMENT_ROOM_SIZE - TOURNAMENT_MIN_REAL_PLAYERS) {
       console.warn('[tournaments] create skipped: config_or_bots_unavailable');
       return;
@@ -521,6 +522,7 @@ export const tournamentCreateRooms = onSchedule(
         const room: TournamentRoomDoc = {
           economySnapshot,
           roomId,
+          testMode: false,
           slotId: slot.slotId,
           seed: roomId,
           state: 'scheduled',
@@ -614,7 +616,7 @@ export async function tournamentJoinTransaction(
     if (!admissionMode) {
       throw new HttpsError(
         'failed-precondition',
-        room.testMode === true ? 'tournament_testing_disabled' : 'tournament_config_disabled',
+        isTournamentTestRoom(room) ? 'tournament_testing_disabled' : 'tournament_config_disabled',
       );
     }
 
@@ -802,7 +804,7 @@ async function createTournamentShardRoom(
     loadResourcePool(db),
     db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
   ]);
-  const economySnapshot = normalizeTournamentEconomy(economySnap.data());
+  const economySnapshot = tournamentEconomySnapshotForMode(economySnap.data(), false);
   // Кураторский набор владельца принадлежит конкретной комнате: в шардах его
   // нет — они играют на общем пуле заданий.
   const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
@@ -848,6 +850,7 @@ async function createTournamentShardRoom(
     tx.create(roomRef, {
       economySnapshot,
       roomId,
+      testMode: false,
       slotId,
       seed: roomId,
       // Комната сразу в лобби: вход открыт, старт по расписанию слота.

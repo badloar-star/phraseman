@@ -455,6 +455,15 @@ export function joinTournament(roomId: string) {
  * Дев-турнир (только владелец, admin claim): сервер мгновенно создаёт комнату
  * с ботами и возвращает roomId — вход доступен сразу, без ожидания слота.
  */
+export type AggregateReviewItem = {
+  prompt: string;
+  options: string[];
+  correctIndex: number | null;
+  selectedIndex: number | null;
+  correct: boolean;
+  explanation: { ruleNote: string; example: string } | null;
+};
+
 /** Разбор моих ответов после турнира: что выбрал, что было верно. */
 export type ReviewItem = {
   roundNo: number;
@@ -468,6 +477,9 @@ export type ReviewItem = {
   correctTokens: string[];
   audioUri: string;
   explanation: { ruleNote: string; example: string } | null;
+  /** Есть только у time_attack / speed_match; старые раунды честно остаются без него. */
+  aggregatePrompt?: string;
+  aggregateItems?: AggregateReviewItem[];
 };
 
 /**

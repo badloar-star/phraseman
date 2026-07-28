@@ -2421,6 +2421,43 @@ export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request
   const items = reviewed.map((entry) => {
     const task = secrets.get(String(entry.taskId));
     const payload = (task?.payload || {}) as Record<string, unknown>;
+    const aggregateItems = (task?.mode === 'time_attack' || task?.mode === 'speed_match')
+      && Array.isArray(payload.items)
+      ? payload.items.map((rawItem, index) => {
+        const part = rawItem && typeof rawItem === 'object' ? rawItem as Row : {};
+        const options = Array.isArray(part.options)
+          ? part.options.map((option) => sanitizeString(option, 300)).filter(Boolean)
+          : [];
+        const correctIndex = Number.isInteger(part.correctIndex)
+          && Number(part.correctIndex) >= 0
+          && Number(part.correctIndex) < options.length
+          ? Number(part.correctIndex)
+          : null;
+        const selectedIndexes = entry.given && typeof entry.given === 'object'
+          ? (entry.given as Row).selectedIndexes
+          : null;
+        const selectedIndex = Array.isArray(selectedIndexes)
+          && Number.isInteger(selectedIndexes[index])
+          && Number(selectedIndexes[index]) >= 0
+          && Number(selectedIndexes[index]) < options.length
+          ? Number(selectedIndexes[index])
+          : null;
+        const partExplanation = part.explanation && typeof part.explanation === 'object'
+          ? {
+            ruleNote: sanitizeString((part.explanation as Row).ruleNote, 600),
+            example: sanitizeString((part.explanation as Row).example, 600),
+          }
+          : null;
+        return {
+          prompt: sanitizeString(part.prompt, 600),
+          options,
+          correctIndex,
+          selectedIndex,
+          correct: correctIndex !== null && selectedIndex === correctIndex,
+          explanation: partExplanation,
+        };
+      })
+      : null;
     return {
       roundNo: entry.roundNo,
       taskId: entry.taskId,
@@ -2439,6 +2476,10 @@ export const tournamentRoundReview = onCall(HOT_CALLABLE_OPTIONS, async (request
           example: sanitizeString((task.explanation as Row).example, 600),
         }
         : null,
+      ...(aggregateItems ? {
+        aggregatePrompt: sanitizeString(payload.prompt, 600),
+        aggregateItems,
+      } : {}),
     };
   });
 

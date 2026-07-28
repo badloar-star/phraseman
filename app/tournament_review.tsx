@@ -29,7 +29,7 @@ import {
 import { V2Card, V2Counter, V2Cta } from '../components/tournament/tournament_v2_ui';
 import { StarGlyph } from '../components/tournament/TournamentFx';
 import { TournamentAudioButton } from '../components/tournament/TournamentAudioButton';
-import { loadRoundReview, type ReviewItem } from './tournament_client';
+import { loadRoundReview, type AggregateReviewItem, type ReviewItem } from './tournament_client';
 
 /** Человеческие названия режимов — те же, что видит владелец в админке. */
 const MODE_LABEL: Record<string, string> = {
@@ -40,6 +40,7 @@ const MODE_LABEL: Record<string, string> = {
   listen_choose: 'Выбор на слух',
   sound_contrast: 'Пары звуков',
   listen_build: 'Диктант',
+  time_attack: 'Серия на время',
   speed_match: 'Пары на скорость',
 };
 
@@ -159,6 +160,7 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
     || item.mode === 'sound_contrast'
     || item.mode === 'listen_build';
   const isBuild = item.mode === 'translate_build' || item.mode === 'listen_build';
+  const isAggregateMode = item.mode === 'time_attack' || item.mode === 'speed_match';
 
   // Что игрок дал: индекс варианта или собранные слова.
   const givenIndex = typeof item.given === 'number' ? item.given
@@ -185,6 +187,15 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
         </View>
       </View>
 
+      {item.aggregateItems ? (
+        <>
+          {item.aggregatePrompt ? <Text style={styles.phrase}>{item.aggregatePrompt}</Text> : null}
+          <AggregateReviewRows parts={item.aggregateItems} styles={styles} P={P} />
+        </>
+      ) : isAggregateMode ? (
+        <Text style={styles.skipped}>Детали серии не сохранены для этого турнира.</Text>
+      ) : (
+        <>
       {/* В аудио-задании после турнира текст УЖЕ можно показать — игра
           окончена, и разбор без фразы бесполезен. Плюс кнопка переслушать. */}
       {isAudio ? (
@@ -243,6 +254,8 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
           ) : null}
         </View>
       )}
+        </>
+      )}
 
       {item.explanation ? (
         <View style={styles.explanation}>
@@ -277,6 +290,45 @@ const ReviewCard = memo(function ReviewCard({ item }: { item: ReviewItem }) {
         </View>
       ) : null}
     </V2Card>
+  );
+});
+
+const AggregateReviewRows = memo(function AggregateReviewRows({
+  parts, styles, P,
+}: {
+  parts: AggregateReviewItem[];
+  styles: ReturnType<typeof makeStyles>;
+  P: TournamentV2;
+}) {
+  return (
+    <View style={styles.aggregateRows}>
+      {parts.map((part, index) => {
+        const selectedValue = part.selectedIndex === null ? '— нет ответа' : part.options[part.selectedIndex] ?? '— нет ответа';
+        const correctValue = part.correctIndex === null ? null : part.options[part.correctIndex] ?? null;
+        const tone = part.selectedIndex === null ? 'muted' : part.correct ? 'ok' : 'bad';
+        return (
+          <View key={`${part.prompt}-${index}`} style={styles.aggregatePart}>
+            <Text style={styles.aggregatePrompt}>{part.prompt || `Часть ${index + 1}`}</Text>
+            <AnswerRow
+              label={part.selectedIndex === null ? 'Пропущено' : part.correct ? 'Верно' : 'Ошибка'}
+              value={selectedValue}
+              tone={tone}
+              styles={styles}
+              P={P}
+            />
+            {!part.correct && correctValue ? (
+              <AnswerRow label="Правильно" value={correctValue} tone="ok" styles={styles} P={P} />
+            ) : null}
+            {part.explanation ? (
+              <View style={styles.partExplanation}>
+                {part.explanation.ruleNote ? <Text style={styles.explanationText}>{part.explanation.ruleNote}</Text> : null}
+                {part.explanation.example ? <Text style={styles.exampleText}>{part.explanation.example}</Text> : null}
+              </View>
+            ) : null}
+          </View>
+        );
+      })}
+    </View>
   );
 });
 
@@ -339,6 +391,10 @@ const makeStyles = (P: TournamentV2) => StyleSheet.create({
   phrase: { flex: 1, fontSize: 18, fontWeight: '800', color: P.text, lineHeight: 24 },
 
   answers: { gap: 6 },
+  aggregateRows: { gap: 12 },
+  aggregatePart: { gap: 6, paddingBottom: 12, borderBottomWidth: StyleSheet.hairlineWidth, borderBottomColor: P.muted },
+  aggregatePrompt: { color: P.text, fontSize: 15, fontWeight: '800', lineHeight: 20 },
+  partExplanation: { gap: 3, paddingHorizontal: 4, paddingTop: 2 },
   explanation: { gap: 6, paddingTop: 4, borderTopWidth: StyleSheet.hairlineWidth, borderTopColor: P.muted },
   explanationTitle: { color: P.text, fontSize: 14, fontWeight: '900' },
   explanationText: { color: P.text, fontSize: 14, lineHeight: 20 },

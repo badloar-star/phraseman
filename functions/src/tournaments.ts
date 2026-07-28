@@ -620,8 +620,9 @@ export async function tournamentJoinTransaction(
 
     // Test mode is also enforced here, inside the transaction: a forged room id
     // or stale client cannot turn a paid room free or bypass a disabled switch.
+    const roomEconomySnapshot = normalizeTournamentEconomy(room.economySnapshot ?? economySnap.data());
     const economy = tournamentEconomySnapshotForMode(
-      room.economySnapshot ?? economySnap.data(),
+      roomEconomySnapshot,
       admissionMode === 'test',
     );
     const entryGems = economy.entryGems;
@@ -2289,8 +2290,8 @@ export const tournamentStartNow = onCall(
     const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
     const room: TournamentRoomDoc = {
       economySnapshot,
-      testMode: true,
       roomId,
+      testMode: true,
       // зачем: собственный slotId с меткой времени — именно он снимает лимит
       // «один турнир на слот в день». slotKey в транзакции входа собирается как
       // `${slotId}_${дата}`, поэтому у каждого турнира по требованию он свой и

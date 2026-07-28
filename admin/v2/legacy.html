@@ -12448,7 +12448,8 @@
     <div style="font-size:15px;font-weight:800;color:#fafafa;margin-bottom:12px">Шаг 2 — проверить и опубликовать</div>
     <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px">
       <select id="tn-status" onchange="tnLoadTasks(true)" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#cbd5e1;padding:7px 12px;font-size:13px">
-        <option value="draft">На проверке</option>
+        <option value="awaiting_approval">Ожидают одобрения</option>
+        <option value="draft">Все черновики</option>
         <option value="published">В игре</option>
         <option value="">Все</option>
       </select>
@@ -12461,8 +12462,8 @@
       <button type="button" onclick="tnLoadTasks(true)"
         style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">🔄 Обновить</button>
       <span style="flex:1"></span>
-      <button type="button" onclick="tnPublishVisible()" title="Опубликовать все отмеченные задания"
-        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">✅ Опубликовать отмеченные</button>
+      <button type="button" id="tn-publish" onclick="tnPublishVisible()" title="Опубликовать отмеченные задания, прошедшие проверку ИИ. Они станут доступны игрокам." aria-label="Опубликовать отмеченные задания, прошедшие проверку ИИ"
+        style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:700;font-size:13px">Опубликовать одобренные</button>
       <span class="reports-count" id="tn-count"></span>
     </div>
     <!-- зачем: владелец просил папки — «зайти, просмотреть каждое удобно и
@@ -36419,6 +36420,18 @@
     const invalid = task.valid === false
       ? '<span style="background:rgba(248,113,113,0.14);color:#fca5a5;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700;margin-left:6px">Битое</span>'
       : '';
+    const publishable = task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved';
+    const lifecycleLabel = task.lifecycle === 'awaiting_approval'
+      ? '<span style="background:rgba(251,191,36,0.14);color:#fbbf24;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">Ожидает одобрения</span>'
+      : task.lifecycle === 'published'
+        ? '<span style="background:rgba(74,222,128,0.14);color:#4ade80;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">В игре</span>'
+        : '';
+    const aiCheck = task.aiVerdict === 'approved'
+      ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">ИИ: проверено</span>'
+      : '';
+    const aiReason = task.aiReason
+      ? `<div style="margin-top:6px;font-size:12px;color:#9ca3af;line-height:1.5" title="${escapeHtml(task.aiReason)}" aria-label="Причина проверки ИИ: ${escapeHtml(task.aiReason)}">${escapeHtml(task.aiReason)}</div>`
+      : '';
     // Раздельные пулы: откуда пришёл вопрос.
     const src = task.source === 'ai'
       ? '<span style="background:rgba(139,92,246,0.16);color:#c4b5fd;border-radius:6px;padding:2px 9px;font-size:11px;font-weight:700">🤖 ИИ</span>'
@@ -36433,9 +36446,9 @@
     const sid = tnSafeId(task.taskId);
     return `<div style="background:#15151f;border-radius:10px;padding:14px 16px;margin-bottom:10px" id="tn-card-${sid}">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
-        <input type="checkbox" class="tn-pick" value="${sid}" ${task.verified ? '' : 'checked'} style="width:16px;height:16px;cursor:pointer" />
+        ${publishable ? `<input type="checkbox" class="tn-pick" value="${sid}" checked style="width:16px;height:16px;cursor:pointer" aria-label="Выбрать задание для публикации" />` : '<span style="font-size:11px;color:#6b7280">Нельзя опубликовать</span>'}
         <span style="font-size:12px;color:#6b7280">${escapeHtml(mode)} · ${escapeHtml(String(diff))}</span>
-        <span style="flex:1"></span>${src}${badge}${invalid}
+        <span style="flex:1"></span>${src}${lifecycleLabel}${aiCheck}${badge}${invalid}
         <button type="button" onclick="tnEditStart('${sid}')" title="Изменить вопрос"
           style="background:#1a1a24;border:1px solid #2a2a3a;color:#cbd5e1;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">✏️</button>
         <button type="button" onclick="tnRegenTask('${sid}')" title="Заменить новым вопросом от ИИ"
@@ -36443,7 +36456,7 @@
         <button type="button" onclick="tnDeleteTask('${sid}')" title="Удалить вопрос из пула"
           style="background:#2a1518;border:1px solid #4a2a2e;color:#fca5a5;padding:4px 10px;border-radius:7px;cursor:pointer;font-size:12px">🗑</button>
       </div>
-      <div class="tn-card-body">${body}${meta}</div>
+      <div class="tn-card-body">${body}${meta}${aiReason}</div>
     </div>`;
   }
 
@@ -36555,11 +36568,12 @@
     if (reset) { _tnCursor = ''; _tnItems = []; list.innerHTML = '<div class="reports-empty">Загружаю…</div>'; }
     try {
       _fnTnList = tnFn(_fnTnList, 'adminListTournamentTasks');
-      const status = document.getElementById('tn-status')?.value ?? 'draft';
+      const status = document.getElementById('tn-status')?.value ?? 'awaiting_approval';
       const difficulty = Number(document.getElementById('tn-difficulty')?.value || 0);
       // зачем: фильтр пулов убран — турниры играют только на вопросах ИИ,
       // выбирать не из чего. Сервер сам отдаёт нужный пул.
       const payload = { limit: 25, status, cursor: _tnCursor };
+      if (status === 'awaiting_approval') { payload.status = 'draft'; payload.lifecycle = 'awaiting_approval'; }
       if (difficulty) payload.difficulty = difficulty;
       // Папка = режим; пустая папка «Все» фильтр не шлёт.
       if (_tnFolder) payload.mode = _tnFolder;
@@ -36574,6 +36588,8 @@
         : '<div class="reports-empty">Пока пусто. Собери задания в шаге 1.</div>';
       const count = document.getElementById('tn-count');
       if (count) count.textContent = `Показано: ${_tnItems.length}`;
+      const publish = document.getElementById('tn-publish');
+      if (publish) publish.disabled = !_tnItems.some(task => task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved');
       const more = document.getElementById('tn-more');
       if (more) {
         more.innerHTML = _tnCursor
@@ -36599,7 +36615,8 @@
     // зачем: только список ревью (#tn-list) — карточки-примеры в панелях
     // генерации тоже несут чекбоксы, и глобальный селектор пытался бы
     // публиковать id из dry-run примеров, которых нет в базе.
-    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map(el => el.value);
+    const eligible = new Set(_tnItems.filter(task => task.valid !== false && task.lifecycle === 'awaiting_approval' && task.aiVerdict === 'approved').map(task => tnSafeId(task.taskId)));
+    const picked = Array.from(document.querySelectorAll('#tn-list .tn-pick:checked')).map(el => el.value).filter(id => eligible.has(id));
     if (!picked.length) { showToast('Нечего публиковать: отметь задания галочками.', 'warn'); return; }
     if (!confirm(`Опубликовать ${picked.length} заданий? Они станут доступны игрокам.`)) return;
     try {

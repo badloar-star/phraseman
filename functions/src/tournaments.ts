@@ -37,6 +37,7 @@ import {
   applyTournamentJoin,
   applyTournamentSubmission,
   bankContributionGems,
+  cancellationCreditGems,
   completeTournamentRoundAtDeadline,
   dateKeyInTimezone,
   normalizeTournamentSchedule,
@@ -155,6 +156,9 @@ function readRoom(snap: FirebaseFirestore.DocumentSnapshot): TournamentRoomDoc {
     seed: sanitizeString(data.seed, 200),
     state: sanitizeString(data.state, 20) as TournamentRoomDoc['state'],
     startsAt: readInt(data.startsAt, 0),
+    economySnapshot: data.economySnapshot
+      ? normalizeTournamentEconomy(data.economySnapshot)
+      : undefined,
     ticketsRequired: Math.max(0, readInt(data.ticketsRequired, 0)) || undefined,
     players: Array.isArray(data.players) ? data.players as TournamentPlayer[] : [],
     rounds: Array.isArray(data.rounds) ? data.rounds as TournamentRound[] : [],
@@ -481,7 +485,12 @@ export const tournamentCreateRooms = onSchedule(
   { schedule: '*/5 * * * *', timeZone: 'UTC', region: 'europe-west1', maxInstances: 1 },
   async () => {
     const db = admin.firestore();
-    const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
+    const [config, resources, economySnap] = await Promise.all([
+      loadScheduleConfig(db),
+      loadResourcePool(db),
+      db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
+    ]);
+    const economySnapshot = normalizeTournamentEconomy(economySnap.data());
     if (config.slots.length === 0 || resources.bots.length < TOURNAMENT_ROOM_SIZE - TOURNAMENT_MIN_REAL_PLAYERS) {
       console.warn('[tournaments] create skipped: config_or_bots_unavailable');
       return;
@@ -504,6 +513,7 @@ export const tournamentCreateRooms = onSchedule(
         const existing = await tx.get(roomRef);
         if (existing.exists) return;
         const room: TournamentRoomDoc = {
+          economySnapshot,
           roomId,
           slotId: slot.slotId,
           seed: roomId,
@@ -603,7 +613,7 @@ export async function tournamentJoinTransaction(
     // 2026-07-26) — одна валюта вместо двух сущностей. Взнос идёт в банк
     // турнира целиком: 20% осядет в недельном банке, остальное разыграют
     // призёры. Билеты как сущность убираются.
-    const economy = normalizeTournamentEconomy(economySnap.data());
+    const economy = normalizeTournamentEconomy(room.economySnapshot ?? economySnap.data());
     const entryGems = economy.entryGems;
     const weekId = tournamentWeekId(room.startsAt);
     const user = userSnap.data() || {};
@@ -780,7 +790,11 @@ async function createTournamentShardRoom(
 
   const roomId = tournamentRoomId(slotId, timezone, dateKey, shard);
   const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
-  const resources = await loadResourcePool(db);
+  const [resources, economySnap] = await Promise.all([
+    loadResourcePool(db),
+    db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
+  ]);
+  const economySnapshot = normalizeTournamentEconomy(economySnap.data());
   // Кураторский набор владельца принадлежит конкретной комнате: в шардах его
   // нет — они играют на общем пуле заданий.
   const rounds = buildRounds(roomId, resources.tasks, undefined, resources.roundMix);
@@ -824,6 +838,7 @@ async function createTournamentShardRoom(
     const existing = await tx.get(roomRef);
     if (existing.exists) return false;
     tx.create(roomRef, {
+      economySnapshot,
       roomId,
       slotId,
       seed: roomId,
@@ -1101,11 +1116,8 @@ async function cancelRoomInTransaction(
       userRef.collection(TOURNAMENT_RECEIPTS_SUBCOLLECTION).doc(`cancel_${room.roomId}`),
     ];
   });
-  const bankRef = db.collection(TOURNAMENT_BANK_COLLECTION).doc(tournamentWeekId(room.startsAt));
-  const snapshots = refs.length > 0 ? await tx.getAll(...refs, bankRef) : [await tx.get(bankRef)];
+  const snapshots = refs.length > 0 ? await tx.getAll(...refs) : [];
   const byPath = new Map(snapshots.map((snapshot) => [snapshot.ref.path, snapshot]));
-  let bankRefund = 0;
-  let bankContributionRefunds = 0;
 
   for (const refund of plan.refunds) {
     const userRef = db.collection('users').doc(refund.playerId);
@@ -1116,24 +1128,31 @@ async function cancelRoomInTransaction(
       tx.set(ticketsRef, { count: admin.firestore.FieldValue.increment(refund.tickets), updatedAt: nowMs }, { merge: true });
     }
     const userData = byPath.get(userRef.path)?.data() || {};
-    const userPatch: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData> = {
-      shards: admin.firestore.FieldValue.increment(refund.compensationGems),
-      shards_updated_at_ms: nowMs,
-      shards_updated_op: 'earn',
-      shards_updated_reason: 'tournament_cancel_compensation',
-      updatedAt: nowMs,
-    };
+    const creditGems = cancellationCreditGems(refund);
+    const userPatch: FirebaseFirestore.UpdateData<FirebaseFirestore.DocumentData> = {};
+    if (creditGems > 0) {
+      userPatch.shards = admin.firestore.FieldValue.increment(creditGems);
+      userPatch.shards_updated_at_ms = nowMs;
+      userPatch.shards_updated_op = 'earn';
+      userPatch.shards_updated_reason = 'tournament_cancel_refund';
+      userPatch.updatedAt = nowMs;
+    }
     if (refund.restoreFreeWeek && userData.tournament_free_week === refund.restoreFreeWeek) {
       userPatch.tournament_free_week = admin.firestore.FieldValue.delete();
+      userPatch.updatedAt = nowMs;
     }
-    tx.set(userRef, userPatch, { merge: true });
-    tx.set(userRef.collection('shard_log').doc(`tournament_cancel_${room.roomId}`), {
-      ts: new Date(nowMs).toISOString(),
-      type: 'earn',
-      amount: refund.compensationGems,
-      reason: 'tournament_cancel_compensation',
-      roomId: room.roomId,
-    });
+    if (Object.keys(userPatch).length > 0) {
+      tx.set(userRef, userPatch, { merge: true });
+    }
+    if (creditGems > 0) {
+      tx.set(userRef.collection('shard_log').doc(`tournament_cancel_${room.roomId}`), {
+        ts: new Date(nowMs).toISOString(),
+        type: 'earn',
+        amount: creditGems,
+        reason: 'tournament_cancel_refund',
+        roomId: room.roomId,
+      });
+    }
     tx.create(receiptRef, {
       kind: 'tournament_cancel',
       uid: refund.playerId,
@@ -1142,20 +1161,9 @@ async function cancelRoomInTransaction(
       freeWeekRestored: refund.restoreFreeWeek,
       bankContributionRefunded: refund.bankContributionGems,
       compensationGems: refund.compensationGems,
+      creditedGems: creditGems,
       createdAtMs: nowMs,
     });
-    bankRefund += refund.bankContributionGems;
-    if (refund.bankContributionGems > 0) bankContributionRefunds += 1;
-  }
-  if (bankRefund > 0) {
-    const bankData = byPath.get(bankRef.path)?.data() || {};
-    const bankBefore = Math.max(0, readInt(bankData.total, 0));
-    const contributionsBefore = Math.max(0, readInt(bankData.contributions, 0));
-    tx.set(bankRef, {
-      total: Math.max(0, bankBefore - bankRefund),
-      contributions: Math.max(0, contributionsBefore - bankContributionRefunds),
-      updatedAt: nowMs,
-    }, { merge: true });
   }
   for (const taskSecretRef of taskSecretRefs) tx.delete(taskSecretRef);
   tx.set(roomRef, {
@@ -1555,6 +1563,9 @@ export async function tournamentFinalizeTransaction(
       const profileAvatar = sanitizeString(user.user_avatar, 16);
       const profileFrame = sanitizeString(user.user_avatar_frame, 24);
       const profileXp = Math.max(0, readInt((user.progress as Record<string, unknown> | undefined)?.total_xp, 0));
+      const rewardGems = Math.max(0, Math.trunc(effect.reward.gems));
+      const rewardTickets = Math.max(0, Math.trunc(effect.reward.tickets));
+      const rewardTitleId = sanitizeString(effect.reward.titleId, 60);
       tx.set(seasonRef, {
         uid: effect.playerId,
         name: seasonName,
@@ -1577,6 +1588,34 @@ export async function tournamentFinalizeTransaction(
           : effect.place,
         updatedAt: nowMs,
       }, { merge: true });
+      if (rewardGems > 0) {
+        tx.set(userRef, {
+          shards: admin.firestore.FieldValue.increment(rewardGems),
+          shards_updated_at_ms: nowMs,
+          shards_updated_op: 'earn',
+          shards_updated_reason: 'tournament_prize',
+        }, { merge: true });
+        tx.set(userRef.collection('shard_log').doc(`tournament_prize_${roomId}`), {
+          ts: new Date(nowMs).toISOString(),
+          type: 'earn',
+          amount: rewardGems,
+          reason: 'tournament_prize',
+          roomId,
+          place: effect.place,
+        });
+      }
+      if (rewardTickets > 0) {
+        tx.set(userRef.collection('inventory').doc('tickets'), {
+          count: admin.firestore.FieldValue.increment(rewardTickets),
+          updatedAt: nowMs,
+        }, { merge: true });
+      }
+      if (rewardTitleId) {
+        tx.set(userRef, {
+          tournament_title: rewardTitleId,
+          tournament_titles_won: admin.firestore.FieldValue.increment(1),
+        }, { merge: true });
+      }
       tx.create(rewardRef, {
         kind: 'tournament_reward',
         uid: effect.playerId,
@@ -1584,7 +1623,8 @@ export async function tournamentFinalizeTransaction(
         place: effect.place,
         seasonPoints: effect.seasonPoints,
         reward: effect.reward,
-        claimed: false,
+        claimed: true,
+        claimedAtMs: nowMs,
         createdAtMs: nowMs,
       });
     }
@@ -2184,7 +2224,12 @@ export const tournamentStartNow = onCall(
     if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const nowMs = Date.now();
-    const [config, resources] = await Promise.all([loadScheduleConfig(db), loadResourcePool(db)]);
+    const [config, resources, economySnap] = await Promise.all([
+      loadScheduleConfig(db),
+      loadResourcePool(db),
+      db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get(),
+    ]);
+    const economySnapshot = normalizeTournamentEconomy(economySnap.data());
     const slot = config.slots.find((candidate) => candidate.enabled) ?? config.slots[0];
     if (!slot) throw new HttpsError('failed-precondition', 'no_slots_configured');
     if (resources.bots.length < TOURNAMENT_ROOM_SIZE - 1) {
@@ -2228,6 +2273,7 @@ export const tournamentStartNow = onCall(
 
     const roomRef = db.collection(TOURNAMENT_ROOMS_COLLECTION).doc(roomId);
     const room: TournamentRoomDoc = {
+      economySnapshot,
       roomId,
       // зачем: собственный slotId с меткой времени — именно он снимает лимит
       // «один турнир на слот в день». slotKey в транзакции входа собирается как

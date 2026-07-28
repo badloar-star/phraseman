@@ -215,8 +215,8 @@ export type WeeklyPayout = {
  * зачем: владелец выбрал очки, а не число побед — так награждается и сила, и
  * регулярность: можно ни разу не выиграть, но стабильно быть в тройке.
  *
- * Ничьи разрешаются по uid, чтобы раздача была детерминированной: повторный
- * запуск крона не поменяет победителей и не выдаст награду дважды.
+ * При ничьей доли занятых мест объединяются и делятся поровну. uid задаёт
+ * только детерминированный порядок и получателя неделимой лишней жемчужины.
  */
 export function weeklyBankPayouts(
   bankGems: number,
@@ -236,11 +236,32 @@ export function weeklyBankPayouts(
   }
 
   const full = splitByShares(bank, [...config.weeklyShares]);
-  const payouts = eligible.map((entry, index) => ({
+  let payouts = eligible.map((entry, index) => ({
     uid: entry.uid,
     place: index + 1,
     gems: full[index] ?? 0,
   }));
+
+  // Ничьи недели используют тот же принцип, что ничьи комнаты: доли занятых
+  // мест складываются и делятся между игроками группы. uid задаёт только
+  // устойчивый порядок для неизбежного остатка в одну жемчужину.
+  const merged: WeeklyPayout[] = [];
+  for (let i = 0; i < payouts.length;) {
+    let j = i;
+    while (j + 1 < payouts.length && eligible[j + 1].points === eligible[i].points) j += 1;
+    const groupSize = j - i + 1;
+    const groupTotal = payouts.slice(i, j + 1).reduce((sum, payout) => sum + payout.gems, 0);
+    const each = Math.floor(groupTotal / groupSize);
+    const remainder = groupTotal - each * groupSize;
+    for (let k = i; k <= j; k += 1) {
+      merged.push({
+        ...payouts[k],
+        gems: each + (k === i ? remainder : 0),
+      });
+    }
+    i = j + 1;
+  }
+  payouts = merged;
   const claimed = payouts.reduce((sum, payout) => sum + payout.gems, 0);
 
   return { payouts: Object.freeze(payouts), carryOver: bank - claimed };

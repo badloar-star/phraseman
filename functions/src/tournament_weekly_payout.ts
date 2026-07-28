@@ -104,6 +104,10 @@ export async function payoutWeeklyBank(
   const economySnap = await db.collection(TOURNAMENT_SCHEDULE_COLLECTION).doc('economy').get();
   const economy = normalizeTournamentEconomy(economySnap.data());
   const { payouts, carryOver } = weeklyBankPayouts(bankGems, standings, economy);
+  const nextWeek = tournamentWeekId(nowMs);
+  const nextBankRef = nextWeek !== weekId
+    ? db.collection(TOURNAMENT_BANK_COLLECTION).doc(nextWeek)
+    : null;
 
   // Транзакция: банк помечается выплаченным ровно один раз. Если крон
   // сработает повторно (или параллельно), второй проход увидит paidOutAtMs.
@@ -162,26 +166,19 @@ export async function payoutWeeklyBank(
       winners: payouts.map((payout) => ({ uid: payout.uid, place: payout.place, gems: payout.gems })),
       updatedAt: nowMs,
     }, { merge: true });
-    return true;
-  });
-
-  if (!applied) {
-    return { weekId, bankGems, paid: 0, winners: 0, carryOver: 0, alreadyPaid: true };
-  }
-
-  // Остаток переносим в текущую неделю — жемчужины не сгорают.
-  // guard-ok: перенос остатка — increment на отдельном документе банка,
-  // await обязателен и стоит ниже; поля банка мержатся.
-  if (carryOver > 0) {
-    const nextWeek = tournamentWeekId(nowMs);
-    if (nextWeek !== weekId) {
-      await db.collection(TOURNAMENT_BANK_COLLECTION).doc(nextWeek).set({
+    if (carryOver > 0 && nextBankRef) {
+      tx.set(nextBankRef, {
         weekId: nextWeek,
         total: admin.firestore.FieldValue.increment(carryOver),
         carriedFrom: weekId,
         updatedAt: nowMs,
       }, { merge: true });
     }
+    return true;
+  });
+
+  if (!applied) {
+    return { weekId, bankGems, paid: 0, winners: 0, carryOver: 0, alreadyPaid: true };
   }
 
   return {

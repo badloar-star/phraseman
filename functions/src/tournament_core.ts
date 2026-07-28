@@ -10,6 +10,7 @@
 
 import {
   DEFAULT_TOURNAMENT_ECONOMY,
+  normalizeTournamentEconomy,
   tournamentPayouts,
   tournamentPot,
   type TournamentEconomyConfig,
@@ -449,6 +450,8 @@ export type TournamentRound = {
 };
 
 export type TournamentRoomDoc = {
+  /** Immutable economy terms captured when the room is created. */
+  economySnapshot?: TournamentEconomyConfig;
   /** Банк турнира в жемчужинах: сумма взносов всех участников. */
   potGems?: number;
   /**
@@ -1283,8 +1286,21 @@ export function planTournamentCancellation(
     return { room, receiptId: room.cancellationReceiptId || receiptId, alreadyCancelled: true, refunds: [] };
   }
   if (!canCancelTournament(room.state) && !options.allowActive) throw new Error('room_not_cancellable');
+  // Legacy rooms predate the immutable snapshot and keep the historical paid-room compensation.
+  const frozenEntryGems = room.economySnapshot
+    ? normalizeTournamentEconomy(room.economySnapshot).entryGems
+    : undefined;
+  const compensationGems = frozenEntryGems !== undefined
+    ? (frozenEntryGems > 0
+      ? TOURNAMENT_CANCEL_COMPENSATION_GEMS
+      : 0)
+    : TOURNAMENT_CANCEL_COMPENSATION_GEMS;
   const refunds = room.players.flatMap((player) => {
-    const refund = cancellationRefundForPlayer(player, { fallbackTickets: options.fallbackTickets });
+    const refund = cancellationRefundForPlayer(player, {
+      fallbackTickets: options.fallbackTickets,
+      compensationGems,
+      bankContributionGems: frozenEntryGems,
+    });
     return refund ? [{ playerId: player.id, ...refund }] : [];
   });
   return {
@@ -1410,24 +1426,33 @@ export function planTournamentFinalization(
   if (room.state !== 'results') throw new Error('room_not_ready_to_finalize');
   if (!room.stateDeadlineAtMs || room.stateDeadlineAtMs <= 0) throw new Error('results_deadline_missing');
   if (nowMs < room.stateDeadlineAtMs) throw new Error('results_visibility_pending');
-  const { realPlacements } = computePlacements(room.players);
+  const { standings, realPlacements } = computePlacements(room.players);
+  // New rooms always carry this snapshot. The argument remains only as a compatibility
+  // fallback for legacy documents created before the snapshot contract existed.
+  const frozenEconomy = room.economySnapshot
+    ? normalizeTournamentEconomy(room.economySnapshot)
+    : normalizeTournamentEconomy(economy);
 
   // зачем: приз = доля от РЕАЛЬНОГО банка турнира. Считаем состав по самой
   // комнате, а не по накопленному полю: так пересчёт финализации даёт тот же
   // результат, даже если счётчик взносов разошёлся из-за сбоя записи.
   const realCount = room.players.filter((player) => !player.isBot).length;
   const botCount = room.players.length - realCount;
-  const pot = tournamentPot(realCount, botCount, economy);
+  const pot = tournamentPot(realCount, botCount, frozenEconomy);
   // зачем 2026-07-27 (владелец): при равных звёздах доли призёров складываются
   // и делятся поровну — «если у одного 70 и у другого 70, пусть начисляется
   // поровну». Для этого выплатам нужны очки призёров в порядке мест.
-  const winnerScores = realPlacements.slice(0, 3).map(({ player }) => Number(player.score ?? 0));
+  const winnerScores = standings.slice(0, 3).map((player) => Number(player.score ?? 0));
   const { payouts, unclaimedToWeekly } = tournamentPayouts(
     pot,
-    realPlacements.length,
-    economy,
+    standings.length,
+    frozenEconomy,
     winnerScores,
   );
+  const payoutByPlace = new Map(payouts.map((payout) => [payout.place, payout.gems]));
+  const botPrizeGems = standings.slice(0, 3).reduce((total, player, index) => (
+    player.isBot ? total + (payoutByPlace.get(index + 1) ?? 0) : total
+  ), 0);
 
   const playerEffects = realPlacements.map(({ player, place }) => ({
     playerId: player.id,
@@ -1442,7 +1467,7 @@ export function planTournamentFinalization(
     alreadyFinalized: false,
     playerEffects,
     // Сколько уходит в недельный банк: доля с турнира + неразыгранные места.
-    weeklyBankGems: pot.toWeeklyBank + unclaimedToWeekly,
+    weeklyBankGems: pot.toWeeklyBank + unclaimedToWeekly + botPrizeGems,
     room: {
       ...room,
       state: 'rewards',
@@ -1683,7 +1708,7 @@ export function cancellationRefundForPlayer(player: TournamentPlayer): {
 } | null;
 export function cancellationRefundForPlayer(
   player: TournamentPlayer,
-  options?: { fallbackTickets?: number },
+  options?: { fallbackTickets?: number; compensationGems?: number; bankContributionGems?: number },
 ): {
   tickets: number;
   restoreFreeWeek: string | null;
@@ -1692,7 +1717,7 @@ export function cancellationRefundForPlayer(
 } | null;
 export function cancellationRefundForPlayer(
   player: TournamentPlayer,
-  options: { fallbackTickets?: number } = {},
+  options: { fallbackTickets?: number; compensationGems?: number; bankContributionGems?: number } = {},
 ): {
   tickets: number;
   restoreFreeWeek: string | null;
@@ -1706,9 +1731,21 @@ export function cancellationRefundForPlayer(
       ? Math.max(0, Math.trunc(entry.ticketsSpent))
       : entry ? 0 : Math.max(0, Math.trunc(options.fallbackTickets ?? 0)),
     restoreFreeWeek: entry?.kind === 'free_weekly' ? entry.weekId : null,
-    bankContributionGems: Math.max(0, Math.trunc(entry?.bankContributionGems ?? 0)),
-    compensationGems: TOURNAMENT_CANCEL_COMPENSATION_GEMS,
+    bankContributionGems: Math.max(0, Math.trunc(
+      options.bankContributionGems ?? entry?.bankContributionGems ?? 0,
+    )),
+    compensationGems: Math.max(0, Math.trunc(
+      options.compensationGems ?? TOURNAMENT_CANCEL_COMPENSATION_GEMS,
+    )),
   };
+}
+
+export function cancellationCreditGems(refund: {
+  bankContributionGems: number;
+  compensationGems: number;
+}): number {
+  return Math.max(0, Math.trunc(refund.bankContributionGems))
+    + Math.max(0, Math.trunc(refund.compensationGems));
 }
 
 export type LegacyTournamentRecoveryAction = 'wait' | 'advance' | 'cancel';
@@ -1733,18 +1770,15 @@ export function legacyTournamentRecoveryAction(
   return room.stateDeadlineAtMs <= nowMs ? 'advance' : 'wait';
 }
 
-/**
- * Итоговые места. Боты НЕ занимают призовые места (§3): сортировка общая,
- * но призы сдвигаются к живым игрокам.
- */
+/** General standings. Bots keep their places; real players retain those same indices. */
 export function computePlacements(players: TournamentPlayer[]): {
   standings: TournamentPlayer[];
   realPlacements: { player: TournamentPlayer; place: number }[];
 } {
   const standings = players.slice().sort((a, b) => b.score - a.score || a.id.localeCompare(b.id));
   const realPlacements = standings
-    .filter((p) => !p.isBot)
-    .map((player, idx) => ({ player, place: idx + 1 }));
+    .map((player, index) => ({ player, place: index + 1 }))
+    .filter(({ player }) => !player.isBot);
   return { standings, realPlacements };
 }
 

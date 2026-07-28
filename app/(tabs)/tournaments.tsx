@@ -102,7 +102,7 @@ type ScheduleSlot = {
   enabled?: boolean;
   startsAtMs?: number;
 };
-type ScheduleConfig = { slots: ScheduleSlot[]; entryGems?: number };
+type ScheduleConfig = { slots: ScheduleSlot[]; entryGems?: number; testingEnabled?: boolean };
 
 /**
  * Момент сегодняшнего старта слота — В ТАЙМЗОНЕ СЛОТА, а не устройства.
@@ -379,7 +379,6 @@ export default function TournamentsScreen() {
     Boolean(startsAt) && runtimeActive,
   );
   const live = isRoundState(room?.state) || isTableState(room?.state) || room?.state === 'final';
-  const notEnoughGems = coins < entryGems;
   const windowOpen = windowState.phase === 'open';
   const windowPlayed = windowState.phase === 'played';
 
@@ -440,6 +439,9 @@ export default function TournamentsScreen() {
    * чтобы игроки попадали друг к другу, а не расходились по личным комнатам.
    */
   const instantEntry = !joinWindowOpen;
+  // Temporary test rooms are free by server contract; scheduled tournaments stay paid.
+  const effectiveEntryGems = instantEntry && schedule?.testingEnabled === true ? 0 : entryGems;
+  const notEnoughGems = coins < effectiveEntryGems;
 
   const openConfirm = useCallback(() => { setJoinError(''); setConfirmVisible(true); }, []);
   // Магазин жемчужин — тот же экран, куда ведёт баланс на Главной.
@@ -458,7 +460,7 @@ export default function TournamentsScreen() {
     if (!targetRoomId || joining) return;
     setJoining(true);
     const balanceBefore = coins;
-    setCoins((current) => Math.max(0, current - entryGems)); // guard-ok: оптимистичное локальное списание, откат ниже; истина — ответ сервера
+    setCoins((current) => Math.max(0, current - effectiveEntryGems)); // guard-ok: optimistic display mirrors the server-owned test/scheduled price
     try {
       // Окно закрыто — сервер соберёт обычную комнату прямо сейчас и сразу
       // посадит в неё игрока (вход и списание идут одной транзакцией, иначе
@@ -503,6 +505,8 @@ export default function TournamentsScreen() {
       }
       setJoinError(code.includes('not_enough_gems')
         ? 'Не хватает жемчужин'
+        : code.includes('tournament_testing_disabled')
+          ? 'Тестовый режим завершён. Следующий турнир — по расписанию.'
         : code.includes('slot_already_played')
           ? 'В этом турнире вы уже играли. Ждём вас в следующем'
           : code.includes('join_cutoff_elapsed')
@@ -527,7 +531,7 @@ export default function TournamentsScreen() {
       setJoining(false);
     }
   }, [
-    joinRoomId, joining, router, coins, entryGems,
+    joinRoomId, joining, router, coins, effectiveEntryGems,
     windowState.activeWindowStartMs, nextSlot, instantEntry,
   ]);
 
@@ -673,7 +677,7 @@ export default function TournamentsScreen() {
                 right={!notEnoughGems ? (
                   <View style={styles.ctaPrice}>
                     <Image
-                      source={coinIconForBalance(entryGems, themeMode)}
+                      source={coinIconForBalance(effectiveEntryGems, themeMode)}
                       style={styles.ctaCoin}
                       contentFit="contain"
                       accessible={false}
@@ -681,7 +685,7 @@ export default function TournamentsScreen() {
                       importantForAccessibility="no"
                     />
                     <Text style={[styles.ctaPriceText, { color: P.okInk }]} allowFontScaling={false}>
-                      {entryGems}
+                      {effectiveEntryGems}
                     </Text>
                   </View>
                 ) : undefined}
@@ -693,7 +697,7 @@ export default function TournamentsScreen() {
                     Вне окна расписания подпись честно говорит «сейчас»: турнир
                     соберётся по нажатию. */}
                 {notEnoughGems
-                  ? `Пополнить · нужно ещё ${entryGems - coins}`
+                  ? `Пополнить · нужно ещё ${effectiveEntryGems - coins}`
                   : joinWindowOpen
                     ? 'Играть'
                     : 'Играть сейчас'}
@@ -922,7 +926,7 @@ export default function TournamentsScreen() {
         </Text>
         <View style={styles.sheetPrice}>
           <Image
-            source={coinIconForBalance(entryGems, themeMode)}
+            source={coinIconForBalance(effectiveEntryGems, themeMode)}
             style={styles.sheetCoin}
             contentFit="contain"
             accessible={false}
@@ -930,12 +934,12 @@ export default function TournamentsScreen() {
             importantForAccessibility="no"
           />
           <Text style={styles.sheetPriceLabel} allowFontScaling={false}>Участие</Text>
-          <Text style={styles.sheetPriceValue} allowFontScaling={false}>{entryGems}</Text>
+          <Text style={styles.sheetPriceValue} allowFontScaling={false}>{effectiveEntryGems}</Text>
         </View>
         <View style={styles.sheetBalance}>
           <Text style={styles.sheetBalanceText} allowFontScaling={false}>У тебя {coins}</Text>
           <Text style={styles.sheetBalanceText} allowFontScaling={false}>
-            останется {Math.max(0, coins - entryGems)}{/* guard-ok: превью списания, баланс не пишется */}
+            останется {Math.max(0, coins - effectiveEntryGems)}{/* guard-ok: preview reflects the server-owned entry price */}
           </Text>
         </View>
         {joinError ? <Text style={styles.sheetError}>{joinError}</Text> : null}

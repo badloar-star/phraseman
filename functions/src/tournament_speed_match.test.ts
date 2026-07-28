@@ -103,10 +103,13 @@ describe('пары на скорость', () => {
     }
   });
 
-  it('задание проходит серверный контракт и играется как timeattack', () => {
+  it('задание проходит серверный контракт и играется как поле пар', () => {
     const task = speedMatchTaskFrom(goodField, 'A2');
     const validation = validateTournamentTask({ ...task!, verified: true });
-    expect(validation).toEqual({ ok: true, kind: 'timeattack' });
+    // зачем 2026-07-27: speed_match раньше классифицировался как 'timeattack' и
+    // разворачивался в 6 отдельных вопросов с 4 вариантами вместо поля пар 2×5
+    // по макету. Теперь у него собственный kind 'match'.
+    expect(validation).toEqual({ ok: true, kind: 'match' });
     // Публичная версия НЕ содержит правильных индексов.
     const publicTask = toPublicTournamentTask({ ...task!, verified: true });
     const serialized = JSON.stringify(publicTask);

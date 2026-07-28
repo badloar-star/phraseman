@@ -13,12 +13,13 @@ describe('Today tab page model', () => {
     expect(physicalPageToLogicalTab(5)).toBe(4);
   });
 
+  // Турниры временно возвращены как обычная вкладка для тестирования.
   test('assigns one runtime owner to every physical page', () => {
     expect([0, 1, 2, 3, 4, 5].map(physicalPageToRuntimeOwner)).toEqual([
       'today',
       'home',
       'lessons',
-      'arena',
+      'tournaments',
       'friends',
       'settings',
     ]);

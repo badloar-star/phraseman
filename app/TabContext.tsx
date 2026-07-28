@@ -25,7 +25,7 @@ const TabContext = createContext<TabCtx>({
 
 export const useTabNav = () => useContext(TabContext);
 
-export const TAB_KEYS = ['home', 'lessons', 'friends', 'settings'] as const;
+export const TAB_KEYS = ['home', 'lessons', 'tournaments', 'friends', 'settings'] as const;
 
 export function TabProvider({
   children,

@@ -61,4 +61,17 @@ describe('gift certificate art contract', () => {
     expect(syncPreview).not.toContain('Math.random');
     expect(syncPreview).not.toContain('selectPhraseForPlan');
   });
+
+  it('widens the desktop certificate and adds an accessible travelling highlight', () => {
+    expect(giftPage).toContain('class="wrap gift-wrap"');
+    expect(giftPage).toContain('.gift-wrap { max-width: 1160px; }');
+    expect(giftPage).toContain('grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr)');
+    expect(giftPage).toContain('.cert::after');
+    expect(giftPage).toContain('mix-blend-mode: screen;');
+    expect(giftPage).toContain('@keyframes cert-shimmer-pass');
+    expect(giftPage).toContain('animation: cert-shimmer-pass 6s');
+    expect(giftPage).toContain('--cert-shimmer:');
+    expect(giftPage).toContain('@media (prefers-reduced-motion: reduce)');
+    expect(giftPage).toContain('.cert::after { animation: none; opacity: 0; }');
+  });
 });

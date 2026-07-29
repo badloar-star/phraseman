@@ -92,25 +92,57 @@ export type ReferralDashboardRow = Readonly<{
 }>;
 
 export type ReferralDashboardCursor = Readonly<{
-  createdAtMs: number;
+  seconds: number;
+  nanoseconds: number;
   attributionId: string;
 }>;
 
-export function referralDashboardCursorFromRow(
-  row: Readonly<{ createdAtMs: number; refereeStableId: string }>,
-): ReferralDashboardCursor {
+const FIRESTORE_TIMESTAMP_MIN_SECONDS = -62_135_596_800;
+const FIRESTORE_TIMESTAMP_MAX_SECONDS = 253_402_300_799;
+
+function validatedReferralDashboardCursor(
+  raw: Readonly<{ seconds?: unknown; nanoseconds?: unknown; attributionId?: unknown }>,
+): ReferralDashboardCursor | null {
+  const seconds = raw.seconds;
+  const nanoseconds = raw.nanoseconds;
+  const attributionId = typeof raw.attributionId === 'string' ? raw.attributionId.trim() : '';
+  if (typeof seconds !== 'number'
+    || !Number.isSafeInteger(seconds)
+    || seconds < FIRESTORE_TIMESTAMP_MIN_SECONDS
+    || seconds > FIRESTORE_TIMESTAMP_MAX_SECONDS
+    || typeof nanoseconds !== 'number'
+    || !Number.isInteger(nanoseconds)
+    || nanoseconds < 0
+    || nanoseconds > 999_999_999
+    || !attributionId
+    || attributionId.includes('/')
+    || Buffer.byteLength(attributionId, 'utf8') > 1_500) {
+    return null;
+  }
   return {
-    createdAtMs: Math.max(0, Math.floor(Number(row.createdAtMs) || 0)),
-    attributionId: String(row.refereeStableId ?? '').trim(),
+    seconds,
+    nanoseconds,
+    attributionId,
   };
+}
+
+export function referralDashboardCursorFromAttribution(
+  attribution: Readonly<{ id: string; createdAt?: unknown }>,
+): ReferralDashboardCursor | null {
+  if (!attribution.createdAt || typeof attribution.createdAt !== 'object') return null;
+  const createdAt = attribution.createdAt as { seconds?: unknown; nanoseconds?: unknown };
+  return validatedReferralDashboardCursor({
+    seconds: createdAt.seconds,
+    nanoseconds: createdAt.nanoseconds,
+    attributionId: attribution.id,
+  });
 }
 
 function referralDashboardCursorFromData(raw: unknown): ReferralDashboardCursor | null {
   if (!raw || typeof raw !== 'object') return null;
-  const data = raw as { createdAtMs?: unknown; attributionId?: unknown };
-  const createdAtMs = tsToMs(data.createdAtMs);
-  const attributionId = String(data.attributionId ?? '').trim();
-  return createdAtMs > 0 && attributionId ? { createdAtMs, attributionId } : null;
+  return validatedReferralDashboardCursor(
+    raw as { seconds?: unknown; nanoseconds?: unknown; attributionId?: unknown },
+  );
 }
 
 function dashboardDisplayName(value: unknown): string {
@@ -349,7 +381,7 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     .orderBy(admin.firestore.FieldPath.documentId(), 'desc');
   if (cursor) {
     pageQuery = pageQuery.startAfter(
-      admin.firestore.Timestamp.fromMillis(cursor.createdAtMs),
+      new admin.firestore.Timestamp(cursor.seconds, cursor.nanoseconds),
       cursor.attributionId,
     );
   }
@@ -438,8 +470,8 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
       totalSpins: allSpinReceipts.length,
       byPrize,
     },
-    nextCursor: rows.length === limit && rows[rows.length - 1]
-      ? referralDashboardCursorFromRow(rows[rows.length - 1])
+    nextCursor: rows.length === limit && pageAttributions[pageAttributions.length - 1]
+      ? referralDashboardCursorFromAttribution(pageAttributions[pageAttributions.length - 1])
       : null,
   };
 });

@@ -2,7 +2,7 @@ import { referralCreditId } from './referral_spin_ledger';
 import {
   displayNameFromUser,
   projectReferralDashboardRow,
-  referralDashboardCursorFromRow,
+  referralDashboardCursorFromAttribution,
   summarizeReferralDashboardPurchases,
 } from './admin_referrals';
 
@@ -59,11 +59,19 @@ describe('referral admin dashboard projection', () => {
     expect(summary.plusPurchased / summary.totalInvited).toBe(0.5);
   });
 
-  it('keeps equal-timestamp invitations distinct in the pagination cursor', () => {
-    expect(referralDashboardCursorFromRow({ createdAtMs: 5_000, refereeStableId: 'invite-b' }))
-      .toEqual({ createdAtMs: 5_000, attributionId: 'invite-b' });
-    expect(referralDashboardCursorFromRow({ createdAtMs: 5_000, refereeStableId: 'invite-a' }))
-      .toEqual({ createdAtMs: 5_000, attributionId: 'invite-a' });
+  it('preserves Firestore nanoseconds and document IDs in pagination cursors', () => {
+    expect(referralDashboardCursorFromAttribution({
+      id: 'invite-b',
+      createdAt: { seconds: 5, nanoseconds: 900_001 },
+    })).toEqual({ seconds: 5, nanoseconds: 900_001, attributionId: 'invite-b' });
+    expect(referralDashboardCursorFromAttribution({
+      id: 'invite-a',
+      createdAt: { seconds: 5, nanoseconds: 900_000 },
+    })).toEqual({ seconds: 5, nanoseconds: 900_000, attributionId: 'invite-a' });
+    expect(referralDashboardCursorFromAttribution({
+      id: 'invite-a',
+      createdAt: { seconds: '5', nanoseconds: '900000' },
+    })).toBeNull();
   });
 
   it('renders a pending attribution as awaiting purchase', () => {

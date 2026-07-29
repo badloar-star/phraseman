@@ -591,6 +591,7 @@ export { friendsGetProfiles } from './friends_profiles';
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {
   adminListReferrals,
+  adminGetReferralDashboard,
   adminSpinStats,
   adminSpinLogs,
   adminSetSpinWeights,

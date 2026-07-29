@@ -12821,7 +12821,6 @@
 <!-- REFERRALS TAB -->
 <div id="tab-referrals" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
-    <button type="button" onclick="loadReferralsData(true)" data-i18n-es="🔄 Cargar" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Загрузить</button>
     <button type="button" onclick="exportReferralsCSV()" style="background:#1f2937;border:1px solid #374151;color:#9ca3af">⬇ CSV</button>
     <input type="text" id="ref-search" placeholder="🔍 Код, UID, имя…" data-i18n-es="🔍 Código, UID, nombre…" oninput="renderReferralsTable()"
       style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:240px;font-size:13px" />
@@ -18098,8 +18097,8 @@
     if (tab === 'clubs' && !window._clubsLoaded && typeof window.loadClubsData === 'function') {
       void window.loadClubsData(false);
     }
-    if (tab === 'referrals' && !window._referralsLoaded && typeof window.loadReferralsData === 'function') {
-      void window.loadReferralsData(false);
+    if (tab === 'referrals' && typeof window.loadReferralsData === 'function') {
+      void window.loadReferralsData(false, false);
     }
     if (tab === 'ban-list' && !window._banListLoaded && typeof window.loadBanList === 'function') {
       void window.loadBanList(false);
@@ -33148,11 +33147,6 @@
   function applyCleanReferralsChrome() {
     const tab = document.getElementById('tab-referrals');
     if (!tab) return;
-    const loadBtn = tab.querySelector('button[onclick*="loadReferralsData(true)"]');
-    if (loadBtn) {
-      loadBtn.textContent = 'Refresh';
-      loadBtn.setAttribute('data-i18n-es', 'Refresh');
-    }
     const moreBtn = document.getElementById('ref-load-more');
     if (moreBtn) {
       moreBtn.textContent = 'Load 300 more';
@@ -33356,19 +33350,15 @@
     tab.dataset.refDashboardV2 = 'true';
     tab.innerHTML = `
       <div class="ref-dashboard-shell">
-        <header class="ref-dashboard-header">
+        <div class="ref-dashboard-header">
           <div>
             <h2 class="ref-dashboard-title">Рефералы</h2>
             <p class="ref-dashboard-description">Покупка настоящего Plus приглашённым открывает прокрутку рулетки пригласившему.</p>
           </div>
           <div class="ref-dashboard-actions">
-            <button type="button" id="ref-refresh" class="ref-primary" title="Обновляет серверные данные о покупках Plus и результатах рулетки.">
-              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6v6h-6"/><path d="M4 18v-6h6"/><path d="M18.5 9A7 7 0 0 0 6 6.5L4 9m16 6-2 2.5A7 7 0 0 1 5.5 15"/></svg>
-              Обновить данные
-            </button>
             <button type="button" id="ref-export" title="Скачивает текущий список приглашений в CSV. Ничего не изменяет.">Экспорт CSV</button>
           </div>
-        </header>
+        </div>
         <section id="ref-summary-stats" class="ref-summary-grid" aria-label="Основные показатели рефералов"></section>
         <div class="ref-dashboard-controls">
           <label class="ref-field" for="ref-search">Поиск по имени или коду
@@ -33403,7 +33393,6 @@
         </section>
         <section id="ref-aggregates" class="ref-panel" aria-label="Аналитика рулетки"></section>
       </div>`;
-    document.getElementById('ref-refresh')?.addEventListener('click', () => void window.loadReferralsData(true, false));
     document.getElementById('ref-export')?.addEventListener('click', () => window.exportReferralsCSV());
     document.getElementById('ref-search')?.addEventListener('input', () => window.renderReferralsTable());
     document.getElementById('ref-filter')?.addEventListener('change', () => window.renderReferralsTable());
@@ -33567,9 +33556,7 @@
     const errorBox = document.getElementById('ref-error');
     const table = document.getElementById('ref-table');
     const empty = document.getElementById('ref-empty');
-    const refreshButton = document.getElementById('ref-refresh');
     const moreButton = document.getElementById('ref-load-more');
-    if (refreshButton) refreshButton.disabled = true;
     if (errorBox) { errorBox.hidden = true; errorBox.innerHTML = ''; }
     if (!append && loading) loading.hidden = false;
     if (!append && table) table.hidden = true;
@@ -33602,8 +33589,6 @@
         document.getElementById('ref-retry')?.addEventListener('click', () => void window.loadReferralsData(true, false));
       }
       showToast('Ошибка загрузки рефералов', 'err');
-    } finally {
-      if (refreshButton) refreshButton.disabled = false;
     }
   };
 

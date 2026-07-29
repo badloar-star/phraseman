@@ -638,6 +638,16 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).not.toContain('ждём урок');
   });
 
+  it('auto-loads the referral dashboard without a persistent refresh control', () => {
+    expect(adminHtml).toContain("if (tab === 'referrals' && typeof window.loadReferralsData === 'function')");
+    expect(adminHtml).toContain('void window.loadReferralsData(false, false)');
+    expect(adminHtml).not.toContain("tab === 'referrals' && !window._referralsLoaded");
+    expect(adminHtml).not.toContain('id="ref-refresh"');
+    expect(adminHtml).not.toContain('<header class="ref-dashboard-header">');
+    expect(adminHtml).toContain('<div class="ref-dashboard-header">');
+    expect(adminHtml).toContain('id="ref-retry"');
+  });
+
   it('turns Push into a workflow composer with mode tabs and preview panel', () => {
     expect(adminHtml).toContain('class="push-workspace"');
     expect(adminHtml).toContain('class="push-modebar"');

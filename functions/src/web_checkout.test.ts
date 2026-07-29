@@ -7,6 +7,29 @@ import {
   giftPlanTitle,
   productNameForPlan,
 } from './web_checkout';
+import {
+  GIFT_CERTIFICATE_PHRASES,
+  resolveGiftPhrase,
+} from './gift_certificate_phrases';
+
+describe('resolveGiftPhrase', () => {
+  it('keeps a valid phrase inside its purchased plan', () => {
+    const phrase = GIFT_CERTIFICATE_PHRASES.yearly[17];
+    expect(resolveGiftPhrase('yearly', phrase.id)).toEqual(phrase);
+  });
+
+  it('does not accept a phrase identifier from another plan', () => {
+    const random = jest.spyOn(Math, 'random').mockReturnValue(0);
+    expect(resolveGiftPhrase('yearly', 'monthly-01')).toEqual(GIFT_CERTIFICATE_PHRASES.yearly[0]);
+    random.mockRestore();
+  });
+
+  it('falls back within the purchased plan for a missing identifier', () => {
+    const random = jest.spyOn(Math, 'random').mockReturnValue(0.999);
+    expect(resolveGiftPhrase('lifetime', undefined)).toEqual(GIFT_CERTIFICATE_PHRASES.lifetime[49]);
+    random.mockRestore();
+  });
+});
 
 describe('activationRewardForPlan', () => {
   it('monthly → 31 день', () => {
@@ -68,6 +91,34 @@ describe('giftCodeExpiryMs', () => {
 describe('buildActivationEmail', () => {
   const support = 'support.phraseman@gmail.com';
 
+  it.each([
+    ['monthly', 'gift-certificate-monthly.webp'],
+    ['yearly', 'gift-certificate-yearly.webp'],
+    ['lifetime', 'gift-certificate-lifetime.webp'],
+  ] as const)('uses the deployed %s certificate art in paid gift email', (plan, filename) => {
+    const { html } = buildActivationEmail({
+      activationCode: 'WEB-ABCDEFGHJK',
+      plan,
+      gift: true,
+      codeExpiresAtMs: Date.UTC(2027, 0, 1),
+    }, support);
+
+    expect(html).toContain(`https://knowlyapps.com/assets/gift-certificates/${filename}`);
+    expect(html).toContain('data-gift-certificate-art="true"');
+  });
+
+  it('keeps the recipient-facing gift certificate free of payment commentary', () => {
+    const { html, text } = buildActivationEmail({
+      activationCode: 'WEB-ABCDEFGHJK',
+      plan: 'yearly',
+      gift: true,
+      codeExpiresAtMs: Date.UTC(2027, 0, 1),
+    }, support);
+
+    expect(html).not.toContain('Разовый платёж');
+    expect(text).not.toContain('Разовый платёж');
+  });
+
   it('именной сертификат: Для/От, название подарка, код, срок действия', () => {
     const { subject, text, html } = buildActivationEmail({
       activationCode: 'WEB-ABCDEFGHJK',
@@ -102,6 +153,43 @@ describe('buildActivationEmail', () => {
     expect((html.match(/Месяц Phraseman Plus/g) ?? []).length).toBe(1);
   });
 
+  it('keeps only gift identity, phrase, code and expiry inside the decorated certificate', () => {
+    const phrase = GIFT_CERTIFICATE_PHRASES.yearly[17];
+    const { html, text } = buildActivationEmail({
+      activationCode: 'WEB-ABCDEFGHJK',
+      plan: 'yearly',
+      gift: true,
+      giftTo: 'Маша',
+      giftFrom: 'Саша',
+      giftPhraseId: phrase.id,
+      testIssue: true,
+      codeExpiresAtMs: Date.UTC(2027, 6, 26),
+    }, support);
+    const certificate = html.match(/<table data-gift-certificate-art="true"[\s\S]*?<\/table>/)?.[0] ?? '';
+    const instructions = html.match(/<div data-gift-instructions="true"[\s\S]*?<\/div>/)?.[0] ?? '';
+
+    expect(certificate).toContain('Для: Маша');
+    expect(certificate).toContain('от Саша');
+    expect(certificate).toContain('Год Phraseman Plus');
+    expect(certificate).toContain(phrase.text);
+    expect(certificate).toContain('WEB-ABCDEFGHJK');
+    expect(certificate).toContain('26.07.2027');
+    expect(certificate).not.toContain('Как включить доступ');
+    expect(certificate).not.toContain('Скачайте Phraseman');
+    expect(certificate).not.toContain('Перешлите это письмо');
+    expect(certificate).not.toContain(support);
+    expect(certificate).not.toContain('ТЕСТОВАЯ ВЫДАЧА');
+
+    expect(instructions).toContain('ТЕСТОВАЯ ВЫДАЧА');
+    expect(instructions).toContain('Как включить доступ');
+    expect(instructions).toContain('Скачайте Phraseman');
+    expect(instructions).toContain('Перешлите это письмо');
+    expect(instructions).toContain(support);
+    expect(html.indexOf(instructions)).toBeGreaterThan(html.indexOf('</table>'));
+    expect(text).toContain(phrase.text);
+    expect(text.indexOf(phrase.text)).toBeLessThan(text.indexOf('Код активации'));
+  });
+
   it('оплаченный подарочный код стоит простой строкой внизу без плашки', () => {
     const { html } = buildActivationEmail({
       activationCode: 'WEB-ABCDEFGHJK',
@@ -116,7 +204,7 @@ describe('buildActivationEmail', () => {
     expect(codeLine).not.toContain('background:');
     expect(codeLine).not.toContain('border-radius:');
     expect(codeLine).not.toContain('padding:');
-    expect(html.indexOf(codeLine)).toBeGreaterThan(html.indexOf('Как включить доступ:'));
+    expect(html.indexOf(codeLine)).toBeLessThan(html.indexOf('Как включить доступ:'));
   });
 
   it('обычная покупка: нейминг Plus/Pro, без слова «сертификат», без срока', () => {

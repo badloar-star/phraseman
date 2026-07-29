@@ -49,4 +49,16 @@ describe('gift certificate art contract', () => {
     expect(giftPage).not.toContain('.cert-code {');
     expect(giftPage).not.toContain('Код появится в письме');
   });
+
+  it('shows a stable plan-specific catchphrase and submits its identifier', () => {
+    expect(giftPage).toContain('<script src="/assets/gift-certificate-phrases.js');
+    expect(giftPage).toContain('id="pvCatchphrase"');
+    expect(giftPage).toContain('phraseId:');
+    expect(giftPage).toContain('function selectPhraseForPlan(plan)');
+    expect(giftPage).toContain('giftPhraseId: state.phraseId');
+
+    const syncPreview = giftPage.match(/function syncPreview\(\) \{[\s\S]*?\n    \}/)?.[0] ?? '';
+    expect(syncPreview).not.toContain('Math.random');
+    expect(syncPreview).not.toContain('selectPhraseForPlan');
+  });
 });

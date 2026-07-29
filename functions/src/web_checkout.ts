@@ -27,6 +27,7 @@ import { onRequest } from 'firebase-functions/v2/https';
 import { upsertEmailContact } from './email_contacts';
 import { RESEND_API_KEY } from './resend_secret';
 import { buildPromoVipPatch } from './promo_codes';
+import { resolveGiftPhrase } from './gift_certificate_phrases';
 
 const REGION = 'us-central1';
 const ORDERS_COLLECTION = 'web_premium_orders';
@@ -44,6 +45,12 @@ const webCheckoutEmailFrom = defineString('WEB_CHECKOUT_EMAIL_FROM', { default: 
 const webCheckoutSupportEmail = defineString('WEB_CHECKOUT_SUPPORT_EMAIL', { default: 'support.phraseman@gmail.com' });
 
 type WebPlan = 'monthly' | 'yearly' | 'lifetime';
+
+const GIFT_CERTIFICATE_ART: Record<WebPlan, string> = {
+  monthly: `${SITE_ORIGIN}/assets/gift-certificates/gift-certificate-monthly.webp`,
+  yearly: `${SITE_ORIGIN}/assets/gift-certificates/gift-certificate-yearly.webp`,
+  lifetime: `${SITE_ORIGIN}/assets/gift-certificates/gift-certificate-lifetime.webp`,
+};
 
 const PLAN_LABELS: Record<WebPlan, string> = {
   monthly: 'месяц',
@@ -246,6 +253,7 @@ interface NewOrderInput {
   /** Имя получателя/дарителя для именного сертификата (необязательные). */
   giftTo?: string;
   giftFrom?: string;
+  giftPhraseId?: string;
 }
 
 async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderInput): Promise<string> {
@@ -259,6 +267,7 @@ async function createOrderDoc(db: FirebaseFirestore.Firestore, input: NewOrderIn
     gift: input.gift === true,
     giftTo: input.giftTo || null,
     giftFrom: input.giftFrom || null,
+    giftPhraseId: input.giftPhraseId || null,
     appNickname: input.nickname || null,
     amountCents: input.amountCents,
     currency: input.currency,
@@ -341,8 +350,9 @@ function formatRuDate(ms: number): string {
  * Письмо с кодом активации. Для подарка — именной «золотой сертификат»
  * (владелец 2026-07-26): Для/От, название подарка (Plus/Pro), код крупно,
  * срок действия, шаги активации. Чистая функция — покрыта тестами.
- * Вёрстка инлайновая, без рамок-обводок (запрет владельца), совместима
- * с почтовыми клиентами (только div + inline-стили, без внешних ресурсов).
+ * Вёрстка инлайновая, без рамок-обводок (запрет владельца). Подарочная версия
+ * использует тот же размещённый на knowlyapps.com фон, что и /gift/; при
+ * заблокированных картинках остаются читаемые цветовой фон и текст.
  */
 export function buildActivationEmail(
   order: FirebaseFirestore.DocumentData,
@@ -354,8 +364,14 @@ export function buildActivationEmail(
   const productTitle = isGift ? giftPlanTitle(plan) : productNameForPlan(plan, false);
   const giftTo = cleanShortText(order.giftTo, 60);
   const giftFrom = cleanShortText(order.giftFrom, 60);
+  const giftPhrase = isGift ? resolveGiftPhrase(plan, order.giftPhraseId) : null;
+  const isTestIssue = isGift && order.testIssue === true;
   const expiresAtMs = Math.max(0, Math.trunc(Number(order.codeExpiresAtMs ?? 0)) || 0);
   const expiresLine = expiresAtMs > 0 ? `Сертификат действует до ${formatRuDate(expiresAtMs)}.` : '';
+  const giftArtUrl = GIFT_CERTIFICATE_ART[plan];
+  const giftTheme = plan === 'lifetime'
+    ? { canvas: '#101817', ink: '#fff8e8', soft: '#d8ccb0', accent: '#efca70', panel: '#111918' }
+    : { canvas: '#f5efe3', ink: '#201c12', soft: '#6f6852', accent: '#8b6508', panel: '#fffaf0' };
 
   const subject = isGift
     ? `🎁 Подарочный сертификат Phraseman — код ${activationCode}`
@@ -372,43 +388,50 @@ export function buildActivationEmail(
     ...(isGift && giftTo ? [`Для: ${giftTo}`] : []),
     ...(isGift && giftFrom ? [`От: ${giftFrom}`] : []),
     `Подарок: ${productTitle}`,
+    ...(giftPhrase ? ['', giftPhrase.text] : []),
     '',
     `Код активации: ${activationCode}`,
     ...(expiresLine ? [expiresLine] : []),
     '',
+    ...(isTestIssue ? ['ТЕСТОВАЯ ВЫДАЧА — ОПЛАТА НЕ ПРОВОДИЛАСЬ', ''] : []),
     isGift
       ? 'Перешлите этот сертификат тому, кому дарите. Как получателю включить доступ:'
       : 'Как включить доступ:',
     ...steps,
     '',
-    isGift ? 'Разовый платёж: ничего не спишется повторно.' : '',
     `Если что-то не получилось, напишите: ${support}`,
   ].filter((line, i, arr) => line !== '' || arr[i - 1] !== '').join('\n');
 
   const codeBlock = `<div style="background:#201c12;border-radius:16px;padding:20px 16px;margin:20px 0;text-align:center;font-size:26px;font-weight:800;letter-spacing:4px;color:#f7de8b;font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
-  const giftCodeLine = `<div data-gift-code="true" style="margin:28px 0 4px;text-align:center;font-size:22px;font-weight:800;letter-spacing:4px;color:#6b5422;font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
+  const giftCodeLine = `<div data-gift-code="true" style="margin:28px 0 4px;text-align:center;font-size:22px;font-weight:800;letter-spacing:4px;color:${giftTheme.accent};font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
   const stepsHtml = `<ol style="margin:12px 0 0;padding-left:20px;color:#4c4636;line-height:1.7"><li>Скачайте Phraseman: <a href="https://knowlyapps.com/download/" style="color:#b8860f;font-weight:bold">knowlyapps.com/download/</a></li><li>Откройте Настройки → Промокоды.</li><li>Введите код и нажмите «Активировать».</li></ol>`;
   const supportHtml = `<p style="margin:22px 0 0;color:#6f6852;font-size:13px">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`;
 
   const html = isGift
     ? [
       '<div style="background:#f6f3ea;padding:28px 12px;font-family:Arial,Helvetica,sans-serif">',
-      '<div style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:24px;overflow:hidden">',
-      '<div style="background:#f2c14e;padding:26px 28px;text-align:center">',
-      '<div style="font-size:12px;letter-spacing:3px;color:#3a2905;font-weight:bold">ПОДАРОЧНЫЙ СЕРТИФИКАТ</div>',
-      '<div style="font-size:26px;font-weight:800;color:#201c12;margin-top:6px">Phraseman</div>',
+      '<div style="max-width:560px;margin:0 auto;border-radius:24px;overflow:hidden">',
+      `<table data-gift-certificate-art="true" role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="width:100%;background-color:${giftTheme.canvas};background-image:url('${giftArtUrl}');background-repeat:no-repeat;background-position:center;background-size:cover;border-collapse:separate">`,
+      `<tr><td background="${giftArtUrl}" valign="top" style="padding:28px;background-color:${giftTheme.canvas};background-image:url('${giftArtUrl}');background-repeat:no-repeat;background-position:center;background-size:cover">`,
+      `<div style="text-align:center;color:${giftTheme.ink}">`,
+      `<div style="font-size:12px;letter-spacing:3px;color:${giftTheme.accent};font-weight:bold">ПОДАРОЧНЫЙ СЕРТИФИКАТ</div>`,
+      '<div style="font-size:26px;font-weight:800;margin-top:6px">Phraseman</div>',
       '</div>',
-      '<div style="padding:28px 28px 26px;color:#201c12">',
+      `<div style="margin-top:20px;padding:24px;color:${giftTheme.ink};background:${giftTheme.panel};border-radius:18px">`,
       /* зачем: владелец 2026-07-26 — без имени заголовок называет КОНКРЕТНЫЙ
          подарок («Год Phraseman Plus»), а не абстрактное «вам подарили английский» */
       giftTo ? `<div style="font-size:22px;font-weight:800;margin:0 0 2px">Для: ${htmlEscape(giftTo)}</div>` : `<div style="font-size:22px;font-weight:800;margin:0 0 2px">${htmlEscape(productTitle)}</div>`,
-      giftFrom ? `<div style="color:#6f6852;font-size:15px;margin:0 0 16px">от ${htmlEscape(giftFrom)}</div>` : '<div style="margin:0 0 16px"></div>',
-      giftTo ? `<div style="font-size:17px;font-weight:800;color:#b8860f">${htmlEscape(productTitle)}</div>` : '',
-      '<div style="font-weight:bold;margin-top:6px">Как включить доступ:</div>',
-      stepsHtml,
-      '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Разовый платёж: ничего не спишется повторно. Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
+      giftFrom ? `<div style="color:${giftTheme.soft};font-size:15px;margin:0 0 16px">от ${htmlEscape(giftFrom)}</div>` : '<div style="margin:0 0 16px"></div>',
+      giftTo ? `<div style="font-size:17px;font-weight:800;color:${giftTheme.accent}">${htmlEscape(productTitle)}</div>` : '',
+      giftPhrase ? `<div data-gift-catchphrase="true" style="margin:20px 0 0;color:${giftTheme.ink};font-size:15px;font-weight:600;line-height:1.5">${htmlEscape(giftPhrase.text)}</div>` : '',
       giftCodeLine,
-      expiresLine ? `<div style="color:#6f6852;font-size:13.5px;text-align:center;margin:4px 0 0">${htmlEscape(expiresLine)}</div>` : '',
+      expiresLine ? `<div style="color:${giftTheme.soft};font-size:13.5px;text-align:center;margin:4px 0 0">${htmlEscape(expiresLine)}</div>` : '',
+      '</div></td></tr></table>',
+      '<div data-gift-instructions="true" style="margin-top:16px;padding:24px;background:#ffffff;border-radius:18px;color:#201c12">',
+      isTestIssue ? '<p style="margin:0 0 18px;padding:12px 14px;background:#fff2c7;border-radius:12px;text-align:center;color:#6a4b00;font-size:13px;font-weight:800">ТЕСТОВАЯ ВЫДАЧА — ОПЛАТА НЕ ПРОВОДИЛАСЬ</p>' : '',
+      '<p style="margin:0;font-weight:bold">Как включить доступ:</p>',
+      stepsHtml,
+      '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
       supportHtml,
       '</div></div></div>',
     ].filter(Boolean).join('')
@@ -689,6 +712,7 @@ export const webCheckoutCreate = onRequest(
         gift,
         giftTo: cleanShortText(body.giftTo, 60),
         giftFrom: cleanShortText(body.giftFrom, 60),
+        giftPhraseId: gift ? resolveGiftPhrase(plan, body.giftPhraseId).id : undefined,
       });
       const session = await stripeCreateSession({ plan, email, orderId, amountCents, currency: config.currency, gift });
       await db.collection(ORDERS_COLLECTION).doc(orderId).update({
@@ -958,6 +982,7 @@ export const paypalOrderCreate = onRequest(
         gift: body.gift === true,
         giftTo: cleanShortText(body.giftTo, 60),
         giftFrom: cleanShortText(body.giftFrom, 60),
+        giftPhraseId: body.gift === true ? resolveGiftPhrase(plan, body.giftPhraseId).id : undefined,
       });
       const token = await paypalAccessToken(config.paypalLive);
       const resp = await fetch(`${paypalBase(config.paypalLive)}/v2/checkout/orders`, {

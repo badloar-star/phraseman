@@ -131,11 +131,23 @@
     .cert-to { font-size: 20px; font-weight: 900; color: var(--ink); min-height: 1.3em; }
     .cert-from { color: var(--soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
     .cert-plan { font-weight: 800; color: var(--gold-deep); font-size: 15.5px; }
+    .cert-catchphrase {
+      display: flex;
+      align-items: flex-end;
+      min-height: 3em;
+      margin-top: 17px;
+      color: #4f4736;
+      font-size: 14.5px;
+      font-weight: 600;
+      line-height: 1.45;
+      text-wrap: balance;
+    }
     .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
     .cert[data-plan="lifetime"] .cert-head b,
     .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
     .cert[data-plan="lifetime"] .cert-from { color: #d8ccb0; }
     .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
+    .cert[data-plan="lifetime"] .cert-catchphrase { color: #f2e5c8; }
     @media (max-width: 860px) { .cert { position: static; } }
     @media (max-width: 480px) {
       .cert { min-height: 0; border-radius: 20px; }
@@ -224,6 +236,7 @@
             <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
             <div class="cert-from" id="pvFrom"></div>
             <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
+            <div class="cert-catchphrase" id="pvCatchphrase" aria-live="polite"></div>
           </div>
         </aside>
       </div>
@@ -256,6 +269,7 @@
   </footer>
 </div>
 
+<script src="/assets/gift-certificate-phrases.js?v=20260729-1"></script>
 <script>
   // зачем: своя лёгкая логика вместо start.js — выбор подарка и предпросмотр
   // мгновенные (optimistic), сеть только в момент оплаты. Контракт оплат тот же:
@@ -267,7 +281,7 @@
       yearly: 'Год Phraseman Plus',
       lifetime: 'Phraseman Pro — навсегда',
     };
-    var state = { plan: 'yearly', currency: 'USD', busy: false };
+    var state = { plan: 'yearly', phraseId: '', phraseText: '', currency: 'USD', busy: false };
 
     var $ = function (id) { return document.getElementById(id); };
     var plans = [].slice.call(document.querySelectorAll('.plan'));
@@ -276,6 +290,16 @@
     function cfg() { return window.KNOWLY_SITE || {}; }
     function showError(message) { err.textContent = message; err.classList.add('show'); }
     function clearError() { err.classList.remove('show'); }
+
+    function selectPhraseForPlan(plan) {
+      var catalog = window.PHRASEMAN_GIFT_PHRASES || {};
+      var phrases = catalog[plan] || [];
+      if (!phrases.length) return;
+      var phrase = phrases[Math.floor(Math.random() * phrases.length)];
+      state.phraseId = phrase.id;
+      state.phraseText = phrase.text;
+      $('pvCatchphrase').textContent = phrase.text;
+    }
 
     /* живой предпросмотр: без имени заголовок = конкретный подарок (не абстракция),
        с именем — «Для: Имя» + подарок золотой строкой ниже */
@@ -297,6 +321,7 @@
         card.classList.toggle('sel', sel);
         card.setAttribute('aria-checked', sel ? 'true' : 'false');
       });
+      selectPhraseForPlan(plan);
       syncPreview();
       clearError();
     }
@@ -308,6 +333,8 @@
     });
     $('giftTo').addEventListener('input', syncPreview);
     $('giftFrom').addEventListener('input', syncPreview);
+    selectPhraseForPlan(state.plan);
+    syncPreview();
 
     /* цены с сервера (то, что реально спишется); фолбэк — site-config */
     function money(cents, currency) {
@@ -347,6 +374,7 @@
         gift: true,
         giftTo: $('giftTo').value.trim(),
         giftFrom: $('giftFrom').value.trim(),
+        giftPhraseId: state.phraseId,
       };
     }
     function validEmail() {

@@ -3298,6 +3298,306 @@
       letter-spacing: 0.06em;
       text-transform: uppercase;
     }
+    body[data-admin-skin="onboarding"] #tab-referrals {
+      max-width: 1240px;
+      min-width: 0;
+      overflow-x: hidden;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-shell {
+      width: 100%;
+      min-width: 0;
+      padding: 20px 24px 36px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header {
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-title {
+      margin: 0;
+      color: var(--admin-text);
+      font-size: 26px;
+      line-height: 1.25;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-description {
+      max-width: 720px;
+      margin: 6px 0 0;
+      color: var(--admin-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button,
+    body[data-admin-skin="onboarding"] #tab-referrals input,
+    body[data-admin-skin="onboarding"] #tab-referrals select {
+      min-height: 44px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button {
+      cursor: pointer;
+      transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals button:focus-visible,
+    body[data-admin-skin="onboarding"] #tab-referrals input:focus-visible,
+    body[data-admin-skin="onboarding"] #tab-referrals select:focus-visible {
+      outline: 3px solid #38bdf8 !important;
+      outline-offset: 2px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-primary {
+      background: #4ade80 !important;
+      border-color: #4ade80 !important;
+      color: #07110a !important;
+      font-weight: 800;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-primary:hover {
+      background: #86efac !important;
+      border-color: #86efac !important;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-panel {
+      border: 1px solid var(--admin-border);
+      border-radius: 8px;
+      background: #16181f;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric {
+      min-height: 104px;
+      padding: 14px;
+      box-sizing: border-box;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric-label {
+      color: var(--admin-muted);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-metric-value {
+      margin-top: 8px;
+      color: var(--admin-text);
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-controls {
+      margin-bottom: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field {
+      display: grid;
+      gap: 5px;
+      min-width: min(280px, 100%);
+      flex: 1 1 280px;
+      color: var(--admin-muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field select,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-field input {
+      width: 100%;
+      min-width: 0;
+      padding: 9px 12px;
+      border: 1px solid var(--admin-border);
+      border-radius: 7px;
+      background: #111318;
+      color: var(--admin-text);
+      font: inherit;
+      font-size: 16px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-panel {
+      min-width: 0;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row {
+      display: grid;
+      grid-template-columns: minmax(170px, 1.2fr) 44px minmax(170px, 1.2fr) minmax(155px, .9fr) minmax(155px, .9fr) minmax(150px, .8fr);
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      padding: 12px 14px;
+      border-top: 1px solid var(--admin-border);
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-head {
+      border-top: 0;
+      background: #111318;
+      color: var(--admin-faint);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-person {
+      display: grid;
+      grid-template-columns: 36px minmax(0, 1fr);
+      align-items: center;
+      gap: 9px;
+      min-width: 0;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #27303d;
+      color: #e5e7eb;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-person-name {
+      min-width: 0;
+      overflow-wrap: anywhere;
+      color: var(--admin-text);
+      font-size: 14px;
+      font-weight: 750;
+      line-height: 1.35;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow {
+      color: var(--admin-faint);
+      text-align: center;
+      font-size: 18px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill {
+      min-height: 30px;
+      text-transform: none;
+      letter-spacing: normal;
+      text-align: center;
+      white-space: normal;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill.is-plus {
+      background: #4ade80;
+      border-color: #4ade80;
+      color: #07110a;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-status-pill.is-waiting {
+      background: #272b33;
+      color: #d1d5db;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions button {
+      min-height: 44px;
+      padding: 7px 10px;
+      font-size: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-row-actions .ref-revoke-btn {
+      background: #3b171a !important;
+      border-color: #7f1d1d !important;
+      color: #fecaca !important;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-danger-zone {
+      display: inline-flex;
+      margin-left: 4px;
+      padding-left: 8px;
+      border-left: 1px solid #7f1d1d;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-state {
+      min-height: 112px;
+      padding: 24px;
+      box-sizing: border-box;
+      color: var(--admin-muted);
+      line-height: 1.5;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-skeleton-line {
+      width: min(520px, 88%);
+      height: 14px;
+      margin: 8px 0;
+      border-radius: 5px;
+      background: #262a32;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-analytics-grid {
+      display: grid;
+      grid-template-columns: minmax(220px, .7fr) minmax(0, 1.3fr);
+      gap: 14px;
+      padding: 16px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bars {
+      display: grid;
+      gap: 10px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-row {
+      display: grid;
+      grid-template-columns: minmax(90px, 140px) minmax(80px, 1fr) 52px;
+      align-items: center;
+      gap: 9px;
+      color: var(--admin-muted);
+      font-size: 12px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-track {
+      height: 9px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #272b33;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: #60a5fa;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--admin-muted);
+      font-size: 13px;
+    }
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table th,
+    body[data-admin-skin="onboarding"] #tab-referrals .ref-prize-table td {
+      padding: 9px;
+      border-top: 1px solid var(--admin-border);
+      text-align: left;
+    }
+    @media (max-width: 980px) {
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-head { display: none; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row:not(.ref-grid-head) {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+        margin: 10px;
+        padding: 14px;
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        background: #111318;
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-grid-row:not(.ref-grid-head) > [data-label]::before {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--admin-faint);
+        content: attr(data-label);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-arrow { transform: rotate(90deg); }
+    }
+    @media (max-width: 720px) {
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-shell { padding: 16px 12px 28px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-header { align-items: flex-start; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions { width: 100%; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-dashboard-actions button { flex: 1 1 140px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-analytics-grid { grid-template-columns: minmax(0, 1fr); padding: 12px; }
+      body[data-admin-skin="onboarding"] #tab-referrals .ref-bar-row { grid-template-columns: minmax(76px, 110px) minmax(60px, 1fr) 44px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      body[data-admin-skin="onboarding"] #tab-referrals * { transition: none !important; }
+    }
     body[data-admin-skin="onboarding"] #push-mode-uid,
     body[data-admin-skin="onboarding"] #push-mode-segment,
     body[data-admin-skin="onboarding"] #push-mode-reactivate,
@@ -12529,7 +12829,7 @@
   </div>
   <div id="ref-summary-stats" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p data-i18n-es="referral_attributions: quién invitó a quién, estado y fragmentos acreditados. Haz clic en una fila para abrir el perfil del invitado (como en Usuarios). Botones: abrir referidor o invitado." style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    <code style="color:#a78bfa" data-i18n-es="referral_attributions">referral_attributions</code>: <span data-i18n-es="quién invitó a quién, estado y días VIP acreditados.">кто кого пригласил, статус и выданные дни VIP (7+7). Цепочка: <b>pending</b> — код введён, ждём урок 1 → <b>qualified</b> — урок 1 пройден, приглашённому дни выданы, реферер ещё не нажал «Открыть» → <b>rewarded</b> — оба получили дни.</span>
+    Покупка настоящего Plus или Pro приглашённым открывает прокрутку рулетки пригласившему. Статус покупки берётся только из серверных магазинных данных.
     <span data-i18n-es="Haz clic en una fila para abrir el perfil del">Клик по строке — профиль</span> <strong data-i18n-es="invitado">приглашённого</strong> <span data-i18n-es="(como en Usuarios). Botones: abrir referidor o invitado.">(как на вкладке «Пользователи»). Кнопки — открыть реферера или приглашённого.</span>
   </p>
   <div id="ref-loading" class="loading" data-i18n-es="⏳ Cargando…" style="display:none;padding:0 24px">⏳ Загрузка…</div>
@@ -12548,7 +12848,7 @@
           <th data-i18n-es="VIP invit. (días)">VIP пригл., дн.</th>
           <th data-i18n-es="VIP ref. (días)">VIP реф., дн.</th>
           <th data-i18n-es="Aplicado">Применено</th>
-          <th data-i18n-es="Lección 1">Урок 1</th>
+          <th>Покупка Plus</th>
           <th data-i18n-es="Recompensa">Награда</th>
           <th data-i18n-es="Acciones">Действия</th>
         </tr>
@@ -14673,7 +14973,7 @@
       const pending = rows.filter((r) => r.status === 'pending').length;
       const qualified = rows.filter((r) => r.status === 'qualified').length;
       const done = rows.filter((r) => r.status === 'rewarded' || r.status === 'skipped_referrer_cap').length;
-      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · ждут урок: ${pending} · урок пройден (не забрано): ${qualified} · выдано: ${done}`;
+      let stLine = `Показано: ${rows.length}${fullSnapshotHint ? ' · ' + fullSnapshotHint : ''} · ожидают покупки: ${pending} · Plus куплен: ${qualified} · рулетка прокручена: ${done}`;
       if (window._referralsHasMore && !fullSnapshotHint) stLine += ' · догрузка порциями по ' + REFERRALS_PAGE;
       if (st) st.textContent = stLine;
       if (moreBtn) moreBtn.style.display = window._referralsHasMore && !fullSnapshotHint ? 'inline-block' : 'none';
@@ -16146,17 +16446,18 @@
       return ts ? String(ts) : '';
     };
     exportToCsv(window._referralsRows || [], [
-      { header: 'Code', get: r => r.refCode || '' },
       { header: 'Referee UID', get: r => r.refereeId || '' },
       { header: 'Referee', get: r => r.refereeName || '' },
       { header: 'Referrer UID', get: r => r.referrerId || '' },
       { header: 'Referrer', get: r => r.referrerName || '' },
-      { header: 'Статус', get: r => r.status || '' },
-      { header: 'VIP days referee', get: r => r.refereeVipDays ?? '' },
-      { header: 'VIP days referrer', get: r => r.referrerVipDays ?? '' },
-      { header: 'Applied', get: r => csvDate(r.createdAt) },
-      { header: 'Lesson1 passed', get: r => csvDate(r.qualifiedAt) },
-      { header: 'Rewarded', get: r => csvDate(r.rewardedAt) },
+      { header: 'Invited at', get: r => csvDate(r.createdAtMs) },
+      { header: 'Plus purchased', get: r => r.plusPurchased ? 'yes' : 'no' },
+      { header: 'Purchased at', get: r => csvDate(r.purchasedAtMs) },
+      { header: 'Roulette', get: r => r.roulette?.state === 'spun' ? 'spun' : 'not spun' },
+      { header: 'Prize kind', get: r => r.roulette?.state === 'spun' ? r.roulette.prizeKind : '' },
+      { header: 'Prize days', get: r => r.roulette?.state === 'spun' ? r.roulette.prizeDays : '' },
+      { header: 'Prize pearls', get: r => r.roulette?.state === 'spun' ? r.roulette.prizePearls : '' },
+      { header: 'Spun at', get: r => r.roulette?.state === 'spun' ? csvDate(r.roulette.createdAtMs) : '' },
     ], 'referrals');
   };
   window.exportUserReportsCSV = function() {
@@ -32879,7 +33180,7 @@
   }
 
   function refCleanStatusLabel(st) {
-    if (st === 'pending') return 'pending L1';
+    if (st === 'pending') return 'awaiting purchase';
     if (st === 'rewarded') return 'rewarded';
     if (st === 'skipped_referrer_cap') return 'cap reached';
     if (st === 'revoked') return 'revoked';
@@ -33036,6 +33337,273 @@
     } catch (e) {
       if (loading) loading.textContent = 'Failed to load referrals';
       showToast('Referrals error: ' + e.message, 'err');
+    }
+  };
+
+  // Final live referrals dashboard. The earlier loader is retained only as
+  // legacy context; these assignments are the effective runtime surface.
+  let _fnAdminGetReferralDashboard = null;
+  function getAdminGetReferralDashboardCallable() {
+    if (!_fnAdminGetReferralDashboard) {
+      _fnAdminGetReferralDashboard = httpsCallable(functionsUs, 'adminGetReferralDashboard');
+    }
+    return _fnAdminGetReferralDashboard;
+  }
+
+  function ensureReferralDashboardChrome() {
+    const tab = document.getElementById('tab-referrals');
+    if (!tab || tab.dataset.refDashboardV2 === 'true') return;
+    tab.dataset.refDashboardV2 = 'true';
+    tab.innerHTML = `
+      <div class="ref-dashboard-shell">
+        <header class="ref-dashboard-header">
+          <div>
+            <h2 class="ref-dashboard-title">Рефералы</h2>
+            <p class="ref-dashboard-description">Покупка настоящего Plus приглашённым открывает прокрутку рулетки пригласившему.</p>
+          </div>
+          <div class="ref-dashboard-actions">
+            <button type="button" id="ref-refresh" class="ref-primary" title="Обновляет серверные данные о покупках Plus и результатах рулетки.">
+              <svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6v6h-6"/><path d="M4 18v-6h6"/><path d="M18.5 9A7 7 0 0 0 6 6.5L4 9m16 6-2 2.5A7 7 0 0 1 5.5 15"/></svg>
+              Обновить данные
+            </button>
+            <button type="button" id="ref-export" title="Скачивает текущий список приглашений в CSV. Ничего не изменяет.">Экспорт CSV</button>
+          </div>
+        </header>
+        <section id="ref-summary-stats" class="ref-summary-grid" aria-label="Основные показатели рефералов"></section>
+        <div class="ref-dashboard-controls">
+          <label class="ref-field" for="ref-search">Поиск по имени
+            <input type="search" id="ref-search" placeholder="Имя пригласившего или приглашённого" autocomplete="off" />
+          </label>
+          <label class="ref-field" for="ref-filter">Фильтр
+            <select id="ref-filter">
+              <option value="all">Все приглашения</option>
+              <option value="plus">Купили Plus</option>
+              <option value="awaiting">Ожидают покупки</option>
+              <option value="spun">Крутили рулетку</option>
+              <option value="not-spun">Не крутили рулетку</option>
+            </select>
+          </label>
+          <span id="ref-status" class="reports-count" aria-live="polite"></span>
+        </div>
+        <section class="ref-panel" aria-label="Кто кого пригласил">
+          <div id="ref-loading" class="ref-state" aria-live="polite">
+            <strong>Загружаем приглашения…</strong>
+            <div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div><div class="ref-skeleton-line"></div>
+          </div>
+          <div id="ref-error" class="ref-state" role="alert" hidden></div>
+          <div id="ref-empty" class="ref-state" hidden>Приглашений по выбранным условиям пока нет.</div>
+          <div id="ref-table" role="table" aria-label="Связи приглашений" hidden>
+            <div class="ref-grid-row ref-grid-head" role="row">
+              <div role="columnheader">Пригласивший</div><div aria-hidden="true"></div><div role="columnheader">Приглашённый</div>
+              <div role="columnheader">Plus</div><div role="columnheader">Рулетка</div><div role="columnheader">Действия</div>
+            </div>
+            <div id="ref-tbody" role="rowgroup"></div>
+          </div>
+          <div style="padding:0 14px 14px"><button type="button" id="ref-load-more" title="Загружает следующую страницу приглашений." hidden>Показать ещё</button></div>
+        </section>
+        <section id="ref-aggregates" class="ref-panel" aria-label="Аналитика рулетки"></section>
+      </div>`;
+    document.getElementById('ref-refresh')?.addEventListener('click', () => void window.loadReferralsData(true, false));
+    document.getElementById('ref-export')?.addEventListener('click', () => window.exportReferralsCSV());
+    document.getElementById('ref-search')?.addEventListener('input', () => window.renderReferralsTable());
+    document.getElementById('ref-filter')?.addEventListener('change', () => window.renderReferralsTable());
+    document.getElementById('ref-load-more')?.addEventListener('click', () => void window.loadReferralsData(false, true));
+  }
+
+  function referralInitials(name) {
+    return String(name || '')
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part.slice(0, 1).toUpperCase())
+      .join('') || '—';
+  }
+
+  function referralDate(ms) {
+    const value = Number(ms) || 0;
+    return value > 0 ? new Date(value).toLocaleDateString('ru-RU') : '';
+  }
+
+  function referralPrizeLabel(roulette) {
+    if (!roulette || roulette.state !== 'spun') return 'Ещё не крутил';
+    if (roulette.prizeKind === 'pearls') return `Выпало: ${toSafeNumber(roulette.prizePearls, 0)} жемчужин`;
+    return `Выпало: ${toSafeNumber(roulette.prizeDays, 0)} дн. Plus`;
+  }
+
+  function referralAggregateLabel(key) {
+    const [kind, raw] = String(key || '').split(':');
+    const amount = toSafeNumber(raw, 0);
+    return kind === 'pearls' ? `${amount} жемчужин` : `${amount} дн. Plus`;
+  }
+
+  function renderReferralDashboardSummary(summary) {
+    const box = document.getElementById('ref-summary-stats');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(summary?.totalInvited, 0));
+    const purchased = Math.max(0, toSafeNumber(summary?.plusPurchased, 0));
+    const spun = Math.max(0, toSafeNumber(summary?.rouletteSpun, 0));
+    const conversion = total > 0 ? `${Math.round((purchased / total) * 1000) / 10}%` : '—';
+    box.innerHTML = [
+      ['Всего приглашено', total],
+      ['Купили Plus', purchased],
+      ['Конверсия в Plus', conversion],
+      ['Прокрутили рулетку', spun],
+    ].map(([label, value]) => `<div class="ref-metric"><div class="ref-metric-label">${escapeHtml(label)}</div><div class="ref-metric-value">${escapeHtml(value)}</div></div>`).join('');
+  }
+
+  function renderReferralRouletteAnalytics(roulette) {
+    const box = document.getElementById('ref-aggregates');
+    if (!box) return;
+    const total = Math.max(0, toSafeNumber(roulette?.totalSpins, 0));
+    const entries = Object.entries(roulette?.byPrize || {})
+      .map(([key, count]) => ({ key, count: Math.max(0, toSafeNumber(count, 0)) }))
+      .filter((item) => item.count > 0)
+      .sort((a, b) => b.count - a.count || a.key.localeCompare(b.key));
+    if (total === 0 || entries.length === 0) {
+      box.innerHTML = '<div class="ref-state"><strong>Рулетка</strong><br>Прокрутов пока нет.</div>';
+      return;
+    }
+    const most = entries[0];
+    const share = (count) => Math.round((count / total) * 1000) / 10;
+    box.innerHTML = `
+      <div class="ref-analytics-grid">
+        <div>
+          <div class="ref-top-title">Рулетка</div>
+          <div class="ref-metric-value">${total}</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">Всего прокрутов</div>
+          <div style="margin-top:18px;color:var(--admin-text);font-weight:750">Чаще всего выпадает</div>
+          <div style="margin-top:5px;color:var(--admin-muted)">${escapeHtml(referralAggregateLabel(most.key))} · ${most.count} (${share(most.count)}%)</div>
+        </div>
+        <div>
+          <div class="ref-bars" role="img" aria-label="Распределение призов рулетки">
+            ${entries.map((item) => `<div class="ref-bar-row"><span>${escapeHtml(referralAggregateLabel(item.key))}</span><span class="ref-bar-track"><span class="ref-bar-fill" style="display:block;width:${Math.min(100, share(item.count))}%"></span></span><strong>${item.count}</strong></div>`).join('')}
+          </div>
+          <table class="ref-prize-table"><caption style="text-align:left;padding:16px 9px 8px;color:var(--admin-text);font-weight:750">Точная расшифровка</caption><thead><tr><th>Приз</th><th>Количество</th><th>Доля</th></tr></thead><tbody>
+            ${entries.map((item) => `<tr><td>${escapeHtml(referralAggregateLabel(item.key))}</td><td>${item.count}</td><td>${share(item.count)}%</td></tr>`).join('')}
+          </tbody></table>
+        </div>
+      </div>`;
+  }
+
+  async function prepareReferralRevoke(refereeId) {
+    const row = (window._referralsRows || []).find((item) => item.refereeId === refereeId);
+    if (!row) { showToast('Запись не найдена', 'err'); return; }
+    try {
+      const snapshot = await getDoc(doc(db, 'referral_attributions', refereeId));
+      if (!snapshot.exists()) { showToast('Связь приглашения не найдена', 'err'); return; }
+      const data = snapshot.data() || {};
+      const status = String(data.status || '');
+      if (status !== 'pending' && status !== 'rewarded') {
+        showToast('Эту связь нельзя отозвать в текущем состоянии', 'warn');
+        return;
+      }
+      Object.assign(row, {
+        status,
+        refCode: data.refCode || '',
+        refereeShardBonus: data.refereeShardBonus,
+        referrerShardBonus: data.referrerShardBonus,
+      });
+      await window.revokeReferralAttribution(refereeId);
+    } catch (error) {
+      showToast('Не удалось проверить связь: ' + error.message, 'err');
+    }
+  }
+
+  window.renderReferralsTable = function renderReferralsTable() {
+    ensureReferralDashboardChrome();
+    const tbody = document.getElementById('ref-tbody');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const status = document.getElementById('ref-status');
+    if (!tbody || !table || !empty) return;
+    const queryText = String(document.getElementById('ref-search')?.value || '').trim().toLowerCase();
+    const filter = String(document.getElementById('ref-filter')?.value || 'all');
+    const list = [...(window._referralsRows || [])].filter((row) => {
+      const matchesText = !queryText || `${row.referrerName || ''} ${row.refereeName || ''}`.toLowerCase().includes(queryText);
+      const spun = row.roulette?.state === 'spun';
+      const matchesFilter = filter === 'all'
+        || (filter === 'plus' && row.plusPurchased)
+        || (filter === 'awaiting' && !row.plusPurchased)
+        || (filter === 'spun' && spun)
+        || (filter === 'not-spun' && !spun);
+      return matchesText && matchesFilter;
+    });
+    if (status) status.textContent = `${list.length} из ${(window._referralsRows || []).length}`;
+    table.hidden = list.length === 0;
+    empty.hidden = list.length !== 0;
+    tbody.innerHTML = list.map((row) => {
+      const spun = row.roulette?.state === 'spun';
+      const plusLabel = row.plusPurchased ? 'Plus куплен' : 'Ожидает покупки';
+      const plusDate = row.plusPurchased && row.purchasedAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.purchasedAtMs))}</div>` : '';
+      const spinDate = spun && row.roulette.createdAtMs ? `<div class="ref-date">${escapeHtml(referralDate(row.roulette.createdAtMs))}</div>` : '';
+      const canAttemptRevoke = row.status !== 'revoked' && (!row.plusPurchased || spun);
+      return `<div class="ref-grid-row" role="row" data-referee="${escapeHtml(row.refereeId)}">
+        <div role="cell" data-label="Пригласивший"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.referrerName))}</span><span class="ref-person-name">${escapeHtml(row.referrerName || 'Без имени')}</span></div></div>
+        <div class="ref-arrow" aria-label="пригласил">→</div>
+        <div role="cell" data-label="Приглашённый"><div class="ref-person"><span class="ref-avatar" aria-hidden="true">${escapeHtml(referralInitials(row.refereeName))}</span><span class="ref-person-name">${escapeHtml(row.refereeName || 'Без имени')}</span></div></div>
+        <div role="cell" data-label="Plus"><span class="ref-status-pill ${row.plusPurchased ? 'is-plus' : 'is-waiting'}">${plusLabel}</span>${plusDate}</div>
+        <div role="cell" data-label="Рулетка"><span class="ref-status-pill ${spun ? 'is-plus' : 'is-waiting'}">${escapeHtml(referralPrizeLabel(row.roulette))}</span>${spinDate}</div>
+        <div role="cell" data-label="Действия" class="ref-row-actions">
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.referrerId)}" title="Открывает профиль пригласившего. Ничего не изменяет.">Открыть пригласившего</button>
+          <button type="button" class="ref-open-btn" data-open="${escapeHtml(row.refereeId)}" title="Открывает профиль приглашённого. Ничего не изменяет.">Открыть приглашённого</button>
+          ${canAttemptRevoke ? `<span class="ref-danger-zone"><button type="button" class="ref-revoke-btn" data-referee="${escapeHtml(row.refereeId)}" title="Проверяет текущий статус и открывает подтверждение отзыва связи.">Отозвать связь</button></span>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+    tbody.querySelectorAll('button.ref-open-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-open');
+      if (id) void loadUserToCacheAndOpen(id);
+    }));
+    tbody.querySelectorAll('button.ref-revoke-btn').forEach((button) => button.addEventListener('click', () => {
+      const id = button.getAttribute('data-referee');
+      if (id) void prepareReferralRevoke(id);
+    }));
+  };
+
+  window.loadReferralsData = async function loadReferralsData(force, append) {
+    ensureReferralDashboardChrome();
+    if (!force && !append && window._referralsDashboardLoaded) return;
+    const loading = document.getElementById('ref-loading');
+    const errorBox = document.getElementById('ref-error');
+    const table = document.getElementById('ref-table');
+    const empty = document.getElementById('ref-empty');
+    const refreshButton = document.getElementById('ref-refresh');
+    const moreButton = document.getElementById('ref-load-more');
+    if (refreshButton) refreshButton.disabled = true;
+    if (errorBox) { errorBox.hidden = true; errorBox.innerHTML = ''; }
+    if (!append && loading) loading.hidden = false;
+    if (!append && table) table.hidden = true;
+    if (!append && empty) empty.hidden = true;
+    try {
+      const cursor = append ? window._referralsCursor : null;
+      const response = await getAdminGetReferralDashboardCallable()({ limit: 100, cursor });
+      const data = response?.data || {};
+      const incoming = Array.isArray(data.rows) ? data.rows.map((row) => ({
+        ...row,
+        refereeId: String(row.refereeStableId || ''),
+        referrerId: String(row.referrerStableId || ''),
+      })) : [];
+      window._referralsRows = append ? [...(window._referralsRows || []), ...incoming] : incoming;
+      window._referralsCursor = data.nextCursor || null;
+      window._referralsSummary = data.summary || {};
+      window._referralsRoulette = data.roulette || {};
+      window._referralsDashboardLoaded = true;
+      renderReferralDashboardSummary(window._referralsSummary);
+      renderReferralRouletteAnalytics(window._referralsRoulette);
+      window.renderReferralsTable();
+      if (moreButton) moreButton.hidden = !window._referralsCursor;
+      if (loading) loading.hidden = true;
+      showToast('Данные рефералов обновлены');
+    } catch (error) {
+      if (loading) loading.hidden = true;
+      if (errorBox) {
+        errorBox.hidden = false;
+        errorBox.innerHTML = `<strong>Не удалось загрузить рефералы.</strong><br>${escapeHtml(error?.message || 'Неизвестная ошибка')}<br><button type="button" id="ref-retry" title="Повторяет безопасную загрузку данных.">Повторить</button>`;
+        document.getElementById('ref-retry')?.addEventListener('click', () => void window.loadReferralsData(true, false));
+      }
+      showToast('Ошибка загрузки рефералов', 'err');
+    } finally {
+      if (refreshButton) refreshButton.disabled = false;
     }
   };
 

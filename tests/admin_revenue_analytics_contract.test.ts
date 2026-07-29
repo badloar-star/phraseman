@@ -617,6 +617,17 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml.lastIndexOf('Total rooms')).toBeGreaterThan(adminHtml.lastIndexOf('window.renderArenaRooms = function renderArenaRooms()'));
   });
 
+  it('renders referrals from the server-owned Plus and roulette dashboard projection', () => {
+    expect(adminHtml).toContain('adminGetReferralDashboard');
+    expect(adminHtml).toContain('Всего приглашено');
+    expect(adminHtml).toContain('Купили Plus');
+    expect(adminHtml).toContain('Конверсия в Plus');
+    expect(adminHtml).toContain('Прокрутили рулетку');
+    expect(adminHtml).toContain('Ожидает покупки');
+    expect(adminHtml).toContain('ref-filter');
+    expect(adminHtml).not.toContain('ждём урок');
+  });
+
   it('turns Push into a workflow composer with mode tabs and preview panel', () => {
     expect(adminHtml).toContain('class="push-workspace"');
     expect(adminHtml).toContain('class="push-modebar"');

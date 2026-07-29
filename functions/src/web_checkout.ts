@@ -386,6 +386,7 @@ export function buildActivationEmail(
   ].filter((line, i, arr) => line !== '' || arr[i - 1] !== '').join('\n');
 
   const codeBlock = `<div style="background:#201c12;border-radius:16px;padding:20px 16px;margin:20px 0;text-align:center;font-size:26px;font-weight:800;letter-spacing:4px;color:#f7de8b;font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
+  const giftCodeLine = `<div data-gift-code="true" style="margin:28px 0 4px;text-align:center;font-size:22px;font-weight:800;letter-spacing:4px;color:#6b5422;font-family:Consolas,Menlo,monospace">${htmlEscape(activationCode)}</div>`;
   const stepsHtml = `<ol style="margin:12px 0 0;padding-left:20px;color:#4c4636;line-height:1.7"><li>Скачайте Phraseman: <a href="https://knowlyapps.com/download/" style="color:#b8860f;font-weight:bold">knowlyapps.com/download/</a></li><li>Откройте Настройки → Промокоды.</li><li>Введите код и нажмите «Активировать».</li></ol>`;
   const supportHtml = `<p style="margin:22px 0 0;color:#6f6852;font-size:13px">Если что-то не получилось, напишите: ${htmlEscape(support)}</p>`;
 
@@ -403,11 +404,11 @@ export function buildActivationEmail(
       giftTo ? `<div style="font-size:22px;font-weight:800;margin:0 0 2px">Для: ${htmlEscape(giftTo)}</div>` : `<div style="font-size:22px;font-weight:800;margin:0 0 2px">${htmlEscape(productTitle)}</div>`,
       giftFrom ? `<div style="color:#6f6852;font-size:15px;margin:0 0 16px">от ${htmlEscape(giftFrom)}</div>` : '<div style="margin:0 0 16px"></div>',
       giftTo ? `<div style="font-size:17px;font-weight:800;color:#b8860f">${htmlEscape(productTitle)}</div>` : '',
-      codeBlock,
-      expiresLine ? `<div style="color:#6f6852;font-size:13.5px;margin:-8px 0 16px">${htmlEscape(expiresLine)}</div>` : '',
       '<div style="font-weight:bold;margin-top:6px">Как включить доступ:</div>',
       stepsHtml,
       '<p style="margin:18px 0 0;color:#4c4636;font-size:14px">Разовый платёж: ничего не спишется повторно. Перешлите это письмо тому, кому дарите, или вручите код лично.</p>',
+      giftCodeLine,
+      expiresLine ? `<div style="color:#6f6852;font-size:13.5px;text-align:center;margin:4px 0 0">${htmlEscape(expiresLine)}</div>` : '',
       supportHtml,
       '</div></div></div>',
     ].filter(Boolean).join('')

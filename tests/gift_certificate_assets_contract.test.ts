@@ -12,6 +12,14 @@ const certificateAssets = {
 } as const;
 
 describe('gift certificate art contract', () => {
+  it('preserves the existing champagne backdrop around the certificate flow', () => {
+    const backdropAsset = path.join(root, 'knowly-www', 'assets', 'gift-background-champagne-glass-v3.webp');
+
+    expect(fs.existsSync(backdropAsset)).toBe(true);
+    expect(giftPage).toContain('/assets/gift-background-champagne-glass-v3.webp');
+    expect(giftPage).toContain('<div class="gift-backdrop" aria-hidden="true"></div>');
+  });
+
   it.each(Object.entries(certificateAssets))(
     'ships and references the %s certificate background',
     (plan, filename) => {
@@ -33,6 +41,12 @@ describe('gift certificate art contract', () => {
   it('keeps a dedicated high-contrast treatment for the dark lifetime art', () => {
     expect(giftPage).toContain('.cert[data-plan="lifetime"] .cert-head');
     expect(giftPage).toContain('.cert[data-plan="lifetime"] .cert-to');
-    expect(giftPage).toContain('.cert[data-plan="lifetime"] .cert-note');
+  });
+
+  it('does not show a fake activation code before the certificate is purchased', () => {
+    expect(giftPage).not.toContain('WEB-••');
+    expect(giftPage).not.toContain('class="cert-code"');
+    expect(giftPage).not.toContain('.cert-code {');
+    expect(giftPage).not.toContain('Код появится в письме');
   });
 });

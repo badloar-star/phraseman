@@ -26,6 +26,20 @@
   <style>
     /* зачем: раздел «Подарочный сертификат» (решение владельца 2026-07-26) —
        светлый стиль сайта, выбор подарка Plus/Pro, именной live-предпросмотр. */
+    .gift-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, .34), rgba(255, 255, 255, .24)),
+        url("/assets/gift-background-champagne-glass-v3.webp");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    body > .stage, body > .wrap { position: relative; z-index: 1; }
+
     .gift-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(24px, 4vw, 56px); align-items: start; margin-top: 34px; text-align: left; }
     @media (max-width: 860px) { .gift-grid { grid-template-columns: 1fr; } }
 
@@ -73,8 +87,6 @@
       --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp");
       --cert-panel: rgba(255, 251, 242, .82);
       --cert-panel-border: rgba(89, 66, 19, .16);
-      --cert-code-bg: #172849;
-      --cert-code-ink: #f7de8b;
       min-height: 360px;
       background-color: #f5efe3;
       background-image: var(--cert-art);
@@ -93,8 +105,6 @@
       --cert-art: url("/assets/gift-certificates/gift-certificate-monthly.webp");
       --cert-panel: rgba(255, 249, 238, .84);
       --cert-panel-border: rgba(135, 48, 40, .15);
-      --cert-code-bg: #6f2630;
-      --cert-code-ink: #fff2d4;
     }
     .cert[data-plan="yearly"] {
       --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp");
@@ -103,8 +113,6 @@
       --cert-art: url("/assets/gift-certificates/gift-certificate-lifetime.webp");
       --cert-panel: rgba(8, 14, 13, .84);
       --cert-panel-border: rgba(222, 181, 92, .38);
-      --cert-code-bg: #d8b35c;
-      --cert-code-ink: #07110a;
       border-color: rgba(222, 181, 92, .48);
     }
     .cert-head { text-align: center; padding: 22px 24px 17px; }
@@ -123,26 +131,24 @@
     .cert-to { font-size: 20px; font-weight: 900; color: var(--ink); min-height: 1.3em; }
     .cert-from { color: var(--soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
     .cert-plan { font-weight: 800; color: var(--gold-deep); font-size: 15.5px; }
-    .cert-code { background: var(--cert-code-bg); border-radius: 14px; padding: 16px; margin: 14px 0 10px; text-align: center; font: 800 19px/1 Consolas, Menlo, monospace; letter-spacing: 3px; color: var(--cert-code-ink); }
-    .cert-note { color: var(--soft); font-size: 12.5px; text-align: center; margin: 0; }
     .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
     .cert[data-plan="lifetime"] .cert-head b,
     .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
-    .cert[data-plan="lifetime"] .cert-from,
-    .cert[data-plan="lifetime"] .cert-note { color: #d8ccb0; }
+    .cert[data-plan="lifetime"] .cert-from { color: #d8ccb0; }
     .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
     @media (max-width: 860px) { .cert { position: static; } }
     @media (max-width: 480px) {
       .cert { min-height: 0; border-radius: 20px; }
       .cert-head { padding: 20px 18px 15px; }
       .cert-body { margin: 0 14px 14px; padding: 20px 18px 18px; }
-      .cert-code { font-size: 17px; letter-spacing: 2px; }
     }
 
     .gift-faq { margin-top: clamp(40px, 7vh, 70px); }
   </style>
+  <link rel="stylesheet" href="/assets/site-background.css?v=20260729-1" />
 </head>
 <body>
+<div class="gift-backdrop" aria-hidden="true"></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="stage">
   <div class="aurora-css" aria-hidden="true"></div>
@@ -218,8 +224,6 @@
             <div class="cert-to" id="pvTo">Год Phraseman Plus</div>
             <div class="cert-from" id="pvFrom"></div>
             <div class="cert-plan" id="pvPlan" style="display:none">Год Phraseman Plus</div>
-            <div class="cert-code">WEB-••••••••••</div>
-            <p class="cert-note">Код появится в письме сразу после оплаты. Так сертификат будет выглядеть на почте.</p>
           </div>
         </aside>
       </div>

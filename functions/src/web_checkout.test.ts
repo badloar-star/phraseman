@@ -102,6 +102,23 @@ describe('buildActivationEmail', () => {
     expect((html.match(/Месяц Phraseman Plus/g) ?? []).length).toBe(1);
   });
 
+  it('оплаченный подарочный код стоит простой строкой внизу без плашки', () => {
+    const { html } = buildActivationEmail({
+      activationCode: 'WEB-ABCDEFGHJK',
+      plan: 'lifetime',
+      gift: true,
+      giftTo: 'Маша',
+      codeExpiresAtMs: Date.UTC(2027, 0, 1),
+    }, support);
+    const codeLine = html.match(/<div data-gift-code="true"[^>]*>WEB-ABCDEFGHJK<\/div>/)?.[0] ?? '';
+
+    expect(codeLine).not.toBe('');
+    expect(codeLine).not.toContain('background:');
+    expect(codeLine).not.toContain('border-radius:');
+    expect(codeLine).not.toContain('padding:');
+    expect(html.indexOf(codeLine)).toBeGreaterThan(html.indexOf('Как включить доступ:'));
+  });
+
   it('обычная покупка: нейминг Plus/Pro, без слова «сертификат», без срока', () => {
     const { subject, html, text } = buildActivationEmail({
       activationCode: 'WEB-ABCDEFGHJK',

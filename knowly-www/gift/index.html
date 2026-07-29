@@ -69,17 +69,75 @@
     .fine a { color: var(--gold-deep); font-weight: 600; }
 
     /* живой предпросмотр сертификата */
-    .cert { background: var(--surface); border-radius: 24px; box-shadow: var(--shadow-lg); overflow: hidden; position: sticky; top: 18px; }
-    .cert-head { background: linear-gradient(120deg, #f7de8b, #f2c14e 60%, #e3b84b); text-align: center; padding: 22px 24px; }
+    .cert {
+      --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp");
+      --cert-panel: rgba(255, 251, 242, .82);
+      --cert-panel-border: rgba(89, 66, 19, .16);
+      --cert-code-bg: #172849;
+      --cert-code-ink: #f7de8b;
+      min-height: 360px;
+      background-color: #f5efe3;
+      background-image: var(--cert-art);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      border: 1px solid rgba(63, 46, 17, .12);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      position: sticky;
+      top: 18px;
+      transition: background-image .2s var(--ease), border-color .2s var(--ease);
+    }
+    .cert[data-plan="monthly"] {
+      --cert-art: url("/assets/gift-certificates/gift-certificate-monthly.webp");
+      --cert-panel: rgba(255, 249, 238, .84);
+      --cert-panel-border: rgba(135, 48, 40, .15);
+      --cert-code-bg: #6f2630;
+      --cert-code-ink: #fff2d4;
+    }
+    .cert[data-plan="yearly"] {
+      --cert-art: url("/assets/gift-certificates/gift-certificate-yearly.webp");
+    }
+    .cert[data-plan="lifetime"] {
+      --cert-art: url("/assets/gift-certificates/gift-certificate-lifetime.webp");
+      --cert-panel: rgba(8, 14, 13, .84);
+      --cert-panel-border: rgba(222, 181, 92, .38);
+      --cert-code-bg: #d8b35c;
+      --cert-code-ink: #07110a;
+      border-color: rgba(222, 181, 92, .48);
+    }
+    .cert-head { text-align: center; padding: 22px 24px 17px; }
     .cert-head small { display: block; font-size: 11.5px; letter-spacing: 3px; font-weight: 700; color: #3a2905; }
     .cert-head b { display: block; font-size: 22px; font-weight: 900; color: #201c12; margin-top: 4px; }
-    .cert-body { padding: 24px 26px 22px; }
+    .cert-body {
+      margin: 0 22px 22px;
+      padding: 22px 24px 20px;
+      background: var(--cert-panel);
+      border: 1px solid var(--cert-panel-border);
+      border-radius: 18px;
+      box-shadow: 0 12px 34px rgba(28, 22, 12, .13);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
     .cert-to { font-size: 20px; font-weight: 900; color: var(--ink); min-height: 1.3em; }
     .cert-from { color: var(--soft); font-size: 14.5px; min-height: 1.5em; margin-bottom: 12px; }
     .cert-plan { font-weight: 800; color: var(--gold-deep); font-size: 15.5px; }
-    .cert-code { background: #201c12; border-radius: 14px; padding: 16px; margin: 14px 0 10px; text-align: center; font: 800 19px/1 Consolas, Menlo, monospace; letter-spacing: 3px; color: #f7de8b; }
+    .cert-code { background: var(--cert-code-bg); border-radius: 14px; padding: 16px; margin: 14px 0 10px; text-align: center; font: 800 19px/1 Consolas, Menlo, monospace; letter-spacing: 3px; color: var(--cert-code-ink); }
     .cert-note { color: var(--soft); font-size: 12.5px; text-align: center; margin: 0; }
+    .cert[data-plan="lifetime"] .cert-head small { color: #ead394; }
+    .cert[data-plan="lifetime"] .cert-head b,
+    .cert[data-plan="lifetime"] .cert-to { color: #fff8e8; }
+    .cert[data-plan="lifetime"] .cert-from,
+    .cert[data-plan="lifetime"] .cert-note { color: #d8ccb0; }
+    .cert[data-plan="lifetime"] .cert-plan { color: #efca70; }
     @media (max-width: 860px) { .cert { position: static; } }
+    @media (max-width: 480px) {
+      .cert { min-height: 0; border-radius: 20px; }
+      .cert-head { padding: 20px 18px 15px; }
+      .cert-body { margin: 0 14px 14px; padding: 20px 18px 18px; }
+      .cert-code { font-size: 17px; letter-spacing: 2px; }
+    }
 
     .gift-faq { margin-top: clamp(40px, 7vh, 70px); }
   </style>
@@ -152,7 +210,7 @@
           </form>
         </div>
 
-        <aside class="cert" aria-label="Предпросмотр сертификата">
+        <aside class="cert" data-plan="yearly" id="giftCertificate" aria-label="Предпросмотр сертификата">
           <div class="cert-head"><small>ПОДАРОЧНЫЙ СЕРТИФИКАТ</small><b>Phraseman</b></div>
           <div class="cert-body">
             <!-- зачем: владелец 2026-07-26 — без имени заголовок называет
@@ -229,6 +287,7 @@
     /* выбор подарка: мгновенно, без сети */
     function selectPlan(plan) {
       state.plan = plan;
+      $('giftCertificate').dataset.plan = plan;
       plans.forEach(function (card) {
         var sel = card.dataset.plan === plan;
         card.classList.toggle('sel', sel);

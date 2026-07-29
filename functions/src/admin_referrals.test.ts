@@ -1,5 +1,10 @@
 import { referralCreditId } from './referral_spin_ledger';
-import { projectReferralDashboardRow } from './admin_referrals';
+import {
+  displayNameFromUser,
+  projectReferralDashboardRow,
+  referralDashboardCursorFromRow,
+  summarizeReferralDashboardPurchases,
+} from './admin_referrals';
 
 const NOW_MS = 2_000_000;
 
@@ -7,6 +12,7 @@ function attribution(overrides: Record<string, unknown> = {}) {
   return {
     id: 'invitee-1',
     referrerStableId: 'inviter-1',
+    refCode: 'FRIEND42',
     status: 'pending',
     createdAtMs: 1_000,
     ...overrides,
@@ -28,8 +34,41 @@ function project(overrides: Partial<Parameters<typeof projectReferralDashboardRo
 }
 
 describe('referral admin dashboard projection', () => {
+  it('uses progress.user_name before compatible root display-name fields', () => {
+    expect(displayNameFromUser({
+      progress: { user_name: 'Имя из прогресса' },
+      displayName: 'Устаревшее корневое имя',
+      name: 'Ещё одно корневое имя',
+    })).toBe('Имя из прогресса');
+  });
+
+  it('counts every active store purchase in summary even without qualifiedBy', () => {
+    const summary = summarizeReferralDashboardPurchases({
+      attributionIds: ['paid-without-qualification', 'free-user'],
+      progressByRefereeId: new Map([
+        ['paid-without-qualification', {
+          premium_plan: 'monthly',
+          premium_expiry: String(NOW_MS + 100_000),
+        }],
+        ['free-user', { lesson_1_completed: true }],
+      ]),
+      nowMs: NOW_MS,
+    });
+
+    expect(summary).toEqual({ totalInvited: 2, plusPurchased: 1 });
+    expect(summary.plusPurchased / summary.totalInvited).toBe(0.5);
+  });
+
+  it('keeps equal-timestamp invitations distinct in the pagination cursor', () => {
+    expect(referralDashboardCursorFromRow({ createdAtMs: 5_000, refereeStableId: 'invite-b' }))
+      .toEqual({ createdAtMs: 5_000, attributionId: 'invite-b' });
+    expect(referralDashboardCursorFromRow({ createdAtMs: 5_000, refereeStableId: 'invite-a' }))
+      .toEqual({ createdAtMs: 5_000, attributionId: 'invite-a' });
+  });
+
   it('renders a pending attribution as awaiting purchase', () => {
     expect(project()).toMatchObject({
+      refCode: 'FRIEND42',
       referrerName: 'Анна',
       refereeName: 'Борис',
       plusPurchased: false,

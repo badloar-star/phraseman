@@ -3561,7 +3561,7 @@
       border-top: 1px solid var(--admin-border);
       text-align: left;
     }
-    @media (max-width: 980px) {
+    @media (max-width: 1360px) {
       body[data-admin-skin="onboarding"] #tab-referrals .ref-summary-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -33371,8 +33371,8 @@
         </header>
         <section id="ref-summary-stats" class="ref-summary-grid" aria-label="Основные показатели рефералов"></section>
         <div class="ref-dashboard-controls">
-          <label class="ref-field" for="ref-search">Поиск по имени
-            <input type="search" id="ref-search" placeholder="Имя пригласившего или приглашённого" autocomplete="off" />
+          <label class="ref-field" for="ref-search">Поиск по имени или коду
+            <input type="search" id="ref-search" placeholder="Имя или код приглашения" autocomplete="off" />
           </label>
           <label class="ref-field" for="ref-filter">Фильтр
             <select id="ref-filter">
@@ -33519,7 +33519,7 @@
     const queryText = String(document.getElementById('ref-search')?.value || '').trim().toLowerCase();
     const filter = String(document.getElementById('ref-filter')?.value || 'all');
     const list = [...(window._referralsRows || [])].filter((row) => {
-      const matchesText = !queryText || `${row.referrerName || ''} ${row.refereeName || ''}`.toLowerCase().includes(queryText);
+      const matchesText = !queryText || `${row.referrerName || ''} ${row.refereeName || ''} ${row.refCode || ''}`.toLowerCase().includes(queryText);
       const spun = row.roulette?.state === 'spun';
       const matchesFilter = filter === 'all'
         || (filter === 'plus' && row.plusPurchased)

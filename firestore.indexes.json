@@ -647,6 +647,16 @@
       ]
     },
     {
+      "collectionGroup": "referral_spins",
+      "fieldPath": "creditId",
+      "indexes": [
+        {
+          "order": "ASCENDING",
+          "queryScope": "COLLECTION_GROUP"
+        }
+      ]
+    },
+    {
       "collectionGroup": "match_history",
       "fieldPath": "sessionId",
       "indexes": [

@@ -10,6 +10,9 @@ describe('admin revenue analytics contract', () => {
   const paywallASource = fs.readFileSync(path.join(root, 'app', 'paywall_a.tsx'), 'utf8');
   const onboardingSource = fs.readFileSync(path.join(root, 'components', 'CleanOnboarding.tsx'), 'utf8');
   const shardsShopSource = fs.readFileSync(path.join(root, 'app', 'shards_shop.tsx'), 'utf8');
+  const firestoreIndexes = JSON.parse(fs.readFileSync(path.join(root, 'firestore.indexes.json'), 'utf8')) as {
+    fieldOverrides?: Array<Record<string, unknown>>;
+  };
 
   const countOccurrences = (haystack: string, needle: string): number => haystack.split(needle).length - 1;
   const topLevelFunctionNames = (source: string): string[] =>
@@ -625,6 +628,13 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('Прокрутили рулетку');
     expect(adminHtml).toContain('Ожидает покупки');
     expect(adminHtml).toContain('ref-filter');
+    expect(adminHtml).toContain("row.refCode || ''");
+    expect(adminHtml).toContain('@media (max-width: 1360px)');
+    expect(firestoreIndexes.fieldOverrides).toContainEqual({
+      collectionGroup: 'referral_spins',
+      fieldPath: 'creditId',
+      indexes: [{ order: 'ASCENDING', queryScope: 'COLLECTION_GROUP' }],
+    });
     expect(adminHtml).not.toContain('ждём урок');
   });
 

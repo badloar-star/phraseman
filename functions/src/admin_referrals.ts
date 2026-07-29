@@ -27,6 +27,7 @@ import {
   type ReferralRoulettePolicy,
 } from './referral_roulette_policy';
 import { isStorePremiumActive, parseProgressMs } from './premium_status';
+import { referralDisplayNameFromUserData } from './referral';
 import { REFERRAL_SPIN_LEDGER, referralCreditId } from './referral_spin_ledger';
 import { summarizeReferralAdminDrain } from './referral_admin_drain_metrics';
 import {
@@ -51,6 +52,7 @@ const FIRESTORE_GET_ALL_BATCH = 100;
 type ReferralDashboardAttribution = Readonly<{
   id: string;
   referrerStableId?: string;
+  refCode?: string;
   status?: string;
   qualifiedBy?: string;
   createdAt?: unknown;
@@ -74,6 +76,7 @@ export type ReferralDashboardRow = Readonly<{
   referrerName: string;
   refereeStableId: string;
   refereeName: string;
+  refCode: string;
   createdAtMs: number;
   plusPurchased: boolean;
   purchasedAtMs: number;
@@ -87,6 +90,28 @@ export type ReferralDashboardRow = Readonly<{
       createdAtMs: number;
     }>;
 }>;
+
+export type ReferralDashboardCursor = Readonly<{
+  createdAtMs: number;
+  attributionId: string;
+}>;
+
+export function referralDashboardCursorFromRow(
+  row: Readonly<{ createdAtMs: number; refereeStableId: string }>,
+): ReferralDashboardCursor {
+  return {
+    createdAtMs: Math.max(0, Math.floor(Number(row.createdAtMs) || 0)),
+    attributionId: String(row.refereeStableId ?? '').trim(),
+  };
+}
+
+function referralDashboardCursorFromData(raw: unknown): ReferralDashboardCursor | null {
+  if (!raw || typeof raw !== 'object') return null;
+  const data = raw as { createdAtMs?: unknown; attributionId?: unknown };
+  const createdAtMs = tsToMs(data.createdAtMs);
+  const attributionId = String(data.attributionId ?? '').trim();
+  return createdAtMs > 0 && attributionId ? { createdAtMs, attributionId } : null;
+}
 
 function dashboardDisplayName(value: unknown): string {
   const name = String(value ?? '').trim();
@@ -133,6 +158,7 @@ export function projectReferralDashboardRow(input: Readonly<{
     referrerName: dashboardDisplayName(input.displayNames[referrerStableId]),
     refereeStableId,
     refereeName: dashboardDisplayName(input.displayNames[refereeStableId]),
+    refCode: String(input.attribution.refCode ?? '').trim(),
     createdAtMs: tsToMs(input.attribution.createdAt) || tsToMs(input.attribution.createdAtMs),
     plusPurchased,
     purchasedAtMs: plusPurchased
@@ -176,15 +202,28 @@ async function getUsersById(
   return result;
 }
 
-function displayNameFromUser(data: FirebaseFirestore.DocumentData | undefined): string | null {
-  const name = String(data?.displayName ?? data?.name ?? data?.username ?? '').trim();
-  return name || null;
+export function displayNameFromUser(data: FirebaseFirestore.DocumentData | undefined): string | null {
+  return referralDisplayNameFromUserData(data);
 }
 
 function prizeAggregateKey(receipt: ReferralDashboardSpinReceipt): string {
   return receipt.prizeKind === 'pearls'
     ? `pearls:${Math.max(0, Math.floor(Number(receipt.prizePearls) || 0))}`
     : `days:${Math.max(0, Math.floor(Number(receipt.prizeDays) || 0))}`;
+}
+
+export function summarizeReferralDashboardPurchases(input: Readonly<{
+  attributionIds: readonly string[];
+  progressByRefereeId: ReadonlyMap<string, Record<string, unknown>>;
+  nowMs: number;
+}>): Readonly<{ totalInvited: number; plusPurchased: number }> {
+  let plusPurchased = 0;
+  for (const attributionId of input.attributionIds) {
+    if (isStorePremiumActive(input.progressByRefereeId.get(attributionId), input.nowMs)) {
+      plusPurchased += 1;
+    }
+  }
+  return { totalInvited: input.attributionIds.length, plusPurchased };
 }
 
 /** TODO(verify): сверить с реальным admin-гейтом проекта. */
@@ -300,23 +339,24 @@ export const adminListReferrals = onCall(CALLABLE_BASE, async (request) => {
 export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) => {
   assertAdmin(request);
   const limit = clampLimit(request.data?.limit, 100);
-  const cursorMs = tsToMs(request.data?.cursor);
+  const cursor = referralDashboardCursorFromData(request.data?.cursor);
   const nowMs = Date.now();
   const db = admin.firestore();
 
   let pageQuery: admin.firestore.Query = db
     .collection(REFERRAL_ATTRIBUTIONS)
-    .orderBy('createdAt', 'desc');
-  if (cursorMs > 0) {
-    pageQuery = pageQuery.startAfter(admin.firestore.Timestamp.fromMillis(cursorMs));
+    .orderBy('createdAt', 'desc')
+    .orderBy(admin.firestore.FieldPath.documentId(), 'desc');
+  if (cursor) {
+    pageQuery = pageQuery.startAfter(
+      admin.firestore.Timestamp.fromMillis(cursor.createdAtMs),
+      cursor.attributionId,
+    );
   }
 
-  const [pageSnap, totalInvited, purchasedAttributionsSnap, allSpinsSnap] = await Promise.all([
+  const [pageSnap, allAttributionsSnap, allSpinsSnap] = await Promise.all([
     pageQuery.limit(limit).get(),
-    countOf(db.collection(REFERRAL_ATTRIBUTIONS)),
-    db.collection(REFERRAL_ATTRIBUTIONS)
-      .where('qualifiedBy', '==', 'premium_purchase')
-      .get(),
+    db.collection(REFERRAL_ATTRIBUTIONS).select().get(),
     db.collectionGroup(SPINS_SUBCOLLECTION)
       .select('creditId', 'creditSource', 'prizeDays', 'prizeKind', 'prizePearls', 'createdAt', 'createdAtMs')
       .get(),
@@ -326,14 +366,14 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     id: doc.id,
     ...(doc.data() as Omit<ReferralDashboardAttribution, 'id'>),
   }));
-  const purchasedAttributionIds = purchasedAttributionsSnap.docs.map((doc) => doc.id);
+  const allAttributionIds = allAttributionsSnap.docs.map((doc) => doc.id);
   const pageUserIds = pageAttributions.flatMap((row) => [
     row.id,
     String(row.referrerStableId ?? ''),
   ]);
-  const [pageUsers, purchasedUsers] = await Promise.all([
+  const [pageUsers, allRefereeUsers] = await Promise.all([
     getUsersById(db, pageUserIds),
-    getUsersById(db, purchasedAttributionIds),
+    getUsersById(db, allAttributionIds),
   ]);
 
   const pageCreditIds = pageAttributions.map((row) => referralCreditId(row.id));
@@ -364,11 +404,15 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     nowMs,
   }));
 
-  let plusPurchased = 0;
-  for (const id of purchasedAttributionIds) {
-    const progress = (purchasedUsers.get(id)?.progress ?? {}) as Record<string, unknown>;
-    if (isStorePremiumActive(progress, nowMs)) plusPurchased += 1;
+  const allProgressByRefereeId = new Map<string, Record<string, unknown>>();
+  for (const [id, data] of allRefereeUsers.entries()) {
+    allProgressByRefereeId.set(id, (data.progress ?? {}) as Record<string, unknown>);
   }
+  const purchaseSummary = summarizeReferralDashboardPurchases({
+    attributionIds: allAttributionIds,
+    progressByRefereeId: allProgressByRefereeId,
+    nowMs,
+  });
 
   const allSpinReceipts = allSpinsSnap.docs.map((doc) => (
     spinReceiptFromData(doc.data() as ReferralDashboardSpinReceipt)
@@ -387,15 +431,16 @@ export const adminGetReferralDashboard = onCall(CALLABLE_BASE, async (request) =
     ok: true,
     rows,
     summary: {
-      totalInvited,
-      plusPurchased,
+      ...purchaseSummary,
       rouletteSpun: spunReferralCreditIds.size,
     },
     roulette: {
       totalSpins: allSpinReceipts.length,
       byPrize,
     },
-    nextCursor: rows.length === limit ? rows[rows.length - 1]?.createdAtMs ?? null : null,
+    nextCursor: rows.length === limit && rows[rows.length - 1]
+      ? referralDashboardCursorFromRow(rows[rows.length - 1])
+      : null,
   };
 });
 

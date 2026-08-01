@@ -8,7 +8,7 @@ const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
 const EXPECTED_VERSION = 'tpool_20260801_v7';
-const EXPECTED_SOURCE_VERSION = 'tpool_20260731_v6';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v6';
 const EXPECTED_NEW_COUNT = 4000;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';

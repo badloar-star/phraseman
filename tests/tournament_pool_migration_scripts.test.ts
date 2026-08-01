@@ -30,7 +30,7 @@ describe('tournament pool migration scripts', () => {
 
   test('pins both directions to the v7 pool and defaults to preflight-only', () => {
     expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v7');
-    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260731_v6');
+    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260801_v6');
     expect(apply.EXPECTED_NEW_COUNT).toBe(4000);
     expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v7');
     expect(apply.resolveApplyIntent([], {})).toBe(false);
@@ -49,11 +49,11 @@ describe('tournament pool migration scripts', () => {
     });
 
     expect(apply.resolveSourceGeneration([
-      row('tpool_20260731_v6'),
-      { ...row('tpool_20260731_v6'), id: 'old-v6-second' },
-    ])).toBe('tpool_20260731_v6');
+      row('tpool_20260801_v6'),
+      { ...row('tpool_20260801_v6'), id: 'old-v6-second' },
+    ])).toBe('tpool_20260801_v6');
     expect(() => apply.resolveSourceGeneration([
-      row('tpool_20260731_v6'), row('tpool_20260801_v7'),
+      row('tpool_20260801_v6'), row('tpool_20260801_v7'),
     ])).toThrow('backup_source_generation_mismatch');
     expect(() => apply.resolveSourceGeneration([row()]))
       .toThrow('backup_source_generation_mismatch');

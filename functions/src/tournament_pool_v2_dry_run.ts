@@ -13,9 +13,14 @@ import {
 } from './tournament_content_source';
 import {
   NEW_TOURNAMENT_POOL_VERSION,
+  NEW_TOURNAMENT_POOL_MODES,
   buildNewTournamentPool,
   type NewTournamentTask,
 } from './tournament_pool_v2_factory';
+import {
+  tournamentExposureBucketId,
+  type TournamentPoolBarrierToken,
+} from './tournaments';
 
 const TOURNAMENT_TASKS_COLLECTION = 'tournamentTasks';
 const PREFLIGHT_ROOM_SEEDS = 150;
@@ -103,6 +108,72 @@ function payloadShape(task: NewTournamentTask): Record<string, unknown> {
   return shape;
 }
 
+function normalizedSemanticSignature(task: NewTournamentTask): string {
+  const normalized = (value: unknown): string => String(value ?? '').trim().toLocaleLowerCase('ru');
+  if (task.mode === 'speed_match') {
+    const rightOptions = task.payload.rightOptions as string[];
+    const pairs = (task.payload.items as Array<Record<string, unknown>>).map((item) => (
+      `${normalized(item.prompt)}=${normalized(rightOptions[Number(item.correctIndex)])}`
+    )).sort();
+    return `${task.mode}|${pairs.join('|')}`;
+  }
+  if (task.mode === 'find_oddity') {
+    return `${task.mode}|${normalized(task.payload.correctAnswer)}|${normalized(task.explanation?.example)}`;
+  }
+  return `${task.mode}|${normalized(task.payload.phrase)}|${normalized(task.payload.correctAnswer)}`;
+}
+
+function selectCompleteTaskIds(roomId: string, tasks: readonly NewTournamentTask[]): string[] {
+  const used = new Set<string>();
+  for (let roundIndex = 0; roundIndex < TOURNAMENT_ROUND_MODE_PLAN.length; roundIndex += 1) {
+    const roundNo = roundIndex + 1;
+    for (const mode of TOURNAMENT_ROUND_MODE_PLAN[roundIndex]) {
+      const task = selectRoundTasks({
+        pool: tasks.filter((candidate) => candidate.mode === mode),
+        roomId,
+        roundNo,
+        count: 4,
+        modeKind: 'mix',
+        excludedTaskIds: used,
+      })[0];
+      if (!task) throw new Error(`exposure_preflight_unavailable:${roomId}:${roundNo}:${mode}`);
+      used.add(task.taskId);
+    }
+  }
+  if (used.size !== 16) throw new Error(`exposure_preflight_duplicate:${roomId}:${used.size}`);
+  return [...used];
+}
+
+function auditExposure(tasks: readonly NewTournamentTask[], modeBucketCounts: Readonly<Record<string, number>>) {
+  const token: TournamentPoolBarrierToken = {
+    generation: NEW_TOURNAMENT_POOL_VERSION,
+    revision: 7,
+    exposureBucketCounts: modeBucketCounts,
+    exposureLayoutHash: '0'.repeat(64),
+  };
+  const byBucket = new Map<string, NewTournamentTask[]>();
+  for (const task of tasks) {
+    const bucket = task.exposureBucket ?? '';
+    byBucket.set(bucket, [...(byBucket.get(bucket) ?? []), task]);
+  }
+  const exposed = new Set<string>();
+  let previous = new Set<string>();
+  for (let dayOffset = 0; dayOffset < 730; dayOffset += 1) {
+    const date = new Date(Date.UTC(2026, 7, 1 + dayOffset)).toISOString().slice(0, 10);
+    const dayOrdinal = Math.floor(Date.parse(`${date}T00:00:00.000Z`) / 86_400_000);
+    const slice = NEW_TOURNAMENT_POOL_MODES.flatMap((mode) => (
+      byBucket.get(tournamentExposureBucketId(token, mode, dayOrdinal)) ?? []
+    ));
+    if (slice.length > 200) throw new Error(`exposure_slice_oversized:${date}:${slice.length}`);
+    const ids = new Set(selectCompleteTaskIds(`daily_1200_Europe-Moscow_${date}`, slice));
+    if ([...ids].some((id) => previous.has(id))) throw new Error(`exposure_adjacent_repeat:${date}`);
+    ids.forEach((id) => exposed.add(id));
+    previous = ids;
+  }
+  if (exposed.size !== tasks.length) throw new Error(`exposure_unreachable:${exposed.size}/${tasks.length}`);
+  return { days: 730, reachableTasks: exposed.size, adjacentRepeats: 0, maxDocumentsPerSlice: 200 };
+}
+
 async function initializeAdmin(serviceAccountPath: string): Promise<void> {
   if (admin.apps.length > 0) return;
   const raw = JSON.parse(await readFile(serviceAccountPath, 'utf8')) as admin.ServiceAccount & {
@@ -131,6 +202,28 @@ async function main(): Promise<void> {
     .filter((entry) => !entry.validation.ok);
   if (invalid.length > 0) throw new Error(`new_pool_invalid:${invalid.length}`);
   const preflight = preflightRooms(generated.tasks);
+  const semanticSignatures = new Set(generated.tasks.map(normalizedSemanticSignature));
+  const builderTasks = generated.tasks.filter((task) => task.mode === 'translate_build');
+  const oneTrapBuilders = builderTasks.filter((task) => (
+    (task.payload.wordBank as string[]).length - (task.payload.correctTokens as string[]).length === 1
+  )).length;
+  const speedPairs = generated.tasks.filter((task) => task.mode === 'speed_match').flatMap((task) => {
+    const rightOptions = task.payload.rightOptions as string[];
+    return (task.payload.items as Array<Record<string, unknown>>).map((item) => (
+      `${String(item.prompt).trim().toLocaleLowerCase('en')}\u0000${String(rightOptions[Number(item.correctIndex)])
+        .trim().toLocaleLowerCase('ru')}`
+    ));
+  });
+  const exposureAudit = auditExposure(generated.tasks, generated.manifest.exposure.modeBucketCounts);
+  if (semanticSignatures.size !== generated.tasks.length) {
+    throw new Error(`semantic_signature_collision:${semanticSignatures.size}/${generated.tasks.length}`);
+  }
+  if (oneTrapBuilders !== builderTasks.length) {
+    throw new Error(`builder_one_trap_mismatch:${oneTrapBuilders}/${builderTasks.length}`);
+  }
+  if (new Set(speedPairs).size !== speedPairs.length) {
+    throw new Error(`speed_pair_reuse:${new Set(speedPairs).size}/${speedPairs.length}`);
+  }
 
   await initializeAdmin(serviceAccountPath);
   const db = admin.firestore();
@@ -190,6 +283,11 @@ async function main(): Promise<void> {
       strictValidatorInvalid: invalid.length,
       preflightRoomSeeds: preflight.roomSeeds,
       preflightTaskSlots: preflight.taskSlots,
+      semanticSignatures: semanticSignatures.size,
+      oneTrapBuilders,
+      speedPairs: speedPairs.length,
+      uniqueSpeedPairs: new Set(speedPairs).size,
+      exposure: exposureAudit,
       oldPoolUntouched: true,
       productionWritesPerformed: 0,
     },
@@ -201,10 +299,10 @@ async function main(): Promise<void> {
     },
     rolloutOrder: [
       'verify manifest hashes and exact target ids',
-      'create only the 180 new versioned documents',
-      'read back all 180 documents and rerun strict validator plus room preflight',
+      'create only the 4000 new versioned documents in Firestore-safe chunks',
+      'read back all 4000 documents and rerun strict validator plus room preflight',
       'delete only the backed-up old document ids using update-time preconditions',
-      'verify tournamentTasks contains exactly the 180 new ids',
+      'verify tournamentTasks contains exactly the 4000 new ids and the ready v7 exposure layout',
     ],
     rollback: [
       'restore old documents from old-pool-backup.ndjson preserving Firestore value types',
@@ -215,6 +313,18 @@ async function main(): Promise<void> {
     redactedSamples,
   };
   await writeFile(path.join(outDir, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  const qualityReport = [
+    `poolVersion=${NEW_TOURNAMENT_POOL_VERSION}`,
+    `tasks=${generated.tasks.length}`,
+    `semanticSignatures=${semanticSignatures.size}`,
+    `oneTrapBuilders=${oneTrapBuilders}/${builderTasks.length}`,
+    `uniqueSpeedPairs=${new Set(speedPairs).size}/${speedPairs.length}`,
+    `fillGapI=${generated.manifest.diversity.fillGapCorrectTokens.i ?? 0}/500`,
+    `fillGapRoles=${JSON.stringify(generated.manifest.diversity.fillGapGrammarRoles)}`,
+    `exposureReachable=${exposureAudit.reachableTasks}/${generated.tasks.length}`,
+    `productionWrites=0`,
+  ].join('\n') + '\n';
+  await writeFile(path.join(outDir, 'quality-report.txt'), qualityReport, 'utf8');
   process.stdout.write(`${JSON.stringify({
     outDir,
     poolVersion: NEW_TOURNAMENT_POOL_VERSION,

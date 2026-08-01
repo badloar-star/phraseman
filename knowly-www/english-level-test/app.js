@@ -69,6 +69,10 @@
     return hasI18n ? EnglishTestI18n.t(uiLocale, key, vars) : '';
   }
 
+  function selectedLanguageName() {
+    return hasI18n ? EnglishTestI18n.TESTS[selectedTestLanguage].names[uiLocale].nominative : 'English';
+  }
+
   function updatePageLocale() {
     const root = document.documentElement;
     if (root && typeof root.setAttribute === 'function') root.setAttribute('lang', uiLocale);
@@ -492,9 +496,9 @@
   function brandHeader() {
     return `
       <header class="elt-brand">
-        <a class="elt-brand-link" href="/" aria-label="Phraseman — на главную">
+        <a class="elt-brand-link" href="/" aria-label="${copy('header.brandHomeAria')}">
           <img class="elt-brand-icon" src="/assets/phraseman-icon-128.png" alt="" width="34" height="34" />
-          <span class="elt-brand-text"><b>Phraseman</b><small>Живой английский</small></span>
+          <span class="elt-brand-text"><b>Phraseman</b><small>${selectedLanguageName()}</small></span>
         </a>
         ${attemptTestLanguage === null ? `<button class="elt-ui-locale-toggle" type="button" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.4 3 14.6 0 18M12 3c-3 3.4-3 14.6 0 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>${uiLocale.toUpperCase()}</span>
@@ -506,8 +510,8 @@
   function siteFooter() {
     return `
       <footer class="elt-footer">
-        <a href="/">О приложении</a>
-        <a href="/legal/privacy/">Privacy Policy</a>
+        <a href="/">${copy('footer.about')}</a>
+        <a href="/legal/privacy/">${copy('footer.privacy')}</a>
         <a href="mailto:support@knowlyapps.com">support@knowlyapps.com</a>
       </footer>
     `;
@@ -537,6 +541,7 @@
   }
 
   function certPreviewSvg() {
+    const certificateLanguage = hasI18n ? EnglishTestI18n.TESTS[selectedTestLanguage].certificateNames[uiLocale] : 'English';
     return `
       <svg viewBox="0 0 1100 780" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <defs>
@@ -549,12 +554,12 @@
         <rect x="32" y="32" width="1036" height="716" fill="none" stroke="#b8941d" stroke-width="3" rx="10"/>
         <rect x="48" y="48" width="1004" height="684" fill="none" stroke="#e8d5a3" stroke-width="1.5" rx="6"/>
         <rect x="430" y="58" width="240" height="5" fill="#c9a96e" rx="2.5"/>
-        <text x="550" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#1a1a1a" font-weight="bold">Certificate of Completion</text>
-        <text x="550" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">This certifies that</text>
-        <text x="550" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="#1a1a1a" font-weight="bold">Твоё имя</text>
+        <text x="550" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="40" fill="#1a1a1a" font-weight="bold">${escapeHtml(copy('certificate.bodyTitle'))}</text>
+        <text x="550" y="210" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">${escapeHtml(copy('certificate.certifies'))}</text>
+        <text x="550" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="50" fill="#1a1a1a" font-weight="bold">${escapeHtml(copy('landing.previewSampleName'))}</text>
         <line x1="300" y1="320" x2="800" y2="320" stroke="#b8941d" stroke-width="2"/>
-        <text x="550" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">completed the Phraseman English Level Check</text>
-        <text x="550" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">and received an estimated CEFR level of</text>
+        <text x="550" y="370" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">${escapeHtml(copy('certificate.completed', { language: certificateLanguage }))}</text>
+        <text x="550" y="410" text-anchor="middle" font-family="Georgia,serif" font-size="19" fill="#333">${escapeHtml(copy('certificate.received'))}</text>
         <text x="550" y="500" text-anchor="middle" font-family="Georgia,serif" font-size="72" fill="#1a1a1a" font-weight="bold">B2</text>
         <rect x="430" y="590" width="240" height="5" fill="#c9a96e" rx="2.5"/>
         <text x="550" y="690" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#333">knowlyapps.com/english-level-test/</text>
@@ -571,9 +576,9 @@
         ${brandHeader()}
 
         <section class="elt-hero" aria-labelledby="elt-hero-title">
-          <p class="elt-kicker">Бесплатный онлайн-тест · 5 минут</p>
-          <h1 id="elt-hero-title">Узнай свой уровень английского <span class="elt-accent-text">за 5 минут</span></h1>
-          <p class="elt-lead">Адаптивный тест даст <b>предварительную текстовую оценку</b> по шкале CEFR и именной сертификат с результатом</p>
+          <p class="elt-kicker">${copy('landing.eyebrow')}</p>
+          <h1 id="elt-hero-title">${copy('landing.title', { language: selectedLanguageName() })}</h1>
+          <p class="elt-lead">${copy('landing.subtitle')}</p>
 
           <section class="elt-language-selector" aria-label="${copy('aria.testSelector')}">
             <p class="elt-language-selector-title">${copy('languageSelector.testLanguage')}</p>
@@ -582,63 +587,63 @@
             </div>
           </section>
 
-          <div class="elt-counter" role="status" aria-label="Более 124 тысяч тестов уже пройдено">
+          <div class="elt-counter" role="status" aria-label="${copy('socialProof.text', { count: SOCIAL_PROOF_COUNT.toLocaleString(uiLocale === 'ru' ? 'ru-RU' : 'en-US') })}">
             <span class="elt-counter-value"><span id="proofCounter">0</span>+</span>
-            <span class="elt-counter-label">тестов уже пройдено</span>
+            <span class="elt-counter-label">${copy('socialProof.text', { count: SOCIAL_PROOF_COUNT.toLocaleString(uiLocale === 'ru' ? 'ru-RU' : 'en-US') })}</span>
           </div>
 
-          <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn">Начать бесплатно</button>
-          <p class="elt-timer-note">На каждый вопрос — 45 секунд: результат честный, подсказки не успеть загуглить</p>
+          <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn">${copy('landing.start')}</button>
+          <p class="elt-timer-note">${copy('landing.timerNote')}</p>
 
           <label class="elt-consent">
             <input type="checkbox" id="consentCheckbox" />
-            <span>Разрешить аналитику без имени и контактов — она помогает делать тест точнее</span>
+            <span>${copy('consent.text')}</span>
           </label>
         </section>
 
-        <section class="elt-steps" aria-label="Как это работает">
+        <section class="elt-steps" aria-label="${copy('landing.howItWorksLabel')}">
           <div class="elt-step">
             <div class="elt-step-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
             </div>
-            <h3>Отвечаешь на вопросы</h3>
-            <p>12–20 адаптивных вопросов — начинаем с простых A1 и подстраиваем сложность под ответы</p>
+            <h3>${copy('landing.step1Title')}</h3>
+            <p>${copy('landing.step1Body')}</p>
           </div>
           <div class="elt-step">
             <div class="elt-step-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
             </div>
-            <h3>Получаешь уровень</h3>
-            <p>Предварительная текстовая оценка по шкале CEFR — без ложного процента уверенности</p>
+            <h3>${copy('landing.step2Title')}</h3>
+            <p>${copy('landing.step2Body')}</p>
           </div>
           <div class="elt-step">
             <div class="elt-step-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
             </div>
-            <h3>Скачиваешь сертификат</h3>
-            <p>Именной сертификат в 5 темах оформления — PNG или печать в PDF</p>
+            <h3>${copy('landing.step3Title')}</h3>
+            <p>${copy('landing.step3Body')}</p>
           </div>
         </section>
 
-        <section class="elt-preview" aria-label="Пример сертификата">
+        <section class="elt-preview" aria-label="${copy('landing.certificatePreviewLabel')}">
           <div class="elt-preview-card">
             <div class="elt-preview-cert">${certPreviewSvg()}</div>
           </div>
           <div class="elt-preview-text">
-            <h2>Вот что ты получишь</h2>
-            <p>Именной сертификат с твоим уровнем — можно скачать, распечатать или показать друзьям. Пять тем оформления на выбор.</p>
+            <h2>${copy('landing.previewTitle')}</h2>
+            <p>${copy('landing.previewBody')}</p>
           </div>
         </section>
 
-        <ul class="elt-trust" aria-label="Почему стоит пройти тест">
-          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Бесплатно</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Без регистрации</li>
-          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Результат сразу</li>
+        <ul class="elt-trust" aria-label="${copy('landing.trustLabel')}">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${copy('landing.trustFree')}</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${copy('landing.trustNoRegistration')}</li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>${copy('landing.trustInstantResult')}</li>
         </ul>
 
         <section class="elt-final-cta">
-          <h2>Готов узнать свой уровень?</h2>
-          <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn2">Начать тест</button>
+          <h2>${copy('landing.finalCtaTitle')}</h2>
+          <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn2">${copy('landing.finalCtaButton')}</button>
         </section>
 
         ${siteFooter()}

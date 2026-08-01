@@ -4,6 +4,100 @@ const test = require('node:test');
 const vm = require('node:vm');
 
 const modulePath = require.resolve('../knowly-www/english-level-test/i18n.js');
+const appPath = require.resolve('../knowly-www/english-level-test/app.js');
+
+class FakeNode {
+  constructor(html = '') {
+    this.innerHTML = html;
+    this.children = [];
+    this.nodes = new Map();
+    this.dataset = {};
+    this.listeners = new Map();
+    this.style = {};
+    this.classList = { add() {} };
+    this.isConnected = true;
+    this.checked = false;
+  }
+
+  addEventListener(type, listener) { this.listeners.set(type, listener); }
+  click() { this.listeners.get('click')?.({}); }
+  appendChild(child) { this.children.push(child); child.parentNode = this; return child; }
+  remove() { this.isConnected = false; }
+  setAttribute(name, value) { this[name] = String(value); }
+  getAttribute(name) {
+    const match = this.innerHTML.match(new RegExp(`${name}="([^"]*)"`));
+    return match ? match[1] : null;
+  }
+
+  querySelector(selector) { return this.querySelectorAll(selector)[0] || null; }
+  querySelectorAll(selector) {
+    if (selector === '[data-magnet]' || selector === '.elt-brand-icon') return [];
+    if (selector === '[data-test-language]') {
+      return [...this.innerHTML.matchAll(/<button[^>]*data-test-language="([^"]+)"[^>]*>.*?<\/button>/gs)]
+        .map((match) => {
+          if (!this.nodes.has(match[1])) this.nodes.set(match[1], Object.assign(new FakeNode(match[0]), { dataset: { testLanguage: match[1] } }));
+          return this.nodes.get(match[1]);
+        });
+    }
+    const token = selector.startsWith('#') ? `id="${selector.slice(1)}"`
+      : selector.startsWith('.') ? `class="[^"]*${selector.slice(1)}[^"]*"`
+        : selector;
+    if (!new RegExp(token).test(this.innerHTML)) return [];
+    if (!this.nodes.has(selector)) this.nodes.set(selector, new FakeNode(this.innerHTML));
+    return [this.nodes.get(selector)];
+  }
+}
+
+function loadLandingApp({ href = 'https://example.test/level?ui=en', source = fs.readFileSync(appPath, 'utf8') } = {}) {
+  const app = new FakeNode();
+  const storageValues = new Map();
+  const location = { href, get search() { return new URL(this.href).search; } };
+  const description = new FakeNode();
+  const document = {
+    documentElement: new FakeNode(),
+    title: '',
+    visibilityState: 'visible',
+    getElementById: () => app,
+    createElement: () => {
+      const template = { content: {} };
+      Object.defineProperty(template, 'innerHTML', { set(value) { template.content.firstElementChild = new FakeNode(value); } });
+      return template;
+    },
+    querySelector: (selector) => selector === 'meta[name="description"]' ? description : null,
+    addEventListener() {},
+  };
+  const history = { replaceState(_state, _title, nextHref) { location.href = new URL(nextHref, location.href).href; } };
+  const context = {
+    URL,
+    URLSearchParams,
+    Uint8Array,
+    Array,
+    Date,
+    Math,
+    JSON,
+    Promise,
+    Set,
+    WeakMap,
+    console,
+    location,
+    history,
+    document,
+    navigator: { language: 'en-US', userAgent: 'test', platform: 'test', maxTouchPoints: 0 },
+    localStorage: { getItem: (key) => storageValues.get(key) || null, setItem: (key, value) => storageValues.set(key, String(value)), removeItem: (key) => storageValues.delete(key), get length() { return storageValues.size; }, key: (index) => [...storageValues.keys()][index] || null },
+    crypto: { getRandomValues: (values) => values.fill(1) },
+    fetch: () => new Promise(() => {}),
+    performance: { now: () => 0 },
+    requestAnimationFrame: () => 0,
+    cancelAnimationFrame() {},
+    setTimeout: () => 0,
+    clearTimeout() {},
+    window: { matchMedia: () => ({ matches: true }), addEventListener() {}, scrollTo() {} },
+  };
+  context.globalThis = context;
+  vm.runInNewContext(fs.readFileSync(modulePath, 'utf8'), context, { filename: modulePath });
+  vm.runInNewContext(source, context, { filename: appPath });
+  return { app, context, description, location, storageValues, view: () => app.children.at(-1) };
+}
 
 function loadI18n(globals = {}) {
   const source = fs.readFileSync(modulePath, 'utf8');
@@ -253,4 +347,48 @@ test('keeps selection mutable only on landing and safely updates the URL without
   assert.match(styles, /\.elt-language-options[\s\S]*flex-wrap:\s*wrap/);
   assert.match(styles, /\.elt-language-option--active[\s\S]*border[^}]*[\s\S]*color:/);
   assert.doesNotMatch(styles, /elt-language-(?:carousel|scroll)/);
+});
+
+test('runs the real landing controls through test selection, locale persistence, and attempt locking', () => {
+  const fixture = loadLandingApp();
+  assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 5);
+  assert.deepEqual(fixture.view().querySelectorAll('[data-test-language]').map((button) => button.dataset.testLanguage), ['en', 'de', 'fr', 'it', 'es']);
+  assert.match(fixture.view().innerHTML, /Find your English level/);
+  assert.match(loadLandingApp({ href: 'https://example.test/level?ui=en&test=fr' }).view().innerHTML, /Find your French level/);
+
+  fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').click();
+  assert.equal(fixture.location.href, 'https://example.test/level?ui=en&test=de');
+  assert.match(fixture.view().innerHTML, /Find your German level/);
+  assert.equal(fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').getAttribute('aria-pressed'), 'true');
+
+  fixture.view().querySelector('.elt-ui-locale-toggle').click();
+  assert.equal(fixture.storageValues.get('language_test_ui_locale_v1'), 'ru');
+  assert.equal(fixture.location.href, 'https://example.test/level?ui=ru&test=de');
+  assert.equal(fixture.context.document.documentElement.lang, 'ru');
+  assert.equal(fixture.context.document.title, 'Тест уровня языка — Phraseman');
+  assert.equal(fixture.description.content, 'Узнайте свой уровень языка и получите персональный результат.');
+  assert.match(fixture.view().innerHTML, /Определите уровень немецкий язык/);
+  assert.match(fixture.view().innerHTML, />RU</);
+
+  const staleFrenchButton = fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'fr');
+  fixture.view().querySelector('#startBtn').click();
+  assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
+  staleFrenchButton.click();
+  assert.equal(fixture.location.href, 'https://example.test/level?ui=ru&test=de');
+});
+
+test('behavioral landing checks reject missing control wiring, rerendering, and metadata updates', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const noTestWire = source.replace("button.addEventListener('click', () => selectTestLanguage(button.dataset.testLanguage));", '');
+  const noRerender = source.replace('    renderLanding();\n  }\n\n  function toggleUiLocale', '  }\n\n  function toggleUiLocale');
+  const noMetadata = source.replace('    updatePageLocale();\n    updateUrlSelection();', '    updateUrlSelection();');
+  for (const broken of [noTestWire, noRerender, noMetadata]) {
+    assert.throws(() => {
+      const fixture = loadLandingApp({ source: broken });
+      fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'de').click();
+      assert.match(fixture.view().innerHTML, /Find your German level/);
+      fixture.view().querySelector('.elt-ui-locale-toggle').click();
+      assert.equal(fixture.context.document.documentElement.lang, 'ru');
+    });
+  }
 });

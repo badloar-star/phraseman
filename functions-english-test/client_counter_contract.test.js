@@ -292,10 +292,7 @@ test("landing copy describes completed tests and the unified asset revision is 2
   const html = fs.readFileSync(htmlPath, "utf8");
   const counterBlock =
     source.match(/<div class="elt-counter"[\s\S]*?<\/div>/)?.[0] || "";
-  assert.match(
-    counterBlock,
-    /\u0442\u0435\u0441\u0442\u043e\u0432 \u0443\u0436\u0435 \u043f\u0440\u043e\u0439\u0434\u0435\u043d\u043e/i,
-  );
+  assert.match(counterBlock, /copy\('socialProof\.text'/);
   assert.doesNotMatch(
     counterBlock,
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
@@ -310,5 +307,8 @@ test("landing copy describes completed tests and the unified asset revision is 2
   ];
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
+  const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(stylesheets, ["./styles.css?v=20260801-1"]);
+  assert.equal(new Set(stylesheets).size, 1);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

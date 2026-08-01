@@ -110,6 +110,9 @@ test('all client assets and the bank use one new revision', () => {
   ];
   assert.deepEqual(scripts, expectedScripts);
   assert.equal(new Set(scripts).size, expectedScripts.length);
+  const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(stylesheets, [`./styles.css?v=${expectedRevision}`]);
+  assert.equal(new Set(stylesheets).size, 1);
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });
@@ -158,7 +161,7 @@ test('certificate modal has dialog semantics and keyboard focus handling', () =>
 test('consent and fallback certificate describe data and scope honestly', () => {
   const app = read('app.js');
 
-  assert.match(app, /аналитику без имени и контактов/);
+  assert.match(app, /copy\('consent\.text'\)/);
   assert.match(app, /Предварительная текстовая оценка/);
   assert.match(app, /не проверяет аудирование и говорение/);
 });

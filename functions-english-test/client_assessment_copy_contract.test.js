@@ -101,7 +101,15 @@ test('all client assets and the bank use one new revision', () => {
   const app = read('app.js');
   const expectedRevision = '20260801-1';
 
-  assert.equal((html.match(new RegExp(expectedRevision, 'g')) || []).length, 4);
+  const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
+  const expectedScripts = [
+    `./engine.js?v=${expectedRevision}`,
+    `./i18n.js?v=${expectedRevision}`,
+    `./certificate.js?v=${expectedRevision}`,
+    `./app.js?v=${expectedRevision}`,
+  ];
+  assert.deepEqual(scripts, expectedScripts);
+  assert.equal(new Set(scripts).size, expectedScripts.length);
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });

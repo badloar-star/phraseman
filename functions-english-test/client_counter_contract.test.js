@@ -301,6 +301,14 @@ test("landing copy describes completed tests and the unified asset revision is 2
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
   );
   assert.match(source, /questions\.en\.json\?v=20260801-1/);
-  assert.equal((html.match(/v=20260801-1/g) || []).length, 4);
+  const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
+  const expectedScripts = [
+    "./engine.js?v=20260801-1",
+    "./i18n.js?v=20260801-1",
+    "./certificate.js?v=20260801-1",
+    "./app.js?v=20260801-1",
+  ];
+  assert.deepEqual(scripts, expectedScripts);
+  assert.equal(new Set(scripts).size, expectedScripts.length);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

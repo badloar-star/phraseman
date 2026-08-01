@@ -14,9 +14,10 @@ describe('ThemeContext default theme', () => {
 
   it('keeps Indigo and Sage Porcelain free, Midnight premium-grandfathered, and Gold reward-only', () => {
     const premiumOnly = source.match(/const PREMIUM_ONLY_THEMES: ThemeMode\[\] = \[([^\]]*)\]/)?.[1] ?? '';
-    expect(premiumOnly).not.toContain("'indigo'");
-    expect(premiumOnly).not.toContain("'sagePorcelain'");
-    expect(premiumOnly).toContain("'midnight'");
+    const premiumThemes = Array.from(premiumOnly.matchAll(/'([^']+)'/g)).map((match) => match[1]);
+    expect(premiumThemes).toEqual(['dark', 'coral', 'midnight', 'ember', 'aurora', 'volt']);
+    expect(premiumThemes).not.toContain('indigo');
+    expect(premiumThemes).not.toContain('sagePorcelain');
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*\}/);
     expect(settingsThemesSource).toMatch(/\{\s*mode: 'midnight'[^}]*premiumOnly: true/);
     expect(source).toContain("migrated === 'indigo'");

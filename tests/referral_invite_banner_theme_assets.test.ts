@@ -8,7 +8,7 @@ const COMPONENT_PATH = path.join(process.cwd(), 'components', 'ReferralInviteBan
 const SAGE_THEME = 'sagePorcelain';
 const SAGE_FILE = `invite-${SAGE_THEME}-v2.webp`;
 const SAGE_ASSET_PATH = path.join(BANNER_DIR, SAGE_FILE);
-const RETAINED_BANNER_THEMES = ['dark', 'gold', 'coral', 'midnight', 'ember', 'aurora', 'volt', 'indigo', SAGE_THEME] as const;
+const RETAINED_BANNER_THEMES = ['dark', 'gold', 'coral', 'business', 'businessLight', 'midnight', 'ember', 'aurora', 'volt', 'indigo', SAGE_THEME] as const;
 
 describe('referral invite banner themed art', () => {
   it('keeps canonical retained banner assets wired into the runtime map', () => {
@@ -18,7 +18,9 @@ describe('referral invite banner themed art', () => {
     for (const theme of RETAINED_BANNER_THEMES) {
       const assetPath = path.join(BANNER_DIR, `invite-${theme}-v2.webp`);
       expect(fs.existsSync(assetPath)).toBe(true);
-      expect(source).toContain(`invite-${theme}-v2.webp`);
+      expect(source).toContain(
+        `${theme}: require('../assets/images/settings/referral_theme/invite-${theme}-v2.webp')`,
+      );
     }
     expect(source).toContain("minimalDark: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp')");
     expect(source).toContain("candyBlue: require('../assets/images/settings/referral_theme/invite-indigo-v2.webp')");

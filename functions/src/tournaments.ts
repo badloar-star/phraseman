@@ -535,16 +535,38 @@ type TournamentResourcePool = {
   taskPoolRevision: number;
 };
 
-type TournamentPoolBarrierToken = {
+export type TournamentPoolBarrierToken = {
   generation: string;
   revision: number;
+  exposureBucketCounts?: Readonly<Record<string, number>>;
+  exposureLayoutHash?: string;
 };
+
+const TOURNAMENT_V7_POOL_GENERATION = 'tpool_20260801_v7';
+const TOURNAMENT_V7_EXPOSURE_BUCKET_COUNTS: Readonly<Record<string, number>> = Object.freeze({
+  guess_phrase: 30,
+  fill_gap: 13,
+  find_oddity: 10,
+  translate_build: 38,
+  speed_match: 10,
+});
+const TOURNAMENT_V7_EXPOSURE_BUCKET_DWELL_DAYS: Readonly<Record<string, number>> = Object.freeze({
+  guess_phrase: 14,
+  fill_gap: 14,
+  find_oddity: 20,
+  translate_build: 19,
+  speed_match: 42,
+});
+const TOURNAMENT_V7_EXPOSURE_EPOCH_DAY = Math.floor(Date.parse('2026-08-01T00:00:00.000Z') / 86_400_000);
 
 export function sameTournamentPoolBarrierToken(
   left: TournamentPoolBarrierToken,
   right: TournamentPoolBarrierToken,
 ): boolean {
-  return left.generation === right.generation && left.revision === right.revision;
+  return left.generation === right.generation
+    && left.revision === right.revision
+    && left.exposureLayoutHash === right.exposureLayoutHash
+    && JSON.stringify(left.exposureBucketCounts) === JSON.stringify(right.exposureBucketCounts);
 }
 
 const TOURNAMENT_RESOURCE_POOL_CACHE_TTL_MS = 60_000;
@@ -634,7 +656,7 @@ function tournamentPoolBarrierRef(db: FirebaseFirestore.Firestore): FirebaseFire
   return db.collection(TOURNAMENT_PRIVATE_STATE_COLLECTION).doc(TOURNAMENT_POOL_BARRIER_DOC);
 }
 
-function readyTournamentPoolToken(
+export function parseReadyTournamentPoolToken(
   data: FirebaseFirestore.DocumentData | undefined,
 ): TournamentPoolBarrierToken {
   if (!data || data.kind !== TOURNAMENT_POOL_BARRIER_KIND) {
@@ -649,7 +671,84 @@ function readyTournamentPoolToken(
     || !Number.isSafeInteger(revision) || revision < 0) {
     throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
   }
-  return { generation, revision };
+  if (generation !== TOURNAMENT_V7_POOL_GENERATION) return { generation, revision };
+  const rawCounts = data.exposureBucketCounts;
+  const exposureLayoutHash = typeof data.exposureLayoutHash === 'string'
+    ? data.exposureLayoutHash.trim()
+    : '';
+  const validCounts = rawCounts && typeof rawCounts === 'object' && !Array.isArray(rawCounts)
+    && TOURNAMENT_MODES.every((mode) => (
+      Number.isSafeInteger(rawCounts[mode])
+      && rawCounts[mode] === TOURNAMENT_V7_EXPOSURE_BUCKET_COUNTS[mode]
+    ))
+    && Object.keys(rawCounts).length === TOURNAMENT_MODES.length;
+  if (!validCounts || !/^[a-f0-9]{64}$/u.test(exposureLayoutHash)) {
+    throw new HttpsError('failed-precondition', 'tournament_pool_barrier_invalid');
+  }
+  return {
+    generation,
+    revision,
+    exposureBucketCounts: Object.freeze(Object.fromEntries(
+      TOURNAMENT_MODES.map((mode) => [mode, rawCounts[mode]]),
+    )),
+    exposureLayoutHash,
+  };
+}
+
+const readyTournamentPoolToken = parseReadyTournamentPoolToken;
+
+export function tournamentExposureBucketId(
+  token: TournamentPoolBarrierToken,
+  mode: typeof TOURNAMENT_MODES[number],
+  dayOrdinal: number,
+): string {
+  const count = token.exposureBucketCounts?.[mode];
+  if (!Number.isSafeInteger(count) || !count || count < 1) {
+    throw new HttpsError('failed-precondition', 'tournament_pool_exposure_layout_required');
+  }
+  const dwellDays = TOURNAMENT_V7_EXPOSURE_BUCKET_DWELL_DAYS[mode] ?? 1;
+  const bucketOrdinal = Math.floor((Math.trunc(dayOrdinal) - TOURNAMENT_V7_EXPOSURE_EPOCH_DAY) / dwellDays);
+  const normalizedBucket = ((bucketOrdinal % count) + count) % count;
+  return `${token.generation}:${mode}:${String(normalizedBucket).padStart(3, '0')}`;
+}
+
+type TournamentTaskSliceRow = {
+  readonly taskId?: unknown;
+  readonly mode?: unknown;
+  readonly poolVersion?: unknown;
+  readonly exposureBucket?: unknown;
+  readonly verified?: unknown;
+  readonly source?: unknown;
+};
+
+export async function loadTournamentTaskSlicesForToken<T extends TournamentTaskSliceRow>(options: {
+  token: TournamentPoolBarrierToken;
+  dayOrdinal: number;
+  readLegacyMode: (mode: typeof TOURNAMENT_MODES[number], limit: number) => Promise<readonly T[]>;
+  readExposureBucket: (
+    mode: typeof TOURNAMENT_MODES[number],
+    bucket: string,
+    limit: number,
+  ) => Promise<readonly T[]>;
+}): Promise<T[]> {
+  const rowsByMode = await Promise.all(TOURNAMENT_MODES.map(async (mode) => {
+    if (!options.token.exposureBucketCounts) {
+      return options.readLegacyMode(mode, TASKS_PER_MODE_SLICE);
+    }
+    const bucket = tournamentExposureBucketId(options.token, mode, options.dayOrdinal);
+    const rows = await options.readExposureBucket(mode, bucket, TASKS_PER_MODE_SLICE);
+    if (rows.length > TASKS_PER_MODE_SLICE || rows.some((row) => (
+      row.mode !== mode
+      || row.poolVersion !== options.token.generation
+      || row.exposureBucket !== bucket
+      || row.verified !== true
+      || row.source !== 'ai'
+    ))) {
+      throw new HttpsError('failed-precondition', 'tournament_pool_exposure_task_mismatch');
+    }
+    return rows;
+  }));
+  return rowsByMode.flatMap((rows) => [...rows]);
 }
 
 export async function assertTournamentPoolCommitAllowed(
@@ -694,27 +793,41 @@ async function loadResourcePoolFromFirestore(
   // и пары НЕ ДОХОДИЛИ до жребия вообще. Турниры выглядели однообразными при
   // полном пуле. Теперь берём срез ПО КАЖДОМУ режиму: лимит держит стоимость,
   // но ни один режим не может вытеснить остальные.
-  const [botSnaps, modeSnaps] = await Promise.all([
+  const dayOrdinal = Math.floor(Date.now() / 86_400_000);
+  const [botSnaps, taskRows] = await Promise.all([
     db.getAll(
       ...TOURNAMENT_REDDIT_BOT_PROFILE_IDS.map((botId) => (
         db.collection(BOT_PROFILES_COLLECTION).doc(botId)
       )),
     ),
-    Promise.all(TOURNAMENT_MODES.map((mode) => db.collection(TOURNAMENT_TASKS_COLLECTION)
-      .where('verified', '==', true)
-      .where('source', '==', 'ai')
-      .where('mode', '==', mode)
-      // guard-ok: 40 на режим × 8 режимов = 320 документов вместо выкачивания
-      // всей коллекции; на раунд нужно 6, запаса хватает с избытком.
-      .limit(TASKS_PER_MODE_SLICE)
-      .get())),
+    loadTournamentTaskSlicesForToken({
+      token,
+      dayOrdinal,
+      readLegacyMode: async (mode, limit) => {
+        const snap = await db.collection(TOURNAMENT_TASKS_COLLECTION)
+          .where('verified', '==', true)
+          .where('source', '==', 'ai')
+          .where('mode', '==', mode)
+          // guard-ok: 40 на режим × 5 режимов = максимум 200 документов.
+          .limit(limit)
+          .get();
+        return snap.docs.map((doc) => ({ taskId: doc.id, ...doc.data() }));
+      },
+      readExposureBucket: async (_mode, bucket, limit) => {
+        const snap = await db.collection(TOURNAMENT_TASKS_COLLECTION)
+          .where('exposureBucket', '==', bucket)
+          .limit(limit)
+          .get();
+        return snap.docs.map((doc) => ({ taskId: doc.id, ...doc.data() }));
+      },
+    }),
   ]);
   const bots = botSnaps
     .filter((doc) => doc.exists)
     .map((doc) => validBotProfile(doc.id, doc.data() || {}))
     .filter((bot): bot is BotProfile => !!bot);
-  const tasks = modeSnaps
-    .flatMap((snap) => snap.docs.map(parseTask))
+  const tasks = taskRows
+    .map((row) => parseTournamentTaskDocument(String(row.taskId ?? ''), row as Row))
     .filter((task): task is TournamentTask => !!task && validateTournamentTaskForNewRoom(task).ok);
   return {
     bots,
@@ -834,7 +947,8 @@ export function buildTournamentRounds(
     for (const plannedMode of plannedModes) {
       const modePool = pool.filter((task) => task.mode === plannedMode);
       const usesDeterministicExposureDeck = modePool.length > 0
-        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v6')
+        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v7')
+          || task.tags?.includes('pool:tpool_20260801_v6')
           || task.tags?.includes('pool:tpool_20260801_v5'));
       const picked = selectRoundTasks({
         pool: usesDeterministicExposureDeck

@@ -2420,6 +2420,7 @@ export type TaskSelectionParams = {
 const TOURNAMENT_EXPOSURE_TAGS = [
   'pool:tpool_20260801_v5',
   'pool:tpool_20260801_v6',
+  'pool:tpool_20260801_v7',
 ] as const;
 
 type TournamentRoomDeckPosition = {
@@ -2495,7 +2496,7 @@ function selectTournamentExposureDeck(
     + tournamentHash32(roomPosition.roomSeries);
   const ordered = seededShuffle(
     [...cell].sort((left, right) => left.taskId.localeCompare(right.taskId)),
-    `tournament-${exposureTag.endsWith('_v5') ? 'v5' : 'v6'}-exposure:${mode}:d${difficulty}`,
+    `tournament-${exposureTag.slice(exposureTag.lastIndexOf('_') + 1)}-exposure:${mode}:d${difficulty}`,
   );
   const rotated = Array.from({ length: ordered.length }, (_, index) => ordered[(offset + index) % ordered.length]);
   const excluded = excludedTaskIds instanceof Set

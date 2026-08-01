@@ -21,6 +21,11 @@ import {
   MAX_OWNER_LINEAGES,
   type PremiumLineageState,
 } from './revenuecat_premium_lineage';
+import {
+  LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+  applyLevelUpAnnualGiftAccessProjection,
+  type LevelUpAnnualGiftState,
+} from './level_up_annual_gift';
 
 const USERS = 'users';
 
@@ -57,6 +62,9 @@ const PREMIUM_KEYS = [
   'premium_rc_cancelled_at',
   'premium_rc_active_lineage',
   'premium_rc_reconcile_needed',
+  'premium_level_up_annual_gift_granted',
+  'premium_level_up_annual_gift_lineage_hash',
+  'premium_level_up_annual_gift_bonus_expiry_ms',
   'admin_premium_override',
   'premium_admin_grant_at',
 ] as const;
@@ -383,6 +391,95 @@ const MAX_MERGE_CANONICAL_HOPS = 8;
 const MAX_MERGE_PREMIUM_LINEAGES = 64;
 const ACCOUNT_IDENTITY_OWNER_MAP = 'account_identity_owner_map';
 const ACCOUNT_MERGE_OUTBOX = 'account_merge_outbox';
+const LEVEL_UP_ANNUAL_GIFT_RECEIPT_ID = 'bonus_v1';
+const LEVEL_UP_ANNUAL_GIFT_PURCHASE_ATTEMPTS = 'level_up_annual_gift_purchase_attempts';
+
+type MergeGiftOffer = Record<string, unknown> & {
+  uid?: unknown;
+  offerId?: unknown;
+  state?: LevelUpAnnualGiftState;
+  grantedLineageHash?: unknown;
+  bonusExpiryAtMs?: unknown;
+};
+
+type MergeGiftReceipt = Record<string, unknown> & {
+  uid?: unknown;
+  offerId?: unknown;
+  eventId?: unknown;
+  originalTransactionId?: unknown;
+  lineageHash?: unknown;
+  annualProductId?: unknown;
+  bonusExpiryAtMs?: unknown;
+};
+
+type MergeGiftAttempt = Record<string, unknown> & {
+  purchaseAttemptId?: unknown;
+  offerId?: unknown;
+  uid?: unknown;
+  revenueCatAppUserId?: unknown;
+  offeringId?: unknown;
+  annualProductId?: unknown;
+  expiresAtMs?: unknown;
+  preview?: unknown;
+  identityMigration?: unknown;
+};
+
+function validGiftAttemptMigration(
+  attempt: MergeGiftAttempt,
+  currentOwnerUid: string,
+): { fromStableUid: string; boundRevenueCatAppUserId: string } | null {
+  const raw = attempt.identityMigration;
+  if (!raw || typeof raw !== 'object') return null;
+  const migration = raw as Record<string, unknown>;
+  const boundRevenueCatAppUserId = cleanStr(attempt.revenueCatAppUserId);
+  const fromStableUid = cleanStr(migration.fromStableUid);
+  if (migration.source !== 'account_merge_v1'
+    || !boundRevenueCatAppUserId
+    || fromStableUid !== boundRevenueCatAppUserId
+    || cleanStr(migration.toStableUid) !== currentOwnerUid
+    || cleanStr(migration.boundRevenueCatAppUserId) !== boundRevenueCatAppUserId
+    || parseMs(migration.migratedAtMs) <= 0) {
+    return null;
+  }
+  return { fromStableUid, boundRevenueCatAppUserId };
+}
+
+function giftOfferStrength(offer: MergeGiftOffer | null): number {
+  if (!offer) return 0;
+  const strengths: Record<string, number> = {
+    expired: 1,
+    available: 2,
+    trial_pending: 3,
+    awaiting_first_paid_renewal: 4,
+    granted: 5,
+  };
+  return strengths[cleanStr(offer.state)] ?? 0;
+}
+
+function chooseMergeGiftOffer(
+  winner: MergeGiftOffer | null,
+  loser: MergeGiftOffer | null,
+): MergeGiftOffer | null {
+  const winnerStrength = giftOfferStrength(winner);
+  const loserStrength = giftOfferStrength(loser);
+  if (winnerStrength !== loserStrength) return winnerStrength > loserStrength ? winner : loser;
+  if (!winner) return loser;
+  if (!loser) return winner;
+  const winnerCreatedAt = parseMs(winner.createdAtMs);
+  const loserCreatedAt = parseMs(loser.createdAtMs);
+  return loserCreatedAt > 0 && (winnerCreatedAt <= 0 || loserCreatedAt < winnerCreatedAt) ? loser : winner;
+}
+
+function sameImmutableGiftReceipt(left: MergeGiftReceipt, right: MergeGiftReceipt): boolean {
+  const fields: Array<keyof MergeGiftReceipt> = [
+    'eventId',
+    'originalTransactionId',
+    'lineageHash',
+    'annualProductId',
+    'bonusExpiryAtMs',
+  ];
+  return fields.every((field) => cleanStr(left[field]) === cleanStr(right[field]));
+}
 
 function premiumLineageDocId(uid: string, lineageHash: string): string {
   const ownerHash = createHash('sha256').update(uid).digest('hex').slice(0, 32);
@@ -524,6 +621,94 @@ async function mergeStableAccountsTransactionally(
       }
     }
 
+    const winnerGiftOfferRef = winner.ref.collection('level_up_annual_gifts')
+      .doc(LEVEL_UP_ANNUAL_GIFT_OFFERING_ID);
+    const loserGiftOfferRef = loser.ref.collection('level_up_annual_gifts')
+      .doc(LEVEL_UP_ANNUAL_GIFT_OFFERING_ID);
+    const winnerGiftReceiptRef = winnerGiftOfferRef.collection('grant_receipts')
+      .doc(LEVEL_UP_ANNUAL_GIFT_RECEIPT_ID);
+    const loserGiftReceiptRef = loserGiftOfferRef.collection('grant_receipts')
+      .doc(LEVEL_UP_ANNUAL_GIFT_RECEIPT_ID);
+    const [winnerGiftOfferSnap, loserGiftOfferSnap, winnerGiftReceiptSnap, loserGiftReceiptSnap] = await Promise.all([
+      tx.get(winnerGiftOfferRef),
+      tx.get(loserGiftOfferRef),
+      tx.get(winnerGiftReceiptRef),
+      tx.get(loserGiftReceiptRef),
+    ]);
+    const winnerGiftOffer = winnerGiftOfferSnap.exists
+      ? winnerGiftOfferSnap.data() as MergeGiftOffer
+      : null;
+    const loserGiftOffer = loserGiftOfferSnap.exists
+      ? loserGiftOfferSnap.data() as MergeGiftOffer
+      : null;
+    const winnerGiftReceipt = winnerGiftReceiptSnap.exists
+      ? winnerGiftReceiptSnap.data() as MergeGiftReceipt
+      : null;
+    const loserGiftReceipt = loserGiftReceiptSnap.exists
+      ? loserGiftReceiptSnap.data() as MergeGiftReceipt
+      : null;
+    if ((winnerGiftReceipt && !winnerGiftOffer) || (loserGiftReceipt && !loserGiftOffer)) {
+      throw new HttpsError('failed-precondition', 'level_up_annual_gift_receipt_without_offer');
+    }
+    if (winnerGiftReceipt && loserGiftReceipt
+      && !sameImmutableGiftReceipt(winnerGiftReceipt, loserGiftReceipt)) {
+      throw new HttpsError('failed-precondition', 'level_up_annual_gift_grant_conflict');
+    }
+    const canonicalGiftReceipt = winnerGiftReceipt ?? loserGiftReceipt;
+    const canonicalGiftOffer = canonicalGiftReceipt
+      ? (winnerGiftReceipt ? winnerGiftOffer : loserGiftOffer)
+      : chooseMergeGiftOffer(winnerGiftOffer, loserGiftOffer);
+    const winnerGiftAttemptId = cleanStr(winnerGiftOffer?.activePurchaseAttemptId);
+    const loserGiftAttemptId = cleanStr(loserGiftOffer?.activePurchaseAttemptId);
+    const giftAttemptIds = [...new Set([winnerGiftAttemptId, loserGiftAttemptId].filter(Boolean))];
+    const giftAttemptRefs = new Map(giftAttemptIds.map((attemptId) => [
+      attemptId,
+      db.collection(LEVEL_UP_ANNUAL_GIFT_PURCHASE_ATTEMPTS).doc(attemptId),
+    ]));
+    const giftAttemptSnaps = await Promise.all(
+      giftAttemptIds.map((attemptId) => tx.get(giftAttemptRefs.get(attemptId)!)),
+    );
+    const giftAttempts = new Map<string, MergeGiftAttempt>();
+    giftAttemptIds.forEach((attemptId, index) => {
+      const snapshot = giftAttemptSnaps[index];
+      if (snapshot?.exists) giftAttempts.set(attemptId, snapshot.data() as MergeGiftAttempt);
+    });
+    const canonicalGiftAttemptId = cleanStr(canonicalGiftOffer?.activePurchaseAttemptId);
+    const canonicalGiftAttempt = canonicalGiftAttemptId
+      ? giftAttempts.get(canonicalGiftAttemptId) ?? null
+      : null;
+    const canonicalGiftSourceUid = canonicalGiftOffer === winnerGiftOffer
+      ? winner.stableId
+      : loser.stableId;
+    if (canonicalGiftAttempt) {
+      const expectedOfferId = cleanStr(canonicalGiftOffer?.offerId);
+      const boundRevenueCatAppUserId = cleanStr(canonicalGiftAttempt.revenueCatAppUserId);
+      const existingMigration = validGiftAttemptMigration(
+        canonicalGiftAttempt,
+        canonicalGiftSourceUid,
+      );
+      if (cleanStr(canonicalGiftAttempt.purchaseAttemptId) !== canonicalGiftAttemptId
+        || !expectedOfferId
+        || cleanStr(canonicalGiftAttempt.offerId) !== expectedOfferId
+        || cleanStr(canonicalGiftAttempt.uid) !== canonicalGiftSourceUid
+        || (!boundRevenueCatAppUserId
+          || (boundRevenueCatAppUserId !== canonicalGiftSourceUid && !existingMigration))
+        || cleanStr(canonicalGiftAttempt.offeringId) !== LEVEL_UP_ANNUAL_GIFT_OFFERING_ID
+        || !cleanStr(canonicalGiftAttempt.annualProductId)
+        || canonicalGiftAttempt.preview !== false) {
+        throw new HttpsError('failed-precondition', 'level_up_annual_gift_attempt_conflict');
+      }
+    }
+    const canonicalGiftAttemptReusable = Boolean(canonicalGiftAttempt && (
+      canonicalGiftOffer?.state === 'awaiting_first_paid_renewal'
+      || parseMs(canonicalGiftAttempt.expiresAtMs) > now
+    ));
+    let canonicalGiftOfferForWrite = canonicalGiftOffer;
+    if (canonicalGiftOffer && canonicalGiftAttemptId && !canonicalGiftAttemptReusable) {
+      const { activePurchaseAttemptId: _staleAttemptId, ...offerWithoutAttempt } = canonicalGiftOffer;
+      canonicalGiftOfferForWrite = offerWithoutAttempt;
+    }
+
     const loserLineageQuery = db.collection('revenuecat_premium_lineages')
       .where('ownerUid', '==', loser.stableId)
       .limit(MAX_MERGE_PREMIUM_LINEAGES + 1);
@@ -578,11 +763,36 @@ async function mergeStableAccountsTransactionally(
       : null;
     const mergedHasStrictLegacySentinel = isStorePremiumPlan(cleanStr(mergedProgress.premium_plan).toLowerCase())
       && !cleanStr(mergedProgress.premium_rc_active_lineage);
-    const reconciledMergedProgress = canonicalAggregate
+    let reconciledMergedProgress = canonicalAggregate
       && !(mergedHasStrictLegacySentinel
         && revenueCatProjectionStrength(mergedProgress) >= revenueCatProjectionStrength(canonicalAggregate.progressPatch))
       ? canonicalAggregate.progressPatch
       : mergedProgress;
+    if (canonicalGiftOffer?.state === 'granted' && canonicalGiftReceipt) {
+      const giftLineageHash = cleanStr(
+        canonicalGiftOffer.grantedLineageHash ?? canonicalGiftReceipt.lineageHash,
+      );
+      const bonusExpiryAtMs = parseMs(
+        canonicalGiftOffer.bonusExpiryAtMs ?? canonicalGiftReceipt.bonusExpiryAtMs,
+      );
+      if (!giftLineageHash || bonusExpiryAtMs <= 0) {
+        throw new HttpsError('failed-precondition', 'level_up_annual_gift_grant_corrupt');
+      }
+      const giftProgress = {
+        premium_level_up_annual_gift_granted: 'true',
+        premium_level_up_annual_gift_lineage_hash: giftLineageHash,
+        premium_level_up_annual_gift_bonus_expiry_ms: String(bonusExpiryAtMs),
+      };
+      const giftLineage = canonicalLineages.get(giftLineageHash)?.state;
+      reconciledMergedProgress = applyLevelUpAnnualGiftAccessProjection({
+        progressPatch: { ...reconciledMergedProgress, ...giftProgress },
+        existingProgress: giftProgress,
+        giftLineageHash,
+        giftLineageActiveThroughMs: giftLineage?.activeThroughMs,
+        giftLineageLastEventType: giftLineage?.lastEventType,
+        nowMs: now,
+      });
+    }
     const mergedShards = mergeShards(winner.data.shards, loser.data.shards);
     const winnerUpdate: Record<string, unknown> = {
       progress: reconciledMergedProgress,
@@ -601,6 +811,58 @@ async function mergeStableAccountsTransactionally(
       tx.set(lineage.targetRef, { ...lineage.state, ownerUid: winner.stableId, updatedAt: now }, { merge: false });
       for (const obsoleteRef of lineage.obsoleteRefs) tx.delete(obsoleteRef);
     }
+    if (canonicalGiftOfferForWrite) {
+      tx.set(winnerGiftOfferRef, {
+        ...canonicalGiftOfferForWrite,
+        uid: winner.stableId,
+        mergedFromStableId: loser.stableId,
+        mergedAtMs: now,
+      }, { merge: false });
+    }
+    if (canonicalGiftAttemptReusable && canonicalGiftAttempt && canonicalGiftAttemptId) {
+      const boundRevenueCatAppUserId = cleanStr(canonicalGiftAttempt.revenueCatAppUserId);
+      const existingMigration = validGiftAttemptMigration(
+        canonicalGiftAttempt,
+        canonicalGiftSourceUid,
+      );
+      tx.set(giftAttemptRefs.get(canonicalGiftAttemptId)!, {
+        ...canonicalGiftAttempt,
+        uid: winner.stableId,
+        revenueCatAppUserId: boundRevenueCatAppUserId,
+        ...(boundRevenueCatAppUserId === winner.stableId
+          ? {}
+          : {
+              identityMigration: {
+                source: 'account_merge_v1',
+                fromStableUid: existingMigration?.fromStableUid ?? canonicalGiftSourceUid,
+                toStableUid: winner.stableId,
+                boundRevenueCatAppUserId,
+                migratedAtMs: now,
+              },
+            }),
+        migratedFromStableId: canonicalGiftSourceUid,
+        migratedAtMs: now,
+      }, { merge: false });
+    }
+    for (const attemptId of giftAttemptIds) {
+      if (attemptId === canonicalGiftAttemptId && canonicalGiftAttemptReusable) continue;
+      const attempt = giftAttempts.get(attemptId);
+      const expectedOffer = attemptId === winnerGiftAttemptId ? winnerGiftOffer : loserGiftOffer;
+      const expectedOwner = attemptId === winnerGiftAttemptId ? winner.stableId : loser.stableId;
+      if (attempt
+        && cleanStr(attempt.offerId) === cleanStr(expectedOffer?.offerId)
+        && cleanStr(attempt.uid) === expectedOwner) {
+        tx.delete(giftAttemptRefs.get(attemptId)!);
+      }
+    }
+    if (canonicalGiftReceipt) {
+      tx.set(winnerGiftReceiptRef, {
+        ...canonicalGiftReceipt,
+        uid: winner.stableId,
+      }, { merge: false });
+    }
+    if (loserGiftReceiptSnap.exists) tx.delete(loserGiftReceiptRef);
+    if (loserGiftOfferSnap.exists) tx.delete(loserGiftOfferRef);
     tx.set(winner.ref, winnerUpdate, { merge: true });
     const loserUpdate: Record<string, unknown> = {
       identityHidden: true,

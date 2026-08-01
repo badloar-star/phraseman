@@ -23,6 +23,15 @@ import {
   ACCOUNT_DELETE_TOMBSTONES,
   accountDeletePermanentDenialId,
 } from './account_delete_job';
+import {
+  LEVEL_UP_ANNUAL_GIFT_ATTEMPT_ATTRIBUTE,
+  LEVEL_UP_ANNUAL_GIFT_SERVER_COLLECTIONS,
+  applyLevelUpAnnualGiftAccessProjection,
+  decideLevelUpAnnualGiftWebhook,
+  type LevelUpAnnualGiftOfferRecord,
+  type LevelUpAnnualGiftPurchaseAttemptRecord,
+  type LevelUpAnnualGiftWebhookDecision,
+} from './level_up_annual_gift_server';
 
 const REGION = 'us-central1';
 const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
@@ -205,6 +214,7 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
     'premium_monthly',
     'premium_yearly',
     'premium_lifetime',
+    'phraseman_yearly',
     'phraseman_premium_monthly',
     'phraseman_premium_yearly',
     'phraseman_premium_yearly_2399',
@@ -213,6 +223,7 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
   ]);
   if (entitlements.length === 0) return legacyPremiumProducts.has(productId);
   if (!entitlements.includes('premium')) return false;
+  if (legacyPremiumProducts.has(productId)) return true;
   return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?$/.test(productId)
     || productId === 'phraseman_premium_lifetime_v1';
 }
@@ -584,6 +595,21 @@ async function handlePremiumSubscriptionEvent(
         });
         return { updated: false, reason: 'account_deletion_pending_or_tombstoned' as const };
       }
+
+      const giftAttemptId = subscriberAttributeValue(
+        event.subscriber_attributes?.[LEVEL_UP_ANNUAL_GIFT_ATTEMPT_ATTRIBUTE],
+      );
+      const validGiftAttemptId = /^[0-9a-f-]{36}$/i.test(giftAttemptId) ? giftAttemptId : '';
+      const giftOfferRef = userRef.collection('level_up_annual_gifts')
+        .doc(LEVEL_UP_ANNUAL_GIFT_SERVER_COLLECTIONS.offerDocId);
+      const giftAttemptRef = validGiftAttemptId
+        ? db.collection(LEVEL_UP_ANNUAL_GIFT_SERVER_COLLECTIONS.purchaseAttempts).doc(validGiftAttemptId)
+        : null;
+      const giftReceiptRef = giftOfferRef.collection('grant_receipts').doc('bonus_v1');
+      const giftOfferSnap = await tx.get(giftOfferRef);
+      const giftAttemptSnap = giftAttemptRef ? await tx.get(giftAttemptRef) : null;
+      const giftReceiptSnap = await tx.get(giftReceiptRef);
+
       const lineageQuery = db.collection('revenuecat_premium_lineages')
         .where('ownerUid', '==', uid)
         .limit(MAX_OWNER_LINEAGES + 1);
@@ -603,6 +629,21 @@ async function handlePremiumSubscriptionEvent(
 
       const reduced = applyPremiumLineageEvent(currentLineage, canonicalEvent);
       const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
+      let giftDecision: LevelUpAnnualGiftWebhookDecision = decideLevelUpAnnualGiftWebhook({
+        ownerUid: uid,
+        offer: giftOfferSnap.exists
+          ? giftOfferSnap.data() as LevelUpAnnualGiftOfferRecord
+          : null,
+        attempt: giftAttemptSnap?.exists
+          ? giftAttemptSnap.data() as LevelUpAnnualGiftPurchaseAttemptRecord
+          : null,
+        event,
+      });
+      if (giftReceiptSnap.exists) {
+        giftDecision = { action: 'reject', reason: 'grant_receipt_exists' };
+      } else if (reduced.status !== 'applied' && giftDecision.action !== 'reject') {
+        giftDecision = { action: 'reject', reason: 'stale_premium_event' };
+      }
       const receipt = {
         uid,
         candidates,
@@ -623,6 +664,8 @@ async function handlePremiumSubscriptionEvent(
         ...normalizeRevenueCatFinancials(event),
         ...revenueCatLifecycleReasonFields(event, eventType),
         reduction: reduced.status,
+        levelUpAnnualGift: giftDecision.action,
+        ...(giftDecision.action === 'reject' ? { levelUpAnnualGiftReason: giftDecision.reason } : {}),
         userDocExists: true,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),
       };
@@ -630,7 +673,36 @@ async function handlePremiumSubscriptionEvent(
       const projectedLineages = existingLineages
         .filter((lineage) => lineage.lineageHash !== reduced.state.lineageHash)
         .concat(reduced.state);
-      const aggregate = aggregatePremiumLineages(projectedLineages, progress, Date.now());
+      const now = Date.now();
+      const aggregate = aggregatePremiumLineages(projectedLineages, progress, now);
+      const giftOffer = giftOfferSnap.exists
+        ? giftOfferSnap.data() as LevelUpAnnualGiftOfferRecord
+        : null;
+      const giftProjectionState = giftDecision.action === 'grant'
+        ? {
+            premium_level_up_annual_gift_granted: 'true',
+            premium_level_up_annual_gift_lineage_hash: canonicalEvent.lineageHash,
+            premium_level_up_annual_gift_bonus_expiry_ms: String(giftDecision.bonusExpiryAtMs),
+          }
+        : giftOffer?.state === 'granted'
+          ? {
+              premium_level_up_annual_gift_granted: 'true',
+              premium_level_up_annual_gift_lineage_hash: cleanId(giftOffer.grantedLineageHash),
+              premium_level_up_annual_gift_bonus_expiry_ms: String(giftOffer.bonusExpiryAtMs ?? 0),
+            }
+          : {};
+      const giftLineageHash = cleanId(
+        giftProjectionState.premium_level_up_annual_gift_lineage_hash,
+      );
+      const giftLineage = projectedLineages.find((lineage) => lineage.lineageHash === giftLineageHash);
+      const projectedProgress = applyLevelUpAnnualGiftAccessProjection({
+        progressPatch: aggregate.progressPatch,
+        existingProgress: giftProjectionState,
+        giftLineageHash,
+        giftLineageActiveThroughMs: giftLineage?.activeThroughMs,
+        giftLineageLastEventType: giftLineage?.lastEventType,
+        nowMs: now,
+      });
       const lineageRef = db.collection('revenuecat_premium_lineages')
         .doc(premiumLineageDocId(uid, canonicalEvent.lineageHash));
       tx.set(lineageRef, {
@@ -638,11 +710,54 @@ async function handlePremiumSubscriptionEvent(
         ...reduced.state,
         updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       }, { merge: false });
+      if (giftDecision.action === 'wait') {
+        tx.set(giftOfferRef, {
+          state: 'awaiting_first_paid_renewal',
+          originalTransactionId: giftDecision.originalTransactionId,
+          firstPaidExpectedAtMs: giftDecision.firstPaidExpectedAtMs,
+          trialStartedEventId: canonicalEvent.eventId,
+          trialStartedAtMs: now,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+      } else if (giftDecision.action === 'grant') {
+        const giftOffer = giftOfferSnap.data() as LevelUpAnnualGiftOfferRecord;
+        tx.create(giftReceiptRef, {
+          uid,
+          offerId: giftOffer.offerId,
+          purchaseAttemptId: validGiftAttemptId,
+          eventId: giftDecision.eventId,
+          originalTransactionId: giftDecision.originalTransactionId,
+          lineageHash: canonicalEvent.lineageHash,
+          annualProductId: productId,
+          offeringId: cleanId(event.presented_offering_id),
+          bonusMonths: 6,
+          bonusExpiryAtMs: giftDecision.bonusExpiryAtMs,
+          environment: canonicalEvent.environment,
+          createdAt: admin.firestore.FieldValue.serverTimestamp(),
+        });
+        tx.set(giftOfferRef, {
+          state: 'granted',
+          originalTransactionId: giftDecision.originalTransactionId,
+          grantedEventId: giftDecision.eventId,
+          grantedLineageHash: canonicalEvent.lineageHash,
+          grantedAtMs: now,
+          bonusExpiryAtMs: giftDecision.bonusExpiryAtMs,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+      } else if (giftDecision.reason === 'expired' && giftOfferSnap.exists) {
+        tx.set(giftOfferRef, {
+          state: 'expired',
+          expiredAtMs: now,
+          updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+        }, { merge: true });
+      }
       tx.set(processedRef, receipt);
       tx.set(userRef, {
-        progress: aggregate.progressPatch,
-        updatedAt: Date.now(),
-        last_active_at: Date.now(),
+        ...(giftLineageHash
+          ? { progress: projectedProgress }
+          : { progress: aggregate.progressPatch }),
+        updatedAt: now,
+        last_active_at: now,
       }, { merge: true });
 
       return {
@@ -652,6 +767,7 @@ async function handlePremiumSubscriptionEvent(
         active: aggregate.winnerLineageHash !== undefined,
         aggregateStatus: aggregate.status,
         winnerLineageHash: aggregate.winnerLineageHash ?? null,
+        levelUpAnnualGift: giftDecision.action,
       };
     });
 

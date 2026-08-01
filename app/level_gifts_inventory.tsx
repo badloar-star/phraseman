@@ -40,6 +40,7 @@ import {
   type ActiveLevelGiftInventoryItem,
 } from './level_gift_active_inventory';
 import { getCurrentMultiplierBreakdown, type MultiplierBreakdown } from './xp_manager';
+import { loadSavedLevelUpAnnualGiftOffer, type LevelUpAnnualGiftOffer } from './level_up_annual_gift';
 
 const giftAccent = (rarity: string): string =>
   rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : '#D6B85C';
@@ -112,21 +113,24 @@ export default function LevelGiftsInventoryScreen() {
   const [items, setItems] = useState<PendingLevelGiftInventoryItem[]>(() => getPendingLevelGiftInventoryCache(studyTarget));
   const [activeItems, setActiveItems] = useState<ActiveLevelGiftInventoryItem[]>([]);
   const [multiplierBreakdown, setMultiplierBreakdown] = useState<MultiplierBreakdown | null>(null);
+  const [annualGiftOffer, setAnnualGiftOffer] = useState<LevelUpAnnualGiftOffer | null>(null);
   const [userName, setUserName] = useState('');
   const [selected, setSelected] = useState<PendingLevelGiftInventoryItem | null>(null);
   const emptyGiftSurface = [giftTone(t.accent, '26'), t.bgCard, t.bgPrimary] as [string, string, string];
 
   const loadData = useCallback(async () => {
-    const [nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw] = await Promise.all([
+    const [nextItems, nextActiveItems, nextMultiplierBreakdown, nameRaw, nextAnnualGiftOffer] = await Promise.all([
       loadPendingLevelGiftInventory(studyTarget),
       loadActiveLevelGiftInventory(lang, Date.now(), studyTarget),
       getCurrentMultiplierBreakdown(),
       AsyncStorage.getItem('user_name'),
+      loadSavedLevelUpAnnualGiftOffer(),
     ]);
     setItems(nextItems);
     setActiveItems(nextActiveItems);
     setMultiplierBreakdown(nextMultiplierBreakdown);
     setUserName(nameRaw || '');
+    setAnnualGiftOffer(nextAnnualGiftOffer);
   }, [lang, studyTarget]);
 
   useFocusEffect(useCallback(() => {
@@ -221,6 +225,31 @@ export default function LevelGiftsInventoryScreen() {
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', paddingHorizontal: 2 }}>
                 {triLang(lang, { ru: 'Подарки', uk: 'Подарунки', es: 'Regalos', 'pt-BR': 'Presentes', vi: 'Quà tặng', id: 'Hadiah', tr: 'Hediyeler', pl: 'Prezenty' })}
               </Text>
+            {annualGiftOffer
+              && annualGiftOffer.offerExpiresAtMs > Date.now()
+              && (annualGiftOffer.state === 'available' || annualGiftOffer.state === 'trial_pending') ? (
+              <TapScale
+                onPress={() => {
+                  hapticTap();
+                  router.push(annualGiftOffer.preview
+                    ? { pathname: '/level_up_annual_gift_offer', params: { preview: 'admin' } } as never
+                    : '/level_up_annual_gift_offer' as never);
+                }}
+              >
+                <LinearGradient colors={['#242B26', '#121815']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ borderRadius: 20, padding: 15, flexDirection: 'row', alignItems: 'center', gap: 12, overflow: 'hidden' }}>
+                  <View pointerEvents="none" style={{ position: 'absolute', left: 0, top: 13, bottom: 13, width: 4, borderTopRightRadius: 4, borderBottomRightRadius: 4, backgroundColor: '#D5FF4B' }} />
+                  <View style={{ width: 46, height: 46, borderRadius: 15, backgroundColor: 'rgba(213,255,75,0.12)', alignItems: 'center', justifyContent: 'center' }}>
+                    <Ionicons name="gift-outline" size={24} color="#D5FF4B" />
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text style={{ color: '#D5FF4B', fontSize: 10, letterSpacing: 0.7, fontWeight: '900' }}>ПОДАРОК ЗА УРОВЕНЬ</Text>
+                    <Text style={{ color: '#F4F7F4', fontSize: f.body, fontWeight: '900', marginTop: 2 }}>+6 месяцев к годовому доступу</Text>
+                    <Text style={{ color: '#AAB5AE', fontSize: f.sub, marginTop: 2 }}>Открыть предложение</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={19} color="#D5FF4B" />
+                </LinearGradient>
+              </TapScale>
+            ) : null}
             {activeItems.length > 0 && (
               <View style={{ gap: 10 }}>
                 {activeItems.map((gift) => {

@@ -137,6 +137,7 @@ const FIELD_QUERY_SPECS: AccountDeleteQuerySpec[] = [
   { collection: 'revenuecat_premium_events', field: 'donorIds', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_premium_events', field: 'transferredFrom', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_premium_events', field: 'transferredTo', values: 'both', op: 'array-contains' },
+  { collection: 'level_up_annual_gift_purchase_attempts', field: 'uid', values: 'stable' },
   { collection: 'revenuecat_shard_transactions', field: 'uid', values: 'both' },
   { collection: 'revenuecat_shard_transactions', field: 'candidates', values: 'both', op: 'array-contains' },
   { collection: 'revenuecat_shard_refunds', field: 'uid', values: 'both' },

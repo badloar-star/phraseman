@@ -86,6 +86,10 @@ import { openStoreReviewPage } from '../store_review';
 import { patchAppSnapshot, useAppSnapshotSelector } from '../app_snapshot_store';
 import { useStableSafeAreaInsets } from '../stable_safe_area_metrics';
 import { readVipSnapshotForGeneration } from '../premium_vip_storage';
+import {
+  loadSavedLevelUpAnnualGiftOffer,
+  type LevelUpAnnualGiftOffer,
+} from '../level_up_annual_gift';
 
 /** Картинка инвайт-баннера настроек (wire first, generate second — правило asset-хайджины). */
 
@@ -103,6 +107,12 @@ function formatDateTimeShort(ms: number): string {
   const hour = String(d.getHours()).padStart(2, '0');
   const minute = String(d.getMinutes()).padStart(2, '0');
   return `${day}.${month}.${year}, ${hour}:${minute}`;
+}
+
+function formatLevelUpAnnualGiftRemaining(expiresAtMs: number, nowMs = Date.now()): { days: number; hours: number } | null {
+  const remainingHours = Math.ceil((expiresAtMs - nowMs) / (60 * 60 * 1_000));
+  if (remainingHours <= 0) return null;
+  return { days: Math.floor(remainingHours / 24), hours: remainingHours % 24 };
 }
 
 type PlusAccessDetail = {
@@ -492,6 +502,8 @@ export default function SettingsMain() {
   }, [nameModal]);
   const { isPremium, isVip, hasPremiumAccess, isIntroFullAccess, introFullAccessEndsAt } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
+  const [levelUpAnnualGiftOffer, setLevelUpAnnualGiftOffer] = useState<LevelUpAnnualGiftOffer | null>(null);
+  const [levelUpAnnualGiftOfferLoaded, setLevelUpAnnualGiftOfferLoaded] = useState(false);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);
   const [ideasOn, setIdeasOn] = useState(isIdeasEnabled());
@@ -700,6 +712,21 @@ export default function SettingsMain() {
       onIntroChanged.remove();
     };
   }, [refreshSupplementalAccessState]);
+
+  useEffect(() => {
+    let cancelled = false;
+    void loadSavedLevelUpAnnualGiftOffer()
+      .then((offer) => {
+        if (!cancelled) setLevelUpAnnualGiftOffer(offer);
+      })
+      .catch(() => {
+        // The reserved row still truthfully reports that no saved offer is available.
+      })
+      .finally(() => {
+        if (!cancelled) setLevelUpAnnualGiftOfferLoaded(true);
+      });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     let alive = true;
@@ -1018,6 +1045,57 @@ export default function SettingsMain() {
     }
   };
 
+  const levelUpAnnualGiftStatus = (() => {
+    if (!levelUpAnnualGiftOfferLoaded) {
+      return {
+        value: L('Проверяем…', 'Перевіряємо…', 'Checking…', 'A verificar…', 'Đang kiểm tra…', 'Memeriksa…', 'Kontrol ediliyor…', 'Sprawdzamy…'),
+        sub: L('Статус подарка за уровень', 'Статус подарунка за рівень', 'Level-up gift status', 'Estado do presente por nível', 'Trạng thái quà lên cấp', 'Status hadiah naik level', 'Seviye atlama hediyesi durumu', 'Status prezentu za poziom'),
+      };
+    }
+    const offer = levelUpAnnualGiftOffer;
+    if (!offer) {
+      return {
+        value: L('Нет активного', 'Немає активного', 'No active offer', 'Sem oferta ativa', 'Không có ưu đãi', 'Tidak ada penawaran', 'Aktif teklif yok', 'Brak aktywnej oferty'),
+        sub: L('Подарок появится после следующего уровня', 'Подарунок з’явиться після наступного рівня', 'A gift appears after your next level', 'O presente aparece após o próximo nível', 'Quà sẽ xuất hiện sau cấp tiếp theo', 'Hadiah muncul setelah level berikutnya', 'Hediye sonraki seviyeden sonra görünür', 'Prezent pojawi się po kolejnym poziomie'),
+      };
+    }
+    if (offer.state === 'trial_pending') {
+      const remaining = formatLevelUpAnnualGiftRemaining(offer.firstPaidExpectedAtMs ?? offer.offerExpiresAtMs);
+      return {
+        value: L('Пробный период', 'Пробний період', 'Trial period', 'Período de teste', 'Giai đoạn dùng thử', 'Masa percobaan', 'Deneme dönemi', 'Okres próbny'),
+        sub: remaining
+          ? `${L('Осталось', 'Залишилось', 'Remaining', 'Restam', 'Còn lại', 'Tersisa', 'Kalan', 'Pozostało')} ${remaining.days ? `${remaining.days}${L(' д', ' д', 'd', 'd', 'ng', 'h', 'g', ' d') } ` : ''}${remaining.hours}${L(' ч', ' год', 'h', 'h', ' giờ', ' j', ' sa', ' h')}. ${L('Подарок начислится после первой оплаты', 'Подарунок буде нараховано після першої оплати', 'The gift is added after the first payment', 'O presente entra após o primeiro pagamento', 'Quà được cộng sau lần thanh toán đầu tiên', 'Hadiah ditambahkan setelah pembayaran pertama', 'Hediye ilk ödemeden sonra eklenir', 'Prezent zostanie dodany po pierwszej płatności')}`
+          : L('Срок предложения завершился', 'Термін пропозиції завершився', 'Offer window ended', 'A oferta terminou', 'Ưu đãi đã kết thúc', 'Penawaran berakhir', 'Teklif süresi doldu', 'Oferta zakończona'),
+      };
+    }
+    if (offer.state === 'awaiting_first_paid_renewal') {
+      const remaining = formatLevelUpAnnualGiftRemaining(offer.firstPaidExpectedAtMs ?? offer.offerExpiresAtMs);
+      return {
+        value: L('Ждём первую оплату', 'Чекаємо першу оплату', 'Waiting for first payment', 'Aguardando primeiro pagamento', 'Đang chờ lần thanh toán đầu tiên', 'Menunggu pembayaran pertama', 'İlk ödeme bekleniyor', 'Czekamy na pierwszą płatność'),
+        sub: remaining
+          ? `${L('Осталось', 'Залишилось', 'Remaining', 'Restam', 'Còn lại', 'Tersisa', 'Kalan', 'Pozostało')} ${remaining.days ? `${remaining.days}${L(' д', ' д', 'd', 'd', 'ng', 'h', 'g', ' d') } ` : ''}${remaining.hours}${L(' ч', ' год', 'h', 'h', ' giờ', ' j', ' sa', ' h')}. ${L('После первой оплаты добавим 6 месяцев к году', 'Після першої оплати додамо 6 місяців до року', 'After the first payment, 6 months are added to the year', 'Após o primeiro pagamento, somamos 6 meses ao ano', 'Sau lần thanh toán đầu tiên, cộng thêm 6 tháng vào năm', 'Setelah pembayaran pertama, 6 bulan ditambahkan ke tahun', 'İlk ödemeden sonra yıla 6 ay eklenir', 'Po pierwszej płatności dodamy 6 miesięcy do roku')}`
+          : L('Срок предложения завершился', 'Термін пропозиції завершився', 'Offer window ended', 'A oferta terminou', 'Ưu đãi đã kết thúc', 'Penawaran berakhir', 'Teklif süresi doldu', 'Oferta zakończona'),
+      };
+    }
+    if (offer.state === 'granted') {
+      return {
+        value: L('Подарок начислен', 'Подарунок нараховано', 'Gift added', 'Presente adicionado', 'Đã cộng quà', 'Hadiah ditambahkan', 'Hediye eklendi', 'Prezent dodany'),
+        sub: offer.bonusExpiryAtMs
+          ? `${L('Доступ до', 'Доступ до', 'Access until', 'Acesso até', 'Truy cập đến', 'Akses sampai', 'Erişim', 'Dostęp do')} ${formatDateTimeShort(offer.bonusExpiryAtMs)}`
+          : L('6 месяцев добавлены к годовому доступу', '6 місяців додано до річного доступу', '6 months were added to annual access', '6 meses foram adicionados ao acesso anual', 'Đã cộng 6 tháng vào quyền truy cập năm', '6 bulan ditambahkan ke akses tahunan', 'Yıllık erişime 6 ay eklendi', 'Dodano 6 miesięcy do rocznego dostępu'),
+      };
+    }
+    const hasTimeLeft = offer.offerExpiresAtMs > Date.now();
+    return {
+      value: hasTimeLeft
+        ? `${L('До', 'До', 'Until', 'Até', 'Đến', 'Sampai', 'Bitiş', 'Do')} ${formatDateTimeShort(offer.offerExpiresAtMs)}`
+        : L('Предложение завершено', 'Пропозиція завершилась', 'Offer ended', 'Oferta encerrada', 'Ưu đãi đã kết thúc', 'Penawaran berakhir', 'Teklif sona erdi', 'Oferta zakończona'),
+      sub: hasTimeLeft
+        ? L('Годовой доступ + 6 месяцев в подарок', 'Річний доступ + 6 місяців у подарунок', 'Annual access + 6 gift months', 'Acesso anual + 6 meses de presente', 'Quyền truy cập năm + 6 tháng quà tặng', 'Akses tahunan + bonus 6 bulan', 'Yıllık erişim + 6 ay hediye', 'Roczny dostęp + 6 miesięcy w prezencie')
+        : L('Подарок больше нельзя оформить', 'Подарунок більше не можна оформити', 'This gift can no longer be claimed', 'Este presente não pode mais ser resgatado', 'Không thể nhận quà này nữa', 'Hadiah ini tidak lagi dapat diklaim', 'Bu hediye artık alınamaz', 'Tego prezentu nie można już odebrać'),
+    };
+  })();
+
   /** «Очистить кеш»: только косметические кеши (картинки, SWR друзей/рефералки). Прогресс/аккаунт не трогаем. */
   const confirmClearCache = () => {
     doHaptic();
@@ -1160,6 +1238,17 @@ export default function SettingsMain() {
             label={plusRowLabel}
             value={plusRowValue}
             onPress={plusRowPress}
+          />
+        </SettingsGroup>
+        <SettingsGroup marginTop={12} surfaceColor={settingsPanelBg} borderColor={settingsBorder} dividerColor={settingsDivider}>
+          <SettingsRow
+            testID="settings-level-up-annual-gift-status"
+            icon="gift-outline"
+            color="yellow"
+            label={L('Подарок за уровень', 'Подарунок за рівень', 'Level-up gift', 'Presente por nível', 'Quà lên cấp', 'Hadiah naik level', 'Seviye atlama hediyesi', 'Prezent za poziom')}
+            value={levelUpAnnualGiftStatus.value}
+            sub={levelUpAnnualGiftStatus.sub}
+            hideChevron
           />
         </SettingsGroup>
         {promoCodesOn ? (

@@ -8,6 +8,13 @@ import {
 } from './auth_merge';
 import { createHash } from 'crypto';
 import { accountDeletePermanentDenialId } from './account_delete_job';
+import { LEVEL_UP_ANNUAL_GIFT_OFFERING_ID } from './level_up_annual_gift';
+import {
+  LEVEL_UP_ANNUAL_GIFT_ATTEMPT_ATTRIBUTE,
+  decideLevelUpAnnualGiftWebhook,
+  type LevelUpAnnualGiftOfferRecord,
+  type LevelUpAnnualGiftPurchaseAttemptRecord,
+} from './level_up_annual_gift_server';
 
 const NOW = 1_777_000_000_000;
 const FUTURE = NOW + 30 * 24 * 60 * 60 * 1000; // +30d
@@ -277,6 +284,7 @@ function makeDbStub(
   },
 ) {
   const store: Store = {
+    ...Object.fromEntries(Object.entries(initial).map(([name, docs]) => [name, { ...docs }])),
     users: { ...(initial.users ?? {}) },
     auth_links: { ...(initial.auth_links ?? {}) },
     leaderboard: { ...(initial.leaderboard ?? {}) },
@@ -306,7 +314,7 @@ function makeDbStub(
     versions.set(path, (versions.get(path) ?? 0) + 1);
   };
 
-  const docApi = (name: string, id: string) => ({
+  const docApi = (name: string, id: string): any => ({
     id,
     path: pathFor(name, id),
     get: async () => {
@@ -336,6 +344,9 @@ function makeDbStub(
       const path = pathFor(name, id);
       versions.set(path, (versions.get(path) ?? 0) + 1);
     },
+    collection: (childName: string) => ({
+      doc: (childId: string) => docApi(`${name}/${id}/${childName}`, childId),
+    }),
   });
 
   // ref carries a functional handle (set/delete) so query-result .ref works in repoint logic.
@@ -681,6 +692,202 @@ describe('mergeStableAccounts', () => {
       premium_rc_active_lineage: lineageHash,
       premium_rc_reconcile_needed: 'false',
     });
+  });
+
+  it('atomically migrates a granted annual gift and immutable receipt to the canonical account', async () => {
+    const offerId = 'gift-before-merge';
+    const lineageHash = 'gift-lineage';
+    const bonusExpiryAtMs = FUTURE + 180 * 24 * 60 * 60 * 1000;
+    const offerCollection = 'users/loser/level_up_annual_gifts';
+    const receiptCollection = `users/loser/level_up_annual_gifts/${LEVEL_UP_ANNUAL_GIFT_OFFERING_ID}/grant_receipts`;
+    const winnerOfferCollection = 'users/winner/level_up_annual_gifts';
+    const winnerReceiptCollection = `users/winner/level_up_annual_gifts/${LEVEL_UP_ANNUAL_GIFT_OFFERING_ID}/grant_receipts`;
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-gift', progress: { user_total_xp: '1000' } },
+        loser: {
+          firebaseAuthUid: 'auth-gift',
+          progress: {
+            user_total_xp: '10',
+            premium_plan: 'yearly',
+            premium_expiry: '0',
+            premium_rc_active_lineage: lineageHash,
+            premium_level_up_annual_gift_granted: 'true',
+            premium_level_up_annual_gift_lineage_hash: lineageHash,
+            premium_level_up_annual_gift_bonus_expiry_ms: String(bonusExpiryAtMs),
+          },
+        },
+      },
+      [offerCollection]: {
+        [LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]: {
+          offerId,
+          uid: 'loser',
+          level: 12,
+          state: 'granted',
+          offeringId: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+          createdAtMs: NOW - 10_000,
+          offerExpiresAtMs: NOW + 10_000,
+          grantedLineageHash: lineageHash,
+          bonusExpiryAtMs,
+        },
+      },
+      [receiptCollection]: {
+        bonus_v1: {
+          uid: 'loser',
+          offerId,
+          eventId: 'gift-event',
+          originalTransactionId: 'original-gift-tx',
+          lineageHash,
+          annualProductId: 'phraseman_yearly',
+          offeringId: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+          bonusMonths: 6,
+          bonusExpiryAtMs,
+          environment: 'PRODUCTION',
+        },
+      },
+    });
+
+    await mergeStableAccounts(db as any, 'auth-gift', 'winner', 'loser', NOW);
+
+    expect(store[winnerOfferCollection]?.[LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]).toMatchObject({
+      uid: 'winner', offerId, state: 'granted', grantedLineageHash: lineageHash,
+    });
+    expect(store[winnerReceiptCollection]?.bonus_v1).toMatchObject({
+      uid: 'winner', offerId, eventId: 'gift-event', originalTransactionId: 'original-gift-tx',
+    });
+    expect(store[offerCollection]?.[LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]).toBeUndefined();
+    expect(store[receiptCollection]?.bonus_v1).toBeUndefined();
+    expect(store.users.winner!.progress).toMatchObject({
+      premium_level_up_annual_gift_granted: 'true',
+      premium_level_up_annual_gift_lineage_hash: lineageHash,
+      premium_level_up_annual_gift_bonus_expiry_ms: String(bonusExpiryAtMs),
+    });
+    await expect(mergeStableAccounts(db as any, 'auth-gift', 'winner', 'loser', NOW + 1))
+      .resolves.toMatchObject({ canonicalStableId: 'winner', alreadyMerged: true });
+    expect(Object.keys(store[winnerOfferCollection] ?? {})).toEqual([
+      LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+    ]);
+    expect(Object.keys(store[winnerReceiptCollection] ?? {})).toEqual(['bonus_v1']);
+  });
+
+  it('fails closed instead of discarding conflicting immutable annual-gift receipts', async () => {
+    const winnerOfferCollection = 'users/winner/level_up_annual_gifts';
+    const loserOfferCollection = 'users/loser/level_up_annual_gifts';
+    const winnerReceiptCollection = `users/winner/level_up_annual_gifts/${LEVEL_UP_ANNUAL_GIFT_OFFERING_ID}/grant_receipts`;
+    const loserReceiptCollection = `users/loser/level_up_annual_gifts/${LEVEL_UP_ANNUAL_GIFT_OFFERING_ID}/grant_receipts`;
+    const giftOffer = (uid: string, offerId: string) => ({
+      uid,
+      offerId,
+      level: 12,
+      state: 'granted',
+      offeringId: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+      createdAtMs: NOW - 1_000,
+      offerExpiresAtMs: NOW + 1_000,
+      grantedLineageHash: `${uid}-lineage`,
+      bonusExpiryAtMs: FUTURE,
+    });
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-conflict', progress: { user_total_xp: '100' } },
+        loser: { firebaseAuthUid: 'auth-conflict', progress: { user_total_xp: '10' } },
+      },
+      [winnerOfferCollection]: {
+        [LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]: giftOffer('winner', 'offer-winner'),
+      },
+      [loserOfferCollection]: {
+        [LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]: giftOffer('loser', 'offer-loser'),
+      },
+      [winnerReceiptCollection]: {
+        bonus_v1: {
+          uid: 'winner', eventId: 'event-winner', originalTransactionId: 'tx-winner',
+          lineageHash: 'winner-lineage', annualProductId: 'phraseman_yearly', bonusExpiryAtMs: FUTURE,
+        },
+      },
+      [loserReceiptCollection]: {
+        bonus_v1: {
+          uid: 'loser', eventId: 'event-loser', originalTransactionId: 'tx-loser',
+          lineageHash: 'loser-lineage', annualProductId: 'phraseman_yearly', bonusExpiryAtMs: FUTURE,
+        },
+      },
+    });
+
+    await expect(mergeStableAccounts(db as any, 'auth-conflict', 'winner', 'loser', NOW))
+      .rejects.toThrow('level_up_annual_gift_grant_conflict');
+    expect(store[winnerReceiptCollection]?.bonus_v1).toMatchObject({ eventId: 'event-winner' });
+    expect(store[loserReceiptCollection]?.bonus_v1).toMatchObject({ eventId: 'event-loser' });
+  });
+
+  it('rekeys one in-flight annual-gift purchase attempt to the canonical account', async () => {
+    const offerId = 'gift-in-flight';
+    const attemptId = '12345678-1234-1234-1234-123456789abc';
+    const offerCollection = 'users/loser/level_up_annual_gifts';
+    const winnerOfferCollection = 'users/winner/level_up_annual_gifts';
+    const { db, store } = makeDbStub({
+      users: {
+        winner: { firebaseAuthUid: 'auth-flight', progress: { user_total_xp: '1000' } },
+        loser: { firebaseAuthUid: 'auth-flight', progress: { user_total_xp: '10' } },
+      },
+      [offerCollection]: {
+        [LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]: {
+          offerId, uid: 'loser', level: 12, state: 'trial_pending',
+          offeringId: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+          createdAtMs: NOW - 1_000, offerExpiresAtMs: NOW + 60_000,
+          activePurchaseAttemptId: attemptId,
+        },
+      },
+      level_up_annual_gift_purchase_attempts: {
+        [attemptId]: {
+          purchaseAttemptId: attemptId, offerId, uid: 'loser', revenueCatAppUserId: 'loser',
+          offeringId: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID, annualProductId: 'phraseman_yearly',
+          createdAtMs: NOW - 500, expiresAtMs: NOW + 60_000, preview: false,
+        },
+      },
+    });
+
+    await mergeStableAccounts(db as any, 'auth-flight', 'winner', 'loser', NOW);
+
+    const migratedOffer = (
+      store[winnerOfferCollection]?.[LEVEL_UP_ANNUAL_GIFT_OFFERING_ID]
+    ) as unknown as LevelUpAnnualGiftOfferRecord;
+    const migratedAttempt = (
+      store.level_up_annual_gift_purchase_attempts[attemptId]
+    ) as unknown as LevelUpAnnualGiftPurchaseAttemptRecord;
+    expect(migratedOffer).toMatchObject({ uid: 'winner', offerId, activePurchaseAttemptId: attemptId });
+    expect(migratedAttempt).toMatchObject({
+      purchaseAttemptId: attemptId,
+      offerId,
+      uid: 'winner',
+      revenueCatAppUserId: 'loser',
+      preview: false,
+      identityMigration: {
+        fromStableUid: 'loser',
+        toStableUid: 'winner',
+        boundRevenueCatAppUserId: 'loser',
+      },
+    });
+    expect(Object.keys(store.level_up_annual_gift_purchase_attempts)).toEqual([attemptId]);
+    expect(decideLevelUpAnnualGiftWebhook({
+      ownerUid: 'winner', offer: migratedOffer, attempt: migratedAttempt,
+      event: {
+        id: 'rc-after-merge', type: 'INITIAL_PURCHASE', app_user_id: 'loser',
+        product_id: 'phraseman_yearly', original_transaction_id: 'original-after-merge',
+        environment: 'PRODUCTION', period_type: 'NORMAL',
+        presented_offering_id: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+        purchased_at_ms: NOW + 1_000, expiration_at_ms: FUTURE, price: 29.99,
+        subscriber_attributes: { [LEVEL_UP_ANNUAL_GIFT_ATTEMPT_ATTRIBUTE]: { value: attemptId } },
+      },
+    })).toMatchObject({ action: 'grant', originalTransactionId: 'original-after-merge' });
+    expect(decideLevelUpAnnualGiftWebhook({
+      ownerUid: 'winner', offer: migratedOffer, attempt: migratedAttempt,
+      event: {
+        id: 'rc-wrong-identity', type: 'INITIAL_PURCHASE', app_user_id: 'winner',
+        product_id: 'phraseman_yearly', original_transaction_id: 'original-after-merge',
+        environment: 'PRODUCTION', period_type: 'NORMAL',
+        presented_offering_id: LEVEL_UP_ANNUAL_GIFT_OFFERING_ID,
+        purchased_at_ms: NOW + 1_000, expiration_at_ms: FUTURE, price: 29.99,
+        subscriber_attributes: { [LEVEL_UP_ANNUAL_GIFT_ATTEMPT_ATTRIBUTE]: { value: attemptId } },
+      },
+    })).toEqual({ action: 'reject', reason: 'revenuecat_identity_mismatch' });
   });
 
   it('merges two stable ids into the higher-XP one and hides the loser', async () => {

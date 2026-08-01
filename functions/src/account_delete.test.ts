@@ -200,6 +200,7 @@ describe('accountDelete stable id resolver', () => {
       expect.objectContaining({ collection: 'revenuecat_premium_lineages', field: 'ownerUid', value: 'loser' }),
       expect.objectContaining({ collection: 'revenuecat_premium_events', field: 'uid', value: 'loser' }),
       expect.objectContaining({ collection: 'revenuecat_shard_transactions', field: 'uid', value: 'loser' }),
+      expect.objectContaining({ collection: 'level_up_annual_gift_purchase_attempts', field: 'uid', value: 'loser' }),
     ]));
   });
 

@@ -3,6 +3,10 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { getLevelFromXP } from './xp_levels';
+import {
+  nextLevelUpAnnualGiftTransition,
+  type LevelUpAnnualGiftTransition,
+} from './level_up_annual_gift';
 
 export type ProgressMap = Record<string, unknown>;
 
@@ -69,6 +73,7 @@ export type ProgressServerState = {
   weekPoints: number;
   streakCount: number;
   lastActiveDate: string;
+  levelUpAnnualGiftTransition?: LevelUpAnnualGiftTransition;
 };
 
 export type MigrationProvenance = {
@@ -906,9 +911,20 @@ export const progressSubmitEvent = onCall(HOT_CALLABLE_OPTIONS, async (request) 
 
     const rawProgress = getProgress(userSnap.data());
     const progress = buildProgressBaseline(rawProgress, userSnap.data()?.progressServerState, now);
+    const previousTotalXp = Math.max(0, readInt(progress.user_total_xp, 0));
     const applied = applyProgressEvent(progress, event, now, { sourceXpToday, examAttemptsToday, totalXpToday });
     const mergedProgress = { ...progress, ...applied.progressPatch };
     const progressServerState = progressServerStateFromProgress(mergedProgress, now);
+    const levelUpAnnualGiftTransition = nextLevelUpAnnualGiftTransition({
+      existing: userSnap.data()?.progressServerState?.levelUpAnnualGiftTransition,
+      eventId: event.eventId,
+      previousTotalXp,
+      totalXp: applied.totalXp,
+      recordedAtMs: now.getTime(),
+    });
+    if (levelUpAnnualGiftTransition) {
+      progressServerState.levelUpAnnualGiftTransition = levelUpAnnualGiftTransition;
+    }
     const progressPatch = { ...applied.progressPatch, ...authoritativeProgressPatch(progressServerState) };
 
     const counterPatch: Record<string, unknown> = {

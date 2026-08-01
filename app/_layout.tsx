@@ -93,7 +93,7 @@ import { hydrateAnalyticsConsentFromStorage } from './analytics_consent';
 import { hydrateAgeGateFromStorage } from './age_gate';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { syncPublicProfileSnapshot } from './public_profile_snapshot';
-import { getVerifiedPremiumStatus, getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
+import { getVerifiedRealPremiumStatus, getVerifiedVipStatus } from './premium_guard';
 import { isFeatureFreeForEveryone } from './feature_gates';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
@@ -103,6 +103,7 @@ import { flushPendingProgressEvents } from './progress_events_client';
 import { getShardAchievementEligibleBalance, getShardsBalance, loadShardsFromCloud } from './shards_system';
 import ActionToast from '../components/ActionToast';
 import DailyTaskRewardToast from '../components/DailyTaskRewardToast';
+import LevelUpAnnualGiftToast from '../components/LevelUpAnnualGiftToast';
 import DailyTasksFirstVisitModal from '../components/DailyTasksFirstVisitModal';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import EntitlementExpiredHost from '../components/EntitlementExpiredHost';
@@ -137,6 +138,7 @@ import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
+import { getLevelUpAnnualGiftOffer, saveLevelUpAnnualGiftOffer, type LevelUpAnnualGiftOffer } from './level_up_annual_gift';
 
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
 import { installForegroundUsageMsTracker } from './foreground_usage_ms';
@@ -776,6 +778,7 @@ function GlobalLevelUpHandler() {
 
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
+  const [levelUpAnnualGiftOffer, setLevelUpAnnualGiftOffer] = useState<LevelUpAnnualGiftOffer | null>(null);
   /**
    * Удержание слота арбитра в окне перехода level-up → подарок. Между setShowLevelUp(false)
    * и setShowGiftModal(true) остается только безопасная native-пауза 180-260мс; серверные
@@ -1094,23 +1097,13 @@ function GlobalLevelUpHandler() {
       void withAccountTransitionLock(async () => {
         if (!isLevelUpAccountTokenCurrent(accountToken)) return;
         try {
-          const prem = await getVerifiedPremiumStatus().catch(() => false);
+          const offer = await getLevelUpAnnualGiftOffer(currentLevel);
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          // Не показываем поверх модалки конца интро — она важнее (главный момент конверсии).
-          const introState = await getIntroFullAccessState().catch(() => null);
+          await saveLevelUpAnnualGiftOffer(offer);
           if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          if (introState?.expiredUnseen === true) return;
-          const [{ canShowAfterWinUpsell, markAfterWinUpsellShown }, { trackEvent }] = await Promise.all([
-            import('./after_win_upsell_gate'),
-            import('./analytics'),
-          ]);
-          if (!(await canShowAfterWinUpsell({ isPremium: prem, nowMs: Date.now() }))) return;
-          if (!isLevelUpAccountTokenCurrent(accountToken)) return;
-          // Сначала навигация: если push упадёт — гейт не «сгорит» впустую.
-          globalRouter.push({ pathname: '/premium_modal', params: { context: 'level_up', source: 'afterwin_levelup' } } as any);
-          await markAfterWinUpsellShown(Date.now());
-          await trackEvent('afterwin_upsell_shown', { source: 'level_up' });
-          void import('./firebase').then(({ logAfterWinUpsellShown }) => logAfterWinUpsellShown('level_up')).catch(() => {});
+          if ((offer.state === 'available' || offer.state === 'trial_pending') && offer.offerExpiresAtMs > Date.now()) {
+            setLevelUpAnnualGiftOffer(offer); // level_up_annual_gift_available
+          }
         } catch { /* no-op */ }
       });
     }
@@ -1379,6 +1372,10 @@ function GlobalLevelUpHandler() {
           studyTarget={studyTarget}
         />
       )}
+      <LevelUpAnnualGiftToast
+        offer={levelUpAnnualGiftOffer}
+        onDismiss={() => setLevelUpAnnualGiftOffer(null)}
+      />
     </>
   );
 }
@@ -3069,6 +3066,7 @@ function AppContent() {
       <Stack.Screen name="shards_shop" />
       <Stack.Screen name="coin_exchange" />
       <Stack.Screen name="level_gifts_inventory" />
+      <Stack.Screen name="level_up_annual_gift_offer" />
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="collectibles_screen" />
       <Stack.Screen name="level_exam" />

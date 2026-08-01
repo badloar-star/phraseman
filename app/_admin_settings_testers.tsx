@@ -188,6 +188,7 @@ import LabsSection from '../components/admin_panel/sections/LabsSection';
 import SoftUpsellPreviewSection from '../components/admin_panel/sections/SoftUpsellPreviewSection';
 import UxOverhaulModalsSection from '../components/admin_panel/sections/UxOverhaulModalsSection';
 import TournamentBotsSection from '../components/admin_panel/sections/TournamentBotsSection';
+import { saveLevelUpAnnualGiftOffer, type LevelUpAnnualGiftOffer } from './level_up_annual_gift';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -616,6 +617,23 @@ function AdminCosmeticsPreview({ f }: { f: any }) {
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
+  const openLevelUpAnnualGiftPreview = useCallback(async () => {
+    const nowMs = Date.now();
+    const offer: LevelUpAnnualGiftOffer = {
+      offerId: 'admin-preview-level-up-annual-gift',
+      level: 12,
+      state: 'available',
+      offeringId: 'level_up_annual_gift_v1',
+      createdAtMs: nowMs,
+      offerExpiresAtMs: nowMs + 24 * 60 * 60 * 1000,
+      firstPaidExpectedAtMs: null,
+      grantedAtMs: null,
+      bonusExpiryAtMs: null,
+      preview: true,
+    };
+    await saveLevelUpAnnualGiftOffer(offer);
+    router.push({ pathname: '/level_up_annual_gift_offer', params: { preview: 'admin' } } as never);
+  }, [router]);
   const params = useLocalSearchParams<{
     qa?: string | string[];
     qaRun?: string | string[];
@@ -2469,6 +2487,16 @@ export default function SettingsTestersFunctions() {
         <ScrollView testID="screen-settings-testers" showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: ADMIN_BG }}>
           {/* Новые разделы админки — всегда в САМОМ ВЕРХУ (правило владельца). */}
           <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1, borderColor: ACCENT_BORDER, backgroundColor: ADMIN_SURFACE, overflow: 'hidden' }}>
+            <ButtonRow
+              testID="admin-preview-level-up-annual-gift"
+              icon="gift-outline"
+              label="Подарок за уровень: 18 месяцев"
+              sub="DEV-предпросмотр оффера на 24 часа. Оплата и бонус выключены; затем можно открыть «Подарки»."
+              onPress={() => { void openLevelUpAnnualGiftPreview(); }}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
             <ButtonRow
               testID="admin-section-tasks-surveys"
               icon="list-outline"

@@ -99,7 +99,7 @@ test('Pre-A1 and insufficient-data result wording stays neutral', () => {
 test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
-  const expectedRevision = '20260722-4';
+  const expectedRevision = '20260801-1';
 
   assert.equal((html.match(new RegExp(expectedRevision, 'g')) || []).length, 4);
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));

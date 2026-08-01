@@ -57,7 +57,7 @@ function loadHooks({ fetchImpl, storage = memoryStorage() } = {}) {
     navigator: { userAgent: "test" },
     screen: { width: 100, height: 100 },
     crypto: { subtle: {}, getRandomValues: (value) => value.fill(1) },
-    document: { getElementById: () => ({}) },
+    document: { getElementById: () => ({}), addEventListener: () => {} },
     window: {
       matchMedia: () => ({ matches: true }),
       addEventListener: () => {},
@@ -287,7 +287,7 @@ test("parallel refresh requests for the same visible landing share one GET", asy
   await Promise.all([first, second]);
 });
 
-test("landing copy describes completed tests and the unified asset revision is 20260722-4", () => {
+test("landing copy describes completed tests and the unified asset revision is 20260801-1", () => {
   const source = fs.readFileSync(appPath, "utf8");
   const html = fs.readFileSync(htmlPath, "utf8");
   const counterBlock =
@@ -300,7 +300,7 @@ test("landing copy describes completed tests and the unified asset revision is 2
     counterBlock,
     /\u0441\u0435\u0440\u0442\u0438\u0444\u0438\u043a\u0430\u0442\u043e\u0432 \u0443\u0436\u0435 \u0432\u044b\u0434\u0430\u043d\u043e/i,
   );
-  assert.match(source, /questions\.en\.json\?v=20260722-4/);
-  assert.equal((html.match(/v=20260722-4/g) || []).length, 4);
+  assert.match(source, /questions\.en\.json\?v=20260801-1/);
+  assert.equal((html.match(/v=20260801-1/g) || []).length, 4);
   assert.equal((html.match(/v=20260722-1/g) || []).length, 0);
 });

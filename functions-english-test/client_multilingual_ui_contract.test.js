@@ -164,6 +164,7 @@ test('provides explicit accessible text-only assessment copy for every planned s
     'languageSelector.title', 'languageSelector.testLanguage', 'languageSelector.uiLanguage', 'languageSelector.continue',
     'consent.text', 'consent.privacy', 'consent.accept', 'socialProof.text', 'timer.label', 'timer.expired',
     'actions.next', 'actions.back', 'actions.finish', 'actions.exit', 'result.title', 'result.level', 'result.score', 'result.subject', 'result.scope',
+    'question.progress', 'question.of', 'question.select', 'certificate.title', 'certificate.language', 'certificate.theme', 'certificate.download', 'certificate.print', 'certificate.save', 'certificate.filename',
     'name.label', 'name.optional', 'alerts.copySuccess', 'alerts.copyError', 'sharing.title', 'sharing.webShareTitle', 'sharing.resultPayload', 'sharing.copied', 'sharing.clipboardPrompt',
     'resultCta.title', 'resultCta.text', 'resultCta.open', 'aria.languageMenu', 'aria.close', 'aria.progress', 'aria.timer',
     'alt.logo', 'alt.certificate', 'title.retry', 'title.close', 'title.copy',

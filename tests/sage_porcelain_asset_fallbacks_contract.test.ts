@@ -232,4 +232,13 @@ describe('sage porcelain static asset coverage', () => {
       '../assets/images/social_icons/social-chat-sagePorcelain.webp',
     ]);
   });
+
+  it('uses dedicated Celadon artwork for migrated single-slot systems', () => {
+    expect(source('app/coin_icons.ts')).toContain(
+      "sagePorcelain: require('../assets/images/currency/pearl_sagePorcelain.webp')",
+    );
+    expect(source('components/EnergyIcon.tsx')).toContain(
+      "sagePorcelain: require('../assets/images/energy/energy-sagePorcelain.webp')",
+    );
+  });
 });

@@ -223,4 +223,13 @@ describe('sage porcelain static asset coverage', () => {
     expect(boon).toContain("perfect_week: 'assets/images/weekly_boon_icons/png/sagePorcelain/perfect_week.webp'");
     expect(boon).toContain("comeback: 'assets/images/weekly_boon_icons/png/sagePorcelain/comeback.webp'");
   });
+
+  it('uses generated Celadon artwork for migrated social icons', () => {
+    const socialPaths = themeBlocks(source('constants/socialIconAssets.ts'), 'sagePorcelain')
+      .flatMap(requires);
+    expect(socialPaths).toEqual([
+      '../assets/images/social_icons/social-friends-sagePorcelain.webp',
+      '../assets/images/social_icons/social-chat-sagePorcelain.webp',
+    ]);
+  });
 });

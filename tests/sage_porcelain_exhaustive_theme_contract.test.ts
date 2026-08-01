@@ -33,6 +33,7 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
     }
 
     expect(plan).toContain("hero: ['#E1E5DC', '#F0F1EC']");
+    expect(plan).toContain("ghost: '#61706A'");
     expect(plan).toContain("buttonText: '#FFFFFF'");
   });
 });

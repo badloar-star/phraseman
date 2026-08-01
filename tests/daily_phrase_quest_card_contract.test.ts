@@ -1,7 +1,9 @@
 import fs from 'fs';
 import path from 'path';
 
-const read = (relativePath: string) => fs.readFileSync(path.join(__dirname, '..', relativePath), 'utf8');
+const read = (relativePath: string) => fs
+  .readFileSync(path.join(__dirname, '..', relativePath), 'utf8')
+  .replace(/\r\n/g, '\n');
 
 describe('DailyPhraseCard quest contract', () => {
   const source = read('components/DailyPhraseCard.tsx');
@@ -153,9 +155,10 @@ describe('DailyPhraseCard quest contract', () => {
   });
 
   it('starts the entrance only for a closed-to-open modal transition', () => {
+    const entranceEffectStart = source.indexOf('useEffect(() => {\n    const opened = detailsVisible');
     const entranceEffect = source.slice(
-      source.indexOf('const wasDetailsVisibleRef'),
-      source.indexOf('useEffect(() => {\n    if (!dailyPhraseGateOpen', source.indexOf('const wasDetailsVisibleRef')),
+      entranceEffectStart,
+      source.indexOf('useEffect(() => {\n    if (!reduceMotion) return;', entranceEffectStart),
     );
 
     expect(entranceEffect).toContain('const opened = detailsVisible && !wasDetailsVisibleRef.current;');

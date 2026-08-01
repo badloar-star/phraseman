@@ -11,6 +11,7 @@ const THEME_MODES: ThemeMode[] = [
   'minimalDark',
   'business',
   'businessLight',
+  'sagePorcelain',
   'midnight',
   'ember',
   'aurora',

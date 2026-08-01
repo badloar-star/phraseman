@@ -518,6 +518,66 @@ export function assertGiftCertificateRefsAvailable(exists: readonly boolean[]): 
   if (exists.some(Boolean)) throw new HttpsError('already-exists', 'gift_certificate_code_collision');
 }
 
+/** Fail-closed deletion plan for the certificate and its linked one-time promo. */
+export function buildGiftCertificateDeletePlan(params: {
+  certificateId: string;
+  expectedUpdatedAtMs: unknown;
+  certificate: FirebaseFirestore.DocumentData;
+  promo: FirebaseFirestore.DocumentData;
+  nowMs: number;
+  actorUid: string;
+  actorEmail: string;
+  reason: unknown;
+}): { certificateId: string; auditDoc: Record<string, unknown> } {
+  const certificateId = cleanShortText(params.certificateId, 32).toUpperCase();
+  const product = isWebPlan(params.certificate.product) ? params.certificate.product : null;
+  if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)
+    || params.certificate.gift !== true
+    || !product
+    || String(params.certificate.certificateId ?? '') !== certificateId
+    || String(params.certificate.activationCode ?? '') !== certificateId) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_identity_mismatch');
+  }
+  const currentUpdatedAtMs = Number(params.certificate.updatedAtMs ?? params.certificate.createdAtMs ?? 0);
+  if (!Number.isSafeInteger(currentUpdatedAtMs)
+    || Number(params.expectedUpdatedAtMs) !== currentUpdatedAtMs) {
+    throw new HttpsError('aborted', 'gift_certificate_delete_conflict');
+  }
+  const deliveryStatus = cleanShortText(params.certificate.status, 40);
+  const usedCount = Number(params.promo.usedCount);
+  const hasRedemptionEvidence = usedCount > 0
+    || Number(params.promo.lastRedeemedAtMs ?? 0) > 0
+    || Boolean(cleanShortText(params.promo.lastRedeemedBy, 128))
+    || deliveryStatus === 'activated'
+    || deliveryStatus === 'redeemed';
+  if (hasRedemptionEvidence) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_already_redeemed');
+  }
+  if (String(params.promo.certificateId ?? '') !== certificateId
+    || String(params.promo.certificateProduct ?? '') !== product
+    || Number(params.promo.maxRedemptions) !== 1
+    || usedCount !== 0) {
+    throw new HttpsError('failed-precondition', 'gift_certificate_promo_invalid');
+  }
+  return {
+    certificateId,
+    auditDoc: {
+      action: 'gift_certificate_delete',
+      targetUid: certificateId,
+      reason: cleanShortText(params.reason, 500),
+      details: {
+        certificateId,
+        batchId: cleanShortText(params.certificate.batchId, 120),
+        product,
+        deliveryStatus: deliveryStatus || 'generated',
+      },
+      adminEmail: cleanShortText(params.actorEmail, 200),
+      adminUid: cleanShortText(params.actorUid, 128),
+      ts: new Date(params.nowMs).toISOString(),
+    },
+  };
+}
+
 export function assertGiftCertificateAssetResponse(input: {
   ok: boolean;
   contentType: string;
@@ -1699,6 +1759,51 @@ export const adminListGiftCertificates = onCall(
         ? { createdAtMs: Number(last.data()?.createdAtMs ?? 0), certificateId: last.id }
         : null,
     };
+  },
+);
+
+/** Deletes an unused certificate and its activation code in one transaction. */
+export const adminDeleteGiftCertificate = onCall(
+  GIFT_CERTIFICATE_MUTATION_OPTIONS,
+  async (request) => {
+    assertGiftCertificateAdminAccess(request.auth as GiftCertificateAdminAuth);
+    const certificateId = cleanShortText(request.data?.certificateId, 32).toUpperCase();
+    if (!/^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(certificateId)) {
+      throw new HttpsError('invalid-argument', 'invalid_gift_certificate_id');
+    }
+    const db = getFirestore();
+    const certificateRef = db.collection(GIFT_CERTIFICATE_DELIVERIES_COLLECTION).doc(certificateId);
+    const promoRef = db.collection('promo_codes').doc(certificateId);
+    const auditRef = db.collection('admin_log').doc();
+    const nowMs = Date.now();
+    const actorUid = String(request.auth?.uid ?? '');
+    const actorEmail = cleanShortText(request.auth?.token?.email, 200);
+    await db.runTransaction(async (tx) => {
+      const [certificateSnapshot, promoSnapshot] = await Promise.all([
+        tx.get(certificateRef),
+        tx.get(promoRef),
+      ]);
+      if (!certificateSnapshot.exists) {
+        throw new HttpsError('not-found', 'gift_certificate_not_found');
+      }
+      if (!promoSnapshot.exists) {
+        throw new HttpsError('failed-precondition', 'gift_certificate_promo_missing');
+      }
+      const plan = buildGiftCertificateDeletePlan({
+        certificateId,
+        expectedUpdatedAtMs: request.data?.expectedUpdatedAtMs,
+        certificate: certificateSnapshot.data() ?? {},
+        promo: promoSnapshot.data() ?? {},
+        nowMs,
+        actorUid,
+        actorEmail,
+        reason: request.data?.reason,
+      });
+      tx.delete(certificateRef);
+      tx.delete(promoRef);
+      tx.create(auditRef, plan.auditDoc);
+    });
+    return { ok: true, certificateId, promoCodeDeleted: true };
   },
 );
 

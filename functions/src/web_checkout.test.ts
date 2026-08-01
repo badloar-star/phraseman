@@ -7,6 +7,7 @@ import {
   assertGiftCertificateSendAuthorization,
   assertGiftCertificateSendCoherence,
   buildActivationEmail,
+  buildGiftCertificateDeletePlan,
   buildGiftCertificateBatchRequestKey,
   createGiftCertificateBatchPlan,
   buildResendRequestHeaders,
@@ -289,6 +290,135 @@ describe('gift certificate batch', () => {
       actorUid: base.actorUid,
       requestKey,
     })).toThrow('gift_certificate_operation_corrupt');
+  });
+});
+
+describe('gift certificate deletion', () => {
+  const certificateId = 'GIFT-7QW8E9R2TY';
+  const nowMs = Date.UTC(2026, 7, 1, 12, 0, 0);
+  const certificate = {
+    certificateId,
+    activationCode: certificateId,
+    product: 'yearly',
+    gift: true,
+    status: 'generated',
+    batchId: 'gift-batch-delete-test',
+    createdAtMs: nowMs - 1_000,
+    updatedAtMs: nowMs - 500,
+  };
+  const promo = {
+    certificateId,
+    certificateProduct: 'yearly',
+    rewardDays: 366,
+    rewardKind: 'days',
+    enabled: true,
+    maxRedemptions: 1,
+    usedCount: 0,
+  };
+
+  it('builds a privacy-safe audit plan for the linked certificate and promo code', () => {
+    expect(buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate,
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: 'Duplicate certificate',
+    })).toEqual({
+      certificateId,
+      auditDoc: {
+        action: 'gift_certificate_delete',
+        targetUid: certificateId,
+        reason: 'Duplicate certificate',
+        details: {
+          certificateId,
+          batchId: 'gift-batch-delete-test',
+          product: 'yearly',
+          deliveryStatus: 'generated',
+        },
+        adminEmail: 'owner@example.com',
+        adminUid: 'owner-uid',
+        ts: new Date(nowMs).toISOString(),
+      },
+    });
+  });
+
+  it.each([
+    ['used count', { usedCount: 1 }],
+    ['redemption timestamp', { lastRedeemedAtMs: nowMs - 1 }],
+    ['redeemer identity', { lastRedeemedBy: 'stable-user' }],
+  ])('refuses deletion when the promo has %s evidence', (_label, patch) => {
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate,
+      promo: { ...promo, ...patch },
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_already_redeemed');
+  });
+
+  it('fails closed on an activated delivery status or corrupt negative redemption count', () => {
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate: { ...certificate, status: 'activated' },
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_already_redeemed');
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate,
+      promo: { ...promo, usedCount: -1 },
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_promo_invalid');
+  });
+
+  it('refuses a stale destructive request after the certificate was edited', () => {
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs - 1,
+      certificate,
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_delete_conflict');
+  });
+
+  it('fails closed when either persisted record is not linked to the requested certificate', () => {
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate: { ...certificate, activationCode: 'GIFT-4AS5DF6GHJ' },
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_identity_mismatch');
+    expect(() => buildGiftCertificateDeletePlan({
+      certificateId,
+      expectedUpdatedAtMs: certificate.updatedAtMs,
+      certificate,
+      promo: { ...promo, certificateId: 'GIFT-4AS5DF6GHJ' },
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+      reason: '',
+    })).toThrow('gift_certificate_promo_invalid');
   });
 });
 

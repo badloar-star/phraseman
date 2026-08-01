@@ -26,6 +26,12 @@
       "port": 8842
     },
     {
+      "name": "sound-motion",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "8843", "--directory", "C:/appsprojects/phraseman"],
+      "port": 8843
+    },
+    {
       "name": "studio-mockups",
       "url": "http://localhost:4173",
       "port": 4173

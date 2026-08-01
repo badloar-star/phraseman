@@ -19,6 +19,19 @@ const base = {
   translations: { ru: { title: 'Новый урок', body: 'Откройте новый урок сегодня.' } },
 };
 
+function completeSettingsTranslations(ru: Record<string, unknown>) {
+  return {
+    ru,
+    uk: { ...ru },
+    es: { ...ru },
+    ptBr: { ...ru },
+    vi: { ...ru },
+    id: { ...ru },
+    tr: { ...ru },
+    pl: { ...ru },
+  };
+}
+
 describe('normalizeAppMessageCreateInput', () => {
   test('creates a bounded message and falls empty languages back to RU', () => {
     const result = normalizeAppMessageCreateInput(base, 'admin@example.com', Date.UTC(2026, 6, 12));
@@ -92,18 +105,18 @@ describe('normalizePersonalAppMessageInput', () => {
   });
 
   test('normalizes settings polls as fixed campaigns with 2-4 options', () => {
+    const ruPoll = {
+      title: 'Важное от Phraseman', body: 'Помогите выбрать направление.',
+      pollQuestion: 'Что улучшить первым?', pollOptions: ['Уроки', 'Квизы', 'Диалоги', 'Повторение'],
+    };
     const result = normalizeAppMessageCreateInput({
       ...base,
       kind: 'poll',
+      active: true,
       deliverySurface: 'settings',
       settingsSlot: 'top',
       controlPercent: 10,
-      translations: {
-        ru: {
-          title: 'Важное от Phraseman', body: 'Помогите выбрать направление.',
-          pollQuestion: 'Что улучшить первым?', pollOptions: ['Уроки', 'Квизы', 'Диалоги', 'Повторение'],
-        },
-      },
+      translations: completeSettingsTranslations(ruPoll),
     }, 'admin@example.com', 1_800_000_000_000);
     expect(result.document).toMatchObject({
       deliverySurface: 'settings', settingsSlot: 'top', voteMode: 'fixed', controlPercent: 10,
@@ -116,6 +129,25 @@ describe('normalizePersonalAppMessageInput', () => {
         ru: { title: 'Опрос', body: 'Ответьте.', pollQuestion: 'Выберите', pollOptions: ['1', '2', '3', '4', '5'] },
       },
     }, 'admin@example.com')).toThrow('Poll requires a RU question and 2-4 options');
+  });
+
+  test('requires complete translations and an explicit audience for a live settings campaign', () => {
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      active: true,
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      translations: base.translations,
+    }, 'admin@example.com')).toThrow('settings_translations_required');
+
+    expect(() => normalizeAppMessageCreateInput({
+      ...base,
+      active: true,
+      audience: 'unexpected',
+      deliverySurface: 'settings',
+      settingsSlot: 'top',
+      translations: completeSettingsTranslations(base.translations.ru),
+    }, 'admin@example.com')).toThrow('settings_audience_required');
   });
 
   test('rejects foreign recipient aliases and keeps retry fingerprint stable', () => {

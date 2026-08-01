@@ -24,6 +24,21 @@ type Props = {
   marginTop?: number;
 };
 
+const LOCKED_VOTE_LABEL: Record<Lang, string> = {
+  ru: 'Ваш выбор сохранён и не изменяется',
+  uk: 'Ваш вибір збережено, його не можна змінити',
+  es: 'Tu elección se guardó y no se puede cambiar',
+  'pt-BR': 'Sua escolha foi salva e não pode ser alterada',
+  vi: 'Lựa chọn của bạn đã được lưu và không thể thay đổi',
+  id: 'Pilihan Anda telah disimpan dan tidak dapat diubah',
+  tr: 'Seçiminiz kaydedildi ve değiştirilemez',
+  pl: 'Twój wybór został zapisany i nie można go zmienić',
+};
+
+function lockedVoteLabel(lang: Lang): string {
+  return LOCKED_VOTE_LABEL[lang] ?? LOCKED_VOTE_LABEL.ru;
+}
+
 function percent(count: number, total: number): string {
   if (total <= 0) return '0%';
   return `${Math.round((Math.max(0, count) / total) * 100)}%`;
@@ -133,7 +148,7 @@ export function SettingsMessageSlotCard({ campaign, lang, ownerStableId, marginT
             );
           })}
           {vote ? (
-            <Text style={[styles.locked, { color: t.textMuted, fontSize: f.caption }]}>Ваш выбор сохранён и не изменяется</Text>
+            <Text style={[styles.locked, { color: t.textMuted, fontSize: f.caption }]}>{lockedVoteLabel(lang)}</Text>
           ) : null}
         </View>
       ) : null}

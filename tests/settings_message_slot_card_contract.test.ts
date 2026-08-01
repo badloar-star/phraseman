@@ -8,6 +8,10 @@ describe('settings message slot card', () => {
     expect(card).toContain('accessibilityRole="radio"');
     expect(card).toContain('minHeight: 44');
     expect(card).toContain('settings-message-slot-');
+    expect(card).toContain('lockedVoteLabel(lang)');
+    expect(card).toContain('Ваш выбор сохранён и не изменяется');
+    expect(card).not.toContain('Ð’Ð°Ñˆ');
+    expect(settings).toContain('flushSettingsPollVotes(settingsMessageOwner)');
     expect(settings.indexOf('settings-message-slot-top')).toBeGreaterThan(settings.indexOf('settings-plus-row'));
     expect(settings.indexOf('settings-message-slot-bottom')).toBeLessThan(settings.indexOf('PHRASEMAN'));
   });

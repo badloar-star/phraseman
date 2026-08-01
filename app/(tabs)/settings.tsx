@@ -90,6 +90,7 @@ import { readVipSnapshotForGeneration } from '../premium_vip_storage';
 import { SettingsMessageSlotCard } from '../../components/settings/SettingsMessageSlotCard';
 import { peekAppMessagesSnapshot, refreshAppMessagesSnapshotOnce } from '../app_messages';
 import { selectSettingsMessageSlots, type SettingsMessageSlotSelection } from '../settings_message_slots';
+import { flushSettingsPollVotes } from '../settings_poll_vote';
 import { animateNextLayoutTransition } from '../smooth_layout';
 import { trackEvent } from '../analytics';
 
@@ -525,6 +526,11 @@ export default function SettingsMain() {
       });
     });
   }, [settingsMessageSelection.assignments]);
+
+  useEffect(() => {
+    if (!settingsRuntimeActive || !settingsMessageOwner) return;
+    void flushSettingsPollVotes(settingsMessageOwner);
+  }, [settingsMessageOwner, settingsRuntimeActive]);
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [vipPlan, setVipPlan] = useState('');
   const [vipUntilMs, setVipUntilMs] = useState(0);

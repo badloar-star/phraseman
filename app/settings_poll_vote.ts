@@ -22,6 +22,7 @@ export type SettingsPollVoteTransport = (
 
 const PREFIX = 'settings_poll_votes_v1';
 const CAP = 100;
+const SYNCED_TTL_MS = 90 * 24 * 60 * 60 * 1000;
 const voteSubmissionQueue = new Map<string, Promise<SettingsPollVoteState>>();
 
 const storageKey = (owner: string) => `${PREFIX}:${encodeURIComponent(owner)}`;
@@ -30,8 +31,13 @@ async function readVotes(owner: string): Promise<SettingsPollVoteState[]> {
   if (!owner) return [];
   try {
     const parsed = JSON.parse(await AsyncStorage.getItem(storageKey(owner)) || '[]');
+    const syncedCutoffMs = Date.now() - SYNCED_TTL_MS;
     return Array.isArray(parsed) ? parsed.filter((item) => (
       item && typeof item.messageId === 'string' && typeof item.optionId === 'string'
+      && typeof item.requestId === 'string'
+      && (item.status === 'pending' || item.status === 'synced')
+      && Number.isFinite(Number(item.updatedAtMs))
+      && (item.status === 'pending' || Number(item.updatedAtMs) >= syncedCutoffMs)
     )).slice(-CAP) : [];
   } catch {
     return [];

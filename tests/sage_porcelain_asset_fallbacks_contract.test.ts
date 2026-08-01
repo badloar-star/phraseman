@@ -137,7 +137,11 @@ describe('sage porcelain static asset coverage', () => {
     expect(taskPaths[6]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/listening.webp');
     expect(taskPaths[7]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/sentence_build.webp');
     expect(taskPaths[8]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/speaking.webp');
+    expect(taskPaths[9]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/trainer.webp');
+    expect(taskPaths[10]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/flashcards.webp');
     expect(routePaths[0]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_gavan.webp');
+    expect(routePaths[1]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_voyazh.webp');
+    expect(routePaths[2]).toBe('../assets/images/personal_plan_tasks_fit/sagePorcelain/route_mitap.webp');
     for (const relativePath of [...taskPaths, ...routePaths]) {
       expect(existsSync(path.resolve(ROOT, 'app', relativePath))).toBe(true);
     }

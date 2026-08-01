@@ -366,14 +366,14 @@ export const refreshShardsBalanceFromCloudAuthoritative = async (): Promise<numb
       const documentUpdatedAtMs = parseUpdatedAtMs(data.updatedAt);
       const serverUpdatedAtMs = Math.max(shardUpdatedAtMs ?? 0, documentUpdatedAtMs ?? 0);
       if (serverUpdatedAtMs <= 0) return null;
-      const applied = await replaceShardsBalanceLocalUnlocked(balance, {
+      const outcome = await replaceShardsBalanceLocalWithOutcomeUnlocked(balance, {
         // Never invent a fresh timestamp for a possibly stale snapshot: a
         // later purchase/gift response must remain able to win by version.
         updatedAtMs: serverUpdatedAtMs,
         op: 'replace',
         reason: 'tournament_server_reconcile',
       }, accountToken);
-      return applied ? balance : null;
+      return outcome === 'applied' ? balance : null;
     });
   } catch {
     return null;

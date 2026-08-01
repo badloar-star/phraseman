@@ -62,6 +62,20 @@ describe('authoritative tournament wallet reconciliation', () => {
     expect(JSON.parse(storage.shards_balance_meta_v1).updatedAtMs).toBe(300);
   });
 
+  it('refuses an older authoritative snapshot when the local wallet is newer', async () => {
+    await replaceShardsBalanceLocal(11, { updatedAtMs: 400, op: 'earn', reason: 'newer_local' });
+    mockGetServerDoc.mockResolvedValue({
+      data: () => ({ shards: 2, shards_updated_at_ms: 300, updatedAt: 200 }),
+    });
+
+    await expect(refreshShardsBalanceFromCloudAuthoritative()).resolves.toBeNull();
+    await expect(getShardsBalance()).resolves.toBe(11);
+    expect(JSON.parse(storage.shards_balance_meta_v1)).toMatchObject({
+      updatedAtMs: 400,
+      reason: 'newer_local',
+    });
+  });
+
   it('refuses an unversioned snapshot instead of inventing authority', async () => {
     await replaceShardsBalanceLocal(11, { updatedAtMs: 400, op: 'earn', reason: 'newer_local' });
     mockGetServerDoc.mockResolvedValue({ data: () => ({ shards: 2 }) });

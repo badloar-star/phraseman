@@ -240,5 +240,14 @@ describe('sage porcelain static asset coverage', () => {
     expect(source('components/EnergyIcon.tsx')).toContain(
       "sagePorcelain: require('../assets/images/energy/energy-sagePorcelain.webp')",
     );
+    expect(source('constants/generatedThemeIconAssets.ts')).toContain(
+      "sagePorcelain: require('../assets/images/generated_theme_icons/lesson-exam-sagePorcelain.webp')",
+    );
+    expect(source('constants/weeklyCompassIcons.ts')).toContain(
+      "sagePorcelain: 'assets/images/weekly_compass_icons/sagePorcelain.webp'",
+    );
+    expect(source('constants/weeklyCompassIcons.ts')).toContain(
+      "sagePorcelain: require('../assets/images/weekly_compass_icons/sagePorcelain.webp')",
+    );
   });
 });

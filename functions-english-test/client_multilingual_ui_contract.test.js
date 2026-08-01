@@ -269,6 +269,26 @@ function assertKeyboardAnswerRaceIsLocked(fixture) {
   assert.equal(effects.api.filter(({ action }) => action === 'progress').length, 1);
 }
 
+function assertSpaceFirstAnswerIsLocked(fixture) {
+  const question = { id: 'space-first', scenarioRu: 'ru', instructionRu: 'instruction', scenario: 'scenario', prompt: 'prompt', options: ['first', 'second'], correctIndex: 1, level: 'A1' };
+  fixture.context.window.__keyboardStateTest.enterQuestion(question);
+  const options = fixture.view().querySelectorAll('.elt-option');
+
+  options[1].focus();
+  assert.equal(keydown(fixture, ' '), true);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 1);
+  assert.equal(fixture.context.window.__keyboardStateTest.state().answerLocked, true);
+  assert.equal(fixture.pendingTimeouts(200).length, 1);
+
+  assert.equal(keydown(fixture, '1'), false);
+  options[0].click();
+  assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 1);
+  assert.equal(fixture.pendingTimeouts(200).length, 1);
+
+  fixture.flushTimeouts(200);
+  assert.deepEqual(fixture.context.window.__keyboardStateTest.effects().answers, [{ questionId: 'space-first', selectedIndex: 1, skipped: false }]);
+}
+
 function leafPaths(value, prefix = '') {
   if (typeof value === 'string') return [prefix];
   return Object.keys(value).flatMap((key) => leafPaths(value[key], prefix ? `${prefix}.${key}` : key));
@@ -715,6 +735,10 @@ test('focused Enter and Space selection share the click lock before delayed answ
   assert.deepEqual(clickFixture.context.window.__keyboardStateTest.effects().answers, [{ questionId: 'focused-key', selectedIndex: 0, skipped: false }]);
 });
 
+test('focused Space locks its first answer before later keyboard or click input', () => {
+  assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp());
+});
+
 test('keyboard race behavioral contract rejects removal of the immediate selection gate', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   const withoutGate = source.replace(
@@ -723,6 +747,13 @@ test('keyboard race behavioral contract rejects removal of the immediate selecti
   );
   assert.notEqual(withoutGate, source, 'mutation must remove the shared immediate selection gate');
   assert.throws(() => assertKeyboardAnswerRaceIsLocked(loadKeyboardStateApp({ source: withoutGate })));
+});
+
+test('Space-first behavioral contract rejects removing Space key handling', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const withoutSpace = source.replace("e.key === 'Enter' || e.key === ' '", "e.key === 'Enter'");
+  assert.notEqual(withoutSpace, source, 'mutation must remove Space key handling');
+  assert.throws(() => assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp({ source: withoutSpace })));
 });
 
 test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {

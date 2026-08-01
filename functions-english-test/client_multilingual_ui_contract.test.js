@@ -68,7 +68,7 @@ test('resolves only supported assessed languages and has complete immutable regi
   assert.equal(Object.isFrozen(i18n.TESTS), true);
   assert.equal(i18n.TESTS.de.certificateNames.en, 'German');
   assert.equal(i18n.TESTS.fr.certificateNames.ru, 'французского языка');
-  assert.equal(i18n.TESTS.fr.resultNames.ru, 'французскому языку');
+  assert.equal(i18n.TESTS.fr.resultNames.ru, 'французского языка');
 });
 
 test('handles unavailable storage without accepting untrusted saved values', () => {
@@ -119,16 +119,53 @@ test('keeps matching complete dictionaries and safely interpolates own variables
 
 test('provides explicit accessible text-only assessment copy for every planned screen', () => {
   const i18n = loadI18n();
-  const requiredKeys = [
+  const REQUIRED_COPY_KEYS = [
     'landing.howItWorks', 'landing.certificatePreview', 'landing.trust', 'landing.finalCta',
     'aria.answerRadiogroup', 'aria.answerOptions', 'aria.certificateDialog', 'aria.certificateLanguage',
     'aria.certificateTheme', 'aria.iosSavePreview', 'aria.storeLinks', 'aria.timer',
     'aria.testSelector', 'aria.localeToggle',
+    'question.skip', 'question.exit', 'question.answerGroup', 'question.timerRemaining', 'question.number',
+    'exitConfirm.title', 'exitConfirm.text', 'exitConfirm.stay', 'exitConfirm.leave',
+    'sharing.webShareTitle', 'sharing.resultPayload', 'sharing.copied', 'sharing.clipboardPrompt',
+    'certificate.dialogLabel', 'certificate.closeLabel', 'certificate.languageGroup', 'certificate.themeGroup',
+    'certificate.create', 'certificate.downloadPng', 'certificate.printPdf', 'certificate.close',
+    'certificate.iosReadyImageAlt', 'certificate.iosLongPressHint', 'certificate.pngFailure', 'certificate.printTitle',
+    'certificate.ctaText', 'certificate.ctaButton', 'certificate.bodyTitle', 'certificate.certifies',
+    'certificate.completed', 'certificate.received', 'certificate.summary', 'certificate.informal',
+    'certificate.themes.gold', 'certificate.themes.dark', 'certificate.themes.emerald', 'certificate.themes.rose', 'certificate.themes.royal',
+    'resultCta.low.title', 'resultCta.low.text', 'resultCta.low.button',
+    'resultCta.mid.title', 'resultCta.mid.text', 'resultCta.mid.button',
+    'resultCta.high.title', 'resultCta.high.text', 'resultCta.high.button',
+    'storeBadges.appStore', 'storeBadges.googlePlay', 'storeBadges.appStoreAria', 'storeBadges.googlePlayAria',
+    'loading.title', 'loading.text', 'error.title', 'error.text', 'error.retry',
+    'name.placeholder', 'alerts.nameRequired', 'stats.correct', 'stats.answered', 'stats.time',
+    'sharing.restart', 'sharing.copy', 'certificate.cta', 'footer.copyright', 'footer.terms', 'footer.privacy',
   ];
   for (const locale of i18n.UI_LOCALES) {
-    for (const key of requiredKeys) assert.equal(typeof i18n.t(locale, key), 'string', `${locale}.${key}`);
+    for (const key of REQUIRED_COPY_KEYS) assert.equal(typeof i18n.t(locale, key, { count: 1, correct: 1, answered: 1, language: 'English', level: 'A1' }), 'string', `${locale}.${key}`);
     assert.match(i18n.t(locale, 'result.scope'), locale === 'ru' ? /аудирование.*говорение.*письмо/i : /listening.*speaking.*writing/i);
     assert.doesNotMatch(i18n.t(locale, 'levels.B2'), locale === 'ru' ? /речь/i : /speech/i);
-    assert.match(i18n.t(locale, 'resultCta.text'), /English/i);
+    assert.match(i18n.t(locale, 'resultCta.text'), locale === 'ru' ? /английск/i : /English/i);
   }
+});
+
+test('uses natural genitive result names and text-only level claims in both locales', () => {
+  const i18n = loadI18n();
+  const ruNames = { en: 'английского языка', de: 'немецкого языка', fr: 'французского языка', it: 'итальянского языка', es: 'испанского языка' };
+  for (const [code, name] of Object.entries(ruNames)) {
+    assert.equal(i18n.TESTS[code].resultNames.ru, name);
+    assert.equal(i18n.t('ru', 'result.subject', { language: name }), `Уровень ${name}`);
+    assert.equal(i18n.t('en', 'result.subject', { language: i18n.TESTS[code].resultNames.en }), `${i18n.TESTS[code].resultNames.en} level`);
+  }
+  const levelKeys = ['Pre-A1', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+  for (const locale of i18n.UI_LOCALES) {
+    for (const level of levelKeys) {
+      const copy = i18n.t(locale, `levels.${level}`);
+      assert.match(copy, locale === 'ru' ? /текст|письмен/i : /text|written/i);
+      assert.doesNotMatch(copy, locale === 'ru' ? /говор|обща|выража(ть|ет|ют)|произн|слуш/i : /speak|communicat|express(?!ions)|produc|listen/i);
+    }
+  }
+  assert.doesNotMatch(i18n.t('ru', 'resultCta.low.text'), /English/);
+  assert.match(i18n.t('ru', 'resultCta.low.text'), /английск/i);
+  assert.match(i18n.t('en', 'resultCta.low.text'), /English/);
 });

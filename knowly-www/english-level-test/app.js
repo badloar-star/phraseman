@@ -69,8 +69,10 @@
     return hasI18n ? EnglishTestI18n.t(uiLocale, key, vars) : '';
   }
 
-  function selectedLanguageName() {
-    return hasI18n ? EnglishTestI18n.TESTS[selectedTestLanguage].names[uiLocale].nominative : 'English';
+  function selectedLandingLanguageName() {
+    if (!hasI18n) return 'English';
+    const names = EnglishTestI18n.TESTS[selectedTestLanguage].names[uiLocale];
+    return uiLocale === 'ru' ? names.genitive : names.nominative;
   }
 
   function updatePageLocale() {
@@ -493,12 +495,13 @@
 
   // ---------- Shared fragments ----------
 
-  function brandHeader() {
+  function brandHeader(options) {
+    const localized = options?.localized === true;
     return `
       <header class="elt-brand">
-        <a class="elt-brand-link" href="/" aria-label="${copy('header.brandHomeAria')}">
+        <a class="elt-brand-link" href="/" aria-label="${localized ? copy('header.brandHomeAria') : 'Phraseman — на главную'}">
           <img class="elt-brand-icon" src="/assets/phraseman-icon-128.png" alt="" width="34" height="34" />
-          <span class="elt-brand-text"><b>Phraseman</b><small>${selectedLanguageName()}</small></span>
+          <span class="elt-brand-text"><b>Phraseman</b><small>${localized ? selectedLandingLanguageName() : 'Живой английский'}</small></span>
         </a>
         ${attemptTestLanguage === null ? `<button class="elt-ui-locale-toggle" type="button" aria-label="${copy('aria.localeToggle')}" title="${copy('aria.localeToggle')}">
           <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.4 3 14.6 0 18M12 3c-3 3.4-3 14.6 0 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span>${uiLocale.toUpperCase()}</span>
@@ -507,11 +510,12 @@
     `;
   }
 
-  function siteFooter() {
+  function siteFooter(options) {
+    const localized = options?.localized === true;
     return `
       <footer class="elt-footer">
-        <a href="/">${copy('footer.about')}</a>
-        <a href="/legal/privacy/">${copy('footer.privacy')}</a>
+        <a href="/">${localized ? copy('footer.about') : 'О приложении'}</a>
+        <a href="/legal/privacy/">${localized ? copy('footer.privacy') : 'Privacy Policy'}</a>
         <a href="mailto:support@knowlyapps.com">support@knowlyapps.com</a>
       </footer>
     `;
@@ -573,11 +577,11 @@
     lastProgress = 0;
     const node = el(`
       <div class="elt-landing">
-        ${brandHeader()}
+        ${brandHeader({ localized: true })}
 
         <section class="elt-hero" aria-labelledby="elt-hero-title">
           <p class="elt-kicker">${copy('landing.eyebrow')}</p>
-          <h1 id="elt-hero-title">${copy('landing.title', { language: selectedLanguageName() })}</h1>
+          <h1 id="elt-hero-title">${copy('landing.title', { language: selectedLandingLanguageName() })}</h1>
           <p class="elt-lead">${copy('landing.subtitle')}</p>
 
           <section class="elt-language-selector" aria-label="${copy('aria.testSelector')}">
@@ -646,7 +650,7 @@
           <button class="elt-btn elt-btn-primary elt-btn-hero" data-magnet id="startBtn2">${copy('landing.finalCtaButton')}</button>
         </section>
 
-        ${siteFooter()}
+        ${siteFooter({ localized: true })}
       </div>
     `);
 

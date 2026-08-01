@@ -367,7 +367,7 @@ test('runs the real landing controls through test selection, locale persistence,
   assert.equal(fixture.context.document.documentElement.lang, 'ru');
   assert.equal(fixture.context.document.title, 'Тест уровня языка — Phraseman');
   assert.equal(fixture.description.content, 'Узнайте свой уровень языка и получите персональный результат.');
-  assert.match(fixture.view().innerHTML, /Определите уровень немецкий язык/);
+  assert.match(fixture.view().innerHTML, /Определите уровень немецкого языка/);
   assert.match(fixture.view().innerHTML, />RU</);
 
   const staleFrenchButton = fixture.view().querySelectorAll('[data-test-language]').find((button) => button.dataset.testLanguage === 'fr');
@@ -375,6 +375,33 @@ test('runs the real landing controls through test selection, locale persistence,
   assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
   staleFrenchButton.click();
   assert.equal(fixture.location.href, 'https://example.test/level?ui=ru&test=de');
+});
+
+test('uses every Russian genitive test-language form after the landing level label', () => {
+  const expected = {
+    en: 'уровень английского языка',
+    de: 'уровень немецкого языка',
+    fr: 'уровень французского языка',
+    it: 'уровень итальянского языка',
+    es: 'уровень испанского языка',
+  };
+  for (const [code, phrase] of Object.entries(expected)) {
+    const fixture = loadLandingApp({ href: `https://example.test/level?ui=ru&test=${code}` });
+    assert.match(fixture.view().innerHTML, new RegExp(phrase));
+  }
+});
+
+test('keeps post-start chrome on its existing Russian surface until all states localize together', () => {
+  const source = fs.readFileSync(appPath, 'utf8').replace(
+    '  updatePageLocale();\n  renderLanding();',
+    "  updatePageLocale();\n  attemptTestLanguage = selectedTestLanguage;\n  renderCTA({ estimatedLevel: 'A1' });",
+  );
+  const fixture = loadLandingApp({ href: 'https://example.test/level?ui=en&test=de', source });
+  assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
+  assert.equal(fixture.view().querySelector('.elt-ui-locale-toggle'), null);
+  assert.match(fixture.view().innerHTML, /Живой английский/);
+  assert.match(fixture.view().innerHTML, />О приложении</);
+  assert.doesNotMatch(fixture.view().innerHTML, /Real English|Deutsch/);
 });
 
 test('behavioral landing checks reject missing control wiring, rerendering, and metadata updates', () => {

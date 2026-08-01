@@ -400,10 +400,9 @@ test('keeps post-start chrome on its existing Russian surface until all states l
   );
   const fixture = loadLandingApp({ href: 'https://example.test/level?ui=en&test=de', source });
   assert.equal(fixture.view().querySelectorAll('[data-test-language]').length, 0);
-  assert.equal(fixture.view().querySelector('.elt-ui-locale-toggle'), null);
-  assert.match(fixture.view().innerHTML, /Живой английский/);
-  assert.match(fixture.view().innerHTML, />О приложении</);
-  assert.doesNotMatch(fixture.view().innerHTML, /Real English|Deutsch/);
+  assert.ok(fixture.view().querySelector('.elt-ui-locale-toggle'));
+  assert.match(fixture.view().innerHTML, /Real English/);
+  assert.match(fixture.view().innerHTML, />About the app</);
 });
 
 test('behavioral landing checks reject missing control wiring, rerendering, and metadata updates', () => {
@@ -420,4 +419,28 @@ test('behavioral landing checks reject missing control wiring, rerendering, and 
       assert.equal(fixture.context.document.documentElement.lang, 'ru');
     });
   }
+});
+
+test('owns an explicit active view and rerenders every localized surface without restarting an attempt', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  assert.match(source, /let activeView\s*=\s*\{\s*kind:\s*'landing'/);
+  assert.match(source, /function setActiveView\(kind, data\)/);
+  assert.match(source, /function rerenderForUiLocale\(\)/);
+  assert.match(source, /renderQuestion\(activeView\.data,\s*\{\s*preserveAttempt:\s*true\s*\}\)/);
+  assert.match(source, /renderResult\(activeView\.data,\s*\{\s*preserveAttempt:\s*true\s*\}\)/);
+  assert.match(source, /renderCTA\(activeView\.data,\s*\{\s*preserveAttempt:\s*true\s*\}\)/);
+  assert.match(source, /if \(!options\.preserveAttempt\) startQuestionTimer\(\);/);
+  assert.match(source, /if \(!options\.preserveAttempt && consent\) api\('cta_view'/);
+});
+
+test('uses dictionary copy for service chrome and keeps assessed question content in the test language', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const banned = ['ÐÐµ Ð·Ð½Ð°ÑŽ', 'Ð’Ñ‹Ð¹Ñ‚Ð¸', 'Ð’ÐµÑ€Ð½Ð¾', 'Ð¡Ð¾Ð·Ð´Ð°Ñ‚ÑŒ ÑÐµÑ€Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚', 'ÐŸÐ¾Ð´ÐµÐ»Ð¸Ñ‚ÑŒÑÑ', 'Start free', "I don't know", 'Exit', 'Correct', 'Create certificate', 'Share', 'Take the test again'];
+  assert.match(source, /copy\('question\.skip'\)/);
+  assert.match(source, /copy\('exitConfirm\.title'\)/);
+  assert.match(source, /copy\('certificate\.create'\)/);
+  assert.match(source, /copy\('sharing\.webShareTitle'\)/);
+  assert.match(source, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
+  assert.match(source, /class="elt-scenario" lang="\$\{questionLanguage\}"/);
+  assert.match(source, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
 });

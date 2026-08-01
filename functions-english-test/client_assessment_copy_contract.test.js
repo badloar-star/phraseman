@@ -124,11 +124,12 @@ test('question screen separates Russian instructions from English assessment mat
   const app = read('app.js');
   const styles = read('styles.css');
 
-  assert.match(app, /class="elt-scenario" lang="ru"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
-  assert.match(app, /class="elt-instruction" lang="ru"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
-  assert.match(app, /class="elt-stimulus" lang="en"/);
+  assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
+  assert.match(app, /class="elt-scenario" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
+  assert.match(app, /class="elt-instruction" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
+  assert.match(app, /class="elt-stimulus" lang="\$\{questionLanguage\}"/);
   assert.match(app, /escapeHtml\(q\.stimulus\)/);
-  assert.match(app, /class="elt-option-text" lang="en"/);
+  assert.match(app, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
   assert.doesNotMatch(app, /escapeHtml\(q\.scenario\)/);
   assert.doesNotMatch(app, /escapeHtml\(q\.prompt\)/);
   assert.match(styles, /\.elt-instruction\s*\{/);
@@ -165,8 +166,8 @@ test('consent and fallback certificate describe data and scope honestly', () => 
   const app = read('app.js');
 
   assert.match(app, /copy\('consent\.text'\)/);
-  assert.match(app, /Предварительная текстовая оценка/);
-  assert.match(app, /не проверяет аудирование и говорение/);
+  assert.match(app, /copy\('result\.level'/);
+  assert.match(app, /copy\('certificate\.informal'\)/);
 });
 
 test('reduced-motion certificate skips confetti and theme animation', () => {

@@ -67,7 +67,7 @@ describe('new deterministic tournament pool v2', () => {
   test('builds a fresh reachable 180-task pool balanced across five modes', () => {
     const result = buildProductionSizedPool();
 
-    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v5');
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v6');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
     expect(result.tasks).toHaveLength(180);
     expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(180);
@@ -99,7 +99,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260801_v5_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v6_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);
@@ -216,6 +216,141 @@ describe('new deterministic tournament pool v2', () => {
     expect(blankPositions.get('middle') ?? 0).toBeGreaterThanOrEqual(6);
     expect(blankPositions.get('last') ?? 0).toBeGreaterThanOrEqual(6);
     expect(sourcePhraseIds.size).toBe(36);
+  });
+
+  test('quality gate removes every audited definite and weak content defect', () => {
+    const serialized = JSON.stringify(buildProductionSizedPool().tasks);
+    const forbidden = [
+      /В этом месяце мы заплатили сч[её]т больше/iu,
+      /Она об истории Рима/iu,
+      /Предложение пойти гулять вместе/iu,
+      /we had a plan together/iu,
+      /с срочной/iu,
+      /Both options were chosen by equal numbers/iu,
+      /Let's just throw out anything/iu,
+      /\b(?:I is|She are|You am|He are|How are it)\b/iu,
+      /не далеко/iu,
+      /bring (?:more )?towels to us/iu,
+      /Anytime,? it is not (?:a )?problem/iu,
+      /я зову его/iu,
+      /Swimming is very good for you/iu,
+      /Не мог бы показать мне пример/iu,
+      /learn English every day/iu,
+      /booking for tonight/iu,
+      /The soup tasted different but good/iu,
+      /If you saved more, you would relax/iu,
+      /attend a training/iu,
+      /show me on the map/iu,
+      /walk everywhere there/iu,
+      /Fruit is healthier than sweet cake/iu,
+      /I do not watch TV often/iu,
+      /I can sleep well after sport/iu,
+      /My father rests on weekends/iu,
+      /There is always someone busy at home/iu,
+      /The budget was confirmed last week/iu,
+      /Ты не один\/одна/iu,
+      /I need a jacket for today/iu,
+      /The wind feels strong and cold/iu,
+      /A mild temperature/iu,
+      /We could meet for coffee Saturday/iu,
+      /Hi there\. I am happy/iu,
+      /I am not shy\. I am ready/iu,
+      /He is my friend\. Hi/iu,
+      /If it rains we will stay/iu,
+      /I have a cold and runny nose/iu,
+      /When will the fever stop/iu,
+      /He is a retired man/iu,
+      /Сколько процентов скидка/iu,
+      /Do you have the budget plan/iu,
+      /A cushion gives me real peace/iu,
+      /If I save money, I will start/iu,
+      /I will work hard to reach it/iu,
+      /I am working on a deadline/iu,
+      /I confirm the meeting at three/iu,
+      /I will share the agenda with everyone/iu,
+      /I have lost you here/iu,
+      /We wait two minutes for him/iu,
+      /пункты действий/iu,
+      /I have received dividends from my shares for years/iu,
+      /What is the metro line here/iu,
+      /You can do it well/iu,
+    ];
+
+    for (const defect of forbidden) expect(serialized).not.toMatch(defect);
+  });
+
+  test('hard fill-gap tasks materially progress beyond pronouns and present be', () => {
+    const { tasks, manifest } = buildProductionSizedPool();
+    const hardTasks = tasks.filter((task) => task.mode === 'fill_gap' && task.difficulty === 3);
+    const elementaryAnswers = new Set([
+      'i', 'you', 'he', 'she', 'it', 'we', 'they',
+      'me', 'him', 'her', 'us', 'them', 'am', 'is', 'are', 'be',
+    ]);
+    const materiallyHard = hardTasks.filter((task) => (
+      !elementaryAnswers.has(String(task.payload.correctAnswer).toLocaleLowerCase('en'))
+    ));
+    const roles = manifest.diversity.fillGapGrammarRoles as Readonly<Record<string, number>>;
+
+    expect(hardTasks).toHaveLength(12);
+    expect(materiallyHard.length).toBeGreaterThanOrEqual(8);
+    expect(roles.article_form ?? 0).toBeGreaterThan(0);
+    expect(roles.verb_agreement ?? 0).toBeGreaterThan(0);
+    expect(roles.noun_number ?? 0).toBeGreaterThan(0);
+  });
+
+  test('fill-gap explanations name the tested relation instead of a generic case error', () => {
+    const articleTasks = buildProductionSizedPool().tasks.filter((task) => (
+      task.mode === 'fill_gap'
+      && ['a', 'an'].includes(String(task.payload.correctAnswer).toLocaleLowerCase('en'))
+    ));
+
+    expect(articleTasks.length).toBeGreaterThan(0);
+    for (const task of articleTasks) {
+      const reasons = task.explanation?.wrongOptionReasons?.filter(Boolean) ?? [];
+      expect(reasons.length).toBe(3);
+      for (const reason of reasons) {
+        expect(reason).toMatch(/артикл/iu);
+        expect(reason).not.toMatch(/падеж/iu);
+      }
+    }
+  });
+
+  test('speed-match uses contextual phrase pairs instead of incompatible isolated forms', () => {
+    const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
+    const forbiddenIsolatedPairs = new Set([
+      'sent\u0000отправить',
+      'developing\u0000разрабатывать',
+      'waiting\u0000ждать',
+      'finished\u0000закончить',
+      'similar\u0000похожую',
+      'discussed\u0000обсуждалась',
+      'grouped\u0000сгруппировать',
+    ]);
+
+    for (const task of tasks) {
+      expect(task.payload.prompt).toBe('Соедините английские фразы с точными русскими переводами.');
+      const rightOptions = task.payload.rightOptions as string[];
+      for (const item of task.payload.items as Array<Record<string, unknown>>) {
+        const prompt = String(item.prompt);
+        const translation = rightOptions[Number(item.correctIndex)];
+        expect(phraseTokens(prompt).length).toBeGreaterThanOrEqual(2);
+        expect(phraseTokens(translation).length).toBeGreaterThanOrEqual(2);
+        expect(forbiddenIsolatedPairs).not.toContain(
+          `${prompt.toLocaleLowerCase('en')}\u0000${translation.toLocaleLowerCase('ru')}`,
+        );
+        expect(String((item.explanation as { ruleNote: string }).ruleNote))
+          .not.toContain('точная пара из авторского словаря');
+      }
+    }
+  });
+
+  test('oddity explanations anchor one intended repair without claiming a token was uniquely replaced', () => {
+    const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'find_oddity');
+
+    for (const task of tasks) {
+      expect(task.explanation?.ruleNote).not.toMatch(/подменил[аои]?/iu);
+      expect(task.explanation?.ruleNote).toMatch(/если сохраняем/iu);
+    }
   });
 
   test('all 144 non-speed tasks test a distinct primary authored phrase', () => {
@@ -448,12 +583,12 @@ describe('new deterministic tournament pool v2', () => {
       const rightOptions = task.payload.rightOptions as string[];
       const items = task.payload.items as Array<Record<string, unknown>>;
       expect(rightOptions).toHaveLength(6);
-      expect(rightOptions.every((value) => /^\p{L}[\p{L}\p{M}'’\-]*$/u.test(value))).toBe(true);
+      expect(rightOptions.every((value) => phraseTokens(value).length >= 2)).toBe(true);
       expect(new Set(rightOptions.map((value) => value.toLocaleLowerCase('ru'))).size).toBe(6);
       expect(items).toHaveLength(6);
       expect(items.map((item) => item.correctIndex).sort()).toEqual([0, 1, 2, 3, 4, 5]);
       for (const item of items) {
-        expect(item.prompt).toEqual(expect.stringMatching(/^\p{L}[\p{L}\p{M}'’\-]*$/u));
+        expect(phraseTokens(String(item.prompt)).length).toBeGreaterThanOrEqual(2);
         expect(item.options).toEqual(rightOptions);
         const reasons = (item.explanation as { wrongOptionReasons: string[] }).wrongOptionReasons;
         expect(reasons).toHaveLength(6);
@@ -538,7 +673,7 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('v5 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
+  test('v6 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
     const { tasks } = buildProductionSizedPool();
     const exposure = new Map<string, number>();
     let previousTaskIds = new Set<string>();
@@ -565,14 +700,14 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('runtime passes consumed v5 ids separately instead of shrinking the calendar deck', () => {
+  test('runtime passes consumed v6 ids separately instead of shrinking the calendar deck', () => {
     const source = require('node:fs').readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
     const start = source.indexOf('export function buildTournamentRounds');
     const end = source.indexOf('\nexport ', start + 1);
     const implementation = source.slice(start, end < 0 ? undefined : end);
-    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v5')");
-    expect(implementation).toContain('pool: usesV5ExposureDeck');
-    expect(implementation).toContain('excludedTaskIds: usesV5ExposureDeck ? usedTaskIds : undefined');
+    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v6')");
+    expect(implementation).toContain('pool: usesDeterministicExposureDeck');
+    expect(implementation).toContain('excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined');
   });
 
   test('repeated generation is byte-for-byte deterministic', () => {

@@ -7,8 +7,8 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260801_v5';
-const EXPECTED_SOURCE_VERSION = 'tpool_20260729_v3';
+const EXPECTED_VERSION = 'tpool_20260801_v6';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v5';
 const EXPECTED_NEW_COUNT = 180;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';
@@ -212,7 +212,7 @@ function pinnedSha(name, argv) {
 
 function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V5_APPLY !== '1') throw new Error('apply_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V6_APPLY !== '1') throw new Error('apply_guard_missing');
   return true;
 }
 
@@ -588,7 +588,7 @@ async function main() {
 
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v5_preflight_v1',
+    kind: 'tournament_pool_v6_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -681,7 +681,7 @@ async function main() {
 
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v5_apply_report_v1',
+    kind: 'tournament_pool_v6_apply_report_v1',
     completedAt: new Date().toISOString(),
     actualMutations: {
       created,

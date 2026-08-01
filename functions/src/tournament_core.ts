@@ -956,7 +956,7 @@ function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
     || !boundedStringArray(rightOptions, {
       maxItems: TOURNAMENT_TASK_LIMITS.maxTimeattackItems,
       maxItemBytes: TOURNAMENT_TASK_LIMITS.optionBytes,
-    }) || !rightOptions.every((value) => isSingleLexicalWord(value))) return false;
+    }) || !rightOptions.every((value) => value.trim().split(/\s+/u).length >= 2)) return false;
   const normalized = rightOptions.map((value) => value.trim().toLocaleLowerCase('ru'));
   if (new Set(normalized).size !== normalized.length) return false;
   const correctIndexes = new Set<number>();
@@ -965,7 +965,8 @@ function hasStrictSpeedMatchFieldContract(task: TournamentTask): boolean {
     if (!isRecord(item) || !Array.isArray(item.options)
       || item.options.length !== rightOptions.length
       || !item.options.every((option, index) => option === rightOptions[index])
-      || !isSingleLexicalWord(item.prompt)
+      || typeof item.prompt !== 'string'
+      || item.prompt.trim().split(/\s+/u).length < 2
       || !Number.isInteger(item.correctIndex)) return false;
     prompts.add(item.prompt.trim().toLocaleLowerCase('en'));
     const correctIndex = Number(item.correctIndex);
@@ -2410,21 +2411,24 @@ export type TaskSelectionParams = {
   roomId: string;
   roundNo: number;
   count: number;
-  /** Already consumed task ids. Kept outside the v5 deck so removal cannot shift its calendar cursor. */
+  /** Already consumed task ids. Kept outside the exposure deck so removal cannot shift its calendar cursor. */
   excludedTaskIds?: ReadonlySet<string> | readonly string[];
   /** 'single' — один режим на раунд; 'mix' — любые режимы. */
   modeKind: 'single' | 'mix';
 };
 
-const TOURNAMENT_V5_EXPOSURE_TAG = 'pool:tpool_20260801_v5';
+const TOURNAMENT_EXPOSURE_TAGS = [
+  'pool:tpool_20260801_v5',
+  'pool:tpool_20260801_v6',
+] as const;
 
-type TournamentV5RoomDeckPosition = {
+type TournamentRoomDeckPosition = {
   readonly dayOrdinal: number;
   readonly shard: number;
   readonly roomSeries: string;
 };
 
-function tournamentV5RoomDeckPosition(roomId: string): TournamentV5RoomDeckPosition | null {
+function tournamentRoomDeckPosition(roomId: string): TournamentRoomDeckPosition | null {
   const match = /_(\d{4}-\d{2}-\d{2})(?:_r(\d+))?$/.exec(roomId);
   if (!match) return null;
   const dayMs = Date.parse(`${match[1]}T00:00:00.000Z`);
@@ -2434,7 +2438,7 @@ function tournamentV5RoomDeckPosition(roomId: string): TournamentV5RoomDeckPosit
   return { dayOrdinal: Math.floor(dayMs / 86_400_000), shard, roomSeries };
 }
 
-function tournamentV5DifficultyForRound(roundNo: number, dayOrdinal: number): number | null {
+function tournamentDifficultyForExposureRound(roundNo: number, dayOrdinal: number): number | null {
   if (roundNo === 1) return 1;
   if (roundNo === 2) return dayOrdinal % 2 === 0 ? 1 : 2;
   if (roundNo === 3) return 2;
@@ -2442,37 +2446,40 @@ function tournamentV5DifficultyForRound(roundNo: number, dayOrdinal: number): nu
   return null;
 }
 
-function tournamentV5DailyCellQuota(mode: string, difficulty: number, dayParity: number): number {
+function tournamentDailyExposureCellQuota(mode: string, difficulty: number, dayParity: number): number {
   let quota = 0;
   for (let roundIndex = 0; roundIndex < TOURNAMENT_ROUND_MODE_PLAN.length; roundIndex += 1) {
     if (!TOURNAMENT_ROUND_MODE_PLAN[roundIndex].includes(mode as never)) continue;
-    if (tournamentV5DifficultyForRound(roundIndex + 1, dayParity) === difficulty) quota += 1;
+    if (tournamentDifficultyForExposureRound(roundIndex + 1, dayParity) === difficulty) quota += 1;
   }
   return quota;
 }
 
-function tournamentV5CellOffsetBeforeDay(mode: string, difficulty: number, dayOrdinal: number): number {
-  const evenQuota = tournamentV5DailyCellQuota(mode, difficulty, 0);
-  const oddQuota = tournamentV5DailyCellQuota(mode, difficulty, 1);
+function tournamentExposureCellOffsetBeforeDay(mode: string, difficulty: number, dayOrdinal: number): number {
+  const evenQuota = tournamentDailyExposureCellQuota(mode, difficulty, 0);
+  const oddQuota = tournamentDailyExposureCellQuota(mode, difficulty, 1);
   const cycles = Math.floor(dayOrdinal / 2);
   return cycles * (evenQuota + oddQuota) + (dayOrdinal % 2 === 1 ? evenQuota : 0);
 }
 
-function selectTournamentV5ExposureDeck(
+function selectTournamentExposureDeck(
   candidates: readonly TournamentTask[],
   roomId: string,
   roundNo: number,
   count: number,
   excludedTaskIds: TaskSelectionParams['excludedTaskIds'],
 ): TournamentTask[] | null {
-  if (candidates.length === 0
-    || !candidates.every((task) => task.tags?.includes(TOURNAMENT_V5_EXPOSURE_TAG))) return null;
-  const roomPosition = tournamentV5RoomDeckPosition(roomId);
+  if (candidates.length === 0) return null;
+  const exposureTag = TOURNAMENT_EXPOSURE_TAGS.find((tag) => (
+    candidates.every((task) => task.tags?.includes(tag))
+  ));
+  if (!exposureTag) return null;
+  const roomPosition = tournamentRoomDeckPosition(roomId);
   if (!roomPosition) return null;
   const modes = [...new Set(candidates.map((task) => task.mode))].sort();
   if (modes.length !== 1) return null;
   const mode = modes[0];
-  const difficulty = tournamentV5DifficultyForRound(roundNo, roomPosition.dayOrdinal);
+  const difficulty = tournamentDifficultyForExposureRound(roundNo, roomPosition.dayOrdinal);
   if (!difficulty) return null;
   const cell = candidates.filter((task) => task.difficulty === difficulty);
   if (cell.length === 0) return null;
@@ -2480,15 +2487,15 @@ function selectTournamentV5ExposureDeck(
     .slice(0, roundNo - 1)
     .reduce((total, roundModes, roundIndex) => total + (
       roundModes.includes(mode as never)
-        && tournamentV5DifficultyForRound(roundIndex + 1, roomPosition.dayOrdinal) === difficulty ? 1 : 0
+        && tournamentDifficultyForExposureRound(roundIndex + 1, roomPosition.dayOrdinal) === difficulty ? 1 : 0
     ), 0);
-  const offset = tournamentV5CellOffsetBeforeDay(mode, difficulty, roomPosition.dayOrdinal)
+  const offset = tournamentExposureCellOffsetBeforeDay(mode, difficulty, roomPosition.dayOrdinal)
     + earlierOccurrence
     + roomPosition.shard * 2
     + tournamentHash32(roomPosition.roomSeries);
   const ordered = seededShuffle(
     [...cell].sort((left, right) => left.taskId.localeCompare(right.taskId)),
-    `tournament-v5-exposure:${mode}:d${difficulty}`,
+    `tournament-${exposureTag.endsWith('_v5') ? 'v5' : 'v6'}-exposure:${mode}:d${difficulty}`,
   );
   const rotated = Array.from({ length: ordered.length }, (_, index) => ordered[(offset + index) % ordered.length]);
   const excluded = excludedTaskIds instanceof Set
@@ -2539,8 +2546,8 @@ export function selectRoundTasks(params: TaskSelectionParams): TournamentTask[] 
       candidates = verified.filter((t) => t.mode === mode);
     }
   }
-  const v5Deck = selectTournamentV5ExposureDeck(candidates, roomId, roundNo, count, excludedTaskIds);
-  if (v5Deck) return v5Deck;
+  const exposureDeck = selectTournamentExposureDeck(candidates, roomId, roundNo, count, excludedTaskIds);
+  if (exposureDeck) return exposureDeck;
   return seededShuffle(candidates, seed).slice(0, Math.max(0, count));
 }
 

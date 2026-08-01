@@ -9,12 +9,10 @@ import {
   phraseTokens,
   type SourceDay,
   type SourcePhrase,
-  type SourceVocabularyWord,
-  type SourceWord,
 } from './tournament_task_factory';
 import { requiredCells } from './tournament_pool_plan';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v5' as const;
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v6' as const;
 export const NEW_TOURNAMENT_POOL_TASKS_PER_MODE = 36;
 
 export const NEW_TOURNAMENT_POOL_MODES = [
@@ -74,7 +72,7 @@ type AuthoredPair = {
   readonly ru: string;
 };
 
-type AuthoredWordPair = AuthoredPair & {
+type AuthoredSpeedPair = AuthoredPair & {
   readonly phraseId: string;
 };
 
@@ -85,6 +83,7 @@ type WordMutation = {
   readonly mutatedPhrase: string;
   readonly gapPhrase: string;
   readonly options: readonly string[];
+  readonly translationTraps: readonly string[];
 };
 
 type FillGapGrammarRole =
@@ -99,7 +98,11 @@ type FillGapMutation = WordMutation & {
   readonly tokenCount: number;
 };
 
-type StrictGrammarRole = FillGapGrammarRole | 'article_form' | 'verb_agreement' | 'noun_number';
+type StrictGrammarRole = FillGapGrammarRole
+  | 'article_form'
+  | 'verb_agreement'
+  | 'noun_number'
+  | 'lexical_meaning';
 
 type StrictGrammarMutation = WordMutation & {
   readonly grammarRole: StrictGrammarRole;
@@ -108,7 +111,7 @@ type StrictGrammarMutation = WordMutation & {
 };
 
 type FillGapCandidateMetadata = {
-  readonly grammarRole: FillGapGrammarRole;
+  readonly grammarRole: StrictGrammarRole;
   readonly correctToken: string;
   readonly position: 'first' | 'middle' | 'last';
   readonly phraseKey: string;
@@ -162,6 +165,76 @@ function normalize(value: string): string {
   return value.trim().toLocaleLowerCase('ru');
 }
 
+// This is intentionally a narrow deterministic quarantine, not a language
+// model or a generic grammar checker. Every pattern corresponds to a phrase
+// rejected during the human review of the exact production-sized pool. Bad
+// source material must be removed before it can leak into any task mode or a
+// distractor set.
+const AUDITED_CONTENT_REJECTIONS: readonly RegExp[] = [
+  /В этом месяце мы заплатили сч[её]т больше/iu,
+  /Она об истории Рима/iu,
+  /Предложение пойти гулять вместе/iu,
+  /we had a plan together/iu,
+  /с срочной/iu,
+  /Both options were chosen by equal numbers/iu,
+  /Let's just throw out anything/iu,
+  /\b(?:I is|She are|You am|He are|How are it)\b/iu,
+  /не далеко/iu,
+  /bring (?:more )?towels to us/iu,
+  /Anytime,? it is not (?:a )?problem/iu,
+  /я зову его/iu,
+  /Swimming is very good for you/iu,
+  /Не мог бы показать мне пример/iu,
+  /learn English every day/iu,
+  /booking for tonight/iu,
+  /The soup tasted different but good/iu,
+  /If you saved more, you would relax/iu,
+  /attend a training/iu,
+  /show me on the map/iu,
+  /walk everywhere there/iu,
+  /Fruit is healthier than sweet cake/iu,
+  /I do not watch TV often/iu,
+  /I can sleep well after sport/iu,
+  /My father rests on weekends/iu,
+  /There is always someone busy at home/iu,
+  /The budget was confirmed last week/iu,
+  /Ты не один\/одна/iu,
+  /I need a jacket for today/iu,
+  /The wind feels strong and cold/iu,
+  /A mild temperature/iu,
+  /We could meet for coffee Saturday/iu,
+  /Hi there\. I am happy/iu,
+  /I am not shy\. I am ready/iu,
+  /He is my friend\. Hi/iu,
+  /If it rains we will stay/iu,
+  /I have a cold and runny nose/iu,
+  /When will the fever stop/iu,
+  /He is a retired man/iu,
+  /Сколько процентов скидка/iu,
+  /Do you have the budget plan/iu,
+  /A cushion gives me real peace/iu,
+  /If I save money, I will start/iu,
+  /I will work hard to reach it/iu,
+  /I am working on a deadline/iu,
+  /I confirm the meeting at three/iu,
+  /I will share the agenda with everyone/iu,
+  /I have lost you here/iu,
+  /We wait two minutes for him/iu,
+  /пункты действий/iu,
+  /I have received dividends from my shares for years/iu,
+  /What is the metro line here/iu,
+  /You can do it well/iu,
+];
+const AUDITED_CONTENT_REJECTION = new RegExp(
+  AUDITED_CONTENT_REJECTIONS.map((pattern) => `(?:${pattern.source})`).join('|'),
+  'iu',
+);
+
+function passesAuditedContentGate(english: string, russian: string): boolean {
+  const content = `${english}\n${russian}`;
+  return !AUDITED_CONTENT_REJECTION.test(content);
+}
+
 const SINGLE_LEXICAL_WORD = /^\p{L}[\p{L}\p{M}]*(?:['’\-]\p{L}[\p{L}\p{M}]*)*$/u;
 
 function isSingleLexicalWord(value: string): boolean {
@@ -190,7 +263,7 @@ function authoredPair(phrase: SourcePhrase): AuthoredPair | null {
   const id = String(phrase.id ?? '').trim();
   const en = String(phrase.english ?? '').trim();
   const ru = String(phrase.meaning?.ru ?? '').trim();
-  return id && en && ru ? { id, en, ru } : null;
+  return id && en && ru && passesAuditedContentGate(en, ru) ? { id, en, ru } : null;
 }
 
 function usablePairs(day: SourceDay): AuthoredPair[] {
@@ -199,39 +272,22 @@ function usablePairs(day: SourceDay): AuthoredPair[] {
     .filter((pair): pair is AuthoredPair => !!pair);
 }
 
-function authoredWordPairs(day: SourceDay): AuthoredWordPair[] {
-  const sourceWords = new Map<string, { phraseId: string; word: SourceWord }>();
-  for (const phrase of day.phrases ?? []) {
-    for (const word of phrase.words ?? []) {
-      const english = String(word.text ?? '').trim();
-      if (!isSingleLexicalWord(english)) continue;
-      const key = normalize(english);
-      if (!sourceWords.has(key)) sourceWords.set(key, { phraseId: String(phrase.id), word });
-    }
-  }
-
-  const pairs: AuthoredWordPair[] = [];
+function authoredSpeedPairs(day: SourceDay): AuthoredSpeedPair[] {
+  const pairs: AuthoredSpeedPair[] = [];
   const seenEnglish = new Set<string>();
   const seenRussian = new Set<string>();
-  for (const vocabulary of day.vocabulary ?? []) {
-    const authored = vocabulary as SourceVocabularyWord;
-    const vocabularyWord = String(authored.word ?? '').trim();
-    const russian = String(authored.translation?.ru ?? '').trim();
-    if (!isSingleLexicalWord(vocabularyWord) || !isSingleLexicalWord(russian)) continue;
-    const englishKey = normalize(vocabularyWord);
-    const source = sourceWords.get(englishKey);
-    if (!source || normalize(String(source.word.partOfSpeech ?? ''))
-      !== normalize(String(authored.partOfSpeech ?? ''))) continue;
-    const english = String(source.word.text).trim();
-    const russianKey = normalize(russian);
+  for (const pair of usablePairs(day)) {
+    if (phraseTokens(pair.en).length < 2 || phraseTokens(pair.ru).length < 2
+      || !within(pair.en, TOURNAMENT_TASK_LIMITS.promptBytes)
+      || !within(pair.ru, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
+    const englishKey = normalize(pair.en);
+    const russianKey = normalize(pair.ru);
     if (seenEnglish.has(englishKey) || seenRussian.has(russianKey)) continue;
     seenEnglish.add(englishKey);
     seenRussian.add(russianKey);
     pairs.push({
-      id: `${source.phraseId}:word:${englishKey}`,
-      phraseId: source.phraseId,
-      en: english,
-      ru: russian,
+      ...pair,
+      phraseId: pair.id,
     });
   }
   return pairs;
@@ -245,7 +301,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260801_v5_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v6_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -508,6 +564,7 @@ function fillGapMutations(phrase: SourcePhrase): FillGapMutation[] {
       gapPhrase,
       mutatedPhrase,
       options: [original, ...selected],
+      translationTraps: selected,
       tokenIndex: matchingTokenIndexes[0],
       tokenCount: tokens.length,
     });
@@ -580,13 +637,22 @@ function strictGrammarMutations(phrase: SourcePhrase): StrictGrammarMutation[] {
     if (!mutatedPhrase || !gapPhrase || normalize(mutatedPhrase) === normalize(english)
       || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)
       || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)) continue;
+    const fillGapDistractors = grammarRole === 'article_form'
+      ? [replacement, 'many', 'two']
+      : stableShuffle(
+        [replacement, ...distractors.filter((value) => normalize(value) !== normalize(replacement))],
+        `strict-gap-traps:${phrase.id}:${tokenIndex}:${original}`,
+      ).slice(0, 3);
     additional.push({
       original,
       replacement,
       partOfSpeech,
       mutatedPhrase,
       gapPhrase,
-      options: [original, replacement],
+      options: fillGapDistractors.length === 3
+        ? [original, ...fillGapDistractors]
+        : [original, replacement],
+      translationTraps: [replacement],
       grammarRole,
       tokenIndex,
       tokenCount: tokens.length,
@@ -605,7 +671,7 @@ function strictGrammarMutations(phrase: SourcePhrase): StrictGrammarMutation[] {
       || left.grammarRole.localeCompare(right.grammarRole));
 }
 
-function fillGapRoleNote(mutation: Pick<FillGapMutation, 'grammarRole'>): string {
+function fillGapRoleNote(mutation: Pick<StrictGrammarMutation, 'grammarRole'>): string {
   if (mutation.grammarRole === 'subject_pronoun_agreement') {
     return 'подлежащее согласуется с соседней формой am, is или are';
   }
@@ -622,13 +688,30 @@ function strictGrammarRoleNote(grammarRole: StrictGrammarRole): string {
   if (grammarRole === 'article_form') return 'a и an выбираются по следующему звуку';
   if (grammarRole === 'verb_agreement') return 'форма смыслового глагола согласуется с подлежащим';
   if (grammarRole === 'noun_number') return 'после a, an или one нужна форма единственного числа';
+  if (grammarRole === 'lexical_meaning') return 'русский перевод фиксирует нужное значение слова в этой фразе';
   return fillGapRoleNote({ grammarRole });
+}
+
+function fillGapTrapViolation(grammarRole: StrictGrammarRole): string {
+  if (grammarRole === 'object_pronoun_reference') {
+    return 'вариант меняет референта, прямо указанного в русском переводе';
+  }
+  if (grammarRole === 'article_form') {
+    return 'вариант нарушает выбор артикля перед следующим звуком';
+  }
+  if (grammarRole === 'verb_agreement') {
+    return 'форма глагола не согласуется с подлежащим';
+  }
+  if (grammarRole === 'noun_number') {
+    return 'число существительного не согласуется с a, an или one';
+  }
+  return 'форма нарушает проверяемое согласование или падеж';
 }
 
 function buildFillGapTask(
   day: SourceDay,
   phrase: SourcePhrase,
-  mutation: FillGapMutation,
+  mutation: StrictGrammarMutation,
 ): NewTournamentTask | null {
   const pair = authoredPair(phrase);
   if (!pair) return null;
@@ -636,10 +719,8 @@ function buildFillGapTask(
   const correctIndex = options.findIndex((option) => option === mutation.original);
   const prompt = `${mutation.gapPhrase}\n${pair.ru}`;
   if (!within(prompt, TOURNAMENT_TASK_LIMITS.phraseBytes)) return null;
-  const roleNote = fillGapRoleNote(mutation);
-  const trapViolation = mutation.grammarRole === 'object_pronoun_reference'
-    ? 'вариант меняет референта, прямо указанного в русском переводе'
-    : 'форма нарушает проверяемое согласование или падеж';
+  const roleNote = strictGrammarRoleNote(mutation.grammarRole);
+  const trapViolation = fillGapTrapViolation(mutation.grammarRole);
   const explanation: TournamentTaskExplanation = {
     ruleNote: truncateToBytes(`В пропуске нужно «${mutation.original}»: ${roleNote}, поэтому среди четырёх вариантов подходит только эта форма.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
@@ -662,7 +743,12 @@ export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase
 }
 
 function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase): PoolCandidate[] {
-  return fillGapMutations(phrase).flatMap((mutation) => {
+  return strictGrammarMutations(phrase).filter((mutation) => mutation.options.length === 4)
+    .flatMap((mutation) => {
+    const pair = authoredPair(phrase);
+    if (!pair || mutation.options.some((option) => (
+      !passesAuditedContentGate(completeGap(mutation.gapPhrase, option), pair.ru)
+    ))) return [];
     const task = buildFillGapTask(day, phrase, mutation);
     if (!task) return [];
     const position = mutation.tokenIndex === 0
@@ -679,17 +765,17 @@ function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase)
         position,
         phraseKey: `${day.planId}:${day.dayIndex}:${phrase.id}`,
       },
-    }];
-  });
+      }];
+    });
 }
 
 function buildOddityTask(
   day: SourceDay,
   phrase: SourcePhrase,
-  mutation: WordMutation,
+  mutation: StrictGrammarMutation,
 ): NewTournamentTask | null {
   const pair = authoredPair(phrase);
-  if (!pair) return null;
+  if (!pair || !passesAuditedContentGate(mutation.mutatedPhrase, pair.ru)) return null;
   const natural = stableShuffle(usablePairs(day), `oddity:${pair.id}`)
     .filter((candidate) => candidate.id !== pair.id
       && within(candidate.en, TOURNAMENT_TASK_LIMITS.optionBytes)
@@ -704,7 +790,7 @@ function buildOddityTask(
   const options = optionRecords.map((option) => option.text);
   const correctIndex = optionRecords.findIndex((option) => option.odd);
   const explanation: TournamentTaskExplanation = {
-    ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(mutation.mutatedPhrase)}» — ловушка: «${mutation.replacement}» подменило «${mutation.original}». Правильно: «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes),
+    ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(mutation.mutatedPhrase)}» — ловушка: ${strictGrammarRoleNote(mutation.grammarRole)}. Если сохраняем смысл авторской фразы, исправляем её так: «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     wrongOptionReasons: optionRecords.map((option) => option.odd
       ? ''
@@ -725,6 +811,30 @@ type AuthoredTrap = {
   readonly original: string;
   readonly grammarRole: StrictGrammarRole;
 };
+
+function authoredLexicalTraps(phrase: SourcePhrase): AuthoredTrap[] {
+  const correctTokens = new Set(phraseTokens(String(phrase.english ?? '')).map(normalize));
+  const traps: AuthoredTrap[] = [];
+  for (const word of phrase.words ?? []) {
+    const original = String(word.text ?? '').trim();
+    const partOfSpeech = String(word.partOfSpeech ?? '').trim();
+    if (!original || !partOfSpeech) continue;
+    const values = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && within(value, TOURNAMENT_TASK_LIMITS.tokenBytes)
+        && normalize(value) !== normalize(original)
+        && !correctTokens.has(normalize(value)))
+      .map((value) => [normalize(value), value])).values());
+    for (const value of stableShuffle(
+      values,
+      `translate-lexical:${phrase.id}:${original}`,
+    ).slice(0, 2)) {
+      traps.push({ value, partOfSpeech, original, grammarRole: 'lexical_meaning' });
+    }
+  }
+  return traps;
+}
 
 function buildTranslateTask(
   day: SourceDay,
@@ -760,13 +870,13 @@ function buildTranslateTask(
 
 function buildSpeedMatchTask(
   day: SourceDay,
-  pairs: readonly AuthoredWordPair[],
+  pairs: readonly AuthoredSpeedPair[],
 ): NewTournamentTask | null {
   if (pairs.length !== 6
     || pairs.some((pair) => !within(pair.en, TOURNAMENT_TASK_LIMITS.promptBytes)
       || !within(pair.ru, TOURNAMENT_TASK_LIMITS.optionBytes)
-      || !isSingleLexicalWord(pair.en)
-      || !isSingleLexicalWord(pair.ru))) return null;
+      || phraseTokens(pair.en).length < 2
+      || phraseTokens(pair.ru).length < 2)) return null;
   if (new Set(pairs.map((pair) => normalize(pair.ru))).size !== 6
     || new Set(pairs.map((pair) => normalize(pair.en))).size !== 6) return null;
 
@@ -780,7 +890,7 @@ function buildSpeedMatchTask(
       options: [...rightOptions],
       correctIndex,
       explanation: {
-        ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» означает «${withoutTerminalPunctuation(pair.ru)}». Это точная пара из авторского словаря урока.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
+        ruleNote: truncateToBytes(`«${withoutTerminalPunctuation(pair.en)}» означает «${withoutTerminalPunctuation(pair.ru)}» в контексте авторского примера.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
         example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
         wrongOptionReasons: rightPairs.map((right) => right.id === pair.id
           ? ''
@@ -792,18 +902,18 @@ function buildSpeedMatchTask(
   const identity = pairs.map((pair) => `${normalize(pair.en)}=${normalize(pair.ru)}`).sort().join('|');
   return baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}:${identity}`,
     pairs.map((pair) => pair.phraseId), {
-      prompt: 'Соедините английские слова с точными русскими переводами.',
+      prompt: 'Соедините английские фразы с точными русскими переводами.',
       rightOptions,
       items,
     }, {
-      ruleNote: 'Каждое слово слева соединяется с одним точным переводом справа. Шесть пар — никаких лишних карточек.',
+      ruleNote: 'Каждая фраза слева соединяется с её переводом справа. Шесть контекстных пар — никаких лишних карточек.',
       example: `${first.en} — ${first.ru}`,
       wrongOptionReasons: [],
     });
 }
 
 function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
-  const source = authoredWordPairs(day);
+  const source = authoredSpeedPairs(day);
   if (source.length < 6) return [];
   const candidates: PoolCandidate[] = [];
   const seenSets = new Set<string>();
@@ -935,13 +1045,18 @@ function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
           ],
         });
       }
-      const safeTraps = strictGrammarCandidates.flatMap((mutation) => mutation.options.slice(1).map((value) => ({
+      const safeTraps = strictGrammarCandidates.flatMap((mutation) => mutation.translationTraps.map((value) => ({
         value,
         partOfSpeech: mutation.partOfSpeech,
         original: mutation.original,
         grammarRole: mutation.grammarRole,
       })));
-      for (const trap of safeTraps) {
+      const translationTraps = [...safeTraps, ...authoredLexicalTraps(phrase)]
+        .filter((trap, index, all) => all.findIndex((candidate) => (
+          normalize(candidate.value) === normalize(trap.value)
+          && normalize(candidate.original) === normalize(trap.original)
+        )) === index);
+      for (const trap of translationTraps) {
         const build = buildTranslateTask(day, phrase, trap);
         if (build) candidates.push({
           task: build,
@@ -995,7 +1110,20 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       if (cell.length < target) {
         throw new Error(`new_tournament_pool_cell_shortfall:${key}:${cell.length}`);
       }
-      const selected = selectDiverseCandidates(cell, target, selectionState);
+      const advancedFillGap = mode === 'fill_gap' && difficulty === 3
+        ? cell.filter((candidate) => candidate.fillGap
+          && ['article_form', 'verb_agreement', 'noun_number'].includes(candidate.fillGap.grammarRole))
+        : [];
+      const advancedTarget = advancedFillGap.length > 0 ? Math.min(8, target) : 0;
+      const selectedAdvanced = selectDiverseCandidates(
+        advancedFillGap,
+        advancedTarget,
+        selectionState,
+      );
+      const selected = [
+        ...selectedAdvanced,
+        ...selectDiverseCandidates(cell, target - selectedAdvanced.length, selectionState),
+      ];
       if (selected.length < target) {
         const unusedSpeedPairs = new Set(cell.flatMap((candidate) => (candidate.speedPairKeys ?? [])
           .filter((pairKey) => !selectionState.usedSpeedPairs.has(pairKey))));

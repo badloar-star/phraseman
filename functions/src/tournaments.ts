@@ -833,17 +833,18 @@ export function buildTournamentRounds(
     const selected: TournamentTask[] = [];
     for (const plannedMode of plannedModes) {
       const modePool = pool.filter((task) => task.mode === plannedMode);
-      const usesV5ExposureDeck = modePool.length > 0
-        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v5'));
+      const usesDeterministicExposureDeck = modePool.length > 0
+        && modePool.every((task) => task.tags?.includes('pool:tpool_20260801_v6')
+          || task.tags?.includes('pool:tpool_20260801_v5'));
       const picked = selectRoundTasks({
-        pool: usesV5ExposureDeck
+        pool: usesDeterministicExposureDeck
           ? modePool
           : modePool.filter((task) => !usedTaskIds.has(task.taskId)),
         roomId,
         roundNo,
         count: DEFAULT_TASKS_PER_ROUND,
         modeKind: 'mix',
-        excludedTaskIds: usesV5ExposureDeck ? usedTaskIds : undefined,
+        excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined,
       })[0];
       if (!picked) return null;
       usedTaskIds.add(picked.taskId);

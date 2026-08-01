@@ -35,7 +35,7 @@ function pinnedSha(name, argv) {
 
 function resolveRollbackIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V5_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V6_ROLLBACK !== '1') throw new Error('rollback_guard_missing');
   return true;
 }
 
@@ -268,7 +268,7 @@ async function main() {
   const stagedNewDocs = current.docs.filter((doc) => newIds.has(doc.id));
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v5_rollback_preflight_v1',
+    kind: 'tournament_pool_v6_rollback_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -347,7 +347,7 @@ async function main() {
   });
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v5_rollback_report_v1',
+    kind: 'tournament_pool_v6_rollback_report_v1',
     completedAt: new Date().toISOString(),
     restored: missingOld.length,
     removedNew: verifiedNewDocs.length,

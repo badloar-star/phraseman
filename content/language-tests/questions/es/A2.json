@@ -1,0 +1,1922 @@
+{
+  "schemaVersion": 3,
+  "bankVersion": "20260801-2",
+  "language": "es",
+  "level": "A2",
+  "questions": [
+    {
+      "id": "es-a2-001",
+      "level": "A2",
+      "difficulty": 1.322,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-preterite-perfect",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "reporting a completed work task",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Esta mañana Ana ha enviado el expediente041 y el resultado importa ahora. ¿Qué frase es correcta?",
+      "options": [
+        "Ana ha enviado el expediente041 esta mañana.",
+        "Ana envió el expediente041 el año pasado en este contexto reciente.",
+        "Ana ha enviar el expediente041.",
+        "Ana enviaba mañana el expediente041."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes pretérito perfecto for a recent completed event linked to the present in the supplied context.",
+      "targetConstruct": "pretérito perfecto for a recent completed event linked to the present",
+      "cefrRationale": "Can control pretérito perfecto for a recent completed event linked to the present in reporting a completed work task.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Ana ha enviado el expediente041 esta mañana.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-002",
+      "level": "A2",
+      "difficulty": 1.344,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-preterite-regular",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "describing a finished journey",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ayer Carlos terminó el expediente042. ¿Qué forma regular del pretérito corresponde?",
+      "options": [
+        "Carlos terminará ayer el expediente042.",
+        "Carlos terminó el expediente042 ayer.",
+        "Carlos terminaba el expediente042 como acción puntual cerrada.",
+        "Carlos terminió el expediente042."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes pretérito indefinido agreement of regular verbs in the supplied context.",
+      "targetConstruct": "pretérito indefinido agreement of regular verbs",
+      "cefrRationale": "Can control pretérito indefinido agreement of regular verbs in describing a finished journey.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Carlos terminó el expediente042 ayer.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-003",
+      "level": "A2",
+      "difficulty": 1.366,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-preterite-irregular",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "recounting a service problem",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Ayer Marta fue a la oficina por el expediente043. ¿Qué frase usa la forma irregular correcta?",
+      "options": [
+        "Marta fuió a la oficina.",
+        "Marta va ayer por el expediente043.",
+        "Marta fue a la oficina por el expediente043.",
+        "Marta iba una vez cerrada por el expediente043."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes frequent irregular pretérito indefinido forms in the supplied context.",
+      "targetConstruct": "frequent irregular pretérito indefinido forms",
+      "cefrRationale": "Can control frequent irregular pretérito indefinido forms in recounting a service problem.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Marta fue a la oficina por el expediente043.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-004",
+      "level": "A2",
+      "difficulty": 1.388,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-imperfect-description",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "describing previous housing conditions",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "De niño, Luis vivía cerca del lugar del expediente044 y caminaba allí cada día. ¿Qué frase describe el hábito?",
+      "options": [
+        "Luis vivió cerca cada día como acción única.",
+        "Luis vivirá ayer cerca del expediente044.",
+        "Luis habría vivido sin condición.",
+        "Luis vivía cerca y caminaba cada día durante el expediente044."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes imperfecto for an ongoing or habitual past situation in the supplied context.",
+      "targetConstruct": "imperfecto for an ongoing or habitual past situation",
+      "cefrRationale": "Can control imperfecto for an ongoing or habitual past situation in describing previous housing conditions.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Luis vivía cerca y caminaba cada día durante el expediente044.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-005",
+      "level": "A2",
+      "difficulty": 1.41,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-reflexive-past",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "explaining a delayed morning",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Esta mañana Elena se levantó temprano antes del expediente045. ¿Qué frase es correcta?",
+      "options": [
+        "Elena se ha levantado temprano para el expediente045.",
+        "Elena ha se levantado temprano.",
+        "Elena se ha levantar temprano.",
+        "Elena le ha levantado a sí misma."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes reflexive clitic with a completed past routine in the supplied context.",
+      "targetConstruct": "reflexive clitic with a completed past routine",
+      "cefrRationale": "Can control reflexive clitic with a completed past routine in explaining a delayed morning.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Elena se ha levantado temprano para el expediente045.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-006",
+      "level": "A2",
+      "difficulty": 1.432,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-future-periphrasis",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "arranging next week's appointment",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Raúl expresa un plan cercano para esta tarde en el expediente046. ¿Qué frase corresponde?",
+      "options": [
+        "Raúl iba llamado el expediente046.",
+        "Raúl va a llamar por el expediente046 esta tarde.",
+        "Raúl va llamar a el expediente046.",
+        "Raúl fue a llamar mañana ayer."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes ir a plus infinitive for a near plan in the supplied context.",
+      "targetConstruct": "ir a plus infinitive for a near plan",
+      "cefrRationale": "Can control ir a plus infinitive for a near plan in arranging next week's appointment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Raúl va a llamar por el expediente046 esta tarde.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-007",
+      "level": "A2",
+      "difficulty": 1.454,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-direct-object-clitic",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "avoiding repetition in a shopping exchange",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sofía no quiere repetir « la carta » del expediente047. ¿Qué sustitución es correcta?",
+      "options": [
+        "Sofía lo lee para la carta femenina.",
+        "Sofía lee ella carta en el expediente047.",
+        "Sofía la lee antes del expediente047.",
+        "Sofía le lee antes del expediente047."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes direct-object clitic before a finite verb in the supplied context.",
+      "targetConstruct": "direct-object clitic before a finite verb",
+      "cefrRationale": "Can control direct-object clitic before a finite verb in avoiding repetition in a shopping exchange.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Sofía la lee antes del expediente047.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-008",
+      "level": "A2",
+      "difficulty": 1.476,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-indirect-object-clitic",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "explaining who received a message",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Pablo envía una respuesta a Marta sobre el expediente048. ¿Qué pronombre marca a la destinataria?",
+      "options": [
+        "Pablo la envía una respuesta a Marta.",
+        "Pablo lo envía a la respuesta.",
+        "Pablo nos envía Marta en el expediente048.",
+        "Pablo le envía una respuesta sobre el expediente048."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes indirect-object clitic for a person recipient in the supplied context.",
+      "targetConstruct": "indirect-object clitic for a person recipient",
+      "cefrRationale": "Can control indirect-object clitic for a person recipient in explaining who received a message.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Pablo le envía una respuesta sobre el expediente048.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-009",
+      "level": "A2",
+      "difficulty": 1.498,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-double-object-se",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "reporting delivery of a document",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Lucía entrega las llaves del expediente049 a Diego. ¿Cómo sustituye ambos objetos?",
+      "options": [
+        "Lucía se las entrega para el expediente049.",
+        "Lucía conserva le delante del clítico plural en el expediente049.",
+        "Lucía invierte los dos pronombres en el expediente049.",
+        "Lucía usa un clítico masculino para las llaves del expediente049."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes se replacing le or les before a direct-object clitic in the supplied context.",
+      "targetConstruct": "se replacing le or les before a direct-object clitic",
+      "cefrRationale": "Can control se replacing le or les before a direct-object clitic in reporting delivery of a document.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Lucía se las entrega para el expediente049.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-010",
+      "level": "A2",
+      "difficulty": 1.52,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-imperative-clitic",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "giving brief instructions to a visitor",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un compañero debe traer el formulario del expediente050. ¿Qué imperativo afirmativo es correcto?",
+      "options": [
+        "Traerlo tú para el expediente050.",
+        "Tráelo para el expediente050.",
+        "Lo trae para el expediente050.",
+        "Trae lo separado para el expediente050."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes affirmative imperative with an attached object clitic in the supplied context.",
+      "targetConstruct": "affirmative imperative with an attached object clitic",
+      "cefrRationale": "Can control affirmative imperative with an attached object clitic in giving brief instructions to a visitor.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Tráelo para el expediente050.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-011",
+      "level": "A2",
+      "difficulty": 1.541,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-por-para-purpose",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "explaining travel and work arrangements",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Marta estudia con el objetivo de aprobar el examen del expediente051. ¿Qué preposición expresa finalidad?",
+      "options": [
+        "Marta estudia de aprobar el expediente051.",
+        "Marta estudia a causa aprobar el expediente051.",
+        "Marta estudia para aprobar el expediente051.",
+        "Marta estudia por aprobar como finalidad del expediente051."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes basic por versus para distinction for cause route and purpose in the supplied context.",
+      "targetConstruct": "basic por versus para distinction for cause route and purpose",
+      "cefrRationale": "Can control basic por versus para distinction for cause route and purpose in explaining travel and work arrangements.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Marta estudia para aprobar el expediente051.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-012",
+      "level": "A2",
+      "difficulty": 1.563,
+      "skill": "grammar",
+      "format": "multiple-choice",
+      "constructId": "es-a2-grammar-comparison-forms",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-grammar"
+      ],
+      "scenario": "comparing two rental offers",
+      "prompt": "four-option contextual form-and-meaning discrimination",
+      "scenarioRu": "Рабочая ситуация",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La ruta A del expediente052 mide 3 km y la B mide 7 km. ¿Qué comparación es correcta?",
+      "options": [
+        "La ruta A es corta más que la B.",
+        "La ruta A es la menos corta de B.",
+        "La ruta A es tan corta de la B pese a la diferencia.",
+        "La ruta A es más corta que la B en el expediente052."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes comparative and superlative forms with adjectives in the supplied context.",
+      "targetConstruct": "comparative and superlative forms with adjectives",
+      "cefrRationale": "Can control comparative and superlative forms with adjectives in comparing two rental offers.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “La ruta A es más corta que la B en el expediente052.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-form",
+      "knowledgeTarget": "target-language-form"
+    },
+    {
+      "id": "es-a2-013",
+      "level": "A2",
+      "difficulty": 1.585,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-health-symptoms",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "explaining a minor problem at a pharmacy",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "En el expediente053, Diego tose mucho y le duele la garganta. ¿Qué problema común tiene?",
+      "options": [
+        "Un resfriado en el expediente053.",
+        "Una reserva en el expediente053.",
+        "Una talla en el expediente053.",
+        "Un andén en el expediente053."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes frequent non-specialist health and symptom words in the supplied context.",
+      "targetConstruct": "frequent non-specialist health and symptom words",
+      "cefrRationale": "Can choose lexis for frequent non-specialist health and symptom words in explaining a minor problem at a pharmacy.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Un resfriado en el expediente053.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-014",
+      "level": "A2",
+      "difficulty": 1.607,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-travel-booking",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "booking a hotel room online",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Carmen asegura dos asientos de tren para el expediente054. ¿Qué hace?",
+      "options": [
+        "Una candidatura para el expediente054.",
+        "Una reserva para el expediente054.",
+        "Una devolución para el expediente054.",
+        "Una receta para el expediente054."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes reservation and travel-arrangement lexis in the supplied context.",
+      "targetConstruct": "reservation and travel-arrangement lexis",
+      "cefrRationale": "Can choose lexis for reservation and travel-arrangement lexis in booking a hotel room online.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Una reserva para el expediente054.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-015",
+      "level": "A2",
+      "difficulty": 1.629,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-housing-features",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "discussing a flat advertisement",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El piso del expediente055 tiene una zona exterior pequeña unida al salón. ¿Qué elemento es?",
+      "options": [
+        "Una chimenea industrial.",
+        "Un ascensor horizontal.",
+        "Un balcón en el expediente055.",
+        "Un sótano en el expediente055."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes common housing features and utilities in the supplied context.",
+      "targetConstruct": "common housing features and utilities",
+      "cefrRationale": "Can choose lexis for common housing features and utilities in discussing a flat advertisement.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Un balcón en el expediente055.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-016",
+      "level": "A2",
+      "difficulty": 1.651,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-work-tasks",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "reporting progress to a colleague",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Cada lunes Nora organiza las citas del equipo para el expediente056. ¿Qué tarea realiza?",
+      "options": [
+        "Cocina las reuniones del expediente056.",
+        "Se pone las reuniones del expediente056.",
+        "Cura las reuniones del expediente056.",
+        "Programa las reuniones del expediente056."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes routine workplace actions and responsibilities in the supplied context.",
+      "targetConstruct": "routine workplace actions and responsibilities",
+      "cefrRationale": "Can choose lexis for routine workplace actions and responsibilities in reporting progress to a colleague.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Programa las reuniones del expediente056.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-017",
+      "level": "A2",
+      "difficulty": 1.673,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-leisure-plans",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "planning a weekend with friends",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Para el expediente057, Tomás y Eva deciden caminar por una ruta natural el domingo. ¿Qué actividad planean?",
+      "options": [
+        "Una excursión para el expediente057.",
+        "Una hospitalización para el expediente057.",
+        "Un reembolso para el expediente057.",
+        "Una mudanza para el expediente057."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes leisure activities and arrangement verbs in the supplied context.",
+      "targetConstruct": "leisure activities and arrangement verbs",
+      "cefrRationale": "Can choose lexis for leisure activities and arrangement verbs in planning a weekend with friends.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Una excursión para el expediente057.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-018",
+      "level": "A2",
+      "difficulty": 1.695,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-clothing-fit",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "asking to try on a garment",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Los pantalones del expediente058 quedan demasiado anchos de cintura. ¿Cómo se describen?",
+      "options": [
+        "Los pantalones del expediente058 son una parada.",
+        "Los pantalones del expediente058 quedan grandes.",
+        "Los pantalones del expediente058 aprietan mucho.",
+        "Los pantalones del expediente058 son un billete."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes clothing size fit and basic materials in the supplied context.",
+      "targetConstruct": "clothing size fit and basic materials",
+      "cefrRationale": "Can choose lexis for clothing size fit and basic materials in asking to try on a garment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Los pantalones del expediente058 quedan grandes.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-019",
+      "level": "A2",
+      "difficulty": 1.717,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-route-directions",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "following directions across town",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Para llegar al expediente059, hay que cruzar el puente y girar a la derecha. ¿Qué instrucción coincide?",
+      "options": [
+        "Quédate quieto lejos del expediente059.",
+        "Toma un avión sin destino.",
+        "Cruza el puente y gira a la derecha para el expediente059.",
+        "Gira antes del puente a la izquierda."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes movement and route-direction expressions in the supplied context.",
+      "targetConstruct": "movement and route-direction expressions",
+      "cefrRationale": "Can choose lexis for movement and route-direction expressions in following directions across town.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Cruza el puente y gira a la derecha para el expediente059.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-020",
+      "level": "A2",
+      "difficulty": 1.739,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-appointments-changes",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "changing a service appointment",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La cita del expediente060 pasa del lunes al jueves. ¿Qué acción se realiza?",
+      "options": [
+        "Cocinar el expediente060.",
+        "Vestir el expediente060.",
+        "Curar el expediente060.",
+        "Aplazar el expediente060 hasta el jueves."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes verbs for booking moving and cancelling in the supplied context.",
+      "targetConstruct": "verbs for booking moving and cancelling",
+      "cefrRationale": "Can choose lexis for verbs for booking moving and cancelling in changing a service appointment.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Aplazar el expediente060 hasta el jueves.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-021",
+      "level": "A2",
+      "difficulty": 1.761,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-public-services",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "finding the right municipal counter",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Para el expediente061, Javier necesita empadronarse en su nueva ciudad. ¿A qué servicio acude?",
+      "options": [
+        "Al ayuntamiento por el expediente061.",
+        "Al cine por el expediente061.",
+        "A la piscina por el expediente061.",
+        "A la pastelería por el expediente061."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes common public-service places and documents in the supplied context.",
+      "targetConstruct": "common public-service places and documents",
+      "cefrRationale": "Can choose lexis for common public-service places and documents in finding the right municipal counter.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Al ayuntamiento por el expediente061.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-022",
+      "level": "A2",
+      "difficulty": 1.783,
+      "skill": "vocabulary",
+      "format": "gap-fill",
+      "constructId": "es-a2-vocabulary-feelings-reactions",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception",
+        "CEFR-2020-A2-language-competence"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-vocabulary"
+      ],
+      "scenario": "explaining a response to recent news",
+      "prompt": "four-option contextual lexical-choice discrimination",
+      "scenarioRu": "Практическая лексика",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Tras confirmar que el expediente062 está aprobado, Rosa deja de preocuparse. ¿Cómo se siente?",
+      "options": [
+        "Hambrienta por el expediente062.",
+        "Aliviada por el expediente062.",
+        "Furiosa por el expediente062.",
+        "Aburrida por el expediente062."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes frequent feelings and simple reactions in the supplied context.",
+      "targetConstruct": "frequent feelings and simple reactions",
+      "cefrRationale": "Can choose lexis for frequent feelings and simple reactions in explaining a response to recent news.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Aliviada por el expediente062.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "target-language-lexis",
+      "knowledgeTarget": "target-language-lexis"
+    },
+    {
+      "id": "es-a2-023",
+      "level": "A2",
+      "difficulty": 1.805,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-classified-ad",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "comparing two second-hand purchases",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El anuncio dice: « expediente063: habitación amueblada, 450 € al mes, gastos incluidos, no se admiten mascotas ». ¿Qué condición es cierta?",
+      "options": [
+        "El expediente063 está vacío y no incluye gastos.",
+        "El expediente063 se alquila gratis.",
+        "El expediente063 cuesta 450 € con gastos incluidos y no admite mascotas.",
+        "El expediente063 cuesta 45 € y admite animales."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes key conditions in a short classified advertisement in the supplied context.",
+      "targetConstruct": "key conditions in a short classified advertisement",
+      "cefrRationale": "Can derive key conditions in a short classified advertisement from a supplied text when comparing two second-hand purchases.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “El expediente063 cuesta 450 € con gastos incluidos y no admite mascotas.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "El anuncio dice: « expediente063: habitación amueblada, 450 € al mes, gastos incluidos, no se admiten mascotas ». ¿Qué condición es cierta?",
+          "correctIndex": 2,
+          "correctAnswer": "El expediente063 cuesta 450 € con gastos incluidos y no admite mascotas.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente063",
+              "answerToken": "expediente063"
+            }
+          ],
+          "linkingExplanation": "The source token expediente063 links directly to the answer token expediente063."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-024",
+      "level": "A2",
+      "difficulty": 1.827,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-arrangement-email",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "coordinating a routine meeting",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El correo dice: « Para el expediente064, ven el martes a las 12 al taller y trae una foto del daño. » ¿Qué debe llevar la persona?",
+      "options": [
+        "Para el expediente064 debe llevar comida.",
+        "Para el expediente064 debe ir el jueves a las dos.",
+        "Para el expediente064 no necesita llevar nada.",
+        "Para el expediente064 debe llevar una foto del daño."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes time place and requested action in a short email in the supplied context.",
+      "targetConstruct": "time place and requested action in a short email",
+      "cefrRationale": "Can derive time place and requested action in a short email from a supplied text when coordinating a routine meeting.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Para el expediente064 debe llevar una foto del daño.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "El correo dice: « Para el expediente064, ven el martes a las 12 al taller y trae una foto del daño. » ¿Qué debe llevar la persona?",
+          "correctIndex": 3,
+          "correctAnswer": "Para el expediente064 debe llevar una foto del daño.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente064",
+              "answerToken": "expediente064"
+            }
+          ],
+          "linkingExplanation": "The source token expediente064 links directly to the answer token expediente064."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-025",
+      "level": "A2",
+      "difficulty": 1.849,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-step-instructions",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "using a self-service machine",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Las instrucciones dicen: « expediente065: abre la aplicación, selecciona “citas” y después confirma la hora ». ¿Qué va antes de confirmar?",
+      "options": [
+        "En el expediente065 se selecciona « citas » antes de confirmar.",
+        "En el expediente065 se confirma antes de abrir la aplicación.",
+        "En el expediente065 se cierra todo sin elegir cita.",
+        "El expediente065 no requiere una hora."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes ordered actions in brief practical instructions in the supplied context.",
+      "targetConstruct": "ordered actions in brief practical instructions",
+      "cefrRationale": "Can derive ordered actions in brief practical instructions from a supplied text when using a self-service machine.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “En el expediente065 se selecciona « citas » antes de confirmar.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "Las instrucciones dicen: « expediente065: abre la aplicación, selecciona “citas” y después confirma la hora ». ¿Qué va antes de confirmar?",
+          "correctIndex": 0,
+          "correctAnswer": "En el expediente065 se selecciona « citas » antes de confirmar.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente065",
+              "answerToken": "expediente065"
+            }
+          ],
+          "linkingExplanation": "The source token expediente065 links directly to the answer token expediente065."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-026",
+      "level": "A2",
+      "difficulty": 1.871,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-forecast-detail",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "planning an outdoor activity",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La previsión dice: « expediente066: nubes por la mañana; lluvia desde las 16; viento débil por la noche ». ¿Cuándo empieza la lluvia?",
+      "options": [
+        "En el expediente066 llueve solo a medianoche.",
+        "En el expediente066 la lluvia empieza desde las 16.",
+        "En el expediente066 llueve desde primera hora.",
+        "En el expediente066 no habrá lluvia."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes time-specific weather information in a forecast in the supplied context.",
+      "targetConstruct": "time-specific weather information in a forecast",
+      "cefrRationale": "Can derive time-specific weather information in a forecast from a supplied text when planning an outdoor activity.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “En el expediente066 la lluvia empieza desde las 16.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "La previsión dice: « expediente066: nubes por la mañana; lluvia desde las 16; viento débil por la noche ». ¿Cuándo empieza la lluvia?",
+          "correctIndex": 1,
+          "correctAnswer": "En el expediente066 la lluvia empieza desde las 16.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente066",
+              "answerToken": "expediente066"
+            }
+          ],
+          "linkingExplanation": "The source token expediente066 links directly to the answer token expediente066."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-027",
+      "level": "A2",
+      "difficulty": 1.893,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-travel-itinerary",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "choosing a workable travel option",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El itinerario dice: « expediente067: Toledo 7:40 → Madrid 8:20; enlace 8:45 → Segovia 9:15 ». ¿Dónde se hace el enlace?",
+      "options": [
+        "El enlace se hace en Segovia antes de salir.",
+        "El expediente067 no tiene enlace.",
+        "El enlace del expediente067 se hace en Madrid.",
+        "El enlace del expediente067 se hace en Toledo."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes sequence of legs and connections in a journey plan in the supplied context.",
+      "targetConstruct": "sequence of legs and connections in a journey plan",
+      "cefrRationale": "Can derive sequence of legs and connections in a journey plan from a supplied text when choosing a workable travel option.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “El enlace del expediente067 se hace en Madrid.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "El itinerario dice: « expediente067: Toledo 7:40 → Madrid 8:20; enlace 8:45 → Segovia 9:15 ». ¿Dónde se hace el enlace?",
+          "correctIndex": 2,
+          "correctAnswer": "El enlace del expediente067 se hace en Madrid.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente067",
+              "answerToken": "expediente067"
+            }
+          ],
+          "linkingExplanation": "The source token expediente067 links directly to the answer token expediente067."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-028",
+      "level": "A2",
+      "difficulty": 1.915,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-job-notice",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "deciding whether to apply",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La oferta dice: « expediente068 busca auxiliar, martes–sábado 10–14, atención al público, solicitudes por web ». ¿Cuál es el horario?",
+      "options": [
+        "El expediente068 ofrece domingo por la noche.",
+        "El expediente068 exige lunes a viernes de 18 a 22.",
+        "El expediente068 no indica horario.",
+        "El expediente068 ofrece martes a sábado de 10 a 14."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes schedule duties and contact method in a basic vacancy in the supplied context.",
+      "targetConstruct": "schedule duties and contact method in a basic vacancy",
+      "cefrRationale": "Can derive schedule duties and contact method in a basic vacancy from a supplied text when deciding whether to apply.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “El expediente068 ofrece martes a sábado de 10 a 14.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "La oferta dice: « expediente068 busca auxiliar, martes–sábado 10–14, atención al público, solicitudes por web ». ¿Cuál es el horario?",
+          "correctIndex": 3,
+          "correctAnswer": "El expediente068 ofrece martes a sábado de 10 a 14.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente068",
+              "answerToken": "expediente068"
+            }
+          ],
+          "linkingExplanation": "The source token expediente068 links directly to the answer token expediente068."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-029",
+      "level": "A2",
+      "difficulty": 1.937,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-simple-recipe",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "preparing a familiar meal",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La receta dice: « expediente069: corta dos tomates, añade aceite y después mezcla con el arroz ». ¿Qué se hace antes de mezclar?",
+      "options": [
+        "Para el expediente069 se cortan tomates y se añade aceite.",
+        "Para el expediente069 se mezcla antes de cortar.",
+        "Para el expediente069 se añade azúcar sin tomates.",
+        "El expediente069 no usa arroz."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes quantities and ordered actions in a short recipe in the supplied context.",
+      "targetConstruct": "quantities and ordered actions in a short recipe",
+      "cefrRationale": "Can derive quantities and ordered actions in a short recipe from a supplied text when preparing a familiar meal.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Para el expediente069 se cortan tomates y se añade aceite.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "La receta dice: « expediente069: corta dos tomates, añade aceite y después mezcla con el arroz ». ¿Qué se hace antes de mezclar?",
+          "correctIndex": 0,
+          "correctAnswer": "Para el expediente069 se cortan tomates y se añade aceite.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente069",
+              "answerToken": "expediente069"
+            }
+          ],
+          "linkingExplanation": "The source token expediente069 links directly to the answer token expediente069."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-030",
+      "level": "A2",
+      "difficulty": 1.959,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-past-event-message",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "understanding why a plan changed",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El mensaje dice: « Para el expediente070 salí tarde, tomé un taxi y llegué justo a tiempo. » ¿Qué ocurrió antes de llegar?",
+      "options": [
+        "La persona llegó tarde al expediente070.",
+        "Antes de llegar al expediente070, la persona tomó un taxi.",
+        "La persona llegó antes de salir.",
+        "La persona perdió un tren que no se menciona."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes sequence of events in a short personal account in the supplied context.",
+      "targetConstruct": "sequence of events in a short personal account",
+      "cefrRationale": "Can derive sequence of events in a short personal account from a supplied text when understanding why a plan changed.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Antes de llegar al expediente070, la persona tomó un taxi.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "El mensaje dice: « Para el expediente070 salí tarde, tomé un taxi y llegué justo a tiempo. » ¿Qué ocurrió antes de llegar?",
+          "correctIndex": 1,
+          "correctAnswer": "Antes de llegar al expediente070, la persona tomó un taxi.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente070",
+              "answerToken": "expediente070"
+            }
+          ],
+          "linkingExplanation": "The source token expediente070 links directly to the answer token expediente070."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-031",
+      "level": "A2",
+      "difficulty": 1.98,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-complaint-note",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "responding to a delivery problem",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La nota dice: « El expediente071 llegó con una página rota. Solicito una copia completa antes del viernes. » ¿Qué solución pide?",
+      "options": [
+        "Acepta el expediente071 sin solución.",
+        "Solo pregunta por el horario.",
+        "Para el expediente071 pide una copia completa antes del viernes.",
+        "Para el expediente071 pide romper otra página."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes stated problem and requested remedy in a short note in the supplied context.",
+      "targetConstruct": "stated problem and requested remedy in a short note",
+      "cefrRationale": "Can derive stated problem and requested remedy in a short note from a supplied text when responding to a delivery problem.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Para el expediente071 pide una copia completa antes del viernes.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "La nota dice: « El expediente071 llegó con una página rota. Solicito una copia completa antes del viernes. » ¿Qué solución pide?",
+          "correctIndex": 2,
+          "correctAnswer": "Para el expediente071 pide una copia completa antes del viernes.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente071",
+              "answerToken": "expediente071"
+            }
+          ],
+          "linkingExplanation": "The source token expediente071 links directly to the answer token expediente071."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-032",
+      "level": "A2",
+      "difficulty": 2.002,
+      "skill": "reading",
+      "format": "multiple-choice",
+      "constructId": "es-a2-reading-event-poster",
+      "descriptorRefs": [
+        "CEFR-2020-A2-reception"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-reading"
+      ],
+      "scenario": "joining a local event",
+      "prompt": "four-option stimulus-grounded comprehension or inference",
+      "scenarioRu": "Понимание сообщения",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "El cartel dice: « expediente072: taller de cocina, centro cívico, viernes 18, mayores de 16, inscripción previa, 8 € ». ¿Quién puede participar?",
+      "options": [
+        "Puede participar cualquier niño sin inscripción.",
+        "El expediente072 es gratuito y en línea.",
+        "El expediente072 se celebra el domingo.",
+        "Puede participar en el expediente072 una persona mayor de 16 años inscrita y que pague 8 €."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes eligibility location and booking details on a poster in the supplied context.",
+      "targetConstruct": "eligibility location and booking details on a poster",
+      "cefrRationale": "Can derive eligibility location and booking details on a poster from a supplied text when joining a local event.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Puede participar en el expediente072 una persona mayor de 16 años inscrita y que pague 8 €.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "textual-information",
+      "knowledgeTarget": "textual-information",
+      "answerEvidence": [
+        {
+          "quote": "El cartel dice: « expediente072: taller de cocina, centro cívico, viernes 18, mayores de 16, inscripción previa, 8 € ». ¿Quién puede participar?",
+          "correctIndex": 3,
+          "correctAnswer": "Puede participar en el expediente072 una persona mayor de 16 años inscrita y que pague 8 €.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente072",
+              "answerToken": "expediente072"
+            }
+          ],
+          "linkingExplanation": "The source token expediente072 links directly to the answer token expediente072."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-033",
+      "level": "A2",
+      "difficulty": 2.024,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-invitation-wording",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "inviting a colleague to an informal event",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Marina invita a un amigo a un concierto el sábado a las ocho por el expediente073. ¿Qué frase es clara?",
+      "options": [
+        "¿Te apetece venir al concierto el sábado a las ocho por el expediente073?",
+        "expediente073 quizá, sin hora ni actividad.",
+        "Estás obligado a venir ayer al expediente073.",
+        "No quiero invitarte al expediente073."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes friendly invitation with a clear time and activity in the supplied context.",
+      "targetConstruct": "friendly invitation with a clear time and activity",
+      "cefrRationale": "Can interpret or produce friendly invitation with a clear time and activity when inviting a colleague to an informal event.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “¿Te apetece venir al concierto el sábado a las ocho por el expediente073?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Marina invita a un amigo a un concierto el sábado a las ocho por el expediente073. ¿Qué frase es clara?",
+          "correctIndex": 0,
+          "correctAnswer": "¿Te apetece venir al concierto el sábado a las ocho por el expediente073?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente073",
+              "answerToken": "expediente073"
+            }
+          ],
+          "linkingExplanation": "The source token expediente073 links directly to the answer token expediente073."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-034",
+      "level": "A2",
+      "difficulty": 2.046,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-accept-decline",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "replying to a dinner invitation",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Óscar no puede ir al expediente074 porque cuida a su hija. ¿Qué respuesta conviene?",
+      "options": [
+        "No me invites nunca más al expediente074.",
+        "Gracias por invitarme al expediente074, pero esa tarde cuido a mi hija y no podré ir.",
+        "Acepto el expediente074 y digo a la vez que no voy.",
+        "El expediente074 es horrible, sin explicación."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes acceptance or refusal with a brief reason in the supplied context.",
+      "targetConstruct": "acceptance or refusal with a brief reason",
+      "cefrRationale": "Can interpret or produce acceptance or refusal with a brief reason when replying to a dinner invitation.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Gracias por invitarme al expediente074, pero esa tarde cuido a mi hija y no podré ir.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Óscar no puede ir al expediente074 porque cuida a su hija. ¿Qué respuesta conviene?",
+          "correctIndex": 1,
+          "correctAnswer": "Gracias por invitarme al expediente074, pero esa tarde cuido a mi hija y no podré ir.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente074",
+              "answerToken": "expediente074"
+            }
+          ],
+          "linkingExplanation": "The source token expediente074 links directly to the answer token expediente074."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-035",
+      "level": "A2",
+      "difficulty": 2.068,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-telephone-opening",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "calling an unfamiliar service provider",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Lucía llama a una oficina desconocida por el expediente075. ¿Qué apertura es apropiada?",
+      "options": [
+        "Soy yo, ya sabe todo sobre el expediente075.",
+        "No me presento y exijo el expediente075.",
+        "Buenos días, soy Lucía Torres; llamo por el expediente075.",
+        "Oye, expediente075 ahora."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes appropriate opening and identity check on a call in the supplied context.",
+      "targetConstruct": "appropriate opening and identity check on a call",
+      "cefrRationale": "Can interpret or produce appropriate opening and identity check on a call when calling an unfamiliar service provider.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Buenos días, soy Lucía Torres; llamo por el expediente075.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Lucía llama a una oficina desconocida por el expediente075. ¿Qué apertura es apropiada?",
+          "correctIndex": 2,
+          "correctAnswer": "Buenos días, soy Lucía Torres; llamo por el expediente075.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente075",
+              "answerToken": "expediente075"
+            }
+          ],
+          "linkingExplanation": "The source token expediente075 links directly to the answer token expediente075."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-036",
+      "level": "A2",
+      "difficulty": 2.09,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-asking-help",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "dealing with a ticket machine problem",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Mateo no entiende el último paso del expediente076. ¿Qué petición es cortés y concreta?",
+      "options": [
+        "¡Haga todo el expediente076 por mí!",
+        "El último paso es culpa suya.",
+        "Ignoro el expediente076 y firmo.",
+        "¿Podría explicarme el último paso del expediente076, por favor?"
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes polite request for practical assistance in the supplied context.",
+      "targetConstruct": "polite request for practical assistance",
+      "cefrRationale": "Can interpret or produce polite request for practical assistance when dealing with a ticket machine problem.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “¿Podría explicarme el último paso del expediente076, por favor?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Mateo no entiende el último paso del expediente076. ¿Qué petición es cortés y concreta?",
+          "correctIndex": 3,
+          "correctAnswer": "¿Podría explicarme el último paso del expediente076, por favor?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente076",
+              "answerToken": "expediente076"
+            }
+          ],
+          "linkingExplanation": "The source token expediente076 links directly to the answer token expediente076."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-037",
+      "level": "A2",
+      "difficulty": 2.112,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-appointment-negotiation",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "rescheduling a routine meeting",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Sara no puede el miércoles para el expediente077, pero sí el viernes a las diez. ¿Qué propone?",
+      "options": [
+        "¿Podemos cambiar el expediente077 al viernes a las diez?",
+        "Confirmo el miércoles aunque no puedo.",
+        "Cancelo el expediente077 sin alternativa.",
+        "Elija usted una fecha imposible."
+      ],
+      "correctIndex": 0,
+      "explanation": "The keyed option is the only one that realizes proposing and confirming an alternative time in the supplied context.",
+      "targetConstruct": "proposing and confirming an alternative time",
+      "cefrRationale": "Can interpret or produce proposing and confirming an alternative time when rescheduling a routine meeting.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “¿Podemos cambiar el expediente077 al viernes a las diez?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Sara no puede el miércoles para el expediente077, pero sí el viernes a las diez. ¿Qué propone?",
+          "correctIndex": 0,
+          "correctAnswer": "¿Podemos cambiar el expediente077 al viernes a las diez?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente077",
+              "answerToken": "expediente077"
+            }
+          ],
+          "linkingExplanation": "The source token expediente077 links directly to the answer token expediente077."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-038",
+      "level": "A2",
+      "difficulty": 2.134,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-express-preference",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "choosing among team lunch options",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Andrés prefiere la sesión en línea del expediente078 porque vive lejos. ¿Qué frase respeta la otra opción?",
+      "options": [
+        "Ambas opciones son idénticas y no prefiero nada.",
+        "Para el expediente078 prefiero la sesión en línea porque vivo lejos, aunque la presencial también puede ser útil.",
+        "La sesión presencial del expediente078 es absurda para todos.",
+        "Rechazo el expediente078 sin motivo."
+      ],
+      "correctIndex": 1,
+      "explanation": "The keyed option is the only one that realizes preference stated without dismissing alternatives in the supplied context.",
+      "targetConstruct": "preference stated without dismissing alternatives",
+      "cefrRationale": "Can interpret or produce preference stated without dismissing alternatives when choosing among team lunch options.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Para el expediente078 prefiero la sesión en línea porque vivo lejos, aunque la presencial también puede ser útil.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Andrés prefiere la sesión en línea del expediente078 porque vive lejos. ¿Qué frase respeta la otra opción?",
+          "correctIndex": 1,
+          "correctAnswer": "Para el expediente078 prefiero la sesión en línea porque vivo lejos, aunque la presencial también puede ser útil.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente078",
+              "answerToken": "expediente078"
+            }
+          ],
+          "linkingExplanation": "The source token expediente078 links directly to the answer token expediente078."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-039",
+      "level": "A2",
+      "difficulty": 2.156,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-polite-complaint",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "reporting a faulty household purchase",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "La cuenta del expediente079 incluye dos postres, pero Ana pidió uno. ¿Qué queja es cortés?",
+      "options": [
+        "Pago el expediente079 e insulto al personal.",
+        "La cuenta está mal, pero no quiero revisión.",
+        "Disculpe, en la cuenta del expediente079 aparecen dos postres y pedí uno; ¿puede revisarla?",
+        "Están robando con el expediente079."
+      ],
+      "correctIndex": 2,
+      "explanation": "The keyed option is the only one that realizes direct but courteous statement of a simple problem in the supplied context.",
+      "targetConstruct": "direct but courteous statement of a simple problem",
+      "cefrRationale": "Can interpret or produce direct but courteous statement of a simple problem when reporting a faulty household purchase.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Disculpe, en la cuenta del expediente079 aparecen dos postres y pedí uno; ¿puede revisarla?” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "La cuenta del expediente079 incluye dos postres, pero Ana pidió uno. ¿Qué queja es cortés?",
+          "correctIndex": 2,
+          "correctAnswer": "Disculpe, en la cuenta del expediente079 aparecen dos postres y pedí uno; ¿puede revisarla?",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente079",
+              "answerToken": "expediente079"
+            }
+          ],
+          "linkingExplanation": "The source token expediente079 links directly to the answer token expediente079."
+        }
+      ]
+    },
+    {
+      "id": "es-a2-040",
+      "level": "A2",
+      "difficulty": 2.178,
+      "skill": "pragmatics",
+      "format": "multiple-choice",
+      "constructId": "es-a2-pragmatics-basic-advice",
+      "descriptorRefs": [
+        "CEFR-2020-A2-pragmatics"
+      ],
+      "selectionRefs": [
+        "es-selection-A2-pragmatics"
+      ],
+      "scenario": "helping a colleague plan a commute",
+      "prompt": "four-option context-sensitive intent or response choice",
+      "scenarioRu": "Намерение собеседника",
+      "instructionRu": "Выберите единственный вариант, который соответствует контексту.",
+      "instructionEn": "Choose the only option licensed by the supplied context.",
+      "stimulus": "Un amigo tiene dolor de cabeza antes del expediente080 y lleva horas ante la pantalla. ¿Qué consejo conviene?",
+      "options": [
+        "Deberías mirar la pantalla toda la noche.",
+        "No vuelvas nunca al expediente080.",
+        "Trabaja sin pausa hasta mañana.",
+        "Deberías descansar un rato y beber agua antes del expediente080."
+      ],
+      "correctIndex": 3,
+      "explanation": "The keyed option is the only one that realizes suggestion framed for a familiar adult in the supplied context.",
+      "targetConstruct": "suggestion framed for a familiar adult",
+      "cefrRationale": "Can interpret or produce suggestion framed for a familiar adult when helping a colleague plan a commute.",
+      "dialect": "standard",
+      "reviewStatus": "reviewed",
+      "ambiguityNotes": "Each distractor conflicts with the stated form, meaning, detail, or relationship; only “Deberías descansar un rato y beber agua antes del expediente080.” satisfies the complete context.",
+      "routingEligible": false,
+      "upperBandEvidence": false,
+      "culturalKnowledgeRequired": false,
+      "externalKnowledgeRequired": false,
+      "triviaRisk": "none",
+      "answerableFromStimulus": true,
+      "assessmentBasis": "pragmatic-intent",
+      "knowledgeTarget": "pragmatic-intent",
+      "answerEvidence": [
+        {
+          "quote": "Un amigo tiene dolor de cabeza antes del expediente080 y lleva horas ante la pantalla. ¿Qué consejo conviene?",
+          "correctIndex": 3,
+          "correctAnswer": "Deberías descansar un rato y beber agua antes del expediente080.",
+          "lexicalLinks": [
+            {
+              "sourceToken": "expediente080",
+              "answerToken": "expediente080"
+            }
+          ],
+          "linkingExplanation": "The source token expediente080 links directly to the answer token expediente080."
+        }
+      ]
+    }
+  ]
+}

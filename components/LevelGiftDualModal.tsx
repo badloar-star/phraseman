@@ -129,6 +129,8 @@ const dualGiftModalPanelBackground = (themeMode: ThemeMode, t: Theme): string =>
       return '#1E0C10';
     case 'minimalDark':
       return '#070B11';
+    case 'sagePorcelain':
+      return '#FCFDF9';
     case 'dark':
     default:
       return t.bgCard || '#07100B';

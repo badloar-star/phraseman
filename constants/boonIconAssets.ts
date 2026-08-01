@@ -97,8 +97,8 @@ export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIc
   },
   sagePorcelain: {
     streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp',
-    mystery_monday: 'assets/images/weekly_boon_icons/png/businessLight/mystery_monday.webp',
-    turbo_regen: 'assets/images/weekly_boon_icons/png/businessLight/turbo_regen.webp',
+    mystery_monday: 'assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp',
+    turbo_regen: 'assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp',
     energy_free_window: 'assets/images/weekly_boon_icons/png/businessLight/energy_free_window.webp',
     double_xp: 'assets/images/weekly_boon_icons/png/businessLight/double_xp.webp',
     flashcard_friday: 'assets/images/weekly_boon_icons/png/businessLight/flashcard_friday.webp',
@@ -256,8 +256,8 @@ const WEEKLY_BOON_ICON_SOURCES: Record<ThemeMode, Record<WeeklyBoonIconId, Image
   },
   sagePorcelain: {
     streak_saver: require('../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'),
-    mystery_monday: require('../assets/images/weekly_boon_icons/png/businessLight/mystery_monday.webp'),
-    turbo_regen: require('../assets/images/weekly_boon_icons/png/businessLight/turbo_regen.webp'),
+    mystery_monday: require('../assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp'),
+    turbo_regen: require('../assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp'),
     energy_free_window: require('../assets/images/weekly_boon_icons/png/businessLight/energy_free_window.webp'),
     double_xp: require('../assets/images/weekly_boon_icons/png/businessLight/double_xp.webp'),
     flashcard_friday: require('../assets/images/weekly_boon_icons/png/businessLight/flashcard_friday.webp'),

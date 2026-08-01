@@ -192,7 +192,13 @@ describe('sage porcelain static asset coverage', () => {
     const boonPaths = themeBlocks(boon, 'sagePorcelain')
       .map(requires)
       .find((paths) => paths.length === 10) ?? [];
-    expect(boonPaths[0]).toBe('../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp');
+    expect(boonPaths.slice(0, 3)).toEqual([
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp',
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp',
+      '../assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp',
+    ]);
     expect(boon).toContain("streak_saver: 'assets/images/weekly_boon_icons/png/sagePorcelain/streak_saver.webp'");
+    expect(boon).toContain("mystery_monday: 'assets/images/weekly_boon_icons/png/sagePorcelain/mystery_monday.webp'");
+    expect(boon).toContain("turbo_regen: 'assets/images/weekly_boon_icons/png/sagePorcelain/turbo_regen.webp'");
   });
 });

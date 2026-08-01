@@ -3,6 +3,8 @@ import path from 'node:path';
 
 const root = path.join(__dirname, '..');
 const screen = fs.readFileSync(path.join(root, 'app/daily_tasks_screen.tsx'), 'utf8');
+const iconRegistry = fs.readFileSync(path.join(root, 'app/daily_task_achievement_icons.ts'), 'utf8');
+const firstVisitModal = fs.readFileSync(path.join(root, 'components/DailyTasksFirstVisitModal.tsx'), 'utf8');
 const componentPath = path.join(root, 'components/daily-tasks/DailyTaskCard.tsx');
 
 test('daily challenge cards use extracted semantic presentation without calculated concealment', () => {
@@ -51,7 +53,10 @@ test('the compact card does not repeat the full task instruction', () => {
 
 test('daily quest visuals keep category backgrounds while generated task art stays in the fixed left icon slot', () => {
   const component = fs.readFileSync(componentPath, 'utf8');
-  expect(screen).toContain('getDailyTaskAchievementIcon(task.type, task.id)');
+  expect(screen).toContain('getDailyTaskAchievementIcon(task.id)');
+  expect(screen).toContain('getDailyTaskAchievementIcon(taskToStart.id)');
+  expect(firstVisitModal).toContain('getDailyTaskAchievementIcon(task.id)');
+  expect(iconRegistry).not.toContain('export const DAILY_TASK_ACHIEVEMENT_ICONS');
   expect(screen).toContain('taskCapsuleHeroIcon');
   expect(screen).toContain('dailyTaskBackgroundArt(task.type)');
   expect(screen).toContain('taskPortalArt');

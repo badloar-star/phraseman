@@ -3238,7 +3238,7 @@ export default function DailyTasksScreen() {
             const anim = claimAnims.current[task.id] ?? new Animated.Value(1);
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
-            const achievementIcon = getDailyTaskAchievementIcon(task.type, task.id);
+            const achievementIcon = getDailyTaskAchievementIcon(task.id);
             const taskCardArt = dailyTaskBackgroundArt(task.type);
             // зачем: см. DAILY_TASK_META_ICON_FALLBACK — без него мета-задания рендерили пустую картинку.
             const metaIconFallback = achievementIcon ? undefined : DAILY_TASK_META_ICON_FALLBACK[task.type];
@@ -3375,7 +3375,7 @@ export default function DailyTasksScreen() {
                 ? goldTaskAccent(taskToStart.type, { completed: false, claimed: false })
                 : dailyTaskAccentHex(t, taskToStart.type);
             const modalArtwork = dailyTaskBackgroundArt(taskToStart.type);
-            const modalIcon = getDailyTaskAchievementIcon(taskToStart.type, taskToStart.id);
+            const modalIcon = getDailyTaskAchievementIcon(taskToStart.id);
             return <View style={[dailyTaskStyles.questSheet, { backgroundColor: t.bgCard, borderColor: t.border }]}> 
               <View style={[dailyTaskStyles.questSheetHandle, { backgroundColor: t.border }]} />
               <View style={[dailyTaskStyles.questSheetHero, { backgroundColor: dailyTaskAccentAlpha(modalAccent, 0.12), borderColor: dailyTaskAccentAlpha(modalAccent, 0.24) }]}>

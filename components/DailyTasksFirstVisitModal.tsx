@@ -199,7 +199,7 @@ function getDailyTitle(lang: Lang): string {
 }
 
 function getTaskIcon(task: DailyTask) {
-  return getDailyTaskAchievementIcon(task.type, task.id);
+  return getDailyTaskAchievementIcon(task.id);
 }
 
 function taskTitle(task: DailyTask, lang: Lang): string {

@@ -11,11 +11,19 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
     expect(source).toContain("sagePorcelain: ['#E1E5DC', '#D1D9D1'],");
   });
 
-  it('keeps level-gift modal chrome on the approved porcelain card', () => {
+  it('keeps level-gift modal chrome legible on the approved porcelain card', () => {
     const source = readSource('components', 'LevelGiftDualModal.tsx');
 
     expect(source).toContain("case 'sagePorcelain':");
     expect(source).toContain("return '#FCFDF9';");
+    expect(source).toContain("const isSagePorcelain = themeMode === 'sagePorcelain';");
+    expect(source).toContain("const modalTitleColor = isSagePorcelain ? t.textPrimary : '#FFFFFF';");
+    expect(source).toContain("const closeButtonBackground = isSagePorcelain ? '#E1E5DC'");
+    expect(source).toContain("const closeButtonBorder = isSagePorcelain ? '#CFD6CE'");
+    expect(source).toContain('backgroundColor: closeButtonBackground');
+    expect(source).toContain('borderColor: closeButtonBorder');
+    expect(source).toContain('color: closeButtonText');
+    expect(source).toContain('color: modalTitleColor');
   });
 
   it('gives personal-plan screens explicit approved Sage visual roles', () => {
@@ -30,6 +38,7 @@ describe('Sage Porcelain exhaustive visual coverage', () => {
       expect(source).toContain("border: '#CFD6CE'");
       expect(source).toContain("text: '#17201D'");
       expect(source).toContain("muted: '#52605A'");
+      expect(source).toContain("accentSoft: '#D9E9E1'");
     }
 
     expect(plan).toContain("hero: ['#E1E5DC', '#F0F1EC']");

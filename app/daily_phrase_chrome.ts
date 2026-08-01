@@ -32,6 +32,10 @@ export interface DailyPhraseChrome {
   iconBorder: string;
   /** Brand accent for ornament + play affordance. */
   ornament: string;
+  /** Solid background for Daily Phrase action controls. */
+  actionBg: string;
+  /** Foreground text and icons for Daily Phrase action controls. */
+  actionText: string;
   /** Drop-shadow color (matches accent on dark themes). */
   shadow: string;
 }
@@ -47,6 +51,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(116,232,156,0.13)',
     iconBorder: 'rgba(116,232,156,0.22)',
     ornament: '#58CC89',
+    actionBg: '#58CC89',
+    actionText: '#07110A',
     shadow: '#47C870',
   },
   gold: {
@@ -59,6 +65,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(230,190,103,0.14)',
     iconBorder: 'rgba(230,190,103,0.34)',
     ornament: '#D6B35A',
+    actionBg: '#D6B35A',
+    actionText: '#1B1205',
     shadow: '#D6B35A',
   },
   coral: {
@@ -71,6 +79,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(255,128,128,0.14)',
     iconBorder: 'rgba(255,128,128,0.25)',
     ornament: '#FF7F50',
+    actionBg: '#FF7F50',
+    actionText: '#2A100A',
     shadow: '#FF7F50',
   },
   minimalDark: {
@@ -83,6 +93,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(110,168,255,0.13)',
     iconBorder: 'rgba(110,168,255,0.24)',
     ornament: '#6EA8FF',
+    actionBg: '#6EA8FF',
+    actionText: '#09152A',
     shadow: '#6EA8FF',
   },
   business: {
@@ -95,6 +107,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(0,149,246,0.12)',
     iconBorder: 'rgba(0,149,246,0.24)',
     ornament: '#0095F6',
+    actionBg: '#0095F6',
+    actionText: '#061624',
     shadow: '#000000',
   },
   businessLight: {
@@ -107,6 +121,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(0,149,246,0.12)',
     iconBorder: 'rgba(0,149,246,0.26)',
     ornament: '#0095F6',
+    actionBg: '#0095F6',
+    actionText: '#061624',
     shadow: 'rgba(0,0,0,0)',
   },
   midnight: {
@@ -119,6 +135,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(143,160,255,0.15)',
     iconBorder: 'rgba(143,160,255,0.31)',
     ornament: '#8FA0FF',
+    actionBg: '#8FA0FF',
+    actionText: '#0D1030',
     shadow: '#8FA0FF',
   },
   ember: {
@@ -131,6 +149,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(255,204,85,0.15)',
     iconBorder: 'rgba(255,204,85,0.31)',
     ornament: '#FFCC55',
+    actionBg: '#FFCC55',
+    actionText: '#2A1A02',
     shadow: '#FFCC55',
   },
   aurora: {
@@ -143,6 +163,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(61,232,166,0.15)',
     iconBorder: 'rgba(61,232,166,0.31)',
     ornament: '#3DE8A6',
+    actionBg: '#3DE8A6',
+    actionText: '#052A1C',
     shadow: '#3DE8A6',
   },
   volt: {
@@ -155,6 +177,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(198,255,52,0.15)',
     iconBorder: 'rgba(198,255,52,0.31)',
     ornament: '#C6FF34',
+    actionBg: '#C6FF34',
+    actionText: '#182002',
     shadow: '#C6FF34',
   },
   candyBlue: {
@@ -167,6 +191,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(178,213,229,0.13)',
     iconBorder: 'rgba(178,213,229,0.24)',
     ornament: '#B2D5E5',
+    actionBg: '#B2D5E5',
+    actionText: '#13252D',
     shadow: '#B2D5E5',
   },
   indigo: {
@@ -179,6 +205,8 @@ export const DAILY_PHRASE_CHROME: Record<ThemeMode, DailyPhraseChrome> = {
     iconBg: 'rgba(200,195,255,0.13)',
     iconBorder: 'rgba(200,195,255,0.24)',
     ornament: '#C8C3FF',
+    actionBg: '#C8C3FF',
+    actionText: '#17162B',
     shadow: '#C8C3FF',
   },
 };

@@ -1256,7 +1256,7 @@ const LessonContent = React.memo(function LessonContent({
                       return first + (rest ? ' ' + rest : '');
                     })()
                   : ''
-                }{status !== 'result' && <Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>}
+                }<Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>
               </Text>
             )}
           </View>

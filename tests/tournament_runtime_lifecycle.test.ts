@@ -38,6 +38,8 @@ describe('tournament lifecycle routing', () => {
     const table = read('app/tournament_table.tsx');
     expect(table).toContain('hasTournamentTableSettledScores');
     expect(table).toContain('Ждём остальных');
+    expect(table).not.toContain('SkeletonBlock');
+    expect(table).toContain('rows.map((row, index) => (');
   });
 
   test('table title follows the active/completed state instead of the four preloaded rounds', () => {

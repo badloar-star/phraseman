@@ -28,46 +28,55 @@ describe('tournament pool migration scripts', () => {
   const apply = loadScript('apply-tournament-pool-v2.cjs');
   const rollback = loadScript('rollback-tournament-pool-v2.cjs');
 
-  test('pins both directions to the v6 pool and defaults to preflight-only', () => {
-    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v6');
-    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260801_v5');
-    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v6');
+  test('pins both directions to the v7 pool and defaults to preflight-only', () => {
+    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v7');
+    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260731_v6');
+    expect(apply.EXPECTED_NEW_COUNT).toBe(4000);
+    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v7');
     expect(apply.resolveApplyIntent([], {})).toBe(false);
-    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V6_APPLY: '1' })).toBe(false);
+    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V7_APPLY: '1' })).toBe(false);
     expect(() => apply.resolveApplyIntent(['--apply'], {})).toThrow('apply_guard_missing');
-    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V6_APPLY: '1' })).toBe(true);
+    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V7_APPLY: '1' })).toBe(true);
     expect(rollback.resolveRollbackIntent([], {})).toBe(false);
     expect(() => rollback.resolveRollbackIntent(['--apply'], {})).toThrow('rollback_guard_missing');
-    expect(rollback.resolveRollbackIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V6_ROLLBACK: '1' })).toBe(true);
+    expect(rollback.resolveRollbackIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V7_ROLLBACK: '1' })).toBe(true);
   });
 
-  test('pins the source barrier to a uniform v5 backup and fails closed on drift', () => {
+  test('pins the source barrier to a uniform v6 backup and fails closed on drift', () => {
     const row = (poolVersion?: string) => ({
       id: `old-${poolVersion ?? 'missing'}`,
       data: { taskId: 'old-task', ...(poolVersion ? { poolVersion } : {}) },
     });
 
     expect(apply.resolveSourceGeneration([
-      row('tpool_20260801_v5'),
-      { ...row('tpool_20260801_v5'), id: 'old-v5-second' },
-    ])).toBe('tpool_20260801_v5');
+      row('tpool_20260731_v6'),
+      { ...row('tpool_20260731_v6'), id: 'old-v6-second' },
+    ])).toBe('tpool_20260731_v6');
     expect(() => apply.resolveSourceGeneration([
-      row('tpool_20260801_v5'), row('tpool_20260801_v6'),
+      row('tpool_20260731_v6'), row('tpool_20260801_v7'),
     ])).toThrow('backup_source_generation_mismatch');
     expect(() => apply.resolveSourceGeneration([row()]))
       .toThrow('backup_source_generation_mismatch');
   });
 
-  test('emits v6 migration report contracts without stale v5 guards', () => {
+  test('plans Firestore-safe chunks for all 4000 documents', () => {
+    const rows = Array.from({ length: 4000 }, (_, index) => index);
+    expect(apply.chunkItems(rows, 400).map((chunk: number[]) => chunk.length))
+      .toEqual(Array.from({ length: 10 }, () => 400));
+    expect(apply.chunkItems(rows, 300).map((chunk: number[]) => chunk.length))
+      .toEqual([...Array.from({ length: 13 }, () => 300), 100]);
+  });
+
+  test('emits v7 migration report contracts without stale v6 guards', () => {
     const applySource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'apply-tournament-pool-v2.cjs'), 'utf8');
     const rollbackSource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'rollback-tournament-pool-v2.cjs'), 'utf8');
 
-    expect(applySource).toContain("kind: 'tournament_pool_v6_preflight_v1'");
-    expect(applySource).toContain("kind: 'tournament_pool_v6_apply_report_v1'");
-    expect(rollbackSource).toContain("kind: 'tournament_pool_v6_rollback_preflight_v1'");
-    expect(rollbackSource).toContain("kind: 'tournament_pool_v6_rollback_report_v1'");
-    expect(applySource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V5_APPLY');
-    expect(rollbackSource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V5_ROLLBACK');
+    expect(applySource).toContain("kind: 'tournament_pool_v7_preflight_v1'");
+    expect(applySource).toContain("kind: 'tournament_pool_v7_apply_report_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v7_rollback_preflight_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v7_rollback_report_v1'");
+    expect(applySource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V6_APPLY');
+    expect(rollbackSource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V6_ROLLBACK');
   });
 
   test('requires translate_build correctTokenCount parity and exactly one trap', () => {
@@ -76,7 +85,7 @@ describe('tournament pool migration scripts', () => {
       data: {
         taskId: 'task-1',
         mode: 'translate_build',
-        poolVersion: 'tpool_20260801_v6',
+        poolVersion: 'tpool_20260801_v7',
         payload: { correctTokens, correctTokenCount, wordBank },
       },
     });
@@ -266,8 +275,18 @@ describe('tournament pool migration scripts', () => {
     const manifest = {
       kind: 'tournament_pool_v2_replacement_dry_run_v1',
       projectId: 'phraseman-ea0b3',
-      generated: { poolVersion: 'tpool_20260801_v6', taskCount: 180 },
-      exactProposedMutations: { stageNewCreates: 180, finalDocuments: 180 },
+      generated: {
+        poolVersion: 'tpool_20260801_v7',
+        taskCount: 4000,
+        exposure: {
+          bucketMaxTasks: 40,
+          modeBucketCounts: {
+            guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+          },
+          bucketSizes: {},
+        },
+      },
+      exactProposedMutations: { stageNewCreates: 4000, finalDocuments: 4000 },
       gates: { strictValidatorInvalid: 0, oldPoolUntouched: true, productionWritesPerformed: 0 },
       artifacts: { backupSha256: digest(backup), newPoolSha256: digest(next) },
     };
@@ -306,32 +325,47 @@ describe('tournament pool migration scripts', () => {
 
     await apply.acquirePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260801_v6',
+      targetGeneration: apply.EXPECTED_VERSION,
       migrationId: 'apply:manifest-sha',
     });
     expect(barrier).toMatchObject({
       state: 'migrating',
       generation: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260801_v6',
+      targetGeneration: apply.EXPECTED_VERSION,
       migrationId: 'apply:manifest-sha',
       revision: 8,
     });
 
     await expect(apply.releasePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260801_v6',
+      targetGeneration: apply.EXPECTED_VERSION,
       migrationId: 'some-other-owner',
+      exposure: {
+        modeBucketCounts: {
+          guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+        },
+        bucketSizes: {},
+      },
     })).rejects.toThrow('pool_barrier_owner_mismatch');
 
     await apply.releasePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260801_v6',
+      targetGeneration: apply.EXPECTED_VERSION,
       migrationId: 'apply:manifest-sha',
+      exposure: {
+        modeBucketCounts: {
+          guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+        },
+        bucketSizes: {},
+      },
     });
     expect(barrier).toMatchObject({
       state: 'ready',
-      generation: 'tpool_20260801_v6',
+      generation: apply.EXPECTED_VERSION,
       revision: 9,
+      exposureBucketCounts: {
+        guess_phrase: 30, fill_gap: 13, find_oddity: 10, translate_build: 38, speed_match: 10,
+      },
     });
     expect(barrier).not.toHaveProperty('migrationId');
     expect(barrier).not.toHaveProperty('targetGeneration');

@@ -7,16 +7,74 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260801_v6';
-const EXPECTED_SOURCE_VERSION = 'tpool_20260801_v5';
-const EXPECTED_NEW_COUNT = 180;
+const EXPECTED_VERSION = 'tpool_20260801_v7';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260731_v6';
+const EXPECTED_NEW_COUNT = 4000;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';
 const POOL_BARRIER_COLLECTION = 'tournamentPrivateState';
 const POOL_BARRIER_DOC = 'task_pool_generation_v1';
 const POOL_BARRIER_KIND = 'tournament_task_pool_barrier_v1';
 const MODES = ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build', 'speed_match'];
+const EXPECTED_EXPOSURE_BUCKET_COUNTS = Object.freeze({
+  guess_phrase: 30,
+  fill_gap: 13,
+  find_oddity: 10,
+  translate_build: 38,
+  speed_match: 10,
+});
 const TERMINAL_ROOM_STATES = new Set(['closed', 'cancelled']);
+
+function chunkItems(items, size) {
+  if (!Array.isArray(items) || !Number.isSafeInteger(size) || size < 1) {
+    throw new Error('chunk_items_invalid');
+  }
+  const chunks = [];
+  for (let offset = 0; offset < items.length; offset += size) chunks.push(items.slice(offset, offset + size));
+  return chunks;
+}
+
+function tournamentExposureRelease(exposure) {
+  const counts = exposure && exposure.modeBucketCounts;
+  if (!counts || Object.keys(counts).length !== MODES.length
+    || MODES.some((mode) => counts[mode] !== EXPECTED_EXPOSURE_BUCKET_COUNTS[mode])) {
+    throw new Error('exposure_bucket_counts_invalid');
+  }
+  return {
+    exposureBucketCounts: Object.fromEntries(MODES.map((mode) => [mode, counts[mode]])),
+    exposureLayoutHash: sha256(JSON.stringify(exposure)),
+  };
+}
+
+function assertExposureLayoutRows(rows, exposure) {
+  tournamentExposureRelease(exposure);
+  const expectedSizes = exposure && exposure.bucketSizes;
+  if (!expectedSizes || typeof expectedSizes !== 'object' || Array.isArray(expectedSizes)) {
+    throw new Error('exposure_bucket_sizes_invalid');
+  }
+  const actualSizes = {};
+  for (const row of rows) {
+    const task = row && row.data;
+    const bucket = task && task.exposureBucket;
+    const expectedPrefix = `${EXPECTED_VERSION}:${task && task.mode}:`;
+    if (typeof bucket !== 'string' || !bucket.startsWith(expectedPrefix)
+      || !/^tpool_20260801_v7:[a-z_]+:\d{3}$/.test(bucket)) {
+      throw new Error(`exposure_bucket_task_invalid:${row && row.id}`);
+    }
+    actualSizes[bucket] = (actualSizes[bucket] || 0) + 1;
+  }
+  assert.deepStrictEqual(
+    Object.fromEntries(Object.entries(actualSizes).sort(([left], [right]) => left.localeCompare(right))),
+    Object.fromEntries(Object.entries(expectedSizes).sort(([left], [right]) => left.localeCompare(right))),
+    'exposure_bucket_sizes_mismatch',
+  );
+  assert.equal(Object.values(actualSizes).every((size) => size > 0 && size <= 40), true,
+    'exposure_bucket_size_limit');
+  for (const mode of MODES) {
+    assert.equal(Object.keys(actualSizes).filter((bucket) => bucket.startsWith(`${EXPECTED_VERSION}:${mode}:`)).length,
+      EXPECTED_EXPOSURE_BUCKET_COUNTS[mode], `exposure_bucket_count:${mode}`);
+  }
+}
 
 function poolBarrierRef(db) {
   return db.collection(POOL_BARRIER_COLLECTION).doc(POOL_BARRIER_DOC);
@@ -176,6 +234,9 @@ async function releasePoolMigrationBarrier(db, options) {
   );
   const migrationId = assertPoolBarrierGeneration(options.migrationId, 'migration_id');
   const releasedAt = options.releasedAt || new Date().toISOString();
+  const exposureRelease = targetGeneration === EXPECTED_VERSION
+    ? tournamentExposureRelease(options.exposure)
+    : {};
   const ref = poolBarrierRef(db);
   return db.runTransaction(async (tx) => {
     const current = parsePoolBarrier(await tx.get(ref));
@@ -193,6 +254,7 @@ async function releasePoolMigrationBarrier(db, options) {
       generation: targetGeneration,
       revision,
       releasedAt,
+      ...exposureRelease,
     });
     return { generation: targetGeneration, revision };
   });
@@ -212,7 +274,7 @@ function pinnedSha(name, argv) {
 
 function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V6_APPLY !== '1') throw new Error('apply_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V7_APPLY !== '1') throw new Error('apply_guard_missing');
   return true;
 }
 
@@ -480,6 +542,7 @@ function assertPinnedBundle(manifest, rawManifest, rawBackup, rawNewPool, expect
   assert.equal(manifest.generated.poolVersion, EXPECTED_VERSION);
   assert.equal(manifest.projectId, EXPECTED_PROJECT_ID);
   assert.equal(manifest.generated.taskCount, EXPECTED_NEW_COUNT);
+  tournamentExposureRelease(manifest.generated.exposure);
   assert.equal(manifest.gates.strictValidatorInvalid, 0);
   assert.equal(manifest.gates.oldPoolUntouched, true);
   assert.equal(manifest.gates.productionWritesPerformed, 0);
@@ -503,6 +566,7 @@ function assertBundleRows(backupRows, newRows, manifest, core) {
   const oldIds = new Set(backupRows.map((row) => row.id));
   assert.equal(newRows.some((row) => oldIds.has(row.id)), false, 'old_new_id_overlap');
   assertTranslateBuildSemantics(newRows);
+  assertExposureLayoutRows(newRows, manifest.generated.exposure);
   for (const row of newRows) {
     assert.equal(row.id, row.data.taskId);
     assert.equal(row.data.poolVersion, EXPECTED_VERSION);
@@ -517,7 +581,8 @@ function assertBundleRows(backupRows, newRows, manifest, core) {
 }
 
 async function readExactNewTasks(db, refs, expectedRows, core) {
-  const snapshots = await db.getAll(...refs);
+  const snapshots = [];
+  for (const chunk of chunkItems(refs, 300)) snapshots.push(...await db.getAll(...chunk));
   if (snapshots.length !== EXPECTED_NEW_COUNT || snapshots.some((doc) => !doc.exists)) {
     throw new Error(`new_readback_missing:${snapshots.filter((doc) => doc.exists).length}/${EXPECTED_NEW_COUNT}`);
   }
@@ -588,7 +653,7 @@ async function main() {
 
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v6_preflight_v1',
+    kind: 'tournament_pool_v7_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -631,9 +696,11 @@ async function main() {
 
   let created = 0;
   if (postAcquisitionPlan.createNew) {
-    const createBatch = db.batch();
-    for (const row of newRows) createBatch.create(collection.doc(row.id), row.data);
-    await createBatch.commit();
+    for (const rows of chunkItems(newRows, 400)) {
+      const createBatch = db.batch();
+      for (const row of rows) createBatch.create(collection.doc(row.id), row.data);
+      await createBatch.commit();
+    }
     created = newRows.length;
   }
   const newRefs = newRows.map((row) => collection.doc(row.id));
@@ -656,9 +723,9 @@ async function main() {
     db, oldIds, 'pre_delete', validateTaskSecret,
   );
 
-  for (let offset = 0; offset < oldDocs.length; offset += 450) {
+  for (const docs of chunkItems(oldDocs, 400)) {
     const batch = db.batch();
-    for (const doc of oldDocs.slice(offset, offset + 450)) batch.delete(doc.ref, { lastUpdateTime: doc.updateTime });
+    for (const doc of docs) batch.delete(doc.ref, { lastUpdateTime: doc.updateTime });
     await batch.commit();
   }
 
@@ -677,11 +744,12 @@ async function main() {
     expectedGeneration: sourceGeneration,
     targetGeneration: EXPECTED_VERSION,
     migrationId,
+    exposure: manifest.generated.exposure,
   });
 
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v6_apply_report_v1',
+    kind: 'tournament_pool_v7_apply_report_v1',
     completedAt: new Date().toISOString(),
     actualMutations: {
       created,
@@ -713,6 +781,7 @@ async function main() {
 }
 
 module.exports = {
+  EXPECTED_NEW_COUNT,
   EXPECTED_SOURCE_VERSION,
   EXPECTED_VERSION,
   POOL_BARRIER_COLLECTION,
@@ -722,12 +791,15 @@ module.exports = {
   assertNoProtectedRoomReferences,
   assertPinnedBundle,
   assertTranslateBuildSemantics,
+  assertExposureLayoutRows,
+  chunkItems,
   findBlockingRoomReferences,
   getPoolMigrationBarrier,
   inspectRoomReferenceSafety,
   parsePoolBarrier,
   planApplyPoolRecovery,
   releasePoolMigrationBarrier,
+  tournamentExposureRelease,
   resolveApplyIntent,
   resolveSourceGeneration,
 };

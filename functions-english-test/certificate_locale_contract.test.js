@@ -28,17 +28,17 @@ class Element {
   removeAttribute(key) { delete this.attributes[key]; }
   getAttribute(key) { return this.attributes[key] ?? null; }
   focus() { this.ownerDocument.activeElement = this; }
-  animate() { return { set onfinish(fn) { fn(); } }; }
+  animate() { const callbacks = this.ownerDocument?.deferredAnimationCallbacks; return { set onfinish(fn) { if (callbacks) callbacks.push(fn); else fn(); } }; }
   scrollIntoView() {}
 }
 
-function harness({ ios = false, reduced = true, pngFailure = false, fixedDate } = {}) {
-  const i18n = loadI18n(); const body = new Element('body'); const document = { body, activeElement: new Element('button'), downloads: [], listeners: {}, createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; if (tag === 'canvas') { el.getContext = () => ({ scale() {}, drawImage() {} }); el.toBlob = (fn) => fn(pngFailure ? null : {}); } return el; }, addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }, removeEventListener(type, fn) { this.listeners[type] = (this.listeners[type] || []).filter((listener) => listener !== fn); }, dispatch(type, event) { for (const fn of this.listeners[type] || []) fn(event); } }; body.ownerDocument = document; document.activeElement.ownerDocument = document;
+function harness({ ios = false, reduced = true, pngFailure = false, fixedDate, deferAnimations = false } = {}) {
+  const i18n = loadI18n(); const body = new Element('body'); const document = { body, activeElement: new Element('button'), downloads: [], listeners: {}, deferredAnimationCallbacks: deferAnimations ? [] : null, createElement: (tag) => { const el = new Element(tag); el.ownerDocument = document; if (tag === 'canvas') { el.getContext = () => ({ scale() {}, drawImage() {} }); el.toBlob = (fn) => fn(pngFailure ? null : {}); } return el; }, addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); }, removeEventListener(type, fn) { this.listeners[type] = (this.listeners[type] || []).filter((listener) => listener !== fn); }, dispatch(type, event) { for (const fn of this.listeners[type] || []) fn(event); } }; body.ownerDocument = document; document.activeElement.ownerDocument = document;
   const downloads = document.downloads; const alerts = []; const prints = []; let objectId = 0;
   const win = { document, matchMedia: () => ({ matches: reduced }), open: () => { const printed = { document: { write: (value) => { printed.markup = value; }, close() {} } }; prints.push(printed); return printed; }, location: {}, navigator: ios ? { userAgent: 'iPhone' } : {}, URL: { createObjectURL: () => `blob:${++objectId}`, revokeObjectURL() {} } };
   const DateForCertificate = fixedDate ? class extends Date { constructor(...args) { super(...(args.length ? args : [fixedDate])); } static now() { return new Date(fixedDate).valueOf(); } } : Date;
   const context = vm.createContext({ EnglishTestI18n: i18n, window: win, navigator: win.navigator, document, URL: win.URL, Blob, Date: DateForCertificate, XMLSerializer: class { serializeToString() { return '<svg />'; } }, Image: class { set src(_) { this.onload(); } }, alert: (message) => alerts.push(message), setTimeout: () => 0, globalThis: win });
-  vm.runInContext(read('certificate.js'), context); return { i18n, certificate: win.EnglishTestCertificate, document, body, downloads, alerts, prints, win };
+  vm.runInContext(read('certificate.js'), context); return { i18n, certificate: win.EnglishTestCertificate, document, body, downloads, alerts, prints, win, animationCallbacks: document.deferredAnimationCallbacks };
 }
 
 function modal(h) { return h.body.children.at(-1); }
@@ -65,6 +65,13 @@ test('public show renders the complete localized certificate surface for every a
 test('public show resets locale and subject across sequential opens', () => {
   const h = harness(); show(h, { uiLocale: 'ru', testLanguage: 'de', name: 'Первый' }); click(h, '#certClose'); show(h, { uiLocale: 'en', testLanguage: 'es', name: 'Second' });
   assert.match(svg(h), /Phraseman Spanish Level Check/); assert.match(svg(h), /Second/); assert.doesNotMatch(svg(h), /Первый/);
+});
+
+test('rapid public show supersedes stale modal lifecycle without restoring focus or closing callback', () => {
+  const h = harness({ deferAnimations: true }); const outside = h.document.activeElement; let staleCloses = 0; let latestCloses = 0; show(h, { name: 'First', onClose: () => { staleCloses++; } }); show(h, { name: 'Second', onClose: () => { latestCloses++; } }); const latest = modal(h); const latestClose = latest.querySelector('.elt-cert-close');
+  assert.equal(h.body.children.length, 1); assert.equal(latest.querySelector('.elt-cert-container').getAttribute('aria-modal'), 'true'); assert.equal(h.document.activeElement, latestClose);
+  for (const finish of h.animationCallbacks.splice(0)) finish(); assert.equal(h.body.children.length, 1); assert.equal(h.document.activeElement, latestClose); assert.equal(staleCloses, 0); assert.equal(latestCloses, 0);
+  click(h, '#certClose'); for (const finish of h.animationCallbacks.splice(0)) finish(); assert.equal(h.body.children.length, 0); assert.equal(latestCloses, 1); assert.equal(staleCloses, 0); assert.notEqual(h.document.activeElement, outside);
 });
 
 test('manual RU and EN locale switches update every localized surface without changing certificate data', () => {

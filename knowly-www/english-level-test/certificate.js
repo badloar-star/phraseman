@@ -215,7 +215,7 @@
   }
 
   function renderCertificate(data) {
-    if (typeof activeCertificateClose === 'function') activeCertificateClose();
+    if (typeof activeCertificateClose === 'function') activeCertificateClose({ supersede: true });
     let currentLang = certificateLocale(data.uiLocale);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const previouslyFocused = document.activeElement;
@@ -418,16 +418,22 @@
       });
     }
 
-    function close() {
-      if (closed) return;
+    function close({ supersede = false } = {}) {
+      if (closed && !supersede) return;
       closed = true;
-      if (activeCertificateClose === close) activeCertificateClose = null;
       document.removeEventListener('keydown', handleModalKeydown);
       clearSavePreview();
+      if (supersede) {
+        if (activeCertificateClose === close) activeCertificateClose = null;
+        container.remove();
+        return;
+      }
       inner.animate([
         { transform: 'scale(1)', opacity: 1 },
         { transform: 'scale(0.92)', opacity: 0 }
       ], { duration: reducedMotion ? 60 : 250, easing: 'ease-in', fill: 'forwards' }).onfinish = () => {
+        if (activeCertificateClose !== close) return;
+        activeCertificateClose = null;
         container.remove();
         if (previouslyFocused?.isConnected) previouslyFocused.focus();
         if (typeof data.onClose === 'function') data.onClose();

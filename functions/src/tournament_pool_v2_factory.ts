@@ -13,7 +13,7 @@ import {
   type SourceWord,
 } from './tournament_task_factory';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260729_v3' as const;
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v4' as const;
 export const NEW_TOURNAMENT_POOL_TASKS_PER_CELL = 12;
 
 export const NEW_TOURNAMENT_POOL_MODES = [
@@ -71,6 +71,30 @@ type WordMutation = {
   readonly mutatedPhrase: string;
   readonly gapPhrase: string;
   readonly options: readonly string[];
+};
+
+type FillGapGrammarRole =
+  | 'subject_pronoun_agreement'
+  | 'object_pronoun_case'
+  | 'object_pronoun_reference'
+  | 'be_agreement';
+
+type FillGapMutation = WordMutation & {
+  readonly grammarRole: FillGapGrammarRole;
+  readonly tokenIndex: number;
+  readonly tokenCount: number;
+};
+
+type FillGapCandidateMetadata = {
+  readonly grammarRole: FillGapGrammarRole;
+  readonly correctToken: string;
+  readonly position: 'first' | 'middle' | 'last';
+  readonly phraseKey: string;
+};
+
+type PoolCandidate = {
+  readonly task: NewTournamentTask;
+  readonly fillGap?: FillGapCandidateMetadata;
 };
 
 const FILL_WORD_PRIORITY = new Map([
@@ -200,7 +224,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260729_v3_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v4_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -331,57 +355,230 @@ function buildGuessTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask
     }, explanation);
 }
 
-function unambiguousFillMutation(phrase: SourcePhrase): WordMutation | null {
-  const english = String(phrase.english ?? '').trim();
-  if (!/\bI\s+am\b/u.test(english)) return null;
-  const subject = (phrase.words ?? []).find((word) => (
-    String(word.text).trim() === 'I' && String(word.partOfSpeech) === 'pronoun'
-  ));
-  if (!subject) return null;
-  const distractors = Array.from(new Map((subject.distractors ?? [])
-    .map((value) => String(value ?? '').trim())
-    .filter((value) => /^[\p{L}'’-]+$/u.test(value) && normalize(value) !== 'i'
-      && within(value, TOURNAMENT_TASK_LIMITS.optionBytes))
-    .map((value) => [normalize(value), value])).values());
-  if (distractors.length < 3) return null;
-  const selected = stableShuffle(distractors, `i-am-traps:${phrase.id}`).slice(0, 3);
-  const gapPhrase = replaceAuthoredWord(english, 'I', '___');
-  const mutatedPhrase = replaceAuthoredWord(english, 'I', selected[0]);
-  if (!gapPhrase || !mutatedPhrase || !/\b___\s+am\b/u.test(gapPhrase)
-    || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
-    || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)) return null;
-  return {
-    original: 'I',
-    replacement: selected[0],
-    partOfSpeech: 'pronoun',
-    gapPhrase,
-    mutatedPhrase,
-    options: ['I', ...selected],
-  };
+const SUBJECT_PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they']);
+const OBJECT_ONLY_PRONOUNS = new Set(['me', 'him', 'her', 'us', 'them']);
+const OBJECT_PRONOUNS = new Set(['you', 'me', 'him', 'her', 'us', 'them']);
+const OBJECT_PRONOUN_RU_MARKERS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  you: ['тебя', 'тебе', 'тобой', 'вас', 'вам', 'вами'],
+  me: ['меня', 'мне', 'мной', 'мною'],
+  him: ['его', 'ему', 'ним'],
+  her: ['её', 'ее', 'ей', 'неё', 'нее', 'ней', 'нею'],
+  us: ['нас', 'нам', 'нами'],
+  them: ['их', 'им', 'ними'],
+});
+const PRESENT_BE_FOR_SUBJECT: Readonly<Record<string, string>> = Object.freeze({
+  i: 'am',
+  you: 'are',
+  he: 'is',
+  she: 'is',
+  it: 'is',
+  we: 'are',
+  they: 'are',
+});
+const PRESENT_BE_FORMS = new Set(['am', 'is', 'are']);
+
+function agreesWithPresentBe(subject: string, beForm: string): boolean {
+  return PRESENT_BE_FOR_SUBJECT[normalize(subject)] === normalize(beForm);
 }
 
-export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+function adjacentPresentBe(tokens: readonly string[], tokenIndex: number): string | null {
+  const adjacent = [tokens[tokenIndex - 1], tokens[tokenIndex + 1]]
+    .find((token) => token && PRESENT_BE_FORMS.has(normalize(token)));
+  return adjacent ?? null;
+}
+
+function adjacentPersonalSubject(tokens: readonly string[], tokenIndex: number): string | null {
+  const adjacent = [tokens[tokenIndex - 1], tokens[tokenIndex + 1]]
+    .find((token) => token && SUBJECT_PRONOUNS.has(normalize(token)));
+  return adjacent ?? null;
+}
+
+function russianMeaningNamesObjectPronoun(russianMeaning: string, pronoun: string): boolean {
+  const markers = OBJECT_PRONOUN_RU_MARKERS[normalize(pronoun)] ?? [];
+  const russianTokens = new Set(phraseTokens(russianMeaning).map(normalize));
+  return markers.some((marker) => russianTokens.has(marker));
+}
+
+function safeFillGapSlot(
+  partOfSpeech: string,
+  original: string,
+  distractors: readonly string[],
+  tokens: readonly string[],
+  tokenIndex: number,
+  russianMeaning: string,
+): { grammarRole: FillGapGrammarRole; distractors: string[] } | null {
+  const normalizedOriginal = normalize(original);
+  if (partOfSpeech === 'pronoun' && OBJECT_PRONOUNS.has(normalizedOriginal)
+    && tokenIndex > 0 && russianMeaningNamesObjectPronoun(russianMeaning, original)) {
+    const referenceTraps = distractors.filter((value) => OBJECT_PRONOUNS.has(normalize(value)));
+    if (referenceTraps.length >= 3) {
+      return { grammarRole: 'object_pronoun_reference', distractors: referenceTraps };
+    }
+  }
+  if (partOfSpeech === 'pronoun' && OBJECT_ONLY_PRONOUNS.has(normalizedOriginal)
+    && tokenIndex > 0) {
+    const caseTraps = distractors.filter((value) => SUBJECT_PRONOUNS.has(normalize(value)));
+    return caseTraps.length >= 3
+      ? { grammarRole: 'object_pronoun_case', distractors: caseTraps }
+      : null;
+  }
+  if (partOfSpeech === 'pronoun' && SUBJECT_PRONOUNS.has(normalizedOriginal)) {
+    const beForm = adjacentPresentBe(tokens, tokenIndex);
+    if (!beForm || !agreesWithPresentBe(original, beForm)) return null;
+    const agreementTraps = distractors.filter((value) => (
+      SUBJECT_PRONOUNS.has(normalize(value)) && !agreesWithPresentBe(value, beForm)
+    ));
+    return agreementTraps.length >= 3
+      ? { grammarRole: 'subject_pronoun_agreement', distractors: agreementTraps }
+      : null;
+  }
+  if (partOfSpeech === 'to-be' && PRESENT_BE_FORMS.has(normalizedOriginal)) {
+    const subject = adjacentPersonalSubject(tokens, tokenIndex);
+    if (!subject || !agreesWithPresentBe(subject, original)) return null;
+    const agreementTraps = distractors.filter((value) => {
+      const normalizedValue = normalize(value);
+      return normalizedValue === 'be'
+        || (PRESENT_BE_FORMS.has(normalizedValue) && !agreesWithPresentBe(subject, value));
+    });
+    return agreementTraps.length >= 3
+      ? { grammarRole: 'be_agreement', distractors: agreementTraps }
+      : null;
+  }
+  return null;
+}
+
+function fillGapMutations(phrase: SourcePhrase): FillGapMutation[] {
+  const english = String(phrase.english ?? '').trim();
+  const tokens = phraseTokens(english);
+  const seenSlots = new Set<string>();
+  const mutations: FillGapMutation[] = [];
+
+  for (const [sourceIndex, word] of (phrase.words ?? []).entries()) {
+    const partOfSpeech = String(word.partOfSpeech ?? '');
+    const original = String(word.text ?? '').trim();
+    if (!isSingleLexicalWord(original)
+      || !within(original, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
+    const matchingTokenIndexes = tokens
+      .map((token, tokenIndex) => (normalize(token) === normalize(original) ? tokenIndex : -1))
+      .filter((tokenIndex) => tokenIndex >= 0);
+    // One visible gap must map to one authored token. Repeated words would make
+    // the tested slot unclear in review and make diversity accounting unstable.
+    if (matchingTokenIndexes.length !== 1) continue;
+
+    const authoredDistractors = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && within(value, TOURNAMENT_TASK_LIMITS.optionBytes)
+        && normalize(value) !== normalize(original))
+      .map((value) => [normalize(value), value])).values());
+    const safeSlot = safeFillGapSlot(
+      partOfSpeech,
+      original,
+      authoredDistractors,
+      tokens,
+      matchingTokenIndexes[0],
+      String(phrase.meaning?.ru ?? ''),
+    );
+    if (!safeSlot) continue;
+    const selected = stableShuffle(
+      safeSlot.distractors,
+      `fill-gap-traps:${phrase.id}:${sourceIndex}:${original}`,
+    ).slice(0, 3);
+    const gapPhrase = replaceAuthoredWord(english, original, '___');
+    const mutatedPhrase = replaceAuthoredWord(english, original, selected[0]);
+    if (!gapPhrase || !mutatedPhrase
+      || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
+      || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)
+      || normalize(completeGap(gapPhrase, original)) !== normalize(english)) continue;
+    const slotKey = `${normalize(gapPhrase)}:${normalize(original)}`;
+    if (seenSlots.has(slotKey)) continue;
+    seenSlots.add(slotKey);
+    mutations.push({
+      original,
+      replacement: selected[0],
+      partOfSpeech,
+      grammarRole: safeSlot.grammarRole,
+      gapPhrase,
+      mutatedPhrase,
+      options: [original, ...selected],
+      tokenIndex: matchingTokenIndexes[0],
+      tokenCount: tokens.length,
+    });
+  }
+
+  return mutations.sort((left, right) => sha256(
+    `fill-gap-slot:${phrase.id}:${left.tokenIndex}:${left.original}`,
+  ).localeCompare(sha256(
+    `fill-gap-slot:${phrase.id}:${right.tokenIndex}:${right.original}`,
+  )));
+}
+
+function fillGapRoleNote(mutation: FillGapMutation): string {
+  if (mutation.grammarRole === 'subject_pronoun_agreement') {
+    return 'подлежащее согласуется с соседней формой am, is или are';
+  }
+  if (mutation.grammarRole === 'object_pronoun_case') {
+    return 'объектная форма местоимения стоит там, где формы подлежащего не подходят';
+  }
+  if (mutation.grammarRole === 'object_pronoun_reference') {
+    return 'русский перевод прямо указывает, к кому относится объектное местоимение';
+  }
+  return 'форма am, is или are согласуется с соседним личным местоимением';
+}
+
+function buildFillGapTask(
+  day: SourceDay,
+  phrase: SourcePhrase,
+  mutation: FillGapMutation,
+): NewTournamentTask | null {
   const pair = authoredPair(phrase);
-  const mutation = unambiguousFillMutation(phrase);
-  if (!pair || !mutation) return null;
+  if (!pair) return null;
   const options = stableShuffle(mutation.options, `gap-options:${pair.id}`);
   const correctIndex = options.findIndex((option) => option === mutation.original);
   const prompt = `${mutation.gapPhrase}\n${pair.ru}`;
   if (!within(prompt, TOURNAMENT_TASK_LIMITS.phraseBytes)) return null;
+  const roleNote = fillGapRoleNote(mutation);
+  const trapViolation = mutation.grammarRole === 'object_pronoun_reference'
+    ? 'вариант меняет референта, прямо указанного в русском переводе'
+    : 'форма нарушает проверяемое согласование или падеж';
   const explanation: TournamentTaskExplanation = {
-    ruleNote: 'В пропуске нужно «I»: форма «am» согласуется только с подлежащим «I». Здесь ловушка проверяется грамматикой, а не догадкой.',
+    ruleNote: truncateToBytes(`В пропуске нужно «${mutation.original}»: ${roleNote}, поэтому среди четырёх вариантов подходит только эта форма.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     wrongOptionReasons: options.map((option) => option === mutation.original
       ? ''
-      : truncateToBytes(`«${option}» — ловушка: сочетание «${option} am» нарушает согласование; правильно «I am» в фразе «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
+      : truncateToBytes(`«${option}» даёт «${withoutTerminalPunctuation(completeGap(mutation.gapPhrase, option))}» — это ловушка: ${trapViolation}. Правильно «${mutation.original}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
-  return baseTask(day, 'fill_gap', `gap:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.original}`,
+  return baseTask(day, 'fill_gap', `gap:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.tokenIndex}:${mutation.original}`,
     [pair.id], {
       phrase: prompt,
       options,
       correctIndex,
       correctAnswer: mutation.original,
     }, explanation);
+}
+
+export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+  const mutation = fillGapMutations(phrase)[0];
+  return mutation ? buildFillGapTask(day, phrase, mutation) : null;
+}
+
+function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase): PoolCandidate[] {
+  return fillGapMutations(phrase).flatMap((mutation) => {
+    const task = buildFillGapTask(day, phrase, mutation);
+    if (!task) return [];
+    const position = mutation.tokenIndex === 0
+      ? 'first'
+      : (mutation.tokenIndex === mutation.tokenCount - 1 ? 'last' : 'middle');
+    return [{
+      task,
+      fillGap: {
+        grammarRole: mutation.grammarRole,
+        correctToken: normalize(mutation.original),
+        position,
+        phraseKey: `${day.planId}:${day.dayIndex}:${phrase.id}`,
+      },
+    }];
+  });
 }
 
 function buildOddityTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
@@ -505,8 +702,46 @@ function buildSpeedMatchTask(day: SourceDay): NewTournamentTask | null {
     });
 }
 
-function allCandidates(days: readonly SourceDay[]): NewTournamentTask[] {
-  const candidates: NewTournamentTask[] = [];
+function selectDiverseFillGapCandidates(
+  cell: readonly PoolCandidate[],
+  count: number,
+): PoolCandidate[] {
+  const remaining = [...cell];
+  const selected: PoolCandidate[] = [];
+  const usedPhrases = new Set<string>();
+  const positionCounts = new Map<string, number>();
+  const roleCounts = new Map<string, number>();
+  const tokenCounts = new Map<string, number>();
+  const countOf = (counts: ReadonlyMap<string, number>, key: string): number => counts.get(key) ?? 0;
+
+  while (selected.length < count && remaining.length > 0) {
+    const unusedPhrases = remaining.filter((candidate) => (
+      candidate.fillGap && !usedPhrases.has(candidate.fillGap.phraseKey)
+    ));
+    const eligible = unusedPhrases.length > 0 ? unusedPhrases : remaining;
+    eligible.sort((left, right) => {
+      const leftMeta = left.fillGap!;
+      const rightMeta = right.fillGap!;
+      return countOf(positionCounts, leftMeta.position) - countOf(positionCounts, rightMeta.position)
+        || countOf(tokenCounts, leftMeta.correctToken) - countOf(tokenCounts, rightMeta.correctToken)
+        || countOf(roleCounts, leftMeta.grammarRole) - countOf(roleCounts, rightMeta.grammarRole)
+        || sha256(`fill-gap-pool:${NEW_TOURNAMENT_POOL_VERSION}:${left.task.taskId}`)
+          .localeCompare(sha256(`fill-gap-pool:${NEW_TOURNAMENT_POOL_VERSION}:${right.task.taskId}`));
+    });
+    const winner = eligible[0];
+    const metadata = winner.fillGap!;
+    selected.push(winner);
+    usedPhrases.add(metadata.phraseKey);
+    positionCounts.set(metadata.position, countOf(positionCounts, metadata.position) + 1);
+    roleCounts.set(metadata.grammarRole, countOf(roleCounts, metadata.grammarRole) + 1);
+    tokenCounts.set(metadata.correctToken, countOf(tokenCounts, metadata.correctToken) + 1);
+    remaining.splice(remaining.findIndex((candidate) => candidate.task.taskId === winner.task.taskId), 1);
+  }
+  return selected;
+}
+
+function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
+  const candidates: PoolCandidate[] = [];
   const sortedDays = [...days].sort((left, right) => (
     String(left.planId).localeCompare(String(right.planId))
     || Number(left.dayIndex) - Number(right.dayIndex)
@@ -515,16 +750,16 @@ function allCandidates(days: readonly SourceDay[]): NewTournamentTask[] {
     const phrases = [...(day.phrases ?? [])].sort((left, right) => String(left.id).localeCompare(String(right.id)));
     for (const phrase of phrases) {
       const guess = buildGuessTask(day, phrase);
-      const gap = buildUnambiguousFillGapTask(day, phrase);
+      const gaps = buildUnambiguousFillGapCandidates(day, phrase);
       const oddity = buildOddityTask(day, phrase);
       const build = buildTranslateTask(day, phrase);
-      if (guess) candidates.push(guess);
-      if (gap) candidates.push(gap);
-      if (oddity) candidates.push(oddity);
-      if (build) candidates.push(build);
+      if (guess) candidates.push({ task: guess });
+      candidates.push(...gaps);
+      if (oddity) candidates.push({ task: oddity });
+      if (build) candidates.push({ task: build });
     }
     const pairs = buildSpeedMatchTask(day);
-    if (pairs) candidates.push(pairs);
+    if (pairs) candidates.push({ task: pairs });
   }
   return candidates;
 }
@@ -538,16 +773,21 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
   for (const mode of NEW_TOURNAMENT_POOL_MODES) {
     for (const difficulty of [1, 2, 3]) {
       const key = `${mode}:${difficulty}`;
-      const cell = candidates.filter((task) => task.mode === mode && task.difficulty === difficulty);
+      const cell = candidates.filter((candidate) => (
+        candidate.task.mode === mode && candidate.task.difficulty === difficulty
+      ));
       candidateCounts[key] = cell.length;
       if (cell.length < NEW_TOURNAMENT_POOL_TASKS_PER_CELL) {
         throw new Error(`new_tournament_pool_cell_shortfall:${key}:${cell.length}`);
       }
-      const selected = [...cell]
-        .sort((left, right) => sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${left.taskId}`)
-          .localeCompare(sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${right.taskId}`)))
-        .slice(0, NEW_TOURNAMENT_POOL_TASKS_PER_CELL);
-      for (const task of selected) {
+      const selected = mode === 'fill_gap'
+        ? selectDiverseFillGapCandidates(cell, NEW_TOURNAMENT_POOL_TASKS_PER_CELL)
+        : [...cell]
+          .sort((left, right) => sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${left.task.taskId}`)
+            .localeCompare(sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${right.task.taskId}`)))
+          .slice(0, NEW_TOURNAMENT_POOL_TASKS_PER_CELL);
+      for (const candidate of selected) {
+        const { task } = candidate;
         const validation = validateTournamentTaskForNewRoom(task);
         if (!validation.ok) throw new Error(`new_tournament_pool_task_invalid:${task.taskId}:${validation.reason}`);
         tasks.push(task);

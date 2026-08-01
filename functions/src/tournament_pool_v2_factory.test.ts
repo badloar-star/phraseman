@@ -14,6 +14,7 @@ import {
   TOURNAMENT_SOURCE_PLANS,
   loadTournamentSourceDays,
 } from './tournament_content_source';
+import type { SourcePhrase } from './tournament_task_factory';
 
 const APPROVED_MODES = [
   'guess_phrase',
@@ -31,6 +32,7 @@ describe('new deterministic tournament pool v2', () => {
   test('builds a fresh 180-task pool balanced across five modes and three difficulties', () => {
     const result = buildProductionSizedPool();
 
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v4');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
     expect(result.tasks).toHaveLength(180);
     expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(180);
@@ -47,7 +49,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260729_v3_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v4_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);
@@ -98,24 +100,75 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('fill_gap always carries the authored Russian meaning so tense or meaning alternatives are not ambiguous', () => {
-    const gapTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'fill_gap');
+  test('fill_gap carries authored meaning and covers different answers, grammar roles, and blank positions', () => {
+    const sourceDays = loadTournamentSourceDays(TOURNAMENT_SOURCE_PLANS);
+    const sourcePhrases = new Map<string, SourcePhrase>(sourceDays.flatMap((day) => day.phrases
+      .map((phrase) => [`${day.planId}:${day.dayIndex}:${phrase.id}`, phrase] as const)));
+    const gapTasks = buildNewTournamentPool(sourceDays).tasks.filter((task) => task.mode === 'fill_gap');
     expect(gapTasks).toHaveLength(36);
+
+    const correctTokens = new Map<string, number>();
+    const grammarRoles = new Set<string>();
+    const blankPositions = new Map<string, number>();
+    const pronounAnswers = new Set<string>();
+    const sourcePhraseIds = new Set<string>();
 
     for (const task of gapTasks) {
       const [englishGap, russianMeaning, ...extraLines] = String(task.payload.phrase).split('\n');
+      const correctAnswer = String(task.payload.correctAnswer);
+      const normalizedAnswer = correctAnswer.toLocaleLowerCase('en');
+      const phraseId = task.contentProvenance.phraseIds[0];
+      const sourceKey = `${task.contentProvenance.planId}:${task.contentProvenance.dayIndex}:${phraseId}`;
+      const sourcePhrase = sourcePhrases.get(sourceKey);
+      const sourceWord = sourcePhrase?.words?.find((word) => (
+        word.text.toLocaleLowerCase('en') === normalizedAnswer
+      ));
+      const tokens = englishGap.trim().split(/\s+/);
+      const blankIndex = tokens.findIndex((token) => token.includes('___'));
+      const position = blankIndex === 0
+        ? 'first'
+        : (blankIndex === tokens.length - 1 ? 'last' : 'middle');
+
       expect((englishGap.match(/___/g) ?? [])).toHaveLength(1);
       expect(russianMeaning.trim()).toBeTruthy();
       expect(extraLines).toEqual([]);
       expect(task.explanation?.example).toContain(russianMeaning.trim());
-      expect(task.payload.correctAnswer).toBe('I');
-      expect(englishGap).toMatch(/___\s+am\b/i);
-      expect((task.payload.options as string[]).filter((option) => option !== 'I')
-        .every((option) => !/^I$/i.test(option))).toBe(true);
+      expect(sourcePhrase).toBeTruthy();
+      expect(sourceWord).toBeTruthy();
+      expect(blankIndex).toBeGreaterThanOrEqual(0);
+      expect((task.payload.options as string[]).filter((option) => option === correctAnswer))
+        .toHaveLength(1);
+
+      correctTokens.set(normalizedAnswer, (correctTokens.get(normalizedAnswer) ?? 0) + 1);
+      const normalizedOptions = (task.payload.options as string[])
+        .filter((option) => option !== correctAnswer)
+        .map((option) => option.toLocaleLowerCase('en'));
+      if (sourceWord?.partOfSpeech === 'to-be') grammarRoles.add('be_agreement');
+      else if (normalizedOptions.filter((option) => (
+        ['you', 'me', 'him', 'her', 'us', 'them'].includes(option)
+      )).length >= 3) grammarRoles.add('object_pronoun_reference');
+      else if (['me', 'him', 'her', 'us', 'them'].includes(normalizedAnswer)) {
+        grammarRoles.add('object_pronoun_case');
+      } else grammarRoles.add('subject_pronoun_agreement');
+      blankPositions.set(position, (blankPositions.get(position) ?? 0) + 1);
+      sourcePhraseIds.add(sourceKey);
+      if (sourceWord?.partOfSpeech === 'pronoun') pronounAnswers.add(normalizedAnswer);
     }
+
+    expect(correctTokens.size).toBeGreaterThanOrEqual(12);
+    expect(Math.max(...correctTokens.values())).toBeLessThanOrEqual(6);
+    expect(grammarRoles).toEqual(new Set([
+      'be_agreement', 'object_pronoun_case', 'object_pronoun_reference',
+      'subject_pronoun_agreement',
+    ]));
+    expect(pronounAnswers.size).toBeGreaterThanOrEqual(4);
+    expect(blankPositions.get('first') ?? 0).toBeGreaterThanOrEqual(6);
+    expect(blankPositions.get('middle') ?? 0).toBeGreaterThanOrEqual(6);
+    expect(blankPositions.get('last') ?? 0).toBeGreaterThanOrEqual(6);
+    expect(sourcePhraseIds.size).toBe(36);
   });
 
-  test('semantic ambiguity gate rejects a/the and accepts the structurally unique I-am pattern', () => {
+  test('semantic ambiguity gate rejects articles but accepts authored grammar slots beyond I-am', () => {
     const ambiguousDay = {
       planId: 'test', dayIndex: 1, level: 'A1', phrases: [],
     };
@@ -125,17 +178,108 @@ describe('new deterministic tournament pool v2', () => {
       meaning: { ru: 'Давай встретимся в кафе.' },
       words: [{ text: 'the', partOfSpeech: 'article', distractors: ['a', 'an', 'some'] }],
     };
-    const uniquePhrase = {
-      id: 'subject-agreement',
-      english: 'I am ready.',
-      meaning: { ru: 'Я готов.' },
-      words: [{ text: 'I', partOfSpeech: 'pronoun', distractors: ['you', 'he', 'we', 'they'] }],
-    };
+    const authoredSlots = [
+      {
+        phrase: {
+          id: 'subject-pronoun',
+          english: 'She is ready.',
+          meaning: { ru: 'Она готова.' },
+          words: [{ text: 'She', partOfSpeech: 'pronoun', distractors: ['I', 'you', 'we', 'they'] }],
+        },
+        correctAnswer: 'She',
+        gap: '___ is ready.',
+      },
+      {
+        phrase: {
+          id: 'copula-form',
+          english: 'They are ready.',
+          meaning: { ru: 'Они готовы.' },
+          words: [{ text: 'are', partOfSpeech: 'to-be', distractors: ['am', 'is', 'was', 'be'] }],
+        },
+        correctAnswer: 'are',
+        gap: 'They ___ ready.',
+      },
+      {
+        phrase: {
+          id: 'object-pronoun',
+          english: 'Call me tomorrow.',
+          meaning: { ru: 'Позвони мне завтра.' },
+          words: [{ text: 'me', partOfSpeech: 'pronoun', distractors: ['I', 'we', 'they', 'she'] }],
+        },
+        correctAnswer: 'me',
+        gap: 'Call ___ tomorrow.',
+      },
+      {
+        phrase: {
+          id: 'final-object-pronoun',
+          english: 'Please call him.',
+          meaning: { ru: 'Пожалуйста, позвони ему.' },
+          words: [{ text: 'him', partOfSpeech: 'pronoun', distractors: ['I', 'we', 'they', 'she'] }],
+        },
+        correctAnswer: 'him',
+        gap: 'Please call ___.',
+      },
+      {
+        phrase: {
+          id: 'explicit-object-reference',
+          english: 'I can hear you.',
+          meaning: { ru: 'Я слышу тебя.' },
+          words: [{ text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'us', 'me'] }],
+        },
+        correctAnswer: 'you',
+        gap: 'I can hear ___.',
+      },
+    ];
+
+    const semanticallyAmbiguousSlots = [
+      {
+        id: 'can-may',
+        english: 'Can I have gift wrapping, please?',
+        meaning: { ru: 'Можно подарочную упаковку, пожалуйста?' },
+        words: [{ text: 'Can', partOfSpeech: 'modal', distractors: ['May', 'Could', 'Would', 'Should'] }],
+      },
+      {
+        id: 'could-would',
+        english: 'Could you pass the salt, please?',
+        meaning: { ru: 'Не могли бы вы передать соль, пожалуйста?' },
+        words: [{ text: 'Could', partOfSpeech: 'modal', distractors: ['Would', 'Can', 'Will', 'Should'] }],
+      },
+      {
+        id: 'can-could-doctor',
+        english: 'Can I see the doctor tomorrow?',
+        meaning: { ru: 'Можно мне попасть к врачу завтра?' },
+        words: [{ text: 'Can', partOfSpeech: 'modal', distractors: ['Will', 'Could', 'Should', 'Must', 'May'] }],
+      },
+      {
+        id: 'preposition-meaning',
+        english: 'Meet me at noon.',
+        meaning: { ru: 'Встреть меня в полдень.' },
+        words: [{ text: 'at', partOfSpeech: 'preposition', distractors: ['before', 'around', 'after', 'by'] }],
+      },
+      {
+        id: 'phrasal-particle-meaning',
+        english: 'Please check in here.',
+        meaning: { ru: 'Пожалуйста, зарегистрируйтесь здесь.' },
+        words: [{ text: 'in', partOfSpeech: 'phrasal_particle', distractors: ['out', 'up', 'on', 'off'] }],
+      },
+      {
+        id: 'implicit-object-reference',
+        english: 'I can hear you.',
+        meaning: { ru: 'Я хорошо слышу.' },
+        words: [{ text: 'you', partOfSpeech: 'pronoun', distractors: ['him', 'her', 'them', 'us', 'me'] }],
+      },
+    ];
 
     expect(buildUnambiguousFillGapTask(ambiguousDay, articlePhrase)).toBeNull();
-    const accepted = buildUnambiguousFillGapTask(ambiguousDay, uniquePhrase);
-    expect(accepted?.payload).toMatchObject({ correctAnswer: 'I' });
-    expect(String(accepted?.payload.phrase)).toContain('___ am ready.');
+    for (const phrase of semanticallyAmbiguousSlots) {
+      expect(buildUnambiguousFillGapTask(ambiguousDay, phrase)).toBeNull();
+    }
+    for (const example of authoredSlots) {
+      const accepted = buildUnambiguousFillGapTask(ambiguousDay, example.phrase);
+      expect(accepted?.payload).toMatchObject({ correctAnswer: example.correctAnswer });
+      expect(String(accepted?.payload.phrase)).toContain(example.gap);
+      expect(validateTournamentTaskForNewRoom(accepted!).ok).toBe(true);
+    }
   });
 
   test('generated review copy has no doubled punctuation around closing quotes', () => {

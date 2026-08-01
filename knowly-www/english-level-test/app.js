@@ -832,8 +832,7 @@
     const optionButtons = node.querySelectorAll('.elt-option');
     optionButtons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const idx = parseInt(btn.dataset.index, 10);
-        selectAnswer(q, idx, btn);
+        selectAnswer(q, btn);
       });
     });
 
@@ -909,32 +908,41 @@
     keydownBound = false;
   }
 
-  function selectAnswer(question, index, button) {
-    if (answerLocked) return false;
-    selectedAnswerIndex = index;
+  function selectAnswer(question, button) {
+    const currentButtons = currentView ? Array.from(currentView.querySelectorAll('.elt-option')) : [];
+    const currentIndex = currentButtons.indexOf(button);
+    if (answerLocked || question !== currentQuestion || currentIndex < 0) return false;
+    selectedAnswerIndex = currentIndex;
     answerLocked = true;
     button.classList.add('elt-option--picked');
     button.setAttribute('aria-checked', 'true');
-    setTimeout(() => answerQuestion(question, index, false), 200);
+    setTimeout(() => answerQuestion(question, currentIndex, false), 200);
     return true;
   }
 
   function handleQuestionKeydown(e) {
     const view = currentView && currentView.classList.contains('elt-test') ? currentView : null;
     if (!view) return;
-    if (answerLocked) return;
     const buttons = view.querySelectorAll('.elt-option');
     if (!buttons.length) return;
     const focused = document.activeElement;
     let idx = Array.from(buttons).indexOf(focused);
     const q = currentQuestion;
 
+    if ((e.key === 'Enter' || e.key === ' ') && focused?.classList?.contains('elt-option')) {
+      e.preventDefault();
+      if (!answerLocked && idx >= 0) selectAnswer(q, buttons[idx]);
+      return;
+    }
+
+    if (answerLocked) return;
+
     if (e.key >= '1' && e.key <= '4') {
       const i = parseInt(e.key, 10) - 1;
       if (buttons[i]) {
         e.preventDefault();
         buttons[i].focus();
-        selectAnswer(q, i, buttons[i]);
+        selectAnswer(q, buttons[i]);
       }
       return;
     }
@@ -947,11 +955,6 @@
       e.preventDefault();
       const prev = buttons[Math.max(idx - 1, 0)] || buttons[buttons.length - 1];
       prev.focus();
-    } else if (e.key === 'Enter' || e.key === ' ') {
-      if (idx >= 0) {
-        e.preventDefault();
-        selectAnswer(q, idx, buttons[idx]);
-      }
     }
   }
 

@@ -266,6 +266,8 @@ function loadKeyboardStateApp({ source = fs.readFileSync(appPath, 'utf8') } = {}
 function keydown(fixture, key) {
   let prevented = false;
   fixture.app.listeners.get('keydown')?.({ key, preventDefault() { prevented = true; } });
+  const focused = fixture.context.document.activeElement;
+  if (!prevented && (key === 'Enter' || key === ' ') && focused?.classList?.contains('elt-option')) focused.click();
   return prevented;
 }
 
@@ -327,8 +329,9 @@ function assertStaleCrossfadeFocusIsIgnored(fixture) {
   assert.equal(outgoingView.isConnected, true);
   assert.equal(fixture.context.document.activeElement, outgoingOption);
 
-  assert.equal(keydown(fixture, ' '), false);
-  assert.equal(keydown(fixture, 'Enter'), false);
+  assert.equal(keydown(fixture, ' '), true);
+  assert.equal(keydown(fixture, 'Enter'), true);
+  outgoingOption.click();
   assert.equal(fixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, null);
   assert.equal(fixture.context.window.__keyboardStateTest.state().answerLocked, false);
   assert.equal(fixture.pendingTimeouts(200).length, 0);
@@ -775,7 +778,7 @@ test('focused Enter and Space selection share the click lock before delayed answ
   const enterOptions = enterFixture.view().querySelectorAll('.elt-option');
   enterOptions[1].focus();
   assert.equal(keydown(enterFixture, 'Enter'), true);
-  assert.equal(keydown(enterFixture, ' '), false);
+  assert.equal(keydown(enterFixture, ' '), true);
   assert.equal(enterFixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 1);
   assert.equal(enterFixture.pendingTimeouts(200).length, 1);
   enterFixture.flushTimeouts(200);
@@ -786,7 +789,7 @@ test('focused Enter and Space selection share the click lock before delayed answ
   const clickOptions = clickFixture.view().querySelectorAll('.elt-option');
   clickOptions[0].click();
   clickOptions[1].focus();
-  assert.equal(keydown(clickFixture, 'Enter'), false);
+  assert.equal(keydown(clickFixture, 'Enter'), true);
   assert.equal(clickFixture.context.window.__keyboardStateTest.state().selectedAnswerIndex, 0);
   assert.equal(clickFixture.pendingTimeouts(200).length, 1);
   clickFixture.flushTimeouts(200);
@@ -804,8 +807,8 @@ test('stale outgoing option focus cannot answer the next question during cross-f
 test('keyboard race behavioral contract rejects removal of the immediate selection gate', () => {
   const source = fs.readFileSync(appPath, 'utf8');
   const withoutGate = source.replace(
-    '    if (answerLocked) return false;\n    selectedAnswerIndex = index;\n    answerLocked = true;',
-    '',
+    '    if (answerLocked || question !== currentQuestion || currentIndex < 0) return false;',
+    '    if (question !== currentQuestion || currentIndex < 0) return false;',
   );
   assert.notEqual(withoutGate, source, 'mutation must remove the shared immediate selection gate');
   assert.throws(() => assertKeyboardAnswerRaceIsLocked(loadKeyboardStateApp({ source: withoutGate })));
@@ -818,14 +821,24 @@ test('Space-first behavioral contract rejects removing Space key handling', () =
   assert.throws(() => assertSpaceFirstAnswerIsLocked(loadKeyboardStateApp({ source: withoutSpace })));
 });
 
-test('cross-fade keyboard contract rejects removing current-option membership check', () => {
+test('cross-fade keyboard contract rejects skipping stale option default prevention', () => {
   const source = fs.readFileSync(appPath, 'utf8');
-  const withoutMembershipCheck = source.replace(
-    '      if (idx >= 0) {\n        e.preventDefault();\n        selectAnswer(q, idx, buttons[idx]);\n      }',
-    '      if (focused.classList && focused.classList.contains(\'elt-option\')) {\n        e.preventDefault();\n        const i = parseInt(focused.dataset.index, 10);\n        selectAnswer(q, i, focused);\n      }',
+  const withoutStalePrevention = source.replace(
+    "if ((e.key === 'Enter' || e.key === ' ') && focused?.classList?.contains('elt-option'))",
+    "if ((e.key === 'Enter' || e.key === ' ') && idx >= 0)",
   );
-  assert.notEqual(withoutMembershipCheck, source, 'mutation must remove current-option membership check');
-  assert.throws(() => assertStaleCrossfadeFocusIsIgnored(loadKeyboardStateApp({ source: withoutMembershipCheck })));
+  assert.notEqual(withoutStalePrevention, source, 'mutation must skip stale option default prevention');
+  assert.throws(() => assertStaleCrossfadeFocusIsIgnored(loadKeyboardStateApp({ source: withoutStalePrevention })));
+});
+
+test('cross-fade keyboard contract rejects stale answer controls in selectAnswer', () => {
+  const source = fs.readFileSync(appPath, 'utf8');
+  const withoutOwnershipGuard = source.replace(
+    '    if (answerLocked || question !== currentQuestion || currentIndex < 0) return false;',
+    '    if (answerLocked) return false;',
+  );
+  assert.notEqual(withoutOwnershipGuard, source, 'mutation must remove stale answer control ownership guard');
+  assert.throws(() => assertStaleCrossfadeFocusIsIgnored(loadKeyboardStateApp({ source: withoutOwnershipGuard })));
 });
 
 test('behavioral harness rejects timer reset, result header removal, and focus restoration mutations', () => {

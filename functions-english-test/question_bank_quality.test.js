@@ -366,6 +366,47 @@ test('generated language test artifacts are protected from checkout line-ending 
   assert.match(attributes, /^functions-english-test\/data\/questions\.\*\.json text eol=lf$/m);
 });
 
+test('multilingual quality auditor validates a conforming fixture without mutating it', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const fixture = {
+    language: 'de',
+    questions: LEVELS.flatMap((level) => {
+      const quotas = ['A1', 'A2'].includes(level)
+        ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 }
+        : ['B1', 'B2'].includes(level)
+          ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 }
+          : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
+      return Object.entries(quotas).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => ({
+        id: `de-${level.toLowerCase()}-${skill}-${index + 1}`,
+        level,
+        skill,
+        constructId: `${level.toLowerCase()}-${skill}-${index + 1}`,
+        descriptorRefs: [`CEFR-2020-${level}`],
+        stimulus: `${level} ${skill} alpha${index + 1} beta${index + 1} gamma${index + 1}${['C1', 'C2'].includes(level) && index < 6 ? '. Second sentence gives context.' : ''}`,
+        options: ['eins', 'zwei', 'drei', 'vier'].map((option) => `${option}-${level}-${skill}-${index}`),
+        correctIndex: 0,
+        instructionRu: 'Выберите естественный вариант.',
+        instructionEn: 'Choose the natural option.',
+        upperBandEvidence: ['C1', 'C2'].includes(level),
+        logicalInference: level === 'C2' && index < 6,
+        review: Object.fromEntries(audit.REVIEW_FIELDS.map((field) => [field, 'pass'])),
+      })));
+    }),
+  };
+  fixture.questions.forEach((question) => { question.review.sha256 = audit.questionSha256(question); });
+  const before = JSON.stringify(fixture);
+  assert.deepEqual(audit.auditQuestionBank(fixture).errors, []);
+  assert.equal(JSON.stringify(fixture), before);
+});
+
+test('multilingual blueprints carry explicit product-hypothesis quotas and 40 distinct CEFR-traced constructs', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  for (const language of ['de', 'fr', 'it', 'es']) {
+    const blueprint = JSON.parse(fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'blueprints', `${language}.json`), 'utf8'));
+    assert.deepEqual(audit.auditBlueprint(blueprint).errors, [], language);
+  }
+});
+
 test('generic check rejects a one-byte line-ending drift without changing output bytes or mtimes', async () => {
   const bank = await import(pathToFileURL(path.join(ROOT, 'scripts', 'lib', 'language_test_bank.mjs')).href);
   const outputs = bank.outputPathsFor(ROOT, 'en');

@@ -59,6 +59,7 @@ type Winner = {
   id: string;
   name: string;
   avatar: string;
+  aura: string | undefined;
   color: string;
   score: number;
   place: number;
@@ -92,6 +93,7 @@ function buildPodium(players: readonly RoomPlayer[], P: TournamentV2): Winner[] 
     // зачем: был эмодзи-фолбэк '🙂' — approved AvatarView сам рисует дефолтный
     // LevelBadge, если avatar пуст/невалиден, эмодзи-костыль не нужен.
     avatar: player.avatar || '',
+    aura: player.aura,
     // зачем: было хардкод-hex '#8AB49A' — фолбэк-цвет аватара теперь берётся
     // из общего токен-набора режима (тот же тон, что P.muted).
     color: player.color || P.muted,
@@ -363,7 +365,7 @@ export default function TournamentResultsScreen() {
             {/* зачем: было хардкод-hex фолбэк-цвета + эмодзи-аватар — теперь
                 общий P.muted и настоящий AvatarView, как на подиуме выше. */}
             <View style={[styles.rewardAvatar, { backgroundColor: `${me?.color ?? P.muted}33` }]}>
-              <AvatarView avatar={me?.avatar ?? ''} size={40} animateAura={false} />
+              <AvatarView avatar={me?.avatar ?? ''} auraId={me?.aura} size={40} animateAura={false} />
             </View>
             <View style={styles.rewardBody}>
               <Text style={styles.rewardTitle}>Ваша награда</Text>
@@ -507,7 +509,7 @@ const PodiumColumn = memo(function PodiumColumn({
             first && styles.podiumAvatarFirst,
           ]}
         >
-          <AvatarView avatar={winner.avatar} size={first ? 74 : 62} animateAura={false} />
+          <AvatarView avatar={winner.avatar} auraId={winner.aura} size={first ? 74 : 62} animateAura={false} />
         </View>
       </Animated.View>
 

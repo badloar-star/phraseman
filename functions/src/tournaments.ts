@@ -10,7 +10,8 @@ import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import {
   TOURNAMENT_REDDIT_BOT_PROFILE_IDS,
-  TOURNAMENT_REDDIT_BOT_SEED_VERSION,
+  isAcceptedTournamentBotSeedVersion,
+  isSafeTournamentBotName,
 } from './tournament_reddit_bot_names';
 import {
   BOT_PROFILES_COLLECTION,
@@ -492,16 +493,19 @@ export function assertTransactionalTournamentAccess(
 }
 
 function validBotProfile(id: string, data: FirebaseFirestore.DocumentData): BotProfile | null {
-  if (data.isBot !== true || data.seedVersion !== TOURNAMENT_REDDIT_BOT_SEED_VERSION) return null;
+  if (data.isBot !== true || !isAcceptedTournamentBotSeedVersion(data.seedVersion)) return null;
   const name = sanitizeString(data.name, 48);
-  const avatarEmoji = sanitizeString(data.avatarEmoji, 16);
+  const avatarEmoji = sanitizeString(data.avatarEmoji, 64);
+  const avatarAura = sanitizeString(data.avatarAura, 32);
   const color = sanitizeString(data.color, 16);
   const winRate = Number(data.winRate);
-  if (!id || !name || !avatarEmoji || !color || !Number.isFinite(winRate) || winRate < 0.15 || winRate > 0.85) return null;
+  if (!id || !name || !isSafeTournamentBotName(name) || !avatarEmoji || !color
+    || !Number.isFinite(winRate) || winRate < 0.15 || winRate > 0.85) return null;
   return {
     botId: id,
     name,
     avatarEmoji,
+    ...(avatarAura ? { avatarAura } : {}),
     color,
     winRate,
     rank: sanitizeString(data.rank, 24) || 'silver',
@@ -936,6 +940,7 @@ function buildBotReservationPlan(input: {
     isBot: true,
     name: bot.name,
     avatar: bot.avatarEmoji,
+    ...(bot.avatarAura ? { aura: bot.avatarAura } : {}),
     color: bot.color || PLAYER_COLORS[((input.colorOffset || 0) + index) % PLAYER_COLORS.length],
     score: 0,
     streak: 0,
@@ -2280,6 +2285,7 @@ export async function tournamentFillRoomTransaction(
       isBot: true,
       name: bot.name,
       avatar: bot.avatarEmoji,
+      ...(bot.avatarAura ? { aura: bot.avatarAura } : {}),
       color: bot.color || PLAYER_COLORS[(room.players.length + index) % PLAYER_COLORS.length],
       score: 0,
       streak: 0,

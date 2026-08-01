@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-// Production-safe seeder for the reviewed 200-name Reddit tournament bot corpus.
+// Production-safe seeder for the reviewed 200-name multilingual tournament corpus.
 // Default mode is read-only. Applying requires --apply, an environment guard,
 // the exact reviewed corpus SHA, and credentials for the pinned Firebase project.
 
 const assert = require('node:assert/strict');
+const { Buffer } = require('node:buffer');
 const crypto = require('node:crypto');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -13,6 +14,7 @@ require('tsx/cjs');
 const { generateBotProfiles } = require('../src/tournament_core.ts');
 const {
   TOURNAMENT_REDDIT_BOT_NAMES_SHA256,
+  TOURNAMENT_REDDIT_BOT_PERSONA_SEED,
   TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
   TOURNAMENT_REDDIT_BOT_SEED_VERSION,
 } = require('../src/tournament_reddit_bot_names.ts');
@@ -40,11 +42,13 @@ function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
 }
 
 function hashNames(names) {
-  return crypto.createHash('sha256').update(`${names.join('\n')}\n`).digest('hex');
+  return crypto.createHash('sha256')
+    .update(Buffer.from(`${names.join('\n')}\n`, 'utf8'))
+    .digest('hex');
 }
 
 function buildExpectedProfiles() {
-  const profiles = generateBotProfiles(EXPECTED_COUNT, SEED_VERSION).map((profile) => ({
+  const profiles = generateBotProfiles(EXPECTED_COUNT, TOURNAMENT_REDDIT_BOT_PERSONA_SEED).map((profile) => ({
     ...profile,
     isBot: true,
     seedVersion: SEED_VERSION,

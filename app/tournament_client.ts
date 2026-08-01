@@ -33,6 +33,7 @@ export type RoomPlayer = {
   isBot?: boolean;
   name: string;
   avatar: string;
+  aura?: string;
   color: string;
   score: number;
   streak: number;

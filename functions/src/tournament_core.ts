@@ -458,6 +458,8 @@ export type TournamentPlayer = {
   isBot?: boolean;
   name: string;
   avatar: string;
+  /** Optional visual aura id rendered around the avatar. */
+  aura?: string;
   color: string;
   score: number;
   /** Final authoritative competition place, published only after finalization. */
@@ -2123,6 +2125,7 @@ export function completeTournamentRoundAtDeadline(
       botId: player.id,
       name: player.name,
       avatarEmoji: player.avatar,
+      ...(player.aura ? { avatarAura: player.aura } : {}),
       rank: 'silver',
       titles: [],
       winRate: Math.min(0.85, Math.max(0.15, player.botWinRate ?? 0.5)),
@@ -2705,7 +2708,9 @@ export function resolveSeasonEntryName(
 export type BotProfile = {
   botId: string;
   name: string;
+  /** Historical field name; stores a level-avatar index or custom avatar value. */
   avatarEmoji: string;
+  avatarAura?: string;
   rank: string;
   titles: string[];
   /** Реалистичный винрейт 0.15–0.85, распределение ближе к середине. */
@@ -2734,18 +2739,39 @@ export function selectTournamentBotProfiles(input: {
   return [...fresh, ...recentFallback].slice(0, Math.max(0, Math.trunc(input.count)));
 }
 
-const BOT_EMOJI = ['🦊', '🐼', '🦉', '🐸', '🐯', '🦁', '🐨', '🦜', '🐳', '🦄', '🐝', '🦖'] as const;
 const BOT_RANKS = ['bronze', 'silver', 'gold', 'platinum', 'diamond'] as const;
 const BOT_COLORS = ['#47C870', '#FFC800', '#FF5B6C', '#16B7D9', '#B78CFF', '#FF9F43'] as const;
 const BOT_TITLES = ['Фразовый маньяк', 'Спринтер', 'Тихий охотник', 'Ветеран слотов', 'Словарный запас'] as const;
+const BOT_AVATAR_GRADIENTS = [
+  'aurora', 'ember', 'cosmic', 'forest', 'citrine',
+  'royal', 'ruby', 'magma', 'noirgold', 'sakura',
+] as const;
+const BOT_AVATAR_AURAS = [
+  'aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet',
+  'aura-coral', 'aura-prism', 'aura-lagoon', 'aura-sunset',
+] as const;
+
+function botAvatarVisual(rand: () => number): { avatarEmoji: string; avatarAura?: string } {
+  const usesShopAvatar = rand() < 0.1;
+  const avatarEmoji = usesShopAvatar
+    ? `custom:custom-gen-${String(41 + Math.floor(rand() * 22)).padStart(2, '0')}:${BOT_AVATAR_GRADIENTS[Math.floor(rand() * BOT_AVATAR_GRADIENTS.length)]}:${rand() < 0.5 ? 'black' : 'white'}`
+    : String(1 + Math.floor(rand() * 60));
+  const avatarAura = rand() < 0.22
+    ? BOT_AVATAR_AURAS[Math.floor(rand() * BOT_AVATAR_AURAS.length)]
+    : undefined;
+  return avatarAura ? { avatarEmoji, avatarAura } : { avatarEmoji };
+}
 
 /** winRate: среднее двух равномерных — треугольное распределение 0.15–0.85. */
 export function generateBotProfile(index: number, seed: string): BotProfile {
   const rand = tournamentPrng(`${seed}:bot:${index}`);
-  // The approved 200-profile seed maps 1:1 to the reviewed Reddit corpus.
+  // The approved 200-profile seed maps 1:1 to the reviewed multilingual corpus.
   // Larger developer-only seeds wrap deterministically without changing IDs.
   const name = REDDIT_BOT_NAMES[Math.max(0, Math.trunc(index)) % REDDIT_BOT_NAMES.length];
-  const avatarEmoji = BOT_EMOJI[Math.floor(rand() * BOT_EMOJI.length)];
+  // Consume the legacy avatar draw so rank/color/difficulty stay byte-for-byte
+  // stable, while avatar variety evolves on an independent deterministic stream.
+  rand();
+  const visual = botAvatarVisual(tournamentPrng(`${seed}:bot:${index}:visual-v2`));
   const rank = BOT_RANKS[Math.floor(rand() * BOT_RANKS.length)];
   const color = BOT_COLORS[Math.floor(rand() * BOT_COLORS.length)];
   const titlesCount = rand() < 0.4 ? 1 : 0;
@@ -2754,7 +2780,7 @@ export function generateBotProfile(index: number, seed: string): BotProfile {
   return {
     botId: `bot_${String(index + 1).padStart(3, '0')}`,
     name,
-    avatarEmoji,
+    ...visual,
     rank,
     titles,
     winRate: Math.min(0.85, Math.max(0.15, winRate)),

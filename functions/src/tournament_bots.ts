@@ -11,6 +11,7 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
 import { BOT_PROFILES_COLLECTION, generateBotProfiles } from './tournament_core';
 import {
+  TOURNAMENT_REDDIT_BOT_PERSONA_SEED,
   TOURNAMENT_REDDIT_BOT_PROFILE_COUNT,
   TOURNAMENT_REDDIT_BOT_SEED_VERSION,
 } from './tournament_reddit_bot_names';
@@ -28,7 +29,7 @@ export const adminSeedBotProfiles = onCall(HOT_CALLABLE_OPTIONS, async (request)
   const overwriteRequested = request.data?.overwrite === true;
 
   const db = admin.firestore();
-  const profiles = generateBotProfiles(count, TOURNAMENT_REDDIT_BOT_SEED_VERSION);
+  const profiles = generateBotProfiles(count, TOURNAMENT_REDDIT_BOT_PERSONA_SEED);
   const nowMs = Date.now();
 
   let written = 0;

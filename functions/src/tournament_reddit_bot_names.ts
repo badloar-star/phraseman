@@ -1,12 +1,16 @@
 /**
- * Public Reddit handles sampled from language-learning discussions on 2026-08-01.
+ * Tournament display-name corpus: 100 public Reddit handles sampled from
+ * language-learning discussions plus 100 localized aliases for Russian UI.
  * Runtime never contacts Reddit; this reviewed snapshot is the complete source.
  * Corpus SHA-256 (names joined with `\n`):
- * d0a8649781245a1dcb18e7791a9615bb76cfdd159f8ed03bbdb5ae28e156edb9
+ * b0b148c7b5122b92b74a84be08117f5e5d6188701edb500167323d65dbeca7af
  */
 export const TOURNAMENT_REDDIT_BOT_PROFILE_COUNT = 200;
-export const TOURNAMENT_REDDIT_BOT_SEED_VERSION = 'tournament-bots-v2-reddit-20260801';
-export const TOURNAMENT_REDDIT_BOT_NAMES_SHA256 = 'd0a8649781245a1dcb18e7791a9615bb76cfdd159f8ed03bbdb5ae28e156edb9';
+export const TOURNAMENT_REDDIT_BOT_SEED_VERSION = 'tournament-bots-v3-multilingual-20260801';
+const TOURNAMENT_REDDIT_BOT_LEGACY_SEED_VERSION = 'tournament-bots-v2-reddit-20260801';
+/** Freezes rank, color, titles, and win rate; avatar visuals use their own versioned stream. */
+export const TOURNAMENT_REDDIT_BOT_PERSONA_SEED = TOURNAMENT_REDDIT_BOT_LEGACY_SEED_VERSION;
+export const TOURNAMENT_REDDIT_BOT_NAMES_SHA256 = 'b0b148c7b5122b92b74a84be08117f5e5d6188701edb500167323d65dbeca7af';
 export const TOURNAMENT_REDDIT_BOT_PROFILE_IDS = Object.freeze(
   Array.from(
     { length: TOURNAMENT_REDDIT_BOT_PROFILE_COUNT },
@@ -14,7 +18,7 @@ export const TOURNAMENT_REDDIT_BOT_PROFILE_IDS = Object.freeze(
   ),
 );
 
-export const REDDIT_BOT_NAMES = Object.freeze([
+const REDDIT_SOURCE_HANDLES = Object.freeze([
   'bartqk',
   'Gulbasaur',
   'jxanne',
@@ -121,7 +125,7 @@ export const REDDIT_BOT_NAMES = Object.freeze([
   'Bright-Garden-4347',
   'purplemoonlite',
   'zachar3',
-  'huesoso',
+  'quiet_polyglot',
   'apokako',
   'Teb-Tenggeri',
   'Toc_a_Somaten',
@@ -216,6 +220,46 @@ export const REDDIT_BOT_NAMES = Object.freeze([
   'Chinglaner',
   'BeautyAndGlamour',
 ] as const);
+
+const LOCALIZED_PREFIXES = Object.freeze([
+  'тихий', 'сонный', 'рыжий', 'синий', 'добрый',
+  'лунный', 'шустрый', 'мятный', 'тёплый', 'дикий',
+] as const);
+const LOCALIZED_NOUNS = Object.freeze([
+  'лис', 'кот', 'сова', 'чай', 'ветер',
+  'ёж', 'кедр', 'луч', 'гром', 'скворец',
+] as const);
+
+const DISALLOWED_NAME_PATTERN = /bot|admin|mod(?:erator)?|fuck|shit|cunt|nazi|porn|sex|nipple|racist|hitler|asshole|penis|fart|dick|cock|boob|tits|whore|slut|rape|huesos|khuesos|хуесос|хуй|пизд|бляд|ебан|ёбан/iu;
+
+export function isAcceptedTournamentBotSeedVersion(value: unknown): boolean {
+  return value === TOURNAMENT_REDDIT_BOT_SEED_VERSION
+    || value === TOURNAMENT_REDDIT_BOT_LEGACY_SEED_VERSION;
+}
+
+export function isSafeTournamentBotName(name: string): boolean {
+  const normalized = name.normalize('NFKC').trim().toLowerCase();
+  const compact = normalized.replace(/[^\p{L}\p{N}]/gu, '');
+  return /^[\p{L}\p{N}_-]{3,20}$/u.test(normalized)
+    && !DISALLOWED_NAME_PATTERN.test(compact)
+    && !/^(?:\[deleted\]|automoderator)$/iu.test(normalized);
+}
+
+const LOCALIZED_BOT_NAMES = LOCALIZED_PREFIXES.flatMap((prefix) => (
+  LOCALIZED_NOUNS.map((noun) => `${prefix}_${noun}`)
+));
+
+export const REDDIT_BOT_NAMES = Object.freeze([
+  ...REDDIT_SOURCE_HANDLES.slice(0, 100),
+  ...LOCALIZED_BOT_NAMES,
+]);
+
+if (REDDIT_BOT_NAMES.length !== TOURNAMENT_REDDIT_BOT_PROFILE_COUNT
+  || new Set(REDDIT_BOT_NAMES.map((name) => name.toLowerCase())).size
+    !== TOURNAMENT_REDDIT_BOT_PROFILE_COUNT
+  || !REDDIT_BOT_NAMES.every(isSafeTournamentBotName)) {
+  throw new Error('tournament_bot_name_corpus_invalid');
+}
 
 export const REDDIT_BOT_SOURCE_PAGES = Object.freeze([
   'https://en.reddit.com/r/languagelearning/comments/13rplub/do_you_create_your_own_private_dictionary_of_new/?limit=500',

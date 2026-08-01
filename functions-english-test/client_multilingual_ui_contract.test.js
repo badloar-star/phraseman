@@ -1,10 +1,9 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
-const path = require('node:path');
 const test = require('node:test');
 const vm = require('node:vm');
 
-const modulePath = path.resolve(__dirname, '../knowly-www/english-level-test/i18n.js');
+const modulePath = require.resolve('../knowly-www/english-level-test/i18n.js');
 
 function loadI18n(globals = {}) {
   const source = fs.readFileSync(modulePath, 'utf8');
@@ -68,6 +67,10 @@ test('resolves only supported assessed languages and has complete immutable regi
   assert.equal(i18n.resolveTestLanguage(''), 'en');
   assert.equal(i18n.resolveTestLanguage('?test=xx'), 'en');
   assert.equal(Object.isFrozen(i18n.TESTS), true);
+  assert.equal(Object.isFrozen(i18n.TESTS.de.names.ru), true);
+  const originalGermanName = i18n.TESTS.de.names.ru.nominative;
+  i18n.TESTS.de.names.ru.nominative = 'changed';
+  assert.equal(i18n.TESTS.de.names.ru.nominative, originalGermanName);
   assert.equal(i18n.TESTS.de.certificateNames.en, 'German');
   assert.equal(i18n.TESTS.fr.certificateNames.ru, 'французского языка');
   assert.equal(i18n.TESTS.fr.resultNames.ru, 'французского языка');
@@ -128,6 +131,10 @@ test('keeps matching complete dictionaries and safely interpolates own variables
   assert.equal(i18n.t('en', 'result.score', { correct: '<b>7</b>', answered: 10, ignored: 'x' }), '&lt;b&gt;7&lt;/b&gt; correct out of 10 answered');
   assert.equal(i18n.t('en', 'result.score', { correct: '<img src=x onerror="x">&\' ', answered: 10 }), '&lt;img src=x onerror=&quot;x&quot;&gt;&amp;&#39;  correct out of 10 answered');
   assert.equal(Object.isFrozen(i18n.DICTIONARY), true);
+  assert.equal(Object.isFrozen(i18n.DICTIONARY.en.certificate.themes), true);
+  const originalTheme = i18n.DICTIONARY.en.certificate.themes.gold;
+  i18n.DICTIONARY.en.certificate.themes.gold = 'changed';
+  assert.equal(i18n.DICTIONARY.en.certificate.themes.gold, originalTheme);
 });
 
 test('provides explicit accessible text-only assessment copy for every planned screen', () => {

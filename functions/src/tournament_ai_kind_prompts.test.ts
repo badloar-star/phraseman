@@ -8,11 +8,11 @@ const baseParams = {
 };
 
 describe('tournament kind prompt mirrors the fail-closed content limits', () => {
-  it('asks assembly generation for exactly four decoys', () => {
+  it('asks assembly generation for exactly one meaningful trap', () => {
     const prompt = buildKindTask({ ...baseParams, kind: 'assembly' });
 
-    expect(prompt).toContain('exactly 4 extra decoy words');
-    expect(prompt).not.toMatch(/2-4 (?:extra )?decoy/i);
+    expect(prompt).toContain('exactly 1 extra trap word');
+    expect(prompt).not.toMatch(/(?:2-4|exactly 4) (?:extra )?decoy/i);
   });
 
   it.each(['situation', 'gap', 'oddity', 'assembly'] as const)(

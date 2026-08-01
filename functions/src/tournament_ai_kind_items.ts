@@ -28,7 +28,7 @@ const RULE_NOTE_MAX_BYTES = 500;
 const EXAMPLE_MAX_BYTES = 500;
 const MIN_ASSEMBLY_TOKENS = 4;
 const MAX_ASSEMBLY_TOKENS = 12;
-const ASSEMBLY_DECOYS = 4;
+const ASSEMBLY_DECOYS = 1;
 
 // ── Общие помощники ─────────────────────────────────────────────────────────
 
@@ -322,6 +322,7 @@ export function kindItemToTask(
       phrase: item.prompt,
       wordBank: [...item.options],
       correctTokens: [...item.correctTokens],
+      correctTokenCount: item.correctTokens.length,
       correctAnswer: item.correctAnswer,
     }
     : {

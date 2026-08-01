@@ -8,12 +8,14 @@
 import {
   TASKS_PER_ROUND,
   CELL_HEALTHY,
+  cellKey,
   ROUND_DIFFICULTIES,
   TOURNAMENT_MODES,
   isTournamentMode,
   planGenerationOrders,
   planPoolGaps,
   poolIsTournamentReady,
+  requiredCells,
   roundReadiness,
 } from './tournament_pool_plan';
 
@@ -27,11 +29,15 @@ describe('планировщик комплекта турнира', () => {
     expect(Number(match![1])).toBe(TASKS_PER_ROUND);
   });
 
-  it('пустой пул: турнир не готов, заказаны все блокирующие ячейки', () => {
+  it('пустой пул: заказывает только mode×difficulty ячейки, достижимые реальным round plan', () => {
     expect(poolIsTournamentReady({})).toBe(false);
     const orders = planGenerationOrders({}, { maxTasks: 1000 });
-    // Каждая ячейка (режим × сложность) должна попасть в заказ.
-    expect(orders.length).toBe(TOURNAMENT_MODES.length * 3);
+    const cells = requiredCells();
+    expect(cells).toHaveLength(14);
+    expect(cells).not.toContainEqual({ mode: 'find_oddity', difficulty: 3 });
+    expect(cells).toContainEqual({ mode: 'find_oddity', difficulty: 1 });
+    expect(cells).toContainEqual({ mode: 'find_oddity', difficulty: 2 });
+    expect(orders.map(({ mode, difficulty }) => ({ mode, difficulty }))).toEqual(cells);
     expect(orders.every((order) => order.count === TASKS_PER_ROUND)).toBe(true);
   });
 
@@ -50,11 +56,9 @@ describe('планировщик комплекта турнира', () => {
       modes: ['voice', 'listen_choose'] as never,
     })).toEqual([]);
 
-    const counts = Object.fromEntries(
-      TOURNAMENT_MODES.flatMap((mode) => [1, 2, 3].map((difficulty) => [
-        `${mode}:${difficulty}`, TASKS_PER_ROUND,
-      ])),
-    );
+    const counts = Object.fromEntries(requiredCells().map(({ mode, difficulty }) => [
+      `${mode}:${difficulty}`, TASKS_PER_ROUND,
+    ]));
     const rounds = roundReadiness(counts);
     expect(rounds.every((round) => round.ok)).toBe(true);
     const cells: Record<string, number> = counts;
@@ -65,6 +69,42 @@ describe('планировщик комплекта турнира', () => {
         expect(available).toBeGreaterThanOrEqual(TASKS_PER_ROUND);
       }
     });
+  });
+
+  it('готовность раунда требует по одному заданию каждого режима immutable round plan', () => {
+    const roundOneCounts = {
+      'guess_phrase:1': 1,
+      'fill_gap:1': 1,
+      'find_oddity:1': 1,
+      'translate_build:1': 1,
+    };
+    expect(roundReadiness(roundOneCounts)[0]).toMatchObject({
+      roundNo: 1,
+      ok: true,
+      readyModes: ['guess_phrase', 'fill_gap', 'find_oddity', 'translate_build'],
+    });
+
+    const wrongRoundFourMode = {
+      'guess_phrase:3': 1,
+      'fill_gap:3': 1,
+      'translate_build:3': 1,
+      'find_oddity:3': 1,
+    };
+    expect(roundReadiness(wrongRoundFourMode)[3]).toMatchObject({ ok: false });
+  });
+
+  it('не объявляет весь турнир готовым, если 14 ячеек не дают 16 уникальных заданий', () => {
+    const onePerReachableCell = Object.fromEntries(requiredCells().map((cell) => [cellKey(cell), 1]));
+    const rounds = roundReadiness(onePerReachableCell);
+    expect(rounds[0].ok).toBe(true);
+    expect(rounds.every((round) => round.ok)).toBe(false);
+  });
+
+  it('не возвращает зелёную готовность после недостижимого предыдущего раунда', () => {
+    const counts = Object.fromEntries(requiredCells().map((cell) => [cellKey(cell), CELL_HEALTHY]));
+    counts['find_oddity:1'] = 1;
+    counts['find_oddity:2'] = 1;
+    expect(roundReadiness(counts).map((round) => round.ok)).toEqual([true, true, false, false]);
   });
 
   it('ячейка ровно в минимуме не блокирует, на единицу меньше — блокирует', () => {

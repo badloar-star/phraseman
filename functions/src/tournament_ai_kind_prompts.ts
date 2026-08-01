@@ -66,9 +66,9 @@ const KIND_SPECS: Readonly<Record<TournamentAiKind, KindSpec>> = Object.freeze({
     promptRule: 'The "prompt" field is a short RUSSIAN instruction like "Какая фраза звучит неправильно?". The correct answer is the BROKEN sentence.',
   },
   assembly: {
-    task: 'Write one natural ENGLISH sentence of 4-8 normalized words and a Russian prompt asking to build it. Provide the exact word tokens of that sentence plus exactly 4 extra decoy words that plausibly belong to the same topic but are not in the sentence.',
-    example: 'prompt: "Соберите фразу: Я собираюсь позвонить ей завтра" answer: "I am going to call her tomorrow" decoys: ["will", "him", "yesterday", "already"] — decoys are real competitors, not random words.',
-    promptRule: 'Decoys must be genuinely tempting: wrong tense markers, wrong pronouns, wrong time words — never random unrelated nouns.',
+    task: 'Write one natural ENGLISH sentence of 4-8 normalized words and a Russian prompt asking to build it. Provide the exact word tokens of that sentence plus exactly 1 extra trap word that is a plausible grammatical or lexical competitor but is not in the sentence.',
+    example: 'prompt: "Соберите фразу: Я собираюсь позвонить ей завтра" answer: "I am going to call her tomorrow" decoys: ["will"] — the single trap competes with the intended future construction.',
+    promptRule: 'The single trap must be genuinely tempting: a wrong tense marker, pronoun, article, preposition, particle, or close lexical competitor — never a random unrelated noun.',
   },
 });
 
@@ -121,7 +121,7 @@ const ASSEMBLY_SCHEMA = Object.freeze({
           prompt: { type: 'string' },
           answer: { type: 'string' },
           tokens: { type: 'array', items: { type: 'string' } },
-          decoys: { type: 'array', items: { type: 'string' } },
+          decoys: { type: 'array', minItems: 1, maxItems: 1, items: { type: 'string' } },
           scenario: { type: 'string' },
           ruleNote: { type: 'string' },
           example: { type: 'string' },
@@ -179,7 +179,7 @@ export function buildKindTask(params: KindPromptParams): string {
     );
   } else {
     lines.push(
-      '"tokens" must be exactly the words of "answer" in order, split on spaces. "decoys" are exactly 4 extra words NOT present in the answer.',
+      '"tokens" must be exactly the words of "answer" in order, split on spaces. "decoys" contains exactly 1 extra trap word NOT present in the answer.',
       'No decoy may duplicate a token, and no token may repeat inside "tokens" unless the sentence genuinely repeats that word.',
     );
   }

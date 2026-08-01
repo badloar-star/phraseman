@@ -99,9 +99,23 @@ test('Pre-A1 and insufficient-data result wording stays neutral', () => {
 test('all client assets and the bank use one new revision', () => {
   const html = read('index.html');
   const app = read('app.js');
-  const expectedRevision = '20260722-4';
+  const baseRevision = '20260801-1';
+  const expectedRevision = '20260801-2';
 
-  assert.equal((html.match(new RegExp(expectedRevision, 'g')) || []).length, 4);
+  const scripts = [...html.matchAll(/<script src="([^"]+)"><\/script>/g)].map((match) => match[1]);
+  const expectedScripts = [
+    `./engine.js?v=${expectedRevision}`,
+    `./i18n.js?v=${expectedRevision}`,
+    `./certificate.js?v=${expectedRevision}`,
+    `./app.js?v=${expectedRevision}`,
+  ];
+  assert.deepEqual(scripts, expectedScripts);
+  assert.equal(new Set(scripts).size, expectedScripts.length);
+  assert.ok(scripts.every((asset) => asset.endsWith(`?v=${expectedRevision}`)));
+  assert.equal(html.includes(`?v=${baseRevision}`), false);
+  const stylesheets = [...html.matchAll(/<link rel="stylesheet" href="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(stylesheets, [`./styles.css?v=${expectedRevision}`]);
+  assert.equal(new Set(stylesheets).size, 1);
   assert.match(app, new RegExp(`questions\\.en\\.json\\?v=${expectedRevision}`));
   assert.doesNotMatch(`${html}\n${app}`, /20260722-3/);
 });
@@ -110,11 +124,12 @@ test('question screen separates Russian instructions from English assessment mat
   const app = read('app.js');
   const styles = read('styles.css');
 
-  assert.match(app, /class="elt-scenario" lang="ru"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
-  assert.match(app, /class="elt-instruction" lang="ru"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
-  assert.match(app, /class="elt-stimulus" lang="en"/);
+  assert.match(app, /const questionLanguage = EnglishTestI18n\.TESTS\[attemptTestLanguage \|\| selectedTestLanguage\]\.bcp47/);
+  assert.match(app, /class="elt-scenario" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.scenarioRu\)\}/);
+  assert.match(app, /class="elt-instruction" lang="\$\{questionLanguage\}"[^>]*>\$\{escapeHtml\(q\.instructionRu\)\}/);
+  assert.match(app, /class="elt-stimulus" lang="\$\{questionLanguage\}"/);
   assert.match(app, /escapeHtml\(q\.stimulus\)/);
-  assert.match(app, /class="elt-option-text" lang="en"/);
+  assert.match(app, /class="elt-option-text" lang="\$\{questionLanguage\}"/);
   assert.doesNotMatch(app, /escapeHtml\(q\.scenario\)/);
   assert.doesNotMatch(app, /escapeHtml\(q\.prompt\)/);
   assert.match(styles, /\.elt-instruction\s*\{/);
@@ -150,9 +165,9 @@ test('certificate modal has dialog semantics and keyboard focus handling', () =>
 test('consent and fallback certificate describe data and scope honestly', () => {
   const app = read('app.js');
 
-  assert.match(app, /аналитику без имени и контактов/);
-  assert.match(app, /Предварительная текстовая оценка/);
-  assert.match(app, /не проверяет аудирование и говорение/);
+  assert.match(app, /copy\('consent\.text'\)/);
+  assert.match(app, /copy\('result\.level'/);
+  assert.match(app, /copy\('certificate\.informal'\)/);
 });
 
 test('reduced-motion certificate skips confetti and theme animation', () => {

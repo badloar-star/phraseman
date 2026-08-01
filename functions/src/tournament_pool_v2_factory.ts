@@ -12,9 +12,10 @@ import {
   type SourceVocabularyWord,
   type SourceWord,
 } from './tournament_task_factory';
+import { requiredCells } from './tournament_pool_plan';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260729_v3' as const;
-export const NEW_TOURNAMENT_POOL_TASKS_PER_CELL = 12;
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v5' as const;
+export const NEW_TOURNAMENT_POOL_TASKS_PER_MODE = 36;
 
 export const NEW_TOURNAMENT_POOL_MODES = [
   'guess_phrase',
@@ -46,6 +47,19 @@ export type NewTournamentPoolManifest = {
   readonly taskCount: number;
   readonly counts: Readonly<Record<string, number>>;
   readonly candidateCounts: Readonly<Record<string, number>>;
+  readonly diversity: {
+    readonly uniquePrimaryPhrases: number;
+    readonly uniqueSpeedPairs: number;
+    readonly uniqueSpeedEnglishPrompts: number;
+    readonly sourceDaysUsed: number;
+    readonly topicsUsed: number;
+    readonly fillGapPositions: Readonly<Record<string, number>>;
+    readonly fillGapGrammarRoles: Readonly<Record<string, number>>;
+    readonly fillGapCorrectTokens: Readonly<Record<string, number>>;
+    readonly oddityPartsOfSpeech: Readonly<Record<string, number>>;
+    readonly translateTrapPartsOfSpeech: Readonly<Record<string, number>>;
+    readonly translateTrapTokens: Readonly<Record<string, number>>;
+  };
   readonly contentSha256: string;
 };
 
@@ -73,21 +87,52 @@ type WordMutation = {
   readonly options: readonly string[];
 };
 
-const FILL_WORD_PRIORITY = new Map([
-  ['to-be', 0],
-  ['article', 1],
-  ['determiner', 2],
-  ['preposition', 3],
-  ['phrasal_particle', 4],
-  ['modal', 5],
-  ['pronoun', 6],
-  ['verb', 7],
-  ['adverb', 8],
-  ['adjective', 9],
-  ['noun', 10],
-  ['conjunction', 11],
-  ['other', 12],
-]);
+type FillGapGrammarRole =
+  | 'subject_pronoun_agreement'
+  | 'object_pronoun_case'
+  | 'object_pronoun_reference'
+  | 'be_agreement';
+
+type FillGapMutation = WordMutation & {
+  readonly grammarRole: FillGapGrammarRole;
+  readonly tokenIndex: number;
+  readonly tokenCount: number;
+};
+
+type StrictGrammarRole = FillGapGrammarRole | 'article_form' | 'verb_agreement' | 'noun_number';
+
+type StrictGrammarMutation = WordMutation & {
+  readonly grammarRole: StrictGrammarRole;
+  readonly tokenIndex: number;
+  readonly tokenCount: number;
+};
+
+type FillGapCandidateMetadata = {
+  readonly grammarRole: FillGapGrammarRole;
+  readonly correctToken: string;
+  readonly position: 'first' | 'middle' | 'last';
+  readonly phraseKey: string;
+};
+
+type PoolCandidate = {
+  readonly task: NewTournamentTask;
+  readonly primaryPhraseKey?: string;
+  readonly dayKey: string;
+  readonly topicKey: string;
+  readonly diversityAxes?: readonly string[];
+  readonly speedPairKeys?: readonly string[];
+  readonly speedEnglishKeys?: readonly string[];
+  readonly fillGap?: FillGapCandidateMetadata;
+};
+
+type SelectionState = {
+  readonly usedPrimaryPhrases: Set<string>;
+  readonly usedSpeedPairs: Set<string>;
+  readonly usedSpeedEnglish: Set<string>;
+  readonly dayCounts: Map<string, number>;
+  readonly topicCounts: Map<string, number>;
+  readonly axisCounts: Map<string, number>;
+};
 
 function sha256(value: string): string {
   return createHash('sha256').update(value).digest('hex');
@@ -200,17 +245,43 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260729_v3_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v5_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
-  return [
+  const result = [
     'source:ai',
     'generator:author-content-v1',
     `pool:${NEW_TOURNAMENT_POOL_VERSION}`,
     `plan:${String(day.planId).slice(0, 32)}`,
+    `day:${Number(day.dayIndex)}`,
     `cefr:${String(day.level ?? 'unknown').toLowerCase().slice(0, 16)}`,
   ];
+  const topic = String(day.topic?.ru ?? '').trim();
+  if (topic) {
+    const topicBytes = TOURNAMENT_TASK_LIMITS.tagBytes - byteLength('topic:');
+    result.push(`topic:${truncateToBytes(topic, topicBytes)}`);
+  }
+  return result;
+}
+
+function dayKey(day: SourceDay): string {
+  return `${day.planId}:${day.dayIndex}`;
+}
+
+function topicKey(day: SourceDay): string {
+  return normalize(String(day.topic?.ru ?? 'untagged'));
+}
+
+function phraseKey(day: SourceDay, phraseId: string): string {
+  return `${day.planId}:${day.dayIndex}:${phraseId}`;
+}
+
+function countsWithPrefix(counts: ReadonlyMap<string, number>, prefix: string): Record<string, number> {
+  return Object.fromEntries([...counts.entries()]
+    .filter(([key]) => key.startsWith(prefix))
+    .map(([key, count]) => [key.slice(prefix.length), count] as const)
+    .sort(([left], [right]) => left.localeCompare(right)));
 }
 
 function provenance(day: SourceDay, phraseIds: readonly string[]): NewTournamentTask['contentProvenance'] {
@@ -257,46 +328,6 @@ function replaceAuthoredWord(phrase: string, word: string, replacement: string):
   return phrase.replace(pattern, (_match, prefix: string) => `${prefix}${replacement}`);
 }
 
-function mutationForPhrase(phrase: SourcePhrase): WordMutation | null {
-  const english = String(phrase.english ?? '').trim();
-  const candidates = (phrase.words ?? [])
-    .map((word, sourceIndex) => ({ word, sourceIndex }))
-    .filter(({ word }) => within(String(word.text ?? ''), TOURNAMENT_TASK_LIMITS.optionBytes))
-    .map(({ word, sourceIndex }) => {
-      const original = String(word.text).trim();
-      const distractors = Array.from(new Map((word.distractors ?? [])
-        .map((value) => String(value ?? '').trim())
-        .filter((value) => within(value, TOURNAMENT_TASK_LIMITS.optionBytes) && normalize(value) !== normalize(original))
-        .map((value) => [normalize(value), value])).values());
-      return { word, sourceIndex, original, distractors };
-    })
-    .filter((candidate) => candidate.distractors.length >= 3)
-    .sort((left, right) => (
-      (FILL_WORD_PRIORITY.get(String(left.word.partOfSpeech)) ?? 99)
-      - (FILL_WORD_PRIORITY.get(String(right.word.partOfSpeech)) ?? 99)
-      || left.sourceIndex - right.sourceIndex
-    ));
-
-  for (const candidate of candidates) {
-    const distractors = stableShuffle(candidate.distractors, `word-traps:${phrase.id}:${candidate.original}`);
-    const replacement = distractors[0];
-    const mutatedPhrase = replaceAuthoredWord(english, candidate.original, replacement);
-    const gapPhrase = replaceAuthoredWord(english, candidate.original, '___');
-    if (!mutatedPhrase || !gapPhrase || normalize(mutatedPhrase) === normalize(english)) continue;
-    if (!within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)
-      || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)) continue;
-    return {
-      original: candidate.original,
-      replacement,
-      partOfSpeech: String(candidate.word.partOfSpeech ?? 'word'),
-      mutatedPhrase,
-      gapPhrase,
-      options: [candidate.original, ...distractors.slice(0, 3)],
-    };
-  }
-  return null;
-}
-
 function completeGap(gapPhrase: string, option: string): string {
   return gapPhrase.replace('___', option);
 }
@@ -323,7 +354,7 @@ function buildGuessTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask
       : truncateToBytes(`«${option.en}» означает «${withoutTerminalPunctuation(option.ru)}», поэтому мысль «${withoutTerminalPunctuation(pair.ru)}» не передаёт.`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
   return baseTask(day, 'guess_phrase', `guess:${day.planId}:${day.dayIndex}:${pair.id}`,
-    optionPairs.map((option) => option.id), {
+    [pair.id, ...optionPairs.filter((option) => option.id !== pair.id).map((option) => option.id)], {
       phrase: prompt,
       options,
       correctIndex,
@@ -331,51 +362,292 @@ function buildGuessTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask
     }, explanation);
 }
 
-function unambiguousFillMutation(phrase: SourcePhrase): WordMutation | null {
-  const english = String(phrase.english ?? '').trim();
-  if (!/\bI\s+am\b/u.test(english)) return null;
-  const subject = (phrase.words ?? []).find((word) => (
-    String(word.text).trim() === 'I' && String(word.partOfSpeech) === 'pronoun'
-  ));
-  if (!subject) return null;
-  const distractors = Array.from(new Map((subject.distractors ?? [])
-    .map((value) => String(value ?? '').trim())
-    .filter((value) => /^[\p{L}'’-]+$/u.test(value) && normalize(value) !== 'i'
-      && within(value, TOURNAMENT_TASK_LIMITS.optionBytes))
-    .map((value) => [normalize(value), value])).values());
-  if (distractors.length < 3) return null;
-  const selected = stableShuffle(distractors, `i-am-traps:${phrase.id}`).slice(0, 3);
-  const gapPhrase = replaceAuthoredWord(english, 'I', '___');
-  const mutatedPhrase = replaceAuthoredWord(english, 'I', selected[0]);
-  if (!gapPhrase || !mutatedPhrase || !/\b___\s+am\b/u.test(gapPhrase)
-    || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
-    || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)) return null;
-  return {
-    original: 'I',
-    replacement: selected[0],
-    partOfSpeech: 'pronoun',
-    gapPhrase,
-    mutatedPhrase,
-    options: ['I', ...selected],
-  };
+const SUBJECT_PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they']);
+const OBJECT_ONLY_PRONOUNS = new Set(['me', 'him', 'her', 'us', 'them']);
+const OBJECT_PRONOUNS = new Set(['you', 'me', 'him', 'her', 'us', 'them']);
+const OBJECT_PRONOUN_RU_MARKERS: Readonly<Record<string, readonly string[]>> = Object.freeze({
+  you: ['тебя', 'тебе', 'тобой', 'вас', 'вам', 'вами'],
+  me: ['меня', 'мне', 'мной', 'мною'],
+  him: ['его', 'ему', 'ним'],
+  her: ['её', 'ее', 'ей', 'неё', 'нее', 'ней', 'нею'],
+  us: ['нас', 'нам', 'нами'],
+  them: ['их', 'им', 'ними'],
+});
+const PRESENT_BE_FOR_SUBJECT: Readonly<Record<string, string>> = Object.freeze({
+  i: 'am',
+  you: 'are',
+  he: 'is',
+  she: 'is',
+  it: 'is',
+  we: 'are',
+  they: 'are',
+});
+const PRESENT_BE_FORMS = new Set(['am', 'is', 'are']);
+
+function agreesWithPresentBe(subject: string, beForm: string): boolean {
+  return PRESENT_BE_FOR_SUBJECT[normalize(subject)] === normalize(beForm);
 }
 
-export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+function adjacentPresentBe(tokens: readonly string[], tokenIndex: number): string | null {
+  const adjacent = [tokens[tokenIndex - 1], tokens[tokenIndex + 1]]
+    .find((token) => token && PRESENT_BE_FORMS.has(normalize(token)));
+  return adjacent ?? null;
+}
+
+function adjacentPersonalSubject(tokens: readonly string[], tokenIndex: number): string | null {
+  const adjacent = [tokens[tokenIndex - 1], tokens[tokenIndex + 1]]
+    .find((token) => token && SUBJECT_PRONOUNS.has(normalize(token)));
+  return adjacent ?? null;
+}
+
+function russianMeaningNamesObjectPronoun(russianMeaning: string, pronoun: string): boolean {
+  const markers = OBJECT_PRONOUN_RU_MARKERS[normalize(pronoun)] ?? [];
+  const russianTokens = new Set(phraseTokens(russianMeaning).map(normalize));
+  return markers.some((marker) => russianTokens.has(marker));
+}
+
+function safeFillGapSlot(
+  partOfSpeech: string,
+  original: string,
+  distractors: readonly string[],
+  tokens: readonly string[],
+  tokenIndex: number,
+  russianMeaning: string,
+): { grammarRole: FillGapGrammarRole; distractors: string[] } | null {
+  const normalizedOriginal = normalize(original);
+  if (partOfSpeech === 'pronoun' && OBJECT_PRONOUNS.has(normalizedOriginal)
+    && tokenIndex > 0 && russianMeaningNamesObjectPronoun(russianMeaning, original)) {
+    const referenceTraps = distractors.filter((value) => OBJECT_PRONOUNS.has(normalize(value)));
+    if (referenceTraps.length >= 3) {
+      return { grammarRole: 'object_pronoun_reference', distractors: referenceTraps };
+    }
+  }
+  if (partOfSpeech === 'pronoun' && OBJECT_ONLY_PRONOUNS.has(normalizedOriginal)
+    && tokenIndex > 0) {
+    const caseTraps = distractors.filter((value) => SUBJECT_PRONOUNS.has(normalize(value)));
+    return caseTraps.length >= 3
+      ? { grammarRole: 'object_pronoun_case', distractors: caseTraps }
+      : null;
+  }
+  if (partOfSpeech === 'pronoun' && SUBJECT_PRONOUNS.has(normalizedOriginal)) {
+    const beForm = adjacentPresentBe(tokens, tokenIndex);
+    if (!beForm || !agreesWithPresentBe(original, beForm)) return null;
+    const agreementTraps = distractors.filter((value) => (
+      SUBJECT_PRONOUNS.has(normalize(value)) && !agreesWithPresentBe(value, beForm)
+    ));
+    return agreementTraps.length >= 3
+      ? { grammarRole: 'subject_pronoun_agreement', distractors: agreementTraps }
+      : null;
+  }
+  if (partOfSpeech === 'to-be' && PRESENT_BE_FORMS.has(normalizedOriginal)) {
+    const subject = adjacentPersonalSubject(tokens, tokenIndex);
+    if (!subject || !agreesWithPresentBe(subject, original)) return null;
+    const agreementTraps = distractors.filter((value) => {
+      const normalizedValue = normalize(value);
+      return normalizedValue === 'be'
+        || (PRESENT_BE_FORMS.has(normalizedValue) && !agreesWithPresentBe(subject, value));
+    });
+    return agreementTraps.length >= 3
+      ? { grammarRole: 'be_agreement', distractors: agreementTraps }
+      : null;
+  }
+  return null;
+}
+
+function fillGapMutations(phrase: SourcePhrase): FillGapMutation[] {
+  const english = String(phrase.english ?? '').trim();
+  const tokens = phraseTokens(english);
+  const seenSlots = new Set<string>();
+  const mutations: FillGapMutation[] = [];
+
+  for (const [sourceIndex, word] of (phrase.words ?? []).entries()) {
+    const partOfSpeech = String(word.partOfSpeech ?? '');
+    const original = String(word.text ?? '').trim();
+    if (!isSingleLexicalWord(original)
+      || !within(original, TOURNAMENT_TASK_LIMITS.optionBytes)) continue;
+    const matchingTokenIndexes = tokens
+      .map((token, tokenIndex) => (normalize(token) === normalize(original) ? tokenIndex : -1))
+      .filter((tokenIndex) => tokenIndex >= 0);
+    // One visible gap must map to one authored token. Repeated words would make
+    // the tested slot unclear in review and make diversity accounting unstable.
+    if (matchingTokenIndexes.length !== 1) continue;
+
+    const authoredDistractors = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && within(value, TOURNAMENT_TASK_LIMITS.optionBytes)
+        && normalize(value) !== normalize(original))
+      .map((value) => [normalize(value), value])).values());
+    const safeSlot = safeFillGapSlot(
+      partOfSpeech,
+      original,
+      authoredDistractors,
+      tokens,
+      matchingTokenIndexes[0],
+      String(phrase.meaning?.ru ?? ''),
+    );
+    if (!safeSlot) continue;
+    const selected = stableShuffle(
+      safeSlot.distractors,
+      `fill-gap-traps:${phrase.id}:${sourceIndex}:${original}`,
+    ).slice(0, 3);
+    const gapPhrase = replaceAuthoredWord(english, original, '___');
+    const mutatedPhrase = replaceAuthoredWord(english, original, selected[0]);
+    if (!gapPhrase || !mutatedPhrase
+      || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)
+      || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)
+      || normalize(completeGap(gapPhrase, original)) !== normalize(english)) continue;
+    const slotKey = `${normalize(gapPhrase)}:${normalize(original)}`;
+    if (seenSlots.has(slotKey)) continue;
+    seenSlots.add(slotKey);
+    mutations.push({
+      original,
+      replacement: selected[0],
+      partOfSpeech,
+      grammarRole: safeSlot.grammarRole,
+      gapPhrase,
+      mutatedPhrase,
+      options: [original, ...selected],
+      tokenIndex: matchingTokenIndexes[0],
+      tokenCount: tokens.length,
+    });
+  }
+
+  return mutations.sort((left, right) => sha256(
+    `fill-gap-slot:${phrase.id}:${left.tokenIndex}:${left.original}`,
+  ).localeCompare(sha256(
+    `fill-gap-slot:${phrase.id}:${right.tokenIndex}:${right.original}`,
+  )));
+}
+
+function strictGrammarMutations(phrase: SourcePhrase): StrictGrammarMutation[] {
+  const english = String(phrase.english ?? '').trim();
+  const tokens = phraseTokens(english);
+  const additional: StrictGrammarMutation[] = [];
+  const singularSubjects = new Set(['he', 'she', 'it']);
+  const pluralSubjects = new Set(['i', 'you', 'we', 'they']);
+
+  for (const word of phrase.words ?? []) {
+    const original = String(word.text ?? '').trim();
+    const normalizedOriginal = normalize(original);
+    const tokenIndexes = tokens
+      .map((token, index) => (normalize(token) === normalizedOriginal ? index : -1))
+      .filter((index) => index >= 0);
+    if (tokenIndexes.length !== 1) continue;
+    const tokenIndex = tokenIndexes[0];
+    const partOfSpeech = String(word.partOfSpeech ?? '');
+    const distractors = Array.from(new Map((word.distractors ?? [])
+      .map((value) => String(value ?? '').trim())
+      .filter((value) => isSingleLexicalWord(value)
+        && within(value, TOURNAMENT_TASK_LIMITS.optionBytes)
+        && normalize(value) !== normalizedOriginal)
+      .map((value) => [normalize(value), value])).values());
+    let grammarRole: StrictGrammarRole | null = null;
+    let replacement: string | undefined;
+
+    if (partOfSpeech === 'article' && ['a', 'an'].includes(normalizedOriginal)) {
+      const nextTokenStartsWithVowel = /^[aeiou]/u.test(normalize(tokens[tokenIndex + 1] ?? ''));
+      const sourceUsesRegularArticleRule = (normalizedOriginal === 'an' && nextTokenStartsWithVowel)
+        || (normalizedOriginal === 'a' && !nextTokenStartsWithVowel);
+      replacement = sourceUsesRegularArticleRule
+        ? distractors.find((value) => ['a', 'an'].includes(normalize(value)))
+        : undefined;
+      if (replacement) grammarRole = 'article_form';
+    } else if (partOfSpeech === 'verb' && tokenIndex > 0) {
+      const subject = normalize(tokens[tokenIndex - 1]);
+      const singularStems = [
+        normalizedOriginal.replace(/es$/u, ''),
+        normalizedOriginal.replace(/s$/u, ''),
+      ];
+      if (singularSubjects.has(subject) && /s$/u.test(normalizedOriginal)) {
+        replacement = distractors.find((value) => singularStems.includes(normalize(value)));
+      } else if (pluralSubjects.has(subject) && !/s$/u.test(normalizedOriginal)) {
+        replacement = distractors.find((value) => (
+          normalize(value) === `${normalizedOriginal}s` || normalize(value) === `${normalizedOriginal}es`
+        ));
+      }
+      if (replacement) grammarRole = 'verb_agreement';
+    } else if (partOfSpeech === 'noun' && tokenIndex > 0
+      && ['a', 'an', 'one'].includes(normalize(tokens[tokenIndex - 1]))) {
+      replacement = distractors.find((value) => (
+        normalize(value) === `${normalizedOriginal}s` || normalize(value) === `${normalizedOriginal}es`
+      ));
+      if (replacement) grammarRole = 'noun_number';
+    }
+    if (!replacement || !grammarRole) continue;
+    const mutatedPhrase = replaceAuthoredWord(english, original, replacement);
+    const gapPhrase = replaceAuthoredWord(english, original, '___');
+    if (!mutatedPhrase || !gapPhrase || normalize(mutatedPhrase) === normalize(english)
+      || !within(mutatedPhrase, TOURNAMENT_TASK_LIMITS.optionBytes)
+      || !within(gapPhrase, TOURNAMENT_TASK_LIMITS.phraseBytes)) continue;
+    additional.push({
+      original,
+      replacement,
+      partOfSpeech,
+      mutatedPhrase,
+      gapPhrase,
+      options: [original, replacement],
+      grammarRole,
+      tokenIndex,
+      tokenCount: tokens.length,
+    });
+  }
+
+  const seen = new Set<string>();
+  return [...fillGapMutations(phrase), ...additional]
+    .filter((mutation) => {
+      const key = `${mutation.tokenIndex}:${normalize(mutation.replacement)}`;
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .sort((left, right) => left.tokenIndex - right.tokenIndex
+      || left.grammarRole.localeCompare(right.grammarRole));
+}
+
+function fillGapRoleNote(mutation: Pick<FillGapMutation, 'grammarRole'>): string {
+  if (mutation.grammarRole === 'subject_pronoun_agreement') {
+    return 'подлежащее согласуется с соседней формой am, is или are';
+  }
+  if (mutation.grammarRole === 'object_pronoun_case') {
+    return 'объектная форма местоимения стоит там, где формы подлежащего не подходят';
+  }
+  if (mutation.grammarRole === 'object_pronoun_reference') {
+    return 'русский перевод прямо указывает, к кому относится объектное местоимение';
+  }
+  return 'форма am, is или are согласуется с соседним личным местоимением';
+}
+
+function strictGrammarRoleNote(grammarRole: StrictGrammarRole): string {
+  if (grammarRole === 'article_form') return 'a и an выбираются по следующему звуку';
+  if (grammarRole === 'verb_agreement') return 'форма смыслового глагола согласуется с подлежащим';
+  if (grammarRole === 'noun_number') return 'после a, an или one нужна форма единственного числа';
+  return fillGapRoleNote({ grammarRole });
+}
+
+function buildFillGapTask(
+  day: SourceDay,
+  phrase: SourcePhrase,
+  mutation: FillGapMutation,
+): NewTournamentTask | null {
   const pair = authoredPair(phrase);
-  const mutation = unambiguousFillMutation(phrase);
-  if (!pair || !mutation) return null;
+  if (!pair) return null;
   const options = stableShuffle(mutation.options, `gap-options:${pair.id}`);
   const correctIndex = options.findIndex((option) => option === mutation.original);
   const prompt = `${mutation.gapPhrase}\n${pair.ru}`;
   if (!within(prompt, TOURNAMENT_TASK_LIMITS.phraseBytes)) return null;
+  const roleNote = fillGapRoleNote(mutation);
+  const trapViolation = mutation.grammarRole === 'object_pronoun_reference'
+    ? 'вариант меняет референта, прямо указанного в русском переводе'
+    : 'форма нарушает проверяемое согласование или падеж';
   const explanation: TournamentTaskExplanation = {
-    ruleNote: 'В пропуске нужно «I»: форма «am» согласуется только с подлежащим «I». Здесь ловушка проверяется грамматикой, а не догадкой.',
+    ruleNote: truncateToBytes(`В пропуске нужно «${mutation.original}»: ${roleNote}, поэтому среди четырёх вариантов подходит только эта форма.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.en} — ${pair.ru}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     wrongOptionReasons: options.map((option) => option === mutation.original
       ? ''
-      : truncateToBytes(`«${option}» — ловушка: сочетание «${option} am» нарушает согласование; правильно «I am» в фразе «${withoutTerminalPunctuation(pair.en)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
+      : truncateToBytes(`«${option}» даёт «${withoutTerminalPunctuation(completeGap(mutation.gapPhrase, option))}» — это ловушка: ${trapViolation}. Правильно «${mutation.original}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
-  return baseTask(day, 'fill_gap', `gap:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.original}`,
+  return baseTask(day, 'fill_gap', `gap:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.tokenIndex}:${mutation.original}`,
     [pair.id], {
       phrase: prompt,
       options,
@@ -384,10 +656,40 @@ export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase
     }, explanation);
 }
 
-function buildOddityTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+export function buildUnambiguousFillGapTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+  const mutation = fillGapMutations(phrase)[0];
+  return mutation ? buildFillGapTask(day, phrase, mutation) : null;
+}
+
+function buildUnambiguousFillGapCandidates(day: SourceDay, phrase: SourcePhrase): PoolCandidate[] {
+  return fillGapMutations(phrase).flatMap((mutation) => {
+    const task = buildFillGapTask(day, phrase, mutation);
+    if (!task) return [];
+    const position = mutation.tokenIndex === 0
+      ? 'first'
+      : (mutation.tokenIndex === mutation.tokenCount - 1 ? 'last' : 'middle');
+    return [{
+      task,
+      primaryPhraseKey: phraseKey(day, String(phrase.id)),
+      dayKey: dayKey(day),
+      topicKey: topicKey(day),
+      fillGap: {
+        grammarRole: mutation.grammarRole,
+        correctToken: normalize(mutation.original),
+        position,
+        phraseKey: `${day.planId}:${day.dayIndex}:${phrase.id}`,
+      },
+    }];
+  });
+}
+
+function buildOddityTask(
+  day: SourceDay,
+  phrase: SourcePhrase,
+  mutation: WordMutation,
+): NewTournamentTask | null {
   const pair = authoredPair(phrase);
-  const mutation = mutationForPhrase(phrase);
-  if (!pair || !mutation) return null;
+  if (!pair) return null;
   const natural = stableShuffle(usablePairs(day), `oddity:${pair.id}`)
     .filter((candidate) => candidate.id !== pair.id
       && within(candidate.en, TOURNAMENT_TASK_LIMITS.optionBytes)
@@ -409,7 +711,7 @@ function buildOddityTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTas
       : truncateToBytes(`«${option.text}» — нормальная фраза со смыслом «${withoutTerminalPunctuation(option.ru)}»; исправлять нужно «${withoutTerminalPunctuation(mutation.mutatedPhrase)}».`, TOURNAMENT_TASK_LIMITS.explanationBytes)),
   };
   return baseTask(day, 'find_oddity', `odd:${day.planId}:${day.dayIndex}:${pair.id}:${mutation.replacement}`,
-    optionRecords.map((option) => option.id), {
+    [pair.id, ...optionRecords.filter((option) => option.id !== pair.id).map((option) => option.id)], {
       phrase: 'Найдите фразу, которую нужно исправить.',
       options,
       correctIndex,
@@ -417,22 +719,18 @@ function buildOddityTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTas
     }, explanation);
 }
 
-function authoredTraps(words: readonly SourceWord[] | undefined, correctTokens: readonly string[]): string[] {
-  const seen = new Set(correctTokens.map(normalize));
-  const candidates: string[] = [];
-  for (const word of words ?? []) {
-    for (const raw of word.distractors ?? []) {
-      const value = String(raw ?? '').trim();
-      const key = normalize(value);
-      if (!within(value, TOURNAMENT_TASK_LIMITS.tokenBytes) || seen.has(key)) continue;
-      seen.add(key);
-      candidates.push(value);
-    }
-  }
-  return candidates;
-}
+type AuthoredTrap = {
+  readonly value: string;
+  readonly partOfSpeech: string;
+  readonly original: string;
+  readonly grammarRole: StrictGrammarRole;
+};
 
-function buildTranslateTask(day: SourceDay, phrase: SourcePhrase): NewTournamentTask | null {
+function buildTranslateTask(
+  day: SourceDay,
+  phrase: SourcePhrase,
+  trap: AuthoredTrap,
+): NewTournamentTask | null {
   const pair = authoredPair(phrase);
   if (!pair || !within(pair.ru, TOURNAMENT_TASK_LIMITS.phraseBytes)
     || !within(pair.en, TOURNAMENT_TASK_LIMITS.answerBytes)) return null;
@@ -443,15 +741,14 @@ function buildTranslateTask(day: SourceDay, phrase: SourcePhrase): NewTournament
   // One meaningful authored trap preserves the decision without overloading a
   // normal player reading the Russian prompt on a phone.
   const maxTraps = Math.min(1, TOURNAMENT_TASK_LIMITS.maxWordBankItems - correctTokens.length);
-  const traps = stableShuffle(authoredTraps(phrase.words, correctTokens), `build-traps:${pair.id}`).slice(0, maxTraps);
-  if (traps.length < 1) return null;
-  const wordBank = stableShuffle([...correctTokens, ...traps], `build-bank:${pair.id}`);
+  if (maxTraps < 1 || correctTokens.some((token) => normalize(token) === normalize(trap.value))) return null;
+  const wordBank = stableShuffle([...correctTokens, trap.value], `build-bank:${pair.id}:${trap.value}`);
   const explanation: TournamentTaskExplanation = {
-    ruleNote: truncateToBytes(`Правильный порядок — «${withoutTerminalPunctuation(pair.en)}». Слова знакомы, но английский порядок не собирается телепатией.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
+    ruleNote: truncateToBytes(`Правильный порядок — «${withoutTerminalPunctuation(pair.en)}». Ловушка «${trap.value}» конкурирует с конкретной формой «${trap.original}»: ${strictGrammarRoleNote(trap.grammarRole)}.`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     example: truncateToBytes(`${pair.ru} — ${pair.en}`, TOURNAMENT_TASK_LIMITS.explanationBytes),
     wrongOptionReasons: [],
   };
-  return baseTask(day, 'translate_build', `build:${day.planId}:${day.dayIndex}:${pair.id}`,
+  return baseTask(day, 'translate_build', `build:${day.planId}:${day.dayIndex}:${pair.id}:${trap.value}`,
     [pair.id], {
       phrase: pair.ru,
       wordBank,
@@ -461,11 +758,10 @@ function buildTranslateTask(day: SourceDay, phrase: SourcePhrase): NewTournament
     }, explanation);
 }
 
-function buildSpeedMatchTask(day: SourceDay): NewTournamentTask | null {
-  const pairs = stableShuffle(
-    authoredWordPairs(day),
-    `pairs-source:${day.planId}:${day.dayIndex}`,
-  ).slice(0, 6);
+function buildSpeedMatchTask(
+  day: SourceDay,
+  pairs: readonly AuthoredWordPair[],
+): NewTournamentTask | null {
   if (pairs.length !== 6
     || pairs.some((pair) => !within(pair.en, TOURNAMENT_TASK_LIMITS.promptBytes)
       || !within(pair.ru, TOURNAMENT_TASK_LIMITS.optionBytes)
@@ -493,7 +789,8 @@ function buildSpeedMatchTask(day: SourceDay): NewTournamentTask | null {
     };
   });
   const first = itemPairs[0];
-  return baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}`,
+  const identity = pairs.map((pair) => `${normalize(pair.en)}=${normalize(pair.ru)}`).sort().join('|');
+  return baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}:${identity}`,
     pairs.map((pair) => pair.phraseId), {
       prompt: 'Соедините английские слова с точными русскими переводами.',
       rightOptions,
@@ -505,8 +802,111 @@ function buildSpeedMatchTask(day: SourceDay): NewTournamentTask | null {
     });
 }
 
-function allCandidates(days: readonly SourceDay[]): NewTournamentTask[] {
-  const candidates: NewTournamentTask[] = [];
+function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
+  const source = authoredWordPairs(day);
+  if (source.length < 6) return [];
+  const candidates: PoolCandidate[] = [];
+  const seenSets = new Set<string>();
+  const variantCount = Math.min(4, source.length);
+
+  for (let variant = 0; variant < variantCount; variant += 1) {
+    const ordered = stableShuffle(source, `pairs-source:${day.planId}:${day.dayIndex}:${variant}`);
+    for (let offset = 0; offset + 6 <= ordered.length; offset += 6) {
+      const pairs = ordered.slice(offset, offset + 6);
+      const pairKeys = pairs.map((pair) => `${normalize(pair.en)}\u0000${normalize(pair.ru)}`);
+      const setKey = [...pairKeys].sort().join('|');
+      if (seenSets.has(setKey)) continue;
+      seenSets.add(setKey);
+      const task = buildSpeedMatchTask(day, pairs);
+      if (!task) continue;
+      candidates.push({
+        task,
+        dayKey: dayKey(day),
+        topicKey: topicKey(day),
+        speedPairKeys: pairKeys,
+        speedEnglishKeys: pairs.map((pair) => normalize(pair.en)),
+      });
+    }
+  }
+  return candidates;
+}
+
+function selectDiverseCandidates(
+  cell: readonly PoolCandidate[],
+  count: number,
+  state: SelectionState,
+): PoolCandidate[] {
+  const remaining = [...cell];
+  const selected: PoolCandidate[] = [];
+  const countOf = (counts: ReadonlyMap<string, number>, key: string): number => counts.get(key) ?? 0;
+  const speedPairFrequency = new Map<string, number>();
+  const speedEnglishFrequency = new Map<string, number>();
+  for (const candidate of cell) {
+    candidate.speedPairKeys?.forEach((key) => speedPairFrequency.set(key, countOf(speedPairFrequency, key) + 1));
+    candidate.speedEnglishKeys?.forEach((key) => speedEnglishFrequency.set(key, countOf(speedEnglishFrequency, key) + 1));
+  }
+
+  while (selected.length < count && remaining.length > 0) {
+    const eligible = remaining.filter((candidate) => {
+      if (candidate.primaryPhraseKey && state.usedPrimaryPhrases.has(candidate.primaryPhraseKey)) return false;
+      if (candidate.speedPairKeys?.some((key) => state.usedSpeedPairs.has(key))) return false;
+      if (candidate.speedEnglishKeys?.some((key) => state.usedSpeedEnglish.has(key))) return false;
+      return true;
+    });
+    if (eligible.length === 0) break;
+    eligible.sort((left, right) => {
+      if (left.speedPairKeys && right.speedPairKeys) {
+        const conflictScore = (candidate: PoolCandidate): number => (
+          (candidate.speedPairKeys ?? []).reduce((sum, key) => sum + countOf(speedPairFrequency, key), 0)
+          + (candidate.speedEnglishKeys ?? []).reduce((sum, key) => sum + countOf(speedEnglishFrequency, key), 0)
+        );
+        const byConflict = conflictScore(left) - conflictScore(right);
+        if (byConflict !== 0) return byConflict;
+      }
+      if (left.fillGap && right.fillGap) {
+        const byPosition = countOf(state.axisCounts, `fill-position:${left.fillGap.position}`)
+          - countOf(state.axisCounts, `fill-position:${right.fillGap.position}`);
+        if (byPosition !== 0) return byPosition;
+        const byToken = countOf(state.axisCounts, `fill-token:${left.fillGap.correctToken}`)
+          - countOf(state.axisCounts, `fill-token:${right.fillGap.correctToken}`);
+        if (byToken !== 0) return byToken;
+        const byRole = countOf(state.axisCounts, `fill-role:${left.fillGap.grammarRole}`)
+          - countOf(state.axisCounts, `fill-role:${right.fillGap.grammarRole}`);
+        if (byRole !== 0) return byRole;
+      }
+      const axisLoad = (candidate: PoolCandidate): number => (candidate.diversityAxes ?? [])
+        .reduce((sum, axis) => sum + countOf(state.axisCounts, axis), 0);
+      const byAxis = axisLoad(left) - axisLoad(right);
+      return byAxis
+        || countOf(state.topicCounts, left.topicKey) - countOf(state.topicCounts, right.topicKey)
+        || countOf(state.dayCounts, left.dayKey) - countOf(state.dayCounts, right.dayKey)
+        || left.task.taskId.localeCompare(right.task.taskId);
+    });
+    const winner = eligible[0];
+    selected.push(winner);
+    if (winner.primaryPhraseKey) state.usedPrimaryPhrases.add(winner.primaryPhraseKey);
+    winner.speedPairKeys?.forEach((key) => state.usedSpeedPairs.add(key));
+    winner.speedEnglishKeys?.forEach((key) => state.usedSpeedEnglish.add(key));
+    state.dayCounts.set(winner.dayKey, countOf(state.dayCounts, winner.dayKey) + 1);
+    state.topicCounts.set(winner.topicKey, countOf(state.topicCounts, winner.topicKey) + 1);
+    winner.diversityAxes?.forEach((axis) => (
+      state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1)
+    ));
+    if (winner.fillGap) {
+      const axes = [
+        `fill-position:${winner.fillGap.position}`,
+        `fill-token:${winner.fillGap.correctToken}`,
+        `fill-role:${winner.fillGap.grammarRole}`,
+      ];
+      for (const axis of axes) state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1);
+    }
+    remaining.splice(remaining.findIndex((candidate) => candidate.task.taskId === winner.task.taskId), 1);
+  }
+  return selected;
+}
+
+function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
+  const candidates: PoolCandidate[] = [];
   const sortedDays = [...days].sort((left, right) => (
     String(left.planId).localeCompare(String(right.planId))
     || Number(left.dayIndex) - Number(right.dayIndex)
@@ -515,16 +915,46 @@ function allCandidates(days: readonly SourceDay[]): NewTournamentTask[] {
     const phrases = [...(day.phrases ?? [])].sort((left, right) => String(left.id).localeCompare(String(right.id)));
     for (const phrase of phrases) {
       const guess = buildGuessTask(day, phrase);
-      const gap = buildUnambiguousFillGapTask(day, phrase);
-      const oddity = buildOddityTask(day, phrase);
-      const build = buildTranslateTask(day, phrase);
-      if (guess) candidates.push(guess);
-      if (gap) candidates.push(gap);
-      if (oddity) candidates.push(oddity);
-      if (build) candidates.push(build);
+      const gaps = buildUnambiguousFillGapCandidates(day, phrase);
+      const primaryPhraseKey = phraseKey(day, String(phrase.id));
+      const common = { primaryPhraseKey, dayKey: dayKey(day), topicKey: topicKey(day) };
+      if (guess) candidates.push({ task: guess, ...common });
+      candidates.push(...gaps);
+      const strictGrammarCandidates = strictGrammarMutations(phrase);
+      for (const mutation of strictGrammarCandidates.filter((candidate) => (
+        candidate.grammarRole !== 'object_pronoun_reference'
+      ))) {
+        const oddity = buildOddityTask(day, phrase, mutation);
+        if (oddity) candidates.push({
+          task: oddity,
+          ...common,
+          diversityAxes: [
+            `oddity-pos:${normalize(mutation.partOfSpeech)}`,
+            `oddity-role:${mutation.grammarRole}`,
+            `oddity-replacement:${normalize(mutation.replacement)}`,
+          ],
+        });
+      }
+      const safeTraps = strictGrammarCandidates.flatMap((mutation) => mutation.options.slice(1).map((value) => ({
+        value,
+        partOfSpeech: mutation.partOfSpeech,
+        original: mutation.original,
+        grammarRole: mutation.grammarRole,
+      })));
+      for (const trap of safeTraps) {
+        const build = buildTranslateTask(day, phrase, trap);
+        if (build) candidates.push({
+          task: build,
+          ...common,
+          diversityAxes: [
+            `translate-pos:${normalize(trap.partOfSpeech)}`,
+            `translate-role:${trap.grammarRole}`,
+            `translate-trap:${normalize(trap.value)}`,
+          ],
+        });
+      }
     }
-    const pairs = buildSpeedMatchTask(day);
-    if (pairs) candidates.push(pairs);
+    candidates.push(...buildSpeedMatchCandidates(day));
   }
   return candidates;
 }
@@ -534,20 +964,45 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
   const tasks: NewTournamentTask[] = [];
   const counts: Record<string, number> = {};
   const candidateCounts: Record<string, number> = {};
+  const selectionState: SelectionState = {
+    usedPrimaryPhrases: new Set(),
+    usedSpeedPairs: new Set(),
+    usedSpeedEnglish: new Set(),
+    dayCounts: new Map(),
+    topicCounts: new Map(),
+    axisCounts: new Map(),
+  };
 
   for (const mode of NEW_TOURNAMENT_POOL_MODES) {
-    for (const difficulty of [1, 2, 3]) {
+    const modeCells = requiredCells([mode]).sort((left, right) => {
+      if (mode !== 'speed_match') return left.difficulty - right.difficulty;
+      const uniquePairs = (difficulty: number): number => new Set(candidates
+        .filter((candidate) => candidate.task.mode === mode && candidate.task.difficulty === difficulty)
+        .flatMap((candidate) => candidate.speedPairKeys ?? [])).size;
+      return uniquePairs(left.difficulty) - uniquePairs(right.difficulty)
+        || left.difficulty - right.difficulty;
+    });
+    if (modeCells.length === 0 || NEW_TOURNAMENT_POOL_TASKS_PER_MODE % modeCells.length !== 0) {
+      throw new Error(`new_tournament_pool_cell_layout_invalid:${mode}:${modeCells.length}`);
+    }
+    const target = NEW_TOURNAMENT_POOL_TASKS_PER_MODE / modeCells.length;
+    for (const { difficulty } of modeCells) {
       const key = `${mode}:${difficulty}`;
-      const cell = candidates.filter((task) => task.mode === mode && task.difficulty === difficulty);
+      const cell = candidates.filter((candidate) => (
+        candidate.task.mode === mode && candidate.task.difficulty === difficulty
+      ));
       candidateCounts[key] = cell.length;
-      if (cell.length < NEW_TOURNAMENT_POOL_TASKS_PER_CELL) {
+      if (cell.length < target) {
         throw new Error(`new_tournament_pool_cell_shortfall:${key}:${cell.length}`);
       }
-      const selected = [...cell]
-        .sort((left, right) => sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${left.taskId}`)
-          .localeCompare(sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${right.taskId}`)))
-        .slice(0, NEW_TOURNAMENT_POOL_TASKS_PER_CELL);
-      for (const task of selected) {
+      const selected = selectDiverseCandidates(cell, target, selectionState);
+      if (selected.length < target) {
+        const unusedSpeedPairs = new Set(cell.flatMap((candidate) => (candidate.speedPairKeys ?? [])
+          .filter((pairKey) => !selectionState.usedSpeedPairs.has(pairKey))));
+        throw new Error(`new_tournament_pool_diversity_shortfall:${key}:${selected.length}:${target}:unusedPairs=${unusedSpeedPairs.size}`);
+      }
+      for (const candidate of selected) {
+        const { task } = candidate;
         const validation = validateTournamentTaskForNewRoom(task);
         if (!validation.ok) throw new Error(`new_tournament_pool_task_invalid:${task.taskId}:${validation.reason}`);
         tasks.push(task);
@@ -572,6 +1027,19 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       taskCount: tasks.length,
       counts,
       candidateCounts,
+      diversity: {
+        uniquePrimaryPhrases: selectionState.usedPrimaryPhrases.size,
+        uniqueSpeedPairs: selectionState.usedSpeedPairs.size,
+        uniqueSpeedEnglishPrompts: selectionState.usedSpeedEnglish.size,
+        sourceDaysUsed: selectionState.dayCounts.size,
+        topicsUsed: selectionState.topicCounts.size,
+        fillGapPositions: countsWithPrefix(selectionState.axisCounts, 'fill-position:'),
+        fillGapGrammarRoles: countsWithPrefix(selectionState.axisCounts, 'fill-role:'),
+        fillGapCorrectTokens: countsWithPrefix(selectionState.axisCounts, 'fill-token:'),
+        oddityPartsOfSpeech: countsWithPrefix(selectionState.axisCounts, 'oddity-pos:'),
+        translateTrapPartsOfSpeech: countsWithPrefix(selectionState.axisCounts, 'translate-pos:'),
+        translateTrapTokens: countsWithPrefix(selectionState.axisCounts, 'translate-trap:'),
+      },
       contentSha256,
     },
   };

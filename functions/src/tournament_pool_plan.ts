@@ -11,7 +11,10 @@
 // Модуль намеренно pure — покрывается тестами без эмулятора.
 // ═══════════════════════════════════════════════════════════════════════════
 
-import { TOURNAMENT_ROUND_MODE_KINDS } from './tournament_core';
+import {
+  TOURNAMENT_ROUND_MODE_KINDS,
+  TOURNAMENT_ROUND_MODE_PLAN,
+} from './tournament_core';
 import {
   OWNER_APPROVED_TOURNAMENT_MODES,
   isOwnerApprovedTournamentMode,
@@ -97,9 +100,18 @@ export function cellKey(cell: PoolCell): string {
  * «режим × сложность, встречающаяся хотя бы в одном раунде».
  */
 export function requiredCells(modes: readonly TournamentMode[] = TOURNAMENT_MODES): PoolCell[] {
-  const difficulties = Array.from(new Set(ROUND_DIFFICULTIES.flat())).sort();
-  return approvedModes(modes)
-    .flatMap((mode) => difficulties.map((difficulty) => ({ mode, difficulty })));
+  const allowedModes = new Set(approvedModes(modes));
+  const cells = new Map<string, PoolCell>();
+  TOURNAMENT_ROUND_MODE_PLAN.forEach((roundModes, roundIndex) => {
+    for (const mode of roundModes) {
+      if (!allowedModes.has(mode)) continue;
+      for (const difficulty of ROUND_DIFFICULTIES[roundIndex] ?? []) {
+        const cell = { mode, difficulty };
+        cells.set(cellKey(cell), cell);
+      }
+    }
+  });
+  return [...cells.values()];
 }
 
 export type CellGap = PoolCell & {
@@ -144,31 +156,70 @@ export type RoundReadiness = {
   totalTasks: number;
 };
 
+function modeCanAllocateUniqueTasksThroughRound(
+  mode: TournamentMode,
+  counts: PoolCounts,
+  lastRoundIndex: number,
+): boolean {
+  const occurrences = TOURNAMENT_ROUND_MODE_PLAN
+    .slice(0, lastRoundIndex + 1)
+    .flatMap((roundModes, roundIndex) => (
+      roundModes.includes(mode as never) ? [ROUND_DIFFICULTIES[roundIndex]] : []
+    ))
+    .sort((left, right) => left.length - right.length);
+  const remaining = new Map<number, number>([1, 2, 3].map((difficulty) => [
+    difficulty,
+    Math.max(0, Number(counts[`${mode}:${difficulty}`] ?? 0)),
+  ]));
+
+  const allocate = (slotIndex: number): boolean => {
+    if (slotIndex >= occurrences.length) return true;
+    for (const difficulty of occurrences[slotIndex]) {
+      const available = remaining.get(difficulty) ?? 0;
+      if (available <= 0) continue;
+      remaining.set(difficulty, available - 1);
+      if (allocate(slotIndex + 1)) return true;
+      remaining.set(difficulty, available);
+    }
+    return false;
+  };
+  return allocate(0);
+}
+
 /**
- * Готовность каждого раунда — то, что показываем в админке вместо догадок.
+ * Накопительная готовность каждого раунда — то, что показываем в админке
+ * вместо догадок. Поздний раунд не может стать готовым, если уникальные
+ * задания уже закончились на одном из предыдущих раундов.
  *
- * single-раунд собирается, только если ХОТЯ БЫ ОДИН режим имеет TASKS_PER_ROUND
- * заданий нужной сложности. mix-раунд смешивает режимы — ему хватит суммы.
+ * Runtime owner plan всегда требует четыре конкретных режима: по одному
+ * заданию каждого. Старый расчёт single/mix мог объявить раунд готовым по
+ * сумме чужих режимов, хотя buildTournamentRounds затем возвращал null.
  */
 export function roundReadiness(
   counts: PoolCounts,
   modes: readonly TournamentMode[] = TOURNAMENT_MODES,
 ): RoundReadiness[] {
-  const eligibleModes = approvedModes(modes);
+  const eligibleModes = new Set(approvedModes(modes));
+  let prefixReady = true;
   return ROUND_DIFFICULTIES.map((difficulties, index) => {
     const roundNo = index + 1;
-    const isSingle = TOURNAMENT_ROUND_MODE_KINDS[index] === 'single';
-    const perMode = eligibleModes.map((mode) => ({
+    const plannedModes = TOURNAMENT_ROUND_MODE_PLAN[index];
+    const perMode = plannedModes.map((mode) => ({
       mode,
-      count: difficulties.reduce((sum, difficulty) => sum + Math.max(0, Number(counts[`${mode}:${difficulty}`] ?? 0)), 0),
+      count: eligibleModes.has(mode)
+        ? difficulties.reduce((sum, difficulty) => sum + Math.max(0, Number(counts[`${mode}:${difficulty}`] ?? 0)), 0)
+        : 0,
     }));
-    const readyModes = perMode.filter((entry) => entry.count >= TASKS_PER_ROUND).map((entry) => entry.mode);
+    const readyModes = perMode.filter((entry) => (
+      entry.count >= 1 && modeCanAllocateUniqueTasksThroughRound(entry.mode, counts, index)
+    )).map((entry) => entry.mode);
     const totalTasks = perMode.reduce((sum, entry) => sum + entry.count, 0);
+    prefixReady = prefixReady && readyModes.length === plannedModes.length;
     return {
       roundNo,
       readyModes,
       totalTasks,
-      ok: isSingle ? readyModes.length > 0 : totalTasks >= TASKS_PER_ROUND,
+      ok: prefixReady,
     };
   });
 }

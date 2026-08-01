@@ -28,15 +28,46 @@ describe('tournament pool migration scripts', () => {
   const apply = loadScript('apply-tournament-pool-v2.cjs');
   const rollback = loadScript('rollback-tournament-pool-v2.cjs');
 
-  test('pins both directions to the v3 pool and defaults to preflight-only', () => {
-    expect(apply.EXPECTED_VERSION).toBe('tpool_20260729_v3');
-    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260729_v3');
+  test('pins both directions to the v5 pool and defaults to preflight-only', () => {
+    expect(apply.EXPECTED_VERSION).toBe('tpool_20260801_v5');
+    expect(apply.EXPECTED_SOURCE_VERSION).toBe('tpool_20260729_v3');
+    expect(rollback.EXPECTED_VERSION).toBe('tpool_20260801_v5');
     expect(apply.resolveApplyIntent([], {})).toBe(false);
-    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V3_APPLY: '1' })).toBe(false);
+    expect(apply.resolveApplyIntent([], { PHRASEMAN_TOURNAMENT_POOL_V5_APPLY: '1' })).toBe(false);
     expect(() => apply.resolveApplyIntent(['--apply'], {})).toThrow('apply_guard_missing');
-    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V3_APPLY: '1' })).toBe(true);
+    expect(apply.resolveApplyIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V5_APPLY: '1' })).toBe(true);
     expect(rollback.resolveRollbackIntent([], {})).toBe(false);
     expect(() => rollback.resolveRollbackIntent(['--apply'], {})).toThrow('rollback_guard_missing');
+    expect(rollback.resolveRollbackIntent(['--apply'], { PHRASEMAN_TOURNAMENT_POOL_V5_ROLLBACK: '1' })).toBe(true);
+  });
+
+  test('pins the source barrier to a uniform v3 backup and fails closed on drift', () => {
+    const row = (poolVersion?: string) => ({
+      id: `old-${poolVersion ?? 'missing'}`,
+      data: { taskId: 'old-task', ...(poolVersion ? { poolVersion } : {}) },
+    });
+
+    expect(apply.resolveSourceGeneration([
+      row('tpool_20260729_v3'),
+      { ...row('tpool_20260729_v3'), id: 'old-v3-second' },
+    ])).toBe('tpool_20260729_v3');
+    expect(() => apply.resolveSourceGeneration([
+      row('tpool_20260729_v3'), row('tpool_20260801_v5'),
+    ])).toThrow('backup_source_generation_mismatch');
+    expect(() => apply.resolveSourceGeneration([row()]))
+      .toThrow('backup_source_generation_mismatch');
+  });
+
+  test('emits v5 migration report contracts without stale v3 guards', () => {
+    const applySource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'apply-tournament-pool-v2.cjs'), 'utf8');
+    const rollbackSource = fs.readFileSync(path.resolve(__dirname, '..', 'scripts', 'rollback-tournament-pool-v2.cjs'), 'utf8');
+
+    expect(applySource).toContain("kind: 'tournament_pool_v5_preflight_v1'");
+    expect(applySource).toContain("kind: 'tournament_pool_v5_apply_report_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v5_rollback_preflight_v1'");
+    expect(rollbackSource).toContain("kind: 'tournament_pool_v5_rollback_report_v1'");
+    expect(applySource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V3_APPLY');
+    expect(rollbackSource).not.toContain('PHRASEMAN_TOURNAMENT_POOL_V3_ROLLBACK');
   });
 
   test('requires translate_build correctTokenCount parity and exactly one trap', () => {
@@ -45,7 +76,7 @@ describe('tournament pool migration scripts', () => {
       data: {
         taskId: 'task-1',
         mode: 'translate_build',
-        poolVersion: 'tpool_20260729_v3',
+        poolVersion: 'tpool_20260801_v5',
         payload: { correctTokens, correctTokenCount, wordBank },
       },
     });
@@ -235,7 +266,7 @@ describe('tournament pool migration scripts', () => {
     const manifest = {
       kind: 'tournament_pool_v2_replacement_dry_run_v1',
       projectId: 'phraseman-ea0b3',
-      generated: { poolVersion: 'tpool_20260729_v3', taskCount: 180 },
+      generated: { poolVersion: 'tpool_20260801_v5', taskCount: 180 },
       exactProposedMutations: { stageNewCreates: 180, finalDocuments: 180 },
       gates: { strictValidatorInvalid: 0, oldPoolUntouched: true, productionWritesPerformed: 0 },
       artifacts: { backupSha256: digest(backup), newPoolSha256: digest(next) },
@@ -275,31 +306,31 @@ describe('tournament pool migration scripts', () => {
 
     await apply.acquirePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260729_v3',
+      targetGeneration: 'tpool_20260801_v5',
       migrationId: 'apply:manifest-sha',
     });
     expect(barrier).toMatchObject({
       state: 'migrating',
       generation: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260729_v3',
+      targetGeneration: 'tpool_20260801_v5',
       migrationId: 'apply:manifest-sha',
       revision: 8,
     });
 
     await expect(apply.releasePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260729_v3',
+      targetGeneration: 'tpool_20260801_v5',
       migrationId: 'some-other-owner',
     })).rejects.toThrow('pool_barrier_owner_mismatch');
 
     await apply.releasePoolMigrationBarrier(db, {
       expectedGeneration: 'legacy:backup-sha',
-      targetGeneration: 'tpool_20260729_v3',
+      targetGeneration: 'tpool_20260801_v5',
       migrationId: 'apply:manifest-sha',
     });
     expect(barrier).toMatchObject({
       state: 'ready',
-      generation: 'tpool_20260729_v3',
+      generation: 'tpool_20260801_v5',
       revision: 9,
     });
     expect(barrier).not.toHaveProperty('migrationId');

@@ -266,6 +266,12 @@ describe('полный разбор для новых комнат', () => {
     task.payload.wordBank = ['I', 'am', 'ready', 'late'];
     expect(validateTournamentTaskForNewRoom(task)).toEqual({ ok: true, kind: 'translate' });
 
+    task.payload.wordBank = ['I', 'am', 'ready'];
+    expect(validateTournamentTaskForNewRoom(task)).toEqual({
+      ok: false,
+      reason: 'translate_token_count_required',
+    });
+
     task.payload.wordBank = ['I', 'ready', 'late', 'busy'];
     expect(validateTournamentTaskForNewRoom(task)).toEqual({
       ok: false,

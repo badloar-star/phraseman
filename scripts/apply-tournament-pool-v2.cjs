@@ -7,7 +7,8 @@ const path = require('node:path');
 const admin = require('../functions/node_modules/firebase-admin');
 
 const EXPECTED_PROJECT_ID = 'phraseman-ea0b3';
-const EXPECTED_VERSION = 'tpool_20260729_v3';
+const EXPECTED_VERSION = 'tpool_20260801_v5';
+const EXPECTED_SOURCE_VERSION = 'tpool_20260729_v3';
 const EXPECTED_NEW_COUNT = 180;
 const COLLECTION = 'tournamentTasks';
 const ROOMS_COLLECTION = 'tournamentRooms';
@@ -211,7 +212,7 @@ function pinnedSha(name, argv) {
 
 function resolveApplyIntent(argv = process.argv.slice(2), env = process.env) {
   if (!argv.includes('--apply')) return false;
-  if (env.PHRASEMAN_TOURNAMENT_POOL_V3_APPLY !== '1') throw new Error('apply_guard_missing');
+  if (env.PHRASEMAN_TOURNAMENT_POOL_V5_APPLY !== '1') throw new Error('apply_guard_missing');
   return true;
 }
 
@@ -262,6 +263,15 @@ function parseNdjson(raw, label) {
       throw new Error(`${label}_ndjson_parse:${index + 1}`);
     }
   });
+}
+
+function resolveSourceGeneration(backupRows) {
+  if (!Array.isArray(backupRows) || backupRows.length === 0
+    || backupRows.some((row) => !row || !row.data
+      || row.data.poolVersion !== EXPECTED_SOURCE_VERSION)) {
+    throw new Error('backup_source_generation_mismatch');
+  }
+  return EXPECTED_SOURCE_VERSION;
 }
 
 function normalizedToken(value) {
@@ -489,6 +499,7 @@ function assertBundleRows(backupRows, newRows, manifest, core) {
   assert.equal(newRows.length, EXPECTED_NEW_COUNT);
   assert.equal(new Set(backupRows.map((row) => row.id)).size, expectedOldCount);
   assert.equal(new Set(newRows.map((row) => row.id)).size, EXPECTED_NEW_COUNT);
+  const sourceGeneration = resolveSourceGeneration(backupRows);
   const oldIds = new Set(backupRows.map((row) => row.id));
   assert.equal(newRows.some((row) => oldIds.has(row.id)), false, 'old_new_id_overlap');
   assertTranslateBuildSemantics(newRows);
@@ -502,7 +513,7 @@ function assertBundleRows(backupRows, newRows, manifest, core) {
     const validation = core.validateTournamentTaskForNewRoom(row.data);
     if (!validation.ok) throw new Error(`manifest_new_task_invalid:${row.id}:${validation.reason}`);
   }
-  return { expectedOldCount, oldIds };
+  return { expectedOldCount, oldIds, sourceGeneration };
 }
 
 async function readExactNewTasks(db, refs, expectedRows, core) {
@@ -546,7 +557,7 @@ async function main() {
   );
   const backupRows = parseNdjson(rawBackup, 'backup');
   const newRows = parseNdjson(rawNewPool, 'new_pool');
-  const { oldIds } = assertBundleRows(backupRows, newRows, manifest, core);
+  const { oldIds, sourceGeneration } = assertBundleRows(backupRows, newRows, manifest, core);
   const artifactPreflight = preflightRooms(newRows.map((row) => row.data), core);
 
   const serviceAccount = JSON.parse(fs.readFileSync(serviceAccountPath, 'utf8'));
@@ -555,7 +566,6 @@ async function main() {
   assert.equal(admin.app().options.projectId, EXPECTED_PROJECT_ID, 'initialized_project_mismatch');
   const db = admin.firestore();
   const collection = db.collection(COLLECTION);
-  const sourceGeneration = `legacy:${expectedBackupSha}`;
   const migrationId = `apply:${manifestSha256}`;
   const recoveryContract = {
     backupRows,
@@ -578,7 +588,7 @@ async function main() {
 
   const preflightReport = {
     ok: true,
-    kind: 'tournament_pool_v3_preflight_v1',
+    kind: 'tournament_pool_v5_preflight_v1',
     mode: apply ? 'apply' : 'dry-run',
     projectId: EXPECTED_PROJECT_ID,
     poolVersion: EXPECTED_VERSION,
@@ -671,7 +681,7 @@ async function main() {
 
   const report = {
     ...preflightReport,
-    kind: 'tournament_pool_v3_apply_report_v1',
+    kind: 'tournament_pool_v5_apply_report_v1',
     completedAt: new Date().toISOString(),
     actualMutations: {
       created,
@@ -703,6 +713,7 @@ async function main() {
 }
 
 module.exports = {
+  EXPECTED_SOURCE_VERSION,
   EXPECTED_VERSION,
   POOL_BARRIER_COLLECTION,
   POOL_BARRIER_DOC,
@@ -718,6 +729,7 @@ module.exports = {
   planApplyPoolRecovery,
   releasePoolMigrationBarrier,
   resolveApplyIntent,
+  resolveSourceGeneration,
 };
 
 if (require.main === module) {

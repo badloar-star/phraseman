@@ -63,7 +63,7 @@ const ASSEMBLY = {
   prompt: 'Соберите фразу: Я собираюсь позвонить ей завтра',
   answer: 'I am going to call her tomorrow',
   tokens: ['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow'],
-  decoys: ['will', 'him', 'yesterday', 'already'],
+  decoys: ['will'],
   scenario: 'планы',
   ruleNote: 'be going to — намерение. will — другое значение, him и yesterday не подходят.',
   example: 'We are going to visit them tomorrow. — Мы собираемся навестить их завтра.',
@@ -109,6 +109,10 @@ describe('четыре типа: золотой путь до турнира', (
 
     const live = { ...task, verified: true };
     if (kind === 'assembly') {
+      expect(task.payload).toMatchObject({
+        correctTokenCount: parsed.item.correctTokens.length,
+        correctTokens: parsed.item.correctTokens,
+      });
       // Сервер сверяет порядок слов точно.
       expect(verifyTournamentAnswer(live, { tokens: [...parsed.item.correctTokens] })).toBe(true);
       expect(verifyTournamentAnswer(live, { tokens: ['I', 'will', 'call', 'her'] })).toBe(false);
@@ -163,7 +167,7 @@ describe('четыре типа: брак ловится', () => {
   });
 
   it('сборка: приманка дублирует настоящее слово → kind_decoy_duplicates_token', () => {
-    const broken = { ...ASSEMBLY, decoys: ['will', 'call', 'yesterday'] };
+    const broken = { ...ASSEMBLY, decoys: ['call'] };
     const result = parseKindItem(broken, 'assembly');
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.errors).toContain('kind_decoy_duplicates_token');
@@ -209,8 +213,8 @@ describe('четыре типа: брак ловится', () => {
 });
 
 describe('сборка фразы: банк слов не выдаёт ответ', () => {
-  it('требует ровно четыре ловушки', () => {
-    const result = parseKindItem({ ...ASSEMBLY, decoys: ASSEMBLY.decoys.slice(0, 3) }, 'assembly');
+  it.each([[[]], [['will', 'already']]] as readonly [readonly string[]][])('требует ровно одну ловушку: %j', (decoys) => {
+    const result = parseKindItem({ ...ASSEMBLY, decoys }, 'assembly');
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.errors).toContain('kind_decoys_invalid');
   });
@@ -220,14 +224,14 @@ describe('сборка фразы: банк слов не выдаёт отве�
       ...ASSEMBLY,
       answer: 'I am going to call her tomorrow!',
       tokens: ['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow!'],
-      decoys: ['will,', 'him?', 'yesterday.', 'already!'],
+      decoys: ['will,'],
     }, 'assembly');
     expect(result.ok).toBe(true);
     if (!result.ok) return;
     expect(result.item.correctAnswer).toBe('I am going to call her tomorrow');
     expect(result.item.correctTokens).toEqual(['I', 'am', 'going', 'to', 'call', 'her', 'tomorrow']);
     expect(result.item.options).toEqual(expect.arrayContaining([
-      'tomorrow', 'will', 'him', 'yesterday', 'already',
+      'tomorrow', 'will',
     ]));
     expect(result.item.options.some((chip) => /[!?.,]/u.test(chip))).toBe(false);
   });

@@ -21,6 +21,7 @@ export const WEEKLY_BOON_ICON_THEMES: readonly ThemeMode[] = [
   'volt',
   'candyBlue',
   'indigo',
+  'sagePorcelain',
 ] as const;
 
 export const WEEKLY_BOON_ICON_ASSET_PATHS: Record<ThemeMode, Record<WeeklyBoonIconId, string>> = {

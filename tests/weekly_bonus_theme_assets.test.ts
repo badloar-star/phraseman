@@ -35,9 +35,10 @@ describe('themed daily and weekly bonus art', () => {
       const [dailyMeta, weeklyMeta] = await Promise.all([sharp(daily).metadata(), sharp(weekly).metadata()]);
       // Тема в сообщении: иначе падение выглядит как безадресное «256 vs 384» и приходится
       // угадывать, какой из 12 ассетов виноват.
-      expect({ theme, ...dailyMeta }).toMatchObject({ theme, format: 'webp', hasAlpha: true });
-      expect(dailyMeta.width).toBe(dailyMeta.height);
-      expect([256, 384]).toContain(dailyMeta.width);
+      const expectedDailySize = theme === 'volt' ? 384 : 256;
+      expect({ theme, ...dailyMeta }).toMatchObject({
+        theme, format: 'webp', width: expectedDailySize, height: expectedDailySize, hasAlpha: true,
+      });
       expect({ theme, ...weeklyMeta }).toMatchObject({ theme, format: 'webp', width: 512, height: 512, hasAlpha: true });
 
       dailyHashes.add(createHash('sha256').update(readFileSync(daily)).digest('hex'));

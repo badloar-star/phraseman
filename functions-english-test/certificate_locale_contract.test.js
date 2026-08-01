@@ -195,7 +195,7 @@ test('executed certificate creation posts a PII-free /api/english-test analytics
     const h = appHarness(source, true, true); h.win.__appCapture.acceptConsent(); h.win.__appCapture.renderResult(result, { preserveAttempt: true });
     h.app.querySelector('#certName').value = 'Ada Lovelace'; h.app.querySelector('#certBtn').click(); await new Promise((resolve) => setImmediate(resolve));
     assert.equal(h.requests.length, 1); assert.equal(h.requests[0].url, '/api/english-test'); assert.equal(h.requests[0].init.method, 'POST');
-    const body = JSON.parse(h.requests[0].init.body); assert.deepEqual(Object.keys(body).sort(), ['action', 'attemptToken', 'clientHash', 'timestamp']); assert.equal(body.action, 'certificate'); assert.equal(Object.hasOwn(body, 'name'), false);
+    const body = JSON.parse(h.requests[0].init.body); assert.deepEqual(Object.keys(body).sort(), ['action', 'attemptToken', 'clientHash', 'testLanguage', 'timestamp', 'uiLocale']); assert.equal(body.action, 'certificate'); assert.equal(body.testLanguage, 'de'); assert.equal(body.uiLocale, 'ru'); assert.equal(Object.hasOwn(body, 'name'), false);
   }
 
   await assertCertificateAnalytics(read('app.js'));

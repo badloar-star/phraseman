@@ -165,6 +165,8 @@
         clientHash: await getClientHash(),
         timestamp: Date.now(),
         ...payload,
+        testLanguage: attemptTestLanguage || selectedTestLanguage,
+        uiLocale,
       };
       const res = await fetch(API_BASE, {
         method: 'POST',

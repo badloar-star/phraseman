@@ -72,6 +72,21 @@ function normalizeBankVersion(value) {
   return /^\d{4}-\d{2}-\d{2}\.\d+$/.test(value) ? value : BANK_VERSION;
 }
 
+function normalizeTestLanguage(value) {
+  return ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en';
+}
+
+function normalizeUiLocale(value) {
+  return ['en', 'ru'].includes(value) ? value : 'en';
+}
+
+function normalizeAnalyticsDimensions(body) {
+  return {
+    testLanguage: normalizeTestLanguage(body.testLanguage),
+    uiLocale: normalizeUiLocale(body.uiLocale),
+  };
+}
+
 function normalizeCompletedResult(result) {
   if (!result || typeof result !== 'object' || Array.isArray(result)) return null;
 
@@ -105,7 +120,7 @@ function normalizeCompletedResult(result) {
 function normalizeQuestionIdentity(value) {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null;
   const { questionId, position } = value;
-  if (typeof questionId !== 'string' || !/^en-(a1|a2|b1|b2|c1|c2)-\d{3}$/.test(questionId)) {
+  if (typeof questionId !== 'string' || !/^(en|de|fr|it|es)-(a1|a2|b1|b2|c1|c2)-\d{3}$/.test(questionId)) {
     return null;
   }
   if (!Number.isInteger(position) || position < 1 || position > 20) return null;
@@ -205,32 +220,36 @@ function mergeProgressResponses(existingResponses, payload) {
 
 function normalizeAnalyticsAction(action, body) {
   if (!body || typeof body !== 'object' || Array.isArray(body)) return null;
+  const dimensions = normalizeAnalyticsDimensions(body);
   switch (action) {
     case 'landing':
     case 'certificate':
-      return { action, payload: {} };
+      return { action, payload: dimensions };
     case 'start':
-      return { action, payload: { bankVersion: normalizeBankVersion(body.bankVersion) } };
+      return {
+        action,
+        payload: { bankVersion: normalizeBankVersion(body.bankVersion), ...dimensions },
+      };
     case 'view': {
       const payload = normalizeQuestionIdentity(body);
-      return payload ? { action, payload } : null;
+      return payload ? { action, payload: { ...payload, ...dimensions } } : null;
     }
     case 'progress': {
       const payload = normalizeProgressResponse(body);
-      return payload ? { action, payload } : null;
+      return payload ? { action, payload: { ...payload, ...dimensions } } : null;
     }
     case 'complete': {
       const payload = normalizeCompletedResult(body.result);
-      return payload ? { action, payload } : null;
+      return payload ? { action, payload: { ...payload, ...dimensions } } : null;
     }
     case 'abandon':
       return Number.isInteger(body.lastPosition) && body.lastPosition >= 0 && body.lastPosition <= 20
-        ? { action, payload: { lastPosition: body.lastPosition } }
+        ? { action, payload: { lastPosition: body.lastPosition, ...dimensions } }
         : null;
     case 'share': {
       const allowedChannels = ['web_share_api_attempted', 'web_share_api_success', 'clipboard_copy'];
       return allowedChannels.includes(body.channel)
-        ? { action, payload: { channel: body.channel } }
+        ? { action, payload: { channel: body.channel, ...dimensions } }
         : null;
     }
     // зачем: владельцу нужно видеть, сколько людей пошли скачивать приложение
@@ -241,7 +260,7 @@ function normalizeAnalyticsAction(action, body) {
     // cert_reopen — вернулся к сертификату, не скачав его (app.js:1091).
     // Тоже отбрасывался default-ветвью, поэтому «переоткрытий» не было видно.
     case 'cert_reopen':
-      return { action, payload: { level: normalizeCtaLevel(body.level) } };
+      return { action, payload: { level: normalizeCtaLevel(body.level), ...dimensions } };
     case 'cta_click':
       return {
         action,
@@ -251,6 +270,7 @@ function normalizeAnalyticsAction(action, body) {
           // source различает «результат теста» и «окно сертификата» — ровно тот
           // разрез, который нужен в отчёте.
           source: normalizeCtaSource(body.store, body.source),
+          ...dimensions,
         },
       };
     default:
@@ -397,6 +417,8 @@ async function getOrCreateAttempt(token, clientHash, hmacKey, payload) {
     expiresAt: getExpiresAt(ATTEMPT_TTL_DAYS),
     status: 'active',
     bankVersion: normalizeBankVersion(payload.bankVersion),
+    testLanguage: normalizeTestLanguage(payload.testLanguage),
+    uiLocale: normalizeUiLocale(payload.uiLocale),
     clientHash: hmac(hmacKey, clientHash),
     attemptNumber: await getAttemptNumber(clientHash, hmacKey),
     source: sanitizeString(payload.source, 32),

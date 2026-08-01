@@ -13,23 +13,23 @@ function plain(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
-function loadFunction(name, context = {}) {
+function loadFunction(name, context = {}, sourceText = source) {
   const declaration = `function ${name}`;
-  const functionStart = source.indexOf(declaration);
+  const functionStart = sourceText.indexOf(declaration);
   assert.ok(functionStart >= 0, `${name} must be defined in index.js`);
-  const asyncStart = source.lastIndexOf('async ', functionStart);
+  const asyncStart = sourceText.lastIndexOf('async ', functionStart);
   const start = asyncStart >= 0
-    && source.slice(asyncStart, functionStart) === 'async '
+    && sourceText.slice(asyncStart, functionStart) === 'async '
     ? asyncStart
     : functionStart;
 
-  const bodyStart = source.indexOf('{', functionStart);
+  const bodyStart = sourceText.indexOf('{', functionStart);
   let depth = 0;
-  for (let cursor = bodyStart; cursor < source.length; cursor += 1) {
-    if (source[cursor] === '{') depth += 1;
-    if (source[cursor] === '}') depth -= 1;
+  for (let cursor = bodyStart; cursor < sourceText.length; cursor += 1) {
+    if (sourceText[cursor] === '{') depth += 1;
+    if (sourceText[cursor] === '}') depth -= 1;
     if (depth === 0) {
-      return vm.runInNewContext(`(${source.slice(start, cursor + 1)})`, context);
+      return vm.runInNewContext(`(${sourceText.slice(start, cursor + 1)})`, context);
     }
   }
 
@@ -120,6 +120,28 @@ test('server language and locale normalizers allowlist supported dimensions with
   assert.equal(normalizeTestLanguage('xx'), 'en');
   assert.equal(normalizeUiLocale('ru'), 'ru');
   assert.equal(normalizeUiLocale('fr'), 'en');
+});
+
+test('normalizer mutation checks reject unsupported language and locale values', () => {
+  const testLanguageMutant = source.replace(
+    "return ['en', 'de', 'fr', 'it', 'es'].includes(value) ? value : 'en';",
+    "return value === 'xx' ? 'xx' : 'en';",
+  );
+  const uiLocaleMutant = source.replace(
+    "return ['en', 'ru'].includes(value) ? value : 'en';",
+    "return value === 'fr' ? 'fr' : 'en';",
+  );
+  assert.notEqual(testLanguageMutant, source, 'test-language mutation must apply');
+  assert.notEqual(uiLocaleMutant, source, 'UI-locale mutation must apply');
+
+  assert.throws(() => {
+    const normalizeTestLanguage = loadFunction('normalizeTestLanguage', {}, testLanguageMutant);
+    assert.equal(normalizeTestLanguage('xx'), 'en');
+  });
+  assert.throws(() => {
+    const normalizeUiLocale = loadFunction('normalizeUiLocale', {}, uiLocaleMutant);
+    assert.equal(normalizeUiLocale('fr'), 'en');
+  });
 });
 
 test('legacy English start, view, progress, and complete bodies remain valid with default dimensions', () => {
@@ -226,9 +248,9 @@ test('new attempts persist normalized dimensions and submitted normalized bank v
   assert.equal(JSON.stringify(storedAttempt).includes('Raw question text'), false);
 });
 
-function loadClientApiHarness() {
+function loadClientApiHarness(sourceText = appSource) {
   const requests = [];
-  const instrumented = appSource.replace(
+  const instrumented = sourceText.replace(
     /  \/\/ ---------- Init ----------[\s\S]*$/,
     `  window.__analyticsContract = {
       setState(value) {
@@ -245,7 +267,7 @@ function loadClientApiHarness() {
     };
   })();`,
   );
-  assert.notEqual(instrumented, appSource, 'client harness must replace only the init tail');
+  assert.notEqual(instrumented, sourceText, 'client harness must replace only the init tail');
 
   const window = { matchMedia: () => ({ matches: true }) };
   const context = vm.createContext({
@@ -333,4 +355,28 @@ test('client analytics appends selected or frozen test language and UI locale wi
     assert.equal(JSON.stringify(body).includes('Ada Lovelace'), false);
     assert.equal(JSON.stringify(body).includes('Raw selected question text'), false);
   }
+});
+
+test('client mutation check detects certificate-name and raw-question leakage', async () => {
+  const mutant = appSource.replace(
+    '        uiLocale,\n      };',
+    '        uiLocale,\n        lastCertName,\n        rawQuestionText: currentQuestion?.prompt,\n      };',
+  );
+  assert.notEqual(mutant, appSource, 'PII-leak mutation must apply');
+
+  await assert.rejects(async () => {
+    const harness = loadClientApiHarness(mutant);
+    harness.api.setState({
+      consent: true,
+      selectedTestLanguage: 'fr',
+      attemptTestLanguage: 'de',
+      uiLocale: 'ru',
+      lastCertName: 'Ada Lovelace',
+      currentQuestion: { prompt: 'Raw selected question text' },
+    });
+    await harness.api.send('certificate', {});
+    const body = JSON.parse(harness.requests[0].init.body);
+    assert.equal(Object.hasOwn(body, 'lastCertName'), false);
+    assert.equal(Object.hasOwn(body, 'rawQuestionText'), false);
+  });
 });

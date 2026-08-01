@@ -1,4 +1,5 @@
-export {};
+import fs from 'fs';
+import path from 'path';
 
 type DocData = Record<string, unknown>;
 
@@ -1006,6 +1007,114 @@ describe('community pack callable ownership', () => {
     await expect(callCommunity('levelGiftReserve', {
       stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
     }, 'auth-victim')).rejects.toMatchObject({ code: 'permission-denied' });
+  });
+
+  test('accepts every canonical Plus source for the premium level-gift lane', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    const premiumSources = [
+      { premium_plan: 'monthly', premium_expiry: '0', premium_rc_expiry_ms: '1800000100000' },
+      { vip_active: 'true', vip_until: '1800000100000' },
+      { premium_plan: 'admin_grant', admin_premium_override: 'true', premium_expiry: '0' },
+      { premium_plan: 'lifetime', premium_expiry: '0' },
+      { loyalty_gift_until_ms: '1800000100000' },
+    ];
+
+    for (const [index, progress] of premiumSources.entries()) {
+      mockDocs.set('users/victim', {
+        firebaseAuthUid: 'auth-victim',
+        shards: 200,
+        progressServerState: { level: 100 },
+        progress,
+      });
+      await expect(callCommunity('levelGiftReserve', {
+        stableId: 'victim', level: 21 + index, lane: 'premium', studyTarget: 'en',
+      }, 'auth-victim')).resolves.toEqual(expect.objectContaining({ reservationId: expect.any(String) }));
+    }
+  });
+
+  test('uses the authenticated canonical alias graph for premium broadcast audience access', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/premium-alias', {
+      active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium',
+    });
+    mockDocs.set('users/victim-premium-alias', {
+      identityHidden: true,
+      canonicalStableId: 'victim',
+      firebaseAuthUid: 'auth-victim',
+      progress: { vip_active: 'true', vip_until: '1800000100000' },
+    });
+
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'premium-alias',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: 'global_broadcast_premium-alias_victim',
+    });
+  });
+
+  test('replays an existing premium-audience broadcast grant after Plus access expires', async () => {
+    jest.spyOn(Date, 'now').mockReturnValue(1_800_000_000_000);
+    mockDocs.set('global_broadcast_modals/premium-replay', {
+      active: true, rewardType: 'pack_trial_48h', premiumAudience: 'premium',
+    });
+    mockDocs.set('flashcard_pack_gift_grants/global_broadcast_premium-replay_victim', {
+      ownerStableUid: 'victim',
+      source: 'global_broadcast',
+      sourceId: 'premium-replay',
+      occurrenceId: 'global_broadcast_premium-replay_victim',
+      expiresAt: 1_800_172_800_000,
+      createdAt: 1_799_000_000_000,
+    });
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progress: {},
+    });
+
+    await expect(callCommunity('flashcardPackGiftGrantGlobalBroadcast', {
+      stableId: 'victim', broadcastId: 'premium-replay',
+    }, 'auth-victim')).resolves.toMatchObject({
+      voucherId: 'global_broadcast_premium-replay_victim',
+      expiresAt: 1_800_172_800_000,
+      replayed: true,
+    });
+  });
+
+  test('replays an existing premium level reservation after Plus access expires', async () => {
+    mockDocs.set('users/victim', {
+      ...(mockDocs.get('users/victim') ?? {}),
+      progressServerState: { level: 25 },
+      progress: {},
+    });
+    mockDocs.set('level_gift_reservations/victim_25_premium_en', {
+      ownerStableUid: 'victim', level: 25, lane: 'premium', studyTarget: 'en', giftId: 'prem_shards_10',
+    });
+
+    await expect(callCommunity('levelGiftReserve', {
+      stableId: 'victim', level: 25, lane: 'premium', studyTarget: 'en',
+    }, 'auth-victim')).resolves.toMatchObject({
+      reservationId: 'victim_25_premium_en', giftId: 'prem_shards_10', replayed: true,
+    });
+  });
+
+  test('keeps premium authorization reads inside each gift transaction before writes', () => {
+    const source = fs.readFileSync(path.join(__dirname, 'community_packs.ts'), 'utf8');
+    const levelStart = source.indexOf('export const levelGiftReserve');
+    const levelEnd = source.indexOf('export const levelGiftActivatePackGift', levelStart);
+    const levelBody = source.slice(levelStart, levelEnd);
+    const broadcastStart = source.indexOf('export const flashcardPackGiftGrantGlobalBroadcast');
+    const broadcastEnd = source.indexOf('export const flashcardPackGiftSyncState', broadcastStart);
+    const broadcastBody = source.slice(broadcastStart, broadcastEnd);
+
+    const levelResolver = levelBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
+    expect(levelResolver).toBeGreaterThan(levelBody.indexOf('if (existingReservation)'));
+    expect(levelResolver).toBeLessThan(levelBody.indexOf('tx.set('));
+
+    const transactionStart = broadcastBody.indexOf('runTransaction(async (tx)');
+    const broadcastResolver = broadcastBody.indexOf('resolvePremiumAccess(db, stableUid, now, authUid, tx)');
+    expect(broadcastResolver).toBeGreaterThan(transactionStart);
+    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('broadcastSnap.data()'));
+    expect(broadcastResolver).toBeGreaterThan(broadcastBody.indexOf('if (grantSnap.exists)'));
+    expect(broadcastResolver).toBeLessThan(broadcastBody.indexOf('tx.set('));
+    expect(broadcastBody.slice(0, transactionStart)).not.toContain('resolvePremiumAccess(');
   });
 
   test('replays a pre-merge level reservation through the canonical identity', async () => {

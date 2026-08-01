@@ -34,7 +34,9 @@ describe('PremiumContext VIP event contract', () => {
     expect(source).toContain('introFullAccessEndsAt');
     expect(source).toContain('getIntroFullAccessState');
     // Доступ собирается из real/vip/intro.
-    expect(source).toContain('setHasPremiumAccess(effectivePremium || effectiveVip || introState.active)');
+    expect(source).toContain(
+      'setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess)',
+    );
     expect(source).toContain("onAppEvent('intro_full_access_changed'");
   });
 

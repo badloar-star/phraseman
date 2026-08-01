@@ -1018,6 +1018,10 @@ const PREMIUM_PROGRESS_KEYS = new Set([
   'vip_admin_override',
   'vip_admin_grant_at',
   'vip_migrated_from_admin_grant_at',
+  'intro_access_until_ms',
+  'intro_access_granted_at_ms',
+  'loyalty_gift_until_ms',
+  'loyalty_gift_granted_at_ms',
 ]);
 
 // Ключи, которые ВЫДАЁТ ТОЛЬКО СЕРВЕР (CF collectiblesClaimDrop и т.п.).

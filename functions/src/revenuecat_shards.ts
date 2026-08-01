@@ -198,6 +198,12 @@ function entitlementIds(event: RevenueCatEvent): string[] {
   return [...out];
 }
 
+export function isManagedPremiumProductId(rawProductId: unknown): boolean {
+  const productId = cleanId(rawProductId).toLowerCase();
+  return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?(?::[a-z0-9][a-z0-9-]*)?$/.test(productId)
+    || productId === 'phraseman_premium_lifetime_v1';
+}
+
 function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
   const productId = cleanId(event.product_id).toLowerCase();
   const entitlements = entitlementIds(event);
@@ -213,8 +219,7 @@ function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
   ]);
   if (entitlements.length === 0) return legacyPremiumProducts.has(productId);
   if (!entitlements.includes('premium')) return false;
-  return /^phraseman_premium_(monthly|yearly)(?:_[0-9]{1,6})?$/.test(productId)
-    || productId === 'phraseman_premium_lifetime_v1';
+  return isManagedPremiumProductId(productId);
 }
 
 function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' | 'lifetime' {
@@ -439,75 +444,65 @@ async function writePremiumDenialReceipt(
   }, { merge: false });
 }
 
-async function handlePremiumSubscriptionEvent(
-  event: RevenueCatEvent,
+export async function applyVerifiedPremiumSubscriptionEvent(
+  rawEvent: Record<string, unknown>,
   eventType: string,
   productId: string,
-  res: any,
-): Promise<void> {
+): Promise<{ statusCode: number; body: Record<string, unknown> }> {
+  const event = rawEvent as RevenueCatEvent;
   const normalized = normalizePremiumLineageEvent(event as Record<string, unknown>);
   if (normalized.status === 'quarantine') {
-    try {
-      await writePremiumDenialReceipt(
-        event,
-        `quarantine_${normalized.rawFingerprint}`,
-        normalized.reason,
-        { rawFingerprint: normalized.rawFingerprint },
-      );
-      res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason: normalized.reason });
-    } catch (error) {
-      logger.error('revenuecat_premium_quarantine_failed', error);
-      res.status(500).send('Internal error');
-    }
-    return;
+    await writePremiumDenialReceipt(
+      event,
+      `quarantine_${normalized.rawFingerprint}`,
+      normalized.reason,
+      { rawFingerprint: normalized.rawFingerprint },
+    );
+    return {
+      statusCode: 202,
+      body: { ok: true, kind: 'premium', quarantined: true, reason: normalized.reason },
+    };
   }
 
   const canonicalEvent = normalized.event;
   const boundedCandidates = boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event));
   if (boundedCandidates.status === 'quarantine') {
-    try {
-      await writePremiumDenialReceipt(
-        event,
-        premiumReceiptDocId(canonicalEvent.eventId),
-        boundedCandidates.reason,
-        { fingerprint: canonicalEvent.fingerprint },
-      );
-      res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason: boundedCandidates.reason });
-    } catch (error) {
-      logger.error('revenuecat_premium_candidate_quarantine_failed', error);
-      res.status(500).send('Internal error');
-    }
-    return;
+    await writePremiumDenialReceipt(
+      event,
+      premiumReceiptDocId(canonicalEvent.eventId),
+      boundedCandidates.reason,
+      { fingerprint: canonicalEvent.fingerprint },
+    );
+    return {
+      statusCode: 202,
+      body: { ok: true, kind: 'premium', quarantined: true, reason: boundedCandidates.reason },
+    };
   }
   const candidates = boundedCandidates.candidates;
   if (candidates.length === 0) {
     const hasAnonymousIdentity = [event.app_user_id, event.original_app_user_id]
       .some(isRevenueCatAnonymousId);
     const reason = hasAnonymousIdentity ? 'ambiguous_anonymous_owner' : 'missing_authoritative_owner';
-    try {
-      await writePremiumDenialReceipt(
-        event,
-        premiumReceiptDocId(canonicalEvent.eventId),
-        reason,
-        {
-          fingerprint: canonicalEvent.fingerprint,
-          evidenceCandidates: candidateUserIds(event),
-        },
-      );
-      res.status(202).json({ ok: true, kind: 'premium', quarantined: true, reason });
-    } catch (error) {
-      logger.error('revenuecat_premium_owner_quarantine_failed', error);
-      res.status(500).send('Internal error');
-    }
-    return;
+    await writePremiumDenialReceipt(
+      event,
+      premiumReceiptDocId(canonicalEvent.eventId),
+      reason,
+      {
+        fingerprint: canonicalEvent.fingerprint,
+        evidenceCandidates: candidateUserIds(event),
+      },
+    );
+    return {
+      statusCode: 202,
+      body: { ok: true, kind: 'premium', quarantined: true, reason },
+    };
   }
   const db = admin.firestore();
   const receiptId = premiumReceiptDocId(canonicalEvent.eventId);
   const processedRef = db.collection('revenuecat_premium_events').doc(receiptId);
   const denialRef = db.collection('revenuecat_premium_denials').doc(receiptId);
 
-  try {
-    const out = await db.runTransaction(async (tx) => {
+  const out = await db.runTransaction(async (tx) => {
       // All denial/idempotency/deletion reads happen before any user, lineage,
       // projection, or receipt write in this transaction.
       const processedSnap = await tx.get(processedRef);
@@ -653,9 +648,24 @@ async function handlePremiumSubscriptionEvent(
         aggregateStatus: aggregate.status,
         winnerLineageHash: aggregate.winnerLineageHash ?? null,
       };
-    });
+  });
 
-    res.status(200).json({ ok: true, kind: 'premium', ...out });
+  return { statusCode: 200, body: { ok: true, kind: 'premium', ...out } };
+}
+
+async function handlePremiumSubscriptionEvent(
+  event: RevenueCatEvent,
+  eventType: string,
+  productId: string,
+  res: any,
+): Promise<void> {
+  try {
+    const outcome = await applyVerifiedPremiumSubscriptionEvent(
+      event as Record<string, unknown>,
+      eventType,
+      productId,
+    );
+    res.status(outcome.statusCode).json(outcome.body);
   } catch (error) {
     logger.error('revenuecat_premium_lineage_webhook_failed', error);
     res.status(500).send('Internal error');

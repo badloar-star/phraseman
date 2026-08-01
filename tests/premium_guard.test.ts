@@ -10,6 +10,12 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
 const getCustomerInfo = jest.fn();
 const getAppUserID = jest.fn(async () => 'premium-guard-test');
 const restoreFromCloud = jest.fn<Promise<boolean>, []>(async () => false);
+const syncRevenueCatProjectionForAccount = jest.fn<Promise<boolean>, [string]>(async () => true);
+const debugError = jest.fn();
+const readGiftAccessFromCloud = jest.fn(async () => null as null | {
+  grantedAtMs: number | null;
+  endsAtMs: number | null;
+});
 
 jest.mock('react-native-purchases', () => ({
   __esModule: true,
@@ -23,6 +29,18 @@ jest.mock('../app/config', () => ({ IS_EXPO_GO: false }));
 
 jest.mock('../app/cloud_sync', () => ({
   restoreFromCloud,
+}));
+
+jest.mock('../app/gift_access_cloud', () => ({
+  readGiftAccessFromCloud,
+}));
+
+jest.mock('../app/revenuecat_projection_sync', () => ({
+  syncRevenueCatProjectionForAccount,
+}));
+
+jest.mock('../app/debug-logger', () => ({
+  DebugLogger: { error: debugError },
 }));
 
 function resetStore() {
@@ -39,6 +57,8 @@ beforeEach(() => {
   jest.resetModules();
   jest.clearAllMocks();
   restoreFromCloud.mockImplementation(async () => false);
+  readGiftAccessFromCloud.mockResolvedValue(null);
+  syncRevenueCatProjectionForAccount.mockResolvedValue(true);
   getAppUserID.mockImplementation(async () => 'premium-guard-test');
   resetStore();
   const generation = require('../app/account_generation');
@@ -178,6 +198,69 @@ test('an unrelated RevenueCat entitlement or subscription does not unlock Premiu
 
   await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
   expect(asyncStore.premium_active).not.toBe('true');
+  expect(syncRevenueCatProjectionForAccount).not.toHaveBeenCalled();
+});
+
+test('awaits server projection sync only when RevenueCat reports managed Premium active', async () => {
+  getCustomerInfo.mockResolvedValue({
+    entitlements: {
+      active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
+    },
+    activeSubscriptions: ['phraseman_premium_monthly_399:monthly-base'],
+  });
+  const { getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledTimes(1);
+  expect(syncRevenueCatProjectionForAccount).toHaveBeenCalledWith('premium-guard-test');
+});
+
+test('preserves local paid access and logs warning when projection sync fails', async () => {
+  getCustomerInfo.mockResolvedValue({
+    entitlements: {
+      active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
+    },
+    activeSubscriptions: ['phraseman_premium_monthly_399:monthly-base'],
+  });
+  syncRevenueCatProjectionForAccount.mockRejectedValue(new Error('offline'));
+  const { getVerifiedRealPremiumStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(true);
+  expect(debugError).toHaveBeenCalledWith(
+    'premium_guard:revenuecat_projection_sync',
+    expect.any(Error),
+    'warning',
+  );
+});
+
+test('drops account A projection completion after account generation changes', async () => {
+  const generation = require('../app/account_generation');
+  generation.beginAccountGeneration('stable-A');
+  getAppUserID.mockResolvedValue('stable-A');
+  getCustomerInfo.mockResolvedValue({
+    entitlements: {
+      active: { premium: { productIdentifier: 'phraseman_premium_monthly_399:monthly-base' } },
+    },
+    activeSubscriptions: ['phraseman_premium_monthly_399:monthly-base'],
+  });
+  let releaseSync!: (value: boolean) => void;
+  let markStarted!: () => void;
+  const started = new Promise<void>((resolve) => { markStarted = resolve; });
+  syncRevenueCatProjectionForAccount.mockImplementationOnce(() => new Promise((resolve) => {
+    releaseSync = resolve;
+    markStarted();
+  }));
+  const guard = require('../app/premium_guard');
+
+  const staleResult = guard.getVerifiedRealPremiumStatus();
+  await started;
+  generation.invalidateAccountGeneration();
+  guard.beginPremiumAccountTransition();
+  generation.beginAccountGeneration('stable-B');
+  releaseSync(true);
+
+  await expect(staleResult).resolves.toBe(false);
+  expect(asyncStore.premium_active).not.toBe('true');
 });
 
 test('intro full access grants premium-level access without making real Premium active', async () => {
@@ -273,6 +356,60 @@ test('deactivates stale local premium when RC says inactive', async () => {
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(false);
   expect(asyncStore.premium_active).toBe('false');
+});
+
+test('historical active cloud loyalty gift grants generic access only', async () => {
+  readGiftAccessFromCloud.mockResolvedValue({
+    grantedAtMs: Date.now() - 60_000,
+    endsAtMs: Date.now() + 60_000,
+  });
+  getCustomerInfo.mockResolvedValue({ entitlements: { active: {} }, activeSubscriptions: [] });
+  const {
+    getVerifiedPremiumStatus,
+    getVerifiedRealPremiumStatus,
+    getVerifiedVipStatus,
+  } = require('../app/premium_guard');
+
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(true);
+  await expect(getVerifiedRealPremiumStatus()).resolves.toBe(false);
+  await expect(getVerifiedVipStatus()).resolves.toBe(false);
+  expect(readGiftAccessFromCloud).toHaveBeenCalledWith('loyalty');
+});
+
+test('tester kill switch blocks cloud loyalty gift before any cloud read', async () => {
+  asyncStore.tester_no_premium = 'true';
+  readGiftAccessFromCloud.mockResolvedValue({
+    grantedAtMs: Date.now() - 60_000,
+    endsAtMs: Date.now() + 60_000,
+  });
+  const { getVerifiedPremiumStatus } = require('../app/premium_guard');
+
+  await expect(getVerifiedPremiumStatus()).resolves.toBe(false);
+  expect(readGiftAccessFromCloud).not.toHaveBeenCalled();
+});
+
+test('drops a delayed loyalty gift result after account generation changes', async () => {
+  const generation = require('../app/account_generation');
+  const guard = require('../app/premium_guard');
+  generation.beginAccountGeneration('stable-A');
+  guard.invalidatePremiumCache();
+  getCustomerInfo.mockResolvedValue({ entitlements: { active: {} }, activeSubscriptions: [] });
+  let releaseGift!: (value: { grantedAtMs: number; endsAtMs: number }) => void;
+  let markStarted!: () => void;
+  const started = new Promise<void>((resolve) => { markStarted = resolve; });
+  readGiftAccessFromCloud.mockImplementationOnce(() => new Promise((resolve) => {
+    releaseGift = resolve;
+    markStarted();
+  }));
+
+  const staleAccess = guard.getVerifiedPremiumStatus();
+  await started;
+  generation.invalidateAccountGeneration();
+  guard.beginPremiumAccountTransition();
+  generation.beginAccountGeneration('stable-B');
+  releaseGift({ grantedAtMs: Date.now() - 60_000, endsAtMs: Date.now() + 60_000 });
+
+  await expect(staleAccess).resolves.toBe(false);
 });
 
 test('drops delayed account A RevenueCat result without writing or caching Premium for B', async () => {

@@ -236,9 +236,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       getVerifiedVipStatus(),
       isLifetimePlanLocal(),
     ]);
+    let verifiedAccess = realPremium || vip;
     if (!isReloadCurrent()) return;
     if (!realPremium && !vip) {
       const accessAfterCloud = await getVerifiedPremiumAccessStatus().catch(() => false);
+      verifiedAccess = accessAfterCloud;
       if (!isReloadCurrent()) return;
       if (accessAfterCloud) {
         [realPremium, vip, lifetimePlan] = await Promise.all([
@@ -265,12 +267,13 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const effectivePremium = !noPremiumTester && (realPremium || testerNoLimits);
     const effectiveVip = !noPremiumTester && vip;
     const effectivePro = !noPremiumTester && realPremium && lifetimePlan;
+    const effectiveVerifiedAccess = !noPremiumTester && verifiedAccess;
     setIsPremium(effectivePremium);
     setIsVip(effectiveVip);
     setIsPro(effectivePro);
     setIsIntroFullAccess(introState.active);
     setIntroFullAccessEndsAt(introState.endsAt);
-    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active);
+    setHasPremiumAccess(effectivePremium || effectiveVip || introState.active || effectiveVerifiedAccess);
     if (effectivePremium) {
       setTrialEligible(false);
     } else {

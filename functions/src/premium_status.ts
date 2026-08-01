@@ -185,6 +185,22 @@ function userDocOwnedByAuth(data: FirebaseFirestore.DocumentData, authUid: strin
     && cleanStr((linkedAuth as { providerUid?: unknown }).providerUid) === authUid;
 }
 
+async function readPremiumDocument(
+  ref: FirebaseFirestore.DocumentReference,
+  transaction?: FirebaseFirestore.Transaction,
+): Promise<FirebaseFirestore.DocumentSnapshot | null> {
+  if (transaction) return transaction.get(ref);
+  return ref.get().catch(() => null);
+}
+
+async function readPremiumQuery(
+  query: FirebaseFirestore.Query,
+  transaction?: FirebaseFirestore.Transaction,
+): Promise<FirebaseFirestore.QuerySnapshot | null> {
+  if (transaction) return transaction.get(query);
+  return query.get().catch(() => null);
+}
+
 /**
  * Narrow fallback for a historical admin-grant delivery bug.
  *
@@ -200,12 +216,12 @@ async function resolveOwnedHiddenAliasAccess(
   canonicalStableUid: string,
   authUid: string,
   now: number,
+  transaction?: FirebaseFirestore.Transaction,
 ): Promise<boolean> {
-  const aliases = await db.collection('users')
+  const query = db.collection('users')
     .where('canonicalStableId', '==', canonicalStableUid)
-    .limit(20)
-    .get()
-    .catch(() => null);
+    .limit(20);
+  const aliases = await readPremiumQuery(query, transaction);
 
   return aliases?.docs?.some((doc) => {
     const data = doc.data() ?? {};
@@ -233,6 +249,7 @@ export async function resolvePremiumAccess(
   stableUid: string,
   now: number = Date.now(),
   authUid?: string,
+  transaction?: FirebaseFirestore.Transaction,
 ): Promise<boolean> {
   const candidates = new Set<string>();
   let authLinkedStableId = '';
@@ -246,9 +263,11 @@ export async function resolvePremiumAccess(
   add(authUid);
 
   if (authUid) {
+    const authLinkRef = db.collection('auth_links').doc(authUid);
+    const providerQuery = db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5);
     const [linkSnap, byAuth] = await Promise.all([
-      db.collection('auth_links').doc(authUid).get().catch(() => null),
-      db.collection('users').where('firebaseAuthUid', '==', authUid).limit(5).get().catch(() => null),
+      readPremiumDocument(authLinkRef, transaction),
+      readPremiumQuery(providerQuery, transaction),
     ]);
     authLinkedStableId = cleanStr(linkSnap?.data()?.stable_id);
     add(authLinkedStableId);
@@ -267,7 +286,7 @@ export async function resolvePremiumAccess(
     let premiumActive = false;
     await Promise.all(ids.map(async (id) => {
       checked.add(id);
-      const snap = await db.collection('users').doc(id).get().catch(() => null);
+      const snap = await readPremiumDocument(db.collection('users').doc(id), transaction);
       if (!snap?.exists) return;
       const data = snap.data() ?? {};
       if (id === stableUid) {
@@ -310,7 +329,7 @@ export async function resolvePremiumAccess(
   ) {
     if (observedOwnedHiddenAliasAccess) return true;
     if (!providerLookupMayBeTruncated) return false;
-    return resolveOwnedHiddenAliasAccess(db, stableUid, authUid, now);
+    return resolveOwnedHiddenAliasAccess(db, stableUid, authUid, now, transaction);
   }
 
   return false;

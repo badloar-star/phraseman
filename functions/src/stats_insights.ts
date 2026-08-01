@@ -529,7 +529,7 @@ export const statsInsightsGenerate = onCall({
   const stableUid = await resolveStableUidForAuth(db, authUid);
   // Premium резолвится из Firestore-состояния, а не из тела запроса: иначе
   // free-юзер прислал бы isPremium:true и получил укороченное (премиум) окно.
-  const isPremium = await resolvePremiumAccess(db, stableUid);
+  const isPremium = await resolvePremiumAccess(db, stableUid, Date.now(), authUid);
 
   // Replay/window check BEFORE rate, global budget, and the paid API call.
   // Same briefing retries get the cached server result; different briefing

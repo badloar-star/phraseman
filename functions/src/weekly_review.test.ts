@@ -197,6 +197,21 @@ describe('weekly_review Plus-only preflight ordering', () => {
     expect(result.briefing.mistakes.weakCategories).toEqual([]);
   });
 
+  it('passes the authenticated uid to the canonical premium resolver dependency', async () => {
+    const db = {} as any;
+    const resolvePremium = jest.fn(async () => true);
+
+    await runWeeklyReviewPreflight({ authUid: 'auth-linked', rawBriefing: baseBriefing(), db }, {
+      requireAuth: (uid: string | undefined) => uid!,
+      sanitize: (raw: unknown) => raw as WeeklyReviewBriefing,
+      resolveStableUid: async () => 'stable-linked',
+      resolvePremium,
+      rejectFree: () => { throw new Error('unexpected_free'); },
+    });
+
+    expect(resolvePremium).toHaveBeenCalledWith(db, 'stable-linked', 'auth-linked');
+  });
+
   it('rejects Free before config, replay, rate, lease, budget, provider, or billing', async () => {
     const trace: string[] = [];
     await expect(runWeeklyReviewPreflight({ authUid: 'auth-free', rawBriefing: baseBriefing(), db: {} as any }, {

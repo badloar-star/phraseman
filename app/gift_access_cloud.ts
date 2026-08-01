@@ -9,8 +9,7 @@
  *      отказывали платным фичам — подаренный премиум был «декоративным».
  *
  * Этот модуль:
- *   - `persistGiftAccessOnCloud` пишет `*_until_ms` и `*_granted_at_ms` в
- *     `users/{uid}.progress` (best-effort, без блокировки UI),
+ *   - `claimIntroFullAccessOnCloud` requests the authenticated server grant,
  *   - `readGiftAccessFromCloud` читает их обратно для cloud-guard (защита от
  *     повторной выдачи после переустановки),
  *   - всё в одном файле, чтобы intro/loyalty не дублировали Firestore-логику.
@@ -22,6 +21,10 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { DebugLogger } from './debug-logger';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
+import { withCallableTimeout } from './callable_timeout';
+
+const FUNCTIONS_REGION = 'us-central1';
 
 export type GiftKind = 'intro' | 'loyalty';
 
@@ -43,6 +46,12 @@ export interface GiftAccessCloudState {
   endsAtMs: number | null;
 }
 
+export interface IntroFullAccessClaimResult {
+  grantedAtMs: number;
+  endsAtMs: number;
+  alreadyGranted: boolean;
+}
+
 function lazyFirestore(): unknown {
   try {
     // Динамический require: на dev/Expo-Go модуль может отсутствовать.
@@ -59,33 +68,41 @@ function parsePositiveNumber(value: unknown): number | null {
   return Number.isFinite(n) && n > 0 ? Math.floor(n) : null;
 }
 
-/**
- * Best-effort запись метки подарка в облако. Не блокирует UI — promise можно
- * не awaitить. Ошибки сети/прав молча проглатываются (локальный AsyncStorage
- * уже отметил подарок и так).
- */
-export async function persistGiftAccessOnCloud(
-  kind: GiftKind,
-  grantedAtMs: number,
-  endsAtMs: number,
-): Promise<void> {
-  try {
-    if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-    const uid = await getCanonicalUserId().catch(() => null);
-    if (!uid) return;
-    const db = lazyFirestore() as { collection: (n: string) => { doc: (id: string) => { set: (data: object, opts?: object) => Promise<void> } } } | null;
-    if (!db) return;
-    const { untilKey, grantedAtKey } = fieldNames(kind);
-    await db.collection('users').doc(uid).set({
-      progress: {
-        [untilKey]: String(endsAtMs),
-        [grantedAtKey]: String(grantedAtMs),
-      },
-      updatedAt: Date.now(),
-    }, { merge: true });
-  } catch (e) {
-    DebugLogger.error('gift_access_cloud:persist', e, 'warning');
+function parseClaimTimestamp(value: unknown): number | null {
+  const parsed = typeof value === 'number' ? value : Number(value);
+  return Number.isSafeInteger(parsed) && parsed > 0 ? parsed : null;
+}
+
+/** Claims or replays the canonical account's server-authoritative intro grant. */
+export async function claimIntroFullAccessOnCloud(): Promise<IntroFullAccessClaimResult> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
+    throw new Error('intro_full_access_cloud_unavailable');
   }
+
+  await initFirebaseAppCheckIfAvailable().catch(() => false);
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const callable = httpsCallable(
+    getFunctions(getApp(), FUNCTIONS_REGION),
+    'introFullAccessClaim',
+  ) as (data: Record<string, never>) => Promise<{ data?: unknown }>;
+  const response = await withCallableTimeout(callable({}), 'introFullAccessClaim');
+  const data = response?.data && typeof response.data === 'object'
+    ? response.data as Record<string, unknown>
+    : {};
+  const grantedAtMs = parseClaimTimestamp(data.grantedAtMs);
+  const endsAtMs = parseClaimTimestamp(data.endsAtMs);
+  if (
+    grantedAtMs === null
+    || endsAtMs === null
+    || endsAtMs - grantedAtMs !== 72 * 60 * 60 * 1000
+    || typeof data.alreadyGranted !== 'boolean'
+  ) {
+    throw new Error('intro_full_access_claim_invalid');
+  }
+  return { grantedAtMs, endsAtMs, alreadyGranted: data.alreadyGranted };
 }
 
 /**
@@ -93,7 +110,8 @@ export async function persistGiftAccessOnCloud(
  *   - если grantedAtMs уже есть в облаке → подарок выдавался ранее, повторно
  *     не выдаём; восстанавливаем endsAt в локальный AsyncStorage (если подарок
  *     ещё не истёк) — пользователь продолжит пользоваться оставшимся временем.
- *   - если read упал/offline → возвращаем null-state, дальше идёт локальный путь.
+ *   - если read упал/offline → возвращаем null; новая intro-выдача всё равно
+ *     требует успешный ответ callable и не создаётся локально.
  */
 export async function readGiftAccessFromCloud(kind: GiftKind): Promise<GiftAccessCloudState | null> {
   try {

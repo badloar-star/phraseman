@@ -423,7 +423,7 @@ export { adminGetComplianceOverview, adminListSafetyFlags, adminMarkSafetyFlagsH
 export { adminRepairAuthLink, adminRelinkProvider } from './admin_auth_repair';
 
 // ── Промокоды-награды (юзер активирует код → дни премиума; админ создаёт код) ──
-export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, adminListPromoCodes } from './promo_codes';
+export { promoCodeRedeem, promoCodeUpsert, promoCodeBatchUpsert, promoCodeDelete, adminListPromoCodes } from './promo_codes';
 export { openAiBudgetDashboard } from './openai_budget_dashboard';
 export { adminProductAnalytics } from './admin_product_analytics';
 export { adminSubscriptionAnalytics } from './admin_subscription_analytics';
@@ -513,6 +513,7 @@ export { recordOnboardingFunnelEvent, adminGetOnboardingFunnel } from './onboard
 export { recordAgeConsentSnapshot } from './record_age_consent_snapshot';
 
 export { revenueCatShardsWebhook } from './revenuecat_shards';
+export { revenueCatPremiumReconcileMine } from './revenuecat_reconcile';
 
 export { adminPushJobCreated, adminPushJobsCron } from './admin_push_jobs';
 
@@ -526,6 +527,7 @@ export {
   webPrices,
   adminCreateGiftCertificateBatch,
   adminListGiftCertificates,
+  adminDeleteGiftCertificate,
   adminGetGiftCertificateDownload,
   adminUpdateGiftCertificateRecipient,
   adminUpdateGiftCertificatePersonalization,
@@ -615,6 +617,9 @@ export { feedFanoutOnMyEvent, feedPruneCron } from './feed_fanout';
 
 // ── Пачковая выдача публичных профилей друзей (убирает 4-RTT цепочку с клиента) ──
 export { friendsGetProfiles } from './friends_profiles';
+
+// Authenticated, server-authoritative one-time onboarding access grant.
+export { introFullAccessClaim } from './gift_access';
 
 // ── Админ-callables раздела «Рефералы» (гейт custom claim admin) ──
 export {

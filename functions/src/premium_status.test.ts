@@ -172,6 +172,93 @@ describe('premium_status — серверный источник правды п
       };
     }
 
+    it('routes auth link, provider, user, and reverse-alias reads through the supplied transaction', async () => {
+      const users: Record<string, Record<string, unknown>> = {
+        stable_tx: { firebaseAuthUid: 'auth_tx', progress: {} },
+        duplicate_0: { firebaseAuthUid: 'auth_tx', progress: {} },
+        duplicate_1: { firebaseAuthUid: 'auth_tx', progress: {} },
+        duplicate_2: { firebaseAuthUid: 'auth_tx', progress: {} },
+        duplicate_3: { firebaseAuthUid: 'auth_tx', progress: {} },
+        hidden_vip: {
+          identityHidden: true,
+          canonicalStableId: 'stable_tx',
+          firebaseAuthUid: 'auth_tx',
+          progress: { vip_active: 'true', vip_until: String(FUTURE) },
+        },
+      };
+      const ordinaryGet = jest.fn(async () => {
+        throw new Error('ordinary_db_read_forbidden');
+      });
+      const makeDoc = (path: string) => ({ kind: 'doc', path, get: ordinaryGet });
+      const makeQuery = (field: string, value: string, limit: number) => ({
+        kind: 'query', field, value, limit, get: ordinaryGet,
+      });
+      const db = {
+        collection(name: string) {
+          return {
+            doc: (id: string) => makeDoc(`${name}/${id}`),
+            where: (field: string, _op: string, value: string) => ({
+              limit: (limit: number) => makeQuery(field, value, limit),
+            }),
+          };
+        },
+      } as any;
+      const tx = {
+        get: jest.fn(async (target: any) => {
+          if (target.kind === 'doc') {
+            const [, id] = String(target.path).split('/');
+            const data = target.path.startsWith('auth_links/')
+              ? (id === 'auth_tx' ? { stable_id: 'stable_tx' } : undefined)
+              : users[id];
+            return { exists: !!data, id, data: () => data };
+          }
+          const docs = Object.entries(users)
+            .filter(([, data]) => data[target.field] === target.value)
+            .slice(0, target.limit)
+            .map(([id, data]) => ({ id, exists: true, data: () => data }));
+          return { docs };
+        }),
+      } as any;
+
+      await expect(resolvePremiumAccess(db, 'stable_tx', NOW, 'auth_tx', tx)).resolves.toBe(true);
+      expect(ordinaryGet).not.toHaveBeenCalled();
+      expect(tx.get).toHaveBeenCalledWith(expect.objectContaining({ path: 'auth_links/auth_tx' }));
+      expect(tx.get).toHaveBeenCalledWith(expect.objectContaining({ field: 'firebaseAuthUid' }));
+      expect(tx.get).toHaveBeenCalledWith(expect.objectContaining({ path: 'users/stable_tx' }));
+      expect(tx.get).toHaveBeenCalledWith(expect.objectContaining({ field: 'canonicalStableId' }));
+    });
+
+    it.each([
+      ['identity lookup', 1],
+      ['user lookup', 3],
+    ])('propagates a transaction %s read failure', async (_label, failAtCall) => {
+      const db = fakeDb(
+        {
+          stable_failure: {
+            firebaseAuthUid: 'auth_failure',
+            progress: { premium_plan: 'monthly', premium_expiry: '0' },
+          },
+        },
+        { auth_failure: { stable_id: 'stable_failure' } },
+      ) as any;
+      let callCount = 0;
+      const tx = {
+        get: jest.fn(async (target: { get: () => Promise<unknown> }) => {
+          callCount += 1;
+          if (callCount === failAtCall) throw new Error(`tx_read_failed_${failAtCall}`);
+          return target.get();
+        }),
+      } as any;
+
+      await expect(resolvePremiumAccess(
+        db,
+        'stable_failure',
+        NOW,
+        'auth_failure',
+        tx,
+      )).rejects.toThrow(`tx_read_failed_${failAtCall}`);
+    });
+
     it('finds premium on the stable user linked to the current auth uid', async () => {
       const db = fakeDb({
         auth_1: { progress: {} },

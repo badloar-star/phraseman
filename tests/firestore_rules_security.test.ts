@@ -395,7 +395,7 @@ ${indent}}`,
   // premium/VIP key (unless the writer is admin). If this regresses, a normal
   // client can write progress.premium_plan='yearly' via the SDK and bypass the
   // paywall (see app/cloud_sync.ts PREMIUM_PROGRESS_KEYS, app/premium_guard.ts).
-  // The 21 keys below MUST stay in sync with PREMIUM_PROGRESS_KEYS in cloud_sync.ts.
+  // These keys MUST stay in sync with PREMIUM_PROGRESS_KEYS in cloud_sync.ts.
   const PREMIUM_PROGRESS_KEYS = [
     'premium_plan',
     'premium_expiry',
@@ -420,6 +420,10 @@ ${indent}}`,
     'vip_admin_override',
     'vip_admin_grant_at',
     'vip_migrated_from_admin_grant_at',
+    'intro_access_until_ms',
+    'intro_access_granted_at_ms',
+    'loyalty_gift_until_ms',
+    'loyalty_gift_granted_at_ms',
   ] as const;
 
   const SERVER_OWNED_PROGRESS_KEYS = [
@@ -622,6 +626,20 @@ ${indent}}`,
     expect(rules.slice(terminalDenyStart)).toMatch(
       /^match \/\{document=\*\*\} \{\s*allow read, write: if false;\s*\}/,
     );
+  });
+
+  test('cloud sync strips every server-owned gift entitlement key', () => {
+    const cloudSync = readFileSync(path.join(process.cwd(), 'app', 'cloud_sync.ts'), 'utf8');
+    const keySet = cloudSync.match(/const PREMIUM_PROGRESS_KEYS = new Set\(\[([\s\S]*?)\]\);/);
+    expect(keySet).not.toBeNull();
+    for (const key of [
+      'intro_access_until_ms',
+      'intro_access_granted_at_ms',
+      'loyalty_gift_until_ms',
+      'loyalty_gift_granted_at_ms',
+    ]) {
+      expect(keySet![1]).toContain(`'${key}'`);
+    }
   });
 
   test('referral ledger migration state is server-owned on user create and update', () => {

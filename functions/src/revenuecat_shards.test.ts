@@ -85,6 +85,55 @@ describe('RevenueCat webhook premium matching', () => {
     })).toBe(false);
   });
 
+  it('accepts Google Play base-plan product ids and preserves plan inference', () => {
+    const monthly = {
+      product_id: 'phraseman_premium_monthly_399:monthly-base',
+      entitlement_ids: ['premium'],
+    };
+    const yearly = {
+      product_id: 'phraseman_premium_yearly_2399:yearly-base',
+      entitlement_ids: ['premium'],
+    };
+
+    expect(looksLikePremiumSubscription(monthly)).toBe(true);
+    expect(premiumPlanFromEvent(monthly)).toBe('monthly');
+    expect(looksLikePremiumSubscription(yearly)).toBe(true);
+    expect(premiumPlanFromEvent(yearly)).toBe('yearly');
+  });
+
+  it('rejects lookalike product families, unsafe base-plan suffixes, and non-premium entitlements', () => {
+    for (const productId of [
+      'phraseman_premium_weekly_399:monthly-base',
+      'not_phraseman_premium_monthly_399:monthly-base',
+      'phraseman_premium_monthly_fake:monthly-base',
+      'phraseman_premium_monthly_399:',
+      'phraseman_premium_monthly_399:-monthly-base',
+      'phraseman_premium_monthly_399:monthly_base',
+      'phraseman_premium_monthly_399:monthly/base',
+      'phraseman_premium_monthly_399:monthly-base:extra',
+    ]) {
+      expect(looksLikePremiumSubscription({
+        product_id: productId,
+        entitlement_ids: ['premium'],
+      })).toBe(false);
+    }
+    expect(looksLikePremiumSubscription({
+      product_id: 'phraseman_premium_monthly_399:monthly-base',
+      entitlement_ids: ['premium-plus'],
+    })).toBe(false);
+  });
+
+  it('preserves legacy premium product ids and their plan inference', () => {
+    for (const [productId, expectedPlan] of [
+      ['phraseman_premium_monthly', 'monthly'],
+      ['phraseman_premium_yearly_2399', 'yearly'],
+      ['phraseman_premium_lifetime_v1', 'lifetime'],
+    ] as const) {
+      expect(looksLikePremiumSubscription({ product_id: productId })).toBe(true);
+      expect(premiumPlanFromEvent({ product_id: productId })).toBe(expectedPlan);
+    }
+  });
+
   it('detects lifetime product and infers plan=lifetime', () => {
     const lifetime = { product_id: 'phraseman_premium_lifetime_v1', type: 'NON_RENEWING_PURCHASE' };
     expect(looksLikePremiumSubscription(lifetime)).toBe(true);
@@ -253,7 +302,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
 
   it('uses canonical lineage reduction and never invents durable premium identity or time', () => {
     const premiumHandler = source.slice(
-      source.indexOf('async function handlePremiumSubscriptionEvent('),
+      source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
       source.indexOf('async function handleShardPurchaseEvent'),
     );
     expect(premiumHandler).toMatch(/normalizePremiumLineageEvent\(event/);
@@ -265,7 +314,7 @@ describe('RevenueCat premium lineage transaction contract', () => {
 
   it('checks receipt and deletion denial before lineage/projection writes and never creates a missing user', () => {
     const premiumHandler = source.slice(
-      source.indexOf('async function handlePremiumSubscriptionEvent('),
+      source.indexOf('export async function applyVerifiedPremiumSubscriptionEvent('),
       source.indexOf('async function handleShardPurchaseEvent'),
     );
     expect(premiumHandler).toContain('db.collection(ACCOUNT_DELETE_TOMBSTONES)');
@@ -277,6 +326,17 @@ describe('RevenueCat premium lineage transaction contract', () => {
     expect(source).toContain('if (!snap.exists) return null;');
     expect(premiumHandler).toContain('boundPremiumOwnerCandidates(premiumAuthoritativeUserIds(event))');
     expect(premiumHandler).not.toContain('.slice(0, 16)');
+  });
+
+  it('keeps the webhook handler as a thin status/body-compatible wrapper', () => {
+    const handler = source.slice(
+      source.indexOf('async function handlePremiumSubscriptionEvent('),
+      source.indexOf('async function handleShardPurchaseEvent'),
+    );
+    expect(handler).toContain('applyVerifiedPremiumSubscriptionEvent(');
+    expect(handler).toContain('res.status(outcome.statusCode).json(outcome.body)');
+    expect(handler).toContain("res.status(500).send('Internal error')");
+    expect(handler).not.toContain("tx.set(userRef");
   });
 
   it('denies an auth-uid-only pending deletion marker before any user or lineage write', async () => {

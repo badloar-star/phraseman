@@ -231,6 +231,10 @@ service cloud.firestore {
         'vip_admin_override',
         'vip_admin_grant_at',
         'vip_migrated_from_admin_grant_at',
+        'intro_access_until_ms',
+        'intro_access_granted_at_ms',
+        'loyalty_gift_until_ms',
+        'loyalty_gift_granted_at_ms',
         // Маркеры источника VIP-выдачи (пишет только сервер — реферал/промокод).
         // Клиенту незачем их трогать; блокируем, чтобы аналитика не подделывалась.
         'referral_vip_last_source',

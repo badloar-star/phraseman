@@ -2,6 +2,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases from 'react-native-purchases';
 import { FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { isIntroFullAccessActive } from './intro_full_access';
+import { readGiftAccessFromCloud } from './gift_access_cloud';
+import { syncRevenueCatProjectionForAccount } from './revenuecat_projection_sync';
+import { DebugLogger } from './debug-logger';
 import { getVipProgressState, parsePremiumProgressMs } from './premium_progress';
 import { revenueCatCustomerInfoHasPremiumAccess } from './revenuecat_premium_access';
 import {
@@ -335,6 +338,20 @@ export async function getVerifiedRealPremiumStatus(): Promise<boolean> {
         const rcActive = revenueCatCustomerInfoHasPremiumAccess(info as any);
 
         if (rcActive) {
+          try {
+            const projectionSynced = await syncRevenueCatProjectionForAccount(generation.stableId!);
+            if (!accountGenerationIsCurrent(generation)) return false;
+            if (!projectionSynced) {
+              DebugLogger.error(
+                'premium_guard:revenuecat_projection_sync',
+                new Error('revenuecat_projection_not_confirmed'),
+                'warning',
+              );
+            }
+          } catch (error) {
+            if (!accountGenerationIsCurrent(generation)) return false;
+            DebugLogger.error('premium_guard:revenuecat_projection_sync', error, 'warning');
+          }
           const persisted = await writeRealPremiumStorageForGeneration(generation, () => (
             AsyncStorage.multiSet([
               ['premium_active', 'true'],
@@ -509,6 +526,12 @@ export async function getVerifiedPremiumAccessStatus(): Promise<boolean> {
     return accountGenerationIsCurrent(generation) ? finish(true) : false;
   }
   if (!accountGenerationIsCurrent(generation)) return false;
+
+  const loyaltyGift = await readGiftAccessFromCloud('loyalty').catch(() => null);
+  if (!accountGenerationIsCurrent(generation)) return false;
+  if (loyaltyGift?.endsAtMs && loyaltyGift.endsAtMs > Date.now()) {
+    return finish(true);
+  }
 
   const cloudRefreshed = await refreshPremiumAccessFromCloudIfNeeded(generation);
   if (!accountGenerationIsCurrent(generation)) return false;

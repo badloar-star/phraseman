@@ -8,6 +8,7 @@ import { ENFORCE_APP_CHECK } from './callable_options';
 import { resolveStableUidForAuth } from './auth_identity';
 import { hasClaimedPermission } from './admin/permissions';
 import { applyFlashcardRegistryDocumentMutation, planFlashcardRegistryPackMutation } from './content_factory/flashcard_registry_mutations';
+import { resolvePremiumAccess } from './premium_status';
 
 const COMMUNITY_PACKS = 'community_packs';
 const COMMUNITY_SUBMISSIONS = 'community_pack_submissions';
@@ -1397,13 +1398,6 @@ async function redeemFlashcardPackGift(request: {
   });
 }
 
-function hasActivePremiumProgress(user: Record<string, unknown>, now: number): boolean {
-  const progress = (user.progress && typeof user.progress === 'object' ? user.progress : {}) as Record<string, unknown>;
-  if (progress.vip_active === true || String(progress.premium_plan ?? '').trim() === 'lifetime') return true;
-  const expiry = Number(progress.premium_expiry ?? progress.premium_rc_expiry_ms ?? 0);
-  return Number.isFinite(expiry) && expiry > now;
-}
-
 type LevelGiftLane = 'f2p' | 'premium';
 type LevelGiftRarity = 'common' | 'rare' | 'epic';
 type LevelGiftCatalogEntry = { id: string; rarity: LevelGiftRarity; weight: number };
@@ -1519,6 +1513,7 @@ function safeLevelGiftPart(value: unknown, max = 80): string {
 
 export const levelGiftReserve = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const authUid = request.auth.uid;
   const requestedStableId = String(request.data?.stableId ?? '').trim();
   const level = Math.trunc(Number(request.data?.level));
   const lane = String(request.data?.lane ?? '') as LevelGiftLane;
@@ -1527,7 +1522,7 @@ export const levelGiftReserve = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, a
     throw new HttpsError('invalid-argument', 'level_gift_request_invalid');
   }
   const db = admin.firestore();
-  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, { requireKnownIdentity: true });
+  const stableUid = await resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
   const aliases = await stableIdentityAliases(db, stableUid);
   const reservationId = `${safeLevelGiftPart(stableUid)}_${level}_${lane}_${studyTarget}`;
   const userRef = db.collection('users').doc(stableUid);
@@ -1553,7 +1548,7 @@ export const levelGiftReserve = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, a
       ? user.progressServerState : {}) as Record<string, unknown>;
     const serverLevel = Math.max(0, Math.trunc(Number(serverState.level) || 0));
     if (serverLevel < level) throw new HttpsError('failed-precondition', 'level_not_reached');
-    const premium = hasActivePremiumProgress(user, now);
+    const premium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
     if (lane === 'premium' && !premium) throw new HttpsError('permission-denied', 'premium_level_gift_required');
     const levelGiftState = (user.levelGiftServerState && typeof user.levelGiftServerState === 'object'
       ? user.levelGiftServerState : {}) as Record<string, unknown>;
@@ -1619,35 +1614,35 @@ export const levelGiftActivatePackGift = onCall({ enforceAppCheck: ENFORCE_APP_C
 /** Creates the voucher proof while the authoritative broadcast is still active. */
 export const flashcardPackGiftGrantGlobalBroadcast = onCall({ enforceAppCheck: ENFORCE_APP_CHECK }, async (request) => {
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'Auth required');
+  const authUid = request.auth.uid;
   const requestedStableId = String(request.data?.stableId ?? '').trim();
   const broadcastId = String(request.data?.broadcastId ?? '').trim();
   if (!requestedStableId || !/^[A-Za-z0-9_-]{1,180}$/.test(broadcastId)) {
     throw new HttpsError('invalid-argument', 'stableId and broadcastId required');
   }
   const db = admin.firestore();
-  const stableUid = await resolveStableUidForAuth(db, request.auth.uid, requestedStableId, { requireKnownIdentity: true });
+  const stableUid = await resolveStableUidForAuth(db, authUid, requestedStableId, { requireKnownIdentity: true });
   const now = Date.now();
   const voucherId = `global_broadcast_${broadcastId}_${stableUid}`;
   const broadcastRef = db.collection('global_broadcast_modals').doc(broadcastId);
-  const userRef = db.collection('users').doc(stableUid);
   const grantRef = db.collection(FLASHCARD_PACK_GIFT_GRANTS).doc(voucherId);
   return db.runTransaction(async (tx) => {
-    const [broadcastSnap, userSnap, grantSnap] = await Promise.all([
-      tx.get(broadcastRef), tx.get(userRef), tx.get(grantRef),
+    const [broadcastSnap, grantSnap] = await Promise.all([
+      tx.get(broadcastRef), tx.get(grantRef),
     ]);
     const broadcast = broadcastSnap.data() ?? {};
     if (!broadcastSnap.exists || broadcast.active !== true || broadcast.rewardType !== 'pack_trial_48h') {
       throw new HttpsError('failed-precondition', 'broadcast_pack_gift_not_eligible');
     }
-    const audience = String(broadcast.premiumAudience ?? 'all');
-    const isPremium = hasActivePremiumProgress((userSnap.data() ?? {}) as Record<string, unknown>, now);
-    if ((audience === 'premium' && !isPremium) || (audience === 'free' && isPremium)) {
-      throw new HttpsError('permission-denied', 'broadcast_audience_mismatch');
-    }
     if (grantSnap.exists) {
       const existing = grantSnap.data() ?? {};
       if (String(existing.ownerStableUid ?? '') !== stableUid) throw new HttpsError('permission-denied', 'voucher_owner_mismatch');
       return { voucherId, expiresAt: Number(existing.expiresAt ?? 0), replayed: true as const };
+    }
+    const isPremium = await resolvePremiumAccess(db, stableUid, now, authUid, tx);
+    const audience = String(broadcast.premiumAudience ?? 'all');
+    if ((audience === 'premium' && !isPremium) || (audience === 'free' && isPremium)) {
+      throw new HttpsError('permission-denied', 'broadcast_audience_mismatch');
     }
     const expiresAt = now + PACK_GIFT_DURATION_MS;
     tx.set(grantRef, { ownerStableUid: stableUid, source: 'global_broadcast', sourceId: broadcastId, occurrenceId: voucherId, expiresAt, createdAt: now });

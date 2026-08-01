@@ -144,6 +144,10 @@ describe('Quiz and Arena decommission contract', () => {
     expect(nativeIntentSource).not.toContain('return `/arena_join');
   });
 
+  test('does not read the retired Arena bonus during Home startup', () => {
+    expect(read('app/(tabs)/home.tsx')).not.toContain('arenaBonus');
+  });
+
   test('keeps Arena and French names only in the fail-closed V2 hash deny-list', () => {
     const capabilities = read('admin/v2/scripts/admin-capabilities.js');
 

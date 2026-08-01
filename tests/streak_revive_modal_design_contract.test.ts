@@ -26,6 +26,11 @@ function numericStyleValue(styleName: string, property: string): number {
 }
 
 describe('streak revive modal design contract', () => {
+  it('imports the responsive hook it calls at runtime', () => {
+    expect(source).toContain('useWindowDimensions');
+    expect(source).toMatch(/import \{[^}]*useWindowDimensions[^}]*\} from 'react-native';/s);
+  });
+
   it('uses the standalone asymmetric recovery pass', () => {
     expect(source).not.toContain("from './reward_v2/RewardCardV2'");
     expect(source).toContain('testID="streak-revive-pass"');

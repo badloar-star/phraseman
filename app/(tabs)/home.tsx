@@ -33,6 +33,7 @@ import { consumeCelebration, getPendingCelebrationMarker, getPendingCelebrationV
 import { consumeVipCelebration, getPendingVipCelebrationMarker, isVipCelebrationPending } from '../vip_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
 import VipCelebrationModal from '../../components/VipCelebrationModal';
+import { CompassBriefingHost } from '../compass';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel, type ThemeMode } from '../../constants/theme';
 import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
@@ -385,8 +386,7 @@ function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId
 } {
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
-    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0)
-        + Math.max(0, Math.floor(Number(arenaBonus) || 0));
+    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
     const leader = sorted[0];
     return {
         leagueName,

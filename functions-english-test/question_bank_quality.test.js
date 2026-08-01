@@ -397,8 +397,11 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
         routingEligible: !['C1', 'C2'].includes(level) || ['reading', 'pragmatics'].includes(skill),
         upperBandEvidence: ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill),
         externalKnowledgeRequired: false,
+        triviaRisk: 'none',
         answerableFromStimulus: true,
-        logicalInference: level === 'C2' && ['reading', 'pragmatics'].includes(skill) && index < 6 ? { domain: 'reading_pragmatics', premises: ['First statement', 'Second statement'], unstatedConclusion: 'A conclusion follows.', whyNotExplicit: 'Neither sentence states it directly.' } : undefined,
+        answerEvidence: ['reading', 'pragmatics'].includes(skill) ? [`${level} ${skill} unique${level}${skill}${index + 1} bespoke${level}${skill}${index + 1} marker${level}${skill}${index + 1}`] : undefined,
+        assessmentBasis: ['grammar', 'vocabulary'].includes(skill) ? 'target-language-form' : undefined,
+        inferenceEvidence: level === 'C2' && ['reading', 'pragmatics'].includes(skill) && index < 6 ? { premises: [`C2 ${skill} uniqueC2${skill}${index + 1} bespokeC2${skill}${index + 1} markerC2${skill}${index + 1}`.replace(/\d+/g, (n) => n), 'Second adult message gives essential context today'], unstatedConclusion: 'A conclusion follows from both statements.', reasoning: 'Both quoted statements jointly establish the conclusion.', whyNotExplicit: 'Neither quoted sentence states that conclusion directly.' } : undefined,
         review: Object.fromEntries(audit.REVIEW_FIELDS.map((field) => [field, 'pass'])),
       })));
     }),
@@ -424,7 +427,8 @@ test('multilingual quality auditor rejects each deliberate survivor mutation wit
     ['ordinary article duplicate', (items) => { items[1].options[1] = `der ${items[0].options[1]}`; }, /duplicate material/],
     ['five structural fingerprints', (items) => { for (let i = 0; i < 5; i += 1) items[i].stimulus = `Item ${i + 1}: ____.`; }, /repeated structural fingerprint/],
     ['reconstructed sentence duplicate', (items) => { items[0].stimulus = 'Repeat ____ now.'; items[1].stimulus = `Repeat ${items[0].options[0]} now.`; }, /reconstructed sentence duplicate/],
-    ['C2 grammar-only inference', (items) => { const item = items.find((question) => question.level === 'C2'); item.skill = 'grammar'; item.logicalInference = { evidence: 'Choose the grammatical form.', domain: 'grammar' }; }, /logical inference/],
+    ['two reconstructed clozes duplicate', (items) => { items[0].stimulus = 'Repeat ____ now.'; items[1].stimulus = 'Repeat ____ now.'; items[1].options[0] = items[0].options[0]; }, /reconstructed sentence duplicate/],
+    ['C2 ungrounded inference', (items) => { const item = items.find((question) => question.level === 'C2' && question.inferenceEvidence); item.inferenceEvidence.premises[0] = 'unrelated nonce'; }, /ungrounded inference/],
     ['punctuation fake depth', (items) => { items.filter((question) => question.level === 'C1' && ['reading', 'pragmatics'].includes(question.skill)).forEach((item) => { item.stimulus = 'One. Two.'; }); }, /meaningful multi-sentence/],
     ['obscure trivia', (items) => { const item = items.find((question) => question.level === 'C2'); item.stimulus = 'In 1837, which obscure local decree changed the archive?'; }, /external-knowledge/],
     ['bank language mismatch', (items) => { items[0].id = 'fr-a1-grammar-1'; }, /ID prefix/],
@@ -486,6 +490,19 @@ test('language-specific inflections normalize without suppressing meaningful sho
   assert.doesNotMatch(audit.auditQuestionBank({ language: 'es', questions: [leak] }).errors.join('\n'), /instructionEn leaks/);
 });
 
+test('C2 inference evidence must quote the stimulus and external-fact screens remain deterministic', async () => {
+  const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const item = { id: 'de-c2-reading-proof', level: 'C2', skill: 'reading', constructId: 'de-c2-reading-proof', descriptorRefs: ['CEFR-2020-reception-C2-anchor'], stimulus: 'The manager postponed the vote. The committee requested revised evidence before Friday.', options: ['One', 'Two', 'Three', 'Four'], correctIndex: 0, instructionRu: 'Выберите вариант.', instructionEn: 'Choose.', routingEligible: true, upperBandEvidence: true, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['committee requested revised evidence'], inferenceEvidence: { premises: ['manager postponed the vote', 'committee requested revised evidence'], unstatedConclusion: 'The decision will wait for new evidence.', reasoning: 'The two statements jointly establish a delay pending evidence.', whyNotExplicit: 'No sentence explicitly gives that conclusion.' } };
+  let result = audit.auditQuestionBank({ language: 'de', questions: [item] });
+  assert.doesNotMatch(result.errors.join('\n'), /ungrounded inference/);
+  item.inferenceEvidence.premises[1] = 'unrelated nonce';
+  result = audit.auditQuestionBank({ language: 'de', questions: [item] });
+  assert.match(result.errors.join('\n'), /ungrounded inference/);
+  item.stimulus = 'In 1891, who designed the village altarpiece?'; item.inferenceEvidence.premises[1] = 'village altarpiece';
+  result = audit.auditQuestionBank({ language: 'de', questions: [item] });
+  assert.match(result.errors.join('\n'), /external-knowledge/);
+});
+
 test('all four current project blueprints are intentionally RED until Phase B supplies individual authoring objects', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   for (const language of ['de', 'fr', 'it', 'es']) {
@@ -522,8 +539,8 @@ test('language audit CLI validates a complete 240-item reviewed fixture without 
     const items = Object.entries(quotasFor(level)).flatMap(([skill, count]) => Array.from({ length: count }, (_, index) => {
       const id = `de-${level.toLowerCase()}-${skill}-${index + 1}`;
       const upper = ['C1', 'C2'].includes(level) && ['reading', 'pragmatics'].includes(skill);
-      const unique = [nonce(), nonce(), nonce(), nonce(), nonce()].join(' ');
-      return { id, level, skill, constructId: id, descriptorRefs: [`CEFR-2020-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}-${level}-anchor`], selectionRefs: [`de-selection-${level}-${skill}`], targetConstruct: `${skill} ${index + 1}`, stimulus: upper ? `${unique}. ${nonce()} ${nonce()} ${nonce()} ${nonce()} today.` : `${unique}.`, options: [`eins-${id}`, `zwei-${id}`, `drei-${id}`, `vier-${id}`], correctIndex: 0, instructionRu: 'Выберите естественный вариант.', instructionEn: 'Choose the natural option.', routingEligible: upper, upperBandEvidence: upper, externalKnowledgeRequired: false, answerableFromStimulus: true, ...(level === 'C2' && skill === 'reading' && index === 0 ? { logicalInference: { domain: 'reading_pragmatics', premises: ['The manager sent context.', 'The committee considered evidence.'], unstatedConclusion: 'The decision used the context.', whyNotExplicit: 'No sentence states that conclusion.' } } : {}) };
+      const unique = [nonce(), nonce(), nonce(), nonce(), nonce()].join(' '); const second = `${nonce()} ${nonce()} ${nonce()} ${nonce()} today`;
+      return { id, level, skill, constructId: id, descriptorRefs: [`CEFR-2020-${skill === 'pragmatics' ? 'pragmatics' : 'reception'}-${level}-anchor`], selectionRefs: [`de-selection-${level}-${skill}`], targetConstruct: `${skill} ${index + 1}`, stimulus: upper ? `${unique}. ${second}.` : `${unique}.`, options: [`eins-${id}`, `zwei-${id}`, `drei-${id}`, `vier-${id}`], correctIndex: 0, instructionRu: 'Выберите естественный вариант.', instructionEn: 'Choose the natural option.', routingEligible: upper, upperBandEvidence: upper, externalKnowledgeRequired: false, triviaRisk: 'none', answerableFromStimulus: true, answerEvidence: ['reading', 'pragmatics'].includes(skill) ? [unique] : undefined, assessmentBasis: ['grammar', 'vocabulary'].includes(skill) ? 'target-language-form' : undefined, ...(level === 'C2' && skill === 'reading' && index === 0 ? { inferenceEvidence: { premises: [unique, second], unstatedConclusion: 'The decision will wait for evidence.', reasoning: 'The two quoted sentences establish a decision pending evidence.', whyNotExplicit: 'Neither sentence directly states the conclusion.' } } : {}) };
     }));
     const source = { schemaVersion: 1, bankVersion: 'e2e', language: 'de', level, questions: items };
     const sourceFile = path.join(tempRoot, 'content', 'language-tests', 'questions', 'de', `${level}.json`);

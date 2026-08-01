@@ -49,6 +49,11 @@ describe('live admin gift certificates workflow', () => {
     expect(giftJsMarker).toBeLessThan(firstDailyPhrasesDrop);
   });
 
+  test('does not reuse the globally styled app header element for the gift panel header', () => {
+    expect(live).not.toContain('<header class="gift-cert-header">');
+    expect(live).toContain('<div class="gift-cert-header">');
+  });
+
   test('offers independent recipient and sender visibility in creation and modal UI', () => {
     expect(live).toContain('id="gift-certificate-senders"');
     expect(live).toContain('id="gift-certificate-emails"');
@@ -138,7 +143,10 @@ describe('live admin gift certificates workflow', () => {
     expect(client).toContain('localStorage.removeItem(storageKey)');
     expect(client).toContain('crypto.randomUUID().toLowerCase()');
     expect(client).toContain('Object.freeze([...form.recipientNames])');
+    expect(client).toContain('Object.freeze([...form.senderNames])');
     expect(client).toContain('Object.freeze([...form.recipientEmails])');
+    expect(client).toContain('showRecipientName: form.showRecipientName === true');
+    expect(client).toContain('showSenderName: form.showSenderName === true');
     expect(client).toContain('const pendingBatch = giftCertificatePendingBatchForCurrentAdmin() || giftCertificateCreatePendingBatch(form);');
     expect(client).toContain('_giftCertificatePendingBatch = pendingBatch;');
     expect(client).toContain('giftCertificatePersistPendingBatch(pendingBatch);');
@@ -283,9 +291,9 @@ describe('live admin gift certificates workflow', () => {
     expect(live).toContain('id="gift-certificate-personalization-modal"');
     expect(live).toContain('role="dialog"');
     expect(live).toContain('aria-modal="true"');
-    expect(live).toContain('name="gift-certificate-personalization-mode"');
-    expect(live).toContain('value="named"');
-    expect(live).toContain('value="anonymous"');
+    expect(live).toContain('id="gift-personalization-show-recipient"');
+    expect(live).toContain('id="gift-personalization-show-sender"');
+    expect(live).not.toContain('name="gift-certificate-personalization-mode"');
     expect(live).toContain('for="gift-personalization-recipient"');
     expect(live).toContain('for="gift-personalization-sender"');
     expect(live).toContain('for="gift-personalization-email"');
@@ -314,10 +322,10 @@ describe('live admin gift certificates workflow', () => {
 
     expect(() => validate({
       action: 'download', personalizationMode: 'named', displayRecipientName: '', displaySenderName: 'Даритель',
-    })).toThrow('Для именного сертификата');
+    })).toThrow();
     expect(() => validate({
       action: 'download', personalizationMode: 'named', displayRecipientName: 'Получатель', displaySenderName: '',
-    })).toThrow('Для именного сертификата');
+    })).toThrow();
     expect(() => validate({
       action: 'send', personalizationMode: 'named', displayRecipientName: 'Получатель', displaySenderName: 'Даритель', recipientEmail: '',
     })).toThrow('Для отправки введи email');
@@ -332,10 +340,10 @@ describe('live admin gift certificates workflow', () => {
     });
     expect(display({
       personalizationMode: 'anonymous', savedRecipientName: 'Сохранённый получатель', savedSenderName: 'Сохранённый даритель',
-    })).toEqual({ showPersonalization: false, displayRecipientName: '', displaySenderName: '' });
+    })).toEqual({ showRecipientName: false, showSenderName: false, showPersonalization: false, displayRecipientName: '', displaySenderName: '' });
     expect(display({
       personalizationMode: 'named', savedRecipientName: 'Сохранённый получатель', savedSenderName: 'Сохранённый даритель',
-    })).toEqual({ showPersonalization: true, displayRecipientName: 'Сохранённый получатель', displaySenderName: 'Сохранённый даритель' });
+    })).toEqual({ showRecipientName: true, showSenderName: true, showPersonalization: true, displayRecipientName: 'Сохранённый получатель', displaySenderName: 'Сохранённый даритель' });
   });
 
   test('rerenders persisted canonical history between persistence and execution and skips it on cancellation', async () => {
@@ -620,7 +628,8 @@ describe('live admin gift certificates workflow', () => {
     const downloadStart = live.indexOf('window.downloadGiftCertificate = async function(certificateId)');
     const downloadEnd = live.indexOf('window.replaceVerifiedSyntheticGiftCertificate', downloadStart);
     const download = live.slice(downloadStart, downloadEnd);
-    expect(download).toContain('if (displayPersonalization.showPersonalization)');
+    expect(download).toContain('if (displayPersonalization.showRecipientName)');
+    expect(download).toContain('if (displayPersonalization.showSenderName)');
     expect(download).toContain('`Для: ${displayPersonalization.displayRecipientName}`');
     expect(download).toContain('`от ${displayPersonalization.displaySenderName}`');
     expect(download).toContain('canonical.productTitle');

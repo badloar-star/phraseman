@@ -5043,6 +5043,7 @@
     .gift-cert-modal > p { margin: 0 0 16px; color: #a1a1aa; font-size: 13px; line-height: 1.5; }
     .gift-cert-mode-options { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 14px; }
     .gift-cert-mode-option { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 11px; border: 1px solid #3f3f46; border-radius: 8px; color: #e4e4e7; cursor: pointer; }
+    .gift-cert-mode-option input[type="checkbox"] { flex: 0 0 18px; width: 18px; min-height: 18px; accent-color: #a3e635; }
     .gift-cert-mode-option:has(input:checked) { border-color: #a3e635; background: #151b0f; }
     .gift-cert-modal-error { min-height: 20px; margin-top: 10px; color: #fca5a5; font-size: 12px; }
     .gift-cert-send-summary { margin: 0 0 14px; padding: 14px; border: 1px solid #3f3f46; border-radius: 10px; background: #101218; }
@@ -11889,14 +11890,14 @@
 <!-- GIFT CERTIFICATES TAB: server-authoritative codes, persisted history and explicit delivery -->
 <div id="tab-gift-certificates" class="reports-tab">
   <main class="gift-cert-page" aria-labelledby="gift-certificates-title">
-    <header class="gift-cert-header">
+    <div class="gift-cert-header">
       <div>
         <div class="gift-cert-kicker">Деньги · Подарки</div>
         <h2 id="gift-certificates-title">Подарочные сертификаты</h2>
         <p>Создай реальные одноразовые сертификаты. Код, срок и тариф формирует только сервер; все записи остаются в истории.</p>
       </div>
       <button type="button" class="gift-cert-btn gift-cert-btn-secondary" onclick="loadGiftCertificates()" title="Заново загрузить всю историю сертификатов">Обновить историю</button>
-    </header>
+    </div>
 
     <section class="gift-cert-panel" aria-labelledby="gift-certificate-create-title">
       <div class="gift-cert-panel-head">
@@ -11918,10 +11919,28 @@
           <span>Количество</span>
           <input id="gift-certificate-count" min="1" max="200" type="number" inputmode="numeric" value="1" oninput="giftCertificateRefreshPreview()" />
         </label>
+        <div class="gift-cert-field gift-cert-field-wide">
+          <span>Какие строки показать на сертификате</span>
+          <div class="gift-cert-mode-options" aria-label="Видимые строки сертификата">
+            <label class="gift-cert-mode-option" for="gift-certificate-show-recipient-name"><input id="gift-certificate-show-recipient-name" type="checkbox" onchange="giftCertificateRefreshPreview()" /> <span>Показать «Получатель»</span></label>
+            <label class="gift-cert-mode-option" for="gift-certificate-show-sender-name"><input id="gift-certificate-show-sender-name" type="checkbox" onchange="giftCertificateRefreshPreview()" /> <span>Показать «От кого»</span></label>
+          </div>
+          <small>Обе опции выключены по умолчанию. Имена сохраняются отдельно и не стираются, когда строка скрыта.</small>
+        </div>
         <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-recipients">
-          <span>Получатели: Имя | email</span>
-          <textarea id="gift-certificate-recipients" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="Профессор Лингман | badloar@gmail.com">Профессор Лингман | badloar@gmail.com</textarea>
-          <small>Имя обязательно и должно быть уникальным в пачке. Email необязателен до отправки.</small>
+          <span>Получатель — одно имя на строку</span>
+          <textarea id="gift-certificate-recipients" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="Профессор Лингман"></textarea>
+          <small>Количество строк должно совпадать с количеством сертификатов. Поле обязательно только при включённой строке «Получатель».</small>
+        </label>
+        <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-senders">
+          <span>От кого — одно имя на строку</span>
+          <textarea id="gift-certificate-senders" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="Phraseman">Phraseman</textarea>
+          <small>Поле обязательно только при включённой строке «От кого».</small>
+        </label>
+        <label class="gift-cert-field gift-cert-field-wide" for="gift-certificate-emails">
+          <span>Email — один адрес на строку</span>
+          <textarea id="gift-certificate-emails" rows="4" oninput="giftCertificateRefreshPreview()" placeholder="badloar@gmail.com"></textarea>
+          <small>Email не влияет на оформление и может быть добавлен позже перед отправкой.</small>
         </label>
       </div>
       <div id="gift-certificate-preview" class="gift-cert-preview" role="status" aria-live="polite"></div>
@@ -11970,9 +11989,9 @@
   <form class="gift-cert-modal" id="gift-personalization-form" novalidate>
     <h3 id="gift-personalization-title">Оформить сертификат</h3>
     <p id="gift-personalization-desc">Проверь, как сертификат будет выглядеть. Для отправки также нужен email получателя.</p>
-    <div class="gift-cert-mode-options" role="radiogroup" aria-label="Вид сертификата">
-      <label class="gift-cert-mode-option"><input type="radio" name="gift-certificate-personalization-mode" value="named" checked /> <span>Именной</span></label>
-      <label class="gift-cert-mode-option"><input type="radio" name="gift-certificate-personalization-mode" value="anonymous" /> <span>Анонимный</span></label>
+    <div class="gift-cert-mode-options" aria-label="Видимые строки сертификата">
+      <label class="gift-cert-mode-option" for="gift-personalization-show-recipient"><input id="gift-personalization-show-recipient" type="checkbox" /> <span>Показать «Получатель»</span></label>
+      <label class="gift-cert-mode-option" for="gift-personalization-show-sender"><input id="gift-personalization-show-sender" type="checkbox" /> <span>Показать «От кого»</span></label>
     </div>
     <div id="gift-personalization-names" class="gift-cert-form-grid">
       <label class="gift-cert-field" for="gift-personalization-recipient"><span>Кому</span><input id="gift-personalization-recipient" maxlength="60" autocomplete="off" /></label>
@@ -13462,6 +13481,20 @@
     return _adminAppCheckReadyPromise;
   }
 
+  function giftCertificateParseCallableEnvelope(payload, responseOk, responseStatus) {
+    const envelope = payload && typeof payload === 'object' ? payload : {};
+    const error = envelope.error && typeof envelope.error === 'object' ? envelope.error : null;
+    const hasResult = Object.prototype.hasOwnProperty.call(envelope, 'result');
+    const hasLegacyData = Object.prototype.hasOwnProperty.call(envelope, 'data');
+    if (!responseOk || error || (!hasResult && !hasLegacyData)) {
+      const code = String(error?.code || '').trim();
+      const message = String(error?.message || '').trim();
+      const detail = [code, message].filter(Boolean).join(': ');
+      throw new Error(detail || `Сервер отклонил запрос (${responseStatus}).`);
+    }
+    return { data: hasResult ? envelope.result : envelope.data };
+  }
+
   function createAppCheckProtectedGiftCallable(name) {
     return async (data) => {
       const appCheckToken = await requireAdminAppCheckForGiftCertificates();
@@ -13480,10 +13513,7 @@
         body: JSON.stringify({ data }),
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload || !Object.prototype.hasOwnProperty.call(payload, 'data')) {
-        throw new Error(payload?.error?.message || `Сервер отклонил запрос (${response.status}).`);
-      }
-      return { data: payload.data };
+      return giftCertificateParseCallableEnvelope(payload, response.ok, response.status);
     };
   }
 
@@ -34576,21 +34606,24 @@
     if (!Object.prototype.hasOwnProperty.call(GIFT_CERTIFICATE_ASSETS, product)) throw new Error('Выбери тип сертификата.');
     const count = Number(giftCertificateText('gift-certificate-count'));
     if (!Number.isInteger(count) || count < 1 || count > 200) throw new Error('Количество должно быть от 1 до 200.');
-    const lines = String(document.getElementById('gift-certificate-recipients')?.value || '')
-      .split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
-    if (lines.length !== count) throw new Error(`Для ${count} сертификатов нужно ровно ${count} строк получателей.`);
-    const recipientNames = [];
-    const recipientEmails = [];
-    lines.forEach((line) => {
-      const parts = line.split('|');
-      const name = String(parts.shift() || '').trim();
-      const email = parts.join('|').trim().toLowerCase();
-      if (!name) throw new Error('В каждой строке нужно имя получателя.');
-      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) throw new Error(`Проверь email для «${name}».`);
-      recipientNames.push(name);
-      recipientEmails.push(email);
+    const readLines = (id, label, allowAllBlank) => {
+      const raw = String(document.getElementById(id)?.value || '').replace(/\r/g, '');
+      if (allowAllBlank && !raw.trim()) return Array.from({ length: count }, () => '');
+      const lines = raw.split('\n').map((line) => line.trim());
+      if (lines.length !== count) throw new Error(`Для ${count} сертификатов нужно ровно ${count} строк: ${label}.`);
+      return lines;
+    };
+    const showRecipientName = document.getElementById('gift-certificate-show-recipient-name')?.checked === true;
+    const showSenderName = document.getElementById('gift-certificate-show-sender-name')?.checked === true;
+    const recipientNames = readLines('gift-certificate-recipients', 'Получатель', !showRecipientName);
+    const senderNames = readLines('gift-certificate-senders', 'От кого', !showSenderName);
+    const recipientEmails = readLines('gift-certificate-emails', 'Email', true).map((email) => email.toLowerCase());
+    if (showRecipientName && recipientNames.some((name) => !name)) throw new Error('Заполни каждую видимую строку «Получатель».');
+    if (showSenderName && senderNames.some((name) => !name)) throw new Error('Заполни каждую видимую строку «От кого».');
+    recipientEmails.forEach((email) => {
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) throw new Error(`Проверь email «${email}».`);
     });
-    return { product, count, recipientNames, recipientEmails };
+    return { product, count, recipientNames, senderNames, recipientEmails, showRecipientName, showSenderName };
   }
 
   function giftCertificateCreatePendingBatch(form) {
@@ -34610,7 +34643,10 @@
         product: form.product,
         count: form.count,
         recipientNames: Object.freeze([...form.recipientNames]),
+        senderNames: Object.freeze([...form.senderNames]),
         recipientEmails: Object.freeze([...form.recipientEmails]),
+        showRecipientName: form.showRecipientName === true,
+        showSenderName: form.showSenderName === true,
         source: 'admin_gift_certificates',
         authorization: 'CREATE_GIFT_CERTIFICATES',
       }),
@@ -34624,8 +34660,9 @@
       const pendingBatch = giftCertificatePendingBatchForCurrentAdmin();
       const form = pendingBatch?.request || giftCertificateReadForm();
       const withEmail = form.recipientEmails.filter(Boolean).length;
+      const visibleNames = [form.showRecipientName ? 'Получатель' : '', form.showSenderName ? 'От кого' : ''].filter(Boolean).join(' + ') || 'без имён';
       const prefix = pendingBatch ? 'Ожидает безопасного повтора' : 'Будет создано';
-      preview.textContent = `${prefix}: ${form.count} · ${GIFT_CERTIFICATE_PRODUCT_LABELS[form.product]} · одноразовые коды · срок активации 365 дней · email указан у ${withEmail}.`;
+      preview.textContent = `${prefix}: ${form.count} · ${GIFT_CERTIFICATE_PRODUCT_LABELS[form.product]} · ${visibleNames} · одноразовые коды · срок активации 365 дней · email указан у ${withEmail}.`;
       preview.style.borderColor = '#3b4723';
       preview.style.color = '#d9f99d';
     } catch (error) {
@@ -34714,28 +34751,42 @@
   }
 
   function giftCertificateDisplayPersonalization(input) {
-    const personalizationMode = input?.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
     const savedRecipientName = String(input?.savedRecipientName ?? input?.displayRecipientName ?? input?.recipientName ?? '').trim();
     const savedSenderName = String(input?.savedSenderName ?? input?.displaySenderName ?? input?.senderName ?? 'Phraseman').trim() || 'Phraseman';
-    const showPersonalization = personalizationMode === 'named';
+    const hasExplicitVisibility = typeof input?.showRecipientName === 'boolean' || typeof input?.showSenderName === 'boolean';
+    const legacyNamed = input?.personalizationMode !== 'anonymous';
+    const showRecipientName = typeof input?.showRecipientName === 'boolean'
+      ? input.showRecipientName
+      : (!hasExplicitVisibility && legacyNamed && Boolean(savedRecipientName));
+    const showSenderName = typeof input?.showSenderName === 'boolean'
+      ? input.showSenderName
+      : (!hasExplicitVisibility && legacyNamed && Boolean(savedSenderName));
     return {
-      showPersonalization,
-      displayRecipientName: showPersonalization ? savedRecipientName : '',
-      displaySenderName: showPersonalization ? savedSenderName : '',
+      showRecipientName,
+      showSenderName,
+      showPersonalization: showRecipientName || showSenderName,
+      displayRecipientName: showRecipientName ? savedRecipientName : '',
+      displaySenderName: showSenderName ? savedSenderName : '',
     };
   }
 
   function giftCertificateValidatePersonalizationPayload(input) {
     const action = input?.action === 'send' ? 'send' : 'download';
-    const personalizationMode = input?.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
+    const hasExplicitVisibility = typeof input?.showRecipientName === 'boolean' || typeof input?.showSenderName === 'boolean';
+    const legacyNamed = input?.personalizationMode !== 'anonymous';
+    const showRecipientName = typeof input?.showRecipientName === 'boolean'
+      ? input.showRecipientName
+      : (!hasExplicitVisibility && legacyNamed);
+    const showSenderName = typeof input?.showSenderName === 'boolean'
+      ? input.showSenderName
+      : (!hasExplicitVisibility && legacyNamed);
+    const personalizationMode = showRecipientName || showSenderName ? 'named' : 'anonymous';
     let displayRecipientName = String(input?.displayRecipientName || '').trim();
     let displaySenderName = String(input?.displaySenderName || '').trim();
-    if (personalizationMode === 'anonymous') {
-      displayRecipientName ||= String(input?.savedRecipientName || '').trim();
-      displaySenderName ||= String(input?.savedSenderName || '').trim() || 'Phraseman';
-    } else if (!displayRecipientName || !displaySenderName) {
-      throw new Error('Для именного сертификата заполни оба поля: «Кому» и «От кого».');
-    }
+    if (showRecipientName && !displayRecipientName) throw new Error('Заполни видимую строку «Получатель».');
+    if (showSenderName && !displaySenderName) throw new Error('Заполни видимую строку «От кого».');
+    displayRecipientName ||= String(input?.savedRecipientName || '').trim();
+    displaySenderName ||= String(input?.savedSenderName || '').trim() || 'Phraseman';
     if (Array.from(displayRecipientName).length > 60 || Array.from(displaySenderName).length > 60) {
       throw new Error('Каждое имя должно быть не длиннее 60 символов.');
     }
@@ -34744,7 +34795,7 @@
     if (recipientEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(recipientEmail)) {
       throw new Error('Проверь email получателя.');
     }
-    return { personalizationMode, displayRecipientName, displaySenderName, recipientEmail };
+    return { personalizationMode, showRecipientName, showSenderName, displayRecipientName, displaySenderName, recipientEmail };
   }
 
   function giftCertificateHandleModalKey(event, focusable, activeElement, cancel) {
@@ -34784,9 +34835,14 @@
     const activationDetail = record.activationStatus === 'redeemed'
       ? (Number(record.lastRedeemedAtMs || 0) > 0 ? `Дата активации: ${giftCertificateDate(record.lastRedeemedAtMs)}` : 'Дата активации не записана')
       : '';
-    const personalizationHtml = displayPersonalization.showPersonalization
-      ? `<div class="gift-cert-visual-recipient">Для: ${escapeHtml(displayPersonalization.displayRecipientName)}</div><div class="gift-cert-visual-sender">от ${escapeHtml(displayPersonalization.displaySenderName)}</div>`
-      : '';
+    const personalizationHtml = [
+      displayPersonalization.showRecipientName
+        ? `<div class="gift-cert-visual-recipient">Для: ${escapeHtml(displayPersonalization.displayRecipientName)}</div>`
+        : '',
+      displayPersonalization.showSenderName
+        ? `<div class="gift-cert-visual-sender">от ${escapeHtml(displayPersonalization.displaySenderName)}</div>`
+        : '',
+    ].join('');
     return `<article class="gift-cert-row" id="gift-cert-row-${escapeHtml(certificateId)}">
       <div class="gift-cert-visual ${record.product === 'lifetime' ? 'is-lifetime' : ''}" style="background-image:url('${escapeHtml(assetUrl)}')" role="img" aria-label="Визуальный макет сертификата ${escapeHtml(record.activationCode || certificateId)}">
         <div class="gift-cert-visual-head"><div class="gift-cert-visual-kicker">ПОДАРОЧНЫЙ СЕРТИФИКАТ</div><div class="gift-cert-visual-brand">Phraseman</div></div>
@@ -34915,6 +34971,7 @@
     if (!modal || !form) return;
     const locked = form.dataset.locked === 'true';
     modal.querySelectorAll('input').forEach((input) => { input.disabled = _giftCertificatePersonalizationBusy || locked; });
+    if (!_giftCertificatePersonalizationBusy) giftCertificateSyncNameVisibility();
     const primary = document.getElementById('gift-personalization-primary');
     const cancel = document.getElementById('gift-personalization-cancel');
     if (primary) primary.disabled = _giftCertificatePersonalizationBusy;
@@ -34927,11 +34984,12 @@
     const modal = document.getElementById('gift-certificate-personalization-modal');
     if (!form || !modal || !modal.classList.contains('is-open')) throw new Error('Окно подтверждения отправки закрыто.');
     form.dataset.phase = 'summary';
-    const named = record.personalizationMode !== 'anonymous';
-    const recipient = named ? String(record.savedRecipientName || record.recipientName || '') : 'Анонимный сертификат';
+    const display = giftCertificateDisplayPersonalization(record);
+    const recipient = display.showRecipientName ? display.displayRecipientName : 'Не показывается';
+    const visibleLines = [display.showRecipientName ? 'Получатель' : '', display.showSenderName ? 'От кого' : ''].filter(Boolean).join(' + ') || 'Без имён';
     document.getElementById('gift-personalization-summary-recipient').textContent = recipient;
     document.getElementById('gift-personalization-summary-email').textContent = String(record.recipientEmail || '');
-    document.getElementById('gift-personalization-summary-mode').textContent = named ? 'Именной' : 'Анонимный';
+    document.getElementById('gift-personalization-summary-mode').textContent = visibleLines;
     modal.querySelector('.gift-cert-mode-options').hidden = true;
     document.getElementById('gift-personalization-names').hidden = true;
     document.getElementById('gift-personalization-email-field').hidden = true;
@@ -34959,11 +35017,16 @@
     document.getElementById('gift-personalization-primary').textContent = isSummary ? 'Повторить отправку' : 'Повторить сохранение';
   }
 
-  function giftCertificateSyncPersonalizationMode() {
+  function giftCertificateSyncNameVisibility() {
     const modal = document.getElementById('gift-certificate-personalization-modal');
-    const mode = modal?.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || 'named';
-    const names = document.getElementById('gift-personalization-names');
-    if (names) names.hidden = mode === 'anonymous';
+    if (!modal) return;
+    const locked = document.getElementById('gift-personalization-form')?.dataset.locked === 'true';
+    const recipientToggle = document.getElementById('gift-personalization-show-recipient');
+    const senderToggle = document.getElementById('gift-personalization-show-sender');
+    const recipient = document.getElementById('gift-personalization-recipient');
+    const sender = document.getElementById('gift-personalization-sender');
+    if (recipient) recipient.disabled = locked || recipientToggle?.checked !== true;
+    if (sender) sender.disabled = locked || senderToggle?.checked !== true;
   }
 
   function giftCertificateOpenPersonalizationModal(certificateId, action) {
@@ -34973,7 +35036,7 @@
     if (!record || !modal || !form) return Promise.reject(new Error('Сохранённый сертификат не найден в истории.'));
     if (_giftCertificatePersonalizationResolve || modal.classList.contains('is-open')) return Promise.reject(new Error('Сначала завершите открытое оформление сертификата.'));
     const locked = giftCertificatePersonalizationIsLocked(record);
-    const mode = record.personalizationMode === 'anonymous' ? 'anonymous' : 'named';
+    const display = giftCertificateDisplayPersonalization(record);
     form.dataset.certificateId = certificateId;
     form.dataset.action = action;
     form.dataset.phase = 'edit';
@@ -34981,23 +35044,25 @@
     modal.querySelector('.gift-cert-mode-options').hidden = false;
     document.getElementById('gift-personalization-email-field').hidden = false;
     document.getElementById('gift-personalization-summary').hidden = true;
-    modal.querySelectorAll('input[name="gift-certificate-personalization-mode"]').forEach((input) => {
-      input.checked = input.value === mode;
-      input.disabled = locked;
-    });
+    const recipientToggle = document.getElementById('gift-personalization-show-recipient');
+    const senderToggle = document.getElementById('gift-personalization-show-sender');
+    recipientToggle.checked = display.showRecipientName;
+    senderToggle.checked = display.showSenderName;
+    recipientToggle.disabled = locked;
+    senderToggle.disabled = locked;
     const recipient = document.getElementById('gift-personalization-recipient');
     const sender = document.getElementById('gift-personalization-sender');
     const email = document.getElementById('gift-personalization-email');
     recipient.value = String(record.savedRecipientName || record.recipientName || '');
     sender.value = String(record.savedSenderName || record.senderName || 'Phraseman');
     email.value = String(record.recipientEmail || '');
-    [recipient, sender, email].forEach((input) => { input.disabled = locked; });
+    email.disabled = locked;
     email.required = action === 'send';
     document.getElementById('gift-personalization-title').textContent = action === 'send' ? 'Оформить и отправить сертификат' : 'Оформить и скачать сертификат';
     document.getElementById('gift-personalization-desc').textContent = 'Проверьте, как сертификат будет выглядеть. Для отправки также нужен email получателя.';
     document.getElementById('gift-personalization-primary').textContent = action === 'send' ? 'Отправить на email' : 'Скачать PNG';
     document.getElementById('gift-personalization-error').textContent = locked ? 'Оформление уже зафиксировано отправкой. Скачивание использует сохранённые значения.' : '';
-    giftCertificateSyncPersonalizationMode();
+    giftCertificateSyncNameVisibility();
     _giftCertificatePersonalizationPreviousFocus = document.activeElement;
     _giftCertificatePersonalizationFocusDescriptor = {
       certificateId: /^GIFT-[A-HJ-NP-Z2-9]{10}$/.test(String(certificateId)) ? String(certificateId) : '',
@@ -35017,7 +35082,8 @@
     const form = document.getElementById('gift-personalization-form');
     if (!modal || !form || modal.dataset.initialized === 'true') return;
     modal.dataset.initialized = 'true';
-    modal.querySelectorAll('input[name="gift-certificate-personalization-mode"]').forEach((input) => input.addEventListener('change', giftCertificateSyncPersonalizationMode));
+    document.getElementById('gift-personalization-show-recipient')?.addEventListener('change', giftCertificateSyncNameVisibility);
+    document.getElementById('gift-personalization-show-sender')?.addEventListener('change', giftCertificateSyncNameVisibility);
     document.getElementById('gift-personalization-cancel')?.addEventListener('click', () => {
       if (!_giftCertificatePersonalizationBusy) giftCertificateClosePersonalizationModal(null);
     });
@@ -35038,7 +35104,8 @@
       }
       const record = _giftCertificateRecords.get(String(form.dataset.certificateId || ''));
       if (!record) return;
-      const personalizationMode = modal.querySelector('input[name="gift-certificate-personalization-mode"]:checked')?.value || record.personalizationMode || 'named';
+      const showRecipientName = document.getElementById('gift-personalization-show-recipient')?.checked === true;
+      const showSenderName = document.getElementById('gift-personalization-show-sender')?.checked === true;
       const displayRecipientName = String(document.getElementById('gift-personalization-recipient')?.value || '').trim();
       const displaySenderName = String(document.getElementById('gift-personalization-sender')?.value || '').trim();
       const recipientEmail = String(document.getElementById('gift-personalization-email')?.value || '').trim().toLowerCase();
@@ -35047,7 +35114,8 @@
       try {
         personalization = giftCertificateValidatePersonalizationPayload({
           action: form.dataset.action,
-          personalizationMode,
+          showRecipientName,
+          showSenderName,
           displayRecipientName,
           displaySenderName,
           recipientEmail,
@@ -35082,6 +35150,8 @@
     const response = await _fnAdminUpdateGiftCertificatePersonalization({
       certificateId,
       personalizationMode: personalization.personalizationMode,
+      showRecipientName: personalization.showRecipientName,
+      showSenderName: personalization.showSenderName,
       displayRecipientName: personalization.displayRecipientName,
       displaySenderName: personalization.displaySenderName,
       recipientEmail: personalization.recipientEmail,
@@ -35262,6 +35332,8 @@
       const canonical = download.data?.certificate;
       if (!canonical || canonical.certificateId !== certificateId
         || canonical.personalizationMode !== record.personalizationMode
+        || canonical.showRecipientName !== record.showRecipientName
+        || canonical.showSenderName !== record.showSenderName
         || canonical.savedRecipientName !== record.savedRecipientName
         || canonical.savedSenderName !== record.savedSenderName
         || canonical.recipientEmail !== record.recipientEmail
@@ -35320,13 +35392,15 @@
       );
 
       let cursorY = panelTop + panelPaddingTop;
-      if (displayPersonalization.showPersonalization) {
+      if (displayPersonalization.showRecipientName) {
         cursorY += giftCertificateDrawTextBlock(context, `Для: ${displayPersonalization.displayRecipientName}`, {
           x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
           startSize: 58 * scale, minSize: 20 * scale, lineHeight: 1.1,
           weight: 900, color: palette.primary,
         });
         cursorY += 14 * scale;
+      }
+      if (displayPersonalization.showSenderName) {
         cursorY += giftCertificateDrawTextBlock(context, `от ${displayPersonalization.displaySenderName}`, {
           x: contentX, y: cursorY, maxWidth: contentWidth, maxLines: 2,
           startSize: 31 * scale, minSize: 18 * scale, lineHeight: 1.15,

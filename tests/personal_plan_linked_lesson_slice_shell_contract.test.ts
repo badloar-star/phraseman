@@ -133,7 +133,8 @@ describe('personal plan linked lesson slice shell contract', () => {
     );
     const modalStart = lessonSource.indexOf('visible={planLessonDoneVisible}');
     expect(modalStart).toBeGreaterThan(0);
-    const modalSource = lessonSource.slice(modalStart, modalStart + 2600);
+    const modalEnd = lessonSource.indexOf('</Modal>', modalStart);
+    const modalSource = lessonSource.slice(modalStart, modalEnd === -1 ? modalStart + 9000 : modalEnd);
 
     expect(modalSource).not.toMatch(/[\u00d0\u00d1\u00c2]/);
     expect(modalSource).toContain("justifyContent: 'center'");
@@ -143,6 +144,6 @@ describe('personal plan linked lesson slice shell contract', () => {
     expect(modalSource).toContain("router.push('/personal_plan' as any)");
     expect(modalSource).toContain('Часть урока готова');
     expect(modalSource).toContain('Фразы дня готовы');
-    expect(modalSource).toContain('accessibilityLabel="Вернуться к плану"');
+    expect(modalSource).toContain("accessibilityLabel={triLang(lang, { ru: 'Вернуться к плану'");
   });
 });

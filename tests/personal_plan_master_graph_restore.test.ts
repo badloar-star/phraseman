@@ -4,8 +4,8 @@ import path from 'path';
 describe('Personal Plans master fill and day-quality graph', () => {
   const graphPath = path.join(
     process.cwd(),
-    '.codex-tmp',
-    'personal-plans-progress',
+    'docs',
+    'reports',
     'personal-plans-master-graph.html',
   );
 

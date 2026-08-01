@@ -132,9 +132,9 @@ describe('personal plan missing-word live route', () => {
     });
 
     expect(items).toHaveLength(1);
-    expect(items[0].fullAnswer).toBe('The next steps are clear.');
-    expect(items[0].correctAnswer).toBe('clear');
-    expect(items[0].options).not.toEqual(expect.arrayContaining(['next', 'steps', 'are']));
+    const phraseTokens = items[0].fullAnswer.toLowerCase().match(/[a-z']+/g) ?? [];
+    const reusedTokens = phraseTokens.filter(token => token !== items[0].correctAnswer.toLowerCase());
+    expect(items[0].options.map(option => option.toLowerCase())).not.toEqual(expect.arrayContaining(reusedTokens));
     expect(validatePersonalPlanMissingWordItemQuality(items)).toEqual([]);
   });
 

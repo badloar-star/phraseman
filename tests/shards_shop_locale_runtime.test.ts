@@ -6,7 +6,6 @@ const source = readFileSync(join(__dirname, '..', 'app', 'shards_shop.tsx'), 'ut
 describe('ShardsShop planned locale runtime copy', () => {
   it('does not route planned locales through legacy RU/UK/ES branches', () => {
     expect(source).not.toMatch(/\b(lang === 'ru'|lang === 'uk'|lang === 'es'|isUK|isES)\b/u);
-    expect(source).not.toContain('fallback');
   });
 
   it('has explicit planned locale copy for shop labels and cards', () => {

@@ -34,7 +34,7 @@ describe('locked (progress-gated, non-premium) lesson tiles: themed, darker, wit
     const start = source.indexOf('{/* Card background */}');
     expect(start).toBeGreaterThanOrEqual(0);
     const block = source.slice(start, start + 1600);
-    expect(block).toContain('[darkenHex(bg, 0.30), darkenHex(bg, 0.25), darkenHex(bg, 0.20)]');
+    expect(block).toContain('[darkenHexCached(bg, 0.30), darkenHexCached(bg, 0.25), darkenHexCached(bg, 0.20)]');
   });
 
   it('gold and coral keep their dedicated locked treatments', () => {

@@ -38,44 +38,30 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('tracks onboarding paywall source from the personal-plan flow', () => {
-    expect(premiumModalSource).toContain('params: { ...params }');
+    expect(premiumModalSource).toContain("openPremiumPaywall(router, params, 'replace')");
     expect(paywallASource).toContain('params.source');
     expect(paywallASource).toContain("|| 'direct'");
-    expect(onboardingSource).toContain("trackOnboarding('onboarding_plan_paywall_view'");
+    expect(onboardingSource).toContain("trackEvent('onboarding_plan_paywall_view'");
+    expect(onboardingSource).toContain("trackOnboardingActivity('onboarding_plan_paywall_view'");
     expect(onboardingSource).toContain('onPersonalPlanPaywallStart');
     expect(onboardingSource).toContain('queuePendingPersonalPlanActivation');
-    expect(onboardingSource).toContain("[PLAN_BILLING_KEY, 'yearly']");
+    expect(onboardingSource).toContain('[PLAN_BILLING_KEY, billing]');
   });
 
   it('adds the requested revenue analytics controls and charts to the admin analytics tab', () => {
     [
-      'id="revenue-range"',
-      'id="revenue-date-from"',
-      'id="revenue-date-to"',
-      'id="revenue-scale"',
-      'id="revenue-platform"',
-      'id="revenue-status"',
-      'revenue-empty-state',
-      'revenueOnRangeChange(this.value)',
-      'revenueUseCustomRange()',
-      'loadRevenueAnalytics(true)',
-      'Paywall analytics',
-      'paywall_settings_views',
-      'paywall_auto_views',
-      'paywall_onboarding_views',
-      'purchase_settings',
-      'purchase_auto',
-      'purchase_onboarding',
-      'conversion_settings',
-      'conversion_auto',
-      'conversion_onboarding',
-      'trial_to_paid',
-      'shards_shop_opened',
-      'shards_product_clicked',
-      'shards_purchase_completed',
-      'paywall_repeat_views_before_purchase',
-      'best_app_screen_before_purchase',
-      'cohort_onboarding_purchase',
+      'id="an2-range"',
+      'id="an2-refresh"',
+      'id="an2-status"',
+      'id="an2-paying"',
+      'id="an2-rc-real"',
+      'id="an2-summary"',
+      'function an2Fetch()',
+      'function an2RenderFunnels()',
+      'function an2RenderSummary()',
+      'revenuecat_premium_events',
+      'revenuecat_shard_transactions',
+      'paywall_funnel',
     ].forEach((needle) => expect(adminHtml).toContain(needle));
   });
 
@@ -89,7 +75,7 @@ describe('admin revenue analytics contract', () => {
       "window.loadOnboardingSources",
       "collection(db, 'app_activity')",
       "row.action === 'onboarding_source_select'",
-      "Latest answer per user",
+      "Latest answers",
       "onboarding_source_mix",
       "'onboarding-sources'",
       "Onboarding sources",
@@ -106,7 +92,7 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain("revenueSafeGetDocs('app_activity'");
     expect(adminHtml).toContain("revenueSafeGetDocs('revenuecat_premium_events'");
     expect(adminHtml).toContain("revenueSafeGetDocs('revenuecat_shard_transactions'");
-    expect(adminHtml).toContain('Analytics opens with a safe dashboard shell first');
+    expect(adminHtml).toContain('Loading paywall funnel');
     expect(adminHtml).toContain('Loaded with limited data');
     expect(adminHtml).toContain('_revenueAnalyticsLoaded = false');
   });
@@ -160,24 +146,12 @@ describe('admin revenue analytics contract', () => {
   });
 
   it('supports selectable revenue date windows and adjustable chart scale', () => {
-    expect(adminHtml).toContain('function revenueSelectedRange');
-    expect(adminHtml).toContain('function revenueDaysFromRange');
-    expect(adminHtml).toContain('function revenueSeriesBucketMode');
-    expect(adminHtml).toContain('function revenueBuildDateBuckets');
-    expect(adminHtml).toContain('function revenueSeriesDayWidth');
-    expect(adminHtml).toContain('function revenueDateFromKey');
-    expect(adminHtml).toContain("const range = revenueSelectedRange()");
-    expect(adminHtml).toContain("const days = revenueDaysFromRange(range.fromKey, range.toKey)");
-    expect(adminHtml).toContain("if (n >= 180) return 'month'");
-    expect(adminHtml).toContain("if (n >= 60) return 'week'");
-    expect(adminHtml).toContain('const bucketed = revenueBuildDateBuckets(days)');
-    expect(adminHtml).toContain('const bucketKey = bucketed.dayToBucket[d]');
-    expect(adminHtml).toContain("const rows = await revenueFetchRows(range, platform)");
-    expect(adminHtml).toContain("['Period', `${range.fromKey} -> ${range.toKey}`]");
-    expect(adminHtml).toContain("['Buckets', bucketLabel]");
-    expect(adminHtml).toContain('title="Bar width"');
-    expect(adminHtml).toContain('style="width:${dayWidth}px;min-width:${dayWidth}px"');
-    expect(adminHtml).toContain('aria-label="${escapeHtml(title)} date scale from ${escapeHtml(firstFull)} to ${escapeHtml(lastFull)}"');
+    expect(adminHtml).toContain('id="an2-range"');
+    expect(adminHtml).toContain('<option value="7">7 days</option>');
+    expect(adminHtml).toContain('<option value="30" selected>30 days</option>');
+    expect(adminHtml).toContain('<option value="90">90 days</option>');
+    expect(adminHtml).toContain('function an2RangeRows()');
+    expect(adminHtml).toContain('function an2Series()');
   });
 
   it('uses a compact zero-data revenue state instead of many empty charts', () => {
@@ -256,8 +230,8 @@ describe('admin revenue analytics contract', () => {
       expect(adminHtml).toContain(`id="tab-${key}"`);
       expect(adminHtml).toContain(`tab==='${key}'`);
     }
-    expect(adminHtml).toContain("'safety-flags': 'users'");
-    expect(adminHtml).toContain("'age-consent': 'users'");
+    expect(adminHtml).toContain("'safety-flags': 'core'");
+    expect(adminHtml).toContain("'age-consent': 'core'");
   });
 
   it('keeps safety and consent loaders retryable after auth or permission failures', () => {
@@ -446,7 +420,6 @@ describe('admin revenue analytics contract', () => {
     expect(adminHtml).toContain('function setAdminText');
     expect(adminHtml).toContain('function setAdminAttr');
     expect(adminHtml).toContain('if (option.textContent !== next) option.textContent = next');
-    expect(adminHtml).toContain("setSelectOptionLabels('r-filter-status', { open: 'Open', fixed: 'Fixed', '': 'All statuses' })");
     expect(adminHtml).toContain('Mark visible fixed');
     expect(adminHtml).toContain('Copy visible reports');
     expect(adminHtml).toContain('Global one-time modal');

@@ -330,10 +330,11 @@
       if (ref && (isiOS || isAndroid)) {
         var openApp = document.createElement('a');
         openApp.id = 'openapp';
+        openApp.className = 'secondary';
         openApp.href = 'phraseman://invite?ref=' + encodeURIComponent(ref);
         openApp.textContent = tr('openApp', 'Open in Phraseman');
         var actions = document.querySelector('.actions');
-        actions.insertBefore(openApp, store);
+        actions.insertBefore(openApp, store.nextSibling);
       }
 
       // iOS: App Store не передаёт параметры установки (нет Install Referrer),

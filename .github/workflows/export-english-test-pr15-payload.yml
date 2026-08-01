@@ -1,0 +1,42 @@
+name: Export English test PR15 payload
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-20260721' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - name: Reconstruct and validate payload
+        shell: bash
+        run: |
+          set -euxo pipefail
+          ls -l .english-test-bootstrap/payload.part*
+          cat .english-test-bootstrap/payload.part* | base64 --decode > "$RUNNER_TEMP/english-test-release.tar.gz"
+          sha256sum "$RUNNER_TEMP/english-test-release.tar.gz"
+          echo 'eea07f5efba6bfbc4ffdd919ddc4e448129e9907ac21aaf2b01f3b4964be38a5  '"$RUNNER_TEMP/english-test-release.tar.gz" | sha256sum --check --strict
+          gzip --test "$RUNNER_TEMP/english-test-release.tar.gz"
+          tar -tzf "$RUNNER_TEMP/english-test-release.tar.gz" > "$RUNNER_TEMP/english-test-release-files.txt"
+          sed -n '1,120p' "$RUNNER_TEMP/english-test-release-files.txt"
+      - name: Upload validated payload
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-pr15-payload
+          path: |
+            ${{ runner.temp }}/english-test-release.tar.gz
+            ${{ runner.temp }}/english-test-release-files.txt
+          retention-days: 1

@@ -4,6 +4,7 @@ import path from 'path';
 describe('admin VIP survey preview', () => {
   const root = process.cwd();
   const screen = fs.readFileSync(path.join(root, 'app', '_admin_settings_testers.tsx'), 'utf8');
+  const surveySection = fs.readFileSync(path.join(root, 'components', 'admin_panel', 'sections', 'VipSurveyExtraSection.tsx'), 'utf8');
   const inbox = fs.readFileSync(path.join(root, 'components', 'AppMessagesInbox.tsx'), 'utf8');
   const modal = fs.readFileSync(path.join(root, 'components', 'VipSurveyModal.tsx'), 'utf8');
   const storeReview = fs.readFileSync(path.join(root, 'app', 'store_review.ts'), 'utf8');
@@ -16,7 +17,9 @@ describe('admin VIP survey preview', () => {
     /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
   it('seeds a local-only inbox notification and returns the admin to Home', () => {
-    expect(screen).toContain('admin-preview-vip-survey-notification');
+    expect(surveySection).toContain('admin-preview-vip-survey-notification');
+    expect(surveySection).toContain('onSeedInboxPreview');
+    expect(screen).toContain('onSeedInboxPreview={() => { void showVipSurveyNotificationPreview(); }}');
     expect(screen).toContain('seedLocalVipSurveyTestMessage');
     expect(screen).toContain('vipSurveyPreviewBusyRef');
     expect(screen).toContain('navigateHomeAfterVipSurveySeed');

@@ -1,0 +1,41 @@
+name: Export English test PR15 raw chunks
+
+on:
+  pull_request:
+    branches:
+      - master
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: >-
+      github.event.pull_request.head.ref == 'agent/english-level-test-20260721' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - name: Inventory raw transport chunks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/english-test-pr15-raw
+          cp .english-test-bootstrap/payload.part* /tmp/english-test-pr15-raw/
+          wc -c /tmp/english-test-pr15-raw/payload.part* | tee /tmp/english-test-pr15-raw/sizes.txt
+          sha256sum /tmp/english-test-pr15-raw/payload.part* | tee /tmp/english-test-pr15-raw/hashes.txt
+      - name: Upload raw transport chunks
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-pr15-raw-chunks
+          path: /tmp/english-test-pr15-raw
+          if-no-files-found: error
+          retention-days: 2

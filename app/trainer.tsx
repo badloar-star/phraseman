@@ -18,6 +18,7 @@ import { LinearGradient } from '../components/SafeLinearGradient';
 import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
+import { useRuntimeActive } from '../hooks/use_runtime_active';
 import { clearTrainerStore, devSeedTrainer, type TrainerDashboard, type TrainerQueue, } from './trainer_store';
 import { ENABLE_DEV_TOOLS } from './config';
 import { useBouncy, useBouncyStyle } from '../components/BouncyScrollView';
@@ -242,6 +243,7 @@ function jsonEqualQuiet<T>(a: T, b: T): boolean {
     }
 }
 function TrainerScreenInner() {
+    const trainerRuntimeActive = useRuntimeActive();
     const router = useRouter();
     const { theme: t, f, themeMode } = useTheme();
     const isGoldTheme = themeMode === 'gold';

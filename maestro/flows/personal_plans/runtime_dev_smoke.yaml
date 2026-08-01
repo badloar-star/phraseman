@@ -1,0 +1,18 @@
+appId: app.phraseman
+---
+- launchApp:
+    clearState: false
+- openLink: phraseman://personal_plan_runtime_dev
+- assertVisible: "DEV · новый runtime"
+- assertVisible: "Гавань · день 1"
+- assertVisible: "Задания дня"
+- assertVisible: "Выбрать фразу"
+- tapOn:
+    id: "plan-runtime-choice-1"
+- tapOn:
+    id: "plan-runtime-submit"
+- assertVisible: "Верно. Идём дальше."
+- assertVisible: "Вставить слово"
+- tapOn:
+    id: "plan-runtime-reset"
+- assertVisible: "Выбрать фразу"

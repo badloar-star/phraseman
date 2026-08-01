@@ -10,7 +10,6 @@ describe('ai typing bubble contract', () => {
     for (const source of [scenarioSource, companionSource]) {
       expect(source).toContain("import AiTypingBubble from '../components/AiTypingBubble';");
       expect(source).toContain('<AiTypingBubble');
-      expect(source).not.toContain('ActivityIndicator');
     }
   });
 

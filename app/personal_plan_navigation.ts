@@ -69,6 +69,26 @@ export function openPersonalPlanTask(
 ): void {
   const { destination } = task;
   if (destination.type === 'lesson') {
+    if (!destination.lessonId) return;
+    if (nav === 'replace') {
+      markNextNavigationAsReplace();
+    }
+    const go = nav === 'replace' ? router.replace : router.push;
+    go({
+      pathname: '/lesson_menu',
+      params: {
+        id: String(destination.lessonId),
+        planTask: '1',
+        lessonShellMode: 'linked_lesson_slice',
+        planPracticeMode: 'linked_lesson',
+        requiredPhrases: String(destination.requiredPhrases),
+        requiredPhraseIds: (destination.requiredPhraseIds ?? []).join(','),
+        planTaskId: task.id,
+        ...(planInstanceId ? { planInstanceId } : {}),
+        planId: plan.id,
+        planDayIndex: String(day.dayIndex),
+      },
+    } as any);
     return;
   }
   // replace = свап текущего экрана (напр. «Теория дня» → задание): помечаем для
@@ -81,16 +101,21 @@ export function openPersonalPlanTask(
   const go = nav === 'replace' ? router.replace : router.push;
   if (destination.type === 'plan_phrase_lesson') {
     go({
-      pathname: '/personal_plan_exercise',
+      pathname: '/lesson1',
       params: {
-        rendererType: 'plan_phrase_build',
+        id: String(destination.afterLessonId),
+        planTask: '1',
+        lessonShellMode: 'plan_phrase_build',
+        planPracticeMode: 'build',
+        allowCorrectWordHighlighting: '0',
         planId: plan.id,
         planDayIndex: String(day.dayIndex),
         planTaskId: task.id,
         ...(planInstanceId ? { planInstanceId } : {}),
-        lessonId: destination.lessonId,
-        contentUnitIds: phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases).join(','),
-        requiredCorrect: String(destination.requiredPhrases),
+        planPhraseLessonId: destination.lessonId,
+        planPhraseMode: 'build',
+        requiredPhrases: String(destination.requiredPhrases),
+        requiredPhraseIds: phraseLessonContentUnitIds(destination.lessonId, destination.requiredPhrases).join(','),
       },
     } as any);
     return;

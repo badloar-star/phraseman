@@ -7,7 +7,7 @@ describe('premium intro-ended context', () => {
 
   it('keeps a dedicated intro_ended copy context for all new paywalls', () => {
     expect(copySrc).toContain('PAYWALL_COPY.intro_ended');
-    expect(dispatcherSrc).toContain('params: { ...params }');
+    expect(dispatcherSrc).toContain("openPremiumPaywall(router, params, 'replace')");
   });
 
   it('uses gentle gain-framed copy in the shared paywall copy source', () => {

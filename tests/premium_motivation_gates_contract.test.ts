@@ -34,7 +34,7 @@ describe('premium motivation gates contract', () => {
 
     expect(categoryHub).toContain('hasFlashcardsPlus?: boolean');
     expect(categoryHub).toContain('function PlusCornerBadge');
-    expect(categoryHub).toContain('{!hasFlashcardsPlus && <PlusCornerBadge t={t} />}');
+    expect(categoryHub).toContain('{!hasFlashcardsPlus && <PlusCornerBadge themeMode={themeMode} />}');
 
     expect(collection).toContain("params: { context: 'flashcard_training', source: 'flashcards_collection_training' }");
     expect(collection).toContain("params: { context: 'flashcard_autoplay', source: 'flashcards_collection_audio' }");

@@ -4,6 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { invalidatePremiumCache } from '../../app/premium_guard';
 import {
   loadFlashcards,
   saveFlashcards,
@@ -178,11 +179,13 @@ describe('use-flashcards', () => {
       const cards: Flashcard[] = Array.from({ length: FREE_FLASHCARD_LIMIT }, (_, i) =>
         makeFullCard(`phrase ${i}`)
       );
-      mockStorage.getItem
-        .mockResolvedValueOnce(JSON.stringify(cards))  // FLASHCARDS_KEY
-        .mockResolvedValueOnce('true')                 // premium_active
-        .mockResolvedValueOnce(null)                   // tester_no_premium
-        .mockResolvedValueOnce(null);                  // tester_no_limits
+      mockStorage.getItem.mockImplementation(async key => (
+        key === FLASHCARDS_KEY ? JSON.stringify(cards) : null
+      ));
+      mockStorage.multiGet.mockImplementation(async keys => keys.map(key => [
+        key,
+        key === 'premium_active' ? 'true' : key === 'premium_plan' ? 'monthly' : null,
+      ]));
       mockStorage.setItem.mockResolvedValue(undefined);
       mockGetVerifiedPremiumStatus.mockResolvedValue(true);
 

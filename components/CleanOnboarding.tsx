@@ -2084,6 +2084,7 @@ function CleanOnboarding({
         <Text style={styles.linkText} onPress={() => { void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>Конфиденциальность</Text>
       </View>
       {legalError ? <Text style={styles.errorText}>{legalError}</Text> : null}
+      <Text style={styles.consentNameHint}>Имя создадим автоматически — изменить можно позже</Text>
     </ScreenFrame>
   );
   // Welcome (свои анимации) и aha (полноэкранная сцена со своими переходами)

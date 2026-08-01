@@ -67,7 +67,7 @@ describe('XP level restore after 250-to-400 formula change', () => {
     expect(migrationSource.indexOf('storageGetString(XP_LEVEL_RESTORE_250_TO_400_KEY)')).toBeLessThan(
       migrationSource.indexOf("storageGetNumber('user_total_xp'"),
     );
-    const hydrateThen = layoutSource.indexOf('void hydrate.then(async () => {');
+    const hydrateThen = layoutSource.indexOf('void hydrate.then(async (');
     expect(hydrateThen).toBeGreaterThan(0);
     expect(layoutSource.indexOf('await migrateXPFormulaV2();', hydrateThen)).toBeGreaterThan(hydrateThen);
     expect(layoutSource).not.toContain('useEffect(() => {\n    migrateXPFormulaV2();');

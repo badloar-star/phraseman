@@ -63,7 +63,7 @@ describe('lesson medal thresholds', () => {
   });
 
   it.each(Array.from({ length: 32 }, (_, i) => i + 1))(
-    'continues counting lesson %i strong replays after gold is already earned',
+    'does not count lesson %i replay runs with corrected mistakes as perfect passes',
     async (lessonId) => {
     const perfect = new Array(50).fill('correct');
     await saveMedalProgress(lessonId, 5, perfect);
@@ -79,12 +79,12 @@ describe('lesson medal thresholds', () => {
       prevTier: 'gold',
       isNewBest: false,
       prevPassCount: 1,
-      newPassCount: 2,
-      passCountIncreased: true,
+      newPassCount: 1,
+      passCountIncreased: false,
     });
     await expect(AsyncStorage.getItem(`lesson${lessonId}_best_score`)).resolves.toBe('5');
-    await expect(AsyncStorage.getItem(`lesson${lessonId}_pass_count`)).resolves.toBe('2');
-    await expect(loadMedalInfo(lessonId)).resolves.toMatchObject({ bestScore: 5, passCount: 2 });
+    await expect(AsyncStorage.getItem(`lesson${lessonId}_pass_count`)).resolves.toBe('1');
+    await expect(loadMedalInfo(lessonId)).resolves.toMatchObject({ bestScore: 5, passCount: 1 });
   });
 
   it.each(Array.from({ length: 32 }, (_, i) => i + 1))(
@@ -93,7 +93,7 @@ describe('lesson medal thresholds', () => {
     await AsyncStorage.setItem(`lesson${lessonId}_best_score`, '5');
     await expect(loadMedalInfo(lessonId)).resolves.toMatchObject({ bestScore: 5, passCount: 1 });
 
-    const replay = new Array(50).fill('replay_correct');
+    const replay = new Array(50).fill('correct');
     const result = await saveMedalProgress(lessonId, 5, replay);
 
     expect(result.prevPassCount).toBe(1);
@@ -110,7 +110,7 @@ describe('lesson medal thresholds', () => {
       }
       await AsyncStorage.multiSet(setup);
 
-      const replay = new Array(50).fill('replay_correct');
+      const replay = new Array(50).fill('correct');
       await saveMedalProgress(from, 5, replay);
 
       await expect(checkGemAchievements(from)).resolves.toContainEqual({ level, gem: 'ruby' });
@@ -118,7 +118,7 @@ describe('lesson medal thresholds', () => {
     }
   });
 
-  it('counts silver-plus completion by score, even when a future lesson has fewer than 50 items', async () => {
+  it('does not count a non-perfect future lesson even when it has fewer than 50 items', async () => {
     const progress = [
       ...new Array(44).fill('correct'),
       ...new Array(5).fill('wrong'),
@@ -126,7 +126,7 @@ describe('lesson medal thresholds', () => {
 
     const result = await saveMedalProgress(31, 4.5, progress);
 
-    expect(result.passCountIncreased).toBe(true);
-    await expect(AsyncStorage.getItem('lesson31_pass_count')).resolves.toBe('1');
+    expect(result.passCountIncreased).toBe(false);
+    await expect(AsyncStorage.getItem('lesson31_pass_count')).resolves.toBeNull();
   });
 });

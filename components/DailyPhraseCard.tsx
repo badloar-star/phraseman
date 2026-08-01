@@ -43,6 +43,7 @@ import {
 import { IDIOMS } from '../app/idioms_data';
 import { trainerThemeIconSource } from '../constants/trainerThemeIcons';
 import AddToFlashcard from './AddToFlashcard';
+import ExplainButton from './ExplainButton';
 import { useLang } from './LangContext';
 import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
@@ -1096,6 +1097,9 @@ const styles = StyleSheet.create({
     alignSelf: 'stretch',
     borderRadius: 2,
     width: 4,
+  },
+  explainButton: {
+    marginTop: 2,
   },
   questBlock: {
     borderRadius: 16,

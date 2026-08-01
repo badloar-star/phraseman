@@ -23,14 +23,14 @@ describe('localizedDailyTaskStrings', () => {
 
   it('returns Spanish curated copy for known id', () => {
     const { title } = localizedDailyTaskStrings('es', dummyTask('da1'));
-    expect(title).toMatch(/Solo entra/i);
+    expect(title).toBe(DAILY_TASK_STRINGS_ES.da1.title);
   });
 
   it('uses direct titleES/descES fields when a task is enriched', () => {
     const task = withDailyTaskSpanishCopy(dummyTask('da1'));
     const { title, desc } = localizedDailyTaskStrings('es', task);
 
-    expect(task.titleES).toMatch(/Solo entra/i);
+    expect(task.titleES).toBe(DAILY_TASK_STRINGS_ES.da1.title);
     expect(title).toBe(task.titleES);
     expect(desc).toBe(task.descES);
   });

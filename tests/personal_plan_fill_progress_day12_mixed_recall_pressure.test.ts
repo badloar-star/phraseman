@@ -4,7 +4,7 @@ import path from 'path';
 const ROOT = path.resolve(__dirname, '..');
 
 describe('personal plan fill progress day 12 mixed recall pressure', () => {
-  it('tracks Day 12 chat drafts for every plan as mixed recall under light pressure', () => {
+  it('tracks Day 12 mixed-recall progression for every plan', () => {
     const data = JSON.parse(fs.readFileSync(
       path.join(ROOT, 'docs', 'reports', 'personal-plans-fill-progress-data.json'),
       'utf8',
@@ -21,12 +21,15 @@ describe('personal plan fill progress day 12 mixed recall pressure', () => {
     expect(day12Rows).toHaveLength(5);
     expect(day12Rows).toEqual(expect.arrayContaining([
       expect.objectContaining({ label: 'Mitap Day 12', status: 'chat draft' }),
-      expect.objectContaining({ label: 'Voyazh Day 12', status: 'chat draft' }),
+      expect.objectContaining({ label: 'Voyazh Day 12', status: 'certified' }),
       expect.objectContaining({ label: 'Gavan Day 12', status: 'chat draft' }),
       expect.objectContaining({ label: 'Impuls Day 12', status: 'chat draft' }),
       expect.objectContaining({ label: 'Echo Day 12', status: 'chat draft' }),
     ]));
-    expect(day12Rows.every((row: { whatExists: string }) => row.whatExists.toLowerCase().includes('mixed recall'))).toBe(true);
-    expect(day12Rows.every((row: { notes: string }) => row.notes.toLowerCase().includes('light pressure'))).toBe(true);
+    expect(day12Rows.every((row: { whatExists: string }) => /mixed[- ]recall/.test(row.whatExists.toLowerCase()))).toBe(true);
+    expect(day12Rows.every((row: { status: string; notes: string }) =>
+      row.status === 'certified'
+        ? row.notes.includes('generator_packet')
+        : row.notes.toLowerCase().includes('light pressure'))).toBe(true);
   });
 });

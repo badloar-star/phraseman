@@ -165,13 +165,14 @@ const SAVED_FLASHCARD_CONTENT_REPAIRS: Record<string, Partial<Pick<Flashcard, 'r
 };
 
 export function repairSavedFlashcardContent(card: Flashcard): Flashcard {
-  const repair = SAVED_FLASHCARD_CONTENT_REPAIRS[normalizeEn(card.en)];
-  if (!repair) return card;
+  const normalizedCard = card.uk ? card : { ...card, uk: card.ru };
+  const repair = SAVED_FLASHCARD_CONTENT_REPAIRS[normalizeEn(normalizedCard.en)];
+  if (!repair) return normalizedCard;
   return {
-    ...card,
-    ru: repair.ru ?? card.ru,
-    uk: repair.uk ?? card.uk,
-    es: repair.es ?? card.es,
+    ...normalizedCard,
+    ru: repair.ru ?? normalizedCard.ru,
+    uk: repair.uk ?? normalizedCard.uk,
+    es: repair.es ?? normalizedCard.es,
   };
 }
 

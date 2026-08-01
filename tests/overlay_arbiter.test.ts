@@ -43,12 +43,14 @@ describe('OverlayArbiter queue resolution', () => {
 
   it('onboardingWelcome выигрывает у наградных/update-модалок сразу после онбординга', () => {
     // Регрессия (iOS): welcome рендерился МИМО арбитра → презентовался одновременно с
-    // perfectWeekReward/update → первый схлопывался, стек виснул (фриз).
+    // perfectWeekReward/compassBriefing/update → первый схлопывался, стек виснул (фриз).
     // Теперь welcome — высший приоритет: при одновременном запросе берут именно его.
     expect(resolveNextOverlay(null, wants('onboardingWelcome', 'perfectWeekReward', 'update')))
       .toBe('onboardingWelcome');
+    expect(resolveNextOverlay(null, wants('onboardingWelcome', 'compassBriefing')))
+      .toBe('onboardingWelcome');
     // …а когда welcome закрылся (освободил слот) — слот уходит следующему по приоритету.
-    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'update')))
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'update', 'compassBriefing')))
       .toBe('update');
     // welcome — непреемптивный владелец: пока держит слот, другие ждут.
     expect(resolveNextOverlay('onboardingWelcome', wants('onboardingWelcome', 'update')))
@@ -61,6 +63,7 @@ describe('OverlayArbiter queue resolution', () => {
     // Проверяем, что при конкуренции с любым другим ключом слот уходит НЕ ему.
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'actionToast'))).toBe('actionToast');
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'coachToast'))).toBe('coachToast');
+    expect(resolveNextOverlay(null, wants('perfectWeekReward', 'compassBriefing'))).toBe('compassBriefing');
     expect(resolveNextOverlay(null, wants('perfectWeekReward', 'onboardingWelcome'))).toBe('onboardingWelcome');
     // perfectWeekReward = последний элемент приоритета → берётся, только когда он один.
     expect(OVERLAY_PRIORITY[OVERLAY_PRIORITY.length - 1]).toBe('perfectWeekReward');
@@ -335,6 +338,7 @@ describe('OverlayArbiter native-modal handoff gap', () => {
     expect(needsHandoffGap('onboardingWelcome', 'introFullAccess')).toBe(true);
     expect(needsHandoffGap('update', 'releaseNotes')).toBe(true);
     expect(needsHandoffGap('leagueResult', 'perfectWeekReward')).toBe(true);
+    expect(needsHandoffGap('entitlementExpired', 'compassBriefing')).toBe(true);
     expect(needsHandoffGap('update', 'notifNudge')).toBe(true);
     expect(needsHandoffGap('entitlementExpired', 'referralWelcome')).toBe(true);
     expect(needsHandoffGap('update', 'levelUp')).toBe(true);

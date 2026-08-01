@@ -99,9 +99,11 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('keeps rich intro color semantics separate from background fills', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
 
-    expect(source).toContain('const semanticLineBg');
-    expect(source).toContain('styles.richLineStripe');
+    expect(source).toContain('<RichIntroLineView');
+    expect(richSource).toContain('const semanticLineBg');
+    expect(richSource).toContain('styles.richLineStripe');
     expect(source).toContain('styles.exampleNote');
     expect(source).not.toContain("line.type === 'tip'\n              ? `${t.gold}14`");
     expect(source).not.toContain('color: t.gold, fontSize: f.caption');
@@ -109,6 +111,7 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('keeps the absolute intro header below the top safe area', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
 
     expect(source).toContain('const introHeaderTop = insets.top + INTRO_HEADER_TOP_GAP;');
     expect(source).toContain('edges={[\'bottom\']}');
@@ -149,14 +152,15 @@ describe('lesson intro screens (es locale fields)', () => {
 
   it('does not route planned intro UI locales through RU/UK/ES runtime fallbacks', () => {
     const source = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_screens.tsx'), 'utf8');
+    const richSource = fs.readFileSync(path.join(ROOT, 'app', 'lesson_intro_rich.tsx'), 'utf8');
     const legacyRuntimeFallback = /\b(lang === 'ru'|lang === 'uk'|lang === 'es'|return\s+[^;\n]*(?:RU|UK|ES)\b|\?\?\s*[^;\n]*(?:RU|UK|ES)\b|fallback)\b/u;
 
     expect(source).not.toMatch(legacyRuntimeFallback);
     expect(source).not.toMatch(/\{\s*ru:\s*(?:ex|screen|value|km)\./);
     expect(source).not.toMatch(/uk:\s*(?:ex|screen|value|km)\./);
     expect(source).not.toMatch(/es:\s*(?:ex|screen|value|km)\./);
-    expect(source).toContain('type PlannedIntroLang');
-    expect(source).toContain('defaultTitlePtBr');
+    expect(richSource).toContain('type PlannedIntroLang');
+    expect(richSource).toContain('defaultTitlePtBr');
     expect(source).toContain('isPlannedIntroLang(lang)');
   });
 });

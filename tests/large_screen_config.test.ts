@@ -13,13 +13,10 @@ describe('large screen app window configuration', () => {
     expect(expo.plugins).toContain('./plugins/withAndroidLargeScreenSupport');
   });
 
-  it('keeps the checked-in Android manifest resizable on large screens', () => {
-    const manifest = fs.readFileSync(
-      path.join(root, 'android', 'app', 'src', 'main', 'AndroidManifest.xml'),
-      'utf8',
-    );
+  it('keeps the Android config plugin resizable on large screens', () => {
+    const plugin = fs.readFileSync(path.join(root, 'plugins', 'withAndroidLargeScreenSupport.js'), 'utf8');
 
-    expect(manifest).toContain('android:screenOrientation="unspecified"');
-    expect(manifest).toContain('android:resizeableActivity="true"');
+    expect(plugin).toContain("mainActivity.$['android:screenOrientation'] = 'unspecified'");
+    expect(plugin).toContain("mainActivity.$['android:resizeableActivity'] = 'true'");
   });
 });

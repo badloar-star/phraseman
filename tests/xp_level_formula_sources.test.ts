@@ -40,10 +40,13 @@ describe('XP level formula source consistency', () => {
     expect(home).not.toContain('setItem("user_total_xp", String(xp * 2))');
   });
 
-  it('does not let the legacy double-XP marker block the 250-to-400 restore', () => {
+  it('keeps the 250-to-400 restore server-owned and marks local migration complete without changing XP', () => {
+    const xpManager = read('app/xp_manager.ts');
     expect(read('app/xp_manager.ts')).not.toContain("storageGetString('xp_migration_v2')");
     expect(read('scripts/restore_xp_levels_250_to_400.mjs')).not.toContain('progress.xp_migration_v2');
-    expect(read('app/xp_manager.ts')).toContain('restoredXPForOld250VisibleLevel(currentXP)');
+    expect(xpManager).not.toContain('restoredXPForOld250VisibleLevel(currentXP)');
+    expect(xpManager).toContain("['user_total_xp', String(currentXP)]");
+    expect(xpManager).toContain("[XP_LEVEL_RESTORE_250_TO_400_KEY, '1']");
     expect(read('scripts/restore_xp_levels_250_to_400.mjs')).toContain('const restored = restoredXPForOld250VisibleLevel(currentXP)');
   });
 

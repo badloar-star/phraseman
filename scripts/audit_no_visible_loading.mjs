@@ -2,11 +2,13 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 import ts from 'typescript';
 
 const ROOT = process.cwd();
 const INCLUDE_DIRS = ['app', 'components', 'constants', 'hooks'];
 const EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx']);
+const CHANGED_ONLY = process.argv.includes('--changed');
 
 const SKIP_PARTS = [
   `${path.sep}node_modules${path.sep}`,
@@ -104,11 +106,38 @@ function collectStringLiterals(source, fileName) {
   return literals;
 }
 
+function changedSourceFiles() {
+  const commands = [
+    ['diff', '--name-only', 'HEAD^1', 'HEAD', '--', ...INCLUDE_DIRS],
+    ['diff', '--name-only', 'HEAD', '--', ...INCLUDE_DIRS],
+    ['diff', '--cached', '--name-only', '--', ...INCLUDE_DIRS],
+  ];
+  const changed = new Set();
+  for (const [index, args] of commands.entries()) {
+    try {
+      const output = execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] });
+      for (const file of output.split(/\r?\n/u).filter(Boolean)) {
+        changed.add(file.replace(/\\/gu, '/'));
+      }
+    } catch (error) {
+      if (index === 0 && process.env.GITHUB_ACTIONS === 'true') {
+        throw new Error('Visible loading audit cannot resolve the pull-request base (HEAD^1); refusing to pass CI without a reviewable diff.', { cause: error });
+      }
+      // A shallow/local checkout may not have HEAD^1. Other commands still
+      // cover staged and unstaged files. CI is deliberately fail-closed above.
+    }
+  }
+  return changed;
+}
+
+const changedFiles = CHANGED_ONLY ? changedSourceFiles() : null;
+
 const files = INCLUDE_DIRS
   .map((dir) => path.join(ROOT, dir))
   .filter((dir) => fs.existsSync(dir))
   .flatMap((dir) => walk(dir))
-  .filter((file) => !SKIP_FILE_RE.some((re) => re.test(path.relative(ROOT, file))));
+  .filter((file) => !SKIP_FILE_RE.some((re) => re.test(path.relative(ROOT, file))))
+  .filter((file) => !changedFiles || changedFiles.has(path.relative(ROOT, file).replace(/\\/gu, '/')));
 
 const findings = [];
 
@@ -150,4 +179,4 @@ if (findings.length > 0) {
   process.exit(1);
 }
 
-console.log(`Visible loading audit passed (${files.length} files scanned).`);
+console.log(`Visible loading audit passed (${files.length} ${CHANGED_ONLY ? 'changed ' : ''}files scanned).`);

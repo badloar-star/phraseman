@@ -338,7 +338,7 @@ describe('plan content activation readiness blocker report command', () => {
       remoteLoadingEnabled: false,
       runtimeManifestRegistrable: false,
       bundledContentRemoved: false,
-      completedGateCount: 8,
+      completedGateCount: 9,
       blockedGateCount: 6,
     });
     expect(result.report.startupNoFetchGuard).toEqual({
@@ -422,7 +422,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     expect(result.report.status).toBe('HOLD');
     expect(result.report.activationReadiness).toMatchObject({
-      completedGateCount: 9,
+      completedGateCount: 10,
       blockedGateCount: 5,
     });
     expect(result.report.offlineCacheIntegrityEvidence).toEqual({
@@ -457,7 +457,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     expect(result.report.status).toBe('HOLD');
     expect(result.report.activationReadiness).toMatchObject({
-      completedGateCount: 10,
+      completedGateCount: 11,
       blockedGateCount: 4,
     });
     expect(result.report.rollbackKillSwitchEvidence).toEqual({
@@ -495,7 +495,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     expect(result.report.status).toBe('HOLD');
     expect(result.report.activationReadiness).toMatchObject({
-      completedGateCount: 11,
+      completedGateCount: 12,
       blockedGateCount: 3,
     });
     expect(result.report.storageCloudIsolationEvidence).toEqual({
@@ -537,7 +537,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     expect(result.report.status).toBe('HOLD');
     expect(result.report.activationReadiness).toMatchObject({
-      completedGateCount: 11,
+      completedGateCount: 12,
       blockedGateCount: 3,
     });
     expect(result.report.reviewerLocaleIntakeEvidence).toEqual({
@@ -600,7 +600,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     expect(result.report.status).toBe('HOLD');
     expect(result.report.activationReadiness).toMatchObject({
-      completedGateCount: 13,
+      completedGateCount: 14,
       blockedGateCount: 1,
     });
     expect(result.report.activationReadiness.blockers).toEqual([
@@ -693,7 +693,7 @@ describe('plan content activation readiness blocker report command', () => {
 
     const report = JSON.parse(fs.readFileSync(path.join(ROOT, REPORT_RELATIVE), 'utf8')) as ActivationReadinessReport;
     expect(report.status).toBe('HOLD');
-    expect(report.activationReadiness.completedGateCount).toBe(8);
+    expect(report.activationReadiness.completedGateCount).toBe(9);
     expect(report.activationReadiness.blockedGateCount).toBe(6);
     expect(report.startupNoFetchGuard.status).toBe('PASS');
     expect(report.evidenceBlockers).toEqual([]);

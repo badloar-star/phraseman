@@ -116,7 +116,7 @@ describe('admin premium delivery contract', () => {
 
   it('preserves provider-linked ownership without allowing unknown auth mismatches', () => {
     expect(authIdentityFn).toContain('const hasProviderLink');
-    expect(authIdentityFn).toContain('if (linkedAuthUid === authUid) return;');
+    expect(authIdentityFn).toContain('if (!canonicalLinkConflicts && linkedAuthUid === authUid) return;');
     expect(authIdentityFn).not.toContain('if (!hasProviderLink) return;');
     expect(authIdentityFn).toContain("throw new HttpsError('permission-denied', 'stable_id_mismatch')");
   });

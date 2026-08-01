@@ -1,22 +1,14 @@
 import React, { memo, useCallback, useEffect, useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Image } from 'expo-image';
-import {
-  ActivityIndicator,
-  Modal,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  useWindowDimensions,
-  View,
-} from 'react-native';
+import { Modal, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useRouter } from 'expo-router';
 // зачем: сырой useSafeAreaInsets в свежесмонтированном модале даёт 0 до прихода
 // нативных метрик — контент прыгал; стабильная обёртка знает инсеты синхронно.
 import { useStableSafeAreaInsets } from '../app/stable_safe_area_metrics';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
+import RewardCardV2 from './reward_v2/RewardCardV2';
 import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
 import {
   reviveStreak,
@@ -28,6 +20,7 @@ import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
 import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 import { triLang, type Lang } from '../constants/i18n';
+import { rewardModalSoftSurface, rewardModalPanelBorder } from './RewardModalBackdrop';
 
 import { noAndroidOutline } from '../constants/androidGlow';
 interface StreakReviveModalProps {
@@ -92,7 +85,7 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
 
   const cost = offer?.costShards ?? 0;
   const lostStreak = offer?.lostStreak ?? 0;
-  const compactHeight = windowHeight < 700 || fontScale > 1.15;
+  const lostStreakText = formatStreakDays(lostStreak, lang);
 
   const streakUnit = triLang(lang, {
     ru: `${slavicPlural(lostStreak, 'день', 'дня', 'дней')} подряд`,
@@ -103,77 +96,6 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     id: 'hari berturut-turut',
     tr: 'gün üst üste',
     pl: 'dni z rzędu',
-  });
-
-  const title = triLang(lang, {
-    ru: 'Рекорд всё ещё твой',
-    uk: 'Рекорд усе ще твій',
-    es: 'Tu récord sigue siendo tuyo',
-    'pt-BR': 'Seu recorde ainda é seu',
-    vi: 'Kỷ lục vẫn là của bạn',
-    id: 'Rekormu masih milikmu',
-    tr: 'Rekorun hâlâ senin',
-    pl: 'Twój rekord nadal jest Twój',
-  });
-  const description = triLang(lang, {
-    ru: 'Верни прерванную серию одним действием — либо спокойно начни заново.',
-    uk: 'Поверни перервану серію одним дотиком — або спокійно почни заново.',
-    es: 'Recupera la racha con un toque o empieza de nuevo con tranquilidad.',
-    'pt-BR': 'Restaure a sequência com um toque ou recomece com tranquilidade.',
-    vi: 'Khôi phục chuỗi chỉ với một lần chạm, hoặc bình tĩnh bắt đầu lại.',
-    id: 'Pulihkan rangkaian dengan sekali ketuk, atau mulai lagi dengan tenang.',
-    tr: 'Seriyi tek dokunuşla geri getir veya sakin biçimde yeniden başla.',
-    pl: 'Przywróć serię jednym dotknięciem albo spokojnie zacznij od nowa.',
-  });
-  const primaryLabel = triLang(lang, {
-    ru: 'Восстановить рекорд',
-    uk: 'Відновити рекорд',
-    es: 'Recuperar récord',
-    'pt-BR': 'Restaurar recorde',
-    vi: 'Khôi phục kỷ lục',
-    id: 'Pulihkan rekor',
-    tr: 'Rekoru yenile',
-    pl: 'Odnów rekord',
-  });
-  const busyLabel = triLang(lang, {
-    ru: 'Восстанавливаем…',
-    uk: 'Відновлюємо…',
-    es: 'Recuperando…',
-    'pt-BR': 'Restaurando…',
-    vi: 'Đang khôi phục…',
-    id: 'Memulihkan…',
-    tr: 'Yenileniyor…',
-    pl: 'Odnawianie…',
-  });
-  const secondaryLabel = triLang(lang, {
-    ru: 'Начать новую цепочку',
-    uk: 'Почати новий ланцюжок',
-    es: 'Empezar una nueva racha',
-    'pt-BR': 'Começar uma nova sequência',
-    vi: 'Bắt đầu chuỗi mới',
-    id: 'Mulai rangkaian baru',
-    tr: 'Yeni seri başlat',
-    pl: 'Zacznij nową serię',
-  });
-  const costLabel = triLang(lang, {
-    ru: 'Стоимость',
-    uk: 'Вартість',
-    es: 'Coste',
-    'pt-BR': 'Custo',
-    vi: 'Chi phí',
-    id: 'Biaya',
-    tr: 'Ücret',
-    pl: 'Koszt',
-  });
-  const closeLabel = triLang(lang, {
-    ru: 'Закрыть предложение восстановления',
-    uk: 'Закрити пропозицію відновлення',
-    es: 'Cerrar la oferta de recuperación',
-    'pt-BR': 'Fechar a oferta de restauração',
-    vi: 'Đóng đề nghị khôi phục',
-    id: 'Tutup tawaran pemulihan',
-    tr: 'Yenileme teklifini kapat',
-    pl: 'Zamknij ofertę odnowienia',
   });
 
   const onConfirm = useCallback(async () => {
@@ -232,27 +154,33 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
     onClose();
   }, [busy, onClose]);
 
-  const handleDismiss = useCallback(() => {
-    if (busy) return;
-    onDismiss();
-  }, [busy, onDismiss]);
-
-  const accent = '#FF7A45';
-  const accentDarkText = '#241008';
-  const isLightTheme = themeMode === 'businessLight';
-  const passSurface = isLightTheme ? '#F7F5FA' : '#171824';
-  const primarySurface = isLightTheme ? '#6E5AE8' : '#F3F0FF';
-  const primaryText = isLightTheme ? '#FFFFFF' : '#171421';
-
-  if (!visible || !offer) return null;
+  // Огненный акцент стрика — совпадает с semantic="fire" кольца карточки.
+  const accent = '#FF7A1A';
+  const soft = rewardModalSoftSurface(themeMode, t);
+  const border = rewardModalPanelBorder(themeMode, t);
 
   return (
-    <Modal
-      visible
-      transparent
-      animationType="fade"
-      statusBarTranslucent
-      onRequestClose={handleDismiss}
+    <RewardCardV2
+      visible={visible}
+      semantic="fire"
+      backdropAction="ghost"
+      kicker={triLang(lang, { ru: '', uk: '', es: 'Racha', 'pt-BR': 'Sequência', vi: 'Chuỗi', id: 'Streak', tr: 'Seri', pl: 'Seria' })}
+      icon="🔥"
+      title={triLang(lang, { ru: 'Цепочка прервалась', uk: 'Ланцюжок перервався', es: 'La racha se interrumpió', 'pt-BR': 'A sequência foi interrompida', vi: 'Chuỗi của bạn đã bị gián đoạn', id: 'Rangkaian terputus', tr: 'Serin kesildi', pl: 'Seria została przerwana' })}
+      value={triLang(lang, {
+        ru: `Ты пропустил серию из ${lostStreakText}. Восстанови рекорд или начни новую цепочку.`,
+        uk: `Ви втратили серію з ${lostStreakText}. Хочете відновити свій рекорд чи почати новий ланцюжок?`,
+        es: `Perdiste una racha de ${lostStreakText}. ¿Quieres recuperar tu récord o empezar una nueva racha?`,
+        'pt-BR': `Você perdeu uma sequência de ${lostStreakText}. Quer restaurar seu recorde ou começar uma nova sequência?`,
+        vi: `Bạn đã mất chuỗi ${lostStreakText}. Bạn muốn khôi phục kỷ lục hay bắt đầu chuỗi mới?`,
+        id: `Kamu kehilangan rangkaian ${lostStreakText}. Mau memulihkan rekor atau mulai rangkaian baru?`,
+        tr: `${lostStreakText} serini kaybettin. Rekorunu yenilemek mi, yoksa yeni bir seri başlatmak mı istersin?`,
+        pl: `Utraciłeś serię ${lostStreakText}. Chcesz odnowić swój rekord czy zacząć nową serię?`,
+      })}
+      ctaLabel={triLang(lang, { ru: 'Восстановить рекорд', uk: 'Відновити рекорд', es: 'Recuperar récord', 'pt-BR': 'Restaurar recorde', vi: 'Khôi phục kỷ lục', id: 'Pulihkan rekor', tr: 'Rekoru yenile', pl: 'Odnów rekord' })}
+      onCta={() => { hapticTap(); void onConfirm(); }}
+      ghostLabel={triLang(lang, { ru: 'Начать новую цепочку', uk: 'Почати новий ланцюжок', es: 'Empezar una nueva racha', 'pt-BR': 'Começar uma nova sequência', vi: 'Bắt đầu chuỗi mới', id: 'Mulai rangkaian baru', tr: 'Yeni seri başlat', pl: 'Zacznij nową serię' })}
+      onGhost={onDismiss}
     >
       <View
         style={[
@@ -358,17 +286,26 @@ function StreakReviveModal({ visible, offer, onClose, onRevived, shopReturnTo = 
           </ScrollView>
         </View>
       </View>
-    </Modal>
+      <View style={[styles.pricePill, { backgroundColor: soft, borderColor: border }]}>
+        <Image source={oskolokImageForPackShards(cost)} style={styles.priceIcon} contentFit="contain" />
+        <Text style={[styles.priceValue, { color: accent, fontSize: f.body }]}>{cost}</Text>
+      </View>
+      {msLeft > 0 && (
+        <Text style={[styles.countdown, { color: t.textSecond, fontSize: f.sub }]}>
+          {formatCountdown(msLeft, lang)}
+        </Text>
+      )}
+    </RewardCardV2>
   );
 }
 
 export default memo(StreakReviveModal);
 
 const styles = StyleSheet.create({
-  modalRoot: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  streakPill: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+    gap: 8,
     paddingHorizontal: 18,
   },
   backdrop: {
@@ -504,4 +441,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: '600',
   },
+  priceIcon: { width: 28, height: 28, flexShrink: 0 },
+  priceValue: { fontWeight: '900' },
+  countdown: { marginTop: 10, textAlign: 'center', opacity: 0.7 },
 });

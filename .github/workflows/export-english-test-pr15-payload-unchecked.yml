@@ -1,0 +1,44 @@
+name: Export English test PR15 payload unchecked
+
+on:
+  pull_request:
+    branches: [master]
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+jobs:
+  export:
+    if: >-
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.ref == 'agent/english-level-test-20260721' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+      - name: Reconstruct payload without trusting the embedded checksum
+        shell: bash
+        run: |
+          set -u
+          cat .english-test-bootstrap/payload.part* | base64 --decode > "$RUNNER_TEMP/english-test-release.tar.gz"
+          sha256sum "$RUNNER_TEMP/english-test-release.tar.gz" | tee "$RUNNER_TEMP/english-test-release.sha256"
+          gzip --test "$RUNNER_TEMP/english-test-release.tar.gz" > "$RUNNER_TEMP/gzip-test.txt" 2>&1 || true
+          tar -tzf "$RUNNER_TEMP/english-test-release.tar.gz" > "$RUNNER_TEMP/english-test-release-files.txt" 2> "$RUNNER_TEMP/tar-error.txt" || true
+      - name: Upload reconstructed payload and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: english-test-pr15-payload-unchecked
+          path: |
+            ${{ runner.temp }}/english-test-release.tar.gz
+            ${{ runner.temp }}/english-test-release.sha256
+            ${{ runner.temp }}/gzip-test.txt
+            ${{ runner.temp }}/english-test-release-files.txt
+            ${{ runner.temp }}/tar-error.txt
+          if-no-files-found: warn
+          retention-days: 1

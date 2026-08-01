@@ -8,9 +8,10 @@ import { qaToast } from '../qa_utils';
 interface Props {
   open: boolean;
   onToggle: (id: string) => void;
+  onSeedInboxPreview: () => void;
 }
 
-export default function VipSurveyExtraSection({ open, onToggle }: Props) {
+export default function VipSurveyExtraSection({ open, onToggle, onSeedInboxPreview }: Props) {
   const [surveyVisible, setSurveyVisible] = useState(false);
 
   return (
@@ -18,13 +19,20 @@ export default function VipSurveyExtraSection({ open, onToggle }: Props) {
       id="vip_survey_extra"
       icon="clipboard-outline"
       title="Plus-опрос: модалки напрямую"
-      badge={2}
+      badge={3}
       open={open}
       onToggle={onToggle}
     >
       <AdminHint>
         Прямой рендер без засева inbox (полный флоу — кнопка «VIP survey» в Быстром QA).
       </AdminHint>
+      <ButtonRow
+        testID="admin-preview-vip-survey-notification"
+        icon="mail-unread-outline"
+        label="Добавить тестовый опрос в inbox"
+        sub="Создаёт локальное уведомление и возвращает на Главную для проверки полного пользовательского пути."
+        onPress={onSeedInboxPreview}
+      />
       <ButtonRow
         testID="admin-extra-vip-survey-direct"
         icon="clipboard-outline"

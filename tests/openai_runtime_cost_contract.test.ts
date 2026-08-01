@@ -98,9 +98,10 @@ describe('OpenAI runtime cost controls', () => {
 
     expect(premiumDialog).toContain('process.env.OPENAI_DIALOG_MODEL');
     expect(premiumDialog).toContain('resolveConfiguredDialogModel');
-    expect(premiumDialog).toContain('const dialogModel = await resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL);');
     expect(premiumDialog).toContain('resolveConfiguredDialogQuota');
-    expect(premiumDialog).toContain('const dialogQuota = await resolveConfiguredDialogQuota(db);');
+    expect(premiumDialog).toContain('const [dialogModel, dialogQuota, stableUid, aiDialogGatedByPremium] = await Promise.all([');
+    expect(premiumDialog).toContain('resolveConfiguredDialogModel(db, process.env.OPENAI_DIALOG_MODEL),');
+    expect(premiumDialog).toContain('resolveConfiguredDialogQuota(db),');
     expect(premiumDialog).toContain('dialogQuota.freeDailyReplies');
     expect(premiumDialog).toContain('dialogQuota.premiumDailyReplies');
     expect(premiumDialog).toContain('model: dialogModel');
@@ -163,39 +164,20 @@ describe('OpenAI runtime cost controls', () => {
     expect(read('tools/generate_chains_unique_explanations.py')).not.toContain('OPENAI_TTS_API_KEY');
   });
 
-  test('admin v2 has a read-only OpenAI budget dashboard backed by billing collections', () => {
+  test('the unified admin has a read-only OpenAI budget dashboard backed by billing collections', () => {
     const adminHtml = read('admin/index.html');
-    const adminFirebase = read('admin/v2/scripts/admin-firebase.js');
-    const adminCore = read('admin/v2/scripts/admin-core.js');
-    const adminRouter = read('admin/v2/scripts/admin-router.js');
-    const legacyAdmin = read('admin/legacy/index.html');
     const budgetFn = read('functions/src/openai_budget_dashboard.ts');
 
-    expect(adminRouter).toContain("'openai-budget': 'diagnostics'");
-    expect(adminCore).toContain("'load-openai-budget'");
-    expect(adminHtml).toContain('id="openAiBudgetTitle"');
-    expect(adminHtml).toContain('data-action="load-openai-budget"');
-    expect(adminHtml).toContain('id="openAiBudgetKpis"');
-    expect(adminHtml).toContain('id="openAiBudgetFeatureList"');
-    expect(adminHtml).toContain('id="openAiBudgetModelList"');
-    expect(adminHtml).toContain('id="openAiBudgetContractList"');
+    expect(adminHtml).toContain('id="tab-openai-budget"');
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
+    expect(adminHtml).toContain('window.loadOpenAiBudgetDashboard = async function loadOpenAiBudgetDashboard');
+    expect(adminHtml).toContain('id="openai-budget-summary"');
+    expect(adminHtml).toContain('id="openai-budget-grid"');
     expect(adminHtml).toContain('OpenAI estimated month');
-    expect(adminFirebase).toContain("const functionsUs = getFunctions(app, 'us-central1')");
-    expect(adminFirebase).toContain("httpsCallable(functionsUs, 'openAiBudgetDashboard')");
-    expect(adminFirebase).toContain('function loadOpenAiBudgetDashboard');
-    expect(adminFirebase).toContain('rangeDays: 30');
-    expect(adminFirebase).toContain('renderOpenAiBudgetContract');
-    expect(adminFirebase).not.toContain("collection(db, 'premium_dialog_billing'");
-    expect(adminFirebase).not.toContain('collection(db, "premium_dialog_billing"');
-    expect(adminFirebase).not.toContain("collection(db, 'explain_billing'");
-    expect(adminFirebase).not.toContain('collection(db, "explain_billing"');
-    expect(adminFirebase).not.toContain("collection(db, 'weekly_review_billing'");
-    expect(adminFirebase).not.toContain('collection(db, "weekly_review_billing"');
-    expect(adminFirebase).not.toContain("collection(db, 'stats_insights_billing'");
-    expect(adminFirebase).not.toContain('collection(db, "stats_insights_billing"');
-    expect(legacyAdmin).toContain('id="tab-openai-budget"');
-    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
-    expect(legacyAdmin).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogModelConfig')");
+    expect(adminHtml).toContain("httpsCallable(functionsUs, 'openAiDialogQuotaConfig')");
+    expect(adminHtml).not.toContain("collection(db, 'premium_dialog_billing'");
+    expect(adminHtml).not.toContain('collection(db, "premium_dialog_billing"');
     expect(budgetFn).toContain("request.auth?.token?.admin");
     // Дашборд должен покрывать ВСЕ billing-коллекции проекта (раньше было 4 из 11,
     // из-за чего суммарная цифра недосчитывала >60% трат). Проверяем каждую.

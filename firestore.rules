@@ -1983,7 +1983,15 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // Исторический биллинг удалённой голосовой части Компаса остаётся закрытым.
+    // Компас: кэш тёплого комментария дня. Публично читается только готовый
+    // серверный результат; клиентские записи запрещены, удаление доступно админу.
+    match /compass_briefings/{hash} {
+      allow read: if true;
+      allow create, update: if false;
+      allow delete: if isAdmin();
+    }
+
+    // Исторический биллинг голосовой части Компаса остаётся закрытым.
     match /compass_billing/{docId} {
       allow read: if false;
       allow write: if false;

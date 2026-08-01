@@ -71,6 +71,7 @@ import { prefetchTrainerPracticeSnapshot } from '../trainer_practice_prefetch';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { readPersonalPlanSnapshot, readPersonalPlanState, type PersonalPlanHomeSnapshot } from '../personal_plan_state';
+import PersonalPlanHomeRouteCard from '../../components/PersonalPlanHomeRouteCard';
 import { activatePendingPersonalPlanAfterPremium, readPendingPersonalPlanActivation } from '../personal_plan_activation';
 import { getVerifiedRealPremiumStatus } from '../premium_guard';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -384,7 +385,8 @@ function buildHomeLeagueChest(group: GroupMember[], leagueName: string, leagueId
 } {
     const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
     const goal = getLeagueChestGoal(leagueId);
-    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
+    const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0)
+        + Math.max(0, Math.floor(Number(arenaBonus) || 0));
     const leader = sorted[0];
     return {
         leagueName,
@@ -3015,6 +3017,44 @@ export default function HomeScreen() {
           {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
           {(<Animated.View style={sectionStyle(2)}>
 
+          {personalPlanSnapshot ? (
+            <PersonalPlanHomeRouteCard
+              snapshot={personalPlanSnapshot}
+              compactMargin={HOME_STATUS_DENSE_PROGRESS_EXPERIMENT}
+              onPress={openPersonalPlan}
+            />
+          ) : hasActivePersonalPlanState ? (
+            <TouchableOpacity
+              testID="home-personal-plan-card"
+              activeOpacity={0.88}
+              onPress={openPersonalPlan}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Личный план</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>Открыть задания на сегодня</Text>
+            </TouchableOpacity>
+          ) : hasPremiumAccess || lastLesson == null ? (
+            <TouchableOpacity
+              testID="home-choose-personal-plan"
+              activeOpacity={0.88}
+              onPress={() => { hapticTap(); router.push('/personal_plan_setup' as any); }}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>Выбрать свой план обучения</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>3 вопроса — и план готов</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity
+              testID="home-continue-lesson"
+              activeOpacity={0.88}
+              onPress={() => { hapticTap(); router.push({ pathname: '/lesson_menu', params: { id: lastLesson.id } } as any); }}
+              style={{ marginHorizontal: 16, marginBottom: 12, borderRadius: 20, padding: 18, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border }}
+            >
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>{s.home.continueBtn}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{lastLesson.name}</Text>
+            </TouchableOpacity>
+          )}
+
           {/* Домашние подсказки: конечная серия карточек вместо домашнего CTA плана. */}
           {showHomeFeatureTipCard && currentHomeFeatureTip ? (
             <View style={{ marginHorizontal: 8, marginBottom: 18 }}>
@@ -3574,6 +3614,7 @@ export default function HomeScreen() {
                 // Очистку AsyncStorage делаем фоном — её результат на UI не влияет.
                 void clearPendingResult();
             }}/>)}
+      <CompassBriefingHost onStartDay={openPersonalPlan} />
       {/* Приветствие-знакомство со спотлайт-подсветкой блоков — один раз при первом входе. */}
     </View>);
 }

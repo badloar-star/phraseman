@@ -101,7 +101,7 @@ describe('telegram testers admin page contract', () => {
   });
 
   it('does not persist unnecessary Telegram or invoice details in Firestore orders', () => {
-    const orderStart = functionSource.indexOf('const order = {');
+    const orderStart = functionSource.indexOf('const baseOrder = {');
     const orderEnd = functionSource.indexOf('};', orderStart);
     const orderBody = functionSource.slice(orderStart, orderEnd);
 

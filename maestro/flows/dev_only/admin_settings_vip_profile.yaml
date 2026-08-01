@@ -1,0 +1,46 @@
+appId: app.phraseman
+---
+- runFlow: ../_shared/open_dev_client_for_deeplink.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- openLink: "phraseman:///settings_testers"
+- waitForAnimationToEnd:
+    timeout: 3000
+- runFlow:
+    when:
+      visible:
+        id: "vip-celebration-cta"
+    commands:
+      - tapOn:
+          point: "50%,91%"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- openLink: "phraseman:///settings_testers"
+- waitForAnimationToEnd:
+    timeout: 3000
+- extendedWaitUntil:
+    visible:
+      id: "screen-settings-testers"
+    timeout: 60000
+- assertVisible:
+    id: "admin-activate-vip-profile"
+- tapOn:
+    id: "admin-activate-vip-profile"
+- extendedWaitUntil:
+    visible:
+      id: "vip-celebration-cta"
+    timeout: 60000
+- assertVisible: "VIP активирован"
+- takeScreenshot: admin_settings_vip_profile_modal_open
+- tapOn:
+    point: "50%,91%"
+- tapOn:
+    id: "admin-preview-vip-celebration-top"
+- extendedWaitUntil:
+    visible:
+      id: "vip-celebration-cta"
+    timeout: 30000
+- assertVisible: "VIP активирован"
+- takeScreenshot: admin_settings_vip_profile_preview_modal_open
+- tapOn:
+    point: "50%,91%"
+- takeScreenshot: admin_settings_vip_profile_pass

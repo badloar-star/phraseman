@@ -790,7 +790,10 @@ function buildGeneratedPlanPhraseLesson(id: string): PersonalPlanPhraseLesson | 
   // Prefer real agent-authored content from the new pipeline (full explanations,
   // authored POS + distractors, day vocabulary). Falls back to the old template path
   // for days that have not been authored yet.
-  const contentResolution = resolveBundledCompatibilityPlanContentPhraseLesson(planId, dayIndex);
+  const dayOneTemplates = GENERATED_DAY1_PHRASE_TEMPLATES[id];
+  const contentResolution = dayOneTemplates
+    ? { kind: 'missing' as const }
+    : resolveBundledCompatibilityPlanContentPhraseLesson(planId, dayIndex);
   if (contentResolution.kind === 'authored_day') {
     const authored = contentResolution.day;
     // The catalog/navigation request content units by position: `${id}_phrase_${N}`.
@@ -817,7 +820,7 @@ function buildGeneratedPlanPhraseLesson(id: string): PersonalPlanPhraseLesson | 
     return null;
   }
 
-  const templates = GENERATED_DAY1_PHRASE_TEMPLATES[id] ?? GENERATED_PLAN_PHRASE_TEMPLATES[planId];
+  const templates = dayOneTemplates ?? GENERATED_PLAN_PHRASE_TEMPLATES[planId];
 
   return {
     id,
@@ -908,6 +911,9 @@ export function personalizePlanPhraseLesson(
 export function getPersonalPlanPhraseLesson(id: string | string[] | undefined): PersonalPlanPhraseLesson | null {
   const lessonId = Array.isArray(id) ? id[0] : id;
   if (!lessonId) return null;
+  if (GENERATED_DAY1_PHRASE_TEMPLATES[lessonId]) {
+    return buildGeneratedPlanPhraseLesson(lessonId);
+  }
   return PERSONAL_PLAN_PHRASE_LESSONS[lessonId]
     ?? getGavanCanonicalMediaPhraseLesson(lessonId)
     ?? buildGeneratedPlanPhraseLesson(lessonId);

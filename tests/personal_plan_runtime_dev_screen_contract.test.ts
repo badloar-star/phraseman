@@ -81,7 +81,7 @@ describe('personal plan runtime dev screen contract', () => {
     expect(runtimeSource).toContain('testID={`plan-runtime-selected-tile-${index + 1}`}');
     expect(runtimeSource).toContain('removeSelectedTile(index)');
     expect(runtimeSource).toContain('Слова появятся здесь');
-    expect(runtimeSource).toContain('Введите английскую фразу');
+    expect(runtimeSource).toContain('Введи английскую фразу');
   });
 
   it('keeps screen copy clean for the new runtime route', () => {

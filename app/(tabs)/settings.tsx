@@ -604,7 +604,7 @@ export default function SettingsMain() {
       aurora: { ru: 'Сияние', uk: 'Сяйво', es: 'Aurora', 'pt-BR': 'Aurora', vi: 'Cực quang', id: 'Aurora', tr: 'Aurora', pl: 'Zorza' },
       volt: { ru: 'Лайм', uk: 'Лайм', es: 'Lima', 'pt-BR': 'Lima', vi: 'Chanh', id: 'Lime', tr: 'Limon', pl: 'Limetka' },
       indigo: { ru: 'Индиго', uk: 'Індиго', es: 'Índigo', 'pt-BR': 'Índigo', vi: 'Chàm', id: 'Indigo', tr: 'İndigo', pl: 'Indygo' },
-      sagePorcelain: { ru: 'Фарфоровый шалфей', uk: 'Порцелянова шавлія', es: 'Salvia porcelana', 'pt-BR': 'Sálvia porcelana', vi: 'Xô thơm sứ', id: 'Sage porselen', tr: 'Porselen adaçayı', pl: 'Porcelanowa szałwia' },
+      sagePorcelain: { ru: 'Нефрит', uk: 'Нефрит', es: 'Jade', 'pt-BR': 'Jade', vi: 'Ngọc bích', id: 'Giok', tr: 'Yeşim', pl: 'Jadeit' },
     };
     const entry = names[themeMode] ?? names.indigo;
     return entry[lang];

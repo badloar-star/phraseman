@@ -185,6 +185,15 @@ const SETTINGS_SURFACES: Record<ThemeMode, SettingsSurfacePalette> = {
     accent: '#2B2B2B',
     chipOn: '#EDEDED',
   },
+  sagePorcelain: {
+    panel: '#FCFDF9',
+    chip: '#FCFDF9',
+    border: '#CFD6CE',
+    divider: '#CFD6CE',
+    notice: '#E1E5DC',
+    accent: '#315F50',
+    chipOn: '#D1D9D1',
+  },
   midnight: {
     panel: '#1B1D25',
     chip: '#1B1D25',

@@ -67,6 +67,15 @@ const WEEK_DOTS: Record<ThemeMode, Omit<WeekDotTheme, 'freezeBg' | 'freezeBorder
     todayBorder: 'rgba(0,149,246,0.56)',
     checkColor: '#FFFFFF',
   },
+  sagePorcelain: {
+    completeBg: '#2F6F4F',
+    completeBorder: '#315F50',
+    emptyBg: '#E1E5DC',
+    todayBg: '#D9E9E1',
+    emptyBorder: '#CFD6CE',
+    todayBorder: '#315F50',
+    checkColor: '#FFFFFF',
+  },
   midnight: {
     completeBg: '#8FA0FF',
     completeBorder: 'rgba(201,210,255,0.74)',

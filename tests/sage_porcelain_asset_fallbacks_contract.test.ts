@@ -249,5 +249,8 @@ describe('sage porcelain static asset coverage', () => {
     expect(source('constants/weeklyCompassIcons.ts')).toContain(
       "sagePorcelain: require('../assets/images/weekly_compass_icons/sagePorcelain.webp')",
     );
+    expect(source('constants/leagueBonusGiftImages.ts')).toContain(
+      "sagePorcelain: require('../assets/images/league_bonus/sagePorcelain-chest.webp')",
+    );
   });
 });

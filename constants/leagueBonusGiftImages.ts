@@ -24,7 +24,7 @@ const LEAGUE_BONUS_GIFT_IMAGES: Record<LeagueBonusGiftImageTheme, ImageSourcePro
   gold: require('../assets/images/league_bonus/gold-chest.webp'),
   business: require('../assets/images/league_bonus/business-chest.webp'),
   businessLight: require('../assets/images/league_bonus/businessLight-chest.webp'),
-  sagePorcelain: require('../assets/images/league_bonus/businessLight-chest.webp'),
+  sagePorcelain: require('../assets/images/league_bonus/sagePorcelain-chest.webp'),
   midnight: require('../assets/images/league_bonus/midnight-chest.webp'),
   ember: require('../assets/images/league_bonus/ember-chest.webp'),
   aurora: require('../assets/images/league_bonus/aurora-chest.webp'),

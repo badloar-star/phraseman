@@ -162,7 +162,11 @@ describe('sage porcelain static asset coverage', () => {
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("secondary: '#8B6320'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("stroke: '#17201D'");
     expect(themeBlocks(trainer, 'sagePorcelain')[0]).toContain("muted: '#FCFDF9'");
-    expect(trainerPaths[0]).toBe('../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp');
+    expect(trainerPaths).toEqual([
+      '../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp',
+      '../assets/images/trainer_theme_icons/sagePorcelain/words.webp',
+      '../assets/images/trainer_theme_icons/sagePorcelain/analytics.webp',
+    ]);
     expect(streakFirePaths).toEqual([
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-001.webp',
       '../assets/images/streak_icons/sagePorcelain/streak-fire-sagePorcelain-002.webp',

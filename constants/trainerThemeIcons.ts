@@ -139,8 +139,8 @@ export const TRAINER_THEME_ICON_ASSET_PATHS: Record<ThemeMode, Record<TrainerThe
   },
   sagePorcelain: {
     phrases: 'assets/images/trainer_theme_icons/sagePorcelain/phrases.webp',
-    words: 'assets/images/trainer_theme_icons/businessLight/words.webp',
-    analytics: 'assets/images/trainer_theme_icons/businessLight/analytics.webp',
+    words: 'assets/images/trainer_theme_icons/sagePorcelain/words.webp',
+    analytics: 'assets/images/trainer_theme_icons/sagePorcelain/analytics.webp',
   },
   midnight: {
     phrases: 'assets/images/trainer_theme_icons/midnight/phrases.webp',
@@ -207,8 +207,8 @@ const TRAINER_THEME_ICON_SOURCES: Record<ThemeMode, Record<TrainerThemeIconKind,
   },
   sagePorcelain: {
     phrases: require('../assets/images/trainer_theme_icons/sagePorcelain/phrases.webp'),
-    words: require('../assets/images/trainer_theme_icons/businessLight/words.webp'),
-    analytics: require('../assets/images/trainer_theme_icons/businessLight/analytics.webp'),
+    words: require('../assets/images/trainer_theme_icons/sagePorcelain/words.webp'),
+    analytics: require('../assets/images/trainer_theme_icons/sagePorcelain/analytics.webp'),
   },
   midnight: {
     phrases: require('../assets/images/trainer_theme_icons/midnight/phrases.webp'),

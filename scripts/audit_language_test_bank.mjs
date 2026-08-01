@@ -102,12 +102,29 @@ export function auditQuestionBank(bank, { allowDraft = false } = {}) {
 const readJson = (file) => JSON.parse(readFileSync(file, 'utf8'));
 const confined = (root, target) => { const rel = relative(root, target); return rel && !rel.startsWith(`..${sep}`) && rel !== '..' && !rel.includes(`..${sep}`); };
 const evidence = (file) => ({ file, sha256: sha256Raw(readFileSync(file)), mtimeMs: statSync(file).mtimeMs });
-const readAnchors = (file) => new Map([...readFileSync(file, 'utf8').matchAll(/^- `([^`]+)` \| `(OFFICIAL_STANDARD|PRIMARY_EVIDENCE|SYNTHESIS|PRODUCT_HYPOTHESIS)` \| (https:\/\/\S+)$/gmu)].map((match) => [match[1], match[2]]));
+const ANCHOR_LABELS = new Set(['OFFICIAL_STANDARD', 'PRIMARY_EVIDENCE', 'SYNTHESIS', 'PRODUCT_HYPOTHESIS']);
+const ANCHOR_HOSTS = new Set(['www.coe.int', 'www.goethe.de', 'www.france-education-international.fr', 'france-education-international.fr', 'cils.unistrasi.it', 'cvc.cervantes.es']);
+export function parseAnchors(raw, source = 'references') {
+  const anchors = new Map();
+  for (const [index, line] of String(raw).split(/\r?\n/u).entries()) {
+    if (!line.startsWith('- ')) continue;
+    const match = /^- ([^|\s]+) \| ([A-Z_]+) \| (https:\/\/\S+)$/u.exec(line);
+    if (!match) throw new Error(`${source}:${index + 1}: invalid anchor row`);
+    const [, id, label, url] = match;
+    if (!ANCHOR_LABELS.has(label)) throw new Error(`${source}:${index + 1}: unknown evidence label ${label}`);
+    if (anchors.has(id)) throw new Error(`${source}:${index + 1}: duplicate anchor ID ${id}`);
+    const parsed = new URL(url);
+    if (parsed.protocol !== 'https:' || !ANCHOR_HOSTS.has(parsed.host) || parsed.host === 'example.test') throw new Error(`${source}:${index + 1}: non-allowlisted official HTTPS URL`);
+    anchors.set(id, { label, url });
+  }
+  return anchors;
+}
+export const readAnchors = (file) => parseAnchors(readFileSync(file, 'utf8'), file);
 const validateAnchors = (items, anchors, kind) => {
   const errors = [];
   for (const item of items || []) {
-    for (const ref of item.descriptorRefs || []) if (anchors.get(ref) !== 'OFFICIAL_STANDARD') errors.push(`${item.id || item.constructId}: invented or non-standard descriptor anchor ${ref}`);
-    for (const ref of item.selectionRefs || []) if (anchors.get(ref) !== 'SYNTHESIS') errors.push(`${item.id || item.constructId}: selection anchor must be SYNTHESIS ${ref}`);
+    for (const ref of item.descriptorRefs || []) if (anchors.get(ref)?.label !== 'OFFICIAL_STANDARD') errors.push(`${item.id || item.constructId}: invented or non-standard descriptor anchor ${ref}`);
+    for (const ref of item.selectionRefs || []) if (anchors.get(ref)?.label !== 'SYNTHESIS') errors.push(`${item.id || item.constructId}: selection anchor must be SYNTHESIS ${ref}`);
   }
   return errors;
 };

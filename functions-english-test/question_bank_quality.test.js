@@ -366,6 +366,54 @@ test('generated language test artifacts are protected from checkout line-ending 
   assert.match(attributes, /^functions-english-test\/data\/questions\.\*\.json text eol=lf$/m);
 });
 
+test('real language-reference inventories contain the complete allowlisted official anchor matrix', async () => {
+  const { parseAnchors, readAnchors } = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
+  const descriptorUrl = 'https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-descriptors';
+  const officialByLanguage = {
+    de: { host: 'www.goethe.de', format: ['GOETHE-format', 'PRIMARY_EVIDENCE', 'https://www.goethe.de/en/spr/prf/ueb.html'], selectionUrl: 'https://www.goethe.de/en/spr/prf/ueb.html' },
+    fr: { host: 'www.france-education-international.fr', format: ['FEI-DELF-main-format', 'PRIMARY_EVIDENCE', 'https://www.france-education-international.fr/en/diplome/delf-tout-public?langue=en'], selectionUrls: { A1: 'https://www.france-education-international.fr/diplome/delf-tout-public/niveau-a1', A2: 'https://www.france-education-international.fr/diplome/delf-tout-public/niveau-a2', B1: 'https://www.france-education-international.fr/diplome/delf-tout-public/niveau-b1', B2: 'https://www.france-education-international.fr/diplome/delf-tout-public/niveau-b2', C1: 'https://france-education-international.fr/diplome/dalf/exemples-sujets?langue=en', C2: 'https://www.france-education-international.fr/diplome/dalf/dalf-c2-exemples-de-sujets' } },
+    it: { host: 'cils.unistrasi.it', format: ['CILS-format', 'PRIMARY_EVIDENCE', 'https://cils.unistrasi.it/1/89/188/Esempi-prove-di-esami.htm'], selectionUrl: 'https://cils.unistrasi.it/1/89/188/Esempi-prove-di-esami.htm' },
+    es: { host: 'cvc.cervantes.es', format: ['CERVANTES-format', 'PRIMARY_EVIDENCE', 'https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/indice.htm'], selectionUrl: 'https://cvc.cervantes.es/ensenanza/biblioteca_ele/plan_curricular/indice.htm' },
+  };
+  const skills = ['grammar', 'vocabulary', 'reading', 'pragmatics'];
+
+  for (const [language, source] of Object.entries(officialByLanguage)) {
+    const anchors = readAnchors(path.join(ROOT, 'content', 'language-tests', 'references', `${language}.md`));
+    assert.equal(anchors.size, 43, `${language} explicit anchor count`);
+    assert.deepEqual(anchors.get(source.format[0]), { label: source.format[1], url: source.format[2] }, `${language} format anchor`);
+
+    for (const level of LEVELS) {
+      for (const descriptor of ['reception', 'pragmatics', 'language-competence']) {
+        assert.deepEqual(
+          anchors.get(`CEFR-2020-${level}-${descriptor}`),
+          { label: 'OFFICIAL_STANDARD', url: descriptorUrl },
+          `${language} ${level} ${descriptor}`,
+        );
+      }
+      for (const skill of skills) {
+        assert.deepEqual(
+          anchors.get(`${language}-selection-${level}-${skill}`),
+          { label: 'OFFICIAL_STANDARD', url: source.selectionUrls?.[level] || source.selectionUrl },
+          `${language} ${level} ${skill} selection source`,
+        );
+      }
+    }
+
+    for (const [id, anchor] of anchors) {
+      assert.match(anchor.url, /^https:\/\//u, `${language} ${id} HTTPS`);
+      assert.equal(anchor.url.includes('example.test'), false, `${language} ${id} placeholder URL`);
+      assert.ok(['www.coe.int', source.host, 'france-education-international.fr'].includes(new URL(anchor.url).host), `${language} ${id} allowlisted host`);
+    }
+  }
+
+  const french = fs.readFileSync(path.join(ROOT, 'content', 'language-tests', 'references', 'fr.md'), 'utf8');
+  assert.doesNotMatch(french, /delf-tout-public\/sujets|dalf-tout-public\/sujets\/c[12]/u, 'no legacy France Éducation international URLs');
+  assert.throws(() => parseAnchors('- duplicate | OFFICIAL_STANDARD | https://www.coe.int/a\n- duplicate | OFFICIAL_STANDARD | https://www.coe.int/b'), /duplicate anchor ID/u);
+  assert.throws(() => parseAnchors('- unknown | NOT_A_LABEL | https://www.coe.int/a'), /unknown evidence label/u);
+  assert.throws(() => parseAnchors('- insecure | OFFICIAL_STANDARD | http://www.coe.int/a'), /invalid anchor row/u);
+  assert.throws(() => parseAnchors('- placeholder | OFFICIAL_STANDARD | https://example.test/a'), /non-allowlisted/u);
+});
+
 test('multilingual quality auditor rejects each deliberate survivor mutation without mutating its fixture', async () => {
   const audit = await import(pathToFileURL(path.join(ROOT, 'scripts', 'audit_language_test_bank.mjs')).href);
   const fixture = {
@@ -527,9 +575,9 @@ test('language audit CLI validates a complete 240-item reviewed fixture without 
   fs.rmSync(tempRoot, { recursive: true, force: true });
   const quotasFor = (level) => ['A1', 'A2'].includes(level) ? { grammar: 12, vocabulary: 10, reading: 10, pragmatics: 8 } : ['B1', 'B2'].includes(level) ? { grammar: 10, vocabulary: 10, reading: 10, pragmatics: 10 } : { grammar: 8, vocabulary: 8, reading: 12, pragmatics: 12 };
   const anchors = LEVELS.flatMap((level) => [
-    `- \`CEFR-2020-reception-${level}-anchor\` | \`OFFICIAL_STANDARD\` | https://example.test/cefr/${level}/reception`,
-    `- \`CEFR-2020-pragmatics-${level}-anchor\` | \`OFFICIAL_STANDARD\` | https://example.test/cefr/${level}/pragmatics`,
-    ...Object.keys(quotasFor(level)).map((skill) => `- \`de-selection-${level}-${skill}\` | \`SYNTHESIS\` | https://example.test/selection/${level}/${skill}`),
+    `- CEFR-2020-reception-${level}-anchor | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/reception`,
+    `- CEFR-2020-pragmatics-${level}-anchor | OFFICIAL_STANDARD | https://www.coe.int/cefr/${level}/pragmatics`,
+    ...Object.keys(quotasFor(level)).map((skill) => `- de-selection-${level}-${skill} | SYNTHESIS | https://www.goethe.de/selection/${level}/${skill}`),
   ]).join('\n');
   const write = (file, text) => { fs.mkdirSync(path.dirname(file), { recursive: true }); fs.writeFileSync(file, text, 'utf8'); };
   let nonceSequence = 0;

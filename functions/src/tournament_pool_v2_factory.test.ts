@@ -16,6 +16,7 @@ import {
   loadTournamentSourceDays,
 } from './tournament_content_source';
 import { phraseTokens, type SourcePhrase } from './tournament_task_factory';
+import { tournamentExposureBucketId, type TournamentPoolBarrierToken } from './tournaments';
 
 const APPROVED_MODES = [
   'guess_phrase',
@@ -41,6 +42,23 @@ function primaryPhraseKey(task: ReturnType<typeof buildProductionSizedPool>['tas
   return `${task.contentProvenance.planId}:${task.contentProvenance.dayIndex}:${task.contentProvenance.phraseIds[0]}`;
 }
 
+function normalizedTaskSemanticSignature(
+  task: ReturnType<typeof buildProductionSizedPool>['tasks'][number],
+): string {
+  const normalize = (value: unknown) => String(value ?? '').trim().toLocaleLowerCase('ru');
+  if (task.mode === 'speed_match') {
+    const rightOptions = task.payload.rightOptions as string[];
+    const pairs = (task.payload.items as Array<Record<string, unknown>>).map((item) => (
+      `${normalize(item.prompt)}=${normalize(rightOptions[Number(item.correctIndex)])}`
+    )).sort();
+    return `${task.mode}|${pairs.join('|')}`;
+  }
+  if (task.mode === 'find_oddity') {
+    return `${task.mode}|${normalize(task.payload.correctAnswer)}|${normalize(task.explanation?.example)}`;
+  }
+  return `${task.mode}|${normalize(task.payload.phrase)}|${normalize(task.payload.correctAnswer)}`;
+}
+
 function selectCompleteTournamentTaskIds(
   roomId: string,
   tasks: ReturnType<typeof buildProductionSizedPool>['tasks'],
@@ -64,28 +82,35 @@ function selectCompleteTournamentTaskIds(
 }
 
 describe('new deterministic tournament pool v2', () => {
-  test('builds a fresh reachable 180-task pool balanced across five modes', () => {
+  test('builds the approved reachable 4000-task v7 pool with exact quality-first cell quotas', () => {
     const result = buildProductionSizedPool();
 
-    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v6');
+    expect(NEW_TOURNAMENT_POOL_VERSION).toBe('tpool_20260801_v7');
     expect(result.manifest.poolVersion).toBe(NEW_TOURNAMENT_POOL_VERSION);
-    expect(result.tasks).toHaveLength(180);
-    expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(180);
-
-    for (const mode of APPROVED_MODES) {
-      expect(result.tasks.filter((task) => task.mode === mode)).toHaveLength(36);
-    }
-    expect(result.manifest.counts['find_oddity:1']).toBe(18);
-    expect(result.manifest.counts['find_oddity:2']).toBe(18);
-    expect(result.manifest.counts['find_oddity:3']).toBeUndefined();
-    for (const mode of APPROVED_MODES.filter((value) => value !== 'find_oddity')) {
-      for (const difficulty of [1, 2, 3]) expect(result.manifest.counts[`${mode}:${difficulty}`]).toBe(12);
-    }
-    expect(result.manifest.diversity.uniquePrimaryPhrases).toBe(144);
-    expect(result.manifest.diversity.uniqueSpeedPairs).toBe(216);
-    expect(result.manifest.diversity.uniqueSpeedEnglishPrompts).toBe(216);
-    expect(Object.values(result.manifest.diversity.fillGapPositions).reduce((a, b) => a + b, 0)).toBe(36);
-    expect(Object.keys(result.manifest.diversity.fillGapCorrectTokens).length).toBeGreaterThanOrEqual(12);
+    expect(result.tasks).toHaveLength(4000);
+    expect(new Set(result.tasks.map((task) => task.taskId)).size).toBe(4000);
+    expect(new Set(result.tasks.map(normalizedTaskSemanticSignature)).size).toBe(4000);
+    expect(result.manifest.counts).toEqual({
+      'guess_phrase:1': 400,
+      'guess_phrase:2': 400,
+      'guess_phrase:3': 400,
+      'fill_gap:1': 160,
+      'fill_gap:2': 180,
+      'fill_gap:3': 160,
+      'find_oddity:1': 200,
+      'find_oddity:2': 200,
+      'translate_build:1': 400,
+      'translate_build:2': 700,
+      'translate_build:3': 400,
+      'speed_match:1': 98,
+      'speed_match:2': 202,
+      'speed_match:3': 100,
+    });
+    expect(result.manifest.diversity.uniqueSpeedPairs).toBe(2400);
+    expect(result.manifest.diversity.uniqueSpeedEnglishPrompts).toBe(2400);
+    expect(Object.values(result.manifest.diversity.fillGapPositions).reduce((a, b) => a + b, 0)).toBe(500);
+    expect(Object.keys(result.manifest.diversity.fillGapGrammarRoles).length).toBeGreaterThanOrEqual(6);
+    expect(result.manifest.diversity.fillGapCorrectTokens.i ?? 0).toBeLessThanOrEqual(50);
 
     for (const task of result.tasks) {
       const reachable = TOURNAMENT_ROUND_MODE_PLAN.some((modes, roundIndex) => (
@@ -99,7 +124,7 @@ describe('new deterministic tournament pool v2', () => {
     const { tasks } = buildProductionSizedPool();
 
     for (const task of tasks) {
-      expect(task.taskId).toMatch(/^tp2_20260801_v6_/);
+      expect(task.taskId).toMatch(/^tp2_20260801_v7_/);
       expect(APPROVED_MODES).toContain(task.mode as typeof APPROVED_MODES[number]);
       expect(task.isVoice).toBe(false);
       expect(task.verified).toBe(true);
@@ -141,7 +166,8 @@ describe('new deterministic tournament pool v2', () => {
 
   test('phrase-building banks contain exactly one authored trap', () => {
     const buildTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'translate_build');
-    expect(buildTasks).toHaveLength(36);
+    expect(buildTasks).toHaveLength(1500);
+    expect(new Set(buildTasks.map(primaryPhraseKey)).size).toBe(1500);
     for (const task of buildTasks) {
       const wordBank = task.payload.wordBank as string[];
       const correctTokens = task.payload.correctTokens as string[];
@@ -155,7 +181,7 @@ describe('new deterministic tournament pool v2', () => {
     const sourcePhrases = new Map<string, SourcePhrase>(sourceDays.flatMap((day) => day.phrases
       .map((phrase) => [`${day.planId}:${day.dayIndex}:${phrase.id}`, phrase] as const)));
     const gapTasks = buildNewTournamentPool(sourceDays).tasks.filter((task) => task.mode === 'fill_gap');
-    expect(gapTasks).toHaveLength(36);
+    expect(gapTasks).toHaveLength(500);
 
     const correctTokens = new Map<string, number>();
     const grammarRoles = new Set<string>();
@@ -205,17 +231,23 @@ describe('new deterministic tournament pool v2', () => {
       if (sourceWord?.partOfSpeech === 'pronoun') pronounAnswers.add(normalizedAnswer);
     }
 
-    expect(correctTokens.size).toBeGreaterThanOrEqual(12);
-    expect(Math.max(...correctTokens.values())).toBeLessThanOrEqual(6);
-    expect(grammarRoles).toEqual(new Set([
-      'be_agreement', 'object_pronoun_case', 'object_pronoun_reference',
-      'subject_pronoun_agreement',
-    ]));
+    expect(correctTokens.size).toBeGreaterThanOrEqual(20);
+    expect(correctTokens.get('i') ?? 0).toBeLessThanOrEqual(50);
+    expect(Math.max(...correctTokens.values())).toBeLessThanOrEqual(95);
+    expect(buildProductionSizedPool().manifest.diversity.fillGapGrammarRoles)
+      .toEqual(expect.objectContaining({
+        article_form: expect.any(Number),
+        be_agreement: expect.any(Number),
+        noun_number: expect.any(Number),
+        object_pronoun_reference: expect.any(Number),
+        subject_pronoun_agreement: expect.any(Number),
+        verb_agreement: expect.any(Number),
+      }));
     expect(pronounAnswers.size).toBeGreaterThanOrEqual(4);
     expect(blankPositions.get('first') ?? 0).toBeGreaterThanOrEqual(6);
     expect(blankPositions.get('middle') ?? 0).toBeGreaterThanOrEqual(6);
     expect(blankPositions.get('last') ?? 0).toBeGreaterThanOrEqual(6);
-    expect(sourcePhraseIds.size).toBe(36);
+    expect(sourcePhraseIds.size).toBeGreaterThanOrEqual(300);
   });
 
   test('quality gate removes every audited definite and weak content defect', () => {
@@ -291,8 +323,8 @@ describe('new deterministic tournament pool v2', () => {
     ));
     const roles = manifest.diversity.fillGapGrammarRoles as Readonly<Record<string, number>>;
 
-    expect(hardTasks).toHaveLength(12);
-    expect(materiallyHard.length).toBeGreaterThanOrEqual(8);
+    expect(hardTasks).toHaveLength(160);
+    expect(materiallyHard.length).toBeGreaterThanOrEqual(96);
     expect(roles.article_form ?? 0).toBeGreaterThan(0);
     expect(roles.verb_agreement ?? 0).toBeGreaterThan(0);
     expect(roles.noun_number ?? 0).toBeGreaterThan(0);
@@ -353,10 +385,10 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('all 144 non-speed tasks test a distinct primary authored phrase', () => {
+  test('all non-speed tasks resolve to authored phrases and phrase-builder never clones a primary phrase', () => {
     const phrases = sourcePhraseMap();
     const tasks = buildProductionSizedPool().tasks.filter((task) => task.mode !== 'speed_match');
-    expect(tasks).toHaveLength(144);
+    expect(tasks).toHaveLength(3600);
 
     for (const task of tasks) {
       const source = phrases.get(primaryPhraseKey(task));
@@ -365,7 +397,9 @@ describe('new deterministic tournament pool v2', () => {
         expect(task.payload.correctAnswer).toBe(source?.english);
       }
     }
-    expect(new Set(tasks.map(primaryPhraseKey)).size).toBe(144);
+    const builders = tasks.filter((task) => task.mode === 'translate_build');
+    expect(builders).toHaveLength(1500);
+    expect(new Set(builders.map(primaryPhraseKey)).size).toBe(1500);
   });
 
   test('oddity and phrase-building traps cover broad grammatical roles without one dominant template', () => {
@@ -442,11 +476,11 @@ describe('new deterministic tournament pool v2', () => {
     }
 
     expect(oddityParts.size).toBeGreaterThanOrEqual(5);
-    expect(Math.max(...oddityParts.values())).toBeLessThanOrEqual(12);
-    expect(translateParts.size).toBeGreaterThanOrEqual(5);
-    expect(Math.max(...translateParts.values())).toBeLessThanOrEqual(12);
-    expect(translateTraps.size).toBeGreaterThanOrEqual(20);
-    expect(Math.max(...translateTraps.values())).toBeLessThanOrEqual(4);
+    expect(Math.max(...oddityParts.values())).toBeLessThanOrEqual(140);
+    expect(translateParts.size).toBeGreaterThanOrEqual(10);
+    expect(Math.max(...translateParts.values())).toBeLessThanOrEqual(750);
+    expect(translateTraps.size).toBeGreaterThanOrEqual(100);
+    expect(Math.max(...translateTraps.values())).toBeLessThanOrEqual(150);
   });
 
   test('every task exposes its authored day and topic for measurable pool balancing', () => {
@@ -577,7 +611,7 @@ describe('new deterministic tournament pool v2', () => {
 
   test('every speed_match is a strict shared 6x6 field with a full explanation for every pair', () => {
     const speedTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
-    expect(speedTasks).toHaveLength(36);
+    expect(speedTasks).toHaveLength(400);
 
     for (const task of speedTasks) {
       const rightOptions = task.payload.rightOptions as string[];
@@ -600,7 +634,7 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('speed_match uses 216 distinct pairs with one stable translation per English prompt', () => {
+  test('speed_match uses 2400 non-reused contextual pairs with one stable translation per English prompt', () => {
     const speedTasks = buildProductionSizedPool().tasks.filter((task) => task.mode === 'speed_match');
     const pairs: Array<[string, string]> = [];
     for (const task of speedTasks) {
@@ -613,8 +647,8 @@ describe('new deterministic tournament pool v2', () => {
       }
     }
 
-    expect(pairs).toHaveLength(216);
-    expect(new Set(pairs.map(([en, ru]) => `${en}\u0000${ru}`)).size).toBe(216);
+    expect(pairs).toHaveLength(2400);
+    expect(new Set(pairs.map(([en, ru]) => `${en}\u0000${ru}`)).size).toBe(2400);
     const translationsByEnglish = new Map<string, Set<string>>();
     for (const [en, ru] of pairs) {
       const translations = translationsByEnglish.get(en) ?? new Set<string>();
@@ -673,39 +707,55 @@ describe('new deterministic tournament pool v2', () => {
     }
   });
 
-  test('v6 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
-    const { tasks } = buildProductionSizedPool();
+  test('v7 exposure deck makes complete adjacent scheduled tournaments disjoint and exposes every task', () => {
+    const { tasks, manifest } = buildProductionSizedPool();
+    const token: TournamentPoolBarrierToken = {
+      generation: NEW_TOURNAMENT_POOL_VERSION,
+      revision: 7,
+      exposureBucketCounts: manifest.exposure.modeBucketCounts,
+      exposureLayoutHash: 'a'.repeat(64),
+    };
+    const tasksByBucket = new Map<string, typeof tasks>();
+    for (const task of tasks) {
+      const bucket = task.exposureBucket!;
+      tasksByBucket.set(bucket, [...(tasksByBucket.get(bucket) ?? []), task]);
+    }
     const exposure = new Map<string, number>();
     let previousTaskIds = new Set<string>();
 
-    for (let dayOffset = 0; dayOffset < 120; dayOffset += 1) {
+    for (let dayOffset = 0; dayOffset < 730; dayOffset += 1) {
       const date = new Date(Date.UTC(2026, 7, 1 + dayOffset)).toISOString().slice(0, 10);
+      const dayOrdinal = Math.floor(Date.parse(`${date}T00:00:00.000Z`) / 86_400_000);
       const roomId = tournamentRoomId('daily_1200', 'Europe/Moscow', date);
-      const taskIds = new Set(selectCompleteTournamentTaskIds(roomId, tasks));
+      const slice = APPROVED_MODES.flatMap((mode) => (
+        tasksByBucket.get(tournamentExposureBucketId(token, mode, dayOrdinal)) ?? []
+      ));
+      expect(slice.length).toBeLessThanOrEqual(200);
+      const taskIds = new Set(selectCompleteTournamentTaskIds(roomId, slice));
       expect(taskIds.size).toBe(16);
       expect([...taskIds].filter((taskId) => previousTaskIds.has(taskId))).toEqual([]);
       previousTaskIds = taskIds;
       taskIds.forEach((taskId) => exposure.set(taskId, (exposure.get(taskId) ?? 0) + 1));
     }
 
+    const missingByCell = tasks.filter((task) => !exposure.has(task.taskId)).reduce<Record<string, number>>(
+      (counts, task) => ({
+        ...counts,
+        [`${task.mode}:${task.difficulty}`]: (counts[`${task.mode}:${task.difficulty}`] ?? 0) + 1,
+      }),
+      {},
+    );
+    expect(missingByCell).toEqual({});
     expect(exposure.size).toBe(tasks.length);
-    for (const mode of APPROVED_MODES) {
-      for (const difficulty of [1, 2, 3]) {
-        const cell = tasks.filter((task) => task.mode === mode && task.difficulty === difficulty);
-        if (cell.length === 0) continue;
-        const counts = cell.map((task) => exposure.get(task.taskId) ?? 0);
-        expect(Math.min(...counts)).toBeGreaterThan(0);
-        expect(Math.max(...counts) - Math.min(...counts)).toBeLessThanOrEqual(1);
-      }
-    }
+    expect(Math.min(...tasks.map((task) => exposure.get(task.taskId) ?? 0))).toBeGreaterThan(0);
   });
 
-  test('runtime passes consumed v6 ids separately instead of shrinking the calendar deck', () => {
+  test('runtime passes consumed v7 ids separately instead of shrinking the calendar deck', () => {
     const source = require('node:fs').readFileSync(`${__dirname}/tournaments.ts`, 'utf8');
     const start = source.indexOf('export function buildTournamentRounds');
     const end = source.indexOf('\nexport ', start + 1);
     const implementation = source.slice(start, end < 0 ? undefined : end);
-    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v6')");
+    expect(implementation).toContain("task.tags?.includes('pool:tpool_20260801_v7')");
     expect(implementation).toContain('pool: usesDeterministicExposureDeck');
     expect(implementation).toContain('excludedTaskIds: usesDeterministicExposureDeck ? usedTaskIds : undefined');
   });

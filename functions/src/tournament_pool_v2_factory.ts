@@ -12,8 +12,25 @@ import {
 } from './tournament_task_factory';
 import { requiredCells } from './tournament_pool_plan';
 
-export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v6' as const;
-export const NEW_TOURNAMENT_POOL_TASKS_PER_MODE = 36;
+export const NEW_TOURNAMENT_POOL_VERSION = 'tpool_20260801_v7' as const;
+export const NEW_TOURNAMENT_POOL_CELL_QUOTAS: Readonly<Record<string, number>> = Object.freeze({
+  'guess_phrase:1': 400,
+  'guess_phrase:2': 400,
+  'guess_phrase:3': 400,
+  'fill_gap:1': 160,
+  'fill_gap:2': 180,
+  'fill_gap:3': 160,
+  'find_oddity:1': 200,
+  'find_oddity:2': 200,
+  'translate_build:1': 400,
+  'translate_build:2': 700,
+  'translate_build:3': 400,
+  'speed_match:1': 98,
+  'speed_match:2': 202,
+  'speed_match:3': 100,
+});
+export const NEW_TOURNAMENT_POOL_TASK_COUNT = 4000;
+export const NEW_TOURNAMENT_POOL_EXPOSURE_BUCKET_SIZE = 40;
 
 export const NEW_TOURNAMENT_POOL_MODES = [
   'guess_phrase',
@@ -29,11 +46,17 @@ export type NewTournamentTask = TournamentTask & {
   readonly source: 'ai';
   readonly lifecycle: 'published';
   readonly poolVersion: typeof NEW_TOURNAMENT_POOL_VERSION;
+  readonly exposureBucket?: string;
   readonly generationSource: 'author_content_deterministic_v1';
   readonly contentProvenance: {
     readonly planId: string;
     readonly dayIndex: number;
     readonly phraseIds: readonly string[];
+    readonly phraseRefs?: readonly {
+      readonly planId: string;
+      readonly dayIndex: number;
+      readonly phraseId: string;
+    }[];
   };
 };
 
@@ -45,6 +68,11 @@ export type NewTournamentPoolManifest = {
   readonly taskCount: number;
   readonly counts: Readonly<Record<string, number>>;
   readonly candidateCounts: Readonly<Record<string, number>>;
+  readonly exposure: {
+    readonly bucketMaxTasks: number;
+    readonly modeBucketCounts: Readonly<Record<string, number>>;
+    readonly bucketSizes: Readonly<Record<string, number>>;
+  };
   readonly diversity: {
     readonly uniquePrimaryPhrases: number;
     readonly uniqueSpeedPairs: number;
@@ -74,6 +102,8 @@ type AuthoredPair = {
 
 type AuthoredSpeedPair = AuthoredPair & {
   readonly phraseId: string;
+  readonly sourcePlanId: string;
+  readonly sourceDayIndex: number;
 };
 
 type WordMutation = {
@@ -125,11 +155,14 @@ type PoolCandidate = {
   readonly diversityAxes?: readonly string[];
   readonly speedPairKeys?: readonly string[];
   readonly speedEnglishKeys?: readonly string[];
+  readonly speedPackingLane?: 'global-disjoint';
   readonly fillGap?: FillGapCandidateMetadata;
 };
 
 type SelectionState = {
   readonly usedPrimaryPhrases: Set<string>;
+  readonly usedPrimaryModePhrases: Set<string>;
+  readonly usedSemanticSignatures: Set<string>;
   readonly usedSpeedPairs: Set<string>;
   readonly usedSpeedEnglish: Set<string>;
   readonly dayCounts: Map<string, number>;
@@ -288,6 +321,8 @@ function authoredSpeedPairs(day: SourceDay): AuthoredSpeedPair[] {
     pairs.push({
       ...pair,
       phraseId: pair.id,
+      sourcePlanId: String(day.planId),
+      sourceDayIndex: Number(day.dayIndex),
     });
   }
   return pairs;
@@ -301,7 +336,7 @@ function taskId(mode: NewPoolMode, difficulty: number, identity: string): string
     translate_build: 'build',
     speed_match: 'pairs',
   };
-  return `tp2_20260801_v6_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
+  return `tp2_20260801_v7_${shortMode[mode]}_d${difficulty}_${sha256(`${NEW_TOURNAMENT_POOL_VERSION}:${identity}`).slice(0, 20)}`;
 }
 
 function tags(day: SourceDay): string[] {
@@ -900,7 +935,7 @@ function buildSpeedMatchTask(
   });
   const first = itemPairs[0];
   const identity = pairs.map((pair) => `${normalize(pair.en)}=${normalize(pair.ru)}`).sort().join('|');
-  return baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}:${identity}`,
+  const task = baseTask(day, 'speed_match', `pairs:${day.planId}:${day.dayIndex}:${identity}`,
     pairs.map((pair) => pair.phraseId), {
       prompt: 'Соедините английские фразы с точными русскими переводами.',
       rightOptions,
@@ -910,6 +945,17 @@ function buildSpeedMatchTask(
       example: `${first.en} — ${first.ru}`,
       wrongOptionReasons: [],
     });
+  return {
+    ...task,
+    contentProvenance: {
+      ...task.contentProvenance,
+      phraseRefs: pairs.map((pair) => ({
+        planId: pair.sourcePlanId,
+        dayIndex: pair.sourceDayIndex,
+        phraseId: pair.phraseId,
+      })),
+    },
+  };
 }
 
 function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
@@ -941,6 +987,79 @@ function buildSpeedMatchCandidates(day: SourceDay): PoolCandidate[] {
   return candidates;
 }
 
+function buildGlobalDisjointSpeedCandidates(days: readonly SourceDay[]): PoolCandidate[] {
+  const dayByKey = new Map(days.map((day) => [`${day.planId}:${day.dayIndex}`, day] as const));
+  const reservedPairs = new Set<string>();
+  const reservedEnglish = new Set<string>();
+  const candidates: PoolCandidate[] = [];
+  for (const difficulty of [1, 3, 2]) {
+    const target = NEW_TOURNAMENT_POOL_CELL_QUOTAS[`speed_match:${difficulty}`] ?? 0;
+    const remaining = stableShuffle(days.filter((day) => poolDifficulty(day) === difficulty)
+      .flatMap(authoredSpeedPairs)
+      .filter((pair) => {
+        const pairKey = `${normalize(pair.en)}\u0000${normalize(pair.ru)}`;
+        return !reservedPairs.has(pairKey) && !reservedEnglish.has(normalize(pair.en));
+      }), `global-speed-pairs:d${difficulty}`);
+    for (let groupIndex = 0; groupIndex < target; groupIndex += 1) {
+      const group: AuthoredSpeedPair[] = [];
+      const groupRussian = new Set<string>();
+      for (let index = 0; index < remaining.length && group.length < 6;) {
+        const pair = remaining[index];
+        const pairKey = `${normalize(pair.en)}\u0000${normalize(pair.ru)}`;
+        const englishKey = normalize(pair.en);
+        const russianKey = normalize(pair.ru);
+        if (reservedPairs.has(pairKey) || reservedEnglish.has(englishKey) || groupRussian.has(russianKey)) {
+          index += 1;
+          continue;
+        }
+        group.push(pair);
+        groupRussian.add(russianKey);
+        remaining.splice(index, 1);
+      }
+      if (group.length !== 6) break;
+      for (const pair of group) {
+        reservedPairs.add(`${normalize(pair.en)}\u0000${normalize(pair.ru)}`);
+        reservedEnglish.add(normalize(pair.en));
+      }
+      const anchor = dayByKey.get(`${group[0].sourcePlanId}:${group[0].sourceDayIndex}`);
+      if (!anchor) throw new Error(`new_tournament_pool_speed_anchor_missing:d${difficulty}:${groupIndex}`);
+      const task = buildSpeedMatchTask(anchor, group);
+      if (!task) throw new Error(`new_tournament_pool_global_speed_invalid:d${difficulty}:${groupIndex}`);
+      candidates.push({
+        task,
+        dayKey: dayKey(anchor),
+        topicKey: `cross-day:d${difficulty}`,
+        speedPairKeys: group.map((pair) => `${normalize(pair.en)}\u0000${normalize(pair.ru)}`),
+        speedEnglishKeys: group.map((pair) => normalize(pair.en)),
+        speedPackingLane: 'global-disjoint',
+      });
+    }
+  }
+  return candidates;
+}
+
+function taskSemanticSignature(task: NewTournamentTask): string {
+  const normalized = (value: unknown): string => normalize(String(value ?? ''));
+  if (task.mode === 'speed_match') {
+    const rightOptions = Array.isArray(task.payload.rightOptions)
+      ? task.payload.rightOptions.map((value) => String(value))
+      : [];
+    const pairs = (Array.isArray(task.payload.items) ? task.payload.items : [])
+      .map((rawItem) => {
+        const item = rawItem && typeof rawItem === 'object' && !Array.isArray(rawItem)
+          ? rawItem as Record<string, unknown>
+          : {};
+        return `${normalized(item.prompt)}=${normalized(rightOptions[Number(item.correctIndex)])}`;
+      })
+      .sort();
+    return `${task.mode}|${pairs.join('|')}`;
+  }
+  if (task.mode === 'find_oddity') {
+    return `${task.mode}|${normalized(task.payload.correctAnswer)}|${normalized(task.explanation?.example)}`;
+  }
+  return `${task.mode}|${normalized(task.payload.phrase)}|${normalized(task.payload.correctAnswer)}`;
+}
+
 function selectDiverseCandidates(
   cell: readonly PoolCandidate[],
   count: number,
@@ -955,16 +1074,88 @@ function selectDiverseCandidates(
     candidate.speedPairKeys?.forEach((key) => speedPairFrequency.set(key, countOf(speedPairFrequency, key) + 1));
     candidate.speedEnglishKeys?.forEach((key) => speedEnglishFrequency.set(key, countOf(speedEnglishFrequency, key) + 1));
   }
+  const recordCandidate = (winner: PoolCandidate): void => {
+    if (winner.primaryPhraseKey) {
+      state.usedPrimaryPhrases.add(winner.primaryPhraseKey);
+      if (winner.task.mode === 'translate_build') {
+        state.usedPrimaryModePhrases.add(`${winner.task.mode}:${winner.primaryPhraseKey}`);
+      }
+    }
+    state.usedSemanticSignatures.add(taskSemanticSignature(winner.task));
+    winner.speedPairKeys?.forEach((key) => state.usedSpeedPairs.add(key));
+    winner.speedEnglishKeys?.forEach((key) => state.usedSpeedEnglish.add(key));
+    state.dayCounts.set(winner.dayKey, countOf(state.dayCounts, winner.dayKey) + 1);
+    state.topicCounts.set(winner.topicKey, countOf(state.topicCounts, winner.topicKey) + 1);
+    winner.diversityAxes?.forEach((axis) => (
+      state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1)
+    ));
+    if (winner.fillGap) {
+      const axes = [
+        `fill-position:${winner.fillGap.position}`,
+        `fill-token:${winner.fillGap.correctToken}`,
+        `fill-role:${winner.fillGap.grammarRole}`,
+      ];
+      for (const axis of axes) state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1);
+    }
+  };
+  if (cell.length > 0 && cell.every((candidate) => candidate.speedPairKeys)) {
+    const available = cell.filter((candidate) => (
+      !candidate.speedPairKeys?.some((key) => state.usedSpeedPairs.has(key))
+      && !candidate.speedEnglishKeys?.some((key) => state.usedSpeedEnglish.has(key))
+      && !state.usedSemanticSignatures.has(taskSemanticSignature(candidate.task))
+    ));
+    const globalLane = available.filter((candidate) => candidate.speedPackingLane === 'global-disjoint')
+      .sort((left, right) => left.task.taskId.localeCompare(right.task.taskId));
+    if (globalLane.length >= count) {
+      const laneSelection = globalLane.slice(0, count);
+      laneSelection.forEach(recordCandidate);
+      return laneSelection;
+    }
+    let best: PoolCandidate[] = [];
+    const attemptLimit = 128;
+    for (let attempt = 0; attempt < attemptLimit && best.length < count; attempt += 1) {
+      const ordered = [...available].sort((left, right) => {
+        if (attempt % 2 === 0) {
+          const conflictScore = (candidate: PoolCandidate): number => (
+            (candidate.speedPairKeys ?? []).reduce((sum, key) => sum + countOf(speedPairFrequency, key), 0)
+            + (candidate.speedEnglishKeys ?? []).reduce((sum, key) => sum + countOf(speedEnglishFrequency, key), 0)
+          );
+          const byConflict = conflictScore(left) - conflictScore(right);
+          if (byConflict !== 0) return byConflict;
+        }
+        return sha256(`speed-pack:${attempt}:${left.task.taskId}`)
+          .localeCompare(sha256(`speed-pack:${attempt}:${right.task.taskId}`));
+      });
+      const trial: PoolCandidate[] = [];
+      const usedPairs = new Set(state.usedSpeedPairs);
+      const usedEnglish = new Set(state.usedSpeedEnglish);
+      for (const candidate of ordered) {
+        if (candidate.speedPairKeys?.some((key) => usedPairs.has(key))
+          || candidate.speedEnglishKeys?.some((key) => usedEnglish.has(key))) continue;
+        trial.push(candidate);
+        candidate.speedPairKeys?.forEach((key) => usedPairs.add(key));
+        candidate.speedEnglishKeys?.forEach((key) => usedEnglish.add(key));
+        if (trial.length === count) break;
+      }
+      if (trial.length > best.length) best = trial;
+    }
+    best.forEach(recordCandidate);
+    return best;
+  }
 
   while (selected.length < count && remaining.length > 0) {
-    const eligible = remaining.filter((candidate) => {
-      if (candidate.primaryPhraseKey && state.usedPrimaryPhrases.has(candidate.primaryPhraseKey)) return false;
+    const isEligible = (candidate: PoolCandidate): boolean => {
+      if (candidate.fillGap
+        && countOf(state.axisCounts, `fill-token:${candidate.fillGap.correctToken}`) >= 95) return false;
+      if (candidate.primaryPhraseKey
+        && candidate.task.mode === 'translate_build'
+        && state.usedPrimaryModePhrases.has(`${candidate.task.mode}:${candidate.primaryPhraseKey}`)) return false;
+      if (state.usedSemanticSignatures.has(taskSemanticSignature(candidate.task))) return false;
       if (candidate.speedPairKeys?.some((key) => state.usedSpeedPairs.has(key))) return false;
       if (candidate.speedEnglishKeys?.some((key) => state.usedSpeedEnglish.has(key))) return false;
       return true;
-    });
-    if (eligible.length === 0) break;
-    eligible.sort((left, right) => {
+    };
+    const compareCandidates = (left: PoolCandidate, right: PoolCandidate): number => {
       if (left.speedPairKeys && right.speedPairKeys) {
         const conflictScore = (candidate: PoolCandidate): number => (
           (candidate.speedPairKeys ?? []).reduce((sum, key) => sum + countOf(speedPairFrequency, key), 0)
@@ -991,26 +1182,20 @@ function selectDiverseCandidates(
         || countOf(state.topicCounts, left.topicKey) - countOf(state.topicCounts, right.topicKey)
         || countOf(state.dayCounts, left.dayKey) - countOf(state.dayCounts, right.dayKey)
         || left.task.taskId.localeCompare(right.task.taskId);
-    });
-    const winner = eligible[0];
-    selected.push(winner);
-    if (winner.primaryPhraseKey) state.usedPrimaryPhrases.add(winner.primaryPhraseKey);
-    winner.speedPairKeys?.forEach((key) => state.usedSpeedPairs.add(key));
-    winner.speedEnglishKeys?.forEach((key) => state.usedSpeedEnglish.add(key));
-    state.dayCounts.set(winner.dayKey, countOf(state.dayCounts, winner.dayKey) + 1);
-    state.topicCounts.set(winner.topicKey, countOf(state.topicCounts, winner.topicKey) + 1);
-    winner.diversityAxes?.forEach((axis) => (
-      state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1)
-    ));
-    if (winner.fillGap) {
-      const axes = [
-        `fill-position:${winner.fillGap.position}`,
-        `fill-token:${winner.fillGap.correctToken}`,
-        `fill-role:${winner.fillGap.grammarRole}`,
-      ];
-      for (const axis of axes) state.axisCounts.set(axis, countOf(state.axisCounts, axis) + 1);
+    };
+    let winnerIndex = -1;
+    for (let index = 0; index < remaining.length; index += 1) {
+      const candidate = remaining[index];
+      if (!isEligible(candidate)) continue;
+      if (winnerIndex < 0 || compareCandidates(candidate, remaining[winnerIndex]) < 0) {
+        winnerIndex = index;
+      }
     }
-    remaining.splice(remaining.findIndex((candidate) => candidate.task.taskId === winner.task.taskId), 1);
+    if (winnerIndex < 0) break;
+    const winner = remaining[winnerIndex];
+    selected.push(winner);
+    recordCandidate(winner);
+    remaining.splice(winnerIndex, 1);
   }
   return selected;
 }
@@ -1071,7 +1256,44 @@ function allCandidates(days: readonly SourceDay[]): PoolCandidate[] {
     }
     candidates.push(...buildSpeedMatchCandidates(day));
   }
+  candidates.push(...buildGlobalDisjointSpeedCandidates(sortedDays));
   return candidates;
+}
+
+function assignExposureBuckets(tasks: readonly NewTournamentTask[]): {
+  tasks: NewTournamentTask[];
+  modeBucketCounts: Record<string, number>;
+  bucketSizes: Record<string, number>;
+} {
+  const assigned: NewTournamentTask[] = [];
+  const modeBucketCounts: Record<string, number> = {};
+  const bucketSizes: Record<string, number> = {};
+  for (const mode of NEW_TOURNAMENT_POOL_MODES) {
+    const modeTasks = tasks.filter((task) => task.mode === mode);
+    const bucketCount = Math.ceil(modeTasks.length / NEW_TOURNAMENT_POOL_EXPOSURE_BUCKET_SIZE);
+    if (bucketCount <= 0) throw new Error(`new_tournament_pool_bucket_count_invalid:${mode}`);
+    const buckets = Array.from({ length: bucketCount }, () => [] as NewTournamentTask[]);
+    let cursor = 0;
+    for (const difficulty of [1, 2, 3]) {
+      const cell = modeTasks.filter((task) => task.difficulty === difficulty)
+        .sort((left, right) => left.taskId.localeCompare(right.taskId));
+      for (const task of cell) {
+        buckets[cursor % bucketCount].push(task);
+        cursor += 1;
+      }
+    }
+    modeBucketCounts[mode] = bucketCount;
+    buckets.forEach((bucket, bucketIndex) => {
+      if (bucket.length === 0 || bucket.length > NEW_TOURNAMENT_POOL_EXPOSURE_BUCKET_SIZE) {
+        throw new Error(`new_tournament_pool_bucket_size_invalid:${mode}:${bucketIndex}:${bucket.length}`);
+      }
+      const exposureBucket = `${NEW_TOURNAMENT_POOL_VERSION}:${mode}:${String(bucketIndex).padStart(3, '0')}`;
+      bucketSizes[exposureBucket] = bucket.length;
+      bucket.forEach((task) => assigned.push({ ...task, exposureBucket }));
+    });
+  }
+  assigned.sort((left, right) => left.taskId.localeCompare(right.taskId));
+  return { tasks: assigned, modeBucketCounts, bucketSizes };
 }
 
 export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamentPoolResult {
@@ -1081,6 +1303,8 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
   const candidateCounts: Record<string, number> = {};
   const selectionState: SelectionState = {
     usedPrimaryPhrases: new Set(),
+    usedPrimaryModePhrases: new Set(),
+    usedSemanticSignatures: new Set(),
     usedSpeedPairs: new Set(),
     usedSpeedEnglish: new Set(),
     dayCounts: new Map(),
@@ -1090,6 +1314,7 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
 
   for (const mode of NEW_TOURNAMENT_POOL_MODES) {
     const modeCells = requiredCells([mode]).sort((left, right) => {
+      if (mode === 'fill_gap') return right.difficulty - left.difficulty;
       if (mode !== 'speed_match') return left.difficulty - right.difficulty;
       const uniquePairs = (difficulty: number): number => new Set(candidates
         .filter((candidate) => candidate.task.mode === mode && candidate.task.difficulty === difficulty)
@@ -1097,12 +1322,15 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       return uniquePairs(left.difficulty) - uniquePairs(right.difficulty)
         || left.difficulty - right.difficulty;
     });
-    if (modeCells.length === 0 || NEW_TOURNAMENT_POOL_TASKS_PER_MODE % modeCells.length !== 0) {
+    if (modeCells.length === 0) {
       throw new Error(`new_tournament_pool_cell_layout_invalid:${mode}:${modeCells.length}`);
     }
-    const target = NEW_TOURNAMENT_POOL_TASKS_PER_MODE / modeCells.length;
     for (const { difficulty } of modeCells) {
       const key = `${mode}:${difficulty}`;
+      const target = NEW_TOURNAMENT_POOL_CELL_QUOTAS[key];
+      if (!Number.isSafeInteger(target) || target <= 0) {
+        throw new Error(`new_tournament_pool_cell_quota_missing:${key}`);
+      }
       const cell = candidates.filter((candidate) => (
         candidate.task.mode === mode && candidate.task.difficulty === difficulty
       ));
@@ -1110,11 +1338,17 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       if (cell.length < target) {
         throw new Error(`new_tournament_pool_cell_shortfall:${key}:${cell.length}`);
       }
+      const selectionCell = mode === 'translate_build'
+        ? [...new Map([...cell].sort((left, right) => (
+          sha256(`translate-primary:${left.task.taskId}`)
+            .localeCompare(sha256(`translate-primary:${right.task.taskId}`))
+        )).map((candidate) => [candidate.primaryPhraseKey, candidate] as const)).values()]
+        : cell;
       const advancedFillGap = mode === 'fill_gap' && difficulty === 3
-        ? cell.filter((candidate) => candidate.fillGap
+        ? selectionCell.filter((candidate) => candidate.fillGap
           && ['article_form', 'verb_agreement', 'noun_number'].includes(candidate.fillGap.grammarRole))
         : [];
-      const advancedTarget = advancedFillGap.length > 0 ? Math.min(8, target) : 0;
+      const advancedTarget = advancedFillGap.length > 0 ? Math.ceil(target * 0.6) : 0;
       const selectedAdvanced = selectDiverseCandidates(
         advancedFillGap,
         advancedTarget,
@@ -1122,10 +1356,10 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       );
       const selected = [
         ...selectedAdvanced,
-        ...selectDiverseCandidates(cell, target - selectedAdvanced.length, selectionState),
+        ...selectDiverseCandidates(selectionCell, target - selectedAdvanced.length, selectionState),
       ];
       if (selected.length < target) {
-        const unusedSpeedPairs = new Set(cell.flatMap((candidate) => (candidate.speedPairKeys ?? [])
+        const unusedSpeedPairs = new Set(selectionCell.flatMap((candidate) => (candidate.speedPairKeys ?? [])
           .filter((pairKey) => !selectionState.usedSpeedPairs.has(pairKey))));
         throw new Error(`new_tournament_pool_diversity_shortfall:${key}:${selected.length}:${target}:unusedPairs=${unusedSpeedPairs.size}`);
       }
@@ -1140,13 +1374,20 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
   }
 
   tasks.sort((left, right) => left.taskId.localeCompare(right.taskId));
+  if (tasks.length !== NEW_TOURNAMENT_POOL_TASK_COUNT) {
+    throw new Error(`new_tournament_pool_task_count_invalid:${tasks.length}`);
+  }
   if (new Set(tasks.map((task) => task.taskId)).size !== tasks.length) {
     throw new Error('new_tournament_pool_task_id_collision');
   }
+  if (new Set(tasks.map(taskSemanticSignature)).size !== tasks.length) {
+    throw new Error('new_tournament_pool_semantic_signature_collision');
+  }
+  const exposure = assignExposureBuckets(tasks);
   const sourcePhrases = days.reduce((total, day) => total + (day.phrases?.length ?? 0), 0);
-  const contentSha256 = sha256(JSON.stringify(tasks));
+  const contentSha256 = sha256(JSON.stringify(exposure.tasks));
   return {
-    tasks,
+    tasks: exposure.tasks,
     manifest: {
       poolVersion: NEW_TOURNAMENT_POOL_VERSION,
       generationSource: 'author_content_deterministic_v1',
@@ -1155,6 +1396,11 @@ export function buildNewTournamentPool(days: readonly SourceDay[]): NewTournamen
       taskCount: tasks.length,
       counts,
       candidateCounts,
+      exposure: {
+        bucketMaxTasks: NEW_TOURNAMENT_POOL_EXPOSURE_BUCKET_SIZE,
+        modeBucketCounts: exposure.modeBucketCounts,
+        bucketSizes: exposure.bucketSizes,
+      },
       diversity: {
         uniquePrimaryPhrases: selectionState.usedPrimaryPhrases.size,
         uniqueSpeedPairs: selectionState.usedSpeedPairs.size,

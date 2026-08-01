@@ -18,13 +18,17 @@ and the project OpenAI API firewall.
 | `fill_gap` | 160 | 180 | 160 | 500 |
 | `find_oddity` | 200 | 200 | 0 | 400 |
 | `translate_build` | 400 | 700 | 400 | 1500 |
-| `speed_match` | 100 | 200 | 100 | 400 |
-| **Total** | **1260** | **1680** | **1060** | **4000** |
+| `speed_match` | 98 | 202 | 100 | 400 |
+| **Total** | **1258** | **1682** | **1060** | **4000** |
 
 This distribution stays below the currently measured quality-candidate ceilings:
 3219 guess, 726 fill-gap, 510 oddity, 39,030 phrase-builder, and 497 speed-match.
 The generator must fail rather than weaken a quality gate if the stronger uniqueness rules
 reduce any cell below its approved quota.
+
+The D1/D2 speed split reflects the measured no-reuse packing ceiling: all deterministic
+set-packing strategies reach 98 D1 six-pair sets without repeating a normalized pair. The two
+remaining tasks stay in D2 rather than weakening provenance or reusing speed pairs.
 
 ## Definition of unique
 

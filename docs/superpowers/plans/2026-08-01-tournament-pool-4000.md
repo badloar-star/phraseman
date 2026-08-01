@@ -27,7 +27,7 @@ expect(pool.manifest.counts).toEqual({
   'fill_gap:1': 160, 'fill_gap:2': 180, 'fill_gap:3': 160,
   'find_oddity:1': 200, 'find_oddity:2': 200,
   'translate_build:1': 400, 'translate_build:2': 700, 'translate_build:3': 400,
-  'speed_match:1': 100, 'speed_match:2': 200, 'speed_match:3': 100,
+  'speed_match:1': 98, 'speed_match:2': 202, 'speed_match:3': 100,
 });
 expect(new Set(pool.tasks.map(taskSemanticSignature)).size).toBe(4000);
 ```
@@ -56,7 +56,7 @@ export const NEW_TOURNAMENT_POOL_CELL_QUOTAS = Object.freeze({
   'fill_gap:1': 160, 'fill_gap:2': 180, 'fill_gap:3': 160,
   'find_oddity:1': 200, 'find_oddity:2': 200,
   'translate_build:1': 400, 'translate_build:2': 700, 'translate_build:3': 400,
-  'speed_match:1': 100, 'speed_match:2': 200, 'speed_match:3': 100,
+  'speed_match:1': 98, 'speed_match:2': 202, 'speed_match:3': 100,
 } as const);
 ```
 

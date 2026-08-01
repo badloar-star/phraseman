@@ -34,7 +34,8 @@ import { Image } from 'expo-image';
 import { oskolokImageForPackShards } from './oskolok';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { emitAppEvent, onAppEvent } from './events';
-import { DAILY_TASK_ACHIEVEMENT_ICONS, DAILY_TASK_ID_ACHIEVEMENT_ICONS } from './daily_task_achievement_icons';
+import { getDailyTaskAchievementIcon } from './daily_task_achievement_icons';
+import { dailyTaskBackgroundArt } from './daily_task_background_art';
 import { getDailyTaskCardPressIntent } from './daily_task_card_press_intent';
 import { lastOpenedLessonKey, quizNavLevelKey, storageStudyTarget } from './target_storage_keys';
 import { dailyPhraseContentAvailableForTarget, frenchDailyPhraseGateCopy } from './daily_phrase_target_gate';
@@ -2633,7 +2634,8 @@ export default function DailyTasksScreen() {
             const { title: taskTitle, desc: taskDesc } = localizedDailyTaskStrings(lang, task);
             const isPremiumTask = PREMIUM_TASK_TYPES.has(task.type);
             const meta = getDailyTaskUiMeta(task.type, lang);
-            const achievementIcon = DAILY_TASK_ID_ACHIEVEMENT_ICONS[task.id] ?? DAILY_TASK_ACHIEVEMENT_ICONS[task.type];
+            const achievementIcon = getDailyTaskAchievementIcon(task.type, task.id);
+            const taskCardArt = dailyTaskBackgroundArt(task.type);
             const taskAccent = isGoldTheme
                 ? goldTaskAccent(task.type, { completed, claimed })
                 : isBusinessTheme
@@ -2676,10 +2678,13 @@ export default function DailyTasksScreen() {
                 iconStyle={{ backgroundColor: taskIconPlateBg, borderColor: taskIconPlateBorder }}
                 emphasized={expandedTaskId === task.id}
                 onPress={completed || claimed ? undefined : () => handleTaskCardPress(task)}
-                icon={<Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" />}
+                icon={achievementIcon
+                  ? <Image source={achievementIcon} style={dailyTaskStyles.taskCapsuleHeroIcon} contentFit="contain" accessible={false} />
+                  : null}
                 background={<>
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleFill, taskFillSizeStyle, { backgroundColor: taskFillColor }]} />
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleGlow, { backgroundColor: taskSurfaceGlow }]} />
+                  {taskCardArt ? <Image source={taskCardArt} style={dailyTaskStyles.taskPortalArt} contentFit="contain" contentPosition="right center" accessible={false} /> : null}
                   <View pointerEvents="none" style={[dailyTaskStyles.taskCapsuleAccentBar, { backgroundColor: taskAccent }]} />
                 </>}
                 progress={<View style={[dailyTaskStyles.taskCapsuleBottomTrack, { backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : 'rgba(255,255,255,0.07)' }]}>
@@ -2962,6 +2967,14 @@ const dailyTaskStyles = StyleSheet.create({
         width: 45,
         height: 45,
         flexShrink: 0,
+    },
+    taskPortalArt: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        opacity: 0.48,
     },
     taskCapsuleRight: {
         minWidth: 100,

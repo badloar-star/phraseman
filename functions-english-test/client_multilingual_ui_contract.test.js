@@ -6,9 +6,11 @@ const vm = require('node:vm');
 
 const modulePath = path.resolve(__dirname, '../knowly-www/english-level-test/i18n.js');
 
-function loadI18n() {
+function loadI18n(globals = {}) {
   const source = fs.readFileSync(modulePath, 'utf8');
-  const context = vm.createContext({ URL, URLSearchParams });
+  const { localStorageGetter, ...values } = globals;
+  const context = vm.createContext({ URL, URLSearchParams, ...values });
+  if (localStorageGetter) Object.defineProperty(context, 'localStorage', { configurable: true, get: localStorageGetter });
   vm.runInContext(source, context, { filename: modulePath });
   return context.EnglishTestI18n;
 }
@@ -84,6 +86,17 @@ test('handles unavailable storage without accepting untrusted saved values', () 
   assert.deepEqual(saved, ['language_test_ui_locale_v1', 'en']);
 });
 
+test('uses browser localStorage for zero-argument locale persistence and catches inaccessible storage', () => {
+  let saved = null;
+  const i18n = loadI18n({ localStorage: { getItem: () => 'ru', setItem: (key, value) => { saved = [key, value]; } } });
+  assert.equal(i18n.readStoredLocale(), 'ru');
+  assert.equal(i18n.persistLocale('en'), true);
+  assert.deepEqual(saved, ['language_test_ui_locale_v1', 'en']);
+  const blocked = loadI18n({ localStorageGetter() { throw new Error('SecurityError'); } });
+  assert.equal(blocked.readStoredLocale(), null);
+  assert.equal(blocked.persistLocale('en'), false);
+});
+
 test('updates only allowlisted selection query values without navigation', () => {
   const i18n = loadI18n();
   let replaced = null;
@@ -140,6 +153,12 @@ test('provides explicit accessible text-only assessment copy for every planned s
     'loading.title', 'loading.text', 'error.title', 'error.text', 'error.retry',
     'name.placeholder', 'alerts.nameRequired', 'stats.correct', 'stats.answered', 'stats.time',
     'sharing.restart', 'sharing.copy', 'certificate.cta', 'footer.copyright', 'footer.terms', 'footer.privacy',
+    'header.brandHomeAria', 'header.brandSubtitle', 'landing.timerNote', 'landing.howItWorksLabel',
+    'landing.step1Title', 'landing.step1Body', 'landing.step2Title', 'landing.step2Body', 'landing.step3Title', 'landing.step3Body',
+    'landing.certificatePreviewLabel', 'landing.previewTitle', 'landing.previewBody', 'landing.previewSampleName',
+    'landing.trustLabel', 'landing.trustFree', 'landing.trustNoRegistration', 'landing.trustInstantResult',
+    'landing.finalCtaTitle', 'landing.finalCtaButton', 'footer.about', 'footer.privacyLabel',
+    'stats.skipped', 'result.pitchSubtitle', 'result.benefit1', 'result.benefit2', 'result.benefit3', 'aria.resultLevel',
   ];
   for (const locale of i18n.UI_LOCALES) {
     for (const key of REQUIRED_COPY_KEYS) assert.equal(typeof i18n.t(locale, key, { count: 1, correct: 1, answered: 1, language: 'English', level: 'A1' }), 'string', `${locale}.${key}`);
@@ -168,4 +187,17 @@ test('uses natural genitive result names and text-only level claims in both loca
   assert.doesNotMatch(i18n.t('ru', 'resultCta.low.text'), /English/);
   assert.match(i18n.t('ru', 'resultCta.low.text'), /английск/i);
   assert.match(i18n.t('en', 'resultCta.low.text'), /English/);
+});
+
+test('composes certificate completion copy with the assessed language for all five tests', () => {
+  const i18n = loadI18n();
+  for (const code of i18n.TEST_LANGUAGES) {
+    const testLanguage = i18n.TESTS[code];
+    const en = i18n.t('en', 'certificate.completed', { language: testLanguage.certificateNames.en });
+    const ru = i18n.t('ru', 'certificate.completed', { language: testLanguage.certificateNames.ru });
+    assert.ok(en.includes(testLanguage.certificateNames.en));
+    assert.ok(ru.includes(testLanguage.certificateNames.ru));
+  }
+  assert.equal(i18n.t('en', 'certificate.completed', { language: i18n.TESTS.de.certificateNames.en }), 'completed the Phraseman German Level Check');
+  assert.equal(i18n.t('ru', 'certificate.completed', { language: i18n.TESTS.de.certificateNames.ru }), 'за прохождение проверки уровня немецкого языка Phraseman');
 });

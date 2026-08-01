@@ -344,11 +344,26 @@ test('generic language bank builder preserves the frozen registry and English co
     path.join(ROOT, 'functions-english-test', 'data', 'questions.fr.json'),
   ]);
 
+  const sourceLevels = LEVELS.map(readLevel);
+  const canonical = Buffer.from(JSON.stringify({
+    schemaVersion: sourceLevels[0].schemaVersion,
+    bankVersion: sourceLevels[0].bankVersion,
+    language: 'en',
+    levels: LEVELS,
+    questions: sourceLevels.flatMap((data) => data.questions),
+  }, null, 2) + '\n', 'utf8');
   const generated = Buffer.from(bank.buildLanguageBank({ root: ROOT, language: 'en' }), 'utf8');
-  const expected = fs.readFileSync(
-    path.join(ROOT, 'knowly-www', 'english-level-test', 'data', 'questions.en.json'),
-  );
-  assert.deepEqual(generated, expected, 'builder output must match the canonical raw English bytes');
+  const outputs = bank.outputPathsFor(ROOT, 'en').map((output) => fs.readFileSync(output));
+  assert.deepEqual(generated, canonical, 'builder must preserve legacy JSON.stringify(..., null, 2) + LF bytes');
+  assert.deepEqual(outputs[0], canonical, 'web output must use canonical raw bytes');
+  assert.deepEqual(outputs[1], canonical, 'server output must use canonical raw bytes');
+  assert.equal(canonical.includes(Buffer.from('\r\n')), false, 'canonical output must not contain CRLF');
+});
+
+test('generated language test artifacts are protected from checkout line-ending conversion', () => {
+  const attributes = fs.readFileSync(path.join(ROOT, '.gitattributes'), 'utf8');
+  assert.match(attributes, /^knowly-www\/english-level-test\/data\/questions\.\*\.json text eol=lf$/m);
+  assert.match(attributes, /^functions-english-test\/data\/questions\.\*\.json text eol=lf$/m);
 });
 
 test('generic check rejects a one-byte line-ending drift without changing output bytes or mtimes', async () => {
@@ -375,7 +390,7 @@ test('generic check rejects a one-byte line-ending drift without changing output
     fs.copyFileSync(output, tempOutput);
   }
   const tempOutputs = bank.outputPathsFor(tempRoot, 'en');
-  fs.writeFileSync(tempOutputs[1], fs.readFileSync(tempOutputs[1]).toString('utf8').replace(/\r\n/g, '\n'), 'utf8');
+  fs.writeFileSync(tempOutputs[0], fs.readFileSync(tempOutputs[0]).toString('utf8').replace(/\n/g, '\r\n'), 'utf8');
   const driftBefore = tempOutputs.map((output) => ({
     bytes: fs.readFileSync(output),
     mtimeNs: fs.statSync(output, { bigint: true }).mtimeNs,

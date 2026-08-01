@@ -13,9 +13,6 @@ export const DIALECTS = Object.freeze({
   es: Object.freeze(['standard']),
 });
 
-// Canonical generated bank bytes use CRLF to match the checked-in English artifacts.
-const CANONICAL_EOL = '\r\n';
-
 const DIFFICULTY_RANGES = Object.freeze({
   A1: [0.5, 1.2],
   A2: [1.3, 2.2],
@@ -144,8 +141,7 @@ export function buildLanguageBank({ root, language }) {
     allQuestions.push(...questions);
   }
   if (allQuestions.length !== 240) throw new Error(`Total questions: ${allQuestions.length}, expected 240`);
-  return JSON.stringify({ schemaVersion, bankVersion, language, levels: LEVELS, questions: allQuestions }, null, 2)
-    .replace(/\n/g, CANONICAL_EOL) + CANONICAL_EOL;
+  return JSON.stringify({ schemaVersion, bankVersion, language, levels: LEVELS, questions: allQuestions }, null, 2) + '\n';
 }
 
 export function sha256(text) {

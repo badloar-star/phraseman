@@ -79,4 +79,26 @@ describe('DailyPhraseCard quest contract', () => {
     expect(source).toContain('getTodayPhraseForTarget(studyTarget, lang)');
     expect(source).not.toContain('subscribeTodayPhraseForTarget');
   });
+
+  it('preserves every localized literal, explanation, and example value in the detail and save flows', () => {
+    expect(source).toContain('{phraseCopy.literal}');
+    expect(source).toContain('{phraseCopy.meaning}');
+    expect(source).toContain('{phraseCopy.text}');
+    expect(source).toContain('literalRu={phrase.literal}');
+    expect(source).toContain('literalUk={phrase.literal_uk}');
+    expect(source).toContain('literalEs={phrase.literal_es}');
+    expect(source).toContain('explanationRu={phrase.text}');
+    expect(source).toContain('explanationUk={phrase.text_uk}');
+    expect(source).toContain('explanationEs={phrase.text_es}');
+    expect(source).toContain('exampleRu={phrase.example_ru}');
+    expect(source).toContain('exampleUk={phrase.example_uk}');
+    expect(source).toContain('exampleEs={phrase.example_es}');
+  });
+
+  it('numbers each quest option and presents the explanation as a dedicated story rail', () => {
+    expect(source).toContain('questOptions.map((option, optionIndex) =>');
+    expect(source).toContain('styles.optionMarker');
+    expect(source).toContain('{optionIndex + 1}');
+    expect(source).toContain('styles.explanationRail');
+  });
 });

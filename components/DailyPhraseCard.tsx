@@ -47,6 +47,14 @@ import { useStudyTarget } from './StudyTargetContext';
 import { useTheme } from './ThemeContext';
 import TonalSurface from './TonalSurface';
 
+declare module '../app/daily_phrase_system' {
+  interface DailyPhrase {
+    example_ru?: string;
+    example_uk?: string;
+    example_es?: string;
+  }
+}
+
 // Chrome (per-theme palette) now lives in app/daily_phrase_chrome.ts so the
 // home/lock-screen widget can render the identical look. See that file.
 
@@ -608,7 +616,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     })}
                   </Text>
                   <View style={styles.questOptions}>
-                    {questOptions.map((option) => (
+                    {questOptions.map((option, optionIndex) => (
                         <Pressable
                           key={option.id}
                           onPress={() => handleQuestOptionPress(option.id)}
@@ -623,6 +631,11 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                             pressed && styles.pressed,
                           ]}
                         >
+                          <View style={[styles.optionMarker, { backgroundColor: t.accent }]}>
+                            <Text style={[styles.optionMarkerText, { color: t.correctText, fontSize: f.caption }]}>
+                              {optionIndex + 1}
+                            </Text>
+                          </View>
                           <Text
                             style={[
                               styles.questOptionText,
@@ -674,7 +687,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                       </Text>
                     </Animated.View>
                   )}
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.literalBlock, { borderColor: t.border }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelLiteral}
                     </Text>
@@ -683,7 +696,7 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     </Text>
                   </TonalSurface>
 
-                  <TonalSurface radius={16} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.detailBlock, { borderColor: t.border }]}>
+                  <TonalSurface radius={18} tone="raised" backgroundColor={t.bgSurface2} style={[styles.detailBlock, styles.meaningBlock, { borderColor: t.accent }]}>
                     <Text style={[styles.detailLabel, { color: t.textMuted, fontSize: f.caption }]}>
                       {labelMeaning}
                     </Text>
@@ -692,9 +705,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                     </Text>
                   </TonalSurface>
 
-                  <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
-                    {phraseCopy.text}
-                  </Text>
+                  <TonalSurface radius={18} tone="subtle" backgroundColor={t.bgSurface2} style={[styles.explanationBlock, { borderColor: t.border }]}>
+                    <View style={[styles.explanationRail, { backgroundColor: t.accent }]} />
+                    <Text style={[styles.storyText, { color: t.textSecond, fontSize: f.body }]}>
+                      {phraseCopy.text}
+                    </Text>
+                  </TonalSurface>
                 </Animated.View>
               )}
             </ScrollView>
@@ -714,12 +730,12 @@ function DailyPhraseCard({ userLevel: _userLevel, variant = 'default' }: Props) 
                   literalRu={phrase.literal}
                   literalUk={phrase.literal_uk}
                   literalEs={phrase.literal_es}
-                  explanationRu={phrase.meaning}
-                  explanationUk={phrase.meaning_uk}
-                  explanationEs={phrase.meaning_es}
-                  exampleRu={phrase.text}
-                  exampleUk={phrase.text_uk}
-                  exampleEs={phrase.text_es}
+                  explanationRu={phrase.text}
+                  explanationUk={phrase.text_uk}
+                  explanationEs={phrase.text_es}
+                  exampleRu={phrase.example_ru}
+                  exampleUk={phrase.example_uk}
+                  exampleEs={phrase.example_es}
                 />
               </View>
             )}
@@ -980,6 +996,13 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     padding: 13,
   },
+  literalBlock: {
+    paddingVertical: 11,
+  },
+  meaningBlock: {
+    borderWidth: 1,
+    padding: 15,
+  },
   detailLabel: {
     fontWeight: '900',
     letterSpacing: 0.5,
@@ -993,6 +1016,18 @@ const styles = StyleSheet.create({
   storyText: {
     fontWeight: '500',
     lineHeight: 23,
+    flex: 1,
+  },
+  explanationBlock: {
+    borderWidth: 1,
+    flexDirection: 'row',
+    gap: 12,
+    padding: 15,
+  },
+  explanationRail: {
+    alignSelf: 'stretch',
+    borderRadius: 2,
+    width: 4,
   },
   questBlock: {
     borderRadius: 16,
@@ -1013,9 +1048,25 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     paddingHorizontal: 14,
     paddingVertical: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 11,
     justifyContent: 'center',
   },
+  optionMarker: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: 'center',
+    flexShrink: 0,
+    justifyContent: 'center',
+  },
+  optionMarkerText: {
+    fontWeight: '900',
+    lineHeight: 16,
+  },
   questOptionText: {
+    flex: 1,
     fontWeight: '800',
     lineHeight: 21,
   },

@@ -1,3 +1,5 @@
+import { HttpsError } from 'firebase-functions/v2/https';
+
 const REGION = 'us-central1';
 
 /**
@@ -25,6 +27,17 @@ function appCheckGroup(envVar: string): boolean {
 export const ENFORCE_APP_CHECK_SENSITIVE = appCheckGroup('ENFORCE_APP_CHECK_SENSITIVE');
 /** Платные OpenAI-функции (explain/dialog/weekly/stats) — включать ПОСЛЕДНИМИ, после прогрева. */
 export const ENFORCE_APP_CHECK_OPENAI = appCheckGroup('ENFORCE_APP_CHECK_OPENAI');
+
+/** Privileged writes must never inherit a rollout flag that can disable attestation. */
+export const ADMIN_SENSITIVE_WRITE_OPTIONS = {
+  region: REGION,
+  enforceAppCheck: true,
+} as const;
+
+/** Defense in depth for tests/emulators and any runtime path that bypasses option enforcement. */
+export function requireAdminAppCheck(request: { app?: unknown | null }): void {
+  if (!request.app) throw new HttpsError('failed-precondition', 'app_check_required');
+}
 
 export const HOT_CALLABLE_OPTIONS = {
   region: REGION,

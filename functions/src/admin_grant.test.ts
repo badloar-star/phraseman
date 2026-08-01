@@ -200,7 +200,8 @@ describe('admin absolute shard balance command contract', () => {
     const start = source.indexOf('export const adminSetShardBalance = onCall(');
     expect(start).toBeGreaterThan(-1);
     const body = source.slice(start);
-    expect(body).toContain('region: REGION, enforceAppCheck: ENFORCE_APP_CHECK');
+    expect(body).toContain('ADMIN_SENSITIVE_WRITE_OPTIONS');
+    expect(body).toContain('requireAdminAppCheck(request);');
     expect(body).toContain('requireRewardWriter(');
     expect(body).toContain('resolveCanonicalAdminAccessTarget(tx, db, input.uid)');
     expect(body).toContain('assertAdminShardBalanceReplay(');

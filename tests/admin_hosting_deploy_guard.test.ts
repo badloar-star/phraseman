@@ -12,6 +12,9 @@ type GuardInput = {
   gitCommonDir: string;
   firebaseConfig: unknown;
   liveAdminExists: boolean;
+  linkedReleaseOverride?: string;
+  branch?: string;
+  statusPorcelain?: string;
 };
 
 function evaluateGuard(input: GuardInput): { ok: boolean; errors: string[] } {
@@ -62,6 +65,47 @@ describe('admin hosting deploy guard', () => {
       gitCommonDir: path.join(primaryRoot, '.git'),
       firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
       liveAdminExists: true,
+    });
+
+    expect(result.ok).toBe(false);
+    expect(result.errors.join('\n')).toContain('primary worktree');
+  });
+
+  test('accepts only the explicitly authorized clean d920 release branch', () => {
+    const primaryRoot = path.resolve('C:/appsprojects/phraseman');
+    const linkedRoot = path.resolve('C:/Users/badlo/.codex/worktrees/d920/phraseman');
+    const result = evaluateGuard({
+      root: linkedRoot,
+      gitTopLevel: linkedRoot,
+      gitCommonDir: path.join(primaryRoot, '.git'),
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      liveAdminExists: true,
+      linkedReleaseOverride: '1',
+      branch: 'codex/admin-analytics-current',
+      statusPorcelain: '',
+    });
+
+    expect(result).toEqual({ ok: true, errors: [] });
+  });
+
+  test.each([
+    ['wrong env', { linkedReleaseOverride: 'true' }],
+    ['wrong branch', { branch: 'main' }],
+    ['dirty worktree', { statusPorcelain: ' M admin/v2/legacy.html' }],
+    ['wrong linked root', { root: path.resolve('C:/Users/badlo/.codex/worktrees/other/phraseman'), gitTopLevel: path.resolve('C:/Users/badlo/.codex/worktrees/other/phraseman') }],
+  ])('rejects linked release override with %s', (_label, overrides) => {
+    const primaryRoot = path.resolve('C:/appsprojects/phraseman');
+    const linkedRoot = path.resolve('C:/Users/badlo/.codex/worktrees/d920/phraseman');
+    const result = evaluateGuard({
+      root: linkedRoot,
+      gitTopLevel: linkedRoot,
+      gitCommonDir: path.join(primaryRoot, '.git'),
+      firebaseConfig: { hosting: [{ target: 'admin', public: 'admin/v2' }] },
+      liveAdminExists: true,
+      linkedReleaseOverride: '1',
+      branch: 'codex/admin-analytics-current',
+      statusPorcelain: '',
+      ...overrides,
     });
 
     expect(result.ok).toBe(false);

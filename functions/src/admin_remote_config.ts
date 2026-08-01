@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ADMIN_SENSITIVE_WRITE_OPTIONS, ENFORCE_APP_CHECK, requireAdminAppCheck } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 
@@ -74,9 +74,37 @@ export function mergeRemoteConfigBranches(
   return merged;
 }
 
+function stableFingerprintValue(value: unknown): unknown {
+  if (Array.isArray(value)) return value.map(stableFingerprintValue);
+  if (!isRecord(value)) return value;
+  return Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableFingerprintValue(value[key])]));
+}
+
+export function buildRemoteConfigRequestFingerprint(input: RemoteConfigRequest): string {
+  return JSON.stringify(stableFingerprintValue({
+    action: 'remote_config.publish',
+    entity: `remote_config/${REMOTE_CONFIG_ID}`,
+    expectedRevision: input.expectedRevision,
+    nextConfig: input.nextConfig,
+    reason: input.reason,
+    requestId: input.requestId,
+  }));
+}
+
+export function assertRemoteConfigReplay(
+  operation: Record<string, unknown>,
+  requestFingerprint: string,
+  actorUid: string,
+): void {
+  if (operation.requestFingerprint !== requestFingerprint || operation.actorUid !== actorUid) {
+    throw new HttpsError('already-exists', 'idempotencyKey replay does not match the original actor and command');
+  }
+}
+
 export const adminPublishRemoteConfig = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     if (!request.auth?.token?.admin) throw new HttpsError('permission-denied', 'Admin only');
     const input = parseRemoteConfigRequest(request.data);
     const actorUid = request.auth.uid;
@@ -90,14 +118,13 @@ export const adminPublishRemoteConfig = onCall(
     const auditRef = db.collection('admin_log').doc();
     const historyRef = db.collection('remote_config_history').doc();
     const now = new Date().toISOString();
+    const requestFingerprint = buildRemoteConfigRequestFingerprint(input);
 
     return db.runTransaction(async (tx) => {
       const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
       if (operationSnap.exists) {
         const previous = operationSnap.data() ?? {};
-        if (previous.requestFingerprint !== JSON.stringify(input.nextConfig)) {
-          throw new HttpsError('already-exists', 'idempotencyKey was already used for another payload');
-        }
+        assertRemoteConfigReplay(previous, requestFingerprint, actorUid);
         return {
           ok: true,
           auditId: String(previous.auditId ?? ''),
@@ -130,7 +157,8 @@ export const adminPublishRemoteConfig = onCall(
       tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
       tx.create(operationRef, {
         operationId: input.idempotencyKey,
-        requestFingerprint: JSON.stringify(input.nextConfig),
+        requestFingerprint,
+        actorUid,
         auditId: auditRef.id,
         revision: currentRevision + 1,
         createdAt: admin.firestore.FieldValue.serverTimestamp(),

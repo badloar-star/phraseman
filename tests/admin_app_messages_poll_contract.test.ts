@@ -37,7 +37,9 @@ describe('admin app messages poll contract', () => {
     expect(html).toMatch(/payload\.pollCounts = appMessageEmptyPollCounts\(poll\)/);
     expect(html).toMatch(/payload\.pollVoteCount = 0/);
     expect(html).toMatch(/payload\.pollResetAtMs = nowMs/);
-    expect(html).toMatch(/await resetAppMessagePollEngagement\(editId\)/);
+    expect(html).toContain('getAdminUpdateAppMessageCallable()');
+    expect(html).toContain('resetPollEngagement: shouldResetPollEngagement');
+    expect(html).not.toMatch(/await resetAppMessagePollEngagement\(editId\)/);
     expect(html).toMatch(/pollOptionId: deleteField\(\)/);
   });
 

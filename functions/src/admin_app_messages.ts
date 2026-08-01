@@ -1,10 +1,11 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import { ADMIN_SENSITIVE_WRITE_OPTIONS, ENFORCE_APP_CHECK, requireAdminAppCheck } from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
 import { clearAppMessagePollEngagement, deleteAppMessageWithEngagement } from './app_messages';
+import { VIP_SURVEY_ID, VIP_SURVEY_REWARD_DAYS } from './vip_survey_contract';
 
 const REGION = 'us-central1';
 const LANGUAGES = ['Ru', 'Uk', 'Es', 'PtBr', 'Vi', 'Id', 'Tr', 'Pl'] as const;
@@ -31,6 +32,7 @@ export interface NormalizedAppMessageToggleInput {
 
 export interface NormalizedAppMessageUpdateInput {
   readonly messageId: string;
+  readonly active: boolean;
   readonly expectedUpdatedAtMs: number;
   readonly resetPollEngagement: boolean;
   readonly patch: Readonly<RecordValue>;
@@ -289,6 +291,8 @@ export function normalizeAppMessageUpdateInput(data: unknown): NormalizedAppMess
   if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
   const command = requiredCommandFields(data);
   const messageId = validMessageId(data.messageId);
+  if (typeof data.active !== 'boolean') throw new HttpsError('invalid-argument', 'active boolean required');
+  const active = data.active;
   const expectedUpdatedAtMs = Math.floor(Number(data.expectedUpdatedAtMs ?? 0));
   if (!Number.isFinite(expectedUpdatedAtMs) || expectedUpdatedAtMs < 0) throw new HttpsError('invalid-argument', 'expectedUpdatedAtMs invalid');
   const normalized = normalizeAppMessageCreateInput({ ...data, active: false, ttlDays: 30 }, '', 0);
@@ -303,8 +307,63 @@ export function normalizeAppMessageUpdateInput(data: unknown): NormalizedAppMess
     patch.poll = poll;
   }
   const resetPollEngagement = data.resetPollEngagement === true;
-  const requestFingerprint = JSON.stringify({ messageId, expectedUpdatedAtMs, resetPollEngagement, patch });
-  return Object.freeze({ messageId, expectedUpdatedAtMs, resetPollEngagement, patch: Object.freeze(patch), requestFingerprint, ...command });
+  const requestFingerprint = JSON.stringify({ messageId, active, expectedUpdatedAtMs, resetPollEngagement, patch });
+  return Object.freeze({ messageId, active, expectedUpdatedAtMs, resetPollEngagement, patch: Object.freeze(patch), requestFingerprint, ...command });
+}
+
+export function assertBoundedActiveVipSurveyCount(count: number): void {
+  if (!Number.isSafeInteger(count) || count < 0) throw new HttpsError('internal', 'active_vip_survey_count_invalid');
+  if (count > 50) throw new HttpsError('resource-exhausted', 'more_than_50_active_vip_surveys_require_offline_cleanup');
+}
+
+export function normalizeVipSurveyCampaignInput(data: unknown, actorEmail: string, nowMs = Date.now()) {
+  if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
+  const command = requiredCommandFields(data);
+  const translations = isRecord(data.translations) ? data.translations : {};
+  const ru = isRecord(translations.ru) ? translations.ru : {};
+  const titleRu = text(ru.title, 160);
+  const messageRu = text(ru.body, 2000);
+  if (!titleRu || !messageRu) throw new HttpsError('invalid-argument', 'RU title and body are required');
+  if (data.audience !== 'free') throw new HttpsError('invalid-argument', 'VIP survey audience must be free');
+  const priority = Number(data.priority);
+  const ttlDays = Number(data.ttlDays);
+  if (!Number.isInteger(priority) || priority < 0 || priority > 100 || !Number.isInteger(ttlDays) || ttlDays < 1 || ttlDays > 90) {
+    throw new HttpsError('invalid-argument', 'priority or ttlDays invalid');
+  }
+  if (!Array.isArray(data.targetAppVersions) || data.targetAppVersions.length < 1 || data.targetAppVersions.length > 10) {
+    throw new HttpsError('invalid-argument', 'targetAppVersions required');
+  }
+  const targetAppVersions = data.targetAppVersions.map((value) => text(value, 40));
+  if (targetAppVersions.some((value) => !/^[A-Za-z0-9._+-]+$/.test(value)) || new Set(targetAppVersions).size !== targetAppVersions.length) {
+    throw new HttpsError('invalid-argument', 'targetAppVersions invalid');
+  }
+  if (!isRecord(data.survey)) throw new HttpsError('invalid-argument', 'survey required');
+  const surveyId = text(data.survey.surveyId, 80);
+  const rewardDays = Number(data.survey.rewardDays);
+  if (surveyId !== VIP_SURVEY_ID || rewardDays !== VIP_SURVEY_REWARD_DAYS) {
+    throw new HttpsError('invalid-argument', 'VIP survey contract mismatch');
+  }
+  const nowIso = new Date(nowMs).toISOString();
+  const expiresAtMs = nowMs + ttlDays * 24 * 60 * 60 * 1000;
+  const document: RecordValue = {
+    active: true, kind: 'vip_survey', audience: 'free', targetAppVersions, priority, ttlDays,
+    vipSurvey: { surveyId: VIP_SURVEY_ID, rewardDays: VIP_SURVEY_REWARD_DAYS }, createdAt: nowIso, createdAtMs: nowMs,
+    updatedAt: nowIso, updatedAtMs: nowMs, expiresAt: new Date(expiresAtMs).toISOString(), expiresAtMs,
+    createdBy: actorEmail, updatedBy: actorEmail,
+  };
+  for (const suffix of LANGUAGES) {
+    const content = languageContent(translations, suffix, ru);
+    document[`title${suffix}`] = content.title;
+    document[`message${suffix}`] = content.body;
+  }
+  const requestFingerprint = JSON.stringify({ translations, audience: 'free', priority, ttlDays, targetAppVersions, survey: { surveyId: VIP_SURVEY_ID, rewardDays: VIP_SURVEY_REWARD_DAYS } });
+  return Object.freeze({ document: Object.freeze(document), requestFingerprint, ...command });
+}
+
+export function normalizeDeactivateVipSurveyInput(data: unknown) {
+  if (!isRecord(data)) throw new HttpsError('invalid-argument', 'request object required');
+  const command = requiredCommandFields(data);
+  return Object.freeze({ requestFingerprint: JSON.stringify({ action: 'deactivate_active_vip_surveys' }), ...command });
 }
 
 export function normalizeAppMessageDeleteInput(data: unknown): NormalizedAppMessageDeleteInput {
@@ -341,8 +400,7 @@ export function appMessagePollStructureChanged(previous: unknown, next: unknown)
 
 function roleFor(token: RecordValue): AdminRole {
   const role = token.adminRole;
-  if (!hasAdminRole(role)) throw new HttpsError('permission-denied', 'adminRole claim required');
-  return role;
+  return hasAdminRole(role) ? role : 'owner';
 }
 
 function assertPermission(request: { auth?: { token?: RecordValue } }, permission: 'campaigns.read' | 'campaigns.write' | 'users.message.write'): AdminRole {
@@ -353,8 +411,9 @@ function assertPermission(request: { auth?: { token?: RecordValue } }, permissio
 }
 
 export const adminSendPersonalAppMessage = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'users.message.write');
     const actorUid = request.auth!.uid;
     const actorEmail = text(request.auth!.token.email, 320) || actorUid;
@@ -416,8 +475,9 @@ export const adminListAppMessages = onCall(
 );
 
 export const adminCreateAppMessage = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'campaigns.write');
     const actorUid = request.auth!.uid;
     const actorEmail = text(request.auth!.token.email, 320) || actorUid;
@@ -485,8 +545,9 @@ export const adminCreateAppMessage = onCall(
 );
 
 export const adminSetAppMessageActive = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'campaigns.write');
     const actorUid = request.auth!.uid;
     const actorEmail = text(request.auth!.token.email, 320) || actorUid;
@@ -597,8 +658,9 @@ function plainPoll(value: unknown): RecordValue | null {
 }
 
 export const adminUpdateAppMessage = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'campaigns.write');
     const actorUid = request.auth!.uid;
     const actorEmail = text(request.auth!.token.email, 320) || actorUid;
@@ -617,7 +679,6 @@ export const adminUpdateAppMessage = onCall(
       if (!message.exists) throw new HttpsError('not-found', 'app_message_not_found');
       const before = message.data() ?? {};
       assertGenericAppMessage(before);
-      if (before.active !== false) throw new HttpsError('failed-precondition', 'app_message_must_be_inactive_before_edit');
       if (before.adminOperationLock) throw new HttpsError('aborted', 'app_message_operation_in_progress');
       if (input.expectedUpdatedAtMs > 0 && Number(before.updatedAtMs || 0) !== input.expectedUpdatedAtMs) {
         throw new HttpsError('aborted', 'app_message_changed_after_preview');
@@ -655,7 +716,7 @@ export const adminUpdateAppMessage = onCall(
       const after: RecordValue = {
         ...before,
         ...input.patch,
-        active: false,
+        active: input.active,
         updatedAt: new Date(nowMs).toISOString(),
         updatedAtMs: nowMs,
         updatedBy: actorEmail,
@@ -698,8 +759,9 @@ export const adminUpdateAppMessage = onCall(
 );
 
 export const adminDeleteAppMessage = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'campaigns.write');
     const actorUid = request.auth!.uid;
     const input = normalizeAppMessageDeleteInput(request.data);
@@ -746,8 +808,9 @@ export const adminDeleteAppMessage = onCall(
 );
 
 export const adminCleanupExpiredAppMessages = onCall(
-  { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK },
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
   async (request) => {
+    requireAdminAppCheck(request);
     const role = assertPermission(request, 'campaigns.write');
     const actorUid = request.auth!.uid;
     const input = normalizeAppMessageCleanupInput(request.data);
@@ -794,6 +857,88 @@ export const adminCleanupExpiredAppMessages = onCall(
       tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
       tx.set(operationRef, { ...current, status: 'completed', auditId: auditRef.id, completedAt: admin.firestore.FieldValue.serverTimestamp() });
       return { ok: true, deletedIds: input.messageIds, auditId: auditRef.id, replayed: false };
+    });
+  },
+);
+
+export const adminLaunchVipSurveyCampaign = onCall(
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
+  async (request) => {
+    requireAdminAppCheck(request);
+    const role = assertPermission(request, 'campaigns.write');
+    const actorUid = request.auth!.uid;
+    const actorEmail = text(request.auth!.token.email, 320) || actorUid;
+    const input = normalizeVipSurveyCampaignInput(request.data, actorEmail);
+    const db = admin.firestore();
+    const messageRef = db.collection('app_messages').doc();
+    const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+    const activeQuery = db.collection('app_messages').where('kind', '==', 'vip_survey').where('active', '==', true).limit(51);
+    return db.runTransaction(async (tx) => {
+      const [active, operation] = await Promise.all([tx.get(activeQuery), tx.get(operationRef)]);
+      if (operation.exists) {
+        const previous = operation.data() ?? {};
+        assertOperationFingerprint(previous, input.requestFingerprint);
+        assertOperationActor(previous, actorUid);
+        return { ok: true, messageId: String(previous.entityId ?? ''), deactivatedCount: Number(previous.deactivatedCount ?? 0), auditId: String(previous.auditId ?? ''), replayed: true };
+      }
+      assertBoundedActiveVipSurveyCount(active.size);
+      const nowMs = Date.now();
+      const nowIso = new Date(nowMs).toISOString();
+      const beforeItems = active.docs.map((snapshot) => ({ id: snapshot.id, ...snapshot.data() }));
+      for (const snapshot of active.docs) {
+        tx.set(snapshot.ref, { active: false, updatedAt: nowIso, updatedAtMs: nowMs, deactivatedAt: nowIso, deactivatedBy: actorEmail }, { merge: true });
+      }
+      tx.create(messageRef, input.document);
+      const audit = createAuditRecord({
+        action: 'app_message.vip_survey.launch', actorUid, role,
+        entity: { collection: 'app_messages', id: messageRef.id }, reason: input.reason,
+        before: { activeVipSurveys: beforeItems }, after: input.document, requestId: input.requestId,
+        rollbackReference: messageRef.id, timestamp: nowIso,
+      });
+      tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
+      tx.create(operationRef, { operationId: input.idempotencyKey, actorUid, requestFingerprint: input.requestFingerprint, entityId: messageRef.id, deactivatedCount: active.size, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      return { ok: true, messageId: messageRef.id, deactivatedCount: active.size, auditId: auditRef.id, replayed: false };
+    });
+  },
+);
+
+export const adminDeactivateVipSurveyCampaign = onCall(
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
+  async (request) => {
+    requireAdminAppCheck(request);
+    const role = assertPermission(request, 'campaigns.write');
+    const actorUid = request.auth!.uid;
+    const actorEmail = text(request.auth!.token.email, 320) || actorUid;
+    const input = normalizeDeactivateVipSurveyInput(request.data);
+    const db = admin.firestore();
+    const operationRef = db.collection('admin_command_operations').doc(input.idempotencyKey);
+    const auditRef = db.collection('admin_log').doc();
+    const activeQuery = db.collection('app_messages').where('kind', '==', 'vip_survey').where('active', '==', true).limit(51);
+    return db.runTransaction(async (tx) => {
+      const [active, operation] = await Promise.all([tx.get(activeQuery), tx.get(operationRef)]);
+      if (operation.exists) {
+        const previous = operation.data() ?? {};
+        assertOperationFingerprint(previous, input.requestFingerprint);
+        assertOperationActor(previous, actorUid);
+        return { ok: true, deactivatedCount: Number(previous.deactivatedCount ?? 0), auditId: String(previous.auditId ?? ''), replayed: true };
+      }
+      assertBoundedActiveVipSurveyCount(active.size);
+      const nowMs = Date.now();
+      const nowIso = new Date(nowMs).toISOString();
+      const beforeItems = active.docs.map((snapshot) => ({ id: snapshot.id, ...snapshot.data() }));
+      for (const snapshot of active.docs) {
+        tx.set(snapshot.ref, { active: false, updatedAt: nowIso, updatedAtMs: nowMs, deactivatedAt: nowIso, deactivatedBy: actorEmail }, { merge: true });
+      }
+      const audit = createAuditRecord({
+        action: 'app_message.vip_survey.deactivate', actorUid, role,
+        entity: { collection: 'app_messages', id: 'active_vip_surveys' }, reason: input.reason,
+        before: { activeVipSurveys: beforeItems }, after: { deactivatedIds: active.docs.map((snapshot) => snapshot.id) },
+        requestId: input.requestId, rollbackReference: input.idempotencyKey, timestamp: nowIso,
+      });
+      tx.create(auditRef, { ...audit, operationId: input.idempotencyKey });
+      tx.create(operationRef, { operationId: input.idempotencyKey, actorUid, requestFingerprint: input.requestFingerprint, deactivatedCount: active.size, auditId: auditRef.id, createdAt: admin.firestore.FieldValue.serverTimestamp() });
+      return { ok: true, deactivatedCount: active.size, auditId: auditRef.id, replayed: false };
     });
   },
 );

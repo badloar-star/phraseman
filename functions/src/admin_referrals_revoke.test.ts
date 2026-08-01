@@ -37,7 +37,8 @@ describe('admin referral revocation', () => {
   });
 
   it('implements an AppCheck, permission, idempotency, transaction and audit boundary', () => {
-    expect(source).toContain('export const adminRevokeReferralAttribution = onCall(CALLABLE_BASE');
+    expect(source).toContain('export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS');
+    expect(source).toContain('requireAdminAppCheck(request);');
     expect(source).toContain("roleFromAdminToken(request.auth?.token)");
     expect(source).toContain("hasPermission(role, 'users.write')");
     expect(source).toContain('referralCreditId(refereeStableId)');

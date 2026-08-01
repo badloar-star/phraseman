@@ -13870,6 +13870,38 @@
     }
     return _fnAdminSetShardBalance;
   }
+  const _adminUserOperationCallables = {};
+  function getAdminUserOperationCallable(name) {
+    if (!_adminUserOperationCallables[name]) {
+      _adminUserOperationCallables[name] = httpsCallable(functionsUs, name);
+    }
+    return _adminUserOperationCallables[name];
+  }
+  function getAdminUpdateUserProfileFieldCallable() { return getAdminUserOperationCallable('adminUpdateUserProfileField'); }
+  function getAdminWarnUserCallable() { return getAdminUserOperationCallable('adminWarnUser'); }
+  function getAdminResolveUserReportCallable() { return getAdminUserOperationCallable('adminResolveUserReport'); }
+  function getAdminRequestUserMergeCallable() { return getAdminUserOperationCallable('adminRequestUserMerge'); }
+  function getAdminDeleteDuplicateUserCallable() { return getAdminUserOperationCallable('adminDeleteDuplicateUser'); }
+  function getAdminMigrateLegacyAdminPremiumCallable() { return getAdminUserOperationCallable('adminMigrateLegacyAdminPremium'); }
+  function getAdminResetUserProgressCallable() { return getAdminUserOperationCallable('adminResetUserProgress'); }
+  const _adminSensitiveControlCallables = {};
+  function getAdminSensitiveControlCallable(name) {
+    if (!_adminSensitiveControlCallables[name]) _adminSensitiveControlCallables[name] = httpsCallable(functionsUs, name);
+    return _adminSensitiveControlCallables[name];
+  }
+  function getAdminCreateAppMessageCallable() { return getAdminSensitiveControlCallable('adminCreateAppMessage'); }
+  function getAdminSetAppMessageActiveCallable() { return getAdminSensitiveControlCallable('adminSetAppMessageActive'); }
+  function getAdminUpdateAppMessageCallable() { return getAdminSensitiveControlCallable('adminUpdateAppMessage'); }
+  function getAdminDeleteAppMessageCallable() { return getAdminSensitiveControlCallable('adminDeleteAppMessage'); }
+  function getAdminCleanupExpiredAppMessagesCallable() { return getAdminSensitiveControlCallable('adminCleanupExpiredAppMessages'); }
+  function getAdminLaunchVipSurveyCampaignCallable() { return getAdminSensitiveControlCallable('adminLaunchVipSurveyCampaign'); }
+  function getAdminDeactivateVipSurveyCampaignCallable() { return getAdminSensitiveControlCallable('adminDeactivateVipSurveyCampaign'); }
+  function getAdminGetAdminConfigWorkspaceCallable() { return getAdminSensitiveControlCallable('adminGetAdminConfigWorkspace'); }
+  function getAdminPublishNavLayoutCallable() { return getAdminSensitiveControlCallable('adminPublishNavLayout'); }
+  function getAdminPublishAlertsConfigCallable() { return getAdminSensitiveControlCallable('adminPublishAlertsConfig'); }
+  function getAdminTestAlertsCallable() { return getAdminSensitiveControlCallable('adminTestAlerts'); }
+  function getAdminResetLeaguePointsCallable() { return getAdminSensitiveControlCallable('adminResetLeaguePoints'); }
+  function getAdminMoveLeagueUserCallable() { return getAdminSensitiveControlCallable('adminMoveLeagueUser'); }
   let _fnAdminRevokeReferralAttribution = null;
   function getAdminRevokeReferralAttributionCallable() {
     if (!_fnAdminRevokeReferralAttribution) {
@@ -17242,9 +17274,17 @@
     if(val === null) return;
     const u = window._users.find(x=>x.uid===uid);
     if(!u) return;
+    const allowedFields = new Set(['user_name', 'user_total_xp', 'streak_count', 'premium_plan']);
+    if (!allowedFields.has(field)) { showToast('Это поле нельзя менять из админки', 'err'); return; }
+    const reason = String(await showInputModal({
+      title: `Причина изменения: ${label}`,
+      desc: 'Обязательная причина попадёт в защищённый журнал действий.',
+      defaultVal: '', multiline: true, confirmLabel: 'Применить',
+    }) || '').trim();
+    if (!reason) return;
     try {
       const numericFields = ['user_total_xp','streak_count'];
-      let writeVal = numericFields.includes(field) ? (parseInt(val)||0) : val;
+      const writeVal = numericFields.includes(field) ? Number(String(val).trim()) : String(val).trim();
       if (field === 'premium_plan') {
         const normalized = String(val || '').trim().toLowerCase();
         const allowed = new Set(['monthly', 'annual', 'yearly', 'null', '']);
@@ -17252,30 +17292,38 @@
           showToast('Plus: monthly / annual / yearly / null. Для админской выдачи используй Plus.', 'err');
           return;
         }
-        writeVal = normalized === '' || normalized === 'null' ? '' : normalized;
-      }
-      const progressFields = ['user_name','user_total_xp','streak_count','premium_plan'];
-      if(progressFields.includes(field)) {
-        const updateData = { [`progress.${field}`]: writeVal };
-        await updateDoc(doc(db, 'users', uid), updateData);
-        u.raw[field] = writeVal;
-        if (field === 'premium_plan') {
-          if (!writeVal) {
-            delete u.raw.premium_expiry;
-            u.premiumExpiry = 0;
-          } else {
-            u.raw.premium_expiry = '0';
-            u.premiumExpiry = 0;
-          }
+        const active = normalized !== '' && normalized !== 'null';
+        const durationDays = normalized === 'monthly' ? 30 : active ? 365 : 0;
+        const response = await getAdminGrantAccessCallable()({
+          uid, kind: 'premium', active, durationDays, reason,
+          requestId: createAdminCommandId('profile_premium_request'),
+          idempotencyKey: createAdminCommandId('profile_premium_operation'),
+        });
+        if (!response || !response.data || response.data.ok !== true || response.data.active !== active) {
+          throw new Error('Сервер не подтвердил изменение ручного Plus-доступа');
         }
-        if(field==='user_name') u.name = val;
-        if(field==='user_total_xp') u.xp = parseInt(val)||0;
-        if(field==='streak_count') u.streak = parseInt(val)||0;
-        if(field==='premium_plan') u.premium = writeVal || null;
+        const writeUid = String(response.data.uid || '');
+        if (!writeUid) throw new Error('Сервер не вернул UID ручного Plus-доступа');
+        const writeUser = _cachedUser(writeUid) || u;
+        writeUser.raw = writeUser.raw || {};
+        writeUser.raw.admin_premium_override = active ? 'true' : 'false';
+        writeUser.premium = active ? 'admin_grant' : null;
       } else {
-        await updateDoc(doc(db, 'users', uid), { [field]: writeVal });
+        const response = await getAdminUpdateUserProfileFieldCallable()({
+          uid, field, value: writeVal, reason,
+          requestId: createAdminCommandId('profile_field_request'),
+          idempotencyKey: createAdminCommandId('profile_field_operation'),
+        });
+        if (!response || !response.data || response.data.ok !== true || response.data.field !== field) {
+          throw new Error('Сервер не подтвердил изменение профиля');
+        }
+        const confirmed = response.data.value;
+        u.raw = u.raw || {};
+        u.raw[field] = confirmed;
+        if(field==='user_name') u.name = String(confirmed);
+        if(field==='user_total_xp') u.xp = Number(confirmed);
+        if(field==='streak_count') u.streak = Number(confirmed);
       }
-      logAction('edit_field', uid, { field, old: currentVal, new: writeVal });
       openDetail(uid);
       renderTable();
       showToast('✅ Сохранено');
@@ -17478,9 +17526,17 @@
   window.warnUserDirect = async function(uid, name) {
     const msg = await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь в приложении (жёлтая модалка)', defaultVal: 'Ваш ник нарушает правила сообщества. Пожалуйста, смените его.', multiline: true, confirmLabel: 'Отправить' });
     if (!msg) return;
+    const reason = String(await showInputModal({ title: 'Причина предупреждения', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Отправить' }) || '').trim();
+    if (!reason) return;
     try {
-      await addDoc(collection(db, 'user_warnings'), { uid, name, message: msg, createdAt: new Date().toISOString() });
-      logAction('warn_user', uid, { name, message: msg });
+      const response = await getAdminWarnUserCallable()({
+        uid, name, message: String(msg).trim(), reason,
+        requestId: createAdminCommandId('warning_request'),
+        idempotencyKey: createAdminCommandId('warning_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || !response.data.warningId) {
+        throw new Error('Сервер не подтвердил предупреждение');
+      }
       showToast('⚠️ Предупреждение отправлено');
     } catch(e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
@@ -19578,6 +19634,7 @@
   let _adminNavEditMode = false;
   let _adminNavSaveTimer = 0;
   let _adminNavSaveRev = 0;
+  let _adminNavServerRevision = 0;
 
   function adminNavEmptyLayout() {
     return { order: [], pinned: [], hidden: [], rev: 0 };
@@ -20026,18 +20083,25 @@
   }
 
   async function adminNavSaveToServer() {
-    if (typeof setDoc !== 'function' || typeof db === 'undefined') return;
     const layout = adminNavLayout();
     const rev = layout.rev || 0;
     _adminNavSaveRev = rev;
     const snapshot = { order: [...layout.order], pinned: [...layout.pinned], hidden: [...layout.hidden], rev };
     try {
-      const who = (window._adminEmail
-        || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email)
-        || 'admin');
-      await setDoc(doc(db, 'admin_config', ADMIN_NAV_LAYOUT_DOC), {
-        ...snapshot, updatedAt: Date.now(), updatedBy: who,
-      }, { merge: true });
+      const response = await getAdminPublishNavLayoutCallable()({
+        order: snapshot.order,
+        pinned: snapshot.pinned,
+        hidden: snapshot.hidden,
+        clientRevision: rev,
+        expectedRevision: _adminNavServerRevision,
+        reason: 'Publish admin navigation layout',
+        requestId: createAdminCommandId('nav_layout_request'),
+        idempotencyKey: createAdminCommandId('nav_layout_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || !Number.isInteger(response.data.revision)) {
+        throw new Error('Server did not confirm navigation save');
+      }
+      _adminNavServerRevision = response.data.revision;
       // Поздний ответ на устаревшую версию не должен ничего сообщать.
       if (_adminNavSaveRev !== rev) return;
       adminNavSetStatus('Порядок сохранён — он подхватится на всех устройствах.');
@@ -20049,13 +20113,15 @@
   /* Одно чтение за заход, после авторизации. Серверная версия побеждает
      только если мы не успели ничего изменить локально (rev не вырос). */
   window.loadAdminNavLayout = async function loadAdminNavLayout() {
-    if (typeof getDoc !== 'function' || typeof db === 'undefined') return;
     if (window._adminNavLayoutLoaded) return;
     window._adminNavLayoutLoaded = true;
     try {
-      const snap = await getDoc(doc(db, 'admin_config', ADMIN_NAV_LAYOUT_DOC));
-      if (!snap.exists()) return;
-      const remote = adminNavNormalizeLayout(snap.data());
+      const response = await getAdminGetAdminConfigWorkspaceCallable()({});
+      if (!response || !response.data || response.data.ok !== true) throw new Error('Server did not confirm config load');
+      const raw = response.data.nav || null;
+      _adminNavServerRevision = Number.isInteger(raw?.revision) ? raw.revision : 0;
+      if (!raw) return;
+      const remote = adminNavNormalizeLayout(raw);
       const local = adminNavLayout();
       if ((local.rev || 0) > (remote.rev || 0)) return;
       window._adminNavLayout = remote;
@@ -22667,20 +22733,19 @@
       if (!ok) return;
     }
     try {
-      const docs = await fetchActiveVipSurveyDocs();
+      const response = await getAdminDeactivateVipSurveyCampaignCallable()({
+        reason: 'Deactivate active Plus survey campaigns',
+        requestId: createAdminCommandId('vip_survey_deactivate_request'),
+        idempotencyKey: createAdminCommandId('vip_survey_deactivate_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || !Number.isInteger(response.data.deactivatedCount)) {
+        throw new Error('Server did not confirm Plus survey deactivation');
+      }
+      const docs = { length: response.data.deactivatedCount };
       if (!docs.length) {
         if (confirmFirst) showToast('Активных Plus survey нет');
         return;
       }
-      const nowIso = new Date().toISOString();
-      const nowMs = Date.now();
-      await Promise.all(docs.map((d) => updateDoc(d.ref, {
-        active: false,
-        updatedAt: nowIso,
-        updatedAtMs: nowMs,
-        deactivatedAt: nowIso,
-        deactivatedBy: auth.currentUser?.email || 'unknown',
-      })));
       logAction('vip_survey_campaign_deactivate', 'all', { count: docs.length });
       showToast(`⏹️ Выключено Plus survey: ${docs.length}`);
       if (typeof window.loadAppMessages === 'function') await window.loadAppMessages(true);
@@ -22719,47 +22784,38 @@
     });
     if (!ok) return;
     try {
-      await window.deactivateVipSurveyMessages(false);
       const nowMs = Date.now();
       const createdAt = new Date(nowMs).toISOString();
-      const expiresAtMs = nowMs + ttlDays * 24 * 60 * 60 * 1000;
       const titleDefault = titleEs || titleRu;
       const messageDefault = messageEs || messageRu;
-      const ref = await addDoc(collection(db, 'app_messages'), {
-        active: true,
-        kind: 'vip_survey',
+      const response = await getAdminLaunchVipSurveyCampaignCallable()({
+        translations: {
+          ru: { title: titleRu, body: messageRu },
+          uk: { title: titleUk, body: messageUk },
+          es: { title: titleDefault, body: messageDefault },
+          ptBr: { title: titlePtBr, body: messagePtBr },
+          vi: { title: titleVi, body: messageVi },
+          id: { title: titleId, body: messageId },
+          tr: { title: titleTr, body: messageTr },
+          pl: { title: titlePl, body: messagePl },
+        },
         audience,
         targetAppVersions,
         priority,
-        titleRu,
-        titleUk,
-        titleEs: titleDefault,
-        titlePtBr,
-        titleVi,
-        titleId,
-        titleTr,
-        titlePl,
-        messageRu,
-        messageUk,
-        messageEs: messageDefault,
-        messagePtBr,
-        messageVi,
-        messageId,
-        messageTr,
-        messagePl,
-        vipSurvey: {
+        ttlDays,
+        survey: {
           surveyId: VIP_SURVEY_ID,
           rewardDays: VIP_SURVEY_REWARD_DAYS,
         },
-        createdAt,
-        createdAtMs: nowMs,
-        updatedAt: createdAt,
-        updatedAtMs: nowMs,
-        expiresAt: new Date(expiresAtMs).toISOString(),
-        expiresAtMs,
-        createdBy: auth.currentUser?.email || 'unknown',
+        reason: 'Launch Plus survey campaign and atomically retire previous campaigns',
+        requestId: createAdminCommandId('vip_survey_launch_request'),
+        idempotencyKey: createAdminCommandId('vip_survey_launch_operation'),
       });
-      logAction('vip_survey_campaign_send', 'all', { messageId: ref.id, audience, ttlDays, priority, targetAppVersions });
+      if (!response || !response.data || response.data.ok !== true || !response.data.messageId) {
+        throw new Error('Server did not confirm Plus survey launch');
+      }
+      const ref = { id: response.data.messageId };
+      logAction('vip_survey_campaign_send', 'all', { messageId: ref.id, audience, ttlDays, priority, targetAppVersions, deactivatedCount: response.data.deactivatedCount });
       const status = document.getElementById('vs-status');
       if (status) status.textContent = `Активное Plus survey создано: ${ref.id} · ${createdAt.replace('T', ' ').slice(0, 19)}`;
       showToast('✅ Plus survey отправлен в inbox');
@@ -24864,14 +24920,31 @@
       const ok = await showConfirmModal({ title: 'Массовое действие', desc: `${ids.length} жалоб будут помечены «${action === 'archived' ? 'в архив' : action}».`, confirmLabel: 'Применить' });
       if (!ok) return;
     }
+    const reason = String(await showInputModal({ title: 'Причина массовой архивации', desc: 'Одна причина попадёт в аудит каждой жалобы.', defaultVal: '', multiline: true, confirmLabel: 'Применить' }) || '').trim();
+    if (!reason) return;
     const btn = document.querySelector(`#ur-bulk-bar button[onclick*="urBulkAction('${action}')"]`);
     const prevLabel = btn ? btn.textContent : '';
     if (btn) { btn.disabled = true; btn.textContent = '⏳ Обрабатываю…'; }
     try {
-      // Отобранные галочками жалобы (user_reports): те же поля, что цикл updateDoc выше —
-      // status:<action>, reviewedAt:<ISO>. Переведено на writeBatch чанками ≤400 (требования 23, 24).
-      const { okN, errN } = await bulkUpdateStatusChunked('user_reports', ids, { status: action, reviewedAt: new Date().toISOString() });
-      logAction('user_report_bulk', 'bulk', { action, count: okN, errors: errN });
+      let okN = 0;
+      let errN = 0;
+      for (const reportId of ids) {
+        try {
+          const expectedStatus = String(window._urMap?.[reportId]?.status || 'new').toLowerCase();
+          const response = await getAdminResolveUserReportCallable()({
+            action: 'status', reportId, expectedStatus, nextStatus: action, reason,
+            requestId: createAdminCommandId('report_bulk_status_request'),
+            idempotencyKey: createAdminCommandId('report_bulk_status_operation'),
+          });
+          if (!response || !response.data || response.data.ok !== true || response.data.reportId !== reportId || response.data.status !== action) {
+            throw new Error('Сервер не подтвердил статус');
+          }
+          okN++;
+        } catch (error) {
+          errN++;
+          console.warn('bulk user report status failed', reportId, error);
+        }
+      }
       showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Обработано ${okN} жалоб`);
       void updateTabBadges(true);
       loadUserReports();
@@ -24891,57 +24964,60 @@
   window.urAction = async function(action, reportId, uid, name, btn) {
     if (action === 'archived') { await urMarkReviewed(reportId, btn); return; }
     if (!uid) { showToast('Нет UID пользователя', 'err'); return; }
-
+    let message = '';
+    let newName = '';
     if (action === 'warn') {
-      const msg = await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь', defaultVal: MOD_WARN_PRESETS[0], multiline: true, confirmLabel: 'Отправить', presets: MOD_WARN_PRESETS });
-      if (!msg) return;
-      await addDoc(collection(db, 'user_warnings'), { uid, name, message: msg, createdAt: new Date().toISOString() });
-      logAction('warn_user', uid, { name, message: msg });
-      showToast('✅ Предупреждение отправлено');
-      await updateDoc(doc(db, 'user_reports', reportId), { status: 'reviewed', reviewedAt: new Date().toISOString() });
-      loadUserReports();
-      updateTabBadges(true);
-    }
-
-    if (action === 'rename') {
-      const newName = await showInputModal({ title: `Переименовать "${escapeHtml(name)}"`, desc: 'Введите новый никнейм', defaultVal: name, confirmLabel: 'Переименовать' });
+      message = String(await showInputModal({ title: `Предупреждение для "${escapeHtml(name)}"`, desc: 'Сообщение увидит пользователь', defaultVal: MOD_WARN_PRESETS[0], multiline: true, confirmLabel: 'Отправить', presets: MOD_WARN_PRESETS }) || '').trim();
+      if (!message) return;
+    } else if (action === 'rename') {
+      newName = String(await showInputModal({ title: `Переименовать "${escapeHtml(name)}"`, desc: 'Введите новый никнейм', defaultVal: name, confirmLabel: 'Переименовать' }) || '').trim();
       if (!newName || newName === name) return;
-      try {
-        await Promise.all([
-          updateDoc(doc(db, 'leaderboard', uid), { name: newName, nameLower: newName.trim().toLowerCase() }).catch(()=>{}),
-          updateDoc(doc(db, 'users', uid), { 'progress.user_name': newName }).catch(()=>{}),
-        ]);
-        logAction('rename_user', uid, { from: name, to: newName });
-        showToast(`✅ Ник изменён на "${escapeHtml(newName)}"`);
-        await updateDoc(doc(db, 'user_reports', reportId), { status: 'reviewed', reviewedAt: new Date().toISOString() });
-        loadUserReports();
-        updateTabBadges(true);
-        const localUser = window._users.find(x=>x.uid===uid);
-        if(localUser) { localUser.name=newName; renderTable(); }
-      } catch(e) { showToast('❌ Ошибка: ' + e.message, 'err'); }
-    }
-
-    if (action === 'ban') {
+    } else if (action === 'ban') {
       const ok = await showConfirmModal({ title: `Забанить "${escapeHtml(name)}"?`, desc: 'Пользователь исчезнет из лидерборда и не сможет вернуться.', confirmLabel: 'Забанить', danger: true });
       if (!ok) return;
-      try {
-        const bannedAt = new Date().toISOString();
-        await setDoc(doc(db, 'banned_users', uid), { uid, name, bannedAt });
-        await updateDoc(doc(db, 'users', uid), { banned: true, bannedAt }).catch(()=>{});
-        await deleteDoc(doc(db, 'leaderboard', uid));
-        await updateDoc(doc(db, 'user_reports', reportId), { status: 'banned', reviewedAt: bannedAt });
-        logAction('ban_from_report', uid, { name, reportId });
-        showToast(`🚫 "${escapeHtml(name)}" забанен`);
-        loadUserReports();
-        updateTabBadges(true);
-      } catch(e) { showToast('❌ Ошибка: ' + e.message, 'err'); }
+    } else {
+      showToast('Неизвестное действие', 'err');
+      return;
+    }
+    const reason = String(await showInputModal({ title: 'Причина модерации', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Применить' }) || '').trim();
+    if (!reason) return;
+    try {
+      const expectedStatus = String(window._urMap?.[reportId]?.status || 'new').toLowerCase();
+      const response = await getAdminResolveUserReportCallable()({
+        action, reportId, uid, name, message, newName, expectedStatus, reason,
+        requestId: createAdminCommandId('report_moderation_request'),
+        idempotencyKey: createAdminCommandId('report_moderation_operation'),
+      });
+      const data = response && response.data;
+      if (!data || data.ok !== true || data.reportId !== reportId || data.action !== action) {
+        throw new Error('Сервер не подтвердил модерацию жалобы');
+      }
+      if (action === 'rename') {
+        const localUser = window._users.find(x=>x.uid===uid);
+        if(localUser) { localUser.name=newName; renderTable(); }
+      }
+      showToast(action === 'ban' ? `🚫 "${escapeHtml(name)}" забанен` : action === 'rename' ? `✅ Ник изменён на "${escapeHtml(newName)}"` : '✅ Предупреждение отправлено');
+      loadUserReports();
+      updateTabBadges(true);
+    } catch(e) {
+      showToast('❌ Ошибка: ' + e.message, 'err');
     }
   };
 
   window.urMarkReviewed = async function(reportId, btn) {
     if (btn) { btn.disabled = true; btn.textContent = '⏳'; }
+    const reason = String(await showInputModal({ title: 'Причина архивации', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'В архив' }) || '').trim();
+    if (!reason) { if (btn) { btn.disabled = false; btn.textContent = '📦 В архив'; } return; }
     try {
-      await updateDoc(doc(db, 'user_reports', reportId), { status: 'archived', archivedAt: new Date().toISOString() });
+      const expectedStatus = String(window._urMap?.[reportId]?.status || 'new').toLowerCase();
+      const response = await getAdminResolveUserReportCallable()({
+        action: 'status', reportId, expectedStatus, nextStatus: 'archived', reason,
+        requestId: createAdminCommandId('report_archive_request'),
+        idempotencyKey: createAdminCommandId('report_archive_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.reportId !== reportId || response.data.status !== 'archived') {
+        throw new Error('Сервер не подтвердил архивацию жалобы');
+      }
       loadUserReports();
       updateTabBadges(true);
     } catch(e) {
@@ -25768,39 +25844,43 @@
       danger: false,
     });
     if (!ok) return;
+    const reason = String(await showInputModal({
+      title: 'Причина миграции legacy Plus',
+      desc: 'Обязательная причина попадёт в защищённый журнал. Сервер повторно проверит происхождение каждого UID.',
+      defaultVal: '', multiline: true, confirmLabel: 'Мигрировать',
+    }) || '').trim();
+    if (!reason) return;
     let checked = 0;
     let fixed = 0;
-    const now = Date.now();
+    let failed = 0;
     try {
       const snap = await getDocs(query(
         collection(db, 'users'),
         where('progress.premium_plan', '==', 'admin_grant'),
         limit(500),
       ));
-      const batch = writeBatch(db);
-      snap.forEach((docSnap) => {
-        checked++;
-        const data = docSnap.data() || {};
-        const progress = data.progress || {};
-        const expiry = parseInt(String(progress.premium_expiry || '0'), 10) || 0;
-        const adminOverride = String(progress.admin_premium_override || '').trim();
-        const active = adminOverride === 'true' && (expiry === 0 || expiry > now);
-        if (!active) return;
-        const grantAt = String(progress.premium_admin_grant_at || now);
-        batch.update(docSnap.ref, {
-          'progress.vip_active': 'true',
-          'progress.vip_plan': 'admin_vip',
-          'progress.vip_from': grantAt,
-          'progress.vip_until': String(expiry || 0),
-          'progress.vip_admin_override': 'true',
-          'progress.vip_admin_grant_at': grantAt,
-          'progress.vip_migrated_from_admin_grant_at': String(now),
-          updatedAt: now,
-        });
-        fixed++;
-      });
-      if (fixed > 0) await batch.commit();
-      showToast(`🛠 Проверено ${checked}, исправлено ${fixed}`);
+      const uids = snap.docs.map((docSnap) => docSnap.id);
+      checked = uids.length;
+      for (let offset = 0; offset < uids.length; offset += 200) {
+        const chunk = uids.slice(offset, offset + 200);
+        try {
+          const response = await getAdminMigrateLegacyAdminPremiumCallable()({
+            uids: chunk, reason,
+            requestId: createAdminCommandId('premium_migration_request'),
+            idempotencyKey: createAdminCommandId('premium_migration_operation'),
+          });
+          const data = response && response.data;
+          if (!data || data.ok !== true || Number(data.checked) !== chunk.length || !Array.isArray(data.migrated) || !Array.isArray(data.skipped)) {
+            throw new Error('Сервер вернул неполный результат миграции');
+          }
+          fixed += data.migrated.length;
+          failed += data.skipped.length;
+        } catch (chunkError) {
+          failed += chunk.length;
+          console.warn('legacy Plus migration chunk failed', chunkError);
+        }
+      }
+      showToast(`🛠 Проверено ${checked}, исправлено ${fixed}, пропущено/ошибок ${failed}`);
       if (typeof loadPremiumData === 'function') await loadPremiumData(true);
       if (typeof loadVipData === 'function') await loadVipData(true);
       if (typeof loadUsers === 'function') await loadUsers();
@@ -29300,6 +29380,7 @@
     if (el) { el.textContent = msg || ''; el.style.color = color || '#9ca3af'; }
   }
   const ALERTS_TYPES = ['userReport', 'criticalError', 'contentReportDigest', 'cancelRefundSpike', 'safetyFlag'];
+  let _alertsServerRevision = 0;
   function alertsRenderMeta(data) {
     const meta = document.getElementById('alerts-meta');
     if (!meta) return;
@@ -29320,11 +29401,15 @@
     window._alertsLoaded = true;
     alertsSetStatus('Загрузка…');
     try {
-      const snap = await getDoc(doc(db, 'admin_config', 'alerts'));
-      const data = snap.exists() ? (snap.data() || {}) : {};
+      const response = await getAdminGetAdminConfigWorkspaceCallable()({});
+      if (!response || !response.data || response.data.ok !== true) throw new Error('Server did not confirm config load');
+      const raw = response.data.alerts || null;
+      const data = raw || {};
+      const snap = { exists: () => !!raw };
+      _alertsServerRevision = Number.isInteger(data.revision) ? data.revision : 0;
       const setChecked = (id, val) => { const el = document.getElementById(id); if (el) el.checked = !!val; };
       const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val == null ? '' : String(val); };
-      setChecked('alerts-enabled', data.enabled !== false && snap.exists());
+      setChecked('alerts-enabled', data.enabled !== false && !!raw);
       setVal('alerts-chatid', data.chatId);
       setVal('alerts-spike', data.spikePerHour);
       const types = data.types || {};
@@ -29355,10 +29440,17 @@
     alertsSetStatus('Сохранение…');
     try {
       const form = alertsReadForm();
-      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
-      await setDoc(doc(db, 'admin_config', 'alerts'), {
-        ...form, updatedAt: Date.now(), updatedBy: who,
-      }, { merge: true });
+      const response = await getAdminPublishAlertsConfigCallable()({
+        ...form,
+        expectedRevision: _alertsServerRevision,
+        reason: 'Publish admin Telegram alert configuration',
+        requestId: createAdminCommandId('alerts_config_request'),
+        idempotencyKey: createAdminCommandId('alerts_config_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || !Number.isInteger(response.data.revision)) {
+        throw new Error('Server did not confirm alerts configuration');
+      }
+      _alertsServerRevision = response.data.revision;
       if (typeof logAction === 'function') logAction('admin_alerts_config', 'admin_config/alerts', { enabled: form.enabled, hasChatId: !!form.chatId });
       alertsSetStatus('✅ Сохранено.', '#4ade80');
       loadAlertsConfig(true);
@@ -29367,17 +29459,19 @@
     }
   };
   window.sendAlertTest = async function() {
-    const chatId = String(document.getElementById('alerts-chatid')?.value || '').trim();
-    if (!chatId) { alertsSetStatus('Сначала впиши chat_id.', '#fbbf24'); return; }
     alertsSetStatus('Отправляем тест… (придёт через пару секунд)');
     try {
-      const form = alertsReadForm();
-      const who = (window._adminEmail || (typeof auth !== 'undefined' && auth.currentUser && auth.currentUser.email) || 'admin');
-      // Write enabled config + a testPing; the adminAlertOnConfigWritten CF sends the message.
-      await setDoc(doc(db, 'admin_config', 'alerts'), {
-        ...form, enabled: true, testPing: Date.now(), updatedAt: Date.now(), updatedBy: who,
-      }, { merge: true });
-      if (typeof logAction === 'function') logAction('admin_alerts_test', 'admin_config/alerts', { chatId });
+      const response = await getAdminTestAlertsCallable()({
+        expectedRevision: _alertsServerRevision,
+        reason: 'Send one test through the saved alert configuration',
+        requestId: createAdminCommandId('alerts_test_request'),
+        idempotencyKey: createAdminCommandId('alerts_test_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || !Number.isInteger(response.data.revision)) {
+        throw new Error('Server did not confirm alert test');
+      }
+      _alertsServerRevision = response.data.revision;
+      if (typeof logAction === 'function') logAction('admin_alerts_test', 'admin_config/alerts', { verified: true });
       alertsSetStatus('📨 Тест отправлен. Проверь Telegram (@codex_reportbot). Обнови статус через «Перечитать».', '#38bdf8');
     } catch (e) {
       alertsSetStatus('Ошибка теста: ' + (e && e.message ? e.message : e), '#f87171');
@@ -29620,21 +29714,18 @@
         if (shouldResetPollEngagement) {
           await resetAppMessagePollEngagement(editId);
         }
-        await updateDoc(doc(db, 'app_messages', editId), payload);
         logAction('app_message_edit', `app_message:${editId}`, { titleRu, active: payload.active, kind: payload.kind });
         showToast(poll ? '✅ Опрос обновлён' : '✅ Сообщение обновлено');
       } else {
-        const expiresAtMs = nowMs + days * 24 * 60 * 60 * 1000;
-        const ref = await addDoc(collection(db, 'app_messages'), {
-          ...payload,
-          createdAt: nowIso,
-          createdAtMs: nowMs,
-          expiresAt: new Date(expiresAtMs).toISOString(),
-          expiresAtMs,
-          ttlDays: days,
-          createdBy: auth.currentUser?.email || 'unknown',
-          ...(poll ? { pollCounts: appMessageEmptyPollCounts(poll), pollVoteCount: 0 } : {}),
+        const response = await getAdminCreateAppMessageCallable()({
+          kind: payload.kind, active: payload.active, audience: payload.audience,
+          priority: payload.priority, ttlDays: days, translations,
+          reason: 'Create admin inbox campaign', requestId, idempotencyKey,
         });
+        if (!response || !response.data || response.data.ok !== true || !response.data.messageId) {
+          throw new Error('Server did not confirm app message creation');
+        }
+        const ref = { id: response.data.messageId };
         logAction('app_message_send', `app_message:${ref.id}`, { titleRu, active: payload.active, kind: payload.kind });
         showToast(poll ? '✅ Опрос отправлен' : '✅ Сообщение отправлено');
       }
@@ -29706,12 +29797,16 @@
     const row = (window._appMessages || []).find((m) => m.id === id);
     if (!row) return;
     try {
-      await updateDoc(doc(db, 'app_messages', id), {
+      const response = await getAdminSetAppMessageActiveCallable()({
+        messageId: id,
         active: row.active === false,
-        updatedAt: appMessageNowIso(),
-        updatedAtMs: Date.now(),
-        updatedBy: auth.currentUser?.email || 'unknown',
+        reason: row.active === false ? 'Activate admin inbox campaign' : 'Pause admin inbox campaign',
+        requestId: createAdminCommandId('app_message_toggle_request'),
+        idempotencyKey: createAdminCommandId('app_message_toggle_operation'),
       });
+      if (!response || !response.data || response.data.ok !== true || response.data.messageId !== id) {
+        throw new Error('Server did not confirm app message state');
+      }
       logAction('app_message_toggle', `app_message:${id}`, { active: row.active === false });
       showToast(row.active === false ? '✅ Сообщение включено' : '⏸ Сообщение выключено');
       await window.loadAppMessages(true);
@@ -29756,7 +29851,15 @@
     });
     if (!ok) return;
     try {
-      await deleteAppMessageDoc(id);
+      const response = await getAdminDeleteAppMessageCallable()({
+        messageId: id,
+        reason: 'Delete admin inbox campaign and its engagement data',
+        requestId: createAdminCommandId('app_message_delete_request'),
+        idempotencyKey: createAdminCommandId('app_message_delete_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.messageId !== id) {
+        throw new Error('Server did not confirm app message deletion');
+      }
       logAction('app_message_delete', `app_message:${id}`, {});
       showToast('🗑 Сообщение удалено');
       await window.loadAppMessages(true);
@@ -29777,7 +29880,16 @@
     });
     if (!ok) return;
     try {
-      for (const m of expired) await deleteAppMessageDoc(m.id);
+      const messageIds = expired.map((message) => message.id);
+      const response = await getAdminCleanupExpiredAppMessagesCallable()({
+        messageIds,
+        reason: 'Delete expired admin inbox campaigns and engagement data',
+        requestId: createAdminCommandId('app_message_cleanup_request'),
+        idempotencyKey: createAdminCommandId('app_message_cleanup_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || !Array.isArray(response.data.deletedIds) || response.data.deletedIds.length !== messageIds.length) {
+        throw new Error('Server did not confirm expired app message cleanup');
+      }
       logAction('app_message_cleanup_expired', 'app_messages', { count: expired.length });
       showToast(`🧹 Удалено: ${expired.length}`);
       await window.loadAppMessages(true);
@@ -32567,21 +32679,34 @@
     const xp = u?.xp ?? 0;
     const shards = u?.shards ?? 0;
     const ok = await showConfirmModal({
-      title: '⚠️ Удалить дубль?',
-      desc: `Удалить документ users/${escapeHtml(uid)} ("${escapeHtml(name)}", XP=${xp}, 💎=${shards}). Данные НЕ переносятся на каноничный UID. Действие необратимо.`,
-      confirmLabel: 'Удалить дубль',
+      title: '⚠️ Поставить дубль в очередь очистки?',
+      desc: `Скрытый alias users/${escapeHtml(uid)} ("${escapeHtml(name)}", XP=${xp}, 💎=${shards}) будет заблокирован и помечен tombstone. Физическая очистка users, leaderboard и subcollections останется отдельной офлайн-задачей; Firebase Auth не удаляется.`,
+      confirmLabel: 'Поставить в очередь',
       danger: true,
     });
     if (!ok) return;
+    const expectedCanonicalUid = String(u?.canonicalStableId || '').trim();
+    if (!expectedCanonicalUid || expectedCanonicalUid === uid || u?.identityHidden !== true) {
+      showToast('Очистка разрешена только для скрытого alias с явным canonicalStableId', 'err');
+      return;
+    }
+    const reason = String(await showInputModal({ title: 'Причина очистки дубля', desc: 'Сервер повторно проверит alias, canonical target и auth_links, затем создаст tombstone и durable cleanup job. Физического удаления онлайн не будет.', defaultVal: '', multiline: true, confirmLabel: 'Проверить и поставить в очередь' }) || '').trim();
+    if (!reason) return;
     try {
-      logAction('delete_user_dupe', uid, { name, xp, shards });
-      await deleteDoc(doc(db, 'users', uid));
+      const response = await getAdminDeleteDuplicateUserCallable()({
+        uid, expectedCanonicalUid, reason,
+        requestId: createAdminCommandId('delete_alias_request'),
+        idempotencyKey: createAdminCommandId('delete_alias_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.canonicalUid !== expectedCanonicalUid || !response.data.archiveId || !response.data.cleanupJobId || response.data.status !== 'queued' || response.data.tombstoned !== true || response.data.hidden !== true || response.data.physicallyDeleted !== false) {
+        throw new Error('Сервер не подтвердил tombstone и очередь безопасной очистки alias');
+      }
       window._users = window._users.filter(x => x.uid !== uid);
       updateStats(window._users);
       renderTable();
       renderAnalytics(window._users);
       showDuplicatesPanel(); // refresh panel
-      showToast('🗑️ Дубль удалён');
+      showToast('🧹 Дубль скрыт; безопасная cleanup-задача поставлена в очередь');
     } catch(e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
 
@@ -33427,9 +33552,15 @@
       confirmLabel: 'Сбросить', danger: true,
     });
     if (!ok) return;
+    const reason = String(await showInputModal({ title: 'Причина сброса ачивок', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Сбросить' }) || '').trim();
+    if (!reason) return;
     try {
-      await updateDoc(doc(db, 'users', uid), { achievements_state: '' });
-      logAction('edit_field', uid, { field: 'achievements_state', newValue: '(reset)' });
+      const response = await getAdminResetUserProgressCallable()({
+        uid, reset: 'achievements', reason,
+        requestId: createAdminCommandId('reset_achievements_request'),
+        idempotencyKey: createAdminCommandId('reset_achievements_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'achievements') throw new Error('Сервер не подтвердил сброс ачивок');
       showToast('🏆 Ачивки очищены');
     } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
@@ -33441,9 +33572,15 @@
       confirmLabel: 'Сбросить', danger: true,
     });
     if (!ok) return;
+    const reason = String(await showInputModal({ title: 'Причина сброса дейликов', desc: 'Обязательная причина попадёт в защищённый журнал.', defaultVal: '', multiline: true, confirmLabel: 'Сбросить' }) || '').trim();
+    if (!reason) return;
     try {
-      await updateDoc(doc(db, 'users', uid), { daily_tasks_progress: '' });
-      logAction('edit_field', uid, { field: 'daily_tasks_progress', newValue: '(reset)' });
+      const response = await getAdminResetUserProgressCallable()({
+        uid, reset: 'daily_tasks', reason,
+        requestId: createAdminCommandId('reset_daily_tasks_request'),
+        idempotencyKey: createAdminCommandId('reset_daily_tasks_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.reset !== 'daily_tasks') throw new Error('Сервер не подтвердил сброс дейликов');
       showToast('📅 Дейлики очищены');
     } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
@@ -33854,92 +33991,30 @@
     if (!targetInput || !targetInput.trim()) return;
     const targetUid = targetInput.trim();
     if (targetUid === sourceUid) { showToast('Source и target — одинаковые UID', 'err'); return; }
-
-    let target;
-    try {
-      const tSnap = await getDoc(doc(db, 'users', targetUid));
-      if (!tSnap.exists()) { showToast('Target UID не найден в users/', 'err'); return; }
-      target = { uid: targetUid, ...(tSnap.data() || {}) };
-    } catch (e) { showToast('Ошибка чтения target: ' + e.message, 'err'); return; }
-
-    const source = (window._users || []).find(x => x.uid === sourceUid);
-    if (!source) { showToast('Source не в снимке страницы — обнови страницу', 'err'); return; }
-
-    const sourceXp = Number(source.xp) || 0;
-    const sourceShards = Number(source.shards) || 0;
-    const sourceStreak = Number(source.streak) || 0;
-    const targetXp = Number(target.progress?.user_total_xp) || 0;
-    const targetShards = Number(target.shards) || 0;
-    const targetStreak = Number(target.progress?.streak_count) || 0;
-
-    const newXp = Math.max(targetXp, sourceXp);
-    const newShards = targetShards + sourceShards;
-    const newStreak = Math.max(targetStreak, sourceStreak);
-
     const ok = await showConfirmModal({
-      title: '⚠️ Подтверди merge',
-      desc:
-        `Source ${sourceUid} ("${escapeHtml(sourceName)}"): XP=${sourceXp}, 💎=${sourceShards}, streak=${sourceStreak}\n` +
-        `Target ${targetUid}: XP=${targetXp}, 💎=${targetShards}, streak=${targetStreak}\n\n` +
-        `→ Target станет: XP=${newXp} (max), 💎=${newShards} (sum), streak=${newStreak} (max).\n` +
-        `→ Source: архивируется в users_dedup_archive и удаляется из users + leaderboard.\n\n` +
-        `Subcollections (shard_log / shard_rewards) НЕ переносятся — только основные поля. История остаётся в архиве.`,
-      confirmLabel: 'Слить', danger: true,
+      title: '⚠️ Запросить безопасный merge',
+      desc: `Source ${sourceUid} ("${escapeHtml(sourceName)}") → Target ${targetUid}.\n\nСервер не выполнит частичный merge: users, auth_links, identity anchors и все subcollections должны переноситься одной офлайн-миграцией. Текущий запрос будет fail-closed и попадёт в аудит.`,
+      confirmLabel: 'Проверить на сервере', danger: true,
     });
     if (!ok) return;
-
+    const reason = String(await showInputModal({ title: 'Причина merge', desc: 'Обязательная причина попадёт в защищённый журнал заблокированной операции.', defaultVal: '', multiline: true, confirmLabel: 'Отправить запрос' }) || '').trim();
+    if (!reason) return;
     try {
-      const adminEmail = (auth?.currentUser?.email) || '';
-      const mergedAt = new Date().toISOString();
-      // 1) Архив source
-      await setDoc(doc(db, 'users_dedup_archive', sourceUid), {
-        archivedAt: Date.now(),
-        archivedAtISO: mergedAt,
-        sourceCollection: 'users',
-        mergedInto: targetUid,
-        mergedBy: adminEmail,
-        snapshot: {
-          uid: sourceUid,
-          name: source.name,
-          xp: sourceXp,
-          shards: sourceShards,
-          streak: sourceStreak,
-          email: source.email || null,
-          version: source.version || null,
-          updatedAt: source.updatedAt || null,
-        },
-      }, { merge: true });
-      // 2) Update target
-      await updateDoc(doc(db, 'users', targetUid), {
-        shards: newShards,
-        'progress.user_total_xp': newXp,
-        'progress.streak_count': newStreak,
-        merged_from: sourceUid,
-        merged_at: mergedAt,
+      const response = await getAdminRequestUserMergeCallable()({
+        sourceUid, targetUid, reason,
+        requestId: createAdminCommandId('merge_request'),
+        idempotencyKey: createAdminCommandId('merge_operation'),
       });
-      // 3) Delete source from users + leaderboard
-      await deleteDoc(doc(db, 'users', sourceUid)).catch(() => {});
-      await deleteDoc(doc(db, 'leaderboard', sourceUid)).catch(() => {});
-      // 4) Audit
-      logAction('user_merge', sourceUid, {
-        targetUid,
-        name: sourceName,
-        addedShards: sourceShards,
-        keptXp: newXp,
-        keptStreak: newStreak,
-      });
-      window._users = (window._users || []).filter(x => x.uid !== sourceUid);
-      const cachedTarget = (window._users || []).find(x => x.uid === targetUid);
-      if (cachedTarget) {
-        cachedTarget.xp = newXp;
-        cachedTarget.shards = newShards;
-        cachedTarget.streak = newStreak;
+      if (!response || !response.data || response.data.ok !== true) {
+        throw new Error('Сервер не подтвердил полный безопасный merge');
       }
-      closeDetail();
-      renderTable();
-      showToast(`🔗 ${escapeHtml(sourceName)} слит в ${targetUid.slice(0, 12)}…`);
+      showToast('Merge выполнен сервером');
     } catch (e) {
-      showToast('Ошибка: ' + e.message, 'err');
+      if (/stale_admin_config_revision|aborted/i.test(String(e?.message || e))) {
+        window._adminNavLayoutLoaded = false;
+        await window.loadAdminNavLayout();
+      }
+      showToast('Merge заблокирован: требуется офлайн-миграция identity и subcollections. ' + e.message, 'err');
     }
   };
 
@@ -33956,10 +34031,28 @@
       confirmLabel: 'Разбанить',
     });
     if (!ok) return;
+    const reason = String(await showInputModal({
+      title: `Причина разблокировки ${escapeHtml(name)}`,
+      desc: 'Обязательная причина будет сохранена в журнале действий администратора.',
+      defaultVal: '',
+      multiline: true,
+      confirmLabel: 'Продолжить',
+    }) || '').trim();
+    if (!reason) return;
+    const requestId = createAdminCommandId('unban_list_request');
+    const idempotencyKey = createAdminCommandId('unban_list_operation');
     try {
-      await deleteDoc(doc(db, 'banned_users', uid));
-      await updateDoc(doc(db, 'users', uid), { banned: false, bannedAt: null }).catch(() => {});
-      logAction('unban', uid, { name, source: 'ban_list' });
+      const response = await getAdminSetUserBanCallable()({
+        uid,
+        banned: false,
+        reason,
+        requestId,
+        idempotencyKey,
+      });
+      if (!response || !response.data || response.data.ok !== true
+        || response.data.uid !== uid || response.data.banned !== false) {
+        throw new Error('Сервер не подтвердил разблокировку');
+      }
       _banListAll = _banListAll.filter(x => x.uid !== uid);
       const cached = (window._users || []).find(x => x.uid === uid);
       if (cached) cached.banned = false;
@@ -33984,8 +34077,8 @@
     const uid = await showInputModal({ title: '🚫 Забанить по UID', desc: 'Введи canonical UID пользователя (например: AbCdEf123XyZ).', confirmLabel: 'Дальше' });
     if (!uid || !uid.trim()) return;
     const trimUid = uid.trim();
-    const reason = await showInputModal({ title: 'Причина бана', desc: `Будет записано в banned_users/${trimUid}.reason и в admin_log. Можно оставить пустым.`, confirmLabel: 'Забанить', danger: true, allowEmpty: true });
-    if (reason === null) return;
+    const reason = String(await showInputModal({ title: 'Причина бана', desc: `Обязательная причина будет записана в banned_users/${trimUid}.reason и в admin_log.`, confirmLabel: 'Забанить', danger: true }) || '').trim();
+    if (!reason) return;
     let name = '(unknown)';
     try {
       const us = await getDoc(doc(db, 'users', trimUid));
@@ -33996,19 +34089,24 @@
     } catch {}
     const ok = await showConfirmModal({
       title: `Забанить ${escapeHtml(name)}?`,
-      desc: `UID: ${escapeHtml(trimUid)}\nПричина: ${escapeHtml(reason || '—')}\n\nДанные пишутся в banned_users + users.banned + удаление из leaderboard.`,
+      desc: `UID: ${escapeHtml(trimUid)}\nПричина: ${escapeHtml(reason)}\n\nДанные пишутся в banned_users + users.banned + удаление из leaderboard.`,
       confirmLabel: 'Забанить', danger: true,
     });
     if (!ok) return;
+    const requestId = createAdminCommandId('ban_uid_request');
+    const idempotencyKey = createAdminCommandId('ban_uid_operation');
     try {
-      const bannedAt = new Date().toISOString();
-      const adminEmail = (auth?.currentUser?.email) || '';
-      await Promise.all([
-        setDoc(doc(db, 'banned_users', trimUid), { uid: trimUid, name, bannedAt, reason: reason || '', bannedBy: adminEmail }),
-        updateDoc(doc(db, 'users', trimUid), { banned: true, bannedAt }).catch(() => {}),
-        deleteDoc(doc(db, 'leaderboard', trimUid)).catch(() => {}),
-      ]);
-      logAction('ban', trimUid, { name, reason: reason || '', source: 'manual_uid' });
+      const response = await getAdminSetUserBanCallable()({
+        uid: trimUid,
+        banned: true,
+        reason,
+        requestId,
+        idempotencyKey,
+      });
+      if (!response || !response.data || response.data.ok !== true
+        || response.data.uid !== trimUid || response.data.banned !== true) {
+        throw new Error('Сервер не подтвердил блокировку');
+      }
       showToast(`🚫 ${escapeHtml(name)} забанен`);
       await loadBanList(true);
     } catch (e) {
@@ -37251,18 +37349,27 @@
     const amtStr = await showInputModal({ title: `💎 Осколки для ${uids.length} пользователей`, desc: 'Сколько осколков начислить каждому?', defaultVal: '100', confirmLabel: 'Начислить' });
     if (amtStr === null) return;
     const amt = parseInt(amtStr, 10);
-    if (isNaN(amt) || amt <= 0) { showToast('Неверное количество', 'err'); return; }
+    if (isNaN(amt) || amt <= 0 || amt > 10000) { showToast('Количество должно быть от 1 до 10 000', 'err'); return; }
     const ok = await showConfirmModal({ title: `Начислить ${amt} осколков?`, desc: `${uids.length} пользователям`, confirmLabel: 'Начислить', danger: false });
     if (!ok) return;
+    const reason = String(await showInputModal({ title: 'Общая причина начисления', desc: 'Причина будет записана в аудит каждой операции.', defaultVal: '', multiline: true, confirmLabel: 'Начислить' }) || '').trim();
+    if (!reason) return;
     let done = 0;
+    const failed = [];
     for (const uid of uids) {
       try {
-        await updateDoc(doc(db, 'users', uid), { shards: increment(amt) });
-        logAction('bulk_grant_shards', uid, { amount: amt });
+        const response = await getAdminGrantFn()({
+          uid, type: 'shards', amount: amt, reason, comment: `Bulk grant (${uids.length} users)`,
+          requestId: createAdminCommandId('bulk_shards_request'),
+          idempotencyKey: createAdminCommandId('bulk_shards_operation'),
+        });
+        if (!response || !response.data || response.data.type !== 'shards' || Number(response.data.amount) !== amt || !response.data.rewardId) {
+          throw new Error('Сервер не подтвердил награду');
+        }
         done++;
-      } catch(e) { console.warn('bulk shards error', uid, e); }
+      } catch(e) { failed.push(uid); console.warn('bulk shards error', uid, e); }
     }
-    showToast(`💎 ${done}/${uids.length} пользователям начислено ${amt} осколков`);
+    showToast(`💎 Успешно: ${done}; ошибок: ${failed.length}; сумма: ${amt}` , failed.length ? 'err' : undefined);
     clearBulkSelection();
   };
 
@@ -37271,38 +37378,31 @@
     if (!uids.length) return;
     const ok = await showConfirmModal({ title: `💚 Plus для ${uids.length} юзеров?`, desc: 'Выдать бессрочный Plus. Реальный Plus/RevenueCat не трогаем.', confirmLabel: 'Выдать Plus', danger: false });
     if (!ok) return;
+    const reason = String(await showInputModal({ title: 'Общая причина выдачи Plus', desc: 'Причина будет записана в аудит каждой операции.', defaultVal: '', multiline: true, confirmLabel: 'Выдать Plus' }) || '').trim();
+    if (!reason) return;
     let done = 0;
+    const failed = [];
     for (const uid of uids) {
       try {
-        const grantAt = String(Date.now());
-        const target = await resolveAdminVipWriteTarget(uid);
-        const writeUid = target.uid || uid;
-        await updateDoc(doc(db, 'users', writeUid), {
-          'progress.vip_active': 'true',
-          'progress.vip_plan': 'admin_vip',
-          'progress.vip_from': grantAt,
-          'progress.vip_until': '0',
-          'progress.vip_admin_override': 'true',
-          'progress.vip_admin_grant_at': grantAt,
+        const response = await getAdminGrantAccessCallable()({
+          uid, kind: 'vip', active: true, durationDays: 0, reason,
+          requestId: createAdminCommandId('bulk_plus_request'),
+          idempotencyKey: createAdminCommandId('bulk_plus_operation'),
         });
+        if (!response || !response.data || response.data.ok !== true || response.data.kind !== 'vip' || response.data.active !== true || !response.data.uid) {
+          throw new Error('Сервер не подтвердил Plus');
+        }
+        const writeUid = response.data.uid;
         applyVipPatchToCachedUser(writeUid, {
           vip_active: 'true',
           vip_plan: 'admin_vip',
-          vip_from: grantAt,
-          vip_until: '0',
+          vip_until: String(response.data.expiresAtMs),
           vip_admin_override: 'true',
-          vip_admin_grant_at: grantAt,
-        });
-        logAction('bulk_grant_vip', writeUid, {
-          grantAt,
-          plan: 'admin_vip',
-          requestedUid: uid,
-          canonicalized: target.canonicalized === true,
         });
         done++;
-      } catch(e) { console.warn('bulk premium error', uid, e); }
+      } catch(e) { failed.push(uid); console.warn('bulk premium error', uid, e); }
     }
-    showToast(`💚 Plus выдан ${done}/${uids.length}`);
+    showToast(`💚 Plus: успешно ${done}; ошибок ${failed.length}`, failed.length ? 'err' : undefined);
     clearBulkSelection();
   };
 
@@ -37311,15 +37411,24 @@
     if (!uids.length) return;
     const ok = await showConfirmModal({ title: `🚫 Забанить ${uids.length} пользователей?`, desc: 'Они не смогут использовать приложение', confirmLabel: 'Забанить', danger: true });
     if (!ok) return;
+    const reason = String(await showInputModal({ title: 'Общая причина блокировки', desc: 'Причина будет записана в аудит каждой операции.', defaultVal: '', multiline: true, confirmLabel: 'Забанить' }) || '').trim();
+    if (!reason) return;
     let done = 0;
+    const failed = [];
     for (const uid of uids) {
       try {
-        await updateDoc(doc(db, 'users', uid), { banned: true, bannedAt: new Date().toISOString() });
-        logAction('bulk_ban', uid, {});
+        const response = await getAdminSetUserBanCallable()({
+          uid, banned: true, reason,
+          requestId: createAdminCommandId('bulk_ban_request'),
+          idempotencyKey: createAdminCommandId('bulk_ban_operation'),
+        });
+        if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || response.data.banned !== true) {
+          throw new Error('Сервер не подтвердил блокировку');
+        }
         done++;
-      } catch(e) { console.warn('bulk ban error', uid, e); }
+      } catch(e) { failed.push(uid); console.warn('bulk ban error', uid, e); }
     }
-    showToast(`🚫 Заблокировано ${done}/${uids.length}`);
+    showToast(`🚫 Заблокировано: ${done}; ошибок: ${failed.length}`, failed.length ? 'err' : undefined);
     clearBulkSelection();
     if (typeof window.loadUsers === 'function') void window.loadUsers();
   };
@@ -37329,7 +37438,16 @@
     const ok = await showConfirmModal({ title: 'Обнулить очки недели?', desc: `UID: ${uid}\nГруппа: ${groupId}`, confirmLabel: 'Обнулить', danger: true });
     if (!ok) return;
     try {
-      await updateDoc(doc(db, 'league_groups', groupId), { [`members.${uid}.points`]: 0 });
+      const response = await getAdminResetLeaguePointsCallable()({
+        groupId,
+        uid,
+        reason: 'Reset current-week league points after admin review',
+        requestId: createAdminCommandId('league_reset_request'),
+        idempotencyKey: createAdminCommandId('league_reset_operation'),
+      });
+      if (!response || !response.data || response.data.ok !== true || response.data.groupId !== groupId || response.data.uid !== uid || response.data.points !== 0) {
+        throw new Error('Server did not confirm league points reset');
+      }
       const cached = window._leagueGroupsCache?.find(g => g.id === groupId);
       if (cached?.members?.[uid]) cached.members[uid].points = 0;
       logAction('league_reset_points', groupId, { uid });
@@ -37349,93 +37467,19 @@
     const ok = await showConfirmModal({ title: `Переместить в «${leagueName}»?`, desc: `Юзер будет добавлен в группу лиги ${targetLeague} прямо сейчас.`, confirmLabel: 'Переместить', danger: false });
     if (!ok) return;
     try {
-      const currentWeekId = (function() {
-        const d = new Date(), date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-        const day = date.getUTCDay() || 7; date.setUTCDate(date.getUTCDate() + 4 - day);
-        const y = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
-        return `${date.getUTCFullYear()}-W${String(Math.ceil((((date - y) / 86400000) + 1) / 7)).padStart(2,'0')}`;
-      })();
-      const userCache = (window._users || []).find(u => u.uid === uid);
-      const [lbSnap, userSnap, oldGroupSnap] = await Promise.all([
-        getDoc(doc(db, 'leaderboard', uid)).catch(() => null),
-        getDoc(doc(db, 'users', uid)).catch(() => null),
-        getDoc(doc(db, 'league_groups', groupId)).catch(() => null),
-      ]);
-      const lb = lbSnap?.exists() ? (lbSnap.data() || {}) : {};
-      const progress = userSnap?.exists() ? ((userSnap.data() || {}).progress || {}) : {};
-      let weekPoints = Number(lb.weekPoints || 0);
-      try {
-        const wp = JSON.parse(progress.week_points_v2 || '{}');
-        if (wp?.weekKey === String(currentWeekId)) weekPoints = Math.max(weekPoints, Number(wp.points || 0));
-      } catch (_) {}
-      const totalXp = Math.max(Number(lb.points || 0), Number(progress.user_total_xp || 0));
-      const oldMembers = oldGroupSnap?.exists() ? ((oldGroupSnap.data() || {}).members || {}) : {};
-      const previousMember = oldMembers[uid] || {};
-      const memberData = {
-        ...previousMember,
+      const response = await getAdminMoveLeagueUserCallable()({
+        groupId,
         uid,
-        name: lb.name || name || userCache?.name || previousMember.name || uid,
-        points: Number.isFinite(weekPoints) ? weekPoints : Number(previousMember.points || 0),
-        totalXp: Number.isFinite(totalXp) ? totalXp : Number(previousMember.totalXp || 0),
-        avatar: lb.avatar ?? previousMember.avatar ?? null,
-        frame: lb.frame ?? previousMember.frame ?? null,
-        aura: lb.aura ?? previousMember.aura ?? null,
-        isPremium: lb.isPremium ?? previousMember.isPremium ?? false,
-        streak: lb.streak ?? previousMember.streak ?? 0,
-        adminMoved: true,
-        adminMovedAt: Date.now(),
-      };
-      const candidates = (window._leagueGroupsCache || [])
-        .filter(g => g.id !== groupId && g.leagueId === targetLeague && g.weekId === String(currentWeekId) && g.realCount < 30)
-        .sort((a, b) => (b.realCount || 0) - (a.realCount || 0));
-      let targetGroupId = candidates.length > 0 ? candidates[0].id : null;
-      if (!targetGroupId) targetGroupId = `${currentWeekId}_${targetLeague}_admin_${uid.slice(0, 8)}_${Date.now()}`;
-      const oldGroupRef = doc(db, 'league_groups', groupId);
-      const targetGroupRef = doc(db, 'league_groups', targetGroupId);
-      const lbRef = doc(db, 'leaderboard', uid);
-      const userRef = doc(db, 'users', uid);
-      await runTransaction(db, async (tx) => {
-        const [oldSnapTx, targetSnapTx] = await Promise.all([tx.get(oldGroupRef), tx.get(targetGroupRef)]);
-        const oldData = oldSnapTx.exists() ? (oldSnapTx.data() || {}) : {};
-        const targetData = targetSnapTx.exists() ? (targetSnapTx.data() || {}) : {};
-        const nextOldMembers = { ...(oldData.members || {}) };
-        delete nextOldMembers[uid];
-        const nextTargetMembers = { ...(targetData.members || {}) };
-        nextTargetMembers[uid] = memberData;
-        tx.set(oldGroupRef, { members: nextOldMembers, memberCount: Object.keys(nextOldMembers).length, updatedAt: Date.now() }, { merge: true });
-        tx.set(targetGroupRef, {
-          leagueId: targetLeague,
-          weekId: String(currentWeekId),
-          members: nextTargetMembers,
-          memberCount: Object.keys(nextTargetMembers).length,
-          createdAt: targetData.createdAt || Date.now(),
-          createdByAdmin: targetData.createdByAdmin ?? true,
-          updatedAt: Date.now(),
-        }, { merge: true });
-        tx.set(lbRef, {
-          leagueId: targetLeague,
-          groupId: targetGroupId,
-          groupWeekId: String(currentWeekId),
-          weekKey: String(currentWeekId),
-          weekPoints: memberData.points,
-          points: memberData.totalXp,
-          updatedAt: Date.now(),
-        }, { merge: true });
+        targetLeague,
+        reason: 'Move user between current-week league groups after admin review',
+        requestId: createAdminCommandId('league_move_request'),
+        idempotencyKey: createAdminCommandId('league_move_operation'),
       });
-      const targetAfter = await getDoc(targetGroupRef);
-      const membersAfter = targetAfter.exists() ? ((targetAfter.data() || {}).members || {}) : { [uid]: memberData };
-      const leagueStateGroup = Object.entries(membersAfter)
-        .filter(([, m]) => isVisibleClubMember(m))
-        .map(([mid, m]) => ({ ...m, uid: m.uid || mid, isMe: mid === uid }))
-        .sort((a, b) => Number(b.points || 0) - Number(a.points || 0));
-      await updateDoc(userRef, {
-        'progress.league_state_v3': JSON.stringify({ leagueId: targetLeague, weekId: String(currentWeekId), group: leagueStateGroup }),
-        'progress.week_points_v2': JSON.stringify({ weekKey: String(currentWeekId), points: memberData.points }),
-        'progress.weekly_xp': String(memberData.points),
-        'progress.user_total_xp': String(memberData.totalXp),
-        leagueRepair: { type: 'admin_league_move', fromGroupId: groupId, targetGroupId, targetLeague, movedAt: Date.now() },
-        updatedAt: Date.now(),
-      });
+      if (!response || !response.data || response.data.ok !== true || response.data.uid !== uid || !response.data.targetGroupId || response.data.targetLeague !== targetLeague || !response.data.member) {
+        throw new Error('Server did not confirm league move');
+      }
+      const targetGroupId = response.data.targetGroupId;
+      const memberData = response.data.member;
       const oldCached = window._leagueGroupsCache?.find(g => g.id === groupId);
       if (oldCached?.members) { delete oldCached.members[uid]; oldCached.realCount = countVisibleClubMembers(oldCached.members); oldCached.hiddenCount = countHiddenClubMembers(oldCached.members); }
       const newCached = window._leagueGroupsCache?.find(g => g.id === targetGroupId);

@@ -12,7 +12,11 @@
  */
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
-import { ENFORCE_APP_CHECK } from './callable_options';
+import {
+  ADMIN_SENSITIVE_WRITE_OPTIONS,
+  ENFORCE_APP_CHECK,
+  requireAdminAppCheck,
+} from './callable_options';
 import { createAuditRecord } from './admin/audit_contract';
 import { hasPermission, roleFromAdminToken } from './admin/permissions';
 import { hasAdminRole, type AdminRole } from './admin/roles';
@@ -36,10 +40,7 @@ import {
   referralCreditId,
 } from './referral_spin_ledger';
 import { summarizeReferralAdminDrain } from './referral_admin_drain_metrics';
-import {
-  referralSoftToggleReplayResult,
-  resolveReferralSoftOffAtMs,
-} from './referral_admin_soft_toggle';
+import { resolveReferralSoftOffAtMs } from './referral_admin_soft_toggle';
 
 const REGION = 'us-central1';
 const CALLABLE_BASE = { region: REGION, enforceAppCheck: ENFORCE_APP_CHECK } as const;
@@ -428,6 +429,39 @@ type ReferralRevokeOutcome =
 
 const COMMAND_TOKEN_RE = /^[A-Za-z0-9._:-]{1,160}$/;
 
+export type ReferralConfigCommand = Readonly<{
+  expectedRevision: number;
+  reason: string;
+  requestId: string;
+  idempotencyKey: string;
+}>;
+
+export function normalizeReferralConfigCommand(data: unknown): ReferralConfigCommand {
+  if (!data || typeof data !== 'object' || Array.isArray(data)) {
+    throw new HttpsError('invalid-argument', 'referral config command required');
+  }
+  const row = data as Record<string, unknown>;
+  const expectedRevision = row.expectedRevision;
+  const reason = String(row.reason ?? '').trim().slice(0, 500);
+  const requestId = String(row.requestId ?? '').trim();
+  const idempotencyKey = String(row.idempotencyKey ?? '').trim();
+  if (
+    typeof expectedRevision !== 'number'
+    || !Number.isInteger(expectedRevision)
+    || expectedRevision < 0
+    || !reason
+    || !COMMAND_TOKEN_RE.test(requestId)
+    || !COMMAND_TOKEN_RE.test(idempotencyKey)
+    || idempotencyKey.length > 120
+  ) {
+    throw new HttpsError(
+      'invalid-argument',
+      'expectedRevision, reason, requestId and idempotencyKey are required',
+    );
+  }
+  return Object.freeze({ expectedRevision, reason, requestId, idempotencyKey });
+}
+
 function isSafeFirestoreDocumentId(value: string): boolean {
   return Boolean(value)
     && value !== '.'
@@ -476,7 +510,8 @@ function storedOperationResult(data: FirebaseFirestore.DocumentData | undefined)
  * credit are the source of truth; the browser supplies only the attribution id
  * and the mandatory operator reason/command ids.
  */
-export const adminRevokeReferralAttribution = onCall(CALLABLE_BASE, async (request) => {
+export const adminRevokeReferralAttribution = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
+  requireAdminAppCheck(request);
   assertAdmin(request);
   const role = roleFromAdminToken(request.auth?.token);
   if (!role || !hasPermission(role, 'users.write')) {
@@ -1079,19 +1114,81 @@ export const adminSpinLogs = onCall(CALLABLE_BASE, async (request) => {
 
 // ── b) Запись весов в «Пульт» ─────────────────────────────────────────────────
 
-export const adminSetSpinWeights = onCall(CALLABLE_BASE, async (request) => {
+export const adminSetSpinWeights = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
+  requireAdminAppCheck(request);
   assertAdmin(request);
+  const role = adminRoleFromToken(request.auth?.token as Record<string, unknown> | undefined);
+  if (!role || !hasPermission(role, 'application.config.write')) {
+    throw new HttpsError('permission-denied', 'APPLICATION_CONFIG_WRITE_REQUIRED');
+  }
+  const command = normalizeReferralConfigCommand(request.data);
   const v = validateSpinWeights(request.data?.weights);
   if (!v.ok) {
     throw new HttpsError('invalid-argument', v.error);
   }
   const db = admin.firestore();
-  await db.collection('remote_config').doc('app').set(
-    { numbers: { referral_spin_weights: v.weights } },
-    { merge: true },
-  );
-  console.log(JSON.stringify({ event: 'admin_set_spin_weights', weights: v.weights, by: request.auth?.uid }));
-  return { ok: true, weights: v.weights };
+  const configRef = db.collection('remote_config').doc('app');
+  const operationRef = db.collection('admin_command_operations')
+    .doc(`referral_spin_weights_${command.idempotencyKey}`);
+  const auditRef = db.collection('admin_log').doc();
+  const actorUid = request.auth!.uid;
+  const requestFingerprint = JSON.stringify({
+    action: 'referral_spin.weights.set',
+    weights: v.weights,
+    expectedRevision: command.expectedRevision,
+    reason: command.reason,
+    requestId: command.requestId,
+  });
+
+  return db.runTransaction(async (tx) => {
+    const [configSnap, operationSnap] = await Promise.all([
+      tx.get(configRef),
+      tx.get(operationRef),
+    ]);
+    if (operationSnap.exists) {
+      const previous = operationSnap.data() ?? {};
+      if (previous.requestFingerprint !== requestFingerprint || previous.actorUid !== actorUid) {
+        throw new HttpsError('already-exists', 'idempotency key replay mismatch');
+      }
+      return { ...storedOperationResult(previous), replayed: true };
+    }
+    const config = (configSnap.data() ?? {}) as { revision?: unknown; numbers?: Record<string, unknown> };
+    const currentRevision = Number(config.revision ?? 0);
+    if (!Number.isInteger(currentRevision) || currentRevision !== command.expectedRevision) {
+      throw new HttpsError('aborted', 'remote_config_revision_conflict');
+    }
+    const beforeWeights = config.numbers?.referral_spin_weights ?? null;
+    const revision = currentRevision + 1;
+    const audit = createAuditRecord({
+      action: 'referral_spin.weights.set',
+      actorUid,
+      role,
+      entity: { collection: 'remote_config', id: 'app' },
+      reason: command.reason,
+      before: { weights: beforeWeights, revision: currentRevision },
+      after: { weights: v.weights, revision },
+      requestId: command.requestId,
+      timestamp: new Date().toISOString(),
+    });
+    const result = { ok: true, weights: v.weights, revision, auditId: auditRef.id };
+    tx.set(configRef, {
+      numbers: { referral_spin_weights: v.weights },
+      revision,
+      updatedAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedBy: actorUid,
+    }, { merge: true });
+    tx.create(auditRef, { ...audit, operationId: operationRef.id });
+    tx.create(operationRef, {
+      action: 'referral_spin.weights.set',
+      actorUid,
+      requestFingerprint,
+      auditId: auditRef.id,
+      revision,
+      result,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    });
+    return { ...result, replayed: false };
+  });
 });
 
 // ── b2) Мастер-флаг «Рулетка Plus + реферальная программа» ────────────────────
@@ -1102,7 +1199,8 @@ export const adminSetSpinWeights = onCall(CALLABLE_BASE, async (request) => {
  * что читают referralSpin/referralClaimSpin (resolveReferralRouletteEnabled) и клиент
  * (remote_flags → isReferralRouletteEnabled). Дефолт при отсутствии ключа = ON.
  */
-export const adminSetReferralRouletteEnabled = onCall(CALLABLE_BASE, async (request) => {
+export const adminSetReferralRouletteEnabled = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
+  requireAdminAppCheck(request);
   assertAdmin(request);
   const role = adminRoleFromToken(request.auth?.token as Record<string, unknown> | undefined);
   if (!role || !hasPermission(role, 'application.config.write')) {
@@ -1112,30 +1210,36 @@ export const adminSetReferralRouletteEnabled = onCall(CALLABLE_BASE, async (requ
   if (typeof enabled !== 'boolean') {
     throw new HttpsError('invalid-argument', 'enabled (boolean) required');
   }
-  const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
-  const requestId = String(request.data?.requestId ?? '').trim().slice(0, 160);
-  const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 120);
-  if (!reason || !requestId || !idempotencyKey) {
-    throw new HttpsError('invalid-argument', 'reason, requestId and idempotencyKey required');
-  }
+  const command = normalizeReferralConfigCommand(request.data);
   const db = admin.firestore();
   const configRef = db.collection('remote_config').doc('app');
-  const operationRef = db.collection('admin_command_operations').doc(`referral_roulette_${idempotencyKey}`);
+  const operationRef = db.collection('admin_command_operations')
+    .doc(`referral_roulette_${command.idempotencyKey}`);
   const auditRef = db.collection('admin_log').doc();
-  const fingerprint = JSON.stringify({ enabled });
+  const requestFingerprint = JSON.stringify({
+    action: 'referral_roulette.enabled.set',
+    enabled,
+    expectedRevision: command.expectedRevision,
+    reason: command.reason,
+    requestId: command.requestId,
+  });
   const actorUid = request.auth!.uid;
 
   return db.runTransaction(async (tx) => {
     const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
     if (operationSnap.exists) {
       const previous = operationSnap.data() ?? {};
-      if (previous.requestFingerprint !== fingerprint || previous.actorUid !== actorUid) {
+      if (previous.requestFingerprint !== requestFingerprint || previous.actorUid !== actorUid) {
         throw new HttpsError('already-exists', 'idempotency key replay mismatch');
       }
-      return referralSoftToggleReplayResult(previous);
+      return { ...storedOperationResult(previous), replayed: true };
     }
 
-    const config = (configSnap.data() ?? {}) as { numbers?: Record<string, unknown> };
+    const config = (configSnap.data() ?? {}) as { revision?: unknown; numbers?: Record<string, unknown> };
+    const currentRevision = Number(config.revision ?? 0);
+    if (!Number.isInteger(currentRevision) || currentRevision !== command.expectedRevision) {
+      throw new HttpsError('aborted', 'remote_config_revision_conflict');
+    }
     const beforeEnabled = config.numbers?.referral_roulette_enabled !== false;
     const beforeSoftOffAtMs = tsToMs(config.numbers?.referral_roulette_soft_off_at_ms);
     const nowMs = Date.now();
@@ -1150,18 +1254,26 @@ export const adminSetReferralRouletteEnabled = onCall(CALLABLE_BASE, async (requ
       actorUid,
       role,
       entity: { collection: 'remote_config', id: 'app' },
-      reason,
-      before: { enabled: beforeEnabled, softOffAtMs: beforeSoftOffAtMs },
-      after: { enabled, softOffAtMs },
-      requestId,
+      reason: command.reason,
+      before: { enabled: beforeEnabled, softOffAtMs: beforeSoftOffAtMs, revision: currentRevision },
+      after: { enabled, softOffAtMs, revision: currentRevision + 1 },
+      requestId: command.requestId,
       timestamp: new Date().toISOString(),
     });
+    const result = {
+      ok: true,
+      enabled,
+      softOffAtMs,
+      revision: currentRevision + 1,
+      auditId: auditRef.id,
+    };
 
     tx.set(configRef, {
       numbers: {
         referral_roulette_enabled: enabled,
         referral_roulette_soft_off_at_ms: softOffAtMs,
       },
+      revision: currentRevision + 1,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedBy: actorUid,
     }, { merge: true });
@@ -1169,18 +1281,21 @@ export const adminSetReferralRouletteEnabled = onCall(CALLABLE_BASE, async (requ
     tx.create(operationRef, {
       action: 'referral_roulette.enabled.set',
       actorUid,
-      requestFingerprint: fingerprint,
+      requestFingerprint,
       enabled,
       softOffAtMs,
       auditId: auditRef.id,
+      revision: currentRevision + 1,
+      result,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-    return { ok: true, enabled, softOffAtMs, auditId: auditRef.id, replayed: false };
+    return { ...result, replayed: false };
   });
 });
 
 /** True kill switch: blocks qualification, credit award, claim, and spin for everyone. */
-export const adminSetReferralRouletteEmergencyStop = onCall(CALLABLE_BASE, async (request) => {
+export const adminSetReferralRouletteEmergencyStop = onCall(ADMIN_SENSITIVE_WRITE_OPTIONS, async (request) => {
+  requireAdminAppCheck(request);
   assertAdmin(request);
   const role = adminRoleFromToken(request.auth?.token as Record<string, unknown> | undefined);
   if (!role || !hasPermission(role, 'application.config.write')) {
@@ -1190,51 +1305,59 @@ export const adminSetReferralRouletteEmergencyStop = onCall(CALLABLE_BASE, async
   if (typeof emergencyStop !== 'boolean') {
     throw new HttpsError('invalid-argument', 'emergencyStop (boolean) required');
   }
-  const reason = String(request.data?.reason ?? '').trim().slice(0, 500);
-  const requestId = String(request.data?.requestId ?? '').trim().slice(0, 160);
-  const idempotencyKey = String(request.data?.idempotencyKey ?? '').trim().slice(0, 120);
-  if (!reason || !requestId || !idempotencyKey) {
-    throw new HttpsError('invalid-argument', 'reason, requestId and idempotencyKey required');
-  }
+  const command = normalizeReferralConfigCommand(request.data);
 
   const db = admin.firestore();
   const configRef = db.collection('remote_config').doc('app');
-  const operationRef = db.collection('admin_command_operations').doc(`referral_roulette_emergency_${idempotencyKey}`);
+  const operationRef = db.collection('admin_command_operations')
+    .doc(`referral_roulette_emergency_${command.idempotencyKey}`);
   const auditRef = db.collection('admin_log').doc();
-  const fingerprint = JSON.stringify({ emergencyStop });
+  const requestFingerprint = JSON.stringify({
+    action: 'referral_roulette.emergency_stop.set',
+    emergencyStop,
+    expectedRevision: command.expectedRevision,
+    reason: command.reason,
+    requestId: command.requestId,
+  });
   const actorUid = request.auth!.uid;
 
   return db.runTransaction(async (tx) => {
     const [configSnap, operationSnap] = await Promise.all([tx.get(configRef), tx.get(operationRef)]);
     if (operationSnap.exists) {
       const previous = operationSnap.data() ?? {};
-      if (previous.requestFingerprint !== fingerprint || previous.actorUid !== actorUid) {
+      if (previous.requestFingerprint !== requestFingerprint || previous.actorUid !== actorUid) {
         throw new HttpsError('already-exists', 'idempotency key replay mismatch');
       }
-      return {
-        ok: true,
-        emergencyStop: previous.emergencyStop === true,
-        auditId: String(previous.auditId ?? ''),
-        replayed: true,
-      };
+      return { ...storedOperationResult(previous), replayed: true };
     }
 
-    const config = (configSnap.data() ?? {}) as { numbers?: Record<string, unknown> };
+    const config = (configSnap.data() ?? {}) as { revision?: unknown; numbers?: Record<string, unknown> };
+    const currentRevision = Number(config.revision ?? 0);
+    if (!Number.isInteger(currentRevision) || currentRevision !== command.expectedRevision) {
+      throw new HttpsError('aborted', 'remote_config_revision_conflict');
+    }
     const beforeEmergencyStop = config.numbers?.referral_roulette_emergency_stop === true;
     const audit = createAuditRecord({
       action: 'referral_roulette.emergency_stop.set',
       actorUid,
       role,
       entity: { collection: 'remote_config', id: 'app' },
-      reason,
-      before: { emergencyStop: beforeEmergencyStop },
-      after: { emergencyStop },
-      requestId,
+      reason: command.reason,
+      before: { emergencyStop: beforeEmergencyStop, revision: currentRevision },
+      after: { emergencyStop, revision: currentRevision + 1 },
+      requestId: command.requestId,
       timestamp: new Date().toISOString(),
     });
+    const result = {
+      ok: true,
+      emergencyStop,
+      revision: currentRevision + 1,
+      auditId: auditRef.id,
+    };
 
     tx.set(configRef, {
       numbers: { referral_roulette_emergency_stop: emergencyStop },
+      revision: currentRevision + 1,
       updatedAt: admin.firestore.FieldValue.serverTimestamp(),
       updatedBy: actorUid,
     }, { merge: true });
@@ -1242,12 +1365,14 @@ export const adminSetReferralRouletteEmergencyStop = onCall(CALLABLE_BASE, async
     tx.create(operationRef, {
       action: 'referral_roulette.emergency_stop.set',
       actorUid,
-      requestFingerprint: fingerprint,
+      requestFingerprint,
       emergencyStop,
       auditId: auditRef.id,
+      revision: currentRevision + 1,
+      result,
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
     });
-    return { ok: true, emergencyStop, auditId: auditRef.id, replayed: false };
+    return { ...result, replayed: false };
   });
 });
 

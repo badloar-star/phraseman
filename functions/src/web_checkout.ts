@@ -280,7 +280,10 @@ type GiftCertificateBatchInput = {
   product?: unknown;
   count?: unknown;
   recipientNames?: unknown;
+  senderNames?: unknown;
   recipientEmails?: unknown;
+  showRecipientName?: unknown;
+  showSenderName?: unknown;
   source?: unknown;
   authorization?: unknown;
 };
@@ -290,7 +293,10 @@ type GiftCertificateBatchItem = {
   activationCode: string;
   product: WebPlan;
   recipientName: string;
+  senderName: string;
   recipientEmail: string;
+  showRecipientName: boolean;
+  showSenderName: boolean;
   createdAtMs: number;
   expiresAtMs: number;
   status: 'generated';
@@ -315,14 +321,21 @@ export function normalizeGiftCertificateBatchOperationId(value: unknown): string
 }
 
 export function buildGiftCertificateBatchRequestKey(
-  items: readonly Pick<GiftCertificateBatchItem, 'product' | 'recipientName' | 'recipientEmail'>[],
+  items: readonly Pick<GiftCertificateBatchItem,
+    'product' | 'recipientName' | 'senderName' | 'recipientEmail' | 'showRecipientName' | 'showSenderName'>[],
 ): string {
   if (items.length < 1 || items.length > 200) {
     throw new HttpsError('internal', 'gift_certificate_batch_request_key_invalid');
   }
   const canonicalRequest = JSON.stringify({
     product: items[0].product,
-    recipients: items.map((item) => ({ name: item.recipientName, email: item.recipientEmail })),
+    recipients: items.map((item) => ({
+      recipientName: item.recipientName,
+      senderName: item.senderName,
+      email: item.recipientEmail,
+      showRecipientName: item.showRecipientName,
+      showSenderName: item.showSenderName,
+    })),
   });
   return createHash('sha256').update(canonicalRequest, 'utf8').digest('hex');
 }
@@ -375,13 +388,31 @@ export function createGiftCertificateBatchPlan(params: {
   if (!Array.isArray(input.recipientNames) || input.recipientNames.length !== count) {
     throw new HttpsError('invalid-argument', 'recipient_names_count_mismatch');
   }
-  const recipientNames = input.recipientNames.map((value) => cleanShortText(value, 60));
-  if (recipientNames.some((value) => !value)) {
+  const recipientNames = input.recipientNames.map((value) => strictGiftCertificateName(value, 'recipient'));
+  const hasExplicitVisibility = typeof input.showRecipientName === 'boolean'
+    || typeof input.showSenderName === 'boolean';
+  const showRecipientName = typeof input.showRecipientName === 'boolean'
+    ? input.showRecipientName
+    : !hasExplicitVisibility;
+  const showSenderName = typeof input.showSenderName === 'boolean'
+    ? input.showSenderName
+    : !hasExplicitVisibility;
+  if (showRecipientName && recipientNames.some((value) => !value)) {
     throw new HttpsError('invalid-argument', 'recipient_name_missing');
   }
-  const normalizedNames = recipientNames.map((value) => value.toLocaleLowerCase('ru-RU'));
+  const normalizedNames = recipientNames.filter(Boolean).map((value) => value.toLocaleLowerCase('ru-RU'));
   if (new Set(normalizedNames).size !== normalizedNames.length) {
     throw new HttpsError('invalid-argument', 'duplicate_recipient_name');
+  }
+  const rawSenderNames = input.senderNames == null
+    ? Array.from({ length: count }, () => 'Phraseman')
+    : input.senderNames;
+  if (!Array.isArray(rawSenderNames) || rawSenderNames.length !== count) {
+    throw new HttpsError('invalid-argument', 'sender_names_count_mismatch');
+  }
+  const senderNames = rawSenderNames.map((value) => strictGiftCertificateName(value, 'sender'));
+  if (showSenderName && senderNames.some((value) => !value)) {
+    throw new HttpsError('invalid-argument', 'sender_name_missing');
   }
   const rawEmails = input.recipientEmails == null ? [] : input.recipientEmails;
   if (!Array.isArray(rawEmails) || rawEmails.length > count) {
@@ -418,7 +449,10 @@ export function createGiftCertificateBatchPlan(params: {
       activationCode,
       product: input.product as WebPlan,
       recipientName: recipientNames[index],
+      senderName: senderNames[index],
       recipientEmail: recipientEmails[index],
+      showRecipientName,
+      showSenderName,
       createdAtMs: params.nowMs,
       expiresAtMs,
       assetUrl: GIFT_CERTIFICATE_ART[input.product as WebPlan],
@@ -436,7 +470,9 @@ export function createGiftCertificateBatchPlan(params: {
       certificateId: activationCode,
       certificateBatchId: batchId,
       certificateProduct: input.product,
-      note: cleanShortText(`Gift certificate for ${recipientNames[index]}`, 200),
+      note: cleanShortText(recipientNames[index]
+        ? `Gift certificate for ${recipientNames[index]}`
+        : 'Gift certificate', 200),
       createdAtMs: params.nowMs,
       updatedAtMs: params.nowMs,
       createdBy: common.createdBy,
@@ -451,11 +487,13 @@ export function createGiftCertificateBatchPlan(params: {
       rewardDays: reward.rewardDays,
       rewardKind: reward.rewardKind,
       gift: true,
-      personalizationMode: 'named',
+      personalizationMode: showRecipientName || showSenderName ? 'named' : 'anonymous',
+      showRecipientName,
+      showSenderName,
       displayRecipientName: recipientNames[index],
-      displaySenderName: 'Phraseman',
+      displaySenderName: senderNames[index],
       giftTo: recipientNames[index],
-      giftFrom: 'Phraseman',
+      giftFrom: senderNames[index],
       giftPhraseId: `${input.product}-01`,
       codeExpiresAtMs: expiresAtMs,
       testIssue: false,
@@ -624,6 +662,8 @@ type GiftCertificatePersonalizationUpdateInput = {
   authorization?: unknown;
   certificateId?: unknown;
   personalizationMode?: unknown;
+  showRecipientName?: unknown;
+  showSenderName?: unknown;
   displayRecipientName?: unknown;
   displaySenderName?: unknown;
   recipientEmail?: unknown;
@@ -642,6 +682,28 @@ function giftCertificatePersonalizationMode(value: unknown): GiftCertificatePers
   if (value === undefined || value === null || value === '') return 'named';
   if (value === 'named' || value === 'anonymous') return value;
   throw new HttpsError('failed-precondition', 'gift_certificate_personalization_mode_invalid');
+}
+
+function resolveGiftCertificateVisibility(input: FirebaseFirestore.DocumentData, saved: {
+  recipientName: string;
+  senderName: string;
+}): { showRecipientName: boolean; showSenderName: boolean; personalizationMode: GiftCertificatePersonalizationMode } {
+  const hasExplicitVisibility = typeof input.showRecipientName === 'boolean'
+    || typeof input.showSenderName === 'boolean';
+  const legacyMode = hasExplicitVisibility ? 'named' : giftCertificatePersonalizationMode(input.personalizationMode);
+  const legacyRecipient = legacyMode === 'named' && Boolean(saved.recipientName);
+  const legacySender = legacyMode === 'named' && Boolean(saved.senderName);
+  const showRecipientName = typeof input.showRecipientName === 'boolean'
+    ? input.showRecipientName
+    : legacyRecipient;
+  const showSenderName = typeof input.showSenderName === 'boolean'
+    ? input.showSenderName
+    : legacySender;
+  return {
+    showRecipientName,
+    showSenderName,
+    personalizationMode: showRecipientName || showSenderName ? 'named' : 'anonymous',
+  };
 }
 
 /** Existing valid ids are preserved; legacy drift is repaired without randomness. */
@@ -667,7 +729,6 @@ export function resolveGiftCertificatePresentation(
 ): Record<string, unknown> {
   const product = isWebPlan(record.product) ? record.product : (isWebPlan(record.plan) ? record.plan : null);
   if (!product) throw new HttpsError('failed-precondition', 'gift_certificate_plan_invalid');
-  const personalizationMode = giftCertificatePersonalizationMode(record.personalizationMode);
   const savedRecipientName = strictGiftCertificateName(
     record.displayRecipientName ?? record.recipientName ?? record.giftTo,
     'recipient',
@@ -676,6 +737,10 @@ export function resolveGiftCertificatePresentation(
     record.displaySenderName ?? record.giftFrom ?? 'Phraseman',
     'sender',
   ) || 'Phraseman';
+  const visibility = resolveGiftCertificateVisibility(record, {
+    recipientName: savedRecipientName,
+    senderName: savedSenderName,
+  });
   const phrase = resolveCanonicalGiftCertificatePhrase(product, record.giftPhraseId);
   const usedCount = Math.max(0, Math.trunc(Number(promo.usedCount ?? 0)) || 0);
   const lastRedeemedAtMs = Math.max(0, Math.trunc(Number(promo.lastRedeemedAtMs ?? 0)) || 0);
@@ -694,15 +759,17 @@ export function resolveGiftCertificatePresentation(
       : activationStatus === 'expired'
         ? 'Истёк'
         : 'Не активирован';
-  const showPersonalization = personalizationMode === 'named';
+  const showPersonalization = visibility.showRecipientName || visibility.showSenderName;
   return {
     product,
-    personalizationMode,
+    personalizationMode: visibility.personalizationMode,
+    showRecipientName: visibility.showRecipientName,
+    showSenderName: visibility.showSenderName,
     savedRecipientName,
     savedSenderName,
     recipientEmail: cleanEmail(record.recipientEmail) ?? '',
-    displayRecipientName: showPersonalization ? savedRecipientName : '',
-    displaySenderName: showPersonalization ? savedSenderName : '',
+    displayRecipientName: visibility.showRecipientName ? savedRecipientName : '',
+    displaySenderName: visibility.showSenderName ? savedSenderName : '',
     showPersonalization,
     productTitle: giftPlanTitle(product),
     giftPhraseId: phrase.id,
@@ -765,22 +832,36 @@ export function buildGiftCertificatePersonalizationUpdate(params: {
     throw new HttpsError('failed-precondition', 'gift_certificate_expired');
   }
 
-  const personalizationMode = giftCertificatePersonalizationMode(input.personalizationMode);
   const currentPresentation = resolveGiftCertificatePresentation(current, promo, params.nowMs);
+  const hasExplicitVisibility = typeof input.showRecipientName === 'boolean'
+    || typeof input.showSenderName === 'boolean';
+  const legacyMode = hasExplicitVisibility ? 'named' : giftCertificatePersonalizationMode(input.personalizationMode);
+  const showRecipientName = typeof input.showRecipientName === 'boolean'
+    ? input.showRecipientName
+    : (hasExplicitVisibility ? Boolean(currentPresentation.showRecipientName) : legacyMode === 'named');
+  const showSenderName = typeof input.showSenderName === 'boolean'
+    ? input.showSenderName
+    : (hasExplicitVisibility ? Boolean(currentPresentation.showSenderName) : legacyMode === 'named');
+  const personalizationMode: GiftCertificatePersonalizationMode = showRecipientName || showSenderName
+    ? 'named'
+    : 'anonymous';
   let displayRecipientName = strictGiftCertificateName(input.displayRecipientName, 'recipient');
   let displaySenderName = strictGiftCertificateName(input.displaySenderName, 'sender');
-  if (personalizationMode === 'named') {
-    if (!displayRecipientName) throw new HttpsError('invalid-argument', 'gift_certificate_recipient_name_missing');
-    if (!displaySenderName) throw new HttpsError('invalid-argument', 'gift_certificate_sender_name_missing');
-  } else {
-    displayRecipientName ||= String(currentPresentation.savedRecipientName ?? '');
-    displaySenderName ||= String(currentPresentation.savedSenderName ?? '') || 'Phraseman';
+  if (showRecipientName && !displayRecipientName) {
+    throw new HttpsError('invalid-argument', 'gift_certificate_recipient_name_missing');
   }
+  if (showSenderName && !displaySenderName) {
+    throw new HttpsError('invalid-argument', 'gift_certificate_sender_name_missing');
+  }
+  displayRecipientName ||= String(currentPresentation.savedRecipientName ?? '');
+  displaySenderName ||= String(currentPresentation.savedSenderName ?? '') || 'Phraseman';
   const rawEmail = typeof input.recipientEmail === 'string' ? input.recipientEmail.trim() : '';
   const recipientEmail = rawEmail ? cleanEmail(rawEmail) : (cleanEmail(current.recipientEmail) ?? '');
   if (rawEmail && !recipientEmail) throw new HttpsError('invalid-argument', 'invalid_recipient_email');
   const patch = {
     personalizationMode,
+    showRecipientName,
+    showSenderName,
     displayRecipientName,
     displaySenderName,
     recipientName: displayRecipientName,
@@ -795,6 +876,8 @@ export function buildGiftCertificatePersonalizationUpdate(params: {
   const auditDetails = {
     certificateId,
     personalizationMode,
+    showRecipientName,
+    showSenderName,
     recipientEmailSet: Boolean(recipientEmail),
     recipientNameSet: Boolean(displayRecipientName),
     senderNameSet: Boolean(displaySenderName),
@@ -815,7 +898,8 @@ export function giftCertificateDisplayRecord(
     presentation = resolveGiftCertificatePresentation(record, promo, nowMs);
   } catch {
     presentation = {
-      personalizationMode: 'named', savedRecipientName: '', savedSenderName: '', recipientEmail: '',
+      personalizationMode: 'anonymous', showRecipientName: false, showSenderName: false,
+      savedRecipientName: '', savedSenderName: '', recipientEmail: '',
       displayRecipientName: '', displaySenderName: '', showPersonalization: false,
       productTitle: '', giftPhraseId: '', giftPhrase: '', activationStatus: 'invalid',
       activationStatusLabel: 'Недоступен', lastRedeemedAtMs: 0,
@@ -893,8 +977,8 @@ export function buildGiftCertificateDownloadDisplayRecord(
     throw new HttpsError('failed-precondition', 'gift_certificate_promo_invalid');
   }
   const presentation = resolveGiftCertificatePresentation(record, promo, nowMs, { strictPhraseId: true });
-  if (presentation.personalizationMode === 'named'
-    && (!presentation.displayRecipientName || !presentation.displaySenderName)) {
+  if ((presentation.showRecipientName && !presentation.displayRecipientName)
+    || (presentation.showSenderName && !presentation.displaySenderName)) {
     throw new HttpsError('failed-precondition', 'gift_certificate_recipient_name_missing');
   }
 

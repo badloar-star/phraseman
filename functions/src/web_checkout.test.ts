@@ -416,6 +416,78 @@ describe('gift certificate canonical personalization and activation presentation
     rewardKind: 'days',
   };
 
+  it.each([
+    [true, true, 'Recipient', 'Sender', 'named'],
+    [true, false, 'Recipient', '', 'named'],
+    [false, true, '', 'Sender', 'named'],
+    [false, false, '', '', 'anonymous'],
+  ] as const)(
+    'resolves recipient=%s sender=%s independently',
+    (showRecipientName, showSenderName, displayRecipientName, displaySenderName, personalizationMode) => {
+      expect(resolveGiftCertificatePresentation({
+        ...current,
+        personalizationMode: 'anonymous',
+        showRecipientName,
+        showSenderName,
+        displayRecipientName: 'Recipient',
+        displaySenderName: 'Sender',
+      }, promo, nowMs)).toMatchObject({
+        showRecipientName,
+        showSenderName,
+        personalizationMode,
+        displayRecipientName,
+        displaySenderName,
+      });
+    },
+  );
+
+  it('prefers explicit flags and maps legacy named/anonymous records compatibly', () => {
+    expect(resolveGiftCertificatePresentation({
+      ...current, personalizationMode: 'anonymous', showRecipientName: true, showSenderName: false,
+    }, promo, nowMs)).toMatchObject({ showRecipientName: true, showSenderName: false, personalizationMode: 'named' });
+    expect(resolveGiftCertificatePresentation({ ...current, personalizationMode: 'anonymous' }, promo, nowMs))
+      .toMatchObject({ showRecipientName: false, showSenderName: false, personalizationMode: 'anonymous' });
+    expect(resolveGiftCertificatePresentation({ ...current, personalizationMode: 'named' }, promo, nowMs))
+      .toMatchObject({ showRecipientName: true, showSenderName: true, personalizationMode: 'named' });
+    expect(resolveGiftCertificatePresentation({ ...current, personalizationMode: undefined }, promo, nowMs))
+      .toMatchObject({ showRecipientName: true, showSenderName: true, personalizationMode: 'named' });
+  });
+
+  it.each([
+    [true, true],
+    [true, false],
+    [false, true],
+    [false, false],
+  ] as const)('persists independent visibility recipient=%s sender=%s without erasing hidden names', (showRecipientName, showSenderName) => {
+    const result = buildGiftCertificatePersonalizationUpdate({
+      input: {
+        authorization: GIFT_CERTIFICATE_PERSONALIZATION_UPDATE_AUTHORIZATION,
+        certificateId,
+        showRecipientName,
+        showSenderName,
+        displayRecipientName: showRecipientName ? 'New Recipient' : '',
+        displaySenderName: showSenderName ? 'New Sender' : '',
+        recipientEmail: '',
+        expectedUpdatedAtMs: current.updatedAtMs,
+      } as any,
+      current,
+      promo,
+      nowMs,
+      actorUid: 'owner-uid',
+      actorEmail: 'owner@example.com',
+    });
+    expect(result.patch).toMatchObject({
+      showRecipientName,
+      showSenderName,
+      personalizationMode: showRecipientName || showSenderName ? 'named' : 'anonymous',
+      displayRecipientName: showRecipientName ? 'New Recipient' : current.recipientName,
+      displaySenderName: showSenderName ? 'New Sender' : current.giftFrom,
+    });
+    expect(result.auditDetails).toMatchObject({ showRecipientName, showSenderName });
+    expect(JSON.stringify(result.auditDetails)).not.toContain('New Recipient');
+    expect(JSON.stringify(result.auditDetails)).not.toContain('New Sender');
+  });
+
   it('defaults legacy records to named and resolves the same visible copy used by every surface', () => {
     expect(resolveGiftCertificatePresentation(current, promo, nowMs)).toMatchObject({
       personalizationMode: 'named',

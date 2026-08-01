@@ -26,6 +26,66 @@ describe('live admin gift certificates workflow', () => {
   const server = read('functions/src/web_checkout.ts');
   const functionsIndex = read('functions/src/index.ts');
 
+  test('parses callable result envelopes and surfaces structured errors', () => {
+    const parserSource = extractNamedFunction(live, 'giftCertificateParseCallableEnvelope');
+    const parse = new Function(`${parserSource}\nreturn giftCertificateParseCallableEnvelope;`)() as (
+      payload: Record<string, unknown>, ok: boolean, status: number,
+    ) => { data: unknown };
+
+    expect(parse({ result: { ok: true, count: 2 } }, true, 200)).toEqual({ data: { ok: true, count: 2 } });
+    expect(() => parse({ error: { code: 'failed-precondition', message: 'delivery_not_authorized' } }, false, 400))
+      .toThrow('failed-precondition: delivery_not_authorized');
+  });
+
+  test('keeps gift CSS in style and gift JS at module top level', () => {
+    const cssMarker = live.indexOf('/* Gift certificates: compact');
+    expect(cssMarker).toBeGreaterThan(0);
+    expect(live.lastIndexOf('<style', cssMarker)).toBeGreaterThan(live.lastIndexOf('</style>', cssMarker));
+
+    const giftJsMarker = live.indexOf('// -- GIFT CERTIFICATES:');
+    const moduleAuth = live.indexOf('const auth = getAuth(app);');
+    const firstDailyPhrasesDrop = live.indexOf('window.dpDrop = async function dpDrop');
+    expect(giftJsMarker).toBeGreaterThan(moduleAuth);
+    expect(giftJsMarker).toBeLessThan(firstDailyPhrasesDrop);
+  });
+
+  test('offers independent recipient and sender visibility in creation and modal UI', () => {
+    expect(live).toContain('id="gift-certificate-senders"');
+    expect(live).toContain('id="gift-certificate-emails"');
+    expect(live).toMatch(/id="gift-certificate-show-recipient-name"[^>]*type="checkbox"/);
+    expect(live).toMatch(/id="gift-certificate-show-sender-name"[^>]*type="checkbox"/);
+    expect(live.match(/id="gift-certificate-show-(?:recipient|sender)-name"[^>]*checked/g) ?? []).toHaveLength(0);
+    expect(live).toContain('id="gift-personalization-show-recipient"');
+    expect(live).toContain('id="gift-personalization-show-sender"');
+    expect(live).not.toContain('name="gift-certificate-personalization-mode"');
+  });
+
+  test('executes independent production personalization for all four combinations', () => {
+    const validatorSource = extractNamedFunction(live, 'giftCertificateValidatePersonalizationPayload');
+    const displaySource = extractNamedFunction(live, 'giftCertificateDisplayPersonalization');
+    const { validate, display } = new Function(`${validatorSource}\n${displaySource}\nreturn { validate: giftCertificateValidatePersonalizationPayload, display: giftCertificateDisplayPersonalization };`)() as {
+      validate: (input: Record<string, unknown>) => Record<string, unknown>;
+      display: (input: Record<string, unknown>) => Record<string, unknown>;
+    };
+
+    expect(() => validate({ action: 'download', showRecipientName: true, displayRecipientName: '' })).toThrow();
+    expect(() => validate({ action: 'download', showSenderName: true, displaySenderName: '' })).toThrow();
+    for (const [showRecipientName, showSenderName] of [[true, true], [true, false], [false, true], [false, false]]) {
+      const validated = validate({
+        action: 'download', showRecipientName, showSenderName,
+        displayRecipientName: 'Recipient', displaySenderName: 'Sender', recipientEmail: '',
+      });
+      expect(validated).toMatchObject({ showRecipientName, showSenderName });
+      expect(display(validated)).toEqual({
+        showRecipientName,
+        showSenderName,
+        showPersonalization: showRecipientName || showSenderName,
+        displayRecipientName: showRecipientName ? 'Recipient' : '',
+        displaySenderName: showSenderName ? 'Sender' : '',
+      });
+    }
+  });
+
   test('exists only on the single live legacy admin surface and under Money', () => {
     expect(live).toContain("switchTab('gift-certificates')");
     expect(live).toContain('id="tab-gift-certificates"');

@@ -49,6 +49,7 @@ export const PERSONAL_PLAN_TASK_VISUAL_THEMES: ThemeMode[] = [
   'dark',
   'coral',
   'gold',
+  'sagePorcelain',
 ];
 
 const DEFAULT_VISUAL_THEME: ThemeMode = 'midnight';
@@ -99,6 +100,19 @@ const THEMED_TASK_ASSETS: Record<ThemeMode, Record<PersonalPlanTaskVisualSource,
     flashcards: require('../assets/images/personal_plan_tasks_fit/business/flashcards.webp'),
   },
   businessLight: {
+    core_lesson: require('../assets/images/personal_plan_tasks_fit/businessLight/core_lesson.webp'),
+    route_phrase: require('../assets/images/personal_plan_tasks_fit/businessLight/route_gavan.webp'),
+    recall: require('../assets/images/personal_plan_tasks_fit/businessLight/recall.webp'),
+    quiz: require('../assets/images/personal_plan_tasks_fit/businessLight/choice.webp'),
+    practice: require('../assets/images/personal_plan_tasks_fit/businessLight/practice.webp'),
+    choice: require('../assets/images/personal_plan_tasks_fit/businessLight/choice.webp'),
+    listening: require('../assets/images/personal_plan_tasks_fit/businessLight/listening.webp'),
+    sentence_build: require('../assets/images/personal_plan_tasks_fit/businessLight/sentence_build.webp'),
+    speaking: require('../assets/images/personal_plan_tasks_fit/businessLight/speaking.webp'),
+    trainer: require('../assets/images/personal_plan_tasks_fit/businessLight/trainer.webp'),
+    flashcards: require('../assets/images/personal_plan_tasks_fit/businessLight/flashcards.webp'),
+  },
+  sagePorcelain: {
     core_lesson: require('../assets/images/personal_plan_tasks_fit/businessLight/core_lesson.webp'),
     route_phrase: require('../assets/images/personal_plan_tasks_fit/businessLight/route_gavan.webp'),
     recall: require('../assets/images/personal_plan_tasks_fit/businessLight/recall.webp'),
@@ -218,6 +232,13 @@ const THEMED_ROUTE_ASSETS: Record<ThemeMode, Record<PersonalPlanId, ImageSourceP
     echo: require('../assets/images/personal_plan_tasks_fit/business/route_echo.webp'),
   },
   businessLight: {
+    gavan: require('../assets/images/personal_plan_tasks_fit/businessLight/route_gavan.webp'),
+    voyazh: require('../assets/images/personal_plan_tasks_fit/businessLight/route_voyazh.webp'),
+    mitap: require('../assets/images/personal_plan_tasks_fit/businessLight/route_mitap.webp'),
+    impuls: require('../assets/images/personal_plan_tasks_fit/businessLight/route_impuls.webp'),
+    echo: require('../assets/images/personal_plan_tasks_fit/businessLight/route_echo.webp'),
+  },
+  sagePorcelain: {
     gavan: require('../assets/images/personal_plan_tasks_fit/businessLight/route_gavan.webp'),
     voyazh: require('../assets/images/personal_plan_tasks_fit/businessLight/route_voyazh.webp'),
     mitap: require('../assets/images/personal_plan_tasks_fit/businessLight/route_mitap.webp'),

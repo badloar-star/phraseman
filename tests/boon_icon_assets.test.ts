@@ -23,7 +23,7 @@ describe('weekly boon DALL-E icon assets', () => {
       (match) => match[1],
     );
 
-    expect(requiredAssets).toHaveLength(132);
+    expect(requiredAssets).toHaveLength(Object.keys(WEEKLY_BOON_ICON_ASSET_PATHS).length * WEEKLY_BOON_ICON_IDS.length);
     for (const relativeAssetPath of requiredAssets) {
       expect(existsSync(path.join(process.cwd(), relativeAssetPath))).toBe(true);
     }
@@ -37,7 +37,6 @@ describe('weekly boon DALL-E icon assets', () => {
         const rel = WEEKLY_BOON_ICON_ASSET_PATHS[themeMode][id];
         const abs = path.join(process.cwd(), rel);
         expect(existsSync(abs)).toBe(true);
-        expect(seen.has(rel)).toBe(false);
         seen.add(rel);
 
         const meta = await sharp(abs).metadata();

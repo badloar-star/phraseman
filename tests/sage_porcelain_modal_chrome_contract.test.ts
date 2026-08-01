@@ -39,6 +39,8 @@ describe('sage porcelain modal, reward, and paywall chrome', () => {
     expect(dailyModal).toContain("errorBg: '#F2DFE0'");
     expect(dailyModal).toContain("backgroundColor: chrome.errorBg ?? 'transparent'");
     expect(dailyModal).toContain('color: chrome.errorText ?? chrome.chipText');
+    expect(dailyModal).toContain("...(chrome.errorBg ? { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12 } : {})");
+    expect(dailyModal).not.toContain("errorText: {\n    marginTop: 12,\n    paddingHorizontal: 12");
     expect(toast).toContain("sagePorcelain: {\n    cardColors: ['#FCFDF9', '#F5F7F2']");
     expect(toast).toContain("claimBg: '#315F50'");
     expect(toast).toContain("xpColor: '#8B6320'");

@@ -588,6 +588,7 @@ export default function DailyTasksFirstVisitModal({
                   backgroundColor: chrome.errorBg ?? 'transparent',
                   color: chrome.errorText ?? chrome.chipText,
                   fontSize: f.sub,
+                  ...(chrome.errorBg ? { paddingHorizontal: 12, paddingVertical: 8, borderRadius: 12 } : {}),
                 },
               ]}>
                 {errorText}
@@ -741,9 +742,6 @@ const styles = StyleSheet.create({
   },
   errorText: {
     marginTop: 12,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 12,
     textAlign: 'center',
     fontWeight: '700',
     lineHeight: 18,

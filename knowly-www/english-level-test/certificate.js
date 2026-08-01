@@ -96,6 +96,7 @@
 
   let currentTheme = 'gold';
   let activeCertificateClose = null;
+  let activeCertificateReturnFocus = null;
 
   function certificateLocale(locale) {
     return locale === 'ru' ? 'ru' : 'en';
@@ -215,10 +216,11 @@
   }
 
   function renderCertificate(data) {
+    const inheritedReturnFocus = activeCertificateReturnFocus;
     if (typeof activeCertificateClose === 'function') activeCertificateClose({ supersede: true });
     let currentLang = certificateLocale(data.uiLocale);
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const previouslyFocused = document.activeElement;
+    const previouslyFocused = inheritedReturnFocus || document.activeElement;
     const container = document.createElement('div');
     container.className = 'elt-cert-modal';
     container.innerHTML = `
@@ -434,12 +436,14 @@
       ], { duration: reducedMotion ? 60 : 250, easing: 'ease-in', fill: 'forwards' }).onfinish = () => {
         if (activeCertificateClose !== close) return;
         activeCertificateClose = null;
+        activeCertificateReturnFocus = null;
         container.remove();
         if (previouslyFocused?.isConnected) previouslyFocused.focus();
         if (typeof data.onClose === 'function') data.onClose();
       };
     }
     activeCertificateClose = close;
+    activeCertificateReturnFocus = previouslyFocused;
   }
 
   async function svgToPng(svgEl) {
